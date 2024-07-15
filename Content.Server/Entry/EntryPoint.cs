@@ -111,6 +111,8 @@ namespace Content.Server.Entry
                 _playTimeTracking.Initialize();
                 IoCManager.Resolve<JobWhitelistManager>().Initialize();
                 IoCManager.Resolve<PlayerRateLimitManager>().Initialize();
+
+                IoCManager.Resolve<Content.Server.Imperial.Sponsors.SponsorsManager>().Initialize(); //Imperial sponsors
             }
         }
 

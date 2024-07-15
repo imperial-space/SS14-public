@@ -37,6 +37,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+using Content.Server.Imperial.Sponsors;
 
 namespace Content.Server.Chat.Systems;
 
@@ -64,6 +65,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
+    [Dependency] private readonly SponsorsManager _sponsorsManager = default!;
 
     public const int VoiceRange = 10; // how far voice goes in world units
     public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
@@ -590,10 +592,16 @@ public sealed partial class ChatSystem : SharedChatSystem
         // If crit player LOOC is disabled, don't send the message at all.
         if (!_critLoocEnabled && _mobStateSystem.IsCritical(source))
             return;
-
-        var wrappedMessage = Loc.GetString("chat-manager-entity-looc-wrap-message",
-            ("entityName", name),
-            ("message", FormattedMessage.EscapeText(message)));
+        var wrappedMessage = "";
+        if (_sponsorsManager.TryGetInfo(player.UserId, out var sponsorData) && sponsorData.HavePriorityJoin == true && sponsorData.OOCColor != null)
+            wrappedMessage = Loc.GetString("chat-manager-entity-looc-patron-wrap-message",
+                    ("entityName", name),
+                    ("message", FormattedMessage.EscapeText(message)),
+                    ("patronColor", sponsorData.OOCColor));
+        else
+            wrappedMessage = Loc.GetString("chat-manager-entity-looc-wrap-message",
+                ("entityName", name),
+                ("message", FormattedMessage.EscapeText(message)));
 
         SendInVoiceRange(ChatChannel.LOOC, message, wrappedMessage, source, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, player.UserId);
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"LOOC from {player:Player}: {message}");

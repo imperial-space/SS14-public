@@ -9,6 +9,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server.Imperial.Sponsors; //Imperial sponsors
 
 namespace Content.Server.Station.Systems;
 
@@ -18,6 +19,7 @@ public sealed partial class StationJobsSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IBanManager _banManager = default!;
     [Dependency] private readonly PlayTimeTrackingSystem _playTime = default!;
+    [Dependency] private readonly SponsorsManager _sponsorsManager = default!; //Imperial sponsors
 
     private Dictionary<int, HashSet<string>> _jobsByWeight = default!;
     private List<int> _orderedWeights = default!;
@@ -244,9 +246,25 @@ public sealed partial class StationJobsSystem
 
                             if (!jobPlayerOptions.ContainsKey(job))
                                 continue;
-
+                            //Imperial sponsors start
+                            var sponsors = new HashSet<NetUserId>();
+                            foreach (var userId in jobPlayerOptions[job])
+                            {
+                                if (_sponsorsManager.TryGetInfo(userId, out var sponsorData) && sponsorData.HavePriorityJoin == true)
+                                    sponsors.Add(userId);
+                            }
+                            NetUserId player;
+                            if (sponsors.Count > 0)
+                            {
+                                player = _random.Pick(sponsors);
+                            }
+                            else
+                            {
+                                player = _random.Pick(jobPlayerOptions[job]);
+                            }
+                            //Imperial sponsors end
                             // Picking players it finds that have the job set.
-                            var player = _random.Pick(jobPlayerOptions[job]);
+                            //var player = _random.Pick(jobPlayerOptions[job]);
                             AssignPlayer(player, job, station);
                             stationShares[station]--;
 
@@ -347,6 +365,7 @@ public sealed partial class StationJobsSystem
         {
             var roleBans = _banManager.GetJobBans(player);
             var profileJobs = profile.JobPriorities.Keys.Select(k => new ProtoId<JobPrototype>(k)).ToList();
+            _sponsorsManager.TryGetInfo(player, out var sponsors); //Imperial sponsors
             var ev = new StationJobsGetCandidatesEvent(player, profileJobs);
             RaiseLocalEvent(ref ev);
 
@@ -366,6 +385,9 @@ public sealed partial class StationJobsSystem
                     continue;
 
                 if (!(roleBans == null || !roleBans.Contains(jobId)))
+                    continue;
+
+                if (sponsors is not null && !sponsors.HavePriorityJoin && job.SponsorsOnly)//Imperial sponsors
                     continue;
 
                 availableJobs ??= new List<string>(profile.JobPriorities.Count);

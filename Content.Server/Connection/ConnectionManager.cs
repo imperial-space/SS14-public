@@ -16,6 +16,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Content.Server.Imperial.Sponsors;
 
 /*
  * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
@@ -55,6 +56,7 @@ namespace Content.Server.Connection
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
         [Dependency] private readonly IChatManager _chatManager = default!;
+        [Dependency] private readonly SponsorsManager _sponsorsManager = default!; //Imperial sponsors
 
         private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
         private ISawmill _sawmill = default!;
@@ -102,6 +104,7 @@ namespace Content.Server.Connection
 
         private async Task NetMgrOnConnecting(NetConnectingArgs e)
         {
+            await _sponsorsManager.OnConnecting(e); //Imperial sponsors
             var deny = await ShouldDeny(e);
 
             var addr = e.IP.Address;
@@ -180,6 +183,7 @@ namespace Content.Server.Connection
             // Check if banned.
             var addr = e.IP.Address;
             var userId = e.UserId;
+            var isPriorityJoin = HavePriorityJoin(e.UserId); //Imperial sponsors
             ImmutableArray<byte>? hwId = e.UserData.HWId;
             if (hwId.Value.Length == 0 || !_cfg.GetCVar(CCVars.BanHardwareIds))
             {
@@ -204,7 +208,7 @@ namespace Content.Server.Connection
 
             var adminData = await _dbManager.GetAdminDataForAsync(e.UserId);
 
-            if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null)
+            if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null && !isPriorityJoin) //Imperial sponsors
             {
                 var showReason = _cfg.GetCVar(CCVars.PanicBunkerShowReason);
                 var customReason = _cfg.GetCVar(CCVars.PanicBunkerCustomReason);
@@ -263,7 +267,7 @@ namespace Content.Server.Connection
                             ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
                             status == PlayerGameStatus.JoinedGame;
             var adminBypass = _cfg.GetCVar(CCVars.AdminBypassMaxPlayers) && adminData != null;
-            if ((_plyMgr.PlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !adminBypass) && !wasInGame)
+            if ((_plyMgr.PlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !adminBypass) && !wasInGame && !isPriorityJoin) //Imperial sponsors
             {
                 return (ConnectionDenyReason.Full, Loc.GetString("soft-player-cap-full"), null);
             }
@@ -365,5 +369,12 @@ namespace Content.Server.Connection
             await _db.AssignUserIdAsync(name, assigned);
             return assigned;
         }
+
+        //Imperial sponsors start
+        private bool HavePriorityJoin(NetUserId user)
+        {
+            return _sponsorsManager.TryGetInfo(user, out var sponsorInfo) && sponsorInfo.HavePriorityJoin;
+        }
+        //Imperial sponsors end
     }
 }

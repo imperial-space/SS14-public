@@ -125,6 +125,9 @@ namespace Content.Shared.Roles
         /// </summary>
         [DataField]
         public List<ProtoId<GuideEntryPrototype>>? Guides;
+
+        [DataField("sponsorsOnly")]
+        public bool SponsorsOnly { get; } = false; //Imperial sponsors
     }
 
     /// <summary>
