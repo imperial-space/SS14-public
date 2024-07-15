@@ -314,8 +314,8 @@ reagent-effect-guidebook-missing =
 reagent-effect-guidebook-reduce-rotting =
     { $chance ->
         [1] Регенерирует
-       *[other] регенерируют
-    } { NATURALFIXED($time, 3) } { MANY("second", $time) } гниения
+        *[other] регенерируют
+    } {NATURALFIXED($time, 3)} секунд гниения
 reagent-effect-condition-guidebook-total-hunger =
     { $max ->
         [2147483648] цель имеет по крайней мере { NATURALFIXED($min, 2) } общего голода
