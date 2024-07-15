@@ -35,11 +35,6 @@ reagent-effect-guidebook-foam-area-reaction-effect =
     { $chance ->
         [1] Создаёт
        *[other] создают
-    } большое количество пены
-reagent-effect-guidebook-foam-area-reaction-effect =
-    { $chance ->
-        [1] Создаёт
-       *[other] создают
     } большое количество дыма
 reagent-effect-guidebook-satiate-thirst =
     { $chance ->
@@ -316,3 +311,17 @@ reagent-effect-guidebook-missing =
         [1] Вызывает
        *[other] вызывают
     } неизвестный эффект, так как никто еще не написал об этом эффекте
+reagent-effect-guidebook-reduce-rotting =
+    { $chance ->
+        [1] Регенерирует
+       *[other] регенерируют
+    } { NATURALFIXED($time, 3) } { MANY("second", $time) } гниения
+reagent-effect-condition-guidebook-total-hunger =
+    { $max ->
+        [2147483648] цель имеет по крайней мере { NATURALFIXED($min, 2) } общего голода
+       *[other]
+            { $min ->
+                [0] цель имеет не более { NATURALFIXED($max, 2) } общего голода
+               *[other] цель имеет между  { NATURALFIXED($min, 2) } и { NATURALFIXED($max, 2) } общего голода
+            }
+    }

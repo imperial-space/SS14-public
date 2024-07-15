@@ -29,7 +29,6 @@ signal-port-name-timer-start = Запуск таймера
 signal-port-description-timer-start = Этот порт вызывается всякий раз, когда запускается таймер.
 
 signal-port-name-logic-output = Выход
-signal-port-description-logic-output = Этот порт вызывается с ВЫСОКИМ или НИЗКИМ уровнем в зависимости от выбранного вентиля и входов.
 
 signal-port-name-logic-output-high = Высокий выход
 signal-port-description-logic-output-high = Этот порт вызывается всякий раз, когда на входе появляется нарастающий фронт.

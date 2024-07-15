@@ -178,7 +178,6 @@ store-currency-display-spacecrystal = Космокристал
 ent-Spacecrystal100 = Космокристал
     .desc = Космокристал, которого можно вставить в специальный прибор, для закупки предметов на расстоянии.
     .suffix = { "100, арена" }
-uplink-esword-name = Энергетический меч
 space-category-weapons = Вооружение
 space-category-heal = Жизнеобеспечение
 space-category-mat = Строительство

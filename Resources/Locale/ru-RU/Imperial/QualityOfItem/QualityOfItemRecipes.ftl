@@ -2,7 +2,6 @@ ent-quality-cartrige-armor-01-recipe-name = {ent-qualityCartrigeArmor01}
 ent-quality-cartrige-armor-12-recipe-name = {ent-qualityCartrigeArmor12}
 ent-quality-cartrige-armor-23-recipe-name = {ent-qualityCartrigeArmor23}
 ent-quality-cartrige-armor-45-recipe-name = {ent-qualityCartrigeArmor34}
-ent-quality-cartrige-armor-45-recipe-name = {ent-qualityCartrigeArmor45}
 ent-quality-cartrige-armor-56-recipe-name = {ent-qualityCartrigeArmor56}
 
 ent-quality-cartrige-tool-01-recipe-name = {ent-qualityCartrigeTool01}

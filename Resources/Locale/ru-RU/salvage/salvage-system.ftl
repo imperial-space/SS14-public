@@ -1,11 +1,4 @@
-salvage-system-announcement-source = Система управления магнитом
-salvage-system-announcement-arrived = Кусок обломков был притянут для утилизации. Расчетное время удержания: {$timeLeft} секунд.
-salvage-system-announcement-losing = Магнит больше не может удерживать обломок. Оставшееся время удержания: {$timeLeft} секунд.
-salvage-system-announcement-lost = Магнит перестал удерживать обломок.
-
 salvage-system-announcement-spawn-magnet-lost = Магнит был потерян.
-salvage-system-announcement-spawn-no-debris-available = Нет обломков которые можно притянуть магнитом.
-salvage-system-announcement-spawn-debris-disintegrated = Обломок развалился при орбитальном перемещении.
 
 salvage-system-report-already-active = Магнит уже активен.
 salvage-system-report-cooling-down = Магнит остывает.

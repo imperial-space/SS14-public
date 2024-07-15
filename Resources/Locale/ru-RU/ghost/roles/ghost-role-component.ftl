@@ -178,9 +178,6 @@ ghost-role-information-space-ninja-name = Космический ниндзя
 ghost-role-information-space-ninja-description = Используйте скрытность и обман, чтобы саботировать станцию.
 ghost-role-information-space-ninja-rules = Вы элитный наемник Клана Паука. От вас не требуется следовать своим целям, но ваша ЧЕСТЬ НИНДЗЯ требует, чтобы вы старались.
 
-ghost-role-information-closet-skeleton-name = Скелет в шкафу
-ghost-role-information-closet-skeleton-description = Сеять хаос! Вы — первородная сила, не имеющая никакой преданности. Живите счастливо вместе с командой или ведите сладкую скелетную войну.
-
 ghost-role-information-exterminator-name = Истребитель
 ghost-role-information-exterminator-description = Вас отправили в прошлое, чтобы уничтожить цель, имеющую большое значение для будущего.
 ghost-role-information-exterminator-rules = Вы антагонист и можете убить любого, кто попытается вас остановить, но убийство цели всегда является вашим главным приоритетом.

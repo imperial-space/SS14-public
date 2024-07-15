@@ -29,7 +29,6 @@ reagent-name-mustard = горчица
 reagent-desc-mustard = Основная желтая горчица, изготовленная из семян горчичного растения.
 
 reagent-name-butter = масло
-reagent-physical-desc-creamy = Масленное масло, очень нравится любителям масла.
 
 reagent-name-vinaigrette = винегретная заправка
 reagent-desc-vinaigrette = Простая заправка для салатов, приготовленная из масла, уксуса и приправ.

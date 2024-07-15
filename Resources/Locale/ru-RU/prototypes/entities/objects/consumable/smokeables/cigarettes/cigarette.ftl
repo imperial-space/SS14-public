@@ -54,5 +54,3 @@ ent-CigaretteWeldingFuel = Плазменный соус
     .desc = Скрутка с табаком и никотином.
 ent-CigaretteTHC = Хиппи-романтический роман
     .desc = Скрутка с табаком и никотином.
-ent-SoakedCigarette = сигарета
-    .desc = Скрутка с табаком и никотином.

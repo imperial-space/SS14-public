@@ -103,7 +103,7 @@ skill-surgery-desc = Любые манипуляции с тканями и ор
 skill-surgery-name-nocolor = Хирургия
 
 skill-neurosurgery-name = [color = {$color}]Нейрохирургия[/color]
-skill-surgery-desc = Любые манипуляции с мозгом пациента.
+skill-neurosurgery-desc = Любые манипуляции с мозгом пациента.
 skill-neurosurgery-name-nocolor = Нейрохирургия
 
 skill-clownJoker-name = [color = {$color}]Шутник[/color]
