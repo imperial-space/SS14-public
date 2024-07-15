@@ -1,0 +1,438 @@
+- type: reaction
+  id: Cryostilane
+  impact: High
+  priority: 20
+  minTemp: 163
+  reactants:
+    Water:
+      amount: 1
+    Plasma:
+      amount: 1
+    Nitrogen:
+      amount: 1
+  effects:
+    - !type:AdjustSolutionTemperatureEffect
+      delta: -100
+      minTemp: 20
+      scaled: true
+    - !type:CreateGas
+      gas: Frezon
+      multiplier: 0.3
+    - !type:PopupMessage
+      visualType: LargeCaution
+      messages: [ "cryostilane-gas-created" ]
+      type: Pvs
+  products:
+    Cryostilane: 3
+
+- type: reaction
+  id: StabilizingAgent
+  reactants:
+    Iron:
+      amount: 1
+    Lithium:
+      amount: 1
+    Nitrogen:
+      amount: 1
+  products:
+    StabilizingAgent: 3
+
+# Liquid Dark Matter
+
+- type: reaction
+  id: LiquidDarkMatter
+  impact: High
+  priority: 20
+  reactants:
+    Plasma:
+      amount: 1
+    Radium:
+      amount: 1
+    Carbon:
+      amount: 1
+    StabilizingAgent:
+      amount: 1
+      catalyst: true
+  products:
+    LiquidDarkMatter: 3
+
+- type: reaction
+  id: LiquidDarkMatterCollapse1
+  impact: High
+  reactants:
+    Plasma:
+      amount: 1
+    Radium:
+      amount: 1
+    Carbon:
+      amount: 1
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: BlackHoleEffect
+    - !type:GravityReactionEffect
+      maxRange: 3.5
+      baseRadialDeltaV: 145
+      baseTangentialDeltaV: -5
+
+- type: reaction
+  id: LiquidDarkMatterCollapse2
+  impact: High
+  minTemp: 288
+  reactants:
+    LiquidDarkMatter:
+      amount: 1
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: BlackHoleEffect
+    - !type:GravityReactionEffect
+      maxRange: 3.5
+      baseRadialDeltaV: 145
+      baseTangentialDeltaV: -5
+
+# Liquid Dark Matter end
+
+# Liquid White Matter
+
+- type: reaction
+  id: LiquidWhiteMatter
+  impact: High
+  priority: 20
+  reactants:
+    Uranium:
+      amount: 1
+    Radium:
+      amount: 1
+    Carbon:
+      amount: 1
+    StabilizingAgent:
+      amount: 1
+      catalyst: true
+  products:
+    LiquidWhiteMatter: 3
+
+- type: reaction
+  id: LiquidWhiteMatterCollapse1
+  impact: High
+  reactants:
+    Uranium:
+      amount: 1
+    Radium:
+      amount: 1
+    Carbon:
+      amount: 1
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: WhiteHoleEffect
+    - !type:GravityReactionEffect
+      maxRange: 3.5
+      baseRadialDeltaV: -180
+      baseTangentialDeltaV: 5
+
+- type: reaction
+  id: LiquidWhiteMatterCollapse2
+  impact: High
+  minTemp: 288
+  reactants:
+    LiquidWhiteMatter:
+      amount: 1
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: WhiteHoleEffect
+    - !type:GravityReactionEffect
+      maxRange: 3.5
+      baseRadialDeltaV: -180
+      baseTangentialDeltaV: 5
+
+# Liquid White end
+
+- type: reaction
+  id: AzideExplosion
+  impact: High
+  reactants:
+    LiquidWhiteMatter:
+      amount: 1
+    LiquidDarkMatter:
+      amount: 1
+  effects:
+    - !type:ExplosionReactionEffect
+      explosionType: Cryo # This is not a crutch. This is great plan.
+      maxIntensity: 1
+      intensitySlope: 0.001
+      maxTotalIntensity: 1
+    - !type:PopupMessage
+      visualType: LargeCaution
+      messages: [ "immovable-rod-collided-rod-not-good" ]
+      type: Local
+
+# Flash Powder
+
+- type: reaction
+  id: FlashPowder
+  impact: High
+  priority: 20
+  reactants:
+    Aluminium:
+      amount: 1
+    Chlorine:
+      amount: 1
+    Potassium:
+      amount: 1
+    Sulfur:
+      amount: 1
+    StabilizingAgent:
+      amount: 1
+      catalyst: true
+  products:
+    FlashPowder: 4
+
+- type: reaction
+  id: FlashPowderExplosion1
+  impact: High
+  reactants:
+    Aluminium:
+      amount: 1
+    Chlorine:
+      amount: 1
+    Potassium:
+      amount: 1
+    Sulfur:
+      amount: 1
+  effects:
+    - !type:FlashReactionEffect
+      maxRange: 8
+      maxDuration: 5
+
+- type: reaction
+  id: FlashPowderExplosion2
+  impact: High
+  minTemp: 343
+  reactants:
+    FlashPowder:
+      amount: 1
+  effects:
+    - !type:FlashReactionEffect
+      maxRange: 8
+      maxDuration: 8
+
+# Flash Powder end
+
+# fun
+
+- type: reaction
+  id: ValproicAcid
+  reactants:
+    Carpetium:
+      amount: 1
+    Ephedrine:
+      amount: 1
+    Citaloporam:
+      amount: 1
+  products:
+    ValproicAcid: 3
+
+- type: reaction
+  id: Mutadone
+  reactants:
+    UnstableMutagen:
+      amount: 1
+    Acetone:
+      amount: 1
+    Sodium:
+      amount: 1
+  products:
+    Mutadone: 3
+
+- type: reaction
+  id: QuantumHairDye
+  reactants:
+    ValproicAcid:
+      amount: 1
+    Mutadone:
+      amount: 1
+    LiquidDarkMatter:
+      amount: 1
+  products:
+    QuantumHairDye: 3
+
+- type: reaction
+  id: QuantumTailDye
+  reactants:
+    QuantumHairDye:
+      amount: 1
+    Phosphorus:
+      amount: 1
+  products:
+    QuantumTailDye: 2
+
+- type: reaction
+  id: TineaLuxor
+  minTemp: 546
+  reactants:
+    Mutadone:
+      amount: 1
+    Fat:
+      amount: 1
+    StabilizingAgent:
+      amount: 1
+      catalyst: true
+  products:
+    TineaLuxor: 2
+
+- type: reaction
+  id: UnstableTineaLuxor
+  minTemp: 546
+  reactants:
+    TineaLuxor:
+      amount: 1
+    UnstableMutagen:
+      amount: 1
+  products:
+    UnstableTineaLuxor: 2
+
+- type: reaction
+  id: Allelopathy
+  reactants:
+    TineaLuxor:
+      amount: 1
+    UnstableTineaLuxor:
+      amount: 1
+
+# fun end
+
+- type: reaction
+  id: Calomel
+  minTemp: 374
+  reactants:
+    Mercury:
+      amount: 1
+    Chlorine:
+      amount: 1
+  products:
+    Calomel: 2
+
+- type: reaction
+  id: StrangeReagent
+  reactants:
+    Omnizine:
+      amount: 1
+    UnstableMutagen:
+      amount: 1
+    Cryostilane:
+      amount: 1
+  products:
+    StrangeReagent: 1
+
+- type: reaction
+  id: Corgification
+  reactants:
+    StrangeReagent:
+      amount: 1
+    Calomel:
+      amount: 1
+    Mutadone:
+      amount: 1
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: MobCorgi
+    - !type:PopupMessage
+        visualType: LargeCaution
+        messages: [ "strange-reagent-corgification-create" ]
+        type: Pvs
+
+# Unstable Bluespace Liquid start
+
+- type: reaction
+  id: UnstableBluespaceLiquid
+  priority: 20
+  reactants:
+    UnknownSubstance:
+      amount: 1
+    Cryostilane:
+      amount: 1
+    LiquidDarkMatter:
+      amount: 1
+    StabilizingAgent:
+      amount: 1
+      catalyst: true
+  products:
+    UnstableBluespaceLiquid: 1
+
+- type: reaction
+  id: UnstableBluespaceLiquidCollapse1
+  impact: High
+  reactants:
+    UnknownSubstance:
+      amount: 1
+    Cryostilane:
+      amount: 1
+    LiquidDarkMatter:
+      amount: 1
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: BluespaceHoleEffect
+    - !type:Teleport
+      energyPerUnit: 1
+      teleportType: Random
+
+- type: reaction
+  id: UnstableBluespaceLiquidCollapse2
+  impact: High
+  minTemp: 288
+  reactants:
+    UnstableBluespaceLiquid:
+      amount: 1
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: BluespaceHoleEffect
+    - !type:Teleport
+      energyPerUnit: 1
+      teleportType: Random
+
+# Unstable Bluespace Liquid end
+
+# Concentrated Bluespace Liquid start
+
+- type: reaction
+  id: ConcentratedBluespaceLiquid
+  priority: 20
+  reactants:
+    UnstableBluespaceLiquid:
+      amount: 1
+    StrangeReagent:
+      amount: 1
+    StabilizingAgent:
+      amount: 1
+      catalyst: true
+  products:
+    ConcentratedBluespaceLiquid: 1
+
+- type: reaction
+  id: ConcentratedBluespaceLiquidCollapse1
+  impact: High
+  reactants:
+    UnstableBluespaceLiquid:
+      amount: 1
+    StrangeReagent:
+      amount: 1
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: BluespaceHoleEffect
+    - !type:Teleport
+      energyPerUnit: 1
+      teleportType: FaceRotation
+
+- type: reaction
+  id: ConcentratedBluespaceLiquidCollapse2
+  impact: High
+  minTemp: 288
+  reactants:
+    ConcentratedBluespaceLiquid:
+      amount: 1
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: BluespaceHoleEffect
+    - !type:Teleport
+      energyPerUnit: 1
+      teleportType: FaceRotation
+
+# Concentrated Bluespace Liquid end

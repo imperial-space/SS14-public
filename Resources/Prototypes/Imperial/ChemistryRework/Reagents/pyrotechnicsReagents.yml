@@ -1,0 +1,317 @@
+- type: reagent
+  id: Cryostilane
+  name: reagent-name-cryostilane
+  group: Pyrotechnic
+  desc: reagent-desc-cryostilane
+  physicalDesc: reagent-physical-desc-frosty
+  flavor: cold
+  pricePerUnit: 1.5
+  color: "#A7B0E9"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Cold: 1.5
+      - !type:AdjustTemperature
+        amount: -15000
+  tileReactions:
+    - !type:ReplaceTileReaction
+      tile: IceFloorSheet
+
+- type: reagent
+  id: StabilizingAgent
+  name: reagent-name-stabilizing-agent
+  desc: reagent-desc-stabilizing-agent
+  physicalDesc: reagent-physical-desc-soothing
+  flavor: funny
+  color: "#E0E92C"
+  group: Pyrotechnic
+
+- type: reagent
+  id: LiquidDarkMatter
+  name: reagent-name-liquid-dark-matter
+  desc: reagent-desc-liquid-dark-matter
+  physicalDesc: reagent-physical-desc-volatile
+  flavor: nothing
+  color: "#782088"
+  group: Pyrotechnic
+  tileReactions:
+    - !type:CreateEntityTileReaction
+      entity: BlackHoleEffect
+      conditions:
+        - !type:SolutionTemperature
+          min: 290
+    - !type:GravityTileReaction
+      maxRange: 3.5
+      conditions:
+        - !type:SolutionTemperature
+          min: 290
+      baseRadialDeltaV: 145
+      baseTangentialDeltaV: -5
+
+- type: reagent
+  id: LiquidWhiteMatter
+  name: reagent-name-liquid-white-matter
+  desc: reagent-desc-liquid-white-matter
+  physicalDesc: reagent-physical-desc-volatile
+  flavor: sharp
+  color: "#ffff"
+  group: Pyrotechnic
+  tileReactions:
+    - !type:CreateEntityTileReaction
+      entity: WhiteHoleEffect
+      conditions:
+        - !type:SolutionTemperature
+          min: 290
+    - !type:GravityTileReaction
+      maxRange: 3.5
+      conditions:
+        - !type:SolutionTemperature
+          min: 290
+      baseRadialDeltaV: -180
+      baseTangentialDeltaV: 5
+
+- type: reagent
+  id: FlashPowder
+  name: reagent-name-flash-powder
+  desc: reagent-desc-flash-powder
+  physicalDesc: reagent-physical-desc-powdery
+  flavor: tingly
+  color: "#1B2222"
+  group: Pyrotechnic
+
+- type: reagent
+  id: Calomel
+  name: reagent-name-calomel
+  desc: reagent-desc-calomel
+  physicalDesc: reagent-physical-desc-clumpy
+  flavor: medicine
+  color: "#2DA94C"
+  group: Toxins
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 5
+      - !type:AdjustReagent
+        group: Poison
+        amount: -3
+      - !type:AdjustReagent
+        group: Medicine
+        amount: -3
+      - !type:AdjustReagent
+        group: Narcotic
+        amount: -3
+
+- type: reagent
+  id: QuantumHairDye
+  name: reagent-name-quantum-hair-dye
+  desc: reagent-desc-quantum-hair-dye
+  physicalDesc: reagent-physical-desc-skunky
+  flavor: blaster
+  color: "#982CEE"
+  group: Unknown
+  metabolisms:
+    Poison:
+      effects:
+      - !type:ChangeMarkingColor
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:ChangeMarkingColor
+        invertColor: true
+        conditions:
+          - !type:ReagentThreshold
+            min: 5
+            reagent: QuantumHairDye
+
+- type: reagent
+  id: QuantumTailDye
+  name: reagent-name-quantum-tail-dye
+  desc: reagent-desc-quantum-tail-dye
+  physicalDesc: reagent-physical-desc-skunky
+  flavor: blaster
+  color: "#982CEE"
+  group: Unknown
+  metabolisms:
+    Poison:
+      effects:
+      - !type:ChangeMarkingColor
+        markingCategory: "Tail"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:ChangeMarkingColor
+        markingCategory: "Tail"
+        invertColor: true
+        conditions:
+          - !type:ReagentThreshold
+            min: 5
+            reagent: QuantumTailDye
+
+- type: reagent
+  id: ValproicAcid
+  name: reagent-name-valproic-acid
+  desc: reagent-desc-valproic-acid
+  physicalDesc: reagent-physical-desc-soapy
+  flavor: terrible
+  color: "#5CCE6C"
+  group: Unknown
+  metabolisms:
+    Poison:
+      effects:
+      - !type:RemoveMark
+        conditions:
+          - !type:ReagentThreshold
+            min: 10
+
+- type: reagent
+  id: TineaLuxor
+  name: reagent-name-tinea-luxor
+  desc: reagent-desc-tinea-luxor
+  physicalDesc: reagent-physical-desc-glowing
+  flavor: mushroom
+  color: "#F37A00"
+  group: Biological
+  metabolisms:
+    Food:
+      effects:
+      - !type:Luminescence
+        color: "#F37A00"
+        energyPerUnit: 2
+
+- type: reagent
+  id: UnstableTineaLuxor
+  name: reagent-name-unstable-tinea-luxor
+  desc: reagent-desc-unstable-tinea-luxor
+  physicalDesc: reagent-physical-desc-glowing
+  flavor: mushroom
+  color: "#A9A43A"
+  group: Biological
+  metabolisms:
+    Food:
+      effects:
+      - !type:Luminescence
+        energyPerUnit: 2
+
+- type: reagent
+  id: Mutadone
+  name: reagent-name-mutadone
+  desc: reagent-desc-mutadone
+  physicalDesc: reagent-physical-desc-volatile
+  flavor: bad-joke
+  color: "#5CCE6C"
+  group: Unknown
+  metabolisms:
+    Poison:
+      metabolismRate: 5.0
+      effects:
+      - !type:ChangeMarkingColor
+        markingCategory: "Skin"
+        invertColor: true
+        conditions:
+        - !type:ReagentThreshold
+            min: 10
+
+- type: reagent
+  id: StrangeReagent
+  name: reagent-name-strange-reagent
+  group: Medicine
+  desc: reagent-desc-strange-reagent
+  physicalDesc: reagent-physical-desc-necrotic
+  flavor: flavor-complex-bad-tequila
+  pricePerUnit: 20
+  color: "#92DA6D"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 3
+            Cellular: 0.5
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:Gib
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Dead
+        - !type:ReagentThreshold
+            min: 20
+        - !type:TotalDamageByGroups
+            min: 150
+            damageGroups:
+            - Brute
+            - Burn
+            - Genetic
+      - !type:Gib
+        probability: 0.35
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Dead
+        - !type:ReagentThreshold
+            min: 20
+      - !type:Resurrection
+        penaltyDamage:
+          types:
+            Cellular: 50
+            Caustic: 35
+        conditions:
+          - !type:MobStateCondition
+            mobstate: Dead
+          - !type:ReagentThreshold
+            min: 20
+            reagent: StrangeReagent
+
+- type: reagent
+  id: UnstableBluespaceLiquid
+  name: reagent-name-unstable-bluespace-liquid
+  group: Unknown
+  desc: reagent-desc-unstable-bluespace-liquid
+  physicalDesc: reagent-physical-desc-nondescript
+  flavor: Pyrotechnic
+  pricePerUnit: 1000
+  color: "#5ED3F3"
+  tileReactions:
+    - !type:CreateEntityTileReaction
+      entity: BluespaceHoleEffect
+      conditions:
+        - !type:SolutionTemperature
+          min: 290
+    - !type:TeleportTileReaction
+      energyPerUnit: 1
+      teleportType: Random
+      conditions:
+        - !type:SolutionTemperature
+          min: 290
+
+- type: reagent
+  id: ConcentratedBluespaceLiquid
+  name: reagent-name-concentrated-bluespace-liquid
+  group: Unknown
+  desc: reagent-desc-concentrated-bluespace-liquid
+  physicalDesc: reagent-physical-desc-nondescript
+  flavor: Pyrotechnic
+  pricePerUnit: 2000
+  color: "#5ED3F3"
+  tileReactions:
+    - !type:CreateEntityTileReaction
+      entity: BluespaceHoleEffect
+      conditions:
+        - !type:SolutionTemperature
+          min: 290
+    - !type:TeleportTileReaction
+      radiusPerUnit: 0
+      teleportType: FaceRotation
+      conditions:
+        - !type:SolutionTemperature
+          min: 290
+
