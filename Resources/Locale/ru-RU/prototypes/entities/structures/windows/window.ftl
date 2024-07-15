@@ -1,0 +1,15 @@
+ent-Window = окно
+    .desc = Смотри не заляпай.
+    .suffix = { "" }
+ent-WindowDirectional = направленное окно
+    .desc = Смотри не заляпай.
+    .suffix = { "" }
+ent-WindowTintedDirectional = направленное тонированное окно
+    .desc = Смотри не заляпай.
+    .suffix = { "" }
+ent-WindowFrostedDirectional = направленное матовое окно
+    .desc = Смотри не заляпай.
+    .suffix = { "" }
+ent-WindowDiagonal = диагональное окно
+    .desc = Смотри не заляпай.
+    .suffix = Диагональное

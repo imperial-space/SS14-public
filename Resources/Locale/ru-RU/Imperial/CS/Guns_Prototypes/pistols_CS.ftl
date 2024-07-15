@@ -1,0 +1,12 @@
+ent-CSWeaponBeretta = beretta
+    .desc = Классика из 1975 года. Использует патроны .35 авто.
+    .suffix = CS
+ent-CSWeaponDualBeretta =  dual beretta
+    .desc = Классика из 1975 года. Два пистолета привязанных ниткой. Используют патроны 35. авто.
+    .suffix = CS
+ent-CSWeaponFiveSeven = five-seven
+    .desc = Верный друг своего брата Р90.
+    .suffix = CS
+ent-CSWeaponUSP-S = usp-s
+    .desc = Пиу-Пиу, сорок семь.
+    .suffix = CS

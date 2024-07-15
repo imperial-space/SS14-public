@@ -1,0 +1,15 @@
+ent-Dart = дротик
+    .desc = легкий метательный дротик для игры в дартс. Не попадайтесь в глаза!
+ent-DartPurple = { ent-Dart }
+    .desc = { ent-Dart.desc }
+ent-DartBlue = { ent-Dart }
+    .desc = { ent-Dart.desc }
+ent-DartYellow = { ent-Dart }
+    .desc = { ent-Dart.desc }
+ent-HypoDart = { ent-Dart }
+    .desc = { ent-Dart.desc }
+    .suffix = Гиподротик
+ent-HypoDartBox = футляр гиподротика
+    .desc = Небольшой футляр с гиподротиком. Упаковка испаряется при открытии, не оставляя после себя никаких следов.
+ent-TargetDarts = доска для игры в дартс
+    .desc = Мишень для игры в дартс.

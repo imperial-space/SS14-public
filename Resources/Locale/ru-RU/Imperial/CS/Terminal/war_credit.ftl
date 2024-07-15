@@ -1,0 +1,13 @@
+store-currency-display-warcredit = КР
+ent-WarCredit = монеты конфронтации
+    .desc = Символизируют собой бюджет мировой преступности и деньги налогоплательщиков, ушедших на вечную борьбу между двумя всем известными сторонами.
+    .suffix = CS, 100
+ent-WarCredit1 = { ent-WarCredit }
+    .desc = { ent-WarCredit.desc }
+    .suffix = CS, 1
+ent-WarCredit500 = { ent-WarCredit }
+    .desc = { ent-WarCredit.desc }
+    .suffix = CS, 500
+ent-WarCredit1000 = { ent-WarCredit }
+    .desc = { ent-WarCredit.desc }
+    .suffix = CS, 1000

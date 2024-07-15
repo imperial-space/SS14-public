@@ -1,0 +1,1 @@
+borghypo-switchreagent = Сменить синтезируемый реагент

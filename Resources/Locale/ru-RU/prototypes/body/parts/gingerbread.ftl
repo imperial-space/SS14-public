@@ -1,0 +1,10 @@
+ent-RightArmGingerbread = правая пряничная рука
+ent-RightFootGingerbread = правая пряничная нога
+ent-RightHandGingerbread = правая рука-пряник
+ent-LeftArmGingerbread = левая пряничная рука
+ent-LeftFootGingerbread = левая пряничная нога
+ent-LeftHandGingerbread = левая рука рука-пряник
+ent-LeftLegGingerbread = левая нога-пряник
+ent-HeadGingerbread = пряничная голова
+ent-TorsoGingerbread = пряничное туловище
+ent-RightLegGingerbread = правая пряничная нога
