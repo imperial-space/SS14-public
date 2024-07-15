@@ -11,6 +11,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Client.Imperial.Sponsors; //Imperial sponsors
 
 namespace Content.Client.Players.PlayTimeTracking;
 
@@ -22,6 +23,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private readonly SponsorsManager _sponsorsManager = default!; //Imperial sponsors
 
     private readonly Dictionary<string, TimeSpan> _roles = new();
     private readonly List<string> _roleBans = new();
@@ -92,6 +94,13 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     public bool IsAllowed(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)
     {
         reason = null;
+        ////Imperial sponsors start
+        if (job.SponsorsOnly && !(_sponsorsManager.TryGetInfo(out var sponsorData) && sponsorData.HavePriorityJoin == true))
+        {
+            reason = FormattedMessage.FromUnformatted("Только для подписчиков Imperial Pass");
+            return false;
+        }
+        ////Imperial sponsors end
 
         if (_roleBans.Contains($"Job:{job.ID}"))
         {

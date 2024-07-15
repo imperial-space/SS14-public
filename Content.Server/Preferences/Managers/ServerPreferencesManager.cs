@@ -10,6 +10,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
+using Content.Server.Imperial.Sponsors;
 
 namespace Content.Server.Preferences.Managers
 {
@@ -26,6 +27,7 @@ namespace Content.Server.Preferences.Managers
         [Dependency] private readonly IDependencyCollection _dependencies = default!;
         [Dependency] private readonly ILogManager _log = default!;
         [Dependency] private readonly UserDbDataManager _userDb = default!;
+        [Dependency] private readonly SponsorsManager _sponsorsManager = default!;
 
         // Cache player prefs on the server so we don't need as much async hell related to them.
         private readonly Dictionary<NetUserId, PlayerPrefData> _cachedPlayerPrefs =
@@ -55,7 +57,7 @@ namespace Content.Server.Preferences.Managers
                 return;
             }
 
-            if (index < 0 || index >= MaxCharacterSlots)
+            if (index < 0 || index >= GetMaxUserCharacterSlots(userId)) // Imperial Pass
             {
                 return;
             }
@@ -95,7 +97,7 @@ namespace Content.Server.Preferences.Managers
                 return;
             }
 
-            if (slot < 0 || slot >= MaxCharacterSlots)
+            if (slot < 0 || slot >= GetMaxUserCharacterSlots(userId)) // Imperial Pass
                 return;
 
             var curPrefs = prefsData.Prefs!;
@@ -125,7 +127,7 @@ namespace Content.Server.Preferences.Managers
                 return;
             }
 
-            if (slot < 0 || slot >= MaxCharacterSlots)
+            if (slot < 0 || slot >= GetMaxUserCharacterSlots(userId)) // Imperial Pass
             {
                 return;
             }
@@ -213,7 +215,7 @@ namespace Content.Server.Preferences.Managers
             msg.Preferences = prefsData.Prefs;
             msg.Settings = new GameSettings
             {
-                MaxCharacterSlots = MaxCharacterSlots
+                MaxCharacterSlots = GetMaxUserCharacterSlots(session.UserId),  // Imperial Pass
             };
             _netManager.ServerSendMessage(msg, session.Channel);
         }
@@ -325,5 +327,14 @@ namespace Content.Server.Preferences.Managers
             _userDb.AddOnFinishLoad(FinishLoad);
             _userDb.AddOnPlayerDisconnect(OnClientDisconnected);
         }
+
+        // Imperial Pass Begin
+        private int GetMaxUserCharacterSlots(NetUserId userId)
+        {
+            var maxSlots = _cfg.GetCVar(CCVars.GameMaxCharacterSlots);
+            var extraSlots = (_sponsorsManager.TryGetInfo(userId, out var sponsor) && sponsor.HavePriorityJoin == true) ? sponsor.ExtraSlots : 0;
+            return maxSlots + extraSlots;
+        }
+        // Imperial Pass End
     }
 }

@@ -35,6 +35,7 @@ using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
+using Content.Client.Imperial.Sponsors;
 
 namespace Content.Client.Entry
 {
@@ -71,6 +72,7 @@ namespace Content.Client.Entry
         [Dependency] private readonly ILogManager _logManager = default!;
         [Dependency] private readonly ContentReplayPlaybackManager _replayMan = default!;
         [Dependency] private readonly DebugMonitorManager _debugMonitorManager = default!;
+        [Dependency] private readonly SponsorsManager _sponsorsManager = default!; //Imperial sponsors
 
         public override void Init()
         {
@@ -159,6 +161,8 @@ namespace Content.Client.Entry
             _userInterfaceManager.SetDefaultTheme("SS14DefaultTheme");
             _userInterfaceManager.SetActiveTheme(_configManager.GetCVar(CVars.InterfaceTheme));
             _documentParsingManager.Initialize();
+
+            _sponsorsManager.Initialize(); //Imperial sponsors
 
             _baseClient.RunLevelChanged += (_, args) =>
             {
