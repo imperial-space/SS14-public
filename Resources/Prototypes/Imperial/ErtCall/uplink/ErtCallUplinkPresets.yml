@@ -1,88 +1,108 @@
 #ERT START
 #Full
-- type: storePreset
+- type: entity
   id: ErtCallUplinkPreset
-  storeName: ErtUplinkFull
-  categories:
-  - ERTUplinkMelee
-  - ERTUplinkWeaponCombat
-  - ERTUplinkAmmoCombat
-  - ERTUplinkExplosives
-  - ERTUplinkMedial
-  - ERTUplinkEngineering
-  - ERTUplinkUtilities
-  - ERTUplinkJunitor
-  - ERTUplinkPointless
-  currencyWhitelist:
-  - BlueSpaceCube
+  abstract: true
+  components:
+  - type: Store
+    categories:
+    - ERTUplinkMelee
+    - ERTUplinkWeaponCombat
+    - ERTUplinkAmmoCombat
+    - ERTUplinkExplosives
+    - ERTUplinkMedial
+    - ERTUplinkEngineering
+    - ERTUplinkUtilities
+    - ERTUplinkJunitor
+    - ERTUplinkPointless
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 0
 
 #Medic
-- type: storePreset
+- type: entity
   id: ErtCallUplinkMedicPreset
-  storeName: ErtUplinkFull
-  categories:
-  - ERTUplinkMelee
-  - ERTUplinkWeaponCombat
-  - ERTUplinkAmmoCombat
-  #- ERTUplinkExplosives
-  - ERTUplinkMedial
-  #- ERTUplinkEngineering
-  - ERTUplinkUtilities
-  #- ERTUplinkJunitor
-  - ERTUplinkPointless
-  currencyWhitelist:
-  - BlueSpaceCube
+  abstract: true
+  components:
+  - type: Store
+    categories:
+    - ERTUplinkMelee
+    - ERTUplinkWeaponCombat
+    - ERTUplinkAmmoCombat
+    #- ERTUplinkExplosives
+    - ERTUplinkMedial
+    #- ERTUplinkEngineering
+    - ERTUplinkUtilities
+    #- ERTUplinkJunitor
+    - ERTUplinkPointless
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 0
 
 #Security
-- type: storePreset
+- type: entity
   id: ErtCallUplinkSecurityPreset
-  storeName: ErtUplinkFull
-  categories:
-  - ERTUplinkMelee
-  - ERTUplinkWeaponCombat
-  - ERTUplinkAmmoCombat
-  - ERTUplinkExplosives
-  #- ERTUplinkMedial
-  #- ERTUplinkEngineering
-  - ERTUplinkUtilities
-  #- ERTUplinkJunitor
-  - ERTUplinkPointless
-  currencyWhitelist:
-  - BlueSpaceCube
+  abstract: true
+  components:
+  - type: Store
+    categories:
+    - ERTUplinkMelee
+    - ERTUplinkWeaponCombat
+    - ERTUplinkAmmoCombat
+    - ERTUplinkExplosives
+    #- ERTUplinkMedial
+    #- ERTUplinkEngineering
+    - ERTUplinkUtilities
+    #- ERTUplinkJunitor
+    - ERTUplinkPointless
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 0
 
 #Engineer
-- type: storePreset
+- type: entity
   id: ErtCallUplinkEngineerPreset
-  storeName: ErtUplinkFull
-  categories:
-  - ERTUplinkMelee
-  - ERTUplinkWeaponCombat
-  - ERTUplinkAmmoCombat
-  - ERTUplinkExplosives
-  #- ERTUplinkMedial
-  - ERTUplinkEngineering
-  - ERTUplinkUtilities
-  #- ERTUplinkJunitor
-  - ERTUplinkPointless
-  currencyWhitelist:
-  - BlueSpaceCube
+  abstract: true
+  components:
+  - type: Store
+    categories:
+    - ERTUplinkMelee
+    - ERTUplinkWeaponCombat
+    - ERTUplinkAmmoCombat
+    - ERTUplinkExplosives
+    #- ERTUplinkMedial
+    - ERTUplinkEngineering
+    - ERTUplinkUtilities
+    #- ERTUplinkJunitor
+    - ERTUplinkPointless
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 0
 
 #Janitor
-- type: storePreset
+- type: entity
   id: ErtCallUplinkJanitorPreset
-  storeName: ErtUplinkFull
-  categories:
-  - ERTUplinkMelee
-  - ERTUplinkWeaponCombat
-  - ERTUplinkAmmoCombat
-  #- ERTUplinkExplosives
-  #- ERTUplinkMedial
-  #- ERTUplinkEngineering
-  - ERTUplinkUtilities
-  - ERTUplinkJunitor
-  - ERTUplinkPointless
-  currencyWhitelist:
-  - BlueSpaceCube
+  abstract: true
+  components:
+  - type: Store
+    categories:
+    - ERTUplinkMelee
+    - ERTUplinkWeaponCombat
+    - ERTUplinkAmmoCombat
+    #- ERTUplinkExplosives
+    #- ERTUplinkMedial
+    #- ERTUplinkEngineering
+    - ERTUplinkUtilities
+    - ERTUplinkJunitor
+    - ERTUplinkPointless
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 0
 #ERT END
 
 #CBURN START
@@ -90,19 +110,23 @@
 #CBURN END
 
 #DEAD SQUAD START
-- type: storePreset
+- type: entity
   id: ErtCallUplinkDeadSquadPreset
-  storeName: ErtUplinkFull
-  categories:
-  - ERTUplinkMelee
-  - ERTUplinkWeaponCombat
-  - ERTUplinkAmmoCombat
-  - ERTUplinkExplosives
-  - ERTUplinkMedial
-  - ERTUplinkEngineering
-  - ERTUplinkUtilities
-  #- ERTUplinkJunitor
-  #- ERTUplinkPointless
-  currencyWhitelist:
-  - BlueSpaceCube
+  abstract: true
+  components:
+  - type: Store
+    categories:
+    - ERTUplinkMelee
+    - ERTUplinkWeaponCombat
+    - ERTUplinkAmmoCombat
+    - ERTUplinkExplosives
+    - ERTUplinkMedial
+    - ERTUplinkEngineering
+    - ERTUplinkUtilities
+    #- ERTUplinkJunitor
+    #- ERTUplinkPointless
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 0
 #DEAD SQUAD END

@@ -1,6 +1,6 @@
 #ERT START
 - type: entity
-  parent: [ BaseItem, StorePresetUplink ]
+  parent: BaseItem
   id: BaseERTUplink
   name: ert uplink
   description: super ert uplink
@@ -23,20 +23,15 @@
         type: StoreBoundUserInterface
   - type: ActivatableUI
     key: enum.StoreUiKey.Key
-  - type: Store
-    preset: ErtCallUplinkPreset
-    balance:
-      BlueSpaceCube: 0
 
 #Leader
 #ERT
 - type: entity
-  parent: BaseERTUplink
+  parent: [ BaseERTUplink, ErtCallUplinkPreset ]
   id: ERTUplinkLeader
   suffix: ERT
   components:
   - type: Store
-    preset: ErtCallUplinkPreset
     balance:
       BlueSpaceCube: 30
   - type: Tag
@@ -45,12 +40,11 @@
 
 #Medic
 - type: entity
-  parent: BaseERTUplink
+  parent: [ BaseERTUplink, ErtCallUplinkMedicPreset ]
   id: ERTUplinkMedic
   suffix: ERT
   components:
   - type: Store
-    preset: ErtCallUplinkMedicPreset
     balance:
       BlueSpaceCube: 20
   # - type: Tag
@@ -60,12 +54,11 @@
 #Security
 #ERT
 - type: entity
-  parent: BaseERTUplink
+  parent: [ BaseERTUplink, ErtCallUplinkSecurityPreset ]
   id: ERTUplinkSecurity
   suffix: ERT
   components:
   - type: Store
-    preset: ErtCallUplinkSecurityPreset
     balance:
       BlueSpaceCube: 20
   - type: Tag
@@ -74,12 +67,11 @@
 
 #Engineer
 - type: entity
-  parent: BaseERTUplink
+  parent: [ BaseERTUplink, ErtCallUplinkEngineerPreset ]
   id: ERTUplinkEngineer
   suffix: ERT
   components:
   - type: Store
-    preset: ErtCallUplinkEngineerPreset
     balance:
       BlueSpaceCube: 20
   # - type: Tag
@@ -88,12 +80,11 @@
 
 #Junitor
 - type: entity
-  parent: BaseERTUplink
+  parent: [ BaseERTUplink, ErtCallUplinkJanitorPreset ]
   id: ERTUplinkJunitor
   suffix: ERT
   components:
   - type: Store
-    preset: ErtCallUplinkJanitorPreset
     balance:
       BlueSpaceCube: 20
   # - type: Tag
@@ -103,12 +94,11 @@
 
 #CBURN START
 - type: entity
-  parent: BaseERTUplink
+  parent: [ BaseERTUplink, ErtCallUplinkPreset ]
   id: CBURNUplinkLeader
   suffix: ERT
   components:
   - type: Store
-    preset: ErtCallUplinkPreset
     balance:
       BlueSpaceCube: 30
   - type: Tag
@@ -117,12 +107,11 @@
       - ErtUplinkCBURN
 
 - type: entity
-  parent: BaseERTUplink
+  parent: [ BaseERTUplink, ErtCallUplinkSecurityPreset ]
   id: CBURNUplinkSecurity
   suffix: ERT
   components:
   - type: Store
-    preset: ErtCallUplinkSecurityPreset
     balance:
       BlueSpaceCube: 20
   - type: Tag
@@ -134,7 +123,7 @@
 
 #DEAD SQUAD START
 - type: entity
-  parent: BaseERTUplink
+  parent: [ BaseERTUplink, ErtCallUplinkDeadSquadPreset ]
   id: ERTUplinkDeadSquad
   suffix: ERT
   components:
@@ -146,7 +135,6 @@
       shader: unshaded
       visible: true
   - type: Store
-    preset: ErtCallUplinkDeadSquadPreset
     balance:
       BlueSpaceCube: 60
   - type: Tag
