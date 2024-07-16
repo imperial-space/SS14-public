@@ -5,6 +5,8 @@
   components:
   - type: StorageFill
     contents:
+      - id: ClothingHandsGlovesLatexLong #Imperial edit
+      - id: ClothingHeadHelmetScienceMask #Imperial edit
       - id: ClothingHandsGlovesLatex
       - id: ClothingHeadsetScience
       - id: ClothingMaskSterile

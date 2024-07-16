@@ -1,0 +1,55 @@
+#explosive HALP!!
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetScienceMask
+  name: helmet
+  description: Standard security gear. Protects the head from impacts.
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Science/GlassMask.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Science/GlassMask.rsi
+  - type: Armor 
+    modifiers:
+      coefficients:
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.8
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+
+- type: entity
+  parent: ClothingHandsGlovesLatex
+  id: ClothingHandsGlovesLatexLong
+  name: fc gloves
+  description: Regal blue gloves, with a nice gold trim. Swanky.
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Science/longlatex.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Science/longlatex.rsi
+  - type: FingerprintMask
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsScienceImperial
+  name: workboots
+  description: Engineering lace-up work boots for the especially blue-collar.
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Science/sciboots.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Science/sciboots.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitRDTurtleNeck
+  name: cargo tech jumpsuit
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Science/rnd.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Science/rnd.rsi

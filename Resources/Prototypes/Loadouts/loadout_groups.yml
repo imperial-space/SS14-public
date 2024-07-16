@@ -785,6 +785,7 @@
   loadouts:
   - BrownShoes
   - ScienceWinterBoots
+  - ScienceShoesAlterBoots #Imperial edit
 
 - type: loadoutGroup
   id: ScientistHead
@@ -840,6 +841,7 @@
   - WhiteShoes
   - BlackShoes
   - ScienceWinterBoots
+  - ScienceShoesAlterBoots #Imperial edit
 
 - type: loadoutGroup
   id: ScientistGloves

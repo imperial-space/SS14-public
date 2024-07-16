@@ -1,0 +1,8 @@
+- type: loadout
+  id: ScienceShoesAlterBoots
+  equipment: ScienceAlterBoots
+
+- type: startingGear
+  id: ScienceAlterBoots
+  equipment:
+    shoes: ClothingShoesBootsScienceImperial

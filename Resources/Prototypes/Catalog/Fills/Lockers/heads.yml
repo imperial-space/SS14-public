@@ -234,6 +234,7 @@
       - id: BoxEncryptionKeyScience
       - id: ClothingHeadsetAltScience
       - id: EncryptionKeyBinary
+      - id: ClothingUniformJumpsuitRDTurtleNeck  #Imperial edit
 
 - type: entity
   id: LockerResearchDirectorFilled
@@ -252,6 +253,7 @@
       - id: BoxEncryptionKeyScience
       - id: ClothingHeadsetAltScience
       - id: EncryptionKeyBinary
+      - id: ClothingUniformJumpsuitRDTurtleNeck  #Imperial edit
 
 - type: entity
   id: LockerHeadOfSecurityFilledHardsuit

@@ -112,6 +112,7 @@
   components:
   - type: StorageFill
     contents:
+      - id: ClothingHeadHelmetScienceMask #Imperial edit
       - id: BoxSyringe
       - id: BoxBeaker
       - id: BoxBeaker
