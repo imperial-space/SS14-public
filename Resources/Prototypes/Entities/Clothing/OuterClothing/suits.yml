@@ -149,6 +149,7 @@
         Slash: 0.8
         Piercing: 0.8
         Heat: 0.8
+        Stamina: 0.4 ## Stamina resistance
   # phase cloak
   - type: ToggleClothing
     action: ActionTogglePhaseCloak

@@ -5,3 +5,5 @@ armor-examine = Обеспечивает следующую защиту:
 armor-coefficient-value = - [color=yellow]{$type}[/color] урон снижается на [color=lightblue]{$value}%[/color].
 armor-reduction-value = - [color=yellow]{$type}[/color] урон снижается на [color=lightblue]{$value}[/color].
 armor-coefficient-value-stamina = - [color=#00bfff]{$type}[/color] урон снижается на [color=lightblue]{$value}%[/color].
+
+damage-type-stamina = Stamina
