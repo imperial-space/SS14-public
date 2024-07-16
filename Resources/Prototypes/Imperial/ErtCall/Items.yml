@@ -42,3 +42,14 @@
   - type: Tag
     tags:
     - Bottle
+
+- type: entity
+  id: ERTCallCrateMineShieldImplant ##Введение нового ящика, содержащего импланты
+  name: mineshieldcrate-name
+  description: mineshieldcrate-desc
+  parent: CrateSecgear
+  components:
+  - type: StorageFill
+    contents:
+      - id: MindShieldImplanter
+        amount: 5 ##Количество имплантов в ящике
