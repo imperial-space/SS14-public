@@ -78,6 +78,7 @@
   components:
   - type: StorageFill
     contents:
+      - id: ControlModsuitRescue #Imperial modsuits
       - id: ClothingEyesGlassesSecurity
       - id: WeaponDisabler
       - id: TrackingImplanter
