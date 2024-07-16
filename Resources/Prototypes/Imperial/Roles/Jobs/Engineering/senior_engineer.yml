@@ -1,0 +1,59 @@
+- type: job
+  id: SeniorEngineer
+  name: job-name-senior-engineer
+  description: job-description-senior-engineer
+  playTimeTracker: JobSeniorEngineer
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 28800 #Imperial role timers
+  startingGear: SeniorEngineerGear
+  icon: "JobIconSeniorEngineer"
+  supervisors: job-supervisors-ce
+  access:
+  - Maintenance
+  - Engineering
+  - External
+  - Atmospherics
+  skills:
+  - skillBotany
+  - skillBaseMed
+  - skillBaseConstraction
+  - skillPiloting
+  - skillBasicAtmos
+  - skillAtmos
+  - skillInstrumentation
+  - skillHardInstrumentation
+  - skillMaintenance
+  - skillMediumConstruction
+  - skillHacking
+
+- type: startingGear
+  id: SeniorEngineerGear
+  equipment:
+    head: ClothingHeadHatBeretEngineering
+    jumpsuit: ClothingUniformJumpsuitSeniorEngineer
+    back: ClothingBackpackEngineering
+    shoes: ClothingShoesBootsWork
+    id: SeniorEngineerPDA
+    eyes: ClothingEyesGlassesMeson
+    belt: ClothingBeltUtilityEngineering
+    ears: ClothingHeadsetEngineering
+  innerClothingSkirt: ClothingUniformJumpskirtSeniorEngineer
+  satchel: ClothingBackpackSatchelEngineeringFilled
+  duffelbag: ClothingBackpackDuffelEngineeringFilled
+  storage:
+    back:
+      - BoxSurvivalEngineering
+
+- type: entity
+  id: SpawnPointSeniorEngineer
+  parent: SpawnPointJobBase
+  name: seniorengineer
+  components:
+  - type: SpawnPoint
+    job_id: SeniorEngineer
+  - type: Sprite
+    layers:
+      - state: green
+      - state: seniorengineer

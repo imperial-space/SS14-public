@@ -57,6 +57,7 @@
   - ChiefEngineer
   - StationEngineer
   - TechnicalAssistant
+  - SeniorEngineer # imperial space senior roles
 
 - type: department
   id: Medical
@@ -69,6 +70,7 @@
   - MedicalIntern
   - Psychologist
   - Paramedic
+  - SeniorPhysician # imperial space senior roles
 
 - type: department
   id: Security
@@ -81,6 +83,7 @@
   - SecurityOfficer
   - Detective
   - Warden
+  - SeniorOfficer # imperial space senior roles
 
 - type: department
   id: Science
@@ -90,6 +93,7 @@
   - ResearchDirector
   - Scientist
   - ResearchAssistant
+  - SeniorResearcher # imperial space senior roles
 
 - type: department
   id: Specific

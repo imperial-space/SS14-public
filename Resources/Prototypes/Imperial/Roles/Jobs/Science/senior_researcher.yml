@@ -1,0 +1,62 @@
+- type: job
+  id: SeniorResearcher
+  name: job-name-senior-researcher
+  description: job-description-senior-researcher
+  playTimeTracker: JobSeniorResearcher
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 21600 #Imperial role timers
+    - !type:RoleTimeRequirement
+      role: JobScientist
+      time: 10800 #Imperial role timers
+  startingGear: SeniorResearcherGear
+  icon: "JobIconSeniorResearcher"
+  supervisors: job-supervisors-rd
+  access:
+  - Research
+  - Maintenance
+  skills:
+  - skillBotany
+  - skillBaseMed
+  - skillBaseConstraction
+  - skillHardInstrumentation
+  - skillInstrumentation
+  - skillRobotics
+  - skillResearch
+  - skillPharmaceuticals
+  - skillPharmacology
+  - skillMediumConstruction
+  - skillMedicalEquipment
+  - skillHacking
+  - skillBasicAtmos
+  - skillNeuroSurgery
+
+- type: startingGear
+  id: SeniorResearcherGear
+  equipment:
+    head: ClothingHeadHatBeretRND
+    jumpsuit: ClothingUniformJumpsuitSeniorResearcher
+    back: ClothingBackpackScience
+    shoes: ClothingShoesBootsScienceImperial #Imperial Edit
+    outerClothing: ClothingOuterCoatLabSeniorResearcher
+    id: SeniorResearcherPDA
+    ears: ClothingHeadsetScience
+  innerClothingSkirt: ClothingUniformJumpskirtSeniorResearcher
+  satchel: ClothingBackpackSatchelScienceFilled
+  duffelbag: ClothingBackpackDuffelScienceFilled
+  storage:
+    back:
+      - BoxSurvival
+
+- type: entity
+  id: SpawnPointSeniorResearcher
+  parent: SpawnPointJobBase
+  name: seniorresearcher
+  components:
+  - type: SpawnPoint
+    job_id: SeniorResearcher
+  - type: Sprite
+    layers:
+      - state: green
+      - state: seniorresearcher

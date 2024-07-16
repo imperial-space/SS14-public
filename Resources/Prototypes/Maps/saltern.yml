@@ -31,23 +31,27 @@
             AtmosphericTechnician: [ 2, 2 ]
             StationEngineer: [ 4, 4 ]
             TechnicalAssistant: [ 4, 4 ]
+            SeniorEngineer: [ 1, 1 ] # imperial space senior roles
             #medical
             ChiefMedicalOfficer: [ 1, 1 ]
             Chemist: [ 2, 2 ]
             MedicalDoctor: [ 3, 3 ]
             MedicalIntern: [ 4, 4 ]
             Paramedic: [ 1, 1 ]
+            SeniorPhysician: [ 1, 1 ] # imperial space senior roles
             #science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 4, 4 ]
             ResearchAssistant: [ 2, 2 ]
             Borg: [ 2, 2 ]
+            SeniorResearcher: [ 1, 1 ] # imperial space senior roles
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
             Detective: [ 1, 1 ]
             SecurityOfficer: [ 4, 4 ]
             SecurityCadet: [ 4, 4 ]
+            SeniorOfficer: [ 1, 1 ] # imperial space senior roles
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 1, 3 ]
