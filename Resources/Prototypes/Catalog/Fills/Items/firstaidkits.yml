@@ -10,6 +10,8 @@
       - id: Ointment
       - id: Gauze
       - id: PillCanisterTricordrazine
+      - id: AmpulaTric # imperial hardsuit injection
+        amount: 2
       # see https://github.com/tgstation/blob/master/code/game/objects/items/storage/firstaid.dm for example contents
 
 - type: entity
@@ -23,6 +25,8 @@
         amount: 2
       - id: PillCanisterKelotane
       - id: PillCanisterDermaline
+      - id: AmpulaDerm # imperial hardsuit injection
+        amount: 2
 
 - type: entity
   id: MedkitBruteFilled
@@ -35,6 +39,8 @@
       - id: Gauze
       - id: PillCanisterIron
       - id: PillCanisterCopper
+      - id: AmpulaBica # imperial hardsuit injection
+        amount: 2
 
 - type: entity
   id: MedkitToxinFilled
@@ -48,6 +54,8 @@
       - id: AntiPoisonMedipen
       - id: PillCanisterDylovene
       - id: PillCanisterCharcoal
+      - id: AmpulaDylo # imperial hardsuit injection
+        amount: 2
 
 - type: entity
   id: MedkitOxygenFilled
@@ -61,6 +69,8 @@
       - id: EmergencyMedipen
       - id: SyringeInaprovaline
       - id: PillCanisterDexalin
+      - id: AmpulaDexa # imperial hardsuit injection
+        amount: 2
 
 - type: entity
   id: MedkitRadiationFilled
@@ -73,6 +83,8 @@
       - id: RadAutoInjector
       - id: EmergencyMedipen
       - id: PillCanisterHyronalin
+      - id: AmpulaHyro # imperial hardsuit injection
+        amount: 2
 
 - type: entity
   id: MedkitAdvancedFilled
@@ -85,6 +97,10 @@
       - id: RegenerativeMesh
       - id: Bloodpack
         amount: 2
+      - id: AmpulaBica # imperial hardsuit injection
+        amount: 1
+      - id: AmpulaDerm # imperial hardsuit injection
+        amount: 1
 
 - type: entity
   id: MedkitCombatFilled
