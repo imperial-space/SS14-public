@@ -48,11 +48,11 @@
 
 # Shoes
 - type: loadout
-  id: BlueShoes
-  equipment: BlueShoes
+  id: ShoesParamedic # Imperial paramedic
+  equipment: ShoesParamedic # Imperial paramedic
 
 - type: startingGear
-  id: BlueShoes
+  id: ShoesParamedic # Imperial paramedic
   equipment:
-    shoes: ClothingShoesColorBlue
+    shoes: ClothingShoesParamedic # Imperial paramedic
 
