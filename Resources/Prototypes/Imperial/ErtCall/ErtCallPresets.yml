@@ -1,0 +1,4 @@
+- type: ertCall
+  id: Dart-Test-preset
+  path: "Maps/Imperial/ErtCall/dartTest.yml"
+  desc: "Тест"
