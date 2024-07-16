@@ -1,0 +1,83 @@
+- type: entity
+  parent: BookBase
+  id: MishkaBook
+  name: The Star Bear
+  suffix: Vl, COMMUNITY
+  description: A book about an unusual bear cub. It reminds me of my childhood.
+  components:
+    - type: Sprite
+      sprite: Imperial/Objects/Books/Books.rsi
+      layers:
+        - state: Mishka
+    - type: Paper
+      content: book-text-mishka
+
+- type: entity
+  parent: BookBase
+  id: CvetokBook
+  name: Moon Flower and Star Wind
+  suffix: Vl, COMMUNITY
+  description: A sweet book that tells us that there is nothing insurmountable in our lives.
+  components:
+    - type: Sprite
+      sprite: Imperial/Objects/Books/Books.rsi
+      layers:
+        - state: Cvetok
+    - type: Paper
+      content: book-text-cvetok
+
+- type: entity
+  parent: BookBase
+  id: LesBook
+  name: The Bear Cub and the Forgotten Forest
+  suffix: Vl, COMMUNITY
+  description: A book telling the reader how easy it is to get lost in life.
+  components:
+    - type: Sprite
+      sprite: Imperial/Objects/Books/Books.rsi
+      layers:
+        - state: Les
+    - type: Paper
+      content: book-text-les
+
+- type: entity
+  parent: BookBase
+  id: LisaBook
+  name: Chanterelle and the Last Leaf
+  suffix: Vl, COMMUNITY
+  description: A book that tells you how much we can sometimes mean to people.
+  components:
+    - type: Sprite
+      sprite: Imperial/Objects/Books/Books.rsi
+      layers:
+        - state: Lisa
+    - type: Paper
+      content: book-text-lisa
+
+- type: entity
+  parent: BookBase
+  id: ZvezdochkaBook
+  name: A Star and the Night Sky
+  suffix: Vl, COMMUNITY
+  description: A book telling about the importance of everyone in our world.
+  components:
+    - type: Sprite
+      sprite: Imperial/Objects/Books/Books.rsi
+      layers:
+        - state: Zvezdochka
+    - type: Paper
+      content: book-text-zvezdochka
+
+- type: entity
+  parent: BookBase
+  id: ZaecBook
+  name: The Bunny and the Scavenger Star
+  suffix: Vl, COMMUNITY
+  description: A book about happiness.
+  components:
+    - type: Sprite
+      sprite: Imperial/Objects/Books/Books.rsi
+      layers:
+        - state: Zaec
+    - type: Paper
+      content: book-text-zaec

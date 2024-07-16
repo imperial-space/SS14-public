@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Designed by @vladegeg",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+      "states": [
+        {
+            "name": "Cvetok"
+        },
+		{
+            "name": "Les"
+        },
+		{
+            "name": "Lisa"
+        },
+		{
+            "name": "Mishka"
+        },
+		{
+            "name": "Zaec"
+        },
+		{
+            "name": "Zvezdochka"
+        }
+      ]
+}
