@@ -4,9 +4,10 @@ using Content.Shared.Inventory;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
-using Robust.Shared.Containers;
+using Content.Shared.Imperial.HardsuitInjection.Components;
 
-namespace Content.Shared.Clothing.EntitySystems;
+namespace Content.Shared.Imperial.HardsuitInjection.EntitySystems;
+
 public sealed partial class AmpulaSystem : EntitySystem
 {
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;

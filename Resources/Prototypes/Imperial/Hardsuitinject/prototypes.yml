@@ -35,7 +35,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     useDelay: 1 # equip noise spam.
-    event: !type:ToggleInjectionEvent
+    event: !type:ToggleECEvent
     icon:
       sprite: Imperial/HardsuitInjection/main.rsi
       state: closeopen

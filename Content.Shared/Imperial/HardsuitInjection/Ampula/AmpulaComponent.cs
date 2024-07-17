@@ -1,6 +1,7 @@
 using Content.Shared.Clothing.EntitySystems;
-namespace Content.Shared.Clothing.Components;
+using Content.Shared.Imperial.HardsuitInjection.EntitySystems;
 
+namespace Content.Shared.Imperial.HardsuitInjection.Components;
 
 [Access(typeof(AmpulaSystem))]
 [RegisterComponent]
