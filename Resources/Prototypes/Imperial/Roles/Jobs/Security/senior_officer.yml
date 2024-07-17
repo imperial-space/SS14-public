@@ -44,15 +44,3 @@
   innerClothingSkirt: ClothingUniformJumpskirtSeniorOfficer
   satchel: ClothingBackpackSecurityFilledSeniorOfficer # Imperial @keeyn
   duffelbag: ClothingBackpackDuffelSecurityFilledSeniorOfficer # Imperial @keeyn
-
-- type: entity
-  id: SpawnPointSeniorOfficer
-  parent: SpawnPointJobBase
-  name: seniorofficer
-  components:
-  - type: SpawnPoint
-    job_id: SeniorOfficer
-  - type: Sprite
-    layers:
-      - state: green
-      - state: seniorofficer

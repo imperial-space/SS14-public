@@ -45,15 +45,3 @@
   storage:
     back:
       - BoxSurvivalEngineering
-
-- type: entity
-  id: SpawnPointSeniorEngineer
-  parent: SpawnPointJobBase
-  name: seniorengineer
-  components:
-  - type: SpawnPoint
-    job_id: SeniorEngineer
-  - type: Sprite
-    layers:
-      - state: green
-      - state: seniorengineer
