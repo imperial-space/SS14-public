@@ -1,0 +1,30 @@
+- type: entity
+  name: composition X-4
+  description: Used to put holes in specific areas without too much extra hole. A saboteur's favorite.
+  parent: BasePlasticExplosive
+  id: X4
+  components:
+  - type: Sprite
+    sprite: Imperial/X4Bomb.rsi
+    state: icon
+    layers:
+    - state: icon
+      map: ["base"]
+  - type: OnUseTimerTrigger
+    delay: 10
+    delayOptions: [10, 30, 60, 120, 300]
+    initialBeepDelay: 0
+    beepSound: /Audio/Machines/Nuke/general_beep.ogg
+    startOnStick: true
+    canToggleStartOnStick: true
+  - type: TriggerOnSignal
+  - type: DeviceLinkSink
+    ports:
+      - Trigger
+  - type: Explosive # Powerful explosion in a very small radius. Doesn't break underplating.
+    explosionType: DemolitionCharge
+    totalIntensity: 600
+    intensitySlope: 10
+    maxIntensity: 100
+    canCreateVacuum: false
+  - type: ExplodeOnTrigger
