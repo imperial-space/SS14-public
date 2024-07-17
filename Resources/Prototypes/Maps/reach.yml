@@ -31,4 +31,5 @@
             AtmosphericTechnician: [ 1, 1 ]
             StationEngineer: [ 1, 2 ]
             Passenger: [ -1, -1 ]
+            IAA: [ 1, 1 ] # imperial IAA
 

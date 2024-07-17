@@ -1,0 +1,69 @@
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelIAAFilled
+  components:
+    - type: StorageFill
+      contents:
+        - id: BoxSurvival
+        - id: Flash
+        #===========
+        - id: Paper
+          amount: 3
+        - id: CyberPen
+        - id: RubberStampIAA
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelIAAFilled
+  components:
+    - type: StorageFill
+      contents:
+        - id: BoxSurvival
+        - id: Flash
+        #===========
+        - id: Paper
+          amount: 3
+        - id: CyberPen
+        - id: RubberStampIAA
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpack
+  id: ClothingBackpackIAAFilled
+  components:
+    - type: StorageFill
+      contents:
+        - id: BoxSurvival
+        - id: Flash
+        #===========
+        - id: Paper
+          amount: 3
+        - id: CyberPen
+        - id: RubberStampIAA
+
+- type: entity
+  id: BriefcaseIAAFilled
+  parent: BriefcaseBrown
+  suffix: IAA
+  components:
+    - type: StorageFill
+      contents:
+        - id: Paper
+          amount: 3
+        - id: CyberPen
+        - id: RubberStampIAA
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetIAA
+  name: iaa headset
+  description: A headset for internal affairs agent to hear the captain's last words.
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyIAA
+    - type: Sprite
+      sprite: Clothing/Ears/Headsets/servicesecurity.rsi

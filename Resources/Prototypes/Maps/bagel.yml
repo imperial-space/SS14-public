@@ -64,3 +64,5 @@
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
             Reporter: [ 2, 2 ]
+            IAA: [ 1, 1 ] # imperial IAA
+

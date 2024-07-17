@@ -1,0 +1,68 @@
+- type: entity
+  id: SpawnPointIAA
+  parent: SpawnPointJobBase
+  name: IAA
+  components:
+  - type: SpawnPoint
+    job_id: IAA
+  - type: Sprite
+    layers:
+      - state: green
+      - state: lawyer
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconIAA
+  icon:
+    sprite: Imperial/imperial_job_icons.rsi
+    state: IAA
+
+- type: job
+  id: IAA
+  name: job-name-iaa
+  playTimeTracker: JobIAA
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobLawyer
+      time: 3600 #Imperial role timers
+    - !type:RoleTimeRequirement
+      role: JobWarden
+      time: 7200 #Imperial role timers
+  startingGear: IAAGear
+  icon: "JobIconIAA"
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  access:
+    - Service
+    - Brig
+    - Maintenance
+    - Command
+    - External
+    - Lawyer
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+  components:
+  skills:
+  - skillBotany
+  - skillBaseMed
+  - skillBaseConstraction
+
+- type: startingGear
+  id: IAAGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlack  # TODO change jumpsuit to randomiser of the 4 variants
+    back: ClothingBackpackIAAFilled
+    shoes: ClothingShoesColorBlack
+    id: IAAPDA
+    eyes: ClothingEyesGlassesSunglasses
+    ears: ClothingHeadsetIAA
+    neck: ClothingNeckLawyerbadge
+    lefthand: BriefcaseIAAFilled
+  innerClothingSkirt: ClothingUniformJumpskirtLawyerBlack
+  satchel: ClothingBackpackSatchelIAAFilled
+  duffelbag: ClothingBackpackDuffelIAAFilled
+
+- type: playTimeTracker
+  id: JobIAA
