@@ -1,0 +1,15 @@
+- type: entity
+  parent: CentcomIDCard
+  id: SonaIDCard
+  name: ID Card S-o.N.A
+  suffix: S-o.N.A
+  description: Modified ID card of S-o.N.A. AI Dynamics Corporation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Sona/Card.rsi
+    state: SonaCard
+  - type: Item
+    size: Small
+    heldPrefix: blue
+  - type: IdCard
+    jobTitle: S-o.N.A

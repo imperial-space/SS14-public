@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtSona
+  name: Bright blue S-o.N.A skirt
+  suffix: S-o.N.A
+  description: A bright blue skirt used by employees of S-o.N.A. AI Dynamics corporation.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Sona/Skirt.rsi
+  - type: Clothing
+    sprite: Imperial/Sona/Skirt.rsi

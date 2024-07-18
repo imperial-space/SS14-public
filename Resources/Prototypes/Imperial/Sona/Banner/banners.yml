@@ -1,0 +1,10 @@
+- type: entity
+  id: BannerSona
+  parent: BannerBase
+  name: Banner S-o.N.A
+  suffix: S-o.N.A
+  description: Banner S-o.N.A. AI Dynamics.
+  components:
+  - type: Sprite
+    sprite: Imperial/Sona/Banner.rsi
+    state: SonaBanner
