@@ -70,6 +70,14 @@
     {
       "name": "equipped-BELT",
       "directions": 4
+    },
+    {
+      "name": "spray-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "spray-inhand-left",
+      "directions": 4
     }
   ]
 }
