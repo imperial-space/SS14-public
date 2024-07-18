@@ -1,0 +1,138 @@
+- type: entity
+  parent: BaseTree
+  id: SakuraImperial
+  name: Sakura
+  description: Looking at her, you begin to feel calm in your soul and remember your younger years
+  components:
+  - type: Sprite
+    sprite: Imperial/Structures/Flora/Sakura/Sakura.rsi
+    state: sakuratree
+    offset: 0,0.7
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/tree_fell.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Log:
+            min: 2
+            max: 8
+          sakuraleaf:
+            min: 2
+            max: 3
+
+
+- type: entity
+  id: sakuraleaf
+  parent: ProduceBase
+  name: sakura flower
+  description: Exudes the fragrance of love and romantic evenings
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: SakuraJuice
+          Quantity: 5
+  - type: Sprite
+    sprite: Imperial/Structures/Flora/Sakura/sakuraleaf.rsi
+    state: sakura_flower
+
+- type: reagent
+  id: SakuraJuice
+  parent: Vitamin
+  name: reagent-name-sakuraJuise
+  description: reagent-desc-sakuraJuise
+  physicalDesc: reagent-physical-desc-sweet
+  flavor: chocolate
+  color: "#FF69B4"
+
+- type: entity
+  name: sakura cake
+  parent: FoodCakeBase
+  id: FoodCakeSakura
+  description: Brings back memories of your favorite anime
+  components:
+  - type: Sprite
+    sprite: Imperial/Structures/Flora/Sakura/sakuracake.rsi
+    state: sakuracake
+  - type: SliceableFood
+    slice: FoodCakeSakuraSlice
+
+- type: entity
+  name: slice of sakura cake
+  parent: FoodCakeSliceBase
+  id: FoodCakeSakuraSlice
+  components:
+  - type: Sprite
+    sprite: Imperial/Structures/Flora/Sakura/sakuracake.rsi
+    state: sakura-slice
+
+- type: microwaveMealRecipe ## Пока что не требует навыка.
+  id: RecipeSakuraCake
+  name: sakura cake recipe
+  result: FoodCakeSakura
+  time: 5
+  solids:
+    FoodCakePlain: 1
+    FoodBerries: 2
+    sakuraleaf: 1
+
+- type: reagent
+  id: CupidArrow
+  name: reagent-name-cupidarrow
+  parent: BaseDrink
+  desc: reagent-desc-cupidarrow
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: medicine
+  color: "#FF8CFF"
+  metamorphicSprite:
+    sprite: Imperial/Structures/Flora/Sakura/cupidarrow.rsi
+    state: icon
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:SatiateHunger
+        factor: -2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.05
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -1
+            Brute: -1
+            Airloss: -1
+            Toxin: -1
+
+- type: reaction
+  id: CupidArrow
+  reactants:
+    SakuraJuice:
+      amount: 5
+    JuiceLime:
+      amount: 5
+    Gin:
+      amount: 5
+  products:
+    CupidArrow: 15
