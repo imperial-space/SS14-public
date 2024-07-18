@@ -1,0 +1,64 @@
+- type: entity
+  id: WeaponPistolMk58Golden
+  parent: WeaponPistolMk58
+  name: golden MK58
+  desctription: Shiny. Because I'm patriot!
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/goldenMK58.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: Imperial/TFG/GoldenLife/goldenMK58.rsi
+  - type: Clothing
+    sprite: Imperial/TFG/GoldenLife/goldenMK58.rsi
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
+  id: WeaponPistolMk58GoldenNonlethal
+  parent: WeaponPistolMk58Nonlethal
+  name: golden MK58
+  desctription: Shiny. Because I'm patriot!
+  suffix: Non-lethal
+  components:
+  - type: Sprite
+    sprite: Imperial\TFG\GoldenLife\goldenMK58.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: Imperial/TFG/GoldenLife/goldenMK58.rsi
+  - type: Clothing
+    sprite: Imperial/TFG/GoldenLife/goldenMK58.rsi
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
+  id: WeaponPistolMk58GoldenEmpty
+  parent: WeaponPistolMk58Golden
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: #none
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+      gun_chamber:
+        name: Chamber
+        startingItem: #none
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol

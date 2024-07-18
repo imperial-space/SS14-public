@@ -1,0 +1,32 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "Made for Imperial Space project. Autor: Krakozyabra. (Discord).",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+        {
+          "name": "icon"
+        },
+        {
+        "name": "icon-hot",
+        "delays":
+        [
+            [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+            ]
+        ]
+        },
+        {
+          "name": "icon-open"
+        },
+        {
+          "name": "trash"
+        }
+    ]
+}

@@ -1,0 +1,98 @@
+- type: entity
+  id: CCShuttleDresser
+  parent: Dresser
+  description: Contains the things of an big shot.
+  suffix: Filled, CentCom
+  components:
+  - type: Storage
+    grid:
+    - 0,0,4,4
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterWinterCentcom
+      - id: ClothingNeckScarfStripedCentcom
+      - id: ClothingShoesBootsWinter
+      - id: ClothingUniformJumpsuitCentcomOfficial
+      - id: ClothingHandsGlovesColorBlack
+      - id: ClothingEyesGlassesSunglasses
+
+- type: entity
+  id: CCShuttleBooze
+  parent: LockerBooze
+  name: Locker
+  suffix: CentCom
+  description: Behind its doors are hidden the sweetest delicacies in the universe!
+  components:
+  - type: AccessReader
+    access: [["Captain"]]
+  - type: StorageFill
+    contents:
+      - id: CuttleryBox
+      - id: FoodPresentableTinMRECaviar
+      - id: PresentableRag
+      - id: DrinkWaterBottleFull
+      - id: FoodPresentableTinMRECaviar
+        prob: 0.5
+      - id: PresentableRag
+        prob: 0.5
+      - id: FoodPizzaGolden
+        prob: 0.3
+      - id: ArmenianStuff
+        prob: 0.2
+
+- type: entity
+  id: ToolboxShuttle
+  parent: ToolboxBase
+  name: shuttle instrumental toolbox
+  description: A set of tools useful in any shuttle.
+  suffix: NotRandom
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/Containers/toolboxShuttle.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/TFG/Containers/toolboxShuttle.rsi
+  - type: StorageFill
+    contents:
+      - id: ClothingEyesGlassesMeson
+      - id: Wrench
+      - id: Crowbar
+      - id: Screwdriver
+      - id: Wirecutter
+      - id: Welder
+      - id: HolofanProjector
+      - id: PowerCellMedium
+
+- type: entity
+  id: SuitStorageRepresentative
+  parent: SuitStorageBase
+  suffix: CentCom
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterEVASuitCentCom
+    - id: ClothingHeadEVAHelmetCentCom
+    - id: ClothingMaskGasCentcom
+    - id: HandheldGPSBasic
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+
+- type: entity
+  id: BoxEncryptionKeyCentCom
+  parent: BoxEncryptionKeyPassenger
+  name: CentCom encryption key box
+  description: A very highrisk box with encryption keys of the bosses of all the bosses.
+  components:
+  - type: Sprite
+    layers:
+      - state: box_command
+      - state: nano_label
+  - type: Item
+    size: Small
+  - type: Storage
+    grid:
+    - 0,0,2,1
+  - type: StorageFill
+    contents:
+      - id: EncryptionKeyCentCom
+        amount: 3

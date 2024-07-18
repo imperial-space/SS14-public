@@ -1,0 +1,96 @@
+- type: entity
+  id: GoldenSpoon
+  parent: UtensilBase
+  name: golden spoon
+  description: Some babies are born with them in their mouths. This is the only way to get such rare spoons.
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/goldenSpoon.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/TFG/GoldenLife/goldenSpoon.rsi
+  - type: Utensil
+    types:
+    - Spoon
+  - type: MeleeWeapon
+    attackRate: 1.5
+    damage:
+      types:
+        Blunt: 2
+  - type: StaticPrice
+    price: 400
+
+- type: entity
+  id: GoldenFork
+  parent: Fork
+  name: golden fork
+  description: Having such a fork in itself will make any dish great.
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/goldenFork.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/TFG/GoldenLife/goldenFork.rsi
+  - type: StaticPrice
+    price: 400
+
+- type: entity
+  id: GoldenKnife
+  parent: KnifePlastic
+  name: golden knife
+  description: This gold could have been used for useful things...
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/goldenKnife.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/TFG/GoldenLife/goldenKnife.rsi
+    state: icon
+  - type: MeleeWeapon
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 8
+  - type: StaticPrice
+    price: 400
+
+- type: entity
+  id: GoldenPlate
+  parent: BaseItem
+  name: golden plate
+  description:
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/goldenPlate.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/TFG/GoldenLife/goldenPlate.rsi
+    shape:
+    - 0,0,1,0
+    storedOffset: 0,-6
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 5
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5
+  - type: StaticPrice
+    price: 499
+
+- type: entity
+  id: CuttleryBox
+  parent: BoxCardboard
+  name: utensils box
+  description: A special utensils for big shot.
+  components:
+  - type: Sprite
+    layers:
+    - state: box_hug
+  - type: StorageFill
+    contents:
+      - id: GoldenFork
+      - id: GoldenSpoon
+      - id: GoldenKnife
+      - id: GoldenPlate

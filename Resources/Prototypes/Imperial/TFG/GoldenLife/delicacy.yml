@@ -1,0 +1,161 @@
+# Tinned MRE for Representative
+- type: entity
+  id: FoodPresentableTinMRECaviar
+  parent: FoodTinMRE
+  name: space chum salmon caviar
+  description: Delicios MRE.
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/presentableTin.rsi
+  - type: Food
+    trash: FoodPresentableTinMRECaviarTrash
+  - type: FlavorProfile
+    flavors:
+    - food
+    - creamy
+  - type: StaticPrice
+    price: 10000
+
+- type: entity
+  id: FoodPresentableTinMRECaviarTrash
+  parent: FoodTinBaseTrash
+  name: space chum salmon caviar
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/presentableTin.rsi
+#Tinned MRE END
+
+# Edible rag
+- type: entity
+  id: PresentableRag
+  parent: BaseItem
+  name: delicious rag
+  description: A delicacy for representatives of the moth race!
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/presentableRag.rsi
+    state: HQrag
+  - type: Item
+    sprite: Imperial/TFG/GoldenLife/presentableRag.rsi
+    state: HQrag
+    size: Small
+  - type: Food
+    requiresSpecialDigestion: true
+  - type: Tag
+    tags:
+    - ClothMade
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: MaterialDurathread1
+      amount: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
+  - type: StaticPrice
+    price: 499
+#Edible rag END
+
+# Golden Pizza
+- type: entity
+  id: FoodPizzaGolden
+  parent: FoodPizzaBase
+  name: golden pizza
+  description: You are rich, crazy bastartd.
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/goldenPizza.rsi
+    layers:
+    - state: goldenPizza
+  - type: FlavorProfile
+    flavors:
+      - gold-pizza
+  - type: SliceableFood
+    slice: FoodPizzaGoldenSlice
+  - type: StaticPrice
+    price: 888
+
+- type: entity
+  id: FoodPizzaGoldenSlice
+  parent: FoodPizzaSliceBase
+  name: slice of golden pizza
+  description: A slice of sientist's heart attack.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - gold-pizza
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/goldenPizza.rsi
+    layers:
+    - state: goldenPizzaSlice
+  - type: StaticPrice
+    price: 111
+#Golden Pizza END
+
+#Golden Caviar
+- type: entity
+  id: FoodCaviarGolden
+  parent: FoodBase
+  name: golden caviar
+  description: Texture like edible balls of gold. Crumbly and aromatic. Brought directly from planet Earth, where it was obtained in an ancient ritual of fair hunting for albino sturgeon.
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/goldenCaviar.rsi
+    state: caviar
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Item
+    sprite: Imperial/TFG/GoldenLife/goldenCaviar.rsi
+    size: Tiny
+  - type: Food
+    trash: CaviarBowlEmpty
+  - type: FlavorProfile
+    flavors:
+    - gold-caviar
+  - type: StaticPrice
+    price: 5000
+
+- type: entity
+  id: CaviarBowlEmpty
+  parent: BaseItem
+  name: empty caviar bowl
+  description: This bowl from caviar is now empty. Sadly.
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/goldenCaviar.rsi
+    state: empty
+  - type: Item
+    sprite: Imperial/TFG/GoldenLife/goldenCaviar.rsi
+    size: Tiny
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Tag
+    tags:
+    - Trash
+  - type: StaticPrice
+    price: 499
+#Golden Caviar END
