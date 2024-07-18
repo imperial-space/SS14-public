@@ -1,0 +1,31 @@
+- type: entity
+  name: everything stamp
+  description: everything-stamp-desc
+  parent: BaseItem
+  id: EverythingStamp
+  components:
+  - type: Stamp
+    sound:
+      path: /Audio/Items/Stamp/thick_stamp_sub.ogg
+      params:
+        volume: -2
+        maxDistance: 5
+    stampedName: stamp-component-stamped-name-syndicate
+    stampedColor: "#850000"
+  - type: EverythingStamp
+  - type: Sprite
+    sprite: Imperial/Objects/Gadgets/EverythingStamp.rsi
+    state: everything-stamp
+  - type: Item
+    size: Tiny
+
+- type: listing
+  id: SyndiEverythingStamp
+  name: uplink-everything-stamp-name
+  description: uplink-everything-stamp-desc
+  icon: { sprite: Imperial/Objects/Gadgets/EverythingStamp.rsi, state: everything-stamp }
+  productEntity: EverythingStamp
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkDeception
