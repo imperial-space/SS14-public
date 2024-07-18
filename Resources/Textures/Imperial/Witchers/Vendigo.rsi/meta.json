@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "license": "СС BY-SA 3.0",
+  "copyright": "Designed by @mol_loko",
+  "size": {
+    "x": 96,
+    "y": 96
+  },
+  "states": [
+    {
+      "name": "Vendigo",
+      "directions": 4
+    },
+    {
+      "name": "Vendigo_dead"
+    }
+  ]
+}

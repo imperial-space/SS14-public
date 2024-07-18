@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "license": "СС BY-SA 3.0",
+  "copyright": "Designed by @vladegeg",
+  "size": {
+    "x": 96,
+    "y": 96
+  },
+  "states": [
+    {
+      "name": "Oliver",
+      "directions": 4
+    },
+    {
+      "name": "Oliver_dead"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: WitchersRedHat
+  name: The Witch's Hat
+  suffix: Ведьмы
+  description: The scarlet witch's hat.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Witchers/RedHat.rsi
+  - type: Clothing
+    sprite: Imperial/Witchers/RedHat.rsi
+  - type: Tag
+    tags:
+    - ClothMade

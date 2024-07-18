@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: WitcherDressvOne
+  name: The Dark Witch's Dress
+  suffix: Ведьмы
+  description: A beautiful long dress of a dark witch.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Witchers/BlackDress.rsi
+  - type: Clothing
+    sprite: Imperial/Witchers/BlackDress.rsi

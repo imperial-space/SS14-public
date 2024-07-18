@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "size":
+  {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Designed by @mol_loko",
+  "states":
+  [
+    {
+      "name": "Ylitka",
+      "directions": 4
+    },
+
+    {
+      "name": "Ylitka_dead",
+      "directions": 1
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: WitcherPurpleDress
+  name: The Purple Witch's Dress
+  suffix: Ведьмы
+  description: A beautiful long purple witch dress.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Witchers/PurpleDress.rsi
+  - type: Clothing
+    sprite: Imperial/Witchers/PurpleDress.rsi
