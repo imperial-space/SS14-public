@@ -1,5 +1,11 @@
-﻿defaultWindowTitle: Space Station 14
-windowIconSet: /Textures/Logo/icon
-splashLogo: /Textures/Logo/logo.png
+﻿# defaultWindowTitle: Space Station 14
+# windowIconSet: /Textures/Logo/icon
+# splashLogo: /Textures/Logo/logo.png
 
 # PJB PLEASE
+
+#Imperial Space logo
+
+defaultWindowTitle: Space Station 14 - Imperial Space [RU]
+windowIconSet: /Textures/Imperial/Logo/icon
+splashLogo: /Textures/Imperial/Logo/logo.png
