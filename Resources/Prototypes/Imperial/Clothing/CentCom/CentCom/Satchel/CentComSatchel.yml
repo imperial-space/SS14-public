@@ -1,0 +1,9 @@
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelCentCom
+  name: Centcom's Bag
+  suffix: Vl, ЦентКом
+  description: On guard of bureaucratic fashion.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/CentCom/CCStachel.rsi

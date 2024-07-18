@@ -1,0 +1,11 @@
+- type: entity
+  parent: ClothingOuterWinterCoatToggleable
+  id: DSOEliteCoat
+  name: Luxury winter coat DSO
+  suffix: Vl, ДСО
+  description: Extremely pleasant to the touch winter coat DSO.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/DSO/DSOCoat.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/DSO/DSOCoat.rsi

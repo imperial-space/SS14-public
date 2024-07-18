@@ -1,0 +1,11 @@
+- type: entity
+  parent: ClothingOuterWinterCoatToggleable
+  id: DSOMiniCoat
+  name: Black jacket
+  suffix: Vl, ДСО
+  description: Fashionable black officers' jacket.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/DSO/DSOMiniCoat.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/DSO/DSOMiniCoat.rsi

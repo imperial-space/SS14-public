@@ -1,0 +1,27 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadFlowerCentComEmerald
+  name: The Emerald Flower
+  suffix: Vl, ЦентКом
+  description: A beautiful, shiny emerald flower.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/VlClothes/CentCom/FlowerEmerald.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/CentCom/FlowerEmerald.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadFlowerCentComGold
+  name: Golden Flower
+  suffix: Vl, ЦентКом
+  description: A beautiful, shiny GOLDEN flower.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/VlClothes/CentCom/FlowerGold.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/CentCom/FlowerGold.rsi

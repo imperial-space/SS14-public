@@ -1,0 +1,33 @@
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons]
+  id: ClothingDSOGlassesDiamond
+  name: Colorless glasses
+  suffix: Vl, ДСО
+  description: They look depressing. However, they are suitable to look at war crimes
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/VlClothes/DSO/DSOGlassesDiamond.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/DSO/DSOGlassesDiamond.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons]
+  id: ClothingDSOGlassesWhite
+  name: White DSO Glasses
+  suffix: Vl, ДСО
+  description: Stylish Tactical Glasses DSO
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/VlClothes/DSO/DSOGlassesWhite.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/DSO/DSOGlassesWhite.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5

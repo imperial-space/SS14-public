@@ -1,0 +1,11 @@
+- type: entity
+  parent: ClothingOuterWinterCoatToggleable
+  id: CentComEliteCoat
+  name: Elite CENTCOM Women's Winter coat
+  suffix: Vl, ЦентКом
+  description: The CENTCOM winter coat is extremely pleasant to the touch.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/CentCom/Coat.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/CentCom/Coat.rsi
