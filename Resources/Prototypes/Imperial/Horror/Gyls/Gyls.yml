@@ -1,0 +1,196 @@
+- type: entity
+  name: Ghoul
+  suffix: Vl, Хоррор
+  parent: SimpleSpaceMobBase
+  id: HorrorMobGylOne
+  description: He used to be human, but now his mind is forever consumed by the scarlet corruption.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: Gyl
+        sprite: Imperial/Horror/GylOne.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: Gyl
+        Dead:
+          Base: Gyl_dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        150: Dead
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+      - FootstepSound
+    - type: MeleeWeapon
+      hidden: true
+      angle: 0
+      animation: WeaponArcBite
+      soundHit:
+        path: /Audio/Effects/bite.ogg
+      damage:
+        types:
+          Piercing: 15
+          Structural: 15
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Effects/Footsteps/hardbarefoot1.ogg
+    - type: Speech
+      speechVerb: LargeMob
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2
+      baseSprintSpeed: 2
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: NoSlip
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        100: 1.2
+
+- type: entity
+  name: Ghoul
+  suffix: Vl, Хоррор
+  parent: SimpleSpaceMobBase
+  id: HorrorMobGylTwo
+  description: He used to be human, but now his mind is forever consumed by the scarlet corruption.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: Gyl
+        sprite: Imperial/Horror/GylTwo.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: Gyl
+        Dead:
+          Base: Gyl_dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        150: Dead
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+      - FootstepSound
+    - type: MeleeWeapon
+      hidden: true
+      angle: 0
+      animation: WeaponArcBite
+      soundHit:
+        path: /Audio/Effects/bite.ogg
+      damage:
+        types:
+          Piercing: 15
+          Structural: 15
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Effects/Footsteps/hardbarefoot1.ogg
+    - type: Speech
+      speechVerb: LargeMob
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2
+      baseSprintSpeed: 2
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: NoSlip
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        100: 1.2
+
+- type: entity
+  name: Ghoul
+  suffix: Vl, Хоррор
+  parent: SimpleSpaceMobBase
+  id: HorrorMobGylThree
+  description: He used to be human, but now his mind is forever consumed by the scarlet corruption.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: Gyl
+        sprite: Imperial/Horror/GylThree.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: Gyl
+        Dead:
+          Base: Gyl_dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        150: Dead
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+      - FootstepSound
+    - type: MeleeWeapon
+      hidden: true
+      angle: 0
+      animation: WeaponArcBite
+      soundHit:
+        path: /Audio/Effects/bite.ogg
+      damage:
+        types:
+          Piercing: 15
+          Structural: 15
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Effects/Footsteps/hardbarefoot1.ogg
+    - type: Speech
+      speechVerb: LargeMob
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2
+      baseSprintSpeed: 2
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: NoSlip
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        100: 1.2
+
+- type: entity
+  id: HorrorMobBrain
+  parent: MobWatcherBase
+  name: The Enslaver
+  description: A huge flying brain. It looks disgusting.
+  suffix: Vl, Хоррор
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: Brain
+      sprite: Imperial/Horror/Brain.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: Brain
+      Dead:
+        Base: Brain_dead
+  - type: PointLight
+    radius: 1.5
+    energy: 1
+    color: red
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 50
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2

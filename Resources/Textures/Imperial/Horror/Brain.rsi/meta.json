@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "license": "СС BY-SA 3.0",
+  "copyright": "Designed by @vladegeg",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "Brain",
+      "directions": 4
+    },
+    {
+      "name": "Brain_dead",
+	  "directions": 4
+    }
+  ]
+}
