@@ -20,6 +20,9 @@
 	  "name": "closed_unlit"
 	},
     {
+      "name": "open_unlit"
+    },
+    {
       "name": "closing",
       "delays": [
         [
@@ -61,8 +64,8 @@
 	{
 	  "name": "open",
 	  "delays": [
-	    [ 
-		  1 
+	    [
+		  1
 		]
 	  ]
 	},
