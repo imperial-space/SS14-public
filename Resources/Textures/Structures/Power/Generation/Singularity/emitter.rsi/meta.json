@@ -13,25 +13,7 @@
     },
     {
       "name": "underpowered",
-      "directions": 4,
-      "delays": [
-        [
-          0.1,
-          0.1
-        ],
-        [
-          0.1,
-          0.1
-        ],
-        [
-          0.1,
-          0.1
-        ],
-        [
-          0.1,
-          0.1
-        ]
-      ]
+      "directions": 4
     },
     {
       "name": "locked",
@@ -51,6 +33,18 @@
     },
     {
       "name": "projectile"
+    },
+    {
+      "name": "emitter",
+      "directions": 4
+    },
+    {
+      "name": "unlock",
+      "directions": 4
+    },
+    {
+      "name": "lock",
+      "directions": 4
     }
   ]
 }
