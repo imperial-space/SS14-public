@@ -1,0 +1,61 @@
+- type: entity
+  id: PelletShotgunMute
+  name: Mute pellet
+  noSpawn: true
+  parent: BaseBullet
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Piercing: 10
+    - type: SolutionContainerManager
+      solutions:
+        ammo:
+          maxVol: 15
+          reagents:
+            - ReagentId: MuteToxin
+              Quantity: 1
+    - type: SolutionInjectOnProjectileHit
+      transferAmount: 15
+      solution: ammo
+    - type: RefillableSolution
+      solution: ammo
+    - type: DrainableSolution
+      solution: ammo
+    - type: InjectableSolution
+      solution: ammo
+
+- type: entity
+  id: ShellShotgunMute
+  name: shell (.50 beanbag)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    layers:
+      - state: beanbag
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunMute
+    count: 6
+    spread: 10
+    deleteOnSpawn: true
+  - type: ChemicalAmmo
+  - type: SolutionTransfer
+    maxTransferAmount: 15
+  - type: SpentAmmoVisuals
+    state: "beanbag"
+
+
+#- type: entity
+#  id: MagazineShotgunMute
+#  name: ammo drum (.50 Mute)
+#  parent: BaseMagazineShotgun
+#  components:
+#  - type: BallisticAmmoProvider
+#    proto: ShellShotgunMute
+#  - type: Sprite
+#    layers:
+#    - state: beanbag
+#      map: ["enum.GunVisualLayers.Base"]
+#    - state: mag-1
+#      map: ["enum.GunVisualLayers.Mag"]
