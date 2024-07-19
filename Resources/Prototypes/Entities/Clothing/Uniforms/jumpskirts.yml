@@ -543,9 +543,9 @@
   description: For professionals, not the posers.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/janimaid.rsi
+    sprite: Imperial/TFG/NewMaidClothing/maidDress.rsi #Imperial maid sprite
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/janimaid.rsi
+    sprite: Imperial/TFG/NewMaidClothing/maidDress.rsi #Imperial maid sprite
 
 - type: entity
   parent: ClothingUniformSkirtBase
