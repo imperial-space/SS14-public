@@ -489,6 +489,7 @@
   id: JobPsychologist
   groups:
   - GroupTankHarness
+  - PsychologistJumpsuit # Imperial jumpskirts
   - MedicalBackpack
   - Glasses
   - Survival

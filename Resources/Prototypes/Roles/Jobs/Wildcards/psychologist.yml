@@ -15,7 +15,7 @@
 - type: startingGear
   id: PsychologistGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitPsychologist
+    # jumpsuit: ClothingUniformJumpsuitPsychologist imperial jumpskirt
     shoes: ClothingShoesLeather
     id: PsychologistPDA
     ears: ClothingHeadsetMedical
