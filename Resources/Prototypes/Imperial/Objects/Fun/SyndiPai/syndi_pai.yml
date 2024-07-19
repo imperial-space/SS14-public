@@ -60,7 +60,7 @@
 
 - type: entity
   id: SyndicatePersonalAIImperial
-  parent: PersonalAI
+  parent: SyndicatePersonalAI
   components:
   - type: Sprite
     sprite: Imperial/syndipai.rsi
