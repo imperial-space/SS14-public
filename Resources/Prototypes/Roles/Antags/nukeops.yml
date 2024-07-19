@@ -48,7 +48,7 @@
     eyes: ClothingEyesHudSyndicate
     ears: ClothingHeadsetAltSyndicate
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterHardsuitSyndie
+    outerClothing: ClothingOuterHardsuitSyndieFactionExplosion #Imperial
     shoes: ClothingShoesBootsCombatFilled
     id: SyndiPDA
     pocket1: DoubleEmergencyOxygenTankFilled
@@ -67,7 +67,7 @@
   parent: SyndicateOperativeGearFull
   equipment:
     neck: SyndicateWhistle
-    outerClothing: ClothingOuterHardsuitSyndieCommander
+    outerClothing: ClothingOuterHardsuitSyndieCommanderFactionExplosion #Imperial
   inhand:
     - NukeOpsDeclarationOfWar
 
@@ -77,7 +77,7 @@
   parent: SyndicateOperativeGearFull
   equipment:
     eyes: ClothingEyesHudSyndicateAgent
-    outerClothing: ClothingOuterHardsuitSyndieMedic
+    outerClothing: ClothingOuterHardsuitSyndieMedicFactionExlposion #Imperial
     shoes: ClothingShoesBootsMagSyndie
     id: SyndiAgentPDA
     belt: ClothingBeltMilitaryWebbingMedFilled

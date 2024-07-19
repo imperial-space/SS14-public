@@ -433,7 +433,7 @@
   components:
     - type: Speech
       speechSounds: Pai
-    #- type: ClothingFactionExplosion
+    - type: ClothingFactionExplosion
 
 - type: entity
   parent: ClothingControlModsuitOperativeSealed
@@ -470,7 +470,7 @@
   components:
     - type: Speech
       speechSounds: Pai
-    #- type: ClothingFactionExplosion
+    - type: ClothingFactionExplosion
 
 - type: entity
   parent: ClothingControlModsuitBase
@@ -505,7 +505,7 @@
   components:
     - type: Speech
       speechSounds: Pai
-    #- type: ClothingFactionExplosion
+    - type: ClothingFactionExplosion
 
 - type: entity
   parent: ClothingControlModsuitOperativeSealed #same as oper, only GM-s can spawn
@@ -559,7 +559,7 @@
     price: 150000
   - type: Speech # Взрывные РИГ'и
     speechSounds: Pai
-  #- type: ClothingFactionExplosion # Взрывные РИГ'и
+  - type: ClothingFactionExplosion # Взрывные РИГ'и
     friendlyFaction: DeathSquad
     chance: 1
 
