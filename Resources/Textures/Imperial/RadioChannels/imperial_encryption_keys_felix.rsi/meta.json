@@ -1,0 +1,19 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by lune_felix (Discord) for Imperial.",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {"name": "card.Cadet-radio"},
+      {"name": "card.CMD-Radio"},
+      {"name": "card.engineer"},
+      {"name": "card.medic"},
+      {"name": "card.OFC-Radio"},
+      {"name": "card.piloting"},
+      {"name": "card.security"},
+      {"name": "card.SGT-Radio"}
+    ]
+  }
