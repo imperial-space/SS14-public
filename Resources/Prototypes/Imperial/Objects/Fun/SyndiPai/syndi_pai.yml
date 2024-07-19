@@ -69,13 +69,17 @@
     - state: pai-off-overlay
       shader: unshaded
       map: ["screen"]
-  - type: ActiveRadio
-    channels:
-    - Syndicate
   - type: TypingIndicator
     proto: syndibot
   - type: Speech
     speechSounds: Pai_syndi
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableGhostRoleVisuals.Status:
+        screen:
+          Off: { state: pai-off-overlay }
+          Searching: { state: pai-searching-overlay }
+          On: { state: pai-on-overlay }
 
 - type: speechSounds
   id: Pai_syndi
