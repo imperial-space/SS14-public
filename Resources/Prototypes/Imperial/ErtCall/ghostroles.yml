@@ -10,6 +10,8 @@
       name: ertcall-leader-eva-name
       description: ertcall-leader-eva-desc
       rules: ertcall-leader-eva-rules
+      raffle:
+        settings: short
     - type: GhostRoleMobSpawner
       prototype: ERTLeaderEVAPreset
     - type: Sprite
@@ -31,6 +33,8 @@
       name: ertcall-medic-eva-name
       description: ertcall-medic-eva-desc
       rules: ertcall-medic-eva-rules
+      raffle:
+        settings: short
     - type: GhostRoleMobSpawner
       prototype: ERTMedicEVAPreset
     - type: Sprite
@@ -51,6 +55,8 @@
       name: ertcall-security-eva-name
       description: ertcall-security-eva-desc
       rules: ertcall-security-eva-rules
+      raffle:
+        settings: short
     - type: GhostRoleMobSpawner
       prototype: ERTSecurityEVAPreset
     - type: Sprite
@@ -71,6 +77,8 @@
       name: ertcall-engineer-eva-name
       description: ertcall-engineer-eva-desc
       rules: ertcall-engineer-eva-rules
+      raffle:
+        settings: short
     - type: GhostRoleMobSpawner
       prototype: ERTEngineerEVAPreset
     - type: Sprite
@@ -91,6 +99,8 @@
       name: ertcall-junitor-eva-name
       description: ertcall-junitor-eva-desc
       rules: ertcall-junitor-eva-rules
+      raffle:
+        settings: short
     - type: GhostRoleMobSpawner
       prototype: ERTJunitorEVAPreset
     - type: Sprite
@@ -113,6 +123,8 @@
       name: ertcall-cburn-leader-eva-name
       description: ertcall-cburn-leader-eva-desc
       rules: ertcall-cburn-leader-eva-rules
+      raffle:
+        settings: short
     - type: GhostRoleMobSpawner
       prototype: CBURNLeaderEVAPreset
     - type: Sprite
@@ -133,6 +145,8 @@
       name: ertcall-cburn-security-eva-name
       description: ertcall-cburn-security-eva-desc
       rules: ertcall-cburn-security-eva-rules
+      raffle:
+        settings: short
     - type: GhostRoleMobSpawner
       prototype: CBURNSecurityEVAPreset
     - type: Sprite
@@ -153,6 +167,8 @@
       name: ertcall-cburn-medic-eva-name
       description: ertcall-cburn-medic-eva-desc
       rules: ertcall-cburn-medic-eva-rules
+      raffle:
+        settings: short
     - type: GhostRoleMobSpawner
       prototype: CBURNMedicEVAPreset
     - type: Sprite
@@ -174,6 +190,8 @@
       name: ertcall-deadsquad-security-eva-name
       description: ertcall-deadsquad-security-eva-desc
       rules: ertcall-deadsquad-security-eva-rules
+      raffle:
+        settings: short
     - type: GhostRoleMobSpawner
       prototype: DeadSquadSecurityEVAPreset
     - type: Sprite
