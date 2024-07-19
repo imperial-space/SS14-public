@@ -1,0 +1,90 @@
+highp float sdSphere(highp vec3 p, highp float s)
+{
+    return length(p) - s;
+}
+
+highp float sdVerticalCapsule(highp vec3 p, highp float h, highp float r )
+{
+    p.y -= clamp( p.y, 0.0, h );
+
+    return length( p ) - r;
+}
+
+highp mat2 rot2D(highp float a){
+	highp float c = cos(a);
+    highp float s = sin(a);
+
+    return mat2(c,s,-s, c);
+}
+
+highp float smin(highp float a, highp float b, highp float k)
+{
+    highp float h = max(k - abs(a - b), 0.0) / k;
+
+    return min(a, b) - h * h * h * k * (1.0 / 6.0);
+}
+
+highp vec4 map(highp vec3 p)
+{
+    highp vec3 speherePos = vec3(0, 0, 0);
+    highp vec3 capsulePos = vec3(0, -0.3, 0);
+
+    highp vec3 sphereColor = vec3(0.94, 0.45, 0.15);
+    highp vec3 capsuleColor = vec3(0.31, 0.78, 0.47);
+
+    highp vec3 q = p;
+
+    q.xz *= rot2D(TIME);
+    q.xy *= rot2D(0.9);
+
+    float scaleFactor = 0.6;
+
+    highp float sphere = sdSphere((q - speherePos) * scaleFactor, 0.76) / scaleFactor;
+    highp float capsule = sdVerticalCapsule((q - capsulePos) * scaleFactor, 1.0, 0.1) / scaleFactor;
+
+    speherePos.xz *= rot2D(TIME);
+
+    return vec4(
+        smin(capsule, sphere, 0.1),
+        capsule < sphere ? capsuleColor : sphereColor
+    );
+}
+
+
+void fragment()
+{
+    highp vec2 spriteSize = vec2(32);
+
+    highp vec2 textureSize = 1.0 / TEXTURE_PIXEL_SIZE;
+    highp vec2 uv = fract(vec2(UV.x * textureSize.x / 128 + 0.5, UV.y * textureSize.y / 128 - 0.25)) * 2 - 1;
+
+    highp vec3 ro = vec3(0, 0, -3);
+    highp vec3 rd = normalize(vec3(uv, 1));
+    highp vec3 col = vec3(0);
+
+    highp float op = 0.0;
+    highp float t = 0.0;
+
+    for (int i = 0; i < 80; i++)
+    {
+        highp vec3 p = ro + rd * t;
+
+        highp vec4 d = map(p);
+
+        col = d.yzw;
+        t += d.x;
+
+        if (d.x < 0.001)
+        {
+            op = 1.0;
+
+            break;
+        }
+
+        if (t > 100.0) break;
+    }
+
+    col = vec3(t * 0.2) * col;
+
+    COLOR = vec4(col, op);
+}
