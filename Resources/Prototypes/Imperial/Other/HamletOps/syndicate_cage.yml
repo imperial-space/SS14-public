@@ -1,0 +1,68 @@
+- type: entity
+  parent: CrateGeneric
+  id: CrateSyndicateCage
+  name: syndicate hamster cage
+  description: Simple hamster cage in Syndicate style
+  suffix: Solid
+  components:
+  - type: Sprite
+    sprite: Imperial/HamletOps/cage.rsi
+    layers:
+    - state: base
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: Icon
+    sprite: Imperial/HamletOps/cage.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/woodhit.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetPlastic:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Physics
+    bodyType: Dynamic
+  - type: EntityStorage
+    capacity: 1
+    airtight: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.29"
+        density: 80
+        mask:
+        - LargeMobMask
+        layer:
+        - LargeMobLayer
+  - type: StaticPrice
+    price: 60
+
+- type: entity
+  id: SyndiNPCCage
+  parent: CrateSyndicateCage
+  suffix: Hamster-Ops
+  components:
+    - type: StorageFill
+      contents:
+        - id: MobSyndicateHamster
+
+- type: listing
+  id: UplinkHamsterAgent
+  name: uplink-explosive-hamster-name
+  description: uplink-explosive-hamster-desc
+  productEntity: SyndiNPCCage
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkExplosives
