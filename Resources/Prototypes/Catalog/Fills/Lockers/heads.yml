@@ -49,6 +49,8 @@
       - id: JetpackCaptainFilled
       - id: MedalCase
       - id: ControlModsuitMagnate #Imperial modsuits
+      - id: ClothingUniformJumpsuitCaptainAlt # imperial ImperialClothes
+      - id: ClothingUniformJumpskirtCaptainAlt # imperial ImperialClothes
 
 - type: entity
   id: LockerCaptainFilled
@@ -76,6 +78,8 @@
       - id: JetpackCaptainFilled
       - id: MedalCase
       - id: ControlModsuitMagnate #Imperial modsuits
+      - id: ClothingUniformJumpsuitCaptainAlt # imperial ImperialClothes
+      - id: ClothingUniformJumpskirtCaptainAlt # imperial ImperialClothes
 
 - type: entity
   id: LockerCaptainFilledNoLaser
@@ -102,6 +106,8 @@
       - id: JetpackCaptainFilled
       - id: MedalCase
       - id: ControlModsuitMagnate #Imperial modsuits
+      - id: ClothingUniformJumpsuitCaptainAlt # imperial ImperialClothes
+      - id: ClothingUniformJumpskirtCaptainAlt # imperial ImperialClothes
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
@@ -199,6 +205,9 @@
       - id: RubberStampCMO
       - id: MedicalTechFabCircuitboard
       - id: BoxEncryptionKeyMedical
+      - id: CloningPodMachineCircuitboard  # Imperial Space / Клоны наносят ответный удар. @KAZAK1984
+      - id: CloningConsoleComputerCircuitboard  # Imperial Space / Клоны наносят ответный удар. @KAZAK1984
+      - id: MedicalScannerMachineCircuitboard  # Imperial Space / Клоны наносят ответный удар. @KAZAK1984
 
 - type: entity
   id: LockerChiefMedicalOfficerFilled
@@ -219,6 +228,9 @@
       - id: RubberStampCMO
       - id: MedicalTechFabCircuitboard
       - id: BoxEncryptionKeyMedical
+      - id: CloningPodMachineCircuitboard  # Imperial Space / Клоны наносят ответный удар. @KAZAK1984
+      - id: CloningConsoleComputerCircuitboard  # Imperial Space / Клоны наносят ответный удар. @KAZAK1984
+      - id: MedicalScannerMachineCircuitboard  # Imperial Space / Клоны наносят ответный удар. @KAZAK1984
 
 - type: entity
   id: LockerResearchDirectorFilledHardsuit
@@ -285,6 +297,7 @@
       - id: HoloprojectorSecurity
       - id: BookSecretDocuments
       - id: BookSpaceLaw
+      - id: ClothingNeckCloakHosFormal # imperial ImperialClothes
 
 - type: entity
   id: LockerHeadOfSecurityFilled
@@ -309,6 +322,7 @@
       - id: HoloprojectorSecurity
       - id: BookSecretDocuments
       - id: BookSpaceLaw
+      - id: ClothingNeckCloakHosFormal # imperial ImperialClothes
 
 - type: entity
   id: LockerFreezerVaultFilled

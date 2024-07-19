@@ -748,6 +748,7 @@
       - WeaponDisablerPractice
       - WeaponLaserCarbinePractice
       - Zipties
+      - BaseMagazineBoxACP #Imperial Space TFG
     dynamicRecipes:
       - BoxBeanbag
       - BoxShotgunIncendiary
@@ -1083,6 +1084,7 @@
       - ClothingOuterWinterRobo
       - ClothingOuterWinterSec
       - ClothingNeckCloakNanotrasenBlack #Imperial black cloak
+      - WardenMantleLathe # imperial ImperialClothes
       # Ties
       - ClothingNeckTieRed
       - ClothingNeckTieDet
