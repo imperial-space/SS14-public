@@ -5,9 +5,9 @@
   description: A hard-boiled private investigator's dark trenchcoat.
   components:
     - type: Sprite
-      sprite: Corvax/Clothing/OuterClothing/Coats/noirdet.rsi
+      sprite: Imperial/Clothing/OuterClothing/Coats/noirdet.rsi
     - type: Clothing
-      sprite: Corvax/Clothing/OuterClothing/Coats/noirdet.rsi
+      sprite: Imperial/Clothing/OuterClothing/Coats/noirdet.rsi
     - type: StorageFill
       contents:
         - id: SmokingPipeFilledTobacco
