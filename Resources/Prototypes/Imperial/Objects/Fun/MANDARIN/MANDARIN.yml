@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseItem
+  id: MANDARIN
+  components:
+  - type: Sprite
+    layers:
+      - sprite: Imperial/MANDARIN/shader_uv.rsi
+        state: shader_uv
+
+
+- type: shader
+  id: MANDARINSHADER
+  kind: source
+  path: "/Textures/Imperial/Shaders/mandarin.swsl"

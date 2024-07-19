@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingMaskPullableBase
+  id: ClothingKrilBig
+  name: Big wings
+  suffix: Ведьмы
+  description: Overbearing...
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Witchers/KrilBig.rsi
+  - type: Clothing
+    sprite: Imperial/Witchers/KrilBig.rsi

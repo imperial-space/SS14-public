@@ -1,0 +1,73 @@
+- type: entity
+  name: The Scarlet Knight
+  suffix: Vl, Хоррор
+  parent: SimpleSpaceMobBase
+  id: HorrorMobKnight
+  description: The Personal guard of the Scarlet Rose.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: Knight
+        sprite: Imperial/Horror/Knight.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: Knight
+        Dead:
+          Base: Knight_dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        500: Dead
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+      - FootstepSound
+    - type: MeleeWeapon
+      hidden: true
+      angle: 0
+      animation: WeaponArcThrust
+      soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+      damage:
+        types:
+          Piercing: 50
+          Structural: 20
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Imperial/Horror/Knight/KinghtWalk.ogg
+    - type: Speech
+      speechVerb: LargeMob
+    - type: Vocal
+      sounds:
+        Unsexed: KnightVoice
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2
+      baseSprintSpeed: 3
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: NoSlip
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            # Circles, cuz rotation of rectangles looks very bad
+            !type:PhysShapeCircle
+            radius: 0.3
+          density: 300
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        400: 0.7
+    - type: Reflect
+      reflectProb: .50
+      spread: 50

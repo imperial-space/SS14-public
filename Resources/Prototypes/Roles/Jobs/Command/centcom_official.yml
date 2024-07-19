@@ -18,10 +18,10 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitCentcomOfficial
     shoes: ClothingShoesBootsCombatFilled
-    head: ClothingHeadHatCentcom
+    head: ClothingHeadHatCentComCap # imperial ImperialClothes
     eyes: ClothingEyesGlassesSunglasses
-    gloves: ClothingHandsGlovesColorBlack
-    outerClothing: ClothingOuterArmorBasic
+    gloves: ClothingHandsGlovesCentCom # imperial ImperialClothes
+    outerClothing: ClothingOuterArmorCentCom # imperial ImperialClothes
     id: CentcomPDA
     ears: ClothingHeadsetAltCentCom
     belt: WeaponPistolN1984

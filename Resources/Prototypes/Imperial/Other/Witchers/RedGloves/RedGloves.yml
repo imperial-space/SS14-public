@@ -1,0 +1,17 @@
+- type: entity
+  parent: ClothingHandsGlovesColorBlack
+  id: WitchersRedGloves
+  name: Scarlet Witch Gloves
+  description: Beautiful scarlet witch gloves.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Witchers/RedGloves.rsi
+  - type: Clothing
+    sprite: Imperial/Witchers/RedGloves.rsi
+  - type: GloveHeatResistance
+    heatResistance: 1400
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative

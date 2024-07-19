@@ -1,0 +1,31 @@
+- type: entity
+  parent: [ClothingBeltBase, ClothingSlotBase]
+  id: ClothingBeltKatanaSheath
+  name: katana sheath
+  description: An elegant sheath, designed for quick access to the katana.
+  components:
+  - type: Sprite
+    sprite: Imperial/Sheaths/katana_sheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: Imperial/Sheaths/katana_sheath.rsi
+  - type: ItemSlots
+    slots:
+      item:
+        name: Sabre
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - Katana
+  - type: Item
+    size: Ginormous
+  - type: ItemMapper
+    mapLayers:
+      sheath-sabre:
+        whitelist:
+          tags:
+          - Katana
+  - type: Appearance

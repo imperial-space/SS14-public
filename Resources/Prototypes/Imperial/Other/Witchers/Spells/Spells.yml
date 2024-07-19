@@ -1,0 +1,65 @@
+- type: entity
+  id: WitchersSpellVendigo
+  name: The Wendigo Appeal
+  description: This spell summons an aggressive Wendigo.
+  noSpawn: true
+  components:
+  - type: WorldTargetAction
+    useDelay: 60
+    range: 4
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Witchers/SpellsIcons.rsi
+      state: Vendigo_spell
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: WitchersVendigoVr
+        amount: 1
+      - id: LightningRevenant
+        amount: 3
+      offset: 0, 1
+      speech: Vendigo!!
+
+- type: entity
+  id: WitchersSpellYlitka
+  name: Summoning snails
+  description: This spell summons two aggressive snails.
+  noSpawn: true
+  components:
+  - type: WorldTargetAction
+    useDelay: 30
+    range: 4
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Witchers/SpellsIcons.rsi
+      state: Ylitka_spell
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: WitchersYlitkaVr
+        amount: 2
+      - id: LightningRevenant
+        amount: 3
+      offset: 0, 1
+      speech: Snails!!
+
+- type: entity
+  id: WitchersSpellVorons
+  name: The Call of the Ravens
+  description: This spell summons three aggressive ravens.
+  noSpawn: true
+  components:
+  - type: WorldTargetAction
+    useDelay: 15
+    range: 4
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Witchers/SpellsIcons.rsi
+      state: Voron_spell
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: MobVoronVr
+        amount: 3
+      - id: LightningRevenant
+        amount: 3
+      offset: 0, 1
+      speech: Ravens!!

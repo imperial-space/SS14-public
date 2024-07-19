@@ -1,0 +1,14 @@
+- type: entity
+  parent: ClothingShoesBootsMagSyndie
+  id: ClothingShoesBootsMagSona
+  name: Bright blue magnetic boots
+  suffix: S-o.N.A
+  description: Bright blue magnetic boots of S-o.N.A. AI Dynamics corporation, with a built-in jetpack.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Sona/MagBoots.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Sona/MagBoots.rsi

@@ -1,0 +1,18 @@
+- type: entity
+  id: GoldenThruster
+  parent: Thruster
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/goldenThruster.rsi
+  - type: StaticPrice
+    price: 10000
+
+- type: entity
+  id: GoldenThrusterUnanchored
+  parent: GoldenThruster
+  suffix: Unanchored
+  components:
+    - type: Transform
+      anchored: false
+    - type: Physics
+      bodyType: Dynamic

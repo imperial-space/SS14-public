@@ -1,0 +1,32 @@
+- type: entity
+  parent: ClothingOuterArmorBasic
+  id: ClothingOuterArmorCentCom
+  name: armor vest CentCom
+  description: It will protect even the most terrible bureaucrat from a sudden attack
+  components:
+  - type: Sprite
+    sprite: Imperial/ImperialClothes/ClothingOuterArmorCentCom.rsi
+  - type: Clothing
+    sprite: Imperial/ImperialClothes/ClothingOuterArmorCentCom.rsi
+
+- type: entity
+  parent: ClothingHandsGlovesCaptain
+  id: ClothingHandsGlovesCentCom
+  name: centcom gloves
+  description: The captain's repainted gloves. Just don't tell the owner
+  components:
+  - type: Sprite
+    sprite: Imperial/ImperialClothes/ClothingHandsGlovesCentCom.rsi
+  - type: Clothing
+    sprite: Imperial/ImperialClothes/ClothingHandsGlovesCentCom.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCentComCap
+  name: CentCom cap
+  description: It smells like paper.
+  components:
+  - type: Sprite
+    sprite: Imperial/ImperialClothes/centcomcap.rsi
+  - type: Clothing
+    sprite: Imperial/ImperialClothes/centcomcap.rsi

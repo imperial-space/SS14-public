@@ -1,0 +1,91 @@
+#Golden Watermellon
+- type: entity
+  id: GoldenWatermellon
+  parent: [BaseItem, ItemHeftyBase]
+  name: goldenmellon
+  description: Well... you really have rich gold deposit?
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/goldenWatermellon.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/TFG/GoldenLife/goldenWatermellon.rsi
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 30
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 25
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 15
+        Structural: 15
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 90
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metal_break1.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          GoldOre1:
+            min: 1
+            max: 5
+          GoldenWatermellonTrash:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 100
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  id: GoldenWatermellonTrash
+  parent: BaseItem
+  name: broken goldenmellon
+  description: This was once a goldenmelon...
+  suffix: Broken
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/goldenWatermellon.rsi
+    state: icon-open
+  - type: Item
+    shape:
+    - 0,0,1,0
+    storedOffset: 0,-4
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 100
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 90
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: StaticPrice
+    price: 100
+#Golden Watermellon END

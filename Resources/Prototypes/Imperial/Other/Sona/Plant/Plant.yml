@@ -1,0 +1,10 @@
+- type: entity
+  id: BlueSakyraSona
+  parent: PottedPlantBase
+  name: Blue Sakura
+  suffix: S-o.N.A
+  description: A cute little sakura in blue.
+  components:
+  - type: Sprite
+    sprite: Imperial/Sona/Plant.rsi
+    state: BlueSakyra

@@ -1,0 +1,29 @@
+- type: entity
+  name: The Big Snail
+  suffix: Ведьмы
+  parent: MobSloth
+  id: WitchersYlitka
+  description: This... Just a big snail... Why does she have eyes from below?...
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Witchers/Ylitka.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: Ylitka
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: Ylitka
+      Critical:
+        Base: Ylitka_dead
+      Dead:
+        Base: Ylitka_dead
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: Вы погладили улитку. Она склизкая...
+    interactSuccessSpawn: EffectHearts
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: male

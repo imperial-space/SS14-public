@@ -1,0 +1,39 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: Centcomcloackformal
+  name: CentocomCloackFormal
+  description: Radiates bureaucracy!
+  components:
+  - type: Sprite
+    sprite: Imperial/ImperialClothes/centcomcloakformal.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakHosFormal
+  name: head of security's formal cloak
+  description: Made for business meetings with NanoTrasen's enemies.
+  components:
+  - type: Sprite
+    sprite: Imperial/ImperialClothes/hoscloakformal.rsi
+  - type: StealTarget
+    stealGroup: HeadCloak
+
+
+- type: entity
+  parent: ClothingNeckBase
+  id: WardenMantleID
+  name: WardenMantle
+  description: The prisoners should be afraid of you!
+  components:
+  - type: Sprite
+    sprite: Imperial/ImperialClothes/wardenmantle.rsi
+  - type: Clothing
+    sprite: Imperial/ImperialClothes/wardenmantle.rsi
+
+- type: latheRecipe # ImperialClothes Мантия вардена. Добавлена нашими спрайтерами
+  id: WardenMantleLathe
+  result: WardenMantleID
+  completetime: 2.8
+  materials:
+    Cloth: 150
+    Durathread: 150

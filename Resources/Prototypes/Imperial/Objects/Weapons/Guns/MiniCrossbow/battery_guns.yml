@@ -1,0 +1,34 @@
+
+- type: entity
+  name: energy-crossbow
+  parent: BaseWeaponBatterySmall
+  id: energy-crossbow
+  description: A weapon favored by syndicate specialists who prefer to work covertly.
+  components:
+  - type: Tag
+    tags:
+    - Taser
+    - Sidearm
+  - type: Sprite
+    sprite: Imperial/MiniCrossbow.rsi
+    state: crossbow
+  - type: Item
+    sprite: Imperial/MiniCrossbow.rsi
+    heldPrefix: crossbow
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/laser.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
+    rechargeSound:
+      path: /Audio/Weapons/drawbow2.ogg
+  - type: UseDelay
+  - type: BasicEntityAmmoProvider
+    proto: BulletCrossbow
+    capacity: 1
+    count: 1
+  - type: Appearance

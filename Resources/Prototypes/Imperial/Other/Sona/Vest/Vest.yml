@@ -1,0 +1,23 @@
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterSonaVestWeb
+  name: Vest S-o.N.A
+  suffix: S-o.N.A
+  description: Vest of S-o.N.A. AI Dynamics corporation, with new generation plates.
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Sona/Vest.rsi
+  - type: Clothing
+    sprite: Imperial/Sona/Vest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5 
+        Slash: 0.6
+        Piercing: 0.25
+        Heat: 0.75
+        Stamina: 0.85
+  - type: ExplosionResistance
+    damageCoefficient: 0.6

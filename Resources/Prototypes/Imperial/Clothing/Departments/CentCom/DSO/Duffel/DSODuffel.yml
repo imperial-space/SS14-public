@@ -1,0 +1,9 @@
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelDSO
+  name: DSO Duffel Bag
+  suffix: Vl, ДСО
+  description: To transport tons of weapons, or corpses.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/DSO/DSODuffel.rsi

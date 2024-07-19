@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Designed by @vladegeg",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon-sona-off"
+    },
+    {
+      "name": "sona-base"
+    },
+    {
+      "name": "sona-off-overlay"
+    },
+    {
+      "name": "sona-on-overlay",
+      "delays": [
+        [
+          0.8,
+          0.8
+        ]
+      ]
+    },
+    {
+      "name": "sona-searching-overlay",
+      "delays": [
+        [
+          0.8,
+          0.8
+        ]
+      ]
+    }
+  ]
+}

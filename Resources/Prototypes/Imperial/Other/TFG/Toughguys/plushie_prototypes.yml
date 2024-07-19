@@ -1,0 +1,263 @@
+- type: entity
+  noSpawn: true
+  parent: BasePlushie
+  id: BasePlushieCharacter
+  name: BasePlushieCharacter
+  suffix: COMMUNITY,TOY
+  components:
+  - type: Sprite
+    sprite: Imperial/Toughguys
+    state: plushie_IAA
+  - type: Item
+    size: Normal
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,0,1
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: StaticPrice
+    price: 0
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieCapitan
+  name: August von Stierletz
+  description: Capitan.
+  components:
+  - type: Sprite
+    sprite: Imperial/Toughguys
+    state: plushie_capitan
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieSO
+  name: Sakura Fireinside
+  description: #none
+  components:
+  - type: Sprite
+    sprite: Imperial/Toughguys
+    state: plushie_SO
+
+# Cadet, do you know how a flash device works?
+- type: entity
+  parent: PlushieSO
+  id: PlushieSOGift
+  suffix: COMMUNITY,TOY,GIFT
+  components:
+  - type: StorageFill
+    contents:
+    - id: Flash
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieIAA
+  name: Honako Mitsuma
+  description: #none
+  components:
+  - type: Sprite
+    sprite: Imperial/Toughguys
+    state: plushie_IAA
+
+# Chocovate
+- type: entity
+  parent: PlushieIAA
+  id: PlushieIAAGift
+  suffix: COMMUNITY,TOY,GIFT
+  components:
+  - type: StorageFill
+    contents:
+    - id: FoodSnackChocolate
+    - id: DrinkCafeRaf
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieChemist
+  name: Sarah Morningstar
+  description: The most furious follower of the great god Kum'Ar. So furious that even the toy seems to be saturated with drugs... NanoTrasen, seriously?
+  components:
+  - type: Sprite
+    sprite: Imperial/Toughguys
+    state: plushie_chemist
+
+#Armenian Stuff. No Thrivenin here!
+- type: entity
+  parent: PlushieChemist
+  id: PlushieChemistGift
+  suffix: COMMUNITY,TOY,GIFT
+  components:
+  - type: StorageFill
+    contents:
+      - id: ArmenianStuff
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieCP #Chief Medical Officer
+  name: Ekaterina Nazintseva
+  description: The only chief medical officer who finds Trayvovin useful. Will teach the ENTIRE station to create the perfect medical base.
+  components:
+  - type: Sprite
+    sprite: Imperial/Toughguys
+    state: plushie_CP
+
+#THE BEST MEDICAL BASE!!!!
+- type: entity
+  parent: PlushieCP
+  id: PlushieCPGift
+  suffix: COMMUNITY,TOY,GIFT
+  components:
+  - type: StorageFill
+    contents:
+      - id: PillThrivevin
+        amount: 2
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieEngineer
+  name: Kevin Ackerley
+  description: He believed that he could build a shuttle in 20 minutes, and whoever does not do this has no right to be called an “engineer.” He disappeared into obscurity in space after an unexpected depressurization of a weakly welded body of his own design.
+  components:
+  - type: Sprite
+    sprite: Imperial/Toughguys
+    state: plushie_engineer
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieGSB  #Head of Security
+  name: Linda Astereich
+  description: The best representative of the Kesis race, who does not stand out in any way from the rest of the NT employees. Literally. Even this toy seems... not special to you.
+  components:
+  - type: Sprite
+    sprite: Imperial/Toughguys
+    state: plushie_GSB
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieParamedic
+  name: Egor Paletov
+  components:
+  - type: Sprite
+    sprite: Imperial/Toughguys
+    state: plushie_paramedic
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushiePCC #Central Command Representative
+  name: Arvely Snegov
+  components: #None/ Soon
+  - type: Sprite
+    sprite: Imperial/Toughguys
+    state: plushie_PCC
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieScientist
+  name: Madeline Rogers
+  components:
+  - type: Sprite
+    sprite: Imperial/Toughguys
+    state: plushie_scientist
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieSurgeon
+  name: Molly Matthews
+  components:
+  - type: Sprite
+    sprite: Imperial/Toughguys
+    state: plushie_surgeon
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieBartender
+  name: Keturah Mur'r
+  description: She will always pour you a drink, even if you are a zombie. Just follow the unbreakable rule - no brawls in her bar!
+  components:
+  - type: Sprite
+    sprite: Imperial/Toughguys
+    state: plushie_bartender
+
+#Bartender with a flask
+- type: entity
+  parent: FlaskBase
+  id: PlushieBartenderGift
+  suffix: COMMUNITY,TOY,GIFT
+  components:
+  - type: Sprite
+    sprite: Imperial/Toughguys
+    state: plushie_bartender_full
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: DoctorsDelight
+          Quantity: 30
+        - ReagentId: Tea
+          Quantity: 4
+        - ReagentId: Cream
+          Quantity: 4
+        - ReagentId: Sugar
+          Quantity: 2
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 100
+      Steel: 200
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieBarmem
+  name: Dallas
+  components:
+  - type: Sprite
+    sprite: Imperial/Toughguys
+    state: plushie_barmem
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieCoroner
+  name: Whirlow
+  description: Nuclear operatives at the station? Has the singularity escaped or the Zombies? Don't be afraid, because she will be the one who will document your death.
+  components:
+  - type: Sprite
+    sprite: Imperial/Toughguys
+    state: plushie_coroner
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieHOP
+  name: Evelin
+  description: In the red code, you definitely should not approach it...
+  components:
+  - type: Sprite
+    sprite: Imperial/Toughguys
+    state: plushie_HOP
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieNuclearmedic
+  name: Jacques
+  description: Every time your comrade-in-arms needs to have a broken arm sewn on, remember him
+  components:
+  - type: Sprite
+    sprite: Imperial/Toughguys
+    state: plushie_nuclearmedic
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushiePassenger
+  name: Vasya
+  description: One of the leaders of the grey movement. Why does he need insulated gloves?
+  components:
+  - type: Sprite
+    sprite: Imperial/Toughguys
+    state: plushie_passenger

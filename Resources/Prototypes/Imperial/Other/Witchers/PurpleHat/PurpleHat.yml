@@ -1,0 +1,16 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: WitchersPurpleHat
+  name: The Witch's Hat
+  suffix: Ведьмы
+  description: The purple witch hat.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Witchers/PurpleHat.rsi
+  - type: Clothing
+    sprite: Imperial/Witchers/PurpleHat.rsi
+  - type: Tag
+    tags:
+    - ClothMade

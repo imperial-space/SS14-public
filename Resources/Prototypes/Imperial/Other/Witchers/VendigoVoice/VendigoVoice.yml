@@ -1,0 +1,6 @@
+- type: emoteSounds
+  id: VendigoVoice
+  sound:
+    path: /Audio/Imperial/Witchers/VendigoScream.ogg
+    params:
+      variation: 2

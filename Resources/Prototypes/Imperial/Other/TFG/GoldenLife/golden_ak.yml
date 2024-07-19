@@ -1,0 +1,88 @@
+- type: entity
+  id: WeaponRifleGoldenAk
+  parent: WeaponRifleAk
+  name: golden AK
+  description: One of the many pathetic copies of the legend worshiped by the NanoTrasen board of directors.
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/goldenAK.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Imperial/TFG/GoldenLife/goldenAK.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleGolden
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifleGolden
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+  - type: StaticPrice
+    price: 3000
+
+- type: entity
+  id: WeaponRifleGoldenAkLegend
+  parent: WeaponRifleGoldenAk
+  suffix: Shiny, DoNotMap
+  description: A legend rumored to be worshiped by the NanoTrasen board of directors. Polished to a shine by the company's best maids.
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/goldenAK.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: anim
+  - type: StaticPrice
+    price: 1000000
+
+- type: entity
+  id: MagazineLightRifleGolden
+  parent: BaseMagazineLightRifle
+  name: "magazine (.30 rifle)"
+  suffix: Golden
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifleGolden
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/goldenAKMagazine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: CartridgeLightRifleGolden
+  parent: BaseCartridgeLightRifle
+  name: cartridge (.30 rifle)
+  suffix: Golden
+  components:
+  - type: CartridgeAmmo
+    proto: BulletLightRifle
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/goldenCartrige.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: StaticPrice
+    price: 50

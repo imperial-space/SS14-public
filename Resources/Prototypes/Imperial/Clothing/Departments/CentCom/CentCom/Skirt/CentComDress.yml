@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtDressCentCom
+  name: Centcom Skirt
+  suffix: Vl, ЦентКом
+  description: A luxurious skirt for the most beautiful ladies of CENTCOM.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/VlClothes/CentCom/Skirt.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/CentCom/Skirt.rsi

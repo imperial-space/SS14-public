@@ -1,0 +1,21 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCaptainAlt
+  name: Captain's turtleneck
+  description: This turtleneck highlights the leadership qualities of those who wear it.  Every self-respecting head of Nanotrasen facilities should wear it with his head held high and inspire fear in the eyes of a common enemy.
+  components:
+  - type: Sprite
+    sprite: Imperial/ImperialClothes/captain_alt.rsi
+  - type: Clothing
+    sprite: Imperial/ImperialClothes/captain_alt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtCaptainAlt
+  name: Captain's turtleneck-skirt
+  description: This turtleneck highlights the leadership qualities of those who wear it.  Every self-respecting head of Nanotrasen facilities should wear it with his head held high and inspire fear in the eyes of a common enemy.
+  components:
+  - type: Sprite
+    sprite: Imperial/ImperialClothes/captainjumpskirt_alt.rsi
+  - type: Clothing
+    sprite: Imperial/ImperialClothes/captainjumpskirt_alt.rsi

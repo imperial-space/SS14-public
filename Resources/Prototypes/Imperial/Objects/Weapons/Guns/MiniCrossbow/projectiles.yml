@@ -1,0 +1,39 @@
+- type: entity
+  name: enegry crossbow bolt
+  id: BulletCrossbow
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Sprite
+    noRot: false
+    sprite: Imperial/MiniCrossbow.rsi
+    color: "#FFFFFF"
+    layers:
+    - state: cbbolt
+      shader: unshaded
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: false
+        mask:
+          - Opaque
+  - type: Ammo
+  - type: StaminaDamageOnCollide
+    damage: 45
+  - type: Projectile
+    damage:
+      types:
+        Poison: 10
+    forceSound: true
+  - type: StunOnCollide
+    stunAmount: 1
+    knockdownAmount: 1

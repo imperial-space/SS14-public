@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformCapJumpskirtSona
+  name: Luxurious S-o.N.A skirt
+  suffix: S-o.N.A
+  description: A comfortable and practical skirt made of the highest quality materials.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Sona/CapSkirt.rsi
+  - type: Clothing
+    sprite: Imperial/Sona/CapSkirt.rsi

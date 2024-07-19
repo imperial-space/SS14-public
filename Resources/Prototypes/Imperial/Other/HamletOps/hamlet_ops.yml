@@ -1,0 +1,64 @@
+- type: entity
+  name: Hamlet
+  parent: MobHamster
+  id: MobSyndicateHamster
+  description: A grumpy, cute and fluffy hamster.
+  suffix: Syndie
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: Imperial/HamletOps/hamlet-agent.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: hamster-0
+  - type: GhostRole
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: agent-hamster-ghostrole-name
+    description: agent-hamster-ghostrole-desc
+  - type: GhostTakeoverAvailable
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: petting-success-hamster
+    interactFailureString: petting-failure-hamster
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 1
+    - id: ExGrenade
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: male
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    intensitySlope: 3
+    totalIntensity: 120
+    canCreateVacuum: false
+  - type: OnUseTimerTrigger
+    delay: 5
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 5
+    initialBeepDelay: 0
+    beepInterval: 2
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Effects/minibombcountdown.ogg
+      params:
+        volume: 12
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - Hamster
+    - VimPilot
+  - type: NpcFactionMember
+    factions:
+      - Syndicate

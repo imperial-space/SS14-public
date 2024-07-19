@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingSatchelSona
+  name: Satchel S-o.N.A
+  suffix: S-o.N.A
+  description: The standard bag of S-o.N.A. AI Dynamics employees.
+  components:
+  - type: Item
+    size: Huge
+  - type: Sprite
+    sprite: Imperial/Sona/Satchel.rsi
+  - type: Storage
+    capacity: 100

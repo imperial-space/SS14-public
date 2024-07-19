@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadFlowerDSOWhite
+  name: White Flower
+  suffix: Vl, ДСО
+  description: A colorless flower. It is ideal for giving respect to the dead on the spot.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/VlClothes/DSO/FlowerWhite.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/DSO/FlowerWhite.rsi

@@ -1,0 +1,213 @@
+#Representative EVA
+- type: entity
+  id: ClothingOuterEVASuitCentCom
+  parent: ClothingOuterEVASuitBase
+  name: EVA suit CentCom
+  description: For big shot in big problem.
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/RepresentativeStuff/evaSuit.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/TFG/RepresentativeStuff/evaSuit.rsi
+  - type: Clothing
+    sprite: Imperial/TFG/RepresentativeStuff/evaSuit.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.9
+        Radiation: 0.05
+        Heat: 0.5
+
+- type: entity
+  id: ClothingHeadEVAHelmetCentCom
+  parent: ClothingHeadEVAHelmetBase
+  name: EVA helmet CentCom
+  description: A EVA helmet for big shot.
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/RepresentativeStuff/evaHelmet.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/TFG/RepresentativeStuff/evaHelmet.rsi
+  - type: Clothing
+    sprite: Imperial/TFG/RepresentativeStuff/evaHelmet.rsi
+    slot: head
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.9
+        Radiation: 0.05
+        Heat: 0.5
+#Representative EVA END
+
+#CentComAgent suit
+- type: entity
+  id: ClothingUniformJumpsuitCCAgent
+  parent: ClothingUniformBase
+  name: Special Agent suit
+  description: A special suit, custom-made for the cool bodyguards of a particularly important boss.
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/RepresentativeStuff/agentUniform.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/TFG/RepresentativeStuff/agentUniform.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Piercing: 0.85
+        Slash: 0.85
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterHardsuitCCAgent
+    requiredSlot: innerClothing
+    slot: outerClothing
+  # - type: QualityOfItem
+  #   qualityWeights:
+  #     0: 0
+  #     1: 0
+  #     2: 0
+  #     3: 80
+  #     4: 20
+  #     5: 0
+  #     6: 0
+
+- type: entity
+  noSpawn: true
+  id: ClothingOuterHardsuitCCAgent
+  parent: ClothingOuterHardsuitBase
+  name: Special Agent hardsuit
+  description: For Special Agents.
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/RepresentativeStuff/agentHardsuit.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/TFG/RepresentativeStuff/agentHardsuit.rsi
+    equipSound: /Audio/Imperial/Modsuits/ballin.ogg
+    unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.6
+        Caustic: 0.6
+        Stamina: 0.2
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0 #Because coolguys must walk!
+    sprintModifier: 0.7
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHardsuitCCAgent
+  - type: Reflect
+    reflectProb: 0.3
+    reflects:
+      - NonEnergy
+  # - type: QualityOfItem
+  #   qualityWeights:
+  #     0: 0
+  #     1: 0
+  #     2: 0
+  #     3: 80
+  #     4: 20
+  #     5: 0
+  #     6: 0
+
+- type: entity
+  noSpawn: true
+  id: ClothingHeadHardsuitCCAgent
+  parent: ClothingHeadHardsuitWithLightBase
+  name: Special Agent helmet
+  description: For Special Agents.
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/RepresentativeStuff/agentHelmet.rsi
+  - type: Clothing
+    sprite: Imperial/TFG/RepresentativeStuff/agentHelmet.rsi
+    equipSound: /Audio/Imperial/Modsuits/ballin.ogg
+    unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
+  - type: PointLight
+    color: green
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+  # - type: QualityOfItem
+  #   qualityWeights:
+  #     0: 0
+  #     1: 0
+  #     2: 0
+  #     3: 80
+  #     4: 20
+  #     5: 0
+  #     6: 0
+#CentCom Agent suit END
+
+- type: entity
+  id: ClothingShoesColorWhiteCCAgent
+  parent: ClothingShoesColorWhite
+  name: special white shoes
+  description: A special white shoes, custom-made for the cool bodyguards of a particularly important boss.
+  suffix: NoSlip
+  components:
+  - type: NoSlip
+  - type: StaticPrice
+    price: 499
+
+- type: entity
+  id: ClothingNeckTieCCAgent
+  parent: ClothingNeckTieRed
+  name: special tie
+  description: A special tie for cool bodyguards.
+  suffix: Crowbar
+  components:
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+    - ClothMade
+  ##- type: ItemCooldown
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 10
+        Slash: 3
+  - type: Tool
+    qualities:
+      - Prying
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+ # - type: TilePrying
+  - type: StaticPrice
+    price: 499
+  - type: Prying
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Heat: 0.95

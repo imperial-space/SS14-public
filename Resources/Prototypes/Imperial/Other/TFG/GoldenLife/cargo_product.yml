@@ -1,0 +1,151 @@
+#Cargo Golden AK
+- type: entity
+  id: PremiumAkKit
+  parent: PresentableBox
+  name: AK premium kit
+  description: A complete set of golden AK with four spare magazines. What you need for your personal guard.
+  suffix: Cargo, Premium
+  components:
+  - type: Item
+  - type: Storage
+    maxItemSize: Ginormous
+    grid:
+    - 0,0,3,1
+    - 0,3,3,6
+  - type: StorageFill
+    contents:
+      - id: MagazineLightRifleGolden
+        amount: 4
+      - id: WeaponRifleGoldenAk
+  - type: StaticPrice
+    price: 50
+
+- type: cargoProduct
+  id: GoldenAkKit
+  icon:
+    sprite: Imperial/TFG/GoldenLife/goldenAK.rsi
+    state: icon
+  product: PremiumAkKit
+  cost: 90000
+  category: Premium
+  group: market
+#Cargo Golden AK END
+
+#Cargo Golden Thruster
+- type: cargoProduct
+  id: GoldenThrusterKit
+  icon:
+    sprite: Imperial/TFG/GoldenLife/goldenThruster.rsi
+    state: base
+  product: GoldenThrusterUnanchored
+  cost: 40000
+  category: Premium
+  group: market
+#Cargo Golden Thruster END
+
+#Cargo Golden Pizza
+- type: entity
+  id: FoodPresentablePizzaBoxFilled
+  parent: BoxCardboard
+  name: Golden Life pizza
+  description: A very presentable slice of high life heaven. Soaked in the tears of scientists.
+  suffix: Filled, Premium
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/presentablePizzaBox.rsi
+    drawdepth: SmallObjects
+    layers:
+    - state: box
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: box-open
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: Item
+    sprite: Imperial/TFG/GoldenLife/presentablePizzaBox.rsi
+    heldPrefix: box
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,1,1
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateDoorOpen: box-open
+    stateDoorClosed: box
+  - type: MultiHandedItem
+  - type: StaticPrice
+    price: 0
+  - type: StorageFill
+    contents:
+    - id: FoodPizzaGolden
+
+- type: cargoProduct
+  id: GoldenPizzaKit
+  icon:
+    sprite: Imperial/TFG/GoldenLife/presentablePizzaBox.rsi
+    state: box
+  product: FoodPresentablePizzaBoxFilled
+  cost: 35000
+  category: Premium
+  group: market
+#Cargo Golden Pizza END
+
+#Cargo Golden Watermellon
+- type: entity
+  id: ToolboxPresentableFilledGoldenmellon
+  parent: ToolboxPresentable
+  name: premium goldenmellon box
+  suffix: Filled, Goldenmellon
+  description: This is a box with golden watermelon. And it will be yours! Let everyone see HOW you rich.
+  components:
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,1,1
+  - type: StorageFill
+    contents:
+      - id: GoldenWatermellon
+
+- type: cargoProduct
+  id: GoldenWatermellonKit
+  icon:
+    sprite: Imperial/TFG/GoldenLife/goldenWatermellon.rsi
+    state: icon
+  product: ToolboxPresentableFilledGoldenmellon
+  cost: 5000
+  category: Premium
+  group: market
+#Cargo Golden Watermellon END
+
+#Cargo Golden MK-58
+- type: entity
+  id: PremiumMk58Kit
+  parent: PresentableBox
+  name: MK-58 premium kit
+  description: Gold Mk-58 in premium packaging. Sold without ammunition.
+  suffix: Cargo, Premium
+  components:
+  - type: Sprite
+    layers:
+    - state: presentable
+    - state: sign_imperial
+  - type: Item
+    size: Normal
+  - type: Storage
+    grid:
+    - 0,0,1,0
+    - 0,0,0,1
+  - type: StorageFill
+    contents:
+      - id: WeaponPistolMk58GoldenEmpty
+  - type: StaticPrice
+    price: 50
+
+- type: cargoProduct
+  id: Mk58Kit
+  icon:
+    sprite: Imperial/TFG/GoldenLife/goldenMK58.rsi
+    state: icon
+  product: PremiumMk58Kit
+  cost: 10000
+  category: Premium
+  group: market
+#Cargo Golden MK-58 END

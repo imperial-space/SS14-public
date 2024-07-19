@@ -1,0 +1,19 @@
+- type: marking
+  id: FoxTailStripes
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Human]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+        category: Hair
+      fallbackTypes:
+        - !type:CategoryColoring
+          category: FacialHair
+        - !type:SkinColoring
+  sprites:
+    - sprite: Imperial/HairAndTail/fox_part.rsi
+      state: tail_fox_prime
+    - sprite: Imperial/HairAndTail/fox_part.rsi
+      state: tail_fox_second

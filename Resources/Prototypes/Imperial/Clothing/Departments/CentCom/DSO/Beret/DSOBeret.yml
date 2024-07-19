@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadBeretDSO
+  name: Black Beret
+  suffix: Vl, ДСО
+  description: The black beret is for no less black officers in the soul.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/VlClothes/DSO/DSOBeret.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/DSO/DSOBeret.rsi

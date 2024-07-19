@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesParamedicAlt
+  name: Paramedic shoes
+  description: Scuffs from brisk walking are visible
+  components:
+  - type: Sprite
+    sprite: Imperial/ImperialClothes/ParamedicBoots.rsi
+  - type: Clothing
+    sprite: Imperial/ImperialClothes/ParamedicBoots.rsi

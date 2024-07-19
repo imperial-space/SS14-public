@@ -1,0 +1,9 @@
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackCentCom
+  name: Centcom Backpack
+  suffix: Vl, ЦентКом
+  description: The standard backpack of bureaucrats.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/CentCom/CCBackpack.rsi
