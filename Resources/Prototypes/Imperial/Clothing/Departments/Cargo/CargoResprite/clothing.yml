@@ -1,0 +1,38 @@
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: ClothingOuterArmorQMCoat
+  name: armor vest
+  description: A standard Type I armored vest that provides decent protection against most types of damage.
+  components:
+  - type: Sprite
+    sprite: Imperial/CargoResprite/OuterClothing/qmcoat.rsi
+  - type: Clothing
+    sprite: Imperial/CargoResprite/OuterClothing/qmcoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.85
+        Piercing: 0.9
+        Heat: 0.9
+        Cold: 0.7
+  - type: ExplosionResistance
+    damageCoefficient: 0.90
+
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: ClothingOuterArmorCargoJacket
+  name: armor vest
+  description: A standard Type I armored vest that provides decent protection against most types of damage.
+  components:
+  - type: Sprite
+    sprite: Imperial/CargoResprite/OuterClothing/jacket.rsi
+  - type: Clothing
+    sprite: Imperial/CargoResprite/OuterClothing/jacket.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.95
+        Cold: 0.7
+  - type: ExplosionResistance
+    damageCoefficient: 1

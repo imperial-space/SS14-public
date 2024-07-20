@@ -1,0 +1,29 @@
+# OuterClothing
+- type: loadout
+  id: ClothingOuterArmorQMCoat
+  equipment: ClothingOuterArmorQMCoat
+
+- type: startingGear
+  id: ClothingOuterArmorQMCoat
+  equipment:
+    outerClothing: ClothingOuterArmorQMCoat
+
+# Glasses
+- type: loadout
+  id: ClothingEyesGlassesSunglasses
+  equipment: ClothingEyesGlassesSunglasses
+
+- type: startingGear
+  id: ClothingEyesGlassesSunglasses
+  equipment:
+    eyes: ClothingEyesGlassesSunglasses
+
+- type: loadoutGroup
+  id: QmGlasses
+  name: loadout-group-qm-glasses
+  minLimit: 0
+  loadouts:
+  - Glasses
+  - GlassesJamjar
+  - GlassesJensen
+  - ClothingEyesGlassesSunglasses

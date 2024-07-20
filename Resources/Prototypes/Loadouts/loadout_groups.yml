@@ -545,6 +545,7 @@
   name: loadout-group-quartermaster-outerclothing
   minLimit: 0
   loadouts:
+  - ClothingOuterArmorQMCoat # imperial CargoResprite
   - QuartermasterWintercoat
 
 - type: loadoutGroup
@@ -582,6 +583,7 @@
   minLimit: 0
   loadouts:
   - CargoTechnicianWintercoat
+  - ClothingOuterArmorCargoJacket
 
 - type: loadoutGroup
   id: CargoTechnicianShoes

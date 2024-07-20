@@ -1,0 +1,9 @@
+# OuterClothing
+- type: loadout
+  id: ClothingOuterArmorCargoJacket
+  equipment: ClothingOuterArmorCargoJacket
+
+- type: startingGear
+  id: ClothingOuterArmorCargoJacket
+  equipment:
+    outerClothing: ClothingOuterArmorCargoJacket
