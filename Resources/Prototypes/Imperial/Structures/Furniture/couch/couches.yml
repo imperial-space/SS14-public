@@ -1,0 +1,72 @@
+- type: entity
+  name: comfy couch
+  id: ComfyCouch
+  parent: SeatBase
+  description: It looks comfy.
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Anchorable
+  - type: Rotatable
+  - type: Sprite
+    sprite: Imperial/Structures/Furniture/couch.rsi
+    state: comfy_couch
+  - type: Construction
+    graph: Seat
+    node: couchComfy
+
+- type: construction
+  name: comfy couch
+  id: CouchComfy
+  graph: Seat
+  startNode: start
+  targetNode: couchComfy
+  category: construction-category-furniture
+  description: It looks comfy.
+  icon:
+    sprite: Imperial/Structures/Furniture/couch.rsi
+    state: comfy_couch
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: entity
+  name: golden couch
+  id: GoldCouch
+  parent: SeatBase
+  description: It looks rich.
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Anchorable
+  - type: Rotatable
+  - type: Sprite
+    sprite: Imperial/Structures/Furniture/couch.rsi
+    state: gold_couch_2
+  - type: Construction
+    graph: Seat
+    node: couchGold
+
+
+- type: construction
+  name: golden couch
+  id: CouchGold
+  graph: Seat
+  startNode: start
+  targetNode: couchGold
+  category: construction-category-furniture
+  description: It looks rich.
+  icon:
+    sprite: Imperial/Structures/Furniture/couch.rsi
+    state: gold_couch_2
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
