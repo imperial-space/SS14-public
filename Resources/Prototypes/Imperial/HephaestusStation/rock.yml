@@ -1,0 +1,77 @@
+- type: entity
+  name: CO2 gas miner
+  parent: GasMinerCarbonDioxide
+  id: GayserCarbonDioxide
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Damageable
+      damageContainer: Inorganic
+      damageModifierSet: Metallic
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 750
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+    - type: Sprite
+      sprite: Imperial/HephaestusStation/Decor/geyser.rsi
+      state: geyser
+    - type: GasMiner
+      maxExternalPressure: 425
+      spawnAmount: 125
+      spawnTemperature: 335
+
+- type: entity
+  id: BasaltUndestructibleRock
+  parent: BaseStructure
+  name: asteroid rock
+  suffix: Low Ore Yield
+  description: A rocky asteroid.
+  components:
+  - type: IconSmooth
+    key: walls
+    mode: NoSprite
+  - type: SmoothEdge
+  - type: Sprite
+    sprite: Structures/Walls/rock.rsi
+    norot: true
+    layers:
+      - state: rock_wall
+      - map: [ "enum.EdgeLayer.South" ]
+        state: rock_wall_south
+      - map: [ "enum.EdgeLayer.East" ]
+        state: rock_wall_east
+      - map: [ "enum.EdgeLayer.North" ]
+        state: rock_wall_north
+      - map: [ "enum.EdgeLayer.West" ]
+        state: rock_wall_west
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Occluder
+  - type: Airtight
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: OreVein
+    oreChance: 0.2
+    oreRarityPrototypeId: RandomOreDistributionStandard

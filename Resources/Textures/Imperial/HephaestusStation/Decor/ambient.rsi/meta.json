@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "license": "CC0",
+  "copyright": "made by sentryprimies",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "spawner"
+    },
+    {
+      "name": "ambient"
+    }
+  ]
+}

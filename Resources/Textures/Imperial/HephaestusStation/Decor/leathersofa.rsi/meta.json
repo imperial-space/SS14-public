@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "https://github.com/shiptest-ss13/Shiptest/commit/41e9e43d15baf9896ebadd277b027ef61b2a2cda",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "sofacorner",
+      "directions": 4
+    },
+    {
+      "name": "sofaleft",
+      "directions": 4
+    },
+    {
+      "name": "sofamiddle",
+      "directions": 4
+    },
+    {
+      "name": "sofaright",
+      "directions": 4
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+- type: entity
+  parent: Railing
+  id: RailingImperial
+  name: railing
+  description: Basic railing meant to protect idiots like you from falling.
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: Imperial/HephaestusStation/Decor/railing.rsi
+    state: side
+  - type: Icon
+    sprite: Imperial/HephaestusStation/Decor/railing.rsi
+    state: side
+
+- type: entity
+  parent: RailingCorner
+  id: RailingCornerImperial
+  name: railing
+  description: Basic railing meant to protect idiots like you from falling.
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: Imperial/HephaestusStation/Decor/railing.rsi
+    state: corner
+  - type: Icon
+    sprite: Imperial/HephaestusStation/Decor/railing.rsi
+    state: corner
+
+- type: entity
+  parent: RailingCornerSmall
+  id: RailingCornerSmallImperial
+  name: railing
+  description: Basic railing meant to protect idiots like you from falling.
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: Imperial/HephaestusStation/Decor/railing.rsi
+    state: corner_small
+  - type: Icon
+    sprite: Imperial/HephaestusStation/Decor/railing.rsi
+    state: corner_small

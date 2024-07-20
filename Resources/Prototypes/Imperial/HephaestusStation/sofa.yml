@@ -1,0 +1,45 @@
+- type: entity
+  name: chair
+  id: BaseSofa
+  parent: SeatBase
+  abstract: true
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Transform
+    anchored: true
+  - type: Rotatable
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Decor/leathersofa.rsi
+
+- type: entity
+  name: chair
+  id: SofaCorner
+  parent: BaseSofa
+  components:
+  - type: Sprite
+    state: sofacorner
+
+- type: entity
+  name: chair
+  id: SofaLeft
+  parent: BaseSofa
+  components:
+  - type: Sprite
+    state: sofaleft
+
+- type: entity
+  name: chair
+  id: SofaMiddle
+  parent: BaseSofa
+  components:
+  - type: Sprite
+    state: sofamiddle
+
+- type: entity
+  name: chair
+  id: SofaRight 
+  parent: BaseSofa
+  components:
+  - type: Sprite
+    state: sofaright

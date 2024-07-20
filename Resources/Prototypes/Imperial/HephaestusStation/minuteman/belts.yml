@@ -1,0 +1,65 @@
+- type: entity
+  parent: ClothingBeltSecurityWebbing
+  id: ClothingBeltMinuteManCamoDesertWebbing
+  name: security webbing
+  description: Unique and versatile chest rig, can hold security gear.
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/desertwebbing.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/desertwebbing.rsi
+
+- type: entity
+  parent: ClothingBeltSecurityWebbing
+  id: ClothingBeltMinuteManCamoForestWebbing
+  name: security webbing
+  description: Unique and versatile chest rig, can hold security gear.
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/forestwebbing.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/forestwebbing.rsi
+
+- type: entity
+  parent: ClothingBeltSecurityWebbing
+  id: ClothingBeltMinuteManCamoSnowWebbing
+  name: security webbing
+  description: Unique and versatile chest rig, can hold security gear.
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/snowebbing.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/snowebbing.rsi
+
+- type: entity
+  parent: ClothingBeltSecurityWebbing
+  id: ClothingBeltMinuteManCamoUrbanWebbing
+  name: security webbing
+  description: Unique and versatile chest rig, can hold security gear.
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/urbanwebbing.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/urbanwebbing.rsi
+
+- type: entity
+  parent: ClothingBeltSecurityWebbing
+  id: ClothingBeltMinuteManWebbing
+  name: security webbing
+  description: Unique and versatile chest rig, can hold security gear.
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/cmmwebbing.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/cmmwebbing.rsi
+
+- type: entity
+  parent: ClothingBeltSecurityWebbing
+  id: ClothingBeltMinuteManMedicWebbing
+  name: security webbing
+  description: Unique and versatile chest rig, can hold security gear.
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/cmmedwebbing.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/cmmedwebbing.rsi

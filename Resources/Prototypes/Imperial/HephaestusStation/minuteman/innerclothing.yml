@@ -1,0 +1,94 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMinuteManBase
+  name: filler
+  nospawn: true
+  abstract: true
+  components:
+  - type: TemperatureProtection
+    coefficient: 0.4 #cave survival
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.9
+        Cold: 0.9
+
+- type: entity
+  parent: ClothingUniformJumpsuitMinuteManBase
+  id: ClothingUniformJumpsuitMinuteMan
+  name: cargo tech jumpsuit
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/minutemen.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/minutemen.rsi
+
+- type: entity
+  parent: ClothingUniformJumpsuitMinuteManBase
+  id: ClothingUniformJumpsuitMinuteManFormal
+  name: cargo tech jumpsuit
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/minutemenformal.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/minutemenformal.rsi
+
+- type: entity
+  parent: ClothingUniformJumpsuitMinuteManBase
+  id: ClothingUniformJumpsuitMinuteWoman
+  name: cargo tech jumpsuit
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/minutewomen.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/minutewomen.rsi
+
+- type: entity
+  parent: ClothingUniformJumpsuitMinuteManBase
+  id: ClothingUniformJumpsuitMinuteBoy
+  name: cargo tech jumpsuit
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/minuteboy.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/minuteboy.rsi
+
+- type: entity
+  parent: ClothingUniformJumpsuitMinuteManBase
+  id: ClothingUniformJumpsuitMinuteManCamoDesert
+  name: cargo tech jumpsuit
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/camodesert.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/camodesert.rsi
+
+- type: entity
+  parent: ClothingUniformJumpsuitMinuteManBase
+  id: ClothingUniformJumpsuitMinuteManCamoForest
+  name: cargo tech jumpsuit
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/camoforest.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/camoforest.rsi
+
+- type: entity
+  parent: ClothingUniformJumpsuitMinuteManBase
+  id: ClothingUniformJumpsuitMinuteManCamoSnow
+  name: cargo tech jumpsuit
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/camosnow.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/camosnow.rsi
+
+- type: entity
+  parent: ClothingUniformJumpsuitMinuteManBase
+  id: ClothingUniformJumpsuitMinuteManCamoUrban
+  name: cargo tech jumpsuit
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/camourban.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/camourban.rsi

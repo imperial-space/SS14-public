@@ -1,0 +1,14 @@
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskGasMinuteMan
+  name: security gas mask
+  description: A standard issue Security gas mask.
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Mask/gasmask.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Mask/gasmask.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.8

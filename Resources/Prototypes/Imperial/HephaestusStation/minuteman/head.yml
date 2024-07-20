@@ -1,0 +1,238 @@
+#helmets
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetMinuteman
+  name: helmet
+  description: Standard security gear. Protects the head from impacts.
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/antichristhelmet.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/antichristhelmet.rsi
+  - type: Armor 
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HidesHair
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadDesertHelmetMinuteman
+  name: helmet
+  description: Standard security gear. Protects the head from impacts.
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/deserthelmet.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/deserthelmet.rsi
+  - type: Armor 
+    modifiers:
+      coefficients: #другой брони нет, так что у их шлемов повышенная защита
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HidesHair
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadForestHelmetMinuteman
+  name: helmet
+  description: Standard security gear. Protects the head from impacts.
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/foresthelmet.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/foresthelmet.rsi
+  - type: Armor 
+    modifiers:
+      coefficients: #другой брони у камуфляжа нет, так что у их шлемов повышенная защита
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HidesHair
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadSnowHelmetMinuteman
+  name: helmet
+  description: Standard security gear. Protects the head from impacts.
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/snowhelmet.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/snowhelmet.rsi
+  - type: Armor 
+    modifiers:
+      coefficients: #другой брони у камуфляжа нет, так что у их шлемов повышенная защита
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HidesHair
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadUrbanHelmetMinuteman
+  name: helmet
+  description: Standard security gear. Protects the head from impacts.
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/urbanhelmet.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/urbanhelmet.rsi
+  - type: Armor 
+    modifiers:
+      coefficients: #другой брони у камуфляжа нет, так что у их шлемов повышенная защита
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HidesHair
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadRiotHelmetMinuteman
+  name: helmet
+  description: Standard security gear. Protects the head from impacts.
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/riothelmet.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/riothelmet.rsi
+  - type: Armor 
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+        Caustic: 0.75
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HidesHair
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadMinutemanCap
+  name: helmet
+  description: Standard security gear. Protects the head from impacts.
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/flatcap.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/flatcap.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HidesHair
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingFedoraHeadMinuteman
+  name: helmet
+  description: Standard security gear. Protects the head from impacts.
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/fedora_hat.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/fedora_hat.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HidesHair
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingMedicapMinuteman
+  name: helmet
+  description: Standard security gear. Protects the head from impacts.
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/medicap.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/medicap.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HidesHair
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingGeneralHeadMinuteman
+  name: helmet
+  description: Standard security gear. Protects the head from impacts.
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/general_hat.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/general_hat.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HidesHair
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingOfficerHeadMinuteman
+  name: helmet
+  description: Standard security gear. Protects the head from impacts.
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/officer_hat.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/officer_hat.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HidesHair
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingSlouchHeadMinuteman
+  name: helmet
+  description: Standard security gear. Protects the head from impacts.
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/slouch_hat.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/slouch_hat.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HidesHair
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingCapCapMinuteman
+  name: helmet
+  description: Standard security gear. Protects the head from impacts.
+  components:
+  - type: Sprite
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/capcap.rsi
+  - type: Clothing
+    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/capcap.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HidesHair
