@@ -5,6 +5,9 @@
   components:
   - type: Sprite
     sprite: Imperial/SyndieLocks/airlock/normal.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
 
 - type: entity
   parent: AirlockSyndicateGlass
@@ -15,3 +18,6 @@
     sprite: Imperial/SyndieLocks/airlock/glass.rsi
   - type: PaintableAirlock
     group: Glass
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
