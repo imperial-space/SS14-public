@@ -1,0 +1,452 @@
+# Steel
+
+- type: entity
+  parent: BaseStructure
+  id: CoffeeTableSteel
+  name: coffee table
+  description: A square piece of metal standing on four metal legs.
+  components:
+  - type: Anchorable
+  - type: InteractionOutline
+  - type: PlaceableSurface
+  - type: Sprite
+    sprite: Imperial/Structures/Furniture/coffee_table.rsi
+    state: steel
+    snapCardinals: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.3"
+        density: 140
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Climbable
+  - type: Construction
+    graph: CoffeeTableGraph
+    node: CoffeeTableSteel
+
+
+# Wood
+
+- type: entity
+  parent: CoffeeTableSteel
+  id: CoffeeTableWood
+  name: wood coffee table
+  description: Simply coffee table.
+  components:
+  - type: Sprite
+    sprite: Imperial/Structures/Furniture/coffee_table.rsi
+    state: wood
+    snapCardinals: true
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/woodhit.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Tag
+    tags:
+    - Wooden
+  - type: Construction
+    graph: CoffeeTableGraph
+    node: CoffeeTableWood
+
+
+# Reinforced
+
+- type: entity
+  parent: CoffeeTableSteel
+  id: CoffeeTableReinforced
+  name: reinforced coffee table
+  description: A square piece of metal standing on four metal legs. Extra robust.
+  components:
+  - type: Sprite
+    sprite: Imperial/Structures/Furniture/coffee_table.rsi
+    state: reinforced
+    snapCardinals: true
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 2
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: CoffeeTableGraph
+    node: CoffeeTableReinforced
+  - type: Bonkable
+    bonkDamage:
+      types:
+        Blunt: 8
+    bonkTime: 3
+
+
+# Glass
+
+- type: entity
+  parent: CoffeeTableSteel
+  id: CoffeeTableGlass
+  name: glass coffee table
+  description: A square piece of glass, standing on four metal legs.
+  components:
+  - type: Sprite
+    sprite: Imperial/Structures/Furniture/coffee_table.rsi
+    state: glass
+    snapCardinals: true
+  - type: GlassTable
+    climberDamage:
+      types:
+        Slash: 15
+    tableDamage:
+      types:
+        Blunt: 25
+    tableMassLimit: 60
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/glass_break2.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 1
+      - !type:ChangeConstructionNodeBehavior
+        node: CoffeeTableFrame
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: CoffeeTableGraph
+    node: CoffeeTableGlass
+
+
+# Plasma Glass
+
+- type: entity
+  parent: CoffeeTableSteel
+  id: CoffeeTablePlasma
+  name: plasma glass coffee table
+  description: A square piece of plasma glass, standing on four metal legs. Pretty!
+  components:
+  - type: Sprite
+    sprite: Imperial/Structures/Furniture/coffee_table.rsi
+    state: plasma
+    snapCardinals: true
+  - type: GlassTable
+    climberDamage:
+      types:
+        Slash: 30
+    tableDamage:
+      types:
+        Blunt: 100
+    tableMassLimit: 240
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/glass_break2.ogg
+      - !type:ChangeConstructionNodeBehavior
+        node: CoffeeTableFrame
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassPlasma:
+            min: 1
+            max: 1
+          PartRodMetal1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: CoffeeTableGraph
+    node: CoffeeTablePlasma
+
+
+# Reinforced Glass
+
+- type: entity
+  parent: CoffeeTableSteel
+  id: CoffeeTableReinforcedGlass
+  name: reinforced glass coffee table
+  description: A square piece of glass, standing on four metal legs. Extra robust.
+  components:
+  - type: Sprite
+    sprite: Imperial/Structures/Furniture/coffee_table.rsi
+    state: reinforced_glass
+    snapCardinals: true
+  - type: GlassTable
+    climberDamage:
+      types:
+        Slash: 25
+    tableDamage:
+      types:
+        Blunt: 40
+    tableMassLimit: 120
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/glass_break2.ogg
+      - !type:ChangeConstructionNodeBehavior
+        node: CoffeeTableFrame
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 1
+          PartRodMetal1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: CoffeeTableGraph
+    node: CoffeeTableReinforcedGlass
+
+
+# Uranium
+
+- type: entity
+  parent: CoffeeTableSteel
+  id: CoffeeTableUranium
+  name: uranium glass coffee table
+  description: A square piece of uranium glass, standing on four metal legs. Pretty!
+  components:
+  - type: Sprite
+    sprite: Imperial/Structures/Furniture/coffee_table.rsi
+    state: uranium
+    snapCardinals: true
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/glass_break2.ogg
+      - !type:ChangeConstructionNodeBehavior
+        node: CoffeeTableFrame
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassUranium:
+            min: 1
+            max: 1
+          PartRodMetal1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: CoffeeTableGraph
+    node: CoffeeTableUranium
+  - type: GlassTable
+    climberDamage:
+      types:
+        Slash: 30
+    tableDamage:
+      types:
+        Blunt: 100
+    tableMassLimit: 300
+
+
+# Reinforced uranium
+
+- type: entity
+  parent: CoffeeTableSteel
+  id: CoffeeTableReinforcedUranium
+  name: reinforced uranium glass coffee table
+  description: A square piece of uranium glass, standing on four metal legs. Extra robust.
+  components:
+  - type: Sprite
+    sprite: Imperial/Structures/Furniture/coffee_table.rsi
+    state: reinforced_uranium
+    snapCardinals: true
+  - type: GlassTable
+    climberDamage:
+      types:
+        Slash: 25
+    tableDamage:
+      types:
+        Blunt: 40
+    tableMassLimit: 350
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/glass_break2.ogg
+      - !type:ChangeConstructionNodeBehavior
+        node: CoffeeTableFrame
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassUranium:
+            min: 1
+            max: 1
+          PartRodMetal1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: CoffeeTableGraph
+    node: CoffeeTableReinforcedUranium
+
+
+# Reinforced plasma
+
+- type: entity
+  parent: CoffeeTableSteel
+  id: CoffeeTableReinforcedPlasma
+  name: reinforced plasma glass coffee table
+  description: A square piece of plasma glass, standing on four metal legs. Extra robust.
+  components:
+  - type: Sprite
+    sprite: Imperial/Structures/Furniture/coffee_table.rsi
+    state: reinforced_plasma
+    snapCardinals: true
+  - type: GlassTable
+    climberDamage:
+      types:
+        Slash: 25
+    tableDamage:
+      types:
+        Blunt: 40
+    tableMassLimit: 250
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/glass_break2.ogg
+      - !type:ChangeConstructionNodeBehavior
+        node: CoffeeTableFrame
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassPlasma:
+            min: 1
+            max: 1
+          PartRodMetal1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: CoffeeTableGraph
+    node: CoffeeTableReinforcedPlasma

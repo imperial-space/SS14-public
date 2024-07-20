@@ -1,0 +1,221 @@
+# Frame
+
+- type: entity
+  id: CoffeeTableFrame
+  parent: BaseStructure
+  name: coffee table frame
+  description: Pieces of metal that make the frame of a coffee table.
+  components:
+  - type: Sprite
+    sprite: Imperial/Structures/Furniture/coffee_table.rsi
+    state: frame
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.3"
+        density: 80
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: CoffeeTableGraph
+    node: CoffeeTableFrame
+
+
+# Wood
+- type: construction
+  name: wood coffee table
+  id: CoffeeTableWood
+  graph: CoffeeTableGraph
+  startNode: start
+  targetNode: CoffeeTableWood
+  category: construction-category-furniture
+  description: Do not apply fire to this. Rumour says it burns easily.
+  icon:
+    sprite: Imperial/Structures/Furniture/coffee_table.rsi
+    state: wood
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
+# Steel
+- type: construction
+  name: coffee table
+  id: CoffeeTableSteel
+  graph: CoffeeTableGraph
+  startNode: start
+  targetNode: CoffeeTableSteel
+  category: construction-category-furniture
+  description: A square piece of metal standing on four metal legs.
+  icon:
+    sprite: Imperial/Structures/Furniture/coffee_table.rsi
+    state: steel
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
+# Reinforced
+- type: construction
+  name: reinforced coffee table
+  id: CoffeeTableReinforced
+  graph: CoffeeTableGraph
+  startNode: start
+  targetNode: CoffeeTableReinforced
+  category: construction-category-furniture
+  description: A square piece of metal standing on four metal legs. Extra robust.
+  icon:
+    sprite: Imperial/Structures/Furniture/coffee_table.rsi
+    state: reinforced
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
+# Glass
+- type: construction
+  name: glass coffee table
+  id: CoffeeTableGlass
+  graph: CoffeeTableGraph
+  startNode: start
+  targetNode: CoffeeTableGlass
+  category: construction-category-furniture
+  description: A square piece of glass, standing on four metal legs.
+  icon:
+    sprite: Imperial/Structures/Furniture/coffee_table.rsi
+    state: glass
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
+# Plasma
+- type: construction
+  name: plasma glass coffee table
+  id: CoffeeTablePlasma
+  graph: CoffeeTableGraph
+  startNode: start
+  targetNode: CoffeeTablePlasma
+  category: construction-category-furniture
+  description: A square piece of plasma glass, standing on four metal legs. Pretty!
+  icon:
+    sprite: Imperial/Structures/Furniture/coffee_table.rsi
+    state: plasma
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
+# Reinforced glass
+- type: construction
+  name: reinforced glass coffee table
+  id: CoffeeTableReinforcedGlass
+  graph: CoffeeTableGraph
+  startNode: start
+  targetNode: CoffeeTableReinforcedGlass
+  category: construction-category-furniture
+  description: A square piece of glass, standing on four metal legs. Extra robust.
+  icon:
+    sprite: Imperial/Structures/Furniture/coffee_table.rsi
+    state: reinforced_glass
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
+# Uranium
+- type: construction
+  name: uranium glass coffee table
+  id: CoffeeTableUranium
+  graph: CoffeeTableGraph
+  startNode: start
+  targetNode: CoffeeTableUranium
+  category: construction-category-furniture
+  description: A square piece of uranium glass, standing on four metal legs. Pretty!
+  icon:
+    sprite: Imperial/Structures/Furniture/coffee_table.rsi
+    state: uranium
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
+# Reinforced Uranium
+- type: construction
+  name: reinforced uranium glass coffee table
+  id: CoffeeTableReinforcedUranium
+  graph: CoffeeTableGraph
+  startNode: start
+  targetNode: CoffeeTableReinforcedUranium
+  category: construction-category-furniture
+  description: A square piece of uranium glass, standing on four metal legs. Extra robust.
+  icon:
+    sprite: Imperial/Structures/Furniture/coffee_table.rsi
+    state: reinforced_uranium
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
+# Reinforced plasma
+- type: construction
+  name: reinforced plasma glass coffee table
+  id: CoffeeTableReinforcedPlasma
+  graph: CoffeeTableGraph
+  startNode: start
+  targetNode: CoffeeTableReinforcedPlasma
+  category: construction-category-furniture
+  description: A square piece of plasma glass, standing on four metal legs. Extra robust.
+  icon:
+    sprite: Imperial/Structures/Furniture/coffee_table.rsi
+    state: reinforced_plasma
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
