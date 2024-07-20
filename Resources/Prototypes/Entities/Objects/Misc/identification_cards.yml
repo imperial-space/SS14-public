@@ -647,6 +647,7 @@
     - JobIconSecurityCadet
     - JobIconZookeeper
     - JobIconVisitor
+    - JobIconCoroner #Imperial
   - type: ActivatableUI
     key: enum.AgentIDCardUiKey.Key
     inHandsOnly: true
