@@ -1,0 +1,19 @@
+- type: listing
+  id: WeaponBundleAKMS
+  name: uplink-bundle-akms-name
+  description: uplink-bundle-akms-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/ak.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateAKMS
+  cost:
+    Telecrystal: 22
+  categories:
+  - UplinkWeaponry
+  conditions:
+   - !type:StoreWhitelistCondition
+     whitelist:
+      tags:
+         - NukeOpsUplink
+   - !type:BuyerWhitelistCondition
+      blacklist:
+      components:
+      - SurplusBundle
