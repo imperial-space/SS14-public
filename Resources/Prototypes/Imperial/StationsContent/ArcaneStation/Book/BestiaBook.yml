@@ -6,7 +6,7 @@
   description: A dusty book that can remind someone of the old days.
   components:
     - type: Sprite
-      sprite: Imperial/ArcaneStation/Book.rsi
+      sprite: Imperial/StationsContent/ArcaneStation/Book.rsi
       layers:
         - state: BestiaBook
     - type: Paper

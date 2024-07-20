@@ -6,9 +6,9 @@
   description: Standard security gear. Protects the head from impacts.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/antichristhelmet.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/antichristhelmet.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/antichristhelmet.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/antichristhelmet.rsi
   - type: Armor 
     modifiers:
       coefficients:
@@ -28,9 +28,9 @@
   description: Standard security gear. Protects the head from impacts.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/deserthelmet.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/deserthelmet.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/deserthelmet.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/deserthelmet.rsi
   - type: Armor 
     modifiers:
       coefficients: #другой брони нет, так что у их шлемов повышенная защита
@@ -50,9 +50,9 @@
   description: Standard security gear. Protects the head from impacts.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/foresthelmet.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/foresthelmet.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/foresthelmet.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/foresthelmet.rsi
   - type: Armor 
     modifiers:
       coefficients: #другой брони у камуфляжа нет, так что у их шлемов повышенная защита
@@ -72,9 +72,9 @@
   description: Standard security gear. Protects the head from impacts.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/snowhelmet.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/snowhelmet.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/snowhelmet.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/snowhelmet.rsi
   - type: Armor 
     modifiers:
       coefficients: #другой брони у камуфляжа нет, так что у их шлемов повышенная защита
@@ -94,9 +94,9 @@
   description: Standard security gear. Protects the head from impacts.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/urbanhelmet.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/urbanhelmet.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/urbanhelmet.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/urbanhelmet.rsi
   - type: Armor 
     modifiers:
       coefficients: #другой брони у камуфляжа нет, так что у их шлемов повышенная защита
@@ -116,9 +116,9 @@
   description: Standard security gear. Protects the head from impacts.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/riothelmet.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/riothelmet.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/riothelmet.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/riothelmet.rsi
   - type: Armor 
     modifiers:
       coefficients:
@@ -139,9 +139,9 @@
   description: Standard security gear. Protects the head from impacts.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/flatcap.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/flatcap.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/flatcap.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/flatcap.rsi
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -154,9 +154,9 @@
   description: Standard security gear. Protects the head from impacts.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/fedora_hat.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/fedora_hat.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/fedora_hat.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/fedora_hat.rsi
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -169,9 +169,9 @@
   description: Standard security gear. Protects the head from impacts.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/medicap.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/medicap.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/medicap.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/medicap.rsi
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -184,9 +184,9 @@
   description: Standard security gear. Protects the head from impacts.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/general_hat.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/general_hat.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/general_hat.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/general_hat.rsi
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -199,9 +199,9 @@
   description: Standard security gear. Protects the head from impacts.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/officer_hat.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/officer_hat.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/officer_hat.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/officer_hat.rsi
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -214,9 +214,9 @@
   description: Standard security gear. Protects the head from impacts.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/slouch_hat.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/slouch_hat.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/slouch_hat.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/slouch_hat.rsi
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -229,9 +229,9 @@
   description: Standard security gear. Protects the head from impacts.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/capcap.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/capcap.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Head/capcap.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Head/capcap.rsi
   - type: Tag
     tags:
     - WhitelistChameleon

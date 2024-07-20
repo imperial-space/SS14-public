@@ -19,9 +19,9 @@
   name: cargo tech jumpsuit
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/minutemen.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Jumpsuit/minutemen.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/minutemen.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Jumpsuit/minutemen.rsi
 
 - type: entity
   parent: ClothingUniformJumpsuitMinuteManBase
@@ -29,9 +29,9 @@
   name: cargo tech jumpsuit
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/minutemenformal.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Jumpsuit/minutemenformal.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/minutemenformal.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Jumpsuit/minutemenformal.rsi
 
 - type: entity
   parent: ClothingUniformJumpsuitMinuteManBase
@@ -39,9 +39,9 @@
   name: cargo tech jumpsuit
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/minutewomen.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Jumpsuit/minutewomen.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/minutewomen.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Jumpsuit/minutewomen.rsi
 
 - type: entity
   parent: ClothingUniformJumpsuitMinuteManBase
@@ -49,9 +49,9 @@
   name: cargo tech jumpsuit
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/minuteboy.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Jumpsuit/minuteboy.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/minuteboy.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Jumpsuit/minuteboy.rsi
 
 - type: entity
   parent: ClothingUniformJumpsuitMinuteManBase
@@ -59,9 +59,9 @@
   name: cargo tech jumpsuit
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/camodesert.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Jumpsuit/camodesert.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/camodesert.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Jumpsuit/camodesert.rsi
 
 - type: entity
   parent: ClothingUniformJumpsuitMinuteManBase
@@ -69,9 +69,9 @@
   name: cargo tech jumpsuit
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/camoforest.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Jumpsuit/camoforest.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/camoforest.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Jumpsuit/camoforest.rsi
 
 - type: entity
   parent: ClothingUniformJumpsuitMinuteManBase
@@ -79,9 +79,9 @@
   name: cargo tech jumpsuit
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/camosnow.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Jumpsuit/camosnow.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/camosnow.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Jumpsuit/camosnow.rsi
 
 - type: entity
   parent: ClothingUniformJumpsuitMinuteManBase
@@ -89,6 +89,6 @@
   name: cargo tech jumpsuit
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/camourban.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Jumpsuit/camourban.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Jumpsuit/camourban.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Jumpsuit/camourban.rsi

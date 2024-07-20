@@ -7,7 +7,7 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Decor/decor.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decor/decor.rsi
     layers:
     - state: ares
 
@@ -20,7 +20,7 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Decor/decor.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decor/decor.rsi
     layers:
     - state: moon
 
@@ -33,7 +33,7 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Decor/decor.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decor/decor.rsi
     layers:
     - state: earth
 
@@ -46,7 +46,7 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Decor/decor.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decor/decor.rsi
     layers:
     - state: earth2
 
@@ -59,7 +59,7 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Decor/decor.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decor/decor.rsi
     layers:
     - state: bust_1
 
@@ -72,7 +72,7 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Decor/decor.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decor/decor.rsi
     layers:
     - state: bust_2
 
@@ -85,7 +85,7 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Decor/decor.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decor/decor.rsi
     layers:
     - state: table_glass
 
@@ -96,7 +96,7 @@
   description: "The poster looks worn. The poster depicts a hardworking botanist who is responsible for his work."
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Decor/decor.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decor/decor.rsi
     state: portret_1
 
 - type: entity
@@ -106,7 +106,7 @@
   description: "The poster looks worn. The poster depicts a hardworking botanist who is responsible for his work."
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Decor/decor.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decor/decor.rsi
     state: portret_2
 
 - type: entity
@@ -116,5 +116,5 @@
   description: "The poster looks worn. The poster depicts a hardworking botanist who is responsible for his work."
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Decor/decor.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decor/decor.rsi
     state: portret_3

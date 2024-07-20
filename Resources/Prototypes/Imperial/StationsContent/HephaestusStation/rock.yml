@@ -17,7 +17,7 @@
             - !type:DoActsBehavior
               acts: ["Destruction"]
     - type: Sprite
-      sprite: Imperial/HephaestusStation/Decor/geyser.rsi
+      sprite: Imperial/StationsContent/HephaestusStation/Decor/geyser.rsi
       state: geyser
     - type: GasMiner
       maxExternalPressure: 425

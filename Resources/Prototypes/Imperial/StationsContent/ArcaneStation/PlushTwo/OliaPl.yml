@@ -8,5 +8,5 @@
   - type: Item
     size: Small
   - type: Sprite
-    sprite: Imperial/ArcaneStation/PlushTwo
+    sprite: Imperial/StationsContent/ArcaneStation/PlushTwo
     state: OliaPl

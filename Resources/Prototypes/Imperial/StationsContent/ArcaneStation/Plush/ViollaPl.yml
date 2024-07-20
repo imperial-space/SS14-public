@@ -8,5 +8,5 @@
   - type: Item
     size: Small
   - type: Sprite
-    sprite: Imperial/ArcaneStation/Plush
+    sprite: Imperial/StationsContent/ArcaneStation/Plush
     state: ViollaPl

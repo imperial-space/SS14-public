@@ -10,7 +10,7 @@
     anchored: true
   - type: Rotatable
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Decor/leathersofa.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decor/leathersofa.rsi
 
 - type: entity
   name: chair

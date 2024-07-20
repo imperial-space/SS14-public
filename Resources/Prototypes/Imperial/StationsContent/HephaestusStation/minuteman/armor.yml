@@ -5,9 +5,9 @@
   description: A standard Type I armored vest that provides decent protection against most types of damage.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Armor/admiral.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Armor/admiral.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Armor/admiral.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Armor/admiral.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -27,9 +27,9 @@
   description: A standard Type I armored vest that provides decent protection against most types of damage.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Armor/general.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Armor/general.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Armor/general.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Armor/general.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -49,9 +49,9 @@
   description: A standard Type I armored vest that provides decent protection against most types of damage.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Armor/captaincoat.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Armor/captaincoat.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Armor/captaincoat.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Armor/captaincoat.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -71,9 +71,9 @@
   description: A standard Type I armored vest that provides decent protection against most types of damage.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Armor/suitjacket.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Armor/suitjacket.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Armor/suitjacket.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Armor/suitjacket.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -93,9 +93,9 @@
   description: A standard Type I armored vest that provides decent protection against most types of damage.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Armor/bomber.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Armor/bomber.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Armor/bomber.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Armor/bomber.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -116,9 +116,9 @@
   description: A standard Type I armored vest that provides decent protection against most types of damage.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Armor/suitjacketcmd.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Armor/suitjacketcmd.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Armor/suitjacketcmd.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Armor/suitjacketcmd.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -138,9 +138,9 @@
   description: A standard Type I armored vest that provides decent protection against most types of damage.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Armor/riot.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Armor/riot.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Armor/riot.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Armor/riot.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -163,9 +163,9 @@
   description: A standard Type I armored vest that provides decent protection against most types of damage.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Armor/trenchcoat.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Armor/trenchcoat.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Armor/trenchcoat.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Armor/trenchcoat.rsi
   - type: Armor
     modifiers:
       coefficients:

@@ -2,350 +2,350 @@
   id: TrimLineImperialBox
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: box
 
 - type: decal
   id: TrimLineImperialCornerNe
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: corner_ne
 
 - type: decal
   id: TrimLineImperialCornerSe
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: corner_se
 
 - type: decal
   id: TrimLineImperialCornerNw
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: corner_nw
 
 - type: decal
   id: TrimLineImperialCornerSw
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: corner_sw
 
 - type: decal
   id: TrimLineImperialEndN
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: end_n
 
 - type: decal
   id: TrimLineImperialEndE
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: end_e
 
 - type: decal
   id: TrimLineImperialEndS
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: end_s
 
 - type: decal
   id: TrimLineImperialEndW
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: end_w
 
 - type: decal
   id: TrimLineImperialLineN
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: line_n
 
 - type: decal
   id: TrimLineImperialLineE
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: line_e
 
 - type: decal
   id: TrimLineImperialLineS
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: line_s
 
 - type: decal
   id: TrimLineImperialLineW
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: line_w
 
 - type: decal
   id: TrimLineImperialInnerNe
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: inner_ne
 
 - type: decal
   id: TrimLineImperialInnerSe
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: inner_se
 
 - type: decal
   id: TrimLineImperialInnerNw
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: inner_nw
 
 - type: decal
   id: TrimLineImperialInnerSw
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: inner_sw
 
 - type: decal
   id: TrimLineImperialFillBox
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: fill_box
 
 - type: decal
   id: TrimLineImperialFillCornerNe
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: fill_corner_ne
 
 - type: decal
   id: TrimLineImperialFillCornerSe
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: fill_corner_se
 
 - type: decal
   id: TrimLineImperialFillCornerNw
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: fill_corner_nw
 
 - type: decal
   id: TrimLineImperialFillCornerSw
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: fill_corner_sw
 
 - type: decal
   id: TrimLineImperialFillEndN
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: fill_end_n
 
 - type: decal
   id: TrimLineImperialFillEndE
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: fill_end_e
 
 - type: decal
   id: TrimLineImperialFillEndS
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: fill_end_s
 
 - type: decal
   id: TrimLineImperialFillEndW
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: fill_end_w
 
 - type: decal
   id: TrimLineImperialFillLineN
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: fill_line_n
 
 - type: decal
   id: TrimLineImperialFillLineE
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: fill_line_e
 
 - type: decal
   id: TrimLineImperialFillLineS
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: fill_line_s
 
 - type: decal
   id: TrimLineImperialFillLineW
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: fill_line_w
 
 - type: decal
   id: TrimLineFillImperialInnerNe
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: fill_inner_ne
 
 - type: decal
   id: TrimLineFillImperialInnerSe
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: fill_inner_se
 
 - type: decal
   id: TrimLineFillImperialInnerNw
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: fill_inner_nw
 
 - type: decal
   id: TrimLineFillImperialInnerSw
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimline.rsi
     state: fill_inner_sw
 ##warn
 - type: decal
   id: TrimLineImperialWarnCornerNe
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinewarn.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinewarn.rsi
     state: corner_ne
 
 - type: decal
   id: TrimLineImperialWarnCornerNw
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinewarn.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinewarn.rsi
     state: corner_nw
 
 - type: decal
   id: TrimLineImperialWarnCornerSe
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinewarn.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinewarn.rsi
     state: corner_se
 
 - type: decal
   id: TrimLineImperialWarnCornerSw
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinewarn.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinewarn.rsi
     state: corner_sw
 
 - type: decal
   id: TrimLineImperialWarnLineE
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinewarn.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinewarn.rsi
     state: line_e
 
 - type: decal
   id: TrimLineImperialWarnLineN
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinewarn.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinewarn.rsi
     state: line_n
 
 - type: decal
   id: TrimLineImperialWarnLineS
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinewarn.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinewarn.rsi
     state: line_s
 
 - type: decal
   id: TrimLineImperialWarnLineW
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinewarn.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinewarn.rsi
     state: line_w
 
 - type: decal
   id: TrimLineImperialWarnFillCornerNe
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinewarn.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinewarn.rsi
     state: fill_corner_ne
 
 - type: decal
   id: TrimLineImperialWarnFillCornerNw
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinewarn.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinewarn.rsi
     state: fill_corner_nw
 
 - type: decal
   id: TrimLineImperialWarnFillCornerSe
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinewarn.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinewarn.rsi
     state: fill_corner_se
 
 - type: decal
   id: TrimLineImperialWarnFillCornerSw
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinewarn.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinewarn.rsi
     state: fill_corner_sw
 
 - type: decal
   id: TrimLineImperialWarnFillLineE
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinewarn.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinewarn.rsi
     state: fill_line_e
 
 - type: decal
   id: TrimLineImperialWarnFillLineN
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinewarn.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinewarn.rsi
     state: fill_line_n
 
 - type: decal
   id: TrimLineImperialWarnFillLineS
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinewarn.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinewarn.rsi
     state: fill_line_s
 
 - type: decal
   id: TrimLineImperialWarnFillLineW
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinewarn.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinewarn.rsi
     state: fill_line_w
 
 ##ARROW
@@ -353,56 +353,56 @@
   id: TrimLineImperialArrowCornerNe
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinearrow.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinearrow.rsi
     state: corner_ne
 
 - type: decal
   id: TrimLineImperialArrowCornerNw
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinearrow.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinearrow.rsi
     state: corner_nw
 
 - type: decal
   id: TrimLineImperialArrowCornerSe
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinearrow.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinearrow.rsi
     state: corner_se
 
 - type: decal
   id: TrimLineImperialArrowCornerSw
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinearrow.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinearrow.rsi
     state: corner_sw
 
 - type: decal
   id: TrimLineImperialArrowLineE
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinearrow.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinearrow.rsi
     state: line_e
 
 - type: decal
   id: TrimLineImperialArrowLineN
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinearrow.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinearrow.rsi
     state: line_n
 
 - type: decal
   id: TrimLineImperialArrowLineS
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinearrow.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinearrow.rsi
     state: line_s
 
 - type: decal
   id: TrimLineImperialArrowLineW
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/trimlinearrow.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/trimlinearrow.rsi
     state: line_w
 
 ##TECH LINE
@@ -410,54 +410,54 @@
   id: TechLineImperialCornerNe
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/techline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/techline.rsi
     state: corner_ne
 
 - type: decal
   id: TechLineImperialCornerNw
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/techline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/techline.rsi
     state: corner_nw
 
 - type: decal
   id: TechLineImperialCornerSe
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/techline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/techline.rsi
     state: corner_se
 
 - type: decal
   id: TechLineImperialCornerSw
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/techline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/techline.rsi
     state: corner_sw
 
 - type: decal
   id: TechLineImperialLineE
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/techline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/techline.rsi
     state: line_e
 
 - type: decal
   id: TechLineImperialLineN
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/techline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/techline.rsi
     state: line_n
 
 - type: decal
   id: TechLineImperialLineS
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/techline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/techline.rsi
     state: line_s
 
 - type: decal
   id: TechLineImperialLineW
   tags: ["station"]
   sprite:
-    sprite: Imperial/HephaestusStation/Decals/techline.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decals/techline.rsi
     state: line_w

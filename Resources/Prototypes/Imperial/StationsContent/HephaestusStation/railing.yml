@@ -6,10 +6,10 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Imperial/HephaestusStation/Decor/railing.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decor/railing.rsi
     state: side
   - type: Icon
-    sprite: Imperial/HephaestusStation/Decor/railing.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decor/railing.rsi
     state: side
 
 - type: entity
@@ -20,10 +20,10 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Imperial/HephaestusStation/Decor/railing.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decor/railing.rsi
     state: corner
   - type: Icon
-    sprite: Imperial/HephaestusStation/Decor/railing.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decor/railing.rsi
     state: corner
 
 - type: entity
@@ -34,8 +34,8 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Imperial/HephaestusStation/Decor/railing.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decor/railing.rsi
     state: corner_small
   - type: Icon
-    sprite: Imperial/HephaestusStation/Decor/railing.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Decor/railing.rsi
     state: corner_small

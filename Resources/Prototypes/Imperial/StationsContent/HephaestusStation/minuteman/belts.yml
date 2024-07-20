@@ -5,9 +5,9 @@
   description: Unique and versatile chest rig, can hold security gear.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/desertwebbing.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Belt/desertwebbing.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/desertwebbing.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Belt/desertwebbing.rsi
 
 - type: entity
   parent: ClothingBeltSecurityWebbing
@@ -16,9 +16,9 @@
   description: Unique and versatile chest rig, can hold security gear.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/forestwebbing.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Belt/forestwebbing.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/forestwebbing.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Belt/forestwebbing.rsi
 
 - type: entity
   parent: ClothingBeltSecurityWebbing
@@ -27,9 +27,9 @@
   description: Unique and versatile chest rig, can hold security gear.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/snowebbing.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Belt/snowebbing.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/snowebbing.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Belt/snowebbing.rsi
 
 - type: entity
   parent: ClothingBeltSecurityWebbing
@@ -38,9 +38,9 @@
   description: Unique and versatile chest rig, can hold security gear.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/urbanwebbing.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Belt/urbanwebbing.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/urbanwebbing.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Belt/urbanwebbing.rsi
 
 - type: entity
   parent: ClothingBeltSecurityWebbing
@@ -49,9 +49,9 @@
   description: Unique and versatile chest rig, can hold security gear.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/cmmwebbing.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Belt/cmmwebbing.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/cmmwebbing.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Belt/cmmwebbing.rsi
 
 - type: entity
   parent: ClothingBeltSecurityWebbing
@@ -60,6 +60,6 @@
   description: Unique and versatile chest rig, can hold security gear.
   components:
   - type: Sprite
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/cmmedwebbing.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Belt/cmmedwebbing.rsi
   - type: Clothing
-    sprite: Imperial/HephaestusStation/Minutemen/Clothing/Belt/cmmedwebbing.rsi
+    sprite: Imperial/StationsContent/HephaestusStation/Minutemen/Clothing/Belt/cmmedwebbing.rsi
