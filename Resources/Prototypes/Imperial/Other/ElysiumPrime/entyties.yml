@@ -1,0 +1,110 @@
+#This is base PDA for Imperial prototypes.
+#Use this, when you want to add new PDA. Just load sprites in /Imperial/customPDA.rsi
+#And make prototype with parent from this.
+#Good Luck.
+
+- type: entity
+  abstract: true
+  id: BaseCustomPDA
+  parent: BasePDA
+  components:
+  - type: Sprite
+    sprite: Imperial/customPDA.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Icon
+    sprite: Imperial/customPDA.rsi
+    state: pda
+  - type: Pda
+#    id: ID card inside this PDA
+    state: pda
+  - type: PdaBorderColor
+
+#Airlocks
+- type: entity
+  id: AirlockMaintElysiumFederation
+  parent: Airlock
+  suffix: Elysium_Prime
+  name: airlock of the Federation
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/Airlocks/normal.rsi
+#Airlocks END
+
+#Banners
+- type: entity
+  id: BannerElysiumFederationCommand
+  parent: BannerBase
+  suffix: Elysium_Prime
+  name: command banner of the Federation
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/banners.rsi
+    state: command
+
+- type: entity
+  id: BannerElysiumFederationCitizen
+  parent: BannerBase
+  suffix: Elysium_Prime
+  name: citizen banner of the Federation
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/banners.rsi
+    state: citizen
+
+- type: entity
+  id: BannerElysiumFederationSecurity
+  parent: BannerBase
+  suffix: Elysium_Prime
+  name: security banner of the Federation
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/banners.rsi
+    state: armory
+#Banners END
+
+#PDA and ID card:
+#Federation ID
+- type: entity
+  id: ElysiumFederationIDCard
+  parent: PassengerIDCard
+  name: Federation ID card
+  suffix: Elysium_Prime
+  components:
+    - type: Sprite
+      sprite: Imperial/ElysiumPrime/card.rsi
+      layers:
+        - state: federation
+    - type: Clothing
+      slots:
+        - idcard
+      sprite: Imperial/ElysiumPrime/card.rsi
+    - type: PresetIdCard
+      job: #none
+
+#Federation PDA
+- type: entity
+  id: ElysiumFederationPDA
+  parent: BaseCustomPDA
+  name: Federation PDA
+  description:  #none
+  suffix: Elysium_Prime
+  components:
+  - type: Icon
+    state: pda-elysiumFederation
+  - type: Pda
+    id: ElysiumFederationIDCard
+    state: pda-elysiumFederation
+  - type: PdaBorderColor
+    borderColor: "#242424"
+    accentHColor: "#447987"
+#PDA and ID card END.
+

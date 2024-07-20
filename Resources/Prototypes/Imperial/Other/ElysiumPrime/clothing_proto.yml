@@ -1,0 +1,360 @@
+#jumpsuits
+- type: entity
+  id: ClothingUniformJumpsuitElysiumCitizen
+  parent: ClothingUniformBase
+  name: citizen jumpsuit
+  description: Comfortable jumpsut of a citizen.
+  suffix: Elysium_Prime
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/Clothing/Jumpsuits/Citizen/cit_suit.rsi
+  - type: Clothing
+    sprite: Imperial/ElysiumPrime/Clothing/Jumpsuits/Citizen/cit_suit.rsi
+
+- type: entity
+  id: ClothingUniformJumpsuitElysiumCitizenHonorable
+  parent: ClothingUniformBase
+  name: honorable citizen jumpsuit
+  description: Has a honorable ribbon!
+  suffix: Elysium_Prime
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/Clothing/Jumpsuits/Citizen/cit_suitD.rsi
+  - type: Clothing
+    sprite: Imperial/ElysiumPrime/Clothing/Jumpsuits/Citizen/cit_suitD.rsi
+
+- type: entity
+  id: ClothingUniformJumpsuitElysiumSecurity
+  parent: ClothingUniformBase
+  name: patrol jumpsuit
+  description: Officer's jumpsuit with a beatifull cut.
+  suffix: Elysium_Prime
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/Clothing/Jumpsuits/Security/patrol_suit.rsi
+
+- type: entity
+  id: ClothingUniformJumpsuitElysiumSecurityAlt
+  parent: ClothingUniformBase
+  name: officer turtleneck
+  description: Officer's turtleneck. Comfortable and pleasant to the touch.
+  suffix: Elysium_Prime
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/Clothing/Jumpsuits/Security/sec_suit.rsi
+#jumpsuits END
+
+#vest
+- type: entity
+  id: ClothingOuterStorageElysium
+  parent: ClothingOuterStorageBase
+  name: sientiest tactical vest
+  description: sientiest tactical vest
+  suffix: Singularity
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/Clothing/vest.rsi
+
+#Hardsuits Singularity
+#Base
+- type: entity
+  abstract: true
+  parent: [ClothingOuterBase, GeigerCounterClothing]
+  id: ClothingOuterHardsuitSingularityBase
+  name: base hardsuit singularity
+  components:
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    coefficient: 0.001
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 0.80
+  - type: Item
+    size: Ginormous
+  - type: ToggleableClothing
+    slot: head
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.95
+        Heat: 0.90
+        Radiation: 0.25
+  - type: Inject
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        whitelist:
+          tags:
+          - FitsHardsuit
+  - type: ContainerContainer
+    containers:
+      beakerSlot: !type:ContainerSlot
+  - type: GroupExamine
+  - type: Tag
+    tags:
+    - Hardsuit
+
+#Black
+- type: entity
+  id: ClothingOuterHardsuitSingularitySienceBlack
+  parent: ClothingOuterHardsuitSingularityBase
+  name: scientiest
+  suffix: Singularity
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/Clothing/Radsuits/Black/suit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHardsuitSingularitySienceBlack
+  - type: ClothingSpeedModifier
+    sprintModifier: 1.0
+  - type: TemperatureProtection
+    coefficient: 0.090
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.97
+        Heat: 0.90
+        Radiation: 0.45
+        Caustic: 0.90
+
+- type: entity
+  id: ClothingOuterHardsuitSingularitySienceBlackArmored
+  parent: ClothingOuterHardsuitSingularityBase
+  name: scientiest armored
+  suffix: Singularity
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/Clothing/Radsuits/Black/armored.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHardsuitSingularitySienceBlack
+  - type: ClothingSpeedModifier
+    sprintModifier: 1.0
+  - type: TemperatureProtection
+    coefficient: 0.020
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.45
+        Heat: 0.20
+        Radiation: 0.05
+        Caustic: 0.80
+
+- type: entity
+  noSpawn: true
+  id: ClothingHeadHardsuitSingularitySienceBlack
+  parent: ClothingHeadHelmetHardsuitBasic
+  name: scientiest helmet
+  suffix: Singularity
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/Clothing/Radsuits/Black/head.rsi
+  - type: Clothing
+    sprite: Imperial/ElysiumPrime/Clothing/Radsuits/Black/head.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.95
+        Radiation: 0.85
+        Caustic: 0.95
+
+#Orange
+- type: entity
+  id: ClothingOuterHardsuitSingularitySienceOrange
+  parent: ClothingOuterHardsuitSingularityBase
+  name: scientiest
+  suffix: Singularity
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/Clothing/Radsuits/Orange/suit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHardsuitSingularitySienceOrange
+  - type: TemperatureProtection
+    coefficient: 0.065
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.65
+        Radiation: 0.05
+        Caustic: 0.65
+
+- type: entity
+  id: ClothingOuterHardsuitSingularitySienceOrangeArmored
+  parent: ClothingOuterHardsuitSingularityBase
+  name: scientiest armored
+  suffix: Singularity
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/Clothing/Radsuits/Orange/armored.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHardsuitSingularitySienceOrange
+  - type: ClothingSpeedModifier
+    sprintModifier: 0.85
+  - type: TemperatureProtection
+    coefficient: 0.065
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.8
+        Heat: 0.65
+        Radiation: 0.05
+        Caustic: 0.65
+
+- type: entity
+  noSpawn: true
+  id: ClothingHeadHardsuitSingularitySienceOrange
+  parent: ClothingHeadHelmetHardsuitBasic
+  name: scientiest helmet
+  suffix: Singularity
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/Clothing/Radsuits/Orange/head.rsi
+  - type: Clothing
+    sprite: Imperial/ElysiumPrime/Clothing/Radsuits/Orange/head.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.80
+        Radiation: 0.60
+        Caustic: 0.95
+
+#Green
+- type: entity
+  id: ClothingOuterHardsuitSingularitySienceGreen
+  parent: ClothingOuterHardsuitSingularityBase
+  name: scientiest
+  suffix: Singularity
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/Clothing/Radsuits/Green/suit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHardsuitSingularitySienceGreen
+  - type: TemperatureProtection
+    coefficient: 0.081
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.85
+        Heat: 0.81
+        Radiation: 0.05
+        Caustic: 0.81
+
+- type: entity
+  id: ClothingOuterHardsuitSingularitySienceGreenArmored
+  parent: ClothingOuterHardsuitSingularityBase
+  name: scientiest armored
+  suffix: Singularity
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/Clothing/Radsuits/Green/armored.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHardsuitSingularitySienceGreen
+  - type: ClothingSpeedModifier
+    sprintModifier: 0.85
+  - type: TemperatureProtection
+    coefficient: 0.020
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.65
+        Heat: 0.81
+        Radiation: 0.05
+        Caustic: 0.81
+
+- type: entity
+  noSpawn: true
+  id: ClothingHeadHardsuitSingularitySienceGreen
+  parent: ClothingHeadHelmetHardsuitBasic
+  name: scientiest helmet
+  suffix: Singularity
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/Clothing/Radsuits/Green/head.rsi
+  - type: Clothing
+    sprite: Imperial/ElysiumPrime/Clothing/Radsuits/Green/head.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.75
+        Radiation: 0.60
+        Caustic: 0.97
+
+#White
+- type: entity
+  id: ClothingOuterHardsuitSingularitySienceWhite
+  parent: ClothingOuterHardsuitSingularityBase
+  name: scientiest
+  suffix: Singularity
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/Clothing/Radsuits/White/suit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHardsuitSingularitySienceWhite
+  - type: ClothingSpeedModifier
+    sprintModifier: 1.0
+  - type: TemperatureProtection
+    coefficient: 0.055
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.85
+        Heat: 0.55
+        Radiation: 0.05
+        Caustic: 0.55
+
+- type: entity
+  id: ClothingOuterHardsuitSingularitySienceWhiteArmored
+  parent: ClothingOuterHardsuitSingularityBase
+  name: scientiest armored
+  suffix: Singularity
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/Clothing/Radsuits/White/armored.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHardsuitSingularitySienceWhite
+  - type: ClothingSpeedModifier
+    sprintModifier: 1.0
+  - type: TemperatureProtection
+    coefficient: 0.045
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.65
+        Heat: 0.45
+        Radiation: 0.05
+        Caustic: 0.65
+
+- type: entity
+  noSpawn: true
+  id: ClothingHeadHardsuitSingularitySienceWhite
+  parent: ClothingHeadHelmetHardsuitBasic
+  name: scientiest helmet
+  suffix: Singularity
+  components:
+  - type: Sprite
+    sprite: Imperial/ElysiumPrime/Clothing/Radsuits/White/head.rsi
+  - type: Clothing
+    sprite: Imperial/ElysiumPrime/Clothing/Radsuits/White/head.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.70
+        Radiation: 0.55
+        Caustic: 0.85
