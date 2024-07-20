@@ -1262,6 +1262,14 @@
         path: /Audio/Weapons/eblademiss.ogg
         params:
           variation: 0.125
+    # Imperial dual toy Begin
+    - type: Tag
+      tags:
+      - ToySword
+    - type: Construction
+      graph: DualToySword
+      node: start
+    # Imperial dual toy End
 
 - type: entity
   parent: BasePlushie
