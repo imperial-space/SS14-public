@@ -22,6 +22,26 @@
         {
             "name": "open_toilet_seat_up",
             "directions": 4
+        },
+        {
+            "name": "disposal-down",
+            "directions": 4
+        },
+        {
+            "name": "disposal-up",
+            "directions": 4
+        },
+        {
+            "name": "disposal-open",
+            "directions": 4
+        },
+        {
+            "name": "disposal-closed",
+            "directions": 4
+        },
+        {
+            "name": "nothing",
+            "directions": 4
         }
     ]
 }

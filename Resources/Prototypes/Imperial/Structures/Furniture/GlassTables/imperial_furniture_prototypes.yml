@@ -153,7 +153,25 @@
   components:
     - type: Sprite
       sprite: Imperial/Structures/Furniture/GlassTables/goldToilet.rsi
-      state: closed_toilet_seat_up
+      layers:
+        - state: nothing
+          map: [ "enum.DisposalUnitVisualLayers.Unanchored" ]
+        - state: nothing
+          map: [ "enum.DisposalUnitVisualLayers.Base" ]
+        - state: nothing
+          map: [ "enum.DisposalUnitVisualLayers.OverlayFlush" ]
+        - state: nothing
+          map: [ "enum.DisposalUnitVisualLayers.OverlayCharging" ]
+        - state: nothing
+          map: [ "enum.DisposalUnitVisualLayers.OverlayReady" ]
+        - state: nothing
+          map: [ "enum.DisposalUnitVisualLayers.OverlayFull" ]
+        - state: nothing
+          map: [ "enum.DisposalUnitVisualLayers.OverlayEngaged" ]
+        - state: nothing
+          map: [ "DoorVisualState.DoorOpen" ]
+        - state: nothing
+          map: [ "SeatVisualState.SeatUp" ]
     - type: Construction
       graph: GoldToiletGraph
       node: goldtoilet
