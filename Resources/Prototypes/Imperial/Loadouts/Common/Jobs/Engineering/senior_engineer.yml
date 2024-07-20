@@ -1,0 +1,57 @@
+- type: roleLoadout
+  id: JobSeniorEngineer
+  groups:
+  - GroupTankHarness
+  - SeniorEngineerHead
+  - SeniorEngineerJumpsuit
+  - StationEngineerBackpack
+  - StationEngineerOuterClothing
+  - StationEngineerShoes
+  - SurvivalExtended
+  - Trinkets
+  - GroupSpeciesBreathTool
+
+# Groups Start
+
+- type: loadoutGroup
+  id: SeniorEngineerJumpsuit
+  name: loadout-group-SeniorResearcher-jumpsuit
+  loadouts:
+  - ClothingUniformJumpsuitSeniorEngineer
+  - ClothingUniformJumpskirtSeniorEngineer
+
+- type: loadoutGroup
+  id: SeniorEngineerHead
+  name: loadout-group-SeniorResearcher-outerClothing
+  minLimit: 0
+  loadouts:
+  - ChiefEngineerBeret
+
+# Groups End
+
+# Loadouts Start
+
+# ClothingUniformJumpsuitSeniorEngineer
+
+- type: loadout
+  id: ClothingUniformJumpsuitSeniorEngineer
+  equipment: ClothingUniformJumpsuitSeniorEngineer
+
+- type: startingGear
+  id: ClothingUniformJumpsuitSeniorEngineer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorEngineer
+
+# ClothingUniformJumpskirtSeniorEngineer
+
+- type: loadout
+  id: ClothingUniformJumpskirtSeniorEngineer
+  equipment: ClothingUniformJumpskirtSeniorEngineer
+
+- type: startingGear
+  id: ClothingUniformJumpskirtSeniorEngineer
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSeniorEngineer
+
+
+# Loadouts End

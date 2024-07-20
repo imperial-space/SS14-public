@@ -1,0 +1,81 @@
+- type: roleLoadout
+  id: JobSeniorResearcher
+  groups:
+  - GroupTankHarness
+  - ScientistHead
+  - ScientistNeck
+  - SeniorResearcherJumpsuit
+  - ScientistBackpack
+  - SeniorResearcherOuterClothing
+  - ScientistGloves
+  - ScientistShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+
+# Groups Start
+
+- type: loadoutGroup
+  id: SeniorResearcherJumpsuit
+  name: loadout-group-SeniorResearcher-jumpsuit
+  loadouts:
+  - ClothingUniformJumpsuitSeniorResearcher
+  - ClothingUniformJumpskirtSeniorResearcher
+
+- type: loadoutGroup
+  id: SeniorResearcherOuterClothing
+  name: loadout-group-SeniorResearcher-outerClothing
+  minLimit: 0
+  loadouts:
+  - ClothingOuterCoatLabSeniorResearcher
+
+# Groups End
+
+# Loadouts Start
+
+# ClothingUniformJumpsuitSeniorResearcher
+
+- type: loadout
+  id: ClothingUniformJumpsuitSeniorResearcher
+  equipment: ClothingUniformJumpsuitSeniorResearcher
+
+- type: startingGear
+  id: ClothingUniformJumpsuitSeniorResearcher
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorResearcher
+
+# ClothingUniformJumpskirtSeniorResearcher
+
+- type: loadout
+  id: ClothingUniformJumpskirtSeniorResearcher
+  equipment: ClothingUniformJumpskirtSeniorResearcher
+
+- type: startingGear
+  id: ClothingUniformJumpskirtSeniorResearcher
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSeniorResearcher
+
+# ClothingOuterCoatLabSeniorResearcher
+
+- type: loadout
+  id: ClothingOuterCoatLabSeniorResearcher
+  equipment: ClothingOuterCoatLabSeniorResearcher
+
+- type: startingGear
+  id: ClothingOuterCoatLabSeniorResearcher
+  equipment:
+    outerClothing: ClothingOuterCoatLabSeniorResearcher
+
+# ScienceShoesAlterBoots
+
+- type: loadout
+  id: ScienceShoesAlterBoots
+  equipment: ScienceAlterBoots
+
+- type: startingGear
+  id: ScienceAlterBoots
+  equipment:
+    shoes: ClothingShoesBootsScienceImperial
+
+# Loadouts End

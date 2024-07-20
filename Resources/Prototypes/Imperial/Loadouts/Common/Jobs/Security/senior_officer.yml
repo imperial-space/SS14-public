@@ -1,0 +1,114 @@
+- type: roleLoadout
+  id: JobSeniorOfficer
+  groups:
+  - SecurityHead
+  - SeniorOfficerJumpsuit
+  - SeniorOfficerBackpack
+  - SecurityOuterClothing
+  - SecurityShoes
+  - SeniorOfficerBelt
+  - SeniorOfficerGloves
+  - SurvivalSecurity
+  - Trinkets
+  - GroupSpeciesBreathToolSecurity
+
+# Groups Start
+
+- type: loadoutGroup
+  id: SeniorOfficerJumpsuit
+  name: loadout-group-SeniorOfficer-jumpsuit
+  loadouts:
+  - ClothingUniformJumpsuitSeniorOfficer
+  - ClothingUniformJumpskirtSeniorOfficer
+
+- type: loadoutGroup
+  id: SeniorOfficerBackpack
+  name: loadout-group-SeniorOfficer-backpack
+  loadouts:
+  - ClothingBackpackSecurityFilledSeniorOfficer
+  - SecuritySatchel
+  - ClothingBackpackDuffelSecurityFilledSeniorOfficer
+
+- type: loadoutGroup
+  id: SeniorOfficerBelt
+  name: loadout-group-SeniorOfficer-belt
+  loadouts:
+  - ClothingBeltMilitaryWebbingSeniorOfficerFilled
+
+- type: loadoutGroup
+  id: SeniorOfficerGloves
+  name: loadout-group-SeniorOfficer-gloves
+  loadouts:
+  - ClothingHandsGlovesCombat
+
+# Groups End
+
+# Loadouts Start
+
+# ClothingUniformJumpsuitSeniorOfficer
+
+- type: loadout
+  id: ClothingUniformJumpsuitSeniorOfficer
+  equipment: ClothingUniformJumpsuitSeniorOfficer
+
+- type: startingGear
+  id: ClothingUniformJumpsuitSeniorOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorOfficer
+
+# ClothingUniformJumpskirtSeniorOfficer
+
+- type: loadout
+  id: ClothingUniformJumpskirtSeniorOfficer
+  equipment: ClothingUniformJumpskirtSeniorOfficer
+
+- type: startingGear
+  id: ClothingUniformJumpskirtSeniorOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSeniorOfficer
+
+# ClothingBackpackSecurityFilledSeniorOfficer
+
+- type: loadout
+  id: ClothingBackpackSecurityFilledSeniorOfficer
+  equipment: ClothingBackpackSecurityFilledSeniorOfficer
+
+- type: startingGear
+  id: ClothingBackpackSecurityFilledSeniorOfficer
+  equipment:
+    back: ClothingBackpackSecurityFilledSeniorOfficer
+
+# ClothingBackpackDuffelSecurityFilledSeniorOfficer
+
+- type: loadout
+  id: ClothingBackpackDuffelSecurityFilledSeniorOfficer
+  equipment: ClothingBackpackDuffelSecurityFilledSeniorOfficer
+
+- type: startingGear
+  id: ClothingBackpackDuffelSecurityFilledSeniorOfficer
+  equipment:
+    back: ClothingBackpackDuffelSecurityFilledSeniorOfficer
+
+# ClothingBeltMilitaryWebbingSeniorOfficerFilled
+
+- type: loadout
+  id: ClothingBeltMilitaryWebbingSeniorOfficerFilled
+  equipment: ClothingBeltMilitaryWebbingSeniorOfficerFilled
+
+- type: startingGear
+  id: ClothingBeltMilitaryWebbingSeniorOfficerFilled
+  equipment:
+    belt: ClothingBeltMilitaryWebbingSeniorOfficerFilled
+
+# ClothingHandsGlovesCombat
+
+- type: loadout
+  id: ClothingHandsGlovesCombat
+  equipment: ClothingHandsGlovesCombat
+
+- type: startingGear
+  id: ClothingHandsGlovesCombat
+  equipment:
+    gloves: ClothingHandsGlovesCombat
+
+# Loadouts End

@@ -38,7 +38,6 @@
   components:
   - type: StorageFill
     contents:
-      - id: BoxSurvivalSecurity
       - id: Flash
       - id: MagazinePistol
       - id: MagazineBoxPistolPractice
@@ -51,7 +50,6 @@
   components:
   - type: StorageFill
     contents:
-      - id: BoxSurvivalSecurity
       - id: Flash
       - id: MagazinePistol
       - id: MagazineBoxPistolPractice

@@ -1,0 +1,70 @@
+- type: roleLoadout
+  id: JobSeniorPhysician
+  groups:
+  - GroupTankHarness
+  - MedicalDoctorHead
+  - MedicalMask
+  - SeniorPhysicianJumpsuit
+  - MedicalGloves
+  - MedicalBackpack
+  - SeniorPhysicianOuterClothing
+  - MedicalShoes
+  - Glasses
+  - SurvivalMedical
+  - Trinkets
+  - GroupSpeciesBreathToolMedical
+
+# Groups Start
+
+- type: loadoutGroup
+  id: SeniorPhysicianJumpsuit
+  name: loadout-group-JobSeniorPhysician-jumpsuit
+  loadouts:
+  - ClothingUniformJumpsuitSeniorPhysician
+  - ClothingUniformJumpskirtSeniorPhysician
+
+- type: loadoutGroup
+  id: SeniorPhysicianOuterClothing
+  name: loadout-group-JobSeniorPhysician-outerClothing
+  minLimit: 0
+  loadouts:
+  - ClothingOuterCoatLabSeniorPhysician
+
+# Groups End
+
+# Loadouts Start
+
+# ClothingUniformJumpsuitSeniorPhysician
+
+- type: loadout
+  id: ClothingUniformJumpsuitSeniorPhysician
+  equipment: ClothingUniformJumpsuitSeniorPhysician
+
+- type: startingGear
+  id: ClothingUniformJumpsuitSeniorPhysician
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorPhysician
+
+# ClothingUniformJumpskirtSeniorPhysician
+
+- type: loadout
+  id: ClothingUniformJumpskirtSeniorPhysician
+  equipment: ClothingUniformJumpskirtSeniorPhysician
+
+- type: startingGear
+  id: ClothingUniformJumpskirtSeniorPhysician
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSeniorPhysician
+
+# ClothingOuterCoatLabSeniorPhysician
+
+- type: loadout
+  id: ClothingOuterCoatLabSeniorPhysician
+  equipment: ClothingOuterCoatLabSeniorPhysician
+
+- type: startingGear
+  id: ClothingOuterCoatLabSeniorPhysician
+  equipment:
+    outerClothing: ClothingOuterCoatLabSeniorPhysician
+
+# Loadouts End

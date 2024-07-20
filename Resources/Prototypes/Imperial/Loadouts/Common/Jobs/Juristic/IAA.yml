@@ -1,0 +1,135 @@
+- type: roleLoadout
+  id: JobIAA
+  groups:
+  - GroupTankHarness
+  - IAAJumpsuit
+  - IAABackpack
+  - IAANeck
+  - IAAGlasses
+  - IAAShoes
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+
+# Groups Start
+
+- type: loadoutGroup
+  id: IAAJumpsuit
+  name: loadout-group-IAA-jumpsuit
+  loadouts:
+  - ClothingUniformJumpsuitLawyerBlack
+  - ClothingUniformJumpskirtLawyerBlack
+
+- type: loadoutGroup
+  id: IAABackpack
+  name: loadout-group-IAA-backpack
+  loadouts:
+  - ClothingBackpackIAAFilled
+  - ClothingBackpackSatchelIAAFilled
+  - ClothingBackpackDuffelIAAFilled
+
+- type: loadoutGroup
+  id: IAAGlasses
+  name: loadout-group-IAA-glasses
+  minLimit: 0
+  loadouts:
+  - ClothingEyesGlassesSunglasses
+  - Glasses
+  - GlassesJamjar
+  - GlassesJensen
+
+- type: loadoutGroup
+  id: IAANeck
+  name: loadout-group-IAA-neck
+  minLimit: 0
+  loadouts:
+  - ClothingNeckLawyerbadge
+
+- type: loadoutGroup
+  id: IAAShoes
+  name: loadout-group-IAA-shoes
+  loadouts:
+  - ClothingShoesColorBlack
+
+# Groups End
+
+# Loadouts Start
+
+# ClothingUniformJumpsuitLawyerBlack
+
+- type: loadout
+  id: ClothingUniformJumpsuitLawyerBlack
+  equipment: ClothingUniformJumpsuitLawyerBlack
+
+- type: startingGear
+  id: ClothingUniformJumpsuitLawyerBlack
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlack
+
+# ClothingUniformJumpskirtLawyerBlack
+
+- type: loadout
+  id: ClothingUniformJumpskirtLawyerBlack
+  equipment: ClothingUniformJumpskirtLawyerBlack
+
+- type: startingGear
+  id: ClothingUniformJumpskirtLawyerBlack
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtLawyerBlack
+
+# ClothingNeckLawyerbadge
+
+- type: loadout
+  id: ClothingNeckLawyerbadge
+  equipment: ClothingNeckLawyerbadge
+
+- type: startingGear
+  id: ClothingNeckLawyerbadge
+  equipment:
+    neck: ClothingNeckLawyerbadge
+
+# ClothingShoesColorBlack
+
+- type: loadout
+  id: ClothingShoesColorBlack
+  equipment: ClothingShoesColorBlack
+
+- type: startingGear
+  id: ClothingShoesColorBlack
+  equipment:
+    shoes: ClothingShoesColorBlack
+
+# ClothingBackpackIAAFilled
+
+- type: loadout
+  id: ClothingBackpackIAAFilled
+  equipment: ClothingBackpackIAAFilled
+
+- type: startingGear
+  id: ClothingBackpackIAAFilled
+  equipment:
+    back: ClothingBackpackIAAFilled
+
+# ClothingBackpackSatchelIAAFilled
+
+- type: loadout
+  id: ClothingBackpackSatchelIAAFilled
+  equipment: ClothingBackpackSatchelIAAFilled
+
+- type: startingGear
+  id: ClothingBackpackSatchelIAAFilled
+  equipment:
+    back: ClothingBackpackSatchelIAAFilled
+
+# ClothingBackpackDuffelIAAFilled
+
+- type: loadout
+  id: ClothingBackpackDuffelIAAFilled
+  equipment: ClothingBackpackDuffelIAAFilled
+
+- type: startingGear
+  id: ClothingBackpackDuffelIAAFilled
+  equipment:
+    back: ClothingBackpackDuffelIAAFilled
+
+# Loadouts End

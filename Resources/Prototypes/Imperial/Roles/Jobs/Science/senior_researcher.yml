@@ -35,16 +35,5 @@
 - type: startingGear
   id: SeniorResearcherGear
   equipment:
-    head: ClothingHeadHatBeretRND
-    jumpsuit: ClothingUniformJumpsuitSeniorResearcher
-    back: ClothingBackpackScience
-    shoes: ClothingShoesBootsScienceImperial #Imperial Edit
-    outerClothing: ClothingOuterCoatLabSeniorResearcher
     id: SeniorResearcherPDA
     ears: ClothingHeadsetScience
-  innerClothingSkirt: ClothingUniformJumpskirtSeniorResearcher
-  satchel: ClothingBackpackSatchelScienceFilled
-  duffelbag: ClothingBackpackDuffelScienceFilled
-  storage:
-    back:
-      - BoxSurvival
