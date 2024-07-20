@@ -1,16 +1,4 @@
 - type: entity
-  id: SpawnPointCoroner
-  parent: SpawnPointPassenger
-  name: coroner
-  components:
-  - type: SpawnPoint
-    job_id: Coroner
-  - type: Sprite
-    layers:
-      - state: green
-      - state: coroner
-
-- type: entity
   id: SpawnPointSeniorEngineer
   parent: SpawnPointJobBase
   name: seniorengineer

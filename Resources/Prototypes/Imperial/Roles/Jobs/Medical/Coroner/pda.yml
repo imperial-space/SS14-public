@@ -1,0 +1,13 @@
+- type: entity
+  parent: MedicalPDA
+  id: CoronerPDA
+  name: coroner PDA
+  description:
+  components:
+    - type: Sprite
+      sprite: Imperial/Roles/Medical/Coroner/pda.rsi
+    - type: Pda
+      id: CoronerIDCard
+      state: pda-coroner
+    - type: Icon
+      state: pda-coroner

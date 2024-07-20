@@ -1108,6 +1108,9 @@
       - CarpetPurple
       - CarpetCyan
       - CarpetWhite
+      #Imperial
+      - ClothingUniformJumpsuitCoroner #Imperial coroner
+      - ClothingUniformJumpskirtCoroner #Imperial coroner
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - ClothingHeadHatCentcomcap

@@ -1,0 +1,12 @@
+- type: entity
+  parent: PassengerIDCard
+  id: CoronerIDCard
+  name: medical coroner ID card
+  components:
+    - type: PresetIdCard
+      job: Coroner
+    - type: Sprite
+      sprite: Imperial/Roles/Medical/Coroner/id_cards.rsi
+      layers:
+        - state: default
+        - state: idcoroner
