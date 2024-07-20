@@ -7,7 +7,7 @@
   - type: Sharp
   - type: Sprite
     layers:
-      - sprite: Imperial/Snowball/snowball.rsi
+      - sprite: Imperial/Other/Christmas/Snowball/snowball.rsi
         state: snowball1
         map: [ "enum.DamageStateVisualLayers.Base" ]
   - type: RandomSprite
@@ -19,7 +19,7 @@
       - enum.DamageStateVisualLayers.Base:
           snowball3: ""
   - type: Item
-    sprite: Imperial/Snowball/snowball.rsi
+    sprite: Imperial/Other/Christmas/Snowball/snowball.rsi
     size: Tiny
   - type: CollisionWake
     enabled: false

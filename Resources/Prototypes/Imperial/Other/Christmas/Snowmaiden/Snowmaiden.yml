@@ -5,9 +5,9 @@
   description: 3... 2... 1... Cristmas tree, light up!
   components:
   - type: Sprite
-    sprite: Imperial/Snowmaiden/snowmaiden_suit.rsi
+    sprite: Imperial/Other/Christmas/Snowmaiden/snowmaiden_suit.rsi
   - type: Clothing
-    sprite: Imperial/Snowmaiden/snowmaiden_suit.rsi
+    sprite: Imperial/Other/Christmas/Snowmaiden/snowmaiden_suit.rsi
 
 - type: entity
   id: ClothingHeadHatSnowmaiden
@@ -16,6 +16,6 @@
   description: A scorchingly beautiful kokoshnik.
   components:
   - type: Sprite
-    sprite: Imperial/Snowmaiden/snowmaiden_hat.rsi
+    sprite: Imperial/Other/Christmas/Snowmaiden/snowmaiden_hat.rsi
   - type: Clothing
-    sprite: Imperial/Snowmaiden/snowmaiden_hat.rsi
+    sprite: Imperial/Other/Christmas/Snowmaiden/snowmaiden_hat.rsi

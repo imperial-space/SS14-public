@@ -357,7 +357,7 @@
   suffix: Hunger Games
   components:
   - type: Sprite
-    sprite: Imperial/presents.rsi
+    sprite: Imperial/Other/Christmas/presents.rsi
     layers:
       - state: presentGreen
   - type: SpawnItemsOnUse
@@ -473,7 +473,7 @@
   suffix: Hunger Games
   components:
   - type: Sprite
-    sprite: Imperial/presents.rsi
+    sprite: Imperial/Other/Christmas/presents.rsi
     layers:
       - state: presentBlue
   - type: SpawnItemsOnUse
@@ -536,7 +536,7 @@
   description: There used to be a gift in it
   components:
   - type: Sprite
-    sprite: Imperial/presents.rsi
+    sprite: Imperial/Other/Christmas/presents.rsi
     layers:
       - state: unwrappedGreen
   - type: Tag
@@ -552,7 +552,7 @@
   description: There used to be a gift in it
   components:
   - type: Sprite
-    sprite: Imperial/presents.rsi
+    sprite: Imperial/Other/Christmas/presents.rsi
     layers:
       - state: unwrappedBlue
   - type: Tag
@@ -568,7 +568,7 @@
   description: There used to be a gift in it
   components:
   - type: Sprite
-    sprite: Imperial/presents.rsi
+    sprite: Imperial/Other/Christmas/presents.rsi
     layers:
       - state: unwrapped
   - type: Tag
