@@ -750,6 +750,7 @@
       - Zipties
       - BaseMagazineBoxACP #Imperial Space TFG
     dynamicRecipes:
+      - EnergyBola # imperial EnergyBola
       - BoxBeanbag
       - BoxShotgunIncendiary
       - BoxShotgunUranium

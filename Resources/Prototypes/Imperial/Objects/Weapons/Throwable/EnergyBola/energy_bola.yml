@@ -1,0 +1,46 @@
+- type: entity
+  name: energy-bola
+  parent: BaseItem
+  id: EnergyBola
+  description: Linked together energy balls and cable.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/EnergyBola/energy_bola.rsi
+    state: icon
+  - type: EmitSoundOnThrow
+    sound: /Audio/Weapons/bolathrow.ogg
+  - type: EmitSoundOnLand
+    sound: /Audio/Effects/snap.ogg
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 3
+  - type: Ensnaring
+    freeTime: 2.0
+    breakoutTime: 6
+    walkSpeed: 0.5
+    sprintSpeed: 0.5
+    staminaDamage: 70
+    canThrowTrigger: true
+    canMoveBreakout: true
