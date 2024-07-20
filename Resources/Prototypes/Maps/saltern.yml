@@ -52,6 +52,7 @@
             SecurityOfficer: [ 4, 4 ]
             SecurityCadet: [ 4, 4 ]
             SeniorOfficer: [ 1, 1 ] # imperial space senior roles
+            Brigmedic: [ 1, 1 ] # imperial Brigmedic
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 1, 3 ]

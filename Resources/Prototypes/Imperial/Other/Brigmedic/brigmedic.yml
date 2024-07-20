@@ -1,0 +1,36 @@
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackBrigmedic
+  id: ClothingBackpackBrigmedicFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSurvivalBrigmedic
+      - id: Flash
+
+- type: entity
+  name: survival box
+  parent: BoxCardboard
+  id: BoxSurvivalBrigmedic
+  description: It's a box with basic internals inside.
+  suffix: MedSec
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingMaskRebreatherBrigmedic
+      - id: EmergencyOxygenTankFilled
+      - id: SpaceMedipen #Imperial spaceMedipen add to surv boxes
+      - id: EmergencyMedipen
+      - id: Flare
+      - id: FoodSnackNutribrick
+      - id: DrinkWaterBottleFull
+      - id: EmergencyMedipen
+  - type: Sprite
+    layers:
+      - state: internals
+      - state: emergencytank
+  #Imperial emergency box size
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,2

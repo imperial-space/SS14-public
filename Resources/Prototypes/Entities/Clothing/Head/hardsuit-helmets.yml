@@ -186,6 +186,7 @@
   name: brigmedic hardsuit helmet
   description: The lightweight helmet of the brigmedic hardsuit. Protects against viruses, and clowns.
   components:
+  - type: BreathMask # imperial Brigmedic
   - type: Sprite
     sprite: Clothing/Head/Hardsuits/brigmedic.rsi
   - type: Clothing

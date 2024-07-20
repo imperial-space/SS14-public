@@ -442,6 +442,8 @@
     layers:
     - state: default
     - state: idbrigmedic
+  - type: PresetIdCard # imperial Brigmedic
+    job: Brigmedic # imperial Brigmedic
 
 - type: entity
   parent: IDCardStandard
