@@ -7,7 +7,7 @@
   category: construction-category-furniture
   description: Стильный зелёный кусок стекла с примесью урана, установленный на каркас стола.
   icon:
-    sprite: Imperial/GlassTables/uranium.rsi
+    sprite: Imperial/Structures/Furniture/GlassTables/uranium.rsi
     state: full
   objectType: Structure
   placementMode: SnapgridCenter
@@ -24,7 +24,7 @@
   category: construction-category-furniture
   description: "Стильный квадратный лист уранового стекла, установленный на укреплённый каркас стола"
   icon:
-    sprite: Imperial/GlassTables/r_uranium.rsi
+    sprite: Imperial/Structures/Furniture/GlassTables/r_uranium.rsi
     state: full
   objectType: Structure
   placementMode: SnapgridCenter
@@ -41,7 +41,7 @@
   category: construction-category-furniture
   description: Стильный квадратный лист плазменного стекла, установленный на укреплённый каркас стола
   icon:
-    sprite: Imperial/GlassTables/r_plasma.rsi
+    sprite: Imperial/Structures/Furniture/GlassTables/r_plasma.rsi
     state: full
   objectType: Structure
   placementMode: SnapgridCenter
@@ -58,7 +58,7 @@
   category: construction-category-furniture
   description: Только для богачей
   icon:
-    sprite: Imperial/GlassTables/goldToilet.rsi
+    sprite: Imperial/Structures/Furniture/GlassTables/goldToilet.rsi
     state: closed_toilet_seat_up
   objectType: Structure
   placementMode: SnapgridCenter
