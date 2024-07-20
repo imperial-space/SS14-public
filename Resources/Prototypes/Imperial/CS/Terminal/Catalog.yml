@@ -1,0 +1,76 @@
+# CT side
+- type: storeCategory
+  id: CT_Pistols
+  name: store-category-ct-pistols
+  priority: 0
+
+- type: storeCategory
+  id: CT_Rifles
+  name: store-category-ct-rifles
+  priority: 1
+
+- type: storeCategory
+  id: CT_Submachine_gun
+  name: store-category-ct-submachine-gun
+  priority: 2
+
+- type: storeCategory
+  id: CT_Heavy
+  name: store-category-ct-heavy
+  priority: 3
+
+- type: storeCategory
+  id: CT_Protection
+  name: store-category-ct-protection
+  priority: 4
+# T side
+- type: storeCategory
+  id: T_Pistols
+  name: store-category-t-pistols
+  priority: 0
+
+- type: storeCategory
+  id: T_Rifles
+  name: store-category-t-rifles
+  priority: 1
+
+- type: storeCategory
+  id: T_Submachine_gun
+  name: store-category-t-submachine-gun
+  priority: 2
+
+- type: storeCategory
+  id: T_Heavy
+  name: store-category-t-heavy
+  priority: 3
+
+- type: storeCategory
+  id: T_Protection
+  name: store-category-t-protection
+  priority: 4
+# All side
+- type: storeCategory
+  id: CS_Grenades
+  name: store-category-cs-grenades
+  priority: 5
+
+- type: storeCategory
+  id: CS_Ammo_Pistols
+  name: store-category-cs-ammo-pistols
+  priority: 6
+
+- type: storeCategory
+  id: CS_Ammo_Rifles
+  name: store-category-cs-ammo-rifles
+  priority: 7
+
+- type: storeCategory
+  id: CS_Ammo_Submachine_Gun
+  name: store-category-cs-ammo-submachine-gun
+  priority: 8
+
+- type: storeCategory
+  id: CS_Ammo_Heavy
+  name: store-category-cs-ammo-heavy
+  priority: 9
+

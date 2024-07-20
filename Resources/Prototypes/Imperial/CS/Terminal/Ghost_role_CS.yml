@@ -1,0 +1,452 @@
+# Gear
+# CT side
+- type: startingGear
+  id: CTGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMercenary
+    mask: ClothingMaskGas
+    shoes: ClothingShoesBootsCombatFilled
+    head: ClothingHeadHatBeretMerc
+    gloves: ClothingHandsMercGlovesCombat
+    ears: ClothingHeadsetGrey
+    belt: ClothingBeltMercWebbing
+    outerClothing: ClothingOuterVest
+    suitstorage: CSWeaponUSP-S
+    pocket1: MagazinePistolCaselessRifle
+    pocket2: MagazinePistolCaselessRifle
+    id: TerminalCT
+
+- type: startingGear
+  id: CTGear800
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMercenary
+    mask: ClothingMaskGas
+    shoes: ClothingShoesBootsCombatFilled
+    head: ClothingHeadHatBeretMerc
+    gloves: ClothingHandsMercGlovesCombat
+    ears: ClothingHeadsetGrey
+    belt: ClothingBeltMercWebbing
+    outerClothing: ClothingOuterVest
+    suitstorage: CSWeaponUSP-S
+    pocket1: MagazinePistolCaselessRifle
+    pocket2: MagazinePistolCaselessRifle
+    id: TerminalCT800
+
+- type: startingGear
+  id: CTGear4000
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMercenary
+    mask: ClothingMaskGas
+    shoes: ClothingShoesBootsCombatFilled
+    head: ClothingHeadHatBeretMerc
+    gloves: ClothingHandsMercGlovesCombat
+    ears: ClothingHeadsetGrey
+    belt: ClothingBeltMercWebbing
+    outerClothing: ClothingOuterVest
+    suitstorage: CSWeaponUSP-S
+    pocket1: MagazinePistolCaselessRifle
+    pocket2: MagazinePistolCaselessRifle
+    id: TerminalCT4000
+
+- type: startingGear
+  id: CTGear6500
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMercenary
+    mask: ClothingMaskGas
+    shoes: ClothingShoesBootsCombatFilled
+    head: ClothingHeadHatBeretMerc
+    gloves: ClothingHandsMercGlovesCombat
+    ears: ClothingHeadsetGrey
+    belt: ClothingBeltMercWebbing
+    outerClothing: ClothingOuterVest
+    suitstorage: CSWeaponUSP-S
+    pocket1: MagazinePistolCaselessRifle
+    pocket2: MagazinePistolCaselessRifle
+    id: TerminalCT6500
+
+# T side
+- type: startingGear
+  id: TGear
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitFlannel
+    mask: ClothingMaskGasBalaclava
+    shoes: ClothingShoesBootsCombatFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetAltSyndicate
+    belt: ClothingBeltMilitaryWebbing
+    outerClothing: ClothingOuterVest
+    suitstorage: CSWeaponGlock-18
+    pocket1: Glock18MagazinePistol
+    pocket2: Glock18MagazinePistol
+    id: TerminalT
+
+- type: startingGear
+  id: TGear800
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitFlannel
+    mask: ClothingMaskGasBalaclava
+    shoes: ClothingShoesBootsCombatFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetAltSyndicate
+    belt: ClothingBeltMilitaryWebbing
+    outerClothing: ClothingOuterVest
+    suitstorage: CSWeaponGlock-18
+    pocket1: Glock18MagazinePistol
+    pocket2: Glock18MagazinePistol
+    id: TerminalT800
+
+- type: startingGear
+  id: TGear4000
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitFlannel
+    mask: ClothingMaskGasBalaclava
+    shoes: ClothingShoesBootsCombatFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetAltSyndicate
+    belt: ClothingBeltMilitaryWebbing
+    outerClothing: ClothingOuterVest
+    suitstorage: CSWeaponGlock-18
+    pocket1: Glock18MagazinePistol
+    pocket2: Glock18MagazinePistol
+    id: TerminalT4000
+
+- type: startingGear
+  id: TGear6500
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitFlannel
+    mask: ClothingMaskGasBalaclava
+    shoes: ClothingShoesBootsCombatFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetAltSyndicate
+    belt: ClothingBeltMilitaryWebbing
+    outerClothing: ClothingOuterVest
+    suitstorage: CSWeaponGlock-18
+    pocket1: Glock18MagazinePistol
+    pocket2: Glock18MagazinePistol
+    id: TerminalT6500
+
+# Preset
+# CT side
+- type: entity
+  noSpawn: false
+  parent: MobHuman
+  id: PresetCT
+  name: Counter-terrorist
+  suffix: CS, Empty
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - CT_name
+      - names_last
+    - type: Loadout
+      prototypes: [ CTGear ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: CrewSkills
+      skills:
+       - skillBaseMed
+       - skillShooting
+
+- type: entity
+  noSpawn: false
+  parent: MobHuman
+  id: PresetCT800
+  name: Counter-terrorist
+  suffix: CS, 800
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - CT_name
+      - names_last
+    - type: Loadout
+      prototypes: [ CTGear800 ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: CrewSkills
+      skills:
+       - skillBaseMed
+       - skillShooting
+
+- type: entity
+  noSpawn: false
+  parent: MobHuman
+  id: PresetCT4000
+  name: Counter-terrorist
+  suffix: CS, 4000
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - CT_name
+      - names_last
+    - type: Loadout
+      prototypes: [ CTGear4000 ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: CrewSkills
+      skills:
+       - skillBaseMed
+       - skillShooting
+
+- type: entity
+  noSpawn: false
+  parent: MobHuman
+  id: PresetCT6500
+  name: Counter-terrorist
+  suffix: CS, 6500
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - CT_name
+      - names_last
+    - type: Loadout
+      prototypes: [ CTGear6500 ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: CrewSkills
+      skills:
+       - skillBaseMed
+       - skillShooting
+
+# T side
+- type: entity
+  noSpawn: false
+  parent: MobHuman
+  id: PresetT
+  name: Terrorist
+  suffix: CS, Empty
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - T_name
+      - Group_name
+    - type: Loadout
+      prototypes: [ TGear ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: CrewSkills
+      skills:
+       - skillBaseMed
+       - skillShooting
+
+- type: entity
+  noSpawn: false
+  parent: MobHuman
+  id: PresetT800
+  name: Terrorist
+  suffix: CS, 800
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - T_name
+      - Group_name
+    - type: Loadout
+      prototypes: [ TGear800 ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: CrewSkills
+      skills:
+       - skillBaseMed
+       - skillShooting
+
+- type: entity
+  noSpawn: false
+  parent: MobHuman
+  id: PresetT4000
+  name: Terrorist
+  suffix: CS, 4000
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - T_name
+      - Group_name
+    - type: Loadout
+      prototypes: [ TGear4000 ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: CrewSkills
+      skills:
+       - skillBaseMed
+       - skillShooting
+
+- type: entity
+  noSpawn: false
+  parent: MobHuman
+  id: PresetT6500
+  name: Terrorist
+  suffix: CS, 6500
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - T_name
+      - Group_name
+    - type: Loadout
+      prototypes: [ TGear6500 ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: CrewSkills
+      skills:
+       - skillBaseMed
+       - skillShooting
+
+# Spawn
+# CT side
+- type: entity
+  #noSpawn: true
+  id: SpawnCT
+  name: Spawn counter-terrorist
+  suffix: CS, Empty
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: spawn-ct
+      description: spawn-ct-desc
+      rules: spawn-ct-rules
+    - type: GhostRoleMobSpawner
+      prototype: PresetCT
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+
+- type: entity
+  #noSpawn: true
+  id: SpawnCT800
+  name: Spawn counter-terrorist
+  suffix: CS, 800
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: spawn-ct
+      description: spawn-ct-desc
+      rules: spawn-ct-rules
+    - type: GhostRoleMobSpawner
+      prototype: PresetCT800
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+
+- type: entity
+  #noSpawn: true
+  id: SpawnCT4000
+  name: Spawn counter-terrorist
+  suffix: CS, 4000
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: spawn-ct
+      description: spawn-ct-desc
+      rules: spawn-ct-rules
+    - type: GhostRoleMobSpawner
+      prototype: PresetCT4000
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+
+- type: entity
+  #noSpawn: true
+  id: SpawnCT6500
+  name: Spawn counter-terrorist
+  suffix: CS, 6500
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: spawn-ct
+      description: spawn-ct-desc
+      rules: spawn-ct-rules
+    - type: GhostRoleMobSpawner
+      prototype: PresetCT6500
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+
+# T cide
+- type: entity
+  #noSpawn: true
+  id: SpawnT
+  name: Spawn terrorist
+  suffix: CS, Empty
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: spawn-t
+      description: spawn-t-desc
+      rules: spawn-t-rules
+    - type: GhostRoleMobSpawner
+      prototype: PresetT
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+
+- type: entity
+  #noSpawn: true
+  id: SpawnT800
+  name: Spawn terrorist
+  suffix: CS, 800
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: spawn-t
+      description: spawn-t-desc
+      rules: spawn-t-rules
+    - type: GhostRoleMobSpawner
+      prototype: PresetT800
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+
+- type: entity
+  #noSpawn: true
+  id: SpawnT4000
+  name: Spawn terrorist
+  suffix: CS, 4000
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: spawn-t
+      description: spawn-t-desc
+      rules: spawn-t-rules
+    - type: GhostRoleMobSpawner
+      prototype: PresetT4000
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+
+- type: entity
+  #noSpawn: true
+  id: SpawnT6500
+  name: Spawn terrorist
+  suffix: CS, 6500
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: spawn-t
+      description: spawn-t-desc
+      rules: spawn-t-rules
+    - type: GhostRoleMobSpawner
+      prototype: PresetT6500
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+
+# Name
+- type: dataset
+  id: CT_name
+  values:
+  - Контр-террорист
+
+- type: dataset
+  id: T_name
+  values:
+  - Террорист
+
+- type: dataset
+  id: Group_name
+  values:
+  - Феникса #  TODO: Вставить больше

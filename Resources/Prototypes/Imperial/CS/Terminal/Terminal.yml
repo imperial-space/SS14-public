@@ -1,0 +1,238 @@
+# CT side
+- type: entity
+  parent: [BaseItem, StorePreset_CT]
+  id: TerminalCT
+  name: Counter-terrorist terminal
+  description: It is necessary for the purchase of counter-terrorist.
+  suffix: CS, Empty
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/CS/Terminal/CT.rsi
+    state: CT
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      WarCredit: 0
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - idcard
+
+- type: entity
+  parent: [BaseItem, StorePreset_CT]
+  id: TerminalCT800
+  name: Counter-terrorist terminal
+  description: It is necessary for the purchase of counter-terrorist.
+  suffix: CS, 800
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/CS/Terminal/CT.rsi
+    state: CT
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      WarCredit: 800
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - idcard
+
+- type: entity
+  parent: [BaseItem, StorePreset_CT]
+  id: TerminalCT4000
+  name: Counter-terrorist terminal
+  description: It is necessary for the purchase of counter-terrorist.
+  suffix: CS, 4000
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/CS/Terminal/CT.rsi
+    state: CT
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      WarCredit: 4000
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - idcard
+
+- type: entity
+  parent: [BaseItem, StorePreset_CT]
+  id: TerminalCT6500
+  name: Counter-terrorist terminal
+  description: It is necessary for the purchase of counter-terrorist.
+  suffix: CS, 6500
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/CS/Terminal/CT.rsi
+    state: CT
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      WarCredit: 6500
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - idcard
+
+# T side
+- type: entity
+  parent: [BaseItem, StorePreset_T]
+  id: TerminalT
+  name: Terrorist terminal
+  description: It is necessary for the purchase of terrorist.
+  suffix: CS, Empty
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/CS/Terminal/T.rsi
+    state: T
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      WarCredit: 0
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - idcard
+
+- type: entity
+  parent: [BaseItem, StorePreset_T]
+  id: TerminalT800
+  name: Terrorist terminal
+  description: It is necessary for the purchase of terrorist.
+  suffix: CS, 800
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/CS/Terminal/T.rsi
+    state: T
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      WarCredit: 800
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - idcard
+
+- type: entity
+  parent: [BaseItem, StorePreset_T]
+  id: TerminalT4000
+  name: Terrorist terminal
+  description: It is necessary for the purchase of terrorist.
+  suffix: CS, 4000
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/CS/Terminal/T.rsi
+    state: T
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      WarCredit: 4000
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - idcard
+
+- type: entity
+  parent: [BaseItem, StorePreset_T]
+  id: TerminalT6500
+  name: Terrorist terminal
+  description: It is necessary for the purchase of terrorist.
+  suffix: CS, 6500
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/CS/Terminal/T.rsi
+    state: T
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      WarCredit: 6500
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - idcard
+
+# DEBUG
+- type: entity
+  parent: [BaseItem, StorePreset_DEBAG]
+  id: TerminalDEBUG
+  name: DEBAG terminal
+  description: It is necessary for the purchase of ADMEM.
+  suffix: CS, DEBUG
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/communication.rsi
+    layers:
+    - state: old-radio
+  - type: Item
+    sprite: Objects/Devices/communication.rsi
+    heldPrefix: old-radio
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      WarCredit: 99999
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - idcard
