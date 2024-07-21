@@ -45,7 +45,8 @@ namespace Content.Server.Paper
 
         private void OnInteractUsing(EntityUid uid, EverythingStampComponent everythingStampComp, InteractUsingEvent args)
         {
-            var stampComp = _entities.GetComponent<StampComponent>(args.Used);
+            if (!TryComp<StampComponent>(args.Used, out var stampComp)) return;
+
             if (!TryCopyStamp(uid, GetStampInfo(stampComp), stampComp.StampState, everythingStampComp))
             {
                 _audio.PlayPvs(stampComp.Sound, uid);

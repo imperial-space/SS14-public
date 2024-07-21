@@ -11,9 +11,9 @@ public sealed partial class EverythingStampComponent : Component
     /// </summary>
     [DataField("collectedStamps")]
     public List<StampDisplayInfo> CollectedStamps = [];
-    
+
     /// <summary>
-    /// Текущая выбранная печать  
+    /// Текущая выбранная печать
     /// </summary>
     [DataField("currentStamp")]
     public string CurrentStampName = "stamp-component-stamped-name-default";
