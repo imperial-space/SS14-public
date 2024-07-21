@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from Baystation12 at https://github.com/Baystation12/Baystation12/blob/c7442716b52ce4edeef5eaf5d2fc7c57a08a3f01/icons/mob/simple_animal/possum.dmi",
+  "copyright": "Made for the Imperial Space community, authors'es discord nickname: limemint",
   "size": {
     "x": 32,
     "y": 32
@@ -12,16 +12,14 @@
       "directions": 4
     },
     {
-      "name": "possum_dead",
-      "directions": 4
+      "name": "possum_dead"
     },
     {
       "name": "poppy",
       "directions": 4
     },
     {
-      "name": "poppy_dead",
-      "directions": 4
+      "name": "poppy_dead"
     }
   ]
 }
