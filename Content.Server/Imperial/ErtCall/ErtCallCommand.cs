@@ -10,6 +10,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Imperial.ErtCall;
+using Content.Server.Chat.Systems;
+
 
 namespace Content.Server.Imperial.ErtCall;
 
@@ -39,10 +41,19 @@ public sealed class CallErt : LocalizedCommands
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
+        var chatSystem = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<ChatSystem>();
+
+        var dso = Loc.GetString("callert-command-author");
+
         if (args.Length == 0) //123
         {
             shell.WriteError(Loc.GetString("callertcommand-error-args0"));
             _entity.System<SharedAudioSystem>().PlayGlobal("/Audio/Imperial/ErtCall/noert.ogg", Filter.Broadcast(), true, AudioParams.Default.WithVolume(-2f));
+
+            var noErtMsg = Loc.GetString("callert-command-no-ert");
+
+            chatSystem.DispatchGlobalAnnouncement(noErtMsg, dso, true, null, Color.Yellow);
+
             return;
         }
         if (args.Length > 1)
@@ -62,6 +73,11 @@ public sealed class CallErt : LocalizedCommands
         {
             _entity.System<SharedAudioSystem>().PlayGlobal("/Audio/Imperial/ErtCall/yesert.ogg", Filter.Broadcast(), true, AudioParams.Default.WithVolume(-5f));
             shell.WriteLine(Loc.GetString("callertcommand-preset-loaded", ("protoid", protoId)));
+
+            var yesErtMsg = Loc.GetString("callert-command-yes-ert");
+
+            chatSystem.DispatchGlobalAnnouncement(yesErtMsg, dso, true, null, Color.Yellow);
+
             return;
         }
         else
