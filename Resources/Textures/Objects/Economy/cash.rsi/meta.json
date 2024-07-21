@@ -4,8 +4,8 @@
     "x": 32,
     "y": 32
   },
-  "license": "CC-BY-NC-SA-3.0",
-  "copyright": "Modified by EmoGarbage404 and taken from https://github.com/goonstation/goonstation at commit b951a2c12d967af1295a3e6d33a861e7e1f21299.",
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for the Imperial Space community, authors'es discord nickname: limemint",
   "states": [
     {
       "name": "cash"

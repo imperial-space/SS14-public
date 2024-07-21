@@ -1,7 +1,7 @@
 ﻿{
     "version": 1,
-    "license": "CC-BY-NC-SA-3.0",
-    "copyright": "Taken from goonstation https://github.com/goonstation/goonstation/commit/c98666f47a90d106c7a154cedffc747b3769e933",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made for the Imperial Space community, authors'es discord nickname: limemint",
     "size": {
         "x": 32,
         "y": 32
@@ -13,9 +13,7 @@
             "delays": [[1],[1],[1],[1]]
         },
         {
-            "name": "possum_dead_old",
-            "directions": 1,
-            "delays": [[1]]
+            "name": "possum_dead_old"
         }
     ]
 }
