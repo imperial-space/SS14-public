@@ -32,6 +32,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using PullableComponent = Content.Shared.Movement.Pulling.Components.PullableComponent;
 using PullerComponent = Content.Shared.Movement.Pulling.Components.PullerComponent;
+// Imperial Space zombie-fix Imports Start
+using Content.Shared.Imperial.Prying.Events;
+// Imperial Space zombie-fix Imports End
 
 namespace Content.Server.Electrocution;
 
@@ -82,6 +85,7 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
         SubscribeLocalEvent<ElectrifiedComponent, AttackedEvent>(OnElectrifiedAttacked);
         SubscribeLocalEvent<ElectrifiedComponent, InteractHandEvent>(OnElectrifiedHandInteract);
         SubscribeLocalEvent<ElectrifiedComponent, InteractUsingEvent>(OnElectrifiedInteractUsing);
+        SubscribeLocalEvent<ElectrifiedComponent, PryingEvent>(OnPrying); // Imperial Space zombie-fix
         SubscribeLocalEvent<RandomInsulationComponent, MapInitEvent>(OnRandomInsulationMapInit);
         SubscribeLocalEvent<PoweredLightComponent, AttackedEvent>(OnLightAttacked);
 
@@ -154,6 +158,15 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
 
         return true;
     }
+
+    // Imperial Space zombie-fix Start
+    private void OnPrying(EntityUid uid, ElectrifiedComponent electrified, PryingEvent args)
+    {
+        if (!electrified.OnBump) return;
+
+        TryDoElectrifiedAct(uid, args.User, 1, electrified);
+    }
+    // Imperial Space zombie-fix Imports End
 
     private void OnElectrifiedStartCollide(EntityUid uid, ElectrifiedComponent electrified, ref StartCollideEvent args)
     {
