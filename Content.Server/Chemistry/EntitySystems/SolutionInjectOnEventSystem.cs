@@ -9,6 +9,11 @@ using Content.Shared.Tag;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Collections;
 
+// Imperial Space arrow-fix Dependency Start
+using Content.Shared.Armor;
+using Content.Shared.Imperial.HardsuitInjection.Components;
+// Imperial Space arrow-fix Dependency End
+
 namespace Content.Server.Chemistry.EntitySystems;
 
 /// <summary>
@@ -84,6 +89,8 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
             if (Deleted(target))
                 continue;
 
+            if (ImperialCheckHardsuit(target)) continue; // Imperial Space arrow-fix
+
             // Yuck, this is way to hardcodey for my tastes
             // TODO blocking injection with a hardsuit should probably done with a cancellable event or something
             if (!injector.Comp.PierceArmor && _inventory.TryGetSlotEntity(target, "outerClothing", out var suit) && _tag.HasTag(suit.Value, "Hardsuit"))
@@ -145,4 +152,23 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
         // Huzzah!
         return anySuccess;
     }
+
+    // Imperial Space arrow-fix Start
+    private bool ImperialCheckHardsuit(EntityUid target)
+    {
+        // Okay... Maybe I'll need refactoring this someday...
+
+        if (!EntityManager.TryGetComponent<InventoryComponent>(target, out var inventory)) return false;
+
+        if (!_inventory.TryGetSlotContainer(target, "outerClothing", out var outerClothingContainer, out var _, inventory)) return false;
+        if (!_inventory.TryGetSlotContainer(target, "head", out var headContainer, out var _, inventory)) return false;
+
+        if (!TryComp(outerClothingContainer.ContainedEntity, out InjectComponent? injectComponent)) return false;
+        if (!TryComp(headContainer.ContainedEntity, out ArmorComponent? armorHeadComponent)) return false;
+
+        if (injectComponent!.Locked) return true;
+
+        return false;
+    }
+    // Imperial Space arrow-fix End
 }
