@@ -20,6 +20,7 @@
       - id: ClothingOuterHardsuitWarden
       - id: HoloprojectorSecurity
       - id: BookSpaceLaw
+      - id: BoxAwardM2108 # Imperial Space high-risk steal-objectives item
 
 - type: entity
   id: LockerWardenFilled
@@ -42,6 +43,7 @@
       - id: DoorRemoteArmory
       - id: HoloprojectorSecurity
       - id: BookSpaceLaw
+      - id: BoxAwardM2108 # Imperial Space high-risk steal-objectives item
 
 - type: entity
   id: LockerSecurityFilled

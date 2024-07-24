@@ -4,18 +4,23 @@
   description: job-description-captain
   playTimeTracker: JobCaptain
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 54000 # 15 hours
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 54000 # 15 hours
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 54000 # 15 hours
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 54000 # 15 hours
+    - !type:RoleTimeRequirement
+      role: JobHeadOfPersonnel
+      time: 7200 #Imperial role timers
+    - !type:RoleTimeRequirement
+      role: JobHeadOfSecurity
+      time: 7200 #Imperial role timers
+    - !type:RoleTimeRequirement
+      role: JobChiefMedicalOfficer
+      time: 7200 #Imperial role timers
+    - !type:RoleTimeRequirement
+      role: JobChiefEngineer
+      time: 7200 #Imperial role timers
+    - !type:RoleTimeRequirement
+      role: JobResearchDirector
+      time: 7200 #Imperial role timers
+    - !type:OverallPlaytimeRequirement
+      time: 180000 #Imperial role timers
   weight: 20
   startingGear: CaptainGear
   icon: "JobIconCaptain"
