@@ -21,17 +21,6 @@
   objectType: Item
 
 - type: construction
-  name: укреплённая плитка
-  id: TileReinforced
-  graph: TileReinforced
-  startNode: start
-  targetNode: reinforcedtile
-  category: construction-category-tiles
-  description: "Четыре укреплённых напольных плитки."
-  icon: { sprite: Objects/Tiles/tile.rsi, state: reinforced }
-  objectType: Item
-
-- type: construction
   name: красивый паркет
   id: TileWoodPattern
   graph: TileWoodPattern

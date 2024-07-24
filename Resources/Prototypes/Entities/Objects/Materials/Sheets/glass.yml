@@ -248,6 +248,10 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  # imperial floors
+  - type: FloorTile
+    outputs:
+    - FloorGlassPlasma
 
 - type: entity
   parent: SheetPGlass
@@ -314,6 +318,10 @@
         - ReagentId: Carbon
           Quantity: 0.5
         canReact: false
+  # imperial floors
+  - type: FloorTile
+    outputs:
+    - FloorRGlassPlasma
 
 - type: entity
   parent: SheetRPGlass
@@ -389,6 +397,10 @@
         - ReagentId: Uranium
           Quantity: 10
         canReact: false
+  # imperial floors
+  - type: FloorTile
+    outputs:
+    - FloorGlassUran
 
 - type: entity
   parent: SheetUGlass
@@ -443,6 +455,10 @@
         - ReagentId: Carbon
           Quantity: 0.5
         canReact: false
+  # imperial floors
+  - type: FloorTile
+    outputs:
+    - FloorRGlassUran
 
 - type: entity
   parent: SheetRUGlass

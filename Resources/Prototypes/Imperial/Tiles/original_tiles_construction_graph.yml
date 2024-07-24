@@ -31,22 +31,6 @@
       entity: FloorTileItemSilver
 
 - type: constructionGraph
-  id: TileReinforced
-  start: start
-  graph:
-    - node: start
-      edges:
-        - to: reinforcedtile
-          completed:
-            - !type:SetStackCount
-              amount: 4
-          steps:
-            - material: Plasteel
-              amount: 1
-    - node: reinforcedtile
-      entity: FloorTileItemReinforced
-
-- type: constructionGraph
   id: TileWoodPattern
   start: start
   graph:
@@ -349,22 +333,3 @@
               amount: 1
     - node: shuttlepurpletile
       entity: FloorTileItemShuttlePurple
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

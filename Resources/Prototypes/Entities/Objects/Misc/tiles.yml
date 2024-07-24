@@ -102,6 +102,10 @@
 #  - type: Construction
 #    graph: TileSteel
 #    node: steeltile
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileDiamond
+    node: diamondtile
 
 - type: entity
   name: wood floor
@@ -175,6 +179,10 @@
       - FloorTechMaint
   - type: Stack
     stackType: FloorTileTechmaint
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileTechmaint
+    node: techmainttile
 
 # TODO add a catwalk tile item once tile smoothing is supported
 
@@ -193,6 +201,10 @@
       - FloorMono
   - type: Stack
     stackType: FloorTileMono
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileMono
+    node: monotile
 
 - type: entity
   name: linoleum floor
@@ -209,6 +221,10 @@
       - FloorLino
   - type: Stack
     stackType: FloorTileLino
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileLino
+    node: linotile
 
 - type: entity
   name: filled brass plate
@@ -440,6 +456,10 @@
       - FloorBar
   - type: Stack
     stackType: FloorTileBar
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileBar
+    node: bartile
 
 - type: entity
   name: clown tile
@@ -488,6 +508,10 @@
       - FloorKitchen
   - type: Stack
     stackType: FloorTileKitchen
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileKitchen
+    node: kitchentile
 
 - type: entity
   name: laundry tile
@@ -570,6 +594,10 @@
       - FloorArcadeBlue
   - type: Stack
     stackType: FloorTileStackArcadeBlue
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileArcadeBlue
+    node: arcadebluetile
 
 - type: entity
   name: blue arcade floor
@@ -586,6 +614,10 @@
       - FloorArcadeBlue2
   - type: Stack
     stackType: FloorTileStackArcadeBlue2
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileArcadeBlue2
+    node: arcadeblue2tile
 
 - type: entity
   name: red arcade floor
@@ -602,6 +634,10 @@
       - FloorArcadeRed
   - type: Stack
     stackType: FloorTileStackArcadeRed
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileArcadeRed
+    node: arcaderedtile
 
 - type: entity
   name: eighties floor
@@ -650,6 +686,11 @@
       - FloorCarpetOffice
   - type: Stack
     stackType: FloorTileStackCarpetOffice
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileCarpetOffice
+    node: carpetofficetile
+
 
 - type: entity
   name: boxing ring floor
@@ -666,6 +707,10 @@
       - FloorBoxing
   - type: Stack
     stackType: FloorTileStackBoxing
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileBoxing
+    node: boxingtile
 
 - type: entity
   name: gym floor
@@ -682,6 +727,10 @@
       - FloorGym
   - type: Stack
     stackType: FloorTileStackGym
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileGym
+    node: gymtile
 
 # Shuttles
 - type: entity
@@ -699,6 +748,10 @@
       - FloorShuttleWhite
   - type: Stack
     stackType: FloorTileStackShuttleWhite
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileShuttleWhite
+    node: shuttlewhitetile
 
 - type: entity
   name: blue shuttle floor
@@ -715,6 +768,10 @@
       - FloorShuttleBlue
   - type: Stack
     stackType: FloorTileStackShuttleBlue
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileShuttleBlue
+    node: shuttlebluetile
 
 - type: entity
   name: orange shuttle floor
@@ -731,6 +788,10 @@
       - FloorShuttleOrange
   - type: Stack
     stackType: FloorTileStackShuttleOrange
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileShuttleOrange
+    node: shuttleorangetile
 
 - type: entity
   name: purple shuttle floor
@@ -747,6 +808,10 @@
       - FloorShuttlePurple
   - type: Stack
     stackType: FloorTileStackShuttlePurple
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileShuttlePurple
+    node: shuttlepurpletile
 
 - type: entity
   name: red shuttle floor
@@ -812,6 +877,10 @@
       - FloorGold
   - type: Stack
     stackType: FloorTileGold
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileGold
+    node: goldltile
 
 - type: entity
   name: silver tile
@@ -828,6 +897,10 @@
       - FloorSilver
   - type: Stack
     stackType: FloorTileSilver
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileSilver
+    node: silvertile
 
 # Circuits
 - type: entity
@@ -944,6 +1017,10 @@
       - FloorWoodTile
   - type: Stack
     stackType: FloorTileWoodPattern
+  #imperial craft tiles
+  - type: Construction
+    graph: TileWoodPattern
+    node: woodpatterntile
 
 - type: entity
   id: FloorTileItemFlesh
@@ -979,6 +1056,10 @@
       - FloorTechMaint2
   - type: Stack
     stackType: FloorTileSteelMaint
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileSteelMaint
+    node: steelmainttile
 
 - type: entity
   name: grating maint floor
@@ -995,6 +1076,10 @@
       - FloorTechMaint3
   - type: Stack
     stackType: FloorTileGratingMaint
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileGratingMaint
+    node: gratingmainttile
 
 - type: entity
   name: web tile
