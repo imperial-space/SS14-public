@@ -8,6 +8,7 @@
   markingLimits: MobSlimeMarkingLimits
   dollPrototype: MobSlimePersonDummy
   skinColoration: Hues
+  femaleLastNames: names_last_female #Imperial
 
 - type: speciesBaseSprites
   id: MobSlimeSprites
