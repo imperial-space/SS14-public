@@ -59,6 +59,7 @@ public sealed partial class ContainmentFieldGeneratorComponent : Component
     /// How many tiles should this field check before giving up?
     /// </summary>
     [DataField("maxLength")]
+    [ViewVariables(VVAccess.ReadWrite)] //Imperial fix
     public float MaxLength = 8F;
 
     /// <summary>
