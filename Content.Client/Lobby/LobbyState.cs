@@ -11,6 +11,8 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Timing;
+using Content.Shared.Imperial.ICCVar; //Imperial
+using Robust.Shared.Configuration; //Imperial
 
 
 namespace Content.Client.Lobby
@@ -49,7 +51,11 @@ namespace Content.Client.Lobby
 
             _voteManager.SetPopupContainer(Lobby.VoteContainer);
             LayoutContainer.SetAnchorPreset(Lobby, LayoutContainer.LayoutPreset.Wide);
-            Lobby.ServerName.Text = _baseClient.GameInfo?.ServerName; //The eye of refactor gazes upon you...
+            //Lobby.ServerName.Text = _baseClient.GameInfo?.ServerName; //The eye of refactor gazes upon you...
+            //Imperial Space Start
+            var cfgMan = IoCManager.Resolve<IConfigurationManager>();
+            Lobby.ServerName.Text = cfgMan.GetCVar(ICCVars.LobbyName);
+            //Imperial Space End
             UpdateLobbyUi();
 
             Lobby.CharacterPreview.CharacterSetupButton.OnPressed += OnSetupPressed;
