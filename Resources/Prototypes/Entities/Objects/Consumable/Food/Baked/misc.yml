@@ -262,7 +262,7 @@
   description: A fluffy and delicious blueberry pancake.
   components:
   - type: Stack
-    stackType: Pancake
+    stackType: PancakeBb #Imperial bugfix
     count: 1
     composite: true
     layerStates:
@@ -294,7 +294,7 @@
   description: A fluffy and delicious chocolate chip pancake.
   components:
   - type: Stack
-    stackType: Pancake
+    stackType: PancakeCc #Imperial bugfix
     count: 1
     composite: true
     layerStates:
