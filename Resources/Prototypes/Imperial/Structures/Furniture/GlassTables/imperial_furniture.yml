@@ -49,20 +49,3 @@
   conditions:
     - !type:TileNotBlocked
 
-- type: construction
-  name: золотой туалет
-  id: GoldToilet
-  graph: GoldToiletGraph
-  startNode: start
-  targetNode: goldtoilet
-  category: construction-category-furniture
-  description: Только для богачей
-  icon:
-    sprite: Imperial/Structures/Furniture/GlassTables/goldToilet.rsi
-    state: closed_toilet_seat_up
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
