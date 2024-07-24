@@ -13,3 +13,10 @@
     prototype: WeaponPistolM2108Award
     owner: job-name-warden
     stealGroup: M2108
+
+- type: stealTargetGroup
+  id: M2108
+  name: наградной M2108
+  sprite:
+    sprite: Imperial/TFG/Weapon/M2108/m2108.rsi
+    state: base

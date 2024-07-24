@@ -31,8 +31,6 @@
             - CartridgeM2108
   - type: StaticPrice
     price: 345
-  - type: StealTarget
-    stealGroup: M2108
 
 # Wardens High Risk item
 - type: entity
@@ -47,6 +45,8 @@
     - Sidearm
   - type: StaticPrice
     price: 1250
+  - type: StealTarget
+    stealGroup: M2108
 
 - type: entity
   id: BoxAwardM2108
