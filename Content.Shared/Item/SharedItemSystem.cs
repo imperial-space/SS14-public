@@ -9,14 +9,19 @@ using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+// Imperial Space Item System Fix Start
+using Content.Shared.Inventory;
+using Content.Shared.Clothing.Components;
+// Imperial Space Item System Fix End
 
 namespace Content.Shared.Item;
 
 public abstract class SharedItemSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private   readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] protected readonly SharedContainerSystem Container = default!;
+    [Dependency] private readonly InventorySystem _inventorySystem = default!; // Imperial Space Item System Fix
 
     public override void Initialize()
     {
@@ -104,8 +109,36 @@ public abstract class SharedItemSystem : EntitySystem
             return;
 
         InteractionVerb verb = new();
-        verb.Act = () => _handsSystem.TryPickupAnyHand(args.User, args.Target, checkActionBlocker: false,
-            handsComp: args.Hands, item: component);
+        // verb.Act = () => _handsSystem.TryPickupAnyHand(args.User, args.Target, checkActionBlocker: false,
+        //     handsComp: args.Hands, item: component);
+
+        // Imperial Space Item System Fix Start
+        verb.Act = () =>
+        {
+            if (!TryComp<ClothingComponent>(args.Target, out var clothingComponent))
+            {
+                _handsSystem.TryPickupAnyHand(
+                    args.User,
+                    args.Target,
+                    checkActionBlocker: false,
+                    handsComp: args.Hands,
+                    item: component
+                );
+                return;
+            }
+            if (clothingComponent.InSlot != null && !_inventorySystem.TryUnequip(args.User, clothingComponent.InSlot, out var _))
+                return;
+
+            _handsSystem.TryPickupAnyHand(
+                args.User,
+                args.Target,
+                checkActionBlocker: false,
+                handsComp: args.Hands,
+                item: component
+            );
+        };
+        // Imperial Space Item System Fix End
+
         verb.Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/pickup.svg.192dpi.png"));
 
         // if the item already in a container (that is not the same as the user's), then change the text.
