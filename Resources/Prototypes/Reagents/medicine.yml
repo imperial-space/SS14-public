@@ -506,23 +506,24 @@
   metabolisms:
     Medicine:
       effects:
-      - !type:HealthChange
-        probability: 0.3
-        damage:
-          types:
-            Heat: 0.5
-      - !type:HealthChange
-        conditions:
-          - !type:ReagentThreshold
-            min: 30
-        damage:
-          types:
-            Poison: 3
-      - !type:ChemVomit
-        probability: 0.15
-        conditions:
-          - !type:ReagentThreshold
-            min: 30
+      #Imperial
+      # - !type:HealthChange
+      #   probability: 0.3
+      #   damage:
+      #     types:
+      #       Heat: 0.5
+      # - !type:HealthChange
+      #   conditions:
+      #     - !type:ReagentThreshold
+      #       min: 30
+      #   damage:
+      #     types:
+      #       Poison: 3
+      # - !type:ChemVomit
+      #   probability: 0.15
+      #   conditions:
+      #     - !type:ReagentThreshold
+      #       min: 30
       - !type:GenericStatusEffect
         key: PressureImmunity
         component: PressureImmunity

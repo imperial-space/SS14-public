@@ -313,11 +313,11 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi
   - type: Gun
-    fireRate: 1.5
+    fireRate: 1.8 ##Стандартно 1.5. Изменено для баффа дедов //Imperial Space
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: Pulse
+    proto: PulseDeathSquad ##Стоял стандартный Pulse. Изменен для баффа пушки дедов //Imperial Space
     fireCost: 100
   - type: Battery
     maxCharge: 40000

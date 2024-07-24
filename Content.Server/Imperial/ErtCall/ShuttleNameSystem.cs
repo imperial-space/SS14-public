@@ -1,6 +1,7 @@
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
 using Content.Shared.Dataset;
+using Content.Server.Chat.Systems;
 
 namespace Content.Server.Imperial.ErtCall;
 public sealed class ShuttleNameSystem : EntitySystem
@@ -8,6 +9,7 @@ public sealed class ShuttleNameSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly MetaDataSystem _metadata = default!;
+    [Dependency] private readonly ChatSystem _chatSystem = default!;
     private string[] SuffixLetters => new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
     public override void Initialize()
     {
@@ -46,5 +48,10 @@ public sealed class ShuttleNameSystem : EntitySystem
         }
         var metadata = MetaData(uid);
         _metadata.SetEntityName(uid, res, metadata);
+        if (component.AnnouncementNeed)
+        {
+            _chatSystem.DispatchGlobalAnnouncement(component.Announcement + " " + res, Loc.GetString("admin-announce-announcer-default"), false, colorOverride: Color.Gold);
+        }
+
     }
 }

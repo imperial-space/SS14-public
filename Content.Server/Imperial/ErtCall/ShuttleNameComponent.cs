@@ -43,4 +43,9 @@ public sealed partial class ShuttleNameComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField("shipNameLast")]
     public String ShipNameLast = "shuttleNameLast";
+    [ViewVariables(VVAccess.ReadWrite), DataField("announcementNeed")]
+    public bool AnnouncementNeed = true;
+    [ViewVariables(VVAccess.ReadWrite), DataField("announcement")]
+    public string Announcement = "Мы получили запрос отряда быстрого реагирования, запрос одобрен. К вам направлен отряд ";
+
 }
