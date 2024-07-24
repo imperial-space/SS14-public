@@ -12,6 +12,49 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
     private static readonly Dictionary<string, string> SmileyToEmote = new()
     {
         // I could've done this with regex, but felt it wasn't the right idea.
+        { "хд", "chatsan-laughs" },
+        { "о-о", "chatsan-wide-eyed" }, // cyrillic о
+        { "о.о", "chatsan-wide-eyed" }, // cyrillic о
+        { "0_о", "chatsan-wide-eyed" }, // cyrillic о
+        { "о/", "chatsan-waves" }, // cyrillic о
+        { "0_o", "chatsan-wide-eyed" },
+        { "лмао", "chatsan-laughs" },
+        { "яхз", "chatsan-shrugs" },
+        { ":0", "chatsan-surprised" },
+        { ":р", "chatsan-stick-out-tongue" }, // cyrillic р
+        { "кек", "chatsan-laughs" },
+        { "T_T", "chatsan-cries" },
+        { "Т_Т", "chatsan-cries" }, // cyrillic T
+        { "=_(", "chatsan-cries" },
+        { "!см", "chatsan-laughs" },
+        { "!св", "chatsan-whistle" },
+        { "!в", "chatsan-sighs" },
+        { "!х", "chatsan-claps" },
+        { "!п", "chatsan-cries" },
+        { "!щ", "chatsan-snaps" },
+        { "хд.", "chatsan-laughs" },
+        { "о-о.", "chatsan-wide-eyed" }, // cyrillic о
+        { "о.о.", "chatsan-wide-eyed" }, // cyrillic о
+        { "0_о.", "chatsan-wide-eyed" }, // cyrillic о
+        { "о/.", "chatsan-waves" }, // cyrillic о
+        { "о7", "chatsan-salutes" }, // cyrillic о
+        { "0_o.", "chatsan-wide-eyed" },
+        { "лмао.", "chatsan-laughs" },
+        { "яхз.", "chatsan-shrugs" },
+        { ":0.", "chatsan-surprised" },
+        { ":р.", "chatsan-stick-out-tongue" }, // cyrillic р
+        { "кек.", "chatsan-laughs" },
+        { "T_T.", "chatsan-cries" },
+        { "Т_Т.", "chatsan-cries" }, // cyrillic T
+        { "=_(.", "chatsan-cries" },
+        { "!см.", "chatsan-laughs" },
+        { "!св.", "chatsan-whistle" },
+        { "!в.", "chatsan-sighs" },
+        { "!х.", "chatsan-claps" },
+        { "!п.", "chatsan-cries" },
+        { "!щ.", "chatsan-snaps" },
+        //imperial rus replace end @keeyn
+        // I could've done this with regex, but felt it wasn't the right idea.
         { ":)", "chatsan-smiles" },
         { ":]", "chatsan-smiles" },
         { "=)", "chatsan-smiles" },
@@ -38,14 +81,6 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         { ":>", "chatsan-grins" },
         { ":<", "chatsan-pouts" },
         { "xD", "chatsan-laughs" },
-        { ":'(", "chatsan-cries" },
-        { ":'[", "chatsan-cries" },
-        { "='(", "chatsan-cries" },
-        { "='[", "chatsan-cries" },
-        { ")':", "chatsan-cries" },
-        { "]':", "chatsan-cries" },
-        { ")'=", "chatsan-cries" },
-        { "]'=", "chatsan-cries" },
         { ";-;", "chatsan-cries" },
         { ";_;", "chatsan-cries" },
         { "qwq", "chatsan-cries" },
@@ -55,7 +90,6 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         { ":i", "chatsan-sighs" },
         { ":|", "chatsan-sighs" },
         { ":p", "chatsan-stick-out-tongue" },
-        { ";p", "chatsan-stick-out-tongue" },
         { ":b", "chatsan-stick-out-tongue" },
         { "0-0", "chatsan-wide-eyed" },
         { "o-o", "chatsan-wide-eyed" },
@@ -63,7 +97,6 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         { "._.", "chatsan-surprised" },
         { ".-.", "chatsan-confused" },
         { "-_-", "chatsan-unimpressed" },
-        { "smh", "chatsan-unimpressed" },
         { "o/", "chatsan-waves" },
         { "^^/", "chatsan-waves" },
         { ":/", "chatsan-uncertain" },
@@ -76,23 +109,10 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         { "lel.", "chatsan-laughs" },
         { "kek", "chatsan-laughs" },
         { "kek.", "chatsan-laughs" },
-        { "rofl", "chatsan-laughs" },
         { "o7", "chatsan-salutes" },
         { ";_;7", "chatsan-tearfully-salutes"},
         { "idk", "chatsan-shrugs" },
-        { "idk.", "chatsan-shrugs" },
-        { ";)", "chatsan-winks" },
-        { ";]", "chatsan-winks" },
-        { "(;", "chatsan-winks" },
-        { "[;", "chatsan-winks" },
-        { ":')", "chatsan-tearfully-smiles" },
-        { ":']", "chatsan-tearfully-smiles" },
-        { "=')", "chatsan-tearfully-smiles" },
-        { "=']", "chatsan-tearfully-smiles" },
-        { "(':", "chatsan-tearfully-smiles" },
-        { "[':", "chatsan-tearfully-smiles" },
-        { "('=", "chatsan-tearfully-smiles" },
-        { "['=", "chatsan-tearfully-smiles" },
+        { "idk.", "chatsan-shrugs" }
     };
 
     private bool _doSanitize;
