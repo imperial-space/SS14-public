@@ -17,8 +17,8 @@
       - !type:AdjustTemperature
         amount: -15000
   tileReactions:
-    - !type:ReplaceTileReaction
-      tile: IceFloorSheet
+    - !type:CreateEntityTileReaction
+      entity: IceCrust
 
 - type: reagent
   id: StabilizingAgent
