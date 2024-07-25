@@ -11,7 +11,7 @@
       layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: Lancer
-        sprite: Imperial/Horror/Lancer.rsi
+        sprite: Imperial/Other/Horror/Lancer.rsi
     - type: DamageStateVisuals
       states:
         Alive:

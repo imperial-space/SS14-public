@@ -6,7 +6,7 @@
   description: Modified ID card of S-o.N.A. AI Dynamics Corporation.
   components:
   - type: Sprite
-    sprite: Imperial/Sona/Card.rsi
+    sprite: Imperial/Other/Sona/Card.rsi
     state: SonaCard
   - type: Item
     size: Small

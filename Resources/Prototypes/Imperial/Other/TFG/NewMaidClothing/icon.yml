@@ -2,6 +2,6 @@
   parent: JobIcon
   id: JobIconMaid
   icon:
-    sprite: /Textures/Imperial/TFG/NewMaidClothing/maidIcon.rsi
+    sprite: /Textures/Imperial/Other/TFG/NewMaidClothing/maidIcon.rsi
     state: BaseMaid
 

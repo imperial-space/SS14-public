@@ -5,16 +5,16 @@
   desctription: Shiny. Because I'm patriot!
   components:
   - type: Sprite
-    sprite: Imperial/TFG/GoldenLife/goldenMK58.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenMK58.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
-    sprite: Imperial/TFG/GoldenLife/goldenMK58.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenMK58.rsi
   - type: Clothing
-    sprite: Imperial/TFG/GoldenLife/goldenMK58.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenMK58.rsi
   - type: StaticPrice
     price: 1000
 
@@ -26,16 +26,16 @@
   suffix: Non-lethal
   components:
   - type: Sprite
-    sprite: Imperial\TFG\GoldenLife\goldenMK58.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenMK58.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
-    sprite: Imperial/TFG/GoldenLife/goldenMK58.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenMK58.rsi
   - type: Clothing
-    sprite: Imperial/TFG/GoldenLife/goldenMK58.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenMK58.rsi
   - type: StaticPrice
     price: 1000
 

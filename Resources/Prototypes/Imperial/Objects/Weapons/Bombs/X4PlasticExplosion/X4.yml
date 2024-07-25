@@ -5,7 +5,7 @@
   id: X4
   components:
   - type: Sprite
-    sprite: Imperial/X4Bomb.rsi
+    sprite: Imperial/Objects/Weapons/Bombs/X4Bomb.rsi
     state: icon
     layers:
     - state: icon

@@ -5,9 +5,9 @@
   description: A standard Type I armored vest that provides decent protection against most types of damage.
   components:
   - type: Sprite
-    sprite: Imperial/CargoResprite/OuterClothing/qmcoat.rsi
+    sprite: Imperial/Clothing/Departments/Cargo/CargoResprite/OuterClothing/qmcoat.rsi
   - type: Clothing
-    sprite: Imperial/CargoResprite/OuterClothing/qmcoat.rsi
+    sprite: Imperial/Clothing/Departments/Cargo/CargoResprite/OuterClothing/qmcoat.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -26,9 +26,9 @@
   description: A standard Type I armored vest that provides decent protection against most types of damage.
   components:
   - type: Sprite
-    sprite: Imperial/CargoResprite/OuterClothing/jacket.rsi
+    sprite: Imperial/Clothing/Departments/Cargo/CargoResprite/OuterClothing/jacket.rsi
   - type: Clothing
-    sprite: Imperial/CargoResprite/OuterClothing/jacket.rsi
+    sprite: Imperial/Clothing/Departments/Cargo/CargoResprite/OuterClothing/jacket.rsi
   - type: Armor
     modifiers:
       coefficients:

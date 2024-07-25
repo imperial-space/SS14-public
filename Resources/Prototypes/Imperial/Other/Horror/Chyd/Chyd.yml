@@ -11,7 +11,7 @@
       layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: Chyd
-        sprite: Imperial/Horror/Chyd.rsi
+        sprite: Imperial/Other/Horror/Chyd.rsi
     - type: DamageStateVisuals
       states:
         Alive:
@@ -68,7 +68,7 @@
           layer:
           - MobLayer
     - type: Devourer
-      soundDevour: /Audio/Imperial/Horror/Chyd/ChydEat.ogg
+      soundDevour: /Audio/Imperial/Other/Horror/Chyd/ChydEat.ogg
       foodPreference: Humanoid
       shouldStoreDevoured: true
       chemical: Ichor

@@ -14,7 +14,7 @@
   parent: JobIcon
   id: JobIconIAA
   icon:
-    sprite: Imperial/imperial_job_icons.rsi
+    sprite: /Textures/Imperial/Interface/Misc/imperial_job_icons.rsi
     state: IAA
 
 - type: job

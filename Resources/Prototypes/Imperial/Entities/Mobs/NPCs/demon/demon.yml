@@ -12,7 +12,7 @@
   - type: MobMover
   - type: Sprite
     drawdepth: Mobs
-    sprite: Imperial/demon.rsi
+    sprite: Imperial/Entities/Mobs/NPCs/demon.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: demon

@@ -13,7 +13,7 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: voron
-      sprite: Imperial\Witchers\Voron.rsi
+      sprite: Imperial\Other\Witchers\Voron.rsi
   - type: Fixtures
     fixtures:
       fix1:

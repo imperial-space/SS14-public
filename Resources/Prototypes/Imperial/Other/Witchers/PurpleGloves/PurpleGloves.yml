@@ -7,9 +7,9 @@
   - type: Item
     size: Small
   - type: Sprite
-    sprite: Imperial/Witchers/PurpleGloves.rsi
+    sprite: Imperial/Other/Witchers/PurpleGloves.rsi
   - type: Clothing
-    sprite: Imperial/Witchers/PurpleGloves.rsi
+    sprite: Imperial/Other/Witchers/PurpleGloves.rsi
   - type: GloveHeatResistance
     heatResistance: 1400
   - type: Insulated

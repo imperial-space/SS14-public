@@ -10,7 +10,7 @@
     - Taser
     - Sidearm
   - type: Sprite
-    sprite: Imperial/MiniCrossbow.rsi
+    sprite: Imperial/Objects/Weapons/Battery/MiniCrossbow.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -18,7 +18,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: shaded
   - type: Item
-    sprite: Imperial/MiniCrossbow.rsi
+    sprite: Imperial/Objects/Weapons/Battery/MiniCrossbow.rsi
   - type: Clothing
     quickEquip: false
     slots:

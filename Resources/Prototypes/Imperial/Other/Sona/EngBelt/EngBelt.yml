@@ -8,9 +8,9 @@
   - type: Item
     size: Small
   - type: Sprite
-    sprite: Imperial/Sona/EngBelt.rsi
+    sprite: Imperial/Other/Sona/EngBelt.rsi
   - type: Clothing
-    sprite: Imperial/Sona/EngBelt.rsi
+    sprite: Imperial/Other/Sona/EngBelt.rsi
   - type: Storage
     capacity: 120
     # TODO: Fill this out more.

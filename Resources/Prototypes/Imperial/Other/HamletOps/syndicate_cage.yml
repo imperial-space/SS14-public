@@ -6,13 +6,13 @@
   suffix: Solid
   components:
   - type: Sprite
-    sprite: Imperial/HamletOps/cage.rsi
+    sprite: Imperial/Other/HamletOps/cage.rsi
     layers:
     - state: base
     - state: closed
       map: ["enum.StorageVisualLayers.Door"]
   - type: Icon
-    sprite: Imperial/HamletOps/cage.rsi
+    sprite: Imperial/Other/HamletOps/cage.rsi
   - type: Destructible
     thresholds:
     - trigger:

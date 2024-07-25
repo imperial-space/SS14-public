@@ -4,7 +4,7 @@
   name: Compact defibrillator
   components:
   - type: Sprite
-    sprite: Imperial/CompactDefib/compactdefib.rsi
+    sprite: Imperial/Objects/Specific/Medical/CompactDefib/compactdefib.rsi
     layers:
     - state: icon
     - state: screen

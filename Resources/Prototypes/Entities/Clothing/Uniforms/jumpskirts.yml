@@ -543,9 +543,9 @@
   description: For professionals, not the posers.
   components:
   - type: Sprite
-    sprite: Imperial/TFG/NewMaidClothing/maidDress.rsi #Imperial maid sprite
+    sprite: Imperial/Other/TFG/NewMaidClothing/maidDress.rsi #Imperial maid sprite
   - type: Clothing
-    sprite: Imperial/TFG/NewMaidClothing/maidDress.rsi #Imperial maid sprite
+    sprite: Imperial/Other/TFG/NewMaidClothing/maidDress.rsi #Imperial maid sprite
 
 - type: entity
   parent: ClothingUniformSkirtBase

@@ -11,7 +11,7 @@
     tags:
     - Knife
   - type: Sprite
-    sprite: Imperial/Witchers/Kosa.rsi
+    sprite: Imperial/Other/Witchers/Kosa.rsi
     size: 4
     state: icon
   - type: MeleeWeapon

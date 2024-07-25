@@ -6,4 +6,4 @@
   description: On guard of bureaucratic fashion.
   components:
   - type: Sprite
-    sprite: Imperial/VlClothes/CentCom/CCStachel.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/CentCom/CCStachel.rsi

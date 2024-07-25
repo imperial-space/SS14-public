@@ -8,9 +8,9 @@
   - type: Item
     size: Small
   - type: Sprite
-    sprite: Imperial/Sona/Mask.rsi
+    sprite: Imperial/Other/Sona/Mask.rsi
   - type: Clothing
-    sprite: Imperial/Sona/Mask.rsi
+    sprite: Imperial/Other/Sona/Mask.rsi
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 0.95

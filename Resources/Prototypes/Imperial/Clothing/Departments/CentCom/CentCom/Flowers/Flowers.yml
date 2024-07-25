@@ -8,9 +8,9 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/VlClothes/CentCom/FlowerEmerald.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/CentCom/FlowerEmerald.rsi
   - type: Clothing
-    sprite: Imperial/VlClothes/CentCom/FlowerEmerald.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/CentCom/FlowerEmerald.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -22,6 +22,6 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/VlClothes/CentCom/FlowerGold.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/CentCom/FlowerGold.rsi
   - type: Clothing
-    sprite: Imperial/VlClothes/CentCom/FlowerGold.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/CentCom/FlowerGold.rsi

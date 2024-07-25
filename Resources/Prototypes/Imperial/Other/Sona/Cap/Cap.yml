@@ -8,9 +8,9 @@
   - type: Item
     size: Small
   - type: Sprite
-    sprite: Imperial/Sona/Cap.rsi
+    sprite: Imperial/Other/Sona/Cap.rsi
   - type: Clothing
-    sprite: Imperial/Sona/Cap.rsi
+    sprite: Imperial/Other/Sona/Cap.rsi
   - type: Tag
     tags:
     - ClothMade

@@ -75,9 +75,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/advanced.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/advanced.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/advanced.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/advanced.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitCESealed
   - type: Storage
@@ -103,9 +103,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/engineer.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/engineer.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/engineer.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/engineer.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitEngineerSealed
   - type: Storage
@@ -131,9 +131,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/atmospheric.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/atmospheric.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/atmospheric.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/atmospheric.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitAtmosphericsSealed
   - type: Storage
@@ -159,9 +159,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/rnd.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/rnd.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/rnd.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/rnd.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitRNDSealed
     requiredSlot: back
@@ -189,9 +189,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/medical.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/medical.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/medical.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/medical.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitMedicalSealed
   - type: PointLight
@@ -214,9 +214,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/cmo.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/cmo.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/cmo.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/cmo.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitCMOSealed
   - type: Storage
@@ -242,9 +242,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/civillian.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/civillian.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/civillian.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/civillian.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitCivillianSealed
   - type: PointLight
@@ -267,9 +267,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/magnate.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/magnate.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/magnate.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/magnate.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitMagnateSealed
   - type: Storage
@@ -295,9 +295,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/security.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/security.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/security.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/security.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitSecuritySealed
   - type: Storage
@@ -323,9 +323,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/hos.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/hos.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/hos.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/hos.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitHOSSealed
   - type: Storage
@@ -351,9 +351,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/salvage.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/salvage.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/salvage.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/salvage.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitSalvageSealed
   - type: Storage
@@ -379,9 +379,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/miner.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/miner.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/miner.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/miner.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitMinerSealed
   - type: Storage
@@ -404,9 +404,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/nukeops.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/nukeops.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/nukeops.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/nukeops.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitOperativeSealed
   - type: Storage
@@ -442,9 +442,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/nukeopsclown.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/nukeopsclown.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/nukeopsclown.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/nukeopsclown.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitHonkOperativeSealed
     requiredSlot: back
@@ -479,9 +479,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/nukeopscmd.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/nukeopscmd.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/nukeopscmd.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/nukeopscmd.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitOperativeCMDSealed
   - type: Storage
@@ -514,11 +514,11 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/corporate.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/corporate.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/corporate.rsi
-    equipSound: /Audio/Items/Modsuits/ballin.ogg
-    unequipSound: /Audio/Items/Modsuits/ballout.ogg
+    sprite: Imperial/Other/Modsuits/Clothing/Back/corporate.rsi
+    equipSound: /Audio/Imperial/Modsuits/ballin.ogg
+    unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitCCSealed
     requiredSlot: back
@@ -540,9 +540,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/apocryphal.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/apocryphal.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/apocryphal.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/apocryphal.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitApocryphalSealed
   - type: Storage
@@ -570,9 +570,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/rnd2.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/rnd2.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/rnd2.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/rnd2.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitRND2Sealed
     requiredSlot: back
@@ -598,9 +598,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/engineer2.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/engineer2.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/engineer2.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/engineer2.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitEngineer2Sealed
   - type: Storage
@@ -621,9 +621,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/medical2.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/medical2.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/medical2.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/medical2.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitMedical2Sealed
   - type: Storage
@@ -649,9 +649,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/sstcmd.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/sstcmd.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/sstcmd.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/sstcmd.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitSSTOperativeCMDSealed
   - type: Storage
@@ -674,9 +674,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/sstsupport.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/sstsupport.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/sstsupport.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/sstsupport.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitSSTOperativeSupportSealed
   - type: Storage
@@ -699,9 +699,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/nakamuraengineer.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/nakamuraengineer.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/nakamuraengineer.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/nakamuraengineer.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitIndustrialSealed
   - type: Storage
@@ -724,9 +724,9 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/pmc.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/pmc.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/pmc.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/pmc.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterChestplateModsuitPMCSealed
   - type: Storage

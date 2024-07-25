@@ -8,9 +8,9 @@
   - type: Item
     size: Normal
   - type: Sprite
-    sprite: Imperial/Sona/EngSuitTwo.rsi
+    sprite: Imperial/Other/Sona/EngSuitTwo.rsi
   - type: Clothing
-    sprite: Imperial/Sona/EngSuitTwo.rsi
+    sprite: Imperial/Other/Sona/EngSuitTwo.rsi
   - type: PointLight
     color: "#8afdff"
   - type: PressureProtection

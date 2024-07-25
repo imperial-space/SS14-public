@@ -3,7 +3,7 @@
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: Imperial/HairAndTail/old_human_hair.rsi
+    - sprite: Imperial/Other/HairAndTail/old_human_hair.rsi
       state: long_bedhead
 
 - type: marking
@@ -11,7 +11,7 @@
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: Imperial/HairAndTail/old_human_hair.rsi
+    - sprite: Imperial/Other/HairAndTail/old_human_hair.rsi
       state: business2
 
 - type: marking
@@ -19,7 +19,7 @@
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: Imperial/HairAndTail/old_human_hair.rsi
+    - sprite: Imperial/Other/HairAndTail/old_human_hair.rsi
       state: braid
 
 - type: marking
@@ -27,15 +27,15 @@
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: Imperial/HairAndTail/old_human_hair.rsi
+    - sprite: Imperial/Other/HairAndTail/old_human_hair.rsi
       state: braid2
-    
+
 - type: marking
   id: HumanHairShortbraidOld
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: Imperial/HairAndTail/old_human_hair.rsi
+    - sprite: Imperial/Other/HairAndTail/old_human_hair.rsi
       state: shortbraid
 
 - type: marking
@@ -43,7 +43,7 @@
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: Imperial/HairAndTail/old_human_hair.rsi
+    - sprite: Imperial/Other/HairAndTail/old_human_hair.rsi
       state: long
 
 - type: marking
@@ -51,7 +51,7 @@
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: Imperial/HairAndTail/old_human_hair.rsi
+    - sprite: Imperial/Other/HairAndTail/old_human_hair.rsi
       state: long2
 
 - type: marking
@@ -59,5 +59,5 @@
   bodyPart: Hair
   markingCategory: Hair
   sprites:
-    - sprite: Imperial/HairAndTail/old_human_hair.rsi
+    - sprite: Imperial/Other/HairAndTail/old_human_hair.rsi
       state: long3

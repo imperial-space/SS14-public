@@ -7,7 +7,7 @@
   - type: Item
     size: Normal
   - type: Sprite
-    sprite: Imperial/EnergyBola/energy_bola.rsi
+    sprite: Imperial/Objects/Weapons/Throwable/EnergyBola/energy_bola.rsi
     state: icon
   - type: EmitSoundOnThrow
     sound: /Audio/Weapons/bolathrow.ogg

@@ -5,7 +5,7 @@
   description: This is what happens when ancient quality is combined with modern materials.
   components:
   - type: Sprite
-    sprite: Imperial/TFG/Weapon/M2108/m2108.rsi
+    sprite: Imperial/Other/TFG/Weapon/M2108/m2108.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -87,7 +87,7 @@
       tags:
         - CartridgeACP
   - type: Sprite
-    sprite: Imperial/TFG/Weapon/M2108/magazine.rsi
+    sprite: Imperial/Other/TFG/Weapon/M2108/magazine.rsi
     layers:
     - state: red
       map: ["enum.GunVisualLayers.Base"]

@@ -15,7 +15,7 @@
     - VimPilot
   - type: Sprite
     drawdepth: Mobs
-    sprite: Imperial/Witchers/Cats/Catv2.rsi
+    sprite: Imperial/Other/Witchers/Cats/Catv2.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: MrRed

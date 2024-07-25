@@ -6,12 +6,12 @@
   description: For big shot in big problem.
   components:
   - type: Sprite
-    sprite: Imperial/TFG/RepresentativeStuff/evaSuit.rsi
+    sprite: Imperial/Other/TFG/RepresentativeStuff/evaSuit.rsi
     state: icon
   - type: Item
-    sprite: Imperial/TFG/RepresentativeStuff/evaSuit.rsi
+    sprite: Imperial/Other/TFG/RepresentativeStuff/evaSuit.rsi
   - type: Clothing
-    sprite: Imperial/TFG/RepresentativeStuff/evaSuit.rsi
+    sprite: Imperial/Other/TFG/RepresentativeStuff/evaSuit.rsi
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
@@ -33,12 +33,12 @@
   description: A EVA helmet for big shot.
   components:
   - type: Sprite
-    sprite: Imperial/TFG/RepresentativeStuff/evaHelmet.rsi
+    sprite: Imperial/Other/TFG/RepresentativeStuff/evaHelmet.rsi
     state: icon
   - type: Item
-    sprite: Imperial/TFG/RepresentativeStuff/evaHelmet.rsi
+    sprite: Imperial/Other/TFG/RepresentativeStuff/evaHelmet.rsi
   - type: Clothing
-    sprite: Imperial/TFG/RepresentativeStuff/evaHelmet.rsi
+    sprite: Imperial/Other/TFG/RepresentativeStuff/evaHelmet.rsi
     slot: head
   - type: PressureProtection
     highPressureMultiplier: 0.05
@@ -60,10 +60,10 @@
   description: A special suit, custom-made for the cool bodyguards of a particularly important boss.
   components:
   - type: Sprite
-    sprite: Imperial/TFG/RepresentativeStuff/agentUniform.rsi
+    sprite: Imperial/Other/TFG/RepresentativeStuff/agentUniform.rsi
     state: icon
   - type: Item
-    sprite: Imperial/TFG/RepresentativeStuff/agentUniform.rsi
+    sprite: Imperial/Other/TFG/RepresentativeStuff/agentUniform.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -92,10 +92,10 @@
   description: For Special Agents.
   components:
   - type: Sprite
-    sprite: Imperial/TFG/RepresentativeStuff/agentHardsuit.rsi
+    sprite: Imperial/Other/TFG/RepresentativeStuff/agentHardsuit.rsi
     state: icon
   - type: Clothing
-    sprite: Imperial/TFG/RepresentativeStuff/agentHardsuit.rsi
+    sprite: Imperial/Other/TFG/RepresentativeStuff/agentHardsuit.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: PressureProtection
@@ -139,9 +139,9 @@
   description: For Special Agents.
   components:
   - type: Sprite
-    sprite: Imperial/TFG/RepresentativeStuff/agentHelmet.rsi
+    sprite: Imperial/Other/TFG/RepresentativeStuff/agentHelmet.rsi
   - type: Clothing
-    sprite: Imperial/TFG/RepresentativeStuff/agentHelmet.rsi
+    sprite: Imperial/Other/TFG/RepresentativeStuff/agentHelmet.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: PointLight

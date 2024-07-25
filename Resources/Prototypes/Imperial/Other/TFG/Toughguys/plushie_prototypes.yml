@@ -6,7 +6,7 @@
   suffix: COMMUNITY,TOY
   components:
   - type: Sprite
-    sprite: Imperial/Toughguys
+    sprite: Imperial/Other/TFG/Toughguys
     state: plushie_IAA
   - type: Item
     size: Normal
@@ -33,7 +33,7 @@
   description: Capitan.
   components:
   - type: Sprite
-    sprite: Imperial/Toughguys
+    sprite: Imperial/Other/TFG/Toughguys
     state: plushie_capitan
 
 - type: entity
@@ -43,7 +43,7 @@
   description: #none
   components:
   - type: Sprite
-    sprite: Imperial/Toughguys
+    sprite: Imperial/Other/TFG/Toughguys
     state: plushie_SO
 
 # Cadet, do you know how a flash device works?
@@ -63,7 +63,7 @@
   description: #none
   components:
   - type: Sprite
-    sprite: Imperial/Toughguys
+    sprite: Imperial/Other/TFG/Toughguys
     state: plushie_IAA
 
 # Chocovate
@@ -84,7 +84,7 @@
   description: The most furious follower of the great god Kum'Ar. So furious that even the toy seems to be saturated with drugs... NanoTrasen, seriously?
   components:
   - type: Sprite
-    sprite: Imperial/Toughguys
+    sprite: Imperial/Other/TFG/Toughguys
     state: plushie_chemist
 
 #Armenian Stuff. No Thrivenin here!
@@ -104,7 +104,7 @@
   description: The only chief medical officer who finds Trayvovin useful. Will teach the ENTIRE station to create the perfect medical base.
   components:
   - type: Sprite
-    sprite: Imperial/Toughguys
+    sprite: Imperial/Other/TFG/Toughguys
     state: plushie_CP
 
 #THE BEST MEDICAL BASE!!!!
@@ -125,7 +125,7 @@
   description: He believed that he could build a shuttle in 20 minutes, and whoever does not do this has no right to be called an “engineer.” He disappeared into obscurity in space after an unexpected depressurization of a weakly welded body of his own design.
   components:
   - type: Sprite
-    sprite: Imperial/Toughguys
+    sprite: Imperial/Other/TFG/Toughguys
     state: plushie_engineer
 
 - type: entity
@@ -135,7 +135,7 @@
   description: The best representative of the Kesis race, who does not stand out in any way from the rest of the NT employees. Literally. Even this toy seems... not special to you.
   components:
   - type: Sprite
-    sprite: Imperial/Toughguys
+    sprite: Imperial/Other/TFG/Toughguys
     state: plushie_GSB
 
 - type: entity
@@ -144,7 +144,7 @@
   name: Egor Paletov
   components:
   - type: Sprite
-    sprite: Imperial/Toughguys
+    sprite: Imperial/Other/TFG/Toughguys
     state: plushie_paramedic
 
 - type: entity
@@ -153,7 +153,7 @@
   name: Arvely Snegov
   components: #None/ Soon
   - type: Sprite
-    sprite: Imperial/Toughguys
+    sprite: Imperial/Other/TFG/Toughguys
     state: plushie_PCC
 
 - type: entity
@@ -162,7 +162,7 @@
   name: Madeline Rogers
   components:
   - type: Sprite
-    sprite: Imperial/Toughguys
+    sprite: Imperial/Other/TFG/Toughguys
     state: plushie_scientist
 
 - type: entity
@@ -171,7 +171,7 @@
   name: Molly Matthews
   components:
   - type: Sprite
-    sprite: Imperial/Toughguys
+    sprite: Imperial/Other/TFG/Toughguys
     state: plushie_surgeon
 
 - type: entity
@@ -181,7 +181,7 @@
   description: She will always pour you a drink, even if you are a zombie. Just follow the unbreakable rule - no brawls in her bar!
   components:
   - type: Sprite
-    sprite: Imperial/Toughguys
+    sprite: Imperial/Other/TFG/Toughguys
     state: plushie_bartender
 
 #Bartender with a flask
@@ -191,7 +191,7 @@
   suffix: COMMUNITY,TOY,GIFT
   components:
   - type: Sprite
-    sprite: Imperial/Toughguys
+    sprite: Imperial/Other/TFG/Toughguys
     state: plushie_bartender_full
   - type: Item
     size: Normal
@@ -219,7 +219,7 @@
   name: Dallas
   components:
   - type: Sprite
-    sprite: Imperial/Toughguys
+    sprite: Imperial/Other/TFG/Toughguys
     state: plushie_barmem
 
 - type: entity
@@ -229,7 +229,7 @@
   description: Nuclear operatives at the station? Has the singularity escaped or the Zombies? Don't be afraid, because she will be the one who will document your death.
   components:
   - type: Sprite
-    sprite: Imperial/Toughguys
+    sprite: Imperial/Other/TFG/Toughguys
     state: plushie_coroner
 
 - type: entity
@@ -239,7 +239,7 @@
   description: In the red code, you definitely should not approach it...
   components:
   - type: Sprite
-    sprite: Imperial/Toughguys
+    sprite: Imperial/Other/TFG/Toughguys
     state: plushie_HOP
 
 - type: entity
@@ -249,7 +249,7 @@
   description: Every time your comrade-in-arms needs to have a broken arm sewn on, remember him
   components:
   - type: Sprite
-    sprite: Imperial/Toughguys
+    sprite: Imperial/Other/TFG/Toughguys
     state: plushie_nuclearmedic
 
 - type: entity
@@ -259,5 +259,5 @@
   description: One of the leaders of the grey movement. Why does he need insulated gloves?
   components:
   - type: Sprite
-    sprite: Imperial/Toughguys
+    sprite: Imperial/Other/TFG/Toughguys
     state: plushie_passenger

@@ -8,9 +8,9 @@
   - type: Item
     size: Normal
   - type: Sprite
-    sprite: Imperial/Sona/SonaHead.rsi
+    sprite: Imperial/Other/Sona/SonaHead.rsi
   - type: Clothing
-    sprite: Imperial/Sona/SonaHead.rsi
+    sprite: Imperial/Other/Sona/SonaHead.rsi
   - type: Armor
     modifiers:
       coefficients:

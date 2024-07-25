@@ -20,13 +20,13 @@
   name: ERT ID card
   components:
     - type: Sprite
-      sprite: Imperial/ErtCall/deadsquadCard.rsi
+      sprite: Imperial/Other/ErtCall/deadsquadCard.rsi
       layers:
         - state: blackcard
         - state: deadsquadID # we have the sprites but don't need individual ID entities for now.
     - type: Item
       # heldPrefix: gold
-   
+
 - type: entity
   id: ThriveninChemistryBottle
   name: thrivenin bottle

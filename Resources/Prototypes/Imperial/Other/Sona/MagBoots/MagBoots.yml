@@ -8,7 +8,7 @@
   - type: Item
     size: Small
   - type: Sprite
-    sprite: Imperial/Sona/MagBoots.rsi
+    sprite: Imperial/Other/Sona/MagBoots.rsi
     state: icon
   - type: Clothing
-    sprite: Imperial/Sona/MagBoots.rsi
+    sprite: Imperial/Other/Sona/MagBoots.rsi

@@ -88,7 +88,7 @@
       layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: Rose
-        sprite: Imperial/Horror/Rose.rsi
+        sprite: Imperial/Other/Horror/Rose.rsi
     - type: DamageStateVisuals
       states:
         Alive:

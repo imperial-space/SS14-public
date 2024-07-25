@@ -56,7 +56,7 @@ void fragment()
     highp vec2 spriteSize = vec2(32);
 
     highp vec2 textureSize = 1.0 / TEXTURE_PIXEL_SIZE;
-    highp vec2 uv = fract(vec2(UV.x * textureSize.x / 128 + 0.5, UV.y * textureSize.y / 128 - 0.25)) * 2 - 1;
+    highp vec2 uv = fract(vec2(UV.x * textureSize.x / 128, UV.y * textureSize.y / 128 - 0.25)) * 2 - 1;
 
     highp vec3 ro = vec3(0, 0, -3);
     highp vec3 rd = normalize(vec3(uv, 1));

@@ -5,10 +5,10 @@
   description: An unusual sheath with a small rifle magazine and a trigger. Battered, but reliable. They look like they are weapons in themselves.
   components:
   - type: Sprite
-    sprite: Imperial\TFG\Murasama\murasama_sheath.rsi
+    sprite: Imperial\Other\TFG\Murasama\murasama_sheath.rsi
     state: sheath
   - type: Clothing
-    sprite: Imperial\TFG\Murasama\murasama_sheath.rsi
+    sprite: Imperial\Other\TFG\Murasama\murasama_sheath.rsi
   - type: Item
     size: Ginormous
   - type: ItemSlots

@@ -6,4 +6,4 @@
   description: For serial fashionistas.
   components:
   - type: Sprite
-    sprite: Imperial/VlClothes/DSO/DSOStachel.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/DSO/DSOStachel.rsi

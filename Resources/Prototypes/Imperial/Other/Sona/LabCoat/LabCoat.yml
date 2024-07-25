@@ -8,6 +8,6 @@
   - type: Item
     size: Normal
   - type: Sprite
-    sprite: Imperial/Sona/Labcoat.rsi
+    sprite: Imperial/Other/Sona/Labcoat.rsi
   - type: Clothing
-    sprite: Imperial/Sona/Labcoat.rsi
+    sprite: Imperial/Other/Sona/Labcoat.rsi

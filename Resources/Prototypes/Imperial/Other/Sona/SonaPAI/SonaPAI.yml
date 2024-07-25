@@ -6,7 +6,7 @@
   description: Your best synthetic girlfriend! ATTENTION, S-o.N.A. AI Dynamics CORPORATION IS NOT RESPONSIBLE FOR THE QUALITY OF THE SOFTWARE!
   components:
   - type: Sprite
-    sprite: Imperial/Sona/SonaPAI.rsi
+    sprite: Imperial/Other/Sona/SonaPAI.rsi
     layers:
     - state: sona-base
     - state: sona-off-overlay

@@ -87,9 +87,9 @@
   description: A lightweight yet strong exosuit used for special cleanup operations.
   components:
   - type: Sprite
-    sprite: Imperial/ErtCall/CBURN/cburncommanderHardsuit.rsi
+    sprite: Imperial/Other/ErtCall/CBURN/cburncommanderHardsuit.rsi
   - type: Clothing
-    sprite: Imperial/ErtCall/CBURN/cburncommanderHardsuit.rsi
+    sprite: Imperial/Other/ErtCall/CBURN/cburncommanderHardsuit.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -123,7 +123,7 @@
   components:
   - type: Sprite
     netsync: false
-    sprite: Imperial/ErtCall/CBURN/cburncommanderHead.rsi
+    sprite: Imperial/Other/ErtCall/CBURN/cburncommanderHead.rsi
     layers:
     - state: icon
     - state: icon-unshaded
@@ -161,9 +161,9 @@
   parent: ClothingOuterHardsuitCBURNLeader
   components:
   - type: Sprite
-    sprite: Imperial/ErtCall/CBURN/cburnmedicHardsuit.rsi
+    sprite: Imperial/Other/ErtCall/CBURN/cburnmedicHardsuit.rsi
   - type: Clothing
-    sprite: Imperial/ErtCall/CBURN/cburnmedicHardsuit.rsi
+    sprite: Imperial/Other/ErtCall/CBURN/cburnmedicHardsuit.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetCBURNMedic
 
@@ -174,7 +174,7 @@
   components:
   - type: Sprite
     netsync: false
-    sprite: Imperial/ErtCall/CBURN/cburnmedicHead.rsi
+    sprite: Imperial/Other/ErtCall/CBURN/cburnmedicHead.rsi
     layers:
     - state: icon
     - state: icon-unshaded
@@ -191,9 +191,9 @@
   description: A special suit made for the elite security under CentCom.
   components:
     - type: Sprite
-      sprite: Imperial/ErtCall/CBURN/jumpsuit.rsi
+      sprite: Imperial/Other/ErtCall/CBURN/jumpsuit.rsi
     - type: Clothing
-      sprite: Imperial/ErtCall/CBURN/jumpsuit.rsi
+      sprite: Imperial/Other/ErtCall/CBURN/jumpsuit.rsi
 
 #CBURN END
 
@@ -205,7 +205,7 @@
   description: You don't have to know whose backpack it is.
   components:
   - type: Sprite
-    sprite: Imperial/ErtCall/deadsquadBackpack.rsi
+    sprite: Imperial/Other/ErtCall/deadsquadBackpack.rsi
 
 - type: entity
   noSpawn: false
@@ -222,9 +222,9 @@
   suffix: Filled
   components:
   - type: Sprite
-    sprite: Imperial/ErtCall/deadsquadBelt.rsi
+    sprite: Imperial/Other/ErtCall/deadsquadBelt.rsi
   - type: Clothing
-    sprite: Imperial/ErtCall/deadsquadBelt.rsi
+    sprite: Imperial/Other/ErtCall/deadsquadBelt.rsi
   - type: StorageFill
     contents:
       - id: PowerDrill

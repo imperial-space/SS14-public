@@ -8,7 +8,7 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/Sona/SonaMeson.rsi
+    sprite: Imperial/Other/Sona/SonaMeson.rsi
   - type: Clothing
-    sprite: Imperial/Sona/SonaMeson.rsi
+    sprite: Imperial/Other/Sona/SonaMeson.rsi
   - type: EyeProtection

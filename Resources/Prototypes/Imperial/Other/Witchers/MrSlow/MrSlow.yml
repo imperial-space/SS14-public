@@ -7,7 +7,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Imperial/Witchers/MrSlow.rsi
+    sprite: Imperial/Other/Witchers/MrSlow.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: MrSlow

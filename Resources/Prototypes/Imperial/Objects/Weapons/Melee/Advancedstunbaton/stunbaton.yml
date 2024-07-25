@@ -5,7 +5,7 @@
   description: A stun baton for incapacitating people with. Actively harming with this is considered bad tone.
   components:
   - type: Sprite
-    sprite: Imperial/AdvancedStunBaton/stunbaton.rsi
+    sprite: Imperial/Objects/Weapons/Melee/AdvancedStunBaton/stunbaton.rsi
   - type: Stunbaton
     energyPerUse: 25
   - type: Battery

@@ -5,13 +5,13 @@
   suffix: Joker, PlayableCards, Red
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: redjoker
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -33,13 +33,13 @@
   suffix: Joker, PlayableCards, Red
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: blackjoker
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -60,13 +60,13 @@
   suffix: King, PlayableCards, Hearts
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: redkingc
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -88,13 +88,13 @@
   suffix: King, PlayableCards, Spades
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: blackkingp
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -116,13 +116,13 @@
   suffix: King, PlayableCards, Diamonds
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: redkingb
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -144,13 +144,13 @@
   suffix: King, PlayableCards, Clubs
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: blackkingt
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -172,13 +172,13 @@
   suffix: Queen, PlayableCards, Hearts
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: redqueenc
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -200,13 +200,13 @@
   suffix: Queen, PlayableCards, Clubs
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: blackqueent
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -228,13 +228,13 @@
   suffix: Queen, PlayableCards, Diamonds
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: redqueenb
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -256,13 +256,13 @@
   suffix: Queen, PlayableCards, Spades
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: blackqueenp
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -284,13 +284,13 @@
   suffix: Jack, PlayableCards, Diamonds
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: redjackb
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -312,13 +312,13 @@
   suffix: Jack, PlayableCards, Clubs
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: blackjackt
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -340,13 +340,13 @@
   suffix: Jack, PlayableCards, Hearts
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: redjackc
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -368,13 +368,13 @@
   suffix: Jack, PlayableCards, Spades
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: blackjackp
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -396,13 +396,13 @@
   suffix: Ten, PlayableCards, Diamonds
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: redtenb
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -424,13 +424,13 @@
   suffix: Ten, PlayableCards, Spades
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: blacktenp
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -452,13 +452,13 @@
   suffix: Ten, PlayableCards, Hearts
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: redtenc
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -480,13 +480,13 @@
   suffix: Ten, PlayableCards, Clubs
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: blacktent
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -508,13 +508,13 @@
   suffix: Seven, PlayableCards, Diamonds
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: redsevenb
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -536,13 +536,13 @@
   suffix: Seven, PlayableCards, Spades
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: blacksevenp
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -564,13 +564,13 @@
   suffix: Seven, PlayableCards, Hearts
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: redsevenc
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -592,13 +592,13 @@
   suffix: Seven, PlayableCards, Clubs
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: blacksevent
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -620,13 +620,13 @@
   suffix: Six, PlayableCards, Diamonds
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: redsixb
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -648,13 +648,13 @@
   suffix: Six, PlayableCards, Spades
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: blacksixp
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -676,13 +676,13 @@
   suffix: Six, PlayableCards, Hearts
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: redsixc
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -704,13 +704,13 @@
   suffix: Six, PlayableCards, Clubs
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: blacksixt
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -732,13 +732,13 @@
   suffix: Ace, PlayableCards, Diamonds
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: redaceb
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -760,13 +760,13 @@
   suffix: Ace, PlayableCards, Spades
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: blackacep
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -788,13 +788,13 @@
   suffix: Ace, PlayableCards, Hearts
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: redacec
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -816,13 +816,13 @@
   suffix: Ace, PlayableCards, Clubs
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: blackacet
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -844,13 +844,13 @@
   suffix: Nine, PlayableCards, Diamonds
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: rednineb
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -872,13 +872,13 @@
   suffix: Nine, PlayableCards, Spades
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: blackninep
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -900,13 +900,13 @@
   suffix: Nine, PlayableCards, Hearts
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: redninec
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -928,13 +928,13 @@
   suffix: Nine, PlayableCards, Clubs
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: blackninet
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -956,13 +956,13 @@
   suffix: Eight, PlayableCards, Diamonds
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: redeightb
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -984,13 +984,13 @@
   suffix: Eight, PlayableCards, Spades
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: blackeightp
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -1012,13 +1012,13 @@
   suffix: Eight, PlayableCards, Hearts
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: redeightc
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -1040,13 +1040,13 @@
   suffix: Eight, PlayableCards, Clubs
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     layers:
     - state: blackeightt
     - state: back
       map: ["base"]
   - type: Item
-    sprite: Imperial/Playablecards/playablecard.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/playablecard.rsi
     size: Tiny
   - type: Appearance
   - type: FoldableCard
@@ -1069,7 +1069,7 @@
   description: What secrets lie at the bottom of its endless stack?
   components:
   - type: Sprite
-    sprite: Imperial/Playablecards/cardbin.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/cardbin.rsi
     layers:
     - state: closed
     - state: open
@@ -1077,11 +1077,11 @@
       visible: false
     - state: card1
       map: ["card1"]
-      sprite: Imperial/Playablecards/cardbin.rsi
+      sprite: Imperial/Objects/Fun/Playablecards/cardbin.rsi
       visible: false
     - state: card2
       map: ["card2"]
-      sprite: Imperial/Playablecards/cardbin.rsi
+      sprite: Imperial/Objects/Fun/Playablecards/cardbin.rsi
       visible: false
   - type: Storage
     grid:
@@ -1090,7 +1090,7 @@
       tags:
         - PlayableCard
   - type: Item
-    sprite: Imperial/Playablecards/cardbin.rsi
+    sprite: Imperial/Objects/Fun/Playablecards/cardbin.rsi
     size: Tiny
   - type: ItemCounter
     count:

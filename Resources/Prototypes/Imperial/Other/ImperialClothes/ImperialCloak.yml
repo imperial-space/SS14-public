@@ -5,7 +5,7 @@
   description: Radiates bureaucracy!
   components:
   - type: Sprite
-    sprite: Imperial/ImperialClothes/centcomcloakformal.rsi
+    sprite: Imperial/Other/ImperialClothes/centcomcloakformal.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -14,7 +14,7 @@
   description: Made for business meetings with NanoTrasen's enemies.
   components:
   - type: Sprite
-    sprite: Imperial/ImperialClothes/hoscloakformal.rsi
+    sprite: Imperial/Other/ImperialClothes/hoscloakformal.rsi
   - type: StealTarget
     stealGroup: HeadCloak
 
@@ -26,9 +26,9 @@
   description: The prisoners should be afraid of you!
   components:
   - type: Sprite
-    sprite: Imperial/ImperialClothes/wardenmantle.rsi
+    sprite: Imperial/Other/ImperialClothes/wardenmantle.rsi
   - type: Clothing
-    sprite: Imperial/ImperialClothes/wardenmantle.rsi
+    sprite: Imperial/Other/ImperialClothes/wardenmantle.rsi
 
 - type: latheRecipe # ImperialClothes Мантия вардена. Добавлена нашими спрайтерами
   id: WardenMantleLathe

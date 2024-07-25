@@ -7,7 +7,7 @@
   suffix: Empty
   components:
   - type: Sprite
-    sprite: Imperial/ErtCall/ert_tablet.rsi
+    sprite: Imperial/Other/ErtCall/ert_tablet.rsi
     layers:
     - state: device-on
     - state: device-anim
@@ -15,7 +15,7 @@
       visible: true
     netsync: false
   - type: Item
-    sprite: Imperial/ErtCall/ert_tablet.rsi
+    sprite: Imperial/Other/ErtCall/ert_tablet.rsi
     heldPrefix: device
   - type: UserInterface
     interfaces:
@@ -128,7 +128,7 @@
   suffix: ERT
   components:
   - type: Sprite
-    sprite: Imperial/ErtCall/ert_tablet.rsi
+    sprite: Imperial/Other/ErtCall/ert_tablet.rsi
     layers:
     - state: device-on
     - state: device-deadsquad-anim

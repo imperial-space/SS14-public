@@ -10,7 +10,7 @@
       layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: Vendigo
-        sprite: Imperial/Witchers/Vendigo.rsi
+        sprite: Imperial/Other/Witchers/Vendigo.rsi
     - type: DamageStateVisuals
       states:
         Alive:

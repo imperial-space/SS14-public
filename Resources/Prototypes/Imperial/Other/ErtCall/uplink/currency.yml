@@ -6,11 +6,11 @@
   description: Small cube of solid blue space matter
   components:
   - type: Sprite
-    sprite: Imperial/ErtCall/bluespacecube.rsi
+    sprite: Imperial/Other/ErtCall/bluespacecube.rsi
     netsync: false
     state: bluespacecube
   - type: Item
-    sprite: Imperial/ErtCall/bluespacecube.rsi
+    sprite: Imperial/Other/ErtCall/bluespacecube.rsi
   - type: Stack
     count: 20
     stackType: BlueSpaceCube
@@ -32,7 +32,7 @@
 - type: stack
   id: BlueSpaceCube
   name: blueSpaceCube
-  icon: Imperial/ErtCall/bluespacecube.rsi
+  icon: Imperial/Other/ErtCall/bluespacecube.rsi
   spawn: BlueSpaceCube1
 
 - type: entity

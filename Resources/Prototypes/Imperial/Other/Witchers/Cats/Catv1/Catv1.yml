@@ -7,7 +7,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Imperial\Witchers\Cats\Catv1.rsi
+    sprite: Imperial\Other\Witchers\Cats\Catv1.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: catv1

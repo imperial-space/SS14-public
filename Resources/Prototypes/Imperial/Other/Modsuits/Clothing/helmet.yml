@@ -7,9 +7,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/advanced.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/advanced.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/advanced.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/advanced.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -45,9 +45,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/advanced.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/advanced.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/advanced.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/advanced.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -72,9 +72,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/engineer.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/engineer.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/engineer.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/engineer.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -99,9 +99,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/rnd.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/rnd.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/rnd.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/rnd.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -127,9 +127,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/atmospheric.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/atmospheric.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/atmospheric.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/atmospheric.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -153,9 +153,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/medical.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/medical.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/medical.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/medical.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -178,9 +178,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/cmo.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/cmo.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/cmo.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/cmo.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -203,9 +203,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/civillian.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/civillian.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/civillian.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/civillian.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -226,9 +226,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/magnate.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/magnate.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/magnate.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/magnate.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -253,9 +253,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/security.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/security.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/security.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/security.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -280,9 +280,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/hos.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/hos.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/hos.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/hos.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -307,9 +307,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/salvage.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/salvage.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/salvage.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/salvage.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -332,9 +332,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/miner.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/miner.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/miner.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/miner.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -359,9 +359,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/nukeops.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/nukeops.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/nukeops.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/nukeops.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -386,9 +386,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/nukeopscmd.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/nukeopscmd.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/nukeopscmd.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/nukeopscmd.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -413,9 +413,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/corporate.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/corporate.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/corporate.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/corporate.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -435,9 +435,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/nukeopsclown.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/nukeopsclown.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/nukeopsclown.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/nukeopsclown.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
 
@@ -449,9 +449,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/apocryphal.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/apocryphal.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/apocryphal.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/apocryphal.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -479,9 +479,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/rnd2.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/rnd2.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/rnd2.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/rnd2.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -507,9 +507,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/engineer2.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/engineer2.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/engineer2.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/engineer2.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -534,9 +534,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/medical2.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/medical2.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/medical2.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/medical2.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -559,9 +559,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/sstcmd.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/sstcmd.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/sstcmd.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/sstcmd.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -586,9 +586,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/sstsupport.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/sstsupport.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/sstsupport.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/sstsupport.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -613,9 +613,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/nakamuraengineer.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/nakamuraengineer.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/nakamuraengineer.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/nakamuraengineer.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor
@@ -640,9 +640,9 @@
   description: Special hardsuit helmet, made for the captain of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Head/pmc.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/pmc.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Head/pmc.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Head/pmc.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Armor

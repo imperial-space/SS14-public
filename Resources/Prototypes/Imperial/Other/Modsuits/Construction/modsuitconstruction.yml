@@ -6,11 +6,11 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/Back/advanced.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/Back/advanced.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/Back/advanced.rsi
-    equipSound: /Audio/Items/Modsuits/ballin.ogg
-    unequipSound: /Audio/Items/Modsuits/ballout.ogg
+    sprite: Imperial/Other/Modsuits/Clothing/Back/advanced.rsi
+    equipSound: /Audio/Imperial/Modsuits/ballin.ogg
+    unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: Storage
     capacity: 30
 #Modsuit Parts start
@@ -22,7 +22,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/constructing_modsuit.rsi
+    sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
     state: boots
   - type: Tag
     tags:
@@ -35,7 +35,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/constructing_modsuit.rsi
+    sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
     state: chestplate
   - type: Tag
     tags:
@@ -48,7 +48,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/constructing_modsuit.rsi
+    sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
     state: CORE-equip0
     noRot: true
   - type: Tag
@@ -71,7 +71,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/constructing_modsuit.rsi
+    sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
     state: CE
   - type: Tag
     tags:
@@ -86,7 +86,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/constructing_modsuit.rsi
+    sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
     state: HOS
   - type: Tag
     tags:
@@ -101,7 +101,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/constructing_modsuit.rsi
+    sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
     state: CMO
   - type: Tag
     tags:
@@ -116,7 +116,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/constructing_modsuit.rsi
+    sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
     state: CAP
   - type: Tag
     tags:
@@ -131,7 +131,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/constructing_modsuit.rsi
+    sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
     state: CORE-equip8
   - type: Tag
     tags:
@@ -146,7 +146,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/constructing_modsuit.rsi
+    sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
     state: gauntlets
   - type: Tag
     tags:
@@ -159,7 +159,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/constructing_modsuit.rsi
+    sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
     state: helmet
   - type: Tag
     tags:
@@ -172,7 +172,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/constructing_modsuit.rsi
+    sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
     state: paintkit
   - type: Tag
     tags:
@@ -185,7 +185,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/constructing_modsuit.rsi
+    sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
     state: mod-core
   - type: Tag
     tags:
@@ -198,7 +198,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/plating.rsi
+    sprite: Imperial/Other/Modsuits/plating.rsi
     state: civillian-plating
   - type: Tag
     tags:
@@ -211,7 +211,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/plating.rsi
+    sprite: Imperial/Other/Modsuits/plating.rsi
     state: medical-plating
   - type: Tag
     tags:
@@ -224,7 +224,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/plating.rsi
+    sprite: Imperial/Other/Modsuits/plating.rsi
     state: cmo-plating
   - type: Tag
     tags:
@@ -237,7 +237,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/plating.rsi
+    sprite: Imperial/Other/Modsuits/plating.rsi
     state: security-plating
   - type: Tag
     tags:
@@ -250,7 +250,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/plating.rsi
+    sprite: Imperial/Other/Modsuits/plating.rsi
     state: security-plating
   - type: Tag
     tags:
@@ -263,7 +263,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/plating.rsi
+    sprite: Imperial/Other/Modsuits/plating.rsi
     state: magnate-plating
   - type: Tag
     tags:
@@ -276,7 +276,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/plating.rsi
+    sprite: Imperial/Other/Modsuits/plating.rsi
     state: engineering-plating
   - type: Tag
     tags:
@@ -289,7 +289,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/plating.rsi
+    sprite: Imperial/Other/Modsuits/plating.rsi
     state: engineering-plating
   - type: Tag
     tags:
@@ -302,7 +302,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/plating.rsi
+    sprite: Imperial/Other/Modsuits/plating.rsi
     state: atmospheric-plating
   - type: Tag
     tags:
@@ -315,7 +315,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/plating.rsi
+    sprite: Imperial/Other/Modsuits/plating.rsi
     state: ce-plating
   - type: Tag
     tags:
@@ -328,7 +328,7 @@
   description: Special hardsuit helmet, made for the CE of the station.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/plating.rsi
+    sprite: Imperial/Other/Modsuits/plating.rsi
     state: rnd-plating
   - type: Tag
     tags:

@@ -6,6 +6,6 @@
   description: Extremely pleasant to the touch winter coat DSO.
   components:
   - type: Sprite
-    sprite: Imperial/VlClothes/DSO/DSOCoat.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/DSO/DSOCoat.rsi
   - type: Clothing
-    sprite: Imperial/VlClothes/DSO/DSOCoat.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/DSO/DSOCoat.rsi

@@ -9,8 +9,8 @@
       key_slots:
       - EncryptionKeyCommon
   - type: Sprite
-    sprite: Imperial/prisoner.rsi
+    sprite: Imperial/Clothing/Ears/PrisonerHeadset/prisoner.rsi
   - type: Clothing
-    sprite: Imperial/prisoner.rsi
+    sprite: Imperial/Clothing/Ears/PrisonerHeadset/prisoner.rsi
   - type: Item
     size: Tiny

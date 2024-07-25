@@ -8,6 +8,6 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/Sona/Linses.rsi
+    sprite: Imperial/Other/Sona/Linses.rsi
   - type: Clothing
-    sprite: Imperial/Sona/Linses.rsi
+    sprite: Imperial/Other/Sona/Linses.rsi

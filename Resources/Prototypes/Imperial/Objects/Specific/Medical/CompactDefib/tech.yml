@@ -2,7 +2,7 @@
   id: CompactDefibrillators
   name: research-technology-compact-defibrillators
   icon:
-    sprite: Imperial/CompactDefib/compactdefib.rsi
+    sprite: Imperial/Objects/Specific/Medical/CompactDefib/compactdefib.rsi
     state: icon
   discipline: Biochemical
   tier: 2

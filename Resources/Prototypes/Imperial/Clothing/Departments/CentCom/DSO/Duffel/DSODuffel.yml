@@ -6,4 +6,4 @@
   description: To transport tons of weapons, or corpses.
   components:
   - type: Sprite
-    sprite: Imperial/VlClothes/DSO/DSODuffel.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/DSO/DSODuffel.rsi

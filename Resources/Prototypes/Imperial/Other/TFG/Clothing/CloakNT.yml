@@ -5,7 +5,7 @@
   description: Stylish black cloak with Nanotrasen symbols.
   components:
   - type: Sprite
-    sprite: Imperial/TFG/Clothing/cloakNT.rsi
+    sprite: Imperial/Other/TFG/Clothing/cloakNT.rsi
 
 - type: latheRecipe
   id: ClothingNeckCloakNanotrasenBlack

@@ -5,20 +5,20 @@
   description: A stylish striped red shawl.
   components:
   - type: Sprite
-    sprite: Imperial/mime/Clothing/shawl_red.rsi
+    sprite: Imperial/Other/mime/Clothing/shawl_red.rsi
   - type: Clothing
-    sprite: Imperial/mime/Clothing/shawl_red.rsi
+    sprite: Imperial/Other/mime/Clothing/shawl_red.rsi
 
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretBonBon
   name: BonBon's beret
-  description: 
+  description:
   components:
   - type: Sprite
-    sprite: Imperial/mime/Clothing/beret.rsi
+    sprite: Imperial/Other/mime/Clothing/beret.rsi
   - type: Clothing
-    sprite: Imperial/mime/Clothing/beret.rsi
+    sprite: Imperial/Other/mime/Clothing/beret.rsi
   - type: Armor
     modifiers:
       coefficients:

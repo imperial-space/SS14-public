@@ -8,6 +8,6 @@
   - type: Item
     size: Ginormous
   - type: Sprite
-    sprite: Imperial/Sona/Duffel.rsi
+    sprite: Imperial/Other/Sona/Duffel.rsi
   - type: Storage
     capacity: 350

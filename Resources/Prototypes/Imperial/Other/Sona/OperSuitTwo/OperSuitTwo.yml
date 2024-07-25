@@ -8,6 +8,6 @@
   - type: Item
     size: Normal
   - type: Sprite
-    sprite: Imperial/Sona/OperSuitTwo.rsi
+    sprite: Imperial/Other/Sona/OperSuitTwo.rsi
   - type: Clothing
-    sprite: Imperial/Sona/OperSuitTwo.rsi
+    sprite: Imperial/Other/Sona/OperSuitTwo.rsi

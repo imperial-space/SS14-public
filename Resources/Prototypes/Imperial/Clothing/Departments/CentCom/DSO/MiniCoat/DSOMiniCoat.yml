@@ -6,6 +6,6 @@
   description: Fashionable black officers' jacket.
   components:
   - type: Sprite
-    sprite: Imperial/VlClothes/DSO/DSOMiniCoat.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/DSO/DSOMiniCoat.rsi
   - type: Clothing
-    sprite: Imperial/VlClothes/DSO/DSOMiniCoat.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/DSO/DSOMiniCoat.rsi

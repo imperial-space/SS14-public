@@ -6,5 +6,5 @@
   description: A poster advertising resorts where S-o.N.A synthetics are officially used.
   components:
   - type: Sprite
-    sprite: Imperial/Sona/PosterCurort.rsi
+    sprite: Imperial/Other/Sona/PosterCurort.rsi
     state: SonaCurort

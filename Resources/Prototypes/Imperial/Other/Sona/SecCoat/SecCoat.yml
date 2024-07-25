@@ -8,9 +8,9 @@
   - type: Item
     size: Large
   - type: Sprite
-    sprite: Imperial/Sona/SecCoat.rsi
+    sprite: Imperial/Other/Sona/SecCoat.rsi
   - type: Clothing
-    sprite: Imperial/Sona/SecCoat.rsi
+    sprite: Imperial/Other/Sona/SecCoat.rsi
   - type: Armor
     modifiers:
       coefficients:

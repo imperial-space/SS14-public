@@ -6,4 +6,4 @@
   description: The standard backpack of bureaucrats.
   components:
   - type: Sprite
-    sprite: Imperial/VlClothes/CentCom/CCBackpack.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/CentCom/CCBackpack.rsi

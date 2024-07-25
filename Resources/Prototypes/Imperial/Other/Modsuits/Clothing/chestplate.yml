@@ -6,9 +6,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/advanced.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/advanced.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/advanced.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/advanced.rsi
     equipSound: /Audio/Imperial/Modsuits/ballin.ogg
     unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
   - type: PressureProtection
@@ -41,9 +41,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/advanced.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/advanced.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/advanced.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/advanced.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.000002
     lowPressureMultiplier: 1000
@@ -79,9 +79,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/engineer.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/engineer.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/engineer.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/engineer.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.000001
     lowPressureMultiplier: 1000
@@ -117,9 +117,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/rnd.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/rnd.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/rnd.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/rnd.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.00003
     lowPressureMultiplier: 1000
@@ -152,9 +152,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/atmospheric.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/atmospheric.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/atmospheric.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/atmospheric.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.0000041
     lowPressureMultiplier: 1000
@@ -188,9 +188,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/medical.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/medical.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/medical.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/medical.rsi
   - type: TemperatureProtection
     coefficient: 0.00001
   - type: ExplosionResistance
@@ -218,9 +218,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/cmo.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/cmo.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/cmo.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/cmo.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.00001
     lowPressureMultiplier: 1000
@@ -253,9 +253,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/civillian.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/civillian.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/civillian.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/civillian.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.00001
     lowPressureMultiplier: 1000
@@ -287,9 +287,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/magnate.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/magnate.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/magnate.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/magnate.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.000001
     lowPressureMultiplier: 1000
@@ -322,9 +322,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/security.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/security.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/security.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/security.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.000035
     lowPressureMultiplier: 1000
@@ -356,9 +356,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/hos.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/hos.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/hos.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/hos.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.000035
     lowPressureMultiplier: 1000
@@ -390,9 +390,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/salvage.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/salvage.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/salvage.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/salvage.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.000041
     lowPressureMultiplier: 1000
@@ -424,9 +424,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/miner.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/miner.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/miner.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/miner.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.00005
     lowPressureMultiplier: 1000
@@ -457,9 +457,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/nukeops.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/nukeops.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/nukeops.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/nukeops.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.000000025
     lowPressureMultiplier: 1000
@@ -522,9 +522,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/nukeopsclown.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/nukeopsclown.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/nukeopsclown.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/nukeopsclown.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetModsuitHonkOperativeSealed
     requiredSlot: outerClothing
@@ -537,9 +537,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/corporate.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/corporate.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/corporate.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/corporate.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetModsuitCCSealed
     requiredSlot: outerClothing
@@ -562,9 +562,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/apocryphal.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/apocryphal.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/apocryphal.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/apocryphal.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.0000000000001
     lowPressureMultiplier: 1000
@@ -626,9 +626,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/rnd2.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/rnd2.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/rnd2.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/rnd2.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.25
   - type: Armor
@@ -656,9 +656,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/engineer2.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/engineer2.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/engineer2.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/engineer2.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.0004
     lowPressureMultiplier: 1000
@@ -693,9 +693,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/medical2.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/medical2.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/medical2.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/medical2.rsi
   - type: TemperatureProtection
     coefficient: 0.0001
   - type: ExplosionResistance
@@ -723,9 +723,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/sstcmd.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/sstcmd.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/sstcmd.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/sstcmd.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.00000000001
     lowPressureMultiplier: 1000
@@ -788,9 +788,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/sstsupport.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/sstsupport.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/sstsupport.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/sstsupport.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.00000000001
     lowPressureMultiplier: 1000
@@ -853,9 +853,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/nukeopscmd.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/nukeopscmd.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/nukeopscmd.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/nukeopscmd.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.00000000001
     lowPressureMultiplier: 1000
@@ -918,9 +918,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/nakamuraengineer.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/nakamuraengineer.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/nakamuraengineer.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/nakamuraengineer.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.000075
     lowPressureMultiplier: 1000
@@ -955,9 +955,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/pmc.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/pmc.rsi
   - type: Clothing
-    sprite: Imperial/Modsuits/Clothing/OuterClothing/pmc.rsi
+    sprite: Imperial/Other/Modsuits/Clothing/OuterClothing/pmc.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.0000025
     lowPressureMultiplier: 1000

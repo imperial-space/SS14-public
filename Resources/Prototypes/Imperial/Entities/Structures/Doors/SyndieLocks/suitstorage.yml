@@ -11,7 +11,7 @@
         - id: ClothingHeadHelmetSyndicate
         - id: ClothingMaskGasSyndicate
   - type: Sprite
-    sprite: Imperial/SyndieLocks/storage.rsi
+    sprite: Imperial/Entities/Structures/Doors/SyndieLocks/storage.rsi
 
 - type: entity
   id: SuitStorageSyndieImperial
@@ -26,4 +26,4 @@
         - id: ClothingShoesBootsMagSyndie
         - id: ClothingMaskGasSyndicate
   - type: Sprite
-    sprite: Imperial/SyndieLocks/storage.rsi
+    sprite: Imperial/Entities/Structures/Doors/SyndieLocks/storage.rsi

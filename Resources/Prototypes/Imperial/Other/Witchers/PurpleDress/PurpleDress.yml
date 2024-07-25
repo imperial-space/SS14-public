@@ -8,6 +8,6 @@
   - type: Item
     size: Normal
   - type: Sprite
-    sprite: Imperial/Witchers/PurpleDress.rsi
+    sprite: Imperial/Other/Witchers/PurpleDress.rsi
   - type: Clothing
-    sprite: Imperial/Witchers/PurpleDress.rsi
+    sprite: Imperial/Other/Witchers/PurpleDress.rsi

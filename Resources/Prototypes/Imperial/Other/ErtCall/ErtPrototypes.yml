@@ -120,7 +120,7 @@
       - names_last
     - type: Sprite
       netsync: false
-      sprite: Imperial/ErtCall/imperial_jobs.rsi
+      sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
       state: cburnLeader
     - type: Loadout
       prototypes: [ ERTCallCBURNLeaderGearEVA ]
@@ -140,7 +140,7 @@
       - names_last
     - type: Sprite
       netsync: false
-      sprite: Imperial/ErtCall/imperial_jobs.rsi
+      sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
       state: cburn
     - type: Loadout
       prototypes: [ ERTCallCBURNSecurityGearEVA ]
@@ -160,7 +160,7 @@
       - names_last
     - type: Sprite
       netsync: false
-      sprite: Imperial/ErtCall/imperial_jobs.rsi
+      sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
       state: cburnMedic
     - type: Loadout
       prototypes: [ ERTCallCBURNMedicGearEVA ]
@@ -181,7 +181,7 @@
     #   - names_last
     - type: Sprite
       netsync: false
-      sprite: Imperial/ErtCall/imperial_jobs.rsi
+      sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
       state: deadSquad
     - type: Loadout
       prototypes: [ ERTCallDeadSquadSecurityGearEVA ]
@@ -192,7 +192,7 @@
     - type: NpcFactionMember
       factions:
       - DeathSquad
-      
+
 - type: npcFaction ##Новая фракция для эскадрона смерти
   id: DeathSquad
   hostile:

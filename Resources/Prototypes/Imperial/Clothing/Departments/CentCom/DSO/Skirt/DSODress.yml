@@ -8,6 +8,6 @@
   - type: Item
     size: Normal
   - type: Sprite
-    sprite: Imperial/VlClothes/DSO/DSOSkirt.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/DSO/DSOSkirt.rsi
   - type: Clothing
-    sprite: Imperial/VlClothes/DSO/DSOSkirt.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/DSO/DSOSkirt.rsi

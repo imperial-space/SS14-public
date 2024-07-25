@@ -5,10 +5,10 @@
   description: Its very appearance makes it clear that fifteen minutes of your time is worth more than this station.
   components:
   - type: Sprite
-    sprite: Imperial/TFG/GoldenLife/presentableCase.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/presentableCase.rsi
     state: icon
   - type: Item
-    sprite: Imperial/TFG/GoldenLife/presentableCase.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/presentableCase.rsi
     size: Ginormous
 
 - type: entity
@@ -29,11 +29,11 @@
   description: What is hidden here?
   components:
   - type: Sprite
-    sprite: Imperial/TFG/GoldenLife/presentableFolder.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/presentableFolder.rsi
     layers:
     - state: folder-special
   - type: Item
-    sprite: Imperial/TFG/GoldenLife/presentableFolder.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/presentableFolder.rsi
   - type: StorageFill
     contents:
       - id: Paper
@@ -46,10 +46,10 @@
   description: A chic cane with weighted parts. A formidable melee weapon.
   components:
   - type: Sprite
-    sprite: Imperial/TFG/GoldenLife/presentableCane.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/presentableCane.rsi
     state: icon
   - type: Item
-    sprite: Imperial/TFG/GoldenLife/presentableCane.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/presentableCane.rsi
     size: Normal
   - type: MeleeWeapon
     damage:
@@ -70,12 +70,12 @@
   description: A presentable black box with might Imperial symbol on head.
   components:
   - type: Sprite
-    sprite: Imperial/TFG/GoldenLife/presentableBox.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/presentableBox.rsi
     layers:
     - state: presentable
     - state: sign_imperial
   - type: Item
-    sprite: Imperial/TFG/GoldenLife/presentableBox.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/presentableBox.rsi
     size: Huge
   - type: Storage
     maxItemSize: Small
@@ -97,7 +97,7 @@
   description: Damn it. This is the toolbox of a very big shot!
   components:
   - type: Sprite
-    sprite: Imperial/TFG/GoldenLife/presentableToolbox.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/presentableToolbox.rsi
     state: icon
   - type: Item
-    sprite: Imperial/TFG/GoldenLife/presentableToolbox.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/presentableToolbox.rsi

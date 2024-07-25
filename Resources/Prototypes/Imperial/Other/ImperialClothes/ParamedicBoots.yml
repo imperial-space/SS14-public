@@ -5,6 +5,6 @@
   description: Scuffs from brisk walking are visible
   components:
   - type: Sprite
-    sprite: Imperial/ImperialClothes/ParamedicBoots.rsi
+    sprite: Imperial/Other/ImperialClothes/ParamedicBoots.rsi
   - type: Clothing
-    sprite: Imperial/ImperialClothes/ParamedicBoots.rsi
+    sprite: Imperial/Other/ImperialClothes/ParamedicBoots.rsi

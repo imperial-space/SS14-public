@@ -6,7 +6,7 @@
   description: A beautiful and advanced PDA of S-o.N.A. AI Dynamics Corporation.
   components:
   - type: Sprite
-    sprite: Imperial/customPDA.rsi
+    sprite: Imperial/Objects/Devices/customPDA.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
     - state: "light_overlay"

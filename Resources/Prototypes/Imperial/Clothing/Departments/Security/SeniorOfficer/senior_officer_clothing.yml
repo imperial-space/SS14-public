@@ -6,9 +6,9 @@
   description: A set of tactical webbing worn by brigmedic.
   components:
   - type: Sprite
-    sprite: Imperial/seniorOfficer/Clothing/seniorofficerwebbing.rsi
+    sprite: Imperial/Clothing/Departments/Security/seniorOfficer/Clothing/seniorofficerwebbing.rsi
   - type: Clothing
-    sprite: Imperial/seniorOfficer/Clothing/seniorofficerwebbing.rsi
+    sprite: Imperial/Clothing/Departments/Security/seniorOfficer/Clothing/seniorofficerwebbing.rsi
   - type: Item
     size: Huge
   - type: Storage
@@ -62,9 +62,9 @@
   description: A stylish clothing option for security officers.
   components:
   - type: Sprite
-    sprite: Imperial/seniorOfficer/Clothing/seniorofficerberet.rsi
+    sprite: Imperial/Clothing/Departments/Security/seniorOfficer/Clothing/seniorofficerberet.rsi
   - type: Clothing
-    sprite: Imperial/seniorOfficer/Clothing/seniorofficerberet.rsi
+    sprite: Imperial/Clothing/Departments/Security/seniorOfficer/Clothing/seniorofficerberet.rsi
   - type: Armor #Imperial_edit Beret lives matter @keeyn
     modifiers:
       coefficients:

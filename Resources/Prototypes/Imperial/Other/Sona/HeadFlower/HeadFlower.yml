@@ -8,9 +8,9 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/Sona/HeadFlower.rsi
+    sprite: Imperial/Other/Sona/HeadFlower.rsi
   - type: Clothing
-    sprite: Imperial/Sona/HeadFlower.rsi
+    sprite: Imperial/Other/Sona/HeadFlower.rsi
   - type: Tag
     tags:
     - ClothMade

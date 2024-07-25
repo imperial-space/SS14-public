@@ -6,7 +6,7 @@
   description: A poster containing information about the popular synthetic models of S-o.N.A. AI Dynamics Corporation. At the bottom of the list, the most important policy of the company is written in small print "Be loyal to everyone, and everyone will be loyal to you."
   components:
   - type: Sprite
-    sprite: Imperial/Sona/Posters.rsi
+    sprite: Imperial/Other/Sona/Posters.rsi
     state: PosterOne
 
 - type: entity
@@ -17,7 +17,7 @@
   description: A poster advertising the security module of the synthetics corporation S-o.N.A. AI Dynamics. "Tired of clowns? It is necessary to restore order at the station, and the SEC does not even know the CL? It's okay, order Sona!"
   components:
   - type: Sprite
-    sprite: Imperial/Sona/Posters.rsi
+    sprite: Imperial/Other/Sona/Posters.rsi
     state: PosterTwo
 
 - type: entity
@@ -28,7 +28,7 @@
   description: A poster advertising the engineering module of the synthetics corporation S-o.N.A. AI Dynamics. "Has the singularity escaped? Do engineers drink at the bar instead of fixing the station? It's okay, order Sona!"
   components:
   - type: Sprite
-    sprite: Imperial/Sona/Posters.rsi
+    sprite: Imperial/Other/Sona/Posters.rsi
     state: PosterThree
 
 - type: entity
@@ -39,7 +39,7 @@
   description: A poster advertising the scientific synthesis module of S-o.N.A. AI Dynamics Corporation. "The command told you to study the artifacts, and the scientists decided to collect useless Gigaxes instead? It's okay, order Sona!"
   components:
   - type: Sprite
-    sprite: Imperial/Sona/Posters.rsi
+    sprite: Imperial/Other/Sona/Posters.rsi
     state: PosterFour
 
 - type: entity
@@ -50,9 +50,9 @@
   description: A poster advertising the banned synthesis module of S-o.N.A. AI Dynamics Corporation in the territories of NanoTrasen Corporation. "She will fulfill any of your desires..."
   components:
   - type: Sprite
-    sprite: Imperial/Sona/Posters.rsi
+    sprite: Imperial/Other/Sona/Posters.rsi
     state: PosterFive
-    
+
 - type: entity
   parent: PosterBase
   id: PosterSonaMain
@@ -61,5 +61,5 @@
   description: Wall banner of S-o.N.A. AI Dynamics Corporation.
   components:
   - type: Sprite
-    sprite: Imperial/Sona/Posters.rsi
+    sprite: Imperial/Other/Sona/Posters.rsi
     state: PosterMain

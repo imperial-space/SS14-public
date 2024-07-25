@@ -8,9 +8,9 @@
   - type: Item
     size: Normal
   - type: Sprite
-    sprite: Imperial/Witchers/RedHat.rsi
+    sprite: Imperial/Other/Witchers/RedHat.rsi
   - type: Clothing
-    sprite: Imperial/Witchers/RedHat.rsi
+    sprite: Imperial/Other/Witchers/RedHat.rsi
   - type: Tag
     tags:
     - ClothMade

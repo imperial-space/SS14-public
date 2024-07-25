@@ -5,10 +5,10 @@
   description: Some babies are born with them in their mouths. This is the only way to get such rare spoons.
   components:
   - type: Sprite
-    sprite: Imperial/TFG/GoldenLife/goldenSpoon.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenSpoon.rsi
     state: icon
   - type: Item
-    sprite: Imperial/TFG/GoldenLife/goldenSpoon.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenSpoon.rsi
   - type: Utensil
     types:
     - Spoon
@@ -27,10 +27,10 @@
   description: Having such a fork in itself will make any dish great.
   components:
   - type: Sprite
-    sprite: Imperial/TFG/GoldenLife/goldenFork.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenFork.rsi
     state: icon
   - type: Item
-    sprite: Imperial/TFG/GoldenLife/goldenFork.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenFork.rsi
   - type: StaticPrice
     price: 400
 
@@ -41,10 +41,10 @@
   description: This gold could have been used for useful things...
   components:
   - type: Sprite
-    sprite: Imperial/TFG/GoldenLife/goldenKnife.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenKnife.rsi
     state: icon
   - type: Item
-    sprite: Imperial/TFG/GoldenLife/goldenKnife.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenKnife.rsi
     state: icon
   - type: MeleeWeapon
     attackRate: 1.5
@@ -61,10 +61,10 @@
   description:
   components:
   - type: Sprite
-    sprite: Imperial/TFG/GoldenLife/goldenPlate.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenPlate.rsi
     state: icon
   - type: Item
-    sprite: Imperial/TFG/GoldenLife/goldenPlate.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenPlate.rsi
     shape:
     - 0,0,1,0
     storedOffset: 0,-6

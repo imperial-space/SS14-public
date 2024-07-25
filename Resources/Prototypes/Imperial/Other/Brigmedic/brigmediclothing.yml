@@ -5,9 +5,9 @@
   description: A medical mask with a small layer of protection against damage and viruses, similar to the one used in the medical units of the first corporate war.
   components:
   - type: Sprite
-    sprite: Imperial/brigmedic/Clothing/brigmedicrebreather.rsi
+    sprite: Imperial/Other/Brigmedic/Clothing/brigmedicrebreather.rsi
   - type: Clothing
-    sprite: Imperial/brigmedic/Clothing/brigmedicrebreather.rsi
+    sprite: Imperial/Other/Brigmedic/Clothing/brigmedicrebreather.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -22,9 +22,9 @@
   description: Stylish red shoes.
   components:
   - type: Sprite
-    sprite: Imperial/brigmedic/Clothing/brigmedicboots.rsi
+    sprite: Imperial/Other/Brigmedic/Clothing/brigmedicboots.rsi
   - type: Clothing
-    sprite: Imperial/brigmedic/Clothing/brigmedicboots.rsi
+    sprite: Imperial/Other/Brigmedic/Clothing/brigmedicboots.rsi
   - type: Storage
     maxItemSize: Huge
     grid:
@@ -48,9 +48,9 @@
   name: brigmedic jumpsuit
   components:
   - type: Sprite
-    sprite: Imperial/brigmedic/Clothing/brigmedicnewjumpsuit.rsi
+    sprite: Imperial/Other/Brigmedic/Clothing/brigmedicnewjumpsuit.rsi
   - type: Clothing
-    sprite: Imperial/brigmedic/Clothing/brigmedicnewjumpsuit.rsi
+    sprite: Imperial/Other/Brigmedic/Clothing/brigmedicnewjumpsuit.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -58,9 +58,9 @@
   name: jumpskirt le brigmedic
   components:
   - type: Sprite
-    sprite: Imperial/brigmedic/Clothing/brigmedicnewjumpskirt.rsi
+    sprite: Imperial/Other/Brigmedic/Clothing/brigmedicnewjumpskirt.rsi
   - type: Clothing
-    sprite: Imperial/brigmedic/Clothing/brigmedicnewjumpskirt.rsi
+    sprite: Imperial/Other/Brigmedic/Clothing/brigmedicnewjumpskirt.rsi
 
 - type: entity
   parent: ClothingBeltStorageBase
@@ -69,9 +69,9 @@
   description: A set of tactical webbing worn by brigmedic.
   components:
   - type: Sprite
-    sprite: Imperial/brigmedic/Clothing/brigmedicwebbing.rsi
+    sprite: Imperial/Other/Brigmedic/Clothing/brigmedicwebbing.rsi
   - type: Clothing
-    sprite: Imperial/brigmedic/Clothing/brigmedicwebbing.rsi
+    sprite: Imperial/Other/Brigmedic/Clothing/brigmedicwebbing.rsi
   - type: Item
     size: Large
   - type: Storage
@@ -102,9 +102,9 @@
   description: An extremely robust helmet, commonly used by paramed forces. This one has the Nanotrasen logo emblazoned on the top.
   components:
   - type: Sprite
-    sprite: Imperial/brigmedic/Clothing/brigmedichelmet.rsi
+    sprite: Imperial/Other/Brigmedic/Clothing/brigmedichelmet.rsi
   - type: Clothing
-    sprite: Imperial/brigmedic/Clothing/brigmedichelmet.rsi
+    sprite: Imperial/Other/Brigmedic/Clothing/brigmedichelmet.rsi
   - type: Armor
     modifiers:
       coefficients:

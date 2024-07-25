@@ -6,7 +6,7 @@
   suffix: Full
   components:
   - type: Sprite
-    sprite: Imperial/Medical.rsi
+    sprite: Imperial/Objects/Specific/Medical/Medical.rsi
     state: brutepack_Felix
   - type: Tag
     tags:
@@ -46,7 +46,7 @@
   suffix: Full
   components:
   - type: Sprite
-    sprite: Imperial/Medical.rsi
+    sprite: Imperial/Objects/Specific/Medical/Medical.rsi
     state: packing_bandage
   - type: Tag
     tags:
@@ -86,7 +86,7 @@
   suffix: Full
   components:
   - type: Sprite
-    sprite: Imperial/Medical.rsi
+    sprite: Imperial/Objects/Specific/Medical/Medical.rsi
     state: gauze
   - type: Tag
     tags:
@@ -127,7 +127,7 @@
   suffix: Full
   components:
   - type: Sprite
-    sprite: Imperial/Medical.rsi
+    sprite: Imperial/Objects/Specific/Medical/Medical.rsi
     state: compressionPack
   - type: Tag
     tags:

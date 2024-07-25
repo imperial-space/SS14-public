@@ -7,7 +7,7 @@
   suffix: Chief Engineer
   components:
   - type: Sprite
-    sprite: Imperial/Modsuits/suit_storage.rsi
+    sprite: Imperial/Other/Modsuits/suit_storage.rsi
 
 - type: entity
   name: ModSuit Storage CE
@@ -83,7 +83,7 @@
 
 - type: entity
   name: ModSuit Storage Medical
-  description: ModSuit Storage 
+  description: ModSuit Storage
   id: ModSuitStorageMedical
   parent: ModSuitStorageBase
   suffix: Medical
@@ -97,7 +97,7 @@
 
 - type: entity
   name: ModSuit Storage Security
-  description: ModSuit Storage 
+  description: ModSuit Storage
   id: ModSuitStorageSecurity
   parent: ModSuitStorageBase
   suffix: Security
@@ -214,7 +214,7 @@
         - id: ClothingMaskGasSyndicate
         - id: JetpackBlackFilled
   - type: Sprite
-    sprite: Imperial/Modsuits/suit_storage_syndie.rsi
+    sprite: Imperial/Other/Modsuits/suit_storage_syndie.rsi
 
 - type: entity
   name: ModSuit Storage Centcom
@@ -231,4 +231,4 @@
         - id: ClothingMaskGasSyndicate
         - id: JetpackBlackFilled
   - type: Sprite
-    sprite: Imperial/Modsuits/suit_storage_syndie.rsi
+    sprite: Imperial/Other/Modsuits/suit_storage_syndie.rsi

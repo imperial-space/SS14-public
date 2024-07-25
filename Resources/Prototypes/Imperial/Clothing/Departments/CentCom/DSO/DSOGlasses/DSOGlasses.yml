@@ -8,9 +8,9 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/VlClothes/DSO/DSOGlassesDiamond.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/DSO/DSOGlassesDiamond.rsi
   - type: Clothing
-    sprite: Imperial/VlClothes/DSO/DSOGlassesDiamond.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/DSO/DSOGlassesDiamond.rsi
   - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
@@ -25,9 +25,9 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/VlClothes/DSO/DSOGlassesWhite.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/DSO/DSOGlassesWhite.rsi
   - type: Clothing
-    sprite: Imperial/VlClothes/DSO/DSOGlassesWhite.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/DSO/DSOGlassesWhite.rsi
   - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5

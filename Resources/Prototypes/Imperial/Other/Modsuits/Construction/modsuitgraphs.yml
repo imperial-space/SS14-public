@@ -91,13 +91,13 @@
             - tag: PlatingEngineerModsuit
               name: покрытие инженерного РИГ-а
               icon:
-                sprite: Imperial/Modsuits/plating.rsi
+                sprite: Imperial/Other/Modsuits/plating.rsi
                 state: engineering-plating
               doAfter: 2
             - tag: ModsuitControlEnd
               name: собранный каркас РИГ-а
               icon:
-                sprite: Imperial/Modsuits/constructing_modsuit.rsi
+                sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
                 state: CORE-equip8
               doAfter: 2
     - node: modsuitengineer
@@ -114,13 +114,13 @@
             - tag: PlatingMedicalModsuit
               name: покрытие медицинского РИГ-а
               icon:
-                sprite: Imperial/Modsuits/plating.rsi
+                sprite: Imperial/Other/Modsuits/plating.rsi
                 state: medical-plating
               doAfter: 2
             - tag: ModsuitControlEnd
               name: собранный каркас РИГ-а
               icon:
-                sprite: Imperial/Modsuits/constructing_modsuit.rsi
+                sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
                 state: CORE-equip8
               doAfter: 2
     - node: modsuitmedical
@@ -137,13 +137,13 @@
             - tag: PlatingRNDModsuit
               name: покрытие научного РИГ-а
               icon:
-                sprite: Imperial/Modsuits/plating.rsi
+                sprite: Imperial/Other/Modsuits/plating.rsi
                 state: rnd-plating
               doAfter: 2
             - tag: ModsuitControlEnd
               name: собранный каркас РИГ-а
               icon:
-                sprite: Imperial/Modsuits/constructing_modsuit.rsi
+                sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
                 state: CORE-equip8
               doAfter: 2
     - node: modsuitrnd
@@ -160,13 +160,13 @@
             - tag: PlatingAsteroidModsuit
               name: покрытие РИГ-а утилизатора
               icon:
-                sprite: Imperial/Modsuits/plating.rsi
+                sprite: Imperial/Other/Modsuits/plating.rsi
                 state: engineering-plating #same coлor paлette
               doAfter: 2
             - tag: ModsuitControlEnd
               name: собранный каркас РИГ-а
               icon:
-                sprite: Imperial/Modsuits/constructing_modsuit.rsi
+                sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
                 state: CORE-equip8
               doAfter: 2
     - node: modsuitsalvage
@@ -183,13 +183,13 @@
             - tag: PlatingCivillianModsuit
               name: покрытие гражданского РИГ-а
               icon:
-                sprite: Imperial/Modsuits/plating.rsi
+                sprite: Imperial/Other/Modsuits/plating.rsi
                 state: civillian-plating
               doAfter: 2
             - tag: ModsuitControlEnd
               name: собранный каркас РИГ-а
               icon:
-                sprite: Imperial/Modsuits/constructing_modsuit.rsi
+                sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
                 state: CORE-equip8
               doAfter: 2
     - node: modsuitcivillian
@@ -206,13 +206,13 @@
             - tag: PlatingSecurityModsuit
               name: покрытие охранного РИГ-а
               icon:
-                sprite: Imperial/Modsuits/plating.rsi
+                sprite: Imperial/Other/Modsuits/plating.rsi
                 state: security-plating
               doAfter: 2
             - tag: ModsuitControlEnd
               name: собранный каркас РИГ-а
               icon:
-                sprite: Imperial/Modsuits/constructing_modsuit.rsi
+                sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
                 state: CORE-equip8
               doAfter: 2
     - node: modsuitsecurity
@@ -229,13 +229,13 @@
             - tag: PlatingAtmosphericModsuit
               name: покрытие РИГ-а атмосферного техника
               icon:
-                sprite: Imperial/Modsuits/plating.rsi
+                sprite: Imperial/Other/Modsuits/plating.rsi
                 state: atmospheric-plating
               doAfter: 2
             - tag: ModsuitControlEnd
               name: собранный каркас РИГ-а
               icon:
-                sprite: Imperial/Modsuits/constructing_modsuit.rsi
+                sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
                 state: CORE-equip8
               doAfter: 2
     - node: modsuitatmospheric
@@ -252,13 +252,13 @@
             - tag: PlatingCEModsuit
               name: покрытие продвинутого РИГ-а
               icon:
-                sprite: Imperial/Modsuits/plating.rsi
+                sprite: Imperial/Other/Modsuits/plating.rsi
                 state: ce-plating
               doAfter: 2
             - tag: ModsuitControlAdvanced
               name: Каркас продвинутого Р.И.Г-а
               icon:
-                sprite: Imperial/Modsuits/constructing_modsuit.rsi
+                sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
                 state: CORE-equip8
               doAfter: 2
     - node: modsuitadvanced
@@ -275,13 +275,13 @@
             - tag: PlatingCMOModsuit
               name: покрытие Спасательного Р.И.Г-а
               icon:
-                sprite: Imperial/Modsuits/plating.rsi
+                sprite: Imperial/Other/Modsuits/plating.rsi
                 state: cmo-plating
               doAfter: 2
             - tag: ModsuitControlRescue
               name: Каркас спасательного Р.И.Г-а
               icon:
-                sprite: Imperial/Modsuits/constructing_modsuit.rsi
+                sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
                 state: CORE-equip8
               doAfter: 2
     - node: modsuitrescue
@@ -298,13 +298,13 @@
             - tag: PlatingMagnateModsuit
               name: покрытие РИГ-а капитана
               icon:
-                sprite: Imperial/Modsuits/plating.rsi
+                sprite: Imperial/Other/Modsuits/plating.rsi
                 state: magnate-plating
               doAfter: 2
             - tag: ModsuitControlMagnate
               name: Каркас роскошного Р.И.Г-а
               icon:
-                sprite: Imperial/Modsuits/constructing_modsuit.rsi
+                sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
                 state: CORE-equip8
               doAfter: 2
     - node: modsuitmagnate
@@ -321,13 +321,13 @@
             - tag: PlatingHOSModsuit
               name: покрытие РИГ-а главы службы безопасности
               icon:
-                sprite: Imperial/Modsuits/plating.rsi
+                sprite: Imperial/Other/Modsuits/plating.rsi
                 state: security-plating
               doAfter: 2
-            - tag: ModsuitControlSafeguard  
+            - tag: ModsuitControlSafeguard
               name: Каркас  Р.И.Г-а Гвардейца
               icon:
-                sprite: Imperial/Modsuits/constructing_modsuit.rsi
+                sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
                 state: CORE-equip8
               doAfter: 2
     - node: modsuithos

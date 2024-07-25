@@ -5,9 +5,9 @@
   description: A special belt for the most obedient cat-janimaid.
   components:
   - type: Sprite
-    sprite: Imperial/TFG/NewMaidClothing/maidBelt.rsi
+    sprite: Imperial/Other/TFG/NewMaidClothing/maidBelt.rsi
   - type: Clothing
-    sprite: Imperial/TFG/NewMaidClothing/maidBelt.rsi
+    sprite: Imperial/Other/TFG/NewMaidClothing/maidBelt.rsi
   - type: Item
     size: Ginormous
   - type: Storage
@@ -57,9 +57,9 @@
       - EncryptionKeyService
       - EncryptionKeyCommon
   - type: Sprite
-    sprite: Imperial/TFG/NewMaidClothing/maidHeadset.rsi
+    sprite: Imperial/Other/TFG/NewMaidClothing/maidHeadset.rsi
   - type: Clothing
-    sprite: Imperial/TFG/NewMaidClothing/maidHeadset.rsi
+    sprite: Imperial/Other/TFG/NewMaidClothing/maidHeadset.rsi
 
 - type: entity
   id: ClothingNeckMaidChoker
@@ -71,9 +71,9 @@
     shape:
     - 0,0,1,0
   - type: Sprite
-    sprite: Imperial/TFG/NewMaidClothing/maidChoker.rsi
+    sprite: Imperial/Other/TFG/NewMaidClothing/maidChoker.rsi
   - type: Clothing
-    sprite: Imperial/TFG/NewMaidClothing/maidChoker.rsi
+    sprite: Imperial/Other/TFG/NewMaidClothing/maidChoker.rsi
 
 - type: entity
   id: ClothingBackpackMaidBackbow
@@ -82,10 +82,10 @@
   description: Cool bow for a cool maid.
   components:
   - type: Sprite
-    sprite: Imperial/TFG/NewMaidClothing/maidBackbow.rsi
+    sprite: Imperial/Other/TFG/NewMaidClothing/maidBackbow.rsi
     state: icon
   - type: Clothing
-    sprite: Imperial/TFG/NewMaidClothing/maidBackbow.rsi
+    sprite: Imperial/Other/TFG/NewMaidClothing/maidBackbow.rsi
     quickEquip: false
     slots:
     - back
@@ -104,14 +104,14 @@
   name: maid ID card
   components:
     - type: Sprite
-      sprite: Imperial/TFG/NewMaidClothing/maidID.rsi
+      sprite: Imperial/Other/TFG/NewMaidClothing/maidID.rsi
       layers:
         - state: blackcard
         - state: maidID
     - type: Clothing
       slots:
         - idcard
-      sprite: Imperial/TFG/NewMaidClothing/maidID.rsi
+      sprite: Imperial/Other/TFG/NewMaidClothing/maidID.rsi
     - type: PresetIdCard
       job: StationMaid
 
@@ -123,7 +123,7 @@
   description: PDA of a highly qualified worker.
   components:
   - type: Sprite
-    sprite: Imperial/TFG/NewMaidClothing/maidPDA.rsi
+    sprite: Imperial/Other/TFG/NewMaidClothing/maidPDA.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
     - state: "light_overlay"
@@ -135,7 +135,7 @@
       shader: "unshaded"
       visible: false
   - type: Icon
-    sprite: Imperial/TFG/NewMaidClothing/maidPDA.rsi
+    sprite: Imperial/Other/TFG/NewMaidClothing/maidPDA.rsi
     state: pda-made
   - type: Pda
     id: MaidIDCard

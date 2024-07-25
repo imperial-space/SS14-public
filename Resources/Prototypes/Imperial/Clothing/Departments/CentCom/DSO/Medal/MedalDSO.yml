@@ -6,6 +6,6 @@
   description: It is given to the best.
   components:
   - type: Sprite
-    sprite: Imperial/VlClothes/DSO/DSOMedal.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/DSO/DSOMedal.rsi
   - type: Clothing
-    sprite: Imperial/VlClothes/DSO/DSOMedal.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/DSO/DSOMedal.rsi

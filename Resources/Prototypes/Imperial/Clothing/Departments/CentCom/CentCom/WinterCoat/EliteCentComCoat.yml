@@ -6,6 +6,6 @@
   description: The CENTCOM winter coat is extremely pleasant to the touch.
   components:
   - type: Sprite
-    sprite: Imperial/VlClothes/CentCom/Coat.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/CentCom/Coat.rsi
   - type: Clothing
-    sprite: Imperial/VlClothes/CentCom/Coat.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/CentCom/Coat.rsi

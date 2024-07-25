@@ -11,7 +11,7 @@
         volume: 5
   - type: Sprite
     noRot: false
-    sprite: Imperial/MiniCrossbow.rsi
+    sprite: Imperial/Objects/Weapons/Battery/MiniCrossbow.rsi
     color: "#FFFFFF"
     layers:
     - state: cbbolt

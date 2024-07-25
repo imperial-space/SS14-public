@@ -6,4 +6,4 @@
   description: To transport thousands of papers.
   components:
   - type: Sprite
-    sprite: Imperial/VlClothes/CentCom/CCDuffel.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/CentCom/CCDuffel.rsi

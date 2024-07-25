@@ -5,9 +5,9 @@
   description: It will protect even the most terrible bureaucrat from a sudden attack
   components:
   - type: Sprite
-    sprite: Imperial/ImperialClothes/ClothingOuterArmorCentCom.rsi
+    sprite: Imperial/Other/ImperialClothes/ClothingOuterArmorCentCom.rsi
   - type: Clothing
-    sprite: Imperial/ImperialClothes/ClothingOuterArmorCentCom.rsi
+    sprite: Imperial/Other/ImperialClothes/ClothingOuterArmorCentCom.rsi
 
 - type: entity
   parent: ClothingHandsGlovesCaptain
@@ -16,9 +16,9 @@
   description: The captain's repainted gloves. Just don't tell the owner
   components:
   - type: Sprite
-    sprite: Imperial/ImperialClothes/ClothingHandsGlovesCentCom.rsi
+    sprite: Imperial/Other/ImperialClothes/ClothingHandsGlovesCentCom.rsi
   - type: Clothing
-    sprite: Imperial/ImperialClothes/ClothingHandsGlovesCentCom.rsi
+    sprite: Imperial/Other/ImperialClothes/ClothingHandsGlovesCentCom.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -27,6 +27,6 @@
   description: It smells like paper.
   components:
   - type: Sprite
-    sprite: Imperial/ImperialClothes/centcomcap.rsi
+    sprite: Imperial/Other/ImperialClothes/centcomcap.rsi
   - type: Clothing
-    sprite: Imperial/ImperialClothes/centcomcap.rsi
+    sprite: Imperial/Other/ImperialClothes/centcomcap.rsi

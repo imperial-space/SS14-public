@@ -5,7 +5,7 @@
   description: A high tech energy sniper favoured by the NT-ERT operatives.
   components:
   - type: Sprite
-    sprite: Imperial/Ert_sniper/pulse_sniper.rsi
+    sprite: Imperial/Objects/Weapons/Battery/Ert_sniper/pulse_sniper.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -13,7 +13,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Clothing
-    sprite: Imperial/Ert_sniper/pulse_sniper.rsi
+    sprite: Imperial/Objects/Weapons/Battery/pulse_sniper.rsi
   - type: Gun
     selectedMode: SemiAuto
     fireRate: 0.5

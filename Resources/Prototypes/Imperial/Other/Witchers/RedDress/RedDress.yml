@@ -8,6 +8,6 @@
   - type: Item
     size: Normal
   - type: Sprite
-    sprite: Imperial/Witchers/RedDress2.rsi
+    sprite: Imperial/Other/Witchers/RedDress2.rsi
   - type: Clothing
-    sprite: Imperial/Witchers/RedDress2.rsi
+    sprite: Imperial/Other/Witchers/RedDress2.rsi

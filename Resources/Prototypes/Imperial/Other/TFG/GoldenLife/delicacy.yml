@@ -6,7 +6,7 @@
   description: Delicios MRE.
   components:
   - type: Sprite
-    sprite: Imperial/TFG/GoldenLife/presentableTin.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/presentableTin.rsi
   - type: Food
     trash: FoodPresentableTinMRECaviarTrash
   - type: FlavorProfile
@@ -22,7 +22,7 @@
   name: space chum salmon caviar
   components:
   - type: Sprite
-    sprite: Imperial/TFG/GoldenLife/presentableTin.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/presentableTin.rsi
 #Tinned MRE END
 
 # Edible rag
@@ -33,10 +33,10 @@
   description: A delicacy for representatives of the moth race!
   components:
   - type: Sprite
-    sprite: Imperial/TFG/GoldenLife/presentableRag.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/presentableRag.rsi
     state: HQrag
   - type: Item
-    sprite: Imperial/TFG/GoldenLife/presentableRag.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/presentableRag.rsi
     state: HQrag
     size: Small
   - type: Food
@@ -68,7 +68,7 @@
   description: You are rich, crazy bastartd.
   components:
   - type: Sprite
-    sprite: Imperial/TFG/GoldenLife/goldenPizza.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenPizza.rsi
     layers:
     - state: goldenPizza
   - type: FlavorProfile
@@ -89,7 +89,7 @@
     flavors:
       - gold-pizza
   - type: Sprite
-    sprite: Imperial/TFG/GoldenLife/goldenPizza.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenPizza.rsi
     layers:
     - state: goldenPizzaSlice
   - type: StaticPrice
@@ -104,7 +104,7 @@
   description: Texture like edible balls of gold. Crumbly and aromatic. Brought directly from planet Earth, where it was obtained in an ancient ritual of fair hunting for albino sturgeon.
   components:
   - type: Sprite
-    sprite: Imperial/TFG/GoldenLife/goldenCaviar.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenCaviar.rsi
     state: caviar
   - type: SolutionContainerManager
     solutions:
@@ -122,7 +122,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Item
-    sprite: Imperial/TFG/GoldenLife/goldenCaviar.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenCaviar.rsi
     size: Tiny
   - type: Food
     trash: CaviarBowlEmpty
@@ -140,10 +140,10 @@
   suffix: Empty
   components:
   - type: Sprite
-    sprite: Imperial/TFG/GoldenLife/goldenCaviar.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenCaviar.rsi
     state: empty
   - type: Item
-    sprite: Imperial/TFG/GoldenLife/goldenCaviar.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenCaviar.rsi
     size: Tiny
   - type: Destructible
     thresholds:

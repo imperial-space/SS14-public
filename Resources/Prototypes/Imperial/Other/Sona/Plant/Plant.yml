@@ -6,5 +6,5 @@
   description: A cute little sakura in blue.
   components:
   - type: Sprite
-    sprite: Imperial/Sona/Plant.rsi
+    sprite: Imperial/Other/Sona/Plant.rsi
     state: BlueSakyra

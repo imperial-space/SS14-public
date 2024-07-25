@@ -8,6 +8,6 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/Witchers/KrilSmall.rsi
+    sprite: Imperial/Other/Witchers/KrilSmall.rsi
   - type: Clothing
-    sprite: Imperial/Witchers/KrilSmall.rsi
+    sprite: Imperial/Other/Witchers/KrilSmall.rsi

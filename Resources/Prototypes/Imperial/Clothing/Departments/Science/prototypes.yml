@@ -6,10 +6,10 @@
   description: Standard security gear. Protects the head from impacts.
   components:
   - type: Sprite
-    sprite: Imperial/Clothing/Science/GlassMask.rsi
+    sprite: Imperial/Clothing/Departments/Science/GlassMask.rsi
   - type: Clothing
-    sprite: Imperial/Clothing/Science/GlassMask.rsi
-  - type: Armor 
+    sprite: Imperial/Clothing/Departments/Science/GlassMask.rsi
+  - type: Armor
     modifiers:
       coefficients:
         Slash: 0.9
@@ -28,9 +28,9 @@
   description: Regal blue gloves, with a nice gold trim. Swanky.
   components:
   - type: Sprite
-    sprite: Imperial/Clothing/Science/longlatex.rsi
+    sprite: Imperial/Clothing/Departments/Science/longlatex.rsi
   - type: Clothing
-    sprite: Imperial/Clothing/Science/longlatex.rsi
+    sprite: Imperial/Clothing/Departments/Science/longlatex.rsi
   - type: FingerprintMask
 
 - type: entity
@@ -40,9 +40,9 @@
   description: Engineering lace-up work boots for the especially blue-collar.
   components:
   - type: Sprite
-    sprite: Imperial/Clothing/Science/sciboots.rsi
+    sprite: Imperial/Clothing/Departments/Science/sciboots.rsi
   - type: Clothing
-    sprite: Imperial/Clothing/Science/sciboots.rsi
+    sprite: Imperial/Clothing/Departments/Science/sciboots.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -50,6 +50,6 @@
   name: cargo tech jumpsuit
   components:
   - type: Sprite
-    sprite: Imperial/Clothing/Science/rnd.rsi
+    sprite: Imperial/Clothing/Departments/Science/rnd.rsi
   - type: Clothing
-    sprite: Imperial/Clothing/Science/rnd.rsi
+    sprite: Imperial/Clothing/Departments/Science/rnd.rsi

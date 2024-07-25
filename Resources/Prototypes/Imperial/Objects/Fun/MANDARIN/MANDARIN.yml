@@ -4,8 +4,9 @@
   components:
   - type: Sprite
     layers:
-      - sprite: Imperial/MANDARIN/shader_uv.rsi
+      - sprite: Imperial/Objects/Fun/MANDARIN/shader_uv.rsi
         state: shader_uv
+        shader: MANDARINSHADER
 
 
 - type: shader

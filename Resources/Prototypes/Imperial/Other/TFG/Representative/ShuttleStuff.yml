@@ -48,10 +48,10 @@
   suffix: NotRandom
   components:
   - type: Sprite
-    sprite: Imperial/TFG/Containers/toolboxShuttle.rsi
+    sprite: Imperial/Other/TFG/Containers/toolboxShuttle.rsi
     state: icon
   - type: Item
-    sprite: Imperial/TFG/Containers/toolboxShuttle.rsi
+    sprite: Imperial/Other/TFG/Containers/toolboxShuttle.rsi
   - type: StorageFill
     contents:
       - id: ClothingEyesGlassesMeson

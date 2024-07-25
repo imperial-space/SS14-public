@@ -7,14 +7,14 @@
   id: Ampula
   components:
   - type: Sprite
-    sprite: Imperial/HardsuitInjection/ampula.rsi
+    sprite: Imperial/Other/HardsuitInjection/ampula.rsi
     layers:
       - state: beaker
       - state: beaker1
         map: ["enum.SolutionContainerLayers.Fill"]
         visible: false
   - type: Item
-    sprite: Imperial/HardsuitInjection/ampula.rsi
+    sprite: Imperial/Other/HardsuitInjection/ampula.rsi
     size: Small
   - type: SolutionContainerManager
     solutions:
@@ -37,7 +37,7 @@
     useDelay: 1 # equip noise spam.
     event: !type:ToggleECEvent
     icon:
-      sprite: Imperial/HardsuitInjection/main.rsi
+      sprite: Imperial/Other/HardsuitInjection/main.rsi
       state: closeopen
 
 - type: entity
@@ -51,7 +51,7 @@
     useDelay: 1 # equip noise spam.
     event: !type:InjectionEvent
     icon:
-      sprite: Imperial/HardsuitInjection/main.rsi
+      sprite: Imperial/Other/HardsuitInjection/main.rsi
       state: inject
 
 - type: entity

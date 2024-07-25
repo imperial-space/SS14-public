@@ -8,9 +8,9 @@
   - type: Item
     size: Huge
   - type: Sprite
-    sprite: Imperial/Sona/EngSuitOne.rsi
+    sprite: Imperial/Other/Sona/EngSuitOne.rsi
   - type: Clothing
-    sprite: Imperial/Sona/EngSuitOne.rsi
+    sprite: Imperial/Other/Sona/EngSuitOne.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.04
     lowPressureMultiplier: 1000

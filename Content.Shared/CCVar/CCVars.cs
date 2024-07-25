@@ -32,11 +32,6 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<string> DefaultGuide =
             CVarDef.Create("server.default_guide", "NewPlayer", CVar.REPLICATED | CVar.SERVER);
 
-        // Imperial Space Start
-        public static readonly CVarDef<string> LobbyName =
-            CVarDef.Create("server.lobby_name", "MyServer", CVar.REPLICATED | CVar.SERVER);
-        // Imperial Space End
-
         /*
          * Ambience
          */

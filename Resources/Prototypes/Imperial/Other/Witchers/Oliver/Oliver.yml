@@ -10,7 +10,7 @@
       layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: Oliver
-        sprite: Imperial/Witchers/Oliver.rsi
+        sprite: Imperial/Other/Witchers/Oliver.rsi
     - type: DamageStateVisuals
       states:
         Alive:

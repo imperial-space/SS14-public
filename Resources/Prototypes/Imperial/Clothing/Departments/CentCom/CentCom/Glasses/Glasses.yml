@@ -8,9 +8,9 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/VlClothes/CentCom/CCGlassesGreen.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/CentCom/CCGlassesGreen.rsi
   - type: Clothing
-    sprite: Imperial/VlClothes/CentCom/CCGlassesGreen.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/CentCom/CCGlassesGreen.rsi
   - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
@@ -25,9 +25,9 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/VlClothes/CentCom/CCGlassesYellow.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/CentCom/CCGlassesYellow.rsi
   - type: Clothing
-    sprite: Imperial/VlClothes/CentCom/CCGlassesYellow.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/CentCom/CCGlassesYellow.rsi
   - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
@@ -42,9 +42,9 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/VlClothes/CentCom/CCGlassesGold.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/CentCom/CCGlassesGold.rsi
   - type: Clothing
-    sprite: Imperial/VlClothes/CentCom/CCGlassesGold.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/CentCom/CCGlassesGold.rsi
   - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
@@ -59,9 +59,9 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/VlClothes/CentCom/CCGlassesEmerald.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/CentCom/CCGlassesEmerald.rsi
   - type: Clothing
-    sprite: Imperial/VlClothes/CentCom/CCGlassesEmerald.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/CentCom/CCGlassesEmerald.rsi
   - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5

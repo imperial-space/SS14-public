@@ -8,6 +8,6 @@
   - type: Item
     size: Huge
   - type: Sprite
-    sprite: Imperial/Sona/Backpack.rsi
+    sprite: Imperial/Other/Sona/Backpack.rsi
   - type: Storage
     capacity: 150

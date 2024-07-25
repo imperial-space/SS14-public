@@ -6,9 +6,9 @@
   description: A form that instills fear in enemies of NanoTrasen
   components:
   - type: Sprite
-    sprite: Imperial/SpecialOfficer/specialofficerjumpskirt.rsi
+    sprite: Imperial/Roles/CentCom/SpecialOfficer/specialofficerjumpskirt.rsi
   - type: Clothing
-    sprite: Imperial/SpecialOfficer/specialofficerjumpskirt.rsi
+    sprite: Imperial/Roles/CentCom/SpecialOfficer/specialofficerjumpskirt.rsi
 
 - type: entity
   parent: ClothingNeckBase ## Плащ ОСО
@@ -18,7 +18,7 @@
   description: It's black color makes your heart beat faster
   components:
   - type: Sprite
-    sprite: Imperial/SpecialOfficer/specialofficercloak.rsi
+    sprite: Imperial/Roles/CentCom/SpecialOfficer/specialofficercloak.rsi
 
 - type: entity
   parent: ClothingHeadBase ## Фуражка ОСО
@@ -28,9 +28,9 @@
   description: She inspires confidence in you
   components:
   - type: Sprite
-    sprite: Imperial/SpecialOfficer/specialofficerhatcap.rsi
+    sprite: Imperial/Roles/CentCom/SpecialOfficer/specialofficerhatcap.rsi
   - type: Clothing
-    sprite: Imperial/SpecialOfficer/specialofficerhatcap.rsi
+    sprite: Imperial/Roles/CentCom/SpecialOfficer/specialofficerhatcap.rsi
 
 - type: entity
   parent: ClothingShoesBootsJack ## Ботинки с уникальным звуком ОСО

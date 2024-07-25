@@ -10,7 +10,7 @@
       layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: Gyl
-        sprite: Imperial/Horror/GylOne.rsi
+        sprite: Imperial/Other/Horror/GylOne.rsi
     - type: DamageStateVisuals
       states:
         Alive:
@@ -66,7 +66,7 @@
       layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: Gyl
-        sprite: Imperial/Horror/GylTwo.rsi
+        sprite: Imperial/Other/Horror/GylTwo.rsi
     - type: DamageStateVisuals
       states:
         Alive:
@@ -122,7 +122,7 @@
       layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: Gyl
-        sprite: Imperial/Horror/GylThree.rsi
+        sprite: Imperial/Other/Horror/GylThree.rsi
     - type: DamageStateVisuals
       states:
         Alive:
@@ -177,7 +177,7 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: Brain
-      sprite: Imperial/Horror/Brain.rsi
+      sprite: Imperial/Other/Horror/Brain.rsi
   - type: DamageStateVisuals
     states:
       Alive:

@@ -8,9 +8,9 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/Sona/Glasses.rsi
+    sprite: Imperial/Other/Sona/Glasses.rsi
   - type: Clothing
-    sprite: Imperial/Sona/Glasses.rsi
+    sprite: Imperial/Other/Sona/Glasses.rsi
   - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5

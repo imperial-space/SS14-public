@@ -23,7 +23,7 @@
 - type: cargoProduct
   id: GoldenAkKit
   icon:
-    sprite: Imperial/TFG/GoldenLife/goldenAK.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenAK.rsi
     state: icon
   product: PremiumAkKit
   cost: 90000
@@ -35,7 +35,7 @@
 - type: cargoProduct
   id: GoldenThrusterKit
   icon:
-    sprite: Imperial/TFG/GoldenLife/goldenThruster.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenThruster.rsi
     state: base
   product: GoldenThrusterUnanchored
   cost: 40000
@@ -52,7 +52,7 @@
   suffix: Filled, Premium
   components:
   - type: Sprite
-    sprite: Imperial/TFG/GoldenLife/presentablePizzaBox.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/presentablePizzaBox.rsi
     drawdepth: SmallObjects
     layers:
     - state: box
@@ -60,7 +60,7 @@
     - state: box-open
       map: ["enum.StorageVisualLayers.Door"]
   - type: Item
-    sprite: Imperial/TFG/GoldenLife/presentablePizzaBox.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/presentablePizzaBox.rsi
     heldPrefix: box
   - type: Storage
     maxItemSize: Normal
@@ -80,7 +80,7 @@
 - type: cargoProduct
   id: GoldenPizzaKit
   icon:
-    sprite: Imperial/TFG/GoldenLife/presentablePizzaBox.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/presentablePizzaBox.rsi
     state: box
   product: FoodPresentablePizzaBoxFilled
   cost: 35000
@@ -107,7 +107,7 @@
 - type: cargoProduct
   id: GoldenWatermellonKit
   icon:
-    sprite: Imperial/TFG/GoldenLife/goldenWatermellon.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenWatermellon.rsi
     state: icon
   product: ToolboxPresentableFilledGoldenmellon
   cost: 5000
@@ -142,7 +142,7 @@
 - type: cargoProduct
   id: Mk58Kit
   icon:
-    sprite: Imperial/TFG/GoldenLife/goldenMK58.rsi
+    sprite: Imperial/Other/TFG/GoldenLife/goldenMK58.rsi
     state: icon
   product: PremiumMk58Kit
   cost: 10000

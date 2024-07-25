@@ -5,6 +5,6 @@
   description: none
   components:
   - type: Sprite
-    sprite: Imperial/jumpskirts/Clothing/psychologist.rsi
+    sprite: Imperial/Clothing/Uniforms/jumpskirts/psychologist.rsi
   - type: Clothing
-    sprite: Imperial/jumpskirts/Clothing/psychologist.rsi
+    sprite: Imperial/Clothing/Uniforms/jumpskirts/psychologist.rsi

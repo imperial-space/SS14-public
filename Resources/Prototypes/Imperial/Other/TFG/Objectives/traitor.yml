@@ -18,5 +18,5 @@
   id: M2108
   name: наградной M2108
   sprite:
-    sprite: Imperial/TFG/Weapon/M2108/m2108.rsi
+    sprite: Imperial/Other/TFG/Weapon/M2108/m2108.rsi
     state: base

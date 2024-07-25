@@ -9,7 +9,7 @@
   parent: BasePDA
   components:
   - type: Sprite
-    sprite: Imperial/customPDA.rsi
+    sprite: Imperial/Objects/Devices/customPDA.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
     - state: "light_overlay"
@@ -21,7 +21,7 @@
       shader: "unshaded"
       visible: false
   - type: Icon
-    sprite: Imperial/customPDA.rsi
+    sprite: Imperial/Objects/Devices/customPDA.rsi
     state: pda
   - type: Pda
 #    id: ID card inside this PDA
@@ -36,7 +36,7 @@
   name: airlock of the Federation
   components:
   - type: Sprite
-    sprite: Imperial/ElysiumPrime/Airlocks/normal.rsi
+    sprite: Imperial/Other/ElysiumPrime/Airlocks/normal.rsi
 #Airlocks END
 
 #Banners
@@ -47,7 +47,7 @@
   name: command banner of the Federation
   components:
   - type: Sprite
-    sprite: Imperial/ElysiumPrime/banners.rsi
+    sprite: Imperial/Other/ElysiumPrime/banners.rsi
     state: command
 
 - type: entity
@@ -57,7 +57,7 @@
   name: citizen banner of the Federation
   components:
   - type: Sprite
-    sprite: Imperial/ElysiumPrime/banners.rsi
+    sprite: Imperial/Other/ElysiumPrime/banners.rsi
     state: citizen
 
 - type: entity
@@ -67,7 +67,7 @@
   name: security banner of the Federation
   components:
   - type: Sprite
-    sprite: Imperial/ElysiumPrime/banners.rsi
+    sprite: Imperial/Other/ElysiumPrime/banners.rsi
     state: armory
 #Banners END
 
@@ -80,13 +80,13 @@
   suffix: Elysium_Prime
   components:
     - type: Sprite
-      sprite: Imperial/ElysiumPrime/card.rsi
+      sprite: Imperial/Other/ElysiumPrime/card.rsi
       layers:
         - state: federation
     - type: Clothing
       slots:
         - idcard
-      sprite: Imperial/ElysiumPrime/card.rsi
+      sprite: Imperial/Other/ElysiumPrime/card.rsi
     - type: PresetIdCard
       job: #none
 

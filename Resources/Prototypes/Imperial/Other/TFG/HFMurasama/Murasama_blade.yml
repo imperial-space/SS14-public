@@ -5,7 +5,7 @@
   description: A crimson katana shimmering with scarlet lightning. It was received by the De Neko family from a strange blond man with a mechanical dog about 1000 years ago.
   components:
   - type: Sprite
-    sprite: Imperial\TFG\Murasama\murasama_blade.rsi
+    sprite: Imperial\Other\TFG\Murasama\murasama_blade.rsi
     state: icon
   - type: MeleeWeapon
     wideAnimationRotation: -60
@@ -15,7 +15,7 @@
         Structural: 120
   - type: Item
     size: Ginormous
-    sprite: Imperial\TFG\Murasama\murasama_blade.rsi
+    sprite: Imperial\Other\TFG\Murasama\murasama_blade.rsi
   - type: Reflect
     enabled: true
     reflectProb: 0.75

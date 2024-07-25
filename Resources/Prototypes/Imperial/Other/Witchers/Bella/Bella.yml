@@ -10,7 +10,7 @@
       layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: Bella
-        sprite: Imperial/Witchers/Bella.rsi
+        sprite: Imperial/Other/Witchers/Bella.rsi
     - type: DamageStateVisuals
       states:
         Alive:
@@ -34,9 +34,9 @@
       damage:
         types:
           Piercing: 30
-    #- type: FootstepModifier
-    #  footstepSoundCollection:
-    #    path: /Audio/Imperial/Witchers/FootstepWitchersVendigo.ogg
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Imperial/Witchers/FootstepWitchersVendigo.ogg
     - type: Speech
       speechVerb: LargeMob
     - type: Vocal

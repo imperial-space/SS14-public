@@ -63,7 +63,7 @@
   parent: SyndicatePersonalAI
   components:
   - type: Sprite
-    sprite: Imperial/syndipai.rsi
+    sprite: Imperial/Objects/Fun/syndipai.rsi
     layers:
     - state: pai-base
     - state: pai-off-overlay

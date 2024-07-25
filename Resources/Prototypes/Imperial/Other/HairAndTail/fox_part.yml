@@ -13,7 +13,7 @@
           category: FacialHair
         - !type:SkinColoring
   sprites:
-    - sprite: Imperial/HairAndTail/fox_part.rsi
+    - sprite: Imperial/Other/HairAndTail/fox_part.rsi
       state: tail_fox_prime
-    - sprite: Imperial/HairAndTail/fox_part.rsi
+    - sprite: Imperial/Other/HairAndTail/fox_part.rsi
       state: tail_fox_second

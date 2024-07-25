@@ -10,7 +10,7 @@
       layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: Knight
-        sprite: Imperial/Horror/Knight.rsi
+        sprite: Imperial/Other/Horror/Knight.rsi
     - type: DamageStateVisuals
       states:
         Alive:

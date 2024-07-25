@@ -8,6 +8,6 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/VlClothes/DSO/FlowerWhite.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/DSO/FlowerWhite.rsi
   - type: Clothing
-    sprite: Imperial/VlClothes/DSO/FlowerWhite.rsi
+    sprite: Imperial/Clothing/Departments/CentCom/DSO/FlowerWhite.rsi

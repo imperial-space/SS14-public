@@ -7,7 +7,7 @@
   components:
   - type: Sprite
     drawdepth: SmallMobs
-    sprite: Imperial/HamletOps/hamlet-agent.rsi
+    sprite: Imperial/Other/HamletOps/hamlet-agent.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: hamster-0

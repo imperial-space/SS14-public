@@ -8,6 +8,6 @@
   - type: Item
     size: Huge
   - type: Sprite
-    sprite: Imperial/Sona/Satchel.rsi
+    sprite: Imperial/Other/Sona/Satchel.rsi
   - type: Storage
     capacity: 100
