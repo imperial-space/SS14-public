@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from vgstation at https://github.com/vgstation-coders/vgstation13/commit/1cdfb0230cc96d0ba751fa002d04f8aa2f25ad7d",
+  "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation",
   "size": {
     "x": 32,
     "y": 32
@@ -11,17 +11,23 @@
       "name": "icon"
     },
     {
-      "name": "crossbow"
+      "name": "base"
     },
     {
       "name": "cbbolt"
     },
     {
-      "name": "crossbow-inhand-left",
+      "name": "mag-unshaded-0"
+    },
+    {
+      "name": "mag-unshaded-1"
+    },
+    {
+      "name": "inhand-left",
       "directions": 4
     },
     {
-      "name": "crossbow-inhand-right",
+      "name": "inhand-right",
       "directions": 4
     }
   ]
