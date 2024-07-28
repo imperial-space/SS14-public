@@ -97,3 +97,43 @@
         - state: green
         - sprite: Markers/jobs.rsi
           state: ertleadereva
+
+- type: entity
+  #noSpawn: true
+  id: SpawnArcaneTaxi
+  name: ghost role spawn point
+  suffix: Vl, Arcane
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: arcane-taxi-name
+      description: arcane-taxi-desc
+      rules: arcane-taxi-rules
+    - type: GhostRoleMobSpawner
+      prototype: ArcaneTaxiPreset
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  #noSpawn: true
+  id: SpawnArcaneLapsha
+  name: ghost role spawn point
+  suffix: Vl, Arcane
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: arcane-lapsha-name
+      description: arcane-lapsha-desc
+      rules: arcane-lapsha-rules
+    - type: GhostRoleMobSpawner
+      prototype: ArcaneLapshaPreset
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
