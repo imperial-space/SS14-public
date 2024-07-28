@@ -1,0 +1,35 @@
+- type: body
+  id: gnomebody
+  name: "gnome"
+  root: torso
+  slots:
+    torso:
+      part: TorsoAnimal
+      connections:
+      - hands
+      - legs
+      organs:
+    hands:
+      part: HandsAnimal
+    legs:
+      part: LegsAnimal
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal
+
+- type: inventoryTemplate
+  id: gnomeinv
+  slots: 
+    - name: id
+      slotTexture: id
+      slotFlags: IDCARD
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 2,1
+      strippingWindowPos: 2,4
+      displayName: ID 
+
+- type: nameIdentifierGroup
+  id: GnomeID
+  prefix: GN

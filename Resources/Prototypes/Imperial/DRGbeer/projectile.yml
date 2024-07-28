@@ -1,0 +1,32 @@
+- type: entity
+  id: BulletGnomish
+  name: beerspit
+  parent: BaseBullet
+  noSpawn: true
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Caustic: 5
+    - type: Sprite
+      sprite: imperial/DRGbeer/gnomeprojectile.rsi
+      layers:
+        - state: xeno_toxic
+    - type: Ammo
+      muzzleFlash: null
+    - type: RefillableSolution
+      solution: ammo
+    - type: InjectableSolution
+      solution: ammo
+    - type: SolutionInjectOnCollide
+      transferAmount: 5
+      blockSlots: NONE
+    - type: SolutionTransfer
+      maxTransferAmount: 5
+    - type: SolutionContainerManager
+      solutions:
+        ammo:
+          maxVol: 5
+          reagents:
+          - ReagentId: GnomishBeer
+            Quantity: 5

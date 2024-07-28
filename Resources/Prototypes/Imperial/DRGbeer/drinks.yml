@@ -1,0 +1,400 @@
+- type: reagent
+  id: LeafLover
+  name: reagent-name-leaflover
+  parent: BaseAlcohol
+  desc: reagent-desc-leaflover
+  physicalDesc: reagent-physical-desc-foamy
+  flavor: leafy
+  color: "#85EB6A"
+  metamorphicSprite:
+    sprite: Imperial/DRGbeer/leaflover.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 2
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: -2
+      - !type:Drunk
+        boozePower: -0.5
+
+- type: reagent
+  id: BlackoutStout
+  name: reagent-name-Blackout
+  parent: BaseAlcohol
+  desc: reagent-desc-Blackout
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: bloodymary
+  color: "#BFAA30"
+  recognizable: true
+  metamorphicSprite:
+    sprite: Imperial/DRGbeer/blackout.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 2
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 5
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.8
+      - !type:GenericStatusEffect
+        conditions:
+        - !type:ReagentThreshold
+          reagent: BlackoutStout
+          min: 25
+        key: ForcedSleep
+        component: ForcedSleeping
+        refresh: false
+        type: Add
+
+- type: reagent
+  id: Arkenstout
+  name: reagent-name-arken
+  parent: BaseAlcohol
+  desc: reagent-desc-arken
+  physicalDesc: reagent-physical-desc-frosty
+  flavor: icespirits
+  color: "#c4d5c9"
+  metamorphicSprite:
+    sprite: Imperial/DRGbeer/arken.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 2
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.3
+      - !type:AdjustTemperature
+        amount: -10000
+
+- type: reagent
+  id: Blackreach
+  name: reagent-name-Blackreach
+  parent: BaseAlcohol
+  desc: reagent-desc-Blackreach
+  physicalDesc: reagent-physical-desc-glowing
+  flavor: threemileisland
+  color: "#7C1F7C"
+  metamorphicSprite:
+    sprite: Imperial/DRGbeer/blackreach.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 2
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.05
+      - !type:Luminescence
+        energyPerUnit: 2
+
+- type: reagent
+  id: WormholeSpec
+  name: reagent-name-wormhole
+  parent: BaseAlcohol
+  desc: reagent-desc-wormhole
+  physicalDesc: reagent-physical-desc-volatile
+  flavor: irishcarbomb
+  color: "#D25FD2"
+  metamorphicSprite:
+    sprite: Imperial/DRGbeer/wormhole.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 2
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: TelEthanol
+        amount: 1
+
+- type: reagent
+  id: MacteraBrew
+  name: reagent-name-mactera
+  parent: BaseAlcohol
+  desc: reagent-desc-mactera
+  physicalDesc: reagent-physical-desc-sickly
+  flavor: squirming
+  color: "#6FAD2B"
+  metamorphicSprite:
+    sprite: Imperial/DRGbeer/mactera.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 2
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: -5
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
+      - !type:ChemVomit
+        probability: 0.3
+        conditions:
+        - !type:ReagentThreshold
+          reagent: MacteraBrew
+          min: 6
+
+- type: reagent
+  id: TelEthanol
+  name: reagent-name-telethanol
+  parent: BaseAlcohol
+  desc: reagent-desc-telethanol
+  slippery: true
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: alcohol
+  color: "#b05b3c"
+  boilingPoint: 78.2
+  meltingPoint: -114.1
+  metamorphicChangeColor: false
+  metabolisms:
+    Alcohol:
+      effects:
+      - !type:HealPsychosis # psychosis
+        reagent: Etanol
+        stage: 1
+        conditions: # psychosis
+        - !type:ReagentThreshold # psychosis
+          min: 1 # psychosis
+      # dwarves take less toxin damage and heal a marginal amount of brute
+      - !type:ChemVomit
+        probability: 0.5
+        conditions:
+        - !type:ReagentThreshold
+          reagent: TelEthanol
+          min: 1
+      - !type:Drunk
+        boozePower: 2
+
+- type: reagent
+  id: Burninglove
+  name: reagent-name-burninglove
+  parent: BaseAlcohol
+  desc: reagent-desc-burninglove
+  physicalDesc: reagent-physical-desc-dark-red
+  flavor: gold-pizza
+  color: "#BF3030"
+  metamorphicSprite:
+    sprite: Imperial/DRGbeer/burning.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 2
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.3
+      - !type:AdjustTemperature
+        amount: +10000
+
+- type: reagent
+  id: RandoVeisser
+  name: reagent-name-randove
+  parent: BaseAlcohol
+  desc: reagent-desc-randove
+  physicalDesc: reagent-physical-desc-enigmatic
+  flavor: fortunecookie
+  color: "#FFAA40"
+  metamorphicSprite:
+    sprite: Imperial/DRGbeer/rando.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 2
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:ChangeMarkingColor
+        invertColor: true
+        conditions:
+          - !type:ReagentThreshold
+            min: 20
+            reagent: RandoVeisser
+      - !type:ChangeMarkingColor
+        markingCategory: "Tail"
+        invertColor: true
+        conditions:
+          - !type:ReagentThreshold
+            min: 20
+            reagent: RandoVeisser
+      - !type:ChangeMarkingColor
+        markingCategory: "Skin"
+        invertColor: true
+        conditions:
+        - !type:ReagentThreshold
+            min: 20
+
+#GNOMIZATOR (SINDIKAT)
+
+- type: polymorph
+  id: PolymorphGnomificator
+  configuration:
+    entity: MobGnome
+    forced: true
+    transferName: true
+    transferHumanoidAppearance: true
+    inventory: None
+    revertOnDeath: true
+    revertOnCrit: true
+    duration: 30
+
+- type: polymorph
+  id: PolymorphGnomificatorPerma
+  configuration:
+    entity: MobGnome
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: false
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: reagent
+  id: GnomificatorPermanent
+  name: reagent-name-gnomificatorPerm
+  group: Toxins
+  desc: reagent-desc-gnomificatorPerm
+  physicalDesc: reagent-physical-desc-robust
+  flavor: magical
+  color: "#5EC4CD"
+  metabolisms:
+    Poison:
+      metabolismRate: 0.25
+      effects:
+      - !type:Polymorph
+        prototype: PolymorphGnomificatorPerma
+        conditions:
+        - !type:ReagentThreshold
+          min: 7
+      - !type:AdjustReagent
+        reagent: Gnomificator
+        amount: -5
+        conditions:
+        - !type:ReagentThreshold
+          min: 7
+
+- type: reagent
+  id: Gnomificator
+  name: reagent-name-gnomificator
+  group: Toxins
+  desc: reagent-desc-gnomificator
+  physicalDesc: reagent-physical-desc-robust
+  flavor: magical
+  color: "#5EC4CD"
+  metabolisms:
+    Poison:
+      metabolismRate: 0.25
+      effects:
+      - !type:Polymorph
+        prototype: PolymorphGnomificator
+        conditions:
+        - !type:ReagentThreshold
+          min: 7
+      - !type:AdjustReagent
+        reagent: Gnomificator
+        amount: -5
+        conditions:
+        - !type:ReagentThreshold
+          min: 7
+
+- type: entity
+  parent: DrinkCanSyndicate
+  id: DrinkCanSyndicateGnomificator
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 20
+        reagents:
+        - ReagentId: Gnomificator
+          Quantity: 20
+
+
+- type: entity
+  parent: BaseItem
+  id: DrinkCanSyndicate
+  name: syndicate chemical container
+  description: Dangerous!
+  components:
+  - type: Drink
+  - type: Openable
+  - type: PressurizedDrink
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 20
+  - type: SolutionTransfer
+    canChangeTransferAmount: true
+    maxTransferAmount: 15
+  - type: UserInterface
+    interfaces:
+    - key: enum.TransferAmountUiKey.Key
+      type: TransferAmountBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/DRGbeer/gnomizator.rsi
+    state: icon
+    layers:
+      - state: icon
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: DrawableSolution
+    solution: drink
+  - type: RefillableSolution
+    solution: drink
+  - type: DrainableSolution
+    solution: drink
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "icon_open"}
+          False: {state: "icon"}
+  - type: Spillable
+    solution: drink
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50 
+
+- type: listing
+  id: UplinkChemicalGnome
+  name: uplink-gnomifier-name
+  description: uplink-gnomifier-desc
+  icon: { sprite: /Textures/Imperial/DRGbeer/gnomizator.rsi, state: icon }
+  productEntity: DrinkCanSyndicateGnomificator
+  cost:
+    Telecrystal: 20
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Chemist
