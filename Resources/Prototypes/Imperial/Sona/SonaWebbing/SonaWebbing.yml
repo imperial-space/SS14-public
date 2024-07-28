@@ -1,0 +1,15 @@
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: SonaWebbing
+  name: Webbing S-o.N.A
+  suffix: Vl, S-o.N.A
+  description: Tactical Webbing of the fighters of the S-o.N.A. AI Dynamics corporation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Sona/SonaWebbing.rsi
+  - type: Clothing
+    sprite: Imperial/Sona/SonaWebbing.rsi
+  - type: Item
+    size: Large
+  - type: Storage
+    capacity: 90

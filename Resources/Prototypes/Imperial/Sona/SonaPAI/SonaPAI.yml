@@ -1,0 +1,71 @@
+- type: entity
+  parent: BaseItem
+  id: PersonalSona
+  name: personal S-o.N.A
+  suffix: Vl, S-o.N.A
+  description: Your best synthetic girlfriend! ATTENTION, S-o.N.A. AI Dynamics CORPORATION IS NOT RESPONSIBLE FOR THE QUALITY OF THE SOFTWARE!
+  components:
+  - type: Instrument
+    allowPercussion: false
+    handheld: false
+    bank: 1
+    program: 2
+  - type: UserInterface
+    interfaces:
+    - key: enum.InstrumentUiKey.Key
+      type: InstrumentBoundUserInterface
+    - key: enum.StationMapUiKey.Key
+      type: UntrackedStationMapBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/Sona/SonaPAI.rsi
+    layers:
+    - state: sona-base
+    - state: sona-off-overlay
+      shader: unshaded
+      map: ["screen"]
+  - type: Input
+    context: "human"
+  - type: PAI
+  - type: BlockMovement
+  - type: ToggleableGhostRole
+    examineTextMindPresent: sona-system-sona-installed
+    examineTextMindSearching: sona-system-still-searching
+    examineTextNoMind: sona-system-off
+    beginSearchingText: sona-system-searching
+    roleName: sona-system-role-name
+    roleDescription: sona-system-role-description
+    wipeVerbText: sona-system-wipe-device-verb-text
+    wipeVerbPopup: sona-system-wiped-device
+    stopSearchVerbText: sona-system-stop-searching-verb-text
+    stopSearchVerbPopup: sona-system-stopped-searching
+  - type: Examiner
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+  - type: DoAfter
+  - type: Actions
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Pai
+    # This has to be installed because otherwise they're not "alive",
+    #  so they can ghost and come back.
+    # Note that the personal AI never "dies".
+  - type: MobState
+    allowedStates:
+      - Alive
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableGhostRoleVisuals.Status:
+        screen:
+          Off: { state: sona-off-overlay }
+          Searching: { state: sona-searching-overlay }
+          On: { state: sona-on-overlay }
+  - type: StationMap

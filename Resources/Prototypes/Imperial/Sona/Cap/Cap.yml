@@ -1,0 +1,16 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCapSona
+  name: Cap S-o.N.A
+  suffix: Vl, S-o.N.A
+  description: The standard cap of employees of S-o.N.A. AI Dynamics Corporation.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Sona/Cap.rsi
+  - type: Clothing
+    sprite: Imperial/Sona/Cap.rsi
+  - type: Tag
+    tags:
+    - ClothMade

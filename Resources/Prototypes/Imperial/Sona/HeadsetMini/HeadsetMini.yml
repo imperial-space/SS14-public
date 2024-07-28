@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingHeadset
+  id: SonaHeadsetMini
+  name: Headset S-o.N.A
+  suffix: Vl, S-o.N.A
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Sona/HeadSetMini.rsi

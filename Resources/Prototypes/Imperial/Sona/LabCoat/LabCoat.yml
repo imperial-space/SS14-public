@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: SonaLabCoat
+  name: Women's lab coat S-o.N.A
+  suffix: Vl, S-o.N.A
+  description: The standard lab coat of S-o.N.A. AI Dynamics scientists.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Sona/Labcoat.rsi
+  - type: Clothing
+    sprite: Imperial/Sona/Labcoat.rsi

@@ -1,0 +1,17 @@
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesSona
+  name: Safety glasses S-o.N.A
+  suffix: Vl, S-o.N.A
+  description: Stylish glasses of S-o.N.A. AI Dynamics corporation, which protect against flashes and have a built-in visor.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Sona/Glasses.rsi
+  - type: Clothing
+    sprite: Imperial/Sona/Glasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: ShowSecurityIcons

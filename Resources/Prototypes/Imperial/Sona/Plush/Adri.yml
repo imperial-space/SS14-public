@@ -1,0 +1,12 @@
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieAdri
+  name: Adriana Blake
+  suffix: Vl, COMMUNITY,TOY,S-o.N.A
+  description: It smells of roses and wine. He loves humanoid synthetics, obras and witches.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Sona/Plush
+    state: AdriPl

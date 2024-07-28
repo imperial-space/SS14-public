@@ -1,0 +1,33 @@
+- type: entity
+  parent: ClothingOuterBase
+  id: OperSuitSonaOne
+  name: The suit of the operative S-o.N.A
+  suffix: Vl, S-o.N.A
+  description: An advanced spacesuit combining the technologies of several corporations at once. Probably stolen...
+  components:
+  - type: Item
+    size: Huge
+  - type: Sprite
+    sprite: Imperial/Sona/OperSuitOne.rsi
+  - type: Clothing
+    sprite: Imperial/Sona/OperSuitOne.rsi
+  - type: StealthClothing
+    visibility: 0.2
+    toggleAction: ActionTogglePhaseCloak
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    coefficient: 0.01
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.6
+        Piercing: 0.5
+        Heat: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1.3

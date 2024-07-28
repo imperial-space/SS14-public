@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: WitcherRedDress
+  name: The Scarlet Witch's Dress
+  suffix: Vl, Ведьмы
+  description: A beautiful long scarlet witch dress.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Witchers/RedDress2.rsi
+  - type: Clothing
+    sprite: Imperial/Witchers/RedDress2.rsi

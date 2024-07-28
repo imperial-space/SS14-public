@@ -1,0 +1,57 @@
+- type: entity
+  name: Abel the Cat
+  suffix: Vl, Ведьмы
+  parent: SimpleMobBase
+  id: WitcherCatvOne
+  description: An angry, big-eyed cat.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Witchers/Cats/Catv1.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: catv1
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 15
+  - type: Inventory
+    speciesId: cat
+    templateId: pet
+  - type: InventorySlots
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: catv1
+      Dead:
+        Base: cat_deadv1
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 3
+  - type: ReplacementAccent
+    accent: cat
+  - type: InteractionPopup
+    successChance: 0.7
+    interactSuccessString: petting-success-cat
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/cat_meow.ogg
+  - type: Grammar
+    attributes:
+      gender: epicene
+  - type: MobPrice
+    price: 200
+  - type: Tag
+    tags:
+    - VimPilot
