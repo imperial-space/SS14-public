@@ -67,3 +67,28 @@
     ears: ClothingHeadsetGanza
     belt: ClothingBeltStorageWaistbag
     pocket1: DrinkFlaskBar
+
+- type: startingGear
+  id: ArcaneTaxiGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRepairmanNT
+    back: ClothingBackpackDuffelEngineering
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadHatYellowsoft
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesFingerless
+    outerClothing: ClothingOuterArmorBasic
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltStorageWaistbag
+
+- type: startingGear
+  id: ArcaneLapshaGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChef
+    back: ClothingBackpackDuffel
+    shoes: ClothingShoesColorBlack
+    eyes: ClothingEyesHudBeer
+    gloves: ClothingHandsGlovesFingerless
+    outerClothing: ClothingOuterDogi
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltKatanaSheath
