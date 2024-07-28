@@ -18,20 +18,6 @@
   spawn: FoodBakedPancakeCc
   maxCount: 3
 
-- type: stack #Imperial bugfix
-  id: PancakeBb
-  name: pancake blackberries
-  spawn: FoodBakedPancakeBb
-  maxCount: 3
-  itemSize: 1
-
-- type: stack #Imperial bugfix
-  id: PancakeCc
-  name: pancake chocolate chip
-  spawn: FoodBakedPancakeCc
-  maxCount: 3
-  itemSize: 1
-
 # Food Containers
 
 - type: stack
