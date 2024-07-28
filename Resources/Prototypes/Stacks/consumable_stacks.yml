@@ -4,21 +4,19 @@
   id: Pancake
   name: pancake
   spawn: FoodBakedPancake
-  maxCount: 3
+  maxCount: 9
 
-- type: stack #Imperial bugfix
+- type: stack
   id: PancakeBb
-  name: pancake blackberries
+  name: blueberry pancake
   spawn: FoodBakedPancakeBb
   maxCount: 3
-  itemSize: 1
 
-- type: stack #Imperial bugfix
+- type: stack
   id: PancakeCc
-  name: pancake chocolate chip
+  name: chocolate chip pancake
   spawn: FoodBakedPancakeCc
   maxCount: 3
-  itemSize: 1
 
 # Food Containers
 

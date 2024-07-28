@@ -172,7 +172,7 @@ reagent-desc-manhattan = Любимый напиток Детектива под
 reagent-name-manhattan-project = манхэттенский проект
 reagent-desc-manhattan-project = Напиток для ученых, размышляющих о том, как взорвать станцию.
 
-reagent-name-manly-dorf = мужественный дворф
+reagent-name-manly-dorf = Пиво "Жирный Олух"
 reagent-desc-manly-dorf = Пиво и эль, соединённые в восхитительный коктейль. Предназначено только для крепких гномов.
 
 reagent-name-margarita = маргарита

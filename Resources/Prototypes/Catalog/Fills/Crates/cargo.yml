@@ -29,6 +29,9 @@
     - id: SpaceCash2500
       prob: 0.4
       orGroup: Money
+    #ImperialDRGbeer
+    - id: ClothingHeadHatGnome
+      prob: 0.4
     - id: SpaceCash500
       prob: 0.3
       orGroup: Money
