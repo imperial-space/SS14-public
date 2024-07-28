@@ -18,7 +18,7 @@
       solution: ammo
     - type: InjectableSolution
       solution: ammo
-    - type: SolutionInjectOnCollide
+    - type: SolutionInjectOnEmbed
       transferAmount: 5
       blockSlots: NONE
     - type: SolutionTransfer

@@ -173,12 +173,12 @@
   metabolisms:
     Alcohol:
       effects:
-      - !type:HealPsychosis # psychosis
-        reagent: Etanol
-        stage: 1
-        conditions: # psychosis
-        - !type:ReagentThreshold # psychosis
-          min: 1 # psychosis
+      # - !type:HealPsychosis # psychosis
+      #   reagent: Etanol
+      #   stage: 1
+      #   conditions: # psychosis
+      #   - !type:ReagentThreshold # psychosis
+      #     min: 1 # psychosis
       # dwarves take less toxin damage and heal a marginal amount of brute
       - !type:ChemVomit
         probability: 0.5
@@ -347,7 +347,7 @@
   components:
   - type: Drink
   - type: Openable
-  - type: PressurizedDrink
+  - type: PressurizedSolution
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -357,8 +357,8 @@
     maxTransferAmount: 15
   - type: UserInterface
     interfaces:
-    - key: enum.TransferAmountUiKey.Key
-      type: TransferAmountBoundUserInterface
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
   - type: Sprite
     sprite: Imperial/DRGbeer/gnomizator.rsi
     state: icon
