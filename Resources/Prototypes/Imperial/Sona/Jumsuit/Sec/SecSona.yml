@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSonaSec
+  name: Jumpsuit S-o.N.A
+  suffix: Vl, S-o.N.A
+  description: A practical and comfortable suit made of pure synthetics.
+  components:
+    - type: Item
+      size: Normal
+    - type: Sprite
+      sprite: Imperial/Sona/SonaSec.rsi
+    - type: Clothing
+      sprite: Imperial/Sona/SonaSec.rsi

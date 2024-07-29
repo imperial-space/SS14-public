@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelSona
+  name: Duffel S-o.N.A
+  suffix: Vl, S-o.N.A
+  description: A duffel bag of S-o.N.A. AI Dynamics corporation, with additional BlueSpace storage, which was leased from NanoTrasen.
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Sprite
+    sprite: Imperial/Sona/Duffel.rsi
+  - type: Storage
+    capacity: 350

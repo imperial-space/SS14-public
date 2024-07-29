@@ -1,0 +1,14 @@
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesLinsesSona
+  name: Lenses S-o.N.A
+  suffix: Vl, S-o.N.A
+  description: Technological lenses of S-o.N.A. AI Dynamics Corporation.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Sona/Linses.rsi
+  - type: Clothing
+    sprite: Imperial/Sona/Linses.rsi
+  - type: ShowSecurityIcons

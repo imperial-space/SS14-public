@@ -1,0 +1,94 @@
+- type: startingGear
+  id: ArcaneTraderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMinuteManFormal
+    back: ClothingBackpackDuffel
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadHatBeretFrench
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesFingerless
+    outerClothing: ClothingOuterVestWeb
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManMedicWebbing
+
+- type: startingGear
+  id: ArcaneSmugglerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    back: ClothingBackpackDuffelSyndicate
+    shoes: ClothingShoesSwat
+    head: ClothingHeadHatSyndieMAA
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesFingerless
+    outerClothing: ClothingOuterWinterSyndie
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltUtilityFilled
+    neck: ClothingNeckScarfStripedSyndieRed
+    id: SyndiPDA
+
+- type: startingGear
+  id: ArcaneMercGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMercenary
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsMercFilled
+    head: ClothingHeadBandMerc
+    eyes: ClothingEyesGlassesMercenary
+    gloves: ClothingHandsGlovesMercFingerless
+    outerClothing: ClothingOuterVestWebMerc
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMercWebbing
+    pocket1: ClothingMaskGasMerc
+
+- type: startingGear
+  id: ArcaneHeadMercGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMercenary
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsMercFilled
+    head: ClothingHeadHatBeretMerc
+    eyes: ClothingEyesGlassesMercenary
+    gloves: ClothingHandsMercGlovesCombat
+    outerClothing: ClothingOuterVestWebMerc
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMercWebbing
+    pocket1: ClothingMaskGasMerc
+
+- type: startingGear
+  id: ArcaneBomjGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChiefEngineerNT
+    back: ClothingBackpackCargo
+    shoes: ClothingShoesBootsWinter
+    head: ClothingHeadHatUshanka
+    eyes: ClothingEyesGlasses
+    gloves: ClothingHandsGlovesFingerless
+    outerClothing: ClothingOuterCoatSpaceAsshole
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltStorageWaistbag
+    pocket1: DrinkFlaskBar
+
+- type: startingGear
+  id: ArcaneTaxiGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRepairmanNT
+    back: ClothingBackpackDuffelEngineering
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadHatYellowsoft
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesFingerless
+    outerClothing: ClothingOuterArmorBasic
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltStorageWaistbag
+
+- type: startingGear
+  id: ArcaneLapshaGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChef
+    back: ClothingBackpackDuffel
+    shoes: ClothingShoesColorBlack
+    eyes: ClothingEyesHudBeer
+    gloves: ClothingHandsGlovesFingerless
+    outerClothing: ClothingOuterDogi
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltKatanaSheath

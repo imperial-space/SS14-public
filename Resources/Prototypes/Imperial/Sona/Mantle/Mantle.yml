@@ -1,0 +1,17 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMantleSonaShoulder
+  name: Mantle S-o.N.A
+  suffix: Vl, S-o.N.A
+  description: The mantle of S-o.N.A. AI Dynamics corporation, covered with a special fiber, which partially protects against laser guns.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Sona/Mantle.rsi
+  - type: Clothing
+    sprite: Imperial/Sona/Mantle.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.90

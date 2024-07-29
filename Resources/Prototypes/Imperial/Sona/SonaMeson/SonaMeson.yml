@@ -1,0 +1,15 @@
+- type: entity
+  parent: ClothingEyesBase
+  id: SonaEyesGlassesMeson
+  name: Blue Engineering Glasses
+  suffix: Vl, S-o.N.A
+  description: Modified engineering glasses of S-o.N.A. AI Dynamics Corporation.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Sona/SonaMeson.rsi
+  - type: Clothing
+    sprite: Imperial/Sona/SonaMeson.rsi
+  - type: EyeProtection
+  - type: ShowSecurityIcons

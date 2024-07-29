@@ -1,0 +1,16 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadFlowerSona
+  name: Blue flower for hair
+  suffix: Vl, S-o.N.A
+  description: A beautiful blue flower, it smells like an orchid.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Sona/HeadFlower.rsi
+  - type: Clothing
+    sprite: Imperial/Sona/HeadFlower.rsi
+  - type: Tag
+    tags:
+    - ClothMade

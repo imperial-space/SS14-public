@@ -1,0 +1,11 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakSona
+  name: Cloak S-o.N.A
+  suffix: Vl, S-o.N.A
+  description: A beautiful cloak that is used by high-ranking people in the S-o.N.A. AI Dynamics corporation.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Sona/Neck.rsi

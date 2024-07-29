@@ -1,0 +1,214 @@
+- type: entity
+  noSpawn: false
+  parent: MobHuman
+  id: ArcaneTraderPreset
+  name: Trader
+  suffix: Vl, Arcane
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - Торговец
+      - names_last
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ ArcaneTraderGear ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    # - type: CrewSkills
+    #   skills:
+    #     - skillBotany
+    #     - skillBaseMed
+    #     - skillBaseConstraction
+    #     - skillCooking
+    #     - skillBartending
+    #     - skillMedicalEquipment
+    #     - skillPiloting
+    #     - skillShooting
+    #     - skillMaintenance
+
+- type: entity
+  noSpawn: false
+  parent: MobHuman
+  id: ArcaneSmugglerPreset
+  name: Smuggler
+  suffix: Vl, Arcane
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - Контрабандист
+      - names_last
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ ArcaneSmugglerGear ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    # - type: CrewSkills
+    #   skills:
+    #     - skillBotany
+    #     - skillBaseMed
+    #     - skillBaseConstraction
+    #     - skillHacking
+    #     - skillPiloting
+    #     - skillShooting
+    #     - skillMaintenance
+
+- type: entity
+  noSpawn: false
+  parent: MobHuman
+  id: ArcaneMercPreset
+  name: Merc
+  suffix: Vl, Arcane
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - Наёмник
+      - names_last
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ ArcaneMercGear ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    # - type: CrewSkills
+    #   skills:
+    #     - skillBotany
+    #     - skillBaseMed
+    #     - skillBaseConstraction
+    #     - skillHacking
+    #     - skillInstrumentation
+    #     - skillMaintenance
+    #     - skillMedicalEquipment
+    #     - skillPharmacology
+    #     - skillPiloting
+    #     - skillShooting
+    #     - skillSurgery
+
+- type: entity
+  noSpawn: false
+  parent: MobHuman
+  id: ArcaneHeadMercPreset
+  name: Head Merc
+  suffix: Vl, Arcane
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - Главарь
+      - names_last
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ ArcaneHeadMercGear ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    # - type: CrewSkills
+    #   skills:
+    #     - skillBotany
+    #     - skillBaseMed
+    #     - skillBaseConstraction
+    #     - skillHacking
+    #     - skillInstrumentation
+    #     - skillMaintenance
+    #     - skillMedicalEquipment
+    #     - skillPharmacology
+    #     - skillPiloting
+    #     - skillShooting
+    #     - skillSurgery
+
+- type: entity
+  noSpawn: false
+  parent: MobHuman
+  id: ArcaneBomjPreset
+  name: Bum
+  suffix: Vl, Arcane
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - Бомж
+      - names_last
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ ArcaneBomjGear ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    # - type: CrewSkills
+    #   skills:
+    #     - skillBotany
+    #     - skillBaseMed
+    #     - skillBaseConstraction
+    #     - skillHacking
+    #     - skillInstrumentation
+    #     - skillMaintenance
+    #     - skillPiloting
+    #     - skillMediumConstruction
+    #     - skillBasicAtmos
+
+- type: entity
+  noSpawn: false
+  parent: MobHuman
+  id: ArcaneTaxiPreset
+  name: Taxist
+  suffix: Vl, Arcane
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - Таксист
+      - names_last
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ ArcaneTaxiGear ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    # - type: CrewSkills
+    #  skills:
+    #    - skillBotany
+    #    - skillBaseMed
+    #    - skillBaseConstraction
+    #    - skillPiloting
+
+- type: entity
+  noSpawn: false
+  parent: MobHuman
+  id: ArcaneLapshaPreset
+  name: Noodle Shop
+  suffix: Vl, Arcane
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - Лапшичник
+      - names_last
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ ArcaneLapshaGear ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    # - type: CrewSkills
+    #  skills:
+    #    - skillBotany
+    #    - skillBaseMed
+    #    - skillBaseConstraction
+    #    - skillPiloting
+    #    - skillBartending
+    #    - skillCooking
+    #    - skillMediumBotany
