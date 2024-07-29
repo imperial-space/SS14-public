@@ -75,3 +75,6 @@ ent-CrateVendingMachineRestockCondimentStationFilled = Ящик пополнен
 
 ent-CrateVendingMachineRestockChefvendFilled = Ящик пополнения ШефВенд
     .desc = Содержит набор пополнения торгомата ШефВенд
+
+ent-CrateVendingMachineRestockAutoDrobeFilled = Ящик пополнения ТеатроШкафа
+    .desc = Содержит набор пополнения торгомата ТеатроШкафа

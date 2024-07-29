@@ -94,6 +94,10 @@ ent-DrinkWaterMelonJuiceJug = кувшин арбузного сока
     .desc = можно найти остатки семян.
 ent-DrinkTonicWaterBottleFull = бутылка тоника
     .desc = Как газированная вода, но, возможно, более злая? Иногда сладкая.
+ent-DrinkCoconutWaterCarton = кокосовая вода
+    .desc = Главное — это то, что внутри кокоса.
+ent-DrinkSakeBottleFull = маленькая бутылочка сакэ
+    .desc = Сожаление следующего утра, кажется, тоже покусывает бутылку.
 
 ent-DrinkAleBottleFullGrowler = магма-эль Гроулер
     .desc = Настоящий напиток Дорфа. Бутылка для гроулера XL.
@@ -123,6 +127,8 @@ ent-DrinkCartonOrange = пакет от апельсинового сока
     .desc = пустой пакет
 ent-DrinkSodaWaterBottleFull = бутылка газированной воды
     .desc = Как вода, только злая!
+ent-DrinkJuiceLemonCarton = лимонный сок
+    .desc = Сначала кислый, потом все еще кислый.
 
 ent-DrinkBloodGlass =  стакан метаморф
     .desc = Я надеюсь, что это кетчуп.
@@ -155,3 +161,5 @@ ent-DrinkSugarJug = кувшин сахара
     .desc = C6H12O6
 ent-DrinkTeaJug = кувшин чая
     .desc = Любимый напиток британцев и хипстеров.
+ent-DrinkCoconutWaterJug = кувшин для кокосовой воды
+    .desc = Главное — внутри кокоса.

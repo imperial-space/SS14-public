@@ -42,3 +42,6 @@ ent-ClothingBeltChef = пояс повара
 ent-ClothingBeltChefFilled = пояс повара
     .desc = Ремень для хранения кухонных ножей и приправ для быстрого доступа.
     .suffix = Заполненный
+ent-ClothingBeltSecurityWebbingFilled = { ent-ClothingBeltSecurity }
+    .desc = { ent-ClothingBeltSecurity.desc }
+    .suffix = Заполненный

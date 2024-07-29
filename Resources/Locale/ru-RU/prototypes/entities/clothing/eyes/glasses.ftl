@@ -40,3 +40,5 @@ ent-ClothingEyesGlassesHiddenSecurity = солнцезащитные очки
     .suffix = Синдикат
 ent-ClothingEyesGlassesJensen = очки Дженсена
     .desc = Пара складных очков желтого оттенка. Ты никогда об этом не просил.
+ent-ClothingEyesGlassesCheapSunglasses = дешевые солнцезащитные очки
+    .desc = Пара черных солнцезащитных очков. Плохо блокируют свет, скорее аксессуар, чем что-то полезное.

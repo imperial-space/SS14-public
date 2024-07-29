@@ -54,3 +54,5 @@ ent-DrinkBottleWine = бутылка от вина
     .suffix = { "" }
 ent-DrinkCartonTomato = коробка томатного сока
     .desc = В пустой коробке.
+ent-DrinkBottleGildlager = бутылка глинтвейна
+    .desc = { ent-DrinkBottleBaseEmpty.desc }

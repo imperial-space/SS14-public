@@ -5,3 +5,5 @@ ent-Sledgehammer = кувалда
     .desc = Идеален для ремонта в каюте капитана
 ent-WeaponMeleeKnockbackStick = Боньк балка
     .desc = NO ERP
+ent-IncompleteBaseBallBat = незаконченная бейсбольная бита
+    .desc = несколько деревянных досок, склеенных вместе.

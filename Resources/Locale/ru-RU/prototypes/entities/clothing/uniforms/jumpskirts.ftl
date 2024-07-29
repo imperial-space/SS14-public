@@ -150,3 +150,5 @@ ent-ClothingUniformJumpskirtLibrarian = юбка-комбинезон библи
     .desc = Уютный красный джемпер, подходящий для хранителя книг.
 ent-ClothingUniformJumpskirtCurator = практичная юбка
     .desc = Она практична. Слишком практична...
+ent-ClothingUniformJumpskirtCMOTurtle = водолазка главного врача
+    .desc = Это водолазка, которую носят те, у кого есть опыт работы главным врачом. Она обеспечивает небольшую биологическую защиту.
