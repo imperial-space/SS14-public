@@ -66,3 +66,5 @@ ent-LockerSyndicateShipGearBasic = Шкаф
     .desc = Стандартное хранилище Синдиката.
 ent-LockerSyndicateShipGearBasicChameleonKit = Шкаф
     .desc = Стандартное хранилище Синдиката.
+ent-ClosetEmergencyN2 = аварийный азотный шкаф
+    .desc = Он полон спасательного оборудования. При условии, что вы дышите азотом.

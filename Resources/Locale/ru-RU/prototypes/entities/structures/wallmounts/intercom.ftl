@@ -1,7 +1,10 @@
 ent-Intercom = интерком
     .desc = Интерком. На случай, когда необходимо что-то сообщить станции.
     .suffix = { "" }
-ent-IntercomAssesmbly = каркас интеркома
+ent-IntercomConstructed = интерком
+    .desc = Интерком. На случай, когда необходимо что-то сообщить станции.
+    .suffix = Пусто, панель открыта
+ent-IntercomAssembly = каркас интеркома
     .desc = Интерком. На данный момент он бесполезен.
     .suffix = { "" }
 ent-IntercomCommand = { ent-Intercom }

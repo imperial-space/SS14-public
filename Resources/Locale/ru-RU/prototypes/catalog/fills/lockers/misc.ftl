@@ -19,3 +19,6 @@ ent-ClosetMaintenanceFilledRandom = { ent-ClosetMaintenance }
 ent-ClosetWallMaintenanceFilledRandom = { ent-ClosetWall }
     .suffix = Заполненный, Случайный
     .desc = { ent-ClosetWall.desc }
+ent-ClosetEmergencyN2FilledRandom = аварийный азотный шкаф
+    .suffix = Заполненный, Случайный
+    .desc = Он полон спасательного оборудования. При условии, что вы дышите азотом.

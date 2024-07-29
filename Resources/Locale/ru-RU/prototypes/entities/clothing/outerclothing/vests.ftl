@@ -16,3 +16,6 @@ ent-ClothingOuterVestHazard = светоотражающий жилет
 ent-ClothingOuterVest = жилет
     .desc = Плотный жилет с прорезиненной, водонепроницаемой оболочкой.
     .suffix = { "" }
+ent-ClothingOuterVestTank = жгут для баллона
+    .desc = Простой жгут, который может удерживать баллон.
+    .suffix = { "" }

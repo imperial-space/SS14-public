@@ -33,3 +33,5 @@ ent-CrateCargoGambling = большая лотерея!
     .desc = Ящик с сокровищами, превосходящими ваши самые смелые фантазии!
 ent-CrateChemistryVials = ящик пробирок
     .desc = ящик полный пробирок
+ent-CrateEngineeringSpaceHeater = ящик c обогревателем
+    .desc = Содержит обогреватель для климат-контроля.

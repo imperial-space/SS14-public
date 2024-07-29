@@ -37,3 +37,6 @@ ent-CrateServiceGuidebooks = ящик руководств
 ent-CrateTrashCartFilled = полная мусорная тележка
     .desc = { ent-CrateBaseWeldable.desc }
     .suffix = Полная
+
+ent-CrateServiceFaxMachine = ящик c факсом
+    .desc = Факс и отвертка, чтобы установить имя.

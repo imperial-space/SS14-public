@@ -13,3 +13,6 @@ ent-MagazineShotgunSlug = барабан (.50 пуля)
 ent-MagazineShotgunIncendiary = барабан (.50 зажигательные)
     .desc = { ent-BaseMagazineShotgun.desc }
     .suffix = { "" }
+ent-MagazineShotgunEmpty = барабан (.50 дробь)
+    .desc = { ent-BaseMagazineShotgun.desc }
+    .suffix = Пустой

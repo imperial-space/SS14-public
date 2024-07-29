@@ -23,4 +23,10 @@ ent-MagazineLightRiflePkBox = короб патронов ПК (.30 винтов
     .desc = { ent-BaseMagazineLightRifle.desc }
     .suffix = { "" }
 ent-MagazineLightRifleUranium = магазин (.30 винтовочные урановые)
-    desc. BaseMagazineLightRifle
+    desc. = { ent-BaseMagazineLightRifle.desc }
+ent-MagazineLightRifleEmpty = магазин (.30 винтовочные)
+    .desc = { ent-BaseMagazineLightRifle.desc }
+    .suffix = Пустой
+ent-MagazineLightRifleIncendiary = магазин (.30 винтовочные зажигательные)
+    .desc = { ent-BaseMagazineLightRifle.desc }
+    .suffix = { "" }

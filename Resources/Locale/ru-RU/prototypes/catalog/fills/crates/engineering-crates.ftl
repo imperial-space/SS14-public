@@ -16,6 +16,9 @@ ent-CrateEngineeringCableMV = Ящик СВ кабелей
 ent-CrateEngineeringCableHV = Ящик ВВ кабелей
     .desc = 3 мотка ВВ кабеля.
 
+ent-CrateEngineeringFoamGrenade = ящик для гранат с герметиком
+    .desc = 5 гранат с металлическим пенным герметиком.
+
 ent-CrateEngineeringCableBulk = Ящик кабеля различного вольтажа
     .desc = 2 мотка кабеля каждого типа.
 
