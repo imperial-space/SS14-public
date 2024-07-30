@@ -1,8 +1,12 @@
-﻿player-tab-username = Пользователь
+﻿player-tab-player-count = { $count } игроков
+player-tab-username = Имя пользователя
 player-tab-character = Персонаж
 player-tab-job = Должность
 player-tab-antagonist = Антагонист
 player-tab-playtime = Наигранное время
 player-tab-show-disconnected = Показывать отсоединившихся
-player-tab-overlay = Overlay
+player-tab-overlay = Оверлей
 player-tab-entry-tooltip = Время игры отображается в днях:часах:минутах.
+player-tab-filter-line-edit-placeholder = Фильтр
+player-tab-is-antag-yes = ДА
+player-tab-is-antag-no = НЕТ

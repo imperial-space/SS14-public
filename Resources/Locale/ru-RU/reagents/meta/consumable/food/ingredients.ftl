@@ -37,12 +37,6 @@ reagent-desc-capsaicin-oil = Капсаициновое масло - это ин
 reagent-name-raw-egg = сырое яйцо
 reagent-desc-raw-egg = Используется для выпечки.
 
-reagent-name-pumpkin-flesh = тыквенная мякоть
-reagent-desc-pumpkin-flesh = Мягкие, сладкие остатки тыквы.
-
-reagent-name-laughin-syrup = сироп смеха
-reagent-desc-laughin-syrup = Продукт выжимания сока Весёлого Горошка.  Шипучий, и, кажется, меняет вкус в зависимости от того, с чем его употребляют!
-
 reagent-name-weh = сок, который делает вас Вех!
 reagent-desc-weh = Чистая эссенция плюшевой ящерицы!. Делает тебя Вех!
 

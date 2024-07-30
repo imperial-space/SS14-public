@@ -12,3 +12,9 @@ reagent-desc-protein = Также известные как белки. Соде
 
 reagent-name-cocoapowder = какао-порошок
 reagent-desc-cocoapowder = Из лучших сортов какао-бобов.
+
+reagent-name-butter = масло
+reagent-desc-butter = Вы можете в это поверить!
+
+reagent-name-pumpkin-flesh = тыквенная мякоть
+reagent-desc-pumpkin-flesh = Мягкие, сладкие остатки тыквы.

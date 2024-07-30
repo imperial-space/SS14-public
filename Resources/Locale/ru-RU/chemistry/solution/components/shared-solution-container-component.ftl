@@ -7,7 +7,3 @@ examinable-solution-has-recognizable-chemicals = Вы узнаете {$recognize
 examinable-solution-recognized-first = [color={$color}]{$chemical}[/color]
 examinable-solution-recognized-next = , [color={$color}]{$chemical}[/color]
 examinable-solution-recognized-last = и [color={$color}]{$chemical}[/color]
-
-solution-container-mixer-activate = Активация
-solution-container-mixer-no-power = Нет энергии!
-solution-container-mixer-popup-nothing-to-mix = Внутри ничего!
