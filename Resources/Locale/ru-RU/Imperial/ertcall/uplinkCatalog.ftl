@@ -218,6 +218,7 @@ ent-ClothingUniformJumpsuitCBURN = комбинезон РХБЗЗ
 ert-uplink-weaponcombat-weaponL6Saw-name = {ent-WeaponLightMachineGunL6}
 ert-uplink-weaponcombat-L6Saw-desc = {ent-WeaponLightMachineGunL6.desc}
 ert-uplink-ammo-MagazineLightRifleBox-name = {ent-MagazineLightRifleBox}
+ert-uplink-ammo-MagazineLightRifleBox-desc = {ent-MagazineLightRifleBox.desc}
 ert-uplink-utilities-energyshield-name = {ent-EnergyShield}
 ert-uplink-utilities-energyshield-desc = {ent-EnergyShield.desc}
 

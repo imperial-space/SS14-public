@@ -111,20 +111,20 @@
   - ERTUplinkAmmoCombat
 
 #ERTUplinkAmmoCombat
-- type: listing
-  id: ErtCallUplinkMagazineRifleRubber
-  name: ert-uplink-ammo-magazineriflerubber-name
-  description: ert-uplink-ammo-magazineriflerubber-desc
-  productEntity: MagazineRifleRubber
-  cost:
-    BlueSpaceCube: 3
-  categories:
-  - ERTUplinkAmmoCombat
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - ErtUplinkCombat
+# - type: listing
+#   id: ErtCallUplinkMagazineRifleRubber
+#   name: ert-uplink-ammo-magazineriflerubber-name
+#   description: ert-uplink-ammo-magazineriflerubber-desc
+#   productEntity: MagazineRifleRubber
+#   cost:
+#     BlueSpaceCube: 3
+#   categories:
+#   - ERTUplinkAmmoCombat
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - ErtUplinkCombat
 
 - type: listing
   id: ErtCallUplinkMagazineRifle
