@@ -13,7 +13,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Clothing
-    sprite: Imperial/Objects/Weapons/Battery/pulse_sniper.rsi
+    sprite: Imperial/Objects/Weapons/Battery/Ert_sniper/pulse_sniper.rsi
   - type: Gun
     selectedMode: SemiAuto
     fireRate: 0.5
