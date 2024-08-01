@@ -28,8 +28,10 @@
     thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 500
+          damage: 250
         behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
           - !type:SpawnEntitiesBehavior
             spawn:
               SheetSteel:
@@ -38,8 +40,6 @@
           - !type:PlaySoundBehavior
             sound:
               path: /Audio/Effects/metalbreak.ogg
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
 
 - type: entity
   id: ShippingContainerBlank
