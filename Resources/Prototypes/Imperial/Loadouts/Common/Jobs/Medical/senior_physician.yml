@@ -2,7 +2,7 @@
   id: JobSeniorPhysician
   groups:
   - GroupTankHarness
-  - MedicalDoctorHead
+  - SeniorPhysicianHead
   - MedicalMask
   - SeniorPhysicianJumpsuit
   - MedicalGloves
@@ -13,6 +13,7 @@
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
+
 
 # Groups Start
 
@@ -30,9 +31,32 @@
   loadouts:
   - ClothingOuterCoatLabSeniorPhysician
 
+- type: loadoutGroup
+  id: SeniorPhysicianHead
+  name: loadout-group-JobSeniorPhysician-head
+  minLimit: 0
+  loadouts:
+  - MedicalBeret
+  - SeniorPhysicianBeretNonTime
+  - MedicalHeadMirrorNonTime
+  - BlueSurgeryCap
+  - GreenSurgeryCap
+  - PurpleSurgeryCap
+  - NurseHat
+
 # Groups End
 
 # Loadouts Start
+
+# SeniorPhysicianHead
+
+- type: loadout
+  id: SeniorPhysicianBeretNonTime
+  equipment: SeniorPhysicianBeret
+
+- type: loadout
+  id: MedicalHeadMirrorNonTime
+  equipment: MedicalHeadMirror
 
 # ClothingUniformJumpsuitSeniorPhysician
 
