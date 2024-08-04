@@ -31,12 +31,12 @@
 
 # Head
 
-- type: loadout
-  id: SeniorPhysicianBeret
-  equipment: SeniorPhysicianBeret
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorPhysician
+# - type: loadout // закомментирован в связи с возвращением сеньор ролей Imperial Space
+#   id: SeniorPhysicianBeret
+#   equipment: SeniorPhysicianBeret
+#   effects:
+#   - !type:GroupLoadoutEffect
+#     proto: SeniorPhysician
 
 - type: startingGear
   id: SeniorPhysicianBeret
@@ -119,24 +119,24 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtMedicalDoctor
 
-- type: loadout
-  id: SeniorPhysicianJumpsuit
-  equipment: SeniorPhysicianJumpsuit
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorPhysician
+# - type: loadout // закомментирован в связи с возвращением сеньор ролей Imperial Space
+#   id: SeniorPhysicianJumpsuit
+#   equipment: SeniorPhysicianJumpsuit
+#   effects:
+#   - !type:GroupLoadoutEffect
+#     proto: SeniorPhysician
 
 - type: startingGear
   id: SeniorPhysicianJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorPhysician
 
-- type: loadout
-  id: SeniorPhysicianJumpskirt
-  equipment: SeniorPhysicianJumpskirt
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorPhysician
+# - type: loadout // закомментирован в связи с возвращением сеньор ролей Imperial Space
+#   id: SeniorPhysicianJumpskirt
+#   equipment: SeniorPhysicianJumpskirt
+#   effects:
+#   - !type:GroupLoadoutEffect
+#     proto: SeniorPhysician
 
 - type: startingGear
   id: SeniorPhysicianJumpskirt
@@ -208,12 +208,12 @@
   equipment:
     outerClothing: ClothingOuterWinterMed
 
-- type: loadout
-  id: SeniorPhysicianLabCoat
-  equipment: SeniorPhysicianLabCoat
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorPhysician
+# - type: loadout // закомментирован в связи с возвращением сеньор ролей Imperial Space
+#   id: SeniorPhysicianLabCoat
+#   equipment: SeniorPhysicianLabCoat
+#   effects:
+#   - !type:GroupLoadoutEffect
+#     proto: SeniorPhysician
 
 - type: startingGear
   id: SeniorPhysicianLabCoat
@@ -240,12 +240,12 @@
   equipment:
     id: MedicalPDA
 
-- type: loadout
-  id: SeniorPhysicianPDA
-  equipment: SeniorPhysicianPDA
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorPhysician
+# - type: loadout // закомментирован в связи с возвращением сеньор ролей Imperial Space
+#   id: SeniorPhysicianPDA
+#   equipment: SeniorPhysicianPDA
+#   effects:
+#   - !type:GroupLoadoutEffect
+#     proto: SeniorPhysician
 
 - type: startingGear
   id: SeniorPhysicianPDA

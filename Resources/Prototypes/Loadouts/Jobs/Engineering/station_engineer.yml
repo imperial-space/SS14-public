@@ -46,12 +46,12 @@
   equipment:
     head: ClothingHeadHatHardhatRed
 
-- type: loadout
-  id: SeniorEngineerBeret
-  equipment: EngineeringBeret
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorEngineering
+# - type: loadout //  закомментирован в связи с возвращением сеньор ролей Imperial Space
+#   id: SeniorEngineerBeret
+#   equipment: EngineeringBeret
+#   effects:
+#   - !type:GroupLoadoutEffect
+#     proto: SeniorEngineering
 
 - type: startingGear
   id: EngineeringBeret
@@ -86,24 +86,24 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitEngineeringHazard
 
-- type: loadout
-  id: SeniorEngineerJumpsuit
-  equipment: SeniorEngineerJumpsuit
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorEngineering
+# - type: loadout // закомментирован в связи с возвращением сеньор ролей Imperial Space
+#   id: SeniorEngineerJumpsuit
+#   equipment: SeniorEngineerJumpsuit
+#   effects:
+#   - !type:GroupLoadoutEffect
+#     proto: SeniorEngineering
 
 - type: startingGear
   id: SeniorEngineerJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorEngineer
 
-- type: loadout
-  id: SeniorEngineerJumpskirt
-  equipment: SeniorEngineerJumpskirt
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorEngineering
+# - type: loadout // закомментирован в связи с возвращением сеньор ролей Imperial Space
+#   id: SeniorEngineerJumpskirt
+#   equipment: SeniorEngineerJumpskirt
+#   effects:
+#   - !type:GroupLoadoutEffect
+#     proto: SeniorEngineering
 
 - type: startingGear
   id: SeniorEngineerJumpskirt
@@ -186,12 +186,12 @@
   equipment:
     id: EngineerPDA
 
-- type: loadout
-  id: SeniorEngineerPDA
-  equipment: SeniorEngineerPDA
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorEngineering
+# - type: loadout // закомментирован в связи с возвращением сеньор ролей Imperial Space
+#   id: SeniorEngineerPDA
+#   equipment: SeniorEngineerPDA
+#   effects:
+#   - !type:GroupLoadoutEffect
+#     proto: SeniorEngineering
 
 - type: startingGear
   id: SeniorEngineerPDA
