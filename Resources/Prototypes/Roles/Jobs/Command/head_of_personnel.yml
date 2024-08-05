@@ -19,6 +19,8 @@
     - !type:DepartmentTimeRequirement
       department: Civilian
       time: 3600 #Imperial role timers
+    - !type:AgeRequirement
+      requiredAge: 20
   weight: 20
   startingGear: HoPGear
   icon: "JobIconHeadOfPersonnel"

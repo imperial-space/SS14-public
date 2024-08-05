@@ -7,6 +7,8 @@
     - !type:DepartmentTimeRequirement
       department: Engineering
       time: 28800 #Imperial role timers
+    - !type:AgeRequirement
+      requiredAge: 20
   weight: 10
   startingGear: ChiefEngineerGear
   icon: "JobIconChiefEngineer"

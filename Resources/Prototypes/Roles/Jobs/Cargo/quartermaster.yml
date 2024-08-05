@@ -10,6 +10,8 @@
     - !type:DepartmentTimeRequirement
       department: Cargo
       time: 21600 #Imperial role timers
+    - !type:AgeRequirement
+      requiredAge: 20
   weight: 10
   startingGear: QuartermasterGear
   icon: "JobIconQuarterMaster"

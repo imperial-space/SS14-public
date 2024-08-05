@@ -38,20 +38,12 @@
 
 - type: loadout
   id: ClothingUniformJumpsuitSeniorResearcher
-  equipment: ClothingUniformJumpsuitSeniorResearcher
-
-- type: startingGear
-  id: ClothingUniformJumpsuitSeniorResearcher
   equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorResearcher
 
 # ClothingUniformJumpskirtSeniorResearcher
 
 - type: loadout
-  id: ClothingUniformJumpskirtSeniorResearcher
-  equipment: ClothingUniformJumpskirtSeniorResearcher
-
-- type: startingGear
   id: ClothingUniformJumpskirtSeniorResearcher
   equipment:
     jumpsuit: ClothingUniformJumpskirtSeniorResearcher
@@ -60,10 +52,6 @@
 
 - type: loadout
   id: ClothingOuterCoatLabSeniorResearcher
-  equipment: ClothingOuterCoatLabSeniorResearcher
-
-- type: startingGear
-  id: ClothingOuterCoatLabSeniorResearcher
   equipment:
     outerClothing: ClothingOuterCoatLabSeniorResearcher
 
@@ -71,11 +59,7 @@
 
 - type: loadout
   id: ScienceShoesAlterBoots
-  equipment: ScienceAlterBoots
-
-- type: startingGear
-  id: ScienceAlterBoots
   equipment:
-    shoes: ClothingShoesBootsScienceImperial
+    shoes: ScienceAlterBoots
 
 # Loadouts End

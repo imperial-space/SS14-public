@@ -347,8 +347,8 @@
     state: ian
 
 - type: stealTargetGroup
-  id: AnimalBingus
-  name: Бингус # Imperial objectives translate
+  id: AnimalNamedCat
+  name: Кот главного врача
   sprite:
     sprite: Mobs/Pets/bingus.rsi
     state: bingus

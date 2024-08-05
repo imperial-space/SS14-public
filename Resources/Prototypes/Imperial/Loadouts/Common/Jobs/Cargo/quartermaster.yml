@@ -1,19 +1,11 @@
 # OuterClothing
 - type: loadout
   id: ClothingOuterArmorQMCoat
-  equipment: ClothingOuterArmorQMCoat
-
-- type: startingGear
-  id: ClothingOuterArmorQMCoat
   equipment:
     outerClothing: ClothingOuterArmorQMCoat
 
 # Glasses
 - type: loadout
-  id: ClothingEyesGlassesSunglasses
-  equipment: ClothingEyesGlassesSunglasses
-
-- type: startingGear
   id: ClothingEyesGlassesSunglasses
   equipment:
     eyes: ClothingEyesGlassesSunglasses

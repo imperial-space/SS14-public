@@ -52,19 +52,17 @@
 
 - type: loadout
   id: SeniorPhysicianBeretNonTime
-  equipment: SeniorPhysicianBeret
+  equipment:
+    head: SeniorPhysicianBeret
 
 - type: loadout
   id: MedicalHeadMirrorNonTime
-  equipment: MedicalHeadMirror
+  equipment:
+    head: MedicalHeadMirror
 
 # ClothingUniformJumpsuitSeniorPhysician
 
 - type: loadout
-  id: ClothingUniformJumpsuitSeniorPhysician
-  equipment: ClothingUniformJumpsuitSeniorPhysician
-
-- type: startingGear
   id: ClothingUniformJumpsuitSeniorPhysician
   equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorPhysician
@@ -73,20 +71,12 @@
 
 - type: loadout
   id: ClothingUniformJumpskirtSeniorPhysician
-  equipment: ClothingUniformJumpskirtSeniorPhysician
-
-- type: startingGear
-  id: ClothingUniformJumpskirtSeniorPhysician
   equipment:
     jumpsuit: ClothingUniformJumpskirtSeniorPhysician
 
 # ClothingOuterCoatLabSeniorPhysician
 
 - type: loadout
-  id: ClothingOuterCoatLabSeniorPhysician
-  equipment: ClothingOuterCoatLabSeniorPhysician
-
-- type: startingGear
   id: ClothingOuterCoatLabSeniorPhysician
   equipment:
     outerClothing: ClothingOuterCoatLabSeniorPhysician

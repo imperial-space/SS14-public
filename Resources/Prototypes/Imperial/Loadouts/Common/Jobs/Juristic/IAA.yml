@@ -59,20 +59,12 @@
 
 - type: loadout
   id: ClothingUniformJumpsuitLawyerBlack
-  equipment: ClothingUniformJumpsuitLawyerBlack
-
-- type: startingGear
-  id: ClothingUniformJumpsuitLawyerBlack
   equipment:
     jumpsuit: ClothingUniformJumpsuitLawyerBlack
 
 # ClothingUniformJumpskirtLawyerBlack
 
 - type: loadout
-  id: ClothingUniformJumpskirtLawyerBlack
-  equipment: ClothingUniformJumpskirtLawyerBlack
-
-- type: startingGear
   id: ClothingUniformJumpskirtLawyerBlack
   equipment:
     jumpsuit: ClothingUniformJumpskirtLawyerBlack
@@ -81,20 +73,12 @@
 
 - type: loadout
   id: ClothingNeckLawyerbadge
-  equipment: ClothingNeckLawyerbadge
-
-- type: startingGear
-  id: ClothingNeckLawyerbadge
   equipment:
     neck: ClothingNeckLawyerbadge
 
 # ClothingShoesColorBlack
 
 - type: loadout
-  id: ClothingShoesColorBlack
-  equipment: ClothingShoesColorBlack
-
-- type: startingGear
   id: ClothingShoesColorBlack
   equipment:
     shoes: ClothingShoesColorBlack
@@ -103,10 +87,6 @@
 
 - type: loadout
   id: ClothingBackpackIAAFilled
-  equipment: ClothingBackpackIAAFilled
-
-- type: startingGear
-  id: ClothingBackpackIAAFilled
   equipment:
     back: ClothingBackpackIAAFilled
 
@@ -114,20 +94,12 @@
 
 - type: loadout
   id: ClothingBackpackSatchelIAAFilled
-  equipment: ClothingBackpackSatchelIAAFilled
-
-- type: startingGear
-  id: ClothingBackpackSatchelIAAFilled
   equipment:
     back: ClothingBackpackSatchelIAAFilled
 
 # ClothingBackpackDuffelIAAFilled
 
 - type: loadout
-  id: ClothingBackpackDuffelIAAFilled
-  equipment: ClothingBackpackDuffelIAAFilled
-
-- type: startingGear
   id: ClothingBackpackDuffelIAAFilled
   equipment:
     back: ClothingBackpackDuffelIAAFilled

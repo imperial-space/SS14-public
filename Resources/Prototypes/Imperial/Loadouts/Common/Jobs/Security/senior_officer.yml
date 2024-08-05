@@ -49,20 +49,12 @@
 
 - type: loadout
   id: ClothingUniformJumpsuitSeniorOfficer
-  equipment: ClothingUniformJumpsuitSeniorOfficer
-
-- type: startingGear
-  id: ClothingUniformJumpsuitSeniorOfficer
   equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorOfficer
 
 # ClothingUniformJumpskirtSeniorOfficer
 
 - type: loadout
-  id: ClothingUniformJumpskirtSeniorOfficer
-  equipment: ClothingUniformJumpskirtSeniorOfficer
-
-- type: startingGear
   id: ClothingUniformJumpskirtSeniorOfficer
   equipment:
     jumpsuit: ClothingUniformJumpskirtSeniorOfficer
@@ -71,20 +63,12 @@
 
 - type: loadout
   id: ClothingBackpackSecurityFilledSeniorOfficer
-  equipment: ClothingBackpackSecurityFilledSeniorOfficer
-
-- type: startingGear
-  id: ClothingBackpackSecurityFilledSeniorOfficer
   equipment:
     back: ClothingBackpackSecurityFilledSeniorOfficer
 
 # ClothingBackpackDuffelSecurityFilledSeniorOfficer
 
 - type: loadout
-  id: ClothingBackpackDuffelSecurityFilledSeniorOfficer
-  equipment: ClothingBackpackDuffelSecurityFilledSeniorOfficer
-
-- type: startingGear
   id: ClothingBackpackDuffelSecurityFilledSeniorOfficer
   equipment:
     back: ClothingBackpackDuffelSecurityFilledSeniorOfficer
@@ -93,20 +77,12 @@
 
 - type: loadout
   id: ClothingBeltMilitaryWebbingSeniorOfficerFilled
-  equipment: ClothingBeltMilitaryWebbingSeniorOfficerFilled
-
-- type: startingGear
-  id: ClothingBeltMilitaryWebbingSeniorOfficerFilled
   equipment:
     belt: ClothingBeltMilitaryWebbingSeniorOfficerFilled
 
 # ClothingHandsGlovesCombat
 
 - type: loadout
-  id: ClothingHandsGlovesCombat
-  equipment: ClothingHandsGlovesCombat
-
-- type: startingGear
   id: ClothingHandsGlovesCombat
   equipment:
     gloves: ClothingHandsGlovesCombat

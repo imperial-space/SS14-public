@@ -35,10 +35,6 @@
 
 - type: loadout
   id: ClothingUniformJumpsuitSeniorEngineer
-  equipment: ClothingUniformJumpsuitSeniorEngineer
-
-- type: startingGear
-  id: ClothingUniformJumpsuitSeniorEngineer
   equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorEngineer
 
@@ -46,12 +42,7 @@
 
 - type: loadout
   id: ClothingUniformJumpskirtSeniorEngineer
-  equipment: ClothingUniformJumpskirtSeniorEngineer
-
-- type: startingGear
-  id: ClothingUniformJumpskirtSeniorEngineer
   equipment:
     jumpsuit: ClothingUniformJumpskirtSeniorEngineer
-
 
 # Loadouts End

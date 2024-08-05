@@ -81,7 +81,7 @@
     contents:
       - id: SyringePhalanximine
       - id: RadAutoInjector
-      - id: EmergencyMedipen
+      - id: PillCanisterPotassiumIodide
       - id: PillCanisterHyronalin
       - id: AmpulaHyro # imperial hardsuit injection
         amount: 2

@@ -39,8 +39,9 @@
             #medical
             ChiefMedicalOfficer: [ 1, 1 ]
             Chemist: [ 2, 2 ]
-            MedicalDoctor: [ 3, 3 ]
+            MedicalDoctor: [ 2, 2 ]
             MedicalIntern: [ 2, 2 ]
+            Paramedic: [ 1, 1 ]
             SeniorPhysician: [ 1, 1 ] # imperial space senior roles
             #science
             ResearchDirector: [ 1, 1 ]
