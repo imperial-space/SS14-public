@@ -1,14 +1,8 @@
 ghost-gui-return-to-body-button = Вернуться в тело
 ghost-gui-ghost-warp-button = Телепорт призрака
 ghost-gui-ghost-roles-button = Роли призраков {$count}
-ghost-gui-toggle-ghost-visibility-name = Переключить призраков
-ghost-gui-toggle-ghost-visibility-desc = Переключить видимость других призраков.
 ghost-gui-toggle-ghost-visibility-popup = Видимость других призраков была изменена.
-ghost-gui-toggle-lighting-manager-name = Переключить освещение
-ghost-gui-toggle-lighting-manager-desc = Включите или отключите рендеринг света, чтобы лучше видеть затенённые области.
 ghost-gui-toggle-lighting-manager-popup = Рендеринг света был переключён.
-ghost-gui-toggle-fov-name = Переключить поле зрения
-ghost-gui-toggle-fov-desc = Переключить поле зрения чтобы видеть то же, что и игроки.
 ghost-gui-toggle-fov-popup = Поле зрения было переключено.
 
 ghost-gui-toggle-hearing-popup-on = Теперь вы можете прослушивать все сообщения.
@@ -16,6 +10,7 @@ ghost-gui-toggle-hearing-popup-off = Теперь вы можете слышат
 
 ghost-target-window-title = Телепорт призрака
 ghost-target-window-current-button = Телепорт в: {$name}
+ghost-target-window-warp-to-most-followed = Переместиться к наиболее популярному
 
 ghost-roles-window-title = Роли призраков
 ghost-roles-window-join-raffle-button = Участвовать в распределении
@@ -39,6 +34,3 @@ ghost-roles-window-rules-footer = Кнопка станет доступна ч�
 
 ghost-return-to-body-title = Вернуться в тело
 ghost-return-to-body-text = Вы возрождаетесь! Вернуться в свое тело?
-
-ghost-gui-toggle-ghost-hearing-name = Переключить слух
-ghost-gui-toggle-ghost-hearing-desc = Переключение между прослушиванием всех сообщений и прослушиванием только радио и сообщений поблизости.

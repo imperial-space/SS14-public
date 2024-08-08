@@ -7,6 +7,8 @@ device-frequency-prototype-name-mailing-units = Почтовый блок
 device-frequency-prototype-name-pdas = КПК
 device-frequency-prototype-name-fax = Факс
 device-frequency-prototype-name-basic-device = Основные устройства
+device-frequency-prototype-name-cyborg-control = Контроль боргов
+device-frequency-prototype-name-robotics-console = Консоль робототехника
 
 ## camera frequencies
 device-frequency-prototype-name-surveillance-camera-test = Тест подсети
