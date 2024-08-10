@@ -10,8 +10,6 @@
     sprite: Imperial/Other/Witchers/RedGloves.rsi
   - type: Clothing
     sprite: Imperial/Other/Witchers/RedGloves.rsi
-  - type: GloveHeatResistance
-    heatResistance: 1400
   - type: Insulated
   - type: Fiber
     fiberMaterial: fibers-insulative

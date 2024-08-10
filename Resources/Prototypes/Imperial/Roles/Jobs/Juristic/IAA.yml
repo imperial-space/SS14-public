@@ -10,7 +10,7 @@
       - state: green
       - state: lawyer
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconIAA
   icon:

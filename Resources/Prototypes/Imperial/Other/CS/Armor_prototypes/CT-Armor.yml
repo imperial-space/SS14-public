@@ -132,8 +132,6 @@
     sprite: Imperial/Other/CS/Armor/CT-clothing/CT-gloves.rsi
   - type: Clothing
     sprite: Imperial/Other/CS/Armor/CT-clothing/CT-gloves.rsi
-  - type: GloveHeatResistance
-    heatResistance: 1400
   - type: Insulated
   - type: Fiber
     fiberMaterial: fibers-insulative

@@ -36,7 +36,7 @@ public sealed partial class TeleportTileReaction : ITileReaction
     [DataField("coordinates")]
     public Vector2? Coordinates;
 
-    public FixedPoint2 TileReact(TileRef tile, ReagentPrototype reagent, FixedPoint2 reactVolume, IEntityManager entityManager)
+    public FixedPoint2 TileReact(TileRef tile, ReagentPrototype reagent, FixedPoint2 reactVolume, IEntityManager entityManager, List<ReagentData>? data = null)
     {
         var lookupSystem = entityManager.System<EntityLookupSystem>();
         var xformSystem = entityManager.System<TransformSystem>();

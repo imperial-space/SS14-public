@@ -32,7 +32,7 @@
   satchel: ClothingBackpackSatchelMedicalFilled
   duffelbag: ClothingBackpackDuffelMedicalFilled
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconCoroner
   icon:

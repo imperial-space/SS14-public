@@ -17,7 +17,7 @@ namespace Content.Server.Chemistry.TileReactions
         [DataField("minVolume")]
         private int _minVolume = 0;
 
-        public FixedPoint2 TileReact(TileRef tile, ReagentPrototype reagent, FixedPoint2 reactVolume, IEntityManager entityManager)
+        public FixedPoint2 TileReact(TileRef tile, ReagentPrototype reagent, FixedPoint2 reactVolume, IEntityManager entityManager, List<ReagentData>? data = null)
         {
             if (reactVolume < _minVolume || tile.IsSpace()) return FixedPoint2.Zero;
 
