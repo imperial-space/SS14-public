@@ -965,7 +965,7 @@
           Quantity: 100
   - type: Drink
   - type: Label
-    currentLabel: red bool
+    currentLabel: ред буул #Imperial translate
 
 - type: entity
   parent: DrinkBottlePlasticBaseFull

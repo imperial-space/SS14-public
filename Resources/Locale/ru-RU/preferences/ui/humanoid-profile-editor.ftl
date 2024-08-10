@@ -19,8 +19,7 @@ humanoid-profile-editor-pronouns-neuter-text = Оно / Его
 humanoid-profile-editor-import-button = Импорт
 humanoid-profile-editor-export-button = Экспорт
 humanoid-profile-editor-save-button = Сохранить
-humanoid-profile-editor-clothing-label = Одежда:
-humanoid-profile-editor-backpack-label = Сумка:
+humanoid-profile-editor-reset-button = Сбросить
 humanoid-profile-editor-spawn-priority-label = Приоритет появления:
 humanoid-profile-editor-eyes-label = Цвет глаз:
 humanoid-profile-editor-jobs-tab = Должности
@@ -43,7 +42,7 @@ humanoid-profile-editor-department-jobs-label = {$departmentName}
 humanoid-profile-editor-antags-tab = Антагонисты
 humanoid-profile-editor-antag-preference-yes-button = Да
 humanoid-profile-editor-antag-preference-no-button = Нет
-humanoid-profile-editor-traits-tab = Черты персонажа
+
 humanoid-profile-editor-job-priority-high-button = Высокий
 humanoid-profile-editor-job-priority-medium-button = Средний
 humanoid-profile-editor-job-priority-low-button = Низкий
@@ -51,3 +50,13 @@ humanoid-profile-editor-job-priority-never-button = Никогда
 humanoid-profile-editor-naming-rules-warning = Внимание: Оскорбительные или странные имена и описания могут повлечь за собой беседу с администрацией. Прочитайте \[Правила\].
 humanoid-profile-editor-markings-tab = Черты внешности
 humanoid-profile-editor-flavortext-tab = Описание
+
+# Traits
+humanoid-profile-editor-traits-tab = Черты персонажа
+humanoid-profile-editor-no-traits = Нет доступных черт
+
+humanoid-profile-editor-trait-count-hint = Доступно очков: [{$current}/{$max}]
+
+trait-category-disabilities = Ограничения
+trait-category-speech = Черты речи
+trait-category-quirks = Причуды
