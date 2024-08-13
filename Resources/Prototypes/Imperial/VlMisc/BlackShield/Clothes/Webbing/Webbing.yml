@@ -1,0 +1,17 @@
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: BlackShieldWebbing
+  suffix: Vl, ДСО
+  name: Black Shield RPS
+  description: It is quite convenient and does not restrict the movement of the RPS.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/DSO/BSWebbing.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/DSO/BSWebbing.rsi
+  - type: Item
+    size: Large
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,5,3

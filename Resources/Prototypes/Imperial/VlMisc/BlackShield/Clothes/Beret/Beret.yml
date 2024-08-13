@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: BlackShieldBeret
+  name: Beret the officer "Shadow"
+  suffix: Vl, ДСО
+  description: This is probably the only piece of black shield clothing that doesn't do much good.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/VlClothes/DSO/BSBeret.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/DSO/BSBeret.rsi
