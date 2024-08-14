@@ -261,3 +261,33 @@
     BlueSpaceCube: 2
   categories:
   - BSStoreMelee
+
+- type: listing
+  id: BSStoreMonitor
+  name: Портативный монитор экипажа
+  description: Поможет найти вашу цель.
+  productEntity: HandheldCrewMonitor
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreImpOne
+  name: Имплант Трекер
+  description: Личный маячок для одного человека.
+  productEntity: TrackingImplanter
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreImpTwo
+  name: Имплант кислотной смерти
+  description: Если вы не захотите отдавать своё тело врагу после смерти.
+  productEntity: DeathAcidifierImplanter
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - BSStoreMelee
