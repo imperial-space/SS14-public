@@ -1,0 +1,11 @@
+- type: entity
+  parent: ClothingUniformJumpskirtHoSAlt
+  id: BlackShieldJumpsuit
+  name: Black Shield Jumpsuit
+  suffix: Vl, ДСО
+  description: Quite a good-looking official suit made of elastic materials.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/DSO/BSJumpsuit.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/DSO/BSJumpsuit.rsi

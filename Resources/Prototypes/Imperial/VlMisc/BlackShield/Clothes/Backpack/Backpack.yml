@@ -1,0 +1,9 @@
+- type: entity
+  parent: ClothingBackpack
+  id: BlackShieldBackpack
+  name: Officer's backpack "Shadow"
+  suffix: Vl, ДСО
+  description: A backpack for carrying the heads of enemies of the corporation.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/DSO/BSBackpack.rsi

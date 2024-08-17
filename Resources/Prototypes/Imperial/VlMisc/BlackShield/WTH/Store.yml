@@ -1,0 +1,293 @@
+- type: storeCategory
+  id: BSStoreMelee
+  name: Ближний бой
+
+- type: listing
+  id: BSStoreStunbaton
+  name: Продвинутая стан-дубинка
+  description: Может быть полезна. Работает лучше, чем обычная.
+  productEntity: AdvancedStunbaton
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreKnife
+  name: Боевой нож
+  description: Стандартный ножик. Опытные бойцы ежедневно проводят тренировки вместе с ним.
+  productEntity: CombatKnife
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreKykri
+  name: Нож-кукри
+  description: Довольно необычный ножик. Способен внушить страх своим видом.
+  productEntity: KukriKnife
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreSword
+  name: Энергетический меч
+  description: Может поразить противника своим эффектным появлением. Способен частично отражать пули.
+  productEntity: EnergySword
+  cost:
+    BlueSpaceCube: 6
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreJaws
+  name: Челюсти жизни
+  description: Откроют любой шлюз.
+  productEntity: JawsOfLife
+  cost:
+    BlueSpaceCube: 6
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreMedipen
+  name: Боевой медипен
+  description: Этот медипен способен вылечить самые тяжкие раны.
+  productEntity: CombatMedipen
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreDef
+  name: Компактный дефибриллятор
+  description: Сможет спасти вас, если вы вдруг где-то прогадаете.
+  productEntity: CompactDefibrillator
+  cost:
+    BlueSpaceCube: 8
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreRig
+  name: Укреплённый медицинский Р.И.Г
+  description: Защитит вас от космоса, однако, придётся пожертвовать защитой от пуль.
+  productEntity: ClothingControlModsuitMedical2Sealed
+  cost:
+    BlueSpaceCube: 12
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreGolo
+  name: Атмос голопроектор
+  description: Поможет временно закрыть дыру в космос.
+  productEntity: HolofanProjector
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreStim
+  name: Стимпак
+  description: Ускорит вас на какое-то время. Надейтесь, что без последствий.
+  productEntity: Stimpack
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreVect
+  name: Вектор
+  description: Продвинутый пистолет-пулемёт. Является крайне грозным оружием.
+  productEntity: WeaponSubMachineGunVector
+  cost:
+    BlueSpaceCube: 22
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreMagVect
+  name: Магазин от Вектора
+  description: Наполнен пулями калибра .45 магнум.
+  productEntity: MagazineMagnumSubMachineGun
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreMagVectBB
+  name: Магазин от Вектора(ББ)
+  description: Наполнен пулями калибра .45 магнум, бронебойные.
+  productEntity: MagazineMagnumSubMachineGunPiercing
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStorePyli
+  name: Коробка патронов
+  description: Наполнена пулями калибра .45 магнум.
+  productEntity: MagazineBoxMagnum
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreBallon
+  name: Кислородный баллон
+  description: NanoTrasen решило сэкономить и теперь вы вынуждены покупать его за свой счёт.
+  productEntity: DoubleEmergencyOxygenTankFilled
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreTaser
+  name: Тазер
+  description: Способен остановить человека за один выстрел.
+  productEntity: WeaponTaser
+  cost:
+    BlueSpaceCube: 7
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreNar
+  name: Наручники
+  description: Для особо непокорных вредителей.
+  productEntity: Handcuffs
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreCosmo
+  name: Космический медипен
+  description: Возможно, сможет заменить вам скафандр.
+  productEntity: SpaceMedipen
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreMRE
+  name: И.Р.П
+  description: Похоже, космическая доставка еды - дорогое удовольствие.
+  productEntity: BoxMRE
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStorePylt
+  name: Пульт от дверей командования
+  description: Сможет разболтировать заболтированный шлюз.
+  productEntity: DoorRemoteCommand
+  cost:
+    BlueSpaceCube: 6
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreFon
+  name: Фонарик
+  description: Просто фонарик.
+  productEntity: FlashlightSeclite
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStorePistol
+  name: Декард
+  description: Сингулярный пистолет может не пробить некоторые скафандры. Этот револьвер сможет спасти вас в таком случае.
+  productEntity: WeaponRevolverDeckard
+  cost:
+    BlueSpaceCube: 6
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreByldog
+  name: Бульдог
+  description: Достаточно эффективный дробовик.
+  productEntity: WeaponShotgunBulldog
+  cost:
+    BlueSpaceCube: 15
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreByldogMag
+  name: Барабан
+  description: Стандартный барабан для бульдога.
+  productEntity: MagazineShotgun
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreLect
+  name: Лектер
+  description: Порой может быть приятно не отказывать классике.
+  productEntity: WeaponRifleLecter
+  cost:
+    BlueSpaceCube: 13
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreLectMag
+  name: Магазин
+  description: Стандартный магазин для лектера.
+  productEntity: MagazineRifle
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreMonitor
+  name: Портативный монитор экипажа
+  description: Поможет найти вашу цель.
+  productEntity: HandheldCrewMonitor
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreImpOne
+  name: Имплант Трекер
+  description: Личный маячок для одного человека.
+  productEntity: TrackingImplanter
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - BSStoreMelee
+
+- type: listing
+  id: BSStoreImpTwo
+  name: Имплант кислотной смерти
+  description: Если вы не захотите отдавать своё тело врагу после смерти.
+  productEntity: DeathAcidifierImplanter
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - BSStoreMelee
