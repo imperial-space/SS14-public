@@ -1,7 +1,7 @@
 ﻿job-supervisors-centcom = Представителю ЦентКом
 job-supervisors-captain = Капитану
 job-supervisors-hop = Главе Персонала
-job-supervisors-hos = Главе Службы Безопасноси
+job-supervisors-hos = Главе Службы Безопасности
 job-supervisors-ce = Старший Инженеру
 job-supervisors-cmo = Главному Врачу
 job-supervisors-rd = Научному Руководителю
