@@ -1,0 +1,127 @@
+- type: polymorph
+  id: GnomeCluwne
+  configuration:
+    entity: MobCluwne
+    forced: true
+    transferName: true
+    transferHumanoidAppearance: true
+    inventory: None
+    revertOnDeath: true
+    revertOnCrit: true
+    duration: 30
+
+- type: entity
+  id: ProjectilePolyboltGnomish
+  parent: ProjectilePolyboltBase
+  name: gnomish polybolt
+  description: Nooo, I don't wanna be clown!
+  noSpawn: true
+  components:
+  - type: PolymorphOnCollide
+    polymorph: GnomeCluwne
+    whitelist:
+      components:
+      - Body
+
+- type: entity
+  id: ActionBeerClowned
+  name: Fireball
+  description: Fires an explosive fireball towards the clicked location.
+  noSpawn: true
+  components:
+  - type: WorldTargetAction
+    useDelay: 60 #ибо нехуй спамить заклинанием
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Magic/fireball.ogg
+    icon:
+      sprite: Imperial/DRGbeer/spells.rsi
+      state: Reincarnation-Clown
+    event: !type:ProjectileSpellEvent
+      prototype: ProjectilePolyboltGnomish
+      posData: !type:TargetCasterPos
+      speech: action-speech-spell-Clowning
+
+- type: entity
+  parent: BaseSubdermalImplant 
+  id: BeerImplantClowned
+  name: absolutelyNothing
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionBeerClowned    
+    - type: Tag
+      tags:
+        - SubdermalImplant
+        - HideContextMenu
+        - Flashlight
+
+- type: entity
+  id: ActionBeerGnomespawn
+  name: Summon Magicarp
+  description: This spell summons three Magi-Carp to your aid! May or may not turn on user.
+  noSpawn: true
+  components:
+  - type: WorldTargetAction
+    useDelay: 200
+    range: 4
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/DRGbeer/spells.rsi
+      state: gnomes
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: MobGnome
+        amount: 2 # Нерф количества гномов из заклинания
+      offset: 0, 1
+      speech: action-speech-spell-SpawnGome
+
+- type: entity
+  parent: BaseSubdermalImplant 
+  id: BeerImplantGnomes
+  name: absolutelyNothing
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionBeerGnomespawn   
+    - type: Tag
+      tags:
+        - SubdermalImplant
+        - HideContextMenu
+        - Flashlight
+
+- type: entity
+  id: ActionBeerSmoke
+  name: Summon Magicarp
+  description: This spell summons three Magi-Carp to your aid! May or may not turn on user.
+  noSpawn: true
+  components:
+  - type: WorldTargetAction
+    useDelay: 50
+    range: 4
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/DRGbeer/spells.rsi
+      state: Soporificfog
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: AdminInstantEffectTearGas
+        amount: 1
+      offset: 0, 1
+      speech: action-speech-spell-smokegnom
+
+- type: entity
+  parent: BaseSubdermalImplant 
+  id: BeerImplantSmoke
+  name: absolutelyNothing
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionBeerSmoke 
+    - type: Tag
+      tags:
+        - SubdermalImplant
+        - HideContextMenu
+        - Flashlight

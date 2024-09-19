@@ -1,0 +1,159 @@
+- type: entity 
+  name: Gnome 
+  parent:     
+  - BaseSimpleMob
+  - MobCombat
+  - MobAtmosExposed
+  id: MobGnome
+  description: "A garden's trusty helper"
+  components:
+  - type: CombatMode
+  - type: Inventory
+    templateId: gnomeinv
+    speciesId: gnome
+  - type: InventorySlots
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle 
+          radius: 0.2
+        density: 80
+        mask:
+        - SmallMobMask 
+        layer:
+        - SmallMobLayer
+  - type: Stripping
+  - type: RandomMetadata
+    nameSegments:
+      - names_gnome_first
+      - names_gnome_second
+      - names_gnome_last
+  - type: Strippable
+  - type: Produce
+    seedId: gnome
+  - type: GhostRole
+    prob: 0.5 # Снижена вероятность разумных гномов
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: ghost-role-information-gnome-name
+    description: ghost-role-information-gnome-description
+    rules: ghost-role-information-gnome-rules
+  - type: GhostTakeoverAvailable
+  - type: Flashable
+  - type: AutoImplant
+    implants:
+    - BeerImplantGnome
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - VimPilot
+  - type: MobThresholds
+    thresholds: #Балланс
+      0: Alive
+      10: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: Gnome-0
+      Dead:
+        Base: dead-1
+  - type: NameIdentifier
+    group: GnomeID
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: Imperial/DRGbeer/gnome.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: Gnome-0
+  - type: Item
+    size: Small
+  - type: Clothing #Зачем? По приколу
+    quickEquip: false
+    sprite: Imperial/DRGbeer/gnome.rsi
+    equippedPrefix: 1
+    slots:
+    - HEAD
+  - type: IdExaminable
+  - type: InteractionPopup
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 1
+        Piercing: 1
+  - type: Puller 
+    needsHands: false
+  - type: CanHostGuardian #Это сделано чтобы они стояли на месте пока в них не вселится гост (никаких БЛЯТЬ ГНОМОВ СТЕНДЬЮЗЕРОВ , ОНИ НЕ СМОГУТ ДОСТАТЬ ИМПЛАНТЕР)
+  - type: FactionException
+  - type: NpcFactionMember
+    factions:
+      - Passive
+  - type: Hands
+  - type: Body 
+    prototype: gnomebody
+    requiredLegs: 0
+  - type: Clumsy #НИКАКИХ ГНОМОВ С АВТОМАТАМИ , РП - обьяснение : Гномов разносит отдачей пушки
+    clumsyDamage:
+      types:
+        Blunt: 2
+        Piercing: 7
+      groups:
+        Burn: 2
+    clumsySound:
+      path: /Audio/Imperial/gnom/fall.ogg
+  - type: Barotrauma #Запрещаю находится в космосе
+    damage:
+      types:
+        Blunt: 60  
+  - type: ZombieImmune   
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: CanEscapeInventory
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 60
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ClothingHeadHatGnome:
+           min: 1
+           max: 1 
+          ShardGlass:
+            min: 1
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageOnHighSpeedImpact #Гномы разбиваются когда их кидают об стенку
+    minimumSpeed: 10
+    damage:
+      types:
+        Blunt: 20
+    soundHit:
+      collection: GlassBreak
+  - type: Speech
+    speechSounds: GnomeSpeech
+    speechVerb: SmallMob
+  - type: Vocal
+    sounds:
+      Male: GnomeSounds
+      Female: GnomeSounds
+      Unsexed: GnomeSounds
+    wilhelmProbability: 0.001
+  - type: Unrevivable

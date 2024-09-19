@@ -1,0 +1,31 @@
+- type: seed #загномленные ботанические семена
+  id: gnome
+  name: seeds-gome-name #Название семян
+  noun: seeds-noun-seeds 
+  displayName: seeds-gnome-display-name #Название растения отображаемое при описании
+  plantRsi: Imperial/DRGbeer/gnomeplant.rsi
+  packetPrototype: ClothingHeadHatGnome #НЕТ , БОТАНИКИ , ВЫ НЕ МОЖЕТЕ ДЕЛАТЬ АРМИЮ ГНОМОВ
+  productPrototypes:
+    - MobGnome #Загномлен
+  lifespan: 25
+  maturation: 10
+  production: 1
+  yield: 1
+  potency: 1
+  idealLight: 8
+  idealHeat: 298
+  growthStages: 5 # Сильный нерф роста
+  waterConsumption: 0
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatGnome
+  name: gnome hat
+  description: The cap of a true garden helper
+  components:
+  - type: Sprite
+    sprite: Imperial/DRGbeer/hat_gnome.rsi
+  - type: Clothing
+    sprite: Imperial/DRGbeer/hat_gnome.rsi
+  - type: Seed
+    seedId: gnome

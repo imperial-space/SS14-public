@@ -1,0 +1,59 @@
+- type: entity
+  id: ActionBeersleep
+  name: Fireball
+  description: Fires an explosive fireball towards the clicked location.
+  noSpawn: true
+  components:
+  - type: WorldTargetAction
+    useDelay: 80 #ибо нехуй спамить заклинанием на сон
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Magic/fireball.ogg
+    icon:
+      sprite: Imperial/DRGbeer/gnomeprojectile.rsi
+      state: spell
+    event: !type:ProjectileSpellEvent
+      prototype: BulletGnomish
+      posData: !type:TargetCasterPos
+      speech: action-speech-spell-Gnomik
+
+- type: entity
+  parent: BaseSubdermalImplant 
+  id: BeerImplantGnome
+  name: absolutelyNothing
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionBeersleep      
+    - type: Tag
+      tags:
+        - SubdermalImplant
+        - HideContextMenu
+        - Flashlight
+
+- type: reagent
+  id: GnomishBeer
+  name: reagent-name-gnomber
+  group: Toxins
+  desc: reagent-desc-gnomber
+  flavor: bitter
+  color: "#000067"
+  pricePerUnit: 1 #imperial
+  physicalDesc: reagent-physical-desc-nondescript
+  metabolisms:
+    Poison:
+      effects:
+      - !type:MovespeedModifier
+        walkSpeedModifier: 0.65
+        sprintSpeedModifier: 0.65
+      - !type:GenericStatusEffect
+        conditions:
+        - !type:ReagentThreshold
+          reagent: GnomishBeer
+          min: 5
+        key: ForcedSleep
+        component: ForcedSleeping
+        refresh: false
+        type: Add
