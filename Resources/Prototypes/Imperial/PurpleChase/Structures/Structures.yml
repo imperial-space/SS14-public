@@ -1,0 +1,161 @@
+# Posters
+- type: entity
+  parent: PosterBase
+  id: VlPCPosterOne
+  name: Purple Chase | New drinks!
+  suffix: Vl, PurpleChase
+  description: This poster shows an advertisement for Purple Chase Corporation's new drinks.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/PosterOne.rsi
+    state: Poster
+
+- type: entity
+  parent: PosterBase
+  id: VlPCPosterTwo
+  name: Purple Chase | Top quality!
+  suffix: Vl, PurpleChase
+  description: Purple Chase Corporation provides visitors with the highest quality not only drinks, but also service!
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/PosterTwo.rsi
+    state: Poster
+
+- type: entity
+  parent: PosterBase
+  id: VlPCPosterThree
+  name: Purple Chase | Abode of Safety.
+  suffix: Vl, PurpleChase
+  description: Despite the hostile space, it is at the facilities of the Purple Chase Corporation that any creatures can relax and spend time usefully.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/PosterThree.rsi
+    state: Poster
+
+- type: entity
+  parent: PosterBase
+  id: VlPCPosterFour
+  name: OMG! COOKIES!
+  suffix: Vl, PurpleChase
+  description: OMG! COOKIES!
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/PosterFour.rsi
+    state: Poster
+
+- type: entity
+  parent: PosterBase
+  id: VlPCPosterFive
+  name: The choice is yours!
+  suffix: Vl, PurpleChase
+  description: Only you can choose how to destroy your liver!
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/PosterFive.rsi
+    state: Poster
+
+- type: entity
+  parent: PosterBase
+  id: VlPCPosterSix
+  name: Your best friend!
+  suffix: Vl, PurpleChase
+  description: Why do you need friends when you have wine, cognac, beer and martinis?
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/PosterSix.rsi
+    state: Poster
+
+- type: entity
+  parent: PosterBase
+  id: VlPCPosterSeven
+  name: TOASTS!
+  suffix: Vl, PurpleChase
+  description: If you don't like toasts, then you're not human.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/PosterSeven.rsi
+    state: Poster
+
+- type: entity
+  parent: PosterBase
+  id: VlPCPosterEight
+  name: Purple Chase | Friends forever!
+  suffix: Vl, PurpleChase
+  description: If you are not friends with Purple Chase, then Purple Chase is friends with you.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/PosterEight.rsi
+    state: Poster
+
+# Lamps
+- type: entity
+  parent: LightTubeCrystalCyan
+  name: Люминсцентная трубка
+  suffix: Фиолетовая, Vl, PurpleChase
+  id: VlPCLightTubeOne
+  components:
+  - type: LightBulb
+    color: "#F197F2FF"
+    lightEnergy: 3
+    lightRadius: 8
+    lightSoftness: 0.5
+    BurningTemperature: 350
+    PowerUse: 60
+  - type: WelderRefinable
+    refineResult:
+    - SheetGlass1
+    - ShardCrystalPink
+
+- type: entity
+  parent: LightTubeCrystalCyan
+  name: Люминсцентная трубка
+  suffix: Светлая, Vl, PurpleChase
+  id: VlPCLightTubeTwo
+  components:
+  - type: LightBulb
+    color: "#e3c2e5"
+    lightEnergy: 3
+    lightRadius: 8
+    lightSoftness: 0.5
+    BurningTemperature: 350
+    PowerUse: 60
+  - type: WelderRefinable
+    refineResult:
+    - SheetGlass1
+    - ShardCrystalPink
+
+- type: entity
+  id: VlPCLightOne
+  name: светильник
+  description: Горячий.
+  suffix: Фиолетовая, Vl, PurpleChase
+  parent: Poweredlight
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: VlPCLightTubeOne
+    damage:
+      types:
+        Heat: 5
+  - type: PointLight
+    radius: 8
+    energy: 3
+    softness: 0.5
+    color: "#F197F2FF"
+
+- type: entity
+  id: VlPCLightTwo
+  name: светильник
+  description: Горячий.
+  suffix: Светлая, Vl, PurpleChase
+  parent: Poweredlight
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: VlPCLightTubeTwo
+    damage:
+      types:
+        Heat: 5
+  - type: PointLight
+    radius: 8
+    energy: 3
+    softness: 0.5
+    color: "#e3c2e5"
