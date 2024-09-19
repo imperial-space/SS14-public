@@ -7,5 +7,5 @@ objective-condition-steal-station = станция
 objective-condition-steal-Ian = корги главы персонала
 
 objective-condition-thief-description = {$itemName} станет отличным дополнением к моей коллекции!
-objective-condition-thief-animal-description = {$itemName} анет отличным дополнением к моей коллекции! Главное, живым.
+objective-condition-thief-animal-description = {$itemName} станет отличным дополнением к моей коллекции! Главное, живым.
 objective-condition-thief-multiply-description = Мне нужно взять {$count} {$itemName} и забрать их с собой.
