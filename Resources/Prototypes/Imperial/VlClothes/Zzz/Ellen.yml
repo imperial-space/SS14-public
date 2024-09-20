@@ -1,0 +1,51 @@
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: VlZzzDress
+  name: Shark Dress
+  suffix: Vl, Zzz
+  description: A resplendent aku maid dress... Sharks? Wow, there's even a tail sewn on...
+  components:
+  - type: Item
+    size: Huge
+  - type: Sprite
+    sprite: Imperial/VlClothes/Zzz/Suit.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/Zzz/Suit.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: VlZzzJumpsuit
+  name: A rumpled jumpsuit
+  suffix: Vl, Zzz
+  description: It's like after a good fight.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/VlClothes/Zzz/Jumpsuit.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/Zzz/Jumpsuit.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: VlZzzBoots
+  name: Shoes
+  suffix: Vl, Zzz
+  description: Ordinary shoes. They stink of fish.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/Zzz/Boots.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/Zzz/Boots.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: VlZzzObrych
+  name: Maid's Hoop
+  suffix: Vl, Zzz
+  description: It inspires fear. It's easy to get hurt.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/Zzz/Hat.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/Zzz/Hat.rsi

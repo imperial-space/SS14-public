@@ -1,0 +1,9 @@
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelDSO
+  name: Satchel DSO
+  suffix: Vl, ДСО
+  description: For serial fashionistas.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/DSO/DSOStachel.rsi

@@ -1,0 +1,27 @@
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: VlSignalisSuitElster
+  name: LSTR-512
+  suffix: Vl, Сигналис
+  description: A strange suit from an unknown corporation. From wearing it№$#...ACHTUNG, ACHTUNG, 3948... Broken, does not protect against depressurization...
+  components:
+  - type: Item
+    size: Huge
+  - type: Sprite
+    sprite: Imperial/VlClothes/SIGNALIS/Suit.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/SIGNALIS/Suit.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.7
+        Shock: 0.5
+        Caustic: 0.8
+        Radiation: 0.8
+  - type: ClothingSpeedModifier
+    walkModifier: 1.2
+    sprintModifier: 1.2
