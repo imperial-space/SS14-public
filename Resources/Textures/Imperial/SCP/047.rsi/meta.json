@@ -14,6 +14,10 @@
       "directions": 4
     },
     {
+      "name": "icon",
+      "directions": 1
+    },
+    {
       "name": "047_dead",
       "directions": 1
     }
