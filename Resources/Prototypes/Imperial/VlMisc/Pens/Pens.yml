@@ -1,0 +1,12 @@
+- type: entity
+  name: DSO pen
+  parent: CyberPen
+  id: PenDSO
+  description: Death itself uses this pen.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlDecorAMisc/Pens.rsi
+    state: DSO_pen
+  - type: Item
+    sprite: Imperial/VlDecorAMisc/Pens.rsi
+    heldPrefix: DSO_pen
