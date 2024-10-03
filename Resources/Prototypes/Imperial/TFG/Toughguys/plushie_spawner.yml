@@ -32,6 +32,10 @@
         - PlushieBarmem
         - PlushieCoroner
         - PlushieIAA
-        - PlushieAdri
+        - AdriPlushieSpawner
+        - PlushieClaud
+        - PlushieLyna
+        - PlushieMi
+        - PlushieVen
       chance: 0.75
       offset: 0.10
