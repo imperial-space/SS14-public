@@ -1,0 +1,104 @@
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieLyna
+  name: Luna Perain
+  suffix: Vl, COMMUNITY, TOY
+  description: Next to this toy, you feel peace and tranquility. She is soft, beautiful, and seems to help you make the right decisions.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/VlPlushes/PlushLyna
+    state: Plush
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieMi
+  name: Mi Leim
+  suffix: Vl, COMMUNITY, TOY
+  description: Lie down and don't move, I'll cure you now. Why do I need a toolbox?.. Don't worry, everything is under complete control.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/VlPlushes/PlushMi
+    state: Plush
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieVen
+  name: Benjamin Kerrigan
+  suffix: Vl, COMMUNITY, TOY
+  description: The heir of the legendary crocodile.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/VlPlushes/PlushVen
+    state: Plush
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieAdriCent
+  name: Adriana Blake
+  suffix: Vl, COMMUNITY, TOY
+  description: Many people think that CentCom representatives are aiming to fire the Captain, even when he is not to blame. In most cases, this is true.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/VlPlushes/PlushAdriCent
+    state: Plush
+  - type: StorageFill
+    contents:
+      - id: PenCentcom
+      - id: ClothingHeadFlowerCentComEmerald
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieAdriOSO
+  name: Adriana Blake
+  suffix: Vl, COMMUNITY, TOY
+  description: Controlling fighters is not easy. However, deciding the fate of an entire station is even more difficult.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/VlPlushes/PlushAdriOSO
+    state: Plush
+  - type: StorageFill
+    contents:
+      - id: PenDSO
+      - id: ClothingHeadFlowerDSOWhite
+
+- type: entity
+  name: Spawner
+  id: AdriPlushieSpawner
+  suffix: Vl, COMMUNITY,TOY
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Imperial/Sona/Plush
+          state: AdriPl
+    - type: RandomSpawner
+      prototypes:
+        - PlushieAdri
+        - PlushieAdriOSO
+        - PlushieAdriCent
+      chance: 1
+      offset: 0.10
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieClaud
+  name: Claudius the Great
+  suffix: Vl, COMMUNITY, TOY
+  description: A toy of a thoughtful captain with gorgeous hair holding a chess piece of a pawn in his hand.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/VlPlushes/PlushClaud
+    state: Plush

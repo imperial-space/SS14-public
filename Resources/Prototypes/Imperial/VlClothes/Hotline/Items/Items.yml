@@ -1,0 +1,127 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: VlHotlineJumpsuit
+  name: Jacket
+  suffix: Vl, Hotline
+  description: This jacket has seen a lot.
+  components:
+    - type: Item
+      size: Normal
+    - type: Sprite
+      sprite: Imperial/VlClothes/Hotline/Comb.rsi
+    - type: Clothing
+      sprite: Imperial/VlClothes/Hotline/Comb.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: VlHotlineBoots
+  name: Dirty sneakers
+  suffix: Vl, Hotline
+  description: Soaked in blood.
+  components:
+    - type: Sprite
+      sprite: Imperial/VlClothes/Hotline/Boots.rsi
+    - type: Clothing
+      sprite: Imperial/VlClothes/Hotline/Boots.rsi
+    - type: NoSlip
+
+- type: entity
+  parent: ClothingHandsGlovesSyntheticBase
+  id: VlHotlineHands
+  name: Arm wraps
+  suffix: Vl, Hotline
+  description: Soaked in blood.
+  components:
+    - type: Sprite
+      sprite: Imperial/VlClothes/Hotline/Perchi.rsi
+    - type: Clothing
+      sprite: Imperial/VlClothes/Hotline/Perchi.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: VlHotlineHead
+  name: The torn mask
+  suffix: Vl, Hotline
+  description: Feel like a legend.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/Hotline/Mask.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/Hotline/Mask.rsi
+
+- type: entity
+  name: A bloody bat
+  suffix: Vl, Hotline
+  parent: BaseItem
+  id: VlHotlineBat
+  description: You like hurting people, don't you?
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/Hotline/Bita.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 15
+        Structural: 10
+    soundHit:
+      path: /Audio/Imperial/Hotline/batpunch.ogg
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 10
+        Structural: 10
+  - type: Item
+    size: Huge
+  - type: Tool
+    qualities:
+    - Rolling
+    speed: 0.75
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+  - type: Construction
+    graph: WoodenBat
+    node: bat
+  - type: UseDelay
+    delay: 1
+  - type: Tag
+    tags:
+    - BaseballBat
+
+- type: entity
+  parent: BaseHandheldInstrument
+  id: VlHotlineRecorder
+  name: The old player
+  suffix: Vl, Hotline
+  description: Old, but working. It will help you catch the right atmosphere.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/Hotline/Recorder.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - Payload
+  - type: WiresVisuals
+  - type: WiresPanel
+  - type: Wires
+    boardName: wires-board-name-dawinstrument
+    layoutId: DawInstrument
+
+- type: entity
+  id: VlHotlineBag
+  name: A psychopath's Kit
+  parent: ClothingBackpackDuffelSyndicate
+  suffix: Vl, Hotline, Заполненный
+  components:
+  - type: StorageFill
+    contents:
+    - id: VlHotlineRecorder
+    - id: VlHotlineBat
+    - id: VlHotlineHead
+    - id: VlHotlineHands
+    - id: VlHotlineBoots
+    - id: VlHotlineJumpsuit

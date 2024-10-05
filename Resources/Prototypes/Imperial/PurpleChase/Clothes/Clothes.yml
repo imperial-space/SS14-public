@@ -1,0 +1,439 @@
+# Backpacks
+- type: entity
+  parent: ClothingBackpack
+  id: VlPCBackpack
+  name: Backpack
+  suffix: Vl, PurpleChase
+  description: A backpack of employees of the Purple Chase Corporation. It smells like alcohol.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/Backpack.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: VlPCDuffel
+  name: Duffel
+  suffix: Vl, PurpleChase
+  description: The duffel bag of Purple Chase Corporation employees. There is a smell of various perfumes inside.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/Duffel.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: VlPCSatchel
+  name: Satchel
+  suffix: Vl, PurpleChase
+  description: The bag of employees of the Purple Chase Corporation. For fashionistas and fashionistas.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/Satchel.rsi
+
+# Clothes
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: VlPCUniformGeisha
+  name: Women's uniforms
+  suffix: Vl, PurpleChase
+  description: The standard clothing of Purple Chase employees.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/GeishaComb.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/PurpleChase/GeishaComb.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: VlPCUniformOne
+  name: Women's uniforms
+  suffix: Vl, PurpleChase
+  description: The standard clothing of Purple Chase employees.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/CombOne.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/PurpleChase/CombOne.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: VlPCUniformTwo
+  name: Women's uniforms
+  suffix: Vl, PurpleChase
+  description: The standard clothing of Purple Chase employees.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/CombTwo.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/PurpleChase/CombTwo.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: VlPCKomb
+  name: Overall
+  suffix: Vl, PurpleChase
+  description: Jumpsuit for PurpleChase employees.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/Komb.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/PurpleChase/Komb.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: VlPCUniformThree
+  name: Uniform
+  suffix: Vl, PurpleChase
+  description: The standard clothing of Purple Chase employees.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/CombThree.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/PurpleChase/CombThree.rsi
+
+# Headset
+- type: radioChannel
+  id: PurpleChase
+  name: PurpleChase
+  keycode: 'p'
+  frequency: 112
+  color: "#fe86fa"
+  longRange: true
+
+- type: entity
+  parent: EncryptionKey
+  id: VlPCKey
+  name: Purple Chase Encryption Key
+  suffix: Vl, PurpleChase
+  description: The standard encryption key.
+  components:
+  - type: EncryptionKey
+    channels:
+    - PurpleChase
+    defaultChannel: PurpleChase
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/Key.rsi
+    layers:
+    - state: crypt_pc
+    - state: pc_label
+
+- type: entity
+  parent: ClothingHeadset
+  id: VlPCHeadSet
+  name: PurpleChase Headset
+  suffix: Vl, PurpleChase
+  description: The standard headset was turned on.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - VlPCKey
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/Headset.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/PurpleChase/Headset.rsi
+
+# Misc Clothes
+- type: entity
+  parent: ClothingHeadBase
+  id: VlPCFlowerOne
+  name: Purple Flower
+  suffix: Vl, PurpleChase
+  description: For the rebels hidden in the soul.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/Flower.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/PurpleChase/Flower.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: VlPCFlowerTwo
+  name: A delicate flower
+  suffix: Vl, PurpleChase
+  description: For vanilla beauties.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/FlowerTwo.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/PurpleChase/FlowerTwo.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: VlPCBeret
+  name: Beret
+  suffix: Vl, PurpleChase
+  description: For disciplined rowdies.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/Beret.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/PurpleChase/Beret.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: VlPCCap
+  name: Cap
+  suffix: Vl, PurpleChase
+  description: The cap of the standard PurpleChase workers.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/Cap.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/PurpleChase/Cap.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: VlPCBoots
+  name: Sneakers
+  suffix: Vl, PurpleChase
+  description: Stylish sneakers by PurpleChase employees.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/Boots.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/PurpleChase/Boots.rsi
+  - type: NoSlip
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: VlPCGeishaBoots
+  name: Sneakers
+  suffix: Vl, PurpleChase
+  description: Stylish sneakers by PurpleChase employees.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/GeishaBoots.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/PurpleChase/GeishaBoots.rsi
+  - type: NoSlip
+
+- type: entity
+  parent: ClothingHandsGlovesSyntheticBase
+  id: VlPCGloves
+  name: Delicate gloves
+  suffix: Vl, PurpleChase
+  description: They are suitable for working with jewelry.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/Perchi.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/PurpleChase/Perchi.rsi
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: VlPCPoyas
+  name: Security belt
+  suffix: Vl, PurpleChase
+  description: PurpleChase guards belt.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/Poyas.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/PurpleChase/Poyas.rsi
+  - type: Storage
+    whitelist:
+      tags:
+        - CigPack
+        - Taser
+        - SecBeltEquip
+        - Radio
+        - Sidearm
+        - MagazinePistol
+        - MagazineMagnum
+      components:
+        - Stunbaton
+        - FlashOnTrigger
+        - SmokeOnTrigger
+        - Flash
+        - Handcuff
+        - Ensnaring
+  - type: ItemMapper
+    mapLayers:
+      flashbang:
+        whitelist:
+          components:
+          - FlashOnTrigger
+      stunbaton:
+        whitelist:
+          components:
+          - Stunbaton
+      tear_gas_grenade:
+        whitelist:
+          components:
+          - SmokeOnTrigger
+    sprite: Imperial/VlClothes/PurpleChase/Poyas.rsi
+  - type: Appearance
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: VlPCWebbing
+  name: RPS Purple Chase
+  suffix: Vl, PurpleChase
+  description: The RPS of the fighters of the Purple Chase Corporation.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/Webbing.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/PurpleChase/Webbing.rsi
+  - type: Item
+    size: Large
+  - type: Storage
+    capacity: 90
+
+- type: entity
+  parent: ClothingEyesBase
+  id: VlPCGlassesOne
+  name: Purple Chase Safety Glasses
+  suffix: Vl, PurpleChase
+  description: Purple Chase Corporation safety glasses with built-in visor.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/GlassesTwo.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/PurpleChase/GlassesTwo.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: ShowSecurityIcons
+
+- type: entity
+  parent: ClothingEyesBase
+  id: VlPCGlassesTwo
+  name: PurpleChase Bar Glasses
+  suffix: Vl, PurpleChase
+  description: Purple Chase Corporation bar glasses with built-in thirst visor.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/GlassesOne.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/PurpleChase/GlassesOne.rsi
+  - type: ShowThirstIcons
+  - type: StealTarget
+    stealGroup: ClothingEyesHudBeer
+  - type: SolutionScanner
+  - type: FlashImmunity
+
+- type: entity
+  parent: ClothingMaskBase
+  id: VlPCMask
+  name: A gentle mask
+  suffix: Vl, PurpleChase
+  description: It's nice to stroke her...
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/Mask.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/PurpleChase/Mask.rsi
+  - type: BreathMask
+  - type: IdentityBlocker
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HidesNose
+
+#PDA
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconPurpleChase
+  icon:
+    sprite: /Textures/Imperial/VlClothes/PurpleChase/JobIcon.rsi
+    state: PurpleChase
+
+- type: entity
+  parent: IDCardStandard
+  id: VlPCard
+  name: Purple Chase
+  description: It's pretty sticky.
+  suffix: Vl, PurpleChase
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/Card.rsi
+    layers:
+    - state: PurpleChase
+    - state: idcentcom
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: Imperial/VlClothes/PurpleChase/Card.rsi
+  - type: IdCard
+    jobTitle: Purple Chase
+    jobIcon: JobIconPurpleChase
+  - type: Access
+    tags:
+    - CentralCommand
+    - NuclearOperative
+    - SyndicateAgent
+    - Bar
+    - Kitchen
+    - Service
+
+- type: entity
+  parent: BasePDA
+  id: VlPPDA
+  name: The Purple Chase PDA
+  suffix: Vl, PurpleChase
+  description: The PDA of Purple Chase employees. Soaked in alcohol, how does it even work?..
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/PDA.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Item
+    size: Small
+  - type: Pda
+    id: VlPCard
+    state: pda
+  - type: Icon
+    sprite: Imperial/VlClothes/PurpleChase/PDA.rsi
+    state: pda
+  - type: PdaBorderColor
+    borderColor: "#7e3592"
+    accentVColor: "#fcf0ff"
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: VlPArmor
+  name: Purple Chase Bulletproof Vest
+  suffix: Vl, PurpleChase
+  description: It feels elastic. On the collar there is an inscription "Made to order by S-o.N.A AI Dynamics".
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/VlClothes/PurpleChase/Armor.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/PurpleChase/Armor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.6
+        Piercing: 0.55
+        Heat: 0.8
+        Stamina: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.8

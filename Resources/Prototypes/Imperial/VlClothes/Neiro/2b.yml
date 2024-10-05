@@ -1,0 +1,164 @@
+# Clothes
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: VlNeiroDress
+  name: AD-436
+  suffix: Vl, Neiro
+  description: A beautiful black dress. An unknown technology gives the wearer some strength.
+  components:
+  - type: Item
+    size: Huge
+  - type: Sprite
+    sprite: Imperial/VlClothes/Neiro/Dress.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/Neiro/Dress.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.6
+        Shock: 0.3
+        Caustic: 0.5
+        Radiation: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 1.2
+    sprintModifier: 1.2
+  - type: StealthClothing
+    visibility: 1.1
+    toggleAction: ActionTogglePhaseCloak
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: false
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellAntiqueProto
+        disableEject: true
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: VlNeiroJumpsuit
+  name: Agent's jumpsuit
+  suffix: Vl, Neiro
+  description: A strange-looking jumpsuit.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/VlClothes/Neiro/Jumpsuit.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/Neiro/Jumpsuit.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: VlNeiroBoots
+  name: Agent's Shoes
+  suffix: Vl, Neiro
+  description: Inconspicuous shoes. Sometimes they are electrocuted.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/Neiro/Boots.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/Neiro/Boots.rsi
+  - type: NoSlip
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.2
+
+- type: entity
+  parent: ClothingHandsBase
+  id: VlNeiroGloves
+  name: Agent's Gloves
+  suffix: Vl, Neiro
+  description: They look rough.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/Neiro/Gloves.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/Neiro/Gloves.rsi
+  - type: Appearance
+  - type: GloveHeatResistance
+    heatResistance: 1400
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-nanomachines
+  - type: FingerprintMask
+  - type: Thieving
+    stripTimeReduction: 1
+    stealthy: true
+  - type: NinjaGloves
+
+- type: entity
+  parent: ClothingHeadBase
+  id: VlNeiroObrych
+  name: The hoop
+  suffix: Vl, Neiro
+  description: An ordinary hoop... oh! There's something glowing here.
+  components:
+  - type: Headset
+  - type: EncryptionKeyHolder
+    keySlots: 4
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyStationMaster
+  - type: Sprite
+    sprite: Imperial/VlClothes/Neiro/Hat.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/Neiro/Hat.rsi
+
+- type: entity
+  parent: ClothingEyesBase
+  id: VlNeiroGlasses
+  name: Blindfold
+  suffix: Vl, Neiro
+  description: The usual blindfold. Wait, why is everything visible in it?
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/VlClothes/Neiro/Glasses.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/Neiro/Glasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: ShowSecurityIcons
+
+# Weapon
+- type: entity
+  name: KT-745L
+  suffix: Vl, Neiro
+  parent: Katana
+  id: VlNeiroKatana
+  description: A katana with built-in AI. It seems to help the wearer deflect bullets.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/Neiro/Katana.rsi
+    state: icon
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 20
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+  - type: Item
+    size: Large
+    sprite: Imperial/VlClothes/Neiro/Katana.rsi
+  - type: StaminaDamageOnHit
+    damage: 10
+  - type: Clothing
+    sprite: Imperial/VlClothes/Neiro/Katana.rsi
+    slots:
+    - Back
+    - Belt
+  - type: Reflect
+  enabled: true
+  reflectProb: .5
+  spread: 40

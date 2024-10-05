@@ -1,0 +1,10 @@
+- type: listing
+  id: VlHotlineBundle
+  name: uplink-hotline-bundle-name
+  description: uplink-hotline-bundle-desc
+  icon: { sprite: /Textures/Imperial/VlClothes/Hotline/Mask.rsi, state: icon }
+  productEntity: VlHotlineBag
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkPointless

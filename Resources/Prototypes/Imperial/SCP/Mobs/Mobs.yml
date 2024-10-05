@@ -1,0 +1,233 @@
+- type: entity
+  id: SCPDoctorHeal
+  name: Лечение
+  description: Пустить снаряд, который излечит/воскресит того, в кого он попадёт.
+  noSpawn: true
+  components:
+  - type: WorldTargetAction
+    useDelay: 120
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Magic/fireball.ogg
+    icon:
+      sprite: Imperial/SCP/047spells.rsi
+      state: heal
+    event: !type:ProjectileSpellEvent
+      prototype: ProjectileHealingBolt
+      posData: !type:TargetCasterPos
+      speech: Я помогу тебе...
+
+- type: entity
+  parent: BaseSubdermalImplant 
+  id: SCPDoctorImplantHeal
+  name: absolutelyNothing
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      implantAction: SCPDoctorHeal 
+    - type: Tag
+      tags:
+        - SubdermalImplant
+        - HideContextMenu
+        - Flashlight
+
+- type: entity
+  id: SCPDoctorSmoke
+  name: Туман
+  description: Вызвать малый туман в пределах 4-ёх тайлов.
+  noSpawn: true
+  components:
+  - type: WorldTargetAction
+    useDelay: 50
+    range: 4
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/SCP/047spells.rsi
+      state: fog
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: AdminInstantEffectTearGas
+        amount: 1
+      offset: 0, 1
+      speech: Скройтесь...
+
+- type: entity
+  parent: BaseSubdermalImplant 
+  id: SCPDoctorImplantSmoke
+  name: absolutelyNothing
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      implantAction: SCPDoctorSmoke 
+    - type: Tag
+      tags:
+        - SubdermalImplant
+        - HideContextMenu
+        - Flashlight
+
+- type: statusIcon
+  id: VlDoctor
+  priority: 11
+  icon:
+    sprite: /Textures/Imperial/SCP/047icon.rsi
+    state: Doctor
+
+- type: emoteSounds
+  id: DoctorVoice
+  sounds:
+    Scream:
+      path: /Audio/Imperial/SCP/Doctor/2.ogg
+
+- type: speechSounds
+  id: DoctorDefVoice
+  saySound:
+    path: /Audio/Imperial/SCP/Doctor/ask.ogg
+  askSound:
+    path: /Audio/Imperial/SCP/Doctor/ask.ogg
+  exclaimSound:
+    path: /Audio/Imperial/SCP/Doctor/ask.ogg
+
+- type: soundCollection
+  id: DoctorCollection
+  files:
+    - /Audio/Imperial/SCP/Doctor/1.ogg
+    - /Audio/Imperial/SCP/Doctor/2.ogg
+    - /Audio/Imperial/SCP/Doctor/3.ogg
+    - /Audio/Imperial/SCP/Doctor/4.ogg
+
+- type: emoteSounds
+  id: DoctorTalk
+  sound:
+    collection: DoctorCollection
+    params:
+      variation: 0.25
+
+- type: accessGroup
+  id: DoctorAccess
+  tags:
+  - Medical
+  - Maintenance
+
+- type: entity
+  name: SCP-047
+  id: VlSCP047
+  suffix: Vl, SCP
+  parent: [ SimpleSpaceMobBase, MobCombat ]
+  description: Strange doctor...
+  components:
+    - type: InputMover
+    - type: MobMover
+    - type: NpcFactionMember
+      factions:
+        - Zombie
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        sprite: Imperial/SCP/047.rsi
+        state: 047_alive
+    - type: CombatMode
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 250
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+    - type: MobState
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: 047_alive
+        Critical:
+          Base: 047_dead
+        Dead:
+          Base: 047_dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        400: Critical
+        500: Dead
+    - type: Stamina
+      critThreshold: 100
+    - type: Butcherable
+      spawned:
+        - id: FoodMeatRotten
+          amount: 2
+    - type: MeleeWeapon
+      altDisarm: false
+      angle: 0
+      animation: WeaponArcDisarm
+      soundHit:
+        path: /Audio/Effects/woodhit.ogg
+      damage:
+        types:
+          Piercing: 35
+          Slash: 10
+          Structural: 75
+    - type: TypingIndicator
+      proto: holo
+    - type: Tag
+      tags:
+        - DoorBumpOpener
+        - NoPaint
+    - type: Speech
+      speechSounds: DoctorDefVoice
+    - type: Zombie
+      skinColor: "#e3e3e3"
+      passiveHealing:
+        types:
+          Piercing: -4
+          Slash: -4
+          Structural: -4
+      zombieStatusIcon: VlDoctor
+      emoteId: DoctorTalk
+    - type: Hands
+    - type: MovementSpeedModifier
+      baseWalkSpeed : 2
+      baseSprintSpeed : 3
+    - type: Body
+      prototype: Human
+    - type: NoSlip
+    - type: Vocal
+      sounds:
+        Male: DoctorVoice
+        Unsexed: DoctorVoice
+        Female: DoctorVoice
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        300: 0.8
+    - type: Access
+      groups:
+      - DoctorAccess
+    - type: AutoImplant
+      implants:
+       - SCPDoctorImplantSmoke
+       - SCPDoctorImplantHeal
+
+- type: entity
+  #noSpawn: true
+  id: VlSCP047Spawner
+  name: Спавнер SCP-047
+  suffix: Vl, SCP
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: scp-doc-name
+      description: scp-doc-desc
+      rules: scp-doc-rules
+    - type: GhostRoleMobSpawner
+      prototype: VlSCP047
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Imperial/SCP/047.rsi
+          state: icon

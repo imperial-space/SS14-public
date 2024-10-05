@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtDressDSO
+  name: Skirt DSO
+  suffix: Vl, ДСО
+  description: A beautiful skirt for the female officers of the Department of Special Operations.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/VlClothes/DSO/DSOSkirt.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/DSO/DSOSkirt.rsi

@@ -1,0 +1,77 @@
+- type: startingGear
+  id: BlackShieldGear
+  equipment:
+    jumpsuit: BlackShieldJumpsuit
+    back: BlackShieldBackpack
+    shoes: ClothingShoesBootsJackSpecialOfficer
+    head: BlackShieldBeret
+    eyes: ClothingDSOGlassesWhite
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterVestWeb
+    ears: BlackShieldHeadset
+    belt: BlackShieldWebbing
+    mask: ClothingMaskGasSecurity
+    pocket1: BlackShieldPistol
+    pocket2: BlackShieldWTH
+    id: BlackShieldPDA
+
+- type: entity
+  noSpawn: false
+  parent: MobHuman
+  id: BlackShieldPreset
+  name: Officer "Shadow"
+  suffix: Vl, ДСО
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - Офицер
+      - names_last
+    - type: Sprite
+      netsync: false
+      sprite: Imperial/VlClothes/DSO/BSPoint.rsi
+      state: green
+    - type: Loadout
+      prototypes: [ BlackShieldGear ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    # - type: CrewSkills
+    #   skills:
+    #     - skillBotany
+    #     - skillBaseMed
+    #     - skillBaseConstraction
+    #     - skillCooking
+    #     - skillBartending
+    #     - skillHacking
+    #     - skillInstrumentation
+    #     - skillMaintenance
+    #     - skillMediumConstruction
+    #     - skillMediumBotany
+    #     - skillBasicAtmos
+    #     - skillMedicalEquipment
+    #     - skillPharmacology
+    #     - skillPiloting
+    #     - skillAtmos
+    #     - skillHardInstrumentation
+    #     - skillRobotics
+    #     - skillResearch
+    #     - skillPharmaceuticals
+    #     - skillShooting
+    #     - skillSurgery
+    #     - skillNeuroSurgery
+
+- type: entity
+  #noSpawn: true
+  id: BlackShieldSpawner
+  name: The Shadow Officer's Spawner
+  suffix: Vl, ДСО
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: black-shield-name
+      description: black-shield-desc
+      rules: black-shield-rules
+    - type: GhostRoleMobSpawner
+      prototype: BlackShieldPreset
+    - type: Sprite
+      sprite: Imperial/VlClothes/DSO/BSPoint.rsi
+      state: green
