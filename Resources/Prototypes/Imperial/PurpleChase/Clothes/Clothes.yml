@@ -294,7 +294,7 @@
   - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
-  - type: ShowSecurityIcons
+  #- type: ShowSecurityIcons
 
 - type: entity
   parent: ClothingEyesBase
@@ -332,7 +332,8 @@
     - HidesNose
 
 #PDA
-- type: statusIcon
+# TODO Переписать на под новые реалии
+- type: jobIcon
   parent: JobIcon
   id: JobIconPurpleChase
   icon:

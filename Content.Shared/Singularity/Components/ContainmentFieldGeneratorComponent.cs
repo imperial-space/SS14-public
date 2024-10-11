@@ -80,7 +80,7 @@ public sealed partial class ContainmentFieldGeneratorComponent : Component
     /// <summary>
     /// Is the generator toggled on?
     /// </summary>
-    [ViewVariables]
+    [DataField]
     public bool Enabled;
 
     /// <summary>

@@ -8,7 +8,8 @@
   - type: Sprite
     sprite: Imperial/Other/TFG/GoldenLife/presentableTin.rsi
   - type: Food
-    trash: FoodPresentableTinMRECaviarTrash
+    trash:
+    - FoodPresentableTinMRECaviarTrash
   - type: FlavorProfile
     flavors:
     - food
@@ -125,7 +126,8 @@
     sprite: Imperial/Other/TFG/GoldenLife/goldenCaviar.rsi
     size: Tiny
   - type: Food
-    trash: CaviarBowlEmpty
+    trash:
+    - CaviarBowlEmpty
   - type: FlavorProfile
     flavors:
     - gold-caviar

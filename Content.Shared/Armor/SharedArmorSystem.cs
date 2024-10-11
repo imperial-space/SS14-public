@@ -60,8 +60,7 @@ public abstract class SharedArmorSystem : EntitySystem
     private FormattedMessage GetArmorExamine(DamageModifierSet armorModifiers)
     {
         var msg = new FormattedMessage();
-
-        msg.AddMarkup(Loc.GetString("armor-examine"));
+        msg.AddMarkupOrThrow(Loc.GetString("armor-examine"));
 
         foreach (var coefficientArmor in armorModifiers.Coefficients)
         {
@@ -70,14 +69,14 @@ public abstract class SharedArmorSystem : EntitySystem
             // stamina resistance begin
             if (coefficientArmor.Key != "Stamina")
             {
-                msg.AddMarkup(Loc.GetString("armor-coefficient-value",
+                msg.AddMarkupOrThrow(Loc.GetString("armor-coefficient-value",
                     ("type", coefficientArmor.Key),
                     ("value", MathF.Round((1f - coefficientArmor.Value) * 100,1))
                     ));
             }
             if (coefficientArmor.Key == "Stamina")
             {
-                msg.AddMarkup(Loc.GetString("armor-coefficient-value-stamina",
+                msg.AddMarkupOrThrow(Loc.GetString("armor-coefficient-value-stamina",
                     ("type", coefficientArmor.Key),
                     ("value", MathF.Round((1f - coefficientArmor.Value) * 100,1))
                     ));
@@ -90,7 +89,7 @@ public abstract class SharedArmorSystem : EntitySystem
             msg.PushNewline();
 
             var armorType = Loc.GetString("armor-damage-type-" + flatArmor.Key.ToLower());
-            msg.AddMarkup(Loc.GetString("armor-reduction-value",
+            msg.AddMarkupOrThrow(Loc.GetString("armor-reduction-value",
                 ("type", armorType),
                 ("value", flatArmor.Value)
             ));

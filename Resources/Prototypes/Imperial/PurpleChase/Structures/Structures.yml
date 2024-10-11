@@ -101,10 +101,10 @@
     lightSoftness: 0.5
     BurningTemperature: 350
     PowerUse: 60
-  - type: WelderRefinable
+  - type: ToolRefinable
     refineResult:
-    - SheetGlass1
-    - ShardCrystalPink
+    - id: SheetGlass1
+    - id:  ShardCrystalPink
 
 - type: entity
   parent: LightTubeCrystalCyan
@@ -119,10 +119,10 @@
     lightSoftness: 0.5
     BurningTemperature: 350
     PowerUse: 60
-  - type: WelderRefinable
+  - type: ToolRefinable
     refineResult:
-    - SheetGlass1
-    - ShardCrystalPink
+    - id: SheetGlass1
+    - id:  ShardCrystalPink
 
 - type: entity
   id: VlPCLightOne

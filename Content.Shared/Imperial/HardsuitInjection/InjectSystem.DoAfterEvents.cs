@@ -55,7 +55,7 @@ public sealed partial class InjectSystem
     {
         if (component.StripDelay == null) return;
 
-        var (time, stealth) = _strippable.GetStripTimeModifiers(user, wearer, component.StripDelay.Value);
+        var (time, stealth) = _strippable.GetStripTimeModifiers(user, wearer, null, component.StripDelay.Value);
 
         var args = new DoAfterArgs(EntityManager, user, time, new ToggleSlotDoAfterEvent(), item, wearer, item)
         {

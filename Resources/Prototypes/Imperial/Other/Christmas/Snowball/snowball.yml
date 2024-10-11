@@ -57,7 +57,7 @@
   - type: StepTrigger
     intersectRatio: 0.2
     requiredTriggeredSpeed: 0
-  - type: ClothingRequiredStepTrigger
+  #- type: ClothingRequiredStepTrigger
   - type: TriggerOnStepTrigger
   - type: DamageUserOnTrigger
     damage:
