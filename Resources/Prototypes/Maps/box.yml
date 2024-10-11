@@ -44,7 +44,6 @@
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 5, 5 ]
             ResearchAssistant: [ 4, 4 ]
-            Borg: [ 2, 2 ]
             SeniorResearcher: [ 1, 1 ] # imperial space senior roles
             #security
             HeadOfSecurity: [ 1, 1 ]
@@ -65,5 +64,7 @@
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
             IAA: [ 1, 1 ] # imperial IAA
-
+            #silicon
+            StationAi: [ 1, 1 ]
+            Borg: [ 2, 2 ]
 

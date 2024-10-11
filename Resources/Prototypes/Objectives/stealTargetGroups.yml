@@ -51,7 +51,7 @@
 
 - type: stealTargetGroup
   id: FoodMeatCorgi
-  name: FoodMeatCorgi # Imperial objectives translate
+  name: Мясо корги # Imperial objectives translate
   sprite:
     sprite: Objects/Consumable/Food/meat.rsi
     state: corgi
@@ -84,14 +84,14 @@
     sprite: Objects/Misc/nukedisk.rsi
     state: icon
 
-# Thief Collection
-
 - type: stealTargetGroup
   id: Figurines
   name: фигурки (любые) # Imperial objectives translate
   sprite:
-    sprite: Objects/Fun/figurines.rsi
-    state: figurine_spawner
+    sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi
+    state: base
+
+# Thief Collection
 
 - type: stealTargetGroup
   id: HeadCloak
@@ -142,8 +142,6 @@
     sprite: Objects/Misc/id_cards.rsi
     state: default
 
-
-
 - type: stealTargetGroup
   id: LAMP
   name: ЛАМПЫ # Imperial objectives translate
@@ -162,7 +160,7 @@
 
 - type: stealTargetGroup
   id: FlippoEngravedLighter
-  name: детективная зажигалка Flippo с гравировкой # Imperial objectives translate
+  name: зажигалка детектива Flippo с гравировкой # Imperial objectives translate
   sprite:
     sprite: Objects/Tools/lighters.rsi
     state: zippo_engraved_icon_base
@@ -253,7 +251,7 @@
 
 - type: stealTargetGroup
   id: Bible
-  name: bible
+  name: steal-target-groups-bible
   sprite:
     sprite: Objects/Specific/Chapel/bible.rsi
     state: icon
@@ -271,6 +269,13 @@
   sprite:
     sprite: Clothing/Neck/Medals/clownmedal.rsi
     state: icon
+
+- type: stealTargetGroup
+  id: WantedListCartridge
+  name: steal-target-groups-wanted-list-cartridge
+  sprite:
+    sprite: Objects/Devices/cartridge.rsi
+    state: cart-sec
 
 #Thief structures
 
@@ -337,6 +342,13 @@
     sprite: Structures/Furniture/potted_plants.rsi
     state: plant-25
 
+- type: stealTargetGroup
+  id: ToiletGoldenDirtyWater
+  name: steal-target-groups-toilet-golden-dirty-water
+  sprite:
+    sprite: Structures/Furniture/golden_toilet.rsi
+    state: condisposal
+
 # Thief Animal
 
 - type: stealTargetGroup
@@ -355,7 +367,7 @@
 
 - type: stealTargetGroup
   id: AnimalMcGriff
-  name: McGriff
+  name: steal-target-groups-animal-mc-griff
   sprite:
     sprite: Mobs/Pets/mcgriff.rsi
     state: mcgriff
@@ -390,7 +402,7 @@
 
 - type: stealTargetGroup
   id: AnimalTropico
-  name: Tropico
+  name: steal-target-groups-animal-tropico
   sprite:
     sprite: Mobs/Animals/crab.rsi
     state: crab
