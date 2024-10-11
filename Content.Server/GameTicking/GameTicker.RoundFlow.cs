@@ -23,7 +23,9 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared.Imperial.ICCVar; //Imperial
 using Content.Shared.Voting; //Imperial
-using Content.Server.Voting.Managers; //Imperial
+using Content.Server.Voting.Managers;
+using Content.Shared.Imperial.ICCVar; //Imperial
+using Robust.Shared.Configuration; //Imperial
 
 namespace Content.Server.GameTicking
 {
@@ -33,6 +35,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly RoleSystem _role = default!;
         [Dependency] private readonly ITaskManager _taskManager = default!;
         [Dependency] private readonly IVoteManager _voteManager = default!; //Imperial
+        [Dependency] private readonly IConfigurationManager _configurationManager = default!; //Imperial
 
         private static readonly Counter RoundNumberMetric = Metrics.CreateCounter(
             "ss14_round_number",

@@ -13,7 +13,6 @@
   friction: 0.3
   isSpace: true
   itemDrop: PartRodMetal1
-  deconstructTools: [ Prying ]
   heatCapacity: 10000
 
 - type: tile
@@ -30,7 +29,6 @@
   friction: 0.3
   isSpace: true
   itemDrop: PartRodMetal1
-  deconstructTools: [ Prying ]
   heatCapacity: 10000
 
 - type: tile
@@ -47,7 +45,6 @@
   friction: 0.3
   isSpace: true
   itemDrop: PartRodMetal1
-  deconstructTools: [ Prying ]
   heatCapacity: 10000
 
 - type: tile
@@ -64,7 +61,6 @@
   friction: 0.3
   isSpace: true
   itemDrop: PartRodMetal1
-  deconstructTools: [ Prying ]
   heatCapacity: 10000
 
 - type: tile
@@ -81,7 +77,6 @@
   friction: 0.3
   isSpace: true
   itemDrop: PartRodMetal1
-  deconstructTools: [ Prying ]
   heatCapacity: 10000
 
 - type: tile
@@ -98,7 +93,6 @@
   friction: 0.3
   isSpace: true
   itemDrop: PartRodMetal1
-  deconstructTools: [ Prying ]
   heatCapacity: 10000
 
 - type: tile
@@ -115,7 +109,6 @@
   friction: 0.3
   isSpace: true
   itemDrop: PartRodMetal1
-  deconstructTools: [ Prying ]
   heatCapacity: 10000
 
 - type: tile
@@ -132,7 +125,6 @@
   friction: 0.3
   isSpace: true
   itemDrop: PartRodMetal1
-  deconstructTools: [ Prying ]
   heatCapacity: 10000
 
 #Floor window
@@ -148,7 +140,6 @@
   footstepSounds:
     collection: FootstepTile
   itemDrop: SheetUGlass1
-  deconstructTools: [ Prying ]
   heatCapacity: 10000
 
 - type: tile
@@ -163,7 +154,6 @@
   footstepSounds:
     collection: FootstepTile
   itemDrop: SheetPGlass1
-  deconstructTools: [ Prying ]
   heatCapacity: 10000
 
 - type: tile
@@ -178,7 +168,6 @@
   footstepSounds:
     collection: FootstepTile
   itemDrop: SheetRUGlass1
-  deconstructTools: [ Prying ]
   heatCapacity: 10000
 
 - type: tile
@@ -193,7 +182,6 @@
   footstepSounds:
     collection: FootstepTile
   itemDrop: SheetRPGlass1
-  deconstructTools: [ Prying ]
   heatCapacity: 10000
 
 # Ice Floor Sheet
@@ -208,7 +196,7 @@
   footstepSounds:
     collection: FootstepTile
   itemDrop: SnowballIce
-  deconstructTools: [ Prying ]
+  
   friction: 0.05
   mobFriction: 0.5
   mobFrictionNoInput: 0.05

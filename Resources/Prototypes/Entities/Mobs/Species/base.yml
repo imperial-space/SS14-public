@@ -210,8 +210,8 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
-  - type: InjectNeed # imperial hardsuit injection
     - AnomalyHost
+  - type: InjectNeed # imperial hardsuit injection
 
 - type: entity
   save: false

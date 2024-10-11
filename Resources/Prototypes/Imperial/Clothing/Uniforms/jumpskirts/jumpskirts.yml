@@ -1,10 +1,10 @@
-- type: entity
-  parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtPsychologist
-  name: Psychologist's uniform
-  description: none
-  components:
-  - type: Sprite
-    sprite: Imperial/Clothing/Uniforms/jumpskirts/psychologist.rsi
-  - type: Clothing
-    sprite: Imperial/Clothing/Uniforms/jumpskirts/psychologist.rsi
+# - type: entity
+#   parent: ClothingUniformSkirtBase
+#   id: ClothingUniformJumpskirtPsychologist
+#   name: Psychologist's uniform
+#   description: none
+#   components:
+#   - type: Sprite
+#     sprite: Imperial/Clothing/Uniforms/jumpskirts/psychologist.rsi
+#   - type: Clothing
+#     sprite: Imperial/Clothing/Uniforms/jumpskirts/psychologist.rsi

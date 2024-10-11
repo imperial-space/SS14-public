@@ -35,7 +35,6 @@
     LFoot: MobHumanLFoot
     RFoot: MobHumanRFoot
     Tail: MobHumanoidAnyMarking # imperial HairAndTail
-    HeadTop: MobHumanoidAnyMarking # imperial HairAndTail
 
 - type: markingPoints
   id: MobHumanMarkingLimits

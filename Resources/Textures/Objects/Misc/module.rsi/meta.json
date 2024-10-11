@@ -193,6 +193,9 @@
             "name": "datadisk_label"
         },
         {
+            "name": "datadisk_encrypted"
+        },
+        {
             "name": "depositbox"
         },
         {
