@@ -1,0 +1,50 @@
+- type: entity
+  id: BaseDiagonalCatwalk
+  name: diagonal catwalk
+  description: One guy had so little to do that he created this bridge.
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/DiagonalCatwalk/DiagonalCatwalk.rsi
+    drawdepth: FloorTiles
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCatwalk
+      params:
+        volume: 8
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: DiagonalCatwalk
+  name: diagonal catwalk
+  description: One guy had so little to do that he created this bridge.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/DiagonalCatwalk/DiagonalCatwalk.rsi
+    state: catwalk_preview
