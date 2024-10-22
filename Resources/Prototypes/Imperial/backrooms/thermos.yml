@@ -1,0 +1,73 @@
+- type: entity
+  parent: FlaskBase
+  id: ThermosBlue
+  name: blue thermos
+  description: Greed is destructive. Remember this when you start drinking.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: Water
+          Quantity: 35
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: Sprite
+    sprite: Imperial/backrooms/thermos/ThermosBlue.rsi
+
+- type: entity
+  parent: FlaskBase
+  id: ThermosGreen
+  name: green thermos
+  description: Greed is destructive. Remember this when you start drinking.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: Coffee
+          Quantity: 25
+        - ReagentId: ChloralHydrate
+          Quantity: 15
+  - type: Sprite
+    sprite: Imperial/backrooms/thermos/ThermosGreen.rsi
+
+- type: entity
+  parent: FlaskBase
+  id: ThermosRed
+  name: red thermos
+  description: Greed is destructive. Remember this when you start drinking.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: Synaptizine
+          Quantity: 6
+        - ReagentId: Water
+          Quantity: 20
+        - ReagentId: Retropine
+          Quantity: 14
+  - type: Sprite
+    sprite: Imperial/backrooms/thermos/ThermosRed.rsi
+
+- type: entity
+  parent: FlaskBase
+  id: ThermosGray
+  name: gray thermos
+  description: Greed is destructive. Remember this when you start drinking.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+        - ReagentId: Water
+          Quantity: 10
+  - type: Sprite
+    sprite: Imperial/backrooms/thermos/ThermosGray.rsi

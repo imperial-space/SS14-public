@@ -1,0 +1,49 @@
+- type: entity
+  name: Smiler Spawner
+  id: SpawnMobSmiler
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Mobs/Animals/mouse.rsi
+        state: icon-2
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - Smiler
+
+- type: entity
+  name: Smiler Timed Spawner
+  id: SmilerTimedSpawner
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Mobs/Animals/mouse.rsi
+          state: icon-2
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - Smiler
+      chance: 1
+      intervalSeconds: 90
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  name: Deathmoth Spawner
+  id: SpawnMobDeathmoth
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Mobs/Animals/mouse.rsi
+        state: icon-2
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobDeathmoth

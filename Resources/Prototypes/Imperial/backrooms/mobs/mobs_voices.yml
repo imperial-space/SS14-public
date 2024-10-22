@@ -1,0 +1,6 @@
+- type: emoteSounds
+  id: SmilerVoice
+  sound:
+    path: /Audio/Imperial/backrooms/smiler/smilerscream.ogg
+    params:
+      variation: 2
