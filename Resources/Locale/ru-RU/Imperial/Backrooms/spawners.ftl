@@ -1,0 +1,9 @@
+ent-SpawnMobSmiler = спавнер Улыбающийся
+    .desc = { ent-MarkerBase.desc }
+    .suffix = { "Закулисье" }
+ent-SmilerTimedSpawner = периодический спавнер Улыбающийся
+    .desc = { ent-MarkerBase.desc }
+    .suffix = { "Закулисье" }
+ent-SpawnMobDeathmoth = спавнер Смертомоль
+    .desc = { ent-MarkerBase.desc }
+    .suffix = { "Закулисье" }
