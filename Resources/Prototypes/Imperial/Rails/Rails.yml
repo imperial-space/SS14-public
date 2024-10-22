@@ -1,0 +1,104 @@
+- type: entity
+  id: BaseRails
+  parent: BaseStructure
+  name: rails
+  description: Rails, rails, sleepers, sleepers. The train was running late.
+  abstract: true
+  components:
+  - type: Physics
+    canCollide: false
+  - type: Fixtures
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 50
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 50
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalBreak
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              SheetSteel1:
+                min: 2
+                max: 2
+              MaterialWoodPlank1:
+                min: 2
+                max: 2
+
+- type: entity
+  id: StraightRails
+  parent: BaseRails
+  suffix: Straight
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/Rails/Rails.rsi
+    layers:
+    - state: Straight
+
+- type: entity
+  id: StraightRailsWithoutOneRailLeft
+  parent: BaseRails
+  suffix: StraightWithoutOneRail
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/Rails/Rails.rsi
+    layers:
+    - state: StraightWithoutOneRailLeft
+
+- type: entity
+  id: StraightRailsWithoutOneRailRight
+  parent: BaseRails
+  suffix: StraightWithoutOneRail
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/Rails/Rails.rsi
+    layers:
+    - state: StraightWithoutOneRailRight
+
+- type: entity
+  id: Sleepers
+  parent: BaseRails
+  suffix: Sleepers
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/Rails/Rails.rsi
+    layers:
+    - state: Sleepers
+
+- type: entity
+  id: RotaryRails
+  parent: BaseRails
+  suffix: Rotary
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/Rails/Rails.rsi
+    layers:
+    - state: Rotary
+
+- type: entity
+  id: ForkRails
+  parent: BaseRails
+  suffix: Fork
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/Rails/Rails.rsi
+    layers:
+    - state: Fork
