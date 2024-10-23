@@ -1,0 +1,84 @@
+- type: entity
+  id: BaseMagazineAssaultPKM
+  name: magazine assult PKM (7x62x51)
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - MagazineAssaultPKMBox
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeAssaultPKM
+    proto: CartridgeAssaultPKM
+    capacity: 125
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/LMG/AssaultPKM_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Appearance
+
+- type: entity
+  id: MagazineAssaultPKMBox
+  name: Assault PKM magazine box (7x62x51)
+  parent: BaseMagazineAssaultPKM
+  components:
+  - type: Tag
+    tags:
+      - MagazineAssaultPKMBox
+  - type: BallisticAmmoProvider
+    proto: CartridgeAssaultPKM
+    capacity: 125
+  - type: Item
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/LMG/AssaultPKM_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Appearance
+
+- type: entity
+  id: MagazineAssaultPKMBoxPiercing
+  name: Assault PKM magazine box (7x62x51 AP)
+  parent: BaseMagazineAssaultPKM
+  components:
+  - type: Tag
+    tags:
+      - MagazineAssaultPKMBox
+  - type: BallisticAmmoProvider
+    proto: CartridgeAssaultPKMPiercing
+    capacity: 125
+  - type: Item
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/LMG/AssaultPKM_mag.rsi
+    layers:
+    - state: piercing
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Appearance
+
+- type: entity
+  id: MagazineAssaultPKMBoxMercury
+  name: Assault PKM magazine box (7x62x51 M)
+  parent: BaseMagazineAssaultPKM
+  components:
+  - type: Tag
+    tags:
+      - MagazineAssaultPKMBox
+  - type: BallisticAmmoProvider
+    proto: CartridgeAssaultPKMMercury
+    capacity: 125
+  - type: Item
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/LMG/AssaultPKM_mag.rsi
+    layers:
+    - state: mercury
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Appearance

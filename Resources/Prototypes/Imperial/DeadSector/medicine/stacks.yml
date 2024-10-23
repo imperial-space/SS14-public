@@ -1,0 +1,31 @@
+- type: stack
+  id: Salinepack
+  name: saline pack
+  icon: { sprite: "Imperial/DeadSector/items/Medical/medical_stacks.rsi", state: saline }
+  spawn: DeadSectorSalinePack
+  maxCount: 10
+  itemSize: 1
+
+- type: stack
+  id: Plasmapack
+  name: plasma solution pack
+  icon: { sprite: "Imperial/DeadSector/items/Medical/medical_stacks.rsi", state: plasma }
+  spawn: DeadSectorPlasmaPack
+  maxCount: 10
+  itemSize: 1
+
+- type: stack
+  id: LaryngealTube
+  name: laryngeal tube
+  icon: { sprite: "Imperial/DeadSector/items/Medical/medical_stacks.rsi", state: laryngeal }
+  spawn: DeadSectorPlasmaPack
+  maxCount: 1
+  itemSize: 1
+
+- type: stack
+  id: Tourniquet
+  name: tourniquet
+  icon: { sprite: "Imperial/DeadSector/items/Medical/medical_stacks.rsi", state: tourniquet }
+  spawn: DeadSectorTourniquet
+  maxCount: 1
+  itemSize: 1

@@ -1,0 +1,111 @@
+- type: entity
+  id: BaseCartridgeAR57
+  name: cartridge AR-57 (7x62x51 NATO)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeAR57
+  - type: CartridgeAmmo
+    proto: BulletAR57
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAR57
+  name: cartridge AR-57 (7x62x51 NATO)
+  parent: BaseCartridgeAR57
+  components:
+  - type: CartridgeAmmo
+    proto: BulletAR57
+
+- type: entity
+  id: BaseCartridgeAR57Piercing
+  name: cartridge AR-57 (7x62x51 NATO-AP)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeAR57
+  - type: CartridgeAmmo
+    proto: BulletAR57Piercing
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAR57Piercing
+  name: cartridge AR-57 (7x62x51 NATO-AP)
+  parent: BaseCartridgeAR57Piercing
+  components:
+  - type: CartridgeAmmo
+    proto: BulletAR57Piercing
+
+- type: entity
+  id: BaseCartridgeAR57LongRange
+  name: cartridge AR-57 (7x62x51 NATO-T)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeAR57
+  - type: CartridgeAmmo
+    proto: BulletAR57LongRange
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAR57LongRange
+  name: cartridge AR-57 (7x62x51 NATO-T)
+  parent: BaseCartridgeAR57LongRange
+  components:
+  - type: CartridgeAmmo
+    proto: BulletAR57LongRange
+
+- type: entity
+  id: BaseCartridgeAR57Mercury
+  name: cartridge AR-57 (7x62x51 NATO-M)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeAR57
+  - type: CartridgeAmmo
+    proto: BulletAR57Mercury
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAR57Mercury
+  name: cartridge AR-57 (7x62x51 NATO-M)
+  parent: BaseCartridgeAR57Mercury
+  components:
+  - type: CartridgeAmmo
+    proto: BulletAR57Mercury

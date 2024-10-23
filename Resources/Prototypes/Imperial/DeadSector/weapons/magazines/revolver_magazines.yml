@@ -1,0 +1,55 @@
+- type: entity
+  id: SpeedLoaderAstra903
+  name: speed loader Astra-903 (5x14)
+  parent: BaseSpeedLoaderMagnum
+  components:
+  - type: Tag
+    tags:
+      - SpeedLoaderAstra903
+  - type: BallisticAmmoProvider
+    proto: CartridgeAstra903
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeAstra903
+    capacity: 5
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/revolver/Astra903_mag.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-5
+        map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: base
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: SpeedLoaderAstra903Piercing
+  name: speed loader Astra-903 (5x14 AP)
+  parent: BaseSpeedLoaderMagnum
+  components:
+  - type: Tag
+    tags:
+      - SpeedLoaderAstra903
+  - type: BallisticAmmoProvider
+    proto: CartridgeAstra903Piercing
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeAstra903
+    capacity: 5
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/revolver/Astra903_mag.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-5
+        map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: base
+    steps: 5
+    zeroVisible: false
+  - type: Appearance

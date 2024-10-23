@@ -1,0 +1,22 @@
+- type: entity
+  id: Astra903Bullet
+  name: bullet Astra-903 (5x14)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 10.3
+
+- type: entity
+  id: Astra903BulletPiercing
+  name: bullet Astra-903 (5x14 AP)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 6.1
+    ignoreResistances: true

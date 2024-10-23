@@ -1,0 +1,50 @@
+- type: Tag
+  id: CartridgeASP
+
+- type: Tag
+  id: MagazineASP
+
+- type: Tag
+  id: CartridgeAstra60
+
+- type: Tag
+  id: MagazineAstra60
+
+- type: Tag
+  id: CartridgeAstra100
+
+- type: Tag
+  id: MagazineAstra100
+
+- type: Tag
+  id: CartridgeAstra903
+
+- type: Tag
+  id: SpeedLoaderAstra903
+
+- type: Tag
+  id: CartridgeAgram
+
+- type: Tag
+  id: MagazineAgram
+
+- type: Tag
+  id: CartridgeAR57
+
+- type: Tag
+  id: MagazineAR57
+
+- type: Tag
+  id: CartridgeSVUMkII
+
+- type: Tag
+  id: CartridgeSVD
+
+- type: Tag
+  id: CartridgeRPG8
+
+- type: Tag
+  id: MagazineAssaultPKMBox
+
+- type: Tag
+  id: CartridgeAssaultPKM

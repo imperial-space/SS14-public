@@ -1,0 +1,83 @@
+- type: entity
+  id: BaseCartridgeAssaultPKM
+  name: cartridge Assault PKM (7x62x51)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeAssaultPKM
+  - type: CartridgeAmmo
+    proto: AssaultPKMBullet
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAssaultPKM
+  name: cartridge Assault PKM (7x62x51)
+  parent: BaseCartridgeASP
+  components:
+  - type: CartridgeAmmo
+    proto: ASPBullet
+
+- type: entity
+  id: BaseCartridgeAssaultPKMPiercing
+  name: cartridge Assault PKM (7x62x51 AP)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeAssaultPKM
+  - type: CartridgeAmmo
+    proto: AssaultPKMBulletPiercing
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAssaultPKMPiercing
+  name: cartridge Assault PKM (7x62x51 AP)
+  parent: BaseCartridgeAssaultPKMPiercing
+  components:
+  - type: CartridgeAmmo
+    proto: AssaultPKMBulletPiercing
+
+- type: entity
+  id: BaseCartridgeAssaultPKMMercury
+  name: cartridge Assault PKM (7x62x51 M)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeAssaultPKM
+  - type: CartridgeAmmo
+    proto: AssaultPKMBulletMercury
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAssaultPKMMercury
+  name: cartridge Assault PKM (7x62x51 M)
+  parent: BaseCartridgeAssaultPKMMercury
+  components:
+  - type: CartridgeAmmo
+    proto: AssaultPKMBulletMercury

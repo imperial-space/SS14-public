@@ -1,0 +1,62 @@
+- type: entity
+  id: BulletAR57
+  name: bullet AR-57 (7x62x51)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 11.2
+
+- type: entity
+  id: BulletAR57Piercing
+  name: bullet AR-57 (7x62x51 AP)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 6.7
+    ignoreResistances: true
+
+- type: entity
+  id: BulletAR57LongRange
+  name: bullet AR-57 (7x62x51 T)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 11.2
+
+- type: entity
+  id: BulletAR57Mercury
+  name: bullet AR-57 (7x62x51 M)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 7.8
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 15
+        reagents:
+          - ReagentId: Mercury
+            Quantity: 1.68
+  - type: RefillableSolution
+    solution: ammo
+  - type: DrainableSolution
+    solution: ammo
+  - type: SolutionInjectOnCollide
+    transferAmount: 15
+    blockSlots: NONE
+  - type: InjectableSolution
+    solution: ammo

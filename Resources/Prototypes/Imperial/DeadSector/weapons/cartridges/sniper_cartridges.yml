@@ -1,0 +1,279 @@
+- type: entity
+  id: BaseCartridgeSVUMkII
+  name: cartridge SVU Mk II (7x62x39)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeSVUMkII
+  - type: CartridgeAmmo
+    proto: BulletSVUMkII
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeSVUMkII
+  name: cartridge SVU Mk II (7x62x39)
+  parent: BaseCartridgeSVUMkII
+  components:
+  - type: CartridgeAmmo
+    proto: BulletSVUMkII
+
+- type: entity
+  id: BaseCartridgeSVUMkIIPiercing
+  name: cartridge SVU Mk II (7x62x39 AP)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeSVUMkII
+  - type: CartridgeAmmo
+    proto: BulletSVUMkIIPiercing
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeSVUMkIIPiercing
+  name: cartridge SVU Mk II (7x62x39 AP)
+  parent: BaseCartridgeSVUMkIIPiercing
+  components:
+  - type: CartridgeAmmo
+    proto: BulletSVUMkIIPiercing
+
+- type: entity
+  id: BaseCartridgeSVUMkIILongRange
+  name: cartridge SVU Mk II (7x62x39 T)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeSVUMkII
+  - type: CartridgeAmmo
+    proto: BulletSVUMkIILongRange
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeSVUMkIILongRange
+  name: cartridge SVU Mk II (7x62x39 T)
+  parent: BaseCartridgeSVUMkIILongRange
+  components:
+  - type: CartridgeAmmo
+    proto: BulletSVUMkIILongRange
+
+- type: entity
+  id: BaseCartridgeSVUMkIIExplosive
+  name: cartridge SVU Mk II (7x62x39 ST)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeSVUMkII
+  - type: CartridgeAmmo
+    proto: BulletSVUMkIIExplosive
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeSVUMkIIExplosive
+  name: cartridge SVU Mk II (7x62x39 ST)
+  parent: BaseCartridgeSVUMkIIExplosive
+  components:
+  - type: CartridgeAmmo
+    proto: BulletSVUMkIIExplosive
+
+- type: entity
+  id: BaseCartridgeSVUMkIIMercury
+  name: cartridge SVU Mk II (7x62x39 M)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeSVUMkII
+  - type: CartridgeAmmo
+    proto: BulletSVUMkIIMercury
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeSVUMkIIMercury
+  name: cartridge SVU Mk II (7x62x39 M)
+  parent: BaseCartridgeSVUMkIIMercury
+  components:
+  - type: CartridgeAmmo
+    proto: BulletSVUMkIIMercury
+
+- type: entity
+  id: BaseCartridgeSVD
+  name: cartridge SVD (7x62x39)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeSVD
+  - type: CartridgeAmmo
+    proto: BulletSVD
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeSVD
+  name: cartridge SVD (7x62x39)
+  parent: BaseCartridgeSVD
+  components:
+  - type: CartridgeAmmo
+    proto: BulletSVD
+
+- type: entity
+  id: BaseCartridgeSVDPiercing
+  name: cartridge SVD (7x62x39 AP)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeSVD
+  - type: CartridgeAmmo
+    proto: BulletSVDPiercing
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeSVDPiercing
+  name: cartridge SVD (7x62x39 AP)
+  parent: BaseCartridgeSVDPiercing
+  components:
+  - type: CartridgeAmmo
+    proto: BulletSVDPiercing
+
+- type: entity
+  id: BaseCartridgeSVDLongRange
+  name: cartridge SVD (7x62x39 T)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeSVD
+  - type: CartridgeAmmo
+    proto: BulletSVDLongRange
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeSVDLongRange
+  name: cartridge SVD (7x62x39 T)
+  parent: BaseCartridgeSVDLongRange
+  components:
+  - type: CartridgeAmmo
+    proto: BulletSVDLongRange
+
+- type: entity
+  id: BaseCartridgeSVDExplosive
+  name: cartridge SVD (7x62x39 ST)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeSVD
+  - type: CartridgeAmmo
+    proto: BulletSVDExplosive
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeSVDExplosive
+  name: cartridge SVD (7x62x39 ST)
+  parent: BaseCartridgeSVDExplosive
+  components:
+  - type: CartridgeAmmo
+    proto: BulletSVDExplosive
+
+- type: entity
+  id: BaseCartridgeSVDMercury
+  name: cartridge SVD (7x62x39 M)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeSVD
+  - type: CartridgeAmmo
+    proto: BulletSVDMercury
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeSVDMercury
+  name: cartridge SVD (7x62x39 M)
+  parent: BaseCartridgeSVDMercury
+  components:
+  - type: CartridgeAmmo
+    proto: BulletSVDMercury

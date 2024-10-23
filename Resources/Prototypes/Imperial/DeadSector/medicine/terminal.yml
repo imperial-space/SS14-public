@@ -1,0 +1,10 @@
+# Монитор экипажа
+- type: entity
+  name: MedCore terminal
+  suffix: Felix
+  parent: HandheldCrewMonitor
+  id: MedCoreTerminal
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/items/MedCoreTerminal.rsi
+    state: scanner

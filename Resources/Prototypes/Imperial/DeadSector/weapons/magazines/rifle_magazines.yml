@@ -1,0 +1,131 @@
+- type: entity
+  id: BaseMagazineAR57
+  name: magazine AR-57 (7x62x51 NATO)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineAR57
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    proto: CartridgeAR57
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeAR57
+    capacity: 35
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/rifle/AR57_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseMagazineAR57Piercing
+  name: magazine AR-57 (7x62x51 NATO-AP)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineAR57
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    proto: CartridgeAR57Piercing
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeAR57
+    capacity: 35
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/rifle/AR57_mag.rsi
+    layers:
+    - state: piercing
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseMagazineAR57LongRange
+  name: magazine AR-57 (7x62x51 NATO-T)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineAR57
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    proto: CartridgeAR57LongRange
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeAR57
+    capacity: 35
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/rifle/AR57_mag.rsi
+    layers:
+    - state: long-range
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseMagazineAR57Mercury
+  name: magazine AR-57 (7x62x51 NATO-M)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineAR57
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    proto: CartridgeAR57Mercury
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeAR57
+    capacity: 35
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/rifle/AR57_mag.rsi
+    layers:
+    - state: mercury
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance

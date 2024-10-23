@@ -1,0 +1,81 @@
+- type: entity
+  name: BaseWeaponAssaultPKM
+  parent: BaseItem
+  id: BaseWeaponAssaultPKM
+  description: A rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: Imperial/DeadSector/weapons/weapons/LMG/AssaultPKM.rsi
+    quickEquip: false
+    slots:
+    - Back
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -15
+    maxAngle: -15
+  - type: Gun
+    minAngle: 24
+    maxAngle: 38
+    angleIncrease: 3
+    angleDecay: 10
+    fireRate: 8
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/lmg_cock.ogg
+  - type: AmmoCounter
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineAssaultPKMBox
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineAssaultPKMBox
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeAssaultPKM
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeAssaultPKM
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: StaticPrice
+    price: 500
+  - type: UseDelay
+    delay: 1
+
+- type: entity
+  name: Assault PKM
+  id: WeaponAssaultPKM
+  parent: BaseWeaponAssaultPKM
+  description: An ultra-large machine gun with 125 rounds of ammunition. It has a black color mixed with a set of wooden body parts. Uses 7x62x51 ammo.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/LMG/AssaultPKM.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance

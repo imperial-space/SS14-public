@@ -1,0 +1,130 @@
+- type: entity
+  name: saline pack
+  description: Contains a groundbreaking universal blood replacement created by Nanotrasen's advanced medical science.
+  parent: BaseHealingItem
+  id: DeadSectorSalinePack
+  suffix: DeadSector
+  components:
+  - type: Tag
+    tags:
+    - Bloodpack
+  - type: Sprite
+    sprite: Imperial/DeadSector/items/Medical/medical_stacks.rsi
+    state: saline
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage:
+      types:
+        Bloodloss: -2
+    ModifyBloodLevel: 30
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+
+- type: entity
+  name: plasma solution pack
+  description: Contains a groundbreaking universal blood replacement created by Nanotrasen's advanced medical science.
+  parent: BaseHealingItem
+  id: DeadSectorPlasmaPack
+  suffix: DeadSector
+  components:
+  - type: Tag
+    tags:
+    - Bloodpack
+  - type: Sprite
+    sprite: Imperial/DeadSector/items/Medical/medical_stacks.rsi
+    state: plasma
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage:
+      types:
+        Bloodloss: -4
+    ModifyBloodLevel: 45
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+
+- type: entity
+  parent: DeadSectorSalinePack
+  id: DeadSectorSalinePack10Lingering
+  suffix: DeadSector, 10
+  components:
+  - type: Stack
+    stackType: Salinepack
+    count: 10
+    lingering: true # Стак для удобства
+
+- type: entity
+  parent: DeadSectorPlasmaPack
+  id: DeadSectorPlasmaPack10Lingering
+  suffix: DeadSector, 10
+  components:
+  - type: Stack
+    stackType: Plasmapack
+    count: 10
+    lingering: true # Ещё один стак для удобства
+
+- type: entity
+  parent: BaseHealingItem
+  id: DeadSectorLaryngealTube
+  name: laryngeal tube
+  description: Stops suffocating! Hopefully.
+  suffix: DeadSector
+  components:
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/Medical/medical_stacks.rsi
+      state: laryngeal
+    - type: Healing
+      damageContainers:
+        - Biological
+      damage:
+        types:
+          Asphyxiation: -10
+      delay: 5
+      selfHealPenaltyMultiplier: 4
+      healingBeginSound:
+        path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      healingEndSound:
+        path: "/Audio/Items/Medical/brutepack_end.ogg"
+    - type: Stack
+      stackType: LaryngealTube
+      maxCountOverride: 1
+      unlimited: true
+      count: 1
+    - type: StackPrice
+      price: 10 # Гортанная трубка. Работает как обычные медикаменты, но бесконечная
+
+- type: entity
+  parent: BaseHealingItem
+  id: DeadSectorTourniquet
+  name: tourniquet
+  description: Stops bleeding! Hopefully.
+  suffix: DeadSector
+  components:
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/Medical/medical_stacks.rsi
+      state: tourniquet
+    - type: Healing
+      damageContainers:
+        - Biological
+      damage:
+        types:
+          Bloodloss: -10
+      bloodlossModifier: -10 # Tourniquets stop bleeding
+      delay: 0.5
+      selfHealPenaltyMultiplier: 2
+      healingBeginSound:
+        path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      healingEndSound:
+        path: "/Audio/Items/Medical/brutepack_end.ogg"
+    - type: Stack
+      stackType: Tourniquet
+      maxCountOverride: 1
+      unlimited: true
+      count: 1
+    - type: StackPrice
+      price: 10 # Жгут. Как бинт, но лечит только кровь + бесконечный.

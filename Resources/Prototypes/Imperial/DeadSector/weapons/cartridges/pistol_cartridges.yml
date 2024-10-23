@@ -1,0 +1,251 @@
+- type: entity
+  id: BaseCartridgeASP
+  name: cartridge ASP (9x19)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeASP
+  - type: CartridgeAmmo
+    proto: ASPBullet
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeASP
+  name: cartridge ASP (9x19)
+  parent: BaseCartridgeASP
+  components:
+  - type: CartridgeAmmo
+    proto: ASPBullet
+
+- type: entity
+  id: BaseCartridgeASPPiercing
+  name: cartridge ASP (9x19 AP)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeASP
+  - type: CartridgeAmmo
+    proto: ASPBulletPiercing
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeASPPiercing
+  name: cartridge ASP (9x19 AP)
+  parent: BaseCartridgeASPPiercing
+  components:
+  - type: CartridgeAmmo
+    proto: ASPBulletPiercing
+
+- type: entity
+  id: BaseCartridgeASPLongRange
+  name: cartridge ASP (9x19 T)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeASP
+  - type: CartridgeAmmo
+    proto: ASPBulletLongRange
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeASPLongRange
+  name: cartridge ASP (9x19 T)
+  parent: BaseCartridgeASPLongRange
+  components:
+  - type: CartridgeAmmo
+    proto: ASPBulletLongRange
+
+- type: entity
+  id: BaseCartridgeAstra60
+  name: cartridge Astra-60 (9x19)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeAstra60
+  - type: CartridgeAmmo
+    proto: Astra60Bullet
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAstra60
+  name: cartridge Astra-60 (9x19)
+  parent: BaseCartridgeAstra60
+  components:
+  - type: CartridgeAmmo
+    proto: Astra60Bullet
+
+- type: entity
+  id: BaseCartridgeAstra60Piercing
+  name: cartridge Astra-60 (9x19 AP)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeAstra60
+  - type: CartridgeAmmo
+    proto: Astra60BulletPiercing
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAstra60Piercing
+  name: cartridge Astra-60 (9x19 AP)
+  parent: BaseCartridgeAstra60Piercing
+  components:
+  - type: CartridgeAmmo
+    proto: Astra60BulletPiercing
+
+- type: entity
+  id: BaseCartridgeAstra60LongRange
+  name: cartridge Astra-60 (9x19 AP)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeAstra60
+  - type: CartridgeAmmo
+    proto: Astra60BulletLongRange
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAstra60LongRange
+  name: cartridge Astra-60 (9x19 T)
+  parent: BaseCartridgeAstra60LongRange
+  components:
+  - type: CartridgeAmmo
+    proto: Astra60BulletLongRange
+
+- type: entity
+  id: BaseCartridgeAstra100
+  name: cartridge Astra-100 (9x19)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeAstra100
+  - type: CartridgeAmmo
+    proto: Astra100Bullet
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAstra100
+  name: cartridge Astra-100 (9x19)
+  parent: BaseCartridgeAstra100
+  components:
+  - type: CartridgeAmmo
+    proto: Astra100Bullet
+
+- type: entity
+  id: BaseCartridgeAstra100Piercing
+  name: cartridge Astra-100 (9x19 AP)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeAstra100
+  - type: CartridgeAmmo
+    proto: Astra100BulletPiercing
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAstra100Piercing
+  name: cartridge Astra-100 (9x19 AP)
+  parent: BaseCartridgeAstra100Piercing
+  components:
+  - type: CartridgeAmmo
+    proto: Astra100BulletPiercing
+
+- type: entity
+  id: BaseCartridgeAstra100LongRange
+  name: cartridge Astra-100 (9x19 T)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeAstra100
+  - type: CartridgeAmmo
+    proto: Astra100BulletLongRange
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAstra100LongRange
+  name: cartridge Astra-100 (9x19 T)
+  parent: BaseCartridgeAstra100LongRange
+  components:
+  - type: CartridgeAmmo
+    proto: Astra100BulletLongRange

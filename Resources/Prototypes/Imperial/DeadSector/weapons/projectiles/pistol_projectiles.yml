@@ -1,0 +1,107 @@
+- type: entity
+  id: ASPBullet
+  name: bullet ASP (9x19)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 10.4
+
+- type: entity
+  id: ASPBulletPiercing
+  name: bullet ASP (9x19 AP)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 6.2
+    ignoreResistances: true
+
+- type: entity
+  id: ASPBulletLongRange
+  name: bullet ASP (9x19 T)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 10.4
+
+- type: entity
+  id: Astra60Bullet
+  name: bullet Astra-60 (9x19)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 11
+
+- type: entity
+  id: Astra60BulletPiercing
+  name: bullet Astra-60 (9x19 AP)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 6.6
+    ignoreResistances: true
+
+- type: entity
+  id: Astra60BulletLongRange
+  name: bullet Astra-60 (9x19 T)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 11
+
+- type: entity
+  id: Astra100Bullet
+  name: bullet Astra-100 (9x19)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 11
+
+- type: entity
+  id: Astra100BulletPiercing
+  name: bullet Astra-100 (9x19 AP)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 6.6
+    ignoreResistances: true
+
+- type: entity
+  id: Astra100BulletLongRange
+  name: bullet Astra-100 (9x19 T)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 11
