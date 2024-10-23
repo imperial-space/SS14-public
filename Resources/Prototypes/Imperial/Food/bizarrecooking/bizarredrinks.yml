@@ -163,7 +163,10 @@
     Poison:
       effects:
       - !type:AdjustTemperature
-        amount: 100000
+        conditions:
+        - !type:Temperature
+          max: 365 ## Температура, при которой персонаж чувствует себя тепло, но не умирает
+        amount: 65000 ## 100 кДж понижено до 65 уменьшения шанса отступа за максимальную температуру
 
 - type: reagent
   id: ShadowSpirits
