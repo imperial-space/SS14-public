@@ -1,0 +1,294 @@
+- type: entity
+  parent: ClothingBackpack
+  id: ArmyHikingBackpackBolotnik
+  name: Army Hiking Backpack "Bolotnik"
+  suffix: DeadSector
+  description: Has ultra-high capacity, small retardation and large size volume. Swamp color.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/backpacks/ArmyHikingBackpackBolotnik.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,12,8
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+
+- type: entity
+  parent: ClothingBackpack
+  id: ArmyHikingBackpackRaptor
+  name: Army Hiking Backpack "Raptor"
+  suffix: DeadSector
+  description: Has ultra-high capacity, small retardation and large size volume. Black color.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/backpacks/ArmyHikingBackpackRaptor.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,12,8
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+
+- type: entity
+  parent: ClothingBackpack
+  id: ArmyHikingBackpackDesert
+  name: Army Hiking Backpack "Desert"
+  suffix: DeadSector
+  description: Has ultra-high capacity, small retardation and large size volume. Sandy color.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/backpacks/ArmyHikingBackpackDesert.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,12,8
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+
+- type: entity
+  parent: ClothingBackpack
+  id: BergenField
+  name: Bergen "Field"
+  suffix: DeadSector
+  description: It has high capacity, low deceleration and large volume. Clear green color.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/backpacks/BergenField.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,10,6
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+
+- type: entity
+  parent: ClothingBackpack
+  id: BergenRaptor
+  name: Bergen "Raptor"
+  suffix: DeadSector
+  description: It has high capacity, low deceleration and large volume. Black color.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/backpacks/BergenRaptor.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,10,6
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+
+- type: entity
+  parent: ClothingBackpack
+  id: LargeHikingBagPotato
+  name: Large Hiking Bag "Potato"
+  suffix: DeadSector
+  description: Has above average capacity. Coloring a bag of potatoes.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/backpacks/LargeHikingBagPotato.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,6,5
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: HeldSpeedModifier
+
+- type: entity
+  parent: ClothingBackpack
+  id: HikingBackpackBrother
+  name: Hiking Backpack "Brother"
+  suffix: DeadSector
+  description: Has average capacity. Black color.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/backpacks/HikingBackpackBrother.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,5,4
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: HeldSpeedModifier
+
+- type: entity
+  parent: ClothingBackpack
+  id: HikingBackpackMask
+  name: Hiking Backpack "Mask"
+  suffix: DeadSector
+  description: Has average capacity. Swamp color.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/backpacks/HikingBackpackMask.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,5,4
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: HeldSpeedModifier
+
+- type: entity
+  parent: ClothingBackpack
+  id: HikingBackpackField
+  name: Hiking Backpack "Field"
+  suffix: DeadSector
+  description: Has average capacity. Clear green color.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/backpacks/HikingBackpackField.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,5,4
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: HeldSpeedModifier
+
+- type: entity
+  parent: ClothingBackpack
+  id: HikingBackpackResearch
+  name: Hiking Backpack "Research"
+  suffix: DeadSector
+  description: Has average capacity. Signal bright orange color.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/backpacks/HikingBackpackResearch.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,5,4
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: HeldSpeedModifier
+
+- type: entity
+  parent: ClothingBackpack
+  id: CamouflageBag
+  name: Camouflage bag
+  suffix: DeadSector
+  description: Has average capacity. Swamp color with foliage.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/backpacks/CamouflageBag.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,4,4
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: HeldSpeedModifier
+
+- type: entity
+  parent: ClothingBackpack
+  id: PatrolBackpack
+  name: Patrol backpack
+  suffix: DeadSector
+  description: Has a small capacity. Black color.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/backpacks/PatrolBackpack.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,4,3
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: HeldSpeedModifier
+
+- type: entity
+  parent: ClothingBackpack
+  id: SportsBag
+  name: Sports bag
+  suffix: DeadSector
+  description: Has average capacity. Black color with gray stripes.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/backpacks/SportsBag.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,5,4
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: HeldSpeedModifier
+
+- type: entity
+  parent: ClothingBackpack
+  id: ANARC164
+  name: AN/ARC-164
+  suffix: DeadSector
+  description: Mobile Communication Station model AN/ARC-164. It has a small capacity and a wide-channel communication method in several modes, namely - (HF) Shortwave, (LW) Longwave, (Air) Aviation. Camouflage military color.
+  components:
+  - type: ContainerContainer
+    containers:
+      key_slots: !type:Container
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+  - type: Headset
+    requiredSlot: BACK
+  - type: EncryptionKeyHolder
+    keySlots: 256
+  - type: Sprite
+    sprite: Imperial/DeadSector/backpacks/ANARC164.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,5,4
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+
+- type: entity
+  parent: ClothingBackpack
+  id: ESOC1
+  name: ESOC-1
+  suffix: DeadSector
+  description: Mobile Closed Breathing System model ESOC-1/ Large-sized backpack, has small capacity and the ability to pump various gases.
+  components:
+  - type: ActivatableUI
+    key: enum.SharedGasTankUiKey.Key
+  - type: UserInterface
+    interfaces:
+    - key: enum.SharedGasTankUiKey.Key
+      type: GasTankBoundUserInterface
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 5
+      moles:
+        - 2.051379050
+      temperature: 293.15
+    tankLowPressure: 30.0
+  - type: Sprite
+    sprite: Imperial/DeadSector/backpacks/ESOC1.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,3,3
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier

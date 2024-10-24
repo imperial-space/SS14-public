@@ -1,0 +1,45 @@
+- type: entity
+  name: Agram
+  parent: BaseWeaponSubMachineGun
+  id: WeaponSubMachineGunAgram
+  description: A small-sized SMG with above-average ammunition and a 32-round magazine. It has a dark gray color.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/SMG/Agram.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+  - type: Gun
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: BaseMagazineAgram
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineAgram
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeAgram
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeAgram
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance

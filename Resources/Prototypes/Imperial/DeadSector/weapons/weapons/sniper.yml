@@ -1,0 +1,81 @@
+- type: entity
+  name: SVU Mk II
+  parent: BaseItem
+  id: WeaponSniperSVUMkII
+  description: Rifle model SVU Mk II. Average size and ammunition capacity of 15 rounds. Has a black color. Uses 7x62x39 ammo.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/sniper/WeaponSniperSVUMkII.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,2
+  - type: Clothing
+    sprite: Imperial/DeadSector/weapons/weapons/sniper/WeaponSniperSVUMkII.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 0.65
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+      params:
+        volume: -22
+  - type: BallisticAmmoProvider
+    capacity: 15
+    proto: CartridgeSVUMkII
+    whitelist:
+      tags:
+      - CartridgeSVUMkII
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+- type: entity
+  name: SVD
+  parent: BaseItem
+  id: WeaponSniperSVD
+  description: Large SVD model rifle with 22 rounds of ammunition. It has a silver color mixed with a set of wooden body parts. Uses 7x62x39 ammo.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/sniper/WeaponSniperSVD.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,3,2
+  - type: Clothing
+    sprite: Imperial/DeadSector/weapons/weapons/sniper/WeaponSniperSVD.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: BallisticAmmoProvider
+    capacity: 22
+    proto: CartridgeSVD
+    whitelist:
+      tags:
+      - CartridgeSVD
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []

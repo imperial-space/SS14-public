@@ -1,0 +1,65 @@
+- type: entity
+  id: BaseMagazineAgram
+  name: magazine Agram (9x21)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineAgram
+  - type: BallisticAmmoProvider
+    proto: CartridgeAgram
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeAgram
+    capacity: 32
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/SMG/Agram_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseMagazineAgramMercury
+  name: magazine Agram (9x21 M)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineAgram
+  - type: BallisticAmmoProvider
+    proto: CartridgeAgramMercury
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeAgram
+    capacity: 32
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/SMG/Agram_mag.rsi
+    layers:
+    - state: mercury
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance

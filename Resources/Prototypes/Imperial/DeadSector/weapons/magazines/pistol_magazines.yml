@@ -1,0 +1,296 @@
+- type: entity
+  id: BaseMagazineASP
+  name: magazine ASP (9x19)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineASP
+  - type: BallisticAmmoProvider
+    proto: CartridgeASP
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeASP
+    capacity: 8
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/pistol/ASP_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseMagazineASPPiercing
+  name: magazine ASP (9x19 AP)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineASP
+  - type: BallisticAmmoProvider
+    proto: CartridgeASPPiercing
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeASP
+    capacity: 8
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/pistol/ASP_mag.rsi
+    layers:
+    - state: piercing
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseMagazineASPLongRange
+  name: magazine ASP (9x19 T)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineASP
+  - type: BallisticAmmoProvider
+    proto: CartridgeASPLongRange
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeASP
+    capacity: 8
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/pistol/ASP_mag.rsi
+    layers:
+    - state: long-range
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseMagazineAstra60
+  name: magazine Astra-60 (9x19)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineAstra60
+  - type: BallisticAmmoProvider
+    proto: CartridgeAstra60
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeAstra60
+    capacity: 8
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/pistol/ASP_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseMagazineAstra60Piercing
+  name: magazine Astra-60 (9x19 AP)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineAstra60
+  - type: BallisticAmmoProvider
+    proto: CartridgeAstra60Piercing
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeAstra60
+    capacity: 8
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/pistol/ASP_mag.rsi
+    layers:
+    - state: piercing
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseMagazineAstra60LongRange
+  name: magazine Astra-60 (9x19 T)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineAstra60
+  - type: BallisticAmmoProvider
+    proto: CartridgeAstra60LongRange
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeAstra60
+    capacity: 8
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/pistol/ASP_mag.rsi
+    layers:
+    - state: long-range
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseMagazineAstra100
+  name: magazine Astra-100 (9x19)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineAstra100
+  - type: BallisticAmmoProvider
+    proto: CartridgeAstra100
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeAstra100
+    capacity: 12
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/pistol/ASP_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseMagazineAstra100Piercing
+  name: magazine Astra-100 (9x19 AP)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineAstra100
+  - type: BallisticAmmoProvider
+    proto: CartridgeAstra100Piercing
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeAstra100
+    capacity: 12
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/pistol/ASP_mag.rsi
+    layers:
+    - state: piercing
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseMagazineAstra100LongRange
+  name: magazine Astra-100 (9x19 T)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineAstra100
+  - type: BallisticAmmoProvider
+    proto: CartridgeAstra100LongRange
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeAstra100
+    capacity: 12
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/pistol/ASP_mag.rsi
+    layers:
+    - state: long-range
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: false
+  - type: Appearance

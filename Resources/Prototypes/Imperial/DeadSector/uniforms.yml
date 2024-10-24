@@ -1,0 +1,120 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformMonolith
+  description: null
+  name: monolith uniform
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformMonolith.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformMonolith.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformMercenary
+  description: null
+  name: mercenary uniform
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformMercenary.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformMercenary.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformTactical
+  description: null
+  name: tactical uniform
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformTactical.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformTactical.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformPeresvet
+  description: null
+  name: peresvet uniform
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformPeresvet.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformPeresvet.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformSparta
+  description: null
+  name: sparta uniform
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformSparta.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformSparta.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformHiredStalker
+  description: null
+  name: hired stalker uniform
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformHiredStalker.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformHiredStalker.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformStalkerVer1
+  description: null
+  name: stalker uniform
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformStalkerVer1.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformStalkerVer1.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformStalkerVer2
+  description: null
+  name: stalker uniform
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformStalkerVer2.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformStalkerVer2.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformStalkerVer3
+  description: null
+  name: stalker uniform
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformStalkerVer3.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformStalkerVer3.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformScientificGreen
+  description: null
+  name: scientific uniform
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformScientificGreen.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformScientificGreen.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformScientificOrange
+  description: null
+  name: scientific uniform
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformScientificOrange.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/uniforms/ClothingUniformScientificOrange.rsi

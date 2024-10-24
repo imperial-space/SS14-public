@@ -1,0 +1,49 @@
+- type: entity
+  id: AssaultPKMBullet
+  name: bullet Assault PKM (7x62x51)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 13.9
+
+- type: entity
+  id: AssaultPKMBulletPiercing
+  name: bullet Assault PKM (7x62x51 AP)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 8.3
+    ignoreResistances: true
+
+- type: entity
+  id: AssaultPKMBulletMercury
+  name: bullet Assault PKM (7x62x51 M)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 9.7
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 15
+        reagents:
+          - ReagentId: Mercury
+            Quantity: 2
+  - type: RefillableSolution
+    solution: ammo
+  - type: DrainableSolution
+    solution: ammo
+  - type: SolutionInjectOnCollide
+    transferAmount: 15
+    blockSlots: NONE
+  - type: InjectableSolution
+    solution: ammo

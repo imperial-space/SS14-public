@@ -1,0 +1,146 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseAirStrike
+  components:
+  - type: OnUseTimerTrigger
+    delay: 0
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Appearance
+  - type: AnimationPlayer
+
+- type: entity
+  parent: BaseAirStrike
+  id: AirStrike
+  name: Air strike
+  description: Hey, look, the plane is flying! The plane... The plane is flying... Damn...
+  suffix: DeadSector
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/clusterbang.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ClusterArrayGrenade
+    fillPrototype:
+      - ClusterDis8
+      - ClusterDis16
+      - ClusterDis24
+      - ClusterDis32
+    distance: 0
+    velocity: 0
+  - type: GenericVisualizer
+    visuals:
+      enum.Trigger.TriggerVisuals.VisualState:
+        enum.ConstructionVisuals.Layer:
+          Primed: { state: primed }
+          Unprimed: { state: icon }
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+
+- type: entity
+  parent: BaseAirStrike
+  id: ClusterDis8
+  name: ClusterDis8
+  noSpawn: true
+  description: null
+  components:
+  - type: ClusterArrayGrenade
+    fillPrototype:
+      - StartAirStrikeGrenadeSec6
+      - StartAirStrikeGrenadeSec12
+      - StartAirStrikeGrenadeSec48
+      - StartAirStrikeGrenadeSec54
+      - StartAirStrikeGrenadeSec90
+      - StartAirStrikeGrenadeSec108
+      - StartAirStrikeGrenadeSec120
+    distance: 8
+    velocity: 8
+  - type: OnUseTimerTrigger
+    delay: 0
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+
+- type: entity
+  parent: BaseAirStrike
+  id: ClusterDis16
+  name: ClusterDis16
+  noSpawn: true
+  description: null
+  components:
+  - type: ClusterArrayGrenade
+    fillPrototype:
+      - StartAirStrikeGrenadeSec10
+      - StartAirStrikeGrenadeSec20
+      - StartAirStrikeGrenadeSec24
+      - StartAirStrikeGrenadeSec50
+      - StartAirStrikeGrenadeSec66
+      - StartAirStrikeGrenadeSec70
+      - StartAirStrikeGrenadeSec96
+      - StartAirStrikeGrenadeSec108
+      - StartAirStrikeGrenadeSec120
+    distance: 16
+    velocity: 16
+  - type: OnUseTimerTrigger
+    delay: 0
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+
+- type: entity
+  parent: BaseAirStrike
+  id: ClusterDis24
+  name: ClusterDis24
+  noSpawn: true
+  description: null
+  components:
+  - type: ClusterArrayGrenade
+    fillPrototype:
+      - StartAirStrikeGrenadeSec12
+      - StartAirStrikeGrenadeSec24
+      - StartAirStrikeGrenadeSec36
+      - StartAirStrikeGrenadeSec40
+      - StartAirStrikeGrenadeSec54
+      - StartAirStrikeGrenadeSec70
+      - StartAirStrikeGrenadeSec78
+      - StartAirStrikeGrenadeSec80
+      - StartAirStrikeGrenadeSec100
+      - StartAirStrikeGrenadeSec110
+    distance: 24
+    velocity: 24
+  - type: OnUseTimerTrigger
+    delay: 0
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+
+- type: entity
+  parent: BaseAirStrike
+  id: ClusterDis32
+  name: ClusterDis32
+  noSpawn: true
+  description: null
+  components:
+  - type: ClusterArrayGrenade
+    fillPrototype:
+      - StartAirStrikeGrenadeSec18
+      - StartAirStrikeGrenadeSec30
+      - StartAirStrikeGrenadeSec40
+      - StartAirStrikeGrenadeSec42
+      - StartAirStrikeGrenadeSec50
+      - StartAirStrikeGrenadeSec60
+      - StartAirStrikeGrenadeSec72
+      - StartAirStrikeGrenadeSec84
+      - StartAirStrikeGrenadeSec96
+      - StartAirStrikeGrenadeSec102
+      - StartAirStrikeGrenadeSec114
+    distance: 32
+    velocity: 32
+  - type: OnUseTimerTrigger
+    delay: 0
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container

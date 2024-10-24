@@ -1,0 +1,59 @@
+- type: entity
+  id: CartridgeRPG8
+  name: grenade RPG-8
+  parent: BaseItem
+  description: Standard projectile with a medium explosion radius. Causes great damage.
+  components:
+  - type: Tag
+    tags:
+      - CartridgeRPG8
+  - type: Item
+    size: Small
+  - type: CartridgeAmmo
+    proto: BulletRPG8
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: rpg
+  - type: StaticPrice
+    price: 20
+
+- type: entity
+  id: CartridgeRPG8Frag
+  name: frag grenade RPG-8
+  parent: BaseItem
+  description: Fragmentation projectile with an extended explosion radius. Causes less damage than its standard counterpart.
+  components:
+  - type: Tag
+    tags:
+      - CartridgeRPG8
+  - type: Item
+    size: Small
+  - type: CartridgeAmmo
+    proto: BulletRPG8LargeRadius
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: rpg
+  - type: StaticPrice
+    price: 20
+
+- type: entity
+  id: CartridgeRPG8Smoke
+  name: smoke grenade RPG-8
+  parent: BaseItem
+  description: A hybrid in the world of non-lethal weapons. Stuns, concusses and envelops the victim in smoke. Does not cause damage.
+  components:
+  - type: Tag
+    tags:
+      - CartridgeRPG8
+  - type: Item
+    size: Small
+  - type: CartridgeAmmo
+    proto: BulletRPG8Flash
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: rpg
+  - type: StaticPrice
+    price: 20

@@ -1,0 +1,670 @@
+- type: entity
+  abstract: true
+  id: AirStrikeGrenadeBase
+  components:
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 175
+    intensitySlope: 1
+    maxIntensity: 4
+    canCreateVacuum: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 20
+        mask:
+        - None
+        restitution: 0.3
+        friction: 0.2
+        layer:
+        - None
+  - type: Appearance
+
+- type: entity
+  abstract: true
+  id: BaseStartAirStrikeGrenade
+  components:
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 20
+        mask:
+        - None
+        restitution: 0.3
+        friction: 0.2
+        layer:
+        - None
+  - type: Appearance
+
+- type: entity
+  id: StartAirStrikeGrenadeSec6
+  name: StartAirStrikeGrenadeSec6
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec6
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec6
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec6
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 6
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec12
+  name: StartAirStrikeGrenadeSec12
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec12
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec12
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec12
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 12
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec18
+  name: StartAirStrikeGrenadeSec18
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec18
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec18
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec18
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 18
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec24
+  name: StartAirStrikeGrenadeSec24
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec24
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec24
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec24
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 24
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec30
+  name: StartAirStrikeGrenadeSec30
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec30
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec30
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec30
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 30
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec36
+  name: StartAirStrikeGrenadeSec36
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec36
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec36
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec36
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 36
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec42
+  name: StartAirStrikeGrenadeSec42
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec42
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec42
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec42
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 42
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec48
+  name: StartAirStrikeGrenadeSec48
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec48
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec48
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec48
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 48
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec54
+  name: StartAirStrikeGrenadeSec54
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec54
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec54
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec54
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 54
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec60
+  name: StartAirStrikeGrenadeSec60
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec60
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec60
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec60
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 60
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec66
+  name: StartAirStrikeGrenadeSec66
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec66
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec66
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec66
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 66
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec72
+  name: StartAirStrikeGrenadeSec72
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec72
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec72
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec72
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 72
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec78
+  name: StartAirStrikeGrenadeSec78
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec78
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec78
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec78
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 78
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec84
+  name: StartAirStrikeGrenadeSec84
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec84
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec84
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec84
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 84
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec90
+  name: StartAirStrikeGrenadeSec90
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec90
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec90
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec90
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 90
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec96
+  name: StartAirStrikeGrenadeSec96
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec96
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec96
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec96
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 96
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec102
+  name: StartAirStrikeGrenadeSec102
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec102
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec102
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec102
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 102
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec108
+  name: StartAirStrikeGrenadeSec108
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec108
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec108
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec108
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 108
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec114
+  name: StartAirStrikeGrenadeSec114
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec114
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec114
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec114
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 114
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec120
+  name: StartAirStrikeGrenadeSec120
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec120
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec120
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec120
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 120
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec10
+  name: StartAirStrikeGrenadeSec10
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec10
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec10
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec10
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 10
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec20
+  name: StartAirStrikeGrenadeSec20
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec20
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec20
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec20
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 20
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec40
+  name: StartAirStrikeGrenadeSec40
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec6
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec40
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec40
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 40
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec50
+  name: StartAirStrikeGrenadeSec50
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec50
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec50
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec50
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 50
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec70
+  name: StartAirStrikeGrenadeSec70
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec70
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec70
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec70
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 70
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec80
+  name: StartAirStrikeGrenadeSec80
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec80
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec80
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec80
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 80
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec100
+  name: StartAirStrikeGrenadeSec100
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec100
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec100
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec100
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 100
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: StartAirStrikeGrenadeSec110
+  name: StartAirStrikeGrenadeSec110
+  noSpawn: true
+  description: null
+  parent: BaseStartAirStrikeGrenade
+  components:
+  - type: SpawnOnTrigger
+    proto: AirStrikeGrenadeSec110
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: AirStrikeGrenadeSec110
+  noSpawn: true
+  description: null
+  parent: AirStrikeGrenadeBase
+  id: AirStrikeGrenadeSec110
+  components:
+  - type: ActiveTimerTrigger
+    timeRemaining: 110
+  - type: DeleteOnTrigger

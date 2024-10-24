@@ -1,0 +1,19 @@
+- type: entity
+  name: Astra-903
+  parent: BaseWeaponRevolver
+  id: WeaponRevolverAstra903
+  description: A small-sized pistol with an open body design and a magazine for 5 rounds. Looks like an unfinished revolver from the wild west era.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/revolver/Astra903.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/weapons/weapons/revolver/Astra903.rsi
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeAstra903
+        - SpeedLoaderAstra903
+    proto: CartridgeAstra903
+    capacity: 5
+    chambers: [ True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null ]

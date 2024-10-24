@@ -1,0 +1,777 @@
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: ArmorUnloading6B5
+  name: Armor unloading "6B5"
+  suffix: DeadSector
+  description: It has a small capacity and little armor protection. camouflage military paint of marsh color.
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,1,2
+  - type: Storage
+    grid:
+    - 0,0,1,1
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/ArmorUnloading6B5.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/ArmorUnloading6B5.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.88
+        Slash: 0.88
+        Piercing: 0.95
+
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: ArmoredUnloading6B43Military
+  name: Armored unloading "6B43" - "Military"
+  suffix: DeadSector
+  description: It has an average capacity and high armor protection. Camouflage military paint in marsh color. The heavy construction slows you down a bit.
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,2,2
+  - type: Storage
+    grid:
+    - 0,0,4,1
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/ArmoredUnloading6B43Military.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/ArmoredUnloading6B43Military.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.40
+        Slash: 0.40
+        Piercing: 0.60
+        Heat: 0.85
+        Cold: 0.85
+        Shock: 0.75
+        Caustic: 0.85
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: ArmoredUnloading6B43Raptor
+  name: Armored unloading "6B43" - "Raptor"
+  suffix: DeadSector
+  description: It has an average capacity and high armor protection. Camouflage paint black and dark gray. The heavy construction slows you down a bit.
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,2,2
+  - type: Storage
+    grid:
+    - 0,0,4,1
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/ArmoredUnloading6B43Raptor.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/ArmoredUnloading6B43Raptor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.40
+        Slash: 0.40
+        Piercing: 0.60
+        Heat: 0.85
+        Cold: 0.85
+        Shock: 0.75
+        Caustic: 0.85
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: ArmoredUnloading6B43Desert
+  name: Armored unloading "6B43" - "Desert"
+  suffix: DeadSector
+  description: It has an average capacity and high armor protection. Desert color camouflage. The heavy construction slows you down a bit.
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,2,2
+  - type: Storage
+    grid:
+    - 0,0,4,1
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/ArmoredUnloading6B43Desert.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/ArmoredUnloading6B43Desert.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.40
+        Slash: 0.40
+        Piercing: 0.60
+        Heat: 0.85
+        Cold: 0.85
+        Shock: 0.75
+        Caustic: 0.85
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: BodyArmorMultikam
+  name: Body armor "Multikam"
+  suffix: DeadSector
+  description: It has a small capacity and little armor protection. Camouflage colors of desert and autumn-forest colors.
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,1,2
+  - type: Storage
+    grid:
+    - 0,0,1,1
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/BodyArmorMultikam.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/BodyArmorMultikam.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.85
+        Shock: 0.85
+
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: BodyArmorMultikamRaptor
+  name: Body armor "Multikam" - "Raptor"
+  suffix: DeadSector
+  description: It has a small capacity and little armor protection. Black color.
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,1,2
+  - type: Storage
+    grid:
+    - 0,0,1,1
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/BodyArmorMultikamRaptor.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/BodyArmorMultikamRaptor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.85
+        Shock: 0.85
+
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: BodyArmorTacticalRaptor
+  name: Body armor "Tactical" - "Raptor"
+  suffix: DeadSector
+  description: It has a small capacity, small armor protection, and a holster on the leg. Black color.
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,1,2
+  - type: Storage
+    grid:
+    - 0,0,1,1
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/BodyArmorTacticalRaptor.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/BodyArmorTacticalRaptor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.85
+        Shock: 0.85
+
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: Beryl5MPantsir
+  name: Beryl-5M "Pantsir"
+  suffix: DeadSector
+  description: It has a small capacity and medium armor protection. Black color with dark red decals. The heavy construction slows you down a bit.
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,1,2
+  - type: Storage
+    grid:
+    - 0,0,1,1
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/Beryl5MPantsir.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/Beryl5MPantsir.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.60
+        Slash: 0.60
+        Piercing: 0.60
+        Heat: 0.80
+        Cold: 0.80
+        Shock: 0.85
+        Caustic: 0.85
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: BZBeryoza
+  name: BZ "Beryoza"
+  suffix: DeadSector
+  description: It has a small capacity and medium armor protection. Camouflage swamp color.
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,1,1
+  - type: Storage
+    grid:
+    - 0,0,1,0
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/BZBeryoza.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/BZBeryoza.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.90
+
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: BZBeryozaGraphite
+  name: BZ "Beryoza" - "Graphite"
+  suffix: DeadSector
+  description: It has a small capacity and medium armor protection. Dark blue color.
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,1,1
+  - type: Storage
+    grid:
+    - 0,0,1,0
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/BZBeryozaGraphite.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/BZBeryozaGraphite.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.90
+
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: BZBeryozaZarya
+  name: BZ "Beryoza" - "Zarya"
+  suffix: DeadSector
+  description: It has a small capacity and medium armor protection. Sandy color.
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,1,1
+  - type: Storage
+    grid:
+    - 0,0,1,0
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/BZBeryozaZarya.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/BZBeryozaZarya.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.90
+
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: BZBeryozaPolos
+  name: BZ "Beryoza" - "Polos"
+  suffix: DeadSector
+  description: It has a small capacity and medium armor protection. Dark color with dark gray stripes in the belly area.
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,1,1
+  - type: Storage
+    grid:
+    - 0,0,1,0
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/BZBeryozaPolos.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/BZBeryozaPolos.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.90
+
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: BZSGranit
+  name: BZS "Granit"
+  suffix: DeadSector
+  description: It has medium capacity, medium armor protection, additional leg protection, a pistol holster, and a pouch. Black color
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,2,2
+  - type: Storage
+    grid:
+    - 0,0,3,1
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/BZSGranit.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/BZSGranit.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.50
+        Heat: 0.55
+        Cold: 0.55
+        Shock: 0.30
+        Caustic: 0.65
+
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: BodyArmorUN
+  name: Body armor "UN"
+  suffix: DeadSector
+  description: It has a small capacity and medium armor protection. Signal blue color of the press.
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,1,2
+  - type: Storage
+    grid:
+    - 0,0,1,1
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/BodyArmorUN.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/BodyArmorUN.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Shock: 0.85
+
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: ExoskeletonExplorer
+  name: Exoskeleton "Explorer"
+  suffix: DeadSector
+  description: It has a medium capacity, ultra-high armor protection, and a built-in “Kora” body armor. Metallic color.
+  components:
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      storagebase: !type:Container
+        ents: []
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,3,3
+  - type: Storage
+    grid:
+    - 0,0,2,2
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/ExoskeletonExplorer.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/ExoskeletonExplorer.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.40
+        Slash: 0.40
+        Piercing: 0.40
+        Heat: 0.20
+        Cold: 0.20
+        Shock: 0.60
+        Caustic: 0.20
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.75
+
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: CoatBZ
+  name: Coat "BZ"
+  suffix: DeadSector
+  description: It has an average capacity, low armor protection, and built-in unloading of the BZ series. Black color.
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,1,2
+  - type: Storage
+    grid:
+    - 0,0,1,1
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/CoatBZ.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/CoatBZ.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.90
+
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: PSZ10uTomb
+  name: PSZ-10u "Tomb"
+  suffix: DeadSector
+  description: It has a medium capacity, high armor protection, and a built-in bulletproof vest of the "BZ" series. The suit has a built-in auto-servo drive system that allows the wearer to run significantly faster. Metallic color.
+  components:
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      storagebase: !type:Container
+        ents: []
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,3,3
+  - type: Storage
+    grid:
+    - 0,0,2,2
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/PSZ10uTomb.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/PSZ10uTomb.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.40
+        Slash: 0.40
+        Piercing: 0.50
+        Heat: 0.75
+        Cold: 0.75
+        Shock: 0.40
+        Caustic: 0.75
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: BrokenExoskeleton
+  name: Broken exoskeleton
+  suffix: DeadSector
+  description: Has metal rust throughout the body.
+  components:
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      storagebase: !type:Container
+        ents: []
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,3,3
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/BrokenExoskeleton.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/BrokenExoskeleton.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.60
+
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: TBZETSavior
+  name: TBZ-ET "Savior"
+  suffix: DeadSector
+  description: It has high capacity, ultra-high armor protection, built-in “Tank” body armor, and signal orange stripes. Metallic color.
+  components:
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      storagebase: !type:Container
+        ents: []
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,3,3
+  - type: Storage
+    grid:
+    - 0,0,2,2
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/TBZETSavior.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/TBZETSavior.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.10
+        Slash: 0.10
+        Piercing: 0.10
+        Heat: 0.40
+        Cold: 0.40
+        Shock: 0.10
+        Caustic: 0.40
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.75
+
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: CamouflageRobe
+  name: Camouflage robe
+  suffix: DeadSector
+  description: It has small body armor, a built-in “Bark” body armor, and a camouflage hood. Camouflage color from leaves.
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,1,2
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/CamouflageRobe.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/CamouflageRobe.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+        Cold: 0.85
+        Shock: 0.85
+        Caustic: 0.85
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodCamouflageRobe
+
+- type: entity
+  parent: ClothingOuterEVASuitBase
+  id: ClothingOuterHardsuitShadow
+  name: spacesuit of division Shadow
+  description: The spacesuit of the special unit of the RSC of the CH department. This suit has a unique black color, indicating belonging to a battalion or unit. The suit has strong protection thanks to titanium plates.
+  components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,2
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/ClothingOuterHardsuitShadow.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/ClothingOuterHardsuitShadow.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.3
+        Heat: 0.65
+        Cold: 0.65
+        Shock: 0.65
+        Radiation: 0.65
+        Caustic: 0.6
+        Stamina: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+
+- type: entity
+  parent: ClothingOuterEVASuitBase
+  id: ClothingOuterHardsuitBZSKMkI
+  name: spacesuit BZSK Mk I
+  description: The spacesuit of a based unit of the Regular Army Forces. This suit has a unique light color, indicating belonging to a battalion or unit.
+  components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,2
+  - type: Sprite
+    sprite: Imperial/DeadSector/outer_clothing/ClothingOuterHardsuitBZSKMkI.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/outer_clothing/ClothingOuterHardsuitBZSKMkI.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.65
+        Heat: 0.75
+        Cold: 0.75
+        Shock: 0.75
+        Radiation: 0.9
+        Caustic: 0.9
+        Stamina: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier

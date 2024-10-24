@@ -1,0 +1,53 @@
+- type: entity
+  name: green flare box
+  parent: BoxBase
+  id: GreenFlareBox
+  description: Dazzling inside
+  components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,2
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,1,1
+  - type: Sprite
+    sprite: Imperial/DeadSector/items/flare/flare_boxes.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - BoxCardboard
+  - type: StorageFill
+    contents:
+      - id: FlareGreen
+      - id: FlareGreen
+      - id: FlareGreen
+      - id: FlareGreen
+
+- type: entity
+  name: blue flare box
+  parent: BoxBase
+  id: BlueFlareBox
+  description: Dazzling inside
+  components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,2
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,1,1
+  - type: Sprite
+    sprite: Imperial/DeadSector/items/flare/flare_boxes.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - BoxCardboard
+  - type: StorageFill
+    contents:
+      - id: FlareBlue
+      - id: FlareBlue
+      - id: FlareBlue
+      - id: FlareBlue
