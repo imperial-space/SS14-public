@@ -95,3 +95,6 @@ alerts-battery-desc = Если батарея разрядится, вы не с
 
 alerts-no-battery-name = Нет батареи
 alerts-no-battery-desc = У вас нет батареи, в результате чего вы не можете заряжаться или использовать свои способности.
+
+alerts-walking-name = Ходьба
+alerts-walking-desc = Вы идете, двигаясь в медленном темпе.

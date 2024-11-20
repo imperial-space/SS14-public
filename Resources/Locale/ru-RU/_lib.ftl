@@ -31,3 +31,5 @@ zzzz-fmt-power-joules = { TOSTRING($divided, "G3") } { $places ->
     [4] ТДж
    *[5] ???
 }
+
+zzzz-fmt-playtime = {$hours}ч. {$minutes}мин.

@@ -9,7 +9,7 @@ guardian-activator-empty-examine = [color=#ba1919]Инжектор израсх�
 guardian-activator-invalid-target = Только гуманоиды подходят для инъекции!
 guardian-no-soul = У вашего стража нет души.
 guardian-available = У вашего стража теперь есть душа.
-
+guardian-inside-container = Нет места, чтобы освободить вашего стража!
 # Guardian action
 
 action-name-guardian = Призвать/отозвать стража

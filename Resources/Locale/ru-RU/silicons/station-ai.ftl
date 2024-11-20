@@ -1,0 +1,1 @@
+ai-consciousness-download-warning = Ваше сознание загружается.

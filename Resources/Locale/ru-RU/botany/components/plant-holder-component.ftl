@@ -33,3 +33,4 @@ plant-holder-component-heat-improper-warning = Мигает [color=orange]пре
 plant-holder-component-pressure-improper-warning = Мигает [color=lightblue]предупреждение о неподходящем атмосферном давлении[/color].
 plant-holder-component-gas-missing-warning = Мигает [color=cyan]предупреждение о неподходящем атмосферном составе[/color].
 plant-holder-component-early-sample-message = Растение еще не выросло настолько, чтобы можно было взять образец.
+plant-holder-component-ligneous-cant-harvest-message = Растение нельзя сорвать голыми руками. Используйте инструмент.

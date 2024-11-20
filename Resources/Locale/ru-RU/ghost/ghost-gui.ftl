@@ -13,6 +13,7 @@ ghost-target-window-current-button = Телепорт в: {$name}
 ghost-target-window-warp-to-most-followed = Переместиться к наиболее популярному
 
 ghost-roles-window-title = Роли призраков
+ghost-roles-window-available-button = Доступно ({$rolesCount})
 ghost-roles-window-join-raffle-button = Участвовать в распределении
 ghost-roles-window-raffle-in-progress-button =
     Участвовать в распределении (Осталось { $time }, { $players ->

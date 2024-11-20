@@ -52,6 +52,8 @@ guide-entry-dna = ДНК
 guide-entry-defusal = Обезвреживание большой бомбы
 guide-entry-criminal-records = Криминальные записи
 guide-entry-species = Виды
+guide-entry-botanical = Ботаника
+
 
 guide-entry-antagonists = Антагонисты
 guide-entry-nuclear-operatives = Ядерные Оперативники

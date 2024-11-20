@@ -32,3 +32,11 @@ action-speech-spell-summon-magicarp = AIE KHUSE EU
 action-name-spell-fireball = Огненный шар
 action-description-spell-fireball = Выпускает взрывающийся огненный шар в направлении кликнутого места.
 action-speech-spell-fireball = ONI'SOMA!
+
+action-name-spell-summon-guns = Призвать оружие
+action-description-spell-summon-guns = АК47 для всех! Перед всеми появляется случайное оружие. Отключает накопление при активации!
+action-speech-spell-summon-guns = YOR'NEE VES-KORFA
+
+action-name-spell-summon-magic = Призыв магии
+action-description-spell-summon-magic = Перед всеми появляется случайный магический предмет. Ничто не может пойти не так! Отключает накопление при активации!
+action-speech-spell-summon-magic = RYGOIN FEMA-VERECO

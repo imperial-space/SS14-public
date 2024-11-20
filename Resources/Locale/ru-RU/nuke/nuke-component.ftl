@@ -45,3 +45,6 @@ nuke-slot-component-slot-name-disk = Диск
 ## Examine
 nuke-examine-armed = Эй, а почему этот [color=red]красный свет[/color] мигает?
 nuke-examine-exploding = Да... Думаю, приятель, уже слишком поздно.
+
+# Nuke bolt
+nuke-component-cant-anchor-toggle = Для закрепления бомбы необходимо вставить диск ядерной авторизации!

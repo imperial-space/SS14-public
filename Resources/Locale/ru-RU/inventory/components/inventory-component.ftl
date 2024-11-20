@@ -2,3 +2,9 @@ inventory-component-can-equip-cannot = Вы не можете экипирова
 inventory-component-can-equip-does-not-fit = Это не подходит!
 
 inventory-component-can-unequip-cannot = Вы не можете снять это!
+
+inventory-component-dropped-from-unequip =
+    Вы выкинули {$items ->
+    [1] предмет!
+    *[other] несколько предметов!
+}

@@ -62,13 +62,16 @@ signal-port-name-artifact-analyzer-receiver = Платформа
 signal-port-description-artifact-analyzer-receiver = Приёмник сигнала анализатора артефактов
 
 signal-port-name-set-particle-delta = Установить тип частицы: дельта
-signal-port-description-set-particle-delta = Устанавливает тип частицы, испускаемой этим устройством, в дельта.
+signal-port-description-set-particle-delta = Устанавливает тип частицы, испускаемой этим устройством, на дельта.
 
 signal-port-name-set-particle-epsilon = Установить тип частицы: эпсилон
 signal-port-description-set-particle-epsilon = Устанавливает тип частицы, испускаемой этим устройством, на эпсилон.
 
-signal-port-name-set-particle-zeta = Установить тип частицы: zeta
-signal-port-description-set-particle-zeta = Устанавливает тип частицы, излучаемой этим устройством, на дзета.
+signal-port-name-set-particle-zeta = Установить тип частицы: зета
+signal-port-description-set-particle-zeta = Устанавливает тип частицы, испускаемой этим устройством, на зета.
+
+signal-port-name-set-particle-zeta = Установить тип частицы: сигма
+signal-port-description-set-particle-sigma = Устанавливает тип частицы, испускаемой этим устройством, на сигма.
 
 signal-port-name-logic-input-a = Вход A
 signal-port-description-logic-input-a = Первый вход логического элемента.

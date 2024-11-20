@@ -1,0 +1,2 @@
+role-timer-age-too-old = Для игры на этой роли ваш персонаж должен быть младше [color=yellow]{$age}[/color].
+role-timer-age-too-young = Для игры на этой роли ваш персонаж должен быть старше [color=yellow]{$age}[/color].

@@ -8,6 +8,7 @@ replay-loading-starting = Начальные сущности
 replay-loading-failed  = Не удалось загрузить повтор:
 {$reason}
 replay-loading-retry  = Попробуйте загрузить с большей устойчивостью к исключениям - МОЖЕТ ВЫЗВАТЬ ОШИБКИ!
+replay-loading-cancel = Отменить
 # Main Menu
 replay-menu-subtext  = Клиент воспроизведения
 replay-menu-load  = Загрузить выбранный повтор

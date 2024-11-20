@@ -7,3 +7,8 @@ janitorial-trolley-slot-component-slot-name-spray = Распылитель
 janitorial-trolley-slot-component-slot-name-bucket = Ведро
 janitorial-trolley-slot-component-slot-name-trashbag = Мусорный пакет
 janitorial-trolley-slot-component-slot-name-mop = Швабра
+
+# mop bucket
+
+mop-bucket-slot-component-slot-name-item = Предмет
+mop-bucket-slot-component-eject-verb = Извлечь
