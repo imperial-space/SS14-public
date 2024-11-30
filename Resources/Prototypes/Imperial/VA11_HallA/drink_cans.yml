@@ -1,0 +1,22 @@
+- type: entity
+  parent: DrinkCanBaseFull
+  id: DrinkKarmotrineCan
+  name: karmotrine can
+  description: A can of pure and tasteless alcohol
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Karmotrine
+          Quantity: 30
+  - type: Drink
+  - type: Sprite
+    sprite: Imperial/VA11_HallA/drinkkarmotrinecan.rsi
+  - type: Item
+    sprite: Imperial/VA11_HallA/drinkkarmotrinecan.rsi
+  - type: Tag
+    tags:
+    - Beer
+

@@ -1,0 +1,290 @@
+- type: reaction
+  id: Karmotrine
+  minTemp: 370
+  reactants:
+    Vodka:
+      amount: 1
+    Ethanol:
+      amount: 1
+  products:
+    Karmotrine: 2
+
+- type: reaction
+  id: SugarRush
+  reactants:
+    Sugar:
+      amount: 2
+    JuiceWatermelon:
+      amount: 1
+    Cream:
+      amount: 1
+  products:
+    SugarRush: 4
+
+- type: reaction
+  id: SparkleStar
+  reactants:
+    Sugar:
+      amount: 1
+    JuiceWatermelon:
+      amount: 2
+    DrGibb:
+      amount: 2
+  products:
+    SparkleStar: 3
+
+- type: reaction
+  id: FringeFeaver
+  reactants:
+    Sugar:
+      amount: 1
+    Karmotrine:
+      amount: 9
+  products:
+    FringeFeaver: 10
+
+- type: reaction
+  id: Brandtini
+  reactants:
+    Sugar:
+      amount: 1
+    Karmotrine:
+      amount: 2
+    Rum:
+      amount: 1
+  products:
+    Brandtini: 2
+
+- type: reaction
+  id: BlueFairy
+  reactants:
+    BlueCuracao:
+      amount: 1
+    Karmotrine:
+      amount: 2
+  products:
+    BlueFairy: 3
+
+- type: reaction
+  id: Marsblast
+  reactants:
+    FourteenLoko:
+      amount: 1
+    Karmotrine:
+      amount: 2
+    CapsaicinOil:
+      amount: 1
+  products:
+    Marsblast: 4
+
+- type: reaction
+  id: Moonblast
+  reactants:
+    JuiceWatermelon:
+      amount: 1
+    Karmotrine:
+      amount: 1
+    Ice:
+      amount: 1
+  products:
+    Moonblast: 3
+
+- type: reaction
+  id: Mercuryblast
+  reactants:
+    VodkaTonic:
+      amount: 1
+    Karmotrine:
+      amount: 1
+    Ice:
+      amount: 1
+    SodaWater:
+      amout: 1
+  products:
+    Mercuryblast: 3
+
+- type: reaction
+  id: GrizzlyTemple
+  reactants:
+    Absinthe:
+      amount: 2
+    Karmotrine:
+      amount: 3
+  products:
+    GrizzlyTemple: 5
+
+- type: reaction
+  id: SunshineCloud
+  reactants:
+    Sugar:
+      amount: 2
+    JuiceOrange:
+      amount: 1
+    Whiskey:
+      amount: 1
+  products:
+    SunshineCloud: 4
+
+- type: reaction
+  id: FluffyDream
+  reactants:
+    Sugar:
+      amount: 2
+    JuiceLime:
+      amount: 1
+    Karmotrine:
+      amount: 2
+  products:
+    FluffyDream: 5
+
+- type: reaction
+  id: CobaltVelvet
+  reactants:
+    Cola:
+      amount: 1
+    KiraSpecial:
+      amount: 1
+    Ice:
+      amount: 1
+    Antifreeze:
+      amount: 1
+  products:
+    CobaltVelvet: 4
+
+- type: reaction
+  id: BadTouch
+  reactants:
+    Vodka:
+      amount: 1
+    Absinthe:
+      amount: 1
+    LemonLime:
+      amount: 1
+    BlueCuracao:
+      amount: 1
+    SpaceUp:
+      amount: 2
+  products:
+    BadTouch: 6
+
+- type: reaction
+  id: BleedingJane
+  reactants:
+    Karmotrine:
+      amount: 3
+    Blood:
+      amount: 1
+    CapsaicinOil:
+      amount: 1
+  products:
+    BleedingJane: 5
+
+- type: reaction
+  id: GutPunch
+  reactants:
+    Karmotrine:
+      amount: 2
+    Cognac:
+      amount: 1
+    FourteenLoko:
+      amount: 1
+  products:
+    GutPunch: 4
+
+- type: reaction
+  id: CreviceSpike
+  reactants:
+    Karmotrine:
+      amount: 2
+    ToxinsSpecial:
+      amount: 1
+    Absinthe:
+      amount: 2
+  products:
+    CreviceSpike: 5
+
+- type: reaction
+  id: ZenStar
+  reactants:
+    Karmotrine:
+      amount: 1
+    Ice:
+      amount: 1
+    BlueCuracao:
+      amount: 1
+    SunshineCloud:
+      amount: 1
+  products:
+    ZenStar: 4
+
+- type: reaction
+  id: PileDriver
+  reactants:
+    Karmotrine:
+      amount: 2
+    Cognac:
+      amount: 1
+  products:
+    PileDriver: 3
+
+- type: reaction
+  id: Suplex
+  reactants:
+    PileDriver:
+      amount: 1
+    Ice:
+      amount: 1
+    JuiceLemon:
+      amount: 1
+  products:
+    Suplex: 2
+
+- type: reaction
+  id: Pianoman
+  reactants:
+    Karmotrine:
+      amount: 2
+    Ice:
+      amount: 1
+    MelonLiquor:
+      amount: 1
+    JuiceLemon:
+      amount: 1
+  products:
+    Pianoman: 5
+
+- type: reaction
+  id: Pianowoman
+  reactants:
+    Karmotrine:
+      amount: 1
+    IceCream:
+      amount: 1
+    DoctorsDelight:
+      amount: 1
+  products:
+    Pianowoman: 3
+
+- type: reaction
+  id: FrothyWater
+  reactants:
+    Beer:
+      amount: 1
+    Antihol:
+      amount: 1
+  products:
+    FrothyWater: 2
+
+- type: reaction
+  id: BloomLight
+  reactants:
+    Karmotrine:
+      amount: 1
+    Ice:
+      amount: 1
+    CocoaPowder:
+      amount: 1
+    Frostoil:
+      amount: 2
+  products:
+    BloomLight: 5

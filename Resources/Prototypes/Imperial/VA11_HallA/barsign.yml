@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseBarSign
+  id: BarSignVA11HallA
+  name: VA-11 Hall-A
+  description: We just call it Valhalla.
+  components:
+  - type: BarSign
+    current: VA11HallA
+
+- type: barSign
+  id: VA11HallA
+  name: barsign-prototype-name-VA11HallA
+  icon: "VA11HallA"
+  description: barsign-prototype-description-VA11HallA
