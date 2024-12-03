@@ -1,0 +1,554 @@
+- type: reagent
+  id: Karmotrine
+  name: reagent-name-Karmotrine
+  parent: BaseAlcohol
+  desc: reagent-desc-Karmotrine
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: pure-alcohol
+  color: "#d1d1d155"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/karmotrine.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.45
+
+- type: reagent
+  id: SugarRush
+  name: reagent-name-SugarRush
+  parent: BaseDrink
+  desc: reagent-desc-SugarRush
+  physicalDesc: reagent-physical-desc-sweet
+  flavor: sweet
+  color: "#d51d5d"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/sugarrushglass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+
+- type: reagent
+  id: SparkleStar
+  name: reagent-name-SparkleStar
+  parent: BaseDrink
+  desc: reagent-desc-SparkleStar
+  physicalDesc: reagent-physical-desc-sparkling
+  flavor: joyful
+  color: "#c22222"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/sparklestar.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+
+- type: reagent
+  id: FringeFeaver
+  name: reagent-name-FringeFeaver
+  parent: BaseDrink
+  desc: reagent-desc-FringeFeaver
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: incredibly-strong
+  color: "#ffe9c5"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/fringefeaver.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.4
+
+- type: reagent
+  id: Brandtini
+  name: reagent-name-Brandtini
+  parent: BaseDrink
+  desc: reagent-desc-Brandtini
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: exquisitely
+  color: "#e03c28"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/brandtini.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.1
+
+- type: reagent
+  id: BlueFairy
+  name: reagent-name-BlueFairy
+  parent: BaseDrink
+  desc: reagent-desc-BlueFairy
+  physicalDesc: reagent-physical-desc-azure
+  flavor: azure
+  color: "#0a89ff"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/bluefairy.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.12
+
+- type: reagent
+  id: Marsblast
+  name: reagent-name-Marsblast
+  parent: BaseDrink
+  desc: reagent-desc-Marsblast
+  physicalDesc: reagent-physical-desc-pungent
+  flavor: pungent
+  color: "#f68f37"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/marsblast.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
+      - !type:HealthChange
+        damage:
+          types:
+            Heat: 0.1
+
+- type: reagent
+  id: Moonblast
+  name: reagent-name-Moonblast
+  parent: BaseDrink
+  desc: reagent-desc-Moonblast
+  physicalDesc: reagent-physical-desc-cold
+  flavor: moon
+  color: "#cf3c71"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/moonblast.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.05
+
+- type: reagent
+  id: Mercuryblast
+  name: reagent-name-Mercuryblast
+  parent: BaseDrink
+  desc: reagent-desc-Mercuryblast
+  physicalDesc: reagent-physical-desc-stinging
+  flavor: mercury
+  color: "#1d93d5"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/mercuryblast.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.1
+
+- type: reagent
+  id: GrizzlyTemple
+  name: reagent-name-GrizzlyTemple
+  parent: BaseDrink
+  desc: reagent-desc-GrizzlyTemple
+  physicalDesc: reagent-physical-desc-filthy
+  flavor: bitter
+  color: "#20b562"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/grizzlytemple.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.35
+
+- type: reagent
+  id: SunshineCloud
+  name: reagent-name-SunshineCloud
+  parent: BaseDrink
+  desc: reagent-desc-SunshineCloud
+  physicalDesc: reagent-physical-desc-solar
+  flavor: soft
+  color: "#cc6e34"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/sunshinecloud.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
+
+- type: reagent
+  id: FluffyDream
+  name: reagent-name-FluffyDream
+  parent: BaseDrink
+  desc: reagent-desc-FluffyDream
+  physicalDesc: reagent-physical-desc-sour
+  flavor: sour
+  color: "#40b47c"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/fluffydream.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
+
+- type: reagent
+  id: CobaltVelvet
+  name: reagent-name-CobaltVelvet
+  parent: BaseDrink
+  desc: reagent-desc-CobaltVelvet
+  physicalDesc: reagent-physical-desc-stinging
+  flavor: sparkling
+  color: "#bdffca"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/cobaltvelvet.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.05
+
+- type: reagent
+  id: BadTouch
+  name: reagent-name-BadTouch
+  parent: BaseDrink
+  desc: reagent-desc-BadTouch
+  physicalDesc: reagent-physical-desc-bubbly
+  flavor: insightfu
+  color: "#20b562"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/badtouch.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
+
+- type: reagent
+  id: BleedingJane
+  name: reagent-name-BleedingJane
+  parent: BaseDrink
+  desc: reagent-desc-BleedingJane
+  physicalDesc: reagent-physical-desc-fiery
+  flavor: invigorating
+  color: "#e03c28"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/bleedingjane.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
+
+- type: reagent
+  id: GutPunch
+  name: reagent-name-GutPunch
+  parent: BaseDrink
+  desc: reagent-desc-GutPunch
+  physicalDesc: reagent-physical-desc-strong
+  flavor: liver-death
+  color: "#ffc984"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/gutpunch.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.3
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.4
+
+- type: reagent
+  id: CreviceSpike
+  name: reagent-name-CreviceSpike
+  parent: BaseDrink
+  desc: reagent-desc-CreviceSpike
+  physicalDesc: reagent-physical-desc-bubbly
+  flavor: invigorating
+  color: "#58d332"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/crevicespike.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.25
+      - !type:AdjustReagent
+        probability: 0.05
+        reagent: Ethanol
+        amount: -10
+
+- type: reagent
+  id: ZenStar
+  name: reagent-name-ZenStar
+  parent: BaseDrink
+  desc: reagent-desc-ZenStar
+  physicalDesc: reagent-physical-desc-acidic
+  flavor: specifically
+  color: "#3558cc"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/zenstar.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.1
+
+- type: reagent
+  id: PileDriver
+  name: reagent-name-PileDriver
+  parent: BaseDrink
+  desc: reagent-desc-PileDriver
+  physicalDesc: reagent-physical-desc-fiery
+  flavor: bitter
+  color: "#ffbb31"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/piledriver.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.25
+
+- type: reagent
+  id: Suplex
+  name: reagent-name-Suplex
+  parent: BaseDrink
+  desc: reagent-desc-Suplex
+  physicalDesc: reagent-physical-desc-fiery
+  flavor: bitter
+  color: "#ffbb31"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/suplex.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.25
+
+- type: reagent
+  id: Pianoman
+  name: reagent-name-Pianoman
+  parent: BaseDrink
+  desc: reagent-desc-Pianoman
+  physicalDesc: reagent-physical-desc-acidic
+  flavor: acidic
+  color: "#25e2cd"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/pianoman.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.25
+
+- type: reagent
+  id: Pianowoman
+  name: reagent-name-Pianowoman
+  parent: BaseDrink
+  desc: reagent-desc-Pianowoman
+  physicalDesc: reagent-physical-desc-sweet
+  flavor: sweet
+  color: "#25e2cd"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/pianowoman.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
+
+- type: reagent
+  id: FrothyWater
+  name: reagent-name-FrothyWater
+  parent: BaseDrink
+  desc: reagent-desc-FrothyWater
+  physicalDesc: reagent-physical-desc-bubbly
+  flavor: sparkling
+  color: "#e3e77b"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/frothywater.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+
+- type: reagent
+  id: BloomLight
+  name: reagent-name-BloomLight
+  parent: BaseDrink
+  desc: reagent-desc-BloomLight
+  physicalDesc: reagent-physical-desc-pungent
+  flavor: sparkling
+  color: "#e4ca21"
+  metamorphicSprite:
+    sprite: Imperial/VA11_HallA/bloomlight.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.1

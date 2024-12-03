@@ -1,0 +1,74 @@
+- type: flavor
+  id: pure-alcohol
+  flavorType: Complex
+  description: flavor-complex-pure-alcohol
+
+- type: flavor
+  id: joyful
+  flavorType: Complex
+  description: flavor-complex-joyful
+
+- type: flavor
+  id: incredibly-strong
+  flavorType: Complex
+  description: flavor-complex-incredibly-strong
+
+- type: flavor
+  id: exquisitely
+  flavorType: Complex
+  description: flavor-complex-exquisitely
+
+- type: flavor
+  id: azure
+  flavorType: Complex
+  description: flavor-complex-azure
+
+- type: flavor
+  id: pungent
+  flavorType: Complex
+  description: flavor-complex-pungent
+
+- type: flavor
+  id: moon
+  flavorType: Complex
+  description: flavor-complex-moon
+
+- type: flavor
+  id: mercury
+  flavorType: Complex
+  description: flavor-complex-mercury
+
+- type: flavor
+  id: soft
+  flavorType: Complex
+  description: flavor-complex-soft
+
+- type: flavor
+  id: acidic
+  flavorType: Complex
+  description: flavor-complex-acidic
+
+- type: flavor
+  id: sparkling
+  flavorType: Complex
+  description: flavor-complex-sparkling
+
+- type: flavor
+  id: insightfu
+  flavorType: Complex
+  description: flavor-complex-insightfu
+
+- type: flavor
+  id: invigorating
+  flavorType: Complex
+  description: flavor-complex-invigorating
+
+- type: flavor
+  id: liver-death
+  flavorType: Complex
+  description: flavor-complex-liver-death
+
+- type: flavor
+  id: specifically
+  flavorType: Complex
+  description: flavor-complex-specifically
