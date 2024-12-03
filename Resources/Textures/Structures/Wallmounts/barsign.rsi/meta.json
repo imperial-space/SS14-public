@@ -406,6 +406,15 @@
             ]
         },
         {
+            "name": "VA11HallA",
+            "delays": [
+                [
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
             "name": "thesingulo",
             "delays": [
                 [
