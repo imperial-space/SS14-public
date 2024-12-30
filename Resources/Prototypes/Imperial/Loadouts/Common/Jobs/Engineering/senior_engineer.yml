@@ -11,6 +11,16 @@
   - Trinkets
   - GroupSpeciesBreathTool
 
+# Head
+- type: startingGear
+  id: SeniorEngineeringBeret
+  equipment:
+    head: ClothingHeadHatBeretEngineeringSenior
+
+- type: loadout
+  id: SeniorEngineerBeret
+  startingGear: SeniorEngineeringBeret
+
 # Groups Start
 
 - type: loadoutGroup
@@ -25,7 +35,7 @@
   name: loadout-group-SeniorResearcher-outerClothing
   minLimit: 0
   loadouts:
-  - ChiefEngineerBeret
+  - SeniorEngineerBeret
 
 # Groups End
 

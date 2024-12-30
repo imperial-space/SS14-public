@@ -1,0 +1,31 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretEngineeringCE
+  name: chief engineering beret
+  description: A beret with the chief engineering insignia emblazoned on it. For engineers that are more inclined towards style than safety.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/beret_ce.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/beret_ce.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretEngineeringSenior
+  name: senior engineering beret
+  description: A beret with the senior engineering insignia emblazoned on it. For engineers that are more inclined towards style than safety.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/beret_eng.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/beret_eng.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon

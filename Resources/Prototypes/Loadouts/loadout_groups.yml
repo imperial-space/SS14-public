@@ -753,7 +753,7 @@
   - StationEngineerHardhatYellow
   - StationEngineerHardhatOrange
   - StationEngineerHardhatRed
-  - SeniorEngineerBeret
+  - EngineerBeret #Imperial Changed раньше тут было SeniorEngineerBeret
 
 - type: loadoutGroup
   id: StationEngineerJumpsuit

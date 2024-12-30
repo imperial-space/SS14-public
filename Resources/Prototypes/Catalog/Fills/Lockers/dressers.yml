@@ -22,7 +22,7 @@
     contents:
       - id: ClothingUniformJumpsuitChiefEngineerTurtle
       - id: ClothingUniformJumpskirtChiefEngineerTurtle
-      - id: ClothingHeadHatBeretEngineering
+      - id: ClothingHeadHatBeretEngineeringCE #Imperial Changed раньше тут было ClothingHeadHatBeretEngineering
       - id: ClothingOuterWinterCE
       - id: ClothingNeckCloakCe
 

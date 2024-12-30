@@ -30,6 +30,13 @@
     jumpsuit: ClothingUniformJumpskirtChiefEngineerTurtle
 
 # Head
+# Imperial Start
+- type: startingGear
+  id: ChiefEngineeringBeret
+  equipment:
+    head: ClothingHeadHatBeretEngineeringCE
+# Imperial End
+
 - type: loadout
   id: ChiefEngineerHead
   equipment:
@@ -37,7 +44,7 @@
 
 - type: loadout
   id: ChiefEngineerBeret
-  startingGear: EngineeringBeret
+  startingGear: ChiefEngineeringBeret
 
 # Neck
 - type: loadout

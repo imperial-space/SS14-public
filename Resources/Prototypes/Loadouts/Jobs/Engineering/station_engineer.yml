@@ -40,11 +40,12 @@
     head: ClothingHeadHatHardhatRed
 
 - type: loadout
-  id: SeniorEngineerBeret
-  equipment:
-    head: EngineeringBeret
+  id: EngineerBeret #Imperial Changed раньше тут было SeniorEngineerBeret 
+  startingGear: EngineeringBeret
+#  equipment: Imperial Changed
+#    head: EngineeringBeret
   effects:
-  - !type:GroupLoadoutEffect
+  - !type:GroupLoadoutEffect 
     proto: SeniorEngineering
 
 # Jumpsuit
