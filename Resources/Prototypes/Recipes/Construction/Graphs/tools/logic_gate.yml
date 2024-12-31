@@ -40,7 +40,7 @@
         icon:
           sprite: Objects/Tools/multitool.rsi
           state: icon
-        name: мультитул
+        name: мультитул # Imperial Recipes Locale
       - material: Cable
         amount: 2
         doAfter: 1

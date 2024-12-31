@@ -39,7 +39,7 @@
       steps:
       - tag: IntercomElectronics
         store: board
-        name: микросхема интеркома
+        name: микросхема интеркома # Imperial Recipes Locale
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: "id_mod"

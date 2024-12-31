@@ -1,25 +1,25 @@
 ﻿- type: construction
-  name: Плюшевый ревенант
+  name: Плюшевый ревенант # Imperial Recipes Locale
   id: PlushieGhostRevenant
   graph: PlushieGhostRevenant
   startNode: start
   targetNode: plushie
   category: construction-category-misc
   objectType: Item
-  description: Игрушка, которой можно напугать медотсек.
+  description: Игрушка, которой можно напугать медотсек. # Imperial Recipes Locale
   icon:
     sprite: Mobs/Ghosts/revenant.rsi
     state: icon
 
 - type: construction
-  name: Игрушечный Иан
+  name: Игрушечный Иан # Imperial Recipes Locale
   id: ClothingOuterSuitIan
   graph: ClothingOuterSuitIan
   startNode: start
   targetNode: suit
   category: construction-category-misc
   objectType: Item
-  description: Сделайте себя похожим на Иана!
+  description: Сделайте себя похожим на Иана! # Imperial Recipes Locale
   icon:
     sprite: Clothing/OuterClothing/Suits/iansuit.rsi
     state: icon

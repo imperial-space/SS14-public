@@ -1,11 +1,11 @@
 - type: construction
-  name: Стена из паутины
+  name: Стена из паутины # Imperial Recipes Locale
   id: WallWeb
   graph: WebStructures
   startNode: start
   targetNode: wall
   category: construction-category-structures
-  description: Удерживает пауков внутри и снаружи.
+  description: Удерживает пауков внутри и снаружи. # Imperial Recipes Locale
   icon:
     sprite: Structures/Walls/web.rsi
     state: full
@@ -20,13 +20,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Стол из паутины
+  name: Стол из паутины # Imperial Recipes Locale
   id: TableWeb
   graph: WebStructures
   startNode: start
   targetNode: table
   category: construction-category-furniture
-  description: Действительно гладкий и на удивление прочный.
+  description: Действительно гладкий и на удивление прочный. # Imperial Recipes Locale
   icon:
     sprite: Structures/Furniture/Tables/web.rsi
     state: full
@@ -41,13 +41,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Кровать из паутины
+  name: Кровать из паутины # Imperial Recipes Locale
   id: WebBed
   graph: WebStructures
   startNode: start
   targetNode: bed
   category: construction-category-furniture
-  description: Ты попал в паутину.
+  description: Ты попал в паутину. # Imperial Recipes Locale
   icon:
     sprite: Structures/Web/bed.rsi
     state: icon
@@ -62,13 +62,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Паутинный стул
+  name: Паутинный стул # Imperial Recipes Locale
   id: ChairWeb
   graph: WebStructures
   startNode: start
   targetNode: chair
   category: construction-category-furniture
-  description: Для настоящих web-разработчиков. 
+  description: Для настоящих web-разработчиков.  # Imperial Recipes Locale
   icon:
     sprite: Structures/Web/chair.rsi
     state: icon
@@ -80,13 +80,13 @@
     - SpiderCraft
 
 - type: construction
-  name: Ящик из паутины
+  name: Ящик из паутины # Imperial Recipes Locale
   id: CrateWeb
   graph: WebStructures
   startNode: start
   targetNode: crate
   category: construction-category-storage
-  description: Большой контейнер для предметов.
+  description: Большой контейнер для предметов. # Imperial Recipes Locale
   icon:
     sprite: Structures/Storage/Crates/web.rsi
     state: icon
@@ -99,13 +99,13 @@
     - SpiderCraft
 
 - type: construction
-  name: Дверь из паутины
+  name: Дверь из паутины # Imperial Recipes Locale
   id: WebDoor
   graph: WebStructures
   startNode: start
   targetNode: door
   category: construction-category-structures
-  description: Дверь из паутины, обычно размещаемая прямо перед ямой или ловушкой.
+  description: Дверь из паутины, обычно размещаемая прямо перед ямой или ловушкой. # Imperial Recipes Locale
   icon:
     sprite: Structures/Doors/web_door.rsi
     state: closed

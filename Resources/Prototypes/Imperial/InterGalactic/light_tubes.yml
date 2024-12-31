@@ -1,0 +1,109 @@
+# Лампы-трубки
+- type: entity
+  parent: BaseLightTube
+  name: грязная лампа-трубка
+  description: Лампа большой мощности.
+  id: DirtyLightTube
+  components:
+  - type: LightBulb
+    color: "#947507FF"
+    lightEnergy: 0.7
+    lightRadius: 15
+    lightSoftness: 0.9
+    BurningTemperature: 350
+    PowerUse: 12
+
+- type: entity
+  parent: BaseLightTube
+  name: подозрительная лампа-трубка
+  description: Лампа большой мощности.
+  id: DarkRedLightTube
+  components:
+  - type: LightBulb
+    color: "#8B0000"
+    lightEnergy: 0.7
+    lightRadius: 15
+    lightSoftness: 0.9
+    BurningTemperature: 350
+    PowerUse: 12
+
+- type: entity
+  parent: BaseLightTube
+  name: подозрительная фиолетования лампа-трубка
+  description: Лампа большой мощности.
+  id: DarkVioletLightTube
+  components:
+  - type: LightBulb
+    color: "#9400D3"
+    lightEnergy: 0.7
+    lightRadius: 15
+    lightSoftness: 0.9
+    BurningTemperature: 350
+    PowerUse: 12
+
+# Светильники
+- type: entity
+  id: DirtyPoweredlight
+  description: Светильник. Потребляет энергию и излучает свет, если оснащен световой трубкой.
+  suffix: ""
+  parent: PoweredlightEmpty
+  components:
+  - type: Sprite
+    state: base
+  - type: PointLight
+    enabled: true
+  - type: PoweredLight
+    hasLampOnSpawn: DirtyLightTube
+    damage:
+      types:
+        Heat: 5
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -15
+    range: 2
+    sound:
+      path: /Audio/Ambience/Objects/light_hum.ogg
+
+- type: entity
+  id: DarkRedPoweredlight
+  description: Светильник. Потребляет энергию и излучает свет, если оснащен световой трубкой.
+  suffix: ""
+  parent: PoweredlightEmpty
+  components:
+  - type: Sprite
+    state: base
+  - type: PointLight
+    enabled: true
+  - type: PoweredLight
+    hasLampOnSpawn: DarkRedLightTube
+    damage:
+      types:
+        Heat: 5
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -15
+    range: 2
+    sound:
+      path: /Audio/Ambience/Objects/light_hum.ogg
+
+- type: entity
+  id: DarkVioletPoweredlight
+  description: Светильник. Потребляет энергию и излучает свет, если оснащен световой трубкой.
+  suffix: ""
+  parent: PoweredlightEmpty
+  components:
+  - type: Sprite
+    state: base
+  - type: PointLight
+    enabled: true
+  - type: PoweredLight
+    hasLampOnSpawn: DarkVioletLightTube
+    damage:
+      types:
+        Heat: 5
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -15
+    range: 2
+    sound:
+      path: /Audio/Ambience/Objects/light_hum.ogg

@@ -1,0 +1,74 @@
+# ID Карта Старшего Инженера InterGalactic
+- type: entity
+  parent: IDCardStandard
+  id: InterGalacticCEIDCard
+  name: ID карта старшего инженера InterGalactic
+  description: ID карта корпорации InterGalactic
+  suffix: InterGalactic
+  components:
+  - type: Sprite
+    layers:
+    - state: silver
+    - state: idchiefengineer
+  - type: Item
+    heldPrefix: silver
+  - type: IdCard
+    jobIcon: JobIconChiefEngineer
+    jobTitle: Старший Инженер InterGalactic
+  - type: Access
+    tags:
+    - InterGalactic
+
+# ID Карта Атмосферного техника InterGalactic
+- type: entity
+  parent: IDCardStandard
+  id: InterGalacticAtmosIDCard
+  name: ID карта атмосферного техника InterGalactic
+  description: ID карта корпорации InterGalactic
+  suffix: InterGalactic
+  components:
+  - type: Sprite
+    layers:
+    - state: orange
+    - state: idatmospherictechnician
+  - type: IdCard
+    jobIcon: JobIconAtmosphericTechnician
+    jobTitle: Атмосферный техник InterGalactic
+  - type: Access
+    tags:
+    - InterGalactic
+
+# ID Карта Инженера InterGalactic
+- type: entity
+  parent: IDCardStandard
+  id: InterGalacticEngineerIDCard
+  name: ID карта инженера InterGalactic
+  description: ID карта корпорации InterGalactic
+  suffix: InterGalactic
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idseniorengineer
+  - type: IdCard
+    jobIcon: JobIconSeniorEngineer
+    jobTitle: Инженер InterGalactic
+  - type: Access
+    tags:
+    - InterGalactic
+
+# ID Карта Наёмника InterGalactic
+- type: entity
+  parent: PirateIDCard
+  id: InterGalacticVlArcaneMercIDCard
+  name: ID карта наёмника InterGalactic
+  description: Выглядит небычно. Взята с военных образцов.
+  suffix: InterGalactic
+  components:
+  - type: Access
+    tags:
+    - Security
+    - InterGalactic
+  - type: IdCard
+    jobIcon: JobIconSecurityOfficer
+    jobTitle: Наёмник InterGalactic

@@ -1,0 +1,55 @@
+# КПК
+- type: entity
+  parent: BasePDA
+  id: InterGalacticCEPDA
+  name: КПК Старшего инженера InterGalactic
+  description: Выглядит так, как будто его используют уже тысячу лет
+  components:
+  - type: Pda
+    id: InterGalacticCEIDCard
+    state: pda-ce
+  - type: PdaBorderColor
+    borderColor: "#949137"
+    accentHColor: "#447987"
+  - type: Icon
+    state: pda-ce
+
+- type: entity
+  parent: BasePDA
+  id: InterGalacticEngineerPDA
+  name: КПК Инженера InterGalactic
+  description: Выглядит потрёпанным
+  components:
+  - type: Pda
+    id: InterGalacticEngineerIDCard
+    state: pda-engineer
+  - type: PdaBorderColor
+    borderColor: "#949137"
+    accentVColor: "#A32D26"
+  - type: Icon
+    state: pda-engineer
+
+- type: entity
+  parent: BasePDA
+  id: InterGalacticAtmosPDA
+  name: КПК Атмосферного техника InterGalactic
+  description: Сильно пахнет плазмой.
+  components:
+  - type: Pda
+    id: InterGalacticAtmosIDCard
+    state: pda-atmos
+  - type: PdaBorderColor
+    borderColor: "#949137"
+    accentVColor: "#447987"
+  - type: Icon
+    state: pda-atmos
+
+- type: entity
+  parent: PiratePDA
+  id: InterGalacticMercPDA
+  suffix: InterGalactic
+  name: КПК Наёмника InterGalactic
+  description: Больше выглядит как военный компьютер. Он весь в царапинах.
+  components:
+  - type: Pda
+    id: InterGalacticVlArcaneMercIDCard

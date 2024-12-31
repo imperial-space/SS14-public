@@ -13,61 +13,61 @@
               amount: 1
               doAfter: 0.5 
             - tag: GlassShard
-              name: осколок стекла
+              name: осколок стекла # Imperial Recipes Locale
               icon:
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard1
               doAfter: 0.5 
             - tag: GlassShard
-              name: осколок стекла
+              name: осколок стекла # Imperial Recipes Locale
               icon:
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard2
               doAfter: 0.5 
             - tag: GlassShard
-              name: осколок стекла
+              name: осколок стекла # Imperial Recipes Locale
               icon:
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard1
               doAfter: 0.5 
             - tag: GlassShard
-              name: осколок стекла
+              name: осколок стекла # Imperial Recipes Locale
               icon:
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard3
               doAfter: 0.5 
-            - tag: Matchstick
-              name: спичка
+            - tag: Matchstick 
+              name: спичка # Imperial Recipes Locale
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick 
+              name: спичка # Imperial Recipes Locale
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
               doAfter: 0.5 
             - tag: Matchstick
-              name: спичка
+              name: спичка # Imperial Recipes Locale
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
               doAfter: 0.5 
             - tag: Matchstick
-              name: спичка
+              name: спичка # Imperial Recipes Locale
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
               doAfter: 0.5 
             - tag: Matchstick
-              name: спичка
+              name: спичка # Imperial Recipes Locale
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
               doAfter: 0.5 
             - tag: Matchstick
-              name: спичка
-              icon:
-                sprite: Objects/Tools/matches.rsi
-                state: match_unlit
-              doAfter: 0.5 
-            - tag: Matchstick
-              name: спичка
+              name: спичка # Imperial Recipes Locale
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit

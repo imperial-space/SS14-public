@@ -10,13 +10,13 @@
         icon:
           sprite: Structures/Piping/Atmospherics/pipe.rsi
           state: pipeStraight
-        name: труба
+        name: труба # Imperial Recipes Locale
       - tag: Handcuffs
         icon:
           sprite: Objects/Misc/cablecuffs.rsi
           state: cuff
           color: red
-        name: стяжки
+        name: стяжки # Imperial Recipes Locale
       - material: Steel
         amount: 6
         doAfter: 10

@@ -1,55 +1,55 @@
 - type: construction
   id: ClosetSteel
-  name: Шкаф
+  name: Шкаф # Imperial Recipes Locale
   graph: ClosetSteel
   startNode: start
   targetNode: done
   category: construction-category-storage
-  description: Высокий стальной ящик, который невозможно запереть.
+  description: Высокий стальной ящик, который невозможно запереть. # Imperial Recipes Locale
   icon: { sprite: Structures/Storage/closet.rsi, state: generic_icon }
   objectType: Structure
 
 - type: construction
   id: ClosetSteelSecure
-  name: Защищённый шкаф
+  name: Защищённый шкаф # Imperial Recipes Locale
   graph: ClosetSteelSecure
   startNode: start
   targetNode: done
   category: construction-category-storage
-  description: Высокий стальной ящик, который можно запереть. Можно настроить доступ с помощью конфигуратора доступов.
+  description: Высокий стальной ящик, который можно запереть. Можно настроить доступ с помощью конфигуратора доступов. # Imperial Recipes Locale
   icon: { sprite: Structures/Storage/closet.rsi, state: secure_icon }
   objectType: Structure
 
 - type: construction
   id: ClosetFreezer
-  name: Холодильник
+  name: Холодильник # Imperial Recipes Locale
   graph: ClosetFreezer
   startNode: start
   targetNode: done
   category: construction-category-storage
-  description: Высокий стальной ящик с замораживающими способностями.
+  description: Высокий стальной ящик с замораживающими способностями. # Imperial Recipes Locale
   icon: { sprite: Structures/Storage/closet.rsi, state: freezer_icon }
   objectType: Structure
 
 - type: construction
   id: GunSafe
-  name: gun safe
+  name: Оружейный сейф # Imperial Recipes Locale
   graph: GunSafe
   startNode: start
   targetNode: done
   category: construction-category-storage
-  description: A durable gun safe that can be locked.
+  description: рочный оружейный сейф, который можно запереть. # Imperial Recipes Locale
   icon: { sprite: Structures/Storage/closet.rsi, state: shotguncase }
   objectType: Structure
 
 - type: construction
   id: ClosetWall
-  name: Настенный шкаф
+  name: Настенный шкаф # Imperial Recipes Locale
   graph: ClosetWall
   startNode: start
   targetNode: done
   category: construction-category-storage
-  description: Стандартное хранилище Nanotrasen, теперь на стене.
+  description: Стандартное хранилище Nanotrasen, теперь на стене. # Imperial Recipes Locale
   icon: { sprite: Structures/Storage/wall_locker.rsi, state: generic_icon }
   objectType: Structure
   placementMode: SnapgridCenter

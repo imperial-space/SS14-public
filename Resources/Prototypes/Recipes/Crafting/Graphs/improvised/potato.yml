@@ -7,7 +7,7 @@
         - to: potatobattery
           steps:
             - tag: Potato
-              name: картошка
+              name: картошка # Imperial Recipes Locale
               icon:
                 sprite: Objects/Specific/Hydroponics/potato.rsi
                 state: produce
@@ -30,13 +30,13 @@
         - to: potatoai
           steps:
             - tag: PotatoBattery
-              name: картофельная батарея
+              name: картофельная батарея # Imperial Recipes Locale
               icon:
                 sprite: Objects/Power/power_cells.rsi
                 state: potato
               doAfter: 1
             - tag: SmallAIChip
-              name: суперкомпактный ИИ чип
+              name: суперкомпактный ИИ чип # Imperial Recipes Locale
               icon:
                 sprite: Objects/Misc/potatoai_chip.rsi
                 state: icon

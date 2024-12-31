@@ -10,7 +10,7 @@
         icon:
           sprite: Structures/Piping/Atmospherics/pipe.rsi
           state: pipeStraight
-        name: труба
+        name: труба # Imperial Recipes Locale
       - material: Steel
         amount: 1
         doAfter: 3

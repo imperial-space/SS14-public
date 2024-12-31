@@ -1,0 +1,125 @@
+# Старший Инженер InterGalactic
+- type: startingGear
+  id: InterGalacticCEGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChiefEngineerNT
+    shoes: ClothingShoesBootsWork
+    gloves: ClothingHandsGlovesColorYellow
+    head: ClothingHeadHatHardhatWhite
+    id: InterGalacticCEPDA
+    ears: ClothingHeadsetEngineeringInterGalactic
+    eyes: ClothingEyesGlassesMeson
+    neck: ClothingNeckEngineermedal
+    back: ClothingBackpackDuffelCEInterGalacticFilled
+    pocket1: DoubleEmergencyOxygenTankFilled
+    outerClothing: ClothingOuterVestHazard
+
+# Инженер InterGalactic
+- type: startingGear
+  id: InterGalacticEngineerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRepairmanNT
+    shoes: ClothingShoesBootsWork
+    gloves: ClothingHandsGlovesColorYellow
+    head: ClothingHeadHatHardhatBlue
+    id: InterGalacticEngineerPDA
+    ears: ClothingHeadsetEngineeringInterGalactic
+    eyes: ClothingEyesGlassesMeson
+    neck: ClothingNeckEngineermedal
+    back: ClothingBackpackDuffelEngineerInterGalacticFilled
+    pocket1: DoubleEmergencyOxygenTankFilled
+    outerClothing: ClothingOuterVestHazard
+
+# Атмосферный техник InterGalactic
+- type: startingGear
+  id: InterGalacticAtmosGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRepairmanNT
+    shoes: ClothingShoesBootsWork
+    gloves: ClothingHandsGlovesColorYellow
+    head: ClothingHeadHatHardhatRed
+    id: InterGalacticAtmosPDA
+    ears: ClothingHeadsetEngineeringInterGalactic
+    eyes: ClothingEyesGlassesMeson
+    neck: ClothingNeckEngineermedal
+    back: ClothingBackpackDuffelAtmosInterGalacticFilled
+    pocket1: DoubleEmergencyOxygenTankFilled
+    outerClothing: ClothingOuterVestHazard
+
+# Разведчик Синдиката
+- type: startingGear
+  id: SyndicateScoutGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitTacticool
+    shoes: ClothingShoesBootsMagSyndie
+    gloves: ClothingHandsGlovesCombat
+    head: ClothingHeadHelmetSyndicate
+    id: SyndiPDA
+    ears: ClothingHeadsetAltSyndicate
+    mask: ClothingMaskGasSyndicate
+    eyes: ClothingEyesHudSyndicate
+    belt: ClothingBeltMilitaryWebbing
+    back: ClothingBackpackDuffelSydicateScoutFilled
+    pocket1: DoubleEmergencyOxygenTankFilled
+    pocket2: WeaponPistolCobra
+    outerClothing: ClothingOuterArmorBulletproof
+
+# Наёмник InterGalactic
+- type: startingGear
+  id: MercInterGalacticGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMercenary
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsCombat
+    gloves: ClothingHandsGlovesMercFingerless
+    ears: ClothingHeadsetGanza
+    id: InterGalacticMercPDA # + interGal-access
+    pocket1: CombatMedipen
+    pocket2: WeaponPistolViper
+
+# Курьер-Фрилансер
+- type: startingGear
+  id: CourierFreelanceGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDetectiveGrey
+    #back: ClothingBackpackFilled
+    shoes: ClothingShoesLeather
+    head: ClothingHeadHatOutlawHat
+    gloves: ClothingHandsGlovesFingerless
+    ears: ClothingHeadsetAltFreelancer
+    eyes: ClothingEyesGlassesSunglasses
+    id: PassengerPDA
+    pocket1: WeaponLaserSvalinn
+
+# Работник аванпоста ПВЗ
+- type: startingGear
+  id: OIPOutpostEmployeeGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitElysiumCitizenHonorable
+    #back: ClothingBackpackFilled
+    shoes: ClothingShoesLeather
+    head: ClothingHeadHatBowlerHat
+    gloves: ClothingHandsGlovesHop
+    ears: ClothingHeadsetFreelance
+    eyes: ClothingEyesGlasses
+    id: PassengerPDA
+    belt: ClothingBeltSuspendersRed
+    pocket1: BoxFolderBlue
+    pocket2: LuxuryPen
+
+# Потерянный агент Синдиката
+- type: startingGear
+  id: SyndicateLostAgentGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    #back: ClothingBackpackFilled
+    shoes: ClothingShoesBootsCombatFilled
+    head: ClothingHeadHelmetSwatSyndicate
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetAltSyndicate
+    eyes: ClothingEyesGlassesHiddenSecurity
+    mask: ClothingMaskGasSyndicate
+    id: SyndiPDA
+    pocket1: WeaponPistolViper
+    pocket2: DoubleEmergencyOxygenTankFilled
+    outerClothing: ClothingOuterVestWeb

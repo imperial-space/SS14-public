@@ -24,7 +24,7 @@
           steps:
             - component: ComputerBoard
               store: board
-              name: любую компьютерную плату
+              name: любую компьютерную плату  # Imperial Recipes Locale
               icon:
                 sprite: "Objects/Misc/module.rsi"
                 state: "id_mod"

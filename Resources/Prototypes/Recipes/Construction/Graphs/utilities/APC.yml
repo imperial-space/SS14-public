@@ -15,7 +15,7 @@
         - to: apc
           steps:
             - component: ApcElectronics
-              name: микросхема ЛКП
+              name: микросхема ЛКП # Imperial Recipes Locale
               doAfter: 2
         - to: start
           completed:

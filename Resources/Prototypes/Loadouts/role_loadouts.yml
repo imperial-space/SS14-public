@@ -26,9 +26,9 @@
   - GroupSpeciesBreathTool
 
 # Silicons
-- type: roleLoadout
-  id: JobStationAi
-  nameDataset: NamesAI
+# - type: roleLoadout // Imperial Space отключение лодаутов ИИ
+#   id: JobStationAi
+#   nameDataset: NamesAI
 
 # Civilian
 - type: roleLoadout

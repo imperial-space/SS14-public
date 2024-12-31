@@ -22,14 +22,14 @@
     layers:
     - state: old-radio
       map: ["enum.TriggerVisualLayers.Base"]
-  # - type: ClusterArrayGrenade
-  #   fillPrototype:
-  #     - ClusterDis8
-  #     - ClusterDis16
-  #     - ClusterDis24
-  #     - ClusterDis32
-    # distance: 0
-    # velocity: 0
+  - type: ImperialScatteringGrenade
+    fillPrototype:
+      - ClusterDis8
+      - ClusterDis16
+      - ClusterDis24
+      - ClusterDis32
+    distance: 0
+    velocity: 0
   - type: GenericVisualizer
     visuals:
       enum.Trigger.TriggerVisuals.VisualState:
@@ -47,17 +47,17 @@
   noSpawn: true
   description: null
   components:
-  # - type: ClusterArrayGrenade
-  #   fillPrototype:
-  #     - StartAirStrikeGrenadeSec6
-  #     - StartAirStrikeGrenadeSec12
-  #     - StartAirStrikeGrenadeSec48
-  #     - StartAirStrikeGrenadeSec54
-  #     - StartAirStrikeGrenadeSec90
-  #     - StartAirStrikeGrenadeSec108
-  #     - StartAirStrikeGrenadeSec120
-    # distance: 8
-    # velocity: 8
+  - type: ImperialScatteringGrenade
+    fillPrototype:
+      - StartAirStrikeGrenadeSec6
+      - StartAirStrikeGrenadeSec12
+      - StartAirStrikeGrenadeSec48
+      - StartAirStrikeGrenadeSec54
+      - StartAirStrikeGrenadeSec90
+      - StartAirStrikeGrenadeSec108
+      - StartAirStrikeGrenadeSec120
+    distance: 8
+    velocity: 8
   - type: OnUseTimerTrigger
     delay: 0
   - type: ContainerContainer
@@ -71,19 +71,19 @@
   noSpawn: true
   description: null
   components:
-  # - type: ClusterArrayGrenade
-  #   fillPrototype:
-  #     - StartAirStrikeGrenadeSec10
-  #     - StartAirStrikeGrenadeSec20
-  #     - StartAirStrikeGrenadeSec24
-  #     - StartAirStrikeGrenadeSec50
-  #     - StartAirStrikeGrenadeSec66
-  #     - StartAirStrikeGrenadeSec70
-  #     - StartAirStrikeGrenadeSec96
-  #     - StartAirStrikeGrenadeSec108
-  #     - StartAirStrikeGrenadeSec120
-    # distance: 16
-    # velocity: 16
+  - type: ImperialScatteringGrenade
+    fillPrototype:
+      - StartAirStrikeGrenadeSec10
+      - StartAirStrikeGrenadeSec20
+      - StartAirStrikeGrenadeSec24
+      - StartAirStrikeGrenadeSec50
+      - StartAirStrikeGrenadeSec66
+      - StartAirStrikeGrenadeSec70
+      - StartAirStrikeGrenadeSec96
+      - StartAirStrikeGrenadeSec108
+      - StartAirStrikeGrenadeSec120
+    distance: 16
+    velocity: 16
   - type: OnUseTimerTrigger
     delay: 0
   - type: ContainerContainer
@@ -97,20 +97,20 @@
   noSpawn: true
   description: null
   components:
-  # - type: ClusterArrayGrenade
-  #   fillPrototype:
-  #     - StartAirStrikeGrenadeSec12
-  #     - StartAirStrikeGrenadeSec24
-  #     - StartAirStrikeGrenadeSec36
-  #     - StartAirStrikeGrenadeSec40
-  #     - StartAirStrikeGrenadeSec54
-  #     - StartAirStrikeGrenadeSec70
-  #     - StartAirStrikeGrenadeSec78
-  #     - StartAirStrikeGrenadeSec80
-  #     - StartAirStrikeGrenadeSec100
-  #     - StartAirStrikeGrenadeSec110
-  #   distance: 24
-  #   velocity: 24
+  - type: ImperialScatteringGrenade
+    fillPrototype:
+      - StartAirStrikeGrenadeSec12
+      - StartAirStrikeGrenadeSec24
+      - StartAirStrikeGrenadeSec36
+      - StartAirStrikeGrenadeSec40
+      - StartAirStrikeGrenadeSec54
+      - StartAirStrikeGrenadeSec70
+      - StartAirStrikeGrenadeSec78
+      - StartAirStrikeGrenadeSec80
+      - StartAirStrikeGrenadeSec100
+      - StartAirStrikeGrenadeSec110
+    distance: 24
+    velocity: 24
   - type: OnUseTimerTrigger
     delay: 0
   - type: ContainerContainer
@@ -124,21 +124,21 @@
   noSpawn: true
   description: null
   components:
-  # - type: ClusterArrayGrenade
-  #   fillPrototype:
-  #     - StartAirStrikeGrenadeSec18
-  #     - StartAirStrikeGrenadeSec30
-  #     - StartAirStrikeGrenadeSec40
-  #     - StartAirStrikeGrenadeSec42
-  #     - StartAirStrikeGrenadeSec50
-  #     - StartAirStrikeGrenadeSec60
-  #     - StartAirStrikeGrenadeSec72
-  #     - StartAirStrikeGrenadeSec84
-  #     - StartAirStrikeGrenadeSec96
-  #     - StartAirStrikeGrenadeSec102
-  #     - StartAirStrikeGrenadeSec114
-  #   distance: 32
-  #   velocity: 32
+  - type: ImperialScatteringGrenade
+    fillPrototype:
+      - StartAirStrikeGrenadeSec18
+      - StartAirStrikeGrenadeSec30
+      - StartAirStrikeGrenadeSec40
+      - StartAirStrikeGrenadeSec42
+      - StartAirStrikeGrenadeSec50
+      - StartAirStrikeGrenadeSec60
+      - StartAirStrikeGrenadeSec72
+      - StartAirStrikeGrenadeSec84
+      - StartAirStrikeGrenadeSec96
+      - StartAirStrikeGrenadeSec102
+      - StartAirStrikeGrenadeSec114
+    distance: 32
+    velocity: 32
   - type: OnUseTimerTrigger
     delay: 0
   - type: ContainerContainer

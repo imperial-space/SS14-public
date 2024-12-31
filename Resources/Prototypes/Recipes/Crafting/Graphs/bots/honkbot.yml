@@ -10,23 +10,23 @@
         icon:
           sprite: Objects/Storage/Happyhonk/clown.rsi
           state: box
-        name: обед Хэппи Хонк
+        name: обед Хэппи Хонк # Imperial Recipes Locale
       - tag: BikeHorn
         icon:
             sprite: Objects/Fun/bikehorn.rsi
             state: icon
-        name: велосипедный клаксон
+        name: велосипедный клаксон # Imperial Recipes Locale
         doAfter: 2
       - tag: ProximitySensor
         icon:
           sprite: Objects/Misc/proximity_sensor.rsi
           state: icon
-        name: датчик движения
+        name: датчик движения # Imperial Recipes Locale
       - tag: BorgArm
         icon:
           sprite: Mobs/Silicon/drone.rsi
           state: l_hand
-        name: рука борга
+        name: рука борга # Imperial Recipes Locale
         doAfter: 2
   - node: bot
     entity: MobHonkBot
@@ -43,23 +43,23 @@
         icon:
           sprite: Objects/Storage/Happyhonk/cluwne.rsi
           state: box
-        name: обед Хэппи Хонк клувня
+        name: обед Хэппи Хонк клувня # Imperial Recipes Locale
       - tag: CluwneHorn
         icon:
           sprite: Objects/Fun/cluwnehorn.rsi
           state: icon
-        name: сломанный велосипедный клаксон
+        name: сломанный велосипедный клаксон # Imperial Recipes Locale
         doAfter: 2
       - tag: ProximitySensor
         icon:
           sprite: Objects/Misc/proximity_sensor.rsi
           state: icon
-        name: датчик движения
+        name: датчик движения # Imperial Recipes Locale
       - tag: BorgArm
         icon:
           sprite: Mobs/Silicon/drone.rsi
           state: l_hand
-        name: рука борга
+        name: рука борга # Imperial Recipes Locale
         doAfter: 2
   - node: bot
     entity: MobJonkBot

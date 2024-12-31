@@ -1,132 +1,132 @@
 - type: construction
-  name: Скафандр клоуна
+  name: Скафандр клоуна # Imperial Recipes Locale
   id: ClownHardsuit
   graph: ClownHardsuit
   startNode: start
   targetNode: clownHardsuit
   category: construction-category-clothing
-  description: Самодельный скафандр для клоуна.
+  description: Самодельный скафандр для клоуна. # Imperial Recipes Locale
   icon: { sprite: Clothing/OuterClothing/Hardsuits/clown.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: Скафандр мима
+  name: Скафандр мима # Imperial Recipes Locale
   id: MimeHardsuit
   graph: MimeHardsuit
   startNode: start
   targetNode: mimeHardsuit
   category: construction-category-clothing
-  description: Самодельный скафандр для мима.
+  description: Самодельный скафандр для мима. # Imperial Recipes Locale
   icon: { sprite: Clothing/OuterClothing/Hardsuits/mime.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: Костяная броня
+  name: Костяная броня # Imperial Recipes Locale
   id: BoneArmor
   graph: BoneArmor
   startNode: start
   targetNode: armor
   category: construction-category-clothing
-  description: Кажется костянные шутки тут неуместны...
+  description: Кажется костянные шутки тут неуместны... # Imperial Recipes Locale
   icon: { sprite: Clothing/OuterClothing/Armor/bone_armor.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: Костяной шлем
+  name: Костяной шлем # Imperial Recipes Locale
   id: BoneHelmet
   graph: BoneHelmet
   startNode: start
   targetNode: helmet
   category: construction-category-clothing
-  description: Крутой шлем из черепов ваших врагов.
+  description: Крутой шлем из черепов ваших врагов. # Imperial Recipes Locale
   icon: { sprite: Clothing/Head/Helmets/bone_helmet.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: Парик и маска бананового клоуна
+  name: Парик и маска бананового клоуна # Imperial Recipes Locale
   id: BananaClownMask
   graph: BananaClownMask
   startNode: start
   targetNode: mask
   category: construction-category-clothing
-  description: Наряд настоящего проказника. Клоун неполноценен без парика и маски.
+  description: Наряд настоящего проказника. Клоун неполноценен без парика и маски. # Imperial Recipes Locale
   icon: { sprite: Clothing/Mask/clown_banana.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: Костюм бананового клоуна
+  name: Костюм бананового клоуна # Imperial Recipes Locale
   id: BananaClownJumpsuit
   graph: BananaClownJumpsuit
   startNode: start
   targetNode: jumpsuit
   category: construction-category-clothing
-  description: ХОНК!
+  description: ХОНК! # Imperial Recipes Locale
   icon: { sprite: Clothing/Uniforms/Jumpsuit/clown_banana.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: Банановые туфли клоуна
+  name: Банановые туфли клоуна # Imperial Recipes Locale
   id: BananaClownShoes
   graph: BananaClownShoes
   startNode: start
   targetNode: shoes
   category: construction-category-clothing
-  description: Когда юмор и обувь поднимаются на новый уровень абсурда.
+  description: Когда юмор и обувь поднимаются на новый уровень абсурда. # Imperial Recipes Locale
   icon: { sprite: Clothing/Shoes/Specific/clown_banana.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: Медохранный визор
+  name: Медохранный визор # Imperial Recipes Locale
   id: ClothingEyesHudMedSec
   graph: HudMedSec
   startNode: start
   targetNode: medsecHud
   category: construction-category-clothing
-  description: Медицинский и охранный визоры, объединенные в один.
+  description: Медицинский и охранный визоры, объединенные в один. # Imperial Recipes Locale
   icon: { sprite: Clothing/Eyes/Hud/medsec.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: Тапки-уточки
+  name: Тапки-уточки # Imperial Recipes Locale
   id: ClothingShoeSlippersDuck
   graph: ClothingShoeSlippersDuck
   startNode: start
   targetNode: shoes
   category: construction-category-clothing
-  description: Удобные, но преследуемые призраками уток, которых вы кормили в детстве.
+  description: Удобные, но преследуемые призраками уток, которых вы кормили в детстве. # Imperial Recipes Locale
   icon: { sprite: Clothing/Shoes/Misc/duck-slippers.rsi, state: icon }
   objectType: Item
 
 
 - type: construction
-  name: Очки СБ
+  name: Очки СБ # Imperial Recipes Locale
   id: ClothingEyesGlassesSecurity
   graph: GlassesSecHUD
   startNode: start
   targetNode: glassesSec
   category: construction-category-clothing
-  description: Пара солнцезащитных очков со встроенным интерфейсом СБ.
+  description: Пара солнцезащитных очков со встроенным интерфейсом СБ. # Imperial Recipes Locale
   icon: { sprite: Clothing/Eyes/Glasses/secglasses.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: Колчан
+  name: Колчан # Imperial Recipes Locale
   id: ClothingBeltQuiver
   graph: Quiver
   startNode: start
   targetNode: Quiver
   category: construction-category-clothing
-  description: Вмещает до 15 стрел и плотно прилегает к талии.
+  description: Вмещает до 15 стрел и плотно прилегает к талии. # Imperial Recipes Locale
   icon: { sprite: Clothing/Belt/quiver.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: Шлем правосудия
+  name: Шлем правосудия # Imperial Recipes Locale
   id: ClothingHeadHelmetJustice
   graph: HelmetJustice
   startNode: start
   targetNode: helmet
   category: construction-category-clothing
-  description: Передовое средство безопасности. Защищает станцию от бездельников.
+  description: Передовое средство безопасности. Защищает станцию от бездельников. # Imperial Recipes Locale
   icon: { sprite: Clothing/Head/Helmets/justice.rsi, state: icon }
   objectType: Item

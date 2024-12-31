@@ -184,6 +184,9 @@
       state: atmospherics
     - type: RandomHumanoidSpawner
       settings: VisitorAtmosTech
+    - type: AutoImplant # Imperial add
+      implants: # Imperial add
+      - MindShieldImplant # Imperial add
 
 - type: entity
   id: RandomHumanoidVisitorTechnicalAssistant

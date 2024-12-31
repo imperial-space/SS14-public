@@ -118,18 +118,18 @@
     minimumPlayers: 15
   - type: BreakerFlipRule
 
-- type: entity
-  id: BureaucraticError
-  parent: BaseGameRule
-  components:
-  - type: StationEvent
-    startAnnouncement: station-event-bureaucratic-error-announcement
-    minimumPlayers: 25
-    weight: 3
-    duration: 1
-  - type: BureaucraticErrorRule
-    ignoredJobs:
-    - StationAi
+# - type: entity // Imperial Space Удаление ивента бюрократической ошибки
+#   id: BureaucraticError
+#   parent: BaseGameRule
+#   components:
+#   - type: StationEvent
+#     startAnnouncement: station-event-bureaucratic-error-announcement
+#     minimumPlayers: 25
+#     weight: 3
+#     duration: 1
+#   - type: BureaucraticErrorRule
+#     ignoredJobs:
+#     - StationAi
 
 - type: entity
   id: ClericalError

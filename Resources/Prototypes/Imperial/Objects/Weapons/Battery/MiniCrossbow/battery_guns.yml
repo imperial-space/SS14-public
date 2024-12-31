@@ -1,4 +1,3 @@
-
 - type: entity
   name: energy-crossbow
   parent: BaseWeaponBatterySmall
@@ -24,13 +23,16 @@
     slots:
     - Belt
   - type: Gun
+    fireRate: 0.5
     soundGunshot:
       path: /Audio/Imperial/laser.ogg
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 5
+    rechargeCooldown: 4
     rechargeSound:
       path: /Audio/Weapons/drawbow2.ogg
+  - type: UseDelayOnShoot
   - type: UseDelay
+    delay: 4
   - type: BasicEntityAmmoProvider
     proto: BulletCrossbow
     capacity: 1

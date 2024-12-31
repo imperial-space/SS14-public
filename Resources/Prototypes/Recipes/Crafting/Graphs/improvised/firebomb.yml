@@ -7,13 +7,13 @@
     - to: empty
       steps:
       - tag: DrinkCan
-        name: пустая банка
+        name: пустая банка # Imperial Recipes Locale
         icon:
           sprite: Objects/Consumable/Drinks/cola.rsi
           state: icon_open
         doAfter: 1
       - tag: Igniter
-        name: воспламенитель
+        name: воспламенитель # Imperial Recipes Locale
         icon:
           sprite: Objects/Devices/igniter.rsi
           state: icon

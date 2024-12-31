@@ -9,7 +9,7 @@
             - material: MetalRod
               amount: 1
             - tag: PowerCellSmall
-              name: батарея малой мощности
+              name: батарея малой мощности # Imperial Recipes Locale
               icon:
                 sprite: Objects/Power/power_cells.rsi
                 state: small
@@ -18,9 +18,9 @@
                 sprite: Objects/Misc/cablecuffs.rsi
                 state: cuff
                 color: red
-              name: стяжки
+              name: стяжки # Imperial Recipes Locale
             - tag: Igniter
-              name: воспламенитель
+              name: воспламенитель # Imperial Recipes Locale
               icon:
                 sprite: Objects/Devices/igniter.rsi
                 state: icon

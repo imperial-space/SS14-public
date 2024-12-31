@@ -13,3 +13,19 @@
   - type: StorageFill
     contents:
       - id: VlPCFlowerTwo
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieTaylor
+  name: Alex Taylor
+  suffix: Crook, COMMUNITY, TOY
+  description: Dumplings are very delicious!
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Plushie/alextaylor.rsi
+    state: icon
+  - type: StorageFill
+    contents:
+      - id: DrinkLongIslandIcedTeaGlass

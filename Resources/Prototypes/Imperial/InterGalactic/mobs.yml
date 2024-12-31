@@ -1,0 +1,117 @@
+- type: entity
+  name: intergalactic старший инженер
+  parent: BaseMobHuman
+  id: MobInterGalacticCE
+  suffix: InterGalactic
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - Старший сотрудник
+      - names_last
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: Loadout
+      prototypes:
+        - InterGalacticCEGear
+
+- type: entity
+  name: intergalactic инженер
+  parent: BaseMobHuman
+  id: MobInterGalacticEngineer
+  suffix: InterGalactic
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - Младший сотрудник
+      - names_last
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: Loadout
+      prototypes:
+        - InterGalacticEngineerGear
+
+- type: entity
+  name: intergalactic атмосферный техник
+  parent: BaseMobHuman
+  id: MobInterGalacticAtmos
+  suffix: InterGalactic
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - Сотрудник
+      - names_last
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: Loadout
+      prototypes:
+        - InterGalacticAtmosGear
+
+- type: entity
+  name: разведчик синдиката
+  parent: BaseMobHuman
+  id: MobSyndicateScout
+  suffix: InterGalactic, Syndicate
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - names_death_commando
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: Loadout
+      prototypes:
+        - SyndicateScoutGear
+
+- type: entity
+  #noSpawn: false
+  parent: ArcaneMercPreset
+  name: Наёмник InterGalactic
+  id: ArcaneMercInterGalacticPreset
+  suffix: InterGalactic
+  components:
+    - type: Loadout
+      prototypes: [ MercInterGalacticGear ]
+
+- type: entity
+  name: потерянный агент синдиката
+  parent: BaseMobHuman
+  id: MobSyndicateLostAgent
+  suffix: InterGalactic, Syndicate
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - names_death_commando
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: Loadout
+      prototypes:
+        - SyndicateLostAgentGear
+
+- type: entity
+  noSpawn: false
+  parent: BaseMobHuman
+  id: MobOIPOutpostEmployee
+  suffix: InterGalactic
+  name: работник аванпоста выдачи заказов
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - Сотрудник ПВЗ
+      - names_last
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: Loadout
+      prototypes: [ OIPOutpostEmployeeGear ]
+
+- type: entity
+  noSpawn: false
+  parent: BaseMobHuman
+  id: MobCourierFreelance
+  suffix: InterGalactic
+  name: курьер-фрилансер
+  components:
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+    - type: Loadout
+      prototypes: [ CourierFreelanceGear ]

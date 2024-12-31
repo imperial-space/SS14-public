@@ -160,12 +160,12 @@
       persists: false
       effect: !type:PlantChangeStat
         targetValue: TurnIntoKudzu
-    - name: ChangeScreaming
-      baseOdds: 0.036
-      persists: true # Imperial PlantsAnalyzer (false -> true)
-      effect: !type:PlantChangeStat
-        targetValue: CanScream
-    # - name: ChangeChemicals // Заблокирована в связи с тем, что может вызывать дюпы
+    # - name: ChangeScreaming // Заблокирована в связи с тем, что может вызывать дюпы Imperial Space
+    #   baseOdds: 0.036
+    #   persists: true # Imperial PlantsAnalyzer (false -> true)
+    #   effect: !type:PlantChangeStat
+    #     targetValue: CanScream
+    # - name: ChangeChemicals // Заблокирована в связи с тем, что может вызывать дюпы Imperial Space
     #   baseOdds: 0.072
     #   persists: true # Imperial PlantsAnalyzer (false -> true)
     #   effect: !type:PlantMutateChemicals

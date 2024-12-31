@@ -1,79 +1,79 @@
 # These should be lathe recipes but lathe code sucks so hard rn so they'll be crafted by hand.
 
 - type: construction
-  name: Стальная плитка
+  name: Стальная плитка # Imperial Recipes Locale
   id: TileSteel
   graph: TileSteel
   startNode: start
   targetNode: steeltile
-  category: construction-category-tiles
-  description: Четыре стальные плитки покрытия станции.
+  category: construction-category-tiles 
+  description: Четыре стальные плитки покрытия станции. # Imperial Recipes Locale
   icon: { sprite: Objects/Tiles/tile.rsi, state: steel }
   objectType: Item
 
 - type: construction
-  name: Деревянный пол
+  name: Деревянный пол # Imperial Recipes Locale
   id: TileWood
   graph: TileWood
   startNode: start
   targetNode: woodtile
   category: construction-category-tiles
-  description: Четыре плитки деревянного пола покрытия станции.
+  description: Четыре плитки деревянного пола покрытия станции. # Imperial Recipes Locale
   icon: { sprite: Objects/Tiles/tile.rsi, state: wood }
   objectType: Item
   
 - type: construction
-  name: Заполненная латунная пластина
+  name: Заполненная латунная пластина # Imperial Recipes Locale
   id: TileBrassFilled
   graph: TilesBrass
   startNode: start
   targetNode: filledPlate
-  category: construction-category-tiles
-  description: Четыре куска латунного напольного покрытия станции, совместимого только с латунным покрытием.
+  category: construction-category-tiles 
+  description: Четыре куска латунного напольного покрытия станции, совместимого только с латунным покрытием. # Imperial Recipes Locale
   icon: { sprite: Objects/Tiles/tile.rsi, state: brass-filled }
   objectType: Item
   
 - type: construction
-  name: Гладкая латунная пластина
+  name: Гладкая латунная пластина # Imperial Recipes Locale
   id: TileBrassReebe
   graph: TilesBrass
   startNode: start
   targetNode: reebe
   category: construction-category-tiles
-  description: Четыре плитки гладкого латунного покрытия станции, совместимого только с латунным покрытием
+  description: Четыре плитки гладкого латунного покрытия станции, совместимого только с латунным покрытием. # Imperial Recipes Locale
   icon: { sprite: Objects/Tiles/tile.rsi, state: reebe }
   objectType: Item
 
 - type: construction
-  name: Белая плитка
+  name: Белая плитка # Imperial Recipes Locale
   id: TileWhite
   graph: TileWhite
   startNode: start
   targetNode: whitetile
   category: construction-category-tiles
-  description: Четыре белых плитки покрытия станции.
+  description: Четыре белых плитки покрытия станции. # Imperial Recipes Locale
   icon: { sprite: Objects/Tiles/tile.rsi, state: white }
   objectType: Item
 
 - type: construction
-  name: Тёмная плитка
+  name: Тёмная плитка # Imperial Recipes Locale
   id: TileDark
   graph: TileDark
   startNode: start
   targetNode: darktile
   category: construction-category-tiles
-  description: Четыре темных плитки покрытия станции.
+  description: Четыре темных плитки покрытия станции. # Imperial Recipes Locale
   icon: { sprite: Objects/Tiles/tile.rsi, state: dark }
   objectType: Item
 
 - type: construction
-  name: Пол из плоти
+  name: Пол из плоти # Imperial Recipes Locale
   id: TileFlesh
   graph: TileFlesh
   startNode: start
   targetNode: fleshTile
   category: construction-category-tiles
-  description: Четыре мясистые плитки.
+  description: Четыре мясистые плитки. # Imperial Recipes Locale
   icon: { sprite: Objects/Tiles/tile.rsi, state: meat }
   objectType: Item
 
@@ -188,12 +188,12 @@
 #   objectType: Item
 
 - type: construction
-  name: Большой деревянный пол
+  name: Большой деревянный пол # Imperial Recipes Locale
   id: TileWoodLarge
   graph: TileWoodLarge
   startNode: start
   targetNode: woodtilelarge
   category: construction-category-tiles
-  description: "Четыре плитки деревянного пола покрытия станции."
+  description: "Четыре плитки деревянного пола покрытия станции." # Imperial Recipes Locale
   icon: { sprite: Objects/Tiles/tile.rsi, state: wood-large }
   objectType: Item

@@ -1,0 +1,9 @@
+- type: entity
+  parent: FaxMachineBridgeColored
+  id: FaxMachineBridgeInterGalactic
+  name: факс дальнего действия IG C-01992
+  description: Выглядит потрепанным. Краска уже давно облезла.
+  suffix: InterGalactic
+  components:
+  - type: FaxMachine
+    name: "IG C-01992"

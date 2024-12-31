@@ -1,12 +1,12 @@
 ﻿- type: construction
-  name: Инопланетный артефакт
+  name: Инопланетный артефакт # Imperial Recipes Locale
   id: Artifact
   graph: Artifact
   startNode: start
   targetNode: done
   category: construction-category-misc
   objectType: Item
-  description: Странное устройство пришельцев.
+  description: Странное устройство пришельцев. # Imperial Recipes Locale
   icon:
     sprite: Objects/Specific/Xenoarchaeology/item_artifacts.rsi
     state: ano01

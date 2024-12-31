@@ -1,12 +1,12 @@
 # SURVEILLANCE
 - type: construction  
-  name: Камера видеонаблюдения
+  name: Камера видеонаблюдения # Imperial Recipes Locale
   id: camera
   graph: SurveillanceCamera
   startNode: start
   targetNode: camera
   category: construction-category-utilities
-  description: Камера видеонаблюдения. Не похоже, что в ближайшее время она будет за кем-то наблюдать. Возможно.
+  description: Камера видеонаблюдения. Не похоже, что в ближайшее время она будет за кем-то наблюдать. Возможно. # Imperial Recipes Locale
   icon:
     sprite: Structures/Wallmounts/camera.rsi
     state: camera
@@ -14,13 +14,13 @@
   placementMode: SnapgridCenter
 
 - type: construction
-  name: Телеэкран
+  name: Телеэкран # Imperial Recipes Locale
   id: WallmountTelescreen
   graph: WallmountTelescreen
   startNode: start
   targetNode: Telescreen
   category: construction-category-utilities
-  description: Монитор видеокамер.
+  description: Монитор видеокамер. # Imperial Recipes Locale
   icon:
     sprite: Structures/Machines/computers.rsi
     state: telescreen_frame
@@ -29,13 +29,13 @@
   canBuildInImpassable: true
 
 - type: construction
-  name: Карта станции
+  name: Карта станции # Imperial Recipes Locale
   id: StationMap
   graph: StationMap
   startNode: start
   targetNode: station_map
   category: construction-category-structures
-  description: Станционная карта.
+  description: Станционная карта. # Imperial Recipes Locale
   icon:
     sprite: Structures/Machines/station_map.rsi
     state: station_map0
@@ -48,13 +48,13 @@
 
 # POWER
 - type: construction
-  name: ЛКП
+  name: ЛКП # Imperial Recipes Locale
   id: APC
   graph: APC
   startNode: start
   targetNode: apc
   category: construction-category-utilities
-  description: Локальная консоль питания.
+  description: Локальная консоль питания. # Imperial Recipes Locale
   icon:
     sprite: Structures/Power/apc.rsi
     state: base
@@ -63,13 +63,13 @@
   canBuildInImpassable: true
 
 - type: construction
-  name: Солнечная панель
+  name: Солнечная панель # Imperial Recipes Locale
   id: SolarPanel
   graph: SolarPanel
   startNode: start
   targetNode: solarpanel
   category: construction-category-utilities
-  description: Стандартная солнечная панель.
+  description: Стандартная солнечная панель. # Imperial Recipes Locale
   icon:
     sprite: Structures/Power/Generation/solar_panel.rsi
     state: solar_assembly
@@ -81,13 +81,13 @@
       failIfSpace: false
 
 - type: construction
-  name: Кабельный терминал
+  name: Кабельный терминал # Imperial Recipes Locale
   id: CableTerminal
   graph: CableTerminal
   startNode: start
   targetNode: cable_terminal
   category: construction-category-utilities
-  description: Подключить красным к аккамулятору для его зарядки.
+  description: Подключить красным к аккамулятору для его зарядки. # Imperial Recipes Locale
   icon:
     sprite: Structures/Power/cable_terminal.rsi
     state: term
@@ -96,13 +96,13 @@
   canBuildInImpassable: false
 
 - type: construction
-  name: Настенная подстанция
+  name: Настенная подстанция # Imperial Recipes Locale
   id: WallmountSubstation
   graph: WallmountSubstation
   startNode: start
   targetNode: substation
   category: construction-category-utilities
-  description: Подстанция, предназначенная для компактных шаттлов и помещений.
+  description: Подстанция, предназначенная для компактных шаттлов и помещений. # Imperial Recipes Locale
   icon:
     sprite: Structures/Power/substation.rsi
     state: substation_wall
@@ -111,13 +111,13 @@
   canBuildInImpassable: true
 
 - type: construction
-  name: Настенный генератор
+  name: Настенный генератор # Imperial Recipes Locale
   id: WallmountGenerator
   graph: WallmountGenerator
   startNode: start
   targetNode: generator
   category: construction-category-utilities
-  description: Высокоэффективный термоэлектрический генератор, помещенный в настенный шкаф.
+  description: Высокоэффективный термоэлектрический генератор, помещенный в настенный шкаф. # Imperial Recipes Locale
   icon:
     sprite: Structures/Power/Generation/wallmount_generator.rsi
     state: panel
@@ -126,13 +126,13 @@
   canBuildInImpassable: true
 
 - type: construction
-  name: ВСУ шаттла
+  name: ВСУ шаттла # Imperial Recipes Locale
   id: WallmountGeneratorAPU
   graph: WallmountGenerator
   startNode: start
   targetNode: APU
   category: construction-category-utilities
-  description: Вспомогательная силовая установка шаттла.
+  description: Вспомогательная силовая установка шаттла. # Imperial Recipes Locale
   icon:
     sprite: Structures/Power/Generation/wallmount_generator.rsi
     state: panel
@@ -142,8 +142,8 @@
 
 # DISPOSALS
 - type: construction
-  name: Утилизационный блок
-  description: Пневматическая установка для утилизации отходов.
+  name: Утилизационный блок # Imperial Recipes Locale
+  description: Пневматическая установка для утилизации отходов. # Imperial Recipes Locale
   id: DisposalUnit
   graph: DisposalMachine
   startNode: start
@@ -156,8 +156,8 @@
     state: "disposal"
 
 - type: construction
-  name: Почтовый блок
-  description: Пневматическая установка для доставки почты.
+  name: Почтовый блок # Imperial Recipes Locale
+  description: Пневматическая установка для доставки почты. # Imperial Recipes Locale
   id: MailingUnit
   graph: DisposalMachine
   startNode: start
@@ -170,9 +170,9 @@
     state: "mailing"
 
 - type: construction
-  name: Утилизационная труба
+  name: Утилизационная труба # Imperial Recipes Locale
   id: DisposalPipe
-  description: Большой сегмент трубы, используемый при создании системы утилизации.
+  description: Большой сегмент трубы, используемый при создании системы утилизации. # Imperial Recipes Locale
   graph: DisposalPipe
   startNode: start
   targetNode: pipe
@@ -184,8 +184,8 @@
     state: conpipe-s
 
 - type: construction
-  name: Маркировщик утилизационной трубы
-  description: Труба, маркирующая объекты для отправки адресату.
+  name: Маркировщик утилизационной трубы # Imperial Recipes Locale
+  description: Труба, маркирующая объекты для отправки адресату. # Imperial Recipes Locale
   id: DisposalTagger
   graph: DisposalPipe
   startNode: start
@@ -198,8 +198,8 @@
     state: conpipe-tagger
 
 - type: construction
-  name: Ствол утилизационной трубы
-  description: Труба, используемая в качестве точки входа в систему утилизации.
+  name: Ствол утилизационной трубы # Imperial Recipes Locale
+  description: Труба, используемая в качестве точки входа в систему утилизации. # Imperial Recipes Locale
   id: DisposalTrunk
   graph: DisposalPipe
   startNode: start
@@ -212,8 +212,8 @@
     state: conpipe-t
 
 - type: construction
-  name: Маршрутизатор утилизационной трубы
-  description: Трехсторонний маршрутизатор. Объекты с совпадающими маркерами уходят в сторону с помощью настраиваемых фильтров.
+  name: Маршрутизатор утилизационной трубы # Imperial Recipes Locale
+  description: Трехсторонний маршрутизатор. Объекты с совпадающими маркерами уходят в сторону с помощью настраиваемых фильтров. # Imperial Recipes Locale
   id: DisposalRouter
   graph: DisposalPipe
   startNode: start
@@ -228,8 +228,8 @@
 
 - type: construction
   hide: true
-  name: Маршрутизатор утилизационной трубы
-  description: Трехсторонний маршрутизатор. Объекты с совпадающими маркерами уходят в сторону с помощью настраиваемых фильтров.
+  name: Маршрутизатор утилизационной трубы # Imperial Recipes Locale
+  description: Трехсторонний маршрутизатор. Объекты с совпадающими маркерами уходят в сторону с помощью настраиваемых фильтров. # Imperial Recipes Locale
   id: DisposalRouterFlipped
   graph: DisposalPipe
   startNode: start
@@ -243,8 +243,8 @@
   mirror: DisposalRouter
 
 - type: construction
-  name: Утилизационный сигнальный маршрутизатор
-  description: Трехсторонний маршрутизатор, управляемый сигналом.
+  name: Утилизационный сигнальный маршрутизатор # Imperial Recipes Locale
+  description: Трехсторонний маршрутизатор, управляемый сигналом. # Imperial Recipes Locale
   id: DisposalSignalRouter
   graph: DisposalPipe
   startNode: start
@@ -259,8 +259,8 @@
 
 - type: construction
   hide: true
-  name: Утилизационный сигнальный маршрутизатор
-  description: Трехсторонний маршрутизатор, управляемый сигналом.
+  name: Утилизационный сигнальный маршрутизатор # Imperial Recipes Locale
+  description: Трехсторонний маршрутизатор, управляемый сигналом. # Imperial Recipes Locale
   id: DisposalSignalRouterFlipped
   graph: DisposalPipe
   startNode: start
@@ -274,8 +274,8 @@
   mirror: DisposalSignalRouter
 
 - type: construction
-  name: Развязка утилизационной трубы
-  description: Трехсторонняя развязка. Стрелка указывает на место выхода объектов.
+  name: Развязка утилизационной трубы # Imperial Recipes Locale
+  description: Трехсторонняя развязка. Стрелка указывает на место выхода объектов. # Imperial Recipes Locale
   id: DisposalJunction
   graph: DisposalPipe
   startNode: start
@@ -290,8 +290,8 @@
 
 - type: construction
   hide: true
-  name: Развязка утилизационной трубы
-  description: Трехсторонняя развязка. Стрелка указывает на место выхода объектов.
+  name: Развязка утилизационной трубы # Imperial Recipes Locale
+  description: Трехсторонняя развязка. Стрелка указывает на место выхода объектов. # Imperial Recipes Locale
   id: DisposalJunctionFlipped
   graph: DisposalPipe
   startNode: start
@@ -305,8 +305,8 @@
   mirror: DisposalJunction
 
 - type: construction
-  name: Альтернативная развязка утилизационной трубы
-  description: Трехсторонняя развязка с альтернативным местом выхода.
+  name: Альтернативная развязка утилизационной трубы # Imperial Recipes Locale
+  description: Трехсторонняя развязка с альтернативным местом выхода. # Imperial Recipes Locale
   id: DisposalYJunction
   graph: DisposalPipe
   startNode: start
@@ -319,8 +319,8 @@
     state: conpipe-y
 
 - type: construction
-  name: Изгиб утилизационной трубы
-  description: Труба, согнутая под прямым углом.
+  name: Изгиб утилизационной трубы # Imperial Recipes Locale
+  description: Труба, согнутая под прямым углом. # Imperial Recipes Locale
   id: DisposalBend
   graph: DisposalPipe
   startNode: start
@@ -334,7 +334,7 @@
 
 # ATMOS
 - type: construction
-  name: Воздушная сигнализация
+  name: Воздушная сигнализация # Imperial Recipes Locale
   id: AirAlarmFixture
   graph: AirAlarm
   startNode: start
@@ -352,7 +352,7 @@
   - !type:WallmountCondition {}
 
 - type: construction
-  name: Пожарная сигнализация
+  name: Пожарная сигнализация # Imperial Recipes Locale
   id: FireAlarm
   graph: FireAlarm
   startNode: start
@@ -370,7 +370,7 @@
   - !type:WallmountCondition {}
 
 - type: construction
-  name: Сенсор воздуха
+  name: Сенсор воздуха # Imperial Recipes Locale
   id: AirSensor
   graph: AirSensor
   startNode: start
@@ -385,13 +385,13 @@
   canRotate: true
 
 - type: construction
-  name: Датчик газовых труб
+  name: Датчик газовых труб # Imperial Recipes Locale
   id: GasPipeSensor
   graph: GasPipeSensor
   startNode: start
   targetNode: sensor
   category: construction-category-structures
-  description: Передает на воздушную сигнализацию информацию о газе в присоединенной системе труб.
+  description: Передает на воздушную сигнализацию информацию о газе в присоединенной системе труб. # Imperial Recipes Locale
   icon:
     sprite: Structures/Piping/Atmospherics/gas_pipe_sensor.rsi
     state: icon
@@ -401,9 +401,9 @@
 
 # ATMOS PIPES
 - type: construction
-  name: Газовая труба половинчатая
+  name: Газовая труба половинчатая # Imperial Recipes Locale
   id: GasPipeHalf
-  description: Половина трубы.
+  description: Половина трубы. # Imperial Recipes Locale
   graph: GasPipe
   startNode: start
   targetNode: half
@@ -415,9 +415,9 @@
     state: pipeHalf
 
 - type: construction
-  name: Газовая труба
+  name: Газовая труба # Imperial Recipes Locale
   id: GasPipeStraight
-  description: Прямой сегмент трубы.
+  description: Прямой сегмент трубы. # Imperial Recipes Locale
   graph: GasPipe
   startNode: start
   targetNode: straight
@@ -429,9 +429,9 @@
     state: pipeStraight
 
 - type: construction
-  name: Газовая труба изогнутая
+  name: Газовая труба изогнутая # Imperial Recipes Locale
   id: GasPipeBend
-  description: Труба, согнутая под прямым углом.
+  description: Труба, согнутая под прямым углом. # Imperial Recipes Locale
   graph: GasPipe
   startNode: start
   targetNode: bend
@@ -443,9 +443,9 @@
     state: pipeBend
 
 - type: construction
-  name: Газовая Т-образная труба
+  name: Газовая Т-образная труба # Imperial Recipes Locale
   id: GasPipeTJunction
-  description: Т-образный сегмент трубы
+  description: Т-образный сегмент трубы # Imperial Recipes Locale
   graph: GasPipe
   startNode: start
   targetNode: tjunction
@@ -457,9 +457,9 @@
     state: pipeTJunction
 
 - type: construction
-  name: Газовая четверная труба
+  name: Газовая четверная труба # Imperial Recipes Locale
   id: GasPipeFourway
-  description: Сегмент трубы с четыремя соединениями.
+  description: Сегмент трубы с четыремя соединениями. # Imperial Recipes Locale
   graph: GasPipe
   startNode: start
   targetNode: fourway
@@ -472,8 +472,8 @@
 
 # ATMOS UNARY
 - type: construction
-  name: Вентиляция
-  description: Имеет клапан и прикрепленный к нему насос.
+  name: Вентиляция # Imperial Recipes Locale
+  description: Имеет клапан и прикрепленный к нему насос. # Imperial Recipes Locale
   id: GasVentPump
   graph: GasUnary
   startNode: start
@@ -493,8 +493,8 @@
     - !type:NoUnstackableInTile
 
 - type: construction
-  name: Пассивная вентиляция
-  description: Это открытая вентиляция.
+  name: Пассивная вентиляция # Imperial Recipes Locale
+  description: Это открытая вентиляция. # Imperial Recipes Locale
   id: GasPassiveVent
   graph: GasUnary
   startNode: start
@@ -514,8 +514,8 @@
     - !type:NoUnstackableInTile
 
 - type: construction
-  name: Скруббер 
-  description: Он же вытяжка. Имеет клапан и прикреплённый к нему насос.
+  name: Скруббер  # Imperial Recipes Locale
+  description: Он же вытяжка. Имеет клапан и прикреплённый к нему насос. # Imperial Recipes Locale
   id: GasVentScrubber
   graph: GasUnary
   startNode: start
@@ -535,8 +535,8 @@
     - !type:NoUnstackableInTile
 
 - type: construction
-  name: Инжектор
-  description: Он же форсунка. Имеет клапан и прикреплённый к нему насос.
+  name: Инжектор # Imperial Recipes Locale
+  description: Он же форсунка. Имеет клапан и прикреплённый к нему насос. # Imperial Recipes Locale
   id: GasOutletInjector
   graph: GasUnary
   startNode: start
@@ -557,9 +557,9 @@
 
 # ATMOS BINARY
 - type: construction
-  name: Газовый насос
+  name: Газовый насос # Imperial Recipes Locale
   id: GasPressurePump
-  description: Насос, перемещающий газ под определённым давлением.
+  description: Насос, перемещающий газ под определённым давлением. # Imperial Recipes Locale
   graph: GasBinary
   startNode: start
   targetNode: pressurepump
@@ -578,8 +578,8 @@
     - !type:NoUnstackableInTile
 
 - type: construction
-  name: Объёмный газовый насос
-  description: Насос, перемещающий газ с определённым объёмом.
+  name: Объёмный газовый насос # Imperial Recipes Locale
+  description: Насос, перемещающий газ с определённым объёмом. # Imperial Recipes Locale
   id: GasVolumePump
   graph: GasBinary
   startNode: start
@@ -600,8 +600,8 @@
 
 - type: construction
   id: GasPassiveGate
-  name: Пассивный клапан
-  description: Односторонний воздушный клапан, не требующий питания.
+  name: Пассивный клапан # Imperial Recipes Locale
+  description: Односторонний воздушный клапан, не требующий питания. # Imperial Recipes Locale
   graph: GasBinary
   startNode: start
   targetNode: passivegate
@@ -621,8 +621,8 @@
 
 - type: construction
   id: GasValve
-  name: Ручной клапан
-  description: Труба с клапаном, которым можно перекрыть поток проходящего по ней газа.
+  name: Ручной клапан # Imperial Recipes Locale
+  description: Труба с клапаном, которым можно перекрыть поток проходящего по ней газа. # Imperial Recipes Locale
   graph: GasBinary
   startNode: start
   targetNode: valve
@@ -642,8 +642,8 @@
 
 - type: construction
   id: SignalControlledValve
-  name: Сигнальный клапан
-  description: Труба с клапаном, который можно контролировать при помощи сигналов.
+  name: Сигнальный клапан # Imperial Recipes Locale
+  description: Труба с клапаном, который можно контролировать при помощи сигналов. # Imperial Recipes Locale
   graph: GasBinary
   startNode: start
   targetNode: signalvalve
@@ -663,8 +663,8 @@
 
 - type: construction
   id: GasPort
-  name: Соединительный порт
-  description: Для подключения портативных устройств, связанных с управлением атмосферой.
+  name: Соединительный порт # Imperial Recipes Locale
+  description: Для подключения портативных устройств, связанных с управлением атмосферой. # Imperial Recipes Locale
   graph: GasBinary
   startNode: start
   targetNode: port
@@ -684,8 +684,8 @@
 
 - type: construction
   id: GasDualPortVentPump
-  name: Двухпортовая вентиляция
-  description: Имеет клапан и прикреплённый к нему насос. Один вход для закачивания воздуха, другой - для откачивания.
+  name: Двухпортовая вентиляция # Imperial Recipes Locale
+  description: Имеет клапан и прикреплённый к нему насос. Один вход для закачивания воздуха, другой - для откачивания. # Imperial Recipes Locale
   graph: GasBinary
   startNode: start
   targetNode: dualportventpump
@@ -703,8 +703,8 @@
 
 - type: construction
   id: HeatExchanger
-  name: Радиатор
-  description: Переносит тепло между трубой и окружающей средой.
+  name: Радиатор # Imperial Recipes Locale
+  description: Переносит тепло между трубой и окружающей средой. # Imperial Recipes Locale
   graph: GasBinary
   startNode: start
   targetNode: radiator
@@ -718,8 +718,8 @@
 # ATMOS TRINARY
 - type: construction
   id: GasFilter
-  name: Газовый фильтр
-  description: Очень полезен для фильтрации газов.
+  name: Газовый фильтр # Imperial Recipes Locale
+  description: Очень полезен для фильтрации газов. # Imperial Recipes Locale
   graph: GasTrinary
   startNode: start
   targetNode: filter
@@ -736,8 +736,8 @@
 - type: construction
   id: GasFilterFlipped
   hide: false # Imperial Space
-  name: Газовый фильтр (перевёрнутый)
-  description: Очень полезен для фильтрации газов.
+  name: Газовый фильтр (перевёрнутый) # Imperial Recipes Locale
+  description: Очень полезен для фильтрации газов. # Imperial Recipes Locale
   graph: GasTrinary
   startNode: start
   targetNode: filterflipped
@@ -753,8 +753,8 @@
 
 - type: construction
   id: GasMixer
-  name: Газовый смеситель
-  description: Очень полезен для смешивания газов.
+  name: Газовый смеситель # Imperial Recipes Locale
+  description: Очень полезен для смешивания газов. # Imperial Recipes Locale
   graph: GasTrinary
   startNode: start
   targetNode: mixer
@@ -771,8 +771,8 @@
 - type: construction
   id: GasMixerFlipped
   hide: false # Imperial Space
-  name: Газовый смеситель (перевёрнутый)
-  description: Очень полезен для смешивания газов.
+  name: Газовый смеситель (перевёрнутый) # Imperial Recipes Locale
+  description: Очень полезен для смешивания газов. # Imperial Recipes Locale
   graph: GasTrinary
   startNode: start
   targetNode: mixerflipped
@@ -788,8 +788,8 @@
 
 - type: construction
   id: PressureControlledValve
-  name: Пневматический клапан
-  description: Клапан, регулируемый давлением.
+  name: Пневматический клапан # Imperial Recipes Locale
+  description: Клапан, регулируемый давлением. # Imperial Recipes Locale
   graph: GasTrinary
   startNode: start
   targetNode: pneumaticvalve
@@ -804,13 +804,13 @@
 
 # INTERCOM
 - type: construction
-  name: Интерком
+  name: Интерком # Imperial Recipes Locale
   id: IntercomAssesmbly
   graph: Intercom
   startNode: start
   targetNode: intercom
   category: construction-category-structures
-  description: Интерком.
+  description: Интерком. # Imperial Recipes Locale
   icon:
     sprite: Structures/Wallmounts/intercom.rsi
     state: base
@@ -823,13 +823,13 @@
 
 # TIMERS
 - type: construction
-  name: Сигнальный таймер
+  name: Сигнальный таймер # Imperial Recipes Locale
   id: SignalTimer
   graph: Timer
   startNode: start
   targetNode: signal
   category: construction-category-utilities
-  description: Это таймер для подачи на устройства сигналов через определённое время.
+  description: Это таймер для подачи на устройства сигналов через определённое время. # Imperial Recipes Locale
   icon:
     sprite: Structures/Wallmounts/switch.rsi
     state: on
@@ -840,13 +840,13 @@
   - !type:WallmountCondition
 
 - type: construction
-  name: Сигнальный таймер с экраном
+  name: Сигнальный таймер с экраном # Imperial Recipes Locale
   id: ScreenTimer
   graph: Timer
   startNode: start
   targetNode: screen
   category: construction-category-utilities
-  description: Это таймер для подачи на устройства сигналов через определённое время, со встроенным экраном.
+  description: Это таймер для подачи на устройства сигналов через определённое время, со встроенным экраном. # Imperial Recipes Locale
   icon:
     sprite: Structures/Wallmounts/signalscreen.rsi
     state: signalscreen
@@ -858,13 +858,13 @@
   - !type:WallmountCondition
 
 - type: construction
-  name: Бриг-таймер
+  name: Бриг-таймер # Imperial Recipes Locale
   id: BrigTimer
   graph: Timer
   startNode: start
   targetNode: brig
   category: construction-category-utilities
-  description: Это таймер для камер брига.
+  description: Это таймер для камер брига. # Imperial Recipes Locale
   icon:
     sprite: Structures/Wallmounts/signalscreen.rsi
     state: signalscreen

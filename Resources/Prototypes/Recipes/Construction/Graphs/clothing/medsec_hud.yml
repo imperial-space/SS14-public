@@ -7,13 +7,13 @@
         - to: medsecHud
           steps:
             - tag: HudMedical
-              name: медицинский визор
+              name: медицинский визор # Imperial Recipes Locale
               icon:
                 sprite: Clothing/Eyes/Hud/med.rsi
                 state: icon
               doAfter: 5
             - tag: HudSecurity
-              name: охранный визор
+              name: охранный визор # Imperial Recipes Locale
               icon:
                 sprite: Clothing/Eyes/Hud/sec.rsi
                 state: icon
@@ -22,7 +22,7 @@
               amount: 5
               doAfter: 5
             - tag: Radio
-              name: портативная рация
+              name: портативная рация # Imperial Recipes Locale
               icon:
                 sprite: Objects/Devices/communication.rsi
                 state: walkietalkie

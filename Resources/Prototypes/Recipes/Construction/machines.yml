@@ -1,11 +1,11 @@
 ﻿- type: construction
-  name: Каркас компьютера
+  name: Каркас компьютера # Imperial Recipes Locale
   id: Computer
   graph: Computer
   startNode: start
   targetNode: computer
   category: construction-category-machines
-  description: Основа, используемая для постройки различных консолей.
+  description: Основа, используемая для постройки различных консолей. # Imperial Recipes Locale
   placementMode: SnapgridCenter
   canBuildInImpassable: false
   icon:
@@ -13,8 +13,8 @@
     state: 4
 
 - type: construction
-  name: Каркас машины
-  description: Основа, используемая для постройки различных машин.
+  name: Каркас машины # Imperial Recipes Locale
+  description: Основа, используемая для постройки различных машин. # Imperial Recipes Locale
   id: MachineFrame
   graph: Machine
   startNode: start
@@ -28,13 +28,13 @@
 
 # Switching
 - type: construction
-  name: Двухпозиционный рычаг
+  name: Двухпозиционный рычаг # Imperial Recipes Locale
   id: TwoWayLeverRecipe
   graph: LeverGraph
   startNode: start
   targetNode: LeverNode
   category: construction-category-machines
-  description: Рычаг для управления машинами. Имеет три позиции.
+  description: Рычаг для управления машинами. Имеет три позиции. # Imperial Recipes Locale
   objectType: Structure
   canBuildInImpassable: false
   icon:
@@ -44,13 +44,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Переключатель сети ЛКП
+  name: Переключатель сети ЛКП # Imperial Recipes Locale
   id: LightSwitchRecipe
   graph: LightSwitchGraph
   startNode: start
   targetNode: LightSwitchNode
   category: construction-category-machines
-  description: Это переключатель источников света, использующих ЛКП.
+  description: Это переключатель источников света, использующих ЛКП. # Imperial Recipes Locale
   icon:
     sprite: Structures/Wallmounts/switch.rsi
     state: on
@@ -62,13 +62,13 @@
     - !type:WallmountCondition
 
 - type: construction
-  name: Переключатель сигнала
+  name: Переключатель сигнала # Imperial Recipes Locale
   id: SignalSwitchRecipe
   graph: SignalSwitchGraph
   startNode: start
   targetNode: SignalSwitchNode
   category: construction-category-machines
-  description: Это переключатель питания устройств.
+  description: Это переключатель питания устройств. # Imperial Recipes Locale
   icon:
     sprite: Structures/Wallmounts/switch.rsi
     state: on
@@ -80,13 +80,13 @@
     - !type:WallmountCondition
 
 - type: construction
-  name: Кнопка сигнала
+  name: Кнопка сигнала # Imperial Recipes Locale
   id: SignalButtonRecipe
   graph: SignalButtonGraph
   startNode: start
   targetNode: SignalButtonNode
   category: construction-category-machines
-  description: Эта кнопка что-то активирует.
+  description: Эта кнопка что-то активирует. # Imperial Recipes Locale
   icon:
     sprite: Structures/Wallmounts/switch.rsi
     state: on
@@ -98,13 +98,13 @@
     - !type:WallmountCondition
 
 - type: construction
-  name: Направленный переключатель сети ЛКП
+  name: Направленный переключатель сети ЛКП # Imperial Recipes Locale
   id: LightSwitchDirectionalRecipe
   graph: LightSwitchDirectionalGraph
   startNode: start
   targetNode: LightSwitchDirectionalNode
   category: construction-category-machines
-  description: Это переключатель источников света, использующих ЛКП. Активация возможна только со стороны строительства.
+  description: Это переключатель источников света, использующих ЛКП. Активация возможна только со стороны строительства. # Imperial Recipes Locale
   icon:
     sprite: Structures/Wallmounts/switch.rsi
     state: on
@@ -116,13 +116,13 @@
     - !type:WallmountCondition
 
 - type: construction
-  name: Направленный переключатель сигнала
+  name: Направленный переключатель сигнала # Imperial Recipes Locale
   id: SignalSwitchDirectionalRecipe
   graph: SignalSwitchDirectionalGraph
   startNode: start
   targetNode: SignalSwitchDirectionalNode
   category: construction-category-machines
-  description: Это переключатель питания устройств. Активация возможна только со стороны строительства.
+  description: Это переключатель питания устройств. Активация возможна только со стороны строительства. # Imperial Recipes Locale
   icon:
     sprite: Structures/Wallmounts/switch.rsi
     state: on
@@ -134,13 +134,13 @@
     - !type:WallmountCondition
 
 - type: construction
-  name: Направленная кнопка сигнала
+  name: Направленная кнопка сигнала # Imperial Recipes Locale
   id: SignalButtonDirectionalRecipe
   graph: SignalButtonDirectionalGraph
   startNode: start
   targetNode: SignalButtonDirectionalNode
   category: construction-category-machines
-  description: Эта кнопка что-то активирует. Активация возможна только со стороны строительства.
+  description: Эта кнопка что-то активирует. Активация возможна только со стороны строительства. # Imperial Recipes Locale
   icon:
     sprite: Structures/Wallmounts/switch.rsi
     state: on

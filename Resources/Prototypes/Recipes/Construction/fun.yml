@@ -1,10 +1,10 @@
 - type: construction
-  name: Бананиумовый клаксон
+  name: Бананиумовый клаксон # Imperial Recipes Locale
   id: HornBananium
   graph: BananiumHorn
   startNode: start
   targetNode: bananiumHorn
   category: construction-category-weapons
-  description: Странный клаксон из бананиума.
+  description: Странный клаксон из бананиума. # Imperial Recipes Locale
   icon: { sprite: Objects/Fun/bananiumhorn.rsi, state: icon }
   objectType: Item

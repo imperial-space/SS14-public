@@ -1,0 +1,91 @@
+# Лампы накаливания
+- type: entity
+  parent: BaseLightbulb
+  name: грязная лампа накаливания
+  id: DirtyLightBulb
+  description: Обычная лампочка
+  components:
+  - type: LightBulb
+    bulb: Bulb
+    color: "#947507FF"
+    lightEnergy: 1.45
+    lightRadius: 9
+    lightSoftness: 2
+
+- type: entity
+  parent: BaseLightbulb
+  name: подозрительная красная лампа накаливания
+  id: DarkRedLightBulb
+  description: Обычная лампочка
+  components:
+  - type: LightBulb
+    bulb: Bulb
+    color: "#8B0000"
+    lightEnergy: 1.45
+    lightRadius: 9
+    lightSoftness: 2
+
+- type: entity
+  parent: BaseLightbulb
+  name: подозрительная фиолетовая лампа накаливания
+  id: DarkVioletLightBulb
+  description: Обычная лампочка
+  components:
+  - type: LightBulb
+    bulb: Bulb
+    color: "#9400D3"
+    lightEnergy: 1.45
+    lightRadius: 9
+    lightSoftness: 2
+
+# Маленькие светильники
+- type: entity
+  id: DirtyPoweredSmallLight
+  suffix: ""
+  parent: PoweredSmallLightEmpty
+  name: маленький светильник
+  description: Осветительный прибор. Потребляет энергию и излучает свет, если оснащен лампой накаливания.
+  components:
+  - type: Sprite
+    state: base
+  - type: PointLight
+    enabled: true
+  - type: PoweredLight
+    hasLampOnSpawn: DirtyLightBulb
+    damage:
+      types:
+        Heat: 5
+
+- type: entity
+  id: DarkRedPoweredSmallLight
+  suffix: ""
+  parent: PoweredSmallLightEmpty
+  name: маленький светильник
+  description: Осветительный прибор. Потребляет энергию и излучает свет, если оснащен лампой накаливания.
+  components:
+  - type: Sprite
+    state: base
+  - type: PointLight
+    enabled: true
+  - type: PoweredLight
+    hasLampOnSpawn: DarkRedLightBulb
+    damage:
+      types:
+        Heat: 5
+
+- type: entity
+  id: DarkVioletPoweredSmallLight
+  suffix: ""
+  parent: PoweredSmallLightEmpty
+  name: маленький светильник
+  description: Осветительный прибор. Потребляет энергию и излучает свет, если оснащен лампой накаливания.
+  components:
+  - type: Sprite
+    state: base
+  - type: PointLight
+    enabled: true
+  - type: PoweredLight
+    hasLampOnSpawn: DarkVioletLightBulb
+    damage:
+      types:
+        Heat: 5
