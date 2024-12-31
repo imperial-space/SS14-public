@@ -264,7 +264,7 @@
 
 - type: entity
   parent: BasePlushieCharacter
-  id:   
+  id: PlushieVenya
   name: Veniamin Kerrigan
   description: hello
   components:
