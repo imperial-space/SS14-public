@@ -76,7 +76,7 @@
   - type: StationEvent
     startAnnouncementColor: "#18abf5"
     startAudio:
-      path: /Audio/Corvax/Announcements/flux.ogg
+      path: /Audio/Announcements/flux.ogg
     weight: 8
     duration: 35
   - type: AnomalySpawnRule
@@ -92,7 +92,7 @@
   - type: StationEvent
     startAnnouncementColor: "#18abf5"
     startAudio:
-      path: /Audio/Corvax/Announcements/blusp_anomalies.ogg
+      path: /Audio/Announcements/bluespace_artifact.ogg
     weight: 8
     duration: 35
   - type: BluespaceArtifactRule
@@ -305,7 +305,7 @@
     startAnnouncement: station-event-solar-flare-start-announcement
     endAnnouncement: station-event-solar-flare-end-announcement
     startAudio:
-      path: /Audio/Corvax/Announcements/comms_blackout.ogg
+      path: /Audio/Announcements/solarflare.ogg
     duration: 120
     maxDuration: 240
   - type: SolarFlareRule
