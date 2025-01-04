@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Made for the Imperial Space community, author's discord nickname: pelarchic. !!plushie_coroner maded by dalles233.",
+    "copyright": "Made for the Imperial Space community, author's discord nickname: pelarchic. !!plushie_coroner maded by dalles233. plushie_Venya made",
     "size": {
       "x": 32,
       "y": 32
@@ -61,6 +61,9 @@
         },
         {
             "name": "plushie_passenger"
+        },
+        {
+            "name": "plushie_Venya"
         }
       ]
 }

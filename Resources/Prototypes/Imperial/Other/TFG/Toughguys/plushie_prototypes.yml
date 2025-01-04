@@ -261,3 +261,13 @@
   - type: Sprite
     sprite: Imperial/Other/TFG/Toughguys
     state: plushie_passenger
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieVenya
+  name: Veniamin Kerrigan
+  description: hello
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/TFG/Toughguys
+    state: plushie_Venya
