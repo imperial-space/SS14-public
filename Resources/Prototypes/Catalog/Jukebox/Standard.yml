@@ -39,3 +39,27 @@
   name: PigeonBeans - Sunset
   path:
     path: /Audio/Jukebox/sunset.ogg
+
+- type: jukebox
+  id: spaceasshole
+  name: Chris Remo - Space Asshole
+  path:
+    path: /Audio/Jukebox/space_asshole.ogg
+
+- type: jukebox
+  id: Clown.wmw
+  name: Admiral Hippie - Clown.wmw
+  path:
+    path: /Audio/Jukebox/Clown.wmw.ogg
+
+- type: jukebox
+  id: opposinghonk!
+  name: MrJajkes - Opposing Honk!
+  path:
+    path: /Audio/Jukebox/opposing_honk!.ogg
+
+- type: jukebox
+  id: thestation
+  name: A-Guy - The Station
+  path:
+    path: /Audio/Jukebox/thestation.ogg
