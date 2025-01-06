@@ -1,0 +1,11 @@
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatSquidGamePlayer
+  name: squid player
+  suffix: SquidGame
+  description: Player 456 reference
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/OuterClothing/Coats/squidplayer.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/OuterClothing/Coats/squidplayer.rsi

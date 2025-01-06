@@ -1,0 +1,23 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSquidGame
+  name: squid game uniform
+  suffix: SquidGame
+  description: ui i a i
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Uniforms/jumpsuits/squidsuit.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Uniforms/jumpsuits/squidsuit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSquidGameWhiteTShirt
+  name: squid game white tshirt
+  suffix: SquidGame
+  description: ui i a i
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Uniforms/jumpsuits/whitetshirt.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Uniforms/jumpsuits/whitetshirt.rsi

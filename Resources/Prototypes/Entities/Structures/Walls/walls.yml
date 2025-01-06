@@ -1309,7 +1309,6 @@
   - type: Icon
     sprite: Structures/Walls/vault.rsi
     state: sandstonevault
-
 # Mime
 
 - type: entity
@@ -1471,3 +1470,54 @@
   - type: IconSmooth
     key: cobblebricks
     base: cobblebrick
+
+- type: entity
+  parent: BaseWall
+  id: WallPinkIndestructible
+  name: pink wall
+  suffix: SquidGame
+  components:
+    - type: Tag
+      tags:
+        - Wall
+    - type: Sprite
+      sprite: Structures/Walls/pinkwall.rsi
+    - type: Icon
+      sprite: Structures/Walls/pinkwall.rsi
+    - type: IconSmooth
+      key: walls
+      base: solid
+
+- type: entity
+  parent: BaseWall
+  id: WallYellowIndestructible
+  name: yellow wall
+  suffix: SquidGame
+  components:
+    - type: Tag
+      tags:
+        - Wall
+    - type: Sprite
+      sprite: Structures/Walls/yellowwall.rsi
+    - type: Icon
+      sprite: Structures/Walls/yellowwall.rsi
+    - type: IconSmooth
+      key: walls
+      base: solid
+
+- type: entity
+  parent: BaseWall
+  id: WallBlueIndestructible
+  name: blue wall
+  suffix: SquidGame
+  components:
+    - type: Tag
+      tags:
+        - Wall
+    - type: Sprite
+      sprite: Structures/Walls/bluewall.rsi
+    - type: Icon
+      sprite: Structures/Walls/bluewall.rsi
+    - type: IconSmooth
+      key: walls
+      base: solid
