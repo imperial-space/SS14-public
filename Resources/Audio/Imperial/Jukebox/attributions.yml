@@ -1,0 +1,19 @@
+- files: ["space_asshole.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Space Asshole by Chris Remo. Space Asshole was created by Chris Remo for an episode if his podcast, featured in 'Idle Thumbs 48: In Space.' Converted to mono OGG."
+  source: "https://www.idlethumbs.net/extras/music/"
+
+- files: ["clown.wmw.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Clown.wmw by Admiral Hippie. This song is a remix of a remix done by Admiral Hippie. Original remix done by Cboyardee. Original song was made by Jonathan Dunn. Converted to mono OGG."
+  source: "https://www.youtube.com/watch?v=9whQIbNmu9s"
+
+- files: ["opposing_honk!.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Opossing Honk! by mrjajkes. Converted to mono OGG."
+  source: "https://www.youtube.com/watch?v=t0jv_E2yln4"
+
+- files: ["thestation.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "The Station by A-Guy. Converted to mono OGG."
+  source: "https://github.com/A-Guy173/Music"

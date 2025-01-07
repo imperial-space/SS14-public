@@ -40,26 +40,26 @@
   path:
     path: /Audio/Jukebox/sunset.ogg
 
-- type: jukebox
+- type: jukebox #Imperial JukeboxUpdateV1
   id: spaceasshole
   name: Chris Remo - Space Asshole
   path:
-    path: /Audio/Jukebox/space_asshole.ogg
+    path: /Audio/Imperial/Jukebox/space_asshole.ogg
 
-- type: jukebox
+- type: jukebox #Imperial JukeboxUpdateV1
   id: Clown.wmw
   name: Admiral Hippie - Clown.wmw
   path:
-    path: /Audio/Jukebox/Clown.wmw.ogg
+    path: /Audio/Imperial/Jukebox/Clown.wmw.ogg
 
-- type: jukebox
+- type: jukebox #Imperial JukeboxUpdateV1
   id: opposinghonk!
   name: MrJajkes - Opposing Honk!
   path:
-    path: /Audio/Jukebox/opposing_honk!.ogg
+    path: /Audio/Imperial/Jukebox/opposing_honk!.ogg
 
-- type: jukebox
+- type: jukebox #Imperial JukeboxUpdateV1
   id: thestation
   name: A-Guy - The Station
   path:
-    path: /Audio/Jukebox/thestation.ogg
+    path: /Audio/Imperial/Jukebox/thestation.ogg
