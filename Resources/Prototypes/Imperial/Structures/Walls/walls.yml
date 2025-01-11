@@ -1,0 +1,103 @@
+- type: entity
+  abstract: true
+  parent: BaseStructure
+  id: BaseWall
+  name: basewall
+  description: Keeps the air in and the greytide out.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MetalBulletImpact
+    soundTypes:
+      Heat:
+        collection:
+          MetalLaserImpact
+  - type: Tag
+    tags:
+    - Wall
+  - type: Sprite
+    drawdepth: Walls
+  - type: Icon
+    state: full
+  - type: PlacementReplacement
+    key: walls
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
+  - type: Occluder
+  - type: Airtight
+  - type: StaticPrice
+    price: 75
+  - type: RadiationBlocker
+    resistance: 2
+  - type: BlockWeather
+
+- type: entity
+  parent: BaseWall
+  id: WallPinkIndestructible
+  name: pink wall
+  suffix: SquidGame
+  components:
+    - type: Tag
+      tags:
+        - Wall
+    - type: Sprite
+      sprite: Structures/Walls/pinkwall.rsi
+    - type: Icon
+      sprite: Structures/Walls/pinkwall.rsi
+    - type: IconSmooth
+      key: walls
+      base: solid
+
+- type: entity
+  parent: BaseWall
+  id: WallYellowIndestructible
+  name: yellow wall
+  suffix: SquidGame
+  components:
+    - type: Tag
+      tags:
+        - Wall
+    - type: Sprite
+      sprite: Structures/Walls/yellowwall.rsi
+    - type: Icon
+      sprite: Structures/Walls/yellowwall.rsi
+    - type: IconSmooth
+      key: walls
+      base: solid
+
+- type: entity
+  parent: BaseWall
+  id: WallBlueIndestructible
+  name: blue wall
+  suffix: SquidGame
+  components:
+    - type: Tag
+      tags:
+        - Wall
+    - type: Sprite
+      sprite: Structures/Walls/bluewall.rsi
+    - type: Icon
+      sprite: Structures/Walls/bluewall.rsi
+    - type: IconSmooth
+      key: walls
+      base: solid
