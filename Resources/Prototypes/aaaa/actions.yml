@@ -1,0 +1,9 @@
+- type: entity
+  id: ActionSpellwardSpawn
+  name: Spawn TP
+  description: Spawn urist
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon: { sprite: deprecated.rsi, state: deprecated}
+    event: !type:SpellwardSpawnActionEvent
