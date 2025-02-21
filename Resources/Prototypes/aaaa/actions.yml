@@ -7,4 +7,4 @@
   - type: InstantAction
     icon: { sprite: deprecated.rsi, state: deprecated}
     useDelay: 1
-    event: !type:SpellwardSpawnActionEvent
+    event: !type:SpawnOnActionEvent
