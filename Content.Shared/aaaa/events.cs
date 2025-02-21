@@ -1,5 +1,5 @@
 using Content.Shared.Actions;
 
-namespace Content.Shared.Imperial.Spellward.Events;
+namespace Content.Shared.Imperial.SpawnOnAction.Events;
 
-public sealed partial class SpellwardSpawnActionEvent : InstantActionEvent { }
+public sealed partial class SpawnOnActionEvent : InstantActionEvent { }

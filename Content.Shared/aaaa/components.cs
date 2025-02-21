@@ -1,10 +1,16 @@
-namespace Content.Shared.Imperial.Spellward;
+namespace Content.Shared.Imperial.SpawnOnAction;
 
 [RegisterComponent]
-public sealed partial class SpellwardTestComponent : Component
+public sealed partial class SpawnOnActionComponent : Component
 {
+    [ViewVariables(VVAccess.ReadOnly)]
     public EntityUid Object;
+    [ViewVariables(VVAccess.ReadOnly)]
     public bool IsFirst = true;
+    [ViewVariables(VVAccess.ReadOnly)]
     public EntityUid? Action;
-    public readonly string ActionId = "ActionSpellwardSpawn";
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    public string ActionId = "ActionSpellwardSpawn";
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public string Prototype = "MobHuman";
 }
