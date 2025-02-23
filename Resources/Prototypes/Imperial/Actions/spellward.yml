@@ -4,7 +4,7 @@
   description: Spawn urist
   noSpawn: true
   components:
-  - type: InstantAction
+  - type: WorldTargetAction
     icon: { sprite: deprecated.rsi, state: deprecated}
     useDelay: 1
     event: !type:SpawnOnActionEvent

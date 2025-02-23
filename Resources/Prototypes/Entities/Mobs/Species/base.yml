@@ -212,7 +212,7 @@
     - DoorBumpOpener
     - AnomalyHost
   - type: InjectNeed # imperial hardsuit injection
-
+  - type: RandomSteal # imperial spellward random steal
 
 - type: entity
   save: false

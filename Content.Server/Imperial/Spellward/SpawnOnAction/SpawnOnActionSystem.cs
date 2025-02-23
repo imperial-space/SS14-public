@@ -1,10 +1,10 @@
 using Content.Shared.Coordinates;
 using Content.Shared.Imperial.SpawnOnAction.Events;
 using Robust.Server.GameObjects;
-using Content.Shared.Imperial.SpawnOnAction;
+using Content.Shared.Imperial.SpawnOnAction.Components;
 using Content.Server.Actions;
 
-namespace Content.Server.Imperial.Spellward;
+namespace Content.Server.Imperial.SpawnOnAction.Systems;
 
 public sealed partial class SpawnOnActionSystem : EntitySystem
 {
@@ -25,14 +25,17 @@ public sealed partial class SpawnOnActionSystem : EntitySystem
         {
             comp.Object = Spawn(comp.Prototype, uid.ToCoordinates());
             comp.IsFirst = false;
+            _transform.SetWorldPosition(
+            comp.Object.Value,
+            ev.Target.Position
+        );
             return;
         }
         if (comp.Object == null || comp.Prototype == null) return;
-        var mapPosition = _transform.GetWorldPosition(uid);
 
         _transform.SetWorldPosition(
             comp.Object.Value,
-            mapPosition
+            ev.Target.Position
         );
         ev.Handled = true;
     }

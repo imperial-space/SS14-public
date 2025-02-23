@@ -1,4 +1,4 @@
-namespace Content.Shared.Imperial.SpawnOnAction;
+namespace Content.Shared.Imperial.SpawnOnAction.Components;
 
 [RegisterComponent]
 public sealed partial class SpawnOnActionComponent : Component
@@ -11,7 +11,7 @@ public sealed partial class SpawnOnActionComponent : Component
     public EntityUid? Action;
     [DataField(required: true), ViewVariables(VVAccess.ReadOnly)]
     public string ActionId = "ActionSpellwardSpawn";
-    [DataField(required: true), ViewVariables(VVAccess.ReadWrite)]
+    [DataField(required: true), ViewVariables(VVAccess.ReadOnly)]
     public string Prototype;
 }
 

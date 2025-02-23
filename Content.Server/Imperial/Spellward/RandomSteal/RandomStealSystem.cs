@@ -14,6 +14,7 @@ using Content.Shared.Hands.Components;
 using Microsoft.CodeAnalysis;
 using Robust.Server.Audio;
 using Robust.Shared.Random;
+using Content.Shared.Item;
 
 namespace Content.Shared.Imperial.RandomSteal.Systems;
 
@@ -60,7 +61,10 @@ public sealed partial class RandomStealSystem : EntitySystem
         if (chosen == back)
         {
             if (!TryComp<StorageComponent>(back, out var storageComponent)) return;
-            item = storageComponent.Container.ContainedEntities[_random.Next(storageComponent.Container.ContainedEntities.Count)];
+            var items = storageComponent.Container.ContainedEntities;
+            List<EntityUid> validItems = [];
+            validItems = items.Where(e => comp.Sizes.Contains(EnsureComp<ItemComponent>(e).Size)).ToList(); // EnsureComp because HOW IT'S IN BACKPACK WITHOUT ITEMCOMP & except exceptions
+            item = validItems[_random.Next(validItems.Count)];
         }
         if (HasComp<StealChanceIncreaserComponent>(first))
             comp.Chance = 60;
@@ -82,19 +86,22 @@ public sealed partial class RandomStealSystem : EntitySystem
         if (!TryComp(ev.Target, out MetaDataComponent? metaDataComponent) || metaDataComponent == null || metaDataComponent.EntityName == null) return;
         var nameStealer = metaDataComponent.EntityName;
 
-        if (!TryComp(ev.User, out MetaDataComponent? metaDataComponentFrom) || metaDataComponentFrom == null || metaDataComponentFrom.EntityName == null) return;
+        if (!TryComp(uid, out MetaDataComponent? metaDataComponentFrom) || metaDataComponentFrom == null || metaDataComponentFrom.EntityName == null) return;
         var nameFrom = metaDataComponentFrom.EntityName;
+
+        if (!TryComp(comp.Item, out MetaDataComponent? metaDataComponentItem) || metaDataComponentItem == null || metaDataComponentItem.EntityName == null) return;
+        var nameItem = metaDataComponentFrom.EntityName;
 
         if (_random.Next(100) > comp.Chance)
         {
-            _popupSystem.PopupEntity(Loc.GetString("stealFailedSpellward", ("entity1", nameFrom), ("entity2", nameStealer)), uid, Popups.PopupType.LargeCaution);
+            _popupSystem.PopupEntity(Loc.GetString("stealFailedSpellward", ("entity1", nameStealer), ("entity2", nameFrom)), uid, Popups.PopupType.LargeCaution);
             _adminLogger.Add(LogType.Action, LogImpact.Medium, $"User {ToPrettyString(ev.Target):user} was trying to steal from {ToPrettyString(uid):target}.");
-            _audio.PlayPvs("", uid: uid);
+            _audio.PlayPvs(comp.FailedSound, uid: ev.User, audioParams: comp.Params);
             return;
         }
-        _adminLogger.Add(LogType.Action, LogImpact.Medium, $"User {ToPrettyString(ev.Target):user} steal from {ToPrettyString((uid)):target} item: {ToPrettyString(comp.Item):item}.");
+        _adminLogger.Add(LogType.Action, LogImpact.Medium, $"User {ToPrettyString(ev.Target):user} steal from {ToPrettyString(uid):target} item: {ToPrettyString(comp.Item):item}.");
         if (!HasComp<HandsComponent>(uid) || ev.Cancelled) return;
-
+        _popupSystem.PopupClient(Loc.GetString("stealSuccessSpellward", ("entity1", nameItem)), ev.Target);
         if (ev.Target == null || comp.Item == null) return;
         _hands.TryForcePickupAnyHand(ev.Target.Value, comp.Item.Value);
     }
