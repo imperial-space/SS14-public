@@ -4,13 +4,14 @@ namespace Content.Shared.Imperial.SpawnOnAction;
 public sealed partial class SpawnOnActionComponent : Component
 {
     [ViewVariables(VVAccess.ReadOnly)]
-    public EntityUid Object;
+    public EntityUid? Object;
     [ViewVariables(VVAccess.ReadOnly)]
     public bool IsFirst = true;
     [ViewVariables(VVAccess.ReadOnly)]
     public EntityUid? Action;
-    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    [DataField(required: true), ViewVariables(VVAccess.ReadOnly)]
     public string ActionId = "ActionSpellwardSpawn";
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public string Prototype = "MobHuman";
+    [DataField(required: true), ViewVariables(VVAccess.ReadWrite)]
+    public string Prototype;
 }
+

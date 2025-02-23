@@ -6,9 +6,10 @@ using Content.Server.Actions;
 
 namespace Content.Server.Imperial.Spellward;
 
-public sealed partial class SpawnOnActionSystems : EntitySystem
+public sealed partial class SpawnOnActionSystem : EntitySystem
 {
     [Dependency] private readonly ActionsSystem _actions = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -26,14 +27,11 @@ public sealed partial class SpawnOnActionSystems : EntitySystem
             comp.IsFirst = false;
             return;
         }
-        var entityManager = IoCManager.Resolve<IEntityManager>();
+        if (comp.Object == null || comp.Prototype == null) return;
+        var mapPosition = _transform.GetWorldPosition(uid);
 
-        var xformSystem = entityManager.System<TransformSystem>();
-
-        var mapPosition = xformSystem.GetWorldPosition(uid);
-
-        xformSystem.SetWorldPosition(
-            comp.Object,
+        _transform.SetWorldPosition(
+            comp.Object.Value,
             mapPosition
         );
         ev.Handled = true;
@@ -45,6 +43,7 @@ public sealed partial class SpawnOnActionSystems : EntitySystem
     private void OnComponentShutdown(EntityUid uid, SpawnOnActionComponent comp, ComponentShutdown ev)
     {
         _actions.RemoveAction(uid, comp.Action);
-        QueueDel(comp.Object);
+        if (comp.Object != null)
+            QueueDel(comp.Object.Value);
     }
 }
