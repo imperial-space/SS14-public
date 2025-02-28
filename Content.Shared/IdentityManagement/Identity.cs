@@ -63,5 +63,4 @@ public static class Identity
         // how everyone else will see you, otherwise people will probably get confused and think they aren't disguised
         return ent.HasComponent<GhostComponent>(viewer);
     }
-
 }

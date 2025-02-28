@@ -136,7 +136,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             }
 
             DoJobSpecials(job, jobEntity);
-            _identity.QueueIdentityUpdate(jobEntity);
+            // _identity.QueueIdentityUpdate(jobEntity); // Imperial Spellward Identity
             return jobEntity;
         }
 
@@ -194,7 +194,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         }
 
         DoJobSpecials(job, entity.Value);
-        _identity.QueueIdentityUpdate(entity.Value);
+        // _identity.QueueIdentityUpdate(entity.Value); // Imperial Spellward Identity
         return entity.Value;
     }
 

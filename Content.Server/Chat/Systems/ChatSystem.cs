@@ -449,7 +449,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         name = FormattedMessage.EscapeText(name);
 
         var wrappedMessage = Loc.GetString(speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
-            ("entityName", name),
+            ("entityName", "SpellwardIdentityReplace"),
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
             ("fontType", speech.FontId),
             ("fontSize", speech.FontSize),
@@ -519,10 +519,10 @@ public sealed partial class ChatSystem : SharedChatSystem
         name = FormattedMessage.EscapeText(name);
 
         var wrappedMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
-            ("entityName", name), ("message", FormattedMessage.EscapeText(message)));
+            ("entityName", "SpellwardIdentityReplace"), ("message", FormattedMessage.EscapeText(message)));
 
         var wrappedobfuscatedMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
-            ("entityName", nameIdentity), ("message", FormattedMessage.EscapeText(obfuscatedMessage)));
+            ("entityName", "SpellwardIdentityReplace"), ("message", FormattedMessage.EscapeText(obfuscatedMessage)));
 
         var wrappedUnknownMessage = Loc.GetString("chat-manager-entity-whisper-unknown-wrap-message",
             ("message", FormattedMessage.EscapeText(obfuscatedMessage)));
@@ -592,7 +592,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         // Emotes use Identity.Name, since it doesn't actually involve your voice at all.
         var wrappedMessage = Loc.GetString("chat-manager-entity-me-wrap-message",
-            ("entityName", name),
+            ("entityName", "SpellwardIdentityReplace"),
             ("entity", ent),
             ("message", FormattedMessage.RemoveMarkupOrThrow(action)));
 
@@ -623,12 +623,12 @@ public sealed partial class ChatSystem : SharedChatSystem
         var wrappedMessage = "";
         if (_sponsorsManager.TryGetInfo(player.UserId, out var sponsorData) && sponsorData.HavePriorityJoin == true && sponsorData.OOCColor != null)
             wrappedMessage = Loc.GetString("chat-manager-entity-looc-patron-wrap-message",
-                    ("entityName", name),
+                    ("entityName", "SpellwardIdentityReplace"),
                     ("message", FormattedMessage.EscapeText(message)),
                     ("patronColor", sponsorData.OOCColor));
         else
             wrappedMessage = Loc.GetString("chat-manager-entity-looc-wrap-message",
-                ("entityName", name),
+                ("entityName", "SpellwardIdentityReplace"),
                 ("message", FormattedMessage.EscapeText(message)));
 
         SendInVoiceRange(ChatChannel.LOOC, message, wrappedMessage, source, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, player.UserId);

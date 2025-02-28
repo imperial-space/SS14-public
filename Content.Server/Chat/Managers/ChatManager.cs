@@ -19,6 +19,9 @@ using Robust.Shared.Player;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
 using Content.Server.Imperial.Sponsors;
+using Robust.Server.Player; // Imperial Spellward Identity start
+using Content.Shared.IdentityManagement.Components;
+using Content.Server.IdentityManagement; // Imperial Spellward Identity end
 
 namespace Content.Server.Chat.Managers;
 
@@ -34,7 +37,7 @@ internal sealed partial class ChatManager : IChatManager
         { "syndicate_agent", "#aa00ff" },
         { "revolutionary", "#aa00ff" }
     };
-
+        [Dependency] private readonly IPlayerManager _playerManager = default!; // Imperial Spellward Identity
         [Dependency] private readonly IReplayRecordingManager _replay = default!;
         [Dependency] private readonly IServerNetManager _netManager = default!;
         [Dependency] private readonly IMoMMILink _mommiLink = default!;
@@ -305,6 +308,20 @@ internal sealed partial class ChatManager : IChatManager
 
     public void ChatMessageToOne(ChatChannel channel, string message, string wrappedMessage, EntityUid source, bool hideChat, INetChannel client, Color? colorOverride = null, bool recordReplay = false, string? audioPath = null, float audioVolume = 0, NetUserId? author = null)
     {
+        // Imperial Spellward Identity start
+
+        if (channel == ChatChannel.Local || channel == ChatChannel.Whisper || channel == ChatChannel.LOOC || channel == ChatChannel.Emotes)
+        {
+            var identitySystem = _entityManager.System<IdentitySystem>();
+            var listener = _playerManager.GetSessionByChannel(client).AttachedEntity ?? null;
+            var name = identitySystem.GetIdentityName(source, _entityManager.EnsureComponent<IdentityComponent>(source), identitySystem.GetIdentityRepresentation(source), listener);
+            Console.WriteLine($"wrapped: {wrappedMessage}, msg: {message}, name: {name}");
+            wrappedMessage = wrappedMessage.Replace(
+                "SpellwardIdentityReplace",
+                name
+            );
+        }
+        // Imperial Spellward Identity end
         var user = author == null ? null : EnsurePlayer(author);
         var netSource = _entityManager.GetNetEntity(source);
         user?.AddEntity(netSource);

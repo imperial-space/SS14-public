@@ -15,6 +15,8 @@ public sealed partial class IdentityComponent : Component
 {
     [ViewVariables]
     public ContainerSlot IdentityEntitySlot = default!;
+    [ViewVariables(VVAccess.ReadWrite)]
+    public List<EntityUid> ListEntities = new() { };
 }
 
 /// <summary>
@@ -41,7 +43,6 @@ public sealed class IdentityRepresentation
         PresumedJob = presumedJob;
         PresumedName = presumedName;
     }
-
     public string ToStringKnown(bool trueName)
     {
         return trueName

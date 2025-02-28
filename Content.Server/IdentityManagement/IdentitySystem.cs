@@ -2,17 +2,18 @@ using Content.Server.Access.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.CriminalRecords.Systems;
 using Content.Server.Humanoid;
-using Content.Shared.Clothing;
 using Content.Shared.Database;
-using Content.Shared.Hands;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.IdentityManagement.Components;
-using Content.Shared.Inventory;
-using Content.Shared.Inventory.Events;
+using Content.Shared.Examine;
 using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 using Robust.Shared.GameObjects.Components.Localization;
+using Content.Shared.Verbs;
+using Robust.Shared.Utility;
+using Content.Shared.Imperial.IdentityFaction.Components;
+
 
 namespace Content.Server.IdentityManagement;
 
@@ -28,22 +29,34 @@ public sealed class IdentitySystem : SharedIdentitySystem
     [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private readonly CriminalRecordsConsoleSystem _criminalRecordsConsole = default!;
 
-    private HashSet<EntityUid> _queuedIdentityUpdates = new();
-
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<IdentityComponent, DidEquipEvent>((uid, _, _) => QueueIdentityUpdate(uid));
-        SubscribeLocalEvent<IdentityComponent, DidEquipHandEvent>((uid, _, _) => QueueIdentityUpdate(uid));
-        SubscribeLocalEvent<IdentityComponent, DidUnequipEvent>((uid, _, _) => QueueIdentityUpdate(uid));
-        SubscribeLocalEvent<IdentityComponent, DidUnequipHandEvent>((uid, _, _) => QueueIdentityUpdate(uid));
-        SubscribeLocalEvent<IdentityComponent, WearerMaskToggledEvent>((uid, _, _) => QueueIdentityUpdate(uid));
-        SubscribeLocalEvent<IdentityComponent, EntityRenamedEvent>((uid, _, _) => QueueIdentityUpdate(uid));
+        SubscribeLocalEvent<IdentityComponent, ExaminedEvent>(UpdateIdentityInfo); // Imperial Spellward Identity
         SubscribeLocalEvent<IdentityComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<IdentityComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerbs); // Imperial Spellward Identity
     }
 
-    public override void Update(float frameTime)
+    private void OnGetAlternativeVerbs(EntityUid uid, IdentityComponent comp, GetVerbsEvent<AlternativeVerb> verb) // Imperial Spellward Identity
+    {
+        if (EnsureComp<IdentityComponent>(verb.User).ListEntities.Contains(verb.Target) || verb.User == verb.Target) return;
+        verb.Verbs.Add(new AlternativeVerb
+        {
+            Act = () =>
+            {
+                OnDate(verb.User, verb.Target);
+            },
+            Category = VerbCategory.Examine,
+            Text = Loc.GetString("dateVerbSpellward"),
+            Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/Spellward/date.rsi"), "date")
+        });
+    }
+    private void OnDate(EntityUid uid, EntityUid second)
+    {
+        EnsureComp<IdentityComponent>(uid).ListEntities.Add(second);
+    }
+    /*public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
@@ -56,7 +69,7 @@ public sealed class IdentitySystem : SharedIdentitySystem
         }
 
         _queuedIdentityUpdates.Clear();
-    }
+    }*/
 
     // This is where the magic happens
     private void OnMapInit(EntityUid uid, IdentityComponent component, MapInitEvent args)
@@ -64,30 +77,22 @@ public sealed class IdentitySystem : SharedIdentitySystem
         var ident = Spawn(null, Transform(uid).Coordinates);
 
         _metaData.SetEntityName(ident, "identity");
-        QueueIdentityUpdate(uid);
         _container.Insert(ident, component.IdentityEntitySlot);
     }
 
-    /// <summary>
-    ///     Queues an identity update to the start of the next tick.
-    /// </summary>
-    public void QueueIdentityUpdate(EntityUid uid)
-    {
-        _queuedIdentityUpdates.Add(uid);
-    }
 
     #region Private API
 
     /// <summary>
     ///     Updates the metadata name for the id(entity) from the current state of the character.
     /// </summary>
-    private void UpdateIdentityInfo(EntityUid uid, IdentityComponent identity)
+    private void UpdateIdentityInfo(EntityUid uid, IdentityComponent identity, ExaminedEvent ev)
     {
         if (identity.IdentityEntitySlot.ContainedEntity is not { } ident)
             return;
 
         var representation = GetIdentityRepresentation(uid);
-        var name = GetIdentityName(uid, representation);
+        var name = GetIdentityName(uid, identity, representation, ev.Examiner);
 
         // Clone the old entity's grammar to the identity entity, for loc purposes.
         if (TryComp<GrammarComponent>(uid, out var grammar))
@@ -116,12 +121,17 @@ public sealed class IdentitySystem : SharedIdentitySystem
         SetIdentityCriminalIcon(uid);
     }
 
-    private string GetIdentityName(EntityUid target, IdentityRepresentation representation)
+    public string GetIdentityName(EntityUid target, IdentityComponent comp, IdentityRepresentation representation, EntityUid? examiner) // Imperial Spellward Identity
     {
-        var ev = new SeeIdentityAttemptEvent();
+        if (examiner is null) return representation.ToStringUnknown();
+        if (comp.ListEntities.Contains(examiner.Value) || EnsureComp<IdentityFactionComponent>(target).Faction == EnsureComp<IdentityFactionComponent>(examiner.Value).Faction || target == examiner)
+        {
+            var eve = new SeeIdentityAttemptEvent();
 
-        RaiseLocalEvent(target, ev);
-        return representation.ToStringKnown(!ev.Cancelled);
+            RaiseLocalEvent(target, eve);
+            return representation.ToStringKnown(!eve.Cancelled);
+        }
+        return representation.ToStringUnknown();
     }
 
     /// <summary>
@@ -138,6 +148,8 @@ public sealed class IdentitySystem : SharedIdentitySystem
     ///     Gets an 'identity representation' of an entity, with their true name being the entity name
     ///     and their 'presumed name' and 'presumed job' being the name/job on their ID card, if they have one.
     /// </summary>
+
+    /*
     private IdentityRepresentation GetIdentityRepresentation(EntityUid target,
         InventoryComponent? inventory=null,
         HumanoidAppearanceComponent? appearance=null)
@@ -158,20 +170,37 @@ public sealed class IdentitySystem : SharedIdentitySystem
         var trueName = Name(target);
         if (!Resolve(target, ref inventory, false))
             return new(trueName, gender, ageString, string.Empty);
-
         string? presumedJob = null;
         string? presumedName = null;
-
         // Get their name and job from their ID for their presumed name.
-        if (_idCard.TryFindIdCard(target, out var id))
-        {
-            presumedName = string.IsNullOrWhiteSpace(id.Comp.FullName) ? null : id.Comp.FullName;
-            presumedJob = id.Comp.LocalizedJobTitle?.ToLowerInvariant();
-        }
+            if (_idCard.TryFindIdCard(target, out var id))
+            {
+                presumedName = string.IsNullOrWhiteSpace(id.Comp.FullName) ? null : id.Comp.FullName;
+                presumedJob = id.Comp.LocalizedJobTitle?.ToLowerInvariant();
+            }
 
         // If it didn't find a job, that's fine.
         return new(trueName, gender, ageString, presumedName, presumedJob);
     }
+    Wizard's way*/
 
+    public IdentityRepresentation GetIdentityRepresentation(EntityUid target,
+        HumanoidAppearanceComponent? appearance = null) // Imperial Spellward Identity
+    {
+        var age = 18;
+        var gender = Gender.Epicene;
+        var species = SharedHumanoidAppearanceSystem.DefaultSpecies.ToString();
+
+        if (Resolve(target, ref appearance, false))
+        {
+            gender = appearance.Gender;
+            age = appearance.Age;
+            species = appearance.Species;
+        }
+
+        var ageString = _humanoid.GetAgeRepresentation(species, age);
+        var trueName = Name(target);
+        return new(trueName, gender, ageString, null, null);
+    }
     #endregion
 }

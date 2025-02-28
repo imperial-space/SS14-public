@@ -221,7 +221,7 @@ public sealed partial class ZombieSystem
         //gives it the funny "Zombie ___" name.
         _nameMod.RefreshNameModifiers(target);
 
-        _identity.QueueIdentityUpdate(target);
+        // _identity.QueueIdentityUpdate(target); // Imperial Spellward Identity
 
         var htn = EnsureComp<HTNComponent>(target);
         htn.RootTask = new HTNCompoundTask() { Task = "SimpleHostileCompound" };

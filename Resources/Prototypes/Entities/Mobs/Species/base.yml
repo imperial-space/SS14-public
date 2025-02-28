@@ -213,6 +213,7 @@
     - AnomalyHost
   - type: InjectNeed # imperial hardsuit injection
   - type: RandomSteal # imperial spellward random steal
+  - type: IdentityFaction # imperial spellward identity
 
 - type: entity
   save: false

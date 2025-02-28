@@ -101,7 +101,7 @@ public sealed class ChameleonClothingSystem : SharedChameleonClothingSystem
         else
             RemComp<IdentityBlockerComponent>(uid);
 
-        if (component.User != null)
-            _identity.QueueIdentityUpdate(component.User.Value);
+        // if (component.User != null)
+        //     _identity.QueueIdentityUpdate(component.User.Value); // Imperial Spellward Identity
     }
 }
