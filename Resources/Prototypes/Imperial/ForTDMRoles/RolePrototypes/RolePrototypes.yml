@@ -4,9 +4,6 @@
   name: UrbanPreset
   suffix: TDM
   components:
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplanter
     - type: RandomMetadata
       nameSegments:
       - NamesFirstMilitary
@@ -19,19 +16,19 @@
       prototypes: [ TDMUrbanGear ]
     - type: RandomHumanoidAppearance
       randomizeName: false
-    # - type: CrewSkills
-    #   skills:
-    #     - skillBotany
-    #     - skillBaseMed
-    #     - skillBaseConstraction
-    #     - skillHacking
-    #     - skillInstrumentation
-    #     - skillMaintenance
-    #     - skillMedicalEquipment
-    #     - skillPharmacology
-    #     - skillPiloting
-    #     - skillShooting
-    #     - skillSurgery
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
 
 - type: entity
   parent: MobHuman
@@ -39,9 +36,6 @@
   name: ForestPreset
   suffix: TDM
   components:
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplanter
     - type: RandomMetadata
       nameSegments:
       - NamesFirstMilitary
@@ -54,19 +48,19 @@
       prototypes: [ TDMForestGear ]
     - type: RandomHumanoidAppearance
       randomizeName: false
-    # - type: CrewSkills
-    #   skills:
-    #     - skillBotany
-    #     - skillBaseMed
-    #     - skillBaseConstraction
-    #     - skillHacking
-    #     - skillInstrumentation
-    #     - skillMaintenance
-    #     - skillMedicalEquipment
-    #     - skillPharmacology
-    #     - skillPiloting
-    #     - skillShooting
-    #     - skillSurgery
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
 
 - type: entity
   parent: MobHuman
@@ -74,9 +68,6 @@
   name: SnowPreset
   suffix: TDM
   components:
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplanter
     - type: RandomMetadata
       nameSegments:
       - NamesFirstMilitary
@@ -89,19 +80,19 @@
       prototypes: [ TDMSnowGear ]
     - type: RandomHumanoidAppearance
       randomizeName: false
-    # - type: CrewSkills
-    #   skills:
-    #     - skillBotany
-    #     - skillBaseMed
-    #     - skillBaseConstraction
-    #     - skillHacking
-    #     - skillInstrumentation
-    #     - skillMaintenance
-    #     - skillMedicalEquipment
-    #     - skillPharmacology
-    #     - skillPiloting
-    #     - skillShooting
-    #     - skillSurgery
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
 
 - type: entity
   parent: MobHuman
@@ -109,9 +100,6 @@
   name: DesertPreset
   suffix: TDM
   components:
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplanter
     - type: RandomMetadata
       nameSegments:
       - NamesFirstMilitary
@@ -124,19 +112,19 @@
       prototypes: [ TDMDesertGear ]
     - type: RandomHumanoidAppearance
       randomizeName: false
-    # - type: CrewSkills
-    #   skills:
-    #     - skillBotany
-    #     - skillBaseMed
-    #     - skillBaseConstraction
-    #     - skillHacking
-    #     - skillInstrumentation
-    #     - skillMaintenance
-    #     - skillMedicalEquipment
-    #     - skillPharmacology
-    #     - skillPiloting
-    #     - skillShooting
-    #     - skillSurgery
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
 
 - type: entity
   parent: MobHuman
@@ -144,9 +132,6 @@
   name: MedicalPreset
   suffix: TDM
   components:
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplanter
     - type: RandomMetadata
       nameSegments:
       - NamesFirstMilitary
@@ -159,20 +144,20 @@
       prototypes: [ TDMMedicalGear ]
     - type: RandomHumanoidAppearance
       randomizeName: false
-    # - type: CrewSkills
-    #   skills:
-    #     - skillBotany
-    #     - skillBaseMed
-    #     - skillBaseConstraction
-    #     - skillHacking
-    #     - skillInstrumentation
-    #     - skillMaintenance
-    #     - skillMedicalEquipment
-    #     - skillPharmaceuticals
-    #     - skillPharmacology
-    #     - skillPiloting
-    #     - skillShooting
-    #     - skillSurgery
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmaceuticals
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
 
 - type: entity
   parent: MobHuman
@@ -180,9 +165,6 @@
   name: LeadPreset
   suffix: TDM
   components:
-    - type: AutoImplant
-      implants:
-      - DeathAcidifierImplanter
     - type: RandomMetadata
       nameSegments:
       - NamesFirstMilitaryLeader
@@ -195,16 +177,16 @@
       prototypes: [ TDMLeadGear ]
     - type: RandomHumanoidAppearance
       randomizeName: false
-    # - type: CrewSkills
-    #   skills:
-    #     - skillBotany
-    #     - skillBaseMed
-    #     - skillBaseConstraction
-    #     - skillHacking
-    #     - skillInstrumentation
-    #     - skillMaintenance
-    #     - skillMedicalEquipment
-    #     - skillPharmacology
-    #     - skillPiloting
-    #     - skillShooting
-    #     - skillSurgery
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
