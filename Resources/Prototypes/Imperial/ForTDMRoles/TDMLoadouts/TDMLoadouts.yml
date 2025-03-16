@@ -12,7 +12,7 @@
     ears: ClothingHeadsetGanza
     belt: ClothingBeltMinuteManCamoUrbanWebbing
     pocket1: TerminalT4000
-    pocket2: DeathAcidifierImplanter
+    pocket2: CombatMedipen
 
 - type: startingGear
   id: TDMForestGear
@@ -28,7 +28,7 @@
     ears: ClothingHeadsetGanza
     belt: ClothingBeltMinuteManCamoForestWebbing
     pocket1: TerminalT4000
-    pocket2: DeathAcidifierImplanter
+    pocket2: CombatMedipen
 
 - type: startingGear
   id: TDMSnowGear
@@ -44,7 +44,7 @@
     ears: ClothingHeadsetGanza
     belt: ClothingBeltMinuteManCamoSnowWebbing
     pocket1: TerminalT4000
-    pocket2: DeathAcidifierImplanter
+    pocket2: CombatMedipen
 
 - type: startingGear
   id: TDMDesertGear
@@ -60,7 +60,7 @@
     ears: ClothingHeadsetGanza
     belt: ClothingBeltMinuteManCamoDesertWebbing
     pocket1: TerminalT4000
-    pocket2: DeathAcidifierImplanter
+    pocket2: CombatMedipen
 
 - type: startingGear
   id: TDMMedicalGear
@@ -76,7 +76,7 @@
     ears: ClothingHeadsetGanza
     belt: ClothingBeltMinuteManMedicWebbing
     pocket1: TerminalT4000
-    pocket2: DeathAcidifierImplanter
+    pocket2: CombatMedipen
   storage:
     back:
     - MedkitCombatFilled
@@ -99,4 +99,5 @@
     ears: ClothingHeadsetGanza
     belt: ClothingBeltMinuteManCamoUrbanWebbing
     pocket1: TerminalT6500
-    pocket2: DeathAcidifierImplanter
+    pocket2: CombatMedipen
+
