@@ -1,0 +1,24 @@
+    # - CruentaArmor +
+    # - CruentaStorage +
+    # - CruentaConstruction +
+    # - CruentaReinforcements +
+
+- type: storeCategory
+  id: CruentaArmor
+  name: store-category-sacerdos-uplink-Armor
+  priority: 5
+
+- type: storeCategory
+  id: CruentaStorage
+  name: store-category-sacerdos-uplink-Storage
+  priority: 8
+
+- type: storeCategory
+  id: CruentaConstruction
+  name: store-category-sacerdos-uplink-Construction
+  priority: 9
+
+- type: storeCategory
+  id: CruentaReinforcements
+  name: store-category-sacerdos-uplink-Reinforcements
+  priority: 11

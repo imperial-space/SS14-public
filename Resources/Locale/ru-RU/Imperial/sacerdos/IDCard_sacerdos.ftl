@@ -1,0 +1,9 @@
+ent-ID_Leaders_sacerdos = ID карта лидера
+    .desc = Карта, необходимая для доступа в различные места.
+ent-ID_fight_sacerdos = ID карта бойца
+    .desc = Карта, необходимая для доступа в различные места.
+ent-ID_Medical_sacerdos = ID карта медика
+    .desc = На самом деле эта обычная серая айди-карта, закрашенная серебристой краской.
+job-name-Leaders-sacerdos = Лидер чёрно-белой команды
+job-name-fight-sacerdos = Боец чёрно-белой команды
+job-name-Medical-sacerdos = Медик чёрно-белой команды

@@ -1,0 +1,79 @@
+- type: entity
+  parent: BaseWeaponTurret
+  name: disposable ballistic turret
+  id: WeaponTurretCruenta
+  suffix: Phantom4502, Cruenta
+  components:
+    - type: NpcFactionMember
+      factions:
+        - NanoTrasen
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 600
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 185
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:TriggerBehavior
+    - type: Gun
+      fireRate: 2
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+    - type: BallisticAmmoProvider
+      proto: CartridgePistol
+      capacity: 80
+    - type: Construction
+      deconstructionTarget: null
+      graph: WeaponTurretSyndicateDisposable
+      node: disposableTurret
+    - type: Repairable
+      qualityNeeded: "Anchoring"
+      doAfterDelay: 3
+    - type: TriggerWhenEmpty
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: Default
+      maxIntensity: 10
+      intensitySlope: 1.5
+      totalIntensity: 30
+      canCreateVacuum: false
+
+- type: entity
+  name: electrical toolbox
+  suffix: Phantom4502, Cruenta
+  parent: ToolboxElectrical
+  id: ToolboxElectricalTurretCruenta
+  description: A toolbox typically stocked with electrical gear.
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 50
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 1
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              WeaponTurretCruenta:
+                min: 1
+                max: 1
+  - type: StaticPrice
+    price: 1350

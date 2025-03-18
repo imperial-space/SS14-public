@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by alzore_(Discord) for SS14 using the colors of the blood-red hardsuit",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "Leaders_sacerdos"
+    },
+    {
+      "name": "fight_sacerdos"
+    },
+    {
+      "name": "Med_sacerdos"
+    }
+  ]
+}
