@@ -3694,12 +3694,6 @@ entities:
     - type: Transform
       pos: -5.5,16.5
       parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        610:
-        - MedicalScannerSender: MedicalScannerReceiver
-        608:
-        - CloningPodSender: CloningPodReceiver
 - proto: ComputerComms
   entities:
   - uid: 188
@@ -5427,14 +5421,6 @@ entities:
     - type: AccessReader
       access:
       - - CentralCommand
-    - type: DeviceLinkSource
-      linkedPorts:
-        1079:
-        - Pressed: Toggle
-        1078:
-        - Pressed: Toggle
-        1077:
-        - Pressed: Toggle
   - uid: 1013
     components:
     - type: Transform
@@ -5444,14 +5430,6 @@ entities:
     - type: AccessReader
       access:
       - - CentralCommand
-    - type: DeviceLinkSource
-      linkedPorts:
-        1082:
-        - Pressed: Toggle
-        1081:
-        - Pressed: Toggle
-        1080:
-        - Pressed: Toggle
 - proto: LockerAtmospherics
   entities:
   - uid: 420
@@ -6449,17 +6427,11 @@ entities:
     - type: Transform
       pos: 3.5,-9.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 82
     components:
     - type: Transform
       pos: 3.5,-8.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
 - proto: SpawnERTEngineerEVAPreset
   entities:
   - uid: 394

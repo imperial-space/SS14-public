@@ -16,9 +16,9 @@
     state: box
     layers:
     - state: box
-      map: ["closeLayer"]
-    - state: box-open
-      map: ["openLayer"]
+      map: ["closeLayer"] # Imperial Space Revert Cabinetification 
+    - state: box-open # Imperial Space Revert Cabinetification 
+      map: ["openLayer"] # Imperial Space Revert Cabinetification 
       visible: false
     - state: box1
       map: ["box1"]
@@ -493,6 +493,9 @@
     state: box
     layers:
     - state: box
+      map: ["closeLayer"]
+    - state: box-open
+      map: ["openLayer"]
   - type: Item
     sprite: Objects/Storage/Happyhonk/clown.rsi
     heldPrefix: box

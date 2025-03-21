@@ -11,6 +11,9 @@
       "name": "base"
     },
     {
+      "name": "base-b"
+    },
+    {
       "name": "mag-1"
     },
     {
@@ -18,6 +21,15 @@
     },
     {
       "name": "mag-3"
+    },
+    {
+      "name": "magb-1"
+    },
+    {
+      "name": "magb-2"
+    },
+    {
+      "name": "magb-3"
     }
   ]
 }

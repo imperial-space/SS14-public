@@ -52,5 +52,5 @@
 
 - type: lobbyBackground
   id: ImperialDefault
-  background: /Textures/Imperial/LobbyScreens/imperialDefault.jpg
+  background: /Textures/Imperial/LobbyScreens/imperialMarch.jpg
 # imperial add-on end

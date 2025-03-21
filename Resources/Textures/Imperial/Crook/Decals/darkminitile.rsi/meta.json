@@ -1,0 +1,47 @@
+{
+    "version": 1,
+    "license": "CC0-1.0",
+    "copyright": "sprite made by @jsilverhand2.1, PR made by @crookielv",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "corner_ne"
+        },
+        {
+            "name": "corner_se"
+        },
+        {
+            "name": "corner_nw"
+        },
+        {
+            "name": "corner_sw"
+        },
+        {
+            "name": "line_n"
+        },
+        {
+            "name": "line_e"
+        },
+        {
+            "name": "line_s"
+        },
+        {
+            "name": "line_w"
+        },
+        {
+            "name": "inner_ne"
+        },
+        {
+            "name": "inner_se"
+        },
+        {
+            "name": "inner_nw"
+        },
+        {
+            "name": "inner_sw"
+        }
+    ]
+}

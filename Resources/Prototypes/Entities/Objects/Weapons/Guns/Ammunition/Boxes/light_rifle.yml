@@ -29,17 +29,22 @@
   parent: BaseMagazineBoxLightRifle
   id: MagazineBoxLightRifleBig
   name: ammunition box (.30 rifle)
-  suffix: Big
+# suffix: Big # Imperial Space Revert Cabinetification
   components:
   - type: BallisticAmmoProvider
     capacity: 200
     proto: CartridgeLightRifle
   - type: Sprite
     layers:
-    - state: base
+    - state: base-b # Imperial Space Revert Cabinetification По стандарту state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
+    - state: magb-1 # imperial space revert cabinetification По стандарту state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals # imperial space revert cabinetification 
+    magState: magb
+    steps: 4
+    zeroVisible: false
+  - type: Appearance # imperial space revert cabinetification 
 
 - type: entity
   parent: BaseMagazineBoxLightRifle

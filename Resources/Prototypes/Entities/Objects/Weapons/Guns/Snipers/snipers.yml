@@ -59,6 +59,8 @@
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
   - type: GunRequiresWield
   - type: Gun
+    projectileSpeed: 50 # Imperial Balance
+    projectileSpeedModified: 50 # Imperial Balance
     fireRate: 0.4
     selectedMode: SemiAuto
     availableModes:
@@ -72,12 +74,15 @@
     capacity: 5
     proto: CartridgeAntiMateriel
   - type: SpeedModifiedOnWield
-    walkModifier: 0.25
-    sprintModifier: 0.25
+    walkModifier: 0.70 # Imperial balance
+    sprintModifier: 0.70 # Imperial balance
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
     pvsIncrease: 0.3
+  - type: GunWieldBonus # Imperial balance
+    minAngle: -32
+    maxAngle: -32
 
 - type: entity
   name: musket

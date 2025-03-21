@@ -84,7 +84,8 @@ ent-BoxMagazineRifleRubber = коробка магазинов с .20 винто
     .desc = Полная коробка магазинов с резиновыми патронами калибра .20 винтовочный.
 ent-BoxMagazineChimpOmega = коробка картриджей с частицами омега
     .desc = Коробка, полная картриджей с омега-частицами.
-ent-MagazinePistolSubMachineGunUranium = магазин ПП (.35 авто резиновые)
+ent-MagazinePistolSubMachineGunUranium = магазин ПП (.35 авто ураниум)
+ent-MagazinePistolSubMachineGunIncendiary = магазин ПП (.35 авто зажигательный)
 
 ent-BoxShotgunUranium = коробка ружейных патронов (уран)
     .desc = Полная коробка урановых ружейных патронов.

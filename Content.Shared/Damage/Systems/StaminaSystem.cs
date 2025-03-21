@@ -217,7 +217,7 @@ public sealed partial class StaminaSystem : EntitySystem
     /// <summary>
     /// Tries to take stamina damage without raising the entity over the crit threshold.
     /// </summary>
-    public bool TryTakeStamina(EntityUid uid, float value, StaminaComponent? component = null, EntityUid? source = null, EntityUid? with = null)
+    public bool TryTakeStamina(EntityUid uid, float value, StaminaComponent? component = null, EntityUid? source = null, EntityUid? with = null, bool ignoreResistances = false) // Imperial Stamina Resistance
     {
         // Something that has no Stamina component automatically passes stamina checks
         if (!Resolve(uid, ref component, false))
@@ -228,12 +228,12 @@ public sealed partial class StaminaSystem : EntitySystem
         if (oldStam + value > component.CritThreshold || component.Critical)
             return false;
 
-        TakeStaminaDamage(uid, value, component, source, with, visual: false);
+        TakeStaminaDamage(uid, value, component, source, with, visual: false, ignoreResistances: ignoreResistances); // Imperial Stamina Resistance
         return true;
     }
 
     public void TakeStaminaDamage(EntityUid uid, float value, StaminaComponent? component = null,
-        EntityUid? source = null, EntityUid? with = null, bool visual = true, SoundSpecifier? sound = null)
+        EntityUid? source = null, EntityUid? with = null, bool visual = true, SoundSpecifier? sound = null, bool ignoreResistances = false) // Imperial Stamina Resistance
     {
         if (!Resolve(uid, ref component, false))
             return;
@@ -253,6 +253,7 @@ public sealed partial class StaminaSystem : EntitySystem
         {
             var damage = value;
             var evd = new StaminaModifyEvent(damage, source);
+            evd.IgnoreResistances = ignoreResistances; // Imperial Stamina Resistance
             RaiseLocalEvent(uid, evd);
             component.StaminaDamage = MathF.Max(0f, component.StaminaDamage + evd.Damage);
         }
@@ -277,7 +278,7 @@ public sealed partial class StaminaSystem : EntitySystem
         if (oldDamage < slowdownThreshold &&
             component.StaminaDamage > slowdownThreshold)
         {
-            _stunSystem.TrySlowdown(uid, TimeSpan.FromSeconds(3), true, 0.8f, 0.8f);
+            //_stunSystem.TrySlowdown(uid, TimeSpan.FromSeconds(3), true, 0.8f, 0.8f); imperial medieval
         }
 
         SetStaminaAlert(uid, component);

@@ -1,7 +1,68 @@
+- type: latheRecipePack
+  id: DocumentsStatic
+  recipes:
+  - ReportOnTheStationSituationRecipe
+  - RequestForAppointmentOfActingCaptainRecipe
+  - RequestForAppointmentOfActingHeadOfDepartmentRecipe
+  - ReportGoalAchievementRecipe
+  - ApplicationForDismissHeadRecipe
+  - ApplicationForPassengerEmploymentRecipe
+  - ApplicationForPositionChangeRecipe
+  - AccessIncreaseOrderRecipe
+  - CertificationOfQualificationUpgradeRecipe
+  - DismissalOrderRecipe
+  - RequestForERTRecipe
+  - RequestForCBURNRecipe
+  - RequestForCentComRecipe
+  - RequestForBonusRecipe
+  - AccessDeniedOrderRecipe
+  - ApplicationForIDCardRecipe
+  - ApplicationForPDARecipe
+  - PermissionToCarryEquipmentRecipe
+  - CrewSRPViolationReportRecipe
+  - ParoleRequestForPrisonerRecipe
+  - InternalAffairsAgentReportRecipe
+  - ComplaintRecipe
+  - InterrogationReportRecipe
+  - VoluntaryConfessionRecipe
+  - DutyOrderRecipe
+  - FinalExamReportRecipe
+  - JudicialProceedingRecipe
+  - SearchOrderRecipe
+  - WeaponCarryingPermitRecipe
+  - TrackerImplantInstallationOrderRecipe
+  - EliminationOrderRecipe
+  - ArrestWarrantRecipe
+  - SearchWarrantRecipe
+  - InvestigationReportRecipe
+  - ChemicalOrderRecipe
+  - DischargeSummaryRecipe
+  - RequestForPharmaceuticalProductionRecipe
+  - DeathCertificateRecipe
+  - PsychologicalHealthConclusionRecipe
+  - MedicalPrescriptionRecipe
+  - EuthanasiaRequestRecipe
+  - BuildingPermitRecipe
+  - ApplicationForConstructionWorkRecipe
+  - RepairWorkRequestRecipe
+  - PrintedDocumentReportStationRecipe
+  - ApprovedGoalBlueprintRecipe
+  - PowerSystemReportRecipe
+  - AtmosSystemReportRecipe
+  - CreatureSapienceRecognitionRecipe
+  - SubjectStudyReportRecipe
+  - ArtifactReportRecipe
+  - OrderCreateProductRecipe
+  - OrderRecipe
+  - WeaponOrderRecipe
+  - DangerousSkillsTrainingRequestRecipe
+  - MarriageCertificateRecipe
+  - DivorceCertificateRecipe
+
 - type: latheRecipe
   id: ReportOnTheStationSituationRecipe
   result: ReportOnTheStationSituation
-  category: Command
+  category: DocumentPrinterCommand
   completeTime: 4
   applyMaterialDiscount: false
   materials:
@@ -10,7 +71,7 @@
 - type: latheRecipe
   id: RequestForAppointmentOfActingCaptainRecipe
   result: RequestForAppointmentOfActingCaptain
-  category: Command
+  category: DocumentPrinterCommand
   completeTime: 4
   applyMaterialDiscount: false
   materials:
@@ -19,7 +80,7 @@
 - type: latheRecipe
   id: RequestForAppointmentOfActingHeadOfDepartmentRecipe
   result: RequestForAppointmentOfActingHeadOfDepartment
-  category: Command
+  category: DocumentPrinterCommand
   completeTime: 4
   applyMaterialDiscount: false
   materials:
@@ -28,7 +89,7 @@
 - type: latheRecipe
   id: ReportGoalAchievementRecipe
   result: ReportGoalAchievement
-  category: Command
+  category: DocumentPrinterCommand
   completeTime: 4
   applyMaterialDiscount: false
   materials:
@@ -37,7 +98,7 @@
 - type: latheRecipe
   id: ApplicationForDismissHeadRecipe
   result: ApplicationForDismissHead
-  category: Command
+  category: DocumentPrinterCommand
   completeTime: 4
   applyMaterialDiscount: false
   materials:
@@ -46,7 +107,7 @@
 - type: latheRecipe
   id: ApplicationForPassengerEmploymentRecipe
   result: ApplicationForPassengerEmployment
-  category: Command
+  category: DocumentPrinterCommand
   completeTime: 4
   applyMaterialDiscount: false
   materials:
@@ -55,7 +116,7 @@
 - type: latheRecipe
   id: ApplicationForPositionChangeRecipe
   result: ApplicationForPositionChange
-  category: Command
+  category: DocumentPrinterCommand
   completeTime: 4
   applyMaterialDiscount: false
   materials:
@@ -64,7 +125,7 @@
 - type: latheRecipe
   id: AccessIncreaseOrderRecipe
   result: AccessIncreaseOrder
-  category: Command
+  category: DocumentPrinterCommand
   completeTime: 4
   applyMaterialDiscount: false
   materials:
@@ -73,7 +134,7 @@
 - type: latheRecipe
   id: AccessDeniedOrderRecipe
   result: AccessDeniedOrder
-  category: Command
+  category: DocumentPrinterCommand
   completeTime: 4
   applyMaterialDiscount: false
   materials:
@@ -82,7 +143,7 @@
 - type: latheRecipe
   id: CertificationOfQualificationUpgradeRecipe
   result: CertificationOfQualificationUpgrade
-  category: Command
+  category: DocumentPrinterCommand
   completeTime: 4
   applyMaterialDiscount: false
   materials:
@@ -91,7 +152,7 @@
 - type: latheRecipe
   id: DismissalOrderRecipe
   result: DismissalOrder
-  category: Command
+  category: DocumentPrinterCommand
   completeTime: 4
   applyMaterialDiscount: false
   materials:
@@ -100,7 +161,7 @@
 - type: latheRecipe
   id: RequestForERTRecipe
   result: RequestForERT
-  category: Command
+  category: DocumentPrinterCommand
   completeTime: 4
   applyMaterialDiscount: false
   materials:
@@ -109,7 +170,7 @@
 - type: latheRecipe
   id: RequestForCBURNRecipe
   result: RequestForCBURN
-  category: Command
+  category: DocumentPrinterCommand
   completeTime: 4
   applyMaterialDiscount: false
   materials:
@@ -118,7 +179,7 @@
 - type: latheRecipe
   id: RequestForCentComRecipe
   result: RequestForCentCom
-  category: Command
+  category: DocumentPrinterCommand
   completeTime: 4
   applyMaterialDiscount: false
   materials:
@@ -127,7 +188,7 @@
 - type: latheRecipe
   id: RequestForBonusRecipe
   result: RequestForBonus
-  category: Command
+  category: DocumentPrinterCommand
   completeTime: 4
   applyMaterialDiscount: false
   materials:
@@ -136,7 +197,7 @@
 - type: latheRecipe
   id: ApplicationForIDCardRecipe
   result: ApplicationForIDCard
-  category: Command
+  category: DocumentPrinterCommand
   completeTime: 4
   applyMaterialDiscount: false
   materials:
@@ -145,7 +206,7 @@
 - type: latheRecipe
   id: ApplicationForPDARecipe
   result: ApplicationForPDA
-  category: Command
+  category: DocumentPrinterCommand
   completeTime: 4
   applyMaterialDiscount: false
   materials:
@@ -154,7 +215,7 @@
 - type: latheRecipe
   id: PermissionToCarryEquipmentRecipe
   result: PermissionToCarryEquipment
-  category: Command
+  category: DocumentPrinterCommand
   completeTime: 4
   applyMaterialDiscount: false
   materials:

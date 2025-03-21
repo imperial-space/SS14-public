@@ -237,7 +237,7 @@
     shoes: ClothingShoesBootsMagAdv #DOTO black variant
     id: DeadSquadPDA
     pocket1: ERTUplinkDeadSquad
-    #pocket2: WeaponLaserGun
+    pocket2: ToolDebug
     suitstorage: OxygenTankFilled
     belt: ClothingBeltDeadSquadFilled
 #DEAD SQUAD END

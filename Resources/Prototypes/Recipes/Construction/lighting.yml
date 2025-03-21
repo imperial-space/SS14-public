@@ -63,3 +63,69 @@
   description: Лампа большой мощности с небольшим зелёным кристаллом внутри. # Imperial Recipes Locale
   icon: { sprite: Objects/Power/light_tube.rsi, state: normal }
   objectType: Item
+
+- type: construction
+  name:  Голубая лампа-трубка # Imperial Recipes Locale
+  id: CyanLightBulb
+  graph: CyanLightBulb
+  startNode: start
+  targetNode: icon
+  category: construction-category-utilities
+  description: Лампа большой мощности с небольшим голубым кристаллом внутри. # Imperial Recipes Locale
+  icon: { sprite: Objects/Power/light_bulb.rsi, state: normal }
+  objectType: Item
+
+- type: construction
+  name: Синяя лампа-трубка # Imperial Recipes Locale
+  id: BlueLightBulb
+  graph: BlueLightBulb
+  startNode: start
+  targetNode: icon
+  category: construction-category-utilities
+  description: Лампа большой мощности с небольшим синим кристаллом внутри. # Imperial Recipes Locale
+  icon: { sprite: Objects/Power/light_bulb.rsi, state: normal }
+  objectType: Item
+
+- type: construction
+  name: Розовая лампа-трубка # Imperial Recipes Locale
+  id: PinkLightBulb
+  graph: PinkLightBulb
+  startNode: start
+  targetNode: icon
+  category: construction-category-utilities
+  description: Лампа большой мощности с небольшим розовым кристаллом внутри. # Imperial Recipes Locale
+  icon: { sprite: Objects/Power/light_bulb.rsi, state: normal }
+  objectType: Item
+
+- type: construction
+  name: Оранжевая лампа-трубка # Imperial Recipes Locale
+  id: OrangeLightBulb
+  graph: OrangeLightBulb
+  startNode: start
+  targetNode: icon
+  category: construction-category-utilities
+  description: Лампа большой мощности с небольшим оранжевым кристаллом внутри. # Imperial Recipes Locale
+  icon: { sprite: Objects/Power/light_bulb.rsi, state: normal }
+  objectType: Item
+
+- type: construction
+  name: Красная лампа-трубка # Imperial Recipes Locale
+  id: RedLightBulb
+  graph: RedLightBulb
+  startNode: start
+  targetNode: icon
+  category: construction-category-utilities
+  description: Лампа большой мощности с небольшим цветным красным кристаллом внутри. # Imperial Recipes Locale
+  icon: { sprite: Objects/Power/light_bulb.rsi, state: normal }
+  objectType: Item
+
+- type: construction
+  name: Зеленая лампа-трубка # Imperial Recipes Locale
+  id: GreenLightBulb
+  graph: GreenLightBulb
+  startNode: start
+  targetNode: icon
+  category: construction-category-utilities
+  description: Лампа большой мощности с небольшим голубым кристаллом внутри. # Imperial Recipes Locale
+  icon: { sprite: Objects/Power/light_bulb.rsi, state: normal }
+  objectType: Item

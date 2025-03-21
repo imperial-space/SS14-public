@@ -1,0 +1,275 @@
+### DARK
+### DARK
+### DARK
+
+- type: decal
+  id: MiniTileSpaceRDarkCornerNe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/darkminitile.rsi
+    state: corner_ne
+
+- type: decal
+  id: MiniTileSpaceRDarkCornerSe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/darkminitile.rsi
+    state: corner_se
+
+- type: decal
+  id: MiniTileSpaceRDarkCornerNw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/darkminitile.rsi
+    state: corner_nw
+
+- type: decal
+  id: MiniTileSpaceRDarkCornerSw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/darkminitile.rsi
+    state: corner_sw
+
+- type: decal
+  id: MiniTileSpaceRDarkInnerNe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/darkminitile.rsi
+    state: inner_ne
+
+- type: decal
+  id: MiniTileSpaceRDarkInnerSe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/darkminitile.rsi
+    state: inner_se
+
+- type: decal
+  id: MiniTileSpaceRDarkInnerNw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/darkminitile.rsi
+    state: inner_nw
+
+- type: decal
+  id: MiniTileSpaceRDarkInnerSw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/darkminitile.rsi
+    state: inner_sw
+
+- type: decal
+  id: MiniTileSpaceRDarkLineN
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/darkminitile.rsi
+    state: line_n
+
+- type: decal
+  id: MiniTileSpaceRDarkLineE
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/darkminitile.rsi
+    state: line_e
+
+- type: decal
+  id: MiniTileSpaceRDarkLineS
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/darkminitile.rsi
+    state: line_s
+
+- type: decal
+  id: MiniTileSpaceRDarkLineW
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/darkminitile.rsi
+    state: line_w
+
+### DARK
+### DARK
+### DARK
+
+### STEEL
+### STEEL
+### STEEL
+
+- type: decal
+  id: MiniTileSpaceRSteelCornerNe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/steelminitile.rsi
+    state: corner_ne
+
+- type: decal
+  id: MiniTileSpaceRSteelCornerSe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/steelminitile.rsi
+    state: corner_se
+
+- type: decal
+  id: MiniTileSpaceRSteelCornerNw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/steelminitile.rsi
+    state: corner_nw
+
+- type: decal
+  id: MiniTileSpaceRSteelCornerSw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/steelminitile.rsi
+    state: corner_sw
+
+- type: decal
+  id: MiniTileSpaceRSteelInnerNe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/steelminitile.rsi
+    state: inner_ne
+
+- type: decal
+  id: MiniTileSpaceRSteelInnerSe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/steelminitile.rsi
+    state: inner_se
+
+- type: decal
+  id: MiniTileSpaceRSteelInnerNw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/steelminitile.rsi
+    state: inner_nw
+
+- type: decal
+  id: MiniTileSpaceRSteelInnerSw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/steelminitile.rsi
+    state: inner_sw
+
+- type: decal
+  id: MiniTileSpaceRSteelLineN
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/steelminitile.rsi
+    state: line_n
+
+- type: decal
+  id: MiniTileSpaceRSteelLineE
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/steelminitile.rsi
+    state: line_e
+
+- type: decal
+  id: MiniTileSpaceRSteelLineS
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/steelminitile.rsi
+    state: line_s
+
+- type: decal
+  id: MiniTileSpaceRSteelLineW
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/steelminitile.rsi
+    state: line_w
+
+### STEEL
+### STEEL
+### STEEL
+
+### WHITE
+### WHITE
+### WHITE
+
+- type: decal
+  id: MiniTileSpaceRWhiteCornerNe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/whiteminitile.rsi
+    state: corner_ne
+
+- type: decal
+  id: MiniTileSpaceRWhiteCornerSe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/whiteminitile.rsi
+    state: corner_se
+
+- type: decal
+  id: MiniTileSpaceRWhiteCornerNw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/whiteminitile.rsi
+    state: corner_nw
+
+- type: decal
+  id: MiniTileSpaceRWhiteCornerSw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/whiteminitile.rsi
+    state: corner_sw
+
+- type: decal
+  id: MiniTileSpaceRWhiteInnerNe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/whiteminitile.rsi
+    state: inner_ne
+
+- type: decal
+  id: MiniTileSpaceRWhiteInnerSe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/whiteminitile.rsi
+    state: inner_se
+
+- type: decal
+  id: MiniTileSpaceRWhiteInnerNw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/whiteminitile.rsi
+    state: inner_nw
+
+- type: decal
+  id: MiniTileSpaceRWhiteInnerSw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/whiteminitile.rsi
+    state: inner_sw
+
+- type: decal
+  id: MiniTileSpaceRWhiteLineN
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/whiteminitile.rsi
+    state: line_n
+
+- type: decal
+  id: MiniTileSpaceRWhiteLineE
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/whiteminitile.rsi
+    state: line_e
+
+- type: decal
+  id: MiniTileSpaceRWhiteLineS
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/whiteminitile.rsi
+    state: line_s
+
+- type: decal
+  id: MiniTileSpaceRWhiteLineW
+  tags: ["station", "markings"]
+  sprite:
+    sprite: Imperial/Crook/Decals/whiteminitile.rsi
+    state: line_w
+
+### WHITE
+### WHITE
+### WHITE 

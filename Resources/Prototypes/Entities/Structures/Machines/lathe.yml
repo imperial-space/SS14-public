@@ -195,6 +195,7 @@
     dynamicPacks:
     - AdvancedTools
     - ScienceEquipment
+    - ScienceExplosives
     - ScienceClothing
     - PowerCells
     - ScienceWeapons
@@ -401,6 +402,7 @@
     - SecurityAmmo
     - SecurityWeapons
     - ImperialSecurityDynamic # Imperial Space
+    - SecurityDisablers
   - type: MaterialStorage
     whitelist:
       tags:

@@ -19,4 +19,5 @@ ent-WeaponTurretXeno = ксено турель
 ent-WeaponTurretSyndicateDisposable = развёртываемая автоматическая турель
     .desc = { ent-BaseWeaponTurret.desc }
     .suffix = Синдикат
-
+ent-WeaponTurretAllHostile = { ent-BaseWeaponTurret }
+    .suffix = Враждебная ко всем
