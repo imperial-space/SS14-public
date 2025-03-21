@@ -1,0 +1,59 @@
+#- Pistols +
+#- Carbines +
+#- Rifles +
+#- Heavy +
+#- Explosive +
+#- Shotguns +
+#- Manual +
+#- Ammunition_supplies +
+#- Armor_Terminal_Weapon +
+#- Helmet_Terminal_Weapon +
+- type: storeCategory
+  id: Pistols
+  name: store-category-uplink-Pistols
+  priority: 0
+
+- type: storeCategory
+  id: Carbines
+  name: store-category-uplink-Carbines
+  priority: 1
+
+- type: storeCategory
+  id: Rifles
+  name: store-category-uplink-Rifles
+  priority: 2
+
+- type: storeCategory
+  id: Heavy
+  name: store-category-uplink-Heavy
+  priority: 3
+
+- type: storeCategory
+  id: Explosive
+  name: store-category-uplink-Explosive
+  priority: 4
+
+- type: storeCategory
+  id: Shotguns
+  name: store-category-uplink-Shotguns
+  priority: 5
+
+- type: storeCategory
+  id: Manual
+  name: store-category-uplink-Manual
+  priority: 6
+
+- type: storeCategory
+  id: Ammunition_supplies
+  name: store-category-uplink-Ammunition_supplies
+  priority: 7
+
+- type: storeCategory
+  id: Armor_Terminal_Weapon
+  name: store-category-uplink-Armorn_Weapon
+  priority: 8
+
+- type: storeCategory
+  id: Helmet_Terminal_Weapon
+  name: store-category-uplink-Helmet_Weapon
+  priority: 9
