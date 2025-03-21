@@ -11,6 +11,18 @@
     sprite: Imperial/Adjutant/jumpsuit.rsi
 
 - type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtAdjutant
+  name: adjutant jumpskirt
+  description: Who's Cap's good girl???
+  suffix: Adjutant
+  components:
+  - type: Sprite
+    sprite: Imperial/Adjutant/jumpskirt.rsi
+  - type: Clothing
+    sprite: Imperial/Adjutant/jumpskirt.rsi
+
+- type: entity
   parent: BasePDA
   id: AdjutantPDA
   name: adjutant PDA

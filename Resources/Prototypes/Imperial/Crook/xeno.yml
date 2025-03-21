@@ -2,6 +2,7 @@
   id: XenoStructuralGel
   name: xeno structural gel
   description: A black liquid substance.
+  suffix: Felix
   placement:
     mode: SnapgridCenter
     snap:
@@ -76,6 +77,7 @@
   parent: XenoStructuralGel
   id: XenoStructuralGelAlt
   name: xeno structural gel
+  suffix: Felix
   placement:
     mode: SnapgridCenter
     snap:
@@ -96,11 +98,121 @@
             2:  {state: icon-3}
 
 - type: entity
+  name: facehugger
+  parent: SimpleSpaceMobBase
+  id: MobFacehuggerXeno
+  description: Resembles a large scorpion.
+  suffix: Felix
+  components:
+  - type: Insulated
+  - type: CombatMode
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: XenoCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: Reactive
+    groups:
+      Flammable: [Touch]
+      Extinguish: [Touch]
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: Imperial/Crook/Xeno/facehugger.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: facehugger
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: facehugger-moving
+    noMovementLayers:
+      movement:
+        state: facehugger
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: Deathgasp
+  - type: MobStateActions
+    actions:
+      Critical:
+      - ActionCritSuccumb
+      - ActionCritFakeDeath
+      - ActionCritLastWords
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.8
+    baseSprintSpeed : 5.3
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      70: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      25: 0.5
+  - type: Stamina
+    critThreshold: 200
+  - type: Bloodstream
+    bloodReagent: FluorosulfuricAcid
+    bloodMaxVolume: 350
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    soundHit:
+     collection: AlienClaw
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 2
+        Caustic: 10
+  - type: Puller
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatXeno
+      amount: 2
+  - type: TypingIndicator
+    proto: alien
+  - type: Temperature
+    heatDamageThreshold: 360
+    coldDamageThreshold: -150
+    currentTemperature: 310.15
+  - type: Tag
+    tags:
+      - CannotSuicide
+      - DoorBumpOpener
+      - FootstepSound
+  - type: NoSlip
+  - type: Perishable #Ummmm the acid kills a lot of the bacteria or something
+    molsPerSecondPerUnitMass: 0.0005
+  - type: Speech
+    speechVerb: LargeMob
+
+- type: entity
   id: XenoEgg
   parent: [PresentBase, BaseItem]
   name: xeno egg
   description: Holds a something danger.
-  suffix: 
+  suffix: Рандом, Felix
   components:
   - type: Item
     size: Huge
@@ -113,18 +225,64 @@
       - id: XenoEggUncovered
       - id: FoodMeatSlime
         orGroup: GiftPool
-        prob: .01
-      - id: XenoFaceGrabber
+        prob: .05
+      - id: MobFacehuggerXeno
         orGroup: GiftPool
-        prob: .0001
+        prob: .01
     sound:
       path: /Audio/Imperial/Crook/uncoveregg.ogg
+- type: entity
+
+  id: XenoEggFacehugger
+  parent: XenoEgg
+  name: xeno egg
+  description: Holds a something danger.
+  suffix: Лицехват, Felix
+  components:
+    - type: SpawnItemsOnUse
+      items:
+        - id: XenoEggUncovered
+        - id: MobFacehuggerXeno
+          orGroup: GiftPool
+
+- type: entity
+  id: XenoEggSlime
+  parent: XenoEgg
+  name: xeno egg
+  description: Holds a something danger.
+  suffix: Слизь, Felix
+  components:
+    - type: SpawnItemsOnUse
+      items:
+        - id: XenoEggUncovered
+        - id: FoodMeatSlime
+          orGroup: GiftPool
+
+- type: entity
+  id: XenoEggDecorative
+  parent: BaseItem
+  name: xeno egg
+  description: Holds a something danger.
+  suffix: Декор, Felix
+  components:
+    - type: Item
+      size: Huge
+    - type: Sprite
+      sprite: Imperial/Crook/Xeno/itemegg.rsi
+      layers:
+        - state: icon
+    - type: Tag
+      tags:
+      - Trash
+    - type: SpaceGarbage
+
 - type: entity
   id: XenoEggUncovered
   categories: [ HideSpawnMenu ]
   parent: BaseItem
   name: xeno egg
   description: There used to be a something danger in it.
+  suffix: Felix
   components:
   - type: Item
     size: Huge
@@ -141,6 +299,7 @@
   id: XenoEggPlaced
   name: xeno egg
   description: Holds a something danger.
+  suffix: Рандом, Felix
   placement:
     mode: SnapgridCenter
     snap:
@@ -193,9 +352,85 @@
                 max: 1
 
 - type: entity
+  parent: XenoEggPlaced
+  id: XenoEggPlacedFacehugger
+  name: xeno egg
+  description: Holds a something danger.
+  suffix: Лицехват, Felix
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 50
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                XenoEggFacehugger:
+                  min: 0
+                  max: 1
+
+- type: entity
+  parent: XenoEggPlaced
+  id: XenoEggPlacedSlime
+  name: xeno egg
+  description: Holds a something danger.
+  suffix: Слизь, Felix
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 50
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                XenoEggSlime:
+                  min: 0
+                  max: 1
+
+- type: entity
+  parent: XenoEggPlaced
+  id: XenoEggPlacedDecorative
+  name: xeno egg
+  description: Holds a something danger.
+  suffix: Декор, Felix
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 50
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                XenoEggDecorative:
+                  min: 0
+                  max: 1
+
+- type: entity
   id: XenoEggPlacedUncovered
   name: xeno egg
   description: There used to be a something danger in it.
+  suffix: Felix
   placement:
     mode: SnapgridCenter
     snap:

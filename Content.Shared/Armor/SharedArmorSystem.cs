@@ -115,6 +115,8 @@ public abstract class SharedArmorSystem : EntitySystem
     // stamina resistance begin
     private void OnStaminaModify(EntityUid uid, ArmorComponent component, InventoryRelayedEvent<StaminaModifyEvent> args)
     {
+        if (args.Args.IgnoreResistances) return;
+
         if (component.Modifiers.Coefficients.TryGetValue("Stamina", out var coefficient))
         {
             args.Args.Damage = args.Args.Damage * coefficient;

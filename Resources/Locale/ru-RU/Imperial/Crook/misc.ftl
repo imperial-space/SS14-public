@@ -1,0 +1,14 @@
+ent-FancyFlippoLighter = зажигалка
+    .desc = Зато позолоченная!
+ent-FancyUniform = дорогой костюм
+    .desc = Ослепит любую бедность.
+ent-ClothingHandsFancyGloves = позолоченные перчатки
+    .desc = Ослепит любую бедность.
+ent-ClothingShoesFancyBoots = позолоченные туфли
+    .desc = Ослепит любую бедность.
+ent-ClothingFancyBackpack = сумка
+    .desc = В ней можно хранить ваши деньги.
+ent-DrinkFancyFlask = фляжка
+    .desc = Пейте жидкое золото.
+ent-FancyBoxFolder = папка
+    .desc = Содержит в себе стратегии для выгодных инвестиций.

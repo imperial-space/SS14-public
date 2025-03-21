@@ -35,10 +35,38 @@
     components:
       - type: CommandStaff
 
+### LOADOUT 
+### LOADOUT
+
+- type: roleLoadout
+  id: JobAdjutant
+  groups:
+  - AdjutantJumpsuit
+  - Trinkets
+
+- type: loadoutGroup
+  id: AdjutantJumpsuit
+  name: loadout-group-adjutant-jumpsuit
+  loadouts:
+  - ClothingUniformJumpsuitAdjutant
+  - ClothingUniformJumpskirtAdjutant
+
+- type: loadout
+  id: ClothingUniformJumpsuitAdjutant
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAdjutant
+
+- type: loadout
+  id: ClothingUniformJumpskirtAdjutant
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtAdjutant
+
+### LOADOUT
+### LOADOUT
+
 - type: startingGear
   id: AdjutantGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitAdjutant
     back: ClothingBackpackHOPFilled
     shoes: ClothingShoesBootsLaceup
     id: AdjutantPDA

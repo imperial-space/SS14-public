@@ -39,15 +39,15 @@
   - type: BallisticAmmoProvider
     proto: CartridgeCap
     capacity: 20
-  - type: MagazineVisuals
-    magState: mag-cap
-    steps: 4
-    zeroVisible: false
+  # - type: MagazineVisuals # imperial space revert cabinetification
+  #   magState: mag-cap
+  #   steps: 4
+  #   zeroVisible: false
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi
     layers:
-      - state: base
+      - state: capbase # imperial space revert cabinetification По стандарту state: base
         map: ["enum.GunVisualLayers.Base"]
-      - state: mag-cap-1
+      - state: mag-1 # imperial space revert cabinetification По стандарту state: mag-cap-1
         map: ["enum.GunVisualLayers.Mag"]
-      - state: capbase
+      - state: cap # imperial space revert cabinetification По стандарту state: cap

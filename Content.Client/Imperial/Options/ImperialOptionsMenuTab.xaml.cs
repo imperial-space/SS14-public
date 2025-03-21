@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
+using Content.Client.Imperial.Roadmap.UI;
 using Content.Client.Stylesheets;
 using Content.Shared.Imperial.ICCVar;
 using Content.Shared.Input;
@@ -351,13 +352,7 @@ public sealed partial class ImperialOptionsMenuTab : Control
 
             BindButton1 = new BindButton(parent, this, StyleBase.ButtonOpenRight);
             BindButton2 = new BindButton(parent, this, StyleBase.ButtonOpenLeft);
-            ResetButton = new Button()
-            {
-                Text = Loc.GetString("ui-options-color-bind-reset"),
-                MinSize = new Vector2(115, 30),
-                StyleClasses = { StyleBase.ButtonCaution },
-                TextAlign = Label.AlignMode.Left
-            };
+            ResetButton = new Button { Text = Loc.GetString("ui-options-color-bind-save"), StyleClasses = { StyleBase.ButtonCaution } };
 
             var hBox = new BoxContainer
             {
@@ -390,7 +385,7 @@ public sealed partial class ImperialOptionsMenuTab : Control
     {
         public readonly LocId LocName;
         public readonly LineEdit ColorInput;
-        public readonly PanelContainer ColorHelper;
+        public readonly BorderedPanelContainer ColorHelper;
         public readonly Button SaveButton;
 
         private Color _lastValidColor = default!;
@@ -416,23 +411,22 @@ public sealed partial class ImperialOptionsMenuTab : Control
                 HorizontalAlignment = HAlignment.Left
             };
 
-            SaveButton = new Button()
-            {
+            SaveButton = new Button {
                 Text = Loc.GetString("ui-options-color-bind-save"),
                 StyleClasses = { StyleBase.ButtonCaution },
-                MinSize = new Vector2(115, 30),
-                Disabled = selectedColor == _lastValidColor,
-                TextAlign = Label.AlignMode.Left
+                Disabled = selectedColor == _lastValidColor
             };
 
-            ColorHelper = new PanelContainer()
+            ColorHelper = new BorderedPanelContainer()
             {
-                ModulateSelfOverride = _lastValidColor,
+                BackgroundPanelColor = _lastValidColor,
+                ModulateSelfOverride = Color.White,
                 HorizontalExpand = true,
                 VerticalExpand = true,
                 HorizontalAlignment = HAlignment.Left,
                 VerticalAlignment = VAlignment.Center,
                 SetSize = new Vector2(25, 25),
+                BorderRadius = 25,
                 StyleClasses = { StyleNano.StyleClassBackgroundBaseDark }
             };
 
@@ -479,7 +473,7 @@ public sealed partial class ImperialOptionsMenuTab : Control
 
                 _lastValidColor = parsedColor.Value;
 
-                ColorHelper.ModulateSelfOverride = _lastValidColor;
+                ColorHelper.BackgroundPanelColor = _lastValidColor;
                 UpdateSaveButton(selectedColor == _lastValidColor);
             };
 

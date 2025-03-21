@@ -1,95 +1,50 @@
 - type: entity
-  parent: BaseLathe
   id: PrinterDoc
+  parent: BaseLathe
   name: Document Printer
   description: Bureaucratic perfection. Stores a database of all Nanotrasen documents, and lets you print them as long as you have paper.
   components:
-    - type: Sprite
-      sprite: Imperial/DocumentPrinter/document_printer.rsi
-      snapCardinals: true
-      layers:
-      - state: icon
-        map: ["enum.LatheVisualLayers.IsRunning"]
-      - state: unlit
-        shader: unshaded
-        map: ["enum.PowerDeviceVisualLayers.Powered"]
-      - state: panel
-        map: ["enum.WiresVisualLayers.MaintenancePanel"]
-    - type: Machine
-      board: PrinterDocMachineCircuitboard
-    - type: Lathe
-      producingSound: /Audio/Machines/printer.ogg
-      idleState: icon
-      runningState: building
-      staticRecipes:
-        - ReportOnTheStationSituationRecipe
-        - RequestForAppointmentOfActingCaptainRecipe
-        - RequestForAppointmentOfActingHeadOfDepartmentRecipe
-        - ReportGoalAchievementRecipe
-        - ApplicationForDismissHeadRecipe
-        - ApplicationForPassengerEmploymentRecipe
-        - ApplicationForPositionChangeRecipe
-        - AccessIncreaseOrderRecipe
-        - CertificationOfQualificationUpgradeRecipe
-        - DismissalOrderRecipe
-        - RequestForERTRecipe
-        - RequestForCBURNRecipe
-        - RequestForCentComRecipe
-        - RequestForBonusRecipe
-        - AccessDeniedOrderRecipe
-        - ApplicationForIDCardRecipe
-        - ApplicationForPDARecipe
-        - PermissionToCarryEquipmentRecipe
-        - CrewSRPViolationReportRecipe
-        - ParoleRequestForPrisonerRecipe
-        - InternalAffairsAgentReportRecipe
-        - ComplaintRecipe
-        - InterrogationReportRecipe
-        - VoluntaryConfessionRecipe
-        - DutyOrderRecipe
-        - FinalExamReportRecipe
-        - JudicialProceedingRecipe
-        - SearchOrderRecipe
-        - WeaponCarryingPermitRecipe
-        - TrackerImplantInstallationOrderRecipe
-        - EliminationOrderRecipe
-        - ArrestWarrantRecipe
-        - SearchWarrantRecipe
-        - InvestigationReportRecipe
-        - ChemicalOrderRecipe
-        - DischargeSummaryRecipe
-        - RequestForPharmaceuticalProductionRecipe
-        - DeathCertificateRecipe
-        - PsychologicalHealthConclusionRecipe
-        - MedicalPrescriptionRecipe
-        - EuthanasiaRequestRecipe
-        - BuildingPermitRecipe
-        - ApplicationForConstructionWorkRecipe
-        - RepairWorkRequestRecipe
-        - PrintedDocumentReportStationRecipe
-        - ApprovedGoalBlueprintRecipe
-        - PowerSystemReportRecipe
-        - AtmosSystemReportRecipe
-        - CreatureSapienceRecognitionRecipe
-        - SubjectStudyReportRecipe
-        - ArtifactReportRecipe
-        - OrderCreateProductRecipe
-        - OrderRecipe
-        - WeaponOrderRecipe
-        - DangerousSkillsTrainingRequestRecipe
-        - MarriageCertificateRecipe
-        - DivorceCertificateRecipe
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeAabb
-              bounds: "-0.10,-0.10, 0.15, 0.30"
-          mask:
-          - MachineMask
-          layer:
-            - MachineLayer
-    - type: MaterialStorage
-      whitelist:
-        components:
-          - Paper
+  - type: Sprite
+    sprite: Imperial/DocumentPrinter/document_printer.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: PrinterDocMachineCircuitboard
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Paper
+      - Document
+      components:
+      - Paper
+  - type: Lathe
+    producingSound: /Audio/Machines/printer.ogg
+    idleState: icon
+    runningState: building
+    unlitIdleState: unlit
+    staticPacks:
+    - DocumentsStatic
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: EmptyOnMachineDeconstruct
+    containers:
+    - blueprint
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.10,-0.10, 0.15, 0.30"
+        mask:
+        - MachineMask
+        layer:
+          - MachineLayer

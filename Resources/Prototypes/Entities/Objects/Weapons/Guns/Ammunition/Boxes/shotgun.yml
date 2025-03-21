@@ -38,15 +38,15 @@
   components:
     - type: BallisticAmmoProvider
       proto: ShellShotgunBeanbag
-    - type: MagazineVisuals
-      magState: mag-beanbag
-      steps: 5
-      zeroVisible: false
+    # - type: MagazineVisuals # imperial space revert cabinetification
+    #   magState: mag-beanbag
+    #   steps: 5
+    #   zeroVisible: false
     - type: Sprite
       layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
-      - state: mag-beanbag-1
+      - state: mag-1 # imperial space revert cabinetification По стандарту state: mag-beanbag-1
         map: ["enum.GunVisualLayers.Mag"]
       - state: beanbag
 
@@ -73,14 +73,14 @@
     - type: BallisticAmmoProvider
       proto: ShellShotgunSlug
     - type: MagazineVisuals
-      magState: mag-slug
+      magState: mag-alt # imperial space revert cabinetification По стандарту state: mag-slug
       steps: 5
       zeroVisible: false
     - type: Sprite
       layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
-      - state: mag-slug-1
+      - state: mag-alt-1 # imperial space revert cabinetification По стандарту state: mag-slug-1
         map: ["enum.GunVisualLayers.Mag"]
       - state: slug
 
@@ -90,16 +90,16 @@
   id: BoxShotgunFlare
   components:
     - type: BallisticAmmoProvider
-      proto: ShellShotgunFlare
-    - type: MagazineVisuals
-      magState: mag-flare
-      steps: 5
-      zeroVisible: false
+      proto: 
+    # - type: MagazineVisuals # imperial space revert cabinetification
+    #   magState: mag-flare
+    #   steps: 5
+    #   zeroVisible: false
     - type: Sprite
       layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
-      - state: mag-flare-1
+      - state: mag-1 # imperial space revert cabinetification По стандарту state: mag-flare-1
         map: ["enum.GunVisualLayers.Mag"]
       - state: flare
 
@@ -110,15 +110,15 @@
   components:
     - type: BallisticAmmoProvider
       proto: ShellShotgunIncendiary
-    - type: MagazineVisuals
-      magState: mag-incend
-      steps: 5
-      zeroVisible: false
+    # - type: MagazineVisuals # imperial space revert cabinetification
+    #   magState: mag-incend
+    #   steps: 5
+    #   zeroVisible: false
     - type: Sprite
       layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
-      - state: mag-incend-1
+      - state: mag-1 # imperial space revert cabinetification По стандарту state: mag-incend-1
         map: ["enum.GunVisualLayers.Mag"]
       - state: incendiary
 
@@ -130,14 +130,14 @@
     - type: BallisticAmmoProvider
       proto: ShellShotgunUranium
     - type: MagazineVisuals
-      magState: mag-uranium
+      magState: mag-alt # imperial space revert cabinetification По стандарту state: mag-uranium
       steps: 5
       zeroVisible: false
     - type: Sprite
       layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
-      - state: mag-uranium-1
+      - state: mag-alt-1 # imperial space revert cabinetification По стандарту state: mag-uranium-1
         map: ["enum.GunVisualLayers.Mag"]
       - state: uranium
 
@@ -148,15 +148,15 @@
   components:
     - type: BallisticAmmoProvider
       proto: ShellShotgunPractice
-    - type: MagazineVisuals
-      magState: mag-practice
-      steps: 5
-      zeroVisible: false
+    # - type: MagazineVisuals # imperial space revert cabinetification
+    #   magState: mag-practice
+    #   steps: 5
+    #   zeroVisible: false
     - type: Sprite
       layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
-      - state: mag-practice-1
+      - state: mag-1 # imperial space revert cabinetification По стандарту state: mag-practice-1
         map: ["enum.GunVisualLayers.Mag"]
       - state: practice
 
@@ -167,14 +167,14 @@
   components:
     - type: BallisticAmmoProvider
       proto: ShellTranquilizer
-    - type: MagazineVisuals
-      magState: mag-tranq
-      steps: 5
-      zeroVisible: false
+    # - type: MagazineVisuals # imperial space revert cabinetification
+    #   magState: mag-tranq
+    #   steps: 5
+    #   zeroVisible: false
     - type: Sprite
       layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
-      - state: mag-tranq-1
+      - state: mag-1 # imperial space revert cabinetification По стандарту state: mag-tranq-1
         map: ["enum.GunVisualLayers.Mag"]
       - state: tranquilizer

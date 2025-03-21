@@ -25,6 +25,8 @@ public sealed class ImperialStoreBoundUserInterface : BoundUserInterface
 
     protected override void Open()
     {
+        base.Open();
+
         _menu = this.CreateWindow<ImperialStoreMenu>();
 
         if (EntMan.TryGetComponent<ImperialStoreComponent>(Owner, out var store))
@@ -65,6 +67,8 @@ public sealed class ImperialStoreBoundUserInterface : BoundUserInterface
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
+
+        Logger.Info((state is ImperialStoreUpdateState)+  " ");
 
         switch (state)
         {

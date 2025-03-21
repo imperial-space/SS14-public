@@ -1,0 +1,115 @@
+### tomsktoluene
+### tomsktoluene
+### tomsktoluene
+
+- type: entity
+  name: fancy flippo lighter
+  suffix: Crook
+  parent: FlippoLighter
+  id: FancyFlippoLighter
+  description: Will blind any poverty.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fancy/zippo.rsi
+    layers:
+    - state: icon-close
+      map: ["base"]
+    - state: icon-top
+      map: ["top"]
+      visible: false
+    - state: icon-open
+      map: ["open"]
+      visible: false
+    - state: lighter-flame
+      map: ["flame"]
+      visible: false
+      shader: unshaded
+
+- type: entity
+  parent: ClothingUniformBase
+  id: FancyUniform
+  name: fancy jumpsuit
+  suffix: Crook
+  description: Will blind any poverty.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fancy/jumpsuit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fancy/jumpsuit.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsFancyGloves
+  name: fancy gloves
+  suffix: Crook
+  description: Will blind any poverty.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fancy/gloves.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fancy/gloves.rsi
+  - type: Fiber
+    fiberMaterial: fibers-durathread
+    fiberColor: fibers-black
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.95
+  - type: FingerprintMask
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesFancyBoots
+  name: fancy shoes
+  suffix: Crook
+  description: Will blind any poverty.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fancy/boots.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fancy/boots.rsi
+  - type: Matchbox
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingFancyBackpack
+  name: fancy bag
+  suffix: Crook
+  description: Will blind any poverty.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fancy/bag.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fancy/flask.rsi
+
+- type: entity
+  parent: FlaskBase
+  id: DrinkFancyFlask
+  name: fancy flask
+  suffix: Crook
+  description: Will blind any poverty.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fancy/flask.rsi
+
+- type: entity
+  id: FancyBoxFolder
+  name: fancy folder
+  parent: BoxFolderBase
+  suffix: Crook
+  description: Will blind any poverty.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fancy/folder.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Crook/Misc/Fancy/folder.rsi
+
+### tomsktoluene
+### tomsktoluene
+### tomsktoluene

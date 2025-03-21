@@ -188,7 +188,7 @@
       - id: FoodCondimentPacketKetchup
   - type: Sprite
     layers:
-      - state: box
+      - state: box_olive # Imperial Space Revert Cabinetification По стандарту box
       - state: writing
 
 - type: entity
