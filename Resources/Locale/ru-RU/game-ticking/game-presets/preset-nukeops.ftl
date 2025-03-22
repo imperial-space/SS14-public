@@ -1,16 +1,16 @@
-nukeops-title = Ядерные оперативники
-nukeops-description = Ядерные оперативники нацелились на станцию. Постарайтесь не дать им взвести и взорвать ядерную бомбу, защищая ядерный диск!
+nukeops-title = РДМчик
+nukeops-description = Вы знаете, зачем выбрали этот режим. Пиф-паф! 
 
 nukeops-welcome =
-    Вы - ядерный оперативник. Ваша задача - взорвать {$station} и убедиться, что от неё осталась лишь груда обломков. Ваше руководство, Синдикат, снабдило вас всем необходимым для выполнения этой задачи.
-    Смерть Nanotrasen!
-nukeops-briefing = Ваша цель проста. Доставьте ядерную бомбу на станцию и убедитесь, что от неё осталась лишь груда обломков. Начинайте миссию.
+    Вы - ядерный огурчик. Ваша задача как ядерного огузка - уничтожить веселье на {$station} и убедиться, что от неё останется лишь груда ноющих гостов. Вы знаете, что делать. 
+    Смерть Веселью!
+nukeops-briefing = Ваша цель проста. Сделайте тройное сальто и исключите всевозможное веселье для станции. 
 
-nukeops-opsmajor = [color=crimson]Крупная победа Синдиката![/color]
-nukeops-opsminor = [color=crimson]Малая победа Синдиката![/color]
-nukeops-neutral = [color=yellow]Ничейный исход![/color]
-nukeops-crewminor = [color=green]Малая победа экипажа![/color]
-nukeops-crewmajor = [color=green]Разгромная победа экипажа![/color]
+nukeops-opsmajor = [color=crimson]БУМ! ВСЕ МЕРТВЫ![/color]
+nukeops-opsminor = [color=crimson]БУ- А, нет, все живы...[/color]
+nukeops-neutral = [color=yellow]Вы стрелять разучились?[/color]
+nukeops-crewminor = [color=green]Диск? Какой диск?[/color]
+nukeops-crewmajor = [color=green]Robusted! В следующий раз пытайся лучше.[/color]
 
 nukeops-cond-nukeexplodedoncorrectstation = Ядерным оперативникам удалось взорвать станцию.
 nukeops-cond-nukeexplodedonnukieoutpost = Аванпост ядерных оперативников был уничтожен ядерным взрывом.
