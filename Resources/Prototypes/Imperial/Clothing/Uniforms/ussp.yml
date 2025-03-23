@@ -28,17 +28,17 @@
     - WhitelistChameleon
     - ClothMade
 
-- type: entity
-  parent: UnsensoredClothingUniformBase
-  id: USSPguardsmenUniform
-  name: operative jumpsuit
-  description: Uniform for elite syndicate operatives performing tactical operations in deep space.
-  components:
-  - type: Sprite
-    sprite: Imperial/ussp/guardsmen/uniform.rsi
-  - type: Clothing
-    sprite: Imperial/ussp/guardsmen/uniform.rsi
-  - type: Tag
-    tags:
-    - WhitelistChameleon
-    - ClothMade
+# - type: entity # Убрано для соблюдения лицензии временно
+#   parent: UnsensoredClothingUniformBase
+#   id: USSPguardsmenUniform
+#   name: operative jumpsuit
+#   description: Uniform for elite syndicate operatives performing tactical operations in deep space.
+#   components:
+#   - type: Sprite
+#     sprite: Imperial/ussp/guardsmen/uniform.rsi
+#   - type: Clothing
+#     sprite: Imperial/ussp/guardsmen/uniform.rsi
+#   - type: Tag
+#     tags:
+#     - WhitelistChameleon
+#     - ClothMade
