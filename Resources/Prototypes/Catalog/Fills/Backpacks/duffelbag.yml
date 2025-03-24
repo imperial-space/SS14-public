@@ -79,6 +79,7 @@
     contents:
       - id: WeaponLightMachineGunL6
       - id: MagazineLightRifleBox
+      - id: MagazineLightRifleBox
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
