@@ -42,7 +42,7 @@
     - type: Sprite
       layers:
         - state: blue
-        - sprite: Imperial\sacerdos\Resource_Sacerdos.rsi
+        - sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
           state: Sprite-0004
         - state: timed
     - type: Timer
@@ -63,7 +63,7 @@
     - type: Sprite
       layers:
         - state: blue
-        - sprite: Imperial\sacerdos\Resource_Sacerdos.rsi
+        - sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
           state: Sprite-0012
         - state: timed
     - type: Timer
@@ -84,7 +84,7 @@
     - type: Sprite
       layers:
         - state: blue
-        - sprite: Imperial\sacerdos\Resource_Sacerdos.rsi
+        - sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
           state: Sprite-0008
         - state: timed
     - type: Timer
