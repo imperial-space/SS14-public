@@ -6,14 +6,14 @@
   suffix: Phantom4502, Cruenta
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Armor_Cruenta.rsi\Armor_Cruenta_Raid.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Armor_Cruenta.rsi/Armor_Cruenta_Raid.rsi
     layers:
     - state: Sprite-Armor-1
     - state: Sprite-Armor-6
       visible: false
       shader: unshaded
   - type: Clothing
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Armor_Cruenta.rsi\Armor_Cruenta_Raid.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Armor_Cruenta.rsi/Armor_Cruenta_Raid.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -90,9 +90,9 @@
   suffix: Phantom4502, Cruenta
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Armor_Cruenta.rsi\Armor_Cruenta_Helmet_Raid.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Armor_Cruenta.rsi/Armor_Cruenta_Helmet_Raid.rsi
   - type: Clothing
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Armor_Cruenta.rsi\Armor_Cruenta_Helmet_Raid.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Armor_Cruenta.rsi/Armor_Cruenta_Helmet_Raid.rsi
   - type: Armor
     modifiers: #There's gotta be SOME reason to use this over other helmets.
       coefficients:
@@ -109,9 +109,9 @@
   suffix: Phantom4502, Cruenta
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Armor_Cruenta.rsi\Armor_fight_Cruenta_1.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Armor_Cruenta.rsi/Armor_fight_Cruenta_1.rsi
   - type: Clothing
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Armor_Cruenta.rsi\Armor_fight_Cruenta_1.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Armor_Cruenta.rsi/Armor_fight_Cruenta_1.rsi
 
 - type: entity
   parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing]
@@ -121,9 +121,9 @@
   suffix: Phantom4502, Cruenta
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Armor_Cruenta.rsi\OuterArmorBasic_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Armor_Cruenta.rsi/OuterArmorBasic_Cruenta.rsi
   - type: Clothing
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Armor_Cruenta.rsi\OuterArmorBasic_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Armor_Cruenta.rsi/OuterArmorBasic_Cruenta.rsi
   - type: Armor 
     modifiers:
       coefficients:
@@ -143,9 +143,9 @@
   suffix: Phantom4502, Cruenta
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Armor_heavy_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Armor_heavy_Cruenta.rsi
   - type: Clothing
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Armor_heavy_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Armor_heavy_Cruenta.rsi
   - type: Armor
     modifiers:
       coefficients:
