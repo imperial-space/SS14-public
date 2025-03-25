@@ -6,7 +6,7 @@
   description: You need to understand your own or someone else 's.
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\PDA_Cruenta.rsi\Cruenta_PDA_Leaders.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/PDA_Cruenta.rsi/Cruenta_PDA_Leaders.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
     - state: "light_overlay"
@@ -21,10 +21,8 @@
     size: Small
   - type: Pda
     id: ID_Leaders_Cruenta
-    state: pda
   - type: Icon
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\PDA_Cruenta.rsi\Cruenta_PDA_Leaders.rsi
-    state: pda
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/PDA_Cruenta.rsi/Cruenta_PDA_Leaders.rsi
   - type: PdaBorderColor
     borderColor: "#541319"
     accentVColor: "#c06822"
@@ -37,7 +35,7 @@
   description: You need to understand your own or someone else 's.
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\PDA_Cruenta.rsi\Cruenta_PDA.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/PDA_Cruenta.rsi/Cruenta_PDA.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
     - state: "light_overlay"
@@ -52,10 +50,8 @@
     size: Small
   - type: Pda
     id: ID_fight_Cruenta
-    state: pda
   - type: Icon
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\PDA_Cruenta.rsi\Cruenta_PDA.rsi
-    state: pda
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/PDA_Cruenta.rsi/Cruenta_PDA.rsi
   - type: PdaBorderColor
     borderColor: "#333333"
     accentVColor: "#541319"
@@ -68,7 +64,7 @@
   description: You need to understand your own or someone else 's.
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\PDA_Cruenta.rsi\Cruenta_PDA_med.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/PDA_Cruenta.rsi/Cruenta_PDA_med.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
     - state: "light_overlay"
@@ -83,10 +79,8 @@
     size: Small
   - type: Pda
     id: ID_Medical_Cruenta
-    state: pda
   - type: Icon
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\PDA_Cruenta.rsi\Cruenta_PDA_med.rsi
-    state: pda
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/PDA_Cruenta.rsi/Cruenta_PDA_med.rsi
   - type: PdaBorderColor
     borderColor: "#333333"
     accentVColor: "#541319"
