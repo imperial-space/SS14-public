@@ -9,7 +9,7 @@
       grid:
       - 0,0,7,6
     - type: Sprite
-      sprite: Imperial\sacerdos\BACKPACK_sacerdos.rsi\BACKPACK_fight_1_sacerdos.rsi
+      sprite: Imperial/sacerdos/BACKPACK_sacerdos.rsi/BACKPACK_fight_1_sacerdos.rsi
 
 - type: entity
   parent: ClothingBackpack
@@ -19,7 +19,7 @@
   suffix: Phantom4502, Sacerdos
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\BACKPACK_sacerdos.rsi\BACKPACK_fight_2_sacerdos.rsi
+    sprite: Imperial/sacerdos/BACKPACK_sacerdos.rsi/BACKPACK_fight_2_sacerdos.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.1
 
@@ -31,7 +31,7 @@
   suffix: Phantom4502, Sacerdos
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\BACKPACK_sacerdos.rsi\BACKPACK_fight_3_sacerdos.rsi
+    sprite: Imperial/sacerdos/BACKPACK_sacerdos.rsi/BACKPACK_fight_3_sacerdos.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.1
   - type: Storage
@@ -46,7 +46,7 @@
   description: Better than nothing
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\BACKPACK_sacerdos.rsi\BACKPACK_fight_4_sacerdos.rsi
+    sprite: Imperial/sacerdos/BACKPACK_sacerdos.rsi/BACKPACK_fight_4_sacerdos.rsi
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -56,7 +56,7 @@
   description: Better than nothing
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\BACKPACK_sacerdos.rsi\BACKPACK_fight_5_sacerdos.rsi
+    sprite: Imperial/sacerdos/BACKPACK_sacerdos.rsi/BACKPACK_fight_5_sacerdos.rsi
 
 - type: entity
   parent: ClothingBackpackDuffel
@@ -66,7 +66,7 @@
   description: Better than nothing
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\BACKPACK_sacerdos.rsi\BACKPACK_fight_6_sacerdos.rsi
+    sprite: Imperial/sacerdos/BACKPACK_sacerdos.rsi/BACKPACK_fight_6_sacerdos.rsi
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -76,7 +76,7 @@
   description: The bag of the first shooting range, but with gold inserts
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\BACKPACK_sacerdos.rsi\BACKPACK_Leaders_1_sacerdos.rsi
+    sprite: Imperial/sacerdos/BACKPACK_sacerdos.rsi/BACKPACK_Leaders_1_sacerdos.rsi
 
 - type: entity
   parent: ClothingBackpackDuffel
@@ -86,7 +86,7 @@
   description: The duffel bag of the first shooting range, but with gold inserts
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\BACKPACK_sacerdos.rsi\BACKPACK_Leaders_2_sacerdos.rsi
+    sprite: Imperial/sacerdos/BACKPACK_sacerdos.rsi/BACKPACK_Leaders_2_sacerdos.rsi
 
 - type: entity
   parent: ClothingBackpack
@@ -96,4 +96,4 @@
   description: Backpack of the first shooting range, but with gold inserts
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\BACKPACK_sacerdos.rsi\BACKPACK_Leaders_3_sacerdos.rsi
+    sprite: Imperial/sacerdos/BACKPACK_sacerdos.rsi/BACKPACK_Leaders_3_sacerdos.rsi
