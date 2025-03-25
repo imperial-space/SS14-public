@@ -1,5 +1,4 @@
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: SacerdosLeadersODTPreset
   name: Special-Leaders-nam
@@ -45,7 +44,6 @@
         - skillNeuroSurgery
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: fightsacerdosODTPreset
   name: Special-sacerdos-Officer-nam
@@ -91,7 +89,6 @@
         - skillNeuroSurgery
   
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id:  MedsacerdosODTPreset
   name: Special-med-nam
@@ -159,7 +156,7 @@
       sprite: Markers/jobs.rsi
       layers:
         - state: green
-        - sprite: Imperial\sacerdos\Equipment_Sacerdos.rsi
+        - sprite: Imperial/sacerdos/Equipment_Sacerdos.rsi
           state: Leaders_sacerdos
 
 - type: entity
@@ -180,7 +177,7 @@
       sprite: Markers/jobs.rsi
       layers:
         - state: green
-        - sprite: Imperial\sacerdos\Equipment_Sacerdos.rsi
+        - sprite: Imperial/sacerdos/Equipment_Sacerdos.rsi
           state: fight_sacerdos
 
 - type: entity
@@ -201,7 +198,7 @@
       sprite: Markers/jobs.rsi
       layers:
         - state: green
-        - sprite: Imperial\sacerdos\Equipment_Sacerdos.rsi
+        - sprite: Imperial/sacerdos/Equipment_Sacerdos.rsi
           state: Med_sacerdos
 
 #######################################################################################
