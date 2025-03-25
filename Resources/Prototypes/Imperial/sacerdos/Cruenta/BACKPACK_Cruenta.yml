@@ -9,7 +9,7 @@
       grid:
       - 0,0,7,6
     - type: Sprite
-      sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\BACKPACK_Cruenta.rsi\BACKPACK_fight_1_Cruenta.rsi
+      sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/BACKPACK_Cruenta.rsi/BACKPACK_fight_1_Cruenta.rsi
 
 - type: entity
   parent: ClothingBackpack
@@ -19,7 +19,7 @@
   suffix: Phantom4502, Cruenta
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\BACKPACK_Cruenta.rsi\BACKPACK_fight_2_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/BACKPACK_Cruenta.rsi/BACKPACK_fight_2_Cruenta.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.1
 
@@ -31,7 +31,7 @@
   suffix: Phantom4502, Cruenta
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\BACKPACK_Cruenta.rsi\BACKPACK_fight_3_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/BACKPACK_Cruenta.rsi/BACKPACK_fight_3_Cruenta.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.1
   - type: Storage
@@ -46,7 +46,7 @@
   description: Better than nothing
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\BACKPACK_Cruenta.rsi\BACKPACK_fight_4_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/BACKPACK_Cruenta.rsi/BACKPACK_fight_4_Cruenta.rsi
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -56,7 +56,7 @@
   description: Better than nothing
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\BACKPACK_Cruenta.rsi\BACKPACK_fight_5_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/BACKPACK_Cruenta.rsi/BACKPACK_fight_5_Cruenta.rsi
 
 - type: entity
   parent: ClothingBackpackDuffel
@@ -66,7 +66,7 @@
   description: Better than nothing
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\BACKPACK_Cruenta.rsi\BACKPACK_fight_6_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/BACKPACK_Cruenta.rsi/BACKPACK_fight_6_Cruenta.rsi
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -76,7 +76,7 @@
   description: The bag of the first shooting range, but with gold inserts
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\BACKPACK_Cruenta.rsi\BACKPACK_Leaders_1_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/BACKPACK_Cruenta.rsi/BACKPACK_Leaders_1_Cruenta.rsi
 
 - type: entity
   parent: ClothingBackpackDuffel
@@ -86,7 +86,7 @@
   description: The duffel bag of the first shooting range, but with gold inserts
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\BACKPACK_Cruenta.rsi\BACKPACK_Leaders_2_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/BACKPACK_Cruenta.rsi/BACKPACK_Leaders_2_Cruenta.rsi
 
 - type: entity
   parent: ClothingBackpack
@@ -96,4 +96,4 @@
   description: Backpack of the first shooting range, but with gold inserts
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\BACKPACK_Cruenta.rsi\BACKPACK_Leaders_3_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/BACKPACK_Cruenta.rsi/BACKPACK_Leaders_3_Cruenta.rsi
