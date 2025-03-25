@@ -6,7 +6,7 @@
   description: You need to understand your own or someone else 's.
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\PDA_Leaders_sacerdos.rsi
+    sprite: Imperial/sacerdos/PDA_Leaders_sacerdos.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
     - state: "light_overlay"
@@ -21,10 +21,8 @@
     size: Small
   - type: Pda
     id: ID_Leaders_sacerdos
-    state: pda
   - type: Icon
-    sprite: Imperial\sacerdos\PDA_sacerdos.rsi
-    state: pda
+    sprite: Imperial/sacerdos/PDA_sacerdos.rsi
   - type: PdaBorderColor
     borderColor: "#333333"
     accentVColor: "#f2f2f2"
@@ -37,7 +35,7 @@
   description: You need to understand your own or someone else 's.
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\PDA_sacerdos.rsi
+    sprite: Imperial/sacerdos/PDA_sacerdos.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
     - state: "light_overlay"
@@ -52,10 +50,8 @@
     size: Small
   - type: Pda
     id: ID_fight_sacerdos
-    state: pda
   - type: Icon
-    sprite: Imperial\sacerdos\PDA_sacerdos.rsi
-    state: pda
+    sprite: Imperial/sacerdos/PDA_sacerdos.rsi
   - type: PdaBorderColor
     borderColor: "#333333"
     accentVColor: "#f2f2f2"
@@ -68,7 +64,7 @@
   description: You need to understand your own or someone else 's.
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\PDA_med_sacerdos.rsi
+    sprite: Imperial/sacerdos/PDA_med_sacerdos.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
     - state: "light_overlay"
@@ -83,10 +79,8 @@
     size: Small
   - type: Pda
     id: ID_Medical_sacerdos
-    state: pda
   - type: Icon
-    sprite: Imperial\sacerdos\PDA_med_sacerdos.rsi
-    state: pda
+    sprite: Imperial/sacerdos/PDA_med_sacerdos.rsi
   - type: PdaBorderColor
     borderColor: "#333333"
     accentVColor: "#f2f2f2"
