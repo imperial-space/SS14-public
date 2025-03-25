@@ -5,7 +5,7 @@
   suffix: Phantom4502, Cruenta
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Cruenta_ID.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Cruenta_ID.rsi
     state: ID_Leaders
   - type: Item
     size: Small
@@ -24,7 +24,7 @@
   suffix: Phantom4502, Cruenta
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Cruenta_ID.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Cruenta_ID.rsi
     state: ID_fight
   - type: Item
     size: Small
@@ -43,7 +43,7 @@
   suffix: Phantom4502, Cruenta
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Cruenta_ID.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Cruenta_ID.rsi
     state: ID_Medical
   - type: Item
     size: Small
