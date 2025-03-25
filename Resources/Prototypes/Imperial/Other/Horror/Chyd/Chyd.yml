@@ -68,7 +68,6 @@
           layer:
           - MobLayer
     - type: Devourer
-      soundDevour: /Audio/Imperial/Other/Horror/Chyd/ChydEat.ogg
       foodPreference: Humanoid
       shouldStoreDevoured: true
       chemical: Ichor

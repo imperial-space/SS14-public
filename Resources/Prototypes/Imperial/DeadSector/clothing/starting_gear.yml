@@ -5,7 +5,7 @@
     shoes: ClothingShoesBootsJack
     gloves: ClothingHandsGlovesFingerless
     head: DressCapArmyB
-    id: ElysiumFederationPDAWithPassengerID
+    id: ElysiumFederationPDA
     ears: ClothingHeadsetFADAK9M
     pocket1: EncryptionKeyRadio2
 
@@ -16,7 +16,7 @@
     shoes: ClothingShoesBootsJack
     gloves: ClothingHandsGlovesFingerless
     head: DressCapArmyB
-    id: ElysiumFederationPDAWithPassengerID
+    id: ElysiumFederationPDA
     ears: ClothingHeadsetFADAK9M
     pocket1: EncryptionKeyRadio3
 
@@ -27,9 +27,8 @@
     shoes: ClothingShoesBootsJack
     gloves: ClothingHandsGlovesFingerless
     head: DressCapArmyB
-    id: ElysiumFederationPDAWithPassengerID
+    id: ElysiumFederationPDA
     ears: ClothingHeadsetFADAK9M
-    eyes: ClothingEyesHudMarine
     pocket1: EncryptionKeyRadio1
 
 - type: startingGear
@@ -39,7 +38,7 @@
     shoes: ClothingShoesBootsJack
     gloves: ClothingHandsGlovesFingerless
     head: ClothingHeadHatBeretMerc
-    id: ElysiumFederationPDAWithWardenID
+    id: ElysiumFederationPDA
     ears: ClothingHeadsetFADAK9M
     neck: ClothingNeckGoldmedal
     belt: ClothingBeltBandolier
@@ -52,7 +51,7 @@
     shoes: ClothingShoesBootsJack
     gloves: ClothingHandsGlovesFingerless
     head: ArmyBeretArmyG
-    id: ElysiumFederationPDAWithWardenID
+    id: ElysiumFederationPDA
     ears: ClothingHeadsetFADAK9M
     neck: ClothingNeckGoldmedal
     belt: ClothingBeltBandolier
@@ -65,9 +64,8 @@
     shoes: ClothingShoesBootsJack
     gloves: ClothingHandsGlovesFingerless
     head: ClothingHeadHatBeretSecurity
-    id: ElysiumFederationPDAWithWardenID
+    id: ElysiumFederationPDA
     ears: ClothingHeadsetFADAK9M
-    eyes: ClothingEyesHudMarine
     neck: ClothingNeckGoldmedal
     belt: ClothingBeltBandolier
     pocket1: EncryptionKeyRadio1

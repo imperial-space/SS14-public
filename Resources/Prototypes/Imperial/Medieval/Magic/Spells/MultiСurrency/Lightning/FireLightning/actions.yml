@@ -5,7 +5,6 @@
   name: medieval-store-spells-light-lightning-middle-fire-name
   description: medieval-store-spells-light-lightning-middle-fire-desc
   parent: MedievalActionLightningMiddle
-  noSpawn: true
   components:
   - type: CastTraining
     trainingResults:
@@ -41,7 +40,6 @@
           maxRange: 2
           maxDuration: 1
           slowTo: 1
-          collideFlags: Dynamic
       spellCastDoAfter:
         delay: 3
         breakOnDropItem: false
@@ -73,7 +71,6 @@
   name: medieval-store-spells-light-lightning-senior-fire-name
   description: medieval-store-spells-light-lightning-senior-fire-desc
   parent: MedievalActionFireLightningMiddle
-  noSpawn: true
   components:
   - type: MedievalTargetSpell
   - type: WorldTargetAction
@@ -104,7 +101,6 @@
           maxRange: 4
           maxDuration: 1
           slowTo: 1
-          collideFlags: Dynamic
       spellCastDoAfter:
         delay: 4
         breakOnDropItem: false

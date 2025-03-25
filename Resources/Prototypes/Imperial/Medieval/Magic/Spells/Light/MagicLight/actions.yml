@@ -4,14 +4,11 @@
   id: MedievalActionMagicLightBeginner
   name: medieval-store-spells-magic-light-flash-beginner-name
   description: medieval-store-spells-light-magic-light-beginner-desc
-  noSpawn: true
   components:
   - type: MedievalInstantSpell
   - type: InstantAction
     useDelay: 20
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/lightsphere_cast.ogg
     icon:

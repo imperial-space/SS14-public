@@ -99,7 +99,7 @@
     Ice:
       amount: 1
     SodaWater:
-      amout: 1
+      amount: 1
   products:
     Mercuryblast: 3
 
@@ -284,7 +284,7 @@
       amount: 1
     CocoaPowder:
       amount: 1
-    Frostoil:
+    FrostOil:
       amount: 2
   products:
     BloomLight: 5

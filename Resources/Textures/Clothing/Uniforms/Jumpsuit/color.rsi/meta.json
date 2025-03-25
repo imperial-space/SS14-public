@@ -11,6 +11,9 @@
       "name": "icon"
     },
     {
+      "name": "equipped-INNERCLOTHING-monkey"
+    },
+    {
       "name": "equipped-INNERCLOTHING",
       "directions": 4
     },

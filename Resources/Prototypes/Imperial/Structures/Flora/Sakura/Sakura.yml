@@ -58,7 +58,7 @@
   id: SakuraJuice
   parent: Vitamin
   name: reagent-name-sakuraJuise
-  description: reagent-desc-sakuraJuise
+  desc: reagent-desc-sakuraJuise
   physicalDesc: reagent-physical-desc-sweet
   flavor: chocolate
   color: "#FF69B4"

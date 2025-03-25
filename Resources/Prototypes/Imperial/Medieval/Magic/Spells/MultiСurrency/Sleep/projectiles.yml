@@ -5,7 +5,6 @@
   name: Sleep spell
   description: "Interesting fact: during development, programmers slept less than two hours a day"
   parent: BaseBulletTrigger
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Gun/Charmer/sleep.rsi
@@ -25,7 +24,6 @@
   name: Sleep spell
   description: "Interesting fact: during development, programmers slept less than two hours a day"
   parent: BaseBulletTrigger
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Gun/Charmer/sleep.rsi

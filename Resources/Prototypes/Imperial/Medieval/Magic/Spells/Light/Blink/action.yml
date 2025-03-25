@@ -4,7 +4,6 @@
   id: MedievalActionBlinkBeginner
   name: medieval-store-spells-light-blink-beginner-name
   description: medieval-store-spells-light-blink-beginner-desc
-  noSpawn: true
   components:
   - type: CastTraining
     trainingResults:
@@ -98,7 +97,6 @@
   parent: MedievalActionBlinkBeginner
   name: medieval-store-spells-light-blink-middle-name
   description: medieval-store-spells-light-blink-middle-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 70

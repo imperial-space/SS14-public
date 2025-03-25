@@ -19,7 +19,6 @@
   - type: StaminaDamageOnHit
     damage: 5
   - type: Wieldable
-    wieldTime: 0
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -54,7 +53,6 @@
   - type: StaminaDamageOnHit
     damage: 5
   - type: Wieldable
-    wieldTime: 0
   - type: IncreaseDamageOnWield
     damage:
       types:

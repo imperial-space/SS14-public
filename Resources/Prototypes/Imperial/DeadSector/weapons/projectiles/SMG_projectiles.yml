@@ -2,7 +2,6 @@
   id: AgramBullet
   name: bullet Agram (9x21)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -14,7 +13,6 @@
   name: bullet (.35 MP-9)
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -26,7 +24,6 @@
   name: bullet (.35 MP-9)
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
-  noSpawn: true
   components:
   - type: Projectile
     damage:

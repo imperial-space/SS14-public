@@ -14,7 +14,6 @@
     belt: ClothingBeltHolsterSpecialOfficer
 
 - type: entity ## Спавнер
-  noSpawn: false
   parent: MobHuman
   id: SpecialOfficerPreset
   name: Special Officer

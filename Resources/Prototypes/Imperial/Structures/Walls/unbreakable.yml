@@ -67,7 +67,7 @@
     soundGroups:
       Brute:
         path:
-          "/Audio/Effects/glass_hit.ogg"
+          "/Audio/Weapons/slash.ogg"
   - type: WallMount
     arc: 360 # interact despite grilles
   - type: Tag

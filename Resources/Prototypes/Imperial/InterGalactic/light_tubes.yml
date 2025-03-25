@@ -54,9 +54,6 @@
     enabled: true
   - type: PoweredLight
     hasLampOnSpawn: DirtyLightTube
-    damage:
-      types:
-        Heat: 5
   - type: AmbientOnPowered
   - type: AmbientSound
     volume: -15
@@ -76,9 +73,6 @@
     enabled: true
   - type: PoweredLight
     hasLampOnSpawn: DarkRedLightTube
-    damage:
-      types:
-        Heat: 5
   - type: AmbientOnPowered
   - type: AmbientSound
     volume: -15
@@ -98,9 +92,6 @@
     enabled: true
   - type: PoweredLight
     hasLampOnSpawn: DarkVioletLightTube
-    damage:
-      types:
-        Heat: 5
   - type: AmbientOnPowered
   - type: AmbientSound
     volume: -15

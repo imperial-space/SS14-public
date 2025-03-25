@@ -1,6 +1,5 @@
 - type: entity
   id: FlashWaveEffect
-  noSpawn: true
   components:
   - type: ShockWave
     speed: 0.95
@@ -21,4 +20,5 @@
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Imperial/Medieval/flashbang_blast.ogg
-      variation: 0.2
+      params:
+        variation: 0.2

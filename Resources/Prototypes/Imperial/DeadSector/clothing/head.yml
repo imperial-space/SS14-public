@@ -303,7 +303,6 @@
 - type: entity
   parent: ClothingHeadHatHoodWinterBase
   id: ClothingHeadHatHoodCamouflageRobe
-  noSpawn: true
   name: camouflage robe hood
   components:
   - type: Sprite

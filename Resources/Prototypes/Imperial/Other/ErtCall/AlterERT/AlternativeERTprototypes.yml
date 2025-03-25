@@ -1,7 +1,6 @@
 ﻿#ERT START
 #Leader
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ERTLeaderEVAPresetAlternative
   name: ERT leader
@@ -22,7 +21,6 @@
 
 #Medic
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ERTMedicEVAPresetAlternative
   name: ERT medic
@@ -43,7 +41,6 @@
 
 #Security
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ERTSecurityEVAPresetAlternative
   name: ERT security
@@ -64,7 +61,6 @@
 
 #Engineer
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ERTEngineerEVAPresetAlternative
   name: ERT engineer
@@ -85,7 +81,6 @@
 
 #Janitor
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ERTJanitorEVAPresetAlternative
   name: ERT janitor

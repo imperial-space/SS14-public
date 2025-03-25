@@ -57,7 +57,6 @@
   id: MedievalIceBarrierBeginner
   parent: MedievalIceBarrier
   name: Ice Barrier
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Structures/Decoration/crystal.rsi
@@ -93,7 +92,6 @@
   id: MedievalIceBarrierBeginnerClone
   parent: MedievalIceBarrier
   name: Ice Barrier
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Structures/Decoration/crystal.rsi
@@ -119,7 +117,6 @@
 - type: entity
   id: MedievalIceBarrierBeginnerInvalidPosition
   name: Ice Barrier
-  noSpawn: true
   components:
   - type: Physics
     bodyType: Static
@@ -148,7 +145,6 @@
   id: MedievalIceBarrierMiddle
   parent: MedievalIceBarrier
   name: Ice Barrier
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Structures/Decoration/crystal.rsi
@@ -184,7 +180,6 @@
   id: MedievalIceBarrierMiddleClone
   parent: MedievalIceBarrier
   name: Ice Barrier
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Structures/Decoration/crystal.rsi
@@ -210,7 +205,6 @@
 - type: entity
   id: MedievalIceBarrierMiddleInvalidPosition
   name: Ice Barrier
-  noSpawn: true
   components:
   - type: Physics
     bodyType: Static
@@ -239,7 +233,6 @@
   id: MedievalIceBarrierSenior
   parent: MedievalIceBarrier
   name: Ice Barrier
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Structures/Decoration/crystal.rsi
@@ -275,7 +268,6 @@
   id: MedievalIceBarrierSeniorClone
   parent: MedievalIceBarrier
   name: Ice Barrier
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Structures/Decoration/crystal.rsi
@@ -301,7 +293,6 @@
 - type: entity
   id: MedievalIceBarrierSeniorInvalidPosition
   name: Ice Barrier
-  noSpawn: true
   components:
   - type: Physics
     bodyType: Static

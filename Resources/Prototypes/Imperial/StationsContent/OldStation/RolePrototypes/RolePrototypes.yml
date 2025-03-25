@@ -1,5 +1,4 @@
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ArcaneTraderPreset
   name: Trader
@@ -30,7 +29,6 @@
     #     - skillMaintenance
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ArcaneSmugglerPreset
   name: Smuggler
@@ -62,7 +60,6 @@
     #     - skillMaintenance
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ArcaneMercPreset
   name: Merc
@@ -95,7 +92,6 @@
     #     - skillSurgery
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ArcaneHeadMercPreset
   name: Head Merc
@@ -128,7 +124,6 @@
     #     - skillSurgery
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ArcaneBomjPreset
   name: Bum

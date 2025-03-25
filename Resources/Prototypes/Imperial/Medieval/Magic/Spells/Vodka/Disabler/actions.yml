@@ -4,7 +4,6 @@
   id: MedievalActionDisablerBeginner
   name: medieval-store-spells-vodka-disabler-beginner-name
   description: medieval-store-spells-vodka-disabler-beginner-desc
-  noSpawn: true
   components:
   - type: CastTraining
     trainingResults:
@@ -49,7 +48,6 @@
   parent: MedievalActionDisablerBeginner
   name: medieval-store-spells-vodka-disabler-middle-name
   description: medieval-store-spells-vodka-disabler-middle-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 38

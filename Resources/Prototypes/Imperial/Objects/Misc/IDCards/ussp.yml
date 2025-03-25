@@ -16,10 +16,6 @@
     sprite: Imperial/ussp/Merc/Card.rsi
   - type: IdCard
     jobTitle: Военный СССП
-    jobIcon: VlArcaneMercJobIcon
-  - type: Access
-    tags:
-    - Merc
 
 - type: entity
   parent: IDCardStandard
@@ -39,10 +35,6 @@
     sprite: Imperial/ussp/Merc/Card.rsi
   - type: IdCard
     jobTitle: Офицер СССП
-    jobIcon: VlArcaneMercJobIcon
-  - type: Access
-    tags:
-    - Merc
 
 - type: entity
   parent: IDCardStandard
@@ -62,10 +54,6 @@
     sprite: Imperial/ussp/Merc/Card.rsi
   - type: IdCard
     jobTitle: Комиссар СССП
-    jobIcon: VlArcaneMercJobIcon
-  - type: Access
-    tags:
-    - Merc
 
 - type: entity
   parent: IDCardStandard
@@ -85,7 +73,3 @@
     sprite: Imperial/ussp/Merc/Card.rsi
   - type: IdCard
     jobTitle: Cержант СССП
-    jobIcon: VlArcaneMercJobIcon
-  - type: Access
-    tags:
-    - Merc

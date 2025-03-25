@@ -1,7 +1,6 @@
 # Space Ninja
 
 - type: entity
-  noSpawn: false
   name: Space Ninja
   suffix: Crook, SpiderClan
   parent: MobHuman
@@ -14,7 +13,7 @@
   - type: Sprite
     netsync: false
     sprite: Markers/jobs.rsi
-    state: ertleadereva 
+    state: ertleadereva
   - type: Loadout
     prototypes: [ GreenNinja ]
   - type: NpcFactionMember
@@ -26,9 +25,8 @@
     - DeathAcidifierImplant
   - type: RandomHumanoidAppearance
     randomizeName: false
-    
+
 - type: entity
-  noSpawn: false
   name: Space Ninja
   suffix: Crook, SpiderClan
   parent: MobHuman
@@ -55,7 +53,6 @@
     randomizeName: false
 
 - type: entity
-  noSpawn: false
   name: Space Ninja
   suffix: Crook, SpiderClan
   parent: MobHuman

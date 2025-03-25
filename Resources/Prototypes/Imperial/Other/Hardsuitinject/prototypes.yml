@@ -20,7 +20,6 @@
     solutions:
       beaker:
         maxVol: 20
-        canMix: true
   - type: Ampula
   - type: Tag
     tags:
@@ -30,7 +29,6 @@
   id: ActionToggleInjection
   name: hardsuitinjection-toggle
   description: hardsuitinjection-toggledescription
-  noSpawn: true
   components:
   - type: InstantAction
     itemIconStyle: NoItem
@@ -44,7 +42,6 @@
   id: ActionInjection
   name: hardsuitinjection-injection
   description: hardsuitinjection-injectiondescription
-  noSpawn: true
   components:
   - type: InstantAction
     itemIconStyle: NoItem
@@ -64,7 +61,6 @@
     solutions:
       beaker:
         maxVol: 20
-        canMix: true
         reagents:
         - ReagentId: Tricordrazine
           Quantity: 20
@@ -79,7 +75,6 @@
     solutions:
       beaker:
         maxVol: 20
-        canMix: true
         reagents:
         - ReagentId: Bicaridine
           Quantity: 15
@@ -94,7 +89,6 @@
     solutions:
       beaker:
         maxVol: 20
-        canMix: true
         reagents:
         - ReagentId: Dermaline
           Quantity: 10
@@ -109,7 +103,6 @@
     solutions:
       beaker:
         maxVol: 20
-        canMix: true
         reagents:
         - ReagentId: Dylovene
           Quantity: 20
@@ -124,7 +117,6 @@
     solutions:
       beaker:
         maxVol: 20
-        canMix: true
         reagents:
         - ReagentId: Dexalin
           Quantity: 20
@@ -139,7 +131,6 @@
     solutions:
       beaker:
         maxVol: 20
-        canMix: true
         reagents:
         - ReagentId: Hyronalin
           Quantity: 20

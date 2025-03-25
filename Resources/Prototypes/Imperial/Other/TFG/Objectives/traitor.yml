@@ -1,7 +1,6 @@
 ## warden
 
 - type: entity
-  noSpawn: true
   parent: BaseTraitorStealObjective
   id: WardenAnswarpistolStealObjective
   components:
@@ -10,7 +9,6 @@
   - type: NotJobRequirement
     job: Warden
   - type: StealCondition
-    prototype: WeaponPistolM2108Award
     owner: job-name-warden
     stealGroup: M2108
 

@@ -4,7 +4,6 @@
   id: MedievalActionFlashBeginner
   name: medieval-store-spells-light-flash-beginner-name
   description: medieval-store-spells-light-flash-beginner-desc
-  noSpawn: true
   components:
   - type: CastTraining
     trainingResults:
@@ -49,7 +48,6 @@
   parent: MedievalActionFlashBeginner
   name: medieval-store-spells-light-flash-middle-name
   description: medieval-store-spells-light-flash-middle-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 35

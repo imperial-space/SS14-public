@@ -14,7 +14,7 @@
 
 - type: entity
   name: syndi space cleaner
-  desc: Syndicate Space Cleaner
+  description: Syndicate Space Cleaner
   parent: SprayBottleSpaceCleaner
   id: SyndiSpaceCleanerSprayBottleFull
   suffix: Full
@@ -34,7 +34,7 @@
 
 - type: entity
   name: syndi space cleaner
-  desc: Syndicate Space Cleaner
+  description: Syndicate Space Cleaner
   parent: SyndiSpaceCleanerSprayBottleFull
   id: SyndiSpaceCleanerSprayBottleEmpty
   suffix: Full

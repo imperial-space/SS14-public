@@ -15,6 +15,9 @@
         },
         {
             "name": "sign_imperial"
+        },
+        {
+            "name": "sign_pistol"
         }
     ]
 }

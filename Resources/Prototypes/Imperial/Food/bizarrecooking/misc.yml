@@ -87,7 +87,6 @@
   name: sentient cookie
   parent: FoodBakedBase
   id: FoodBakedSentientCookie
-  randomizeName: false
   description: It won't stop begging for life, unless you eat it.
   components:
   - type: GhostRole
@@ -113,7 +112,6 @@
   name: elder cookie
   parent: FoodBakedBase
   id: FoodBakedElderCookie
-  randomizeName: false
   description: These cookies seem to be phasing partially in and out of our dimension...
   components:
   - type: FlavorProfile

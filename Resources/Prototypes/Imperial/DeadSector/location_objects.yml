@@ -265,7 +265,6 @@
       size: Large
       shape:
       - 0,0,2,2
-      state: post-folded
     - type: Sprite
       sprite: Imperial/DeadSector/location_objects/foldable_light_post.rsi
       noRot: true

@@ -14,7 +14,6 @@
   name: job-name-adjutant
   description: job-description-adjutant
   playTimeTracker: JobAdjutant
-  psychosisGainResist: 0.4 # psychosis
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 36000
@@ -35,7 +34,7 @@
     components:
       - type: CommandStaff
 
-### LOADOUT 
+### LOADOUT
 ### LOADOUT
 
 - type: roleLoadout
@@ -73,6 +72,3 @@
     gloves: ClothingHandsGlovesHop
     ears: ClothingHeadsetAdjutant
     belt: BoxFolderClipboard
-  innerClothingSkirt: ClothingUniformJumpsuitAdjutant
-  satchel: ClothingBackpackSatchelHOPFilled
-  duffelbag: ClothingBackpackDuffelHOPFilled

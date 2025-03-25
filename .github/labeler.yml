@@ -1,26 +1,59 @@
-﻿"Changes: Sprites":
-- changed-files:
-  - any-glob-to-any-file: '**/*.rsi/*.png'
-
-"Changes: Map":
+﻿"Sprite":
 - changed-files:
   - any-glob-to-any-file:
-    - 'Resources/Maps/**/*.yml'
-    - 'Resources/Prototypes/Maps/**/*.yml'
+    - "**/Imperial/**/*.png"
+    - "**/Imperial/*.png"
 
-"Changes: UI":
+"Grid":
 - changed-files:
-  - any-glob-to-any-file: '**/*.xaml*'
+  - any-glob-to-any-file:
+    - "Resources/Maps/Imperial/**/*.yml"
+    - "Resources/Prototypes/Imperial/Maps/**/*.yml"
 
-"Changes: Shaders":
+"UI":
 - changed-files:
-  - any-glob-to-any-file: '**/*.swsl'
+  - any-glob-to-any-file: "**/*.xaml*"
 
-"Changes: Audio":
+"Shaders":
 - changed-files:
-  - any-glob-to-any-file: '**/*.ogg'
+  - any-glob-to-any-file: "**/*.swsl"
 
-"Changes: No C#":
+"Audio":
 - changed-files:
-  # Equiv to any-glob-to-all as long as this has one matcher. If ALL changed files are not C# files, then apply label.
-  - all-globs-to-all-files: "!**/*.cs"
+  - any-glob-to-any-file: "**/Imperial/**/*.ogg"
+
+"C#":
+- changed-files:
+  - any-glob-to-any-file: "**/*.cs"
+
+"Prototypes":
+- changed-files:
+  - any-glob-to-any-file: "Resources/Prototypes/Imperial/**/*.yml"
+
+# Wiz Changes
+
+"Resprite":
+- all:
+  - changed-files:
+    - any-glob-to-any-file: "**/*.png"
+    - any-glob-to-any-file:
+      - "!**/Imperial/**/*.png"
+      - "!**/Imperial/*.png"
+
+"Change Wiz Code":
+- all:
+  - changed-files:
+    - any-glob-to-any-file: "**/*.cs"
+    - any-glob-to-any-file: "!*/Imperial/**/*.cs"
+
+"Change Wiz Prototypes":
+- all:
+  - changed-files:
+    - any-glob-to-any-file: "Resources/Prototypes/**/*.yml"
+    - any-glob-to-any-file: "!Resources/Prototypes/Imperial/**/*.yml"
+
+"Change Wiz Audio":
+- all:
+  - changed-files:
+    - any-glob-to-any-file: "**/*.ogg"
+    - any-glob-to-any-file: "!**/Imperial/**/*.ogg"

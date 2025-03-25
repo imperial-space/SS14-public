@@ -4,7 +4,6 @@
   id: DualToySword
   components:
   - type: EnergySword
-    isSharp: false
   - type: ItemToggle
     soundActivate:
       path: /Audio/Weapons/ebladeon.ogg
@@ -29,7 +28,7 @@
       params:
         volume: 3
   - type: DisarmMalus
-    activatedDisarmMalus: 0
+    malus: 0
   - type: Wieldable
   - type: MeleeWeapon
     wideAnimationRotation: -135

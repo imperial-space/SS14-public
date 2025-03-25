@@ -1,7 +1,6 @@
 - type: entity
   parent: [ClothingHeadHardsuitBase , ClothingHeadSuitWithLightBase]
   id: EngSuitTwo
-  noSpawn: true
   name: Helmet from the suit of the bio-engineer S-o.N.A
   description: A standard helmet from a bio-engineer's spacesuit.
   components:

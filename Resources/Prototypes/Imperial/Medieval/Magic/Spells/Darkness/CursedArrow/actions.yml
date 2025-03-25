@@ -4,7 +4,6 @@
   id: MedievalActionCursedArrowBeginner
   name: medieval-store-spells-darkness-cursed-arrow-beginner-name
   description: medieval-store-spells-darkness-cursed-arrow-beginner-desc
-  noSpawn: true
   components:
   - type: CastTraining
     trainingResults:

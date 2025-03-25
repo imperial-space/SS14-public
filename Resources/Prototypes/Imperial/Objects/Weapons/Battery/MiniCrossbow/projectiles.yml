@@ -2,7 +2,6 @@
   name: enegry crossbow bolt
   id: BulletCrossbow
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: FlyBySound
     sound:
@@ -41,7 +40,6 @@
 
 - type: entity
   id: BulletImpactEffectGreenDisabler
-  noSpawn: true
   components:
   - type: TimedDespawn
     lifetime: 0.2

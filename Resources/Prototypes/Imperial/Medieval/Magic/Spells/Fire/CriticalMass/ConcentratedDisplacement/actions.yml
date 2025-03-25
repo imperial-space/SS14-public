@@ -5,7 +5,6 @@
   parent: MedievalActionCriticalMassBeginner
   name: medieval-store-spells-fire-concentrated-displacement-middle-name
   description: medieval-store-spells-fire-concentrated-displacement-middle-desc
-  noSpawn: true
   components:
   - type: CastTraining
     trainingResults:
@@ -57,7 +56,6 @@
   parent: MedievalActionCriticalMassBeginner
   name: medieval-store-spells-fire-concentrated-displacement-senior-name
   description: medieval-store-spells-fire-concentrated-displacement-senior-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 75

@@ -10,10 +10,10 @@
   - UplinkWeaponry
   conditions:
    - !type:StoreWhitelistCondition
-     whitelist:
-      tags:
-         - NukeOpsUplink
+      whitelist:
+        tags:
+          - NukeOpsUplink
    - !type:BuyerWhitelistCondition
       blacklist:
-      components:
-      - SurplusBundle
+        components:
+          - SurplusBundle

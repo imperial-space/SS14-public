@@ -6,7 +6,6 @@
   baseTurf: Space
   isSubfloor: true
   deconstructTools: [ Cutting ]
-  canWirecutter: true
   weather: true
   footstepSounds:
     collection: FootstepPlating
@@ -22,7 +21,6 @@
   baseTurf: Space
   isSubfloor: true
   deconstructTools: [ Cutting ]
-  canWirecutter: true
   weather: true
   footstepSounds:
     collection: FootstepPlating
@@ -38,7 +36,6 @@
   baseTurf: Space
   isSubfloor: true
   deconstructTools: [ Cutting ]
-  canWirecutter: true
   weather: true
   footstepSounds:
     collection: FootstepPlating
@@ -54,7 +51,6 @@
   baseTurf: Space
   isSubfloor: true
   deconstructTools: [ Cutting ]
-  canWirecutter: true
   weather: true
   footstepSounds:
     collection: FootstepPlating
@@ -70,7 +66,6 @@
   baseTurf: Space
   isSubfloor: true
   deconstructTools: [ Cutting ]
-  canWirecutter: true
   weather: true
   footstepSounds:
     collection: FootstepPlating
@@ -86,7 +81,6 @@
   baseTurf: Space
   isSubfloor: true
   deconstructTools: [ Cutting ]
-  canWirecutter: true
   weather: true
   footstepSounds:
     collection: FootstepPlating
@@ -102,7 +96,6 @@
   baseTurf: Space
   isSubfloor: true
   deconstructTools: [ Cutting ]
-  canWirecutter: true
   weather: true
   footstepSounds:
     collection: FootstepPlating
@@ -118,7 +111,6 @@
   baseTurf: Space
   isSubfloor: true
   deconstructTools: [ Cutting ]
-  canWirecutter: true
   weather: true
   footstepSounds:
     collection: FootstepPlating
@@ -136,7 +128,6 @@
   placementVariants: [0, 1, 2, 3]
   baseTurf: Plating
   isSubfloor: false
-  canCrowbar: true
   footstepSounds:
     collection: FootstepTile
   itemDrop: SheetUGlass1
@@ -150,7 +141,6 @@
   placementVariants: [0, 1, 2, 3]
   baseTurf: Plating
   isSubfloor: false
-  canCrowbar: true
   footstepSounds:
     collection: FootstepTile
   itemDrop: SheetPGlass1
@@ -164,7 +154,6 @@
   placementVariants: [0, 1, 2, 3]
   baseTurf: Plating
   isSubfloor: false
-  canCrowbar: true
   footstepSounds:
     collection: FootstepTile
   itemDrop: SheetRUGlass1
@@ -178,7 +167,6 @@
   placementVariants: [0, 1, 2, 3]
   baseTurf: Plating
   isSubfloor: false
-  canCrowbar: true
   footstepSounds:
     collection: FootstepTile
   itemDrop: SheetRPGlass1
@@ -192,7 +180,6 @@
   sprite: /Textures/Tiles/Planet/Snow/ice.png
   baseTurf: Plating
   isSubfloor: false
-  canCrowbar: true
   footstepSounds:
     collection: FootstepTile
   itemDrop: SnowballIce

@@ -2,7 +2,6 @@
   id: ASPBullet
   name: bullet ASP (9x19)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -13,7 +12,6 @@
   id: ASPBulletPiercing
   name: bullet ASP (9x19 AP)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -25,7 +23,6 @@
   id: ASPBulletLongRange
   name: bullet ASP (9x19 T)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: TimedDespawn
     lifetime: 30
@@ -38,7 +35,6 @@
   id: Astra60Bullet
   name: bullet Astra-60 (9x19)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -49,7 +45,6 @@
   id: Astra60BulletPiercing
   name: bullet Astra-60 (9x19 AP)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -61,7 +56,6 @@
   id: Astra60BulletLongRange
   name: bullet Astra-60 (9x19 T)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: TimedDespawn
     lifetime: 30
@@ -74,7 +68,6 @@
   id: Astra100Bullet
   name: bullet Astra-100 (9x19)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -85,7 +78,6 @@
   id: Astra100BulletPiercing
   name: bullet Astra-100 (9x19 AP)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -97,7 +89,6 @@
   id: Astra100BulletLongRange
   name: bullet Astra-100 (9x19 T)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: TimedDespawn
     lifetime: 30

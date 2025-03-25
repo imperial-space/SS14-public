@@ -23,8 +23,6 @@
     clothingPrototype: ClothingOuterChestplateModsuitSpecialForces
     requiredSlot: back
     slot: outerClothing
-  - type: Storage
-    capacity: 10
   - type: PointLight
     color: "#a0f1e8"
     enabled: false
@@ -67,7 +65,8 @@
     highPressureMultiplier: 0.04
     lowPressureMultiplier: 200
   - type: TemperatureProtection
-    coefficient: 0.1
+    heatingCoefficient: 0.1
+    coolingCoefficient: 0.1
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
@@ -90,7 +89,6 @@
 - type: entity
   parent: ClothingHeadHardsuitBase
   id: ClothingHeadHelmetModsuitSpecialForces
-  noSpawn: true
   name: Special Forces Helmet
   description: Designed to protect your head from enemy forces
   components:
@@ -116,7 +114,6 @@
 - type: entity
   parent: ClothingHandsBase
   id: ClothingGauntletsModsuitSpecialForces
-  noSpawn: true
   name: Special Forces gloves
   description: Thanks to them, your hands are safe. Probably...
   components:

@@ -14,7 +14,6 @@
         - state: box_command
         - state: headset
     - type: Storage
-      capacity: 60
       whitelist:
         components:
           - Headset

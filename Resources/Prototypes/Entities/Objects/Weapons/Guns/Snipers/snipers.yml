@@ -60,7 +60,6 @@
   - type: GunRequiresWield
   - type: Gun
     projectileSpeed: 50 # Imperial Balance
-    projectileSpeedModified: 50 # Imperial Balance
     fireRate: 0.4
     selectedMode: SemiAuto
     availableModes:

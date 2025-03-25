@@ -314,8 +314,8 @@
     - Belt
   - type: Gun
     selectedMode: FullAuto
-    availableMode:
-      - Full Auto
+    availableModes:
+      - FullAuto
   - type: ItemSlots
     slots:
       gun_magazine:

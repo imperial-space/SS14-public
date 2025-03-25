@@ -52,9 +52,6 @@
     enabled: true
   - type: PoweredLight
     hasLampOnSpawn: DirtyLightBulb
-    damage:
-      types:
-        Heat: 5
 
 - type: entity
   id: DarkRedPoweredSmallLight
@@ -69,9 +66,6 @@
     enabled: true
   - type: PoweredLight
     hasLampOnSpawn: DarkRedLightBulb
-    damage:
-      types:
-        Heat: 5
 
 - type: entity
   id: DarkVioletPoweredSmallLight
@@ -86,6 +80,3 @@
     enabled: true
   - type: PoweredLight
     hasLampOnSpawn: DarkVioletLightBulb
-    damage:
-      types:
-        Heat: 5

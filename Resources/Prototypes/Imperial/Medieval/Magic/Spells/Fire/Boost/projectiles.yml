@@ -24,7 +24,7 @@
     damage:
       types:
         Blunt: 5
-    ignoreResistances: true
+    resistanceBypass: true
     soundHit:
       path: /Audio/Imperial/Medieval/buff_cast.ogg
   - type: SolutionContainerManager
@@ -85,7 +85,7 @@
     damage:
       types:
         Blunt: 5
-    ignoreResistances: true
+    resistanceBypass: true
     soundHit:
       path: /Audio/Imperial/Medieval/buff_cast.ogg
   - type: SolutionContainerManager
@@ -147,7 +147,7 @@
     damage:
       types:
         Blunt: 5
-    ignoreResistances: true
+    resistanceBypass: true
     soundHit:
       path: /Audio/Imperial/Medieval/buff_cast.ogg
   - type: SolutionContainerManager

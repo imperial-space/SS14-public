@@ -89,7 +89,6 @@
         - SyndicateLostAgentGear
 
 - type: entity
-  noSpawn: false
   parent: BaseMobHuman
   id: MobOIPOutpostEmployee
   suffix: InterGalactic
@@ -105,7 +104,6 @@
       prototypes: [ OIPOutpostEmployeeGear ]
 
 - type: entity
-  noSpawn: false
   parent: BaseMobHuman
   id: MobCourierFreelance
   suffix: InterGalactic

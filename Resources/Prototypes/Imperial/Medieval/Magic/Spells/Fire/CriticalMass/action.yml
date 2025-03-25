@@ -4,7 +4,6 @@
   id: MedievalActionCriticalMassBeginner
   name: medieval-store-spells-fire-critical-mass-beginner-name
   description: medieval-store-spells-fire-critical-mass-beginner-desc
-  noSpawn: true
   components:
   - type: CastTraining
     trainingResults:

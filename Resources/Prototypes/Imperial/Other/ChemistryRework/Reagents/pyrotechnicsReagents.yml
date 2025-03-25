@@ -40,14 +40,8 @@
   tileReactions:
     - !type:CreateEntityTileReaction
       entity: BlackHoleEffect
-      conditions:
-        - !type:SolutionTemperature
-          min: 290
     - !type:GravityTileReaction
       maxRange: 3.5
-      conditions:
-        - !type:SolutionTemperature
-          min: 290
       baseRadialDeltaV: 145
       baseTangentialDeltaV: -5
 
@@ -62,14 +56,8 @@
   tileReactions:
     - !type:CreateEntityTileReaction
       entity: WhiteHoleEffect
-      conditions:
-        - !type:SolutionTemperature
-          min: 290
     - !type:GravityTileReaction
       maxRange: 3.5
-      conditions:
-        - !type:SolutionTemperature
-          min: 290
       baseRadialDeltaV: -180
       baseTangentialDeltaV: 5
 
@@ -112,7 +100,7 @@
   name: reagent-name-quantum-hair-dye
   desc: reagent-desc-quantum-hair-dye
   physicalDesc: reagent-physical-desc-skunky
-  flavor: blaster
+  flavor: gargleblaster
   color: "#982CEE"
   group: Unknown
   metabolisms:
@@ -135,7 +123,7 @@
   name: reagent-name-quantum-tail-dye
   desc: reagent-desc-quantum-tail-dye
   physicalDesc: reagent-physical-desc-skunky
-  flavor: blaster
+  flavor: gargleblaster
   color: "#982CEE"
   group: Unknown
   metabolisms:
@@ -225,7 +213,7 @@
   group: Medicine
   desc: reagent-desc-strange-reagent
   physicalDesc: reagent-physical-desc-necrotic
-  flavor: flavor-complex-bad-tequila
+  flavor: tequila
   pricePerUnit: 20
   color: "#92DA6D"
   metabolisms:
@@ -277,24 +265,15 @@
   group: Unknown
   desc: reagent-desc-unstable-bluespace-liquid
   physicalDesc: reagent-physical-desc-nondescript
-  flavor: Pyrotechnic
+  flavor: strange
   pricePerUnit: 1000
   color: "#5ED3F3"
   tileReactions:
     - !type:CreateEntityTileReaction
       entity: BluespaceHoleEffect
-      conditions:
-        - !type:SolutionTemperature
-          min: 290
     - !type:TeleportTileReaction
       energyPerUnit: 1
       teleportType: Random
-      conditions:
-        - !type:SolutionTemperature
-          min: 290
-        - !type:ReagentThreshold
-          min: 1
-          reagent: ConcentratedBluespaceLiquid
 
 - type: reagent
   id: ConcentratedBluespaceLiquid
@@ -302,22 +281,13 @@
   group: Unknown
   desc: reagent-desc-concentrated-bluespace-liquid
   physicalDesc: reagent-physical-desc-nondescript
-  flavor: Pyrotechnic
+  flavor: strange
   pricePerUnit: 2000
   color: "#5ED3F3"
   tileReactions:
     - !type:CreateEntityTileReaction
       entity: BluespaceHoleEffect
-      conditions:
-        - !type:SolutionTemperature
-          min: 290
     - !type:TeleportTileReaction
       radiusPerUnit: 0
       teleportType: FaceRotation
-      conditions:
-        - !type:SolutionTemperature
-          min: 290
-        - !type:ReagentThreshold
-          min: 1
-          reagent: ConcentratedBluespaceLiquid
 

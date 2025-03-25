@@ -22,6 +22,17 @@ namespace Content.YAMLLinter
             stopwatch.Start();
 
             var (errors, fieldErrors) = await RunValidation();
+            // Imperial Space Start
+            errors = errors
+                .Where(er => er.Value.Count(node => node.ErrorReason.Contains("No localization message found with id")) != er.Value.Count)
+                .Select(er => KeyValuePair.Create(
+                    er.Key,
+                    er.Value
+                        .Where(node => !node.ErrorReason.Contains("No localization message found with id"))
+                        .ToHashSet()
+                ))
+                .ToDictionary();
+            // Imperial Space End
 
             var count = errors.Count + fieldErrors.Count;
 

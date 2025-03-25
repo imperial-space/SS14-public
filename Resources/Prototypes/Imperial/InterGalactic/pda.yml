@@ -7,7 +7,6 @@
   components:
   - type: Pda
     id: InterGalacticCEIDCard
-    state: pda-ce
   - type: PdaBorderColor
     borderColor: "#949137"
     accentHColor: "#447987"
@@ -22,7 +21,6 @@
   components:
   - type: Pda
     id: InterGalacticEngineerIDCard
-    state: pda-engineer
   - type: PdaBorderColor
     borderColor: "#949137"
     accentVColor: "#A32D26"
@@ -37,7 +35,6 @@
   components:
   - type: Pda
     id: InterGalacticAtmosIDCard
-    state: pda-atmos
   - type: PdaBorderColor
     borderColor: "#949137"
     accentVColor: "#447987"

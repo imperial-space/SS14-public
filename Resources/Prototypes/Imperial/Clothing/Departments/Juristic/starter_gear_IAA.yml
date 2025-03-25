@@ -1,5 +1,4 @@
 - type: entity
-  noSpawn: true
   parent: ClothingBackpackDuffel
   id: ClothingBackpackDuffelIAAFilled
   components:
@@ -13,7 +12,6 @@
         - id: RubberStampIAA
 
 - type: entity
-  noSpawn: true
   parent: ClothingBackpackSatchel
   id: ClothingBackpackSatchelIAAFilled
   components:
@@ -27,7 +25,6 @@
         - id: RubberStampIAA
 
 - type: entity
-  noSpawn: true
   parent: ClothingBackpack
   id: ClothingBackpackIAAFilled
   components:

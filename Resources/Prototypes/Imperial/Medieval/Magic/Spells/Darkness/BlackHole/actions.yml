@@ -4,7 +4,6 @@
   id: MedievalActionBlackHoleBeginner
   name: medieval-store-spells-darkness-black-hole-beginner-name
   description: medieval-store-spells-darkness-black-hole-beginner-desc
-  noSpawn: true
   components:
   - type: CastTraining
     trainingResults:
@@ -62,14 +61,12 @@
   parent: MedievalActionBlackHoleBeginner
   name: medieval-store-spells-darkness-black-hole-middle-name
   description: medieval-store-spells-darkness-black-hole-middle-desc
-  noSpawn: true
   components:
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 60
     itemIconStyle: BigAction
     checkCanAccess: false
-    preventCollide: true
     range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/blackhole_cast.ogg
@@ -104,7 +101,6 @@
   parent: MedievalActionBlackHoleBeginner
   name: medieval-store-spells-darkness-black-hole-senior-name
   description: medieval-store-spells-darkness-black-hole-senior-desc
-  noSpawn: true
   components:
   - type: MedievalTargetSpell
   - type: WorldTargetAction

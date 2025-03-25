@@ -9,29 +9,10 @@
   "states": [
     {
       "name": "catv1",
-      "directions": 4,
-      "delays": [
-        [
-          1
-        ],
-        [
-          1
-        ],
-        [
-          1
-        ],
-        [
-          1
-        ]
-      ]
+      "directions": 4
     },
     {
-      "name": "cat_deadv1",
-      "delays": [
-        [
-          1
-        ]
-      ]
+      "name": "cat_deadv1"
     }
   ]
 }

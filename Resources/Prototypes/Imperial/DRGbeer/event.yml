@@ -1,13 +1,11 @@
 - type: entity
   id: VentGnomes
   parent: BaseGameRule
-  noSpawn: true
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/aliens.ogg
-    startDelay: 10
     weight: 5
   - type: VentCrittersRule
     entries:

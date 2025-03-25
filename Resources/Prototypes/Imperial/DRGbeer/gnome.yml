@@ -1,6 +1,6 @@
-- type: entity 
-  name: Gnome 
-  parent:     
+- type: entity
+  name: Gnome
+  parent:
   - BaseSimpleMob
   - MobCombat
   - MobAtmosExposed
@@ -19,11 +19,11 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeCircle 
+          !type:PhysShapeCircle
           radius: 0.2
         density: 80
         mask:
-        - SmallMobMask 
+        - SmallMobMask
         layer:
         - SmallMobLayer
   - type: Stripping
@@ -91,7 +91,7 @@
       types:
         Blunt: 1
         Piercing: 1
-  - type: Puller 
+  - type: Puller
     needsHands: false
   - type: CanHostGuardian #Это сделано чтобы они стояли на месте пока в них не вселится гост (никаких БЛЯТЬ ГНОМОВ СТЕНДЬЮЗЕРОВ , ОНИ НЕ СМОГУТ ДОСТАТЬ ИМПЛАНТЕР)
   - type: FactionException
@@ -99,11 +99,11 @@
     factions:
       - Passive
   - type: Hands
-  - type: Body 
+  - type: Body
     prototype: gnomebody
     requiredLegs: 0
   - type: Clumsy #НИКАКИХ ГНОМОВ С АВТОМАТАМИ , РП - обьяснение : Гномов разносит отдачей пушки
-    clumsyDamage:
+    gunShootFailDamage:
       types:
         Blunt: 2
         Piercing: 7
@@ -114,8 +114,8 @@
   - type: Barotrauma #Запрещаю находится в космосе
     damage:
       types:
-        Blunt: 60  
-  - type: ZombieImmune   
+        Blunt: 60
+  - type: ZombieImmune
   - type: Damageable
     damageContainer: StructuralInorganic
   - type: CanEscapeInventory
@@ -133,7 +133,7 @@
         spawn:
           ClothingHeadHatGnome:
            min: 1
-           max: 1 
+           max: 1
           ShardGlass:
             min: 1
             max: 3
@@ -157,3 +157,4 @@
     wilhelmProbability: 0.001
   - type: Unrevivable
   - type: Pacified
+  - type: ComplexInteraction

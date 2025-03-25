@@ -4,7 +4,6 @@
   id: MedievalActionWeakeningWaveSenior
   name: medieval-store-spells-multi-currency-weakening-wave-senior-name
   description: medieval-store-spells-multi-currency-weakening-wave-senior-desc
-  noSpawn: true
   components:
   - type: MedievalInstantSpell
   - type: InstantAction

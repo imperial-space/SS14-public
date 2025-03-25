@@ -18,11 +18,11 @@
     maxAngle: 16
     fireRate: 10
     angleIncrease: 5
-    andgleDecay: 19
+    angleDecay: 19
     selectedMode: FullAuto
-    availableMode:
+    availableModes:
     - FullAuto
-    soundGunShot:
+    soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
   - type: ItemSlots
     slots:

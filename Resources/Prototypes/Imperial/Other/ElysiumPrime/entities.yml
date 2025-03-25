@@ -24,8 +24,6 @@
     sprite: Imperial/Objects/Devices/customPDA.rsi
     state: pda
   - type: Pda
-#    id: ID card inside this PDA
-    state: pda
   - type: PdaBorderColor
 
 
@@ -292,7 +290,6 @@
         visible: false
   - type: Pda
     id: ElysiumFederationIDCard
-    state: pda
   - type: PdaBorderColor
     borderColor: "#242424"
     accentHColor: "#447987"

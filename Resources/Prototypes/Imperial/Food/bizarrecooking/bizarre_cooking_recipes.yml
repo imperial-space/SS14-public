@@ -120,7 +120,7 @@
 - type: microwaveMealRecipe
   id: RecipeIdiotSandwich
   name: idiot sandwich recipe
-  result: FoodBakedIdiotSandwich
+  result: FoodIdiotSandwich
   time: 10
   solids:
     FoodBreadPlainSlice: 2

@@ -10,9 +10,6 @@
     deviceNetId: Wired
     receiveFrequencyId: BasicDevice
   - type: DeviceList
-  - type: DeviceLinkSink
-    ports:
-      - NinjaSleeperReceiver
   - type: Sprite
     sprite: Imperial/SpiderClan/Misc/ninjasleeper.rsi
     snapCardinals: true
@@ -59,9 +56,6 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: WiresPanel
-  - type: Wires
-    boardName: wires-board-name-ninjasleeper
-    layoutId: NinjaSleeper
   - type: Appearance
   - type: Climbable
   - type: ApcPowerReceiver

@@ -2,7 +2,6 @@
   id: WitchersSpellVendigo
   name: The Wendigo Appeal
   description: This spell summons an aggressive Wendigo.
-  noSpawn: true
   components:
   - type: WorldTargetAction
     useDelay: 60
@@ -24,7 +23,6 @@
   id: WitchersSpellYlitka
   name: Summoning snails
   description: This spell summons two aggressive snails.
-  noSpawn: true
   components:
   - type: WorldTargetAction
     useDelay: 30
@@ -46,7 +44,6 @@
   id: WitchersSpellVorons
   name: The Call of the Ravens
   description: This spell summons three aggressive ravens.
-  noSpawn: true
   components:
   - type: WorldTargetAction
     useDelay: 15

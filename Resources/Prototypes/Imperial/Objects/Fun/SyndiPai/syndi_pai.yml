@@ -72,7 +72,7 @@
   - type: TypingIndicator
     proto: syndibot
   - type: Speech
-    speechSounds: Pai_syndi
+    speechSounds: Borg
   - type: GenericVisualizer
     visuals:
       enum.ToggleableGhostRoleVisuals.Status:
@@ -80,15 +80,6 @@
           Off: { state: pai-off-overlay }
           Searching: { state: pai-searching-overlay }
           On: { state: pai-on-overlay }
-
-- type: speechSounds
-  id: Pai_syndi
-  saySound:
-    path: /Audio/Imperial/PaiSyndi/pai_syndi.ogg
-  askSound:
-    path: Audio/Imperial/PaiSyndi/pai_syndi_ask.ogg
-  exclaimSound:
-    path: Audio/Imperial/PaiSyndi/pai_syndi_exclaim.ogg
 
 - type: typingIndicator
   id: syndibot

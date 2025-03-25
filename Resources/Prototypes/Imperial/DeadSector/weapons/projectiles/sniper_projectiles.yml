@@ -2,7 +2,6 @@
   id: BulletSVUMkII
   name: bullet SVU Mk II (7x62x39)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -13,7 +12,6 @@
   id: BulletSVUMkIIPiercing
   name: bullet SVU Mk II (7x62x39 AP)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -25,7 +23,6 @@
   id: BulletSVUMkIILongRange
   name: bullet VU Mk II (7x62x39 T)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: TimedDespawn
     lifetime: 30
@@ -38,7 +35,6 @@
   id: BulletSVUMkIIExplosive
   name: bullet SVU Mk II (7x62x39 ST)
   parent: BaseBulletTrigger
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -55,7 +51,6 @@
   id: BulletSVD
   name: bullet SVD (7x62x39)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -66,7 +61,6 @@
   id: BulletSVDPiercing
   name: bullet SVD (7x62x39 AP)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -78,7 +72,6 @@
   id: BulletSVDLongRange
   name: bullet SVD (7x62x39 T)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: TimedDespawn
     lifetime: 30
@@ -91,7 +84,6 @@
   id: BulletSVDExplosive
   name: bullet SVD (7x62x39 ST)
   parent: BaseBulletTrigger
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -109,7 +101,6 @@
   name: bullet (.35 MP-9)
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -121,7 +112,6 @@
   name: bullet (.35 MP-9)
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -133,7 +123,6 @@
   id: BulletLongRangeSniperVSSMkI
   name: bullet SVD (7x62x39 T)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: TimedDespawn
     lifetime: 30
@@ -146,7 +135,6 @@
   id: BulletExplosiveSniperVSSMkI
   name: bullet SVD (7x62x39 ST)
   parent: BaseBulletTrigger
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -164,7 +152,6 @@
   name: bullet (.35 MP-9)
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -176,7 +163,6 @@
   name: bullet (.35 MP-9)
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -188,7 +174,6 @@
   id: BulletLongRangeSniperVSSMkII
   name: bullet SVD (7x62x39 T)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: TimedDespawn
     lifetime: 30
@@ -201,7 +186,6 @@
   id: BulletExplosiveSniperVSSMkII
   name: bullet SVD (7x62x39 ST)
   parent: BaseBulletTrigger
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -219,7 +203,6 @@
   name: bullet (.35 MP-9)
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -231,7 +214,6 @@
   name: bullet (.35 MP-9)
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -243,7 +225,6 @@
   id: BulletLongRangeSniperSVUMkI
   name: bullet SVD (7x62x39 T)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: TimedDespawn
     lifetime: 30
@@ -256,7 +237,6 @@
   id: BulletExplosiveSniperSVUMkI
   name: bullet SVD (7x62x39 ST)
   parent: BaseBulletTrigger
-  noSpawn: true
   components:
   - type: Projectile
     damage:

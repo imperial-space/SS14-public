@@ -133,11 +133,10 @@
     state: science
   - type: MachineBoard
     prototype: ModsuitFab
-    requirements:
+    stackRequirements:
+      Glass: 2
       MatterBin: 1
       Manipulator: 1
-    materialRequirements:
-      Glass: 2
   - type: GuideHelp
     guides:
     - Robotics

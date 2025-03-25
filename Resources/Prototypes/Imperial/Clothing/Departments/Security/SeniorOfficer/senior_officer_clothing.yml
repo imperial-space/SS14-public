@@ -32,7 +32,6 @@
       - id: Stunbaton
 
 - type: entity
-  noSpawn: true
   parent: ClothingBackpackSecurity
   id: ClothingBackpackSecurityFilledSeniorOfficer
   components:
@@ -44,7 +43,6 @@
       - id: MagazinePistolPractice
 
 - type: entity
-  noSpawn: true
   parent: ClothingBackpackDuffelSecurity
   id: ClothingBackpackDuffelSecurityFilledSeniorOfficer
   components:

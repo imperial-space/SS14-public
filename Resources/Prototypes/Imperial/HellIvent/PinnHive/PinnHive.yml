@@ -6,7 +6,7 @@
   suffix: HellIvent
   components:
   - type: Sprite
-    noRot: True 
+    noRot: True
     sprite: Imperial/HellIvent/PinnHive.rsi
     state: pinnhive
     layers:
@@ -21,7 +21,6 @@
     state: pinnhive
   - type: Item
     sprite: Imperial/HellIvent/PinnHive.rsi
-    state: pinnhave
   - type: Pinpointer
     component: TimedSpawner
     targetName: Hive

@@ -53,7 +53,7 @@ namespace Content.Server.MedievalMeleeResource
 
                 if (resource.Resource > resource.MaxResource)
                     resource.Resource = resource.MaxResource;
-                _audioSystem.PlayPvs(new SoundPathSpecifier(resource.EffectSoundOnRepair), target.Value);
+                _audioSystem.PlayPvs(resource.EffectSoundOnRepair, target.Value);
                 CheckResource(target.Value, resource);
 
                 QueueDel(used);
@@ -153,7 +153,7 @@ namespace Content.Server.MedievalMeleeResource
             if (component.Resource == 0)
             {
                 _audioSystem.PlayStatic(
-                    new SoundPathSpecifier(component.EffectSoundOnBreak),
+                    component.EffectSoundOnBreak,
                     Filter.Pvs(uid.ToCoordinates(), 1, EntityManager, _playerManager),
                     uid.ToCoordinates(),
                     true

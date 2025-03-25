@@ -30,7 +30,6 @@
   components:
   - type: Pda
     id: AdjutantIDCard
-    state: pda-adjutant
   - type: PdaBorderColor
     borderColor: "#717059"
     accentVColor: "#42337a"
@@ -81,7 +80,6 @@
       - EncryptionKeyCommon
 
 - type: entity
-  noSpawn: true
   parent: ClothingBackpack
   id: ClothingBackpackHOPFilled
   components:

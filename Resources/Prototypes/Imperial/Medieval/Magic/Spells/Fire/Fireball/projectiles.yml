@@ -5,7 +5,6 @@
   parent: BulletRocket
   name: fireball
   description: You better GITTAH WEIGH.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
@@ -57,7 +56,6 @@
   parent: BulletRocket
   name: fireball
   description: You better GITTAH WEIGH.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
@@ -113,7 +111,6 @@
   parent: BulletRocket
   name: fireball
   description: You better GITTAH WEIGH.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi

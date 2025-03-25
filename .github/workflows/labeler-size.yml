@@ -2,6 +2,9 @@ name: "Labels: Size"
 on: pull_request_target
 jobs:
   size-label:
+    permissions:
+      contents: read
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: size-label
@@ -9,12 +12,9 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
-          # Custom size configuration
           sizes: >
             {
-              "0": "XS",
-              "10": "S",
-              "100": "M",
-              "1000": "L",
-              "5000": "XL"
+              "0": "Small",
+              "1000": "Medium",
+              "5000": "Large"
             }

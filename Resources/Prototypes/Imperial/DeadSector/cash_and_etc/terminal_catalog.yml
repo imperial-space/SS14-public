@@ -101,16 +101,6 @@
   - FegerationTerminalWeapons
 
 - type: listing
-  id: TerminalWeaponFelixAK102
-  name: WeaponFelixAK102-name
-  description: WeaponFelixAK102-des
-  productEntity: WeaponFelixAK102
-  cost:
-    FederationCash: 2500
-  categories:
-  - FegerationTerminalWeapons
-
-- type: listing
   id: TerminalWeaponFelixAKS74y
   name: WeaponFelixAKS74y-name
   description: WeaponFelixAKS74y-des
@@ -407,36 +397,6 @@
   name: BaseMagazineHK416LongRange-name
   description: BaseMagazineHK416LongRange-des
   productEntity: BaseMagazineHK416LongRange
-  cost:
-    FederationCash: 200
-  categories:
-  - FegerationTerminalAmmo
-
-- type: listing
-  id: TerminalMagazineAK102
-  name: MagazineAK102-name
-  description: MagazineAK102-des
-  productEntity: MagazineAK102
-  cost:
-    FederationCash: 100
-  categories:
-  - FegerationTerminalAmmo
-
-- type: listing
-  id: TerminalBaseMagazineAK102Piercing
-  name: BaseMagazineAK102Piercing-name
-  description: BaseMagazineAK102Piercing-des
-  productEntity: BaseMagazineAK102Piercing
-  cost:
-    FederationCash: 250
-  categories:
-  - FegerationTerminalAmmo
-
-- type: listing
-  id: TerminalBaseMagazineAK102LongRange
-  name: BaseMagazineAK102LongRange-name
-  description: BaseMagazineAK102LongRange-des
-  productEntity: BaseMagazineAK102LongRange
   cost:
     FederationCash: 200
   categories:
@@ -1761,36 +1721,6 @@
   name: Hemostat-name
   description: Hemostat-des
   productEntity: Hemostat
-  cost:
-    FederationCash: 20
-  categories:
-  - FegerationTerminalMedicine
-
-- type: listing
-  id: TerminalSurgeryBoneGelBottle
-  name: SurgeryBoneGelBottle-name
-  description: SurgeryBoneGelBottle-des
-  productEntity: SurgeryBoneGelBottle
-  cost:
-    FederationCash: 20
-  categories:
-  - FegerationTerminalMedicine
-
-- type: listing
-  id: TerminalSurgeryStepler
-  name: SurgeryStepler-name
-  description: SurgeryStepler-des
-  productEntity: SurgeryStepler
-  cost:
-    FederationCash: 20
-  categories:
-  - FegerationTerminalMedicine
-
-- type: listing
-  id: TerminalSurgeryAmputator
-  name: SurgeryAmputator-name
-  description: SurgeryAmputator-des
-  productEntity: SurgeryAmputator
   cost:
     FederationCash: 20
   categories:

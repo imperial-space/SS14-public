@@ -4,7 +4,6 @@
   id: MedievalActionDivineTouchBeginner
   name: medieval-store-spells-light-divine-touch-beginner-name
   description: medieval-store-spells-light-divine-touch-beginner-desc
-  noSpawn: true
   components:
   - type: CastTraining
     trainingResults:
@@ -56,7 +55,6 @@
   parent: MedievalActionDivineTouchBeginner
   name: medieval-store-spells-light-divine-touch-middle-name
   description: medieval-store-spells-light-divine-touch-middle-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 35
@@ -97,7 +95,6 @@
   parent: MedievalActionDivineTouchBeginner
   name: medieval-store-spells-light-divine-touch-senior-name
   description: medieval-store-spells-light-divine-touch-senior-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 55
