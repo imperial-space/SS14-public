@@ -5,7 +5,7 @@
   description: super weapon uplink
   components:
   - type: Sprite
-    sprite: Imperial\DeadSector\Uplink.rsi
+    sprite: Imperial/DeadSector/Uplink.rsi
     layers:
     - state: weapon
     - state: weapon_unshaded
