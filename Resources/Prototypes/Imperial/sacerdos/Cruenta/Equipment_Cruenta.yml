@@ -1,5 +1,4 @@
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: CruentaLeadersODTPreset
   name: Special-Leaders-nam
@@ -45,7 +44,6 @@
         - skillNeuroSurgery
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: fightCruentaODTPreset
   name: Special-Cruenta-Officer-nam
@@ -91,7 +89,6 @@
         - skillNeuroSurgery
   
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: MedCruentaODTPreset
   name: Special-med-nam
@@ -159,7 +156,7 @@
       sprite: Markers/jobs.rsi
       layers:
         - state: green
-        - sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Equipment_Cruenta.rsi
+        - sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Equipment_Cruenta.rsi
           state: Leaders_Cruenta
 
 - type: entity
@@ -180,7 +177,7 @@
       sprite: Markers/jobs.rsi
       layers:
         - state: green
-        - sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Equipment_Cruenta.rsi
+        - sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Equipment_Cruenta.rsi
           state: fight_Cruenta
 
 - type: entity
@@ -201,7 +198,7 @@
       sprite: Markers/jobs.rsi
       layers:
         - state: green
-        - sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Equipment_Cruenta.rsi
+        - sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Equipment_Cruenta.rsi
           state: Med_Cruenta
 
 #######################################################################################
