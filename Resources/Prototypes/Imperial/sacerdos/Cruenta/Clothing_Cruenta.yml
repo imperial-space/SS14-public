@@ -6,9 +6,9 @@
   description: Quite a good-looking official suit made of elastic materials.
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Clothing_Cruenta\Blackwhite_Cruenta_leader.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Clothing_Cruenta/Blackwhite_Cruenta_leader.rsi
   - type: Clothing
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Clothing_Cruenta\Blackwhite_Cruenta_leader.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Clothing_Cruenta/Blackwhite_Cruenta_leader.rsi
 
 - type: entity
   parent: ClothingUniformJumpskirtHoSAlt
@@ -18,9 +18,9 @@
   description: Quite a good-looking official suit made of elastic materials.
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Clothing_Cruenta\Blackwhite_Cruenta_skirt_leader.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Clothing_Cruenta/Blackwhite_Cruenta_skirt_leader.rsi
   - type: Clothing
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Clothing_Cruenta\Blackwhite_Cruenta_skirt_leader.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Clothing_Cruenta/Blackwhite_Cruenta_skirt_leader.rsi
   
 - type: entity
   parent: ClothingNeckBase
@@ -30,7 +30,7 @@
   suffix: Phantom4502, Cruenta
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Clothing_Cruenta\Blackwhite_Cruenta_raincoat_leader_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Clothing_Cruenta/Blackwhite_Cruenta_raincoat_leader_Cruenta.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -40,7 +40,7 @@
   suffix: Phantom4502, Cruenta
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Clothing_Cruenta\Blackwhite_mantle_fight_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Clothing_Cruenta/Blackwhite_mantle_fight_Cruenta.rsi
 
 - type: entity
   parent: ClothingNeckBase 
@@ -50,7 +50,7 @@
   suffix: Phantom4502, Cruenta
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Clothing_Cruenta\Blackwhite_fight_Cruenta_raincoat.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Clothing_Cruenta/Blackwhite_fight_Cruenta_raincoat.rsi
 
 - type: entity
   parent: ClothingUniformJumpskirtHoSAlt
@@ -60,9 +60,9 @@
   description: Quite a good-looking official suit made of elastic materials.
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Clothing_Cruenta\Blackwhite_fighter_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Clothing_Cruenta/Blackwhite_fighter_Cruenta.rsi
   - type: Clothing
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Clothing_Cruenta\Blackwhite_fighter_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Clothing_Cruenta/Blackwhite_fighter_Cruenta.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -72,9 +72,9 @@
   suffix: Phantom4502, Cruenta
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Clothing_Cruenta\beret_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Clothing_Cruenta/beret_Cruenta.rsi
   - type: Clothing
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Clothing_Cruenta\beret_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Clothing_Cruenta/beret_Cruenta.rsi
 
 - type: entity
   parent: ClothingHandsGlovesCaptain
@@ -84,6 +84,6 @@
   suffix: Phantom4502, Cruenta
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Clothing_Cruenta\HandsGloves_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Clothing_Cruenta/HandsGloves_Cruenta.rsi
   - type: Clothing
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Clothing_Cruenta\HandsGloves_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Clothing_Cruenta/HandsGloves_Cruenta.rsi
