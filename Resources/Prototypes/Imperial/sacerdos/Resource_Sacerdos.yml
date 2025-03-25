@@ -6,7 +6,7 @@
   description: A crystaline solid.
   components:
     - type: Sprite
-      sprite: Imperial\sacerdos\Resource_Sacerdos.rsi
+      sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
       state: Sprite-0001
     - type: Reflect
       reflectProb: 0.5
@@ -61,7 +61,7 @@
   suffix: Phantom4502
   components:
     - type: Sprite
-      sprite: Imperial\sacerdos\Resource_Sacerdos.rsi
+      sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
       state: Sprite-0009
     - type: PointLight
       radius: 3
@@ -90,7 +90,7 @@
   suffix: Phantom4502
   components:
     - type: Sprite
-      sprite: Imperial\sacerdos\Resource_Sacerdos.rsi
+      sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
       state: Sprite-0005
     - type: PointLight
       radius: 3
@@ -127,7 +127,7 @@
   suffix: Phantom4502
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Resource_Sacerdos.rsi
+    sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
     state: Sprite-0004
   - type: PointLight
     radius: 2
@@ -145,7 +145,7 @@
   suffix: Phantom4502
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Resource_Sacerdos.rsi
+    sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
     state: Sprite-0008
   - type: PointLight
     radius: 2
@@ -163,7 +163,7 @@
   suffix: Phantom4502
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Resource_Sacerdos.rsi
+    sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
     state: Sprite-0012
   - type: PointLight
     radius: 2
