@@ -6,5 +6,5 @@
   description: A banner displaying the color red. The edgy one.
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Cruenta_Banner.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Cruenta_Banner.rsi
     state: Cruenta_Banner
