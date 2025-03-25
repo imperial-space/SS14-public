@@ -6,9 +6,9 @@
   suffix: Phantom4502, Sacerdos
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Armor_heavy_sacerdos.rsi
+    sprite: Imperial/sacerdos/Armor_heavy_sacerdos.rsi
   - type: Clothing
-    sprite: Imperial\sacerdos\Armor_heavy_sacerdos.rsi
+    sprite: Imperial/sacerdos/Armor_heavy_sacerdos.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -36,14 +36,14 @@
   suffix: Phantom4502, Sacerdos
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Armor_sacerdos_Raid.rsi
+    sprite: Imperial/sacerdos/Armor_sacerdos_Raid.rsi
     layers:
     - state: Sprite-Armor-1
     - state: Sprite-Armor-6
       visible: false
       shader: unshaded
   - type: Clothing
-    sprite: Imperial\sacerdos\Armor_sacerdos_Raid.rsi
+    sprite: Imperial/sacerdos/Armor_sacerdos_Raid.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -120,9 +120,9 @@
   suffix: Phantom4502, sacerdos
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Armor_sacerdos_Helmet_Raid.rsi
+    sprite: Imperial/sacerdos/Armor_sacerdos_Helmet_Raid.rsi
   - type: Clothing
-    sprite: Imperial\sacerdos\Armor_sacerdos_Helmet_Raid.rsi
+    sprite: Imperial/sacerdos/Armor_sacerdos_Helmet_Raid.rsi
   - type: Armor
     modifiers: #There's gotta be SOME reason to use this over other helmets.
       coefficients:
@@ -139,9 +139,9 @@
   suffix: Phantom4502, sacerdos
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Armor_fight_sacerdos_1.rsi
+    sprite: Imperial/sacerdos/Armor_fight_sacerdos_1.rsi
   - type: Clothing
-    sprite: Imperial\sacerdos\Armor_fight_sacerdos_1.rsi
+    sprite: Imperial/sacerdos/Armor_fight_sacerdos_1.rsi
 
 - type: entity
   parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing]
@@ -151,9 +151,9 @@
   suffix: Phantom4502, sacerdos
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\OuterArmorBasic_sacerdos.rsi
+    sprite: Imperial/sacerdos/OuterArmorBasic_sacerdos.rsi
   - type: Clothing
-    sprite: Imperial\sacerdos\OuterArmorBasic_sacerdos.rsi
+    sprite: Imperial/sacerdos/OuterArmorBasic_sacerdos.rsi
   - type: Armor 
     modifiers:
       coefficients:
