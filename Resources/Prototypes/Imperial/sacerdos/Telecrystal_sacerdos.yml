@@ -6,12 +6,12 @@
   description: Small cube of solid blue space matter
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Telecrystal_sacerdos.rsi
+    sprite: Imperial/sacerdos/Telecrystal_sacerdos.rsi
     scale: 0.6, 0.6
     netsync: false
     state: Telecrystal_sacerdos
   - type: Item
-    sprite: Imperial\sacerdos\Telecrystal_sacerdos.rsi
+    sprite: Imperial/sacerdos/Telecrystal_sacerdos.rsi
   - type: Stack
     count: 20
     stackType: Telecrystal_sacerdos
@@ -33,7 +33,7 @@
 - type: stack
   id: Telecrystal_sacerdos
   name: Telecrystal_sacerdos
-  icon: Imperial\sacerdos\Telecrystal_sacerdos.rsi
+  icon: Imperial/sacerdos/Telecrystal_sacerdos.rsi
   spawn: Telecrystal_sacerdos1
 
 - type: entity
