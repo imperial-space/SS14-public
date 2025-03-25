@@ -7,7 +7,7 @@
     containers:
       board: [ DoorElectronicsNukeop ]
   - type: Sprite
-    sprite: Imperial\sacerdos\Airlock_sacerdos.rsi
+    sprite: Imperial/sacerdos/Airlock_sacerdos.rsi
 
 - type: entity
   parent: AirlockSecurityGlass
@@ -18,4 +18,4 @@
     containers:
       board: [ DoorElectronicsNukeop ]
   - type: Sprite
-    sprite: Imperial\sacerdos\Airlock_Glass_sacerdos.rsi
+    sprite: Imperial/sacerdos/Airlock_Glass_sacerdos.rsi
