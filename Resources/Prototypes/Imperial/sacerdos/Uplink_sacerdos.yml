@@ -7,7 +7,7 @@
   suffix: Phantom4502, Sacerdos
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Uplink_sacerdos.rsi
+    sprite: Imperial/sacerdos/Uplink_sacerdos.rsi
     layers:
     - state: Sprite_sacerdos_2
     - state: Sprite_sacerdos_3
