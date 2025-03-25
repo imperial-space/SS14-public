@@ -13,6 +13,6 @@
       key_slots:
       - EncryptionKeyRadio9
   - type: Sprite
-    sprite: Imperial\sacerdos\Clothing_sacerdos\HeadsetAlt_sacerdos.rsi
+    sprite: Imperial/sacerdos/Clothing_sacerdos/HeadsetAlt_sacerdos.rsi
   - type: Clothing
-    sprite: Imperial\sacerdos\Clothing_sacerdos\HeadsetAlt_sacerdos.rsi
+    sprite: Imperial/sacerdos/Clothing_sacerdos/HeadsetAlt_sacerdos.rsi
