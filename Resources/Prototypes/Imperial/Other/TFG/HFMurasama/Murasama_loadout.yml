@@ -5,7 +5,7 @@
   suffix: Filled
   components:
   - type: Sprite
-    sprite: Imperial\Other\TFG\Murasama\murasama_sheath.rsi
+    sprite: Imperial/Other/TFG/Murasama/murasama_sheath.rsi
   - type: ContainerFill
     containers:
       item:
