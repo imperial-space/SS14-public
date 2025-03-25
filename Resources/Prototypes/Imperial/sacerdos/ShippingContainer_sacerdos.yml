@@ -8,7 +8,7 @@
   - type: SpriteFade
   - type: Clickable
   - type: Sprite
-    sprite: Imperial\sacerdos\ShippingContainer_sacerdos.rsi
+    sprite: Imperial/sacerdos/ShippingContainer_sacerdos.rsi
     netsync: false
     drawdepth: Overdoors
   - type: Physics
