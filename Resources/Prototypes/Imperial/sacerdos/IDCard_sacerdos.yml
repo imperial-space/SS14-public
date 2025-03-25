@@ -5,7 +5,7 @@
   suffix: Phantom4502, sacerdos
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\ID_sacerdos.rsi
+    sprite: Imperial/sacerdos/ID_sacerdos.rsi
     state: ID_Leaders_sacerdos
   - type: Item
     size: Small
@@ -24,7 +24,7 @@
   suffix: Phantom4502, sacerdos
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\ID_sacerdos.rsi
+    sprite: Imperial/sacerdos/ID_sacerdos.rsi
     state: ID_fight_sacerdos
   - type: Item
     size: Small
@@ -43,7 +43,7 @@
   suffix: Phantom4502, sacerdos
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\ID_sacerdos.rsi
+    sprite: Imperial/sacerdos/ID_sacerdos.rsi
     state: ID_Medical_sacerdos
   - type: Item
     size: Small
