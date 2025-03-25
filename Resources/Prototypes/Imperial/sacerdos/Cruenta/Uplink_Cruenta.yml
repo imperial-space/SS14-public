@@ -6,7 +6,7 @@
   suffix: Phantom4502, Cruenta
   components:
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Uplink_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Uplink_Cruenta.rsi
     layers:
     - state: Sprite_Cruenta_2
     - state: Sprite_Cruenta_3
