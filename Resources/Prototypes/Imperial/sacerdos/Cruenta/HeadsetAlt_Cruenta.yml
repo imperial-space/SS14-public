@@ -13,6 +13,6 @@
       key_slots:
       - EncryptionKeyRadio1
   - type: Sprite
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Clothing_Cruenta\HeadsetAlt_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Clothing_Cruenta/HeadsetAlt_Cruenta.rsi
   - type: Clothing
-    sprite: Imperial\sacerdos\Cruenta_falcatio.rsi\Clothing_Cruenta\HeadsetAlt_Cruenta.rsi
+    sprite: Imperial/sacerdos/Cruenta_falcatio.rsi/Clothing_Cruenta/HeadsetAlt_Cruenta.rsi
