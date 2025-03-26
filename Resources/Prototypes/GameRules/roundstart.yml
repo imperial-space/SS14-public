@@ -20,6 +20,8 @@
   components:
   - type: SubGamemodes
     rules:
+    - id: Cluwne
+      prob: 0.7
     - id: Thief
       prob: 0.5
     - id: SubWizard
@@ -31,6 +33,8 @@
   components:
   - type: SubGamemodes
     rules:
+    - id: Cluwne
+      prob: 0.7
     - id: Thief
       prob: 0.5
 
