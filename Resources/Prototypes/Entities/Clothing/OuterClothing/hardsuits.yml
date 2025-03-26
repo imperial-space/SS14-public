@@ -525,17 +525,13 @@
 #ANTAG HARDSUITS
 #Blood-red Hardsuit
 - type: entity
-  parent: [ ClothingOuterHardsuitBase, BaseSyndicateContraband ]
+  parent: [ ClothingOuterHardsuitClown, BaseSyndicateContraband ] ### Imperial April Fools
   id: ClothingOuterHardsuitSyndie
   name: blood-red hardsuit
   description: A heavily armored hardsuit designed for work in special operations. Property of Gorlex Marauders.
   components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
   - type: Item
     size: Huge
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -570,10 +566,7 @@
   name: blood-red medic hardsuit
   description: A heavily armored and agile advanced hardsuit specifically designed for field medic operations.
   components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
+  ### Imperial April Fools
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieMedic
   - type: Tag
@@ -623,15 +616,12 @@
 
 #Syndicate Commander Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseSyndicateContraband]
+  parent: [ClothingOuterHardsuitClown, BaseSyndicateContraband]
   id: ClothingOuterHardsuitSyndieCommander
   name: syndicate commander hardsuit
   description: A bulked up version of the blood-red hardsuit, purpose-built for the commander of a syndicate operative squad. Has significantly improved armor for those deadly front-lines firefights.
   components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
+  ### Imperial April Fools
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000

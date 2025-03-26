@@ -11,5 +11,5 @@ war-declarator-boost-possible = Возможность объявить войн
 war-declarator-boost-impossible = Невозможно объявить войну
 war-declarator-boost-declared = Война объявлена! Трансфер может быть отключен из-за...
 war-declarator-boost-timer = Осталось времени: {$time} минут.
-war-declarator-default-message = Группа синдиката заявила о своем намерении полностью уничтожить станцию ​​с помощью ядерной боеголовки, экипаж может попытаться остановить их.
+war-declarator-default-message = МЫ КРУТЫЕ ПАРНИ С ПУШКАМИ И МЫ ХОТИМ ПИФ-ПАФ! 
 war-declarator-message-placeholder = Напишите здесь собственное объявление войны...
