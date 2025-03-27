@@ -1,17 +1,5 @@
-# imperial dataset translate
-
-- type: dataset
-  id: verbs
+- type: localizedDataset
+  id: Verbs
   values:
-  - робастить
-  - сосо
-  - гибать
-  - манчить
-  - ромпомпом
-  - рофлить
-  - шутнярить
-  - шалить
-  - шуметь
-  - плакать
-  - щиткурить
-  - абвбббыбжфхйаьвбзйхй
+    prefix: verbs-dataset-
+    count: 645 # Imperial Space
