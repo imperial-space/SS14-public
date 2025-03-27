@@ -199,7 +199,7 @@
   - !type:PlantAdjustHealth
     amount: -1.5
   - !type:PlantAdjustMutationMod
-    prob: 0.2
+    probability: 0.2
     amount: 0.1
   metabolisms:
     Poison:
@@ -233,7 +233,7 @@
   parent: BaseAlcohol
   desc: reagent-desc-vampire-wine
   physicalDesc: reagent-physical-desc-translucent
-  flavor: VampireWine
+  flavor: ambrosia
   color: "#7E4043"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/wineglass.rsi

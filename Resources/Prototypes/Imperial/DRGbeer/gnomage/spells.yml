@@ -15,7 +15,6 @@
   parent: ProjectilePolyboltBase
   name: gnomish polybolt
   description: Nooo, I don't wanna be clown!
-  noSpawn: true
   components:
   - type: PolymorphOnCollide
     polymorph: GnomeCluwne
@@ -27,7 +26,6 @@
   id: ActionBeerClowned
   name: Fireball
   description: Fires an explosive fireball towards the clicked location.
-  noSpawn: true
   components:
   - type: WorldTargetAction
     useDelay: 60 #ибо нехуй спамить заклинанием
@@ -37,21 +35,19 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Magic/fireball.ogg
     icon:
-      sprite: imperial/DRGbeer/spells.rsi
+      sprite: Imperial/DRGbeer/spells.rsi
       state: Reincarnation-Clown
     event: !type:ProjectileSpellEvent
       prototype: ProjectilePolyboltGnomish
-      posData: !type:TargetCasterPos
       speech: action-speech-spell-Clowning
 
 - type: entity
-  parent: BaseSubdermalImplant 
+  parent: BaseSubdermalImplant
   id: BeerImplantClowned
   name: absolutelyNothing
-  noSpawn: true
   components:
     - type: SubdermalImplant
-      implantAction: ActionBeerClowned    
+      implantAction: ActionBeerClowned
     - type: Tag
       tags:
         - SubdermalImplant
@@ -62,14 +58,13 @@
   id: ActionBeerGnomespawn
   name: Summon Magicarp
   description: This spell summons three Magi-Carp to your aid! May or may not turn on user.
-  noSpawn: true
   components:
   - type: WorldTargetAction
     useDelay: 50
     range: 4
     itemIconStyle: BigAction
     icon:
-      sprite: imperial/DRGbeer/spells.rsi
+      sprite: Imperial/DRGbeer/spells.rsi
       state: gnomes
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -79,13 +74,12 @@
       speech: action-speech-spell-SpawnGome
 
 - type: entity
-  parent: BaseSubdermalImplant 
+  parent: BaseSubdermalImplant
   id: BeerImplantGnomes
   name: absolutelyNothing
-  noSpawn: true
   components:
     - type: SubdermalImplant
-      implantAction: ActionBeerGnomespawn   
+      implantAction: ActionBeerGnomespawn
     - type: Tag
       tags:
         - SubdermalImplant
@@ -96,14 +90,13 @@
   id: ActionBeerSmoke
   name: Summon Magicarp
   description: This spell summons three Magi-Carp to your aid! May or may not turn on user.
-  noSpawn: true
   components:
   - type: WorldTargetAction
     useDelay: 50
     range: 4
     itemIconStyle: BigAction
     icon:
-      sprite: imperial/DRGbeer/spells.rsi
+      sprite: Imperial/DRGbeer/spells.rsi
       state: Soporificfog
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -113,13 +106,12 @@
       speech: action-speech-spell-smokegnom
 
 - type: entity
-  parent: BaseSubdermalImplant 
+  parent: BaseSubdermalImplant
   id: BeerImplantSmoke
   name: absolutelyNothing
-  noSpawn: true
   components:
     - type: SubdermalImplant
-      implantAction: ActionBeerSmoke 
+      implantAction: ActionBeerSmoke
     - type: Tag
       tags:
         - SubdermalImplant

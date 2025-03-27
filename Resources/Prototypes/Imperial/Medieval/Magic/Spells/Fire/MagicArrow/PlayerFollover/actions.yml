@@ -5,14 +5,12 @@
   parent: MedievalActionMagicArrowBeginner
   name: medieval-store-spells-fire-magic-arrow-player-follover-beginner-name
   description: medieval-store-spells-fire-magic-arrow-player-follover-beginner-desc
-  noSpawn: true
   components:
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 8
     itemIconStyle: BigAction
     checkCanAccess: false
-    preventCollide: false
     range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
@@ -75,14 +73,12 @@
   parent: MedievalActionMagicArrowBeginner
   name: medieval-store-spells-fire-magic-arrow-player-follover-middle-name
   description: medieval-store-spells-fire-magic-arrow-player-follover-middle-desc
-  noSpawn: true
   components:
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 10
     itemIconStyle: BigAction
     checkCanAccess: false
-    preventCollide: false
     range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
@@ -146,14 +142,12 @@
   parent: MedievalActionMagicArrowBeginner
   name: medieval-store-spells-fire-magic-arrow-player-follover-senior-name
   description: medieval-store-spells-fire--magic-arrow-player-follover-senior-desc
-  noSpawn: true
   components:
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 13
     itemIconStyle: BigAction
     checkCanAccess: false
-    preventCollide: false
     range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg

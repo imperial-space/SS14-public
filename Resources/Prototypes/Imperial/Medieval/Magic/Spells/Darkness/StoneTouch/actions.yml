@@ -4,7 +4,6 @@
   id: MedievalActionStoneTouchBeginner
   name: medieval-store-spells-darkness-stone-touch-beginner-name
   description: medieval-store-spells-darkness-stone-touch-beginner-desc
-  noSpawn: true
   components:
   - type: CastTraining
     trainingResults:
@@ -46,7 +45,6 @@
   - type: ActionUpgrade
     effectedLevels:
       2: MedievalActionStoneTouchMiddle
-      3: MedievalActionStoneTouchSenior
 
 # Middle
 
@@ -55,7 +53,6 @@
   parent: MedievalActionStoneTouchBeginner
   name: medieval-store-spells-darkness-stone-touch-middle-name
   description: medieval-store-spells-darkness-stone-touch-middle-desc
-  noSpawn: true
   components:
   - type: CastTraining
     trainingResults:

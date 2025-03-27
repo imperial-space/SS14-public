@@ -3,7 +3,6 @@
   name: fireball
   description: You better GITTAH WEIGH.
   parent: BulletRocket
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Gun/Charmer/blood.rsi

@@ -14,7 +14,6 @@
     belt: ClothingBeltHolsterSpecialOfficer
 
 - type: entity ## Спавнер
-  noSpawn: false
   parent: MobHuman
   id: SpecialOfficerPreset
   name: Special Officer
@@ -23,7 +22,7 @@
     - type: RandomMetadata
       nameSegments:
       - SpecialOfficerName
-      - names_last
+      - NamesLast
     - type: Loadout
       prototypes: [ SpecialOfficerGear ]
     - type: RandomHumanoidAppearance

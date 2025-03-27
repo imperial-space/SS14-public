@@ -238,6 +238,81 @@
         },
 		{
             "name": "agrichemkit"
+        },
+		{
+            "name": "med_label"
+        },
+		{
+            "name": "eng_label"
+        },
+		{
+            "name": "cap_label"
+        },
+		{
+            "name": "synd_label"
+        },
+		{
+            "name": "robotics_label"
+        },
+		{
+            "name": "miku"
+        },
+		{
+            "name": "hop_label"
+        },
+		{
+            "name": "miner_label"
+        },
+		{
+            "name": "box_medical"
+        },
+		{
+            "name": "common_label"
+        },
+		{
+            "name": "cargo_label"
+        },
+		{
+            "name": "rd_label"
+        },
+		{
+            "name": "sec_label"
+        },
+		{
+            "name": "com_label"
+        },
+		{
+            "name": "box_engineering"
+        },
+		{
+            "name": "box_service"
+        },
+		{
+            "name": "pirate_label"
+        },
+		{
+            "name": "hos_label"
+        },
+		{
+            "name": "service_label"
+        },
+		{
+            "name": "cmo_label"
+        },
+		{
+            "name": "qm_label"
+        },
+		{
+            "name": "id"
+        },
+		{
+            "name": "ce_label"
+        },
+		{
+            "name": "sci_label"
+        },
+		{
+            "name": "medsci_label"
         }
     ]
 }

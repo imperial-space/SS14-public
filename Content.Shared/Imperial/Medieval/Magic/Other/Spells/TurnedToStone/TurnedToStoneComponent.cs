@@ -16,7 +16,7 @@ public sealed partial class TurnedToStoneComponent : Component
     public TimeSpan LifeTime = TimeSpan.FromSeconds(3);
 
     [DataField]
-    public ProtoId<DamageContainerPrototype> DamageModifierSetID = "MedievalStone";
+    public ProtoId<DamageModifierSetPrototype> DamageModifierSetID = "MedievalStone";
 
 
     [ViewVariables]

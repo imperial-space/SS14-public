@@ -198,7 +198,7 @@
     Sulfur:
       amount: 1
   effects:
-    - !type:FlashReactionEffect
+    - !type:ImperialFlashReactionEffect
       maxRange: 8
       maxDuration: 5
 
@@ -210,7 +210,7 @@
     FlashPowder:
       amount: 1
   effects:
-    - !type:FlashReactionEffect
+    - !type:ImperialFlashReactionEffect
       maxRange: 8
       maxDuration: 8
 

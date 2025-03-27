@@ -175,7 +175,8 @@
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    coefficient: 0.001
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 0.80
@@ -220,7 +221,8 @@
   - type: ClothingSpeedModifier
     sprintModifier: 1.0
   - type: TemperatureProtection
-    coefficient: 0.090
+    heatingCoefficient: 0.09
+    coolingCoefficient: 0.09
   - type: Armor
     modifiers:
       coefficients:
@@ -244,7 +246,8 @@
   - type: ClothingSpeedModifier
     sprintModifier: 1.0
   - type: TemperatureProtection
-    coefficient: 0.020
+    heatingCoefficient: 0.02
+    coolingCoefficient: 0.02
   - type: Armor
     modifiers:
       coefficients:
@@ -256,7 +259,6 @@
         Caustic: 0.80
 
 - type: entity
-  noSpawn: true
   id: ClothingHeadHardsuitSingularitySienceBlack
   parent: ClothingHeadHelmetHardsuitBasic
   name: scientiest helmet
@@ -285,7 +287,8 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHardsuitSingularitySienceOrange
   - type: TemperatureProtection
-    coefficient: 0.065
+    heatingCoefficient: 0.065
+    coolingCoefficient: 0.065
   - type: Armor
     modifiers:
       coefficients:
@@ -306,7 +309,8 @@
   - type: ClothingSpeedModifier
     sprintModifier: 0.85
   - type: TemperatureProtection
-    coefficient: 0.065
+    heatingCoefficient: 0.065
+    coolingCoefficient: 0.065
   - type: Armor
     modifiers:
       coefficients:
@@ -318,7 +322,6 @@
         Caustic: 0.65
 
 - type: entity
-  noSpawn: true
   id: ClothingHeadHardsuitSingularitySienceOrange
   parent: ClothingHeadHelmetHardsuitBasic
   name: scientiest helmet
@@ -347,7 +350,8 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHardsuitSingularitySienceGreen
   - type: TemperatureProtection
-    coefficient: 0.081
+    heatingCoefficient: 0.081
+    coolingCoefficient: 0.081
   - type: Armor
     modifiers:
       coefficients:
@@ -371,7 +375,8 @@
   - type: ClothingSpeedModifier
     sprintModifier: 0.85
   - type: TemperatureProtection
-    coefficient: 0.020
+    heatingCoefficient: 0.02
+    coolingCoefficient: 0.02
   - type: Armor
     modifiers:
       coefficients:
@@ -383,7 +388,6 @@
         Caustic: 0.81
 
 - type: entity
-  noSpawn: true
   id: ClothingHeadHardsuitSingularitySienceGreen
   parent: ClothingHeadHelmetHardsuitBasic
   name: scientiest helmet
@@ -414,7 +418,8 @@
   - type: ClothingSpeedModifier
     sprintModifier: 1.0
   - type: TemperatureProtection
-    coefficient: 0.055
+    heatingCoefficient: 0.055
+    coolingCoefficient: 0.055
   - type: Armor
     modifiers:
       coefficients:
@@ -438,7 +443,8 @@
   - type: ClothingSpeedModifier
     sprintModifier: 1.0
   - type: TemperatureProtection
-    coefficient: 0.045
+    heatingCoefficient: 0.045
+    coolingCoefficient: 0.045
   - type: Armor
     modifiers:
       coefficients:
@@ -450,7 +456,6 @@
         Caustic: 0.65
 
 - type: entity
-  noSpawn: true
   id: ClothingHeadHardsuitSingularitySienceWhite
   parent: ClothingHeadHelmetHardsuitBasic
   name: scientiest helmet

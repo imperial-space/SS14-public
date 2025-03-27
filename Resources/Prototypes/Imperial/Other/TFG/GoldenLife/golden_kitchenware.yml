@@ -45,7 +45,6 @@
     state: icon
   - type: Item
     sprite: Imperial/Other/TFG/GoldenLife/goldenKnife.rsi
-    state: icon
   - type: MeleeWeapon
     attackRate: 1.5
     damage:

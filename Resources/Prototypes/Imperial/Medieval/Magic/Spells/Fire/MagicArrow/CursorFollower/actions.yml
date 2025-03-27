@@ -5,7 +5,6 @@
   parent: MedievalActionMagicArrowBeginner
   name: medieval-store-spells-fire-magic-arrow-cursor-follover-beginner-name
   description: medieval-store-spells-fire-magic-arrow-cursor-follover-beginner-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 25
@@ -45,7 +44,6 @@
     useDelay: 8
     itemIconStyle: BigAction
     checkCanAccess: false
-    preventCollide: true
     range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
@@ -70,7 +68,6 @@
   parent: MedievalActionMagicArrowBeginner
   name: medieval-store-spells-fire-magic-arrow-cursor-follover-middle-name
   description: medieval-store-spells-fire-magic-arrow-cursor-follover-middle-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 35
@@ -110,7 +107,6 @@
     useDelay: 9
     itemIconStyle: BigAction
     checkCanAccess: false
-    preventCollide: true
     range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
@@ -136,7 +132,6 @@
   parent: MedievalActionMagicArrowBeginner
   name: medieval-store-spells-fire-magic-arrow-cursor-follover-senior-name
   description: medieval-store-spells-fire-magic-arrow-cursor-follover-senior-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 45

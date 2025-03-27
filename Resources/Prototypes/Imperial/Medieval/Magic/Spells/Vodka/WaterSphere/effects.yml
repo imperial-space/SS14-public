@@ -39,7 +39,6 @@
 
 - type: entity
   id: MedievalEffectWaterSphereBeginnerDespawn
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
@@ -90,7 +89,6 @@
 
 - type: entity
   id: MedievalEffectWaterSphereMiddleDespawn
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
@@ -142,7 +140,6 @@
 
 - type: entity
   id: MedievalEffectWaterSphereSeniorDespawn
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi

@@ -4,7 +4,6 @@
   name: bullet (beretta)
   suffix: CS
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -17,7 +16,6 @@
   name: bullet (AWP)
   suffix: CS
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:

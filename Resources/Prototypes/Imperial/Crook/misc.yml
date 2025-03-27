@@ -113,3 +113,402 @@
 ### tomsktoluene
 ### tomsktoluene
 ### tomsktoluene
+
+# Backrooms
+
+- type: entity
+  parent: WallSandstone
+  id: WallBackrooms
+  name: unusual wall
+  suffix: 9000hp, Backrooms, Crook
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 9000
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Girder:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: tile
+  id: FloorBackrooms
+  name: tiles-backrooms-floor
+  sprite: /Textures/Tiles/lino.png
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepTile
+  heatCapacity: 99910000
+  weather: true
+  indestructible: true
+
+- type: entity
+  parent: FlaskBase
+  id: ThermosBlue
+  name: blue thermos
+  suffix: Backrooms, Crook
+  description: Greed is destructive. Remember this when you start drinking.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: Water
+          Quantity: 35
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/ThermosBlue.rsi
+
+- type: entity
+  parent: FlaskBase
+  id: ThermosGreen
+  name: green thermos
+  suffix: Backrooms, Crook
+  description: Greed is destructive. Remember this when you start drinking.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: Coffee
+          Quantity: 25
+        - ReagentId: ChloralHydrate
+          Quantity: 15
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/ThermosGreen.rsi
+
+- type: entity
+  parent: FlaskBase
+  id: ThermosRed
+  name: red thermos
+  suffix: Backrooms, Crook
+  description: Greed is destructive. Remember this when you start drinking.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: Synaptizine
+          Quantity: 6
+        - ReagentId: Water
+          Quantity: 20
+        - ReagentId: Retropine
+          Quantity: 14
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/ThermosRed.rsi
+
+- type: entity
+  parent: FlaskBase
+  id: ThermosGray
+  name: gray thermos
+  suffix: Backrooms, Crook
+  description: Greed is destructive. Remember this when you start drinking.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+        - ReagentId: Water
+          Quantity: 10
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/ThermosGray.rsi
+
+- type: emoteSounds
+  id: SmilerVoice
+  sound:
+    path: /Audio/Imperial/Crook/smiler/smilerscream.ogg
+    params:
+      variation: 2
+
+- type: entity
+  name: basic smiler
+  id: BaseSmiler
+  parent: [ SimpleMobBase, MobCombat ]
+  abstract: true
+  description: null
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleNeutral
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.30
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 5
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Slime
+  - type: Bloodstream
+    bloodReagent: Slime
+  - type: Body
+    prototype: Slimes
+    requiredLegs: 1
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/punch3.ogg
+    angle: 0
+    animation: WeaponArcPunch
+  - type: GhostTakeoverAvailable
+  - type: TypingIndicator
+    proto: slime
+
+- type: entity
+  name: Smiler
+  id: Smiler
+  suffix: Backrooms, Crook
+  parent: [ BaseSmiler, MobCombat ]
+  description: Smiling means kind.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Crook/Misc/smiler.rsi
+    layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: alive
+      - state: unshaded
+        shader: unshaded
+  - type: PointLight
+    radius: 1.2
+    energy: 2.1
+    color: "#ffffff"
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      50: 0.4
+  - type: Bloodstream
+    bloodReagent: MuteToxin
+    chemicalMaxVolume: 60
+  - type: StatusEffects
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    animation: WeaponArcBite
+    damage:
+      types:
+        Slash: 10
+        Structural: 50
+  - type: MeleeChemicalInjector
+    solution: bloodstream
+    transferAmount: 5
+  - type: DamageStateVisuals
+    rotate: true
+    states:
+      Alive:
+        Base: alive
+      Dead:
+        Base: dead
+  - type: Tag
+    tags:
+      - CannotSuicide
+      - DoorBumpOpener
+  - type: NoSlip
+  - type: ZombieImmune
+  - type: ExaminableSolution
+    solution: bloodstream
+  - type: InjectableSolution
+    solution: bloodstream
+  - type: DrainableSolution
+    solution: bloodstream
+  - type: Emoting
+  - type: Vocal
+    sounds:
+      Unsexed: SmilerVoice
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 150
+        behaviors:
+          - !type:DoActsBehavior
+             acts: [ "Destruction" ]
+
+- type: entity
+  name: deathmoth
+  parent: MobCockroach
+  id: MobDeathmoth
+  suffix: Backrooms, Crook
+  description: This moth will bite off your head if you stroke it. But you don't care.
+  components:
+  - type: Item
+    size: Huge
+  - type: CanEscapeInventory
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Slime
+          Quantity: 5
+  - type: Food
+  - type: Hunger
+    baseDecayRate: 0.25
+  - type: Physics
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 10
+        Caustic: 2
+        Structural: 25
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: ZombieImmune
+  - type: GhostRole
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: ghost-role-information-mothroach-name
+    description: ghost-role-information-mothroach-description
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 120
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: GhostTakeoverAvailable
+  - type: Speech
+    speechVerb: Moth
+    speechSounds: Squeak
+  - type: MothAccent
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: Imperial/Crook/Misc/deathmoth.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: deathmoth
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: deathmoth-moving
+    noMovementLayers:
+      movement:
+        state: deathmoth
+  - type: Appearance
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: deathmoth
+      Critical:
+        Base: deathmoth_dead
+      Dead:
+        Base: deathmoth_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Critical
+      140: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.5
+    baseSprintSpeed : 5.5
+    weightlessAcceleration: 1.5
+    weightlessFriction: 1
+    weightlessModifier: 1
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Moth
+  - type: Bloodstream
+    bloodReagent: FluorosulfuricAcid
+    bloodMaxVolume: 100
+  - type: CombatMode
+  - type: Butcherable
+  - type: Extractable
+    grindableSolutionName: food
+  - type: ReplacementAccent
+    accent: mothroach
+  - type: Vocal
+    sounds:
+      Male: UnisexMoth
+      Female: UnisexMoth
+      Unsexed: UnisexMoth
+    wilhelmProbability: 0.001
+  - type: MobPrice
+    price: 150
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - VimPilot
+  - type: Body
+    prototype: Mothroach
+  - type: TypingIndicator
+    proto: moth
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 200
+      behaviors:
+      - !type:GibBehavior { }
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.5
+  - type: BasicEntityAmmoProvider
+    proto: BulletAcid
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 0.5
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+  - type: NonSpreaderZombie

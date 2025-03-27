@@ -2,7 +2,6 @@
 
 - type: entity
   id: MedievalEffectCriticalMassMiddle
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
@@ -28,7 +27,6 @@
 
 - type: entity
   id: MedievalEffectCriticalMassSenior
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi

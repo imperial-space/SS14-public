@@ -28,32 +28,12 @@
   copyright: "by @bulba1914"
   source: "https://elevenlabs.io/"
 
-- files: ["Alarm2.ogg"]
-  license: "CC0-1.0"
+- files: ["PsychoEnd.ogg"]
+  license: "CC BY 4.0"
   copyright: "by @bulba1914"
   source: "@bulba1914"
 
-- files: ["BrifBZ1"]
-  license: "CC BY 4.0"
-  copyright: "by @bulba1914"
-  source: "https://breakingcopyright.com/song/hayden-folker-lock-and-load"
-
-- files: ["BrifF1.ogg"]
-  license: "CC BY 4.0"
-  copyright: "by @bulba1914"
-  source: "https://breakingcopyright.com/song/hayden-folker-lock-and-load"
-
-- files: ["BZV1.ogg"]
-  license: "CC BY 4.0"
-  copyright: "by @bulba1914"
-  source: "https://breakingcopyright.com/song/hayden-folker-lock-and-load"
-
-- files: ["FV1.ogg"]
-  license: "CC BY 4.0"
-  copyright: "by @bulba1914"
-  source: "https://breakingcopyright.com/song/hayden-folker-lock-and-load"
-
-- files: ["Invasion1.ogg"]
+- files: ["PsychoStart.ogg"]
   license: "CC BY 4.0"
   copyright: "by @bulba1914"
   source: "@bulba1914"

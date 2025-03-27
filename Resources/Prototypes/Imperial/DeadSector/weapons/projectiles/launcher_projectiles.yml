@@ -2,7 +2,6 @@
   id: BulletRPG8
   name: grenade RPG-8
   parent: BaseBulletTrigger
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -24,7 +23,6 @@
   id: BulletRPG8LargeRadius
   name: grenade RPG-8 (large-radius)
   parent: BaseBulletTrigger
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -41,7 +39,6 @@
   id: BulletRPG8Flash
   name: flash grenade
   parent: BaseBulletTrigger
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -59,5 +56,3 @@
   - type: DeleteOnTrigger
   - type: StaminaDamageOnCollide
     damage: 80
-    primingSound:
-      path: /Audio/Items/smoke_grenade_prime.ogg

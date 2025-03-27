@@ -2,7 +2,6 @@
   id: BulletAR57
   name: bullet AR-57 (7x62x51)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -13,7 +12,6 @@
   id: BulletAR57Piercing
   name: bullet AR-57 (7x62x51 AP)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -25,7 +23,6 @@
   id: BulletAR57LongRange
   name: bullet AR-57 (7x62x51 T)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: TimedDespawn
     lifetime: 30
@@ -39,7 +36,6 @@
   name: bullet (.35 MP-9)
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -51,7 +47,6 @@
   name: bullet (.35 MP-9)
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -62,7 +57,6 @@
   id: BulletAR102Piercing
   name: bullet (7x62x51 AP)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -74,7 +68,6 @@
   id: BulletAR102LongRange
   name: bullet (7x62x51 T)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: TimedDespawn
     lifetime: 30
@@ -88,7 +81,6 @@
   name: bullet (.35 MP-9)
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -100,7 +92,6 @@
   name: bullet (.35 MP-9)
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -112,7 +103,6 @@
   id: BulletAKS74yLongRange
   name: bullet (7x62x51 T)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: TimedDespawn
     lifetime: 30
@@ -126,7 +116,6 @@
   name: bullet (.35 MP-9)
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -138,7 +127,6 @@
   name: bullet (.35 MP-9)
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -149,7 +137,6 @@
   id: BulletAR15Piercing
   name: bullet (7x62x51 AP)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -161,7 +148,6 @@
   id: BulletAR15LongRange
   name: bullet (7x62x51 T)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: TimedDespawn
     lifetime: 30
@@ -175,7 +161,6 @@
   name: bullet (.35 MP-9)
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -187,7 +172,6 @@
   name: bullet (.35 MP-9)
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -199,7 +183,6 @@
   id: BulletHK416LongRange
   name: bullet (7x62x51 T)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: TimedDespawn
     lifetime: 30

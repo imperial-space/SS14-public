@@ -22,7 +22,7 @@
     damage:
       types:
         Blunt: 5
-    ignoreResistances: true
+    resistanceBypass: true
     soundHit:
       path: /Audio/Imperial/Medieval/stone_cast.ogg
   - type: MedievalAddComponentOnInteract
@@ -68,7 +68,7 @@
     damage:
       types:
         Blunt: 5
-    ignoreResistances: true
+    resistanceBypass: true
     soundHit:
       path: /Audio/Imperial/Medieval/stone_cast.ogg
   - type: MedievalAddComponentOnInteract

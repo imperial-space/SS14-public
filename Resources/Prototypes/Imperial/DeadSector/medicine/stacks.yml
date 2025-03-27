@@ -4,7 +4,6 @@
   icon: { sprite: "Imperial/DeadSector/items/Medical/medical_stacks.rsi", state: saline }
   spawn: DeadSectorSalinePack
   maxCount: 10
-  itemSize: 1
 
 - type: stack
   id: Plasmapack
@@ -12,7 +11,6 @@
   icon: { sprite: "Imperial/DeadSector/items/Medical/medical_stacks.rsi", state: plasma }
   spawn: DeadSectorPlasmaPack
   maxCount: 10
-  itemSize: 1
 
 - type: stack
   id: LaryngealTube
@@ -20,7 +18,6 @@
   icon: { sprite: "Imperial/DeadSector/items/Medical/medical_stacks.rsi", state: laryngeal }
   spawn: DeadSectorPlasmaPack
   maxCount: 1
-  itemSize: 1
 
 - type: stack
   id: Tourniquet
@@ -28,4 +25,3 @@
   icon: { sprite: "Imperial/DeadSector/items/Medical/medical_stacks.rsi", state: tourniquet }
   spawn: DeadSectorTourniquet
   maxCount: 1
-  itemSize: 1

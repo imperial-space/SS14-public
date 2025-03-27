@@ -18,7 +18,6 @@
         visible: false
   - type: Pda
     id: CoronerIDCard
-    state: pda
   - type: Icon
     state: pda
     sprite: Imperial/Roles/Medical/Coroner/pda.rsi

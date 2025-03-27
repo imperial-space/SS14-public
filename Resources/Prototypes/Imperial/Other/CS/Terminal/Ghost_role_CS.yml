@@ -68,8 +68,6 @@
 - type: startingGear
   id: TGear
   equipment:
-    jumpsuit: MedievalClothingUniformJumpsuitFlannel
-    mask: ClothingMaskGasBalaclava
     shoes: ClothingShoesBootsCombatFilled
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSyndicate
@@ -83,8 +81,6 @@
 - type: startingGear
   id: TGear800
   equipment:
-    jumpsuit: MedievalClothingUniformJumpsuitFlannel
-    mask: ClothingMaskGasBalaclava
     shoes: ClothingShoesBootsCombatFilled
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSyndicate
@@ -98,8 +94,6 @@
 - type: startingGear
   id: TGear4000
   equipment:
-    jumpsuit: MedievalClothingUniformJumpsuitFlannel
-    mask: ClothingMaskGasBalaclava
     shoes: ClothingShoesBootsCombatFilled
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSyndicate
@@ -113,8 +107,6 @@
 - type: startingGear
   id: TGear6500
   equipment:
-    jumpsuit: MedievalClothingUniformJumpsuitFlannel
-    mask: ClothingMaskGasBalaclava
     shoes: ClothingShoesBootsCombatFilled
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSyndicate
@@ -128,7 +120,6 @@
 # Preset
 # CT side
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: PresetCT
   name: Counter-terrorist
@@ -137,7 +128,7 @@
     - type: RandomMetadata
       nameSegments:
       - CT_name
-      - names_last
+      - NamesLast
     - type: Loadout
       prototypes: [ CTGear ]
     - type: RandomHumanoidAppearance
@@ -148,7 +139,6 @@
        - skillShooting
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: PresetCT800
   name: Counter-terrorist
@@ -157,7 +147,7 @@
     - type: RandomMetadata
       nameSegments:
       - CT_name
-      - names_last
+      - NamesLast
     - type: Loadout
       prototypes: [ CTGear800 ]
     - type: RandomHumanoidAppearance
@@ -168,7 +158,6 @@
        - skillShooting
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: PresetCT4000
   name: Counter-terrorist
@@ -177,7 +166,7 @@
     - type: RandomMetadata
       nameSegments:
       - CT_name
-      - names_last
+      - NamesLast
     - type: Loadout
       prototypes: [ CTGear4000 ]
     - type: RandomHumanoidAppearance
@@ -188,7 +177,6 @@
        - skillShooting
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: PresetCT6500
   name: Counter-terrorist
@@ -197,7 +185,7 @@
     - type: RandomMetadata
       nameSegments:
       - CT_name
-      - names_last
+      - NamesLast
     - type: Loadout
       prototypes: [ CTGear6500 ]
     - type: RandomHumanoidAppearance
@@ -209,7 +197,6 @@
 
 # T side
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: PresetT
   name: Terrorist
@@ -229,7 +216,6 @@
        - skillShooting
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: PresetT800
   name: Terrorist
@@ -249,7 +235,6 @@
        - skillShooting
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: PresetT4000
   name: Terrorist
@@ -269,7 +254,6 @@
        - skillShooting
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: PresetT6500
   name: Terrorist

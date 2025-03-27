@@ -4,7 +4,6 @@
   id: MedievalActionBoostBeginner
   name: medieval-store-spells-light-boost-beginner-name
   description: medieval-store-spells-light-boost-beginner-desc
-  noSpawn: true
   components:
   - type: CastTraining
     trainingResults:
@@ -56,7 +55,6 @@
   parent: MedievalActionBoostBeginner
   name: medieval-store-spells-light-boost-middle-name
   description: medieval-store-spells-light-boost-middle-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 70
@@ -97,7 +95,6 @@
   parent: MedievalActionBoostBeginner
   name: medieval-store-spells-light-boost-senior-name
   description: medieval-store-spells-light-boost-senior-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 80

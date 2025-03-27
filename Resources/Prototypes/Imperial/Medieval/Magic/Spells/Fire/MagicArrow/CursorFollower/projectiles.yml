@@ -5,7 +5,6 @@
   parent: BulletRocket
   name: fireball
   description: You better GITTAH WEIGH.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
@@ -35,7 +34,6 @@
   parent: BulletRocket
   name: fireball
   description: You better GITTAH WEIGH.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
@@ -65,7 +63,6 @@
   parent: BulletRocket
   name: fireball
   description: You better GITTAH WEIGH.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
@@ -93,7 +90,6 @@
   parent: MedievalProjectileMagicArrowCursorFolloverSenior
   name: fireball
   description: You better GITTAH WEIGH.
-  noSpawn: true
   components:
   - type: ProjectileCursorFollower
     relativeAngle: 90
@@ -104,7 +100,6 @@
   parent: MedievalProjectileMagicArrowCursorFolloverSenior
   name: fireball
   description: You better GITTAH WEIGH.
-  noSpawn: true
   components:
   - type: ProjectileCursorFollower
     relativeAngle: 90
@@ -115,7 +110,6 @@
   parent: MedievalProjectileMagicArrowCursorFolloverSenior
   name: fireball
   description: You better GITTAH WEIGH.
-  noSpawn: true
   components:
   - type: ProjectileCursorFollower
     relativeAngle: 90

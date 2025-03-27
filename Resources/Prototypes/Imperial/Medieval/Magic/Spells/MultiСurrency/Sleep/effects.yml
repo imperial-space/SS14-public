@@ -1,6 +1,5 @@
 - type: entity
   id: SleepParticles
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi

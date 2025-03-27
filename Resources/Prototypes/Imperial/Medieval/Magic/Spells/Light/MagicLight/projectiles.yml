@@ -2,7 +2,6 @@
 
 - type: entity
   id: MedievalProjectileLightFollower
-  noSpawn: true
   components:
     - type: CargoSellBlacklist
     - type: Sprite
@@ -72,11 +71,11 @@
 
 - type: entity
   id: MedievalLightSphereDespawnEffect
-  noSpawn: true
   components:
   - type: TimedDespawn
     lifetime: 5
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Imperial/Medieval/lightsphere_discharge.ogg
-      variation: 0.2
+      params:
+        variation: 0.2

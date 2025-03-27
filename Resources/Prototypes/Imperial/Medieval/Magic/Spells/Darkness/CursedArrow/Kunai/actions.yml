@@ -5,7 +5,6 @@
   parent: MedievalActionCursedArrowBeginner
   name: medieval-store-spells-darkness-cursed-arrow-kunai-beginner-name
   description: medieval-store-spells-darkness-cursed-arrow-kunai-beginner-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 20
@@ -19,7 +18,6 @@
     useDelay: 4
     itemIconStyle: BigAction
     checkCanAccess: false
-    preventCollide: true
     range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
@@ -71,7 +69,6 @@
   parent: MedievalActionCursedArrowBeginner
   name: medieval-store-spells-darkness-cursed-arrow-kunai-middle-name
   description: medieval-store-spells-darkness-cursed-arrow-kunai-middle-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 30
@@ -85,7 +82,23 @@
     useDelay: 5
     itemIconStyle: BigAction
     checkCanAccess: false
-    preventCollide: true
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/arrow_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+      state: 1
+    event: !type:MedievalEntityTargetProjectileSpellEvent
+      projectilePrototype: MedievalProjectileCursedArrowKunaiMiddle
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-cursed-arrow
+          color: "#B600FF"
+          hideChat: true
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 3
+    whiteListComponents:
+      - type: Damageable
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
@@ -112,24 +125,6 @@
             allowedState: Alive
         addedEssences:
           MagicMedievalDarkness1: 1
-    range: 60
-    sound: !type:SoundPathSpecifier
-      path: /Audio/Imperial/Medieval/arrow_cast.ogg
-    icon:
-      sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
-      state: 1
-    event: !type:MedievalEntityTargetProjectileSpellEvent
-      projectilePrototype: MedievalProjectileCursedArrowKunaiMiddle
-      speechPoints:
-        0:
-          speech: medieval-spell-speach-cursed-arrow
-          color: "#B600FF"
-          hideChat: true
-  - type: MedievalTargetOverlayOnAiming
-    maxTargetCount: 3
-    whiteListComponents:
-      - type: Damageable
-
 
 # Senior
 
@@ -138,7 +133,6 @@
   parent: MedievalActionCursedArrowBeginner
   name: medieval-store-spells-darkness-cursed-arrow-kunai-senior-name
   description: medieval-store-spells-darkness-cursed-arrow-kunai-senior-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 40

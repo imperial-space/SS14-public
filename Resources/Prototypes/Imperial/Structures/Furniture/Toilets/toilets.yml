@@ -2,7 +2,7 @@
   id: GoldToilet
   parent: ToiletEmpty
   name: gold toilet
-  desc: Shiny gold toilet for realy reach man
+  description: Shiny gold toilet for realy reach man
   components:
     - type: Sprite
       sprite: Imperial/Structures/Furniture/Toilets/GoldenToilet.rsi

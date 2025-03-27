@@ -38,7 +38,6 @@
     state: HQrag
   - type: Item
     sprite: Imperial/Other/TFG/GoldenLife/presentableRag.rsi
-    state: HQrag
     size: Small
   - type: Food
     requiresSpecialDigestion: true
@@ -124,7 +123,6 @@
         acts: [ "Destruction" ]
   - type: Item
     sprite: Imperial/Other/TFG/GoldenLife/goldenCaviar.rsi
-    size: Tiny
   - type: Food
     trash:
     - CaviarBowlEmpty
@@ -146,7 +144,6 @@
     state: empty
   - type: Item
     sprite: Imperial/Other/TFG/GoldenLife/goldenCaviar.rsi
-    size: Tiny
   - type: Destructible
     thresholds:
     - trigger:

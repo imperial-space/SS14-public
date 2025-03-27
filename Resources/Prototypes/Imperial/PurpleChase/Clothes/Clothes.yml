@@ -275,8 +275,6 @@
     sprite: Imperial/VlClothes/PurpleChase/Webbing.rsi
   - type: Item
     size: Large
-  - type: Storage
-    capacity: 90
 
 - type: entity
   parent: ClothingEyesBase
@@ -391,7 +389,6 @@
     size: Small
   - type: Pda
     id: VlPCard
-    state: pda
   - type: Icon
     sprite: Imperial/VlClothes/PurpleChase/PDA.rsi
     state: pda

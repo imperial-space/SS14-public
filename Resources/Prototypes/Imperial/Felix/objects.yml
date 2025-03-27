@@ -134,7 +134,7 @@
   icon:
     sprite: /Textures/Imperial/Felix/Objects/jobicons.rsi
     state: Federation
-  jobname: job-name-federation
+  jobName: job-name-federation
 
 - type: entity
   id: StarCorpsIDCard
@@ -185,7 +185,6 @@
         visible: false
   - type: Pda
     id: StarCorpsIDCard
-    state: pda
   - type: PdaBorderColor
     borderColor: "#242424"
     accentHColor: "#447987"

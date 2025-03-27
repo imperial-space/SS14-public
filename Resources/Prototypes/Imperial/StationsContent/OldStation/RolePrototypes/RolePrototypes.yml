@@ -1,5 +1,4 @@
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ArcaneTraderPreset
   name: Trader
@@ -8,7 +7,7 @@
     - type: RandomMetadata
       nameSegments:
       - Торговец
-      - names_last
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -30,7 +29,6 @@
     #     - skillMaintenance
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ArcaneSmugglerPreset
   name: Smuggler
@@ -39,7 +37,7 @@
     - type: RandomMetadata
       nameSegments:
       - Контрабандист
-      - names_last
+      - NamesLast
     - type: NpcFactionMember
       factions:
         - Syndicate
@@ -62,7 +60,6 @@
     #     - skillMaintenance
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ArcaneMercPreset
   name: Merc
@@ -71,7 +68,7 @@
     - type: RandomMetadata
       nameSegments:
       - Наёмник
-      - names_last
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -95,7 +92,6 @@
     #     - skillSurgery
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ArcaneHeadMercPreset
   name: Head Merc
@@ -104,7 +100,7 @@
     - type: RandomMetadata
       nameSegments:
       - Главарь
-      - names_last
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -128,7 +124,6 @@
     #     - skillSurgery
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ArcaneBomjPreset
   name: Bum
@@ -137,7 +132,7 @@
     - type: RandomMetadata
       nameSegments:
       - Бомж
-      - names_last
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi

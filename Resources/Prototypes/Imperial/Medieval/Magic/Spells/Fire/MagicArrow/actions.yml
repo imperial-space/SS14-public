@@ -4,7 +4,6 @@
   id: MedievalActionMagicArrowBeginner
   name: medieval-store-spells-fire-magic-arrow-beginner-name
   description: medieval-store-spells-fire-magic-arrow-beginner-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 15

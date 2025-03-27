@@ -1,0 +1,28 @@
+- type: entity
+  name: minigun
+  id: WeaponMinigunR
+  parent: BaseWeaponHeavyMachineGun
+  description: Vzzzzzt! Rahrahrahrah! Vrrrrr! Uses .10 rifle ammo.
+  suffix: DeathSquad
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/DeathSquad/Weapones/MinigunR.yml
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/SpecialUnits/DeathSquad/Weapones/MinigunR.yml
+  - type: Gun
+    minAngle: 12
+    maxAngle: 12
+    fireRate: 15
+    soundGunshot:
+      path: /Audio/Imperial/SpecialUnits/DeathSquad/minigun.ogg
+  - type: BallisticAmmoProvider
+    proto: CartridgeMinigunR
+    capacity: 1000
+  - type: Wieldable
+  - type: GunRequiresWield
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []

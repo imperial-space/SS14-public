@@ -6,10 +6,10 @@
     jumpsuit: ClothingUniformJumpsuitERTLeader
     back: ClothingBackpackCallERTLeaderFilled
     shoes: ClothingShoesBootsJack
-    head: ClothingHeadHelmetHelmet
+    head: ClothingHeadHelmetBasic
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterVestKevlar
+    outerClothing: ClothingOuterArmorBasic
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityWebbing
@@ -38,10 +38,10 @@
     jumpsuit: ClothingUniformJumpsuitERTMedic
     back: ClothingBackpackCallERTMedicalFilled
     shoes: ClothingShoesBootsJack
-    head: ClothingHeadHelmetHelmet
+    head: ClothingHeadHelmetBasic
     eyes: ClothingEyesHudMedical
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterVestKevlar
+    outerClothing: ClothingOuterArmorBasic
     id: ERTMedicPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMedicalFilled
@@ -70,10 +70,10 @@
     jumpsuit: ClothingUniformJumpsuitERTSecurity
     back: ClothingBackpackCallERTSecurityFilled
     shoes: ClothingShoesBootsJack
-    head: ClothingHeadHelmetHelmet
+    head: ClothingHeadHelmetBasic
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterVestKevlar
+    outerClothing: ClothingOuterArmorBasic
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityWebbing
@@ -102,10 +102,10 @@
     jumpsuit: ClothingUniformJumpsuitERTEngineer
     back: ClothingBackpackCallERTEngineerFilled
     shoes: ClothingShoesBootsJack
-    head: ClothingHeadHelmetHelmet
+    head: ClothingHeadHelmetBasic
     eyes: ClothingEyesGlassesMeson
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterVestKevlar
+    outerClothing: ClothingOuterArmorBasic
     id: ERTEngineerPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltChiefEngineerFilled
@@ -134,9 +134,9 @@
     jumpsuit: ClothingUniformJumpsuitERTJanitor
     back: ClothingBackpackCallERTJanitorFilled
     shoes: ClothingShoesGaloshes
-    head: ClothingHeadHelmetHelmet
+    head: ClothingHeadHelmetBasic
     gloves: ClothingHandsGlovesColorBlack
-    outerClothing: ClothingOuterVestKevlar
+    outerClothing: ClothingOuterArmorBasic
     id: ERTJanitorPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltJanitorFilled
@@ -176,9 +176,6 @@
     #pocket2: WeaponLaserGun
     suitstorage: OxygenTankFilled
     belt: ClothingBeltBandolier
-  innerclothingskirt: ClothingUniformJumpsuitColorBrown
-  satchel: ClothingBackpackCallERTCBURNFilledLeader
-  duffelbag: ClothingBackpackCallERTCBURNFilledLeader
 
 #Security
 - type: startingGear
@@ -197,9 +194,6 @@
     #pocket2: WeaponLaserGun
     suitstorage: OxygenTankFilled
     belt: ClothingBeltBandolier
-  innerclothingskirt: ClothingUniformJumpsuitColorBrown
-  satchel: ClothingBackpackCallERTCBURNFilled
-  duffelbag: ClothingBackpackCallERTCBURNFilled
 
 #Medic
 - type: startingGear
@@ -218,9 +212,7 @@
     #pocket2: WeaponLaserGun
     suitstorage: OxygenTankFilled
     belt: ClothingBeltBandolier
-  innerclothingskirt: ClothingUniformJumpsuitColorBrown
-  satchel: ClothingBackpackCallERTCBURNFilled
-  duffelbag: ClothingBackpackCallERTCBURNFilled
+
 #CBURN END
 
 #DEAD SQUAD START

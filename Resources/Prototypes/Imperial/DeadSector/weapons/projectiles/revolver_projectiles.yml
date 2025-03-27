@@ -2,7 +2,6 @@
   id: Astra903Bullet
   name: bullet Astra-903 (5x14)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -13,7 +12,6 @@
   id: Astra903BulletPiercing
   name: bullet Astra-903 (5x14 AP)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:

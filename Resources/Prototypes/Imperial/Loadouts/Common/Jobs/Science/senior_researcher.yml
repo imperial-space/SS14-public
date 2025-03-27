@@ -55,11 +55,4 @@
   equipment:
     outerClothing: ClothingOuterCoatLabSeniorResearcher
 
-# ScienceShoesAlterBoots
-
-- type: loadout
-  id: ScienceShoesAlterBoots
-  equipment:
-    shoes: ScienceAlterBoots
-
 # Loadouts End

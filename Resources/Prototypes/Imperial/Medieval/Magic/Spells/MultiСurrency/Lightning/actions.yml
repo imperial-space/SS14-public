@@ -4,7 +4,6 @@
   id: MedievalActionLightningMiddle
   name: medieval-store-spells-light-lightning-middle-name
   description: medieval-store-spells-light-lightning-middle-desc
-  noSpawn: true
   components:
   - type: MedievalTargetSpell
   - type: CastTraining
@@ -37,7 +36,6 @@
           maxRange: 2
           maxDuration: 1
           slowTo: 1
-          collideFlags: Dynamic
       spellCastDoAfter:
         delay: 2
         breakOnDropItem: false
@@ -75,7 +73,6 @@
   name: medieval-store-spells-light-lightning-senior-name
   description: medieval-store-spells-light-lightning-senior-desc
   parent: MedievalActionLightningMiddle
-  noSpawn: true
   components:
   - type: MedievalTargetSpell
   - type: WorldTargetAction
@@ -102,7 +99,6 @@
           maxRange: 2
           maxDuration: 1
           slowTo: 1
-          collideFlags: Dynamic
       spellCastDoAfter:
         delay: 2
         breakOnDropItem: false

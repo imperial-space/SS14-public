@@ -133,9 +133,6 @@
   components:
   - type: PoweredLight
     hasLampOnSpawn: VlPCLightTubeOne
-    damage:
-      types:
-        Heat: 5
   - type: PointLight
     radius: 8
     energy: 3
@@ -151,9 +148,6 @@
   components:
   - type: PoweredLight
     hasLampOnSpawn: VlPCLightTubeTwo
-    damage:
-      types:
-        Heat: 5
   - type: PointLight
     radius: 8
     energy: 3

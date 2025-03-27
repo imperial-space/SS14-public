@@ -55,7 +55,6 @@
         orGroup: GiftPool
       - id: ClothingUnderSocksBee
         orGroup: GiftPool
-
       - id: ClothingBeltUtility
         orGroup: GiftPool
       - id: WeaponFlareGun
@@ -112,8 +111,6 @@
       - id: FoodBoxDonkpocketTeriyaki
         orGroup: GiftPool
       - id: FoodBoxDonkpocketPizza
-        orGroup: GiftPool
-      - id: FoodBoxDonkpocketGondola
         orGroup: GiftPool
       - id: FoodBoxDonkpocketBerry
         orGroup: GiftPool
@@ -191,8 +188,6 @@
       - id: WeaponRevolverDeckard
         orGroup: GiftPool
       - id: Ash
-        orGroup: GiftPool
-      - id: FlAsh
         orGroup: GiftPool
       - id: MiningDrill
         orGroup: GiftPool
@@ -432,9 +427,6 @@
       - id: MagazinePistolCaselessRifle
         orGroup: GiftPool
         prob: 3.5
-      - id: WeaponShotguBoxShotgunSlugnHandmade
-        orGroup: GiftPool
-        prob: 1
       - id: BoxBeanbag
         orGroup: GiftPool
         prob: 1
@@ -530,7 +522,6 @@
 
 - type: entity
   id: PresentTrashGreen
-  noSpawn: true
   parent: BaseItem
   name: Green wrapping Paper
   description: There used to be a gift in it
@@ -546,7 +537,6 @@
 
 - type: entity
   id: PresentTrashBlue
-  noSpawn: true
   parent: BaseItem
   name: Blue wrapping Paper
   description: There used to be a gift in it
@@ -562,7 +552,6 @@
 
 - type: entity
   id: PresentTrashRed
-  noSpawn: true
   parent: BaseItem
   name: Wrapping Paper
   description: There used to be a gift in it

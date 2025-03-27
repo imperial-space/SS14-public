@@ -21,7 +21,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/woodhit.ogg
+          path: /Audio/Effects/wood_destroy1.ogg
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetPlastic:

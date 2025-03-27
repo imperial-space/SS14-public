@@ -1,0 +1,57 @@
+#   - ERTUplinkMelee
+#   - ERTUplikWeaponCombat
+#   - ERTUplinkAmmoCombat
+#   - ERTUplinkWeaponNonCombat
+#   - ERTUplinkAmmoNonCombat
+#   - ERTUplinkExplosives
+#   - ERTUplinkMedial
+#   - ERTUplinkEngineering
+#   - ERTUplinkUtilities
+#   - ERTUplinkEquipment
+
+- type: storeCategory
+  id: Melee
+  name: store-category-ert-uplink-melee
+
+- type: storeCategory
+  id: WeaponCombat
+  name: store-category-ert-uplink-weapon-combat
+
+- type: storeCategory
+  id: AmmoCombat
+  name: store-category-ert-uplink-ammo-combat
+
+- type: storeCategory
+  id: NonCombat
+  name: store-category-ert-uplink-weapon-noncombat
+
+- type: storeCategory
+  id: AmmoNonCombat
+  name: store-category-ert-uplink-ammo-noncombat
+
+- type: storeCategory
+  id: Explosives
+  name: store-category-ert-uplink-explosives
+
+- type: storeCategory
+  id: Medical
+  name: store-category-ert-uplink-medial
+
+- type: storeCategory
+  id: Engineering
+  name: store-category-ert-uplink-engineering
+
+- type: storeCategory
+  id: Utilities
+  name: store-category-ert-uplink-utilities
+
+- type: storeCategory
+  id: Equipment
+  name: store-category-ert-uplink-equipment
+
+- type: storeCategory
+  id: Implants
+  name: store-category-ert-uplink-implants
+
+
+

@@ -4,7 +4,6 @@
   id: MedievalActionIceBarrierBeginner
   name: medieval-store-spells-vodka-ice-barrier-beginner-name
   description: medieval-store-spells-vodka-ice-barrier-beginner-desc
-  noSpawn: true
   components:
   - type: CastTraining
     trainingResults:
@@ -63,7 +62,6 @@
   parent: MedievalActionIceBarrierBeginner
   name: medieval-store-spells-vodka-ice-barrier-middle-name
   description: medieval-store-spells-vodka-ice-barrier-middle-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 40
@@ -111,7 +109,6 @@
   parent: MedievalActionIceBarrierBeginner
   name: medieval-store-spells-vodka-ice-barrier-senior-name
   description: medieval-store-spells-vodka-ice-barrier-senior-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 55

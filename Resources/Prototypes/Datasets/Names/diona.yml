@@ -1,51 +1,11 @@
-- type: dataset
-  id: DionaFirst
+- type: localizedDataset
+  id: NamesDionaFirst
   values:
-  - Мох
-  - Гриб
-  - Трава
-  - Плющ
-  - Стебель
-  - Лепесток
-  - Колючка
-  - Роза
-  - Одуванчик
-  - Берёза
-  - Ива
-  - Бухта
-  - Озеро
-  - Река
-  - Ручей
-  - Луг
-  - Каньон
-  - Гора
-  - Пик
-  - Сад
-  - Почва
-  - Цветок
-  - Лютик
+    prefix: names-diona-first-dataset-
+    count: 23 # Imperial Space
 
-- type: dataset
-  id: DionaLast
+- type: localizedDataset
+  id: NamesDionaLast
   values:
-  - Мира
-  - Гармонии
-  - Расслабления
-  - Спокойствия
-  - Умиротворения
-  - Самонаблюдения
-  - Союза
-  - Комфорта
-  - Мечты
-  - Тишины
-  - Баланса
-  - Мягкости
-  - Безмятежности
-  - Покоя
-  - Ясности
-  - Неподвижности
-  - Хладнокровия
-  - Легкости
-  - Равновесия
-  - Самообладания
-  - Контроля
+    prefix: names-diona-last-dataset-
+    count: 21 # Imperial Space

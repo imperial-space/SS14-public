@@ -2,7 +2,6 @@
   id: USSPHandGunAction
   name: Fireball
   description: Fires an explosive fireball towards the clicked location.
-  noSpawn: true
   components:
   - type: WorldTargetAction
     useDelay: 240
@@ -16,5 +15,4 @@
       state: action
     event: !type:ProjectileSpellEvent
       prototype: BulletRocket
-      posData: !type:TargetCasterPos
       speech: ""

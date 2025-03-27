@@ -7,7 +7,6 @@
   components:
     - type: Speech
       speechVerb: LargeMob
-      speechSounds: DoctorDefVoice
     - type: Vocal
       sounds:
         Male: DevilVoice

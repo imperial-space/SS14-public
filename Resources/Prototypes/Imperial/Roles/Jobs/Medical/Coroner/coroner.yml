@@ -3,7 +3,6 @@
   name: job-name-coroner
   description: job-description-coroner
   playTimeTracker: JobCoroner
-  psychosisGainResist: 1 # psychosis
   requirements:
     - !type:DepartmentTimeRequirement
       department: Medical
@@ -28,9 +27,6 @@
     id: CoronerPDA
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
-  innerclothingskirt: ClothingUniformJumpskirtCoroner
-  satchel: ClothingBackpackSatchelMedicalFilled
-  duffelbag: ClothingBackpackDuffelMedicalFilled
 
 - type: jobIcon
   parent: JobIcon

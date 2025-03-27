@@ -114,6 +114,10 @@ ent-dantanat_monkey = Бей ересь
     .desc = Плакат, пропагандирующий превосходство обезьян над кошкодевочками
     .suffix = { "COMMUNITY,POSTER" }
 
+ent-onionsenpai_1 = Онсен
+    .desc = Онсен отправит вас на седьмое небо!
+    .suffix = { "COMMUNITY,POSTER" }
+
 ent-vvedite_imya_1 = МЯСО
     .desc = Плакат, накпоминающий о важности совместной работы на кухне
 

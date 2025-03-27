@@ -2,11 +2,11 @@
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitMinuteManBase
   name: filler
-  nospawn: true
   abstract: true
   components:
   - type: TemperatureProtection
-    coefficient: 0.4 #cave survival
+    heatingCoefficient: 0.4
+    coolingCoefficient: 0.4
   - type: Armor
     modifiers:
       coefficients:

@@ -4,7 +4,6 @@
   id: MedievalActionSleepMiddle
   name: medieval-store-spells-multi-currency-sleep-middle-name
   description: medieval-store-spells-multi-currency-sleep-middle-desc
-  noSpawn: true
   components:
   - type: CastTraining
     trainingResults:
@@ -53,7 +52,6 @@
   parent: MedievalActionSleepMiddle
   name: medieval-store-spells-multi-currency-senior-senior-name
   description: medieval-store-spells-multi-currency-senior-senior-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 80

@@ -165,7 +165,7 @@
 - type: entity
   id: SpaceCleanerTankEmpty
   name: space cleaner tank empty
-  desc: Tank of the space cleaner. It is used to store a large volume of purity.
+  description: Tank of the space cleaner. It is used to store a large volume of purity.
   parent: StorageTank
   suffix: Empty
   components:

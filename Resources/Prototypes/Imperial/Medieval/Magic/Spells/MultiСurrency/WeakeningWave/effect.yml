@@ -9,7 +9,6 @@
       maxRange: 1
       maxDuration: 3
       slowTo: 0.5
-      collideFlags: Dynamic
       slowOnlyTarget: true
   - type: ShockWaveDistortion
     speed: 1.5

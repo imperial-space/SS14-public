@@ -1,0 +1,37 @@
+#- type: storePreset
+#  id: DeathSquadUplinkPresetAltOld
+#  abstract: true
+#  components:
+#  - type: Store
+#    categories:
+#    - Melee
+#    - WeaponCombat
+#    - AmmoCombat
+#    - Explosives
+#    - Medial
+#    - Engineering
+#    - Utilities
+#    - Equipment
+#    currencyWhitelist:
+#    - BlueSpaceCube
+# Old store preset. DO NOT USE
+
+- type: entity
+  id: DeathSquadUplinkPresetAlt
+  abstract: true
+  components:
+  - type: Store
+    categories:
+    - Melee
+    - WeaponCombat
+    - AmmoCombat
+    - Explosives
+    - Medical #Артур, если ты это читаешь - добавь им хирургический вещмешок в товары.
+    - Engineering #Желательно, чтобы его содержимое было в вещмешке ДСО от владгега.
+    - Utilities
+    - Equipment
+    - Implants
+    currencyWhitelist:
+    - BlueSpaceCube
+    balance:
+      BlueSpaceCube: 0

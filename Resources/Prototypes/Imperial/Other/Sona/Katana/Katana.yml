@@ -26,6 +26,5 @@
     - Back
     - Belt
   - type: Reflect
-  enabled: true
-  reflectProb: .3
-  spread: 90
+    reflectProb: 0.3
+    spread: 90

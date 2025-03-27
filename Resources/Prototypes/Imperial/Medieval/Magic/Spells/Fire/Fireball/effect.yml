@@ -1,6 +1,5 @@
 - type: entity
   id: FireballShockWaveEffect
-  noSpawn: true
   components:
   - type: ShockWave
     speed: 2
@@ -15,4 +14,5 @@
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Imperial/Medieval/fireball_blast.ogg
-      variation: 0.2
+      params:
+        variation: 0.2

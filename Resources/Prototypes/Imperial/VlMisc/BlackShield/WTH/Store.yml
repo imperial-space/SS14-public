@@ -103,16 +103,6 @@
   - BSStoreMelee
 
 - type: listing
-  id: BSStoreVect
-  name: Вектор
-  description: Продвинутый пистолет-пулемёт. Является крайне грозным оружием.
-  productEntity: WeaponSubMachineGunVector
-  cost:
-    BlueSpaceCube: 22
-  categories:
-  - BSStoreMelee
-
-- type: listing
   id: BSStoreMagVect
   name: Магазин от Вектора
   description: Наполнен пулями калибра .45 магнум.

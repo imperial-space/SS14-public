@@ -18,6 +18,21 @@
     },
     {
       "name": "open"
+    },
+    {
+      "name": "extinguisher_closed"
+    },
+    {
+      "name": "extinguisher_empty"
+    },
+    {
+      "name": "extinguisher_full"
+    },
+    {
+      "name": "extinguisher_mini"
+    },
+    {
+      "name": "extinguisher-mini"
     }
   ]
 }

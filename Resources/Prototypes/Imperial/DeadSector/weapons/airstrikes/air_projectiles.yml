@@ -56,7 +56,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec6
   name: StartAirStrikeGrenadeSec6
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -66,7 +65,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec6
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec6
@@ -78,7 +76,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec12
   name: StartAirStrikeGrenadeSec12
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -88,7 +85,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec12
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec12
@@ -100,7 +96,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec18
   name: StartAirStrikeGrenadeSec18
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -110,7 +105,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec18
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec18
@@ -122,7 +116,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec24
   name: StartAirStrikeGrenadeSec24
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -132,7 +125,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec24
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec24
@@ -144,7 +136,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec30
   name: StartAirStrikeGrenadeSec30
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -154,7 +145,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec30
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec30
@@ -166,7 +156,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec36
   name: StartAirStrikeGrenadeSec36
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -176,7 +165,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec36
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec36
@@ -188,7 +176,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec42
   name: StartAirStrikeGrenadeSec42
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -198,7 +185,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec42
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec42
@@ -210,7 +196,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec48
   name: StartAirStrikeGrenadeSec48
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -220,7 +205,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec48
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec48
@@ -232,7 +216,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec54
   name: StartAirStrikeGrenadeSec54
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -242,7 +225,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec54
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec54
@@ -254,7 +236,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec60
   name: StartAirStrikeGrenadeSec60
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -264,7 +245,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec60
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec60
@@ -276,7 +256,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec66
   name: StartAirStrikeGrenadeSec66
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -286,7 +265,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec66
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec66
@@ -298,7 +276,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec72
   name: StartAirStrikeGrenadeSec72
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -308,7 +285,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec72
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec72
@@ -320,7 +296,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec78
   name: StartAirStrikeGrenadeSec78
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -330,7 +305,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec78
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec78
@@ -342,7 +316,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec84
   name: StartAirStrikeGrenadeSec84
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -352,7 +325,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec84
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec84
@@ -364,7 +336,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec90
   name: StartAirStrikeGrenadeSec90
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -374,7 +345,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec90
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec90
@@ -386,7 +356,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec96
   name: StartAirStrikeGrenadeSec96
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -396,7 +365,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec96
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec96
@@ -408,7 +376,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec102
   name: StartAirStrikeGrenadeSec102
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -418,7 +385,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec102
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec102
@@ -430,7 +396,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec108
   name: StartAirStrikeGrenadeSec108
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -440,7 +405,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec108
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec108
@@ -452,7 +416,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec114
   name: StartAirStrikeGrenadeSec114
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -462,7 +425,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec114
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec114
@@ -474,7 +436,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec120
   name: StartAirStrikeGrenadeSec120
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -484,7 +445,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec120
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec120
@@ -496,7 +456,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec10
   name: StartAirStrikeGrenadeSec10
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -506,7 +465,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec10
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec10
@@ -518,7 +476,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec20
   name: StartAirStrikeGrenadeSec20
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -528,7 +485,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec20
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec20
@@ -540,7 +496,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec40
   name: StartAirStrikeGrenadeSec40
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -550,7 +505,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec40
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec40
@@ -562,7 +516,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec50
   name: StartAirStrikeGrenadeSec50
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -572,7 +525,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec50
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec50
@@ -584,7 +536,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec70
   name: StartAirStrikeGrenadeSec70
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -594,7 +545,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec70
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec70
@@ -606,7 +556,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec80
   name: StartAirStrikeGrenadeSec80
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -616,7 +565,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec80
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec80
@@ -628,7 +576,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec100
   name: StartAirStrikeGrenadeSec100
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -638,7 +585,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec100
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec100
@@ -650,7 +596,6 @@
 - type: entity
   id: StartAirStrikeGrenadeSec110
   name: StartAirStrikeGrenadeSec110
-  noSpawn: true
   description: null
   parent: BaseStartAirStrikeGrenade
   components:
@@ -660,7 +605,6 @@
 
 - type: entity
   name: AirStrikeGrenadeSec110
-  noSpawn: true
   description: null
   parent: AirStrikeGrenadeBase
   id: AirStrikeGrenadeSec110

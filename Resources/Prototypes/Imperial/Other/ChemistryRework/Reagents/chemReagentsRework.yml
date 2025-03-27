@@ -455,19 +455,16 @@
 - type: stack
   id: HardBurnKit
   name: hard-burn-kit
-  icon: {sprite: "/Textures/Objects/Specific/Medical/medical.rsi", state: hardburnkit}
+  icon: {sprite: "/Textures/Imperial/Other/ChemistryRework/medical.rsi", state: hardburnkit}
   spawn: HardBurnKit
   maxCount: 10
-  itemSize: 1
 
 - type: stack
   id: HardTraumapack
   name: hard-trauma-pack
-  icon: {sprite: "/Textures/Objects/Specific/Medical/medical.rsi", state: hardtrauma}
+  icon: {sprite: "/Textures/Imperial/Other/ChemistryRework/medical.rsi", state: hardtrauma}
   spawn: HardTraumapack
   maxCount: 10
-  itemSize: 1
-
 
 - type: entity
   id: SalineGlucoseChemistryBottle

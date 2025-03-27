@@ -12,7 +12,6 @@
   - type: Clothing
     sprite: Imperial/Other/Sona/EngBelt.rsi
   - type: Storage
-    capacity: 120
     # TODO: Fill this out more.
     whitelist:
       tags:

@@ -1,6 +1,5 @@
 - type: entity
   id: IceBarrierParticles
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
@@ -12,4 +11,3 @@
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Imperial/Medieval/icewall_down.ogg
-      variation: 0.2

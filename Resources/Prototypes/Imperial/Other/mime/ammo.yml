@@ -1,7 +1,6 @@
 - type: entity
   id: PelletShotgunMute
   name: Mute pellet
-  noSpawn: true
   parent: BaseBullet
   components:
     - type: Projectile
@@ -36,8 +35,6 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
     proto: PelletShotgunMute
-    count: 6
-    spread: 10
     deleteOnSpawn: true
   - type: ChemicalAmmo
   - type: SolutionTransfer

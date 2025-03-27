@@ -62,8 +62,8 @@
 - type: latheRecipe
   id: ReportOnTheStationSituationRecipe
   result: ReportOnTheStationSituation
-  category: DocumentPrinterCommand
-  completeTime: 4
+  categories: [DocumentPrinterCommand]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -71,8 +71,8 @@
 - type: latheRecipe
   id: RequestForAppointmentOfActingCaptainRecipe
   result: RequestForAppointmentOfActingCaptain
-  category: DocumentPrinterCommand
-  completeTime: 4
+  categories: [DocumentPrinterCommand]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -80,8 +80,8 @@
 - type: latheRecipe
   id: RequestForAppointmentOfActingHeadOfDepartmentRecipe
   result: RequestForAppointmentOfActingHeadOfDepartment
-  category: DocumentPrinterCommand
-  completeTime: 4
+  categories: [DocumentPrinterCommand]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -89,8 +89,8 @@
 - type: latheRecipe
   id: ReportGoalAchievementRecipe
   result: ReportGoalAchievement
-  category: DocumentPrinterCommand
-  completeTime: 4
+  categories: [DocumentPrinterCommand]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -98,8 +98,8 @@
 - type: latheRecipe
   id: ApplicationForDismissHeadRecipe
   result: ApplicationForDismissHead
-  category: DocumentPrinterCommand
-  completeTime: 4
+  categories: [DocumentPrinterCommand]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -107,8 +107,8 @@
 - type: latheRecipe
   id: ApplicationForPassengerEmploymentRecipe
   result: ApplicationForPassengerEmployment
-  category: DocumentPrinterCommand
-  completeTime: 4
+  categories: [DocumentPrinterCommand]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -116,8 +116,8 @@
 - type: latheRecipe
   id: ApplicationForPositionChangeRecipe
   result: ApplicationForPositionChange
-  category: DocumentPrinterCommand
-  completeTime: 4
+  categories: [DocumentPrinterCommand]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -125,8 +125,8 @@
 - type: latheRecipe
   id: AccessIncreaseOrderRecipe
   result: AccessIncreaseOrder
-  category: DocumentPrinterCommand
-  completeTime: 4
+  categories: [DocumentPrinterCommand]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -134,8 +134,8 @@
 - type: latheRecipe
   id: AccessDeniedOrderRecipe
   result: AccessDeniedOrder
-  category: DocumentPrinterCommand
-  completeTime: 4
+  categories: [DocumentPrinterCommand]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -143,8 +143,8 @@
 - type: latheRecipe
   id: CertificationOfQualificationUpgradeRecipe
   result: CertificationOfQualificationUpgrade
-  category: DocumentPrinterCommand
-  completeTime: 4
+  categories: [DocumentPrinterCommand]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -152,8 +152,8 @@
 - type: latheRecipe
   id: DismissalOrderRecipe
   result: DismissalOrder
-  category: DocumentPrinterCommand
-  completeTime: 4
+  categories: [DocumentPrinterCommand]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -161,8 +161,8 @@
 - type: latheRecipe
   id: RequestForERTRecipe
   result: RequestForERT
-  category: DocumentPrinterCommand
-  completeTime: 4
+  categories: [DocumentPrinterCommand]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -170,8 +170,8 @@
 - type: latheRecipe
   id: RequestForCBURNRecipe
   result: RequestForCBURN
-  category: DocumentPrinterCommand
-  completeTime: 4
+  categories: [DocumentPrinterCommand]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -179,8 +179,8 @@
 - type: latheRecipe
   id: RequestForCentComRecipe
   result: RequestForCentCom
-  category: DocumentPrinterCommand
-  completeTime: 4
+  categories: [DocumentPrinterCommand]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -188,8 +188,8 @@
 - type: latheRecipe
   id: RequestForBonusRecipe
   result: RequestForBonus
-  category: DocumentPrinterCommand
-  completeTime: 4
+  categories: [DocumentPrinterCommand]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -197,8 +197,8 @@
 - type: latheRecipe
   id: ApplicationForIDCardRecipe
   result: ApplicationForIDCard
-  category: DocumentPrinterCommand
-  completeTime: 4
+  categories: [DocumentPrinterCommand]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -206,8 +206,8 @@
 - type: latheRecipe
   id: ApplicationForPDARecipe
   result: ApplicationForPDA
-  category: DocumentPrinterCommand
-  completeTime: 4
+  categories: [DocumentPrinterCommand]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -215,8 +215,8 @@
 - type: latheRecipe
   id: PermissionToCarryEquipmentRecipe
   result: PermissionToCarryEquipment
-  category: DocumentPrinterCommand
-  completeTime: 4
+  categories: [DocumentPrinterCommand]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -224,8 +224,8 @@
 - type: latheRecipe
   id: CrewSRPViolationReportRecipe
   result: CrewSRPViolationReport
-  category: Law
-  completeTime: 4
+  categories: [Law]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -233,8 +233,8 @@
 - type: latheRecipe
   id: ParoleRequestForPrisonerRecipe
   result: ParoleRequestForPrisoner
-  category: Law
-  completeTime: 4
+  categories: [Law]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -242,8 +242,8 @@
 - type: latheRecipe
   id: InternalAffairsAgentReportRecipe
   result: InternalAffairsAgentReport
-  category: Law
-  completeTime: 4
+  categories: [Law]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -251,8 +251,8 @@
 - type: latheRecipe
   id: ComplaintRecipe
   result: Complaint
-  category: Law
-  completeTime: 4
+  categories: [Law]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -260,8 +260,8 @@
 - type: latheRecipe
   id: InterrogationReportRecipe
   result: InterrogationReport
-  category: Sec
-  completeTime: 4
+  categories: [Sec]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -269,8 +269,8 @@
 - type: latheRecipe
   id: VoluntaryConfessionRecipe
   result: VoluntaryConfession
-  category:
-  completeTime: 4
+  categories: [Sec]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -278,8 +278,8 @@
 - type: latheRecipe
   id: DutyOrderRecipe
   result: DutyOrder
-  category: Sec
-  completeTime: 4
+  categories: [Sec]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -287,8 +287,8 @@
 - type: latheRecipe
   id: FinalExamReportRecipe
   result: FinalExamReport
-  category: Sec
-  completeTime: 4
+  categories: [Sec]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -296,8 +296,8 @@
 - type: latheRecipe
   id: JudicialProceedingRecipe
   result: JudicialProceeding
-  category: Sec
-  completeTime: 4
+  categories: [Sec]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -305,8 +305,8 @@
 - type: latheRecipe
   id: SearchOrderRecipe
   result: SearchOrder
-  category: Sec
-  completeTime: 4
+  categories: [Sec]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -314,8 +314,8 @@
 - type: latheRecipe
   id: WeaponCarryingPermitRecipe
   result: WeaponCarryingPermit
-  category: Sec
-  completeTime: 4
+  categories: [Sec]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -323,8 +323,8 @@
 - type: latheRecipe
   id: TrackerImplantInstallationOrderRecipe
   result: TrackerImplantInstallationOrder
-  category: Sec
-  completeTime: 4
+  categories: [Sec]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -332,8 +332,8 @@
 - type: latheRecipe
   id: EliminationOrderRecipe
   result: EliminationOrder
-  category: Sec
-  completeTime: 4
+  categories: [Sec]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -341,8 +341,8 @@
 - type: latheRecipe
   id: ArrestWarrantRecipe
   result: ArrestWarrant
-  category: Sec
-  completeTime: 4
+  categories: [Sec]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -350,8 +350,8 @@
 - type: latheRecipe
   id: SearchWarrantRecipe
   result: SearchWarrant
-  category: Sec
-  completeTime: 4
+  categories: [Sec]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -359,8 +359,8 @@
 - type: latheRecipe
   id: InvestigationReportRecipe
   result: InvestigationReport
-  category: Sec
-  completeTime: 4
+  categories: [Sec]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -368,8 +368,8 @@
 - type: latheRecipe
   id: ChemicalOrderRecipe
   result: ChemicalOrder
-  category: Medical
-  completeTime: 4
+  categories: [Medical]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -377,8 +377,8 @@
 - type: latheRecipe
   id: DischargeSummaryRecipe
   result: DischargeSummary
-  category: Medical
-  completeTime: 4
+  categories: [Medical]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -386,8 +386,8 @@
 - type: latheRecipe
   id: RequestForPharmaceuticalProductionRecipe
   result: RequestForPharmaceuticalProduction
-  category: Medical
-  completeTime: 4
+  categories: [Medical]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -395,8 +395,8 @@
 - type: latheRecipe
   id: DeathCertificateRecipe
   result: DeathCertificate
-  category:
-  completeTime: 4
+  categories: [Medical]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -404,8 +404,8 @@
 - type: latheRecipe
   id: PsychologicalHealthConclusionRecipe
   result: PsychologicalHealthConclusion
-  category: Medical
-  completeTime: 4
+  categories: [Medical]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -413,8 +413,8 @@
 - type: latheRecipe
   id: MedicalPrescriptionRecipe
   result: MedicalPrescription
-  category: Medical
-  completeTime: 4
+  categories: [Medical]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -422,8 +422,8 @@
 - type: latheRecipe
   id: EuthanasiaRequestRecipe
   result: EuthanasiaRequest
-  category: Medical
-  completeTime: 4
+  categories: [Medical]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -431,8 +431,8 @@
 - type: latheRecipe
   id: BuildingPermitRecipe
   result: BuildingPermit
-  category: Engineering
-  completeTime: 4
+  categories: [Engineering]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -440,8 +440,8 @@
 - type: latheRecipe
   id: ApplicationForConstructionWorkRecipe
   result: ApplicationForConstructionWork
-  category: Engineering
-  completeTime: 4
+  categories: [Engineering]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -449,8 +449,8 @@
 - type: latheRecipe
   id: RepairWorkRequestRecipe
   result: RepairWorkRequest
-  category: Engineering
-  completeTime: 4
+  categories: [Engineering]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -458,8 +458,8 @@
 - type: latheRecipe
   id: PrintedDocumentReportStationRecipe
   result: PrintedDocumentReportStation
-  category: Engineering
-  completeTime: 4
+  categories: [Engineering]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -467,17 +467,26 @@
 - type: latheRecipe
   id: ApprovedGoalBlueprintRecipe
   result: ApprovedGoalBlueprint
-  category: Engineering
-  completeTime: 4
+  categories: [Engineering]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
 
 - type: latheRecipe
+  id: PrinterDocMachineCircuitboard
+  result: PrinterDocMachineCircuitboard
+  categories: [Circuitry]
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 900
+
+- type: latheRecipe
   id: PowerSystemReportRecipe
   result: PowerSystemReport
-  category: Engineering
-  completeTime: 4
+  categories: [Engineering]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -485,8 +494,8 @@
 - type: latheRecipe
   id: AtmosSystemReportRecipe
   result: AtmosSystemReport
-  category: Engineering
-  completeTime: 4
+  categories: [Engineering]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -494,8 +503,8 @@
 - type: latheRecipe
   id: CreatureSapienceRecognitionRecipe
   result: CreatureSapienceRecognition
-  category: Science
-  completeTime: 4
+  categories: [Science]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -503,8 +512,8 @@
 - type: latheRecipe
   id: SubjectStudyReportRecipe
   result: SubjectStudyReport
-  category: Science
-  completeTime: 4
+  categories: [Science]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -512,8 +521,8 @@
 - type: latheRecipe
   id: ArtifactReportRecipe
   result: ArtifactReport
-  category: Science
-  completeTime: 4
+  categories: [Science]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -521,8 +530,8 @@
 - type: latheRecipe
   id: OrderCreateProductRecipe
   result: OrderCreateProduct
-  category: Science
-  completeTime: 4
+  categories: [Science]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -530,8 +539,8 @@
 - type: latheRecipe
   id: OrderRecipe
   result: Order
-  category: Supplies
-  completeTime: 4
+  categories: [Supplies]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -539,8 +548,8 @@
 - type: latheRecipe
   id: WeaponOrderRecipe
   result: WeaponOrder
-  category: Supplies
-  completeTime: 4
+  categories: [Supplies]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -548,8 +557,8 @@
 - type: latheRecipe
   id: DangerousSkillsTrainingRequestRecipe
   result: DangerousSkillsTrainingRequest
-  category: Service
-  completeTime: 4
+  categories: [Service]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -557,8 +566,8 @@
 - type: latheRecipe
   id: MarriageCertificateRecipe
   result: MarriageCertificate
-  category: Service
-  completeTime: 4
+  categories: [Service]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100
@@ -566,8 +575,8 @@
 - type: latheRecipe
   id: DivorceCertificateRecipe
   result: DivorceCertificate
-  category: Service
-  completeTime: 4
+  categories: [Service]
+  completetime: 4
   applyMaterialDiscount: false
   materials:
     Paper: 100

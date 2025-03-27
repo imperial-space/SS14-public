@@ -7,7 +7,7 @@
   components:
     - type: Sprite
       sprite: Imperial/Roles/Synthetics/Janitorial/mop.rsi
-      layers: 
+      layers:
       - state: base
     - type: SolutionRegeneration
       solution: absorbed
@@ -26,7 +26,7 @@
           maxVol: 200
 
 - type: entity
-  name: borg trash bag 
+  name: borg trash bag
   id: TrashBagBorg # Мусорный пакет повышенной емкости для борга уборщика
   parent: TrashBag
   components:
@@ -104,7 +104,6 @@
   id: ChangeReagent
   name: action-name-change-reagent
   description: action-description-change-reagent
-  noSpawn: true
   components:
   - type: InstantAction
     itemIconStyle: NoItem
@@ -128,7 +127,7 @@
       borg_module:
         - BorgModuleTreatment
         - BorgModuleDefibrillator
-        - BorgModuleAdvancedTreatmentSyndicate 
+        - BorgModuleAdvancedTreatmentSyndicate
   - type: ItemSlots
     slots:
       cell_slot:
@@ -224,7 +223,6 @@
   id: Mimicry
   name: action-name-mimicry
   description: action-description-mimicry
-  noSpawn: true
   components:
   - type: InstantAction
     itemIconStyle: NoItem
@@ -294,7 +292,7 @@
 
 
 - type: entity
-  id: BorgModuleNonLethalSecurity # Нелетальный модуль СБ борга 
+  id: BorgModuleNonLethalSecurity # Нелетальный модуль СБ борга
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
   name: NonLethal Security Module
   components:
@@ -314,14 +312,14 @@
     - BorgModuleSecurityImperial
 
 - type: entity
-  id: BorgModuleLethalSecurity # Летальный модуль СБ борга 
+  id: BorgModuleLethalSecurity # Летальный модуль СБ борга
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
   name: Lethal Security Module
   components:
   - type: Sprite
     layers:
     - state: security
-    - state: icon-lethalmodule-security 
+    - state: icon-lethalmodule-security
   - type: ItemBorgModule
     items:
     - WeaponLaserBorg

@@ -30,6 +30,9 @@
         },
         {
             "name": "pda"
+        },
+        {
+            "name": "pda-elysiumFederation"
         }
     ]
 }

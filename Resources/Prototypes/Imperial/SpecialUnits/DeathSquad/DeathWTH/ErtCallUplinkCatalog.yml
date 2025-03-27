@@ -1,0 +1,846 @@
+- type: listing
+  id: DSCallUplinkMacheteAlt
+  name: ert-uplink-melee-machete-name
+  description: ert-uplink-melee-machete-desc
+  productEntity: Machete
+  cost:
+    BlueSpaceCube: 10
+  categories:
+  - Melee
+
+- type: listing
+  id: DSCallUplinkCombatKnifeAlt
+  name: ert-uplink-melee-combatknife-name
+  description: ert-uplink-melee-combatknife-desc
+  productEntity: CombatKnife
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - Melee
+
+- type: listing
+  id: SDCallUplinkEnergySwordAlt
+  name: ert-uplink-melee-energysword-name
+  description: ert-uplink-melee-energysword-desc
+  productEntity: EnergySword
+  cost:
+    BlueSpaceCube: 15
+  categories:
+  - Melee
+
+- type: listing
+  id: DSCallUplinkDoubleEnergySwordAlt
+  name: ert-uplink-melee-energysworddouble-name
+  description: ert-uplink-melee-energysworddouble-desc
+  productEntity: EnergySwordDouble
+  cost:
+    BlueSpaceCube: 20
+  categories:
+  - Melee
+
+#AmmoNonCombat
+- type: listing
+  id: DSCallUplinkMagazineBoxMagnumAlt
+  name: ert-uplink-ammononcombat-magazineboxmagnum-name
+  description: ert-uplink-ammononcombat-magazineboxmagnum-desc
+  productEntity: MagazineBoxMagnum
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - AmmoCombat
+
+- type: listing
+  id: DSCallUplinkMagazineBoxMagnumAPAlt
+  name: ert-uplink-ammononcombat-magazineboxmagnumap-name
+  description: ert-uplink-ammononcombat-magazineboxmagnumap-desc
+  productEntity: MagazineBoxMagnumAP
+  cost:
+    BlueSpaceCube: 20
+  categories:
+  - AmmoCombat
+
+- type: listing
+  id: DSCallUplinkMagazineBoxDelivererAlt
+  name: ert-uplink-ammononcombat-magazinedeliverer-name
+  description: ert-uplink-ammononcombat-magazinedeliverer-desc
+  productEntity: ItemDelivererMagazine
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - AmmoCombat
+
+- type: listing
+  id: DSCallUplinkMagazineBoxDelivererUAPAlt
+  name: ert-uplink-ammononcombat-magazinedelivereruap-name
+  description: ert-uplink-ammononcombat-magazinedelivereruap-desc
+  productEntity: ItemDelivererMagazineUAP
+  cost:
+    BlueSpaceCube: 6
+  categories:
+  - AmmoCombat
+
+- type: listing
+  id: DSCallUplinkMagazineBoxAWPAPAlt
+  name: ert-uplink-ammononcombat-magazineawpap-name
+  description: ert-uplink-ammononcombat-magazineawpap-desc
+  productEntity: AWP-magazine
+  cost:
+    BlueSpaceCube: 7
+  categories:
+  - AmmoCombat
+
+- type: listing
+  id: DSCallUplinkSpeedLoaderMagnumAlt
+  name: ert-uplink-ammononcombat-speedloadermagnum-name
+  description: ert-uplink-ammononcombat-speedloadermagnum-desc
+  productEntity: SpeedLoaderMagnum
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - AmmoCombat
+
+- type: listing
+  id: DSCallUplinkSpeedLoaderMagnumAPAlt
+  name: ert-uplink-ammononcombat-speedloadermagnumap-name
+  description: ert-uplink-ammononcombat-speedloadermagnumap-desc
+  productEntity: SpeedLoaderMagnumAP
+  cost:
+    BlueSpaceCube: 5
+  categories:
+  - AmmoCombat
+
+- type: listing
+  id: DSCallUplinkMagazineBoxAntiMaterielAlt
+  name: ert-uplink-ammo-magazineboxantimateriel-name
+  description: ert-uplink-ammo-magazineboxantimateriel-desc
+  productEntity: MagazineBoxAntiMateriel
+  cost:
+    BlueSpaceCube: 5
+  categories:
+  - AmmoCombat
+
+- type: listing
+  id: DSCallUplinkCartridgeRocketAlt
+  name: ert-uplink-ammo-cartridgerocket-name
+  description: ert-uplink-ammo-cartridgerocket-desc
+  productEntity: CartridgeRocket
+  cost:
+    BlueSpaceCube: 6
+  categories:
+  - AmmoCombat
+
+- type: listing
+  id: DSCallUplinkGrenadeFlashBangAlt
+  name: ert-uplink-explosives-grenadeflashbang-name
+  description: ert-uplink-explosives-grenadeflashbang-desc
+  productEntity: GrenadeFlashBang
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - Explosives
+
+- type: listing
+  id: DSCallUplinkExGrenadeAlt
+  name: ert-uplink-explosives-exgrenade-name
+  description: ert-uplink-explosives-exgrenade-desc
+  productEntity: ExGrenade
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - Explosives
+
+- type: listing
+  id: DSCallUplinkC4Alt
+  name: ert-uplink-explosives-c4-name
+  description: ert-uplink-explosives-c4-desc
+  productEntity: C4
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - Explosives
+
+- type: listing
+  id: DSCallUplinkClusterBangFullAlt
+  name: ert-uplink-explosives-clusterbangfull-name
+  description: ert-uplink-explosives-clusterbangfull-desc
+  productEntity: ClusterBangFull
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - Explosives
+
+#Engineering
+- type: listing
+  id: DSCallUplinkClothingEyesGlassesMesonAlt
+  name: ert-uplink-engineering-clothingeyesglassesmeson-name
+  description: ert-uplink-engineering-clothingeyesglassesmeson-desc
+  productEntity: ClothingEyesGlassesMeson
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - Engineering
+
+- type: listing
+  id: DSCallUplinkAmeJarAlt
+  name: ert-uplink-engineering-amejar-name
+  description: ert-uplink-engineering-amejar-desc
+  productEntity: AmeJar
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - Engineering
+
+- type: listing
+  id: DSCallUplinkJawsOfLifeAlt
+  name: ert-uplink-engineering-jawsoflife-name
+  description: ert-uplink-engineering-jawsoflife-desc
+  productEntity: JawsOfLife
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - Engineering
+
+- type: listing
+  id: DSCallUplinkPowerDrillAlt
+  name: ert-uplink-engineering-powerdrill-name
+  description: ert-uplink-engineering-powerdrill-desc
+  productEntity: PowerDrill
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - Engineering
+
+- type: listing
+  id: DSCallUplinkRCDAlt
+  name: ert-uplink-engineering-rcd-name
+  description: ert-uplink-engineering-rcd-desc
+  productEntity: RCD
+  cost:
+    BlueSpaceCube: 6
+  categories:
+  - Engineering
+
+- type: listing
+  id: DSCallUplinkRCDAmmoAlt
+  name: ert-uplink-engineering-rcdammo-name
+  description: ert-uplink-engineering-rcdammo-desc
+  productEntity: RCDAmmo
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - Engineering
+
+- type: listing
+  id: DSCallUplinkHolofanProjectorAlt
+  name: ert-uplink-engineering-holofanprojector-name
+  description: ert-uplink-engineering-holofanprojector-desc
+  productEntity: HolofanProjector
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - Engineering
+
+- type: listing
+  id: DSCallUplinkNetworkConfiguratorAlt
+  name: ert-uplink-engineering-networkconfigurator-name
+  description: ert-uplink-engineering-networkconfigurator-desc
+  productEntity: NetworkConfigurator
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - Engineering
+
+- type: listing
+  id: DSCallUplinkGasAnalyzerAlt
+  name: ert-uplink-engineering-gasanalyzer-name
+  description: ert-uplink-engineering-gasanalyzer-desc
+  productEntity: GasAnalyzer
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - Engineering
+
+- type: listing
+  id: DSCallUplinkMultitoolAlt
+  name: ert-uplink-engineering-multitool-name
+  description: ert-uplink-engineering-multitool-desc
+  productEntity: Multitool
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - Engineering
+
+- type: listing
+  id: DSCallUplinkTrayScannerAlt
+  name: ert-uplink-engineering-trayscanner-name
+  description: ert-uplink-engineering-trayscanner-desc
+  productEntity: trayScanner
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - Engineering
+
+#materials
+- type: listing
+  id: DSCallUplinkSheetSteelAlt
+  name: ert-uplink-engineering-sheetsteel-name
+  description: ert-uplink-engineering-sheetsteel-desc
+  productEntity: SheetSteel
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - Engineering
+
+- type: listing
+  id: DSCallUplinkSheetPlasteelAlt
+  name: ert-uplink-engineering-sheetplasteel-name
+  description: ert-uplink-engineering-sheetplasteel-desc
+  productEntity: SheetPlasteel
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - Engineering
+
+- type: listing
+  id: DSCallUplinkSheetRGlassAlt
+  name: ert-uplink-engineering-sheetrglass-name
+  description: ert-uplink-engineering-sheetrglass-desc
+  productEntity: SheetRGlass
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - Engineering
+
+- type: listing
+  id: DSCallUplinkSheetGlassAlt
+  name: ert-uplink-engineering-sheetglass-name
+  description: ert-uplink-engineering-sheetglass-desc
+  productEntity: SheetGlass
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - Engineering
+
+- type: listing
+  id: DSCallUplinkPartRodMetalAlt
+  name: ert-uplink-engineering-partrodmetal-name
+  description: ert-uplink-engineering-partrodmetal-desc
+  productEntity: PartRodMetal
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - Engineering
+
+#end materials
+
+- type: listing
+  id: DSCallUplinkCableHVStackAlt
+  name: ert-uplink-engineering-cablehvstack-name
+  description: ert-uplink-engineering-cablehvstack-desc
+  productEntity: CableHVStack
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - Engineering
+
+- type: listing
+  id: DSCallUplinkCableMVStackAlt
+  name: ert-uplink-engineering-cablemvstack-name
+  description: ert-uplink-engineering-cablemvstack-desc
+  productEntity: CableMVStack
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - Engineering
+
+- type: listing
+  id: DSCallUplinkCableApcStackAlt
+  name: ert-uplink-engineering-cableapcstack-name
+  description: ert-uplink-engineering-cableapcstack-desc
+  productEntity: CableApcStack
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - Engineering
+
+- type: listing
+  id: DSCallUplinkBoxInflatableAlt
+  name: ert-uplink-engineering-boxinflatable-name
+  description: ert-uplink-engineering-boxinflatable-desc
+  productEntity: BoxInflatable
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - Engineering
+
+- type: listing
+  id: DSCallUplinkWelderExperimentalAlt
+  name: ert-uplink-engineering-welderexperimental-name
+  description: ert-uplink-engineering-welderexperimental-desc
+  productEntity: WelderExperimental
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - Engineering
+
+#Medical
+- type: listing
+  id: DSCallUplinkOmnizineChemistryBottleAlt
+  name: ert-uplink-medical-omnizinechemistrybottle-name
+  description: ert-uplink-medical-omnizinechemistrybottle-desc
+  productEntity: OmnizineChemistryBottle
+  cost:
+    BlueSpaceCube: 10
+  categories:
+  - Medical
+
+- type: listing
+  id: DSCallUplinkThriveninChemistryBottleAlt
+  name: ert-uplink-medical-thriveninchemistrybottle-name
+  description: ert-uplink-medical-thriveninchemistrybottle-desc
+  productEntity: ThriveninChemistryBottle
+  cost:
+    BlueSpaceCube: 5
+  categories:
+  - Medical
+
+- type: listing
+  id: DSCallUplinkHyposprayAlt
+  name: ert-uplink-medical-hypospray-name
+  description: ert-uplink-medical-hypospray-desc
+  productEntity: Hypospray
+  cost:
+    BlueSpaceCube: 6
+  categories:
+  - Medical
+
+- type: listing
+  id: DSCallUplinkGauzeAlt
+  name: ert-uplink-medical-gauze-name
+  description: ert-uplink-medical-gauze-desc
+  productEntity: Gauze
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - Medical
+
+- type: listing
+  id: DSCallUplinkBrutepackAlt
+  name: ert-uplink-medical-medicatedsuture-name
+  description: ert-uplink-medical-medicatedsuture-desc
+  productEntity: MedicatedSuture
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - Medical
+
+- type: listing
+  id: DSCallUplinkOintmentAlt
+  name: ert-uplink-medical-regenerativemesh-name
+  description: ert-uplink-medical-regenerativemesh-desc
+  productEntity: RegenerativeMesh
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - Medical
+
+- type: listing
+  id: DSCallUplinkStimpackAlt
+  name: ert-uplink-medical-stimpack-name
+  description: ert-uplink-medical-stimpack-desc
+  productEntity: Stimpack
+  cost:
+    BlueSpaceCube: 5
+  categories:
+  - Medical
+
+#new medipens
+
+- type: listing
+  id: DSCallUplinkCombatMedipenAlt
+  name: ert-uplink-medical-combatmedipen-name
+  description: ert-uplink-medical-combatmedipen-desc
+  productEntity: CombatMedipen
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - Medical
+
+- type: listing
+  id: DSCallUplinkBurnMedipenAlt
+  name: ert-uplink-medical-burnmedipen-name
+  description: ert-uplink-medical-burnmedipen-desc
+  productEntity: BurnAutoInjector
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - Medical
+
+- type: listing
+  id: DSCallUplinkBruteMedipenAlt
+  name: ert-uplink-medical-brutemedipen-name
+  description: ert-uplink-medical-brutemedipen-desc
+  productEntity: BruteAutoInjector
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - Medical
+
+ #new medipens end
+
+- type: listing
+  id: DSCallUplinkCompactDefibrillatorAlt
+  name: ert-uplink-medical-compactdefibrillator-name
+  description: ert-uplink-medical-compactdefibrillator-desc
+  productEntity: CompactDefibrillator
+  cost:
+    BlueSpaceCube: 5
+  categories:
+  - Medical
+
+- type: listing
+  id: DSCallUplinkEmergencyMedipenAlt
+  name: ert-uplink-medical-emergencymedipen-name
+  description: ert-uplink-medical-emergencymedipen-desc
+  productEntity: EmergencyMedipen
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - Medical
+
+- type: listing
+  id: DSCallUplinkHandheldHealthAnalyzerAlt
+  name: ert-uplink-medical-handheldhealthanalyzer-name
+  description: ert-uplink-medical-handheldhealthanalyzer-desc
+  productEntity: HandheldHealthAnalyzer
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - Medical
+
+- type: listing
+  id: DSCallUplinkMaterialBiomassAlt
+  name: ert-uplink-medical-materialbiomass-name
+  description: ert-uplink-medical-materialbiomass-desc
+  productEntity: MaterialBiomass
+  cost:
+    BlueSpaceCube: 5
+  categories:
+  - Medical
+
+- type: listing
+  id: DSCallUplinkPillAmbuzolPlusAlt
+  name: ert-uplink-medical-pillambuzolplus-name
+  description: ert-uplink-medical-pillambuzolplus-desc
+  productEntity: PillAmbuzolPlus
+  cost:
+   BlueSpaceCube: 2
+  categories:
+  - Medical
+
+- type: listing
+  id: DSCallUplinkSpaceMedipenAlt
+  name: ert-uplink-medical-spacemedipen-name
+  description: ert-uplink-medical-spacemedipen-desc
+  productEntity: SpaceMedipen
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - Medical
+
+#DSUplinkWeaponNonCombat
+- type: listing
+  id: DSCallUplinkWeaponPulsePistolAlt
+  name: ert-uplink-weaponnoncombat-weaponpulsepistol-name
+  description: ert-uplink-weaponnoncombat-weaponpulsepistol-desc
+  productEntity: WeaponPulsePistol
+  cost:
+    BlueSpaceCube: 5
+  categories:
+  - WeaponCombat
+
+- type: listing
+  id: DSCallUplinkWeaponRevolverMatebaAlt
+  name: ert-uplink-weaponnoncombat-weaponrevolvermateba-name
+  description: ert-uplink-weaponnoncombat-weaponrevolvermateba-desc
+  productEntity: WeaponRevolverMateba
+  cost:
+    BlueSpaceCube: 5
+  categories:
+  - WeaponCombat
+
+#DSUplinkWeaponCombat
+
+- type: listing
+  id: DSCallUplinkWeaponPulseRifleAlt
+  name: ert-uplink-weaponcombat-weaponpulserifle-name
+  description: ert-uplink-weaponcombat-weaponpulserifle-desc
+  productEntity: WeaponPulseRifle
+  cost:
+    BlueSpaceCube: 20
+  categories:
+  - WeaponCombat
+
+- type: listing
+  id: DSCallUplinkWeaponMinigunRAlt
+  name: ert-uplink-weaponcombat-minigunr-name
+  description: ert-uplink-weaponcombat-minigunr-desc
+  productEntity: WeaponMinigunR
+  cost:
+    BlueSpaceCube: 25
+  categories:
+  - WeaponCombat
+
+- type: listing
+  id: DSCallUplinkWeaponTaserAlt
+  name: ert-uplink-weaponcombat-weapontaser-name
+  description: ert-uplink-weaponcombat-weapontaser-desc
+  productEntity: WeaponTaser
+  cost:
+    BlueSpaceCube: 10
+  categories:
+  - WeaponCombat
+
+- type: listing
+  id: DSCallUplinkWeaponSniperHristovAlt
+  name: ert-uplink-weaponcombat-weaponsniperhristov-name
+  description: ert-uplink-weaponcombat-weaponsniperhristov-desc
+  productEntity: WeaponSniperHristov
+  cost:
+    BlueSpaceCube: 12
+  categories:
+  - WeaponCombat
+
+- type: listing
+  id: DSCallUplinkWeaponLauncherRocketAlt
+  name: ert-uplink-weaponcombat-weaponlauncherrocket-name
+  description: ert-uplink-weaponcombat-weaponlauncherrocket-desc
+  productEntity: WeaponLauncherRocket
+  cost:
+    BlueSpaceCube: 15
+  categories:
+  - WeaponCombat
+
+- type: listing
+  id: DSCallUplinkWeaponDelivererAlt
+  name: ert-uplink-weaponcombat-deliverer-name
+  description: ert-uplink-weaponcombat-deliverer-desc
+  productEntity: MachineGunDeliverer
+  cost:
+    BlueSpaceCube: 20
+  categories:
+  - WeaponCombat
+
+- type: listing
+  id: DSCallUplinkWeaponAWPAlt
+  name: ert-uplink-weaponcombat-awp-name
+  description: ert-uplink-weaponcombat-awp-desc
+  productEntity: WeaponSniperAWP
+  cost:
+    BlueSpaceCube: 25
+  categories:
+  - WeaponCombat
+
+- type: listing
+  id: DSCallUplinkWeaponPulseShotgunAlt
+  name: ert-uplink-weaponcombat-pulseshotgun-name
+  description: ert-uplink-weaponcombat-pulseshotgun-desc
+  productEntity: WeaponPulseShotgunDeathSquad
+  cost:
+    BlueSpaceCube: 19
+  categories:
+  - WeaponCombat
+
+#ERTUplinkUtilities
+- type: listing
+  id: DSCallUplinkHandcuffsAlt
+  name: ert-uplink-utilities-handcuffs-name
+  description: ert-uplink-utilities-handcuffs-desc
+  productEntity: Handcuffs
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - Utilities
+
+- type: listing
+  id: DSAmeliaPlushieEasterEgg
+  name: ert-uplink-utilities-ami-name
+  description: ert-uplink-utilities-ami-desc
+  productEntity: PlushieSOO
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - Utilities
+
+- type: listing
+  id: DSCallUplinkHandheldGPSBasicAlt
+  name: ert-uplink-utilities-handheldgpsbasic-name
+  description: ert-uplink-utilities-handheldgpsbasic-desc
+  productEntity: HandheldGPSBasic
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - Utilities
+
+- type: listing
+  id: DSCallUplinkHandheldStationMapAlt
+  name: ert-uplink-utilities-handheldstationmap-name
+  description: ert-uplink-utilities-handheldstationmap-desc
+  productEntity: HandheldStationMap
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - Utilities
+
+- type: listing
+  id: DSCallUplinkHandheldCrewMonitorAlt
+  name: ert-uplink-utilities-handheldcrewmonitor-name
+  description: ert-uplink-utilities-handheldcrewmonitor-desc
+  productEntity: HandheldCrewMonitor
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - Utilities
+
+- type: listing
+  id: DSCallUplinkMineShieldAlt
+  name: ert-uplink-utilities-cratemineshield-name
+  description: ert-uplink-utilities-cratemineshield-desc
+  productEntity: ERTCallCrateMineShieldImplant ##ID введенного мной ящика Artur Ur
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - Utilities
+
+- type: listing
+  id: DSCallUplinkWeaponL6SawAlt
+  name: ert-uplink-weaponcombat-weaponL6Saw-name
+  description: ert-uplink-weaponcombat-L6Saw-desc
+  productEntity: WeaponLightMachineGunL6
+  cost:
+    BlueSpaceCube: 15
+  categories:
+  - WeaponCombat
+
+- type: listing
+  id: DSCallUplinkMagazineLightRifleBoxAlt
+  name: ert-uplink-ammo-MagazineLightRifleBox-name
+  description: ert-uplink-ammo-MagazineLightRifleBox-desc
+  productEntity: MagazineLightRifleBox
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - AmmoCombat
+
+- type: listing
+  id: DSCallUplinkEnergyShieldAlt
+  name: ert-uplink-utilities-energyshield-name
+  description: ert-uplink-utilities-energyshield-desc
+  productEntity: EnergyShield
+  cost:
+    BlueSpaceCube: 5
+  categories:
+  - Utilities
+
+- type: listing
+  id: DSCallUplinkExplosivesX4Alt
+  name: ert-uplink-Explosives-X4
+  description: ert-uplink-Explosives-X4-desc
+  productEntity: X4
+  cost:
+    BlueSpaceCube: 5
+  categories:
+  - Explosives
+
+#New catalog - Equipment
+- type: listing
+  id: DSCallUplinkModsuitApocryphAlt
+  name: ert-uplink-equipment-apocryph-name
+  description: ert-uplink-equipment-apocryph-desc
+  productEntity: ClothingControlModsuitApocryphalSealed
+  cost:
+    BlueSpaceCube: 8
+  categories:
+  - Equipment
+
+- type: listing
+  id: DSCallUplinkClothingOuterVestWebAlt
+  name: uplink-clothing-outer-vest-web-name
+  description: uplink-clothing-outer-vest-web-desc
+  productEntity: ClothingOuterVestWeb
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - Equipment
+
+- type: listing
+  id: DSCallUplinkVoiceMaskAlt
+  name: uplink-voice-mask-name
+  description: uplink-voice-mask-desc
+  productEntity: ClothingMaskGasVoiceChameleon
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - Equipment
+
+- type: listing
+  id: DSCallUplinkJetpackAlt
+  name: uplink-black-jetpack-name
+  description: uplink-black-jetpack-desc
+  productEntity: JetpackBlackFilled
+  cost:
+    BlueSpaceCube: 4
+  categories:
+  - Equipment
+
+#category implants
+
+- type: listing
+  id: DSUplinkMacroBomb
+  name: ert-uplink-macrobomb-name
+  description: ert-uplink-macrobomb-desc
+  productEntity: MacroBombImplanter
+  cost:
+    BlueSpaceCube: 5
+  categories:
+  - Implants
+
+- type: listing
+  id: DSUplinkMicroBomb
+  name: ert-uplink-microbomb-name
+  description: ert-uplink-microbomb-desc
+  productEntity: MicroBombImplanter
+  cost:
+    BlueSpaceCube: 2
+  categories:
+  - Implants
+
+- type: listing
+  id: DSUplinkStorage
+  name: ert-uplink-storage-name
+  description: ert-uplink-storage-desc
+  productEntity: StorageImplanter
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - Implants
+
+- type: listing
+  id: DSUplinkFreedom
+  name: ert-uplink-freedom-name
+  description: ert-uplink-freedom-desc
+  productEntity: FreedomImplanter
+  cost:
+    BlueSpaceCube: 1
+  categories:
+  - Implants
+
+- type: listing
+  id: DSUplinkRadio
+  name: ert-uplink-syndradio-name
+  description: ert-uplink-syndradio-desc
+  productEntity: RadioImplanter
+  cost:
+    BlueSpaceCube: 3
+  categories:
+  - Implants

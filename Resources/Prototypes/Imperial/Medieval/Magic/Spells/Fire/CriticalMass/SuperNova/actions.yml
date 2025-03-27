@@ -5,7 +5,6 @@
   parent: MedievalActionCriticalMassBeginner
   name: medieval-store-spells-fire-critical-mass-middle-name
   description: medieval-store-spells-fire-critical-mass-middle-desc
-  noSpawn: true
   components:
   - type: CastTraining
     trainingResults:
@@ -57,7 +56,6 @@
   parent: MedievalActionCriticalMassBeginner
   name: medieval-store-spells-fire-critical-mass-senior-name
   description: medieval-store-spells-fire-critical-mass-senior-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 60

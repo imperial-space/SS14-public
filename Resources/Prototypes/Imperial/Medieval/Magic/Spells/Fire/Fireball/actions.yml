@@ -4,7 +4,6 @@
   id: MedievalActionFireballBeginner
   name: medieval-store-spells-fire-fireball-beginner-name
   description: medieval-store-spells-fire-fireball-beginner-desc
-  noSpawn: true
   components:
   - type: MedievalTargetSpell
   - type: WorldTargetAction
@@ -78,7 +77,6 @@
   parent: MedievalActionFireballBeginner
   name: medieval-store-spells-fire-fireball-middle-name
   description: medieval-store-spells-fire-fireball-middle-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 85
@@ -92,7 +90,6 @@
     useDelay: 155
     itemIconStyle: BigAction
     checkCanAccess: false
-    preventCollide: true
     range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/fireball_cast.ogg
@@ -123,7 +120,6 @@
   parent: MedievalActionFireballBeginner
   name: medieval-store-spells-fire-fireball-senior-name
   description: medieval-store-spells-fire-fireball-senior-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 90

@@ -1,0 +1,36 @@
+- type: entity
+  name: pulse shotgun
+  parent: BaseWeaponBattery
+  id: WeaponPulseShotgunDeathSquad
+  description: The final prototype of the energy shotgun, specially designed for death squads. Devoid of firing modes, but more deadly.
+  suffix: DeathSquad
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/DeathSquad/Weapones/PulseShotgun/PulseShotgun.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-unshaded-3
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Gun
+    fireRate: 1.5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletPulseSpreadDS
+    fireCost: 100
+  - type: Item
+    size: Large
+    sprite: Imperial/SpecialUnits/DeathSquad/Weapones/PulseShotgun/inhands_64.rsi
+    heldPrefix: pulse
+  - type: GunRequiresWield
+  - type: Battery
+    maxCharge: 20000
+    startingCharge: 20000

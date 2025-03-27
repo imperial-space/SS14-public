@@ -41,7 +41,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
+          path: /Audio/Effects/metal_break1.ogg
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel1:
@@ -83,7 +83,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/woodhit.ogg
+          path: /Audio/Effects/wood_destroy1.ogg
       - !type:SpawnEntitiesBehavior
         spawn:
           MaterialWoodPlank:
@@ -125,7 +125,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
+          path: /Audio/Effects/metal_break1.ogg
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel1:

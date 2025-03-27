@@ -21,7 +21,6 @@
     size: Small
   - type: Pda
     id: CentcomIDCard
-    state: pda
   - type: Icon
     sprite: Imperial/VlClothes/DSO/BSPda.rsi
     state: pda

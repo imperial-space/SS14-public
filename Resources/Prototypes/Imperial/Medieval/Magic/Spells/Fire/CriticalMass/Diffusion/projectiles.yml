@@ -2,7 +2,6 @@
 
 - type: entity
   id: MedievalProjectileDiffusionMiddle
-  noSpawn: true
   components:
   - type: RepeatingTrigger
     delay: 0.75
@@ -18,7 +17,6 @@
 
 - type: entity
   id: MedievalProjectileDiffusionSenior
-  noSpawn: true
   components:
   - type: RepeatingTrigger
     delay: 0.75

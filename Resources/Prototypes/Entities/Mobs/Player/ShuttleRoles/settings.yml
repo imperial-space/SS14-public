@@ -717,7 +717,7 @@
       roleLoadout: [ RoleSurvivalClown ]
     - type: RandomMetadata
       nameSegments:
-      - names_clown
+      - NamesClown
     # Imperial Space Crew Skils Start
     - type: CrewSkills
       skills:
@@ -948,8 +948,8 @@
       roleLoadout: [ RoleSurvivalVoxSupport ]
     - type: RandomMetadata
       nameSegments:
-      - names_first
-      - names_last
+      - NamesFirst
+      - NamesLast
     - type: CrewSkills
       skills:
         - skillBotany
@@ -974,8 +974,8 @@
       roleLoadout: [ RoleSurvivalVoxSupport ]
     - type: RandomMetadata
       nameSegments:
-      - names_first
-      - names_last
+      - NamesFirst
+      - NamesLast
     - type: CrewSkills
       skills:
         - skillBotany
@@ -1006,8 +1006,8 @@
       roleLoadout: [ RoleSurvivalVoxSupport ]
     - type: RandomMetadata
       nameSegments:
-      - names_first
-      - names_last
+      - NamesFirst
+      - NamesLast
     - type: CrewSkills
       skills:
         - skillBotany
@@ -1036,8 +1036,8 @@
       roleLoadout: [ RoleSurvivalVoxSupport ]
     - type: RandomMetadata
       nameSegments:
-      - names_first
-      - names_last
+      - NamesFirst
+      - NamesLast
     - type: CrewSkills
       skills:
         - skillBotany
@@ -1061,8 +1061,8 @@
       roleLoadout: [ RoleSurvivalVoxSupport ]
     - type: RandomMetadata
       nameSegments:
-      - names_first
-      - names_last
+      - NamesFirst
+      - NamesLast
     - type: CrewSkills
       skills:
         - skillBotany
@@ -1087,8 +1087,8 @@
       roleLoadout: [ RoleSurvivalVoxSupport ]
     - type: RandomMetadata
       nameSegments:
-      - names_first
-      - names_last
+      - NamesFirst
+      - NamesLast
     - type: CrewSkills
       skills:
         - skillBotany
@@ -1124,8 +1124,8 @@
       roleLoadout: [ RoleSurvivalVoxSupport ]
     - type: RandomMetadata
       nameSegments:
-      - names_first
-      - names_last
+      - NamesFirst
+      - NamesLast
     - type: CrewSkills
       skills:
         - skillBotany
@@ -1154,8 +1154,8 @@
       roleLoadout: [ RoleSurvivalVoxSupport ]
     - type: RandomMetadata
       nameSegments:
-      - names_first
-      - names_last
+      - NamesFirst
+      - NamesLast
     - type: CrewSkills
       skills:
         - skillBotany

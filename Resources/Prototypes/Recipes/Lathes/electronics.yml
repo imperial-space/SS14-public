@@ -62,16 +62,6 @@
     Glass: 500
     Bananium: 100
 
-# Imperial PrinterDoc
-- type: latheRecipe
-  id: PrinterDocMachineCircuitboard
-  result: PrinterDocMachineCircuitboard
-  category: Circuitry
-  completetime: 4
-  materials:
-     Steel: 100
-     Glass: 900
-
 # Recipes
 
 - type: latheRecipe

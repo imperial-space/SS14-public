@@ -20,8 +20,6 @@
     color: "#9512C6"
     state: essence
     noRot: true
-  - type: Appearance
-    state: bluespacecube
   - type: Stack
     count: 20
     stackType: MagicMedievalDarkness

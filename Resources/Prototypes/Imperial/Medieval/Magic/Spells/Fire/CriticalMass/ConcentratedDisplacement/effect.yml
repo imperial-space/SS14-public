@@ -2,7 +2,6 @@
 
 - type: entity
   id: MedievalEffectConcentratedDisplacementMiddle
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
@@ -31,7 +30,6 @@
 
 - type: entity
   id: MedievalEffectConcentratedDisplacementSenior
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi

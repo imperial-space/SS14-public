@@ -5,7 +5,6 @@
   name: Flash
   description: You my sunshine
   parent: BulletRocket
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Gun/Charmer/flash.rsi
@@ -35,7 +34,6 @@
   name: Flash
   description: You my sunshine
   parent: BulletRocket
-  noSpawn: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Gun/Charmer/flash.rsi

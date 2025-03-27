@@ -96,7 +96,7 @@
 #mp5 magazine
 - type: entity
   id: mp5-Magazine
-  mame: SMG magazine (.35 auto)
+  name: SMG magazine (.35 auto)
   parent: BaseMagazinePistolSubMachineGun
   suffix: CS
   components:

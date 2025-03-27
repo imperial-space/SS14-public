@@ -1,13 +1,11 @@
 - type: entity
   id: ElectroMouseMigration
   parent: BaseGameRule
-  noSpawn: true
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/aliens.ogg
-    startDelay: 10
     earliestStart: 30
     minimumPlayers: 25
     weight: 5

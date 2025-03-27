@@ -2,7 +2,6 @@
   id: ActionElectroMouseShop
   name: Магазин
   description: Открывает магазин способностей.
-  noSpawn: true
   components:
   - type: InstantAction
     icon: { sprite: Imperial/electromouse.rsi, state: sm_shockradius}
@@ -12,7 +11,6 @@
   id: ActionElectroMouseOverloadLights
   name: Перегрузка света
   description: Перезарядка 30 секунд.
-  noSpawn: true
   components:
   - type: InstantAction
     icon: { sprite: Imperial/electromouse.rsi, state: sm_shop}
@@ -24,7 +22,6 @@
   id: ActionElectroDash
   name: Рывок
   description: Телепортирует вас на пару клеток вперед.
-  noSpawn: true
   components:
   - type: InstantAction
     icon: { sprite: Imperial/electromouse.rsi, state: sm_dash}
@@ -36,7 +33,6 @@
   id: ActionElectroMouseEmp
   name: Активировать ЭМИ
   description: Вызывает небольшой ЭМИ-импульс вокруг вас.
-  noSpawn: true
   components:
   - type: InstantAction
     event: !type:ElectroMouseEmpEvent
@@ -48,7 +44,6 @@
   id: ActionElectroMouseHeal
   name: Залечиться
   description: Вылечить себя.
-  noSpawn: true
   components:
   - type: InstantAction
     icon: { sprite: Imperial/electromouse.rsi, state: sm_heal}
@@ -60,7 +55,6 @@
   id: ActionElectroMouseShield
   name: Использовать щит.
   description: Всего на пару секунд вы получаете защиту от всех пуль, выпущенных в вас
-  noSpawn: true
   components:
   - type: InstantAction
     icon: { sprite: Imperial/electromouse.rsi, state: sm_shield}
@@ -72,7 +66,6 @@
   id: ActionElectroMouseSpeed
   name: Сверхшокирующая скорость
   description: Находясь рядом с проводами вы обретаете скорость 150%
-  noSpawn: true
   components:
   - type: InstantAction
     icon: { sprite: Imperial/electromouse.rsi, state: sm_superspeed}
@@ -84,7 +77,6 @@
   id: ActionElectroMouseDouble
   name: Резервное шокирование
   description: Позволяет создать вторую шокомышь (1 раз)
-  noSpawn: true
   components:
   - type: InstantAction
     icon: { sprite: Imperial/electromouse.rsi, state: sm_copying}
@@ -96,7 +88,6 @@
   id: ActionElectroMouseUpgrade
   name: Улучшения
   description: Все ваши способности становятся лучше
-  noSpawn: true
   components:
   - type: InstantAction
     icon: { sprite: Imperial/electromouse.rsi, state: sm_upgrade}
@@ -108,7 +99,6 @@
   id: ActionElectroMouseLightning
   name: Молния
   description: Создает молнию, которая парализует жертву почти на 10 секунд
-  noSpawn: true
   components:
   - type: EntityTargetAction
     icon: { sprite: Imperial/electromouse.rsi, state: sm_shock1}
@@ -120,7 +110,6 @@
   id: ActionElectroMouseElevation
   name: Возвышение
   description: Вы достигаете окончательного прогресса своего существования. Ваши способности становятся еще лучше. Вы получаете бесконечную энергию. Постарайтесь выжить, и привести электропитание станции в упадок
-  noSpawn: true
   components:
   - type: InstantAction
     icon: { sprite: Imperial/electromouse.rsi, state: sm_elevation}

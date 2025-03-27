@@ -10,7 +10,6 @@
     - MedievalSpellMagicArrowCursorFolloverBeginner
     - MedievalSpellMagicArrowPlayerFolloverBeginner
     - MedievalSpellMagicArrowKunaiBeginner
-    - MedievalSpellCorruptedMagicArrowBeginner
   icon:
     sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
     state: 1

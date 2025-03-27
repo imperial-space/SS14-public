@@ -44,7 +44,6 @@
   parent: BaseAirStrike
   id: ClusterDis8
   name: ClusterDis8
-  noSpawn: true
   description: null
   components:
   - type: ImperialScatteringGrenade
@@ -68,7 +67,6 @@
   parent: BaseAirStrike
   id: ClusterDis16
   name: ClusterDis16
-  noSpawn: true
   description: null
   components:
   - type: ImperialScatteringGrenade
@@ -94,7 +92,6 @@
   parent: BaseAirStrike
   id: ClusterDis24
   name: ClusterDis24
-  noSpawn: true
   description: null
   components:
   - type: ImperialScatteringGrenade
@@ -121,7 +118,6 @@
   parent: BaseAirStrike
   id: ClusterDis32
   name: ClusterDis32
-  noSpawn: true
   description: null
   components:
   - type: ImperialScatteringGrenade

@@ -1,6 +1,5 @@
 - type: entity
   id: MedievalLightningExplosion
-  noSpawn: true
   components:
   - type: RepeatingTrigger
     delay: 0.0

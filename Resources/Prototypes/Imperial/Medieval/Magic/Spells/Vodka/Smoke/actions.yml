@@ -4,7 +4,6 @@
   id: MedievalActionSmokeBeginner
   name: medieval-store-spells-vodka-smoke-beginner-name
   description: medieval-store-spells-vodka-smoke-beginner-desc
-  noSpawn: true
   components:
   - type: CastTraining
     trainingResults:
@@ -59,7 +58,6 @@
   parent: MedievalActionSmokeBeginner
   name: medieval-store-spells-vodka-smoke-middle-name
   description: medieval-store-spells-vodka-smoke-middle-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 25
@@ -96,7 +94,6 @@
   parent: MedievalActionSmokeMiddle
   name: medieval-store-spells-vodka-smoke-senior-name
   description: medieval-store-spells-vodka-smoke-senior-desc
-  noSpawn: true
   components:
   - type: ManaDrainSpell
     manaDrain: 25

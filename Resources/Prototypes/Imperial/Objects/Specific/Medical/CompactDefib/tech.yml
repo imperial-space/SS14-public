@@ -4,7 +4,7 @@
   icon:
     sprite: Imperial/Objects/Specific/Medical/CompactDefib/compactdefib.rsi
     state: icon
-  discipline: Biochemical
+  discipline: CivilianServices
   tier: 2
   cost: 10000
   recipeUnlocks:

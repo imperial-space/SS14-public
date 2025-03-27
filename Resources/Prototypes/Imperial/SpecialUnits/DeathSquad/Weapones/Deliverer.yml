@@ -1,0 +1,51 @@
+- type: entity
+  id: MachineGunDeliverer
+  parent: BaseWeaponLightMachineGun
+  name: Deliverer
+  description: A universal tool for taking other people's lives.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/DeathSquad/Weapones/Deliverer/icon.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Large
+    sprite: Imperial/SpecialUnits/DeathSquad/Weapones/Deliverer/inhands_32.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -20
+    maxAngle: -20
+  - type: Gun
+    fireRate: 8
+    minAngle: 24
+    maxAngle: 25
+    angleIncrease: 4
+    angleDecay: 10
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: ItemDelivererMagazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - ItemDelivererMagazine
+        blacklist:
+          tags:
+            - MagazineLightRifleBox
+  - type: Appearance
+
+- type: Tag
+  id: ItemDelivererMagazine

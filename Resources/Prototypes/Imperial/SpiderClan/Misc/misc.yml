@@ -16,7 +16,7 @@
   icon:
     sprite: /Textures/Imperial/SpiderClan/Misc/EmptyJobIcon.rsi
     state: Empty
-  jobname: job-name-empty
+  jobName: job-name-empty
 
 - type: entity
   parent: IDCardStandard
@@ -26,7 +26,7 @@
   suffix: Standard, Crook, SpiderClan
   components:
   - type: PresetIdCard
-    job: Ninja
+    name: Ninja
   - type: IdCard
     jobIcon: SpiderClanNinjaJobIcon
     jobTitle: job-name-ninja

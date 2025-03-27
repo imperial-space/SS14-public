@@ -42,7 +42,7 @@
 - type: loadout
   id: SeniorEngineerBeret
   equipment:
-    head: EngineeringBeret
+    head: ClothingHeadHatBeretEngineering
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorEngineering

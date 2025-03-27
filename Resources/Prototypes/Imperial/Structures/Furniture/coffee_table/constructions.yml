@@ -37,7 +37,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
+          path: /Audio/Effects/metal_break1.ogg
       - !type:SpawnEntitiesBehavior
         spawn:
           PartRodMetal1:

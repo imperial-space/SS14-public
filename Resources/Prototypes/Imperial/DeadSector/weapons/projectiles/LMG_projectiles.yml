@@ -2,7 +2,6 @@
   id: AssaultPKMBullet
   name: bullet Assault PKM (7x62x51)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:
@@ -13,7 +12,6 @@
   id: AssaultPKMBulletPiercing
   name: bullet Assault PKM (7x62x51 AP)
   parent: BaseBullet
-  noSpawn: true
   components:
   - type: Projectile
     damage:

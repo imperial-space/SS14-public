@@ -112,7 +112,7 @@
   parent: BaseAlcohol
   desc: reagent-desc-wormhole
   physicalDesc: reagent-physical-desc-volatile
-  flavor: irishcarbomb
+  flavor: threemileisland
   color: "#D25FD2"
   metamorphicSprite:
     sprite: Imperial/DRGbeer/wormhole.rsi
@@ -382,7 +382,7 @@
     solution: drink
   - type: PhysicalComposition
     materialComposition:
-      Steel: 50 
+      Steel: 50
 
 - type: listing
   id: UplinkChemicalGnome

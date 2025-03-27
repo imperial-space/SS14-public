@@ -2,7 +2,7 @@
   id: WeaponPistolMk58Golden
   parent: WeaponPistolMk58
   name: golden MK58
-  desctription: Shiny. Because I'm patriot!
+  description: Shiny. Because I'm patriot!
   components:
   - type: Sprite
     sprite: Imperial/Other/TFG/GoldenLife/goldenMK58.rsi
@@ -22,7 +22,7 @@
   id: WeaponPistolMk58GoldenNonlethal
   parent: WeaponPistolMk58Nonlethal
   name: golden MK58
-  desctription: Shiny. Because I'm patriot!
+  description: Shiny. Because I'm patriot!
   suffix: Non-lethal
   components:
   - type: Sprite

@@ -11,5 +11,3 @@
     sprite: Imperial/Other/Sona/SonaWebbing.rsi
   - type: Item
     size: Large
-  - type: Storage
-    capacity: 90

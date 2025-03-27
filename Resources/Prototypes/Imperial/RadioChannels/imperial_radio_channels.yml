@@ -448,7 +448,6 @@
     defaultChannel: Cadet
   - type: Item
     sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
-    state: card.Cadet-radio
   - type: Sprite
     sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
     state: card.Cadet-radio
@@ -465,7 +464,6 @@
     defaultChannel: SGT
   - type: Item
     sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
-    state: card.SGT-radio
   - type: Sprite
     sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
     state: card.SGT-Radio
@@ -482,7 +480,6 @@
     defaultChannel: OFC
   - type: Item
     sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
-    state: card.OFC-radio
   - type: Sprite
     sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
     state: card.OFC-Radio
@@ -499,7 +496,6 @@
     defaultChannel: CMD
   - type: Item
     sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
-    state: card.CMD-Radio
   - type: Sprite
     sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
     state: card.CMD-Radio
@@ -516,7 +512,6 @@
     defaultChannel: Piloting
   - type: Item
     sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
-    state: card.piloting
   - type: Sprite
     sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
     state: card.piloting
@@ -533,7 +528,6 @@
     defaultChannel: ENG
   - type: Item
     sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
-    state: card.engineer
   - type: Sprite
     sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
     state: card.engineer
@@ -550,7 +544,6 @@
     defaultChannel: SEC
   - type: Item
     sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
-    state: card.security
   - type: Sprite
     sprite: Imperial/RadioChannels/imperial_encryption_keys_felix.rsi
     state: card.security

@@ -30,7 +30,7 @@
       types:
         Bloodloss: -10
         Cellular: -10
-    ignoreResistances: true
+    resistanceBypass: true
     soundHit:
       path: /Audio/Imperial/Medieval/heal_cast.ogg
   - type: MedievalSpellOnInteract
@@ -91,7 +91,7 @@
       types:
         Cellular: -15
         Bloodloss: -35
-    ignoreResistances: true
+    resistanceBypass: true
     soundHit:
       path: /Audio/Imperial/Medieval/heal_cast.ogg
   - type: MedievalSpellOnInteract
@@ -152,7 +152,7 @@
       types:
         Cellular: -65
         Bloodloss: -300
-    ignoreResistances: true
+    resistanceBypass: true
     soundHit:
       path: /Audio/Imperial/Medieval/heal_cast.ogg
   - type: MedievalSpellOnInteract

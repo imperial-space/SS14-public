@@ -2,14 +2,13 @@
   id: BulletGnomish
   name: beerspit
   parent: BaseBullet
-  noSpawn: true
   components:
     - type: Projectile
       damage:
         types:
           Caustic: 5
     - type: Sprite
-      sprite: imperial/DRGbeer/gnomeprojectile.rsi
+      sprite: Imperial/DRGbeer/gnomeprojectile.rsi
       layers:
         - state: xeno_toxic
     - type: Ammo

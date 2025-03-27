@@ -39,7 +39,7 @@
     sprite: Imperial/Other/TFG/RepresentativeStuff/evaHelmet.rsi
   - type: Clothing
     sprite: Imperial/Other/TFG/RepresentativeStuff/evaHelmet.rsi
-    slot: head
+    slots: [HEAD]
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -85,7 +85,6 @@
   #     6: 0
 
 - type: entity
-  noSpawn: true
   id: ClothingOuterHardsuitCCAgent
   parent: ClothingOuterHardsuitBase
   name: Special Agent hardsuit
@@ -132,7 +131,6 @@
   #     6: 0
 
 - type: entity
-  noSpawn: true
   id: ClothingHeadHardsuitCCAgent
   parent: [ClothingHeadHardsuitBase , ClothingHeadSuitWithLightBase]
   name: Special Agent helmet
