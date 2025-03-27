@@ -52,8 +52,8 @@
       path: /Audio/Weapons/Guns/Gunshots/minigun.ogg
   - type: BasicEntityAmmoProvider
     proto: FoodPieBananaCream
-    capacity: 500
-    count: 500
+    capacity: 300
+    count: 300
   - type: AmmoCounter
   - type: MagazineVisuals
     magState: mag
