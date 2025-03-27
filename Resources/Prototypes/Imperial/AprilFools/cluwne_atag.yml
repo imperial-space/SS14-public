@@ -285,7 +285,7 @@
 
 - type: entity
   name: WE NEED YOU ALIVE
-  desc: PUPUPU
+  description: PUPUPU
   parent: [BaseObjective, BaseSurviveObjective]
   id: CluwneSurviveObjective
   components:
