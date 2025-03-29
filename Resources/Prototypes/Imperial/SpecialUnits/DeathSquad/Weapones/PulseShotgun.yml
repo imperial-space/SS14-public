@@ -34,3 +34,6 @@
   - type: Battery
     maxCharge: 20000
     startingCharge: 20000
+  - type: ClothingFactionExplosion
+    friendlyFaction: DeathSquad
+    chance: 1

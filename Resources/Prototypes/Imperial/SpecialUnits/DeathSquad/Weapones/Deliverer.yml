@@ -46,6 +46,9 @@
           tags:
             - MagazineLightRifleBox
   - type: Appearance
+  - type: ClothingFactionExplosion
+    friendlyFaction: DeathSquad
+    chance: 1
 
 - type: Tag
   id: ItemDelivererMagazine
