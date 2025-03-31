@@ -24,6 +24,8 @@
       prob: 0.5
     - id: SubWizard
       prob: 0.05
+    - id: Cluwne
+      prob: 0.7
 
 - type: entity
   parent: BaseGameRule
