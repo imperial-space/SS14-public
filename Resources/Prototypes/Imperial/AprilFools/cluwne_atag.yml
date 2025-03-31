@@ -193,8 +193,8 @@
     fiberColor: fibers-red
   - type: FingerprintMask
   - type: MeleeThrowOnHit
-    lifetime: 1
-    speed: 45
+    distance: 20
+    speed: 30
 
 - type: entity
   name: sus banana
