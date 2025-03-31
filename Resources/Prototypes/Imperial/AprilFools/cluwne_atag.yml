@@ -1,0 +1,574 @@
+- type: entity
+  parent: ClothingShoesClownBase
+  id: ClothingShoesClownSuper
+  name: bling clown shoes
+  description: Gotta Go Fast!
+  components:
+  - type: Sprite
+    sprite: Clothing/Shoes/Specific/clown.rsi
+  - type: Clothing
+    sprite: Clothing/Shoes/Specific/clown.rsi
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepClown
+      params:
+        variation: 0.17
+  - type: PointLight
+    radius: 7
+    energy: 5
+  - type: RgbLightController
+    layers: [ 0 ]
+  - type: NoSlip
+  - type: ClothingSpeedModifier
+    walkModifier: 2.5
+    sprintModifier: 2.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 23.0
+        Slash: 23.0
+        Piercing: 23.0
+        Heat: 23.0
+        Radiation: 23.0
+        Caustic: 23.0
+        Stamina: 23.0 
+
+- type: entity
+  name: pie minigun
+  id: WeaponPieMinigun
+  parent: BaseWeaponHeavyMachineGun
+  description: PIE TIME!
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/HMGs/minigun.rsi
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    sprite: Objects/Weapons/Guns/HMGs/minigun.rsi
+  - type: Gun
+    fireRate: 15
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/minigun.ogg
+  - type: BasicEntityAmmoProvider
+    proto: FoodPieBananaCream
+    capacity: 500
+    count: 500
+  - type: AmmoCounter
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  parent: BikeHorn
+  id: SuperBikeHorn
+  name: super bike horn
+  description: A horn off of a bicycle.
+  components:
+  - type: StaminaDamageOnHit
+    damage: 150
+
+- type: entity
+  name: super wand of cluwning
+  parent: WeaponWandPolymorphBase
+  id: WeaponSuperWandCluwne
+  description: Make their situation worse by turning them into a cluwne.
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: ProjectilePolyboltCluwne
+    capacity: 6
+    count: 6
+  
+- type: entity
+  parent: BoxCardboard
+  id: CluwneCybershizoBox
+  name: cyber chyzo box
+  description: EHEHEHHEHEHE!
+  components:
+  - type: StorageFill
+    contents:
+    - id: BikeHornImplanter
+    - id: FreedomImplanter
+    - id: EmpImplanter
+    - id: ScramImplanter
+    - id: MicroBombImplanter
+    - id: HoloClownInjector
+  - type: Sprite
+    layers:
+    - state: box_hug
+    - state: heart
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,2
+
+- type: entity
+  name: clown spider
+  parent: MobClownSpider
+  id: MobCluwneAtagSpider
+  description: Combines the two most terrifying things in existence, spiders and clowns.
+  components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      15: Dead
+
+- type: entity
+  parent: GrenadeBase
+  id: ClusterCluwneGrenade
+  name: clusterbang
+  description: Launches three flashbangs after the timer runs out.
+  suffix: Full
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/clusterbang.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ClusterGrenade
+    fillPrototype: MobCluwneAtagSpider
+    distance: 3
+    velocity: 7
+    maxGrenadesCount: 5
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Effects/countdown.ogg
+  - type: GenericVisualizer
+    visuals:
+      enum.Trigger.TriggerVisuals.VisualState:
+        enum.ConstructionVisuals.Layer:
+          Primed: { state: primed }
+          Unprimed: { state: icon }
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/Machines/door_lock_off.ogg"
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+
+- type: entity
+  parent: BoxCardboard
+  id: CluwneGrenadeBox
+  name: grenade box
+  description: EHEHEHHEHEHE!
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClusterCluwneGrenade
+      amount: 5
+  - type: Sprite
+    layers:
+    - state: box_hug
+    - state: heart
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,2
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsShoegloves
+  name: combat shoegloves
+  description: Who puts boots at hands?
+  components:
+  - type: Sprite
+    sprite: Imperial/Cluwne/combat_shoegloves.rsi
+  - type: Clothing
+    sprite: Imperial/Cluwne/combat_shoegloves.rsi
+  - type: StaminaDamageOnHit
+    damage: 20
+  - type: MeleeWeapon
+    attackRate: 0.5
+    damage:
+      types:
+        Blunt: 20
+    soundHit:
+      collection: BoxingHit
+    animation: WeaponArcFist
+    mustBeEquippedToUse: true
+  - type: Fiber
+    fiberMaterial: fibers-leather
+    fiberColor: fibers-red
+  - type: FingerprintMask
+  - type: MeleeThrowOnHit
+    lifetime: 1
+    speed: 45
+
+- type: entity
+  name: sus banana
+  parent: BaseMob
+  id: CluwneBananaEnt
+  description: Sheesh lad
+  suffix: Cluwne
+  components:
+  - type: Slippery
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/banana.rsi
+    state: peel
+  - type: InputMover
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 8
+    baseWalkSpeed: 6
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 120
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+
+- type: entity
+  id: BananaTech
+  name: banana tech svitok
+  parent: BaseSpellbook
+  components:
+  - type: Flammable
+    fireSpread: true
+    alwaysCombustible: true
+    damage:
+      types:
+        Heat: 1
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+            Ash:
+              min: 1
+              max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Objects/Magic/magicactions.rsi
+    layers:
+    - state: spell_default
+  - type: Spellbook
+    learnPermanently: true
+    spellActions:
+      CluwneBananaAction: -1
+
+- type: entity
+  id: CluwneBananaAction
+  name: Bananana!
+  description: GO BANANAS!
+  components:
+  - type: InstantAction
+    useDelay: 40
+    event: !type:PolymorphActionEvent
+      protoId: CluwneBanana
+    itemIconStyle: NoItem
+    icon:
+      sprite: Objects/Specific/Hydroponics/banana.rsi
+      state: peel
+
+- type: polymorph
+  id: CluwneBanana
+  configuration:
+    entity: CluwneBananaEnt
+    transferName: true
+    inventory: None
+    forced: true
+    revertOnDeath: true
+    revertOnCrit: true
+    allowRepeatedMorphs: false
+    duration: 5
+
+- type: entity
+  parent: ClothingEyesBase
+  id: NerdGlasses
+  name: nerd glasses
+  description: Glasses used by e-warriors.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cluwne/nerd_glasses.rsi
+  - type: Clothing
+    sprite: Imperial/Cluwne/nerd_glasses.rsi
+  - type: ShowHealthBars
+  - type: ShowHealthIcons
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: FlashImmunity
+  - type: EyeProtection
+
+- type: entity
+  parent: ClothingNeckCloakTrans
+  id: ClothingNeckCloakNerd
+  name: nerd cloack
+  description: E-warriors like that.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.8
+        Heat: 0.8
+  - type: Reflect
+    reflectProb: 0.6
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltStorageNerdbag
+  name: e-warrior kit
+  description: Perfect for proving to people in the internet that they are wrong.
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/waistbag_leather.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/waistbag_leather.rsi
+  - type: Storage
+    grid:
+    - 0,0,5,1
+  - type: StorageFill
+    contents:
+      - id: NerdGlasses
+      - id: ClothingNeckCloakNerd
+
+- type: thiefBackpackSet
+  id: CluwneAtagBootsSet
+  name: cluwne-atag-boots-name
+  description: cluwne-atag-boots-description
+  sprite:
+    sprite: Clothing/Shoes/Specific/clown.rsi
+    state: icon
+  content:
+  - ClothingShoesClownSuper
+
+- type: thiefBackpackSet
+  id: CluwneAtagHonkSet
+  name: cluwne-atag-horn-name
+  description: cluwne-atag-horn-description
+  sprite:
+    sprite: Objects/Fun/bikehorn.rsi
+    state: icon
+  content:
+  - SuperBikeHorn
+
+- type: thiefBackpackSet
+  id: CluwneAtagPieGunSet
+  name: cluwne-atag-piegun-name
+  description: cluwne-atag-piegun-description
+  sprite:
+    sprite: Objects/Weapons/Guns/HMGs/minigun.rsi
+    state: icon
+  content:
+  - WeaponPieMinigun
+
+- type: thiefBackpackSet
+  id: CluwneAtagWandSet
+  name: cluwne-atag-wand-name
+  description: cluwne-atag-wand-description
+  sprite:
+    sprite: Clothing/Mask/cluwne.rsi
+    state: icon
+  content:
+  - WeaponSuperWandCluwne
+
+- type: thiefBackpackSet
+  id: CluwneAtagImplantSet
+  name: cluwne-atag-implant-name
+  description: cluwne-atag-implant-description
+  sprite:
+    sprite: Objects/Specific/Medical/syndi_implanter.rsi
+    state: implanter0
+  content:
+  - CluwneCybershizoBox
+
+- type: thiefBackpackSet
+  id: CluwneAtagGrenadeSet
+  name: cluwne-atag-grenade-name
+  description: cluwne-atag-grenade-description
+  sprite:
+    sprite: Mobs/Animals/clownspider.rsi
+    state: clown
+  content:
+  - CluwneGrenadeBox
+
+- type: thiefBackpackSet
+  id: CluwneAtagShoeglovesSet
+  name: cluwne-atag-shoegloves-name
+  description: cluwne-atag-shoegloves-description
+  sprite:
+    sprite: Imperial/Cluwne/combat_shoegloves.rsi
+    state: icon
+  content:
+  - ClothingHandsShoegloves
+
+- type: thiefBackpackSet
+  id: CluwneAtagBananaTechSet
+  name: cluwne-atag-banana-name
+  description: cluwne-atag-banana-description
+  sprite:
+    sprite: Objects/Specific/Hydroponics/banana.rsi
+    state: peel
+  content:
+  - BananaTech
+  - FlippoLighter
+
+- type: thiefBackpackSet
+  id: CluwneAtagNerdSet
+  name: cluwne-atag-nerd-name
+  description: cluwne-atag-nerd-description
+  sprite:
+    sprite: Imperial/Cluwne/nerd_glasses.rsi
+    state: icon
+  content:
+  - ClothingBeltStorageNerdbag
+
+- type: entity
+  id: CluwneMagicBox
+  name: cluwne magic box
+  description: HONK!
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Objects/Storage/boxes.rsi
+    layers:
+    - state: box_hug
+    - state: heart
+  - type: ThiefUndeterminedBackpack
+    maxSelectedSets: 4
+    possibleSets:
+    - CluwneAtagBootsSet
+    - CluwneAtagHonkSet
+    - CluwneAtagPieGunSet
+    - CluwneAtagWandSet
+    - CluwneAtagImplantSet
+    - CluwneAtagGrenadeSet
+    - CluwneAtagShoeglovesSet
+    - CluwneAtagBananaTechSet
+    - CluwneAtagNerdSet
+  - type: ActivatableUI
+    key: enum.ThiefBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ThiefBackpackUIKey.Key:
+        type: ThiefBackpackBoundUserInterface
+
+- type: antag
+  id: CluwneImperial
+  name: roles-antag-cluwne-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-cluwne-desc
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleCluwneImperial
+  name: Cluwne Role
+  components:
+  - type: MindRole
+    exclusiveAntag: true
+    antagPrototype: CluwneImperial
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnPointGhostCluwneImperial
+  name: ghost role spawn point
+  suffix: cluwne
+  components:
+  - type: SpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Objects/Fun/bikehorn.rsi
+      state: icon
+
+- type: entity
+  name: WE NEED YOU ALIVE
+  desc: PUPUPU
+  parent: [BaseObjective, BaseSurviveObjective]
+  id: CluwneSurviveObjective
+  components:
+  - type: Objective
+    difficulty: 1
+    icon:
+      sprite: Objects/Fun/bikehorn.rsi
+      state: icon
+    issuer: objective-issuer-honk
+
+- type: entity
+  parent: BaseGameRule
+  id: Cluwne
+  components:
+  - type: AntagObjectives
+    objectives:
+    - CluwneSurviveObjective
+  - type: RuleGrids
+  - type: AntagLoadProfileRule
+    speciesOverride: Human
+  - type: LoadMapRule
+    mapPath: /Maps/Nonstations/cluwne_remap.yml
+  - type: GameRule
+    minPlayers: 1
+  - type: AntagSelection
+    selectionTime: PrePlayerSpawn
+    agentName: cluwne-round-end-name
+    definitions:
+    - prefRoles: [ CluwneImperial ]
+      max: 1
+      playerRatio: 1
+      spawnerPrototype: SpawnPointGhostCluwneImperial
+      briefing:
+        text: cluwne-role-greeting
+        color: Turquoise
+      startingGear: CluwneAtag
+      mindRoles:
+      - MindRoleCluwneImperial
+      components:
+      - type: Speech
+        speechVerb: Cluwne
+      - type: NpcFactionMember
+        factions:
+        - Syndicate # Шоб голо не бил
+      - type: CrewSkills
+        skills:
+        - skillBotany #base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+
+- type: startingGear
+  id: CluwneAtag
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCluwne
+    back: ClothingBackpackCluwne
+    shoes: ClothingShoesBling
+    mask: ClothingMaskCluwne
+    eyes: ClothingEyesGlassesCommand
+    ears: ClothingHeadsetGrey
+    pocket1: CluwneMagicBox
+    id: AgentIDCard
+      
