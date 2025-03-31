@@ -1,60 +1,17 @@
-﻿- type: dataset
-  id: NamesFirstMilitaryLeader
+﻿- type: localizedDataset
+  id: NamesMilitaryFirstLeader
   values:
-  - Полковник
-  - Командир
-  - Лейтенант
-  - Майор
-  
-- type: dataset
-  id: NamesFirstMilitary
-  values:
-  - Капрал
-  - Сержант
-  - Специалист
+    prefix: names-military-leader-first-dataset-
+    count: 4
 
-- type: dataset
-  id: NamesLastMilitary
+- type: localizedDataset
+  id: NamesMilitaryFirst
   values:
-  - Агена
-  - Андромеда
-  - Антарес
-  - Акварис
-  - Беид
-  - Бетельгейзе
-  - Канопус
-  - Каприкорн
-  - Калаено
-  - Кентавр
-  - Хамелеон
-  - Чау
-  - Сигнус
-  - Денеб
-  - Дракон
-  - Электра
-  - Фомалхаут
-  - Гинан
-  - Геркулес
-  - Лабр
-  - Леонис
-  - Матар
-  - Микроскопий
-  - Нихал
-  - Офиучус
-  - Окулус
-  - Орион
-  - Персей
-  - Феникс
-  - Процион
-  - Регулус
-  - Ригель
-  - Саргас
-  - Шедар
-  - Шаула
-  - Сириус
-  - табит
-  - Таурус
-  - Удах
-  - Вега
-  - Ёлдун
-  - Зосма
+    prefix: names-military-first-dataset-
+    count: 3
+
+- type: localizedDataset
+  id: NamesMilitaryLast
+  values:
+    prefix: names-military-last-dataset-
+    count: 42

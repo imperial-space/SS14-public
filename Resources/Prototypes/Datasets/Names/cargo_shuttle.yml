@@ -1,10 +1,5 @@
-- type: dataset
-  id: ShuttleNames
+- type: localizedDataset
+  id: NamesCargoShuttle
   values:
-  - Большой денежный шаттл
-  - Замена двигателя
-  - Доставляющий-грузы
-  - Шуттель
-  - Шаттл МакШаттлфейс
-  - ШаттлШаттл
-  - Урист МакШаттл
+    prefix: names-cargo-shuttle-dataset-
+    count: 7 # Imperial Space

@@ -22,7 +22,7 @@
       persists: false
     - name: Unviable
       baseOdds: 0.109
-      persists: true # Imperial PlantsAnalyzer (false -> true)
+      persists: false 
       effect: !type:PlantChangeStat
         targetValue: Viable
     - name: ChangeWaterConsumption

@@ -22,7 +22,7 @@
     - type: RandomMetadata
       nameSegments:
       - SpecialOfficerName
-      - names_last
+      - NamesLast
     - type: Loadout
       prototypes: [ SpecialOfficerGear ]
     - type: RandomHumanoidAppearance

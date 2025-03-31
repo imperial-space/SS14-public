@@ -7,7 +7,7 @@
     - type: RandomMetadata
       nameSegments:
       - Торговец
-      - names_last
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -37,7 +37,7 @@
     - type: RandomMetadata
       nameSegments:
       - Контрабандист
-      - names_last
+      - NamesLast
     - type: NpcFactionMember
       factions:
         - Syndicate
@@ -68,7 +68,7 @@
     - type: RandomMetadata
       nameSegments:
       - Наёмник
-      - names_last
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -100,7 +100,7 @@
     - type: RandomMetadata
       nameSegments:
       - Главарь
-      - names_last
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -132,7 +132,7 @@
     - type: RandomMetadata
       nameSegments:
       - Бомж
-      - names_last
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi

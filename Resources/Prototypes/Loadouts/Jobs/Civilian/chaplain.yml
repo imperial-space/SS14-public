@@ -56,6 +56,12 @@
   id: ChaplainNeck
   equipment:
     neck: ClothingNeckStoleChaplain
+# Imperial Space Chaplain start
+- type: loadout
+  id: ChaplainNeckCross
+  equipment:
+    neck: ChaplainWoodCross
+# Imperial Space Chaplain end
 
 # Outer clothing
 - type: loadout

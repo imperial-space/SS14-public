@@ -7,7 +7,7 @@
     - type: RandomMetadata
       nameSegments:
       - Старший сотрудник
-      - names_last
+      - NamesLast
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: Loadout
@@ -23,7 +23,7 @@
     - type: RandomMetadata
       nameSegments:
       - Младший сотрудник
-      - names_last
+      - NamesLast
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: Loadout
@@ -39,7 +39,7 @@
     - type: RandomMetadata
       nameSegments:
       - Сотрудник
-      - names_last
+      - NamesLast
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: Loadout
@@ -97,7 +97,7 @@
     - type: RandomMetadata
       nameSegments:
       - Сотрудник ПВЗ
-      - names_last
+      - NamesLast
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: Loadout

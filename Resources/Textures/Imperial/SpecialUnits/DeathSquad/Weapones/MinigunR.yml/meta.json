@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "(Taken as a reference) and slightly modified by @texttipo, original taken from: https://github.com/tgstation/tgstation/commit/a39e3f3f1f351e3be5ae955c4de3a2e8889e191b",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+       "name": "inhand-right",
+       "directions": 4
+    },
+    {
+       "name": "wielded-inhand-right",
+       "directions": 4
+    },
+    {
+       "name": "inhand-left",
+       "directions": 4
+    },
+    {
+       "name": "wielded-inhand-left",
+       "directions": 4
+    },
+    {
+       "name": "icon"
+    }
+  ]
+}

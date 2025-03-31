@@ -1,28 +1,23 @@
-﻿# imperial dataset translate
-
-- type: dataset
+﻿- type: localizedDataset
   id: RatKingCommandStay
   values:
-    - "Cидеть!"
-    - "Стоять!"
-    - "Стоп!"
+    prefix: rat-king-command-stay-
+    count: 3
 
-- type: dataset
+- type: localizedDataset
   id: RatKingCommandFollow
   values:
-    - "Идем!"
-    - "За мной!"
+    prefix: rat-king-command-follow-
+    count: 2
 
-- type: dataset
+- type: localizedDataset
   id: RatKingCommandCheeseEm
   values:
-    - "Атакуем!"
-    - "Убить!"
-    - "Уничтожить!"
-    - "Зачизить!"
+    prefix: rat-king-command-cheese-
+    count: 4
 
-- type: dataset
+- type: localizedDataset
   id: RatKingCommandLoose
   values:
-    - "Разойтись!"
-    - "Свободны!"
+    prefix: rat-king-command-loose-
+    count: 2

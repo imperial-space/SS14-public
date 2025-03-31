@@ -1,0 +1,17 @@
+- type: entity
+  parent: ClothingShoesBootsMagAdv
+  id: BootsMagDeathSquad
+  name: experimental magboots
+  description: An experimental version of advanced boots, which, on the contrary, accelerate the wearer.
+  suffix: DeathSquad
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/DeathSquad/Staff/DeathMagBoots.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/SpecialUnits/DeathSquad/Staff/DeathMagBoots.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.3

@@ -930,6 +930,9 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
+  - type: ClothingFactionExplosion
+    friendlyFaction: DeathSquad
+    chance: 1
 
 #CBURN Hardsuit
 - type: entity

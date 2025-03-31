@@ -1,0 +1,5 @@
+- type: jukebox
+  id: meandthebirds
+  name: duster - Me and the birds
+  path:
+    path: /Audio/Imperial/Jukebox/meandthebirds.ogg

@@ -1,7 +1,5 @@
-# imperial dataset translate
-
-- type: dataset
-  id: verbs
+- type: localizedDataset
+  id: Verbs
   values:
   - робастить
   - сосо

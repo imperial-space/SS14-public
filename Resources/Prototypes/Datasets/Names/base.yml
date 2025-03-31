@@ -1,0 +1,11 @@
+﻿- type: localizedDataset
+  id: NamesFirst
+  values:
+    prefix: names-first-dataset-
+    count: 907 # Imperial Space
+
+- type: localizedDataset
+  id: NamesLast
+  values:
+    prefix: names-last-dataset-
+    count: 471 # Imperial Space

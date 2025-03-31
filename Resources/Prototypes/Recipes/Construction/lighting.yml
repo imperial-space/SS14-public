@@ -21,6 +21,17 @@
   objectType: Item
 
 - type: construction
+  name: Желтая лампа-трубка # Imperial Recipes Locale
+  id: YellowLight
+  graph: YellowLight
+  startNode: start
+  targetNode: icon
+  category: construction-category-utilities
+  description: A high powered light tube containing a yellow crystal
+  icon: { sprite: Objects/Power/light_tube.rsi, state: normal }
+  objectType: Item
+
+- type: construction
   name: Розовая лампа-трубка # Imperial Recipes Locale
   id: PinkLight
   graph: PinkLight
@@ -39,6 +50,17 @@
   targetNode: icon
   category: construction-category-utilities
   description: Лампа большой мощности с небольшим оранжевым кристаллом внутри. # Imperial Recipes Locale
+  icon: { sprite: Objects/Power/light_tube.rsi, state: normal }
+  objectType: Item
+
+- type: construction
+  name: Черная лампа-трубка # Imperial Recipes Locale
+  id: BlackLight
+  graph: BlackLight
+  startNode: start
+  targetNode: icon
+  category: construction-category-utilities
+  description: A high powered light tube containing a black crystal. It won't be very bright.
   icon: { sprite: Objects/Power/light_tube.rsi, state: normal }
   objectType: Item
 
@@ -87,6 +109,17 @@
   objectType: Item
 
 - type: construction
+  name: Желтая лампа-трубка # Imperial Recipes Locale
+  id: YellowLightBulb
+  graph: YellowLightBulb
+  startNode: start
+  targetNode: icon
+  category: construction-category-utilities
+  description: A high powered light bulb containing a yellow crystal.
+  icon: { sprite: Objects/Power/light_bulb.rsi, state: normal }
+  objectType: Item
+
+- type: construction
   name: Розовая лампа-трубка # Imperial Recipes Locale
   id: PinkLightBulb
   graph: PinkLightBulb
@@ -105,6 +138,17 @@
   targetNode: icon
   category: construction-category-utilities
   description: Лампа большой мощности с небольшим оранжевым кристаллом внутри. # Imperial Recipes Locale
+  icon: { sprite: Objects/Power/light_bulb.rsi, state: normal }
+  objectType: Item
+
+- type: construction
+  name: Черная лампа-трубка # Imperial Recipes Locale
+  id: BlackLightBulb
+  graph: BlackLightBulb
+  startNode: start
+  targetNode: icon
+  category: construction-category-utilities
+  description: A high powered light bulb containing a black crystal. It won't be very bright.
   icon: { sprite: Objects/Power/light_bulb.rsi, state: normal }
   objectType: Item
 

@@ -348,3 +348,14 @@
   components:
   - type: Sprite
     state: Willy_Bown_1
+
+# onionsenpai
+
+- type: entity
+  parent: CommunityPosterBase
+  id: onionsenpai_1
+  name: "onionsenpai_1"
+  description: "onionsenpai_1"
+  components:
+  - type: Sprite
+    state: onionsenpai_1

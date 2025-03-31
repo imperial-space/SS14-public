@@ -1,0 +1,68 @@
+#new keys
+
+#- type: entity
+#  parent: EncryptionKey
+#  id: EncryptionKeySOD
+#  name: special operations department encryption key
+#  description: The encryption key of CentCom colleagues.
+#  components:
+#  - type: EncryptionKey
+#    channels:
+#    - SOD
+#    defaultChannel: SOD
+#  - type: Sprite
+#    sprite: Imperial\SpecialUnits\DeathSquad\Staff\encryptionKeysExtended.yml
+#    layers:
+#    - state: crypt_blue
+#    - state: nano_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeySODDeathSquad
+  name: death squad encryption key
+  description: An encryption of [DELETED].
+  components:
+  - type: EncryptionKey
+    channels:
+    - SODDeathSquad
+    defaultChannel: SODDeathSquad
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/DeathSquad/Staff/encryptionKeysExtended.yml
+    layers:
+    - state: crypt_blue
+    - state: deathsquad_label
+
+#new channels
+
+#- type: radioChannel
+#  id: SOD
+#  name: chat-radio-sod #департамент
+#  keycode: 'f'
+#  frequency: 1567
+#  color: "#858b90"
+#  longRange: true
+
+- type: radioChannel
+  id: SODDeathSquad
+  name: chat-radio-deathsquad #эскадрон смерти
+  keycode: 'd'
+  frequency: 1599
+  color: "#555555"
+  longRange: true
+
+#new эээ... как там гарнитура по английски?
+
+- type: entity
+  parent: BlackShieldHeadset #based on Vladegeg headset
+  id: SODDeathSquadHeadset #also usable for special officer
+  name: Black Headset
+  suffix: DeathSquad
+  description: Only for the most deserving.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCentCom
+      - EncryptionKeyStationMaster
+      - EncryptionKeySODDeathSquad
+#     - EncryptionKeySOD

@@ -8,8 +8,8 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitaryLeader
-      - names_last
+      - NamesMilitaryFirstLeader
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -32,7 +32,7 @@
     - type: RandomMetadata
       nameSegments:
       - NamesFirstMilitary
-      - names_last
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -55,7 +55,7 @@
     - type: RandomMetadata
       nameSegments:
       - NamesFirstMilitary
-      - names_last
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -78,7 +78,7 @@
     - type: RandomMetadata
       nameSegments:
       - NamesFirstMilitary
-      - names_last
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -101,7 +101,7 @@
     - type: RandomMetadata
       nameSegments:
       - NamesFirstMilitary
-      - names_last
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -125,8 +125,8 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitaryLeader
-      - names_last
+      - NamesMilitaryFirstLeader
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
@@ -148,7 +148,7 @@
     - type: RandomMetadata
       nameSegments:
       - NamesFirstMilitary
-      - names_last
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
@@ -170,7 +170,7 @@
     - type: RandomMetadata
       nameSegments:
       - NamesFirstMilitary
-      - names_last
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
@@ -193,7 +193,7 @@
     # - type: RandomMetadata
     #   nameSegments:
     #   - NamesFirstMilitary
-    #   - names_last
+    #   - NamesLast
     - type: Sprite
       netsync: false
       sprite: Imperial/Other/ErtCall/imperial_jobs.rsi

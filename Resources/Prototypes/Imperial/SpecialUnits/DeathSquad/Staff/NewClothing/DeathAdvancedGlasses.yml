@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingEyesGlassesSecurity
+  id: GlassesDeathSquad
+  name: advanced sunglasses
+  description: High-quality glasses with integrated position identification system and all kinds of eye protection.
+  suffix: DeathSquad
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/DeathSquad/Staff/DeathAdvancedGlasses.rsi
+  - type: Clothing
+    sprite: Imperial/SpecialUnits/DeathSquad/Staff/DeathAdvancedGlasses.rsi
+  - type: EyeProtection
+  - type: SolutionScanner

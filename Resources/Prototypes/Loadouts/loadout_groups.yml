@@ -22,6 +22,7 @@
   - ClothingNeckAllyPin
   - ClothingNeckAromanticPin
   - ClothingNeckAsexualPin
+  - ClothingNeckAroacePin
   - ClothingNeckBisexualPin
   - ClothingNeckGayPin
   - ClothingNeckIntersexPin
@@ -375,8 +376,10 @@
   id: ChaplainNeck
   name: loadout-group-chaplain-neck
   minLimit: 0
+  maxLimit: 1 # Imperial Space chaplain
   loadouts:
   - ChaplainNeck
+  - ChaplainNeckCross # Imperial Space chaplain
 
 - type: loadoutGroup
   id: JanitorHead

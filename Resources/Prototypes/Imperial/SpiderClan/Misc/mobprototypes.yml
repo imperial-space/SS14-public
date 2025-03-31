@@ -8,8 +8,8 @@
   components:
   - type: RandomMetadata
     nameSegments:
-    - names_ninja_title
-    - names_ninja
+    - NamesNinjaTitle
+    - NamesNinja
   - type: Sprite
     netsync: false
     sprite: Markers/jobs.rsi
@@ -34,8 +34,8 @@
   components:
   - type: RandomMetadata
     nameSegments:
-    - names_ninja_title
-    - names_ninja
+    - NamesNinjaTitle
+    - NamesNinja
   - type: Sprite
     netsync: false
     sprite: Markers/jobs.rsi
@@ -60,8 +60,8 @@
   components:
   - type: RandomMetadata
     nameSegments:
-    - names_ninja_title
-    - names_ninja
+    - NamesNinjaTitle
+    - NamesNinja
   - type: Sprite
     netsync: false
     sprite: Markers/jobs.rsi

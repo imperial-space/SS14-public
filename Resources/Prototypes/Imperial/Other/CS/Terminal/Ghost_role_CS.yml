@@ -128,7 +128,7 @@
     - type: RandomMetadata
       nameSegments:
       - CT_name
-      - names_last
+      - NamesLast
     - type: Loadout
       prototypes: [ CTGear ]
     - type: RandomHumanoidAppearance
@@ -147,7 +147,7 @@
     - type: RandomMetadata
       nameSegments:
       - CT_name
-      - names_last
+      - NamesLast
     - type: Loadout
       prototypes: [ CTGear800 ]
     - type: RandomHumanoidAppearance
@@ -166,7 +166,7 @@
     - type: RandomMetadata
       nameSegments:
       - CT_name
-      - names_last
+      - NamesLast
     - type: Loadout
       prototypes: [ CTGear4000 ]
     - type: RandomHumanoidAppearance
@@ -185,7 +185,7 @@
     - type: RandomMetadata
       nameSegments:
       - CT_name
-      - names_last
+      - NamesLast
     - type: Loadout
       prototypes: [ CTGear6500 ]
     - type: RandomHumanoidAppearance

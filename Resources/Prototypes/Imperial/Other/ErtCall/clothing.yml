@@ -196,22 +196,29 @@
   id: ClothingBackpackDeadSquadSecurity
   name: Dead squad backpack
   description: You don't have to know whose backpack it is.
+  suffix: DeathSquad
   components:
   - type: Sprite
     sprite: Imperial/Other/ErtCall/deadsquadBackpack.rsi
+  - type: Storage
+    grid:
+    - 0,0,11,4
 
 - type: entity
   parent: ClothingBackpackDeadSquadSecurity
   id: ClothingBackpackDeadSquadSecurityFilled
+  suffix: DeathSquad, filled
   components:
     - type: StorageFill
       contents:
         - id: BoxSurvival
+        - id: ERTUplinkDeadSquadAlt #Добавлено для нового пресета Эскадрона Смерти.
+        - id: PillAmbuzolPlus
 
 - type: entity
   id: ClothingBeltDeadSquadFilled
   parent: ClothingBeltChiefEngineer
-  suffix: Filled
+  suffix: DeathSquad, Filled
   components:
   - type: Sprite
     sprite: Imperial/Other/ErtCall/deadsquadBelt.rsi
