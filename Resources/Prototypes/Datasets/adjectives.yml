@@ -1,5 +1,18 @@
 - type: localizedDataset
   id: Adjectives
   values:
-    prefix: adjectives-dataset-
-    count: 11 # Imperial Fools
+  - проклятие
+  - манч
+  - слон
+  - ГОООЛ
+  - умом
+  - анроб
+  - грейтайд
+  - гейтрады это революционеры вроде
+  - тандерстан
+  - андерстенд
+  - сальто
+  - шесть
+  - бриг мейнтнанс
+  - санаби
+

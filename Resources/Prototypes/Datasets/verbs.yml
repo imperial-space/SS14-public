@@ -1,5 +1,16 @@
 - type: localizedDataset
   id: Verbs
   values:
-    prefix: verbs-dataset-
-    count: 11 # Imperial Fools
+  - робастить
+  - сосо
+  - гибать
+  - манчить
+  - ромпомпом
+  - рофлить
+  - шутнярить
+  - шалить
+  - шуметь
+  - плакать
+  - щиткурить
+  - абвбббыбжфхйаьвбзйхй
+

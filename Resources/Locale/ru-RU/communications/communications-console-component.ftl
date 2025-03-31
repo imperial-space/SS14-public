@@ -21,7 +21,7 @@ comms-console-announcement-unknown-sender = НН какой-то
 comms-console-message-too-long = Сообщение слишком длинное
 
 # Comms console variant titles
-comms-console-announcement-title-station = Дядя у микрофона
+comms-console-announcement-title-station = wl-чат
 comms-console-announcement-title-centcom = ФЕДЕРАЦИЯ Х.О.Н.К
 comms-console-announcement-title-nukie = ЯДЕРНЫЕ ОГУЗКИ
 comms-console-announcement-title-station-ai = Железяка
