@@ -1,6 +1,6 @@
-job-name-iaa = Агент Внутренних Дел
+job-name-iaa = Клоун Внутренних Дел
 
-JobIAA = агент внутренних дел
+JobIAA = клоун внутренних дел
 
 ent-ClothingBackpackIAAFilled = { ent-ClothingBackpack }
     .desc = { ent-ClothingBackpack.desc }
@@ -33,7 +33,7 @@ ent-BriefcaseIAAFilled = { ent-BriefcaseBrown }
 ent-SpawnPointIAA = АВД
     .desc = {SpawnPointJobBase.desc}
 
-stamp-component-stamped-name-iaa = Агент Внутренних Дел
+stamp-component-stamped-name-iaa = Клоун Внутренних Дел
 
 ### Imperial Space @keeyn
 loadout-group-IAA-briefcase = Чемодан
