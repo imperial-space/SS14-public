@@ -127,11 +127,11 @@
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
-  - type: ClusterGrenade
+  - type: ScatteringGrenade
     fillPrototype: MobCluwneAtagSpider
     distance: 3
     velocity: 7
-    maxGrenadesCount: 5
+    capacity: 5
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Effects/countdown.ogg
