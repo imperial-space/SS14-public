@@ -1,6 +1,6 @@
 job-name-iaa = Агент Внутренних Дел
 
-JobIAA = агент внутренних дел
+JobIAA = клоун внутренних дел
 
 ent-ClothingBackpackIAAFilled = { ent-ClothingBackpack }
     .desc = { ent-ClothingBackpack.desc }
