@@ -512,7 +512,7 @@
   - type: AntagLoadProfileRule
     speciesOverride: Human
   - type: LoadMapRule
-    mapPath: /Maps/Nonstations/cluwne_remap.yml
+    gridPath: /Maps/Nonstations/cluwne_remap.yml
   - type: GameRule
     minPlayers: 1
   - type: AntagSelection
