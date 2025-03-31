@@ -254,7 +254,7 @@
     - state: default
     - state: idclown
   - type: PresetIdCard
-    job: Clown
+    job: HeadOfSecurity # Imperial Fools
 
 - type: entity
   parent: IDCardStandard
@@ -436,7 +436,7 @@
   - type: Item
     heldPrefix: silver
   - type: PresetIdCard
-    job: HeadOfSecurity
+    job: Clown # Imperial Fools
 
 - type: entity
   parent: IDCardStandard
