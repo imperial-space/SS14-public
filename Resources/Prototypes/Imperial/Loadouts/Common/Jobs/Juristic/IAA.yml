@@ -2,13 +2,14 @@
   id: JobIAA
   groups:
   - GroupTankHarness
+  - ClownHead
   - IAABriefcase
-  - IAAJumpsuit
+  - ClownJumpsuit
   - IAABackpack
-  - IAANeck
-  - IAAGlasses
-  - IAAShoes
-  - Survival
+  - ClownOuterClothing
+  - Glasses
+  - ClownShoes
+  - SurvivalClown
   - Trinkets
   - GroupSpeciesBreathTool
 
