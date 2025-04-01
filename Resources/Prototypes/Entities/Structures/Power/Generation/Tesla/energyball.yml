@@ -24,6 +24,7 @@
     energy: 2
     color: "#4080FF"
   - type: Appearance
+  - type: MANDARIN # Imperial Space Fools Day
   - type: LightningArcShooter
     arcDepth: 2
     maxLightningArc: 1
