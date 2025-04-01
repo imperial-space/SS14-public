@@ -412,15 +412,40 @@ entities:
       parent: 2
 - proto: CableHV
   entities:
+  - uid: 133
+    components:
+    - type: Transform
+      pos: -0.5,-0.5
+      parent: 2
   - uid: 135
     components:
     - type: Transform
       pos: -0.5,-1.5
       parent: 2
-  - uid: 136
+  - uid: 172
     components:
     - type: Transform
-      pos: -0.5,-0.5
+      pos: -0.5,-1.5
+      parent: 2
+  - uid: 173
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
+      parent: 2
+  - uid: 177
+    components:
+    - type: Transform
+      pos: 0.5,-1.5
+      parent: 2
+  - uid: 180
+    components:
+    - type: Transform
+      pos: -1.5,-2.5
+      parent: 2
+  - uid: 181
+    components:
+    - type: Transform
+      pos: -0.5,-2.5
       parent: 2
 - proto: CableMV
   entities:
@@ -542,6 +567,8 @@ entities:
         stampedName: Синдикат
       - stampedColor: '#850000FF'
         stampedName: Синдикат
+      - stampedColor: '#850000FF'
+        stampedName: Синдикат
 - proto: FaxMachineBase
   entities:
   - uid: 159
@@ -565,10 +592,25 @@ entities:
       parent: 2
 - proto: GeneratorWallmountAPU
   entities:
-  - uid: 133
+  - uid: 124
     components:
     - type: Transform
-      pos: -0.5,-1.5
+      pos: 0.5,-0.5
+      parent: 2
+  - uid: 176
+    components:
+    - type: Transform
+      pos: 0.5,-1.5
+      parent: 2
+  - uid: 178
+    components:
+    - type: Transform
+      pos: -0.5,-2.5
+      parent: 2
+  - uid: 179
+    components:
+    - type: Transform
+      pos: -1.5,-2.5
       parent: 2
 - proto: GravityGeneratorMini
   entities:
@@ -624,6 +666,14 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -2.5,-0.5
+      parent: 2
+- proto: JetpackBlackFilled
+  entities:
+  - uid: 175
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.565471,-1.325829
       parent: 2
 - proto: NitrogenTankFilled
   entities:
@@ -692,6 +742,13 @@ entities:
     components:
     - type: Transform
       pos: -4.5,1.5
+      parent: 2
+- proto: Rack
+  entities:
+  - uid: 174
+    components:
+    - type: Transform
+      pos: 3.5,-1.5
       parent: 2
 - proto: ReinforcedPlasmaWindow
   entities:
@@ -849,19 +906,19 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,-4.5
       parent: 2
-- proto: VendingMachineClothing
-  entities:
-  - uid: 172
-    components:
-    - type: Transform
-      pos: -2.5,2.5
-      parent: 2
 - proto: VendingMachineTheater
   entities:
   - uid: 171
     components:
     - type: Transform
       pos: 3.5,2.5
+      parent: 2
+- proto: VendingMachineYouTool
+  entities:
+  - uid: 136
+    components:
+    - type: Transform
+      pos: -2.5,2.5
       parent: 2
 - proto: VlPCLightOne
   entities:
