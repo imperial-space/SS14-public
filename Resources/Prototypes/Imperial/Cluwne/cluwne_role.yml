@@ -15,7 +15,7 @@
     antagPrototype: CluwneImperial
 
 - type: entity
-  parent: BaseAntagSpawner
+  parent: MarkerBase
   id: SpawnPointGhostCluwneImperial
   name: ghost role spawn point
   suffix: cluwne
@@ -28,54 +28,57 @@
       state: icon
 
 - type: entity
-  name: WE NEED YOU ALIVE
-  description: PUPUPU
   parent: [BaseObjective, BaseSurviveObjective]
   id: CluwneSurviveObjective
+  name: Survive
+  description: The Space Wizards Federation want you to live!
   components:
   - type: Objective
     difficulty: 1
+    issuer: objective-issuer-honk
     icon:
       sprite: Objects/Fun/bikehorn.rsi
       state: icon
-    issuer: objective-issuer-honk
 
 - type: entity
+  abstract: true
   parent: BaseGameRule
-  id: Cluwne
+  id: BaseCluwneRule
   components:
   - type: AntagObjectives
     objectives:
     - CluwneSurviveObjective
+  - type: LoadMapRule
+    gridPath: /Maps/Nonstations/cluwne_remap.yml
   - type: RuleGrids
+  - type: AntagSelection
   - type: AntagLoadProfileRule
     speciesOverride: Human
+
+- type: entity
+  parent: BaseCluwneRule
+  id: Cluwne
+  components:
   - type: GameRule
     minPlayers: 1
-  - type: LoadMapRule
-    mapPath: /Maps/Nonstations/cluwne_remap.yml
   - type: AntagSelection
-    selectionTime: PrePlayerSpawn
     agentName: cluwne-round-end-name
+    selectionTime: PrePlayerSpawn
     definitions:
     - prefRoles: [ CluwneImperial ]
       max: 1
       playerRatio: 1
       spawnerPrototype: SpawnPointGhostCluwneImperial
+      roleLoadout:
+       - RoleSurvivalExtended
       briefing:
         text: cluwne-role-greeting
         color: Pink
       startingGear: CluwneAtag
-      mindRoles:
-      - MindRoleCluwneImperial
       components:
       - type: NpcFactionMember
         factions:
-        - Syndicate # Шоб турели ратататата
-      - type: RandomMetadata
-        nameSegments:
-        - NamesWizardFirst
-        - NamesWizardLast
+        - Syndicate
       - type: CrewSkills
         skills:
         - skillBotany #base
@@ -112,4 +115,3 @@
     ears: ClothingHeadsetGrey
     pocket1: CluwneMagicBox
     id: AgentIDCard
-      
