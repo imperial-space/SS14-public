@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: DonkAds
+  values:
+    prefix: AdvertiseDonk-
+    count: 8
