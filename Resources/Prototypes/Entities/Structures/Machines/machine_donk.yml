@@ -1,0 +1,35 @@
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineDonk
+  name: ДонкоМат
+  description: Уютный автоматик с наивкуснейшими донк-пакетами
+  components:
+  - type: VendingMachine
+    pack: DonkInventory
+    dispenseOnHitChance: 0.25
+    dispenseOnHitThreshold: 2
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    ejectDelay: 1.9
+    initialStockQuality: 0.33
+  - type: Advertise
+    pack: DonkAds
+  - type: SpeakOnUIClosed
+    pack: DonkGodbye
+  - type: Sprite
+    sprite: Imperial\DonkEvent\donk_machine.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#3c5eb5"
