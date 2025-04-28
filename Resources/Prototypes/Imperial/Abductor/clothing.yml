@@ -1,0 +1,135 @@
+- type: entity
+  parent: [ ClothingHeadsetAlt, BaseMajorContraband ]
+  id: ClothingHeadsetAltAbductor
+  name: abductor over-ear headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyStationMaster
+      - EncryptionKeyRadio1
+  - type: Sprite
+    sprite: Imperial/Abductor/Clothing/Headset/abductor.rsi
+  - type: Clothing
+    sprite: Imperial/Abductor/Clothing/Headset/abductor.rsi
+
+- type: entity
+  parent: [ UnsensoredClothingUniformBase, BaseMajorContraband ]
+  id: ClothingUniformJumpsuitAbductor
+  name: abductor uniform
+  components:
+  - type: Sprite
+    sprite: Imperial/Abductor/Clothing/Jumpsuit/abductor.rsi
+  - type: Clothing
+    sprite: Imperial/Abductor/Clothing/Jumpsuit/abductor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.75
+        Blunt: 0.75
+        Slash: 0.75
+        Caustic: 0.75
+        Piercing: 0.75
+        Radiation: 0.75
+        Stamina: 0.75
+
+- type: entity
+  parent: [ ClothingBackpack, BaseMajorContraband ]
+  id: ClothingBackpackAbductor
+  name: alien backpack
+  description: alien backpack
+  components:
+  - type: Sprite
+    sprite: Imperial/Abductor/Clothing/Back/Backpacks/abductor.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,19,9
+
+- type: entity
+  parent: [ ClothingBackpackDuffel, BaseMajorContraband ]
+  id: ClothingBackpackDuffelAbductor
+  name: alien duffel bag
+  description: alien duffel bag
+  components:
+  - type: Sprite
+    sprite: Imperial/Abductor/Clothing/Back/Duffels/abductor.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,19,9
+
+
+- type: entity
+  parent: [ ClothingHeadHelmetBase, BaseMajorContraband ]
+  id: ClothingHeadHelmetAbductor
+  name: alien helmet
+  description: Glorpshit
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+        Radiation: 0.75
+        Caustic: 0.75
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+  - type: Sprite
+    sprite: Imperial/Abductor/Clothing/Head/Helmets/abductor.rsi
+  - type: Clothing
+    sprite: Imperial/Abductor/Clothing/Head/Helmets/abductor.rsi
+  - type: EyeProtection
+
+- type: entity
+  parent: [ ClothingOuterStorageBase, AllowSuitStorageClothing, BaseMajorContraband ]
+  id: ClothingOuterVestAbductor
+  name: agent vest
+  description: A synthetic armor vest. This one has added webbing and ballistic plates.
+  components:
+  - type: Sprite
+    sprite: Imperial/Abductor/Clothing/OuterClothing/Armor/abductor.rsi
+  - type: Clothing
+    sprite: Imperial/Abductor/Clothing/OuterClothing/Armor/abductor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Shock: 0.4
+        Slash: 0.4
+        Piercing: 0.4
+        Heat: 0.4
+        Stamina: 0.1
+        Caustic: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+
+- type: entity
+  parent: [ ClothingOuterStorageBase, AllowSuitStorageClothing, BaseMajorContraband]
+  id: ClothingOuterCoatAbductor
+  name: alien lab coat
+  description: A alien coat.
+  components:
+  - type: Sprite
+    sprite: Imperial/Abductor/Clothing/OuterClothing/Coats/abductor.rsi
+  - type: Clothing
+    sprite: Imperial/Abductor/Clothing/OuterClothing/Coats/abductor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Shock: 0.65
+        Slash: 0.65
+        Heat: 0.65
+        Piercing: 0.65
+        Radiation: 0.65
+        Caustic: 0.65
+        Stamina: 0.65
+  - type: ExplosionResistance
+    damageCoefficient: 0.5

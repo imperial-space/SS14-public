@@ -1,0 +1,262 @@
+- type: entity
+  parent: MobHuman
+  id: AbductorSolo
+  suffix: Abductors, GhostRole, AbductorSoli
+  name: Solo Abductor
+  components:
+    - type: Sprite
+      netsync: false
+      sprite: Markers/imperial_jobs.rsi
+      state: deathsquad-icon
+    - type: GhostRole
+      name: abductor-solo-name
+      description: abductor-solo-desc
+      rules: abductor-solo-rules
+      mindRoles:
+      - MindRoleGhostRoleSoloAntagonist
+      raffle:
+        settings: default
+    - type: GhostRoleMobSpawner
+      prototype: AbductorSolo
+    - type: Loadout
+      prototypes: [ AgentAbductorLoadout ]
+    - type: AutoImplant
+      implants:
+      - FreedomImplant
+      - DeathAcidifierImplant
+    - type: NpcFactionMember
+      factions:
+      - SimpleHostile
+    - type: CrewSkills
+      skills:
+        - skillBotany #Base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+# не ебу как работают эти навыки, просто спиздил с РКУ
+
+- type: entity
+  parent: MobHuman
+  id: AbductorAgent
+  suffix: Abductors, GhostRole, AgentAbductor
+  name: Agent Abductor
+  components:
+    - type: Sprite
+      netsync: false
+      sprite: Markers/imperial_jobs.rsi
+      state: deathsquad-icon
+    - type: GhostRole
+      name: abductor-agent-name
+      description: abductor-agent-desc
+      rules: abductor-team-rules
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: default
+    - type: GhostRoleMobSpawner
+      prototype: AbductorAgent
+    - type: Loadout
+      prototypes: [ AgentAbductorLoadout ]
+    - type: AutoImplant
+      implants:
+      - FreedomImplant
+      - DeathAcidifierImplant
+    - type: NpcFactionMember
+      factions:
+      - SimpleHostile
+    - type: CrewSkills
+      skills:
+        - skillBotany #Base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+# не ебу как работают эти навыки, просто спиздил с РКУ
+
+- type: entity
+  parent: MobHuman
+  id: SurgeonAbductor
+  suffix: Abductors, GhostRole, SurgeonAbductor
+  name: Surgeon Abductor
+  components:
+    - type: Sprite
+      netsync: false
+      sprite: Markers/imperial_jobs.rsi
+      state: deathsquad-icon
+    - type: GhostRole
+      name: abductor-surgeon-name
+      description: abductor-surgeon-desc
+      rules: abductor-team-rules
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: default
+    - type: GhostRoleMobSpawner
+      prototype: SurgeonAbductor
+    - type: Loadout
+      prototypes: [ SurgeonAbductorLoadout ]
+    - type: AutoImplant
+      implants:
+      - FreedomImplant
+      - DeathAcidifierImplant
+    - type: NpcFactionMember
+      factions:
+      - SimpleHostile
+    - type: CrewSkills
+      skills:
+        - skillBotany #Base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+# не ебу как работают эти навыки, просто спиздил с РКУ
+
+- type: entity
+  parent: MobDwarf
+  id: LeaderAbductor
+  suffix: Abductors, GhostRole, LeaderAbductor
+  name: Leader Abductor
+  components:
+    - type: Sprite
+      netsync: false
+      sprite: Markers/imperial_jobs.rsi
+      state: deathsquad-icon
+    - type: Loadout
+      prototypes: [ LeaderAbductorLoadout ]
+    - type: AutoImplant
+      implants:
+      - FreedomImplant
+      - DeathAcidifierImplant
+    - type: NpcFactionMember
+      factions:
+      - SimpleHostile
+    - type: CrewSkills
+      skills:
+        - skillBotany #Base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+# не ебу как работают эти навыки, просто спиздил с РКУ
+
+- type: startingGear #agent-abductor gear
+  id: AgentAbductorLoadout
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAbductor
+    back: ClothingBackpackAbductor
+    eyes: ClothingEyesHudMultiversal
+    mask: ClothingMaskGasVoiceChameleon
+    ears: ClothingHeadsetAltAbductor
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterVestAbductor
+    head: ClothingHeadHelmetAbductor
+    shoes: ClothingShoesBootsCombatFilled
+    pocket1: AbductorHandcuffs
+    pocket2: WeaponAlienPistol
+    suitstorage: WonderprodAbductor
+    belt: ClothingAbductorBelt
+
+- type: startingGear #surgeon-abductor gear
+  id: SurgeonAbductorLoadout
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAbductor
+    back: ClothingBackpackAbductor
+    eyes: ClothingEyesHudMultiversal
+    mask: ClothingMaskSterile
+    ears: ClothingHeadsetAltAbductor
+    gloves: ClothingHandsGlovesNitrile
+    outerClothing: ClothingOuterCoatAbductor
+    head: ClothingHeadHelmetAbductor
+    shoes: ClothingShoesBootsCombatFilled
+    pocket1: AbductorHandcuffs
+    pocket2: AbductorHandcuffs
+    suitstorage: WonderprodAbductor
+    belt: ClothingAbductorBelt
+
+- type: startingGear #leader-abductor gear
+  id: LeaderAbductorLoadout
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAbductor
+    back: ClothingBackpackDuffelAbductor
+    eyes: ClothingEyesHudMultiversal
+    mask: ClothingMaskGasVoiceChameleon
+    ears: ClothingHeadsetAltAbductor
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterVestWeb
+    shoes: ClothingShoesBootsLaceup
+    id: AgentIDCard
+    pocket1: AbductorHandcuffs
+    pocket2: WeaponAlienPistol
+    suitstorage: WeaponDecloner
+    belt: ClothingAbductorBelt
+  inhand:
+  - CaneAbductor

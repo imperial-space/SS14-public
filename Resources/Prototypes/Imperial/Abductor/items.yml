@@ -1,0 +1,18 @@
+- type: entity
+  name: wondercuffs
+  description: Strong.
+  id: AbductorHandcuffs
+  parent: [BaseMajorContraband, Handcuffs]
+  components:
+  - type: Handcuff
+    cuffTime: 1
+    uncuffTime: 7.5
+    breakoutTime: 60
+    stunBonus: 2.0
+    cuffedRSI: Imperial/Abductor/Items/handcuffs.rsi
+    bodyIconState: body-overlay
+  - type: Sprite
+    sprite: Imperial/Abductor/Items/handcuffs.rsi
+    state: handcuff
+  - type: UseDelay
+    delay: 0.5

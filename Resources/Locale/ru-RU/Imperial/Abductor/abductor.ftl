@@ -1,0 +1,69 @@
+ent-CrowbarAbductor = высоко-технологичный лом
+    .suffix = Abductors
+    .desc = Сделано из металла, о котором НаноТрайзен может только мечтать.
+ent-WirecutterAbductor = высоко-технологические кусачки
+    .suffix = Abductors
+    .desc = Сделано из металла, о котором НаноТрайзен может только мечтать.
+ent-ScrewdriverAbductor = высоко-технологичная отвертка
+    .suffix = Abductors
+    .desc = Сделано из металла, о котором НаноТрайзен может только мечтать.
+ent-WrenchAbductor = высоко-технологичный гаечный ключ
+    .suffix = Abductors
+    .desc = Сделано из металла, о котором НаноТрайзен может только мечтать.
+ent-WelderAbductor = высоко-технологичный сварочный аппарат
+    .suffix = Abductors
+    .desc = Сделано из металла, о котором НаноТрайзен может только мечтать.
+ent-MultitoolAbductor = высоко-технологичный мультитул
+    .suffix = Abductors
+    .desc = Раньше им взламывали шлюзы.
+ent-ClothingAbductorBelt = пояс инопланетной расы
+    .suffix = Abductors
+    .desc = Пояс, такой у НаноТрайзен уже есть.
+ent-AbductorHandcuffs = наручники
+    .suffix = Abductors
+    .desc = Сделано из металла, о котором НаноТрайзен может только мечтать.
+ent-ClothingHeadsetAltAbductor = гарнитура абдукторов
+    .suffix = Abductors
+ent-ClothingUniformJumpsuitAbductor = униформа абдукторов
+    .suffix = Abductors
+ent-ClothingBackpackAbductor = рюкзак инопланетной расы
+    .suffix = Abductors
+    .desc = Рюкзак инопланетной расы.
+ent-ClothingBackpackDuffelAbductor = вещмешок инопланетной расы
+    .suffix = Abductors
+    .desc = Вещмешок инопланетной расы.
+ent-ClothingHeadHelmetAbductor = шлем инопланетной расы
+    .suffix = Abductors
+    .desc = Glorpshit
+ent-ClothingOuterVestAbductor = бронежилет агента
+    .suffix = Abductors
+    .desc = Glorpshit
+ent-ClothingOuterCoatAbductor = лабораторный халат инопланетной расы
+    .suffix = Abductors
+    .desc = Glorpshit
+ent-WonderprodAbductor = дубинка абдукторов
+    .suffix = Abductors
+    .desc = Лучший инструмент для агента.
+ent-WeaponAlienPistol = пистолет инопланетной расы
+    .suffix = Abductors
+    .desc = Оружие агента, им можно оглушить и убить.
+ent-WeaponDecloner = пистолет инопланетной расы
+    .suffix = Abductors
+    .desc = Оружие агента, им можно убить.
+ent-CaneAbductor = трость инопланетной расы
+    .suffix = Abductors
+    .desc = Смертельное оружие.
+ent-BulletDeclone = летальный заряд
+    .desc = { ent-BaseBullet.desc }
+
+abductor-solo-name = Одиночный абдуктор
+abductor-solo-desc = В одиночку крадите людей со станции и меняйте им органы.
+
+abductor-agent-name = Агент абдуктор
+abductor-agent-desc = Крадите людей со станции, помогайте хирургу.
+
+abductor-surgeon-name = Хирург абдуктор
+abductor-surgeon-desc = Проводите операции по замене органов, не покидайте шатл.
+
+abductor-team-rules = Вы [color=red][bold]Командный антагонист[/bold][/color], действуйте в команде с другими абдукторами.
+abductor-solo-rules = Вы [color=red][bold]Одиночный антагонист[/bold][/color], действуйте в одиночку.

@@ -1,0 +1,168 @@
+- type: entity
+  name: wonderprod
+  parent: [BaseItem, BaseMajorContraband]
+  id: WonderprodAbductor
+  description: Best Tool of a agent.
+  components:
+  - type: Item
+    sprite: Imperial/Abductor/Weapons/Melee/wonderprod.rsi
+    size: Huge
+    storedRotation: -90
+  - type: Sprite
+    sprite: Imperial/Abductor/Weapons/Melee/wonderprod.rsi
+    state: stun-icon
+  - type: Clothing
+    sprite: Imperial/Abductor/Weapons/Melee/wonderprod.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Shock: 9
+    angle: 60
+    animation: WeaponArcThrust
+  - type: StaminaDamageOnHit
+    damage: 50
+    sound: /Audio/Weapons/Guns/Hits/taser_hit.ogg
+
+- type: entity
+  id: BaseBulletStarlight
+  name: BaseBullet
+  description: If you can see this you're probably dead!
+  abstract: true
+  components:
+  - type: Reflective
+  - type: FlyBySound
+  - type: Clickable
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: bullet
+      shader: unshaded
+  - type: Physics
+    bodyType: Dynamic
+    linearDamping: 0
+    angularDamping: 0
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.1,0.1,0.1"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+      fly-by: &flybyfixture
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Piercing: 14
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
+  - type: TimedDespawn
+    lifetime: 10
+
+- type: entity
+  id: BulletDeclone
+  name: decloner bolt
+  parent: BaseBulletStarlight
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Abductor/Weapons/Guns/Projectiles/projectiles.rsi
+    layers:
+    - state: declone
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 12
+        Cellular: 7
+    ignoreResistances: true
+    soundHit:
+      collection: MeatLaserImpact
+
+- type: entity
+  parent: [BaseWeaponBatterySmall, BaseMajorContraband]
+  id: WeaponAlienPistol
+  name: alien pistol
+  description: Is this a war crime? Probably.
+  components:
+  - type: Sprite
+    sprite: Imperial/Abductor/Weapons/Guns/Battery/alien.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletDisabler
+    fireCost: 50
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BulletDisabler
+      fireCost: 50
+    - proto: BulletDeclone
+      fireCost: 125
+  - type: Appearance
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+
+- type: entity
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseMajorContraband]
+  id: WeaponDecloner
+  name: decloner
+  description: Is this a war crime? Absolutely.
+  components:
+  - type: Clothing
+    sprite: Imperial/Abductor/Weapons/Guns/Battery/decloner.rsi
+  - type: Sprite
+    sprite: Imperial/Abductor/Weapons/Guns/Battery/decloner.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletDeclone
+    fireCost: 125
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+
+- type: entity
+  name: alien cane
+  parent: [Cane, BaseMajorContraband]
+  id: CaneAbductor
+  description: Deadly weapon.
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: 45
+    damage:
+      types:
+        Blunt: 6
+  - type: StaminaDamageOnHit
+    damage: 70
+    sound: /Audio/Weapons/Guns/Hits/taser_hit.ogg
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 6
