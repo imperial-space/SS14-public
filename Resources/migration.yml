@@ -565,7 +565,7 @@ MedkitAdvanced: AdvancedFirstAidMedkitImperial
 MedkitRadiation: MedkitRadiationImperial
 MedkitBurn: MedkitBurnImperial
 MedkitOxygen: MedkitOxygenImperial
-MedkitCombat: MedkitCobmatImperial
+MedkitCobmat: MedkitCobmatImperial
 MedkitStim: MedkitStimImperial
 
 MedkitFilled: FirstAidMedkitImperialFilled
@@ -575,7 +575,7 @@ MedkitAdvancedFilled: AdvancedFirstAidMedkitImperialFilled
 MedkitRadiationFilled: MedkitRadiationImperialFilled
 MedkitBurnFilled: MedkitBurnImperialFilled
 MedkitOxygenFilled: MedkitOxygenImperialFilled
-MedkitCombatFilled: MedkitCobmatImperialFilled
+MedkitCobmatFilled: MedkitCobmatImperialFilled
 MedkitStimFilled: MedkitStimImperialFilled
 # 2025-03-18
 EpinephrineChemistryBottle: ChemistryBottleEpinephrine

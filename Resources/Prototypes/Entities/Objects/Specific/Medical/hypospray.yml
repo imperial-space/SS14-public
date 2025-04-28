@@ -713,10 +713,10 @@
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 60
+        maxVol: 10
         reagents:
         - ReagentId: JuiceThatMakesYouWeh
-          Quantity: 60
+          Quantity: 10
   - type: Hypospray
     solutionName: pen
     transferAmount: 1

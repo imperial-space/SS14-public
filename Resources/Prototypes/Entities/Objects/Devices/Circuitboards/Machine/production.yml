@@ -686,7 +686,7 @@
         Steel: 30
         Plastic: 30
     - type: StaticPrice
-      price: 5 # Imperial Recipes Prices
+      price: 15
 
 - type: entity
   id: PowerCageRechargerCircuitboard
@@ -708,7 +708,7 @@
         Steel: 30
         Plastic: 30
     - type: StaticPrice
-      price: 5 # Imperial Recipes Prices
+      price: 30
 
 - type: entity
   id: BorgChargerCircuitboard
@@ -729,7 +729,7 @@
         Steel: 30
         Plastic: 30
     - type: StaticPrice
-      price: 5 # Imperial Recipes Prices
+      price: 15
 
 - type: entity
   id: WeaponCapacitorRechargerCircuitboard
@@ -750,7 +750,7 @@
         Steel: 30
         Plastic: 30
     - type: StaticPrice
-      price: 5 # Imperial Recipes Prices
+      price: 15
 
 - type: entity
   id: TurboItemRechargerCircuitboard
@@ -793,7 +793,7 @@
       chemicalComposition:
         Silicon: 20
     - type: StaticPrice
-      price: 5 # Imperial Recipes Prices
+      price: 58
 
 - type: entity
   parent: BaseMachineCircuitboard
@@ -848,7 +848,7 @@
       chemicalComposition:
         Silicon: 20
     - type: StaticPrice
-      price: 5 # Imperial Recipes Prices
+      price: 40
 
 - type: entity
   id: ThrusterMachineCircuitboard
@@ -895,7 +895,7 @@
       chemicalComposition:
         Silicon: 20
     - type: StaticPrice
-      price: 5 # Imperial Recipes Prices
+      price: 40
 
 - type: entity
   id: PortableGeneratorJrPacmanMachineCircuitboard
@@ -915,7 +915,7 @@
       chemicalComposition:
         Silicon: 20
     - type: StaticPrice
-      price: 5 # Imperial Recipes Prices
+      price: 40
 
 - type: entity
   id: ReagentGrinderMachineCircuitboard

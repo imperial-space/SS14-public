@@ -17,3 +17,17 @@
       - id: Multitool
       - id: CableApcStack
   - type: Appearance
+
+#посланник хаоса
+- type: entity
+  parent: [ ClothingBeltStorageBase, ClothingBeltChiefEngineer ]
+  id: ClothingChaosTacticalBelt
+  name: Тактический пояс
+  description: Тактический пояс посланника хаоса.
+  suffix: RiotControlUnit, filled
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/assault.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/assault.rsi
+  - type: Appearance

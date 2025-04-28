@@ -97,8 +97,6 @@
       - PowerStorage
       - VoltageNetworks
       - Power
-    - type: StaticPrice
-      price: 1000 # Imperial Recipes Prices
 
 # SMES' in use
 

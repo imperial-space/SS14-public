@@ -98,3 +98,19 @@
   id: DiscountedItems
   name: store-discounted-items
   priority: 200
+
+#clown uplink categoires
+- type: storeCategory
+  id: FunnyStuff
+  name: Одежда
+  priority: 0
+
+- type: storeCategory
+  id: Toys
+  name: Игрушки
+  priority: 1
+
+- type: storeCategory
+  id: Packs
+  name: Наборы
+  priority: 2

@@ -184,6 +184,20 @@
   - type: Clothing
     sprite: Clothing/Head/Hats/brownflatcap.rsi
 
+#посланник хаоса
+- type: entity
+  parent: BladedFlatcapGrey
+  id: ChaosBrownBladedFlatcap
+  name: Коричневая кепка посланника хаоса
+  description: Кепка с вшитым в неё лезвием.
+  components:
+  - type: Construction
+    graph: BladedFlatcapBrown
+  - type: Sprite
+    sprite: Clothing/Head/Hats/brownflatcap.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/brownflatcap.rsi
+
 - type: entity
   name: shiv
   parent: [BaseKnife, BaseMinorContraband]

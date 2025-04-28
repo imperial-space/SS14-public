@@ -1405,6 +1405,8 @@
     size: Normal
     sprite: Objects/Fun/toys.rsi
     heldPrefix: singularitytoy
+  
+
 
 - type: entity
   parent: BaseItem

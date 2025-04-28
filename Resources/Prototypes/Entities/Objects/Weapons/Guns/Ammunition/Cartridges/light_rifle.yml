@@ -27,6 +27,21 @@
     proto: BulletLightRifle
 
 - type: entity
+  id: CartridgeSinguloRifle
+  name: cartridge (SingularityToy)
+  parent: BaseCartridgeLightRifle
+  components:
+  - type: CartridgeAmmo
+    proto: SingularityToy
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#e800fd"
+
+- type: entity
   id: CartridgeLightRiflePractice
   name: cartridge (.30 rifle practice)
   parent: BaseCartridgeLightRifle

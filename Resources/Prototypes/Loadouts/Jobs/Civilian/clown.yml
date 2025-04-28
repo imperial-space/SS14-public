@@ -67,3 +67,9 @@
   id: ClownWintercoat
   equipment:
     outerClothing: ClothingOuterWinterClown
+
+# Clown Uplink
+- type: loadout
+  id: BaseClownUplink
+  equipment:
+    Pocket: BaseClownUplink

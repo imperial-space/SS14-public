@@ -274,6 +274,21 @@
   - type: Fiber
     fiberMaterial: fibers-insulative
 
+#посланник хаоса
+- type: entity
+  parent: [ ClothingHandsGlovesColorBlack, BaseSecurityEngineeringContraband ]
+  id: ClothingChaosCombatHandsGloves
+  name: Перчатки посланника хаоса
+  description: Эти перчатки защищены от ожогов и электричества.
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/combat.rsi
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/combat.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+
 # can't parent combat gloves since they are butcherable
 - type: entity
   parent: ClothingHandsGlovesSyntheticBase

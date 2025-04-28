@@ -62286,6 +62286,9 @@ entities:
     - type: Transform
       pos: 20.48184,-11.502675
       parent: 60
+    - type: StorageFill
+    contents:
+      - id: SingoRifle
 - proto: ClothingBackpackDuffelSurgeryFilled
   entities:
   - uid: 530

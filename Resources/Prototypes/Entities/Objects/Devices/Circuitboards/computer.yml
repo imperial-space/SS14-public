@@ -11,7 +11,7 @@
     - type: Item
       storedRotation: -90
     - type: StaticPrice
-      price: 5 # Imperial Recipes Prices
+      price: 100
     - type: PhysicalComposition
       materialComposition:
         Glass: 230
