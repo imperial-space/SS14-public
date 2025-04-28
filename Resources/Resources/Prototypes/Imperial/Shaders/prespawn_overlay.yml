@@ -1,4 +1,0 @@
-- type: shader
-  id: PrespawnOverlay
-  kind: source
-  path: "/Textures/Imperial/Shaders/prespawn_overlay.swsl"

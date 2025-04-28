@@ -1,9 +1,0 @@
-- type: entity
-  parent: ClothingBackpackDuffel
-  id: ClothingBackpackDuffelCentCom
-  name: Centcom's Duffel Bag
-  suffix: Vl, ЦентКом
-  description: To transport thousands of papers.
-  components:
-  - type: Sprite
-    sprite: Imperial/Clothing/Departments/CentCom/CentCom/CCDuffel.rsi

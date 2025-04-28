@@ -1,9 +1,0 @@
-- type: entity
-  parent: BriefcaseBase
-  abstract: true
-  id: BriefcaseSyndieBase
-  suffix: Syndicate, Empty
-  description: Useful for carrying items in your hands.
-  components:
-  - type: Item
-    size: Huge

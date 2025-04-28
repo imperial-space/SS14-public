@@ -1,1 +1,0 @@
-ent-WeaponTurretDeathSquad = {ent-BaseWeaponTurret}

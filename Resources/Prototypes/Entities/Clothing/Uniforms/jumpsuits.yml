@@ -534,6 +534,18 @@
     - type: Clothing
       sprite: Clothing/Uniforms/Jumpsuit/qmturtle.rsi
 
+#посланник хаоса
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingChaosUniformJumpsuit
+  name: Водолазка посланника хаоса
+  description: Человек в ней будет выглядеть как террорист.
+  components:
+    - type: Sprite
+      sprite: Clothing/Uniforms/Jumpsuit/qmturtle.rsi
+    - type: Clothing
+      sprite: Clothing/Uniforms/Jumpsuit/qmturtle.rsi
+
 - type: entity
   parent: [ClothingUniformBase, BaseCommandContraband]
   id: ClothingUniformJumpsuitQMFormal

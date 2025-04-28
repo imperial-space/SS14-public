@@ -1,1 +1,0 @@
-operatorcentcom-grid-name = ОЦК

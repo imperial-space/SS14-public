@@ -32,6 +32,23 @@
   - type: EyeProtection
     protectionTime: 5
 
+#посланник хаоса
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons]
+  id: ClothingChaosGlassesYellow
+  name: Очки посланника хаоса
+  description: От них так и веет запахом смерти.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Clothing/Departments/CentCom/CentCom/CCGlassesYellow.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Departments/CentCom/CentCom/CCGlassesYellow.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons]
   id: ClothingCentComGlassesGold

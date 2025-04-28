@@ -1,8 +1,0 @@
-- type: npcFaction
-  id: SyndicateAgent
-  hostile:
-  - SimpleHostile
-  - Xeno
-  - Zombie
-  - Dragon
-  - AllHostile

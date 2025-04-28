@@ -1,8 +1,0 @@
-- type: entity
-  parent: BaseWeaponTurret
-  id: WeaponTurretDeathSquad
-  suffix: DeathSquad
-  components:
-    - type: NpcFactionMember
-      factions:
-        - DeathSquad

@@ -39,7 +39,7 @@
   equipment:
     mask: ClothingMaskClown
     pocket1: BikeHorn
-    pocket2: ClownRecorder
+    pocket2: BaseClownUplink
     id: ClownPDA
     ears: ClothingHeadsetService
   storage:

@@ -12,7 +12,7 @@
         - DoorElectronics
     - type: DoorElectronics
     - type: StaticPrice
-      price: 5 # Imperial Recipes Prices
+      price: 55
     - type: AccessReader
     - type: ActivatableUI
       key: enum.DoorElectronicsConfigurationUiKey.Key

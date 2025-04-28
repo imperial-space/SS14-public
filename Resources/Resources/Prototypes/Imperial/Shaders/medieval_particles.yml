@@ -1,4 +1,0 @@
-- type: shader
-  id: MedievalParticles
-  kind: source
-  path: "/Textures/Imperial/Shaders/medieval_particles.swsl"

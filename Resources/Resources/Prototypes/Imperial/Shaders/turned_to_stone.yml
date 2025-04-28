@@ -1,4 +1,0 @@
-- type: shader
-  id: TurnedToStone
-  kind: source
-  path: "/Textures/Imperial/Shaders/turned_to_stone.swsl"

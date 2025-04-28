@@ -64,6 +64,22 @@
     pocket2: WeaponPistolCobra
     outerClothing: ClothingOuterArmorBulletproof
 
+# Посланник хаоса-сырой вариант
+- type: startingGear
+  id: MessengerOfChaosGear
+  equipment:
+    jumpsuit: ClothingChaosUniformJumpsuit
+    shoes: ClothingChaosBoots
+    gloves: ClothingChaosCombatHandsGloves
+    head: ChaosBrownBladedFlatcap
+    mask: ClothingChaosGasMask
+    back: SSSPBackpackDuffel
+    eyes: ClothingChaosGlassesYellow
+    belt: ClothingChaosTacticalBelt
+    pocket2: DoubleEmergencyOxygenTankFilled
+    outerClothing: ClothingChaosOuterVestWeb
+
+
 # Наёмник InterGalactic
 - type: startingGear
   id: MercInterGalacticGear

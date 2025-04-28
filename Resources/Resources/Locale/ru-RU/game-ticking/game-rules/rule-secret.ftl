@@ -1,1 +1,0 @@
-rule-secret-selected-preset = Выбрвн режим {$preset} для секрета.

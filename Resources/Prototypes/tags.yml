@@ -256,6 +256,15 @@
   id: CartridgeLightRifle
 
 - type: Tag
+  id: CartridgeSinguloRifle
+
+- type: Tag
+  id: SinguloToy
+
+- type: Tag
+  id: SingularityToy
+
+- type: Tag
   id: CartridgeMagnum
 
 - type: Tag
@@ -795,6 +804,9 @@
 
 - type: Tag
   id: MagazineLightRifle
+
+- type: Tag
+  id: MagazineSinguloRifle
 
 - type: Tag
   id: MagazineLightRifleBox

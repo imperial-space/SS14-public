@@ -52,3 +52,24 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepSpecialOfficer
+
+#посланник хаоса
+- type: entity
+  parent: ClothingShoesBootsJack ## Ботинки с уникальным звуком ОСО
+  id: ClothingChaosBoots
+  name: Сапоги посланника хаоса
+  description: Вы можете видеть запечёную кровь на них.
+  components:
+  - type: Sprite
+    sprite: Clothing/Shoes/Boots/jackboots.rsi
+  - type: Clothing
+    sprite: Clothing/Shoes/Boots/jackboots.rsi
+  - type: Matchbox
+  - type: Storage
+    whitelist:
+      tags:
+        - Knife
+        - Sidearm
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSpecialOfficer

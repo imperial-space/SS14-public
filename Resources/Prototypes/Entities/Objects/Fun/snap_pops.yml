@@ -53,6 +53,6 @@
   - type: StorageFill
     contents:
       - id: SnapPop
-        amount: 5
+        amount: 10
   - type: Dumpable
 

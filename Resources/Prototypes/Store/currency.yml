@@ -19,3 +19,10 @@
 - type: currency
   id: DebugDollar
   displayName: store-currency-display-debugdollar
+
+- type: currency
+  id: Clowncrystal
+  displayName: Clowncrystal
+  cash:
+    1: Clowncrystal1
+  canWithdraw: true

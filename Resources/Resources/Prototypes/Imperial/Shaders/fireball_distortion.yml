@@ -1,4 +1,0 @@
-- type: shader
-  id: FireballDistortion
-  kind: source
-  path: "/Textures/Imperial/Shaders/fireball_distortion.swsl"

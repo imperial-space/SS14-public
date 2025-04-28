@@ -1,1 +1,0 @@
-ent-ClothingHandsGlovesCamouflage = камуфляжные перчатки

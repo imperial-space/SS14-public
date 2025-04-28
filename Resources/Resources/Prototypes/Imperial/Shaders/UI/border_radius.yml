@@ -1,4 +1,0 @@
-- type: shader
-  id: BorderRadius
-  kind: source
-  path: "/Textures/Imperial/Shaders/UI/border_radius.swsl"

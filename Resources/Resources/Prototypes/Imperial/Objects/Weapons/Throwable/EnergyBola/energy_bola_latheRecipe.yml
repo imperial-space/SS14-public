@@ -1,7 +1,0 @@
-- type: latheRecipe
-  id: EnergyBola
-  result: EnergyBola
-  completetime: 2
-  materials:
-    Steel: 600
-    Plasma: 100

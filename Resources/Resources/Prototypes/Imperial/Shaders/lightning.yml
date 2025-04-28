@@ -1,4 +1,0 @@
-- type: shader
-  id: Lightning
-  kind: source
-  path: "/Textures/Imperial/Shaders/lightning.swsl"

@@ -1,1 +1,0 @@
-ent-FolderSpawner = спавн папка
