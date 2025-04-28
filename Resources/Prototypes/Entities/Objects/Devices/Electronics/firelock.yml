@@ -12,5 +12,5 @@
     - type: Tag
       tags:
       - FirelockElectronics
-    - type: StaticPrice
-      price: 61
+    - type: StaticPrice # Imperial Recipes Prices
+      price: 10
