@@ -449,16 +449,17 @@
         Heat: 0.90
 
 #посланник хаоса
+
 - type: entity
-  parent: [ ClothingMaskGas, BaseCentcommContraband ]
+  parent: [ ClothingMaskGas, BaseSecurityCargoContraband ]
   id: ClothingChaosGasMask
   name: Противогаз посланника хаоса
   description: Противогаз приводящий в ужас.
   components:
   - type: Sprite
-    sprite: Clothing/Mask/messenger.rsi
+    sprite: Clothing/Mask/merc.rsi
   - type: Clothing
-    sprite: Clothing/Mask/messenger.rsi
+    sprite: Clothing/Mask/merc.rsi
   - type: Armor
     modifiers:
       coefficients:
