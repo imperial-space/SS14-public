@@ -27,31 +27,6 @@
     - type: NpcFactionMember
       factions:
       - SimpleHostile
-    - type: CrewSkills
-      skills:
-        - skillBotany #Base
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillCooking  #Easy
-        - skillBartending
-        - skillHacking
-        - skillInstrumentation #Medium
-        - skillMaintenance
-        - skillMediumConstruction
-        - skillMediumBotany
-        - skillBasicAtmos
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting #Hard
-        - skillAtmos
-        - skillHardInstrumentation
-        - skillRobotics
-        - skillResearch
-        - skillPharmaceuticals
-        - skillShooting
-        - skillSurgery
-        - skillNeuroSurgery
-# не ебу как работают эти навыки, просто спиздил с РКУ
 
 - type: entity
   parent: MobHuman
@@ -82,31 +57,6 @@
     - type: NpcFactionMember
       factions:
       - SimpleHostile
-    - type: CrewSkills
-      skills:
-        - skillBotany #Base
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillCooking  #Easy
-        - skillBartending
-        - skillHacking
-        - skillInstrumentation #Medium
-        - skillMaintenance
-        - skillMediumConstruction
-        - skillMediumBotany
-        - skillBasicAtmos
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting #Hard
-        - skillAtmos
-        - skillHardInstrumentation
-        - skillRobotics
-        - skillResearch
-        - skillPharmaceuticals
-        - skillShooting
-        - skillSurgery
-        - skillNeuroSurgery
-# не ебу как работают эти навыки, просто спиздил с РКУ
 
 - type: entity
   parent: MobHuman
@@ -137,31 +87,6 @@
     - type: NpcFactionMember
       factions:
       - SimpleHostile
-    - type: CrewSkills
-      skills:
-        - skillBotany #Base
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillCooking  #Easy
-        - skillBartending
-        - skillHacking
-        - skillInstrumentation #Medium
-        - skillMaintenance
-        - skillMediumConstruction
-        - skillMediumBotany
-        - skillBasicAtmos
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting #Hard
-        - skillAtmos
-        - skillHardInstrumentation
-        - skillRobotics
-        - skillResearch
-        - skillPharmaceuticals
-        - skillShooting
-        - skillSurgery
-        - skillNeuroSurgery
-# не ебу как работают эти навыки, просто спиздил с РКУ
 
 - type: entity
   parent: MobDwarf
@@ -182,31 +107,6 @@
     - type: NpcFactionMember
       factions:
       - SimpleHostile
-    - type: CrewSkills
-      skills:
-        - skillBotany #Base
-        - skillBaseMed
-        - skillBaseConstraction
-        - skillCooking  #Easy
-        - skillBartending
-        - skillHacking
-        - skillInstrumentation #Medium
-        - skillMaintenance
-        - skillMediumConstruction
-        - skillMediumBotany
-        - skillBasicAtmos
-        - skillMedicalEquipment
-        - skillPharmacology
-        - skillPiloting #Hard
-        - skillAtmos
-        - skillHardInstrumentation
-        - skillRobotics
-        - skillResearch
-        - skillPharmaceuticals
-        - skillShooting
-        - skillSurgery
-        - skillNeuroSurgery
-# не ебу как работают эти навыки, просто спиздил с РКУ
 
 - type: startingGear #agent-abductor gear
   id: AgentAbductorLoadout
