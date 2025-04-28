@@ -1,0 +1,30 @@
+{
+    "version": 1,
+    "license": "CC0-1.0",
+    "copyright": "Designed by @CrookLv",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "SCBanner",
+        "delays": [
+          [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+        0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+          ]
+        ]
+      }
+    ]
+  }

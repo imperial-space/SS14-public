@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "taken from TGstation, modified by @totally_not_don_kot (discord)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "soldier"
+    },
+    {
+      "name": "soldier_door"
+    },
+    {
+      "name": "soldier_open"
+    }
+  ]
+}

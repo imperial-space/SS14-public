@@ -1,0 +1,12 @@
+- type: entity
+  id: MurasamaSheatFilled
+  name: MurasamaSheathWithBlade
+  parent: MurasamaSheath
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/TFG/Murasama/murasama_sheath.rsi
+  - type: ContainerFill
+    containers:
+      item:
+      - MurasamaBlade

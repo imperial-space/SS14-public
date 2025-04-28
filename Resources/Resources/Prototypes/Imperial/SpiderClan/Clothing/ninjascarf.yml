@@ -1,0 +1,11 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: NinjaScarfID
+  name: NinjaScarf
+  suffix: Crook, SpiderClan
+  description: Just like a ninja!
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/ninjascarf.rsi
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/ninjascarf.rsi

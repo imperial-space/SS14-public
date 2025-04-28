@@ -1,0 +1,55 @@
+- type: entity
+  id: BaseCartridgeAstra903
+  name: cartridge Astra-903 (5x14)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeAstra903
+  - type: CartridgeAmmo
+    proto: Astra903Bullet
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAstra903
+  name: cartridge Astra-903 (5x14)
+  parent: BaseCartridgeAstra903
+  components:
+  - type: CartridgeAmmo
+    proto: Astra903Bullet
+
+- type: entity
+  id: BaseCartridgeAstra903Piercing
+  name: cartridge Astra-903 (5x14 AP)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeAstra903
+  - type: CartridgeAmmo
+    proto: Astra903BulletPiercing
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAstra903Piercing
+  name: cartridge Astra-903 (5x14 AP)
+  parent: BaseCartridgeAstra903Piercing
+  components:
+  - type: CartridgeAmmo
+    proto: Astra903BulletPiercing

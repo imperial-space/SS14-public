@@ -1,0 +1,108 @@
+- type: reaction
+  id: LeafLover
+  reactants:
+    SpaceCleaner:
+      amount: 1
+    Ale:
+      amount: 2
+  products:
+    LeafLover: 3
+
+- type: reaction
+  id: BlackoutStout
+  reactants:
+    ManlyDorf:
+      amount: 1
+    Moonshine:
+      amount: 1
+    Ethanol:
+      amount: 1
+  products:
+    BlackoutStout: 3
+
+- type: reaction
+  id: Arkenstout
+  reactants:
+    Ice:
+      amount: 3
+    Nitrogen:
+      amount: 1
+    Cream:
+      amount: 2
+  products:
+    Arkenstout: 6
+
+- type: reaction
+  id: Blackreach
+  reactants:
+    WhiteRussian:
+      amount: 3
+    Patron:
+      amount: 1
+    Beer:
+      amount: 2
+  products:
+    Blackreach: 6
+
+- type: reaction
+  id: WormholeSpecCollapse1
+  impact: High
+  reactants:
+    WormholeSpec:
+      amount: 1
+    TelEthanol:
+      amount: 1
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: BluespaceHoleEffect
+    - !type:Teleport
+      energyPerUnit: 30
+      teleportType: Random
+
+- type: reaction
+  id: WormholeSpec
+  reactants:
+    ToxinsSpecial:
+      amount: 1
+    RedMead:
+      amount: 2
+    ManlyDorf:
+      amount: 2
+    StrangeReagent:
+      amount: 1
+  products:
+    WormholeSpec: 6
+
+- type: reaction
+  id: MacteraBrew
+  reactants:
+    InsectBlood:
+      amount: 1
+    Blood:
+      amount: 1
+    Slime:
+      amount: 4
+  products:
+    MacteraBrew: 6
+
+- type: reaction
+  id: RandoVeisser
+  reactants:
+    BananaHonk:
+      amount: 1
+    SpaceDrugs:
+      amount: 1
+    Gildlager:
+      amount: 4
+  products:
+    RandoVeisser: 6
+
+- type: reaction
+  id: GnomificatorPermanent
+  reactants:
+    Gnomificator:
+      amount: 2
+    StrangeReagent:
+      amount: 1
+  products:
+    GnomificatorPermanent: 1

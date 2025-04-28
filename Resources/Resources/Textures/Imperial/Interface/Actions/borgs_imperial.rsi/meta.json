@@ -1,0 +1,32 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Borgs sprite taken from engborg.rsi, other sprites by KianaBat(GitLab)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "access"
+        },
+        {
+            "name": "bolt"
+        },
+        {
+            "name": "mimicry"
+        },
+        {
+            "name": "open"
+        },
+        {
+            "name": "open_laws"
+        },
+        {
+            "name": "send_fake_laws"
+        },
+        {
+            "name": "send_laws"
+        }
+    ]
+}

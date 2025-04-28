@@ -1,0 +1,16 @@
+- type: damageModifierSet
+  id: MedievalStone
+  coefficients:
+    Blunt: 0.25
+    Slash: 0.25
+    Piercing: 0.25
+    Shock: 1.2
+    Heat: 0.0
+    Stamina: 0.0
+    Structural: 0.25
+  flatReductions:
+    Blunt: 10
+    Slash: 10
+    Piercing: 10
+    Heat: 10
+    Structural: 10

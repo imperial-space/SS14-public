@@ -1,0 +1,48 @@
+- type: entity
+  name: light blaster
+  suffix: звёздные войны, империя
+  parent: BaseWeaponBatterySmall
+  id: WeaponStarWarsLaserBlaster
+  description: it shoots at almost light speed
+  components:
+  - type: Sprite
+    sprite: Imperial/StarWars/blaster.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Clothing
+    sprite: Imperial/StarWars/blaster.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/StarWars/blaster.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: starRedMediumLaser
+    fireCost: 100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 40
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: Tag
+    tags:
+    - Sidearm
+  - type: StaticPrice
+    price: 750
+
+- type: hitscan
+  id: starRedMediumLaser
+  damage:
+    types:
+      Heat: 30
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_laser
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_laser

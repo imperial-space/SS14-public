@@ -1,0 +1,129 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionDivineTouchBeginner
+  name: medieval-store-spells-light-divine-touch-beginner-name
+  description: medieval-store-spells-light-divine-touch-beginner-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.85
+        addedEssences:
+          MagicMedievalLight1: 1
+  - type: ManaDrainSpell
+    manaDrain: 25
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 10
+  - type: MedievalInstantSpell
+  - type: InstantAction
+    useDelay: 15
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/touch_summon.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
+      state: 1
+    event: !type:MedievalSpawnInHandSpellEvent
+      spawnedEntityPrototype: DivineTouchBeginner
+      spellCastDoAfter:
+        delay: 3.5
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        breakOnDamage: true
+        needHand: true
+        speedModifier: 1
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-divine-touch
+          color: "#00981C"
+          hideChat: true
+  - type: MedievalSpawnOnlyInFreeHands
+  - type: ActionUpgrade
+    effectedLevels:
+      2: MedievalActionDivineTouchMiddle
+      3: MedievalActionDivineTouchSenior
+
+# Middle
+
+- type: entity
+  id: MedievalActionDivineTouchMiddle
+  parent: MedievalActionDivineTouchBeginner
+  name: medieval-store-spells-light-divine-touch-middle-name
+  description: medieval-store-spells-light-divine-touch-middle-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 35
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+  - type: MedievalInstantSpell
+  - type: InstantAction
+    useDelay: 19
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/touch_summon.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
+      state: 2
+    event: !type:MedievalSpawnInHandSpellEvent
+      spawnedEntityPrototype: DivineTouchMiddle
+      spellCastDoAfter:
+        delay: 3.5
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        breakOnDamage: true
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-divine-touch
+          color: "#00981C"
+          hideChat: true
+
+# Senior
+
+- type: entity
+  id: MedievalActionDivineTouchSenior
+  parent: MedievalActionDivineTouchBeginner
+  name: medieval-store-spells-light-divine-touch-senior-name
+  description: medieval-store-spells-light-divine-touch-senior-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 55
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 22
+  - type: MedievalInstantSpell
+  - type: InstantAction
+    useDelay: 27
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/touch_summon.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
+      state: 3
+    event: !type:MedievalSpawnInHandSpellEvent
+      spawnedEntityPrototype: DivineTouchSenior
+      spellCastDoAfter:
+        delay: 3.5
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        breakOnDamage: true
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-divine-touch
+          color: "#00981C"
+          hideChat: true

@@ -1,0 +1,192 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionCursedArrowKunaiBeginner
+  parent: MedievalActionCursedArrowBeginner
+  name: medieval-store-spells-darkness-cursed-arrow-kunai-beginner-name
+  description: medieval-store-spells-darkness-cursed-arrow-kunai-beginner-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 20
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 4
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/arrow_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+      state: 2
+    event: !type:MedievalEntityTargetProjectileSpellEvent
+      projectilePrototype: MedievalProjectileCursedArrowKunaiBeginner
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-cursed-arrow
+          color: "#B600FF"
+          hideChat: true
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.35
+        addedEssences:
+          MagicMedievalDarkness1: 1
+  - type: DamageTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.25
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: TrainingTarget
+        addedEssences:
+          MagicMedievalDarkness1: 1
+      - !type:AddMagicEssence
+        probability: 0.25
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: MobState
+          - !type:MagicTargetMobStateCondition
+            allowedState: Alive
+        addedEssences:
+          MagicMedievalDarkness1: 1
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 2
+    whiteListComponents:
+      - type: Damageable
+
+# Middle
+
+- type: entity
+  id: MedievalActionCursedArrowKunaiMiddle
+  parent: MedievalActionCursedArrowBeginner
+  name: medieval-store-spells-darkness-cursed-arrow-kunai-middle-name
+  description: medieval-store-spells-darkness-cursed-arrow-kunai-middle-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 30
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 5
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/arrow_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+      state: 1
+    event: !type:MedievalEntityTargetProjectileSpellEvent
+      projectilePrototype: MedievalProjectileCursedArrowKunaiMiddle
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-cursed-arrow
+          color: "#B600FF"
+          hideChat: true
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 3
+    whiteListComponents:
+      - type: Damageable
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.4
+        addedEssences:
+          MagicMedievalDarkness1: 1
+  - type: DamageTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.2
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: TrainingTarget
+        addedEssences:
+          MagicMedievalDarkness1: 1
+      - !type:AddMagicEssence
+        probability: 0.25
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: MobState
+          - !type:MagicTargetMobStateCondition
+            allowedState: Alive
+        addedEssences:
+          MagicMedievalDarkness1: 1
+
+# Senior
+
+- type: entity
+  id: MedievalActionCursedArrowKunaiSenior
+  parent: MedievalActionCursedArrowBeginner
+  name: medieval-store-spells-darkness-cursed-arrow-kunai-senior-name
+  description: medieval-store-spells-darkness-cursed-arrow-kunai-senior-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 40
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 7
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/arrow_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+      state: 3
+    event: !type:MedievalEntityTargetProjectileSpellEvent
+      projectilePrototype: MedievalProjectileCursedArrowKunaiSenior
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-cursed-arrow
+          color: "#B600FF"
+          hideChat: true
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.46
+        addedEssences:
+          MagicMedievalDarkness1: 1
+  - type: DamageTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.3
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: TrainingTarget
+        addedEssences:
+          MagicMedievalDarkness1: 1
+      - !type:AddMagicEssence
+        probability: 0.35
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: MobState
+          - !type:MagicTargetMobStateCondition
+            allowedState: Alive
+        addedEssences:
+          MagicMedievalDarkness1: 1
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 5
+    whiteListComponents:
+      - type: Damageable
+

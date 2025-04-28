@@ -1,0 +1,10 @@
+ent-PuddleTemporary = { ent-Puddle }
+    .desc = { ent-Puddle.desc }
+ent-PuddleSmear = { ent-PuddleTemporary }
+    .desc = { ent-PuddleTemporary.desc }
+ent-PuddleVomit = { ent-PuddleTemporary }
+    .desc = { ent-PuddleTemporary.desc }
+ent-PuddleSparkle = Блеск
+    .desc = { "" }
+ent-Puddle = лужа
+    .desc = Лужа жидкости.

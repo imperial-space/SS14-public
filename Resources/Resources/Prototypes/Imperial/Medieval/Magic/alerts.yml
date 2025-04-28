@@ -1,0 +1,19 @@
+- type: alert
+  id: Mana
+  icons:
+  - sprite: /Textures/Imperial/Medieval/Misc/mana.rsi
+    state: 0
+  - sprite: /Textures/Imperial/Medieval/Misc/mana.rsi
+    state: 1
+  - sprite: /Textures/Imperial/Medieval/Misc/mana.rsi
+    state: 2
+  - sprite: /Textures/Imperial/Medieval/Misc/mana.rsi
+    state: 3
+  - sprite: /Textures/Imperial/Medieval/Misc/mana.rsi
+    state: 4
+  - sprite: /Textures/Imperial/Medieval/Misc/mana.rsi
+    state: 5
+  name: Мана
+  description: Уровень маны - магической энергии, используемой для выполнения заклинаний.
+  minSeverity: 0
+  maxSeverity: 5

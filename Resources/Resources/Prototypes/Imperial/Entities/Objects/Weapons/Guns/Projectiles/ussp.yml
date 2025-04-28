@@ -1,0 +1,14 @@
+- type: hitscan
+  id: SovietStrike # Вобля
+  damage:
+    types:
+      Radiation: 25
+  muzzleFlash:
+    sprite: Imperial/VlClothes/DSO/BSPistolLaser.rsi
+    state: muzzle_blue
+  travelFlash:
+    sprite: Imperial/VlClothes/DSO/BSPistolLaser.rsi
+    state: beam_blue
+  impactFlash:
+    sprite: Imperial/VlClothes/DSO/BSPistolLaser.rsi
+    state: impact_u_laser

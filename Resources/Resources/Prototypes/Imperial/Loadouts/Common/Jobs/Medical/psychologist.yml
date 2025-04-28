@@ -1,0 +1,16 @@
+# - type: loadout
+#   id: PsychologistJumpskirt
+#   equipment:
+#     jumpsuit: PsychologistJumpskirt
+
+# - type: loadout
+#   id: PsychologistJumpsuit
+#   equipment:
+#     jumpsuit: PsychologistJumpsuit
+
+- type: loadoutGroup
+  id: PsychologistJumpsuit
+  name: loadout-group-psychologist-jumpsuit
+  loadouts:
+  - PsychologistJumpsuit
+  - PsychologistJumpskirt

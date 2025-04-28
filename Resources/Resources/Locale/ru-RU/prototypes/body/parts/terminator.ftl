@@ -1,0 +1,11 @@
+ent-RightArmTerminator = правая рука NT-800
+ent-RightFootTerminator = правая нога NT-800
+ent-LeftArmTerminator = левая рука NT-800
+ent-LeftFootTerminator = левая нога NT-800
+ent-LeftHandTerminator = левая рука NT-800
+ent-LeftLegTerminator = левая нога NT-800
+ent-HeadTerminator = череп NT-800
+    .desc = Его красные глаза потухли... пока что.
+ent-TorsoTerminator = туловище NT-800
+ent-RightLegTerminator = правая нога NT-800
+ent-RightHandTerminator = правая рука NT-800

@@ -1,0 +1,54 @@
+# Beginner
+
+- type: entity
+  id: MedievalProjectileDisablerBeginner
+  name: Disabler spell
+  description: OH FUCK. WIZARD HAVE A STUNNER
+  parent: BulletRocket
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser
+      shader: unshaded
+  - type: StaminaDamageOnCollide
+    damage: 36
+  - type: Explosive
+    explosionType: Cryo
+    maxIntensity: 1
+    intensitySlope: 1
+    totalIntensity: 0
+    maxTileBreak: 0
+  - type: Projectile
+    damage:
+      types:
+        Caustic: 1
+
+# Middle
+
+- type: entity
+  id: MedievalProjectileDisablerMiddle
+  name: Disabler spell
+  description: OH FUCK. WIZARD HAVE A STUNNER
+  parent: BulletRocket
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser
+      shader: unshaded
+  - type: StaminaDamageOnCollide
+    damage: 64
+  - type: Explosive
+    explosionType: Cryo
+    maxIntensity: 1
+    intensitySlope: 1
+    totalIntensity: 1
+    maxTileBreak: 0
+  - type: Projectile
+    damage:
+      types:
+        Caustic: 1
+  - type: SingularityDistortion
+    falloffPower: 1.5
+    intensity: 100

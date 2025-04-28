@@ -1,0 +1,43 @@
+- type: constructionGraph
+  id: MimeHardsuit
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: mimeHardsuit
+          steps:
+            - material: Cloth
+              amount: 5
+              doAfter: 1
+            - tag: SuitEVA
+              name: скафандр EVA # Imperial Recipes Locale
+              icon:
+                sprite: Clothing/OuterClothing/Suits/eva.rsi
+                state: icon
+              doAfter: 1
+            - tag: HelmetEVA
+              name: шлем скафандра EVA # Imperial Recipes Locale
+              icon:
+                sprite: Clothing/Head/Helmets/eva.rsi
+                state: icon
+              doAfter: 1
+            - tag: CrayonRed
+              name: красный мелок # Imperial Recipes Locale
+              icon:
+                sprite: Objects/Fun/crayons.rsi
+                state: red
+              doAfter: 1
+            - tag: CrayonBlack
+              name: черный мелок # Imperial Recipes Locale
+              icon:
+                sprite: Objects/Fun/crayons.rsi
+                state: black
+              doAfter: 1
+            - tag: MimeBelt
+              name: подтяжки # Imperial Recipes Locale
+              icon:
+                sprite: Clothing/Belt/suspenders_red.rsi
+                state: icon
+              doAfter: 1
+    - node: mimeHardsuit
+      entity: ClothingOuterHardsuitMime

@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "by okhrimm",
+    "states": [
+        {
+            "name": "fire-adv"
+        },
+        {
+            "name": "fire-mid"
+        },
+        {
+            "name": "lightning-adv"
+        },
+        {
+            "name": "lightning-basic"
+        },
+        {
+            "name": "lightning-mid"
+        }
+    ]
+}

@@ -1,0 +1,62 @@
+- type: entity
+  id: GhostGreenSpaceNinja
+  name: Space Ninja Spawner
+  suffix: ЦЕЛЕЙ НЕТ, Crook, SpiderClan
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    name: ghost-role-information-space-ninja-name
+    description: ghost-role-information-space-ninja-description
+    rules: ghost-role-information-space-ninja-rules
+    raffle:
+      settings: default
+  - type: GhostRoleMobSpawner
+    prototype: GreenSpaceNinja
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Objects/Weapons/Melee/energykatana.rsi
+      state: icon
+
+- type: entity
+  id: GhostRedSpaceNinja
+  name: Space Ninja Spawner
+  suffix: ЦЕЛЕЙ НЕТ, Crook, SpiderClan
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    name: ghost-role-information-space-ninja-name
+    description: ghost-role-information-space-ninja-description
+    rules: ghost-role-information-space-ninja-rules
+    raffle:
+      settings: default
+  - type: GhostRoleMobSpawner
+    prototype: RedSpaceNinja
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Imperial/SpiderClan/Weapon/redkatana.rsi
+      state: icon
+
+- type: entity
+  id: GhostBlueSpaceNinja
+  name: Space Ninja Spawner
+  suffix: ЦЕЛЕЙ НЕТ, Crook, SpiderClan
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    name: ghost-role-information-space-ninja-name
+    description: ghost-role-information-space-ninja-description
+    rules: ghost-role-information-space-ninja-rules
+    raffle:
+      settings: default
+  - type: GhostRoleMobSpawner
+    prototype: BlueSpaceNinja
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Imperial/SpiderClan/Weapon/bluekatana.rsi
+      state: icon

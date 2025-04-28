@@ -1,0 +1,153 @@
+#Пресеты болванок
+
+- type: entity
+  parent: MobHuman
+  id: RCUOperatorPreset
+  suffix: RiotControlUnit, Noghostrole
+  name: RCU Operator
+  components:
+    - type: Sprite
+      netsync: false
+      sprite: Markers/imperial_jobs.rsi
+      state: deathsquad-icon
+    - type: Loadout
+      prototypes: [ RCUOperatorEVALodout ]
+    - type: AutoImplant
+      implants:
+      - FreedomImplant
+      - MindShieldImplant
+    - type: NpcFactionMember
+      factions:
+      - RiotControlUnit
+    - type: RandomMetadata
+      nameSegments:
+      - RCUOperatorFirst
+      - RCUOperatorSecond
+    - type: CrewSkills
+      skills:
+        - skillBotany #Base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+
+- type: entity
+  parent: RCUOperatorPreset
+  id: RCUOfficerPreset
+  suffix: RiotControlUnit, Noghostrole
+  name: RCU Officer
+  components:
+    - type: Loadout
+      prototypes: [ RCUOfficerEVALodout ]
+    - type: RandomMetadata
+      nameSegments:
+      - RCUOfficerFirst
+      - RCUOfficerSecond
+
+#Lodouts
+
+- type: startingGear #operator gear
+  id: RCUOperatorEVALodout
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    back: ClothingBackpackRCUFilledOperator
+    neck: OperatorMantle
+    eyes: GlassesVisorRCU
+    mask: ClothingMaskRCU
+    ears: ClothingHeadsetAltCentCom
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitRCUOperator
+    shoes: BootsMagRCU
+    id: RCUOperatorPDA
+    pocket1: EnergySword
+    suitstorage: OxygenTankFilled
+    belt: ClothingBeltRCU
+
+- type: startingGear #officer gear
+  id: RCUOfficerEVALodout
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    back: ClothingBackpackRCUFilledOfficer
+    eyes: GlassesVisorRCU
+    mask: ClothingMaskRCU
+    ears: ClothingHeadsetAltCentCom
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitRCUOfficer
+    shoes: BootsMagRCU
+    id: RCUOfficerPDA
+    pocket1: EnergySword
+    suitstorage: OxygenTankFilled
+    belt: ClothingBeltRCU
+
+#Ghost roles
+
+- type: entity #operator role spawn
+  id: RCUOperatorEVApreset
+  name: RCU operator ghost role
+  parent: MarkerBase
+  suffix: RiotControlUnit
+  components:
+    - type: GhostRole
+      name: ertcall-rcuoper-security-eva-name
+      description: ertcall-rcuoper-security-eva-desc
+      rules: ertcall-rcuoper-security-eva-rules
+      raffle:
+        settings: default
+    - type: GhostRoleMobSpawner
+      prototype: RCUOperatorPreset
+    - type: Sprite
+      sprite: Markers/imperial_jobs.rsi
+      layers:
+        - sprite: Markers/imperial_jobs.rsi
+          state: rcuoper-icon #new icon
+
+- type: entity #officer role spawn
+  id: RCUOfficerEVApreset
+  name: RCU officer ghost role
+  parent: MarkerBase
+  suffix: RiotControlUnit
+  components:
+    - type: GhostRole
+      name: ertcall-rcuoff-security-eva-name
+      description: ertcall-rcuoff-security-eva-desc
+      rules: ertcall-rcuoff-security-eva-rules
+      raffle:
+        settings: default
+    - type: GhostRoleMobSpawner
+      prototype: RCUOperatorPreset
+    - type: Sprite
+      sprite: Markers/imperial_jobs.rsi
+      layers:
+        - sprite: Markers/imperial_jobs.rsi
+          state: rcuoff-icon #new icon
+
+#Фракция RCU
+
+- type: npcFaction
+  id: RiotControlUnit
+  hostile:
+  - SimpleHostile
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - Dragon
+  - AllHostile
+  - Wizard

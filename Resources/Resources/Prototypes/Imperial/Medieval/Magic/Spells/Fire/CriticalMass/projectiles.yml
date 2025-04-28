@@ -1,0 +1,22 @@
+- type: entity
+  id: MedievalEffectCriticalMassBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
+    state: 3
+  - type: MedievalParticles
+    color: "#F5E72D"
+    speed: 2.0
+    particlesCount: 16
+    gravity: 0
+    inverted: true
+    collapseOnMinDistance: true
+  - type: RepeatingTrigger
+    delay: 0.75
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 1
+    intensitySlope: 2
+    totalIntensity: 5
+    canCreateVacuum: false

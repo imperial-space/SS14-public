@@ -1,0 +1,18 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellMagicLightBeginner
+  name: medieval-store-spells-light-magic-light-beginner-name
+  description: medieval-store-spells-light-magic-light-beginner-desc
+  productAction: MedievalActionMagicLightBeginner
+  priority: 5
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/light.rsi
+    state: light
+  cost:
+    MagicMedievalLight: 15
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1

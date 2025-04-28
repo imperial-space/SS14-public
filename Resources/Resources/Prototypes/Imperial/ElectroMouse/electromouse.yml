@@ -1,0 +1,138 @@
+- type: entity
+  parent: SimpleMobBase
+  name: мышь
+  id: MobElectroMouse
+  suffix: ElectroMouse
+  description: Squeak!
+  components:
+  - type: Body
+    prototype: Mouse
+  - type: GhostRole
+    name: ghost-role-information-elmouse-name
+    description: ghost-role-information-elmouse-description
+    rules: ghost-role-information-elmouse-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: Speech
+    speechSounds: Squeak
+    speechVerb: SmallMob
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: Mobs/Animals/mouse.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-0
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-0
+    noMovementLayers:
+      movement:
+        state: mouse-0
+  - type: Item
+    size: Tiny
+  - type: Clothing
+    quickEquip: false
+    sprite: Mobs/Animals/mouse.rsi
+    equippedPrefix: 0
+    slots:
+    - HEAD
+  - type: NpcFactionMember
+    factions:
+      - Mouse
+  - type: HTN
+    rootTask:
+      task: MouseCompound
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: MobState
+  - type: Deathgasp
+  - type: MobStateActions
+    actions:
+      Critical:
+      - ActionCritSuccumb
+      - ActionCritFakeDeath
+      - ActionCritLastWords
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 5
+    baseSprintSpeed : 5
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-0
+      Critical:
+        Base: dead-0
+      Dead:
+        Base: splat-0
+  - type: Food
+  - type: Extractable
+    grindableSolutionName: food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatRat
+      amount: 1
+  - type: Tag
+    tags:
+    - Trash
+    - VimPilot
+    - Mouse
+    - Meat
+  - type: Vocal
+    sounds:
+      Male: Mouse
+      Female: Mouse
+      Unsexed: Mouse
+    wilhelmProbability: 0.001
+  - type: Bloodstream
+    bloodlossDamage:
+      types:
+        Bloodloss: 0.5
+    bloodlossHealDamage:
+      types:
+        Bloodloss: -1
+    bloodMaxVolume: 50
+  - type: CanEscapeInventory
+  - type: MobPrice
+    price: 50
+  - type: BadFood
+  - type: NonSpreaderZombie
+  - type: ElectroMouse
+  - type: ZombieImmune
+  - type: PointLight
+    energy: 0
+    radius: 1.15
+    color: Blue
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: Store
+    categories:
+    - ElectromouseAbilities
+    currencyWhitelist:
+    - StolenEnergy
+  - type: Insulated
+  - type: Hunger
+    starvingSlowdownModifier: 0
+  - type: NoSlip

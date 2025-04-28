@@ -1,0 +1,43 @@
+- type: imperialCurrency
+  id: MagicMedievalDarkness
+  displayName: medieval-currency-display-magic-darkness
+  displayNameColor: "#A508DC"
+  shortName: medieval-currency-display-magic-darkness-short
+  canWithdraw: true
+  cash:
+    1: MagicMedievalDarkness1
+
+# Entity
+
+- type: entity
+  id: MagicMedievalDarkness
+  parent: BaseItem
+  name: essence of darkness
+  description: Magical essence of darkness
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/essence.rsi
+    color: "#9512C6"
+    state: essence
+    noRot: true
+  - type: Stack
+    count: 20
+    stackType: MagicMedievalDarkness
+  - type: ImperialCurrency
+    price:
+      MagicMedievalDarkness: 1
+
+- type: entity
+  id: MagicMedievalDarkness1
+  parent: MagicMedievalDarkness
+  components:
+  - type: Stack
+    count: 1
+
+# Stack
+
+- type: stack
+  id: MagicMedievalDarkness
+  name: MagicMedievalDarkness
+  icon: Imperial/Other/ErtCall/bluespacecube.rsi
+  spawn: MagicMedievalDarkness1

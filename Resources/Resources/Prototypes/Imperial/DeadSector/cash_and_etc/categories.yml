@@ -1,0 +1,54 @@
+- type: storeCategory
+  id: FegerationTerminalWeapons
+  name: FegerationTerminalWeapons
+  priority: 0
+
+- type: storeCategory
+  id: FegerationTerminalAmmo
+  name: FegerationTerminalAmmo
+  priority: 1
+
+- type: storeCategory
+  id: FegerationTerminalExplosion
+  name: FegerationTerminalExplosion
+  priority: 2
+
+- type: storeCategory
+  id: FegerationTerminalGasMasks
+  name: FegerationTerminalGasMasks
+  priority: 3
+
+- type: storeCategory
+  id: FegerationTerminalHelmets
+  name: FegerationTerminalHelmets
+  priority: 4
+
+- type: storeCategory
+  id: FegerationTerminalBackPacks
+  name: FegerationTerminalBackPacks
+  priority: 5
+
+- type: storeCategory
+  id: FegerationTerminalEquipment
+  name: FegerationTerminalEquipment
+  priority: 6
+
+- type: storeCategory
+  id: FegerationTerminalUniforms
+  name: FegerationTerminalUniforms
+  priority: 7
+
+- type: storeCategory
+  id: FegerationTerminalMedicine
+  name: FegerationTerminalMedicine
+  priority: 8
+
+- type: storeCategory
+  id: FegerationTerminalProvisions
+  name: FegerationTerminalProvisions
+  priority: 9
+
+- type: storeCategory
+  id: FegerationTerminalOther
+  name: FegerationTerminalOther
+  priority: 10

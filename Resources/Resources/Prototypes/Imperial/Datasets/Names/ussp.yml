@@ -1,0 +1,24 @@
+- type: dataset
+  id: private
+  values:
+  - Рядовой
+
+- type: dataset
+  id: sergeant
+  values:
+  - Сержант
+
+- type: dataset
+  id: comissar
+  values:
+  - Комиссар
+
+- type: dataset
+  id: guard
+  values:
+  - Гвардеец
+
+- type: dataset
+  id: officer
+  values:
+  - Офицер

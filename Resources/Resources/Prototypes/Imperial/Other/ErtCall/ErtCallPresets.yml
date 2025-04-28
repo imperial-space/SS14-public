@@ -1,0 +1,19 @@
+#- type: ertCall
+#  id: Dart-Test-preset
+#  path: "Maps/Imperial/ErtCall/dartTest.yml"
+#  desc: "Тест"
+
+- type: ertCall
+  id: ERT-SpecOps
+  path: "Maps/Imperial/ErtCall/ERTdagger.yml"
+  desc: "Малый специальный корабль. 1 лидер, 4 бойца."
+
+- type: ertCall
+  id: ERT-Small
+  path: "Maps/Imperial/ErtCall/ERTsmall.yml"
+  desc: "Небольшой корабль. 1 лидер, 1 медик, 1 инженер, 3 бойца."
+
+- type: ertCall
+  id: ERT-Medium
+  path: "Maps/Imperial/ErtCall/ERTmedium.yml"
+  desc: "Вместительный корабль с медлабораторией и тюремной камерой. 1 лидер, 2 медика, 3 инженера, 5 бойцов."

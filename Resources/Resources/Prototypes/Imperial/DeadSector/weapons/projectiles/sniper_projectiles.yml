@@ -1,0 +1,250 @@
+- type: entity
+  id: BulletSVUMkII
+  name: bullet SVU Mk II (7x62x39)
+  parent: BaseBullet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 55.5
+
+- type: entity
+  id: BulletSVUMkIIPiercing
+  name: bullet SVU Mk II (7x62x39 AP)
+  parent: BaseBullet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 33.3
+    ignoreResistances: true
+
+- type: entity
+  id: BulletSVUMkIILongRange
+  name: bullet VU Mk II (7x62x39 T)
+  parent: BaseBullet
+  components:
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 55.5
+
+- type: entity
+  id: BulletSVUMkIIExplosive
+  name: bullet SVU Mk II (7x62x39 ST)
+  parent: BaseBulletTrigger
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 40.5
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 1
+    intensitySlope: 1
+    maxIntensity: 1
+
+- type: entity
+  id: BulletSVD
+  name: bullet SVD (7x62x39)
+  parent: BaseBullet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 80.5
+
+- type: entity
+  id: BulletSVDPiercing
+  name: bullet SVD (7x62x39 AP)
+  parent: BaseBullet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 48.3
+    ignoreResistances: true
+
+- type: entity
+  id: BulletSVDLongRange
+  name: bullet SVD (7x62x39 T)
+  parent: BaseBullet
+  components:
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 80.5
+
+- type: entity
+  id: BulletSVDExplosive
+  name: bullet SVD (7x62x39 ST)
+  parent: BaseBulletTrigger
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 65.5
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 1
+    intensitySlope: 1
+    maxIntensity: 1
+
+- type: entity
+  id: BulletSniperVSSMkI
+  name: bullet (.35 MP-9)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 53.5
+
+- type: entity
+  id: BulletArmorPiercingSniperVSSMkI
+  name: bullet (.35 MP-9)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 32.1
+    ignoreResistances: true
+
+- type: entity
+  id: BulletLongRangeSniperVSSMkI
+  name: bullet SVD (7x62x39 T)
+  parent: BaseBullet
+  components:
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 53.5
+
+- type: entity
+  id: BulletExplosiveSniperVSSMkI
+  name: bullet SVD (7x62x39 ST)
+  parent: BaseBulletTrigger
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 48.5
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 1
+    intensitySlope: 1
+    maxIntensity: 1
+
+- type: entity
+  id: BulletSniperVSSMkII
+  name: bullet (.35 MP-9)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 65.5
+
+- type: entity
+  id: BulletArmorPiercingSniperVSSMkII
+  name: bullet (.35 MP-9)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 39.3
+    ignoreResistances: true
+
+- type: entity
+  id: BulletLongRangeSniperVSSMkII
+  name: bullet SVD (7x62x39 T)
+  parent: BaseBullet
+  components:
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 65.5
+
+- type: entity
+  id: BulletExplosiveSniperVSSMkII
+  name: bullet SVD (7x62x39 ST)
+  parent: BaseBulletTrigger
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 60.5
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 1
+    intensitySlope: 1
+    maxIntensity: 1
+
+- type: entity
+  id: BulletSniperSVUMkI
+  name: bullet (.35 MP-9)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 50.5
+
+- type: entity
+  id: BulletArmorPiercingSniperSVUMkI
+  name: bullet (.35 MP-9)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 30.3
+    ignoreResistances: true
+
+- type: entity
+  id: BulletLongRangeSniperSVUMkI
+  name: bullet SVD (7x62x39 T)
+  parent: BaseBullet
+  components:
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 50.5
+
+- type: entity
+  id: BulletExplosiveSniperSVUMkI
+  name: bullet SVD (7x62x39 ST)
+  parent: BaseBulletTrigger
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 45.5
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 1
+    intensitySlope: 1
+    maxIntensity: 1

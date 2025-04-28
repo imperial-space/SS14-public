@@ -1,0 +1,38 @@
+# Middle
+
+- type: entity
+  id: MedievalProjectileSleepMiddle
+  name: Sleep spell
+  description: "Interesting fact: during development, programmers slept less than two hours a day"
+  parent: BaseBulletTrigger
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/Charmer/sleep.rsi
+    state: bullet
+  - type: Projectile
+    deleteOnCollide: true
+    damage:
+      types:
+        Blunt: 1
+  - type: MedievalSpellSleep
+    spawnedEffect: SleepParticles
+
+# Senior
+
+- type: entity
+  id: MedievalProjectileSleepSenior
+  name: Sleep spell
+  description: "Interesting fact: during development, programmers slept less than two hours a day"
+  parent: BaseBulletTrigger
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/Charmer/sleep.rsi
+    state: bullet
+  - type: Projectile
+    deleteOnCollide: true
+    damage:
+      types:
+        Blunt: 1
+  - type: MedievalSpellSleep
+    canPutToSleepCaster: false
+    spawnedEffect: SleepParticles

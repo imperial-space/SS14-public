@@ -1,0 +1,6 @@
+- type: imperialCurrency
+  id: ArchmagePoints
+  displayName: medieval-currency-display-magic-archmage-points
+  drawSeparately: true
+  ignoreInPurchaseButton: true
+  canWithdraw: false

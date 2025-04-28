@@ -1,0 +1,67 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellBlackHoleBeginner
+  name: medieval-store-spells-darkness-black-hole-beginner-name
+  description: medieval-store-spells-darkness-black-hole-beginner-desc
+  productAction: MedievalActionBlackHoleBeginner
+  priority: 1
+  productUpgradeId:
+    - MedievalSpellBlackHoleMiddle
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+    state: 1
+  cost:
+    MagicMedievalDarkness: 20
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellBlackHoleMiddle
+  name: medieval-store-spells-darkness-black-hole-middle-name
+  description: medieval-store-spells-darkness-black-hole-middle-desc
+  priority: 1
+  productUpgradeId:
+    - MedievalSpellBlackHoleSenior
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+    state: 2
+  cost:
+    MagicMedievalDarkness: 50
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellBlackHoleBeginner
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellBlackHoleSenior
+  name: medieval-store-spells-darkness-black-hole-senior-name
+  description: medieval-store-spells-darkness-black-hole-senior-desc
+  priority: 1
+  productUpgradeId:
+    - MedievalSpellBlackHoleSenior
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+    state: 3
+  cost:
+    MagicMedievalDarkness: 80
+    ArchmagePoints: 1
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellBlackHoleMiddle

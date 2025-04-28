@@ -1,0 +1,9 @@
+random-mutation-name-sentient = Нейроактивность
+random-mutation-name-slippery = Скользкий
+random-mutation-name-unviable = Нежизнеспособный
+random-mutation-name-change-seedless = Бескосточковый
+random-mutation-name-change-ligneous = Деревянистый
+random-mutation-name-change-screaming = Мандрагора
+random-mutation-name-change-chemicals = Синтез
+random-mutation-name-change-exude-gasses = Метеоризм
+random-mutation-name-change-consume-gasses = Абсорбция

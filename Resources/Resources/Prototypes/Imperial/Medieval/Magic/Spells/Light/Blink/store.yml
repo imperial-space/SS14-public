@@ -1,0 +1,44 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellBlinkBeginner
+  name: medieval-store-spells-light-blink-beginner-name
+  description: medieval-store-spells-light-blink-beginner-desc
+  productAction: MedievalActionBlinkBeginner
+  priority: 3
+  productUpgradeId:
+    - MedievalSpellBlinkMiddle
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/blink.rsi
+    state: blink
+  cost:
+    MagicMedievalLight: 25
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellBlinkMiddle
+  name: medieval-store-spells-light-blink-middle-name
+  description: medieval-store-spells-light-blink-middle-desc
+  priority: 3
+  productUpgradeId:
+    - MedievalSpellBlinkMiddle
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/blink.rsi
+    state: blink
+  cost:
+    MagicMedievalLight: 55
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellBlinkBeginner

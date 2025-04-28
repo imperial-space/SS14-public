@@ -1,0 +1,6 @@
+- type: localizedDataset
+  id: names_gnome_second
+  values:
+    prefix: imperial-space-gnomes-second-
+    count: 22
+

@@ -1,0 +1,36 @@
+- type: entity
+  id: ClothingHeadHelmetGoldenEagle
+  parent: ClothingHeadHelmetBase
+  name: fire helmet
+  description: An atmos tech's best friend. Provides some heat resistance and looks cool.
+  suffix: DeadSector
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Head/Helmets/golden_eagle.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Head/Helmets/golden_eagle.rsi
+    quickEquip: true
+  - type: Item
+    heldPrefix: off
+    size: Normal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Cold: 0.5
+        Shock: 0.7
+        Caustic: 0.5
+        Radiation: 0.7
+  - type: BreathMask
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop

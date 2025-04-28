@@ -1,0 +1,105 @@
+- type: antag
+  id: Nukeops
+  name: roles-antag-nuclear-operative-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-nuclear-operative-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 18000 # 5h
+  guides: [ NuclearOperatives ]
+
+- type: antag
+  id: NukeopsMedic
+  name: roles-antag-nuclear-operative-agent-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-nuclear-operative-agent-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 18000 # 5h
+  - !type:RoleTimeRequirement
+    role: JobChemist
+    time: 10800 # 3h
+  guides: [ NuclearOperatives ]
+
+- type: antag
+  id: NukeopsCommander
+  name: roles-antag-nuclear-operative-commander-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-nuclear-operative-commander-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 18000 # 5h
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 18000 # 5h
+  # should be changed to nukie playtime when thats tracked (wyci)
+  guides: [ NuclearOperatives ]
+
+- type: startingGear
+  id: SyndicateOperativeGearFullNoUplink
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    back: ClothingBackpackDuffelSyndicate
+    mask: ClothingMaskGasSyndicate
+    eyes: ClothingEyesHudSyndicate
+    ears: ClothingHeadsetAltSyndicate
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitSyndieFactionExplosion #Imperial
+    shoes: ClothingShoesBootsCombatFilled
+    id: SyndiPDA
+    pocket2: PlushieCarp
+    belt: ClothingBeltMilitaryWebbing
+  storage:
+    back:
+    - WeaponPistolViper
+    - PinpointerSyndicateNuclear
+    - DeathAcidifierImplanter
+
+#Nuclear Operative Gear
+- type: startingGear
+  id: SyndicateOperativeGearFull
+  parent: SyndicateOperativeGearFullNoUplink
+  equipment:
+    pocket2: BaseUplinkRadio40TC
+
+#Nuclear Operative Commander Gear
+- type: startingGear
+  id: SyndicateCommanderGearFull
+  parent: SyndicateOperativeGearFull
+  equipment:
+    neck: SyndicateWhistle
+    outerClothing: ClothingOuterHardsuitSyndieCommanderFactionExplosion #Imperial
+  inhand:
+  - NukeOpsDeclarationOfWar
+
+#Nuclear Operative Medic Gear
+- type: startingGear
+  id: SyndicateOperativeMedicFull
+  parent: SyndicateOperativeGearFull
+  equipment:
+    eyes: ClothingEyesHudSyndicateAgent
+    outerClothing: ClothingOuterHardsuitSyndieMedicFactionExlposion #Imperial
+    shoes: ClothingShoesBootsMagSyndie
+    id: SyndiAgentPDA
+    belt: ClothingBeltMilitaryWebbingMedFilled
+  storage:
+    back:
+    - SyndiHypo
+    - SawAdvanced
+    - Cautery
+    - CombatKnife
+    - WeaponPistolViper
+    - PinpointerSyndicateNuclear
+    - HandheldHealthAnalyzer
+    - CombatMedipen
+    - DeathAcidifierImplanter
+
+#Lone Operative Gear
+- type: startingGear
+  id: SyndicateLoneOperativeGearFull
+  parent: SyndicateOperativeGearFull
+  equipment:
+    pocket2: BaseUplinkRadio60TC

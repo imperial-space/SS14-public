@@ -1,0 +1,43 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellFlashBeginner
+  name: medieval-store-spells-light-flash-beginner-name
+  description: medieval-store-spells-light-flash-beginner-desc
+  productAction: MedievalActionFlashBeginner
+  priority: 1
+  productUpgradeId:
+    - MedievalSpellFlashMiddle
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/flash.rsi
+    state: 1
+  cost:
+    MagicMedievalLight: 15
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellFlashMiddle
+  name: medieval-store-spells-light-flash-middle-name
+  description: medieval-store-spells-light-flash-middle-desc
+  priority: 1
+  productUpgradeId:
+    - MedievalSpellFlashMiddle
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/flash.rsi
+    state: 2
+  cost:
+    MagicMedievalLight: 40
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellFlashBeginner

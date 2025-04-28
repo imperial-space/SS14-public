@@ -1,0 +1,29 @@
+- type: localizedDataset
+  id: OldStationTrader
+  values:
+    prefix: imperial-space-station-content-old-station-names-trader-
+    count: 1
+
+- type: localizedDataset
+  id: OldStationSmuggler
+  values:
+    prefix: imperial-space-station-content-old-station-names-smuggler-
+    count: 1
+
+- type: localizedDataset
+  id: OldStationMerc
+  values:
+    prefix: imperial-space-station-content-old-station-names-merc-
+    count: 1
+
+- type: localizedDataset
+  id: OldStationHeadMerc
+  values:
+    prefix: imperial-space-station-content-old-station-names-head-merc-
+    count: 1
+
+- type: localizedDataset
+  id: OldStationBomj
+  values:
+    prefix: imperial-space-station-content-old-station-names-bomj-
+    count: 1

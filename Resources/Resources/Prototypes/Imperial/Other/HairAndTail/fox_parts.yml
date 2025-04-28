@@ -1,0 +1,30 @@
+- type: marking
+  id: FoxEars
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human]
+  sprites:
+  - sprite: Imperial/Other/HairAndTail/fox_parts.rsi
+    state: ears_fox_outer
+  - sprite: Imperial/Other/HairAndTail/fox_parts.rsi
+    state: ears_fox_inner
+
+- type: marking
+  id: FoxTailStripes
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Human]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+        category: Hair
+      fallbackTypes:
+        - !type:CategoryColoring
+          category: FacialHair
+        - !type:SkinColoring
+  sprites:
+    - sprite: Imperial/Other/HairAndTail/fox_parts.rsi
+      state: tail_fox_prime
+    - sprite: Imperial/Other/HairAndTail/fox_parts.rsi
+      state: tail_fox_second

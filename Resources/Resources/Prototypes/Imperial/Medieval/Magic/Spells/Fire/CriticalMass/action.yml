@@ -1,0 +1,61 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionCriticalMassBeginner
+  name: medieval-store-spells-fire-critical-mass-beginner-name
+  description: medieval-store-spells-fire-critical-mass-beginner-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.7
+        addedEssences:
+          MagicMedievalFire1: 1
+  - type: ManaDrainSpell
+    manaDrain: 20
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 12
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 22
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 3
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/nova.rsi
+      state: supermass
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalEffectCriticalMassBeginner
+      spawnType: SpawnOnMousePosition
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-critical-mass
+          color: "#F5E72D"
+          hideChat: true
+  - type: ShowSpawnedEntity
+    sprites:
+      - drawedSprite:
+          sprite: Imperial/Medieval/Magic/nova.rsi
+          state: supermass
+        alwaysRender: true
+        mixColor: 0.1
+        inRangeColor: "#C12AFF"
+        # outOfRangeColor: "#FF0000"
+        range: 3
+    rotationPerClick: 0
+  - type: ActionUpgrade
+    effectedLevels:
+      # Super Nova
+      2: MedievalActionCriticalMassMiddle
+      3: MedievalActionCriticalMassSenior
+      # Concentrated Displacement
+      4: MedievalActionConcentratedDisplacementMiddle
+      5: MedievalActionConcentratedDisplacementSenior
+      # Diffusion
+      6: MedievalActionDiffusionMiddle
+      7: MedievalActionDiffusionSenior

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Drawed by BROtania/BRO",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "comfy_couch",
+      "directions": 4
+    },
+    {
+      "name": "gold_couch",
+      "directions": 4
+    },
+    {
+      "name": "gold_couch_2",
+      "directions": 4
+    }
+  ]
+}

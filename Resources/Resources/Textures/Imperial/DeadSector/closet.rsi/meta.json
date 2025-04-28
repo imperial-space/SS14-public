@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "copyright": "Taken from tgstation, brigmedic locker is a resprited CMO locker by PuroSlavKing (Github)",
+  "license": "CC-BY-SA-3.0",
+  "states": [
+    {
+      "name": "base"
+    },
+    {
+      "name": "base_door"
+    },
+    {
+      "name": "base_open"
+    },
+    {
+      "name": "welded"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+- type: entity
+  id: IceBarrierParticles
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
+    state: 3
+  - type: MedievalParticles
+    color: "#39FFFF"
+  - type: TimedDespawn
+    lifetime: 5
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/icewall_down.ogg

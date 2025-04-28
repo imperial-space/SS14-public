@@ -1,0 +1,43 @@
+- type: imperialCurrency
+  id: MagicMedievalFire
+  displayName: medieval-currency-display-magic-fire
+  displayNameColor: "#FD770B"
+  shortName: medieval-currency-display-magic-fire-short
+  canWithdraw: false
+  cash:
+    1: MagicMedievalFire1
+
+# Entity
+
+- type: entity
+  id: MagicMedievalFire
+  parent: BaseItem
+  name: essence of fire
+  description: Magical essence of fire
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/essence.rsi
+    color: "#EE7012"
+    state: essence
+    noRot: true
+  - type: Stack
+    count: 20
+    stackType: MagicMedievalFire
+  - type: ImperialCurrency
+    price:
+      MagicMedievalFire: 1
+
+- type: entity
+  id: MagicMedievalFire1
+  parent: MagicMedievalFire
+  components:
+  - type: Stack
+    count: 1
+
+# Stack
+
+- type: stack
+  id: MagicMedievalFire
+  name: MagicMedievalFire
+  icon: Imperial/Other/ErtCall/bluespacecube.rsi
+  spawn: MagicMedievalFire1

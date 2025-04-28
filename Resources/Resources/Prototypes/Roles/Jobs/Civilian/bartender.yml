@@ -1,0 +1,28 @@
+- type: job
+  id: Bartender
+  name: job-name-bartender
+  description: job-description-bartender
+  playTimeTracker: JobBartender
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 3600 #Imperial role timers
+  startingGear: BartenderGear
+  icon: "JobIconBartender"
+  supervisors: job-supervisors-hop
+  access:
+  - Service
+  - Maintenance
+  - Bar
+  extendedAccess:
+  - Kitchen
+  - Hydroponics
+
+- type: startingGear
+  id: BartenderGear
+  equipment:
+    shoes: ClothingShoesColorBlack
+    id: BartenderPDA
+    ears: ClothingHeadsetService
+  #storage:
+    #back:
+    #- Stuff

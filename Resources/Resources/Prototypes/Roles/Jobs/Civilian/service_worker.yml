@@ -1,0 +1,25 @@
+- type: job
+  id: ServiceWorker
+  name: job-name-serviceworker
+  description: job-description-serviceworker
+  playTimeTracker: JobServiceWorker
+  startingGear: ServiceWorkerGear
+  icon: "JobIconServiceWorker"
+  supervisors: job-supervisors-for-junior-serv
+  access:
+  - Service
+  - Maintenance
+  - Bar
+  - Kitchen
+  extendedAccess:
+  - Hydroponics
+
+- type: startingGear
+  id: ServiceWorkerGear
+  equipment:
+    shoes: ClothingShoesColorBlack
+    id: ServiceWorkerPDA
+    ears: ClothingHeadsetService
+  #storage:
+    #back:
+    #- Stuff

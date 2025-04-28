@@ -1,0 +1,60 @@
+- type: entity
+  name: war credit
+  parent: BaseItem
+  id: WarCredit
+  suffix: CS, 100 Credit
+  description: They symbolize the budget of global crime and taxpayers' money, which went into an eternal struggle between two well-known parties.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/CS/Credit/credit.rsi
+    netsync: false
+    state: credit
+  - type: Item
+    sprite: Imperial/Other/CS/Credit/credit.rsi
+  - type: Stack
+    count: 100
+    stackType: WarCredit
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 200
+  - type: Currency
+    price:
+      WarCredit: 1
+
+- type: currency
+  id: WarCredit
+  displayName: store-currency-display-warcredit
+  cash:
+    1: WarCredit1
+  canWithdraw: true
+
+- type: stack
+  id: WarCredit
+  name: warCredit
+  icon: Imperial/Other/CS/Credit/credit.rsi
+  spawn: WarCredit1
+
+- type: entity
+  parent: WarCredit
+  id: WarCredit1
+  suffix: CS, 1 credit
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: WarCredit
+  id: WarCredit500
+  suffix: CS, 500 credit
+  components:
+  - type: Stack
+    count: 500
+
+- type: entity
+  parent: WarCredit
+  id: WarCredit1000
+  suffix: CS, 1000 credit
+  components:
+  - type: Stack
+    count: 1000

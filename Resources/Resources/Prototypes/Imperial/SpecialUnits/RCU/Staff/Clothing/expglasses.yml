@@ -1,0 +1,11 @@
+- type: entity
+  parent: GlassesDeathSquad
+  id: GlassesVisorRCU
+  name: experimental visor
+  description: High-quality visor with integrated position identification system and all kinds of eye protection.
+  suffix: RiotControlUnit
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/RCU/Clothing/exp.rsi
+  - type: Clothing
+    sprite: Imperial/SpecialUnits/RCU/Clothing/exp.rsi

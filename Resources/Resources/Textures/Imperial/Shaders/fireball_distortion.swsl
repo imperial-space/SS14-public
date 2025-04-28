@@ -1,0 +1,65 @@
+// license: This content is under ICLA. Copyright holder: orix0689 (discord) (Read more on: https://wiki.imperialspace.net/ru/icla)
+// copyright: "orix0689 (discord)"
+
+light_mode unshaded;
+
+uniform highp vec2 start_point;
+uniform highp vec3 fire_color;
+uniform highp vec3 fire_edge_color;
+
+uniform highp float rotation;
+uniform highp float fireball_size;
+uniform highp float fire_intensity;
+uniform highp float fire_power_factor;
+
+
+highp vec3 linear_light(highp vec3 a, highp vec3 b, highp float factor) {
+    return a + factor * (2.0 * b - 1.0);
+}
+
+highp float map(highp float value, highp float from_min, highp float from_max, highp float to_min, highp float to_max) {
+    value = (value - from_min) / (from_max - from_min);
+    value = to_min + value * (to_max - to_min);
+
+    return value;
+}
+
+highp vec2 rotateUV(highp vec2 uv, highp vec2 center, highp float angle) {
+    highp mat2 rm = mat2(
+        vec2(cos(angle), -sin(angle)),
+        vec2(sin(angle), cos(angle))
+    );
+
+    return (uv - center) * rm + center;
+}
+
+void fragment() {
+    highp vec2 rotated_uv = rotateUV(rotateUV(UV, vec2(0.5, 0.5), -rotation), vec2(0.5, 0.5), 1.5708);
+    highp vec2 uv = rotated_uv * 2.0 - 1.0;
+    uv += start_point;
+
+    highp float noise = zFBM(vec2(uv.x + TIME * 2.0, uv.y));
+    highp vec3 noise_3d = vec3(noise);
+
+    highp float light_factor = clamp(map(rotated_uv.x, 0.13, 0.87, 1.0, 0.06), 0.06, 1.0);
+
+    highp vec3 light = linear_light(vec3(uv * vec2(1.0, 1.0), 0.0), noise_3d, light_factor);
+    light = abs(light) - vec3(0.75, 0.0, 0.0);
+    light = max(light, vec3(0.0));
+
+    highp float light_length = length(light) / fireball_size;
+    highp float fireball_grad = clamp(map(rotated_uv.x, -0.24, 0.82, 0.0, 0.27), 0.0, 0.27);
+
+    light_length -= fireball_grad;
+    light_length = smoothstep(0.0, -0.09, light_length);
+
+    noise *= pow(rotated_uv.x, fire_power_factor);
+
+    highp vec3 fireballColor = mix(vec3(0.0), fire_color * noise * 4.0, light_length);
+    highp vec3 color = mix(fire_edge_color, fireballColor, light_length - 0.1);
+
+    highp float alpha = mix(0.0, noise * 3.0 * fire_intensity, light_length);
+
+    COLOR = vec4(color, alpha);
+    // COLOR = vec4(rotated_uv, 0.0, 1.0);
+}

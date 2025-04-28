@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "taken from tgstation plumbing PR",
+  "size": {
+    "x": 32,
+    "y": 48
+  },
+  "states": [
+    {
+      "name": "rockspike"
+    },
+    {
+      "name": "snowspike"
+    }
+  ]
+}

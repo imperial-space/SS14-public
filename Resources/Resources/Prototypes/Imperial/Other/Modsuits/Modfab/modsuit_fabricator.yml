@@ -1,0 +1,71 @@
+- type: entity
+  parent: Protolathe
+  id: ModsuitFab
+  name: modsuits fab
+  description: Creates parts for robotics and other mechanical needs
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Imperial/Other/Modsuits/modsuit_fabricator.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: ModsuitFabricatorMachineCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: building
+    staticPacks:
+      - ModSuitStatic
+    dynamicPacks:
+      - ModSuitAdvanced
+      - ModSuitCombat
+      - ModSuitWorker
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Sheet
+      - RawMaterial
+      - Ingot
+  - type: GuideHelp
+    guides:
+    - Robotics
+
+- type: latheRecipePack
+  id: ModSuitStatic # Базовые рецепты, всегда открытые в фабе
+  recipes:
+  - ControlModsuitConstructingStart
+  - HelmetModsuitConstructing
+  - ChestplateModsuitConstructing
+  - GauntletsModsuitConstructing
+  - BootsModsuitConstructing
+  - PlatingCivillianModsuitConstructing
+  - PlatingMedicalModsuitConstructing
+
+- type: latheRecipePack
+  id: ModSuitAdvanced # Рецепты продвинутых РИГ'ов для глав
+  recipes:
+  - PlatingCEModsuitConstructing
+  - PlatingMagnateModsuitConstructing
+  - PlatingHOSModsuitConstructing
+
+- type: latheRecipePack
+  id: ModSuitCombat # Рецепты боевых РИГ'ов
+  recipes:
+  - PlatingSecurityModsuitConstructing
+  - PlatingAsteroidModsuitConstructing
+  - PlatingRNDModsuitConstructing
+
+- type: latheRecipePack
+  id: ModSuitWorker # Рецепты РИГ'ов для рабочих станций
+  recipes:
+  - PlatingEngineeringModsuitConstructing
+  - PlatingAtmosphericModsuitConstructing
+  - PlatingCMOModsuitConstructing

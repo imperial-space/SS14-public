@@ -1,0 +1,20 @@
+- type: entity
+  id: ClothingNeckCloakNanotrasenBlack
+  name: black cloak
+  parent: ClothingNeckBase
+  description: A black cloak.
+  components: 
+  - type: Sprite
+    sprite: Imperial/Other/TFG/Clothing/cloakNT.rsi
+  - type: Clothing
+    sprite: Imperial/Other/TFG/Clothing/cloakNT.rsi
+
+
+
+- type: latheRecipe
+  id: ClothingNeckCloakNanotrasenBlack
+  result: ClothingNeckCloakNanotrasenBlack
+  completetime: 7
+  materials:
+    Cloth: 150
+    Durathread: 150

@@ -1,0 +1,16 @@
+skills-id-card-access-level-library = Библиотека
+ent-AirlockImperialLibraryLocked = { ent-Airlock }
+    .suffix = Библиотека, Закрыт
+    .desc = { ent-Airlock.desc }
+ent-AirlockImperialLibraryMaintLocked = { ent-AirlockMaint }
+    .suffix = Библиотека, Закрыт
+    .desc = { ent-AirlockMaint.desc }
+ent-AirlockImperialLibraryMaintGlassLocked = { ent-AirlockMaintGlass }
+    .suffix = Библиотека, Закрыт
+    .desc = { ent-AirlockMaintGlass.desc }
+ent-WindoorImperialLibraryLocked = { ent-Windoor }
+    .desc = { ent-Windoor.desc }
+    .suffix = Библиотека, Закрыт
+ent-WindoorSecureImperialLibraryLocked = { ent-WindoorSecure }
+    .desc = { ent-WindoorSecure.desc }
+    .suffix = Библиотека, Закрыт

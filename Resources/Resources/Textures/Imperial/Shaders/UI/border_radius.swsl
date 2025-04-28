@@ -1,0 +1,89 @@
+// license: This content is under ICLA. Copyright holder: orix0689 (discord) (Read more on: https://wiki.imperialspace.net/ru/icla)
+// copyright: "orix0689 (discord)"
+
+uniform highp float borderRadius;
+uniform highp vec2 elementSize;
+uniform highp vec2 artifactScaleProtection;
+
+
+highp float getRatio()
+{
+    highp vec2 scaledSize = elementSize * artifactScaleProtection;
+
+    return scaledSize.y / scaledSize.x;
+}
+
+highp vec2 scaleVector(highp vec2 vector)
+{
+    return ( vector - vec2(0.5, 0.0) ) / vec2(getRatio(), 1.0) + vec2(0.5, 0.0);
+}
+
+highp float getCircle(highp vec2 uvModifier, highp float radius)
+{
+    return 1.0 - smoothstep(radius, radius, length(scaleVector(UV + uvModifier) * 2.0 - 1.0));
+}
+
+highp float getRect(highp vec2 uv, highp float radius)
+{
+    highp vec2 rad = vec2(radius * getRatio() / 2.0, radius / 2.0);
+    highp vec2 res = vec2(1.0) - step(rad, uv);
+
+    return 1.0 - res.x * res.y;
+}
+
+void fragment() {
+    highp float radius = borderRadius;
+    highp float halfRadius = radius / 2.0;
+    highp vec4 texture = zTexture(UV);
+
+    // Circles
+
+    highp float topLeftCircle = getCircle(
+        vec2(
+            0.5 - halfRadius * getRatio(),
+            -0.5 + halfRadius
+        ),
+        radius
+    );
+    highp float topRightCircle = getCircle(
+        vec2(
+            -0.5 + halfRadius * getRatio(),
+            -0.5 + halfRadius
+        ),
+        radius
+    );
+
+    highp float bottomLeftCircle = getCircle(
+        vec2(
+            0.5 - halfRadius * getRatio(),
+            0.5 - halfRadius
+        ),
+        radius
+    );
+    highp float bottomRightCircle = getCircle(
+        vec2(
+            -0.5 + halfRadius * getRatio(),
+            0.5 - halfRadius
+        ),
+        radius
+    );
+
+    highp float circleMask = topLeftCircle + topRightCircle + bottomLeftCircle + bottomRightCircle;
+
+    // Square
+
+    highp float topLeftSquare = getRect(vec2(UV.x, 1.0 - UV.y), radius);
+    highp float topRightSquare = getRect(vec2(1.0) - UV, radius);
+
+    highp float bottomLeftSquare = getRect(vec2(UV.x, UV.y), radius);
+    highp float bottomRightSquare = getRect(vec2(1.0 - UV.x, UV.y), radius);
+
+    highp float squareMask = topLeftSquare * topRightSquare * bottomLeftSquare * bottomRightSquare;
+
+    // Logic
+
+    highp float mask = circleMask + squareMask;
+
+    COLOR = vec4(texture.rgb, 1.0 * mask);
+    // COLOR = vec4(vec3(circleMask), 1.0);
+}

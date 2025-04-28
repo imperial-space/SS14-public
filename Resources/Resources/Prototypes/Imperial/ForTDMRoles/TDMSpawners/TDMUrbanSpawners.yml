@@ -1,0 +1,213 @@
+# Спавнеры для стороны синдикека
+
+- type: entity
+  id: TDMUrbanRiflemanSpawner_S
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-urbanrifleman-name
+      description: tdm-urbanrifleman-desc
+      rules: tdm-urbanrifleman-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMUrbanRiflemanPreset_S
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMUrbanMachineGunnerSpawner_S
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-urbanmachinegunner-name
+      description: tdm-urbanmachinegunner-desc
+      rules: tdm-urbanmachinegunner-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMUrbanMachineGunnerPreset_S
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMUrbanGrenadierSpawner_S
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-urbangrenadier-name
+      description: tdm-urbangrenadier-desc
+      rules: tdm-urbangrenadier-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMUrbanGrenadierPreset_S
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMUrbanMedicalSpawner_S
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-urbanmedical-name
+      description: tdm-urbanmedical-desc
+      rules: tdm-urbanmedical-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMUrbanMedicalPreset_S
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMUrbanCommanderSpawner_S
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-urbancommander-name
+      description: tdm-urbancommander-desc
+      rules: tdm-urbancommander-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMUrbanCommanderPreset_S
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+# Спавнеры для стороны нанотрахен
+
+- type: entity
+  id: TDMUrbanRiflemanSpawner_N
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-urbanrifleman-name
+      description: tdm-urbanrifleman-desc
+      rules: tdm-urbanrifleman-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMUrbanRiflemanPreset_N
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMUrbanMachineGunnerSpawner_N
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-urbanmachinegunner-name
+      description: tdm-urbanmachinegunner-desc
+      rules: tdm-urbanmachinegunner-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMUrbanMachineGunnerPreset_N
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMUrbanGrenadierSpawner_N
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-urbangrenadier-name
+      description: tdm-urbangrenadier-desc
+      rules: tdm-urbangrenadier-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMUrbanGrenadierPreset_N
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMUrbanMedicalSpawner_N
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-urbanmedical-name
+      description: tdm-urbanmedical-desc
+      rules: tdm-urbanmedical-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMUrbanMedicalPreset_N
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMUrbanCommanderSpawner_N
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-urbancommander-name
+      description: tdm-urbancommander-desc
+      rules: tdm-urbancommander-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMUrbanCommanderPreset_N
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva

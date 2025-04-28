@@ -1,0 +1,91 @@
+- type: soundCollection
+  id: RoseCryColl
+  files:
+  - /Audio/Imperial/Horror/Rose/RoseCry1.ogg
+
+- type: emoteSounds
+  id: RoseVoice
+  sounds:
+    Scream:
+      path: /Audio/Imperial/Horror/Rose/RoseScream.ogg
+    Laugh:
+      path: /Audio/Imperial/Horror/Rose/RoseLaugh.ogg
+    Sneeze:
+      collection: FemaleSneezes
+    Cough:
+      collection: FemaleCoughs
+    CatMeow:
+      collection: CatMeows
+    CatHisses:
+      collection: CatHisses
+    MonkeyScreeches:
+      collection: MonkeyScreeches
+    RobotBeep:
+      collection: RobotBeeps
+    Yawn:
+      collection: FemaleYawn
+    Snore:
+      collection: Snores
+    Honk:
+      collection: CluwneHorn
+    Sigh:
+      path: /Audio/Imperial/Horror/Rose/RoseSigh.ogg
+    Crying:
+      collection: RoseCryColl
+    Whistle:
+      collection: Whistles
+    Weh:
+      collection: Weh
+
+- type: emoteSounds
+  id: ChydVoice
+  sound:
+    path: /Audio/Imperial/Horror/Chyd/ChydScream.ogg
+    params:
+      variation: 2
+
+- type: emoteSounds
+  id: LancerVoice
+  sound:
+    path: /Audio/Imperial/Horror/Lancer/LancerScream.ogg
+
+- type: emoteSounds
+  id: KnightVoice
+  sound:
+    path: /Audio/Imperial/Horror/Knight/KinghtScream.ogg
+
+- type: emoteSounds
+  id: FrogVoice
+  sound:
+    path: /Audio/Imperial/Horror/Frog/frog-croaking.ogg
+
+- type: emoteSounds
+  id: HareVoice
+  sound:
+    path: /Audio/Imperial/Horror/Hare/Cryhare.ogg
+
+- type: emoteSounds
+  id: MooseVoice
+  sound:
+    path: /Audio/Imperial/Horror/Moose/Crymoose.ogg
+
+- type: emoteSounds
+  id: DevilVoice
+  sounds:
+    Scream:
+      path: /Audio/Imperial/Horror/Devil/Devilcry.ogg
+    Laugh:
+       path: /Audio/Imperial/Horror/Devil/Devilsmeh.ogg
+    DefaultDeathgasp:
+      path: /Audio/Imperial/Horror/Devil/Devildeath.ogg
+    Crying:
+       path: /Audio/Imperial/Horror/Devil/Devildamskyplath.ogg
+    Snore:
+       path: /Audio/Imperial/Horror/Devil/Devilhrap.ogg
+    Sigh:
+       path: /Audio/Imperial/Horror/Devil/Devileating.ogg
+
+- type: emoteSounds
+  id: DamnVoice
+  sound:
+    path: /Audio/Imperial/Horror/Damn/DamnCry.ogg

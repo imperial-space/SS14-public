@@ -1,0 +1,17 @@
+- type: localizedDataset
+  id: DeathSquadFirst
+  values:
+    prefix: imperial-space-death-squad-first-
+    count: 5
+
+- type: localizedDataset
+  id: DeathSquadSecond
+  values:
+    prefix: imperial-space-death-squad-second-
+    count: 1
+
+- type: localizedDataset
+  id: DeathSquadNumber
+  values:
+    prefix: imperial-space-death-squad-number-
+    count: 50

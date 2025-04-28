@@ -1,0 +1,25 @@
+- type: entity
+  name: Spider Clan Terminal
+  suffix: Crook, SpiderClan
+  parent: [ BaseHandheldComputer, BaseMajorContraband ]
+  id: SpiderClanTerminal
+  description: Makes it a lot easier to track your victims. Assuming, of course, they've turned on their sensors...
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Misc/terminal.rsi
+    state: scanner
+  - type: ActivatableUI
+    key: enum.CrewMonitoringUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CrewMonitoringUIKey.Key:
+        type: CrewMonitoringBoundUserInterface
+  - type: CrewMonitoringConsole
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: CrewMonitor
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: StationLimitedNetwork
+  - type: StaticPrice
+    price: 2500

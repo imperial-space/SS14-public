@@ -1,0 +1,5 @@
+# electromouse
+- type: currency
+  id: StolenEnergy
+  displayName: store-currency-display-stolen-energy
+  canWithdraw: false

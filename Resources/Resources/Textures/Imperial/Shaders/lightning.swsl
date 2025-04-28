@@ -1,0 +1,48 @@
+// license: This content is under ICLA. Copyright holder: orix0689 (discord) (Read more on: https://wiki.imperialspace.net/ru/icla)
+// copyright: "orix0689 (discord)"
+
+light_mode unshaded;
+
+uniform highp vec3 lightning_color;
+uniform highp vec2 offset;
+uniform highp float seed;
+uniform highp float speed;
+uniform highp float intensity;
+uniform highp float amplitude;
+uniform highp float frequency;
+
+
+highp float hash12(highp vec2 x) {
+    return fract(cos(mod(dot(x, vec2(13.9898, 8.141)), 3.14)) * 43758.5453);
+}
+
+highp float FBM(highp vec2 uv) {
+    const int octaves = 6;
+    highp float amp = amplitude;
+    highp float freq = frequency;
+    highp float value = 0.0;
+
+    for(int i = 0; i < octaves; i++) {
+        value += amp * zNoise(freq * uv);
+        amp *= 0.5;
+        freq *= 2.0;
+    }
+    return value;
+}
+
+void fragment() {
+    highp vec2 uv = 2.0 * UV - 1.4 - offset.x;
+    uv += 2.0 * FBM(uv + TIME * speed + seed);
+    uv *= intensity;
+
+    highp float dist = abs(uv.x);
+    highp float mask = smoothstep(0.5, 0.3, length(UV - vec2(0.5, 0.5)));
+    highp vec3 color = mask * lightning_color * mix(0.0, 0.05, hash12(vec2(TIME))) / dist;
+
+    if (UV.y <= offset.y) return;
+
+    if (color.r > lightning_color.r)
+        COLOR = vec4(color, 1.0);
+    else
+        COLOR = vec4(color, 0.0);
+}

@@ -1,0 +1,193 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionMagicArrowKunaiBeginner
+  parent: MedievalActionMagicArrowBeginner
+  name: medieval-store-spells-fire-magic-arrow-kunai-beginner-name
+  description: medieval-store-spells-fire-magic-arrow-kunai-beginner-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 20
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 4
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/arrow_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
+      state: 2
+    event: !type:MedievalEntityTargetProjectileSpellEvent
+      projectilePrototype: MedievalProjectileMagicArrowKunaiBeginner
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-magic-arrow
+          color: "#5B6EE1"
+          hideChat: true
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.35
+        addedEssences:
+          MagicMedievalFire1: 1
+  - type: DamageTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.3
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: TrainingTarget
+        addedEssences:
+          MagicMedievalFire1: 1
+      - !type:AddMagicEssence
+        probability: 0.35
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: MobState
+          - !type:MagicTargetMobStateCondition
+            allowedState: Alive
+        addedEssences:
+          MagicMedievalFire1: 1
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 2
+    whiteListComponents:
+      - type: Damageable
+
+# Middle
+
+- type: entity
+  id: MedievalActionMagicArrowKunaiMiddle
+  parent: MedievalActionMagicArrowBeginner
+  name: medieval-store-spells-fire-magic-arrow-kunai-middle-name
+  description: medieval-store-spells-fire-magic-arrow-kunai-middle-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 30
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 5
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/arrow_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
+      state: 1
+    event: !type:MedievalEntityTargetProjectileSpellEvent
+      projectilePrototype: MedievalProjectileMagicArrowKunaiMiddle
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-magic-arrow
+          color: "#5B6EE1"
+          hideChat: true
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.4
+        addedEssences:
+          MagicMedievalFire1: 1
+  - type: DamageTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.25
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: TrainingTarget
+        addedEssences:
+          MagicMedievalFire1: 1
+      - !type:AddMagicEssence
+        probability: 0.3
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: MobState
+          - !type:MagicTargetMobStateCondition
+            allowedState: Alive
+        addedEssences:
+          MagicMedievalFire1: 1
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 3
+    whiteListComponents:
+      - type: Damageable
+
+
+# Senior
+
+- type: entity
+  id: MedievalActionMagicArrowKunaiSenior
+  parent: MedievalActionMagicArrowBeginner
+  name: medieval-store-spells-fire-magic-arrow-kunai-senior-name
+  description: medieval-store-spells-fire-magic-arrow-kunai-senior-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 40
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+  - type: MedievalTargetSpell
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.45
+        addedEssences:
+          MagicMedievalFire1: 1
+  - type: DamageTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.25
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: TrainingTarget
+        addedEssences:
+          MagicMedievalFire1: 1
+      - !type:AddMagicEssence
+        probability: 0.3
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: MobState
+          - !type:MagicTargetMobStateCondition
+            allowedState: Alive
+        addedEssences:
+          MagicMedievalFire1: 1
+  - type: WorldTargetAction
+    useDelay: 6
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/arrow_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
+      state: 3
+    event: !type:MedievalEntityTargetProjectileSpellEvent
+      projectilePrototype: MedievalProjectileMagicArrowKunaiSenior
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-magic-arrow
+          color: "#5B6EE1"
+          hideChat: true
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 5
+    whiteListComponents:
+      - type: Damageable
+

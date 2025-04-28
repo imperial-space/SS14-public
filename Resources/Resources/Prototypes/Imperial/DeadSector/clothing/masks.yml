@@ -1,0 +1,212 @@
+- type: entity
+  id: BaseFelixGasMask
+  parent: ClothingMaskGas
+  name: gas mask
+  description: A face-covering mask that can be connected to an air supply.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/masks/G100Y.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/masks/G100Y.rsi
+  - type: GasMaskFullProtection
+    tolerableRadiation: 17
+  - type: RadiationReceiver
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.95
+        Radiation: 0.65
+
+- type: entity
+  id: g100x
+  parent: BaseFelixGasMask
+  name: gas mask
+  description: A face-covering mask that can be connected to an air supply.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/masks/G100X.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/masks/G100X.rsi
+  - type: GasMaskFullProtection
+    tolerableRadiation: 17
+
+- type: entity
+  id: g100g
+  parent: BaseFelixGasMask
+  name: gas mask
+  description: A face-covering mask that can be connected to an air supply.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/masks/G100G.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/masks/G100G.rsi
+  - type: GasMaskFullProtection
+    tolerableRadiation: 17
+
+- type: entity
+  id: g100y
+  parent: BaseFelixGasMask
+  name: gas mask
+  description: A face-covering mask that can be connected to an air supply.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/masks/G100Y.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/masks/G100Y.rsi
+  - type: GasMaskFullProtection
+    tolerableRadiation: 17
+
+- type: entity
+  id: gp7
+  parent: BaseFelixGasMask
+  name: gas mask
+  description: A face-covering mask that can be connected to an air supply.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/masks/GP7.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/masks/GP7.rsi
+  - type: GasMaskFullProtection
+    tolerableRadiation: 37
+
+- type: entity
+  id: gp5
+  parent: BaseFelixGasMask
+  name: gas mask
+  description: A face-covering mask that can be connected to an air supply.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/masks/GP5.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/masks/GP5.rsi
+  - type: GasMaskFullProtection
+    tolerableRadiation: 5
+
+- type: entity
+  id: m50
+  parent: BaseFelixGasMask
+  name: gas mask
+  description: A face-covering mask that can be connected to an air supply.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/masks/M50.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/masks/M50.rsi
+  - type: GasMaskFullProtection
+    tolerableRadiation: 85
+
+- type: entity
+  id: m4
+  parent: BaseFelixGasMask
+  name: gas mask
+  description: A face-covering mask that can be connected to an air supply.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/masks/M4.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/masks/M4.rsi
+  - type: GasMaskFullProtection
+    tolerableRadiation: 65
+
+- type: entity
+  id: m2
+  parent: BaseFelixGasMask
+  name: gas mask
+  description: A face-covering mask that can be connected to an air supply.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/masks/M2.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/masks/M2.rsi
+  - type: GasMaskFullProtection
+    tolerableRadiation: 3
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+
+- type: entity
+  id: m17a1g
+  parent: BaseFelixGasMask
+  name: gas mask
+  description: A face-covering mask that can be connected to an air supply.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/masks/M17A1G.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/masks/M17A1G.rsi
+  - type: GasMaskFullProtection
+    tolerableRadiation: 145
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+
+- type: entity
+  id: m17a1b
+  parent: BaseFelixGasMask
+  name: gas mask
+  description: A face-covering mask that can be connected to an air supply.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/masks/M17A1B.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/masks/M17A1B.rsi
+  - type: GasMaskFullProtection
+    tolerableRadiation: 45
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+
+- type: entity
+  id: FiltrationRespirator
+  parent: BaseFelixGasMask
+  name: gas mask
+  description: A face-covering mask that can be connected to an air supply.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/masks/FiltrationRespirator.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/masks/FiltrationRespirator.rsi
+  - type: GasMaskFullProtection
+    tolerableRadiation: 5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+
+- type: entity
+  id: lmms
+  parent: BaseFelixGasMask
+  name: gas mask
+  description: A face-covering mask that can be connected to an air supply.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/masks/LMMS.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/masks/LMMS.rsi
+  - type: GasMaskFullProtection
+    tolerableRadiation: 1.5
+
+- type: entity
+  id: lmmy
+  parent: BaseFelixGasMask
+  name: gas mask
+  description: A face-covering mask that can be connected to an air supply.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/masks/LMMY.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/masks/LMMY.rsi
+  - type: GasMaskFullProtection
+    tolerableRadiation: 1.5
+
+- type: entity
+  id: CamouflageMask
+  parent: ClothingMaskBase
+  name: camouflage mask
+  suffix: DeadSector
+  description: A simple mask that hides your face will not protect you from foreign gases.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/masks/camouflage.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/masks/camouflage.rsi

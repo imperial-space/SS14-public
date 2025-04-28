@@ -1,0 +1,92 @@
+- type: entity
+  name: pistol NDF-1
+  parent: BaseWeaponBatterySmall
+  id: WeaponPistolNDF1
+  description: Plasma pistol technology NDF Mod 1. Rapid-fire, but weak. It has plasma charge cells.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/pulse/WeaponPistolNDF1.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: Imperial/DeadSector/weapons/weapons/pulse/WeaponPistolNDF1.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: plasma_pistol
+    fireCost: 200
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+
+- type: entity
+  name: rifle RLT-1
+  parent: BaseWeaponBattery
+  id: WeaponRifleRLT1
+  description: Plasma rifle based on RLT Mod 1 technology. Quick-firing, but weak. It has plasma charge cells.
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,1,2
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/pulse/WeaponRifleRLT1.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: Imperial/DeadSector/weapons/weapons/pulse/WeaponRifleRLT1.rsi
+  - type: Gun
+    fireRate: 1.8
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: plasma_rifle_RLT1
+    fireCost: 100
+  - type: Battery
+    maxCharge: 5000
+    startingCharge: 5000
+
+- type: entity
+  name: rifle RLT-2
+  parent: BaseWeaponBattery
+  id: WeaponRifleRLT2
+  description: Plasma rifle using RLT Mod 2 technology. High power, but low rate of fire. It has plasma charge cells.
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,1,2
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/pulse/WeaponRifleRLT2.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: Imperial/DeadSector/weapons/weapons/pulse/WeaponRifleRLT2.rsi
+  - type: Gun
+    fireRate: 0.5
+    soundGunshot:
+      path: /Audio/Imperial/ert_sniper/laser_sniper.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: plasma_rifle_RLT2
+    fireCost: 100
+  - type: Battery
+    maxCharge: 5000
+    startingCharge: 5000

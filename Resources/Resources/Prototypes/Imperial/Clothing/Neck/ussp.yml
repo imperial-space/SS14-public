@@ -1,0 +1,29 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: USSPArmbandRed
+  name: red-tie
+  description: A neosilk clip-on red tie.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/armbands/redband.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/armbands/redband.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+
+- type: entity
+  parent: ClothingNeckBase
+  id: USSPArmbandEng
+  name: red-tie
+  description: A neosilk clip-on red tie.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/armbands/yelband.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/armbands/yelband.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade

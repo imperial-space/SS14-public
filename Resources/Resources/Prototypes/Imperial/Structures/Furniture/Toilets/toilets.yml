@@ -1,0 +1,54 @@
+- type: entity
+  id: GoldToilet
+  parent: ToiletEmpty
+  name: gold toilet
+  description: Shiny gold toilet for realy reach man
+  components:
+    - type: Sprite
+      sprite: Imperial/Structures/Furniture/Toilets/GoldenToilet.rsi
+    - type: Construction
+      graph: GoldToiletGraph
+      node: goldtoilet
+    - type: StaticPrice
+      price: 2000
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 200
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+            params:
+              volume: -6
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            IngotGold1:
+              min: 1
+              max: 3
+
+- type: construction
+  name: золотой туалет
+  id: GoldToilet
+  graph: GoldToiletGraph
+  startNode: start
+  targetNode: goldtoilet
+  category: construction-category-furniture
+  description: Только для богачей
+  icon:
+    sprite: Imperial/Structures/Furniture/Toilets/GoldenToilet.rsi
+    state: disposal
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

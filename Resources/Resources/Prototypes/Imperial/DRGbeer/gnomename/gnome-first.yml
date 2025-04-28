@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: names_gnome_first
+  values:
+    prefix: imperial-space-gnomes-first-
+    count: 22

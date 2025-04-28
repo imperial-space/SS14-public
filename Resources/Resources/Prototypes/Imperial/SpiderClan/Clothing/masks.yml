@@ -1,0 +1,50 @@
+- type: entity
+  parent: ClothingMaskBase
+  id: RedMaskNinja
+  name: ninja mask
+  suffix: Crook, SpiderClan
+  description: A close-fitting nano-enhanced mask that acts both as an air filter and a post-modern fashion statement. It has a red glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Default/Masks/redninja.rsi
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Default/Masks/redninja.rsi
+  - type: Item
+    storedRotation: -90
+  - type: EyeProtection
+  - type: BreathMask
+  - type: IdentityBlocker
+
+- type: entity
+  parent: ClothingMaskBase
+  id: BlueMaskNinja
+  name: ninja mask
+  suffix: Crook, SpiderClan
+  description: A close-fitting nano-enhanced mask that acts both as an air filter and a post-modern fashion statement. It has a blue glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Default/Masks/blueninja.rsi
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Default/Masks/blueninja.rsi
+  - type: Item
+    storedRotation: -90
+  - type: EyeProtection
+  - type: BreathMask
+  - type: IdentityBlocker
+
+- type: entity
+  parent: ClothingMaskBase
+  id: GreenMaskNinja
+  name: ninja mask
+  suffix: Crook, SpiderClan
+  description: A close-fitting nano-enhanced mask that acts both as an air filter and a post-modern fashion statement. It has a green glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Default/Masks/greenninja.rsi
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Default/Masks/greenninja.rsi
+  - type: Item
+    storedRotation: -90
+  - type: EyeProtection
+  - type: BreathMask
+  - type: IdentityBlocker

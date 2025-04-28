@@ -1,0 +1,382 @@
+# Предметы киборга уборщика
+- type: entity
+  parent: AdvMopItem
+  name: borg mop
+  id: BorgMopItem ## Швабра борга уборщика от Imperial Space
+  description: Motorized mop that has a bigger reservoir and quickly replaces reagents inside with water. Automatic Clown Countermeasure not included.
+  components:
+    - type: Sprite
+      sprite: Imperial/Roles/Synthetics/Janitorial/mop.rsi
+      layers:
+      - state: base
+    - type: SolutionRegeneration
+      solution: absorbed
+      generated:
+        reagents:
+          - ReagentId: Water
+            Quantity: 5
+    - type: SolutionPurge
+      solution: absorbed
+      preserve:
+        - Water
+      quantity: 20
+    - type: SolutionContainerManager
+      solutions:
+        absorbed:
+          maxVol: 200
+
+- type: entity
+  name: borg trash bag
+  id: TrashBagBorg # Мусорный пакет повышенной емкости для борга уборщика
+  parent: TrashBag
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/Synthetics/Janitorial/trashbag.rsi
+    layers:
+      - state: icon-0
+        map: ["enum.StorageFillLayers.Fill"]
+  - type: Storage
+    quickInsert: true
+    areaInsert: true
+    storageOpenSound:
+      collection: trashBagRustle
+    storageInsertSound:
+      collection: trashBagRustle
+    whitelist:
+      tags:
+        - Cartridge
+        - Trash
+
+# Предметы медицинского борга
+- type: entity
+  name: borg hypospray # Кастомный гипоспрей медицинского борга
+  parent: BaseItem
+  description: A sterile injector for rapid administration of drugs to patients.
+  id: HyposprayBorg
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: borghypo
+  - type: Item
+    sprite: Objects/Specific/Medical/hypospray.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 30
+  - type: RefillableSolution
+    solution: hypospray
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyAffectsMobs: false
+  - type: UseDelay
+    delay: 0.5
+  - type: StaticPrice
+    price: 750
+  - type: BorgHypo
+    Solutions:
+      - reagents:
+        - ReagentId: Bicaridine
+          Quantity: 1
+      - reagents:
+        - ReagentId: Dermaline
+          Quantity: 1
+      - reagents:
+        - ReagentId: Dexalin
+          Quantity: 1
+      - reagents:
+        - ReagentId: Inaprovaline
+          Quantity: 1
+      - reagents:
+        - ReagentId: Hyronalin
+          Quantity: 1
+      - reagents:
+        - ReagentId: Dylovene
+          Quantity: 1
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+        - ReagentId: Epinephrine
+          Quantity: 1
+
+- type: entity
+  id: ChangeReagent
+  name: action-name-change-reagent
+  description: action-description-change-reagent
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Objects/Specific/Medical/hypospray.rsi
+      state: borghypo
+    event: !type:ChangeReagentAction
+    useDelay: 1
+
+## Медицинский киборг синдиката
+- type: entity
+  id: PlayerBorgSyndicateMedicalBattery
+  parent: BorgChassisSyndicateMedical
+  suffix: Battery, Module, Operative
+  components:
+  - type: NukeOperative
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+      borg_module:
+        - BorgModuleTreatment
+        - BorgModuleDefibrillator
+        - BorgModuleAdvancedTreatmentSyndicate
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
+
+- type: entity
+  id: PlayerBorgSyndicateMedicalGhostRole
+  parent: PlayerBorgSyndicateMedicalBattery
+  suffix: Ghost role
+  components:
+    - type: GhostRole
+      name: ghost-role-information-syndicate-cyborg-medical-name
+      description: ghost-role-information-syndicate-medical-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: default
+    - type: GhostTakeoverAvailable
+
+
+- type: entity
+  name: syndi borg hypospray ## Гипоспрей борга синдиката
+  parent: HyposprayBorg
+  description: Using reverse engineered designs from NT, Cybersun produced these in limited quantities for Gorlex Marauder operatives.
+  id: SyndiHypoBorg
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: borghypo_s
+  - type: Item
+    sprite: Objects/Specific/Medical/hypospray.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 20
+  - type: RefillableSolution
+    solution: hypospray
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyAffectsMobs: false
+  - type: UseDelay
+    delay: 0.5
+  - type: BorgHypo
+    Solutions:
+      - reagents:
+        - ReagentId: Bicaridine
+          Quantity: 2
+      - reagents:
+        - ReagentId: Dermaline
+          Quantity: 2
+      - reagents:
+        - ReagentId: Dexalin
+          Quantity: 2
+      - reagents:
+        - ReagentId: Inaprovaline
+          Quantity: 2
+      - reagents:
+        - ReagentId: Hyronalin
+          Quantity: 2
+      - reagents:
+        - ReagentId: Dylovene
+          Quantity: 2
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+        - ReagentId: Epinephrine
+          Quantity: 1
+
+- type: entity
+  id: BorgModuleAdvancedTreatmentSyndicate
+  parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
+  name: advanced treatment cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-chemist
+  - type: ItemBorgModule
+    items:
+    - HandheldHealthAnalyzerUnpowered
+#    - Beaker  Imperial Space Удалено в связи с ребалансом медицинского борга
+#    - Beaker
+#    - BorgDropper
+#    - BorgHypo
+    - SyndiHypoBorg # Imperial Space Наш кастомный гипоспрей боргов
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-diagnosis-module }
+
+## Борг саботер
+- type: entity
+  id: Mimicry
+  name: action-name-mimicry
+  description: action-description-mimicry
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Imperial/Interface/Actions/borgs_imperial.rsi
+      state: mimicry
+    event: !type:MimicryEvent
+    useDelay: 4
+
+
+## Борг СБ'шник
+- type: entity
+  id: BorgModuleJawsSecurity # Модуль для вскрывания дверей. Содержит только челюсти жизни
+  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  name: tool security cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-security-instrument
+  - type: ItemBorgModule
+    items:
+    - JawsOfLife
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-instrument }
+  - type: Tag
+    tags:
+    - BorgModuleSecurityImperial
+
+- type: entity
+  name: borg's disabler
+  parent: WeaponDisabler
+  id: WeaponDisablerBorg
+  description: A stun baton for incapacitating people with. Actively harming with this is considered bad tone.
+  components:
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 50
+
+- type: entity
+  name: borg's stun baton
+  parent: Stunbaton
+  id: StunbatonBorg
+  description: A stun baton for incapacitating people with. Actively harming with this is considered bad tone.
+  components:
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 50
+
+- type: entity
+  name: flash
+  parent: [BaseItem, Flash]
+  id: FlashBorg
+  description: An advanced cyborg flash with a nuclear battery.
+  components:
+  - type: AutoRecharge
+    rechargeDuration: 20
+  - type: GenericVisualizer
+    visuals:
+      enum.FlashVisuals.Burnt:
+        enum.FlashVisuals.BaseLayer:
+          False: {state: burnt}
+      enum.FlashVisuals.Flashing:
+        enum.FlashVisuals.LightLayer:
+          True: {visible: true}
+          False: {visible: false}
+
+
+- type: entity
+  id: BorgModuleNonLethalSecurity # Нелетальный модуль СБ борга
+  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  name: NonLethal Security Module
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-nonlethalmodule-security
+  - type: ItemBorgModule
+    items:
+    - StunbatonBorg
+    - WeaponDisablerBorg
+    - FlashBorg
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-borg-unlethal } # Надо заменить, пока заглушка
+  - type: Tag
+    tags:
+    - BorgModuleSecurityImperial
+
+- type: entity
+  id: BorgModuleLethalSecurity # Летальный модуль СБ борга
+  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  name: Lethal Security Module
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-lethalmodule-security
+  - type: ItemBorgModule
+    items:
+    - WeaponLaserBorg
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-borg-lethal }  #Надо заменить
+  - type: Tag
+    tags:
+    - BorgModuleSecurityImperial
+
+
+- type: entity
+  name: borg's laser
+  parent: [BaseWeaponBatterySmall, BaseGrandTheftContraband]
+  id: WeaponLaserBorg
+  description: This is an antique laser pistol. All craftsmanship is of the highest quality. It is decorated with assistant leather and chrome. The object menaces with spikes of energy.
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/Synthetics/Security/borg_laser.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: Imperial/Roles/Synthetics/Security/borg_laser.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: RedMediumLaser
+    fireCost: 150
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 50
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 750
+
+- type: technology
+  id: WeaponLaserBorgTech
+  name: research-technology-weaponlaserborg
+  icon:
+    sprite: Imperial/Roles/Synthetics/Security/borg_laser.rsi
+    state: base
+  discipline: Arsenal
+  tier: 2
+  cost: 5000
+  recipeUnlocks:
+  - BorgModuleLethalSecurityRecipe
+
+
+- type: latheRecipe
+  parent: BaseBorgModuleRecipe
+  id: BorgModuleLethalSecurityRecipe
+  result: BorgModuleLethalSecurity

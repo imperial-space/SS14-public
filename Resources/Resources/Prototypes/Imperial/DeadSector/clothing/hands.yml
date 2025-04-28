@@ -1,0 +1,15 @@
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsGlovesCamouflage
+  name: camouflage gloves
+  suffix: DeadSector
+  description: null
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/hands/camouflage.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/hands/camouflage.rsi
+  - type: Fiber
+    fiberMaterial: fibers-leather
+    fiberColor: fibers-green
+  - type: FingerprintMask

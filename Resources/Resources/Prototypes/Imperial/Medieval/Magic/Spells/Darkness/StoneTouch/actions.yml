@@ -1,0 +1,92 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionStoneTouchBeginner
+  name: medieval-store-spells-darkness-stone-touch-beginner-name
+  description: medieval-store-spells-darkness-stone-touch-beginner-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.8
+        addedEssences:
+          MagicMedievalDarkness1: 1
+  - type: MedievalInstantSpell
+  - type: InstantAction
+    useDelay: 40
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/touch_summon.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/stone_touch.rsi
+      state: flesh_to_stone
+    event: !type:MedievalSpawnInHandSpellEvent
+      spawnedEntityPrototype: StoneTouchBeginner
+      spellCastDoAfter:
+        delay: 1.5
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 1
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-stone-touch
+          color: "#7D7D7D"
+          hideChat: true
+  - type: MedievalSpawnOnlyInFreeHands
+  - type: ManaDrainSpell
+    manaDrain: 60
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 20
+  - type: ActionUpgrade
+    effectedLevels:
+      2: MedievalActionStoneTouchMiddle
+
+# Middle
+
+- type: entity
+  id: MedievalActionStoneTouchMiddle
+  parent: MedievalActionStoneTouchBeginner
+  name: medieval-store-spells-darkness-stone-touch-middle-name
+  description: medieval-store-spells-darkness-stone-touch-middle-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.85
+        addedEssences:
+          MagicMedievalDarkness1: 1
+  - type: ManaDrainSpell
+    manaDrain: 80
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 26
+  - type: MedievalInstantSpell
+  - type: InstantAction
+    useDelay: 25
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/touch_summon.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/stone_touch.rsi
+      state: stone_touch
+    event: !type:MedievalSpawnInHandSpellEvent
+      spawnedEntityPrototype: StoneTouchMiddle
+      spellCastDoAfter:
+        delay: 1
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-stone-touch
+          color: "#7D7D7D"
+          hideChat: true

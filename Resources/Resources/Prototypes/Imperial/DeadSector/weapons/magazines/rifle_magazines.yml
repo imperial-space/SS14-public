@@ -1,0 +1,379 @@
+- type: entity
+  id: BaseMagazineAR57
+  name: magazine AR-57 (7x62x51 NATO)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineAR57
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    proto: CartridgeAR57
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeAR57
+    capacity: 35
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/rifle/AR57_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseMagazineAR57Piercing
+  name: magazine AR-57 (7x62x51 NATO-AP)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineAR57
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    proto: CartridgeAR57Piercing
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeAR57
+    capacity: 35
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/rifle/AR57_mag.rsi
+    layers:
+    - state: piercing
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseMagazineAR57LongRange
+  name: magazine AR-57 (7x62x51 NATO-T)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineAR57
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    proto: CartridgeAR57LongRange
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeAR57
+    capacity: 35
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/rifle/AR57_mag.rsi
+    layers:
+    - state: long-range
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseMagazineAR15
+  parent: BaseItem
+  name: pistol magazine (.35 MP9)
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeFelixCarabineAR
+    capacity: 40
+  - type: Appearance
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Tag
+    tags:
+      - MagazineAR15
+
+- type: entity
+  id: MagazineAR15
+  parent: BaseMagazineAR15
+  name: pistol magazine (.35 MP5)
+  suffix: Felix
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeCarabineAR
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/rifle/AR15_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: BaseMagazineAR15Piercing
+  name: magazine AR-15
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineAR15
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    proto: CartridgeAR15Piercing
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeFelixCarabineAR
+    capacity: 40
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/rifle/AR15_mag.rsi
+    layers:
+    - state: piercing
+      map: ["enum.GunVisualLayers.Base"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseMagazineAR15LongRange
+  name: magazine AR-15
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineAR15
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    proto: CartridgeAR15LongRange
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeFelixCarabineAR
+    capacity: 40
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/rifle/AR15_mag.rsi
+    layers:
+    - state: long-range
+      map: ["enum.GunVisualLayers.Base"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseMagazineHK416
+  parent: BaseItem
+  name: pistol magazine (.35 MP9)
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeFelixCarabineHK416
+    capacity: 15
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Tag
+    tags:
+      - MagazineHK416
+
+- type: entity
+  id: MagazineHK416
+  parent: BaseMagazineHK416
+  name: pistol magazine (.35 MP5)
+  suffix: Felix
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeCarabineHK416
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/rifle/HK416_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineArmorPiercingHK416
+  parent: BaseMagazineHK416
+  name: pistol magazine (.35 MP5)
+  suffix: Felix
+  components:
+  - type: BallisticAmmoProvider
+    proto: BulletArmorPiercingCarabineHK416
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/rifle/HK416_mag.rsi
+    layers:
+    - state: piercing
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: BaseMagazineHK416LongRange
+  name: magazine HK416
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineHK416
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    proto: CartridgeHK416LongRange
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeFelixCarabineHK416
+    capacity: 15
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/rifle/HK416_mag.rsi
+    layers:
+    - state: long-range
+      map: ["enum.GunVisualLayers.Base"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseMagazineAK102
+  name: pistol magazine (.35 MP9)
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeLightRifle
+    capacity: 20
+  - type: Appearance
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Tag
+    tags:
+      - MagazineLightRifle
+
+- type: entity
+  id: BaseMagazineAKS74y
+  name: pistol magazine (.35 MP9)
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeFelixCarabineAKS74y
+    capacity: 15
+  - type: Appearance
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Tag
+    tags:
+      - MagazineAKS74y
+
+- type: entity
+  id: MagazineAKS74y
+  parent: BaseMagazineAKS74y
+  name: pistol magazine (.35 MP5)
+  suffix: Felix
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeCarabineAKS74y
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/rifle/AKS74y_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineArmorPiercingAKS74y
+  parent: BaseMagazineAKS74y
+  name: pistol magazine (.35 MP5)
+  suffix: Felix
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeArmorPiercingCarabineAKS74y
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/rifle/AKS74y_mag.rsi
+    layers:
+    - state: piercing
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: BaseMagazineAKS74yLongRange
+  name: magazine AKS74y
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineAKS74y
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    proto: CartridgeAKS74yLongRange
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeFelixCarabineAKS74y
+    capacity: 15
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/magazines/rifle/AKS74y_mag.rsi
+    layers:
+    - state: long-range
+      map: ["enum.GunVisualLayers.Base"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance

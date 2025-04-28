@@ -1,0 +1,48 @@
+# Best job.
+
+- type: job
+  id: ChiefMedicalOfficer
+  name: job-name-cmo
+  description: job-description-cmo
+  playTimeTracker: JobChiefMedicalOfficer
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobChemist
+      time: 7200 #Imperial role timers
+    - !type:RoleTimeRequirement
+      role: JobMedicalDoctor
+      time: 7200 #Imperial role timers
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 28800 #Imperial role timers
+    - !type:AgeRequirement
+      requiredAge: 20
+  weight: 10
+  startingGear: CMOGear
+  icon: "JobIconChiefMedicalOfficer"
+  supervisors: job-supervisors-captain
+  canBeAntag: false
+  access:
+  - Medical
+  - Command
+  - Maintenance
+  - Chemistry
+  - ChiefMedicalOfficer
+  - Brig
+  - Cryogenics
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+
+- type: startingGear
+  id: CMOGear
+  equipment:
+    id: CMOPDA
+    ears: ClothingHeadsetCMO
+    belt: ClothingBeltMedicalFilled
+  storage:
+    back:
+    - Flash

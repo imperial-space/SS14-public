@@ -1,0 +1,24 @@
+- type: entity
+  parent: BaseStructure
+  id: Hive
+  name: Hive
+  suffix: HellIvent
+  description: Monsters Lair
+  components:
+  - type: Sprite
+    sprite: Imperial/HellIvent/Hive.rsi
+    state: Hive
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+      - MobXeno
+    intervalSeconds: 10

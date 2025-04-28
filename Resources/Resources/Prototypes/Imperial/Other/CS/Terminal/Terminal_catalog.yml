@@ -1,0 +1,578 @@
+# CT side
+# Pistols
+- type: listing
+  id: TerminalPistolUSPS
+  name: terminal-pistol-usp-s
+  description: terminal-pistol-usp-s-desc
+  productEntity: CSWeaponUSP-S
+  cost:
+    WarCredit: 200
+  categories:
+  - CT_Pistols
+
+- type: listing
+  id: TerminalPistolDualBeretta
+  name: terminal-pistol-dual-beretta
+  description: terminal-pistol-dual-beretta-desc
+  productEntity: CSWeaponDualBeretta
+  cost:
+    WarCredit: 300
+  categories:
+  - CT_Pistols
+
+- type: listing
+  id: TerminalPistolFiveSeven
+  name: terminal-pistol-five-seven
+  description: terminal-pistol-five-seven-desc
+  productEntity: CSWeaponFiveSeven
+  cost:
+    WarCredit: 500
+  categories:
+  - CT_Pistols
+
+- type: listing
+  id: TerminalPistolCZAuto
+  name: terminal-pistol-cz-auto
+  description: terminal-pistol-cz-auto-desc
+  productEntity: CSWeaponCZ
+  cost:
+    WarCredit: 500
+  categories:
+  - CT_Pistols
+
+- type: listing
+  id: TerminalPistolR8
+  name: terminal-pistol-r-8
+  description: terminal-pistol-r-8-desc
+  productEntity: WeaponRevolverR-8
+  cost:
+    WarCredit: 600
+  categories:
+  - CT_Pistols
+
+# Rifles
+- type: listing
+  id: TerminalRiflesLecter
+  name: terminal-rifles-lecter
+  description: terminal-rifles-lecter-desc
+  productEntity: WeaponRifleLecter
+  cost:
+    WarCredit: 3100
+  categories:
+  - CT_Rifles
+
+- type: listing
+  id: TerminalRiflesSCAR
+  name: terminal-rifles-scar
+  description: terminal-rifles-scar-desc
+  productEntity: CSWeaponSCAR-L
+  cost:
+    WarCredit: 3600
+  categories:
+  - CT_Rifles
+
+- type: listing
+  id: TerminalRiflesHristov
+  name: terminal-rifles-hristov
+  description: terminal-rifles-hristov-desc
+  productEntity: WeaponSniperHristov
+  cost:
+    WarCredit: 1700
+  categories:
+  - CT_Rifles
+
+- type: listing
+  id: TerminalRiflesAWP
+  name: terminal-rifles-awp
+  description: terminal-rifles-awp-desc
+  productEntity: WeaponSniperAWP
+  cost:
+    WarCredit: 4750
+  categories:
+  - CT_Rifles
+
+# Submachine_gun
+- type: listing
+  id: TerminalSubmachineGunMP5
+  name: terminal-submachine-gun-mp5
+  description: terminal-submachine-gun-mp5-desc
+  productEntity: CSWeaponMP5
+  cost:
+    WarCredit: 1250
+  categories:
+  - CT_Submachine_gun
+
+- type: listing
+  id: TerminalSubmachineGunP90
+  name: terminal-submachine-gun-p90
+  description: terminal-submachine-gun-p90-desc
+  productEntity: CSWeaponP90
+  cost:
+    WarCredit: 2450
+  categories:
+  - CT_Submachine_gun
+
+- type: listing
+  id: TerminalSubmachineGunBizon
+  name: terminal-submachine-gun-bizon
+  description: terminal-submachine-gun-bizon-desc
+  productEntity: CSWeaponBizon
+  cost:
+    WarCredit: 1600
+  categories:
+  - CT_Submachine_gun
+
+# Heavy
+- type: listing
+  id: TerminalHeavyKammerer
+  name: terminal-heavy-kammerer
+  description: terminal-heavy-kammerer-desc
+  productEntity: WeaponShotgunKammerer
+  cost:
+    WarCredit: 1050
+  categories:
+  - CT_Heavy
+
+- type: listing
+  id: TerminalHeavyEnforcer
+  name: terminal-heavy-enforcer
+  description: terminal-heavy-enforcer-desc
+  productEntity: WeaponShotgunEnforcer
+  cost:
+    WarCredit: 2100
+  categories:
+  - CT_Heavy
+
+- type: listing
+  id: TerminalHeavyL6
+  name: terminal-heavy-l6
+  description: terminal-heavy-l6-desc
+  productEntity: WeaponLightMachineGunL6
+  cost:
+    WarCredit: 5200
+  categories:
+  - CT_Heavy
+
+# Protection
+- type: listing
+  id: TerminalProtectionArmor
+  name: terminal-protection-armor
+  description: terminal-protection-armor-desc
+  productEntity: ClothingOuterArmorBasic
+  cost:
+    WarCredit: 1150
+  categories:
+  - CT_Protection
+
+- type: listing
+  id: TerminalProtectionCTGlasses
+  name: terminal-protection-ct-glasses
+  description: terminal-protection-ct-glasses-desc
+  productEntity: ClothingEyesGlassesSecurity
+  cost:
+    WarCredit: 350
+  categories:
+  - CT_Protection
+
+# T side
+# Pistols
+- type: listing
+  id: TerminalPistolGlock18
+  name: terminal-pistol-glock-18
+  description: terminal-pistol-glock-18-desc
+  productEntity: CSWeaponGlock-18
+  cost:
+    WarCredit: 200
+  categories:
+  - T_Pistols
+
+- type: listing
+  id: TerminalPistolDualBerettaT
+  name: terminal-pistol-dual-beretta
+  description: terminal-pistol-dual-beretta-desc
+  productEntity: CSWeaponDualBeretta
+  cost:
+    WarCredit: 300
+  categories:
+  - T_Pistols
+
+- type: listing
+  id: TerminalPistolTEC9
+  name: terminal-pistol-tec-9
+  description: terminal-pistol-tec-9-desc
+  productEntity: CSWeaponTEC-9
+  cost:
+    WarCredit: 500
+  categories:
+  - T_Pistols
+
+- type: listing
+  id: TerminalPistolCZAutoT
+  name: terminal-pistol-cz-auto
+  description: terminal-pistol-cz-auto-desc
+  productEntity: CSWeaponCZ
+  cost:
+    WarCredit: 500
+  categories:
+  - T_Pistols
+
+- type: listing
+  id: TerminalPistolR8T
+  name: terminal-pistol-r-8
+  description: terminal-pistol-r-8-desc
+  productEntity: WeaponRevolverR-8
+  cost:
+    WarCredit: 600
+  categories:
+  - T_Pistols
+
+# Rifles
+- type: listing
+  id: TerminalRiflesAk
+  name: terminal-rifles-ak
+  description: terminal-rifles-ak-desc
+  productEntity: WeaponRifleAk
+  cost:
+    WarCredit: 2700
+  categories:
+  - T_Rifles
+
+- type: listing
+  id: TerminalRiflesSCART
+  name: terminal-rifles-scar
+  description: terminal-rifles-scar-desc
+  productEntity: CSWeaponSCAR-L
+  cost:
+    WarCredit: 3600
+  categories:
+  - T_Rifles
+
+- type: listing
+  id: TerminalRiflesHristovT
+  name: terminal-rifles-hristov
+  description: terminal-rifles-hristov-desc
+  productEntity: WeaponSniperHristov
+  cost:
+    WarCredit: 1700
+  categories:
+  - T_Rifles
+
+- type: listing
+  id: TerminalRiflesAWPT
+  name: terminal-rifles-awp
+  description: terminal-rifles-awp-desc
+  productEntity: WeaponSniperAWP
+  cost:
+    WarCredit: 4750
+  categories:
+  - T_Rifles
+
+# Submachine_gun
+- type: listing
+  id: TerminalSubmachineGunMac10
+  name: terminal-submachine-gun-mac10
+  description: terminal-submachine-gun-mac10-desc
+  productEntity: CSWeaponMac-10
+  cost:
+    WarCredit: 1050
+  categories:
+  - T_Submachine_gun
+
+- type: listing
+  id: TerminalSubmachineGunP90T
+  name: terminal-submachine-gun-p90
+  description: terminal-submachine-gun-p90-desc
+  productEntity: CSWeaponP90
+  cost:
+    WarCredit: 2450
+  categories:
+  - T_Submachine_gun
+
+- type: listing
+  id: TerminalSubmachineGunBizonT
+  name: terminal-submachine-gun-bizon
+  description: terminal-submachine-gun-bizon-desc
+  productEntity: CSWeaponBizon
+  cost:
+    WarCredit: 1600
+  categories:
+  - T_Submachine_gun
+
+# Heavy
+- type: listing
+  id: TerminalHeavyKammererT
+  name: terminal-heavy-kammerer
+  description: terminal-heavy-kammerer-desc
+  productEntity: WeaponShotgunKammerer
+  cost:
+    WarCredit: 1050
+  categories:
+  - T_Heavy
+
+- type: listing
+  id: TerminalHeavyEnforcerT
+  name: terminal-heavy-enforcer
+  description: terminal-heavy-enforcer-desc
+  productEntity: WeaponShotgunEnforcer
+  cost:
+    WarCredit: 2100
+  categories:
+  - T_Heavy
+
+- type: listing
+  id: TerminalHeavyL6T
+  name: terminal-heavy-l6
+  description: terminal-heavy-l6-desc
+  productEntity: WeaponLightMachineGunL6
+  cost:
+    WarCredit: 5200
+  categories:
+  - T_Heavy
+
+# Protection
+- type: listing
+  id: TerminalProtectionArmorT
+  name: terminal-protection-armor
+  description: terminal-protection-armor-desc
+  productEntity: ClothingOuterArmorBasic
+  cost:
+    WarCredit: 1150
+  categories:
+  - T_Protection
+
+- type: listing
+  id: TerminalProtectionTGlasses
+  name: terminal-protection-t-glasses
+  description: terminal-protection-t-glasses-desc
+  productEntity: ClothingEyesGlassesSunglasses
+  cost:
+    WarCredit: 350
+  categories:
+  - T_Protection
+
+# All side
+# Grenades
+- type: listing
+  id: TerminalGrenadesFlashbang
+  name: terminal-grenades-flashbang
+  description: terminal-grenades-flashbang-desc
+  productEntity: GrenadeFlashBang
+  cost:
+    WarCredit: 200
+  categories:
+  - CS_Grenades
+
+- type: listing
+  id: TerminalGrenadesSmoke
+  name: terminal-grenades-smoke
+  description: terminal-grenades-smoke-desc
+  productEntity: SmokeGrenade
+  cost:
+    WarCredit: 300
+  categories:
+  - CS_Grenades
+
+- type: listing
+  id: TerminalGrenadesShrapnel
+  name: terminal-grenades-shrapnel
+  description: terminal-grenades-shrapnel-desc
+  productEntity: GrenadeShrapnel
+  cost:
+    WarCredit: 400
+  categories:
+  - CS_Grenades
+
+# Ammo
+# Ammo-pistols
+- type: listing
+  id: TerminalAmmoPistolsUSPS
+  name: terminal-ammo-pistols-usp-s
+  description: terminal-ammo-pistols-usp-s-desc
+  productEntity: MagazinePistolCaselessRifle
+  cost:
+    WarCredit: 75
+  categories:
+  - CS_Ammo_Pistols
+
+- type: listing
+  id: TerminalAmmoPistolsGlock18
+  name: terminal-ammo-pistols-glock-18
+  description: terminal-ammo-pistols-glock-18-desc
+  productEntity: Glock18MagazinePistol
+  cost:
+    WarCredit: 75
+  categories:
+  - CS_Ammo_Pistols
+
+- type: listing
+  id: TerminalAmmoPistolsDualBeretta
+  name: terminal-ammo-pistols-dual-beretta
+  description: terminal-ammo-pistols-dual-beretta-desc
+  productEntity: BerettaMagazinePistol
+  cost:
+    WarCredit: 75
+  categories:
+  - CS_Ammo_Pistols
+
+- type: listing
+  id: TerminalAmmoPistolsFiveSeven
+  name: terminal-ammo-pistols-five-seven
+  description: terminal-ammo-pistols-five-seven-desc
+  productEntity: MagazinePistol
+  cost:
+    WarCredit: 75
+  categories:
+  - CS_Ammo_Pistols
+
+- type: listing
+  id: TerminalAmmoPistolsTEC9
+  name: terminal-ammo-pistols-tec-9
+  description: terminal-ammo-pistols-tec-9-desc
+  productEntity: mac10-Magazine
+  cost:
+    WarCredit: 75
+  categories:
+  - CS_Ammo_Pistols
+
+- type: listing
+  id: TerminalAmmoPistolsCZAuto
+  name: terminal-ammo-pistols-cz-auto
+  description: terminal-ammo-pistols-cz-auto-desc
+  productEntity: mac10-Magazine
+  cost:
+    WarCredit: 75
+  categories:
+  - CS_Ammo_Pistols
+
+- type: listing
+  id: TerminalAmmoPistolsR8
+  name: terminal-ammo-pistols-r-8
+  description: terminal-ammo-pistols-r-8-desc
+  productEntity: SpeedLoaderR-8
+  cost:
+    WarCredit: 75
+  categories:
+  - CS_Ammo_Pistols
+
+# Ammo-rifles
+- type: listing
+  id: TerminalAmmoRiflessLecter
+  name: terminal-ammo-rifles-lecter
+  description: terminal-ammo-rifles-lecter-desc
+  productEntity: MagazineRifle
+  cost:
+    WarCredit: 250
+  categories:
+  - CS_Ammo_Rifles
+
+- type: listing
+  id: TerminalAmmoRiflessAK
+  name: terminal-ammo-rifles-ak
+  description: terminal-ammo-rifles-ak-desc
+  productEntity: MagazineLightRifle
+  cost:
+    WarCredit: 250
+  categories:
+  - CS_Ammo_Rifles
+
+- type: listing
+  id: TerminalAmmoRiflessSCAR
+  name: terminal-ammo-rifles-scar
+  description: terminal-ammo-rifles-scar-desc
+  productEntity: SCAR-Magazine
+  cost:
+    WarCredit: 250
+  categories:
+  - CS_Ammo_Rifles
+
+- type: listing
+  id: TerminalAmmoRiflessHristov
+  name: terminal-ammo-rifles-hristov
+  description: terminal-ammo-rifles-hristov-desc
+  productEntity: MagazineBoxAntiMateriel
+  cost:
+    WarCredit: 350
+  categories:
+  - CS_Ammo_Rifles
+
+- type: listing
+  id: TerminalAmmoRiflessAWP
+  name: terminal-ammo-rifles-awp
+  description: terminal-ammo-rifles-awp-desc
+  productEntity: AWP-magazine
+  cost:
+    WarCredit: 500
+  categories:
+  - CS_Ammo_Rifles
+
+# Ammo-submachine-gun
+- type: listing
+  id: TerminalAmmoSubmachineGunMP5
+  name: terminal-ammo-submachine-gun-mp5
+  description: terminal-ammo-submachine-gun-mp5-desc
+  productEntity: mp5-Magazine
+  cost:
+    WarCredit: 100
+  categories:
+  - CS_Ammo_Submachine_Gun
+
+- type: listing
+  id: TerminalAmmoSubmachineGunMac10
+  name: terminal-ammo-submachine-gun-mac10
+  description: terminal-ammo-submachine-gun-mac10-desc
+  productEntity: mac10-Magazine
+  cost:
+    WarCredit: 100
+  categories:
+  - CS_Ammo_Submachine_Gun
+
+- type: listing
+  id: TerminalAmmoSubmachineGunP90
+  name: terminal-ammo-submachine-gun-p90
+  description: terminal-ammo-submachine-gun-p90-desc
+  productEntity: p90-Magazine
+  cost:
+    WarCredit: 100
+  categories:
+  - CS_Ammo_Submachine_Gun
+
+- type: listing
+  id: TerminalAmmoSubmachineGunBizon
+  name: terminal-ammo-submachine-gun-bizon
+  description: terminal-ammo-submachine-gun-bizon-desc
+  productEntity: bizon-Magazine
+  cost:
+    WarCredit: 100
+  categories:
+  - CS_Ammo_Submachine_Gun
+
+# Ammo-heavy
+- type: listing
+  id: TerminalAmmoHeavyBase
+  name: terminal-ammo-heavy-base
+  description: terminal-ammo-heavy-base-desc
+  productEntity: MagazineShotgun
+  cost:
+    WarCredit: 175
+  categories:
+  - CS_Ammo_Heavy
+
+- type: listing
+  id: TerminalAmmoHeavySlug
+  name: terminal-ammo-heavy-slug
+  description: terminal-ammo-heavy-slug-desc
+  productEntity: MagazineShotgunSlug
+  cost:
+    WarCredit: 175
+  categories:
+  - CS_Ammo_Heavy
+
+- type: listing
+  id: TerminalAmmoHeavyL6
+  name: terminal-ammo-heavy-l6
+  description: terminal-ammo-heavy-l6-desc
+  productEntity: MagazineLightRifleBox
+  cost:
+    WarCredit: 300
+  categories:
+  - CS_Ammo_Heavy

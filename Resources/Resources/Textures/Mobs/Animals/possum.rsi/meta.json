@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for the Imperial Space community, authors'es discord nickname: limemint",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "possum",
+      "directions": 4
+    },
+    {
+      "name": "possum_dead"
+    },
+    {
+      "name": "poppy",
+      "directions": 4
+    },
+    {
+      "name": "poppy_dead"
+    }
+  ]
+}

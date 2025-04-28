@@ -1,0 +1,132 @@
+- type: entity
+  parent: [ClothingHeadEVAHelmetBase, BaseMajorContraband]
+  id: RedHelmetSpaceNinja
+  name: space ninja helmet
+  suffix: Crook, SpiderClan
+  description: What may appear to be a simple black garment is in fact a highly sophisticated nano-weave helmet. Standard issue ninja gear. It has a red glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Default/Helmets/redninja.rsi
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Default/Helmets/redninja.rsi
+  - type: Tag
+    tags:
+    - HidesHair
+    - WhitelistChameleon
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+
+- type: entity
+  parent: [ClothingHeadEVAHelmetBase, BaseMajorContraband]
+  id: BlueHelmetSpaceNinja
+  name: space ninja helmet
+  suffix: Crook, SpiderClan
+  description: What may appear to be a simple black garment is in fact a highly sophisticated nano-weave helmet. Standard issue ninja gear. It has a blue glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Default/Helmets/blueninja.rsi
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Default/Helmets/blueninja.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: [ClothingHeadEVAHelmetBase, BaseMajorContraband]
+  id: GreenHelmetSpaceNinja
+  name: space ninja helmet
+  suffix: Crook, SpiderClan
+  description: What may appear to be a simple black garment is in fact a highly sophisticated nano-weave helmet. Standard issue ninja gear. It has a green glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Default/Helmets/greenninja.rsi
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Default/Helmets/greenninja.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: [ClothingHeadBase, BaseMajorContraband]
+  id: RedAltHelmetSpaceNinja
+  name: space ninja mask
+  suffix: Crook, SpiderClan
+  description: A nano-weave mask based on the Spider Clan's most advanced technology, capable of protecting against depressurisation despite its openness. It glows with a red light.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Alternative/Helmets/redninja.rsi
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Alternative/Helmets/redninja.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.2
+    coolingCoefficient: 0.2
+
+- type: entity
+  parent: [ClothingHeadBase, BaseMajorContraband]
+  id: BlueAltHelmetSpaceNinja
+  name: space ninja mask
+  suffix: Crook, SpiderClan
+  description: A nano-weave mask based on the Spider Clan's most advanced technology, capable of protecting against depressurisation despite its openness. It glows with a blue light.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Alternative/Helmets/blueninja.rsi
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Alternative/Helmets/blueninja.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.2
+    coolingCoefficient: 0.2
+
+- type: entity
+  parent: [ClothingHeadBase, BaseMajorContraband]
+  id: GreenAltHelmetSpaceNinja
+  name: space ninja mask
+  suffix: Crook, SpiderClan
+  description: A nano-weave mask based on the Spider Clan's most advanced technology, capable of protecting against depressurisation despite its openness. It glows with a green light.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Alternative/Helmets/greenninja.rsi
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Alternative/Helmets/greenninja.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.2
+    coolingCoefficient: 0.2

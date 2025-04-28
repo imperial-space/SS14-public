@@ -1,0 +1,25 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "The sprite was made by CrookLv for uuuuu #ImperialSpace",
+    "states": [
+        {
+            "name": "AdditionalMission",
+            "directions": 1,
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
+        }
+    ]
+}

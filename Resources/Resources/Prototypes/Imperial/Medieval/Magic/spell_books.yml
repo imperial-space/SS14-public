@@ -1,0 +1,209 @@
+- type: entity
+  parent: BaseItem
+  id: MedievalSpellBookBase
+  name: Вобля
+  description: Гримуар может быть только один у мага. Он привязан к своему владельцу и нужен для изучения заклинаний.
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/magic_book.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Medieval/Misc/magic_book.rsi
+  - type: UserInterface
+    interfaces:
+      enum.ImperialStoreUiKey.Key:
+        type: ImperialStoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.ImperialStoreUiKey.Key
+  - type: BindStoreOnEquip
+  - type: ImperialStore
+    name: medieval-store-name
+    withdrawText: medieval-store-withdraw-button-text
+    currencyTitle: medieval-store-currency-title-text
+    cannotAccessStoreText: medieval-store-cannot-access-text
+    ownerOnly: true
+    categories:
+    - MedievalFireSpells
+    - MedievalLightSpells
+    - MedievalVodkaSpells
+    - MedievalDarknessSpells
+    currencyWhitelist:
+    - MagicMedievalFire
+    - MagicMedievalLight
+    - MagicMedievalVodka
+    - MagicMedievalDarkness
+    - ArchmagePoints
+    balance:
+      MagicMedievalFire: 80
+      MagicMedievalLight: 80
+      MagicMedievalVodka: 80
+      MagicMedievalDarkness: 10
+      ArchmagePoints: 1
+
+- type: entity
+  parent: MedievalSpellBookBase
+  id: MedievalSpellBookRecodeCollegiumStrong
+  name: магический гримуар архимага коллегии
+  description: Гримуар может быть только один у мага. Он привязан к своему владельцу и нужен для изучения заклинаний.
+  suffix: Empty
+  components:
+  - type: ImperialStore
+    balance:
+      MagicMedievalFire: 100
+      MagicMedievalLight: 100
+      MagicMedievalVodka: 100
+      MagicMedievalDarkness: 20
+      ArchmagePoints: 4
+
+- type: entity
+  parent: MedievalSpellBookBase
+  id: MedievalSpellBookRecodeWandermag
+  name: магический гримуар странствующего мага
+  description: Гримуар может быть только один у мага. Он привязан к своему владельцу и нужен для изучения заклинаний.
+  suffix: Empty
+  components:
+  - type: ImperialStore
+    balance:
+      MagicMedievalFire: 70
+      MagicMedievalLight: 70
+      MagicMedievalVodka: 70
+      MagicMedievalDarkness: 0
+      ArchmagePoints: 2
+
+- type: entity
+  parent: MedievalSpellBookBase
+  id: MedievalSpellBookRecodeFactionTribe
+  name: магический гримуар шамана племени
+  description: Гримуар может быть только один у мага. Он привязан к своему владельцу и нужен для изучения заклинаний.
+  suffix: Empty
+  components:
+  - type: ImperialStore
+    balance:
+      MagicMedievalFire: 70
+      MagicMedievalLight: 70
+      MagicMedievalVodka: 70
+      MagicMedievalDarkness: 45
+      ArchmagePoints: 2
+
+- type: entity
+  parent: MedievalSpellBookBase
+  id: MedievalSpellBookRecodeFactionInsurgency
+  name: магический гримуар мага мятежников
+  description: Гримуар может быть только один у мага. Он привязан к своему владельцу и нужен для изучения заклинаний.
+  suffix: Empty
+  components:
+  - type: ImperialStore
+    balance:
+      MagicMedievalFire: 70
+      MagicMedievalLight: 70
+      MagicMedievalVodka: 70
+      MagicMedievalDarkness: 0
+      ArchmagePoints: 2
+
+- type: entity
+  parent: MedievalSpellBookBase
+  id: MedievalSpellBookRecodeFactionLegion
+  name: магический гримуар мага легиона
+  description: Гримуар может быть только один у мага. Он привязан к своему владельцу и нужен для изучения заклинаний.
+  suffix: Empty
+  components:
+  - type: ImperialStore
+    balance:
+      MagicMedievalFire: 70
+      MagicMedievalLight: 70
+      MagicMedievalVodka: 70
+      MagicMedievalDarkness: 0
+      ArchmagePoints: 2
+
+
+- type: entity
+  parent: MedievalSpellBookBase
+  id: MedievalSpellBookRecodeCollegiumMedium
+  name: магический гримуар мага коллегии
+  description: Гримуар может быть только один у мага. Он привязан к своему владельцу и нужен для изучения заклинаний.
+  suffix: Empty
+  components:
+  - type: ImperialStore
+    balance:
+      MagicMedievalFire: 70
+      MagicMedievalLight: 70
+      MagicMedievalVodka: 70
+      MagicMedievalDarkness: 0
+      ArchmagePoints: 2
+
+- type: entity
+  parent: MedievalSpellBookBase
+  id: MedievalSpellBookRecodeNecro
+  name: магический гримуар некроманта
+  description: Гримуар может быть только один у мага. Он привязан к своему владельцу и нужен для изучения заклинаний.
+  suffix: Empty
+  components:
+  - type: ImperialStore
+    balance:
+      MagicMedievalFire: 55
+      MagicMedievalLight: 55
+      MagicMedievalVodka: 55
+      MagicMedievalDarkness: 100
+      ArchmagePoints: 1
+
+- type: entity
+  parent: MedievalSpellBookBase
+  id: MedievalSpellBookRecodeCollegiumWeak
+  name: магический гримуар ученика магии
+  description: Гримуар может быть только один у мага. Он привязан к своему владельцу и нужен для изучения заклинаний.
+  suffix: Empty
+  components:
+  - type: ImperialStore
+    balance:
+      MagicMedievalFire: 45
+      MagicMedievalLight: 45
+      MagicMedievalVodka: 45
+      MagicMedievalDarkness: 0
+      ArchmagePoints: 1
+
+
+- type: entity
+  parent: MedievalSpellBookBase
+  id: MedievalSpellBookRecodeCollegiumWeakFire
+  name: магический гримуар ученика огненной магии
+  description: Гримуар может быть только один у мага. Он привязан к своему владельцу и нужен для изучения заклинаний.
+  suffix: Empty
+  components:
+  - type: ImperialStore
+    balance:
+      MagicMedievalFire: 50
+      MagicMedievalLight: 25
+      MagicMedievalVodka: 25
+      MagicMedievalDarkness: 0
+      ArchmagePoints: 0
+
+- type: entity
+  parent: MedievalSpellBookBase
+  id: MedievalSpellBookRecodeCollegiumWeakWater
+  name: магический гримуар ученика магии воды
+  description: Гримуар может быть только один у мага. Он привязан к своему владельцу и нужен для изучения заклинаний.
+  suffix: Empty
+  components:
+  - type: ImperialStore
+    balance:
+      MagicMedievalFire: 25
+      MagicMedievalLight: 25
+      MagicMedievalVodka: 50
+      MagicMedievalDarkness: 0
+      ArchmagePoints: 0
+
+- type: entity
+  parent: MedievalSpellBookBase
+  id: MedievalSpellBookRecodeCollegiumWeakHoly
+  name: магический гримуар ученика магии света
+  description: Гримуар может быть только один у мага. Он привязан к своему владельцу и нужен для изучения заклинаний.
+  suffix: Empty
+  components:
+  - type: ImperialStore
+    balance:
+      MagicMedievalFire: 25
+      MagicMedievalLight: 50
+      MagicMedievalVodka: 25
+      MagicMedievalDarkness: 0
+      ArchmagePoints: 0

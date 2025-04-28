@@ -1,0 +1,39 @@
+{
+	"version": 1,
+	"license": "CC-BY-SA-3.0",
+  "copyright": "Sprites by lune_felix",
+	"size": {
+		"x": 32,
+		"y": 32
+	},
+	"states": [
+        {
+            "name": "brutepack_Felix"
+        },
+        {
+            "name": "brutepack_Felix-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "brutepack_felix-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "packing_bandage"
+        },
+        {
+            "name": "packing_bandage-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "packing_bandage-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "gauze"
+        },
+        {
+            "name": "compressionPack"
+        }
+    ]
+}

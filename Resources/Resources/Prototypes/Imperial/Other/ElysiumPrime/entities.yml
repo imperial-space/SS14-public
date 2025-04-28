@@ -1,0 +1,355 @@
+#This is base PDA for Imperial prototypes.
+#Use this, when you want to add new PDA. Just load sprites in /Imperial/customPDA.rsi
+#And make prototype with parent from this.
+#Good Luck.
+
+- type: entity
+  abstract: true
+  id: BaseCustomPDA
+  parent: BasePDA
+  components:
+  - type: Sprite
+    sprite: Imperial/Objects/Devices/customPDA.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Icon
+    sprite: Imperial/Objects/Devices/customPDA.rsi
+    state: pda
+  - type: Pda
+  - type: PdaBorderColor
+
+
+#Federation access
+- type: accessLevel
+  id: Federation
+  name: id-card-access-level-federation
+#Federation access
+
+#Door Electronics
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsFederation
+  suffix: ЗАКРЫТ, ElysiumPrime
+  components:
+  - type: AccessReader
+    access: [["Federation"]]
+#Door Electronics END
+
+#Tables
+- type: entity
+  id: BlackTableReinforced
+  parent: TableBase
+  name: reinforced table
+  description: A square piece of metal standing on four metal legs.
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Objects/Tables/reinforced.rsi
+  - type: Icon
+    sprite: Imperial/Other/ElysiumPrime/Objects/Tables/reinforced.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 2
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: Table
+    node: TableReinforced
+  - type: Climbable
+    # Reinforced tables are extra tough
+  - type: Bonkable
+    bonkDamage:
+      types:
+        Blunt: 8
+    bonkTime: 3
+
+- type: entity
+  id: BlackTableReinforcedGlass
+  parent: TableBase
+  name: reinforced glass table
+  description: A square piece of glass, standing on four metal legs.
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Objects/Tables/reinforced-glass.rsi
+  - type: Icon
+    sprite: Imperial/Other/ElysiumPrime/Objects/Tables/reinforced-glass.rsi
+  - type: GlassTable
+    climberDamage:
+      types:
+        Slash: 25
+    tableDamage:
+      types:
+        Blunt: 40
+    tableMassLimit: 120
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: TableFrame
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 1
+          PartRodMetal1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: Table
+    node: TableReinforcedGlass
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepTile
+#Tables END
+
+#Chairs
+- type: entity
+  name: steel chair
+  id: BlackSteelChair
+  description: You're sitting on it. Either by your own free will or by compulsion.
+  suffix: ElysiumPrime
+  parent: ChairBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Objects/Chairs/steel.rsi
+    state: chair
+  - type: Construction
+    graph: Seat
+    node: chair
+#Chairs END
+
+#Airlocks
+- type: entity
+  id: AirlockMaintElysiumFederation
+  parent: Airlock
+  suffix: ElysiumPrime
+  name: airlock of the Federation
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Airlocks/normal.rsi
+
+- type: entity
+  id: AirlockElysiumFederationLocked
+  parent: Airlock
+  suffix: ЗАКРЫТ, ElysiumPrime
+  name: airlock of the Federation
+  description: It looks very capitalist.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Airlocks/federation.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFederation ]
+
+- type: entity
+  id: AirlockElysiumFederation
+  parent: Airlock
+  suffix: ElysiumPrime
+  name: airlock of the Federation
+  description: It looks very capitalist.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Airlocks/federation.rsi
+#Airlocks END
+
+#Banners and flags
+- type: entity
+  id: BannerElysiumFederationCommand
+  parent: BannerBase
+  suffix: ElysiumPrime
+  name: command banner of the Federation
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/banners.rsi
+    state: command
+
+- type: entity
+  id: BannerElysiumFederationCitizen
+  parent: BannerBase
+  suffix: ElysiumPrime
+  name: citizen banner of the Federation
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/banners.rsi
+    state: citizen
+
+- type: entity
+  id: BannerElysiumFederationSecurity
+  parent: BannerBase
+  suffix: ElysiumPrime
+  name: security banner of the Federation
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/banners.rsi
+    state: armory
+
+- type: entity
+  parent: BaseItem
+  id: FederationHandyFlag
+  name: federation handheld flag
+  description: The flag of the most corrupt Federation in the galaxy.
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/flags.rsi
+    state: epflag-1
+  - type: Item
+    sprite: Imperial/Other/ElysiumPrime/Misc/flags.rsi
+#Banners and flags END
+
+#PDA, ID card:
+#Federation ID
+- type: entity
+  id: ElysiumFederationIDCard
+  parent: IDCardStandard
+  name: Federation ID card
+  description: Identification Card.
+  suffix: ElysiumPrime
+  components:
+    - type: IdCard
+      jobIcon: FederationJobIcon
+      jobTitle: job-name-federation
+    - type: Access
+      tags:
+      - Federation
+    - type: Sprite
+      sprite: Imperial/Other/ElysiumPrime/Misc/card.rsi
+      layers:
+        - state: federation
+    - type: Clothing
+      slots:
+        - idcard
+      sprite: Imperial/Other/ElysiumPrime/Misc/card.rsi
+    - type: PresetIdCard
+      job: null
+
+#Federation PDA
+- type: entity
+  id: ElysiumFederationPDA
+  parent: BaseCustomPDA
+  name: Federation PDA
+  description: Smells like patriotism!
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/pda.rsi
+    layers:
+      - map: [ "enum.PdaVisualLayers.Base" ]
+      - state: "light_overlay"
+        map: [ "enum.PdaVisualLayers.Flashlight" ]
+        shader: "unshaded"
+        visible: false
+      - state: "id_overlay"
+        map: [ "enum.PdaVisualLayers.IdLight" ]
+        shader: "unshaded"
+        visible: false
+  - type: Pda
+    id: ElysiumFederationIDCard
+  - type: PdaBorderColor
+    borderColor: "#242424"
+    accentHColor: "#447987"
+  - type: Icon
+    sprite: Imperial/Other/ElysiumPrime/Misc/pda.rsi
+    state: pda
+#PDA, ID card END.
+
+#Federation folders
+- type: entity
+  id: BoxFolderFederation
+  name: Federation folder
+  parent: BoxFolderBase
+  suffix: ElysiumPrime
+  description: Contains all the corruption schemes going on behind the scenes.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/boxfolder.rsi
+    layers:
+    - state: folder-EP-1
+  - type: Item
+    sprite: Imperial/Other/ElysiumPrime/Misc/boxfolder.rsi
+#Federation folders END
+
+#Gateway
+- type: entity
+  parent: BaseGateway
+  id: FederationGateway
+  name: Federation gateway
+  suffix: ElysiumPrime
+  description: You can't run away from the Federation.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Objects/gateway.rsi
+    noRot: true
+    layers:
+    - state: frame
+    - state: portal
+      shader: unshaded
+      map: ["enum.GatewayVisualLayers.Portal"]
+    - state: on
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+      enum.GatewayVisuals.Active:
+        enum.GatewayVisualLayers.Portal:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ActivatableUI
+    key: enum.GatewayUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.GatewayUiKey.Key:
+        type: GatewayBoundUserInterface
+  - type: Gateway
+    enabled: true
+#Gateway END
+

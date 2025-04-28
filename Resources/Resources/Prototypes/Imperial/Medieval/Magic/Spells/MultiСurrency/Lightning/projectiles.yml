@@ -1,0 +1,12 @@
+- type: entity
+  id: MedievalLightningExplosion
+  components:
+  - type: RepeatingTrigger
+    delay: 0.0
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 1
+    intensitySlope: 2
+    totalIntensity: 5
+    canCreateVacuum: false

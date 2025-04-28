@@ -1,0 +1,129 @@
+- type: listing
+  id: ElectromOverload
+  name: Перегрузка света
+  description: Перегружает все ближайшие источники света, вызывая пульсацию и опасные молнии.
+  productAction: ActionElectroMouseOverloadLights
+  categories:
+    - ElectromouseAbilities
+  cost:
+    StolenEnergy: 50
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ElectromDash
+  name: Рывок
+  description: Телепортирует вас на пару клеток вперед.
+  productAction: ActionElectroDash
+  categories:
+  - ElectromouseAbilities
+  cost:
+    StolenEnergy: 25
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ElectromEmp
+  name: ЭМИ
+  description: Вызывает небольшой ЭМИ-импульс вокруг вас.
+  productAction: ActionElectroMouseEmp
+  categories:
+  - ElectromouseAbilities
+  cost:
+    StolenEnergy: 75
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ElectromHeal
+  name: Лечение
+  description: Вылечить себя.
+  productAction: ActionElectroMouseHeal
+  categories:
+  - ElectromouseAbilities
+  cost:
+    StolenEnergy: 100
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ElectromShield
+  name: Щит
+  description: Щит с большой перезарядкой, защищающий вас ненадолго от всех пуль.
+  productAction: ActionElectroMouseShield
+  categories:
+  - ElectromouseAbilities
+  cost:
+    StolenEnergy: 125
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ElectromSpeed
+  name: Сверхшокирующая скорость
+  description: Находясь рядом с проводами вы обретаете скорость 150%.
+  productAction: ActionElectroMouseSpeed
+  categories:
+  - ElectromouseAbilities
+  cost:
+    StolenEnergy: 150
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ElectromLightning
+  name: Молния
+  description: Создает молнию, которая парализует жертву почти на 10 секунд.
+  productAction: ActionElectroMouseLightning
+  categories:
+  - ElectromouseAbilities
+  cost:
+    StolenEnergy: 200
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ElectromDouble
+  name: Резервное шокирование
+  description: Позволяет создать вторую шокомышь (1 раз)
+  productAction: ActionElectroMouseDouble
+  categories:
+  - ElectromouseAbilities
+  cost:
+    StolenEnergy: 300
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ElectromUpgrade
+  name: Улучшения
+  description: Все ваши способности становятся в 2 раза лучше
+  productAction: ActionElectroMouseUpgrade
+  categories:
+  - ElectromouseAbilities
+  cost:
+    StolenEnergy: 500
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ElectromElevation
+  name: Возвышение
+  description: Вы достигаете окончательного прогресса своего существования. Ваши силы становятся лучше. Вы получаете бесконечную энергию. Постарайтесь выжить, и привести энергию станции в упадок.
+  productAction: ActionElectroMouseElevation
+  categories:
+  - ElectromouseAbilities
+  cost:
+    StolenEnergy: 1500
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

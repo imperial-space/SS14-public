@@ -1,0 +1,32 @@
+{
+    "version": 1,
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "by @thenekron",
+    "states": [
+        {
+            "name": "concentrated_displacement"
+        },
+        {
+            "name": "concentrated_displacement2"
+        },
+        {
+            "name": "diffusion"
+        },
+        {
+            "name": "diffusion2"
+        },
+        {
+            "name": "supermass"
+        },
+        {
+            "name": "supermass2"
+        },
+        {
+            "name": "supermass3"
+        }
+    ]
+}

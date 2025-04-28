@@ -1,0 +1,74 @@
+- type: playTimeTracker
+  id: JobAdjutant
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconAdjutant
+  icon:
+    sprite: /Textures/Imperial/Interface/Misc/imperial_job_icons.rsi
+    state: Adjutant
+  jobName: job-name-adjutant
+
+- type: job
+  id: Adjutant
+  name: job-name-adjutant
+  description: job-description-adjutant
+  playTimeTracker: JobAdjutant
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 36000
+  weight: 5
+  startingGear: AdjutantGear
+  icon: "JobIconAdjutant"
+  requireAdminNotify: true
+  supervisors: job-supervisors-command
+  canBeAntag: false
+  access:
+  - Command
+  - Maintenance
+  - Service
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+
+### LOADOUT
+### LOADOUT
+
+- type: roleLoadout
+  id: JobAdjutant
+  groups:
+  - AdjutantJumpsuit
+  - Trinkets
+
+- type: loadoutGroup
+  id: AdjutantJumpsuit
+  name: loadout-group-adjutant-jumpsuit
+  loadouts:
+  - ClothingUniformJumpsuitAdjutant
+  - ClothingUniformJumpskirtAdjutant
+
+- type: loadout
+  id: ClothingUniformJumpsuitAdjutant
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAdjutant
+
+- type: loadout
+  id: ClothingUniformJumpskirtAdjutant
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtAdjutant
+
+### LOADOUT
+### LOADOUT
+
+- type: startingGear
+  id: AdjutantGear
+  equipment:
+    back: ClothingBackpackHOPFilled
+    shoes: ClothingShoesBootsLaceup
+    id: AdjutantPDA
+    gloves: ClothingHandsGlovesHop
+    ears: ClothingHeadsetAdjutant
+    belt: BoxFolderClipboard

@@ -1,0 +1,140 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionBlinkBeginner
+  name: medieval-store-spells-light-blink-beginner-name
+  description: medieval-store-spells-light-blink-beginner-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.7
+        addedEssences:
+          MagicMedievalLight1: 1
+  - type: ManaDrainSpell
+    manaDrain: 45
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 30
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 3
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/blink.rsi
+      state: blink
+    event: !type:MedievalTeleportSpellEvent
+      spellCastDoAfter:
+        delay: 1
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-blink
+          color: "#7D7D7D"
+          hideChat: true
+  - type: ShowSpawnedEntity
+    sprites:
+      - drawedSprite:
+          sprite: Imperial/Medieval/Gun/Charmer/blink.rsi
+          state: blink
+        inRangeColor: "#000062"
+        outOfRangeColor: "#4A5076"
+        alwaysRender: true
+        range: 3
+    rotationPerClick: 0
+  - type: MedievalSpellTeleportEffect
+    fadeDistortion:
+      - type: PhaseSpaceDistortion
+        isMove: false
+        needSpriteVisible: false
+        distortions:
+          - relativePosition: 0,0
+            fadePosition: 1,0
+            distortionPathTime: 1
+          - relativePosition: 0,0
+            fadePosition: -1,0
+            distortionPathTime: 1
+          - relativePosition: 0,0
+            fadePosition: 0,1
+            distortionPathTime: 1
+          - relativePosition: 0,0
+            fadePosition: 0,-1
+            distortionPathTime: 1
+    appearanceDistortion:
+      - type: PhaseSpaceDistortion
+        isMove: true
+        needSpriteVisible: false
+        distortions:
+          - relativePosition: 1,0
+            fadePosition: 1,0
+            distortionPathTime: 1
+          - relativePosition: -1,0
+            fadePosition: -1,0
+            distortionPathTime: 1
+          - relativePosition: 0,1
+            fadePosition: 0,1
+            distortionPathTime: 1
+          - relativePosition: 0,-1
+            fadePosition: 0,-1
+            distortionPathTime: 1
+  - type: ActionUpgrade
+    effectedLevels:
+      2: MedievalActionBlinkMiddle
+
+# Middle
+
+- type: entity
+  id: MedievalActionBlinkMiddle
+  parent: MedievalActionBlinkBeginner
+  name: medieval-store-spells-light-blink-middle-name
+  description: medieval-store-spells-light-blink-middle-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 70
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 25
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 7
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/blink.rsi
+      state: blink
+    event: !type:MedievalTeleportSpellEvent
+      spellCastDoAfter:
+        delay: 1
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-blink
+          color: "#7D7D7D"
+          hideChat: true
+  - type: ShowSpawnedEntity
+    sprites:
+      - drawedSprite:
+          sprite: Imperial/Medieval/Gun/Charmer/blink.rsi
+          state: blink
+        inRangeColor: "#000062"
+        outOfRangeColor: "#4A5076"
+        alwaysRender: true
+        range: 7
+    rotationPerClick: 0

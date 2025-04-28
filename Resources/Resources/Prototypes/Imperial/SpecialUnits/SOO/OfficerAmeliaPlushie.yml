@@ -1,0 +1,14 @@
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieSOO #Special Operations Officer
+  name: Amelia De Neko #Находится в аплинке дедов и РКУ.
+  description: What do you mean, "can I stroke your tail"?! I said blow up the station!
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/SOO/OfficerAmeliaPlushie.rsi
+    state: plushie_SOO
+  - type: StaminaDamageOnHit
+    damage: 50
+  - type: StorageFill
+    contents:
+      - id: EnergyDagger

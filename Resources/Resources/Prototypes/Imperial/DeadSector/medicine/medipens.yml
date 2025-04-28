@@ -1,0 +1,29 @@
+- type: entity
+  name: radiation medipen
+  parent: ChemicalMedipen
+  id: RadiationMedipenDeadSector
+  suffix: DeadSector
+  description: Contains a mix of chemicals that protect you from the deadly effects of space.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/items/Medical/medipens.rsi
+    layers:
+    - state: antirad
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: antirad_empty
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 6
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 6
+        reagents:
+          - ReagentId: Hyronalin
+            Quantity: 6
+  - type: Tag
+    tags: []

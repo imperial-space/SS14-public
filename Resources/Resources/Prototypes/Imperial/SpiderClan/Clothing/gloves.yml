@@ -1,0 +1,164 @@
+- type: entity
+  parent: [ClothingHandsBase, BaseToggleClothing, BaseMajorContraband]
+  id: RedGlovesSpaceNinja
+  name: space ninja gloves
+  suffix: Crook, SpiderClan
+  description: These black nano-enhanced gloves insulate from electricity and provide fire resistance. It has a red glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Default/Gloves/redninja.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleVisuals.Layer" ]
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Default/Gloves/redninja.rsi
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: {state: icon}
+          False: {state: off-icon}
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-nanomachines
+  - type: FingerprintMask
+  - type: Thieving
+    stripTimeReduction: 1
+    stealthy: true
+  - type: ToggleClothing
+    action: ActionToggleNinjaGloves
+    disableOnUnequip: true
+  - type: NinjaGloves
+    abilities:
+    - components:
+      - type: BatteryDrainer
+      - type: StunProvider
+        noPowerPopup: ninja-no-power
+        whitelist:
+          components:
+          - Stamina
+      - type: EmagProvider
+        whitelist:
+          components:
+          - Airlock
+    - objective: StealResearchObjective
+      components:
+      - type: ResearchStealer
+    - objective: TerrorObjective
+      components:
+      - type: CommsHacker
+        threats: NinjaThreats
+    - objective: MassArrestObjective
+      components:
+      - type: CriminalRecordsHacker
+
+- type: entity
+  parent: [ClothingHandsBase, BaseToggleClothing, BaseMajorContraband]
+  id: BlueGlovesSpaceNinja
+  name: space ninja gloves
+  suffix: Crook, SpiderClan
+  description: These black nano-enhanced gloves insulate from electricity and provide fire resistance. It has a blue glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Default/Gloves/blueninja.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleVisuals.Layer" ]
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Default/Gloves/blueninja.rsi
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: {state: icon}
+          False: {state: off-icon}
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-nanomachines
+  - type: FingerprintMask
+  - type: Thieving
+    stripTimeReduction: 1
+    stealthy: true
+  - type: ToggleClothing
+    action: ActionToggleNinjaGloves
+    disableOnUnequip: true
+  - type: NinjaGloves
+    abilities:
+    - components:
+      - type: BatteryDrainer
+      - type: StunProvider
+        noPowerPopup: ninja-no-power
+        whitelist:
+          components:
+          - Stamina
+      - type: EmagProvider
+        whitelist:
+          components:
+          - Airlock
+    - objective: StealResearchObjective
+      components:
+      - type: ResearchStealer
+    - objective: TerrorObjective
+      components:
+      - type: CommsHacker
+        threats: NinjaThreats
+    - objective: MassArrestObjective
+      components:
+      - type: CriminalRecordsHacker
+
+- type: entity
+  parent: [ClothingHandsBase, BaseToggleClothing, BaseMajorContraband]
+  id: GreenGlovesSpaceNinja
+  name: space ninja gloves
+  suffix: Crook, SpiderClan
+  description: These black nano-enhanced gloves insulate from electricity and provide fire resistance. It has a green glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Default/Gloves/greenninja.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleVisuals.Layer" ]
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Default/Gloves/greenninja.rsi
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: {state: icon}
+          False: {state: off-icon}
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-nanomachines
+  - type: FingerprintMask
+  - type: Thieving
+    stripTimeReduction: 1
+    stealthy: true
+  - type: ToggleClothing
+    action: ActionToggleNinjaGloves
+    disableOnUnequip: true
+  - type: NinjaGloves
+    abilities:
+    - components:
+      - type: BatteryDrainer
+      - type: StunProvider
+        noPowerPopup: ninja-no-power
+        whitelist:
+          components:
+          - Stamina
+      - type: EmagProvider
+        whitelist:
+          components:
+          - Airlock
+    - objective: StealResearchObjective
+      components:
+      - type: ResearchStealer
+    - objective: TerrorObjective
+      components:
+      - type: CommsHacker
+        threats: NinjaThreats
+    - objective: MassArrestObjective
+      components:
+      - type: CriminalRecordsHacker

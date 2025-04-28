@@ -1,0 +1,35 @@
+- type: entity
+  id: ElectroMouseMigration
+  parent: BaseGameRule
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/aliens.ogg
+    earliestStart: 30
+    minimumPlayers: 25
+    weight: 5
+    duration: 1
+  - type: RandomSpawnRule
+    prototype: SpawnPointGhostElectroMouse
+
+- type: entity
+  id: SpawnPointGhostElectroMouse
+  name: ghost role spawn point
+  suffix: Шокомышь
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    name: ghost-role-information-elmouse-name
+    description: ghost-role-information-elmouse-description
+    rules: ghost-role-information-elmouse-rules
+    raffle:
+      settings: default
+  - type: GhostRoleMobSpawner
+    prototype: MobElectroMouse
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Mobs/Animals/mouse.rsi
+        state: icon-0

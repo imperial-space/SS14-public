@@ -1,0 +1,4 @@
+- type: shader
+  id: ArrowMinigame
+  kind: source
+  path: "/Textures/Imperial/Shaders/arrow_minigame.swsl"

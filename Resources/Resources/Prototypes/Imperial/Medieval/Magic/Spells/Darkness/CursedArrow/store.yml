@@ -1,0 +1,37 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellCursedArrowBeginner
+  name: medieval-store-spells-darkness-cursed-arrow-beginner-name
+  description: medieval-store-spells-darkness-cursed-arrow-beginner-desc
+  productAction: MedievalActionCursedArrowBeginner
+  priority: 3
+  productUpgradeId:
+    - MedievalSpellCursedArrowCursorFolloverBeginner
+    - MedievalSpellCursedArrowPlayerFolloverBeginner
+    - MedievalSpellCursedArrowKunaiBeginner
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+    state: 1
+  cost:
+    MagicMedievalDarkness: 15
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    blacklist:
+      - MedievalSpellMagicArrowBeginner
+
+      - MedievalSpellMagicArrowCursorFolloverBeginner
+      - MedievalSpellMagicArrowCursorFolloverMiddle
+      - MedievalSpellMagicArrowCursorFolloverSenior
+
+      - MedievalSpellMagicArrowKunaiBeginner
+      - MedievalSpellMagicArrowKunaiMiddle
+      - MedievalSpellMagicArrowKunaiSenior
+
+      - MedievalSpellMagicArrowPlayerFolloverBeginner
+      - MedievalSpellMagicArrowPlayerFolloverMiddle
+      - MedievalSpellMagicArrowPlayerFolloverSenior

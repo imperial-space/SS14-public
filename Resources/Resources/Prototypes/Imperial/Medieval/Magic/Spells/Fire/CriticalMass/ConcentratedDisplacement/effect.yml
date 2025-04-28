@@ -1,0 +1,55 @@
+# Middle
+
+- type: entity
+  id: MedievalEffectConcentratedDisplacementMiddle
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
+    state: 3
+  - type: MedievalParticles
+    color: "#764ADB"
+    speed: 2.0
+    particlesCount: 16
+    gravity: 0
+    inverted: true
+    collapseOnMinDistance: true
+  - type: Physics
+  - type: Fixtures
+  - type: Brarrier
+    spawnedEntity: MedievalProjectileConcentratedDisplacementMiddle
+    barrierLength: 5
+    lookupRadius: 0.45
+    barrierSpawnTime: 0.1
+    permissibleIntersectionsPercentage: 0.3
+    spawnRelativePosition: 1,1
+    onlyOneSide: true
+  - type: TimedDespawn
+    lifetime: 1.25
+
+# Senior
+
+- type: entity
+  id: MedievalEffectConcentratedDisplacementSenior
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
+    state: 3
+  - type: MedievalParticles
+    color: "#B84ADB"
+    speed: 2.0
+    particlesCount: 16
+    gravity: 0
+    inverted: true
+    collapseOnMinDistance: true
+  - type: Physics
+  - type: Fixtures
+  - type: Brarrier
+    spawnedEntity: MedievalProjectileConcentratedDisplacementSenior
+    barrierLength: 9
+    lookupRadius: 0.45
+    barrierSpawnTime: 0.1
+    permissibleIntersectionsPercentage: 0.3
+    spawnRelativePosition: 1,1
+    onlyOneSide: true
+  - type: TimedDespawn
+    lifetime: 1.65

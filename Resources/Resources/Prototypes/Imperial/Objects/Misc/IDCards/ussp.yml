@@ -1,0 +1,75 @@
+- type: entity
+  parent: IDCardStandard
+  id: USSPBattleIDcard
+  name: The Mercenary's ID Card
+  description: It looks unusual. Taken from military samples.
+  suffix: Vl, Arcane
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/Merc/Card.rsi
+    layers:
+    - state: Merc
+    - state: idcentcom
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: Imperial/ussp/Merc/Card.rsi
+  - type: IdCard
+    jobTitle: Военный СССП
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPofficerIDcard
+  name: The Mercenary's ID Card
+  description: It looks unusual. Taken from military samples.
+  suffix: Vl, Arcane
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/Merc/Card.rsi
+    layers:
+    - state: Merc
+    - state: idcentcom
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: Imperial/ussp/Merc/Card.rsi
+  - type: IdCard
+    jobTitle: Офицер СССП
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPComissarIDcard
+  name: The Mercenary's ID Card
+  description: It looks unusual. Taken from military samples.
+  suffix: Vl, Arcane
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/Merc/Card.rsi
+    layers:
+    - state: Merc
+    - state: idcentcom
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: Imperial/ussp/Merc/Card.rsi
+  - type: IdCard
+    jobTitle: Комиссар СССП
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPSergeantIDcard
+  name: The Mercenary's ID Card
+  description: It looks unusual. Taken from military samples.
+  suffix: Vl, Arcane
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/Merc/Card.rsi
+    layers:
+    - state: Merc
+    - state: idcentcom
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: Imperial/ussp/Merc/Card.rsi
+  - type: IdCard
+    jobTitle: Cержант СССП

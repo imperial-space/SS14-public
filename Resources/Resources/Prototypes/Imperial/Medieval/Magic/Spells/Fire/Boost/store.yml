@@ -1,0 +1,67 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellBoostBeginner
+  name: medieval-store-spells-light-boost-beginner-name
+  description: medieval-store-spells-light-boost-beginner-desc
+  productAction: MedievalActionBoostBeginner
+  priority: 5
+  productUpgradeId:
+    - MedievalSpellBoostMiddle
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/boost.rsi
+    state: 1
+  cost:
+    MagicMedievalFire: 20
+  categories:
+  - MedievalFireSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellBoostMiddle
+  name: medieval-store-spells-light-boost-middle-name
+  description: medieval-store-spells-light-boost-middle-desc
+  priority: 5
+  productUpgradeId:
+    - MedievalSpellBoostSenior
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/boost.rsi
+    state: 2
+  cost:
+    MagicMedievalFire: 45
+  categories:
+  - MedievalFireSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellBoostBeginner
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellBoostSenior
+  name: medieval-store-spells-light-boost-senior-name
+  description: medieval-store-spells-light-boost-senior-desc
+  priority: 5
+  productUpgradeId:
+    - MedievalSpellBoostSenior
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/boost.rsi
+    state: 3
+  cost:
+    MagicMedievalFire: 70
+    ArchmagePoints: 1
+  categories:
+  - MedievalFireSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellBoostMiddle

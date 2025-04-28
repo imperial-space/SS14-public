@@ -1,0 +1,405 @@
+#Прототипы для стороны синдикека
+
+- type: entity
+  parent: MobHuman
+  id: TDMUrbanRiflemanPreset_S
+  name: UrbanRiflemanPreset_S
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: NukeOperative
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMUrbanRiflemanGear_S ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMUrbanMachineGunnerPreset_S
+  name: UrbanMachineGunnerPreset_S
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: NukeOperative
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMUrbanMachineGunnerGear_S ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMUrbanGrenadierPreset_S
+  name: UrbanGrenadierPreset_S
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: NukeOperative
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMUrbanGrenadierGear_S ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMUrbanMedicalPreset_S
+  name: UrbanMedicalPreset_S
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: NukeOperative
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMUrbanMedicalGear_S ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmaceuticals
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMUrbanCommanderPreset_S
+  name: UrbanCommanderPreset_S
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: NukeOperative
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstLeader
+      - NamesMilitaryLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMUrbanCommanderGear_S ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+#Прототипы для стороны нанотрахен
+
+- type: entity
+  parent: MobHuman
+  id: TDMUrbanRiflemanPreset_N
+  name: UrbanRiflemanPreset_N
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMUrbanRiflemanGear_N ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMUrbanMachineGunnerPreset_N
+  name: UrbanMachineGunnerPreset_N
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMUrbanMachineGunnerGear_N ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMUrbanGrenadierPreset_N
+  name: UrbanGrenadierPreset_N
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMUrbanGrenadierGear_N ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMUrbanMedicalPreset_N
+  name: UrbanMedicalPreset_N
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMUrbanMedicalGear_N ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmaceuticals
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMUrbanCommanderPreset_N
+  name: UrbanCommanderPreset_N
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstLeader
+      - NamesMilitaryLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMUrbanCommanderGear_N ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery

@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by @jsilverhand2.1 (discord) for @krevetksquad (discord)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "sm_copying"
+    },
+    {
+        "name": "sm_dash"
+    },
+    {
+        "name": "sm_EMP"
+    },
+    {
+        "name": "sm_heal"
+    },
+    {
+        "name": "sm_shield"
+    },
+    {
+        "name": "sm_shop"
+    },
+    {
+        "name": "sm_superspeed"
+    },
+    {
+        "name": "sm_upgrade"
+    },
+    {
+        "name": "sm_elevation"
+    },
+    {
+        "name": "sm_shock1"
+    },
+    {
+        "name": "sm_shockradius"
+    },
+    {
+        "name": "sm_peregryzka"
+    }
+  ]
+}

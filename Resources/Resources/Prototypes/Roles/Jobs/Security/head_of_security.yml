@@ -1,0 +1,46 @@
+- type: job
+  id: HeadOfSecurity
+  name: job-name-hos
+  description: job-description-hos
+  playTimeTracker: JobHeadOfSecurity
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobWarden
+      time: 10800 #Imperial role timers
+    - !type:AgeRequirement
+      requiredAge: 20
+  weight: 10
+  startingGear: HoSGear
+  icon: "JobIconHeadOfSecurity"
+  supervisors: job-supervisors-captain
+  canBeAntag: false
+  access:
+  - HeadOfSecurity
+  - Command
+  - Brig
+  - Security
+  - Armory
+  - Maintenance
+  - Service
+  - External
+  - Detective
+  - Cryogenics
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+
+- type: startingGear
+  id: HoSGear
+  equipment:
+    eyes: ClothingEyesGlassesSecurity
+    id: HoSPDA
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetAltSecurity
+    pocket1: WeaponPistolMk58
+  storage:
+    back:
+    - Flash
+    - MagazinePistol

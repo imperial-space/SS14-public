@@ -1,0 +1,50 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/tgstation/tgstation, remade by @Orix0689",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "baloon"
+      },
+      {
+        "name": "baloon2"
+      },
+      {
+        "name": "baloon3"
+      },
+      {
+        "name": "bananium"
+      },
+      {
+        "name": "dark"
+      },
+      {
+        "name": "gib"
+      },
+      {
+        "name": "hand"
+      },
+      {
+        "name": "ice"
+      },
+      {
+        "name": "blood"
+      },
+      {
+        "name": "off_hand"
+      },
+      {
+        "name": "ok"
+      },
+      {
+        "name": "poison"
+      },
+      {
+        "name": "stone"
+      }
+    ]
+}

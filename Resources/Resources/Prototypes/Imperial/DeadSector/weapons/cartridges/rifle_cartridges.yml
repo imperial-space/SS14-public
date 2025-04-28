@@ -1,0 +1,387 @@
+- type: entity
+  id: BaseCartridgeAR57
+  name: cartridge AR-57 (7x62x51 NATO)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeAR57
+  - type: CartridgeAmmo
+    proto: BulletAR57
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAR57
+  name: cartridge AR-57 (7x62x51 NATO)
+  parent: BaseCartridgeAR57
+  components:
+  - type: CartridgeAmmo
+    proto: BulletAR57
+
+- type: entity
+  id: BaseCartridgeAR57Piercing
+  name: cartridge AR-57 (7x62x51 NATO-AP)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeAR57
+  - type: CartridgeAmmo
+    proto: BulletAR57Piercing
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAR57Piercing
+  name: cartridge AR-57 (7x62x51 NATO-AP)
+  parent: BaseCartridgeAR57Piercing
+  components:
+  - type: CartridgeAmmo
+    proto: BulletAR57Piercing
+
+- type: entity
+  id: BaseCartridgeAR57LongRange
+  name: cartridge AR-57 (7x62x51 NATO-T)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeAR57
+  - type: CartridgeAmmo
+    proto: BulletAR57LongRange
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAR57LongRange
+  name: cartridge AR-57 (7x62x51 NATO-T)
+  parent: BaseCartridgeAR57LongRange
+  components:
+  - type: CartridgeAmmo
+    proto: BulletAR57LongRange
+
+- type: entity
+  id: BaseCartridgeCarabineAK
+  name: cartridge (.35 mp-9)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: CartridgeAmmo
+    proto: BulletCarabineAK
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeLightRifle
+
+- type: entity
+  id: CartridgeCarabineAK
+  parent: BaseCartridgeCarabineAK
+  name: cartridge (.35 MP-9)
+  components:
+  - type: CartridgeAmmo
+    proto: BulletCarabineAK
+
+- type: entity
+  id: CartridgeArmorPiercingCarabineAK
+  parent: BaseCartridgeCarabineAK
+  name: cartridge (.35 MP-9)
+  components:
+  - type: CartridgeAmmo
+    proto: BulletArmorPiercingCarabineAK
+
+- type: entity
+  id: BaseCartridgeAR102Piercing
+  name: cartridge AR102
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeLightRifle
+  - type: CartridgeAmmo
+    proto: BulletAR102Piercing
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAR102Piercing
+  name: cartridge AR102
+  parent: BaseCartridgeAR102Piercing
+  components:
+  - type: CartridgeAmmo
+    proto: BulletAR102Piercing
+
+- type: entity
+  id: BaseCartridgeAR102LongRange
+  name: cartridge AR102
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeLightRifle
+  - type: CartridgeAmmo
+    proto: BulletAR102LongRange
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAR102LongRange
+  name: cartridge AR102
+  parent: BaseCartridgeAR102LongRange
+  components:
+  - type: CartridgeAmmo
+    proto: BulletAR102LongRange
+
+- type: entity
+  id: BaseCartridgeCarabineAKS74y
+  name: cartridge (.35 mp-9)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: CartridgeAmmo
+    proto: BulletCarabineAKS74y
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeFelixCarabineAKS74y
+
+- type: entity
+  id: CartridgeCarabineAKS74y
+  name: cartridge (.35 MP-9)
+  parent: BaseCartridgeCarabineAKS74y
+  components:
+  - type: CartridgeAmmo
+    proto: BulletCarabineAKS74y
+
+- type: entity
+  id: CartridgeArmorPiercingCarabineAKS74y
+  name: cartridge (.35 MP-9)
+  parent: BaseCartridgeCarabineAKS74y
+  components:
+  - type: CartridgeAmmo
+    proto: BulletArmorPiercingCarabineAKS74y
+
+- type: entity
+  id: BaseCartridgeAKS74yLongRange
+  name: cartridge AKS74y
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeFelixCarabineAKS74y
+  - type: CartridgeAmmo
+    proto: BulletAKS74yLongRange
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAKS74yLongRange
+  name: cartridge AKS74y
+  parent: BaseCartridgeAKS74yLongRange
+  components:
+  - type: CartridgeAmmo
+    proto: BulletAKS74yLongRange
+
+- type: entity
+  id: BaseCartridgeCarabineAR
+  name: cartridge (.35 mp-9)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: CartridgeAmmo
+    proto: BulletCarabineAR
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeFelixCarabineAR
+
+- type: entity
+  id: CartridgeCarabineAR
+  name: cartridge (.35 MP-9)
+  parent: BaseCartridgeCarabineAR
+  components:
+  - type: CartridgeAmmo
+    proto: BulletCarabineAR
+
+- type: entity
+  id: BaseCartridgeAR15Piercing
+  name: cartridge AR15
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeFelixCarabineAR
+  - type: CartridgeAmmo
+    proto: BulletAR15Piercing
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAR15Piercing
+  name: cartridge AR-15
+  parent: BaseCartridgeAR15Piercing
+  components:
+  - type: CartridgeAmmo
+    proto: BulletAR15Piercing
+
+- type: entity
+  id: BaseCartridgeAR15LongRange
+  name: cartridge AR-15
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeFelixCarabineAR
+  - type: CartridgeAmmo
+    proto: BulletAR15LongRange
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAR15LongRange
+  name: cartridge AR15
+  parent: BaseCartridgeAR15LongRange
+  components:
+  - type: CartridgeAmmo
+    proto: BulletAR15LongRange
+
+- type: entity
+  id: BaseCartridgeCarabineHK416
+  name: cartridge (.35 mp-9)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: CartridgeAmmo
+    proto: BulletCarabineHK416
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeFelixCarabineHK416
+
+- type: entity
+  id: CartridgeCarabineHK416
+  name: cartridge (.35 MP-9)
+  parent: BaseCartridgeCarabineHK416
+  components:
+  - type: CartridgeAmmo
+    proto: BulletCarabineHK416
+
+- type: entity
+  id: CartridgeArmorPiercingCarabineHK416
+  name: cartridge (.35 MP-9)
+  parent: BaseCartridgeCarabineHK416
+  components:
+  - type: CartridgeAmmo
+    proto: BulletArmorPiercingCarabineHK416
+
+- type: entity
+  id: BaseCartridgeHK416LongRange
+  name: cartridge HK416
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeFelixCarabineHK416
+  - type: CartridgeAmmo
+    proto: BulletHK416LongRange
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeHK416LongRange
+  name: cartridge HK416
+  parent: BaseCartridgeHK416LongRange
+  components:
+  - type: CartridgeAmmo
+    proto: BulletHK416LongRange

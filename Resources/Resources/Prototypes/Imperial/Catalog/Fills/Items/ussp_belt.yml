@@ -1,0 +1,10 @@
+- type: entity
+  id: USSPComissarWeaponizer
+  parent: ClothingBeltHolster
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+        - id: WeaponRevolverAstra903
+        - id: SpeedLoaderAstra903Piercing
+        - id: SpeedLoaderAstra903Piercing

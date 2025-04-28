@@ -1,0 +1,12 @@
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieStormTrooper
+  name: plush stormtrooper
+  suffix: звёздные войны, империя
+  description: teach me how to shoot UwU
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/StarWars/plush.rsi
+    state: plush

@@ -1,0 +1,124 @@
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitRCUOperator
+  name: elite operator hardsuit
+  description: Hardsuit for elite ERT operative.
+  suffix: RiotControlUnit
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/RCU/Clothing/Hardsuits/Operator/hardsuit.rsi
+  - type: Clothing
+    sprite: Imperial/SpecialUnits/RCU/Clothing/Hardsuits/Operator/hardsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.35
+  - type: FireProtection
+    reduction: 0.8
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.25
+        Heat: 0.25
+        Radiation: 0.3
+        Caustic: 0.3
+        Cold: 0.3
+        Shock: 0.3
+        Stamina: 0.4
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitRCUOperator
+  - type: ClothingFactionExplosion
+    friendlyFaction: RiotControlUnit
+    chance: 1
+  - type: Speech
+    speechSounds: Pai
+
+- type: entity
+  parent: ClothingOuterHardsuitRCUOperator
+  id: ClothingOuterHardsuitRCUOfficer
+  name: elite officer hardsuit
+  description: Hardsuit for elite ERT operative.
+  suffix: RiotControlUnit
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/RCU/Clothing/Hardsuits/Officer/hardsuit.rsi
+  - type: Clothing
+    sprite: Imperial/SpecialUnits/RCU/Clothing/Hardsuits/Officer/hardsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitRCUOfficer
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.35
+        Heat: 0.35
+        Radiation: 0.35
+        Caustic: 0.4
+        Cold: 0.4
+        Shock: 0.4
+        Stamina: 0.45
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: ClothingFactionExplosion
+    friendlyFaction: RiotControlUnit
+    chance: 1
+  - type: Speech
+    speechSounds: Pai
+
+#helmets
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitRCUOperator
+  name: operator hardsuit helmet
+  description: Elite helmet for special operations.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/RCU/Clothing/Hardsuits/Operator/helmet.rsi
+  - type: Clothing
+    sprite: Imperial/SpecialUnits/RCU/Clothing/Hardsuits/Operator/helmet.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.90
+        Heat: 0.90
+        Radiation: 0.90
+        Caustic: 0.95
+  - type: PointLight
+    color: "#d43e41"
+    radius: 5
+    energy: 2
+  - type: ToggleableLightVisuals
+    clothingVisuals:
+      head:
+      - state: on-equipped-HELMET
+        shader: unshaded
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitRCUOperator
+  id: ClothingHeadHelmetHardsuitRCUOfficer
+  name: officer hardsuit helmet
+  description: Elite helmet for special operations.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/RCU/Clothing/Hardsuits/Officer/helmet.rsi
+  - type: Clothing
+    sprite: Imperial/SpecialUnits/RCU/Clothing/Hardsuits/Officer/helmet.rsi

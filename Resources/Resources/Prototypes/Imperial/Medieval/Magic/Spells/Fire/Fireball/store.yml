@@ -1,0 +1,67 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellFireballBeginner
+  name: medieval-store-spells-fire-fireball-beginner-name
+  description: medieval-store-spells-fire-fireball-beginner-desc
+  productAction: MedievalActionFireballBeginner
+  priority: 1
+  productUpgradeId:
+    - MedievalSpellFireballMiddle
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/fireball.rsi
+    state: 2
+  cost:
+    MagicMedievalFire: 25
+  categories:
+  - MedievalFireSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellFireballMiddle
+  name: medieval-store-spells-fire-fireball-middle-name
+  description: medieval-store-spells-fire-fireball-middle-desc
+  priority: 1
+  productUpgradeId:
+    - MedievalSpellFireballSenior
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/fireball.rsi
+    state: 2
+  cost:
+    MagicMedievalFire: 55
+  categories:
+  - MedievalFireSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellFireballBeginner
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellFireballSenior
+  name: medieval-store-spells-fire-fireball-senior-name
+  description: medieval-store-spells-fire-fireball-senior-desc
+  priority: 1
+  productUpgradeId:
+    - MedievalSpellFireballSenior
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/fireball.rsi
+    state: 3
+  cost:
+    MagicMedievalFire: 80
+    ArchmagePoints: 1
+  categories:
+  - MedievalFireSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellFireballMiddle

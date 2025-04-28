@@ -1,0 +1,217 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionCursedArrowPlayerFolloverBeginner
+  parent: MedievalActionCursedArrowBeginner
+  name: medieval-store-spells-darkness-cursed-arrow-player-follover-beginner-name
+  description: medieval-store-spells-darkness-cursed-arrow-player-follover-beginner-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 25
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 8
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/arrow_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+      state: 3
+    event: !type:MedievalHomingProjectilesSpellEvent
+      projectilePrototype: MedievalProjectileCursedArrowPlayerFolloverBeginner
+      relativeAngle: 90
+      projectileSpeed: 7
+      spread: 180
+      linearVelocityIntensy: 0.1
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-cursed-arrow-player-follover
+          color: "#B600FF"
+          hideChat: true
+        0.5:
+          speech: medieval-spell-speach-cursed-arrow-player-follover2
+          color: "#B600FF"
+          hideChat: true
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.35
+        addedEssences:
+          MagicMedievalDarkness1: 1
+  - type: DamageTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.23
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: TrainingTarget
+        addedEssences:
+          MagicMedievalDarkness1: 1
+      - !type:AddMagicEssence
+        probability: 0.3
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: MobState
+          - !type:MagicTargetMobStateCondition
+            allowedState: Alive
+        addedEssences:
+          MagicMedievalDarkness1: 1
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 1
+    whiteListComponents:
+      - type: Damageable
+
+# Middle
+
+- type: entity
+  id: MedievalActionCursedArrowPlayerFolloverMiddle
+  parent: MedievalActionCursedArrowBeginner
+  name: medieval-store-spells-darkness-cursed-arrow-player-follover-middle-name
+  description: medieval-store-spells-darkness-cursed-arrow-player-follover-middle-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 35
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 9
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/arrow_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+      state: 2
+    event: !type:MedievalHomingProjectilesSpellEvent
+      projectilePrototype: MedievalProjectileCursedArrowPlayerFolloverMiddle
+      relativeAngle: 90
+      projectileSpeed: 7
+      spread: 180
+      linearVelocityIntensy: 0.1
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-cursed-arrow-player-follover
+          color: "#B600FF"
+          hideChat: true
+        0.5:
+          speech: medieval-spell-speach-cursed-arrow-player-follover2
+          color: "#B600FF"
+          hideChat: true
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.35
+        addedEssences:
+          MagicMedievalDarkness1: 1
+  - type: DamageTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.25
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: TrainingTarget
+        addedEssences:
+          MagicMedievalDarkness1: 1
+      - !type:AddMagicEssence
+        probability: 0.15
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: MobState
+          - !type:MagicTargetMobStateCondition
+            allowedState: Alive
+        addedEssences:
+          MagicMedievalDarkness1: 1
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 3
+    whiteListComponents:
+      - type: Damageable
+
+
+# Senior
+
+- type: entity
+  id: MedievalActionCursedArrowPlayerFolloverSenior
+  parent: MedievalActionCursedArrowBeginner
+  name: medieval-store-spells-darkness-cursed-arrow-player-follover-senior-name
+  description: medieval-store-spells-darkness--cursed-arrow-player-follover-senior-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 45
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 11
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/arrow_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+      state: 1
+    event: !type:MedievalHomingProjectilesSpellEvent
+      projectilePrototype: MedievalProjectileCursedArrowPlayerFolloverSenior
+      relativeAngle: 90
+      projectileSpeed: 7
+      spread: 180
+      linearVelocityIntensy: 0.1
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-cursed-arrow-player-follover
+          color: "#B600FF"
+          hideChat: true
+        0.5:
+          speech: medieval-spell-speach-cursed-arrow-player-follover2
+          color: "#B600FF"
+          hideChat: true
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.45
+        addedEssences:
+          MagicMedievalDarkness1: 1
+  - type: DamageTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.19
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: TrainingTarget
+        addedEssences:
+          MagicMedievalDarkness1: 1
+      - !type:AddMagicEssence
+        probability: 0.1
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: MobState
+          - !type:MagicTargetMobStateCondition
+            allowedState: Alive
+        addedEssences:
+          MagicMedievalDarkness1: 1
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 5
+    whiteListComponents:
+      - type: Damageable
+

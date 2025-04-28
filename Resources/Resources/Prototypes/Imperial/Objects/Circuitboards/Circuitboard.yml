@@ -1,0 +1,12 @@
+- type: entity # Imperial Space
+  parent: BaseComputerCircuitboard
+  id: CargoPalletComputerCircuitboard
+  name: cargo pallet computer board
+  description: A computer printed circuit board for a cargo pallet computer.
+  components:
+    - type: Sprite
+      state: cpu_supply
+    - type: ComputerBoard
+      prototype: ComputerPalletConsole
+    - type: StaticPrice
+      price: 750

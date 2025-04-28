@@ -1,0 +1,70 @@
+- type: entity
+  id: StorePreset_CT
+  storeName: Counter-terrorist terminal
+  abstract: true
+  components:
+  - type: Store
+    categories:
+    - CT_Pistols
+    - CT_Rifles
+    - CT_Submachine_gun
+    - CT_Heavy
+    - CT_Protection
+    - CS_Grenades
+    - CS_Ammo_Pistols
+    - CS_Ammo_Rifles
+    - CS_Ammo_Submachine_Gun
+    - CS_Ammo_Heavy
+    currencyWhitelist:
+    - WarCredit
+    balance:
+      WarCredit: 0
+
+- type: entity
+  id: StorePreset_T
+  storeName: Terrorist terminal
+  abstract: true
+  components:
+  - type: Store
+    categories:
+    - T_Pistols
+    - T_Rifles
+    - T_Submachine_gun
+    - T_Heavy
+    - T_Protection
+    - CS_Grenades
+    - CS_Ammo_Pistols
+    - CS_Ammo_Rifles
+    - CS_Ammo_Submachine_Gun
+    - CS_Ammo_Heavy
+    currencyWhitelist:
+    - WarCredit
+    balance:
+      WarCredit: 0
+
+- type: entity
+  id: StorePreset_DEBAG
+  storeName: TERPINAL
+  abstract: true
+  components:
+  - type: Store
+    categories:
+    - CT_Pistols
+    - CT_Rifles
+    - CT_Submachine_gun
+    - CT_Heavy
+    - CT_Protection
+    - T_Pistols
+    - T_Rifles
+    - T_Submachine_gun
+    - T_Heavy
+    - T_Protection
+    - CS_Grenades
+    - CS_Ammo_Pistols
+    - CS_Ammo_Rifles
+    - CS_Ammo_Submachine_Gun
+    - CS_Ammo_Heavy
+    currencyWhitelist:
+    - WarCredit
+    balance:
+      WarCredit: 0

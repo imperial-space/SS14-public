@@ -1,0 +1,12 @@
+- type: entity
+  parent: ClothingMaskGas
+  id: USSPstormdivisionMask
+  name: The mercenary's gas mask
+  description: The usual gas mask of a mercenary. Apparently, it was stolen from some kind of military warehouse.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/ussp/Merc/Mask.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/Merc/Mask.rsi

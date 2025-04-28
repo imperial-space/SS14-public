@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "license": "This content is under ICLA license, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "Designed @max_gab2 (ripmax)" ,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "advbrutepack"
+    },
+    {
+      "name": "advointment"
+    },
+    {
+      "name": "brutemedipen"
+    },
+    {
+      "name": "open"
+    },
+    {
+      "name": "closed"
+    },
+    {
+      "name": "inhand-right"
+    },
+    {
+      "name": "inhand-left"
+    },
+    {
+      "name": "burnmedipen"
+    },
+    {
+      "name": "syringe1"
+    },
+    {
+      "name": "syringe2"
+    }
+  ]
+}

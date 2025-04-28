@@ -1,0 +1,20 @@
+- type: entity
+  id: LeafTank
+  parent: StorageTank
+  suffix: Empty
+  components:
+    - type: Sprite
+      sprite: Imperial/DRGbeer/leafloverbarrel.rsi
+      state: kvass
+
+- type: entity
+  parent: LeafTank
+  id: LeafTankFull
+  suffix: Full
+  components:
+    - type: SolutionContainerManager
+      solutions:
+        tank:
+          reagents:
+            - ReagentId: LeafLover
+              Quantity: 1500

@@ -1,0 +1,23 @@
+- type: entity
+  id: DeadSectorCloset
+  name: Elysium Prime closet
+  parent: ClosetSteelBase
+  description: It's a storage unit.
+  suffix: DeadSector
+  components:
+  - type: Appearance
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/DeadSector/closet.rsi
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: base_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: base
+    stateDoorOpen: base_open
+    stateDoorClosed: base_door

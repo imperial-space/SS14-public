@@ -1,0 +1,119 @@
+# Beginner
+
+- type: entity
+  id: MedievalProjectileCursedArrowCursorFolloverBeginner
+  parent: BulletRocket
+  name: fireball
+  description: You better GITTAH WEIGH.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+    layers:
+    - state: proto
+      shader: unshaded
+  - type: StaminaDamageOnCollide
+    damage: 3
+  - type: Explosive
+    explosionType: Cryo
+    maxIntensity: 1
+    intensitySlope: 1
+    totalIntensity: 1
+    maxTileBreak: 0
+  - type: ProjectileCursorFollower
+    relativeAngle: 90
+    linearVelocityIntensy: 0.1
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 11
+        Bloodloss: 5
+
+# Middle
+
+- type: entity
+  id: MedievalProjectileCursedArrowCursorFolloverMiddle
+  parent: BulletRocket
+  name: fireball
+  description: You better GITTAH WEIGH.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+    layers:
+    - state: proto
+      shader: unshaded
+  - type: StaminaDamageOnCollide
+    damage: 3
+  - type: Explosive
+    explosionType: Cryo
+    maxIntensity: 1
+    intensitySlope: 1
+    totalIntensity: 1
+    maxTileBreak: 0
+  - type: ProjectileCursorFollower
+    relativeAngle: 90
+    linearVelocityIntensy: 0.1
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 7
+        Bloodloss: 3
+
+# Senior
+
+- type: entity
+  id: MedievalProjectileCursedArrowCursorFolloverSenior
+  parent: BulletRocket
+  name: fireball
+  description: You better GITTAH WEIGH.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+    layers:
+    - state: proto
+      shader: unshaded
+  - type: StaminaDamageOnCollide
+    damage: 9
+  - type: Explosive
+    explosionType: Cryo
+    maxIntensity: 1
+    intensitySlope: 1
+    totalIntensity: 4
+    maxTileBreak: 0
+  - type: ProjectileCursorFollower
+    relativeAngle: 90
+    linearVelocityIntensy: 0.1
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 5
+        Bloodloss: 2
+
+- type: entity
+  id: MedievalProjectileCursedArrowCursorFolloverSenior2
+  parent: MedievalProjectileCursedArrowCursorFolloverSenior
+  name: fireball
+  description: You better GITTAH WEIGH.
+  components:
+  - type: ProjectileCursorFollower
+    relativeAngle: 90
+    linearVelocityIntensy: 0.08
+
+- type: entity
+  id: MedievalProjectileCursedArrowCursorFolloverSenior3
+  parent: MedievalProjectileCursedArrowCursorFolloverSenior
+  name: fireball
+  description: You better GITTAH WEIGH.
+  components:
+  - type: ProjectileCursorFollower
+    relativeAngle: 90
+    linearVelocityIntensy: 0.125
+
+- type: entity
+  id: MedievalProjectileCursedArrowCursorFolloverSenior4
+  parent: MedievalProjectileCursedArrowCursorFolloverSenior
+  name: fireball
+  description: You better GITTAH WEIGH.
+  components:
+  - type: ProjectileCursorFollower
+    relativeAngle: 90
+    linearVelocityIntensy: 0.11

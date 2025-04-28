@@ -1,0 +1,229 @@
+- type: entity
+  name: AR-57
+  parent: BaseWeaponRifle
+  id: WeaponRifleAR57
+  description: The carbine is larger than average and has above average ammunition capacity. It has a dark gray color. Uses 7x62x51 NATO ammo.
+  components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,2
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/AR57.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: BaseMagazineAR57
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineAR57
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeAR57
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeAR57
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: WeaponFelixAR15
+  parent: WeaponRifleAk
+  suffix: Felix
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/AR15.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/AR15.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineAR15
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineAR15
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeCarabineAR
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeFelixCarabineAR
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      awnings: !type:Container
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,4,1
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: WeaponFelixHK416
+  parent: WeaponRifleAk
+  suffix: Felix
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/HK416.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/HK416.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineHK416
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineHK416
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeCarabineHK416
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeFelixCarabineHK416
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      awnings: !type:Container
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,4,1
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: WeaponFelixAKS74y
+  parent: WeaponRifleAk
+  suffix: Felix
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/AKS74y.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/AKS74y.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    fireRate: 5
+    minAngle: 4
+    maxAngle: 25
+    angleIncrease: 4
+    angleDecay: 16
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineAKS74y
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineAKS74y
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeCarabineAKS74y
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeFelixCarabineAKS74y
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      awnings: !type:Container
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,1
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance

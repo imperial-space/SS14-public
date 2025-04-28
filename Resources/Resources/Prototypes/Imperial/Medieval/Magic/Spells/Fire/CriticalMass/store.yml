@@ -1,0 +1,22 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellCriticalMassBeginner
+  name: medieval-store-spells-fire-critical-mass-beginner-name
+  description: medieval-store-spells-fire-critical-mass-beginner-desc
+  productAction: MedievalActionCriticalMassBeginner
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellCriticalMassMiddle
+    - MedievalSpellConcentratedDisplacementMiddle
+    - MedievalSpellDiffusionMiddle
+  icon:
+    sprite: Imperial/Medieval/Magic/nova.rsi
+    state: supermass
+  cost:
+    MagicMedievalFire: 15
+  categories:
+  - MedievalFireSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1

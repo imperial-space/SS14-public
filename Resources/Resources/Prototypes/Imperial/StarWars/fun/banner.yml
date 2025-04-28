@@ -1,0 +1,10 @@
+- type: entity
+  id: BannerStarWarsImperial
+  parent: BannerBase
+  name: The banner of the Empire
+  suffix: звёздные войны, империя
+  description: be proud of the Empire!
+  components:
+  - type: Sprite
+    sprite: Imperial/StarWars/banner.rsi
+    state: banner

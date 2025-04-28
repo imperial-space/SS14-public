@@ -1,0 +1,94 @@
+- type: accessLevel
+  id: Ninja
+  name: id-card-access-level-ninja
+
+- type: jobIcon
+  parent: JobIcon
+  id: SpiderClanNinjaJobIcon
+  icon:
+    sprite: /Textures/Imperial/SpiderClan/Misc/JobIcon.rsi
+    state: Ninja
+  jobName: job-name-ninja
+
+- type: jobIcon
+  parent: JobIcon
+  id: EmptyJobIcon
+  icon:
+    sprite: /Textures/Imperial/SpiderClan/Misc/EmptyJobIcon.rsi
+    state: Empty
+  jobName: job-name-empty
+
+- type: entity
+  parent: IDCardStandard
+  id: NinjaIDCardStandard
+  name: Spider Clan card
+  description: Act quietly, sticking to the shadows.
+  suffix: Standard, Crook, SpiderClan
+  components:
+  - type: PresetIdCard
+    name: Ninja
+  - type: IdCard
+    jobIcon: SpiderClanNinjaJobIcon
+    jobTitle: job-name-ninja
+  - type: Access
+    tags:
+    - Ninja
+    - SyndicateAgent
+    - NuclearOperative
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Misc/Card.rsi
+    layers:
+    - state: spaceninja
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: Imperial/SpiderClan/Misc/Card.rsi
+
+- type: entity
+  parent: IDCardStandard
+  id: NinjaIDCard
+  name: Spider Clan card
+  description: It looks quite unusual...
+  suffix: Agent, Crook, SpiderClan
+  components:
+  - type: PresetIdCard
+    job: Passenger
+  - type: Access
+    tags:
+    - Ninja
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Misc/Card.rsi
+    layers:
+    - state: spaceninja
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: Imperial/SpiderClan/Misc/Card.rsi
+  - type: AgentIDCard
+  - type: ActivatableUI
+    key: enum.AgentIDCardUiKey.Key
+    inHandsOnly: true
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: UserInterface
+    interfaces:
+      enum.AgentIDCardUiKey.Key:
+        type: AgentIDCardBoundUserInterface
+
+- type: entity
+  id: NinjaLocker
+  parent: LockerBaseSecure
+  name: Ninja Locker
+  suffix: Crook, SpiderClan
+  description: This is where the ninjas keep their equipment.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Misc/Locker.rsi
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: ninja
+    stateDoorOpen: ninja_open
+    stateDoorClosed: ninja_door
+  - type: AccessReader
+    access: [["Ninja"]]

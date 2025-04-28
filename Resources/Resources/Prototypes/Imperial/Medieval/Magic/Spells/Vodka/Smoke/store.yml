@@ -1,0 +1,67 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellSmokeBeginner
+  name: medieval-store-spells-vodka-smoke-beginner-name
+  description: medieval-store-spells-vodka-smoke-beginner-desc
+  productAction: MedievalActionSmokeBeginner
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellSmokeMiddle
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/smoke.rsi
+    state: 1
+  cost:
+    MagicMedievalVodka: 10
+  categories:
+  - MedievalVodkaSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellSmokeMiddle
+  name: medieval-store-spells-vodka-smoke-middle-name
+  description: medieval-store-spells-vodka-smoke-middle-desc
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellSmokeSenior
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/smoke.rsi
+    state: 2
+  cost:
+    MagicMedievalVodka: 30
+  categories:
+  - MedievalVodkaSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellSmokeBeginner
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellSmokeSenior
+  name: medieval-store-spells-vodka-smoke-senior-name
+  description: medieval-store-spells-vodka-smoke-senior-desc
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellSmokeSenior
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/smoke.rsi
+    state: 3
+  cost:
+    MagicMedievalVodka: 60
+    ArchmagePoints: 1
+  categories:
+  - MedievalVodkaSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellSmokeMiddle

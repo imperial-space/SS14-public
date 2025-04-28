@@ -1,0 +1,23 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "by @texttipo",
+    "size": {
+        "x": 42,
+        "y": 20
+    },
+    "states": [
+        {
+            "name": "icon"
+        },
+        {
+            "name": "base"
+        },
+        {
+            "name": "bolt-open"
+        },
+        {
+            "name": "mag-0"
+        }
+    ]
+}

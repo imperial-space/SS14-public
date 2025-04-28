@@ -1,0 +1,405 @@
+#Прототипы для стороны синдикека
+
+- type: entity
+  parent: MobHuman
+  id: TDMSnowRiflemanPreset_S
+  name: SnowRiflemanPreset_S
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: NukeOperative
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMSnowRiflemanGear_S ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMSnowMachineGunnerPreset_S
+  name: SnowMachineGunnerPreset_S
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: NukeOperative
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMSnowMachineGunnerGear_S ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMSnowGrenadierPreset_S
+  name: SnowGrenadierPreset_S
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: NukeOperative
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMSnowGrenadierGear_S ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMSnowMedicalPreset_S
+  name: SnowMedicalPreset_S
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: NukeOperative
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMSnowMedicalGear_S ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmaceuticals
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMSnowCommanderPreset_S
+  name: SnowCommanderPreset_S
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: NukeOperative
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstLeader
+      - NamesMilitaryLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMSnowCommanderGear_S ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+#Прототипы для стороны нанотрахен
+
+- type: entity
+  parent: MobHuman
+  id: TDMSnowRiflemanPreset_N
+  name: SnowRiflemanPreset_N
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMSnowRiflemanGear_N ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMSnowMachineGunnerPreset_N
+  name: SnowMachineGunnerPreset_N
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMSnowMachineGunnerGear_N ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMSnowGrenadierPreset_N
+  name: SnowGrenadierPreset_N
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMSnowGrenadierGear_N ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMSnowMedicalPreset_N
+  name: SnowMedicalPreset_N
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMSnowMedicalGear_N ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmaceuticals
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMSnowCommanderPreset_N
+  name: SnowCommanderPreset_N
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstLeader
+      - NamesMilitaryLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMSnowCommanderGear_N ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery

@@ -1,0 +1,12 @@
+- type: entity
+  parent: ClothingBeltHolster
+  name: ClothingBeltHolster for
+  suffix: ДСО
+  description: Specially equipped holster for the needs of a special operations officer.
+  id: ClothingBeltHolsterSpecialOfficer
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponRevolverDeckard
+        - id: SpeedLoaderMagnum
+        - id: SpeedLoaderMagnum

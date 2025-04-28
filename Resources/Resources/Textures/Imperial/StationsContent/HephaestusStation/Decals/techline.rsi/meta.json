@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA 3.0",
+    "copyright": "taken from NebulaStation https://github.com/NebulaSS13/Nebula/commits/dev/icons/turf/flooring/decals.dmi",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "corner_ne"
+        },
+        {
+            "name": "corner_se"
+        },
+        {
+            "name": "corner_nw"
+        },
+        {
+            "name": "corner_sw"
+        },
+        {
+            "name": "line_n"
+        },
+        {
+            "name": "line_e"
+        },
+        {
+            "name": "line_s"
+        },
+        {
+            "name": "line_w"
+        }
+    ]
+}

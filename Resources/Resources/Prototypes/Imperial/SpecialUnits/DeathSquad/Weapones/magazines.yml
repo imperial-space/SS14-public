@@ -1,0 +1,136 @@
+- type: entity
+  id: ItemDelivererMagazine
+  parent: BaseMagazineLightRifle
+  name: deliverer magazine (.20m)
+  description: Mag of a deadly weapon.
+  suffix: DeathSquad
+  components:
+  - type: Tag
+    tags:
+      - ItemDelivererMagazine
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeRifle
+    capacity: 50
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/DeathSquad/Magazines/DelMag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: ItemDelivererMagazineUAP
+  parent: ItemDelivererMagazine
+  name: deliverer magazine (.20m UAP)
+  description: Mag of a deadly weapon. UAP.
+  suffix: DeathSquad
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/DeathSquad/Magazines/DelMag.rsi
+    layers:
+    - state: piercing
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleUAP
+    mayTransfer: true
+
+- type: entity #exclusive for death squad
+  id: CartridgeRifleUAP
+  name: cartridge (.20 rifle UAP)
+  parent: BaseCartridgeRifle
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRifleUAP
+
+- type: entity #exclusive for death squad
+  id: BulletRifleUAP
+  name: bullet (0.20 rifle UAP)
+  parent: BaseBulletAP
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 8
+        Radiation: 7
+    ignoreResistances: true
+
+#new minigun
+
+- type: entity
+  id: CartridgeMinigunR
+  name: cartridge (.10 rifle)
+  parent: BaseCartridgeHeavyRifle
+  components:
+  - type: CartridgeAmmo
+    proto: BulletMinigunR
+    deleteOnSpawn: true
+
+- type: entity
+  id: BulletMinigunR
+  name: minigun bullet (.10 rifle)
+  parent: BulletHeavyRifle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 10
+        Structural: 10
+
+#pulse shotgun
+
+- type: entity
+  name: pulse bolt
+  id: BulletPulseDS
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Reflective
+    reflective:
+    - Energy
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser
+      shader: unshaded
+  - type: Physics
+  - type: Ammo
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    damage:
+      types:
+        Heat: 21
+
+- type: entity
+  id: BulletPulseSpreadDS
+  categories: [ HideSpawnMenu ]
+  parent: BulletPulseDS
+  components:
+  - type: ProjectileSpread
+    proto: BulletPulseDS
+    count: 6
+    spread: 20
+
+

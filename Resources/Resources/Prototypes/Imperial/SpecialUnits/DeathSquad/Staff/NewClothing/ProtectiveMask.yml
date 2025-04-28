@@ -1,0 +1,25 @@
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskDeathSquadAlt
+  name: death squad protective mask
+  description: Definitely not stolen from some nerd and modified to fit the most elite NT squad...
+  suffix: DeathSquad
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/DeathSquad/Staff/ProtectiveMask.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/SpecialUnits/DeathSquad/Staff/ProtectiveMask.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: FireProtection
+    reduction: 0.9
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.85
+        Caustic: 0.9
+        Stamina: 0.9

@@ -1,0 +1,15 @@
+- type: entity
+  parent: ClothingHandsGlovesColorBlack
+  id: WitchersPurpleGloves
+  name: Перчатки пурпурной ведьмы
+  description: Красивые перчатки пурпурной ведьмы.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Other/Witchers/PurpleGloves.rsi
+  - type: Clothing
+    sprite: Imperial/Other/Witchers/PurpleGloves.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative

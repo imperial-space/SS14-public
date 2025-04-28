@@ -1,0 +1,26 @@
+- type: entity
+  id: WeakeningWave
+  # noSpawn: true
+  components:
+  - type: ShockWave
+    speed: 1.5
+    effects:
+    - !type:ImperialFlashReactionEffect
+      maxRange: 1
+      maxDuration: 3
+      slowTo: 0.5
+      slowOnlyTarget: true
+  - type: ShockWaveDistortion
+    speed: 1.5
+    thikness: 0.1
+    distortion: 0.5
+    maxDistance: 1.5
+    disappearDistancePercentage: 1
+  - type: TimedDespawn
+    lifetime: 1.35
+  - type: StaminaDamageOnTrigger
+    damage: 300
+    sound:
+      path: /Audio/Imperial/Medieval/Magic/Spells/stamina_damage.ogg
+      params:
+        maxDistance: 1

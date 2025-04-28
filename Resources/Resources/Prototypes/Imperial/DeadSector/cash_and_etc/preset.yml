@@ -1,0 +1,22 @@
+- type: entity
+  id: StorePresetTradingTerminal
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-trading-terminal
+    categories:
+    - FegerationTerminalWeapons
+    - FegerationTerminalAmmo
+    - FegerationTerminalExplosion
+    - FegerationTerminalGasMasks
+    - FegerationTerminalHelmets
+    - FegerationTerminalBackPacks
+    - FegerationTerminalEquipment
+    - FegerationTerminalUniforms
+    - FegerationTerminalMedicine
+    - FegerationTerminalProvisions
+    - FegerationTerminalOther
+    currencyWhitelist:
+    - FederationCash
+    balance:
+      FederationCash: 0

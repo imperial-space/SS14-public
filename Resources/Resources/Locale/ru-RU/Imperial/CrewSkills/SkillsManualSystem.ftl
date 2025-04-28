@@ -1,0 +1,10 @@
+crew-skills-manual-already-have-skill = Навык уже есть
+crew-skills-manual-cant-teach-this-skill = Не может обучить этому навыку
+crew-skills-manual-you-need-teacher = Вам нужен учитель
+crew-skills-manual-teacher-havent-skill = Учитель не имеет навык {$teacher}
+crew-skills-manual-you-gavent-needed-skill = Вы не имеете необходимый навык {$skill}
+crew-skills-manual-you-need-another-skill = Вам не хватает навыка {$skill}
+crew-skills-manual-target-need-another-skill = Цели не хватает навыка {$skill}
+crew-skills-manual-skill-added = Добавлен навык {$skill}
+crew-skills-manual-fail-add-skill = Не удалось добавить навык {$skill}
+crew-skills-manual-fail-no-skillpoints = Не может выучить столько навыков

@@ -1,0 +1,184 @@
+# Beginner
+
+- type: entity
+  id: BoostBeginner
+  parent: BaseItem
+  name: Boost
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/hand.rsi
+    state: gib
+  - type: Unremoveable
+  - type: MedievalMeleeResource
+    resource: 1
+    maxResource: 1
+    resourceWaste: 1
+    effectSoundOnBreak: /Audio/Imperial/Medieval/buff_cast.ogg
+    effectSoundOnRepair: /Audio/Imperial/Medieval/buff_cast.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 0
+    clickDamageModifier: 1
+    animation: WeaponArcThrust
+    attackRate: 1
+    angle: 0
+    damage:
+      types:
+        Blunt: 5
+    resistanceBypass: true
+    soundHit:
+      path: /Audio/Imperial/Medieval/buff_cast.ogg
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 150
+        reagents:
+        - ReagentId: Stimulants
+          Quantity: 6
+        - ReagentId: SpaceDrugs
+          Quantity: 5
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 150
+  - type: InjectableSolution
+    solution: melee
+  - type: SolutionInjectOnEmbed
+    transferEfficiency: 1
+    transferAmount: 150
+    solution: melee
+  - type: SolutionTransfer
+    transferAmount: 150
+    minTransferAmount: 150
+    maxTransferAmount: 150
+  - type: MedievalSpellOnInteract
+    soundOnInteract:
+      path: /Audio/Imperial/Medieval/buff_cast.ogg
+    effects:
+      - !type:AddReagentToTarget
+        reagents:
+        - ReagentId: Stimulants
+          Quantity: 6
+        - ReagentId: SpaceDrugs
+          Quantity: 5
+# Middle
+
+- type: entity
+  id: BoostMiddle
+  parent: BaseItem
+  name: Boost
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/hand.rsi
+    state: gib
+  - type: Unremoveable
+  - type: MedievalMeleeResource
+    resource: 1
+    maxResource: 1
+    resourceWaste: 1
+    effectSoundOnBreak: /Audio/Imperial/Medieval/buff_cast.ogg
+    effectSoundOnRepair: /Audio/Imperial/Medieval/buff_cast.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 0
+    clickDamageModifier: 1
+    animation: WeaponArcThrust
+    attackRate: 1
+    angle: 0
+    damage:
+      types:
+        Blunt: 5
+    resistanceBypass: true
+    soundHit:
+      path: /Audio/Imperial/Medieval/buff_cast.ogg
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 150
+        reagents:
+        - ReagentId: Stimulants
+          Quantity: 14
+        - ReagentId: SpaceDrugs
+          Quantity: 5
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 150
+  - type: InjectableSolution
+    solution: melee
+  - type: SolutionInjectOnEmbed
+    transferEfficiency: 1
+    transferAmount: 150
+    solution: melee
+  - type: SolutionTransfer
+    transferAmount: 150
+    minTransferAmount: 150
+    maxTransferAmount: 150
+  - type: MedievalSpellOnInteract
+    soundOnInteract:
+      path: /Audio/Imperial/Medieval/buff_cast.ogg
+    effects:
+      - !type:AddReagentToTarget
+        reagents:
+        - ReagentId: Stimulants
+          Quantity: 14
+        - ReagentId: SpaceDrugs
+          Quantity: 5
+
+# Senior
+
+- type: entity
+  id: BoostSenior
+  parent: BaseItem
+  name: Boost
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/hand.rsi
+    state: gib
+  - type: Unremoveable
+  - type: MedievalMeleeResource
+    resource: 1
+    maxResource: 1
+    resourceWaste: 1
+    effectSoundOnBreak: /Audio/Imperial/Medieval/buff_cast.ogg
+    effectSoundOnRepair: /Audio/Imperial/Medieval/buff_cast.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 0
+    clickDamageModifier: 1
+    animation: WeaponArcThrust
+    attackRate: 1
+    angle: 0
+    damage:
+      types:
+        Blunt: 5
+    resistanceBypass: true
+    soundHit:
+      path: /Audio/Imperial/Medieval/buff_cast.ogg
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 150
+        reagents:
+        - ReagentId: Stimulants
+          Quantity: 24
+        - ReagentId: SpaceDrugs
+          Quantity: 5
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 150
+  - type: InjectableSolution
+    solution: melee
+  - type: SolutionInjectOnEmbed
+    transferEfficiency: 1
+    transferAmount: 150
+    solution: melee
+  - type: SolutionTransfer
+    transferAmount: 150
+    minTransferAmount: 150
+    maxTransferAmount: 150
+  - type: MedievalSpellOnInteract
+    soundOnInteract:
+      path: /Audio/Imperial/Medieval/buff_cast.ogg
+    effects:
+      - !type:AddReagentToTarget
+        reagents:
+        - ReagentId: Stimulants
+          Quantity: 24
+        - ReagentId: SpaceDrugs
+          Quantity: 5

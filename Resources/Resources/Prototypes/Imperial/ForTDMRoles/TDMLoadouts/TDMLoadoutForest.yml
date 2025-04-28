@@ -1,0 +1,293 @@
+# Пресеты для стороны синдикека
+
+- type: startingGear
+  id: TDMForestRiflemanGear_S
+  equipment:
+    head: ClothingHeadForestHelmetMinuteman
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterVestWebMerc
+    suitstorage: WeaponRifleAk
+    id: SyndiPDA
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManCamoForestWebbing
+    pocket1: FlashlightSeclite
+    pocket2: CSWeaponGlock-18
+  storage:
+    belt:
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - Glock18MagazinePistol
+    - Glock18MagazinePistol
+    outerClothing:
+    - HardTraumapack
+    - GrenadeShrapnel
+    - GrenadeShrapnel
+
+- type: startingGear
+  id: TDMForestMachineGunnerGear_S
+  equipment:
+    head: ClothingHeadForestHelmetMinuteman
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterArmorHeavy
+    suitstorage: WeaponLightMachineGunL6
+    id: SyndiPDA
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManCamoForestWebbing
+    pocket1: FlashlightSeclite
+    pocket2: CSWeaponGlock-18
+  storage:
+    belt:
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+    - Glock18MagazinePistol
+
+- type: startingGear
+  id: TDMForestGrenadierGear_S
+  equipment:
+    head: ClothingHeadForestHelmetMinuteman
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterVestWebMerc
+    suitstorage: WeaponLauncherChinaLake
+    id: SyndiPDA
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManCamoForestWebbing
+    pocket1: FlashlightSeclite
+    pocket2: CSWeaponGlock-18
+  storage:
+    belt:
+    - GrenadeFrag
+    - GrenadeFrag
+    - GrenadeFrag
+    - Glock18MagazinePistol
+    - Glock18MagazinePistol
+    outerClothing:
+    - HardTraumapack
+    - GrenadeShrapnel
+    - GrenadeShrapnel
+
+- type: startingGear
+  id: TDMForestMedicalGear_S
+  equipment:
+    head: ClothingHeadForestHelmetMinuteman
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterVestWebMerc
+    suitstorage: CSWeaponMP5
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
+    back: ClothingBackpackMerc
+    id: SyndiPDA
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManMedicWebbing
+    pocket1: FlashlightSeclite
+    pocket2: CSWeaponGlock-18
+  storage:
+    back:
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - CompactDefibrillator
+    - HardBurnKit
+    - HardTraumapack
+    - Syringe
+    belt:
+    - mp5-Magazine
+    - mp5-Magazine
+    - mp5-Magazine
+    - Glock18MagazinePistol
+
+- type: startingGear
+  id: TDMForestCommanderGear_S
+  equipment:
+    head: ClothingHeadHatBeretMerc
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterVestWeb
+    suitstorage: WeaponRifleAk
+    id: SyndiPDA
+    jumpsuit: ClothingUniformJumpsuitMinuteManFormal
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManCamoForestWebbing
+    pocket1: FlashlightSeclite
+    pocket2: WeaponRevolverMateba
+  storage:
+    belt:
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - SpeedLoaderMagnumUranium
+    - SpeedLoaderMagnumUranium
+    - SpeedLoaderMagnumUranium
+    - MagazineBoxMagnumUranium
+    outerClothing:
+    - HardTraumapack
+    - GrenadeShrapnel
+    - GrenadeShrapnel
+
+# Пресеты для стороны нанотрахен
+
+- type: startingGear
+  id: TDMForestRiflemanGear_N
+  equipment:
+    head: ClothingHeadForestHelmetMinuteman
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterVestWebMerc
+    suitstorage: WeaponRifleAk
+    id: ERTSecurityPDA
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManCamoForestWebbing
+    pocket1: FlashlightSeclite
+    pocket2: CSWeaponGlock-18
+  storage:
+    belt:
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - Glock18MagazinePistol
+    - Glock18MagazinePistol
+    outerClothing:
+    - HardTraumapack
+    - GrenadeShrapnel
+    - GrenadeShrapnel
+
+- type: startingGear
+  id: TDMForestMachineGunnerGear_N
+  equipment:
+    head: ClothingHeadForestHelmetMinuteman
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterArmorHeavy
+    suitstorage: WeaponLightMachineGunL6
+    id: ERTSecurityPDA
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManCamoForestWebbing
+    pocket1: FlashlightSeclite
+    pocket2: CSWeaponGlock-18
+  storage:
+    belt:
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+    - Glock18MagazinePistol
+
+- type: startingGear
+  id: TDMForestGrenadierGear_N
+  equipment:
+    head: ClothingHeadForestHelmetMinuteman
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterVestWebMerc
+    suitstorage: WeaponLauncherChinaLake
+    id: ERTSecurityPDA
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManCamoForestWebbing
+    pocket1: FlashlightSeclite
+    pocket2: CSWeaponGlock-18
+  storage:
+    belt:
+    - GrenadeFrag
+    - GrenadeFrag
+    - GrenadeFrag
+    - Glock18MagazinePistol
+    - Glock18MagazinePistol
+    outerClothing:
+    - HardTraumapack
+    - GrenadeShrapnel
+    - GrenadeShrapnel
+
+- type: startingGear
+  id: TDMForestMedicalGear_N
+  equipment:
+    head: ClothingHeadForestHelmetMinuteman
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterVestWebMerc
+    suitstorage: CSWeaponMP5
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
+    back: ClothingBackpackMerc
+    id: ERTSecurityPDA
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManMedicWebbing
+    pocket1: FlashlightSeclite
+    pocket2: CSWeaponGlock-18
+  storage:
+    back:
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - CompactDefibrillator
+    - HardBurnKit
+    - HardTraumapack
+    - Syringe
+    belt:
+    - mp5-Magazine
+    - mp5-Magazine
+    - mp5-Magazine
+    - Glock18MagazinePistol
+
+- type: startingGear
+  id: TDMForestCommanderGear_N
+  equipment:
+    head: ClothingHeadHatBeretMerc
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterVestWeb
+    suitstorage: WeaponRifleAk
+    id: ERTSecurityPDA
+    jumpsuit: ClothingUniformJumpsuitMinuteManFormal
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManCamoForestWebbing
+    pocket1: FlashlightSeclite
+    pocket2: WeaponRevolverMateba
+  storage:
+    belt:
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - SpeedLoaderMagnumUranium
+    - SpeedLoaderMagnumUranium
+    - SpeedLoaderMagnumUranium
+    - MagazineBoxMagnumUranium
+    outerClothing:
+    - HardTraumapack
+    - GrenadeShrapnel
+    - GrenadeShrapnel

@@ -1,0 +1,113 @@
+﻿- type: constructionGraph
+  id: BananaClownJumpsuit
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: jumpsuit
+          steps:
+            - tag: BananaPeel
+              name: банановая кожура # Imperial Recipes Locale
+              icon:
+                sprite: Objects/Specific/Hydroponics/banana.rsi
+                state: peel
+              doAfter: 1
+            - tag: BananaPeel
+              name: банановая кожура # Imperial Recipes Locale
+              icon:
+                sprite: Objects/Specific/Hydroponics/banana.rsi
+                state: peel
+              doAfter: 1
+            - tag: BananaPeel
+              name: банановая кожура # Imperial Recipes Locale
+              icon:
+                sprite: Objects/Specific/Hydroponics/banana.rsi
+                state: peel
+              doAfter: 1
+            - material: Bananium
+              amount: 1
+              doAfter: 1
+            - tag: ClownSuit
+              name: клоунский комбинезон # Imperial Recipes Locale
+              icon:
+                sprite: Clothing/Uniforms/Jumpsuit/clown.rsi
+                state: icon
+              doAfter: 1
+    - node: jumpsuit
+      entity: ClothingUniformJumpsuitClownBanana
+
+- type: constructionGraph
+  id: BananaClownShoes
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: shoes
+          steps:
+            - tag: BananaPeel
+              name: банановая кожура # Imperial Recipes Locale
+              icon:
+                sprite: Objects/Specific/Hydroponics/banana.rsi
+                state: peel
+              doAfter: 1
+            - tag: BananaPeel
+              name: банановая кожура # Imperial Recipes Locale
+              icon:
+                sprite: Objects/Specific/Hydroponics/banana.rsi
+                state: peel
+              doAfter: 1
+            - tag: BananaPeel
+              name: банановая кожура # Imperial Recipes Locale
+              icon:
+                sprite: Objects/Specific/Hydroponics/banana.rsi
+                state: peel
+              doAfter: 1
+            - material: Bananium
+              amount: 1
+              doAfter: 1
+            - tag: ClownShoes
+              name: клоунские туфли # Imperial Recipes Locale
+              icon:
+                sprite: Clothing/Shoes/Specific/clown.rsi
+                state: icon
+              doAfter: 1
+    - node: shoes
+      entity: ClothingShoesClownBanana
+
+- type: constructionGraph
+  id: BananaClownMask
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: mask
+          steps:
+            - tag: BananaPeel
+              name: банановая кожура # Imperial Recipes Locale
+              icon:
+                sprite: Objects/Specific/Hydroponics/banana.rsi
+                state: peel
+              doAfter: 1
+            - tag: BananaPeel
+              name: банановая кожура # Imperial Recipes Locale
+              icon:
+                sprite: Objects/Specific/Hydroponics/banana.rsi
+                state: peel
+              doAfter: 1
+            - tag: BananaPeel
+              name: банановая кожура # Imperial Recipes Locale
+              icon:
+                sprite: Objects/Specific/Hydroponics/banana.rsi
+                state: peel
+              doAfter: 1
+            - material: Bananium
+              amount: 1
+              doAfter: 1
+            - tag: ClownMask
+              name: парик и маска клоуна # Imperial Recipes Locale
+              icon:
+                sprite: Clothing/Mask/clown.rsi
+                state: icon
+              doAfter: 1
+    - node: mask
+      entity: ClothingMaskClownBanana

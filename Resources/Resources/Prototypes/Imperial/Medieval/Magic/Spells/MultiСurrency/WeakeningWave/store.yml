@@ -1,0 +1,25 @@
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellWeakeningWaveSenior
+  name: medieval-store-spells-multi-currency-weakening-wave-senior-name
+  description: medieval-store-spells-multi-currency-weakening-wave-senior-desc
+  productAction: MedievalActionWeakeningWaveSenior
+  priority: 1
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
+    state: 3
+  cost:
+    MagicMedievalLight: 60
+    MagicMedievalVodka: 60
+    ArchmagePoints: 1
+  categories:
+  - MedievalLightSpells
+  - MedievalVodkaSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    requiredPurchases:
+      - MedievalSpellDisablerMiddle
+      - MedievalSpellFlashMiddle

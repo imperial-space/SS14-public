@@ -1,0 +1,56 @@
+- type: entity
+  parent: [ClothingShoesBaseButcherable, BaseMajorContraband]
+  id: RedShoesSpaceNinja
+  name: space ninja shoes
+  suffix: Crook, SpiderClan
+  description: A pair of nano-enhanced boots with built-in magnetic suction cups. It has a red glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Default/Boots/redninja.rsi
+    state: icon-on
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Default/Boots/redninja.rsi
+  - type: NoSlip
+  - type: Magboots
+  - type: ClothingSpeedModifier
+    # ninja are masters of sneaking around relatively quickly, won't break cloak
+    walkModifier: 1.1
+    sprintModifier: 1.3
+
+- type: entity
+  parent: [ClothingShoesBaseButcherable, BaseMajorContraband]
+  id: BlueShoesSpaceNinja
+  name: space ninja shoes
+  suffix: Crook, SpiderClan
+  description: A pair of nano-enhanced boots with built-in magnetic suction cups. It has a blue glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Default/Boots/blueninja.rsi
+    state: icon-on
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Default/Boots/blueninja.rsi
+  - type: NoSlip
+  - type: Magboots
+  - type: ClothingSpeedModifier
+    # ninja are masters of sneaking around relatively quickly, won't break cloak
+    walkModifier: 1.1
+    sprintModifier: 1.3
+
+- type: entity
+  parent: [ClothingShoesBaseButcherable, BaseMajorContraband]
+  id: GreenShoesSpaceNinja
+  name: space ninja shoes
+  suffix: Crook, SpiderClan
+  description: A pair of nano-enhanced boots with built-in magnetic suction cups. It has a green glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Default/Boots/greenninja.rsi
+    state: icon-on
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Default/Boots/greenninja.rsi
+  - type: NoSlip
+  - type: Magboots
+  - type: ClothingSpeedModifier
+    # ninja are masters of sneaking around relatively quickly, won't break cloak
+    walkModifier: 1.1
+    sprintModifier: 1.3

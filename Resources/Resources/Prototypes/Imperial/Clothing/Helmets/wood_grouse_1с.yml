@@ -1,0 +1,87 @@
+- type: entity
+  id: ClothingHeadHelmetWoodGrouseBase
+  parent: ClothingHeadHelmetBase
+  name: fire helmet
+  description: An atmos tech's best friend. Provides some heat resistance and looks cool.
+  suffix: DeadSector
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Head/Helmets/wood_grouse_green.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Head/Helmets/wood_grouse_green.rsi
+    quickEquip: true
+  - type: Item
+    heldPrefix: off
+    size: Normal
+  - type: IdentityBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.2
+        Piercing: 0.4
+        Heat: 0.2
+        Cold: 0.2
+        Shock: 0.5
+        Caustic: 0.2
+        Radiation: 0.2
+  - type: ClothingSpeedModifier
+    walkModifier: 1.04
+    sprintModifier: 1.04
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+
+# Green
+
+- type: entity
+  id: ClothingHeadHelmetWoodGrouseGreen
+  parent: ClothingHeadHelmetWoodGrouseBase
+  name: fire helmet
+  description: An atmos tech's best friend. Provides some heat resistance and looks cool.
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Head/Helmets/wood_grouse_green.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Head/Helmets/wood_grouse_green.rsi
+
+# Orange
+
+- type: entity
+  id: ClothingHeadHelmetWoodGrouseOrange
+  parent: ClothingHeadHelmetWoodGrouseBase
+  name: fire helmet
+  description: An atmos tech's best friend. Provides some heat resistance and looks cool.
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Head/Helmets/wood_grouse_orange.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Head/Helmets/wood_grouse_orange.rsi
+
+# Black
+
+- type: entity
+  id: ClothingHeadHelmetWoodGrouseBlack
+  parent: ClothingHeadHelmetWoodGrouseBase
+  name: fire helmet
+  description: An atmos tech's best friend. Provides some heat resistance and looks cool.
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Head/Helmets/wood_grouse_black.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Head/Helmets/wood_grouse_black.rsi
+
+# Blue
+
+- type: entity
+  id: ClothingHeadHelmetWoodGrouseBlue
+  parent: ClothingHeadHelmetWoodGrouseBase
+  name: fire helmet
+  description: An atmos tech's best friend. Provides some heat resistance and looks cool.
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Head/Helmets/wood_grouse_blue.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Head/Helmets/wood_grouse_blue.rsi

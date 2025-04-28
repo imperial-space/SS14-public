@@ -1,0 +1,56 @@
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellCriticalMassMiddle
+  name: medieval-store-spells-fire-critical-mass-middle-name
+  description: medieval-store-spells-fire-critical-mass-middle-desc
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellCriticalMassSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/nova.rsi
+    state: supermass2
+  cost:
+    MagicMedievalFire: 30
+  categories:
+  - MedievalFireSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellCriticalMassBeginner
+    blacklist:
+      - MedievalSpellConcentratedDisplacementMiddle
+      - MedievalSpellConcentratedDisplacementSenior
+      - MedievalSpellDiffusionMiddle
+      - MedievalSpellDiffusionSenior
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellCriticalMassSenior
+  name: medieval-store-spells-fire-critical-mass-senior-name
+  description: medieval-store-spells-fire-critical-mass-senior-desc
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellCriticalMassSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/nova.rsi
+    state: supermass3
+  cost:
+    MagicMedievalFire: 65
+    ArchmagePoints: 1
+  categories:
+  - MedievalFireSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellCriticalMassMiddle
+    blacklist:
+      - MedievalSpellConcentratedDisplacementMiddle
+      - MedievalSpellConcentratedDisplacementSenior
+      - MedievalSpellDiffusionMiddle
+      - MedievalSpellDiffusionSenior

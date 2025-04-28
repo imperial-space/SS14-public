@@ -1,0 +1,18 @@
+- type: entity
+  id: FireballShockWaveEffect
+  components:
+  - type: ShockWave
+    speed: 2
+  - type: ShockWaveDistortion
+    speed: 2
+    thikness: 0.1
+    distortion: 0.05
+    maxDistance: 1.3
+    disappearDistancePercentage: 0
+  - type: TimedDespawn
+    lifetime: 0.8
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/fireball_blast.ogg
+      params:
+        variation: 0.2

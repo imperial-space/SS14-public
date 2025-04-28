@@ -1,0 +1,17 @@
+- type: entity
+  parent: [ BaseERTUplink, DeathSquadUplinkPresetAlt ]
+  id: ERTUplinkDeadSquadAlt
+  name: unusual uplink
+  description: It smells of coffee and death.
+  suffix: DeathSquad
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ErtCall/ert_tablet.rsi
+    layers:
+    - state: device-on
+    - state: device-deadsquad-anim
+      shader: unshaded
+      visible: true
+  - type: Store
+    balance:
+      BlueSpaceCube: 70

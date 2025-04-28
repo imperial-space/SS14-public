@@ -1,0 +1,19 @@
+- type: entity
+  parent: NuclearBomb
+  id: HellBomb
+  name: HellBomb
+  suffix: HellIvent
+  description: You probably shouldn't stick around to see if this is armed.
+  components:
+  - type: Nuke
+    timer: 15
+    totalIntensity: 6500
+    alertLevelOnActivate: false
+    alertLevelOnDeactivate: false
+    diskSlot:
+      startingItem: NukeDisk
+  - type: WarpPoint
+    follow: true
+    location: Hell Bomb
+  - type: PointLight
+    energy: 10.0

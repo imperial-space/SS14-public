@@ -1,0 +1,134 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellCursedArrowPlayerFolloverBeginner
+  name: medieval-store-spells-darkness-cursed-arrow-player-follover-beginner-name
+  description: medieval-store-spells-darkness-cursed-arrow-player-follover-beginner-desc
+  actionLevelUp: 4
+  priority: 4
+  productUpgradeId:
+    - MedievalSpellCursedArrowPlayerFolloverMiddle
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+    state: 3
+  cost:
+    MagicMedievalDarkness: 45
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellCursedArrowBeginner
+    blacklist:
+      - MedievalSpellCursedArrowCursorFolloverBeginner
+      - MedievalSpellCursedArrowCursorFolloverMiddle
+      - MedievalSpellCursedArrowCursorFolloverSenior
+
+      - MedievalSpellCursedArrowKunaiBeginner
+      - MedievalSpellCursedArrowKunaiMiddle
+      - MedievalSpellCursedArrowKunaiSenior
+      # Magic Arrow
+      - MedievalSpellMagicArrowBeginner
+
+      - MedievalSpellMagicArrowCursorFolloverBeginner
+      - MedievalSpellMagicArrowCursorFolloverMiddle
+      - MedievalSpellMagicArrowCursorFolloverSenior
+
+      - MedievalSpellMagicArrowKunaiBeginner
+      - MedievalSpellMagicArrowKunaiMiddle
+      - MedievalSpellMagicArrowKunaiSenior
+
+      - MedievalSpellMagicArrowPlayerFolloverBeginner
+      - MedievalSpellMagicArrowPlayerFolloverMiddle
+      - MedievalSpellMagicArrowPlayerFolloverSenior
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellCursedArrowPlayerFolloverMiddle
+  name: medieval-store-spells-darkness-cursed-arrow-player-follover-middle-name
+  description: medieval-store-spells-darkness-cursed-arrow-player-follover-beginner-desc
+  priority: 4
+  productUpgradeId:
+    - MedievalSpellCursedArrowPlayerFolloverSenior
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+    state: 2
+  cost:
+    MagicMedievalDarkness: 60
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellCursedArrowPlayerFolloverBeginner
+    blacklist:
+      - MedievalSpellCursedArrowCursorFolloverBeginner
+      - MedievalSpellCursedArrowCursorFolloverMiddle
+      - MedievalSpellCursedArrowCursorFolloverSenior
+
+      - MedievalSpellCursedArrowKunaiBeginner
+      - MedievalSpellCursedArrowKunaiMiddle
+      - MedievalSpellCursedArrowKunaiSenior
+      # Magic Arrow
+      - MedievalSpellMagicArrowBeginner
+
+      - MedievalSpellMagicArrowCursorFolloverBeginner
+      - MedievalSpellMagicArrowCursorFolloverMiddle
+      - MedievalSpellMagicArrowCursorFolloverSenior
+
+      - MedievalSpellMagicArrowKunaiBeginner
+      - MedievalSpellMagicArrowKunaiMiddle
+      - MedievalSpellMagicArrowKunaiSenior
+
+      - MedievalSpellMagicArrowPlayerFolloverBeginner
+      - MedievalSpellMagicArrowPlayerFolloverMiddle
+      - MedievalSpellMagicArrowPlayerFolloverSenior
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellCursedArrowPlayerFolloverSenior
+  name: medieval-store-spells-darkness-cursed-arrow-player-follover-senior-name
+  description: medieval-store-spells-darkness--cursed-arrow-player-follover-senior-desc
+  priority: 4
+  productUpgradeId:
+    - MedievalSpellCursedArrowPlayerFolloverSenior
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+    state: 1
+  cost:
+    MagicMedievalDarkness: 75
+    ArchmagePoints: 1
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellCursedArrowPlayerFolloverMiddle
+    blacklist:
+      - MedievalSpellCursedArrowCursorFolloverBeginner
+      - MedievalSpellCursedArrowCursorFolloverMiddle
+      - MedievalSpellCursedArrowCursorFolloverSenior
+
+      - MedievalSpellCursedArrowKunaiBeginner
+      - MedievalSpellCursedArrowKunaiMiddle
+      - MedievalSpellCursedArrowKunaiSenior
+      # Magic Arrow
+      - MedievalSpellMagicArrowCursorFolloverBeginner
+      - MedievalSpellMagicArrowCursorFolloverMiddle
+      - MedievalSpellMagicArrowCursorFolloverSenior
+
+      - MedievalSpellMagicArrowKunaiBeginner
+      - MedievalSpellMagicArrowKunaiMiddle
+      - MedievalSpellMagicArrowKunaiSenior
+
+      - MedievalSpellMagicArrowPlayerFolloverBeginner
+      - MedievalSpellMagicArrowPlayerFolloverMiddle
+      - MedievalSpellMagicArrowPlayerFolloverSenior

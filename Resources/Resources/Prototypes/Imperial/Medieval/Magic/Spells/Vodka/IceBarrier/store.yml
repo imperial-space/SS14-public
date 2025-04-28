@@ -1,0 +1,67 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellIceBarrierBeginner
+  name: medieval-store-spells-vodka-ice-barrier-beginner-name
+  description: medieval-store-spells-vodka-ice-barrier-beginner-desc
+  productAction: MedievalActionIceBarrierBeginner
+  priority: 3
+  productUpgradeId:
+    - MedievalSpellIceBarrierMiddle
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/barrier.rsi
+    state: 1
+  cost:
+    MagicMedievalVodka: 20
+  categories:
+  - MedievalVodkaSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellIceBarrierMiddle
+  name: medieval-store-spells-vodka-ice-barrier-middle-name
+  description: medieval-store-spells-vodka-ice-barrier-middle-desc
+  priority: 3
+  productUpgradeId:
+    - MedievalSpellIceBarrierSenior
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/barrier.rsi
+    state: 2
+  cost:
+    MagicMedievalVodka: 45
+  categories:
+  - MedievalVodkaSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellIceBarrierBeginner
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellIceBarrierSenior
+  name: medieval-store-spells-vodka-ice-barrier-senior-name
+  description: medieval-store-spells-vodka-ice-barrier-senior-desc
+  priority: 3
+  productUpgradeId:
+    - MedievalSpellIceBarrierSenior
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/barrier.rsi
+    state: 3
+  cost:
+    MagicMedievalVodka: 70
+    ArchmagePoints: 1
+  categories:
+  - MedievalVodkaSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellIceBarrierMiddle

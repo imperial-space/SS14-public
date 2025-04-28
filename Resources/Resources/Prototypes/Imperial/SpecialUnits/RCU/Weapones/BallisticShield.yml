@@ -1,0 +1,73 @@
+- type: entity
+  name: elite ballistic shield
+  parent: BaseItem
+  id: BallisticShieldRCU
+  description: A heavy, assault shield with decent protection. It's so heavy that hitting it must be extremely painful...
+  suffix: RiotControlUnit
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/RCU/Weapones/ballisticshield.rsi
+    state: icon
+  - type: Reflect
+    reflectProb: 0.20
+    spread: 65
+  - type: Blocking
+    passiveBlockModifier:
+      coefficients:
+         Blunt: 0.1
+         Slash: 0.1
+         Piercing: 0.1
+         Heat: 0.1
+    activeBlockModifier:
+      coefficients:
+         Blunt: 0.1
+         Slash: 0.1
+         Piercing: 0.1
+         Heat: 0.1
+  - type: Damageable
+    damageContainer: Shield
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 3600
+        behaviors:
+        - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 3200
+        behaviors:
+        - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+            sound:
+              collection: MetalBreak
+        - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel:
+                  min: 2
+                  max: 2
+                SheetGlass:
+                  min: 2
+                  max: 2
+  - type: MeleeWeapon
+    wideAnimationRotation: 135
+    swingLeft: true
+    attackRate: 0.6
+    damage:
+      types:
+        Blunt: 20
+        Structural: 10
+    soundHit:
+      collection: MetalThud
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 20
+        Structural: 10
+  - type: Wieldable
+  - type: StaminaDamageOnHit
+    damage: 40
+  - type: Item
+    size: Ginormous

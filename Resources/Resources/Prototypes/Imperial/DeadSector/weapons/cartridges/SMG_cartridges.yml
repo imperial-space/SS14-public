@@ -1,0 +1,63 @@
+- type: entity
+  id: BaseCartridgeAgram
+  name: cartridge Agram (9x21)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeAgram
+  - type: CartridgeAmmo
+    proto: AgramBullet
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: CartridgeAgram
+  name: cartridge Agram (9x21)
+  parent: BaseCartridgeAgram
+  components:
+  - type: CartridgeAmmo
+    proto: AgramBullet
+
+- type: entity
+  id: BaseCartridgeSubmachine
+  name: cartridge (.35 mp-9)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: CartridgeAmmo
+    proto: BulletSubmachine
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeFelixSubmachine
+
+- type: entity
+  id: CartridgeSubmachine
+  name: cartridge (.35 MP-9)
+  parent: BaseCartridgeSubmachine
+  components:
+  - type: CartridgeAmmo
+    proto: BulletSubmachine
+
+- type: entity
+  id: CartridgeArmorPiercingSubmachine
+  name: cartridge (.35 MP-9)
+  parent: BaseCartridgeSubmachine
+  components:
+  - type: CartridgeAmmo
+    proto: BulletArmorPiercingSubmachine

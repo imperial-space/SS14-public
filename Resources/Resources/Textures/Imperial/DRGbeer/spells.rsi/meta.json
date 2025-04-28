@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "CC-BY-СА-3.0",
+  "copyright": "Вежливо позаимствованно у killangenifer (дискорд).",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "Opendoor"
+    },
+    {
+      "name": "Ragepower"
+    },
+    {
+      "name": "Reincarnation-Clown"
+    },
+    {
+      "name": "Soporificfog"
+    },
+    {
+      "name": "Teleportation"
+    },
+    {
+      "name": "base"
+    },
+    {
+      "name": "gnomes"
+    },
+    {
+      "name": "warping"
+    }
+  ]
+}

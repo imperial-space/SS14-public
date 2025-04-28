@@ -1,0 +1,369 @@
+# - type: entity
+#   id: BorgDrobeStore
+#   store-name: borg drobe 
+#   abstract: true  
+#   components: 
+#   - type: Store
+#     categories: 
+#     - BorgDrobeBorg
+#     currencyWhitelist:
+#   - Telecrystal
+
+
+# - type: storePreset Старый тип магазинов, переделан под актуал
+#   id: BorgDrobeUplink
+#   storeName: BorgDrobeUplink
+#   categories:
+#   - BorgDrobeBorg
+#   # - BorgDrobeMech
+#   currencyWhitelist:
+#   - Telecrystal
+
+- type: storeCategory
+  id: BorgDrobeBorg
+  name: store-category-borgomat-borg
+
+# - type: storeCategory
+#   id: BorgDrobeMech
+#   name: store-category-borgomat-mech
+
+- type: listing
+  id: BorgDrobeUplinkSaboteur
+  name: borgdrobe-uplink-borg-saboteur-name
+  description: borgdrobe-uplink-borg-saboteur-desc
+  productEntity: PlayerBorgSyndicateSaboteurGhostRole
+  cost:
+    Telecrystal: 25
+  categories:
+  - BorgDrobeBorg
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: BorgDrobeUplinkMedical
+  name: borgdrobe-uplink-borg-medical-name
+  description: borgdrobe-uplink-borg-medical-desc
+  productEntity: PlayerBorgSyndicateMedicalGhostRole
+  cost:
+    Telecrystal: 30
+  categories:
+  - BorgDrobeBorg
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: BorgDrobeUplinkAssault
+  name: borgdrobe-uplink-borg-assault-name
+  description: borgdrobe-uplink-borg-assault-desc
+  productEntity: PlayerBorgSyndicateAssaultGhostRole
+  cost:
+    Telecrystal: 65
+  categories:
+  - BorgDrobeBorg
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+# - type: listing
+#   id: BorgDrobeUplinkMechMauler
+#   productEntity: MechMauler
+#   cost:
+#     Telecrystal: 50
+#   categories:
+#   - BorgDrobeMech
+#   conditions:
+#   - !type:ListingLimitedStockCondition
+#     stock: 1
+
+# - type: listing
+#   id: BorgDrobeUplinkMechGygaxDark
+#   productEntity: MechGygaxDark
+#   cost:
+#     Telecrystal: 30
+#   categories:
+#   - BorgDrobeMech
+#   conditions:
+#   - !type:ListingLimitedStockCondition
+#     stock: 1
+
+# - type: listing
+#   id: BorgDrobeUplinkMechEquipmentDrilleDark
+#   productEntity: MechEquipmentDrilleDark
+#   cost:
+#     Telecrystal: 12
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: BorgDrobeUplinkMechEquipmentFistSyndie
+#   productEntity: MechEquipmentFistSyndie
+#   cost:
+#     Telecrystal: 24
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: CyberneticMechMachineGunIonHeavy
+#   productEntity: CyberneticMechMachineGunIonHeavy
+#   cost:
+#     Telecrystal: 14
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentSmoke
+#   productEntity: MechEquipmentSmoke
+#   cost:
+#     Telecrystal: 4
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentThruster
+#   productEntity: MechEquipmentThruster
+#   cost:
+#     Telecrystal: 4
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MagazineMechaIronStorm
+#   productEntity: MagazineMechaIronStorm
+#   cost:
+#     Telecrystal: 3
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: WeaponAdvancedLaserMech
+#   productEntity: WeaponAdvancedLaserMech
+#   cost:
+#     Telecrystal: 20
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentPilotDef
+#   productEntity: MechEquipmentPilotDef
+#   cost:
+#     Telecrystal: 6
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: WeaponDisablerMechSyndie
+#   productEntity: WeaponDisablerMechSyndie
+#   cost:
+#     Telecrystal: 6
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentTeleport
+#   productEntity: MechEquipmentTeleport
+#   cost:
+#     Telecrystal: 8
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentGrabberMedSyndie
+#   productEntity: MechEquipmentGrabberMedSyndie
+#   cost:
+#     Telecrystal: 3
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: CyberneticMechMachineGunHeavySyndie
+#   productEntity: CyberneticMechMachineGunHeavySyndie
+#   cost:
+#     Telecrystal: 28
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: CyberneticMechMachineGunSyndie
+#   productEntity: CyberneticMechMachineGunSyndie
+#   cost:
+#     Telecrystal: 26
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: CyberneticMechMachineGunFlare
+#   productEntity: CyberneticMechMachineGunFlare
+#   cost:
+#     Telecrystal: 24
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: WeaponLauncherMultipleRocketMechSyndie
+#   productEntity: WeaponLauncherMultipleRocketMechSyndie
+#   cost:
+#     Telecrystal: 30
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: CartridgeRocketMech
+#   productEntity: CartridgeRocketMech
+#   cost:
+#     Telecrystal: 2
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentHp1
+#   productEntity: MechEquipmentHp1
+#   cost:
+#     Telecrystal: 2
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentHp2
+#   productEntity: MechEquipmentHp2
+#   cost:
+#     Telecrystal: 4
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentHp3
+#   productEntity: MechEquipmentHp3
+#   cost:
+#     Telecrystal: 7
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentSpeed1
+#   productEntity: MechEquipmentSpeed1
+#   cost:
+#     Telecrystal: 2
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentSpeed2
+#   productEntity: MechEquipmentSpeed2
+#   cost:
+#     Telecrystal: 4
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentSpeed3
+#   productEntity: MechEquipmentSpeed3
+#   cost:
+#     Telecrystal: 7
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentMedNanobotAirloss1Syndie
+#   productEntity: MechEquipmentMedNanobotAirloss1Syndie
+#   cost:
+#     Telecrystal: 2
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentMedNanobotAirloss2Syndie
+#   productEntity: MechEquipmentMedNanobotAirloss2Syndie
+#   cost:
+#     Telecrystal: 4
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentMedNanobotAirloss3Syndie
+#   productEntity: MechEquipmentMedNanobotAirloss3Syndie
+#   cost:
+#     Telecrystal: 7
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentMedNanobotBrute1Syndie
+#   productEntity: MechEquipmentMedNanobotBrute1Syndie
+#   cost:
+#     Telecrystal: 3
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentMedNanobotBrute2Syndie
+#   productEntity: MechEquipmentMedNanobotBrute2Syndie
+#   cost:
+#     Telecrystal: 6
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentMedNanobotBrute3Syndie
+#   productEntity: MechEquipmentMedNanobotBrute3Syndie
+#   cost:
+#     Telecrystal: 10
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentMedNanobotBurn1Syndie
+#   productEntity: MechEquipmentMedNanobotBurn1Syndie
+#   cost:
+#     Telecrystal: 3
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentMedNanobotBurn2Syndie
+#   productEntity: MechEquipmentMedNanobotBurn2Syndie
+#   cost:
+#     Telecrystal: 6
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentMedNanobotBurn3Syndie
+#   productEntity: MechEquipmentMedNanobotBurn3Syndie
+#   cost:
+#     Telecrystal: 10
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentMachineGunIronStorm
+#   productEntity: MechEquipmentMachineGunIronStorm
+#   cost:
+#     Telecrystal: 22
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentRemdrone1
+#   productEntity: MechEquipmentRemdrone1
+#   cost:
+#     Telecrystal: 3
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentRemdrone2
+#   productEntity: MechEquipmentRemdrone2
+#   cost:
+#     Telecrystal: 7
+#   categories:
+#   - BorgDrobeMech
+
+# - type: listing
+#   id: MechEquipmentRemdrone3
+#   productEntity: MechEquipmentRemdrone3
+#   cost:
+#     Telecrystal: 12
+#   categories:
+#   - BorgDrobeMech

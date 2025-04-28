@@ -1,0 +1,32 @@
+- type: entity
+  parent: MobGnome
+  name: Gnomage
+  description: "After the 3rd infinity, the gnomes got bored."
+  id: MobGnomeWizord
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: Imperial/DRGbeer/gnomage.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: Gnome-0
+  - type: Clothing #TO VALLHALLA
+    quickEquip: false
+    sprite: Imperial/DRGbeer/gnomage.rsi
+    equippedPrefix: 1
+    slots:
+    - HEAD
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: ghost-role-information-gnome-wiz-name
+    description: ghost-role-information-gnome-wiz-description
+    rules: ghost-role-information-gnome-rules
+  - type: AutoImplant
+    implants:
+    - BeerImplantGnome
+    - BeerImplantClowned
+    - BeerImplantGnomes
+    - BeerImplantSmoke

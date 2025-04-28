@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Drawed by BROtania/BRO",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "glass"
+    },
+    {
+      "name": "plasma"
+    },
+    {
+      "name": "reinforced"
+    },
+    {
+      "name": "reinforced_glass"
+    },
+    {
+      "name": "steel"
+    },
+    {
+      "name": "wood"
+    },
+    {
+      "name": "frame"
+    },
+    {
+      "name": "reinforced_plasma"
+    },
+    {
+      "name": "uranium"
+    },
+    {
+      "name": "reinforced_uranium"
+    },
+    {
+      "name": "carpet"
+    }
+  ]
+}

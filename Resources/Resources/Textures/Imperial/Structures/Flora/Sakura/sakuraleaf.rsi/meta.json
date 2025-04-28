@@ -1,0 +1,15 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Designed by @somebody_owo",
+    "size": {
+      "x": 16,
+      "y": 16
+    },
+    "states": [
+      {
+        "name": "sakura_flower"
+      }
+    ]
+  }
+  

@@ -1,0 +1,51 @@
+# Okay, I couldn't think of anything better than just spawning effect entities upon reaction
+# So let's add another crutch to the shitty code money box
+
+- type: entity
+  name: WhiteHoleEffect
+  id: WhiteHoleEffect
+  components:
+    - type: SingularityDistortion
+      intensity: -100
+      falloffPower: 1.5
+    - type: PointLight
+      enabled: true
+      color: "#ffffff"
+      energy: 8
+      radius: 6
+      softness: 1
+      offset: "0, 0"
+    - type: TimedDespawn
+      lifetime: 0.5
+
+- type: entity
+  name: BlackHoleEffect
+  id: BlackHoleEffect
+  components:
+    - type: SingularityDistortion
+      falloffPower: 1.5
+    - type: PointLight
+      enabled: true
+      color: "#B000FF"
+      energy: 8
+      radius: 6
+      softness: 1
+      offset: "0, 0"
+    - type: TimedDespawn
+      lifetime: 0.5
+
+- type: entity
+  name: BluespaceHoleEffect
+  id: BluespaceHoleEffect
+  components:
+    - type: SingularityDistortion
+      falloffPower: 1.5
+    - type: PointLight
+      enabled: true
+      color: "#007ACC"
+      energy: 8
+      radius: 6
+      softness: 1
+      offset: "0, 0"
+    - type: TimedDespawn
+      lifetime: 0.5

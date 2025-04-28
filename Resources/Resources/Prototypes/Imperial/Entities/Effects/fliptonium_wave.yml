@@ -1,0 +1,11 @@
+- type: entity
+  id: FliptoniumWaveEffect
+  components:
+  - type: ShockWaveDistortion
+    speed: 1.4
+    thikness: 0.04
+    distortion: 0.04
+    maxDistance: 0.6
+    disappearDistancePercentage: 0.3
+  - type: TimedDespawn
+    lifetime: 0.8

@@ -1,0 +1,134 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionWaterSphereBeginner
+  name: medieval-store-spells-vodka-water-sphere-beginner-name
+  description: medieval-store-spells-vodka-water-sphere-beginner-desc
+  components:
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 42
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/icebeam_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/ice_pulse.rsi
+      state: ice-basic
+    event: !type:MedievalSpawnAimingEntityEvent
+      spawnedEntity: MedievalEffectWaterSphereBeginner
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-water-sphere
+          color: "#646464"
+          hideChat: true
+  - type: MedievalSpellRandomRelativeSpawn
+    maxSpawnRadius: 2
+    minSpawnRadius: 1
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.7
+        addedEssences:
+          MagicMedievalVodka1: 1
+  - type: ManaDrainSpell
+    manaDrain: 25
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 1
+    whiteListComponents:
+      - type: Damageable
+  - type: ActionUpgrade
+    effectedLevels:
+      2: MedievalActionWaterSphereMiddle
+      3: MedievalActionWaterSphereSenior
+
+# Middle
+
+- type: entity
+  id: MedievalActionWaterSphereMiddle
+  parent: MedievalActionWaterSphereBeginner
+  name: medieval-store-spells-vodka-water-sphere-middle-name
+  description: medieval-store-spells-vodka-water-sphere-middle-desc
+  components:
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 35
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/icebeam_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/ice_pulse.rsi
+      state: ice-mid
+    event: !type:MedievalSpawnAimingEntityEvent
+      spawnedEntity: MedievalEffectWaterSphereMiddle
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-water-sphere
+          color: "#646464"
+          hideChat: true
+  - type: MedievalSpellRandomRelativeSpawn
+    maxSpawnRadius: 2
+    minSpawnRadius: 1
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 2
+    whiteListComponents:
+      - type: Damageable
+  - type: ManaDrainSpell
+    manaDrain: 25
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+
+# Senior
+
+- type: entity
+  id: MedievalActionWaterSphereSenior
+  parent: MedievalActionWaterSphereMiddle
+  name: medieval-store-spells-vodka-water-sphere-senior-name
+  description: medieval-store-spells-vodka-water-sphere-senior-desc
+  components:
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 30
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/icebeam_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/ice_pulse.rsi
+      state: ice-adv
+    event: !type:MedievalSpawnAimingEntityEvent
+      spawnedEntity: MedievalEffectWaterSphereSenior
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-water-sphere
+          color: "#646464"
+          hideChat: true
+  - type: MedievalSpellRandomRelativeSpawn
+    maxSpawnRadius: 2
+    minSpawnRadius: 1
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 3
+    whiteListComponents:
+      - type: Damageable
+  - type: ManaDrainSpell
+    manaDrain: 25
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15

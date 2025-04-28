@@ -1,0 +1,48 @@
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellSleepMiddle
+  name: medieval-store-spells-multi-currency-sleep-middle-name
+  description: medieval-store-spells-multi-currency-sleep-middle-desc
+  productAction: MedievalActionSleepMiddle
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellDisablerSenior
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/sleep.rsi
+    state: 1
+  cost:
+    MagicMedievalVodka: 35
+    MagicMedievalLight: 35
+  categories:
+  - MedievalVodkaSpells
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellDisablerSenior
+  name: medieval-store-spells-multi-currency-senior-senior-name
+  description: medieval-store-spells-multi-currency-senior-senior-desc
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellDisablerSenior
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/sleep.rsi
+    state: 2
+  cost:
+    MagicMedievalVodka: 55
+    MagicMedievalLight: 55
+    ArchmagePoints: 1
+  categories:
+  - MedievalVodkaSpells
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellSleepMiddle

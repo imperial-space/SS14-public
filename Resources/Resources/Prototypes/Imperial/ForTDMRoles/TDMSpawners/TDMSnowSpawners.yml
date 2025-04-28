@@ -1,0 +1,213 @@
+# Спавнеры для стороны синдикека
+
+- type: entity
+  id: TDMSnowRiflemanSpawner_S
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-snowrifleman-name
+      description: tdm-snowrifleman-desc
+      rules: tdm-snowrifleman-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMSnowRiflemanPreset_S
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMSnowMachineGunnerSpawner_S
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-snowmachinegunner-name
+      description: tdm-snowmachinegunner-desc
+      rules: tdm-snowmachinegunner-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMSnowMachineGunnerPreset_S
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMSnowGrenadierSpawner_S
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-snowgrenadier-name
+      description: tdm-snowgrenadier-desc
+      rules: tdm-snowgrenadier-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMSnowGrenadierPreset_S
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMSnowMedicalSpawner_S
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-snowmedical-name
+      description: tdm-snowmedical-desc
+      rules: tdm-snowmedical-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMSnowMedicalPreset_S
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMSnowCommanderSpawner_S
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-snowcommander-name
+      description: tdm-snowcommander-desc
+      rules: tdm-snowcommander-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMSnowCommanderPreset_S
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+# Спавнеры для стороны нанотрахен
+
+- type: entity
+  id: TDMSnowRiflemanSpawner_N
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-snowrifleman-name
+      description: tdm-snowrifleman-desc
+      rules: tdm-snowrifleman-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMSnowRiflemanPreset_N
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMSnowMachineGunnerSpawner_N
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-snowmachinegunner-name
+      description: tdm-snowmachinegunner-desc
+      rules: tdm-snowmachinegunner-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMSnowMachineGunnerPreset_N
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMSnowGrenadierSpawner_N
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-snowgrenadier-name
+      description: tdm-snowgrenadier-desc
+      rules: tdm-snowgrenadier-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMSnowGrenadierPreset_N
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMSnowMedicalSpawner_N
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-snowmedical-name
+      description: tdm-snowmedical-desc
+      rules: tdm-snowmedical-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMSnowMedicalPreset_N
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMSnowCommanderSpawner_N
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-snowcommander-name
+      description: tdm-snowcommander-desc
+      rules: tdm-snowcommander-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMSnowCommanderPreset_N
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva

@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from cev-eris at commit https://github.com/discordia-space/CEV-Eris/commit/2cb66bae0e253e13d37f8939e0983bb94fee243e",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "Straight"
+        },
+        {
+            "name": "StraightWithoutOneRailLeft"
+        },
+        {
+            "name": "StraightWithoutOneRailRight"
+        },
+        {
+            "name": "Sleepers"
+        },
+        {
+            "name": "Rotary"
+        },
+        {
+            "name": "Fork"
+        }
+    ]
+}

@@ -1,0 +1,121 @@
+- type: entity
+  name: ASP
+  parent: BaseWeaponPistol
+  id: WeaponPistolASP
+  description: A low-loading 8-shot pistol small enough to hide in your pocket.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/pistol/ASP.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    fireRate: 4
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+  - type: Item
+    size: Small
+    shape: null
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: BaseMagazineASP
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineASP
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeASP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeASP
+
+- type: entity
+  name: Astra-60
+  parent: BaseWeaponPistol
+  id: WeaponPistolAstra60
+  description: Small-sized pistol with medium ammunition. It has a silver color throughout the body. Uses 9x19 auto ammo.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/pistol/Astra60.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    fireRate: 1.5
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: BaseMagazineAstra60
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineAstra60
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeAstra60
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeAstra60
+
+- type: entity
+  name: Astra-100
+  parent: BaseWeaponPistol
+  id: WeaponPistolAstra100
+  description: Medium-sized pistol with 12 rounds of ammunition. It is dark gray on the top and khaki gray on the bottom. Uses 9x19 auto ammo.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/pistol/Astra100.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    fireRate: 5
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+      params:
+        volume: -14
+  - type: Item
+    size: Normal
+    shape: null
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: BaseMagazineAstra100
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineAstra100
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeAstra100
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeAstra100

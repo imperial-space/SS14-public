@@ -1,0 +1,90 @@
+# Конфигуратор доступа для Старшего Инженера InterGalactic
+- type: entity
+  id: AccessConfiguratorInterGalactic
+  parent: AccessConfigurator
+  name: конфигуратор доступа
+  description: Специально настроен для работы инженеров InterGalactic
+  suffix: InterGalactic
+  components:
+    - type: AccessOverrider
+      accessLevels:
+      - InterGalactic
+      - Command
+
+# Гарнитура Инженеров InterGalactic
+- type: entity
+  id: ClothingHeadsetEngineeringInterGalactic
+  parent: ClothingHeadsetEngineering
+  name: гарнитура InterGalactic
+  description: Радио-гарнитура галактических инженеров. Есть маркировка корпорации InterGalactic
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyRadioENG
+
+# Заполненные вещи
+- type: entity
+  id: ClothingBackpackDuffelCEInterGalacticFilled
+  parent: ClothingBackpackDuffelEngineerInterGalacticFilled
+  suffix: InterGalactic, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxSurvivalEngineering
+    - id: EncryptionKeyRadioENG
+      amount: 3
+    - id: PinpointerUniversal
+
+- type: entity
+  id: ClothingBackpackDuffelAtmosInterGalacticFilled
+  parent: ClothingBackpackDuffelAtmospherics
+  name: вещмешок атмосферного техника
+  description: Большой вещмешок, изготовленный из огнеупорных волокон. Пахнет плазмой.
+  suffix: InterGalactic, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxSurvivalEngineering
+
+- type: entity
+  id: ClothingBackpackDuffelEngineerInterGalacticFilled
+  parent: ClothingBackpackDuffelEngineering
+  name: инженерный вещмешок
+  description: Большой вещмешок для хранения дополнительных инструментов и припасов.
+  suffix: InterGalactic, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxSurvivalEngineering
+
+- type: entity
+  id: ClothingBackpackDuffelSydicateScoutFilled
+  parent: ClothingBackpackDuffelSyndicate
+  name: красный вещмешок
+  description: Содержит что-то странное внутри.
+  suffix: InterGalactic, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxSurvivalSyndicate
+    - id: MagazinePistolCaselessRifle
+    - id: MedkitCombatFilled
+    - id: MicroBombImplanter
+
+- type: entity
+  id: ClothingBeltMercWebbingInterGalacticFilled
+  parent: ClothingBeltMercWebbing
+  suffix: InterGalactic, Filled
+  name: РПС Наёмника
+  description: Стандартный комплект разгрузки вольного наёмника.
+  components:
+  - type: StorageFill
+    contents:
+    - id: GrenadeIncendiary
+    - id: GrenadeShrapnel
+    - id: ExGrenade
+    - id: GrenadeFlashBang
+    - id: Handcuffs
+      amount: 2
+    - id: Truncheon

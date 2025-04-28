@@ -1,0 +1,61 @@
+- type: entity
+  name: red energy katana
+  suffix: Crook, SpiderClan
+  parent: Katana
+  id: RedEnergyKatana
+  description: A katana infused with strong energy. It has a red glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Weapon/redkatana.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -60
+    damage:
+      types:
+        Slash: 30
+  - type: Item
+    sprite: Imperial/SpiderClan/Weapon/redkatana.rsi
+  - type: EnergyKatana
+  - type: DashAbility
+  - type: LimitedCharges
+    maxCharges: 3
+    charges: 3
+  - type: AutoRecharge
+    rechargeDuration: 20
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Weapon/redkatana.rsi
+    slots:
+    - Back
+    - Belt
+  - type: Reflect
+
+- type: entity
+  name: blue energy katana
+  suffix: Crook, SpiderClan
+  parent: Katana
+  id: BlueEnergyKatana
+  description: A katana infused with strong energy. It has a blue glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Weapon/bluekatana.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -60
+    damage:
+      types:
+        Slash: 30
+  - type: Item
+    sprite: Imperial/SpiderClan/Weapon/bluekatana.rsi
+  - type: EnergyKatana
+  - type: DashAbility
+  - type: LimitedCharges
+    maxCharges: 3
+    charges: 3
+  - type: AutoRecharge
+    rechargeDuration: 20
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Weapon/bluekatana.rsi
+    slots:
+    - Back
+    - Belt
+  - type: Reflect

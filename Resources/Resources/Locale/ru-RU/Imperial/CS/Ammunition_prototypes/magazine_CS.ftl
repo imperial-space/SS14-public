@@ -1,0 +1,10 @@
+ent-SCAR-Magazine = магазин для SCAR
+ent-mac10-Magazine =  магазин ПП (.35 авто)
+ent-mp5-Magazine = магазин ПП (.35 авто)
+ent-BerettaMagazinePistol = магазин для Beretta (.35 авто)
+ent-AWP-magazine = магазин для AWP
+ent-Glock18MagazinePistol = магазин для Glock18 (.35 авто)
+ent-p90-Magazine = магазин для ПП P90 (.35 авто)
+ent-SpeedLoaderR-8 = спидлоадер (.45 авто)
+ent-DualBerettaMagazinePistol = магазин для dual berettas (.35 авто)
+ent-bizon-Magazine = магазин для Bizon (.35 авто)

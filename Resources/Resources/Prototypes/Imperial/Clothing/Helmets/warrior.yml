@@ -1,0 +1,44 @@
+- type: entity
+  id: ClothingHeadHelmetWarrior
+  parent: ClothingHeadHelmetBase
+  name: fire helmet
+  description: An atmos tech's best friend. Provides some heat resistance and looks cool.
+  suffix: DeadSector
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Head/Helmets/warrior.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Head/Helmets/warrior.rsi
+    quickEquip: true
+  - type: Item
+    heldPrefix: off
+    size: Normal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.45
+        Cold: 0.45
+        Shock: 0.45
+        Caustic: 0.45
+        Radiation: 0.15
+  - type: ContainerContainer
+    containers:
+      key_slots: !type:Container
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+  - type: BreathMask
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+  - type: Headset
+    requiredSlot: HEAD
+  - type: EncryptionKeyHolder
+    keySlots: 256
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop

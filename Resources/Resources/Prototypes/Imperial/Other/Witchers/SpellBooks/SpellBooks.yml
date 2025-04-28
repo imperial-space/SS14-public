@@ -1,0 +1,35 @@
+- type: entity
+  id: WtchersBookVendigo
+  name: The Wendigo Summoning Book
+  suffix: Ведьмы
+  parent: BaseSpellbook
+  components:
+    - type: Item
+      size: Tiny
+    - type: Spellbook
+      spellActions:
+        WitchersSpellVendigo: -1
+
+- type: entity
+  id: WtchersBookYlitka
+  name: The Snail Summoning Book
+  suffix: Ведьмы
+  parent: BaseSpellbook
+  components:
+    - type: Item
+      size: Tiny
+    - type: Spellbook
+      spellActions:
+        WitchersSpellYlitka: -1
+
+- type: entity
+  id: WtchersBookVorons
+  name: The Raven Summoning Book
+  suffix: Ведьмы
+  parent: BaseSpellbook
+  components:
+    - type: Item
+      size: Tiny
+    - type: Spellbook
+      spellActions:
+        WitchersSpellVorons: -1

@@ -1,0 +1,370 @@
+- type: entity
+  id: TireWithATire
+  parent: BaseStructureDynamic
+  name: tire with a tire
+  description: This will make an excellent framing of the garden at the entrance.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Transform
+      anchored: true
+      noRot: true
+    - type: Physics
+      bodyType: Static
+    - type: Damageable
+      damageContainer: Inorganic
+      damageModifierSet: Metallic
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            SheetSteel1:
+              min: 1
+              max: 2
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - type: Sprite
+      sprite: Imperial/DeadSector/location_objects/TireWithATire.rsi
+      state: base
+
+- type: entity
+  id: HomemadeWindTurbine
+  parent: BaseStructure
+  name: homemade wind turbine
+  description: Like in the wild West... Probably.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Transform
+      anchored: false
+    - type: Clickable
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.45,-0.45,0.45,0.45"
+          density: 60
+          mask:
+          - MachineMask
+          layer:
+          - MidImpassable
+          - LowImpassable
+    - type: Damageable
+      damageContainer: Inorganic
+      damageModifierSet: Metallic
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 300
+        behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            MaterialWoodPlank1:
+              min: 3
+              max: 5
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - type: Sprite
+      drawdepth: Overdoors
+      noRot: true
+      sprite: Imperial/DeadSector/location_objects/HomemadeWindTurbine.rsi
+      state: base
+
+- type: entity
+  name: gasoline generator
+  description: |-
+    A gasoline generator. He probably works on coal.
+  parent: PortableGeneratorBase
+  id: RedGasolineGenerator
+  suffix: Welding Fuel, 8 kW
+  components:
+    - type: AmbientSound
+      range: 4
+      volume: -8
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.30,-0.30,0.30,0.30"
+          # It has wheels
+          density: 30
+          mask:
+            - MachineMask
+          layer:
+            - MachineLayer
+    - type: Sprite
+      sprite: Imperial/DeadSector/location_objects/GasolineGenerator.rsi
+      layers:
+        - state: portgen3
+          map: [ "enum.GeneratorVisualLayers.Body" ]
+        - state: portgen3on_unlit
+          map: [ "enum.GeneratorVisualLayers.Unlit" ]
+          shader: unshaded
+          visible: false
+    - type: GenericVisualizer
+      visuals:
+        enum.GeneratorVisuals.Running:
+          enum.GeneratorVisualLayers.Body:
+            True: { state: portgen3on }
+            False: { state: portgen3 }
+          enum.GeneratorVisualLayers.Unlit:
+            True: { visible: true }
+            False: { visible: false }
+    - type: Machine
+      board: PortableGeneratorJrPacmanMachineCircuitboard
+    - type: FuelGenerator
+      targetPower: 5000
+      minTargetPower: 4000
+      optimalPower: 8000
+      maxTargetPower: 8000
+      # 7.5 minutes at full tank.
+      optimalBurnRate: 0.11111111
+      # Shallow curve that allows you to just barely eek out 12 minutes at lowest.
+      fuelEfficiencyConstant: 0.3
+    - type: ChemicalFuelGeneratorAdapter
+      solution: tank
+      reagents:
+        WeldingFuel: 1
+    - type: SolutionContainerManager
+      solutions:
+        tank:
+          maxVol: 50
+    - type: RefillableSolution
+      solution: tank
+    - type: PortableGenerator
+      # Unreliable bugger
+      startChance: 0.5
+    - type: NodeContainer
+      examinable: true
+      nodes:
+        output:
+          !type:CableDeviceNode
+          nodeGroupID: Apc
+    - type: PowerMonitoringDevice
+      group: Generator
+      loadNode: output
+      sprite: Structures/Power/Generation/portable_generator.rsi
+      state: portgen3
+    - type: PowerSupplier
+      # No ramping needed on this bugger.
+      voltage: Apc
+      supplyRampTolerance: 2000
+    - type: GeneratorExhaustGas
+      gasType: CarbonDioxide
+      # Full tank is 25 moles of gas
+      moleRatio: 0.5
+    - type: Explosive
+      explosionType: Default
+      tileBreakScale: 0
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 200
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 100
+          behaviors:
+            - !type:SpillBehavior
+              solution: tank
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:ChangeConstructionNodeBehavior
+              node: machineFrame
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+        - trigger:
+            !type:DamageTypeTrigger
+            damageType: Piercing
+            damage: 75
+          behaviors:
+            - !type:SolutionExplosionBehavior
+              solution: tank
+
+- type: entity
+  parent: WallmountTelescreenFrame
+  id: WallmountTelevisionBroken
+  name: broken television
+  description: Finally, some decent reception around here...
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.75,-0.10,0.75,0.35"
+        density: 75
+        mask:
+          - FullTileMask
+        layer:
+          - WallLayer
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: Imperial/DeadSector/location_objects/WallmountTelevisionBroken.rsi
+    layers:
+      - map: ["computerLayerBody"]
+        state: base
+      - map: ["computerLayerScreen"]
+        state: base
+
+- type: entity
+  id: ELTTelevision
+  parent: BaseStructureDynamic
+  name: ELT television
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Transform
+      anchored: true
+      noRot: true
+    - type: Physics
+      bodyType: Static
+    - type: Damageable
+      damageContainer: Inorganic
+      damageModifierSet: Metallic
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            SheetSteel1:
+              min: 1
+              max: 3
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - type: Sprite
+      sprite: Imperial/DeadSector/location_objects/ELTTelevision.rsi
+      state: base
+    - type: PointLight
+      radius: 1.5
+      energy: 1.6
+      color: "#ffe4ce"
+
+- type: entity
+  id: FoldableLightPost
+  parent: [BaseItem, FlashlightLantern]
+  name: foldapbe light post
+  description: Gudies you trough the abyss of darkness!
+  components:
+    - type: Item
+      storedRotation: -90
+      size: Large
+      shape:
+      - 0,0,2,2
+    - type: Sprite
+      sprite: Imperial/DeadSector/location_objects/foldable_light_post.rsi
+      noRot: true
+      layers:
+      - state: post-off
+        map: ["unfoldedLayer"]
+      - state: post-folded
+        map: ["foldedLayer"]
+        visible: false
+      - state: post-on
+        map: ["light"]
+        visible: false
+    - type: Rotatable
+    - type: MovedByPressure
+    - type: DamageOnHighSpeedImpact
+      soundHit:
+        collection: MetalThud
+    - type: InteractionOutline
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 190
+          mask:
+          - MobMask
+    - type: Damageable
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 78
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel1:
+                  min: 3
+                  max: 5
+    - type: Pullable
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.FoldedVisuals.State:
+          foldedLayer:
+            True: {visible: true}
+            False: {visible: false}
+          unfoldedLayer:
+            True: {visible: false}
+            False: {visible: true}
+          light:
+            True: {visible: false}
+            False: {visible: true}
+
+- type: entity
+  id: ElysiumPrimeTable
+  parent: BaseStructure
+  name: Elysium Prime table
+  description: A square piece of metal standing on four metal legs. Extra robust.
+  placement:
+    mode: AlignTileAny
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/location_objects/ElysiumPrimeTable.rsi
+    state: screentable
+  - type: Icon
+    sprite: Imperial/DeadSector/location_objects/ElysiumPrimeTable.rsi
+    state: icon
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 2
+            max: 2
+          CableApcStack10:
+            min: 1
+            max: 1
+          ShardGlassReinforced:
+            min: 2
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Climbable
+  - type: Appearance

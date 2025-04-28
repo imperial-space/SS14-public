@@ -1,0 +1,154 @@
+- type: entity
+  parent: MobHuman
+  id: ArcaneTraderPreset
+  name: Trader
+  suffix: Arcane
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - OldStationTrader
+      - NamesLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ ArcaneTraderGear ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    # - type: CrewSkills
+    #   skills:
+    #     - skillBotany
+    #     - skillBaseMed
+    #     - skillBaseConstraction
+    #     - skillCooking
+    #     - skillBartending
+    #     - skillMedicalEquipment
+    #     - skillPiloting
+    #     - skillShooting
+    #     - skillMaintenance
+
+- type: entity
+  parent: MobHuman
+  id: ArcaneSmugglerPreset
+  name: OldStationSmuggler
+  suffix: Arcane
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - OldStationSmuggler
+      - NamesLast
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ ArcaneSmugglerGear ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    # - type: CrewSkills
+    #   skills:
+    #     - skillBotany
+    #     - skillBaseMed
+    #     - skillBaseConstraction
+    #     - skillHacking
+    #     - skillPiloting
+    #     - skillShooting
+    #     - skillMaintenance
+
+- type: entity
+  parent: MobHuman
+  id: ArcaneMercPreset
+  name: Merc
+  suffix: Arcane
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - OldStationMerc
+      - NamesLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ ArcaneMercGear ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    # - type: CrewSkills
+    #   skills:
+    #     - skillBotany
+    #     - skillBaseMed
+    #     - skillBaseConstraction
+    #     - skillHacking
+    #     - skillInstrumentation
+    #     - skillMaintenance
+    #     - skillMedicalEquipment
+    #     - skillPharmacology
+    #     - skillPiloting
+    #     - skillShooting
+    #     - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: ArcaneHeadMercPreset
+  name: Head Merc
+  suffix: Arcane
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - OldStationHeadMerc
+      - NamesLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ ArcaneHeadMercGear ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    # - type: CrewSkills
+    #   skills:
+    #     - skillBotany
+    #     - skillBaseMed
+    #     - skillBaseConstraction
+    #     - skillHacking
+    #     - skillInstrumentation
+    #     - skillMaintenance
+    #     - skillMedicalEquipment
+    #     - skillPharmacology
+    #     - skillPiloting
+    #     - skillShooting
+    #     - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: ArcaneBomjPreset
+  name: Bum
+  suffix: Arcane
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - OldStationBomj
+      - NamesLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ ArcaneBomjGear ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    # - type: CrewSkills
+    #   skills:
+    #     - skillBotany
+    #     - skillBaseMed
+    #     - skillBaseConstraction
+    #     - skillHacking
+    #     - skillInstrumentation
+    #     - skillMaintenance
+    #     - skillPiloting
+    #     - skillMediumConstruction
+    #     - skillBasicAtmos

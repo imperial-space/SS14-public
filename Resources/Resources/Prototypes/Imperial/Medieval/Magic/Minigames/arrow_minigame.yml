@@ -1,0 +1,6 @@
+- type: minigame
+  id: arrows
+  maxMinigamePlaytime: 20
+  minigames:
+    - type: MedievalArrowsMinigame
+      baseArrowsCount: 10

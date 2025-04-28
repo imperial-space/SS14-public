@@ -1,0 +1,74 @@
+- type: entity
+  name: Damn
+  suffix: PN, Хоррор
+  parent: SimpleSpaceMobBase
+  id: HorrorMobFDamn
+  description: A monster from another dimension who was swallowed up by a shadow.
+  components:
+    - type: Sprite
+      sprite: Imperial/Other/Horror/Damn.rsi
+      drawdepth: Mobs
+      layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: Damn
+      - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+        state: glow
+        shader: unshaded
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: Damn
+          BaseUnshaded: glow
+        Dead:
+          Base: Damn_die
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        200: Dead
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+      - FootstepSound
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Imperial/Horror/Hare/Haresteps.ogg
+    - type: MeleeWeapon
+      hidden: true
+      angle: 0
+      animation: WeaponArcClaw
+      soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+      damage:
+        types:
+          Structural: 5
+          Stamina: 40
+          Bloodloss: 25
+    - type: Speech
+      speechVerb: LargeMob
+    - type: Vocal
+      sounds:
+        Unsexed: DamnVoice
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 4
+      baseSprintSpeed: 7
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: NoSlip
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: Devourer
+      soundDevour: /Audio/Imperial/Horror/Chyd/ChydEat.ogg
+      foodPreference: Humanoid
+      shouldStoreDevoured: true
+      chemical: Ichor
+      healRate: 45.0
+      whitelist:
+        components:
+        - MobState
+        - Door
+    - type: InteractionPopup
+      successChance: 0.5
+      interactSuccessString: Вы гладите Лягушку ночи, разглаживая его шёрстку. Он на вас странно смотрит. Тем не менее, ему нравится.
+      interactSuccessSpawn: EffectHearts

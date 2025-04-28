@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Designed by @vladegeg",
+  "size": {
+    "x": 17,
+    "y": 29
+  },
+  "states": [
+    {
+      "name": "Box"
+    }
+  ]
+}

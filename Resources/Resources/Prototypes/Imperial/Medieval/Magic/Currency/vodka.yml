@@ -1,0 +1,43 @@
+- type: imperialCurrency
+  id: MagicMedievalVodka
+  displayName: medieval-currency-display-magic-vodka
+  displayNameColor: "#3B69F2"
+  shortName: medieval-currency-display-magic-vodka-short
+  canWithdraw: false
+  cash:
+    1: MagicMedievalVodka1
+
+# Entity
+
+- type: entity
+  id: MagicMedievalVodka
+  parent: BaseItem
+  name: essence of vodka
+  description: Magical essence of vodka
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/essence.rsi
+    color: "#3863E3"
+    state: essence
+    noRot: true
+  - type: Stack
+    count: 20
+    stackType: MagicMedievalVodka
+  - type: ImperialCurrency
+    price:
+      MagicMedievalVodka: 1
+
+- type: entity
+  id: MagicMedievalVodka1
+  parent: MagicMedievalVodka
+  components:
+  - type: Stack
+    count: 1
+
+# Stack
+
+- type: stack
+  id: MagicMedievalVodka
+  name: MagicMedievalVodka
+  icon: Imperial/Other/ErtCall/bluespacecube.rsi
+  spawn: MagicMedievalVodka1

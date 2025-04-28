@@ -1,0 +1,38 @@
+- type: entity
+  id: ClothingHeadHelmetK63
+  parent: ClothingHeadHelmetBase
+  name: fire helmet
+  description: An atmos tech's best friend. Provides some heat resistance and looks cool.
+  suffix: DeadSector
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Head/Helmets/k6_3.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Head/Helmets/k6_3.rsi
+    quickEquip: true
+    clothingVisuals:
+      head:
+      - state: off-equipped-HELMET
+  - type: Item
+    size: Normal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.93
+        Heat: 0.93
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+
+# gloves
+- type: entity
+  id: ToggleK63Helmet
+  name: Toggle ninja gloves
+  description: Toggles all glove actions on left click. Includes your doorjack, draining power, stunning enemies and hacking certain computers.
+  components:
+  - type: InstantAction
+    priority: -13
+    event: !type:ToggleActionEvent {}

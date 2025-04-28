@@ -1,0 +1,192 @@
+- type: entity
+  id: BulletAR57
+  name: bullet AR-57 (7x62x51)
+  parent: BaseBullet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 11.2
+
+- type: entity
+  id: BulletAR57Piercing
+  name: bullet AR-57 (7x62x51 AP)
+  parent: BaseBullet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 6.7
+    ignoreResistances: true
+
+- type: entity
+  id: BulletAR57LongRange
+  name: bullet AR-57 (7x62x51 T)
+  parent: BaseBullet
+  components:
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 11.2
+
+- type: entity
+  id: BulletCarabineAK
+  name: bullet (.35 MP-9)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 14.5
+
+- type: entity
+  id: BulletArmorPiercingCarabineAK
+  name: bullet (.35 MP-9)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 24.5
+
+- type: entity
+  id: BulletAR102Piercing
+  name: bullet (7x62x51 AP)
+  parent: BaseBullet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 8.7
+    ignoreResistances: true
+
+- type: entity
+  id: BulletAR102LongRange
+  name: bullet (7x62x51 T)
+  parent: BaseBullet
+  components:
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 14.5
+
+- type: entity
+  id: BulletCarabineAKS74y
+  name: bullet (.35 MP-9)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 14.5
+
+- type: entity
+  id: BulletArmorPiercingCarabineAKS74y
+  name: bullet (.35 MP-9)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 8.7
+    ignoreResistances: true
+
+- type: entity
+  id: BulletAKS74yLongRange
+  name: bullet (7x62x51 T)
+  parent: BaseBullet
+  components:
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 14.5
+
+- type: entity
+  id: BulletCarabineAR
+  name: bullet (.35 MP-9)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 20.5
+
+- type: entity
+  id: BulletArmorPiercingCarabineAR
+  name: bullet (.35 MP-9)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 24.5
+
+- type: entity
+  id: BulletAR15Piercing
+  name: bullet (7x62x51 AP)
+  parent: BaseBullet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 12.3
+    ignoreResistances: true
+
+- type: entity
+  id: BulletAR15LongRange
+  name: bullet (7x62x51 T)
+  parent: BaseBullet
+  components:
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 20.5
+
+- type: entity
+  id: BulletCarabineHK416
+  name: bullet (.35 MP-9)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 25.5
+
+- type: entity
+  id: BulletArmorPiercingCarabineHK416
+  name: bullet (.35 MP-9)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 15.3
+    ignoreResistances: true
+
+- type: entity
+  id: BulletHK416LongRange
+  name: bullet (7x62x51 T)
+  parent: BaseBullet
+  components:
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 25.5

@@ -1,0 +1,584 @@
+- type: latheRecipePack
+  id: DocumentsStatic
+  recipes:
+  - ReportOnTheStationSituationRecipe
+  - RequestForAppointmentOfActingCaptainRecipe
+  - RequestForAppointmentOfActingHeadOfDepartmentRecipe
+  - ReportGoalAchievementRecipe
+  - ApplicationForDismissHeadRecipe
+  - ApplicationForPassengerEmploymentRecipe
+  - ApplicationForPositionChangeRecipe
+  - AccessIncreaseOrderRecipe
+  - CertificationOfQualificationUpgradeRecipe
+  - DismissalOrderRecipe
+  - RequestForERTRecipe
+  - RequestForCBURNRecipe
+  - RequestForCentComRecipe
+  - RequestForBonusRecipe
+  - AccessDeniedOrderRecipe
+  - ApplicationForIDCardRecipe
+  - ApplicationForPDARecipe
+  - PermissionToCarryEquipmentRecipe
+  - CrewSRPViolationReportRecipe
+  - ParoleRequestForPrisonerRecipe
+  - InternalAffairsAgentReportRecipe
+  - ComplaintRecipe
+  - InterrogationReportRecipe
+  - VoluntaryConfessionRecipe
+  - DutyOrderRecipe
+  - FinalExamReportRecipe
+  - JudicialProceedingRecipe
+  - SearchOrderRecipe
+  - WeaponCarryingPermitRecipe
+  - TrackerImplantInstallationOrderRecipe
+  - EliminationOrderRecipe
+  - ArrestWarrantRecipe
+  - SearchWarrantRecipe
+  - InvestigationReportRecipe
+  - ChemicalOrderRecipe
+  - DischargeSummaryRecipe
+  - RequestForPharmaceuticalProductionRecipe
+  - DeathCertificateRecipe
+  - PsychologicalHealthConclusionRecipe
+  - MedicalPrescriptionRecipe
+  - EuthanasiaRequestRecipe
+  - BuildingPermitRecipe
+  - ApplicationForConstructionWorkRecipe
+  - RepairWorkRequestRecipe
+  - PrintedDocumentReportStationRecipe
+  - ApprovedGoalBlueprintRecipe
+  - PowerSystemReportRecipe
+  - AtmosSystemReportRecipe
+  - CreatureSapienceRecognitionRecipe
+  - SubjectStudyReportRecipe
+  - ArtifactReportRecipe
+  - OrderCreateProductRecipe
+  - OrderRecipe
+  - WeaponOrderRecipe
+  - DangerousSkillsTrainingRequestRecipe
+  - MarriageCertificateRecipe
+  - DivorceCertificateRecipe
+
+- type: latheRecipe
+  id: ReportOnTheStationSituationRecipe
+  result: ReportOnTheStationSituation
+  categories: [DocumentPrinterCommand]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: RequestForAppointmentOfActingCaptainRecipe
+  result: RequestForAppointmentOfActingCaptain
+  categories: [DocumentPrinterCommand]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: RequestForAppointmentOfActingHeadOfDepartmentRecipe
+  result: RequestForAppointmentOfActingHeadOfDepartment
+  categories: [DocumentPrinterCommand]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ReportGoalAchievementRecipe
+  result: ReportGoalAchievement
+  categories: [DocumentPrinterCommand]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ApplicationForDismissHeadRecipe
+  result: ApplicationForDismissHead
+  categories: [DocumentPrinterCommand]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ApplicationForPassengerEmploymentRecipe
+  result: ApplicationForPassengerEmployment
+  categories: [DocumentPrinterCommand]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ApplicationForPositionChangeRecipe
+  result: ApplicationForPositionChange
+  categories: [DocumentPrinterCommand]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: AccessIncreaseOrderRecipe
+  result: AccessIncreaseOrder
+  categories: [DocumentPrinterCommand]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: AccessDeniedOrderRecipe
+  result: AccessDeniedOrder
+  categories: [DocumentPrinterCommand]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: CertificationOfQualificationUpgradeRecipe
+  result: CertificationOfQualificationUpgrade
+  categories: [DocumentPrinterCommand]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: DismissalOrderRecipe
+  result: DismissalOrder
+  categories: [DocumentPrinterCommand]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: RequestForERTRecipe
+  result: RequestForERT
+  categories: [DocumentPrinterCommand]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: RequestForCBURNRecipe
+  result: RequestForCBURN
+  categories: [DocumentPrinterCommand]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: RequestForCentComRecipe
+  result: RequestForCentCom
+  categories: [DocumentPrinterCommand]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: RequestForBonusRecipe
+  result: RequestForBonus
+  categories: [DocumentPrinterCommand]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ApplicationForIDCardRecipe
+  result: ApplicationForIDCard
+  categories: [DocumentPrinterCommand]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ApplicationForPDARecipe
+  result: ApplicationForPDA
+  categories: [DocumentPrinterCommand]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PermissionToCarryEquipmentRecipe
+  result: PermissionToCarryEquipment
+  categories: [DocumentPrinterCommand]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: CrewSRPViolationReportRecipe
+  result: CrewSRPViolationReport
+  categories: [Law]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ParoleRequestForPrisonerRecipe
+  result: ParoleRequestForPrisoner
+  categories: [Law]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: InternalAffairsAgentReportRecipe
+  result: InternalAffairsAgentReport
+  categories: [Law]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ComplaintRecipe
+  result: Complaint
+  categories: [Law]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: InterrogationReportRecipe
+  result: InterrogationReport
+  categories: [Sec]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: VoluntaryConfessionRecipe
+  result: VoluntaryConfession
+  categories: [Sec]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: DutyOrderRecipe
+  result: DutyOrder
+  categories: [Sec]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: FinalExamReportRecipe
+  result: FinalExamReport
+  categories: [Sec]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: JudicialProceedingRecipe
+  result: JudicialProceeding
+  categories: [Sec]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: SearchOrderRecipe
+  result: SearchOrder
+  categories: [Sec]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: WeaponCarryingPermitRecipe
+  result: WeaponCarryingPermit
+  categories: [Sec]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: TrackerImplantInstallationOrderRecipe
+  result: TrackerImplantInstallationOrder
+  categories: [Sec]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: EliminationOrderRecipe
+  result: EliminationOrder
+  categories: [Sec]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ArrestWarrantRecipe
+  result: ArrestWarrant
+  categories: [Sec]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: SearchWarrantRecipe
+  result: SearchWarrant
+  categories: [Sec]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: InvestigationReportRecipe
+  result: InvestigationReport
+  categories: [Sec]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ChemicalOrderRecipe
+  result: ChemicalOrder
+  categories: [Medical]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: DischargeSummaryRecipe
+  result: DischargeSummary
+  categories: [Medical]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: RequestForPharmaceuticalProductionRecipe
+  result: RequestForPharmaceuticalProduction
+  categories: [Medical]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: DeathCertificateRecipe
+  result: DeathCertificate
+  categories: [Medical]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PsychologicalHealthConclusionRecipe
+  result: PsychologicalHealthConclusion
+  categories: [Medical]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: MedicalPrescriptionRecipe
+  result: MedicalPrescription
+  categories: [Medical]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: EuthanasiaRequestRecipe
+  result: EuthanasiaRequest
+  categories: [Medical]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: BuildingPermitRecipe
+  result: BuildingPermit
+  categories: [Engineering]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ApplicationForConstructionWorkRecipe
+  result: ApplicationForConstructionWork
+  categories: [Engineering]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: RepairWorkRequestRecipe
+  result: RepairWorkRequest
+  categories: [Engineering]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PrintedDocumentReportStationRecipe
+  result: PrintedDocumentReportStation
+  categories: [Engineering]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ApprovedGoalBlueprintRecipe
+  result: ApprovedGoalBlueprint
+  categories: [Engineering]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: PrinterDocMachineCircuitboard
+  result: PrinterDocMachineCircuitboard
+  categories: [Circuitry]
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 900
+
+- type: latheRecipe
+  id: PowerSystemReportRecipe
+  result: PowerSystemReport
+  categories: [Engineering]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: AtmosSystemReportRecipe
+  result: AtmosSystemReport
+  categories: [Engineering]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: CreatureSapienceRecognitionRecipe
+  result: CreatureSapienceRecognition
+  categories: [Science]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: SubjectStudyReportRecipe
+  result: SubjectStudyReport
+  categories: [Science]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ArtifactReportRecipe
+  result: ArtifactReport
+  categories: [Science]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: OrderCreateProductRecipe
+  result: OrderCreateProduct
+  categories: [Science]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: OrderRecipe
+  result: Order
+  categories: [Supplies]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: WeaponOrderRecipe
+  result: WeaponOrder
+  categories: [Supplies]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: DangerousSkillsTrainingRequestRecipe
+  result: DangerousSkillsTrainingRequest
+  categories: [Service]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: MarriageCertificateRecipe
+  result: MarriageCertificate
+  categories: [Service]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: DivorceCertificateRecipe
+  result: DivorceCertificate
+  categories: [Service]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+

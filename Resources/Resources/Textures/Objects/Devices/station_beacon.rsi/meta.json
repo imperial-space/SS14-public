@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made for the Imperial Space community, authors'es discord nickname: pyrolizz",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon"
+        },
+        {
+            "name": "blink",
+            "delays": [
+                [
+                    2.0,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "assembly"
+        }
+    ]
+}

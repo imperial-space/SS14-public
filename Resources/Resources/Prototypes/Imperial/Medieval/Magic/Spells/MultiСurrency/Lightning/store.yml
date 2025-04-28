@@ -1,0 +1,48 @@
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellLightningMiddle
+  name: medieval-store-spells-light-lightning-middle-name
+  description: medieval-store-spells-light-lightning-middle-desc
+  productAction: MedievalActionLightningMiddle
+  priority: 6
+  productUpgradeId:
+    - MedievalSpellLightningSenior
+    - MedievalSpellFireLightningMiddle
+  icon:
+    sprite: Imperial/Medieval/Magic/lightning.rsi
+    state: lightning-basic
+  cost:
+    MagicMedievalLight: 40
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellLightningSenior
+  name: medieval-store-spells-light-lightning-senior-name
+  description: medieval-store-spells-light-lightning-senior-desc
+  priority: 6
+  productUpgradeId:
+    - MedievalSpellLightningSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/lightning.rsi
+    state: lightning-adv
+  cost:
+    MagicMedievalLight: 75
+    ArchmagePoints: 1
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellLightningMiddle
+    blacklist:
+      - MedievalSpellFireLightningMiddle
+      - MedievalSpellFireLightningSenior

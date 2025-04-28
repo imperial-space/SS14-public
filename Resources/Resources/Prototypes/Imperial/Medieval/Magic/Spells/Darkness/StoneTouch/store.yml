@@ -1,0 +1,43 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellStoneTouchBeginner
+  name: medieval-store-spells-darkness-stone-touch-beginner-name
+  description: medieval-store-spells-darkness-stone-touch-beginner-desc
+  productAction: MedievalActionStoneTouchBeginner
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellStoneTouchMiddle
+  icon:
+    sprite: Imperial/Medieval/Magic/stone_touch.rsi
+    state: flesh_to_stone
+  cost:
+    MagicMedievalDarkness: 25
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellStoneTouchMiddle
+  name: medieval-store-spells-darkness-stone-touch-middle-name
+  description: medieval-store-spells-darkness-stone-touch-middle-desc
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellStoneTouchMiddle
+  icon:
+    sprite: Imperial/Medieval/Magic/stone_touch.rsi
+    state: stone_touch
+  cost:
+    MagicMedievalDarkness: 40
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellStoneTouchBeginner

@@ -1,0 +1,11 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckDSOMedal
+  name: Department of Special Operations Medal
+  suffix: Vl, ДСО
+  description: It is given to the best.
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Departments/CentCom/DSO/DSOMedal.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Departments/CentCom/DSO/DSOMedal.rsi

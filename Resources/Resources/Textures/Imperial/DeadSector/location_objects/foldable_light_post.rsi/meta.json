@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Abubs",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "post-off",
+      "directions": 4
+    },
+    {
+      "name": "post-folded"
+    },
+    {
+      "name": "post-on",
+      "directions": 4
+    }
+  ]
+}

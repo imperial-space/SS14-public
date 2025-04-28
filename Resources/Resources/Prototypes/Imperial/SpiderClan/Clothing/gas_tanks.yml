@@ -1,0 +1,75 @@
+- type: entity
+  parent: [ GasTankRoundBase, BaseMajorContraband ]
+  id: NinjaOxygenTank
+  name: ninja oxygen tank
+  suffix: Filled, Crook, SpiderClan
+  description: A means of personal respiratory protection that provides the ninja with the necessary amount of fresh oxygen regardless of the composition of the surrounding atmosphere.
+  components:
+  - type: GasTank
+    outputPressure: 21.3
+    air: # 31 minutes
+      volume: 5
+      moles:
+        - 2.051379050
+      temperature: 293.15
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/tank.rsi
+  - type: Item
+    sprite: Imperial/SpiderClan/Clothing/tank.rsi
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/tank.rsi
+
+- type: entity
+  parent: [ GasTankRoundBase, BaseMajorContraband ]
+  id: NinjaEmergencyOxygenTank
+  name: ninja emergency oxygen tank
+  suffix: Filled, Crook, SpiderClan
+  description: A means of personal respiratory protection that provides the ninja with the necessary amount of fresh oxygen regardless of the composition of the surrounding atmosphere.
+  components:
+  - type: GasTank
+    outputPressure: 21.3
+    air: # 4 minutes
+      volume: 0.66
+      moles:
+        - 0.270782035
+      temperature: 293.15
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/emergencytank.rsi
+    slots:
+    - Pocket
+    - Belt
+    - suitStorage
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/emergencytank.rsi
+  - type: Item
+    sprite: Imperial/SpiderClan/Clothing/emergencytank.rsi
+
+- type: entity
+  parent: [ GasTankRoundBase, BaseMajorContraband ]
+  id: NinjaDoubleEmergencyOxygenTank
+  name: ninja double emergency oxygen tank
+  suffix: Filled, Crook, SpiderClan
+  description: A means of personal respiratory protection that provides the ninja with the necessary amount of fresh oxygen regardless of the composition of the surrounding atmosphere.
+  components:
+  - type: GasTank
+    outputPressure: 21.3
+    air: # 15 minutes
+      volume: 2.5
+      moles:
+        - 1.025689525
+      temperature: 293.15
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/doubleemergency.rsi
+  - type: Item
+    sprite: Imperial/SpiderClan/Clothing/doubleemergency.rsi
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/doubleemergency.rsi
+  - type: MeleeWeapon
+    attackRate: 0.9
+    damage:
+      types:
+        Blunt: 7.5

@@ -1,0 +1,13 @@
+- type: entity
+  id: ShockWaveEffect
+  components:
+  - type: ShockWave
+    speed: 1
+  - type: ShockWaveDistortion
+    speed: 1
+    thikness: 0.1
+    distortion: 0.05
+    maxDistance: 0.65
+    disappearDistancePercentage: 0.3
+  - type: TimedDespawn
+    lifetime: 0.8

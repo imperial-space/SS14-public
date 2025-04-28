@@ -1,0 +1,109 @@
+- type: entity
+  parent: PosterBase
+  id: DeadSectorPoster1
+  name: Test
+  description: Test
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/posters.rsi
+    state: poster-1
+
+- type: entity
+  parent: PosterBase
+  id: DeadSectorPoster2
+  name: Test
+  description: Test
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/posters.rsi
+    state: poster-2
+
+- type: entity
+  parent: PosterBase
+  id: DeadSectorPoster3
+  name: Test
+  description: Test
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/posters.rsi
+    state: poster-3
+
+- type: entity
+  parent: PosterBase
+  id: DeadSectorPoster4
+  name: Test
+  description: Test
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/posters.rsi
+    state: poster-4
+
+- type: entity
+  parent: PosterBase
+  id: DeadSectorPoster5
+  name: Test
+  description: Test
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/posters.rsi
+    state: poster-5
+
+- type: entity
+  parent: PosterBase
+  id: DeadSectorPoster6
+  name: Test
+  description: Test
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/posters.rsi
+    state: poster-6
+
+- type: entity
+  parent: PosterBase
+  id: DeadSectorPoster7
+  name: Test
+  description: Test
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/posters.rsi
+    state: poster-7
+
+- type: entity
+  parent: PosterBase
+  id: DeadSectorPoster8
+  name: Test
+  description: Test
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/posters.rsi
+    state: poster-8
+
+- type: entity
+  parent: PosterBase
+  id: DeadSectorPoster9
+  name: Test
+  description: Test
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/posters.rsi
+    state: poster-9
+
+- type: entity
+  parent: PosterBase
+  id: DeadSectorPoster10
+  name: Test
+  description: Test
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/posters.rsi
+    state: poster-10
+
+- type: entity
+  parent: PosterBase
+  id: DeadSectorPoster11
+  name: Test
+  description: Test
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/posters.rsi
+    state: poster-11

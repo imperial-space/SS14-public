@@ -1,0 +1,16 @@
+- type: entity
+  parent: ClothingHeadset
+  id: BlackShieldHeadset
+  name: Black Headset
+  suffix: Vl, ДСО
+  description: It looks pretty formidable.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCentCom
+      - EncryptionKeyStationMaster
+  - type: Sprite
+    sprite: Imperial/VlClothes/DSO/BSHeadset.rsi
+  - type: Clothing
+    sprite: Imperial/VlClothes/DSO/BSHeadset.rsi

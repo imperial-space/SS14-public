@@ -1,0 +1,32 @@
+- type: entity
+  parent: PosterBase
+  id: StarPoster
+  name: Glory of the Empire!
+  suffix: звёздные войны, империя
+  description: be proud of the Empire!
+  components:
+  - type: Sprite
+    sprite: Imperial/StarWars/poster.rsi
+    state: poster1
+
+- type: entity
+  parent: PosterBase
+  id: StarPosterSith
+  name: Join the dark side!
+  suffix: звёздные войны, империя
+  description: the dark side of the force will win!
+  components:
+  - type: Sprite
+    sprite: Imperial/StarWars/poster.rsi
+    state: poster2
+
+- type: entity
+  parent: PosterBase
+  id: StarPosterStormtrooper
+  name: A clone stormtrooper
+  suffix: звёздные войны, империя
+  description: aim first and then shoot.
+  components:
+  - type: Sprite
+    sprite: Imperial/StarWars/poster.rsi
+    state: poster3

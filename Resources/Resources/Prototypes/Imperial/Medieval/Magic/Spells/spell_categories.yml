@@ -1,0 +1,19 @@
+- type: imperialStoreCategory
+  id: MedievalFireSpells
+  name: medieval-store-category-fire
+  priority: 1
+
+- type: imperialStoreCategory
+  id: MedievalLightSpells
+  name: medieval-store-category-light
+  priority: 2
+
+- type: imperialStoreCategory
+  id: MedievalVodkaSpells
+  name: medieval-store-category-vodka
+  priority: 3
+
+- type: imperialStoreCategory
+  id: MedievalDarknessSpells
+  name: medieval-store-category-darkness
+  priority: 4

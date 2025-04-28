@@ -1,0 +1,61 @@
+- type: entity
+  name: green flare
+  id: FlareGreen
+  suffix: DeadSector
+  parent: Flare
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/items/flare/flares.rsi
+    layers:
+      - map: [ enum.ExpendableLightVisualLayers.Base ]
+        state: flare_base_green
+      - map: [ enum.ExpendableLightVisualLayers.Glow ]
+        state: flare_burn_green
+        visible: false
+        shader: unshaded
+      - map: [ enum.ExpendableLightVisualLayers.Overlay ]
+        state: flare_unlit
+        color: "#006400"
+  - type: Icon
+    sprite: Imperial/DeadSector/items/flare/flares.rsi
+    state: icon_green
+  - type: Item
+    sprite: Imperial/DeadSector/items/flare/flares.rsi
+    size: Tiny
+  - type: PointLight
+    enabled: false
+    color: "#008000" # влияет на цвет освещения. В данном случае зеленый.
+    radius: 1.0
+    energy: 9.0
+    netsync: false
+
+- type: entity
+  name: blue flare
+  id: FlareBlue
+  suffix: DeadSector
+  parent: Flare
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/items/flare/flares.rsi
+    layers:
+      - map: [ enum.ExpendableLightVisualLayers.Base ]
+        state: flare_base_blue
+      - map: [ enum.ExpendableLightVisualLayers.Glow ]
+        state: flare_burn_blue
+        visible: false
+        shader: unshaded
+      - map: [ enum.ExpendableLightVisualLayers.Overlay ]
+        state: flare_unlit
+        color: "#4682B4"
+  - type: Icon
+    sprite: Imperial/DeadSector/items/flare/flares.rsi
+    state: icon_blue
+  - type: Item
+    sprite: Imperial/DeadSector/items/flare/flares.rsi
+    size: Tiny
+  - type: PointLight
+    enabled: false
+    color: "#ADD8E6" # влияет на цвет освещения. В данном случае голубой.
+    radius: 1.0
+    energy: 9.0
+    netsync: false

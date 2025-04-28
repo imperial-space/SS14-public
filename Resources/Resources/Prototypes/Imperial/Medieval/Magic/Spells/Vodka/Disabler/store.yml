@@ -1,0 +1,43 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellDisablerBeginner
+  name: medieval-store-spells-vodka-disabler-beginner-name
+  description: medieval-store-spells-vodka-disabler-beginner-desc
+  productAction: MedievalActionDisablerBeginner
+  priority: 1
+  productUpgradeId:
+    - MedievalSpellDisablerMiddle
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
+    state: 1
+  cost:
+    MagicMedievalVodka: 20
+  categories:
+  - MedievalVodkaSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellDisablerMiddle
+  name: medieval-store-spells-vodka-disabler-middle-name
+  description: medieval-store-spells-vodka-disabler-middle-desc
+  priority: 1
+  productUpgradeId:
+    - MedievalSpellDisablerMiddle
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
+    state: 2
+  cost:
+    MagicMedievalVodka: 45
+  categories:
+  - MedievalVodkaSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellDisablerBeginner

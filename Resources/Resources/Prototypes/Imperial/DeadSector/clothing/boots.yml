@@ -1,0 +1,11 @@
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsCamouflage
+  name: camouflage boots
+  suffix: DeadSector
+  description: Where did the legs go?!
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/boots/camouflage.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/boots/camouflage.rsi

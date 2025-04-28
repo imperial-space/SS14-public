@@ -1,0 +1,127 @@
+# Шкаф Старшего инженера InterGalactic
+- type: entity
+  id: LockerChiefEngineerInterGalactic
+  parent: LockerChiefEngineer
+  name: шкаф старшего инженера InterGalactic
+  description: Стандартное хранилище InterGalactic
+  suffix: InterGalactic
+  components:
+  - type: AccessReader
+    access: [ [ "InterGalactic" ] ]
+
+- type: entity
+  id: LockerChiefEngineerGalacticFilled
+  suffix: InterGalactic, Filled, Hardsuit
+  parent: LockerChiefEngineerInterGalactic
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingBeltChiefEngineerFilled
+      - id: ClothingShoesBootsMagAdv
+      - id: CigarCase
+      - id: DoorRemoteEngineering
+      - id: RubberStampCE
+      - id: JetpackVoidFilled
+      - id: AccessConfiguratorInterGalactic
+      - id: RCD
+      - id: RCDAmmo
+      - id: BoxMRE
+      - id: MedkitOxygenFilled
+      - id: ClothingControlModsuitIndustrialSealed
+
+# Шкаф Атмосферного техника InterGalactic
+- type: entity
+  id: LockerAtmosphericsInterGalactic
+  parent: LockerAtmospherics
+  name: шкаф атмосферного техника InterGalactic
+  description: Стандартное хранилище InterGalactic
+  suffix: InterGalactic
+  components:
+  - type: AccessReader
+    access: [ [ "InterGalactic" ] ]
+
+- type: entity
+  id: LockerAtmosphericsInterGalacticFilled
+  suffix: InterGalactic, Filled, Hardsuit
+  parent: LockerAtmosphericsInterGalactic
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingMaskGasAtmos
+      - id: GasAnalyzer
+      - id: MedkitOxygenFilled
+      - id: HolofanProjector
+      - id: DoorRemoteEngineering
+      - id: RCD
+      - id: RCDAmmo
+      - id: ClothingShoesBootsMag
+      - id: ClothingControlModsuitEngineer2Sealed
+      - id: ClothingBeltUtilityEngineering
+      - id: BoxMRE
+      - id: JetpackMiniFilled
+
+# Шкаф Инженера InterGalactic
+- type: entity
+  id: LockerEngineerInterGalactic
+  parent: LockerEngineer
+  name: шкаф инженера InterGalactic
+  description: Стандартное хранилище InterGalactic
+  suffix: InterGalactic
+  components:
+  - type: AccessReader
+    access: [ [ "InterGalactic" ] ]
+
+- type: entity
+  id: LockerEngineerInterGalacticFilled
+  suffix: InterGalactic, Filled, Hardsuit
+  parent: LockerEngineerInterGalactic
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingMaskGas
+      - id: MedkitOxygenFilled
+      - id: HolofanProjector
+      - id: RCD
+      - id: RCDAmmo
+      - id: ClothingShoesBootsMag
+      - id: ClothingControlModsuitEngineer2Sealed
+      - id: ClothingBeltUtilityEngineering
+      - id: BoxMRE
+      - id: JetpackMiniFilled
+
+# Сейф и шкаф наёмника InterGalactic
+- type: entity
+  parent: GunSafe
+  id: GunSafeInterGalacticMerc
+  name: Оружейный сейф
+  description: Стандартный сейф хранения вооружения.
+  suffix: InterGalactic, Filled, Lecter
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleLecter
+    - id: MagazineRifle
+      amount: 4
+    - id: ClothingBeltMercWebbingInterGalacticFilled
+    - id: BoxMagazinePistolHighCapacity
+  - type: AccessReader
+    access: [ [ "Security" ] ]
+
+- type: entity
+  id: LockerMercInterGalacticFilled
+  parent: LockerSyndicatePersonal
+  name: Шкафчик наёмников
+  description: Стандартное хранилище наёмного бюро.
+  suffix: InterGalactic, Filled, Hardsuit
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterHardsuitCCAgent
+      - id: ClothingMaskGasMerc
+      - id: ClothingShoesBootsMagSci
+      - id: DoubleEmergencyNitrogenTankFilled
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: ClothingEyesGlassesSunglasses
+      - id: ClothingOuterVestWebMerc
+  - type: AccessReader
+    access: [ [ "Security" ] ]

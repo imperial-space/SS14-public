@@ -1,0 +1,111 @@
+# Спавнер Старшего Инженера InterGalactic
+- type: entity
+  name: спавнер СИ
+  id: SpawnMobInterGalacticCE
+  parent: MarkerBase
+  suffix: InterGalactic
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+  - type: ConditionalSpawner
+    prototypes:
+    - MobInterGalacticCE
+
+# Спавнер Атмосферного техника InterGalactic
+- type: entity
+  name: спавнер атмоса
+  id: SpawnMobInterGalacticAtmos
+  parent: MarkerBase
+  suffix: InterGalactic
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+  - type: ConditionalSpawner
+    prototypes:
+    - MobInterGalacticEngineer
+
+# Спавнер Инженера InterGalactic
+- type: entity
+  name: спавнер инженера
+  id: SpawnMobInterGalacticEng
+  parent: MarkerBase
+  suffix: InterGalactic
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+  - type: ConditionalSpawner
+    prototypes:
+    - MobInterGalacticAtmos
+
+# Спавнер Наёмника InterGalactic
+- type: entity
+  name: спавнер наёмника
+  id: SpawnMobInterGalacticMerc
+  parent: MarkerBase
+  suffix: InterGalactic
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+  - type: ConditionalSpawner
+    prototypes:
+    - ArcaneMercInterGalacticPreset
+
+# Спавнер разведчика Синдиката
+- type: entity
+  name: спавнер разведчика синдиката
+  id: SpawnMobSyndicateScout
+  parent: MarkerBase
+  suffix: InterGalactic
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+  - type: ConditionalSpawner
+    prototypes:
+    - MobSyndicateScout
+
+# Спавнер потерянного агента Синдиката
+- type: entity
+  name: спавнер потерянного агента синдиката
+  id: SpawnMobSyndicateLostAgent
+  parent: MarkerBase
+  suffix: InterGalactic
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+  - type: ConditionalSpawner
+    prototypes:
+    - MobSyndicateLostAgent
+
+# Спавнер курьера-фрилансера
+- type: entity
+  name: спавнер курьера-фрилансера
+  id: SpawnMobCourierFreelance
+  parent: MarkerBase
+  suffix: InterGalactic
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+  - type: ConditionalSpawner
+    prototypes:
+    - MobCourierFreelance
+
+# Спавнер сотрудника ПВЗ
+- type: entity
+  name: спавнер сотрудника ПВЗ
+  id: SpawnMobOIPOutpostEmployee
+  parent: MarkerBase
+  suffix: InterGalactic
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+  - type: ConditionalSpawner
+    prototypes:
+    - MobOIPOutpostEmployee

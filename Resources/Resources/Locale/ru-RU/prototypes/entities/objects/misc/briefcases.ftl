@@ -1,0 +1,16 @@
+ent-BriefcaseBase = { ent-BaseItem }
+    .desc = Пригодится для переноски предметов в руках.
+    .suffix = { "" }
+ent-BriefcaseBrown = коричневый чемодан
+    .desc = Удобный чемоданчик.
+    .suffix = { "" }
+ent-BriefcaseSyndie = { ent-BriefcaseBrown }
+    .desc = { ent-BriefcaseBrown.desc }
+ent-BriefcaseSyndieSniperBundleFilled = { ent-BriefcaseBrown }
+    .desc = { ent-BriefcaseBrown.desc }
+ent-BriefcaseSyndieLobbyingBundleFilled = { ent-BriefcaseBrown }
+    .desc = { ent-BriefcaseBrown.desc }
+    .suffix = Деньги
+ent-BriefcaseThiefBribingBundleFilled = коричневый чемодан
+    .desc = Удобный чемоданчик.
+    .suffix = Вор, Песо

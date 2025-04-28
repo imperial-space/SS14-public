@@ -1,0 +1,395 @@
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseToggleClothing, BaseMajorContraband]
+  id: RedSuitSpaceNinja
+  name: space ninja suit
+  suffix: Crook, SpiderClan
+  description: This black technologically advanced, cybernetically-enhanced suit provides many abilities like invisibility or teleportation. It has a red glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Default/Suits/redninja.rsi
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Default/Suits/redninja.rsi
+  # hardsuit stuff
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+        Stamina: 0.4 ## Stamina resistance
+  # phase cloak
+  - type: ToggleClothing
+    action: ActionTogglePhaseCloak
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Stealth
+      minVisibility: 0.01
+      lastVisibility: 0.01
+  - type: PowerCellDraw
+    drawRate: 1.8 # 200 seconds on the default cell
+  - type: ToggleCellDraw
+  # throwing star ability
+  - type: ItemCreator
+    action: ActionCreateThrowingStar
+    charge: 14.4
+    spawnedPrototype: ThrowingStarNinja
+    noPowerPopup: ninja-no-power
+  # core ninja suit stuff
+  - type: NinjaSuit
+  - type: UseDelay
+    delay: 5 # disable time
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    # throwing in a recharger would bypass glove charging mechanic
+    fitsInCharger: false
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+        disableEject: true
+        whitelist:
+          tags:
+            - PowerCell
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseToggleClothing, BaseMajorContraband]
+  id: BlueSuitSpaceNinja
+  name: space ninja suit
+  suffix: Crook, SpiderClan
+  description: This black technologically advanced, cybernetically-enhanced suit provides many abilities like invisibility or teleportation. It has a blue glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Default/Suits/blueninja.rsi
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Default/Suits/blueninja.rsi
+  # hardsuit stuff
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+        Stamina: 0.4 ## Stamina resistance
+  # phase cloak
+  - type: ToggleClothing
+    action: ActionTogglePhaseCloak
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Stealth
+      minVisibility: 0.01
+      lastVisibility: 0.01
+  - type: PowerCellDraw
+    drawRate: 1.8 # 200 seconds on the default cell
+  - type: ToggleCellDraw
+  # throwing star ability
+  - type: ItemCreator
+    action: ActionCreateThrowingStar
+    charge: 14.4
+    spawnedPrototype: ThrowingStarNinja
+    noPowerPopup: ninja-no-power
+  # core ninja suit stuff
+  - type: NinjaSuit
+  - type: UseDelay
+    delay: 5 # disable time
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    # throwing in a recharger would bypass glove charging mechanic
+    fitsInCharger: false
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+        disableEject: true
+        whitelist:
+          tags:
+            - PowerCell
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseToggleClothing, BaseMajorContraband]
+  id: GreenSuitSpaceNinja
+  name: space ninja suit
+  suffix: Crook, SpiderClan
+  description: This black technologically advanced, cybernetically-enhanced suit provides many abilities like invisibility or teleportation. It has a green glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Default/Suits/greenninja.rsi
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Default/Suits/greenninja.rsi
+  # hardsuit stuff
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+        Stamina: 0.4 ## Stamina resistance
+  # phase cloak
+  - type: ToggleClothing
+    action: ActionTogglePhaseCloak
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Stealth
+      minVisibility: 0.01
+      lastVisibility: 0.01
+  - type: PowerCellDraw
+    drawRate: 1.8 # 200 seconds on the default cell
+  - type: ToggleCellDraw
+  # throwing star ability
+  - type: ItemCreator
+    action: ActionCreateThrowingStar
+    charge: 14.4
+    spawnedPrototype: ThrowingStarNinja
+    noPowerPopup: ninja-no-power
+  # core ninja suit stuff
+  - type: NinjaSuit
+  - type: UseDelay
+    delay: 5 # disable time
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    # throwing in a recharger would bypass glove charging mechanic
+    fitsInCharger: false
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+        disableEject: true
+        whitelist:
+          tags:
+            - PowerCell
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseToggleClothing, BaseMajorContraband]
+  id: RedAltSuitSpaceNinja
+  name: space ninja suit
+  suffix: Crook, SpiderClan
+  description: A technological suit based on the Spider Clan's most advanced technology, it has its own scarf! It has a red glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Alternative/Suits/redninja.rsi
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Alternative/Suits/redninja.rsi
+  # hardsuit stuff
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+        Stamina: 0.4 ## Stamina resistance
+  # phase cloak
+  - type: ToggleClothing
+    action: ActionTogglePhaseCloak
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Stealth
+      minVisibility: 0.01
+      lastVisibility: 0.01
+  - type: PowerCellDraw
+    drawRate: 1.8 # 200 seconds on the default cell
+  - type: ToggleCellDraw
+  # throwing star ability
+  - type: ItemCreator
+    action: ActionCreateThrowingStar
+    charge: 14.4
+    spawnedPrototype: ThrowingStarNinja
+    noPowerPopup: ninja-no-power
+  # core ninja suit stuff
+  - type: NinjaSuit
+  - type: UseDelay
+    delay: 5 # disable time
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    # throwing in a recharger would bypass glove charging mechanic
+    fitsInCharger: false
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+        disableEject: true
+        whitelist:
+          tags:
+            - PowerCell
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseToggleClothing, BaseMajorContraband]
+  id: BlueAltSuitSpaceNinja
+  name: space ninja suit
+  suffix: Crook, SpiderClan
+  description: A technological suit based on the Spider Clan's most advanced technology, it has its own scarf! It has a blue glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Alternative/Suits/blueninja.rsi
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Alternative/Suits/blueninja.rsi
+  # hardsuit stuff
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+        Stamina: 0.4 ## Stamina resistance
+  # phase cloak
+  - type: ToggleClothing
+    action: ActionTogglePhaseCloak
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Stealth
+      minVisibility: 0.01
+      lastVisibility: 0.01
+  - type: PowerCellDraw
+    drawRate: 1.8 # 200 seconds on the default cell
+  - type: ToggleCellDraw
+  # throwing star ability
+  - type: ItemCreator
+    action: ActionCreateThrowingStar
+    charge: 14.4
+    spawnedPrototype: ThrowingStarNinja
+    noPowerPopup: ninja-no-power
+  # core ninja suit stuff
+  - type: NinjaSuit
+  - type: UseDelay
+    delay: 5 # disable time
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    # throwing in a recharger would bypass glove charging mechanic
+    fitsInCharger: false
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+        disableEject: true
+        whitelist:
+          tags:
+            - PowerCell
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseToggleClothing, BaseMajorContraband]
+  id: GreenAltSuitSpaceNinja
+  name: space ninja suit
+  suffix: Crook, SpiderClan
+  description: A technological suit based on the Spider Clan's most advanced technology, it has its own scarf! It has a green glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Alternative/Suits/greenninja.rsi
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Alternative/Suits/greenninja.rsi
+  # hardsuit stuff
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+        Stamina: 0.4 ## Stamina resistance
+  # phase cloak
+  - type: ToggleClothing
+    action: ActionTogglePhaseCloak
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Stealth
+      minVisibility: 0.01
+      lastVisibility: 0.01
+  - type: PowerCellDraw
+    drawRate: 1.8 # 200 seconds on the default cell
+  - type: ToggleCellDraw
+  # throwing star ability
+  - type: ItemCreator
+    action: ActionCreateThrowingStar
+    charge: 14.4
+    spawnedPrototype: ThrowingStarNinja
+    noPowerPopup: ninja-no-power
+  # core ninja suit stuff
+  - type: NinjaSuit
+  - type: UseDelay
+    delay: 5 # disable time
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    # throwing in a recharger would bypass glove charging mechanic
+    fitsInCharger: false
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+        disableEject: true
+        whitelist:
+          tags:
+            - PowerCell

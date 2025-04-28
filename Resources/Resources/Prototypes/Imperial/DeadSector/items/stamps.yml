@@ -1,0 +1,38 @@
+- type: entity
+  name: stamp
+  parent: RubberStampMime
+  id: ResearchStamp
+  components:
+    - type: Stamp
+      stampedName: stamp-component-stamped-name-research
+      stampedColor: "#4682B4"
+      stampState: "paper_stamp-research"
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/stamps.rsi
+      state: stamp-research
+
+- type: entity
+  name: stamp
+  parent: RubberStampMime
+  id: FederationStamp
+  components:
+    - type: Stamp
+      stampedName: stamp-component-stamped-name-federation
+      stampedColor: "#2E8B57"
+      stampState: "paper_stamp-federation"
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/stamps.rsi
+      state: stamp-federation
+
+- type: entity
+  name: stamp
+  parent: RubberStampMime
+  id: FederationMilitaryStamp
+  components:
+    - type: Stamp
+      stampedName: stamp-component-stamped-name-federation-military
+      stampedColor: "#556B2F"
+      stampState: "paper_stamp-federation-military"
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/stamps.rsi
+      state: stamp-federation-military

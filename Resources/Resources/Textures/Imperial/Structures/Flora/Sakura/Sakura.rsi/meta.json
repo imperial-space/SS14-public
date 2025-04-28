@@ -1,0 +1,23 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Designed by @somebody_owo",
+    "size": {
+        "x": 96,
+        "y": 96
+    },
+    "states": [
+        {
+            "name": "sakuratree",
+            "delays": [
+                [
+                  10,
+                  0.17,
+                  0.17,
+                  0.17,
+                  0.17
+                ]
+            ]
+        }
+    ]
+}

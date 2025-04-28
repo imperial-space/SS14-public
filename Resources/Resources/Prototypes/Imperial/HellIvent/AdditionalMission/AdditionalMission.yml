@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseItem
+  id: AdditionalMission
+  name: the larva in a capsule
+  suffix: HellIvent
+  components:
+  - type: Sprite
+    sprite: Imperial/HellIvent/AdditionalMission.rsi
+    layers:
+    - state: AdditionalMission
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem

@@ -1,0 +1,46 @@
+// license: This content is under ICLA. Copyright holder: orix0689 (discord) (Read more on: https://wiki.imperialspace.net/ru/icla)
+// copyright: "orix0689 (discord)"
+
+uniform highp float iTime;
+uniform highp float startSeed;
+uniform highp float particles;
+uniform highp float gravity;
+uniform highp float speed;
+
+uniform bool inverted;
+uniform bool collapseOnMinDistance;
+uniform bool disappearOnMinDistance;
+
+uniform highp vec3 color;
+
+void fragment() {
+    highp vec4 texture = zTexture(UV);
+    highp vec2 uv = UV - vec2(0.5, 0.5);
+
+    highp float alpha = 0.0;
+    highp float timecycle =  iTime * speed - 0.4 * speed;
+
+    if (inverted) timecycle -= 1.0;
+    if (timecycle > 0.0 && collapseOnMinDistance && inverted) timecycle = 0.0;
+
+    highp float seed = startSeed + floor(timecycle);
+
+    highp float invparticles = 1.0 / particles;
+
+    for (highp float i = 0.0; i < particles; i += 1.0) {
+        highp vec2 tPos = (vec2(cos(seed),sin(seed))) * i * invparticles;
+        highp vec2 pPos = vec2(0.0,0.0);
+
+        pPos.x = tPos.x * timecycle;
+		pPos.y = gravity * (timecycle * timecycle) + tPos.y * timecycle + pPos.y;
+
+        highp float particle = smoothstep(0.0, 200.0, 1.0 / distance(uv, pPos + 0.015));
+
+	    alpha += particle * (sin(timecycle * 20.0 + i) + 1.0);
+        seed += i + tan(seed);
+    }
+
+    if (timecycle > 0.0 && disappearOnMinDistance && inverted) alpha = 0.0;
+
+    COLOR = vec4(color, alpha * (1.0 - timecycle));
+}

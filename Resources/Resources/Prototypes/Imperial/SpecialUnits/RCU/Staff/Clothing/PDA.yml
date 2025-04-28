@@ -1,0 +1,103 @@
+- type: entity
+  parent: BasePDA
+  id: RCUOperatorPDA
+  name: RCU pda
+  description: It smells of the elite and elitism.
+  suffix: RiotControlUnit, Operator
+  components:
+  - type: Pda
+    id: RCUOperatorIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-bartender
+  - type: PdaBorderColor
+    borderColor: "#333333"
+  - type: Icon
+    state: pda-bartender
+
+- type: entity
+  parent: BasePDA
+  id: RCUOfficerPDA
+  name: RCU pda
+  description: It smells of the elite and elitism.
+  suffix: RiotControlUnit, Officer
+  components:
+  - type: Pda
+    id: RCUOfficerIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-bartender
+  - type: PdaBorderColor
+    borderColor: "#333333"
+  - type: Icon
+    state: pda-bartender
+
+#id cards
+
+- type: entity
+  parent: CentcomIDCard
+  id: RCUOperatorIDCard
+  name: RCU ID card
+  components:
+    - type: Sprite
+      sprite: Imperial/Other/ErtCall/deadsquadCard.rsi
+      layers:
+        - state: blackcard
+        - state: deadsquadID
+    - type: PresetIdCard
+      job: JobRCUOperator
+
+- type: entity
+  parent: CentcomIDCard
+  id: RCUOfficerIDCard
+  name: RCU ID card
+  components:
+    - type: Sprite
+      sprite: Imperial/Other/ErtCall/deadsquadCard.rsi
+      layers:
+        - state: blackcard
+        - state: deadsquadID
+    - type: PresetIdCard
+      job: JobRCUOfficer
+
+#Jobs
+
+- type: job
+  id: JobRCUOperator
+  name: job-name-rcuoperator
+  description: job-description-rcuoperator
+  playTimeTracker: JobRCUOperator
+  setPreference: false
+  startingGear: RCUOperatorEVALodout
+  icon: "JobIconNanotrasen"
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+
+- type: job
+  id: JobRCUOfficer
+  name: job-name-rcuofficer
+  description: job-description-rcuoofficer
+  playTimeTracker: JobRCUOfficer
+  setPreference: false
+  startingGear: RCUOfficerEVALodout
+  icon: "JobIconNanotrasen"
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+
+- type: playTimeTracker
+  id: JobRCUOperator
+
+- type: playTimeTracker
+  id: JobRCUOfficer

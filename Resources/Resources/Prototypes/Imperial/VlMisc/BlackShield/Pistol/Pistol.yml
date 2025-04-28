@@ -1,0 +1,47 @@
+- type: hitscan
+  id: SinguloPulse
+  damage:
+    types:
+      Radiation: 35
+  muzzleFlash:
+    sprite: Imperial/VlClothes/DSO/BSPistolLaser.rsi
+    state: muzzle_blue
+  travelFlash:
+    sprite: Imperial/VlClothes/DSO/BSPistolLaser.rsi
+    state: beam_blue
+  impactFlash:
+    sprite: Imperial/VlClothes/DSO/BSPistolLaser.rsi
+    state: impact_u_laser
+
+- type: entity
+  name: The Singular Gun
+  suffix: Vl, ДСО
+  parent: BaseWeaponBatterySmall
+  id: BlackShieldPistol
+  description: The gun is based on a new technology of concentration of singularotic energy in a single beam. It looks like it was brought only from the factory.
+  components:
+  - type: Sprite
+    sprite: Imperial/VlClothes/DSO/BSPistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: Imperial/VlClothes/DSO/BSPistol.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: SinguloPulse
+    fireCost: 200
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 40

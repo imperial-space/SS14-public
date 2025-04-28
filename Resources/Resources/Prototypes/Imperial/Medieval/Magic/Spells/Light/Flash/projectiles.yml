@@ -1,0 +1,60 @@
+# Beginner
+
+- type: entity
+  id: MedievalProjectileFlashBeginner
+  name: Flash
+  description: You my sunshine
+  parent: BulletRocket
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/Charmer/flash.rsi
+    layers:
+    - state: proto
+      shader: unshaded
+  - type: StaminaDamageOnCollide
+    damage: 16
+  - type: Explosive
+    explosionType: Cryo
+    maxIntensity: 1
+    intensitySlope: 1
+    totalIntensity: 0
+    maxTileBreak: 0
+  - type: Projectile
+    damage:
+      types:
+        Caustic: 1
+  - type: FlashOnTrigger
+    range: 1
+    duration: 4.2
+
+# Middle
+
+- type: entity
+  id: MedievalProjectileFlashMiddle
+  name: Flash
+  description: You my sunshine
+  parent: BulletRocket
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/Charmer/flash.rsi
+    layers:
+    - state: proto
+      shader: unshaded
+  - type: StaminaDamageOnCollide
+    damage: 24
+  - type: Explosive
+    explosionType: Cryo
+    maxIntensity: 1
+    intensitySlope: 1
+    totalIntensity: 0
+    maxTileBreak: 0
+  - type: Projectile
+    damage:
+      types:
+        Caustic: 1
+  - type: SingularityDistortion
+    falloffPower: 1.5
+    intensity: 100
+  - type: SpawnEntityOnTrigger
+    spawnedEntitiesPrototype:
+      - FlashWaveEffect

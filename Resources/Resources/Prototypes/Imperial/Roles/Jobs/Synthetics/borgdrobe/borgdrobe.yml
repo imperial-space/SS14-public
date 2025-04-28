@@ -1,0 +1,41 @@
+- type: entity
+  parent: VendingMachineSyndieDrobe
+  id: VendingMachineBorgSyndieDrobe
+  name: SyndieDrobe
+  description: Wardrobe machine encoded by the syndicate, contains elite outfits for various operations.
+  components:
+  - type: Advertise
+    pack: SyndieDrobeAds
+  - type: SpeakOnUIClosed
+    pack: SyndiedrobeGoodbyes
+  - type: Sprite
+    sprite: Imperial/Roles/Synthetics/borgdrobe/borgdrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["NuclearOperative"], ["SyndicateAgent"]]
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    categories: 
+    - BorgDrobeBorg
+    currencyWhitelist:
+    - Telecrystal
+    balance:
+     Telecrystal: 0
+
+- type: localizedDataset
+  id: SyndiedrobeGoodbyes
+  values:
+    prefix: thankyou-syndiedrobe-
+    count: 5

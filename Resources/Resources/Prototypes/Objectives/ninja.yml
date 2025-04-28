@@ -1,0 +1,87 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseNinjaObjective
+  components:
+  - type: Objective
+    # difficulty isn't used since all objectives are picked
+    difficulty: 1.5
+    issuer: objective-issuer-spiderclan
+  - type: RoleRequirement
+    roles:
+    - NinjaRole
+
+- type: entity
+  parent: BaseNinjaObjective
+  id: DoorjackObjective
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Tools/emag.rsi
+      state: icon
+  - type: NumberObjective
+    min: 15
+    max: 40
+    title: objective-condition-doorjack-title
+    description: objective-condition-doorjack-description
+  - type: DoorjackCondition
+
+- type: entity
+  parent: BaseNinjaObjective
+  id: StealResearchObjective
+  description: Ваши перчатки могут быть использованы для взлома сервера РнД и кражи его ценных данных. Если ученые бездельничают, вам придется самому взяться за их работу. # Imperial Translate
+  components:
+  - type: Objective
+    icon:
+      sprite: Structures/Machines/server.rsi
+      state: server
+  - type: NumberObjective
+    min: 9
+    max: 13
+    title: objective-condition-steal-research-title
+  - type: StealResearchCondition
+
+- type: entity
+  parent: [BaseNinjaObjective, BaseCodeObjective]
+  id: SpiderChargeObjective
+  description: Эту бомбу можно взорвать в определенном месте. Обратите внимание, что бомба не сработает в другом месте! # Imperial Translate
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Weapons/Bombs/spidercharge.rsi
+      state: icon
+  - type: SpiderChargeCondition
+
+- type: entity
+  parent: [BaseNinjaObjective, BaseSurviveObjective]
+  id: NinjaSurviveObjective
+  name: Выжить # Imperial Translate
+  description: Если бы ты умер, ты бы не стал хорошим ниндзя, не так ли? # Imperial Translate
+  components:
+  - type: Objective
+    icon:
+      sprite: Clothing/Mask/ninja.rsi
+      state: icon
+
+- type: entity
+  parent: [BaseNinjaObjective, BaseCodeObjective]
+  id: TerrorObjective
+  name: Вызвать угрозу # Imperial Translate
+  description: Используйте перчатки на консоле коммуникации станции, чтобы вызвать еще одну угрозу на станции. # Imperial Translate
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Fun/Instruments/otherinstruments.rsi
+      state: red_phone
+
+- type: entity
+  parent: [BaseNinjaObjective, BaseCodeObjective]
+  id: MassArrestObjective
+  name: Объявите всех в розыск # Imperial Translate
+  description: Используйте перчатки, чтобы взломать консоль криминальных записей, объявив всю станцию ​​в розыск! # Imperial Translate
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Weapons/Melee/stunbaton.rsi
+      state: stunbaton_on
+      

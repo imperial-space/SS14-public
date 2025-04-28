@@ -1,0 +1,67 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellDivineTouchBeginner
+  name: medieval-store-spells-light-divine-touch-beginner-name
+  description: medieval-store-spells-light-divine-touch-beginner-desc
+  productAction: MedievalActionDivineTouchBeginner
+  priority: 4
+  productUpgradeId:
+    - MedievalSpellDivineTouchMiddle
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
+    state: 1
+  cost:
+    MagicMedievalLight: 15
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellDivineTouchMiddle
+  name: medieval-store-spells-light-divine-touch-middle-name
+  description: medieval-store-spells-light-divine-touch-middle-desc
+  priority: 4
+  productUpgradeId:
+    - MedievalSpellDivineTouchSenior
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
+    state: 2
+  cost:
+    MagicMedievalLight: 55
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellDivineTouchBeginner
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellDivineTouchSenior
+  name: medieval-store-spells-light-divine-touch-senior-name
+  description: medieval-store-spells-light-divine-touch-senior-desc
+  priority: 4
+  productUpgradeId:
+    - MedievalSpellDivineTouchSenior
+  icon:
+    sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
+    state: 3
+  cost:
+    MagicMedievalLight: 90
+    ArchmagePoints: 1
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellDivineTouchMiddle

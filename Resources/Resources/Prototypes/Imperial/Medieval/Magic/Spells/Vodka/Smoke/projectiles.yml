@@ -1,0 +1,44 @@
+# Middle
+
+- type: entity
+  id: MedievalSmokeBeginner
+  parent: Puddle
+  components:
+  - type: TriggerOnSpawn
+  - type: TimedDespawn
+    lifetime: 8
+  - type: SmokeOnTrigger
+    duration: 10
+    spreadAmount: 10
+
+
+# Middle
+
+- type: entity
+  id: MedievalSmokeMiddle
+  parent: Puddle
+  components:
+  - type: TriggerOnSpawn
+  - type: TimedDespawn
+    lifetime: 8
+  - type: SmokeOnTrigger
+    duration: 10
+    spreadAmount: 20
+
+
+# Senior
+
+- type: entity
+  id: MedievalSmokeSenior
+  parent: AdminInstantEffectBase
+  components:
+  - type: TriggerOnSpawn
+  - type: TimedDespawn
+    lifetime: 8
+  - type: SmokeOnTrigger
+    duration: 10
+    spreadAmount: 30
+    solution:
+      reagents:
+      - ReagentId: TearGas
+        Quantity: 50

@@ -1,0 +1,27 @@
+- type: entity
+  parent: [BaseComputer, StorePresetTradingTerminal]
+  id: ElysiumPrimeTradingTerminal
+  name: trading terminal
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/trading_terminal.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: trading-terminal
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      FederationCash: 0

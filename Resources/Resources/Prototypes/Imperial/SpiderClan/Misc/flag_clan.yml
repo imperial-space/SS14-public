@@ -1,0 +1,10 @@
+- type: entity
+  id: SpiderClanBanner
+  parent: BannerBase
+  name: Spider Clan banner
+  suffix: Crook, SpiderClan
+  description: A secretive group of trained fighters that dress as stylised ninjas based on the Japanese culture on the ground.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Misc/banner.rsi
+    state: SCBanner

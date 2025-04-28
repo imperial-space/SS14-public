@@ -1,0 +1,205 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionMagicArrowPlayerFolloverBeginner
+  parent: MedievalActionMagicArrowBeginner
+  name: medieval-store-spells-fire-magic-arrow-player-follover-beginner-name
+  description: medieval-store-spells-fire-magic-arrow-player-follover-beginner-desc
+  components:
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 8
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/arrow_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
+      state: 3
+    event: !type:MedievalHomingProjectilesSpellEvent
+      projectilePrototype: MedievalProjectileMagicArrowPlayerFolloverBeginner
+      relativeAngle: 90
+      projectileSpeed: 7
+      spread: 180
+      linearVelocityIntensy: 0.25
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-magic-arrow-player-follover
+          color: "#5B6EE1"
+          hideChat: true
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 1
+    whiteListComponents:
+      - type: Damageable
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.35
+        addedEssences:
+          MagicMedievalFire1: 1
+  - type: DamageTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.25
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: TrainingTarget
+        addedEssences:
+          MagicMedievalFire1: 1
+      - !type:AddMagicEssence
+        probability: 0.3
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: MobState
+          - !type:MagicTargetMobStateCondition
+            allowedState: Alive
+        addedEssences:
+          MagicMedievalFire1: 1
+  - type: ManaDrainSpell
+    manaDrain: 25
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+
+# Middle
+
+- type: entity
+  id: MedievalActionMagicArrowPlayerFolloverMiddle
+  parent: MedievalActionMagicArrowBeginner
+  name: medieval-store-spells-fire-magic-arrow-player-follover-middle-name
+  description: medieval-store-spells-fire-magic-arrow-player-follover-middle-desc
+  components:
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 10
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/arrow_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
+      state: 2
+    event: !type:MedievalHomingProjectilesSpellEvent
+      projectilePrototype: MedievalProjectileMagicArrowPlayerFolloverMiddle
+      relativeAngle: 90
+      projectileSpeed: 7
+      spread: 180
+      linearVelocityIntensy: 0.1
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-magic-arrow-player-follover
+          color: "#5B6EE1"
+          hideChat: true
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 3
+    whiteListComponents:
+      - type: Damageable
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.4
+        addedEssences:
+          MagicMedievalFire1: 1
+  - type: DamageTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.25
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: TrainingTarget
+        addedEssences:
+          MagicMedievalFire1: 1
+      - !type:AddMagicEssence
+        probability: 0.3
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: MobState
+          - !type:MagicTargetMobStateCondition
+            allowedState: Alive
+        addedEssences:
+          MagicMedievalFire1: 1
+  - type: ManaDrainSpell
+    manaDrain: 35
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+
+
+# Senior
+
+- type: entity
+  id: MedievalActionMagicArrowPlayerFolloverSenior
+  parent: MedievalActionMagicArrowBeginner
+  name: medieval-store-spells-fire-magic-arrow-player-follover-senior-name
+  description: medieval-store-spells-fire--magic-arrow-player-follover-senior-desc
+  components:
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 13
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/arrow_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
+      state: 1
+    event: !type:MedievalHomingProjectilesSpellEvent
+      projectilePrototype: MedievalProjectileMagicArrowPlayerFolloverSenior
+      relativeAngle: 90
+      projectileSpeed: 7
+      spread: 180
+      linearVelocityIntensy: 0.25
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-magic-arrow-player-follover
+          color: "#5B6EE1"
+          hideChat: true
+  - type: MedievalTargetOverlayOnAiming
+    maxTargetCount: 5
+    whiteListComponents:
+      - type: Damageable
+  - type: ManaDrainSpell
+    manaDrain: 45
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.45
+        addedEssences:
+          MagicMedievalFire1: 1
+  - type: DamageTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.2
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: TrainingTarget
+        addedEssences:
+          MagicMedievalFire1: 1
+      - !type:AddMagicEssence
+        probability: 0.3
+        conditions:
+          - !type:TargetContainsComponentsCondition
+            componentsWhitelist:
+              - type: MobState
+          - !type:MagicTargetMobStateCondition
+            allowedState: Alive
+        addedEssences:
+          MagicMedievalFire1: 1
+

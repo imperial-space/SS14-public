@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprite made by @crookielv for @lune_felix #ЗвёздныйКорпус",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "base"
+    },
+    {
+      "name": "base_door"
+    },
+    {
+      "name": "base_open"
+    },
+    {
+      "name": "generic"
+    },
+    {
+      "name": "generic_door"
+    },
+    {
+      "name": "generic_open"
+    },
+    {
+      "name": "welded"
+    },
+    {
+      "name": "locked"
+    },
+    {
+      "name": "sparking",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "unlocked"
+    },
+    {
+      "name": "generic_icon"
+    }
+  ]
+}

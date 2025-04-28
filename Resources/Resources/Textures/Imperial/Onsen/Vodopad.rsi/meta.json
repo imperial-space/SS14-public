@@ -1,0 +1,55 @@
+{
+    "version": 2,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Sprited by Molokvasik",
+    "size": {
+      "x": 32,
+      "y": 32
+            },
+    "states": [
+        {
+            "name": "rock"
+        },
+        {
+            "name": "rock_south",
+            "directions" : 1,
+            "delays":
+            [
+                [
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15
+                ]
+            ]
+        },
+        {
+            "name": "rock_east"
+        },
+        {
+            "name": "rock_north"
+        },
+        {
+            "name": "rock_west"
+        },
+        {
+            "name": "vodopadik",
+            "directions": 1,
+            "delays":
+                      [
+                [
+                  0.2,
+                  0.2,
+                  0.2,
+                  0.2,
+                  0.2,
+                  0.2,
+                  0.2,
+                  0.2
+                ]
+                      ]
+        }
+              ]
+}

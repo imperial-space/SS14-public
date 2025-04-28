@@ -1,0 +1,15 @@
+- type: entity
+  parent: BaseAnomalyCore
+  id: AnomalyCoreElectroMouse
+  suffix: ElectroMouse
+  components:
+  - type: Sprite
+    sprite: Structures/Power/Generation/Tesla/energy_miniball.rsi
+    shader: unshaded
+    layers:
+    - state: tesla_projectile
+  - type: PointLight
+    radius: 1.5
+    energy: 10
+    color: "#FFCCFF"
+    castShadows: false

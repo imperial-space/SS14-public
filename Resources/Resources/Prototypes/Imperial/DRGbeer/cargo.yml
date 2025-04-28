@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: ServiceLeaflover
+  icon:
+    sprite: Imperial/DRGbeer/leafloverbarrel.rsi
+    state: kvass
+  product: LeafTankFull
+  cost: 1000
+  category: cargoproduct-category-name-service
+  group: market

@@ -1,0 +1,49 @@
+# Middle
+
+- type: entity
+  id: MedievalEffectCriticalMassMiddle
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
+    state: 3
+  - type: MedievalParticles
+    color: "#FF5400"
+    speed: 2.0
+    particlesCount: 32
+    gravity: 0
+    inverted: true
+    collapseOnMinDistance: true
+  - type: RepeatingTrigger
+    delay: 0.75
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 20
+    intensitySlope: 6
+    totalIntensity: 6
+    canCreateVacuum: false
+
+# Senior
+
+- type: entity
+  id: MedievalEffectCriticalMassSenior
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
+    state: 3
+  - type: MedievalParticles
+    color: "#29B8DB"
+    speed: 2.0
+    particlesCount: 32
+    gravity: 0
+    inverted: true
+    collapseOnMinDistance: true
+  - type: RepeatingTrigger
+    delay: 0.75
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 20
+    intensitySlope: 10
+    totalIntensity: 9
+    canCreateVacuum: false

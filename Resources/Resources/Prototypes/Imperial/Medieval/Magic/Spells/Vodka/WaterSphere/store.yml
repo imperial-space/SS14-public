@@ -1,0 +1,67 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellWaterSphereBeginner
+  name: medieval-store-spells-vodka-water-sphere-beginner-name
+  description: medieval-store-spells-vodka-water-sphere-beginner-desc
+  productAction: MedievalActionWaterSphereBeginner
+  priority: 4
+  productUpgradeId:
+    - MedievalSpellWaterSphereMiddle
+  icon:
+    sprite: Imperial/Medieval/Magic/ice_pulse.rsi
+    state: ice-basic
+  cost:
+    MagicMedievalVodka: 10
+  categories:
+  - MedievalVodkaSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellWaterSphereMiddle
+  name: medieval-store-spells-vodka-water-sphere-middle-name
+  description: medieval-store-spells-vodka-water-sphere-middle-desc
+  priority: 4
+  productUpgradeId:
+    - MedievalSpellWaterSphereSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/ice_pulse.rsi
+    state: ice-mid
+  cost:
+    MagicMedievalVodka: 30
+  categories:
+  - MedievalVodkaSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellWaterSphereBeginner
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellWaterSphereSenior
+  name: medieval-store-spells-vodka-water-sphere-senior-name
+  description: medieval-store-spells-vodka-water-sphere-senior-desc
+  priority: 4
+  productUpgradeId:
+    - MedievalSpellWaterSphereSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/ice_pulse.rsi
+    state: ice-adv
+  cost:
+    MagicMedievalVodka: 60
+    ArchmagePoints: 1
+  categories:
+  - MedievalVodkaSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellWaterSphereMiddle

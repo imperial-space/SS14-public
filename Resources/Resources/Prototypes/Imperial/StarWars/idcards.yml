@@ -1,0 +1,51 @@
+- type: entity
+  parent: IDCardStandard
+  id: ImperialVaderIDCard
+  name: Vader ID card
+  description: an ID card used by a Sith lord from a galaxy far, far away
+  suffix: звёздные войны, империя
+  components:
+  - type: Sprite
+    sprite: Imperial/StarWars/idcards.rsi
+    layers:
+    - state: vader
+  - type: Item
+  - type: Clothing
+    slots:
+      - idcard
+    sprite: Imperial/StarWars/idcards.rsi
+  - type: IdCard
+    jobTitle: Лорд Ситхов
+    jobIcon: JobIconUnknown
+  - type: Access
+    groups:
+    - AllAccess
+    tags:
+    - Maintenance
+    - SyndicateAgent
+    - NuclearOperative
+
+- type: entity
+  parent: IDCardStandard
+  id: ImperialStormtrooperIDCard
+  name: Stormtrooper ID card
+  description: an ID card used by Imperial stormtroopers in a galaxy far, far away
+  suffix: звёздные войны, империя
+  components:
+  - type: Sprite
+    sprite: Imperial/StarWars/idcards.rsi
+    layers:
+    - state: stormtrooper
+  - type: Item
+  - type: Clothing
+    slots:
+      - idcard
+    sprite: Imperial/StarWars/idcards.rsi
+  - type: IdCard
+    jobTitle: Имперский Штурмовик
+    jobIcon: JobIconUnknown
+  - type: Access
+    tags:
+    - Maintenance
+    - SyndicateAgent
+    - NuclearOperative

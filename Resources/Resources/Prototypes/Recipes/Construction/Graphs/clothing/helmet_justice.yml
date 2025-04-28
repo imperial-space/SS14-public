@@ -1,0 +1,25 @@
+- type: constructionGraph
+  id: HelmetJustice
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: helmet
+      steps:
+      - tag: SecurityHelmet
+        name: шлем охраны # Imperial Recipes Locale
+        icon:
+          sprite: Clothing/Head/Helmets/security.rsi
+          state: icon
+      - material: Cable
+        amount: 2
+      - material: Glass
+        amount: 1
+      - tag: LightBulb
+        name: лампочка # Imperial Recipes Locale
+        icon:
+          sprite: Objects/Power/light_bulb.rsi
+          state: normal
+        doAfter: 5
+  - node: helmet
+    entity: ClothingHeadHelmetJusticeEmpty

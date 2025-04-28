@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "size": {
+        "x": 64,
+        "y": 64
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "made by @mcdonaldsobamaburger",
+    "states": [
+        {
+            "name": "base"
+        },
+        {
+            "name": "icon"
+        },
+        {
+            "name": "base-1"
+        },
+        {
+            "name": "base-2"
+        },
+        {
+            "name": "base-3"
+        },
+        {
+            "name": "base-4"
+        },
+        {
+            "name": "base-5"
+        },
+        {
+            "name": "base-6"
+        }
+    ]
+}

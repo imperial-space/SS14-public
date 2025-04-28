@@ -1,0 +1,9 @@
+- type: entity
+  parent: BaseItem
+  id: NewRadTool
+  name: AddRad
+  components:
+  - type: Sprite
+    sprite: deprecated.rsi
+    state: deprecated
+  - type: NewRad

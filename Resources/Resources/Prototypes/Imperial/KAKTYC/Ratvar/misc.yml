@@ -1,0 +1,43 @@
+- type: entity
+  id: StructureRatvarPylon
+  parent: BaseStructure
+  name: маяк Вестника
+  suffix: KCL, kaktyc
+  description: Неопознанная структура, издающая резонирующий звук.
+  components:
+  - type: Sprite
+    sprite: Imperial/KAKTYC/Ratvar/pylon.rsi
+    state: icon
+  - type: PointLight
+    radius: 5
+    energy: 1.6
+    color: "#6a3c0b"
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.4,0.35,0.4"
+        density: 1000
+        layer:
+        - WallLayer
+  - type: InteractionOutline
+  - type: AmbientSound
+    volume: -15
+    range: 5
+    sound:
+      path: /Audio/Machines/scan_loop.ogg

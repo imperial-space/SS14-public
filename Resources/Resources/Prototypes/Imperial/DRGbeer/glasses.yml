@@ -1,0 +1,127 @@
+- type: entity
+  parent: DrinkGlass
+  id: DrinkLeafLoverGlass
+  suffix: Leaflover
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: LeafLover
+          Quantity: 30
+  - type: Icon
+    sprite: Imperial/DRGbeer/leaflover.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkBlackoutStoutGlass
+  suffix: Blackout Stout
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: BlackoutStout
+          Quantity: 30
+  - type: Icon
+    sprite: Imperial/DRGbeer/blackout.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkArkenstoutGlass
+  suffix: Arkenstout
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Arkenstout
+          Quantity: 30
+  - type: Icon
+    sprite: Imperial/DRGbeer/arken.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkBlackreachGlass
+  suffix: Blackreach blonde
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Blackreach
+          Quantity: 30
+  - type: Icon
+    sprite: Imperial/DRGbeer/blackreach.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkWormholeSpecGlass
+  suffix: Wormhole Special
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: WormholeSpec
+          Quantity: 30
+  - type: Icon
+    sprite: Imperial/DRGbeer/wormhole.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkMacteraBrewGlass
+  suffix: Mactera brew
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: MacteraBrew
+          Quantity: 30
+  - type: Icon
+    sprite: Imperial/DRGbeer/mactera.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkBurningloveGlass
+  suffix: Burning love
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Burninglove
+          Quantity: 30
+  - type: Icon
+    sprite: Imperial/DRGbeer/burning.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkRandoVeisserGlass
+  suffix: RandoVeisser
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: RandoVeisser
+          Quantity: 30
+  - type: Icon
+    sprite: Imperial/DRGbeer/rando.rsi
+    state: icon

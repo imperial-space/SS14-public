@@ -1,0 +1,87 @@
+- type: entity
+  id: BorgChassisSecurity
+  parent: BorgChassisSelectable
+  name: security cyborg
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: security
+
+
+# Security borg
+- type: borgType
+  id: security
+
+  # Description
+  dummyPrototype: BorgChassisSecurity
+
+  # Functional
+  extraModuleCount: 3
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleSecurityImperial
+
+  defaultModules:
+  - BorgModuleJawsSecurity
+  - BorgModuleNonLethalSecurity
+
+  addComponents:
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: FlashImmunity
+  - type: Body
+    prototype: ImperialBorg
+  - type: MobThresholds
+    thresholds:
+     0: Alive
+     200: Critical
+     300: Dead
+  - type: BorgHandsImperial
+    whitelistHandTag: SecurityBorgItem
+
+  radioChannels:
+  - Security
+  - Science
+
+  # Visual
+  inventoryTemplateId: borgTall
+  spriteBodyState: security
+  spriteHasMindState: security_e
+  spriteNoMindState: security_e_r
+  spriteToggleLightState: security_l
+
+  # Pet
+  petSuccessString: petting-success-security-cyborg
+  petFailureString: petting-failure-security-cyborg
+
+  # Sounds
+  footstepCollection:
+    collection: FootstepSecurityCyborg
+
+
+- type: Tag
+  id: BorgModuleSecurityImperial
+
+
+- type: soundCollection
+  id: FootstepSecurityCyborg
+  files:
+  - /Audio/Imperial/Synthetics/sound_misc_step_step_robo_1.ogg
+  - /Audio/Imperial/Synthetics/sound_misc_step_step_robo_2.ogg
+  - /Audio/Imperial/Synthetics/sound_misc_step_step_robo_3.ogg
+
+- type: body
+  id: ImperialBorg # Тело для киборгов Империала, чтобы у них была рука
+  name: "Imperial borg"
+  root: torso
+  slots:
+    torso:
+      part: TorsoAnimal
+      connections:
+      - hand
+    hand:
+      part: HandsAnimal
+
+- type: Tag
+  id: SecurityBorgItem # Тег, позволяющий СБ боргу брать предметы Imperial Space

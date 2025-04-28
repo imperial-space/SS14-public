@@ -1,0 +1,9 @@
+ent-WallSpawnAsteroid = Спавнер Астероидной Породы
+ent-WallSpawnAsteroidUraniumCrab = Спавнер Урановой Руды(краб)
+ent-WallSpawnAsteroidUranium = Спавнер Урановой Руды
+ent-WallSpawnAsteroidQuartzCrab = Спавнер Кварцевой Руды(краб)
+ent-WallSpawnAsteroidQuartz = Спавнер Кварцевой Руды
+ent-WallSpawnAsteroidSilverCrab = Спавнер Серебрянной Руды(краб)
+ent-WallSpawnAsteroidSilver = Спавнер Серебрянной Руды
+ent-WallSpawnAsteroidIronCrab = Спавнер Железной Руды(краб)
+ent-WallSpawnAsteroidIron = Спавнер Железной Руды

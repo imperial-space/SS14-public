@@ -1,0 +1,1199 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxSVUMkII
+  name: ammunition box SVU Mk II (7x62x39)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeSVUMkII
+    proto: CartridgeSVUMkII
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/boxes/SVUMkII_boxes.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVUMkII
+  id: MagazineBoxSVUMkIIBig
+  name: ammunition box SVU Mk II (7x62x39)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeSVUMkII
+  - type: Sprite
+    layers:
+    - state: base-b
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVUMkII
+  id: MagazineBoxSVUMkII
+  name: ammunition box SVU Mk II (7x62x39)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeSVUMkII
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxSVUMkIIPiercing
+  name: ammunition box SVU Mk II (7x62x39 AP)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeSVUMkII
+    proto: CartridgeSVUMkIIPiercing
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/boxes/SVUMkII_boxes.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVUMkII
+  id: MagazineBoxSVUMkIIPiercingBig
+  name: ammunition box SVU Mk II (7x62x39 AP)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeSVUMkIIPiercing
+  - type: Sprite
+    layers:
+    - state: base-b-piercing
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVUMkII
+  id: MagazineBoxSVUMkIIPiercing
+  name: ammunition box SVU Mk II (7x62x39 AP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeSVUMkIIPiercing
+  - type: Sprite
+    layers:
+    - state: base-piercing
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxSVUMkIILongRange
+  name: ammunition box SVU Mk II (7x62x39 T)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeSVUMkII
+    proto: CartridgeSVUMkIILongRange
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/boxes/SVUMkII_boxes.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVUMkII
+  id: MagazineBoxSVUMkIILongRangeBig
+  name: ammunition box SVU Mk II (7x62x39 T)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeSVUMkIILongRange
+  - type: Sprite
+    layers:
+    - state: base-b-long-range
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVUMkII
+  id: MagazineBoxSVUMkIILongRange
+  name: ammunition box SVU Mk II (7x62x39 T)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeSVUMkIILongRange
+  - type: Sprite
+    layers:
+    - state: base-long-range
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxSVUMkIIExplosive
+  name: ammunition box SVU Mk II (7x62x39 ST)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeSVUMkII
+    proto: CartridgeSVUMkIIExplosive
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/boxes/SVUMkII_boxes.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVUMkII
+  id: MagazineBoxSVUMkIIExplosiveBig
+  name: ammunition box SVU Mk II (7x62x39 ST)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeSVUMkIIExplosive
+  - type: Sprite
+    layers:
+    - state: base-b-piercing
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVUMkII
+  id: MagazineBoxSVUMkIIExplosive
+  name: ammunition box SVU Mk II (7x62x39 ST)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeSVUMkIIExplosive
+  - type: Sprite
+    layers:
+    - state: base-piercing
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxSVD
+  name: ammunition box SVD (7x62x39)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeSVD
+    proto: CartridgeSVD
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/boxes/SVD_boxes.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVD
+  id: MagazineBoxSVDBig
+  name: ammunition box SVD (7x62x39)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeSVD
+  - type: Sprite
+    layers:
+    - state: base-b
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVD
+  id: MagazineBoxSVD
+  name: ammunition box SVD (7x62x39)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeSVD
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxSVDPiercing
+  name: ammunition box SVD (7x62x39 AP)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeSVD
+    proto: CartridgeSVDPiercing
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/boxes/SVD_boxes.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVD
+  id: MagazineBoxSVDPiercingBig
+  name: ammunition box SVD (7x62x39 AP)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeSVDPiercing
+  - type: Sprite
+    layers:
+    - state: base-b-piercing
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVD
+  id: MagazineBoxSVDPiercing
+  name: ammunition box SVD (7x62x39 AP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeSVDPiercing
+  - type: Sprite
+    layers:
+    - state: base-piercing
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxSVDLongRange
+  name: ammunition box SVD (7x62x39 T)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeSVD
+    proto: CartridgeSVDLongRange
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/boxes/SVD_boxes.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVD
+  id: MagazineBoxSVDLongRangeBig
+  name: ammunition box SVD (7x62x39 T)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeSVDLongRange
+  - type: Sprite
+    layers:
+    - state: base-b-long-range
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVD
+  id: MagazineBoxSVDLongRange
+  name: ammunition box SVD (7x62x39 T)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeSVDLongRange
+  - type: Sprite
+    layers:
+    - state: base-long-range
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxSVDExplosive
+  name: ammunition box SVD (7x62x39 ST)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeSVD
+    proto: CartridgeSVDExplosive
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/boxes/SVD_boxes.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVD
+  id: MagazineBoxSVDExplosiveBig
+  name: ammunition box SVD (7x62x39 ST)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeSVDExplosive
+  - type: Sprite
+    layers:
+    - state: base-b-piercing
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVD
+  id: MagazineBoxSVDExplosive
+  name: ammunition box SVD (7x62x39 ST)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeSVDExplosive
+  - type: Sprite
+    layers:
+    - state: base-piercing
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxSVUMkI
+  name: ammunition box SVU Mk-I (7x62x39)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeFelixSniperSVUMkI
+    proto: CartridgeSniperSVUMkI
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/boxes/SVUMkI_boxes.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVUMkI
+  id: MagazineBoxSVUMkIBig
+  name: ammunition box SVU Mk I (7x62x39)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeSniperSVUMkI
+  - type: Sprite
+    layers:
+    - state: base-b
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVUMkI
+  id: MagazineBoxSVUMkI
+  name: ammunition box SVU Mk I (7x62x39)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeSniperSVUMkI
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxSVUMkIPiercing
+  name: ammunition box SVU Mk I (7x62x39 AP)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeArmorPiercingSniperSVUMkI
+    proto: CartridgeSniperSVUMkIPiercing
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/boxes/SVUMkI_boxes.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVUMkI
+  id: MagazineBoxSVUMkIPiercingBig
+  name: ammunition box SVU Mk I (7x62x39 AP)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeArmorPiercingSniperSVUMkI
+  - type: Sprite
+    layers:
+    - state: base-b-piercing
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVUMkI
+  id: MagazineBoxSVUMkIPiercing
+  name: ammunition box SVU Mk I (7x62x39 AP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeArmorPiercingSniperSVUMkI
+  - type: Sprite
+    layers:
+    - state: base-piercing
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxSVUMkILongRange
+  name: ammunition box SVU Mk I (7x62x39 T)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeSniperSVUMkI
+    proto: CartridgeLongRangeSniperSVUMkI
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/boxes/SVUMkI_boxes.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVUMkI
+  id: MagazineBoxSVUMkILongRangeBig
+  name: ammunition box SVU Mk I (7x62x39 T)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeLongRangeSniperSVUMkI
+  - type: Sprite
+    layers:
+    - state: base-b-long-range
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVUMkI
+  id: MagazineBoxSVUMkILongRange
+  name: ammunition box SVU Mk I (7x62x39 T)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeLongRangeSniperSVUMkI
+  - type: Sprite
+    layers:
+    - state: base-long-range
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxSVUMkIExplosive
+  name: ammunition box SVU Mk I (7x62x39 ST)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeSniperSVUMkI
+    proto: CartridgeExplosiveSniperSVUMkI
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/boxes/SVUMkI_boxes.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVUMkI
+  id: MagazineBoxSVUMkIExplosiveBig
+  name: ammunition box SVU Mk I (7x62x39 ST)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeExplosiveSniperSVUMkI
+  - type: Sprite
+    layers:
+    - state: base-b-explosive
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxSVUMkI
+  id: MagazineBoxSVUMkIExplosive
+  name: ammunition box SVU Mk I (7x62x39 ST)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeExplosiveSniperSVUMkI
+  - type: Sprite
+    layers:
+    - state: base-explosive
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxVSSMkI
+  name: ammunition box VSSMkI (7x62x39)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeFelixSniperVSSMkI
+    proto: CartridgeSniperVSSMkI
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/boxes/VSSMkI_boxes.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxVSSMkI
+  id: MagazineBoxVSSMkIBig
+  name: ammunition box VSSMkI (7x62x39)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeSniperVSSMkI
+  - type: Sprite
+    layers:
+    - state: base-b
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxVSSMkI
+  id: MagazineBoxVSSMkI
+  name: ammunition box VSSMkI (7x62x39)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeSniperVSSMkI
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxVSSMkIPiercing
+  name: ammunition box VSSMkI (7x62x39 AP)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeSniperVSSMkI
+    proto: CartridgeArmorPiercingSniperVSSMkI
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/boxes/VSSMkI_boxes.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxVSSMkI
+  id: MagazineBoxVSSMkIPiercingBig
+  name: ammunition box VSSMkI (7x62x39 AP)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeArmorPiercingSniperVSSMkI
+  - type: Sprite
+    layers:
+    - state: base-b-piercing
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxVSSMkI
+  id: MagazineBoxVSSMkIPiercing
+  name: ammunition box VSSMkI (7x62x39 AP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeArmorPiercingSniperVSSMkI
+  - type: Sprite
+    layers:
+    - state: base-piercing
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxVSSMkILongRange
+  name: ammunition box VSSMkI (7x62x39 T)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeSniperVSSMkI
+    proto: CartridgeLongRangeSniperVSSMkI
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/boxes/VSSMkI_boxes.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxVSSMkI
+  id: MagazineBoxVSSMkILongRangeBig
+  name: ammunition box VSSMkI (7x62x39 T)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeLongRangeSniperVSSMkI
+  - type: Sprite
+    layers:
+    - state: base-b-long-range
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxVSSMkI
+  id: MagazineBoxVSSMkILongRange
+  name: ammunition box VSSMkI (7x62x39 T)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeLongRangeSniperVSSMkI
+  - type: Sprite
+    layers:
+    - state: base-long-range
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxVSSMkIExplosive
+  name: ammunition box VSSMkI (7x62x39 ST)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeSniperVSSMkI
+    proto: CartridgeExplosiveSniperVSSMkI
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/boxes/VSSMkI_boxes.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxVSSMkI
+  id: MagazineBoxVSSMkIExplosiveBig
+  name: ammunition box VSSMkI (7x62x39 ST)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeExplosiveSniperVSSMkI
+  - type: Sprite
+    layers:
+    - state: base-b-explosive
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxVSSMkI
+  id: MagazineBoxVSSMkIExplosive
+  name: ammunition box VSSMkI (7x62x39 ST)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeExplosiveSniperVSSMkI
+  - type: Sprite
+    layers:
+    - state: base-explosive
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxVSSMkII
+  name: ammunition box VSSMkII (7x62x39)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeFelixSniperVSSMkII
+    proto: CartridgeSniperVSSMkII
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/boxes/VSSMkII_boxes.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxVSSMkII
+  id: MagazineBoxVSSMkIIBig
+  name: ammunition box VSSMkII (7x62x39)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeSniperVSSMkII
+  - type: Sprite
+    layers:
+    - state: base-b
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxVSSMkII
+  id: MagazineBoxVSSMkII
+  name: ammunition box VSSMkII (7x62x39)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeSniperVSSMkII
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxVSSMkIIPiercing
+  name: ammunition box VSSMkII (7x62x39 AP)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeSniperVSSMkII
+    proto: CartridgeArmorPiercingSniperVSSMkII
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/boxes/VSSMkII_boxes.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxVSSMkII
+  id: MagazineBoxVSSMkIIPiercingBig
+  name: ammunition box VSSMkII (7x62x39 AP)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeArmorPiercingSniperVSSMkII
+  - type: Sprite
+    layers:
+    - state: base-b-piercing
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxVSSMkII
+  id: MagazineBoxVSSMkIIPiercing
+  name: ammunition box VSSMkII (7x62x39 AP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeArmorPiercingSniperVSSMkII
+  - type: Sprite
+    layers:
+    - state: base-piercing
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxVSSMkIILongRange
+  name: ammunition box VSSMkII (7x62x39 T)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeSniperVSSMkII
+    proto: CartridgeLongRangeSniperVSSMkII
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/boxes/VSSMkII_boxes.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxVSSMkII
+  id: MagazineBoxVSSMkIILongRangeBig
+  name: ammunition box VSSMkII (7x62x39 T)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeLongRangeSniperVSSMkII
+  - type: Sprite
+    layers:
+    - state: base-b-long-range
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxVSSMkII
+  id: MagazineBoxVSSMkIILongRange
+  name: ammunition box VSSMkII (7x62x39 T)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeLongRangeSniperVSSMkII
+  - type: Sprite
+    layers:
+    - state: base-long-range
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxVSSMkIIExplosive
+  name: ammunition box VSSMkII (7x62x39 ST)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeSniperVSSMkII
+    proto: CartridgeExplosiveSniperVSSMkII
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/boxes/VSSMkII_boxes.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxVSSMkII
+  id: MagazineBoxVSSMkIIExplosiveBig
+  name: ammunition box VSSMkII (7x62x39 ST)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeExplosiveSniperVSSMkII
+  - type: Sprite
+    layers:
+    - state: base-b-explosive
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxVSSMkII
+  id: MagazineBoxVSSMkIIExplosive
+  name: ammunition box VSSMkII (7x62x39 ST)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeExplosiveSniperVSSMkII
+  - type: Sprite
+    layers:
+    - state: base-explosive
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]

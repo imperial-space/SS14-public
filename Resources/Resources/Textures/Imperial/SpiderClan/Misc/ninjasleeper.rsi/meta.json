@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by CrookLv",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "ninjasleeper_open"
+    },
+    {
+      "name": "ninjasleeper_closed"
+    },
+    {
+      "name": "ninjasleeper_open_unpowered"
+    },
+    {
+      "name": "ninjasleeper_closed_unpowered"
+    },
+    {
+      "name": "ninjasleeper_occupied",
+      "delays": [
+        [
+          0.5,
+          0.1,
+          0.1,
+          0.1,
+	        0.1,
+	        0.1
+        ]
+      ]
+    }
+  ]
+}

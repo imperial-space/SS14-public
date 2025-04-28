@@ -1,0 +1,75 @@
+job-name-rcuoperator = IJYLUNIL
+job-name-rcuofficer = IZZCWYL
+
+ent-RCUOperatorPreset = оператор RCU
+ent-RCUOfficerPreset = офицер RCU
+ent-RCUOperatorPDA = КПК RCU
+    .desc = Пахнет элитой и элитизмом.
+ent-RCUOfficerPDA = КПК RCU
+    .desc = Пахнет элитой и элитизмом.
+ent-UplinkRCUOperator = WTH терминал оператора
+    .desc = Терминал оператора безопасности RCU.
+ent-UplinkRCUOfficer = WTH терминал офицера
+    .desc = Терминал офицера безопасности RCU.
+
+ent-ClothingBackpackRCU = рюкзак оперативника RCU
+    .desc = Вместительный рюкзак, удобное хранилище для средств убийства, ну или медицины.
+ent-ClothingBackpackRCUFilledOperator = рюкзак оперативника RCU
+    .desc = Вместительный рюкзак, удобное хранилище для средств убийства, ну или медицины.
+ent-ClothingBackpackRCUFilledOfficer = рюкзак оперативника RCU
+    .desc = Вместительный рюкзак, удобное хранилище для средств убийства, ну или медицины.
+ent-GlassesVisorRCU = темно-красный визор
+    .desc = Защищает глаза пользователя от всех видов угроз зрению и предоставляет всевозможную информацию.
+ent-ClothingMaskRCU = защитный противогаз
+    .desc = Хороший противогаз с защитой глаз.
+ent-ClothingOuterHardsuitRCUOperator = элитный скафандр оператора
+    .desc = Скафандр элиты ОБР НТ.
+ent-ClothingOuterHardsuitRCUOfficer = элитный скафандр офицера
+    .desc = Скафандр элиты ОБР НТ.
+ent-BootsMagRCU = темно-красные экспериментальные ботинки
+    .desc = Экспериментальный вариант ботинок, который, наоборот ускоряет владельца. Темно-красная версия.
+ent-WeaponRevolverUnica9 = Уника-9
+    .desc = Надежный револьвер с несколькими режимами стрельбы.
+ent-SpeedLoaderGrenadeFrag = спидлоадер (осколочные гранаты)
+ent-WeaponLauncherMilkorMGL = MilkorMGL
+    .desc = Модифицированный гранатомет НаноТрейзен, базирующийся на China Lake.
+ent-MachineGunODEN = ODEN
+    .desc = Мощная винтовка с хорошим боезапасом. Использует .30 винтовочные.
+ent-WeaponShotgunUTS15 = UTS-15
+    .desc = Автоматический дробовик с несколькими режимами стрельбы. Выбирайте, как именно будете убивать.
+ent-BallisticShieldRCU = тяжелый баллистический щит
+    .desc = Тяжелый штурмовой щит с хорошей защитой. Он настолько тяжелый, что удар им должен быть чрезвычайно болезненным...
+ent-OperatorMantle = мантия оператора
+    .desc = Престижная мантия для старших по званию сотрудников RCU.
+ent-ClothingBeltRCU = тактический пояс RCU
+    .desc = Штурмовой пояс элитного ОБР НТ.
+
+ent-RCUOperatorEVApreset = гост роль оператора RCU
+ent-RCUOfficerEVApreset = гост роль офицера RCU
+
+ert-uplink-utilities-ami2-desc = Плюшевая игрушка офицера ДСО. По статистике - 75.6% сотрудников ОБР чувствуют себя лучше, когда у них есть плюшевая игрушка в рюкзаке. Довольно забавно, что в аплинке, где продается тяжелое вооружение можно найти что-то настолько милое...
+ert-uplink-melee-ballisticshield-name = штурмовой щит
+ert-uplink-melee-ballisticshield-desc = Нужен для массированного штурма, либо для защиты нежной тушки пЦК от внезапного выстрела из тех. тоннелей.
+ert-uplink-ammononcombat-magazineoden-name = магазин ODEN
+ert-uplink-ammononcombat-magazineoden-desc = Наполнен патронам калибра .30, по 40 штук в одном экземпляре.
+ert-uplink-ammononcombat-speedloaderfraggrenade-name = спидлоадер с разрывными боеприпасами
+ert-uplink-ammononcombat-speedloaderfraggrenade-desc = Наполнен 6 осколочными гранатами для быстрой зарядки MilkorMGL.
+ert-uplink-weaponcombat-unica-name = уника-9
+ert-uplink-weaponcombat-unica-desc = Младший братик матебы, который тем не менее в отличии от старшего, оснащен несколькими режимами стрельбы.
+ert-uplink-weaponcombat-oden-name = винтовка ODEN
+ert-uplink-weaponcombat-oden-desc = Универсальная винтовка, которая отлично подойдет как для операций с целью защиты VIP персоны, так и грубого штурма.
+ert-uplink-weaponcombat-uts15-name = UTS-15
+ert-uplink-weaponcombat-uts15-desc = Инженерам отдела разработок надоело возиться с обычными дробовиками и они создали автоматический, также стараясь зачем-то сделать его тихим. Теперь вместо простой стрельбы, вам в уши будет стучать звук пневматики, что глушит шум от выстрела.
+ert-uplink-weaponcombat-milkormgl-name = MilkorMGL
+ert-uplink-weaponcombat-milkormgl-desc = Хотя China Lake не смотря на все минусы, все еще остается привлекательным гранатометом. Оружейная фабрика MilkorSystems LLC не решила стоять на месте и заключила контракт на создание и поставку нового вооружения с NanoTrasen. Благодаря их усилиям, оперативники RCU теперь могут сыграть в русскую рулетку с помощью барабанного гранатомета...
+ert-uplink-ammononcombat-boxlethalshot-name = коробка ружейных патронов
+ert-uplink-ammononcombat-boxlethalshot-desc = Обычные патроны для дробовика.
+ert-uplink-ammononcombat-boxshotgunslug-name = коробка ружейных патронов (пули)
+ert-uplink-ammononcombat-boxshotgunslug-desc = Экзотическая версия патронов для дробовика. Превратие свое ружье в снайперскую винтовку.
+
+ertcall-rcuoper-security-eva-name = оператор RCU
+ertcall-rcuoper-security-eva-desc = Командир элитного отряда NanoTrasen.
+ertcall-rcuoper-security-eva-rules = Вы - [color=Red][bold]Оператор[/bold][/color] [color=DarkRed][bold]Riot Control Unit[/bold][/color]. В ваши задачи входит командование над остальным отрядом, что состоит из офицеров. Обеспечьте надлежащий надзор за ввереными вам [color=Red][bold]офицерами[/bold][/color] и выполните задачу, поставленную перед вами ЦентКомом или ДСО.
+ertcall-rcuoff-security-eva-name = офицер RCU
+ertcall-rcuoff-security-eva-desc = Оперативник элитного отряда NanoTrasen.
+ertcall-rcuoff-security-eva-rules = Вы - [color=Red][bold]Офицер[/bold][/color] [color=DarkRed][bold]Riot Control Unit[/bold][/color]. Как офицер вы непосредственно подчиняетесь [color=Red][bold]оператору[/bold][/color]. Следуйте инструкциям, данным вам от оператора и выполните поставленную ЦентКомом/ДСО задачу.

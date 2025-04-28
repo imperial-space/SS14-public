@@ -1,0 +1,18 @@
+- type: speechSounds
+  id: GnomeSpeech
+  saySound:
+    path: /Audio/Imperial/gnom/talk.ogg
+  askSound:
+    path: /Audio/Imperial/gnom/talk.ogg
+  exclaimSound:
+    path: /Audio/Imperial/gnom/talk.ogg
+
+- type: emoteSounds
+  id: GnomeSounds
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/Imperial/gnom/scream.ogg
+    Weh:
+      collection: Weh

@@ -1,0 +1,178 @@
+- type: entity
+  name: Agram
+  parent: BaseWeaponSubMachineGun
+  id: WeaponSubMachineGunAgram
+  description: A small-sized SMG with above-average ammunition and a 32-round magazine. It has a dark gray color.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/SMG/Agram.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+  - type: Gun
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: BaseMagazineAgram
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineAgram
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeAgram
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeAgram
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: WeaponFelixMP5
+  parent: BaseWeaponSubMachineGun
+  suffix: Felix
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/SMG/MP5.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Imperial/DeadSector/weapons/weapons/SMG/MP5.rsi
+    quickEquip: false
+    slots:
+    - Back
+  - type: Gun
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineMP5
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineMP5
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeSubmachine
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeFelixSubmachine
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      awnings: !type:Container
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,1
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: WeaponFelixMP9
+  parent: BaseWeaponSubMachineGun
+  suffix: Felix
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/SMG/MP9.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Imperial/DeadSector/weapons/weapons/SMG/MP9.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    minAngle: 2
+    maxAngle: 16
+    fireRate: 8
+    angleIncrease: 3
+    angleDecay: 16
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineMP9
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineMP9
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeSubmachine
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeFelixSubmachine
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      awnings: !type:Container
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,1
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  # - type: ContainerFill
+  #   containers:
+  #     awnings:
+  #     - AimAwning2
+  #     - ButtAwning
+  # - type: GunAwning
+  #   awnings:
+  #     aim:
+  #       slotName: verb-gun-awnings-aim
+  #       priority: 2
+  #     butt:
+  #       slotName: verb-gun-awnings-butt
+  #       priority: 1

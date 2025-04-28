@@ -1,0 +1,666 @@
+- type: Tag
+  id: Medipen
+
+- type: Tag
+  id: OxygenMask
+
+# Аптечка первой помощи
+- type: entity
+  name: first aid kit
+  description: It's an emergency medical kit for those serious boo-boos.
+  parent: [ BaseStorageItem, BaseBagOpenClose ]
+  id: FirstAidMedkitImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ImperialMedkits/firstaidkit.rsi
+    layers:
+      - state: closed
+        map: ["closeLayer"]
+      - state: open
+        map: ["openLayer"]
+        visible: false
+      - state: gauze
+        map: ["gauze"]
+        visible: false
+      - state: jar1
+        map: ["jar1"]
+        visible: false
+      - state: jar2
+        map: ["jar2"]
+        visible: false
+      - state: brutepack
+        map: ["brutepack"]
+        visible: false
+      - state: ointment
+        map: ["ointment"]
+        visible: false
+      - state: bottle1
+        map: ["bottle1"]
+        visible: false
+      - state: bottle2
+        map: ["bottle2"]
+        visible: false
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,1
+  - type: Item
+    size: Large
+    sprite: Imperial/Other/ImperialMedkits/firstaidkit.rsi
+    heldPrefix: firstaid
+  - type: Tag
+    tags:
+    - Medkit
+  - type: ItemCounter
+    count:
+      tags: [ Gauze, Brutepack, Ointment, PillCanister, FitsHardsuit ]
+    composite: true
+    layerStates:
+    - gauze
+    - brutepack
+    - ointment
+    - jar1
+    - jar2
+    - bottle1
+    - bottle2
+  - type: Appearance
+
+
+- type: entity
+  id: FirstAidMedkitImperialFilled # Заполненная аптечка первой помощи
+  suffix: Filled
+  parent: FirstAidMedkitImperial
+  components:
+  - type: StorageFill
+    contents: 
+      - id: Gauze
+      - id: Brutepack
+      - id: Ointment
+      - id: PillCanisterTricordrazine
+        amount: 2
+      - id: AmpulaTric
+        amount: 2
+
+# Аптечка против токсических повреждений
+- type: entity
+  name: toxin medkit
+  description: It's a medical kit for those who need it.
+  parent: [ BaseStorageItem, BaseBagOpenClose ]
+  id: ToxinMedkitImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ImperialMedkits/toxinmedkit.rsi
+    layers:
+      - state: closed
+        map: ["closeLayer"]
+      - state: open
+        map: ["openLayer"]
+        visible: false
+      - state: antipoisonmedipen
+        map: ["antipoisonmedipen"]
+        visible: false
+      - state: jar1
+        map: ["jar1"]
+        visible: false
+      - state: jar2
+        map: ["jar2"]
+        visible: false
+      - state: syringe1
+        map: ["syringe1"]
+        visible: false
+      - state: syringe2
+        map: ["syringe2"]
+        visible: false
+      - state: bottle1
+        map: ["bottle1"]
+        visible: false
+      - state: bottle2
+        map: ["bottle2"]
+        visible: false
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,1
+  - type: Item
+    size: Large
+    sprite: Imperial/Other/ImperialMedkits/toxinmedkit.rsi
+    heldPrefix: toxin
+  - type: Tag
+    tags:
+    - Medkit
+  - type: ItemCounter
+    count:
+      tags: [ Medipen, Syringe, PillCanister, FitsHardsuit ]
+    composite: true
+    layerStates:
+    - antipoisonmedipen
+    - syringe1
+    - syringe2
+    - jar1
+    - jar2
+    - bottle1
+    - bottle2
+  - type: Appearance
+
+
+- type: entity
+  id: ToxinMedkitImperialFilled # Заполненная аптечка против токсических повреждений
+  suffix: Filled
+  parent: ToxinMedkitImperial
+  components:
+  - type: StorageFill
+    contents: 
+      - id: AntiPoisonMedipen
+      - id: SyringeIpecac
+      - id: SyringeEthylredoxrazine
+      - id: PillCanister
+        amount: 2
+      - id: AmpulaDylo
+        amount: 2
+
+# Аптечка против механических повреждений
+- type: entity
+  name: brute medkit
+  description: It's a medical kit for those who need it.
+  parent: [ BaseStorageItem, BaseBagOpenClose ]
+  id: BruteMedkitImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ImperialMedkits/brutemedkit.rsi
+    layers:
+      - state: closed
+        map: ["closeLayer"]
+      - state: open
+        map: ["openLayer"]
+        visible: false
+      - state: brutepack
+        map: ["brutepack"]
+        visible: false
+      - state: jar1
+        map: ["jar1"]
+        visible: false
+      - state: jar2
+        map: ["jar2"]
+      - state: bottle1
+        map: ["bottle1"]
+        visible: false
+      - state: bottle2
+        map: ["bottle2"]
+        visible: false
+      - state: ointment
+        map: ["ointment"]
+        visible: false
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,1
+  - type: Item
+    size: Large
+    sprite: Imperial/Other/ImperialMedkits/brutemedkit.rsi
+    heldPrefix: brute
+  - type: Tag
+    tags:
+    - Medkit
+  - type: ItemCounter
+    count:
+      tags: [ Brutepack, Ointment, PillCanister, FitsHardsuit ]
+    composite: true
+    layerStates:
+    - brutepack
+    - ointment
+    - jar1
+    - jar2
+    - bottle1
+    - bottle2
+  - type: Appearance
+
+
+- type: entity
+  id: BruteMedkitImperialFilled # Заполненная аптечка против механических повреждений
+  suffix: Filled
+  parent: BruteMedkitImperial
+  components:
+  - type: StorageFill
+    contents: 
+      - id: Brutepack
+      - id: Ointment
+      - id: PillCanister
+        amount: 2
+      - id: AmpulaBica
+        amount: 2
+
+# Продвинутая аптечка первой помощи
+- type: entity
+  name: advanced first aid kit
+  description: It's an advanced emergency medical kit for those serious boo-boos.
+  parent: [ BaseStorageItem, BaseBagOpenClose ]
+  id: AdvancedFirstAidMedkitImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ImperialMedkits/advancedmedkit.rsi
+    layers:
+      - state: closed
+        map: ["closeLayer"]
+      - state: open
+        map: ["openLayer"]
+        visible: false
+      - state: advointment
+        map: ["advointment"]
+        visible: false
+      - state: advbrutepack
+        map: ["advbrutepack"]
+        visible: false
+      - state: bloodpack1
+        map: ["bloodpack1"]
+        visible: false
+      - state: bloodpack2
+        map: ["bloodpack2"]
+        visible: false
+      - state: bottle1
+        map: ["bottle1"]
+        visible: false
+      - state: bottle2
+        map: ["bottle2"]
+        visible: false
+      - state: bottle3
+        map: ["bottle3"]
+        visible: false
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,6,1
+  - type: Item
+    size: Large
+    sprite: Imperial/Other/ImperialMedkits/advancedmedkit.rsi
+    heldPrefix: advanced
+  - type: Tag
+    tags:
+    - Medkit
+  - type: ItemCounter
+    count:
+      tags: [ Brutepack, Ointment, Bloodpack, PillCanister, FitsHardsuit  ]
+    composite: true
+    layerStates:
+    - advointment
+    - advbrutepack
+    - bloodpack1
+    - bloodpack2
+    - bottle1
+    - bottle2
+    - bottle3
+  - type: Appearance
+
+- type: entity
+  id: AdvancedFirstAidMedkitImperialFilled # Заполненная продвинутая аптечка первой помощи
+  suffix: Filled
+  parent: AdvancedFirstAidMedkitImperial
+  components:
+  - type: StorageFill
+    contents: 
+      - id: MedicatedSuture
+      - id: RegenerativeMesh
+      - id: Bloodpack
+        amount: 2
+      - id: AmpulaBica
+        amount: 2
+      - id: AmpulaDerm
+
+# Аптечка против радиационных повреждений
+
+- type: entity
+  name: Antirad Medkit
+  description: It's MedKit for those who need it.
+  parent: [ BaseStorageItem, BaseBagOpenClose ]
+  id: MedkitRadiationImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ImperialMedkits/radmedkit.rsi
+    layers:
+      - state: closed
+        map: ["closeLayer"]
+      - state: open
+        map: ["openLayer"]
+        visible: false
+      - state: antiradpen
+        map: ["antiradpen"]
+        visible: false
+      - state: jar1
+        map: ["jar1"]
+        visible: false
+      - state: jar2
+        map: ["jar2"]
+        visible: false
+      - state: syringephalanx
+        map: ["syringephalanx"]
+        visible: false
+      - state: bottle1
+        map: ["bottle1"]
+        visible: false
+      - state: bottle2
+        map: ["bottle2"]
+        visible: false
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,1
+  - type: Item
+    size: Large
+    sprite: Imperial/Other/ImperialMedkits/radmedkit.rsi
+    heldPrefix: antirad
+  - type: Tag
+    tags:
+    - Medkit
+  - type: ItemCounter
+    count:
+      tags: [ Medipen, Syringe, PillCanister, FitsHardsuit ]
+    composite: true
+    layerStates:
+    - antiradpen
+    - syringephalanx
+    - jar1
+    - jar2
+    - bottle1
+    - bottle2
+  - type: Appearance
+
+- type: entity
+  id: MedkitRadiationImperialFilled # Заполненная аптечка против радиационных повреждений
+  suffix: Filled
+  parent: MedkitRadiationImperial
+  components:
+  - type: StorageFill
+    contents: 
+      - id: RadAutoInjector
+      - id: SyringePhalanximine
+      - id: AmpulaHyro
+        amount: 2
+      - id: PillCanisterPotassiumIodide
+      - id: PillCanisterHyronalin
+
+# Аптечка от ожоговых повреждений
+
+- type: entity
+  name: burn medkit
+  description: It's MedKit for those who need it.
+  parent: [ BaseStorageItem, BaseBagOpenClose ]
+  id: MedkitBurnImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ImperialMedkits/burnmedkit.rsi
+    layers:
+      - state: closed
+        map: ["closeLayer"]
+      - state: open
+        map: ["openLayer"]
+        visible: false
+      - state: ointment1
+        map: ["ointment1"]
+        visible: false
+      - state: ointment2
+        map: ["ointment2"]
+        visible: false
+      - state: jar1
+        map: ["jar1"]
+        visible: false
+      - state: jar2
+        map: ["jar2"]
+        visible: false
+      - state: bottle1
+        map: ["bottle1"]
+        visible: false
+      - state: bottle2
+        map: ["bottle2"]
+        visible: false
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,1
+  - type: Item
+    size: Large
+    sprite: Imperial/Other/ImperialMedkits/burnmedkit.rsi
+    heldPrefix: burn
+  - type: Tag
+    tags:
+    - Medkit
+  - type: ItemCounter
+    count:
+      tags: [ Ointment, PillCanister, FitsHardsuit ]
+    composite: true
+    layerStates:
+    - ointment1
+    - ointment2
+    - jar1
+    - jar2
+    - bottle1
+    - bottle2
+  - type: Appearance
+
+- type: entity
+  id: MedkitBurnImperialFilled # Заполненная аптечка от ожоговых повреждений
+  suffix: Filled
+  parent: MedkitBurnImperial
+  components:
+  - type: StorageFill
+    contents: 
+      - id: Ointment
+        amount: 2
+      - id: AmpulaDerm
+        amount: 2
+      - id: PillCanisterKelotane
+      - id: PillCanisterDermaline
+
+# Аптечка от кислородного голодания
+
+- type: entity
+  name: oxygen medkit
+  description: It's MedKit for those who need it.
+  parent: [ BaseStorageItem, BaseBagOpenClose ]
+  id: MedkitOxygenImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ImperialMedkits/oxygenmedkit.rsi
+    layers:
+      - state: closed
+        map: ["closeLayer"]
+      - state: open
+        map: ["openLayer"]
+        visible: false
+      - state: bottle1
+        map: ["bottle1"]
+        visible: false
+      - state: bottle2
+        map: ["bottle2"]
+        visible: false
+      - state: jar
+        map: ["jar"]
+        visible: false
+      - state: mask
+        map: ["mask"]
+        visible: false
+      - state: syringe
+        map: ["syringe"]
+        visible: false
+      - state: medipen
+        map: ["medipen"]
+        visible: false
+      - state: oxytank
+        map: ["oxytank"]
+        visible: false
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,1
+  - type: Item
+    size: Large
+    sprite: Imperial/Other/ImperialMedkits/oxygenmedkit.rsi
+    heldPrefix: oxygen
+  - type: Tag
+    tags:
+    - Medkit
+  - type: ItemCounter
+    count:
+      tags: [ PillCanister, FitsHardsuit, GasTank, Syringe, OxygenMask, Medipen ]
+    composite: true
+    layerStates:
+    - bottle1
+    - bottle2
+    - jar
+    - mask
+    - syringe
+    - medipen
+    - oxytank
+  - type: Appearance
+
+- type: entity
+  id: MedkitOxygenImperialFilled # Заполненная аптечка помощи от кислородного голодания
+  suffix: Filled
+  parent: MedkitOxygenImperial
+  components:
+  - type: StorageFill
+    contents: 
+      - id: EmergencyOxygenTankFilled
+      - id: AmpulaDexa
+        amount: 2
+      - id: ClothingMaskBreathMedical
+      - id: EmergencyMedipen
+      - id: SyringeInaprovaline
+      - id: PillCanisterDexalin
+
+# Боевая аптечка
+
+- type: entity
+  name: cobmat medkit
+  description: It's a medical kit for those who need it.
+  parent: [ BaseStorageItem, BaseBagOpenClose ]
+  id: MedkitCobmatImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ImperialMedkits/combatmedkit.rsi
+    layers:
+      - state: closed
+        map: ["closeLayer"]
+      - state: open
+        map: ["openLayer"]
+        visible: false
+      - state: advbrutepack
+        map: ["advbrutepack"]
+        visible: false
+      - state: advointment
+        map: ["advointment"]
+        visible: false
+      - state: brutemedipen
+        map: ["brutemedipen"]
+        visible: false
+      - state: burnmedipen
+        map: ["burnmedipen"]
+        visible: false
+      - state: syringe1
+        map: ["syringe1"]
+        visible: false
+      - state: syringe2
+        map: ["syringe2"]
+        visible: false
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,1
+  - type: Item
+    size: Normal
+    sprite: Imperial/Other/ImperialMedkits/combatmedkit.rsi
+    heldPrefix: cobmat
+  - type: Tag
+    tags:
+    - Medkit
+  - type: ItemCounter
+    count:
+      tags: [ Medipen, Brutepack, Ointment, Syringe ]
+    composite: true
+    layerStates:
+    - advbrutepack
+    - advointment
+    - brutemedipen
+    - burnmedipen
+    - syringe1
+    - syringe2
+  - type: Appearance
+
+- type: entity
+  id: MedkitCobmatImperialFilled # Заполненная боевая аптечка
+  suffix: Filled
+  parent: MedkitCobmatImperial
+  components:
+  - type: StorageFill
+    contents: 
+      - id: MedicatedSuture
+      - id: RegenerativeMesh
+      - id: BruteAutoInjector
+      - id: BurnAutoInjector
+      - id: SyringeEphedrine
+      - id: SyringeSaline
+
+# Аптечка стимпаков
+
+- type: entity
+  name: stim medkit
+  description: It's a medical kit for those who need it.
+  parent: [ BaseStorageItem, BaseBagOpenClose ]
+  id: MedkitStimImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ImperialMedkits/stimmedkit.rsi
+    layers:
+      - state: closed
+        map: ["closeLayer"]
+      - state: open
+        map: ["openLayer"]
+        visible: false
+      - state: stim1
+        map: ["stim1"]
+        visible: false
+      - state: stim2
+        map: ["stim2"]
+        visible: false
+      - state: stim3
+        map: ["stim3"]
+        visible: false
+      - state: stim4
+        map: ["stim4"]
+        visible: false
+      - state: stim5
+        map: ["stim5"]
+        visible: false
+      - state: stim6
+        map: ["stim6"]
+        visible: false
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,1
+  - type: Item
+    size: Large
+    sprite: Imperial/Other/ImperialMedkits/stimmedkit.rsi
+    heldPrefix: stim
+  - type: Tag
+    tags:
+    - Medkit
+  - type: ItemCounter
+    count:
+      tags: [ Medipen ]
+    composite: true
+    layerStates:
+    - stim1
+    - stim2
+    - stim3
+    - stim4
+    - stim5
+    - stim6
+
+- type: entity
+  id: MedkitStimImperialFilled # Заполненная аптечка стимов
+  suffix: Filled
+  parent: MedkitStimImperial
+  components:
+  - type: StorageFill
+    contents: 
+      - id: StimpackMini
+        amount: 6

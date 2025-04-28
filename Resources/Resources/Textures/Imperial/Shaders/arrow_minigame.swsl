@@ -1,0 +1,12 @@
+// license: This content is under ICLA. Copyright holder: orix0689 (discord) (Read more on: https://wiki.imperialspace.net/ru/icla)
+// copyright: "orix0689 (discord)"
+
+uniform highp vec3 color;
+
+
+void fragment() {
+    COLOR = zTexture(UV);
+
+    if (COLOR.a != 0.0)
+        COLOR = vec4(color, COLOR.a);
+}

@@ -1,0 +1,124 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionSmokeBeginner
+  name: medieval-store-spells-vodka-smoke-beginner-name
+  description: medieval-store-spells-vodka-smoke-beginner-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        probability: 0.7
+        addedEssences:
+          MagicMedievalVodka1: 1
+  - type: ManaDrainSpell
+    manaDrain: 25
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 42
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/smoke_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/smoke.rsi
+      state: 1
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalSmokeBeginner
+      spawnType: SpawnOnMousePosition
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-smoke
+          color: "#646464"
+          hideChat: true
+  - type: ActionUpgrade
+    effectedLevels:
+      2: MedievalActionSmokeMiddle
+      3: MedievalActionSmokeSenior
+  - type: ShowSpawnedEntity
+    sprites:
+      - drawedSprite:
+          sprite: Fluids/puddle.rsi
+          state: splat0
+        alwaysRender: true
+        inRangeColor: "#646464"
+        range: 60
+
+# Middle
+
+- type: entity
+  id: MedievalActionSmokeMiddle
+  parent: MedievalActionSmokeBeginner
+  name: medieval-store-spells-vodka-smoke-middle-name
+  description: medieval-store-spells-vodka-smoke-middle-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 25
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 35
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/smoke_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/smoke.rsi
+      state: 2
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalSmokeMiddle
+      spawnType: SpawnOnMousePosition
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-smoke
+          color: "#646464"
+          hideChat: true
+
+# Senior
+
+- type: entity
+  id: MedievalActionSmokeSenior
+  parent: MedievalActionSmokeMiddle
+  name: medieval-store-spells-vodka-smoke-senior-name
+  description: medieval-store-spells-vodka-smoke-senior-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 25
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 30
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/smoke_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/Charmer/smoke.rsi
+      state: 3
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalSmokeSenior
+      spawnType: SpawnOnMousePosition
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-smoke
+          color: "#646464"
+          hideChat: true

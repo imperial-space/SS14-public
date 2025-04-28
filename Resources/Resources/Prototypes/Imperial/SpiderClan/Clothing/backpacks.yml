@@ -1,0 +1,44 @@
+- type: entity
+  parent: [ClothingBackpack, BaseMajorContraband]
+  id: RedBackpackNinja
+  name: ninja backpack
+  suffix: Crook, SpiderClan
+  description: A very handy technologically advanced space assassin backpack with excellent blast resistance.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Default/Backpacks/redninja.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0
+  - type: Storage
+    grid:
+    - 0,0,10,3
+
+- type: entity
+  parent: [ClothingBackpack, BaseMajorContraband]
+  id: BlueBackpackNinja
+  name: ninja backpack
+  suffix: Crook, SpiderClan
+  description: A very handy technologically advanced space assassin backpack with excellent blast resistance.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Default/Backpacks/blueninja.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0
+  - type: Storage
+    grid:
+    - 0,0,10,3
+
+- type: entity
+  parent: [ClothingBackpack, BaseMajorContraband]
+  id: GreenBackpackNinja
+  name: ninja backpack
+  suffix: Crook, SpiderClan
+  description: A very handy technologically advanced space assassin backpack with excellent blast resistance.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Default/Backpacks/greenninja.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0
+  - type: Storage
+    grid:
+    - 0,0,10,3

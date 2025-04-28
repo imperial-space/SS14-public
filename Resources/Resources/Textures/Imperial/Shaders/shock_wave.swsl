@@ -1,0 +1,61 @@
+// license: This content is under ICLA. Copyright holder: orix0689 (discord) (Read more on: https://wiki.imperialspace.net/ru/icla)
+// copyright: "orix0689 (discord)"
+
+uniform sampler2D SCREEN_TEXTURE;
+uniform highp vec2 renderScale;
+
+uniform highp vec2[10] position;
+uniform highp float[30] color; // 30 because PJB dosent add vec3[] to clyde overload >:|
+uniform highp float[10] startTime;
+uniform highp float[10] speed;
+uniform highp float[10] distortion;
+uniform highp float[10] thikness;
+uniform highp float[10] maxDistance;
+uniform highp float[10] disappearDistancePercentage;
+
+uniform lowp int count;
+
+highp vec2 scaleVector(highp vec2 vector)
+{
+    highp float ratio = SCREEN_PIXEL_SIZE.x / SCREEN_PIXEL_SIZE.y * renderScale.x;
+
+    return ( vector - vec2(0.5, 0.0) ) / vec2(ratio, renderScale.y) + vec2(0.5, 0.0);
+}
+
+void fragment() {
+    highp vec2 normalUV = FRAGCOORD.xy * SCREEN_PIXEL_SIZE.xy;
+    highp vec2 scaledUV = scaleVector(normalUV);
+
+    highp float colorDisp = 0.0;
+    highp vec3 colorModifier = vec3(0.0);
+
+    for (int i = 0; i < 5 && i < count; i++) {
+        highp vec2 center = scaleVector(position[i]);
+        highp float radius = (startTime[i] - 500.0) * speed[i] * 0.001;
+        highp float dist = distortion[i];
+
+        if (radius / maxDistance[i] > disappearDistancePercentage[i]) {
+            highp float startDistance = maxDistance[i] * disappearDistancePercentage[i];
+
+            dist *= 1.0 - (radius - startDistance) / (maxDistance[i] - startDistance);
+        }
+
+        if (radius > maxDistance[i] || dist < 0.0)
+            dist = 0.0;
+
+        highp float mask = (1.0 - smoothstep(radius - 0.1, radius, length(scaledUV - center))) * smoothstep(radius - thikness[i] - 0.1, radius - thikness[i], length(scaledUV - center));
+        highp vec2 disp = normalize(scaledUV - center) * dist * mask;
+
+        colorDisp += dist * mask;
+        normalUV -= disp;
+
+        highp int colorIndex = i * 3;
+        highp vec3 shockWaveColor = vec3(color[colorIndex], color[colorIndex + 1], color[colorIndex + 2]);
+
+        colorModifier = mix(shockWaveColor, colorModifier, 0.5);
+    }
+
+    highp vec4 texture = zTextureSpec(SCREEN_TEXTURE, normalUV);
+
+	COLOR = vec4(mix(texture.rgb, colorModifier, colorDisp), texture.a);
+}

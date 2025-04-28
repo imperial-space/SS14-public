@@ -1,0 +1,25 @@
+# Beginner
+
+- type: entity
+  id: MedievalProjectileMagicArrowBeginner
+  parent: BulletRocket
+  name: fireball
+  description: You better GITTAH WEIGH.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
+    layers:
+    - state: proto
+      shader: unshaded
+  - type: StaminaDamageOnCollide
+    damage: 1
+  - type: Explosive
+    explosionType: Cryo
+    maxIntensity: 1
+    intensitySlope: 1
+    totalIntensity: 0
+    maxTileBreak: 0
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 15
