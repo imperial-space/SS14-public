@@ -1,7 +1,6 @@
 - type: entity
   parent: [ ClothingHeadsetAlt, BaseMajorContraband ]
   id: ClothingHeadsetAltAbductor
-  suffix: Abductors
   name: abductor over-ear headset
   components:
   - type: ContainerFill
@@ -17,7 +16,6 @@
 - type: entity
   parent: [ UnsensoredClothingUniformBase, BaseMajorContraband ]
   id: ClothingUniformJumpsuitAbductor
-  suffix: Abductors
   name: abductor uniform
   components:
   - type: Sprite

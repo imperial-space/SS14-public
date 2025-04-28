@@ -22,8 +22,12 @@ ent-ClothingAbductorBelt = пояс инопланетной расы
 ent-AbductorHandcuffs = наручники
     .suffix = Abductors
     .desc = Сделано из металла, о котором НаноТрайзен может только мечтать.
-ClothingHeadsetAltAbductor = гарнитура абдукторов
-ClothingUniformJumpsuitAbductor = униформа абдукторов
+ent-ClothingHeadsetAltAbductor = гарнитура абдукторов
+    .suffix = Abductors
+    .desc = { ent-ClothingHeadsetAlt.desc }
+ent-ClothingUniformJumpsuitAbductor = униформа абдукторов
+    .suffix = Abductors
+    .desc = Униформа абдукторов.
 ent-ClothingBackpackAbductor = рюкзак инопланетной расы
     .suffix = Abductors
     .desc = Рюкзак инопланетной расы.
@@ -53,6 +57,7 @@ ent-CaneAbductor = трость инопланетной расы
     .desc = Смертельное оружие.
 ent-BulletDeclone = летальный заряд
     .desc = { ent-BaseBullet.desc }
+
 
 abductor-solo-name = Одиночный абдуктор
 abductor-solo-desc = В одиночку крадите людей со станции и меняйте им органы.
