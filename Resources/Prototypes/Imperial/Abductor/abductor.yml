@@ -24,6 +24,7 @@
       implants:
       - FreedomImplant
       - DeathAcidifierImplant
+      - ScramImplant
     - type: NpcFactionMember
       factions:
       - SimpleHostile
@@ -104,6 +105,7 @@
       implants:
       - FreedomImplant
       - DeathAcidifierImplant
+      - ScramImplant
     - type: NpcFactionMember
       factions:
       - SimpleHostile
