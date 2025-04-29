@@ -6,7 +6,7 @@
   components:
   - type: Sprite
     sprite: Imperial/K9-X/K9-X.rsi
-    state: medibot
+    state: K9_full
   - type: MobState
     allowedStates:
     - Alive
@@ -109,8 +109,6 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: K9-X
-  - type: InstantAction
-    icon: { sprite: Imperial/electromouse.rsi, state: sm_superspeed}
-    event: !type:ElectroMouseSpeedEvent
-    useDelay: 20
-    itemIconStyle: BigAction
+  - type: SiliconLawProvider
+    laws: K9-XStatic
+    subverted: true

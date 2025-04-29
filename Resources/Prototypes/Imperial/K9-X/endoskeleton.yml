@@ -1,0 +1,81 @@
+- type: entity
+  id: K9-XEndoskeleton
+  name: K9-X endoskeleton
+  description: /
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+        restitution: 0.3
+        friction: 0.2
+  - type: Sprite
+    noRot: true
+    drawdepth: Items
+    sprite: Imperial/K9-X/Parts.rsi
+    state: K9-X_suit
+  - type: Appearance
+  - type: ItemMapper
+    sprite: Imperial/K9-X/Parts.rsi
+    mapLayers:
+      K9-X_l_arm+o:
+        whitelist:
+          tags:
+          - K9-X_l_arm #BorgLArm
+      K9-X_r_arm+o:
+        whitelist:
+          tags:
+          - K9-X_r_arm #BorgRArm
+      K9-X_l_leg+o:
+        whitelist:
+          tags:
+          - K9-X_l_leg #BorgLLeg
+      K9-X_r_leg+o:
+        whitelist:
+          tags:
+          - K9-X_r_leg #BorgRLeg
+      K9-X_head+o:
+        whitelist:
+          tags:
+          - K9-X_head #BorgHead
+      K9-X_chest+o:
+        whitelist:
+          tags:
+          - K9-X_chest #BorgTorso
+  - type: ContainerContainer
+    containers:
+      part-container: !type:Container
+      cell_slot: !type:Container
+  - type: PartAssembly
+    parts:
+      generic:
+      - K9-X_l_arm #BorgLArm
+      - K9-X_r_arm #BorgRArm
+      - K9-X_l_leg #BorgLLeg
+      - K9-X_r_leg #BorgRLeg
+      - K9-X_head #BorgHead
+      - K9-X_chest #BorgTorso
+  - type: Construction
+    graph: Cyborg
+    node: start
+    defaultTarget: cyborg
+    containers:
+    - part-container
+    - cell_slot
+  - type: Pullable
+  - type: GuideHelp
+    guides:
+    - Cyborgs
+    - Robotics
