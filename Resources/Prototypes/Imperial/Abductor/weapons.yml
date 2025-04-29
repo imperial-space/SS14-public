@@ -96,6 +96,56 @@
       collection: MeatLaserImpact
 
 - type: entity
+  id: BulletUpgradedDeclone
+  name: decloner bolt
+  parent: BaseBulletStarlight
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Abductor/Weapons/Guns/Projectiles/projectiles.rsi
+    layers:
+    - state: declone
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 15
+        Cellular: 9
+    ignoreResistances: true
+    soundHit:
+      collection: MeatLaserImpact
+
+- type: entity
+  name : disabler bolt
+  id: BulletDisablerAbductor
+  parent: BaseBulletStarlight
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Reflective
+    reflective:
+    - Energy
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser
+      shader: unshaded
+  - type: StaminaDamageOnCollide
+    damage: 90
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    damage:
+      types:
+        Heat: 6
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+
+
+- type: entity
   parent: [BaseWeaponBatterySmall, BaseMajorContraband]
   id: WeaponAlienPistol
   name: alien pistol
@@ -118,6 +168,35 @@
       fireCost: 50
     - proto: BulletDeclone
       fireCost: 125
+  - type: Appearance
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+
+- type: entity
+  parent: [BaseWeaponBatterySmall, BaseMajorContraband]
+  id: WeaponUpgradedAlienPistol
+  name: upgraded alien pistol
+  description: Is this a war crime? Probably.
+  components:
+  - type: Sprite
+    sprite: Imperial/Abductor/Weapons/Guns/Battery/alien.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletDisabler
+    fireCost: 25
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BulletDisablerAbductor
+      fireCost: 25
+    - proto: BulletUpgradedDeclone
+      fireCost: 100
   - type: Appearance
   - type: MagazineVisuals
     magState: mag

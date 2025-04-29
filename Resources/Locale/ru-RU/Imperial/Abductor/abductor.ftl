@@ -49,15 +49,21 @@ ent-WonderprodAbductor = дубинка абдукторов
 ent-WeaponAlienPistol = пистолет инопланетной расы
     .suffix = Abductors
     .desc = Оружие агента, им можно оглушить и убить.
-ent-WeaponDecloner = пистолет инопланетной расы
+ent-WeaponUpgradedAlienPistol = продвинутый пистолет инопланетной расы
     .suffix = Abductors
+    .desc = Оружие агента, им можно оглушить и убить!
+ent-WeaponDecloner = пистолет инопланетной расы
+    .suffix = Abductors, onlylethal
     .desc = Оружие агента, им можно убить.
 ent-CaneAbductor = трость инопланетной расы
     .suffix = Abductors
     .desc = Смертельное оружие.
-ent-BulletDeclone = летальный заряд
+ent-BulletDeclone = летальный снаряд
     .desc = { ent-BaseBullet.desc }
-
+ent-BulletDisablerAbductor = оглушающий снаряд
+    .desc = { ent-BaseBullet.desc }
+ent-BulletUpgradedDeclone= летальный снаряд
+    .desc = { ent-BaseBullet.desc }
 
 abductor-solo-name = Одиночный абдуктор
 abductor-solo-desc = В одиночку крадите людей со станции и меняйте им органы.
