@@ -1,0 +1,22 @@
+<i:BaseImperialWindow
+    xmlns="https://spacestation14.io"
+    xmlns:i="clr-namespace:Content.Client.Imperial.UI.Windows.BaseImperialWindow"
+    MouseFilter="Stop"
+    MinSize="1383 900">
+    <PanelContainer StyleClasses="AngleRectPass" />
+
+    <BoxContainer Orientation="Vertical">
+        <!-- Header -->
+        <Control MinHeight="25">
+            <PanelContainer Name="Container" StyleClasses="WindowHeadingBackgroundPass" Access="Public"/>
+            <BoxContainer Orientation="Horizontal">
+                <Label Margin="4 0 0 0" HorizontalExpand="true" Name="HeaderLabel" HorizontalAlignment ="Left" VerticalAlignment="Bottom" StyleClasses="LabelSubTextPassExtraBoldServerName" />
+                <TextureButton Margin="0 0 4 0" Scale="0.9 0.9" Name="CloseButton" StyleClasses="windowCloseButton" VerticalAlignment="Center" />
+            </BoxContainer>
+        </Control>
+
+        <!-- Roadmap -->
+        <Control Margin="26 4 26 51" Access="Public" Name="ContentsContainer" RectClipContent="True" VerticalExpand="true">
+        </Control>
+    </BoxContainer>
+</i:BaseImperialWindow>
