@@ -155,9 +155,6 @@
     useSound:
       collection: Welder
     qualities: Welding
-  - type: Tag
-    tags:
-    - WelderExperimental
 
 
 - type: entity
