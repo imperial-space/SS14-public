@@ -1,0 +1,9 @@
+- type: vendingMachineInventory
+  id: DonkInventory
+  startingInventory:
+    FoodDonkpocketHonk: 10
+    FoodDonkpocketSpicy: 10
+    FoodDonkpocket: 10
+    FoodDonkpocketTeriyaki: 10
+    FoodDonkpocketBerry: 10
+    FoodDonkpocketPizza: 10
