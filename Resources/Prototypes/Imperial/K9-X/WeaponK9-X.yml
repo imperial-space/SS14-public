@@ -1,7 +1,7 @@
 - type: entity
-  name: LaserK9-X
+  name: WeaponDisablerK9-X
   parent: [ WeaponDisablerPractice, BaseSecurityCommandContraband ]
-  id: LaserK9-X
+  id: DisablerK9-X
   description: 1
   components:
   - type: Sprite
@@ -24,3 +24,13 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 25
+
+- type: entity
+  name: K9-X laser
+  parent: WeaponLaserBorg
+  id: LaserK9-X
+  description: 1
+  components:
+  - type: HitscanBatteryAmmoProvider
+    proto: RedMediumLaser
+    fireCost: 250

@@ -1,0 +1,32 @@
+- type: constructionGraph
+  id: GraphK9-X
+  start: start
+  graph:
+  - node: start
+    entity: K9-XEndoskeleton
+    edges:
+    - to: cyborg
+      steps:
+      - assemblyId: generic
+        guideString: K9-X-construction-guide-string
+
+      - material: Cable
+        amount: 7
+        doAfter: 6
+        store: part-container
+
+      - component: Flash
+        name: вспышку
+        store: part-container
+        icon:
+          sprite: Objects/Weapons/Melee/flash.rsi
+          state: flash
+
+      - tool: Screwing
+        doAfter: 5
+
+  - node: cyborg
+    entity: K9-X
+
+  - node: derelictcyborg
+    entity: K9-X

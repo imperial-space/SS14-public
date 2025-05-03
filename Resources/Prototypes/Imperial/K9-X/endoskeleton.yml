@@ -33,27 +33,27 @@
       K9-X_l_arm+o:
         whitelist:
           tags:
-          - K9-X_l_arm #BorgLArm
+          - K9-XLArm
       K9-X_r_arm+o:
         whitelist:
           tags:
-          - K9-X_r_arm #BorgRArm
+          - K9-XRArm
       K9-X_l_leg+o:
         whitelist:
           tags:
-          - K9-X_l_leg #BorgLLeg
+          - K9-XLeg
       K9-X_r_leg+o:
         whitelist:
           tags:
-          - K9-X_r_leg #BorgRLeg
+          - K9-XRLeg
       K9-X_head+o:
         whitelist:
           tags:
-          - K9-X_head #BorgHead
+          - K9-XHead 
       K9-X_chest+o:
         whitelist:
           tags:
-          - K9-X_chest #BorgTorso
+          - K9-XTorso
   - type: ContainerContainer
     containers:
       part-container: !type:Container
@@ -61,14 +61,14 @@
   - type: PartAssembly
     parts:
       generic:
-      - K9-X_l_arm #BorgLArm
-      - K9-X_r_arm #BorgRArm
-      - K9-X_l_leg #BorgLLeg
-      - K9-X_r_leg #BorgRLeg
-      - K9-X_head #BorgHead
-      - K9-X_chest #BorgTorso
+      - K9-XLArm
+      - K9-XRArm
+      - K9-XLLeg
+      - K9-XRLeg
+      - K9-XHead
+      - K9-XTorso
   - type: Construction
-    graph: Cyborg
+    graph: GraphK9-X
     node: start
     defaultTarget: cyborg
     containers:

@@ -8,8 +8,7 @@
     },
     "states": [
         {
-            "name": "K9_full",
-            "directions": 4
+            "name": "box"
         }
     ]
 }

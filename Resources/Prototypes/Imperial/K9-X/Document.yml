@@ -1,0 +1,8 @@
+- type: entity
+  parent: Paper
+  id: InformationHelpK9-XQAIRCG
+  name: "Информационная справка NTCG"
+  description: Распечатанный документ формы NTCG(QAIRCG)-NT-REP
+  components:
+    - type: Paper
+      content: doc-text-NTCG

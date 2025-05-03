@@ -14,10 +14,10 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      250: Critical
+      170: Critical
   - type: MovementSpeedModifier
-    baseWalkSpeed : 2
-    baseSprintSpeed : 4.2
+    baseWalkSpeed : 3
+    baseSprintSpeed : 5.2
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
@@ -33,12 +33,6 @@
   - type: Repairable
     doAfterDelay: 15
     allowSelfRepair: false
-  #- type: BorgChassis
-  #- type: LockingWhitelist
-    #blacklist:
-      #components:
-      #- BorgChassis
-      #- RoboticsConsole
   - type: NpcFactionMember
     factions:
     - NanoTrasen
@@ -112,3 +106,26 @@
   - type: SiliconLawProvider
     laws: K9-XStatic
     subverted: true
+  - type: PointLight
+    color: "#dd200b"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 5
+    netsync: false
+  - type: Access
+    enabled: false
+    groups:
+    - AllAccess
+  - type: AccessReader
+    access: [["Command"], ["Research"]]
+  - type: StartIonStormed
+    ionStormAmount: 3
+  - type: IonStormTarget
+    chance: 0.07
+  - type: BorgChassis
+    maxModules: 5
+  - type: Body
+    prototype: ImperialBorg
+  - type: BorgHandsImperial
+    whitelistHandTag: SecurityBorgItem

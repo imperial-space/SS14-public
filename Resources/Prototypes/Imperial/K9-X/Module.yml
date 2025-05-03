@@ -1,7 +1,7 @@
 - type: entity
-  id: RemoteModuleK9-X
+  id: WeaponModuleK9-X
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
-  name: Remote module K9-X
+  name: Weapon Module K9-X
   components:
     - type: Sprite
       sprite: Imperial/K9-X/LaserK9-X.rsi
@@ -9,9 +9,10 @@
       - state: base
     - type: ItemBorgModule
       items:
+      - DisablerK9-X
       - LaserK9-X
     - type: BorgModuleIcon
-      icon: { sprite: Imperial/K9-X/LaserK9-X.rsi, state: base }  
+      icon: { sprite: Imperial/K9-X/LaserK9-X.rsi, state: base }
     - type: Tag
       tags:
       - BorgModuleSecurityImperial
