@@ -44,7 +44,7 @@
   - type: Tag
     tags:
     - Trash
-    - K9-XArm 
+    - K9-XArm
     - K9-XLArm
   - type: Item
     heldPrefix: K9-X-arm
@@ -116,7 +116,7 @@
     heldPrefix: K9-X-leg
 
 - type: entity
-  id: LightHeadK9-X
+  id: HeadK9-X
   parent: PartSilicon
   name: K9-X head
   components:

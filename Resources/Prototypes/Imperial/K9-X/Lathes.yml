@@ -1,0 +1,72 @@
+- type: latheRecipe
+  id: K9-XEndoskeleton
+  result: K9-XEndoskeleton
+  completetime: 5
+  materials:
+    Steel: 850
+    Plasteel: 100
+    plastic: 200
+
+- type: latheRecipe
+  id: LeftArmK9-X
+  result: LeftArmK9-X
+  completetime: 5
+  materials:
+    Steel: 150
+    Plasteel: 200
+    glass: 150
+
+- type: latheRecipe
+  id: RightArmK9-X
+  result: RightArmK9-X
+  completetime: 5
+  materials:
+    Steel: 150
+    Plasteel: 200
+    glass: 150
+
+- type: latheRecipe
+  id: LeftLegK9-X
+  result: LeftLegK9-X
+  completetime: 5
+  materials:
+    Steel: 150
+    Plasteel: 200
+    glass: 150
+
+- type: latheRecipe
+  id: RightLegK9-X
+  result: RightLegK9-X
+  completetime: 5
+  materials:
+    Steel: 150
+    Plasteel: 200
+    glass: 150
+
+- type: latheRecipe
+  id: HeadK9-X
+  result: HeadK9-X
+  completetime: 5
+  materials:
+    Steel: 350
+    glass: 300
+    Plasteel: 150
+    plastic: 250
+
+- type: latheRecipe
+  id: TorsoK9-X
+  result: TorsoK9-X
+  completetime: 5
+  materials:
+    Steel: 400
+    Plasteel: 150
+
+- type: latheRecipe
+  id: WeaponModuleK9-X
+  result: WeaponModuleK9-X
+  completetime: 5
+  materials:
+    Steel: 2000
+    Plasteel: 1500
+    glass: 500
+    gold: 400

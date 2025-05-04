@@ -1,0 +1,11 @@
+K9-X endoskeleton = Эндоскелет К9-Х
+K9-X left arm = Передняя Левая лапа К9-Х
+K9-X right arm = Передняя Правая лапа К9-Х
+K9-X left leg = Задняя Левая лапа К9-Х
+K9-X right leg = Задняя Правая лапа К9-Х
+K9-X head = Голова К9-Х
+K9-X torso = Корпус К9-Х
+Weapon Module K9-X = Модуль захвата К9-Х
+sealed box = Запечатанная коробка
+A dark colored cardboard box with a red stripe on the side. = Картонная коробка темного цвета с красной полосой сбоку.
+K9-X-construction-guide-string = Прикрепите Корпус и конечности K9-X к Каркасу.
