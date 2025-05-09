@@ -1,6 +1,7 @@
 - type: entity
   parent: BaseMachine
   id: Terminal_weapons
+  suffix: ElysiumPrime
   name: Terminal_weapons
   description: super weapon uplink
   components:

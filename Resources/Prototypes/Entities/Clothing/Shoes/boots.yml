@@ -22,6 +22,9 @@
     sprite: Clothing/Shoes/Boots/jackboots.rsi
   - type: ClothingSlowOnDamageModifier
     modifier: 0.5
+  - type: FootstepModifier # Imperial Space Специальный звук для обуви СБ
+    footstepSoundCollection:
+      collection: FootstepSpecialOfficer
 
 - type: entity
   parent: ClothingShoesBaseButcherable

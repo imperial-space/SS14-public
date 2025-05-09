@@ -702,34 +702,10 @@
   - sacerdosMed
 
 - type: listing
-  id: SacerdosUplinkEpinephrineChemistryBottle
-  productEntity: EpinephrineChemistryBottle
-  cost:
-    Telecrystal_sacerdos: 25
-  categories:
-  - sacerdosMed
-
-- type: listing
-  id: SacerdosUplinkEphedrineChemistryBottle
-  productEntity: EphedrineChemistryBottle
-  cost:
-    Telecrystal_sacerdos: 240
-  categories:
-  - sacerdosMed
-
-- type: listing
   id: SacerdosUplinkThriveninChemistryBottle
   productEntity: ThriveninChemistryBottle
   cost:
     Telecrystal_sacerdos: 500
-  categories:
-  - sacerdosMed
-
-- type: listing
-  id: SacerdosUplinkOmnizineChemistryBottle
-  productEntity: OmnizineChemistryBottle
-  cost:
-    Telecrystal_sacerdos: 800
   categories:
   - sacerdosMed
 

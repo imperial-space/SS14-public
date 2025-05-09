@@ -19,5 +19,9 @@ SpawnMedsacerdosODTPreset-name = Медик чёрной команды
 SpawnSacerdosLeadersODTPreset-rules = Ваша задача руководить отрядом.
 SpawnfightsacerdosODTPreset-rules = Ваша задача выполнять приказы и убивать.
 SpawnMedsacerdosODTPreset-rules = Ваша задача выполнять приказы и лечить союзников.
-sacerdos-role-med = Медик
-sacerdos-role-fight = Боец
+
+imperial-space-sacerdos-role-Leaders-dataset-1 = Командир
+
+imperial-space-sacerdos-role-fight-dataset-1 = Боец
+
+imperial-space-sacerdos-role-med-dataset-1 = Медик

@@ -26,6 +26,8 @@
   - type: Tag
     tags:
     - Cake
+  - type: StaticPrice
+    price: 300 # Imperial Recipes Prices
 
 - type: entity
   parent: FoodCakeBase

@@ -15,7 +15,7 @@
     tags:
     - TimerSignalElectronics
   - type: StaticPrice
-    price: 30
+    price: 5 # Imperial Recipes Prices
 
 - type: entity
   id: ScreenTimerElectronics

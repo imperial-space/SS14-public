@@ -74,6 +74,7 @@
         map: [ "enum.GunVisualLayers.Base" ]
       - state: base-6
         map: [ "enum.GunVisualLayers.Mag" ]
+    scale: 0.53, 0.53
   - type: MagazineVisuals
     magState: base
     steps: 7

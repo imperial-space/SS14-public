@@ -8,6 +8,7 @@
   - type: Sprite
     sprite: Imperial/SpecialUnits/RCU/Weapones/UTS-15/icon.rsi
     state: icon
+    scale: 0.95, 0.95
   - type: Item
     sprite: Imperial/SpecialUnits/RCU/Weapones/UTS-15/inhand.rsi
   - type: Gun

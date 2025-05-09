@@ -8,6 +8,7 @@
   - type: Sprite
     sprite: Imperial/SpecialUnits/RCU/Weapones/MilkorMGL/icon.rsi
     state: icon
+    scale: 0.93, 0.93
   - type: Item
     sprite: Imperial/SpecialUnits/RCU/Weapones/MilkorMGL/inhand.rsi
     size: Large

@@ -67,7 +67,7 @@
 - type: entity
   parent: UnsensoredClothingUniformBase
   id: ArgonMercJumpsuitUnsensored
-  name: комбинезон Аргона
+  name: комбинезон аргона
   suffix: ArgonPrime
   description: Комбинезон рыцаря клана Аргон
   components:
@@ -79,7 +79,7 @@
 - type: entity
   parent: UnsensoredClothingUniformBase
   id: ArgonLeadMercJumpsuitUnsensored
-  name: комбинезон короля Аргона
+  name: комбинезон короля аргона
   suffix: ArgonPrime
   description: Почётный комбинезон короля клана Аргон
   components:
@@ -95,7 +95,7 @@
 - type: entity
   parent: ClothingShoesBaseButcherable
   id: ArgonMercBootsNoslip
-  name: сапоги Аргона
+  name: сапоги аргона
   suffix: ArgonPrime
   description: Пара шипованных сапог, довольно лёгкие.
   components:
@@ -117,7 +117,7 @@
 - type: entity
   parent: ClothingHandsBase
   id: ArgonMercGlovesInsulated
-  name: перчатки Аргона
+  name: перчатки аргона
   suffix: ArgonPrime
   description: Тактические перчатки
   components:
@@ -144,7 +144,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckShoulderArmorArgon
-  name: наплечники Аргона
+  name: наплечники аргона
   suffix: ArgonPrime
   description: Придают вам устрашающий вид.
   components:
@@ -156,7 +156,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCapeKingArgon
-  name: мантия короля Аргона
+  name: мантия короля аргона
   suffix: ArgonPrime
   description: Покажите им, кто здесь главный.
   components:
@@ -167,20 +167,67 @@
 
 ### NECK
 
+### HELMET
+
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetArgonKing
+  name: шлем короля аргона
+  suffix: ArgonPrime
+  description: Шлем 
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Heat: 0.95
+        Cold: 0.95
+        Shock: 0.95
+        Radiation: 0.95
+        Caustic: 0.95
+  - type: Sprite
+    sprite: Imperial/Felix/Argon/Clothing/Armor/Head/tacticallead.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Argon/Clothing/Armor/Head/tacticallead.rsi
+
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetArgon
+  name: шлем рыцаря аргона
+  suffix: ArgonPrime
+  description: Шлем 
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Heat: 0.95
+        Cold: 0.95
+        Shock: 0.95
+        Radiation: 0.95
+        Caustic: 0.95
+  - type: Sprite
+    sprite: Imperial/Felix/Argon/Clothing/Armor/Head/tactical.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Argon/Clothing/Armor/Head/tactical.rsi
+
+### HELMET
+
 ### OUTERCLOTHING
 
 - type: entity
   parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing]
   id: ClothingOuterArmorArgonLeader
-  name: нагрудник короля Аргона
+  name: нагрудник короля аргона
   suffix: ArgonPrime
-  abstract: true
   description: Броня, наполненная пластинами из неизвестного и древнего материала, достаточно лёгкая и прочная.
   components:
   - type: Sprite
-    sprite: Imperial/Felix/Argon/Clothing/Armor/OuterClothing/tacticallead.rsi
+    sprite: Imperial/Felix/Argon/Clothing/Armor/OuterClothing/tactical.rsi
   - type: Clothing
-    sprite: Imperial/Felix/Argon/Clothing/Armor/OuterClothing/tacticallead.rsi
+    sprite: Imperial/Felix/Argon/Clothing/Armor/OuterClothing/tactical.rsi
   - type: Armor 
     modifiers:
       coefficients:
@@ -199,9 +246,8 @@
 - type: entity
   parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing]
   id: ClothingOuterArmorArgonKnight
-  name: нагрудник рыцаря Аргона
+  name: нагрудник рыцаря аргона
   suffix: ArgonPrime
-  abstract: true
   description: Броня, наполненная пластинами из неизвестного и древнего материала, достаточно лёгкая и прочная.
   components:
   - type: Sprite
@@ -275,22 +321,22 @@
     highPressureMultiplier: 0.000002
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.15
+    damageCoefficient: 0.1
   - type: Armor 
     modifiers:
       coefficients:
         Blunt: 0.5
         Slash: 0.5
         Piercing: 0.7 
-        Heat: 0.4
+        Heat: 0.2
         Cold: 0.8
         Shock: 0.9
         Radiation: 0.1
         Caustic: 0.8
         Stamina: 0.7 
   - type: ClothingSpeedModifier
-    walkModifier: 0.5
-    sprintModifier: 0.5
+    walkModifier: 0.6
+    sprintModifier: 0.6
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetModsuitArgonSealed
     requiredSlot: outerClothing
@@ -322,10 +368,10 @@
     grid:
     - 0,0,10,6
   - type: PointLight
-    color: "#30d5c8"
+    color: "#f80000"
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
-    energy: 0.2
+    energy: 0.4
     radius: 12
     softness: 20
     autoRot: true
