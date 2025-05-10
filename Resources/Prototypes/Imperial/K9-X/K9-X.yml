@@ -130,4 +130,4 @@
   - type: BorgHandsImperial
     whitelistHandTag: SecurityBorgItem
   - type: K9XLunge
-    changeModeAction: ActionLeapK9X
+    leapK9XAction: ActionLeapK9X

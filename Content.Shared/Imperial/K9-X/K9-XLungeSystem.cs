@@ -1,3 +1,5 @@
+using Content.Shared.Actions;
+using Content.Shared.Fluids.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Pulling.Events;
@@ -11,6 +13,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
+using System;
 
 namespace Content.Shared.Imperial.K9XLunge;
 
@@ -27,11 +30,9 @@ public sealed class K9XLungeSystem : EntitySystem
     [Dependency] private readonly PullingSystem _pulling = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
-    //[Dependency] private readonly SharedXenoHiveSystem _hive = default!;
     [Dependency] private readonly SharedBorgSystem _k9x = default!;
-    //[Dependency] private readonly RMCPullingSystem _rmcPulling = default!;
     [Dependency] private readonly MobStateSystem _mob = default!;
-    //[Dependency] private readonly RMCObstacleSlammingSystem _rmcObstacleSlamming = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<ThrownItemComponent> _thrownItemQuery;
@@ -41,11 +42,17 @@ public sealed class K9XLungeSystem : EntitySystem
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
         _thrownItemQuery = GetEntityQuery<ThrownItemComponent>();
 
+        SubscribeLocalEvent<K9XLungeComponent, MapInitEvent>(OnInit);
         SubscribeLocalEvent<K9XLungeComponent, K9XLungeActionEvent>(OnK9XLungeAction);
         SubscribeLocalEvent<K9XLungeComponent, ThrowDoHitEvent>(OnK9XLungeHit);
         SubscribeLocalEvent<K9XLungeComponent, LandEvent>(OnK9XLungeLand);
 
         SubscribeLocalEvent<K9XLungeStunnedComponent, PullStoppedMessage>(OnK9XLungeStunnedPullStopped);
+    }
+
+    private void OnInit(EntityUid uid, K9XLungeComponent component, MapInitEvent args)
+    {
+        _actions.AddAction(uid, component.LeapK9XAction);
     }
 
     private void OnK9XLungeAction(Entity<K9XLungeComponent> k9x, ref K9XLungeActionEvent args)
@@ -67,12 +74,12 @@ public sealed class K9XLungeSystem : EntitySystem
         //_rmcPulling.TryStopAllPullsFromAndOn(k9x);
 
         var origin = _transform.GetMapCoordinates(k9x);
-        var target = _transform.GetMapCoordinates(args.Target);
+        var target = _transform.GetMapCoordinates(args.Target);  // координаты сюда
         var diff = target.Position - origin.Position;
         diff = diff.Normalized() * k9x.Comp.Range;
 
         k9x.Comp.Charge = diff;
-        k9x.Comp.Target = args.Target;
+        k9x.Comp.Target = args.Target;      // координаты сюда
         Dirty(k9x);
 
         //_rmcObstacleSlamming.MakeImmune(k9x);
@@ -83,7 +90,7 @@ public sealed class K9XLungeSystem : EntitySystem
 
         foreach (var ent in _physics.GetContactingEntities(k9x.Owner, physics))
         {
-            if (ent != args.Target)
+            if (ent != args.Target)    // координаты сюда
                 continue;
 
             if (ApplyLungeHitEffects(k9x, ent))

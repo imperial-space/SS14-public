@@ -21,6 +21,6 @@ public sealed partial class K9XLungeComponent : Component
     [DataField, AutoNetworkedField]
     public EntityUid? Target;
 
-    [DataField("changeModeAction", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string changeModeAction = "ActionLeapK9X";
+    [DataField("leapK9XAction", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string LeapK9XAction = "ActionLeapK9X";
 }
