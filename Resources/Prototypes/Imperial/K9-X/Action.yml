@@ -1,0 +1,18 @@
+- type: entity
+  id: ActionLeapK9X
+  name: Leap
+  description: Perform a jump in the selected direction. #Leap
+  components:
+  - type: WorldTargetAction
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: blink
+    itemIconStyle: NoItem
+    sound:
+      path: /Audio/Magic/blink.ogg
+      params:
+        volume: 5
+    priority: -12
+    event: !type:K9XLungeActionEvent
+    checkCanAccess: false
+    range: 0

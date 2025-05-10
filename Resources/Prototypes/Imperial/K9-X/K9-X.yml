@@ -129,3 +129,5 @@
     prototype: ImperialBorg
   - type: BorgHandsImperial
     whitelistHandTag: SecurityBorgItem
+  - type: K9XLunge
+    changeModeAction: ActionLeapK9X
