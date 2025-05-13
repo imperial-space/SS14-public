@@ -361,8 +361,8 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         }
 
         // Отправка инструкций игроку
-        if (mind?.Session != null)
-            _antag.SendBriefing(mind.Session, Loc.GetString("rev-role-greeting"), Color.Red, revComp.RevStartSound);
+        if (mind != null)
+            _antag.SendBriefing(target, Loc.GetString("rev-role-greeting"), Color.Red, revComp.RevStartSound);
 
         // Проверка потери командного статуса
         if (!TryComp<CommandStaffComponent>(target, out var commandComp))

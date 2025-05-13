@@ -125,14 +125,6 @@
 
 - type: entity
   id: AsteroidRockCoalCrab
-  parent: AsteroidRockCoal
-  suffix: Coal Crab
-  components:
-  - type: OreVein
-    currentOre: OreCoalCrab
-
-- type: entity
-  id: AsteroidRockCoalCrab
   parent: AsteroidRock
   description: An ore vein rich with coal.
   suffix: Coal Crab
@@ -176,14 +168,6 @@
       state: rock_asteroid_west
     - state: rock_gold
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
-
-- type: entity
-  id: AsteroidRockGoldCrab
-  parent: AsteroidRockGold
-  suffix: Gold Crab
-  components:
-  - type: OreVein
-    currentOre: OreGoldCrab
 
 - type: entity
   id: AsteroidRockGoldCrab

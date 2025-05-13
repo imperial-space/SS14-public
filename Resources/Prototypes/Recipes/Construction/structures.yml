@@ -1615,15 +1615,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Секретная дверь # Imperial Recipes Locale
   id: SolidSecretDoor
-  name: recipes-secret-door-name
-  description: recipes-secret-door-desc
+  name: Секретная дверь # Imperial Recipes Locale
+  description: Секретная дверь, замаскированная под обычную стену. # Imperial Recipes Locale
   graph: SecretDoor
   startNode: start
   targetNode: solidSecretDoor
   category: construction-category-structures
-  description: Секретная дверь, замаскированная под обычную стену. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

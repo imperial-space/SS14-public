@@ -1,6 +1,6 @@
 # imperial dataset translate
 
-- type: dataset
+- type: localizedDataset
   id: Tips
   values:
     prefix: tips-dataset-

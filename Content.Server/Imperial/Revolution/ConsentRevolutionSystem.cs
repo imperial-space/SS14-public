@@ -21,6 +21,7 @@ using Content.Shared.Zombies;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Server.Imperial.Revolutionary;
+using Robust.Shared.Player;
 
 namespace Content.Server.Imperial.Revolutionary
 {
@@ -266,9 +267,10 @@ namespace Content.Server.Imperial.Revolutionary
         /// <param name="converter">Инициатор обращения</param>
         public void RequestConsentConversion(EntityUid target, EntityUid converter)
         {
-            if (_mindSystem.TryGetMind(target, out var mindId, out var _)
-                && _mindSystem.TryGetSession(mindId, out var session))
+            if (TryComp<ActorComponent>(target, out var actorComponent))
             {
+                var session = actorComponent.PlayerSession;
+
                 _popupSystem.PopupEntity(
                     Loc.GetString("rev-consent-convert-requested", ("target", Identity.Entity(target, EntityManager))),
                     converter,

@@ -235,7 +235,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         if (oldStam + value > component.CritThreshold || component.Critical)
             return false;
 
-        TakeStaminaDamage(uid, value, component, source, with, visual: false, ignoreResistances: ignoreResistances); // Imperial Stamina Resistance
+        TakeStaminaDamage(uid, value, component, source, with, visual: false, ignoreResist: ignoreResistances); // Imperial Stamina Resistance
         return true;
     }
 
@@ -268,7 +268,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         {
             var damage = value;
             var evd = new StaminaModifyEvent(damage, source);
-            evd.IgnoreResistances = ignoreResistances; // Imperial Stamina Resistance
+            evd.IgnoreResistances = ignoreResist; // Imperial Stamina Resistance
             RaiseLocalEvent(uid, evd);
             component.StaminaDamage = MathF.Max(0f, component.StaminaDamage + evd.Damage);
         }

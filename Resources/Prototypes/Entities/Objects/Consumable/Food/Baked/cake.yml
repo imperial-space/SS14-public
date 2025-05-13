@@ -26,9 +26,9 @@
   - type: Tag
     tags:
     - Cake
+    - VoxFood
   - type: StaticPrice
     price: 300 # Imperial Recipes Prices
-    - VoxFood
   - type: SecretStash
     maxItemSize: "Normal"
     secretStashName: secret-stash-cake
