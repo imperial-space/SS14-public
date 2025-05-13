@@ -8,9 +8,6 @@
   description: Основа, используемая для постройки различных консолей. # Imperial Recipes Locale
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Machines/parts.rsi
-    state: 4
 
 - type: construction
   name: Каркас машины # Imperial Recipes Locale
@@ -22,9 +19,6 @@
   category: construction-category-machines
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Machines/parts.rsi
-    state: "box_0"
 
 # Switching
 - type: construction
@@ -37,9 +31,6 @@
   description: Рычаг для управления машинами. Имеет три позиции. # Imperial Recipes Locale
   objectType: Structure
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/conveyor.rsi
-    state: switch-off
   conditions:
     - !type:TileNotBlocked
 
@@ -60,6 +51,7 @@
   canBuildInImpassable: true
   conditions:
     - !type:WallmountCondition
+  hide: true #TODO: Fix the lightswitch, issue #34659. Until then, keep hidden so people don't build it and get confused.
 
 - type: construction
   name: Переключатель сигнала # Imperial Recipes Locale
@@ -114,6 +106,7 @@
   canBuildInImpassable: true
   conditions:
     - !type:WallmountCondition
+  hide: true #TODO: Fix the lightswitch, issue #34659. Until then, keep hidden so people don't build it and get confused.
 
 - type: construction
   name: Направленный переключатель сигнала # Imperial Recipes Locale

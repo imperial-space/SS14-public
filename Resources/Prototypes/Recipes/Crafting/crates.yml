@@ -83,7 +83,7 @@
   targetNode: foodboxpizza
   category: construction-category-storage
   description: Коробка для пиццы. # Imperial Recipes Locale
-  icon: 
+  icon:
     sprite: Objects/Consumable/Food/Baked/pizza.rsi
     state: box
   objectType: Item
@@ -98,4 +98,3 @@
   description: Гроб для хранения трупов. # Imperial Recipes Locale
   icon: { sprite: Structures/Storage/Crates/coffin.rsi, state: base }
   objectType: Structure
-  

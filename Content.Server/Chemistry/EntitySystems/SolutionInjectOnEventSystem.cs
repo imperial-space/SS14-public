@@ -11,11 +11,6 @@ using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 
-// Imperial Space arrow-fix Dependency Start
-using Content.Shared.Armor;
-using Content.Shared.Imperial.HardsuitInjection.Components;
-// Imperial Space arrow-fix Dependency End
-
 namespace Content.Server.Chemistry.EntitySystems;
 
 /// <summary>

@@ -16,7 +16,7 @@
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/Shuttles/emergency_lox.yml
         - type: StationJobs
-          availableJobs: # 58 jobs total w/o latejoins & interns, 75 jobs total w/ latejoins & interns
+          availableJobs: # 60 jobs total w/o latejoins & interns, 77 jobs total w/ latejoins & interns
             #command (7)
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
@@ -38,27 +38,22 @@
             #engineering (7)
             AtmosphericTechnician: [ 3, 3 ]
             StationEngineer: [ 4, 4 ]
-            TechnicalAssistant: [ 4, 4 ]
-            SeniorEngineer: [ 1, 1 ] # imperial space senior roles
-            #medical
+            TechnicalAssistant: [ 4, 4 ] #intern, not counted
+            #medical (6)
             Chemist: [ 2, 2 ]
             MedicalDoctor: [ 3, 3 ]
             Paramedic: [ 1, 1 ]
-            MedicalIntern: [ 4, 4 ]
-            SeniorPhysician: [ 1, 1 ] # imperial space senior roles
-            #science
+            MedicalIntern: [ 4, 4 ] #intern, not counted
+            #science (5)
             Scientist: [ 5, 5 ]
-            ResearchAssistant: [ 4, 4 ]
-            SeniorResearcher: [ 1, 1 ] # imperial space senior roles
-            #security
+            ResearchAssistant: [ 4, 4 ] #intern, not counted
+            #security (10)
             Warden: [ 1, 1 ]
-            SecurityOfficer: [ 4, 4 ]
+            SecurityOfficer: [ 6, 6 ]
             Detective: [ 1, 1 ]
             SecurityCadet: [ 4, 4 ] #intern, not counted
             Lawyer: [ 2, 2 ]
-            SeniorOfficer: [ 1, 1 ] # imperial space senior roles
-            Brigmedic: [ 1, 1 ] # imperial Brigmedic
-            #supply
+            #supply (6)
             SalvageSpecialist: [ 3, 3 ]
             CargoTechnician: [ 3, 3 ]
             #civilian (3+)
@@ -66,5 +61,6 @@
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
-            RFI: [ 1, 1 ] # imperial RFI
-
+            #silicon (3)
+            StationAi: [ 1, 1 ]
+            Borg: [ 2, 2 ]

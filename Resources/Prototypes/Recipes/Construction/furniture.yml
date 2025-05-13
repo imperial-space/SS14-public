@@ -622,9 +622,6 @@
   startNode: start
   targetNode: bed
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Furniture/furniture.rsi
-    state: bed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -639,9 +636,6 @@
   startNode: start
   targetNode: medicalbed
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Furniture/furniture.rsi
-    state: bed-MED
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -656,9 +650,6 @@
   startNode: start
   targetNode: dogbed
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Furniture/furniture.rsi
-    state: dogbed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -673,9 +664,6 @@
   startNode: start
   targetNode: dresser
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Furniture/furniture.rsi
-    state: dresser
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -691,9 +679,6 @@
   startNode: start
   targetNode: Rack
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Furniture/furniture.rsi
-    state: rack
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -709,9 +694,6 @@
   startNode: start
   targetNode: MeatSpike
   category: construction-category-furniture
-  icon:
-    sprite: Structures/meat_spike.rsi
-    state: spike
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -726,13 +708,10 @@
   startNode: start
   targetNode: Curtains
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/Curtains/hospital.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsBlack
   name: Чёрные шторы # Imperial Recipes Locale
@@ -741,9 +720,6 @@
   startNode: start
   targetNode: CurtainsBlack
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/Curtains/black.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -756,13 +732,10 @@
   startNode: start
   targetNode: CurtainsBlue
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/Curtains/blue.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsCyan
   name: Голубые шторы # Imperial Recipes Locale
@@ -771,13 +744,10 @@
   startNode: start
   targetNode: CurtainsCyan
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/Curtains/cyan.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsGreen
   name: Зелёные шторы # Imperial Recipes Locale
@@ -786,13 +756,10 @@
   startNode: start
   targetNode: CurtainsGreen
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/Curtains/green.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsOrange
   name: Оранжевые шторы # Imperial Recipes Locale
@@ -801,13 +768,10 @@
   startNode: start
   targetNode: CurtainsOrange
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/Curtains/orange.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsPink
   name: Розовые шторы # Imperial Recipes Locale
@@ -816,13 +780,10 @@
   startNode: start
   targetNode: CurtainsPink
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/Curtains/pink.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsPurple
   name: Фиолетовые шторы # Imperial Recipes Locale
@@ -831,13 +792,10 @@
   startNode: start
   targetNode: CurtainsPurple
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/Curtains/purple.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsRed
   name: Красные шторы # Imperial Recipes Locale
@@ -846,9 +804,6 @@
   startNode: start
   targetNode: CurtainsRed
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/Curtains/red.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -861,9 +816,6 @@
   startNode: start
   targetNode: CurtainsWhite
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/Curtains/white.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -876,9 +828,6 @@
   startNode: start
   targetNode: bookshelf
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Furniture/bookshelf.rsi
-    state: base
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -893,9 +842,6 @@
   startNode: start
   targetNode: noticeBoard
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Wallmounts/noticeboard.rsi
-    state: noticeboard
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
@@ -911,9 +857,6 @@
   startNode: start
   targetNode: mannequin
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/mannequin.rsi
-    state: mannequin
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true

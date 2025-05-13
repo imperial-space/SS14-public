@@ -38,30 +38,23 @@
             #engineering (8)
             AtmosphericTechnician: [ 3, 3 ]
             StationEngineer: [ 5, 5 ]
-            TechnicalAssistant: [ 4, 4 ]
-            SeniorEngineer: [ 1, 1 ] # imperial space senior roles
-            #medical
+            TechnicalAssistant: [ 4, 4 ] #intern, not counted
+            #medical (11)
             Chemist: [ 2, 2 ]
             MedicalDoctor: [ 6, 6 ]
             Paramedic: [ 2, 2 ]
             MedicalIntern: [ 4, 4 ] #intern, not counted
             Psychologist: [ 1, 1 ]
-            SeniorPhysician: [ 1, 1 ] # imperial space senior roles
-            #science
+            #science (5)
             Scientist: [ 5, 5 ]
-            ResearchAssistant: [ 6, 6 ]
-            StationAi: [ 1, 1 ]
-            Borg: [ 2, 2 ]
-            SeniorResearcher: [ 1, 1 ] # imperial space senior roles
-            #security
+            ResearchAssistant: [ 6, 6 ] #intern, not counted
+            #security (13)
             Warden: [ 1, 1 ]
             SecurityOfficer: [ 8, 8 ]
             Detective: [ 1, 1 ]
             SecurityCadet: [ 4, 4 ] #intern, not counted
             Lawyer: [ 3, 3 ]
-            SeniorOfficer: [ 1, 1 ] # imperial space senior roles
-            Brigmedic: [ 1, 1 ] # imperial Brigmedic
-            #supply
+            #supply (7)
             SalvageSpecialist: [ 3, 3 ]
             CargoTechnician: [ 4, 4 ]
             #civilian (3+)
@@ -69,4 +62,6 @@
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
-            RFI: [ 1, 1 ] # imperial RFI
+            #silicon (3)
+            Borg: [ 2, 2 ]
+            StationAi: [ 1, 1 ]

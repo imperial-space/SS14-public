@@ -151,9 +151,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: "disposal"
 
 - type: construction
   name: Почтовый блок # Imperial Recipes Locale
@@ -165,9 +162,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: "mailing"
 
 - type: construction
   name: Утилизационная труба # Imperial Recipes Locale
@@ -193,9 +187,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: conpipe-tagger
 
 - type: construction
   name: Ствол утилизационной трубы # Imperial Recipes Locale
@@ -207,9 +198,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: conpipe-t
 
 - type: construction
   name: Маршрутизатор утилизационной трубы # Imperial Recipes Locale
@@ -221,9 +209,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: conpipe-j1s
   mirror: DisposalRouterFlipped
 
 - type: construction
@@ -237,9 +222,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: conpipe-j2s
   mirror: DisposalRouter
 
 - type: construction
@@ -252,9 +234,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: signal-router-free
   mirror: DisposalSignalRouterFlipped
 
 - type: construction
@@ -268,9 +247,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: signal-router-flipped-free
   mirror: DisposalSignalRouter
 
 - type: construction
@@ -283,9 +259,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: conpipe-j1
   mirror: DisposalJunctionFlipped
 
 - type: construction
@@ -299,9 +272,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: conpipe-j2
   mirror: DisposalJunction
 
 - type: construction
@@ -314,9 +284,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: conpipe-y
 
 - type: construction
   name: Изгиб утилизационной трубы # Imperial Recipes Locale
@@ -328,9 +295,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: conpipe-c
 
 # ATMOS
 - type: construction
@@ -481,14 +445,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/vent.rsi
-    state: vent_off
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeHalf
-  - sprite: Structures/Piping/Atmospherics/vent.rsi
-    state: vent_off
   conditions:
     - !type:NoUnstackableInTile
 
@@ -523,14 +479,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/scrubber.rsi
-    state: scrub_off
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeHalf
-  - sprite: Structures/Piping/Atmospherics/scrubber.rsi
-    state: scrub_off
   conditions:
     - !type:NoUnstackableInTile
 
@@ -544,14 +492,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/outletinjector.rsi
-    state: injector
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeHalf
-  - sprite: Structures/Piping/Atmospherics/outletinjector.rsi
-    state: injector
   conditions:
     - !type:NoUnstackableInTile
 
@@ -566,14 +506,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/pump.rsi
-    state: pumpPressure
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeStraight
-  - sprite: Structures/Piping/Atmospherics/pump.rsi
-    state: pumpPressure
   conditions:
     - !type:NoUnstackableInTile
 
@@ -587,14 +519,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/pump.rsi
-    state: pumpVolume
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeStraight
-  - sprite: Structures/Piping/Atmospherics/pump.rsi
-    state: pumpVolume
   conditions:
     - !type:NoUnstackableInTile
 
@@ -608,14 +532,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/pump.rsi
-    state: pumpPassiveGate
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeStraight
-  - sprite: Structures/Piping/Atmospherics/pump.rsi
-    state: pumpPassiveGate
   conditions:
     - !type:NoUnstackableInTile
 
@@ -629,14 +545,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/pump.rsi
-    state: pumpManualValve
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeStraight
-  - sprite: Structures/Piping/Atmospherics/pump.rsi
-    state: pumpManualValve
   conditions:
     - !type:NoUnstackableInTile
 
@@ -650,14 +558,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/pump.rsi
-    state: pumpSignalValve
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeStraight
-  - sprite: Structures/Piping/Atmospherics/pump.rsi
-    state: pumpSignalValve
   conditions:
   - !type:NoUnstackableInTile
 
@@ -671,14 +571,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/gascanisterport.rsi
-    state: gasCanisterPort
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeHalf
-  - sprite: Structures/Piping/Atmospherics/gascanisterport.rsi
-    state: gasCanisterPort
   conditions:
     - !type:NoUnstackableInTile
 
@@ -692,14 +584,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/vent.rsi
-    state: vent_off
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeStraight
-  - sprite: Structures/Piping/Atmospherics/vent.rsi
-    state: vent_off
 
 - type: construction
   id: HeatExchanger
@@ -711,23 +595,15 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/heatexchanger.rsi
-    state: heStraight
 
 - type: construction
   id: HeatExchangerBend
-  name: radiator bend
-  description: Transfers heat between the pipe and its surroundings.
   graph: GasBinary
   startNode: start
   targetNode: bendradiator
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/heatexchanger.rsi
-    state: heBend
 
 # ATMOS TRINARY
 - type: construction
@@ -740,9 +616,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/gasfilter.rsi
-    state: gasFilter
   mirror: GasFilterFlipped
   conditions:
     - !type:NoUnstackableInTile
@@ -758,9 +631,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/gasfilter.rsi
-    state: gasFilterF
   mirror: GasFilter
   conditions:
     - !type:NoUnstackableInTile
@@ -775,9 +645,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/gasmixer.rsi
-    state: gasMixer
   mirror: GasMixerFlipped
   conditions:
     - !type:NoUnstackableInTile
@@ -793,9 +660,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/gasmixer.rsi
-    state: gasMixerF
   mirror: GasMixer
   conditions:
     - !type:NoUnstackableInTile
@@ -810,9 +674,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/pneumaticvalve.rsi
-    state: off
   conditions:
     - !type:NoUnstackableInTile
 

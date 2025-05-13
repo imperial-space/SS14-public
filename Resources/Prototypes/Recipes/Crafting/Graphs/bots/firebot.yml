@@ -12,7 +12,7 @@
           state: fire_extinguisher_open
         name: огнетушитель # Imperial Recipes Locale
       - tag: FireHelmet
-        icon: 
+        icon:
           sprite: Clothing/Head/Helmets/firehelmet.rsi
           state: icon
         name: пожарный шлем # Imperial Recipes Locale

@@ -30,7 +30,7 @@
   description: Самокрутка из высушенного растения, завернутого в высушенный табачный лист. # Imperial Recipes Locale
   icon: { sprite: Objects/Consumable/Smokeables/Cannabis/blunt.rsi, state: unlit-icon }
   objectType: Item
-  
+
 - type: construction
   name: Радужный блант # Imperial Recipes Locale
   id: smokeableBluntRainbow
@@ -66,7 +66,7 @@
   icon: { sprite: Objects/Misc/reagent_fillings.rsi, state: powderpile }
 #    color: darkgreen
   objectType: Item
-  
+
 - type: construction
   name: Радужный измельчённый канабис # Imperial Recipes Locale
   id: smokeableGroundCannabisRainbow

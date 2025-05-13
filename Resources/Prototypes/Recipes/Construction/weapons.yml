@@ -173,7 +173,7 @@
   description: Стрела с наконечником из осколков уранового стекла, предназначенная для использования с луком. # Imperial Recipes Locale
   icon: { sprite: Objects/Weapons/Guns/Bow/bow.rsi, state: wielded-arrow }
   objectType: Item
-  
+
 - type: construction
   name: Лук # Imperial Recipes Locale
   id: ImprovisedBow
