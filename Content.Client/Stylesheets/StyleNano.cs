@@ -16,6 +16,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Graphics;
 using static Robust.Client.UserInterface.StylesheetHelpers;
+using SixLabors.ImageSharp.Formats.Webp;
 
 namespace Content.Client.Stylesheets
 {
@@ -66,6 +67,11 @@ namespace Content.Client.Stylesheets
         public const string StyleClassChatChannelSelectorButton = "chatSelectorOptionButton";
         public const string StyleClassChatFilterOptionButton = "chatFilterOptionButton";
         public const string StyleClassStorageButton = "storageButton";
+        public const string StyleClassInset = "Inset";
+
+        public const string StyleClassConsoleHeading = "ConsoleHeading";
+        public const string StyleClassConsoleSubHeading = "ConsoleSubHeading";
+        public const string StyleClassConsoleText = "ConsoleText";
 
         public const string StyleClassSliderRed = "Red";
         public const string StyleClassSliderGreen = "Green";
@@ -102,6 +108,11 @@ namespace Content.Client.Stylesheets
         public static readonly Color ButtonColorHoveredRed = Color.FromHex("#DF6B6B");
         public static readonly Color ButtonColorPressed = Color.FromHex("#3e6c45");
         public static readonly Color ButtonColorDisabled = Color.FromHex("#30313c");
+        // Imperial Pass Begin
+        public static readonly Color ButtonColorDefaultPass = Color.FromHex("#464966");
+        public static readonly Color ButtonColorHoveredPass = Color.FromHex("#575b7f");
+        public static readonly Color ButtonColorPressedPass = Color.FromHex("#3e6c45");
+        // Imperial Pass End
 
         public static readonly Color ButtonColorCautionDefault = Color.FromHex("#ab3232");
         public static readonly Color ButtonColorCautionHovered = Color.FromHex("#cf2f2f");
@@ -179,6 +190,10 @@ namespace Content.Client.Stylesheets
             var notoSansBold18 = resCache.NotoStack(variation: "Bold", size: 18);
             var notoSansBold20 = resCache.NotoStack(variation: "Bold", size: 20);
             var notoSansMono = resCache.GetFont("/EngineFonts/NotoSans/NotoSansMono-Regular.ttf", size: 12);
+            var robotoMonoBold11 = resCache.GetFont("/Fonts/RobotoMono/RobotoMono-Bold.ttf", size: 11);
+            var robotoMonoBold12 = resCache.GetFont("/Fonts/RobotoMono/RobotoMono-Bold.ttf", size: 12);
+            var robotoMonoBold14 = resCache.GetFont("/Fonts/RobotoMono/RobotoMono-Bold.ttf", size: 14);
+
             var windowHeaderTex = resCache.GetTexture("/Textures/Interface/Nano/window_header.png");
             var windowHeader = new StyleBoxTexture
             {
@@ -187,6 +202,30 @@ namespace Content.Client.Stylesheets
                 ExpandMarginBottom = 3,
                 ContentMarginBottomOverride = 0
             };
+            // Imperial Pass Begin
+            var pwindowHeaderTex = resCache.GetTexture("/Textures/Imperial/Pass/window/window_header.png");
+            var pwindowHeader = new StyleBoxTexture
+            {
+                Texture = pwindowHeaderTex,
+                PatchMarginBottom = 3,
+                ExpandMarginBottom = 3,
+                ContentMarginBottomOverride = 0
+            };
+            var pwindowBackgroundTex = resCache.GetTexture("/Textures/Imperial/Pass/window/window_background.png");
+            var pwindowBackground = new StyleBoxTexture
+            {
+                Texture = pwindowBackgroundTex,
+            };
+            pwindowBackground.SetPatchMargin(StyleBox.Margin.Horizontal | StyleBox.Margin.Bottom, 2);
+            pwindowBackground.SetExpandMargin(StyleBox.Margin.Horizontal | StyleBox.Margin.Bottom, 2);
+            var pwindowBackgroundTexr = resCache.GetTexture("/Textures/Imperial/Pass/window/window_backgroundr.png");
+            var pwindowBackgroundr = new StyleBoxTexture
+            {
+                Texture = pwindowBackgroundTexr,
+            };
+            pwindowBackgroundr.SetPatchMargin(StyleBox.Margin.Horizontal | StyleBox.Margin.Bottom, 2);
+            pwindowBackgroundr.SetExpandMargin(StyleBox.Margin.Horizontal | StyleBox.Margin.Bottom, 2);
+            // Imperial Pass End
             var windowHeaderAlertTex = resCache.GetTexture("/Textures/Interface/Nano/window_header_alert.png");
             var windowHeaderAlert = new StyleBoxTexture
             {
@@ -262,6 +301,13 @@ namespace Content.Client.Stylesheets
             buttonRect.SetPadding(StyleBox.Margin.All, 2);
             buttonRect.SetContentMarginOverride(StyleBox.Margin.Vertical, 2);
             buttonRect.SetContentMarginOverride(StyleBox.Margin.Horizontal, 2);
+            // Imperial Pass Begin
+            var passrect = new StyleBoxTexture
+            {
+                Texture = resCache.GetTexture("/Textures/Interface/Nano/square.png"),
+            };
+            passrect.SetPatchMargin(StyleBox.Margin.All, 10);
+            // Imperial Pass End
 
             var buttonRectHover = new StyleBoxTexture(buttonRect)
             {
@@ -344,6 +390,16 @@ namespace Content.Client.Stylesheets
             chatFilterButton.SetPatchMargin(StyleBox.Margin.All, 5);
             chatFilterButton.SetPadding(StyleBox.Margin.All, 2);
 
+            var outputPanelScrollDownButtonTex = resCache.GetTexture("/Textures/Interface/Nano/rounded_button_half_bordered.svg.96dpi.png");
+            var outputPanelScrollDownButton = new StyleBoxTexture
+            {
+                Texture = outputPanelScrollDownButtonTex,
+            };
+            outputPanelScrollDownButton.SetPatchMargin(StyleBox.Margin.All, 5);
+            outputPanelScrollDownButton.SetPadding(StyleBox.Margin.All, 2);
+            outputPanelScrollDownButton.SetPadding(StyleBox.Margin.Top, 0);
+            outputPanelScrollDownButton.SetPadding(StyleBox.Margin.Bottom, 0);
+
             var smallButtonTex = resCache.GetTexture("/Textures/Interface/Nano/button_small.svg.96dpi.png");
             var smallButtonBase = new StyleBoxTexture
             {
@@ -359,6 +415,15 @@ namespace Content.Client.Stylesheets
             };
             lineEdit.SetPatchMargin(StyleBox.Margin.All, 3);
             lineEdit.SetContentMarginOverride(StyleBox.Margin.Horizontal, 5);
+            // Imperial Pass Begin
+            var plineEditTex = resCache.GetTexture("/Textures/Imperial/Pass/window/lineedit.png");
+            var plineEdit = new StyleBoxTexture
+            {
+                Texture = plineEditTex,
+            };
+            plineEdit.SetPatchMargin(StyleBox.Margin.All, 3);
+            plineEdit.SetContentMarginOverride(StyleBox.Margin.Horizontal, 5);
+            // Imperial Pass End
 
             var chatBg = new StyleBoxFlat
             {
@@ -403,9 +468,60 @@ namespace Content.Client.Stylesheets
             };
             progressBarForeground.SetContentMarginOverride(StyleBox.Margin.Vertical, 14.5f);
 
+            // Monotone (unfilled)
+            var monotoneButton = new StyleBoxTexture
+            {
+                Texture = resCache.GetTexture("/Textures/Interface/Nano/Monotone/monotone_button.svg.96dpi.png"),
+            };
+            monotoneButton.SetPatchMargin(StyleBox.Margin.All, 11);
+            monotoneButton.SetPadding(StyleBox.Margin.All, 1);
+            monotoneButton.SetContentMarginOverride(StyleBox.Margin.Vertical, 2);
+            monotoneButton.SetContentMarginOverride(StyleBox.Margin.Horizontal, 14);
+
+            var monotoneButtonOpenLeft = new StyleBoxTexture(monotoneButton)
+            {
+                Texture = resCache.GetTexture("/Textures/Interface/Nano/Monotone/monotone_button_open_left.svg.96dpi.png"),
+            };
+
+            var monotoneButtonOpenRight = new StyleBoxTexture(monotoneButton)
+            {
+                Texture = resCache.GetTexture("/Textures/Interface/Nano/Monotone/monotone_button_open_right.svg.96dpi.png"),
+            };
+
+            var monotoneButtonOpenBoth = new StyleBoxTexture(monotoneButton)
+            {
+                Texture = resCache.GetTexture("/Textures/Interface/Nano/Monotone/monotone_button_open_both.svg.96dpi.png"),
+            };
+
+            // Monotone (filled)
+            var monotoneFilledButton = new StyleBoxTexture(monotoneButton)
+            {
+                Texture = buttonTex,
+            };
+
+            var monotoneFilledButtonOpenLeft = new StyleBoxTexture(monotoneButton)
+            {
+                Texture = new AtlasTexture(buttonTex, UIBox2.FromDimensions(new Vector2(10, 0), new Vector2(14, 24))),
+            };
+            monotoneFilledButtonOpenLeft.SetPatchMargin(StyleBox.Margin.Left, 0);
+
+            var monotoneFilledButtonOpenRight = new StyleBoxTexture(monotoneButton)
+            {
+                Texture = new AtlasTexture(buttonTex, UIBox2.FromDimensions(new Vector2(0, 0), new Vector2(14, 24))),
+            };
+            monotoneFilledButtonOpenRight.SetPatchMargin(StyleBox.Margin.Right, 0);
+
+            var monotoneFilledButtonOpenBoth = new StyleBoxTexture(monotoneButton)
+            {
+                Texture = new AtlasTexture(buttonTex, UIBox2.FromDimensions(new Vector2(10, 0), new Vector2(3, 24))),
+            };
+            monotoneFilledButtonOpenBoth.SetPatchMargin(StyleBox.Margin.Horizontal, 0);
+
             // CheckBox
             var checkBoxTextureChecked = resCache.GetTexture("/Textures/Interface/Nano/checkbox_checked.svg.96dpi.png");
             var checkBoxTextureUnchecked = resCache.GetTexture("/Textures/Interface/Nano/checkbox_unchecked.svg.96dpi.png");
+            var monotoneCheckBoxTextureChecked = resCache.GetTexture("/Textures/Interface/Nano/Monotone/monotone_checkbox_checked.svg.96dpi.png");
+            var monotoneCheckBoxTextureUnchecked = resCache.GetTexture("/Textures/Interface/Nano/Monotone/monotone_checkbox_unchecked.svg.96dpi.png");
 
             // Tooltip box
             var tooltipTexture = resCache.GetTexture("/Textures/Interface/Nano/tooltip.png");
@@ -473,6 +589,14 @@ namespace Content.Client.Stylesheets
                 Texture = stripeBackTex,
                 Mode = StyleBoxTexture.StretchMode.Tile
             };
+            // Imperial Pass Begin
+            var stripeBackTex2 = resCache.GetTexture("/Textures/Imperial/Pass/stripeback.svg.96dpi.png");
+            var stripeBackpass = new StyleBoxTexture
+            {
+                Texture = stripeBackTex2,
+                Mode = StyleBoxTexture.StretchMode.Tile
+            };
+            // Imperial Pass End
 
             // Slider
             var sliderOutlineTex = resCache.GetTexture("/Textures/Interface/Nano/slider_outline.svg.96dpi.png");
@@ -564,6 +688,14 @@ namespace Content.Client.Stylesheets
                     {
                         new StyleProperty(PanelContainer.StylePropertyPanel, windowBackground),
                     }),
+                // Imperial Pass Begin
+                new StyleRule(
+                    new SelectorElement(null, new[] {"windowPanelPassReconnect"}, null, null),
+                    new[]
+                    {
+                        new StyleProperty(PanelContainer.StylePropertyPanel, pwindowBackgroundr),
+                    }),
+                // Imperial Pass End
                 // bordered window background
                 new StyleRule(
                     new SelectorElement(null, new[] {StyleClassBorderedWindowPanel}, null, null),
@@ -604,6 +736,7 @@ namespace Content.Client.Stylesheets
                     {
                         new StyleProperty(PanelContainer.StylePropertyPanel, windowHeader),
                     }),
+                // Imperial Pass Begin
                 // Alert (red) window header.
                 new StyleRule(
                     new SelectorElement(typeof(PanelContainer), new[] {"windowHeaderAlert"}, null, null),
@@ -935,6 +1068,17 @@ namespace Content.Client.Stylesheets
                     new StyleProperty(BoxContainer.StylePropertySeparation, 10),
                 }),
 
+                // MonotoneCheckBox
+                new StyleRule(new SelectorElement(typeof(TextureRect), new [] { MonotoneCheckBox.StyleClassMonotoneCheckBox }, null, null), new[]
+                {
+                    new StyleProperty(TextureRect.StylePropertyTexture, monotoneCheckBoxTextureUnchecked),
+                }),
+
+                new StyleRule(new SelectorElement(typeof(TextureRect), new [] { MonotoneCheckBox.StyleClassMonotoneCheckBox, CheckBox.StyleClassCheckBoxChecked }, null, null), new[]
+                {
+                    new StyleProperty(TextureRect.StylePropertyTexture, monotoneCheckBoxTextureChecked),
+                }),
+
                 // Tooltip
                 new StyleRule(new SelectorElement(typeof(Tooltip), null, null, null), new[]
                 {
@@ -1118,7 +1262,195 @@ namespace Content.Client.Stylesheets
                     new StyleProperty(Label.StylePropertyFont, notoSans10),
                     new StyleProperty(Label.StylePropertyFontColor, Color.DarkGray),
                 }),
+                // Imperial Pass Begin
+                new StyleRule(new SelectorElement(typeof(Label), new[] {"LabelSubTextPassExtraBoldServerName"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-SemiBold.ttf", 14)),
+                    new StyleProperty(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF"))
+                }),
+                new StyleRule(new SelectorElement(typeof(Label), new[] {"LabelSubTextPassPlayerCount"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-SemiBold.ttf", 12)),
+                    new StyleProperty(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF"))
+                }),
+                new StyleRule(new SelectorElement(typeof(Label), new[] {"LabelSubTextPassRecommend"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-SemiBold.ttf", 10)),
+                    new StyleProperty(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF"))
+                }),
+                new StyleRule(new SelectorElement(typeof(Label), new[] {"LabelSubTextPass1"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Bold.ttf", 14)),
+                    new StyleProperty(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF"))
+                }),
+                // Imperial reconnect start
+                new StyleRule(new SelectorElement(typeof(RichTextLabel), new[] {"LabelSubTextPass1"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Bold.ttf", 14))
+                }),
+                new StyleRule(new SelectorElement(typeof(Label), new[] {"LabelSubTextPass20"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Bold.ttf", 15)),
+                    new StyleProperty(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF"))
+                }),
+                new StyleRule(new SelectorElement(typeof(ScrollContainer), new[] {"ScrollContainerReconnectWindow"}, null, null), new[]
+                {
+                    new StyleProperty(ScrollContainer.StylePropertyModulateSelf, Color.FromHex("#999999")),
+                }),
+                new StyleRule(new SelectorElement(typeof(VScrollBar), new[] {"imperialscroll"}, null, null),
+                    new[]
+                    {
+                        new StyleProperty(ScrollBar.StylePropertyGrabber,
+                            new StyleBoxFlat
+                            {
+                                BackgroundColor = Color.FromHex("#303030"), ContentMarginTopOverride = 2, ContentMarginLeftOverride = 6
+                            }),
+                    }),
 
+                new StyleRule(
+                    new SelectorElement(typeof(VScrollBar), new[] {"imperialscroll"}, null, new[] {ScrollBar.StylePseudoClassHover}),
+                    new[]
+                    {
+                        new StyleProperty(ScrollBar.StylePropertyGrabber,
+                            new StyleBoxFlat
+                            {
+                                BackgroundColor = Color.FromHex("#303030"), ContentMarginTopOverride = 2, ContentMarginLeftOverride = 8
+                            }),
+                    }),
+
+                new StyleRule(
+                    new SelectorElement(typeof(VScrollBar), new[] {"imperialscroll"}, null, new[] {ScrollBar.StylePseudoClassGrabbed}),
+                    new[]
+                    {
+                        new StyleProperty(ScrollBar.StylePropertyGrabber,
+                            new StyleBoxFlat
+                            {
+                                BackgroundColor = Color.FromHex("#303030"), ContentMarginTopOverride = 2, ContentMarginLeftOverride = 8
+                            }),
+                    }),
+                // Imperial reconnect start
+                new StyleRule(new SelectorElement(typeof(Label), new[] {"LabelSubTextPassUpper"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-SemiBold.ttf", 14)),
+                    new StyleProperty(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF"))
+                }),
+                new StyleRule(new SelectorElement(typeof(RichTextLabel), new[] {"LabelSubTextPassDescription"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Medium.ttf", 9))
+                }),
+                new StyleRule(new SelectorElement(typeof(RichTextLabel), new[] {"LabelSubTextPassExtraBoldNickname"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-ExtraBold.ttf", 9))
+                }),
+                new StyleRule(new SelectorElement(typeof(Label), new[] {"LabelSubTextPassUpperBlue"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-SemiBold.ttf", 14)),
+                    new StyleProperty(Label.StylePropertyFontColor, Color.FromHex("#58C4E6"))
+                }),
+                new StyleRule(new SelectorElement(typeof(Label), new[] {"LabelSubTextPassGift"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Medium.ttf", 11)),
+                    new StyleProperty(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF"))
+                }),
+                new StyleRule(new SelectorElement(typeof(Label), new[] {"LabelSubTextPassLower"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-SemiBold.ttf", 10)),
+                    new StyleProperty(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF"))
+                }),
+                new StyleRule(new SelectorElement(typeof(Label), new[] {"LabelSubTextPassLowerTTS"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-SemiBold.ttf", 14)),
+                    new StyleProperty(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF"))
+                }),
+                new StyleRule(new SelectorElement(typeof(Label), new[] {"LabelSubTextPassLowerBlue"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-SemiBold.ttf", 10)),
+                    new StyleProperty(Label.StylePropertyFontColor, Color.FromHex("#58C4E6"))
+                }),
+                new StyleRule(new SelectorElement(typeof(Label), new[] {"LabelSubTextPassMedium"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Medium.ttf", 9)),
+                    new StyleProperty(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF"))
+                }),
+                new StyleRule(new SelectorElement(typeof(RichTextLabel), new[] {"LabelSubTextPassMedium"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Medium.ttf", 9))
+                }),
+                new StyleRule(new SelectorElement(typeof(RichTextLabel), new[] {"LabelSubTextPassMediumBold"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Bold.ttf", 9))
+                }),
+                new StyleRule(new SelectorElement(typeof(Label), new[] {"LabelSubTextPassMediumBuy"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Medium.ttf", 10)),
+                    new StyleProperty(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF"))
+                }),
+                new StyleRule(new SelectorElement(typeof(RichTextLabel), new[] {"LabelSubTextPassMediumBuy"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Medium.ttf", 10))
+                }),
+                new StyleRule(new SelectorElement(typeof(RichTextLabel), new[] {"LabelSubTextPassBoldBuy"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Bold.ttf", 10))
+                }),
+                new StyleRule(new SelectorElement(typeof(RichTextLabel), new[] {"LabelSubTextPassPlayerCount"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-SemiBold.ttf", 12))
+                }),
+                new StyleRule(new SelectorElement(typeof(RichTextLabel), new[] {"LabelSubTextPassRecommend"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-SemiBold.ttf", 10))
+                }),
+                new StyleRule(new SelectorElement(typeof(Label), new[] {"LabelSubTextPassMedium20"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Medium.ttf", 10)),
+                    new StyleProperty(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF"))
+                }),
+                new StyleRule(new SelectorElement(typeof(Label), new[] {"LabelSubTextPassMediumTTS"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Medium.ttf", 12)),
+                    new StyleProperty(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF"))
+                }),
+                new StyleRule(new SelectorElement(typeof(RichTextLabel), new[] {"LabelSubTextPassMedium20"}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Medium.ttf", 10))
+                }),
+                new StyleRule(new SelectorElement(typeof(RichTextLabel), new[] {"LabelSubTextPassUpper"}, null, null), new[]
+                {
+                    new StyleProperty("font", resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-SemiBold.ttf", 14))
+                    // new StyleProperty(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF"))
+                }),
+                new StyleRule(new SelectorElement(typeof(RichTextLabel), new[] {"LabelSubTextPassLower"}, null, null), new[]
+                {
+                    new StyleProperty("font", resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-SemiBold.ttf", 10))
+                    //new StyleProperty(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF"))
+                }),
+                new StyleRule(new SelectorElement(typeof(RichTextLabel), new[] {"LabelSubTextPassFreePass"}, null, null), new[]
+                {
+                    new StyleProperty("font", resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Bold.ttf", 14))
+                }),
+                new StyleRule(new SelectorElement(typeof(Content.Client.Imperial.UI.ImperialLineEdit), null, null, null),
+                    new[]
+                    {
+                        new StyleProperty(Content.Client.Imperial.UI.ImperialLineEdit.StylePropertyStyleBox, plineEdit),
+                    }),
+
+                new StyleRule(
+                    new SelectorElement(typeof(Content.Client.Imperial.UI.ImperialLineEdit), new[] {Content.Client.Imperial.UI.ImperialLineEdit.StyleClassLineEditNotEditable}, null, null),
+                    new[]
+                    {
+                        new StyleProperty("font", resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Medium.ttf", 12)),
+                        new StyleProperty("font-color", Color.FromHex("#FFFFFF")),
+                    }),
+
+                new StyleRule(
+                    new SelectorElement(typeof(Content.Client.Imperial.UI.ImperialLineEdit), null, null, new[] {Content.Client.Imperial.UI.ImperialLineEdit.StylePseudoClassPlaceholder}),
+                    new[]
+                    {
+                        new StyleProperty("font", resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Medium.ttf", 12)),
+                        new StyleProperty("font-color", Color.FromHex("#343434")),
+                    }),
+                // Imperial Pass End
                 // Label Key
                 new StyleRule(new SelectorElement(typeof(Label), new[] {StyleClassLabelKeyText}, null, null), new[]
                 {
@@ -1133,6 +1465,22 @@ namespace Content.Client.Stylesheets
                         new StyleProperty(Label.StylePropertyFontColor, Color.DarkGray),
                     }),
 
+                // Console text
+                new StyleRule(new SelectorElement(typeof(Label), new[] {StyleClassConsoleText}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, robotoMonoBold11)
+                }),
+
+                new StyleRule(new SelectorElement(typeof(Label), new[] {StyleClassConsoleSubHeading}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, robotoMonoBold12)
+                }),
+
+                new StyleRule(new SelectorElement(typeof(Label), new[] {StyleClassConsoleHeading}, null, null), new[]
+                {
+                    new StyleProperty(Label.StylePropertyFont, robotoMonoBold14)
+                }),
+
                 // Big Button
                 new StyleRule(new SelectorChild(
                     new SelectorElement(typeof(Button), new[] {StyleClassButtonBig}, null, null),
@@ -1141,7 +1489,6 @@ namespace Content.Client.Stylesheets
                     {
                         new StyleProperty("font", notoSans16)
                     }),
-
                 //APC and SMES power state label colors
                 new StyleRule(new SelectorElement(typeof(Label), new[] {StyleClassPowerStateNone}, null, null), new[]
                 {
@@ -1232,6 +1579,64 @@ namespace Content.Client.Stylesheets
                         new StyleProperty(Label.StylePropertyFont, notoSansDisplayBold14),
                     }),
 
+                // MonotoneButton (unfilled)
+                new StyleRule(
+                    new SelectorElement(typeof(MonotoneButton), null, null, null),
+                    new[]
+                    {
+                        new StyleProperty(Button.StylePropertyStyleBox, monotoneButton),
+                    }),
+
+                new StyleRule(
+                    new SelectorElement(typeof(MonotoneButton), new[] { ButtonOpenLeft }, null, null),
+                    new[]
+                    {
+                        new StyleProperty(Button.StylePropertyStyleBox, monotoneButtonOpenLeft),
+                    }),
+
+                new StyleRule(
+                    new SelectorElement(typeof(MonotoneButton), new[] { ButtonOpenRight }, null, null),
+                    new[]
+                    {
+                        new StyleProperty(Button.StylePropertyStyleBox, monotoneButtonOpenRight),
+                    }),
+
+                new StyleRule(
+                    new SelectorElement(typeof(MonotoneButton), new[] { ButtonOpenBoth }, null, null),
+                    new[]
+                    {
+                        new StyleProperty(Button.StylePropertyStyleBox, monotoneButtonOpenBoth),
+                    }),
+
+                // MonotoneButton (filled)
+                new StyleRule(
+                    new SelectorElement(typeof(MonotoneButton), null, null, new[] { Button.StylePseudoClassPressed }),
+                    new[]
+                    {
+                        new StyleProperty(Button.StylePropertyStyleBox, monotoneFilledButton),
+                    }),
+
+                new StyleRule(
+                    new SelectorElement(typeof(MonotoneButton), new[] { ButtonOpenLeft }, null, new[] { Button.StylePseudoClassPressed }),
+                    new[]
+                    {
+                        new StyleProperty(Button.StylePropertyStyleBox, monotoneFilledButtonOpenLeft),
+                    }),
+
+                new StyleRule(
+                    new SelectorElement(typeof(MonotoneButton), new[] { ButtonOpenRight }, null, new[] { Button.StylePseudoClassPressed }),
+                    new[]
+                    {
+                        new StyleProperty(Button.StylePropertyStyleBox, monotoneFilledButtonOpenRight),
+                    }),
+
+                new StyleRule(
+                    new SelectorElement(typeof(MonotoneButton), new[] { ButtonOpenBoth }, null, new[] { Button.StylePseudoClassPressed }),
+                    new[]
+                    {
+                        new StyleProperty(Button.StylePropertyStyleBox, monotoneFilledButtonOpenBoth),
+                    }),
+
                 // NanoHeading
 
                 new StyleRule(
@@ -1307,6 +1712,7 @@ namespace Content.Client.Stylesheets
                 {
                     new StyleProperty(Button.StylePropertyStyleBox, chatChannelButton),
                 }),
+
                 // chat filter button
                 new StyleRule(new SelectorElement(typeof(ContainerButton), new[] {StyleClassChatFilterOptionButton}, null, null), new[]
                 {
@@ -1328,6 +1734,11 @@ namespace Content.Client.Stylesheets
                 {
                     new StyleProperty(Control.StylePropertyModulateSelf, ButtonColorDisabled),
                 }),
+
+                // output panel scroll button
+                Element<Button>()
+                    .Class(OutputPanel.StyleClassOutputPanelScrollDownButton)
+                    .Prop(Button.StylePropertyStyleBox, outputPanelScrollDownButton),
 
                 // OptionButton
                 new StyleRule(new SelectorElement(typeof(OptionButton), null, null, null), new[]
@@ -1386,6 +1797,11 @@ namespace Content.Client.Stylesheets
                 Element<PanelContainer>().Class(ClassAngleRect)
                     .Prop(PanelContainer.StylePropertyPanel, BaseAngleRect)
                     .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#25252A")),
+                // Imperial Pass Begin
+                Element<PanelContainer>().Class("AngleRectPass")
+                    .Prop(PanelContainer.StylePropertyPanel, passrect)
+                    .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#131313")),
+                // Imperial Pass End
 
                 Element<PanelContainer>().Class("BackgroundOpenRight")
                     .Prop(PanelContainer.StylePropertyPanel, BaseButtonOpenRight)
@@ -1413,6 +1829,28 @@ namespace Content.Client.Stylesheets
                 Element<PanelContainer>().Class("WindowHeadingBackground")
                     .Prop("panel", new StyleBoxTexture(BaseButtonOpenLeft) { Padding = default })
                     .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#1F1F23")),
+
+                // Imperial Pass Begin
+                Element<PanelContainer>().Class("WindowHeadingBackgroundPass")
+                    .Prop("panel", new StyleBoxTexture(BaseButtonSquare) { Padding = default })
+                    .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#222222")),
+
+                Element<PanelContainer>().Class("PanelBackgroundPass")
+                    .Prop("panel", new StyleBoxTexture(BaseButtonSquare) { Padding = default })
+                    .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#131313")),
+                // Imperial Pass End
+                // Imperial Roadmap Start
+                Element<PanelContainer>().Class("PanelBackgroundRoadmapCard")
+                    .Prop("panel", new StyleBoxTexture(BaseButtonSquare) { Padding = default })
+                    .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#1F1F1F")),
+                Element<RichTextLabel>().Class("RoadmapPlanName")
+                    .Prop(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Medium.ttf", 15))
+                    .Prop(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF")),
+                Element<RichTextLabel>().Class("RoadmapPlanDescription")
+                    .Prop(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Medium.ttf", 10))
+                    .Prop(Label.StylePropertyFontColor, Color.FromHex("#939393")),
+                // Imperial Roadmap End
+
 
                 Element<PanelContainer>().Class("WindowHeadingBackgroundLight")
                     .Prop("panel", new StyleBoxTexture(BaseButtonOpenLeft) { Padding = default }),
@@ -1477,6 +1915,35 @@ namespace Content.Client.Stylesheets
                     .Prop(Label.StylePropertyFont, notoSans10)
                     .Prop(Label.StylePropertyFontColor, Color.DarkGray),
 
+                // Imperial Pass Begin
+                Element<RichTextLabel>().Class("LabelSubTextPass")
+                    .Prop(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-SemiBold.ttf", 10))
+                    .Prop(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF")),
+
+                Element<RichTextLabel>().Class("LabelSubTextPass1")
+                    .Prop(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Bold.ttf", 20))
+                    .Prop(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF")),
+
+                Element<RichTextLabel>().Class("LabelSubTextPassUpper")
+                    .Prop(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-SemiBold.ttf", 14))
+                    .Prop(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF")),
+
+                Element<RichTextLabel>().Class("LabelSubTextPassLower")
+                    .Prop(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-SemiBold.ttf", 10))
+                    .Prop(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF")),
+
+                Element<RichTextLabel>().Class("LabelReconnectWindow30")
+                    .Prop(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-SemiBold.ttf", 30))
+                    .Prop(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF")),
+
+                Element<Label>().Class("ImperialLabelH1")
+                    .Prop(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Bold.ttf", 47))
+                    .Prop(Label.StylePropertyFontColor, Color.FromHex("#FFFFFF")),
+
+                Element<Label>().Class("ImperialLabelGreyH4")
+                    .Prop(Label.StylePropertyFont, resCache.GetFont("/Fonts/Imperial/Pass/SourceCodePro-Medium.ttf", 9))
+                    .Prop(Label.StylePropertyFontColor, Color.FromHex("#7E7E7E")),
+                // Imperial Pass End
                 Element<LineEdit>().Class("PaperLineEdit")
                     .Prop(LineEdit.StylePropertyStyleBox, new StyleBoxEmpty()),
 
@@ -1659,7 +2126,11 @@ namespace Content.Client.Stylesheets
                     new[]
                     {
                         new StyleProperty(TextureButton.StylePropertyTexture, resCache.GetTexture("/Textures/Interface/Bwoink/un_pinned.png"))
-                    })
+                    }),
+
+                Element<PanelContainer>()
+                    .Class(StyleClassInset)
+                    .Prop(PanelContainer.StylePropertyPanel, insetBack),
             }).ToList());
         }
     }

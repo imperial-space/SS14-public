@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.Fax;
 using Content.Shared.Fax.Components;
 using Content.Shared.GameTicking;
+using Content.Server.Imperial.StationGoal;
 using Content.Shared.Paper;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Prototypes;

@@ -6,7 +6,6 @@
   targetNode: icon
   category: construction-category-utilities
   description: Лампа большой мощности с небольшим голубым кристаллом внутри. # Imperial Recipes Locale
-  icon: { sprite: Objects/Power/light_tube.rsi, state: normal }
   objectType: Item
 
 - type: construction
@@ -17,7 +16,6 @@
   targetNode: icon
   category: construction-category-utilities
   description: Лампа большой мощности с небольшим синим кристаллом внутри. # Imperial Recipes Locale
-  icon: { sprite: Objects/Power/light_tube.rsi, state: normal }
   objectType: Item
 
 - type: construction
@@ -28,7 +26,6 @@
   targetNode: icon
   category: construction-category-utilities
   description: A high powered light tube containing a yellow crystal
-  icon: { sprite: Objects/Power/light_tube.rsi, state: normal }
   objectType: Item
 
 - type: construction
@@ -39,7 +36,6 @@
   targetNode: icon
   category: construction-category-utilities
   description: Лампа большой мощности с небольшим розовым кристаллом внутри. # Imperial Recipes Locale
-  icon: { sprite: Objects/Power/light_tube.rsi, state: normal }
   objectType: Item
 
 - type: construction
@@ -50,7 +46,6 @@
   targetNode: icon
   category: construction-category-utilities
   description: Лампа большой мощности с небольшим оранжевым кристаллом внутри. # Imperial Recipes Locale
-  icon: { sprite: Objects/Power/light_tube.rsi, state: normal }
   objectType: Item
 
 - type: construction
@@ -61,7 +56,6 @@
   targetNode: icon
   category: construction-category-utilities
   description: A high powered light tube containing a black crystal. It won't be very bright.
-  icon: { sprite: Objects/Power/light_tube.rsi, state: normal }
   objectType: Item
 
 - type: construction
@@ -72,7 +66,6 @@
   targetNode: icon
   category: construction-category-utilities
   description: Лампа большой мощности с небольшим цветным красным кристаллом внутри. # Imperial Recipes Locale
-  icon: { sprite: Objects/Power/light_tube.rsi, state: normal }
   objectType: Item
 
 - type: construction
@@ -83,7 +76,6 @@
   targetNode: icon
   category: construction-category-utilities
   description: Лампа большой мощности с небольшим зелёным кристаллом внутри. # Imperial Recipes Locale
-  icon: { sprite: Objects/Power/light_tube.rsi, state: normal }
   objectType: Item
 
 - type: construction
@@ -94,7 +86,6 @@
   targetNode: icon
   category: construction-category-utilities
   description: Лампа большой мощности с небольшим голубым кристаллом внутри. # Imperial Recipes Locale
-  icon: { sprite: Objects/Power/light_bulb.rsi, state: normal }
   objectType: Item
 
 - type: construction
@@ -105,7 +96,6 @@
   targetNode: icon
   category: construction-category-utilities
   description: Лампа большой мощности с небольшим синим кристаллом внутри. # Imperial Recipes Locale
-  icon: { sprite: Objects/Power/light_bulb.rsi, state: normal }
   objectType: Item
 
 - type: construction
@@ -116,7 +106,6 @@
   targetNode: icon
   category: construction-category-utilities
   description: A high powered light bulb containing a yellow crystal.
-  icon: { sprite: Objects/Power/light_bulb.rsi, state: normal }
   objectType: Item
 
 - type: construction
@@ -127,7 +116,6 @@
   targetNode: icon
   category: construction-category-utilities
   description: Лампа большой мощности с небольшим розовым кристаллом внутри. # Imperial Recipes Locale
-  icon: { sprite: Objects/Power/light_bulb.rsi, state: normal }
   objectType: Item
 
 - type: construction
@@ -138,7 +126,6 @@
   targetNode: icon
   category: construction-category-utilities
   description: Лампа большой мощности с небольшим оранжевым кристаллом внутри. # Imperial Recipes Locale
-  icon: { sprite: Objects/Power/light_bulb.rsi, state: normal }
   objectType: Item
 
 - type: construction
@@ -149,7 +136,6 @@
   targetNode: icon
   category: construction-category-utilities
   description: A high powered light bulb containing a black crystal. It won't be very bright.
-  icon: { sprite: Objects/Power/light_bulb.rsi, state: normal }
   objectType: Item
 
 - type: construction
@@ -160,7 +146,6 @@
   targetNode: icon
   category: construction-category-utilities
   description: Лампа большой мощности с небольшим цветным красным кристаллом внутри. # Imperial Recipes Locale
-  icon: { sprite: Objects/Power/light_bulb.rsi, state: normal }
   objectType: Item
 
 - type: construction
@@ -171,5 +156,4 @@
   targetNode: icon
   category: construction-category-utilities
   description: Лампа большой мощности с небольшим голубым кристаллом внутри. # Imperial Recipes Locale
-  icon: { sprite: Objects/Power/light_bulb.rsi, state: normal }
   objectType: Item

@@ -5,11 +5,13 @@ ent-TDMSnowMachineGunnerPreset_S = Наёмник-пулемётчик (Тайг
 ent-TDMSnowGrenadierPreset_S = Наёмник-гранатомётчик (Тайга, Синдикат)
 ent-TDMSnowMedicalPreset_S = Наёмник-медик (Тайга, Синдикат)
 ent-TDMSnowCommanderPreset_S = Наёмник-командир (Тайга, Синдикат)
+ent-TDMSnowSniperPreset_S = Наёмник-снайпер (Тайга, Синдикат)
 ent-TDMSnowRiflemanSpawner_S = Спавнер наёмник-стрелок (Тайга, Синдикат)
 ent-TDMSnowMachineGunnerSpawner_S = Спавнер наёмник-пулемётчик (Тайга, Синдикат)
 ent-TDMSnowGrenadierSpawner_S = Спавнер наёмник-гранатомётчик (Тайга, Синдикат)
 ent-TDMSnowMedicalSpawner_S = Спавнер наёмник-медик (Тайга, Синдикат)
 ent-TDMSnowCommanderSpawner_S = Спавнер наёмник-командир (Тайга, Синдикат)
+ent-TDMSnowSniperSpawner_S = Спавнер наёмник-снайпер (Тайга, Синдикат)
 
 # Перевод для стороны нанотрахен
 
@@ -18,11 +20,13 @@ ent-TDMSnowMachineGunnerPreset_N = Наёмник-пулемётчик (Тайг
 ent-TDMSnowGrenadierPreset_N = Наёмник-гранатомётчик (Тайга, Нанотрейзен)
 ent-TDMSnowMedicalPreset_N = Наёмник-медик (Тайга, Нанотрейзен)
 ent-TDMSnowCommanderPreset_N = Наёмник-командир (Тайга, Нанотрейзен)
+ent-TDMSnowSniperPreset_N = Наёмник-снайпер (Тайга, Нанотрейзен)
 ent-TDMSnowRiflemanSpawner_N = Спавнер наёмник-стрелок (Тайга, Нанотрейзен)
 ent-TDMSnowMachineGunnerSpawner_N = Спавнер наёмник-пулемётчик (Тайга, Нанотрейзен)
 ent-TDMSnowGrenadierSpawner_N = Спавнер наёмник-гранатомётчик (Тайга, Нанотрейзен)
 ent-TDMSnowMedicalSpawner_N = Спавнер наёмник-медик (Тайга, Нанотрейзен)
 ent-TDMSnowCommanderSpawner_N = Спавнер наёмник-командир (Тайга, Нанотрейзен)
+ent-TDMSnowSniperSpawner_N = Спавнер наёмник-снайпер (Тайга, Нанотрейзен)
 
 # Перевод для спавнеров
 
@@ -41,3 +45,6 @@ tdm-snowmedical-rules = Слушайтесь своего главу и выпо
 tdm-snowcommander-name = Наёмник-командир
 tdm-snowcommander-desc = Командир отряда наёмников
 tdm-snowcommander-rules = Отдавайте приказы своим подчинённым. Вам ЗАПРЕЩЕНО забирать вещи других наёмников без необходимой на то причины. Прикрывайте своих напарников по команде и старайтесь не ранить их. Веселитесь!
+tdm-snowsniper-name = Наёмник-снайпер
+tdm-snowsniper-desc = Снайпер отряда наёмников
+tdm-snowsniper-rules = Слушайтесь своего главу и выполняйте его приказы. Вам ЗАПРЕЩЕНО забирать вещи других наёмников без разрешения их самих или вашего главы. Прикрывайте своих напарников по команде и старайтесь не ранить их. Веселитесь!

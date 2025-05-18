@@ -19,3 +19,5 @@ chat-radio-syndicate = Синдикат
 chat-radio-handheld = Рация
 chat-radio-binary = Двоичный
 chat-radio-freelance = Внештатный
+chat-radio-xenoborg = Ксеноборг
+chat-radio-mothership = Материнский шаттл

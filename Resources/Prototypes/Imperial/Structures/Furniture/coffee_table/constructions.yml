@@ -59,9 +59,6 @@
   targetNode: CoffeeTableWood
   category: construction-category-furniture
   description: Не размещайте рядом с огнем. Ходят слухи, что они хорошо горят.
-  icon:
-    sprite: Imperial/Structures/Furniture/coffee_table.rsi
-    state: wood
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -78,9 +75,6 @@
   targetNode: CoffeeTableSteel
   category: construction-category-furniture
   description: Лист металла, стоящий на четырех металлических ножках.
-  icon:
-    sprite: Imperial/Structures/Furniture/coffee_table.rsi
-    state: steel
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -97,9 +91,6 @@
   targetNode: CoffeeTableReinforced
   category: construction-category-furniture
   description: Лист металла, стоящий на четырех металлических ножках. Очень прочный.
-  icon:
-    sprite: Imperial/Structures/Furniture/coffee_table.rsi
-    state: reinforced
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -116,9 +107,6 @@
   targetNode: CoffeeTableGlass
   category: construction-category-furniture
   description: Лист стекла, стоящий на четырех металлических ножках.
-  icon:
-    sprite: Imperial/Structures/Furniture/coffee_table.rsi
-    state: glass
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -135,9 +123,6 @@
   targetNode: CoffeeTablePlasma
   category: construction-category-furniture
   description: Лист плазменного стекла, стоящий на четырех металлических ножках.
-  icon:
-    sprite: Imperial/Structures/Furniture/coffee_table.rsi
-    state: plasma
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -154,9 +139,6 @@
   targetNode: CoffeeTableReinforcedGlass
   category: construction-category-furniture
   description: Лист стекла, стоящий на четырех металлических ножках. Очень прочный.
-  icon:
-    sprite: Imperial/Structures/Furniture/coffee_table.rsi
-    state: reinforced_glass
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -173,9 +155,6 @@
   targetNode: CoffeeTableUranium
   category: construction-category-furniture
   description: Лист уранового стекла, стоящий на четырех металлических ножках. Симпатичный!
-  icon:
-    sprite: Imperial/Structures/Furniture/coffee_table.rsi
-    state: uranium
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -192,9 +171,6 @@
   targetNode: CoffeeTableReinforcedUranium
   category: construction-category-furniture
   description: Лист укрепленного уранового стекла, стоящий на четырех металлических ножках. Очень прочный.
-  icon:
-    sprite: Imperial/Structures/Furniture/coffee_table.rsi
-    state: reinforced_uranium
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -211,9 +187,6 @@
   targetNode: CoffeeTableReinforcedPlasma
   category: construction-category-furniture
   description: Лист укрепленного плазменного стекла, стоящий на четырех металлических ножках.
-  icon:
-    sprite: Imperial/Structures/Furniture/coffee_table.rsi
-    state: reinforced_plasma
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

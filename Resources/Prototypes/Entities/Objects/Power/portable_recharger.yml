@@ -36,3 +36,9 @@
           components:
           - HitscanBatteryAmmoProvider
           - ProjectileBatteryAmmoProvider
+        # Imperial "plasma Cutter + Advanced Version" Start
+        # In order not to devalue charging with materials
+        blacklist:
+          tags:
+          - OnlyMaterialEnergy
+        # Imperial "plasma Cutter + Advanced Version" End

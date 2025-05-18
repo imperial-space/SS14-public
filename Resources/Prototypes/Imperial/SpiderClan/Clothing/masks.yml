@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskNinja
   id: RedMaskNinja
   name: ninja mask
   suffix: Crook, SpiderClan
@@ -9,14 +9,9 @@
     sprite: Imperial/SpiderClan/Clothing/Default/Masks/redninja.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Masks/redninja.rsi
-  - type: Item
-    storedRotation: -90
-  - type: EyeProtection
-  - type: BreathMask
-  - type: IdentityBlocker
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskNinja
   id: BlueMaskNinja
   name: ninja mask
   suffix: Crook, SpiderClan
@@ -26,14 +21,9 @@
     sprite: Imperial/SpiderClan/Clothing/Default/Masks/blueninja.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Masks/blueninja.rsi
-  - type: Item
-    storedRotation: -90
-  - type: EyeProtection
-  - type: BreathMask
-  - type: IdentityBlocker
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: ClothingMaskNinja
   id: GreenMaskNinja
   name: ninja mask
   suffix: Crook, SpiderClan
@@ -43,8 +33,3 @@
     sprite: Imperial/SpiderClan/Clothing/Default/Masks/greenninja.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Masks/greenninja.rsi
-  - type: Item
-    storedRotation: -90
-  - type: EyeProtection
-  - type: BreathMask
-  - type: IdentityBlocker

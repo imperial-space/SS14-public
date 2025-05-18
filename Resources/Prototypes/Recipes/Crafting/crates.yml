@@ -6,7 +6,6 @@
   targetNode: cratelivestock
   category: construction-category-storage
   description: Деревянный ящик для содержания скота. # Imperial Recipes Locale
-  icon: { sprite: Structures/Storage/Crates/livestock.rsi, state: base }
   objectType: Structure
 
 - type: construction
@@ -17,7 +16,6 @@
   targetNode: crategenericsteel
   category: construction-category-storage
   description: Металлический ящик для хранения вещей. # Imperial Recipes Locale
-  icon: { sprite: Structures/Storage/Crates/generic.rsi, state: icon }
   objectType: Structure
 
 - type: construction
@@ -28,7 +26,6 @@
   targetNode: cratesecure
   category: construction-category-storage
   description: Надежный металлический ящик для хранения вещей. Доступ может быть настроен с помощью конфигуратора доступов. # Imperial Recipes Locale
-  icon: { sprite: Structures/Storage/Crates/secure.rsi, state: icon }
   objectType: Structure
 
 - type: construction
@@ -39,7 +36,6 @@
   targetNode: done
   category: construction-category-storage
   description: Металлический морозильный ящик для хранения вещей. # Imperial Recipes Locale
-  icon: { sprite: Structures/Storage/Crates/freezer.rsi, state: icon }
   objectType: Structure
 
 - type: construction
@@ -50,7 +46,6 @@
   targetNode: crateplastic
   category: construction-category-storage
   description: Пластиковый ящик для хранения вещей. # Imperial Recipes Locale
-  icon: { sprite: Structures/Storage/Crates/plastic.rsi, state: icon }
   objectType: Structure
 
 - type: construction
@@ -61,7 +56,6 @@
   targetNode: basebigbox
   category: construction-category-storage
   description: Большой ящик, в котором можно хранить вещи или прятаться. # Imperial Recipes Locale
-  icon: { sprite: Structures/Storage/closet.rsi, state: cardboard }
   objectType: Structure
 
 - type: construction
@@ -72,7 +66,6 @@
   targetNode: boxcardboard
   category: construction-category-storage
   description: Маленькая коробка для хранения вещей. # Imperial Recipes Locale
-  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
   objectType: Item
 
 - type: construction
@@ -83,9 +76,6 @@
   targetNode: foodboxpizza
   category: construction-category-storage
   description: Коробка для пиццы. # Imperial Recipes Locale
-  icon: 
-    sprite: Objects/Consumable/Food/Baked/pizza.rsi
-    state: box
   objectType: Item
 
 - type: construction
@@ -96,6 +86,4 @@
   targetNode: cratecoffin
   category: construction-category-storage
   description: Гроб для хранения трупов. # Imperial Recipes Locale
-  icon: { sprite: Structures/Storage/Crates/coffin.rsi, state: base }
   objectType: Structure
-  

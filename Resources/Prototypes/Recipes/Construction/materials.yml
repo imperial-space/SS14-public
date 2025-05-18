@@ -6,7 +6,6 @@
   targetNode: MetalRod
   category: construction-category-materials
   description: Прочный металлический стержень, который можно использовать для различных целей. # Imperial Recipes Locale
-  icon: { sprite: Objects/Materials/parts.rsi, state: rods }
   objectType: Item
 
 - type: construction
@@ -17,7 +16,6 @@
   startNode: start
   targetNode: SheetRGlass
   category: construction-category-materials
-  icon: { sprite: Objects/Materials/Sheets/glass.rsi, state: rglass }
   objectType: Item
 
 - type: construction
@@ -28,7 +26,6 @@
   startNode: start
   targetNode: SheetClockworkGlass
   category: construction-category-materials
-  icon: { sprite: Objects/Materials/Sheets/glass.rsi, state: cglass }
   objectType: Item
 
 - type: construction
@@ -39,7 +36,6 @@
   startNode: start
   targetNode: SheetPGlass
   category: construction-category-materials
-  icon: { sprite: Objects/Materials/Sheets/glass.rsi, state: pglass }
   objectType: Item
 
 - type: construction
@@ -50,7 +46,6 @@
   startNode: start
   targetNode: SheetRPGlass
   category: construction-category-materials
-  icon: { sprite: Objects/Materials/Sheets/glass.rsi, state: rpglass }
   objectType: Item
 
 - type: construction
@@ -61,7 +56,6 @@
   startNode: start
   targetNode: SheetRPGlass0
   category: construction-category-materials
-  icon: { sprite: Objects/Materials/Sheets/glass.rsi, state: rpglass }
   objectType: Item
 
 - type: construction
@@ -72,7 +66,6 @@
   startNode: start
   targetNode: SheetRPGlass1
   category: construction-category-materials
-  icon: { sprite: Objects/Materials/Sheets/glass.rsi, state: rpglass }
   objectType: Item
 
 - type: construction
@@ -83,7 +76,6 @@
   targetNode: MaterialDurathread
   category: construction-category-materials
   description: Высококачественная нить, используемая для изготовления прочной одежды. # Imperial Recipes Locale
-  icon: { sprite: Objects/Materials/materials.rsi, state: durathread }
   objectType: Item
 
 - type: construction
@@ -94,7 +86,6 @@
   startNode: start
   targetNode: SheetUGlass
   category: construction-category-materials
-  icon: { sprite: Objects/Materials/Sheets/glass.rsi, state: uglass }
   objectType: Item
 
 - type: construction
@@ -105,7 +96,6 @@
   startNode: start
   targetNode: SheetRUGlass
   category: construction-category-materials
-  icon: { sprite: Objects/Materials/Sheets/glass.rsi, state: ruglass }
   objectType: Item
 
 - type: construction
@@ -116,7 +106,6 @@
   startNode: start
   targetNode: SheetRUGlass0
   category: construction-category-materials
-  icon: { sprite: Objects/Materials/Sheets/glass.rsi, state: ruglass }
   objectType: Item
 
 - type: construction
@@ -127,5 +116,4 @@
   startNode: start
   targetNode: SheetRUGlass1
   category: construction-category-materials
-  icon: { sprite: Objects/Materials/Sheets/glass.rsi, state: ruglass }
   objectType: Item

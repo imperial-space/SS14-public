@@ -1,0 +1,2970 @@
+- type: entity
+  name: Rusar terror
+  parent: MobRusarSpider
+  id: MobRusarSpiderAngrys
+  suffix: terror spider
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Xeno
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: GhostRole
+      makeSentient: true
+      name: spider-terror-name
+      description: spider-terror-desc
+      raffle:
+        settings: short
+    - type: GhostTakeoverAvailable
+    - type: AutoImplant
+      implants:
+      - LightImplantSpiderRusar
+
+- type: entity
+  parent: LightImplantSpider
+  id: LightImplantSpiderRusar
+  name: Spawn web
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionSpawnSpiderRusar
+
+- type: entity
+  id: ActionSpawnSpiderRusar
+  name: Spawn web
+  description: it spans the web. A little stronger than usual.
+  components:
+  - type: WorldTargetAction
+    useDelay: 2.5
+    range: 1
+    itemIconStyle: BigAction
+    icon:
+      sprite: Objects/Misc/spiderweb.rsi
+      state: spider_web_1
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: SpiderWebTerrorRusar
+        amount: 1
+      offset: 0, 1
+
+- type: entity
+  name: Rusar terror
+  parent: [ SimpleMobBases, MobCombat ]
+  id: MobRusarSpider
+  description: Fights with the crew, protects other spiders. Due to its stability, it creates free space so that other spiders can expand the nest.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: terror_red
+      sprite: Imperial/TerrorSpider/Spider/rusar.rsi
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 130
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_red
+      Dead:
+        Base: terror_red_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSpider
+      amount: 2
+  - type: CombatMode
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      220: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 15
+        Structural: 60
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 30
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: Toxin
+        Quantity: 1
+  - type: MeleeChemicalInjector
+    transferAmount: 0.75
+    solution: melee
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: petting-success-tarantula
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+  - type: NoSlip
+  - type: Spider
+    webPrototype: SpiderWebTerrorUwU
+    webAction: TerrorWeedsAction
+  - type: IgnoreSpiderWeb
+  - type: Bloodstream
+    bloodMaxVolume: 0
+    bloodReagent: CopperBlood
+  - type: Speech
+    speechVerb: Arachnid
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2
+    baseSprintSpeed : 3
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      200: 0.7
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 174
+    damage:
+      types:
+        Poison: -1
+      groups:
+        Brute: -1
+        Burn: -1
+
+
+- type: entity
+  name: Dron terror
+  parent: MobDronSpider
+  id: MobDronSpiderAngrys
+  suffix: terror spider
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Xeno
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: GhostRole
+      makeSentient: true
+      name: spider-terror-name
+      description: spider-terror-desc
+      raffle:
+        settings: short
+    - type: GhostTakeoverAvailable
+    - type: AutoImplant
+      implants:
+      - LightImplantSpiderDron
+
+- type: entity
+  parent: LightImplantSpider
+  id: LightImplantSpiderDron
+  name: Spawn eggs 2 tir
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionSpawnSpiderDron
+
+- type: entity
+  id: ActionSpawnSpiderDron
+  name: Spawn web
+  description: it spans the web. A little stronger than usual.
+  components:
+  - type: WorldTargetAction
+    useDelay: 2
+    range: 1
+    itemIconStyle: BigAction
+    icon:
+      sprite: Objects/Misc/spiderweb.rsi
+      state: spider_web_1
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: SpiderWebTerrorDron
+        amount: 1
+      offset: 0, 1
+
+- type: entity
+  name: Dron terror
+  parent: [ SimpleMobBases, MobCombat ]
+  id: MobDronSpider
+  description: It weaves a web around everything, drives away the crew with spit, protects the nest.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: terror_widow
+      sprite: Imperial/TerrorSpider/Spider/dron.rsi
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 130
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_widow
+      Dead:
+        Base: terror_widow_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSpider
+      amount: 2
+  - type: CombatMode
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 10
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 30
+  - type: MeleeChemicalInjector
+    transferAmount: 10
+    solution: melee
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: petting-success-tarantula
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+  - type: NoSlip
+  - type: Spider
+    webPrototype: SpiderWebTerrorUwU
+    webAction: TerrorWeedsAction
+  - type: IgnoreSpiderWeb
+  - type: Bloodstream
+    bloodMaxVolume: 0
+    bloodReagent: CopperBlood
+  - type: Speech
+    speechVerb: Arachnid
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 6
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      80: 0.7
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.75
+  - type: BasicEntityAmmoProvider
+    proto: TerrorDrontAcid
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 0.75
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+
+
+- type: entity
+  id: TerrorDrontAcid
+  name: Acid terror
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Caustic: 20
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
+      layers:
+        - state: xeno_toxic
+    - type: Ammo
+      muzzleFlash: null
+
+- type: entity
+  name: Lurker terror
+  parent: MobsogladatelSpider
+  id: MobsogladatelSpiderAngrys
+  suffix: terror spider
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Xeno
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: GhostRole
+      makeSentient: true
+      name: spider-terror-name
+      description: spider-terror-desc
+      raffle:
+        settings: short
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  name: Lurker terror
+  parent: [ SimpleMobBases, MobCombat ]
+  id: MobsogladatelSpider
+  description: He waits in ambush, and then quickly deals with his target, acting either as a loner or in a nest.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: terror_gray_cloaked
+      sprite: Imperial/TerrorSpider/Spider/sogladatel.rsi
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 130
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_gray_cloaked
+      Dead:
+        Base: terror_gray_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSpider
+      amount: 2
+  - type: CombatMode
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 15
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 30
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: MuteToxin
+        Quantity: 600
+  - type: MeleeChemicalInjector
+    transferAmount: 10
+    solution: melee
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: petting-success-tarantula
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+  - type: NoSlip
+  - type: Spider
+    webPrototype: SpiderWebTerrorUwU
+    webAction: TerrorWeedsAction
+  - type: IgnoreSpiderWeb
+  - type: Bloodstream
+    bloodMaxVolume: 0
+    bloodReagent: CopperBlood
+  - type: Speech
+    speechVerb: Arachnid
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      80: 0.7
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+
+
+- type: entity
+  name: Reaper terror
+  parent: MobreaperSpider
+  id: MobGiantreaperSpiderAngry
+  suffix: terror spider
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Xeno
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: GhostRole
+      makeSentient: true
+      name: spider-terror-name
+      description: spider-terror-desc
+      raffle:
+        settings: short
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  name: Reaper terror
+  parent: [ SimpleMobBases, MobCombat ]
+  id: MobreaperSpider
+  description: A berserker must behave aggressively and bite someone regularly in order to survive. Absolutely deadly in close combat.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: terror_white
+      sprite: Imperial/TerrorSpider/Spider/reaper.rsi
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 130
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_white
+      Dead:
+        Base: terror_white_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSpider
+      amount: 2
+  - type: CombatMode
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      130: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 30
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 30
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: Toxin
+        Quantity: 1
+  - type: MeleeChemicalInjector
+    transferAmount: 0.75
+    solution: melee
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: petting-success-tarantula
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+  - type: NoSlip
+  - type: Spider
+    webPrototype: SpiderWebTerrorUwU
+    webAction: TerrorWeedsAction
+  - type: IgnoreSpiderWeb
+  - type: Bloodstream
+    bloodMaxVolume: 0
+    bloodReagent: CopperBlood
+  - type: Speech
+    speechVerb: Arachnid
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      120: 0.7
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+
+
+- type: entity
+  name: Destroye terror
+  parent: MobDestroyerSpider
+  id: MobGiantDestroyerSpiderAngry
+  suffix: terror spider
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Xeno
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: GhostRole
+      makeSentient: true
+      name: spider-terror-name
+      description: spider-terror-desc
+      raffle:
+        settings: short
+    - type: GhostTakeoverAvailable
+    - type: AutoImplant
+      implants:
+      - EmpImplant
+
+- type: entity
+  name: Destroyer terror
+  parent: [ SimpleMobBases, MobCombat ]
+  id: MobDestroyerSpider
+  description: Breaks down walls and doors, sabotages the station, destroys departments. The main enemy of synthetics.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: terror_brown
+      sprite: Imperial/TerrorSpider/Spider/destroyer.rsi
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 130
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_brown
+      Dead:
+        Base: terror_brown_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSpider
+      amount: 2
+  - type: CombatMode
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 15
+        Structural: 100
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 30
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: Toxin
+        Quantity: 1
+  - type: MeleeChemicalInjector
+    transferAmount: 0.75
+    solution: melee
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: petting-success-tarantula
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+  - type: NoSlip
+  - type: Spider
+    webPrototype: SpiderWebTerrorUwU
+    webAction: TerrorWeedsAction
+  - type: IgnoreSpiderWeb
+  - type: Bloodstream
+    bloodMaxVolume: 0
+    bloodReagent: CopperBlood
+  - type: Speech
+    speechVerb: Arachnid
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      80: 0.7
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 60
+  - type: BasicEntityAmmoProvider
+    proto: TerrorRavAcid
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 60
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 99
+    damage:
+      types:
+        Poison: -1
+      groups:
+        Brute: -1
+        Burn: -1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+
+- type: entity
+  id: TerrorRavAcid
+  name: Acid terror EMP
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Caustic: -1
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
+      layers:
+        - state: xeno_toxic
+    - type: Ammo
+      muzzleFlash: null
+    - type: CartridgeAmmo
+      proto: BulletGrenadeEMPToxin
+
+- type: entity
+  id: BulletGrenadeEMPToxin
+  name: EMP terror
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/TerrorSpider/Spider/bluexeno_toxin.rsi
+    layers:
+      - state: bluetox
+  - type: EmpOnTrigger
+    range: 5
+    energyConsumption: 50000
+    disableDuration: 10
+  - type: Ammo
+    muzzleFlash: null
+  - type: PointLight
+    radius: 3.5
+    color: blue
+    energy: 0.5
+
+- type: entity
+  name: Widow terror
+  parent: MobWidowSpider
+  id: MobGiantWidowSpiderAngry
+  suffix: terror spider
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Xeno
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: GhostRole
+      makeSentient: true
+      name: spider-terror-name
+      description: spider-terror-desc
+      raffle:
+        settings: short
+    - type: GhostTakeoverAvailable
+    - type: AutoImplant
+      implants:
+      - LightImplantSpiderRusar
+
+- type: entity
+  name: Widow terror
+  parent: [ SimpleMobBases, MobCombat ]
+  id: MobWidowSpider
+  description: One of the deadliest spiders, it kills any organic target in a few bites, has dangerous spits, but has little health. It hunts singletons, or attacks together with other spiders.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: terror_widow
+      sprite: Imperial/TerrorSpider/Spider/widow.rsi
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 130
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_widow
+      Dead:
+        Base: terror_widow_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSpider
+      amount: 2
+  - type: CombatMode
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 15
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 30
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: Toxin
+        Quantity: 1
+  - type: MeleeChemicalInjector
+    transferAmount: 0.75
+    solution: melee
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: petting-success-tarantula
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+  - type: NoSlip
+  - type: Spider
+    webPrototype: SpiderWebTerrorUwU
+    webAction: TerrorWeedsAction
+  - type: IgnoreSpiderWeb
+  - type: Bloodstream
+    bloodMaxVolume: 0
+    bloodReagent: CopperBlood
+  - type: Speech
+    speechVerb: Arachnid
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      80: 0.7
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 20
+  - type: BasicEntityAmmoProvider
+    proto: GasXenoSpitBullet
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 20
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 99
+    damage:
+      types:
+        Poison: -1
+      groups:
+        Brute: -1
+        Burn: -1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+
+
+- type: entity
+  name: Guardian terror
+  parent: MobGuardianSpider
+  id: MobGiantGuardianSpiderAngry
+  suffix: terror spider
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Xeno
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: GhostRole
+      makeSentient: true
+      name: spider-terror-name
+      description: spider-terror-desc
+      raffle:
+        settings: short
+    - type: GhostTakeoverAvailable
+    - type: AutoImplant
+      implants:
+      - LightImplantSpiderGuardian
+
+- type: entity
+  parent: LightImplantSpider
+  id: LightImplantSpiderGuardian
+  name: Spawn web
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionSpawnSpiderGuardian
+
+- type: entity
+  id: ActionSpawnSpiderGuardian
+  name: Spawn web
+  description: it spans the web. A little stronger than usual.
+  components:
+  - type: WorldTargetAction
+    useDelay: 3
+    range: 1
+    itemIconStyle: BigAction
+    icon:
+      sprite: Objects/Misc/spiderweb.rsi
+      state: spider_web_1
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: SpiderWebTerrorGuardian
+        amount: 1
+      offset: 0, 1
+
+- type: entity
+  name: Guardian terror
+  parent: [ SimpleMobBases, MobCombat ]
+  id: MobGuardianSpider
+  description: Protects queens/princesses, safety, sacrificing his life if necessary. The most loyal servant and protector.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: terror_purple
+      sprite: Imperial/TerrorSpider/Spider/guardian.rsi
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 130
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_purple
+      Dead:
+        Base: terror_purple_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSpider
+      amount: 2
+  - type: CombatMode
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 25
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 30
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: Toxin
+        Quantity: 1
+  - type: MeleeChemicalInjector
+    transferAmount: 0.75
+    solution: melee
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: petting-success-tarantula
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+  - type: NoSlip
+  - type: Spider
+    webPrototype: SpiderWebTerrorUwU
+    webAction: TerrorWeedsAction
+  - type: IgnoreSpiderWeb
+  - type: Bloodstream
+    bloodMaxVolume: 0
+    bloodReagent: CopperBlood
+  - type: Speech
+    speechVerb: Arachnid
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      220: 0.8
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 379
+    damage:
+      types:
+        Poison: -1
+      groups:
+        Brute: -1
+        Burn: -1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+
+- type: entity
+  name: Mother terror
+  parent: MobMotherSpider
+  id: MobGiantMotherSpiderAngry
+  suffix: terror spider
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Xeno
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: GhostRole
+      makeSentient: true
+      name: spider-terror-name
+      description: spider-terror-desc
+      raffle:
+        settings: short
+    - type: GhostTakeoverAvailable
+    - type: AutoImplant
+      implants:
+      - LightImplantSpiderRusar
+
+- type: entity
+  name: Mother terror
+  parent: [ SimpleMobBases, MobCombat ]
+  id: MobMotherSpider
+  description: The massive one heals the spiders with his aura, and also massively destroys the crew with it. He fights with other spiders on the front line, supporting them.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: terror_mother
+      sprite: Imperial/TerrorSpider/Spider/mother.rsi
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 130
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_mother
+      Dead:
+        Base: terror_mother_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSpider
+      amount: 2
+  - type: CombatMode
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      220: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 10
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 30
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: Toxin
+        Quantity: 1
+  - type: MeleeChemicalInjector
+    transferAmount: 0.75
+    solution: melee
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: petting-success-tarantula
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+  - type: NoSlip
+  - type: Spider
+    webPrototype: SpiderWebTerrorUwU
+    webAction: TerrorWeedsAction
+  - type: IgnoreSpiderWeb
+  - type: Bloodstream
+    bloodMaxVolume: 0
+    bloodReagent: CopperBlood
+  - type: Speech
+    speechVerb: Arachnid
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      200: 0.7
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 219
+    damage:
+      types:
+        Poison: -3
+      groups:
+        Brute: -3
+        Burn: -3
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 4
+  - type: BasicEntityAmmoProvider
+    proto: ProjectileHealingBoltTerror
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 8
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+
+
+- type: entity
+  name: Prince terror
+  parent: MobPrinceSpider
+  id: MobGiantPrinceSpiderAngry
+  suffix: terror spider
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Xeno
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: GhostRole
+      makeSentient: true
+      name: spider-terror-name
+      description: spider-terror-desc
+      raffle:
+        settings: short
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  name: Prince terror
+  parent: [ SimpleMobBases, MobCombat ]
+  id: MobPrinceSpider
+  description: Destroys all living and inanimate things that get in his way.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: terror_allblack
+      sprite: Imperial/TerrorSpider/Spider/prince.rsi
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 130
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_allblack
+      Dead:
+        Base: terror_allblack_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSpider
+      amount: 2
+  - type: CombatMode
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      400: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 25
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 30
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: Toxin
+        Quantity: 1
+  - type: MeleeChemicalInjector
+    transferAmount: 0.75
+    solution: melee
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: petting-success-tarantula
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+  - type: NoSlip
+  - type: Spider
+    webPrototype: SpiderWebTerrorUwU
+    webAction: TerrorWeedsAction
+  - type: IgnoreSpiderWeb
+  - type: Bloodstream
+    bloodMaxVolume: 0
+    bloodReagent: CopperBlood
+  - type: Speech
+    speechVerb: Arachnid
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      500: 0.7
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+
+- type: entity
+  name: Princess terror
+  parent: MobPrincessSpider
+  id: MobGiantPrincessSpiderAngry
+  suffix: terror spider
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Xeno
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: GhostRole
+      makeSentient: true
+      name: spider-terror-name
+      description: spider-terror-desc
+      raffle:
+        settings: short
+    - type: GhostTakeoverAvailable
+    - type: AutoImplant
+      implants:
+      - LightImplantSpiderTir1
+      - LightImplantSpiderTir2
+      - LightImplantSpiderPrincess
+
+- type: entity
+  parent: LightImplantSpider
+  id: LightImplantSpiderPrincess
+  name: Spawnd web
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionSpawnSpiderPrincess
+
+- type: entity
+  id: ActionSpawnSpiderPrincess
+  name: Spawn web
+  description: it spans the web. A little stronger than usual.
+  components:
+  - type: WorldTargetAction
+    useDelay: 2
+    range: 1
+    itemIconStyle: BigAction
+    icon:
+      sprite: Objects/Misc/spiderweb.rsi
+      state: spider_web_1
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: SpiderWebPrincess
+        amount: 1
+      offset: 0, 1
+
+- type: entity
+  parent: LightImplantSpider
+  id: LightImplantSpiderTir1
+  name: Spawnd egg 1 tir
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionSpawnTerrorEgg1Tir
+
+- type: entity
+  id: ActionSpawnTerrorEgg1Tir
+  name: Spawnd egg 1 tir
+  description: Lays an egg
+  components:
+  - type: WorldTargetAction
+    useDelay: 160
+    range: 1
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
+      state: lay_eggs
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: TerrorEgg1Tir
+        amount: 1
+      offset: 0, 1
+
+- type: entity
+  parent: LightImplantSpider
+  id: LightImplantSpiderTir2
+  name: Spawnd egg 2 tir
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionSpawnTerrorEgg2Tir
+
+- type: entity
+  id: ActionSpawnTerrorEgg2Tir
+  name: Spawnd egg 2 tir
+  description: Lays an egg
+  components:
+  - type: WorldTargetAction
+    useDelay: 300
+    range: 1
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
+      state: lay_eggs
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: TerrorEgg2Tir
+        amount: 1
+      offset: 0, 1
+
+- type: entity
+  name: Princess terror
+  parent: [ SimpleMobBases, MobCombat ]
+  id: MobPrincessSpider
+  description: Creates a lair, lays eggs, and tries to keep out of sight of the crew.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: terror_princess1
+      sprite: Imperial/TerrorSpider/Spider/princess.rsi
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 130
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_princess1
+      Dead:
+        Base: terror_princess1_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSpider
+      amount: 2
+  - type: CombatMode
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 15
+        Structural: 60
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 30
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: Toxin
+        Quantity: 1
+  - type: MeleeChemicalInjector
+    transferAmount: 0.75
+    solution: melee
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: petting-success-tarantula
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+  - type: NoSlip
+  - type: Spider
+    webPrototype: SpiderWebTerrorUwU
+    webAction: TerrorWeedsAction
+  - type: IgnoreSpiderWeb
+  - type: Bloodstream
+    bloodMaxVolume: 0
+    bloodReagent: CopperBlood
+  - type: Speech
+    speechVerb: Arachnid
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      180: 0.7
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.75
+  - type: BasicEntityAmmoProvider
+    proto: TerrorDrontAcid
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 0.75
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 179
+    damage:
+      types:
+        Poison: -1.5
+      groups:
+        Brute: -1.5
+        Burn: -1.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+
+
+- type: entity
+  id: TerrorLayEgg
+  name: Spawnd egg terror
+  description: яички
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    icon: { sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi, state: lay_eggs }
+    useDelay: 160
+    event: !type:EggLayInstantActionEvent
+
+- type: entity
+  name: Queen terror
+  parent: MobQueenSpider
+  id: MobGiantQueenSpiderAngry
+  suffix: terror spider
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Xeno
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: GhostRole
+      makeSentient: true
+      name: spider-terror-name
+      description: spider-terror-desc
+      raffle:
+        settings: short
+    - type: GhostTakeoverAvailable
+    - type: AutoImplant
+      implants:
+      - LightImplantSpiderTir3
+      - LightImplantSpiderTir2Queen
+      - LightImplantSpiderTir1Queen
+      - LightImplantSpiderPrincess
+
+- type: entity
+  parent: LightImplantSpider
+  id: LightImplantSpiderTir2Queen
+  name: Spawnd egg 2 tir
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionSpawnTerrorEgg2TirQueen
+
+- type: entity
+  id: ActionSpawnTerrorEgg2TirQueen
+  name: Spawnd egg 2 tir
+  description: Lays an egg
+  components:
+  - type: WorldTargetAction
+    useDelay: 400
+    range: 1
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
+      state: lay_eggs
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: TerrorEgg2Tir
+        amount: 1
+      offset: 0, 1
+
+- type: entity
+  parent: LightImplantSpider
+  id: LightImplantSpiderTir1Queen
+  name: Spawnd egg 1 tir
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionSpawnTerrorEgg1TirQueen
+
+- type: entity
+  id: ActionSpawnTerrorEgg1TirQueen
+  name: Spawnd egg 1 tir
+  description: Lays an egg
+  components:
+  - type: WorldTargetAction
+    useDelay: 220
+    range: 1
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
+      state: lay_eggs
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: TerrorEgg1Tir
+        amount: 1
+      offset: 0, 1
+
+
+- type: entity
+  parent: LightImplantSpider
+  id: LightImplantSpiderTir3
+  name: Spawnd egg 3 tir
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionSpawnTerrorEgg3Tir
+
+- type: entity
+  id: ActionSpawnTerrorEgg3Tir
+  name: Spawnd egg 3 tir
+  description: Lays an egg
+  components:
+  - type: WorldTargetAction
+    useDelay: 1600
+    range: 1
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
+      state: lay_eggs
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: TerrorEgg3Tir
+        amount: 1
+      offset: 0, 1
+
+- type: entity
+  name: Queen terror
+  parent: [ SimpleMobBases, MobCombat ]
+  id: MobQueenSpider
+  description: Creates a lair, mass-produces spiders, and fights spiders on the front lines using his dangerous spitting and screaming.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: terror_queen
+      sprite: Imperial/TerrorSpider/Spider/queen.rsi
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 130
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_queen
+      Dead:
+        Base: terror_queen_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSpider
+      amount: 2
+  - type: CombatMode
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      340: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 25
+        Structural: 50
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 30
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: Toxin
+        Quantity: 1
+  - type: MeleeChemicalInjector
+    transferAmount: 0.75
+    solution: melee
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: petting-success-tarantula
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+  - type: NoSlip
+  - type: Spider
+    webPrototype: SpiderWebTerrorUwU
+    webAction: TerrorWeedsAction
+  - type: IgnoreSpiderWeb
+  - type: Bloodstream
+    bloodMaxVolume: 0
+    bloodReagent: CopperBlood
+  - type: Speech
+    speechVerb: Arachnid
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      320: 0.7
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.75
+  - type: BasicEntityAmmoProvider
+    proto: TerrorQueentAcid
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 0.75
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 174
+    damage:
+      types:
+        Poison: -1.5
+      groups:
+        Brute: -1.5
+        Burn: -1.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+
+
+- type: entity
+  id: TerrorQueentAcid
+  name: Acid terror
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Caustic: 40
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
+      layers:
+        - state: xeno_toxic
+    - type: Ammo
+      muzzleFlash: null
+
+- type: entity
+  save: false
+  parent:
+  - BaseMob
+  - MobDamageable
+  id: BaseSimpleMobs
+  suffix: AI
+  abstract: true
+  components:
+  - type: Reactive
+    groups:
+      Flammable: [Touch]
+      Extinguish: [Touch]
+      Acidic: [Touch, Ingestion]
+  - type: Internals
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
+  - type: StatusEffects
+    allowed:
+    - SlowedDown
+    - Stutter
+    - Electrocution
+    - ForcedSleep
+    - TemporaryBlindness
+    - Pacified
+  #Buckle
+  - type: StandingState
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+
+- type: entity
+  abstract: true
+  parent:
+  - BaseSimpleMobs
+  - MobCombat
+  - MobBloodstream
+  - MobFlammable
+  id: SimpleSpaceMobBases
+  suffix: AI
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleNeutral
+  - type: HTN
+    rootTask:
+      task: IdleCompound
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+  - type: Climbing
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+      80: 0.5
+  - type: MobPrice
+    price: 1000 # Living critters are valuable in space.
+  - type: Perishable
+
+- type: entity
+  parent:
+  - SimpleSpaceMobBases
+  - MobRespirators
+  - KsenosXenoBase
+  id: SimpleMobBases # for air breathers
+  suffix: AI
+  abstract: true
+  components:
+  - type: Hunger
+    thresholds: # only animals and rats are derived from this prototype so let's override it here and in rats' proto
+      Overfed: 100
+      Okay: 50
+      Peckish: 25
+      Starving: 10
+      Dead: 0
+    baseDecayRate: 0.00925925925926 # it is okay for animals to eat and drink less than humans, but more frequently
+  - type: Thirst
+    thresholds:
+      OverHydrated: 200
+      Okay: 150
+      Thirsty: 100
+      Parched: 50
+      Dead: 0
+    baseDecayRate: 0.04
+  - type: Temperature
+    heatDamageThreshold: 350
+    coldDamageThreshold: 250
+    currentTemperature: 310.15
+    specificHeat: 42
+    coldDamage:
+      types:
+        Cold : 0.1 #per second, scales with temperature & other constants
+    heatDamage:
+      types:
+        Heat : 3 #per second, scales with temperature & other constants
+  - type: TemperatureSpeed
+    thresholds:
+      301: 0.8
+      295: 0.6
+      285: 0.4
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+  - type: UseDelay
+    delay: 4
+  - type: ShowHealthBars
+
+
+- type: entity
+  save: false
+  id: MobRespirators
+  abstract: true
+  components:
+  - type: Internals
+
+- type: entity
+  name: Healer terror
+  parent: MobHealerSpider
+  id: MobGiantHealerSpiderAngry
+  suffix: terror spider
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Xeno
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: GhostRole
+      makeSentient: true
+      name: spider-terror-name
+      description: spider-terror-desc
+      raffle:
+        settings: short
+    - type: GhostTakeoverAvailable
+    - type: AutoImplant
+      implants:
+      - LightImplantSpiderDron
+
+- type: entity
+  name: Healer terror
+  parent: [ SimpleMobBases, MobCombat ]
+  id: MobHealerSpider
+  description: It lays eggs and provides treatment support to other spiders, trying to stay away.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: terror_green
+      sprite: Imperial/TerrorSpider/Spider/healer.rsi
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 130
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_green
+      Dead:
+        Base: terror_green_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSpider
+      amount: 2
+  - type: CombatMode
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 15
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 30
+  - type: MeleeChemicalInjector
+    transferAmount: 0.75
+    solution: melee
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: petting-success-tarantula
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+  - type: NoSlip
+  - type: Spider
+    webPrototype: SpiderWebTerrorUwU
+    webAction: TerrorWeedsAction
+  - type: IgnoreSpiderWeb
+  - type: Bloodstream
+    bloodMaxVolume: 0
+    bloodReagent: CopperBlood
+  - type: Speech
+    speechVerb: Arachnid
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      80: 0.7
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 79
+    damage:
+      types:
+        Poison: -1
+      groups:
+        Brute: -1
+        Burn: -1
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
+  - type: BasicEntityAmmoProvider
+    proto: ProjectileHealingBoltTerror
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 8
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+
+- type: entity
+  id: ProjectileHealingBoltTerror
+  name: healing bolt
+  description: I COMMAND YOU TO LIVE!
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: spell
+      color: white
+  - type: Projectile
+    damage:
+      groups:
+        Brute: -45
+        Burn: -45
+        Airloss: -45
+        Toxin: -45
+    ignoreResistances: true
+
+- type: entity
+  id: SpiderWebTerrorRusar
+  name: Web terror spider
+  description: TERROR!
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path:
+            "/Audio/Weapons/slash.ogg"
+    - type: Sprite
+      sprite: Objects/Misc/spiderweb.rsi
+      layers:
+        - state: spider_web_1
+          map: ["spiderWebLayer"]
+      drawdepth: WallMountedItems
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.SpiderWebVisuals.Variant:
+          spiderWebLayer:
+            1:  {state: spider_web_1}
+            2:  {state: spider_web_2}
+    - type: Clickable
+    - type: Transform
+      anchored: true
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: false
+          density: 7
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+          - MidImpassable
+    - type: Damageable
+      damageModifierSet: Wood
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 60
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 60
+    - type: Reactive
+      groups:
+        Flammable: [Touch]
+        Extinguish: [Touch]
+    - type: SpiderWebObject
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      ignoreWhitelist:
+        components:
+            - IgnoreSpiderWeb
+    - type: Slippery
+    - type: StepTrigger
+      intersectRatio: 0.2
+
+- type: entity
+  id: SpiderWebTerrorDron
+  name: Web terror spider
+  description: TERROR!
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path:
+            "/Audio/Weapons/slash.ogg"
+    - type: Sprite
+      sprite: Objects/Misc/spiderweb.rsi
+      layers:
+        - state: spider_web_1
+          map: ["spiderWebLayer"]
+      drawdepth: WallMountedItems
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.SpiderWebVisuals.Variant:
+          spiderWebLayer:
+            1:  {state: spider_web_1}
+            2:  {state: spider_web_2}
+    - type: Clickable
+    - type: Transform
+      anchored: true
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: false
+          density: 7
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+          - MidImpassable
+    - type: Damageable
+      damageModifierSet: Wood
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 70
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 70
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 70
+    - type: Reactive
+      groups:
+        Flammable: [Touch]
+        Extinguish: [Touch]
+    - type: SpiderWebObject
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      ignoreWhitelist:
+        components:
+            - IgnoreSpiderWeb
+    - type: Slippery
+    - type: StepTrigger
+      intersectRatio: 0.2
+    - type: Airtight
+      noAirWhenFullyAirBlocked: false
+
+- type: entity
+  name: Spit terror
+  parent: WeaponXenoSpit
+  id: WeaponTerrorSpit
+  description: spIt
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: TerrorSpitBullet
+    capacity: 1
+    count: 1
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2
+    rechargeSound: /Audio/Animals/cat_hiss.ogg
+
+- type: entity
+  id: TerrorSpitBullet
+  name: Spit terror
+  parent: BulletDisablerPractice
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    scale: 1.3, 2
+    layers:
+    - state: declone
+      shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 3
+    enabled: true
+    color: Green
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Poison: 20
+    soundHit:
+      path: "/Audio/Weapons/Guns/Hits/energy_meat1.ogg"
+  - type: TimedDespawn
+    lifetime: 2
+
+- type: entity
+  id: TerrorEgg2Tir
+  parent: BaseStructure
+  name: egg terror spider
+  suffix: terror spider
+  description: It looks disgusting.
+  save: false
+  components:
+  - type: ContainerContainer
+  - type: ActionsContainer
+  - type: Actions
+  - type: Sprite
+    sprite:  Imperial/TerrorSpider/Spider/actions_animal.rsi
+    layers:
+      - state: lay_eggs
+    noRot: true
+    netsync: false
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Slime
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 1350
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: GhostRole
+    allowMovement: false
+    allowSpeech: false
+    makeSentient: true
+    name: spider-terroregg-name
+    description: spider-terroregg-desc
+    rules: spider-terroregg-rul
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Polymorphable
+    innatePolymorphs: [ EggToMobGiantreaperSpiderAngry, EggToMobGiantWidowSpiderAngry, EggToMobGiantGuardianSpiderAngry, EggToMobGiantDestroyerSpiderAngry ]
+
+- type: polymorph
+  id: EggToMobRusarSpiderAngrys
+  configuration:
+    entity: MobRusarSpiderAngrys
+    forced: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: true
+
+- type: polymorph
+  id: EggToMobDronSpiderAngrys
+  configuration:
+   entity: MobDronSpiderAngrys
+   forced: true
+   transferDamage: true
+   revertOnCrit: false
+   revertOnDeath: false
+   allowRepeatedMorphs: true
+   cooldown: 1
+
+- type: polymorph
+  id: EggToMobsogladatelSpiderAngrys
+  configuration:
+   entity: MobsogladatelSpiderAngrys
+   forced: true
+   transferDamage: true
+   revertOnCrit: false
+   revertOnDeath: false
+   allowRepeatedMorphs: true
+   cooldown: 1
+
+- type: polymorph
+  id: EggToMobGiantHealerSpiderAngry
+  configuration:
+   entity: MobGiantHealerSpiderAngry
+   forced: true
+   transferDamage: true
+   revertOnCrit: false
+   revertOnDeath: false
+   allowRepeatedMorphs: true
+   cooldown: 1
+
+- type: polymorph
+  id: EggToMobGiantreaperSpiderAngry
+  configuration:
+   entity: MobGiantreaperSpiderAngry
+   forced: true
+   transferDamage: true
+   revertOnCrit: false
+   revertOnDeath: false
+   allowRepeatedMorphs: true
+   cooldown: 1
+
+- type: polymorph
+  id: EggToMobGiantWidowSpiderAngry
+  configuration:
+   entity: MobGiantWidowSpiderAngry
+   forced: true
+   transferDamage: true
+   revertOnCrit: false
+   revertOnDeath: false
+   allowRepeatedMorphs: true
+   cooldown: 140
+
+- type: polymorph
+  id: EggToMobGiantGuardianSpiderAngry
+  configuration:
+   entity: MobGiantGuardianSpiderAngry
+   forced: true
+   transferDamage: true
+   revertOnCrit: false
+   revertOnDeath: false
+   allowRepeatedMorphs: true
+   cooldown: 140
+
+- type: polymorph
+  id: EggToMobGiantDestroyerSpiderAngry
+  configuration:
+   entity: MobGiantDestroyerSpiderAngry
+   forced: true
+   transferDamage: true
+   revertOnCrit: false
+   revertOnDeath: false
+   allowRepeatedMorphs: true
+   cooldown: 140
+
+- type: entity
+  id: TerrorEgg3Tir
+  parent: BaseStructure
+  name: egg terror spider
+  suffix: terror spider
+  description: It looks disgusting.
+  save: false
+  components:
+  - type: ContainerContainer
+  - type: ActionsContainer
+  - type: Actions
+  - type: Sprite
+    sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
+    layers:
+      - state: lay_eggs
+    noRot: true
+    netsync: false
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Slime
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 1350
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: GhostRole
+    allowMovement: false
+    allowSpeech: false
+    makeSentient: true
+    name: spider-terroregg-name
+    description: spider-terroregg-desc
+    rules: spider-terroregg-rul
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Polymorphable
+    innatePolymorphs: [ EggToMobGiantPrinceSpiderAngry, EggToMobGiantPrincessSpiderAngry, EggToMobGiantMotherSpiderAngry ]
+
+- type: polymorph
+  id: EggToMobGiantPrinceSpiderAngry
+  configuration:
+   entity: MobGiantPrinceSpiderAngry
+   forced: true
+   transferDamage: true
+   revertOnCrit: false
+   revertOnDeath: false
+   allowRepeatedMorphs: true
+   cooldown: 1
+
+- type: polymorph
+  id: EggToMobGiantPrincessSpiderAngry
+  configuration:
+   entity: MobGiantPrincessSpiderAngry
+   forced: true
+   transferDamage: true
+   revertOnCrit: false
+   revertOnDeath: false
+   allowRepeatedMorphs: true
+   cooldown: 1
+
+- type: polymorph
+  id: EggToMobGiantMotherSpiderAngry
+  configuration:
+   entity: MobGiantMotherSpiderAngry
+   forced: true
+   transferDamage: true
+   revertOnCrit: false
+   revertOnDeath: false
+   allowRepeatedMorphs: true
+   cooldown: 1
+
+- type: entity
+  id: TerrorWeedsAction
+  name: web
+  description: terror web
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    icon: Imperial/TerrorSpider/Spider/actions_animal.rsi/lay_web.png
+    event: !type:SpiderWebActionEvent
+    useDelay: 8
+
+- type: entity
+  id: SpiderWebTerrorGuardian
+  name: web terror spider
+  description: TERROR!
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path:
+            "/Audio/Weapons/slash.ogg"
+    - type: Sprite
+      sprite: Objects/Misc/spiderweb.rsi
+      layers:
+        - state: spider_web_1
+          map: ["spiderWebLayer"]
+      drawdepth: WallMountedItems
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.SpiderWebVisuals.Variant:
+          spiderWebLayer:
+            1:  {state: spider_web_1}
+            2:  {state: spider_web_2}
+    - type: Clickable
+    - type: Transform
+      anchored: true
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: false
+          density: 7
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+          - MidImpassable
+    - type: Damageable
+      damageModifierSet: Wood
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            MaterialWebSilk:
+              min: 0
+              max: 1
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 80
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 80
+    - type: Reactive
+      groups:
+        Flammable: [Touch]
+        Extinguish: [Touch]
+    - type: SpiderWebObject
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      ignoreWhitelist:
+        components:
+            - IgnoreSpiderWeb
+    - type: DamageContacts
+      damage:
+        types:
+          Poison: 4
+          Piercing: 4
+      ignoreWhitelist:
+        components:
+          - IgnoreSpiderWeb
+    - type: TimedDespawn
+      lifetime: 15
+    - type: Slippery
+    - type: StepTrigger
+      intersectRatio: 0.2
+
+- type: entity
+  id: SpiderWebPrincess
+  name: web terror spider
+  description: TERROR!
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path:
+            "/Audio/Weapons/slash.ogg"
+    - type: Sprite
+      sprite: Objects/Misc/spiderweb.rsi
+      layers:
+        - state: spider_web_1
+          map: ["spiderWebLayer"]
+      drawdepth: WallMountedItems
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.SpiderWebVisuals.Variant:
+          spiderWebLayer:
+            1:  {state: spider_web_1}
+            2:  {state: spider_web_2}
+    - type: Clickable
+    - type: Transform
+      anchored: true
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: false
+          density: 7
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+          - MidImpassable
+    - type: Damageable
+      damageModifierSet: Wood
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 60
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 60
+    - type: Reactive
+      groups:
+        Flammable: [Touch]
+        Extinguish: [Touch]
+    - type: SpiderWebObject
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      ignoreWhitelist:
+        components:
+            - IgnoreSpiderWeb
+    - type: Slippery
+    - type: StepTrigger
+      intersectRatio: 0.2
+    - type: Airtight
+      noAirWhenFullyAirBlocked: false
+
+- type: entity
+  abstract: true
+  name: Xeno
+  id: KsenosXenoBase
+  parent: MobXeno
+  suffix: KsenosXeno
+  components:
+  - type: LagCompensation
+  - type: Input
+    context: "human"
+  - type: MovedByPressure
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      path: /Audio/Effects/hit_kick.ogg
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/Xenos/burrower.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+    noRot: true
+    netsync: false
+  - type: Clickable
+  - type: InteractionOutline
+  - type: SolutionContainerManager
+  - type: AtmosExposed
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Critical
+      300: Dead
+  - type: Internals
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Slime
+  - type: Body
+    prototype: Animal
+  - type: Actions
+  - type: DoAfter
+  - type: Polymorphable
+  #- type: Buckle
+  - type: Insulated
+  - type: Hands
+    showInHands: true
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.5
+    baseSprintSpeed : 4
+  - type: Stamina
+    critThreshold: 500
+  - type: Appearance
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    enabled: false
+    radius: 4
+    color: "purple"
+  - type: Puller
+    needsHands: false
+  - type: NoSlip
+  - type: IgnoreSpiderWeb
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - hiveconnection
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - hiveconnection
+  - type: LizardAccent
+  - type: Speech
+    speechSounds: Xeno
+  - type: Eye
+    drawFov: false
+  - type: SolutionRegeneration
+    solution: spray
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 10
+
+- type: radioChannel
+  id: hiveconnection
+  name: Улей
+  keycode: 'й'
+  frequency: 8888
+  color: "#800080"
+  longRange: true
+
+- type: speechSounds
+  id: Xeno
+  saySound:
+    path: /Audio/Animals/cat_hiss.ogg
+  askSound:
+    path: /Audio/Animals/snake_hiss.ogg
+  exclaimSound:
+    path: /Audio/Animals/snake_hiss.ogg
+
+- type: entity
+  name: spit terror
+  parent: BaseItem
+  id: WeaponXenoSpit
+  description: Concentrated toxicity
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: declone
+  - type: Item
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Xeno/alien_spitacid.ogg
+    soundEmpty:
+      path: /Audio/Animals/snake_hiss.ogg
+    projectileSpeed: 8
+  - type: BasicEntityAmmoProvider
+    proto: XenoSpitBullet
+    capacity: 1
+    count: 1
+  - type: AmmoCounter
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
+    rechargeSound: /Audio/Animals/cat_hiss.ogg
+
+- type: gamePreset
+  id: Terrorspider
+  alias:
+    - Terror
+  name: spider-terror-gamerule
+  description: spider-terror-gamerule-desc
+  showInVote: false
+  rules:
+    - BasicStationEventScheduler
+    - BasicRoundstartVariation
+
+- type: entity
+  id: GasXenoSpitBullet
+  name: Xeno's gas spit
+  description: Concentrated toxicity
+  parent: BaseBulletTrigger
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    scale: 1.3, 2
+    layers:
+    - state: declone
+      shader: unshaded
+  - type: Projectile
+    deleteOnCollide: true
+    damage:
+      types:
+        Blunt: 1
+    soundHit:
+      path: /Audio/Effects/gen_hit.ogg
+  - type: SmokeOnTrigger
+    duration: 10
+    spreadAmount: 30
+    solution:
+      reagents:
+      - ReagentId: Toxin
+        Quantity: 10
+
+- type: entity
+  id: TerrorEgg1Tir
+  parent: BaseStructure
+  name: egg terror spider
+  suffix: terror spider
+  description: It looks disgusting.
+  save: false
+  components:
+  - type: ContainerContainer
+  - type: ActionsContainer
+  - type: Actions
+  - type: Sprite
+    sprite:  Imperial/TerrorSpider/Spider/actions_animal.rsi
+    layers:
+      - state: lay_eggs
+    noRot: true
+    netsync: false
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Slime
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 1350
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: GhostRole
+    allowMovement: false
+    allowSpeech: false
+    makeSentient: true
+    name: spider-terroregg-name
+    description: spider-terroregg-desc
+    rules: spider-terroregg-rul
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Polymorphable
+    innatePolymorphs: [ EggToMobRusarSpiderAngrys, EggToMobDronSpiderAngrys, EggToMobsogladatelSpiderAngrys, EggToMobGiantHealerSpiderAngry ]
+
+- type: entity
+  id: SpiderWebTerrorUwU
+  name: web terror spider
+  description: TERROR!
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path:
+            "/Audio/Weapons/slash.ogg"
+    - type: Sprite
+      sprite: Objects/Misc/spiderweb.rsi
+      layers:
+        - state: spider_web_1
+          map: ["spiderWebLayer"]
+      drawdepth: WallMountedItems
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.SpiderWebVisuals.Variant:
+          spiderWebLayer:
+            1:  {state: spider_web_1}
+            2:  {state: spider_web_2}
+    - type: Clickable
+    - type: Transform
+      anchored: true
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: false
+          density: 7
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+          - MidImpassable
+    - type: Damageable
+      damageModifierSet: Wood
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            MaterialWebSilk:
+              min: 0
+              max: 1
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 80
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 80
+    - type: Reactive
+      groups:
+        Flammable: [Touch]
+        Extinguish: [Touch]
+    - type: SpiderWebObject
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      ignoreWhitelist:
+        components:
+            - IgnoreSpiderWeb
+    - type: TimedDespawn
+      lifetime: 1
+
+- type: entity
+  id: XenoSpitBullet
+  name: Spit xeno
+  parent: BulletDisablerPractice
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    scale: 1.3, 2
+    layers:
+    - state: declone
+      shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 3
+    enabled: true
+    color: Green
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Poison: 20
+        Structural: 25
+    soundHit:
+      path: "/Audio/Weapons/Guns/Hits/energy_meat1.ogg"
+  - type: TimedDespawn
+    lifetime: 2

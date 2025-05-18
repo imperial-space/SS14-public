@@ -55,3 +55,6 @@ ent-ScramImplanter = имплантер
 ent-DeathAcidifierImplanter = имплантер кислотной смерти
     .desc = { ent-BaseImplanter.desc }
     .suffix = Кислота
+ent-FakeMindShieldImplanter = имплантер ложной защиты разума
+    .desc = { ent-BaseImplanter.desc }
+    .suffix = Ложная защита разума

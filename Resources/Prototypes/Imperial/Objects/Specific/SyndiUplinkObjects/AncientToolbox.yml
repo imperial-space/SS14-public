@@ -1,0 +1,17 @@
+- type: entity
+  name: Toolbox Rubast
+  parent: ToolboxEmergency
+  id: AncientToolbox
+  description: A toolbox typically stocked with electrical gear.
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Objects/Fun/AncientToolbox.rsi
+    state: icon
+  - type: Item
+    sprite: /Textures/Imperial/Objects/Fun/AncientToolbox.rsi
+  - type: EntityStorage
+    capacity: 10
+  - type: DamageModifierStorage
+    damageIncrease: 1.5
+    targetItemBaseId: "telecrystal"
+

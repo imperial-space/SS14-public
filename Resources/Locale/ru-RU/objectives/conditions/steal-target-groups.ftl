@@ -6,6 +6,7 @@ steal-target-groups-toilet-golden-dirty-water = золотой унитаз
 steal-target-groups-teg = часть ТЭГ
 steal-target-groups-technology-disks = технологический диск
 steal-target-groups-stamps = печати
+steal-target-groups-clothing-hands-knuckledusters-qm = золотые кастеты квартирмейстера
 steal-target-groups-salvage-expeditions-computer-circuitboard = Машинная плата консоли экспедиций
 steal-target-groups-research-and-development-server-machine-circuitboard = плата сервера РНД
 steal-target-groups-plant-rd = "растение Научного Руководителя"

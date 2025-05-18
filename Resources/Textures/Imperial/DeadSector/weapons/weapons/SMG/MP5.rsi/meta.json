@@ -1,10 +1,10 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "made by @Felix",
+    "copyright": "made by crookielv",
     "size": {
-        "x": 32,
-        "y": 32
+        "x": 64,
+        "y": 64
     },
     "states": [
 	    {
@@ -16,33 +16,8 @@
 	    {
 	    	"name": "bolt-open"
 	    },
-        {
-	    	"name": "equipped-BACKPACK",
-	    	"directions": 4
-	    },
-        {
-	    	"name": "equipped-SUITSTORAGE",
-	    	"directions": 4
-	    },
-        {
-	    	"name": "inhand-left",
-	    	"directions": 4
-	    },
-        {
-	    	"name": "inhand-right",
-	    	"directions": 4
-	    },
 	    {
 	    	"name": "mag-0"
-	    },
-        {
-	    	"name": "laser"
-	    },
-	    {
-	    	"name": "laser-on"
-	    },
-	    {
-	    	"name": "laser-off"
 	    }
     ]
 }

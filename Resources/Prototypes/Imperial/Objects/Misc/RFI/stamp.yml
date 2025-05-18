@@ -1,0 +1,12 @@
+- type: entity
+  name: rfi rubber stamp
+  parent: RubberStampMime
+  id: RubberStampRFI
+  components:
+    - type: Stamp
+      stampedName: stamp-component-stamped-name-rfi
+      stampState: paper_stamp-rfi
+      stampedColor: "#d49d06"
+    - type: Sprite
+      sprite: Imperial/Objects/Misc/imperial_bureaucracy.rsi
+      state: stamp-rfi

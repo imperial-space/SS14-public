@@ -1,0 +1,86 @@
+- type: entity
+  id: Advanced-WeaponPlasmaCutterBase
+  abstract: true
+  parent: [BaseItem, BaseWeaponBatterySmall]
+  components:
+  - type: Sprite
+    sprite: Imperial/Objects/Weapons/Guns/CharginMaterials/PlasmaCutter/advanced-base.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    sprite: Imperial/Objects/Weapons/Guns/CharginMaterials/PlasmaCutter/advanced-base.rsi
+    size: Small
+    shape:
+    - 0,1, 1,0
+    - 2,0, 0,1
+  - type: Clothing
+    sprite: Imperial/Objects/Weapons/Guns/CharginMaterials/PlasmaCutter/advanced-base.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Gun
+    projectileSpeed: 30
+    fireRate: 0.2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Lavaland/PlasmaCutter/gun_shoot2.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BatteryWeaponFireModes
+    modeSwitchDelay: 3.5
+    fireModes:
+    - proto: Advanced-BulletPlasmaCutter
+      fireCost: 100
+    - proto: Advanced-AttackerBulletPlasmaCutter
+      fireCost: 150
+  - type: ProjectileBatteryAmmoProvider
+    proto: Advanced-BulletPlasmaCutter
+    fireCost: 100
+  - type: UseDelay
+  - type: Battery
+    maxCharge: 3000
+    startingCharge: 3000
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: MaterialEnergy
+    materialWhiteList: [Plasma]
+  - type: Tag
+    tags:
+    - OnlyMaterialEnergy
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 2
+
+- type: entity
+  name: Advanced plasma cutter
+  id: Advanced-WeaponPlasmaCutter
+  parent: [Advanced-WeaponPlasmaCutterBase, BaseCargoContraband]
+  suffix: Full, Lavaland, Advanced
+  description: ...
+  components:
+  - type: Battery
+    maxCharge: 3000
+    startingCharge: 3000
+
+
+- type: entity
+  name: Advanced plasma cutter
+  id: Advanced-EmptyWeaponPlasmaCutter
+  parent: Advanced-WeaponPlasmaCutter
+  suffix: Empty, Lavaland, Advanced
+  description: ...
+  components:
+  - type: Battery
+    maxCharge: 3000
+    startingCharge: 0

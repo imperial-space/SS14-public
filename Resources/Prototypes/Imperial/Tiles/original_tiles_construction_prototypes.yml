@@ -6,7 +6,6 @@
   targetNode: goldltile
   category: construction-category-tiles
   description: "Четыре золотых напольных плитки."
-  icon: { sprite: Objects/Tiles/tile.rsi, state: gold }
   objectType: Item
 
 - type: construction
@@ -17,7 +16,6 @@
   targetNode: silvertile
   category: construction-category-tiles
   description: "Четыре серебряных напольных плитки."
-  icon: { sprite: Objects/Tiles/tile.rsi, state: silver }
   objectType: Item
 
 - type: construction
@@ -28,7 +26,6 @@
   targetNode: woodpatterntile
   category: construction-category-tiles
   description: "Четыре листа красивого паркета"
-  icon: { sprite: Objects/Tiles/tile.rsi, state: woodpatternfloor }
   objectType: Item
 
 - type: construction
@@ -39,7 +36,6 @@
   targetNode: linotile
   category: construction-category-tiles
   description: "Четыре листа линолеума"
-  icon: { sprite: Objects/Tiles/tile.rsi, state: lino }
   objectType: Item
 
 - type: construction
@@ -50,7 +46,6 @@
   targetNode: monotile
   category: construction-category-tiles
   description: "Четыре моно плитки."
-  icon: { sprite: Objects/Tiles/tile.rsi, state: monofloor }
   objectType: Item
 
 - type: construction
@@ -61,7 +56,6 @@
   targetNode: boxingtile
   category: construction-category-tiles
   description: "Четыре листа покрытия ринга"
-  icon: { sprite: Objects/Tiles/tile.rsi, state: boxing }
   objectType: Item
 
 - type: construction
@@ -72,7 +66,6 @@
   targetNode: gymtile
   category: construction-category-tiles
   description: "Четыре листа покрытия спортивного зала"
-  icon: { sprite: Objects/Tiles/tile.rsi, state: gym }
   objectType: Item
 
 - type: construction
@@ -83,7 +76,6 @@
   targetNode: gratingmainttile
   category: construction-category-tiles
   description: "Четыре напольных сетки"
-  icon: { sprite: Objects/Tiles/tile.rsi, state: gratingmaintfloor }
   objectType: Item
 
 - type: construction
@@ -94,7 +86,6 @@
   targetNode: arcadebluetile
   category: construction-category-tiles
   description: "Четыре листа аркадного ковра"
-  icon: { sprite: Objects/Tiles/tile.rsi, state: arcadeblue }
   objectType: Item
 
 - type: construction
@@ -105,7 +96,6 @@
   targetNode: arcadeblue2tile
   category: construction-category-tiles
   description: "Четыре листа аркадного ковра"
-  icon: { sprite: Objects/Tiles/tile.rsi, state: arcadeblue2 }
   objectType: Item
 
 - type: construction
@@ -116,7 +106,6 @@
   targetNode: diamondtile
   category: construction-category-tiles
   description: "Четыре листа металического технического пола"
-  icon: { sprite: Objects/Tiles/tile.rsi, state: metaldiamond }
   objectType: Item
 
 - type: construction
@@ -127,7 +116,6 @@
   targetNode: steelmainttile
   category: construction-category-tiles
   description: "Четыре листа технического пола"
-  icon: { sprite: Objects/Tiles/tile.rsi, state: steelmaintfloor }
   objectType: Item
 
 - type: construction
@@ -138,7 +126,6 @@
   targetNode: techmainttile
   category: construction-category-tiles
   description: "Четыре листа технического пола"
-  icon: { sprite: Objects/Tiles/tile.rsi, state: techfloor }
   objectType: Item
 
 - type: construction
@@ -149,7 +136,6 @@
   targetNode: arcaderedtile
   category: construction-category-tiles
   description: "Четыре листа красного аркадного пола"
-  icon: { sprite: Objects/Tiles/tile.rsi, state: arcadered }
   objectType: Item
 
 - type: construction
@@ -160,7 +146,6 @@
   targetNode: kitchentile
   category: construction-category-tiles
   description: "Четыре кухонных плитки"
-  icon: { sprite: Objects/Tiles/tile.rsi, state: kitchen }
   objectType: Item
 
 - type: construction
@@ -171,7 +156,6 @@
   targetNode: carpetofficetile
   category: construction-category-tiles
   description: "Четыре листа офисного ковра"
-  icon: { sprite: Objects/Tiles/tile.rsi, state: carpetoffice }
   objectType: Item
 
 - type: construction
@@ -182,7 +166,6 @@
   targetNode: bartile
   category: construction-category-tiles
   description: "Четыре плитки бара"
-  icon: { sprite: Objects/Tiles/tile.rsi, state: bar }
   objectType: Item
 
 - type: construction
@@ -193,7 +176,6 @@
   targetNode: shuttlewhitetile
   category: construction-category-tiles
   description: "Четыре белых плитки шаттла"
-  icon: { sprite: Objects/Tiles/tile.rsi, state: shuttlewhite }
   objectType: Item
 
 - type: construction
@@ -204,7 +186,6 @@
   targetNode: shuttleorangetile
   category: construction-category-tiles
   description: "Четыре оранжевых плитки шаттла"
-  icon: { sprite: Objects/Tiles/tile.rsi, state: shuttleorange }
   objectType: Item
 
 - type: construction
@@ -215,7 +196,6 @@
   targetNode: shuttlebluetile
   category: construction-category-tiles
   description: "Четыре голубых плитки шаттла"
-  icon: { sprite: Objects/Tiles/tile.rsi, state: shuttleblue }
   objectType: Item
 
 - type: construction
@@ -226,7 +206,6 @@
   targetNode: shuttlepurpletile
   category: construction-category-tiles
   description: "Четыре фиолетовых плитки шаттла"
-  icon: { sprite: Objects/Tiles/tile.rsi, state: shuttlepurple }
   objectType: Item
 
 

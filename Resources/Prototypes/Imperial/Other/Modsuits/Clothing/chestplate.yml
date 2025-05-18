@@ -512,7 +512,6 @@
     moleUsage: 0.00085
   - type: CanMoveInAir
   - type: InputMover
-    toParent: true
   - type: MovementSpeedModifier
     weightlessAcceleration: 1.1
     weightlessFriction: 0.3
@@ -617,7 +616,6 @@
     moleUsage: 0.00085
   - type: CanMoveInAir
   - type: InputMover
-    toParent: true
   - type: MovementSpeedModifier
     weightlessAcceleration: 1.5
     weightlessFriction: 0.3
@@ -781,7 +779,6 @@
     moleUsage: 0.00085
   - type: CanMoveInAir
   - type: InputMover
-    toParent: true
   - type: MovementSpeedModifier
     weightlessAcceleration: 1.8
     weightlessFriction: 0.3
@@ -846,7 +843,6 @@
     moleUsage: 0.00085
   - type: CanMoveInAir
   - type: InputMover
-    toParent: true
   - type: MovementSpeedModifier
     weightlessAcceleration: 1.8
     weightlessFriction: 0.3
@@ -911,7 +907,6 @@
     moleUsage: 0.00085
   - type: CanMoveInAir
   - type: InputMover
-    toParent: true
   - type: MovementSpeedModifier
     weightlessAcceleration: 1.5
     weightlessFriction: 0.3
@@ -1014,7 +1009,6 @@
     moleUsage: 0.00085
   - type: CanMoveInAir
   - type: InputMover
-    toParent: true
   - type: MovementSpeedModifier
     weightlessAcceleration: 1.3
     weightlessFriction: 0.3

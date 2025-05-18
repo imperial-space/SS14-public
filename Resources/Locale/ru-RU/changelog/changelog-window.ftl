@@ -12,3 +12,4 @@ changelog-button-new-entries = Обновление (!)
 
 changelog-tab-title-Changelog = Обновление
 changelog-tab-title-Admin = Админ
+changelog-tab-title-Maps = Карты

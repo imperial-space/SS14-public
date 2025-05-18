@@ -185,7 +185,6 @@
   itemDrop: SnowballIce
   friction: 0.05
   mobFriction: 0.5
-  mobFrictionNoInput: 0.05
   mobAcceleration: 2
   heatCapacity: 10000
 

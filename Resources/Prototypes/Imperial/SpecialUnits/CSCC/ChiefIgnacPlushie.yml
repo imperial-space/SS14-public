@@ -1,0 +1,14 @@
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieCSCC #Chief of Staff CentCom / Начальник Штаба ЦентКом
+  name: Ignac Shuppe #Стандартный спавн плюшек.
+  description: Wearily, he reads the sheet again and throws it into the trash can where the recycler is buzzing, again the clown was able to be smarter than CC agent...
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/CSCC/ChiefIgnacPlushie.rsi
+    state: plushie_CSCC
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: StorageFill
+    contents:
+      - id: PenCentcom

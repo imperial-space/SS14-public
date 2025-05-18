@@ -1,0 +1,35 @@
+- type: entity
+  parent: BasePDA
+  id: RFIPDA
+  name: regional frontier inspector PDA
+  description: Corporation and profit are best friends.
+  components:
+  - type: Pda
+    id: RFIIDCard
+    penSlot:
+      startingItem: LuxuryPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-rfi
+  - type: PdaBorderColor
+    borderColor: "#f1d453e2"
+  - type: Icon
+    state: pda-rfi
+
+- type: entity
+  parent: IDCardStandard
+  id: RFIIDCard
+  name: regional frontier inspector ID card
+  components:
+    - type: Sprite
+      layers:
+        - state: rficard
+        - state: idrfi
+    - type: PresetIdCard
+      job: RFI

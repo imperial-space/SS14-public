@@ -25,9 +25,6 @@
   targetNode: couchComfy
   category: construction-category-furniture
   description: Выглядит комфортно.
-  icon:
-    sprite: Imperial/Structures/Furniture/couch.rsi
-    state: comfy_couch
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -62,9 +59,6 @@
   targetNode: couchGold
   category: construction-category-furniture
   description: Выглядит богато.
-  icon:
-    sprite: Imperial/Structures/Furniture/couch.rsi
-    state: gold_couch_2
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

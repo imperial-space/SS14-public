@@ -10,3 +10,4 @@ id-card-console-window-job-selection-label = Форма профессии (Ук
 access-id-card-console-component-no-hands-error = У тебя нету рук.
 id-card-console-privileged-id = Основной ID
 id-card-console-target-id = Изменяемый ID
+id-card-console-damaged = Структурная целостность нарушена, содержимое выброшено.

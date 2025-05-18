@@ -20,3 +20,4 @@ player-panel-delete = Удалить
 player-panel-rejuvenate = Воскресить
 player-panel-false = Нет
 player-panel-true = Да
+player-panel-follow = Следовать

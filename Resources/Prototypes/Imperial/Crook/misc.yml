@@ -114,7 +114,21 @@
 ### tomsktoluene
 ### tomsktoluene
 
-
+- type: entity
+  parent: ClothingUniformBase
+  id: KasaneTetoUniform
+  name: костюм вокалоида
+  suffix: Crook
+  description: Иногда шутка может вырасти во что-то большее. На нём имеется этикетка с логотипом "Project DIVA". 
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/kasane.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/kasane.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
 
 # https://github.com/tgstation/tgstation/blob/master/icons/turf/sand.dmi
 - type: tile

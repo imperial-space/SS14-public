@@ -4,6 +4,7 @@ using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Imperial.CrewSkills;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Survivor.Components;
@@ -53,6 +54,11 @@ public sealed class SurvivorRuleSystem : GameRuleSystem<SurvivorRuleComponent>
             EnsureComp<SurvivorComponent>(mind);
             _role.MindAddRole(mind, "MindRoleSurvivor");
             _antag.SendBriefing(ent, Loc.GetString("survivor-role-greeting"), Color.Olive, null);
+
+            // Imperial Space Crew Skills Start
+            var crewSkillsComponent = EnsureComp<CrewSkillsComponent>(ent);
+            crewSkillsComponent.Skills.Add("skillShooting");
+            // Imperial Space Crew Skills End
         }
     }
 

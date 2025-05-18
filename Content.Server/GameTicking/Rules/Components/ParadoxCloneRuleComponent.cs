@@ -17,7 +17,11 @@ public sealed partial class ParadoxCloneRuleComponent : Component
     public ProtoId<CloningSettingsPrototype> Settings = "Antag";
 
     /// <summary>
+    ///     Visual effect spawned when gibbing at round end.
+    /// </summary>
+    [DataField]
     public EntProtoId GibProto = "MobParadoxTimed";
+
     /// <summary>
     ///     Entity of the original player.
     ///     Gets randomly chosen from all alive players if not specified.

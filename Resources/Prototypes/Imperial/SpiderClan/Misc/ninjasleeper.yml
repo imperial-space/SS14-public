@@ -65,4 +65,9 @@
     - scanner-bodyContainer
   - type: GuideHelp
     guides:
-    - Cloning
+    - Cloning  
+  - type: AmbientSound
+    volume: -20
+    range: 3
+    sound:
+      path: /Audio/Machines/scan_loop.ogg

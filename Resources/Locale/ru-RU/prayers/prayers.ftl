@@ -1,11 +1,13 @@
 ﻿prayer-verbs-subtle-message = Скрытое послание
 prayer-verbs-pray = Помолиться
 prayer-verbs-call = Позвонить
+prayer-verbs-worship = Поклониться
 prayer-chat-notify-pray = МОЛИТВА
 prayer-chat-notify-honkmother = ХОНКОМАТЕРЬ
 prayer-chat-notify-centcom = ЦЕНТКОМ
 prayer-chat-notify-syndicate = СИНДИКАТ
 prayer-chat-notify-lamp = ЛАМПА
+prayer-chat-notify-monolith = МОНОЛИТ
 prayer-verbs-rub = Потереть
 
 prayer-popup-subtle-default = Вы слышите голос в своей голове...
@@ -17,3 +19,4 @@ prayer-popup-notify-pray-sent = Ваша молитва была направл�
 prayer-popup-notify-pray-locked = Вы не чувствуете себя достойным...
 prayer-popup-notify-pray-ui-message = Послание
 prayer-popup-notify-lamp-sent = Ваши мысли словно эхо...
+prayer-popup-notify-monolith-sent = Ничего не происходит. Громогласно...

@@ -6,7 +6,6 @@
   targetNode: torch
   category: construction-category-tools
   description: Факел, сделанный из дерева. # Imperial Recipes Locale
-  icon: { sprite: Objects/Misc/torch.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -17,7 +16,6 @@
   targetNode: logic_gate
   category: construction-category-tools
   description: Логический элемент с двумя входами и одним выходом. Техники могут изменить его режим работы с помощью отвёртки. # Imperial Recipes Locale
-  icon: { sprite: Objects/Devices/gates.rsi, state: or_icon }
   objectType: Item
 
 - type: construction
@@ -28,7 +26,6 @@
   targetNode: edge_detector
   category: construction-category-tools
   description: Разделяет нарастающие и спадающие фронты на уникальные импульсы и определяет, насколько вы нервничаете. # Imperial Recipes Locale
-  icon: { sprite: Objects/Devices/gates.rsi, state: edge_detector }
   objectType: Item
 
 - type: construction
@@ -39,7 +36,6 @@
   targetNode: power_sensor
   category: construction-category-tools
   description: Генерирует сигналы в ответ на изменения в сети питания. Может переключаться между напряжениями кабеля. # Imperial Recipes Locale
-  icon: { sprite: Objects/Devices/gates.rsi, state: power_sensor }
   objectType: Item
 
 - type: construction
@@ -50,5 +46,4 @@
   targetNode: memory_cell
   category: construction-category-tools
   description: Схема D-Latch, хранящая сигнал, который можно изменить в зависимости от входных и выходных портов. # Imperial Recipes Locale
-  icon: { sprite: Objects/Devices/gates.rsi, state: memory_cell }
   objectType: Item

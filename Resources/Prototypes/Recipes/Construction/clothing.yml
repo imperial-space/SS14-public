@@ -6,7 +6,6 @@
   targetNode: clownHardsuit
   category: construction-category-clothing
   description: Самодельный скафандр для клоуна. # Imperial Recipes Locale
-  icon: { sprite: Clothing/OuterClothing/Hardsuits/clown.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -17,7 +16,6 @@
   targetNode: mimeHardsuit
   category: construction-category-clothing
   description: Самодельный скафандр для мима. # Imperial Recipes Locale
-  icon: { sprite: Clothing/OuterClothing/Hardsuits/mime.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -28,7 +26,6 @@
   targetNode: armor
   category: construction-category-clothing
   description: Кажется костянные шутки тут неуместны... # Imperial Recipes Locale
-  icon: { sprite: Clothing/OuterClothing/Armor/bone_armor.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -39,7 +36,6 @@
   targetNode: helmet
   category: construction-category-clothing
   description: Крутой шлем из черепов ваших врагов. # Imperial Recipes Locale
-  icon: { sprite: Clothing/Head/Helmets/bone_helmet.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -50,7 +46,6 @@
   targetNode: mask
   category: construction-category-clothing
   description: Наряд настоящего проказника. Клоун неполноценен без парика и маски. # Imperial Recipes Locale
-  icon: { sprite: Clothing/Mask/clown_banana.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -61,7 +56,6 @@
   targetNode: jumpsuit
   category: construction-category-clothing
   description: ХОНК! # Imperial Recipes Locale
-  icon: { sprite: Clothing/Uniforms/Jumpsuit/clown_banana.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -72,7 +66,6 @@
   targetNode: shoes
   category: construction-category-clothing
   description: Когда юмор и обувь поднимаются на новый уровень абсурда. # Imperial Recipes Locale
-  icon: { sprite: Clothing/Shoes/Specific/clown_banana.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -83,7 +76,6 @@
   targetNode: medsecHud
   category: construction-category-clothing
   description: Медицинский и охранный визоры, объединенные в один. # Imperial Recipes Locale
-  icon: { sprite: Clothing/Eyes/Hud/medsec.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -94,7 +86,6 @@
   targetNode: shoes
   category: construction-category-clothing
   description: Удобные, но преследуемые призраками уток, которых вы кормили в детстве. # Imperial Recipes Locale
-  icon: { sprite: Clothing/Shoes/Misc/duck-slippers.rsi, state: icon }
   objectType: Item
 
 
@@ -106,7 +97,6 @@
   targetNode: shoes
   category: construction-category-clothing
   description: Очаровательная пара тапочек, напоминающих человека-ящерицу. Сочетайте это с другой зеленой одеждой, и вы станете самым крутым членом экипажа на станции!
-  icon: { sprite: Clothing/Shoes/Misc/lizard-slippers.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -117,7 +107,6 @@
   targetNode: glassesSec
   category: construction-category-clothing
   description: Пара солнцезащитных очков со встроенным интерфейсом СБ. # Imperial Recipes Locale
-  icon: { sprite: Clothing/Eyes/Glasses/secglasses.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -128,7 +117,6 @@
   targetNode: Quiver
   category: construction-category-clothing
   description: Вмещает до 15 стрел и плотно прилегает к талии. # Imperial Recipes Locale
-  icon: { sprite: Clothing/Belt/quiver.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -139,5 +127,4 @@
   targetNode: helmet
   category: construction-category-clothing
   description: Передовое средство безопасности. Защищает станцию от бездельников. # Imperial Recipes Locale
-  icon: { sprite: Clothing/Head/Helmets/justice.rsi, state: icon }
   objectType: Item

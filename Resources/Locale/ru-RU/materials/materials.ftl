@@ -26,6 +26,7 @@ materials-web = шелк
 materials-bones = кость
 materials-coal = уголь
 materials-gunpowder = порох
+materials-cotton = хлопок
 
 # Ores
 materials-raw-iron = необработанное железо

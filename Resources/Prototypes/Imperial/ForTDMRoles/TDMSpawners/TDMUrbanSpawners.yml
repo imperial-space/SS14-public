@@ -105,6 +105,28 @@
         - sprite: Markers/jobs.rsi
           state: ertleadereva
 
+- type: entity
+  id: TDMUrbanSniperSpawner_S
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-urbansniper-name
+      description: tdm-urbansniper-desc
+      rules: tdm-urbansniper-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMUrbanSniperPreset_S
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+
 # Спавнеры для стороны нанотрахен
 
 - type: entity
@@ -205,6 +227,27 @@
         settings: short
     - type: GhostRoleMobSpawner
       prototype: TDMUrbanCommanderPreset_N
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMUrbanSniperSpawner_N
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-urbansniper-name
+      description: tdm-urbansniper-desc
+      rules: tdm-urbansniper-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMUrbanSniperPreset_N
     - type: Sprite
       sprite: Markers/jobs.rsi
       layers:

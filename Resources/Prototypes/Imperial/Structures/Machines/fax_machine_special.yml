@@ -211,7 +211,7 @@
   id: FaxMachineInternalAffairsAgentColored
   name: internal affairs agent long range fax machine
   description: Direct communication with the operator of CentCom. Comfortable and stylish
-  suffix: IAA
+  suffix: RFI
   components:
   - type: Sprite
     sprite: Imperial/Structures/Machines/FaxSpecial/fax_machine_special/fax_machine_iaa.rsi

@@ -6,5 +6,4 @@
   targetNode: bananiumHorn
   category: construction-category-weapons
   description: Странный клаксон из бананиума. # Imperial Recipes Locale
-  icon: { sprite: Objects/Fun/bananiumhorn.rsi, state: icon }
   objectType: Item

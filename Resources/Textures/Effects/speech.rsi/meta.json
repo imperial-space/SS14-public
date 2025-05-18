@@ -209,6 +209,40 @@
       ]
     },
     {
+        "name": "diona0",
+        "delays": [
+            [
+                0.3,
+                0.3,
+                0.3,
+                0.4
+            ]
+        ]
+    },
+    {
+        "name": "diona1"
+    },
+    {
+        "name": "diona2"
+    },
+    {
+        "name": "gingerbread0",
+        "delays": [
+            [
+                0.3,
+                0.3,
+                0.3,
+                0.4
+            ]
+        ]
+    },
+    {
+        "name": "gingerbread1"
+    },
+    {
+        "name": "gingerbread2"
+    },
+    {
       "name": "guardian0",
       "delays": [
         [
@@ -387,6 +421,27 @@
           0.1
         ]
       ]
+    },
+    {
+        "name": "moth3",
+        "delays": [
+            [
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1
+            ]
+        ]
     },
     {
       "name": "machine0",
@@ -608,22 +663,34 @@
         ]
       ]
     },
-        {
-            "name": "spider0",
-            "delays": [
-                [
-                    0.2,
-                    0.2,
-                    0.2,
-                    0.2
-                ]
+    {
+        "name": "spider0",
+        "delays": [
+            [
+                0.2,
+                0.2,
+                0.2,
+                0.2
             ]
-        },
-        {
-            "name": "spider1"
-        },
+        ]
+    },
+    {
+        "name": "spider1"
+    },
     {
       "name": "spider2"
+    },
+    {
+        "name": "spider3",
+        "delays": [
+            [
+                0.2,
+                0.3,
+                0.3,
+                0.5,
+                0.5
+            ]
+        ]
     },
     {
       "name": "signlang3",
@@ -651,6 +718,18 @@
         },
         {
             "name": "lizard2"
+        },
+        {
+            "name": "lizard3",
+            "delays": [
+                [
+                    0.2,
+                    0.3,
+                    0.3,
+                    0.5,
+                    0.5
+                ]
+            ]
         },
         {
             "name": "clock0",

@@ -1,6 +1,6 @@
 - type: entity
   name: SVU Mk-I
-  parent: BaseItem
+  parent: [BaseItem, BaseGunWieldable]
   id: WeaponFelixSVUMkI
   components:
   - type: Sprite
@@ -9,16 +9,28 @@
     - state: base
       map: ["enum.GunVisualLayers.Base"]
   - type: Item
+    sprite: Imperial/DeadSector/weapons/weapons/sniper/SVUMkI-inhand.rsi
     size: Large
     shape:
     - 0,0,3,2
   - type: Clothing
-    sprite: Imperial/DeadSector/weapons/weapons/sniper/SVUMkI.rsi
+    sprite: Imperial/DeadSector/weapons/weapons/sniper/SVUMkI-inhand.rsi
     quickEquip: false
     slots:
     - Back
     - suitStorage
   - type: AmmoCounter
+  - type: GunRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.70 # Imperial balance
+    sprintModifier: 0.70 # Imperial balance
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
+  - type: GunWieldBonus # Imperial balance
+    minAngle: -32
+    maxAngle: -32
   - type: Gun
     fireRate: 0.75
     selectedMode: SemiAuto
@@ -41,7 +53,7 @@
 
 - type: entity
   name: SVU Mk II
-  parent: BaseItem
+  parent: [BaseItem, BaseGunWieldable]
   id: WeaponSniperSVUMkII
   description: Rifle model SVU Mk II. Average size and ammunition capacity of 15 rounds. Has a black color. Uses 7x62x39 ammo.
   components:
@@ -51,16 +63,28 @@
     - state: base
       map: ["enum.GunVisualLayers.Base"]
   - type: Item
+    sprite: Imperial/DeadSector/weapons/weapons/sniper/WeaponSniperSVUMkII-inhand.rsi
     size: Large
     shape:
     - 0,0,2,2
   - type: Clothing
-    sprite: Imperial/DeadSector/weapons/weapons/sniper/WeaponSniperSVUMkII.rsi
+    sprite: Imperial/DeadSector/weapons/weapons/sniper/WeaponSniperSVUMkII-inhand.rsi
     quickEquip: false
     slots:
     - Back
     - suitStorage
   - type: AmmoCounter
+  - type: GunRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.70 # Imperial balance
+    sprintModifier: 0.70 # Imperial balance
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
+  - type: GunWieldBonus # Imperial balance
+    minAngle: -32
+    maxAngle: -32
   - type: Gun
     fireRate: 0.65
     selectedMode: SemiAuto
@@ -83,7 +107,7 @@
 
 - type: entity
   name: SVD
-  parent: BaseItem
+  parent: [BaseItem, BaseGunWieldable]
   id: WeaponSniperSVD
   description: Large SVD model rifle with 22 rounds of ammunition. It has a silver color mixed with a set of wooden body parts. Uses 7x62x39 ammo.
   components:
@@ -93,16 +117,28 @@
     - state: base
       map: ["enum.GunVisualLayers.Base"]
   - type: Item
+    sprite: Imperial/DeadSector/weapons/weapons/sniper/WeaponSniperSVD-inhand.rsi
     size: Large
     shape:
     - 0,0,3,2
   - type: Clothing
-    sprite: Imperial/DeadSector/weapons/weapons/sniper/WeaponSniperSVD.rsi
+    sprite: Imperial/DeadSector/weapons/weapons/sniper/WeaponSniperSVD-inhand.rsi
     quickEquip: false
     slots:
     - Back
     - suitStorage
   - type: AmmoCounter
+  - type: GunRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.70 # Imperial balance
+    sprintModifier: 0.70 # Imperial balance
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
+  - type: GunWieldBonus # Imperial balance
+    minAngle: -32
+    maxAngle: -32
   - type: Gun
     fireRate: 0.5
     selectedMode: SemiAuto
@@ -123,7 +159,7 @@
 
 - type: entity
   name: VSS Mk-I
-  parent: BaseItem
+  parent: [BaseItem, BaseGunWieldable]
   id: WeaponFelixVSSMkI
   components:
   - type: Sprite
@@ -132,16 +168,28 @@
     - state: base
       map: ["enum.GunVisualLayers.Base"]
   - type: Item
+    sprite: Imperial/DeadSector/weapons/weapons/sniper/VSSMkI-inhand.rsi
     size: Large
     shape:
     - 0,0,3,2
   - type: Clothing
-    sprite: Imperial/DeadSector/weapons/weapons/sniper/VSSMkI.rsi
+    sprite: Imperial/DeadSector/weapons/weapons/sniper/VSSMkI-inhand.rsi
     quickEquip: false
     slots:
     - Back
     - suitStorage
   - type: AmmoCounter
+  - type: GunRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.70 # Imperial balance
+    sprintModifier: 0.70 # Imperial balance
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
+  - type: GunWieldBonus # Imperial balance
+    minAngle: -32
+    maxAngle: -32
   - type: Gun
     fireRate: 0.75
     selectedMode: SemiAuto
@@ -165,7 +213,7 @@
 
 - type: entity
   name: VSS Mk-II
-  parent: BaseItem
+  parent: [BaseItem, BaseGunWieldable]
   id: WeaponFelixVSSMkII
   components:
   - type: Sprite
@@ -174,16 +222,28 @@
     - state: base
       map: ["enum.GunVisualLayers.Base"]
   - type: Item
+    sprite: Imperial/DeadSector/weapons/weapons/sniper/VSSMkII-inhand.rsi
     size: Large
     shape:
     - 0,0,3,2
   - type: Clothing
-    sprite: Imperial/DeadSector/weapons/weapons/sniper/VSSMkII.rsi
+    sprite: Imperial/DeadSector/weapons/weapons/sniper/VSSMkII-inhand.rsi
     quickEquip: false
     slots:
     - Back
     - suitStorage
   - type: AmmoCounter
+  - type: GunRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.70 # Imperial balance
+    sprintModifier: 0.70 # Imperial balance
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
+  - type: GunWieldBonus # Imperial balance
+    minAngle: -32
+    maxAngle: -32
   - type: Gun
     fireRate: 0.75
     selectedMode: SemiAuto

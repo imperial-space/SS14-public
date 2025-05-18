@@ -146,3 +146,12 @@ ent-FloraStalagmite1 = { ent-FloraStalagmite4 }
     .desc = { ent-FloraStalagmite4.desc }
 ent-FloraGreyStalagmite1 = { ent-FloraStalagmite4 }
     .desc = { ent-FloraStalagmite4.desc }
+
+ent-ShadowTree = теневое дерево
+    .desc = Листья шепчут о вас.
+ent-FloraTreeConifer = заснеженная хвоя
+    .desc = Да, это дерево.
+    .suffix = { "" }
+ent-FloraTreeSnow = заснеженное дерево
+    .desc = Да, это дерево.
+    .suffix = { "" }

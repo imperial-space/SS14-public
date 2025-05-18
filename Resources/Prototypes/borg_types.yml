@@ -14,7 +14,8 @@
 
   defaultModules:
   - BorgModuleTool
-
+  - BorgModuleArtifact
+  - BorgModuleAnomaly
   radioChannels:
   - Science
 
@@ -87,8 +88,9 @@
     - BorgModuleCargo
 
   defaultModules:
-  - BorgModuleGrapplingGun
+  - BorgModuleTool
   - BorgModuleMining
+  - BorgModuleTraversal
   - BorgModuleAppraisal
 
   radioChannels:
@@ -123,7 +125,7 @@
     - BorgModuleJanitor
 
   defaultModules:
-  - BorgModuleLightReplacer
+  - BorgModuleCustodial
 #  - BorgModuleCleaning
   - BorgModuleAdvancedCleaning # Ребаланс боргов под Imperial Space. Добавлена новая швабра
 
@@ -159,9 +161,9 @@
     - BorgModuleMedical
 
   defaultModules:
-  - BorgModuleTreatment
-  - BorgModuleDefibrillator # Imperial Space Ребаланс боргов (добавлен модуль дефиба)
-  - BorgModuleAdvancedTreatment # Imperial Space Ребаланс боргов (добавлен модуль гипоспрея)
+  - BorgModuleTopicals
+  - BorgModuleRescue # Imperial Space Ребаланс боргов (добавлен модуль дефиба)
+  - BorgModuleAdvancedChemical # Imperial Space Ребаланс боргов (добавлен модуль гипоспрея)
 
   radioChannels:
   - Science
@@ -208,10 +210,12 @@
     - BorgModuleService
 
   defaultModules:
+  - BorgModuleTool
   - BorgModuleMusique
   - BorgModuleService
   - BorgModuleClowning
-
+  - BorgModuleGardening
+  - BorgModuleHarvesting
   radioChannels:
   - Science
   - Service

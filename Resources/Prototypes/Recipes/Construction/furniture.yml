@@ -7,9 +7,6 @@
   targetNode: chair
   category: construction-category-furniture
   description: Вы сидите на нём. Либо по вашей воле, либо по принуждению. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/chairs.rsi
-    state: chair
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -24,9 +21,6 @@
   targetNode: stool
   category: construction-category-furniture
   description: Приложите ягодицы. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/chairs.rsi
-    state: stool
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -41,9 +35,6 @@
   targetNode: stoolBar
   category: construction-category-furniture
   description: Вы сидите на нём. Либо по вашей воле, либо по принуждению. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/chairs.rsi
-    state: bar
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -58,9 +49,6 @@
   targetNode: chairBrass
   category: construction-category-furniture
   description: Вы сидите на нём. Либо по вашей воле, либо по принуждению. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/chairs.rsi
-    state: brass_chair
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -75,9 +63,6 @@
   targetNode: chairOffice
   category: construction-category-furniture
   description: Вы сидите на нём. Либо по вашей воле, либо по принуждению. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/chairs.rsi
-    state: office-white
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -92,9 +77,6 @@
   targetNode: chairOfficeDark
   category: construction-category-furniture
   description: Вы сидите на нём. Либо по вашей воле, либо по принуждению. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/chairs.rsi
-    state: office-dark
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -109,9 +91,6 @@
   targetNode: chairComfy
   category: construction-category-furniture
   description: Выглядит удобно. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/chairs.rsi
-    state: comfy
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -126,9 +105,6 @@
   targetNode: chairPilotSeat
   category: construction-category-furniture
   description: Кресло пилота престижного корабля. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/chairs.rsi
-    state: shuttle
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -143,9 +119,6 @@
   targetNode: chairWood
   category: construction-category-furniture
   description: Вы сидите на нём. Либо по вашей воле, либо по принуждению. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/chairs.rsi
-    state: wooden
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -160,9 +133,6 @@
   targetNode: chairMeat
   category: construction-category-furniture
   description: Неприятно потный. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/chairs.rsi
-    state: meat
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -177,9 +147,6 @@
   targetNode: chairRitual
   category: construction-category-furniture
   description: Выглядит неудобно. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/chairs.rsi
-    state: ritual
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -194,9 +161,6 @@
   targetNode: chairFolding
   category: construction-category-furniture
   description: Если вы унесёте шесть за раз - вы станете самым крутым парнем в актовом зале. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/folding_chair.rsi
-    state: folding
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -211,9 +175,6 @@
   targetNode: chairSteelBench
   category: construction-category-furniture
   description: Длинная скамья, созданная для метро. Реально стандартный дизайн. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/chairs.rsi
-    state: steel-bench
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -228,9 +189,6 @@
   targetNode: chairWoodBench
   category: construction-category-furniture
   description: Получили занозу? По крайней мере, она экологически чистая. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/chairs.rsi
-    state: wooden-bench
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -245,9 +203,6 @@
   targetNode: redComfBench
   category: construction-category-furniture
   description: Скамейка с очень удобной спинкой. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Bench/comf_bench.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -262,9 +217,6 @@
   targetNode: blueComfBench
   category: construction-category-furniture
   description: Скамейка с очень удобной спинкой. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Bench/comf_bench.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -280,9 +232,6 @@
   targetNode: Table
   category: construction-category-furniture
   description: Квадратный лист металла, стоящий на четырех металлических ножках. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Tables/generic.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -297,9 +246,6 @@
   targetNode: TableReinforced
   category: construction-category-furniture
   description: Квадратный лист металла, стоящий на четырех металлических ножках. Очень прочный. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Tables/reinforced.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -314,9 +260,6 @@
   targetNode: TableGlass
   category: construction-category-furniture
   description: Квадратный лист стекла, стоящий на четырех металлических ножках. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Tables/glass.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -331,9 +274,6 @@
   targetNode: TableReinforcedGlass
   category: construction-category-furniture
   description: Квадратный лист стекла, стоящий на четырех металлических ножках. Очень прочный. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Tables/r_glass.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -348,9 +288,6 @@
   targetNode: TablePlasmaGlass
   category: construction-category-furniture
   description: Квадратный лист плазмы, стоящий на четырех металлических ножках. Красивый! # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Tables/plasma.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -365,9 +302,6 @@
   targetNode: TableBrass
   category: construction-category-furniture
   description: Блестящий, устойчивый к коррозии стол из латуни. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Tables/brass.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -382,9 +316,6 @@
   targetNode: TableWood
   category: construction-category-furniture
   description: Беречь от огня. По слухам, он легко горит. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Tables/wood.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -399,9 +330,6 @@
   targetNode: TableCarpet
   category: construction-category-furniture
   description: Сыграй с нами, ковбой. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Tables/carpet.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -416,9 +344,6 @@
   targetNode: TableFancyBlack
   category: construction-category-furniture
   description: "Дорого, богато" # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Tables/Fancy/black.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -433,9 +358,6 @@
   targetNode: TableFancyBlue
   category: construction-category-furniture
   description: "Дорого, богато" # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Tables/Fancy/blue.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -450,9 +372,6 @@
   targetNode: TableFancyCyan
   category: construction-category-furniture
   description: "Дорого, богато" # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Tables/Fancy/cyan.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -467,9 +386,6 @@
   targetNode: TableFancyGreen
   category: construction-category-furniture
   description: "Дорого, богато" # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Tables/Fancy/green.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -484,9 +400,6 @@
   targetNode: TableFancyOrange
   category: construction-category-furniture
   description: "Дорого, богато" # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Tables/Fancy/orange.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -501,9 +414,6 @@
   targetNode: TableFancyPurple
   category: construction-category-furniture
   description: "Дорого, богато" # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Tables/Fancy/purple.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -518,9 +428,6 @@
   targetNode: TableFancyPink
   category: construction-category-furniture
   description: "Дорого,богато" # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Tables/Fancy/pink.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -535,9 +442,6 @@
   targetNode: TableFancyRed
   category: construction-category-furniture
   description: "Дорого, богато" # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Tables/Fancy/red.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -552,9 +456,6 @@
   targetNode: TableFancyWhite
   category: construction-category-furniture
   description: "Дорого, богато" # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Tables/Fancy/white.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -569,9 +470,6 @@
   targetNode: CounterMetal
   category: construction-category-furniture
   description: Отличное место чтобы пропустить стаканчик. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Tables/countermetal.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -586,9 +484,6 @@
   targetNode: CounterWood
   category: construction-category-furniture
   description: Беречь от огня. По слухам, она легко горит. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Tables/counterwood.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -604,9 +499,6 @@
   targetNode: toilet
   category: construction-category-furniture
   description: НТ-451, устройство для удаления мелких отходов, основанное на вращательном моменте. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/toilet.rsi
-    state: condisposal
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -622,9 +514,6 @@
   startNode: start
   targetNode: bed
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Furniture/furniture.rsi
-    state: bed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -639,9 +528,6 @@
   startNode: start
   targetNode: medicalbed
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Furniture/furniture.rsi
-    state: bed-MED
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -656,9 +542,6 @@
   startNode: start
   targetNode: dogbed
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Furniture/furniture.rsi
-    state: dogbed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -673,9 +556,6 @@
   startNode: start
   targetNode: dresser
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Furniture/furniture.rsi
-    state: dresser
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -691,9 +571,6 @@
   startNode: start
   targetNode: Rack
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Furniture/furniture.rsi
-    state: rack
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -709,9 +586,6 @@
   startNode: start
   targetNode: MeatSpike
   category: construction-category-furniture
-  icon:
-    sprite: Structures/meat_spike.rsi
-    state: spike
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -726,13 +600,10 @@
   startNode: start
   targetNode: Curtains
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/Curtains/hospital.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsBlack
   name: Чёрные шторы # Imperial Recipes Locale
@@ -741,9 +612,6 @@
   startNode: start
   targetNode: CurtainsBlack
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/Curtains/black.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -756,13 +624,10 @@
   startNode: start
   targetNode: CurtainsBlue
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/Curtains/blue.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsCyan
   name: Голубые шторы # Imperial Recipes Locale
@@ -771,13 +636,10 @@
   startNode: start
   targetNode: CurtainsCyan
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/Curtains/cyan.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsGreen
   name: Зелёные шторы # Imperial Recipes Locale
@@ -786,13 +648,10 @@
   startNode: start
   targetNode: CurtainsGreen
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/Curtains/green.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsOrange
   name: Оранжевые шторы # Imperial Recipes Locale
@@ -801,13 +660,10 @@
   startNode: start
   targetNode: CurtainsOrange
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/Curtains/orange.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsPink
   name: Розовые шторы # Imperial Recipes Locale
@@ -816,13 +672,10 @@
   startNode: start
   targetNode: CurtainsPink
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/Curtains/pink.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsPurple
   name: Фиолетовые шторы # Imperial Recipes Locale
@@ -831,13 +684,10 @@
   startNode: start
   targetNode: CurtainsPurple
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/Curtains/purple.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-    
+
 - type: construction
   id: CurtainsRed
   name: Красные шторы # Imperial Recipes Locale
@@ -846,9 +696,6 @@
   startNode: start
   targetNode: CurtainsRed
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/Curtains/red.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -861,9 +708,6 @@
   startNode: start
   targetNode: CurtainsWhite
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/Curtains/white.rsi
-    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -876,9 +720,6 @@
   startNode: start
   targetNode: bookshelf
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Furniture/bookshelf.rsi
-    state: base
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -893,9 +734,6 @@
   startNode: start
   targetNode: noticeBoard
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Wallmounts/noticeboard.rsi
-    state: noticeboard
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
@@ -911,9 +749,6 @@
   startNode: start
   targetNode: mannequin
   category: construction-category-furniture
-  icon:
-    sprite: Structures/Decoration/mannequin.rsi
-    state: mannequin
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true

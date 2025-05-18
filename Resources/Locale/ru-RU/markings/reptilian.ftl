@@ -38,6 +38,9 @@ marking-LizardTailLTiger = Унатх, хвост (Светлые тигрины
 marking-LizardTailDTiger-tail_dtiger = Унатх, хвост (Тёмные тигриные полоски)
 marking-LizardTailDTiger = Унатх, хвост (Тёмные тигриные полоски)
 
+marking-LizardTailAquatic-tail_aquatic = Унатх, хвост (Водный)
+marking-LizardTailAquatic = Унатх, хвост (Водный)
+
 marking-LizardSnoutRound-snout_round = Унатх, морда (Круглая)
 marking-LizardSnoutRound = Унатх, морда (Круглая)
 
@@ -105,6 +108,9 @@ marking-LizardChestUnderbelly = Унатх, грудь (Подбрюшье)
 
 marking-LizardChestBackspikes-body_backspikes = Унатх, грудь, шипы на спине (Четыре)
 marking-LizardChestBackspikes = Унатх, грудь, шипы на спине (Четыре)
+
+marking-LizardChestFin-body_fin = Унатх, грудь (Плавник)
+marking-LizardChestFin = Унатх, грудь (Плавник)
 
 marking-LizardSnoutSplotch = Унатх, морда лица (Пятно)
 marking-LizardSnoutSplotch-snout_splotch_primary = Морда

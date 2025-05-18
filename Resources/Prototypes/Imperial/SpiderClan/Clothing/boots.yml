@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingShoesBaseButcherable, BaseMajorContraband]
+  parent: ClothingShoesSpaceNinja
   id: RedShoesSpaceNinja
   name: space ninja shoes
   suffix: Crook, SpiderClan
@@ -10,15 +10,9 @@
     state: icon-on
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Boots/redninja.rsi
-  - type: NoSlip
-  - type: Magboots
-  - type: ClothingSpeedModifier
-    # ninja are masters of sneaking around relatively quickly, won't break cloak
-    walkModifier: 1.1
-    sprintModifier: 1.3
 
 - type: entity
-  parent: [ClothingShoesBaseButcherable, BaseMajorContraband]
+  parent: ClothingShoesSpaceNinja
   id: BlueShoesSpaceNinja
   name: space ninja shoes
   suffix: Crook, SpiderClan
@@ -29,15 +23,9 @@
     state: icon-on
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Boots/blueninja.rsi
-  - type: NoSlip
-  - type: Magboots
-  - type: ClothingSpeedModifier
-    # ninja are masters of sneaking around relatively quickly, won't break cloak
-    walkModifier: 1.1
-    sprintModifier: 1.3
 
 - type: entity
-  parent: [ClothingShoesBaseButcherable, BaseMajorContraband]
+  parent: ClothingShoesSpaceNinja
   id: GreenShoesSpaceNinja
   name: space ninja shoes
   suffix: Crook, SpiderClan
@@ -48,9 +36,3 @@
     state: icon-on
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Boots/greenninja.rsi
-  - type: NoSlip
-  - type: Magboots
-  - type: ClothingSpeedModifier
-    # ninja are masters of sneaking around relatively quickly, won't break cloak
-    walkModifier: 1.1
-    sprintModifier: 1.3

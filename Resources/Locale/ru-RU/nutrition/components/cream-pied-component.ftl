@@ -1,2 +1,3 @@
-cream-pied-component-on-hit-by-message = { $thrower } кремировал вас!
-cream-pied-component-on-hit-by-message-others = { $owner } был кремирован { $thrower }!
+
+cream-pied-component-on-hit-by-message =  {INDEFINITE($thrown)} {$thrown} кремировал вас!
+cream-pied-component-on-hit-by-message-others = {CAPITALIZE(THE($owner))} был кремирован {INDEFINITE($thrown)} {$thrown}!
