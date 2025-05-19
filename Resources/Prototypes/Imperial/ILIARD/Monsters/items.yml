@@ -26,6 +26,34 @@
       solution: ammo
 
 - type: entity
+  id: IliardBulletMagnumDeath
+  name: bullet (.45 magnum death injecton)
+  parent: BaseBulletPractice
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Blunt: 4
+    - type: SolutionContainerManager
+      solutions:
+        ammo:
+          maxVol: 75
+          reagents:
+            - ReagentId: Lexorin
+              Quantity: 75
+    - type: SolutionInjectOnProjectileHit
+      transferAmount: 75
+      solution: ammo
+    - type: RefillableSolution
+      solution: ammo
+    - type: DrainableSolution
+      solution: ammo
+    - type: InjectableSolution
+      solution: ammo
+
+
+- type: entity
   id: IliardCartridgeMagnumTranq
   name: cartridge (.45 magnum tranquilizer)
   parent: BaseCartridgeMagnum
@@ -43,6 +71,25 @@
   - type: ChemicalAmmo
   - type: SolutionTransfer
     maxTransferAmount: 20
+
+- type: entity
+  id: IliardCartridgeMagnumDeath
+  name: cartridge (.45 magnum death injection)
+  parent: BaseCartridgeMagnum
+  suffix: ILIARD
+  components:
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#0a0a0a"
+  - type: CartridgeAmmo
+    proto: IliardBulletMagnumDeath
+  - type: ChemicalAmmo
+  - type: SolutionTransfer
+    maxTransferAmount: 75
 
 - type: entity
   name: tranq ammo briefcase
@@ -69,4 +116,3 @@
     contents:
       - id: IliardCartridgeMagnumTranq
         amount: 12
-

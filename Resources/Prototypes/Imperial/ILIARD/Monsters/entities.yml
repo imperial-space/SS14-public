@@ -7,7 +7,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Imperial/ILIARD/ghost.rsi
+    sprite: Imperial/ILIARD/Monsters/ghost.rsi
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: ghost
@@ -20,8 +20,8 @@
   - type: Bloodstream
     bloodMaxVolume: 900
   - type: MeleeWeapon
-    range: 1.95
-    attackRate: 0.3
+    range: 0.97
+    attackRate: 0.4
     hidden: true
     angle: 0
     soundHit:
@@ -38,12 +38,19 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - Radio1
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio1
   - type: MobThresholds
     thresholds:
       0: Alive
-      600: Dead
+      700: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 0.7
+    baseWalkSpeed: 0.8
     baseSprintSpeed: 0.9
   - type: NpcFactionMember
     factions:
@@ -58,6 +65,7 @@
   - type: NoSlip
   - type: InteractionPopup
     successChance: 0.5
+    interactDelay: 3
     interactSuccessString: Вы гладите эту сущность. Оно на вас странно смотрит. Тем не менее, ему нравится, наверное.
     interactSuccessSpawn: EffectHearts
   - type: Prying
@@ -76,7 +84,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Imperial/ILIARD/head.rsi
+    sprite: Imperial/ILIARD/Monsters/head.rsi
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: head
@@ -91,8 +99,8 @@
   - type: Bloodstream
     bloodMaxVolume: 900
   - type: MeleeWeapon
-    range: 2.1
-    attackRate: 1.2
+    range: 1.2
+    attackRate: 1.12
     hidden: true
     angle: 0
     soundHit:
@@ -109,13 +117,20 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - Radio1
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio1
   - type: MobThresholds
     thresholds:
       0: Alive
       250: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 6
-    baseSprintSpeed: 5.74
+    baseWalkSpeed: 5.85
+    baseSprintSpeed: 5.9
   - type: NpcFactionMember
     factions:
     - Xeno
@@ -135,27 +150,99 @@
       path: /Audio/Items/crowbar.ogg
 
 - type: entity
+  name: hunter
+  suffix: ILIARD, NoGhostRole
+  parent: [ MobHuman, SimpleSpaceMobBase ]
+  id: MobIliardHunter
+  description: They're a Hunter.
+  components:
+  - type: Physics
+  - type: Puller
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - Radio1
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio1
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Dead
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Loadout
+    prototypes: [ HunterGear ]
+  - type: NoSlip
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 1.6
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: male
+  - type: CrewSkills
+    skills:
+      - skillBaseMed
+      - skillShooting
+
+- type: entity
   name: god plushie moth
   suffix: ILIARD, NoGhostRole
   parent: [ SimpleSpaceMobBase, PlushieMoth ]
   id: MobIliardMoth
   description: Pray
   components:
+  - type: CombatMode
   - type: Physics
   - type: Bloodstream
-    bloodMaxVolume: 900
+    bloodMaxVolume: 999
+  - type: MeleeWeapon
+    range: 2.25
+    attackRate: 0.5
+    hidden: true
+    angle: 0
+    animation: WeaponArcPunch
+    wideAnimation: WeaponArcPunch
+    altDisarm: false
+    soundHit: /Audio/Weapons/smash.ogg
+    damage:
+      groups:
+        Brute: 99
+      types:
+        Structural: 999
   - type: Puller
   - type: Tag
     tags:
     - CannotSuicide
     - DoorBumpOpener
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - Radio1
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio1
   - type: MobThresholds
     thresholds:
       0: Alive
-      999: Dead
+      9999: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 5
-    baseSprintSpeed: 6
+    baseWalkSpeed: 6
+    baseSprintSpeed: 7
   - type: NpcFactionMember
     factions:
     - Xeno
@@ -173,3 +260,27 @@
     speedModifier: 9
     useSound:
       path: /Audio/Items/crowbar.ogg
+  - type: InteractionPopup
+    successChance: 1
+    interactDelay: 2.5
+    interactSuccessString: Вы гладите эту божественную сущность, ей нравится
+    interactFailureString: Божественная энергия не позволяет вам погладить эту сущность
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/fox_squeak.ogg
+
+- type: startingGear
+  id: HunterGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitElysiumSecurity
+    back: ClothingBackpackSatchelLeather
+    shoes: ClothingShoesBootsCombat
+    neck: ClothingNeckTieRed
+    outerClothing: ClothingOuterCoatGentle
+    suitstorage: WeaponShotgunDoubleBarreled
+  storage:
+    back:
+    - BoxLethalshot
+    - BoxLethalshot
+    - BoxLethalshot
+    - BoxLethalshot
