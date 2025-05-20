@@ -24,7 +24,7 @@
   icon: { sprite: /Textures/Imperial/Other/rapier/syndie-rapiera.rsi, state: rapier }
   productEntity: ClothingBeltSheathRapierFilled
   cost:
-    Telecrystal: 23
+    Telecrystal: 19
   categories:
   - UplinkWeaponry
   conditions:
