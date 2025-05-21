@@ -613,6 +613,7 @@
       idleState: icon
       runningState: building
       defaultProductionAmount: 10
+      priceModifier: 2 # Imperial Lathe Nerf
       staticPacks:
       - OreSmelting
       - RGlassSmelting

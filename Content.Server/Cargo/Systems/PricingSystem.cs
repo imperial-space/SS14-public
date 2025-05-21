@@ -23,7 +23,7 @@ namespace Content.Server.Cargo.Systems;
 /// <summary>
 /// This handles calculating the price of items, and implements two basic methods of pricing materials.
 /// </summary>
-public sealed class PricingSystem : EntitySystem
+public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf made it partial
 {
     [Dependency] private readonly IComponentFactory _factory = default!;
     [Dependency] private readonly IConsoleHost _consoleHost = default!;
@@ -208,7 +208,7 @@ public sealed class PricingSystem : EntitySystem
 
         // TODO: Proper container support.
 
-        return price;
+        return ApplyPrototypePriceModifier(prototype, price); // Imperial Lathe Nerf
     }
 
     /// <summary>
@@ -254,7 +254,7 @@ public sealed class PricingSystem : EntitySystem
             }
         }
 
-        return price;
+        return ApplyPriceModifier(uid, price); // Imperial Lathe Nerf
     }
 
     private double GetMaterialsPrice(EntityUid uid)

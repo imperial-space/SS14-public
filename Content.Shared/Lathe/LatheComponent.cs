@@ -58,6 +58,9 @@ namespace Content.Shared.Lathe
         [DataField, AutoNetworkedField]
         public int DefaultProductionAmount = 1;
 
+        [DataField]
+        public float PriceModifier = 0.3f; // Imperial Lathe Nerf
+
         #region Visualizer info
         [DataField]
         public string? IdleState;

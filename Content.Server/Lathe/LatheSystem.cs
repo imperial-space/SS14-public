@@ -11,6 +11,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.PrinterDoc; // Imperial PrinterDoc
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Stack;
+using Content.Server.Imperial.Cargo.Components; // Imperial Lathe Nerf
 using Content.Shared.Atmos;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -184,7 +185,7 @@ namespace Content.Server.Lathe
             foreach (var (mat, amount) in recipe.Materials)
             {
                 var adjustedAmount = recipe.ApplyMaterialDiscount
-                    ? (int) (-amount * component.MaterialUseMultiplier)
+                    ? (int)(-amount * component.MaterialUseMultiplier)
                     : -amount;
 
                 _materialStorage.TryChangeMaterialAmount(uid, mat, adjustedAmount);
@@ -237,6 +238,7 @@ namespace Content.Server.Lathe
                     var result = Spawn(resultProto, Transform(uid).Coordinates);
                     // Imperial PrinterDoc
                     _printerDoc.TrySetContentPrintedDocument(result, comp.LastUser ?? default, comp.UseCardId);
+                    EnsureComp<PriceModifierComponent>(result).Modifier = comp.PriceModifier; // Imperial Lathe Nerf
                     _stack.TryMergeToContacts(result);
                 }
 
