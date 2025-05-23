@@ -1,4 +1,4 @@
-ent-LeftArmBorg = лева рука борга
+ent-LeftArmBorg = левая рука борга
     .desc = механическая рука
 ent-RightArmBorg = правая рука борга
     .desc = механическая рука

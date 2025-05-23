@@ -1,0 +1,27 @@
+# Plasma Cutter
+
+#Tier1
+- type: technology
+  id: SalvageWeapons-PlasmaCutter
+  name: research-technology-plasmacutter
+  icon:
+    sprite: Imperial/Objects/Weapons/Guns/CharginMaterials/PlasmaCutter/base.rsi
+    state: icon
+  discipline: Industrial
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - EmptyWeaponPlasmaCutter
+
+#Tier2
+- type: technology
+  id: SalvageWeapons-AdvancedPlasmaCutter
+  name: research-technology-advanced-plasmacutter
+  icon:
+    sprite: Imperial/Objects/Weapons/Guns/CharginMaterials/PlasmaCutter/advanced-base.rsi
+    state: icon
+  discipline: Industrial
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - Advanced-EmptyWeaponPlasmaCutter

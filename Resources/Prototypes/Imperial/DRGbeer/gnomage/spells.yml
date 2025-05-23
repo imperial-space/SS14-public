@@ -40,7 +40,6 @@
       state: Reincarnation-Clown
     event: !type:ProjectileSpellEvent
       prototype: ProjectilePolyboltGnomish
-      speech: action-speech-spell-Clowning
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -72,7 +71,6 @@
       - id: MobGnome
         amount: 3
       offset: 0, 1
-      speech: action-speech-spell-SpawnGome
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -104,7 +102,6 @@
       - id: AdminInstantEffectTearGas
         amount: 1
       offset: 0, 1
-      speech: action-speech-spell-smokegnom
 
 - type: entity
   parent: BaseSubdermalImplant

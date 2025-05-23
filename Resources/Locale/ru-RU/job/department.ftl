@@ -6,7 +6,7 @@ department-Medical = Медицинский отдел
 department-Security = Служба безопасности
 department-Science = Научный отдел
 department-Specific = Гражданские профессии
-department-Juristic = Юридический департамент
+department-SAD = Департамент эффективности станции
 department-CentralCommand = Центральное командование
 department-Silicon = Борги
 

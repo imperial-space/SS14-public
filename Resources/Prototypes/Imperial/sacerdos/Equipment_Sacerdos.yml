@@ -6,7 +6,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - nukeops-role-commander
+      - sacerdosroleLeadersName
       - NamesLast
     - type: Loadout
       prototypes: [ SacerdosLeadersODTLoadout ]
@@ -51,7 +51,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - sacerdos-role-fight
+      - sacerdosroleFightName
       - NamesLast
     - type: Loadout
       prototypes: [ fightsacerdosODTLoadout ]
@@ -96,7 +96,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - sacerdos-role-med
+      - sacerdosroleMedName
       - NamesLast
     - type: Loadout
       prototypes: [ MedsacerdosODTLoadout ]
@@ -259,3 +259,26 @@
     back:
     - BoxSurvival
     - Brutepack
+
+#######################################################################################
+#######################################################################################
+#######################################################################################
+#######################################################################################
+
+- type: localizedDataset 
+  id: sacerdosroleLeadersName
+  values:
+    prefix: imperial-space-sacerdos-role-Leaders-dataset-
+    count: 1
+
+- type: localizedDataset 
+  id: sacerdosroleFightName
+  values:
+    prefix: imperial-space-sacerdos-role-fight-dataset-
+    count: 1
+
+- type: localizedDataset 
+  id: sacerdosroleMedName
+  values:
+    prefix: imperial-space-sacerdos-role-med-dataset-
+    count: 1

@@ -39,6 +39,10 @@
             "directions": 4
         },
         {
+            "name": "hair",
+            "directions": 4
+        },
+        {
             "name": "hand_l",
             "directions": 4
         },

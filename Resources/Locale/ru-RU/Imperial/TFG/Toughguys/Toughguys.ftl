@@ -72,3 +72,9 @@ ent-PlushieYesenia =  Есения Орлова
 
 ent-PlushieYeseniaGift =  Есения Орлова
    .desc = Воительница пера и бумаги, несущая торжество бюрократии в ваш сектор.
+
+ent-PlushieBM = Имирина Ирисова
+    .desc = Снимайте рубашку, офицер, имплантация обязательна для каждого сотрудника СБ!
+
+ent-PlushieBMGift = { ent-PlushieBM }
+    .desc = { ent-PlushieBM.desc }

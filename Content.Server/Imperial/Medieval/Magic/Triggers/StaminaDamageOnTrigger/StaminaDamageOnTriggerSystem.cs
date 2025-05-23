@@ -10,7 +10,7 @@ namespace Content.Server.Imperial.Medieval.Magic.Triggers;
 
 public sealed partial class StaminaDamageOnTriggerSystem : EntitySystem
 {
-    [Dependency] private readonly StaminaSystem _staminaSystem = default!;
+    [Dependency] private readonly SharedStaminaSystem _staminaSystem = default!;
 
 
     public override void Initialize()

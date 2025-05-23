@@ -24,4 +24,18 @@ public sealed partial class HeadRevolutionaryComponent : Component
     public TimeSpan StunTime = TimeSpan.FromSeconds(3);
 
     public override bool SessionSpecific => true;
+
+  // Imperial RevaConsent Start
+    /// <summary>
+    /// Ограничивает конверсию главного революционера, требуя явного согласия целевого персонажа.
+    /// Если true - преобразование возможно только через систему подтверждения с участием игрока.
+    /// </summary>
+    [DataField] public bool OnlyConsentConvert = false;
+
+    /// <summary>
+    /// Активирует/деактивирует основную способность конверсии.
+    /// При false - функционал преобразования персонажей будет полностью отключен.
+    /// </summary>
+    [DataField] public bool ConvertAbilityEnabled = true;
+    // Imperial RevaConsent End
 }

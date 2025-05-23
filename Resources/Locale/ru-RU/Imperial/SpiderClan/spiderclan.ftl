@@ -1,7 +1,7 @@
 ent-SpiderClanBanner = знамя клана Паука
     .desc = Скрытная группировка подготовленных бойцов, что одеваются как стилизованные ниндзя по культуре Японии на Земле.
 
-ent-NinjaSleeper = Анализатор разума
+ent-NinjaSleeper = анализатор разума
     .desc = Специальное устройство, которое позволит вам узнать их самые грязные секреты...
 
 ent-Ninja = ниндзя
@@ -17,17 +17,25 @@ ent-RedEnergyKatana = энергетическая катана
     .desc = Катана, наполненная сильной энергией.
 ent-BlueEnergyKatana = энергетическая катана
     .desc = Катана, наполненная сильной энергией.
+ent-GreenEnergyKatana = энергетическая катана
+    .desc = Катана, наполненная сильной энергией.
 
-ent-SpiderClanTerminal = Терминал клана Паука
+ent-SpiderClanTerminal = терминал клана Паука
     .desc = Упрощает выслеживание ваших жертв в разы. Если, конечно, они включили свои датчики...
 
 ent-GreenSpaceNinja = космический ниндзя
 ent-RedSpaceNinja = космический ниндзя
 ent-BlueSpaceNinja = космический ниндзя
+ent-AltGreenSpaceNinja = космический ниндзя
+ent-AltRedSpaceNinja = космический ниндзя
+ent-AltBlueSpaceNinja = космический ниндзя
 
 ent-GhostGreenSpaceNinja = спавнер космический ниндзя
 ent-GhostRedSpaceNinja = спавнер космический ниндзя
 ent-GhostBlueSpaceNinja = спавнер космический ниндзя
+ent-GhostAltGreenSpaceNinja = спавнер космический ниндзя
+ent-GhostAltRedSpaceNinja = спавнер космический ниндзя
+ent-GhostAltBlueSpaceNinja = спавнер космический ниндзя
 
 id-card-access-level-ninja = Ниндзя клана Паука
 job-name-ninja = Ниндзя Клана Паука

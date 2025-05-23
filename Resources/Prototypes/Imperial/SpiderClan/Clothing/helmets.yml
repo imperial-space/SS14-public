@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingHeadEVAHelmetBase, BaseMajorContraband]
+  parent: ClothingHeadHelmetSpaceNinja
   id: RedHelmetSpaceNinja
   name: space ninja helmet
   suffix: Crook, SpiderClan
@@ -9,15 +9,20 @@
     sprite: Imperial/SpiderClan/Clothing/Default/Helmets/redninja.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Helmets/redninja.rsi
-  - type: Tag
-    tags:
-    - HidesHair
-    - WhitelistChameleon
-  - type: IngestionBlocker
-  - type: IdentityBlocker
+  #- type: ToggleClothing
+  #  action: ActionToggleNightVision
+  #- type: NightVisionVisor
+  #  overLayerDataPath: "/Textures/Effects/emp.rsi"
+  #  overLayerDataState: "emp_pulse"
+  #  color: "Red"
+  #  useNoise: "false"
+  #  maxOverlayRange: 10
+  #  overlay: true
+  #  useOverLayerData: true
+  #  assaultOverLay: true
 
 - type: entity
-  parent: [ClothingHeadEVAHelmetBase, BaseMajorContraband]
+  parent: ClothingHeadHelmetSpaceNinja
   id: BlueHelmetSpaceNinja
   name: space ninja helmet
   suffix: Crook, SpiderClan
@@ -27,20 +32,20 @@
     sprite: Imperial/SpiderClan/Clothing/Default/Helmets/blueninja.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Helmets/blueninja.rsi
-  - type: Tag
-    tags:
-    - WhitelistChameleon
-  - type: IngestionBlocker
-  - type: IdentityBlocker
-  - type: HideLayerClothing
-    slots:
-    - Hair
-    - Snout
-    - HeadTop
-    - HeadSide
+  #- type: ToggleClothing
+  #  action: ActionToggleNightVision
+  #- type: NightVisionVisor
+  #  overLayerDataPath: "/Textures/Effects/emp.rsi"
+  #  overLayerDataState: "emp_pulse"
+  #  color: "Blue"
+  #  useNoise: "false"
+  #  maxOverlayRange: 10
+  #  overlay: true
+  #  useOverLayerData: true
+  #  assaultOverLay: true
 
 - type: entity
-  parent: [ClothingHeadEVAHelmetBase, BaseMajorContraband]
+  parent: ClothingHeadHelmetSpaceNinja
   id: GreenHelmetSpaceNinja
   name: space ninja helmet
   suffix: Crook, SpiderClan
@@ -50,17 +55,17 @@
     sprite: Imperial/SpiderClan/Clothing/Default/Helmets/greenninja.rsi
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Helmets/greenninja.rsi
-  - type: Tag
-    tags:
-    - WhitelistChameleon
-  - type: IngestionBlocker
-  - type: IdentityBlocker
-  - type: HideLayerClothing
-    slots:
-    - Hair
-    - Snout
-    - HeadTop
-    - HeadSide
+  #- type: ToggleClothing
+  #  action: ActionToggleNightVision
+  #- type: NightVisionVisor
+  #  overLayerDataPath: "/Textures/Effects/emp.rsi"
+  #  overLayerDataState: "emp_pulse"
+  #  color: "Green"
+  #  useNoise: "false"
+  #  maxOverlayRange: 10
+  #  overlay: true
+  #  useOverLayerData: true
+  #  assaultOverLay: true
 
 - type: entity
   parent: [ClothingHeadBase, BaseMajorContraband]
@@ -84,6 +89,17 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.2
     coolingCoefficient: 0.2
+  #- type: ToggleClothing
+  #  action: ActionToggleNightVision
+  #- type: NightVisionVisor
+  #  overLayerDataPath: "/Textures/Effects/emp.rsi"
+  #  overLayerDataState: "emp_pulse"
+  #  color: "Red"
+  #  useNoise: "false"
+  #  maxOverlayRange: 10
+  #  overlay: true
+  #  useOverLayerData: true
+  #  assaultOverLay: true
 
 - type: entity
   parent: [ClothingHeadBase, BaseMajorContraband]
@@ -107,6 +123,17 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.2
     coolingCoefficient: 0.2
+  #- type: ToggleClothing
+  #  action: ActionToggleNightVision
+  #- type: NightVisionVisor
+  #  overLayerDataPath: "/Textures/Effects/emp.rsi"
+  #  overLayerDataState: "emp_pulse"
+  #  color: "Blue"
+  #  useNoise: "false"
+  #  maxOverlayRange: 10
+  #  overlay: true
+  #  useOverLayerData: true
+  #  assaultOverLay: true
 
 - type: entity
   parent: [ClothingHeadBase, BaseMajorContraband]
@@ -130,3 +157,14 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.2
     coolingCoefficient: 0.2
+  #- type: ToggleClothing
+  #  action: ActionToggleNightVision
+  #- type: NightVisionVisor
+  #  overLayerDataPath: "/Textures/Effects/emp.rsi"
+  #  overLayerDataState: "emp_pulse"
+  #  color: "Green"
+  #  useNoise: "false"
+  #  maxOverlayRange: 10
+  #  overlay: true
+  #  useOverLayerData: true
+  #  assaultOverLay: true

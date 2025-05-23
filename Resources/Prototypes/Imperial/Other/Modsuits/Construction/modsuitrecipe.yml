@@ -6,7 +6,6 @@
   targetNode: modsuitatmospheric
   category: construction-category-clothing
   description: Р.И.Г, созданный специально под нужды профессии.
-  icon: { sprite: Imperial/Other/Modsuits/Clothing/Back/atmospheric.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -17,7 +16,6 @@
   targetNode: modsuitengineer
   category: construction-category-clothing
   description: Р.И.Г, созданный специально под нужды профессии.
-  icon: { sprite: Imperial/Other/Modsuits/Clothing/Back/engineer.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -28,7 +26,6 @@
   targetNode: modsuitmedical
   category: construction-category-clothing
   description: Р.И.Г, созданный специально под нужды профессии.
-  icon: { sprite: Imperial/Other/Modsuits/Clothing/Back/medical.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -39,7 +36,6 @@
   targetNode: modsuitrnd
   category: construction-category-clothing
   description: Р.И.Г, созданный специально под нужды профессии.
-  icon: { sprite: Imperial/Other/Modsuits/Clothing/Back/rnd.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -50,7 +46,6 @@
   targetNode: modsuitsalvage
   category: construction-category-clothing
   description: Р.И.Г, созданный специально под нужды профессии.
-  icon: { sprite: Imperial/Other/Modsuits/Clothing/Back/salvage.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -61,7 +56,6 @@
   targetNode: modsuitcivillian
   category: construction-category-clothing
   description: Р.И.Г, созданный специально под нужды безработного.
-  icon: { sprite: Imperial/Other/Modsuits/Clothing/Back/civillian.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -72,7 +66,6 @@
   targetNode: modsuitsecurity
   category: construction-category-clothing
   description: Р.И.Г, созданный специально под нужды профессии.
-  icon: { sprite: Imperial/Other/Modsuits/Clothing/Back/security.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -83,7 +76,6 @@
   targetNode: modsuitadvanced
   category: construction-category-clothing
   description: Р.И.Г, созданный специально под нужды профессии.
-  icon: { sprite: Imperial/Other/Modsuits/Clothing/Back/advanced.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -94,7 +86,6 @@
   targetNode: modsuitrescue
   category: construction-category-clothing
   description: Р.И.Г, созданный специально под нужды профессии.
-  icon: { sprite: Imperial/Other/Modsuits/Clothing/Back/cmo.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -105,7 +96,6 @@
   targetNode: modsuitmagnate
   category: construction-category-clothing
   description: Р.И.Г, созданный специально под нужды профессии.
-  icon: { sprite: Imperial/Other/Modsuits/Clothing/Back/magnate.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -116,5 +106,4 @@
   targetNode: modsuithos
   category: construction-category-clothing
   description: Р.И.Г, созданный специально под нужды профессии.
-  icon: { sprite: Imperial/Other/Modsuits/Clothing/Back/hos.rsi, state: icon }
   objectType: Item

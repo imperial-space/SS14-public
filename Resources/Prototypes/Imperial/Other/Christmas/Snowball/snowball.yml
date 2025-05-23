@@ -100,8 +100,9 @@
       types:
         Blunt: 1
   - type: Slippery
-    paralyzeTime: 1.5
-    launchForwardsMultiplier: 2
+    slipData:
+      paralyzeTime: 1.5
+      launchForwardsMultiplier: 2
   - type: Tag
     tags:
       - Trash

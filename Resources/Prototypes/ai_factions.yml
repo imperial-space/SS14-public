@@ -24,6 +24,7 @@
   - Dragon
   - AllHostile
   - Wizard
+  - Xenoborg
 
 - type: npcFaction
   id: Mouse
@@ -55,12 +56,14 @@
   - PetsNT
   - Zombie
   - Revolutionary
+  - Dragon
+  - Xeno
   - AllHostile
   - SyndicateAgent # Imperial Syndicate Agent Fix
   - Wizard
   - DeathSquad # Imperial Space Death Squad faction Fix
   - RiotControlUnit # Imperial Space RCU faction adding
-  - Dragon
+  - Xenoborg
 
 - type: npcFaction
   id: SimpleNeutral
@@ -78,6 +81,7 @@
   - Wizard
   - DeathSquad # Imperial Space Death Squad faction Fix
   - RiotControlUnit # Imperial Space RCU faction adding
+  - Xenoborg
 
 - type: npcFaction
   id: Xeno
@@ -94,6 +98,7 @@
   - DeathSquad # Imperial Space Death Squad faction Fix
   - RiotControlUnit # Imperial Space RCU faction adding
   - Dragon
+  - Xenoborg
 
 - type: npcFaction
   id: Zombie
@@ -111,6 +116,7 @@
   - DeathSquad # Imperial Space Death Squad faction Fix
   - RiotControlUnit # Imperial Space RCU faction adding
   - Dragon
+  - Xenoborg
 
 - type: npcFaction
   id: Revolutionary
@@ -123,6 +129,7 @@
   - Wizard
   - DeathSquad # Imperial Space Death Squad faction Fix
   - RiotControlUnit # Imperial Space RCU faction adding
+  - Xenoborg
 
 - type: npcFaction
   id: AllHostile
@@ -142,6 +149,7 @@
   - Wizard
   - DeathSquad # Imperial Space Death Squad faction Fix
   - RiotControlUnit # Imperial Space RCU faction adding
+  - Xenoborg
 
 - type: npcFaction
   id: Wizard
@@ -160,3 +168,20 @@
   - SyndicateAgent # Imperial Syndicate Agent Fix
   - DeathSquad # Imperial Space Death Squad faction Fix
   - RiotControlUnit # Imperial Space RCU faction adding
+  - Xenoborg
+
+- type: npcFaction
+  id: Xenoborg
+  hostile:
+  # they have brains
+  - NanoTrasen
+  - Syndicate
+  - Zombie
+  - Revolutionary
+  - Wizard
+
+  - Xeno # rivalry
+
+  # cause they are hostile to them
+  - SimpleHostile
+  - AllHostile

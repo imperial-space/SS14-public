@@ -9,6 +9,7 @@
       nameSegments:
       - NamesMilitaryFirst
       - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -45,6 +46,7 @@
       nameSegments:
       - NamesMilitaryFirst
       - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -81,6 +83,7 @@
       nameSegments:
       - NamesMilitaryFirst
       - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -117,6 +120,7 @@
       nameSegments:
       - NamesMilitaryFirst
       - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -153,6 +157,7 @@
       nameSegments:
       - NamesMilitaryFirst
       - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -190,6 +195,7 @@
       nameSegments:
       - NamesMilitaryFirstLeader
       - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi

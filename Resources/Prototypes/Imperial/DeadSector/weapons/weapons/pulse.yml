@@ -36,6 +36,7 @@
   description: Plasma rifle based on RLT Mod 1 technology. Quick-firing, but weak. It has plasma charge cells.
   components:
   - type: Item
+    sprite: Imperial/DeadSector/weapons/weapons/pulse/WeaponRifleRLT1-inhand.rsi
     size: Huge
     shape:
     - 0,0,1,2
@@ -48,7 +49,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Clothing
-    sprite: Imperial/DeadSector/weapons/weapons/pulse/WeaponRifleRLT1.rsi
+    sprite: Imperial/DeadSector/weapons/weapons/pulse/WeaponRifleRLT1-inhand.rsi
   - type: Gun
     fireRate: 1.8
     soundGunshot:

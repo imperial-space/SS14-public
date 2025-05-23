@@ -6,9 +6,6 @@
   targetNode: bat
   category: construction-category-weapons
   description: Прочная бейсбольная бита. # Imperial Recipes Locale
-  icon:
-    sprite: Objects/Weapons/Melee/baseball_bat.rsi
-    state: icon
   objectType: Item
 
 - type: construction
@@ -19,9 +16,6 @@
   targetNode: ghost_sheet
   category: construction-category-clothing
   description: Станьте жутким призраком. Бу! Испугался? Не бойся, я друг! # Imperial Recipes Locale
-  icon:
-    sprite: Clothing/OuterClothing/Misc/ghostsheet.rsi
-    state: icon
   objectType: Item
 
 - type: construction
@@ -32,7 +26,6 @@
   targetNode: cuffscable
   category: construction-category-tools
   description: Прочные одноразовые пластиковые кабельные стяжки. # Imperial Recipes Locale
-  icon: { sprite: Objects/Misc/cablecuffs.rsi, state: cuff }
   objectType: Item
 
 - type: construction
@@ -43,7 +36,6 @@
   targetNode: msstunprod
   category: construction-category-weapons
   description: Самодельная дубинка-шокер. # Imperial Recipes Locale
-  icon: { sprite: Objects/Weapons/Melee/stunprod.rsi, state: stunprod_off }
   objectType: Item
 
 - type: construction
@@ -55,9 +47,7 @@
   category: construction-category-tools
   objectType: Item
   description: Намордник, чтобы заткнуть жертву. # Imperial Recipes Locale
-  icon:
-    sprite: Clothing/Mask/muzzle.rsi
-    state: icon
+
 
 - type: construction
   name: Импровизированная пневматическая пушка # Imperial Recipes Locale
@@ -68,9 +58,7 @@
   category: construction-category-weapons
   objectType: Item
   description: Этот сукин сын может выстрелить из всего, что в него поместится, используя лишь немного газа. # Imperial Recipes Locale
-  icon:
-    sprite: Objects/Weapons/Guns/Cannons/pneumatic_cannon.rsi
-    state: icon
+
 
 - type: construction
   name: Бинт # Imperial Recipes Locale
@@ -81,9 +69,7 @@
   category: construction-category-tools
   objectType: Item
   description: Когда у тебя действительно ничего не осталось. # Imperial Recipes Locale
-  icon:
-    sprite: Objects/Specific/Medical/medical.rsi
-    state: gauze
+
 
 - type: construction
   name: Повязка на глаза # Imperial Recipes Locale
@@ -94,9 +80,7 @@
   category: construction-category-tools
   objectType: Item
   description: Полоса непроницаемого материала. # Imperial Recipes Locale
-  icon:
-    sprite: Clothing/Eyes/Misc/blindfold.rsi
-    state: icon
+
 
 - type: construction
   name: Цветочный венок # Imperial Recipes Locale
@@ -106,9 +90,6 @@
   targetNode: flowerwreath
   category: construction-category-clothing
   description: Венок из ярких цветов. # Imperial Recipes Locale
-  icon:
-    sprite: Clothing/Head/Misc/flower-wreath.rsi
-    state: icon
   objectType: Item
 
 - type: construction
@@ -120,9 +101,7 @@
   category: construction-category-tools
   objectType: Item
   description: Влажная тряпка для очистки земли. Это лучше, чем скользить весь день. # Imperial Recipes Locale
-  icon:
-    sprite: Objects/Specific/Janitorial/rag.rsi
-    state: rag
+
 
 - type: construction
   name: Самодельный дробовик # Imperial Recipes Locale
@@ -133,9 +112,7 @@
   category: construction-category-weapons
   objectType: Item
   description: Дерьмовый дробовик ручной работы, использующий патроны 50-го калибра. В патроннике можно держать лишь один патрон. # Imperial Recipes Locale
-  icon:
-    sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun.rsi
-    state: icon
+
 
 - type: construction
   name: Самодельный патрон для дробовика # Imperial Recipes Locale
@@ -146,9 +123,7 @@
   category: construction-category-weapons
   objectType: Item
   description: Самодельный патрон 50-го калибра, стреляющий шрапнелью из осколков стекла. # Imperial Recipes Locale
-  icon:
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
-    state: improvised
+
 
 - type: construction
   name: Приклад # Imperial Recipes Locale
@@ -159,9 +134,7 @@
   category: construction-category-weapons
   objectType: Item
   description: Ложа, вырезанная из дерева, необходимая для самодельного огнестрельного оружия. # Imperial Recipes Locale
-  icon:
-    sprite: Objects/Misc/rifle_stock.rsi
-    state: icon
+
 
 - type: construction
   name: Зажигательная бомба # Imperial Recipes Locale
@@ -172,9 +145,7 @@
   category: construction-category-weapons
   objectType: Item
   description: Слабое самодельное зажигательное устройство. # Imperial Recipes Locale
-  icon:
-    sprite: Objects/Weapons/Bombs/ied.rsi
-    state: icon
+
 
 - type: construction
   name: Хлопковая ткань # Imperial Recipes Locale
@@ -184,9 +155,6 @@
   targetNode: cottoncloth
   category: construction-category-misc
   description: Кусок хлопчатобумажной ткани, сделанный своими руками, на ощупь грубый. # Imperial Recipes Locale
-  icon:
-    sprite: Objects/Materials/materials.rsi
-    state: cloth_3
   objectType: Item
 
 - type: construction
@@ -197,9 +165,6 @@
   targetNode: strawhat
   category: construction-category-clothing
   description: Шикарная шапка для жарких дней! Не рекомендуется носить вблизи огня. # Imperial Recipes Locale
-  icon:
-    sprite: Clothing/Head/Hats/straw_hat.rsi
-    state: icon
   objectType: Item
 
 - type: construction
@@ -211,10 +176,7 @@
   category: construction-category-weapons
   objectType: Item
   description: Самодельное взрывчатое устройство, сделанное из труб и проволоки. # Imperial Recipes Locale
-  icon:
-    sprite: Objects/Weapons/Bombs/pipebomb.rsi
-    state: icon
-    
+
 - type: construction
   name: Скалка # Imperial Recipes Locale
   id: rollingpin
@@ -224,32 +186,20 @@
   category: construction-category-tools
   objectType: Item
   description: Скалка, используемая для приготовления пищи и защиты кухни. # Imperial Recipes Locale
-  icon:
-    sprite: Objects/Tools/rolling_pin.rsi
-    state: icon
+
 
 - type: construction
-  name: pet carrier
   id: PetCarrier
   graph: PetCarrier
   startNode: start
   targetNode: petCarrier
   category: construction-category-misc
   objectType: Item
-  description: Allows large animals to be carried comfortably.
-  icon:
-    sprite: Objects/Storage/petcarrier.rsi
-    state: icon
 
 - type: construction
-  name: goliath hardsuit
   id: HardsuitGoliath
   graph: HardsuitGoliath
   startNode: start
   targetNode: hardsuitGoliath
   category: construction-category-clothing
   objectType: Item
-  description: A lightweight hardsuit, adorned with a patchwork of thick, chitinous goliath hide.
-  icon:
-    sprite: Clothing/OuterClothing/Hardsuits/goliath.rsi
-    state: icon

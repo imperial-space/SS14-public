@@ -1,0 +1,72 @@
+- type: entity
+  id: IliardBulletMagnumTranq
+  name: bullet (.45 magnum tranquilizer)
+  parent: BaseBulletPractice
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Blunt: 1
+    - type: SolutionContainerManager
+      solutions:
+        ammo:
+          maxVol: 20
+          reagents:
+            - ReagentId: Nocturine
+              Quantity: 20
+    - type: SolutionInjectOnProjectileHit
+      transferAmount: 20
+      solution: ammo
+    - type: RefillableSolution
+      solution: ammo
+    - type: DrainableSolution
+      solution: ammo
+    - type: InjectableSolution
+      solution: ammo
+
+- type: entity
+  id: IliardCartridgeMagnumTranq
+  name: cartridge (.45 magnum tranquilizer)
+  parent: BaseCartridgeMagnum
+  suffix: ILIARD
+  components:
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#0a0a0a"
+  - type: CartridgeAmmo
+    proto: IliardBulletMagnumTranq
+  - type: ChemicalAmmo
+  - type: SolutionTransfer
+    maxTransferAmount: 20
+
+- type: entity
+  name: tranq ammo briefcase
+  parent: BriefcaseBase
+  suffix: ILIARD
+  categories: [ HideSpawnMenu ]
+  id: IliardBriefcaseAmmo
+  description: A handy briefcase.
+  components:
+  - type: Sprite
+    sprite: Objects/Storage/Briefcases/briefcase_brown.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Storage/Briefcases/briefcase_brown.rsi
+
+- type: entity
+  name: tranq ammo briefcase
+  parent: IliardBriefcaseAmmo
+  id: IliardBriefcaseAmmoFilled
+  description: A handy briefcase.
+  suffix: ILIARD, Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: IliardCartridgeMagnumTranq
+        amount: 12
+

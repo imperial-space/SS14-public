@@ -1,7 +1,7 @@
 store-category-ert-uplink-melee = Ближний бой
-store-category-ert-uplink-weapon-combat = Оружее
+store-category-ert-uplink-weapon-combat = Оружие
 store-category-ert-uplink-ammo-combat = Боеприпасы
-store-category-ert-uplink-weapon-noncombat = Второстепенное оружее
+store-category-ert-uplink-weapon-noncombat = Второстепенное оружие
 store-category-ert-uplink-ammo-noncombat = Боеприпасы
 store-category-ert-uplink-explosives = Взрывчатка
 store-category-ert-uplink-medial = Медицина

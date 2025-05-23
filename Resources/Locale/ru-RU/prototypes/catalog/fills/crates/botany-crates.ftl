@@ -12,3 +12,6 @@ ent-CrateHydroponicsSeeds = ящик семян
 
 ent-CratePlantBGone = ящик Plant-B-Gone
     .desc = От Monsanto. «Нежелательные сорняки, встречайте свой небесный взор!»
+
+ent-CrateHydroponicsTray = ящик гидропонного лотка
+    .desc = Содержит 1 упакованный гидропонный лоток.

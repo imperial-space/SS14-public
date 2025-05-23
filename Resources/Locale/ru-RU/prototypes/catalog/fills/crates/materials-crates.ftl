@@ -1,26 +1,20 @@
 ent-CrateMaterialGlass = ящик стекла
     .desc = 90 единиц стекла, упакованных с заботой.
-
 ent-CrateMaterialSteel = ящик стали
     .desc = 90 единиц стали.
-
 ent-CrateMaterialTextiles = ящик текстиля
     .desc = 60 единиц ткани с 30 единиц дураткани.
-
 ent-CrateMaterialPlastic = ящик пластика
     .desc = 90 единиц пласика.
-
 ent-CrateMaterialWood = ящик дерева
     .desc = Куча деревянных досок.
-
 ent-CrateMaterialBrass = ящик латуни
     .desc = 90 листов латуни.
-
 ent-CrateMaterialPlasteel = ящик пластали
     .desc = 90 единиц пластали.
-
 ent-CrateMaterialPlasma = ящик твёрдой плазмы
     .desc = 90 единиц плазмы.
-
 ent-CrateMaterialCardboard = ящик картона
     .desc = 60 единиц картона.
+ent-CrateMaterialBasicResource = ящик базовых материалов
+    .desc = 30 листов стали, стекла и пластика.

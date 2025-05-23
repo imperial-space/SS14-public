@@ -6,7 +6,6 @@
   targetNode: done
   category: construction-category-storage
   description: Высокий стальной ящик, который невозможно запереть. # Imperial Recipes Locale
-  icon: { sprite: Structures/Storage/closet.rsi, state: generic_icon }
   objectType: Structure
 
 - type: construction
@@ -17,7 +16,6 @@
   targetNode: done
   category: construction-category-storage
   description: Высокий стальной ящик, который можно запереть. Можно настроить доступ с помощью конфигуратора доступов. # Imperial Recipes Locale
-  icon: { sprite: Structures/Storage/closet.rsi, state: secure_icon }
   objectType: Structure
 
 - type: construction
@@ -28,7 +26,6 @@
   targetNode: done
   category: construction-category-storage
   description: Высокий стальной ящик с замораживающими способностями. # Imperial Recipes Locale
-  icon: { sprite: Structures/Storage/closet.rsi, state: freezer_icon }
   objectType: Structure
 
 - type: construction
@@ -39,7 +36,6 @@
   targetNode: done
   category: construction-category-storage
   description: рочный оружейный сейф, который можно запереть. # Imperial Recipes Locale
-  icon: { sprite: Structures/Storage/closet.rsi, state: shotguncase }
   objectType: Structure
 
 - type: construction
@@ -50,11 +46,9 @@
   targetNode: done
   category: construction-category-storage
   description: Стандартное хранилище Nanotrasen, теперь на стене. # Imperial Recipes Locale
-  icon: { sprite: Structures/Storage/wall_locker.rsi, state: generic_icon }
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
   canBuildInImpassable: true
   conditions:
     - !type:WallmountCondition
-    

@@ -1,0 +1,175 @@
+- type: entity
+  name: ghost
+  suffix: ILIARD, NoGhostRole
+  parent: SimpleSpaceMobBase
+  id: MobIliardGhost
+  description: They're a Ghost.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/ILIARD/ghost.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: ghost
+  - type: Physics
+  - type: Appearance
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: ghost
+  - type: Bloodstream
+    bloodMaxVolume: 900
+  - type: MeleeWeapon
+    range: 1.95
+    attackRate: 0.3
+    hidden: true
+    angle: 0
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    animation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 12
+      types:
+        Structural: 210
+        Slash: 86
+  - type: Puller
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      600: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0.7
+    baseSprintSpeed: 0.9
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+  - type: Speech
+    speechVerb: LargeMob
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: NoSlip
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: Вы гладите эту сущность. Оно на вас странно смотрит. Тем не менее, ему нравится, наверное.
+    interactSuccessSpawn: EffectHearts
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 3
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+
+- type: entity
+  name: alive head
+  suffix: ILIARD, NoGhostRole
+  parent: [ SimpleSpaceMobBase, FlyingMobBase ]
+  id: MobIliardHead
+  description: They're a Head.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/ILIARD/head.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: head
+  - type: Physics
+  - type: Appearance
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: head
+      Dead:
+        Base: head_dead
+  - type: Bloodstream
+    bloodMaxVolume: 900
+  - type: MeleeWeapon
+    range: 2.1
+    attackRate: 1.2
+    hidden: true
+    angle: 0
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    animation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 6
+      types:
+        Structural: 90
+        Slash: 15
+  - type: Puller
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 6
+    baseSprintSpeed: 5.74
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+  - type: Speech
+    speechVerb: LargeMob
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: NoSlip
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 2
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+
+- type: entity
+  name: god plushie moth
+  suffix: ILIARD, NoGhostRole
+  parent: [ SimpleSpaceMobBase, PlushieMoth ]
+  id: MobIliardMoth
+  description: Pray
+  components:
+  - type: Physics
+  - type: Bloodstream
+    bloodMaxVolume: 900
+  - type: Puller
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      999: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 5
+    baseSprintSpeed: 6
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+  - type: Speech
+    speechVerb: LargeMob
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: NoSlip
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 9
+    useSound:
+      path: /Audio/Items/crowbar.ogg

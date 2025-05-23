@@ -1,0 +1,34 @@
+
+- type: listing
+  id: uplinkBananaCreamPieCannon
+  name: uplink-Banana-Cream-Pie-Cannon-name
+  description: uplink-Banana-Cream-Pie-Cannon-desc
+  productEntity: WeaponPieCannonClown
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 8
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Clown
+
+- type: listing
+  id: uplinkClownBomb
+  name: uplink-Clown-Bomb-name
+  description: uplink-Clown-Bomb-desc
+  productEntity: RevolverCapGunFake
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Clown

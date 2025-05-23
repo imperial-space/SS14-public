@@ -1,5 +1,5 @@
 using Robust.Shared.Map;
-using Content.Shared.Imperial.ErtCall;
+using Content.Server.Imperial.ErtCall;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.Utility;

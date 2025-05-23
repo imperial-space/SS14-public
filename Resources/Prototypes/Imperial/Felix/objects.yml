@@ -598,3 +598,25 @@
         acts: [ "Destruction" ]
   - type: Climbable
   - type: Appearance
+
+- type: entity
+  id: ElysiumBannerFlag
+  parent: PosterBase
+  name: знамя Элизиум Прайма
+  suffix: 5ОКО
+  description: Знамя великой федерации.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Secret/Objects/flags.rsi
+    state: elysium
+
+- type: entity
+  id: FifthEyeBannerFlag
+  parent: PosterBase
+  name: знамя 5-ого ОКА
+  suffix: 5ОКО
+  description: Знамя неизвестной вам организации.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Secret/Objects/flags.rsi
+    state: eyev

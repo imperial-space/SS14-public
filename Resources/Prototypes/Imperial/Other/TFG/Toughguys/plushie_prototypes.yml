@@ -291,3 +291,79 @@
     contents:
       - id: PenCentcomGift
       - id: ReportGoalAchievement
+
+### Имиринка Ирисова
+
+- type: soundCollection
+  id: PlushieNya
+  files:
+    - /Audio/Imperial/nya1.ogg
+    - /Audio/Imperial/nya2.ogg
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieBM
+  name: Imirina Irisova
+  suffix: COMMUNITY,TOY
+  description: Take off your shirt, officer, implantation is obligatory for security staff.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/TFG/Toughguys/imirina.rsi
+    state: icon
+  - type: ContainerContainer
+    containers:
+      stash: !type:ContainerSlot {}
+  - type: ContainerFill
+    containers:
+      stash:
+      - VoiceTrigger # Умеет мяукать типо
+  - type: EmitSoundOnUse
+    sound:
+      collection: PlushieNya
+      params:
+        variation: 0.125
+  - type: EmitSoundOnActivate
+    sound:
+      collection: PlushieNya
+      params:
+        variation: 0.125
+  - type: EmitSoundOnCollide
+    sound:
+      collection: PlushieNya
+      params:
+        variation: 0.125
+  - type: EmitSoundOnLand
+    sound:
+      collection: PlushieNya
+      params:
+        variation: 0.125
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: PlushieNya
+      params:
+        variation: 0.125
+  - type: UseDelay
+    delay: 1.0
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      collection: PlushieNya
+    damage:
+      types:
+        Blunt: 0
+
+- type: entity
+  parent: PlushieBM
+  id: PlushieBMGift
+  suffix: COMMUNITY,TOY,GIFT
+  components:
+  - type: StorageFill
+    contents:
+    - id: OintmentAdvanced1
+      orGroup: PlushieImi
+    - id: BrutepackAdvanced1
+      orGroup: PlushieImi
+    - id: TrackingImplanter
+      orGroup: PlushieImi
+
+### Имиринка Ирисова END

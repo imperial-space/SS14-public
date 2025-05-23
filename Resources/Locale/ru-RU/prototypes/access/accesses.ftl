@@ -8,6 +8,8 @@ id-card-access-level-security = Служба Безопасности
 id-card-access-level-armory = Оружейная
 id-card-access-level-brig = Бриг
 id-card-access-level-detective = Детектив
+id-card-access-level-genpop-enter = Вход в общий блок
+id-card-access-level-genpop-leave = Выход из общего блока
 
 id-card-access-level-chief-engineer = Старший инженер
 id-card-access-level-engineering = Инженерный
@@ -44,3 +46,6 @@ id-card-access-level-syndicate-agent = Агент Синдиката
 id-card-access-level-central-command = Центральное Командование
 
 id-card-access-level-wizard = Волшебник
+
+id-card-access-level-basic-silicon = Киборг
+id-card-access-level-basic-xenoborg = Ксеноборг

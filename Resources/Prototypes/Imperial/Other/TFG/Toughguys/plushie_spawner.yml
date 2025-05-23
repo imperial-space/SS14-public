@@ -17,6 +17,7 @@
         - PlushieSOGift
         - PlushieIAAGift
         - PlushieYeseniaGift
+        - PlushieBMGift
       rareChance: 0.15
       prototypes:
         - PlushieCapitan
@@ -42,7 +43,11 @@
         - PlushieErika
         - PlushieAiden
         - PlushieKainov
+        - PlushieIsaac
+        - PlushieSavir
+# CentCom plushies...
         - PlushieYesenia
-
+        - PlushieBM
+        - PlushieCSCC
       chance: 0.75
       offset: 0.10

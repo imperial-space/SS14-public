@@ -6,7 +6,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - nukeops-role-commander
+      - sacerdosroleLeadersName
       - NamesLast
     - type: Loadout
       prototypes: [ CruentaLeadersODTLoadout ]
@@ -51,7 +51,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - sacerdos-role-fight
+      - sacerdosroleFightName
       - NamesLast
     - type: Loadout
       prototypes: [ fightCruentaODTLoadout ]
@@ -96,7 +96,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - sacerdos-role-med
+      - sacerdosroleMedName
       - NamesLast
     - type: Loadout
       prototypes: [ MedCruentaODTLoadout ]

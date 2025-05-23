@@ -239,13 +239,14 @@
       max: 3
       playerRatio: 15
       briefing:
-        text: head-rev-role-greeting
+        text: head-rev-role-greeting-consent-only # Imperial RevaConsent
         color: CornflowerBlue
         sound: "/Audio/Ambience/Antag/headrev_start.ogg"
-      startingGear: HeadRevGear
+   #  startingGear: HeadRevGear  # Imperial RevaConsent
       components:
       - type: Revolutionary
       - type: HeadRevolutionary
+        onlyConsentConvert: true # Imperial RevaConsent
       mindRoles:
       - MindRoleHeadRevolutionary
 
@@ -447,3 +448,5 @@
       orGroup: puddleMess
     - id: SmugglerStashVariationPass
       prob: 0.90
+    - id: SolarPanelDamageVariationPass
+    - id: SolarPanelEmptyVariationPass

@@ -1,0 +1,7 @@
+- type: department
+  id: SAD
+  name: department-SAD #imperial custom department
+  description: department-SAD-description
+  color: "#C71585"
+  roles:
+  - RFI

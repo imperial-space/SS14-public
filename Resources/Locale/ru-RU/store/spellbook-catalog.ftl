@@ -8,6 +8,9 @@ spellbook-blink-desc = Не моргайте, иначе вы пропустит
 spellbook-voidapplause-name = Аплодисменты пустоты
 spellbook-voidapplause-desc = Поменяйтесь местами с целью, разве это не заставляет вас танцевать буги-вуги?
 
+spellbook-knock-name = Стук
+spellbook-knock-desc = Открывает все шлюзы, ящики и шкафы поблизости.
+
 spellbook-force-wall-name = Стена силы
 spellbook-force-wall-desc = Создайте три стены чистой силы, через которые вы сможете пройти, но другие не смогут.
 

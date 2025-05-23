@@ -5,6 +5,7 @@
   description: The carbine is larger than average and has above average ammunition capacity. It has a dark gray color. Uses 7x62x51 NATO ammo.
   components:
   - type: Item
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/AR57-inhand.rsi
     size: Large
     shape:
     - 0,0,2,2
@@ -15,6 +16,12 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/AR57-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
   - type: Gun
     fireRate: 5
     soundGunshot:
@@ -63,7 +70,7 @@
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Imperial/DeadSector/weapons/weapons/rifle/AR15.rsi
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/AR15-inhand.rsi
     quickEquip: false
     slots:
     - Back
@@ -99,6 +106,7 @@
       gun_chamber: !type:ContainerSlot
       awnings: !type:Container
   - type: Item
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/AR15-inhand.rsi
     size: Normal
     shape:
     - 0,0,4,1
@@ -121,7 +129,7 @@
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Imperial/DeadSector/weapons/weapons/rifle/HK416.rsi
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/HK416-inhand.rsi
     quickEquip: false
     slots:
     - Back
@@ -157,6 +165,7 @@
       gun_chamber: !type:ContainerSlot
       awnings: !type:Container
   - type: Item
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/HK416-inhand.rsi
     size: Normal
     shape:
     - 0,0,4,1
@@ -179,7 +188,7 @@
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Imperial/DeadSector/weapons/weapons/rifle/AKS74y.rsi
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/AKS74y-inhand.rsi
     quickEquip: false
     slots:
     - Back
@@ -219,6 +228,7 @@
       gun_chamber: !type:ContainerSlot
       awnings: !type:Container
   - type: Item
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/AKS74y-inhand.rsi
     size: Normal
     shape:
     - 0,0,2,1

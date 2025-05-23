@@ -112,6 +112,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: Lathe
     idleState: icon
     runningState: building
@@ -184,6 +185,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: Lathe
     idleState: icon
     runningState: building
@@ -193,6 +195,8 @@
     - ChemistryStatic
     - SurgeryStatic
     dynamicPacks:
+    - SalvagePlasmaCutterWeapons # Imperial "plasma Cutter + Advanced Version"
+    - SalvageAdvancedPlasmaCutterWeapons # Imperial "plasma Cutter + Advanced Version"
     - AdvancedTools
     - ScienceEquipment
     - ScienceExplosives
@@ -274,6 +278,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: RequireProjectileTarget
 
 - type: entity
@@ -322,6 +327,7 @@
       - Sheet
       - RawMaterial
       - Ingot
+  - type: OreSiloClient
   - type: GuideHelp
     guides:
     - Robotics
@@ -412,6 +418,9 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
+  - type: LatheAnnouncing
+    channels: [Security]
 
 - type: entity
   id: AmmoTechFab
@@ -445,6 +454,7 @@
           - Sheet
           - RawMaterial
           - Ingot
+    - type: OreSiloClient
 
 - type: entity
   id: MedicalTechFab
@@ -482,6 +492,9 @@
     board: MedicalTechFabCircuitboard
   - type: StealTarget
     stealGroup: MedicalTechFabCircuitboard
+  - type: OreSiloClient
+  - type: LatheAnnouncing
+    channels: [Medical]
 
 - type: entity
   parent: BaseLathe
@@ -601,6 +614,7 @@
       idleState: icon
       runningState: building
       defaultProductionAmount: 10
+      priceModifier: 2 # Imperial Lathe Nerf
       staticPacks:
       - OreSmelting
       - RGlassSmelting
@@ -647,6 +661,7 @@
       tags:
       - Raw
       - Wooden
+      - Boll
   - type: Lathe
     idleState: base_machine
     runningState: base_machine_processing

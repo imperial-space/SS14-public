@@ -1,0 +1,33 @@
+- type: listing
+  id: uplinkAncientJumpsuit
+  name: uplink-Ancient-Jumpsuit-name
+  description: uplink-Ancient-Jumpsuit-desc
+  productEntity: ClothingUniformJumpStinky
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 19
+  cost:
+    Telecrystal: 20
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Passenger
+
+- type: listing
+  id: uplinkAncientToolbox
+  name: uplink-Ancient-Toolbox-name
+  description: uplink-Ancient-Toolbox-desc
+  productEntity: AncientToolbox
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 4
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Passenger

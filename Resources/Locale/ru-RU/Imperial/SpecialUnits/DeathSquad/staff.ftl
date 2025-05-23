@@ -1,8 +1,6 @@
 ent-ERTUplinkDeadSquadAlt = необычный WTH терминал
     .desc = Пахнет кофе и смертью.
     .suffix = DeathSquad
-ent-PlushieSOO = Амелия Де Неко
-    .desc = Какие к черту "гладить хвостик"?! Я сказала взорвать станцию!
 
 ent-MachineGunDeliverer = Азраил
     .desc = Универсальный инструмент для лишения людей их жизней.

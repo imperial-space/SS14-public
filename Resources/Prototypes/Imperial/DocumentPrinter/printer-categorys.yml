@@ -11,21 +11,9 @@
   name: "Документы Службы Безопасности"
 
 - type: latheCategory
-  id: Medical
-  name: "Документы Медицинского отдела"
-
-- type: latheCategory
-  id: Engineering
-  name: "Документы Инженерного отдела"
-
-- type: latheCategory
   id: Science
   name: "Документы Научного отдела"
 
 - type: latheCategory
   id: Supplies
   name: "Документы отдела Снабжения"
-
-- type: latheCategory
-  id: Service
-  name: "Документы Сервисного отдела"

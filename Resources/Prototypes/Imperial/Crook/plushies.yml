@@ -6,7 +6,9 @@
   description: What? You can't put the Research Director in the artifact crusher?
   components:
   - type: Item
-    size: Small
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
   - type: Sprite
     sprite: Imperial/Crook/Plushie/hlimmywugo.rsi
     state: icon
@@ -22,7 +24,9 @@
   description: Dumplings are very delicious!
   components:
   - type: Item
-    size: Small
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
   - type: Sprite
     sprite: Imperial/Crook/Plushie/alextaylor.rsi
     state: icon
@@ -38,7 +42,9 @@
   description: ¡Hola, amigo! The epitome of Murphy's Law.
   components:
   - type: Item
-    size: Small
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
   - type: Sprite
     sprite: Imperial/Crook/Plushie/michaelmurphy.rsi
     state: icon
@@ -54,7 +60,9 @@
   description: This toy is looking right into your soul with its plush eyes. Are you sure you have a gun permit?
   components:
   - type: Item
-    size: Small
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
   - type: Sprite
     sprite: Imperial/Crook/Plushie/sylvesterreynar.rsi
     state: icon
@@ -71,7 +79,9 @@
   description: They LOVE it when you ask their laws over and over again... Emphasising the emptiness of their souls.
   components:
   - type: Item
-    size: Small
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
   - type: Sprite
     sprite: Imperial/Crook/Plushie/borg.rsi
     state: icon
@@ -87,7 +97,9 @@
   description: Не верит в совпадения. Особенно когда пассажир стоит рядом с телом
   components:
   - type: Item
-    size: Small
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
   - type: Sprite
     sprite: Imperial/Crook/Plushie/erikasteinhofer.rsi
     state: icon
@@ -104,7 +116,9 @@
   description: Выдайте мне СоХ, БоХ, МСоХ, Тох, белт, инженерные инструменты абдукторов, хирургические инструменты абдукторов, музыкальные инструменты абдукторов, красное зелье, синее зелье, радужное зелье, серобуромалиновое зелье, зелье против сноса, зелье против поноса, РЦД, РПД, РПЦ, РКС, СВД, СКС, ПТУР, мур, мяу, гав, кря, хрю, х-рей имплант, у-рей имплант, z-рей имплант, СБ-худ, мед-худ, антаг-худ, админ-худ, связки бога, развязки бога, помпу плюс, помпу минус, помпу умножение, помпу разделение. Дыхательную трубку, выдыхательную трубку, вздыхательную трубку осуждающе вздыхательную трубку, анти-дроп, анти-рейв, анти-порчу, анти-перелом, анти-внутртяк, анти-щиткур, АЕГ, пепег, иммолятор, аннигилятор, аллигатор, крокодил, сокол, тесла-револьвер, тесла-карабин, тесла-рогатка, тесла-кастеты, взрывычатку Т4, Х4, ТНТ4, кибер сердце, кибер лёгкие, кибер-тяжёлые, кибер-силу воли, ген прыжка, ген распрыжки, ген разбега, ген побега, ген полного улета. И побыстрее пожалуйста!
   components:
   - type: Item
-    size: Small
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
   - type: Sprite
     sprite: Imperial/Crook/Plushie/aidenbismark.rsi
     state: icon
@@ -120,13 +134,51 @@
   description: Он из тех кто напомнит вам, что доблесть превосходит количество, а верность своей Родине не оценивается количеством текущих проблем.
   components:
   - type: Item
-    size: Small
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
   - type: Sprite
     sprite: Imperial/Crook/Plushie/alexandrkainov.rsi
     state: icon
   - type: StorageFill
     contents:
       - id: CartridgePistol
+
+- type: localizedDataset
+  id: SavirWords
+  values:
+    prefix: plushie-savir-
+    count: 7
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: PlushieSavir
+  name: Савир Мёрфи
+  suffix: Crook, COMMUNITY, TOY
+  description: Скользкий парень.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/savirmurphy.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: UseDelay
+    delay: 5.0
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Speech
+    speechSounds: SavirSaid
+  - type: SpeakOnTrigger
+    pack: SavirWords
+  
+- type: speechSounds
+  id: SavirSaid
+  saySound:
+    path: /Audio/Voice/Silicon/syndieborg_laugh.ogg
+  askSound:
+    path: /Audio/Voice/Talk/Silicon/syndieborg_ask.ogg
+  exclaimSound:
+    path: /Audio/Voice/Talk/Silicon/syndieborg_exclaim.ogg
 
 # Фумо @buhoj_med
 
@@ -190,7 +242,9 @@
   description: Junko scary.
   components:
   - type: Item
-    size: Small
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
   - type: PhysicalComposition
     materialComposition:
       Cloth: 100

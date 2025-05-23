@@ -1,0 +1,23 @@
+uniform highp vec3 colorFirst;
+uniform highp vec3 colorLast;
+uniform highp float rotation;
+uniform highp float gradientIntensity;
+
+highp vec3 adjustColor(highp vec3 color) {
+    return vec3(
+        color.r * color.r,
+        color.g * color.g,
+        color.b * color.b
+    );
+}
+
+
+void fragment() {
+    highp vec4 texture = zTexture(UV);
+    highp float rot = cos(rotation) * UV.x + sin(rotation) * UV.y;
+
+    if (texture.a != 0)
+        COLOR = vec4(mix(adjustColor(colorFirst), adjustColor(colorLast), rot + 0.3), 1.0);
+    else
+        COLOR = texture;
+}

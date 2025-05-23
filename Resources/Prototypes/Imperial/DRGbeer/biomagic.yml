@@ -15,7 +15,6 @@
       state: spell
     event: !type:ProjectileSpellEvent
       prototype: BulletGnomish
-      speech: action-speech-spell-Gnomik
 
 - type: entity
   parent: BaseSubdermalImplant

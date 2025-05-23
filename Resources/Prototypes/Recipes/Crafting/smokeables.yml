@@ -6,7 +6,6 @@
   targetNode: joint
   category: construction-category-misc
   description: Самокрутка из высушенного растения, завернутого в тонкую бумагу. # Imperial Recipes Locale
-  icon: { sprite: Objects/Consumable/Smokeables/Cannabis/joint.rsi, state: unlit-icon }
   objectType: Item
 
 - type: construction
@@ -17,7 +16,6 @@
   targetNode: jointRainbow
   category: construction-category-misc
   description: Самокрутка из высушенного растения, завернутого в тонкую бумагу. # Imperial Recipes Locale
-  icon: { sprite: Objects/Consumable/Smokeables/Cannabis/joint.rsi, state: unlit-icon }
   objectType: Item
 
 - type: construction
@@ -28,9 +26,8 @@
   targetNode: blunt
   category: construction-category-misc
   description: Самокрутка из высушенного растения, завернутого в высушенный табачный лист. # Imperial Recipes Locale
-  icon: { sprite: Objects/Consumable/Smokeables/Cannabis/blunt.rsi, state: unlit-icon }
   objectType: Item
-  
+
 - type: construction
   name: Радужный блант # Imperial Recipes Locale
   id: smokeableBluntRainbow
@@ -39,7 +36,6 @@
   targetNode: bluntRainbow
   category: construction-category-misc
   description: Самокрутка из высушенного растения, завернутого в высушенный табачный лист. # Imperial Recipes Locale
-  icon: { sprite: Objects/Consumable/Smokeables/Cannabis/blunt.rsi, state: unlit-icon }
   objectType: Item
 
 - type: construction
@@ -50,7 +46,6 @@
   targetNode: cigarette
   category: construction-category-misc
   description: Самокрутка с табаком и никотином. # Imperial Recipes Locale
-  icon: { sprite: Objects/Consumable/Smokeables/Cigarettes/cigarette.rsi, state: unlit-icon }
   objectType: Item
 
 # I wanted to put a hand-grinder here but we need construction graphs that use non-consumed catalysts first.
@@ -63,10 +58,7 @@
   targetNode: ground
   category: construction-category-misc
   description: Молотый каннабис, готовый ввести вас в трип. # Imperial Recipes Locale
-  icon: { sprite: Objects/Misc/reagent_fillings.rsi, state: powderpile }
-#    color: darkgreen
-  objectType: Item
-  
+
 - type: construction
   name: Радужный измельчённый канабис # Imperial Recipes Locale
   id: smokeableGroundCannabisRainbow
@@ -75,7 +67,6 @@
   targetNode: groundRainbow
   category: construction-category-misc
   description: Молотый радужный каннабис, готовый ввести вас в трип. # Imperial Recipes Locale
-  icon: { sprite: Objects/Specific/Hydroponics/rainbow_cannabis.rsi, state: powderpile_rainbow }
   objectType: Item
 
 - type: construction
@@ -86,6 +77,4 @@
   targetNode: ground
   category: construction-category-misc
   description: Измельчённый табак, идеально подходящий для самокруток. # Imperial Recipes Locale
-  icon: { sprite: Objects/Misc/reagent_fillings.rsi, state: powderpile }
-#    color: brown
   objectType: Item

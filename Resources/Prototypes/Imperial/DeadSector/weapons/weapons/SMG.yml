@@ -57,7 +57,7 @@
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Imperial/DeadSector/weapons/weapons/SMG/MP5.rsi
+    sprite: Imperial/DeadSector/weapons/weapons/SMG/MP5-inhand.rsi
     quickEquip: false
     slots:
     - Back
@@ -92,6 +92,7 @@
       gun_chamber: !type:ContainerSlot
       awnings: !type:Container
   - type: Item
+    sprite: Imperial/DeadSector/weapons/weapons/SMG/MP5-inhand.rsi
     size: Normal
     shape:
     - 0,0,2,1

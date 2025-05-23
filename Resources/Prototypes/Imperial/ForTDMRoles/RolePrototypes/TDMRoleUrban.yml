@@ -9,12 +9,13 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
-    - type: NukeOperative
+    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
       - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -49,12 +50,13 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
-    - type: NukeOperative
+    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
       - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -89,12 +91,13 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
-    - type: NukeOperative
+    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
       - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -129,12 +132,13 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
-    - type: NukeOperative
+    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
       - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -170,18 +174,60 @@
     - type: NpcFactionMember
       factions:
       - Syndicate
-    - type: NukeOperative
+    - type: MindShield
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirstLeader
       - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
       state: ertleadereva
     - type: Loadout
       prototypes: [ TDMUrbanCommanderGear_S ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMUrbanSniperPreset_S
+  name: UrbanSniperPreset_S
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMUrbanSniperGear_S ]
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: AutoImplant
@@ -218,6 +264,7 @@
       nameSegments:
       - NamesMilitaryFirst
       - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -258,6 +305,7 @@
       nameSegments:
       - NamesMilitaryFirst
       - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -298,6 +346,7 @@
       nameSegments:
       - NamesMilitaryFirst
       - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -338,6 +387,7 @@
       nameSegments:
       - NamesMilitaryFirst
       - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -379,12 +429,54 @@
       nameSegments:
       - NamesMilitaryFirstLeader
       - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
       state: ertleadereva
     - type: Loadout
       prototypes: [ TDMUrbanCommanderGear_N ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMUrbanSniperPreset_N
+  name: UrbanSniperPreset_N
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMUrbanSniperGear_N ]
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: AutoImplant

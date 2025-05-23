@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "by @kotingsl",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "bullet",
+        "delays": [
+            [
+              0.025,
+              0.03,
+              0.03,
+              0.02,
+              5.0
+            ]
+        ]
+    }
+    ]
+}
+
+
+

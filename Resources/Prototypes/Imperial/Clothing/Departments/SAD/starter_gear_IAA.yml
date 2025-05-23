@@ -1,0 +1,152 @@
+# Сумки РФИ
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelRFIFilled
+  components:
+    - type: StorageFill
+      contents:
+        - id: Flash
+        #===========
+        - id: Paper
+          amount: 3
+        - id: CyberPen
+        - id: RubberStampRFI
+    - type: Sprite
+      sprite: Imperial/Clothing/Back/Duffels/rfi.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelRFIFilled
+  components:
+    - type: StorageFill
+      contents:
+        - id: Flash
+        #===========
+        - id: Paper
+          amount: 3
+        - id: CyberPen
+        - id: RubberStampRFI
+    - type: Sprite
+      sprite: Imperial/Clothing/Back/Satchels/rfi.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackRFIFilled
+  components:
+    - type: StorageFill
+      contents:
+        - id: Flash
+        #===========
+        - id: Paper
+          amount: 3
+        - id: CyberPen
+        - id: RubberStampRFI
+    - type: Sprite
+      sprite: Imperial/Clothing/Back/Backpacks/rfi.rsi
+
+- type: entity
+  id: BriefcaseRFIFilled
+  parent: BriefcaseBrown
+  suffix: RFI
+  components:
+    - type: StorageFill
+      contents:
+        - id: BoxFolderPresentable
+        - id: LuxuryPen
+    - type: Sprite
+      sprite: Imperial/Objects/Storage/rfi_briefcase.rsi
+
+# Гарнитуры РФИ
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetRFI
+  name: rfi headset
+  description: A headset for internal affairs agent to hear the captain's last words.
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyRFI
+    - type: Sprite
+      sprite: Imperial/Clothing/Ears/rfi_headset.rsi
+      state: icon
+    - type: Clothing
+      sprite: Imperial/Clothing/Ears/rfi_headset.rsi
+
+- type: entity
+  parent: ClothingHeadsetAlt
+  id: ClothingHeadsetAltRFI
+  name: RFI's over-ear headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyRFI
+  - type: Sprite
+    sprite: Imperial/Clothing/Ears/rfi_headset.rsi
+    state: icon_alt
+  - type: Clothing
+    sprite: Imperial/Clothing/Ears/rfi_headset.rsi
+    equippedPrefix: alt
+
+# Одежда РФИ
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitRFI
+  name: rfi uniform
+  description: Special clothing of regional frontier inspectors. Highlights your importance
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Uniforms/jumpsuits/rfi_jumpsuit.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Uniforms/jumpsuits/rfi_jumpsuit.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtRFI
+  name: RFI uniform
+  description: Special clothing of regional frontier inspectors. Highlights your importance
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Uniforms/jumpskirts/rfi_jumpskirt.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Uniforms/jumpskirts/rfi_jumpskirt.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesRFI
+  name: RFI's shoes
+  description: Special clothing of regional frontier inspectors. Highlights your importance
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Shoes/rfi_shoes.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Shoes/rfi_shoes.rsi
+
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  id: ClothingOuterCoatRFI
+  name: RFI coat
+  description: A suit that protects against minor chemical spills.
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/OuterClothing/Coats/rficoat.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/OuterClothing/Coats/rficoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadRFI
+  name: rfi hat
+  description: This hat looks very stylish and highlights your love of bureaucracy!
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Head/Hats/rfi_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Head/Hats/rfi_hat.rsi

@@ -1,0 +1,175 @@
+# ordinary PlasmaCutter
+- type: entity
+  id: BulletPlasmaCutter
+  name: cutter bolt
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  description: ...
+  components:
+  - type: Reflective
+    reflective:
+      - NonEnergy
+  - type: Sprite
+    noRot: false
+    sprite: Imperial/Objects/Weapons/Guns/CharginMaterials/PlasmaCutter/bullet.rsi
+    state: bullet
+    shader: unshaded
+    color: "#ffda94"
+  - type: GatheringProjectile
+    amount: 12
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Blunt: 1
+        Piercing: 1
+        Heat: 5
+        Structural: 35
+  - type: StaminaDamageOnCollide
+    damage: 15
+  - type: TimedDespawn
+    lifetime: 0.225
+  - type: PointLight
+    color: "#ffaf3892"
+    energy: 3
+    radius: 1.75
+    softness: 1
+    enabled: true
+  - type: IgniteOnCollide
+    fireStacks: 0.4
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.05,-0.05,0.05,0.05"
+        hard: false
+        mask:
+        - Opaque
+  - type: Ammo
+    muzzleFlash: null
+
+
+
+- type: entity
+  id: AttackerBulletPlasmaCutter
+  name: attacker cutter bolt
+  parent: BulletPlasmaCutter
+  categories: [ HideSpawnMenu ]
+  description: ...
+  components:
+  - type: GatheringProjectile
+    amount: 1
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Blunt: 3
+        Piercing: 5
+        Heat: 13
+  - type: StaminaDamageOnCollide
+    damage: 5
+  - type: TimedDespawn
+    lifetime: 0.265
+  - type: PointLight
+    color: "#88225eb8"
+    energy: 3
+    radius: 1.7
+    softness: 1
+    enabled: true
+  - type: Sprite
+    noRot: false
+    sprite: Imperial/Objects/Weapons/Guns/CharginMaterials/PlasmaCutter/bullet.rsi
+    state: bullet
+    shader: unshaded
+    color: "#9943bb"
+  - type: IgniteOnCollide
+    fireStacks: 0.2
+
+# advanced PlasmaCutter
+- type: entity
+  id: Advanced-BulletPlasmaCutter
+  name: cutter bolt
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  description: ...
+  components:
+  - type: Reflective
+    reflective:
+      - NonEnergy
+  - type: Sprite
+    noRot: false
+    sprite: Imperial/Objects/Weapons/Guns/CharginMaterials/PlasmaCutter/bullet.rsi
+    state: bullet
+    shader: unshaded
+    color: "#e49e7d"
+  - type: GatheringProjectile
+    amount: 30
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Blunt: 1
+        Piercing: 1
+        Heat: 1
+        Structural: 55
+  - type: StaminaDamageOnCollide
+    damage: 20
+  - type: TimedDespawn
+    lifetime: 0.225
+  - type: PointLight
+    color: "#ffb938ab"
+    energy: 4
+    radius: 1.75
+    softness: 1
+    enabled: true
+  - type: IgniteOnCollide
+    fireStacks: 0.65
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.075,-0.075,0.075,0.075"
+        hard: false
+        mask:
+        - Opaque
+  - type: Ammo
+    muzzleFlash: null
+
+
+
+- type: entity
+  id: Advanced-AttackerBulletPlasmaCutter
+  name: attacker cutter bolt
+  parent: Advanced-BulletPlasmaCutter
+  categories: [ HideSpawnMenu ]
+  description: ...
+  components:
+  - type: GatheringProjectile
+    amount: 1
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Blunt: 3
+        Piercing: 7
+        Heat: 25
+  - type: StaminaDamageOnCollide
+    damage: 10
+  - type: TimedDespawn
+    lifetime: 0.30
+  - type: PointLight
+    color: "#d31e45b8"
+    energy: 4
+    radius: 1.7
+    softness: 1
+    enabled: true
+  - type: Sprite
+    noRot: false
+    sprite: Imperial/Objects/Weapons/Guns/CharginMaterials/PlasmaCutter/bullet.rsi
+    state: bullet
+    shader: unshaded
+    color: "#9c3167"
+  - type: IgniteOnCollide
+    fireStacks: 0.35

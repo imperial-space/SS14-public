@@ -35,3 +35,5 @@ ent-CrateChemistryVials = ящик пробирок
     .desc = ящик полный пробирок
 ent-CrateEngineeringSpaceHeater = ящик c обогревателем
     .desc = Содержит обогреватель для климат-контроля.
+ent-CrateFunSharkPlushieBulk = ящик мягких акул
+    .desc = Ящик, наполненный разнообразными видами любимых плавниковых друзей. Равр!

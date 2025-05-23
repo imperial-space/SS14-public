@@ -84,3 +84,5 @@ petting-success-station-ai-others = { CAPITALIZE(THE($user)) } Вы гладит
 petting-success-station-ai = Вы тянетесь погладить {THE($target)} на {POSS-ADJ($target)} cold, square screen.
 petting-failure-derelict-cyborg = Вы протягиваете руку, чтобы погладить {THE($target)}, но {POSS-ADJ($target)} ржавый и потрескавшийся внешний вид заставляет передумать.
 petting-failure-station-ai = Вы протягиваете руку, чтобы погладить {THE($target)}, но {SUBJECT($target)} {CONJUGATE-BASIC($target, "бац", "бах")} вы убераете свою руку.
+petting-success-mail-teleporter = Вы гладите {THE($target)} по {POSS-ADJ($target)} послушному, холодному корпусу.
+petting-failure-mail-teleporter = Вы тянете руку к {THE($target)}, но {SUBJECT($target)} {CONJUGATE-BE($target)} занят сортировкой писем!

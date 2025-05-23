@@ -3,3 +3,9 @@
   name: duster - Me and the birds
   path:
     path: /Audio/Imperial/Jukebox/meandthebirds.ogg
+
+- type: jukebox
+  id: 08myuu_halloween_chiptune
+  name: BEEMYU - Halloween Chiptune
+  path:
+    path: /Audio/Imperial/Jukebox/08myuu_halloween_chiptune.ogg

@@ -8,7 +8,7 @@
     eyes: ClothingEyesHudSyndicate
     outerClothing: ClothingOuterVestWebMerc
     suitstorage: WeaponRifleAk
-    id: SyndiPDA
+    id: SecurityCadetIDCard
     jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
     back: ClothingBackpackMerc
     shoes: ClothingShoesBootsSyndieFilled
@@ -38,7 +38,7 @@
     eyes: ClothingEyesHudSyndicate
     outerClothing: ClothingOuterArmorHeavy
     suitstorage: WeaponLightMachineGunL6
-    id: SyndiPDA
+    id: SecurityCadetIDCard
     jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
     back: ClothingBackpackMerc
     shoes: ClothingShoesBootsSyndieFilled
@@ -62,7 +62,7 @@
     eyes: ClothingEyesHudSyndicate
     outerClothing: ClothingOuterVestWebMerc
     suitstorage: WeaponLauncherChinaLake
-    id: SyndiPDA
+    id: SecurityCadetIDCard
     jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
     back: ClothingBackpackMerc
     shoes: ClothingShoesBootsSyndieFilled
@@ -86,18 +86,18 @@
 - type: startingGear
   id: TDMForestMedicalGear_S
   equipment:
-    head: ClothingHeadForestHelmetMinuteman
+    head: ClothingMedicapMinuteman
     mask: ClothingMaskGasMinuteMan
     eyes: ClothingEyesHudSyndicate
     outerClothing: ClothingOuterVestWebMerc
     suitstorage: CSWeaponMP5
     jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
     back: ClothingBackpackMerc
-    id: SyndiPDA
+    id: BrigmedicIDCard
     shoes: ClothingShoesBootsSyndieFilled
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetGanza
-    belt: ClothingBeltMinuteManMedicWebbing
+    belt: ClothingBeltMilitaryWebbingBrigmed
     pocket1: FlashlightSeclite
     pocket2: CSWeaponGlock-18
   storage:
@@ -113,6 +113,10 @@
     - mp5-Magazine
     - mp5-Magazine
     - Glock18MagazinePistol
+    outerClothing:
+    - SmokeGrenade
+    - SmokeGrenade
+    - SmokeGrenade
 
 - type: startingGear
   id: TDMForestCommanderGear_S
@@ -122,7 +126,7 @@
     eyes: ClothingEyesHudSyndicate
     outerClothing: ClothingOuterVestWeb
     suitstorage: WeaponRifleAk
-    id: SyndiPDA
+    id: SeniorOfficerIDCard
     jumpsuit: ClothingUniformJumpsuitMinuteManFormal
     back: ClothingBackpackMerc
     shoes: ClothingShoesBootsSyndieFilled
@@ -145,6 +149,36 @@
     - GrenadeShrapnel
     - GrenadeShrapnel
 
+- type: startingGear
+  id: TDMForestSniperGear_S
+  equipment:
+    head: ClothingHeadForestHelmetMinuteman
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterVestWebMerc
+    suitstorage: WeaponSniperHristov
+    id: SecurityCadetIDCard
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManCamoForestWebbing
+    pocket1: FlashlightSeclite
+    pocket2: CSWeaponGlock-18
+  storage:
+    belt:
+    - MagazineBoxAntiMateriel
+    - MagazineBoxAntiMateriel
+    - MagazineBoxAntiMateriel
+    - MagazineBoxAntiMateriel
+    - Glock18MagazinePistol
+    - Glock18MagazinePistol
+    outerClothing:
+    - HardTraumapack
+    - SmokeGrenade
+    - SmokeGrenade
+
 # Пресеты для стороны нанотрахен
 
 - type: startingGear
@@ -155,7 +189,7 @@
     eyes: ClothingEyesHudSyndicate
     outerClothing: ClothingOuterVestWebMerc
     suitstorage: WeaponRifleAk
-    id: ERTSecurityPDA
+    id: MedicalInternIDCard
     jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
     back: ClothingBackpackMerc
     shoes: ClothingShoesBootsSyndieFilled
@@ -185,7 +219,7 @@
     eyes: ClothingEyesHudSyndicate
     outerClothing: ClothingOuterArmorHeavy
     suitstorage: WeaponLightMachineGunL6
-    id: ERTSecurityPDA
+    id: MedicalInternIDCard
     jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
     back: ClothingBackpackMerc
     shoes: ClothingShoesBootsSyndieFilled
@@ -209,7 +243,7 @@
     eyes: ClothingEyesHudSyndicate
     outerClothing: ClothingOuterVestWebMerc
     suitstorage: WeaponLauncherChinaLake
-    id: ERTSecurityPDA
+    id: MedicalInternIDCard
     jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
     back: ClothingBackpackMerc
     shoes: ClothingShoesBootsSyndieFilled
@@ -233,18 +267,18 @@
 - type: startingGear
   id: TDMForestMedicalGear_N
   equipment:
-    head: ClothingHeadForestHelmetMinuteman
+    head: ClothingMedicapMinuteman
     mask: ClothingMaskGasMinuteMan
     eyes: ClothingEyesHudSyndicate
     outerClothing: ClothingOuterVestWebMerc
     suitstorage: CSWeaponMP5
     jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
     back: ClothingBackpackMerc
-    id: ERTSecurityPDA
+    id: MedicalIDCard
     shoes: ClothingShoesBootsSyndieFilled
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetGanza
-    belt: ClothingBeltMinuteManMedicWebbing
+    belt: ClothingBeltMilitaryWebbingBrigmed
     pocket1: FlashlightSeclite
     pocket2: CSWeaponGlock-18
   storage:
@@ -260,6 +294,10 @@
     - mp5-Magazine
     - mp5-Magazine
     - Glock18MagazinePistol
+    outerClothing:
+    - SmokeGrenade
+    - SmokeGrenade
+    - SmokeGrenade
 
 - type: startingGear
   id: TDMForestCommanderGear_N
@@ -269,7 +307,7 @@
     eyes: ClothingEyesHudSyndicate
     outerClothing: ClothingOuterVestWeb
     suitstorage: WeaponRifleAk
-    id: ERTSecurityPDA
+    id: SeniorPhysicianIDCard
     jumpsuit: ClothingUniformJumpsuitMinuteManFormal
     back: ClothingBackpackMerc
     shoes: ClothingShoesBootsSyndieFilled
@@ -291,3 +329,33 @@
     - HardTraumapack
     - GrenadeShrapnel
     - GrenadeShrapnel
+
+- type: startingGear
+  id: TDMForestSniperGear_N
+  equipment:
+    head: ClothingHeadForestHelmetMinuteman
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterVestWebMerc
+    suitstorage: WeaponSniperHristov
+    id: MedicalInternIDCard
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManCamoForestWebbing
+    pocket1: FlashlightSeclite
+    pocket2: CSWeaponGlock-18
+  storage:
+    belt:
+    - MagazineBoxAntiMateriel
+    - MagazineBoxAntiMateriel
+    - MagazineBoxAntiMateriel
+    - MagazineBoxAntiMateriel
+    - Glock18MagazinePistol
+    - Glock18MagazinePistol
+    outerClothing:
+    - HardTraumapack
+    - SmokeGrenade
+    - SmokeGrenade

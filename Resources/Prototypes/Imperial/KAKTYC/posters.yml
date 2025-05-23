@@ -1,0 +1,21 @@
+- type: entity
+  parent: PosterBase
+  id: PosterMiniBroWatchingYou
+  name: странный плакат
+  suffix: KCL, kaktyc
+  description: Изображение лица, смотрящего прямо в вашу душу. Ниже написаны лозунги, которые вы еле можете разобрать...
+  components:
+  - type: Sprite
+    sprite: Imperial/KAKTYC/posters/default.rsi
+    state: minibro
+
+- type: entity
+  parent: PosterBase
+  id: PosterBigBroWatchingYou
+  name: странный плакат
+  suffix: KCL, kaktyc
+  description: Изображение лица, смотрящего прямо в вашу душу. "Большой брат следит за тобой".
+  components:
+  - type: Sprite
+    sprite: Imperial/KAKTYC/posters/big.rsi
+    state: bigbro
