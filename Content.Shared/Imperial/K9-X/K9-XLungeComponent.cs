@@ -10,10 +10,10 @@ namespace Content.Shared.Imperial.K9XLunge;
 public sealed partial class K9XLungeComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public float Range = 5;
+    public float Range = 4;
 
     [DataField, AutoNetworkedField]
-    public TimeSpan StunTime = TimeSpan.FromSeconds(4);
+    public TimeSpan StunTime = TimeSpan.FromSeconds(3);
 
     [DataField, AutoNetworkedField]
     public Vector2? Charge;

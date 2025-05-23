@@ -1,18 +1,29 @@
 - type: entity
   id: ActionLeapK9X
-  name: Leap
-  description: Perform a jump in the selected direction. #Leap
+  name: Перегрузка сервопривода
+  description: Позволяет совершить прыжок в указанное место
   components:
-  - type: WorldTargetAction
+  - type: EntityTargetAction
     icon:
-      sprite: Objects/Magic/magicactions.rsi
-      state: blink
+      sprite: Imperial/K9-X/Action/Action64.rsi
+      state: K9DashInragne
     itemIconStyle: NoItem
+    checkCanAccess: true
+    range: 4
     sound:
-      path: /Audio/Magic/blink.ogg
+      path: /Audio/Imperial/K9X/K9XLunge.ogg
       params:
         volume: 5
+    useDelay: 30
     priority: -12
     event: !type:K9XLungeActionEvent
-    checkCanAccess: false
-    range: 0
+  - type: ShowSpawnedEntity
+    sprites:
+      - drawedSprite:
+          sprite: Interface/Actions/actions_mecha.rsi
+          state: mech_overload_off
+        inRangeColor: "#000062"
+        outOfRangeColor: "#4A5076"
+        alwaysRender: true
+        range: 4
+    rotationPerClick: 0

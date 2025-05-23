@@ -2,8 +2,8 @@
   id: K9-XTechnology
   name: research-technology-Security-K9-X
   icon:
-    sprite: Imperial/QAIAndroid/Technologies.rsi
-    state: security
+    sprite: Imperial/K9-X/Technologies.rsi
+    state: IconK9X
   discipline: Arsenal
   tier: 2
   cost: 9700

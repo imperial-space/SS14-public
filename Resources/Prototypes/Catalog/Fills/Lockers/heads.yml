@@ -338,6 +338,7 @@
     - id: HandHeldSecurityMonitor # Imperial add
     - id: DrinkHosFlask
     - id: ControlModsuitSafeguard # Imperial Space РИГИ
+    - id: SealedBoxK9X
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable

@@ -10,7 +10,7 @@ namespace Content.Shared.Imperial.K9XLunge;
 public sealed partial class K9XLungeStunnedComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public ProtoId<StatusEffectPrototype>[] Effects = new ProtoId<StatusEffectPrototype>[] {"Stun", "KnockedDown"};
+    public ProtoId<StatusEffectPrototype>[] Effects = new ProtoId<StatusEffectPrototype>[] { "Stun", "KnockedDown" };
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField, AutoPausedField]
     public TimeSpan ExpireAt;

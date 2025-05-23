@@ -1,7 +1,9 @@
 - type: entity
   id: WeaponModuleK9-X
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
-  name: Weapon Module K9-X
+  name: Дистанционный модуль K9-X
+  suffix: K9-X
+  description: Продукт кооперации НТ и сторонней конторы в службе правопорядка. Главное смотрите, что бы это чудо не оказалось не в тех руках
   components:
     - type: Sprite
       sprite: Imperial/K9-X/LaserK9-X.rsi

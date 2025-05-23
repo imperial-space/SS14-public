@@ -1,8 +1,9 @@
 - type: entity
-  name: WeaponDisablerK9-X
+  name: Навесной станнер K9-X
   parent: [ WeaponDisablerPractice, BaseSecurityCommandContraband ]
   id: DisablerK9-X
-  description: 1
+  suffix: K9-X
+  description: Альтернативная разработка, основанная на системе стандартного станнера. В отличии от последнего имеет 18 зарядов и автоматическую перезарядку
   components:
   - type: Sprite
     sprite: Imperial/K9-X/LaserK9-X.rsi
@@ -26,10 +27,11 @@
     autoRechargeRate: 25
 
 - type: entity
-  name: K9-X laser
+  name: Навесной лазер K9-X
   parent: WeaponLaserBorg
   id: LaserK9-X
-  description: 1
+  suffix: K9-X
+  description: Мощное лазерное оружие, призванное ослабить противника за счёт высокого урона, но малого заряда. В отличии от винтовок и пушек НТ, эта - не способна с одного заряда убить полностью здорового человека, посему признана скорее средством радикального задержания, чем орудием убийства.
   components:
   - type: HitscanBatteryAmmoProvider
     proto: RedMediumLaser

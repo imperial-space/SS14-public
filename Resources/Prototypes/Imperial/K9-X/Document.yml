@@ -2,6 +2,7 @@
   parent: Paper
   id: InformationHelpK9-XQAIRCG
   name: "Информационная справка NTCG"
+  suffix: K9-X
   description: Распечатанный документ формы NTCG(QAIRCG)-NT-REP
   components:
     - type: Paper

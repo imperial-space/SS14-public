@@ -2,7 +2,8 @@
   parent: BaseBorgChassis
   id: K9-X
   name: K9-X
-  description: #Заменить.
+  suffix: TumAn207
+  description:
   components:
   - type: Sprite
     sprite: Imperial/K9-X/K9-X.rsi
@@ -17,7 +18,7 @@
       170: Critical
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
-    baseSprintSpeed : 5.2
+    baseSprintSpeed : 5.0
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
@@ -30,30 +31,9 @@
     - Common
     - Security
   - type: ZombieImmune
-  - type: Repairable
-    doAfterDelay: 15
-    allowSelfRepair: false
   - type: NpcFactionMember
     factions:
     - NanoTrasen
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 75
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Machines/warning_buzzer.ogg
-          params:
-            volume: 5
-    - trigger:
-        !type:DamageTrigger
-        damage: 500
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
   - type: MeleeWeapon
     hidden: true
     angle: 0
@@ -62,26 +42,17 @@
       path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
     damage:
       types:
-        Piercing: 5.5
-  - type: NoSlip
+        Blunt: 5.5
+        Slash: 5.5
+        Pierce: 5.5
+        Stamina: 20
     interactSuccessSpawn: EffectHearts
-  - type: ContainerContainer
-    containers:
-      borg_brain: !type:ContainerSlot { }
-      cell_slot: !type:ContainerSlot { }
-      borg_module: !type:Container { }
-      part-container: !type:Container
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-    fitsInCharger: true
   - type: ItemToggle
     onActivate: false
     activated: false
     onUse: false
-  - type: ItemTogglePointLight
-  - type: AccessToggle
   - type: PowerCellDraw
-    drawRate: 0.75
+    drawRate: 0.72
   - type: ItemSlots
     slots:
       cell_slot:
@@ -93,6 +64,9 @@
     receiveFrequencyId: CyborgControl
     transmitFrequencyId: RoboticsConsole
     savableAddress: false
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepK9X
   - type: OnUseTimerTrigger
     delay: 10
     examinable: false
@@ -107,7 +81,7 @@
     laws: K9-XStatic
     subverted: true
   - type: PointLight
-    color: "#dd200b"
+    color: "#dd000b"
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true

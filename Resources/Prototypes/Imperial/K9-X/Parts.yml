@@ -30,7 +30,8 @@
 - type: entity
   id: LeftArmK9-X
   parent: PartSilicon
-  name: K9-X left arm
+  name: Левая передняя Лапа K9-X
+  suffix: K9-X
   components:
   - type: Sprite
     sprite: Imperial/K9-X/Parts.rsi
@@ -52,7 +53,8 @@
 - type: entity
   id: RightArmK9-X
   parent: PartSilicon
-  name: K9-X right arm
+  name: Правая передняя Лапа K9-X
+  suffix: K9-X
   components:
   - type: Sprite
     sprite: Imperial/K9-X/Parts.rsi
@@ -74,7 +76,8 @@
 - type: entity
   id: LeftLegK9-X
   parent: PartSilicon
-  name: K9-X left leg
+  name: Левая задняя Лапа K9-X
+  suffix: K9-X
   components:
   - type: Sprite
     sprite: Imperial/K9-X/Parts.rsi
@@ -96,7 +99,8 @@
 - type: entity
   id: RightLegK9-X
   parent: PartSilicon
-  name: K9-X right leg
+  name: Правая задняя Лапа K9-X
+  suffix: K9-X
   components:
   - type: Sprite
     sprite: Imperial/K9-X/Parts.rsi
@@ -118,7 +122,8 @@
 - type: entity
   id: HeadK9-X
   parent: PartSilicon
-  name: K9-X head
+  name: Голова K9-X
+  suffix: K9-X
   components:
   - type: Sprite
     sprite: Imperial/K9-X/Parts.rsi
@@ -138,7 +143,9 @@
 - type: entity
   id: TorsoK9-X
   parent: PartSilicon
-  name: K9-X torso
+  name: Корпус K9-X
+  suffix: K9-X
+  description: "Пожалуйста, не ищите usb порты"
   components:
   - type: Sprite
     sprite: Imperial/K9-X/Parts.rsi

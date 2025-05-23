@@ -1,16 +1,19 @@
 - type: entity
-  name: sealed box
-  parent: BoxBase
-  id: SealedBoxK9-X
+  name: Запечатанная коробка
+  parent: BaseStorageItem
+  id: SealedBoxK9X
+  suffix: K9-X
   description: A dark colored cardboard box with a red stripe on the side.
   components:
   - type: Sprite
     sprite: Imperial/K9-X/Box.rsi
-    state: box
-  #- type: StorageFill
-    #contents:
-    #- id: WeaponModuleK9-X #Заменить на ID вещей.
-    #- id: PositronicBrain
+    layers:
+    - state: box
+  - type: StorageFill
+    contents:
+    - id: WeaponModuleK9-X
+    - id: PositronicBrain
+    - id: InformationHelpK9-XQAIRCG
   - type: Item
     sprite: Imperial/K9-X/Box.rsi
     size: Large
@@ -20,6 +23,3 @@
     maxItemSize: Small
     grid:
     - 0,0,2,2
-  - type: Tag
-    tags:
-    - BoxCardboard

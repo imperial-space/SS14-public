@@ -1,7 +1,8 @@
 - type: entity
   id: K9-XEndoskeleton
-  name: K9-X endoskeleton
-  description: /
+  name: Эндоскелет K9-X
+  suffix: K9-X
+  description: Эндоскелет Борга K9-X – основа для создания кибернетического Пса. Чёрный стальной каркас с подготовленными точками крепления для корпуса, головы и лап. Белые отметины указывают на места соединения компонентов. Зелёные провода и стальной хвост говорят о том, что это не просто скелет, а готовый к бою механизм
   components:
   - type: Clickable
   - type: InteractionOutline
@@ -49,7 +50,7 @@
       K9-X_head+o:
         whitelist:
           tags:
-          - K9-XHead 
+          - K9-XHead
       K9-X_chest+o:
         whitelist:
           tags:

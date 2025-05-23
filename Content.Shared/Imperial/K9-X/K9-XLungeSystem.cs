@@ -1,5 +1,4 @@
 using Content.Shared.Actions;
-using Content.Shared.Fluids.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Pulling.Events;
@@ -13,14 +12,15 @@ using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
-using System;
 
 namespace Content.Shared.Imperial.K9XLunge;
 
 public sealed class K9XLungeSystem : EntitySystem
 {
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+#pragma warning disable RA0032 // Duplicate dependency field
     [Dependency] private readonly MobStateSystem _mobState = default!;
+#pragma warning restore RA0032 // Duplicate dependency field
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -57,8 +57,6 @@ public sealed class K9XLungeSystem : EntitySystem
 
     private void OnK9XLungeAction(Entity<K9XLungeComponent> k9x, ref K9XLungeActionEvent args)
     {
-        //if (!_k9x.CanAbilityAttackTarget(k9x, args.Target))
-            //return;
 
         if (args.Handled)
             return;
@@ -71,26 +69,23 @@ public sealed class K9XLungeSystem : EntitySystem
 
         args.Handled = true;
 
-        //_rmcPulling.TryStopAllPullsFromAndOn(k9x);
-
         var origin = _transform.GetMapCoordinates(k9x);
-        var target = _transform.GetMapCoordinates(args.Target);  // координаты сюда
+        var target = _transform.GetMapCoordinates(args.Target);
         var diff = target.Position - origin.Position;
         diff = diff.Normalized() * k9x.Comp.Range;
 
         k9x.Comp.Charge = diff;
-        k9x.Comp.Target = args.Target;      // координаты сюда
+        k9x.Comp.Target = args.Target;
         Dirty(k9x);
 
-        //_rmcObstacleSlamming.MakeImmune(k9x);
-        //_throwing.TryThrow(k9x, diff, 30, animated: false);
+        _throwing.TryThrow(k9x, diff, 20, animated: false);
 
         if (!_physicsQuery.TryGetComponent(k9x, out var physics))
             return;
 
         foreach (var ent in _physics.GetContactingEntities(k9x.Owner, physics))
         {
-            if (ent != args.Target)    // координаты сюда
+            if (ent != args.Target)
                 continue;
 
             if (ApplyLungeHitEffects(k9x, ent))
@@ -127,7 +122,7 @@ public sealed class K9XLungeSystem : EntitySystem
             ApplyLungeHitEffects(ent, target.Value);
     }
 
-    private bool ApplyLungeHitEffects(Entity<K9XLungeComponent> k9x, EntityUid targetId)
+    private bool ApplyLungeHitEffects(Entity<K9XLungeComponent> k9x, EntityUid targetId) ///
     {
         if (_mobState.IsDead(targetId))
             return false;
@@ -157,7 +152,7 @@ public sealed class K9XLungeSystem : EntitySystem
             Dirty(k9x, melee);
         }
 
-        _pulling.TryStartPull(k9x, targetId);
+        //_pulling.TryStartPull(k9x, targetId);
         return true;
     }
 
