@@ -1,0 +1,111 @@
+- type: entity
+  parent: BaseBorgChassis
+  id: K9-X
+  name: K9-X
+  suffix: TumAn207
+  description:
+  components:
+  - type: Sprite
+    sprite: Imperial/K9-X/K9-X.rsi
+    state: K9_full
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      170: Critical
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 5.1
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+    - Security
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - Security
+  - type: ZombieImmune
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: MeleeWeapon
+    hidden: true
+    angle: 0
+    animation: WeaponArcClaw
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Blunt: 5.5
+        Slash: 5.5
+        Pierce: 5.5
+        Stamina: 20
+    interactSuccessSpawn: EffectHearts
+  - type: ItemToggle
+    onActivate: false
+    activated: false
+    onUse: false
+  - type: PowerCellDraw
+    drawRate: 0.72
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: ShowJobIcons
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: CyborgControl
+    transmitFrequencyId: RoboticsConsole
+    savableAddress: false
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepK9X
+      params:
+        volume: -6
+  - type: OnUseTimerTrigger
+    delay: 10
+    examinable: false
+    beepSound:
+      path: /Audio/Effects/Cargo/buzz_two.ogg
+      params:
+        volume: -4
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: K9-X
+  - type: SiliconLawProvider
+    laws: K9-XStatic
+    subverted: true
+  - type: PointLight
+    color: "#dd000b"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 5
+    netsync: false
+  - type: Access
+    enabled: false
+    groups:
+    - AllAccess
+  - type: AccessReader
+    access: [["Command"], ["Research"]]
+  - type: StartIonStormed
+    ionStormAmount: 3
+  - type: IonStormTarget
+    chance: 0.07
+  - type: BorgChassis
+    maxModules: 5
+  - type: Body
+    prototype: ImperialBorg
+  - type: BorgHandsImperial
+    whitelistHandTag: SecurityBorgItem
+  - type: K9XLunge
+    leapK9XAction: ActionLeapK9X
+  - type: TypingIndicator
+    proto: K9-X

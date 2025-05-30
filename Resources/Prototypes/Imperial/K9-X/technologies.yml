@@ -1,0 +1,30 @@
+- type: technology
+  id: K9-XTechnology
+  name: research-technology-Security-K9-X
+  icon:
+    sprite: Imperial/K9-X/Technologies.rsi
+    state: IconK9X
+  discipline: Arsenal
+  tier: 2
+  cost: 9700
+  recipeUnlocks:
+  - K9-XEndoskeleton
+  - LeftArmK9-X
+  - RightArmK9-X
+  - LeftLegK9-X
+  - RightLegK9-X
+  - HeadK9-X
+  - TorsoK9-X
+  - WeaponModuleK9-X
+
+- type: latheRecipePack
+  id: PartsK9-X
+  recipes:
+  - K9-XEndoskeleton
+  - LeftArmK9-X
+  - RightArmK9-X
+  - LeftLegK9-X
+  - RightLegK9-X
+  - HeadK9-X
+  - TorsoK9-X
+  - WeaponModuleK9-X

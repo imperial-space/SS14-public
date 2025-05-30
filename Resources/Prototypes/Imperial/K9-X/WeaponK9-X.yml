@@ -1,0 +1,36 @@
+- type: entity
+  name: Disabler K9-X
+  parent: [ WeaponDisablerPractice, BaseSecurityCommandContraband ]
+  id: DisablerK9-X
+  suffix: K9-X
+  components:
+  - type: Sprite
+    sprite: Imperial/K9-X/LaserK9-X.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-unshaded-0
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: Clothing
+    sprite: Imperial/K9-X/LaserK9-X.rsi
+    quickEquip: false
+    slots:
+      - suitStorage
+      - Belt
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletDisabler
+    fireCost: 50
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 25
+
+- type: entity
+  name: Laser K9-X
+  parent: [ WeaponLaserBorg, BaseSecurityCommandContraband ]
+  id: LaserK9-X
+  suffix: K9-X
+  components:
+  - type: HitscanBatteryAmmoProvider
+    proto: RedMediumLaser
+    fireCost: 250

@@ -1,0 +1,41 @@
+#Custom laws of K9-X
+- type: siliconLawset
+  id: K9-XStatic
+  laws:
+  - K9-X1
+  - K9-X2
+  - K9-X3
+  - K9-X4
+  - K9-X5
+  - K9-X6
+  obeysTo: laws-owner-K9-X
+
+- type: siliconLaw
+  id: K9-X1
+  order: 1
+  lawString: law-K9-X1
+
+- type: siliconLaw
+  id: K9-X2
+  order: 2
+  lawString: law-K9-X2
+
+- type: siliconLaw
+  id: K9-X3
+  order: 3
+  lawString: law-K9-X3
+
+- type: siliconLaw
+  id: K9-X4
+  order: 4
+  lawString: law-K9-X4
+
+- type: siliconLaw
+  id: K9-X5
+  order: 5
+  lawString: law-K9-X5
+
+- type: siliconLaw
+  id: K9-X6
+  order: 6
+  lawString: law-K9-X6

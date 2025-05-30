@@ -1,0 +1,5 @@
+- type: typingIndicator
+  id: K9-X
+  typingState: K9X0
+  idleState: K9X3
+  offset: 0.25, 0.25

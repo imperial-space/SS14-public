@@ -1,0 +1,29 @@
+- type: entity
+  id: ActionLeapK9X
+  name: Overload of the servo
+  description: Allows you to make a jump to a specified location
+  components:
+  - type: EntityTargetAction
+    icon:
+      sprite: Imperial/K9-X/Action/Action.rsi
+      state: K9DashInragne
+    itemIconStyle: NoItem
+    checkCanAccess: true
+    range: 4
+    sound:
+      path: /Audio/Imperial/K9X/K9XLunge.ogg
+      params:
+        volume: -1
+    useDelay: 30
+    priority: -12
+    event: !type:K9XLungeActionEvent
+  - type: ShowSpawnedEntity
+    sprites:
+      - drawedSprite:
+          sprite: Interface/Actions/actions_mecha.rsi
+          state: mech_overload_off
+        inRangeColor: "#000062"
+        outOfRangeColor: "#4A5076"
+        alwaysRender: true
+        range: 4
+    rotationPerClick: 0

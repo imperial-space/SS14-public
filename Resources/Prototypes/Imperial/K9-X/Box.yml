@@ -1,0 +1,24 @@
+- type: entity
+  name: Запечатанная коробка
+  parent: BaseStorageItem
+  id: SealedBoxK9X
+  suffix: K9-X
+  components:
+  - type: Sprite
+    sprite: Imperial/K9-X/Box.rsi
+    layers:
+    - state: box
+  - type: StorageFill
+    contents:
+    - id: WeaponModuleK9-X
+    - id: PositronicBrain
+    - id: InformationHelpK9-XQAIRCG
+  - type: Item
+    sprite: Imperial/K9-X/Box.rsi
+    size: Large
+    shape:
+    - 0,0,2,2
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,2,2

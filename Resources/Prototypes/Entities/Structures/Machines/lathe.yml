@@ -411,6 +411,7 @@
     - SecurityWeapons
     - ImperialSecurityDynamic # Imperial Space
     - SecurityDisablers
+    - PartsK9-X # Imperial Space
   - type: MaterialStorage
     whitelist:
       tags:

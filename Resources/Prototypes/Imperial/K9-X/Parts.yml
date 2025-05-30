@@ -1,0 +1,163 @@
+- type: entity
+  id: PartK9-X
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/K9-X/Parts.rsi
+  - type: Icon
+    sprite: Imperial/K9-X/Parts.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: BodyPart
+  - type: ContainerContainer
+    containers:
+      bodypart: !type:Container
+        ents: []
+  - type: StaticPrice
+    price: 5
+  - type: Tag
+    tags:
+      - Trash
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 25
+  - type: GuideHelp
+    guides:
+    - Cyborgs
+    - Robotics
+
+- type: entity
+  id: LeftArmK9-X
+  parent: PartSilicon
+  name: Левая передняя Лапа K9-X
+  suffix: K9-X
+  components:
+  - type: Sprite
+    sprite: Imperial/K9-X/Parts.rsi
+    state: K9-X_l_arm
+  - type: Icon
+    sprite: Imperial/K9-X/Parts.rsi
+    state: K9-X_l_arm
+  - type: BodyPart
+    partType: Hand
+    symmetry: Left
+  - type: Tag
+    tags:
+    - Trash
+    - K9-XArm
+    - K9-XLArm
+  - type: Item
+    heldPrefix: K9-X-arm
+
+- type: entity
+  id: RightArmK9-X
+  parent: PartSilicon
+  name: Правая передняя Лапа K9-X
+  suffix: K9-X
+  components:
+  - type: Sprite
+    sprite: Imperial/K9-X/Parts.rsi
+    state: K9-X_r_arm
+  - type: Icon
+    sprite: Imperial/K9-X/Parts.rsi
+    state: K9-X_r_arm
+  - type: BodyPart
+    partType: Hand
+    symmetry: Right
+  - type: Tag
+    tags:
+    - Trash
+    - K9-XArm
+    - K9-XRArm
+  - type: Item
+    heldPrefix: K9-X-arm
+
+- type: entity
+  id: LeftLegK9-X
+  parent: PartSilicon
+  name: Левая задняя Лапа K9-X
+  suffix: K9-X
+  components:
+  - type: Sprite
+    sprite: Imperial/K9-X/Parts.rsi
+    state: K9-X_l_leg
+  - type: Icon
+    sprite: Imperial/K9-X/Parts.rsi
+    state: K9-X_l_leg
+  - type: BodyPart
+    partType: Leg
+    symmetry: Left
+  - type: Tag
+    tags:
+    - Trash
+    - K9-XLeg
+    - K9-XLLeg
+  - type: Item
+    heldPrefix: K9-X-leg
+
+- type: entity
+  id: RightLegK9-X
+  parent: PartSilicon
+  name: Правая задняя Лапа K9-X
+  suffix: K9-X
+  components:
+  - type: Sprite
+    sprite: Imperial/K9-X/Parts.rsi
+    state: K9-X_r_leg
+  - type: Icon
+    sprite: Imperial/K9-X/Parts.rsi
+    state: K9-X_r_leg
+  - type: BodyPart
+    partType: Leg
+    symmetry: Right
+  - type: Tag
+    tags:
+    - Trash
+    - K9-XLeg
+    - K9-XRLeg
+  - type: Item
+    heldPrefix: K9-X-leg
+
+- type: entity
+  id: HeadK9-X
+  parent: PartSilicon
+  name: Голова K9-X
+  suffix: K9-X
+  components:
+  - type: Sprite
+    sprite: Imperial/K9-X/Parts.rsi
+    state: K9-X_head
+  - type: Icon
+    sprite: Imperial/K9-X/Parts.rsi
+    state: K9-X_head
+  - type: BodyPart
+    partType: Head
+  - type: Tag
+    tags:
+    - Trash
+    - K9-XHead
+  - type: Item
+    heldPrefix: K9-X-head
+
+- type: entity
+  id: TorsoK9-X
+  parent: PartSilicon
+  name: Корпус K9-X
+  suffix: K9-X
+  description: "Пожалуйста, не ищите usb порты"
+  components:
+  - type: Sprite
+    sprite: Imperial/K9-X/Parts.rsi
+    state: K9-X_chest
+  - type: Icon
+    sprite: Imperial/K9-X/Parts.rsi
+    state: K9-X_chest
+  - type: BodyPart
+    partType: Torso
+  - type: Tag
+    tags:
+    - Trash
+    - K9-XTorso
+  - type: Item
+    heldPrefix: K9-X-chest

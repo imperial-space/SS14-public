@@ -1,0 +1,50 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by TumAn207 and Lapkee",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "K9-X_chest"
+        },
+        {
+            "name": "K9-X_chest+o"
+        },
+        {
+            "name": "K9-X_head"
+        },
+        {
+            "name": "K9-X_head+o"
+        },
+        {
+            "name": "K9-X_l_arm"
+        },
+        {
+            "name": "K9-X_l_arm+o"
+        },
+        {
+            "name": "K9-X_l_leg"
+        },
+        {
+            "name": "K9-X_l_leg+o"
+        },
+        {
+            "name": "K9-X_r_arm"
+        },
+        {
+            "name": "K9-X_r_arm+o"
+        },
+        {
+            "name": "K9-X_r_leg"
+        },
+        {
+            "name": "K9-X_r_leg+o"
+        },
+        {
+            "name": "K9-X_suit"
+        }
+    ]
+}
