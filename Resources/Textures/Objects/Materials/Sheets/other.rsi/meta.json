@@ -7,189 +7,186 @@
         "y": 32
     },
     "states": [
-        {
-            "name": "phoron"
-        },
-        {
-            "name": "phoron-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "phoron-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "paper"
-        },
-        {
-            "name": "paper_2"
-        },
-        {
-            "name": "paper_3"
-        },
-        {
-            "name": "paper-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "paper-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "plastic"
-        },
-        {
-            "name": "plastic_2"
-        },
-        {
-            "name": "plastic_3"
-        },
-        {
-            "name": "plastic-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "plastic-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "plasma",
-            "delays": [
-                [
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1
-                ]
+    {
+      "name": "phoron-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "phoron-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "paper"
+    },
+    {
+      "name": "paper_2"
+    },
+    {
+      "name": "paper_3"
+    },
+    {
+      "name": "paper-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "paper-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "plastic"
+    },
+    {
+      "name": "plastic_2"
+    },
+    {
+      "name": "plastic_3"
+    },
+    {
+      "name": "plastic-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "plastic-inhand-right",
+      "directions": 4
+    },
+    {
+        "name": "plasma",
+        "delays": [
+            [
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1
             ]
-        },
-        {
-            "name": "plasma_2",
-            "delays": [
-                [
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1
-                ]
+        ]
+    },
+    {
+        "name": "plasma_2",
+        "delays": [
+            [
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1
             ]
-        },
-        {
-            "name": "plasma_3",
-            "delays": [
-                [
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1
-                ]
+        ]
+    },
+    {
+        "name": "plasma_3",
+        "delays": [
+            [
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1
             ]
-        },
-        {
-            "name": "plasma-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "plasma-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "uranium",
-            "delays": [
-                [
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1
-                ]
+        ]
+    },
+    {
+        "name": "plasma-inhand-left",
+        "directions": 4
+    },
+    {
+        "name": "plasma-inhand-right",
+        "directions": 4
+    },
+    {
+        "name": "uranium",
+        "delays": [
+            [
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1
             ]
-        },
-        {
-            "name": "uranium_2",
-            "delays": [
-                [
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1
-                ]
+        ]
+    },
+    {
+        "name": "uranium_2",
+        "delays": [
+            [
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1
             ]
-        },
-        {
-            "name": "uranium_3",
-            "delays": [
-                [
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1
-                ]
+        ]
+    },
+    {
+        "name": "uranium_3",
+        "delays": [
+            [
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1
             ]
-        },
-        {
-            "name": "uranium-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "uranium-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "generic_materials"
-        }
-    ]
+        ]
+    },
+    {
+      "name": "uranium-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "uranium-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "generic_materials"
+    }
+  ]
 }

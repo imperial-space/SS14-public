@@ -54002,6 +54002,27 @@ entities:
         - Left: Reverse
         - Right: Forward
         - Middle: Off
+- proto: UraniumReinforcedWindowDirectional
+  entities:
+  - uid: 9601
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -38.5,10.5
+      parent: 1668
+  - uid: 9602
+    components:
+    - type: Transform
+      pos: -38.5,12.5
+      parent: 1668
+- proto: UraniumWindoorSecureCentralCommandLocked
+  entities:
+  - uid: 9603
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -38.5,11.5
+      parent: 1668
 - proto: VendingBarDrobe
   entities:
   - uid: 1286

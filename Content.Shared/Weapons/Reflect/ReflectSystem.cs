@@ -200,16 +200,4 @@ public sealed class ReflectSystem : EntitySystem
         ent.Comp.InRightPlace = false;
         Dirty(ent);
     }
-
-    /// <summary>
-    /// Checks if the reflective component should work in designated place. Фикс системы, чтобы рефлект отражающего бронежилета работал только тогда, когда он надет в слот взят из ПР Wizard #31902. Автор: BIGZi0348 Imperial Space
-    /// </summary>
-
-    private static bool IsInRightPlace(ReflectComponent component, SlotFlags slotFlag)
-    {
-        if (slotFlag == SlotFlags.NONE)
-            return component.ReflectingInHands;
-        else
-            return (component.SlotFlags & slotFlag) == slotFlag;
-    }
 }

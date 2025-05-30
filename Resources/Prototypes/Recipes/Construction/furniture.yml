@@ -617,7 +617,7 @@
   canBuildInImpassable: true
 
 - type: construction
-  id: Синие шторы
+  id: CurtainsBlue
   name: Синие шторы # Imperial Recipes Locale
   description: Скрывают то, что не должны видеть другие. # Imperial Recipes Locale
   graph: Curtains

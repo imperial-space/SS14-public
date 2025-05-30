@@ -405,17 +405,6 @@
     sprite: Imperial/Felix/Objects/walls/shuttle.rsi
 
 - type: entity
-  parent: WallShuttle
-  id: DarkWallShuttleStarCorps
-  name: starcorps wall
-  suffix: Felix
-  components:
-  - type: Sprite
-    sprite: Imperial/Felix/Objects/walls/dark_shuttle.rsi
-  - type: Icon
-    sprite: Imperial/Felix/Objects/walls/dark_shuttle.rsi
-
-- type: entity
   parent: WallShuttleDiagonal
   id: DiagonalWallShuttleStarCorps
   name: starcorps wall

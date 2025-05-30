@@ -686,6 +686,18 @@
     - !type:TileNotBlocked
 
 - type: construction
+  id: Turnstile
+  graph: Turnstile
+  startNode: start
+  targetNode: turnstile
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
   name: Ставни # Imperial Recipes Locale
   id: Shutters
   graph: Shutters
@@ -1489,6 +1501,18 @@
   graph: SecretDoor
   startNode: start
   targetNode: solidSecretDoor
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: FungalSoil
+  graph: Soil
+  startNode: start
+  targetNode: fungalSoil
   category: construction-category-structures
   objectType: Structure
   placementMode: SnapgridCenter

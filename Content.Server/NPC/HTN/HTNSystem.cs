@@ -202,9 +202,6 @@ public sealed class HTNSystem : EntitySystem
             if (!comp.Enabled)
                 continue;
 
-            if (!comp.Enabled)
-                continue;
-
             if (comp.PlanningJob != null)
             {
                 if (comp.PlanningJob.Exception != null)
