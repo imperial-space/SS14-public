@@ -260,7 +260,7 @@
 
 - type: entity
   id: ClothingHeadHardsuitSingularitySienceBlack
-  parent: ClothingHeadHelmetHardsuitBasic
+  parent: ClothingHeadHardsuitBase
   name: scientiest helmet
   suffix: Singularity
   components:
@@ -323,7 +323,7 @@
 
 - type: entity
   id: ClothingHeadHardsuitSingularitySienceOrange
-  parent: ClothingHeadHelmetHardsuitBasic
+  parent: ClothingHeadHardsuitBase
   name: scientiest helmet
   suffix: Singularity
   components:
@@ -389,7 +389,7 @@
 
 - type: entity
   id: ClothingHeadHardsuitSingularitySienceGreen
-  parent: ClothingHeadHelmetHardsuitBasic
+  parent: ClothingHeadHardsuitBase
   name: scientiest helmet
   suffix: Singularity
   components:
@@ -457,7 +457,7 @@
 
 - type: entity
   id: ClothingHeadHardsuitSingularitySienceWhite
-  parent: ClothingHeadHelmetHardsuitBasic
+  parent: ClothingHeadHardsuitBase
   name: scientiest helmet
   suffix: Singularity
   components:

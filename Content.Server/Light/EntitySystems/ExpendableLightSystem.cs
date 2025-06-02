@@ -32,7 +32,6 @@ namespace Content.Server.Light.EntitySystems
 
         private static readonly ProtoId<TagPrototype> TrashTag = "Trash";
 
-
         public override void Initialize()
         {
             base.Initialize();

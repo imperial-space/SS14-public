@@ -5,7 +5,7 @@
       "y": 32
   },
   "license": "CC-BY-SA-3.0",
-  "copyright": "Made for the Imperial Space community, authors'es discord nickname: phoenix_7002",  
+  "copyright": "Made for the Imperial Space community, authors'es discord nickname: phoenix_7002",
   "states": [
       {
         "name": "back"
@@ -78,9 +78,6 @@
       },
       {
         "name": "inventory"
-      },
-      {
-        "name": "pda"
       },
       {
         "name": "web"

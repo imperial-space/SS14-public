@@ -5,10 +5,12 @@ namespace Content.Server.Cargo.Systems;
 
 public sealed partial class PricingSystem
 {
+    [Dependency] private readonly IComponentFactory _factory = default!;
+
+
     private double ApplyPrototypePriceModifier(EntityPrototype prototype, double basePrice)
     {
-        if (prototype.Components.TryGetValue(_factory.GetComponentName(typeof(PriceModifierComponent)),
-                out var modProto))
+        if (prototype.Components.TryGetValue(_factory.GetComponentName(typeof(PriceModifierComponent)), out var modProto))
         {
             var priceModifier = (PriceModifierComponent)modProto.Component;
             return basePrice * priceModifier.Modifier;
