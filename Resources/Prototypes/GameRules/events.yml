@@ -198,6 +198,7 @@
   - type: AntagLoadProfileRule
   - type: AntagObjectives
     objectives:
+    - LeaveNoTraceObjective # imperial ninja obj
     - StealResearchObjective
     - DoorjackObjective
     - SpiderChargeObjective
@@ -220,6 +221,9 @@
         sound: /Audio/Misc/ninja_greeting.ogg
       components:
       - type: SpaceNinja
+      # imperial ninja obj start
+      - type: LeaveNoTrace
+      # imperial ninja obj end
       - type: NpcFactionMember
         factions:
         - Syndicate

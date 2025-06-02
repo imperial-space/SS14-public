@@ -1,0 +1,10 @@
+- type: entity
+  parent: [BaseNinjaObjective, BaseCodeObjective]
+  id: LeaveNoTraceObjective
+  name: Не расскрывайте себя
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Weapons/Melee/stunbaton.rsi
+      state: stunbaton_on
+  - type: LeaveNoTraceCondition

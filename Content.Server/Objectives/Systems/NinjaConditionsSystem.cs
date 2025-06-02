@@ -1,6 +1,8 @@
+using Content.Server.Imperial.LeaveNoTrace;
 using Content.Server.Objectives.Components;
 using Content.Server.Roles;
 using Content.Server.Warps;
+using Content.Shared.Imperial.LeaveNoTrace;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Ninja.Components;
 using Content.Shared.Roles;
@@ -28,6 +30,8 @@ public sealed class NinjaConditionsSystem : EntitySystem
         SubscribeLocalEvent<SpiderChargeConditionComponent, ObjectiveAfterAssignEvent>(OnSpiderChargeAfterAssign);
 
         SubscribeLocalEvent<StealResearchConditionComponent, ObjectiveGetProgressEvent>(OnStealResearchGetProgress);
+
+        SubscribeLocalEvent<LeaveNoTraceConditionComponent, ObjectiveGetProgressEvent>(OnLeaveNoTraceAfterAssign); // imperial add ninja obj
     }
 
     // doorjack
@@ -92,6 +96,14 @@ public sealed class NinjaConditionsSystem : EntitySystem
     {
         args.Progress = StealResearchProgress(comp, _number.GetTarget(uid));
     }
+
+    // imperial add ninja obj start
+    private void OnLeaveNoTraceAfterAssign(Entity<LeaveNoTraceConditionComponent> ent, ref ObjectiveGetProgressEvent args)
+    {
+        var player = args.Mind.OwnedEntity;
+        args.Progress = HasComp<LeaveNoTraceComponent>(player) ? 1f : 0f;
+    }
+    // imperial add ninja obj end
 
     private float StealResearchProgress(StealResearchConditionComponent comp, int target)
     {
