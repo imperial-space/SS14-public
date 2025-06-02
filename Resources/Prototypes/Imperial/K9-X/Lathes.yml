@@ -5,7 +5,7 @@
   materials:
     Steel: 850
     Plasteel: 100
-    plastic: 200
+    Plastic: 200
 
 - type: latheRecipe
   id: LeftArmK9-X
@@ -14,7 +14,7 @@
   materials:
     Steel: 150
     Plasteel: 200
-    glass: 150
+    Glass: 150
 
 - type: latheRecipe
   id: RightArmK9-X
@@ -23,7 +23,7 @@
   materials:
     Steel: 150
     Plasteel: 200
-    glass: 150
+    Glass: 150
 
 - type: latheRecipe
   id: LeftLegK9-X
@@ -32,7 +32,7 @@
   materials:
     Steel: 150
     Plasteel: 200
-    glass: 150
+    Glass: 150
 
 - type: latheRecipe
   id: RightLegK9-X
@@ -41,7 +41,7 @@
   materials:
     Steel: 150
     Plasteel: 200
-    glass: 150
+    Glass: 150
 
 - type: latheRecipe
   id: HeadK9-X
@@ -49,9 +49,9 @@
   completetime: 5
   materials:
     Steel: 350
-    glass: 300
+    Glass: 300
     Plasteel: 150
-    plastic: 250
+    Plastic: 250
 
 - type: latheRecipe
   id: TorsoK9-X
@@ -68,5 +68,5 @@
   materials:
     Steel: 2000
     Plasteel: 1500
-    glass: 500
-    gold: 400
+    Glass: 500
+    Gold: 400

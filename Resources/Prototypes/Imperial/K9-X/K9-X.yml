@@ -46,7 +46,6 @@
         Slash: 5.5
         Pierce: 5.5
         Stamina: 20
-    interactSuccessSpawn: EffectHearts
   - type: ItemToggle
     onActivate: false
     activated: false
