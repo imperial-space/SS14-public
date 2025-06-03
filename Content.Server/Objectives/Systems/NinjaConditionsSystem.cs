@@ -2,7 +2,6 @@ using Content.Server.Imperial.LeaveNoTrace;
 using Content.Server.Objectives.Components;
 using Content.Server.Roles;
 using Content.Server.Warps;
-using Content.Shared.Imperial.LeaveNoTrace;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Ninja.Components;
 using Content.Shared.Roles;
