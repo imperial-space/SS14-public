@@ -19,6 +19,7 @@ public sealed partial class LeaveNoTraceSystem : SharedLeaveNoTraceSystem
 
         SubscribeLocalEvent<LeaveNoTraceConditionComponent, ObjectiveGetProgressEvent>(OnLeaveNoTraceAfterAssign);
     }
+
     private void OnLeaveNoTraceAfterAssign(Entity<LeaveNoTraceConditionComponent> ent, ref ObjectiveGetProgressEvent args)
     {
         var player = args.Mind.OwnedEntity;
