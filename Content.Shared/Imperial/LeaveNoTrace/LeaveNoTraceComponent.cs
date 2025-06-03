@@ -23,8 +23,8 @@ public sealed partial class LeaveNoTraceComponent : Component
     public float? CurTime;
 
     [DataField]
-    public string Effect = "WhistleNinjaExclamation";
+    public EntProtoId Effect = "WhistleNinjaExclamation";
 
     [ViewVariables]
-    public NetEntity? EffectEntity;
+    public EntityUid? EffectEntity;
 }

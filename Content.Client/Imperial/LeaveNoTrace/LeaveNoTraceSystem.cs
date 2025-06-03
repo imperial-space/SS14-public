@@ -15,7 +15,7 @@ public sealed class LeaveNoTraceSystem : SharedLeaveNoTraceSystem
 
     private void OnRemove(Entity<LeaveNoTraceComponent> ent, ref ComponentRemove args)
     {
-        Del(GetEntity(ent.Comp.EffectEntity));
+        Del(ent.Comp.EffectEntity);
         ent.Comp.EffectEntity = null;
     }
 
@@ -31,13 +31,12 @@ public sealed class LeaveNoTraceSystem : SharedLeaveNoTraceSystem
             if (leaveNoTrace.EffectEntity != null)
                 return;
 
-            leaveNoTrace.EffectEntity =
-                GetNetEntity(SpawnAttachedTo(leaveNoTrace.Effect, user.ToCoordinates()));
+            leaveNoTrace.EffectEntity = SpawnAttachedTo(leaveNoTrace.Effect, user.ToCoordinates());
 
             return;
         }
 
-        Del(GetEntity(leaveNoTrace.EffectEntity));
+        Del(leaveNoTrace.EffectEntity);
         leaveNoTrace.EffectEntity = null;
     }
 
