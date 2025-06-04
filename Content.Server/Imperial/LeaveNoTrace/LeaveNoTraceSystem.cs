@@ -4,6 +4,7 @@ using Content.Shared.Ghost;
 using Content.Shared.Imperial.LeaveNoTrace;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Stealth.Components;
+using Robust.Shared.Containers;
 using Robust.Shared.Player;
 
 namespace Content.Server.Imperial.LeaveNoTrace;
@@ -12,6 +13,7 @@ public sealed partial class LeaveNoTraceSystem : SharedLeaveNoTraceSystem
 {
     [Dependency] private readonly ExamineSystem _examine = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
 
     public override void Initialize()
     {
@@ -40,7 +42,8 @@ public sealed partial class LeaveNoTraceSystem : SharedLeaveNoTraceSystem
                 continue;
             }
 
-            if (TryComp<StealthComponent>(uid, out var stealth) && stealth.Enabled)
+            if (_container.IsEntityInContainer(uid)
+                || TryComp<StealthComponent>(uid, out var stealth) && stealth.Enabled)
             {
                 comp.CurTime = comp.TimeForReveal;
                 comp.IsSeen = false;
