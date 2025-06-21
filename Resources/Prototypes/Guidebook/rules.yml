@@ -11,6 +11,7 @@
   - GameRulesImperial
   - CommunityRulesImperial
   - AdditionalRulesImperial
+  - EridaniRules
 
 # Imperial Rules Start
 - type: guideEntry 
@@ -53,6 +54,17 @@
   - AdditionalRule1
   - AdditionalRule2 
   - AdditionalRule3
+
+- type: guideEntry
+  id: EridaniRules # Дополнительные правила Эридани
+  name: Eridani Rules
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/EridaniRules.xml"
+  children: 
+  - EridaniRule1
+  - EridaniRule2
+  - EridaniRule3
+  - EridaniRule4
 
 # Игровые правила Imperial Space
 - type: guideEntry
@@ -178,6 +190,33 @@
   name: guide-entry-rules-imperial-additional-3
   ruleEntry: true
   text: "/ServerInfo/Guidebook/ServerRules/Imperial/AdditionalRules/ImperialAdditionalRule3.xml"
+
+# Дополнительные правила Eridani
+
+- type: guideEntry
+  id: EridaniRule1
+  name: guide-entry-rules-eridani-1
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/EridaniRules/EridaniRule1.xml"
+
+- type: guideEntry
+  id: EridaniRule2
+  name: guide-entry-rules-eridani-2
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/EridaniRules/EridaniRule2.xml"
+
+- type: guideEntry
+  id: EridaniRule3
+  name: guide-entry-rules-eridani-3
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/EridaniRules/EridaniRule3.xml"
+
+- type: guideEntry
+  id: EridaniRule4
+  name: guide-entry-rules-eridani-4
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/EridaniRules/EridaniRule4.xml"
+
 
 # Imperial Rules End
 
