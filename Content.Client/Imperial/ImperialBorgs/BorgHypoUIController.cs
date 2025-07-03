@@ -32,9 +32,6 @@ public sealed class BorgHypoUIController : UIController
     {
         base.Initialize();
         SubscribeNetworkEvent<OpenBorgHypoUIEvent>(OnOpenUI);
-
-        _input.SetInputCommand(ContentKeyFunctions.OpenEmotesMenu,
-            InputCmdHandler.FromDelegate(_ => ToggleMenu()));
     }
 
     private RadialMenuOption ImperialBorgsRadialOption(ReagentPrototype proto, ImperialBorgsReagent reagent)
