@@ -15,7 +15,7 @@
     wideAnimationRotation: -135
     angle: 0
     animation: WeaponArcThrust
-    attackRate: 1.15
+    attackRate: 1.2
     damage:
       types:
         Piercing: 17
