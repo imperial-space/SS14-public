@@ -1,0 +1,69 @@
+- type: entity
+  name: Telecrystal_sacerdos
+  parent: BaseItem
+  id: Telecrystal_sacerdos
+  suffix: 20 TS, Phantom4502
+  description: Small cube of solid blue space matter
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Telecrystal_sacerdos.rsi
+    scale: 0.6, 0.6
+    netsync: false
+    state: Telecrystal_sacerdos
+  - type: Item
+    sprite: Imperial/sacerdos/Telecrystal_sacerdos.rsi
+  - type: Stack
+    count: 20
+    stackType: Telecrystal_sacerdos
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 200
+  - type: Currency
+    price:
+      Telecrystal_sacerdos: 1
+
+- type: currency
+  id: Telecrystal_sacerdos
+  displayName: store-currency-display-Telecrystal_sacerdos
+  cash:
+    1: Telecrystal_sacerdos1 
+  canWithdraw: true
+
+- type: stack
+  id: Telecrystal_sacerdos
+  name: Telecrystal_sacerdos
+  icon: Imperial/sacerdos/Telecrystal_sacerdos.rsi
+  spawn: Telecrystal_sacerdos1
+
+- type: entity
+  parent: Telecrystal_sacerdos
+  id: Telecrystal_sacerdos1
+  suffix: 1 TS, Phantom4502
+  components:
+  - type: Stack
+    count: 1
+  
+- type: entity
+  parent: Telecrystal_sacerdos
+  id: Telecrystal_sacerdos5
+  suffix: 5 TC, Phantom4502
+  components:
+  - type: Stack
+    count: 5
+
+- type: entity
+  parent: Telecrystal_sacerdos 
+  id: Telecrystal_sacerdos25    
+  suffix: 25 TC, Phantom4502  
+  components:
+  - type: Stack
+    count: 25
+
+- type: entity
+  parent: Telecrystal_sacerdos
+  id: Telecrystal_sacerdos100
+  suffix: 100 TC, Phantom4502
+  components:
+  - type: Stack
+    count: 100

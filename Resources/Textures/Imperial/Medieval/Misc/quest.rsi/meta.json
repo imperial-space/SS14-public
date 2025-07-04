@@ -38,6 +38,9 @@
             "name": "leg"
         },
         {
+            "name": "merccontract"
+        },
+        {
             "name": "mag",
             "delays": [
                 [

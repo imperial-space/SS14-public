@@ -1,0 +1,44 @@
+- type: entity
+  name: MilkorMGL
+  parent: BaseWeaponLauncher
+  id: WeaponLauncherMilkorMGL
+  description: A modified NanoTrasen grenade launcher, based on ChinaLake.
+  suffix: RiotControlUnit
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/RCU/Weapones/MilkorMGL/icon.rsi
+    state: icon
+    scale: 0.93, 0.93
+  - type: Item
+    sprite: Imperial/SpecialUnits/RCU/Weapones/MilkorMGL/inhand.rsi
+    size: Large
+  - type: AmmoCounter
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - Grenade
+        - SpeedLoaderGrenadeFrag
+    proto: GrenadeFrag
+    capacity: 6
+    chambers: [ True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null ]
+    soundEject:
+      path: /Audio/Weapons/Guns/MagOut/revolver_magout.ogg
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
+  - type: Gun
+    minAngle: 1
+    maxAngle: 2
+    fireRate: 1.5
+    soundGunshot:
+      path:  /Audio/Imperial/SpecialUnits/RCU/Criminality/nuhuh.ogg
+  - type: Appearance
+  - type: ClothingFactionExplosion
+    friendlyFaction: RiotControlUnit
+    chance: 1
+  - type: Speech
+    speechSounds: Pai
+  - type: MultiHandedItem
+
+- type: Tag
+  id: SpeedLoaderGrenadeFrag

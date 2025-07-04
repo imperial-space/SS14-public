@@ -1,0 +1,41 @@
+- type: entity
+  name: Клоун
+  parent: [ BulletFoam, SimpleSpaceMobBase ]
+  id: ClownParten
+  description: Я клоун! А кто ты?!
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: clown
+        sprite: Imperial/Entities/Mobs/NPCs/ClowParten.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: clown
+        Dead:
+          Base: clown_died
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        400: Dead
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3
+      baseSprintSpeed: 2
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: TimedDespawn
+      lifetime: 240
+    - type: SpawnOnDespawn
+      prototype: MedievalLightSphereDespawnEffect
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+      - FootstepSound
+    - type: FootstepModifier
+      footstepSoundCollection:
+       collection: FootstepClown
+       params:
+        variation: 0.17

@@ -8,9 +8,6 @@
   category: construction-category-misc
   objectType: Item
   description: Игрушка, которой можно напугать медотсек. # Imperial Recipes Locale
-  icon:
-    sprite: Mobs/Ghosts/revenant.rsi
-    state: icon
 
 - type: construction
   hide: true # imperial medieval craft disable
@@ -22,6 +19,3 @@
   category: construction-category-misc
   objectType: Item
   description: Сделайте себя похожим на Иана! # Imperial Recipes Locale
-  icon:
-    sprite: Clothing/OuterClothing/Suits/iansuit.rsi
-    state: icon

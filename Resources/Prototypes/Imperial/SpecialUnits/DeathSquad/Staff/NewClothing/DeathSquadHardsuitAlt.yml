@@ -37,6 +37,11 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquadAlt
+  - type: ClothingFactionExplosion
+    friendlyFaction: DeathSquad
+    chance: 1
+  - type: Speech
+    speechSounds: Pai
 
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]

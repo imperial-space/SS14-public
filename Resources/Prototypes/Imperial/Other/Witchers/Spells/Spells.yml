@@ -17,7 +17,6 @@
       - id: LightningRevenant
         amount: 3
       offset: 0, 1
-      speech: Vendigo!!
 
 - type: entity
   id: WitchersSpellYlitka
@@ -38,7 +37,6 @@
       - id: LightningRevenant
         amount: 3
       offset: 0, 1
-      speech: Snails!!
 
 - type: entity
   id: WitchersSpellVorons
@@ -59,4 +57,3 @@
       - id: LightningRevenant
         amount: 3
       offset: 0, 1
-      speech: Ravens!!

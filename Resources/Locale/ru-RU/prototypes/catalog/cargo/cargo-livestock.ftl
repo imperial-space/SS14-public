@@ -46,5 +46,5 @@ ent-LivestockSnake = { ent-CrateNPCSnake }
 ent-LivestockHamster = хомячья клетка
     .desc = хомячья клетка
 
-ent-LivestockCrab = Ящик с крабами
+ent-LivestockCrab = ящик с крабами
     .desc = Ящик с тремя огромными крабами.

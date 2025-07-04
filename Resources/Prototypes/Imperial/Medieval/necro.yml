@@ -50,9 +50,9 @@
 - type: damageModifierSet
   id: SkeletonNecro
   coefficients:
-    Blunt: 0.7
-    Slash: 0.7
-    Piercing: 0.7
+    Blunt: 0.1
+    Slash: 0.1
+    Piercing: 0.1
     Cold: 1.1
     Poison: 0.0
     Radiation: 0.0
@@ -114,6 +114,17 @@
   components:
     - type: Loadout
       prototypes: [ MedievalNecroSender ]
+    - type: LanguageSpeaker
+      languages:
+        Common: Speak
+        #Goblin: Speak
+        #Ancient: Speak
+        #Tribe: Speak
+        #Orc: Speak
+        Cursed: Speak
+        #Growling: Speak
+        #Hissing: Speak
+        #Elf: Speak
 
 - type: startingGear
   id: MedievalNecroSender
@@ -590,3 +601,84 @@
         - sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
           state: cburn
     - type: MagicBarrierNecroSpawn
+
+- type: entity
+  parent: ClothingOuterBase
+  id: MedievalClothingOuterArmorCharmerNecro
+  name: MedievalClothingOuterArmorCharmerNecro
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_armor_necro.rsi
+  - type: Clothing
+    equipDelay: 6
+    unequipDelay: 6
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_armor_necro.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.6
+        Piercing: 0.75
+        Heat: 0.45
+        Cold: 0.55
+        Stamina: 0.5 ## Stamina resistance
+  - type: Item
+    size: Normal
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+  - type: ManaRegen
+    regen: 0.7
+
+- type: entity
+  parent: ClothingOuterBase
+  id: MedievalClothingOuterArmorCharmerNecro2
+  name: MedievalClothingOuterArmorCharmerNecro2
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_armor_necro2.rsi
+  - type: Clothing
+    equipDelay: 3
+    unequipDelay: 3
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_armor_necro2.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.75
+        Cold: 0.75
+        Stamina: 0.8 ## Stamina resistance
+  - type: Item
+    size: Normal
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+  - type: ManaRegen
+    regen: 2.5
+
+- type: listing
+  id: NecroListingMedievalRepairStone
+  productEntity: MedievalRepairStone
+  cost:
+    UnholyMedieval: 4
+  categories:
+  - MedievalNecroOther
+
+
+- type: listing
+  id: ListingMedievalClothingOuterArmorCharmerNecro2
+  productEntity: MedievalClothingOuterArmorCharmerNecro2
+  cost:
+    UnholyMedieval: 50
+  categories:
+  - MedievalNecroArmor
+
+- type: listing
+  id: ListingMedievalClothingOuterArmorCharmerNecro
+  productEntity: MedievalClothingOuterArmorCharmerNecro
+  cost:
+    UnholyMedieval: 50
+  categories:
+  - MedievalNecroArmor

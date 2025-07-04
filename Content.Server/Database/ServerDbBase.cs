@@ -10,6 +10,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Imperial.Medieval.Language;
+using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -50,6 +51,7 @@ namespace Content.Server.Database
                 .Include(p => p.Profiles).ThenInclude(h => h.Antags)
                 .Include(p => p.Profiles).ThenInclude(h => h.Traits)
                 .Include(p => p.Profiles).ThenInclude(h => h.Languages) // imperial medieval languages
+                .Include(p => p.Profiles).ThenInclude(h => h.Skills) // imperial medieval
                 .Include(p => p.Profiles)
                     .ThenInclude(h => h.Loadouts)
                     .ThenInclude(l => l.Groups)
@@ -67,7 +69,11 @@ namespace Content.Server.Database
                 profiles[profile.Slot] = ConvertProfiles(profile);
             }
 
-            return new PlayerPreferences(profiles, prefs.SelectedCharacterSlot, Color.FromHex(prefs.AdminOOCColor));
+            var constructionFavorites = new List<ProtoId<ConstructionPrototype>>(prefs.ConstructionFavorites.Count);
+            foreach (var favorite in prefs.ConstructionFavorites)
+                constructionFavorites.Add(new ProtoId<ConstructionPrototype>(favorite));
+
+            return new PlayerPreferences(profiles, prefs.SelectedCharacterSlot, Color.FromHex(prefs.AdminOOCColor), constructionFavorites);
         }
 
         public async Task SaveSelectedCharacterIndexAsync(NetUserId userId, int index)
@@ -103,6 +109,7 @@ namespace Content.Server.Database
                 .Include(p => p.Antags)
                 .Include(p => p.Traits)
                 .Include(p => p.Languages)  // imperial medieval languages
+                .Include(p => p.Skills) // Imperial medieval
                 .Include(p => p.Loadouts)
                     .ThenInclude(l => l.Groups)
                     .ThenInclude(group => group.Loadouts)
@@ -146,7 +153,8 @@ namespace Content.Server.Database
             {
                 UserId = userId.UserId,
                 SelectedCharacterSlot = 0,
-                AdminOOCColor = Color.Red.ToHex()
+                AdminOOCColor = Color.Red.ToHex(),
+                ConstructionFavorites = [],
             };
 
             prefs.Profiles.Add(profile);
@@ -155,7 +163,7 @@ namespace Content.Server.Database
 
             await db.DbContext.SaveChangesAsync();
 
-            return new PlayerPreferences(new[] {new KeyValuePair<int, ICharacterProfile>(0, defaultProfile)}, 0, Color.FromHex(prefs.AdminOOCColor));
+            return new PlayerPreferences(new[] { new KeyValuePair<int, ICharacterProfile>(0, defaultProfile) }, 0, Color.FromHex(prefs.AdminOOCColor), []);
         }
 
         public async Task DeleteSlotAndSetSelectedIndex(NetUserId userId, int deleteSlot, int newSlot)
@@ -179,6 +187,19 @@ namespace Content.Server.Database
 
             await db.DbContext.SaveChangesAsync();
 
+        }
+
+        public async Task SaveConstructionFavoritesAsync(NetUserId userId, List<ProtoId<ConstructionPrototype>> constructionFavorites)
+        {
+            await using var db = await GetDb();
+            var prefs = await db.DbContext.Preference.SingleAsync(p => p.UserId == userId.UserId);
+
+            var favorites = new List<string>(constructionFavorites.Count);
+            foreach (var favorite in constructionFavorites)
+                favorites.Add(favorite.Id);
+            prefs.ConstructionFavorites = favorites;
+
+            await db.DbContext.SaveChangesAsync();
         }
 
         private static async Task SetSelectedCharacterSlotAsync(NetUserId userId, int newSlot, ServerDbContext db)
@@ -267,7 +288,10 @@ namespace Content.Server.Database
                 antags.ToHashSet(),
                 traits.ToHashSet(),
                 loadouts,
-                languages.ToHashSet()   // imperial medieval languages
+                // Imperial medieval start
+                languages.ToHashSet(),
+                new(profile.Skills.ToDictionary(s => s.SkillName, s => s.SkillLevel))
+                // Imperial medieval end
             );
         }
 
@@ -349,14 +373,21 @@ namespace Content.Server.Database
                 profile.Loadouts.Add(dz);
             }
 
-            // imperial medieval languages start
+            // Imperial medieval start
             profile.Languages.Clear();
             profile.Languages.AddRange(
                     humanoid.Languages.Select
                     (l => new Language { LanguageName = l.ToString() }
                     )
                 );
-            // imperial medieval languages end
+
+            profile.Skills.Clear();
+            profile.Skills.AddRange(
+                    humanoid.Skills.Select
+                    (s => new Skill { SkillName = s.Key, SkillLevel = s.Value }
+                    )
+                );
+            // Imperial medieval end
 
             return profile;
         }
@@ -551,6 +582,36 @@ namespace Content.Server.Database
                     .SetProperty(b => b.LastEditedById, editedBy)
                     .SetProperty(b => b.LastEditedAt, editedAt.UtcDateTime)
                 );
+        }
+        #endregion
+
+        #region Imperial Medieval
+
+        public async Task<int> GetLastNrpViolationsCount(Guid player, int daysCount, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var daysAgo = DateTime.UtcNow.AddDays(-daysCount);
+
+            var count = await db.DbContext.NrpViolations
+                .Where(v => v.UserId == player && v.ViolationTime >= daysAgo)
+                .CountAsync(cancel);
+
+            return count;
+        }
+
+        public async Task AddNrpViolation(Guid player, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var violation = new NrpViolation
+            {
+                UserId = player,
+                ViolationTime = DateTime.UtcNow
+            };
+
+            await db.DbContext.NrpViolations.AddAsync(violation, cancel);
+            await db.DbContext.SaveChangesAsync(cancel);
         }
         #endregion
 

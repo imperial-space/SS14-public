@@ -1,0 +1,128 @@
+- type: roleLoadout
+  id: JobRFI
+  groups:
+  - GroupTankHarness
+  - RFIJumpsuit
+  - RFIBackpack
+  - RFIHat
+  - RFIGlasses
+  - RFIShoes
+  - RFICoat
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+
+# Groups Start
+
+- type: loadoutGroup
+  id: RFIJumpsuit
+  name: loadout-group-RFI-jumpsuit
+  loadouts:
+  - ClothingUniformJumpsuitRFI
+  - ClothingUniformJumpskirtRFI
+
+- type: loadoutGroup
+  id: RFIBackpack
+  name: loadout-group-RFI-backpack
+  loadouts:
+  - ClothingBackpackRFIFilled
+  - ClothingBackpackSatchelRFIFilled
+  - ClothingBackpackDuffelRFIFilled
+
+- type: loadoutGroup
+  id: RFIGlasses
+  name: loadout-group-RFI-glasses
+  minLimit: 0
+  loadouts:
+  - ClothingEyesGlassesSunglasses
+  - Glasses
+  - GlassesJamjar
+  - GlassesJensen
+
+- type: loadoutGroup
+  id: RFIShoes
+  name: loadout-group-RFI-shoes
+  loadouts:
+  - ClothingShoesRFI
+
+- type: loadoutGroup
+  id: RFICoat
+  name: loadout-group-RFI-coat
+  loadouts:
+  - ClothingOuterCoatRFI
+
+- type: loadoutGroup
+  id: RFIHat
+  name: loadout-group-RFI-hat
+  loadouts:
+  - ClothingHeadRFI
+
+# Groups End
+
+# Loadouts Start
+
+# ClothingUniformJumpsuitRFI
+
+- type: loadout
+  id: ClothingUniformJumpsuitRFI
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRFI
+
+# ClothingUniformJumpskirtRFI
+
+- type: loadout
+  id: ClothingUniformJumpskirtRFI
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtRFI
+
+# ClothingNeckLawyerbadge
+
+- type: loadout
+  id: ClothingNeckLawyerbadge
+  equipment:
+    neck: ClothingNeckLawyerbadge
+
+# ClothingShoesRFI
+
+- type: loadout
+  id: ClothingShoesRFI
+  equipment:
+    shoes: ClothingShoesRFI
+
+# ClothingBackpackRFIFilled
+
+- type: loadout
+  id: ClothingBackpackRFIFilled
+  equipment:
+    back: ClothingBackpackRFIFilled
+
+# ClothingBackpackSatchelRFIFilled
+
+- type: loadout
+  id: ClothingBackpackSatchelRFIFilled
+  equipment:
+    back: ClothingBackpackSatchelRFIFilled
+
+# ClothingBackpackDuffelRFIFilled
+
+- type: loadout
+  id: ClothingBackpackDuffelRFIFilled
+  equipment:
+    back: ClothingBackpackDuffelRFIFilled
+
+
+# ClothingOuterCoatRFI
+
+- type: loadout
+  id: ClothingOuterCoatRFI
+  equipment:
+    outerClothing: ClothingOuterCoatRFI
+
+# ClothingHeadRFI
+
+- type: loadout
+  id: ClothingHeadRFI
+  equipment:
+    head: ClothingHeadRFI
+
+# Loadouts End

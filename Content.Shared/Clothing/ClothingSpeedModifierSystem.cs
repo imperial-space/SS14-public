@@ -1,4 +1,5 @@
 using Content.Shared.Examine;
+using Content.Shared.Imperial.Medieval.Clothing;
 using Content.Shared.Inventory;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
@@ -55,7 +56,20 @@ public sealed class ClothingSpeedModifierSystem : EntitySystem
     private void OnRefreshMoveSpeed(EntityUid uid, ClothingSpeedModifierComponent component, InventoryRelayedEvent<RefreshMovementSpeedModifiersEvent> args)
     {
         if (_toggle.IsActivated(uid))
-            args.Args.ModifySpeed(component.WalkModifier, component.SprintModifier);
+        {
+            // Imperial Medieval Skills start
+            var (walk, sprint) = (component.WalkModifier, component.SprintModifier);
+            if (_container.TryGetContainingContainer((uid, null, null), out var container))
+            {
+                var ev = new ModifyClothingMovespeedModifierEvent(component.WalkModifier, component.SprintModifier);
+                RaiseLocalEvent(container.Owner, ref ev);
+                (walk, sprint) = (ev.Walk, ev.Sprint);
+            }
+            // Imperial Medieval Skills end
+
+            args.Args.ModifySpeed(walk, sprint);  // Imperial Medieval - modifiers added
+        }
+
     }
 
     private void OnClothingVerbExamine(EntityUid uid, ClothingSpeedModifierComponent component, GetVerbsEvent<ExamineVerb> args)

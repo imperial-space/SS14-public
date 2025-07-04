@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "by crookielv",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "loose"
+    },
+    {
+      "name": "normal"
+    },
+    {
+      "name": "solid"
+    },
+    {
+      "name": "soil_e"
+    },
+    {
+      "name": "soil_n"
+    },
+    {
+      "name": "soil_s"
+    },
+    {
+      "name": "soil_w"
+    },
+    {
+      "name": "ant"
+    },
+    {
+      "name": "gum"
+    },
+    {
+      "name": "lgum"
+    },
+    {
+      "name": "mushroom"
+    },
+    {
+      "name": "root"
+    }
+  ]
+}

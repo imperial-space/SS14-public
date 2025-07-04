@@ -28,7 +28,6 @@
   components:
     - type: RandomMetadata
       nameSegments:
-        - NamesFirstMilitary
         - NamesLast
     - type: Sprite
       netsync: false
@@ -48,7 +47,6 @@
   components:
     - type: RandomMetadata
       nameSegments:
-        - NamesFirstMilitary
         - NamesLast
     - type: Sprite
       netsync: false
@@ -68,7 +66,6 @@
   components:
     - type: RandomMetadata
       nameSegments:
-        - NamesFirstMilitary
         - NamesLast
     - type: Sprite
       netsync: false
@@ -88,7 +85,6 @@
   components:
     - type: RandomMetadata
       nameSegments:
-        - NamesFirstMilitary
         - NamesLast
     - type: Sprite
       netsync: false

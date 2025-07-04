@@ -1,0 +1,485 @@
+#CruentaArmor
+- type: listing
+  id: CruentaUplinkCruentaClothingOuterArmorBasic
+  productEntity: CruentaClothingOuterArmorBasic
+  cost:
+    Telecrystal_sacerdos: 375
+  categories:
+  - CruentaArmor
+
+- type: listing
+  id: CruentaUplinkClothingOuterCoatCruentaCapArmored
+  productEntity: ClothingOuterCoatCruentaCapArmored
+  cost:
+    Telecrystal_sacerdos: 400
+  categories:
+  - CruentaArmor
+
+- type: listing
+  id: CruentaUplinkClothingOuterArmorRiot
+  productEntity: ClothingOuterArmorRiot
+  cost:
+    Telecrystal_sacerdos: 600
+  categories:
+  - CruentaArmor
+
+- type: listing
+  id: CruentaUplinkClothingOuterArmorBulletproof
+  productEntity: ClothingOuterArmorBulletproof
+  cost:
+    Telecrystal_sacerdos: 700
+  categories:
+  - CruentaArmor
+
+- type: listing
+  id: ArmorCruentaRaid_Cruenta
+  productEntity: ArmorRaid_Cruenta
+  cost:
+    Telecrystal_sacerdos: 800
+  categories:
+  - CruentaArmor
+
+- type: listing
+  id: CruentaUplinkheavyarmorsuitArmor_Cruenta
+  productEntity: heavyarmorsuitArmor_Cruenta
+  cost:
+    Telecrystal_sacerdos: 1835
+  categories:
+  - CruentaArmor
+
+- type: listing
+  id: CruentaUplinkArmorCruentaRaidHelmet_Cruenta
+  productEntity: ArmorCruentaRaidHelmet_Cruenta
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - CruentaArmor
+
+- type: listing
+  id: CruentaUplinkClothingHeadHelmetSwat
+  productEntity: ClothingHeadHelmetSwatSyndicate
+  cost:
+    Telecrystal_sacerdos: 450
+  categories:
+  - CruentaArmor
+
+- type: listing
+  id: CruentaUplinkClothingHeadHelmetRiot
+  productEntity: ClothingHeadHelmetRiot
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - CruentaArmor
+
+- type: listing
+  id: CruentaClothingOuterArmorReflective
+  productEntity: ClothingOuterArmorReflective
+  cost:
+    Telecrystal_sacerdos: 800
+  categories:
+  - CruentaArmor
+
+# CruentaStorage
+- type: listing
+  id: CruentaClothingBeltMedicalEMT
+  productEntity: ClothingBeltMedicalEMT
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - CruentaStorage
+
+- type: listing
+  id: CruentaClothingBeltMilitaryWebbing
+  productEntity: ClothingBeltMilitaryWebbing
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - CruentaStorage
+
+- type: listing
+  id: CruentaClothingBeltBandolier
+  productEntity: ClothingBeltBandolier
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - CruentaStorage
+
+- type: listing
+  id: CruentaClothingBackpackDuffelCruenta_3
+  productEntity: ClothingBackpackDuffelCruenta_3
+  cost:
+    Telecrystal_sacerdos: 285
+  categories:
+  - CruentaStorage
+
+- type: listing
+  id: CruentaBlackShieldBackpackCruenta_4
+  productEntity: BlackShieldBackpackCruenta_4
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - CruentaStorage
+
+- type: listing
+  id: CruentaClothingBackpackDuffelCruenta_6
+  productEntity: ClothingBackpackDuffelCruenta_6
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - CruentaStorage
+
+- type: listing
+  id: ClothingBackpackSatchelCruenta_5
+  productEntity: ClothingBackpackSatchelCruenta_5
+  cost:
+    Telecrystal_sacerdos: 120
+  categories:
+  - CruentaStorage
+
+- type: listing
+  id: ClothingBackpackCruenta_2
+  productEntity: ClothingBackpackCruenta_2
+  cost:
+    Telecrystal_sacerdos: 110
+  categories:
+  - CruentaStorage
+
+- type: listing
+  id: CruentaClothingBackpackCruenta_1
+  productEntity: ClothingBackpackCruenta_1
+  cost:
+    Telecrystal_sacerdos: 520
+  categories:
+  - CruentaStorage
+
+- type: listing
+  id: CruentaClothingBeltAssault
+  productEntity: ClothingBeltAssault
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - CruentaStorage
+
+- type: listing
+  id: CruentaChemBag
+  productEntity: ChemBag
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - CruentaStorage
+
+- type: listing
+  id: CruentaClothingBeltStorageWaistbag
+  productEntity: ClothingBeltStorageWaistbag
+  cost:
+    Telecrystal_sacerdos: 50
+  categories:
+  - CruentaStorage
+
+#CruentaConstruction
+- type: listing
+  id: CruentaMultitool
+  productEntity: Multitool
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaCableApcStack
+  productEntity: CableApcStack
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaCableMVStack
+  productEntity: CableMVStack
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaCableHVStack
+  productEntity: CableHVStack
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentatrayScanner
+  description: SacerdostrayScanner
+  productEntity: trayScanner
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaGasAnalyzer
+  productEntity: GasAnalyzer
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaPartRodMetal
+  description: SacerdosPartRodMetal
+  productEntity: PartRodMetal
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaRCDAmmo
+  productEntity: RCDAmmo
+  cost:
+    Telecrystal_sacerdos: 220
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaSheetSteel
+  productEntity: SheetSteel
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaSheetGlass
+  productEntity: SheetGlass
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaClothingEyesGlassesMeson
+  productEntity: ClothingEyesGlassesMeson
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaSheetPlastic
+  productEntity: SheetPlastic
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaSheetPlasma
+  productEntity: SheetPlasma
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaSheetUranium
+  productEntity: SheetUranium
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaSheetPlasteel
+  productEntity: SheetPlasteel
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaClothingBeltUtilityEngineering
+  productEntity: ClothingBeltUtilityEngineering
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaClothingBeltChiefEngineerFilled
+  productEntity: ClothingBeltChiefEngineerFilled
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaRCD
+  productEntity: RCD
+  cost:
+    Telecrystal_sacerdos: 230
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaMaterialCloth
+  productEntity: MaterialCloth
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaMaterialDurathread
+  productEntity: MaterialDurathread
+  cost:
+    Telecrystal_sacerdos: 185
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaCloningConsoleComputerCircuitboard
+  productEntity: CloningConsoleComputerCircuitboard
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaCloningPodMachineCircuitboard
+  description: SacerdosCloningPodMachineCircuitboard
+  productEntity: CloningPodMachineCircuitboard
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaMedicalScannerMachineCircuitboard
+  description: SacerdosMedicalScannerMachineCircuitboard
+  productEntity: MedicalScannerMachineCircuitboard
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaReagentGrinderMachineCircuitboard
+  productEntity: ReagentGrinderMachineCircuitboard
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaFlatpackerMachineCircuitboard
+  productEntity: FlatpackerMachineCircuitboard
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaTurboItemRechargerCircuitboard
+  description: SacerdosTurboItemRechargerCircuitboard
+  productEntity: TurboItemRechargerCircuitboard
+  cost:
+    Telecrystal_sacerdos: 450
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaWeaponCapacitorRechargerCircuitboard
+  productEntity: WeaponCapacitorRechargerCircuitboard
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaChemMasterMachineCircuitboard
+  description: SacerdosChemMasterMachineCircuitboard
+  productEntity: ChemMasterMachineCircuitboard
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaCryoPodMachineCircuitboard
+  productEntity: CryoPodMachineCircuitboard 
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaChemDispenserMachineCircuitboard
+  description: SacerdosChemDispenserMachineCircuitboard
+  productEntity: ChemDispenserMachineCircuitboard
+  cost:
+    Telecrystal_sacerdos: 450
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaHotplateMachineCircuitboard
+  productEntity: HotplateMachineCircuitboard
+  cost:
+    Telecrystal_sacerdos: 120
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaStasisBedMachineCircuitboard
+  description: SacerdosStasisBedMachineCircuitboard
+  productEntity: StasisBedMachineCircuitboard
+  cost:
+    Telecrystal_sacerdos: 130
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaCapacitorStockPart
+  productEntity: CapacitorStockPart
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaMicroManipulatorStockPart
+  productEntity: MicroManipulatorStockPart
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: CruentaMatterBinStockPart
+  productEntity: MatterBinStockPart
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - CruentaConstruction
+
+- type: listing
+  id: SacerdosToolboxElectricalTurretCruenta
+  productEntity: ToolboxElectricalTurretCruenta
+  cost:
+    Telecrystal_sacerdos: 785
+  categories:
+  - CruentaConstruction
+
+#- CruentaReinforcements
+
+- type: listing
+  id: CruentaSpawnfightCruentaODTPreset
+  productEntity: SpawnfightCruentaODTPreset
+  icon: { sprite: /Textures/Imperial/sacerdos/Cruenta_falcatio/Equipment_Cruenta.rsi, state: fight_Cruenta }
+  cost:
+    Telecrystal_sacerdos: 875
+  categories:
+  - CruentaReinforcements

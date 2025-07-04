@@ -1,0 +1,77 @@
+- type: entity
+  parent: IDCardStandard
+  id: ID_Leaders_Cruenta
+  name: ID Leaders Cruenta
+  suffix: Phantom4502, Cruenta
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/Cruenta_ID.rsi
+    state: ID_Leaders
+  - type: Item
+    size: Small
+    heldPrefix: gold
+  - type: IdCard
+    jobTitle: ID_Leaders_Cruenta
+    jobIcon: ID_Leaders_CruentaJobIcon
+  - type: Access
+    tags:
+    - SyndicateAgent
+
+- type: entity
+  parent: IDCardStandard
+  id: ID_fight_Cruenta
+  name: ID fight Cruenta
+  suffix: Phantom4502, Cruenta
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/Cruenta_ID.rsi
+    state: ID_fight
+  - type: Item
+    size: Small
+    heldPrefix: default
+  - type: IdCard
+    jobTitle: ID_fight_Cruenta
+    jobIcon: ID_fight_CruentaJobIcon
+  - type: Access
+    tags:
+    - SyndicateAgent
+
+- type: entity
+  parent: IDCardStandard
+  id: ID_Medical_Cruenta
+  name: ID Medical Cruenta
+  suffix: Phantom4502, Cruenta
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/Cruenta_ID.rsi
+    state: ID_Medical
+  - type: Item
+    size: Small
+    heldPrefix: silver
+  - type: IdCard
+    jobTitle: ID_Medical_Cruenta
+    jobIcon: ID_Medical_CruentaJobIcon
+  - type: Access
+    tags:
+    - SyndicateAgent
+
+- type: jobIcon
+  parent: JobIcon
+  id: ID_Leaders_CruentaJobIcon
+  icon:
+    sprite: /Textures/Imperial/sacerdos/Cruenta_falcatio/Jobicons_Cruenta.rsi
+    state: LeadersJobIcon_Cruenta
+
+- type: jobIcon
+  parent: JobIcon
+  id: ID_fight_CruentaJobIcon
+  icon:
+    sprite: /Textures/Imperial/sacerdos/Cruenta_falcatio/Jobicons_Cruenta.rsi
+    state: fight_JobIcon_Cruenta
+
+- type: jobIcon
+  parent: JobIcon
+  id: ID_Medical_CruentaJobIcon
+  icon:
+    sprite: /Textures/Imperial/sacerdos/Cruenta_falcatio/Jobicons_Cruenta.rsi
+    state: IDMedicalJobIcon

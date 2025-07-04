@@ -1,5 +1,6 @@
 using Content.Client.Gameplay;
 using Content.Client.Hands.Systems;
+using Content.Client.Imperial.Medieval.ItemShow;  // Imperial medieval edit
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Hands.Controls;
 using Content.Client.UserInterface.Systems.Hotbar.Widgets;
@@ -23,6 +24,7 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
 
     [UISystemDependency] private readonly HandsSystem _handsSystem = default!;
     [UISystemDependency] private readonly UseDelaySystem _useDelay = default!;
+    [UISystemDependency] private readonly ItemDisplaySystem _itemDisplaySystem = default!;  // Imperial medieval edit
 
     private readonly List<HandsContainer> _handsContainers = new();
     private readonly Dictionary<string, int> _handContainerIndices = new();
@@ -105,6 +107,13 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
             _handsSystem.UIInventoryExamine(hand.SlotName);
             args.Handle();
         }
+        // Imperial medieval edit start
+        else if (args.Function == ContentKeyFunctions.Point && hand.Entity.HasValue)
+        {
+            _itemDisplaySystem.RequestItemPreview(hand.Entity.Value);
+            args.Handle();
+        }
+        //// Imperial medieval edit end
     }
 
     private void UnloadPlayerHands()

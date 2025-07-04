@@ -1,0 +1,24 @@
+- type: entity
+  parent: BaseGameRule
+  id: Myrmex
+  components:
+  - type: GameRule
+    minPlayers: 40
+  - type: LoadMapRule
+    mapPath: /Maps/Imperial/Medieval/myrmex.yml
+  - type: RuleGrids
+  - type: AntagSelection
+    selectionTime: PrePlayerSpawn
+    definitions:
+    - prefRoles: [ MyrmexQueen ]
+      fallbackRoles: [ Myrmex ]
+      spawnerPrototype: SpawnPointMyrmex
+      entityPrototype: MedievalMyrmexQueen
+      min: 1
+      max: 1
+    - prefRoles: [ Myrmex ]
+      spawnerPrototype: SpawnPointMyrmex
+      entityPrototype: MedievalMyrmexWorker
+      min: 2
+      max: 6
+      playerRatio: 25

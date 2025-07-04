@@ -1,0 +1,1008 @@
+- type: soundCollection
+  id: FootstepMyrmexFloor
+  files:
+  - /Audio/Imperial/Medieval/resin_move2.ogg
+  - /Audio/Imperial/Medieval/resin_move1.ogg
+
+- type: soundCollection
+  id: MyrmexAttack
+  files:
+  - /Audio/Imperial/Medieval/ant_attack1.ogg
+  - /Audio/Imperial/Medieval/ant_attack2.ogg
+  - /Audio/Imperial/Medieval/ant_attack3.ogg
+
+- type: soundCollection
+  id: MyrmexFootsteps
+  files:
+  - /Audio/Imperial/Medieval/ant_footstep2.ogg
+  - /Audio/Imperial/Medieval/ant_footstep3.ogg
+
+- type: speechSounds
+  id: Myrmex
+  saySound:
+    path: /Audio/Imperial/Medieval/ant_speak2.ogg
+  askSound:
+    path: /Audio/Imperial/Medieval/ant_speak1.ogg
+  exclaimSound:
+    path: /Audio/Imperial/Medieval/ant_speak3.ogg
+
+# ===========================
+
+- type: tile
+  id: MedievalMyrmexFloor1
+  name: смола мирмексов
+  sprite: /Textures/Imperial/Medieval/Myrmex/Structures/myrmex_tiles1.png
+  variants: 1
+  baseTurf: FloorCave
+  isSubfloor: false
+  ##deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepMyrmexFloor
+  itemDrop: FloorTileItemWoodLarge
+  heatCapacity: 99910000
+  badSmellMod: 0.75
+
+- type: tile
+  id: MedievalMyrmexFloor2
+  name: смола мирмексов
+  sprite: /Textures/Imperial/Medieval/Myrmex/Structures/myrmex_tiles2.png
+  variants: 1
+  baseTurf: FloorCave
+  isSubfloor: false
+  ##deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepMyrmexFloor
+  itemDrop: FloorTileItemWoodLarge
+  heatCapacity: 99910000
+  badSmellMod: 0.75
+
+
+# ===========================
+
+- type: entity
+  id: MedievalMyrmexDoor
+  parent: BaseStructure
+  name: myrmedon's door
+  description: It opens, it closes, and maybe crushes you.
+  components:
+  - type: Airlock
+    autoCloseDelay: 6.0
+    denyAnimationTime: 0.4
+    powered: true
+  - type: DoorBolt
+    #boltsDown: True
+    boltUpSound:
+      path: /Audio/Imperial/Medieval/resin_move1.ogg
+    boltDownSound:
+      path:/Audio/Imperial/Medieval/resin_move2.ogg
+  - type: InteractionOutline
+  - type: Sprite
+    netsync: false
+    sprite: Imperial/Medieval/Myrmex/Structures/Walls/myrmedon_door.rsi
+    snapCardinals: true
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+    - state: closed_unlit
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseUnlit"]
+      visible: false
+    - state: welded
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: bolted_unlit
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseBolted"]
+    - state: emergency_unlit
+      map: ["enum.DoorVisualLayers.BaseEmergencyAccess"]
+      shader: unshaded
+    - state: panel_open
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - state: electrified_ai
+      sprite: Interface/Misc/ai_hud.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.HUD"]
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.Sparks"]
+  - type: AnimationPlayer
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49"
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - AirlockLayer
+  - type: AccessReader
+    access: [["Service"]]
+  - type: LockDoor
+    accessLists:
+    - Service
+  - type: Door
+    performCollisionCheck: false
+    bumpOpen: true
+    clickOpen: true
+    canCrush: false
+    closeTimeOne: 0.2
+    closeTimeTwo: 0.6
+    openTimeOne: 0.6
+    openTimeTwo: 0.2
+    pryTime: 11
+    openingAnimationTime: 1.2
+    closingAnimationTime: 1.2
+    openSound:
+      path: /Audio/Imperial/Medieval/resin_move2.ogg
+    closeSound:
+      path: /Audio/Imperial/Medieval/resin_move1.ogg
+    denySound:
+      path: /Audio/Imperial/Medieval/resin_move1.ogg
+  - type: Appearance
+  - type: Airtight
+    fixVacuum: true
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound: /Audio/Imperial/Medieval/resin_move2.ogg
+  - type: IconSmooth
+    key: walls
+    mode: NoSprite
+  - type: Occluder
+  placement:
+    mode: SnapgridCenter
+
+- type: entity
+  parent: BaseWall
+  id: MedievalMyrmexFlimsyWall
+  name: myrmedon's flimsy wall
+  components:
+  - type: Tag
+    tags:
+      - Wall
+      #- RCDDeconstructWhitelist
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/Structures/Walls/myrmex_flimsy_wall.rsi
+  - type: Icon
+    sprite: Imperial/Medieval/Myrmex/Structures/Walls/myrmex_flimsy_wall.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: walls
+    base: flimsy
+  - type: ExplosionResistance
+    damageCoefficient: 10
+
+- type: entity
+  parent: BaseWall
+  id: MedievalMyrmexStrongWall
+  name: myrmedon's strong wall
+  components:
+  - type: Tag
+    tags:
+      - Wall
+      #- RCDDeconstructWhitelist
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/Structures/Walls/myrmex_strong_wall.rsi
+  - type: Icon
+    sprite: Imperial/Medieval/Myrmex/Structures/Walls/myrmex_strong_wall.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: walls
+    base: strong
+  - type: ExplosionResistance
+    damageCoefficient: 20
+
+- type: entity
+  id: MedievalMyrmexWeb
+  name: myrmex web
+  description: Sticky and slippy
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path:
+            "/Audio/Weapons/slash.ogg"
+    - type: Sprite
+      sprite: /Textures/Imperial/Medieval/Myrmex/Structures/myrmex_web.rsi
+      layers:
+        - state: icon
+          map: ["spiderWebLayer"]
+      drawdepth: WallMountedItems
+    - type: Appearance
+    - type: Clickable
+    - type: Transform
+      anchored: true
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: false
+          density: 7
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+          - MidImpassable
+    - type: Damageable
+      damageModifierSet: Wood
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 30
+        behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            MedievalMyrmexFibeStack1:
+              min: 1
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 5
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 5
+    - type: Reactive
+      groups:
+        Flammable: [Touch]
+        Extinguish: [Touch]
+    - type: SpiderWebObject
+    - type: Construction
+      graph: MMyrmexWeb
+      node: medievalMyrmexWeb
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.3
+      sprintSpeedModifier: 0.3
+      ignoreWhitelist:
+        components:
+            - IgnoreSpiderWeb
+
+- type: reagent
+  id: MedievalMyrmexPoison
+  name: reagent-name-myrmex-poison
+  desc: reagent-desc-myrmex-poison
+  physicalDesc: reagent-physical-desc-soapy
+  flavor: bitter
+  color: "#ff7e00"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:HasTag
+          tag: MyrmexPoisonImmune
+          invert: true
+        damage:
+          types:
+            Heat: 1
+            Poison: 3.5
+
+- type: entity
+  id: MedievalMyrmexTrapBase
+  abstract: true
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Pullable
+  - type: MovedByPressure
+  - type: Physics
+    bodyType: Static
+    fixedRotation: true
+  - type: Fixtures
+    fixtures:
+      slips:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: false
+        layer:
+          - LowImpassable
+  - type: Damageable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 35
+      behaviors:
+      - !type:TriggerBehavior
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Armable
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    stepOn: true
+  placement:
+    mode: SnapgridCenter
+
+- type: entity
+  parent: MedievalMyrmexTrapBase
+  id: MedievalMyrmexTrapFull
+  name: myrmex trap
+  description: goal
+  components:
+  - type: SmokeOnTrigger
+    duration: 10
+    spreadAmount: 30
+    solution:
+      reagents:
+      - ReagentId: MedievalMyrmexPoison
+        Quantity: 30
+  - type: SpawnOnDespawn
+    prototype: MedievalMyrmexTrapEmpty
+  - type: Sprite
+    drawdepth: Items
+    sprite: /Textures/Imperial/Medieval/Myrmex/Structures/myrmex_trap.rsi
+    layers:
+    - state: trap
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/ant_trapreload.ogg
+  - type: LandMine
+    sound:
+        path: /Audio/Imperial/Medieval/ant_stepontrap.ogg
+        params:
+            maxDistance: 10
+  - type: DeleteOnTrigger
+
+- type: entity
+  parent: MedievalMyrmexTrapBase
+  id: MedievalMyrmexTrapEmpty
+  name: myrmex trap (empty)
+  description: goal
+  components:
+  - type: Sprite
+    drawdepth: Items
+    sprite: /Textures/Imperial/Medieval/Myrmex/Structures/myrmex_trap.rsi
+    layers:
+    - state: trap-inactive
+  - type: TimedDespawn
+    lifetime: 60
+  - type: Construction
+    graph: MMyrmexTrapBase
+    node: medievalMyrmexTrapBase
+  - type: SpawnOnDespawn
+    prototype: MedievalMyrmexTrapFull
+
+# ===========================
+
+- type: Tag
+  id: MyrmexPoisonImmune
+
+- type: body
+  name: "myrmex"
+  id: Myrmex
+  root: torso
+  slots:
+    head:
+      part: HeadReptilian
+      connections:
+      - torso
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganHumanEyes
+    torso:
+      part: TorsoReptilian
+      organs:
+        heart: OrganAnimalHeart
+        lungs: OrganHumanLungs
+        stomach: OrganReptilianStomach
+        liver: OrganAnimalLiver
+        kidneys: OrganHumanKidneys
+      connections:
+      - right hand
+    right hand:
+      part: RightHandReptilian
+
+- type: Tag
+  id: MyrmexCanTake
+
+- type: entity
+  abstract: true
+  parent: SimpleMobBaseNoFood
+  id: MedievalMyrmexBase
+  components:
+  - type: BorgHandsImperial
+    whitelistHandTag: MyrmexCanTake
+  - type: Hands
+    throwRange: 2
+  - type: Body
+    prototype: Myrmex
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  - type: ComplexInteraction
+  - type: Butcherable
+    spawned:
+    - id: MedievalLootAnt
+      amount: 3
+    - id: MedievalLeather1
+      amount: 3
+    - id: FoodMeat
+      amount: 1
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: base
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
+  - type: Tag
+    tags:
+    - MyrmexPoisonImmune
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+  - type: NpcFactionMember
+    factions:
+    - Dragon
+  - type: IgnoreSpiderWeb
+  - type: Bloodstream
+    bloodReagent: CopperBlood
+    bloodMaxVolume: 100
+  - type: Puller
+  - type: Appearance
+  - type: Speech
+    speechSounds: Myrmex
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.45
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: GhostTakeoverAvailable
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: MyrmexFootsteps
+      params:
+        variation: 0.125
+        volume: -5
+  - type: MobMover
+  - type: LanguageSpeaker
+    languages:
+      #Common: Speak
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      Myrmex: Speak
+      Hissing: Speak
+      #Elf: Speak
+  - type: Access
+    tags:
+    - Service
+  - type: MedievalDash
+    force: 500
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
+  - type: PointLight
+    netsync: false
+    enabled: false
+  - type: LocalLight
+    energy: 1
+    radius: 6
+
+- type: entity
+  name: myrmeling
+  parent: MedievalMyrmexBase
+  id: MedievalMyrmexWorker
+  description: muravey ebanniy
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Myrmex/Castes/myrmex_worker.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: Physics
+  - type: MeleeWeapon
+    animation: WeaponArcBite
+    range: 1.5
+    attackRate: 0.45
+    hidden: true
+    angle: 0
+    soundHit:
+      collection: MyrmexAttack
+    damage:
+      groups:
+        Brute: 10
+      types:
+        ParryAble: 1
+        Structural: 85
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      65: Critical
+      110: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.2
+    baseSprintSpeed: 2
+  - type: InputMover
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      40: 1
+      50: 0.8
+      60: 0.7
+      70: 0.6
+      80: 0.5
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: StaminaDamageOnHit
+    damage: 10
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-myrmex-worker-name
+    description: ghost-role-information-myrmex-worker-description
+    rules: ghost-role-information-myrmex-rules
+
+- type: entity
+  name: myrmacrid
+  parent: MedievalMyrmexBase
+  id: MedievalMyrmexSpitter
+  description: muravey ebanniy
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Myrmex/Castes/myrmex_spitter.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: Physics
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.75
+    rechargeSound:
+      path: /Audio/Imperial/Medieval/ant_acidrecharge.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletAcid
+    capacity: 1
+    count: 1
+  - type: MeleeWeapon
+    animation: WeaponArcBite
+    range: 1.65
+    attackRate: 0.55
+    hidden: true
+    angle: 0
+    soundHit:
+      collection: MyrmexAttack
+    damage:
+      groups:
+        Brute: 7
+        Airloss: 2
+      types:
+        ParryAble: 1
+  - type: Gun
+    fireRate: 0.75
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Imperial/Medieval/ant_acidshot.ogg
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      120: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.4
+    baseSprintSpeed: 2.2
+  - type: InputMover
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      80: 1
+      95: 0.8
+      110: 0.7
+      120: 0.6
+      130: 0.5
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: StaminaDamageOnHit
+    damage: 15
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-myrmex-spitter-name
+    description: ghost-role-information-myrmex-spitter-description
+    rules: ghost-role-information-myrmex-rules
+
+- type: entity
+  name: myrmalisk
+  parent: MedievalMyrmexBase
+  id: MedievalMyrmexElite
+  description: muravey ebanniy
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Myrmex/Castes/myrmex_elite.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: Physics
+  - type: MeleeWeapon
+    animation: WeaponArcBite
+    range: 1.7
+    attackRate: 0.55
+    hidden: true
+    angle: 0
+    soundHit:
+      collection: MyrmexAttack
+    damage:
+      groups:
+        Brute: 22
+        Airloss: 5
+      types:
+        ParryAble: 1
+        Bloodloss: 4
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      220: Critical # curse of 220
+      260: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.4
+    baseSprintSpeed: 2.2
+  - type: InputMover
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      120: 1
+      130: 0.8
+      140: 0.7
+      150: 0.6
+      160: 0.5
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: StaminaDamageOnHit
+    damage: 17
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-myrmex-elite-name
+    description: ghost-role-information-myrmex-elite-description
+    rules: ghost-role-information-myrmex-rules
+
+- type: entity
+  name: myrmedon
+  parent: MedievalMyrmexBase
+  id: MedievalMyrmexWarrior
+  description: muravey ebanniy
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Myrmex/Castes/myrmex_warrior.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: Physics
+  - type: MeleeWeapon
+    animation: WeaponArcBite
+    range: 1.6
+    attackRate: 0.55
+    hidden: true
+    angle: 0
+    soundHit:
+      collection: MyrmexAttack
+    damage:
+      groups:
+        Brute: 15
+        Airloss: 6
+      types:
+        ParryAble: 1
+        Bloodloss: 3
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      195: Critical
+      270: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.2
+    baseSprintSpeed: 2.7
+  - type: InputMover
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      80: 1
+      130: 0.8
+      150: 0.7
+      170: 0.6
+      180: 0.5
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: StaminaDamageOnHit
+    damage: 15
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-myrmex-warrior-name
+    description: ghost-role-information-myrmex-warrior-description
+    rules: ghost-role-information-myrmex-rules
+
+- type: entity
+  name: myrmelarva
+  parent: MedievalMyrmexBase
+  id: MedievalMyrmexLarva
+  components:
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 1
+  - type: GhostRole
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: ghost-role-information-myrmex-larva-name
+    description: ghost-role-information-myrmex-larva-description
+    rules: ghost-role-information-myrmex-rules
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Imperial/Medieval/ant_footstep1.ogg
+      params:
+        variation: 0.125
+        volume: -5
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: Imperial/Medieval/Myrmex/Castes/myrmex_larva.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: base
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: larva-moving
+    noMovementLayers:
+      movement:
+        state: base
+  - type: HTN
+    constantlyReplan: false
+    rootTask:
+      task: MouseCompound
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      5: Critical
+      20: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 0.9
+    baseSprintSpeed : 0.6
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: base
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 1
+  - type: MedievalDash
+    force: 0
+
+- type: entity
+  name: myrmatriach
+  parent: MedievalMyrmexBase
+  id: MedievalMyrmexQueen
+  description: muravey ebanniy
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Myrmex/Castes/myrmex_queen.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: Physics
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Imperial/Medieval/ant_queenfootstep.ogg
+      params:
+        variation: 0.125
+        volume: -5
+  - type: MeleeWeapon
+    animation: WeaponArcBite
+    range: 2
+    attackRate: 0.45
+    hidden: true
+    angle: 0
+    soundHit:
+      collection: MyrmexAttack
+    damage:
+      groups:
+        Brute: 23
+        Airloss: 9
+      types:
+        ParryAble: 1
+        Bloodloss: 3
+        Structural: 155
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      750: Critical
+      900: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 2.2
+  - type: InputMover
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      300: 1
+      350: 0.8
+      400: 0.7
+      450: 0.6
+      500: 0.5
+      530: 0.4
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: StaminaDamageOnHit
+    damage: 17
+  - type: LanguageSpeaker
+    languages:
+      Common: Understand
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      Myrmex: Speak
+      Hissing: Speak
+      #Elf: Speak
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-myrmex-queen-name
+    description: ghost-role-information-myrmex-queen-description
+    rules: ghost-role-information-myrmex-rules
+
+- type: entity
+  id: BaseItemMyrmex
+  abstract: true
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: MovedByPressure
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Effects/drop.ogg
+      params:
+        volume: 2
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      path: /Audio/Effects/hit_kick.ogg
+  - type: CollisionWake
+  - type: TileFrictionModifier
+    modifier: 0.5
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3  # fite me
+        friction: 0.2
+  - type: Pullable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: MedievalMyrmexEgg
+  parent: BaseItemMyrmex
+  name: myrmex egg
+  description: yaichki
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/Castes/myrmex_egg.rsi
+    state: base
+  - type: DamageOnHighSpeedImpact
+    minimumSpeed: 0.1
+    damage:
+      types:
+        Blunt: 1
+  - type: Damageable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: desecration
+      - !type:SpillBehavior
+        solution: food
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MyrmexEgg

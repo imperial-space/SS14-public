@@ -8,9 +8,6 @@
   targetNode: camera
   category: construction-category-utilities
   description: Камера видеонаблюдения. Не похоже, что в ближайшее время она будет за кем-то наблюдать. Возможно. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Wallmounts/camera.rsi
-    state: camera
   objectType: Structure
   placementMode: SnapgridCenter
 
@@ -23,9 +20,6 @@
   targetNode: Telescreen
   category: construction-category-utilities
   description: Монитор видеокамер. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Machines/computers.rsi
-    state: telescreen_frame
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -39,9 +33,6 @@
   targetNode: station_map
   category: construction-category-structures
   description: Станционная карта. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Machines/station_map.rsi
-    state: station_map0
   placementMode: SnapgridCenter
   objectType: Structure
   canRotate: true
@@ -59,9 +50,6 @@
   targetNode: apc
   category: construction-category-utilities
   description: Локальная консоль питания. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Power/apc.rsi
-    state: base
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -75,9 +63,6 @@
   targetNode: solarpanel
   category: construction-category-utilities
   description: Стандартная солнечная панель. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Power/Generation/solar_panel.rsi
-    state: solar_assembly
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -94,9 +79,6 @@
   targetNode: cable_terminal
   category: construction-category-utilities
   description: Подключить красным к аккамулятору для его зарядки. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Power/cable_terminal.rsi
-    state: term
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -110,9 +92,6 @@
   targetNode: substation
   category: construction-category-utilities
   description: Подстанция, предназначенная для компактных шаттлов и помещений. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Power/substation.rsi
-    state: substation_wall
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -126,9 +105,6 @@
   targetNode: generator
   category: construction-category-utilities
   description: Высокоэффективный термоэлектрический генератор, помещенный в настенный шкаф. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Power/Generation/wallmount_generator.rsi
-    state: panel
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -142,9 +118,6 @@
   targetNode: APU
   category: construction-category-utilities
   description: Вспомогательная силовая установка шаттла. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Power/Generation/wallmount_generator.rsi
-    state: panel
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -161,10 +134,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: "disposal"
-  blockForPacifist: true #Imperial pacified
 
 - type: construction
   hide: true # imperial medieval craft disable
@@ -177,10 +146,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: "mailing"
-  blockForPacifist: true #Imperial pacified
 
 - type: construction
   hide: true # imperial medieval craft disable
@@ -193,10 +158,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: true
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: conpipe-s
-  blockForPacifist: true #Imperial pacified
 
 - type: construction
   hide: true # imperial medieval craft disable
@@ -209,10 +170,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: conpipe-tagger
-  blockForPacifist: true #Imperial pacified
 
 - type: construction
   hide: true # imperial medieval craft disable
@@ -225,10 +182,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: conpipe-t
-  blockForPacifist: true #Imperial pacified
 
 - type: construction
   hide: true # imperial medieval craft disable
@@ -241,9 +194,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: conpipe-j1s
   mirror: DisposalRouterFlipped
   blockForPacifist: true #Imperial pacified
 
@@ -258,9 +208,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: conpipe-j2s
   mirror: DisposalRouter
   blockForPacifist: true #Imperial pacified
 
@@ -275,9 +222,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: signal-router-free
   mirror: DisposalSignalRouterFlipped
   blockForPacifist: true #Imperial pacified
 
@@ -292,9 +236,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: signal-router-flipped-free
   mirror: DisposalSignalRouter
   blockForPacifist: true #Imperial pacified
 
@@ -309,9 +250,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: conpipe-j1
   mirror: DisposalJunctionFlipped
   blockForPacifist: true #Imperial pacified
 
@@ -326,9 +264,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: conpipe-j2
   mirror: DisposalJunction
   blockForPacifist: true #Imperial pacified
 
@@ -343,10 +278,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: conpipe-y
-  blockForPacifist: true #Imperial pacified
 
 - type: construction
   hide: true # imperial medieval craft disable
@@ -359,10 +290,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/disposal.rsi
-    state: conpipe-c
-  blockForPacifist: true #Imperial pacified
 
 # ATMOS
 - type: construction
@@ -374,9 +301,6 @@
   targetNode: air_alarm
   category: construction-category-structures
   description: Воздушная сигнализация. Сигнализация.. воздуха?
-  icon:
-    sprite: Structures/Wallmounts/air_monitors.rsi
-    state: alarm0
   placementMode: SnapgridCenter
   objectType: Structure
   canRotate: true
@@ -393,9 +317,6 @@
   targetNode: fire_alarm
   category: construction-category-structures
   description: Пожарная сигнализация. Огонь!
-  icon:
-    sprite: Structures/Wallmounts/air_monitors.rsi
-    state: fire0
   placementMode: SnapgridCenter
   objectType: Structure
   canRotate: true
@@ -412,9 +333,6 @@
   targetNode: sensor
   category: construction-category-structures
   description: Сенсор воздуха. Чувствует воздух.
-  icon:
-    sprite: Structures/Specific/Atmospherics/sensor.rsi
-    state: gsensor1
   placementMode: SnapgridCenter
   objectType: Structure
   canRotate: true
@@ -428,9 +346,6 @@
   targetNode: sensor
   category: construction-category-structures
   description: Передает на воздушную сигнализацию информацию о газе в присоединенной системе труб. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Piping/Atmospherics/gas_pipe_sensor.rsi
-    state: icon
   placementMode: SnapgridCenter
   objectType: Structure
   canRotate: true
@@ -447,9 +362,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeHalf
 
 - type: construction
   hide: true # imperial medieval craft disable
@@ -462,9 +374,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeStraight
 
 - type: construction
   hide: true # imperial medieval craft disable
@@ -477,9 +386,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeBend
 
 - type: construction
   hide: true # imperial medieval craft disable
@@ -492,9 +398,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeTJunction
 
 - type: construction
   hide: true # imperial medieval craft disable
@@ -507,9 +410,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeFourway
 
 # ATMOS UNARY
 - type: construction
@@ -523,14 +423,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/vent.rsi
-    state: vent_off
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeHalf
-  - sprite: Structures/Piping/Atmospherics/vent.rsi
-    state: vent_off
   conditions:
     - !type:NoUnstackableInTile
 
@@ -545,14 +437,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/vent.rsi
-    state: vent_off
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeHalf
-  - sprite: Structures/Piping/Atmospherics/vent.rsi
-    state: vent_off
   conditions:
     - !type:NoUnstackableInTile
 
@@ -567,14 +451,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/scrubber.rsi
-    state: scrub_off
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeHalf
-  - sprite: Structures/Piping/Atmospherics/scrubber.rsi
-    state: scrub_off
   conditions:
     - !type:NoUnstackableInTile
 
@@ -589,14 +465,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/outletinjector.rsi
-    state: injector
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeHalf
-  - sprite: Structures/Piping/Atmospherics/outletinjector.rsi
-    state: injector
   conditions:
     - !type:NoUnstackableInTile
 
@@ -612,14 +480,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/pump.rsi
-    state: pumpPressure
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeStraight
-  - sprite: Structures/Piping/Atmospherics/pump.rsi
-    state: pumpPressure
   conditions:
     - !type:NoUnstackableInTile
 
@@ -634,14 +494,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/pump.rsi
-    state: pumpVolume
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeStraight
-  - sprite: Structures/Piping/Atmospherics/pump.rsi
-    state: pumpVolume
   conditions:
     - !type:NoUnstackableInTile
 
@@ -656,14 +508,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/pump.rsi
-    state: pumpPassiveGate
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeStraight
-  - sprite: Structures/Piping/Atmospherics/pump.rsi
-    state: pumpPassiveGate
   conditions:
     - !type:NoUnstackableInTile
 
@@ -678,14 +522,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/pump.rsi
-    state: pumpManualValve
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeStraight
-  - sprite: Structures/Piping/Atmospherics/pump.rsi
-    state: pumpManualValve
   conditions:
     - !type:NoUnstackableInTile
 
@@ -700,14 +536,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/pump.rsi
-    state: pumpSignalValve
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeStraight
-  - sprite: Structures/Piping/Atmospherics/pump.rsi
-    state: pumpSignalValve
   conditions:
   - !type:NoUnstackableInTile
 
@@ -722,14 +550,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/gascanisterport.rsi
-    state: gasCanisterPort
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeHalf
-  - sprite: Structures/Piping/Atmospherics/gascanisterport.rsi
-    state: gasCanisterPort
   conditions:
     - !type:NoUnstackableInTile
 
@@ -744,14 +564,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/vent.rsi
-    state: vent_off
-  layers:
-  - sprite: Structures/Piping/Atmospherics/pipe.rsi
-    state: pipeStraight
-  - sprite: Structures/Piping/Atmospherics/vent.rsi
-    state: vent_off
 
 - type: construction
   hide: true # imperial medieval craft disable
@@ -764,24 +576,16 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/heatexchanger.rsi
-    state: heStraight
 
 - type: construction
   hide: true # imperial medieval craft disable
   id: HeatExchangerBend
-  name: radiator bend
-  description: Transfers heat between the pipe and its surroundings.
   graph: GasBinary
   startNode: start
   targetNode: bendradiator
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/heatexchanger.rsi
-    state: heBend
 
 # ATMOS TRINARY
 - type: construction
@@ -795,9 +599,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/gasfilter.rsi
-    state: gasFilter
   mirror: GasFilterFlipped
   conditions:
     - !type:NoUnstackableInTile
@@ -813,9 +614,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/gasfilter.rsi
-    state: gasFilterF
   mirror: GasFilter
   conditions:
     - !type:NoUnstackableInTile
@@ -831,9 +629,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/gasmixer.rsi
-    state: gasMixer
   mirror: GasMixerFlipped
   conditions:
     - !type:NoUnstackableInTile
@@ -849,9 +644,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/gasmixer.rsi
-    state: gasMixerF
   mirror: GasMixer
   conditions:
     - !type:NoUnstackableInTile
@@ -867,9 +659,6 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Piping/Atmospherics/pneumaticvalve.rsi
-    state: off
   conditions:
     - !type:NoUnstackableInTile
 
@@ -883,9 +672,6 @@
   targetNode: intercom
   category: construction-category-structures
   description: Интерком. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Wallmounts/intercom.rsi
-    state: base
   placementMode: SnapgridCenter
   objectType: Structure
   canRotate: true
@@ -903,9 +689,6 @@
   targetNode: signal
   category: construction-category-utilities
   description: Это таймер для подачи на устройства сигналов через определённое время. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Wallmounts/switch.rsi
-    state: on
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -921,9 +704,6 @@
   targetNode: screen
   category: construction-category-utilities
   description: Это таймер для подачи на устройства сигналов через определённое время, со встроенным экраном. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Wallmounts/signalscreen.rsi
-    state: signalscreen
   objectType: Structure
   canRotate: false
   placementMode: SnapgridCenter
@@ -940,9 +720,6 @@
   targetNode: brig
   category: construction-category-utilities
   description: Это таймер для камер брига. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Wallmounts/signalscreen.rsi
-    state: signalscreen
   objectType: Structure
   canRotate: false
   placementMode: SnapgridCenter

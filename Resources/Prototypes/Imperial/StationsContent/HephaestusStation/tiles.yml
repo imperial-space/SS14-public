@@ -9,3 +9,4 @@
     collection: FootstepHull
   itemDrop: FloorTileItemTechmaint
   heatCapacity: 10000
+  badSmellMod: 0.5

@@ -1,0 +1,2377 @@
+#SacerdosFood
+#- type: listing
+#  id: 
+#  name: 
+#  description: 
+#  productEntity: 
+#  cost:
+#    Telecrystal_sacerdos: 2
+#  categories:
+#  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkDrinkWaterBottleFull
+  productEntity: DrinkWaterBottleFull
+  cost:
+    Telecrystal_sacerdos: 5
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkDrinkMREFlask
+  productEntity: DrinkMREFlask
+  cost:
+    Telecrystal_sacerdos: 25
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkDrinkJuiceOrangeCarton
+  productEntity: DrinkJuiceOrangeCarton
+  cost:
+    Telecrystal_sacerdos: 30
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkDrinkWineCan
+  productEntity: DrinkWineCan
+  cost:
+    Telecrystal_sacerdos: 20
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkDrinkCreamCartonn
+  productEntity: DrinkCreamCarton
+  cost:
+    Telecrystal_sacerdos: 135
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkDrinkSunshineCloudGlass
+  productEntity: DrinkSunshineCloudGlass
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodBakedPretzel
+  productEntity: FoodBakedPretzel
+  cost:
+    Telecrystal_sacerdos: 5
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodBakedBunMeat
+  productEntity: FoodBakedBunMeat
+  cost:
+    Telecrystal_sacerdos: 5
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodBreadGarlicSlice
+  productEntity: FoodBreadGarlicSlice
+  cost:
+    Telecrystal_sacerdos: 5
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodOnionRings
+  productEntity: FoodOnionRings
+  cost:
+    Telecrystal_sacerdos: 5
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodBerries
+  productEntity: FoodBerries
+  cost:
+    Telecrystal_sacerdos: 5
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodMealQueso
+  productEntity: FoodMealQueso
+  cost:
+    Telecrystal_sacerdos: 10
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodMeatChickenFried
+  productEntity: FoodMeatChickenFried
+  cost:
+    Telecrystal_sacerdos: 10
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodBurgerCheese
+  productEntity: FoodBurgerCheese
+  cost:
+    Telecrystal_sacerdos: 20
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodBurgerChicken
+  productEntity: FoodBurgerChicken
+  cost:
+    Telecrystal_sacerdos: 20
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodBurgerBacon
+  productEntity: FoodBurgerBacon
+  cost:
+    Telecrystal_sacerdos: 20
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodBurgerFive
+  productEntity: FoodBurgerFive
+  cost:
+    Telecrystal_sacerdos: 20
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodBurgerBig
+  productEntity: FoodBurgerBig
+  cost:
+    Telecrystal_sacerdos: 45
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodMeatCooked
+  productEntity: FoodMeatCooked
+  cost:
+    Telecrystal_sacerdos: 20
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodBakedDumplings
+  productEntity: FoodBakedDumplings
+  cost:
+    Telecrystal_sacerdos: 30
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodPieMeat
+  productEntity: FoodPieMeat
+  cost:
+    Telecrystal_sacerdos: 20
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodPieCherry
+  productEntity: FoodPieCherry
+  cost:
+    Telecrystal_sacerdos: 20
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodCheese
+  productEntity: FoodCheese
+  cost:
+    Telecrystal_sacerdos: 30
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodBreadCorn
+  productEntity: FoodBreadCorn
+  cost:
+    Telecrystal_sacerdos: 30
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodBreadPlain
+  productEntity: FoodBreadPlain
+  cost:
+    Telecrystal_sacerdos: 25
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodBreadBanana
+  productEntity: FoodBreadBanana
+  cost:
+    Telecrystal_sacerdos: 30
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodBreadMeat
+  productEntity: FoodBreadMeat
+  cost:
+    Telecrystal_sacerdos: 30
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodBreadCreamcheese
+  productEntity: FoodBreadCreamcheese
+  cost:
+    Telecrystal_sacerdos: 30
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodBreadCotton
+  productEntity: FoodBreadCotton
+  cost:
+    Telecrystal_sacerdos: 25
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodApple
+  productEntity: FoodApple
+  cost:
+    Telecrystal_sacerdos: 10
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodGoldenApple
+  productEntity: FoodGoldenApple
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - sacerdosFood
+
+- type: listing
+  id: SacerdosUplinkFoodTartGapple
+  productEntity: FoodTartGapple
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - sacerdosFood
+
+#sacerdosWeapon
+- type: listing
+  id: SacerdosUplinkWeaponMakeshiftLaser
+  productEntity: WeaponMakeshiftLaser
+  cost:
+    Telecrystal_sacerdos: 50
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkWeaponPistolMk58-name
+  productEntity: WeaponPistolMk58
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkWeaponLaserSvalinn
+  productEntity: WeaponLaserSvalinn
+  cost:
+    Telecrystal_sacerdos: 55
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkWeaponLaserGun
+  productEntity: WeaponLaserGun
+  cost:
+    Telecrystal_sacerdos: 70
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkWeaponSniperMosin
+  productEntity: WeaponSniperMosin
+  cost:
+    Telecrystal_sacerdos: 25
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkWeaponRevolverDeckard
+  productEntity: WeaponRevolverDeckard
+  cost:
+    Telecrystal_sacerdos: 300
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkWeaponLaserCarbine
+#  description: It's just cheaper... what...?-description
+  productEntity: WeaponLaserCarbine
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkWeaponSubMachineGunDrozd
+  productEntity: WeaponSubMachineGunDrozd
+  cost:
+    Telecrystal_sacerdos: 475
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkWeaponSubMachineGunWt550
+  productEntity: WeaponSubMachineGunWt550
+  cost:
+    Telecrystal_sacerdos: 450
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkWeaponSubMachineGunC20r
+  productEntity: WeaponSubMachineGunC20r
+  cost:
+    Telecrystal_sacerdos: 775
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkWeaponRifleLecter
+  productEntity: WeaponRifleLecter
+  cost:
+    Telecrystal_sacerdos: 600
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkCSWeaponSCAR-L
+  productEntity: CSWeaponSCAR-L
+  cost:
+    Telecrystal_sacerdos: 1200
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkWeaponShotgunKammerer
+  productEntity: WeaponShotgunKammerer
+  cost:
+    Telecrystal_sacerdos: 300
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkWeaponShotgunEnforcer
+  productEntity: WeaponShotgunEnforcer
+  cost:
+    Telecrystal_sacerdos: 450
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkWeaponShotgunBulldog
+  productEntity: WeaponShotgunBulldog
+  cost:
+    Telecrystal_sacerdos: 1000
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkWeaponSniperHristov
+  productEntity: WeaponSniperHristov
+  cost:
+    Telecrystal_sacerdos: 800
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkWeaponRifleAk
+  productEntity: WeaponRifleAk
+  cost:
+    Telecrystal_sacerdos: 1200
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkWeaponLightMachineGunL6
+  productEntity: WeaponLightMachineGunL6
+  cost:
+    Telecrystal_sacerdos: 2300
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkWeaponXrayCannon
+  productEntity: WeaponXrayCannon
+  cost:
+    Telecrystal_sacerdos: 800
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkWeaponAdvancedLaser
+  productEntity: WeaponAdvancedLaser
+  cost:
+    Telecrystal_sacerdos: 1500
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkWeaponRevolverMateba
+  productEntity: WeaponRevolverMateba
+  cost:
+    Telecrystal_sacerdos: 900
+  categories:
+  - sacerdosWeapon
+  
+- type: listing
+  id: SacerdosUplinkWeaponPulsePistol
+  productEntity: WeaponPulsePistol
+  cost:
+    Telecrystal_sacerdos: 1400
+  categories:
+  - sacerdosWeapon
+
+- type: listing
+  id: SacerdosUplinkWeaponPulseCarbine
+  productEntity: WeaponPulseCarbine
+  cost:
+    Telecrystal_sacerdos: 2700
+  categories:
+  - sacerdosWeapon
+
+#sacerdosMelee
+- type: listing
+  id: SacerdosUplinkCombatKnife
+  productEntity: CombatKnife
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosMelee
+
+- type: listing
+  id: SacerdosUplinkTruncheon
+  productEntity: Truncheon
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - sacerdosMelee
+
+- type: listing
+  id: SacerdosUplinkThrowingKnife
+  productEntity: ThrowingKnife
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - sacerdosMelee
+
+- type: listing
+  id: SacerdosUplinkKatana
+  productEntity: Katana
+  cost:
+    Telecrystal_sacerdos: 130
+  categories:
+  - sacerdosMelee
+
+- type: listing
+  id: SacerdosUplinkMachete
+  productEntity: Machete
+  cost:
+    Telecrystal_sacerdos: 130
+  categories:
+  - sacerdosMelee
+
+- type: listing
+  id: SacerdosUplinkPresentableCane
+  productEntity: PresentableCane
+  cost:
+    Telecrystal_sacerdos: 650
+  categories:
+  - sacerdosMelee
+
+- type: listing
+  id: SacerdosUplinkCaptainSabre
+  productEntity: CaptainSabre
+  cost:
+    Telecrystal_sacerdos: 450
+  categories:
+  - sacerdosMelee
+
+- type: listing
+  id: SacerdosUplinkPickaxe
+  productEntity: Pickaxe
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosMelee
+
+- type: listing
+  id: SacerdosUplinkMiningDrill
+  productEntity: MiningDrill
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - sacerdosMelee
+
+- type: listing
+  id: SacerdosUplinkMiningDrillDiamond
+  productEntity: MiningDrillDiamond
+  cost:
+    Telecrystal_sacerdos: 650
+  categories:
+  - sacerdosMelee
+
+- type: listing
+  id: SacerdosUplinkEnergyCutlass
+  productEntity: EnergyCutlass
+  cost:
+    Telecrystal_sacerdos: 450
+  categories:
+  - sacerdosMelee
+
+- type: listing
+  id: SacerdosUplinkEnergySword
+  productEntity: EnergySword
+  cost:
+    Telecrystal_sacerdos: 850
+  categories:
+  - sacerdosMelee
+
+- type: listing
+  id: SacerdosUplinkEnergySwordDouble
+  productEntity: EnergySwordDouble
+  cost:
+    Telecrystal_sacerdos: 2250
+  categories:
+  - sacerdosMelee
+
+#sacerdosMed
+- type: listing
+  id: SacerdosUplinkBrutepack
+  productEntity: Brutepack
+  cost:
+    Telecrystal_sacerdos: 25
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkOintment
+  productEntity: Ointment
+  cost:
+    Telecrystal_sacerdos: 25
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkGauze
+  productEntity: Gauze
+  cost:
+    Telecrystal_sacerdos: 25
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkTourniquet
+  productEntity: Tourniquet
+  cost:
+    Telecrystal_sacerdos: 30
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkMedicatedSuture
+  productEntity: MedicatedSuture
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkRegenerativeMesh
+  productEntity: RegenerativeMesh
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkPillCanisterTricordrazine
+  productEntity: PillCanisterTricordrazine
+  cost:
+    Telecrystal_sacerdos: 40
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkPillCanisterHyronalin
+  productEntity: PillCanisterHyronalin
+  cost:
+    Telecrystal_sacerdos: 45
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkPillCanisterDylovene
+  productEntity: PillCanisterDylovene
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkPillCanisterDexalin
+  productEntity: PillCanisterDexalin
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkSyringeInaprovaline
+  productEntity: SyringeInaprovaline
+  cost:
+    Telecrystal_sacerdos: 50
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkSyringeSaline
+  productEntity: SyringeSaline
+  cost:
+    Telecrystal_sacerdos: 50
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkSyringeTranexamicAcid
+  productEntity: SyringeTranexamicAcid
+  cost:
+    Telecrystal_sacerdos: 50
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkSyringePhalanximine
+  productEntity: SyringePhalanximine
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkSyringeEphedrine
+  productEntity: SyringeEphedrine
+  cost:
+    Telecrystal_sacerdos: 120
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkSyringeSigynate
+  productEntity: SyringeSigynate
+  cost:
+    Telecrystal_sacerdos: 120
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkSyringeAmbuzol
+  productEntity: SyringeAmbuzol
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkAntiholChemistryBottle
+  productEntity: AntiholChemistryBottle
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkThriveninChemistryBottle
+  productEntity: ThriveninChemistryBottle
+  cost:
+    Telecrystal_sacerdos: 500
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplink
+  productEntity: Defibrillator
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkDefibrillatorCompact
+  productEntity: DefibrillatorCompact
+  cost:
+    Telecrystal_sacerdos: 440
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkEmergencyMedipen
+  productEntity: EmergencyMedipen
+  cost:
+    Telecrystal_sacerdos: 175
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkAntiPoisonMedipen
+  productEntity: AntiPoisonMedipen
+  cost:
+    Telecrystal_sacerdos: 125
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkRadAutoInjector
+  productEntity: RadAutoInjector
+  cost:
+    Telecrystal_sacerdos: 125
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkBurnAutoInjector
+  productEntity: BurnAutoInjector
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkBruteAutoInjector
+  productEntity: BruteAutoInjector
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkAirlossAutoInjector
+  productEntity: AirlossAutoInjector
+  cost:
+    Telecrystal_sacerdos: 400
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkPunctAutoInjector
+  productEntity: PunctAutoInjector
+  cost:
+    Telecrystal_sacerdos: 500
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkPyraAutoInjector
+  productEntity: PyraAutoInjector
+  cost:
+    Telecrystal_sacerdos: 500
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkSpaceMedipen
+  productEntity: SpaceMedipen
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: StimpackMini
+  productEntity: StimpackMini
+  cost:
+    Telecrystal_sacerdos: 375
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: Stimpack
+  productEntity: Stimpack
+  cost:
+    Telecrystal_sacerdos: 675
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosUplinkCombatMedipen
+  productEntity: CombatMedipen
+  cost:
+    Telecrystal_sacerdos: 1000
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosClothingEyesHudMedSec
+  productEntity: ClothingEyesHudMedSec
+  cost:
+    Telecrystal_sacerdos: 125
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosBloodpack
+  productEntity: Bloodpack
+  cost:
+    Telecrystal_sacerdos: 25
+  categories:
+  - sacerdosMed
+
+- type: listing
+  id: SacerdosHypospray
+  productEntity: Hypospray
+  cost:
+    Telecrystal_sacerdos: 1300
+  categories:
+  - sacerdosMed
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+#sacerdosAmmunition
+- type: listing
+  id: SacerdosUplinkMagazinePistol
+#  name: MagazinePistol-name
+  description: A-magazine-with-the-simplest-bullets-des
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
+  productEntity: MagazinePistol
+  cost:
+    Telecrystal_sacerdos: 50
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkSCARMagazine
+#  name: SCAR-Magazine-name
+  description: A-magazine-with-the-simplest-bullets-des
+  icon: { sprite: Imperial/Other/CS/Ammunition/scar_mag.rsi,  state: base }
+  productEntity: SCAR-Magazine
+  cost:
+    Telecrystal_sacerdos: 115
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazinePistolSubMachineGunTopMounted
+#  name: MagazinePistolSubMachineGunTopMounted-name
+  description: A-magazine-with-the-simplest-bullets-des
+  productEntity: MagazinePistolSubMachineGunTopMounted
+  cost:
+    Telecrystal_sacerdos: 80
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazinePistolSubMachineGun
+#  name: MagazinePistolSubMachineGun-name
+  description: A-magazine-with-the-simplest-bullets-des
+  productEntity: MagazinePistolSubMachineGun
+  cost:
+    Telecrystal_sacerdos: 80
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineBoxPistol
+#  name: MagazineBoxPistol-name
+  description: SacerdosUplinkMagazineBoxPistol 
+  productEntity: MagazineBoxPistol
+  cost:
+    Telecrystal_sacerdos: 160
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineBoxPistolIncendiary
+#  name: MagazineBoxPistolIncendiary-name
+  description: MagazineBoxIncendiary-description
+  productEntity: MagazineBoxPistolIncendiary
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineBoxPistolUranium
+#  name: MagazineBoxPistolUranium-name
+  description: MagazineBoxPistolUranium
+  productEntity: MagazineBoxPistolUranium
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkPowerCellSmall
+  productEntity: PowerCellSmall
+  cost:
+    Telecrystal_sacerdos: 50
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkPowerCellMedium
+  productEntity: PowerCellMedium
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkPowerCellHigh
+  productEntity: PowerCellHigh
+  cost:
+    Telecrystal_sacerdos: 125
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineShotgun
+#  name: MagazineShotgun-name
+  description: A-shotgun-magazine-with-the-simplest-bullets-des
+  productEntity: MagazineShotgun
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineShotgunIncendiary
+#  name: MagazineShotgunIncendiary-name
+  description: SacerdosUplinkMagazineShotgunIncendiary
+  productEntity: MagazineShotgunIncendiary
+  cost:
+    Telecrystal_sacerdos: 175
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineShotgunSlug
+#  name: MagazineShotgunSlug-name
+  description: SacerdosUplinkMagazineShotgunSlug
+  productEntity: MagazineShotgunSlug
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkBoxShotgunUranium
+#  name: BoxShotgunUranium-name
+  description: SacerdosUplinkBoxShotgunUranium
+  productEntity: BoxShotgunUranium
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineRifle
+#  name: MagazineRifle-name
+  description: A-magazine-with-the-simplest-bullets-des
+  productEntity: MagazineRifle
+  cost:
+    Telecrystal_sacerdos: 70
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineBoxRifle
+#  name: MagazineBoxRifle-name
+  description: SacerdosUplinkMagazineBoxPistol
+  productEntity: MagazineBoxRifle
+  cost:
+    Telecrystal_sacerdos: 175
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineBoxRifleIncendiary
+  description: MagazineBoxIncendiary-description
+  productEntity: MagazineBoxRifleIncendiary
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineBoxRifleUranium
+#  name: MagazineBoxRifleUranium-name
+  description: MagazineBoxPistolUranium
+  productEntity: MagazineBoxRifleUranium
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineBoxRifleBig
+#  name: MagazineBoxRifleBig-name
+  description: SacerdosUplinkMagazineBoxRifleBig
+  productEntity: MagazineBoxRifleBig
+  cost:
+    Telecrystal_sacerdos: 475
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkSpeedLoaderMagnum
+#  name: SpeedLoaderMagnum-name
+  description: SacerdosUplinkSpeedLoaderMagnum
+  productEntity: SpeedLoaderMagnum
+  cost:
+    Telecrystal_sacerdos: 50
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineBoxMagnum
+#  name: MagazineBoxMagnum-name
+  description: SacerdosUplinkMagazineBoxPistol
+  productEntity: MagazineBoxMagnum
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineBoxMagnumIncendiary
+#  name: MagazineBoxMagnumIncendiary-name
+  description: MagazineBoxIncendiary-description
+  productEntity: MagazineBoxMagnumIncendiary
+  cost:
+    Telecrystal_sacerdos: 175
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineBoxMagnumUranium
+#  name: MagazineBoxMagnumUranium-name
+  description: MagazineBoxPistolUranium
+  productEntity: MagazineBoxMagnumUranium
+  cost:
+    Telecrystal_sacerdos: 300
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkSpeedLoaderLightRifle
+#  name: SpeedLoaderLightRifle-name
+  description: SacerdosUplinkSpeedLoaderMagnum
+  productEntity: SpeedLoaderLightRifle
+  cost:
+    Telecrystal_sacerdos: 25
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineLightRifle
+#  name: MagazineLightRifle-name
+  description: A-magazine-with-the-simplest-bullets-des
+  productEntity: MagazineLightRifle
+  cost:
+    Telecrystal_sacerdos: 120
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineBoxLightRifle
+  description: SacerdosUplinkMagazineBoxPistol
+  productEntity: MagazineBoxPistol
+  cost:
+    Telecrystal_sacerdos: 245
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineBoxLightRifleIncendiary
+  description: MagazineBoxIncendiary-description
+  productEntity: MagazineBoxLightRifleIncendiary
+  cost:
+    Telecrystal_sacerdos: 345
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineBoxLightRifleUranium
+  description: MagazineBoxPistolUranium
+  productEntity: MagazineBoxLightRifleUranium
+  cost:
+    Telecrystal_sacerdos: 420
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineLightRifleBox
+  description: A-box-with-the-simplest-bullets-des
+  productEntity: MagazineLightRifleBox
+  cost:
+    Telecrystal_sacerdos: 285
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineBoxLightRifleBig
+  description: SacerdosUplinkMagazineBoxRifleBig
+  productEntity: MagazineBoxLightRifleBig
+  cost:
+    Telecrystal_sacerdos: 785
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinkMagazineBoxAntiMateriel
+  description: MagazineBoxAntiMateriel
+  productEntity: MagazineBoxAntiMateriel
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosAmmunition
+
+- type: listing
+  id: SacerdosUplinMagazineBoxAntiMaterielBig
+  name: MagazineBoxAntiMaterielBig-name
+  description: MagazineBoxAntiMateriel
+  productEntity: MagazineBoxAntiMaterielBig
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - sacerdosAmmunition
+
+#sacerdosArmor
+- type: listing
+  id: SacerdosUplinkSacerdosClothingOuterArmorBasic
+  productEntity: SacerdosClothingOuterArmorBasic
+  cost:
+    Telecrystal_sacerdos: 375
+  categories:
+  - sacerdosArmor
+
+- type: listing
+  id: SacerdosUplinkClothingOuterCoatSacerdosCapArmored
+  productEntity: ClothingOuterCoatSacerdosCapArmored
+  cost:
+    Telecrystal_sacerdos: 400
+  categories:
+  - sacerdosArmor
+
+- type: listing
+  id: SacerdosUplinkClothingOuterArmorRiot
+  productEntity: ClothingOuterArmorRiot
+  cost:
+    Telecrystal_sacerdos: 600
+  categories:
+  - sacerdosArmor
+
+- type: listing
+  id: SacerdosUplinkClothingOuterArmorBulletproof
+  productEntity: ClothingOuterArmorBulletproof
+  cost:
+    Telecrystal_sacerdos: 700
+  categories:
+  - sacerdosArmor
+
+- type: listing
+  id: ArmorsacerdosRaid_sacerdos
+  productEntity: ArmorsacerdosRaid_sacerdos
+  cost:
+    Telecrystal_sacerdos: 800
+  categories:
+  - sacerdosArmor
+
+- type: listing
+  id: SacerdosUplinkheavyarmorsuitArmor_sacerdos
+  productEntity: heavyarmorsuitArmor_sacerdos
+  cost:
+    Telecrystal_sacerdos: 1835
+  categories:
+  - sacerdosArmor
+
+#R.I.G. нужно сделать свои 
+
+#- type: listing
+#  id: SacerdosUplinkClothingControlModsuitCivillianSealed
+#  name: ClothingControlModsuitCivillianSealed-name
+#  description: The basic spacesuit, embodied in the form of R.I.G-a.-description
+#  productEntity: ClothingControlModsuitCivillianSealed
+#  cost:
+#    Telecrystal_sacerdos: 2
+#  categories:
+#  - sacerdosArmor
+
+#- type: listing
+#  id: SacerdosUplinkClothingControlModsuitEngineer2Sealed
+#  name: R.I.G-Prototype of "Ulysses"-name
+#  description: Engineering R.I.G.-description
+#  productEntity: ClothingControlModsuitEngineer2Sealed
+#  cost:
+#    Telecrystal_sacerdos: 2
+#  categories:
+#  - sacerdosArmor
+
+#- type: listing
+#  id: SacerdosUplinkClothingControlModsuitIndustrialSealed
+#  name: Industrial R.I.G.-name
+#  description: Improved Engineering R.I.G-description
+#  productEntity: ClothingControlModsuitIndustrialSealed
+#  cost:
+#    Telecrystal_sacerdos: 2
+#  categories:
+#  - sacerdosArmor
+
+#- type: listing
+#  id: SacerdosUplinkClothingControlModsuitRND2Sealed
+#  name: Easy Scientific R.I.G.-name
+#  description: He has everything necessary to save a scientist from the clutches of death.-description
+#  productEntity: ClothingControlModsuitRND2Sealed
+#  cost:
+#    Telecrystal_sacerdos: 2
+#  categories:
+#  - sacerdosArmor
+
+#- type: listing
+#  id: SacerdosUplinkClothingControlModsuitMedical2Sealed
+#  name: Fortified Medical R.I.G.-name
+#  description: It has an enhanced flashlight.-description
+#  productEntity: ClothingControlModsuitMedical2Sealed
+#  cost:
+#    Telecrystal_sacerdos: 2
+#  categories:
+#  - sacerdosArmor
+
+#- type: listing
+#  id: SacerdosUplinkClothingControlModsuitMinerSealed
+#  name: Shakhtersky R.I.G.-name
+#  description: R.I.G., used by miners-description
+#  productEntity: ClothingControlModsuitMinerSealed
+#  cost:
+#    Telecrystal_sacerdos: 2
+#  categories:
+#  - sacerdosArmor
+
+#- type: listing
+#  id: SacerdosUplinkClothingControlModsuitSpecialForces
+#  name: R.I.G.-name
+#  description: R.I.G. from R.I.P.?-description
+#  productEntity: ClothingControlModsuitSpecialForces
+#  cost:
+#    Telecrystal_sacerdos: 2
+#  categories:
+#  - sacerdosArmor
+
+#- type: listing
+#  id: SacerdosUplinkClothingControlModsuitPMCSealed
+#  name: Military R.I.G.-name
+#  description: The R.I.G. created used improved material that provides increased resistance to explosions and damage in general.-description
+#  productEntity: ClothingControlModsuitPMCSealed
+#  cost:
+#    Telecrystal_sacerdos: 2
+#  categories:
+#  - sacerdosArmor
+
+- type: listing
+  id: SacerdosUplinkArmorsacerdosRaidHelmet_sacerdos
+  productEntity: ArmorsacerdosRaidHelmet_sacerdos
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - sacerdosArmor
+
+- type: listing
+  id: SacerdosUplinkClothingHeadHelmetSwat
+  productEntity: ClothingHeadHelmetSwat
+  cost:
+    Telecrystal_sacerdos: 450
+  categories:
+  - sacerdosArmor
+
+- type: listing
+  id: SacerdosUplinkClothingHeadHelmetRiot
+  productEntity: ClothingHeadHelmetRiot
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - sacerdosArmor
+
+- type: listing
+  id: ClothingOuterArmorReflective
+  productEntity: ClothingOuterArmorReflective
+  cost:
+    Telecrystal_sacerdos: 800
+  categories:
+  - sacerdosArmor
+#sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingShoesBrigmedic
+  productEntity: ClothingShoesBrigmedic
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingShoesBootsCombatFilled
+  productEntity: ClothingShoesBootsCombatFilled
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingMaskNeckGaiter
+  productEntity: ClothingMaskNeckGaiter
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingShoesBootsSalvage
+  productEntity: ClothingShoesBootsSalvage
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingShoesSwat
+  productEntity: ClothingShoesSwat
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingUniformJumpsuitTacticool
+  productEntity: ClothingUniformJumpsuitTacticool
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingHeadHatBeretBrigmedic
+  productEntity: ClothingHeadHatBeretBrigmedic
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingShoesBootsJackFilled
+  productEntity: ClothingShoesBootsJackFilled
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingShoesBootsWorklisting
+  productEntity: ClothingShoesBootsWork
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: ClothingMaskGasSecurity
+  productEntity: ClothingMaskGasSecurity
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingMaskBreathMedicalSecurity
+  productEntity: ClothingMaskBreathMedicalSecurity
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: ClothingOuterCoatBomber
+  productEntity: ClothingOuterCoatBomber
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingHeadHatBeretFrench
+  productEntity: ClothingHeadHatBeretFrench
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingShoesBootsWinterSyndicate
+  productEntity: ClothingShoesBootsWinterSyndicate
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingMaskGasExplorer
+  productEntity: ClothingMaskGasExplorer
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingShoesBootsWinter
+  productEntity: ClothingShoesBootsWinter
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingHandsGlovesCombat
+  productEntity: ClothingHandsGlovesCombat
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingHeadHatSyndie
+  productEntity: ClothingHeadHatSyndie
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingUniformJumpskirtOperative
+  productEntity: ClothingUniformJumpskirtOperative
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingShoesLeather
+  productEntity: ClothingShoesLeather
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingHandsGlovesFingerless
+  productEntity: ClothingHandsGlovesFingerless
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingOuterWinterCoat
+  productEntity: ClothingOuterWinterCoat
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingHeadHatBeretSecurity
+  productEntity: ClothingHeadHatBeretSecurity
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingHeadHatBeret
+  productEntity: ClothingHeadHatBeret
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingHeadHatBeretEngineering
+  productEntity: ClothingHeadHatBeretEngineering
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingHandsGlovesColorBlack
+  productEntity: ClothingHandsGlovesColorBlack
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingOuterWinterColorBlack
+  productEntity: ClothingOuterWinterColorBlack
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingShoesColorBlack
+  productEntity: ClothingShoesColorBlack
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingShoesBootsLaceup
+  productEntity: ClothingShoesBootsLaceup
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingEyesHudSecurity
+  productEntity: ClothingEyesHudSecurity
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingEyesEyepatchHudSecurity
+  productEntity: ClothingEyesEyepatchHudSecurity
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingEyesGlassesSunglasses
+  productEntity: ClothingEyesGlassesSunglasses
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingCentComGlassesEmerald
+  productEntity: ClothingCentComGlassesEmerald
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingHeadFlowerDSOWhite
+  productEntity: ClothingHeadFlowerDSOWhite
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingCentComGlassesGold
+  productEntity: ClothingCentComGlassesGold
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingHeadFlowerCentComGoldn
+  productEntity: ClothingHeadFlowerCentComGold
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingHeadFlowerCentComEmerald
+  productEntity: ClothingHeadFlowerCentComEmerald 
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingCentComGlassesGreen
+  productEntity: ClothingCentComGlassesGreen
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingCentComGlassesYellow
+  productEntity: ClothingCentComGlassesYellow
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingDSOGlassesWhite
+  productEntity: ClothingDSOGlassesWhite 
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingUniformJumpskirtJanimaidmini
+  productEntity: ClothingUniformJumpskirtJanimaidmini
+  cost:
+    Telecrystal_sacerdos: 1000
+  categories:
+  - sacerdosClothing
+  
+- type: listing
+  id: SacerdosClothingUniformJumpskirtJanimaid
+  productEntity: ClothingUniformJumpskirtJanimaid
+  cost:
+    Telecrystal_sacerdos: 1000
+  categories:
+  - sacerdosClothing
+  
+- type: listing
+  id: SacerdosClothingNeckMaidChoker
+  productEntity: ClothingNeckMaidChoker
+  cost:
+    Telecrystal_sacerdos: 1000
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingUniformJumpskirtTacticalMaid
+  productEntity: ClothingUniformJumpskirtTacticalMaid
+  cost:
+    Telecrystal_sacerdos: 1000
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingHandsTacticalMaidGloves
+  productEntity: ClothingHandsTacticalMaidGloves
+  cost:
+    Telecrystal_sacerdos: 1000
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingHeadHatCatEars
+  description: Ny~a
+  productEntity: ClothingHeadHatCatEars
+  cost:
+    Telecrystal_sacerdos: 2000
+  categories:
+  - sacerdosClothing
+
+- type: listing
+  id: SacerdosClothingUniformJumpsuitLoungewear
+  productEntity: ClothingUniformJumpsuitLoungewear
+  cost:
+    Telecrystal_sacerdos: 35
+  categories:
+  - sacerdosClothing
+
+#sacerdosStorage
+- type: listing
+  id: SacerdosClothingBeltMedicalEMT
+  productEntity: ClothingBeltMedicalEMT
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - sacerdosStorage
+
+- type: listing
+  id: SacerdosClothingBeltMilitaryWebbing
+  productEntity: ClothingBeltMilitaryWebbing
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - sacerdosStorage
+
+- type: listing
+  id: SacerdosClothingBeltBandolier
+  productEntity: ClothingBeltBandolier
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - sacerdosStorage
+
+- type: listing
+  id: SacerdosClothingBackpackDuffelSacerdos_3
+  productEntity: ClothingBackpackDuffelSacerdos_3
+  cost:
+    Telecrystal_sacerdos: 285
+  categories:
+  - sacerdosStorage
+
+- type: listing
+  id: SacerdosBlackShieldBackpackSacerdos_4
+  productEntity: BlackShieldBackpackSacerdos_4
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosStorage
+
+- type: listing
+  id: SacerdosClothingBackpackDuffelSacerdos_6
+  productEntity: ClothingBackpackDuffelSacerdos_6
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - sacerdosStorage
+
+- type: listing
+  id: ClothingBackpackSatchelSacerdos_5
+  productEntity: ClothingBackpackSatchelSacerdos_5
+  cost:
+    Telecrystal_sacerdos: 120
+  categories:
+  - sacerdosStorage
+
+- type: listing
+  id: ClothingBackpackSacerdos_2
+  productEntity: ClothingBackpackSacerdos_2
+  cost:
+    Telecrystal_sacerdos: 110
+  categories:
+  - sacerdosStorage
+
+- type: listing
+  id: SacerdosClothingBackpackSacerdos_1
+  productEntity: ClothingBackpackSacerdos_1
+  cost:
+    Telecrystal_sacerdos: 520
+  categories:
+  - sacerdosStorage
+
+- type: listing
+  id: SacerdosClothingBeltAssault
+  productEntity: ClothingBeltAssault
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosStorage
+
+- type: listing
+  id: SacerdosChemBag
+  productEntity: ChemBag
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosStorage
+
+- type: listing
+  id: SacerdosClothingBeltStorageWaistbag
+  productEntity: ClothingBeltStorageWaistbag
+  cost:
+    Telecrystal_sacerdos: 50
+  categories:
+  - sacerdosStorage
+
+#sacerdosExplosives
+- type: listing
+  id: SacerdosGrenadeIncendiary
+  productEntity: GrenadeIncendiary
+  cost:
+    Telecrystal_sacerdos: 450
+  categories:
+  - sacerdosExplosives
+
+- type: listing
+  id: SacerdosGrenadeShrapnel
+  productEntity: GrenadeShrapnel
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - sacerdosExplosives
+
+- type: listing
+  id: SacerdosWhiteholeGrenade
+  productEntity: WhiteholeGrenade
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - sacerdosExplosives
+
+- type: listing
+  id: SacerdosMetalFoamGrenade
+  productEntity: MetalFoamGrenade
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - sacerdosExplosives
+
+- type: listing
+  id: SacerdosEmpGrenade
+  productEntity: EmpGrenade
+  cost:
+    Telecrystal_sacerdos: 120
+  categories:
+  - sacerdosExplosives
+
+- type: listing
+  id: SacerdosSmokeGrenade
+  productEntity: SmokeGrenade
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosExplosives
+
+- type: listing
+  id: SacerdosC4
+  productEntity: C4
+  cost:
+    Telecrystal_sacerdos: 750
+  categories:
+  - sacerdosExplosives
+
+- type: listing
+  id: SacerdosX4
+  productEntity: X4
+  cost:
+    Telecrystal_sacerdos: 1000
+  categories:
+  - sacerdosExplosives
+
+#sacerdosConstruction
+- type: listing
+  id: SacerdosMultitool
+  productEntity: Multitool
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosCableApcStack
+  productEntity: CableApcStack
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosCableMVStack
+  productEntity: CableMVStack
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosCableHVStack
+  productEntity: CableHVStack
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdostrayScanner
+  description: SacerdostrayScanner
+  productEntity: trayScanner
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosGasAnalyzer
+  productEntity: GasAnalyzer
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosPartRodMetal
+  description: SacerdosPartRodMetal
+  productEntity: PartRodMetal
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosRCDAmmo
+  productEntity: RCDAmmo
+  cost:
+    Telecrystal_sacerdos: 220
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosSheetSteel
+  productEntity: SheetSteel
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosSheetGlass
+  productEntity: SheetGlass
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosClothingEyesGlassesMeson
+  productEntity: ClothingEyesGlassesMeson
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosSheetPlastic
+  productEntity: SheetPlastic
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosSheetPlasma
+  productEntity: SheetPlasma
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosSheetUranium
+  productEntity: SheetUranium
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosSheetPlasteel
+  productEntity: SheetPlasteel
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosClothingBeltUtilityEngineering
+  productEntity: ClothingBeltUtilityEngineering
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosClothingBeltChiefEngineerFilled
+  productEntity: ClothingBeltChiefEngineerFilled
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosRCD
+  productEntity: RCD
+  cost:
+    Telecrystal_sacerdos: 230
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosMaterialCloth
+  productEntity: MaterialCloth
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosMaterialDurathread
+  productEntity: MaterialDurathread
+  cost:
+    Telecrystal_sacerdos: 185
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosCloningConsoleComputerCircuitboard
+  productEntity: CloningConsoleComputerCircuitboard
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosCloningPodMachineCircuitboard
+  description: SacerdosCloningPodMachineCircuitboard
+  productEntity: CloningPodMachineCircuitboard
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosMedicalScannerMachineCircuitboard
+  description: SacerdosMedicalScannerMachineCircuitboard
+  productEntity: MedicalScannerMachineCircuitboard
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosReagentGrinderMachineCircuitboard
+  productEntity: ReagentGrinderMachineCircuitboard
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosFlatpackerMachineCircuitboard
+  productEntity: FlatpackerMachineCircuitboard
+  cost:
+    Telecrystal_sacerdos: 150
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosTurboItemRechargerCircuitboard
+  description: SacerdosTurboItemRechargerCircuitboard
+  productEntity: TurboItemRechargerCircuitboard
+  cost:
+    Telecrystal_sacerdos: 450
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosWeaponCapacitorRechargerCircuitboard
+  productEntity: WeaponCapacitorRechargerCircuitboard
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosChemMasterMachineCircuitboard
+  description: SacerdosChemMasterMachineCircuitboard
+  productEntity: ChemMasterMachineCircuitboard
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosCryoPodMachineCircuitboard
+  productEntity: CryoPodMachineCircuitboard 
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosChemDispenserMachineCircuitboard
+  description: SacerdosChemDispenserMachineCircuitboard
+  productEntity: ChemDispenserMachineCircuitboard
+  cost:
+    Telecrystal_sacerdos: 450
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosHotplateMachineCircuitboard
+  productEntity: HotplateMachineCircuitboard
+  cost:
+    Telecrystal_sacerdos: 120
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosStasisBedMachineCircuitboard
+  description: SacerdosStasisBedMachineCircuitboard
+  productEntity: StasisBedMachineCircuitboard
+  cost:
+    Telecrystal_sacerdos: 130
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosCapacitorStockPart
+  productEntity: CapacitorStockPart
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosMicroManipulatorStockPart
+  productEntity: MicroManipulatorStockPart
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosMatterBinStockPart
+  productEntity: MatterBinStockPart
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - sacerdosConstruction
+
+- type: listing
+  id: SacerdosToolboxElectricalTurretSacerdos
+  productEntity: ToolboxElectricalTurretSacerdos
+  cost:
+    Telecrystal_sacerdos: 785
+  categories:
+  - sacerdosConstruction
+
+#- sacerdosMisc
+- type: listing
+  id: SacerdosHandheldGPSBasic
+  productEntity: HandheldGPSBasic
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdosBoxFlare
+  productEntity: BoxFlare
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdoslBlueFlareBoxisting
+  productEntity: BlueFlareBox
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdosHandTeleporter
+  productEntity: HandTeleporter
+  cost:
+    Telecrystal_sacerdos: 3450
+  categories:
+  - sacerdosMisc
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  
+- type: listing
+  id: SacerdosBluespaceBeaker
+  productEntity: BluespaceBeaker
+  cost:
+    Telecrystal_sacerdos: 900
+  categories:
+  - sacerdosMisc
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
+  id: SacerdosBoxBeaker
+  productEntity: BoxBeaker
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdosBoxPillCanister
+  productEntity: BoxPillCanister
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdosBoxBottle
+  productEntity: BoxBottle
+  cost:
+    Telecrystal_sacerdos: 75
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdosPlushieSpaceLizard
+  productEntity: PlushieSpaceLizard
+  cost:
+    Telecrystal_sacerdos: 1000
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdosRiotShield
+  productEntity: RiotShield
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdosRiotBulletShield
+  productEntity: RiotBulletShield
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdosRiotLaserShield
+  productEntity: RiotLaserShield
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdosEnergyShield
+  productEntity: EnergyShield
+  cost:
+    Telecrystal_sacerdos: 550
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdosFlashlightSeclite
+  productEntity: FlashlightSeclite 
+  cost:
+    Telecrystal_sacerdos: 100
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdosFlashlightLantern
+  productEntity: FlashlightLantern
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdosLantern
+  productEntity: Lantern
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdosClothingShoesBootsMag
+  productEntity: ClothingShoesBootsMag
+  cost:
+    Telecrystal_sacerdos: 120
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdosClothingShoesBootsMagAdv
+  productEntity: ClothingShoesBootsMagAdv
+  cost:
+    Telecrystal_sacerdos: 750
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdosEmpImplanter
+  productEntity: EmpImplanter
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdosBarberScissors
+  productEntity: BarberScissors
+  cost:
+    Telecrystal_sacerdos: 85
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdosSoapNT
+  productEntity: SoapNT
+  cost:
+    Telecrystal_sacerdos: 200
+  categories:
+  - sacerdosMisc
+  
+- type: listing
+  id: SacerdosSoapSyndie
+  productEntity: SoapSyndie
+  cost:
+    Telecrystal_sacerdos: 350
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdosSlipocalypseClusterSoap
+  productEntity: SlipocalypseClusterSoap
+  cost:
+    Telecrystal_sacerdos: 450
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdosSoapOmega
+  productEntity: SoapOmega
+  cost:
+    Telecrystal_sacerdos: 560
+  categories:
+  - sacerdosMisc
+
+- type: listing
+  id: SacerdosOxygenTankFilled
+  productEntity: OxygenTankFilled
+  cost:
+    Telecrystal_sacerdos: 25
+  categories:
+  - sacerdosMisc
+
+#- sacerdosReinforcements
+
+- type: listing
+  id: SacerdosSpawnfightsacerdosODTPreset
+  productEntity: SpawnfightsacerdosODTPreset
+  icon: { sprite: /Textures/Imperial/sacerdos/Equipment_Sacerdos.rsi, state: fight_sacerdos }
+  cost:
+    Telecrystal_sacerdos: 875
+  categories:
+  - sacerdosReinforcements

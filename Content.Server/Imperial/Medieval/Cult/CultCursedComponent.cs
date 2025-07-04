@@ -15,7 +15,7 @@ public sealed partial class CultCursedComponent : Component
     public float CurseLevel = 100f;
 
     [DataField]
-    public float Rate = 0.031f;
+    public float Rate = 0.35f;
 
     [DataField]
     public float MaxCurseLevel = 100f;

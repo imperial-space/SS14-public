@@ -137,6 +137,8 @@
         hard: false
   - type: IconSmooth
     key: puddles
+    additionalKeys:
+    - walls
     base: splat
     mode: CardinalFlags
   - type: SolutionContainerManager
@@ -165,3 +167,5 @@
   - type: Tag
     tags:
     - DNASolutionScannable
+  - type: Trash # Imperial "OperationalErtCleaners"
+    size: Large # Imperial "OperationalErtCleaners"

@@ -1,0 +1,120 @@
+- type: entity
+  id: MachineGunODEN
+  parent: BaseWeaponLightMachineGunODEN
+  name: ODEN
+  description: A powerful rifle with impressive ammunition. Uses ammo .30 caliber.
+  suffix: RiotControlUnit
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/RCU/Weapones/ODEN/icon.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+    scale: 0.82, 0.82
+  - type: Item
+    size: Large
+    sprite: Imperial/SpecialUnits/RCU/Weapones/ODEN/inhand.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Gun
+    fireRate: 7
+    minAngle: 2
+    maxAngle: 3
+    angleIncrease: 4
+    angleDecay: 10
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/SpecialUnits/RCU/Criminality/oden.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: ItemODENMagazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - ItemODENMagazine
+        blacklist:
+          tags:
+            - MagazineLightRifleBox
+  - type: Appearance
+  - type: ClothingFactionExplosion
+    friendlyFaction: RiotControlUnit
+    chance: 1
+  - type: Speech
+    speechSounds: Pai
+  - type: MultiHandedItem
+
+- type: Tag
+  id: ItemODENMagazine
+
+- type: entity
+  name: BaseWeaponLightMachineGunODEN #Создан ради мультихенда у ОДЕНА
+  parent: BaseItem
+  id: BaseWeaponLightMachineGunODEN
+  description: A rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,3
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 8
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/lmg_cock.ogg
+  - type: AmmoCounter
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleBox
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifleBox
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: StaticPrice
+    price: 500
+  - type: UseDelay
+    delay: 1

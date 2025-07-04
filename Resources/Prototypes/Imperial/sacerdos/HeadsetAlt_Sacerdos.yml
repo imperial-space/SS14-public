@@ -1,0 +1,18 @@
+- type: entity
+  parent: ClothingHeadsetAlt
+  id: ClothingHeadsetAltSacerdos
+  name: ClothingHeadsetAltSacerdos
+  description: An updated, modular Sacerdos intercom that fits over the head and takes encryption keys (there are 5 key slots).
+  suffix: Phantom4502, Sacerdos
+  components:
+  - type: Headset
+  - type: EncryptionKeyHolder
+    keySlots: 5
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyRadio9
+  - type: Sprite
+    sprite: Imperial/sacerdos/Clothing_sacerdos/HeadsetAlt_sacerdos.rsi
+  - type: Clothing
+    sprite: Imperial/sacerdos/Clothing_sacerdos/HeadsetAlt_sacerdos.rsi

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
-  "copyright": "by frcts & dantanat. crab and dcrab by @pyrolizz",
+  "copyright": "By spellward spriters",
   "size": {
     "x": 32,
     "y": 32
@@ -51,6 +51,30 @@
     },
     {
         "name": "slugbones"
+    },
+    {
+        "name": "bearskin"
+    },
+    {
+        "name": "goblin2"
+    },
+    {
+        "name": "hogskin"
+    },
+    {
+        "name": "hunter2"
+    },
+    {
+        "name": "rabbit"
+    },
+    {
+        "name": "skeletonjaw"
+    },
+    {
+        "name": "wolf2"
+    },
+    {
+        "name": "wolfskin"
     },
     {
         "name": "flower"

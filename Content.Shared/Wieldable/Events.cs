@@ -18,7 +18,7 @@ public readonly record struct ItemUnwieldedEvent(EntityUid User, bool Force);
 /// If this event is cancelled wielding will not happen.
 /// </summary>
 [ByRefEvent]
-public record struct WieldAttemptEvent(EntityUid User, bool Cancelled = false)
+public record struct WieldAttemptEvent(EntityUid User, EntityUid Used, bool Cancelled = false)  // Imperial Medieval - used added
 {
     public void Cancel()
     {

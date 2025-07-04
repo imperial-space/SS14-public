@@ -1,0 +1,16 @@
+ent-Thejumpsuitofthesquadleader_Cruenta = элитный комбинезон
+    .desc = Униформа крутых ребят, выполняющих тактические операции.
+ent-Theteamleadersjumpsuitskirt_Cruenta = элитная юбка-комбинезон
+    .desc =Униформа крутых ребят, выполняющих тактические операции.
+ent-SquadLeadersCloak_Cruenta = элитный плащ
+    .desc = Элитный красный плащ с красивой золотой отделкой. Он настолько тяжелый, что золотая отделка вероятно настоящая.
+ent-SquadFightersMantle_Cruenta = мантия
+    .desc = Мантия, которую можно обернуть вокруг верхней части тела.
+ent-SquadFightersraincoat_Cruenta = красный плащ
+    .desc = Элегантный, красный плащ
+ent-Theunitsjumpsuit_Cruenta = комбинезон
+    .desc = Униформа крутых ребят, выполняющих тактические операции.
+ent-CruentaClothingHeadHatBeret = красный берет
+    .desc = Берет, любимый головной убор Phantom4502.
+ent-ClothingHandsGlovesCruenta = элитные перчатки
+    .desc = Королевские чёрные перчатки с золотой отделкой. Шикарны.

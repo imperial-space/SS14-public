@@ -8,6 +8,12 @@ using Robust.Shared.Timing;
 using Content.Shared.Popups;
 using Content.Shared.Alert;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Inventory;
+using Content.Shared.BadSmell;
+using Robust.Server.GameObjects;
+using Robust.Shared.Map.Components;
+using Content.Shared.Maps;
+using Content.Shared.Clothing.Components;
 
 namespace Content.Server.BadSmell
 {
@@ -22,6 +28,9 @@ namespace Content.Server.BadSmell
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly AlertsSystem _alerts = default!;
         [Dependency] private readonly MobStateSystem _mobState = default!;
+        [Dependency] private readonly MapSystem _map = default!;
+        [Dependency] private readonly ITileDefinitionManager _tile = default!;
+        [Dependency] private readonly AppearanceSystem _appearance = default!;
 
         private const float CheckWashInterval = 20f; // Проверять "мытье" раз в 20 секунд
 
@@ -38,6 +47,7 @@ namespace Content.Server.BadSmell
 
             //Подписываемся на добавление/удаление компонента, чтобы начать/остановить обработку
             SubscribeLocalEvent<BadSmellComponent, ComponentShutdown>(OnBadSmellRemoved);
+            SubscribeLocalEvent<ClothingComponent, InventoryRelayedEvent<CleaningActionEvent>>(Cleaning);
 
             //Пример: событие, которое может менять "грязность" (замените на актуальное событие вашей игры)
             //SubscribeLocalEvent<CleaningActionEvent>(OnCleaningAction);
@@ -48,6 +58,10 @@ namespace Content.Server.BadSmell
             //_cachedWashValues.Remove(uid);
             _nextSoundPlayTime.Remove(uid);
             _alerts.ClearAlert(uid, component.SmellAlert); // Убираем алерт при удалении компонента
+        }
+        private void Cleaning(EntityUid uid, ClothingComponent component, ref InventoryRelayedEvent<CleaningActionEvent> args)
+        {
+            args.Args.CleaningAmount *= 0.75f;
         }
 
 
@@ -124,13 +138,17 @@ namespace Content.Server.BadSmell
             var clearvalue = CheckWash(coords);
             if (clearvalue > 0)
             {
-                comp.SmellLevel -= comp.WashTemp;
-                if (comp.SmellLevel < clearvalue)
-                    comp.SmellLevel = clearvalue;
+                var ev = new CleaningActionEvent(comp.WashTemp);
+                RaiseLocalEvent(uid, ev);
+                comp.SmellLevel = Math.Min(Math.Max(comp.SmellLevel - ev.CleaningAmount, clearvalue), comp.SmellLevel);
             }
             else
             {
-                comp.SmellLevel += comp.GrowTemp;
+                var grow = comp.GrowTemp;
+                if (xform.GridUid != null && TryComp<MapGridComponent>(xform.GridUid, out var grid))
+                    grow *= ((ContentTileDefinition)_tile[_map.GetTileRef(xform.GridUid.Value, grid, coords).Tile.TypeId]).BadSmellModifier;
+
+                comp.SmellLevel += grow;
             }
             if (comp.SmellLevel > comp.MaxSmellLevel)
             {
@@ -172,7 +190,7 @@ namespace Content.Server.BadSmell
                     }
                 }
             }
-
+            _appearance.SetData(uid, BadSmellVisuals.Dirt, Math.Min(Math.Floor(comp.SmellLevel / 20f), 4));
         }
 
         public float CheckWash(EntityCoordinates coords)
@@ -191,16 +209,4 @@ namespace Content.Server.BadSmell
 
 
     }
-
-
-    //Пример события, вызываемого при очистке
-    /*public sealed class CleaningActionEvent : EntityEventArgs
-    {
-        public float CleaningAmount { get; }
-
-        public CleaningActionEvent(float cleaningAmount)
-        {
-            CleaningAmount = cleaningAmount;
-        }
-    }*/
 }

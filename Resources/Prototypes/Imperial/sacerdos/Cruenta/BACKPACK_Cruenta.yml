@@ -1,0 +1,99 @@
+- type: entity
+  parent: ClothingBackpackERTSecurity
+  id: ClothingBackpackCruenta_1
+  name: The bag of the second shooting gallery
+  description: A large bag that will help you move ore, weapons and ammunition.
+  suffix: Phantom4502, Cruenta
+  components:
+    - type: Storage
+      grid:
+      - 0,0,7,6
+    - type: Sprite
+      sprite: Imperial/sacerdos/Cruenta_falcatio/BACKPACK_Cruenta/BACKPACK_fight_1_Cruenta.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackCruenta_2
+  name: The bag of the third shooting gallery
+  description: Great for transporting explosive substances.
+  suffix: Phantom4502, Cruenta
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/BACKPACK_Cruenta/BACKPACK_fight_2_Cruenta.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelCruenta_3
+  name: A duffel bag from the third shooting gallery
+  description: It's bigger and still perfectly moves explosive things.
+  suffix: Phantom4502, Cruenta
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/BACKPACK_Cruenta/BACKPACK_fight_3_Cruenta.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: Storage
+    grid:
+    - 0,0,8,4
+
+- type: entity
+  parent: ClothingBackpack
+  id: BlackShieldBackpackCruenta_4
+  name: The backpack of the first shooting range
+  suffix: Phantom4502, Cruenta
+  description: Better than nothing
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/BACKPACK_Cruenta/BACKPACK_fight_4_Cruenta.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelCruenta_5
+  name: The bag of the first shooting gallery
+  suffix: Phantom4502, Cruenta
+  description: Better than nothing
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/BACKPACK_Cruenta/BACKPACK_fight_5_Cruenta.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelCruenta_6
+  name: The duffel bag of the first shooting gallery
+  suffix: Phantom4502, Cruenta
+  description: Better than nothing
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/BACKPACK_Cruenta/BACKPACK_fight_6_Cruenta.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelCruenta_1
+  name: Squad Leader's Bag
+  suffix: Phantom4502, Cruenta
+  description: The bag of the first shooting range, but with gold inserts
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/BACKPACK_Cruenta/BACKPACK_Leaders_1_Cruenta.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackSatchelCruenta_2
+  name: The squad leader's duffel bag
+  suffix: Phantom4502, Cruenta
+  description: The duffel bag of the first shooting range, but with gold inserts
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/BACKPACK_Cruenta/BACKPACK_Leaders_2_Cruenta.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackSatchelCruenta_3
+  name: Squad Leader's Backpack
+  suffix: Phantom4502, Cruenta
+  description: Backpack of the first shooting range, but with gold inserts
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/BACKPACK_Cruenta/BACKPACK_Leaders_3_Cruenta.rsi

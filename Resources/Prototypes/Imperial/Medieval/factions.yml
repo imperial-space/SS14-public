@@ -1,10 +1,14 @@
 - type: medievalFaction
-  id: Voluntary
-  name: вольные
+  id: Village
+  name: деревня
   showKnown: false
   icon:
     sprite: Imperial/Medieval/Interface/factions.rsi
     state: merc
+  wantedText: "[color=red]Изгнанник.[/color]"
+  defaultRelations:
+    Legion: Trading
+    Miner: Trading
 
 - type: medievalFaction
   id: Legion
@@ -15,6 +19,14 @@
   knownFactions:
     Insurgency: "[color=red]Чертов предатель, сбежал(а) из легиона![/color]"
   wantedText: "[color=red]Дезертир![/color]"
+  defaultRelations:
+    Insurgency: War
+    Merc: Trading
+    Miner: Trading
+    Village: Trading
+    Bandit: War
+    Kayot: War
+
 
 - type: medievalFaction
   id: Insurgency
@@ -25,6 +37,13 @@
   knownFactions:
     Legion: "[color=red]Бывший сослуживец, грязный легионер![/color]"
   wantedText: "[color=red]Изменник![/color]"
+  defaultRelations:
+    Legion: War
+    Merc: Trading
+    Miner: Trading
+    Bandit: War
+    Kayot: War
+    Cult: War
 
 - type: medievalFaction
   id: Bandit
@@ -33,6 +52,22 @@
     sprite: Imperial/Medieval/Interface/factions.rsi
     state: bandit
   wantedText: "[color=red]Изгнанник.[/color]"
+  defaultRelations:
+    Kayot: War
+  blockedRelations:
+    - Kayot
+
+- type: medievalFaction
+  id: Kayot
+  name: койоты
+  icon:
+    sprite: Imperial/Medieval/Interface/factions.rsi
+    state: bandit
+  wantedText: "[color=red]Изгнанник.[/color]"
+  defaultRelations:
+    Bandit: War
+  blockedRelations:
+    - Bandit
 
 - type: medievalFaction
   id: Merc
@@ -41,6 +76,9 @@
     sprite: Imperial/Medieval/Interface/factions.rsi
     state: merc
   wantedText: "[color=red]Предатель.[/color]"
+  defaultRelations:
+    Insurgency: Trading
+    Legion: Trading
 
 - type: medievalFaction
   id: Collegium
@@ -49,6 +87,10 @@
     sprite: Imperial/Medieval/Interface/factions.rsi
     state: collegium
   wantedText: "[color=red]Проклятый![/color]"
+  defaultRelations:
+    Cult: War
+  blockedRelations:
+    - Cult
 
 - type: medievalFaction
   id: Miner
@@ -57,6 +99,10 @@
     sprite: Imperial/Medieval/Interface/factions.rsi
     state: miner
   wantedText: "[color=red]Уволен.[/color]"
+  defaultRelations:
+    Legion: Trading
+    Insurgency: Trading
+    Village: Trading
 
 - type: medievalFaction
   id: Tribe
@@ -69,3 +115,40 @@
   name: культ
   allowHeadhunt: false
   wantedText: "[color=red]Неверный![/color]"
+  defaultRelations:
+    Collegium: War
+    Insurgency: War
+  blockedRelations:
+    - Collegium
+
+- type: factionRelations
+  id: Neutral
+  name: Нейтральные
+  color: "#aaaaaa"
+  icon:
+    sprite: Imperial/Medieval/Interface/faction_relations.rsi
+    state: neutral
+
+- type: factionRelations
+  id: War
+  name: Война
+  color: "#ff4a3d"
+  icon:
+    sprite: Imperial/Medieval/Interface/faction_relations.rsi
+    state: war
+
+- type: factionRelations
+  id: Union
+  name: Союз
+  color: "#7aee56"
+  icon:
+    sprite: Imperial/Medieval/Interface/faction_relations.rsi
+    state: union
+
+- type: factionRelations
+  id: Trading
+  color: "#eebe56"
+  name: Торговые
+  icon:
+    sprite: Imperial/Medieval/Interface/faction_relations.rsi
+    state: trading

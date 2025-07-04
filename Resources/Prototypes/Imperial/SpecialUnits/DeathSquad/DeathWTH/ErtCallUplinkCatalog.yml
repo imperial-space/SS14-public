@@ -55,7 +55,7 @@
   description: ert-uplink-ammononcombat-magazineboxmagnumap-desc
   productEntity: MagazineBoxMagnumAP
   cost:
-    BlueSpaceCube: 20
+    BlueSpaceCube: 10
   categories:
   - AmmoCombat
 
@@ -388,7 +388,7 @@
   id: DSCallUplinkOmnizineChemistryBottleAlt
   name: ert-uplink-medical-omnizinechemistrybottle-name
   description: ert-uplink-medical-omnizinechemistrybottle-desc
-  productEntity: OmnizineChemistryBottle
+  productEntity: ChemistryBottleOmnizine
   cost:
     BlueSpaceCube: 10
   categories:

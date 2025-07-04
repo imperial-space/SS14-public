@@ -1,0 +1,7 @@
+- type: alert
+  id: SpawnProtection
+  icons:
+  - sprite: /Textures/Imperial/Medieval/Shields/inf_medieval.rsi
+    state: shield
+  name: imperial-medieval-spawnprotection
+  description: imperial-medieval-spawnprotection-desc

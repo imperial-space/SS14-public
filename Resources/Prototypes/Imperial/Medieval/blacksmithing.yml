@@ -20,6 +20,7 @@
     state: icon
   - type: MeleeWeapon
     attackRate: 1
+    wideAnimationRotation: -140
     damage:
       types:
         Blunt: 6

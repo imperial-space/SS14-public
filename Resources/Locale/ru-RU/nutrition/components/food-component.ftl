@@ -2,12 +2,12 @@
 ### Interaction Messages
 
 # When trying to eat food without the required utensil... but you gotta hold it
-food-you-need-to-hold-utensil = Вы должны держать {$utensil} чтобы съесть это!
+food-you-need-to-hold-utensil = Вы должны держать {INDEFINITE($utensil)} {$utensil} чтобы съесть это!
 
 food-nom = Ням. {$flavors}
-food-swallow = Вы глотаете {$food}. {$flavors}
+food-swallow = Вы глотаете { THE($food) }. {$flavors}
 
-food-has-used-storage = Вы не можете съесть {$food}, если внутри хранится предмет.
+food-has-used-storage = Вы не можете съесть { THE($food) }, если внутри хранится предмет.
 
 food-system-remove-mask = Для начала снимите {$entity}.
 

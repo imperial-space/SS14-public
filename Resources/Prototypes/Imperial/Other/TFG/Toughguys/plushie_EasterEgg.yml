@@ -122,3 +122,16 @@
           Quantity: 4
         - ReagentId: CocoaPowder
           Quantity: 4
+
+- type: entity
+  parent: Pen
+  id: PenCentcomGift
+  name: сувенирная ручка ЦентКом
+  description: Коллеционная ручка, отличающаяся от любой другой ручки лишь своим изящным внешним видом. Воплощение бюрократии в исполнении Центрального Командования.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/pens.rsi
+    state: pen_centcom_gift
+  - type: Item
+    sprite: Objects\Misc/pens.rsi
+    heldPrefix: gift_pen_centcom

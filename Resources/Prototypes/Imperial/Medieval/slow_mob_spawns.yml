@@ -57,6 +57,14 @@
     spawnMob: MedievalMobGoblin
 
 - type: entity
+  id: MedievalLateMobSpawnerMedievalMobHobGoblin
+  name: late mob spawn hob goblin
+  parent: MedievalLateMobSpawnerBase
+  components:
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobHobGoblin
+
+- type: entity
   id: MedievalLateMobSpawnerMedievalMobSpiderCave
   name: late mob spawn cave spider
   parent: MedievalLateMobSpawnerBase

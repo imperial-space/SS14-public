@@ -6,7 +6,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - Старший сотрудник
+      - IntergalacticCe
       - NamesLast
     - type: RandomHumanoidAppearance
       randomizeName: false
@@ -22,7 +22,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - Младший сотрудник
+      - IntergalacticEngineer
       - NamesLast
     - type: RandomHumanoidAppearance
       randomizeName: false
@@ -38,7 +38,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - Сотрудник
+      - IntergalacticAtmos
       - NamesLast
     - type: RandomHumanoidAppearance
       randomizeName: false
@@ -52,9 +52,6 @@
   id: MobSyndicateScout
   suffix: InterGalactic, Syndicate
   components:
-    - type: RandomMetadata
-      nameSegments:
-      - names_death_commando
     - type: NpcFactionMember
       factions:
         - Syndicate
@@ -78,9 +75,6 @@
   id: MobSyndicateLostAgent
   suffix: InterGalactic, Syndicate
   components:
-    - type: RandomMetadata
-      nameSegments:
-      - names_death_commando
     - type: NpcFactionMember
       factions:
         - Syndicate
@@ -96,7 +90,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - Сотрудник ПВЗ
+      - IntergalacticEmployee
       - NamesLast
     - type: RandomHumanoidAppearance
       randomizeName: false

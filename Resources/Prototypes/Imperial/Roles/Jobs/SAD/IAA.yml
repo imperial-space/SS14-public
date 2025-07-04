@@ -1,0 +1,67 @@
+# - type: entity
+#   id: SpawnPointIAA
+#   parent: SpawnPointJobBase
+#   name: IAA
+#   components:
+#   - type: SpawnPoint
+#     job_id: IAA
+#   - type: Sprite
+#     layers:
+#       - state: green
+#       - state: lawyer
+
+- type: entity
+  id: SpawnPointRFI
+  parent: SpawnPointJobBase
+  name: RFI
+  components:
+  - type: SpawnPoint
+    job_id: RFI
+  - type: Sprite
+    layers:
+      - state: green
+      - state: lawyer
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconRFI
+  icon:
+    sprite: /Textures/Imperial/Interface/Misc/imperial_job_icons.rsi
+    state: RFI
+
+- type: job
+  id: RFI
+  name: job-name-rfi
+  playTimeTracker: JobRFI 
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 18000 #Imperial role timers
+  startingGear: RFIGear
+  icon: "JobIconRFI"
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  access:
+    - Service
+    - Maintenance
+    - Command
+    - External
+    - Lawyer
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  skills:
+  - skillBotany
+  - skillBaseMed
+  - skillBaseConstraction
+
+- type: startingGear
+  id: RFIGear
+  equipment:
+    id: RFIPDA
+    ears: ClothingHeadsetRFI
+  inhand:
+  - BriefcaseRFIFilled
+
+- type: playTimeTracker 
+  id: JobRFI

@@ -295,6 +295,17 @@
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingNeckCloakClanWolf # imperial medieval
 
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakClanKayot
+  name: blue cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/clan_kayot.rsi
+  - type: Insulated
+  - type: StealTarget # imperial medieval
+    stealGroup: MedievalGetMedievalClothingNeckCloakClanWolf # imperial medieval
 
 - type: entity
   parent: ClothingNeckBase
@@ -431,4 +442,64 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Cloaks/bluecloak.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakBlueLegion
+  name: blue cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/blue_legion.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakRoyalLegionEagle
+  name: blue cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/royaleagle.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakRoyalInsFox
+  name: red cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/royalfox.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakRedIns
+  name: red cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/red_ins.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckRoyalCloak
+  name: red cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/royalcloak.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckRoyalCloakAlt
+  name: red cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/royalcloakalt.rsi
   - type: Insulated

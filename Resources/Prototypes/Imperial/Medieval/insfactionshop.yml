@@ -242,6 +242,14 @@
   - MedievalInsWeapon
 
 - type: listing
+  id: MdvInsMedievalCatapultCraft
+  productEntity: MedievalCatapultCraft
+  cost:
+    MedalIns: 30
+  categories:
+  - MedievalInsWeapon
+
+- type: listing
   id: MdvInsMedievalClothingOuterArmorLeather
   productEntity: MedievalClothingOuterArmorLeather
   cost:
@@ -368,3 +376,6 @@
     MedalIns: 10
   categories:
   - MedievalInsArmor
+
+
+

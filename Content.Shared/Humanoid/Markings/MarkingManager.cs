@@ -44,8 +44,12 @@ namespace Content.Shared.Humanoid.Markings
 
         public FrozenDictionary<string, MarkingPrototype> MarkingsByCategory(MarkingCategories category)
         {
-            // all marking categories are guaranteed to have a dict entry
-            return CategorizedMarkings[category];
+            // why: [FATL] unhandled: System.Collections.Generic.KeyNotFoundException: The given key 'Hair' was not present in the dictionary.
+
+            if (!CategorizedMarkings.TryGetValue(category, out var dict))
+                return FrozenDictionary<string, MarkingPrototype>.Empty;
+
+            return dict;
         }
 
         /// <summary>
@@ -62,12 +66,12 @@ namespace Content.Shared.Humanoid.Markings
             string species)
         {
             var speciesProto = _prototypeManager.Index<SpeciesPrototype>(species);
-            var onlyWhitelisted = _prototypeManager.Index<MarkingPointsPrototype>(speciesProto.MarkingPoints).OnlyWhitelisted;
+            var markingPoints = _prototypeManager.Index(speciesProto.MarkingPoints);
             var res = new Dictionary<string, MarkingPrototype>();
 
             foreach (var (key, marking) in MarkingsByCategory(category))
             {
-                if (onlyWhitelisted && marking.SpeciesRestrictions == null)
+                if ((markingPoints.OnlyWhitelisted || markingPoints.Points[category].OnlyWhitelisted) && marking.SpeciesRestrictions == null)
                 {
                     continue;
                 }
@@ -125,7 +129,7 @@ namespace Content.Shared.Humanoid.Markings
             string species, Sex sex)
         {
             var speciesProto = _prototypeManager.Index<SpeciesPrototype>(species);
-            var onlyWhitelisted = _prototypeManager.Index<MarkingPointsPrototype>(speciesProto.MarkingPoints).OnlyWhitelisted;
+            var onlyWhitelisted = _prototypeManager.Index(speciesProto.MarkingPoints).OnlyWhitelisted;
             var res = new Dictionary<string, MarkingPrototype>();
 
             foreach (var (key, marking) in MarkingsByCategory(category))
@@ -197,7 +201,7 @@ namespace Content.Shared.Humanoid.Markings
             IoCManager.Resolve(ref prototypeManager);
 
             var speciesProto = prototypeManager.Index<SpeciesPrototype>(species);
-            var onlyWhitelisted = prototypeManager.Index<MarkingPointsPrototype>(speciesProto.MarkingPoints).OnlyWhitelisted;
+            var onlyWhitelisted = prototypeManager.Index(speciesProto.MarkingPoints).OnlyWhitelisted;
 
             if (!TryGetMarking(marking, out var prototype))
             {
@@ -228,7 +232,7 @@ namespace Content.Shared.Humanoid.Markings
             IoCManager.Resolve(ref prototypeManager);
 
             var speciesProto = prototypeManager.Index<SpeciesPrototype>(species);
-            var onlyWhitelisted = prototypeManager.Index<MarkingPointsPrototype>(speciesProto.MarkingPoints).OnlyWhitelisted;
+            var onlyWhitelisted = prototypeManager.Index(speciesProto.MarkingPoints).OnlyWhitelisted;
 
             if (onlyWhitelisted && prototype.SpeciesRestrictions == null)
             {
@@ -254,7 +258,7 @@ namespace Content.Shared.Humanoid.Markings
             IoCManager.Resolve(ref prototypeManager);
             var speciesProto = prototypeManager.Index<SpeciesPrototype>(species);
             if (
-                !prototypeManager.TryIndex(speciesProto.SpriteSet, out HumanoidSpeciesBaseSpritesPrototype? baseSprites) ||
+                !prototypeManager.TryIndex(speciesProto.SpriteSet, out var baseSprites) ||
                 !baseSprites.Sprites.TryGetValue(layer, out var spriteName) ||
                 !prototypeManager.TryIndex(spriteName, out HumanoidSpeciesSpriteLayer? sprite) ||
                 sprite == null ||

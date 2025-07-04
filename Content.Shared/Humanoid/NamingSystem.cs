@@ -48,34 +48,37 @@ namespace Content.Shared.Humanoid
             switch (gender)
             {
                 case Gender.Male:
-                    return _random.Pick(_prototypeManager.Index<LocalizedDatasetPrototype>(speciesProto.MaleFirstNames));
+                    return _random.Pick(_prototypeManager.Index(speciesProto.MaleFirstNames));
                 case Gender.Female:
-                    return _random.Pick(_prototypeManager.Index<LocalizedDatasetPrototype>(speciesProto.FemaleFirstNames));
+                    return _random.Pick(_prototypeManager.Index(speciesProto.FemaleFirstNames));
                 default:
                     if (_random.Prob(0.5f))
-                        return _random.Pick(_prototypeManager.Index<LocalizedDatasetPrototype>(speciesProto.MaleFirstNames));
+                        return _random.Pick(_prototypeManager.Index(speciesProto.MaleFirstNames));
                     else
-                        return _random.Pick(_prototypeManager.Index<LocalizedDatasetPrototype>(speciesProto.FemaleFirstNames));
+                        return _random.Pick(_prototypeManager.Index(speciesProto.FemaleFirstNames));
             }
         }
 
         public string GetLastName(SpeciesPrototype speciesProto, Gender? gender = null)
         {
+            // Imperial Space Start
             //return _random.Pick(_prototypeManager.Index<DatasetPrototype>(speciesProto.LastNames).Values);
-            //Imperial отдельные датасеты с женскими фамилиями
+
             var femaleLastNamesProtoID = speciesProto.FemaleLastNames == "" ? speciesProto.LastNames : speciesProto.FemaleLastNames;
             switch (gender)
             {
                 case Gender.Male:
-                    return _random.Pick(_prototypeManager.Index<LocalizedDatasetPrototype>(speciesProto.LastNames));
+                    return _random.Pick(_prototypeManager.Index(speciesProto.LastNames));
                 case Gender.Female:
-                    return _random.Pick(_prototypeManager.Index<LocalizedDatasetPrototype>(femaleLastNamesProtoID));
+                    return _random.Pick(_prototypeManager.Index(femaleLastNamesProtoID));
                 default:
                     if (_random.Prob(0.5f))
-                        return _random.Pick(_prototypeManager.Index<LocalizedDatasetPrototype>(speciesProto.LastNames));
+                        return _random.Pick(_prototypeManager.Index(speciesProto.LastNames));
                     else
-                        return _random.Pick(_prototypeManager.Index<LocalizedDatasetPrototype>(femaleLastNamesProtoID));
+                        return _random.Pick(_prototypeManager.Index(femaleLastNamesProtoID));
             }
+
+            // Imperial Space End
         }
     }
 }

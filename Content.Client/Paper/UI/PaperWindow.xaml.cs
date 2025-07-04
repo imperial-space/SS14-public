@@ -11,6 +11,7 @@ using Robust.Shared.Utility;
 using Robust.Client.UserInterface.RichText;
 using Content.Client.UserInterface.RichText;
 using Robust.Shared.Input;
+using System.Text;
 
 namespace Content.Client.Paper.UI
 {
@@ -149,6 +150,16 @@ namespace Content.Client.Paper.UI
             HeaderImage.Margin = new Thickness(visuals.HeaderMargin.Left, visuals.HeaderMargin.Top,
                     visuals.HeaderMargin.Right, visuals.HeaderMargin.Bottom);
 
+            // Then the footer
+            if (visuals.FooterImagePath is {} path)
+            {
+                FooterImage.TexturePath = path.ToString();
+                FooterImage.MinSize = FooterImage.TextureNormal?.Size ?? Vector2.Zero;
+            }
+
+            FooterImage.ModulateSelfOverride = visuals.FooterImageModulate;
+            FooterImage.Margin = new Thickness(visuals.FooterMargin.Left, visuals.FooterMargin.Top,
+                    visuals.FooterMargin.Right, visuals.FooterMargin.Bottom);
 
             PaperContent.ModulateSelfOverride = visuals.ContentImageModulate;
             WrittenTextLabel.ModulateSelfOverride = visuals.FontAccentColor;
@@ -242,7 +253,7 @@ namespace Content.Client.Paper.UI
         ///     Initialize the paper contents, i.e. the text typed by the
         ///     user and any stamps that have peen put on the page.
         /// </summary>
-        public void Populate(PaperComponent.PaperBoundUserInterfaceState state)
+        public void Populate(PaperComponent.PaperBoundUserInterfaceState state, bool canRead = true)    // Imperial Medieval - canRead bool added
         {
             bool isEditing = state.Mode == PaperComponent.PaperAction.Write;
             bool wasEditing = InputContainer.Visible;
@@ -250,7 +261,19 @@ namespace Content.Client.Paper.UI
             EditButtons.Visible = isEditing;
 
             var msg = new FormattedMessage();
-            msg.AddMarkupPermissive(state.Text);
+            // Imperial Medieval Skills start
+            if (canRead)
+                msg.AddMarkupPermissive(state.Text);
+            else
+            {
+                var sb = new StringBuilder();
+                for (var i = 0; i < state.Text.Length / 3; i++)
+                {
+                    sb.Append("бла бла ");
+                }
+                msg.AddMarkupPermissive(sb.ToString());
+            }
+            // Imperial Medieval Skills end
 
             // For premade documents, we want to be able to edit them rather than
             // replace them.

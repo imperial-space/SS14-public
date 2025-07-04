@@ -4,8 +4,8 @@
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
     Title="{Loc 'faction-menu-title'}"
-    MinSize="612 512"
-    SetSize="812 512">
+    MinSize="1120 512"
+    SetSize="1120 512">
     <BoxContainer Name="Main"
                   Orientation="Vertical"
                   HorizontalExpand="True"
@@ -56,6 +56,31 @@
                             BorderRadius="25">
                         <RichTextLabel
                             Text="Группы"
+                            HorizontalExpand="True"
+                            VerticalExpand="True"
+                            Margin="0 0"
+                            HorizontalAlignment="Center"/>
+                    </imp:BorderedPanelContainer>
+                </BoxContainer>
+            </Button>
+            <Button Name="RelationsMode"
+                    Text="Дипломатия"
+                    ToggleMode="True"
+                    VerticalExpand="True"
+                    HorizontalExpand="True"
+                    StyleClasses="ButtonSquare"
+                    ModulateSelfOverride="#00000000"
+                    Margin="0"
+                    SizeFlagsStretchRatio="1">
+                <BoxContainer VerticalExpand="True"
+                        HorizontalExpand="True">
+                    <imp:BorderedPanelContainer VerticalExpand="True"
+                            HorizontalExpand="True"
+                            ModulateSelfOverride="White"
+                            BackgroundPanelColor="#31313D"
+                            BorderRadius="25">
+                        <RichTextLabel
+                            Text="Дипломатия"
                             HorizontalExpand="True"
                             VerticalExpand="True"
                             Margin="0 0"
@@ -200,4 +225,5 @@
             </Button>
         </BoxContainer>
     </BoxContainer>
+
 </DefaultWindow>

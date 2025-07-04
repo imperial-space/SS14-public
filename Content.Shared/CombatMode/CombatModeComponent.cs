@@ -1,5 +1,6 @@
 using Content.Shared.MouseRotator;
 using Content.Shared.Movement.Components;
+using Content.Shared.StatusIcon;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -48,5 +49,22 @@ namespace Content.Shared.CombatMode
         /// </summary>
         [DataField, AutoNetworkedField]
         public bool ToggleMouseRotator = true;
+
+        // Imperial medieval edit start
+
+        [DataField("icon")]
+        public ProtoId<StatusIconPrototype> CombatModeIcon { get; set; } = "combatModeIcon";
+
+        [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField,]
+        public TimeSpan AudioPlayCooldown { get; set; } = TimeSpan.FromSeconds(0.5f);
+
+        public TimeSpan NextTimeAudioPlay { get; set; }
+
+        [DataField]
+        public SoundSpecifier ActivationSound { get; set; } = new SoundPathSpecifier("/Audio/Imperial/Medieval/CombatMode/combat_on.ogg");
+
+        [DataField]
+        public SoundSpecifier DeactivationSound { get; set; } = new SoundPathSpecifier("/Audio/Imperial/Medieval/CombatMode/combat_off.ogg");
+        // Imperial medieval edit end
     }
 }

@@ -61,6 +61,13 @@ public sealed partial class AntagSelectionComponent : Component
     /// </summary>
     [DataField]
     public LocId? AgentName;
+
+    /// <summary>
+    /// If the player is pre-selected but fails to spawn in (e.g. due to only having antag-immune jobs selected),
+    /// should they be removed from the pre-selection list?
+    /// </summary>
+    [DataField]
+    public bool RemoveUponFailedSpawn = true;
 }
 
 [DataDefinition]
@@ -194,6 +201,9 @@ public partial struct AntagSelectionDefinition()
     /// </remarks>
     [DataField]
     public EntProtoId? SpawnerPrototype;
+
+    [DataField]
+    public EntProtoId? EntityPrototype; // imperial medieval myrmex edit
 }
 
 /// <summary>

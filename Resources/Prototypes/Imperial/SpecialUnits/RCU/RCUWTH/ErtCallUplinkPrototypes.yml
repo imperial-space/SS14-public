@@ -1,0 +1,35 @@
+- type: entity
+  parent: [ BaseERTUplink, RCUUplinkPreset ]
+  id: UplinkRCUOperator
+  name: operator uplink
+  description: Uplink of the RCU security operator.
+  suffix: RCU
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ErtCall/ert_tablet.rsi
+    layers:
+    - state: device-on
+    - state: device-deadsquad-anim
+      shader: unshaded
+      visible: true
+  - type: Store
+    balance:
+      BlueSpaceCube: 60
+
+- type: entity
+  parent: [ BaseERTUplink, RCUUplinkPreset ]
+  id: UplinkRCUOfficer
+  name: officer uplink
+  description: Uplink of the RCU security officer.
+  suffix: RCU
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ErtCall/ert_tablet.rsi
+    layers:
+    - state: device-on
+    - state: device-deadsquad-anim
+      shader: unshaded
+      visible: true
+  - type: Store
+    balance:
+      BlueSpaceCube: 40

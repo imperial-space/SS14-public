@@ -21,7 +21,9 @@
             MedievalInnkeeperN: [ 1, 1 ]
             MedievalChaplain: [ 6, 6 ]
             MedievalWanderMag: [ 4, 4 ]
-            # Legion (27 total)
+            # Legion (29 total)
+            MedievalLegionJailed: [ 5, 5 ]
+            MedievalLegionJailer: [ 1, 1 ]
             MedievalLegionRecruit: [ 7, 7 ]
             MedievalLegionLegioner: [ 11, 11 ]
             MedievalLegionOpcion: [ 4, 4 ]
@@ -29,7 +31,8 @@
             MedievalLegionTribun: [ 1, 1 ]
             MedievalLegionLegat: [ 1, 1 ]
             MedievalLegionMag: [ 2, 2 ]
-            # Insurgency (27 total)
+            MedievalLegionAlchemic: [ 2, 2 ]
+            # Insurgency (29 total)
             MedievalInsurgencyRecruit: [ 7, 7 ]
             MedievalInsurgencyInsurgencyer: [ 11, 11 ]
             MedievalInsurgencyOpcion: [ 4, 4 ]
@@ -37,11 +40,17 @@
             MedievalInsurgencyTribun: [ 1, 1 ]
             MedievalInsurgencyLegat: [ 1, 1 ]
             MedievalInsurgencyMag: [ 2, 2 ]
-            # Band (10 total)
-            MedievalBanditRecruit: [ 4, 4 ]
+            MedievalInsurgencyAlchemic: [ 2, 2 ]
+            # Band (9 total)
+            MedievalBanditRecruit: [ 3, 3 ]
             MedievalBanditRegular: [ 4, 4 ]
             MedievalBanditVeteran: [ 1, 1 ]
             MedievalBanditLeader: [ 1, 1 ]
+            # Kayot (6 total)
+            MedievalKayotRecruit: [ 2, 2 ]
+            MedievalKayotRegular: [ 2, 2 ]
+            MedievalKayotVeteran: [ 1, 1 ]
+            MedievalKayotLeader: [ 1, 1 ]
             # Collegium (15 total)
             MedievalCollegiumRecruit: [ 7, 7 ]
             MedievalCollegiumCommon: [ 7, 7 ]
@@ -64,8 +73,8 @@
             MedievalVillagerDef: [ 3, 3 ]
             MedievalVillagerLeader: [ 1, 1 ]
             # Traders (8 total)
-            MedievalTrader: [ 3, 3 ]
-            MedievalTraderN: [ 3, 3 ]
+            MedievalTrader: [ 4, 4 ]
+            MedievalTraderN: [ 4, 4 ]
             # Crafters (8 total)
             MedievalBlacksmith: [ 1, 1 ]
             MedievalBlacksmithN: [ 1, 1 ]
@@ -95,7 +104,7 @@
             MedievalInnkeeperN: [ 1, 1 ]
             MedievalChaplain: [ 5, 5 ]
             MedievalWanderMag: [ 3, 3 ]
-            # Legion (21 total)
+            # Legion (22 total)
             MedievalLegionRecruit: [ 6, 6 ]
             MedievalLegionLegioner: [ 8, 8 ]
             MedievalLegionOpcion: [ 3, 3 ]
@@ -103,7 +112,8 @@
             MedievalLegionTribun: [ 1, 1 ]
             MedievalLegionLegat: [ 1, 1 ]
             MedievalLegionMag: [ 1, 1 ]
-            # Insurgency (21 total)
+            MedievalLegionAlchemic: [ 1, 1 ]
+            # Insurgency (22 total)
             MedievalInsurgencyRecruit: [ 6, 6 ]
             MedievalInsurgencyInsurgencyer: [ 8, 8 ]
             MedievalInsurgencyOpcion: [ 3, 3 ]
@@ -111,11 +121,17 @@
             MedievalInsurgencyTribun: [ 1, 1 ]
             MedievalInsurgencyLegat: [ 1, 1 ]
             MedievalInsurgencyMag: [ 1, 1 ]
-            # Band (8 total)
-            MedievalBanditRecruit: [ 3, 3 ]
+            MedievalInsurgencyAlchemic: [ 1, 1 ]
+            # Band (7 total)
+            MedievalBanditRecruit: [ 2, 2 ]
             MedievalBanditRegular: [ 3, 3 ]
             MedievalBanditVeteran: [ 1, 1 ]
             MedievalBanditLeader: [ 1, 1 ]
+            # Kayot (5 total)
+            MedievalKayotRecruit: [ 1, 1 ]
+            MedievalKayotRegular: [ 2, 2 ]
+            MedievalKayotVeteran: [ 1, 1 ]
+            MedievalKayotLeader: [ 1, 1 ]
             # Collegium (11 total)
             MedievalCollegiumRecruit: [ 5, 5 ]
             MedievalCollegiumCommon: [ 5, 5 ]
@@ -169,7 +185,7 @@
             MedievalInnkeeperN: [ 1, 1 ]
             MedievalChaplain: [ 3, 3 ]
             MedievalWanderMag: [ 2, 2 ]
-            # Legion (14 total)
+            # Legion (15 total)
             MedievalLegionRecruit: [ 3, 3 ]
             MedievalLegionLegioner: [ 5, 5 ]
             MedievalLegionOpcion: [ 2, 2 ]
@@ -177,7 +193,8 @@
             MedievalLegionTribun: [ 1, 1 ]
             MedievalLegionLegat: [ 1, 1 ]
             MedievalLegionMag: [ 1, 1 ]
-            # Insurgency (14 total)
+            MedievalLegionAlchemic: [ 1, 1 ]
+            # Insurgency (15 total)
             MedievalInsurgencyRecruit: [ 3, 3 ]
             MedievalInsurgencyInsurgencyer: [ 5, 5 ]
             MedievalInsurgencyOpcion: [ 2, 2 ]
@@ -185,11 +202,16 @@
             MedievalInsurgencyTribun: [ 1, 1 ]
             MedievalInsurgencyLegat: [ 1, 1 ]
             MedievalInsurgencyMag: [ 1, 1 ]
-            # Band (6 total)
-            MedievalBanditRecruit: [ 2, 2 ]
+            MedievalInsurgencyAlchemic: [ 1, 1 ]
+            # Band (5 total)
+            MedievalBanditRecruit: [ 1, 1 ]
             MedievalBanditRegular: [ 2, 2 ]
             MedievalBanditVeteran: [ 1, 1 ]
             MedievalBanditLeader: [ 1, 1 ]
+            # Kayot (3 total)
+            MedievalKayotRecruit: [ 1, 1 ]
+            MedievalKayotRegular: [ 1, 1 ]
+            MedievalKayotLeader: [ 1, 1 ]
             # Collegium (7 total)
             MedievalCollegiumRecruit: [ 3, 3 ]
             MedievalCollegiumCommon: [ 3, 3 ]
@@ -243,7 +265,7 @@
             MedievalInnkeeperN: [ 1, 1 ]
             MedievalChaplain: [ 2, 2 ]
             MedievalWanderMag: [ 1, 1 ]
-            # Legion (10 total)
+            # Legion (11 total)
             MedievalLegionRecruit: [ 3, 3 ]
             MedievalLegionLegioner: [ 3, 3 ]
             MedievalLegionOpcion: [ 1, 1 ]
@@ -251,7 +273,8 @@
             #MedievalLegionTribun: [ 1, 1 ]
             MedievalLegionLegat: [ 1, 1 ]
             MedievalLegionMag: [ 1, 1 ]
-            # Insurgency (10 total)
+            MedievalLegionAlchemic: [ 1, 1 ]
+            # Insurgency (11 total)
             MedievalInsurgencyRecruit: [ 3, 3 ]
             MedievalInsurgencyInsurgencyer: [ 3, 3 ]
             MedievalInsurgencyOpcion: [ 1, 1 ]
@@ -259,11 +282,14 @@
             #MedievalInsurgencyTribun: [ 1, 1 ]
             MedievalInsurgencyLegat: [ 1, 1 ]
             MedievalInsurgencyMag: [ 1, 1 ]
-            # Band (4 total)
+            MedievalInsurgencyAlchemic: [ 1, 1 ]
+            # Band (3 total)
             MedievalBanditRecruit: [ 1, 1 ]
-            MedievalBanditRegular: [ 2, 2 ]
-            #MedievalBanditVeteran: [ 1, 1 ]
+            MedievalBanditRegular: [ 1, 1 ]
             MedievalBanditLeader: [ 1, 1 ]
+            # Kayot (2 total)
+            MedievalKayotRecruit: [ 1, 1 ]
+            MedievalKayotLeader: [ 1, 1 ]
             # Collegium (4 total)
             MedievalCollegiumRecruit: [ 1, 1 ]
             MedievalCollegiumCommon: [ 2, 2 ]
@@ -314,7 +340,7 @@
             MedievalInnkeeperN: [ 1, 1 ]
             MedievalChaplain: [ 1, 1 ]
             MedievalWanderMag: [ 1, 1 ]
-            # Legion (7 total)
+            # Legion (8 total)
             MedievalLegionRecruit: [ 2, 2 ]
             MedievalLegionLegioner: [ 2, 2 ]
             #MedievalLegionOpcion: [ 1, 1 ]
@@ -322,7 +348,8 @@
             MedievalLegionTribun: [ 1, 1 ]
             MedievalLegionLegat: [ 1, 1 ]
             MedievalLegionMag: [ 1, 1 ]
-            # Insurgency (7 total)
+            MedievalLegionAlchemic: [ 1, 1 ]
+            # Insurgency (8 total)
             MedievalInsurgencyRecruit: [ 2, 2 ]
             MedievalInsurgencyInsurgencyer: [ 2, 2 ]
             #MedievalInsurgencyOpcion: [ 1, 1 ]
@@ -330,11 +357,14 @@
             MedievalInsurgencyTribun: [ 1, 1 ]
             MedievalInsurgencyLegat: [ 1, 1 ]
             MedievalInsurgencyMag: [ 1, 1 ]
+            MedievalInsurgencyAlchemic: [ 1, 1 ]
             # Band (3 total)
             MedievalBanditRecruit: [ 1, 1 ]
             MedievalBanditRegular: [ 1, 1 ]
-            #MedievalBanditVeteran: [ 1, 1 ]
             MedievalBanditLeader: [ 1, 1 ]
+            # Kayot (2 total)
+            MedievalKayotRecruit: [ 1, 1 ]
+            MedievalKayotLeader: [ 1, 1 ]
             # Collegium (3 total)
             MedievalCollegiumRecruit: [ 1, 1 ]
             MedievalCollegiumCommon: [ 1, 1 ]
@@ -371,6 +401,17 @@
   description: medieval-description
   rules:
   - TDM
+
+- type: gamePreset
+  id: MedievalMyrmex
+  alias:
+  - medieval
+  name: medieval-myrmex-title
+  showInVote: true
+  description: medieval-myrmex-description
+  rules:
+  - TDM
+  - Myrmex
 
 - type: gamePreset
   id: MedievalDevelop

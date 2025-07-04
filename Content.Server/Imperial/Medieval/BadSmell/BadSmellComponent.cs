@@ -20,7 +20,7 @@ namespace Content.Server.BadSmell.Components
         public float MaxSmellLevel = 100f;
 
         [DataField]
-        public float GrowTemp = 0.5f;
+        public float GrowTemp = 0.31f;
 
         [DataField]
         public float WashTemp = 42f;

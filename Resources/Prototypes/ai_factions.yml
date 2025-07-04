@@ -10,6 +10,8 @@
   - AllHostile
   - Wizard
   - SyndicateAgent # Imperial Syndicate Agent Fix
+  - DeathSquad # Imperial Space Death Squad faction Fix
+  - RiotControlUnit # Imperial Space RCU faction adding
 
 - type: npcFaction
   id: NanoTrasen
@@ -22,6 +24,7 @@
   - Dragon
   - AllHostile
   - Wizard
+  - Xenoborg
 
 - type: npcFaction
   id: Mouse
@@ -42,6 +45,7 @@
   - Xeno
   - AllHostile
   - Wizard
+  - Dragon
 
 - type: npcFaction
   id: SimpleHostile
@@ -52,9 +56,14 @@
   - PetsNT
   - Zombie
   - Revolutionary
+  - Dragon
+  - Xeno
   - AllHostile
   - SyndicateAgent # Imperial Syndicate Agent Fix
   - Wizard
+  - DeathSquad # Imperial Space Death Squad faction Fix
+  - RiotControlUnit # Imperial Space RCU faction adding
+  - Xenoborg
 
 - type: npcFaction
   id: SimpleNeutral
@@ -70,6 +79,9 @@
   - Dragon
   - AllHostile
   - Wizard
+  - DeathSquad # Imperial Space Death Squad faction Fix
+  - RiotControlUnit # Imperial Space RCU faction adding
+  - Xenoborg
 
 - type: npcFaction
   id: Xeno
@@ -83,6 +95,10 @@
   - AllHostile
   - SyndicateAgent # Imperial Syndicate Agent Fix
   - Wizard
+  - DeathSquad # Imperial Space Death Squad faction Fix
+  - RiotControlUnit # Imperial Space RCU faction adding
+  - Dragon
+  - Xenoborg
 
 - type: npcFaction
   id: Zombie
@@ -97,6 +113,10 @@
   - AllHostile
   - SyndicateAgent # Imperial Syndicate Agent Fix
   - Wizard
+  - DeathSquad # Imperial Space Death Squad faction Fix
+  - RiotControlUnit # Imperial Space RCU faction adding
+  - Dragon
+  - Xenoborg
 
 - type: npcFaction
   id: Revolutionary
@@ -107,6 +127,9 @@
   - Dragon
   - AllHostile
   - Wizard
+  - DeathSquad # Imperial Space Death Squad faction Fix
+  - RiotControlUnit # Imperial Space RCU faction adding
+  - Xenoborg
 
 - type: npcFaction
   id: AllHostile
@@ -124,6 +147,9 @@
   - Revolutionary
   - SyndicateAgent # Imperial Syndicate Agent Fix
   - Wizard
+  - DeathSquad # Imperial Space Death Squad faction Fix
+  - RiotControlUnit # Imperial Space RCU faction adding
+  - Xenoborg
 
 - type: npcFaction
   id: Wizard
@@ -134,10 +160,28 @@
   - Passive
   - PetsNT
   - SimpleHostile
-  - SimpleNeutral
   - Syndicate
   - Xeno
   - Zombie
   - Revolutionary
   - AllHostile
   - SyndicateAgent # Imperial Syndicate Agent Fix
+  - DeathSquad # Imperial Space Death Squad faction Fix
+  - RiotControlUnit # Imperial Space RCU faction adding
+  - Xenoborg
+
+- type: npcFaction
+  id: Xenoborg
+  hostile:
+  # they have brains
+  - NanoTrasen
+  - Syndicate
+  - Zombie
+  - Revolutionary
+  - Wizard
+  - SyndicateAgent # Imperial Syndicate Agent Fix
+  - Xeno # rivalry
+
+  # cause they are hostile to them
+  - SimpleHostile
+  - AllHostile

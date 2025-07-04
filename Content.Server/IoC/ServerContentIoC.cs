@@ -81,6 +81,7 @@ namespace Content.Server.IoC
             IoCManager.Register<ConnectionManager>();
             IoCManager.Register<MultiServerKickManager>();
             IoCManager.Register<CVarControlManager>();
+            IoCManager.Register<Content.Server.Imperial.PVS.AlwaysPvsSystem>(); // Imperial AlwaysPvs
         }
     }
 }

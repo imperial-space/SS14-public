@@ -1,26 +1,6 @@
 # "funny" placeholders of extremely minor/non-crimes for wanted reason dialog
-# imperial dataset translate
-
-- type: dataset
+- type: localizedDataset
   id: CriminalRecordsWantedReasonPlaceholders
   values:
-  - Съел свою обувь.
-  - Он клоун.
-  - Он мимом.
-  - Неправильно дышал.
-  - Ворвался в эвакуацию.
-  - Буквально ничего не делал.
-  - Не поздоровался со мной.
-  - Выпил слишком много.
-  - Врал моей маме.
-  - Посмотрел на меня.
-  - Родился.
-  - Украл маску клоуна.
-  - Рассказал несмешной анекдот.
-  - Надел противогаз.
-  - По приколу.
-  - Чтобы не втыкал.
-  - Подскольнул меня.
-  - Ты точно не клоун?
-  - Как ты получил доступ сюда?
-  - Кадет сказал.
+    prefix: placeholders-criminal-records-wanted-reason-
+    count: 20

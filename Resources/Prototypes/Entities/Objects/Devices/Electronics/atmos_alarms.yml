@@ -11,7 +11,7 @@
     tags:
       - AirAlarmElectronics
   - type: StaticPrice
-    price: 61
+    price: 10 # Imperial Recipes Prices
 
 - type: entity
   id: FireAlarmElectronics
@@ -28,4 +28,4 @@
     tags:
       - FireAlarmElectronics
   - type: StaticPrice
-    price: 61
+    price: 10 # Imperial Recipes Prices

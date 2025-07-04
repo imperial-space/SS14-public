@@ -10,14 +10,14 @@ using Content.Shared.DoAfter;
 using Content.Shared.Imperial.RandomSteal.Events;
 using Content.Server.DoAfter;
 using Content.Server.Hands.Systems;
-using Content.Shared.Hands.Components;
 using Microsoft.CodeAnalysis;
 using Robust.Server.Audio;
 using Robust.Shared.Random;
 using Content.Shared.Item;
-using Content.Shared.IdentityManagement.Components;
 using Content.Shared.IdentityManagement;
 using Robust.Server.GameObjects;
+using Content.Server.Imperial.Medieval.RandomSteal;
+using Content.Shared.Imperial.Medieval.Additions;
 
 namespace Content.Shared.Imperial.RandomSteal.Systems;
 
@@ -31,6 +31,8 @@ public sealed partial class RandomStealSystem : EntitySystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly IEntitySystemManager _sys = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -40,94 +42,96 @@ public sealed partial class RandomStealSystem : EntitySystem
     }
     private void OnGetAlternativeVerbs(EntityUid uid, RandomStealComponent comp, GetVerbsEvent<AlternativeVerb> ev)
     {
-        if (!ev.CanAccess || !ev.CanInteract || !TryComp<InventoryComponent>(ev.Target, out var inventoryComponent)) return;
-        if (ev.User == ev.Target) return;
-        var check = _inventorySystem.TryGetSlotEntity(ev.Target, comp.Slots[0], out var slot1, inventoryComponent);
-        var check1 = _inventorySystem.TryGetSlotEntity(ev.Target, comp.Slots[1], out var slot2, inventoryComponent);
-        _inventorySystem.TryGetSlotEntity(ev.Target, comp.Slots[2], out var back, inventoryComponent);
-        var check2 = TryComp<StorageComponent>(back, out var storageComponent) && storageComponent.Container.ContainedEntities.Any();
-        if (!check && !check1 && !check2) return;
+        if (!ev.CanAccess || !ev.CanInteract || !TryComp<InventoryComponent>(ev.Target, out var inventoryComponent))
+            return;
+
+        if (ev.User == ev.Target)
+            return;
+
+        List<EntityUid> targetEntities = new();
+
+        foreach (var item in comp.Slots)
+        {
+            if (_inventorySystem.TryGetSlotEntity(ev.Target, item, out var targetEntity, inventoryComponent))
+            {
+                if (TryComp<StorageComponent>(targetEntity, out var storage) && storage.Container.ContainedEntities.Any())
+                {
+                    targetEntities.Add(_random.Pick(storage.Container.ContainedEntities.Where(x => comp.Sizes.Contains(CompOrNull<ItemComponent>(x)?.Size ?? "")).ToList()));
+                    continue;
+                }
+
+                targetEntities.Add(targetEntity.Value);
+            }
+        }
+
+        if (!targetEntities.Any())
+            return;
+
         ev.Verbs.Add(new AlternativeVerb
         {
-            Act = () =>
-            {
-                TrySteal(ev.User, ev.Target, comp, slot1, slot2, back);
-            },
+            Act = () => TrySteal(ev.User, ev.Target, comp, targetEntities),
             Text = Loc.GetString("stealActionSpellward")
         });
     }
-    private void TrySteal(EntityUid first, EntityUid second, RandomStealComponent comp, EntityUid? pocket1 = null, EntityUid? pocket2 = null, EntityUid? back = null)
+    private void TrySteal(EntityUid first, EntityUid second, RandomStealComponent comp, List<EntityUid> entities)
     {
-        EntityUid?[] slots = { pocket1, pocket2, back };
-        var validEntities = slots.Where(e => e != null).ToList();
-        var chosen = validEntities[_random.Next(validEntities.Count)];
-        var item = chosen;
-        if (chosen == back)
-        {
-            if (!TryComp<StorageComponent>(back, out var storageComponent)) return;
-            var items = storageComponent.Container.ContainedEntities;
-            List<EntityUid> validItems = [];
-            validItems = items.Where(e => comp.Sizes.Contains(EnsureComp<ItemComponent>(e).Size)).ToList(); // EnsureComp because HOW IT'S IN BACKPACK WITHOUT ITEMCOMP & except exceptions
-            item = validItems[_random.Next(validItems.Count)];
-        }
+        if (!_sys.GetEntitySystem<AntiStealAfkSystem>().TryStrip(first, second))
+            return;
         if (TryComp<StealChanceIncreaserComponent>(first, out var increaser))
-        {
-            if (TryComp<StealRaceChanceIncreaserComponent>(first, out var raceIncreaser))
-                comp.Chance = 35 + increaser.Bonus + raceIncreaser.Bonus;
-            else
-                comp.Chance = 35 + increaser.Bonus;
-        }
-        else
-        {
-            if (TryComp<StealRaceChanceIncreaserComponent>(first, out var raceIncreaser))
-                comp.Chance = 35 + raceIncreaser.Bonus;
-            else
-                comp.Chance = 35;
-        }
+            comp.Chance += increaser.Bonus;
 
-        if (item == null) return;
-        var doAfterSteal = new DoAfterArgs(EntityManager, first, comp.TimeNeed, new StealDoAfterArgs(), target: first, eventTarget: second)
+        if (TryComp<StealRaceChanceIncreaserComponent>(first, out var raceIncreaser))
+            comp.Chance += raceIncreaser.Bonus;
+
+        var ev = new TryGetAdditionalStealTargetEvent();
+        RaiseLocalEvent(first, ref ev);
+
+        _random.Shuffle(entities);
+
+        var doAfterSteal = new DoAfterArgs(EntityManager, first, comp.TimeNeed, new StealDoAfterArgs(entities.Take(ev.Success ? 2 : 1).ToList()), target: second, eventTarget: first)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
             NeedHand = true,
+            Hidden = true,
             CancelDuplicate = true
         };
         _doAfterSystem.TryStartDoAfter(doAfterSteal);
-        comp.Item = item.Value;
     }
+
     private void OnDoAfterSteal(EntityUid uid, RandomStealComponent comp, StealDoAfterArgs ev)
     {
-        if (ev.Cancelled) return;
-        if (!TryComp(ev.Target, out MetaDataComponent? metaDataComponent) || metaDataComponent == null || metaDataComponent.EntityName == null) return;
-        var nameStealer = metaDataComponent.EntityName;
-        if (TryComp<IdentityComponent>(ev.Target, out var identityStealer) && identityStealer is not null)
-            nameStealer = Identity.Name(identityStealer.Owner, EntityManager);
+        if (ev.Cancelled)
+            return;
 
+        if (ev.Target is not { Valid: true } target)
+            return;
+        if (!_sys.GetEntitySystem<AntiStealAfkSystem>().TryStrip(uid, target))
+            return;
 
-        if (!TryComp(uid, out MetaDataComponent? metaDataComponentFrom) || metaDataComponentFrom == null || metaDataComponentFrom.EntityName == null) return;
-        var nameFrom = metaDataComponentFrom.EntityName;
-        if (TryComp<IdentityComponent>(uid, out var identityFrom) && identityFrom is not null)
-            nameStealer = Identity.Name(uid, EntityManager);
+        var nameStealer = Identity.Name(uid, EntityManager);
+        var nameFrom = Identity.Name(target, EntityManager);
 
+        var modEv = new GetStealChanceModifiersEvent(1f);
+        RaiseLocalEvent(ev.User, ref modEv);
 
-        if (!TryComp(comp.Item, out MetaDataComponent? metaDataComponentItem) || metaDataComponentItem == null || metaDataComponentItem.EntityName == null) return;
-        var nameItem = metaDataComponentFrom.EntityName;
-
-        if (_random.Next(100) > comp.Chance)
+        if (_random.Next(100) > comp.Chance * modEv.Modifier)
         {
-            _popupSystem.PopupEntity(Loc.GetString("stealFailedSpellward", ("entity1", nameStealer), ("entity2", nameFrom)), uid, Popups.PopupType.LargeCaution);
-            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"User {ToPrettyString(ev.Target):user} was trying to steal from {ToPrettyString(uid):target}.");
-            _audio.PlayPvs(comp.FailedSound, uid: ev.User, audioParams: comp.Params);
+            _popupSystem.PopupEntity(Loc.GetString("stealFailedSpellward", ("entity1", nameStealer)), uid, target, Popups.PopupType.LargeCaution);
+            _popupSystem.PopupEntity(Loc.GetString("stealFailedSpellwardUser"), target, uid, Popups.PopupType.LargeCaution);
+
+            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"User {ToPrettyString(target):user} was trying to steal from {ToPrettyString(uid):target}.");
+            _audio.PlayPvs(comp.FailedSound, ev.User, comp.FailedSound.Params);
             return;
         }
-        _adminLogger.Add(LogType.Action, LogImpact.Medium, $"User {ToPrettyString(ev.Target):user} steal from {ToPrettyString(uid):target} item: {ToPrettyString(comp.Item):item}.");
-        if (!HasComp<HandsComponent>(uid) || ev.Cancelled) return;
-        _popupSystem.PopupClient(Loc.GetString("stealSuccessSpellward", ("entity1", nameItem)), ev.Target);
-        if (ev.Target == null || comp.Item == null) return;
-        var xform = Transform(ev.Target.Value);
-        var coords = xform.Coordinates;
-        _transform.SetCoordinates(comp.Item.Value, coords);
-        _hands.TryForcePickupAnyHand(ev.Target.Value, comp.Item.Value);
+
+        _popupSystem.PopupEntity(Loc.GetString("stealSuccessSpellward", ("entity1", nameFrom)), uid, uid);
+
+        foreach (var item in ev.Entities)
+        {
+            _transform.SetCoordinates(item, Transform(uid).Coordinates);
+            _hands.TryForcePickupAnyHand(uid, item);
+            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"User {ToPrettyString(target):user} steal from {ToPrettyString(uid):target} item: {ToPrettyString(item):item}.");
+        }
     }
 }

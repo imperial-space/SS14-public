@@ -1,5 +1,6 @@
 using Content.Client.Audio;
 using Content.Client.GameTicking.Managers;
+using Content.Client.Imperial.Medieval.CharacterBlock;
 using Content.Client.LateJoin;
 using Content.Client.Lobby.UI;
 using Content.Client.Message;
@@ -13,8 +14,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
-using Content.Shared.Imperial.ICCVar; //Imperial
-using Robust.Shared.Configuration; //Imperial
+using Content.Shared.Preferences; //Imperial
 
 namespace Content.Client.Lobby
 {
@@ -28,6 +28,8 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IVoteManager _voteManager = default!;
+        [Dependency] private readonly CharacterBlockManager _characterBlockManager = default!;
+        [Dependency] private readonly IClientPreferencesManager _clientPreferences = default!;
 
         private ClientGameTicker _gameTicker = default!;
         private ContentAudioSystem _contentAudioSystem = default!;
@@ -111,6 +113,16 @@ namespace Content.Client.Lobby
             {
                 return;
             }
+
+            var character = (HumanoidCharacterProfile) _clientPreferences.Preferences!.SelectedCharacter;
+
+            // Imperial medieval start
+            if (_characterBlockManager.IsCharacterBlocked(character))
+            {
+                new CharacterBlockedGui().OpenCentered();
+                return;
+            }
+            // Imperial medieval end
 
             new LateJoinGui().OpenCentered();
         }

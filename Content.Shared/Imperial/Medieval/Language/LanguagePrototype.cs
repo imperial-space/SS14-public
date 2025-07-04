@@ -32,6 +32,9 @@ public sealed class LanguagePrototype : IPrototype, IInheritingPrototype
     public bool Vocal = true;
 
     [DataField]
+    public bool HighIntelligenceAllowed = false;
+
+    [DataField]
     public Color? UiColor;
 
     public ILanguageType LanguageType

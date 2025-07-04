@@ -163,7 +163,6 @@
   name: reagent-name-telethanol
   parent: BaseAlcohol
   desc: reagent-desc-telethanol
-  slippery: true
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: alcohol
   color: "#b05b3c"

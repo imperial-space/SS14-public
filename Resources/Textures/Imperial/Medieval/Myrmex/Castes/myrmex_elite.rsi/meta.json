@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "by gag08984",
+    "size": {
+        "x": 64,
+        "y": 64
+    },
+  "states":
+  [
+    {
+      "name": "base",
+      "directions": 4
+    },
+    {
+      "name": "base2",
+      "directions": 4
+    },
+    {
+      "name": "crit"
+    },
+    {
+      "name": "dead"
+    }
+  ]
+}

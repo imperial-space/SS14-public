@@ -1,0 +1,316 @@
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: PlushieIsaac
+  name: Isaac Claude
+  suffix: HOMAK, COMMUNITY, TOY
+  description: The infamous lawyer of the Akila state. You're really doomed if Isaac doesn't know the solution to your problem.
+  components:
+  - type: Sprite
+    sprite: Imperial/HOMAK/isaac.rsi
+    state: icon
+  - type: Speech
+    speechSounds: IsaacSounds
+  - type: SpeakOnTrigger
+    pack: IsaacSaid
+
+      
+- type: speechSounds
+  id: IsaacSounds
+  saySound:
+    path: /Audio/Items/Toys/weh.ogg
+  askSound:
+    path: /Audio/Items/Toys/weh.ogg
+  exclaimSound:
+    path: /Audio/Items/Toys/weh.ogg
+
+
+- type: localizedDataset
+  id: IsaacSaid
+  values:
+    prefix: isaac-said-
+    count: 101
+
+
+- type: entity
+  id: BriefcasePresentableAristocrat
+  parent: BriefcasePresentable
+  name: Aristocrat's suitcase
+  suffix: Filled
+  description: An old and battered suitcase that had been rumored for a long time. Maybe you shouldn't touch it?
+  components:
+  - type: StorageFill
+    contents:
+      - id: Cane
+        prob: 0.5
+        orGroup: Cane
+      - id: PresentableCane
+        prob: 0.5
+        orGroup: Cane
+      - id: ClothingHeadHatTophat
+        prob: 0.8
+        orGroup: Hat
+      - id: ClothingHeadHatBowlerHat
+        prob: 0.2
+        orGroup: Hat
+      - id: ClothingShoesBootsLaceup
+        prob: 0.9
+        orGroup: Boots
+      - id: ClothingShoesHighheelBoots
+        prob: 0.1
+        orGroup: Boots
+      - id: ClothingEyesGlasses
+        prob: 0.5
+        orGroup: Eyes
+      - id: ClothingEyesGlassesOutlawGlasses
+        prob: 0.3
+        orGroup: Eyes
+      - id: ClothingMaskItalianMoustache
+        prob: 0.2
+        orGroup: Eyes
+      - id: null
+        prob: 0.5
+        orGroup: Hands
+      - id: ClothingHandsGlovesColorBlack
+        prob: 0.5
+        orGroup: Hands
+      - id: ClothingUniformJumpsuitSecBlue
+        prob: 0.3
+        orGroup: Uniform
+      - id: ClothingUniformJumpsuitLawyerBlack
+        prob: 0.4
+        orGroup: Uniform
+      - id: ClothingUniformJumpsuitDetectiveGrey
+        prob: 0.3
+        orGroup: Uniform
+      - id: ClothingOuterCoatGentle
+      - id: SpaceCash1000
+        prob: 0.15
+        orGroup: Bonus
+      - id: SpaceCash100
+        prob: 0.1
+        orGroup: Bonus
+      - id: HarmonicaInstrument
+        prob: 0.15
+        orGroup: Bonus
+      - id: ArmenianStuff
+        prob: 0.1
+        orGroup: Bonus
+      - id: PlushieIsaac
+        prob: 0.1
+        orGroup: Bonus
+      - id: CombatKnife
+        prob: 0.1
+        orGroup: Bonus
+      - id: GoldRingDiamond
+        prob: 0.1
+        orGroup: Bonus
+      - id: GoldRingGem
+        prob: 0.15
+        orGroup: Bonus
+      - id: SpaceCash10000
+        prob: 0.05
+        orGroup: Bonus
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitLawyerOld
+  name: Old lawyer suit
+  description: It was fashionable last century.
+  components:
+  - type: Sprite
+    sprite: Imperial/HOMAK/oldlawyer.rsi
+  - type: Clothing
+    sprite: Imperial/HOMAK/oldlawyer.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitLawyerStupid
+  name: Stupid lawyer suit
+  description: Has a "Kick Me" note always hanging on the back.
+  components:
+  - type: Sprite
+    sprite: Imperial/HOMAK/stupidlawyer.rsi
+  - type: Clothing
+    sprite: Imperial/HOMAK/stupidlawyer.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitLawyerLazy
+  name: Lazy lawyer suit
+  description: Someone clearly skimped on designing this suit.
+  components:
+  - type: Sprite
+    sprite: Imperial/HOMAK/lazylawyer.rsi
+  - type: Clothing
+    sprite: Imperial/HOMAK/lazylawyer.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitLawyerCool
+  name: Cool lawyer suit
+  description: You look incredibly stylish in it. Seriously impressive.
+  components:
+  - type: Sprite
+    sprite: Imperial/HOMAK/coollawyer.rsi
+  - type: Clothing
+    sprite: Imperial/HOMAK/coollawyer.rsi
+      
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitLawyerStrange
+  name: Strange lawyer suit
+  description: A suit with a strange design. If you like it - we recommend seeing a psychologist.
+  components:
+  - type: Sprite
+    sprite: Imperial/HOMAK/strangelawyer.rsi
+  - type: Clothing
+    sprite: Imperial/HOMAK/strangelawyer.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitLawyerBrutal
+  name: Brutal lawyer suit
+  description: Rumor says it was worn by a powerful yakuza. Of course, that's just a myth to inflate the price.
+  components:
+  - type: Sprite
+    sprite: Imperial/HOMAK/brutallawyer.rsi
+  - type: Clothing
+    sprite: Imperial/HOMAK/brutallawyer.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitLawyerSporting
+  name: Sporting lawyer suit
+  description: Is this even a lawyer suit? Either way, better not wear it to court.
+  components:
+  - type: Sprite
+    sprite: Imperial/HOMAK/sportinglawyer.rsi
+  - type: Clothing
+    sprite: Imperial/HOMAK/sportinglawyer.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitLawyerOrange
+  name: Orange lawyer suit
+  description: Oranges. Oranges. Oranges.
+  components:
+  - type: Sprite
+    sprite: Imperial/HOMAK/orangelawyer.rsi
+  - type: Clothing
+    sprite: Imperial/HOMAK/orangelawyer.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBowlerHatBrown
+  name: Brown hat
+  description: Stylish bowler hat.
+  components:
+  - type: Sprite
+    sprite: Imperial/HOMAK/bowler_hatold.rsi
+  - type: Clothing
+    sprite: Imperial/HOMAK/bowler_hatold.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBowlerOrange
+  name: Orange hat
+  description: Stylish bowler hat.
+  components:
+  - type: Sprite
+    sprite: Imperial/HOMAK/bowler_hatorange.rsi
+  - type: Clothing
+    sprite: Imperial/HOMAK/bowler_hatorange.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBowlerPink
+  name: Pink hat
+  description: Stylish bowler hat.
+  components:
+  - type: Sprite
+    sprite: Imperial/HOMAK/bowler_hatpink.rsi
+  - type: Clothing
+    sprite: Imperial/HOMAK/bowler_hatpink.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBowlerCool
+  name: Cool hat
+  description: Stylish bowler hat.
+  components:
+  - type: Sprite
+    sprite: Imperial/HOMAK/bowler_hatcool.rsi
+  - type: Clothing
+    sprite: Imperial/HOMAK/bowler_hatcool.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelSetUniformLawye
+  name: A set of costumes for all occasions
+  description: Contains costumes for all occasions.
+  components:
+    - type: StorageFill
+      contents:
+      - id: ClothingUniformJumpsuitLawyerOld
+      - id: ClothingHeadHatBowlerHatBrown
+      - id: ClothingUniformJumpsuitLawyerOrange
+      - id: ClothingHeadHatBowlerOrange
+      - id: ClothingUniformJumpsuitLawyerCool
+      - id: ClothingHeadHatBowlerCool
+      - id: ClothingUniformJumpsuitLawyerStupid
+      - id: ClothingHeadHatBowlerPink
+      - id: ClothingUniformJumpsuitLawyerSporting
+      - id: ClothingUniformJumpsuitLawyerBrutal
+      - id: ClothingUniformJumpsuitLawyerLazy
+      - id: ClothingUniformJumpsuitLawyerStrange
+
+
+- type: entity
+  parent: ClothingOuterCoatTrench
+  id: ClothingOuterCoatTrenchLawyer
+  name: Lawyer's Trench
+  description: A comfy trench coat.
+  components:
+  - type: Sprite
+    sprite: Imperial/HOMAK/trenchlawyer.rsi
+  - type: Clothing
+    sprite: Imperial/HOMAK/trenchlawyer.rsi
+  - type: StorageFill
+    contents:
+    - id: Pen
+    - id: PaperOffice
+      prob: 0.25
+      orGroup: bonus
+    - id: CigarGold
+      prob: 0.2
+      orGroup: bonus
+    - id: ToyFigurineLawyer
+      prob: 0.2
+      orGroup: bonus
+    - id: FlippoLighter
+      prob: 0.15
+      orGroup: bonus
+    - id: ClothingHeadHatTophat
+      prob: 0.1
+      orGroup: bonus
+    - id: PlushieIsaac
+      prob: 0.1
+      orGroup: bonus
+
+- type: entity
+  id: BriefcaseLocker
+  parent: BriefcaseBrown
+  suffix: Filled
+  name: lawyer's Secure Briefcase
+  description: A lawyer's personal suitcase. Protected by access.
+  components:
+  - type: Appearance
+  - type: Lock
+  - type: LockVisuals
+  - type: AccessReader
+    access: [ [ "Lawyer" ] ]
+  - type: Sprite
+    sprite: Imperial/HOMAK/briefcaselocker.rsi
+  - type: Item
+    sprite: Imperial/HOMAK/briefcaselocker.rsi

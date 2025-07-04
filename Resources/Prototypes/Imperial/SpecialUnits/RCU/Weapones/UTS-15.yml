@@ -1,0 +1,37 @@
+- type: entity
+  name: UTS-15
+  parent: BaseWeaponShotgun
+  id: WeaponShotgunUTS15
+  description: Automatic shotgun with multiple firing modes. Choose how you will kill.
+  suffix: RiotControlUnit
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/RCU/Weapones/UTS-15/icon.rsi
+    state: icon
+    scale: 0.95, 0.95
+  - type: Item
+    sprite: Imperial/SpecialUnits/RCU/Weapones/UTS-15/inhand.rsi
+  - type: Gun
+    fireRate: 2.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/SpecialUnits/RCU/Criminality/uts.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgun
+    capacity: 10
+    proto: ShellShotgun
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  - type: ClothingFactionExplosion
+    friendlyFaction: RiotControlUnit
+    chance: 1
+  - type: Speech
+    speechSounds: Pai
+  - type: MultiHandedItem

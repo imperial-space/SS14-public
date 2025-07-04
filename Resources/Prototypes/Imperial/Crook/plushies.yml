@@ -6,7 +6,9 @@
   description: What? You can't put the Research Director in the artifact crusher?
   components:
   - type: Item
-    size: Small
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
   - type: Sprite
     sprite: Imperial/Crook/Plushie/hlimmywugo.rsi
     state: icon
@@ -22,7 +24,9 @@
   description: Dumplings are very delicious!
   components:
   - type: Item
-    size: Small
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
   - type: Sprite
     sprite: Imperial/Crook/Plushie/alextaylor.rsi
     state: icon
@@ -38,7 +42,9 @@
   description: ¡Hola, amigo! The epitome of Murphy's Law.
   components:
   - type: Item
-    size: Small
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
   - type: Sprite
     sprite: Imperial/Crook/Plushie/michaelmurphy.rsi
     state: icon
@@ -54,7 +60,9 @@
   description: This toy is looking right into your soul with its plush eyes. Are you sure you have a gun permit?
   components:
   - type: Item
-    size: Small
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
   - type: Sprite
     sprite: Imperial/Crook/Plushie/sylvesterreynar.rsi
     state: icon
@@ -71,13 +79,145 @@
   description: They LOVE it when you ask their laws over and over again... Emphasising the emptiness of their souls.
   components:
   - type: Item
-    size: Small
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
   - type: Sprite
     sprite: Imperial/Crook/Plushie/borg.rsi
     state: icon
   - type: StorageFill
     contents:
       - id: FoodBurgerRobot
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieErika
+  name: Erika Steinhofer
+  suffix: Crook, COMMUNITY, TOY
+  description: Doesn't believe in coincidences. Especially when a passenger is standing next to a body.
+  components:
+  - type: Item
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/erikasteinhofer.rsi
+    state: icon
+  - type: StorageFill
+    contents:
+      - id: ForensicPad
+      - id: ForensicPad
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieAiden
+  name: Aiden Bismarck
+  suffix: Crook, COMMUNITY, TOY
+  description: Give me SoX, BoX, MSoX, ToX, belt, abductor engineering tools, abductor surgical tools, abductor musical instruments, red potion, blue potion, rainbow potion, grey-brown-red potion, anti-demolition potion, anti-diarrhoea potion, RCD, RPD, RPC, RKS, SVD, SKS, PTUR, mur, meow, woof, kria, oink, x-ray implant, u-ray implant, z-ray implant, SB-hood, med-hood, antag-hud, admin-hud, god's bonds, god's untying, pump plus, pump minus, pump multiplication, pump division. Breathing tube, exhalation tube, sighing tube, condemning sighing tube, anti-drop, anti-rave, anti-damage, anti-fracture, anti-vnutrtjak, anti-shchitkur, AEG, pepeg, immolator, annihilator, alligator, crocodile, falcon, tesla revolver, tesla carbine, tesla slingshot, tesla brass knuckles, explosives T4, X4, TNT4, cyber heart, cyber lungs, cyber heavy, cyber willpower, jump gene, splash gene, run gene, escape gene, full flight gene. And quickly, please!
+  components:
+  - type: Item
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/aidenbismark.rsi
+    state: icon
+  - type: StorageFill
+    contents:
+      - id: SyringeEphedrine
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieKainov
+  name: Alexander Kainov
+  suffix: Crook, COMMUNITY, TOY
+  description: He is one of those who will remind you that valour surpasses quantity, and loyalty to one's homeland cannot be measured by the number of current problems.
+  components:
+  - type: Item
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/alexandrkainov.rsi
+    state: icon
+  - type: StorageFill
+    contents:
+      - id: CartridgePistol
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieKarner
+  name: Anastasia Karner
+  suffix: Crook, COMMUNITY, TOY
+  description: Smells of pain, suffering, and bureaucracy. P.S. Don't put her next to Officer Amelia's toy... Otherwise, it will be too cute.
+  components:
+  - type: Item
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/anastasiyakarner.rsi
+    state: icon
+  - type: StorageFill
+    contents:
+      - id: ClothingHeadFlowerCentComGold
+  - type: EmitSoundOnUse
+    sound:
+      collection: CatMeows
+  - type: EmitSoundOnActivate
+    sound:
+      collection: CatMeows
+  - type: EmitSoundOnCollide
+    sound:
+      collection: CatMeows
+  - type: EmitSoundOnLand
+    sound:
+      collection: CatMeows
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: CatMeows
+  - type: UseDelay
+    delay: 1.0
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      collection: CatMeows
+
+- type: localizedDataset
+  id: SavirWords
+  values:
+    prefix: plushie-savir-
+    count: 7
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: PlushieSavir
+  name: Savir Murphy
+  suffix: Crook, COMMUNITY, TOY
+  description: A slippery fellow.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/savirmurphy.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: UseDelay
+    delay: 5.0
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Speech
+    speechSounds: SavirSaid
+  - type: SpeakOnTrigger
+    pack: SavirWords
+  
+- type: speechSounds
+  id: SavirSaid
+  saySound:
+    path: /Audio/Voice/Silicon/syndieborg_laugh.ogg
+  askSound:
+    path: /Audio/Voice/Talk/Silicon/syndieborg_ask.ogg
+  exclaimSound:
+    path: /Audio/Voice/Talk/Silicon/syndieborg_exclaim.ogg
 
 # Фумо @buhoj_med
 
@@ -141,7 +281,9 @@
   description: Junko scary.
   components:
   - type: Item
-    size: Small
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 8
   - type: PhysicalComposition
     materialComposition:
       Cloth: 100

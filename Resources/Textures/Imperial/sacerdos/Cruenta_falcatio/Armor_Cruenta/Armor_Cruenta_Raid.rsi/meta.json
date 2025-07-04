@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprited by Phantom4502",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "Sprite-Armor-1"
+    },
+    {
+      "name": "Sprite-Armor-6"
+    },
+    {
+      "name": "equipped-OUTERCLOTHING",
+      "directions": 4
+    },
+    {
+      "name": "Sprite-Armor-5",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    }
+  ]
+}

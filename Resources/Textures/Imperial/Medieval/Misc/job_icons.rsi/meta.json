@@ -152,7 +152,31 @@
             "name": "tribe_recruit"
         },
         {
+            "name": "ins_alc"
+        },
+        {
+            "name": "legion_alc"
+        },
+        {
             "name": "wandernag"
+        },
+        {
+            "name": "legion_jailer"
+        },
+        {
+            "name": "legion_jailed"
+        },
+        {
+            "name": "kayot_molodnyak"
+        },
+        {
+            "name": "kayot_bivalit"
+        },
+        {
+            "name": "kayot_leader"
+        },
+        {
+            "name": "kayot_veteran"
         }
     ]
 }

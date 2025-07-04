@@ -13,17 +13,17 @@
     - WhitelistChameleon
     - ClothMade
 
-# - type: entity # Убрано для соблюдения лицензии временно
-#   parent: ClothingShoesMilitaryBase
-#   id: USSPstormdivisionBoots
-#   name: jackboots
-#   description: Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time.
-#   components:
-#   - type: Sprite
-#     sprite: Imperial/ussp/stormdivision/boots.rsi
-#   - type: Clothing
-#     sprite: Imperial/ussp/stormdivision/boots.rsi
-#   - type: Tag
-#     tags:
-#     - WhitelistChameleon
-#     - ClothMade
+- type: entity 
+  parent: ClothingShoesMilitaryBase
+  id: USSPstormdivisionBoots
+  name: jackboots
+  description: Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/stormdivision/boots.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/stormdivision/boots.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade

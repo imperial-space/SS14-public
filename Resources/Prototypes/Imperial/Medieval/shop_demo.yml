@@ -166,6 +166,14 @@
   - MedievalFoodDemo
 
 - type: listing
+  id: DemoMdvShopFoodCondimentBottleEnzyme
+  productEntity: FoodCondimentBottleEnzyme
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalFoodDemo
+
+- type: listing
   id: DemoMdvShopFoodMeatChickenFried
   productEntity: FoodMeatChickenFried
   cost:
@@ -288,6 +296,14 @@
 - type: listing
   id: DemoMdvShopMedievalLeatherWorkingPlaceCraft
   productEntity: MedievalLeatherWorkingPlaceCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: MedievalMortarCraft
+  productEntity: MedievalMortarCraft
   cost:
     UnknownMedieval: 1
   categories:
@@ -496,8 +512,8 @@
   - MedievalArmorDemo
 
 - type: listing
-  id: DemoMdvShopMedievalClothingOuterArmorStudded
-  productEntity: MedievalClothingOuterArmorStudded
+  id: DemoMdvShopMedievalClothingOuterArmorGambeson
+  productEntity: MedievalClothingOuterArmorGambeson
   cost:
     UnknownMedieval: 1
   categories:
@@ -1832,6 +1848,14 @@
   - MedievalBackpackDemo
 
 - type: listing
+  id: DemoMdvShopMonsterBag
+  productEntity: MedievalMonsterBag
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBackpackDemo
+
+- type: listing
   id: DemoMedievalClothingBackpackSatchelLeather
   productEntity: MedievalClothingBackpackSatchelLeather
   cost:
@@ -2144,8 +2168,8 @@
 #  - MedievalPlantsDemo
 
 - type: listing
-  id: DemoMdvShopRobustHarvestChemistryBottle
-  productEntity: RobustHarvestChemistryBottle
+  id: DemoMdvShopChemistryBottleRobustHarvest
+  productEntity: ChemistryBottleRobustHarvest
   cost:
     UnknownMedieval: 1
   categories:
@@ -2406,3 +2430,11 @@
     UnknownMedieval: 1
   categories:
   - MedievalQuestDemo
+
+- type: listing
+  id: DemoMdvShopMedievalFlinter
+  productEntity: MedievalFlinter
+  cost:
+    Revent: 10
+  categories:
+  - MedievalMiscDemo

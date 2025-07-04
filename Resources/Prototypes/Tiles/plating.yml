@@ -6,8 +6,9 @@
   isSubfloor: true
   footstepSounds:
     collection: FootstepPlating
-  friction: 0.3
+  friction: 1.5
   heatCapacity: 10000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: PlatingDamaged
@@ -22,8 +23,9 @@
   isSubfloor: true
   footstepSounds:
     collection: FootstepPlating
-  friction: 0.3
+  friction: 1.5
   heatCapacity: 10000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: PlatingAsteroid
@@ -33,8 +35,9 @@
   isSubfloor: true
   footstepSounds:
     collection: FootstepPlating
-  friction: 0.3
+  friction: 1.5
   heatCapacity: 10000
+  badSmellMod: 1.5 # imperial medieval badsmell
 
 - type: tile
   id: PlatingBrass
@@ -44,8 +47,9 @@
   isSubfloor: true
   footstepSounds:
     collection: FootstepPlating
-  friction: 0.3
+  friction: 1.5
   heatCapacity: 10000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: PlatingSnow
@@ -55,8 +59,9 @@
   isSubfloor: true
   footstepSounds:
     collection: FootstepPlating
-  friction: 0.15 #a little less then actual snow
+  friction: 0.75 #a little less then actual snow
   heatCapacity: 10000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: Lattice
@@ -68,10 +73,12 @@
   weather: true
   footstepSounds:
     collection: FootstepCatwalk
-  friction: 0.3
+  friction: 1.5
   isSpace: true
   itemDrop: PartRodMetal1
   heatCapacity: 10000
+  badSmellMod: 0 # imperial medieval badsmell
+  mass: 200
 
 - type: tile
   id: TrainLattice
@@ -83,7 +90,7 @@
   weather: true
   footstepSounds:
     collection: FootstepPlating
-  friction: 0.3
+  friction: 1.5
   isSpace: true
   itemDrop: PartRodMetal1
   heatCapacity: 10000

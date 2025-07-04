@@ -1,0 +1,255 @@
+# Спавнеры для стороны синдикека
+
+- type: entity
+  id: TDMForestRiflemanSpawner_S
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-forestrifleman_s-name
+      description: tdm-forestrifleman_s-desc
+      rules: tdm-forestrifleman_s-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMForestRiflemanPreset_S
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMForestMachineGunnerSpawner_S
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-forestmachinegunner_s-name
+      description: tdm-forestmachinegunner_s-desc
+      rules: tdm-forestmachinegunner_s-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMForestMachineGunnerPreset_S
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMForestGrenadierSpawner_S
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-forestgrenadier_s-name
+      description: tdm-forestgrenadier_s-desc
+      rules: tdm-forestgrenadier_s-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMForestGrenadierPreset_S
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMForestMedicalSpawner_S
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-forestmedical_s-name
+      description: tdm-forestmedical_s-desc
+      rules: tdm-forestmedical_s-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMForestMedicalPreset_S
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMForestCommanderSpawner_S
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-forestcommander_s-name
+      description: tdm-forestcommander_s-desc
+      rules: tdm-forestcommander_s-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMForestCommanderPreset_S
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMForestSniperSpawner_S
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-forestsniper_s-name
+      description: tdm-forestsniper_s-desc
+      rules: tdm-forestsniper_s-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMForestSniperPreset_S
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+# Спавнеры для стороны нанотрахен
+
+- type: entity
+  id: TDMForestRiflemanSpawner_N
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-forestrifleman_n-name
+      description: tdm-forestrifleman_n-desc
+      rules: tdm-forestrifleman_n-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMForestRiflemanPreset_N
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMForestMachineGunnerSpawner_N
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-forestmachinegunner_n-name
+      description: tdm-forestmachinegunner_n-desc
+      rules: tdm-forestmachinegunner_n-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMForestMachineGunnerPreset_N
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMForestGrenadierSpawner_N
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-forestgrenadier_n-name
+      description: tdm-forestgrenadier_n-desc
+      rules: tdm-forestgrenadier_n-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMForestGrenadierPreset_N
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMForestMedicalSpawner_N
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-forestmedical_n-name
+      description: tdm-forestmedical_n-desc
+      rules: tdm-forestmedical_n-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMForestMedicalPreset_N
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMForestCommanderSpawner_N
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-forestcommander_n-name
+      description: tdm-forestcommander_n-desc
+      rules: tdm-forestcommander_n-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMForestCommanderPreset_N
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
+  id: TDMForestSniperSpawner_N
+  name: ghost role spawn point
+  suffix: TDM
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: tdm-forestsniper_n-name
+      description: tdm-forestsniper_n-desc
+      rules: tdm-forestsniper_n-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: TDMForestSniperPreset_N
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva

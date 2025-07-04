@@ -1,4 +1,4 @@
-ent-StructureBrokenThruster = Сломанный двигатель
+ent-StructureBrokenThruster = сломанный двигатель
     .desc = Это потрепанный жизнью двигатель
-ent-StructureBrokenGyroscope = Сломанный гироскоп
+ent-StructureBrokenGyroscope = сломанный гироскоп
     .desc = Это потрепанный жизнью гироскоп

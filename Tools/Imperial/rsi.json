@@ -84,11 +84,13 @@
                 "CC0-1.0",
                 "ICLA",
                 "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+                "This content is under ICLA license, read more on https://wiki.imperialspace.net/icla",
                 "CC-BY-SA 3.0",
                 "CC0",
                 "CC-BY-СА-3.0",
                 "IELA",
-                "this content is under IELA licence, read more on https://wiki.imperialspace.net/iela"
+                "this content is under IELA licence, read more on https://wiki.imperialspace.net/iela",
+                "This content is under IELA license, read more on https://wiki.imperialspace.net/iela"
             ],
             "examples": [
                 "CC-BY-SA-3.0"

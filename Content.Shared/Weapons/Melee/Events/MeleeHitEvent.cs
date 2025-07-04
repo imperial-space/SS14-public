@@ -2,8 +2,12 @@ using System.Numerics;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
+using Robust.Shared.Physics;
 
 namespace Content.Shared.Weapons.Melee.Events;
+
+[ByRefEvent] public record struct BeforeMeleeHitEvent(List<EntityUid> HitEntities, EntityUid User, bool Cancelled = false); // imperial medieval rideable
+[ByRefEvent] public record struct RayCastSort(List<RayCastResults> HitEntities); // imperial medieval rideable
 
 /// <summary>
 ///     Raised directed on the melee weapon entity used to attack something in combat mode,
@@ -80,13 +84,13 @@ public sealed class MeleeHitEvent : HandledEntityEventArgs
 /// Raised on a melee weapon to calculate potential damage bonuses or decreases.
 /// </summary>
 [ByRefEvent]
-public record struct GetMeleeDamageEvent(EntityUid Weapon, DamageSpecifier Damage, List<DamageModifierSet> Modifiers, EntityUid User, bool ResistanceBypass = false);
+public record struct GetMeleeDamageEvent(EntityUid Weapon, DamageSpecifier Damage, List<DamageModifierSet> Modifiers, EntityUid User, bool ResistanceBypass = false, bool RaisedOnUser = false);    // Imperial Medieval - RaisedOnUser bool added
 
 /// <summary>
 /// Raised on a melee weapon to calculate the attack rate.
 /// </summary>
 [ByRefEvent]
-public record struct GetMeleeAttackRateEvent(EntityUid Weapon, float Rate, float Multipliers, EntityUid User);
+public record struct GetMeleeAttackRateEvent(EntityUid Weapon, float Rate, float Multipliers, EntityUid User, bool RaisedOnUser = false);   // Imperial Medieval - RaisedOnUser bool added
 
 /// <summary>
 /// Raised on a melee weapon to calculate the heavy damage modifier.

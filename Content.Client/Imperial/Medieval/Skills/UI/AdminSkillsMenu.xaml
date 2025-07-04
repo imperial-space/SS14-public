@@ -1,0 +1,24 @@
+<DefaultWindow
+    xmlns="https://spacestation14.io"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
+    Title="Характеристики"
+    MinSize="400 200"
+    SetSize="450 300">
+    <ScrollContainer Name="ScrollContainer"
+                    HorizontalExpand="True"
+                    VerticalExpand="True"
+                    HScrollEnabled="False"
+                    Margin="4">
+        <PanelContainer Name="PanelContainer"
+                        StyleClasses="PdaBorderRect"
+                        HorizontalExpand="True"
+                        VerticalExpand="True">
+            <BoxContainer Name="Main"
+                          Orientation="Vertical"
+                          HorizontalExpand="True"
+                          VerticalExpand="True" />
+        </PanelContainer>
+    </ScrollContainer>
+</DefaultWindow>

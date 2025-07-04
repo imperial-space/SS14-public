@@ -184,8 +184,8 @@
       0: Alive
       100: Critical
       200: Dead
-  - type: NeedSleepRaceModifier
-    modifier: 0.9
+  - type: NeedSleep
+    sleepLevelPerUpdate: 0.27
   - type: StealRaceChanceIncreaser
 
 - type: entity

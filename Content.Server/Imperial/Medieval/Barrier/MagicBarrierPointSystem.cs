@@ -401,7 +401,6 @@ namespace Content.Server.MagicBarrier
                         _chat.DispatchGlobalAnnouncement("Слишком высокий уровень стабильности барьера, сброс.", playSound: false, colorOverride: Color.SeaGreen, sender: "Барьер");
                         comp.Stability = comp.MaxStability;
                         Spawn("ShockWaveEffect", coords);
-
                     }
 
                     comp.Cycle += 1;
@@ -440,7 +439,6 @@ namespace Content.Server.MagicBarrier
                         var starfallcoords = starfallxform.Coordinates;
                         float randomise = _random.NextFloat(0f, 100f);
                         Spawn("ShockWaveEffect", starfallcoords);
-                        //Console.WriteLine($"Randomise: {randomise}"); // Для отладки
                         string cordX = starfallcoords.X.ToString();
                         string cordY = starfallcoords.Y.ToString();
                         if (randomise > 35)
@@ -453,7 +451,6 @@ namespace Content.Server.MagicBarrier
                             _chat.DispatchGlobalAnnouncement("Аура проклятого каравана была обнаружена " + choosenSpawner.Side + ". Для магической карты: X = " + cordX + ", Y = " + cordY + ".", playSound: true, colorOverride: Color.Yellow, sender: "Событие");
                             Spawn("MedievalKaravanRoomMarker", starfallcoords);
                         }
-
                     }
 
                     if (comp.Cycle == 85)
@@ -472,81 +469,8 @@ namespace Content.Server.MagicBarrier
                         var choosenSpawner = _random.Pick(cursespawners);
                         var cursexform = Transform(choosenSpawner.Owner);
                         var cursecoords = cursexform.Coordinates;
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                        for (int i = 0; i < 100; i++)
+                            Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
                         Spawn("MedievalSpawnNecroLeaderPreset", cursecoords);
                         _chat.DispatchGlobalAnnouncement("Бойтесь, ОНИ идут... Объединение - единственный шанс на спасение.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
 
@@ -556,8 +480,6 @@ namespace Content.Server.MagicBarrier
                     {
                         _chat.DispatchGlobalAnnouncement("Барьер изветшал и рассыпался в пыль.", playSound: true, colorOverride: Color.Red, sender: "Барьер");
                         _roundEndSystem.EndRound();
-                        //QueueDel(comp.Owner);
-
                     }
                 }
             }

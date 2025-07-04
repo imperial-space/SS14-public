@@ -9,5 +9,5 @@ store-currency-display-debugdollar = {$amount ->
 }
 store-currency-display-telecrystal = ТК
 store-currency-display-stolen-essence = Украденная Эссенция
+store-currency-display-silicon-memory = Память
 store-currency-display-wizcoin = Маг€оин™
-

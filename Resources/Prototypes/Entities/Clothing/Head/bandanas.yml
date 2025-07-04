@@ -5,6 +5,7 @@
   components:
   - type: Foldable
     folded: true
+    canFoldInsideContainer: true # Imperial Space Bandanas Fix
   - type: Mask
     isToggled: true
     enabled: false
@@ -28,6 +29,7 @@
     tags:
     - Bandana
     - ClothMade
+    - Recyclable
 
 - type: entity
   parent: [ClothingHeadBandBase, ClothingMaskBandBlack]

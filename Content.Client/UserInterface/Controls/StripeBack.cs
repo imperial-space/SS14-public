@@ -8,7 +8,7 @@ namespace Content.Client.UserInterface.Controls
     {
         private const float PadSize = 4;
         private const float EdgeSize = 2;
-        private static readonly Color EdgeColor = Color.FromHex("#525252ff");
+        public Color EdgeColor = Color.FromHex("#525252ff"); // Imperial Space ImperialPass
 
         private bool _hasTopEdge = true;
         private bool _hasBottomEdge = true;

@@ -24,7 +24,7 @@ public sealed class CritEmotesSystem : EntitySystem
         var query = EntityQueryEnumerator<SoftCritEmotesComponent, MobStateComponent, DamageableComponent>();
         while (query.MoveNext(out var uid, out var crit, out var mob, out var damageable))
         {
-            if (_gameTiming.CurTime >= crit.NextEmoteUpdate)
+            if (_gameTiming.CurTime >= crit.NextEmoteUpdate && crit.Emote)
             {
                 crit.NextEmoteUpdate = _gameTiming.CurTime + TimeSpan.FromSeconds(_random.NextFloat(4f, 7f));
 
@@ -33,7 +33,7 @@ public sealed class CritEmotesSystem : EntitySystem
 
                 _chat.TryEmoteWithChat(uid, _random.Pick(crit.Emotes), ChatTransmitRange.HideChat, ignoreActionBlocker: true);
             }
-            if (_gameTiming.CurTime >= crit.NextHeartbeatUpdate)
+            if (_gameTiming.CurTime >= crit.NextHeartbeatUpdate && crit.Heartbeat)
             {
                 crit.NextHeartbeatUpdate = _gameTiming.CurTime + TimeSpan.FromSeconds(_random.NextFloat(1.4f, 2.1f));
 

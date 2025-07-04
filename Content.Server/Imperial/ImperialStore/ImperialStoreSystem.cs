@@ -7,7 +7,6 @@ using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.Imperial.ImperialStore;
 
@@ -21,6 +20,9 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+
+    private TimeSpan _balanceUpdateTimer;
+    public readonly TimeSpan BalanceUpdateInterval = TimeSpan.FromSeconds(40);
 
     public override void Initialize()
     {
@@ -37,6 +39,25 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
         InitializeUi();
         InitializeCommand();
         InitializeRefund();
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        _balanceUpdateTimer += TimeSpan.FromSeconds(frameTime);
+
+        if (_balanceUpdateTimer <= BalanceUpdateInterval)
+            return;
+
+        _balanceUpdateTimer = TimeSpan.Zero;
+
+        var query = EntityQueryEnumerator<ImperialStoreComponent>();
+        while (query.MoveNext(out var uid, out var store))
+        {
+            store.Balance = store.BalanceOverride ? store.LastDepositSum : DepositSum(store.Balance, store.LastDepositSum);
+            UpdateUserInterface(null, uid, store);
+        }
     }
 
     private void OnMapInit(EntityUid uid, ImperialStoreComponent component, MapInitEvent args)
@@ -103,6 +124,27 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
     }
 
     /// <summary>
+    /// Returns the sum of 'deposit1' and 'deposit2' (or their difference if 'subtract' is set).
+    /// </summary>
+    public Dictionary<string, FixedPoint2> DepositSum(
+        Dictionary<string, FixedPoint2> deposit1,
+        Dictionary<string, FixedPoint2> deposit2,
+        bool subtract = false)
+    {
+        Dictionary<string, FixedPoint2> result = [];
+        IEnumerable<string> keys = deposit1.Keys.Union(deposit2.Keys);
+
+        foreach (string currency in keys)
+        {
+            FixedPoint2 value1 = deposit1.GetValueOrDefault(currency);
+            FixedPoint2 value2 = deposit2.GetValueOrDefault(currency);
+            result[currency] = subtract ? value1 - value1 : value1 + value2;
+        }
+
+        return result;
+    }
+
+    /// <summary>
     /// Gets the value from an entity's currency component.
     /// Scales with stacks.
     /// </summary>
@@ -128,6 +170,7 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
     {
         if (!Resolve(currencyEnt, ref currency) || !Resolve(storeEnt, ref store))
             return false;
+
         return TryAddCurrency(GetCurrencyValue(currencyEnt, currency), storeEnt, store);
     }
 
@@ -150,10 +193,19 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
                 return false;
         }
 
-        foreach (var type in currency)
+        store.Balance = DepositSum(store.Balance, currency);
+
+        if (store.DepositCount > 0)
         {
-            if (!store.Balance.TryAdd(type.Key, type.Value))
-                store.Balance[type.Key] += type.Value;
+            store.LastDepositIndex = --store.LastDepositIndex < 0 ? store.DepositCount - 1 : store.LastDepositIndex;
+            store.LastDeposits[store.LastDepositIndex] = currency;
+            store.LastDepositSum.Clear();
+
+            foreach (Dictionary<string, FixedPoint2> deposit in store.LastDeposits)
+            {
+                if (deposit != null)
+                    store.LastDepositSum = DepositSum(store.LastDepositSum, deposit);
+            }
         }
 
         UpdateUserInterface(null, uid, store);

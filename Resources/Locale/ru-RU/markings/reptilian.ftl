@@ -38,6 +38,9 @@ marking-LizardTailLTiger = Ящер, хвост (Светлые тигриные
 marking-LizardTailDTiger-tail_dtiger = Ящер, хвост (Тёмные тигриные полоски)
 marking-LizardTailDTiger = Ящер, хвост (Тёмные тигриные полоски)
 
+marking-LizardTailAquatic-tail_aquatic = Ящер, хвост (Водный)
+marking-LizardTailAquatic = Ящер, хвост (Водный)
+
 marking-LizardSnoutRound-snout_round = Ящер, морда (Круглая)
 marking-LizardSnoutRound = Ящер, морда (Круглая)
 
@@ -105,6 +108,9 @@ marking-LizardChestUnderbelly = Ящер, грудь (Подбрюшье)
 
 marking-LizardChestBackspikes-body_backspikes = Ящер, грудь, шипы на спине (Четыре)
 marking-LizardChestBackspikes = Ящер, грудь, шипы на спине (Четыре)
+
+marking-LizardChestFin-body_fin = Ящер, грудь (Плавник)
+marking-LizardChestFin = Ящер, грудь (Плавник)
 
 marking-LizardSnoutSplotch = Ящер, морда лица (Пятно)
 marking-LizardSnoutSplotch-snout_splotch_primary = Морда

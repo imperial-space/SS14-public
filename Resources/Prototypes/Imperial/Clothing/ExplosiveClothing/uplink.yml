@@ -1,0 +1,15 @@
+- type: entity
+  parent: [ ClothingShoesBase, BaseJanitorContraband, ClothingOuterHardsuitEVAExpclothing ]
+  id: ClothingGaloshesExplosive
+  name: galoshes
+  description: Rubber boots.
+  components:
+  - type: Sprite
+    sprite: Clothing/Shoes/Specific/galoshes.rsi
+  - type: Clothing
+    sprite: Clothing/Shoes/Specific/galoshes.rsi
+    quickEquip: true
+
+- type: entity
+  id: ClothingOuterHardsuitEVAExpclothing
+  parent: ClothingOuterHardsuitEVA

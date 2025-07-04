@@ -16,3 +16,5 @@ language-Hissing-name = Шипящий
 language-Hissing-description = Хисссс
 language-Elf-name = Эльфиский
 language-Elf-description = Высокий язык
+language-Myrmex-name = Мирмексы
+language-Myrmex-description = Псионическая связь

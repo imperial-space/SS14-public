@@ -103,6 +103,7 @@
         Shock: 0.1
         Radiation: 0.1
         Caustic: 0.1
+        Stamina: 0.5 # Stamina resistance Imperial
   - type: ExplosionResistance
     damageCoefficient: 0.7
   - type: ToggleableClothing

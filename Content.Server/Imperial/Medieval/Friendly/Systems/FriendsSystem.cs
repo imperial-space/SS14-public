@@ -19,6 +19,7 @@ public sealed partial class FriendsSystem : SharedFriendsSystem
     public override void Initialize()
     {
         base.Initialize();
+        InitializeRelations();
         InitializeWanted();
         InitializeMenu();
 

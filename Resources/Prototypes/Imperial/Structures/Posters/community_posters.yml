@@ -359,3 +359,30 @@
   components:
   - type: Sprite
     state: onionsenpai_1
+
+- type: entity
+  parent: CommunityPosterBase
+  id: onionsenpai_2
+  name: "onionsenpai_2"
+  description: "onionsenpai_2"
+  components:
+  - type: Sprite
+    state: onionsenpai_2
+
+- type: entity
+  parent: CommunityPosterBase
+  id: onionsenpai_3
+  name: "onionsenpai_3"
+  description: "onionsenpai_3"
+  components:
+  - type: Sprite
+    state: onionsenpai_3
+
+- type: entity
+  parent: CommunityPosterBase
+  id: onionsenpai_4
+  name: "onionsenpai_4"
+  description: "onionsenpai_4"
+  components:
+  - type: Sprite
+    state: onionsenpai_4

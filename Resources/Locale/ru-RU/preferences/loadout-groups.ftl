@@ -210,6 +210,8 @@ loadout-group-paramedic-jumpsuit = Парамедик, комбинезон
 loadout-group-paramedic-outerclothing = Парамедик, верхняя одежда
 loadout-group-paramedic-shoes = Парамедик, обувь
 
+loadout-group-medical-glasses = Medical glasses
+
 loadout-group-JobSeniorPhysician-jumpsuit = Ведущий врач, комбинезон
 loadout-group-JobSeniorPhysician-outerClothing = Ведущий врач, верхняя одежда
 loadout-group-JobSeniorPhysician-head = Ведущий врач, голова

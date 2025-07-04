@@ -202,9 +202,49 @@
     prototypes:
     - MedievalLateMobSpawnerMedievalMobGoblin
     chance: 0.35
-    intervalSeconds: 600
+    intervalSeconds: 60
     minimumEntitiesSpawned: 5
     maximumEntitiesSpawned: 9
+
+- type: entity
+  name: MedievalTimedSpawnerMedievalMobHobGoblin
+  id: MedievalTimedSpawnerMedievalMobHobGoblin
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - MedievalLateMobSpawnerMedievalMobHobGoblin
+    chance: 0.35
+    intervalSeconds: 1200
+    minimumEntitiesSpawned: 2
+    maximumEntitiesSpawned: 3
+
+- type: entity
+  id: MedievalClothingShoesFancy
+  parent: MarkerBase
+  components:
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - MedievalLateMobSpawnerMedievalMobGoblin2
+    chance: 0.6
+    intervalSeconds: 1
+    minimumEntitiesSpawned: 255
+    maximumEntitiesSpawned: 500
+
+- type: entity
+  id: MedievalLateMobSpawnerMedievalMobGoblin2
+  parent: BaseItem
+  components:
+    - type: RandomSpawner
+      prototypes:
+        - MedievalHitMarkerBarrel2
+      chance: 1
+      offset: 100
 
 - type: entity
   name: MedievalTimedSpawnerMedievalMobSpiderCave
@@ -901,6 +941,7 @@
     spawnType: Default
   - type: AntiSSDFreeArea
 
+
 - type: entity
   name: MedievalJobSpawnerLegion
   id: MedievalJobSpawnerLegion
@@ -913,6 +954,33 @@
   - type: MedievalJobPoint
     spawnType: Legion
   - type: AntiSSDFreeArea
+
+- type: entity
+  name: MedievalJobSpawnerLegionJailed
+  id: MedievalJobSpawnerLegionJailed
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: MedievalJobPoint
+    spawnType: LegionJailed
+  - type: AntiSSDFreeArea
+
+- type: entity
+  name: MedievalJobSpawnerLegionJailer
+  id: MedievalJobSpawnerLegionJailer
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: MedievalJobPoint
+    spawnType: LegionJailer
+  - type: AntiSSDFreeArea
+
 
 - type: entity
   name: MedievalJobSpawnerMine
@@ -1752,7 +1820,7 @@
     #- FloraTreeLarge06
     chance: 1
     offset: 0
-    
+
 - type: entity
   name: MedievalSpawnerRandomTreeLifetime1200SnowConifer
   noSpawn: true
@@ -2260,3 +2328,16 @@
     bodyType: Static
   - type: MedievalMobSpawner
     spawnedEntity: MedievalLateMobSpawnerMedievalMobShieldSlug
+
+- type: entity
+  name: MedievalJobSpawnerKayot
+  id: MedievalJobSpawnerKayot
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: MedievalJobPoint
+    spawnType: Kayot
+  - type: AntiSSDFreeArea

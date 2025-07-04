@@ -1,0 +1,497 @@
+#Прототипы для стороны синдикека
+
+- type: entity
+  parent: MobHuman
+  id: TDMForestRiflemanPreset_S
+  name: ForestRiflemanPreset_S
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMForestRiflemanGear_S ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMForestMachineGunnerPreset_S
+  name: ForestMachineGunnerPreset_S
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMForestMachineGunnerGear_S ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMForestGrenadierPreset_S
+  name: ForestGrenadierPreset_S
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMForestGrenadierGear_S ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMForestMedicalPreset_S
+  name: ForestMedicalPreset_S
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMForestMedicalGear_S ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmaceuticals
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMForestCommanderPreset_S
+  name: ForestCommanderPreset_S
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstLeader
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMForestCommanderGear_S ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMForestSniperPreset_S
+  name: ForestSniperPreset_S
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMForestSniperGear_S ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+#Прототипы для стороны нанотрахен
+
+- type: entity
+  parent: MobHuman
+  id: TDMForestRiflemanPreset_N
+  name: ForestRiflemanPreset_N
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMForestRiflemanGear_N ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMForestMachineGunnerPreset_N
+  name: ForestMachineGunnerPreset_N
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMForestMachineGunnerGear_N ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMForestGrenadierPreset_N
+  name: ForestGrenadierPreset_N
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMForestGrenadierGear_N ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMForestMedicalPreset_N
+  name: ForestMedicalPreset_N
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMForestMedicalGear_N ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmaceuticals
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMForestCommanderPreset_N
+  name: ForestCommanderPreset_N
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstLeader
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMForestCommanderGear_N ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery
+
+- type: entity
+  parent: MobHuman
+  id: TDMForestSniperPreset_N
+  name: ForestSniperPreset_N
+  suffix: TDM
+  components:
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: MindShield
+    - type: AntagImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: Loadout
+      prototypes: [ TDMForestSniperGear_N ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: CrewSkills
+      skills:
+        - skillBotany
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillHacking
+        - skillInstrumentation
+        - skillMaintenance
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting
+        - skillShooting
+        - skillSurgery

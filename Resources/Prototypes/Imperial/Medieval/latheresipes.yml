@@ -380,6 +380,15 @@
   result: PlantBag
 
 - type: CP14Recipe
+  id: MedievalMonsterBag
+  craftTime: 10
+  stacks:
+    MedievalLeather1: 2
+    MedievalRope: 1
+    MedievalLeatherBelt: 2
+  result: MedievalMonsterBag
+
+- type: CP14Recipe
   id: MedievalWineskin
   craftTime: 6
   stacks:
@@ -470,6 +479,14 @@
     MedievalLeather1: 2
     WoodPlank: 3
   result: MedievalClothingOuterArmorStudded
+
+- type: CP14Recipe
+  id: MedievalClothingOuterArmorGambeson
+  craftTime: 20
+  stacks:
+    MedievalRope: 1
+    Cloth: 3
+  result: MedievalClothingOuterArmorGambeson
 
 - type: CP14Recipe
   id: MedievalClothingOuterArmorFur
@@ -1435,6 +1452,14 @@
   stacks:
     Cloth: 2
   result: ClothingMaskBandBlack
+
+- type: CP14Recipe
+  id: MedievalClothingOuterArmorGoblinLeather
+  craftTime: 6
+  stacks:
+    MedievalLeather1: 6
+    MedievalRope: 2
+  result: MedievalClothingOuterArmorGoblinLeather
 
 - type: CP14Recipe
   id: MedievalClothFromGrass

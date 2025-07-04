@@ -7,7 +7,6 @@
   targetNode: icon
   category: construction-category-weapons
   description: Неприметная шляпка с вшитыми в поля осколками стекла. # Imperial Recipes Locale
-  icon: { sprite: Clothing/Head/Hats/greyflatcap.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -19,7 +18,6 @@
   targetNode: icon
   category: construction-category-weapons
   description: Неприметная шляпка с вшитыми в поля осколками стекла. # Imperial Recipes Locale
-  icon: { sprite: Clothing/Head/Hats/brownflatcap.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -31,7 +29,6 @@
   targetNode: icon
   category: construction-category-weapons
   description: Осколок стекла, обернутый куском ткани. # Imperial Recipes Locale
-  icon: { sprite: Objects/Weapons/Melee/shiv.rsi, state: icon }
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
@@ -44,7 +41,6 @@
   targetNode: icon
   category: construction-category-weapons
   description: Осколок бронестекла, обернутый куском ткани. # Imperial Recipes Locale
-  icon: { sprite: Objects/Weapons/Melee/reinforced_shiv.rsi, state: icon }
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
@@ -57,7 +53,6 @@
   targetNode: icon
   category: construction-category-weapons
   description: Осколок плазменного стекла, обернутый куском ткани. # Imperial Recipes Locale
-  icon: { sprite: Objects/Weapons/Melee/plasma_shiv.rsi, state: icon }
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
@@ -70,7 +65,6 @@
   targetNode: icon
   category: construction-category-weapons
   description: Осколок уранового стекла, обернутый куском ткани. # Imperial Recipes Locale
-  icon: { sprite: Objects/Weapons/Melee/uranium_shiv.rsi, state: icon }
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
@@ -83,7 +77,6 @@
   targetNode: spear
   category: construction-category-weapons
   description: Грубое копьё на тот случай, если вам нужно проделать в ком-то дырку. # Imperial Recipes Locale
-  icon: { sprite: Objects/Weapons/Melee/spear.rsi, state: spear }
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
@@ -96,7 +89,6 @@
   targetNode: spear
   category: construction-category-weapons
   description: Грубое усиленное копьё на тот случай, если вам нужно проделать в ком-то дырку. # Imperial Recipes Locale
-  icon: { sprite: Objects/Weapons/Melee/reinforced_spear.rsi, state: spear }
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
@@ -109,7 +101,6 @@
   targetNode: spear
   category: construction-category-weapons
   description: Грубое плазменное копье на тот случай, если вам нужно продырявить кого-нибудь. # Imperial Recipes Locale
-  icon: { sprite: Objects/Weapons/Melee/plasma_spear.rsi, state: spear }
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
@@ -122,7 +113,14 @@
   targetNode: spear
   category: construction-category-weapons
   description: Грубое урановое копье на тот случай, если вам нужно продырявить кого-нибудь. # Imperial Recipes Locale
-  icon: { sprite: Objects/Weapons/Melee/uranium_spear.rsi, state: spear }
+  objectType: Item
+
+- type: construction
+  id: SpearSharkMinnow
+  graph: SpearSharkMinnow
+  startNode: start
+  targetNode: spear
+  category: construction-category-weapons
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
@@ -135,7 +133,6 @@
   targetNode: bola
   category: construction-category-weapons
   description: Скрепленные с металлом кабельные стяжки. # Imperial Recipes Locale
-  icon: { sprite: Objects/Weapons/Throwable/bola.rsi, state: icon }
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
@@ -148,7 +145,6 @@
   targetNode: woodenBuckler
   category: construction-category-weapons
   description: Небольшой круглый деревянный самодельный щит. # Imperial Recipes Locale
-  icon: { sprite: Objects/Weapons/Melee/shields.rsi, state: buckler-icon }
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
@@ -161,7 +157,6 @@
   targetNode: makeshiftShield
   category: construction-category-weapons
   description: Ветхий на вид щит, мало на что пригодный. # Imperial Recipes Locale
-  icon: { sprite: Objects/Weapons/Melee/shields.rsi, state: makeshift-icon }
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
@@ -174,7 +169,14 @@
   targetNode: ImprovisedArrow
   category: construction-category-weapons
   description: Стрела с наконечником из осколков стекла, предназначенная для использования с луком. # Imperial Recipes Locale
-  icon: { sprite: Objects/Weapons/Guns/Bow/bow.rsi, state: wielded-arrow }
+  objectType: Item
+
+- type: construction
+  id: ImprovisedArrowCarp
+  graph: ImprovisedArrowCarp
+  startNode: start
+  targetNode: ImprovisedArrowCarp
+  category: construction-category-weapons
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
@@ -187,7 +189,6 @@
   targetNode: ImprovisedArrowPlasma
   category: construction-category-weapons
   description: Стрела с наконечником из осколков плазменного стекла, предназначенная для использования с луком. # Imperial Recipes Locale
-  icon: { sprite: Objects/Weapons/Guns/Bow/bow.rsi, state: wielded-arrow }
   objectType: Item
 
 - type: construction
@@ -199,7 +200,6 @@
   targetNode: ImprovisedArrowUranium
   category: construction-category-weapons
   description: Стрела с наконечником из осколков уранового стекла, предназначенная для использования с луком. # Imperial Recipes Locale
-  icon: { sprite: Objects/Weapons/Guns/Bow/bow.rsi, state: wielded-arrow }
   objectType: Item
 
 - type: construction
@@ -211,7 +211,6 @@
   targetNode: ImprovisedBow
   category: construction-category-weapons
   description: Некачественный лук, сделанный из дерева и ткани. Это немного, но работа выполнялась на протяжении тысячелетий. # Imperial Recipes Locale
-  icon: { sprite: Objects/Weapons/Guns/Bow/bow.rsi, state: unwielded }
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
@@ -223,6 +222,13 @@
   targetNode: spear
   category: construction-category-weapons
   description: Копьё из костей на тот случай, если вам нужно продырявить кого-нибудь. # Imperial Recipes Locale
-  icon: { sprite: Objects/Weapons/Melee/bone_spear.rsi, state: spear }
+  objectType: Item
+
+- type: construction
+  id: ClothingHandsKnuckleDustersBrass
+  graph: ClothingHandsKnuckleDustersBrass
+  startNode: start
+  targetNode: icon
+  category: construction-category-weapons
   objectType: Item
   blockForPacifist: true #Imperial pacified

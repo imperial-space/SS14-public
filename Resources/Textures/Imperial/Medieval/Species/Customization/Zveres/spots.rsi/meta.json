@@ -1,0 +1,31 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "Made by @crookielv",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "allbody",
+        "directions": 4
+      },
+      {
+        "name": "belly",
+        "directions": 4
+      },
+      {
+        "name": "eye_left",
+        "directions": 4
+      },
+      {
+        "name": "eye_right",
+        "directions": 4
+      },
+      {
+        "name": "jaw",
+        "directions": 4
+      }
+    ]
+  }

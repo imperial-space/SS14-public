@@ -1,0 +1,133 @@
+- type: entity
+  id: BaseShippingContainer_sacerdos
+  suffix: Phantom4502
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: SpriteFade
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/sacerdos/ShippingContainer_sacerdos.rsi
+    netsync: false
+    drawdepth: Overdoors
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.5,0,1.5,-1"
+        density: 1000
+        layer:
+        - WallLayer
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 250
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              SheetSteel:
+                min: 10
+                max: 20
+          - !type:PlaySoundBehavior
+            sound:
+              path: /Audio/Effects/metal_break1.ogg
+
+- type: entity
+  id: ShippingContainer-1
+  parent: BaseShippingContainer_sacerdos
+  name: Shipping container is orange in color
+  description: A standard-measure shipping container for bulk transport of goods.
+  suffix: Phantom4502
+  components:
+  - type: Sprite
+    state: Sprite-ShippingContainer-1
+
+- type: entity
+  id: ShippingContainer-2
+  parent: BaseShippingContainer_sacerdos
+  name: Turquoise shipping container
+  description: A standard-measure shipping container for bulk transport of goods.
+  suffix: Phantom4502
+  components:
+  - type: Sprite
+    state: Sprite-ShippingContainer-2
+
+- type: entity
+  id: ShippingContainer-3
+  parent: BaseShippingContainer_sacerdos
+  name: Shipping container is light red in color
+  description: A standard-measure shipping container for bulk transport of goods.
+  suffix: Phantom4502
+  components:
+  - type: Sprite
+    state: Sprite-ShippingContainer-3
+
+- type: entity
+  id: ShippingContainer-4
+  parent: BaseShippingContainer_sacerdos
+  name: Dark green shipping container
+  description: A standard-measure shipping container for bulk transport of goods.
+  suffix: Phantom4502
+  components:
+  - type: Sprite
+    state: Sprite-ShippingContainer-4
+  
+- type: entity
+  id: ShippingContainer-5
+  parent: BaseShippingContainer_sacerdos
+  name: Dark red shipping container
+  description: A standard-measure shipping container for bulk transport of goods.
+  suffix: Phantom4502
+  components:
+  - type: Sprite
+    state: Sprite-ShippingContainer-5
+
+- type: entity
+  id: ShippingContainer-6
+  parent: BaseShippingContainer_sacerdos
+  name: White shipping container
+  description: A standard-measure shipping container for bulk transport of goods.
+  suffix: Phantom4502
+  components:
+  - type: Sprite
+    state: Sprite-ShippingContainer-6
+
+- type: entity
+  id: ShippingContainer-7
+  parent: BaseShippingContainer_sacerdos
+  name: Yellow shipping container
+  description: A standard-measure shipping container for bulk transport of goods.
+  suffix: Phantom4502
+  components:
+  - type: Sprite
+    state: Sprite-ShippingContainer-7
+
+- type: entity
+  id: ShippingContainer-8
+  parent: BaseShippingContainer_sacerdos
+  name: Dark blue shipping container
+  description: A standard-measure shipping container for bulk transport of goods.
+  suffix: Phantom4502
+  components:
+  - type: Sprite
+    state: Sprite-ShippingContainer-8
+
+- type: entity
+  id: ShippingContainer-9
+  parent: BaseShippingContainer_sacerdos
+  name: Black Shipping Container
+  description: A standard-measure shipping container for bulk transport of goods.
+  suffix: Phantom4502
+  components:
+  - type: Sprite
+    state: Sprite-ShippingContainer-9

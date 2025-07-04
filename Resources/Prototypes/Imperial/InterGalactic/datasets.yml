@@ -1,0 +1,23 @@
+- type: localizedDataset
+  id: IntergalacticCe
+  values:
+    prefix: imperial-space-intergalactic-ce-
+    count: 1
+
+- type: localizedDataset
+  id: IntergalacticEngineer
+  values:
+    prefix: imperial-space-intergalactic-engineer-
+    count: 1
+
+- type: localizedDataset
+  id: IntergalacticAtmos
+  values:
+    prefix: imperial-space-intergalactic-atmos-
+    count: 1
+
+- type: localizedDataset
+  id: IntergalacticEmployee
+  values:
+    prefix: imperial-space-intergalactic-employee-
+    count: 1

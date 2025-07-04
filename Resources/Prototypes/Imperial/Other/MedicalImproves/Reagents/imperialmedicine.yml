@@ -91,6 +91,8 @@
   group: Medicine
   desc: reagent-desc-thrivenin
   physicalDesc: reagent-physical-desc-translucent
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: medicine
   pricePerUnit: 10
   color: "#ffaa00"
@@ -124,6 +126,8 @@
   pricePerUnit: 1.1 #imperial
   desc: reagent-desc-spaceacillin
   physicalDesc: reagent-physical-desc-opaque
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: medicine
   color: "#9942f5"
   metabolisms:

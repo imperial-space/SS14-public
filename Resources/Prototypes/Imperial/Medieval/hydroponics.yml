@@ -1,0 +1,531 @@
+- type: entity
+  parent: SeedBase
+  name: seed-lipadseeds-name
+  id: MedievalLipadSeeds
+  description: seed-lipadseeds-desc
+  components:
+    - type: Seed
+      seedId: LipadFlower
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/Garden/lipad.rsi
+
+- type: entity
+  parent: SeedBase
+  name: seed-lavaseeds-name
+  id: MedievalLavaSeeds
+  description: seed-lavaseeds-desc
+  components:
+    - type: Seed
+      seedId: LavaFlower
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/Garden/lava.rsi
+
+- type: entity
+  parent: SeedBase
+  name: seed-vetrseeds-name
+  id: MedievalVetrSeeds
+  description: seed-vetrseeds-desc
+  components:
+    - type: Seed
+      seedId: VetrFlower
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/Garden/vetr.rsi
+
+- type: entity
+  parent: SeedBase
+  name: seed-cryoseeds-name
+  id: MedievalCryoSeeds
+  description: seed-cryoseeds-desc
+  components:
+    - type: Seed
+      seedId: CryoFlower
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/Garden/cryo.rsi
+
+- type: entity
+  parent: SeedBase
+  name: seed-mushroom1spores-name
+  id: MedievalMushroom1Spores
+  description: seed-mushroom1spores-desc
+  components:
+    - type: Seed
+      seedId: Mushroom1
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/Garden/mushroom1.rsi
+
+- type: entity
+  parent: SeedBase
+  name: seed-mushroom2spores-name
+  id: MedievalMushroom2Spores
+  description: seed-mushroom2spores-desc
+  components:
+    - type: Seed
+      seedId: Mushroom2
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/Garden/mushroom2.rsi
+
+- type: entity
+  parent: SeedBase
+  name: seed-mushroom3spores-name
+  id: MedievalMushroom3Spores
+  description: seed-mushroom3spores-desc
+  components:
+    - type: Seed
+      seedId: Mushroom3
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/Garden/mushroom3.rsi
+
+- type: seed
+  id: Mushroom1
+  name: seeds-mushroom1-display-name
+  noun: seeds-noun-spores
+  displayName: seeds-mushroom1-display-name
+  plantRsi: Imperial/Medieval/Chem/Garden/mushroom1.rsi
+  packetPrototype: MedievalMushroom1Spores
+  productPrototypes:
+    - MedievalMushroom1
+  lifespan: 30
+  maturation: 12
+  production: 4
+  yield: 4
+  potency: 12
+  growthStages: 3
+  waterConsumption: 0.80
+  nutrientConsumption: 0.50
+  idealLight: 4
+  idealHeat: 288
+  chemicals:
+    MedievalMushroom1:
+      Min: 2
+      Max: 6
+      PotencyDivisor: 20
+
+- type: seed
+  id: Mushroom2
+  name: seeds-mushroom2-display-name
+  noun: seeds-noun-spores
+  displayName: seeds-mushroom2-display-name
+  plantRsi: Imperial/Medieval/Chem/Garden/mushroom2.rsi
+  packetPrototype: MedievalMushroom2Spores
+  productPrototypes:
+    - MedievalMushroom2
+  lifespan: 30
+  maturation: 12
+  production: 4
+  yield: 4
+  potency: 12
+  growthStages: 3
+  waterConsumption: 0.80
+  nutrientConsumption: 0.50
+  idealLight: 4
+  idealHeat: 288
+  chemicals:
+    MedievalMushroom2:
+      Min: 2
+      Max: 6
+      PotencyDivisor: 20
+
+- type: seed
+  id: Mushroom3
+  name: seeds-mushroom3-display-name
+  noun: seeds-noun-spores
+  displayName: seeds-mushroom3-display-name
+  plantRsi: Imperial/Medieval/Chem/Garden/mushroom3.rsi
+  packetPrototype: MedievalMushroom3Spores
+  productPrototypes:
+    - MedievalMushroom3
+  lifespan: 30
+  maturation: 12
+  production: 4
+  yield: 4
+  potency: 12
+  growthStages: 3
+  waterConsumption: 0.80
+  nutrientConsumption: 0.50
+  idealLight: 4
+  idealHeat: 288
+  chemicals:
+    MedievalMushroom3:
+      Min: 2
+      Max: 6
+      PotencyDivisor: 20
+
+- type: seed
+  id: VetrFlower
+  name: seeds-vetrflower-display-name
+  noun: seeds-noun-seeds
+  displayName: seeds-vetrflower-display-name
+  plantRsi: Imperial/Medieval/Chem/Garden/vetr.rsi
+  packetPrototype: MedievalVetrSeeds
+  productPrototypes:
+    - MedievalFlowerVetr
+  lifespan: 28
+  maturation: 9
+  production: 4
+  yield: 4
+  potency: 11
+  growthStages: 3
+  waterConsumption: 0.65
+  nutrientConsumption: 0.45
+  idealLight: 8
+  idealHeat: 295
+  chemicals:
+    MedievalFlowerVetr:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+
+- type: seed
+  id: CryoFlower
+  name: seeds-cryoflower-display-name
+  noun: seeds-noun-seeds
+  displayName: seeds-cryoflower-display-name
+  plantRsi: Imperial/Medieval/Chem/Garden/cryo.rsi
+  packetPrototype: MedievalCryoSeeds
+  productPrototypes:
+    - MedievalFlowerCryo
+  lifespan: 30
+  maturation: 11
+  production: 3
+  yield: 3
+  potency: 10
+  growthStages: 3
+  waterConsumption: 0.60
+  nutrientConsumption: 0.40
+  idealLight: 6
+  idealHeat: 278
+  chemicals:
+    MedievalFlowerCryo:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+
+- type: seed
+  id: LavaFlower
+  name: seeds-lavaflower-display-name
+  noun: seeds-noun-seeds
+  displayName: seeds-lavaflower-display-name
+  plantRsi: Imperial/Medieval/Chem/Garden/lava.rsi
+  packetPrototype: MedievalLavaSeeds
+  productPrototypes:
+    - MedievalFlowerLava
+  lifespan: 30
+  maturation: 11
+  production: 3
+  yield: 3
+  potency: 10
+  growthStages: 3
+  waterConsumption: 0.55
+  nutrientConsumption: 0.40
+  idealLight: 10
+  idealHeat: 308
+  chemicals:
+    MedievalFlowerLava:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+
+- type: seed
+  id: LipadFlower
+  name: seeds-lipadflower-display-name
+  noun: seeds-noun-seeds
+  displayName: seeds-lipadflower-display-name
+  plantRsi: Imperial/Medieval/Chem/Garden/lipad.rsi
+  packetPrototype: MedievalLipadSeeds
+  productPrototypes:
+    - MedievalFlowerLipad
+  lifespan: 28
+  maturation: 9
+  production: 4
+  yield: 4
+  potency: 11
+  growthStages: 3
+  waterConsumption: 0.65
+  nutrientConsumption: 0.45
+  idealLight: 8
+  idealHeat: 295
+  chemicals:
+    MedievalFlowerLipad:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+
+- type: reagent
+  id: MedievalFlowerVetr
+  name: ent-MedievalFlowerVetr
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
+- type: entity
+  name: gol
+  parent: ProduceBase
+  id: MedievalFlowerVetr
+  description: gol
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/Garden/vetr.rsi
+    state: produce
+  - type: Produce
+    seedId: VetrFlower
+  - type: MagicPotionsIngredient
+    ingredientType: Vetr
+  - type: Currency
+    price:
+      Revent: 5
+  - type: Tag
+    tags:
+    - AlchemicIngredient
+  - type: Item
+    size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalFlowerVetr
+        Quantity: 10
+
+- type: reagent
+  id: MedievalFlowerLipad
+  name: ent-MedievalFlowerLipad
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
+- type: entity
+  name: gol
+  parent: ProduceBase
+  id: MedievalFlowerLipad
+  description: gol
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/Garden/lipad.rsi
+    state: produce
+  - type: Produce
+    seedId: LipadFlower
+  - type: MagicPotionsIngredient
+    ingredientType: Lipad
+  - type: Currency
+    price:
+      Revent: 5
+  - type: Tag
+    tags:
+    - AlchemicIngredient
+  - type: Item
+    size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalFlowerLipad
+        Quantity: 10
+
+- type: reagent
+  id: MedievalFlowerLava
+  name: ent-MedievalFlowerLava
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
+- type: entity
+  name: gol
+  parent: ProduceBase
+  id: MedievalFlowerLava
+  description: gol
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/Garden/lava.rsi
+    state: produce
+  - type: Produce
+    seedId: LavaFlower
+  - type: MagicPotionsIngredient
+    ingredientType: Lava
+  - type: Currency
+    price:
+      Revent: 5
+  - type: Tag
+    tags:
+    - AlchemicIngredient
+  - type: Item
+    size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalFlowerLava
+        Quantity: 10
+
+- type: reagent
+  id: MedievalFlowerCryo
+  name: ent-MedievalFlowerCryo
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
+- type: entity
+  name: gol
+  parent: ProduceBase
+  id: MedievalFlowerCryo
+  description: gol
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/Garden/cryo.rsi
+    state: produce
+  - type: Produce
+    seedId: CryoFlower
+  - type: MagicPotionsIngredient
+    ingredientType: Cryo
+  - type: Currency
+    price:
+      Revent: 5
+  - type: Tag
+    tags:
+    - AlchemicIngredient
+  - type: Item
+    size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalFlowerCryo
+        Quantity: 10
+
+- type: reagent
+  id: MedievalMushroom1
+  name: ent-MedievalMushroom1
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
+- type: entity
+  name: MedievalLoot
+  parent: ProduceBase
+  id: MedievalMushroom1
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/Garden/mushroom1.rsi
+    state: produce
+  - type: Produce
+    seedId: Mushroom1
+  - type: Currency
+    price:
+      Revent: 8
+  - type: Item
+    size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalMushroom1
+        Quantity: 10
+  - type: Tag
+    tags:
+    - AlchemicIngredient
+    - MyrmexCanTake
+    - Mushroom1
+
+- type: reagent
+  id: MedievalMushroom2
+  name: ent-MedievalMushroom2
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
+- type: entity
+  name: MedievalLoot
+  parent: ProduceBase
+  id: MedievalMushroom2
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/Garden/mushroom2.rsi
+    state: produce
+  - type: Produce
+    seedId: Mushroom2
+  - type: Currency
+    price:
+      Revent: 8
+  - type: Item
+    size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalMushroom2
+        Quantity: 10
+  - type: Tag
+    tags:
+    - AlchemicIngredient
+    - MyrmexCanTake
+    - Mushroom2
+
+- type: reagent
+  id: MedievalMushroom3
+  name: ent-MedievalMushroom3
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
+- type: entity
+  name: MedievalLoot
+  parent: ProduceBase
+  id: MedievalMushroom3
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/Garden/mushroom3.rsi
+    state: produce
+  - type: Produce
+    seedId: Mushroom3
+  - type: Currency
+    price:
+      Revent: 8
+  - type: Item
+    size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalMushroom3
+        Quantity: 10
+  - type: Tag
+    tags:
+    - AlchemicIngredient
+    - MyrmexCanTake
+    - Mushroom3

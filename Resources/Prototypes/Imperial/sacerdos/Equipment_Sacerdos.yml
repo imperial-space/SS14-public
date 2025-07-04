@@ -1,0 +1,284 @@
+- type: entity
+  parent: MobHuman
+  id: SacerdosLeadersODTPreset
+  name: Special-Leaders-nam
+  suffix: Phantom4502, Sacerdos
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - sacerdosroleLeadersName
+      - NamesLast
+    - type: Loadout
+      prototypes: [ SacerdosLeadersODTLoadout ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: CrewSkills
+      skills:
+        - skillBotany #base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+
+- type: entity
+  parent: MobHuman
+  id: fightsacerdosODTPreset
+  name: Special-sacerdos-Officer-nam
+  suffix: Phantom4502, Sacerdos
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - sacerdosroleFightName
+      - NamesLast
+    - type: Loadout
+      prototypes: [ fightsacerdosODTLoadout ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: CrewSkills
+      skills:
+        - skillBotany #base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+  
+- type: entity
+  parent: MobHuman
+  id:  MedsacerdosODTPreset
+  name: Special-med-nam
+  suffix: Phantom4502, Sacerdos
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - sacerdosroleMedName
+      - NamesLast
+    - type: Loadout
+      prototypes: [ MedsacerdosODTLoadout ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: CrewSkills
+      skills:
+        - skillBotany #base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+
+#######################################################################################
+#######################################################################################
+#######################################################################################
+#######################################################################################
+
+- type: entity
+  id: SpawnSacerdosLeadersODTPreset
+  name: ghost-role-spawn-point-Leaders
+  suffix: Phantom4502, Sacerdos
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: SpawnSacerdosLeadersODTPreset-name
+      description: SpawnSacerdosLeadersODTPreset-desc
+      rules: SpawnSacerdosLeadersODTPreset-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: SacerdosLeadersODTPreset
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Imperial/sacerdos/Equipment_Sacerdos.rsi
+          state: Leaders_sacerdos
+
+- type: entity
+  id: SpawnfightsacerdosODTPreset
+  name: ghost-role-spawn-point-fight
+  suffix: Phantom4502, Sacerdos
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: SpawnfightsacerdosODTPreset-name
+      description: SpawnfightsacerdosODTPreset-desc
+      rules: SpawnfightsacerdosODTPreset-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: fightsacerdosODTPreset
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Imperial/sacerdos/Equipment_Sacerdos.rsi
+          state: fight_sacerdos
+
+- type: entity
+  id: SpawnMedsacerdosODTPreset
+  name: ghost-role-spawn-point-med
+  suffix: Phantom4502, Sacerdos
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: SpawnMedsacerdosODTPreset-name
+      description: SpawnMedsacerdosODTPreset-desc
+      rules: SpawnMedsacerdosODTPreset-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: MedsacerdosODTPreset
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Imperial/sacerdos/Equipment_Sacerdos.rsi
+          state: Med_sacerdos
+
+#######################################################################################
+#######################################################################################
+#######################################################################################
+#######################################################################################
+
+- type: startingGear
+  id: SacerdosLeadersODTLoadout
+  equipment:
+    jumpsuit: Thejumpsuitofthesquadleader_sacerdos
+    back: ClothingBackpackSatchelSacerdos_3
+    mask: ClothingMaskGasSecurity
+    eyes: ClothingCentComGlassesYellow
+    ears: ClothingHeadsetAltSacerdos
+    gloves: ClothingHandsGlovesSacerdos
+    shoes: ClothingShoesBootsCombatFilled
+    id: PDAblackwhitesquadLeaders
+    head: SacerdosClothingHeadHatBeret
+    neck: SquadLeadersCloak_sacerdos
+  storage:
+    back:
+    - BoxSurvival
+    - Brutepack
+
+- type: startingGear
+  id: fightsacerdosODTLoadout
+  equipment:
+    jumpsuit: Theunitsjumpsuit_sacerdos
+    back: BlackShieldBackpackSacerdos_4
+    mask: ClothingMaskGasSecurity
+    eyes: ClothingDSOGlassesWhite
+    ears: ClothingHeadsetAltSacerdos
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsCombatFilled
+    id: PDAblackwhitesquadfight
+    head: SacerdosClothingHeadHatBeret
+    neck: SquadFightersraincoat_sacerdos
+  storage:
+    back:
+    - BoxSurvival
+    - Brutepack
+
+- type: startingGear
+  id: MedsacerdosODTLoadout
+  equipment:
+    jumpsuit: Theunitsjumpsuit_sacerdos
+    back: BlackShieldBackpackSacerdos_4
+    mask: ClothingMaskGasSecurity
+    eyes: ClothingEyesHudMedSec
+    ears: ClothingHeadsetAltSacerdos
+    gloves: ClothingHandsGlovesNitrile
+    shoes: ClothingShoesBootsCombatFilled
+    id: PDAblackwhitesquadfightMedical
+    head: SacerdosClothingHeadHatBeret
+    neck: SquadFightersMantle_sacerdos
+  storage:
+    back:
+    - BoxSurvival
+    - Brutepack
+
+#######################################################################################
+#######################################################################################
+#######################################################################################
+#######################################################################################
+
+- type: localizedDataset 
+  id: sacerdosroleLeadersName
+  values:
+    prefix: imperial-space-sacerdos-role-Leaders-dataset-
+    count: 1
+
+- type: localizedDataset 
+  id: sacerdosroleFightName
+  values:
+    prefix: imperial-space-sacerdos-role-fight-dataset-
+    count: 1
+
+- type: localizedDataset 
+  id: sacerdosroleMedName
+  values:
+    prefix: imperial-space-sacerdos-role-med-dataset-
+    count: 1

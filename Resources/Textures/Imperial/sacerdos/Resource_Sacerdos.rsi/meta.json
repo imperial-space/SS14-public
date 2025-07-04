@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprited by Phantom4502",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "Sprite-0001"
+    },
+    {
+      "name": "Sprite-0002"
+    },
+    {
+      "name": "Sprite-0003"
+    },
+    {
+      "name": "Sprite-0005"
+    },
+    {
+      "name": "Sprite-0006"
+    },
+    {
+      "name": "Sprite-0007"
+    },
+    {
+      "name": "Sprite-0009"
+    },
+    {
+      "name": "Sprite-0010"
+    },
+    {
+      "name": "Sprite-0011"
+    },
+    {
+      "name": "Sprite-0004"
+    },
+    {
+      "name": "Sprite-0008"
+    },
+    {
+      "name": "Sprite-0012"
+    }
+  ]
+}

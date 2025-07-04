@@ -1,0 +1,8 @@
+﻿- type: debugIcon
+  id: combatModeIcon
+  priority: -1000
+  locationPreference: Left
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Medieval/StatusIcons/combat_mode.rsi
+    state: icon

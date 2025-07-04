@@ -1,0 +1,11 @@
+- type: entity
+  id: ActionSurrender
+  name: Surrender
+  description: .
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Imperial/Medieval/Surrender/action.rsi
+      state: action
+    event: !type:MedievalSurrenderEvent

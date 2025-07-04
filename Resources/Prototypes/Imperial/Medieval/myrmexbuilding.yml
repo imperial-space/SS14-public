@@ -1,0 +1,602 @@
+- type: construction
+  id: MedievalMyrmexSporePurple
+  graph: MSporePurple
+  startNode: start
+  targetNode: medievalMyrmexSporePurple
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MSporePurple
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexSporePurple
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - tag: MyrmexResourceGum
+        name: живица # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: resin
+        doAfter: 1
+      - tag: Mushroom1
+        name: нейромицит # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/mushroom1.rsi
+          state: produce
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: medievalMyrmexSporePurple
+    entity: MedievalMyrmexSporePurple
+
+- type: construction
+  id: MedievalMyrmexSporeBlue
+  graph: MSporeBlue
+  startNode: start
+  targetNode: medievalMyrmexSporeBlue
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MSporeBlue
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexSporeBlue
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - tag: MyrmexResourceGum
+        name: живица # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: resin
+        doAfter: 1
+      - tag: Mushroom2
+        name: железошляпник # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/mushroom2.rsi
+          state: produce
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: medievalMyrmexSporeBlue
+    entity: MedievalMyrmexSporeBlue
+
+- type: construction
+  id: MedievalMyrmexSporeOrange
+  graph: MSporeOrange
+  startNode: start
+  targetNode: medievalMyrmexSporeOrange
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MSporeOrange
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexSporeOrange
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - tag: MyrmexResourceGum
+        name: живица # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: resin
+        doAfter: 1
+      - tag: Mushroom3
+        name: едкий споровик # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/mushroom3.rsi
+          state: produce
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: medievalMyrmexSporeOrange
+    entity: MedievalMyrmexSporeOrange
+
+- type: construction
+  id: MedievalMyrmexLightPurple
+  graph: MLightPurple
+  startNode: start
+  targetNode: medievalMyrmexLightPurple
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MLightPurple
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexLightPurple
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - tag: MyrmexResourceGum
+        name: живица # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: resin
+        doAfter: 1
+      - tag: Mushroom1
+        name: нейромицит # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/mushroom1.rsi
+          state: produce
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: medievalMyrmexLightPurple
+    entity: MedievalMyrmexLightPurple
+
+- type: construction
+  id: MedievalMyrmexLightOrange
+  graph: MLightOrange
+  startNode: start
+  targetNode: medievalMyrmexLightOrange
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MLightOrange
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexLightOrange
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - tag: MyrmexResourceGum
+        name: живица # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: resin
+        doAfter: 1
+      - tag: Mushroom3
+        name: едкий споровик # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/mushroom3.rsi
+          state: produce
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: medievalMyrmexLightOrange
+    entity: MedievalMyrmexLightOrange
+
+- type: construction
+  id: MedievalMyrmexLightBlue
+  graph: MLightBlue
+  startNode: start
+  targetNode: medievalMyrmexLightBlue
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MLightBlue
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexLightBlue
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - tag: MyrmexResourceGum
+        name: живица # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: resin
+        doAfter: 1
+      - tag: Mushroom2
+        name: железошляпник # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/mushroom2.rsi
+          state: produce
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: medievalMyrmexLightBlue
+    entity: MedievalMyrmexLightBlue
+
+- type: construction
+  id: MedievalMyrmexSoupPlace
+  graph: MSoupPlace
+  startNode: start
+  targetNode: medievalMyrmexSoupPlace
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MSoupPlace
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexSoupPlace
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - tag: MyrmexResourceGum
+        name: живица # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: resin
+        doAfter: 1
+      - tag: MyrmexResourceGum
+        name: живица # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: resin
+        doAfter: 1
+      - tag: MyrmexResourceGum
+        name: живица # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: resin
+        doAfter: 1
+      - tag: MyrmexResourceGum
+        name: живица # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: resin
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: medievalMyrmexSoupPlace
+    entity: MedievalMyrmexSoupPlace
+
+- type: construction
+  id: MedievalMyrmexBed
+  graph: MMyrmexBed
+  startNode: start
+  targetNode: medievalMyrmexBed
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MMyrmexBed
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexBed
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - tag: MyrmexResourceGum
+        name: живица # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: resin
+        doAfter: 1
+      - tag: Mushroom2
+        name: железошляпник # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/mushroom2.rsi
+          state: produce
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: medievalMyrmexBed
+    entity: MedievalMyrmexBed
+
+- type: construction
+  id: MedievalMyrmexRecycler
+  graph: MRecycler
+  startNode: start
+  targetNode: medievalMyrmexRecycler
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MRecycler
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexRecycler
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - tag: MyrmexResourceGum
+        name: живица # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: resin
+        doAfter: 1
+      - tag: MyrmexResourceGum
+        name: живица # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: resin
+        doAfter: 1
+      - tag: MyrmexResourceGum
+        name: живица # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: resin
+        doAfter: 1
+      - tag: MyrmexResourceGum
+        name: живица # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: resin
+        doAfter: 1
+      - tag: Mushroom1
+        name: нейромицит # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/mushroom1.rsi
+          state: produce
+        doAfter: 1
+      - tag: Mushroom3
+        name: едкий споровик # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/mushroom3.rsi
+          state: produce
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: medievalMyrmexRecycler
+    entity: MedievalMyrmexRecycler
+
+- type: construction
+  id: MedievalMyrmexWeb
+  graph: MMyrmexWeb
+  startNode: start
+  targetNode: medievalMyrmexWeb
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MMyrmexWeb
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexWeb
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+        - material: MedievalMyrmexFibe
+          amount: 3
+          doAfter: 3
+  - node: medievalMyrmexWeb
+    entity: MedievalMyrmexWeb
+
+- type: construction
+  id: MedievalMyrmexTrapEmpty
+  graph: MMyrmexTrapBase
+  startNode: start
+  targetNode: medievalMyrmexTrapBase
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MMyrmexTrapBase
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexTrapBase
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - tag: MyrmexResourceGum
+        name: живица # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: resin
+        doAfter: 1
+      - tag: Mushroom1
+        name: нейромицит # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/mushroom1.rsi
+          state: produce
+        doAfter: 1
+  - node: medievalMyrmexTrapBase
+    entity: MedievalMyrmexTrapEmpty
+
+- type: construction
+  id: MedievalMyrmexToxicHole
+  graph: MToxicHole
+  startNode: start
+  targetNode: medievalMyrmexToxicHole
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MToxicHole
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexToxicHole
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - tag: MyrmexResourceGum
+        name: живица # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: resin
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: Mushroom2
+        name: железошляпник # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/mushroom2.rsi
+          state: produce
+        doAfter: 1
+      - tag: Mushroom3
+        name: едкий споровик # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/mushroom3.rsi
+          state: produce
+        doAfter: 1
+  - node: medievalMyrmexToxicHole
+    entity: MedievalMyrmexToxicHole

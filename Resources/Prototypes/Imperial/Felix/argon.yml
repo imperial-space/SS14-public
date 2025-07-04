@@ -1,0 +1,383 @@
+- type: entity
+  name: тёмный меч
+  parent: [BaseMeleeWeaponEnergy, BaseMajorContraband]
+  id: MercFelixDarkSaber
+  suffix: ArgonPrime
+  description: Древний световой меч с плоским лезвием тёмно-серого цвета. Символ власти Аргона.
+  components:
+  - type: ItemToggle
+    onUse: true
+    onActivate: false # prevents the weapon from being able to be turned on when it is on the ground
+    soundActivate:
+      path: /Audio/Imperial/Felix/darksaber-on.ogg
+      params:
+        volume: -6
+    soundDeactivate:
+      path: /Audio/Imperial/Felix/darksaber-off.ogg
+      params:
+        volume: -5
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/Imperial/Felix/darksaber-hum.ogg
+      params:
+        volume: -6
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnSwing:
+      path: /Audio/Weapons/eblademiss.ogg
+      params:
+        volume: 3
+        variation: 0.250
+    activatedDamage:
+        types:
+            Slash: 12
+            Heat: 12
+            Structural: 15
+  - type: ComponentToggler
+    components:
+    - type: Sharp
+    - type: DisarmMalus
+      malus: 0.7
+    - type: Execution
+      doAfterDuration: 4.0
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.5
+    angle: 100
+    damage:
+      types:
+        Blunt: 4.5
+  - type: Sprite
+    sprite: Imperial/Felix/Argon/darksaber.rsi
+    layers:
+      - state: e_sword
+      - state: e_sword_blade
+        color: "#FFFFFF"
+        visible: false
+        shader: unshaded
+        map: [ "blade" ]
+  - type: Item
+    size: Normal
+    sprite: Imperial/Felix/Argon/darksaber-inhands.rsi
+  - type: Reflect
+    reflectProb: .75
+    spread: 75
+
+### JUMPSUITS
+
+- type: entity
+  parent: UnsensoredClothingUniformBase
+  id: ArgonMercJumpsuitUnsensored
+  name: комбинезон аргона
+  suffix: ArgonPrime
+  description: Комбинезон рыцаря клана Аргон
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Argon/Clothing/Jumpsuits/tactical.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Argon/Clothing/Jumpsuits/tactical.rsi
+
+- type: entity
+  parent: UnsensoredClothingUniformBase
+  id: ArgonLeadMercJumpsuitUnsensored
+  name: комбинезон короля аргона
+  suffix: ArgonPrime
+  description: Почётный комбинезон короля клана Аргон
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Argon/Clothing/Jumpsuits/tacticallead.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Argon/Clothing/Jumpsuits/tacticallead.rsi
+
+### JUMPSUITS
+
+### BOOTS
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ArgonMercBootsNoslip
+  name: сапоги аргона
+  suffix: ArgonPrime
+  description: Пара шипованных сапог, довольно лёгкие.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Felix/Argon/Clothing/Boots/tactical.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Argon/Clothing/Boots/tactical.rsi
+  - type: NoSlip
+  - type: ClothingSpeedModifier
+    walkModifier: 1.06
+    sprintModifier: 1.06
+
+### BOOTS
+
+### GLOVES
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ArgonMercGlovesInsulated
+  name: перчатки аргона
+  suffix: ArgonPrime
+  description: Тактические перчатки
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Felix/Argon/Clothing/Gloves/tactical.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Argon/Clothing/Gloves/tactical.rsi
+  - type: Appearance
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+  - type: FingerprintMask
+  - type: Armor 
+    modifiers:
+      coefficients:
+        Caustic: 0.85
+
+### GLOVES
+
+### NECK
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckShoulderArmorArgon
+  name: наплечники аргона
+  suffix: ArgonPrime
+  description: Придают вам устрашающий вид.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Felix/Argon/Clothing/Neck/shoulderarmor.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCapeKingArgon
+  name: мантия короля аргона
+  suffix: ArgonPrime
+  description: Покажите им, кто здесь главный.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Felix/Argon/Clothing/Neck/cape.rsi
+
+### NECK
+
+### HELMET
+
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetArgonKing
+  name: шлем короля аргона
+  suffix: ArgonPrime
+  description: Шлем 
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Heat: 0.95
+        Cold: 0.95
+        Shock: 0.95
+        Radiation: 0.95
+        Caustic: 0.95
+  - type: Sprite
+    sprite: Imperial/Felix/Argon/Clothing/Armor/Head/tacticallead.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Argon/Clothing/Armor/Head/tacticallead.rsi
+
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetArgon
+  name: шлем рыцаря аргона
+  suffix: ArgonPrime
+  description: Шлем 
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Heat: 0.95
+        Cold: 0.95
+        Shock: 0.95
+        Radiation: 0.95
+        Caustic: 0.95
+  - type: Sprite
+    sprite: Imperial/Felix/Argon/Clothing/Armor/Head/tactical.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Argon/Clothing/Armor/Head/tactical.rsi
+
+### HELMET
+
+### OUTERCLOTHING
+
+- type: entity
+  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing]
+  id: ClothingOuterArmorArgonLeader
+  name: нагрудник короля аргона
+  suffix: ArgonPrime
+  description: Броня, наполненная пластинами из неизвестного и древнего материала, достаточно лёгкая и прочная.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Argon/Clothing/Armor/OuterClothing/tactical.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Argon/Clothing/Armor/OuterClothing/tactical.rsi
+  - type: Armor 
+    modifiers:
+      coefficients:
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.3 
+        Heat: 0.65
+        Cold: 0.65
+        Shock: 0.6
+        Radiation: 0.65
+        Caustic: 0.6
+        Stamina: 0.7 
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+
+- type: entity
+  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing]
+  id: ClothingOuterArmorArgonKnight
+  name: нагрудник рыцаря аргона
+  suffix: ArgonPrime
+  description: Броня, наполненная пластинами из неизвестного и древнего материала, достаточно лёгкая и прочная.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Argon/Clothing/Armor/OuterClothing/tactical.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Argon/Clothing/Armor/OuterClothing/tactical.rsi
+  - type: Armor 
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.7 
+        Heat: 0.8
+        Cold: 0.8
+        Shock: 0.9
+        Radiation: 0.8
+        Caustic: 0.8
+        Stamina: 0.7 
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+### OUTERCLOTHING
+
+### RIG
+
+### HELMET
+
+- type: entity
+  parent: ClothingHeadHelmetModsuitCEBase
+  id: ClothingHeadHelmetModsuitArgonSealed
+  name: Шлем Р.И.Г-а
+  suffix: ArgonPrime
+  description: Защищает вашу голову от отсутствия атмосферы и ударов извне.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Argon/Clothing/Armor/Head/rig.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Argon/Clothing/Armor/Head/rig.rsi
+    equipSound: /Audio/Imperial/Modsuits/ballin.ogg
+    unequipSound: /Audio/Imperial/Modsuits/ballout.ogg
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Heat: 0.95
+        Piercing: 0.95
+  - type: PressureProtection
+    highPressureMultiplier: 0.005
+    lowPressureMultiplier: 1000
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: IdentityBlocker
+
+### HELMET
+
+### OUTERCLOTHING
+
+- type: entity
+  parent: ClothingOuterChestplateModsuitSealedBase
+  id: ClothingOuterChestplateModsuitArgonSealed
+  name: Корпус Р.И.Г-а
+  suffix: ArgonPrime
+  description: Это ваш Центр Р.И.Г-а.Таких центров много, но этот - ваш. Это - ваш лучший друг в плане защиты живота.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Argon/Clothing/Armor/OuterClothing/rig.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Argon/Clothing/Armor/OuterClothing/rig.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.000002
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: Armor 
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.7 
+        Heat: 0.2
+        Cold: 0.8
+        Shock: 0.9
+        Radiation: 0.1
+        Caustic: 0.8
+        Stamina: 0.7 
+  - type: ClothingSpeedModifier
+    walkModifier: 0.6
+    sprintModifier: 0.6
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetModsuitArgonSealed
+    requiredSlot: outerClothing
+    slot: head
+  - type: Insulated
+  - type: TemperatureProtection
+    heatingCoefficient: 0.00000001
+    coolingCoefficient: 0.00000001
+
+### OUTERCLOTHING
+
+### BACKPACK
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitArgon
+  name: Р.И.Г. Аргона
+  suffix: ArgonPrime
+  description: Первый прототип РИГа клана "Аргон". Довольно массивный.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Argon/Clothing/Back/rig.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Argon/Clothing/Back/rig.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitArgonSealed
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,10,6
+  - type: PointLight
+    color: "#f80000"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    energy: 0.4
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: StaticPrice
+    price: 15000
+
+### BACKPACK
+
+### RIG

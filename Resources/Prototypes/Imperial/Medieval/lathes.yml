@@ -279,7 +279,7 @@
     idleState: icon
     runningState: building
     staticRecipes:
-    - RobustHarvestChemistryBottle
+    - ChemistryBottleRobustHarvest
     - MedievalBloodChemistryBottle
     - MedievalHealthChemistryBottle
     - MedievalMuteChemistryBottle
@@ -854,9 +854,11 @@
     - MedievalCoinBag
     - MedievalClothingOuterArmorFur
     - MedievalClothingOuterArmorStudded
+    - MedievalClothingOuterArmorGambeson
     - MedievalClothingOuterArmorLeather
     - MedievalClothingOuterArmorLeatherLight
     - MedievalClothingOuterArmorLeatherHeavy
+    - MedievalClothingOuterArmorGoblinLeather
     - MedievalClothingBackpackSatchelLeather
     - MedievalClothingBackpackSatchelLeather2
     - MedievalClothingBackpackSatchelLeather3
@@ -876,6 +878,7 @@
     - MedievaldDiceBag
     - MedievalPlantBag
     - MedievalOreBag
+    - MedievalMonsterBag
     - MedievalAlchemicBelt
     - MedievalClothingHeadHatCowboyBrown
 
@@ -1108,6 +1111,7 @@
     - MedievalClothingOuterArmorNorthern
     - MedievalClothingOuterArmorIronCuirass
     - MedievalClothingOuterArmorBrigantin
+    - MedievalClothingOuterArmorGoblinIron
     - ClothingOuterArmorPodWars
     - MedievalClothingOuterArmorIron
     - MedievalClothingOuterArmorUpIron

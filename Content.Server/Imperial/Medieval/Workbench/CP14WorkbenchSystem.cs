@@ -156,6 +156,12 @@ public sealed partial class CP14WorkbenchSystem : SharedCP14WorkbenchSystem
             Recipe = recipe.ID,
         };
         var time = recipe.CraftTime * workbench.Comp.CraftSpeed;
+        var ev = new CheckWorkbenchCraftSpeedModifiersEvent(workbench, user);
+        RaiseLocalEvent(workbench.Owner, ref ev);
+        RaiseLocalEvent(user, ref ev);
+
+        time *= ev.Modifier;
+
         if (HasComp<CrafterTraitComponent>(user))
             time /= 4f;
         else

@@ -1,0 +1,261 @@
+- type: entity
+  parent: MobHuman
+  id: CruentaLeadersODTPreset
+  name: Special-Leaders-nam
+  suffix: Phantom4502, Cruenta
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - sacerdosroleLeadersName
+      - NamesLast
+    - type: Loadout
+      prototypes: [ CruentaLeadersODTLoadout ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: CrewSkills
+      skills:
+        - skillBotany #base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+
+- type: entity
+  parent: MobHuman
+  id: fightCruentaODTPreset
+  name: Special-Cruenta-Officer-nam
+  suffix: Phantom4502, Cruenta
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - sacerdosroleFightName
+      - NamesLast
+    - type: Loadout
+      prototypes: [ fightCruentaODTLoadout ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: CrewSkills
+      skills:
+        - skillBotany #base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+  
+- type: entity
+  parent: MobHuman
+  id: MedCruentaODTPreset
+  name: Special-med-nam
+  suffix: Phantom4502, Cruenta
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - sacerdosroleMedName
+      - NamesLast
+    - type: Loadout
+      prototypes: [ MedCruentaODTLoadout ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+    - type: CrewSkills
+      skills:
+        - skillBotany #base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+
+#######################################################################################
+#######################################################################################
+#######################################################################################
+#######################################################################################
+
+- type: entity
+  id: SpawnCruentaLeadersODTPreset
+  name: ghost-role-spawn-point-Leaders
+  suffix: Phantom4502, Cruenta
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: SpawnCruentaLeadersODTPreset-name
+      description: SpawnCruentaLeadersODTPreset-desc
+      rules: SpawnCruentaLeadersODTPreset-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: CruentaLeadersODTPreset
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Imperial/sacerdos/Cruenta_falcatio/Equipment_Cruenta.rsi
+          state: Leaders_Cruenta
+
+- type: entity
+  id: SpawnfightCruentaODTPreset
+  name: ghost-role-spawn-point-fight
+  suffix: Phantom4502, Cruenta
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: fightCruentaODTPreset-name
+      description: fightCruentaODTPreset-desc
+      rules: fightCruentaODTPreset-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: fightCruentaODTPreset
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Imperial/sacerdos/Cruenta_falcatio/Equipment_Cruenta.rsi
+          state: fight_Cruenta
+
+- type: entity
+  id: SpawnMedCruentaODTPreset
+  name: ghost-role-spawn-point-med
+  suffix: Phantom4502, Cruenta
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: MedCruentaODTPreset-name
+      description: MedCruentaODTPreset-desc
+      rules: MedCruentaODTPreset-rules
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: MedCruentaODTPreset
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Imperial/sacerdos/Cruenta_falcatio/Equipment_Cruenta.rsi
+          state: Med_Cruenta
+
+#######################################################################################
+#######################################################################################
+#######################################################################################
+#######################################################################################
+
+- type: startingGear
+  id: CruentaLeadersODTLoadout
+  equipment:
+    jumpsuit: Thejumpsuitofthesquadleader_Cruenta
+    back: ClothingBackpackSatchelCruenta_3
+    mask: ClothingMaskGasSecurity
+    eyes: ClothingCentComGlassesYellow
+    ears: ClothingHeadsetAltCruenta
+    gloves: ClothingHandsGlovesCruenta
+    shoes: ClothingShoesBootsCombatFilled
+    id: PDAblackwhitesquadLeadersCruenta
+    head: CruentaClothingHeadHatBeret
+    neck: SquadLeadersCloak_Cruenta
+  storage:
+    back:
+    - BoxSurvival
+    - Brutepack
+
+- type: startingGear
+  id: fightCruentaODTLoadout
+  equipment:
+    jumpsuit: Theunitsjumpsuit_Cruenta
+    back: BlackShieldBackpackCruenta_4
+    mask: ClothingMaskGasSecurity
+    eyes: ClothingEyesGlassesSecurity
+    ears: ClothingHeadsetAltCruenta
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsCombatFilled
+    id: PDAblackwhitesquadfightCruenta
+    head: CruentaClothingHeadHatBeret
+    neck: SquadFightersraincoat_Cruenta
+  storage:
+    back:
+    - BoxSurvival
+    - Brutepack
+
+- type: startingGear
+  id: MedCruentaODTLoadout
+  equipment:
+    jumpsuit: Theunitsjumpsuit_Cruenta
+    back: BlackShieldBackpackCruenta_4
+    mask: ClothingMaskGasSecurity
+    eyes: ClothingEyesHudMedSec
+    ears: ClothingHeadsetAltCruenta
+    gloves: ClothingHandsGlovesNitrile
+    shoes: ClothingShoesBootsCombatFilled
+    id: PDAblackwhitesquadfightMedicalCruenta
+    head: CruentaClothingHeadHatBeret
+    neck: SquadFightersMantle_Cruenta
+  storage:
+    back:
+    - BoxSurvival
+    - Brutepack

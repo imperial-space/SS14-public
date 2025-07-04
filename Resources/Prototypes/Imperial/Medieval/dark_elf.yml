@@ -184,8 +184,11 @@
       0: Alive
       105: Critical
       180: Dead
-  - type: NeedSleepRaceModifier
-    modifier: 0.7
+  - type: NeedSleep
+    sleepLevelPerUpdate: 0.21
+  - type: LocalLight
+    energy: 0.2
+    radius: 2.8
 
 - type: entity
   parent: BaseMobDarkElf

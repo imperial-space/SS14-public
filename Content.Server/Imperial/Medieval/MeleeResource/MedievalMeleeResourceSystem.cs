@@ -6,6 +6,8 @@ using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
+using Robust.Shared.Timing;
+using Content.Shared.DoAfter;
 using Content.Shared.Coordinates;
 using Robust.Shared.Player;
 using Robust.Server.Player;
@@ -19,6 +21,7 @@ namespace Content.Server.MedievalMeleeResource
     {
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
+        [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
 
         public override void Initialize()
         {
@@ -27,30 +30,61 @@ namespace Content.Server.MedievalMeleeResource
             SubscribeLocalEvent<MedievalMeleeResourceComponent, MeleeHitEvent>(OnMeleeHit);
             SubscribeLocalEvent<MedievalMeleeResourceComponent, ComponentStartup>(OnStart);
             SubscribeLocalEvent<MeleeWeaponComponent, ComponentStartup>(OnWeaponStart);
-            SubscribeLocalEvent<MedievalMeleeRepairComponent, BeforeRangedInteractEvent>(OnUseInHand);
+            SubscribeLocalEvent<MedievalMeleeRepairItemComponent, BeforeRangedInteractEvent>(OnUseInHand);
+            SubscribeLocalEvent<MedievalMeleeRepairStructureComponent, InteractUsingEvent>(OnInteractUsing);
+            SubscribeLocalEvent<MedievalMeleeRepairStructureComponent, MeleeRepairDoAfterEvent>(OnIgnitionDoAfter);
         }
 
-        public void OnUseInHand(EntityUid uid, MedievalMeleeRepairComponent comp, BeforeRangedInteractEvent args)
+        private void OnInteractUsing(EntityUid uid, MedievalMeleeRepairStructureComponent comp, InteractUsingEvent args)
+        {
+            if (args.Handled)
+                return;
+
+            if (!HasComp<MedievalMeleeResourceComponent>(args.Used))
+                return;
+
+            var doAfterArgs = new DoAfterArgs(EntityManager, args.User, 4f, new MeleeRepairDoAfterEvent(), uid, args.Used, uid)
+            {
+                BreakOnMove = true,
+                BreakOnDamage = true,
+                NeedHand = true,
+                BreakOnDropItem = true
+            };
+
+            _doAfterSystem.TryStartDoAfter(doAfterArgs);
+            args.Handled = true;
+        }
+        private void OnIgnitionDoAfter(EntityUid uid, MedievalMeleeRepairStructureComponent comp, MeleeRepairDoAfterEvent args)
+        {
+            if (args.Handled || args.Cancelled)
+                return;
+
+            OnUse(args.Target, args.User, args.Used, comp.Resource);
+            args.Handled = true;
+        }
+
+        public void OnUseInHand(EntityUid uid, MedievalMeleeRepairItemComponent comp, BeforeRangedInteractEvent args)
         {
             if (!args.CanReach)
                 return;
-            OnUse(args.Target, args.User, args.Used, comp);
+
+            OnUse(args.Target, args.User, uid, comp.Resource);
         }
 
-        public void OnUse(EntityUid? target, EntityUid user, EntityUid used, MedievalMeleeRepairComponent comp)
+        public void OnUse(EntityUid? target, EntityUid user, EntityUid? used, float resources)
         {
-            if (target == null)
+            if (target == null && used == null)
                 return;
             if (TryComp<MedievalMeleeResourceComponent>(target, out var resource) && resource != null)
             {
                 if (HasComp<MedievalMeleeRepairManComponent>(user))
                 {
-                    resource.Resource += comp.Resource * 2;
+                    resource.Resource += resources * 2;
                     Dirty(resource.Owner, resource);
                 }
                 else
                 {
-                    resource.Resource += comp.Resource;
+                    resource.Resource += resources;
                     resource.ResourceWaste *= 1.05f;
                     Dirty(resource.Owner, resource);
                 }
@@ -63,7 +97,8 @@ namespace Content.Server.MedievalMeleeResource
                 _audioSystem.PlayPvs(resource.EffectSoundOnRepair, target.Value);
                 CheckResource(target.Value, resource);
 
-                QueueDel(used);
+                if (HasComp<MedievalMeleeRepairItemComponent>(used))
+                    Timer.Spawn(0, () => QueueDel(used));
             }
         }
 

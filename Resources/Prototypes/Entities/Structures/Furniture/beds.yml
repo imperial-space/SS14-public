@@ -129,6 +129,12 @@
     state: mattress
   - type: Damageable
     damageModifierSet: Inflatable
+  - type: Strap
+    buckleTime: 0.5
+    unbuckleTime: 0.5
+  - type: Buckle
+  - type: BloodRegenBed
+    bloodRegenMultiplier: 1.0
 
 - type: entity
   parent: Bed

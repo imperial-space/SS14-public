@@ -1,7 +1,7 @@
 namespace Content.Shared.MedievalMeleeResource.Components
 {
     [RegisterComponent]
-    public sealed partial class MedievalMeleeRepairComponent : Component
+    public sealed partial class MedievalMeleeRepairItemComponent : Component
     {
         [DataField]
         public float Resource = 22f;

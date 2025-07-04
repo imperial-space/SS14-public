@@ -22,6 +22,24 @@
       state: bandit
 
 - type: entity
+  id: KayotFactionMenuAction
+  parent: BaseFactionMenuAction
+  components:
+  - type: InstantAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
+      state: kayot
+
+- type: entity
+  id: VillageFactionMenuAction
+  parent: BaseFactionMenuAction
+  components:
+  - type: InstantAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
+      state: village
+
+- type: entity
   id: CollegiumFactionMenuAction
   parent: BaseFactionMenuAction
   components:

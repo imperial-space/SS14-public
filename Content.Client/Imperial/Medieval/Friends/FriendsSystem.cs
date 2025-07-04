@@ -29,6 +29,8 @@ public sealed partial class FriendsSystem : SharedFriendsSystem
     {
         base.Initialize();
         SubscribeLocalEvent<FactionDataContainerComponent, AfterAutoHandleStateEvent>(AfterAutoHandleState);
+        SubscribeNetworkEvent<OpenOfferFactionRelationsEvent>(OnOpenOfferWindow);
+        SubscribeNetworkEvent<OpenAcceptFactionRelationsEvent>(OnOpenAcceptWindow);
     }
 
     private void AfterAutoHandleState(EntityUid uid, FactionDataContainerComponent comp, ref AfterAutoHandleStateEvent args)
@@ -43,7 +45,23 @@ public sealed partial class FriendsSystem : SharedFriendsSystem
 
         TryGetFactionMemberData(friends.MemberID, out var selfData);
 
-        _uiMan.GetUIController<FactionMenuUiController>().PopulateMenu(friends.Faction, val, friends.MenuAccess, selfData?.Group ?? FactionMemberGroup.None, friends.MemberID);
+        FactionMenuData menuData = new(friends.Faction, val,
+                                    comp.Relations,
+                                    friends.MenuAccess,
+                                    selfData?.Group ?? FactionMemberGroup.None,
+                                    friends.MemberID);
+
+        _uiMan.GetUIController<FactionMenuUiController>().PopulateMenu(menuData);
+    }
+
+    private void OnOpenOfferWindow(OpenOfferFactionRelationsEvent ev)
+    {
+        _uiMan.GetUIController<FactionRelationsUiController>().OpenSetRelationMenu(ev.Target, ev.UserFaction, ev.TargetFaction);
+    }
+
+    private void OnOpenAcceptWindow(OpenAcceptFactionRelationsEvent ev)
+    {
+        _uiMan.GetUIController<FactionRelationsUiController>().OpenAcceptMenu(ev.UserFaction, ev.TargetFaction, ev.Relation);
     }
 
     public override void OpenMenu(ProtoId<MedievalFactionPrototype> proto, Dictionary<int, FactionMemberData> data, FactionMenuAccess access)
@@ -59,7 +77,13 @@ public sealed partial class FriendsSystem : SharedFriendsSystem
 
             TryGetFactionMemberData(friends.MemberID, out var selfData);
 
-            _uiMan.GetUIController<FactionMenuUiController>().PopulateMenu(proto, val, access, selfData?.Group ?? FactionMemberGroup.None, friends.MemberID);
+            FactionMenuData menuData = new(friends.Faction, val,
+                                        container.Value.Comp.Relations,
+                                        friends.MenuAccess,
+                                        selfData?.Group ?? FactionMemberGroup.None,
+                                        friends.MemberID);
+
+            _uiMan.GetUIController<FactionMenuUiController>().PopulateMenu(menuData);
         }
     }
 }

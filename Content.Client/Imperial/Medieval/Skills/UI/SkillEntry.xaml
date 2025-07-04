@@ -1,0 +1,53 @@
+<Control
+    xmlns="https://spacestation14.io"
+    Margin="5"
+    HorizontalExpand="True"
+    VerticalExpand="True">
+    <PanelContainer Name="Wrapper" StyleClasses="PdaBorderRect">
+        <BoxContainer Orientation="Vertical">
+            <BoxContainer
+                HorizontalExpand="True"
+                Orientation="Vertical"
+                SizeFlagsStretchRatio="1">
+                <BoxContainer HorizontalExpand="True" Orientation="Horizontal">
+                    <TextureRect
+                        Name="Icon"
+                        Margin="4"
+                        TextureScale="2 2"/>
+                    <BoxContainer HorizontalExpand="True" Margin="4" VerticalExpand="True" Orientation="Vertical">
+                        <Label
+                            Name="Name"
+                            MinWidth="50"
+                            Margin="0 4"
+                            HorizontalExpand="True" />
+                        <Label
+                            Name="LevelLabel"
+                            MinWidth="50"
+                            Margin="0 4"
+                            Text="Тут будет уровень"
+                            HorizontalExpand="True" />
+                    </BoxContainer>
+                </BoxContainer>
+                <BoxContainer Margin="4" Orientation="Horizontal">
+                    <Button
+                        Name="IncreaseButton"
+                        Access="Public"
+                        Margin="2"
+                        HorizontalExpand="True"
+                        Text="+" />
+                    <Button
+                        Name="DecreaseButton"
+                        Margin="2"
+                        HorizontalExpand="True"
+                        Text="-" />
+                </BoxContainer>
+            </BoxContainer>
+            <BoxContainer
+                Name="VisualizerContainer"
+                HorizontalExpand="True"
+                Orientation="Vertical"
+                SizeFlagsStretchRatio="5"
+                VerticalExpand="True" />
+        </BoxContainer>
+    </PanelContainer>
+</Control>

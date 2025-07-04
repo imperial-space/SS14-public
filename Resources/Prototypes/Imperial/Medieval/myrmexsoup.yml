@@ -1,0 +1,137 @@
+- type: entity
+  parent: CP14BaseWorkbench
+  id: MedievalMyrmexSoupPlace
+  name: myrmexSoupPlace
+  description: It produces armor and weapon using leather wood and steel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Lathe/MyrmexSoupPlace.rsi
+    state: icon
+  - type: Appearance
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepWood
+  - type: Transform
+    anchored: true
+  - type: Pullable
+  - type: Construction
+    graph: MSoupPlace
+    node: medievalMyrmexSoupPlace
+  - type: CP14Workbench
+    craftSound: "/Audio/Imperial/Medieval/blub3.ogg"
+    recipes:
+    - MedievalSoupResin
+    - MedievalSoupYant
+    - MedievalSoupRoot
+    - MedievalSoupMushroom1
+
+- type: entity
+  parent: BaseItem
+  id: MedievalSoupResin
+  name: soup Resin
+  description: Soup.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/Soups/resinsoup.rsi
+    state: icon
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: BaseItem
+  id: MedievalSoupYant
+  name: soup Yant
+  description: Soup.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/Soups/yantsoup.rsi
+    state: icon
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: BaseItem
+  id: MedievalSoupRoot
+  name: soup Root
+  description: Soup.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/Soups/rootsoup.rsi
+    state: icon
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: BaseItem
+  id: MedievalSoupMushroom
+  name: soup Mushroom
+  description: Soup.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/Soups/mushroomsoup.rsi
+    state: icon
+  - type: Item
+    size: Normal
+
+- type: CP14Recipe
+  id: MedievalSoupResin
+  craftTime: 3
+  entities:
+    MedievalMyrmexResourceGum: 2
+  result: MedievalSoupResin
+
+- type: CP14Recipe
+  id: MedievalSoupYant
+  craftTime: 3
+  entities:
+    MedievalMyrmexResourceYant: 2
+  result: MedievalSoupYant
+
+- type: CP14Recipe
+  id: MedievalSoupRoot
+  craftTime: 3
+  entities:
+    MedievalRootItem: 2
+  result: MedievalSoupRoot
+
+- type: CP14Recipe
+  id: MedievalSoupMushroom1
+  craftTime: 3
+  entities:
+    MedievalMushroom1: 1
+    MedievalMushroom2: 1
+    MedievalMushroom3: 1
+  result: MedievalSoupMushroom
+
+- type: CP14Recipe
+  id: MedievalMyrmexResourceYant
+  craftTime: 10
+  entities:
+    MedievalMyrmexResourceGum: 3
+  result: MedievalMyrmexResourceYant
+
+- type: CP14Recipe
+  id: MedievalMyrmexFibeStack5
+  craftTime: 10
+  entities:
+    MedievalMyrmexResourceGum: 1
+  result: MedievalMyrmexFibeStack5

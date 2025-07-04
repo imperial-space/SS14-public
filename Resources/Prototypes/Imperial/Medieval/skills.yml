@@ -1,0 +1,117 @@
+- type: skill
+  id: Agility
+  name: Ловкость
+  color: "#96fff3"
+  rsiPath: /Textures/Imperial/Medieval/Interface/Skills/agility.rsi
+  icons:
+    1: worst
+    5: bad
+    8: ok
+    15: good
+    20: best
+  modifiers:
+    PositiveAttackRate: 0.02
+    NegativeAttackRate: -0.01
+    PositiveDashCooldownBonus: -0.1
+    NegativeDashCooldownBonus: 0.2
+    PositiveDashDistanceBonus: 0.04
+    NegativeDashDistanceBonus: -0.03
+    PositiveClimbDelayModifier: -0.1
+    NegativeClimbDelayModifier: 0.1
+    PositiveLockpickChanceModifier: 0.1
+    NegativeLockpickChanceModifier: 0
+    PositiveEquipDelayModifier: -0.07
+    NegativeEquipDelayModifier: 0.07
+    PositiveSpreadModifier: -0.08
+    NegativeSpreadModifier: 0.05
+    PositiveStealChanceModifier: 1.5
+    NegativeStealChanceModifier: -1.5
+    PositiveLockpickLossModifier: -0.05
+
+- type: skill
+  id: Strength
+  name: Сила
+  color: "#ff9696"
+  rsiPath: /Textures/Imperial/Medieval/Interface/Skills/strength.rsi
+  icons:
+    1: worst
+    5: bad
+    8: ok
+    15: good
+    20: best
+  modifiers:
+    FistPositiveDamageModifier: 0.06
+    FistNegativeDamageModifier: -0.03
+    WeaponPositiveDamageModifier: 0.01
+    WeaponNegativeDamageModifier: -0.02
+    PositiveUncuffDurationModifier: -0.2
+    NegativeUncuffDurationModifier: 0.2
+    FistMaxDamageModifier: 0.2
+    WeaponMaxDamageModifier: 0.07
+    PositiveGateInteractionTimeModifier: -0.07
+    NegativeGateInteractionTimeModifier: 0.1
+
+- type: skill
+  id: Vitality
+  name: Живучесть
+  color: "#99ff96"
+  rsiPath: /Textures/Imperial/Medieval/Interface/Skills/vitality.rsi
+  icons:
+    1: worst
+    5: bad
+    8: ok
+    15: good
+    20: best
+  modifiers:
+    AliveHealthPerLevel: 0.7
+    WoundedHealthPerLevel: 0.7
+    MaxHealthBonus: 25
+    PositiveSlowdownModifier: 0.01
+    PositiveSleepEffeciencyModifier: -0.03
+    NegativeSleepEffeciencyModifier: 0.03
+    PositiveSuffocationDamageModifier: -0.03
+    NegativeSuffocationDamageModifier: 0.02
+    PositiveBloodRegenModifier: 0.03
+    NegativeBloodRegenModifier: -0.02
+
+- type: skill
+  id: Endurance
+  name: Выносливость
+  color: "#ffec96"
+  rsiPath: /Textures/Imperial/Medieval/Interface/Skills/endurance.rsi
+  icons:
+    1: worst
+    5: bad
+    8: ok
+    15: good
+    20: best
+  modifiers:
+    PositiveSprintStaminaDamageModifier: -0.012
+    NegativeSprintStaminaDamageModifier: 0.02
+    PositiveSlowdownModifier: 0.01
+    PositiveStaminaRegenModifier: 0.015
+    NegativeStaminaRegenModifier: -0.015
+    PositiveStaminaCritModifier: -0.03
+    NegativeStaminaCritModifier: 0.03
+    MaxStaminaDamageModifier: 0.3
+    HighMeleeThrowDistanceModifier: 0.4
+
+- type: skill
+  id: Intelligence
+  name: Интеллект
+  color: "#ea96ff"
+  rsiPath: /Textures/Imperial/Medieval/Interface/Skills/intelligence.rsi
+  icons:
+    1: worst
+    5: bad
+    8: ok
+    15: good
+    20: best
+  modifiers:
+    PositiveConstructionSpeedModifier: -0.1
+    NegativeConstructionSpeedModifier: 0.1
+    PositiveHealingSpeedModifier: -0.07
+    NegativeHealingSpeedModifier: 0.14
+    PositiveManaModifier: 0.02
+    NegativeManaModifier: -0.02
+    LowStupidityChance: 0.2

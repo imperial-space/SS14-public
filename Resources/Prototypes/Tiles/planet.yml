@@ -55,6 +55,7 @@
   heatCapacity: 99910000
   weather: true
   indestructible: true
+  badSmellMod: 1.5 # imperial medieval badsmell
 
 # Grass
 # Imperial Medieval Start
@@ -99,6 +100,7 @@
   heatCapacity: 99910000
   weather: true
   indestructible: true
+  badSmellMod: 1.5 # imperial medieval badsmell
 
 # Snow
 - type: tile
@@ -136,6 +138,7 @@
   heatCapacity: 99910000
   weather: true
   indestructible: true
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 # Ice
 - type: tile
@@ -146,17 +149,16 @@
   friction: 0.05
   heatCapacity: 99910000
   weather: true
-  mobFriction: 0.5
-  mobFrictionNoInput: 0.05
-  mobAcceleration: 2
+  mobAcceleration: 0.1
   indestructible: true
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 # Dug snow
 - type: tile
   id: FloorSnowDug
   name: tiles-snow-dug
   sprite: /Textures/Tiles/Planet/Snow/snow_dug.png
-  edgeSpritePriority: 2
+  edgeSpritePriority: 3
   edgeSprites:
     SouthEast: /Textures/Tiles/Planet/Snow/dug_single_edge_SE.png
     NorthEast: /Textures/Tiles/Planet/Snow/dug_single_edge_NE.png
@@ -172,5 +174,6 @@
   heatCapacity: 99910000
   weather: true
   indestructible: true
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 # Wasteland

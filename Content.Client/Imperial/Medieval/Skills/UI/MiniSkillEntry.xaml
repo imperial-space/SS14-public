@@ -1,0 +1,43 @@
+<Control
+    xmlns="https://spacestation14.io">
+    <BoxContainer
+        Orientation="Horizontal"
+        HorizontalExpand="True"
+        VerticalExpand="True">
+        <TextureRect
+            Name="Icon"
+            Margin="4"
+            TextureScale="1 1" />
+        <BoxContainer
+            HorizontalExpand="True"
+            Margin="4"
+            VerticalExpand="True"
+            Orientation="Horizontal">
+            <Label
+                Name="NameLabel"
+                MinWidth="50"
+                Margin="0 2"
+                VerticalExpand="True"
+                HorizontalExpand="True" />
+            <Label
+                Name="LevelLabel"
+                MinWidth="50"
+                Margin="0 2"
+                Text="Тут будет уровень"
+                VerticalExpand="True"
+                HorizontalExpand="True" />
+            <LineEdit
+                Name="LevelInput"
+                VerticalExpand="True"
+                HorizontalExpand="True"
+                Visible="False"
+                Margin="0 2"/>
+            <Button
+                Name="SetButton"
+                Margin="0 4"
+                VerticalExpand="True"
+                HorizontalExpand="True"
+                Text="Установить" />
+        </BoxContainer>
+    </BoxContainer>
+</Control>

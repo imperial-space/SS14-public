@@ -84,3 +84,4 @@
 - type: typingIndicator
   id: syndibot
   typingState: syndibot0
+  idleState: syndibot3

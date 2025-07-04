@@ -504,7 +504,7 @@ public sealed class ChemistryRandomizationSystem : EntitySystem // TODO: Maybe r
                 continue;
             if (!_prototype.TryGetMapping(reactionproto, id, out var mapping))
                 continue;
-            if (!mapping.ContainsKey(new ValueDataNode("abstract")))
+            if (!mapping.ContainsKey("abstract"))
                 mapping["abstract"] = new ValueDataNode("true");
             newprototypes = $"{newprototypes}{Environment.NewLine}{ConvertMappingToString(mapping)}";
         }

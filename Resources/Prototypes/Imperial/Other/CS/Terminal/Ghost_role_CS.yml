@@ -420,17 +420,21 @@
         - state: green
 
 # Name
-- type: dataset
+- type: localizedDataset
   id: CT_name
   values:
-  - Контр-террорист
+    prefix: imperial-space-cs-ct-name-
+    count: 1
 
-- type: dataset
+- type: localizedDataset
   id: T_name
   values:
-  - Террорист
+    prefix: imperial-space-cs-ct-name-t-
+    count: 1
 
-- type: dataset
+- type: localizedDataset
   id: Group_name
   values:
-  - Феникса #  TODO: Вставить больше
+    prefix: imperial-space-cs-group-name-
+    count: 1
+

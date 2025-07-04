@@ -6,7 +6,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - Торговец
+      - OldStationTrader
       - NamesLast
     - type: Sprite
       netsync: false
@@ -31,12 +31,12 @@
 - type: entity
   parent: MobHuman
   id: ArcaneSmugglerPreset
-  name: Smuggler
+  name: OldStationSmuggler
   suffix: Arcane
   components:
     - type: RandomMetadata
       nameSegments:
-      - Контрабандист
+      - OldStationSmuggler
       - NamesLast
     - type: NpcFactionMember
       factions:
@@ -67,7 +67,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - Наёмник
+      - OldStationMerc
       - NamesLast
     - type: Sprite
       netsync: false
@@ -99,7 +99,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - Главарь
+      - OldStationHeadMerc
       - NamesLast
     - type: Sprite
       netsync: false
@@ -131,7 +131,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - Бомж
+      - OldStationBomj
       - NamesLast
     - type: Sprite
       netsync: false

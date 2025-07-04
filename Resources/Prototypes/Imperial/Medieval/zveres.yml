@@ -195,12 +195,15 @@
     damage:
       types:
         Slash: 5
-  - type: NeedSleepRaceModifier
-    modifier: 1.2
+  - type: NeedSleep
+    sleepLevelPerUpdate: 0.36
   - type: BadSmellRaceModifier
     modifier: 1.35
   - type: Damageable
     damageModifierSet: Zveres
+  - type: LocalLight
+    energy: 0.2
+    radius: 2
 
 - type: damageModifierSet
   id: Zveres
@@ -231,30 +234,6 @@
   skinColoration: Hues
   defaultSkinTone: "#5f5f5f"
 
-- type: markingPoints
-  id: MobZveresMarkingLimits
-  #onlyWhitelisted: true
-  points:
-    Hair:
-      points: 1
-      required: false
-    FacialHair:
-      points: 0
-      required: false
-    Tail:
-      points: 1
-      required: true
-      defaultMarkings: [ ZveresTail ]
-
-- type: marking
-  id: ZveresTail
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Zveres]
-  sprites:
-  - sprite: Imperial/Medieval/Species/Zveres/parts.rsi
-    state: tail
-
 - type: speciesBaseSprites
   id: MobZveresSprites
   sprites:
@@ -273,7 +252,8 @@
     LFoot: MobZveresLFoot
     RFoot: MobZveresRFoot
     Tail: MobHumanoidAnyMarking # imperial HairAndTail
-    #HeadTop: MobHumanoidAnyMarking # imperial HairAndTail
+    HeadTop: MobHumanoidAnyMarking # imperial HairAndTail
+    HeadSide: MobHumanoidAnyMarking
 
 - type: humanoidBaseSprite
   id: MobZveresHead

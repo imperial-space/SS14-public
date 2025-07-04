@@ -31,8 +31,9 @@
 - type: cargoProduct
   id: EmergencyBurnKit
   icon:
-    sprite: Objects/Specific/Medical/firstaidkits.rsi
-    state: burnkit
+    # sprite: Objects/Specific/Medical/firstaidkits.rsi Замена иконок аптечек Imperial Space
+    sprite: Imperial/Other/ImperialMedkits/burnmedkit.rsi
+    state: closed
   product: CrateEmergencyBurnKit
   cost: 700
   category: cargoproduct-category-name-medical
@@ -41,8 +42,9 @@
 - type: cargoProduct
   id: EmergencyToxinKit
   icon:
-    sprite: Objects/Specific/Medical/firstaidkits.rsi
-    state: toxinkit
+    # sprite: Objects/Specific/Medical/firstaidkits.rsi Замена иконок аптечек Imperial Space
+    sprite: Imperial/Other/ImperialMedkits/toxinmedkit.rsi
+    state: closed
   product: CrateEmergencyToxinKit
   cost: 600
   category: cargoproduct-category-name-medical
@@ -51,8 +53,9 @@
 - type: cargoProduct
   id: EmergencyO2Kit
   icon:
-    sprite: Objects/Specific/Medical/firstaidkits.rsi
-    state: o2kit
+    # sprite: Objects/Specific/Medical/firstaidkits.rsi Замена иконок аптечек Imperial Space
+    sprite: Imperial/Other/ImperialMedkits/oxygenmedkit.rsi
+    state: closed
   product: CrateEmergencyO2Kit
   cost: 600
   category: cargoproduct-category-name-medical
@@ -61,8 +64,9 @@
 - type: cargoProduct
   id: EmergencyBruteKit
   icon:
-    sprite: Objects/Specific/Medical/firstaidkits.rsi
-    state: brutekit
+    # sprite: Objects/Specific/Medical/firstaidkits.rsi Замена иконок аптечек Imperial Space
+    sprite: Imperial/Other/ImperialMedkits/brutemedkit.rsi
+    state: closed
   product: CrateEmergencyBruteKit
   cost: 600
   category: cargoproduct-category-name-medical
@@ -71,8 +75,9 @@
 - type: cargoProduct
   id: EmergencyAdvancedKit
   icon:
-    sprite: Objects/Specific/Medical/firstaidkits.rsi
-    state: advkit
+    # sprite: Objects/Specific/Medical/firstaidkits.rsi Замена иконок аптечек Imperial Space
+    sprite: Imperial/Other/ImperialMedkits/advancedmedkit.rsi
+    state: closed
   product: CrateEmergencyAdvancedKit
   cost: 1200
   category: cargoproduct-category-name-medical
@@ -81,8 +86,9 @@
 - type: cargoProduct
   id: EmergencyRadiationKit
   icon:
-    sprite: Objects/Specific/Medical/firstaidkits.rsi
-    state: radkit
+    # sprite: Objects/Specific/Medical/firstaidkits.rsi Замена иконок аптечек Imperial Space
+    sprite: Imperial/Other/ImperialMedkits/radmedkit.rsi
+    state: closed
   product: CrateEmergencyRadiationKit
   cost: 600
   category: cargoproduct-category-name-medical

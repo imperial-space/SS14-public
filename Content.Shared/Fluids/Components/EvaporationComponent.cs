@@ -18,8 +18,8 @@ public sealed partial class EvaporationComponent : Component
     public TimeSpan NextTick = TimeSpan.Zero;
 
     /// <summary>
-    /// How much evaporation occurs every tick.
+    /// Evaporation factor. Multiplied by the evaporating speed of the reagent.
     /// </summary>
     [DataField("evaporationAmount")]
-    public FixedPoint2 EvaporationAmount = FixedPoint2.New(1.5); // imperial medieval
+    public FixedPoint2 EvaporationAmount = FixedPoint2.New(1);
 }

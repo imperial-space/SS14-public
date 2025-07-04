@@ -44,16 +44,16 @@
 - all:
   - changed-files:
     - any-glob-to-any-file: "**/*.cs"
-    - any-glob-to-any-file: "!*/Imperial/**/*.cs"
+    - any-glob-to-any-file: "!*/Imperial/**"
 
 "Change Wiz Prototypes":
 - all:
   - changed-files:
     - any-glob-to-any-file: "Resources/Prototypes/**/*.yml"
-    - any-glob-to-any-file: "!Resources/Prototypes/Imperial/**/*.yml"
+    - any-glob-to-any-file: "!Resources/Prototypes/Imperial/**"
 
 "Change Wiz Audio":
 - all:
   - changed-files:
     - any-glob-to-any-file: "**/*.ogg"
-    - any-glob-to-any-file: "!**/Imperial/**/*.ogg"
+    - any-glob-to-any-file: "!**/Imperial/**"

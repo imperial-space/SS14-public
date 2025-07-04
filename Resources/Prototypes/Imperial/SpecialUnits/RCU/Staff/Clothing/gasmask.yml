@@ -1,0 +1,25 @@
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskRCU
+  name: elite protective mask
+  description: A red mask for elite squad of NanoTrasen.
+  suffix: RiotControlUnit
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/RCU/Clothing/gasmask.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/SpecialUnits/RCU/Clothing/gasmask.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: FireProtection
+    reduction: 0.9
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+        Caustic: 0.9
+        Stamina: 0.95

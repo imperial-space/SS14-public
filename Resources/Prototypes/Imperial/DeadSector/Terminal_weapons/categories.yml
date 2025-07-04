@@ -1,0 +1,1938 @@
+- type: listing
+  id: TerminalWeaponPistolASPweapon
+  #name: WeaponPistolASP-name
+  #description: Self-loading pistol for 8 shots. Small enough to hide it in your pocket. Uses 9x19 caliber cartridges.-des
+  productEntity: WeaponPistolASP
+  cost:
+    FederationCash: 5000
+  categories:
+  - Pistols
+
+- type: listing
+  id: TerminalWeaponPistolAstra60weapon
+  #name: WeaponPistolAstra60-name
+  #description: A small pistol with medium ammunition. It has a silver color all over the body. Uses 9x19 caliber cartridges.-des
+  productEntity: WeaponPistolAstra60
+  cost:
+    FederationCash: 6500
+  categories:
+  - Pistols
+
+- type: listing
+  id: TerminalAstra-100weapon
+  name: Astra-100-name
+  description: Astra-100-des
+  productEntity: WeaponPistolAstra100
+  cost:
+    FederationCash: 12000
+  categories:
+  - Pistols
+
+- type: listing
+  id: TerminalWeaponRevolverAstra903weapon
+  #name: WeaponRevolverAstra903-name
+  #description: A small pistol with an open-body design and a 5-round magazine. It looks like an unfinished revolver from the days of the wild West. Uses 5x14 caliber cartridges.-des
+  productEntity: WeaponRevolverAstra903
+  cost:
+    FederationCash: 6500
+  categories:
+  - Pistols
+
+- type: listing
+  id: TerminalCSWeaponBerettaweapon
+  #name: CSWeaponBeretta-name
+  #description: Classics from 1975. Uses ammo .35 cars.-des
+  productEntity: CSWeaponBeretta
+  cost:
+    FederationCash: 8000
+  categories:
+  - Pistols
+
+- type: listing
+  id: TerminalCSWeaponFiveSevenweapon
+  #name: CSWeaponFiveSeven-name
+  #description: A loyal friend of his brother P90.-des
+  productEntity: CSWeaponFiveSeven
+  cost:
+    FederationCash: 9500
+  categories:
+  - Pistols
+
+- type: listing
+  id: TerminalCSWeaponGlock-18weapon
+  #name: CSWeaponGlock-18-name
+  description: TerminalCSWeaponGlock-18weapon-des
+  productEntity: CSWeaponGlock-18
+  cost:
+    FederationCash: 8000
+  categories:
+  - Pistols
+
+- type: listing
+  id: TerminalWeaponPistolViperweapon
+  #name: WeaponPistolViper-name
+  #description: A small, easily concealed, but low-powered pistol. Uses caliber cartridges .35 cars.-des
+  productEntity: WeaponPistolViper
+  cost:
+    FederationCash: 7000
+  categories:
+  - Pistols
+
+- type: listing
+  id: TerminalWeaponPistolMk58weapon
+  #name: WeaponPistolMk58-name
+  #description: A cheap and common pistol produced by a subsidiary of NanoTrasen. Uses caliber cartridges .35 cars.-des
+  productEntity: WeaponPistolMk58
+  cost:
+    FederationCash: 7000
+  categories:
+  - Pistols
+
+- type: listing
+  id: TerminalWeaponPistolCobraweapon
+  #name: WeaponPistolCobra-name
+  #description: A pistol of harsh, robust agents, with an integrated silencer. Uses caliber cartridges .25 caseless.-des
+  productEntity: WeaponPistolCobra
+  cost:
+    FederationCash: 8500
+  categories:
+  - Pistols
+
+- type: listing
+  id: TerminalWeaponPistolNDF1weapon
+  #name: WeaponPistolNDF1-name
+  #description: Plasma pistol technology NDF Mod 1. Quick-firing, but weak. It has plasma charge cells.-des
+  productEntity: WeaponPistolNDF1
+  cost:
+    FederationCash: 50000
+  categories:
+  - Pistols
+
+- type: listing
+  id: TerminalWeaponSubMachineGunAtreidesweapon
+  #name: WeaponSubMachineGunAtreides-name
+  #description: Ple-ke-ke-ke-ke! Uses caliber cartridges .35 cars.-des
+  productEntity: WeaponSubMachineGunAtreides
+  cost:
+    FederationCash: 7000
+  categories:
+  - Pistols
+
+- type: listing
+  id: TerminalCSWeaponTEC-9weapon
+  #name: CSWeaponTEC-9-name
+  description: TerminalCSWeaponTEC-9weapon-des
+  productEntity: CSWeaponTEC-9
+  cost:
+    FederationCash: 8500
+  categories:
+  - Pistols
+
+#- type: listing
+#  id: TerminalWeaponSubMachineGunVectorweapon
+  #name: WeaponSubMachineGunVector-name
+  #description: Excellent heavy submachine gun. Uses caliber cartridges .45 magnum.-des
+#  productEntity: WeaponSubMachineGunVector
+#  cost:
+#    FederationCash: 22000
+#  categories:
+#  - Pistols
+
+- type: listing
+  id: TerminalWeaponSubMachineGunDrozdweapon
+  #name: WeaponSubMachineGunDrozd-name
+  #description: Excellent fully automatic heavy submachine gun.-des
+  productEntity: WeaponSubMachineGunDrozd
+  cost:
+    FederationCash: 15000
+  categories:
+  - Pistols
+
+- type: listing
+  id: TerminalCSWeaponP90weapon
+  #name: CSWeaponP90-name
+  #description: Expensive, high-quality, lots of bullets... a lot of inconveniences.-des
+  productEntity: CSWeaponP90
+  cost:
+    FederationCash: 18000
+  categories:
+  - Pistols
+
+- type: listing
+  id: TerminalWeaponSubMachineGunAgramweapon
+  #name: WeaponSubMachineGunAgram-name
+  #description: A small PP with an above-average ammunition package and a 32-round magazine. It has a dark gray color. Uses 9x21 caliber cartridges.-des
+  productEntity: WeaponSubMachineGunAgram
+  cost:
+    FederationCash: 7000
+  categories:
+  - Pistols
+
+- type: listing
+  id: TerminalWeaponFelixMP5weapon
+  #name: WeaponFelixMP5-name
+  #description: Medium-sized PP with an above-average ammunition package. It has a dark gray color, an LCU and a 32-round magazine ammunition.-des
+  productEntity: WeaponFelixMP5
+  cost:
+    FederationCash: 7000
+  categories:
+  - Pistols
+
+- type: listing
+  id: TerminalWeaponFelixMP9weapon
+  #name: WeaponFelixMP9-name
+  #description: Medium-sized PP with an above-average ammunition package. It has a dark gray color, a mount for the sight module, an LCU and ammunition magazine for 30 rounds.-des
+  productEntity: WeaponFelixMP9
+  cost:
+    FederationCash: 8000
+  categories:
+  - Pistols
+
+#Carbines
+- type: listing
+  id: TerminalWeaponRifleLecterweapon
+  #name: WeaponRifleLecter-name
+  #description: First-class army assault rifle. Uses caliber cartridges .20 rifle type.-des
+  productEntity: WeaponRifleLecter
+  cost:
+    FederationCash: 26000
+  categories:
+  - Carbines
+
+- type: listing
+  id: TerminalCSWeaponSCAR-Lweapon
+  #name: CSWeaponSCAR-L-name
+  #description: The combat assault rifle of the Special Operations Forces is too scary a word for the weapons of forest scouts.-des
+  productEntity: CSWeaponSCAR-L
+  cost:
+    FederationCash: 29000
+  categories:
+  - Carbines
+
+- type: listing
+  id: TerminalWeaponRifleAkweapon
+  #name: WeaponRifleAk-name
+  #description: The iconic weapon of all wars. Uses caliber cartridges .30 rifle.-des
+  productEntity: WeaponRifleAk
+  cost:
+    FederationCash: 35000
+  categories:
+  - Carbines
+
+- type: listing
+  id: TerminalWeaponRifleM90GrenadeLauncherweapon
+  #name: WeaponRifleM90GrenadeLauncher-name
+  #description: An old-model carbine, made according to the bullpup scheme, with an under-barrel grenade launcher. Uses caliber cartridges .20 rifle type.-des
+  productEntity: WeaponRifleM90GrenadeLauncher
+  cost:
+    FederationCash: 60000
+  categories:
+  - Carbines
+
+- type: listing
+  id: TerminalWeaponFelixAKS74yweapon
+  #name: WeaponFelixAKS74y-name
+  #description: Automatic Kalashnikov model S-74-u, Medium, small ammunition package. It has a dark gray color. Magazine ammunition for 15 rounds. It has wooden components inside the hull structure.-des
+  productEntity: WeaponFelixAKS74y
+  cost:
+    FederationCash: 20000
+  categories:
+  - Carbines
+
+- type: listing
+  id: WeaponRifleAR57weapon
+  #name: WeaponRifleAR57-name
+  #description: Automatic Kalashnikov model S-74-u, Medium, small ammunition package. It has a dark gray color. Magazine ammunition for 15 rounds. It has wooden components inside the hull structure.-des
+  productEntity: WeaponRifleAR57
+  cost:
+    FederationCash: 26000
+  categories:
+  - Carbines
+
+- type: listing
+  id: TerminalWeaponFelixAR15weapon
+  #name: WeaponFelixAR15-name
+  #description: The carbine is larger than the average and has an above-average ammunition package. It has a dark gray color on the body and khaki colors on the magazine. Magazine ammunition for 40 rounds.-des
+  productEntity: WeaponFelixAR15
+  cost:
+    FederationCash: 32000
+  categories:
+  - Carbines
+
+- type: listing
+  id: TerminalWeaponFelixHK416weapon
+  #name: WeaponFelixHK416-name
+  #description: Carbine model 416, larger than average in size, with an average ammunition package. It has a sandy color. Magazine ammunition for 30 rounds.-des
+  productEntity: WeaponFelixHK416
+  cost:
+    FederationCash: 40000
+  categories:
+  - Carbines
+
+#Rifles
+- type: listing
+  id: TerminalWeaponSniperMosinweapon
+  #name: WeaponSniperMosin-name
+  #description: Weapons of hunting, or endless trench warfare. Uses caliber cartridges .30 rifle.-des
+  productEntity: WeaponSniperMosin
+  cost:
+    FederationCash: 6000
+  categories:
+  - Rifles
+
+- type: listing
+  id: TerminalWeaponFelixSVUMkIweapon
+  #name: WeaponFelixSVUMkI-name
+  #description: The rifle model IED Mk-I is medium-sized, the ammunition package is small. It has a silver color. Magazine ammunition for 6 rounds.-des
+  productEntity: WeaponFelixSVUMkI
+  cost:
+    FederationCash: 35000
+  categories:
+  - Rifles
+
+- type: listing
+  id: TerminalWeaponSniperSVUMkIIweapon
+  #name: WeaponSniperSVUMkII-name
+  #description: -des
+  productEntity: WeaponSniperSVUMkII
+  cost:
+    FederationCash: 38000
+  categories:
+  - Rifles
+
+- type: listing
+  id: TerminalWeaponFelixVSSMkIweapon
+  #name: WeaponFelixVSSMkI-name
+  #description: The rifle of the VSS Mk-I model is large in size, the ammunition package is average. It has a silver color mixed with a complete set of wooden body parts. Magazine ammunition for 16 rounds.-des
+  productEntity: WeaponFelixVSSMkI
+  cost:
+    FederationCash: 38000
+  categories:
+  - Rifles
+
+- type: listing
+  id: TerminalWeaponFelixVSSMkIIweapon
+  #name: WeaponFelixVSSMkII-name
+  #description: The rifle of the VSS Mk-II model is large in size, the ammunition package is average. It has a black color. Magazine ammunition for 16 rounds.-des
+  productEntity: WeaponFelixVSSMkII
+  cost:
+    FederationCash: 45000
+  categories:
+  - Rifles
+
+- type: listing
+  id: TerminalWeaponPulseSniperweapon
+  #name: WeaponPulseSniper-name
+  #description: The latest energy weapon preferred by the most experienced OBR NT operatives as their primary weapon.-des
+  productEntity: WeaponPulseSniper
+  cost:
+    FederationCash: 80000
+  categories:
+  - Rifles
+
+- type: listing
+  id: TerminalWeaponSniperHristovweapon
+  #name: WeaponSniperHristov-name
+  #description: Portable large-caliber sniper rifle. It fires powerful armor-piercing cartridges, caliber.60 Antimaterial.-des
+  productEntity: WeaponSniperHristov
+  cost:
+    FederationCash: 45000
+  categories:
+  - Rifles
+
+- type: listing
+  id: TerminalWeaponSniperSVDweapon
+  #name: WeaponSniperSVD-name
+  #description: A large SVD model rifle with 22 rounds of ammunition. It has a silver color mixed with a complete set of wooden body parts. It uses 7x62x39 caliber cartridges.-des
+  productEntity: WeaponSniperSVD
+  cost:
+    FederationCash: 90000
+  categories:
+  - Rifles
+
+#Heavy
+- type: listing
+  id: TerminalWeaponLightMachineGunL6weapon
+  #name: WeaponLightMachineGunL6-name
+  #description: A very traditional light machine gun with a comfortable lacquered wooden pistol grip. Uses caliber cartridges .30 rifle.-des
+  productEntity: WeaponLightMachineGunL6
+  cost:
+    FederationCash: 35000
+  categories:
+  - Heavy
+
+- type: listing
+  id: TerminalWeaponAssaultPKMweapon
+  #name: WeaponAssaultPKM-name
+  #description: A super-large machine gun with a stock of 125 rounds. It has a black color mixed with a complete set of wooden body parts. It uses 7x62x51 caliber cartridges.-des
+  productEntity: WeaponAssaultPKM
+  cost:
+    FederationCash: 45000
+  categories:
+  - Heavy
+
+- type: listing
+  id: TerminalWeaponMinigunweapon
+  #name: WeaponMinigun-name
+  #description: Whozzzz! Rah-rah-rah! Grrrrr! Uses caliber cartridges .10 rifle.-des
+  productEntity: WeaponMinigun
+  cost:
+    FederationCash: 120000
+  categories:
+  - Heavy
+
+- type: listing
+  id: TerminalWeaponLauncherRPG8weapon
+  #name: WeaponLauncherRPG8-name
+  #description: Super-large rocket launcher model 8. It has a black color mixed with a complete set of wooden body parts.-des
+  productEntity: WeaponLauncherRPG8
+  cost:
+    FederationCash: 70000
+  categories:
+  - Heavy
+
+#Explosive
+- type: listing
+  id: TerminalMolotovCocktailweapon
+  #name: MolotovCocktail-name
+  #description: An incendiary mixture, the principle of which is known to everyone. Just quit and don't drink!-des
+  productEntity: MolotovCocktail
+  cost:
+    FederationCash: 3000
+  categories:
+  - Explosive
+
+- type: listing
+  id: TerminalSmokeGrenadeweapon
+  #name: SmokeGrenade-name
+  #description: A tactical grenade that emits a large and prolonged cloud of smoke when used.-des
+  productEntity: SmokeGrenade
+  cost:
+    FederationCash: 800
+  categories:
+  - Explosive
+
+- type: listing
+  id: TerminalGrenadeFlashBangweapon
+  #name: GrenadeFlashBang-name
+  #description: Piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii-des
+  productEntity: GrenadeFlashBang
+  cost:
+    FederationCash: 800
+  categories:
+  - Explosive
+
+- type: listing
+  id: TerminalEmpGrenadeweapon
+  #name: EmpGrenade-name
+  #description: Releases an electromagnetic pulse that disables or damages various electronic devices and discharges batteries.-des
+  productEntity: EmpGrenade
+  cost:
+    FederationCash: 800
+  categories:
+  - Explosive
+
+- type: listing
+  id: TerminalC4weapon
+  #name: C4-name
+  #description: It is used to make neat, not too large, gaps in the places of the bookmark. The favorite means of saboteurs.-des
+  productEntity: C4
+  cost:
+    FederationCash: 3000
+  categories:
+  - Explosive
+
+- type: listing
+  id: TerminalWhiteholeGrenadeweapon
+  #name: WhiteholeGrenade-name
+  #description: A grenade that repels everything around for a while.-des
+  productEntity: WhiteholeGrenade
+  cost:
+    FederationCash: 3000
+  categories:
+  - Explosive
+
+- type: listing
+  id: TerminalPenExplodingBoxweapon
+  #name: PenExplodingBox-name
+  #description: A small box containing an exploding pen. After opening, the package disintegrates, leaving no evidence.-des
+  productEntity: PenExplodingBox
+  cost:
+    FederationCash: 3500
+  categories:
+  - Explosive
+
+- type: listing
+  id: TerminalGrenadeFragweapon
+  #name: GrenadeFrag-name
+  description: TerminalGrenadeFragweapon-des
+  productEntity: GrenadeFrag
+  cost:
+    FederationCash: 3000
+  categories:
+  - Explosive
+
+- type: listing
+  id: TerminalSyndicateBombweapon
+  #name: SyndicateBomb-name
+  #description: A bomb for Syndicate operatives and agents. The real deal, no training, get started!-des
+  productEntity: SyndicateBomb
+  cost:
+    FederationCash: 12000
+  categories:
+  - Explosive
+
+- type: listing
+  id: TerminalGrenadeEMPweapon
+  #name: GrenadeEMP-name
+  description: TerminalGrenadeEMPweapon-des
+  productEntity: GrenadeEMP
+  cost:
+    FederationCash: 800
+  categories:
+  - Explosive
+
+- type: listing
+  id: TerminalMetalFoamGrenadeweapon
+  #name: MetalFoamGrenade-name
+  #description: An emergency tool used to plug holes. Almost as good as real walls.-des
+  productEntity: MetalFoamGrenade
+  cost:
+    FederationCash: 800
+  categories:
+  - Explosive
+
+- type: listing
+  id: TerminalGrenadeFlashweapon
+  #name: GrenadeFlash-name
+  description: TerminalGrenadeFlashweapon-des
+  productEntity: GrenadeFlash
+  cost:
+    FederationCash: 800
+  categories:
+  - Explosive
+
+- type: listing
+  id: TerminalGrenadeBlastweapon
+  #name: GrenadeBlast-name
+  description: TerminalGrenadeBlastweapon-des
+  productEntity: GrenadeBlast
+  cost:
+    FederationCash: 800
+  categories:
+  - Explosive
+
+- type: listing
+  id: TerminalGrenadeBatonweapon
+  #name: MagazineGrenadeBaton-name
+  description: TerminalGrenadeBatonweapon-des
+  productEntity: GrenadeBaton
+  cost:
+    FederationCash: 800
+  categories:
+  - Explosive
+
+- type: listing
+  id: TerminalMagazineGrenadeRPG8weapon
+  #name: MagazineGrenadeRPG8-name
+  #description: A cassette with standard RPG-8 projectiles. Standard blast radius and heavy damage.-des
+  productEntity: MagazineGrenadeRPG8
+  cost:
+    FederationCash: 3500
+  categories:
+  - Explosive
+
+- type: listing
+  id: TerminalMagazineGrenadeRPG8Smokeweapon
+  #name: MagazineGrenadeRPG8Smoke-name
+  #description: A cassette with RPG-8 smoke grenades. They contuse, blind, and cover the victim with a thick layer of smoke at the same time.-des
+  productEntity: MagazineGrenadeRPG8Smoke
+  cost:
+    FederationCash: 1500
+  categories:
+  - Explosive
+
+- type: listing
+  id: TerminalMagazineGrenadeRPG8Fragweapon
+  #name: MagazineGrenadeRPG8Frag-name
+  #description: A cassette with RPG-8 fragmentation shells. They have a larger explosion radius than their standard counterparts, but they cause less damage.-des
+  productEntity: MagazineGrenadeRPG8Frag
+  cost:
+    FederationCash: 2500
+  categories:
+  - Explosive
+
+- type: listing
+  id: TerminalMagazineGrenadeEMPweapon
+  #name: MagazineGrenadeEMP-name
+  description: TerminalMagazineGrenadeEMPweapon-des
+  productEntity: MagazineGrenadeEMP
+  cost:
+    FederationCash: 1000
+  categories:
+  - Explosive
+  
+- type: listing
+  id: TerminalMagazineGrenadeFragweapon
+  #name: MagazineGrenadeFrag-name
+  description: TerminalMagazineGrenadeFragweapon-des
+  productEntity: MagazineGrenadeFrag
+  cost:
+    FederationCash: 1000
+  categories:
+  - Explosive
+  
+- type: listing
+  id: TerminalMagazineGrenadeBlastweapon
+  #name: MagazineGrenadeBlast-name
+  description: TerminalMagazineGrenadeBlastweapon-des
+  productEntity: MagazineGrenadeBlast
+  cost:
+    FederationCash: 1000
+  categories:
+  - Explosive
+  
+- type: listing
+  id: TerminalMagazineGrenadeBatonweapon
+  #name: MagazineGrenadeBaton-name
+  description: TerminalMagazineGrenadeBatonweapon-des
+  productEntity: MagazineGrenadeBaton
+  cost:
+    FederationCash: 1000
+  categories:
+  - Explosive
+
+#Shotguns
+- type: listing
+  id: TerminalWeaponShotgunKammererweapon
+  #name: WeaponShotgunKammerer-name
+  #description: That's what happens when the old Remington design is combined with modern materials. The militia's favorite weapon on many worlds. Uses caliber cartridges .50 armory.-des
+  productEntity: WeaponShotgunKammerer
+  cost:
+    FederationCash: 3000
+  categories:
+  - Shotguns
+
+- type: listing
+  id: TerminalWeaponShotgunEnforcerweapon
+  #name: WeaponShotgunEnforcer-name
+  #description: A new generation Frozen Star shotgun. Uses caliber cartridges .50 armory.-des
+  productEntity: WeaponShotgunEnforcer
+  cost:
+    FederationCash: 6000
+  categories:
+  - Shotguns
+
+- type: listing
+  id: TerminalWeaponEnergyShotgunweapon
+  #name: WeaponEnergyShotgun-name
+  #description: A one-of-a-kind prototype energy weapon that uses shotguns of various configurations. It makes it possible to produce both lethal and non-lethal shots, which makes it a versatile weapon.-des
+  productEntity: WeaponEnergyShotgun
+  cost:
+    FederationCash: 70000
+  categories:
+  - Shotguns
+
+- type: listing
+  id: TerminalWeaponShotgunDoubleBarreledweapon
+  #name: WeaponShotgunDoubleBarreled-name
+  #description: An immortal classic. Uses caliber cartridges .50 armory-des
+  productEntity: WeaponShotgunDoubleBarreled
+  cost:
+    FederationCash: 1500
+  categories:
+  - Shotguns
+
+#Manual
+- type: listing
+  id: TerminalSurvivalKnifeweaponweapon
+  #name: SurvivalKnife-name
+  #description: The weapon of the first and last chance in a fight with a space carp.-des
+  productEntity: SurvivalKnife
+  cost:
+    FederationCash: 500
+  categories:
+  - Manual
+
+- type: listing
+  id: TerminalCombatKnifeweapon
+  #name: CombatKnife-name
+  #description: A deadly knife designed for hand-to-hand combat.-des
+  productEntity: CombatKnife
+  cost:
+    FederationCash: 1000
+  categories:
+  - Manual
+
+- type: listing
+  id: TerminalThrowingKnifeweapon
+  #name: ThrowingKnife-name
+  #description: This blood-red knife is very aerodynamic and easy to throw, but good luck in hand-to-hand combat.-des
+  productEntity: ThrowingKnife
+  cost:
+    FederationCash: 1500
+  categories:
+  - Manual
+
+- type: listing
+  id: TerminalKukriKnifeweapon
+  #name: KukriKnife-name
+  #description: Professionals have rules. Be polite. Work efficiently. Kill everyone you meet.-des
+  productEntity: KukriKnife
+  cost:
+    FederationCash: 2500
+  categories:
+  - Manual
+
+- type: listing
+  id: TerminalCutlassweapon
+  #name: Cutlass-name
+  #description: A crookedly curved blade that is often seen in the hands of space pirates.-des
+  productEntity: Cutlass
+  cost:
+    FederationCash: 1500
+  categories:
+  - Manual
+
+- type: listing
+  id: TerminalCaptainSabreweapon
+  #name: CaptainSabre-name
+  #description: A ceremonial weapon belonging to the station captain.-des
+  productEntity: CaptainSabre
+  cost:
+    FederationCash: 4500
+  categories:
+  - Manual
+
+- type: listing
+  id: TerminalEnergyCutlassweapon
+  #name: EnergyCutlass-name
+  #description: Exotic energy weapons.-des
+  productEntity: EnergyCutlass
+  cost:
+    FederationCash: 4500
+  categories:
+  - Manual
+
+- type: listing
+  id: TerminalEnergySwordDoubleweapon
+  #name: EnergySwordDouble-name
+  #description: This is a double energy sword, feel the power!-des
+  productEntity: EnergySwordDouble 
+  cost:
+    FederationCash: 15000
+  categories:
+  - Manual
+
+- type: listing
+  id: TerminalEnergySwordweapon
+  #name: EnergySword-name
+  #description: Very loud, and just as dangerous. It can be stored in your pocket when turned off. And if you're lucky, you can combine two swords!-des
+  productEntity: EnergySword
+  cost:
+    FederationCash: 10000
+  categories:
+  - Manual
+
+- type: listing
+  id: TerminalKatanaweapon
+  #name: Katana-name
+  #description: An ancient work made from not so ancient plasteel.-des
+  productEntity: Katana
+  cost:
+    FederationCash: 15000
+  categories:
+  - Manual
+
+- type: listing
+  id: TerminalElectroKatanaSonaweapon
+  #name: ElectroKatanaSona-name
+  #description: An electrified katana that causes minor cuts, medium burns, and acts as a taser.-des
+  productEntity: ElectroKatanaSona
+  cost:
+    FederationCash: 18000
+  categories:
+  - Manual
+
+- type: listing
+  id: TerminalEnergyKatanaweapon
+  #name: EnergyKatana-name
+  #description: A katana filled with strong energy.-des
+  productEntity: EnergyKatana
+  cost:
+    FederationCash: 18000
+  categories:
+  - Manual
+
+- type: listing
+  id: TerminalRedEnergyKatanaweapon
+  #name: RedEnergyKatana-name
+  #description: A katana filled with strong energy.-des
+  productEntity: RedEnergyKatana
+  cost:
+    FederationCash: 18000
+  categories:
+  - Manual
+
+- type: listing
+  id: TerminalBlueEnergyKatanaweapon
+  #name: BlueEnergyKatana-name
+  #description: A katana filled with strong energy.-des
+  productEntity: BlueEnergyKatana
+  cost:
+    FederationCash: 18000
+  categories:
+  - Manual
+
+- type: listing
+  id: TerminalMurasamaBladeweapon
+  #name: MurasamaBlade-name
+  #description: A crimson katana flickering with scarlet lightning. It was received by the family Before Him from a strange blond man with a mechanical dog about 1000 years ago.-des
+  productEntity: MurasamaBlade
+  cost:
+    FederationCash: 90000
+  categories:
+  - Manual
+
+#Ammunition_supplies
+- type: listing
+  id: TerminalBaseMagazineASPweapon
+  #name: BaseMagazineASP-name
+  #description: A-magazine-with-the-simplest-bullets-des
+  productEntity: BaseMagazineASP
+  cost:
+    FederationCash: 150
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalBaseMagazineASPLongRangeweapon
+  #name: BaseMagazineASPLongRange-name
+  #description: A magazine with long-range bullets. They cause the same damage as their standard counterparts, but they take three times longer to fly.-des
+  productEntity: BaseMagazineASPLongRange
+  cost:
+    FederationCash: 300
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalBaseMagazineASPPiercingweapon
+  #name: BaseMagazineASPPiercing-name
+  #description: A magazine with armor-piercing bullets. It completely penetrates all the protection of any equipment, but causes reduced damage compared to its standard counterpart.-des
+  productEntity: BaseMagazineASPPiercing
+  cost:
+    FederationCash: 450
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalBaseMagazineAstra60weapon
+  #name: BaseMagazineAstra60-name
+  #description: A-magazine-with-the-simplest-bullets-des
+  productEntity: BaseMagazineAstra60
+  cost:
+    FederationCash: 150
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalBaseMagazineAstra60LongRangeweapon
+  #name: BaseMagazineAstra60LongRange-name
+  #description: A magazine with long-range bullets. They cause the same damage as their standard counterparts, but they take three times longer to fly.-des
+  productEntity: BaseMagazineAstra60LongRange
+  cost:
+    FederationCash: 300
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalBaseMagazineAstra60Piercingweapon
+  #name: BaseMagazineAstra60Piercing-name
+  #description: A magazine with armor-piercing bullets. It completely penetrates all the protection of any equipment, but causes reduced damage compared to its standard counterpart.-des
+  productEntity: BaseMagazineAstra60Piercing
+  cost:
+    FederationCash: 450
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalBaseMagazineAstra100weapon
+  #name: BaseMagazineAstra100-name
+  #description: A magazine with the simplest bullets-des
+  productEntity: BaseMagazineAstra100
+  cost:
+    FederationCash: 150
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalBaseMagazineAstra100LongRangeweapon
+  #name: BaseMagazineAstra100LongRange-name
+  #description: A magazine with long-range bullets. They cause the same damage as their standard counterparts, but they take three times longer to fly.-des
+  productEntity: BaseMagazineAstra100LongRange
+  cost:
+    FederationCash: 300
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalBaseMagazineAstra100Piercingweapon
+  #name: BaseMagazineAstra100Piercing-name
+  #description: A magazine with armor-piercing bullets. It completely penetrates all the protection of any equipment, but causes reduced damage compared to its standard counterpart.-des
+  productEntity: BaseMagazineAstra100Piercing
+  cost:
+    FederationCash: 450
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalSpeedLoaderAstra903weapon
+  #name: SpeedLoaderAstra903-name
+  #description: A speedloader with the simplest bullets.-des
+  productEntity: SpeedLoaderAstra903
+  cost:
+    FederationCash: 250
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalSpeedLoaderAstra903Piercingweapon
+  #name: SpeedLoaderAstra903Piercing-name
+  #description: A magazine with armor-piercing bullets. It completely penetrates all the protection of any equipment, but causes reduced damage compared to its standard counterpart.-des
+  productEntity: SpeedLoaderAstra903Piercing
+  cost:
+    FederationCash: 450
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalBerettaMagazinePistolweapon
+  #name: BerettaMagazinePistol-name
+  description: A-magazine-with-the-simplest-bullets-des
+  productEntity: BerettaMagazinePistol
+  cost:
+    FederationCash: 250
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazinePistolweapon
+  #name: MagazinePistol-name
+  description: A-magazine-with-the-simplest-bullets-des
+  productEntity: MagazinePistol
+  cost:
+    FederationCash: 150
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalGlock18MagazinePistolweapon
+  #name: Glock18MagazinePistol-name
+  description: A-magazine-with-the-simplest-bullets-des
+  productEntity: Glock18MagazinePistol
+  cost:
+    FederationCash: 150
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazinePistolCaselessRifleweapon
+  #name: MagazinePistolCaselessRifle-name
+  description: TerminalMagazinePistolCaselessRifleweapon-des
+  productEntity: MagazinePistolCaselessRifle
+  cost:
+    FederationCash: 250
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazinePistolSubMachineGunweapon
+  #name: MagazinePistolSubMachineGun-name
+  description: A-magazine-with-the-simplest-bullets-des
+  productEntity: MagazinePistolSubMachineGun
+  cost:
+    FederationCash: 450
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: Terminalmac10-Magazineweapon
+  #name: mac10-Magazine-name
+  description: A-magazine-with-the-simplest-bullets-des
+  productEntity: mac10-Magazine
+  cost:
+    FederationCash: 450
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineMagnumSubMachineGunweapon
+  #name: MagazineMagnumSubMachineGun-name
+  description: A-magazine-with-the-simplest-bullets-des
+  productEntity: MagazineMagnumSubMachineGun 
+  cost:
+    FederationCash: 450
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: Terminalp90-Magazineweapon
+  #name: p90-Magazine-name
+  description: A-magazine-with-the-simplest-bullets-des
+  productEntity: p90-Magazine
+  cost:
+    FederationCash: 550
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalBaseMagazineAgramweapon
+  #name: BaseMagazineAgram-name
+  #description: A magazine with caseless bullets.-des
+  productEntity: BaseMagazineAgram
+  cost:
+    FederationCash: 250
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineMP5weapon
+  #name: MagazineMP5-name
+  #description: A-magazine-with-the-simplest-bullets-des
+  productEntity: MagazineMP5
+  cost:
+    FederationCash: 250
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineArmorPiercingMP5weapon
+  #name: MagazineArmorPiercingMP5-name
+  #description: A magazine with armor-piercing bullets. It completely penetrates all the protection of any equipment, but causes reduced damage compared to its standard counterpart.-des
+  productEntity: MagazineArmorPiercingMP5
+  cost:
+    FederationCash: 450
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineRifleweapon
+  #name: MagazineRifle-name
+  description: A-magazine-with-the-simplest-bullets-des
+  productEntity: MagazineRifle
+  cost:
+    FederationCash: 450
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalSCAR-Magazineweapon
+  #name: SCAR-Magazine-name
+  description: A-magazine-with-the-simplest-bullets-des
+  productEntity: SCAR-Magazine
+  cost:
+    FederationCash: 450
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalBaseMagazineAR57weapon
+  #name: BaseMagazineAR57-name
+  #description: A-magazine-with-the-simplest-bullets-des
+  productEntity: BaseMagazineAR57
+  cost:
+    FederationCash: 450
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalBaseMagazineAR57LongRangeweapon
+  #name: BaseMagazineAR57LongRange-name
+  #description: A magazine with long-range bullets. They cause the same damage as their standard counterparts, but they take three times longer to fly.-des
+  productEntity: BaseMagazineAR57LongRange
+  cost:
+    FederationCash: 450
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalBaseMagazineAR57Piercingweapon
+  #name: BaseMagazineAR57Piercing-name
+  #description: A magazine with armor-piercing bullets. It completely penetrates all the protection of any equipment, but causes reduced damage compared to its standard counterpart.-des
+  productEntity: BaseMagazineAR57Piercing
+  cost:
+    FederationCash: 600
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineAKS74yweapon
+  #name: MagazineAKS74y-name
+  #description: A-magazine-with-the-simplest-bullets-des
+  productEntity: MagazineAKS74y
+  cost:
+    FederationCash: 250
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalBaseMagazineAKS74yLongRangeweapon
+  #name: BaseMagazineAKS74yLongRange-name
+  #description: A magazine with long-range bullets. They cause the same damage as their standard counterparts, but they take three times longer to fly.-des
+  productEntity: BaseMagazineAKS74yLongRange
+  cost:
+    FederationCash: 300
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineArmorPiercingAKS74yweapon
+  #name: MagazineArmorPiercingAKS74y-name
+  #description: A magazine with armor-piercing bullets. It completely penetrates all the protection of any equipment, but causes reduced damage compared to its standard counterpart.-des
+  productEntity: MagazineArmorPiercingAKS74y
+  cost:
+    FederationCash: 350
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineLightRifleweapon
+  #name: MagazineLightRifle-name
+  description: A-magazine-with-the-simplest-bullets-des
+  productEntity: MagazineLightRifle
+  cost:
+    FederationCash: 450
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineAR15weapon
+  #name: MagazineAR15-name
+  #description: A-magazine-with-the-simplest-bullets-des
+  productEntity: MagazineAR15
+  cost:
+    FederationCash: 450
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalBaseMagazineAR15LongRangeweapon
+  #name: BaseMagazineAR15LongRange-name
+  #description: A magazine with long-range bullets. They cause the same damage as their standard counterparts, but they take three times longer to fly.-des
+  productEntity: BaseMagazineAR15LongRange
+  cost:
+    FederationCash: 600
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalBaseMagazineAR15Piercingweapon
+  #name: BaseMagazineAR15Piercing-name
+  #description: A magazine with long-range bullets. They cause the same damage as their standard counterparts, but they take three times longer to fly.-des
+  productEntity: BaseMagazineAR15Piercing
+  cost:
+    FederationCash: 700
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineHK416weapon
+  #name: MagazineHK416-name
+  #description: A-magazine-with-the-simplest-bullets-des
+  productEntity: MagazineHK416
+  cost:
+    FederationCash: 450
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalBaseMagazineHK416LongRangeweapon
+  #name: BaseMagazineHK416LongRange-name
+  #description: A magazine with long-range bullets. They cause the same damage as their standard counterparts, but they take three times longer to fly.-des
+  productEntity: BaseMagazineHK416LongRange
+  cost:
+    FederationCash: 600
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineArmorPiercingHK416weapon
+  #name: MagazineArmorPiercingHK416-name
+  #description: A magazine with armor-piercing bullets. It completely penetrates all the protection of any equipment, but causes reduced damage compared to its standard counterpart.-des
+  productEntity: MagazineArmorPiercingHK416
+  cost:
+    FederationCash: 750
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalBoxMagazineLightRifleweapon
+  #name: BoxMagazineLightRifle-name
+  #description: A full box of magazines with caliber cartridges .30 rifle.-des
+  productEntity: BoxMagazineLightRifle
+  cost:
+    FederationCash: 1500
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxSVUMkIIweapon
+  #name: MagazineBoxSVUMkII-name
+  #description: A box of ordinary sniper bullets.-des
+  productEntity: MagazineBoxSVUMkII
+  cost:
+    FederationCash: 1500
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxSVUMkIILongRangeweapon
+  #name: MagazineBoxSVUMkIILongRange-name
+  #description: A box of long-range sniper bullets. It does the same damage as its standard counterpart, but it takes three times longer to fly.-des
+  productEntity: MagazineBoxSVUMkIILongRange
+  cost:
+    FederationCash: 5000
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxSVUMkIIExplosiveweapon
+  #name: MagazineBoxSVUMkIIExplosive-name
+  #description: A box of explosive sniper bullets. It deals reduced damage compared to its standard counterpart and explodes when it collides with an enemy.-des
+  productEntity: MagazineBoxSVUMkIIExplosive
+  cost:
+    FederationCash: 5000
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxSVUMkIIPiercingweapon
+  #name: MagazineBoxSVUMkIIPiercing-name
+  #description: A box of armor-piercing sniper bullets. It penetrates all the protection of any equipment, but causes reduced damage compared to its standard counterpart.-des
+  productEntity: MagazineBoxSVUMkIIPiercing
+  cost:
+    FederationCash: 5000
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxSVUMkIIBigweapon
+  #name: MagazineBoxSVUMkIIBig-name
+  #description: A box of ordinary sniper bullets.-des
+  productEntity: MagazineBoxSVUMkIIBig
+  cost:
+    FederationCash: 3500
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxSVUMkIILongRangeBigweapon
+  #name: MagazineBoxSVUMkIILongRangeBig-name
+  #description: A box of long-range sniper bullets. It does the same damage as its standard counterpart, but it takes three times longer to fly.-des
+  productEntity: MagazineBoxSVUMkIILongRangeBig
+  cost:
+    FederationCash: 7000
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxSVUMkIIExplosiveBigweapon
+  #name: MagazineBoxSVUMkIIExplosiveBig-name
+  #description: A box of explosive sniper bullets. It deals reduced damage compared to its standard counterpart and explodes when it collides with an enemy.-des
+  productEntity: MagazineBoxSVUMkIIExplosiveBig
+  cost:
+    FederationCash: 7000
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxSVUMkIIPiercingBigweapon
+  #name: MagazineBoxSVUMkIIPiercingBig-name
+  #description: A box of armor-piercing sniper bullets. It penetrates all the protection of any equipment, but causes reduced damage compared to its standard counterpart.-des
+  productEntity: MagazineBoxSVUMkIIPiercingBig
+  cost:
+    FederationCash: 7000
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxVSSMkIweapon
+  name: TerminalMagazineBoxVSSMkIweapon-name
+  description: TerminalMagazineBoxVSSMkIweapon-des
+  productEntity: MagazineBoxVSSMkI
+  cost:
+    FederationCash: 1500
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxVSSMkILongRangeweapon
+  name: TerminalMagazineBoxVSSMkILongRangeweapon-name
+  description: TerminalMagazineBoxVSSMkILongRangeweapon-des
+  productEntity: MagazineBoxVSSMkILongRange
+  cost:
+    FederationCash: 5000 
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxVSSMkIExplosiveweapon
+  name: TerminalMagazineBoxVSSMkIExplosiveweapon-name
+  description: TerminalMagazineBoxVSSMkIExplosiveweapon-des
+  productEntity: MagazineBoxVSSMkIExplosive
+  cost:
+    FederationCash: 5000
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxVSSMkIPiercingweapon
+  name: TerminalMagazineBoxVSSMkIPiercingweapon-name
+  description: TerminalMagazineBoxVSSMkIPiercingweapon-des
+  productEntity: MagazineBoxVSSMkIPiercing
+  cost:
+    FederationCash: 5000 
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxVSSMkIBigweapon
+  name: TerminalMagazineBoxVSSMkIBigweapon-name
+  description: TerminalMagazineBoxVSSMkIBigweapon-des
+  productEntity: MagazineBoxVSSMkIBig
+  cost:
+    FederationCash: 3500
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxVSSMkILongRangeBigweapon
+  name: TerminalMagazineBoxVSSMkILongRangeBigweapon-name
+  description: TerminalMagazineBoxVSSMkILongRangeBigweapon-des
+  productEntity: MagazineBoxVSSMkILongRangeBig
+  cost:
+    FederationCash: 7000
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxVSSMkIExplosiveBigweapon
+  name: TerminalMagazineBoxVSSMkIExplosiveBigweapon-name
+  description: TerminalMagazineBoxVSSMkIExplosiveBigweapon-des
+  productEntity: MagazineBoxVSSMkIExplosiveBig
+  cost:
+    FederationCash: 7000
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxVSSMkIPiercingBigweapon
+  name: TerminalMagazineBoxVSSMkIPiercingBigweapon-name
+  description: TerminalMagazineBoxVSSMkIPiercingBigweapon-des
+  productEntity: MagazineBoxVSSMkIPiercingBig
+  cost:
+    FederationCash: 7000
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxAntiMaterielweapon
+  #name: MagazineBoxAntiMateriel-name
+  description: TerminalMagazineBoxAntiMaterielweapon-des
+  productEntity: MagazineBoxAntiMateriel
+  cost:
+    FederationCash: 2500
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxSVDweapon
+  #name: MagazineBoxSVD-name
+  #description: A box of ordinary sniper bullets.-des
+  productEntity: MagazineBoxSVD
+  cost:
+    FederationCash: 1500
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxSVDLongRangeweapon
+  #name: MagazineBoxSVDLongRange-name
+  #description: A box of long-range sniper bullets. It does the same damage as its standard counterpart, but it takes three times longer to fly.-des
+  productEntity: MagazineBoxSVDLongRange
+  cost:
+    FederationCash: 5000
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxSVDExplosiveweapon
+  #name: MagazineBoxSVDExplosive-name
+  #description: A box of explosive sniper bullets. It deals reduced damage compared to its standard counterpart and explodes when it collides with an enemy.-des
+  productEntity: MagazineBoxSVDExplosive
+  cost:
+    FederationCash: 5000
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxSVDPiercingweapon
+  #name: MagazineBoxSVDPiercing-name
+  #description: A box of armor-piercing sniper bullets. It penetrates all the protection of any equipment, but causes reduced damage compared to its standard counterpart.-des
+  productEntity: MagazineBoxSVDPiercing
+  cost:
+    FederationCash: 5000
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxSVDBigweapon
+  #name: MagazineBoxSVDBig-name
+  #description: A box of ordinary sniper bullets.-des
+  productEntity: MagazineBoxSVDBig
+  cost:
+    FederationCash: 4500
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxSVDLongRangeBigweapon
+  #name: MagazineBoxSVDLongRangeBig-name
+  #description: A box of long-range sniper bullets. It does the same damage as its standard counterpart, but it takes three times longer to fly.-des
+  productEntity: MagazineBoxSVDLongRangeBig
+  cost:
+    FederationCash: 8000
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxSVDExplosiveBigweapon
+  #name: MagazineBoxSVDExplosiveBig-name
+  #description: A box of explosive sniper bullets. It deals reduced damage compared to its standard counterpart and explodes when it collides with an enemy.-des
+  productEntity: MagazineBoxSVDExplosiveBig
+  cost:
+    FederationCash: 8000
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineBoxSVDPiercingBigweapon
+  #name: MagazineBoxSVDPiercingBig-name
+  #description: A box of armor-piercing sniper bullets. It penetrates all the protection of any equipment, but causes reduced damage compared to its standard counterpart.-des
+  productEntity: MagazineBoxSVDPiercingBig
+  cost:
+    FederationCash: 8000
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineLightRifleBoxweapon
+  #name: MagazineLightRifleBox-name
+  description: A-box-with-the-simplest-bullets-des
+  productEntity: MagazineLightRifleBox
+  cost:
+    FederationCash: 1500
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineAssaultPKMBoxweapon
+  #name: MagazineAssaultPKMBox-name
+  #description: A box with the simplest bullets.-des
+  productEntity: MagazineAssaultPKMBox
+  cost:
+    FederationCash: 1500
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalMagazineAssaultPKMBoxPiercingweapon
+  #name: MagazineAssaultPKMBoxPiercing-name
+  #description: A box with armor-piercing bullets. It completely penetrates all the protection of any equipment, but causes reduced damage compared to its standard counterpart.-des
+  productEntity: MagazineAssaultPKMBoxPiercing
+  cost:
+    FederationCash: 4500
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalBoxMagazineShotgunweapon
+  #name: BoxMagazineShotgun-name
+  #description: A full box of drums with cartridges .50 fraction.-des
+  productEntity: BoxMagazineShotgun
+  cost:
+    FederationCash: 500
+  categories:
+  - Ammunition_supplies
+
+- type: listing
+  id: TerminalBoxMagazineShotgunIncendiaryweapon
+  #name: BoxMagazineShotgunIncendiary-name
+  #description: A full box of drums with cartridges .50 incendiary.-des
+  productEntity: BoxMagazineShotgunIncendiary
+  cost:
+    FederationCash: 1500
+  categories:
+  - Ammunition_supplies
+
+#Armor_Terminal_Weapon
+- type: listing
+  id: TerminalweaponClothingOuterArmorReflective
+  productEntity: ClothingOuterArmorReflective
+  cost:
+    FederationCash: 1500
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponCTVestLight
+  productEntity: CTVestLight
+  cost:
+    FederationCash: 2500
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterArmorCentCom
+  productEntity: ClothingOuterArmorCentCom
+  cost:
+    FederationCash: 5000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterArmorCaptainCarapace
+  productEntity: ClothingOuterArmorCaptainCarapace
+  cost:
+    FederationCash: 15000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponVlPArmor
+  productEntity: VlPArmor
+  cost:
+    FederationCash: 10000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterSonaArmor
+  productEntity: ClothingOuterSonaArmor
+  cost:
+    FederationCash: 10000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterArmorBasicSlim
+  productEntity: ClothingOuterArmorBasicSlim
+  cost:
+    FederationCash: 7000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterArmorBasic
+  productEntity: ClothingOuterArmorBasic
+  cost:
+    FederationCash: 7000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterArmorHeavy
+  productEntity: ClothingOuterArmorHeavy
+  cost:
+    FederationCash: 50000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterArmorHeavyGreen
+  productEntity: ClothingOuterArmorHeavyGreen
+  cost:
+    FederationCash: 50000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterArmorHeavyRed
+  productEntity: ClothingOuterArmorHeavyRed
+  cost:
+    FederationCash: 50000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterArmorMinutemanRiotSuit
+  productEntity: ClothingOuterArmorMinutemanRiotSuit
+  cost:
+    FederationCash: 25000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterArmorMinutemanTrenchcoat
+  productEntity: ClothingOuterArmorMinutemanTrenchcoat
+  cost:
+    FederationCash: 25000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterCoatWarden
+  productEntity: ClothingOuterCoatWarden
+  cost:
+    FederationCash: 20000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterWinterSyndieCapArmored
+  productEntity: ClothingOuterWinterSyndieCapArmored
+  cost:
+    FederationCash: 20000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterHardsuitSingularitySienceGreen
+  productEntity: ClothingOuterHardsuitSingularitySienceGreen
+  description: TerminalweaponClothingOuterHardsuitSingularitySience-des
+  cost:
+    FederationCash: 6000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterHardsuitSingularitySienceOrange
+  description: TerminalweaponClothingOuterHardsuitSingularitySience-des
+  productEntity: ClothingOuterHardsuitSingularitySienceOrange
+  cost:
+    FederationCash: 6000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterHardsuitSingularitySienceBlack
+  productEntity: ClothingOuterHardsuitSingularitySienceBlack
+  description: TerminalweaponClothingOuterHardsuitSingularitySience-des
+  cost:
+    FederationCash: 18000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterHardsuitSingularitySienceWhite
+  description: TerminalweaponClothingOuterHardsuitSingularitySience-des
+  productEntity: ClothingOuterHardsuitSingularitySienceWhite
+  cost:
+    FederationCash: 8000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingOuterArmorRiot
+  productEntity: ClothingOuterArmorRiot
+  cost:
+    FederationCash: 6000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponArmorUnloading6B5
+  productEntity: ArmorUnloading6B5
+  cost:
+    FederationCash: 1500
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponBZBeryozaGraphite
+  productEntity: BZBeryozaGraphite
+  cost:
+    FederationCash: 2000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponBZBeryozaPolos
+  productEntity: BZBeryozaPolos
+  cost:
+    FederationCash: 2000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponBZBeryozaZarya
+  productEntity: BZBeryozaZarya
+  cost:
+    FederationCash: 2000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponBZSGranit
+  productEntity: BZSGranit
+  cost:
+    FederationCash: 9000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponBodyArmorUN
+  productEntity: BodyArmorUN
+  cost:
+    FederationCash: 2500
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponCoatBZ
+  productEntity: CoatBZ
+  cost:
+    FederationCash: 2500
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponBodyArmorMultikam
+  productEntity: BodyArmorMultikam
+  cost:
+    FederationCash: 6000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponBodyArmorMultikamRaptor
+  productEntity: BodyArmorMultikamRaptor
+  cost:
+    FederationCash: 6000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponBodyArmorTacticalRaptor
+  productEntity: BodyArmorTacticalRaptor
+  cost:
+    FederationCash: 6000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponBeryl5MPantsir
+  productEntity: Beryl5MPantsir
+  cost:
+    FederationCash: 15000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponArmoredUnloading6B43Raptor
+  productEntity: ArmoredUnloading6B43Raptor
+  cost:
+    FederationCash: 15000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponArmoredUnloading6B43Desert
+  productEntity: ArmoredUnloading6B43Desert
+  cost:
+    FederationCash: 15000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponArmoredUnloading6B43Military
+  productEntity: ArmoredUnloading6B43Military
+  cost:
+    FederationCash: 15000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponPSZ10uTomb
+  productEntity: PSZ10uTomb
+  cost:
+    FederationCash: 25000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponExoskeletonExplorer
+  productEntity: ExoskeletonExplorer
+  cost:
+    FederationCash: 35000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponTBZETSavior
+  productEntity: TBZETSavior
+  cost:
+    FederationCash: 50000
+  categories:
+  - Armor_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponCTVestHeavy
+  productEntity: CTVestHeavy
+  cost:
+    FederationCash: 7000
+  categories:
+  - Armor_Terminal_Weapon
+
+#Helmet_Terminal_Weapon
+- type: listing
+  id: TerminalweaponClothingHeadHelmetBulat
+  productEntity: ClothingHeadHelmetBulat
+  cost:
+    FederationCash: 20000
+  categories:
+  - Helmet_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingHeadHelmetWarrior
+  productEntity: ClothingHeadHelmetWarrior
+  cost:
+    FederationCash: 15000
+  categories:
+  - Helmet_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingHeadHelmetGoldenEagle
+  productEntity: ClothingHeadHelmetGoldenEagle
+  cost:
+    FederationCash: 17000
+  categories:
+  - Helmet_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponSonaArmoryHelmet
+  productEntity: SonaArmoryHelmet
+  cost:
+    FederationCash: 4500
+  categories:
+  - Helmet_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingHeadHelmetOpsCore
+  productEntity: ClothingHeadHelmetOpsCore
+  cost:
+    FederationCash: 13000
+  categories:
+  - Helmet_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingHeadHelmetBrigmedic
+  productEntity: ClothingHeadHelmetBrigmedic
+  cost:
+    FederationCash: 3500
+  categories:
+  - Helmet_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingHeadHelmetK63
+  productEntity: ClothingHeadHelmetK63
+  cost:
+    FederationCash: 3500
+  categories:
+  - Helmet_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingHeadRiotHelmetMinuteman
+  productEntity: ClothingHeadRiotHelmetMinuteman
+  cost:
+    FederationCash: 4000
+  categories:
+  - Helmet_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingHeadHelmetJustice
+  productEntity: ClothingHeadHelmetJustice
+  cost:
+    FederationCash: 1500
+  categories:
+  - Helmet_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingHeadHelmetBombSuit
+  productEntity: ClothingHeadHelmetBombSuit
+  cost:
+    FederationCash: 1500
+  categories:
+  - Helmet_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponCTHelmet
+  productEntity: CTHelmet
+  cost:
+    FederationCash: 30000
+  categories:
+  - Helmet_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingHeadHelmetBasic
+  productEntity: ClothingHeadHelmetBasic
+  cost:
+    FederationCash: 1500
+  categories:
+  - Helmet_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingHeadHelmetSwat
+  productEntity: ClothingHeadHelmetSwat
+  cost:
+    FederationCash: 4500
+  categories:
+  - Helmet_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponClothingHeadHelmetSwatSyndicate
+  productEntity: ClothingHeadHelmetSwatSyndicate
+  cost:
+    FederationCash: 4500
+  categories:
+  - Helmet_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponAssaultACHML
+  productEntity: AssaultACHML
+  cost:
+    FederationCash: 1500
+  categories:
+  - Helmet_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponAssaultACH
+  productEntity: AssaultACH
+  cost:
+    FederationCash: 1500
+  categories:
+  - Helmet_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponAssaultACHUN
+  productEntity: AssaultACHUN
+  cost:
+    FederationCash: 1500
+  categories:
+  - Helmet_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponAirCVC
+  productEntity: AirCVC
+  cost:
+    FederationCash: 1500
+  categories:
+  - Helmet_Terminal_Weapon
+
+- type: listing
+  id: TerminalweaponAssaultHelmetAltyn
+  productEntity: AssaultHelmetAltyn
+  cost:
+    FederationCash: 4500
+  categories:
+  - Helmet_Terminal_Weapon

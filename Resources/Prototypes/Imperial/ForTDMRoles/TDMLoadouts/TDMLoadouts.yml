@@ -74,7 +74,7 @@
     shoes: ClothingShoesBootsSyndieFilled
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetGanza
-    belt: ClothingBeltMinuteManMedicWebbing
+    belt: ClothingBeltMilitaryWebbingBrigmed
     pocket1: TerminalT4000
     pocket2: CombatMedipen
   storage:
@@ -82,8 +82,8 @@
     - MedkitCombatFilled
     - MedkitCombatFilled
     - CompactDefibrillator
-    - EpinephrineChemistryBottle
-    - EpinephrineChemistryBottle
+    - ChemistryBottleEpinephrine
+    - ChemistryBottleEpinephrine
     - Syringe
 
 - type: startingGear
@@ -100,3 +100,4 @@
     belt: ClothingBeltMinuteManCamoUrbanWebbing
     pocket1: TerminalT6500
     pocket2: CombatMedipen
+

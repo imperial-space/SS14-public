@@ -1,0 +1,4 @@
+- type: shader
+  id: UIGradient
+  kind: source
+  path: "/Textures/Imperial/Shaders/UI/gradient.swsl"

@@ -22,6 +22,8 @@
   name: reagent-name-left4-zed
   group: Botanical
   desc: reagent-desc-left4-zed
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   flavor: bitter
   color: "#5b406c"
   physicalDesc: reagent-physical-desc-heterogeneous
@@ -77,6 +79,8 @@
   name: reagent-name-plant-b-gone
   group: Botanical
   desc: reagent-desc-plant-b-gone
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   flavor: bitter
   color: "#49002E"
   physicalDesc: reagent-physical-desc-bubbling
@@ -108,6 +112,8 @@
   name: reagent-name-robust-harvest
   group: Botanical
   desc: reagent-desc-robust-harvest
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   flavor: bitter
   color: "#3e901c"
   physicalDesc: reagent-physical-desc-robust
@@ -201,6 +207,8 @@
   group: Botanical
   desc: reagent-desc-ammonia
   physicalDesc: reagent-physical-desc-pungent
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   flavor: bitter
   color: "#77b58e"
   boilingPoint: -33.0
@@ -279,6 +287,8 @@
   name: reagent-name-diethylamine
   group: Botanical
   desc: reagent-desc-diethylamine
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true  # imperial medieval
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: bitter
   color: "#a1000b"

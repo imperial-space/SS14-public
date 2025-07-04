@@ -24,9 +24,7 @@
        #Elf: Speak
     - type: Mana
       maxManaRaceModifier: 1.10
-      regenRaceModifier: 1.00
-    - type: NeedSleepRaceModifier
-      modifier: 1.0 # Imperial Medieval end
+      regenRaceModifier: 1.00 # Imperial Medieval end
 
 # Reformed Diona
 - type: entity
@@ -36,4 +34,4 @@
   name: Reformed Diona
   components:
     - type: IsDeadIC
-    - type: RandomHumanoidAppearance 
+    - type: RandomHumanoidAppearance

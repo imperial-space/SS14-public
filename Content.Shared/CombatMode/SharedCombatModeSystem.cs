@@ -1,8 +1,11 @@
 using Content.Shared.Actions;
 using Content.Shared.Mind;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.MouseRotator;
 using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
@@ -11,10 +14,13 @@ namespace Content.Shared.CombatMode;
 public abstract class SharedCombatModeSystem : EntitySystem
 {
     [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private   readonly INetManager _netMan = default!;
     [Dependency] private   readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private   readonly SharedPopupSystem _popup = default!;
     [Dependency] private   readonly SharedMindSystem  _mind = default!;
+    [Dependency] private   readonly IGameTiming _gameTiming = default!; // Imperial medieval edit start
+    [Dependency] private   readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private readonly INetManager _netMan = default!; // Imperial medieval edit end
+    [Dependency] private   readonly MobStateSystem _mobStateSystem = default!;
 
     public override void Initialize()
     {
@@ -28,6 +34,7 @@ public abstract class SharedCombatModeSystem : EntitySystem
     private void OnMapInit(EntityUid uid, CombatModeComponent component, MapInitEvent args)
     {
         _actionsSystem.AddAction(uid, ref component.CombatToggleActionEntity, component.CombatToggleAction);
+        component.NextTimeAudioPlay = _gameTiming.CurTime; // Imperial medieval edit
         Dirty(uid, component);
     }
 
@@ -46,14 +53,8 @@ public abstract class SharedCombatModeSystem : EntitySystem
         args.Handled = true;
         SetInCombatMode(uid, !component.IsInCombatMode, component);
 
-        // TODO better handling of predicted pop-ups.
-        // This probably breaks if the client has prediction disabled.
-
-        if (!_netMan.IsClient || !Timing.IsFirstTimePredicted)
-            return;
-
         var msg = component.IsInCombatMode ? "action-popup-combat-enabled" : "action-popup-combat-disabled";
-        _popup.PopupEntity(Loc.GetString(msg), args.Performer, args.Performer);
+        _popup.PopupClient(Loc.GetString(msg), args.Performer, args.Performer);
     }
 
     public void SetCanDisarm(EntityUid entity, bool canDisarm, CombatModeComponent? component = null)
@@ -79,6 +80,18 @@ public abstract class SharedCombatModeSystem : EntitySystem
 
         component.IsInCombatMode = value;
         Dirty(entity, component);
+
+        // Imperial medieval edit start
+        if (component.NextTimeAudioPlay < _gameTiming.CurTime && _netMan.IsServer && _mobStateSystem.IsAlive(entity))
+        {
+            var sound = component.IsInCombatMode ? component.ActivationSound : component.DeactivationSound;
+            var audioParams = AudioParams.Default.WithMaxDistance(3).AddVolume(-5f).WithVariation(0.1f);
+
+            _audioSystem.PlayPvs(sound, entity, audioParams);
+
+            component.NextTimeAudioPlay = _gameTiming.CurTime + component.AudioPlayCooldown;
+        }
+        // Imperial medieval edit end
 
         if (component.CombatToggleActionEntity != null)
             _actionsSystem.SetToggled(component.CombatToggleActionEntity, component.IsInCombatMode);

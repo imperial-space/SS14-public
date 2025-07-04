@@ -5,7 +5,6 @@ using Content.Server.Medical.Components;
 using Content.Server.Popups;
 using Content.Server.Stack;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Audio;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
@@ -21,6 +20,8 @@ using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
+using Content.Shared.Imperial.Medieval.Medical;
+using Robust.Shared.Audio;
 
 namespace Content.Server.Medical;
 
@@ -31,7 +32,6 @@ public sealed class HealingSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StackSystem _stacks = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
@@ -115,7 +115,7 @@ public sealed class HealingSystem : EntitySystem
                 $"{EntityManager.ToPrettyString(args.User):user} healed themselves for {total:damage} damage");
         }
 
-        _audio.PlayPvs(healing.HealingEndSound, entity.Owner, AudioHelpers.WithVariation(0.125f, _random).WithVolume(1f));
+        _audio.PlayPvs(healing.HealingEndSound, entity.Owner);
 
         // Logic to determine the whether or not to repeat the healing action
         args.Repeat = (HasDamage(entity, healing) && !dontRepeat);
@@ -198,8 +198,7 @@ public sealed class HealingSystem : EntitySystem
             return false;
         }
 
-        _audio.PlayPvs(component.HealingBeginSound, uid,
-                AudioHelpers.WithVariation(0.125f, _random).WithVolume(1f));
+        _audio.PlayPvs(component.HealingBeginSound, uid);
 
         var isNotSelf = user != target;
 
@@ -213,8 +212,13 @@ public sealed class HealingSystem : EntitySystem
             ? component.Delay
             : component.Delay * GetScaledHealingPenalty(user, component);
 
+        // Imperial Medieval Skills start
+        var ev = new GetHealingSpeedModifiersEvent(isNotSelf);
+        RaiseLocalEvent(user, ref ev);
+        // Imperial Medieval Skills end
+
         var doAfterEventArgs =
-            new DoAfterArgs(EntityManager, user, delay, new HealingDoAfterEvent(), target, target: target, used: uid)
+            new DoAfterArgs(EntityManager, user, delay * ev.Modifier, new HealingDoAfterEvent(), target, target: target, used: uid) // Imperial Medieval - modifier added
             {
                 // Didn't break on damage as they may be trying to prevent it and
                 // not being able to heal your own ticking damage would be frustrating.

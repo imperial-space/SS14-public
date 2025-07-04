@@ -177,6 +177,21 @@
 
 - type: entity
   parent: MedievalKeyBase
+  id: MedievalKeyKayot
+  name: kayot key
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: kayot
+  - type: Key
+    accesses:
+    - Kayot
+  - type: Tag
+    tags:
+    - KayotKey
+
+- type: entity
+  parent: MedievalKeyBase
   id: MedievalKeyTavern
   name: tavern key
   components:
@@ -444,6 +459,7 @@
         - TavernKey
         - CultOfTruthKey
         - WizardKey
+        - KayotKey
   - type: ItemMapper
     mapLayers:
       medieval_key:
@@ -454,6 +470,10 @@
         whitelist:
           tags:
           - BanditKey
+      kayot:
+        whitelist:
+          tags:
+          - KayotKey
       fox:
         whitelist:
           tags:

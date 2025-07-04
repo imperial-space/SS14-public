@@ -482,7 +482,7 @@ public sealed class ChatUIController : UIController
     private void EnqueueSpeechBubble(EntityUid entity, ChatMessage message, SpeechBubble.SpeechType speechType)
     {
         // Don't enqueue speech bubbles for other maps. TODO: Support multiple viewports/maps?
-        if (EntityManager.GetComponent<TransformComponent>(entity).MapID != _eye.CurrentMap)
+        if (EntityManager.GetComponent<TransformComponent>(entity).MapID != _eye.CurrentEye.Position.MapId)
             return;
 
         if (!_queuedSpeechBubbles.TryGetValue(entity, out var queueData))
@@ -919,6 +919,11 @@ public sealed class ChatUIController : UIController
         _typingIndicator?.ClientChangedChatText();
     }
 
+    public void NotifyChatFocus(bool isFocused)
+    {
+        _typingIndicator?.ClientChangedChatFocus(isFocused);
+    }
+
     public void Repopulate()
     {
         foreach (var chat in _chats)
@@ -949,4 +954,14 @@ public sealed class ChatUIController : UIController
 
         public Queue<SpeechBubbleData> MessageQueue { get; } = new();
     }
+
+    // Imperial Medieval start
+    public string GetChatMessage()
+    {
+        if (_chats.FirstOrDefault()?.ChatInput.ChannelSelector.SelectedChannel is not ChatSelectChannel.Local or ChatSelectChannel.Whisper or ChatSelectChannel.Radio)
+            return string.Empty;
+
+        return _chats.FirstOrDefault()?.ChatInput.Input.Text ?? string.Empty;
+    }
+    // Imperial Medieval end
 }

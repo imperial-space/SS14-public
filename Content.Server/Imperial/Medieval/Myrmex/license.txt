@@ -1,0 +1,2 @@
+license: This content is under ICLA. Copyright holder: dantanat (discord) (Read more on: https://wiki.imperialspace.net/ru/icla)
+copyright: "dantanat (discord)"

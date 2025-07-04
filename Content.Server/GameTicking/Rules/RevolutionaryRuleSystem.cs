@@ -28,6 +28,7 @@ using Content.Shared.Zombies;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Cuffs.Components;
+using Robust.Shared.Player;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -36,19 +37,20 @@ namespace Content.Server.GameTicking.Rules;
 /// </summary>
 public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleComponent>
 {
-    [Dependency] private readonly IAdminLogManager _adminLogManager = default!;
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
     [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
     [Dependency] private readonly EuiManager _euiMan = default!;
+    [Dependency] private readonly IAdminLogManager _adminLogManager = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly RoleSystem _role = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
 
     //Used in OnPostFlash, no reference to the rule component is available
     public readonly ProtoId<NpcFactionPrototype> RevolutionaryNpcFaction = "Revolutionary";
@@ -120,15 +122,26 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     private void OnGetBriefing(EntityUid uid, RevolutionaryRoleComponent comp, ref GetBriefingEvent args)
     {
         var ent = args.Mind.Comp.OwnedEntity;
-        var head = HasComp<HeadRevolutionaryComponent>(ent);
-        args.Append(Loc.GetString(head ? "head-rev-briefing" : "rev-briefing"));
+        // Imperial RevaConsent Start
+        if (TryComp<HeadRevolutionaryComponent>(ent, out var headComp))
+        {
+            args.Append(Loc.GetString(headComp.OnlyConsentConvert ? "head-rev-briefing-consent-only" : "head-rev-briefing"));
+        }
+        else
+        {
+            args.Append(Loc.GetString("rev-briefing"));
+        }
+        // // Imperial RevaConsent End
     }
-
     /// <summary>
     /// Called when a Head Rev uses a flash in melee to convert somebody else.
     /// </summary>
     private void OnPostFlash(EntityUid uid, HeadRevolutionaryComponent comp, ref AfterFlashedEvent ev)
     {
+
+        if (comp.OnlyConsentConvert) // # Imperial RevaConsent
+            return;
+
         var alwaysConvertible = HasComp<AlwaysRevolutionaryConvertibleComponent>(ev.Target);
 
         if (!_mind.TryGetMind(ev.Target, out var mindId, out var mind) && !alwaysConvertible)
@@ -165,8 +178,8 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             _role.MindAddRole(mindId, "MindRoleRevolutionary");
         }
 
-        if (mind?.Session != null)
-            _antag.SendBriefing(mind.Session, Loc.GetString("rev-role-greeting"), Color.Red, revComp.RevStartSound);
+        if (mind is { UserId: not null } && _player.TryGetSessionById(mind.UserId, out var session))
+            _antag.SendBriefing(session, Loc.GetString("rev-role-greeting"), Color.Red, revComp.RevStartSound);
     }
 
     //TODO: Enemies of the revolution
@@ -228,15 +241,15 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                 _popup.PopupEntity(Loc.GetString("rev-break-control", ("name", Identity.Entity(uid, EntityManager))), uid);
                 _adminLogManager.Add(LogType.Mind, LogImpact.Medium, $"{ToPrettyString(uid)} was deconverted due to all Head Revolutionaries dying.");
 
-                if (!_mind.TryGetMind(uid, out var mindId, out _, mc))
+                if (!_mind.TryGetMind(uid, out var mindId, out var mind, mc))
                     continue;
 
                 // remove their antag role
-                _role.MindTryRemoveRole<RevolutionaryRoleComponent>(mindId);
+                _role.MindRemoveRole<RevolutionaryRoleComponent>(mindId);
 
                 // make it very obvious to the rev they've been deconverted since
                 // they may not see the popup due to antag and/or new player tunnel vision
-                if (_mind.TryGetSession(mindId, out var session))
+                if (_player.TryGetSessionById(mind.UserId, out var session))
                     _euiMan.OpenEui(new DeconvertedEui(), session);
             }
             return true;
@@ -307,4 +320,85 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         // revs lost and heads died
         "rev-stalemate"
     };
+// Imperial RevaConsent Start
+    /// <summary>
+    /// Преобразует сущность в революционера без проверки возможности преобразования.
+    /// Внимание: Логика скопирована из обработчика события революционной вспышки.
+    /// </summary>
+    public void ConvertEntityToRevolution(EntityUid target, EntityUid? converter)
+    {
+        // Проверяем наличие разума у цели
+        if (!_mind.TryGetMind(target, out var mindId, out var mind))
+            return;
+
+        // Удаляем существующий революционный компонент
+        if (HasComp<RevolutionaryComponent>(target))
+            RemComp<RevolutionaryComponent>(target);
+
+        // Добавляем фракцию и компонент революционера
+        _npcFaction.AddFaction(target, RevolutionaryNpcFaction);
+        var revComp = EnsureComp<RevolutionaryComponent>(target);
+
+        // Логирование и учет конверсий
+        if (converter != null)
+        {
+            _adminLogManager.Add(LogType.Mind,
+                LogImpact.Medium,
+                $"{ToPrettyString(converter.Value)} преобразовал {ToPrettyString(target)} в революционера");
+
+            // Увеличиваем счетчик конверсий у конвертера
+            if (_mind.TryGetMind(converter.Value, out var revMindId, out _))
+            {
+                if (_role.MindHasRole<RevolutionaryRoleComponent>(revMindId, out var role))
+                    role.Value.Comp2.ConvertedCount++;
+            }
+        }
+
+        // Назначение роли революционера
+        if (mindId == default || !_role.MindHasRole<RevolutionaryRoleComponent>(mindId))
+        {
+            _role.MindAddRole(mindId, "MindRoleRevolutionary");
+        }
+
+        // Отправка инструкций игроку
+        if (mind != null)
+            _antag.SendBriefing(target, Loc.GetString("rev-role-greeting"), Color.Red, revComp.RevStartSound);
+
+        // Проверка потери командного статуса
+        if (!TryComp<CommandStaffComponent>(target, out var commandComp))
+            return;
+
+        // Компонент CommandStaffComponent больше не отключается явно
+        CheckCommandLose();
+    }
+
+    /// <summary>
+    /// Проверяет возможность преобразования сущности в революционера
+    /// </summary>
+    public bool IsConvertable(EntityUid uid)
+    {
+        // Проверка принудительной конвертируемости
+        var alwaysConvertible = HasComp<AlwaysRevolutionaryConvertibleComponent>(uid);
+
+        // Требование наличия разума (если не принудительная конвертация)
+        if (!_mind.TryGetMind(uid, out var mindId, out var mind) && !alwaysConvertible)
+            return false;
+
+        // Комплексная проверка условий:
+        // - Уже является революционером
+        // - Имеет защиту от контроля разума
+        // - Не гуманоидный облик (если не принудительная)
+        // - Мертв или является зомби
+        if (HasComp<RevolutionaryComponent>(uid) ||
+            HasComp<MindShieldComponent>(uid) ||
+            !HasComp<HumanoidAppearanceComponent>(uid) && !alwaysConvertible ||
+            !_mobState.IsAlive(uid) ||
+            HasComp<ZombieComponent>(uid))
+        {
+            return false;
+        }
+
+        return true;
+    }
+    // Imperial RevaConsent End
 }

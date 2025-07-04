@@ -1,0 +1,104 @@
+- type: entity
+  parent: BaseBullet
+  id: GeneralHandHook
+  name: hook
+  suffix: KCL, kaktyc
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: EmbeddableProjectile
+      deleteOnRemove: true
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Sprite
+      noRot: false
+      sprite: Imperial/KAKTYC/sanabi/sanabihook.rsi
+      layers:
+        - state: hook
+    - type: Physics
+      bodyType: Dynamic
+      linearDamping: 0
+      angularDamping: 0
+    - type: Projectile
+      impactEffect: BulletImpactEffect
+      deleteOnCollide: false
+      damage:
+        types:
+          Blunt: 25
+          Structural: 120
+    - type: Fixtures
+      fixtures:
+        projectile:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.1,-0.1,0.1,0.1"
+          hard: false
+          mask:
+            - Impassable
+            - HighImpassable
+        fly-by: &flybyfixture
+          shape: !type:PhysShapeCircle
+            radius: 1.5
+          layer:
+          - Impassable
+          - MidImpassable
+          - HighImpassable
+          - LowImpassable
+          hard: False
+    - type: GrapplingProjectile
+
+- type: entity
+  name: the general's hand
+  description: If you're afraid of falling — fly faster.
+  parent: BaseItem
+  id: GeneralHandGrapplingGun
+  suffix: KCL, kaktyc
+  components:
+    - type: AmmoCounter
+    - type: GrapplingGun
+    - type: Gun
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/harpoon.ogg
+      fireRate: 0.5
+      clumsyProof: true
+    - type: BasicEntityAmmoProvider
+      proto: GeneralHandHook
+      capacity: 1
+    - type: Sprite
+      sprite: Imperial/KAKTYC/sanabi/sanabihook.rsi
+      layers:
+        - state: base
+        - state: base-unshaded
+          map: [ "unshaded" ]
+          visible: true
+    - type: UseDelay
+      delay: 1.5
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.TetherVisualsStatus.Key:
+          unshaded:
+            True: { state: base-unshaded }
+            False: { state: base-unshaded-off }
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckGeneralCloak
+  name: general's cloak
+  suffix: KCL, kaktyc
+  description: It doesn't matter if you reach the end.
+  components:
+  - type: Sprite
+    sprite: Imperial/KAKTYC/sanabi/sanabicloak.rsi
+  - type: Clothing
+    sprite: Imperial/KAKTYC/sanabi/sanabicloak.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadGeneralHat
+  name: general's hat
+  suffix: KCL, kaktyc
+  description: Sometimes the only way to survive is to forget who you are.
+  components:
+  - type: Sprite
+    sprite: Imperial/KAKTYC/sanabi/sanabihat.rsi
+  - type: Clothing
+    sprite: Imperial/KAKTYC/sanabi/sanabihat.rsi

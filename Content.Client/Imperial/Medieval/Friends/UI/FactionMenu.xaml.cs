@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using Content.Client.Friends;
 using Content.Client.Imperial.Medieval.Friends.UI.Elements;
 using Content.Shared.Friends;
@@ -25,24 +24,11 @@ public sealed partial class FactionMenu : DefaultWindow
     public Action<int, string>? HeadhuntPressed;
     public Action<int, bool>? SetLeaderPressed;
 
-    public ProtoId<MedievalFactionPrototype> Faction = "";
+    public Action<ProtoId<MedievalFactionPrototype>>? WarPressed;
 
-    public bool JobModeBool
-    {
-        get => _jobMode;
-        set
-        {
-            if (_jobMode == value)
-                return;
-            _jobMode = value;
-            Populate(Faction, _self, _localData, _access, _selfGroup);
-        }
-    }
-    private bool _jobMode = true;
-    private Dictionary<int, FactionMemberData> _localData = new();
-    private FactionMenuAccess _access = FactionMenuAccess.None;
-    private FactionMemberGroup _selfGroup = FactionMemberGroup.None;
-    private int _self = 0;
+    public MenuMode Mode = MenuMode.Job;
+    public FactionMenuData Data = new();
+
     private int? _fireSelected;
 
     public FactionMenu()
@@ -50,18 +36,29 @@ public sealed partial class FactionMenu : DefaultWindow
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
         _friends = _entMan.System<FriendsSystem>();
+
+        ButtonGroup modeGroup = new(false);
+
+        JobMode.Group = modeGroup;
+        GroupMode.Group = modeGroup;
+        RelationsMode.Group = modeGroup;
+
         JobMode.OnToggled += args =>
         {
-            JobModeBool = true;
-            JobMode.Pressed = true;
-            GroupMode.Pressed = false;
+            Mode = MenuMode.Job;
+            Populate(Data);
         };
         GroupMode.OnToggled += args =>
         {
-            JobModeBool = false;
-            JobMode.Pressed = false;
-            GroupMode.Pressed = true;
+            Mode = MenuMode.Group;
+            Populate(Data);
         };
+        RelationsMode.OnToggled += args =>
+        {
+            Mode = MenuMode.Relations;
+            PopulateRelations(Data);
+        };
+
         Cancel.OnPressed += args =>
         {
             Confirmation.Visible = false;
@@ -98,21 +95,17 @@ public sealed partial class FactionMenu : DefaultWindow
         };
     }
 
-    public void Populate(ProtoId<MedievalFactionPrototype> proto, int self, Dictionary<int, FactionMemberData> data, FactionMenuAccess access, FactionMemberGroup selfGroup)
+    public void Populate(FactionMenuData data)
     {
-        Members.DisposeAllChildren();
-        Faction = proto;
-        _localData = data;
-        _access = access;
-        _self = self;
-        _selfGroup = selfGroup;
-        Headhunt.Visible = IoCManager.Resolve<IPrototypeManager>().Index(proto).AllowHeadhunt && !HeadhuntConfirmation.Visible;
+        Members.RemoveAllChildren();
+        Data = data;
+        Headhunt.Visible = IoCManager.Resolve<IPrototypeManager>().Index(Data.Faction).AllowHeadhunt && !HeadhuntConfirmation.Visible;
 
-        foreach (var item in data)
+        foreach (var item in Data.Members)
         {
             var group = item.Value.Group;
-            _friends.TryGetFactionGroupObjective(proto, item.Value.Group, out var objective);
-            var entry = new FactionMenuEntry(item.Key, self, item.Value, access, objective ?? "");
+            _friends.TryGetFactionGroupObjective(Data.Faction, item.Value.Group, out var objective);
+            var entry = new FactionMenuEntry(item.Key, Data.Self, item.Value, Data.Access, objective ?? "");
             entry.GroupSet += (ent, group) => GroupSet?.Invoke(ent, group);
             entry.RemoveButtonPressed += args =>
             {
@@ -126,11 +119,16 @@ public sealed partial class FactionMenu : DefaultWindow
                 ConfirmationLabel.SetMessage($"{item.Value.JobPrefix}{item.Value.Name} будет исключён из вашей фракции.");
                 Main.Visible = false;
                 Confirmation.Visible = true;
-                Headhunt.Visible = IoCManager.Resolve<IPrototypeManager>().Index(proto).AllowHeadhunt;
+                Headhunt.Visible = IoCManager.Resolve<IPrototypeManager>().Index(Data.Faction).AllowHeadhunt;
             };
             entry.SetLeaderPressed += (id, isLeader) => SetLeaderPressed?.Invoke(id, isLeader);
 
-            var container = _jobMode ? EnsureJobContainer(item.Value.Job) : EnsureGroupContainer(group, objective ?? "", access, selfGroup);
+            var container = Mode switch
+            {
+                MenuMode.Job => EnsureJobContainer(item.Value.Job),
+                MenuMode.Group => EnsureGroupContainer(group, objective ?? "", Data.Access, Data.SelfGroup),
+                _ => throw new ArgumentOutOfRangeException(),
+            };
             container.AddChild(entry);
         }
 
@@ -170,5 +168,32 @@ public sealed partial class FactionMenu : DefaultWindow
         newPanel.ObjectiveSet += (group, obj) => ObjectiveSet?.Invoke(group, obj);
         Members.AddChild(newPanel);
         return newPanel.Box;
+    }
+
+    public void PopulateRelations(FactionMenuData data)
+    {
+        Members.RemoveAllChildren();
+        Data = data;
+
+        if (Data.Relations.Count == 0)
+        {
+            Members.AddChild(new Label { Text = Loc.GetString("faction-menu-no-relations") });
+            return;
+        }
+
+        var panel = new FactionRelationsPanel(Data)
+        {
+            Margin = new(6)
+        };
+
+        panel.WarPressed += args => WarPressed?.Invoke(args);
+        Members.AddChild(panel);
+    }
+
+    public enum MenuMode
+    {
+        Job,
+        Group,
+        Relations
     }
 }

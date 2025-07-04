@@ -13,6 +13,7 @@
   isSpace: true
   itemDrop: PartRodMetal1
   heatCapacity: 10000
+  badSmellMod: 0
 
 - type: tile
   id: LatticeSmall2
@@ -28,6 +29,7 @@
   isSpace: true
   itemDrop: PartRodMetal1
   heatCapacity: 10000
+  badSmellMod: 0
 
 - type: tile
   id: LatticeSmall3
@@ -43,6 +45,7 @@
   isSpace: true
   itemDrop: PartRodMetal1
   heatCapacity: 10000
+  badSmellMod: 0
 
 - type: tile
   id: LatticeSmall4
@@ -58,6 +61,7 @@
   isSpace: true
   itemDrop: PartRodMetal1
   heatCapacity: 10000
+  badSmellMod: 0
 
 - type: tile
   id: LatticeCorner1
@@ -73,6 +77,7 @@
   isSpace: true
   itemDrop: PartRodMetal1
   heatCapacity: 10000
+  badSmellMod: 0
 
 - type: tile
   id: LatticeCorner2
@@ -88,6 +93,7 @@
   isSpace: true
   itemDrop: PartRodMetal1
   heatCapacity: 10000
+  badSmellMod: 0
 
 - type: tile
   id: LatticeCorner3
@@ -103,6 +109,7 @@
   isSpace: true
   itemDrop: PartRodMetal1
   heatCapacity: 10000
+  badSmellMod: 0
 
 - type: tile
   id: LatticeCorner4
@@ -118,6 +125,7 @@
   isSpace: true
   itemDrop: PartRodMetal1
   heatCapacity: 10000
+  badSmellMod: 0
 
 #Floor window
 - type: tile
@@ -132,6 +140,7 @@
     collection: FootstepTile
   itemDrop: SheetUGlass1
   heatCapacity: 10000
+  badSmellMod: 0.25
 
 - type: tile
   id: FloorGlassPlasma
@@ -145,6 +154,7 @@
     collection: FootstepTile
   itemDrop: SheetPGlass1
   heatCapacity: 10000
+  badSmellMod: 0.5
 
 - type: tile
   id: FloorRGlassUran
@@ -158,6 +168,7 @@
     collection: FootstepTile
   itemDrop: SheetRUGlass1
   heatCapacity: 10000
+  badSmellMod: 0.25
 
 - type: tile
   id: FloorRGlassPlasma
@@ -171,6 +182,7 @@
     collection: FootstepTile
   itemDrop: SheetRPGlass1
   heatCapacity: 10000
+  badSmellMod: 0.5
 
 # Ice Floor Sheet
 
@@ -185,9 +197,9 @@
   itemDrop: SnowballIce
   friction: 0.05
   mobFriction: 0.5
-  mobFrictionNoInput: 0.05
   mobAcceleration: 2
   heatCapacity: 10000
+  badSmellMod: 0.75
 
 - type: tile
   id: FloorCrossWood
@@ -208,6 +220,7 @@
     collection: BarestepWood
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
+  badSmellMod: 0.75
 
 - type: tile
   id: FloorCrossWoodBroken
@@ -228,6 +241,7 @@
     collection: BarestepWood
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
+  badSmellMod: 0.75
 
 - type: tile
   id: FloorDarkWood
@@ -248,6 +262,7 @@
     collection: BarestepWood
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
+  badSmellMod: 0.75
 
 - type: tile
   id: FloorDarkWoodBroken
@@ -268,6 +283,7 @@
     collection: BarestepWood
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
+  badSmellMod: 0.75
 
 - type: tile
   id: FloorLargeWood
@@ -288,6 +304,7 @@
     collection: BarestepWood
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
+  badSmellMod: 0.75
 
 - type: tile
   id: FloorLargeWoodBroken
@@ -308,6 +325,7 @@
     collection: BarestepWood
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
+  badSmellMod: 0.75
 
 - type: tile
   id: FloorLongWood
@@ -328,6 +346,7 @@
     collection: BarestepWood
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
+  badSmellMod: 0.75
 
 - type: tile
   id: FloorLongWoodBroken
@@ -348,6 +367,7 @@
     collection: BarestepWood
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
+  badSmellMod: 0.75
 
 - type: tile
   id: FloorWoodenTile
@@ -368,6 +388,7 @@
     collection: BarestepWood
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
+  badSmellMod: 0.75
 
 - type: tile
   id: FloorWoodenTileBroken
@@ -388,3 +409,4 @@
     collection: BarestepWood
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
+  badSmellMod: 0.75

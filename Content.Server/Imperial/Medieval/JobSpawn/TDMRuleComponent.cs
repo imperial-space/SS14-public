@@ -49,70 +49,70 @@ public sealed partial class TDMRuleComponent : Component
     public ResPath[] Sector1 = new ResPath[] //Imperal additional maps
     {
         //new ResPath("/Maps/Imperial/Medieval/dotamapV0.4.yml"),
-        new ResPath("/Maps/Imperial/Medieval/Sector1V05.yml")
+        new ResPath("/Maps/Imperial/Medieval/Sector0V03.yml")
     };
 
     [DataField]
     public ResPath[] Sector2 = new ResPath[] //Imperal additional maps
     {
         //new ResPath("/Maps/Imperial/Medieval/dotamapV0.4.yml"),
-        new ResPath("/Maps/Imperial/Medieval/Sector2V05.yml")
+        new ResPath("/Maps/Imperial/Medieval/Sector0V03.yml")
     };
 
     [DataField]
     public ResPath[] Sector3 = new ResPath[] //Imperal additional maps
     {
         //new ResPath("/Maps/Imperial/Medieval/dotamapV0.4.yml"),
-        new ResPath("/Maps/Imperial/Medieval/Sector3V03.yml")
+        new ResPath("/Maps/Imperial/Medieval/Sector0V03.yml")
     };
 
     [DataField]
     public ResPath[] Sector4 = new ResPath[] //Imperal additional maps
     {
         //new ResPath("/Maps/Imperial/Medieval/dotamapV0.4.yml"),
-        new ResPath("/Maps/Imperial/Medieval/Sector4V11.yml")
+        new ResPath("/Maps/Imperial/Medieval/Sector0V03.yml")
     };
 
     [DataField]
     public ResPath[] Sector5 = new ResPath[] //Imperal additional maps
     {
         //new ResPath("/Maps/Imperial/Medieval/dotamapV0.4.yml"),
-        new ResPath("/Maps/Imperial/Medieval/Sector5V12.yml")
+        new ResPath("/Maps/Imperial/Medieval/Sector0V03.yml")
     };
 
     [DataField]
     public ResPath[] Sector6 = new ResPath[] //Imperal additional maps
     {
         //new ResPath("/Maps/Imperial/Medieval/dotamapV0.4.yml"),
-        new ResPath("/Maps/Imperial/Medieval/Sector6V07.yml")
+        new ResPath("/Maps/Imperial/Medieval/Sector0V03.yml")
     };
 
     [DataField]
     public ResPath[] Sector7 = new ResPath[] //Imperal additional maps
     {
         //new ResPath("/Maps/Imperial/Medieval/dotamapV0.4.yml"),
-        new ResPath("/Maps/Imperial/Medieval/Sector7V05.yml")
+        new ResPath("/Maps/Imperial/Medieval/Sector0V03.yml")
     };
 
     [DataField]
     public ResPath[] Sector7Cave = new ResPath[] //Imperal additional maps
     {
         //new ResPath("/Maps/Imperial/Medieval/dotamapV0.4.yml"),
-        new ResPath("/Maps/Imperial/Medieval/SectorCave7V05.yml")
+        new ResPath("/Maps/Imperial/Medieval/Sector0V03.yml")
     };
 
     [DataField]
     public ResPath[] Sector9 = new ResPath[] //Imperal additional maps
     {
         //new ResPath("/Maps/Imperial/Medieval/dotamapV0.4.yml"),
-        new ResPath("/Maps/Imperial/Medieval/Sector9V05.yml")
+        new ResPath("/Maps/Imperial/Medieval/Sector0V03.yml")
     };
 
     [DataField]
     public ResPath[] Sector10 = new ResPath[] //Imperal additional maps
     {
         //new ResPath("/Maps/Imperial/Medieval/dotamapV0.4.yml"),
-        new ResPath("/Maps/Imperial/Medieval/Sector10V03.yml")
+        new ResPath("/Maps/Imperial/Medieval/Sector0V03.yml")
     };
 
     [DataField]

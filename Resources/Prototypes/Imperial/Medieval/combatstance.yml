@@ -1,0 +1,43 @@
+- type: entity
+  id: StancePoint
+  name: clock wall
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "state" ]
+      sprite: Imperial/Medieval/CombatStance/point.rsi
+      state: red
+      visible: true
+  #- type: Icon
+  #  sprite: Imperial/Medieval/CombatStance/point.rsi
+  #  state: red
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.1
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        hard: false
+  - type: CombatStancePoint
+  - type: Visibility
+    layer: 2
+  - type: TimedDespawn
+    lifetime: 600
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.CombatStanceAppearance.Key:
+        state:
+          0: {state: red}
+          1: {state: yellow}
+          2: {state: green}

@@ -1,0 +1,39 @@
+- type: entity
+  parent: BaseStructure
+  id: BaseUplinl_Cruenta
+  name: Uplinl_Cruenta
+  description: super Cruenta uplink
+  suffix: Phantom4502, Cruenta
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/Uplink_Cruenta.rsi
+    layers:
+    - state: Sprite_Cruenta_2
+    - state: Sprite_Cruenta_3
+      shader: unshaded
+      visible: true
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.StoreUiKey.Key
+  - type: Store
+    categories:
+    - sacerdosFood
+    - sacerdosWeapon
+    - sacerdosMelee
+    - sacerdosMed
+    - sacerdosAmmunition
+    - CruentaArmor
+    - sacerdosMisc
+    - sacerdosClothing
+    - CruentaStorage
+    - sacerdosExplosives
+    - CruentaConstruction
+    - CruentaReinforcements
+    currencyWhitelist:
+    - Telecrystal_sacerdos
+    balance:
+      Telecrystal_sacerdos: 0

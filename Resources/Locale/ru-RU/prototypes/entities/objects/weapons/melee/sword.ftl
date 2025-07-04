@@ -17,3 +17,7 @@ ent-Cutlass = Абордажная сабля
 ent-Throngler = мультитул грейтайда
     .desc = Как этим польжоваться?
     .suffix = адмем
+
+ent-LeaveNoTraceObjective = Не раскрывайте себя
+
+imperial-ninja-reveal = РАСКРЫТ

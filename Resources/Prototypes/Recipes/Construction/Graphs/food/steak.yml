@@ -300,6 +300,21 @@
         time: 15
     # Imperial medieval end
 
+- type: constructionGraph
+  id: DragonSteak
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: dragon steak
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 445
+  - node: dragon steak
+    entity: FoodMeatDragonCooked
+
 # cutlets
 
 - type: constructionGraph
@@ -501,3 +516,18 @@
       - type: FarmerBoostOnConsume
         time: 15
     # Imperial medieval end
+
+- type: constructionGraph
+  id: DragonCutlet
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: dragon cutlet
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 445
+  - node: dragon cutlet
+    entity: FoodMeatDragonCutletCooked

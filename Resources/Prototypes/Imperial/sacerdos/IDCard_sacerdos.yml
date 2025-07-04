@@ -1,0 +1,77 @@
+- type: entity
+  parent: IDCardStandard
+  id: ID_Leaders_sacerdos
+  name: ID Leaders sacerdos
+  suffix: Phantom4502, sacerdos
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/ID_sacerdos.rsi
+    state: ID_Leaders_sacerdos
+  - type: Item
+    size: Small
+    heldPrefix: gold
+  - type: IdCard
+    jobIcon: ID_Leaders_sacerdosJobIcon
+    jobTitle: job-name-Leaders-sacerdos
+  - type: Access
+    tags:
+    - NuclearOperative
+
+- type: entity
+  parent: IDCardStandard
+  id: ID_fight_sacerdos
+  name: ID fight sacerdos
+  suffix: Phantom4502, sacerdos
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/ID_sacerdos.rsi
+    state: ID_fight_sacerdos
+  - type: Item
+    size: Small
+    heldPrefix: default
+  - type: IdCard
+    jobIcon: ID_fight_sacerdosJobIcon
+    jobTitle: job-name-fight-sacerdos
+  - type: Access
+    tags:
+    - NuclearOperative
+
+- type: entity
+  parent: IDCardStandard
+  id: ID_Medical_sacerdos
+  name: ID Medical sacerdos
+  suffix: Phantom4502, sacerdos
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/ID_sacerdos.rsi
+    state: ID_Medical_sacerdos
+  - type: Item
+    size: Small
+    heldPrefix: silver
+  - type: IdCard
+    jobIcon: ID_Medical_sacerdosJobIcon
+    jobTitle: job-name-Medical-sacerdos
+  - type: Access
+    tags:
+    - NuclearOperative
+
+- type: jobIcon
+  parent: JobIcon
+  id: ID_Leaders_sacerdosJobIcon
+  icon:
+    sprite: /Textures/Imperial/sacerdos/Jobicons_sacerdos.rsi
+    state: LeaderssacerdosJobIcon
+
+- type: jobIcon
+  parent: JobIcon
+  id: ID_fight_sacerdosJobIcon
+  icon:
+    sprite: /Textures/Imperial/sacerdos/Jobicons_sacerdos.rsi
+    state: Admin # Заглушка
+
+- type: jobIcon
+  parent: JobIcon
+  id: ID_Medical_sacerdosJobIcon
+  icon:
+    sprite: /Textures/Imperial/sacerdos/Jobicons_sacerdos.rsi
+    state: IDMedicalsacerdosJobIcon

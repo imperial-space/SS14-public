@@ -1,0 +1,12 @@
+store-category-sacerdos-uplink-Food = Провизия
+store-category-sacerdos-uplink-Weapon = Вооружение
+store-category-sacerdos-uplink-Melee = Ближний бой
+store-category-sacerdos-uplink-Ammunition = Боеприпасы
+store-category-sacerdos-uplink-Explosives = Взрывчатое
+store-category-sacerdos-uplink-Armor = Броня
+store-category-sacerdos-uplink-Med = Медицина
+store-category-sacerdos-uplink-Clothing = Одежда
+store-category-sacerdos-uplink-Storage = Хранилище
+store-category-sacerdos-uplink-Construction = Строительство
+store-category-sacerdos-uplink-Misc = Разное
+store-category-sacerdos-uplink-Reinforcements = Подкрепление

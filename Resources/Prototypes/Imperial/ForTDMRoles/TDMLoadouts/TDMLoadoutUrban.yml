@@ -1,0 +1,365 @@
+# Пресеты для стороны синдикека
+
+- type: startingGear
+  id: TDMUrbanRiflemanGear_S
+  equipment:
+    head: ClothingHeadUrbanHelmetMinuteman
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterVestWebMerc
+    suitstorage: WeaponRifleAk
+    id: SecurityCadetIDCard
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoUrban
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManCamoUrbanWebbing
+    pocket1: FlashlightSeclite
+    pocket2: CSWeaponGlock-18
+  storage:
+    belt:
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - Glock18MagazinePistol
+    - Glock18MagazinePistol
+    outerClothing:
+    - HardTraumapack
+    - GrenadeShrapnel
+    - GrenadeShrapnel
+
+- type: startingGear
+  id: TDMUrbanMachineGunnerGear_S
+  equipment:
+    head: ClothingHeadUrbanHelmetMinuteman
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterArmorHeavyTDM
+    suitstorage: WeaponLightMachineGunL6
+    id: SecurityCadetIDCard
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoUrban
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManCamoUrbanWebbing
+    pocket1: FlashlightSeclite
+    pocket2: CSWeaponGlock-18
+  storage:
+    belt:
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+    - Glock18MagazinePistol
+
+- type: startingGear
+  id: TDMUrbanGrenadierGear_S
+  equipment:
+    head: ClothingHeadUrbanHelmetMinuteman
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterVestWebMerc
+    suitstorage: WeaponLauncherRPG8
+    id: SecurityCadetIDCard
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoUrban
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManCamoUrbanWebbing
+    pocket1: FlashlightSeclite
+    pocket2: CSWeaponGlock-18
+  storage:
+    belt:
+    - CartridgeRPG8Frag
+    - CartridgeRPG8Frag
+    - CartridgeRPG8Frag
+    - CartridgeRPG8
+    - CartridgeRPG8Smoke
+    - Glock18MagazinePistol
+    - Glock18MagazinePistol
+    outerClothing:
+    - HardTraumapack
+    - GrenadeShrapnel
+    - GrenadeShrapnel
+
+- type: startingGear
+  id: TDMUrbanMedicalGear_S
+  equipment:
+    head: ClothingMedicapMinuteman
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterVestWebMerc
+    suitstorage: CSWeaponMP5
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoUrban
+    back: ClothingBackpackMerc
+    id: BrigmedicIDCard
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMilitaryWebbingBrigmed
+    pocket1: FlashlightSeclite
+    pocket2: CSWeaponGlock-18
+  storage:
+    back:
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - CompactDefibrillator
+    - HardBurnKit
+    - HardTraumapack
+    - Syringe
+    belt:
+    - mp5-Magazine
+    - mp5-Magazine
+    - mp5-Magazine
+    - Glock18MagazinePistol
+    outerClothing:
+    - SmokeGrenade
+    - SmokeGrenade
+    - SmokeGrenade
+
+- type: startingGear
+  id: TDMUrbanCommanderGear_S
+  equipment:
+    head: ClothingHeadHatBeretMerc
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterVestWeb
+    suitstorage: WeaponRifleAk
+    id: SeniorOfficerIDCard
+    jumpsuit: ClothingUniformJumpsuitMinuteManFormal
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManCamoUrbanWebbing
+    pocket1: FlashlightSeclite
+    pocket2: WeaponRevolverMateba
+  storage:
+    belt:
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - SpeedLoaderMagnumUranium
+    - SpeedLoaderMagnumUranium
+    - SpeedLoaderMagnumUranium
+    - MagazineBoxMagnumUranium
+    outerClothing:
+    - HardTraumapack
+    - GrenadeShrapnel
+    - GrenadeShrapnel
+
+- type: startingGear
+  id: TDMUrbanSniperGear_S
+  equipment:
+    head: ClothingHeadUrbanHelmetMinuteman
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterVestWebMerc
+    suitstorage: WeaponSniperHristov
+    id: SecurityCadetIDCard
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoUrban
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManCamoUrbanWebbing
+    pocket1: FlashlightSeclite
+    pocket2: CSWeaponGlock-18
+  storage:
+    belt:
+    - MagazineBoxAntiMateriel
+    - MagazineBoxAntiMateriel
+    - MagazineBoxAntiMateriel
+    - MagazineBoxAntiMateriel
+    - Glock18MagazinePistol
+    - Glock18MagazinePistol
+    outerClothing:
+    - HardTraumapack
+    - SmokeGrenade
+    - SmokeGrenade
+
+# Пресеты для стороны нанотрахен
+
+- type: startingGear
+  id: TDMUrbanRiflemanGear_N
+  equipment:
+    head: ClothingHeadUrbanHelmetMinuteman
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterVestWebMerc
+    suitstorage: WeaponRifleAk
+    id: MedicalInternIDCard
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoUrban
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManCamoUrbanWebbing
+    pocket1: FlashlightSeclite
+    pocket2: CSWeaponGlock-18
+  storage:
+    belt:
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - Glock18MagazinePistol
+    - Glock18MagazinePistol
+    outerClothing:
+    - HardTraumapack
+    - GrenadeShrapnel
+    - GrenadeShrapnel
+
+- type: startingGear
+  id: TDMUrbanMachineGunnerGear_N
+  equipment:
+    head: ClothingHeadUrbanHelmetMinuteman
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterArmorHeavyTDM
+    suitstorage: WeaponLightMachineGunL6
+    id: MedicalInternIDCard
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoUrban
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManCamoUrbanWebbing
+    pocket1: FlashlightSeclite
+    pocket2: CSWeaponGlock-18
+  storage:
+    belt:
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+    - Glock18MagazinePistol
+
+- type: startingGear
+  id: TDMUrbanGrenadierGear_N
+  equipment:
+    head: ClothingHeadUrbanHelmetMinuteman
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterVestWebMerc
+    suitstorage: WeaponLauncherRPG8
+    id: MedicalInternIDCard
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoUrban
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManCamoUrbanWebbing
+    pocket1: FlashlightSeclite
+    pocket2: CSWeaponGlock-18
+  storage:
+    belt:
+    - CartridgeRPG8Frag
+    - CartridgeRPG8Frag
+    - CartridgeRPG8Frag
+    - CartridgeRPG8
+    - CartridgeRPG8Smoke
+    - Glock18MagazinePistol
+    - Glock18MagazinePistol
+    outerClothing:
+    - HardTraumapack
+    - GrenadeShrapnel
+    - GrenadeShrapnel
+
+- type: startingGear
+  id: TDMUrbanMedicalGear_N
+  equipment:
+    head: ClothingMedicapMinuteman
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterVestWebMerc
+    suitstorage: CSWeaponMP5
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoUrban
+    back: ClothingBackpackMerc
+    id: MedicalIDCard
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMilitaryWebbingBrigmed
+    pocket1: FlashlightSeclite
+    pocket2: CSWeaponGlock-18
+  storage:
+    back:
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - CompactDefibrillator
+    - HardBurnKit
+    - HardTraumapack
+    - Syringe
+    belt:
+    - mp5-Magazine
+    - mp5-Magazine
+    - mp5-Magazine
+    - Glock18MagazinePistol
+    outerClothing:
+    - SmokeGrenade
+    - SmokeGrenade
+    - SmokeGrenade
+
+- type: startingGear
+  id: TDMUrbanCommanderGear_N
+  equipment:
+    head: ClothingHeadHatBeretMerc
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterVestWeb
+    suitstorage: WeaponRifleAk
+    id: SeniorPhysicianIDCard
+    jumpsuit: ClothingUniformJumpsuitMinuteManFormal
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManCamoUrbanWebbing
+    pocket1: FlashlightSeclite
+    pocket2: WeaponRevolverMateba
+  storage:
+    belt:
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - SpeedLoaderMagnumUranium
+    - SpeedLoaderMagnumUranium
+    - SpeedLoaderMagnumUranium
+    - MagazineBoxMagnumUranium
+    outerClothing:
+    - HardTraumapack
+    - GrenadeShrapnel
+    - GrenadeShrapnel
+
+- type: startingGear
+  id: TDMUrbanSniperGear_N
+  equipment:
+    head: ClothingHeadUrbanHelmetMinuteman
+    mask: ClothingMaskGasMinuteMan
+    eyes: ClothingEyesHudSyndicate
+    outerClothing: ClothingOuterVestWebMerc
+    suitstorage: WeaponSniperHristov
+    id: MedicalInternIDCard
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoUrban
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetGanza
+    belt: ClothingBeltMinuteManCamoUrbanWebbing
+    pocket1: FlashlightSeclite
+    pocket2: CSWeaponGlock-18
+  storage:
+    belt:
+    - MagazineBoxAntiMateriel
+    - MagazineBoxAntiMateriel
+    - MagazineBoxAntiMateriel
+    - MagazineBoxAntiMateriel
+    - Glock18MagazinePistol
+    - Glock18MagazinePistol
+    outerClothing:
+    - HardTraumapack
+    - SmokeGrenade
+    - SmokeGrenade

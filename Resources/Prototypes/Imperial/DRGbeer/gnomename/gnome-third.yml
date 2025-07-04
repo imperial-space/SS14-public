@@ -1,15 +1,5 @@
-- type: dataset
+- type: localizedDataset
   id: names_gnome_last
   values:
-  - Десятый
-  - Четвертый
-  - Унус
-  - Второй
-  - Инлинг
-  - Тарод
-  - Гиллор
-  - Тарнор
-  - Септрр
-  - Инно
-  - Тургард
-  - Арангард
+    prefix: imperial-space-gnomes-last-
+    count: 12

@@ -8,6 +8,15 @@
 
 - type: entity
   parent: MedievalPosterBase
+  id: MedievalPosterTeamBasedKayot
+  name: настенное знамя разбойников койота
+  description: Народ сильных и бесстрашных налётчиков, никто не может остановить их атаку. В их гербе изображён койот на светло-песочном фоне, олицетворяющий силу и устрашаемость.
+  components:
+  - type: Sprite
+    state: kayot
+
+- type: entity
+  parent: MedievalPosterBase
   id: MedievalPosterTeamBasedBlul
   name: "Free Tonto"
   components:
@@ -1173,6 +1182,7 @@
     radius: 18
     energy: 1.35
   - type: Anchorable
+  - type: AlwaysHot
   - type: AmbientSound
     volume: -15
     range: 1.5
@@ -1185,6 +1195,12 @@
   name: MedievalMedicalBed
   description: MedievalMedicalBed
   components:
+  - type: Strap
+    buckleTime: 0.5
+    unbuckleTime: 0.5
+  - type: Buckle
+  - type: BloodRegenBed
+    bloodRegenMultiplier: 2.0
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: bed
@@ -1205,6 +1221,12 @@
   name: MedievalMedicalBed2
   description: MedievalMedicalBed2
   components:
+  - type: Strap
+    buckleTime: 0.5
+    unbuckleTime: 0.5
+  - type: Buckle
+  - type: BloodRegenBed
+    bloodRegenMultiplier: 5.0
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: bed2
@@ -2263,6 +2285,7 @@
   footstepSounds:
     collection: FootstepAsteroid
   heatCapacity: 99910000
+  badSmellMod: 1.5
 
 - type: tile
   id: MedievalFloorPlanetGrass3
@@ -2293,6 +2316,7 @@
   heatCapacity: 99910000
   weather: true
   indestructible: true
+  badSmellMod: 1.25
 
 - type: tile
   id: MedievalFloorPlanetGrass4
@@ -2323,6 +2347,7 @@
   heatCapacity: 99910000
   weather: true
   indestructible: true
+  badSmellMod: 1.25
 
 - type: tile
   id: MedievalFloorPlanetGrass5
@@ -2353,6 +2378,7 @@
   heatCapacity: 99910000
   weather: true
   indestructible: true
+  badSmellMod: 1.25
 
 - type: tile
   id: MedievalFloorPlanetGrass6
@@ -2383,6 +2409,7 @@
   heatCapacity: 99910000
   weather: true
   indestructible: true
+  badSmellMod: 1.25
 
 - type: entity
   id: MedievalDecorCastle3
@@ -4945,3 +4972,51 @@
     state: ins
   - type: PalletContract
     contractPartner: "дракар в порту мятежников"
+
+- type: entity
+  id: MedievalDecorShipSail
+  parent: BaseStructure
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Medieval/Decor/shipsail.rsi
+    state: icon
+    drawdepth: Overdoors
+    offset: 0,3.6
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path: /Audio/Effects/chop.ogg
+        params:
+          variation: 0.05
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 9000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 15
+            max: 30
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.4,0.35,0.4"
+        density: 1000
+        layer:
+        - WallLayer
+  - type: InteractionOutline

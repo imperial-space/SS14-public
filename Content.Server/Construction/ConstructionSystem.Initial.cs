@@ -11,6 +11,7 @@ using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Imperial.Medieval.Construction;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Storage;
@@ -24,7 +25,6 @@ namespace Content.Server.Construction
 {
     public sealed partial class ConstructionSystem
     {
-        [Dependency] private readonly IComponentFactory _factory = default!;
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
         [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
         [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
@@ -210,7 +210,7 @@ namespace Content.Server.Construction
                     case ArbitraryInsertConstructionGraphStep arbitraryStep:
                         foreach (var entity in new HashSet<EntityUid>(EnumerateNearby(user)))
                         {
-                            if (!arbitraryStep.EntityValid(entity, EntityManager, _factory))
+                            if (!arbitraryStep.EntityValid(entity, EntityManager, Factory))
                                 continue;
 
                             if (used.Contains(entity))
@@ -253,6 +253,14 @@ namespace Content.Server.Construction
                 FailCleanup();
                 return null;
             }
+
+            // Imperial Medieval Skills start
+            var skillsEv = new GetConstructionSpeedModifiersEvent(1f);
+            RaiseLocalEvent(user, ref skillsEv);
+
+            doAfterTime *= skillsEv.Modifier;
+            doAfterTime = Math.Max(doAfterTime, 0.1f);
+            // Imperial Medieval Skills end
 
             var doAfterArgs = new DoAfterArgs(EntityManager, user, doAfterTime, new AwaitedDoAfterEvent(), null)
             {
@@ -486,7 +494,7 @@ namespace Content.Server.Construction
                 return;
             }
 
-            var mapPos = location.ToMap(EntityManager, _transformSystem);
+            var mapPos = _transformSystem.ToMapCoordinates(location);
             var predicate = GetPredicate(constructionPrototype.CanBuildInImpassable, mapPos);
 
             if (!_interactionSystem.InRangeUnobstructed(user, mapPos, predicate: predicate))
@@ -518,7 +526,7 @@ namespace Content.Server.Construction
                 switch (step)
                 {
                     case EntityInsertConstructionGraphStep entityInsert:
-                        if (entityInsert.EntityValid(holding, EntityManager, _factory))
+                        if (entityInsert.EntityValid(holding, EntityManager, Factory))
                             valid = true;
                         break;
                     case ToolConstructionGraphStep _:

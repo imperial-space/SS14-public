@@ -1,0 +1,23 @@
+- type: localizedDataset
+  id: RCUOperatorFirst
+  values:
+    prefix: imperial-space-rcu-operator-
+    count: 3
+
+- type: localizedDataset
+  id: RCUOfficerFirst
+  values:
+    prefix: imperial-space-rcu-officer-
+    count: 3
+
+- type: localizedDataset
+  id: RCUOperatorSecond #галубые
+  values:
+    prefix: imperial-space-rcu-operator-second-
+    count: 17
+
+- type: localizedDataset
+  id: RCUOfficerSecond #зиленые, розавые и шу-шуть красние
+  values:
+    prefix: imperial-space-rcu-officer-second-
+    count: 16

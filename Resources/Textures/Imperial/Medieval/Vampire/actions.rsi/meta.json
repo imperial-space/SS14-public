@@ -57,6 +57,12 @@
       },
       {
         "name": "create"
+      },
+      {
+        "name": "disguise_off"
+      },
+      {
+        "name": "disguise_on"
       }
     ]
   }

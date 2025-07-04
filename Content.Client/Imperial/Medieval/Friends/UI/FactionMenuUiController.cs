@@ -1,3 +1,4 @@
+using Content.Client.Friends;
 using Content.Shared.Friends;
 using Content.Shared.Friends.Components;
 using Content.Shared.Friends.Prototypes;
@@ -28,6 +29,7 @@ public sealed class FactionMenuUiController : UIController
             _menu.SetLeaderPressed += SetLeader;
             _menu.FirePressed += args => Fire(args, "", false);
             _menu.HeadhuntPressed += (id, details) => Fire(id, details, true);
+            _menu.WarPressed += DispatchWar;
 
             _menu.OpenCentered();
         }
@@ -38,15 +40,22 @@ public sealed class FactionMenuUiController : UIController
             _menu.SetLeaderPressed -= SetLeader;
             _menu.FirePressed -= args => Fire(args, "", false);
             _menu.HeadhuntPressed -= (id, details) => Fire(id, details, true);
+            _menu.WarPressed -= DispatchWar;
 
-            _menu.Dispose();
+            _menu.Close();
             _menu = null;
         }
     }
 
-    public void PopulateMenu(ProtoId<MedievalFactionPrototype> proto, Dictionary<int, FactionMemberData> data, FactionMenuAccess access, FactionMemberGroup selfGroup, int self)
+    public void PopulateMenu(FactionMenuData data)
     {
-        _menu?.Populate(proto, self, data, access, selfGroup);
+        if (_menu == null)
+            return;
+
+        if (_menu.Mode == FactionMenu.MenuMode.Relations)
+            _menu.PopulateRelations(data);
+        else
+            _menu.Populate(data);
     }
 
     private void Fire(int ent, string details, bool headhunt = false)
@@ -61,8 +70,9 @@ public sealed class FactionMenuUiController : UIController
         if (_menu == null)
             return;
 
-        _entityManager.RaisePredictiveEvent(new SetFactionMemberObjectiveMessage(_menu.Faction, group, obj));
+        _entityManager.RaisePredictiveEvent(new SetFactionMemberObjectiveMessage(_menu.Data.Faction, group, obj));
     }
+
     private void GroupSet(int ent, FactionMemberGroup obj)
     {
         _entityManager.RaisePredictiveEvent(new SetFactionMemberGroupMessage(ent, obj));
@@ -71,5 +81,13 @@ public sealed class FactionMenuUiController : UIController
     private void SetLeader(int ent, bool leader)
     {
         _entityManager.RaisePredictiveEvent(new SetGroupLeaderMessage(ent, leader));
+    }
+
+    private void DispatchWar(ProtoId<MedievalFactionPrototype> faction)
+    {
+        if (_menu == null)
+            return;
+
+        _entityManager.RaisePredictiveEvent(new DispatchWarEvent(_menu.Data.Faction, faction));
     }
 }

@@ -5,7 +5,7 @@
   stacks:
     MedievalIronPlateSmall: 1
     MedievalSteelIngot: 1
-  result: WorkpieceMedievalGear
+  result: MedievalGear
 
 - type: CP14Recipe
   id: MedievalChain
@@ -13,7 +13,7 @@
   iconOverride: MedievalChain
   stacks:
     MedievalIronIngot: 3
-  result: WorkpieceMedievalChain
+  result: MedievalChain
 
 - type: CP14Recipe
   id: MedievalLeatherBelt
@@ -22,7 +22,7 @@
   stacks:
     MedievalIronIngot: 1
     MedievalLeather1: 2
-  result: WorkpieceMedievalLeatherBelt
+  result: MedievalLeatherBelt
 
 - type: CP14Recipe
   id: MedievalIronPlate
@@ -30,7 +30,7 @@
   iconOverride: MedievalIronPlate
   stacks:
     MedievalIronIngot: 4
-  result: WorkpieceMedievalIronPlate
+  result: MedievalIronPlate
 
 - type: CP14Recipe
   id: MedievalIronPlateSmall
@@ -38,7 +38,7 @@
   iconOverride: MedievalIronPlateSmall
   stacks:
     MedievalIronIngot: 1
-  result: WorkpieceMedievalIronPlateSmall
+  result: MedievalIronPlateSmall
 
 - type: CP14Recipe
   id: MedievalRivets
@@ -46,7 +46,7 @@
   iconOverride: MedievalRivets
   stacks:
     MedievalIronIngot: 2
-  result: WorkpieceMedievalRivets
+  result: MedievalRivets
 
 - type: CP14Recipe
   id: MedievalShoulder
@@ -55,7 +55,7 @@
   stacks:
     MedievalIronIngot: 2
     MedievalIronPlateSmall: 3
-  result: WorkpieceMedievalShoulder
+  result: MedievalShoulder
 
 - type: CP14Recipe
   id: ClothingEyesGlasses
@@ -87,7 +87,7 @@
     MedievalRivets: 1
     WoodPlank: 4
     #MedievalRope: 1
-  result: WorkpieceMedievalCatapultAmmoBarrel
+  result: MedievalCatapultAmmoBarrel
 
 - type: CP14Recipe
   id: MedievalCatapultAmmoBarrelGunpowder
@@ -99,7 +99,7 @@
     MedievalRope: 1
   entities:
     MedievalCatapultAmmoBarrel: 1
-  result: WorkpieceMedievalCatapultAmmoBarrelGunpowder
+  result: MedievalCatapultAmmoBarrelGunpowder
 
 - type: CP14Recipe
   id: MedievalCatapultAmmoBarrelAp
@@ -964,3 +964,16 @@
   stacks:
     MedievalIronIngot: 9
   result: WorkpieceMedievalKotel
+
+- type: CP14Recipe
+  id: MedievalClothingOuterArmorGoblinIron
+  craftTime: 14
+  iconOverride: MedievalClothingOuterArmorGoblinIron
+  stacks:
+    MedievalIronPlateSmall: 9
+    MedievalIronPlate: 1
+    MedievalRivets: 10
+    MedievalChain: 5
+    MedievalLeatherBelt: 1
+    MedievalShoulder: 2
+  result: WorkpieceMedievalClothingOuterArmorGoblinIron

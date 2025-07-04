@@ -41,3 +41,41 @@ artifact-trigger-hint-plasma = Газообразная плазма
 artifact-trigger-hint-land = Активное замедление
 artifact-trigger-hint-examine = Внимательное изучение
 artifact-trigger-hint-medical = Медицинские химикаты
+
+xenoarch-trigger-tip-music = Гармоничные звуковые вибрации
+xenoarch-trigger-tip-heat = Высокотемпературный газ
+xenoarch-trigger-tip-cold = Низкотемпературный газ
+xenoarch-trigger-tip-no-oxygen = Бескислородная среда
+xenoarch-trigger-tip-water = Вода
+xenoarch-trigger-tip-co2 = Диоксид углерода
+xenoarch-trigger-tip-plasma = Газообразная плазма
+xenoarch-trigger-tip-tritium = Тритий
+xenoarch-trigger-tip-ammonia = Газообразный аммиак
+xenoarch-trigger-tip-n2o = Закись азота
+xenoarch-trigger-tip-frezon = Фрезон
+xenoarch-trigger-tip-radiation = Радиация
+xenoarch-trigger-tip-brute-damage = Физические повреждения
+xenoarch-trigger-tip-interaction = Физическое взаимодействие
+xenoarch-trigger-tip-wrenching = Прикручивание (гаечным ключем)
+xenoarch-trigger-tip-prying = Вскрытие (монтировкой)
+xenoarch-trigger-tip-screwing = Вскручивание (отверткой)
+xenoarch-trigger-tip-pulsing = Пульсирование (мультитулом)
+xenoarch-trigger-tip-pressure-low = Низкое давление
+xenoarch-trigger-tip-pressure-high = Высокое давление
+xenoarch-trigger-tip-examine = Внимательное изучение
+xenoarch-trigger-tip-timer = Регулярная самоактивация
+xenoarch-trigger-tip-blood = Кровь
+xenoarch-trigger-tip-throw = Активное замедление
+xenoarch-trigger-tip-death = Смерть
+xenoarch-trigger-tip-magnet = Магнитные волны
+
+### Description hints
+xenoarch-trigger-examine-wrenching = Вокруг него крутится какой-то свободный кусок.
+xenoarch-trigger-examine-prying = С поверхности поднимается панель.
+xenoarch-trigger-examine-screwing = Открывается приподнятая часть с небольшой вставкой на ней.
+xenoarch-trigger-examine-pulsing = Из поверхности артефакта торчит оголенный диод.
+xenoarch-trigger-examine-timer = Резьба и царапины покрывают поверхность... Едва можно разобрать число: [italic]{$time}[/italic]
+
+### Effects hints
+xenoarch-effect-puddle = Выделяет лужицу следующих реагентов: {$reagent}
+xenoarch-effect-foam = Производит пену из следующих реагентов: {$reagent}

@@ -1,0 +1,14 @@
+- type: entity
+  id: Sacerdos_Banner
+  parent: BannerBase
+  name: Sacerdos_Banner
+  suffix: Phantom4502, Sacerdos
+  description: A banner displaying the color red. The edgy one.
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Sacerdos_Banner.rsi
+    state: Sacerdos_Banner
+  - type: PointLight
+    radius: 250
+    energy: 35
+    color: "#7d7d7d"

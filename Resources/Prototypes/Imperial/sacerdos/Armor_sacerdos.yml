@@ -1,0 +1,166 @@
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  id: heavyarmorsuitArmor_sacerdos
+  name: heavy armor suit
+  description: A heavily armored suit that protects against excessive damage.
+  suffix: Phantom4502, Sacerdos
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Armor_heavy_sacerdos.rsi
+  - type: Clothing
+    sprite: Imperial/sacerdos/Armor_heavy_sacerdos.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.2
+        Slash: 0.2
+        Piercing: 0.2
+        Heat: 0.3
+        Radiation: 0.8
+        Stamina: 0.2 ## Stamina resistance
+  - type: ClothingSpeedModifier
+    walkModifier: 0.65
+    sprintModifier: 0.65
+  - type: HeldSpeedModifier
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: GroupExamine
+  - type: ProtectedFromStepTriggers
+    slots: WITHOUT_POCKET
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  id: ArmorsacerdosRaid_sacerdos
+  name: Raid suit
+  description: A somewhat flexible and well-armored suit with a powerful shoulder mounted flashlight manufactured in the Gorlex Marauder's iconic blood-red color scheme, it does not protect its wearer from space.
+  suffix: Phantom4502, Sacerdos
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Armor_sacerdos_Raid.rsi
+    layers:
+    - state: Sprite-Armor-1
+    - state: Sprite-Armor-6
+      visible: false
+      shader: unshaded
+  - type: Clothing
+    sprite: Imperial/sacerdos/Armor_sacerdos_Raid.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.35
+        Slash: 0.35
+        Piercing: 0.35
+        Heat: 0.45
+        Caustic: 0.5
+        Stamina: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.35
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: ToggleableLightVisuals
+    spriteLayer: light
+    clothingVisuals:
+      outerClothing:
+      - state: Sprite-Armor-5
+        shader: unshaded
+  - type: Appearance
+  - type: HandheldLight
+    addPrefix: false
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+  - type: PointLight
+    enabled: false
+    color: "#2c7861"
+    radius: 5
+    energy: 2
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    netsync: false
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        interpolate: Linear
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        minValue: 0.1
+        maxValue: 2.0
+        isLooped: true
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 600
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 2
+#
+#- type: entity
+#  parent: [ BaseCentcommContraband, ClothingHeadHelmetBase ]
+#  id: ClothingHeadHelmet_sacerdos
+#  name: Helmet
+#  description: Standard protective equipment. Protects the head from blows.
+#  components:
+#  - type: Sprite
+#    sprite: Clothing/Head/Helmets/ert_security.rsi
+#  - type: Clothing
+#    sprite: Clothing/Head/Helmets/ert_security.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetBase
+  id: ArmorsacerdosRaidHelmet_sacerdos
+  name: Raid helmet
+  description: An armored helmet for use with a raid suit. Very stylish.
+  suffix: Phantom4502, sacerdos
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Armor_sacerdos_Helmet_Raid.rsi
+  - type: Clothing
+    sprite: Imperial/sacerdos/Armor_sacerdos_Helmet_Raid.rsi
+  - type: Armor
+    modifiers: #There's gotta be SOME reason to use this over other helmets.
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+
+- type: entity
+  parent: ClothingOuterCoatHoSTrench 
+  id: ClothingOuterCoatSacerdosCapArmored
+  name: Sacerdos's armored coat
+  description: The Sacerdos's armored coat is made of durable fabric, with gilded patterns.
+  suffix: Phantom4502, sacerdos
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Armor_fight_sacerdos_1.rsi
+  - type: Clothing
+    sprite: Imperial/sacerdos/Armor_fight_sacerdos_1.rsi
+
+- type: entity
+  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing]
+  id: SacerdosClothingOuterArmorBasic
+  name: Sacerdos First class bulletproof vest
+  description: Better than nothing...
+  suffix: Phantom4502, sacerdos
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/OuterArmorBasic_sacerdos.rsi
+  - type: Clothing
+    sprite: Imperial/sacerdos/OuterArmorBasic_sacerdos.rsi
+  - type: Armor 
+    modifiers:
+      coefficients:
+        Blunt: 0.60
+        Slash: 0.60
+        Piercing: 0.60 
+        Heat: 0.70
+        Stamina: 0.70 
+  - type: ExplosionResistance
+    damageCoefficient: 0.90

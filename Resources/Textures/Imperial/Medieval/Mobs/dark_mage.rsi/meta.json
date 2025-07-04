@@ -1,0 +1,27 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "Made for the Imperial Space community, authors's discord nickname: 2bty (flame), fortengamer (darkmage)",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "darkmage",
+        "directions": 4
+      },
+      {
+        "name": "flame",
+        "delays":[
+           [
+              0.1,
+              0.1,
+              0.1,
+              0.1,
+              0.1
+           ]
+        ]
+      }
+    ]
+  }

@@ -1,0 +1,29 @@
+- type: entity
+  name: pirogomet
+  id: WeaponPieCannonClown
+  parent: BaseItem
+  description: A special pie cannon for a special clown. It holds generates a new one every 3 seconds.
+  components:
+    - type: Gun
+      fireRate: 3
+      selectedMode: SemiAuto
+      soundGunshot:
+       path: /Audio/Effects/thunk.ogg
+      soundEmpty:
+       path: /Audio/Items/hiss.ogg
+      clumsyProof: true
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Cannons/pie_cannon.rsi
+      layers:
+        - state: piecannon
+    - type: Item
+      size: Huge
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 3
+    - type: UseDelayOnShoot
+    - type: UseDelay
+      delay: 3
+    - type: BasicEntityAmmoProvider
+      proto: FoodPieBananaCream
+      capacity: 1
+      count: 1

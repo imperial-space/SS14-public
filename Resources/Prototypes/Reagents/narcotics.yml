@@ -114,6 +114,8 @@
   group: Narcotics
   desc: reagent-desc-stimulants
   physicalDesc: reagent-physical-desc-energizing
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   flavor: sharp
   color: "#9A040E"
   boilingPoint: 212.0
@@ -224,6 +226,8 @@
   group: Narcotics
   desc: reagent-desc-impedrezene
   physicalDesc: reagent-physical-desc-acrid
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   flavor: bitter
   color: "#215263"
   metabolisms:
@@ -253,6 +257,8 @@
   group: Narcotics
   desc: reagent-desc-space-drugs
   physicalDesc: reagent-physical-desc-syrupy
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   flavor: bitter
   color: "#63806e"
   metabolisms:
@@ -290,6 +296,8 @@
   group: Narcotics
   desc: reagent-desc-nocturine
   physicalDesc: reagent-physical-desc-powdery
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   color: "#128e80"
   boilingPoint: 444.0
   meltingPoint: 128.0
@@ -312,6 +320,8 @@
   group: Narcotics
   desc: reagent-desc-mute-toxin
   physicalDesc: reagent-physical-desc-syrupy
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   color: "#000000"
   boilingPoint: 255.0
   meltingPoint: 36.0

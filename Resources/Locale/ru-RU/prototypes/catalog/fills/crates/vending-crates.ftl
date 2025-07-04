@@ -1,80 +1,80 @@
-ent-CrateVendingMachineRestockBoozeFilled = Ящик пополнения АлкоМат
+ent-CrateVendingMachineRestockBoozeFilled = ящик пополнения АлкоМат
     .desc = Содержит набор пополнения торгомата АлкоМат.
 
-ent-CrateVendingMachineRestockClothesFilled = Ящик пополнения одежды
+ent-CrateVendingMachineRestockClothesFilled = ящик пополнения одежды
     .desc = Содержит несколько наборов пополнения торгоматов, ОдеждоМата и ТеатроШкафа.
 
-ent-CrateVendingMachineRestockDinnerwareFilled = Ящик пополнения Кухонно-пластальная поварская утварь
+ent-CrateVendingMachineRestockDinnerwareFilled = ящик пополнения Кухонно-пластальная поварская утварь
     .desc = Содержит набор пополнения торгомата Кухонно-пластальная поварская утварь.
 
-ent-CrateVendingMachineRestockEngineeringFilled = Ящик пополнения ИнжеШкаф
+ent-CrateVendingMachineRestockEngineeringFilled = ящик пополнения ИнжеШкаф
     .desc = Содержит набор пополнения торгомата ИнжеШкаф. Он же может пополнить торгомат ТвоИнструменты.
 
-ent-CrateVendingMachineRestockGamesFilled = Ящик пополнения Безобидные развлечения
+ent-CrateVendingMachineRestockGamesFilled = ящик пополнения Безобидные развлечения
     .desc = Содержит набор пополнения торгомата Безобидные развлечения.
 
-ent-CrateVendingMachineRestockHotDrinksFilled = Ящик пополнения Лучшие горячие напитки Солнечной
+ent-CrateVendingMachineRestockHotDrinksFilled = ящик пополнения Лучшие горячие напитки Солнечной
     .desc = Содержит два набора пополнения кофейного автомата Лучшие горячие напитки Солнечной.
 
-ent-CrateVendingMachineRestockMedicalFilled = Ящик пополнения НаноМед
+ent-CrateVendingMachineRestockMedicalFilled = ящик пополнения НаноМед
     .desc = Содержит набор пополнения, совместимый с торгоматами НаноМед и НаноМед Плюс.
 
-ent-CrateVendingMachineRestockNutriMaxFilled = Ящик пополнения БотаМакс
+ent-CrateVendingMachineRestockNutriMaxFilled = ящик пополнения БотаМакс
     .desc = Содержит набор пополнения торгомата БотаМакс.
 
-ent-CrateVendingMachineRestockPTechFilled = Ящик пополнения ПТех
+ent-CrateVendingMachineRestockPTechFilled = ящик пополнения ПТех
     .desc = Содержит набор пополнения раздатчика бюрократии ПТех.
 
-ent-CrateVendingMachineRestockRobustSoftdrinksFilled = Ящик пополнения Прохладительные напитки Робаст
+ent-CrateVendingMachineRestockRobustSoftdrinksFilled = ящик пополнения Прохладительные напитки Робаст
     .desc = Содержит два набора пополнения торгоматов компании Robust Softdrinks LLC.
 
-ent-CrateVendingMachineRestockSalvageEquipmentFilled = Ящик пополнения Утильмаг
+ent-CrateVendingMachineRestockSalvageEquipmentFilled = ящик пополнения Утильмаг
     .desc = Содержит набор пополнения торгомата Утильмаг.
 
-ent-CrateVendingMachineRestockSecTechFilled = Ящик пополнения СБТех
+ent-CrateVendingMachineRestockSecTechFilled = ящик пополнения СБТех
     .desc = Содержит набор пополнения торгомата СБТех.
 
-ent-CrateVendingMachineRestockSeedsFilled = Ящик пополнения МегаРаздатчик Семян
+ent-CrateVendingMachineRestockSeedsFilled = ящик пополнения МегаРаздатчик Семян
     .desc = Содержит набор пополнения торгомата МегаРаздатчик Семян.
 
-ent-CrateVendingMachineRestockSmokesFilled = Ящик пополнения ШейдиСиг Делюкс
+ent-CrateVendingMachineRestockSmokesFilled = ящик пополнения ШейдиСиг Делюкс
     .desc = Содержит два набора пополнения торгоматов ШейдиСиг Делюкс.
 
-ent-CrateVendingMachineRestockSnacksFilled = Ящик пополнения закусок
+ent-CrateVendingMachineRestockSnacksFilled = ящик пополнения закусок
     .desc = Содержит четыре набора пополнения торгоматов с закусками, по одному на каждую фирму. Мистер Чанг, Дискаунтер Дэна, Пончики Монкинс, и Гетмор Шоколад изображены на вкладыше.
 
-ent-CrateVendingMachineRestockVendomatFilled = Ящик пополнения Вендомат
+ent-CrateVendingMachineRestockVendomatFilled = ящик пополнения Вендомат
     .desc = Содержит набор пополнения торгомата Вендомат.
 
-ent-CrateVendingMachineRestockRoboticsFilled = Ящик пополнения Роботех Делюкс
+ent-CrateVendingMachineRestockRoboticsFilled = ящик пополнения Роботех Делюкс
     .desc = Содержит набор пополнения торгомата Роботех Делюкс.
 
-ent-CrateVendingMachineRestockTankDispenserFilled = Ящик пополнения газовых баллонов
+ent-CrateVendingMachineRestockTankDispenserFilled = ящик пополнения газовых баллонов
     .desc = Содержит набор пополнения атмосферного или инженерного раздатчика газовых баллонов.
 
-ent-CrateVendingMachineRestockHappyHonkFilled = Ящик пополнения Хэппи Хонк
+ent-CrateVendingMachineRestockHappyHonkFilled = ящик пополнения Хэппи Хонк
     .desc = Содержит набор пополнения торгомата Хэппи Хонк.
 
-ent-CrateVendingMachineRestockGetmoreChocolateCorpFilled = Ящик пополнения Гетмор Шоколад Корп.
+ent-CrateVendingMachineRestockGetmoreChocolateCorpFilled = ящик пополнения Гетмор Шоколад Корп.
     .desc = Содержит набор пополнения торгомата Гетмор Шоколад Корп.
 
-ent-CrateVendingMachineRestockChangFilled = Ящик пополнения Чанга
+ent-CrateVendingMachineRestockChangFilled = ящик пополнения Чанга
     .desc = Содержит набор пополнения торгомата Мистер Чанг.
 
-ent-CrateVendingMachineRestockDiscountDansFilled = Ящик пополнения Дискаунтер Дэна
+ent-CrateVendingMachineRestockDiscountDansFilled = ящик пополнения Дискаунтер Дэна
     .desc = Содержит набор пополнения торгомата Дискаунтер Дэна.
 
-ent-CrateVendingMachineRestockDonutFilled = Ящик пополнения Пончики Монкинс
+ent-CrateVendingMachineRestockDonutFilled = ящик пополнения Пончики Монкинс
     .desc = Содержит набор пополнения торгомата Пончики Монкинс.
 
-ent-CrateVendingMachineRestockChemVendFilled = Ящик пополнения ХимТорг
+ent-CrateVendingMachineRestockChemVendFilled = ящик пополнения ХимТорг
     .desc = Содержит набор пополнения торгомата ХимТорг
 
-ent-CrateVendingMachineRestockCondimentStationFilled = Ящик пополнения Островок соусов
+ent-CrateVendingMachineRestockCondimentStationFilled = ящик пополнения Островок соусов
     .desc = Содержит набор пополнения торгомата Островок соусов
 
-ent-CrateVendingMachineRestockChefvendFilled = Ящик пополнения ШефВенд
+ent-CrateVendingMachineRestockChefvendFilled = ящик пополнения ШефВенд
     .desc = Содержит набор пополнения торгомата ШефВенд
 
-ent-CrateVendingMachineRestockAutoDrobeFilled = Ящик пополнения ТеатроШкафа
+ent-CrateVendingMachineRestockAutoDrobeFilled = ящик пополнения ТеатроШкафа
     .desc = Содержит набор пополнения торгомата ТеатроШкафа

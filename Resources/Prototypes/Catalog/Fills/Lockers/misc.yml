@@ -147,6 +147,7 @@
     - id: BalloonSyn
     - id: WeaponSniperMosin
       weight: 2
+    - id: ClothingHandsKnuckleDustersSyndicate
 
 - type: entityTable
   id: MaintenanceLockerLoot
@@ -154,6 +155,8 @@
     children:
     - id: StrangePill
       prob: 0.20
+    - id: BriefcasePresentableAristocrat # Imperial Space Briefcase_Aristocrat Start
+      prob: 0.03 # Imperial Space Briefcase_Aristocrat End
     # Tools
     - !type:NestedSelector
       tableId: MaintToolsTable

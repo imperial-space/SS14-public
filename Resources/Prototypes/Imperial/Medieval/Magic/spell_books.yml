@@ -40,6 +40,7 @@
       MagicMedievalVodka: 80
       MagicMedievalDarkness: 10
       ArchmagePoints: 1
+    depositCount: 5
 
 - type: entity
   parent: MedievalSpellBookBase

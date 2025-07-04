@@ -1,0 +1,21 @@
+- type: entity
+  parent: AirlockSyndicate
+  id: AirlockSSacerdosLocked
+  suffix: Phantom4502, Sacerdos, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNukeop ]
+  - type: Sprite
+    sprite: Imperial/sacerdos/Airlock_sacerdos.rsi
+
+- type: entity
+  parent: AirlockSecurityGlass
+  id: AirlockSacerdosGlassLocked
+  suffix: Phantom4502, Sacerdos, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNukeop ]
+  - type: Sprite
+    sprite: Imperial/sacerdos/Airlock_Glass_sacerdos.rsi

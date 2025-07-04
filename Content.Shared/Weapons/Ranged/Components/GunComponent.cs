@@ -263,6 +263,11 @@ public sealed partial class GunComponent : Component
     /// </summary>
     [DataField]
     public Vector2 DefaultDirection = new Vector2(0, -1);
+
+    // Imperial Medieval Skills start
+    [DataField]
+    public float DefaultSpread = 0f;
+    // Imperial Medieval Skills end
 }
 
 [Flags]

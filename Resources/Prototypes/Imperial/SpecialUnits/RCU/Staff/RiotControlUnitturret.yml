@@ -1,0 +1,8 @@
+- type: entity
+  parent: BaseWeaponTurret
+  id: WeaponTurretRCU
+  suffix: RiotControlUnit
+  components:
+    - type: NpcFactionMember
+      factions:
+        - RiotControlUnit

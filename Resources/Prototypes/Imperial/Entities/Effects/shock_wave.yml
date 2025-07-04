@@ -1,8 +1,8 @@
 - type: entity
   id: ShockWaveEffect
   components:
-  - type: ShockWave
-    speed: 1
+  #- type: ShockWave
+  #  speed: 1
   - type: ShockWaveDistortion
     speed: 1
     thikness: 0.1

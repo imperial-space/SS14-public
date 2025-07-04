@@ -1,22 +1,22 @@
-ent-BaseThruster = Двигатель
+ent-BaseThruster = двигатель
     .desc = Ускоритель, заставляющий шаттл двигаться.
 
 ent-Thruster = { ent-BaseThruster }
     .desc = { ent-BaseThruster.desc }
 
-ent-DebugThruster = Дебаг двигатель
+ent-DebugThruster = дебаг двигатель
     .desc = Делает ньооооооом. Не требует ни питания, ни свободного места.
 
-ent-Gyroscope = Гироскоп
+ent-Gyroscope = гироскоп
     .desc = Увеличивает потенциальное угловое вращение шаттла.
 
-ent-DebugGyroscope = Дебаг гироскоп
+ent-DebugGyroscope = дебаг гироскоп
     .desc = { ent-Gyroscope.desc }
 
 ent-GyroscopeUnanchored = { ent-Gyroscope }
     .suffix = Незакрепленный
     .desc = { ent-Gyroscope.desc }
 
-ent-ThrusterUnanchored = Двигатель
+ent-ThrusterUnanchored = двигатель
     .desc = Ускоритель, заставляющий шаттл двигаться.
     .suffix = незакреплён

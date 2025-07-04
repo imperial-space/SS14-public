@@ -17,19 +17,19 @@ public sealed partial class AddMagicEssence : EntityEffect
 
     public override void Effect(EntityEffectBaseArgs args)
     {
-        if (args is not MagicEntityEffectsArgs magicEntityEffectsArgs) return;
-
-        var enumerator = args.EntityManager.EntityQueryEnumerator<BindStoreOnEquipComponent>();
-
-        while (enumerator.MoveNext(out var spellBookUid, out var bindStoreOnEquipComponent))
-        {
-            if (bindStoreOnEquipComponent.BindedEntity != magicEntityEffectsArgs.Performer) continue;
-
-            foreach (var (currencyPrototype, count) in AddedEssences)
-                TryAddEssence(currencyPrototype, count, spellBookUid, args.EntityManager);
-
-            return;
-        }
+        //if (args is not MagicEntityEffectsArgs magicEntityEffectsArgs) return;
+//
+        //var enumerator = args.EntityManager.EntityQueryEnumerator<BindStoreOnEquipComponent>();
+//
+        //while (enumerator.MoveNext(out var spellBookUid, out var bindStoreOnEquipComponent))
+        //{
+        //    if (bindStoreOnEquipComponent.BindedEntity != magicEntityEffectsArgs.Performer) continue;
+//
+        //    //foreach (var (currencyPrototype, count) in AddedEssences) poka chto was sdelana another system of poluschenie essence
+        //    //    TryAddEssence(currencyPrototype, count, spellBookUid, args.EntityManager);
+//
+        //    return;
+        //}
     }
 
     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) => "";

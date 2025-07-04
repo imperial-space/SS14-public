@@ -1,43 +1,40 @@
-analysis-console-menu-title = аналитическая консоль
+analysis-console-menu-title = Аналитическая консоль
 analysis-console-server-list-button = Список серверов
-analysis-console-scan-button = Сканировать
-analysis-console-scan-tooltip-info = Сканируйте артефакты, чтобы получить данные об их структуре.
-analysis-console-print-button = Печать
-analysis-console-print-tooltip-info = Распечатать актуальную информацию об артефакте.
-analysis-console-extract-button = Извлечь Очки
-analysis-console-extract-button-info = Извлеките очки исследования из артефакта для изучения технологий.
-analysis-console-bias-up = Вверх
-analysis-console-bias-down = Вниз
-analysis-console-bias-button-info-up = Переключает смещение артефакта при перемещении между узлами. Вверх направляет к нулевой глубине.
-analysis-console-bias-button-info-down = Переключает смещение артефакта при перемещении между узлами. Вниз направляет к все большей глубине.
+analysis-console-extract-button = Очки
 
-analysis-console-info-no-scanner = Анализатор не подключен! Пожалуйста, подключите его с помощью мультитула.
-analysis-console-info-no-artifact = Артефакт не найден! Поместите артефакт на платформу, затем просканируйте для получения данных.
-analysis-console-info-ready = Все системы запущены. Сканирование готово.
+analysis-console-info-no-scanner = Анализатор не подключен. Соедините анализатор и консоль используя мультитул.
+analysis-console-info-no-artifact = Артефакт не найден. Поместите артефакт на платформу для начала работы.
+analysis-console-info-ready = Все системы в норме. Доступно сканирование.
 
-analysis-console-info-id = ID_УЗЛА: { $id }
-analysis-console-info-depth = ГЛУБИНА: { $depth }
-analysis-console-info-triggered-true = АКТИВИРОВАН: ДА
-analysis-console-info-triggered-false = АКТИВИРОВАН: НЕТ
-analysis-console-info-effect = РЕАКЦИЯ: { $effect }
-analysis-console-info-trigger = СТИМУЛЯТОР: { $trigger }
-analysis-console-info-edges = КРАЯ: { $edges }
-analysis-console-info-value = ТЕКУЩАЯ_ЦЕННОСТЬ: { $value }
-
+analysis-console-no-node = Выберите узел для просмотра.
+analysis-console-info-id = [font="Monospace" size=11]ID_УЗЛА:[/font]
+analysis-console-info-id-value = [font="Monospace" size=11][color=yellow]{$id}[/color][/font]
+analysis-console-info-class = [font="Monospace" size=11]КЛАСС_УЗЛА:[/font]
+analysis-console-info-class-value = [font="Monospace" size=11]{$class}[/font]
+analysis-console-info-locked = [font="Monospace" size=11]СТАТУС_УЗЛА:[/font]
+analysis-console-info-locked-value = [font="Monospace" size=11][color={ $state ->
+    [0] red]Закрыт
+    [1] lime]Открыт
+    *[2] plum]Активен
+}[/color][/font]
+analysis-console-info-durability = [font="Monospace" size=11]ИСПОЛЬЗОВАНИЯ:[/font]
+analysis-console-info-durability-value = [font="Monospace" size=11][color={$color}]{$current}/{$max}[/color][/font]
+analysis-console-info-effect = [font="Monospace" size=11]РЕАКЦИЯ:[/font]
+analysis-console-info-effect-value = [font="Monospace" size=11][color=gray]{ $state ->
+    [true] {$info}
+    *[false] Разблокируйте узел для получения информации.
+}[/color][/font]
+analysis-console-info-trigger = [font="Monospace" size=11]СТИМУЛЯТОРЫ:[/font]
+analysis-console-info-triggered-value = [font="Monospace" size=11][color=gray]{$triggers}[/color][/font]
 analysis-console-info-scanner = Сканирование...
-analysis-console-info-scanner-paused = Пауза.
+analysis-console-info-scanner-paused = Остановлено.
 analysis-console-progress-text = {$seconds ->
-        [one] T-{$seconds} секунда
-        [few] T-{$seconds} секунды
-       *[other] T-{$seconds} секунд
+    [one] T-{$seconds} секунда
+    *[other] T-{$seconds} секунд
 }
-analysis-console-no-server-connected = Невозможно извлечь. Сервер не подключен.
-analysis-console-no-artifact-placed = На сканере нет артефактов.
-analysis-console-no-points-to-extract = Нет очков для извлечения.
 
-analyzer-artifact-component-upgrade-analysis = длительность анализа
+analysis-console-extract-value = [font="Monospace" size=11][color=orange]Узел {$id} (+{$value})[/color][/font]
+analysis-console-extract-none = [font="Monospace" size=11][color=orange] Ни у одного открытого узла не осталось очков для извлечения. [/color][/font]
+analysis-console-extract-sum = [font="Monospace" size=11][color=orange]Итоговые очки: {$value}[/color][/font]
 
-analysis-console-print-popup = Консоль печатает отчёт.
-analyzer-artifact-extract-popup = Энергия мерцает на поверхности артефакта!
-
-analysis-report-title = Отчёт об артефакте: УЗЕЛ { $id }
+analyzer-artifact-extract-popup = На поверхности артефакта мерцает неизвестная энергия!

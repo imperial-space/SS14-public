@@ -11,12 +11,24 @@ public sealed partial class FactionDataContainerComponent : Component
     /// Участники и информация о них.
     /// </summary>
     [AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadOnly)]
     public Dictionary<ProtoId<MedievalFactionPrototype>, Dictionary<int, FactionMemberData>> CachedMembers = new();
 
     /// <summary>
     /// Цели для каждой из групп каждой из фракций
     /// </summary>
     [AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadOnly)]
     public Dictionary<ProtoId<MedievalFactionPrototype>, Dictionary<FactionMemberGroup, string>> Objectives = new();
+
+    /// <summary>
+    /// Дипломатические отношения между фракциями
+    /// </summary>
+    [AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadOnly)]
+    public Dictionary<ProtoId<MedievalFactionPrototype>, Dictionary<ProtoId<MedievalFactionPrototype>, ProtoId<FactionRelationsPrototype>>> Relations = new();
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public Dictionary<ProtoId<MedievalFactionPrototype>, Dictionary<FactionMemberGroup, List<EntityUid>>> Points = new();
 }
 

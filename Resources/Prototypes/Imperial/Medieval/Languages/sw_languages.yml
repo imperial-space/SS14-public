@@ -2,6 +2,7 @@
   id: Goblin
   roundstart: false
   priority: 2
+  highIntelligenceAllowed: true
   parent: BaseVocalLanguage
   speech: !type:Generic
     font: SpellwardBlackCraftFont
@@ -21,6 +22,7 @@
   id: Ancient
   roundstart: false
   priority: 2
+  highIntelligenceAllowed: true
   parent: BaseVocalLanguage
   speech: !type:Generic
     font: SpellwardBeeBoopFont
@@ -56,6 +58,7 @@
   id: Tribe
   roundstart: false
   priority: 2
+  highIntelligenceAllowed: true
   parent: BaseVocalLanguage
   speech: !type:Generic
     font: SpellwardTanaUncialFont
@@ -91,6 +94,7 @@
   id: Orc
   roundstart: false
   priority: 2
+  highIntelligenceAllowed: true
   parent: BaseVocalLanguage
   speech: !type:Generic
     font: SpellwardInsulaGFont
@@ -126,6 +130,7 @@
   id: Cursed
   roundstart: false
   priority: 2
+  highIntelligenceAllowed: true
   parent: BaseVocalLanguage
   speech: !type:Generic
     font: SpellwardGothicFont
@@ -161,6 +166,7 @@
   id: Growling
   roundstart: false
   priority: 2
+  highIntelligenceAllowed: true
   parent: BaseVocalLanguage
   speech: !type:Generic
     font: SpellwardDiabloFont
@@ -196,6 +202,7 @@
   id: Hissing
   roundstart: false
   priority: 2
+  highIntelligenceAllowed: true
   parent: BaseVocalLanguage
   speech: !type:Generic
     font: SpellwardHoneyBeeGFont
@@ -228,9 +235,19 @@
     - щей
 
 - type: language
+  id: Myrmex
+  roundstart: false
+  priority: 10
+  highIntelligenceAllowed: false
+  speech: !type:CollectiveMind
+    showRank: false
+    color: orange
+
+- type: language
   id: Elf
   roundstart: false
   priority: 2
+  highIntelligenceAllowed: true
   parent: BaseVocalLanguage
   speech: !type:Generic
     font: SpellwardChristmasFont

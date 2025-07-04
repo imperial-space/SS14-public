@@ -20,9 +20,11 @@
   - type: BallisticAmmoProvider
     proto: CartridgeMinigunR
     capacity: 1000
-  - type: Wieldable
-  - type: GunRequiresWield
+  - type: MultiHandedItem
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
         ents: []
+  - type: ClothingFactionExplosion
+    friendlyFaction: DeathSquad
+    chance: 1

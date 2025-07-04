@@ -1,7 +1,7 @@
-ent-CrateSalvageEquipment = Ящик снаряжения утилизатора
+ent-CrateSalvageEquipment = ящик снаряжения утилизатора
     .desc = Для отважных.
 
-ent-CrateSalvageAssortedGoodies = Ящик
+ent-CrateSalvageAssortedGoodies = ящик
     .desc = Обычный ящик
 
 ent-CratePartsT3 = ящик компонентов 3 уровня
@@ -12,3 +12,6 @@ ent-CratePartsT3T4 = ящик компонентов 3/4 уровня
 
 ent-CratePartsT4 = ящик компонентов 4 уровня
     .desc = Содержит 5 случайных компонентов четвёртого уровня для улучшения оборудования.
+
+ent-CrateCargoParcelWrap = ящик для упаковки посылок
+    .desc = Все, что нужно для упаковки посылок, в одном ящике, содержит три рулона посылочной пленки.

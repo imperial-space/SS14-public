@@ -18,4 +18,4 @@ particle-accelerator-radio-message-off = Питание УЧ было выклю
 particle-accelerator-radio-message-num = Мощность УЧ установлена на уровень { $level }.
 particle-accelerator-control-menu-status-unknown = [font="Monospace"][color=red]Нет данных[/color][/bold]
 particle-accelerator-control-menu-draw-value = [font="Monospace"]{ $watts }/{ $lastReceive }[/font]
-particle-accelerator-control-menu-draw = [bold]Нарисовать:[/bold]
+particle-accelerator-control-menu-draw = [bold]Энергия:[/bold]

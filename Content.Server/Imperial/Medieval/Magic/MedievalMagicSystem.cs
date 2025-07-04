@@ -7,13 +7,12 @@ using Content.Server.Imperial.MouseInput;
 using Content.Server.Imperial.TargetOverlay;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Imperial.Medieval.Language;
-using Content.Shared.Damage;
 using Content.Shared.Imperial.Medieval.Magic;
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Prometheus;
 
 namespace Content.Server.Imperial.Medieval.Magic;
 
@@ -36,11 +35,18 @@ public sealed partial class MedievalMagicSystem : SharedMedievalMagicSystem
     [Dependency] private readonly MedievalHomingProjectileSystem _homingProjectileSystem = default!;
     [Dependency] private readonly TargetOverlaySystem _targetOverlaySystem = default!;
     [Dependency] private readonly ImperialLightningSystem _lightningSystem = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly SharedBroadphaseSystem _broadphaseSystem = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+
+    private static readonly Gauge SpellCastedMetrics = Metrics.CreateGauge(
+        "imperial_medieval_spell_casted",
+        "Dictionary of casting spells"
+    );
+    private static readonly Gauge SpellSuccessCastedMetrics = Metrics.CreateGauge(
+        "imperial_medieval_spell_success_casted",
+        "Dictionary of casting spells"
+    );
 
 
     public override void Initialize()
@@ -85,6 +91,22 @@ public sealed partial class MedievalMagicSystem : SharedMedievalMagicSystem
                 );
             }
         }
+    }
+
+    protected override void OnSpellDoAfterCast(EntityUid uid, MedievalSpellCasterComponent component, MedievalSpellDoAfterEvent args)
+    {
+        base.OnSpellDoAfterCast(uid, component, args);
+
+        var spellData = GetSpellData(args);
+        SpellCastedMetrics.WithLabels(MetaData(GetEntity(spellData.Action)).EntityName).Inc();
+    }
+
+    protected override void CastSpell(MedievalSpellDoAfterEvent args)
+    {
+        base.CastSpell(args);
+
+        var spellData = GetSpellData(args);
+        SpellSuccessCastedMetrics.WithLabels(MetaData(GetEntity(spellData.Action)).EntityName).Inc();
     }
 
     #region Helpers

@@ -13,3 +13,4 @@ changelog-button-new-entries = Обновление (!)
 changelog-tab-title-Changelog = Обновление
 changelog-tab-title-Admin = Админ
 changelog-tab-title-Imperial = Imperial
+changelog-tab-title-Maps = Карты

@@ -32,6 +32,12 @@
       },
       {
         "name": "tribe"
+      },
+      {
+        "name": "village"
+      },
+      {
+        "name": "kayot"
       }
     ]
   }

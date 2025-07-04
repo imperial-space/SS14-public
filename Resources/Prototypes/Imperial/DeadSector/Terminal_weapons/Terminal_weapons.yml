@@ -1,0 +1,37 @@
+- type: entity
+  parent: BaseMachine
+  id: Terminal_weapons
+  suffix: ElysiumPrime
+  name: Terminal_weapons
+  description: super weapon uplink
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/Terminal_weapons.rsi
+    layers:
+    - state: weapon
+    - state: weapon_unshaded
+      shader: unshaded
+      visible: true
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.StoreUiKey.Key
+  - type: Store
+    categories:
+    - Pistols
+    - Carbines
+    - Rifles 
+    - Heavy 
+    - Explosive 
+    - Shotguns 
+    - Manual 
+    - Ammunition_supplies
+    - Armor_Terminal_Weapon
+    - Helmet_Terminal_Weapon
+    currencyWhitelist:
+    -  FederationCash
+    balance:
+       FederationCash: 0

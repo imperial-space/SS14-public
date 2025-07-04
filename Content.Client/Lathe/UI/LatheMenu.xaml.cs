@@ -82,6 +82,8 @@ public sealed partial class LatheMenu : DefaultWindow
             {
                 ServerListButton.Visible = false;
             }
+
+            AmountLineEdit.SetText(latheComponent.DefaultProductionAmount.ToString());
         }
 
         // Imperial PrinterDoc
@@ -92,16 +94,6 @@ public sealed partial class LatheMenu : DefaultWindow
         }
 
         MaterialsList.SetOwner(Entity);
-    }
-
-    protected override void Opened()
-    {
-        base.Opened();
-
-        if (_entityManager.TryGetComponent<LatheComponent>(Entity, out var latheComp))
-        {
-            AmountLineEdit.SetText(latheComp.DefaultProductionAmount.ToString());
-        }
     }
 
     /// <summary>

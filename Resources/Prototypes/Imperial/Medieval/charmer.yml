@@ -2251,11 +2251,11 @@
   description: Nooo, I don't wanna be monkey!
   noSpawn: true
   components:
-  - type: PolymorphOnCollide
-    polymorph: MedievalSkelet
-    whitelist:
-      components:
-      - Body
+  #- type: PolymorphOnCollide
+  #  polymorph: MedievalSkelet
+  #  whitelist:
+  #    components:
+  #    - Body
   - type: TimedDespawn
     lifetime: 0.1
   - type: Sprite

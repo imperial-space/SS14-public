@@ -1,2 +1,2 @@
-ent-ERTCallCrateMineShieldImplant = Ящик подавления революций
+ent-ERTCallCrateMineShieldImplant = ящик подавления революций
       .desc = Универсальный набор для подавления попыток насильственного свержения власти.

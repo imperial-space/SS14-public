@@ -50,31 +50,31 @@
     tags:
     - WhitelistChameleon
 
-# - type: entity # Убрано для соблюдения лицензии временно
-#   parent: ClothingHeadBase
-#   id: USSPstormdivisionUshanka
-#   name: Helmet S-o.N.A
-#   suffix: Vl, S-o.N.A
-#   description: Helmet of the elite security of the S-o.N.A. AI Dynamics Corporation.
-#   components:
-#   - type: Item
-#     size: Small
-#   - type: Sprite
-#     sprite: Imperial/ussp/stormdivision/ushanka.rsi
-#   - type: Clothing
-#     sprite: Imperial/ussp/stormdivision/ushanka.rsi
-#   - type: Armor
-#     modifiers:
-#       coefficients:
-#         Blunt: 0.9
-#         Slash: 0.9
-#         Piercing: 0.9
-#         Heat: 0.9
-#   - type: Tag
-#     tags:
-#     - WhitelistChameleon
-#   - type: ExplosionResistance
-#     damageCoefficient: 0.9
+- type: entity 
+  parent: ClothingHeadBase
+  id: USSPstormdivisionUshanka
+  name: Helmet USSP
+  suffix: Vl, USSP
+  description: Helmet of the elite security of the S-o.N.A. AI Dynamics Corporation.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/ussp/stormdivision/ushanka.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/stormdivision/ushanka.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
 
 - type: entity
   parent: ClothingHeadBase
@@ -212,30 +212,30 @@
   - type: ExplosionResistance
     damageCoefficient: 0.9
 
-# - type: entity # Убрано для соблюдения лицензии временно
-#   parent: [ClothingHeadHardsuitBase , ClothingHeadSuitWithLightBase]
-#   id: USSPHardsuitRedHelmet
-#   name: brigmedic hardsuit helmet
-#   description: The lightweight helmet of the brigmedic hardsuit. Protects against viruses, and clowns.
-#   components:
-#   - type: BreathMask
-#   - type: Sprite
-#     sprite: Imperial/ussp/hardsuits/redhelm.rsi
-#   - type: Clothing
-#     sprite: Imperial/ussp/hardsuits/redhelm.rsi
-#   - type: PointLight
-#     color: "#339900"
-#   - type: Armor
-#     modifiers:
-#       coefficients:
-#         Blunt: 0.9
-#         Slash: 0.9
-#         Piercing: 0.9
-#         Heat: 0.9
-#         Radiation: 0.9
-#         Caustic: 0.9
-#   - type: PressureProtection
-#     highPressureMultiplier: 0.6
-#     lowPressureMultiplier: 1000
-#   - type: ExplosionResistance
-#     damageCoefficient: 0.9
+- type: entity 
+  parent: [ClothingHeadHardsuitBase , ClothingHeadSuitWithLightBase]
+  id: USSPHardsuitBlueHelmet
+  name: Imperial Division helmet
+  description: The lightweight helmet of the brigmedic hardsuit. Protects against viruses, and clowns.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: Imperial/ussp/hardsuits/bluehelm.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/hardsuits/bluehelm.rsi
+  - type: PointLight
+    color: "#339900"
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+        Radiation: 0.9
+        Caustic: 0.9
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.9

@@ -193,8 +193,8 @@
     damage:
       types:
         Blunt: 8
-  - type: NeedSleepRaceModifier
-    modifier: 1.18
+  - type: NeedSleep
+    sleepLevelPerUpdate: 0.35
   - type: BadSmellRaceModifier
     modifier: 1.15
 

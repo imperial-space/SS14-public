@@ -22,6 +22,22 @@
           - HumanoidAppearance
           - NocturnBadFood
 
+- type: entity
+  id: NocturnDisguiseAction
+  name: Apply a disguise
+  description: Use a disguise to take on a human form. If there is a lack of blood, the ability will become unavailable.
+  components:
+    - type: InstantAction
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Vampire/actions.rsi
+        state: disguise_off
+      iconOn:
+        sprite: /Textures/Imperial/Medieval/Vampire/actions.rsi
+        state: disguise_on
+      event: !type:NocturnDisguiseActionEvent
+      useDelay: 30
+
 - type: alert
   id: NocturnBlood
   icons:
@@ -102,6 +118,19 @@
       icon:
         sprite: /Textures/Imperial/Medieval/Misc/cloack_message.rsi
         state: bandits
+      event: !type:CloackMessageActionEvent
+
+- type: entity
+  id: CloackMessageActionKayot
+  name: not infection
+  description: magic
+  noSpawn: true
+  components:
+    - type: InstantAction
+      useDelay: 90
+      icon:
+        sprite: /Textures/Imperial/Medieval/Misc/cloack_message.rsi
+        state: naemniki
       event: !type:CloackMessageActionEvent
 
 - type: entity

@@ -1,0 +1,364 @@
+﻿- type: entity
+  id: BaseAreaMarker
+  parent: MarkerBase
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-placeholder-name
+  - type: Sprite
+    layers:
+    - state: location
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        hard: false
+
+- type: entity
+  id: AreaMarkerPortNearby
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-port-nearby
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/legbels.ogg
+
+- type: entity
+  id: AreaMarkerSand
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-sand
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/general2.ogg
+
+- type: entity
+  id: AreaMarkerWestCoast
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-west-coast
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/general.ogg
+
+- type: entity
+  id: AreaMarkerEastCoast
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-east-coast
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/general.ogg
+
+- type: entity
+  id: AreaMarkerFlowerForest
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-flower-forest
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/general.ogg
+
+- type: entity
+  id: AreaMarkerFlowerForestNear
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-flower-forest-near
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/general.ogg
+
+- type: entity
+  id: AreaMarkerPortLegion
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-port-legion
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/legbels.ogg
+
+- type: entity
+  id: AreaMarkerCollegiumNearby
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-collegium-nearby
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/college.ogg
+
+- type: entity
+  id: AreaMarkerCollegium
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-collegium
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/college.ogg
+
+- type: entity
+  id: AreaMarkerSwamp
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-swamp
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/swamp.ogg
+
+- type: entity
+  id: AreaMarkerTavern
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-tavern
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/general.ogg
+
+- type: entity
+  id: AreaMarkerNecro
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-necro
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/necropolis.ogg
+
+- type: entity
+  id: AreaMarkerHell
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-hell
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/chapel.ogg
+
+- type: entity
+  id: AreaMarkerCult
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-cult
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/cult.ogg
+
+- type: entity
+  id: AreaMarkerMine
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-mine
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/mineshaft.ogg
+
+- type: entity
+  id: AreaMarkerChapel
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-chapel
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/chapel.ogg
+
+- type: entity
+  id: AreaMarkerIns
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-ins
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/legbels.ogg
+
+- type: entity
+  id: AreaMarkerGoblin
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-goblin
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/mineshaft.ogg
+
+- type: entity
+  id: AreaMarkerPiramid
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-piramid
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/general2.ogg
+
+- type: entity
+  id: AreaMarkerSklep
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-sklep
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/general2.ogg
+
+- type: entity
+  id: AreaMarkerNorth
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-north
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/general.ogg
+
+- type: entity
+  id: AreaMarkerBand
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-band
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/general2.ogg
+
+- type: entity
+  id: AreaMarkerMerc
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-merc
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/general.ogg
+
+- type: entity
+  id: AreaMarkerVillage
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-village
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/general.ogg
+
+- type: entity
+  id: AreaMarkerTribe
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-tribe
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/general2.ogg
+
+- type: entity
+  id: AreaMarkerPrison
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-prison
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/mineshaft.ogg

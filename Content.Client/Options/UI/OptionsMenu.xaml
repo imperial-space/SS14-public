@@ -9,9 +9,9 @@
         <tabs:KeyRebindTab Name="KeyRebindTab" />
         <tabs:AudioTab Name="AudioTab" />
         <tabs:AccessibilityTab Name="AccessibilityTab" />
+        <tabs:AdminOptionsTab Name="AdminOptionsTab" />
         <!-- Imperial Options -->
         <imperial:ImperialOptionsMenuTab Name="ImperialTab" />
         <!-- Imperial Options -->
-        <tabs:AdminOptionsTab Name="AdminOptionsTab" />
     </TabContainer>
 </DefaultWindow>

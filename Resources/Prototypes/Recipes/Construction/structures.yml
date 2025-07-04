@@ -7,9 +7,6 @@
   targetNode: girder
   category: construction-category-structures
   description: Большой металлический каркас. Его необходимо покрыть листами стали, чтобы он считался стеной. # Imperial Recipes Locale
-  icon:
-    sprite: /Textures/Structures/Walls/solid.rsi
-    state: wall_girder
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -26,9 +23,6 @@
   targetNode: reinforcedGirder
   category: construction-category-structures
   description: Большой каркас из металла и стали. Его необходимо покрыть листами пластали, чтобы он считался стеной. # Imperial Recipes Locale
-  icon:
-    sprite: /Textures/Structures/Walls/solid.rsi
-    state: reinforced_wall_girder
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -45,9 +39,6 @@
   targetNode: clockGirder
   category: construction-category-structures
   description: Огромная шестерня с кронштейнами для дополнительного покрытия. С помощью листов латуни её можно превратить в стену. # Imperial Recipes Locale
-  icon:
-    sprite: /Textures/Structures/Walls/clock.rsi
-    state: wall_gear
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -64,9 +55,6 @@
   targetNode: wall
   category: construction-category-structures
   description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/solid.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -83,9 +71,6 @@
   targetNode: reinforcedWall
   category: construction-category-structures
   description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/solid.rsi
-    state: rgeneric
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -102,9 +87,6 @@
   targetNode: clockworkWall
   category: construction-category-structures
   description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/clock.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -121,9 +103,6 @@
   targetNode: woodWall
   category: construction-category-structures
   description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/wood.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -140,9 +119,6 @@
   targetNode: uraniumWall
   category: construction-category-structures
   description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/uranium.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -159,9 +135,6 @@
   targetNode: silverWall
   category: construction-category-structures
   description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/silver.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -178,9 +151,6 @@
   targetNode: plasticWall
   category: construction-category-structures
   description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/plastic.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -197,9 +167,6 @@
   targetNode: plasmaWall
   category: construction-category-structures
   description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/plasma.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -216,9 +183,6 @@
   targetNode: goldWall
   category: construction-category-structures
   description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/gold.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -235,9 +199,6 @@
   targetNode: shuttleWall
   category: construction-category-structures
   description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/shuttle.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -254,9 +215,6 @@
   targetNode: shuttleInteriorWall
   category: construction-category-structures
   description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/shuttleinterior.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -273,9 +231,7 @@
   targetNode: diagonalshuttleWall
   category: construction-category-structures
   description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/shuttle_diagonal.rsi
-    state: state0
+
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
@@ -292,9 +248,7 @@
   targetNode: bananiumWall
   category: construction-category-structures
   description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/clown.rsi
-    state: full
+
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -311,9 +265,7 @@
   targetNode: meatWall
   category: construction-category-structures
   description: Липко. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/meat.rsi
-    state: full
+
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -333,9 +285,6 @@
   conditions:
     - !type:TileNotBlocked
       failIfSpace: false
-  icon:
-    sprite: Structures/Walls/grille.rsi
-    state: grille
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -353,9 +302,6 @@
   conditions:
     - !type:TileNotBlocked
       failIfSpace: false
-  icon:
-    sprite: Structures/Walls/clockwork_grille.rsi
-    state: ratvargrille
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -372,9 +318,6 @@
   conditions:
     - !type:TileNotBlocked
       failIfSpace: false
-  icon:
-    sprite: Structures/Walls/grille.rsi
-    state: grille_diagonal
   objectType: Structure
   placementMode: SnapgridCenter
 
@@ -390,9 +333,6 @@
   conditions:
     - !type:TileNotBlocked
       failIfSpace: false
-  icon:
-    sprite: Structures/Walls/clockwork_grille.rsi
-    state: ratvargrille_diagonal
   objectType: Structure
   placementMode: SnapgridCenter
 
@@ -409,9 +349,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/window.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -429,9 +366,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/window_diagonal.rsi
-    state: state1
   objectType: Structure
   placementMode: SnapgridCenter
 
@@ -448,9 +382,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/reinforced_window.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -468,9 +399,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/reinforced_window_diagonal.rsi
-    state: state1
   objectType: Structure
   placementMode: SnapgridCenter
 
@@ -487,9 +415,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/tinted_window.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -507,9 +432,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/clockwork_window.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -527,9 +449,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/clockwork_diagonal.rsi
-    state: state0
   objectType: Structure
   placementMode: SnapgridCenter
 
@@ -546,9 +465,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/plasma_window.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -566,9 +482,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/reinforced_plasma_window.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -586,9 +499,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/shuttle_window.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -606,9 +516,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/plasma_diagonal.rsi
-    state: state1
   objectType: Structure
   placementMode: SnapgridCenter
 
@@ -625,9 +532,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/reinforced_plasma_diagonal.rsi
-    state: state1
   objectType: Structure
   placementMode: SnapgridCenter
 
@@ -644,9 +548,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/directional.rsi
-    state: window
   objectType: Structure
   placementMode: SnapgridCenter
 
@@ -663,9 +564,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/directional.rsi
-    state: reinforced_window
   objectType: Structure
   placementMode: SnapgridCenter
 
@@ -682,9 +580,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/directional.rsi
-    state: clock_window
   objectType: Structure
   placementMode: SnapgridCenter
 
@@ -701,9 +596,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/directional.rsi
-    state: plasma_window
   objectType: Structure
   placementMode: SnapgridCenter
 
@@ -720,9 +612,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/directional.rsi
-    state: plasma_reinforced_window
   objectType: Structure
   placementMode: SnapgridCenter
 
@@ -739,9 +628,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/uranium_window.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -759,9 +645,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/reinforced_uranium_window.rsi
-    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -779,9 +662,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/uranium_window_diagonal.rsi
-    state: state1
   objectType: Structure
   placementMode: SnapgridCenter
 
@@ -798,9 +678,6 @@
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
-  icon:
-    sprite: Structures/Windows/reinforced_uranium_diagonal.rsi
-    state: state1
   objectType: Structure
   placementMode: SnapgridCenter
 
@@ -813,9 +690,7 @@
   targetNode: Firelock
   category: construction-category-structures
   description: Это пожарный шлюз – он запирает помещение при срабатывании пожарной сигнализации на участке. Не станьте лепёшкой! # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Doors/Airlocks/Standard/firelock.rsi
-    state: closed
+
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -832,9 +707,7 @@
   targetNode: FirelockGlass
   category: construction-category-structures
   description: Это пожарный шлюз – он запирает помещение при срабатывании пожарной сигнализации на участке. Не станьте лепёшкой! # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Doors/Airlocks/Glass/firelock.rsi
-    state: closed
+
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -851,14 +724,25 @@
   targetNode: FirelockEdge
   category: construction-category-structures
   description: Это пожарный шлюз – он запирает помещение при срабатывании пожарной сигнализации на участке. Не станьте лепёшкой! # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Doors/edge_door_hazard.rsi
-    state: closed
+
   placementMode: SnapgridCenter
   objectType: Structure
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+- type: construction
+  hide: true # imperial medieval craft disable
+  id: Turnstile
+  graph: Turnstile
+  startNode: start
+  targetNode: turnstile
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
 
 - type: construction
   hide: true # imperial medieval craft disable
@@ -869,9 +753,7 @@
   targetNode: Shutters
   category: construction-category-structures
   description: Это ставни - подключите их к кнопке, чтобы открыть и закрыть. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Doors/Shutters/shutters.rsi
-    state: closed
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -885,9 +767,7 @@
   targetNode: ShuttersWindow
   category: construction-category-structures
   description: Это ставни - подключите их к кнопке, чтобы открыть и закрыть. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Doors/Shutters/shutters_window.rsi
-    state: closed
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -901,9 +781,7 @@
   targetNode: ShuttersRadiation
   category: construction-category-structures
   description: то ставни - подключите их к кнопке, чтобы открыть и закрыть. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Doors/Shutters/shutters_radiation.rsi
-    state: closed
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -917,9 +795,7 @@
   targetNode: blastdoor
   category: construction-category-structures
   description: Имеется надпись "ОПАСНОСТЬ ВЗРЫВА". # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Doors/Shutters/blastdoor.rsi
-    state: closed
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
@@ -940,9 +816,6 @@
       targets:
         - Lattice
         - Plating
-  icon:
-    sprite: Structures/catwalk.rsi
-    state: catwalk_preview
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -962,9 +835,6 @@
     - !type:TileType
       targets:
         - Plating
-  icon:
-    sprite: Tiles/Misc/bananium.rsi
-    state: bananium
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -977,9 +847,7 @@
   targetNode: barricadefull
   category: construction-category-structures
   description: Импровизированная баррикада из деревянных досок. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/barricades.rsi
-    state: barricade_full
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -994,9 +862,7 @@
   targetNode: barricadefull
   category: construction-category-structures
   description: Импровизированная баррикада из деревянных досок. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/barricades.rsi
-    state: barricade_directional
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1012,9 +878,7 @@
   targetNode: railing
   category: construction-category-structures
   description: Простые перила, предназначенные для защиты таких идиотов, как ты, от падения. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/railing.rsi
-    state: side
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1030,9 +894,7 @@
   targetNode: railingCorner
   category: construction-category-structures
   description: Простые перила, предназначенные для защиты таких идиотов, как ты, от падения. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/railing.rsi
-    state: corner
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1048,9 +910,7 @@
   targetNode: railingCornerSmall
   category: construction-category-structures
   description: Простые перила, предназначенные для защиты таких идиотов, как ты, от падения. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/railing.rsi
-    state: corner_small
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1066,9 +926,7 @@
   targetNode: railingRound
   category: construction-category-structures
   description: Простые перила, предназначенные для защиты таких идиотов, как ты, от падения. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/railing.rsi
-    state: round
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1085,9 +943,7 @@
   targetNode: straight
   category: construction-category-structures
   description: Часть сетчатого забора, предназначенная для ограждения территорий. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/fence.rsi
-    state: straight
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1103,9 +959,7 @@
   targetNode: corner
   category: construction-category-structures
   description: Часть сетчатого забора, предназначенная для ограждения территорий. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/fence.rsi
-    state: corner
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1121,9 +975,7 @@
   targetNode: end
   category: construction-category-structures
   description: Часть сетчатого забора, предназначенная для ограждения территорий. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/fence.rsi
-    state: end
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1139,9 +991,7 @@
   targetNode: gate
   category: construction-category-structures
   description: Простой способ пройти через сетчатый забор. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/fence.rsi
-    state: door_closed
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1157,9 +1007,7 @@
   targetNode: straight
   category: construction-category-structures
   description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/wooden_fence.rsi
-    state: straight
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1174,9 +1022,7 @@
   targetNode: end
   category: construction-category-structures
   description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/wooden_fence.rsi
-    state: end
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1191,9 +1037,7 @@
   targetNode: corner
   category: construction-category-structures
   description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/wooden_fence.rsi
-    state: corner
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1208,9 +1052,7 @@
   targetNode: tjunction
   category: construction-category-structures
   description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/wooden_fence.rsi
-    state: tjunction
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1225,9 +1067,7 @@
   targetNode: gate
   category: construction-category-structures
   description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/wooden_fence.rsi
-    state: door_closed
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1243,9 +1083,7 @@
   targetNode: straight_small
   category: construction-category-structures
   description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/wooden_fence.rsi
-    state: straight_small
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1260,9 +1098,7 @@
   targetNode: end_small
   category: construction-category-structures
   description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/wooden_fence.rsi
-    state: end_small
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1277,9 +1113,7 @@
   targetNode: corner_small
   category: construction-category-structures
   description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/wooden_fence.rsi
-    state: corner_small
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1294,9 +1128,7 @@
   targetNode: tjunction_small
   category: construction-category-structures
   description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/wooden_fence.rsi
-    state: tjunction_small
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1311,9 +1143,7 @@
   targetNode: gate_small
   category: construction-category-structures
   description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Walls/wooden_fence.rsi
-    state: door_closed_small
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1330,9 +1160,7 @@
   targetNode: airlock
   category: construction-category-structures
   description: Он открывается, он закрывается, и он может вас раздавить. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Doors/Airlocks/Standard/basic.rsi
-    state: assembly
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1348,9 +1176,7 @@
   targetNode: glassAirlock
   category: construction-category-structures
   description: Он открывается, он закрывается, и он может вас раздавить. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Doors/Airlocks/Glass/glass.rsi
-    state: assembly
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1366,9 +1192,7 @@
   targetNode: airlock
   category: construction-category-structures
   description: Он открывается, он закрывается, и он может вас раздавить. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Doors/Airlocks/Standard/clockwork_pinion.rsi
-    state: assembly
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1384,9 +1208,7 @@
   targetNode: glassAirlock
   category: construction-category-structures
   description: Он открывается, он закрывается, и он может вас раздавить. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Doors/Airlocks/Glass/clockwork_pinion.rsi
-    state: assembly
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1402,9 +1224,7 @@
   targetNode: airlock
   category: construction-category-structures
   description: Он открывается, он закрывается, и он может вас раздавить. Необходим для стыковки двух космических кораблей. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Doors/Airlocks/Glass/shuttle.rsi
-    state: closed
+
   #  state: assembly
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1421,9 +1241,7 @@
   targetNode: airlockGlass
   category: construction-category-structures
   description: Он открывается, он закрывается, и он может вас раздавить. Необходим для стыковки двух космических кораблей. В этом есть окно. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Doors/Airlocks/Glass/shuttle.rsi
-    state: closed
+
   #  state: assembly
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1440,9 +1258,7 @@
   targetNode: windoor
   category: construction-category-structures
   description: Оно открывается, закрывается, и вы можете видеть сквозь него! Может быть изготовлено из плазмы, урана или обычного стекла! # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Doors/Windoors/windoor.rsi
-    state: closed
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1458,9 +1274,7 @@
   targetNode: windoorSecure
   category: construction-category-structures
   description: Оно открывается, закрывается, и вы можете видеть сквозь него! Может быть изготовлен из плазмы, урана или обычного стекла! # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Doors/Windoors/windoor.rsi
-    state: closed
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1476,9 +1290,7 @@
   targetNode: windoorClockwork
   category: construction-category-structures
   description: Оно открывается, закрывается, и вы можете видеть сквозь него! Выглядит жестко. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Doors/Windoors/clockwork_windoor.rsi
-    state: closed
+
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1495,9 +1307,7 @@
   targetNode: tubeLight
   category: construction-category-structures
   description: Настенный светильник. Использует лампы-трубки. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Wallmounts/Lighting/light_tube.rsi
-    state: base
+
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
@@ -1516,9 +1326,7 @@
   targetNode: bulbLight
   category: construction-category-structures
   description: Настенный светильник. Использует лампочки. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Wallmounts/Lighting/light_small.rsi
-    state: base
+
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
@@ -1536,9 +1344,7 @@
   targetNode: emergencyLight
   category: construction-category-structures
   description: Аварийная лампа. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Wallmounts/Lighting/emergency_light.rsi
-    state: base
+
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
@@ -1555,9 +1361,7 @@
   targetNode: groundLight
   category: construction-category-structures
   description: Маленький осветительный прибор. Использует лампочки. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Lighting/LightPosts/small_light_post.rsi
-    state: base
+
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -1574,9 +1378,7 @@
   targetNode: strobeLight
   category: construction-category-structures
   description: Настенный светильник. Используйте лампочки. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Wallmounts/Lighting/strobe_light.rsi
-    state: base
+
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
@@ -1597,9 +1399,6 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/conveyor.rsi
-    state: conveyor_stopped_cw
   conditions:
     - !type:TileNotBlocked
 
@@ -1615,9 +1414,6 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Doors/MineralDoors/metal_door.rsi
-    state: closed
   conditions:
     - !type:TileNotBlocked
 
@@ -1633,9 +1429,6 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Doors/MineralDoors/wood_door.rsi
-    state: closed
   conditions:
     - !type:TileNotBlocked
 
@@ -1651,9 +1444,6 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Doors/MineralDoors/plasma_door.rsi
-    state: closed
   conditions:
     - !type:TileNotBlocked
 
@@ -1669,9 +1459,6 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Doors/MineralDoors/gold_door.rsi
-    state: closed
   conditions:
     - !type:TileNotBlocked
 
@@ -1687,9 +1474,6 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Doors/MineralDoors/silver_door.rsi
-    state: closed
   conditions:
     - !type:TileNotBlocked
 
@@ -1705,9 +1489,6 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Doors/MineralDoors/paper_door.rsi
-    state: closed
 
 - type: construction
   hide: true # imperial medieval craft disable
@@ -1721,9 +1502,6 @@
   description: Пластиковые шторки, позволяющие пропускать только предметы. # Imperial Recipes Locale
   objectType: Structure
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/plastic_flaps.rsi
-    state: plasticflaps
   conditions:
     - !type:TileNotBlocked
 
@@ -1739,9 +1517,6 @@
   description: Непрозрачные пластиковые шторки, позволяющие пропускать только предметы. # Imperial Recipes Locale
   objectType: Structure
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/plastic_flaps.rsi
-    state: plasticflaps
   conditions:
     - !type:TileNotBlocked
 
@@ -1757,9 +1532,6 @@
   description: Статуя одного из отважных карпов, которые привели нас туда, где мы находимся сегодня. Сделана из настоящих зубов! # Imperial Recipes Locale
   objectType: Structure
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Specific/carp_statue.rsi
-    state: icon
   conditions:
   - !type:TileNotBlocked
 
@@ -1775,9 +1547,6 @@
   description: Бананиумовая статуя, изображающая возвращение спасителя, который поведет всех клоунов на великий побег от СБ! # Imperial Recipes Locale
   objectType: Structure
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Decoration/statues.rsi
-    state: bananium_clown
   conditions:
     - !type:TileNotBlocked
 
@@ -1793,9 +1562,6 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Doors/MineralDoors/bananium_door.rsi
-    state: closed
   conditions:
     - !type:TileNotBlocked
 
@@ -1808,9 +1574,7 @@
   targetNode: bananiumAltar
   category: construction-category-structures
   description: Бананиумовый алтарь, посвященный Великой Хонкоматери. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Furniture/Altars/Cults/bananium.rsi
-    state: full
+
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -1820,18 +1584,27 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Секретная дверь # Imperial Recipes Locale
   id: SolidSecretDoor
+  name: Секретная дверь # Imperial Recipes Locale
+  description: Секретная дверь, замаскированная под обычную стену. # Imperial Recipes Locale
   graph: SecretDoor
   startNode: start
   targetNode: solidSecretDoor
   category: construction-category-structures
-  description: Секретная дверь, замаскированная под обычную стену. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Doors/secret_door.rsi
-    state: closed
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: FungalSoil
+  graph: Soil
+  startNode: start
+  targetNode: fungalSoil
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked

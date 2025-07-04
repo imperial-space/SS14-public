@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server.Actions;
 using Content.Server.GameTicking;
+using Content.Server.Imperial.Medieval.CombatStance;
 using Content.Server.MedievalPasport;
 using Content.Server.MedievalPasport.Components;
 using Content.Server.Mind;
@@ -26,6 +28,7 @@ public sealed partial class FriendsSystem
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly IEntitySystemManager _entity = default!;
 
     private int _nextId = 1;
 
@@ -78,7 +81,8 @@ public sealed partial class FriendsSystem
             selfIdent.KnownIds.Add(ident.Identifier);
             Dirty(ent.Value, ident);
         }
-
+        if (comp.MenuAccess == FactionMenuAccess.Full)
+            _action.AddAction(uid, "FactionRadialPointsMenu");
         Dirty(uid, selfIdent);
     }
 
@@ -123,7 +127,8 @@ public sealed partial class FriendsSystem
             return;
         if (!TryGetFactionMemberData(args.Ent, out var data))
             return;
-
+        var newgroup = args.Group;
+        _entity.GetEntitySystem<CombatStancePointTestSystem>().GroupChanged(uid.Value, comp.Faction, newgroup, data.Group);
         data.Group = args.Group;
         data.Leader = args.Group == FactionMemberGroup.None ? false : data.Leader;
         if (comp.MenuAccess != FactionMenuAccess.Full)
@@ -150,7 +155,10 @@ public sealed partial class FriendsSystem
         }
         if (!TryGetFactionMemberData(args.Performer, out var headData))
             return;
-
+        if (TryGetFactionMemberData(args.Ent, out var memberdata))
+        {
+            _entity.GetEntitySystem<CombatStancePointTestSystem>().MemberRemoved(uid.Value, memberdata.Faction, memberdata.Group);
+        }
         if (args.Headhunt)
         {
             if (TryComp<FriendsComponent>(uid, out var comp) && _mind.TryGetMind(uid.Value, out var mindId, out _) && _job.MindTryGetJob(mindId, out var job))

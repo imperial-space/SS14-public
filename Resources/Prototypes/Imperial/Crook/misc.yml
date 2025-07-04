@@ -114,6 +114,34 @@
 ### tomsktoluene
 ### tomsktoluene
 
+- type: entity
+  parent: ClothingUniformBase
+  id: KasaneTetoUniform
+  name: костюм вокалоида
+  suffix: Crook
+  description: Иногда шутка может вырасти во что-то большее. На нём имеется этикетка с логотипом "Project DIVA". 
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/kasane.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/kasane.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+
+# https://github.com/tgstation/tgstation/blob/master/icons/turf/sand.dmi
+- type: tile
+  id: FloorSandDesert
+  name: tiles-sand-desert-floor
+  sprite: /Textures/Imperial/Crook/Misc/Tiles/sand.png
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 99910000
+  weather: true
+  indestructible: true
+
 # Backrooms
 
 - type: entity
@@ -512,3 +540,43 @@
       - FullAuto
     soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
   - type: NonSpreaderZombie
+
+# Majima
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMadzima
+  name: breakdance outfit
+  suffix: Majima, Crook
+  description: See ya around missy!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Madzima/Uniforms/Jumpsuit/Breakdance.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Madzima/Uniforms/Jumpsuit/Breakdance.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesMadzima
+  name: breakdance shoes
+  suffix: Majima, Crook
+  description: Time for an ass kicking!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Madzima/Shoes/Misc/Breakdance.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Madzima/Shoes/Misc/Breakdance.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterMadzima
+  name: breakdance coat
+  suffix: Majima, Crook
+  description: Time to get crazy!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Madzima/OuterClothing/Coats/Breakdance.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Madzima/OuterClothing/Coats/Breakdance.rsi
+
+# Majima

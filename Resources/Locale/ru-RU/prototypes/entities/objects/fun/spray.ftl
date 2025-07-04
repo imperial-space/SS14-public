@@ -1,39 +1,39 @@
-ent-PaintBase = Баллончик с краской
+ent-PaintBase = баллончик с краской
     .desc = Разукрась тут всё!
 
-ent-FunnyPaint = Баллончик с весёлой краской
+ent-FunnyPaint = баллончик с весёлой краской
     .desc = Разукрась тут всё! Изготовлено компанией Honk! Co.
 
-ent-FunnyPaintYellow = Баллончик с весёлой краской
+ent-FunnyPaintYellow = баллончик с весёлой краской
     .desc = Разукрась тут всё! Изготовлено компанией Honk! Co.
 
-ent-DeathPaint = Баллончик с краской
+ent-DeathPaint = баллончик с краской
     .desc = Разукрась тут всё!
 
-ent-DeathPaintTwo = Баллончик с краской
+ent-DeathPaintTwo = баллончик с краской
     .desc = Разукрась тут всё!
 
-ent-SprayPaintBlue = Баллончик с краской
+ent-SprayPaintBlue = баллончик с краской
     .suffix = { "Синий" }
     .desc = Разукрась тут всё!
-ent-SprayPaintRed = Баллончик с краской
+ent-SprayPaintRed = баллончик с краской
     .suffix = { "Красный" }
     .desc = Разукрась тут всё!
-ent-SprayPaintGreen = Баллончик с краской
+ent-SprayPaintGreen = баллончик с краской
     .suffix = { "Зеленый" }
     .desc = Разукрась тут всё!
-ent-SprayPaintBlack = Баллончик с краской
+ent-SprayPaintBlack = баллончик с краской
     .suffix = { "Черный" }
     .desc = Разукрась тут всё!
-ent-SprayPaintOrange = Баллончик с краской
+ent-SprayPaintOrange = баллончик с краской
     .suffix = { "Оранжевый" }
     .desc = Разукрась тут всё!
-ent-SprayPaintPurple = Баллончик с краской
+ent-SprayPaintPurple = баллончик с краской
     .suffix = { "Фиолетовый" }
     .desc = Разукрась тут всё!
-ent-SprayPaintWhite = Баллончик с краской
+ent-SprayPaintWhite = баллончик с краской
     .suffix = { "Белый" }
     .desc = Разукрась тут всё!
 
-ent-CrateFunSprayPaints = Ящик с баллончиками с краской
+ent-CrateFunSprayPaints = ящик с баллончиками с краской
     .desc = Ящик, наполненный баллончиками с краской

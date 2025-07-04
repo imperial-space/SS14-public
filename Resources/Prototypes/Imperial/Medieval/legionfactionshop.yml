@@ -241,6 +241,14 @@
   - MedievalLegionWeapon
 
 - type: listing
+  id: MdvLegionMedievalCatapultCraft
+  productEntity: MedievalCatapultCraft
+  cost:
+    MedalLegion: 30
+  categories:
+  - MedievalLegionWeapon
+
+- type: listing
   id: MdvLegionMedievalClothingOuterArmorLeather
   productEntity: MedievalClothingOuterArmorLeather
   cost:
@@ -367,3 +375,5 @@
     MedalLegion: 10
   categories:
   - MedievalLegionArmor
+
+

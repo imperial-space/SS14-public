@@ -34,7 +34,8 @@ public sealed partial class CharacterPickerButton : ContainerButton
         IPrototypeManager prototypeManager,
         ButtonGroup group,
         ICharacterProfile profile,
-        bool isSelected)
+        bool isSelected,
+        bool wasInRound) // Imperial medieval edit
     {
         RobustXamlLoader.Load(this);
         _entManager = entityManager;
@@ -78,6 +79,13 @@ public sealed partial class CharacterPickerButton : ContainerButton
             DeleteButton.Visible = false;
             ConfirmDeleteButton.Visible = true;
         };
+
+        // Imperial medieval edit start
+        if (wasInRound)
+        {
+            AvailableIndicator.BackgroundPanelColor = Color.FromHex("#EE204D");
+        }
+        // Imperial medieval edit end
     }
 
     protected override void Dispose(bool disposing)

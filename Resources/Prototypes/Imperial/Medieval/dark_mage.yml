@@ -1,0 +1,120 @@
+- type: entity
+  name: dark mage
+  id: MedievalMobDarkMage
+  parent: SimpleMobBase
+  description: old dark power
+  components:
+  - type: NpcFactionMember
+    factions:
+      - Syndicate
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/dark_mage.rsi
+    layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: darkmage
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 50
+        mask:
+          - MobMask
+        layer:
+          - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      515: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.2
+    baseSprintSpeed: 4.2
+  - type: Tag
+    tags:
+      - FootstepSound
+  - type: CombatMode
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1.5
+    rechargeSound:
+      path: /Audio/Imperial/Medieval/magic-shipenie.ogg
+  - type: BasicEntityAmmoProvider
+    proto: MedievalProjectileMagicArrowPlayerFolloverMiddle
+    capacity: 1
+    count: 1
+  - type: Gun
+    projectileSpeed: 8
+    fireRate: 0.22
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Imperial/Medieval/magic-power.ogg
+  - type: DarkMage
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 515
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MedievalEssence:
+            min: 4
+            max: 7
+
+- type: entity
+  id: MedievalLateMobSpawnerMedievalMobDarkMage
+  name: late mob spawn dark mage
+  parent: MedievalLateMobSpawnerBase
+  components:
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobDarkMage
+
+- type: entity
+  name: MedievalTimedSpawnerMedievalMobDarkMage
+  id: MedievalTimedSpawnerMedievalMobDarkMage
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    spawnedEntity: MedievalLateMobSpawnerMedievalMobDarkMage
+
+- type: entity
+  noSpawn: true
+  id: MedievalDarkMageObject
+  name: inside out
+  components:
+  - type: MindContainer
+  - type: Item
+    size: Tiny
+
+- type: entity
+  id: MedievalDarkMageFlame
+  name: flame
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/dark_mage.rsi
+    layers:
+    - state: flame
+  - type: MedievalFollower

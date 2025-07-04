@@ -1,0 +1,19 @@
+- type: entity
+  parent: [ ClothingBeltStorageBase, ClothingBeltChiefEngineer ]
+  id: ClothingBeltRCU
+  name: tactical RCU belt
+  description: A tactical belt of security officers.
+  suffix: RiotControlUnit, filled
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/assault.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/assault.rsi
+  - type: StorageFill
+    contents:
+      - id: PowerDrill
+      - id: JawsOfLife
+      - id: WelderExperimental
+      - id: Multitool
+      - id: CableApcStack
+  - type: Appearance

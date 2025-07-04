@@ -194,6 +194,7 @@
 - type: typingIndicator
   id: tifling
   typingState: tifling
+  idleState: tifling
   offset: 0, 0.0625
 
 - type: entity
@@ -289,8 +290,8 @@
   - type: Mana
     maxManaRaceModifier: 1.07
     regenRaceModifier: 1.07
-  - type: NeedSleepRaceModifier
-    modifier: 1.05
+  - type: NeedSleep
+    sleepLevelPerUpdate: 0.32
 
 - type: entity
   parent: BaseSpeciesDummy

@@ -1,3 +1,4 @@
+using Content.Client.Imperial.Medieval.CharacterBlock;
 using Content.Client.Info;
 using Content.Client.Info.PlaytimeStats;
 using Content.Client.Resources;
@@ -25,6 +26,8 @@ namespace Content.Client.Lobby.UI
         [Dependency] private readonly IPrototypeManager _protomanager = default!;
         [Dependency] private readonly IResourceCache _resourceCache = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private readonly CharacterBlockManager _characterBlockManager = default!;
+
 
         private readonly Button _createNewCharacterButton;
 
@@ -91,11 +94,14 @@ namespace Content.Client.Lobby.UI
             foreach (var (slot, character) in _preferencesManager.Preferences!.Characters)
             {
                 numberOfFullSlots++;
+                var wasInRound = _characterBlockManager.IsCharacterBlocked((HumanoidCharacterProfile)character); // Imperial medieval edit
+
                 var characterPickerButton = new CharacterPickerButton(_entManager,
                     _protomanager,
                     characterButtonsGroup,
                     character,
-                    slot == selectedSlot);
+                    slot == selectedSlot,
+                    wasInRound); // Imperial medieval edit
 
                 Characters.AddChild(characterPickerButton);
 

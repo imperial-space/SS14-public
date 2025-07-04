@@ -81,8 +81,9 @@
   - type: InstantAction
     icon: { sprite: Imperial/electromouse.rsi, state: sm_copying}
     event: !type:ElectroMouseDoubleEvent
-    charges: 1
     itemIconStyle: BigAction
+  - type: LimitedCharges
+    maxCharges: 1
 
 - type: entity
   id: ActionElectroMouseUpgrade
@@ -92,8 +93,9 @@
   - type: InstantAction
     icon: { sprite: Imperial/electromouse.rsi, state: sm_upgrade}
     event: !type:ElectroMouseUpgradeEvent
-    charges: 1
     itemIconStyle: BigAction
+  - type: LimitedCharges
+    maxCharges: 1
 
 - type: entity
   id: ActionElectroMouseLightning
@@ -114,5 +116,6 @@
   - type: InstantAction
     icon: { sprite: Imperial/electromouse.rsi, state: sm_elevation}
     event: !type:ElectroMouseElevationEvent
-    charges: 1
     itemIconStyle: BigAction
+  - type: LimitedCharges
+    maxCharges: 1

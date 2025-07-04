@@ -28,6 +28,9 @@ roles-antag-subverted-silicon-objective = Следуйте своим новым
 roles-antag-space-ninja-name = Космический ниндзя
 roles-antag-space-ninja-objective = Используйте свою скрытность, чтобы саботировать станцию.
 
+roles-antag-paradox-clone-name = Парадоксальный клон
+roles-antag-paradox-clone-objective = Странная пространственно-временная аномалия телепортировала вас в другую реальность! Теперь вам нужно найти своего двойника, убить и заменить его.
+
 roles-antag-thief-name = Вор
 roles-antag-thief-objective = Добавьте немного собственности NT в свою личную коллекцию, не прибегая к насилию.
 

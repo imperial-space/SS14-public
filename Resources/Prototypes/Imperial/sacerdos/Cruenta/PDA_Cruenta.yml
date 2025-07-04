@@ -1,0 +1,93 @@
+- type: entity
+  parent: BasePDA
+  id: PDAblackwhitesquadLeadersCruenta
+  name: PDA of the black and white squad
+  suffix: Phantom4502, Cruenta
+  description: You need to understand your own or someone else 's.
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/PDA_Cruenta/Cruenta_PDA_Leaders.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Item
+    size: Small
+  - type: Pda
+    id: ID_Leaders_Cruenta
+  - type: Icon
+    sprite: Imperial/sacerdos/Cruenta_falcatio/PDA_Cruenta/Cruenta_PDA_Leaders.rsi
+    state: pda
+  - type: PdaBorderColor
+    borderColor: "#541319"
+    accentVColor: "#c06822"
+
+- type: entity
+  parent: BasePDA
+  id: PDAblackwhitesquadfightCruenta
+  name: PDA of the black and white squad
+  suffix: Phantom4502, Cruenta
+  description: You need to understand your own or someone else 's.
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/PDA_Cruenta/Cruenta_PDA.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Item
+    size: Small
+  - type: Pda
+    id: ID_fight_Cruenta
+  - type: Icon
+    sprite: Imperial/sacerdos/Cruenta_falcatio/PDA_Cruenta/Cruenta_PDA.rsi
+    state: pda
+  - type: PdaBorderColor
+    borderColor: "#333333"
+    accentVColor: "#541319"
+
+- type: entity
+  parent: BasePDA
+  id: PDAblackwhitesquadfightMedicalCruenta
+  name: PDA of the black and white squad
+  suffix: Phantom4502, Cruenta
+  description: You need to understand your own or someone else 's.
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/PDA_Cruenta/Cruenta_PDA_med.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Item
+    size: Small
+  - type: Pda
+    id: ID_Medical_Cruenta
+  - type: Icon
+    sprite: Imperial/sacerdos/Cruenta_falcatio/PDA_Cruenta/Cruenta_PDA_med.rsi
+    state: pda
+  - type: PdaBorderColor
+    borderColor: "#333333"
+    accentVColor: "#541319"
+  - type: HealthAnalyzer
+    scanDelay: 0.5
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"

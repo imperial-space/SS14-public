@@ -7,6 +7,7 @@ using Content.Shared.DoAfter;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Prototypes;
 using Content.Shared.Alert;
+using Content.Shared.Chat.TypingIndicator;
 
 namespace Content.Shared.Nocturn.Components
 {
@@ -14,9 +15,13 @@ namespace Content.Shared.Nocturn.Components
     public sealed partial class NocturnDrinkDoAfterEvent : SimpleDoAfterEvent { }
     public sealed partial class NocturnDrinkActionEvent : EntityTargetActionEvent { }
 
+    public sealed partial class NocturnDisguiseActionEvent : InstantActionEvent { }
+    [Serializable, NetSerializable]
+    public sealed partial class NocturnDisguiseDoAfterEvent : SimpleDoAfterEvent { }
+
     public sealed partial class ZveresScreamActionEvent : InstantActionEvent { }
 
-    [RegisterComponent, NetworkedComponent]
+    [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
     public sealed partial class NocturnComponent : Component
     {
         [DataField]
@@ -29,12 +34,18 @@ namespace Content.Shared.Nocturn.Components
         public float BloodLevel = 250.0f;
 
         [ViewVariables(VVAccess.ReadWrite)]
-        public float BloodDrainPerSecond = 0.13f;
+        public float BloodDrainPerSecond = 0.15f;
         public TimeSpan StartTime = TimeSpan.FromSeconds(0f);
         public TimeSpan EndTime = TimeSpan.FromSeconds(0f);
         public float FreshDrinkTimer = 0f;
         public float defaultWalkSpeed;
         public float defaultSprintSpeed;
+
+        [DataField]
+        public ProtoId<TypingIndicatorPrototype> TypingIndicatorPrototypeBase = "default";
+
+        [DataField]
+        public ProtoId<TypingIndicatorPrototype> TypingIndicatorPrototypeMod = "drou";
 
         public ProtoId<AlertPrototype> BloodAlert = "NocturnBlood";
 
@@ -68,5 +79,17 @@ namespace Content.Shared.Nocturn.Components
 
         [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
         public string EffectSoundOnDrink = "/Audio/Imperial/Medieval/drink_blood.ogg";
+
+        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        public string EffectSoundOnDisguise = "/Audio/Magic/Eldritch/voidblink.ogg";
+
+        [DataField]
+        public bool IsDisguised = false;
+
+        [DataField, AutoNetworkedField]
+        public EntProtoId DisguiseAction = "NocturnDisguiseAction";
+
+        [DataField, AutoNetworkedField]
+        public EntityUid? DisguiseActionEntity;
     }
 }

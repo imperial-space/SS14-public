@@ -26,13 +26,20 @@
     - map: ["enum.HumanoidVisualLayers.RFoot"]
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
+# Imperial Medieval BadSmell Begin
+    - map: [ "badsmell" ]
+      sprite: Imperial/Medieval/BadSmell/species.rsi
+      visible: false
+      state: dirty1
+# Imperial Medieval BadSmell End
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
+    - map: [ "outerClothing" ] # Imperial Space для корректного отображения РПС
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
-    - map: [ "outerClothing" ]
+    # - map: [ "outerClothing" ]
     - map: [ "back" ]
     - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
@@ -53,6 +60,12 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_human"
       visible: false
+# Imperial Medieval Surrender Begin
+    - map: [ "surrender" ]
+      sprite: Imperial/Medieval/Surrender/flag.rsi
+      state: flag
+      visible: false
+# Imperial Medieval Surrender End
   - type: DamageVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     targetLayers:
@@ -74,6 +87,21 @@
         clownedon: # Not 'creampied' bc I can already see Skyrat complaining about conflicts.
           True: {visible: true}
           False: {visible: false}
+  # Imperial Medieval BadSmell Begin
+      enum.BadSmellVisuals.Dirt:
+        badsmell:
+          0: {visible: false}
+          1: {visible: true, state: dirty1}
+          2: {visible: true, state: dirty2}
+          3: {visible: true, state: dirty3}
+          4: {visible: true, state: dirty4}
+  # Imperial Medieval BadSmell End
+  # Imperial Medieval Surrender Begin
+      enum.SurrenderVisuals.Key:
+        surrender:
+          True: {visible: true}
+          False: {visible: false}
+  # Imperial Medieval Surrender End
   - type: StatusIcon
     bounds: -0.5,-0.5,0.5,0.5
   - type: RotationVisuals
@@ -247,13 +275,11 @@
   - type: MedievalIronHitSound
   - type: IgnitPocketFlames
   - type: EmoteOnDamage
-# imperial medieval "emotions" start
     emotes:
     - PainScream
     emoteChance: 0.3
     withChat: true
     emoteCooldown: 3.5
-# imperial medieval "emotions" end
   - type: MedievalSpikeTarget
   - type: BadSmellFeel
   - type: BadSmell
@@ -281,13 +307,25 @@
       #Hissing: Speak
       #Elf: Speak
   - type: SleepingImperial
-  # Imperial medieval start
   - type: SoftCritEmotes
     emotes:
     - Cough
     - Gasp
     - PassiveScream
-  # Imperial medieval end
+  - type: AreaMarkerInvoker
+  - type: ShieldOnStartup
+  - type: AntiStealAfk
+  - type: CanSurrender
+  - type: RDDeathScreen
+  - type: CombatStance
+  - type: Grabbable
+  - type: Grabber
+  - type: PointLight
+    netsync: false
+    enabled: false
+  - type: LocalLight
+    energy: 0.3
+    radius: 1.18
 # Imperial Medieval End
 
 - type: entity
@@ -341,7 +379,7 @@
     sweatHeatRegulation: 2000
     shiveringHeatRegulation: 2000
     normalBodyTemperature: 310.15
-    thermalRegulationTemperatureThreshold: 25
+    thermalRegulationTemperatureThreshold: 2
   - type: Perishable
   - type: Butcherable
     butcheringType: Spike # TODO human.
@@ -398,10 +436,11 @@
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
+    - map: [ "outerClothing" ] # Imperial Space для корректного отображения РПС
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
-    - map: [ "outerClothing" ]
+    # - map: [ "outerClothing" ]
     - map: [ "back" ]
     - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]

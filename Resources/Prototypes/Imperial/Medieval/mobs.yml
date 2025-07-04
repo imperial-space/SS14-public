@@ -100,7 +100,7 @@
   id: MedievalMobFox
   description: They're a fox.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -191,7 +191,7 @@
   id: MedievalMobAnt
   description: They're a fox.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 180
   - type: Sprite
     scale: 1.2, 1.2
@@ -292,7 +292,7 @@
   id: MedievalMobWolf
   description: They're a wolf.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -326,6 +326,9 @@
       amount: 3
     - id: MedievalLootWolf
       amount: 1
+    - id: MedievalLootwolf2
+      amount: 3
+      prob: 0.4
   - type: Bloodstream
     bloodMaxVolume: 40
   #- type: ReplacementAccent
@@ -367,6 +370,8 @@
   - type: NpcFactionMember
     factions:
     - Xeno
+  - type: MedievalDash
+    force: 750
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -408,7 +413,7 @@
   id: MedievalMobRabbit
   description: They're a rabbit.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -441,6 +446,11 @@
     - id: MedievalLeather1
       amount: 1
       prob: 0.5
+    - id: MedievalLootrabbit
+      amount: 1
+    - id: MedievalLootrabbit
+      amount: 1
+      prob: 0.2
   - type: Bloodstream
     bloodMaxVolume: 10
   #- type: ReplacementAccent
@@ -466,6 +476,8 @@
     thresholds:
       0: Alive
       14: Dead
+  - type: MedievalDash
+    force: 790
   - type: MovementSpeedModifier
     baseWalkSpeed: 4.0
     baseSprintSpeed: 5.8
@@ -503,7 +515,7 @@
   id: MedievalMobGolemLarge
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 780
   - type: Sprite
     drawdepth: Mobs
@@ -618,7 +630,7 @@
   id: MedievalMobGolem
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -725,7 +737,7 @@
   id: MedievalMobBear
   description: They're a bear.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -758,6 +770,8 @@
     - id: MedievalLeather1
       amount: 8
     - id: MedievalLootBear
+      amount: 1
+    - id: MedievalLootbearskin
       amount: 1
   - type: Bloodstream
     bloodMaxVolume: 200
@@ -845,7 +859,7 @@
   id: MedievalMobHog
   description: They're a hog.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -878,6 +892,8 @@
     - id: MedievalLeather1
       amount: 5
     - id: MedievalLootHog
+      amount: 1
+    - id: MedievalLoothogskin
       amount: 1
   - type: Bloodstream
     bloodMaxVolume: 140
@@ -1121,19 +1137,23 @@
     stripTimeReduction: 3
     stealthy: true
   - type: Stripping
+  - type: SSDFree
   - type: MobsterAccent
   - type: GhostTakeoverAvailable
+  - type: WarningOnAttach
+    message: medieval-warning-goblin
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-goblin-name
     description: ghost-role-information-goblin-description
-    rules: Утащите как можно больше в логово. Действуйте в группах. Если вы ушли из логова - [color=red]атакуйте только в крайнем случае[/color], берите в [color=red]плен[/color], требуйте выкуп. Не нападайте на базы фракций в одиночку.
+    rules: ghost-role-information-goblin-rules
   - type: MobThresholds
     thresholds:
       0: Alive
       60: Critical
       140: Dead
   #- type: InventorySlots
+  - type: AreaMarkerInvoker
   - type: NpcFactionMember
     factions:
     - Xeno
@@ -1147,6 +1167,9 @@
       amount: 1
     - id: MedievalLeather1
       amount: 1
+    - id: MedievalLootgoblin2
+      amount: 2
+      prob: 0.7
   - type: Access
     tags:
     - Maintenance
@@ -1158,6 +1181,8 @@
       Male: Goblins
       Female: Goblins
       Unsexed: Goblins
+  - type: MedievalDash
+    force: 715
   - type: SoftCritEmotes
     minDamage: 45
     emotes:
@@ -1193,6 +1218,146 @@
     languages:
       Goblin: Speak
       Common: Understand
+  - type: WhitelistClothing
+    whitelist: GoblinArmor
+    whitelistState: humanoid
+
+- type: entity
+  name: giga monkey
+  id: MedievalMobHobGoblin
+  parent: SimpleMobBaseNoFood
+  description: uga buga
+  components:
+  - type: CombatMode
+    disarm: null
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      2: 1
+      15: 0.85
+      28: 0.7
+      40: 0.6
+      430: 0.5
+  - type: InventorySlots
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.3
+        density: 130
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  - type: ComplexInteraction
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: hobgoblin
+      sprite: Imperial/Medieval/Mobs/hobgoblin.rsi
+  - type: Body
+    prototype: Reptilian
+    requiredLegs: 2
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: base
+  - type: Appearance
+  - type: Puller
+  - type: CanHostGuardian
+  - type: MeleeWeapon
+    range: 2.25
+    attackRate: 0.7
+    hidden: true
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      groups:
+        Brute: 12
+  - type: Thieving
+    stripTimeReduction: 3
+    stealthy: true
+  - type: Stripping
+  - type: SSDFree
+  - type: MobsterAccent
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-hobgoblin-name
+    description: ghost-role-information-hobgoblin-description
+    rules: ghost-role-information-goblin-rules
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  #- type: InventorySlots
+  - type: AreaMarkerInvoker
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+  - type: InputMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Butcherable
+    spawned:
+    - id: MedievalLootGoblin
+      amount: 2
+    - id: MedievalLeather1
+      amount: 1
+  - type: Access
+    tags:
+    - Maintenance
+  - type: Speech
+    speechSounds: Goblin
+    allowedEmotes: ['Scream', 'Laugh', 'Cough', 'Sigh', 'Warcry', 'PainScream', 'PassiveScream']
+  - type: Vocal
+    sounds:
+      Male: Goblins
+      Female: Goblins
+      Unsexed: Goblins
+  - type: MedievalDash
+    force: 715
+  - type: SoftCritEmotes
+    minDamage: 90
+    emotes:
+    - PainScream
+    - Sigh
+    - Cough
+  - type: MedievalMobTrigger
+    fixtureId: "medieval-spawner"
+  - type: Mana
+    maxMana: 50
+    regen: 0.2
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 3
+  - type: IgnitPocketFlames
+  - type: MeleeParryAble
+  - type: NocturnBadFood
+    timesCanBeBiten: 2
+  - type: RandomSteal # imperial medieval
+  - type: StealChanceIncreaser
+    bonus: 45
+  #- type: Identity
+  - type: TakeName
+  #- type: IdentityFaction
+  #  faction: "гоблины"
+  - type: LanguageSpeaker
+    languages:
+      Goblin: Speak
+      Common: Speak
 
 - type: entity
   parent: MobChicken
@@ -1596,7 +1761,7 @@
   id: MedievalMobSpider
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -1685,7 +1850,7 @@
   id: MedievalMobSpiderCave
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -1803,7 +1968,7 @@
   id: MedievalMobSpiderStrongCave
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -1988,6 +2153,8 @@
       Dead:
         Base: dead
   - type: IgnoreSpiderWeb
+  - type: MedievalDash
+    force: 720
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -2020,7 +2187,7 @@
   id: MedievalMobSkeletWeak
   description: Practically no threat, you can kick back even with your fists
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 240
   - type: Sprite
     drawdepth: Mobs
@@ -2072,7 +2239,7 @@
   id: MedievalMobSkeletMeat
   description: Slightly stronger than its previous counterpart, but still squishy.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 240
   - type: Sprite
     drawdepth: Mobs
@@ -2124,7 +2291,7 @@
   id: MedievalMobSkeletFighter
   description: This one's already looking serious. But 1 on 1, he can still be beaten.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 540
   - type: Sprite
     drawdepth: Mobs
@@ -2177,7 +2344,7 @@
   id: MedievalMobSkeletLegion
   description: You should not approach him if you are not confident in your abilities.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -2230,7 +2397,7 @@
   id: MedievalMobSkeletArcher
   description: A fairly weak ranged skeleton that doesn't pose much of a threat.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 180
   - type: Sprite
     sprite: Imperial/Medieval/Mobs/skelet_bow.rsi
@@ -2272,6 +2439,9 @@
       amount: 1
     - id: MedievalRevent5
       amount: 1
+    - id: MedievalLootskeletonjaw
+      amount: 1
+      prob: 0.2
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
@@ -2282,7 +2452,7 @@
   id: MedievalMobSkeletCrossbow
   description: A pretty serious ranged opponent. It is best to avoid skirmishes with him.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 210
   - type: Sprite
     sprite: Imperial/Medieval/Mobs/skelet_crossbow.rsi
@@ -2334,7 +2504,7 @@
   id: MedievalMobSkeletDark
   description: Your death.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 780
   - type: Sprite
     sprite: Imperial/Medieval/Mobs/skelet_dark.rsi
@@ -2382,7 +2552,7 @@
   id: MedievalMobSkeletMace
   description: This skeleton has a mace and a shield.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -2435,7 +2605,7 @@
   id: MedievalMobSkeletSpear
   description: This skeleton has a spear.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -2488,7 +2658,7 @@
   id: MedievalMobSkeletHalberd
   description: This skeleton has a halberd.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -2544,7 +2714,7 @@
   id: MedievalMobSkeletDagger
   description: This skeleton has a daggers.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -2599,7 +2769,7 @@
   id: MedievalMobHunter
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 780
   - type: Sprite
     drawdepth: Mobs
@@ -2675,6 +2845,9 @@
     spawned:
     - id: MedievalLootHunter
       amount: 1
+    - id: MedievalLoothunter2
+      amount: 2
+      prob: 0.1
   - type: IgnoreSpiderWeb
   - type: StaminaDamageOnHit
     damage: 17
@@ -2722,7 +2895,7 @@
   id: MedievalMobDevilMouse
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -2835,7 +3008,7 @@
   id: MedievalMobCrab
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -2939,7 +3112,7 @@
   id: MedievalMobCrabDevil
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -3151,7 +3324,7 @@
     baseWalkSpeed: 1.65
     baseSprintSpeed: 1.65
   - type: HellRespawnAble
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 78000
   - type: TDMNaming
   - type: MeleeWeapon
@@ -3175,7 +3348,7 @@
   id: MedievalMobNastyGrowth
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 180
   - type: Sprite
     drawdepth: Mobs
@@ -3262,7 +3435,7 @@
   id: MedievalMobShieldSlug
   description: They're a slug.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -3360,7 +3533,7 @@
   id: MedievalMobWingedShadow
   description: MedievalMobWingedShadow
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 780
   - type: Sprite
     drawdepth: Mobs

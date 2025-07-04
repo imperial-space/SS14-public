@@ -71,6 +71,9 @@
   id: BanditKey
 
 - type: Tag
+  id: KayotKey
+
+- type: Tag
   id: TavernKey
 
 - type: Tag
@@ -78,3 +81,30 @@
 
 - type: Tag
   id: SmithingTool
+
+- type: Tag
+  id: GoblinArmor
+
+- type: Tag
+  id: ThrowingSpear
+
+- type: Tag
+  id: RootItem
+
+- type: Tag
+  id: MyrmexResourceGum
+
+- type: Tag
+  id: MyrmexResourceYant
+
+- type: Tag
+  id: Mushroom1
+
+- type: Tag
+  id: Mushroom2
+
+- type: Tag
+  id: Mushroom3
+
+- type: Tag
+  id: MonsterLoot

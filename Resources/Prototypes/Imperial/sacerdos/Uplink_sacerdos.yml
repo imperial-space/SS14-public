@@ -1,0 +1,83 @@
+      #Sacerdos START
+- type: entity
+  parent: BaseStructure
+  id: BaseUplinl_sacerdos
+  name: Uplinl_sacerdos
+  description: super Sacerdos uplink
+  suffix: Phantom4502, Sacerdos
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Uplink_sacerdos.rsi
+    layers:
+    - state: Sprite_sacerdos_2
+    - state: Sprite_sacerdos_3
+      shader: unshaded
+      visible: true
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.StoreUiKey.Key
+  - type: Store
+    categories:
+    - sacerdosFood
+    - sacerdosWeapon
+    - sacerdosMelee
+    - sacerdosMed
+    - sacerdosAmmunition
+    - sacerdosArmor
+    - sacerdosMisc
+    - sacerdosClothing
+    - sacerdosStorage
+    - sacerdosExplosives
+    - sacerdosConstruction
+    - sacerdosReinforcements
+    currencyWhitelist:
+    - Telecrystal_sacerdos
+    balance:
+      Telecrystal_sacerdos: 0
+
+#- type: entity
+#  parent: BaseUplinl_sacerdos
+#  id: MedievalShopHoleLocked
+#  name: MedievalShopHole
+#  description: Suspiciously looking old radio...
+#  suffix: Empty
+#  components:
+#  - type: ActivatableUIRequiresAccess
+#  - type: AccessReader
+#    access: [["ImperialLibrary"]]
+
+# PresetSacerdosUplinl_sacerdos
+#- type: entity
+#  id: PresetUplinl_sacerdos
+#  parent: [ BaseUplinl_sacerdos, ErtCallUplinkPreset ]
+#  components:
+#  - type: Store
+#    categories:
+#    - sacerdosFood
+#    # Ниже приведены закомментированные категории для будущего использования:
+#    # - sacerdosAmmunition
+#    # - sacerdosArmor
+#    # - sacerdosMed
+#    # - sacerdosWeapon
+#    # - sacerdosMisc
+#    # - sacerdosClothing
+#    # - sacerdosBackpack
+#    # - sacerdosPlants
+#    currencyWhitelist:
+#    - Telecrystal_sacerdos
+#    balance:
+#      Telecrystal_sacerdos: 0
+#
+#
+#- type: entity
+#  parent: [ BaseUplinl_sacerdos, PresetUplinl_sacerdos ]
+#  id: Uplinl_sacerdos
+#  suffix: Phantom4502
+#  components:
+#  - type: Store
+#    balance:
+#      Telecrystal_sacerdos: 30

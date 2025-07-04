@@ -53,10 +53,8 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/quest.rsi
-    state: merc
+    state: merccontract
   - type: Item
-    shape:
-    - 0,0,1,1
-    size: Tiny
+    size: Small
   - type: MercenaryContract
     payoutRange: 125, 200

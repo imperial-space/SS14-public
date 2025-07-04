@@ -310,3 +310,800 @@
         - MedievalOreAdam
       chance: 0.34
       offset: 0
+
+- type: entity
+  id: MedievalWallSoilSolid
+  parent: BaseStructure
+  name: rock
+  components:
+    - type: Damageable
+      damageContainer: StructuralInorganic
+      damageModifierSet: Metallic
+    - type: MedievalDiggAble
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 220
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRockfallWait:
+                  min: 1
+                  max: 1
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
+    - type: Occluder
+    - type: Airtight
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          density: 100
+          mask:
+            - FullTileMask
+          layer:
+            - WallLayer
+    - type: IconSmooth
+      key: walls
+      mode: NoSprite
+    - type: SmoothEdge
+    - type: Sprite
+      sprite: Imperial/Medieval/Walls/soil.rsi
+      netsync: false
+      layers:
+        - state: solid
+        - map: [ "enum.EdgeLayer.South" ]
+          state: soil_s
+        - map: [ "enum.EdgeLayer.East" ]
+          state: soil_e
+        - map: [ "enum.EdgeLayer.North" ]
+          state: soil_n
+        - map: [ "enum.EdgeLayer.West" ]
+          state: soil_w
+    - type: MedievalMeleeBadTarget # imperial medieval
+      safeToHitGroup: structure # imperial medieval
+
+- type: entity
+  id: MedievalWallSoilNormal
+  parent: MedievalWallSoilSolid
+  name: rock
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 80
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRockfallWait:
+                  min: 1
+                  max: 1
+    - type: Sprite
+      sprite: Imperial/Medieval/Walls/soil.rsi
+      netsync: false
+      layers:
+        - state: normal
+        - map: [ "enum.EdgeLayer.South" ]
+          state: soil_s
+        - map: [ "enum.EdgeLayer.East" ]
+          state: soil_e
+        - map: [ "enum.EdgeLayer.North" ]
+          state: soil_n
+        - map: [ "enum.EdgeLayer.West" ]
+          state: soil_w
+
+- type: entity
+  id: MedievalWallSoilLoose
+  parent: MedievalWallSoilSolid
+  name: rock
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 30
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRockfallWait:
+                  min: 1
+                  max: 1
+    - type: Sprite
+      sprite: Imperial/Medieval/Walls/soil.rsi
+      netsync: false
+      layers:
+        - state: loose
+        - map: [ "enum.EdgeLayer.South" ]
+          state: soil_s
+        - map: [ "enum.EdgeLayer.East" ]
+          state: soil_e
+        - map: [ "enum.EdgeLayer.North" ]
+          state: soil_n
+        - map: [ "enum.EdgeLayer.West" ]
+          state: soil_w
+
+- type: entity
+  id: MedievalWallSoilLooseAnt
+  parent: MedievalWallSoilLoose
+  name: rock
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 30
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMobAnt:
+                  min: 4
+                  max: 9
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRockfallWait:
+                  min: 1
+                  max: 1
+    - type: Sprite
+      sprite: Imperial/Medieval/Walls/soil.rsi
+      netsync: false
+      layers:
+        - state: loose
+        - state: ant
+        - map: [ "enum.EdgeLayer.South" ]
+          state: soil_s
+        - map: [ "enum.EdgeLayer.East" ]
+          state: soil_e
+        - map: [ "enum.EdgeLayer.North" ]
+          state: soil_n
+        - map: [ "enum.EdgeLayer.West" ]
+          state: soil_w
+
+- type: entity
+  id: MedievalWallSoilLooseGum
+  parent: MedievalWallSoilLoose
+  name: rock
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 30
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMyrmexResourceGum:
+                  min: 2
+                  max: 2
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRockfallWait:
+                  min: 1
+                  max: 1
+    - type: Sprite
+      sprite: Imperial/Medieval/Walls/soil.rsi
+      netsync: false
+      layers:
+        - state: loose
+        - state: gum
+        - map: [ "enum.EdgeLayer.South" ]
+          state: soil_s
+        - map: [ "enum.EdgeLayer.East" ]
+          state: soil_e
+        - map: [ "enum.EdgeLayer.North" ]
+          state: soil_n
+        - map: [ "enum.EdgeLayer.West" ]
+          state: soil_w
+
+- type: entity
+  id: MedievalWallSoilLooseLGum
+  parent: MedievalWallSoilLoose
+  name: rock
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 30
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMyrmexResourceGum:
+                  min: 1
+                  max: 1
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRockfallWait:
+                  min: 1
+                  max: 1
+    - type: Sprite
+      sprite: Imperial/Medieval/Walls/soil.rsi
+      netsync: false
+      layers:
+        - state: loose
+        - state: lgum
+        - map: [ "enum.EdgeLayer.South" ]
+          state: soil_s
+        - map: [ "enum.EdgeLayer.East" ]
+          state: soil_e
+        - map: [ "enum.EdgeLayer.North" ]
+          state: soil_n
+        - map: [ "enum.EdgeLayer.West" ]
+          state: soil_w
+
+- type: entity
+  id: MedievalWallSoilLooseMushroom
+  parent: MedievalWallSoilLoose
+  name: rock
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 30
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMushroom1:
+                  min: 0
+                  max: 2
+                MedievalMushroom2:
+                  min: 0
+                  max: 2
+                MedievalMushroom3:
+                  min: 0
+                  max: 2
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRockfallWait:
+                  min: 1
+                  max: 1
+    - type: Sprite
+      sprite: Imperial/Medieval/Walls/soil.rsi
+      netsync: false
+      layers:
+        - state: loose
+        - state: mushroom
+        - map: [ "enum.EdgeLayer.South" ]
+          state: soil_s
+        - map: [ "enum.EdgeLayer.East" ]
+          state: soil_e
+        - map: [ "enum.EdgeLayer.North" ]
+          state: soil_n
+        - map: [ "enum.EdgeLayer.West" ]
+          state: soil_w
+
+- type: entity
+  id: MedievalWallSoilLooseRoot
+  parent: MedievalWallSoilLoose
+  name: rock
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 30
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRootItem:
+                  min: 2
+                  max: 6
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRockfallWait:
+                  min: 1
+                  max: 1
+    - type: Sprite
+      sprite: Imperial/Medieval/Walls/soil.rsi
+      netsync: false
+      layers:
+        - state: loose
+        - state: root
+        - map: [ "enum.EdgeLayer.South" ]
+          state: soil_s
+        - map: [ "enum.EdgeLayer.East" ]
+          state: soil_e
+        - map: [ "enum.EdgeLayer.North" ]
+          state: soil_n
+        - map: [ "enum.EdgeLayer.West" ]
+          state: soil_w
+
+- type: entity
+  id: MedievalWallSoilNormalAnt
+  parent: MedievalWallSoilNormal
+  name: rock
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 80
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMobAnt:
+                  min: 4
+                  max: 8
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRockfallWait:
+                  min: 1
+                  max: 1
+    - type: Sprite
+      sprite: Imperial/Medieval/Walls/soil.rsi
+      netsync: false
+      layers:
+        - state: normal
+        - state: ant
+        - map: [ "enum.EdgeLayer.South" ]
+          state: soil_s
+        - map: [ "enum.EdgeLayer.East" ]
+          state: soil_e
+        - map: [ "enum.EdgeLayer.North" ]
+          state: soil_n
+        - map: [ "enum.EdgeLayer.West" ]
+          state: soil_w
+
+- type: entity
+  id: MedievalWallSoilNormalGum
+  parent: MedievalWallSoilNormal
+  name: rock
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 80
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMyrmexResourceGum:
+                  min: 2
+                  max: 2
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRockfallWait:
+                  min: 1
+                  max: 1
+    - type: Sprite
+      sprite: Imperial/Medieval/Walls/soil.rsi
+      netsync: false
+      layers:
+        - state: normal
+        - state: gum
+        - map: [ "enum.EdgeLayer.South" ]
+          state: soil_s
+        - map: [ "enum.EdgeLayer.East" ]
+          state: soil_e
+        - map: [ "enum.EdgeLayer.North" ]
+          state: soil_n
+        - map: [ "enum.EdgeLayer.West" ]
+          state: soil_w
+
+- type: entity
+  id: MedievalWallSoilNormalLGum
+  parent: MedievalWallSoilNormal
+  name: rock
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 80
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMyrmexResourceGum:
+                  min: 1
+                  max: 1
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRockfallWait:
+                  min: 1
+                  max: 1
+    - type: Sprite
+      sprite: Imperial/Medieval/Walls/soil.rsi
+      netsync: false
+      layers:
+        - state: normal
+        - state: lgum
+        - map: [ "enum.EdgeLayer.South" ]
+          state: soil_s
+        - map: [ "enum.EdgeLayer.East" ]
+          state: soil_e
+        - map: [ "enum.EdgeLayer.North" ]
+          state: soil_n
+        - map: [ "enum.EdgeLayer.West" ]
+          state: soil_w
+
+- type: entity
+  id: MedievalWallSoilNormalMushroom
+  parent: MedievalWallSoilNormal
+  name: rock
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 80
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMushroom1:
+                  min: 0
+                  max: 2
+                MedievalMushroom2:
+                  min: 0
+                  max: 2
+                MedievalMushroom3:
+                  min: 0
+                  max: 2
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRockfallWait:
+                  min: 1
+                  max: 1
+    - type: Sprite
+      sprite: Imperial/Medieval/Walls/soil.rsi
+      netsync: false
+      layers:
+        - state: normal
+        - state: mushroom
+        - map: [ "enum.EdgeLayer.South" ]
+          state: soil_s
+        - map: [ "enum.EdgeLayer.East" ]
+          state: soil_e
+        - map: [ "enum.EdgeLayer.North" ]
+          state: soil_n
+        - map: [ "enum.EdgeLayer.West" ]
+          state: soil_w
+
+- type: entity
+  id: MedievalWallSoilNormalRoot
+  parent: MedievalWallSoilNormal
+  name: rock
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 80
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRootItem:
+                  min: 2
+                  max: 6
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRockfallWait:
+                  min: 1
+                  max: 1
+    - type: Sprite
+      sprite: Imperial/Medieval/Walls/soil.rsi
+      netsync: false
+      layers:
+        - state: normal
+        - state: root
+        - map: [ "enum.EdgeLayer.South" ]
+          state: soil_s
+        - map: [ "enum.EdgeLayer.East" ]
+          state: soil_e
+        - map: [ "enum.EdgeLayer.North" ]
+          state: soil_n
+        - map: [ "enum.EdgeLayer.West" ]
+          state: soil_w
+
+- type: entity
+  id: MedievalWallSoilSolidAnt
+  parent: MedievalWallSoilSolid
+  name: rock
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 220
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMobAnt:
+                  min: 5
+                  max: 10
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRockfallWait:
+                  min: 1
+                  max: 1
+    - type: Sprite
+      sprite: Imperial/Medieval/Walls/soil.rsi
+      netsync: false
+      layers:
+        - state: solid
+        - state: ant
+        - map: [ "enum.EdgeLayer.South" ]
+          state: soil_s
+        - map: [ "enum.EdgeLayer.East" ]
+          state: soil_e
+        - map: [ "enum.EdgeLayer.North" ]
+          state: soil_n
+        - map: [ "enum.EdgeLayer.West" ]
+          state: soil_w
+
+- type: entity
+  id: MedievalWallSoilSolidGum
+  parent: MedievalWallSoilSolid
+  name: rock
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 220
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMyrmexResourceGum:
+                  min: 2
+                  max: 2
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRockfallWait:
+                  min: 1
+                  max: 1
+    - type: Sprite
+      sprite: Imperial/Medieval/Walls/soil.rsi
+      netsync: false
+      layers:
+        - state: solid
+        - state: gum
+        - map: [ "enum.EdgeLayer.South" ]
+          state: soil_s
+        - map: [ "enum.EdgeLayer.East" ]
+          state: soil_e
+        - map: [ "enum.EdgeLayer.North" ]
+          state: soil_n
+        - map: [ "enum.EdgeLayer.West" ]
+          state: soil_w
+
+- type: entity
+  id: MedievalWallSoilSolidLGum
+  parent: MedievalWallSoilSolid
+  name: rock
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 220
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMyrmexResourceGum:
+                  min: 1
+                  max: 1
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRockfallWait:
+                  min: 1
+                  max: 1
+    - type: Sprite
+      sprite: Imperial/Medieval/Walls/soil.rsi
+      netsync: false
+      layers:
+        - state: solid
+        - state: lgum
+        - map: [ "enum.EdgeLayer.South" ]
+          state: soil_s
+        - map: [ "enum.EdgeLayer.East" ]
+          state: soil_e
+        - map: [ "enum.EdgeLayer.North" ]
+          state: soil_n
+        - map: [ "enum.EdgeLayer.West" ]
+          state: soil_w
+
+- type: entity
+  id: MedievalWallSoilSolidMushroom
+  parent: MedievalWallSoilSolid
+  name: rock
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 220
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMushroom1:
+                  min: 0
+                  max: 2
+                MedievalMushroom2:
+                  min: 0
+                  max: 2
+                MedievalMushroom3:
+                  min: 0
+                  max: 2
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRockfallWait:
+                  min: 1
+                  max: 1
+    - type: Sprite
+      sprite: Imperial/Medieval/Walls/soil.rsi
+      netsync: false
+      layers:
+        - state: solid
+        - state: mushroom
+        - map: [ "enum.EdgeLayer.South" ]
+          state: soil_s
+        - map: [ "enum.EdgeLayer.East" ]
+          state: soil_e
+        - map: [ "enum.EdgeLayer.North" ]
+          state: soil_n
+        - map: [ "enum.EdgeLayer.West" ]
+          state: soil_w
+
+- type: entity
+  id: MedievalWallSoilSolidRoot
+  parent: MedievalWallSoilSolid
+  name: rock
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 220
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRootItem:
+                  min: 2
+                  max: 6
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRockfallWait:
+                  min: 1
+                  max: 1
+    - type: Sprite
+      sprite: Imperial/Medieval/Walls/soil.rsi
+      netsync: false
+      layers:
+        - state: solid
+        - state: root
+        - map: [ "enum.EdgeLayer.South" ]
+          state: soil_s
+        - map: [ "enum.EdgeLayer.East" ]
+          state: soil_e
+        - map: [ "enum.EdgeLayer.North" ]
+          state: soil_n
+        - map: [ "enum.EdgeLayer.West" ]
+          state: soil_w

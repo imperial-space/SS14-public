@@ -4,6 +4,10 @@
   parent: BaseItem
   abstract: true
   components:
+  - type: Reactive
+    groups:
+      Extinguish: [ Touch ]
+  - type: ExtinguishableSetCollisionWake
   - type: Smokable
   - type: Sprite
   - type: Appearance
@@ -16,6 +20,7 @@
     price: 5
   - type: InjectableSolution
     solution: smokable
+  - type: Trash # Imperial "OperationalErtCleaners"
 
 # Base for all cigars and cigarettes.
 - type: entity

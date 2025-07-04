@@ -15,6 +15,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemSteel
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorSteelCheckerLight
@@ -33,6 +34,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemSteelCheckerLight
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorSteelCheckerDark
@@ -51,6 +53,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemSteelCheckerDark
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorSteelMini
@@ -69,6 +72,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemSteelMini
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorSteelPavement
@@ -87,6 +91,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemSteelPavement
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorSteelDiagonal
@@ -105,6 +110,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemSteelDiagonal
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorSteelOffset
@@ -117,6 +123,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemSteelOffset
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorSteelMono
@@ -135,6 +142,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemSteelMono
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorSteelPavementVertical
@@ -153,6 +161,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemSteelPavementVertical
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorSteelHerringbone
@@ -171,6 +180,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemSteelHerringbone
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorSteelDiagonalMini
@@ -189,6 +199,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemSteelDiagonalMini
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorBrassFilled
@@ -201,6 +212,7 @@
     collection: FootstepHull
   itemDrop: FloorTileItemBrassFilled
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorBrassReebe
@@ -213,6 +225,7 @@
     collection: FootstepHull
   itemDrop: FloorTileItemBrassReebe
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorPlastic
@@ -231,6 +244,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemSteel
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorWood
@@ -251,6 +265,7 @@
     collection: BarestepWood
   itemDrop: FloorTileItemWood
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorWhite
@@ -269,6 +284,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemWhite
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorWhiteMini
@@ -287,6 +303,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemWhiteMini
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorWhitePavement
@@ -305,6 +322,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemWhitePavement
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorWhiteDiagonal
@@ -323,6 +341,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemWhiteDiagonal
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorWhiteOffset
@@ -335,6 +354,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemWhiteOffset
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorWhiteMono
@@ -353,6 +373,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemWhiteMono
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorWhitePavementVertical
@@ -371,6 +392,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemWhitePavementVertical
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorWhiteHerringbone
@@ -389,6 +411,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemWhiteHerringbone
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorWhiteDiagonalMini
@@ -407,6 +430,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemWhiteDiagonalMini
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorWhitePlastic
@@ -425,6 +449,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemWhite
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorDark
@@ -443,6 +468,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemDark
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorDarkMini
@@ -461,6 +487,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemDarkMini
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorDarkPavement
@@ -479,6 +506,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemDarkPavement
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorDarkDiagonal
@@ -497,6 +525,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemDarkDiagonal
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorDarkOffset
@@ -509,6 +538,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemDarkOffset
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorDarkMono
@@ -527,6 +557,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemDarkMono
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorDarkPavementVertical
@@ -545,6 +576,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemDarkPavementVertical
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorDarkHerringbone
@@ -563,6 +595,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemDarkHerringbone
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorDarkDiagonalMini
@@ -581,6 +614,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemDarkDiagonalMini
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorDarkPlastic
@@ -599,6 +633,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemDark
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorTechMaint
@@ -611,6 +646,7 @@
     collection: FootstepHull
   itemDrop: FloorTileItemTechmaint
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorReinforced
@@ -623,6 +659,7 @@
     collection: FootstepHull
   itemDrop: PartRodMetal1
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorMono
@@ -635,6 +672,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemMono
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorLino
@@ -647,6 +685,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemLino
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorSteelDirty
@@ -659,6 +698,7 @@
     collection: FootstepPlating
   itemDrop: FloorTileItemDirty
   heatCapacity: 99910000
+  badSmellMod: 2.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorElevatorShaft
@@ -671,6 +711,7 @@
     collection: FootstepHull
   itemDrop: FloorTileItemElevatorShaft
   heatCapacity: 99910000
+  badSmellMod: 1.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorMetalDiamond
@@ -683,6 +724,7 @@
     collection: FootstepHull
   itemDrop: FloorTileItemMetalDiamond
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorRockVault
@@ -695,6 +737,7 @@
     collection: FootstepAsteroid
   itemDrop: FloorTileItemRockVault
   heatCapacity: 99910000
+  badSmellMod: 1.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorBlue
@@ -707,6 +750,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemBlue
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorSteelLime
@@ -725,6 +769,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemLime
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorMining
@@ -737,6 +782,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemMining
   heatCapacity: 99910000
+  badSmellMod: 1.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorMiningDark
@@ -749,6 +795,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemMiningDark
   heatCapacity: 99910000
+  badSmellMod: 1.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorMiningLight
@@ -761,6 +808,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemMiningLight
   heatCapacity: 99910000
+  badSmellMod: 1.25 # imperial medieval badsmell
 
 # Departamental
 - type: tile
@@ -774,6 +822,7 @@
     collection: FootstepHull
   itemDrop: FloorTileItemFreezer
   heatCapacity: 99910000
+  badSmellMod: 0.3 # imperial medieval badsmell
 
 - type: tile
   id: FloorShowroom
@@ -786,6 +835,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemShowroom
   heatCapacity: 99910000
+  badSmellMod: 0.3 # imperial medieval badsmell
 
 - type: tile
   id: FloorHydro
@@ -798,6 +848,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemHydro
   heatCapacity: 99910000
+  badSmellMod: 0.3 # imperial medieval badsmell
 
 - type: tile
   id: FloorBar
@@ -816,6 +867,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemBar
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorClown
@@ -828,6 +880,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemClown
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorMime
@@ -840,6 +893,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemMime
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorKitchen
@@ -852,6 +906,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemKitchen
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorLaundry
@@ -864,6 +919,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemLaundry
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorSteelDamaged
@@ -883,6 +939,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemSteel #This should probably be made null when it becomes possible to make it such, in SS13 prying destroyed tiles wouldn't give you anything.
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 # Concrete
 - type: tile
@@ -903,6 +960,7 @@
   itemDrop: FloorTileItemConcrete
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorConcreteMono
@@ -922,6 +980,7 @@
   itemDrop: FloorTileItemConcreteMono
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorConcreteSmooth
@@ -941,6 +1000,7 @@
   itemDrop: FloorTileItemConcreteSmooth
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorGrayConcrete
@@ -960,6 +1020,7 @@
   itemDrop: FloorTileItemGrayConcrete
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorGrayConcreteMono
@@ -979,6 +1040,7 @@
   itemDrop: FloorTileItemGrayConcreteMono
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorGrayConcreteSmooth
@@ -998,6 +1060,7 @@
   itemDrop: FloorTileItemGrayConcreteSmooth
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorOldConcrete
@@ -1017,6 +1080,7 @@
   itemDrop: FloorTileItemOldConcrete
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorOldConcreteMono
@@ -1036,6 +1100,7 @@
   itemDrop: FloorTileItemOldConcreteMono
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorOldConcreteSmooth
@@ -1055,6 +1120,7 @@
   itemDrop: FloorTileItemOldConcreteSmooth
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.25 # imperial medieval badsmell
 
 # Carpets (non smoothing)
 - type: tile
@@ -1068,9 +1134,10 @@
     collection: FootstepCarpet
   barestepSounds:
     collection: BarestepCarpet
-  friction: 0.25
+  friction: 1.25
   itemDrop: FloorTileItemArcadeBlue
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorArcadeBlue2
@@ -1083,9 +1150,10 @@
     collection: FootstepCarpet
   barestepSounds:
     collection: BarestepCarpet
-  friction: 0.25
+  friction: 1.25
   itemDrop: FloorTileItemArcadeBlue2
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorArcadeRed
@@ -1098,9 +1166,10 @@
     collection: FootstepCarpet
   barestepSounds:
     collection: BarestepCarpet
-  friction: 0.25
+  friction: 1.25
   itemDrop: FloorTileItemArcadeRed
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorEighties
@@ -1113,9 +1182,10 @@
     collection: FootstepCarpet
   barestepSounds:
     collection: BarestepCarpet
-  friction: 0.25
+  friction: 1.25
   itemDrop: FloorTileItemEighties
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorCarpetClown
@@ -1128,9 +1198,10 @@
     collection: FootstepCarpet
   barestepSounds:
     collection: BarestepCarpet
-  friction: 0.25
+  friction: 1.25
   itemDrop: FloorTileItemCarpetClown
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorCarpetOffice
@@ -1143,9 +1214,10 @@
     collection: FootstepCarpet
   barestepSounds:
     collection: BarestepCarpet
-  friction: 0.25
+  friction: 1.25
   itemDrop: FloorTileItemCarpetOffice
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorBoxing
@@ -1162,9 +1234,10 @@
   #deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepFloor
-  friction: 0.25
+  friction: 1.25
   itemDrop: FloorTileItemBoxing
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorGym
@@ -1181,9 +1254,10 @@
   #deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepFloor
-  friction: 0.25
+  friction: 1.25
   itemDrop: FloorTileItemGym
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 # Shuttle
 - type: tile
@@ -1197,6 +1271,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemShuttleWhite
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorShuttleGrey
@@ -1215,6 +1290,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemShuttleGrey
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorShuttleBlack
@@ -1233,6 +1309,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemShuttleBlack
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorShuttleBlue
@@ -1245,6 +1322,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemShuttleBlue
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorShuttleOrange
@@ -1257,6 +1335,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemShuttleOrange
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorShuttlePurple
@@ -1269,6 +1348,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemShuttlePurple
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorShuttleRed
@@ -1281,6 +1361,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemShuttleRed
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 
 # Materials
@@ -1295,6 +1376,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemGold
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorSilver
@@ -1307,6 +1389,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemSilver
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorGlass
@@ -1325,6 +1408,7 @@
     collection: FootstepTile
   itemDrop: SheetGlass1
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorRGlass
@@ -1343,6 +1427,7 @@
     collection: FootstepTile
   itemDrop: SheetRGlass1
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorMetalFoam
@@ -1358,6 +1443,7 @@
     collection: FootstepHull
   itemDrop: SheetSteel1
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 # Circuits
 - type: tile
@@ -1371,6 +1457,7 @@
     collection: FootstepHull
   itemDrop: FloorTileItemGCircuit
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorBlueCircuit
@@ -1383,6 +1470,7 @@
     collection: FootstepHull
   itemDrop: FloorTileItemBCircuit
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorRedCircuit
@@ -1395,6 +1483,7 @@
     collection: FootstepHull
   itemDrop: FloorTileItemRCircuit
   heatCapacity: 99910000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 # Terrain
 - type: tile
@@ -1419,6 +1508,7 @@
     collection: FootstepTile
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorGrass
@@ -1431,6 +1521,7 @@
   itemDrop: FloorTileItemGrass
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorGrassJungle
@@ -1443,6 +1534,7 @@
   itemDrop: FloorTileItemGrassJungle
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorGrassDark
@@ -1460,6 +1552,7 @@
     collection: FootstepGrass
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorGrassLight
@@ -1498,8 +1591,8 @@
 # Asteroid
 
 - type: tile
-  id: FloorAsteroidSand
-  name: tiles-asteroid-sand
+  id: FloorAsteroidSandBorderless
+  name: tiles-asteroid-sand-borderless
   sprite: /Textures/Tiles/Asteroid/asteroid.png
   variants: 13
   placementVariants:
@@ -1522,10 +1615,26 @@
     collection: FootstepAsteroid
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.5 # imperial medieval badsmell
 
 - type: tile
-  id: FloorAsteroidSandDug
+  id: FloorAsteroidSand
+  parent: FloorAsteroidSandBorderless
   name: tiles-asteroid-sand
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    NorthEast: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    NorthWest: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    SouthWest: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    South: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    East: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    North: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    West: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+
+- type: tile
+  id: FloorAsteroidSandDugBorderless
+  name: tiles-asteroid-sand-borderless
   sprite: /Textures/Tiles/Asteroid/asteroid_dug.png
   baseTurf: Space
   isSubfloor: true
@@ -1533,10 +1642,26 @@
     collection: FootstepAsteroid
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.5 # imperial medieval badsmell
 
 - type: tile
-  id: FloorAsteroidSandRed
+  id: FloorAsteroidSandDug
+  parent: FloorAsteroidSandDugBorderless
   name: tiles-asteroid-sand
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    NorthEast: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    NorthWest: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    SouthWest: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    South: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    East: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    North: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    West: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+
+- type: tile
+  id: FloorAsteroidSandRedBorderless
+  name: tiles-asteroid-sand-borderless
   sprite: /Textures/Tiles/Asteroid/asteroid_red.png
   variants: 13
   placementVariants:
@@ -1559,6 +1684,22 @@
     collection: FootstepAsteroid
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.5 # imperial medieval badsmell
+
+- type: tile
+  id: FloorAsteroidSandRed
+  parent: FloorAsteroidSandRedBorderless
+  name: tiles-asteroid-sand
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    NorthEast: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    NorthWest: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    SouthWest: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    South: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    East: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    North: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    West: /Textures/Tiles/Asteroid/asteroid_double_edge.png
 
 - type: tile
   id: FloorAsteroidTile
@@ -1571,10 +1712,11 @@
     collection: FootstepAsteroid
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.5 # imperial medieval badsmell
 
 - type: tile
-  id: FloorAsteroidIronsand
-  name: tiles-asteroid-ironsand
+  id: FloorAsteroidIronsandBorderless
+  name: tiles-asteroid-ironsand-borderless
   sprite: /Textures/Tiles/Asteroid/ironsand.png
   variants: 15
   placementVariants:
@@ -1599,10 +1741,26 @@
     collection: FootstepAsteroid
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.25 # imperial medieval badsmell
 
 - type: tile
-  id: FloorAsteroidSandUnvariantized
-  name: tiles-asteroid-sand
+  id: FloorAsteroidIronsand
+  parent: FloorAsteroidIronsandBorderless
+  name: tiles-asteroid-ironsand
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/Tiles/Asteroid/iron_single_edge.png
+    NorthEast: /Textures/Tiles/Asteroid/iron_single_edge.png
+    NorthWest: /Textures/Tiles/Asteroid/iron_single_edge.png
+    SouthWest: /Textures/Tiles/Asteroid/iron_single_edge.png
+    South: /Textures/Tiles/Asteroid/iron_double_edge.png
+    East: /Textures/Tiles/Asteroid/iron_double_edge.png
+    North: /Textures/Tiles/Asteroid/iron_double_edge.png
+    West: /Textures/Tiles/Asteroid/iron_double_edge.png
+
+- type: tile
+  id: FloorAsteroidSandUnvariantizedBorderless
+  name: tiles-asteroid-sand-borderless
   sprite: /Textures/Tiles/Asteroid/asteroid0.png
   baseTurf: Space
   isSubfloor: true
@@ -1610,10 +1768,26 @@
     collection: FootstepAsteroid
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.5 # imperial medieval badsmell
 
 - type: tile
-  id: FloorAsteroidIronsandUnvariantized
-  name: tiles-asteroid-ironsand
+  id: FloorAsteroidSandUnvariantized
+  parent: FloorAsteroidSandUnvariantizedBorderless
+  name: tiles-asteroid-sand
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    NorthEast: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    NorthWest: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    SouthWest: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    South: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    East: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    North: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    West: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+
+- type: tile
+  id: FloorAsteroidIronsandUnvariantizedBorderless
+  name: tiles-asteroid-ironsand-borderless
   sprite: /Textures/Tiles/Asteroid/ironsand0.png
   baseTurf: Space
   isSubfloor: true
@@ -1621,6 +1795,22 @@
     collection: FootstepAsteroid
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.25 # imperial medieval badsmell
+
+- type: tile
+  id: FloorAsteroidIronsandUnvariantized
+  parent: FloorAsteroidIronsandUnvariantizedBorderless
+  name: tiles-asteroid-ironsand
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/Tiles/Asteroid/iron_single_edge.png
+    NorthEast: /Textures/Tiles/Asteroid/iron_single_edge.png
+    NorthWest: /Textures/Tiles/Asteroid/iron_single_edge.png
+    SouthWest: /Textures/Tiles/Asteroid/iron_single_edge.png
+    South: /Textures/Tiles/Asteroid/iron_double_edge.png
+    East: /Textures/Tiles/Asteroid/iron_double_edge.png
+    North: /Textures/Tiles/Asteroid/iron_double_edge.png
+    West: /Textures/Tiles/Asteroid/iron_double_edge.png
 
 # Caves
 #- type: tile
@@ -1661,6 +1851,7 @@
   footstepSounds:
     collection: FootstepAsteroid
   heatCapacity: 99910000
+  badSmellMod: 1.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorFlesh
@@ -1678,8 +1869,9 @@
   footstepSounds:
     collection: FootstepBlood
   itemDrop: FloorTileItemFlesh
-  friction: 0.05 #slippy
+  friction: 0.25 #slippy
   heatCapacity: 99910000
+  badSmellMod: 2 # imperial medieval badsmell
 
 - type: tile
   id: FloorTechMaint2
@@ -1692,6 +1884,7 @@
     collection: FootstepHull
   itemDrop: FloorTileItemSteelMaint
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorTechMaint3
@@ -1710,6 +1903,7 @@
     collection: FootstepHull
   itemDrop: FloorTileItemGratingMaint
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorWoodTile
@@ -1730,6 +1924,7 @@
     collection: BarestepWood
   itemDrop: FloorTileItemWoodPattern
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorBrokenWood
@@ -1753,6 +1948,7 @@
     collection: BarestepWood
   itemDrop: MaterialWoodPlank1
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorWebTile
@@ -1767,6 +1963,7 @@
     collection: BarestepCarpet
   itemDrop: FloorTileItemWeb
   heatCapacity: 99910000
+  badSmellMod: 1.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorChromite
@@ -1786,6 +1983,7 @@
   footstepSounds:
     collection: FootstepAsteroid
   heatCapacity: 99910000
+  badSmellMod: 1.25 # imperial medieval badsmell
 
 #Hull tiles
 - type: tile
@@ -1798,6 +1996,7 @@
     collection: FootstepHull
   itemDrop: FloorTileItemSteel #probably should not be normally obtainable, but the game shits itself and dies when you try to put null here
   heatCapacity: 99910000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorHullReinforced
@@ -1810,6 +2009,7 @@
   itemDrop: FloorTileItemSteel
   heatCapacity: 999100000 #/tg/ has this set as "INFINITY." I don't know if that exists here so I've just added an extra 0
   indestructible: true
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: FloorReinforcedHardened
@@ -1820,6 +2020,7 @@
   footstepSounds:
     collection: FootstepHull
   itemDrop: PartRodMetal1 #same case as FloorHull
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 # Faux sci tiles
 
@@ -1860,6 +2061,7 @@
   isSubfloor: false
   deconstructTools: [ Cutting ]
   itemDrop: FloorTileItemMowedAstroGrass
+  badSmellMod: 1.25 # imperial medieval badsmell
 
 - type: tile
   id: FloorJungleAstroGrass
@@ -1869,6 +2071,7 @@
   isSubfloor: false
   deconstructTools: [ Cutting ]
   itemDrop: FloorTileItemJungleAstroGrass
+  badSmellMod: 1.25 # imperial medieval badsmell
 
 # Ice
 - type: tile
@@ -1880,10 +2083,10 @@
   #deconstructTools: [ Prying ]
   friction: 0.05
   heatCapacity: 99910000
-  mobFriction: 0.5
-  mobFrictionNoInput: 0.05
-  mobAcceleration: 2
+  mobFriction: 0.05
+  mobAcceleration: 0.1
   itemDrop: FloorTileItemAstroIce
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: FloorAstroSnow
@@ -1893,6 +2096,17 @@
   isSubfloor: false
   #deconstructTools: [ Prying ]
   itemDrop: FloorTileItemAstroSnow
+  badSmellMod: 0.75 # imperial medieval badsmell
+
+- type: tile
+  id: FloorAstroAsteroidSandBorderless
+  name: tiles-astro-asteroid-sand-borderless
+  parent: FloorAsteroidSandBorderless
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemAstroAsteroidSand
+  weather: false
 
 - type: tile
   id: FloorWoodLarge
@@ -1913,3 +2127,4 @@
     collection: BarestepWood
   itemDrop: FloorTileItemWoodLarge
   heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell

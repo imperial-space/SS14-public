@@ -1,37 +1,30 @@
-ent-CrateEngineeringAMEShielding = Ящик компонентов ДАМ
+ent-CrateEngineeringAMEShielding = ящик компонентов ДАМ
     .desc = 9 частей, для создания нового или расширения существующего двигателя антиматерии.
 
-ent-CrateEngineeringAMEJar = Ящик антиматериевого топлива
+ent-CrateEngineeringAMEJar = ящик антиматериевого топлива
     .desc = 3 канистры антиматериевого топлива, для заправки двигателя антиматерии.
 
-ent-CrateEngineeringAMEJar1 = { ent-CrateEngineeringAMEJar }
-    .desc = { ent-CrateEngineeringAMEJar.desc }
-ent-CrateEngineeringAMEJar2 = { ent-CrateEngineeringAMEJar }
-    .desc = { ent-CrateEngineeringAMEJar.desc }
-ent-CrateEngineeringAMEJar3 = { ent-CrateEngineeringAMEJar }
-    .desc = { ent-CrateEngineeringAMEJar.desc }
-
-ent-CrateEngineeringAMEControl = Ящик с контроллером управления ДАМ
+ent-CrateEngineeringAMEControl = ящик с контроллером управления ДАМ
     .desc = Управляющий компьютер ДАМ.
 
-ent-CrateEngineeringSingularityEmitter = Ящик с эмиттером
+ent-CrateEngineeringSingularityEmitter = ящик с эмиттером
     .desc = Эмиттер, использующийся в сингулярном двигателе.
 
-ent-CrateEngineeringSingularityCollector = Ящик с коллектором радиации
+ent-CrateEngineeringSingularityCollector = ящик с коллектором радиации
     .desc = Коллектор для радиации, использующийся в сингулярном двигателе.
 
-ent-CrateEngineeringSingularityContainment = Ящик с генератором сдерживающего поля
+ent-CrateEngineeringSingularityContainment = ящик с генератором сдерживающего поля
     .desc = Генератор сдерживающего поля, удерживает сингулярность под контролем.
 
-ent-CrateEngineeringSingularityGenerator = Ящик с генератором сингулярности
+ent-CrateEngineeringSingularityGenerator = ящик с генератором сингулярности
     .desc = Генератор сингулярности, матерь монстра.
 
-ent-CrateEngineeringParticleAccelerator = Ящик с ускорителем частиц
+ent-CrateEngineeringParticleAccelerator = ящик с ускорителем частиц
     .desc = Сложная в настройке, но чертовски полезная.
 
-ent-CrateEngineeringGenerator = Ящик с генератором
+ent-CrateEngineeringGenerator = ящик с генератором
 
-ent-CrateEngineeringSolar = Ящик сборных солнечных панелей
+ent-CrateEngineeringSolar = ящик сборных солнечных панелей
     .desc = Детали для изготовления солнечных панелей и трекеров.
 
-ent-CrateEngineeringShuttle = Ящик электропитания шаттла
+ent-CrateEngineeringShuttle = ящик электропитания шаттла

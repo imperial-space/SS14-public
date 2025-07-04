@@ -20,8 +20,7 @@ public sealed partial class StationJobsSystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IBanManager _banManager = default!;
-    [Dependency] private readonly SponsorsManager _sponsorsManager = default!; //Imperial sponsors
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly SponsorsManager _sponsorsManager = default!; //Imperial sponsor
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
 
     private Dictionary<int, HashSet<string>> _jobsByWeight = default!;
@@ -385,7 +384,7 @@ public sealed partial class StationJobsSystem
                 if (!_prototypeManager.TryIndex(jobId, out var job))
                     continue;
 
-                if (!job.CanBeAntag && (!_playerManager.TryGetSessionById(player, out var session) || antagBlocked.Contains(session)))
+                if (!job.CanBeAntag && (!_player.TryGetSessionById(player, out var session) || antagBlocked.Contains(session)))
                     continue;
 
                 if (weight is not null && job.Weight != weight.Value)

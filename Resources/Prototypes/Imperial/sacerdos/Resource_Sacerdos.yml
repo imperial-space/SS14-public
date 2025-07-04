@@ -1,0 +1,174 @@
+- type: entity
+  parent: BaseStructure
+  id: Crystal_sacerdos
+  suffix: Phantom4502
+  name: crystal
+  description: A crystaline solid.
+  components:
+    - type: Sprite
+      sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
+      state: Sprite-0001
+    - type: Reflect
+      reflectProb: 0.5
+      reflects:
+      - Energy
+      spread: 75
+    - type: Anchorable
+      delay: 2
+    - type: Physics
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.45
+          density: 60
+          mask:
+            - MachineMask
+          layer:
+            - MidImpassable
+            - LowImpassable
+            - BulletImpassable
+            - Opaque
+    - type: PointLight
+      radius: 3
+      energy: 3
+      color: "#ff8227"
+    - type: Damageable
+      damageContainer: StructuralInorganic
+      damageModifierSet: Glass
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 120
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: GlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                Crystal_1_Sacerdos:
+                  min: 1
+                  max: 1
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+
+- type: entity
+  parent: Crystal_sacerdos
+  id: Crystal_sacerdos_0009
+  suffix: Phantom4502
+  components:
+    - type: Sprite
+      sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
+      state: Sprite-0009
+    - type: PointLight
+      radius: 3
+      energy: 3
+      color: "#47f8ff"
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 120
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: GlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                Crystal_3_Sacerdos:
+                  min: 1
+                  max: 1
+            - !type:DoActsBehavior
+               acts: [ "Destruction" ]
+
+- type: entity
+  parent: Crystal_sacerdos
+  id: Crystal_sacerdos_0005
+  suffix: Phantom4502
+  components:
+    - type: Sprite
+      sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
+      state: Sprite-0005
+    - type: PointLight
+      radius: 3
+      energy: 3
+      color: "#F197F2FF"
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 120
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: GlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                Crystal_2_Sacerdos:
+                  min: 1
+                  max: 1
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+
+##################################################################
+##################################################################
+##################################################################
+##################################################################
+##################################################################
+
+- type: entity
+  parent: BaseItem
+  id: Crystal_1_Sacerdos
+  name: Crystal_1
+  description: 
+  suffix: Phantom4502
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
+    state: Sprite-0004
+  - type: PointLight
+    radius: 2
+    energy: 2.5
+    color: "#ff8227"
+  - type: Currency
+    price:
+     Telecrystal_sacerdos: 250
+
+- type: entity
+  parent: BaseItem
+  id: Crystal_2_Sacerdos
+  name: Crystal_2
+  description: ShardCrystal_2
+  suffix: Phantom4502
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
+    state: Sprite-0008
+  - type: PointLight
+    radius: 2
+    energy: 2.5
+    color: "#F197F2FF"
+  - type: Currency
+    price:
+     Telecrystal_sacerdos: 100
+
+- type: entity
+  parent: BaseItem
+  id: Crystal_3_Sacerdos
+  name: Crystal_3
+  description: ShardCrystal_3
+  suffix: Phantom4502
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
+    state: Sprite-0012
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#47F8FFFF"
+  - type: Currency
+    price:
+     Telecrystal_sacerdos: 50

@@ -33,7 +33,7 @@ public sealed class ImperialStoreBoundUserInterface : BoundUserInterface
         {
             _menu.Title = Loc.GetString(store.Name);
             _menu.WithdrawButtonText = Loc.GetString(store.WithdrawText);
-            _menu.СurrencyTitle = Loc.GetString(store.СurrencyTitle);
+            _menu.СurrencyTitle = Loc.GetString(store.CurrencyTitle);
             _menu.UpdateWithdrawButton(store.WithdrawText);
         }
 

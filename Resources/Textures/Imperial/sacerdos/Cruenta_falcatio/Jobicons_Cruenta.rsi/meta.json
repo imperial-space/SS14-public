@@ -1,0 +1,20 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Sprited by Phantom4502",
+    "size": {
+        "x": 8,
+        "y": 8
+    },
+    "states": [
+        {
+            "name": "LeadersJobIcon_Cruenta"
+        },
+        {
+            "name": "fight_JobIcon_Cruenta"
+        },
+        {
+            "name": "IDMedicalJobIcon"
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+- type: alert
+  id: Grabbing
+  icons:
+  - sprite: /Textures/Imperial/Medieval/Interface/Alerts/grabbing.rsi
+    state: icon
+  clickEvent: !type:StopGrabbingAlertEvent
+  name: Схватил
+  description: Я схватил кого-то!
+
+- type: alert
+  id: Grabbed
+  icons:
+  - sprite: /Textures/Imperial/Medieval/Interface/Alerts/grabbed.rsi
+    state: icon
+  clickEvent: !type:EscapeGrabbingAlertEvent
+  name: Схватили
+  description: Меня схватили!

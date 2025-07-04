@@ -54,6 +54,17 @@
   - type: CultClothing
 
 - type: entity
+  parent: MedievalClothingOuterArmorCult
+  id: MedievalClothingOuterAltArmorCult
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/cult_altarmor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/cult_altarmor.rsi
+
+- type: entity
   parent: ClothingOuterBase
   id: MedievalClothingOuterArmorCultMana
   name: leather armor
@@ -81,6 +92,17 @@
   - type: ManaRegen
     regen: 2
   - type: CultClothing
+
+- type: entity
+  parent: MedievalClothingOuterArmorCultMana
+  id: MedievalClothingOuterAltArmorCultMana
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/cult_altarmor_mana.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/cult_altarmor_mana.rsi
 
 - type: entity
   parent: ClothingOuterBase
@@ -112,6 +134,16 @@
     damageCoefficient: 0.82
   - type: CultClothing
 
+- type: entity
+  parent: MedievalClothingOuterArmorCultUp
+  id: MedievalClothingOuterAltArmorCultUp
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/cult_altarmor_up.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/cult_altarmor_up.rsi
 
 - type: entity
   parent: ClothingOuterBase
@@ -146,6 +178,17 @@
   - type: CultClothing
 
 - type: entity
+  parent: MedievalClothingOuterArmorCultLeader
+  id: MedievalClothingOuterAltArmorCultLeader
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/cult_altarmor_leader.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/cult_altarmor_leader.rsi
+
+- type: entity
   parent: ClothingShoesBase
   id: MedievalClothingShoesCult
   name: galoshes
@@ -157,6 +200,17 @@
     sprite: Imperial/Medieval/Clothing/Shoes/cult_shoes.rsi
 
 - type: entity
+  parent: ClothingShoesBase
+  id: MedievalClothingAltShoesCult
+  name: galoshes
+  description: Rubber boots.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/cult_altshoes.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/cult_altshoes.rsi
+
+- type: entity
   parent: ClothingHandsBase
   id: MedievalGlovesCult
   name: IronGloves
@@ -166,6 +220,17 @@
     sprite: Imperial/Medieval/Clothing/Gloves/cult_gloves.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Gloves/cult_gloves.rsi
+
+- type: entity
+  parent: ClothingHandsBase
+  id: MedievalAltGlovesCult
+  name: IronGloves
+  description: gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/cult_altgloves.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/cult_altgloves.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -199,6 +264,28 @@
     slots:
     - Hair
   - type: CultClothing
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCult
+  id: MedievalClothingHeadAltHelmetCult
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/altcult.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/altcult.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCult
+  id: MedievalClothingHeadAltHelmetCultLeader
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/altcult_leader.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/altcult_leader.rsi
 
 - type: entity
   name: dagger
@@ -241,7 +328,7 @@
     - Knife
   - type: MeleeThrowOnHit
     distance: 0.3
-    speed: 0.7
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 6
 
@@ -768,8 +855,8 @@
         restitution: 0.3
         friction: 0.2
   - type: MeleeThrowOnHit
-    distance: 4
-    speed: 2.1
+    distance: 0.6
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
 
@@ -828,8 +915,8 @@
   - type: EmbeddableProjectile
     offset: 0.15,0.15
   - type: MeleeThrowOnHit
-    distance: 5
-    speed: 3
+    distance: 2.5
+    speed: 5
 
 - type: entity
   name: dagger
@@ -877,8 +964,8 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    distance: 2
-    speed: 1.7
+    distance: 0.7
+    speed: 5
 
 - type: entity
   name: Exception Spawner

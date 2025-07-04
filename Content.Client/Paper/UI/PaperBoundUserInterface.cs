@@ -4,6 +4,8 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Utility;
 using Content.Shared.Paper;
 using static Content.Shared.Paper.PaperComponent;
+using Robust.Client.Player;
+using Content.Client.Imperial.Medieval.Skills;
 
 namespace Content.Client.Paper.UI;
 
@@ -37,7 +39,15 @@ public sealed class PaperBoundUserInterface : BoundUserInterface
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
-        _window?.Populate((PaperBoundUserInterfaceState) state);
+
+        // Imperial Medieval Skills start
+        bool canRead = true;
+        var player = IoCManager.Resolve<IPlayerManager>().LocalEntity;
+        if (!player.HasValue || !IoCManager.Resolve<IEntityManager>().System<SkillsSystem>().CanRead(player.Value))
+            canRead = false;
+        // Imperial Medieval Skills end
+
+        _window?.Populate((PaperBoundUserInterfaceState) state, canRead);   // Imperial Medieval - canRead added
     }
 
     private void InputOnTextEntered(string text)

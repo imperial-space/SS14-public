@@ -11,6 +11,7 @@ using Content.Shared.Wieldable.Components;
 using Content.Shared.Coordinates;
 using Content.Shared.Popups;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Events;
 
 namespace Content.Shared.MeleeParry
 {

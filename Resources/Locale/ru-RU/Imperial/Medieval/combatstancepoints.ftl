@@ -1,0 +1,10 @@
+medieval-place-alpha = Метки отряда альфа
+medieval-place-bravo = Метки отряда браво
+medieval-place-delta = Метки отряда дельта
+medieval-place-gamma = Метки отряда гамма
+medieval-place-omega = Метки отряда омега
+medieval-place-stancepoint = Установить линию построения
+medieval-remove-stancepoints = Удалить линии построения
+ent-StancePoint = точка построения
+    .desc = Если точка красная - значит никого нет. Если желтая - в построении менее 4 человек, бонусы отсутствуют. Если зеленая - эффект построения активен, все в нем получают 50% защиты от любого урона
+medieval-cant-place-toomuch-stancepoints = В отряде недостаточно человек для такого построения. Очистите старые точки или добавьте больше человек в отряд

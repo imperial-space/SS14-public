@@ -21,7 +21,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - Офицер
+      - OldStationVlBlueShield
       - NamesLast
     - type: Sprite
       netsync: false

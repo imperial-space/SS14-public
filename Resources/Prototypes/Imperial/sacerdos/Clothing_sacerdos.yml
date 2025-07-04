@@ -1,0 +1,89 @@
+- type: entity
+  parent: ClothingUniformJumpskirtHoSAlt
+  id: Thejumpsuitofthesquadleader_sacerdos
+  name: The jumpsuit of the squad leader
+  suffix: Phantom4502, Sacerdos
+  description: Quite a good-looking official suit made of elastic materials.
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Clothing_sacerdos/Blackwhite_sacerdos_leader.rsi
+  - type: Clothing
+    sprite: Imperial/sacerdos/Clothing_sacerdos/Blackwhite_sacerdos_leader.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtHoSAlt
+  id: Theteamleadersjumpsuitskirt_sacerdos
+  name: The team leader's jumpsuit skirt
+  suffix: Phantom4502, Sacerdos
+  description: Quite a good-looking official suit made of elastic materials.
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Clothing_sacerdos/Blackwhite_sacerdos_skirt_leader.rsi
+  - type: Clothing
+    sprite: Imperial/sacerdos/Clothing_sacerdos/Blackwhite_sacerdos_skirt_leader.rsi
+  
+- type: entity
+  parent: ClothingNeckBase
+  id: SquadLeadersCloak_sacerdos
+  name: Squad Leader's Cloak
+  description: Squad Leader's Cloak
+  suffix: Phantom4502, Sacerdos
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Clothing_sacerdos/Blackwhite_sacerdos_raincoat_leader_sacerdos.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: SquadFightersMantle_sacerdos
+  name: Squad Fighter's Mantle
+  description: Mine ore, kill, but don't die!
+  suffix: Phantom4502, Sacerdos
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Clothing_sacerdos/Blackwhite_mantle_fight_sacrdos.rsi
+
+- type: entity
+  parent: ClothingNeckBase 
+  id: SquadFightersraincoat_sacerdos
+  name: Squad Fighter's raincoat
+  description: Mine ore, kill, but don't die!
+  suffix: Phantom4502, Sacerdos
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Clothing_sacerdos/Blackwhite_fight_sacrdos_raincoat.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtHoSAlt
+  id: Theunitsjumpsuit_sacerdos
+  name: The unit's jumpsuit
+  suffix: Phantom4502, Sacerdos
+  description: Quite a good-looking official suit made of elastic materials.
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Clothing_sacerdos/Blackwhite_fighter_sacrdos.rsi
+  - type: Clothing
+    sprite: Imperial/sacerdos/Clothing_sacerdos/Blackwhite_fighter_sacrdos.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: SacerdosClothingHeadHatBeret
+  name: Beret squad leader
+  description: A black beret with a commander's rank emblem.
+  suffix: Phantom4502, Sacerdos
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Clothing_sacerdos/beret_sacerdos.rsi
+  - type: Clothing
+    sprite: Imperial/sacerdos/Clothing_sacerdos/beret_sacerdos.rsi
+
+- type: entity
+  parent: ClothingHandsGlovesCaptain
+  id: ClothingHandsGlovesSacerdos
+  name: Sacerdos gloves
+  description: The gloves of the squad leader. You can definitely trust him...
+  suffix: Phantom4502, Sacerdos
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Clothing_sacerdos/HandsGloves_sacerdos.rsi
+  - type: Clothing
+    sprite: Imperial/sacerdos/Clothing_sacerdos/HandsGloves_sacerdos.rsi

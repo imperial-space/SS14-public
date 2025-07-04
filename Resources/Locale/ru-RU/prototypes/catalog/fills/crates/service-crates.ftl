@@ -1,42 +1,31 @@
-ent-CrateServiceJanitorialSupplies = Ящик с уборочным инвентарем
+ent-CrateServiceJanitorialSupplies = ящик с уборочным инвентарем
     .desc = Победите копоть и грязь с Незаменимыми Припасами для Уборки от Nanotrasen! Содержит три ведра, таблички мокрого пола, и очищающие гранаты. Также содержит одну швабру, тряпку, щётку, чистящий спрей, и мусорный пакет.
-
-ent-CrateServiceReplacementLights = Ящик запасных лампочек
+ent-CrateServiceReplacementLights = ящик запасных лампочек
     .desc = Да воссияет над станцией Свет Эфира! Или хотя бы свет сорока двух лампочек-труб и двадцати одной обычной лампочки.
-
-ent-CrateMousetrapBoxes = Ящик мышеловок
+ent-CrateMousetrapBoxes = ящик мышеловок
     .desc = Мышеловки - на случай, когда орда мышей заполонила отделы станции. Используйте экономно... или нет.
-
-ent-CrateServiceSmokeables = Ящик табачных изделий
+ent-CrateServiceSmokeables = ящик табачных изделий
     .desc = Устали от быстрой смерти на станции? Закажите этот ящик и прокурите свой путь к кашляющей погибели!
-
-ent-CrateServiceCustomSmokable = Ящик табачных изделий (собери-сам)
+ent-CrateServiceCustomSmokable = ящик табачных изделий (собери-сам)
     .desc = Хотите проявить творческий подход к тому, что вы используете для уничтожения своих легких? Этот ящик для вас! В нем есть все, что нужно, чтобы скрутить свои сигареты.
-
-ent-CrateServiceBureaucracy = Ящик бюрократических припасов
+ent-CrateServiceBureaucracy = ящик бюрократических припасов
     .desc = Стопка бумаги, папки, несколько ручек - всё о чем можно мечтать.
-
-ent-CrateServicePersonnel = Ящик для найма персонала
+ent-CrateServicePersonnel = ящик для найма персонала
     .desc = Содержит коробку с КПК и чистыми ID картами.
-
-ent-CrateServiceBooks = Ящик книг
+ent-CrateServiceBooks = ящик книг
     .desc = Содержит 10 пустых книг случайного вида.
-
-ent-CrateJanitorBiosuit = Ящик биозащитных костюмов уборщика
+ent-CrateJanitorBiosuit = ящик биозащитных костюмов уборщика
     .desc = Содержит 2 костюма биологической защиты, чтобы никакая зараза не отвлекала вас от уборки станции.
-
-ent-CrateServiceTheatre = Ящик театрального снаряжения
+ent-CrateServiceTheatre = ящик театрального снаряжения
     .desc = Ящик снаряжения для театральных представлений.
-
-ent-CrateServiceBox = Ящик коробок
+ent-CrateServiceBox = ящик коробок
     .desc = Содержит в себе 6 коробок.
-
 ent-CrateServiceGuidebooks = ящик руководств
     .desc = Содержит руководства.
-
 ent-CrateTrashCartFilled = полная мусорная тележка
     .desc = { ent-CrateBaseWeldable.desc }
     .suffix = Полная
-
 ent-CrateServiceFaxMachine = ящик c факсом
     .desc = Факс и отвертка, чтобы установить имя.
+ent-CrateServiceColorfulLights = ящик разноцветных ламп
+    .desc = Вечеринка - это не вечеринка, если на нее не трудно смотреть, она должна дезориентировать и у вас должны болеть уши.

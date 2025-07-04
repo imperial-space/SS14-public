@@ -19,6 +19,7 @@ using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Chat;
+using Content.Server.Imperial.Medieval.Body;
 
 namespace Content.Server.Body.Systems;
 
@@ -175,6 +176,20 @@ public sealed class RespiratorSystem : EntitySystem
     }
 
     /// <summary>
+    /// Returns true if the entity is above their SuffocationThreshold and alive.
+    /// </summary>
+    public bool IsBreathing(Entity<RespiratorComponent?> ent)
+    {
+        if (_mobState.IsIncapacitated(ent))
+            return false;
+
+        if (!Resolve(ent, ref ent.Comp))
+            return false;
+
+        return (ent.Comp.Saturation > ent.Comp.SuffocationThreshold);
+    }
+
+    /// <summary>
     /// Check whether or not an entity can metabolize inhaled air without suffocating or taking damage (i.e., no toxic
     /// gasses).
     /// </summary>
@@ -295,7 +310,12 @@ public sealed class RespiratorSystem : EntitySystem
             }
         }
 
-        _damageableSys.TryChangeDamage(ent, ent.Comp.Damage, interruptsDoAfters: false);
+        // Imperial Medieval Skills start
+        var ev = new GetSuffocationDamageModifiersEvent(1f);
+        RaiseLocalEvent(ent, ref ev);
+        // Imperial Medieval Skills end
+
+        _damageableSys.TryChangeDamage(ent, ent.Comp.Damage * ev.Modifier, interruptsDoAfters: false);  // Imperial Medieval - modifier added
     }
 
     private void StopSuffocation(Entity<RespiratorComponent> ent)

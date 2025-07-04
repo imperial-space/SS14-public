@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Made by 𝘽𝙚𝙡𝙖𝙮#7441|Adjutant icon by Light_Lava|deathsquad icon by @texttipo",
+    "copyright": "Made by 𝘽𝙚𝙡𝙖𝙮#7441|Adjutant icon by Light_Lava|deathsquad, rcuoff and rcuoper icon by @texttipo",
     "size": {
         "x": 32,
         "y": 32
@@ -15,6 +15,12 @@
         },
         {
             "name": "deathsquad-icon"
+        },
+        {
+            "name": "rcuoper-icon"
+        },
+        {
+            "name": "rcuoff-icon"
         }
     ]
 }

@@ -1,6 +1,7 @@
 using Content.Server.Body.Components;
 using Content.Server.EntityEffects.Effects;
 using Content.Server.Fluids.EntitySystems;
+using Content.Server.Imperial.Medieval.Body;
 using Content.Server.Popups;
 using Content.Shared.Alert;
 using Content.Shared.Chemistry.Components;
@@ -358,7 +359,14 @@ public sealed class BloodstreamSystem : EntitySystem
         }
 
         if (amount >= 0)
-            return _solutionContainerSystem.TryAddReagent(component.BloodSolution.Value, component.BloodReagent, amount, null, GetEntityBloodData(uid));
+        {
+            // Imperial Medieval Skills start
+            var ev = new GetBloodRegenModifiersEvent(1f);
+            RaiseLocalEvent(uid, ref ev);
+            // Imperial Medieval Skills end
+
+            return _solutionContainerSystem.TryAddReagent(component.BloodSolution.Value, component.BloodReagent, amount * ev.Modifier, null, GetEntityBloodData(uid));  // Imperial Medieval - modifier added
+        }
 
         // Removal is more involved,
         // since we also wanna handle moving it to the temporary solution

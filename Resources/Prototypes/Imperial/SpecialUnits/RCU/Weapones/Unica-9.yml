@@ -1,0 +1,22 @@
+- type: entity
+  name: Unica-9
+  parent: BaseWeaponRevolver
+  id: WeaponRevolverUnica9
+  description: Reliable revolver with two firing modes.
+  suffix: RiotControlUnit
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/RCU/Weapones/unica.rsi
+  - type: Gun
+    fireRate: 2.5
+    selectedMode: SemiAuto
+    availableModes:
+      - FullAuto
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/hpistol.ogg
+  - type: ClothingFactionExplosion
+    friendlyFaction: RiotControlUnit
+    chance: 1
+  - type: Speech
+    speechSounds: Pai

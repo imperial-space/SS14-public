@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 64
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "made by crookielv",
+  "states": [
+    {
+      "name": "noentry"
+    },
+    {
+      "name": "parking"
+    },
+    {
+      "name": "crossing"
+    },
+    {
+      "name": "nostopping"
+    }
+  ]
+}

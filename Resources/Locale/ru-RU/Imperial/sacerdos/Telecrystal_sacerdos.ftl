@@ -1,0 +1,11 @@
+ent-Telecrystal_sacerdos = Монета Sacerdos
+    .desc = Бойцу заплатите чеканной монетой, чеканной монетой, Бойцу заплатите — зачтется всё это вам!
+store-currency-display-Telecrystal_sacerdos = Монет Sacerdos
+ent-Telecrystal_sacerdos1 = Монета Sacerdos
+    .desc = Бойцу заплатите чеканной монетой, чеканной монетой, Бойцу заплатите — зачтется всё это вам!
+ent-Telecrystal_sacerdos5 = Монета Sacerdos
+    .desc = Бойцу заплатите чеканной монетой, чеканной монетой, Бойцу заплатите — зачтется всё это вам!
+ent-Telecrystal_sacerdos25 = Монета Sacerdos
+    .desc = Бойцу заплатите чеканной монетой, чеканной монетой, Бойцу заплатите — зачтется всё это вам!
+ent-Telecrystal_sacerdos100 = Монета Sacerdos
+    .desc = Бойцу заплатите чеканной монетой, чеканной монетой, Бойцу заплатите — зачтется всё это вам!

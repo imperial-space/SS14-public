@@ -144,6 +144,8 @@
   group: Elements
   desc: reagent-desc-iron
   physicalDesc: reagent-physical-desc-metallic
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   flavor: metallic
   color: "#434b4d"
   boilingPoint: 2862.0

@@ -1,0 +1,21 @@
+- type: entity
+  parent: AirlockSyndicate
+  id: AirlockSCruentaLocked
+  suffix: Phantom4502, Cruenta, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/Airlock_Cruenta.rsi
+
+- type: entity
+  parent: AirlockSecurityGlass
+  id: AirlockCruentaGlassLocked
+  suffix: Phantom4502, Cruenta, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/Airlock_Glass_Cruenta.rsi

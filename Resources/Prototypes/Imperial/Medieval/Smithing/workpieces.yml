@@ -802,3 +802,10 @@
   components:
   - type: SmithingWorkpiece
     finalProductEntity: MedievalIronHalberdT3
+
+- type: entity
+  id: WorkpieceMedievalClothingOuterArmorGoblinIron
+  parent: BaseWeaponWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingOuterArmorGoblinIron

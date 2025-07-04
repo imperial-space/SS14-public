@@ -65,7 +65,6 @@
     soundGunshot:
       path: /Audio/Imperial/Medieval/ES_Arrow_Release_1_-_SFX_Producer.ogg
 
-
 - type: entity
   parent: BaseCartridge
   id: MedievalBoltSteel
@@ -412,6 +411,7 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Imperial/Medieval/ES_Bow_Release_Arrow_-_SFX_Producer.ogg
+    defaultSpread: 10
 
 - type: entity
   parent: BaseArrow
@@ -482,6 +482,7 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Imperial/Medieval/ES_Bow_Release_Arrow_-_SFX_Producer.ogg
+    defaultSpread: 10
   - type: RadiationSource
     intensity: 2
     slope: 3

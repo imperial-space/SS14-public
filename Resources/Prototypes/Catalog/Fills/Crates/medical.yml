@@ -94,7 +94,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: MedkitBurnFilled
+    - id: MedkitBurnImperialFilled # Imperial Space Замена аптечек
 
 - type: entity
   id: CrateEmergencyToxinKit
@@ -104,7 +104,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: MedkitToxinFilled
+    - id: ToxinMedkitImperialFilled # Imperial Space Замена аптечек
 
 - type: entity
   id: CrateEmergencyO2Kit
@@ -114,7 +114,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: MedkitOxygenFilled
+    - id: MedkitOxygenImperialFilled # Imperial Space Замена аптечек
 
 - type: entity
   id: CrateEmergencyBruteKit
@@ -124,7 +124,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: MedkitBruteFilled
+    - id: BruteMedkitImperialFilled # Imperial Space Замена аптечек
 
 - type: entity
   id: CrateEmergencyAdvancedKit
@@ -134,7 +134,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: MedkitAdvancedFilled
+    - id: AdvancedFirstAidMedkitImperialFilled # Imperial Space Замена аптечек
 
 - type: entity
   id: CrateEmergencyRadiationKit
@@ -144,7 +144,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: MedkitRadiationFilled
+    - id: MedkitRadiationImperialFilled # Imperial Space Замена аптечек
 
 - type: entity
   id: CrateBodyBags

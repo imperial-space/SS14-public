@@ -320,7 +320,7 @@
 
 - type: entity
   name: mirror shield
-  parent: BaseShield
+  parent: [ BaseShield, BaseMagicalContraband ]
   id: MirrorShield
   description: Eerily glows red... you hear the geometer whispering
   components:
@@ -548,3 +548,12 @@
                   max: 2
     - type: StaticPrice
       price: 250
+    # Imperial Teleriot Sprite Fix Start
+    - type: PointLight
+      netsync: false
+      enabled: false
+      radius: 0
+      energy: 0
+      color: blue
+    - type: ItemTogglePointLight
+    # Imperial Teleriot Sprite Fix End

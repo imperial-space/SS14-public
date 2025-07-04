@@ -1,10 +1,12 @@
 using Content.Shared.Imperial.Medieval.Language;
+using Content.Shared.Dataset;
+using Content.Shared.Humanoid.Markings;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Humanoid.Prototypes;
 
-[Prototype("species")]
+[Prototype]
 public sealed partial class SpeciesPrototype : IPrototype
 {
     /// <summary>
@@ -43,7 +45,7 @@ public sealed partial class SpeciesPrototype : IPrototype
     // sprite accessories.
 
     [DataField("sprites")]
-    public string SpriteSet { get; private set; } = default!;
+    public ProtoId<HumanoidSpeciesBaseSpritesPrototype> SpriteSet { get; private set; } = default!;
 
     /// <summary>
     ///     Default skin tone for this species. This applies for non-human skin tones.
@@ -62,7 +64,7 @@ public sealed partial class SpeciesPrototype : IPrototype
     ///     The limit of body markings that you can place on this species.
     /// </summary>
     [DataField("markingLimits")]
-    public string MarkingPoints { get; private set; } = default!;
+    public ProtoId<MarkingPointsPrototype> MarkingPoints { get; private set; } = default!;
 
     /// <summary>
     ///     Humanoid species variant used by this entity.
@@ -83,16 +85,16 @@ public sealed partial class SpeciesPrototype : IPrototype
     public HumanoidSkinColor SkinColoration { get; private set; }
 
     [DataField]
-    public string MaleFirstNames { get; private set; } = "NamesFirstMale";
+    public ProtoId<LocalizedDatasetPrototype> MaleFirstNames { get; private set; } = "NamesFirstMale";
 
     [DataField]
-    public string FemaleFirstNames { get; private set; } = "NamesFirstFemale";
+    public ProtoId<LocalizedDatasetPrototype> FemaleFirstNames { get; private set; } = "NamesFirstFemale";
 
     [DataField]
-    public string LastNames { get; private set; } = "NamesLast";
+    public ProtoId<LocalizedDatasetPrototype> LastNames { get; private set; } = "NamesLast";
 
     [DataField]
-    public string FemaleLastNames { get; private set; } = "NamesMothLast"; //Imperial last female names
+    public ProtoId<LocalizedDatasetPrototype> FemaleLastNames { get; private set; } = "NamesMothLast"; //Imperial last female names
 
     [DataField]
     public SpeciesNaming Naming { get; private set; } = SpeciesNaming.FirstLast;

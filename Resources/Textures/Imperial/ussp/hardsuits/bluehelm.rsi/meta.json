@@ -1,0 +1,25 @@
+{
+    "version": 1,
+    "license": "This content is under ICLA license, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "Designed @max_gab2 (ripmax)",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "icon"
+      },
+      {
+        "name": "icon-flash"
+      },
+      {
+        "name": "off-equipped-HELMET",
+        "directions": 4
+      },
+      {
+        "name": "on-equipped-HELMET",
+        "directions": 4
+      }
+    ]
+  }

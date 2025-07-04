@@ -10,7 +10,7 @@ namespace Content.Shared.Weapons.Melee.Components;
 /// until it hits a wall or a time limit is exhausted.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(MeleeThrowOnHitSystem))]
+//[Access(typeof(MeleeThrowOnHitSystem))]   // Imperial Medieval - removed access
 public sealed partial class MeleeThrowOnHitComponent : Component
 {
     /// <summary>
@@ -54,4 +54,4 @@ public record struct AttemptMeleeThrowOnHitEvent(EntityUid Target, EntityUid? Us
 /// Raised a target entity before it is thrown by <see cref="MeleeThrowOnHitComponent"/>.
 /// </summary>
 [ByRefEvent]
-public record struct MeleeThrowOnHitStartEvent(EntityUid Weapon, EntityUid? User);
+public record struct MeleeThrowOnHitStartEvent(EntityUid Weapon, EntityUid? User, float Distance); // Imperial Medieval - distance added0

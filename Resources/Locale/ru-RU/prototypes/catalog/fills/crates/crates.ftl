@@ -1,6 +1,6 @@
-ent-CrateRCDAmmo = Ящик зарядов РСУ
+ent-CrateRCDAmmo = ящик зарядов РСУ
     .desc = 3 картриджа для РСУ. Каждый имеет по 5 зарядов
-ent-CrateRCD = Ящик РСУ
+ent-CrateRCD = ящик РСУ
     .desc = Ящик содержащий РСУ
     .suffix = Защищённый
 ent-CrateServiceBoozeDispenser = ящик пополнения раздатчика алкогооля
@@ -35,3 +35,5 @@ ent-CrateChemistryVials = ящик пробирок
     .desc = ящик полный пробирок
 ent-CrateEngineeringSpaceHeater = ящик c обогревателем
     .desc = Содержит обогреватель для климат-контроля.
+ent-CrateFunSharkPlushieBulk = ящик мягких акул
+    .desc = Ящик, наполненный разнообразными видами любимых плавниковых друзей. Равр!

@@ -5,9 +5,9 @@
   description: A torch fashioned from some wood.
   components:
     - type: ExpendableLight
-      spentName: expendable-light-burnt-torch-name
-      spentDesc: expendable-light-burnt-torch-desc
+      refuelMaterialID: WoodPlank
       glowDuration: 100
+      refuelMaximumDuration: 205
       fadeOutDuration: 4
       iconStateSpent: torch_spent
       turnOnBehaviourID: turn_on
@@ -79,3 +79,11 @@
     - type: Tag
       tags:
       - Torch
+    # Imperial Medieval Start
+    - type: FlammableExpendableLight
+    - type: Flammable
+      firestackFade: 0
+      damage:
+        types:
+          Heat: 0
+    # Imperial Medieval End

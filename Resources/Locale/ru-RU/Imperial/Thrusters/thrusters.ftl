@@ -1,8 +1,8 @@
-ent-ThrusterMedium = Двигатель
+ent-ThrusterMedium = двигатель
     .desc = Ускоритель среднего размера, заставляющий шаттл двигаться.
     .suffix = Medium
 
-ent-ThrusterLarge = Двигатель
+ent-ThrusterLarge = двигатель
     .desc = Ускоритель большого размера, заставляющий шаттл двигаться.
     .suffix = Large
 

@@ -1,0 +1,11 @@
+- type: entity
+  parent: WardenMantleID
+  id: OperatorMantle
+  name: operator mantle
+  description: A prestigious mantle for a senior RCU employee.
+  suffix: RiotControlUnit
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ImperialClothes/wardenmantle.rsi
+  - type: Clothing
+    sprite: Imperial/Other/ImperialClothes/wardenmantle.rsi

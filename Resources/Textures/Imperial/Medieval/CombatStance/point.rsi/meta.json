@@ -1,0 +1,27 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "made by @fichty",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "red",
+        "delays": [[1, 1]]
+      },
+      {
+        "name": "yellow",
+        "delays": [[1, 1]]
+      },
+      {
+        "name": "green",
+        "delays": [[1, 1]]
+      },
+      {
+        "name": "marker-icon"
+      }
+    ]
+  }
+  

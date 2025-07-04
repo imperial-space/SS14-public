@@ -1,0 +1,40 @@
+# Plasma Cutter recipes
+
+#Tier1
+- type: latheRecipe
+  id: EmptyWeaponPlasmaCutter
+  result: EmptyWeaponPlasmaCutter
+  categories:
+  - Weapons
+  completetime: 4
+  materials:
+    Steel: 1000
+    Glass: 500
+    Plasma: 500
+    Silver: 300
+
+- type: latheRecipePack
+  id: SalvagePlasmaCutterWeapons
+  recipes:
+  - EmptyWeaponPlasmaCutter
+
+
+#Tier2
+- type: latheRecipe
+  id: Advanced-EmptyWeaponPlasmaCutter
+  result: Advanced-EmptyWeaponPlasmaCutter
+  categories:
+  - Weapons
+  completetime: 7
+  materials:
+    Steel: 1500
+    Silver: 1000
+    Plasma: 1000
+    Glass: 500
+    Gold: 300
+
+- type: latheRecipePack
+  id: SalvageAdvancedPlasmaCutterWeapons
+  recipes:
+  - Advanced-EmptyWeaponPlasmaCutter
+

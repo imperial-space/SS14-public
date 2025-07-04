@@ -31,7 +31,8 @@
       implants:
       - MindShieldImplant
 
-- type: dataset ## Датасет, чтобы ОСО начинался с офицер
+- type: localizedDataset ## Датасет, чтобы ОСО начинался с офицер
   id: SpecialOfficerName
   values:
-  - Офицер
+    prefix: imperial-space-special-officer-
+    count: 1

@@ -1,0 +1,13 @@
+- type: listing
+  id: UplinkExplodingGaloshes
+  name: uplink-exploding-galoshes-name
+  description: uplink-exploding-galoshes-desc
+  icon: { sprite: /Textures/Clothing/Shoes/Specific/galoshes.rsi, state: icon }
+  productEntity: ClothingGaloshesExplosive
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkExplosives

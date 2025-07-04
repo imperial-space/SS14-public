@@ -11,7 +11,7 @@ public sealed partial class NocturnBadFoodComponent : Component
     [DataField]
     public int MaxTimesCanBeBiten = 5;
     [DataField]
-    public float BloodMultiplier = 0.6f;
+    public float BloodMultiplier = 0.5f;
     [DataField]
     public bool Fresh = false;
 

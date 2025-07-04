@@ -1,0 +1,89 @@
+- type: entity
+  parent: ClothingUniformJumpskirtHoSAlt
+  id: Thejumpsuitofthesquadleader_Cruenta
+  name: The jumpsuit of the squad leader
+  suffix: Phantom4502, Cruenta
+  description: Quite a good-looking official suit made of elastic materials.
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/Clothing_Cruenta/Blackwhite_Cruenta_leader.rsi
+  - type: Clothing
+    sprite: Imperial/sacerdos/Cruenta_falcatio/Clothing_Cruenta/Blackwhite_Cruenta_leader.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtHoSAlt
+  id: Theteamleadersjumpsuitskirt_Cruenta
+  name: The team leader's jumpsuit skirt
+  suffix: Phantom4502, Cruenta
+  description: Quite a good-looking official suit made of elastic materials.
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/Clothing_Cruenta/Blackwhite_Cruenta_skirt_leader.rsi
+  - type: Clothing
+    sprite: Imperial/sacerdos/Cruenta_falcatio/Clothing_Cruenta/Blackwhite_Cruenta_skirt_leader.rsi
+  
+- type: entity
+  parent: ClothingNeckBase
+  id: SquadLeadersCloak_Cruenta
+  name: Squad Leader's Cloak
+  description: Squad Leader's Cloak
+  suffix: Phantom4502, Cruenta
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/Clothing_Cruenta/Blackwhite_Cruenta_raincoat_leader_Cruenta.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: SquadFightersMantle_Cruenta
+  name: Squad Fighter's Mantle
+  description: Mine ore, kill, but don't die!
+  suffix: Phantom4502, Cruenta
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/Clothing_Cruenta/Blackwhite_mantle_fight_Cruenta.rsi
+
+- type: entity
+  parent: ClothingNeckBase 
+  id: SquadFightersraincoat_Cruenta
+  name: Squad Fighter's raincoat
+  description: Mine ore, kill, but don't die!
+  suffix: Phantom4502, Cruenta
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/Clothing_Cruenta/Blackwhite_fight_Cruenta_raincoat.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtHoSAlt
+  id: Theunitsjumpsuit_Cruenta
+  name: The unit's jumpsuit
+  suffix: Phantom4502, Cruenta
+  description: Quite a good-looking official suit made of elastic materials.
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/Clothing_Cruenta/Blackwhite_fighter_Cruenta.rsi
+  - type: Clothing
+    sprite: Imperial/sacerdos/Cruenta_falcatio/Clothing_Cruenta/Blackwhite_fighter_Cruenta.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: CruentaClothingHeadHatBeret
+  name: Beret squad leader
+  description: A black beret with a commander's rank emblem.
+  suffix: Phantom4502, Cruenta
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/Clothing_Cruenta/beret_Cruenta.rsi
+  - type: Clothing
+    sprite: Imperial/sacerdos/Cruenta_falcatio/Clothing_Cruenta/beret_Cruenta.rsi
+
+- type: entity
+  parent: ClothingHandsGlovesCaptain
+  id: ClothingHandsGlovesCruenta
+  name: Cruenta gloves
+  description: The gloves of the squad leader. You can definitely trust him...
+  suffix: Phantom4502, Cruenta
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/Cruenta_falcatio/Clothing_Cruenta/HandsGloves_Cruenta.rsi
+  - type: Clothing
+    sprite: Imperial/sacerdos/Cruenta_falcatio/Clothing_Cruenta/HandsGloves_Cruenta.rsi

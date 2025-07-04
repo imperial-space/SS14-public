@@ -1,0 +1,12 @@
+- type: entity
+  id: MedievalTeleportEffect
+  components:
+  - type: TimedDespawn
+    lifetime: 2
+  - type: Sprite
+    sprite: Imperial/Medieval/Effects/Teleport.rsi
+    state: teleport
+  - type: TriggerOnSpawn
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/Teleport_app.ogg

@@ -1,0 +1,22 @@
+- type: entity
+  parent: ClothingShoesBootsMagAdv
+  id: BootsMagRCU
+  name: dark-red experimental magboots
+  description: An experimental version of advanced boots, which, on the contrary, accelerate the wearer. Dark-red version.
+  suffix: RiotControlUnit
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/RCU/Clothing/magboots.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/SpecialUnits/RCU/Clothing/magboots.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.6
+  - type: ClothingFactionExplosion
+    friendlyFaction: RiotControlUnit
+    chance: 1
+  - type: Speech
+    speechSounds: Pai

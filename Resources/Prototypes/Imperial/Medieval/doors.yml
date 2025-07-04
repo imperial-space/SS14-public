@@ -47,6 +47,20 @@
 
 - type: entity
   parent: MedievalAirlock
+  id: MedievalAirlockKayotLocked
+  name: дверь бандитов койота
+  description: Для неё нужен ключ
+  components:
+  #- type: AccessReader
+#    access: [["Chemistry"]]
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - Kayot
+
+- type: entity
+  parent: MedievalAirlock
   id: MedievalAirlockSecurityLocked
   components:
   #- type: AccessReader
@@ -413,6 +427,21 @@
 
 - type: entity
   parent: MedievalAirlockGrille
+  id: MedievalAirlockGrilleKayotLocked
+  name: решетчатая дверь бандитов койота
+  description: Для неё нужен ключ
+  components:
+  #- type: AccessReader
+#    access: [["Chemistry"]]
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - Kayot
+
+
+- type: entity
+  parent: MedievalAirlockGrille
   id: MedievalAirlockGrilleSecurityLocked
   components:
   #- type: AccessReader
@@ -652,6 +681,20 @@
   - type: LockDoor
     accessLists:
     - Chemistry
+
+- type: entity
+  parent: MedievalAirlockReinforced
+  id: MedievalAirlockReinforcedKayotLocked
+  name: оббвитая железом дверь бандитов койота
+  description: Для неё нужен ключ
+  components:
+  #- type: AccessReader
+#    access: [["Chemistry"]]
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - Kayot
 
 - type: entity
   parent: MedievalAirlockReinforced

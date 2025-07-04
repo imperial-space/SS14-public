@@ -8,6 +8,7 @@ using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Player;
 
 namespace Content.Server.Imperial.Medieval.Customization;
 
@@ -16,6 +17,8 @@ public sealed class CustomizationSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly ActorSystem _actor = default!;
+
 
     private FrozenDictionary<string, FrozenDictionary<EntProtoId, List<EntProtoId>>> _map =
         new Dictionary<string, FrozenDictionary<EntProtoId, List<EntProtoId>>>().ToFrozenDictionary();
@@ -65,7 +68,10 @@ public sealed class CustomizationSystem : EntitySystem
         if (!_mind.TryGetMind(args.User, out _, out var mindComponent))
             return;
 
-        if (!_mind.TryGetSession(mindComponent, out var session))
+        if (!_actor.TryGetSession(mindComponent.Owner, out var session))
+            return;
+
+        if (session is null)
             return;
 
         if (!_map.TryGetValue(session.UserId.ToString(), out var map))

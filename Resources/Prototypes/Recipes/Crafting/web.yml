@@ -10,9 +10,6 @@
   entityWhitelist:
     tags:
     - SpiderCraft
-  icon:
-    sprite: Objects/Tiles/web.rsi
-    state: icon
   objectType: Item
 
 - type: construction
@@ -26,9 +23,6 @@
   entityWhitelist:
     tags:
     - SpiderCraft
-  icon:
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-    state: WEB-icon
   objectType: Item
 
 - type: construction
@@ -42,9 +36,6 @@
   entityWhitelist:
     tags:
     - SpiderCraft
-  icon:
-    sprite: Clothing/Uniforms/Jumpsuit/web.rsi
-    state: icon
   objectType: Item
 
 - type: construction
@@ -58,9 +49,6 @@
   entityWhitelist:
     tags:
     - SpiderCraft
-  icon:
-    sprite: Clothing/Uniforms/Jumpskirt/web.rsi
-    state: icon
   objectType: Item
 
 - type: construction
@@ -74,9 +62,6 @@
   entityWhitelist:
     tags:
     - SpiderCraft
-  icon:
-    sprite: Objects/Materials/materials.rsi
-    state: cloth_3
   objectType: Item
 
 - type: construction
@@ -91,9 +76,6 @@
   entityWhitelist:
     tags:
     - SpiderCraft
-  icon:
-    sprite: Objects/Weapons/Melee/web-shield.rsi
-    state: icon
   objectType: Item
 
 - type: construction
@@ -107,7 +89,4 @@
   entityWhitelist:
     tags:
     - SpiderCraft
-  icon:
-    sprite: Clothing/Shoes/Boots/winterbootsweb.rsi
-    state: icon
   objectType: Item

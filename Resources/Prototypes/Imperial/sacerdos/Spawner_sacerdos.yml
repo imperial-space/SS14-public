@@ -1,0 +1,62 @@
+- type: entity
+  name: TimedSpawnCrystal_sacerdos
+  id: TimedSpawnCrystal_sacerdos
+  parent: MarkerBase
+  suffix: Phantom4502
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
+          state: Sprite-0004
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - Crystal_sacerdos
+      chance: 1
+      intervalSeconds: 220
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  name: TimedSpawnCrystal_sacerdos_0009
+  id: TimedSpawnCrystal_sacerdos_0009
+  parent: MarkerBase
+  suffix: Phantom4502
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
+          state: Sprite-0012
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - Crystal_sacerdos_0009
+      chance: 1
+      intervalSeconds: 180
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  name: TimedSpawnCrystal_sacerdos_0005
+  id: TimedSpawnCrystal_sacerdos_0005
+  parent: MarkerBase
+  suffix: Phantom4502
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Imperial/sacerdos/Resource_Sacerdos.rsi
+          state: Sprite-0008
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - Crystal_sacerdos_0005
+      chance: 1
+      intervalSeconds: 200
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1

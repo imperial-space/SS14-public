@@ -25,5 +25,11 @@ public sealed class MedievalFactionPrototype : IPrototype
     public Dictionary<ProtoId<MedievalFactionPrototype>, string> KnownFactions = new();
 
     [DataField]
+    public Dictionary<ProtoId<MedievalFactionPrototype>, ProtoId<FactionRelationsPrototype>> DefaultRelations = new();
+
+    [DataField]
+    public List<ProtoId<MedievalFactionPrototype>> BlockedRelations = new();
+
+    [DataField]
     public string? WantedText;
 }

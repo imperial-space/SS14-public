@@ -129,7 +129,7 @@
 
 - type: latheRecipe
   id: Medkit
-  result: Medkit
+  result: FirstAidMedkitImperial # Imperial Space Замена аптечек
   name: lathe-recipe-Medkit-name
   completetime: 2
   materials:
@@ -138,43 +138,43 @@
 - type: latheRecipe
   parent: Medkit
   id: MedkitBurn
-  result: MedkitBurn
+  result: MedkitBurnImperial # Imperial Space Замена аптечек
   name: lathe-recipe-MedkitBurn-name
 
 - type: latheRecipe
   parent: Medkit
   id: MedkitToxin
-  result: MedkitToxin
+  result: ToxinMedkitImperial # Imperial Space Замена аптечек
   name: lathe-recipe-MedkitToxin-name
 
 - type: latheRecipe
   parent: Medkit
   id: MedkitO2
-  result: MedkitO2
+  result: MedkitOxygenImperial # Imperial Space Замена аптечек
   name: lathe-recipe-MedkitO2-name
 
 - type: latheRecipe
   parent: Medkit
   id: MedkitBrute
-  result: MedkitBrute
+  result: BruteMedkitImperial # Imperial Space Замена аптечек
   name: lathe-recipe-MedkitBrute-name
 
 - type: latheRecipe
   parent: Medkit
   id: MedkitAdvanced
-  result: MedkitAdvanced
+  result: AdvancedFirstAidMedkitImperial # Imperial Space Замена аптечек
   name: lathe-recipe-MedkitAdvanced-name
 
 - type: latheRecipe
   parent: Medkit
   id: MedkitRadiation
-  result: MedkitRadiation
+  result: MedkitRadiationImperial # Imperial Space Замена аптечек
   name: lathe-recipe-MedkitRadiation-name
 
 - type: latheRecipe
   parent: Medkit
   id: MedkitCombat
-  result: MedkitCombat
+  result: MedkitCobmatImperial # Imperial Space Замена аптечек
   name: lathe-recipe-MedkitCombat-name
 
 - type: latheRecipe
@@ -216,3 +216,23 @@
   materials:
     Steel: 100
     Plastic: 100
+
+- type: latheRecipe
+  id: LauncherSyringe
+  result: LauncherSyringe
+  completetime: 10
+  materials:
+    Silver: 200
+    Steel: 1000
+    Plastic: 200
+    Glass: 100
+
+- type: latheRecipe
+  id: MiniSyringe
+  result: MiniSyringe
+  completetime: 2
+  materials:
+    Steel: 200
+    Glass: 100
+    Plastic: 100
+

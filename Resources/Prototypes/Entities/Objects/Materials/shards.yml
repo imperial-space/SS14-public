@@ -51,6 +51,7 @@
   - type: Tag
     tags:
     - Trash
+  - type: Trash # Imperial "OperationalErtCleaners"
   - type: SpaceGarbage
   - type: Damageable
     damageContainer: Inorganic
@@ -69,7 +70,8 @@
   - type: Slippery
     slipSound:
       path: /Audio/Effects/glass_step.ogg
-    launchForwardsMultiplier: 0
+    slipData:
+      launchForwardsMultiplier: 0
   - type: TriggerOnStepTrigger
   - type: DamageUserOnTrigger
     damage:

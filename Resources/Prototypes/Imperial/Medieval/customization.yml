@@ -1,0 +1,193 @@
+### Zveres
+
+- type: markingPoints
+  id: MobZveresMarkingLimits
+  #onlyWhitelisted: true
+  points:
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ ZveresTailDefault ]
+    HeadTop:
+      points: 1
+      required: true
+      defaultMarkings: [ ZveresEarsDefault ]
+    Overlay:
+      points: 1
+      required: false
+    HeadSide:
+      points: 2
+      required: false
+    Chest:
+      points: 1
+      required: false
+
+### TAILS
+
+- type: marking
+  id: ZveresTailDefault
+  bodyPart: Tail
+  markingCategory: Tail
+  followSkinColor: true
+  speciesRestriction: [Zveres]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Zveres/parts.rsi
+    state: tail
+
+- type: marking
+  id: ZveresTailRounded
+  bodyPart: Tail
+  markingCategory: Tail
+  followSkinColor: true
+  speciesRestriction: [Zveres]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Zveres/tails.rsi
+    state: rounded
+
+- type: marking
+  id: ZveresTailShort
+  bodyPart: Tail
+  markingCategory: Tail
+  followSkinColor: true
+  speciesRestriction: [Zveres]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Zveres/tails.rsi
+    state: short
+
+### TAILS END
+### EARS
+
+- type: marking
+  id: ZveresEarsDefault
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  followSkinColor: true
+  speciesRestriction: [Zveres]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:SkinColoring
+    layers:
+      ears_cat_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+  - sprite: Imperial/Medieval/Species/Zveres/parts.rsi
+    state: ears_in
+  - sprite: Imperial/Medieval/Species/Zveres/parts.rsi
+    state: ears_out
+
+- type: marking
+  id: ZveresEarsShort
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  followSkinColor: true
+  speciesRestriction: [Zveres]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:SkinColoring
+    layers:
+      ears_cat_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Zveres/ears.rsi
+    state: t_0
+  - sprite: Imperial/Medieval/Species/Customization/Zveres/ears.rsi
+    state: t_1
+
+- type: marking
+  id: ZveresEarsLowered
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  followSkinColor: true
+  speciesRestriction: [Zveres]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:SkinColoring
+    layers:
+      ears_cat_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Zveres/ears.rsi
+    state: u_0
+  - sprite: Imperial/Medieval/Species/Customization/Zveres/ears.rsi
+    state: u_1
+
+### EARS END
+### SPOTS
+
+- type: marking
+  id: ZveresAllbodySpots
+  bodyPart: LLeg
+  markingCategory: Overlay
+  speciesRestriction: [Zveres]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Zveres/spots.rsi
+    state: allbody
+
+- type: marking
+  id: ZveresEyeLeftSpot
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Zveres]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Zveres/spots.rsi
+    state: eye_left
+
+- type: marking
+  id: ZveresEyeRightSpot
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Zveres]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Zveres/spots.rsi
+    state: eye_right
+
+- type: marking
+  id: ZveresJawSpot
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Zveres]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Zveres/spots.rsi
+    state: jaw
+
+- type: marking
+  id: ZveresBellySpot
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Zveres]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Zveres/spots.rsi
+    state: belly
+
+### SPOTS END
+
+### Zveres

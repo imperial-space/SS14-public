@@ -1,0 +1,34 @@
+- type: entity
+  id: SpawnPointMyrmex
+  parent: MarkerBase
+  name: myrmex
+  components:
+  - type: SpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/Medieval/Myrmex/Castes/myrmex_larva.rsi
+      state: base
+
+- type: antag
+  id: MyrmexQueen
+  name: roles-antag-myrmex-queen-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-myrmex-queen-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    # хз какое время лучше поставить
+    time: 0
+
+
+- type: antag
+  id: Myrmex
+  name: roles-antag-myrmex-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-myrmex-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    # хз какое время лучше поставить
+    time: 0

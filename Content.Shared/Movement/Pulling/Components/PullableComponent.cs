@@ -1,4 +1,5 @@
 using Content.Shared.Alert;
+using Content.Shared.Imperial.Medieval.Skills;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -8,7 +9,7 @@ namespace Content.Shared.Movement.Pulling.Components;
 /// Specifies an entity as being pullable by an entity with <see cref="PullerComponent"/>
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(Systems.PullingSystem))]
+[Access(typeof(Systems.PullingSystem), typeof(SharedSkillsSystem))] // Imperial Medieval - SharedSkillsSystem added
 public sealed partial class PullableComponent : Component
 {
     /// <summary>

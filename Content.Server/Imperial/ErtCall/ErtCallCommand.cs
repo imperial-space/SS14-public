@@ -6,7 +6,7 @@ using System.Linq;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Audio.Systems;
-using Content.Shared.Imperial.ErtCall;
+using Content.Server.Imperial.ErtCall;
 using Content.Server.Chat.Systems;
 
 

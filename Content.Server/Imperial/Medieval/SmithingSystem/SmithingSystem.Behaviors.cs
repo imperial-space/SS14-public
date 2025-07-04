@@ -83,18 +83,18 @@ public sealed partial class SmithingSystem
         var name = Identity.Name(entityUid, EntityManager);
         var append = _itemQualityDecorators[quality];
 
-        var newName = append + name + append;
+        var newName = append + name;
         _metaDataSystem.SetEntityName(entityUid, newName);
     }
 
     private Dictionary<ItemQuality, string> _itemQualityDecorators = new()
     {
-        { ItemQuality.Worst, "---"},
-        { ItemQuality.ReallyBad, "--"},
-        { ItemQuality.Bad, "-"},
-        { ItemQuality.Default, "+"},
-        { ItemQuality.Good, "++"},
-        { ItemQuality.Excellent, "+++"},
+        { ItemQuality.Worst, "отвр. "},
+        { ItemQuality.ReallyBad, "ужс. "},
+        { ItemQuality.Bad, "плох. "},
+        { ItemQuality.Default, "хор. "},
+        { ItemQuality.Good, "отл. "},
+        { ItemQuality.Excellent, "шедевр. "},
 
     };
 

@@ -1,0 +1,99 @@
+- type: entity
+  parent: ClothingBackpackERTSecurity
+  id: ClothingBackpackSacerdos_1
+  name: The bag of the second shooting gallery
+  description: A large bag that will help you move ore, weapons and ammunition.
+  suffix: Phantom4502, Sacerdos
+  components:
+    - type: Storage
+      grid:
+      - 0,0,7,6
+    - type: Sprite
+      sprite: Imperial/sacerdos/BACKPACK_sacerdos/BACKPACK_fight_1_sacerdos.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackSacerdos_2
+  name: The bag of the third shooting gallery
+  description: Great for transporting explosive substances.
+  suffix: Phantom4502, Sacerdos
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/BACKPACK_sacerdos/BACKPACK_fight_2_sacerdos.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelSacerdos_3
+  name: A duffel bag from the third shooting gallery
+  description: It's bigger and still perfectly moves explosive things.
+  suffix: Phantom4502, Sacerdos
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/BACKPACK_sacerdos/BACKPACK_fight_3_sacerdos.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: Storage
+    grid:
+    - 0,0,8,4
+
+- type: entity
+  parent: ClothingBackpack
+  id: BlackShieldBackpackSacerdos_4
+  name: The backpack of the first shooting range
+  suffix: Phantom4502, Sacerdos
+  description: Better than nothing
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/BACKPACK_sacerdos/BACKPACK_fight_4_sacerdos.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelSacerdos_5
+  name: The bag of the first shooting gallery
+  suffix: Phantom4502, Sacerdos
+  description: Better than nothing
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/BACKPACK_sacerdos/BACKPACK_fight_5_sacerdos.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelSacerdos_6
+  name: The duffel bag of the first shooting gallery
+  suffix: Phantom4502, Sacerdos
+  description: Better than nothing
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/BACKPACK_sacerdos/BACKPACK_fight_6_sacerdos.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelLeaderSacerdos_1
+  name: Squad Leader's Bag
+  suffix: Phantom4502, Sacerdos
+  description: The bag of the first shooting range, but with gold inserts
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/BACKPACK_sacerdos/BACKPACK_Leaders_1_sacerdos.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelleaderSacerdos_2
+  name: The squad leader's duffel bag
+  suffix: Phantom4502, Sacerdos
+  description: The duffel bag of the first shooting range, but with gold inserts
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/BACKPACK_sacerdos/BACKPACK_Leaders_2_sacerdos.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackSatchelSacerdos_3
+  name: Squad Leader's Backpack
+  suffix: Phantom4502, Sacerdos
+  description: Backpack of the first shooting range, but with gold inserts
+  components:
+  - type: Sprite
+    sprite: Imperial/sacerdos/BACKPACK_sacerdos/BACKPACK_Leaders_3_sacerdos.rsi

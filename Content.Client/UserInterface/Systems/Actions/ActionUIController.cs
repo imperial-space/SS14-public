@@ -12,6 +12,7 @@ using Content.Client.UserInterface.Systems.Actions.Widgets;
 using Content.Client.UserInterface.Systems.Actions.Windows;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Shared.Actions;
+using Content.Shared.Charges.Systems;
 using Content.Shared.Input;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -43,7 +44,6 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
     [Dependency] private readonly IOverlayManager _overlays = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IEntityManager _entMan = default!;
     [Dependency] private readonly IInputManager _input = default!;
 
     [UISystemDependency] private readonly ActionsSystem? _actionsSystem = default;
@@ -174,7 +174,6 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
         // Is the action currently valid?
         if (!action.Enabled
-            || action is { Charges: 0, RenewCharges: false }
             || action.Cooldown.HasValue && action.Cooldown.Value.End > _timing.CurTime)
         {
             // The user is targeting with this action, but it is not valid. Maybe mark this click as
@@ -484,7 +483,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
                 continue;
             }
 
-            var button = new ActionButton(_entMan, _spriteSystem, this) {Locked = true};
+            var button = new ActionButton(EntityManager, _spriteSystem, this) {Locked = true};
             button.ActionPressed += OnWindowActionPressed;
             button.ActionUnpressed += OnWindowActionUnPressed;
             button.ActionFocusExited += OnWindowActionFocusExisted;
@@ -633,8 +632,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         if (args.Function != EngineKeyFunctions.UIClick && args.Function != EngineKeyFunctions.Use)
             return;
 
-        _menuDragHelper.MouseDown(action);
-        args.Handle();
+        HandleActionPressed(args, action);
     }
 
     private void OnWindowActionUnPressed(GUIBoundKeyEventArgs args, ActionButton dragged)
@@ -642,8 +640,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         if (args.Function != EngineKeyFunctions.UIClick && args.Function != EngineKeyFunctions.Use)
             return;
 
-        DragAction();
-        args.Handle();
+        HandleActionUnpressed(args, dragged);
     }
 
     private void OnWindowActionFocusExisted(ActionButton button)
@@ -663,6 +660,11 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         if (args.Function != EngineKeyFunctions.UIClick)
             return;
 
+        HandleActionPressed(args, button);
+    }
+
+    private void HandleActionPressed(GUIBoundKeyEventArgs args, ActionButton button)
+    {
         args.Handle();
         if (button.ActionId != null)
         {
@@ -678,7 +680,15 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
     private void OnActionUnpressed(GUIBoundKeyEventArgs args, ActionButton button)
     {
-        if (args.Function != EngineKeyFunctions.UIClick || _actionsSystem == null)
+        if (args.Function != EngineKeyFunctions.UIClick)
+            return;
+
+        HandleActionUnpressed(args, button);
+    }
+
+    private void HandleActionUnpressed(GUIBoundKeyEventArgs args, ActionButton button)
+    {
+        if (_actionsSystem == null)
             return;
 
         args.Handle();

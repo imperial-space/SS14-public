@@ -84,11 +84,11 @@ namespace Content.Server.Cult
         }
         private void OnPlayerAttached(EntityUid uid, TakeNameComponent comp, PlayerAttachedEvent args)
         {
-            if (!_playerManager.TryGetSessionByEntity(uid, out var session) || !comp.HasName) return;
+            if (!_playerManager.TryGetSessionByEntity(uid, out var session) || comp.HasName) return;
             _quickDialog.OpenDialog(session, "Введите имя", "Имя", (string message) =>
             {
                 _metaData.SetEntityName(uid, message);
-                comp.HasName = false;
+                comp.HasName = true;
             });
         }
         private void OnBloodMeleeHit(EntityUid uid, CultBloodMeleeComponent component, MeleeHitEvent args)
@@ -147,6 +147,9 @@ namespace Content.Server.Cult
                         {
                             if (tp.Base != teleport.Base && tp.Sector == teleport.Sector && HasComp<MedievalSpikeTargetComponent>(target))
                             {
+                                var txform = Transform(target);
+                                var tcoords = txform.Coordinates;
+                                Spawn("MedievalTeleportEffect", tcoords);
                                 var newxform = Transform(tp.Owner);
                                 var newcoords = newxform.Coordinates;
                                 _transform.SetCoordinates(target, newcoords);
@@ -203,7 +206,7 @@ namespace Content.Server.Cult
                         _damageableSystem.TryChangeDamage(cursed.Owner, cursed.LostDamage, true, false);
                         _popupSystem.PopupEntity("Все ваше тело болит из-за того, что вы не поддерживаете зов культа. Терпеть?", cursed.Owner, cursed.Owner, PopupType.SmallCaution);
                     }
-                    if (cursed.CurseLevel > 0f && cursed.CurseLevel < 5f)
+                    if (cursed.CurseLevel > 0f && cursed.CurseLevel <= 5f)
                     {
                         _damageableSystem.TryChangeDamage(cursed.Owner, cursed.LostDamage, true, false);
                         _popupSystem.PopupEntity("Еще немного, и связь с культом разорвется. Терпеть осталось недолго.", cursed.Owner, cursed.Owner, PopupType.SmallCaution);
@@ -217,7 +220,7 @@ namespace Content.Server.Cult
 
                 foreach (var picture in EntityManager.EntityQuery<CultCheckPictureComponent>())
                 {
-                    if (picture.CollegiumUnlocked) return;
+                    if (picture.CollegiumUnlocked) continue;
                     foreach (var cultist in EntityManager.EntityQuery<CultMemberComponent>())
                     {
                         if (TryComp<CultMapBlockerComponent>(cultist.parent, out var blocker))
@@ -350,7 +353,7 @@ namespace Content.Server.Cult
                                         var axform = Transform(altar.Owner);
                                         var acoords = axform.Coordinates;
                                         Spawn("MedievalCultCrystallRed", acoords);
-                                        if (!isDead) Spawn("MedievalCultCrystallRed", acoords);
+                                        //if (!isDead) Spawn("MedievalCultCrystallRed", acoords);
                                         if (isDead && TryComp<SSDFreeComponent>(victim, out var ssdfreeComp) && _playerManager.TryGetSessionByEntity(victim, out var session)) _ssdFreeSystem.GoToSSD(victim, session.UserId, false, ssdfreeComp);
                                     }
                                     _audioSystem.PlayPvs(comp.SuccesSound, uid);
@@ -913,7 +916,7 @@ namespace Content.Server.Cult
             {
                 if (comp.CurseLevel > 0f)
                     args.PushMarkup("Имеет [color=red]связь с культом[/color]");
-                if (comp.CurseLevel < 0f)
+                if (comp.CurseLevel <= 0f)
                     args.PushMarkup("[color=red]Разорвал[/color] связь с культом, грешник!");
             }
             if (TryComp<CultCursedComponent>(args.Examiner, out var cursed) && cursed.CurseLevel > 0f && comp.CurseLevel > 0f)

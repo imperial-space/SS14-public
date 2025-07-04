@@ -1,5 +1,5 @@
-ent-SeedBase = { ent-BaseItem }
-    .desc = { ent-BaseItem.desc }
+ent-SeedBase = пакет семян
+    .desc = Пакет с семянами определенной культуры.
     .suffix = { "" }
 ent-WheatSeeds = мешочек семян пшеницы
     .desc = { ent-SeedBase.desc }

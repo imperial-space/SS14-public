@@ -1,18 +1,18 @@
-- type: entity
-  id: USSPHandGunAction
-  name: Fireball
-  description: Fires an explosive fireball towards the clicked location.
-  components:
-  - type: WorldTargetAction
-    useDelay: 240
-    itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 120
-    sound: !type:SoundPathSpecifier
-      path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
-    icon:
-      sprite: Imperial/ussp/action.rsi
-      state: action
-    event: !type:ProjectileSpellEvent
-      prototype: BulletRocket
-      speech: ""
+# - type: entity
+#   id: USSPHandGunAction
+#   name: Fireball
+#   description: Fires an explosive fireball towards the clicked location.
+#   components:
+#   - type: WorldTargetAction
+#     useDelay: 240
+#     itemIconStyle: BigAction
+#     checkCanAccess: false
+#     range: 120
+#     sound: !type:SoundPathSpecifier
+#       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
+#     icon:
+#       sprite: Imperial/ussp/action.rsi
+#       state: action
+#     event: !type:ProjectileSpellEvent
+#       prototype: BulletRocket
+#       speech: ""

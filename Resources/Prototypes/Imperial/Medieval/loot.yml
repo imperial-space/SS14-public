@@ -731,27 +731,27 @@
       - id: MedievalClothingHeadHelmetExecutor1
         prob: 0.03
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent5
-        prob: 0.3
+        prob: 0.15
       - id: MedievalRevent10
-        prob: 0.085
+        prob: 0.045
 
 - type: entity
   parent: MedievalCrateGeneric
@@ -1211,13 +1211,13 @@
       - id: MedievalKnut
         prob: 0.09
       - id: MedaljonDark
-        prob: 0.03
+        prob: 0.015
       - id: MedaljonExpl
-        prob: 0.02
+        prob: 0.01
       - id: MedaljonNoslip
-        prob: 0.02
+        prob: 0.01
       - id: MedaljonFlashImmune
-        prob: 0.07
+        prob: 0.035
       - id: MedievalRevent
         prob: 0.1
       - id: MedievalRevent
@@ -1643,13 +1643,13 @@
       - id: MedievalKnut
         prob: 0.09
       - id: MedaljonDark
-        prob: 0.07
+        prob: 0.035
       - id: MedaljonExpl
-        prob: 0.03
+        prob: 0.015
       - id: MedaljonNoslip
-        prob: 0.03
+        prob: 0.015
       - id: MedaljonFlashImmune
-        prob: 0.09
+        prob: 0.045
       - id: MedievalIngotGold
         prob: 0.7
       - id: MedievalIngotGold
@@ -1661,11 +1661,11 @@
       - id: MedievalIngotGold
         prob: 0.7
       - id: MedaljonSpeed
-        prob: 0.08
+        prob: 0.04
       - id: MedaljonMana
-        prob: 0.08
+        prob: 0.04
       - id: MedaljonDef
-        prob: 0.09
+        prob: 0.045
       #- id: MedaljonThieving
       #  prob: 0.15
       - id: MedievalShoesSpeed
@@ -1941,22 +1941,22 @@
       - id: MedievalClothingUniformJumpsuitShitCloth1
         prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent5
-        prob: 0.06
+        prob: 0.03
       - id: MedievalRevent5
-        prob: 0.06
+        prob: 0.03

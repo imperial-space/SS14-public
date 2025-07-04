@@ -1,4 +1,4 @@
-using System;
+    using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.ComponentModel.DataAnnotations;
@@ -46,6 +46,7 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
+        public DbSet<NrpViolation> NrpViolations { get; set; } = null!; // Imperial medieval nrp
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -65,11 +66,18 @@ namespace Content.Server.Database
                 .HasIndex(p => new {HumanoidProfileId = p.ProfileId, p.TraitName})
                 .IsUnique();
 
-            // imperial medieval languages start
+            // imperial medieval start
             modelBuilder.Entity<Language>()
-                .HasIndex(p => new {HumanoidProfileId = p.ProfileId, p.LanguageName})
+                .HasIndex(p => new { HumanoidProfileId = p.ProfileId, p.LanguageName })
                 .IsUnique();
-            // imperial medieval languages end
+
+            modelBuilder.Entity<Skill>()
+                .HasIndex(p => new { HumanoidProfileId = p.ProfileId, p.SkillName })
+                .IsUnique();
+
+            modelBuilder.Entity<NrpViolation>()
+                .HasIndex(p => p.UserId);
+            // imperial medieval end
 
             modelBuilder.Entity<ProfileRoleLoadout>()
                 .HasOne(e => e.Profile)
@@ -398,6 +406,7 @@ namespace Content.Server.Database
         public Guid UserId { get; set; }
         public int SelectedCharacterSlot { get; set; }
         public string AdminOOCColor { get; set; } = null!;
+        public List<string> ConstructionFavorites { get; set; } = new();
         public List<Profile> Profiles { get; } = new();
     }
 
@@ -422,7 +431,12 @@ namespace Content.Server.Database
         public List<Job> Jobs { get; } = new();
         public List<Antag> Antags { get; } = new();
         public List<Trait> Traits { get; } = new();
-        public List<Language> Languages { get; } = new(); // imperial medieval languages
+
+        // Imperial medieval start
+        public List<Language> Languages { get; } = new();
+
+        public List<Skill> Skills { get; } = new();
+        // Imperial medieval end
 
         public List<ProfileRoleLoadout> Loadouts { get; } = new();
 
@@ -469,7 +483,7 @@ namespace Content.Server.Database
         public string TraitName { get; set; } = null!;
     }
 
-    #region Imperial Medieval Languages
+    #region Imperial Medieval
     public class Language
     {
         public int Id { get; set; }
@@ -477,6 +491,25 @@ namespace Content.Server.Database
         public int ProfileId { get; set; }
 
         public string LanguageName { get; set; } = null!;
+    }
+
+    public class Skill
+    {
+        public int Id { get; set; }
+        public Profile Profile { get; set; } = null!;
+        public int ProfileId { get; set; }
+
+        public string SkillName { get; set; } = null!;
+
+        public int SkillLevel { get; set; } = 10;
+    }
+
+    [Table("nrp_violation")]
+    public class NrpViolation
+    {
+        public int Id { get; set; }
+        public Guid UserId { get; set; }
+        public DateTime ViolationTime { get; set; }
     }
     #endregion
 

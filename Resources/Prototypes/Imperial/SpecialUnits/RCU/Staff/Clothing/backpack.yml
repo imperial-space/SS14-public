@@ -1,0 +1,33 @@
+- type: entity
+  parent: ClothingBackpackERTSecurity
+  id: ClothingBackpackRCU
+  name: elite backpack
+  description: You don't have to know whose backpack it is.
+  suffix: RiotControlUnit
+  components:
+  - type: Sprite
+    sprite: Imperial/SpecialUnits/RCU/Clothing/backpack.rsi
+  - type: Storage
+    grid:
+    - 0,0,12,3
+
+- type: entity
+  parent: ClothingBackpackRCU
+  id: ClothingBackpackRCUFilledOperator
+  suffix: RiotControlUnit, filled
+  components:
+    - type: StorageFill
+      contents:
+        - id: BoxSurvival
+        - id: PillAmbuzolPlus
+        - id: UplinkRCUOperator
+
+- type: entity
+  parent: ClothingBackpackRCU
+  id: ClothingBackpackRCUFilledOfficer
+  suffix: RiotControlUnit, filled
+  components:
+    - type: StorageFill
+      contents:
+        - id: BoxSurvival
+        - id: UplinkRCUOfficer

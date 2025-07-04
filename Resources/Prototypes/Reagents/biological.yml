@@ -3,6 +3,8 @@
   name: reagent-name-blood
   group: Biological
   desc: reagent-desc-blood
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   flavor: metallic
   color: "#800000"
   metamorphicSprite:
@@ -13,7 +15,6 @@
   metamorphicChangeColor: false
   recognizable: true
   physicalDesc: reagent-physical-desc-ferrous
-  slippery: false
   metabolisms:
     Drink:
       effects:
@@ -56,7 +57,6 @@
   color: "#808A51"
   recognizable: true
   physicalDesc: reagent-physical-desc-slimy
-  slippery: false
 
 - type: reagent
   id: Slime
@@ -67,7 +67,6 @@
   color: "#2cf274"
   recognizable: true
   physicalDesc: reagent-physical-desc-viscous
-  slippery: false
   viscosity: 0.25
   tileReactions:
     - !type:SpillTileReaction
@@ -78,7 +77,7 @@
       - !type:SatiateHunger
         factor: 1
   footstepSound:
-    collection: FootstepBlood
+    collection: FootstepSlime # makes sense
     params:
       volume: 6
 
@@ -87,11 +86,12 @@
   name: reagent-name-sap
   group: Biological
   desc: reagent-desc-sap
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   flavor: sweet
   color: "#cd7314"
   recognizable: true
   physicalDesc: reagent-physical-desc-sticky
-  slippery: false
   viscosity: 0.10
   tileReactions:
     - !type:SpillTileReaction
@@ -104,7 +104,7 @@
       - !type:SatiateThirst
         factor: 1
   footstepSound:
-    collection: FootstepBlood
+    collection: FootstepSlime
     params:
       volume: 6
 
@@ -118,7 +118,6 @@
   color: "#162581"
   recognizable: true
   physicalDesc: reagent-physical-desc-metallic
-  slippery: false
 
 - type: reagent
   parent: Blood
@@ -130,7 +129,6 @@
   color: "#7a8bf2"
   recognizable: true
   physicalDesc: reagent-physical-desc-pungent
-  slippery: false
 
 - type: reagent
   id: ZombieBlood
@@ -140,7 +138,6 @@
   physicalDesc: reagent-physical-desc-necrotic
   flavor: bitter
   color: "#2b0700"
-  slippery: false
   metabolisms:
     Drink:
       # Disgusting!
@@ -171,8 +168,6 @@
       - !type:SatiateThirst
         factor: 1.5
     # Dragon doesn't require airloss healing, so omnizine is still best for humans.
-    Medicine:
-      effects:
       - !type:ModifyBloodLevel
         amount: 3
       - !type:HealthChange
@@ -202,7 +197,6 @@
   flavor: terrible
   color: "#d8d8b0"
   physicalDesc: reagent-physical-desc-exotic-smelling
-  slippery: false
   footstepSound:
     collection: FootstepBlood
     params:
@@ -213,10 +207,14 @@
   name: reagent-name-vomit
   group: Biological
   desc: reagent-desc-vomit
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   flavor: terrible
   color: "#87ab08"
   physicalDesc: reagent-physical-desc-pungent
-  slippery: true
+  slipData:
+    requiredSlipSpeed: 4.0 #It's not as slippery as water
+  friction: 0.4
   metabolisms:
     Drink:
       effects:
@@ -238,7 +236,6 @@
   physicalDesc: reagent-physical-desc-neural
   flavor: mindful
   color: "#C584B8"
-  slippery: false
   metabolisms:
     Drink:
       effects:

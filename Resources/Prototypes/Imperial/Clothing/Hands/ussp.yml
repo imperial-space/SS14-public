@@ -37,3 +37,23 @@
     tags:
     - WhitelistChameleon
     - ClothMade
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlack
+  id: USSPGuardsmenGloves
+  name: Guardsmen gloves
+  description: OUR.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/ussp/guardsmen/gloves.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/guardsmen/gloves.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade

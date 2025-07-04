@@ -1,0 +1,159 @@
+### StarCorps
+### StarCorps
+### StarCorps
+
+- type: entity
+  name: star corps soldier
+  suffix: Felix, NPC
+  parent: BaseMobHuman
+  id: FelixStarCorpsSoldier
+  components:
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
+  - type: Loadout
+    prototypes:
+    - StarCorpsSoldier
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  name: star corps pilot
+  suffix: Felix, NPC
+  parent: BaseMobHuman
+  id: FelixStarCorpsPilot
+  components:
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
+  - type: Loadout
+    prototypes:
+    - StarCorpsPilot
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+### StarCorps
+### StarCorps
+### StarCorps
+
+### Mercenaries
+### Mercenaries
+### Mercenaries
+
+- type: entity
+  name: mercenary
+  suffix: Felix, NPC
+  parent: BaseMobHuman
+  id: FelixMercenaryAKS
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: RandomMetadata
+    nameSegments:
+    - OldStationMerc
+    - NamesLast
+  - type: Loadout
+    prototypes:
+    - MercenaryAKS
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  name: mercenary
+  suffix: Felix, NPC
+  parent: BaseMobHuman
+  id: FelixMercenaryGlock
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: RandomMetadata
+    nameSegments:
+    - OldStationMerc
+    - NamesLast
+  - type: Loadout
+    prototypes:
+    - MercenaryGlock
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  name: mercenary
+  suffix: Felix, NPC
+  parent: BaseMobHuman
+  id: FelixMercenarySniper
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: RandomMetadata
+    nameSegments:
+    - OldStationMerc
+    - NamesLast
+  - type: Loadout
+    prototypes:
+    - MercenarySniper
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+### Mercenaries
+### Mercenaries
+### Mercenaries
+
+- type: entity
+  name: agent syndicate
+  suffix: Felix, NPC
+  parent: BaseMobHuman
+  id: FelixAgentSyndicate
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: RandomMetadata
+    nameSegments:
+    - NamesSyndicatePrefix
+    - NamesSyndicateNormal
+  - type: Loadout
+    prototypes:
+    - AgentSyndi
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: RandomHumanoidAppearance
+    randomizeName: false

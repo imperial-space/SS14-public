@@ -75,7 +75,7 @@ namespace Content.Server.MedievalFactionFlag
                         break;
                 }
             }
-            args.PushMarkup("[color=cyan]Точек, подконтрольно легиону: " + legion + "[/color]");
+            args.PushMarkup("[color=cyan]" + Loc.GetString("flag-controls-legion") + " " + legion + "[/color]");
             args.PushMarkup("[color=red]Точек, подконтрольно мятежникам: " + insurgency + "[/color]");
             args.PushMarkup("[color=white]Свободных точек: " + none + "[/color]");
         }

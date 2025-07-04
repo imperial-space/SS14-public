@@ -2,6 +2,7 @@
   id: TireWithATire
   parent: BaseStructureDynamic
   name: tire with a tire
+  suffix: DeadSector, Decoration
   description: This will make an excellent framing of the garden at the entrance.
   placement:
     mode: SnapgridCenter
@@ -35,6 +36,7 @@
   id: HomemadeWindTurbine
   parent: BaseStructure
   name: homemade wind turbine
+  suffix: DeadSector, Decoration
   description: Like in the wild West... Probably.
   placement:
     mode: SnapgridCenter
@@ -82,7 +84,7 @@
     A gasoline generator. He probably works on coal.
   parent: PortableGeneratorBase
   id: RedGasolineGenerator
-  suffix: Welding Fuel, 8 kW
+  suffix: DeadSector, Decoration, Welding Fuel, 8 kW
   components:
     - type: AmbientSound
       range: 4
@@ -196,6 +198,7 @@
   parent: WallmountTelescreenFrame
   id: WallmountTelevisionBroken
   name: broken television
+  suffix: DeadSector, Decoration
   description: Finally, some decent reception around here...
   components:
   - type: Fixtures
@@ -222,6 +225,7 @@
   id: ELTTelevision
   parent: BaseStructureDynamic
   name: ELT television
+  suffix: DeadSector, Decoration
   placement:
     mode: SnapgridCenter
   components:
@@ -326,6 +330,7 @@
   id: ElysiumPrimeTable
   parent: BaseStructure
   name: Elysium Prime table
+  suffix: DeadSector, Decoration
   description: A square piece of metal standing on four metal legs. Extra robust.
   placement:
     mode: AlignTileAny
@@ -368,3 +373,261 @@
         acts: [ "Destruction" ]
   - type: Climbable
   - type: Appearance
+
+- type: entity
+  id: DeadSectorDecorTrafficlight
+  parent: BaseStructure
+  name: светофор
+  suffix: DeadSector, Decoration
+  description: Три глаза и все моргают.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/DeadSector/location_objects/trafficlight.rsi
+    state: base
+    drawdepth: Overdoors
+    offset: 0,0.8
+  - type: PointLight
+    radius: 2
+    energy: 0.5
+    color: "#ffe4ce"
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        density: 1000
+        layer:
+        - WallLayer
+  - type: InteractionOutline
+
+- type: entity
+  id: DeadSectorDecorTrafficlightRed
+  parent: DeadSectorDecorTrafficlight
+  name: светофор
+  suffix: DeadSector, Decoration
+  description: Три глаза и все моргают.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/DeadSector/location_objects/trafficlight.rsi
+    state: red
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#f80000"
+
+- type: entity
+  id: DeadSectorDecorTrafficlightYellow
+  parent: DeadSectorDecorTrafficlight
+  name: светофор
+  suffix: DeadSector, Decoration
+  description: Три глаза и все моргают.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/DeadSector/location_objects/trafficlight.rsi
+    state: yellow
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#deb63d"
+
+- type: entity
+  id: DeadSectorDecorTrafficlightGreen
+  parent: DeadSectorDecorTrafficlight
+  name: светофор
+  suffix: DeadSector, Decoration
+  description: Три глаза и все моргают.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/DeadSector/location_objects/trafficlight.rsi
+    state: green
+  - type: PointLight
+    radius: 2
+    energy: 1.6
+    color: "#288216"
+
+- type: entity
+  id: DeadSectorDecorTrafficlightOff
+  parent: DeadSectorDecorTrafficlight
+  name: светофор
+  suffix: DeadSector, Decoration
+  description: Три глаза и все моргают.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/DeadSector/location_objects/trafficlight.rsi
+    state: off
+  - type: PointLight
+    radius: 0
+    energy: 0
+    color: "#ffe4ce"
+
+- type: entity
+  id: DeadSectorDecorStreenLight
+  parent: DeadSectorDecorTrafficlight
+  name: фонарный столб
+  suffix: DeadSector, Decoration
+  description: Спасение во тьме.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/DeadSector/location_objects/streetlamp.rsi
+    layers:
+      - state: base
+      - state: light
+        shader: "unshaded"
+  - type: PointLight
+    radius: 4
+    energy: 1.6
+    color: "#696969"
+
+- type: entity
+  id: DeadSectorDecorStreenLightOff
+  parent: DeadSectorDecorTrafficlight
+  name: фонарный столб
+  suffix: DeadSector, Decoration
+  description: Спасение во тьме.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/DeadSector/location_objects/streetlamp.rsi
+    layers:
+      - state: base
+  - type: PointLight
+    radius: 0
+    energy: 0
+    color: "#696969"
+
+- type: entity
+  id: DeadSectorDecorBarrier
+  parent: BaseStructure
+  name: шлагбаум
+  suffix: DeadSector, Decoration
+  description: Ты-ы-ы! Не-е-е! Пройдё-ё-ё-ё-шь!
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/DeadSector/location_objects/barrier.rsi
+    state: icon
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-2,-0.2,2,0.2"
+        density: 1000
+        layer:
+        - WallLayer
+  - type: InteractionOutline
+
+- type: entity
+  id: DeadSectorDecorRoadSignNoEntry
+  parent: BaseStructure
+  name: дорожный знак
+  suffix: DeadSector, Decoration
+  description: "Въезд запрещён"
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/DeadSector/location_objects/roadsigns.rsi
+    state: noentry
+    drawdepth: Overdoors
+    offset: 0,0.8
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        density: 1000
+        layer:
+        - WallLayer
+  - type: InteractionOutline
+
+- type: entity
+  id: DeadSectorDecorRoadSignParking
+  parent: DeadSectorDecorRoadSignNoEntry
+  name: дорожный знак
+  suffix: DeadSector, Decoration
+  description: "Парковка"
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/DeadSector/location_objects/roadsigns.rsi
+    state: parking
+    drawdepth: Overdoors
+    offset: 0,0.8
+
+- type: entity
+  id: DeadSectorDecorRoadSignCrossing
+  parent: DeadSectorDecorRoadSignNoEntry
+  name: дорожный знак
+  suffix: DeadSector, Decoration
+  description: "Пешеходный переход"
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/DeadSector/location_objects/roadsigns.rsi
+    state: crossing
+    drawdepth: Overdoors
+    offset: 0,0.8
+
+- type: entity
+  id: DeadSectorDecorRoadSignNoStopping
+  parent: DeadSectorDecorRoadSignNoEntry
+  name: дорожный знак
+  suffix: DeadSector, Decoration
+  description: "Остановка запрещена"
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/DeadSector/location_objects/roadsigns.rsi
+    state: nostopping
+    drawdepth: Overdoors
+    offset: 0,0.8

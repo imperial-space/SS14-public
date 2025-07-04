@@ -9,9 +9,6 @@
   description: Основа, используемая для постройки различных консолей. # Imperial Recipes Locale
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Machines/parts.rsi
-    state: 4
 
 - type: construction
   hide: true # imperial medieval craft disable
@@ -24,9 +21,6 @@
   category: construction-category-machines
   placementMode: SnapgridCenter
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/Machines/parts.rsi
-    state: "box_0"
 
 # Switching
 - type: construction
@@ -40,9 +34,6 @@
   description: Рычаг для управления машинами. Имеет три позиции. # Imperial Recipes Locale
   objectType: Structure
   canBuildInImpassable: false
-  icon:
-    sprite: Structures/conveyor.rsi
-    state: switch-off
   conditions:
     - !type:TileNotBlocked
 
@@ -55,15 +46,13 @@
   targetNode: LightSwitchNode
   category: construction-category-machines
   description: Это переключатель источников света, использующих ЛКП. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Wallmounts/switch.rsi
-    state: on
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
   canBuildInImpassable: true
   conditions:
     - !type:WallmountCondition
+  #hide: true #TODO: Fix the lightswitch, issue #34659. Until then, keep hidden so people don't build it and get confused.
 
 - type: construction
   hide: true # imperial medieval craft disable
@@ -74,9 +63,6 @@
   targetNode: SignalSwitchNode
   category: construction-category-machines
   description: Это переключатель питания устройств. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Wallmounts/switch.rsi
-    state: on
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
@@ -93,9 +79,6 @@
   targetNode: SignalButtonNode
   category: construction-category-machines
   description: Эта кнопка что-то активирует. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Wallmounts/switch.rsi
-    state: on
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
@@ -112,15 +95,13 @@
   targetNode: LightSwitchDirectionalNode
   category: construction-category-machines
   description: Это переключатель источников света, использующих ЛКП. Активация возможна только со стороны строительства. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Wallmounts/switch.rsi
-    state: on
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
   canBuildInImpassable: true
   conditions:
     - !type:WallmountCondition
+  #hide: true #TODO: Fix the lightswitch, issue #34659. Until then, keep hidden so people don't build it and get confused.
 
 - type: construction
   hide: true # imperial medieval craft disable
@@ -131,9 +112,6 @@
   targetNode: SignalSwitchDirectionalNode
   category: construction-category-machines
   description: Это переключатель питания устройств. Активация возможна только со стороны строительства. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Wallmounts/switch.rsi
-    state: on
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
@@ -150,9 +128,6 @@
   targetNode: SignalButtonDirectionalNode
   category: construction-category-machines
   description: Эта кнопка что-то активирует. Активация возможна только со стороны строительства. # Imperial Recipes Locale
-  icon:
-    sprite: Structures/Wallmounts/switch.rsi
-    state: on
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true

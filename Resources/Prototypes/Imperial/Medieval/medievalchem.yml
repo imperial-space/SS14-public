@@ -141,6 +141,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: bitter
   color: "#FFC8C8"
 
@@ -168,6 +170,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#215263"
   abstract: true
@@ -187,6 +191,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#0041a8"
   abstract: true
@@ -204,6 +210,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#a1000b"
   boilingPoint: 78.2 # This isn't a real chemical...
@@ -250,6 +258,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#00ff5f"
   boilingPoint: 340282300000000000000000000000000000000 # Ethidium bromide, which doesn't boil.
@@ -281,6 +291,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -304,6 +316,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -318,6 +332,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -333,6 +349,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -348,6 +366,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -365,6 +385,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#FFC8C8"
   abstract: true
@@ -392,6 +414,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#FFC8C8"
   abstract: true
@@ -420,6 +444,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -436,6 +462,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true 
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -452,6 +480,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -468,6 +498,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true 
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -486,6 +518,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -525,6 +559,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true 
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -541,6 +577,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -563,6 +601,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -587,6 +627,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -638,6 +680,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#215263"
   abstract: true
@@ -657,6 +701,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -670,6 +716,8 @@
 
 - type: reagent
   id: medievaladvancedhealpiercing
+  evaporationSpeed: 0.3
+  absorbent: true 
   name: ""
   desc: ""
   physicalDesc: ""
@@ -686,6 +734,8 @@
 
 - type: reagent
   id: medievaladvancedhealblunt
+  evaporationSpeed: 0.3
+  absorbent: true
   name: ""
   desc: ""
   physicalDesc: ""
@@ -705,6 +755,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#215263"
   abstract: true
@@ -723,6 +775,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#a1000b"
   boilingPoint: 78.2 # This isn't a real chemical...
@@ -771,6 +825,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -786,6 +842,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -801,6 +859,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -818,6 +878,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -840,6 +902,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -858,6 +922,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#9A040E"
   abstract: true
@@ -908,6 +974,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -932,6 +1000,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -946,6 +1016,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#FFC8C8"
   reactiveEffects:
@@ -1009,6 +1081,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -1041,6 +1115,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -1063,6 +1139,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -1134,3 +1212,87 @@
     weights:
       easy: 70
       medium: 30
+
+- type: entity
+  name: mortar
+  parent: [ BaseItem, BaseStorageItem ]
+  id: MedievalMortarNew
+  description: Medieval Mortar for crushing herbs and other plant materials.
+  components:
+    - type: SolutionContainerManager
+      solutions:
+        beaker:
+          maxVol: 50
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/mortar.rsi
+      layers:
+        - state: stupca
+        - state: stupca1
+          map: [ "enum.SolutionContainerLayers.Fill" ]
+          visible: false
+    - type: Item
+      size: Normal
+      sprite: Imperial/Medieval/Chem/mortar.rsi
+    - type: MixableSolution
+      solution: beaker
+    - type: RefillableSolution
+      solution: beaker
+    - type: DrainableSolution
+      solution: beaker
+    - type: ExaminableSolution
+      solution: beaker
+    - type: DrawableSolution
+      solution: beaker
+    - type: InjectableSolution
+      solution: beaker
+    - type: SolutionTransfer
+      canChangeTransferAmount: true
+    - type: SolutionItemStatus
+      solution: beaker
+    - type: UserInterface
+      interfaces:
+        enum.TransferAmountUiKey.Key:
+          type: TransferAmountBoundUserInterface
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+    - type: Drink
+      solution: beaker
+    - type: Spillable
+      solution: beaker
+    - type: Appearance
+    - type: SolutionContainerVisuals
+      maxFillLevels: 3
+      fillBaseName: stupca
+    - type: StaticPrice
+      price: 60
+    - type: DnaSubstanceTrace
+    - type: Mortar
+    - type: Storage
+      storageOpenSound: null
+      storageInsertSound: null
+      blacklist:
+        components:
+        - MortarTool
+      grid:
+      - 0,0,2,2
+    - type: Construction
+      graph: MedievalMortarNew
+      node: ground
+
+- type: entity
+  name: mortar tool
+  parent: BaseItem
+  id: MedievalMortarTool
+  description: Medieval Mortar Tool for crushing herbs and other plant materials.
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/mortartool.rsi
+      layers:
+        - state: icon
+    - type: Item
+      size: Tiny
+      sprite: Imperial/Medieval/Chem/mortartool.rsi
+    - type: MortarTool
+    - type: Construction
+      graph: MedievalMortarTool
+      node: ground

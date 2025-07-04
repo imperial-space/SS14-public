@@ -1,52 +1,52 @@
-ent-CrateNPCBee = Ящик с пчёлами
+ent-CrateNPCBee = ящик с пчёлами
     .desc = Ящик, содержащий рой из восьми пчел.
 
-ent-CrateNPCButterflies = Ящик с бабочками
+ent-CrateNPCButterflies = ящик с бабочками
     .desc = Ящик, содержащий пять бабочек.
 
-ent-CrateNPCCat = Ящик с кошкой
+ent-CrateNPCCat = ящик с кошкой
     .desc = Ящик, содержащий одну кошку
 
-ent-CrateNPCChicken = Ящик кур
+ent-CrateNPCChicken = ящик кур
     .desc = Ящик, содержащий четыре курицы.
 
-ent-CrateNPCDuck = Ящик уток
+ent-CrateNPCDuck = ящик уток
     .desc = Ящик, содержащий щесть уток.
 
-ent-CrateNPCCorgi = Ящик корги
+ent-CrateNPCCorgi = ящик корги
     .desc = Ящик, содержащий одного корги.
 
-ent-CrateNPCCow = Ящик с коровой
+ent-CrateNPCCow = ящик с коровой
     .desc = Ящик, содержащий одну корову.
 
-ent-CrateNPCGoat = Ящик с козой
+ent-CrateNPCGoat = ящик с козой
     .desc = Ящик, содержащий одну козу.
 
-ent-CrateNPCGoose = Ящик гусей
+ent-CrateNPCGoose = ящик гусей
     .desc = Ящик, содержащий двух гусей.
 
-ent-CrateNPCGorilla = Ящик с гориллой
+ent-CrateNPCGorilla = ящик с гориллой
     .desc = Ящик, содержащий одну гориллу.
 
-ent-CrateNPCMonkeyCube = Ящик обезьяньих кубиков
+ent-CrateNPCMonkeyCube = ящик обезьяньих кубиков
     .desc = Ящик, содержащий три коробки обезьяньих кубиков.
 
-ent-CrateNPCMouse = Ящик мышек
+ent-CrateNPCMouse = ящик мышек
     .desc = Ящик, содержащий пять мышек.
 
-ent-CrateNPCParrot = Ящик попугаев
+ent-CrateNPCParrot = ящик попугаев
     .desc = Ящик, содержащий трёх попугаев.
 
-ent-CrateNPCPenguin = Ящик пингвинов
+ent-CrateNPCPenguin = ящик пингвинов
     .desc = Ящик, содержащий двух пингвинов.
 
-ent-CrateNPCPig = Ящик хрюшки
+ent-CrateNPCPig = ящик хрюшки
     .desc = Ящик, содержащий одну свинку. Воняет.
 
-ent-CrateNPCSnake = Ящик змей
+ent-CrateNPCSnake = ящик змей
     .desc = Ящик, содержащий три змейки.
 
-ent-CrateNPCLizard = Ящик с ящерицей
+ent-CrateNPCLizard = ящик с ящерицей
     .desc = Ящик, содержащий ящерку.
 
 ent-CrateNPCHamster = { ent-CrateRodentCage }
@@ -57,10 +57,10 @@ ent-CrateNPCHamlet = { ent-CrateRodentCage }
     .desc = { ent-CrateRodentCage.desc }
     .suffix = Гамлет
 
-ent-CrateNPCKangaroo = Ящик с кенгуру
+ent-CrateNPCKangaroo = ящик с кенгуру
     .desc = Ящик, содержащий кенгуру
 
-ent-CrateNPCCrab = Ящик с крабами
+ent-CrateNPCCrab = ящик с крабами
     .desc = Ящик с тремя огромными крабами.
 
 ent-CrateNPCMothroach = ящик с таракамолью

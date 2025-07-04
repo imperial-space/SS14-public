@@ -198,6 +198,7 @@
   - type: AntagLoadProfileRule
   - type: AntagObjectives
     objectives:
+    - LeaveNoTraceObjective # Imperial Space Ninja
     - StealResearchObjective
     - DoorjackObjective
     - SpiderChargeObjective
@@ -230,6 +231,7 @@
         nameSegments:
         - NamesNinjaTitle
         - NamesNinja
+        nameFormat: name-format-ninja
       mindRoles:
       - MindRoleNinja
 
@@ -244,6 +246,9 @@
     reoccurrenceDelay: 20
     minimumPlayers: 15
   - type: ParadoxCloneRule
+    objectiveBlacklist:
+      tags:
+      - ParadoxCloneObjectiveBlacklist
   - type: AntagObjectives
     objectives:
     - ParadoxCloneKillObjective
@@ -258,7 +263,7 @@
       pickPlayer: false
       startingGear: ParadoxCloneGear
       roleLoadout:
-      - RoleSurvivalStandard # give vox something to breath in case they don't get a copy
+      - RoleSurvivalVoxTank # give vox something to breath in case they don't get a copy
       briefing:
         text: paradox-clone-role-greeting
         color: lightblue
@@ -313,6 +318,7 @@
         nameSegments:
         - NamesWizardFirst
         - NamesWizardLast
+        nameFormat: name-format-wizard
       mindRoles:
       - MindRoleWizard
 
@@ -528,7 +534,7 @@
     earliestStart: 35
     weight: 5.5
     minimumPlayers: 20
-    duration: 1
+    duration: null # LoneOpsSpawn needs an infinite duration so that it inherits the NukeOpsRule things of an actually appropriate end scrreen (not always "Neutral outcome!") and... ending the game if the station is nuked.
   - type: RuleGrids
   - type: LoadMapRule
     gridPath: /Maps/Shuttles/ShuttleEvent/striker.yml
@@ -549,6 +555,7 @@
         nameSegments:
         - NamesSyndicatePrefix
         - NamesSyndicateNormal
+        nameFormat: name-format-nukie-generic
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -640,6 +647,19 @@
     - Service
     blacklist:
     - External # don't space everything
+
+- type: entity
+  parent: BaseGameRule
+  id: SmugglerStashVariationPass
+  components:
+  - type: StationEvent
+    earliestStart: 0
+    duration: 1
+    minimumPlayers: 1
+    maxOccurrences: 2
+    weight: 10
+  - type: RandomSpawnRule
+    prototype: RandomSatchelSpawner
 
 - type: entity
   parent: BaseGameRule

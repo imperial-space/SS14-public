@@ -24,6 +24,7 @@
   parent: [SimpleMobBase, StripableInventoryBase]
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a resp. Tastes like pork, and killing them is both fun and relaxing.
   components:
+  - type: AreaMarkerInvoker
   - type: Damageable
     damageModifierSet: MedievalRespawnPlayer
   - type: CombatMode

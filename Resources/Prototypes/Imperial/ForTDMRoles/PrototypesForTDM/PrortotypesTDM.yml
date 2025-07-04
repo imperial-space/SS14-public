@@ -1,0 +1,28 @@
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  id: ClothingOuterArmorHeavyTDM
+  name: heavy armor suit
+  description: bla bla bla heavy weapons guy
+  suffix: TDM, Unremoveable
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Armor/heavy.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Armor/heavy.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.2
+        Slash: 0.2
+        Piercing: 0.2
+        Heat: 0.5
+        Radiation: 0.6
+        Caustic: 0.75
+        Stamina: 0.2 ## Stamina resistance
+  - type: ClothingSpeedModifier
+    walkModifier: 0.55
+    sprintModifier: 0.55
+  - type: GroupExamine
+  - type: ProtectedFromStepTriggers
+    slots: WITHOUT_POCKET
+  - type: Unremoveable
