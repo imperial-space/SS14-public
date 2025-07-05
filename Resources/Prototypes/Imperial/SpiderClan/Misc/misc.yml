@@ -39,6 +39,10 @@
     sprite: Imperial/SpiderClan/Misc/Card.rsi
     layers:
     - state: spaceninja
+    - state: unshaded
+      shader: unshaded
+    - state: holo
+      shader: unshaded
   - type: Clothing
     slots:
     - idcard
@@ -62,6 +66,10 @@
     sprite: Imperial/SpiderClan/Misc/Card.rsi
     layers:
     - state: spaceninja
+    - state: unshaded
+      shader: unshaded
+    - state: holo
+      shader: unshaded
   - type: Clothing
     slots:
     - idcard
@@ -108,9 +116,9 @@
 - type: entity
   parent: EncryptionKeyCustomBase
   id: EncryptionKeySpiderClanChannel
-  name: ключ шифрования
+  name: encryption key
   suffix: КланПаука, Crook, SpiderClan
-  description: Ключ шифрования
+  description: Encryption key
   components:
   - type: EncryptionKey
     channels:
@@ -126,8 +134,8 @@
   parent: ClothingHeadset
   id: ClothingHeadsetSpiderClanGreen
   suffix: КланПаука, Общий, Crook, SpiderClan
-  name: гарнитура ниндзя
-  description: Передовая технологическая разработка клана Паука.
+  name: ninja headset
+  description: The Spider Clan's cutting-edge technological development.
   components:
   - type: EncryptionKeyHolder
     keySlots: 30
@@ -145,8 +153,8 @@
   parent: ClothingHeadset
   id: ClothingHeadsetSpiderClanRed
   suffix: КланПаука, Общий, Crook, SpiderClan
-  name: гарнитура ниндзя
-  description: Передовая технологическая разработка клана Паука.
+  name: ninja headset
+  description: The Spider Clan's cutting-edge technological development.
   components:
   - type: EncryptionKeyHolder
     keySlots: 30
@@ -164,8 +172,8 @@
   parent: ClothingHeadset
   id: ClothingHeadsetSpiderClanBlue
   suffix: КланПаука, Общий, Crook, SpiderClan
-  name: гарнитура ниндзя
-  description: Передовая технологическая разработка клана Паука.
+  name: ninja headset
+  description: The Spider Clan's cutting-edge technological development.
   components:
   - type: EncryptionKeyHolder
     keySlots: 30
