@@ -1,0 +1,63 @@
+ent-TriviumMark = Марка Тривиума
+    .desc = Корпорация Тривиум использует эти марки в качестве валюты на планете DRG-45B-11Y-QC-Arboris
+ent-TriviumMark10 = Марка Тривиума
+    .desc = Корпорация Тривиум использует эти марки в качестве валюты на планете DRG-45B-11Y-QC-Arboris
+ent-TriviumMark100 = Марка Тривиума
+    .desc = Корпорация Тривиум использует эти марки в качестве валюты на планете DRG-45B-11Y-QC-Arboris
+ent-TriviumMark1000 = Марка Тривиума
+    .desc = Корпорация Тривиум использует эти марки в качестве валюты на планете DRG-45B-11Y-QC-Arboris
+ent-TriviumMark50 = Марка Тривиума
+    .desc = Корпорация Тривиум использует эти марки в качестве валюты на планете DRG-45B-11Y-QC-Arboris
+
+ent-ClothingHeadHatBeretGaqut = берет СССП
+    .desc = Берет СССП. Имеется небольшая защита
+ent-BlackShieldBeretGaqut = берет Тривиума
+    .desc = Берет Тривиума. Имеется небольшая защита.
+
+id-card-access-level-trivium-main = Тривиум
+id-card-access-level-trivium-head = Командный Тривиум
+
+id-card-access-level-ussp-main = СССП
+id-card-access-level-ussp-head = Командный СССП
+
+job-name-trivium-main = Солдат Тривиума
+job-name-trivium-head = Командир Тривиума
+
+job-name-ussp-main = Солдат СССП
+job-name-ussp-head = Командир СССП
+
+ent-TriviumIDCardMain = Карта солдата Тривиума
+    .desc = Карта идентификации личности
+ent-TriviumIDCardHead = Карта командования Тривиума
+    .desc = Пахнет властью
+
+ent-USSPIDCardMain = Карта солдата СССП
+    .desc = Карта идентификации личности
+ent-USSPIDCardHead = Карта командования СССП
+    .desc = Пахнет властью
+
+ent-EncryptionKeyTriviumMain = ключ шифрования
+    .desc = Ключ шифрования солдат Тривиума
+ent-EncryptionKeyTriviumHead = ключ шифрования
+    .desc = Ключ шифрования командования Тривиума
+
+ent-EncryptionKeyUSSPMain = ключ шифрования
+    .desc = Ключ шифрования солдат СССП
+ent-EncryptionKeyUSSPHead = ключ шифрования
+    .desc = Ключ шифрования командования СССП
+
+ent-ClothingHeadsetTriviumMain = гарнитура
+    .desc = Гарнитура солдат Тривиума.
+ent-ClothingHeadsetTriviumHead = гарнитура
+    .desc = Гарнитура командования Тривиума.
+
+ent-ClothingHeadsetUSSPMain = гарнитура
+    .desc = Гарнитура солдат СССП.
+ent-ClothingHeadsetUSSPHead = гарнитура
+    .desc = Гарнитура командования СССП
+
+chat-radio-trivium-main = Тривиум
+chat-radio-trivium-head = Командование Тривиум
+
+chat-radio-ussp-main = СССП
+chat-radio-ussp-head = Командование СССП

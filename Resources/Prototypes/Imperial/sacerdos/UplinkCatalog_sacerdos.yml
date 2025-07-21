@@ -1,9 +1,9 @@
 #SacerdosFood
 #- type: listing
-#  id: 
-#  name: 
-#  description: 
-#  productEntity: 
+#  id:
+#  name:
+#  description:
+#  productEntity:
 #  cost:
 #    Telecrystal_sacerdos: 2
 #  categories:
@@ -356,6 +356,14 @@
   - sacerdosWeapon
 
 - type: listing
+  id: SacerdosUplinkWeaponRifleEstoc
+  productEntity: WeaponRifleEstoc
+  cost:
+    Telecrystal_sacerdos: 750
+  categories:
+  - sacerdosWeapon
+
+- type: listing
   id: SacerdosUplinkCSWeaponSCAR-L
   productEntity: CSWeaponSCAR-L
   cost:
@@ -434,7 +442,7 @@
     Telecrystal_sacerdos: 900
   categories:
   - sacerdosWeapon
-  
+
 - type: listing
   id: SacerdosUplinkWeaponPulsePistol
   productEntity: WeaponPulsePistol
@@ -549,10 +557,10 @@
   - sacerdosMelee
 
 - type: listing
-  id: SacerdosUplinkEnergySwordDouble
-  productEntity: EnergySwordDouble
+  id: SacerdosUplinkEnergySwordDouble_Sacerdos
+  productEntity: EnergySwordDouble_Sacerdos
   cost:
-    Telecrystal_sacerdos: 2250
+    Telecrystal_sacerdos: 2550
   categories:
   - sacerdosMelee
 
@@ -607,6 +615,7 @@
 
 - type: listing
   id: SacerdosUplinkPillCanisterTricordrazine
+  description: Pill-Canister-Tricordrazine-des
   productEntity: PillCanisterTricordrazine
   cost:
     Telecrystal_sacerdos: 40
@@ -615,6 +624,7 @@
 
 - type: listing
   id: SacerdosUplinkPillCanisterHyronalin
+  description: Pill-Canister-Hyronalin-des
   productEntity: PillCanisterHyronalin
   cost:
     Telecrystal_sacerdos: 45
@@ -623,6 +633,7 @@
 
 - type: listing
   id: SacerdosUplinkPillCanisterDylovene
+  description: Pill-Canister-Dylovene-des
   productEntity: PillCanisterDylovene
   cost:
     Telecrystal_sacerdos: 75
@@ -631,6 +642,7 @@
 
 - type: listing
   id: SacerdosUplinkPillCanisterDexalin
+  description: Pill-Canister-Dexalin-des
   productEntity: PillCanisterDexalin
   cost:
     Telecrystal_sacerdos: 75
@@ -838,6 +850,14 @@
   - sacerdosMed
 
 - type: listing
+  id: SacerdosMaterialBiomass
+  productEntity: MaterialBiomass
+  cost:
+    Telecrystal_sacerdos: 250
+  categories:
+  - sacerdosMed
+
+- type: listing
   id: SacerdosHypospray
   productEntity: Hypospray
   cost:
@@ -894,7 +914,7 @@
 - type: listing
   id: SacerdosUplinkMagazineBoxPistol
 #  name: MagazineBoxPistol-name
-  description: SacerdosUplinkMagazineBoxPistol 
+  description: SacerdosUplinkMagazineBoxPistol
   productEntity: MagazineBoxPistol
   cost:
     Telecrystal_sacerdos: 160
@@ -1207,7 +1227,7 @@
   categories:
   - sacerdosArmor
 
-#R.I.G. нужно сделать свои 
+#R.I.G. нужно сделать свои
 
 #- type: listing
 #  id: SacerdosUplinkClothingControlModsuitCivillianSealed
@@ -1612,7 +1632,7 @@
 
 - type: listing
   id: SacerdosClothingHeadFlowerCentComEmerald
-  productEntity: ClothingHeadFlowerCentComEmerald 
+  productEntity: ClothingHeadFlowerCentComEmerald
   cost:
     Telecrystal_sacerdos: 85
   categories:
@@ -1636,7 +1656,7 @@
 
 - type: listing
   id: SacerdosClothingDSOGlassesWhite
-  productEntity: ClothingDSOGlassesWhite 
+  productEntity: ClothingDSOGlassesWhite
   cost:
     Telecrystal_sacerdos: 85
   categories:
@@ -1646,23 +1666,23 @@
   id: SacerdosClothingUniformJumpskirtJanimaidmini
   productEntity: ClothingUniformJumpskirtJanimaidmini
   cost:
-    Telecrystal_sacerdos: 1000
+    Telecrystal_sacerdos: 8000
   categories:
   - sacerdosClothing
-  
+
 - type: listing
   id: SacerdosClothingUniformJumpskirtJanimaid
   productEntity: ClothingUniformJumpskirtJanimaid
   cost:
-    Telecrystal_sacerdos: 1000
+    Telecrystal_sacerdos: 8000
   categories:
   - sacerdosClothing
-  
+
 - type: listing
   id: SacerdosClothingNeckMaidChoker
   productEntity: ClothingNeckMaidChoker
   cost:
-    Telecrystal_sacerdos: 1000
+    Telecrystal_sacerdos: 8000
   categories:
   - sacerdosClothing
 
@@ -1670,7 +1690,7 @@
   id: SacerdosClothingUniformJumpskirtTacticalMaid
   productEntity: ClothingUniformJumpskirtTacticalMaid
   cost:
-    Telecrystal_sacerdos: 1000
+    Telecrystal_sacerdos: 8000
   categories:
   - sacerdosClothing
 
@@ -1678,7 +1698,7 @@
   id: SacerdosClothingHandsTacticalMaidGloves
   productEntity: ClothingHandsTacticalMaidGloves
   cost:
-    Telecrystal_sacerdos: 1000
+    Telecrystal_sacerdos: 8000
   categories:
   - sacerdosClothing
 
@@ -1687,7 +1707,7 @@
   description: Ny~a
   productEntity: ClothingHeadHatCatEars
   cost:
-    Telecrystal_sacerdos: 2000
+    Telecrystal_sacerdos: 10000
   categories:
   - sacerdosClothing
 
@@ -2094,7 +2114,7 @@
 
 - type: listing
   id: SacerdosCryoPodMachineCircuitboard
-  productEntity: CryoPodMachineCircuitboard 
+  productEntity: CryoPodMachineCircuitboard
   cost:
     Telecrystal_sacerdos: 250
   categories:
@@ -2127,24 +2147,8 @@
   - sacerdosConstruction
 
 - type: listing
-  id: SacerdosCapacitorStockPart
-  productEntity: CapacitorStockPart
-  cost:
-    Telecrystal_sacerdos: 75
-  categories:
-  - sacerdosConstruction
-
-- type: listing
   id: SacerdosMicroManipulatorStockPart
   productEntity: MicroManipulatorStockPart
-  cost:
-    Telecrystal_sacerdos: 75
-  categories:
-  - sacerdosConstruction
-
-- type: listing
-  id: SacerdosMatterBinStockPart
-  productEntity: MatterBinStockPart
   cost:
     Telecrystal_sacerdos: 75
   categories:
@@ -2193,7 +2197,7 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
-  
+
 - type: listing
   id: SacerdosBluespaceBeaker
   productEntity: BluespaceBeaker
@@ -2233,7 +2237,7 @@
   id: SacerdosPlushieSpaceLizard
   productEntity: PlushieSpaceLizard
   cost:
-    Telecrystal_sacerdos: 1000
+    Telecrystal_sacerdos: 2000
   categories:
   - sacerdosMisc
 
@@ -2271,7 +2275,7 @@
 
 - type: listing
   id: SacerdosFlashlightSeclite
-  productEntity: FlashlightSeclite 
+  productEntity: FlashlightSeclite
   cost:
     Telecrystal_sacerdos: 100
   categories:
@@ -2332,7 +2336,7 @@
     Telecrystal_sacerdos: 200
   categories:
   - sacerdosMisc
-  
+
 - type: listing
   id: SacerdosSoapSyndie
   productEntity: SoapSyndie
@@ -2372,6 +2376,6 @@
   productEntity: SpawnfightsacerdosODTPreset
   icon: { sprite: /Textures/Imperial/sacerdos/Equipment_Sacerdos.rsi, state: fight_sacerdos }
   cost:
-    Telecrystal_sacerdos: 875
+    Telecrystal_sacerdos: 475
   categories:
   - sacerdosReinforcements

@@ -11,59 +11,16 @@
       "name": "icon"
     },
     {
+      "name": "e_claws"
+    },
+    {
       "name": "e_claws_blade",
       "delays": [
         [
           0.1,
           0.1
-        ] ]
-    },
-    {
-      "name": "e_claws"
-    },
-    {
-      "name": "inhand_blade_right",
-      "directions": 4,
-      "delays": [
-        [
-          0.1,
-          0.1
-        ],
-        [
-          0.1,
-          0.1
-        ],
-        [
-          0.1,
-          0.1
-        ],
-        [
-          0.1,
-          0.1
         ]
-      ]
-    },
-    {
-      "name": "inhand_blade_left",
-      "directions": 4,
-      "delays": [
-        [
-          0.1,
-          0.1
-        ],
-        [
-          0.1,
-          0.1
-        ],
-        [
-          0.1,
-          0.1
-        ],
-        [
-          0.1,
-          0.1
-        ]
-      ]
+    ]
     }
   ]
 }

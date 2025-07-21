@@ -170,39 +170,38 @@ public sealed class DealDamageConditionSystem : EntitySystem
     }
     private void OnMobStateChanged(EntityUid uid, NinjaDamageTargetComponent component, MobStateChangedEvent args)
     {
-        if (args.NewMobState != MobState.Critical)
+        if (args.NewMobState == MobState.Critical || args.NewMobState == MobState.Dead)
         {
-            return;
-        }
-        if (component.Objective == null)
-        {
-            return;
-        }
-        if (!TryComp<DealDamageConditionComponent>(component.Objective.Value, out var comp) ||
-                comp.DamageType == null)
-        {
-            return;
-        }
-        if (!TryComp<MindContainerComponent>(component.Owner, out var mccomp))
-        {
-            return;
-        }
-        if (!TryComp<MindComponent>(mccomp.Mind, out var mcomp))
-        {
-            return;
-        }
-        if (!TryComp<DamageableComponent>(mcomp.OwnedEntity, out var damagecomp))
-        {
-            return;
-        }
-        var damageType = comp.DamageType.Value;
-        if (!damagecomp.Damage.DamageDict.TryGetValue(damageType, out var damageDelta))
-        {
-            return;
-        }
-        if (damageDelta >= 100)
-        {
-            comp.Failed = true;
+            if (component.Objective == null)
+            {
+                return;
+            }
+            if (!TryComp<DealDamageConditionComponent>(component.Objective.Value, out var comp) ||
+                    comp.DamageType == null)
+            {
+                return;
+            }
+            if (!TryComp<MindContainerComponent>(component.Owner, out var mccomp))
+            {
+                return;
+            }
+            if (!TryComp<MindComponent>(mccomp.Mind, out var mcomp))
+            {
+                return;
+            }
+            if (!TryComp<DamageableComponent>(mcomp.OwnedEntity, out var damagecomp))
+            {
+                return;
+            }
+            var damageType = comp.DamageType.Value;
+            if (!damagecomp.Damage.DamageDict.TryGetValue(damageType, out var damageDelta))
+            {
+                return;
+            }
+            if (damageDelta >= 100)
+            {
+                comp.Failed = true;
+            }
         }
     }
 }

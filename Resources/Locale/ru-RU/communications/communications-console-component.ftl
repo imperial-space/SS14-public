@@ -14,11 +14,11 @@ comms-console-menu-alert-level-button-tooltip = Измените уровень 
 # Popup
 comms-console-permission-denied = В доступе отказано
 comms-console-shuttle-unavailable = Шаттл в настоящее время недоступен
+comms-console-message-too-long = Сообщение слишком длинное
 
 # Placeholder values
 comms-console-announcement-sent-by = Отправитель
 comms-console-announcement-unknown-sender = Неизвестный
-comms-console-message-too-long = Сообщение слишком длинное
 
 # Comms console variant titles
 comms-console-announcement-title-station = Консоль связи

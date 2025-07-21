@@ -192,6 +192,30 @@
     sprite: Imperial/Felix/Objects/pda.rsi
     state: pda
 
+- type: entity
+  id: ElysiumFederationadminIDCard
+  parent: IDCardStandard
+  name: Federation ID card
+  description: Identification Card.
+  suffix: ElysiumPrime, admin
+  components:
+    - type: IdCard
+      jobIcon: FederationJobIcon
+      jobTitle: job-name-federation
+    - type: Access
+      tags:
+      - Federationadmin
+    - type: Sprite
+      sprite: Imperial/Other/ElysiumPrime/Misc/card.rsi
+      layers:
+        - state: federation
+    - type: Clothing
+      slots:
+        - idcard
+      sprite: Imperial/Other/ElysiumPrime/Misc/card.rsi
+    - type: PresetIdCard
+      job: null
+
 # Шлюзы
 
 - type: entity
@@ -687,6 +711,24 @@
     layers:
     - state: grey
     - state: grey_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+
+- type: entity
+  name: paper
+  parent: Paper
+  id: ElysiumPrimeFelixPaper
+  description: paper
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/paper.rsi
+    layers:
+    - state: paper
+    - state: paper_words
       map: ["enum.PaperVisualLayers.Writing"]
       visible: false
     - state: paper_stamp-generic

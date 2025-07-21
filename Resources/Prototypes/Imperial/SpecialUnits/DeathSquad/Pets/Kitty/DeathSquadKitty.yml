@@ -255,28 +255,103 @@
   inhand:
   - KittyEnergyClaws
 
+#- type: entity
+#  name: energy claws #Лазерные когти
+#  parent: BaseItem
+#  id: BaseKittyEnergyClaws
+#  abstract: true
+#  categories: [ HideSpawnMenu ]
+#  description: A very loud & dangerous sw-... claws with a beam made of pure, concentrated plasma. Cat claws?..
+#  components:
+#  - type: EnergySword
+#  - type: MeleeWeapon
+#    altDisarm: false
+#    angle: 0
+#    animation: WeaponArcClaw
+#    wideAnimationRotation: -135
+#    attackRate: 2
+#    damage:
+#      types:
+#        Blunt: 4.5
+#  - type: ItemToggle
+#    soundActivate:
+#      path: /Audio/Weapons/ebladeon.ogg
+#    soundDeactivate:
+#      path: /Audio/Weapons/ebladeoff.ogg
+#  - type: ItemToggleActiveSound
+#    activeSound:
+#      path: /Audio/Weapons/ebladehum.ogg
+#  - type: ItemTogglePointLight
+#  - type: ItemToggleMeleeWeapon
+#    activatedSoundOnHit:
+#      path: /Audio/Weapons/eblade1.ogg
+#      params:
+#        variation: 0.250
+#    activatedSoundOnHitNoDamage:
+#      path: /Audio/Weapons/eblade1.ogg
+#      params:
+#        variation: 0.250
+#        volume: -10
+#    activatedSoundOnSwing:
+#      path: /Audio/Weapons/eblademiss.ogg
+#      params:
+#        variation: 0.125
+#    activatedDamage:
+#      types:
+#        Slash: 10
+#        Heat: 10
+#        Structural: 40
+#  - type: ComponentToggler
+#    components:
+#    - type: Sharp
+#    - type: DisarmMalus
+#      malus: 0.6
+#    - type: Execution
+#      doAfterDuration: 4.0
+#  - type: PointLight
+#    enabled: false
+#    radius: 2
+#    energy: 2
+#    color: white
+#    netsync: false
+#  - type: ToggleableLightVisuals
+#    spriteLayer: blade
+#    inhandVisuals:
+#      left:
+#      - state: inhand-left-blade
+#        shader: unshaded
+#      right:
+#      - state: inhand-right-blade
+#        shader: unshaded
+#  - type: Appearance
+#  - type: Reflect
+#    reflectProb: 0.75
+#    spread: 10
+#  - type: IgnitionSource
+#    temperature: 700
+#  - type: UseDelay
+#    delay: 1.0
+
 - type: entity
-  name: energy claws #Лазерный когти
-  parent: BaseItem
+  name: energy claws #Лазерные когти
+  parent: BaseMeleeWeaponEnergy
   id: KittyEnergyClaws
   categories: [ HideSpawnMenu ]
   description: A very loud & dangerous sw-... claws with a beam made of pure, concentrated plasma. Cat claws?..
   components:
-  - type: EnergySword
-  - type: Unremoveable
   - type: Sprite
-    sprite: Imperial/SpecialUnits/DeathSquad/Pets/Kitty/deathsquad_kitty_claws.rsi
+    sprite: Imperial/SpecialUnits/DeathSquad/Pets/Kitty/deathsquad_kitty_claws.rsi ##Imperial/SpecialUnits/DeathSquad/Pets/Kitty/deathsquad_kitty_claws.rsi
     layers:
     - state: e_claws
     - state: e_claws_blade
-      color: "#FFFFFF"
+      color: white
       visible: false
       shader: unshaded
       map: [ "blade" ]
   - type: Item
-    sprite: Imperial/SpecialUnits/DeathSquad/Pets/Kitty/deathsquad_kitty_claws.rsi
+    sprite: Imperial/SpecialUnits/DeathSquad/Pets/Kitty/deathsquad_kitty_claws_inhands.rsi
+  - type: Unremoveable
   - type: MeleeWeapon
-    altDisarm: false
     angle: 0
     animation: WeaponArcClaw
     wideAnimationRotation: -135
@@ -284,15 +359,6 @@
     damage:
       types:
         Blunt: 4.5
-  - type: ItemToggle
-    soundActivate:
-      path: /Audio/Weapons/ebladeon.ogg
-    soundDeactivate:
-      path: /Audio/Weapons/ebladeoff.ogg
-  - type: ItemToggleActiveSound
-    activeSound:
-      path: /Audio/Weapons/ebladehum.ogg
-  - type: ItemTogglePointLight
   - type: ItemToggleMeleeWeapon
     activatedSoundOnHit:
       path: /Audio/Weapons/eblade1.ogg
@@ -312,33 +378,3 @@
         Slash: 10
         Heat: 10
         Structural: 40
-  - type: ComponentToggler
-    components:
-    - type: Sharp
-    - type: DisarmMalus
-      malus: 0.6
-    - type: Execution
-      doAfterDuration: 4.0
-  - type: PointLight
-    enabled: false
-    radius: 2
-    energy: 2
-    color: white
-    netsync: false
-  - type: ToggleableLightVisuals
-    spriteLayer: blade
-    inhandVisuals:
-      left:
-      - state: inhand_blade_left
-        shader: unshaded
-      right:
-      - state: inhand_blade_right
-        shader: unshaded
-  - type: Appearance
-  - type: Reflect
-    reflectProb: 0.75
-    spread: 10
-  - type: IgnitionSource
-    temperature: 700
-  - type: UseDelay
-    delay: 1.0

@@ -6,7 +6,8 @@ using Content.Shared.Verbs;
 using Robust.Shared.Prototypes;
 using Content.Shared.Imperial.ImperialBorgs;
 using Content.Shared.Imperial.ImperialBorgs.Events;
-
+using Content.Shared.Interaction;
+using Content.Shared.Interaction.Events;
 namespace Content.Server.Imperial.ImperialBorgs
 {
     public sealed class BorgHypoSystem : EntitySystem
@@ -22,6 +23,7 @@ namespace Content.Server.Imperial.ImperialBorgs
             SubscribeLocalEvent<BorgHypoComponent, GetItemActionsEvent>(OnGetActions);
             SubscribeLocalEvent<BorgHypoComponent, ChangeReagentAction>(OnReagentAction);
             SubscribeNetworkEvent<ChangeReagentEvent>(OnReagentChange);
+            SubscribeLocalEvent<BorgHypoComponent, UseInHandEvent>(OnUseInHand);
         }
 
         private void OnGetActions(EntityUid uid, BorgHypoComponent component, GetItemActionsEvent args)
@@ -74,6 +76,14 @@ namespace Content.Server.Imperial.ImperialBorgs
                 Priority = 1
             };
             args.Verbs.Add(verb);
+        }
+        private void OnUseInHand(Entity<BorgHypoComponent> entity, ref UseInHandEvent args)
+        {
+            if (args.Handled)
+                return;
+
+            RaiseNetworkEvent(new OpenBorgHypoUIEvent(GetNetEntity(entity)), args.User);
+            args.Handled = true;
         }
 
         private void SwitchReagent(EntityUid uid, BorgHypoComponent component, ReagentPrototype? reagent = null)

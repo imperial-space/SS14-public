@@ -22,6 +22,8 @@ job-name-federation = Федерация
 
 ent-StarCorpsIDCard = ID карта
     .desc = Карта идентификации.
+ent-ElysiumFederationadminIDCard = ID карта
+    .desc = Карта идентификации.
 ent-StarCorpsPDA = КПК Звёздного Корпуса
     .desc = Устройство для инициализации и просмотра идентификационных карт. Имеет встроенные программы, которые есть в других обычных КПК.
 ent-AirlockStarCorpsLocked = шлюз Звёздного Корпуса
@@ -74,5 +76,5 @@ ent-ElysiumPrimeFelixKsivaPaper = документ
     .desc = Бумажник с важным содержанием.
 ent-ElysiumPrimeFelixBlueKsivaPaper = документ
     .desc = Бумажник с важным содержанием.
-ent-ElysiumPrimeFelixGreyKsivaPaper = документ
-    .desc = Бумажник с важным содержанием.
+ent-ElysiumPrimeFelixPaper = бумага
+    .desc = Бумага.
