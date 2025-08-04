@@ -343,7 +343,6 @@ public sealed partial class ElectroMouseSystem : EntitySystem
             _pointLight.SetRadius(uid, newrad, pointLightComponent);
             Dirty(uid, pointLightComponent);
             component.TimeUtil = _gameTiming.CurTime + TimeSpan.FromSeconds(component.Duration);
-            component.CanAPC = true;
         }
     }
 
