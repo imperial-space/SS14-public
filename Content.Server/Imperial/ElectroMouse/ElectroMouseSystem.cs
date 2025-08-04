@@ -162,11 +162,7 @@ public sealed partial class ElectroMouseSystem : EntitySystem
             }
             if (TryComp<DamageableComponent>(uid, out var damageableComponent))
             {
-                var total = FixedPoint2.Zero;
-                foreach (var value in damageableComponent.Damage.DamageDict.Values)
-                {
-                    total += value;
-                }
+                var total = damageableComponent.Damage.GetTotal();
                 if (total >= 30)
                 {
                     Spawn(component.SpawnOnDeathPrototype, Transform(uid).Coordinates);
@@ -231,7 +227,7 @@ public sealed partial class ElectroMouseSystem : EntitySystem
 
     private void OnLightning(EntityUid uid, ElectroMouseComponent component, ElectroMouseLightningEvent args)
     {
-        if (args.Handled || !_gameTiming.IsFirstTimePredicted)
+        if (args.Handled || !_gameTiming.IsFirstTimePredicted || args.Target == args.Performer)
             return;
         if (!component.BuyedLightning)
         {
@@ -244,7 +240,7 @@ public sealed partial class ElectroMouseSystem : EntitySystem
             return;
         }
         var target = args.Target;
-        if (!TryComp<MobStateComponent>(target, out var stateComponent) && _mobState.IsDead(target))
+        if (_mobState.IsDead(target))
         {
             _popup.PopupEntity(Loc.GetString("Цель должна быть живым существом."), uid, uid);
             return;
@@ -276,8 +272,7 @@ public sealed partial class ElectroMouseSystem : EntitySystem
         }
         Dirty(uid, component);
 
-        if (!component.CanSmesEtc)
-            component.CanSmesEtc = true;
+        component.CanSmesEtc = true;
     }
 
     private void OnEmp(EntityUid uid, ElectroMouseComponent component, ElectroMouseEmpEvent args)
@@ -322,8 +317,7 @@ public sealed partial class ElectroMouseSystem : EntitySystem
 
         args.Handled = true;
 
-        if (!component.CanAPC)
-            component.CanAPC = true;
+        component.CanAPC = true;
         if (!component.BuyedShield)
         {
             component.Energy -= 125;
@@ -336,21 +330,20 @@ public sealed partial class ElectroMouseSystem : EntitySystem
         }
         if (!HasComp<ReflectComponent>(uid))
         {
-            AddComp<ReflectComponent>(uid);
-            if (!TryComp<ReflectComponent>(uid, out var reflectComponent) || !TryComp<PointLightComponent>(uid, out var pointLightComponent))
+            var reflect = EnsureComp<ReflectComponent>(uid);
+            if (!TryComp<PointLightComponent>(uid, out var pointLightComponent))
                 return;
             component.IsActiveShield = true;
             AddEnergy(uid, component, -20);
             AddComp<ElectroMouseShieldComponent>(uid);
-            reflectComponent.ReflectProb = 1.0f;
+            reflect.ReflectProb = 1.0f;
             var newenerg = pointLightComponent.Energy + 2.5f;
             var newrad = pointLightComponent.Radius + 0.2f;
             _pointLight.SetEnergy(uid, newenerg, pointLightComponent);
             _pointLight.SetRadius(uid, newrad, pointLightComponent);
             Dirty(uid, pointLightComponent);
             component.TimeUtil = _gameTiming.CurTime + TimeSpan.FromSeconds(component.Duration);
-            if (!component.CanAPC)
-                component.CanAPC = true;
+            component.CanAPC = true;
         }
     }
 
@@ -396,8 +389,6 @@ public sealed partial class ElectroMouseSystem : EntitySystem
 
     private void DashAbility(EntityUid uid, ElectroMouseComponent comp, ElectroMouseDashEvent args)
     {
-        if (!HasComp<ElectroMouseComponent>(uid))
-            return;
 
         if (args.Handled)
             return;
@@ -417,15 +408,12 @@ public sealed partial class ElectroMouseSystem : EntitySystem
         var mapPosition = xformSystem.GetWorldPosition(uid);
         var reactionBounds = new Box2(mapPosition - new Vector2(energy, energy), mapPosition + new Vector2(energy, energy));
 
-        var newPosition = comp.Coordinates;
+        Vector2 newPosition = GetPositionFromRotation(reactionBounds, energy, uid);
 
-        newPosition = GetPositionFromRotation(reactionBounds, energy, uid);
-
-        if (newPosition != null)
-            xformSystem.SetWorldPosition(
-                uid,
-                (Vector2)newPosition
-            );
+        xformSystem.SetWorldPosition(
+            uid,
+            newPosition
+        );
         _audio.PlayPvs(comp.DashSound, uid);
     }
 
@@ -464,12 +452,8 @@ public sealed partial class ElectroMouseSystem : EntitySystem
     private void AddEnergy(EntityUid uid, ElectroMouseComponent component, FixedPoint2 energ)
     {
         var store = EnsureComp<StoreComponent>(uid);
-        // Get the ElectroMouseComponent instance from the entity
-        if (TryComp<ElectroMouseComponent>(uid, out var electroMouseComponent))
-        {
-            ChangeEnergyAmount(uid, energ, component);
-            _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { { component.StolenEnergyCurrencyPrototype, energ } }, uid, store);
-        }
+        ChangeEnergyAmount(uid, energ, component);
+        _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { { component.StolenEnergyCurrencyPrototype, energ } }, uid, store); // BRO WTF IS THAT
     }
 
     // private void Inject(EntityUid target, string reagent, FixedPoint2 value)
@@ -551,7 +535,7 @@ public sealed partial class ElectroMouseSystem : EntitySystem
         }
 
         var available = targetBattery.CurrentCharge;
-        int required;
+        int required; // YES THAT'S INT NOT VAR
 
         if (HasComp<ApcComponent>(target))
         {
@@ -610,18 +594,15 @@ public sealed partial class ElectroMouseSystem : EntitySystem
             AddEnergy(uid, component, projprov.Shots);
             projprov.Shots = 0;
             Dirty(target, projprov);
-        }
+        } // nice if statements, yanderedev eshckere
         args.Handled = true;
     }
-
     private void OnOverloadLightsAction(EntityUid uid, ElectroMouseComponent component, ElectroMouseOverloadLightsActionEvent args)
     {
         if (args.Handled)
             return;
 
-
-        if (!component.CanBattery)
-            component.CanBattery = true; //at first overload make can eat from laser guns
+        component.CanBattery = true; //at first overload make can eat from laser guns
 
         args.Handled = true;
         if (!component.BuyedOverload)
@@ -635,7 +616,7 @@ public sealed partial class ElectroMouseSystem : EntitySystem
             return;
         }
         AddEnergy(uid, component, -25);
-
+        // copypaste start
         var xform = Transform(uid);
         var poweredLights = GetEntityQuery<PoweredLightComponent>();
         var mobState = GetEntityQuery<MobStateComponent>();
@@ -650,7 +631,7 @@ public sealed partial class ElectroMouseSystem : EntitySystem
                 .Where(e => !HasComp<RevenantOverloadedLightsComponent>(e) &&
                             _interact.InRangeUnobstructed(e, uid, -1)).ToArray();
 
-            if (!nearbyLights.Any())
+            if (nearbyLights.Length == 0) // better than any
                 continue;
 
             //get the closest light
@@ -659,69 +640,49 @@ public sealed partial class ElectroMouseSystem : EntitySystem
             var comp = EnsureComp<RevenantOverloadedLightsComponent>(allLight.First());
             comp.Target = ent; //who they gon fire at?
         }
+        // copypaste end
     }
 
     private void OnHeal(EntityUid uid, ElectroMouseComponent component, ElectroMouseHealEvent args)
     {
         if (args.Handled)
             return;
+
         if (!component.BuyedHeal)
         {
             component.Energy -= 100;
             component.BuyedHeal = true;
         }
+
         if (component.Energy <= 30)
         {
             _popup.PopupEntity("Недостаточно энергии", uid, uid);
             return;
         }
-        if (TryComp<DamageableComponent>(uid, out var damagecomp) && component.Energy >= 30)
+
+        if (!TryComp<DamageableComponent>(uid, out var damageComp))
+            return;
+
+        var damageDict = damageComp.Damage.DamageDict;
+        var maxDamageType = damageComp.Damage.DamageDict.OrderByDescending(z => z.Value).ToDictionary(a => a, s => s).FirstOrDefault().Key.Key.ToString();
+
+        if (string.IsNullOrEmpty(maxDamageType) || damageDict[maxDamageType] == 0)
         {
-            args.Handled = true;
-            var result = damagecomp.Damage.DamageDict.OrderByDescending(z => z.Value).ToDictionary(a => a, s => s).First().Key.Key.ToString();
-            if (component.HealingStrength == 10)
-            {
-                if (result != null && damagecomp.Damage.DamageDict[result] != 0)
-                {
-                    AddEnergy(uid, component, -30);
-                    var newdamage = component.HealingStrength;
-                    if (damagecomp.Damage.DamageDict[result] <= newdamage)
-                        newdamage = (int)damagecomp.Damage.DamageDict[result];
-                    DamageSpecifier damage = new()
-                    {
-                        DamageDict = new()
-                        {
-                            { result, component.HealingStrength * -1 }
-                        }
-                    };
-                    _damageable.TryChangeDamage(uid, damage, false, true, damagecomp, origin: uid);
-                    Dirty(uid, damagecomp);
-                }
-                else
-                    _popup.PopupEntity("Вы не ранены", uid, uid);
-            }
-            else
-            {
-                if (result != null && damagecomp.Damage.DamageDict[result] != 0)
-                {
-                    AddEnergy(uid, component, -30);
-                    var newdamage = component.HealingStrength;
-                    if (damagecomp.Damage.DamageDict[result] <= newdamage)
-                        newdamage = (int)damagecomp.Damage.DamageDict[result];
-                    DamageSpecifier damage = new()
-                    {
-                        DamageDict = new()
-                        {
-                            { result, component.HealingStrength * -1 }
-                        }
-                    };
-                    _damageable.TryChangeDamage(uid, damage, false, true, damagecomp, origin: uid);
-                    Dirty(uid, damagecomp);
-                }
-                else
-                    _popup.PopupEntity("Вы не ранены", uid, uid);
-            }
+            _popup.PopupEntity("Вы не ранены", uid, uid);
+            return;
         }
+
+        args.Handled = true;
+        AddEnergy(uid, component, -30);
+
+        var healAmount = Math.Min(component.HealingStrength, (int)damageDict[maxDamageType]);
+        var healSpecifier = new DamageSpecifier
+        {
+            DamageDict = new() { { maxDamageType, -healAmount } }
+        };
+
+        _damageable.TryChangeDamage(uid, healSpecifier, false, true, damageComp, origin: uid);
+        Dirty(uid, damageComp);
     }
 }
 
