@@ -94,6 +94,9 @@
   - type: Stripping
   - type: SolutionScanner
   - type: IgnoreUIRange
+  - type: NavMapWarp
+    sounds:
+      collection: StaticShort
   - type: ShowAntagIcons
   - type: ShowContrabandDetails
   - type: Inventory
