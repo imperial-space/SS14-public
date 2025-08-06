@@ -252,7 +252,7 @@ public partial class NavMapControl : MapGridControl
         }
     }
 
-    public bool CalculateWorldPos(GUIBoundKeyEventArgs args, [NotNullWhen(true)] out Vector2? worldPosition)
+    private bool CalculateWorldPos(GUIBoundKeyEventArgs args, [NotNullWhen(true)] out Vector2? worldPosition)
     {
         worldPosition = null;
         if (_xform == null || _physics == null)
