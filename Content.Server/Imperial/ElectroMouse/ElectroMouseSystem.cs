@@ -407,7 +407,7 @@ public sealed partial class ElectroMouseSystem : EntitySystem
         var mapPosition = xformSystem.GetWorldPosition(uid);
         var reactionBounds = new Box2(mapPosition - new Vector2(energy, energy), mapPosition + new Vector2(energy, energy));
 
-        Vector2 newPosition = GetPositionFromRotation(reactionBounds, energy, uid);
+        var newPosition = GetPositionFromRotation(reactionBounds, energy, uid);
 
         xformSystem.SetWorldPosition(
             uid,
