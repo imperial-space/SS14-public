@@ -12,14 +12,14 @@
     - map: ["computerLayerScreen"]
       state: error
   - type: AccessReader
-    access: [[ "NuclearOperative" ]]
+    access: [[ "Command" ]]
   - type: CommunicationsConsole
     title: comms-console-announcement-title-IMPERIALSSSP
     color: "#e74c3c"
     canShuttle: false
     global: true 
     announceSentBy: false
-    sound: /Audio/Announcements/war.ogg
+    sound: /Audio/Imperial/ussp/war.ogg
   - type: Computer
     board: SyndicateCommsComputerCircuitboard
   - type: PointLight

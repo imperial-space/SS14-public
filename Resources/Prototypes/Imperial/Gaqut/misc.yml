@@ -324,6 +324,7 @@
     volume: -2
     sound:
       path: /Audio/Imperial/Gaqut/propaganda-trivium-1.ogg
+      loop: True
 
 - type: entity
   id: BannerSideTriviumSound2
@@ -336,6 +337,7 @@
     volume: -2
     sound:
       path: /Audio/Imperial/Gaqut/propaganda-trivium-2.ogg
+      loop: True
 
 - type: entity
   id: BannerSideTriviumSound3
@@ -348,6 +350,7 @@
     volume: -2
     sound:
       path: /Audio/Imperial/Gaqut/propaganda-trivium-2.ogg
+      loop: True
 
 - type: entity
   id: BannerSideUSSP
@@ -371,6 +374,7 @@
     volume: -2
     sound:
       path: /Audio/Imperial/Gaqut/propaganda-ussp-1.ogg
+      loop: True
 
 - type: entity
   id: BannerSideUSSPSound2
@@ -383,6 +387,7 @@
     volume: -2
     sound:
       path: /Audio/Imperial/Gaqut/propaganda-ussp-2.ogg
+      loop: True
 
 - type: entity
   id: BannerSideUSSPSound3
@@ -395,3 +400,28 @@
     volume: -2
     sound:
       path: /Audio/Imperial/Gaqut/propaganda-ussp-2.ogg
+      loop: True
+
+- type: entity
+  id: GaqutBrokenWall
+  parent: BaseStructure
+  name: Broken reinforced wall
+  suffix: Gaqut, Decor
+  description: Destroyed reinforced wall. Maybe it was destroyed during the war?
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Gaqut/wall.rsi
+    state: icon
+    #drawdepth: Mobs
+  - type: Appearance
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 15
+        layer:
+        - WallLayer
+  - type: Climbable

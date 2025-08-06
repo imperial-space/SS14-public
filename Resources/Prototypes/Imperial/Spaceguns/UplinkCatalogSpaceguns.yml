@@ -2166,7 +2166,7 @@
   id: SpacegunsPowerCageRechargerSpaceGuns
   productEntity: PowerCageRechargerSpaceGuns
   cost:
-    Telecrystal_sacerdos: 1000
+    Telecrystal_sacerdos: 2500
   categories:
   - SpacegunsConstruction
 
@@ -2175,7 +2175,7 @@
   description: Power-Cage-Recharger-des
   productEntity: PowerCageRecharger
   cost:
-    Telecrystal_sacerdos: 2500
+    Telecrystal_sacerdos: 1000
   categories:
   - SpacegunsConstruction
 

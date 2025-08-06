@@ -94,7 +94,7 @@
   - type: Sprite
     sprite: Imperial/ussp/urbandeco/pipes.rsi
     state: lattice
-    drawdepth: Overdoors
+    drawdepth: BlastDoors
   - type: Transform
     anchored: true
   - type: InteractionOutline

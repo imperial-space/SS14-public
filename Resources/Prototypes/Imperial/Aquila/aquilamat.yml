@@ -6,7 +6,7 @@
       ClothingUniformJumpsuitMenOriental: 3
       ClothingUniformJumpsuitAltWomenOriental: 3
       ClothingUniformJumpsuitAltMenOriental: 3
-      ClothingHeadHairPin: 1
+      ClothingHeadHairPin: 2
       ClothingUniformJumpsuitJaneDoe: 1
       ClothingHeadHairJaneDoe: 1
       ClothingShoesBootsJaneDoe: 1
@@ -17,19 +17,19 @@
   id: AquilaMateAdv
   values:
     prefix: advertisement-aquila-
-    count: 7
+    count: 10
 
 - type: localizedDataset
   id: AquilaMateGoodbyes
   values:
     prefix: thankyou-aquila-
-    count: 5
+    count: 7
 
 - type: localizedDataset
   id: SpookySpeakerMessagesAquila
   values:
     prefix: spooky-speaker-aquila-
-    count: 2
+    count: 5
 
 - type: entity
   parent: VendingMachine

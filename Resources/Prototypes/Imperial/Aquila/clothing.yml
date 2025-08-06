@@ -63,6 +63,21 @@
     sprite: Imperial/Aquila/Clothing/Head/hairpin.rsi
   - type: Clothing
     sprite: Imperial/Aquila/Clothing/Head/hairpin.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    angle: 0
+    animation: WeaponArcThrust
+    attackRate: 1
+    damage:
+      types:
+        Piercing: 5
+  - type: LandAtCursor
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 10
+  - type: ThrowingAngle
+    angle: 225
 
 - type: entity
   parent: ClothingUniformBase
@@ -85,6 +100,9 @@
     sprite: Imperial/Aquila/Clothing/Head/janedoe.rsi
   - type: Clothing
     sprite: Imperial/Aquila/Clothing/Head/janedoe.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: ClothingShoesBaseButcherable

@@ -38,7 +38,7 @@
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 45
     rechargeSound:
-      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      path: /Audio/Weapons/Guns/rifle_load.ogg
       params:
         pitch: 1.2
         variation: 0.08
@@ -83,13 +83,13 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
       params:
         variation: 0.12
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 45
     rechargeSound:
-      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      path: /Audio/Weapons/Guns/rifle_load.ogg
       params:
         pitch: 1.2
         variation: 0.08
@@ -134,13 +134,13 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
       params:
         variation: 0.12
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 35
     rechargeSound:
-      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      path: /Audio/Weapons/Guns/rifle_load.ogg
       params:
         pitch: 1.2
         variation: 0.08
@@ -185,13 +185,13 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
       params:
         variation: 0.12
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 60
     rechargeSound:
-      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      path: /Audio/Weapons/Guns/rifle_load.ogg
       params:
         pitch: 1.2
         variation: 0.08
@@ -236,13 +236,13 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
       params:
         variation: 0.12
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 55
     rechargeSound:
-      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      path: /Audio/Weapons/Guns/rifle_load.ogg
       params:
         pitch: 1.2
         variation: 0.08
@@ -287,13 +287,13 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
       params:
         variation: 0.12
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 75
     rechargeSound:
-      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      path: /Audio/Weapons/Guns/rifle_load.ogg
       params:
         pitch: 1.2
         variation: 0.08
@@ -338,13 +338,13 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
       params:
         variation: 0.12
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 55
     rechargeSound:
-      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      path: /Audio/Weapons/Guns/rifle_load.ogg
       params:
         pitch: 1.2
         variation: 0.08
@@ -389,13 +389,13 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
       params:
         variation: 0.12
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 45
     rechargeSound:
-      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      path: /Audio/Weapons/Guns/rifle_load.ogg
       params:
         pitch: 1.2
         variation: 0.08
@@ -440,13 +440,13 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
       params:
         variation: 0.12
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 75
     rechargeSound:
-      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      path: /Audio/Weapons/Guns/rifle_load.ogg
       params:
         pitch: 1.2
         variation: 0.08
@@ -491,13 +491,13 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
       params:
         variation: 0.12
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 75
     rechargeSound:
-      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      path: /Audio/Weapons/Guns/rifle_load.ogg
       params:
         pitch: 1.2
         variation: 0.08
@@ -542,13 +542,13 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
       params:
         variation: 0.12
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 75
     rechargeSound:
-      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      path: /Audio/Weapons/Guns/rifle_load.ogg
       params:
         pitch: 1.2
         variation: 0.08
@@ -593,13 +593,13 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
       params:
         variation: 0.12
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 35
     rechargeSound:
-      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      path: /Audio/Weapons/Guns/rifle_load.ogg
       params:
         pitch: 1.2
         variation: 0.08
@@ -644,13 +644,13 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
       params:
         variation: 0.12
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 35
     rechargeSound:
-      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      path: /Audio/Weapons/Guns/rifle_load.ogg
       params:
         pitch: 1.2
         variation: 0.08
@@ -695,13 +695,13 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
       params:
         variation: 0.12
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 35
     rechargeSound:
-      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      path: /Audio/Weapons/Guns/rifle_load.ogg
       params:
         pitch: 1.2
         variation: 0.08
@@ -746,13 +746,13 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
       params:
         variation: 0.12
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 65
     rechargeSound:
-      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      path: /Audio/Weapons/Guns/rifle_load.ogg
       params:
         pitch: 1.2
         variation: 0.08
@@ -797,13 +797,13 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
       params:
         variation: 0.12
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 30
     rechargeSound:
-      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      path: /Audio/Weapons/Guns/rifle_load.ogg
       params:
         pitch: 1.2
         variation: 0.08

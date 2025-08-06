@@ -1,3 +1,4 @@
+
 - type: entity
   parent: IDCardStandard
   id: USSPBattleIDcard
@@ -16,7 +17,7 @@
     jobTitle: Военный СССП
   - type: Access
     tags:
-    - NuclearOperative
+    - Security
 
 - type: entity
   parent: IDCardStandard
@@ -36,7 +37,7 @@
     jobTitle: Офицер СССП
   - type: Access
     tags:
-    - NuclearOperative
+    - Security
 
 - type: entity
   parent: IDCardStandard
@@ -56,7 +57,8 @@
     jobTitle: Комиссар СССП
   - type: Access
     tags:
-    - NuclearOperative
+    - Command
+    - Security
 
 - type: entity
   parent: IDCardStandard
@@ -76,7 +78,8 @@
     jobTitle: Cержант СССП
   - type: Access
     tags:
-    - NuclearOperative
+    - Command
+    - Security
 
 - type: entity
   parent: IDCardStandard
@@ -96,7 +99,9 @@
     jobTitle: Майор СССП
   - type: Access
     tags:
-    - NuclearOperative
+    - Command
+    - Security
+    - Service
 
 - type: entity
   parent: IDCardStandard
@@ -116,7 +121,9 @@
     jobTitle: Генерал-лейтенант СССП
   - type: Access
     tags:
-    - NuclearOperative
+    - Command
+    - Security
+    - Service
 
 - type: entity
   parent: IDCardStandard
@@ -136,7 +143,7 @@
     jobTitle: Работник обслуживания
   - type: Access
     tags:
-    - NuclearOperative
+    - Service
 
 - type: entity
   parent: IDCardStandard
@@ -154,6 +161,3 @@
     sprite: Imperial/ussp/idcard.rsi
   - type: IdCard
     jobTitle: Турист
-  - type: Access
-    tags:
-    - NuclearOperative

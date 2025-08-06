@@ -1,39 +1,42 @@
-ent-ArtilleryGaqut = Артиллерия
+ent-ArtilleryGaqut = артиллерия
     .desc = И горизонт озарился пламенем
 
-ent-AirlockHatchTrivium = Герметичный люк Тривиума
+ent-AirlockHatchTrivium = герметичный люк Тривиума
     .desc = Обычный шлюз для солдат Тривиума
-ent-AirlockHatchTriviumHead = Герметичный люк командования Тривиума
+ent-AirlockHatchTriviumHead = герметичный люк командования Тривиума
     .desc = Обычный шлюз для командования Тривиума
 
-ent-AirlockHatchUSSP = Герметичный люк СССП
+ent-AirlockHatchUSSP = герметичный люк СССП
     .desc = Обычный шлюз для солдат СССП
-ent-AirlockHatchUSSPHead = Герметичный люк командования СССП
+ent-AirlockHatchUSSPHead = герметичный люк командования СССП
     .desc = Обычный шлюз для командования СССП
 
-ent-GaqutPlatform = Платформа
-ent-GaqutPlatformCorner = Платформа
-ent-GaqutPlatformCornerSmall = Платформа
-ent-GaqutPlatformRound = Платформа
+ent-GaqutPlatform = платформа
+ent-GaqutPlatformCorner = платформа
+ent-GaqutPlatformCornerSmall = платформа
+ent-GaqutPlatformRound = платформа
 
-ent-BannerSideTrivium = Флаг Тривиума
+ent-BannerSideTrivium = флаг Тривиума
     .desc = Баннер с логотипом Тривиума на нем. Выглядит потрёпано
-ent-BannerSideUSSP = Флаг СССП
+ent-BannerSideUSSP = флаг СССП
     .desc = Баннер с логотипом СССП на нем. Выглядит потрёпано
 
-ent-VendingMachineTrivium = Тривенд
+ent-VendingMachineTrivium = тривенд
     .desc = Вендинговый аппарат, где можно купить разное снаряжение
 
-ent-BannerSideTriviumSound1 = Новый флаг Тривиума
+ent-BannerSideTriviumSound1 = новый флаг Тривиума
     .desc = Новый баннер с логотипом Тривиума на нем. Имеет встроенные динамики с пропагандой Тривиума
-ent-BannerSideTriviumSound2 = Новый флаг Тривиума
+ent-BannerSideTriviumSound2 = новый флаг Тривиума
     .desc = Новый баннер с логотипом Тривиума на нем. Имеет встроенные динамики с пропагандой Тривиума
-ent-BannerSideTriviumSound3 = Новый флаг Тривиума
+ent-BannerSideTriviumSound3 = новый флаг Тривиума
     .desc = Новый баннер с логотипом Тривиума на нем. Имеет встроенные динамики с пропагандой Тривиума
 
-ent-BannerSideUSSPSound1 = Новый флаг СССП
+ent-BannerSideUSSPSound1 = новый флаг СССП
     .desc = Новый баннер с логотипом СССП на нем. Имеет встроенные динамики с пропагандой СССП
-ent-BannerSideUSSPSound2 = Новый флаг СССП
+ent-BannerSideUSSPSound2 = новый флаг СССП
     .desc = Новый баннер с логотипом СССП на нем. Имеет встроенные динамики с пропагандой СССП
-ent-BannerSideUSSPSound3 = Новый флаг СССП
+ent-BannerSideUSSPSound3 = новый флаг СССП
     .desc = Новый баннер с логотипом СССП на нем. Имеет встроенные динамики с пропагандой СССП
+
+ent-GaqutBrokenWall = сломанная укреплённая стена
+    .desc = Укреплённая стена, которую разрушили в ходе войны. Кажется, через нее можно пролезть.

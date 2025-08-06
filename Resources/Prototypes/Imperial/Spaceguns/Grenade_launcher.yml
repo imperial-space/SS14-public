@@ -159,7 +159,7 @@
           tags:
           - SpaceGunsMagazineGrenade
         insertSound:
-          path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+          path: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
           params:
             pitch: 2
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg

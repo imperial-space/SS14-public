@@ -1,7 +1,7 @@
 - type: entity
   name: TT
   id: USSPWeaponTT
-  parent: WeaponPistolCobra
+  parent: WeaponPistolMk58
   description: Pew-Pew, fourty seven.
   components:
   - type: Sprite
@@ -11,6 +11,3 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
-  - type: Gun
-    soundGunshot:
-    path: /Audio/Weapons/Guns/Gunshots/pistol.ogg

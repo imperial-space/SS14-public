@@ -68,18 +68,10 @@
   components:
   - type: Transform
     bodyType: Dynamic
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.25
-        mask:
-        - Impassable
   - type: StationAiVision
   - type: Sprite
     sprite: Imperial/ussp/holopad.rsi
-    drawdepth: HighFloorObjects
+    drawdepth: Items
     snapCardinals: true
     layers:
     - state: base

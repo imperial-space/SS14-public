@@ -1,6 +1,6 @@
 - type: entity
   id: SpaceGunsBSA
-  parent: [SpaceGunsBase, BaseMachinePowered, ConstructibleMachine]
+  parent: [SpaceGunsBase, ConstructibleMachine]
   name: PTK-800 "Matter Dematerializer"
   description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
   components:
@@ -47,9 +47,6 @@
     count: 1
   - type: Machine
     board: MachineSpaceGunBSA
-  - type: ApcPowerReceiver
-    powerLoad: 55000
-    needsPower: false
   - type: Fixtures
     fixtures:
       fix1:
@@ -67,7 +64,7 @@
 
 - type: entity
   id: SpaceGunsBSA3
-  parent: [SpaceGunsBase, BaseMachinePowered, ConstructibleMachine]
+  parent: [SpaceGunsBase, ConstructibleMachine]
   name: PTK-800 "Matter Dematerializer"
   description: Salvage stationary mining turret. Gradually accumulates charges on its own, extremely effective for asteroid excavation.
   components:
@@ -114,16 +111,13 @@
     count: 1
   - type: Machine
     board: MachineSpaceGunBSA3
-  - type: ApcPowerReceiver
-    powerLoad: 55000
-    needsPower: false
   - type: WarpPoint
     follow: true
     location: BSA
 
 - type: entity
   id: SpaceGunsBSA1
-  parent: [SpaceGunsBase, BaseMachinePowered, ConstructibleMachine]
+  parent: [SpaceGunsBase, ConstructibleMachine]
   name: EXP-2100g "Duster"
   suffix: SpaceGuns, Phantom4502
   description: A powerful stationary grenade launcher. A cartridge is required for use.
@@ -174,9 +168,6 @@
     magState: mag
     steps: 2
     zeroVisible: false
-  - type: ApcPowerReceiver
-    powerLoad: 55000
-    needsPower: false
   - type: Fixtures
     fixtures:
       fix1:
@@ -194,7 +185,7 @@
 
 - type: entity
   id: SpaceGunsBSA2
-  parent: [SpaceGunsBase, BaseMachinePowered, ConstructibleMachine]
+  parent: [SpaceGunsBase, ConstructibleMachine]
   name: EXP-2100g "Duster"
   suffix: SpaceGuns, Phantom4502
   description: A powerful stationary grenade launcher. A cartridge is required for use.
@@ -241,9 +232,6 @@
       path: /Audio/Imperial/Lavaland/PlasmaCutter/replenishment-of-the-firearm.ogg
   - type: Machine
     board: MachineSpaceGunBSA2
-  - type: ApcPowerReceiver
-    powerLoad: 55000
-    needsPower: false
   - type: MagazineVisuals
     magState: mag
     steps: 3
