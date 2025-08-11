@@ -6,7 +6,3 @@ ent-MobIliardMoth = Бог
     .desc = Молись
 ent-IliardBriefcaseAmmoFilled = чемодан с транквилизаторами
     .desc = 12 штук, рекомендация не использовать без присмотра взрослых
-ent-IliardKnife = Ритуальный кортик
-    .desc = Используется в ритуалах
-ent-IliardClothingMaskHokey = Хоккейная маска
-    .desc = Чувак, эта вечеринка отстой. Я, ненавижу этих людей
