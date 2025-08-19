@@ -179,3 +179,4 @@ namespace Content.Client.Imperial.CustomChaplain.UI
         }
     }
 }
+
