@@ -1,0 +1,72 @@
+<DefaultWindow
+    Title="Выбор божества"
+    xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    SetSize="450 400">
+    <BoxContainer
+        Orientation="Vertical"
+        Margin="15"
+        SeparationOverride="5">
+
+        <!-- Title -->
+        <Label
+            Text="Выберите божество, которому будете служить:"
+            Margin="0 10 0 20"
+            HorizontalAlignment="Center"
+            StyleClasses="LabelHeading" />
+
+        <!-- Cthulhu Button -->
+        <Button
+            Name="CthulhuButton"
+            Text="Ктулху"
+            MinHeight="35"
+            Margin="0 5" />
+
+        <!-- Honk Mother Button -->
+        <Button
+            Name="HonkMotherButton"
+            Text="Хонкоматерь"
+            MinHeight="35"
+            Margin="0 5" />
+
+        <!-- Technomium Button -->
+        <Button
+            Name="TechnomiumButton"
+            Text="Техномиум"
+            MinHeight="35"
+            Margin="0 5" />
+
+        <!-- Gray Wave Button -->
+        <Button
+            Name="GrayWaveButton"
+            Text="Серая волна"
+            MinHeight="35"
+            Margin="0 5" />
+
+        <!-- Custom God Section -->
+        <BoxContainer
+            Orientation="Horizontal"
+            Margin="0 10 0 0"
+            SeparationOverride="10">
+
+            <LineEdit
+                Name="CustomGodTextBox"
+                PlaceHolder="Имя вашего бога"
+                MinHeight="35"
+                HorizontalExpand="True" />
+
+            <Button
+                Name="CustomGodButton"
+                Text="Создать"
+                MinHeight="35" />
+        </BoxContainer>
+
+        <!-- Status Text -->
+        <Label
+            Name="StatusText"
+            Text="Нажмите на кнопку дважды для подтверждения"
+            Margin="0 10 0 0"
+            HorizontalAlignment="Center"
+            StyleClasses="LabelSubText" />
+    </BoxContainer>
+</DefaultWindow>

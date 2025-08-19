@@ -27,8 +27,7 @@
         Blunt: 1
   - type: Prayable
     bibleUserOnly: true
-  - type: Summonable
-    specialItem: SpawnPointGhostRemilia
+  - type: GodSelection # Imperial CustomChaplain
   - type: ReactionMixer
     mixMessage: "bible-mixing-success"
     reactionTypes:
@@ -49,6 +48,8 @@
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
+      enum.GodSelectionUiKey.Key:  # Imperial CustomChaplain
+        type: GodSelectionBoundUserInterface # Imperial CustomChaplain
   - type: Tag
     tags:
     - Book
