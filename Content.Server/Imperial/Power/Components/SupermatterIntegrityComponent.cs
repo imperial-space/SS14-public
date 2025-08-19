@@ -62,52 +62,40 @@ namespace Content.Server.Imperial.Power.Components
         public bool CatastropheActive = false;
 
         /// <summary>
-        /// Накопленное время катастрофы. Увеличивается со временем, пока активна катастрофа.
+        /// Таймер катастрофы
         /// </summary>
         [DataField]
         public TimeSpan CatastropheTimer = TimeSpan.Zero;
 
         /// <summary>
-        /// Продолжительность катастрофы до финального события (взрыва).
+        /// Интервал между молниями во время катастрофы
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite), DataField]
-        public TimeSpan CatastropheDuration = TimeSpan.FromSeconds(120);
+        public TimeSpan CatastropheLightningInterval = TimeSpan.FromSeconds(1.0);
+
+        /// <summary>
+        /// Таймер для молний катастрофы
+        /// </summary>
+        [DataField]
+        public TimeSpan CatastropheLightningTimer = TimeSpan.Zero;
+
+        /// <summary>
+        /// Радиус молний во время катастрофы
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public float CatastropheLightningRange = 15f;
+
+        /// <summary>
+        /// Количество молний за раз во время катастрофы
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public int CatastropheLightningCount = 3;
 
         /// <summary>
         /// Тег для исцеления (например, "SupermatterHeal")
         /// </summary>
         [DataField]
         public string HealTag = "EmitterBolt";
-
-        /// <summary>
-        /// Количество здоровья, восстанавливаемое за один выстрел эмиттера
-        /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
-        public float EmitterHealAmount = 0.35f;
-
-        /// <summary>
-        /// Идентификатор прототипа взрыва, который будет использован при катастрофе.
-        /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
-        public string ExplosionPrototypeId = "Default";
-
-        /// <summary>
-        /// Общая интенсивность взрыва при катастрофе.
-        /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
-        public float CatastropheTotalIntensity = 20000f;
-
-        /// <summary>
-        /// Крутизна спадания интенсивности взрыва.
-        /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
-        public float CatastropheSlope = 1f;
-
-        /// <summary>
-        /// Максимальная интенсивность на тайле для взрыва.
-        /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
-        public float CatastropheMaxTileIntensity = 70f;
 
         // Описания состояния кристалла по проценту целостности
         [DataField]

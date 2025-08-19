@@ -53,14 +53,22 @@ public sealed class SupermatterRadiationEvent
             return;
         }
 
-        var currentTime = system.GameTiming.CurTime;
-        comp.CurrentEvent = SupermatterEventType.Radiation;
-        comp.EventEndTime = TimeSpan.FromSeconds(comp.RadiationEventDuration);
-        comp.NextEventTimer = TimeSpan.FromSeconds(system.Random.NextFloat(comp.RadiationMinNextEvent, comp.RadiationMaxNextEvent));
-        comp.LastEventEndTimeUpdate = currentTime;
-        comp.LastNextEventTimerUpdate = currentTime;
+        try
+        {
+            var currentTime = system.GameTiming.CurTime;
+            comp.CurrentEvent = SupermatterEventType.Radiation;
+            comp.EventEndTime = TimeSpan.FromSeconds(comp.RadiationEventDuration);
+            comp.NextEventTimer = TimeSpan.FromSeconds(system.Random.NextFloat(comp.RadiationMinNextEvent, comp.RadiationMaxNextEvent));
+            comp.LastEventEndTimeUpdate = currentTime;
+            comp.LastNextEventTimerUpdate = currentTime;
 
-        system.SetRadiation(uid, comp.RadiationIntensity);
+            // Обработка потенциальных исключений при установке радиации
+            system.SetRadiation(uid, comp.RadiationIntensity);
+        }
+        catch (Exception ex)
+        {
+            system.Log.Error($"SupermatterRadiationEvent.Activate: Exception during activation for entity {uid}: {ex.Message}");
+        }
     }
 
     public void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system, TimeSpan currentTime)

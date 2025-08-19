@@ -35,12 +35,19 @@ public sealed class SupermatterNoneEvent
             return;
         }
 
-        var currentTime = system.GameTiming.CurTime;
-        comp.CurrentEvent = SupermatterEventType.None;
-        comp.EventEndTime = TimeSpan.Zero;
-        comp.NextEventTimer = TimeSpan.FromSeconds(comp.NoneEventDuration);
-        comp.LastEventEndTimeUpdate = currentTime;
-        comp.LastNextEventTimerUpdate = currentTime;
+        try
+        {
+            var currentTime = system.GameTiming.CurTime;
+            comp.CurrentEvent = SupermatterEventType.None;
+            comp.EventEndTime = TimeSpan.Zero;
+            comp.NextEventTimer = TimeSpan.FromSeconds(comp.NoneEventDuration);
+            comp.LastEventEndTimeUpdate = currentTime;
+            comp.LastNextEventTimerUpdate = currentTime;
+        }
+        catch (Exception ex)
+        {
+            system.Log.Error($"SupermatterNoneEvent.Activate: Exception during activation for entity {uid}: {ex.Message}");
+        }
     }
 
     public void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system, TimeSpan currentTime)

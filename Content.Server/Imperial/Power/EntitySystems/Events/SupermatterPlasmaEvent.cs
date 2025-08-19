@@ -75,13 +75,20 @@ public sealed class SupermatterPlasmaEvent
             return;
         }
 
-        var currentTime = system.GameTiming.CurTime;
-        comp.CurrentEvent = SupermatterEventType.Plasma;
-        comp.EventEndTime = TimeSpan.FromSeconds(comp.PlasmaEventDuration);
-        comp.NextEventTimer = TimeSpan.FromSeconds(system.Random.NextFloat(comp.PlasmaMinNextEvent, comp.PlasmaMaxNextEvent));
-        comp.LastEventEndTimeUpdate = currentTime;
-        comp.LastNextEventTimerUpdate = currentTime;
-        comp.LastPlasmaTickUpdate = currentTime;
+        try
+        {
+            var currentTime = system.GameTiming.CurTime;
+            comp.CurrentEvent = SupermatterEventType.Plasma;
+            comp.EventEndTime = TimeSpan.FromSeconds(comp.PlasmaEventDuration);
+            comp.NextEventTimer = TimeSpan.FromSeconds(system.Random.NextFloat(comp.PlasmaMinNextEvent, comp.PlasmaMaxNextEvent));
+            comp.LastEventEndTimeUpdate = currentTime;
+            comp.LastNextEventTimerUpdate = currentTime;
+            comp.LastPlasmaTickUpdate = currentTime;
+        }
+        catch (Exception ex)
+        {
+            system.Log.Error($"SupermatterPlasmaEvent.Activate: Exception during activation for entity {uid}: {ex.Message}");
+        }
     }
 
     public void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system, TimeSpan currentTime)
