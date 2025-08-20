@@ -20,6 +20,7 @@ namespace Content.Client.Imperial.CustomChaplain.UI
 
             _window = new GodSelectionWindow();
             _window.OnGodSelected += OnGodSelected;
+            _window.OnClose += () => Close();
             _window.OpenCentered();
         }
 
@@ -51,7 +52,12 @@ namespace Content.Client.Imperial.CustomChaplain.UI
 
             if (disposing)
             {
-                _window?.Dispose();
+                if (_window != null)
+                {
+                    _window.OnGodSelected -= OnGodSelected;
+                    _window.Dispose();
+                    _window = null;
+                }
             }
         }
     }

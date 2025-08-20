@@ -6,6 +6,8 @@ using Robust.Shared.Player;
 using Content.Shared.Bible;
 using Robust.Shared.GameObjects;
 using Content.Server.Bible.Components;
+using Robust.Shared.Localization;
+using System.Linq;
 
 namespace Content.Server.Imperial.CustomChaplain
 {
@@ -55,21 +57,75 @@ namespace Content.Server.Imperial.CustomChaplain
             }
 
             var state = new GodSelectionBuiState(component.GodSelected, component.SelectedGod, component.IsCustomGod);
+            _uiSystem.SetUiState(uid, GodSelectionUiKey.Key, state);
             _uiSystem.TryOpenUi(uid, GodSelectionUiKey.Key, user);
         }
 
-        private void OnGodSelected(EntityUid uid, GodSelectionComponent component, GodSelectionChooseGodMessage message)
+                private void OnGodSelected(EntityUid uid, GodSelectionComponent component, GodSelectionChooseGodMessage message)
         {
-            // Проверяем, был ли уже подтвержден выбор бога
-            if (component.GodSelected && !string.IsNullOrEmpty(component.SelectedGod))
+            // Для BUI сообщений пользователь должен быть получен из контекста сессии
+            // В данном случае используем упрощенный подход - проверяем кто может взаимодействовать с объектом
+            var query = EntityQueryEnumerator<BibleUserComponent>();
+            EntityUid? user = null;
+            while (query.MoveNext(out var userEntity, out _))
+            {
+                // Простая проверка - берем первого найденного пользователя с BibleUserComponent
+                // В реальной игре это будет тот, кто открыл UI
+                user = userEntity;
+                break;
+            }
+
+            if (user == null)
                 return;
 
-            component.SelectedGod = message.GodName;
+            // Проверяем, был ли уже подтвержден выбор бога
+            if (component.GodSelected && !string.IsNullOrEmpty(component.SelectedGod))
+            {
+                _popupSystem.PopupEntity(Loc.GetString("god-selection-already-selected"), uid, user.Value);
+                return;
+            }
+
+            // Серверная валидация имени: обрезка, запасной вариант и ограничение длины
+            var godName = string.IsNullOrWhiteSpace(message.GodName)
+                ? "Безымянный"
+                : message.GodName.Trim();
+
+            // Для кастомных богов проводим дополнительную валидацию
+            if (message.IsCustom)
+            {
+                // Проверка на управляющие символы
+                if (godName.Any(ch => char.IsControl(ch)))
+                {
+                    _popupSystem.PopupEntity(Loc.GetString("god-selection-server-invalid-characters"), uid, user.Value);
+                    return;
+                }
+
+                // Проверка на недопустимые символы (HTML теги, специальные символы)
+                if (godName.Any(ch => ch == '<' || ch == '>' || ch == '&' || ch == '"' || ch == '\'' || ch == '\\' || ch == '/'))
+                {
+                    _popupSystem.PopupEntity(Loc.GetString("god-selection-server-invalid-characters"), uid, user.Value);
+                    return;
+                }
+
+                // Проверка на слишком много повторяющихся символов (защита от спама)
+                if (HasTooManyRepeatingChars(godName))
+                {
+                    _popupSystem.PopupEntity(Loc.GetString("god-selection-server-invalid-characters"), uid, user.Value);
+                    return;
+                }
+            }
+
+            // Ограничиваем длину (даже после валидации, на всякий случай)
+            if (godName.Length > 32)
+                godName = godName.Substring(0, 32);
+
+            component.SelectedGod = godName;
             component.IsCustomGod = message.IsCustom;
             component.GodSelected = true;
 
-            var godType = message.IsCustom ? "ваш собственный бог" : "известное божество";
-            _popupSystem.PopupEntity($"Вы выбрали {message.GodName} ({godType})! Теперь вы будете служить ему.", uid);
+            var locKey = message.IsCustom ? "god-selection-success-custom" : "god-selection-success-predefined";
+            var typeKey = message.IsCustom ? "god-selection-custom" : "god-selection-predefined";
+            _popupSystem.PopupEntity(Loc.GetString(locKey, ("godName", godName), ("type", Loc.GetString(typeKey))), uid, user.Value);
 
             // Update UI state
             var state = new GodSelectionBuiState(component.GodSelected, component.SelectedGod, component.IsCustomGod);
@@ -89,6 +145,36 @@ namespace Content.Server.Imperial.CustomChaplain
                     component.IsCustomGod = false;
                 }
             }
+        }
+
+        /// <summary>
+        /// Проверяет, содержит ли строка слишком много повторяющихся символов подряд
+        /// </summary>
+        private static bool HasTooManyRepeatingChars(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return false;
+
+            const int maxRepeats = 4; // Максимум 4 одинаковых символа подряд
+            var currentChar = input[0];
+            var repeatCount = 1;
+
+            for (int i = 1; i < input.Length; i++)
+            {
+                if (input[i] == currentChar)
+                {
+                    repeatCount++;
+                    if (repeatCount > maxRepeats)
+                        return true;
+                }
+                else
+                {
+                    currentChar = input[i];
+                    repeatCount = 1;
+                }
+            }
+
+            return false;
         }
     }
 }

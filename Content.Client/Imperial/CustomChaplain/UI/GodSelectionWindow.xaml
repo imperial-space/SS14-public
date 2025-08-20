@@ -1,72 +1,72 @@
 <DefaultWindow
-    Title="Выбор божества"
+    Title="{Loc 'god-selection-window-title'}"
     xmlns="https://spacestation14.io"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    SetSize="450 400">
+    SetSize="400 300">
     <BoxContainer
         Orientation="Vertical"
         Margin="15"
-        SeparationOverride="5">
+        SeparationOverride="10">
 
         <!-- Title -->
         <Label
-            Text="Выберите божество, которому будете служить:"
+            Text="{Loc 'god-selection-window-description'}"
             Margin="0 10 0 20"
             HorizontalAlignment="Center"
             StyleClasses="LabelHeading" />
 
-        <!-- Cthulhu Button -->
-        <Button
-            Name="CthulhuButton"
-            Text="Ктулху"
-            MinHeight="35"
-            Margin="0 5" />
-
-        <!-- Honk Mother Button -->
-        <Button
-            Name="HonkMotherButton"
-            Text="Хонкоматерь"
-            MinHeight="35"
-            Margin="0 5" />
-
-        <!-- Technomium Button -->
-        <Button
-            Name="TechnomiumButton"
-            Text="Техномиум"
-            MinHeight="35"
-            Margin="0 5" />
-
-        <!-- Gray Wave Button -->
-        <Button
-            Name="GrayWaveButton"
-            Text="Серая волна"
-            MinHeight="35"
-            Margin="0 5" />
+        <!-- Predefined Gods Section -->
+        <BoxContainer
+            Orientation="Vertical"
+            SeparationOverride="5">
+            <Label
+                Text="{Loc 'god-selection-predefined-label'}"
+                StyleClasses="LabelSubText"
+                Margin="0 0 0 5" />
+            <OptionButton
+                Name="PredefinedGodsDropdown"
+                MinHeight="35"
+                HorizontalExpand="True" />
+        </BoxContainer>
 
         <!-- Custom God Section -->
         <BoxContainer
-            Orientation="Horizontal"
-            Margin="0 10 0 0"
-            SeparationOverride="10">
-
-            <LineEdit
-                Name="CustomGodTextBox"
-                PlaceHolder="Имя вашего бога"
-                MinHeight="35"
-                HorizontalExpand="True" />
-
-            <Button
-                Name="CustomGodButton"
-                Text="Создать"
-                MinHeight="35" />
+            Orientation="Vertical"
+            SeparationOverride="5">
+            <Label
+                Text="{Loc 'god-selection-custom-label'}"
+                StyleClasses="LabelSubText"
+                Margin="0 0 0 5" />
+            <BoxContainer
+                Orientation="Horizontal"
+                SeparationOverride="10">
+                <LineEdit
+                    Name="CustomGodTextBox"
+                    PlaceHolder="{Loc 'god-selection-custom-placeholder'}"
+                    MinHeight="35"
+                    HorizontalExpand="True" />
+                <Button
+                    Name="CustomGodButton"
+                    Text="{Loc 'god-selection-create-button'}"
+                    MinHeight="35" />
+            </BoxContainer>
         </BoxContainer>
 
         <!-- Status Text -->
         <Label
             Name="StatusText"
-            Text="Нажмите на кнопку дважды для подтверждения"
+            Text="{Loc 'god-selection-status-text'}"
             Margin="0 10 0 0"
             HorizontalAlignment="Center"
             StyleClasses="LabelSubText" />
+
+        <!-- Confirm Button -->
+        <Button
+            Name="ConfirmButton"
+            Text="{Loc 'god-selection-confirm-button'}"
+            MinHeight="40"
+            Margin="0 10 0 0"
+            HorizontalExpand="True"
+            Disabled="True" />
     </BoxContainer>
 </DefaultWindow>

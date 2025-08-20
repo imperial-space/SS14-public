@@ -4,177 +4,211 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Maths;
+using Robust.Shared.Localization;
+using Robust.Shared.Timing;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
+using System.Threading;
 
 namespace Content.Client.Imperial.CustomChaplain.UI
 {
     [GenerateTypedNameReferences]
     public sealed partial class GodSelectionWindow : DefaultWindow
     {
-        private readonly Dictionary<string, int> _clickCounts = new();
-        private readonly Dictionary<string, Button> _buttons = new();
-        private float _resetTime = 0f;
-        private bool _timerActive = false;
+        private string? _selectedPredefinedGod;
+        private string? _customGodName;
+        private bool _isCustomMode = false;
+        private bool _isConfirmationMode = false; // New: confirmation state for double-click
+        private CancellationTokenSource? _confirmationTimer;
+        private CancellationTokenSource? _resetCts;
 
         public event Action<string, bool>? OnGodSelected;
-
-
 
         public GodSelectionWindow()
         {
             RobustXamlLoader.Load(this);
 
-            // Initialize button references from XAML
-            _buttons["Ктулху"] = CthulhuButton;
-            _buttons["Хонкоматерь"] = HonkMotherButton;
-            _buttons["Техномиум"] = TechnomiumButton;
-            _buttons["Серая волна"] = GrayWaveButton;
-            _buttons["Custom"] = CustomGodButton;
+            // Initialize predefined gods dropdown
+            PredefinedGodsDropdown.AddItem(Loc.GetString("god-selection-cthulhu-button"), 0);
+            PredefinedGodsDropdown.AddItem(Loc.GetString("god-selection-honk-mother-button"), 1);
+            PredefinedGodsDropdown.AddItem(Loc.GetString("god-selection-technomium-button"), 2);
+            PredefinedGodsDropdown.AddItem(Loc.GetString("god-selection-gray-wave-button"), 3);
 
-            // Initialize click tracking
-            foreach (var button in _buttons.Keys)
-            {
-                _clickCounts[button] = 0;
-            }
+            _selectedPredefinedGod = GetPredefinedGodName(0);
 
-            // Subscribe to button events
-            CthulhuButton.OnPressed += _ => HandleGodSelection("Ктулху", false);
-            HonkMotherButton.OnPressed += _ => HandleGodSelection("Хонкоматерь", false);
-            TechnomiumButton.OnPressed += _ => HandleGodSelection("Техномиум", false);
-            GrayWaveButton.OnPressed += _ => HandleGodSelection("Серая волна", false);
-            CustomGodButton.OnPressed += _ => OnCustomGodClicked();
+            // Subscribe to events
+            PredefinedGodsDropdown.OnItemSelected += OnPredefinedGodSelected;
+            CustomGodButton.OnPressed += OnCustomGodClicked;
+            ConfirmButton.OnPressed += OnConfirmClicked;
+            CustomGodTextBox.OnTextChanged += OnCustomGodTextChanged;
 
-            // Subscribe to window closing event - this is the key fix
+            // Subscribe to window closing event
             this.OnClose += OnWindowClosing;
+
+            // Set initial state
+            UpdateUI();
         }
 
         private void OnWindowClosing()
         {
-            ResetAllCounters();
+            ResetState();
         }
 
-        private void OnCustomGodClicked()
+        private void OnPredefinedGodSelected(OptionButton.ItemSelectedEventArgs args)
+        {
+            _selectedPredefinedGod = GetPredefinedGodName(args.Id);
+            _isCustomMode = false;
+            _customGodName = null;
+
+            // Обновляем визуальное состояние dropdown
+            PredefinedGodsDropdown.SelectId(args.Id);
+
+            // Не очищаем текстовое поле - пользователь может хотеть переключаться между опциями
+            UpdateUI();
+        }
+
+                private void OnCustomGodClicked(BaseButton.ButtonEventArgs args)
         {
             var customName = CustomGodTextBox.Text?.Trim();
             if (string.IsNullOrEmpty(customName))
             {
-                StatusText.Text = "Введите имя вашего бога";
-                _clickCounts["Custom"] = 0;
-                RestoreButtonToOriginal("Custom");
+                StatusText.Text = Loc.GetString("god-selection-enter-god-name");
                 return;
             }
 
-            HandleGodSelection(customName, true);
+            // Валидация длины и недопустимых символов
+            if (customName!.Length > 32)
+            {
+                StatusText.Text = Loc.GetString("god-selection-name-too-long");
+                return;
+            }
+
+            if (customName.Any(ch => char.IsControl(ch)))
+            {
+                StatusText.Text = Loc.GetString("god-selection-invalid-characters");
+                return;
+            }
+
+            _customGodName = customName;
+            _isCustomMode = true;
+            _selectedPredefinedGod = null;
+            // Не вызываем ClearDropdownSelection() - это сбросит к предопределенному богу
+            // Просто оставляем dropdown как есть, но внутреннее состояние указывает на custom режим
+            UpdateUI();
         }
 
-        private void HandleGodSelection(string godName, bool isCustom)
+        private void OnCustomGodTextChanged(LineEdit.LineEditEventArgs args)
         {
-            if (string.IsNullOrEmpty(godName?.Trim()))
+            // Clear custom mode if user starts typing after selecting predefined
+            if (_isCustomMode && string.IsNullOrWhiteSpace(args.Text))
             {
-                StatusText.Text = "Введите корректное имя бога";
-                if (isCustom)
+                _customGodName = null;
+                _isCustomMode = false;
+                UpdateUI();
+            }
+        }
+
+        private void OnConfirmClicked(BaseButton.ButtonEventArgs args)
+        {
+            if (!_isConfirmationMode)
+            {
+                // First click - enter confirmation mode
+                _isConfirmationMode = true;
+                UpdateUI();
+
+                                // Start confirmation timer (5 seconds)
+                _confirmationTimer?.Cancel();
+                _confirmationTimer = new CancellationTokenSource();
+                Robust.Shared.Timing.Timer.Spawn(5000, () =>
                 {
-                    _clickCounts["Custom"] = 0;
-                    RestoreButtonToOriginal("Custom");
-                }
+                    if (_isConfirmationMode)
+                    {
+                        _isConfirmationMode = false;
+                        UpdateUI();
+                    }
+                }, _confirmationTimer.Token);
+
                 return;
             }
 
-            var key = isCustom ? "Custom" : godName;
-            _clickCounts[key]++;
-
-            if (_clickCounts[key] == 1)
+            // Second click - confirm selection
+            if (_isCustomMode && !string.IsNullOrEmpty(_customGodName))
             {
-                // First click - change button to confirmation mode
-                ChangeButtonToConfirmation(key, godName);
-
-                // Reset other counters and restore their buttons
-                foreach (var otherKey in _clickCounts.Keys.Where(k => k != key))
-                {
-                    if (_clickCounts[otherKey] > 0)
-                    {
-                        _clickCounts[otherKey] = 0;
-                        RestoreButtonToOriginal(otherKey);
-                    }
-                }
-
-                // Start auto-reset timer
-                StartAutoResetTimer();
+                OnGodSelected?.Invoke(_customGodName, true);
+                this.Close();
             }
-            else if (_clickCounts[key] == 2)
+            else if (!_isCustomMode && !string.IsNullOrEmpty(_selectedPredefinedGod))
             {
-                // Confirmed selection
-                OnGodSelected?.Invoke(godName, isCustom);
+                OnGodSelected?.Invoke(_selectedPredefinedGod, false);
                 this.Close();
             }
         }
 
-                        private void StartAutoResetTimer()
+        private void UpdateUI()
         {
-            _resetTime = 10.0f; // 10 seconds
-            _timerActive = true;
+            bool hasSelection = (_isCustomMode && !string.IsNullOrEmpty(_customGodName)) ||
+                               (!_isCustomMode && !string.IsNullOrEmpty(_selectedPredefinedGod));
 
-            // TODO: Implement auto-reset timer if needed
-            // For now, buttons will reset only when window closes or user selects another god
-        }
+            ConfirmButton.Disabled = !hasSelection;
 
-        private void AutoResetAllCounters()
-        {
-            _timerActive = false;
-            _resetTime = 0f;
-
-            foreach (var key in _clickCounts.Keys)
+            if (hasSelection)
             {
-                _clickCounts[key] = 0;
-                RestoreButtonToOriginal(key);
+                string godName = _isCustomMode ? _customGodName! : _selectedPredefinedGod!;
+                string modeKey = _isCustomMode ? "god-selection-custom" : "god-selection-predefined";
+                string mode = Loc.GetString(modeKey);
+
+                if (_isConfirmationMode)
+                {
+                    // Confirmation mode - show final confirmation text
+                    StatusText.Text = Loc.GetString("god-selection-final-confirmation", ("godName", godName), ("mode", mode));
+                    ConfirmButton.Text = Loc.GetString("god-selection-confirm-final-button");
+                }
+                else
+                {
+                    // Normal mode - show ready to confirm text
+                    StatusText.Text = Loc.GetString("god-selection-ready-to-confirm", ("godName", godName), ("mode", mode));
+                    ConfirmButton.Text = Loc.GetString("god-selection-confirm-button");
+                }
             }
-            StatusText.Text = "Нажмите на кнопку дважды для подтверждения";
-        }
-
-        private void ResetAllCounters()
-        {
-            _timerActive = false;
-            _resetTime = 0f;
-
-            foreach (var key in _clickCounts.Keys)
+            else
             {
-                _clickCounts[key] = 0;
-                RestoreButtonToOriginal(key);
-            }
-            StatusText.Text = "Нажмите на кнопку дважды для подтверждения";
-        }
-
-        private void ChangeButtonToConfirmation(string key, string godName)
-        {
-            if (_buttons.TryGetValue(key, out var button))
-            {
-                button.Text = $"Нажмите второй раз для подтверждения: {godName}";
-                button.Modulate = new Color(1.0f, 0.3f, 0.3f); // Red color
+                StatusText.Text = Loc.GetString("god-selection-status-text");
+                ConfirmButton.Text = Loc.GetString("god-selection-confirm-button");
             }
         }
 
-        private void RestoreButtonToOriginal(string key)
+        private void ResetState()
         {
-            if (_buttons.TryGetValue(key, out var button))
-            {
-                button.Text = GetOriginalButtonText(key);
-                button.Modulate = Color.White; // White color
-            }
+            _resetCts?.Cancel();
+            _resetCts = null;
+
+            _selectedPredefinedGod = null;
+            _customGodName = null;
+            _isCustomMode = false;
+            _isConfirmationMode = false; // Reset confirmation mode
+            _confirmationTimer?.Cancel(); // Cancel any active confirmation timer
+            ClearDropdownSelection();
+            CustomGodTextBox.Text = "";
+            UpdateUI();
         }
 
-        private string GetOriginalButtonText(string key)
+        private void ClearDropdownSelection()
         {
-            return key switch
+            // Возвращаем к первому элементу и устанавливаем его как выбранный
+            PredefinedGodsDropdown.SelectId(0);
+            _selectedPredefinedGod = GetPredefinedGodName(0);
+            _isCustomMode = false;
+        }
+
+        private string GetPredefinedGodName(int id)
+        {
+            return id switch
             {
-                "Ктулху" => "Ктулху",
-                "Хонкоматерь" => "Хонкоматерь",
-                "Техномиум" => "Техномиум",
-                "Серая волна" => "Серая волна",
-                "Custom" => "Создать",
-                _ => key
+                0 => Loc.GetString("god-selection-cthulhu-button"),
+                1 => Loc.GetString("god-selection-honk-mother-button"),
+                2 => Loc.GetString("god-selection-technomium-button"),
+                3 => Loc.GetString("god-selection-gray-wave-button"),
+                _ => ""
             };
         }
     }
