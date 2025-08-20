@@ -12,53 +12,41 @@ namespace Content.Shared.Imperial.CustomChaplain
         /// <summary>
         /// Whether the god has already been selected
         /// </summary>
-        [DataField("godSelected")]
-        public bool GodSelected = false;
+        [DataField]
+        public bool GodSelected;
 
         /// <summary>
         /// The selected god's name
         /// </summary>
-        [DataField("selectedGod")]
-        public string? SelectedGod = null;
+        [DataField]
+        public string? SelectedGod;
 
         /// <summary>
         /// Whether this is a custom god
         /// </summary>
-        [DataField("isCustomGod")]
-        public bool IsCustomGod = false;
+        [DataField]
+        public bool IsCustomGod;
     }
 
     [Serializable, NetSerializable]
     public enum GodSelectionUiKey
     {
-        Key
+        Key,
     }
 
     [Serializable, NetSerializable]
-    public sealed class GodSelectionBuiState : BoundUserInterfaceState
+    public sealed class GodSelectionBuiState(bool godSelected, string? selectedGod, bool isCustomGod)
+        : BoundUserInterfaceState
     {
-        public readonly bool GodSelected;
-        public readonly string? SelectedGod;
-        public readonly bool IsCustomGod;
-
-        public GodSelectionBuiState(bool godSelected, string? selectedGod, bool isCustomGod)
-        {
-            GodSelected = godSelected;
-            SelectedGod = selectedGod;
-            IsCustomGod = isCustomGod;
-        }
+        public readonly bool GodSelected = godSelected;
+        public readonly string? SelectedGod = selectedGod;
+        public readonly bool IsCustomGod = isCustomGod;
     }
 
     [Serializable, NetSerializable]
-    public sealed class GodSelectionChooseGodMessage : BoundUserInterfaceMessage
+    public sealed class GodSelectionChooseGodMessage(string godName, bool isCustom) : BoundUserInterfaceMessage
     {
-        public readonly string GodName;
-        public readonly bool IsCustom;
-
-        public GodSelectionChooseGodMessage(string godName, bool isCustom)
-        {
-            GodName = godName;
-            IsCustom = isCustom;
-        }
+        public readonly string GodName = godName;
+        public readonly bool IsCustom = isCustom;
     }
 }

@@ -1,18 +1,10 @@
-using Content.Client.UserInterface.Controls;
 using Content.Shared.Imperial.CustomChaplain;
-using Robust.Client.UserInterface;
-using Robust.Shared.IoC;
-using Robust.Shared.Timing;
 
 namespace Content.Client.Imperial.CustomChaplain.UI
 {
-    public sealed class GodSelectionBoundUserInterface : BoundUserInterface
+    public sealed class GodSelectionBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
     {
         private GodSelectionWindow? _window;
-
-        public GodSelectionBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-        {
-        }
 
         protected override void Open()
         {
@@ -20,7 +12,7 @@ namespace Content.Client.Imperial.CustomChaplain.UI
 
             _window = new GodSelectionWindow();
             _window.OnGodSelected += OnGodSelected;
-            _window.OnClose += () => Close();
+            _window.OnClose += Close;
             _window.OpenCentered();
         }
 
@@ -33,32 +25,30 @@ namespace Content.Client.Imperial.CustomChaplain.UI
         {
             base.UpdateState(state);
 
-            if (state is GodSelectionBuiState msg)
-            {
-                if (_window != null)
-                {
-                    if (msg.GodSelected)
-                    {
-                        _window.Close();
-                        _window = null;
-                    }
-                }
-            }
+            if (state is not GodSelectionBuiState msg)
+                return;
+            if (_window == null)
+                return;
+
+            if (!msg.GodSelected)
+                return;
+
+            _window.Close();
+            _window = null;
         }
 
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
 
-            if (disposing)
-            {
-                if (_window != null)
-                {
-                    _window.OnGodSelected -= OnGodSelected;
-                    _window.Dispose();
-                    _window = null;
-                }
-            }
+            if (!disposing)
+                return;
+            if (_window == null)
+                return;
+
+            _window.OnGodSelected -= OnGodSelected;
+            _window.Dispose();
+            _window = null;
         }
     }
 }

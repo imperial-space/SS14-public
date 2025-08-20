@@ -1,72 +1,69 @@
 <DefaultWindow
+    SetSize="600 400"
     Title="{Loc 'god-selection-window-title'}"
     xmlns="https://spacestation14.io"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    SetSize="400 300">
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
     <BoxContainer
-        Orientation="Vertical"
         Margin="15"
+        Orientation="Vertical"
         SeparationOverride="10">
 
-        <!-- Title -->
+        <!--  Title  -->
         <Label
-            Text="{Loc 'god-selection-window-description'}"
-            Margin="0 10 0 20"
             HorizontalAlignment="Center"
-            StyleClasses="LabelHeading" />
+            Margin="0,10,0,20"
+            StyleClasses="LabelHeading"
+            Text="{Loc 'god-selection-window-description'}" />
 
-        <!-- Predefined Gods Section -->
-        <BoxContainer
-            Orientation="Vertical"
-            SeparationOverride="5">
+        <!--  Predefined Gods Section  -->
+        <BoxContainer Orientation="Vertical" SeparationOverride="5">
             <Label
-                Text="{Loc 'god-selection-predefined-label'}"
+                Margin="0,0,0,5"
                 StyleClasses="LabelSubText"
-                Margin="0 0 0 5" />
+                Text="{Loc 'god-selection-predefined-label'}" />
             <OptionButton
-                Name="PredefinedGodsDropdown"
+                HorizontalExpand="True"
                 MinHeight="35"
-                HorizontalExpand="True" />
+                Name="PredefinedGodsDropdown" />
         </BoxContainer>
 
-        <!-- Custom God Section -->
-        <BoxContainer
-            Orientation="Vertical"
-            SeparationOverride="5">
+        <!--  Custom God Section  -->
+        <BoxContainer Orientation="Vertical" SeparationOverride="5">
             <Label
-                Text="{Loc 'god-selection-custom-label'}"
+                Margin="0,0,0,5"
                 StyleClasses="LabelSubText"
-                Margin="0 0 0 5" />
-            <BoxContainer
-                Orientation="Horizontal"
-                SeparationOverride="10">
+                Text="{Loc 'god-selection-custom-label'}" />
+            <BoxContainer Orientation="Horizontal" SeparationOverride="10">
                 <LineEdit
-                    Name="CustomGodTextBox"
-                    PlaceHolder="{Loc 'god-selection-custom-placeholder'}"
+                    HorizontalExpand="True"
                     MinHeight="35"
-                    HorizontalExpand="True" />
+                    Name="CustomGodTextBox"
+                    PlaceHolder="{Loc 'god-selection-custom-placeholder'}" />
                 <Button
+                    MinHeight="35"
                     Name="CustomGodButton"
-                    Text="{Loc 'god-selection-create-button'}"
-                    MinHeight="35" />
+                    Text="{Loc 'god-selection-create-button'}" />
             </BoxContainer>
         </BoxContainer>
 
-        <!-- Status Text -->
+        <!--  Status Text  -->
         <Label
-            Name="StatusText"
-            Text="{Loc 'god-selection-status-text'}"
-            Margin="0 10 0 0"
             HorizontalAlignment="Center"
-            StyleClasses="LabelSubText" />
+            Margin="0,10,0,0"
+            Name="StatusText"
+            StyleClasses="LabelSubText"
+            Text="{Loc 'god-selection-status-text'}" />
 
-        <!-- Confirm Button -->
-        <Button
-            Name="ConfirmButton"
-            Text="{Loc 'god-selection-confirm-button'}"
-            MinHeight="40"
-            Margin="0 10 0 0"
+        <!--  Confirm Button  -->
+        <controls:ConfirmButton
+            ConfirmationText="{Loc god-selection-confirm-final-button}"
+            Disabled="True"
             HorizontalExpand="True"
-            Disabled="True" />
+            Margin="0,10,0,0"
+            MinHeight="40"
+            Name="ConfirmButton"
+            Text="{Loc 'god-selection-confirm-button'}" />
     </BoxContainer>
 </DefaultWindow>
