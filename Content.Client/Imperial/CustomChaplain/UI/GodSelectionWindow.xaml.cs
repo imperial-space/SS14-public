@@ -117,13 +117,20 @@ namespace Content.Client.Imperial.CustomChaplain.UI
 
         private void UpdateUI()
         {
-            var godName = _isCustomMode ? _customGodName! : _selectedPredefinedGod!;
+            var godName = _isCustomMode ? _customGodName : _selectedPredefinedGod;
             var hasSelection = (_isCustomMode && !string.IsNullOrEmpty(_customGodName)) ||
                                (!_isCustomMode && !string.IsNullOrEmpty(_selectedPredefinedGod));
 
             ConfirmButton.Disabled = !hasSelection;
 
-            StatusText.Text = Loc.GetString("god-selection-ready-to-confirm", ("godName", godName));
+            if (hasSelection && !string.IsNullOrEmpty(godName))
+            {
+                StatusText.Text = Loc.GetString("god-selection-ready-to-confirm", ("godName", godName));
+            }
+            else
+            {
+                StatusText.Text = Loc.GetString("god-selection-choose-god");
+            }
         }
 
         private void ResetState()

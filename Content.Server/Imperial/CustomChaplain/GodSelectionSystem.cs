@@ -3,7 +3,18 @@ using Content.Server.Popups;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Content.Server.Bible.Components;
+using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
+using Content.Shared.Imperial.CustomChaplain.Components;
+using Content.Shared.UserInterface;
+using Content.Shared.Store.Components;
+using Content.Shared.Store;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Localization;
+using Robust.Shared.Log;
 using System.Linq;
+
+using Content.Shared.Mind;
 
 namespace Content.Server.Imperial.CustomChaplain;
 
@@ -11,6 +22,9 @@ public sealed class GodSelectionSystem : EntitySystem
 {
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
 
     public override void Initialize()
     {
@@ -45,10 +59,17 @@ public sealed class GodSelectionSystem : EntitySystem
 
     private void OpenGodSelection(EntityUid uid, GodSelectionComponent component, EntityUid user)
     {
-        // Проверяем, был ли уже подтвержден выбор бога
+        // Проверяем, был ли уже подтвержден выбор бога в этой библии
         if (component.GodSelected && !string.IsNullOrEmpty(component.SelectedGod))
         {
-            _popupSystem.PopupEntity("Божество уже выбрано!", uid, user);
+            _popupSystem.PopupEntity(Loc.GetString("god-selection-already-selected"), uid, user);
+            return;
+        }
+
+        // Проверяем, не выбрал ли игрок уже бога в другой библии
+        if (HasPlayerAlreadySelectedGodElsewhere(user))
+        {
+            _popupSystem.PopupEntity(Loc.GetString("god-selection-god-already-selected-elsewhere"), uid, user);
             return;
         }
 
@@ -61,10 +82,17 @@ public sealed class GodSelectionSystem : EntitySystem
     {
         var user = message.Actor;
 
-        // Проверяем, был ли уже подтвержден выбор бога
+        // Проверяем, был ли уже подтвержден выбор бога в этой библии
         if (component.GodSelected && !string.IsNullOrEmpty(component.SelectedGod))
         {
             _popupSystem.PopupEntity(Loc.GetString("god-selection-already-selected"), uid, user);
+            return;
+        }
+
+        // Проверяем, не выбрал ли игрок уже бога в другой библии
+        if (HasPlayerAlreadySelectedGodElsewhere(user))
+        {
+            _popupSystem.PopupEntity(Loc.GetString("god-selection-god-already-selected-elsewhere"), uid, user);
             return;
         }
 
@@ -106,11 +134,59 @@ public sealed class GodSelectionSystem : EntitySystem
         component.IsCustomGod = message.IsCustom;
         component.GodSelected = true;
 
+        // Привязываем библию к пользователю и даём action возвращения
+        BindBibleToUser(uid, user);
+
         _popupSystem.PopupEntity(Loc.GetString("god-selection-success", ("godName", godName)), uid, user);
 
         // Update UI state
         var state = new GodSelectionBuiState(component.GodSelected, component.SelectedGod, component.IsCustomGod);
         _uiSystem.SetUiState(uid, GodSelectionUiKey.Key, state);
+    }
+
+    private void BindBibleToUser(EntityUid bible, EntityUid user)
+    {
+        Logger.InfoS("GodSelection", $"Binding bible {bible} to user {user}");
+
+        // Добавляем компонент библии, если его нет
+        var bibleComp = EnsureComp<ImperialBibleComponent>(bible);
+        bibleComp.Owner = user;
+        bibleComp.IsBound = true;
+
+        // Добавляем компонент магазина способностей к игроку
+        var storeComp = EnsureComp<StoreComponent>(user);
+        storeComp.Name = "Магазин способностей";
+        storeComp.Balance[new ProtoId<CurrencyPrototype>("Faith")] = 0;
+        storeComp.CurrencyWhitelist.Add(new ProtoId<CurrencyPrototype>("Faith"));
+        storeComp.Categories.Add(new ProtoId<StoreCategoryPrototype>("CustomChaplainAbilities"));
+
+        // Синхронизируем изменения с клиентом
+        Dirty(user, storeComp);
+
+        // Находим mind игрока и добавляем action в контейнер mind, чтобы он корректно выдался текущему телу
+        if (_mind.TryGetMind(user, out var mindId, out _))
+        {
+            var actionId = _actionContainer.AddAction(mindId, "ActionImperialBibleRecall");
+            if (actionId != null)
+            {
+                bibleComp.RecallActionEntity = actionId.Value;
+                Dirty(bible, bibleComp);
+                Logger.InfoS("GodSelection", $"Added recall action {actionId.Value} to mind {mindId}");
+            }
+
+            // Добавляем экшон магазина
+            var shopActionId = _actionContainer.AddAction(mindId, "ActionCustomChaplainShop");
+            if (shopActionId != null)
+            {
+                Logger.InfoS("GodSelection", $"Added shop action {shopActionId.Value} to mind {mindId}");
+            }
+
+
+        }
+        else
+        {
+            Logger.WarningS("GodSelection", $"Could not find mind for user {user}");
+        }
     }
 
     private static void OnUIClosed(EntityUid uid, GodSelectionComponent component, BoundUIClosedEvent args)
@@ -152,6 +228,38 @@ public sealed class GodSelectionSystem : EntitySystem
             {
                 currentChar = input[i];
                 repeatCount = 1;
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Проверяет, не выбрал ли игрок уже бога в другой библии
+    /// </summary>
+    private bool HasPlayerAlreadySelectedGodElsewhere(EntityUid user)
+    {
+        // Ищем все библии с компонентом ImperialBibleComponent
+        var query = EntityQueryEnumerator<ImperialBibleComponent>();
+
+        while (query.MoveNext(out var bibleUid, out var bibleComp))
+        {
+            // Пропускаем текущую библию
+            if (bibleUid == user)
+                continue;
+
+            // Если библия привязана к другому игроку, пропускаем
+            if (bibleComp.Owner != user)
+                continue;
+
+            // Если библия привязана к текущему игроку, проверяем, есть ли у неё GodSelectionComponent
+            if (TryComp<GodSelectionComponent>(bibleUid, out var godSelection))
+            {
+                // Если в этой библии уже выбран бог, то игрок не может выбрать в другой
+                if (godSelection.GodSelected && !string.IsNullOrEmpty(godSelection.SelectedGod))
+                {
+                    return true;
+                }
             }
         }
 

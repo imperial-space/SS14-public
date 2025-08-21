@@ -28,6 +28,7 @@
   - type: Prayable
     bibleUserOnly: true
   - type: GodSelection # Imperial CustomChaplain
+  - type: ImperialBible # Imperial CustomChaplain
   - type: ReactionMixer
     mixMessage: "bible-mixing-success"
     reactionTypes:
@@ -48,8 +49,17 @@
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
-      enum.GodSelectionUiKey.Key:  # Imperial CustomChaplain
-        type: GodSelectionBoundUserInterface # Imperial CustomChaplain
+      # Imperial CustomChaplain start
+      enum.GodSelectionUiKey.Key:
+        type: GodSelectionBoundUserInterface
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: Store
+    categories:
+    - CustomChaplainAbilities
+    currencyWhitelist:
+    - Faith
+    # Imperial CustomChaplain end
   - type: Tag
     tags:
     - Book

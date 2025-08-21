@@ -1,0 +1,4 @@
+# Custom Chaplain Store Categories
+- type: storeCategory
+  id: CustomChaplainAbilities
+  name: customchaplain-category-abilities

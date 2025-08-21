@@ -1,0 +1,13 @@
+# Custom Chaplain Ability Shop Catalog
+# This catalog is currently empty but will contain ability listings in the future
+
+# Example structure for future abilities:
+# - type: listing
+#   id: CustomChaplainAbility1
+#   name: "Название способности"
+#   description: "Описание способности"
+#   productAction: ActionCustomChaplainAbility1
+#   categories:
+#   - CustomChaplainAbilities
+#   cost:
+#     Faith: 50

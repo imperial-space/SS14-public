@@ -1,0 +1,31 @@
+# Custom Chaplain Ability Shop Listings
+
+- type: listing
+  id: CustomChaplainTestAbility
+  name: Тестовая способность
+  description: Простая тестовая способность для проверки работы магазина
+  productEntity: TestItem
+  cost:
+    Faith: 50
+  categories:
+  - CustomChaplainAbilities
+
+- type: listing
+  id: CustomChaplainHealingPrayer
+  name: Молитва исцеления
+  description: Восстанавливает здоровье при использовании
+  productEntity: HealingPrayerItem
+  cost:
+    Faith: 75
+  categories:
+  - CustomChaplainAbilities
+
+- type: listing
+  id: CustomChaplainProtectionAura
+  name: Аура защиты
+  description: Создает временную защиту от урона
+  productEntity: ProtectionAuraItem
+  cost:
+    Faith: 100
+  categories:
+  - CustomChaplainAbilities

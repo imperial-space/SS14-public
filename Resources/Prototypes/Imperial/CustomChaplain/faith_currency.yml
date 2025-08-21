@@ -1,0 +1,5 @@
+# Custom Chaplain Faith currency
+- type: currency
+  id: Faith
+  displayName: store-currency-display-faith
+  canWithdraw: false
