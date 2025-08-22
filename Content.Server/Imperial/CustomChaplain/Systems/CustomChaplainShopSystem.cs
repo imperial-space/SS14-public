@@ -17,17 +17,16 @@ public sealed class CustomChaplainShopSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<CustomChaplainShopActionEvent>(OnShop);
+        SubscribeLocalEvent<CustomChaplainStoreComponent, CustomChaplainShopActionEvent>(OnShop);
     }
 
-    private void OnShop(CustomChaplainShopActionEvent args)
+    private void OnShop(EntityUid uid, CustomChaplainStoreComponent component, CustomChaplainShopActionEvent args)
     {
-        var performer = args.Performer;
-
-        // Ищем StoreComponent на performer
-        if (!TryComp<StoreComponent>(performer, out var store))
-            return;
-
-        _store.ToggleUi(performer, performer, store);
+        // Открываем магазин способностей кастомного священника
+        // Находим StoreComponent на том же entity и используем его для открытия UI
+        if (TryComp<StoreComponent>(uid, out var storeComp))
+        {
+            _store.ToggleUi(uid, uid, storeComp);
+        }
     }
 }

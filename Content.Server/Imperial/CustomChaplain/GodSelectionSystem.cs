@@ -11,7 +11,7 @@ using Content.Shared.Store.Components;
 using Content.Shared.Store;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Localization;
-using Robust.Shared.Log;
+using Robust.Shared.GameObjects;
 using System.Linq;
 
 using Content.Shared.Mind;
@@ -22,7 +22,7 @@ public sealed class GodSelectionSystem : EntitySystem
 {
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
+
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
 
@@ -33,6 +33,7 @@ public sealed class GodSelectionSystem : EntitySystem
         SubscribeLocalEvent<GodSelectionComponent, GetVerbsEvent<AlternativeVerb>>(AddChooseGodVerb);
         SubscribeLocalEvent<GodSelectionComponent, GodSelectionChooseGodMessage>(OnGodSelected);
         SubscribeLocalEvent<GodSelectionComponent, BoundUIClosedEvent>(OnUIClosed);
+
     }
 
     private void AddChooseGodVerb(EntityUid uid, GodSelectionComponent component, GetVerbsEvent<AlternativeVerb> args)
@@ -146,8 +147,6 @@ public sealed class GodSelectionSystem : EntitySystem
 
     private void BindBibleToUser(EntityUid bible, EntityUid user)
     {
-        Logger.InfoS("GodSelection", $"Binding bible {bible} to user {user}");
-
         // Добавляем компонент библии, если его нет
         var bibleComp = EnsureComp<ImperialBibleComponent>(bible);
         bibleComp.Owner = user;
@@ -160,34 +159,32 @@ public sealed class GodSelectionSystem : EntitySystem
         storeComp.CurrencyWhitelist.Add(new ProtoId<CurrencyPrototype>("Faith"));
         storeComp.Categories.Add(new ProtoId<StoreCategoryPrototype>("CustomChaplainAbilities"));
 
+        // Добавляем наш собственный компонент магазина
+        var customStoreComp = EnsureComp<CustomChaplainStoreComponent>(user);
+        customStoreComp.Name = "Магазин способностей";
+        customStoreComp.FaithBalance = 0;
+        customStoreComp.Categories = new List<ProtoId<StoreCategoryPrototype>> { new ProtoId<StoreCategoryPrototype>("CustomChaplainAbilities") };
+
         // Синхронизируем изменения с клиентом
         Dirty(user, storeComp);
 
-        // Находим mind игрока и добавляем action в контейнер mind, чтобы он корректно выдался текущему телу
+        // Находим mind игрока и добавляем actions в контейнер mind
         if (_mind.TryGetMind(user, out var mindId, out _))
         {
+            // Добавляем action возвращения библии
             var actionId = _actionContainer.AddAction(mindId, "ActionImperialBibleRecall");
             if (actionId != null)
             {
                 bibleComp.RecallActionEntity = actionId.Value;
                 Dirty(bible, bibleComp);
-                Logger.InfoS("GodSelection", $"Added recall action {actionId.Value} to mind {mindId}");
             }
 
-            // Добавляем экшон магазина
-            var shopActionId = _actionContainer.AddAction(mindId, "ActionCustomChaplainShop");
-            if (shopActionId != null)
-            {
-                Logger.InfoS("GodSelection", $"Added shop action {shopActionId.Value} to mind {mindId}");
-            }
-
-
-        }
-        else
-        {
-            Logger.WarningS("GodSelection", $"Could not find mind for user {user}");
+            // Добавляем action магазина способностей
+            _actionContainer.AddAction(mindId, "ActionCustomChaplainShop");
         }
     }
+
+
 
     private static void OnUIClosed(EntityUid uid, GodSelectionComponent component, BoundUIClosedEvent args)
     {
