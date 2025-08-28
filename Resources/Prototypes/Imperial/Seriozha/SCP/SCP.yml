@@ -264,6 +264,76 @@
           - MobLayer
 
 - type: entity
+  name: Jelly monster
+  suffix: seriozha, Недра
+  parent: BaseMobAdultSlimes
+  id: ImperialSCPJelly
+  description: The kindest blob of slime in the galaxy.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/SCP/objects/Jelly.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        500: Dead
+    - type: Damageable
+      damageModifierSet: SCPStandart
+    - type: Bloodstream
+      bloodMaxVolume: 0
+    - type: MeleeWeapon
+      hidden: true
+      altDisarm: false
+      soundHit:
+          path: /Audio/Weapons/punch3.ogg
+      angle: 0
+      animation: WeaponArcPunch
+      damage:
+        types:
+          Blunt: 3
+          Caustic: 3
+    - type: ReplacementAccent
+      accent: slimes
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3.6
+      baseSprintSpeed: 3.2
+    - type: FootstepModifier
+      footstepSoundCollection:
+         collection: FootstepSlime
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+      - FootstepSound
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+    - type: Speech
+      speechVerb: Slime
+      speechSounds: Slime
+      allowedEmotes: ['Squish']
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 200
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+
+- type: entity
   name: Katana
   suffix: seriozha, Недра
   parent: [ BaseSword, BaseMajorContraband ]
