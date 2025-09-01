@@ -180,7 +180,12 @@ public sealed class GodSelectionSystem : EntitySystem
             }
 
             // Добавляем action магазина способностей
-            _actionContainer.AddAction(mindId, "ActionCustomChaplainShop");
+            var shopActionId = _actionContainer.AddAction(mindId, "ActionCustomChaplainShop");
+            Log.Info($"Added shop action {shopActionId} to mind {mindId} for user {user}");
+        }
+        else
+        {
+            Log.Warning($"Could not find mind for user {user}");
         }
     }
 
