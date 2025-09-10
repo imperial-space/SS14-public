@@ -71,7 +71,7 @@ public abstract partial class SharedSkillsSystem
 
     private void OnWieldAttempt(EntityUid uid, SkillsComponent comp, ref WieldAttemptEvent args)
     {
-        if (args.User != uid)
+        if (args.Wielded != uid)
             return;
 
         var (_, level) = GetSkill(uid, StrengthId);
@@ -80,6 +80,6 @@ public abstract partial class SharedSkillsSystem
             return;
 
         args.Cancel();
-        _popup.PopupPredicted("Вы слишком слабы, чтобы использовать это.", null, args.User, args.User, PopupType.Medium);
+        _popup.PopupPredicted("Вы слишком слабы, чтобы использовать это.", null, args.Wielded, args.Wielded, PopupType.Medium);
     }
 }

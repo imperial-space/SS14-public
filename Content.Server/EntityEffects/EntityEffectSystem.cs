@@ -45,6 +45,7 @@ using Robust.Shared.Random;
 
 using TemperatureCondition = Content.Shared.EntityEffects.EffectConditions.Temperature; // disambiguate the namespace
 using PolymorphEffect = Content.Shared.EntityEffects.Effects.Polymorph;
+using Content.Shared.Imperial.Medieval.Language;
 
 namespace Content.Server.EntityEffects;
 
@@ -750,6 +751,15 @@ public sealed class EntityEffectSystem : EntitySystem
         // We call this before the mind check to allow things like player-controlled mice to be able to benefit from the effect
         RemComp<ReplacementAccentComponent>(uid);
         RemComp<MonkeyAccentComponent>(uid);
+
+
+        // imperial medieval start
+        var lang = EntityManager.EnsureComponent<LanguageSpeakerComponent>(uid);
+        if (!lang.Languages.ContainsKey(SharedLanguageSystem.Common))
+            lang.Languages.Add(SharedLanguageSystem.Common, LanguageKnowledge.Speak);
+        else
+            lang.Languages[SharedLanguageSystem.Common] = LanguageKnowledge.Speak;
+        // imperial medieval end
 
         // Stops from adding a ghost role to things like people who already have a mind
         if (TryComp<MindContainerComponent>(uid, out var mindContainer) && mindContainer.HasMind)
