@@ -1,11 +1,14 @@
+// this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla
+// Copyright: @crookielv
+
 using System.Linq;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Containers;
 using Content.Shared.Power;
 using Content.Shared.Access.Components;
-using Content.Server.Imperial.Crook.Components;
 using Content.Shared.Imperial.Crook.Visuals;
+using Content.Server.Imperial.Crook.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Access.Systems;
@@ -20,6 +23,8 @@ using Content.Server.Power.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Item;
 using Robust.Shared.Audio;
+using Robust.Server.Containers;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Crook.Systems
 {
@@ -35,6 +40,8 @@ namespace Content.Server.Imperial.Crook.Systems
         [Dependency] private readonly DamageableSystem _damageable = default!;
         [Dependency] private readonly BatterySystem _battery = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
+        [Dependency] private readonly ContainerSystem _container = default!;
+        [Dependency] private readonly IPrototypeManager _prototype = default!;
 
         private const float ThinkRate = 0.25f;
         private float _accumulatedTime;
@@ -100,50 +107,63 @@ namespace Content.Server.Imperial.Crook.Systems
 
         private void ProcessEntity(EntityUid detector, EntityUid entity, MetalDetectorComponent comp)
         {
+            if (!comp.Powered)
+                return;
+
             comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
-            bool hasContraband = CheckEntityRecursive(detector, entity, comp.MaxRecursionDepth);
-            HandleDetectionResults(detector, entity, comp, hasContraband);
+            bool hasContraband = CheckForContraband(detector, entity, comp);
+            bool hasAccess = HasRequiredAccess(entity, comp);
+            HandleDetectionResults(detector, entity, comp, hasContraband, hasAccess);
         }
 
-        private bool CheckEntityRecursive(EntityUid detector, EntityUid entity, int maxDepth, int currentDepth = 0)
+        private bool CheckForContraband(EntityUid detector, EntityUid target, MetalDetectorComponent comp)
         {
-            if (currentDepth > maxDepth)
-                return false;
-
-            if (TryComp<ContrabandComponent>(entity, out var contraband))
+            if (IsContrabandItem(detector, target, target, comp) ||
+                CheckEntityAndContainers(detector, target, comp, target))
             {
-                if (IsContrabandAllowed(detector, entity))
-                    return false;
-
                 return true;
             }
 
-            if (TryComp<InventoryComponent>(entity, out var inventory))
+            if (TryComp<InventoryComponent>(target, out _))
             {
-                var detectorComp = Comp<MetalDetectorComponent>(detector);
-                foreach (var slot in detectorComp.CheckedSlots)
+                foreach (var slot in comp.CheckedSlots)
                 {
-                    if (_inventory.TryGetSlotEntity(entity, slot, out var item))
+                    if (_inventory.TryGetSlotEntity(target, slot, out var item) &&
+                        (IsContrabandItem(detector, item.Value, target, comp) ||
+                         CheckEntityAndContainers(detector, item.Value, comp, target)))
                     {
-                        if (CheckEntityRecursive(detector, item.Value, maxDepth, currentDepth + 1))
-                            return true;
+                        return true;
                     }
                 }
             }
 
-            foreach (var heldItem in _hands.EnumerateHeld(entity))
+            foreach (var held in _hands.EnumerateHeld(target))
             {
-                if (CheckEntityRecursive(detector, heldItem, maxDepth, currentDepth + 1))
+                if (IsContrabandItem(detector, held, target, comp) ||
+                    CheckEntityAndContainers(detector, held, comp, target))
+                {
                     return true;
+                }
             }
+
+            return false;
+        }
+
+        private bool CheckEntityAndContainers(EntityUid detector, EntityUid entity, MetalDetectorComponent comp, EntityUid user, int currentDepth = 0)
+        {
+            if (currentDepth > comp.MaxRecursionDepth || IsIgnoredByDetector(detector, entity, comp))
+                return false;
+
+            if (IsContrabandItem(detector, entity, user, comp))
+                return true;
 
             if (TryComp<ContainerManagerComponent>(entity, out var containerManager))
             {
                 foreach (var container in containerManager.Containers.Values)
                 {
-                    foreach (var item in container.ContainedEntities)
+                    foreach (var contained in container.ContainedEntities)
                     {
-                        if (CheckEntityRecursive(detector, item, maxDepth, currentDepth + 1))
+                        if (CheckEntityAndContainers(detector, contained, comp, user, currentDepth + 1))
                             return true;
                     }
                 }
@@ -152,15 +172,93 @@ namespace Content.Server.Imperial.Crook.Systems
             return false;
         }
 
-        private void HandleDetectionResults(EntityUid detector, EntityUid entity,
-                         MetalDetectorComponent comp,
-                         bool hasContraband)
+        private bool IsIgnoredByDetector(EntityUid detector, EntityUid entity, MetalDetectorComponent comp)
         {
-            if (HasRequiredAccess(entity, comp))
+            var meta = MetaData(entity);
+            var prototypeId = meta.EntityPrototype?.ID;
+
+            if (!string.IsNullOrEmpty(prototypeId) && comp.IgnoredPrototypes.Contains(prototypeId))
+                return true;
+
+            var current = entity;
+            while (_container.TryGetContainingContainer(current, out var container))
             {
-                SetStateWithSound(detector, MetalDetectorVisualState.Scanning, comp, comp.ClearSound);
-                return;
+                current = container.Owner;
+                var currentMeta = MetaData(current);
+                var currentPrototypeId = currentMeta.EntityPrototype?.ID;
+
+                if (!string.IsNullOrEmpty(currentPrototypeId) && comp.IgnoredPrototypes.Contains(currentPrototypeId))
+                    return true;
             }
+
+            return false;
+        }
+
+        private bool IsContrabandItem(EntityUid detector, EntityUid item, EntityUid user, MetalDetectorComponent comp)
+        {
+            if (IsIgnoredByDetector(detector, item, comp))
+                return false;
+
+            return TryComp<ContrabandComponent>(item, out _) &&
+                   !IsContrabandAllowed(detector, item, user, comp);
+        }
+
+        private bool IsContrabandAllowed(EntityUid detector, EntityUid contrabandItem, EntityUid user, MetalDetectorComponent detectorComp)
+        {
+            if (!TryComp<ContrabandComponent>(contrabandItem, out var contraband))
+                return false;
+
+            if (_idCard.TryFindIdCard(user, out var idCardEntity))
+            {
+                if (TryComp<IdCardComponent>(idCardEntity, out var idCard))
+                {
+                    if (idCard.JobDepartments != null && contraband.AllowedDepartments != null)
+                    {
+                        var jobDepartments = idCard.JobDepartments;
+                        var allowedDepartments = contraband.AllowedDepartments;
+
+                        foreach (var department in jobDepartments)
+                        {
+                            if (allowedDepartments.Contains(department))
+                                return true;
+                        }
+                    }
+
+                    if (idCard.JobPrototype != null && contraband.AllowedJobs != null)
+                    {
+                        var jobProto = _prototype.Index(idCard.JobPrototype.Value);
+                        var allowedJobs = contraband.AllowedJobs;
+
+                        foreach (var allowedJob in allowedJobs)
+                        {
+                            if (allowedJob == jobProto.ID)
+                                return true;
+                        }
+                    }
+                }
+            }
+
+            var current = contrabandItem;
+            while (current.IsValid())
+            {
+                if (HasRequiredAccess(current, detectorComp))
+                    return true;
+
+                if (!_container.TryGetContainingContainer(current, out var container))
+                    break;
+
+                current = container.Owner;
+            }
+
+            return false;
+        }
+
+        private void HandleDetectionResults(EntityUid detector, EntityUid entity,
+         MetalDetectorComponent comp,
+         bool hasContraband, bool hasAccess)
+        {
+            if (!comp.Powered)
+                return;
 
             if (HasComp<EmaggedComponent>(detector))
             {
@@ -181,105 +279,18 @@ namespace Content.Server.Imperial.Crook.Systems
                 return;
             }
 
-            if (hasContraband && comp.CheckContraband)
+            if (hasAccess)
             {
-                if (HasUnauthorizedContraband(entity))
-                {
-                    SetStateWithSound(detector, MetalDetectorVisualState.Alert, comp, comp.AlertSound);
-                }
-                else
-                {
-                    SetStateWithSound(detector, MetalDetectorVisualState.Scanning, comp, comp.ClearSound);
-                }
+                SetStateWithSound(detector, MetalDetectorVisualState.Scanning, comp, comp.ClearSound);
+            }
+            else if (hasContraband && comp.CheckContraband)
+            {
+                SetStateWithSound(detector, MetalDetectorVisualState.Alert, comp, comp.AlertSound);
             }
             else
             {
                 SetStateWithSound(detector, MetalDetectorVisualState.Scanning, comp, comp.ClearSound);
             }
-        }
-
-        private bool HasUnauthorizedContraband(EntityUid user)
-        {
-            if (TryComp<InventoryComponent>(user, out var inventory))
-            {
-                foreach (var slotDef in inventory.Slots)
-                {
-                    if (_inventory.TryGetSlotEntity(user, slotDef.Name, out var item) &&
-                        HasContrabandRecursive(item.Value, user))
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            foreach (var heldItem in _hands.EnumerateHeld(user))
-            {
-                if (HasContrabandRecursive(heldItem, user))
-                {
-                    return true;
-                }
-            }
-
-            if (TryComp<ContainerManagerComponent>(user, out var containerManager))
-            {
-                foreach (var container in containerManager.Containers.Values)
-                {
-                    foreach (var containedItem in container.ContainedEntities)
-                    {
-                        if (HasContrabandRecursive(containedItem, user))
-                            return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-
-        private bool HasContrabandRecursive(EntityUid item, EntityUid user, int depth = 0, int maxDepth = 5)
-        {
-            if (depth > maxDepth)
-                return false;
-
-            if (HasComp<ContrabandComponent>(item) && !IsContrabandAllowed(user, item))
-                return true;
-
-            if (TryComp<ContainerManagerComponent>(item, out var containerManager))
-            {
-                foreach (var container in containerManager.Containers.Values)
-                {
-                    foreach (var containedItem in container.ContainedEntities)
-                    {
-                        if (HasContrabandRecursive(containedItem, user, depth + 1, maxDepth))
-                            return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-
-        private bool IsContrabandAllowed(EntityUid user, EntityUid contrabandItem)
-        {
-            if (!TryComp<ContrabandComponent>(contrabandItem, out var contraband))
-                return false;
-
-            if (!_idCard.TryFindIdCard(user, out var idCard))
-                return false;
-
-            if (idCard.Comp.JobDepartments.Intersect(contraband.AllowedDepartments).Any())
-                return true;
-
-            if (idCard.Comp.JobPrototype != null)
-            {
-                var jobId = idCard.Comp.JobPrototype.Value;
-                foreach (var allowedJob in contraband.AllowedJobs)
-                {
-                    if (allowedJob == jobId)
-                        return true;
-                }
-            }
-
-            return false;
         }
 
         private void SetState(EntityUid uid, MetalDetectorVisualState state, MetalDetectorComponent comp)
@@ -300,6 +311,12 @@ namespace Content.Server.Imperial.Crook.Systems
 
         private void ResetToDefaultState(EntityUid uid, MetalDetectorComponent comp)
         {
+            if (!comp.Powered)
+            {
+                SetState(uid, MetalDetectorVisualState.Off, comp);
+                return;
+            }
+
             SetState(uid, MetalDetectorVisualState.Powered, comp);
         }
 

@@ -10,6 +10,7 @@
   abstract: true
   parent: BaseMachinePowered
   components:
+    - type: MetalDetector
     - type: Transform
       noRot: false
     - type: Physics
@@ -18,7 +19,7 @@
 - type: entity
   id: ImperialMetalDetector
   name: Metal Detector
-  suffix: Crook
+  suffix: Стандартный, Crook
   parent: BaseMetalDetector
   placement:
     mode: SnapgridCenter
@@ -35,8 +36,6 @@
           shader: unshaded
         - state: panel
           map: ["enum.WiresVisualLayers.MaintenancePanel"]
-    - type: AccessReader
-      access: [["Security", "Command"]]
     - type: Appearance
     - type: GenericVisualizer
       visuals:
@@ -49,6 +48,157 @@
     - type: Electrified
       usesApcPower: true
     - type: MetalDetector
+      ignoredPrototypes:
+        # Syndicate
+        - ClothingBackpackDuffelSyndicateDecoyKitFilled
+        - ClothingBackpackDuffelSyndicateAKMS
+        - ClothingBackpackDuffelSyndicateMedicalBundleFilled
+        - ClothingBackpackDuffelSyndicateFilledSMG
+        - ClothingBackpackDuffelSyndicateFilledGrenadeLauncher
+        - ClothingBackpackDuffelSyndicateFilledLMG
+        - ClothingBackpackDuffelSyndicateFilledShotgun
+        - ClothingBackpackDuffelSyndicateFilledCarbine
+        - ClothingBackpackDuffelSyndicateFilledRevolver
+        - ClothingBackpackDuffelSyndicateC4tBundle
+        - ClothingBackpackDuffelSyndicateEVABundle
+        - ClothingBackpackDuffelSyndicateAmmoFilled
+        - ClothingBackpackDuffelPirateDrugs
+        - ClothingBackpackDuffelSyndicatePyjamaBundle
+        - ClothingBackpackDuffelSyndicateEliteHardsuitBundle
+        - ClothingBackpackDuffelSyndicate
+        - ClothingBackpackDuffelSyndicateCarpSuit
+        - ClothingBackpackDuffelZombieBundle
+        - ClothingBackpackDuffelSyndicateMedical
+        - ClothingBackpackDuffelSyndicateAmmo
+        - ClothingBackpackDuffelSyndicateHardsuitExtrasBundle
+        - ClothingBackpackDuffelSyndicateHardsuitBundle
+        - ClothingBackpackDuffelSydicateScoutFilled
+        - ClothingBackpackDuffelSyndicateFilledMedical
+        - ClothingBackpackSyndicate
+        - ClothingOuterEVASuitSyndicate
+        - SyndicatePersonalAIImperial
+        - SyndieHandyFlag
+        - ClothingUniformJumpsuitRecruitSyndie
+        - ClothingUniformJumpsuitParamedicSyndie
+        - ClothingUniformJumpsuitRepairmanSyndie
+        - ClothingShoesBootsWinterSyndicate
+        - ClothingHeadHatSyndie
+        - TowelColorSyndicate
+        - ClothingUniformJumpskirtSyndieFormalDress
+        - ClothingUniformJumpsuitSyndieFormal
+        - JetpackBlackFilled
+        - ToolboxSyndicateFilled
+        - ClothingNeckScarfStripedSyndieRed
+        - ClothingUniformJumpsuitOperative
+        - HappyHonkNukieSnacks
+        - ClothingNeckScarfStripedSyndieGreen
+        - ClothingUniformJumpskirtOperative
+        - RubberStampSyndicate
+        - ClothingHeadHatCatEars
+        - SyndicatePersonalAI
+        - DehydratedSpaceCarp
+        - SoapSyndie
+        - SlipocalypseClusterSoap
+        - BoxEncryptionKeySyndie
+        - ElectricalDisruptionKit
+        - ThrowingKnivesKit
+        - ToolboxElectricalTurretFilled
+        - EnergyDagger
+        - ClothingBeltSyndieHolster
+        - ClothingHeadHelmetCult
+        - ClothingOuterArmorCult
+        - SyndiPDA
+        - ClothingOuterHardsuitPirateCap
+        - ClothingMaskGasSyndicate
+        - SatchelThief
+        - ToolboxThief
+        - CyberPen
+        - SyndicateBusinessCard
+        - ClothingBackpackSatchelSmuggler
+        - ClothingBackpackSatchelSmugglerUnanchored
+        - ClothingBackpackSatchelSmugglerFilled
+        - StorageImplant
+        - ClothingUniformJumpsuitChiefEngineerSyndie
+        # Captain CAP
+        - ClothingUniformJumpsuitWhiteCaptain
+        - ClothingUniformJumpskirtWhiteCaptain
+        - ClothingHandsGlovesCaptainWhite
+        - ClothingHandsGlovesCaptainSheriff
+        - ClothingMaskGasCaptain
+        - ClothingHeadHatCaptain
+        - ClothingHandsGlovesCaptain
+        - ClothingUniformJumpsuitCaptain
+        - ClothingNeckMantleCap
+        - ClothingNeckCloakCap
+        - ClothingUniformJumpsuitCapFormal
+        - ClothingNeckCloakCapFormal
+        - ClothingUniformJumpskirtCaptain
+        - ClothingUniformJumpskirtCaptainAlt
+        - ClothingUniformJumpskirtPirateWhiteCaptain
+        - ClothingUniformJumpsuitCaptainAlt
+        - ClothingUniformJumpsuitPirateWhiteCaptain
+        - ClothingUniformJumpsuitSheriffCaptain
+        # Head of Security HOS
+        - ClothingUniformJumpsuitHoS
+        - ClothingUniformJumpskirtHoSAlt
+        - ClothingUniformJumpsuitHoSAlt
+        - ClothingNeckMantleHOS
+        - ClothingUniformJumpsuitHoSParadeMale
+        - ClothingUniformJumpsuitHoSBlue
+        - ClothingUniformJumpskirtHoSParadeMale
+        - ClothingUniformJumpsuitHoSGrey
+        - ClothingUniformJumpskirtHosFormal
+        - ClothingUniformJumpsuitHosFormal
+        - ClothingUniformJumpskirtHoS
+        - ClothingHeadHatHoshat
+        # Head of Personnel HOP
+        - ClothingHeadHatHopcap
+        - ClothingUniformJumpskirtHoP
+        - ClothingNeckCloakHop
+        - ClothingUniformJumpsuitHoP
+        - ClothingNeckMantleHOP
+        # Research Director RD
+        - ClothingUniformJumpsuitResearchDirector
+        - ClothingNeckMantleRD
+        - ClothingNeckCloakRd
+        - ClothingUniformJumpskirtResearchDirector
+        # Quartermaster QM
+        - ClothingUniformJumpskirtQM
+        - ClothingUniformJumpsuitQM
+        - ClothingUniformJumpsuitQMFormal
+        - ClothingNeckCloakQm
+        - ClothingUniformJumpskirtQMTurtleneck
+        - ClothingUniformJumpsuitQMTurtleneck
+        # Chief Engineer CE
+        - ClothingNeckMantleCE
+        - ClothingNeckCloakCe
+        - ClothingUniformJumpsuitChiefEngineer
+        - ClothingUniformJumpskirtChiefEngineer
+        - ClothingUniformJumpskirtChiefEngineerTurtle
+        - ClothingUniformJumpsuitChiefEngineerNT
+        - ClothingUniformJumpsuitChiefEngineerTurtle
+        # Security
+        - ClothingUniformJumpsuitSeniorOfficer
+        - ClothingUniformJumpskirtSeniorOfficer
+        - ClothingHandsGlovesCombat
+        - ClothingShoesBootsJack
+        - ClothingMaskClownSecurity
+        - ClothingUniformJumpsuitSec
+        - ClothingUniformJumpskirtSec
+        - ClothingMaskGasSecurity
+        - ClothingShoesBootsWinterSec
+        - FlashlightSeclite
+        - ClothingUniformSecurityTrooper
+        - ClothingHandsGlovesForensic
+        - ClothingUniformJumpskirtWarden
+        - ClothingUniformJumpsuitWarden
+        # Central Command CC
+        - ClothingUniformJumpsuitCentcomAgent
+        - ClothingNeckScarfStripedCentcom
+        - ClothingMaskGasCentcom
+        - ClothingHandsGlovesCentCom
+        - ClothingUniformJumpsuitCentcomOfficer
+        - ClothingUniformJumpskirtSpecialOfficer
     - type: DeviceNetwork
       deviceNetId: Wireless
     - type: WirelessNetworkConnection
@@ -105,7 +255,7 @@
 - type: entity
   parent: ImperialMetalDetector
   id: MetalDetectorNonAccess
-  suffix: NonAccess, Crook
+  suffix: Проверяет всех, Crook
   components:
     - type: MetalDetector
       allowedAccess: []
@@ -113,7 +263,7 @@
 - type: entity
   parent: ImperialMetalDetector
   id: MetalDetectorSyndicate
-  suffix: Syndicate, Crook
+  suffix: Синдикат, Crook
   components:
     - type: MetalDetector
       allowedAccess: ["SyndicateAgent", "NuclearOperative"]
@@ -121,7 +271,7 @@
 - type: entity
   parent: ImperialMetalDetector
   id: MetalDetectorSecure
-  suffix: Secure, Crook
+  suffix: Укреплённый, Crook
   components:
     - type: Construction
       graph: ImperialMetalDetector
@@ -130,6 +280,18 @@
       securityLevel: panelReinforced
       examine: wires-panel-component-on-examine-security-level2
       wiresAccessible: false
+    - type: Destructible
+      thresholds:
+        - trigger: !type:DamageTrigger
+            damage: 250
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:ChangeConstructionNodeBehavior
+              node: frame
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
 
 - type: entity
   id: MetalDetectorFrame
@@ -177,8 +339,6 @@
     - type: Tag
       tags:
         - MetalDetectorTag
-    - type: MachineBoard
-      prototype: ImperialMetalDetector
     - type: Sprite
       sprite: Objects/Misc/module.rsi
       state: security
@@ -196,9 +356,9 @@
   result: MetalDetectorCircuitboard
   completetime: 8
   materials:
-    Plasma: 100
-    Steel: 200
-    Gold: 50
+    Plasma: 500
+    Steel: 500
+    Gold: 100
 
 - type: technology
   id: MetalDetectorTech
