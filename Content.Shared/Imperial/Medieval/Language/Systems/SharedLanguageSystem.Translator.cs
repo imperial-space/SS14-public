@@ -61,6 +61,6 @@ public abstract partial class SharedLanguageSystem
         if (comp == null && !TryComp(translator, out comp))
             return;
 
-        _appearance.SetData(translator, ToggleVisuals.Toggled, comp.Enabled);
+        //_appearance.SetData(translator, ToggleVisuals.Toggled, comp.Enabled);
     }
 }

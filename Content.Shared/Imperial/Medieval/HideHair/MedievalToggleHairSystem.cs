@@ -37,8 +37,8 @@ public sealed partial class MedievalToggleHairSystem : EntitySystem
         _actions.AddAction(ev.Equipee, ref comp.Action, out var action, comp.PrototypeID);
         if (action != null && comp.Action != null)
         {
-            action.EntityIcon = ev.Equipment;
-            action.Icon = new SpriteSpecifier.EntityPrototype(meta.EntityPrototype.ID);
+            //action.EntityIcon = ev.Equipment;
+            //action.Icon = new SpriteSpecifier.EntityPrototype(meta.EntityPrototype.ID);
             Dirty(comp.Action.Value, action);
         }
     }
