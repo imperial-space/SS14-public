@@ -224,8 +224,8 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Диагональная стена шаттла # Imperial Recipes Locale
   id: DiagonalShuttleWall
+  name: Диагональная стена шаттла # Imperial Recipes Locale
   graph: Girder
   startNode: start
   targetNode: diagonalshuttleWall

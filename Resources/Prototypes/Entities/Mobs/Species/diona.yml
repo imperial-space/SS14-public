@@ -126,6 +126,7 @@
   - type: Mana
     maxManaRaceModifier: 1.10
     regenRaceModifier: 1.00 # Imperial Medieval end
+  - type: Rootable
 
 - type: entity
   parent: BaseSpeciesDummy

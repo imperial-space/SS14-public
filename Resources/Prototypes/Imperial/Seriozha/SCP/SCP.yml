@@ -1,0 +1,501 @@
+- type: entity
+  abstract: true
+  parent: SimpleSpaceMobBase
+  id: ImperialSCPBase
+  suffix: AI
+  components:
+    - type: Tag
+      tags:
+      - SCP
+    - type: TriggerOnMobstateChange
+      mobState:
+      - Dead
+    - type: SmokeOnTrigger
+      duration: 15
+      spreadAmount: 3
+    - type: SoundOnTrigger
+      sound: /Audio/Effects/smoke.ogg
+    - type: TimerTriggerVisuals
+      primingSound:
+        path: /Audio/Effects/Smoke-grenade.ogg
+    - type: NoSlip
+    - type: MovementIgnoreGravity
+    - type: SlowOnDamage
+      enabled: false
+    - type: ZombieImmune
+    - type: NonSpreaderZombie
+    - type: Damageable
+      damageModifierSet: SCPStandart
+    - type: Body
+      prototype: Human
+    - type: Bloodstream
+      bloodMaxVolume: 0
+    - type: NpcFactionMember
+      factions:
+      - Xeno
+    - type: IntrinsicRadioReceiver
+    - type: ActiveRadio
+      channels:
+      - SCPconnection
+    - type: IntrinsicRadioTransmitter
+      channels:
+      - SCPconnection
+    - type: FlashImmunity
+    - type: Grammar
+      attributes:
+        gender: male
+
+- type: entity
+  name: Ded
+  suffix: seriozha, Недра
+  parent: ImperialSCPBase
+  id: ImperialSCPDed
+  description: Pray.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/SCP/objects/Ded.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: alive
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        4000: Dead
+    - type: MeleeWeapon
+      hidden: true
+      altDisarm: false
+      soundHit:
+        path: /Audio/Weapons/punch3.ogg
+      angle: 0
+      animation: WeaponArcPunch
+      damage:
+        types:
+          Blunt: 80
+      resistanceBypass: true
+    - type: Speech
+      speechVerb: LargeMob
+      allowedEmotes: ['Scream', 'Laugh']
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2
+      baseSprintSpeed: 1.8
+    - type: Vocal
+      sounds:
+        Male: DedVoice
+        Unsexed: DedVoice
+        Female: DedVoice
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 280
+          hard: false
+          mask:
+          - MobMask
+          layer:
+          - GhostImpassable
+          - MobLayer
+
+- type: entity
+  name: Fireman
+  suffix: seriozha, Недра
+  parent: ImperialSCPBase
+  id: ImperialSCPFireMan
+  description: Pray.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/SCP/objects/Fireman.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: alive
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        2500: Dead
+    - type: Damageable
+      damageModifierSet: SCPFireMan
+    - type: MeleeWeapon
+      hidden: true
+      altDisarm: false
+      soundHit:
+        path: /Audio/Weapons/punch3.ogg
+      angle: 0
+      animation: WeaponArcPunch
+      damage:
+        types:
+          Structural: 60
+          Heat: 24
+      resistanceBypass: true
+    - type: IgniteOnMeleeHit
+      fireStacks: 4
+    - type: Speech
+      speechVerb: LargeMob
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2.5
+      baseSprintSpeed: 3
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 300
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+
+- type: entity
+  name: Avel
+  suffix: seriozha, Недра
+  parent: ImperialSCPBase
+  id: ImperialSCPAvel
+  description: Pray.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/SCP/objects/Avel.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        2000: Dead
+    - type: Speech
+      speechVerb: LargeMob
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3.2
+      baseSprintSpeed: 2.8
+    - type: Hands
+    - type: Puller
+    - type: Pullable
+    - type: Loadout
+      prototypes: [ ImperialAvelGear ]
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+    - type: Access
+      tags:
+      - SCPAccesOne
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 300
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+
+- type: entity
+  parent: [ ClothingHeadHelmetArmoredBase, BaseMajorContraband]
+  id: ImperialSCPMask
+  name: Mask
+  suffix: seriozha, Недра
+  description: idc
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/objects/Mask.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/SCP/objects/Mask.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.45
+        Slash: 0.45
+        Piercing: 0.45
+        Cold: 0.45
+        Heat: 0.45
+        Poison: 0.45
+        Radiation: 0.45
+        Caustic: 0.45
+        Stamina: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.0
+
+- type: entity
+  name: Doctor
+  suffix: seriozha, Недра
+  parent: [ ImperialSCPBase, StripableInventoryBase ]
+  id: ImperialSCPDoc
+  description: Pray.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/SCP/objects/Doc.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: alive
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        3000: Dead
+    - type: MeleeWeapon
+      hidden: true
+      altDisarm: false
+      soundHit:
+        path: /Audio/Imperial/Seriozha/SCP/docattack.ogg
+      angle: 0
+      animation: WeaponArcPunch
+      damage:
+        types:
+          Caustic: 150
+    - type: Speech
+      speechVerb: LargeMob
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3.2
+      baseSprintSpeed: 2.6
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Imperial/Seriozha/SCP/doc.ogg
+    - type: Loadout
+      prototypes: [ ImperialDocGear ]
+    - type: Hands
+      showInHands: true
+    - type: Stripping
+    - type: Puller
+      needsHands: false
+    - type: Inventory
+      templateId: docinv
+    - type: Vocal
+      sounds:
+        Male: DocVoice
+        Unsexed: DocVoice
+        Female: DocVoice
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+      - FootstepSound
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 280
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+
+- type: entity
+  name: Jelly monster
+  suffix: seriozha, Недра
+  parent: BaseMobAdultSlimes
+  id: ImperialSCPJelly
+  description: The kindest blob of slime in the galaxy.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/SCP/objects/Jelly.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        500: Dead
+    - type: Damageable
+      damageModifierSet: SCPStandart
+    - type: Bloodstream
+      bloodMaxVolume: 0
+    - type: MeleeWeapon
+      hidden: true
+      altDisarm: false
+      soundHit:
+        path: /Audio/Weapons/punch3.ogg
+      angle: 0
+      animation: WeaponArcPunch
+      damage:
+        types:
+          Blunt: 3
+          Caustic: 3
+    - type: ReplacementAccent
+      accent: slimes
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3.6
+      baseSprintSpeed: 3.2
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: FootstepSlime
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+      - FootstepSound
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+    - type: Speech
+      speechVerb: Slime
+      speechSounds: Slime
+      allowedEmotes: ['Squish']
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 200
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+
+- type: entity
+  name: Katana
+  suffix: seriozha, Недра
+  parent: [ BaseSword, BaseMajorContraband ]
+  id: ImperialSCPKatana
+  description: An ancient war blade.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
+  - type: Item
+    size: Ginormous
+    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
+    slots:
+    - Belt
+  - type: MeleeWeapon
+    attackRate: 1.25
+    damage:
+      types:
+        Structural: 90
+        Slash: 60
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+  - type: Reflect
+    reflectProb: 0.15
+    spread: 90
+  - type: DisarmMalus
+
+- type: emoteSounds
+  id: DedVoice
+  sounds:
+    Scream:
+      path: /Audio/Imperial/Seriozha/SCP/dedscream.ogg
+    Laugh:
+      path: /Audio/Imperial/Seriozha/SCP/dedlaugh.ogg
+
+- type: emoteSounds
+  id: DocVoice
+  sounds:
+    Scream:
+      path: /Audio/Imperial/Seriozha/SCP/docscream.ogg
+    Laugh:
+      path: /Audio/Imperial/Seriozha/SCP/doclaugh.ogg
+    Sneeze:
+      path: /Audio/Imperial/Seriozha/SCP/docsneeze.ogg
+    Cough:
+      path: /Audio/Imperial/Seriozha/SCP/doccough.ogg
+    Crying:
+      path: /Audio/Imperial/Seriozha/SCP/doccry.ogg
+    Whistle:
+      path: /Audio/Imperial/Seriozha/SCP/docwhistle.ogg
+    Sigh:
+      path: /Audio/Imperial/Seriozha/SCP/docsigh.ogg
+    Yawn:
+      path: /Audio/Imperial/Seriozha/SCP/docyawn.ogg
+    Weh:
+      collection: Weh
+
+- type: inventoryTemplate
+  id: docinv
+  slots:
+  - name: pocket1
+    slotTexture: pocket
+    fullTextureName: template_small
+    slotFlags: POCKET
+    slotGroup: MainHotbar
+    stripTime: 3
+    uiWindowPos: 0,3
+    strippingWindowPos: 0,4
+    displayName: Pocket 1
+    stripHidden: true
+  - name: id
+    slotTexture: id
+    fullTextureName: template_small
+    slotFlags: IDCARD
+    slotGroup: SecondHotbar
+    stripTime: 6
+    uiWindowPos: 2,1
+    strippingWindowPos: 2,4
+    displayName: ID
+
+- type: startingGear
+  id: ImperialDocGear
+  equipment:
+    id: SCPIDCardCI
+    pocket1: PillAmbuzolPlus
+  inhand:
+  - CaneSheathFilled
+
+- type: damageModifierSet
+  id: SCPStandart
+  coefficients:
+    Poison: 0.1
+    Blunt: 0.4
+    Slash: 0.7
+    Piercing: 0.8
+    Cellular: 0.9
+    Radiation: 0.0
+    Caustic: 0.0
+
+- type: damageModifierSet
+  id: SCPFireMan
+  coefficients:
+    Heat: 0.0
+    Poison: 0.0
+    Radiation: 0.0
+    Caustic: 0.0
+
+- type: startingGear
+  id: ImperialAvelGear
+  inhand:
+  - ImperialSCPKatana

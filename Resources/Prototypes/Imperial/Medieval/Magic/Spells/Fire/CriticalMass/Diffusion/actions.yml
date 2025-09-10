@@ -25,16 +25,18 @@
   - type: SpellCastEffect
     effectProto: DiffusionSpellCastEffectMiddle
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 18
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 5
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
       sprite: Imperial/Medieval/Magic/nova.rsi
       state: diffusion
+  - type: TargetAction
+    checkCanAccess: false
+    range: 5
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalEffectDiffusionMiddle
       spawnType: SpawnOnMousePosition
@@ -72,16 +74,18 @@
   - type: SpellCastEffect
     effectProto: DiffusionSpellCastEffectSenior
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 22
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 5
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
       sprite: Imperial/Medieval/Magic/nova.rsi
       state: diffusion2
+  - type: TargetAction
+    checkCanAccess: false
+    range: 5
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalEffectDiffusionSenior
       spawnType: SpawnOnMousePosition

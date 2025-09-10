@@ -27,6 +27,7 @@ loadout-group-hop-jumpsuit = Глава персонала, комбинезон
 loadout-group-hop-neck = Глава персонала, шея
 loadout-group-hop-backpack = Глава персонала, рюкзак
 loadout-group-hop-outerclothing = Глава персонала, верхняя одежда
+loadout-group-hop-glasses = Глава персонала, очки
 
 loadout-group-IAA-jumpsuit = АВД, комбинезон
 loadout-group-IAA-neck = АВД, шея

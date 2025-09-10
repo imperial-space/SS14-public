@@ -70,10 +70,10 @@
   - AmmoCombat
 
 - type: listing
-  id: DSCallUplinkMagazineBoxDelivererUAPAlt
-  name: ert-uplink-ammononcombat-magazinedelivereruap-name
-  description: ert-uplink-ammononcombat-magazinedelivereruap-desc
-  productEntity: ItemDelivererMagazineUAP
+  id: DSCallUplinkMagazineBoxDelivererAPAlt
+  name: ert-uplink-ammononcombat-magazinedelivererap-name
+  description: ert-uplink-ammononcombat-magazinedelivererap-desc
+  productEntity: ItemDelivererMagazineAP
   cost:
     BlueSpaceCube: 6
   categories:
@@ -612,16 +612,6 @@
   - WeaponCombat
 
 - type: listing
-  id: DSCallUplinkWeaponLauncherRocketAlt
-  name: ert-uplink-weaponcombat-weaponlauncherrocket-name
-  description: ert-uplink-weaponcombat-weaponlauncherrocket-desc
-  productEntity: WeaponLauncherRocket
-  cost:
-    BlueSpaceCube: 15
-  categories:
-  - WeaponCombat
-
-- type: listing
   id: DSCallUplinkWeaponDelivererAlt
   name: ert-uplink-weaponcombat-deliverer-name
   description: ert-uplink-weaponcombat-deliverer-desc
@@ -638,6 +628,16 @@
   productEntity: WeaponSniperAWP
   cost:
     BlueSpaceCube: 25
+  categories:
+  - WeaponCombat
+
+- type: listing
+  id: DSCallUplinkWeaponMilkorDLAlt
+  name: ds-uplink-weaponcombat-milkordl-name
+  description: ds-uplink-weaponcombat-milkordl-desc
+  productEntity: WeaponLauncherMilkorDL
+  cost:
+    BlueSpaceCube: 40
   categories:
   - WeaponCombat
 
@@ -662,15 +662,18 @@
   categories:
   - Utilities
 
-- type: listing
-  id: DSAmeliaPlushieEasterEgg
-  name: ert-uplink-utilities-ami-name
-  description: ert-uplink-utilities-ami-desc
-  productEntity: PlushieSOO
-  cost:
-    BlueSpaceCube: 1
-  categories:
-  - Utilities
+# - type: listing #Убрано для соблюдения игровой атмосферы
+#   id: DSAmeliaPlushieEasterEgg
+#   name: ert-uplink-utilities-ami-name
+#   description: ert-uplink-utilities-ami-desc
+#   productEntity: PlushieSOO
+#   cost:
+#     BlueSpaceCube: 10
+#   categories:
+#   - Utilities
+#   conditions:
+#   - !type:ListingLimitedStockCondition
+#     stock: 1
 
 - type: listing
   id: DSCallUplinkHandheldGPSBasicAlt
@@ -844,3 +847,47 @@
     BlueSpaceCube: 3
   categories:
   - Implants
+
+#category reinforcement
+
+- type: listing
+  id: DSUplinkHamster
+  name: ds-uplink-hamster-name
+  description: ds-uplink-hamster-desc
+  icon: { sprite: Imperial/SpecialUnits/DeathSquad/Pets/radio.rsi, state: radio-hamster }
+  productEntity: ReinforcementRadioDeathSquadHamsterGrey
+  cost:
+    BlueSpaceCube: 8
+  categories:
+  - Reinforcement
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: DSUplinkKitty
+  name: ds-uplink-kitty-name
+  description: ds-uplink-kitty-desc
+  icon: { sprite: Imperial/SpecialUnits/DeathSquad/Pets/radio.rsi, state: radio-cat }
+  productEntity: ReinforcementRadioDeathSquadDeathCat
+  cost:
+    BlueSpaceCube: 15
+  categories:
+  - Reinforcement
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: DSUplinkMonkey
+  name: ds-uplink-monkey-name
+  description: ds-uplink-monkey-desc
+  icon: { sprite: Imperial/SpecialUnits/DeathSquad/Pets/radio.rsi, state: radio-monkey }
+  productEntity: ReinforcementRadioDeathSquadMonkeyDondon
+  cost:
+    BlueSpaceCube: 19
+  categories:
+  - Reinforcement
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1

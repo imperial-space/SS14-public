@@ -15,7 +15,7 @@
         bonusEssences:
           MagicMedievalDarkness: 1
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 40
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
@@ -23,6 +23,7 @@
     icon:
       sprite: Imperial/Medieval/Magic/stone_touch.rsi
       state: flesh_to_stone
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: StoneTouchBeginner
       spellCastDoAfter:
@@ -71,7 +72,7 @@
       groups:
         Burn: 26
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 25
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
@@ -79,6 +80,7 @@
     icon:
       sprite: Imperial/Medieval/Magic/stone_touch.rsi
       state: stone_touch
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: StoneTouchMiddle
       spellCastDoAfter:

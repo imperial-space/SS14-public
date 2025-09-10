@@ -1,6 +1,9 @@
 alerts-low-oxygen-name = [color=red]Низкий уровень кислорода[/color]
 alerts-low-oxygen-desc = В воздухе, которым вы дышите, [color=red]недостаточно кислорода[/color]. Используйте [color=green]дыхательную маску и баллон[/color].
 
+alerts-low-nitrogen-name = [color=red]Низкий уровень азота[/color]
+alerts-low-nitrogen-desc = В воздухе, которым вы дышите, [color=red]недостаточно азота[/color]. Используйте [color=green]дыхательную маску и баллон[/color].
+
 alerts-high-toxin-name = [color=red]Высокий уровень токсинов[/color]
 alerts-high-toxin-desc = В воздухе, которым вы дышите, [color=red]слишком много токсинов[/color]. Используйте [color=green]дыхательную маску и баллон[/color] или покиньте отсек.
 
@@ -23,6 +26,9 @@ alerts-weightless-name = Невесомость
 alerts-weightless-desc =
     Гравитация перестала на вас влиять, и вы бесцельно плывете вокруг. Найдите что-нибудь прочное, за что можно держаться, или бросьте или выстрелите чем-нибудь в противоположном от вас направлении.
     Магнитные ботинки или реактивные ранцы помогут вам двигаться с большим контролем.
+
+alerts-walking-name = Ходьба
+alerts-walking-desc = Вы идете, двигаясь в медленном темпе.
 
 alerts-stunned-name = [color=yellow]Оглушены[/color]
 alerts-stunned-desc = Вы [color=yellow]оглушены[/color]! Что-то мешает вам двигаться или взаимодействовать с объектами.
@@ -84,19 +90,21 @@ alerts-pulling-desc = Вы что-то тянете. Щелкните по ик�
 alerts-bleed-name = [color=red]Кровотечение[/color]
 alerts-bleed-desc = Вы [color=red]истекаете кровью[/color].
 
-alerts-suit-power-name = Энергия костюма
-alerts-suit-power-desc = Каким уровнем энергии обладает ваш костюм космического ниндзя.
-
 alerts-pacified-name = [color=green]Пацифизм[/color]
 alerts-pacified-desc = Вы умиротворены; вы не сможете атаковать кого-либо напрямую.
 
-alerts-battery-name = Батарея
-alerts-battery-desc = Если батарея разрядится, вы не сможете использовать свои способности.
+alerts-adrenaline-name = [color=red]Адреналин[/color]
+alerts-adrenaline-desc = Вы полны адреналина: боль больше вас не замедляет.
 
-alerts-no-battery-name = Нет батареи
-alerts-no-battery-desc = У вас нет батареи, в результате чего вы не можете заряжаться или использовать свои способности.
+alerts-suit-power-name = Энергия костюма
+alerts-suit-power-desc = Показывает каким уровнем энергии обладает ваш костюм космического ниндзя.
+
+alerts-magboots-name = Магнитные ботинки
+alerts-magboots-desc = Вы невосприимчивы к потокам ветра, но двигаетесь немного медленнее.
+
 alerts-revenant-essence-name = Эссенция
 alerts-revenant-essence-desc = Сила душ. Поддерживает вас и используется для активации способностей. Медленно восстанавливается с течением времени.
+
 alerts-revenant-corporeal-name = Материальность
 alerts-revenant-corporeal-desc = Вы физически воплотились. Окружающие видят вас и могут нанести вред.
 alerts-magboots-name = Магнитные ботинки

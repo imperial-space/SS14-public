@@ -67,3 +67,35 @@
   components:
   - type: Stack
     count: 100
+
+- type: entity
+  parent: Telecrystal_sacerdos
+  id: Telecrystal_sacerdos500
+  suffix: 500 TC, Phantom4502
+  components:
+  - type: Stack
+    count: 500
+
+- type: entity
+  parent: Telecrystal_sacerdos
+  id: Telecrystal_sacerdos1000
+  suffix: 1000 TC, Phantom4502
+  components:
+  - type: Stack
+    count: 1000
+
+- type: entity
+  parent: Telecrystal_sacerdos
+  id: Telecrystal_sacerdos5000
+  suffix: 5000 TC, Phantom4502
+  components:
+  - type: Stack
+    count: 5000
+
+- type: entity
+  parent: Telecrystal_sacerdos
+  id: Telecrystal_sacerdos20000
+  suffix: 20000 TC, Phantom4502
+  components:
+  - type: Stack
+    count: 20000

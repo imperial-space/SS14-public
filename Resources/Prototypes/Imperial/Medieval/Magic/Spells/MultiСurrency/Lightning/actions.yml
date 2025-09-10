@@ -15,16 +15,18 @@
           MagicMedievalLight: 1
         bonusEssences:
           MagicMedievalLight: 1
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 22
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/lightning_cast.ogg
     icon:
       sprite: Imperial/Medieval/Magic/lightning.rsi
       state: lightning-basic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalLightningSpellEvent
       spawnedEffectPrototype: MedievalLightningExplosion
       amplitude: 0.4
@@ -80,16 +82,18 @@
   parent: MedievalActionLightningMiddle
   components:
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 20
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/lightning_cast.ogg
     icon:
       sprite: Imperial/Medieval/Magic/lightning.rsi
       state: lightning-adv
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalLightningSpellEvent
       spawnedEffectPrototype: MedievalLightningExplosion
       amplitude: 0.4

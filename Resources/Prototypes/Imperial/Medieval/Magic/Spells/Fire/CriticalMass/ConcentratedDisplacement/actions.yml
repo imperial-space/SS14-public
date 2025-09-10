@@ -25,16 +25,18 @@
   - type: SpellCastEffect
     effectProto: ConcentratedDisplacementSpellCastEffectMiddle
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 16
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 2
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
       sprite: Imperial/Medieval/Magic/nova.rsi
       state: concentrated_displacement
+  - type: TargetAction
+    checkCanAccess: false
+    range: 2
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalEffectConcentratedDisplacementMiddle
       spawnType: SpawnOnMousePosition
@@ -72,16 +74,18 @@
   - type: SpellCastEffect
     effectProto: ConcentratedDisplacementSpellCastEffectSenior
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 18
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 2
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
       sprite: Imperial/Medieval/Magic/nova.rsi
       state: concentrated_displacement2
+  - type: TargetAction
+    checkCanAccess: false
+    range: 2
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalEffectConcentratedDisplacementSenior
       spawnType: SpawnOnMousePosition

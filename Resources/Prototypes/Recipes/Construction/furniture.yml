@@ -208,8 +208,8 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Удобная красная скамейка # Imperial Recipes Locale
   id: RedComfBench
+  name: Удобная красная скамейка # Imperial Recipes Locale
   graph: Seat
   startNode: start
   targetNode: redComfBench

@@ -55,6 +55,10 @@
     PassiveScream:
       collection: MalePassiveScream
 # imperial medieval "emotions" end
+## Imperial UwU reagent start
+    UwU:
+      collection: UwU
+## Imperial UwU reagent end
 
 - type: emoteSounds
   id: FemaleHuman
@@ -112,6 +116,10 @@
     PassiveScream:
       collection: FemalePassiveScream
 # imperial medieval "emotions" end
+## Imperial UwU reagent start
+    UwU:
+      collection: UwU
+## Imperial UwU reagent end
 
 - type: emoteSounds
   id: MaleReptilian
@@ -151,6 +159,10 @@
     PassiveScream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
 # imperial medieval "emotions" end
+## Imperial UwU reagent start
+    UwU:
+      collection: UwU
+## Imperial UwU reagent end
 
 - type: emoteSounds
   id: FemaleReptilian
@@ -190,6 +202,10 @@
     PassiveScream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
 # imperial medieval "emotions" end
+## Imperial UwU reagent start
+    UwU:
+      collection: UwU
+## Imperial UwU reagent end
 
 - type: emoteSounds
   id: MaleSlime
@@ -337,6 +353,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: DeathGasp
+## Imperial UwU reagent start
+    UwU:
+      collection: UwU
+## Imperial UwU reagent end
 
 - type: emoteSounds
   id: UnisexDwarf
@@ -377,6 +397,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
+## Imperial UwU reagent start
+    UwU:
+      collection: UwU
+## Imperial UwU reagent end
 # imperial medieval "emotions" start
     Dreaminess:
       collection: MaleDreaminess
@@ -435,6 +459,10 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+## Imperial UwU reagent start
+    UwU:
+      collection: UwU
+## Imperial UwU reagent end
 # imperial medieval "emotions" start
     Dreaminess:
       collection: FemaleDreaminess
@@ -476,6 +504,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MothDeathGasp
+## Imperial UwU reagent start
+    UwU:
+      collection: UwU
+## Imperial UwU reagent end
 
 - type: emoteSounds
   id: UnisexSilicon
