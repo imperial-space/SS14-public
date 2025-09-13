@@ -23,6 +23,7 @@ namespace Content.Shared.Imperial.Seriozha.Components
 
         /// <summary>
         /// The interval between each regeneration tick.
+        /// Min interval is 0.1f
         /// </summary>
         [DataField]
         public float SecondInterval = 5f;
