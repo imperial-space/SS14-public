@@ -25,7 +25,7 @@
   name: Взять под контроль
   components:
   - type: Action
-    #useDelay: 60 # for test no cd
+    useDelay: 60
     itemIconStyle: BigAction
     icon: { sprite: Imperial/electromouse.rsi, state: sm_shield}
   - type: InstantAction
