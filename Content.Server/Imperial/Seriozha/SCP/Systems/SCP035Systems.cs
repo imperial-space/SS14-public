@@ -1,23 +1,3 @@
-using Content.Server.Stunnable;
-using Content.Shared.Actions;
-using Content.Shared.Damage;
-using Content.Shared.FixedPoint;
-using Content.Shared.Imperial.Seriozha.SCP.Components;
-using Content.Shared.Imperial.Seriozha.SCP.Events;
-using Content.Shared.Inventory;
-using Content.Shared.Inventory.Events;
-using Content.Shared.Mind;
-using Content.Shared.Mind.Components;
-using Content.Shared.Mobs;
-using Content.Shared.Mobs.Systems;
-using Robust.Shared.Containers;
-using Robust.Shared.Timing;
-using Content.Shared.NPC.Systems;
-using Content.Server.NPC.HTN;
-using Content.Shared.NPC.Components;
-
-namespace Content.Server.Imperial.Seriozha.SCP.Systems;
-
 /*
 private static readonly Dictionary<string, string> TemporarySlotMap = new()
     {
@@ -38,6 +18,26 @@ private static readonly Dictionary<string, string> TemporarySlotMap = new()
         {"suitstorage", "SUITSTORAGE"},
     };
 */
+/*
+using Content.Server.Stunnable;
+using Content.Shared.Actions;
+using Content.Shared.Damage;
+using Content.Shared.FixedPoint;
+using Content.Shared.Imperial.Seriozha.SCP.Components;
+using Content.Shared.Imperial.Seriozha.SCP.Events;
+using Content.Shared.Inventory;
+using Content.Shared.Inventory.Events;
+using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
+using Robust.Shared.Containers;
+using Robust.Shared.Timing;
+using Content.Shared.NPC.Systems;
+using Content.Server.NPC.HTN;
+using Content.Shared.NPC.Components;
+
+namespace Content.Server.Imperial.Seriozha.SCP.Systems;
 
 public sealed partial class SCP035System : EntitySystem
 {
@@ -178,3 +178,4 @@ public sealed partial class SCP035System : EntitySystem
         Controll(comp, true);
     }
 }
+*/

@@ -1,43 +1,43 @@
-- type: entity
-  id: ActionSCP035Into
-  name: Надеться на человека
-  components:
-  - type: Action
-    useDelay: 60
-    itemIconStyle: BigAction
-    icon: { sprite: Imperial/electromouse.rsi, state: sm_shield}
-  - type: EntityTargetAction
-    event: !type:SCP035IntoEvent
+# - type: entity
+#   id: ActionSCP035Into
+#   name: Надеться на человека
+#   components:
+#   - type: Action
+#     useDelay: 60
+#     itemIconStyle: BigAction
+#     icon: { sprite: Imperial/electromouse.rsi, state: sm_shield}
+#   - type: EntityTargetAction
+#     event: !type:SCP035IntoEvent
 
-- type: entity
-  id: ActionSCP035Outo
-  name: Сняться
-  components:
-  - type: Action
-    useDelay: 1
-    itemIconStyle: BigAction
-    icon: { sprite: Imperial/electromouse.rsi, state: sm_shield}
-  - type: InstantAction
-    event: !type:SCP035OutoEvent
+# - type: entity
+#   id: ActionSCP035Outo
+#   name: Сняться
+#   components:
+#   - type: Action
+#     useDelay: 1
+#     itemIconStyle: BigAction
+#     icon: { sprite: Imperial/electromouse.rsi, state: sm_shield}
+#   - type: InstantAction
+#     event: !type:SCP035OutoEvent
 
-- type: entity
-  id: ActionSCP035Control
-  name: Взять под контроль
-  components:
-  - type: Action
-    useDelay: 60
-    itemIconStyle: BigAction
-    icon: { sprite: Imperial/electromouse.rsi, state: sm_shield}
-  - type: InstantAction
-    event: !type:SCP035ControlEvent
+# - type: entity
+#   id: ActionSCP035Control
+#   name: Взять под контроль
+#   components:
+#   - type: Action
+#     useDelay: 60
+#     itemIconStyle: BigAction
+#     icon: { sprite: Imperial/electromouse.rsi, state: sm_shield}
+#   - type: InstantAction
+#     event: !type:SCP035ControlEvent
 
-- type: entity
-  id: ActionSCP035Heal
-  name: Вылечить труп
-  components:
-  - type: Action
-    useDelay: 120
-    itemIconStyle: BigAction
-    icon: { sprite: Imperial/electromouse.rsi, state: sm_shield}
-  - type: InstantAction
-    event: !type:SCP035HealEvent
+# - type: entity
+#   id: ActionSCP035Heal
+#   name: Вылечить труп
+#   components:
+#   - type: Action
+#     useDelay: 120
+#     itemIconStyle: BigAction
+#     icon: { sprite: Imperial/electromouse.rsi, state: sm_shield}
+#   - type: InstantAction
+#     event: !type:SCP035HealEvent

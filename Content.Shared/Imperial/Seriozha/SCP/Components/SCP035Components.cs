@@ -1,4 +1,4 @@
-using Content.Shared.NPC.Prototypes;
+/*using Content.Shared.NPC.Prototypes;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations;
@@ -25,3 +25,4 @@ public sealed partial class SCP035Component : Component
     public ProtoId<NpcFactionPrototype> FactionToChange = "SyndicateAgent";
     #endregion
 }
+*/

@@ -276,7 +276,7 @@
         Stamina: 0.4
   - type: ExplosionResistance
     damageCoefficient: 0.0
-  - type: SCP035
+#  - type: SCP035
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 2
