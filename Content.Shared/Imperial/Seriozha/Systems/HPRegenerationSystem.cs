@@ -3,7 +3,7 @@ using Content.Shared.Imperial.Seriozha.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Timing;
 
-namespace Content.Server.Imperial.Seriozha.Systems;
+namespace Content.Shared.Imperial.Seriozha.Systems;
 
 public sealed partial class HPRegenerationSystem : EntitySystem
 {
@@ -29,20 +29,15 @@ public sealed partial class HPRegenerationSystem : EntitySystem
         var query = EntityQueryEnumerator<HPRegenerationComponent>();
         while (query.MoveNext(out var uid, out var regenComp))
         {
-            if (regenComp.SecondInterval <= 0f)
-                continue;
-            var step = TimeSpan.FromSeconds(regenComp.SecondInterval);
             if (curTime < regenComp.NextRegenTime)
                 continue;
 
             if (_mobState.IsDead(uid))
                 continue;
 
-            do
-            {
-                _damageable.TryChangeDamage(uid, regenComp.RegenerationAmount, true);
-                regenComp.NextRegenTime += step;
-            } while (curTime >= regenComp.NextRegenTime);
+            _damageable.TryChangeDamage(uid, regenComp.RegenerationAmount, true);
+
+            regenComp.NextRegenTime = curTime + TimeSpan.FromSeconds(regenComp.SecondInterval);
         }
     }
 }
