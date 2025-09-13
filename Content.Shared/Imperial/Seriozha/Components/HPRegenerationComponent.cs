@@ -1,13 +1,12 @@
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
-using Content.Shared.Imperial.Seriozha.Systems;
 
 namespace Content.Shared.Imperial.Seriozha.Components
 {
     /// <summary>
     /// This component is used to give an entity HP regeneration over time.
     /// </summary>
-    [RegisterComponent, Access(typeof(HPRegenerationSystem))]
+    [RegisterComponent]
     public sealed partial class HPRegenerationComponent : Component
     {
         /// <summary>

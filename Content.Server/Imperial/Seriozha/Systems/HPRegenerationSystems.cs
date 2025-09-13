@@ -3,7 +3,7 @@ using Content.Shared.Imperial.Seriozha.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Timing;
 
-namespace Content.Shared.Imperial.Seriozha.Systems;
+namespace Content.Server.Imperial.Seriozha.Systems;
 
 public sealed partial class HPRegenerationSystem : EntitySystem
 {

@@ -220,7 +220,7 @@
           - MobLayer
 
 - type: entity
-  parent: [ ClothingHeadHelmetArmoredBase, BaseMajorContraband]
+  parent: [ ClothingHeadHelmetArmoredBase, BaseMajorContraband, BaseMob]
   id: ImperialSCPMask
   name: Mask
   suffix: seriozha, Недра
@@ -244,6 +244,33 @@
         Stamina: 0.4
   - type: ExplosionResistance
     damageCoefficient: 0.0
+  - type: SCP035
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - SCPconnection
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - SCPconnection
+  - type: Tag
+    tags:
+    - SCP
+  - type: NoSlip
+  - type: MovementIgnoreGravity
+  - type: ZombieImmune
+  - type: NonSpreaderZombie
+  - type: FlashImmunity
+  - type: Grammar
+    attributes:
+      gender: male
+  - type: Body
+    prototype: Human
 
 - type: entity
   name: Doctor
@@ -429,3 +456,12 @@
   id: ImperialAvelGear
   inhand:
   - ImperialSCPKatana
+
+- type: entity
+  noSpawn: true
+  id: ImperialSCPMind
+  name: inside out # doesn't need for localization, cuz not seen nowhere
+  components:
+  - type: MindContainer
+  - type: Item
+    size: Tiny
