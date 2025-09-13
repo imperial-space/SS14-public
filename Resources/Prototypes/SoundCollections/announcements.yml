@@ -8,4 +8,4 @@
 - type: soundCollection
   id: PowerOn
   files:
-  - /Audio/Announcements/power_on.ogg
+  - /Audio/Imperial/Announcements/power_on.ogg

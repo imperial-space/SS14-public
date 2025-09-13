@@ -94,7 +94,7 @@
     canShuttle: false
     global: true #announce to everyone they're about to fuck shit up
     announceSentBy: true
-    sound: /Audio/Announcements/war.ogg
+    sound: /Audio/Imperial/Announcements/war.ogg
   - type: PointLight
     radius: 3
     energy: 3.2
@@ -123,7 +123,7 @@
     canShuttle: false
     global: true #announce to everyone they're about to fuck shit up
     announceSentBy: true
-    sound: /Audio/Announcements/war.ogg
+    sound: /Audio/Imperial/Announcements/war.ogg
   - type: PointLight
     radius: 3
     energy: 3.2
@@ -204,7 +204,7 @@
     - type: HitscanBatteryAmmoProvider
       proto: ChefEngeneerLaser
       fireCost: 80
-    
+
 - type: entity
   parent: BasePlushieCharacter
   id: PlushieZevs
@@ -222,7 +222,7 @@
   - type: StorageFill
     contents:
       - id: CombatMedipen
-  
-      
-        
+
+
+
 

@@ -4,34 +4,34 @@
   levels:
     green:
       announcement: alert-level-green-announcement
-      sound: /Audio/Imperial/downtoGREEN.ogg
+      sound: /Audio/Imperial/Announcements/green.ogg
       color: Green
       emergencyLightColor: LawnGreen
       shuttleTime: 600
     blue:
       announcement: alert-level-blue-announcement
-      sound: /Audio/Imperial/blue.ogg
+      sound: /Audio/Imperial/Announcements/blue.ogg
       color: DodgerBlue
       forceEnableEmergencyLights: true
       emergencyLightColor: DodgerBlue
       shuttleTime: 600
     violet:
       announcement: alert-level-violet-announcement
-      sound: /Audio/Misc/notice1.ogg
+      sound: /Audio/Imperial/Announcements/violet.ogg
       color: Violet
       emergencyLightColor: Violet
       forceEnableEmergencyLights: true
       shuttleTime: 600
     yellow:
       announcement: alert-level-yellow-announcement
-      sound: /Audio/Misc/notice1.ogg
+      sound: /Audio/Imperial/Announcements/yellow.ogg
       color: Yellow
       emergencyLightColor: Goldenrod
       forceEnableEmergencyLights: true
       shuttleTime: 600
     red:
       announcement: alert-level-red-announcement
-      sound: /Audio/Imperial/red.ogg
+      sound: /Audio/Imperial/Announcements/red.ogg
       color: Red
       emergencyLightColor: Red
       forceEnableEmergencyLights: true
@@ -40,7 +40,7 @@
       announcement: alert-level-gamma-announcement
       selectable: false
       sound:
-        path: /Audio/Misc/siren.ogg
+        path: /Audio/Imperial/Announcements/gamma.ogg
         params:
           volume: -2
       disableSelection: true
@@ -51,7 +51,7 @@
       announcement: alert-level-delta-announcement
       selectable: false
       sound:
-        path: /Audio/Imperial/delta.ogg
+        path: /Audio/Imperial/Announcements/delta.ogg
         params:
           volume: -3
       disableSelection: true
@@ -63,7 +63,7 @@
       announcement: alert-level-epsilon-announcement
       selectable: false
       sound:
-        path: /Audio/Misc/epsilon.ogg
+        path: /Audio/Imperial/Announcements/epsilon.ogg
         params:
           volume: -2
       disableSelection: true

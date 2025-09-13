@@ -5,7 +5,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
-      path: /Audio/Announcements/aliens.ogg
+      path: /Audio/Imperial/Announcements/aliens.ogg
     weight: 5
   - type: VentCrittersRule
     entries:

@@ -78,7 +78,7 @@
   - type: StationEvent
     startAnnouncementColor: "#18abf5"
     startAudio:
-      path: /Audio/Corvax/Announcements/flux.ogg
+      path: /Audio/Imperial/Announcements/flux.ogg
     weight: 8
     duration: 35
   - type: AnomalySpawnRule
@@ -94,7 +94,7 @@
   - type: StationEvent
     startAnnouncementColor: "#18abf5"
     startAudio:
-      path: /Audio/Corvax/Announcements/blusp_anomalies.ogg
+      path: /Audio/Imperial/Announcements/bluespace_artifact.ogg
     weight: 8
     duration: 35
   - type: BluespaceArtifactRule
@@ -345,10 +345,10 @@
   - type: StationEvent
     startAnnouncement: station-event-gas-leak-start-announcement
     startAudio:
-      path: /Audio/Announcements/gasleak_start.ogg
+      path: /Audio/Imperial/Announcements/gasleak_start.ogg
     endAnnouncement: station-event-gas-leak-end-announcement
     endAudio:
-      path: /Audio/Announcements/gasleak_end.ogg
+      path: /Audio/Imperial/Announcements/gasleak_end.ogg
     weight: 8
   - type: GasLeakRule
 
@@ -372,11 +372,11 @@
     startAnnouncement: station-event-power-grid-check-start-announcement
     endAnnouncement: station-event-power-grid-check-end-announcement
     startAudio:
-      path: /Audio/Announcements/power_off.ogg
+      path: /Audio/Imperial/Announcements/power_off.ogg
       params:
         volume: -4
     endAudio:
-      path: /Audio/Announcements/power_on.ogg
+      path: /Audio/Imperial/Announcements/power_on.ogg
     duration: 60
     maxDuration: 120
   - type: PowerGridCheckRule
@@ -390,7 +390,7 @@
     startAnnouncement: station-event-solar-flare-start-announcement
     endAnnouncement: station-event-solar-flare-end-announcement
     startAudio:
-      path: /Audio/Corvax/Announcements/comms_blackout.ogg
+      path: /Audio/Imperial/Announcements/solarflare.ogg
     duration: 120
     maxDuration: 240
   - type: SolarFlareRule
@@ -416,7 +416,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-clog-start-announcement
     startAudio:
-      path: /Audio/Announcements/ventclog.ogg
+      path: /Audio/Imperial/Announcements/ventclog.ogg
     earliestStart: 15
     minimumPlayers: 15
     weight: 5
@@ -430,7 +430,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
-      path: /Audio/Announcements/aliens.ogg
+      path: /Audio/Imperial/Announcements/aliens.ogg
     earliestStart: 20
     minimumPlayers: 15
     weight: 5
@@ -459,7 +459,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
-      path: /Audio/Announcements/aliens.ogg
+      path: /Audio/Imperial/Announcements/aliens.ogg
     earliestStart: 20
     minimumPlayers: 15
     weight: 5
@@ -480,7 +480,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
-      path: /Audio/Announcements/aliens.ogg
+      path: /Audio/Imperial/Announcements/aliens.ogg
     earliestStart: 20
     minimumPlayers: 15
     weight: 5
@@ -497,7 +497,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
-      path: /Audio/Announcements/aliens.ogg
+      path: /Audio/Imperial/Announcements/aliens.ogg
     earliestStart: 20
     minimumPlayers: 20
     weight: 1.5
@@ -587,7 +587,7 @@
     maxOccurrences: 1 # can only happen once per round
     startAnnouncement: station-event-communication-interception
     startAudio:
-      path: /Audio/Announcements/intercept.ogg
+      path: /Audio/Imperial/Announcements/intercept.ogg
     duration: null # the rule has to last the whole round not 1 second
     occursDuringRoundEnd: false
   - type: AlertLevelInterceptionRule
@@ -647,7 +647,7 @@
   components:
   - type: StationEvent
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/Imperial/Announcements/greytide.ogg
     weight: 5
     minimumPlayers: 25
     reoccurrenceDelay: 20

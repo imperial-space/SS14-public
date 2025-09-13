@@ -34,5 +34,5 @@ public sealed partial class CallJRTViaCentcomFaxComponent : Component
     /// Sound override for the announcement.
     /// </summary>
     [DataField]
-    public SoundSpecifier? Sound = new SoundPathSpecifier("/Audio/Announcements/attention.ogg");
+    public SoundSpecifier? Sound = new SoundPathSpecifier("/Audio/Imperial/Announcements/attention.ogg");
 }
