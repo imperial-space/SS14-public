@@ -116,7 +116,7 @@ public sealed partial class SCP035System : EntitySystem
     }
     private void TryUnequip(EntityUid uid, SCP035Component comp, BeingUnequippedAttemptEvent ev)
     {
-        if (comp.In != null || !comp.TryinUneq) ev.Cancel();
+        if (comp.In != null || comp.TryinUneq) ev.Cancel();
     }
     private void SCP035Into(EntityUid uid, SCP035Component comp, SCP035IntoEvent ev)
     {
