@@ -63,7 +63,7 @@ public sealed partial class SCP035System : EntitySystem
     }
     private void Controll(SCP035Component comp, bool corpse)
     {
-        if (!TryComp<MindContainerComponent>(comp.In, out var mindContainerComponent) || !mindContainerComponent.HasMind || comp.In == null) return;
+        if (!TryComp<MindContainerComponent>(comp.In, out var mindContainerComponent) || !mindContainerComponent.HasMind || comp.In == null) continue;
         var oobject = Spawn(comp.Prototype);
 
         var mind = mindContainerComponent.Mind.Value;
