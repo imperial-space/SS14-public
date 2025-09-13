@@ -131,6 +131,7 @@
     - ServiceStatic
     - PowerCellsStatic
     - ElectronicsStatic
+    - AtmosphericStatic # Imperial Atmos changes
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SecurityAmmoStatic

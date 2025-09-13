@@ -1,0 +1,225 @@
+# Трубы
+- type: atmosphericRcd
+  id: GasPipeStraight
+  category: Pipes
+  sprite: /Textures/Imperial/Gases/Tools/Atmospheric_RCD/storageStraight.png
+  mode: ConstructObject
+  prototype: GasPipeStraight
+  cost: 1
+  delay: 0.5
+  collisionMask: Impassable
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  Atmosphericrotation: User
+  fx: EffectRCDConstruct2
+
+- type: atmosphericRcd
+  id: GasPipeBend
+  category: Pipes
+  sprite:  /Textures/Imperial/Gases/Tools/Atmospheric_RCD/storageBend.png
+  mode: ConstructObject
+  prototype: GasPipeBend
+  cost: 1
+  delay: 0.5
+  collisionMask: Impassable
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  Atmosphericrotation: User
+  fx: EffectRCDConstruct2
+
+- type: atmosphericRcd
+  id: GasPipeFourway
+  category: Pipes
+  sprite:  /Textures/Imperial/Gases/Tools/Atmospheric_RCD/storageFourway.png
+  mode: ConstructObject
+  prototype: GasPipeFourway
+  cost: 1
+  delay: 0.5
+  collisionMask: Impassable
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  Atmosphericrotation: User
+  fx: EffectRCDConstruct2
+
+- type: atmosphericRcd
+  id: GasPipeTJunction
+  category: Pipes
+  sprite:  /Textures/Imperial/Gases/Tools/Atmospheric_RCD/storageTJunction.png
+  mode: ConstructObject
+  prototype: GasPipeTJunction
+  cost: 1
+  delay: 0.5
+  collisionMask: Impassable
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  Atmosphericrotation: User
+  fx: EffectRCDConstruct2
+
+# Скрубберы и вентиляции
+- type: atmosphericRcd
+  id: GasVentScrubber
+  category: Unary
+  sprite:  /Textures/Imperial/Gases/Tools/Atmospheric_RCD/scrubber.png
+  mode: ConstructObject
+  prototype: GasVentScrubber
+  cost: 1
+  delay: 0.5
+  collisionMask: Impassable
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  Atmosphericrotation: User
+  fx: EffectRCDConstruct2
+
+- type: atmosphericRcd
+  id: GasPassiveVent
+  category: Unary
+  sprite:  /Textures/Imperial/Gases/Tools/Atmospheric_RCD/GasVentPassive.png
+  mode: ConstructObject
+  prototype: GasPassiveVent
+  cost: 1
+  delay: 0.5
+  collisionMask: Impassable
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  Atmosphericrotation: User
+  fx: EffectRCDConstruct2
+
+- type: atmosphericRcd
+  id: GasVentPump
+  category: Unary
+  sprite:  /Textures/Imperial/Gases/Tools/Atmospheric_RCD/GasVent.png
+  mode: ConstructObject
+  prototype: GasVentPump
+  cost: 1
+  delay: 0.5
+  collisionMask: Impassable
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  Atmosphericrotation: User
+  fx: EffectRCDConstruct2
+
+- type: atmosphericRcd
+  id: GasOutletInjector
+  category: Unary
+  sprite:  /Textures/Imperial/Gases/Tools/Atmospheric_RCD/Injector.png
+  mode: ConstructObject
+  prototype: GasOutletInjector
+  cost: 1
+  delay: 0.5
+  collisionMask: Impassable
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  Atmosphericrotation: User
+  fx: EffectRCDConstruct2
+
+# Насосы, клапаны радиаторы
+- type: atmosphericRcd
+  id: GasPressurePump
+  category: Trinary
+  sprite:  /Textures/Imperial/Gases/Tools/Atmospheric_RCD/GasPump.png
+  mode: ConstructObject
+  prototype: GasPressurePump
+  cost: 1
+  delay: 0.5
+  collisionMask: Impassable
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  Atmosphericrotation: User
+  fx: EffectRCDConstruct2
+
+- type: atmosphericRcd
+  id: GasVolumePump
+  category: Trinary
+  sprite:  /Textures/Imperial/Gases/Tools/Atmospheric_RCD/GasPumpVolume.png
+  mode: ConstructObject
+  prototype: GasVolumePump
+  cost: 1
+  delay: 0.5
+  collisionMask: Impassable
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  Atmosphericrotation: User
+  fx: EffectRCDConstruct2
+
+- type: atmosphericRcd
+  id: SignalControlledValve
+  category: Trinary
+  sprite:  /Textures/Imperial/Gases/Tools/Atmospheric_RCD/SignalValve.png
+  mode: ConstructObject
+  prototype: SignalControlledValve
+  cost: 1
+  delay: 0.5
+  collisionMask: Impassable
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  Atmosphericrotation: User
+  fx: EffectRCDConstruct2
+
+- type: atmosphericRcd
+  id: GasPort
+  category: Trinary
+  sprite:  /Textures/Imperial/Gases/Tools/Atmospheric_RCD/gasCanisterPort.png
+  mode: ConstructObject
+  prototype: GasPort
+  cost: 1
+  delay: 0.5
+  collisionMask: Impassable
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  Atmosphericrotation: User
+  fx: EffectRCDConstruct2
+
+- type: atmosphericRcd
+  id: HeatExchanger
+  category: Trinary
+  sprite:  /Textures/Imperial/Gases/Tools/Atmospheric_RCD/radiator.png
+  mode: ConstructObject
+  prototype: HeatExchanger
+  cost: 2
+  delay: 0.5
+  collisionMask: Impassable
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  Atmosphericrotation: User
+  fx: EffectRCDConstruct2
+
+# Фильтры и смесители
+- type: atmosphericRcd
+  id: GasFilter
+  category: Filter
+  sprite:  /Textures/Imperial/Gases/Tools/Atmospheric_RCD/GasFilter.png
+  mode: ConstructObject
+  prototype: GasFilter
+  cost: 2
+  delay: 0.5
+  collisionMask: Impassable
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  Atmosphericrotation: User
+  fx: EffectRCDConstruct2
+
+- type: atmosphericRcd
+  id: GasFilterFlipped
+  category: Filter
+  sprite: /Textures/Imperial/Gases/Tools/Atmospheric_RCD/GasFilterAlt.png
+  mode: ConstructObject
+  prototype: GasFilterFlipped
+  cost: 2
+  delay: 0.5
+  collisionMask: Impassable
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  Atmosphericrotation: User
+  fx: EffectRCDConstruct2
+
+- type: atmosphericRcd
+  id: GasMixer
+  category: Filter
+  sprite:  /Textures/Imperial/Gases/Tools/Atmospheric_RCD/GasMixer.png
+  mode: ConstructObject
+  prototype: GasMixer
+  cost: 2
+  delay: 0.5
+  collisionMask: Impassable
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  Atmosphericrotation: User
+  fx: EffectRCDConstruct2
+
+- type: atmosphericRcd
+  id: GasMixerFlipped
+  category: Filter
+  sprite:  /Textures/Imperial/Gases/Tools/Atmospheric_RCD/GasMixerAlt.png
+  mode: ConstructObject
+  prototype: GasMixerFlipped
+  cost: 2
+  delay: 0.5
+  collisionMask: Impassable
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  Atmosphericrotation: User
+  fx: EffectRCDConstruct2
+# Оборудование из водорода

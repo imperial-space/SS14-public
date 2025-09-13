@@ -55,6 +55,9 @@
         - ReagentId: Tritium
           Quantity: 5
         canReact: false
+  - type: Tag
+    tags:
+      - Sheet
 
 - type: material
   id: Hydrogen
