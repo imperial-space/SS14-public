@@ -120,7 +120,7 @@ public sealed partial class SCP035System : EntitySystem
     }
     private void SCP035Into(EntityUid uid, SCP035Component comp, SCP035IntoEvent ev)
     {
-        if (comp.In != null) return;
+        if (comp.In != null || ev.Handled) return;
         ev.Handled = true;
         _inventory.TryEquip(ev.Target, uid, "HELMET", true, true);
         comp.In = ev.Target;
