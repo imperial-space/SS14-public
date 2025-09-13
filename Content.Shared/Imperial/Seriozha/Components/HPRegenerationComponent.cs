@@ -17,7 +17,7 @@ namespace Content.Shared.Imperial.Seriozha.Components
         {
             DamageDict = new Dictionary<string, FixedPoint2>()
             {
-                { "Blunt", 5 },
+                { "Blunt", -5 },
             }
         };
 
