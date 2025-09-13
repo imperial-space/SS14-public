@@ -128,7 +128,7 @@ public sealed partial class SCP035System : EntitySystem
     }
     private void SCP035Outo(EntityUid uid, SCP035Component comp, SCP035OutoEvent ev)
     {
-        if (comp.In == null || comp.Object == null || comp.Container == null || comp.UnderControl) return;
+        if (comp.In == null || comp.Object == null || comp.Container == null || comp.UnderControl || ev.Handled) return;
         comp.TryinUneq = true;
         _inventory.TryUnequip(comp.In.Value, "HELMET");
         _stun.TryStun(comp.In.Value, TimeSpan.FromSeconds(5), false);
