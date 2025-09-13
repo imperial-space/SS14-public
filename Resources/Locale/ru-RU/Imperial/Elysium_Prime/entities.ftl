@@ -131,7 +131,7 @@ ent-ReinforcedWindowWhiteElysiumPrime = армированное окно
 
 
 ent-FederationAccessManipulator = Манипулятор доступов
-    .desc = Пахнет как ключи от капитализма.
+    .desc = Пахнет ключами капитализма.
 
 ent-FloorLamp = Напольная лампа
     .desc = Напольное освещение
@@ -179,3 +179,8 @@ ent-ShoulderBeaconWhite = Белый наплечный маячок
     .desc = Маячок, что подает сигналы о том, кто вы.
 ent-ShoulderBeaconYellow = Желтый наплечный маячок
     .desc = Маячок, что подает сигналы о том, кто вы.
+
+comms-console-announcement-title-Federation = Федерации Elysium Prime
+
+ent-ElysiumPrimeComputerComms = Консоль федеративной связи
+    .desc = С помощью нее можно давать обещания, которым не суждено сбыться.

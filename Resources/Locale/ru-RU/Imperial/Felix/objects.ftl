@@ -16,6 +16,27 @@ ent-EncryptionKeySpecOperation = ключ шифрования
 ent-EncryptionKeyAirGroup = ключ шифрования
     .desc = Ключ шифрования
 
+ent-ClothingHeadsetFADAK9MAdministration = Полноразмерная гарнитура администрации
+    .desc = Гарнитура, используемая администраций
+
+ent-ClothingHeadsetFADAK9MPolice = Полноразмерная гарнитура полиция
+    .desc = Гарнитура, используемая полиций
+
+ent-ClothingHeadsetFADAK9MShipyard = Полноразмерная гарнитура "Верфь"
+    .desc = Гарнитура, используемая Верфью
+
+ent-ClothingHeadsetFADAK9MBank = Полноразмерная гарнитура банка
+    .desc = Гарнитура, используемая банком
+
+ent-ClothingHeadsetFADAK9MSpecialist = Полноразмерная гарнитура торгового дока
+    .desc = Гарнитура, используемая торговым доком
+
+ent-ClothingHeadsetFADAK9MWastes = Полноразмерная гарнитура фабрики отходов
+    .desc = Гарнитура, используемая фабрикой отходов
+
+ent-ClothingHeadsetFADAK9MMiner = Полноразмерная гарнитура шахты
+    .desc = Гарнитура, используемая шахтерами
+
 id-card-access-level-starcorps = Звёздный Корпус
 job-name-starcorps = Звёздный Корпус
 job-name-federation = Федерация
