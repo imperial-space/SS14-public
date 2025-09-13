@@ -151,6 +151,7 @@ public sealed partial class SCP035System : EntitySystem
     private void DoControl(EntityUid uid, SCP035Component comp, SCP035ControlEvent _)
     {
         if (!TryComp<MindContainerComponent>(comp.In, out var mindContainerComponent) || !mindContainerComponent.HasMind || comp.In == null || _mobState.IsDead(comp.In.Value)) return;
+        ev.Handled = true;
         Controll(comp, false);
         if (!comp.Corpses.ContainsKey(comp.In.Value)) comp.Corpses.TryAdd(comp.In.Value, false);
         comp.UnderControl = true;
