@@ -14,13 +14,21 @@ public sealed partial class HPRegenerationSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<HPRegenerationComponent, MapInitEvent>(OnInit);
+        SubscribeLocalEvent<HPRegenerationComponent, ComponentStartup>(OnStartup);
     }
 
     private void OnInit(EntityUid uid, HPRegenerationComponent component, MapInitEvent args)
     {
         component.NextRegenTime = _timing.CurTime + TimeSpan.FromSeconds(component.SecondInterval);
+        component.SecondInterval = MathF.Max(0.1f, component.SecondInterval);
+        component.NextRegenTime = _timing.CurTime + TimeSpan.FromSeconds(component.SecondInterval);
     }
 
+    private void OnStartup(EntityUid uid, HPRegenerationComponent component, ComponentStartup args)
+    {
+        component.SecondInterval = MathF.Max(0.1f, component.SecondInterval);
+        component.NextRegenTime = _timing.CurTime + TimeSpan.FromSeconds(component.SecondInterval);
+    }
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
