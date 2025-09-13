@@ -1304,3 +1304,30 @@
         map: ["enum.PaperVisualLayers.Stamp"]
         visible: false
 
+- type: entity
+  parent: ComputerComms
+  id: ElysiumPrimeComputerComms
+  name: Federation communications computer
+  description: It allows you to make promises that will never come true.
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Objects/Computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: console
+    - map: ["computerLayerScreen"]
+      state: Comm
+  - type: AccessReader
+    access: [[ "Federationadmin" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-Federation
+    color: "#244e17"
+    canShuttle: false
+    global: true
+    sound: /Audio/Imperial/ElysiumPrime/AdminAnons.ogg
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#00FF00"
+

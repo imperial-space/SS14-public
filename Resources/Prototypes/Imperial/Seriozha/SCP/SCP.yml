@@ -24,6 +24,8 @@
       enabled: false
     - type: ZombieImmune
     - type: NonSpreaderZombie
+    - type: Clumsy
+    - type: CanHostGuardian
     - type: Damageable
       damageModifierSet: SCPStandart
     - type: Body
@@ -171,7 +173,7 @@
 - type: entity
   name: Avel
   suffix: seriozha, Недра
-  parent: ImperialSCPBase
+  parent: [ ImperialSCPBase, StripableInventoryBase ]
   id: ImperialSCPAvel
   description: Pray.
   components:
@@ -197,6 +199,7 @@
       baseWalkSpeed: 3.2
       baseSprintSpeed: 2.8
     - type: Hands
+      showInHands: true
     - type: Puller
     - type: Pullable
     - type: Loadout
@@ -220,7 +223,36 @@
           - MobLayer
 
 - type: entity
-  parent: [ ClothingHeadHelmetArmoredBase, BaseMajorContraband, BaseMob]
+  name: Katana
+  suffix: seriozha, Недра
+  parent: [ BaseSword, BaseMajorContraband ]
+  id: ImperialSCPKatana
+  description: An ancient war blade.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
+  - type: Item
+    size: Ginormous
+    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
+    slots:
+    - Belt
+  - type: MeleeWeapon
+    attackRate: 1.25
+    damage:
+      types:
+        Structural: 90
+        Slash: 60
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+  - type: Reflect
+    reflectProb: 0.15
+    spread: 90
+  - type: DisarmMalus
+
+- type: entity
+  parent: [ ClothingHeadHelmetArmoredBase, BaseMajorContraband]
   id: ImperialSCPMask
   name: Mask
   suffix: seriozha, Недра
@@ -344,33 +376,81 @@
           - MobLayer
 
 - type: entity
-  name: Katana
+  name: Jelly monster
   suffix: seriozha, Недра
-  parent: [ BaseSword, BaseMajorContraband ]
-  id: ImperialSCPKatana
-  description: An ancient war blade.
+  parent: BaseMobAdultSlimes
+  id: ImperialSCPJelly
+  description: The kindest blob of slime in the galaxy.
   components:
-  - type: Sprite
-    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
-  - type: Item
-    size: Ginormous
-    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
-  - type: Clothing
-    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
-    slots:
-    - Belt
-  - type: MeleeWeapon
-    attackRate: 1.25
-    damage:
-      types:
-        Structural: 90
-        Slash: 60
-    soundHit:
-        path: /Audio/Weapons/bladeslice.ogg
-  - type: Reflect
-    reflectProb: 0.15
-    spread: 90
-  - type: DisarmMalus
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/SCP/objects/Jelly.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        500: Dead
+    - type: Damageable
+      damageModifierSet: SCPStandart
+    - type: Bloodstream
+      bloodMaxVolume: 0
+    - type: MeleeWeapon
+      hidden: true
+      altDisarm: false
+      soundHit:
+        path: /Audio/Weapons/punch3.ogg
+      angle: 0
+      animation: WeaponArcPunch
+      damage:
+        types:
+          Blunt: 3
+          Caustic: 3
+    - type: ReplacementAccent
+      accent: slimes
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3.6
+      baseSprintSpeed: 3.2
+    - type: IntrinsicRadioReceiver
+    - type: ActiveRadio
+      channels:
+      - SCPconnection
+    - type: IntrinsicRadioTransmitter
+      channels:
+      - SCPconnection
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: FootstepSlime
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+      - FootstepSound
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+    - type: Speech
+      speechVerb: Slime
+      speechSounds: Slime
+      allowedEmotes: ['Squish']
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 200
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
 
 - type: emoteSounds
   id: DedVoice
@@ -436,13 +516,14 @@
 - type: damageModifierSet
   id: SCPStandart
   coefficients:
-    Poison: 0.1
-    Blunt: 0.4
-    Slash: 0.7
-    Piercing: 0.8
+    Poison: 0.2
+    Blunt: 0.5
+    Slash: 0.8
+    Piercing: 0.9
     Cellular: 0.9
     Radiation: 0.0
     Caustic: 0.0
+    Stun: 0.0
 
 - type: damageModifierSet
   id: SCPFireMan
@@ -451,6 +532,7 @@
     Poison: 0.0
     Radiation: 0.0
     Caustic: 0.0
+    Stun: 0.0
 
 - type: startingGear
   id: ImperialAvelGear
