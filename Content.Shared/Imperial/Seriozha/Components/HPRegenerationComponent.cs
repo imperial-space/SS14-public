@@ -30,6 +30,7 @@ namespace Content.Shared.Imperial.Seriozha.Components
         /// <summary>
         /// The next time at which the entity will regenerate HP.
         /// </summary>
+        [ViewVariables(VVAccess.ReadOnly)]
         public TimeSpan NextRegenTime;
     }
 }
