@@ -251,7 +251,7 @@ namespace Content.Shared.Atmos
         public const float HydrogenBurnOxyFactor = 100f;
         public const float HydrogenBurnHydrFactor = 10f;
         public const float HydrogenProductionMaxEfficiencyTemperature = 2273f;
-        public const float HydrogenProductionConversionRate = 20f;
+        public const float HydrogenProductionConversionRate = 2273f;
         public const float N2OzonProductionMaxEfficiencyTemperature = 2273f;
         public const float N2OzonProductionConversionRate = 2273f;
 
