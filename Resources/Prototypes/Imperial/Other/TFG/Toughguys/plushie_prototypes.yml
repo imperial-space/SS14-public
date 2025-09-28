@@ -367,3 +367,103 @@
       orGroup: PlushieImi
 
 ### Имиринка Ирисова END
+
+## очень интересный текст (Плюшки для по запросу ilya_kovalchuk)
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieAnastasia
+  name: Anastasia Baranova
+  suffix: COMMUNITY,TOY
+  description: The most tolerant passenger of NT, who traveled many times with fake documents, was eventually sent to permanent confinement in one of NT's prisons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/TFG/Toughguys/duo.rsi
+    state: anastasia
+  - type: ContainerContainer
+    containers:
+      stash: !type:ContainerSlot {}
+  - type: ContainerFill
+    containers:
+      stash:
+      - VoiceTrigger
+  - type: EmitSoundOnUse
+    sound:
+      collection: PlushieNya
+      params:
+        variation: 0.125
+  - type: EmitSoundOnActivate
+    sound:
+      collection: PlushieNya
+      params:
+        variation: 0.125
+  - type: EmitSoundOnCollide
+    sound:
+      collection: PlushieNya
+      params:
+        variation: 0.125
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: PlushieNya
+      params:
+        variation: 0.125
+  - type: UseDelay
+    delay: 1.0
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      collection: PlushieNya
+    damage:
+      types:
+        Blunt: 0
+  - type: StorageFill
+    contents:
+    - id: Shiv
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieIlya
+  name: Ilya Kovalchuk
+  description:
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/TFG/Toughguys/duo.rsi
+    state: ilya
+  - type: EmitSoundOnUse
+    sound:
+      collection: ArachnidSoundCollection
+      params:
+        variation: 0.125
+  - type: EmitSoundOnActivate
+    sound:
+      collection: ArachnidSoundCollection
+      params:
+        variation: 0.125
+  - type: EmitSoundOnCollide
+    sound:
+      collection: ArachnidSoundCollection
+      params:
+        variation: 0.125
+  - type: EmitSoundOnLand
+    sound:
+      collection: ArachnidSoundCollection
+      params:
+        variation: 0.125
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: ArachnidSoundCollection
+      params:
+        variation: 0.125
+  - type: UseDelay
+    delay: 1.0
+  - type: StorageFill
+    contents:
+    - id: LuxuryPen
+    - id: PaperCNCSheet
+
+#Отдельные звуки по запросу игрока
+- type: soundCollection
+  id: ArachnidSoundCollection
+  files:
+    - /Audio/Voice/Talk/arachnid.ogg
+    - /Audio/Voice/Talk/arachnid_ask.ogg
+    - /Audio/Voice/Talk/arachnid_exclaim.ogg
