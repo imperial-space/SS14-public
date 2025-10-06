@@ -1,0 +1,183 @@
+- type: entity
+  id: MobHalloweenBase
+  parent: BaseMobAsteroid
+  name: guardian
+  description: Boo!
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/Asteroid/basilisk.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: basilisk
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: basilisk
+      Dead:
+        Base: basilisk_dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 1.8
+    baseSprintSpeed : 3.3
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Slash: 7
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+
+- type: entity
+  id: MobHalloweenSmallPumpkin
+  parent: MobHalloweenBase
+  name: small pumpkin
+  description: Boo!
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/Asteroid/basilisk.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: basilisk
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: basilisk
+      Dead:
+        Base: basilisk_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 5
+
+- type: entity
+  id: MobHalloweenAngryPumpkin
+  parent: MobHalloweenBase
+  name: angry pumpkin
+  description: Boo!
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/Asteroid/basilisk.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: basilisk
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: basilisk
+      Dead:
+        Base: basilisk_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 8
+
+- type: entity
+  id: MobHalloweenSwordGuardianPumpkin
+  parent: MobHalloweenBase
+  name: sword guardian
+  description: Boo!
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/Asteroid/basilisk.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: basilisk
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: basilisk
+      Dead:
+        Base: basilisk_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 20
+
+- type: entity
+  id: MobHalloweenSpearGuardianPumpkin
+  parent: MobHalloweenBase
+  name: spear guardian
+  description: Boo!
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/Asteroid/basilisk.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: basilisk
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: basilisk
+      Dead:
+        Base: basilisk_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      230: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 23
+
+- type: entity
+  id: MobHalloweenMinionPumpkin
+  parent: MobHalloweenBase
+  name: minion
+  description: Boo!
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/Asteroid/basilisk.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: basilisk
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: basilisk
+      Dead:
+        Base: basilisk_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
