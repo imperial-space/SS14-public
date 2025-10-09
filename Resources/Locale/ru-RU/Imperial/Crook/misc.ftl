@@ -65,6 +65,11 @@ ent-ClothingHeadHatFurNixuelle = розовая фурсьют маска
     .desc = Пушистая и мягкая маска.
 ent-ClothingOuterFurNixuelle = розовый фурсьют
     .desc = Пушистая форма для тех людей, что не боятся выражать своё "Я".
+ent-ClothingHeadHatFurNacho = нежная фурсьют маска
+    .desc = Пушистая и мягкая маска.
+ent-ClothingOuterFurNacho = нежный фурсьют
+    .desc = В этом костюме вы чувствуете, как становитесь мягче как физически, так морально.~
+
 ent-CrateCargoFursuits = набор фурсьютов
     .desc = Наконец-то, фурри пятница.
 
