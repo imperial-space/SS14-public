@@ -181,3 +181,41 @@
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
+
+- type: entity
+  id: HalloweenPortal
+  parent: BaseItem
+  name: pumpkin portal
+  description: A swirling pumpkin portal
+  components:
+  - type: Sprite
+    sprite: Objects/Effects/portal.rsi
+    layers:
+    - state: portal
+  - type: Tag
+    tags:
+    - Halloween
+
+- type: entity
+  id: MobHalloweenQueen
+  parent: MobHalloweenBase
+  name: pumpkin queen
+  description: The fearsome pumpkin queen
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/Asteroid/basilisk.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: basilisk
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1000: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 40
+        Slash: 30
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
