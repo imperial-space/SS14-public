@@ -219,10 +219,7 @@
   color: "#d1d1d155"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/ginvodkaglass.rsi
-    state: icon_empty
-  metamorphicMaxFillLevels: 4
-  metamorphicFillBaseName: fill-
-  metamorphicChangeColor: false
+    state: icon
   metabolisms:
     Drink:
       effects:
@@ -240,10 +237,7 @@
   color: "#7E4043"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/wineglass.rsi
-    state: icon_empty
-  metamorphicMaxFillLevels: 5
-  metamorphicFillBaseName: fill-
-  metamorphicChangeColor: true
+    state: icon
   metabolisms:
     Drink:
       effects:
@@ -288,9 +282,7 @@
   color: "#CFA85F"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/beerglass.rsi
-    state: icon_empty
-  metamorphicMaxFillLevels: 6
-  metamorphicFillBaseName: fill-
+    state: icon
   metabolisms:
     Drink:
       effects:

@@ -34,7 +34,6 @@
   - type: Tag
     tags:
     - HudDiagnostic # Imperial Space Pirates: New Horizon End
-  - type: ShowAccessReaderSettings
 
 - type: entity
   parent: [ClothingEyesBase, ShowMedicalIcons]
@@ -49,7 +48,7 @@
   - type: Tag
     tags:
     - HudMedical
-    - PetWearable
+    - CorgiWearable
     - WhitelistChameleon
 
 - type: entity
@@ -65,7 +64,7 @@
   - type: Tag
     tags:
     - HudSecurity
-    - PetWearable
+    - CorgiWearable
     - WhitelistChameleon
 
 - type: entity
@@ -81,7 +80,7 @@
   - type: ShowJobIcons
   - type: Tag
     tags:
-    - PetWearable
+    - CorgiWearable
     - WhitelistChameleon
 
 - type: entity
@@ -100,7 +99,7 @@
   - type: SolutionScanner
   - type: Tag
     tags:
-    - PetWearable
+    - CorgiWearable
     - WhitelistChameleon
     - HudBeer # Imperial Space Pirates: New Horizon
 
@@ -233,7 +232,7 @@
   - type: ShowSyndicateIcons
   - type: Tag
     tags:
-    - PetWearable
+    - CorgiWearable
     - WhitelistChameleon
 
 - type: entity
@@ -250,7 +249,7 @@
   - type: ShowHealthBars
   - type: Tag
     tags:
-    - PetWearable
+    - CorgiWearable
     - WhitelistChameleon
 
 - type: entity
@@ -270,7 +269,7 @@
     sprite: Clothing/Eyes/Hud/medpatch.rsi
   - type: Tag
     tags:
-    - PetWearable
+    - CorgiWearable
     - WhitelistChameleon
     - HudMedical
     - EyepatchMedical #Imperial Space Pirates: New Horizon
@@ -297,7 +296,7 @@
     sprite: Clothing/Eyes/Hud/secpatch.rsi
   - type: Tag
     tags:
-    - PetWearable
+    - CorgiWearable
     - WhitelistChameleon
     - HudSecurity
     - EyepatchSecurity #Imperial Space Pirates: New Horizon

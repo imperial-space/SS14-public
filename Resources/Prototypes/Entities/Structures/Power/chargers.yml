@@ -72,7 +72,6 @@
   parent: BaseItemRecharger
   id: PowerCellRecharger
   name: cell recharger
-  description: An older model recharger that can recharge power cells.
   components:
   - type: Sprite
     sprite: Structures/Power/cell_recharger.rsi
@@ -106,15 +105,11 @@
           tags:
           - PowerCell
           - PowerCellSmall
-        blacklist:
-          tags:
-          - PotatoBattery
 
 - type: entity
   parent: [ BaseItemRecharger, ConstructibleMachine ]
   id: PowerCageRecharger
   name: cage recharger
-  description: A specialized machine made for recharging the heavy cage batteries used by ship-mounted weapons.
   components:
   - type: Fixtures
     fixtures:
@@ -155,12 +150,12 @@
   parent: BaseItemRecharger
   id: WeaponCapacitorRecharger
   name: recharger
-  description: A modern recharging station that can fit both power cells and small electronic devices.
   components:
   - type: Sprite
     sprite: Structures/Power/recharger.rsi
   - type: Machine
     board: WeaponCapacitorRechargerCircuitboard
+  # no powercellslot since stun baton etc arent powercells
   - type: ItemSlots
     slots:
       charger_slot:
@@ -170,17 +165,18 @@
           - HitscanBatteryAmmoProvider
           - ProjectileBatteryAmmoProvider
           - Stunbaton
-          - PowerCell
+        # Imperial "plasma Cutter + Advanced Version" Start
+        # In order not to devalue charging with materials
         blacklist:
           tags:
-          - PotatoBattery
-          - OnlyMaterialEnergy # Imperial "plasma Cutter + Advanced Version"
+          - OnlyMaterialEnergy
+        # Imperial "plasma Cutter + Advanced Version" Start
 
 - type: entity
   parent: BaseItemRecharger
   id: TurboItemRecharger
   name: turbo recharger
-  description: An overclocked recharger. Not recommended for use around asthmatics.
+  description: An overclocked recharger that's been adapted with a global port.
   components:
   - type: Sprite
     sprite: Structures/Power/turbo_recharger.rsi
@@ -207,10 +203,9 @@
         # Imperial "plasma Cutter + Advanced Version" End
 
 - type: entity
-  parent: [ BaseItemRecharger, BaseWallmount ]
+  parent: BaseItemRecharger
   id: WallWeaponCapacitorRecharger
   name: wall recharger
-  description: A compact wall-mounted recharger. It can only recharge electronic devices and has no space for power cells.
   components:
   - type: Sprite
     sprite: Structures/Power/wall_recharger.rsi
@@ -220,6 +215,7 @@
     - map: ["enum.PowerChargerVisualLayers.Light"]
       state: "light-off"
       shader: "unshaded"
+  - type: WallMount
   - type: Charger
     chargeRate: 25
   - type: ItemSlots
@@ -231,10 +227,12 @@
           - HitscanBatteryAmmoProvider
           - ProjectileBatteryAmmoProvider
           - Stunbaton
+        # Imperial "plasma Cutter + Advanced Version" Start
+        # In order not to devalue charging with materials
         blacklist:
           tags:
-          - PotatoBattery
-          - OnlyMaterialEnergy # Imperial "plasma Cutter + Advanced Version"
+          - OnlyMaterialEnergy
+        # Imperial "plasma Cutter + Advanced Version" End
 
 - type: entity
   parent: BaseRecharger

@@ -152,8 +152,6 @@
   name: reagent-name-tritium
   desc: reagent-desc-tritium
   physicalDesc: reagent-physical-desc-ionizing
-  allowedDepartments:
-  - Engineering
   flavor: bitter
   color: "#66ff33"
   tileReactions:
@@ -362,7 +360,7 @@
           shouldHave: false
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
-      - !type:ModifyStatusEffect
+      - !type:GenericStatusEffect
         conditions:
         - !type:ReagentThreshold
           reagent: NitrousOxide
@@ -370,7 +368,8 @@
         - !type:OrganType
           type: Slime
           shouldHave: false
-        effectProto: StatusEffectForcedSleeping
+        key: ForcedSleep
+        component: ForcedSleeping
         time: 3
         type: Add
       - !type:HealthChange
@@ -391,10 +390,6 @@
   name: reagent-name-frezon
   desc: reagent-desc-frezon
   physicalDesc: reagent-physical-desc-gaseous
-  allowedDepartments:
-  - Engineering
-  allowedJobs:
-  - Chemist
   flavor: bitter
   color: "#3a758c"
   boilingPoint: -195.8
@@ -408,8 +403,9 @@
         damage:
           types:
             Cellular: 1
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectSeeingRainbow
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
         type: Add
         time: 15
         refresh: false
@@ -444,12 +440,13 @@
         damage:
           types:
             Cellular: 0.5
-      - !type:ModifyStatusEffect
+      - !type:GenericStatusEffect
         conditions:
         - !type:ReagentThreshold
           reagent: Frezon
           min: 1
-        effectProto: StatusEffectSeeingRainbow
+        key: SeeingRainbows
+        component: SeeingRainbows
         type: Add
         time: 500
         refresh: false

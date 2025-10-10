@@ -23,9 +23,14 @@ public sealed class ThirstSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
 
-    private static readonly ProtoId<SatiationIconPrototype> ThirstIconOverhydratedId = "ThirstIconOverhydrated";
-    private static readonly ProtoId<SatiationIconPrototype> ThirstIconThirstyId = "ThirstIconThirsty";
-    private static readonly ProtoId<SatiationIconPrototype> ThirstIconParchedId = "ThirstIconParched";
+    [ValidatePrototypeId<SatiationIconPrototype>]
+    private const string ThirstIconOverhydratedId = "ThirstIconOverhydrated";
+
+    [ValidatePrototypeId<SatiationIconPrototype>]
+    private const string ThirstIconThirstyId = "ThirstIconThirsty";
+
+    [ValidatePrototypeId<SatiationIconPrototype>]
+    private const string ThirstIconParchedId = "ThirstIconParched";
 
     public override void Initialize()
     {
@@ -126,15 +131,15 @@ public sealed class ThirstSystem : EntitySystem
         switch (component.CurrentThirstThreshold)
         {
             case ThirstThreshold.OverHydrated:
-                _prototype.Resolve(ThirstIconOverhydratedId, out prototype);
+                _prototype.TryIndex(ThirstIconOverhydratedId, out prototype);
                 break;
 
             case ThirstThreshold.Thirsty:
-                _prototype.Resolve(ThirstIconThirstyId, out prototype);
+                _prototype.TryIndex(ThirstIconThirstyId, out prototype);
                 break;
 
             case ThirstThreshold.Parched:
-                _prototype.Resolve(ThirstIconParchedId, out prototype);
+                _prototype.TryIndex(ThirstIconParchedId, out prototype);
                 break;
 
             default:

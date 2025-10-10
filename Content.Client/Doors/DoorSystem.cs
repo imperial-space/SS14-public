@@ -1,17 +1,16 @@
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
-using Content.Shared.SprayPainter.Prototypes;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
-using Robust.Shared.Prototypes;
+using Robust.Client.ResourceManagement;
+using Robust.Shared.Serialization.TypeSerializers.Implementations;
 
 namespace Content.Client.Doors;
 
 public sealed class DoorSystem : SharedDoorSystem
 {
     [Dependency] private readonly AnimationPlayerSystem _animationSystem = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IResourceCache _resourceCache = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
     public override void Initialize()
@@ -31,7 +30,7 @@ public sealed class DoorSystem : SharedDoorSystem
 
         comp.OpeningAnimation = new Animation
         {
-            Length = comp.OpeningAnimationTime,
+            Length = TimeSpan.FromSeconds(comp.OpeningAnimationTime),
             AnimationTracks =
             {
                 new AnimationTrackSpriteFlick
@@ -47,7 +46,7 @@ public sealed class DoorSystem : SharedDoorSystem
 
         comp.ClosingAnimation = new Animation
         {
-            Length = comp.ClosingAnimationTime,
+            Length = TimeSpan.FromSeconds(comp.ClosingAnimationTime),
             AnimationTracks =
             {
                 new AnimationTrackSpriteFlick
@@ -63,7 +62,7 @@ public sealed class DoorSystem : SharedDoorSystem
 
         comp.EmaggingAnimation = new Animation
         {
-            Length = comp.EmaggingAnimationTime,
+            Length = TimeSpan.FromSeconds(comp.EmaggingAnimationTime),
             AnimationTracks =
             {
                 new AnimationTrackSpriteFlick
@@ -86,8 +85,8 @@ public sealed class DoorSystem : SharedDoorSystem
         if (!AppearanceSystem.TryGetData<DoorState>(entity, DoorVisuals.State, out var state, args.Component))
             state = DoorState.Closed;
 
-        if (AppearanceSystem.TryGetData<string>(entity, PaintableVisuals.Prototype, out var prototype, args.Component))
-            UpdateSpriteLayers((entity.Owner, args.Sprite), prototype);
+        if (AppearanceSystem.TryGetData<string>(entity, DoorVisuals.BaseRSI, out var baseRsi, args.Component))
+            UpdateSpriteLayers((entity.Owner, args.Sprite), baseRsi);
 
         if (_animationSystem.HasRunningAnimation(entity, DoorComponent.AnimationKey))
             _animationSystem.Stop(entity.Owner, DoorComponent.AnimationKey);
@@ -116,14 +115,14 @@ public sealed class DoorSystem : SharedDoorSystem
 
                 return;
             case DoorState.Opening:
-                if (entity.Comp.OpeningAnimationTime == TimeSpan.Zero)
+                if (entity.Comp.OpeningAnimationTime == 0.0)
                     return;
 
                 _animationSystem.Play(entity, (Animation)entity.Comp.OpeningAnimation, DoorComponent.AnimationKey);
 
                 return;
             case DoorState.Closing:
-                if (entity.Comp.ClosingAnimationTime == TimeSpan.Zero || entity.Comp.CurrentlyCrushing.Count != 0)
+                if (entity.Comp.ClosingAnimationTime == 0.0 || entity.Comp.CurrentlyCrushing.Count != 0)
                     return;
 
                 _animationSystem.Play(entity, (Animation)entity.Comp.ClosingAnimation, DoorComponent.AnimationKey);
@@ -140,14 +139,14 @@ public sealed class DoorSystem : SharedDoorSystem
         }
     }
 
-    private void UpdateSpriteLayers(Entity<SpriteComponent> sprite, string targetProto)
+    private void UpdateSpriteLayers(Entity<SpriteComponent> sprite, string baseRsi)
     {
-        if (!_prototypeManager.Resolve(targetProto, out var target))
+        if (!_resourceCache.TryGetResource<RSIResource>(SpriteSpecifierSerializer.TextureRoot / baseRsi, out var res))
+        {
+            Log.Error("Unable to load RSI '{0}'. Trace:\n{1}", baseRsi, Environment.StackTrace);
             return;
+        }
 
-        if (!target.TryGetComponent(out SpriteComponent? targetSprite, _componentFactory))
-            return;
-
-        _sprite.SetBaseRsi(sprite.AsNullable(), targetSprite.BaseRSI);
+        _sprite.SetBaseRsi(sprite.AsNullable(), res.RSI);
     }
 }

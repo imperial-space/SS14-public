@@ -79,6 +79,7 @@
       Dead: 0
     baseDecayRate: 0.1
   - type: DamageStateVisuals
+    rotate: true
     states:
       Alive:
         Base: regalrat
@@ -102,7 +103,6 @@
       - CannotSuicide
       - FootstepSound
   - type: NoSlip
-  - type: Rummager
   - type: RatKing
     hungerPerArmyUse: 25
     hungerPerDomainUse: 50
@@ -307,16 +307,12 @@
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
 
-- type: entityTable
+- type: weightedRandomEntity
   id: RatKingLoot
-  table: !type:GroupSelector
-    children:
-    - id: RandomSpawner100
-      weight: 66
-    - id: FoodCheese
-      weight: 28
-    - id: IngotGold1
-      weight: 5
+  weights:
+    RandomSpawner100: 66 #garbage
+    FoodCheese: 28 #food
+    IngotGold1: 5 #loot
 
 - type: entity
   parent: BaseAction

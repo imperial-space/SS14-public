@@ -112,7 +112,7 @@ public abstract class SharedWieldableSystem : EntitySystem
 
     private void OnDeselectWieldable(EntityUid uid, WieldableComponent component, HandDeselectedEvent args)
     {
-        if (_hands.GetHandCount(args.User) > 2)
+        if (_hands.EnumerateHands(args.User).Count() > 2)
             return;
 
         TryUnwield(uid, component, args.User);
@@ -168,7 +168,7 @@ public abstract class SharedWieldableSystem : EntitySystem
         if (args.Hands == null || !args.CanAccess || !args.CanInteract)
             return;
 
-        if (!_hands.IsHolding((args.User, args.Hands), uid, out _))
+        if (!_hands.IsHolding(args.User, uid, out _, args.Hands))
             return;
 
         // TODO VERB TOOLTIPS Make CanWield or some other function return string, set as verb tooltip and disable
@@ -252,7 +252,7 @@ public abstract class SharedWieldableSystem : EntitySystem
         }
 
         // Is it.. actually in one of their hands?
-        if (!_hands.IsHolding((user, hands), uid, out _))
+        if (!_hands.IsHolding(user, uid, out _, hands))
         {
             if (!quiet)
                 _popup.PopupClient(Loc.GetString("wieldable-component-not-in-hands", ("item", uid)), user, user);
@@ -314,8 +314,7 @@ public abstract class SharedWieldableSystem : EntitySystem
         var virtuals = new ValueList<EntityUid>();
         for (var i = 0; i < component.FreeHandsRequired; i++)
         {
-            // don't show a popup when dropping items because it will overlap with the popup for wielding
-            if (_virtualItem.TrySpawnVirtualItemInHand(used, user, out var virtualItem, true, silent: true))
+            if (_virtualItem.TrySpawnVirtualItemInHand(used, user, out var virtualItem, true))
             {
                 virtuals.Add(virtualItem.Value);
                 continue;
@@ -374,7 +373,7 @@ public abstract class SharedWieldableSystem : EntitySystem
     /// <param name="force">If this is true we will bypass UnwieldAttemptEvent.</param>
     public void UnwieldAll(Entity<HandsComponent?> wielder, bool force = false)
     {
-        foreach (var held in _hands.EnumerateHeld(wielder))
+        foreach (var held in _hands.EnumerateHeld(wielder.Owner, wielder.Comp))
         {
             if (TryComp<WieldableComponent>(held, out var wieldable))
                 TryUnwield(held, wieldable, wielder, force);

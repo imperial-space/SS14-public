@@ -5,7 +5,7 @@
   description: ent-EmergencyButton.desc
   components:
   - type: Item
-    size: Small
+    size: Normal
     storedRotation: -90
   - type: Sprite
     sprite: Imperial/Objects/Items/emergency-button.rsi

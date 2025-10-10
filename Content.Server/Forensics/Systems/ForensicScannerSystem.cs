@@ -69,7 +69,7 @@ namespace Content.Server.Forensics
             if (args.Handled || args.Cancelled)
                 return;
 
-            if (!TryComp(uid, out ForensicScannerComponent? scanner))
+            if (!EntityManager.TryGetComponent(uid, out ForensicScannerComponent? scanner))
                 return;
 
             if (args.Args.Target != null)
@@ -125,9 +125,7 @@ namespace Content.Server.Forensics
                 Act = () => StartScan(uid, component, args.User, args.Target),
                 IconEntity = GetNetEntity(uid),
                 Text = Loc.GetString("forensic-scanner-verb-text"),
-                Message = Loc.GetString("forensic-scanner-verb-message"),
-                // This is important because if its true using the scanner will count as touching the object.
-                DoContactInteraction = false
+                Message = Loc.GetString("forensic-scanner-verb-message")
             };
 
             args.Verbs.Add(verb);
@@ -198,7 +196,7 @@ namespace Content.Server.Forensics
             }
 
             // Spawn a piece of paper.
-            var printed = Spawn(component.MachineOutput, Transform(uid).Coordinates);
+            var printed = EntityManager.SpawnEntity(component.MachineOutput, Transform(uid).Coordinates);
             _handsSystem.PickupOrDrop(args.Actor, printed, checkActionBlocker: false);
 
             if (!TryComp<PaperComponent>(printed, out var paperComp))

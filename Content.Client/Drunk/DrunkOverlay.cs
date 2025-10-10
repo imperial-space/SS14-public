@@ -1,6 +1,5 @@
 using Content.Shared.Drunk;
 using Content.Shared.StatusEffect;
-using Content.Shared.StatusEffectNew;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
@@ -11,8 +10,6 @@ namespace Content.Client.Drunk;
 
 public sealed class DrunkOverlay : Overlay
 {
-    private static readonly ProtoId<ShaderPrototype> Shader = "Drunk";
-
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -33,7 +30,7 @@ public sealed class DrunkOverlay : Overlay
     public DrunkOverlay()
     {
         IoCManager.InjectDependencies(this);
-        _drunkShader = _prototypeManager.Index(Shader).InstanceUnique();
+        _drunkShader = _prototypeManager.Index<ShaderPrototype>("Drunk").InstanceUnique();
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
@@ -44,21 +41,19 @@ public sealed class DrunkOverlay : Overlay
         if (playerEntity == null)
             return;
 
-        var statusSys = _sysMan.GetEntitySystem<Shared.StatusEffectNew.StatusEffectsSystem>();
-        if (!statusSys.TryGetMaxTime<DrunkStatusEffectComponent>(playerEntity.Value, out var status))
+        if (!_entityManager.HasComponent<DrunkComponent>(playerEntity)
+            || !_entityManager.TryGetComponent<StatusEffectsComponent>(playerEntity, out var status))
             return;
 
-        var time = status.Item2;
+        var statusSys = _sysMan.GetEntitySystem<StatusEffectsSystem>();
+        if (!statusSys.TryGetTime(playerEntity.Value, SharedDrunkSystem.DrunkKey, out var time, status))
+            return;
 
-        var power = SharedDrunkSystem.MagicNumber;
+        var curTime = _timing.CurTime;
+        var timeLeft = (float) (time.Value.Item2 - curTime).TotalSeconds;
 
-        if (time != null)
-        {
-            var curTime = _timing.CurTime;
-            power = (float) (time - curTime).Value.TotalSeconds;
-        }
 
-        CurrentBoozePower += 8f * (power * 0.5f - CurrentBoozePower) * args.DeltaSeconds / (power+1);
+        CurrentBoozePower += 8f * (0.5f*timeLeft - CurrentBoozePower) * args.DeltaSeconds / (timeLeft+1);
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)

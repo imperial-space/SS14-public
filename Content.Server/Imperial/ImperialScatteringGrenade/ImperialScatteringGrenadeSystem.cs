@@ -8,9 +8,6 @@ using System.Numerics;
 using Content.Shared.Explosion.EntitySystems;
 using Robust.Shared.Prototypes;
 using System.Linq;
-using Content.Shared.Trigger.Components;
-using Content.Shared.Trigger;
-using Content.Shared.Trigger.Systems;
 
 namespace Content.Server.Explosion.EntitySystems;
 
@@ -20,7 +17,6 @@ public sealed class ImperialScatteringGrenadeSystem : SharedImperialScatteringGr
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
-    [Dependency] private readonly TriggerSystem _trigger = default!;
 
     public override void Initialize()
     {
@@ -82,12 +78,13 @@ public sealed class ImperialScatteringGrenadeSystem : SharedImperialScatteringGr
 
                     _throwingSystem.TryThrow(contentUid, direction, component.Velocity);
 
-                    if (component.TriggerContents && TryComp<TimerTriggerComponent>(contentUid, out var contentTimer))
+                    if (component.TriggerContents)
                     {
                         additionalIntervalDelay += _random.NextFloat(component.IntervalBetweenTriggersMin, component.IntervalBetweenTriggersMax);
-
-                        _trigger.SetDelay((contentUid, contentTimer), TimeSpan.FromSeconds(component.DelayBeforeTriggerContents + additionalIntervalDelay));
-                        _trigger.ActivateTimerTrigger((contentUid, contentTimer));
+                        var contentTimer = EnsureComp<ActiveTimerTriggerComponent>(contentUid);
+                        contentTimer.TimeRemaining = component.DelayBeforeTriggerContents + additionalIntervalDelay;
+                        var ev = new ActiveTimerTriggerEvent(contentUid, uid);
+                        RaiseLocalEvent(contentUid, ref ev);
                     }
                 }
 

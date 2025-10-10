@@ -1,7 +1,6 @@
 using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
 using Robust.Shared.Random; // Corvax-Localization
-using Content.Shared.Speech;
 
 namespace Content.Server.Speech.EntitySystems;
 

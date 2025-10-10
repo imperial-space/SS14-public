@@ -22,18 +22,6 @@ public sealed partial class LockComponent : Component
     public bool Locked  = true;
 
     /// <summary>
-    /// If true, will show verbs to lock and unlock the item. Otherwise, it will not.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool ShowLockVerbs = true;
-
-    /// <summary>
-    /// If true will show examine text.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool ShowExamine = true;
-
-    /// <summary>
     /// Whether or not the lock is locked by simply clicking.
     /// </summary>
     [DataField("lockOnClick"), ViewVariables(VVAccess.ReadWrite)]
@@ -56,7 +44,7 @@ public sealed partial class LockComponent : Component
     /// The sound played when unlocked.
     /// </summary>
     [DataField("unlockingSound"), ViewVariables(VVAccess.ReadWrite)]
-    public SoundSpecifier? UnlockSound = new SoundPathSpecifier("/Audio/Machines/door_lock_off.ogg")
+    public SoundSpecifier UnlockSound = new SoundPathSpecifier("/Audio/Machines/door_lock_off.ogg")
     {
         Params = AudioParams.Default.WithVolume(-5f),
     };
@@ -65,7 +53,7 @@ public sealed partial class LockComponent : Component
     /// The sound played when locked.
     /// </summary>
     [DataField("lockingSound"), ViewVariables(VVAccess.ReadWrite)]
-    public SoundSpecifier? LockSound = new SoundPathSpecifier("/Audio/Machines/door_lock_on.ogg")
+    public SoundSpecifier LockSound = new SoundPathSpecifier("/Audio/Machines/door_lock_on.ogg")
     {
         Params = AudioParams.Default.WithVolume(-5f)
     };

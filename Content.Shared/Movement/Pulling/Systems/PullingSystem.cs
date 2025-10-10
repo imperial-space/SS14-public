@@ -2,7 +2,6 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
 using Content.Shared.Buckle.Components;
-using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Database;
 using Content.Shared.Hands;
@@ -83,28 +82,10 @@ public sealed class PullingSystem : EntitySystem
 
         SubscribeLocalEvent<PullableComponent, StrappedEvent>(OnBuckled);
         SubscribeLocalEvent<PullableComponent, BuckledEvent>(OnGotBuckled);
-        SubscribeLocalEvent<ActivePullerComponent, TargetHandcuffedEvent>(OnTargetHandcuffed);
 
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.ReleasePulledObject, InputCmdHandler.FromDelegate(OnReleasePulledObject, handle: false))
             .Register<PullingSystem>();
-    }
-
-    private void OnTargetHandcuffed(Entity<ActivePullerComponent> ent, ref TargetHandcuffedEvent args)
-    {
-        if (!TryComp<PullerComponent>(ent, out var comp))
-            return;
-
-        if (comp.Pulling == null)
-            return;
-
-        if (CanPull(ent, comp.Pulling.Value, comp))
-            return;
-
-        if (!TryComp<PullableComponent>(comp.Pulling, out var pullableComp))
-            return;
-
-        TryStopPull(comp.Pulling.Value, pullableComp);
     }
 
     private void HandlePullStarted(EntityUid uid, HandsComponent component, PullStartedMessage args)
@@ -128,12 +109,16 @@ public sealed class PullingSystem : EntitySystem
 
         // Try find hand that is doing this pull.
         // and clear it.
-        foreach (var held in _handsSystem.EnumerateHeld((uid, component)))
+        foreach (var hand in component.Hands.Values)
         {
-            if (!TryComp(held, out VirtualItemComponent? virtualItem) || virtualItem.BlockingEntity != args.PulledUid)
+            if (hand.HeldEntity == null
+                || !TryComp(hand.HeldEntity, out VirtualItemComponent? virtualItem)
+                || virtualItem.BlockingEntity != args.PulledUid)
+            {
                 continue;
+            }
 
-            _handsSystem.TryDrop((args.PullerUid, component), held);
+            _handsSystem.TryDrop(args.PullerUid, hand, handsComp: component);
             break;
         }
     }
@@ -245,7 +230,7 @@ public sealed class PullingSystem : EntitySystem
         if (component.Pulling != args.BlockingEntity)
             return;
 
-        if (TryComp(args.BlockingEntity, out PullableComponent? comp))
+        if (EntityManager.TryGetComponent(args.BlockingEntity, out PullableComponent? comp))
         {
             TryStopPull(args.BlockingEntity, comp);
         }
@@ -443,7 +428,7 @@ public sealed class PullingSystem : EntitySystem
             return false;
         }
 
-        if (!TryComp<PhysicsComponent>(pullableUid, out var physics))
+        if (!EntityManager.TryGetComponent<PhysicsComponent>(pullableUid, out var physics))
         {
             return false;
         }
@@ -598,8 +583,11 @@ public sealed class PullingSystem : EntitySystem
         if (pullerUidNull == null)
             return true;
 
+        if (user != null && !_blocker.CanInteract(user.Value, pullableUid))
+            return false;
+
         var msg = new AttemptStopPullingEvent(user);
-        RaiseLocalEvent(pullableUid, ref msg, true);
+        RaiseLocalEvent(pullableUid, msg, true);
 
         if (msg.Cancelled)
             return false;

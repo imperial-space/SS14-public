@@ -7,12 +7,10 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Input;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Timing;
-using JetBrains.Annotations;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Input;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -30,7 +28,7 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
     private readonly Dictionary<string, int> _handContainerIndices = new();
     private readonly Dictionary<string, HandButton> _handLookup = new();
     private HandsComponent? _playerHandsComponent;
-    private HandButton? _activeHand;
+    private HandButton? _activeHand = null;
 
     // We only have two item status controls (left and right hand),
     // but we may have more than two hands.
@@ -40,7 +38,7 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
     private HandButton? _statusHandLeft;
     private HandButton? _statusHandRight;
 
-    private int _backupSuffix; //this is used when autogenerating container names if they don't have names
+    private int _backupSuffix = 0; //this is used when autogenerating container names if they don't have names
 
     private HotbarGui? HandsGui => UIManager.GetActiveUIWidgetOrNull<HotbarGui>();
 
@@ -50,7 +48,7 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
         _handsSystem.OnPlayerItemAdded += OnItemAdded;
         _handsSystem.OnPlayerItemRemoved += OnItemRemoved;
         _handsSystem.OnPlayerSetActiveHand += SetActiveHand;
-        _handsSystem.OnPlayerRemoveHand += OnRemoveHand;
+        _handsSystem.OnPlayerRemoveHand += RemoveHand;
         _handsSystem.OnPlayerHandsAdded += LoadPlayerHands;
         _handsSystem.OnPlayerHandsRemoved += UnloadPlayerHands;
         _handsSystem.OnPlayerHandBlocked += HandBlocked;
@@ -63,36 +61,28 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
         _handsSystem.OnPlayerItemAdded -= OnItemAdded;
         _handsSystem.OnPlayerItemRemoved -= OnItemRemoved;
         _handsSystem.OnPlayerSetActiveHand -= SetActiveHand;
-        _handsSystem.OnPlayerRemoveHand -= OnRemoveHand;
+        _handsSystem.OnPlayerRemoveHand -= RemoveHand;
         _handsSystem.OnPlayerHandsAdded -= LoadPlayerHands;
         _handsSystem.OnPlayerHandsRemoved -= UnloadPlayerHands;
         _handsSystem.OnPlayerHandBlocked -= HandBlocked;
         _handsSystem.OnPlayerHandUnblocked -= HandUnblocked;
     }
 
-    private void OnAddHand(Entity<HandsComponent> entity, string name, HandLocation location)
+    private void OnAddHand(string name, HandLocation location)
     {
-        if (entity.Owner != _player.LocalEntity)
-            return;
-        if (_handsSystem.TryGetHand((entity.Owner, entity.Comp), name, out var hand))
-            AddHand(name, hand.Value);
-    }
-
-    private void OnRemoveHand(Entity<HandsComponent> entity, string name)
-    {
-        if (entity.Owner != _player.LocalEntity)
-            return;
-        RemoveHand(name);
+        AddHand(name, location);
     }
 
     private void HandPressed(GUIBoundKeyEventArgs args, SlotControl hand)
     {
-        if (!_handsSystem.TryGetPlayerHands(out var hands))
+        if (_playerHandsComponent == null)
+        {
             return;
+        }
 
         if (args.Function == EngineKeyFunctions.UIClick)
         {
-            _handsSystem.UIHandClick(hands.Value, hand.SlotName);
+            _handsSystem.UIHandClick(_playerHandsComponent, hand.SlotName);
             args.Handle();
         }
         else if (args.Function == EngineKeyFunctions.UseSecondary)
@@ -132,52 +122,33 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
         }
     }
 
-    private void LoadPlayerHands(Entity<HandsComponent> handsComp)
+    private void LoadPlayerHands(HandsComponent handsComp)
     {
         DebugTools.Assert(_playerHandsComponent == null);
         if (HandsGui != null)
             HandsGui.Visible = true;
 
         _playerHandsComponent = handsComp;
-        foreach (var (name, hand) in handsComp.Comp.Hands)
+        foreach (var (name, hand) in handsComp.Hands)
         {
-            var handButton = AddHand(name, hand);
+            var handButton = AddHand(name, hand.Location);
 
-            if (_handsSystem.TryGetHeldItem(handsComp.AsNullable(), name, out var held) &&
-                _entities.TryGetComponent(held, out VirtualItemComponent? virt))
+            if (_entities.TryGetComponent(hand.HeldEntity, out VirtualItemComponent? virt))
             {
                 handButton.SetEntity(virt.BlockingEntity);
                 handButton.Blocked = true;
             }
-            else if (held != null)
-            {
-                handButton.SetEntity(held);
-                handButton.Blocked = false;
-            }
             else
             {
-                if (hand.EmptyRepresentative is { } representative)
-                {
-                    // placeholder, view it
-                    SetRepresentative(handButton, representative);
-                }
-                else
-                {
-                    // otherwise empty
-                    handButton.SetEntity(null);
-                }
+                handButton.SetEntity(hand.HeldEntity);
                 handButton.Blocked = false;
             }
         }
 
-        if (handsComp.Comp.ActiveHandId == null)
+        var activeHand = handsComp.ActiveHand;
+        if (activeHand == null)
             return;
-        SetActiveHand(handsComp.Comp.ActiveHandId);
-    }
-
-    private void SetRepresentative(HandButton handButton, EntProtoId prototype)
-    {
-        handButton.SetPrototype(prototype, true);
+        SetActiveHand(activeHand.Name);
     }
 
     private void HandBlocked(string handName)
@@ -224,12 +195,7 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
             hand.Blocked = false;
         }
 
-        if (_playerHandsComponent != null &&
-            _player.LocalSession?.AttachedEntity is { } playerEntity &&
-            _handsSystem.TryGetHand((playerEntity, _playerHandsComponent), name, out var handData))
-        {
-            UpdateHandStatus(hand, entity, handData);
-        }
+        UpdateHandStatus(hand, entity);
     }
 
     private void OnItemRemoved(string name, EntityUid entity)
@@ -238,19 +204,8 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
         if (hand == null)
             return;
 
-        if (_playerHandsComponent != null &&
-            _player.LocalSession?.AttachedEntity is { } playerEntity &&
-            _handsSystem.TryGetHand((playerEntity, _playerHandsComponent), name, out var handData))
-        {
-            UpdateHandStatus(hand, null, handData);
-            if (handData?.EmptyRepresentative is { } representative)
-            {
-                SetRepresentative(hand, representative);
-                return;
-            }
-        }
-
         hand.SetEntity(null);
+        UpdateHandStatus(hand, null);
     }
 
     private HandsContainer GetFirstAvailableContainer()
@@ -305,21 +260,19 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
         if (HandsGui != null &&
             _playerHandsComponent != null &&
             _player.LocalSession?.AttachedEntity is { } playerEntity &&
-            _handsSystem.TryGetHand((playerEntity, _playerHandsComponent), handName, out var hand))
+            _handsSystem.TryGetHand(playerEntity, handName, out var hand, _playerHandsComponent))
         {
-            var heldEnt = _handsSystem.GetHeldItem((playerEntity, _playerHandsComponent), handName);
-
-            var foldedLocation = hand.Value.Location.GetUILocation();
+            var foldedLocation = hand.Location.GetUILocation();
             if (foldedLocation == HandUILocation.Left)
             {
                 _statusHandLeft = handControl;
-                HandsGui.UpdatePanelEntityLeft(heldEnt, hand.Value);
+                HandsGui.UpdatePanelEntityLeft(hand.HeldEntity);
             }
             else
             {
                 // Middle or right
                 _statusHandRight = handControl;
-                HandsGui.UpdatePanelEntityRight(heldEnt, hand.Value);
+                HandsGui.UpdatePanelEntityRight(hand.HeldEntity);
             }
 
             HandsGui.SetHighlightHand(foldedLocation);
@@ -332,14 +285,14 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
         return handControl;
     }
 
-    private HandButton AddHand(string handName, Hand hand)
+    private HandButton AddHand(string handName, HandLocation location)
     {
-        var button = new HandButton(handName, hand.Location);
+        var button = new HandButton(handName, location);
         button.StoragePressed += StorageActivate;
         button.Pressed += HandPressed;
 
         if (!_handLookup.TryAdd(handName, button))
-            return _handLookup[handName];
+            throw new Exception("Tried to add hand with duplicate name to UI. Name:" + handName);
 
         if (HandsGui != null)
         {
@@ -350,16 +303,10 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
             GetFirstAvailableContainer().AddButton(button);
         }
 
-        if (hand.EmptyRepresentative is { } representative)
-        {
-            SetRepresentative(button, representative);
-        }
-        UpdateHandStatus(button, null, hand);
-
         // If we don't have a status for this hand type yet, set it.
         // This means we have status filled by default in most scenarios,
         // otherwise the user'd need to switch hands to "activate" the hands the first time.
-        if (hand.Location.GetUILocation() == HandUILocation.Left)
+        if (location.GetUILocation() == HandUILocation.Left)
             _statusHandLeft ??= button;
         else
             _statusHandRight ??= button;
@@ -415,7 +362,6 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
         RemoveHand(handName, out _);
     }
 
-    [PublicAPI]
     private bool RemoveHand(string handName, out HandButton? handButton)
     {
         if (!_handLookup.TryGetValue(handName, out handButton))
@@ -431,7 +377,7 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
             _statusHandRight = null;
 
         _handLookup.Remove(handName);
-        handButton.Orphan();
+        handButton.Dispose();
         UpdateVisibleStatusPanels();
         return true;
     }
@@ -523,12 +469,12 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
         }
     }
 
-    private void UpdateHandStatus(HandButton hand, EntityUid? entity, Hand? handData)
+    private void UpdateHandStatus(HandButton hand, EntityUid? entity)
     {
         if (hand == _statusHandLeft)
-            HandsGui?.UpdatePanelEntityLeft(entity, handData);
+            HandsGui?.UpdatePanelEntityLeft(entity);
 
         if (hand == _statusHandRight)
-            HandsGui?.UpdatePanelEntityRight(entity, handData);
+            HandsGui?.UpdatePanelEntityRight(entity);
     }
 }

@@ -4,7 +4,6 @@
   group: Narcotics
   desc: reagent-desc-desoxyephedrine
   physicalDesc: reagent-physical-desc-translucent
-  contrabandSeverity: Major
   flavor: bitter
   color: "#FAFAFA"
   boilingPoint: 212.0  # Dexosyephedrine vape when?
@@ -41,12 +40,12 @@
         key: KnockedDown
         time: 3
         type: Remove
-      - !type:ModifyStatusEffect
+      - !type:GenericStatusEffect
         conditions:
         - !type:ReagentThreshold
           reagent: Haloperidol
           max: 0.01
-        effectProto: StatusEffectDrowsiness
+        key: Drowsiness
         time: 10
         type: Remove
     Medicine:
@@ -62,7 +61,6 @@
   group: Narcotics
   desc: reagent-desc-ephedrine
   physicalDesc: reagent-physical-desc-powdery
-  contrabandSeverity: Minor
   flavor: bitter
   color: "#D2FFFA"
   boilingPoint: 255.0
@@ -90,12 +88,12 @@
         key: KnockedDown
         time: 1
         type: Remove
-      - !type:ModifyStatusEffect
+      - !type:GenericStatusEffect
         conditions:
         - !type:ReagentThreshold
           reagent: Haloperidol
           max: 0.01
-        effectProto: StatusEffectDrowsiness
+        key: Drowsiness
         time: 10
         type: Remove
       - !type:PopupMessage
@@ -116,7 +114,6 @@
   group: Narcotics
   desc: reagent-desc-stimulants
   physicalDesc: reagent-physical-desc-energizing
-  contrabandSeverity: Syndicate
   flavor: sharp
   color: "#9A040E"
   boilingPoint: 212.0
@@ -155,16 +152,16 @@
         component: StaminaModifier
         time: 3
         type: Add
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectForcedSleeping
+      - !type:GenericStatusEffect
+        key: ForcedSleep
         time: 3
         type: Remove
-      - !type:ModifyStatusEffect
+      - !type:GenericStatusEffect
         conditions:
         - !type:ReagentThreshold
           reagent: Haloperidol
           max: 0.01
-        effectProto: StatusEffectDrowsiness
+        key: Drowsiness
         time: 10
         type: Remove
     Medicine:
@@ -201,10 +198,11 @@
   metabolisms:
     Narcotic:
       effects:
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectSeeingRainbow
-        time: 16
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
         type: Add
+        time: 16
         refresh: false
 
 - type: reagent
@@ -226,7 +224,6 @@
   group: Narcotics
   desc: reagent-desc-impedrezene
   physicalDesc: reagent-physical-desc-acrid
-  contrabandSeverity: Minor
   flavor: bitter
   color: "#215263"
   metabolisms:
@@ -239,10 +236,11 @@
         damage:
           types:
             Poison: 2
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectSeeingRainbow
-        time: 10
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
         type: Add
+        time: 10
         refresh: false
       - !type:ChemVomit # Vomiting is a symptom of brain damage
         probability: 0.05
@@ -260,8 +258,9 @@
   metabolisms:
     Narcotic:
       effects:
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectSeeingRainbow
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
         type: Add
         time: 5
         refresh: false
@@ -277,8 +276,9 @@
   metabolisms:
     Narcotic:
       effects:
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectSeeingRainbow
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
         type: Add
         time: 5
         refresh: false
@@ -290,20 +290,20 @@
   group: Narcotics
   desc: reagent-desc-nocturine
   physicalDesc: reagent-physical-desc-powdery
-  contrabandSeverity: Syndicate
   color: "#128e80"
   boilingPoint: 444.0
   meltingPoint: 128.0
   metabolisms:
     Narcotic:
       effects:
-      - !type:ModifyStatusEffect
+      - !type:GenericStatusEffect
         conditions:
         - !type:ReagentThreshold
           reagent: Nocturine
           min: 8
-        effectProto: StatusEffectForcedSleeping
-        time: 3
+        key: ForcedSleep
+        component: ForcedSleeping
+        refresh: false
         type: Add
 
 - type: reagent
@@ -312,7 +312,6 @@
   group: Narcotics
   desc: reagent-desc-mute-toxin
   physicalDesc: reagent-physical-desc-syrupy
-  contrabandSeverity: Syndicate
   color: "#000000"
   boilingPoint: 255.0
   meltingPoint: 36.0
@@ -332,7 +331,6 @@
   group: Narcotics
   desc: reagent-desc-norepinephric-acid
   physicalDesc: reagent-physical-desc-milky
-  contrabandSeverity: Minor
   flavor: salty
   color: "#96a8b5"
   boilingPoint: 255.0
@@ -377,8 +375,6 @@
   group: Narcotics
   desc: reagent-desc-tear-gas
   physicalDesc: reagent-physical-desc-milky
-  allowedDepartments:
-  - Security
   flavor: salty
   color: "#ffffff4d"
   boilingPoint: 255.0
@@ -472,8 +468,9 @@
         conditions:
         - !type:ReagentThreshold
           max: 20
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectSeeingRainbow
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
         type: Add
         time: 5
         refresh: false

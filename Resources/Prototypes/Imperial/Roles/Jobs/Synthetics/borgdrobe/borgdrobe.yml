@@ -4,11 +4,8 @@
   name: SyndieDrobe
   description: Wardrobe machine encoded by the syndicate, contains elite outfits for various operations.
   components:
-  - type: Vocalizer
-    hideChat: true
-  - type: VocalizerRequiresPower
-  - type: DatasetVocalizer
-    dataset: SyndieDrobeAds
+  - type: Advertise
+    pack: SyndieDrobeAds
   - type: SpeakOnUIClosed
     pack: SyndiedrobeGoodbyes
   - type: Sprite
@@ -30,7 +27,7 @@
   - type: ActivatableUI
     key: enum.StoreUiKey.Key
   - type: Store
-    categories:
+    categories: 
     - BorgDrobeBorg
     currencyWhitelist:
     - Telecrystal

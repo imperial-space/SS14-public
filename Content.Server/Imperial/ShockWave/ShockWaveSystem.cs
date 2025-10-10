@@ -3,7 +3,6 @@ using System.Numerics;
 using Content.Server.Explosion.EntitySystems;
 using Content.Shared.EntityEffects;
 using Content.Shared.Imperial.ShockWave;
-using Content.Shared.Trigger;
 using Robust.Server.GameObjects;
 using Robust.Server.GameStates;
 using Robust.Shared.Timing;
@@ -55,10 +54,8 @@ public sealed class ShockWaveSystem : SharedShockWaveSystem
 
                 component.CollidedEntities.Add(entity);
 
-                var triggerEv = new TriggerEvent(entity);
-
                 RaiseLocalEvent(uid, new ShockWaveEntityCollideEvent(uid, entity));
-                RaiseLocalEvent(uid, ref triggerEv, true);
+                RaiseLocalEvent(uid, new TriggerEvent(entity, uid), true);
 
                 foreach (var effect in component.Effects)
                 {

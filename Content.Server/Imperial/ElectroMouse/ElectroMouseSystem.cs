@@ -38,7 +38,6 @@ using Robust.Shared.Physics;
 using Content.Shared.Body.Components;
 using CollisionGroup = Content.Shared.Physics.CollisionGroup;
 using Content.Server.Chat.Systems;
-using Content.Shared.Light.Components;
 
 namespace Content.Server.Imperial.ElectroMouse.EntitySystems;
 
@@ -274,9 +273,9 @@ public sealed partial class ElectroMouseSystem : EntitySystem
 
         AddEnergy(uid, component, -10);
 
-        _stun.TryUpdateStunDuration(uid, TimeSpan.FromSeconds(2f));
+        _stun.TryStun(uid, TimeSpan.FromSeconds(2f), false);
         _beam.TryCreateBeam(uid, target, "LightningRevenant");
-        _stun.TryAddParalyzeDuration(target, TimeSpan.FromSeconds(7f));
+        _stun.TryParalyze(target, TimeSpan.FromSeconds(7f), true);
     }
 
     private void OnSpeed(EntityUid uid, ElectroMouseComponent component, ElectroMouseSpeedEvent args)
@@ -526,7 +525,7 @@ public sealed partial class ElectroMouseSystem : EntitySystem
 
         if (!_doAfter.TryStartDoAfter(doAfter))
             return;
-        _stun.TryUpdateStunDuration(uid, TimeSpan.FromSeconds(5f));
+        _stun.TryStun(uid, TimeSpan.FromSeconds(5f), false);
 
         _popup.PopupEntity(Loc.GetString("electromouse-startharvest", ("target", target)),
             target, PopupType.Large);

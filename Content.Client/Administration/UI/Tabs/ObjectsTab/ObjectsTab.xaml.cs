@@ -57,43 +57,12 @@ public sealed partial class ObjectsTab : Control
 
     private void TeleportTo(NetEntity nent)
     {
-        var selection = _selections[ObjectTypeOptions.SelectedId];
-        switch (selection)
-        {
-            case ObjectsTabSelection.Grids:
-                {
-                    // directly teleport to the entity
-                    _console.ExecuteCommand($"tpto {nent}");
-                }
-                break;
-            case ObjectsTabSelection.Maps:
-                {
-                    // teleport to the map, not to the map entity (which is in nullspace)
-                    if (!_entityManager.TryGetEntity(nent, out var map) || !_entityManager.TryGetComponent<MapComponent>(map, out var mapComp))
-                        break;
-                    _console.ExecuteCommand($"tp 0 0 {mapComp.MapId}");
-                    break;
-                }
-            case ObjectsTabSelection.Stations:
-                {
-                    // teleport to the station's largest grid, not to the station entity (which is in nullspace)
-                    if (!_entityManager.TryGetEntity(nent, out var station))
-                        break;
-                    var largestGrid = _entityManager.EntitySysManager.GetEntitySystem<StationSystem>().GetLargestGrid(station.Value);
-                    if (largestGrid == null)
-                        break;
-                    _console.ExecuteCommand($"tpto {largestGrid.Value}");
-                    break;
-                }
-            default:
-                throw new NotImplementedException();
-        }
+        _console.ExecuteCommand($"tpto {nent}");
     }
 
     private void Delete(NetEntity nent)
     {
         _console.ExecuteCommand($"delete {nent}");
-        RefreshObjectList();
     }
 
     public void RefreshObjectList()
@@ -107,24 +76,28 @@ public sealed partial class ObjectsTab : Control
         switch (selection)
         {
             case ObjectsTabSelection.Stations:
-                entities.AddRange(_entityManager.EntitySysManager.GetEntitySystem<StationSystem>().GetStationNames());
+                entities.AddRange(_entityManager.EntitySysManager.GetEntitySystem<StationSystem>().Stations);
                 break;
             case ObjectsTabSelection.Grids:
+            {
+                var query = _entityManager.AllEntityQueryEnumerator<MapGridComponent, MetaDataComponent>();
+                while (query.MoveNext(out var uid, out _, out var metadata))
                 {
-                    var query = _entityManager.AllEntityQueryEnumerator<MapGridComponent, MetaDataComponent>();
-                    while (query.MoveNext(out var uid, out _, out var metadata))
-                        entities.Add((metadata.EntityName, _entityManager.GetNetEntity(uid)));
-
-                    break;
+                    entities.Add((metadata.EntityName, _entityManager.GetNetEntity(uid)));
                 }
+
+                break;
+            }
             case ObjectsTabSelection.Maps:
+            {
+                var query = _entityManager.AllEntityQueryEnumerator<MapComponent, MetaDataComponent>();
+                while (query.MoveNext(out var uid, out _, out var metadata))
                 {
-                    var query = _entityManager.AllEntityQueryEnumerator<MapComponent, MetaDataComponent>();
-                    while (query.MoveNext(out var uid, out _, out var metadata))
-                        entities.Add((metadata.EntityName, _entityManager.GetNetEntity(uid)));
-
-                    break;
+                    entities.Add((metadata.EntityName, _entityManager.GetNetEntity(uid)));
                 }
+
+                break;
+            }
             default:
                 throw new ArgumentOutOfRangeException(nameof(selection), selection, null);
         }
@@ -159,8 +132,8 @@ public sealed partial class ObjectsTab : Control
         entry.OnTeleport += TeleportTo;
         entry.OnDelete += Delete;
         button.ToolTip = $"{info.Name}, {info.Entity}";
+
         button.AddChild(entry);
-        button.StyleClasses.Clear();
     }
 
     private bool DataFilterCondition(string filter, ListData listData)

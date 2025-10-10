@@ -251,7 +251,6 @@
     collection: BarestepWood
   itemDrop: FloorTileItemWood
   heatCapacity: 10000
-  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorWhite
@@ -696,7 +695,6 @@
     collection: FootstepHull
   itemDrop: FloorTileItemMetalDiamond
   heatCapacity: 10000
-  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorRockVault
@@ -776,7 +774,7 @@
   itemDrop: FloorTileItemMiningLight
   heatCapacity: 10000
 
-# Departmental
+# Departamental
 - type: tile
   id: FloorFreezer
   name: tiles-freezer
@@ -916,7 +914,6 @@
     collection: FootstepTile
   itemDrop: FloorTileItemConcrete
   heatCapacity: 10000
-  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorConcreteMono
@@ -935,7 +932,6 @@
     collection: FootstepTile
   itemDrop: FloorTileItemConcreteMono
   heatCapacity: 10000
-  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorConcreteSmooth
@@ -954,7 +950,6 @@
     collection: FootstepTile
   itemDrop: FloorTileItemConcreteSmooth
   heatCapacity: 10000
-  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorGrayConcrete
@@ -973,7 +968,6 @@
     collection: FootstepTile
   itemDrop: FloorTileItemGrayConcrete
   heatCapacity: 10000
-  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorGrayConcreteMono
@@ -992,7 +986,6 @@
     collection: FootstepTile
   itemDrop: FloorTileItemGrayConcreteMono
   heatCapacity: 10000
-  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorGrayConcreteSmooth
@@ -1011,7 +1004,6 @@
     collection: FootstepTile
   itemDrop: FloorTileItemGrayConcreteSmooth
   heatCapacity: 10000
-  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorOldConcrete
@@ -1030,7 +1022,6 @@
     collection: FootstepTile
   itemDrop: FloorTileItemOldConcrete
   heatCapacity: 10000
-  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorOldConcreteMono
@@ -1049,7 +1040,6 @@
     collection: FootstepTile
   itemDrop: FloorTileItemOldConcreteMono
   heatCapacity: 10000
-  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorOldConcreteSmooth
@@ -1068,7 +1058,6 @@
     collection: FootstepTile
   itemDrop: FloorTileItemOldConcreteSmooth
   heatCapacity: 10000
-  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 # Carpets (non smoothing)
 - type: tile
@@ -1834,7 +1823,6 @@
     collection: BarestepWood
   itemDrop: FloorTileItemWoodPattern
   heatCapacity: 10000
-  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorBrokenWood
@@ -1858,7 +1846,6 @@
     collection: BarestepWood
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
-  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorWebTile
@@ -1976,24 +1963,6 @@
   deconstructTools: [ Cutting ]
   itemDrop: FloorTileItemJungleAstroGrass
 
-- type: tile
-  parent: FloorGrassDark
-  id: FloorDarkAstroGrass
-  name: tiles-dark-astro-grass
-  baseTurf: Plating
-  isSubfloor: false
-  deconstructTools: [ Cutting ]
-  itemDrop: FloorTileItemDarkAstroGrass
-
-- type: tile
-  parent: FloorGrassLight
-  id: FloorLightAstroGrass
-  name: tiles-light-astro-grass
-  baseTurf: Plating
-  isSubfloor: false
-  deconstructTools: [ Cutting ]
-  itemDrop: FloorTileItemLightAstroGrass
-
 # Ice
 - type: tile
   id: FloorAstroIce
@@ -2039,16 +2008,6 @@
   weather: false
 
 - type: tile
-  parent: FloorDesert
-  id: FloorDesertAstroSand
-  name: tiles-desert-astro-sand
-  baseTurf: Plating
-  isSubfloor: false
-  deconstructTools: [ Prying ]
-  itemDrop: FloorTileItemDesertAstroSand
-  weather: false
-
-- type: tile
   id: FloorWoodLarge
   name: tiles-wood-large
   sprite: /Textures/Tiles/wood_large.png
@@ -2066,19 +2025,6 @@
   barestepSounds:
     collection: BarestepWood
   itemDrop: FloorTileItemWoodLarge
-  heatCapacity: 10000
-  weather: true
-
-- type: tile
-  id: FloorXenoborg
-  name: tiles-xenoborg-floor
-  sprite: /Textures/Tiles/exoborg.png
-  baseTurf: Plating
-  isSubfloor: false
-  deconstructTools: [ Prying ]
-  footstepSounds:
-    collection: FootstepHull
-  itemDrop: FloorTileItemXenoborg
   heatCapacity: 10000
 
 - type: tile
@@ -2148,96 +2094,4 @@
   footstepSounds:
     collection: FootstepHull
   itemDrop: FloorTileItemXenoMaint
-  heatCapacity: 10000
-
-- type: tile
-  id: FloorWhiteMarble
-  name: tiles-white-marble
-  sprite: /Textures/Tiles/white_marble.png
-  variants: 8
-  placementVariants:
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  baseTurf: Plating
-  isSubfloor: false
-  deconstructTools: [ Prying ]
-  footstepSounds:
-    collection: FootstepTile
-  friction: 0.8
-  itemDrop: FloorTileItemWhiteMarble
-  heatCapacity: 10000
-
-- type: tile
-  id: FloorDarkMarble
-  name: tiles-dark-marble
-  sprite: /Textures/Tiles/dark_marble.png
-  variants: 8
-  placementVariants:
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  baseTurf: Plating
-  isSubfloor: false
-  deconstructTools: [ Prying ]
-  footstepSounds:
-    collection: FootstepTile
-  friction: 0.8
-  itemDrop: FloorTileItemDarkMarble
-  heatCapacity: 10000
-
-- type: tile
-  id: FloorPlasmaMarble
-  name: tiles-plasma-marble
-  sprite: /Textures/Tiles/plasmarble.png
-  variants: 8
-  placementVariants:
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  baseTurf: Plating
-  isSubfloor: false
-  deconstructTools: [ Prying ]
-  footstepSounds:
-    collection: FootstepTile
-  friction: 0.8
-  itemDrop: FloorTileItemPlasmaMarble
-  heatCapacity: 10000
-
-- type: tile
-  id: FloorUraniumMarble
-  name: tiles-uranium-marble
-  sprite: /Textures/Tiles/uranium_marble.png
-  variants: 8
-  placementVariants:
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
-  baseTurf: Plating
-  isSubfloor: false
-  deconstructTools: [ Prying ]
-  footstepSounds:
-    collection: FootstepTile
-  friction: 0.8
-  itemDrop: FloorTileItemUraniumMarble
   heatCapacity: 10000

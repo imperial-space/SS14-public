@@ -108,15 +108,15 @@ public sealed partial class ActivatableUISystem : EntitySystem
 
             if (component.InHandsOnly)
             {
-                if (!_hands.IsHolding((args.User, args.Hands), uid, out var hand ))
+                if (!_hands.IsHolding(args.User, uid, out var hand, args.Hands))
                     return false;
 
-                if (component.RequireActiveHand && args.Hands.ActiveHandId != hand)
+                if (component.RequireActiveHand && args.Hands.ActiveHand != hand)
                     return false;
             }
         }
 
-        return (args.CanInteract || HasComp<GhostComponent>(args.User) && !component.BlockSpectators) && !RaiseCanOpenEventChecks(args.User, uid);
+        return args.CanInteract || HasComp<GhostComponent>(args.User) && !component.BlockSpectators;
     }
 
     private void OnUseInHand(EntityUid uid, ActivatableUIComponent component, UseInHandEvent args)
@@ -202,10 +202,10 @@ public sealed partial class ActivatableUISystem : EntitySystem
             if (!TryComp(user, out HandsComponent? hands))
                 return false;
 
-            if (!_hands.IsHolding((user, hands), uiEntity, out var hand))
+            if (!_hands.IsHolding(user, uiEntity, out var hand, hands))
                 return false;
 
-            if (aui.RequireActiveHand && hands.ActiveHandId != hand)
+            if (aui.RequireActiveHand && hands.ActiveHand != hand)
                 return false;
         }
 
@@ -225,7 +225,11 @@ public sealed partial class ActivatableUISystem : EntitySystem
 
         // If we've gotten this far, fire a cancellable event that indicates someone is about to activate this.
         // This is so that stuff can require further conditions (like power).
-        if (RaiseCanOpenEventChecks(user, uiEntity))
+        var oae = new ActivatableUIOpenAttemptEvent(user);
+        var uae = new UserOpenActivatableUIAttemptEvent(user, uiEntity);
+        RaiseLocalEvent(user, uae);
+        RaiseLocalEvent(uiEntity, oae);
+        if (oae.Cancelled || uae.Cancelled)
             return false;
 
         // Give the UI an opportunity to prepare itself if it needs to do anything
@@ -281,16 +285,5 @@ public sealed partial class ActivatableUISystem : EntitySystem
     {
         if (ent.Comp.InHandsOnly)
             CloseAll(ent, ent);
-    }
-
-    private bool RaiseCanOpenEventChecks(EntityUid user, EntityUid uiEntity)
-    {
-        // If we've gotten this far, fire a cancellable event that indicates someone is about to activate this.
-        // This is so that stuff can require further conditions (like power).
-        var oae = new ActivatableUIOpenAttemptEvent(user);
-        var uae = new UserOpenActivatableUIAttemptEvent(user, uiEntity);
-        RaiseLocalEvent(user, uae);
-        RaiseLocalEvent(uiEntity, oae);
-        return oae.Cancelled || uae.Cancelled;
     }
 }

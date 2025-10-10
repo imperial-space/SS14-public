@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Server.Announcements;
 using Content.Server.Discord;
 using Content.Server.GameTicking.Events;
+using Content.Server.Ghost;
 using Content.Server.Maps;
 using Content.Server.Roles;
 using Content.Shared.CCVar;
@@ -11,7 +12,6 @@ using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Players;
 using Content.Shared.Preferences;
-using Content.Shared.Roles.Components;
 using JetBrains.Annotations;
 using Prometheus;
 using Robust.Shared.Asynchronous;
@@ -19,6 +19,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
@@ -37,6 +38,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly RoleSystem _role = default!;
         [Dependency] private readonly ITaskManager _taskManager = default!;
         [Dependency] private readonly IVoteManager _voteManager = default!; //Imperial
+        [Dependency] private readonly IConfigurationManager _configurationManager = default!; //Imperial
 
         private static readonly Counter RoundNumberMetric = Metrics.CreateCounter(
             "ss14_round_number",
@@ -685,7 +687,7 @@ namespace Content.Server.GameTicking
                 UpdateInfoText();
 
                 // Imperial-start
-                if (_cfg.GetCVar(ICCVars.VoteAutoStartInLobby))
+                if (_configurationManager.GetCVar(ICCVars.VoteAutoStartInLobby))
                 {
                     _voteManager.CreateStandardVote(null, StandardVoteType.Map);
                     _voteManager.CreateStandardVote(null, StandardVoteType.Preset);

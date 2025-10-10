@@ -22,7 +22,6 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 using Robust.Shared.Utility;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
-using Content.Server.Hands.Systems;
 namespace Content.Server.Imperial.PiratesNewHorizon.GPS.Systems;
 
 public sealed class GPSTrackerRemoverSystem : EntitySystem
@@ -34,9 +33,6 @@ public sealed class GPSTrackerRemoverSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly HandsSystem _handsSystem = default!;
-
-
     public override void Initialize()
     {
         SubscribeLocalEvent<GPSTrackerRemoverComponent, AfterInteractEvent>(OnAfterInteract);
@@ -103,8 +99,10 @@ public sealed class GPSTrackerRemoverSystem : EntitySystem
             !ev.CanAccess ||
             !TryComp<BodyComponent>(ev.User, out var body) ||
             !TryComp<HandsComponent>(ev.User, out var hands) ||
-            _handsSystem.TryGetActiveItem(ev.User, out var activeItem) ||
-            !TryComp<GPSTrackerRemoverComponent>(activeItem, out var remover))
+            hands.ActiveHand == null ||
+            !hands.ActiveHand.HeldEntity.HasValue ||
+            !_entityManager.EntityExists(hands.ActiveHand.HeldEntity.Value) ||
+            !TryComp<GPSTrackerRemoverComponent>(hands.ActiveHand.HeldEntity.Value, out var remover))
             return;
         var user = ev.User;
         var target = ev.Target;
@@ -112,7 +110,7 @@ public sealed class GPSTrackerRemoverSystem : EntitySystem
         {
             Act = () =>
             {
-                if (!TryComp(activeItem, out UseDelayComponent? useDelay) || _useDelay.IsDelayed((activeItem.Value, useDelay)))
+                if (!TryComp(hands.ActiveHand.HeldEntity.Value, out UseDelayComponent? useDelay) || _useDelay.IsDelayed((hands.ActiveHand.HeldEntity.Value, useDelay)))
                     return;
                 if (!TryComp(target, out GPSTrackerPriceComponent? gpsTracker) || gpsTracker.GPSTrackerInstalled == false)
                 {
@@ -123,9 +121,9 @@ public sealed class GPSTrackerRemoverSystem : EntitySystem
                 user,
                 TimeSpan.FromSeconds(remover.Delay),
                 new GPSTrackerRemoveDoAfterEvent(),
-                eventTarget: activeItem,
+                eventTarget: hands.ActiveHand.HeldEntity.Value,
                 target: target,
-                used: activeItem)
+                used: hands.ActiveHand.HeldEntity.Value)
                 {
                     BreakOnMove = true,
                     BreakOnDamage = true,

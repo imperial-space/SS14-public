@@ -21,7 +21,8 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
     [Dependency] protected readonly IPrototypeManager Prototypes = default!;
     [Dependency] private readonly InteractionPopupSystem _interactionPopup = default!;
 
-    public static readonly EntProtoId ActionId = "ActionSelectBorgType";
+    [ValidatePrototypeId<EntityPrototype>]
+    public const string ActionId = "ActionSelectBorgType";
 
     public override void Initialize()
     {
@@ -100,7 +101,7 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
 
     protected void UpdateEntityAppearance(Entity<BorgSwitchableTypeComponent> entity)
     {
-        if (!Prototypes.Resolve(entity.Comp.SelectedBorgType, out var proto))
+        if (!Prototypes.TryIndex(entity.Comp.SelectedBorgType, out var proto))
             return;
 
         UpdateEntityAppearance(entity, proto);

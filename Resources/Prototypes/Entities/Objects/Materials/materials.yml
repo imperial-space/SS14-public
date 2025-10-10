@@ -56,13 +56,6 @@
           Quantity: 6
   - type: Item
     heldPrefix: cardboard
-  - type: FloorTile
-    outputs:
-    - Plating
-  - type: SpawnAfterInteract #Nuke after convert to FloorTile
-    prototype: CarpetCard
-    doAfter: 0.5
-    removeOnInteract: true
 
 - type: entity
   parent: MaterialCardboard
@@ -130,7 +123,7 @@
     - state: cloth_3
       map: ["base"]
   - type: Appearance
-  - type: Edible
+  - type: Food
     requiresSpecialDigestion: true
   - type: FlavorProfile
     flavors:
@@ -147,7 +140,6 @@
       - ClothMade
       - Gauze
       - RawMaterial
-      - ConstructionMaterial
   - type: Construction
     graph: WebObjects # not sure if I should either keep this here or just make another prototype. Will keep it here just in case.
     node: cloth
@@ -200,7 +192,7 @@
   - type: Construction
     graph: Durathread
     node: MaterialDurathread
-  - type: Edible
+  - type: Food
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
     solutions:
@@ -213,7 +205,6 @@
     tags:
       - ClothMade
       - RawMaterial
-      - ConstructionMaterial
   - type: Item
     heldPrefix: durathread
 
@@ -226,6 +217,13 @@
     state: durathread
   - type: Stack
     count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents: #Hell if I know what durathread is made out of.
+        - ReagentId: Fiber
+          Quantity: 6
 
 - type: entity
   parent: MaterialBase
@@ -256,7 +254,6 @@
     tags:
     - Wooden
     - RawMaterial
-    - ConstructionMaterial
   - type: Extractable
     grindableSolutionName: wood
   - type: SolutionContainerManager
@@ -424,7 +421,7 @@
     - state: cotton_3
       map: ["base"]
   - type: Appearance
-  - type: Edible
+  - type: Food
     requiresSpecialDigestion: true
   - type: FlavorProfile
     flavors:
@@ -483,7 +480,7 @@
     - state: pyrotton_3
       map: ["base"]
   - type: Appearance
-  - type: Edible
+  - type: Food
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
     solutions:
@@ -543,7 +540,7 @@
   - type: FlavorProfile
     flavors:
       - banana
-  - type: Edible
+  - type: Food
     trash:
     - TrashBananiumPeel
   - type: BadFood
@@ -595,7 +592,7 @@
   - type: Stack
     count: 50
     stackType: WebSilk
-  - type: Edible
+  - type: Food
     requiresSpecialDigestion: true
   - type: FlavorProfile
     flavors:
@@ -738,7 +735,7 @@
     - state: cotton_3
       map: ["base"]
   - type: Appearance
-  - type: Edible
+  - type: Food
   - type: BadFood
   - type: SolutionContainerManager
     solutions:

@@ -1,16 +1,19 @@
+using Content.Server.Administration.Logs;
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
 using Content.Server.Objectives;
 using Content.Server.PDA.Ringer;
+using Content.Server.Roles;
 using Content.Server.Traitor.Uplink;
+using Content.Shared.Database;
 using Content.Shared.FixedPoint;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.NPC.Systems;
 using Content.Shared.PDA;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
-using Content.Shared.Roles.Components;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Roles.RoleCodeword;
 using Robust.Shared.Prototypes;
@@ -122,19 +125,19 @@ public sealed class TraitorRuleSystem : GameRuleSystem<TraitorRuleComponent>
         if (traitorRole is not null)
         {
             Log.Debug($"MakeTraitor {ToPrettyString(traitor)} - Add traitor briefing components");
-            EnsureComp<RoleBriefingComponent>(traitorRole.Value.Owner, out var briefingComp);
-            briefingComp.Briefing = briefing;
+            AddComp<RoleBriefingComponent>(traitorRole.Value.Owner);
+            Comp<RoleBriefingComponent>(traitorRole.Value.Owner).Briefing = briefing;
         }
         else
         {
             Log.Debug($"MakeTraitor {ToPrettyString(traitor)} - did not get traitor briefing");
         }
 
+        // Send codewords to only the traitor client
         var color = TraitorCodewordColor; // Fall back to a dark red Syndicate color if a prototype is not found
 
-        // The mind entity is stored in nullspace with a PVS override for the owner, so only they can see the codewords.
-        var codewordComp = EnsureComp<RoleCodewordComponent>(mindId);
-        _roleCodewordSystem.SetRoleCodewords((mindId, codewordComp), "traitor", factionCodewords.ToList(), color);
+        RoleCodewordComponent codewordComp = EnsureComp<RoleCodewordComponent>(mindId);
+        _roleCodewordSystem.SetRoleCodewords(codewordComp, "traitor", factionCodewords.ToList(), color);
 
         // Change the faction
         Log.Debug($"MakeTraitor {ToPrettyString(traitor)} - Change faction");

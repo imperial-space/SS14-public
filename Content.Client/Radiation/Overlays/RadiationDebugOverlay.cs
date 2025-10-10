@@ -11,8 +11,6 @@ namespace Content.Client.Radiation.Overlays;
 public sealed class RadiationDebugOverlay : Overlay
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IResourceCache _cache = default!;
-
     private readonly SharedMapSystem _mapSystem;
     private readonly RadiationSystem _radiation;
 
@@ -26,7 +24,8 @@ public sealed class RadiationDebugOverlay : Overlay
         _radiation = _entityManager.System<RadiationSystem>();
         _mapSystem = _entityManager.System<SharedMapSystem>();
 
-        _font = new VectorFont(_cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Regular.ttf"), 8);
+        var cache = IoCManager.Resolve<IResourceCache>();
+        _font = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Regular.ttf"), 8);
     }
 
     protected override void Draw(in OverlayDrawArgs args)

@@ -15,8 +15,6 @@ namespace Content.Client.Access.UI;
 [GenerateTypedNameReferences]
 public sealed partial class GroupedAccessLevelChecklist : BoxContainer
 {
-    private static readonly ProtoId<AccessGroupPrototype> GeneralAccessGroup = "General";
-
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
 
     private bool _isMonotone;
@@ -57,7 +55,7 @@ public sealed partial class GroupedAccessLevelChecklist : BoxContainer
 
         foreach (var accessGroup in _accessGroups)
         {
-            if (!_protoManager.Resolve(accessGroup, out var accessGroupProto))
+            if (!_protoManager.TryIndex(accessGroup, out var accessGroupProto))
                 continue;
 
             _groupedAccessLevels.Add(accessGroupProto, new());
@@ -65,13 +63,13 @@ public sealed partial class GroupedAccessLevelChecklist : BoxContainer
 
         // Ensure that the 'general' access group is added to handle
         // misc. access levels that aren't associated with any group
-        if (_protoManager.Resolve(GeneralAccessGroup, out var generalAccessProto))
+        if (_protoManager.TryIndex<AccessGroupPrototype>("General", out var generalAccessProto))
             _groupedAccessLevels.TryAdd(generalAccessProto, new());
 
         // Assign known access levels with their associated groups
         foreach (var accessLevel in _accessLevels)
         {
-            if (!_protoManager.Resolve(accessLevel, out var accessLevelProto))
+            if (!_protoManager.TryIndex(accessLevel, out var accessLevelProto))
                 continue;
 
             var assigned = false;
@@ -99,8 +97,8 @@ public sealed partial class GroupedAccessLevelChecklist : BoxContainer
 
     private bool TryRebuildAccessGroupControls()
     {
-        AccessGroupList.RemoveAllChildren();
-        AccessLevelChecklist.RemoveAllChildren();
+        AccessGroupList.DisposeAllChildren();
+        AccessLevelChecklist.DisposeAllChildren();
 
         // No access level prototypes were assigned to any of the access level groups.
         // Either the turret controller has no assigned access levels or their names were invalid.
@@ -165,7 +163,7 @@ public sealed partial class GroupedAccessLevelChecklist : BoxContainer
     /// </summary>
     public void RebuildAccessLevelsControls()
     {
-        AccessLevelChecklist.RemoveAllChildren();
+        AccessLevelChecklist.DisposeAllChildren();
         _accessLevelEntries.Clear();
 
         // No access level prototypes were assigned to any of the access level groups

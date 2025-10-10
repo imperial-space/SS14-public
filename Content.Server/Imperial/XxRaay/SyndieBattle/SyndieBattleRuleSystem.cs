@@ -15,7 +15,6 @@ using Content.Shared.Objectives.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Server.Chat.Managers;
-using Content.Server.Clothing.Systems;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Roles;
 using Content.Shared.Chat;
@@ -26,17 +25,7 @@ using Content.Server.Pinpointer;
 using Content.Server.GameTicking;
 using Robust.Server.Player;
 using Content.Shared.Damage.Systems;
-using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
-using Content.Server.Mind;
-using Content.Server.Station.Systems;
-using Robust.Server.GameObjects;
-using Robust.Shared.EntitySerialization;
-using Robust.Shared.EntitySerialization.Systems;
-using Robust.Shared.Map;
-using Robust.Shared.Utility;
-using Content.Server.Hands.Systems;
-using Content.Shared.Station.Components;
 
 namespace Content.Server.Imperial.XxRaay.SyndieBattle;
 
@@ -53,12 +42,6 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
     [Dependency] private readonly NavMapSystem _navMap = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly OutfitSystem _outfitSystem = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
-    [Dependency] private readonly MapLoaderSystem _map = default!;
-    [Dependency] private readonly HandsSystem _handsSystem = default!;
-
 
     public override void Initialize()
     {
@@ -70,7 +53,7 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
     protected override void Started(EntityUid uid, SyndieBattleRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         component.Active = true;
-        component.StartTime = TimeSpan.Zero;
+        component.StartTime = Timing.CurTime.TotalSeconds;
 
         SpawnRedemptionMachines();
 
@@ -83,8 +66,6 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
             false);
 
         ConvertAllCurrentPlayers(component);
-
-        SpawnRespawnMap(component);
     }
 
     protected override void Ended(EntityUid uid, SyndieBattleRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
@@ -122,9 +103,9 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
             }
             if (TryComp<HandsComponent>(ent, out var hands))
             {
-                foreach (var (handId, _) in hands.Hands)
+                foreach (var hand in hands.Hands.Values)
                 {
-                    if (_handsSystem.TryGetHeldItem(ent, handId, out var heldItem) || !TryComp<StoreComponent>(heldItem, out var store))
+                    if (hand.HeldEntity == null || !TryComp<StoreComponent>(hand.HeldEntity.Value, out var store))
                         continue;
 
                     if (store.Balance.TryGetValue("Telecrystal", out var bal))
@@ -228,51 +209,30 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         );
     }
 
-    private void MakeTraitor(EntityUid player, SyndieBattleRuleComponent component)
+    private void MakeTraitor(EntityUid player, SyndieBattleRuleComponent? component = null)
     {
-        if (TryComp<InventoryComponent>(player, out var inv))
+
+        if (!_mindSystem.TryGetMind(player, out var mindId, out var mind))
+            return;
+
+        if (component == null)
         {
-            var toDelete = new List<EntityUid>();
-            var enumSlots = _inventory.GetSlotEnumerator((player, inv));
-            while (enumSlots.NextItem(out var item, out _))
-            {
-                if (item is EntityUid itemUid)
-                    toDelete.Add(itemUid);
-            }
-
-            if (TryComp<HandsComponent>(player, out var hands))
-            {
-                foreach (var (handId, _) in hands.Hands)
-                {
-                    if (_handsSystem.TryGetHeldItem(player, handId, out var helded))
-                        toDelete.Add(helded.Value);
-                }
-            }
-
-            foreach (var ent in toDelete.Distinct())
-            {
-                if (ent == default || EntityManager.Deleted(ent))
-                    continue;
-                EntityManager.DeleteEntity(ent);
-            }
+            var activeRule = GetActiveRuleEntity();
+            if (activeRule == null || !TryComp(activeRule, out component))
+                return;
         }
 
-        _outfitSystem.SetOutfit(player, component.StartingGear);
+        _roleSystem.MindAddRole(mindId, "MindRoleTraitor", mind);
 
-        EnsureComp<KillTrackerComponent>(player);
+        _traitorRuleSystem.MakeTraitor(player, new TraitorRuleComponent());
 
-        if (_mindSystem.TryGetMind(player, out var mindId, out var mind))
-        {
-            _roleSystem.MindAddRole(mindId, "MindRoleTraitor", mind);
-            _traitorRuleSystem.MakeTraitor(player, new TraitorRuleComponent());
-            AssignTraitorObjectives(player);
-            GiveCustomUplink(player, component);
+        AssignTraitorObjectives(player);
 
-            var scoreComp = EnsureComp<SyndieBattleScoreComponent>(player);
-            scoreComp.SpawnTime = Timing.CurTime.TotalSeconds;
-            scoreComp.Alive = true;
-            scoreComp.SurvivalTime = 0f;
-        }
+        var scoreComp = EnsureComp<SyndieBattleScoreComponent>(player);
+
+        scoreComp.SpawnTime = Timing.CurTime.TotalSeconds;
+        scoreComp.Alive = true;
+        scoreComp.SurvivalTime = 0f;
     }
 
     private void AssignTraitorObjectives(EntityUid player)
@@ -294,31 +254,6 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
             var diff = Comp<ObjectiveComponent>(objective.Value).Difficulty;
             maxDifficulty -= diff;
             picked++;
-        }
-    }
-    private void GiveCustomUplink(EntityUid player, SyndieBattleRuleComponent component)
-    {
-        if (!TryComp<InventoryComponent>(player, out var inv))
-            return;
-
-        var enumSlots = _inventory.GetSlotEnumerator((player, inv));
-        while (enumSlots.NextItem(out var item, out _))
-        {
-            if (!(item is EntityUid itemUid))
-                continue;
-
-            if (!TryComp<StoreComponent>(itemUid, out var store))
-                continue;
-
-            store.Balance.Clear();
-            store.Balance[component.Currency] = component.StartingTelecrystalCount;
-
-            store.Categories.Clear();
-
-            foreach (var cat in component.Categories)
-            {
-                store.Categories.Add(cat);
-            }
         }
     }
 
@@ -443,6 +378,7 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         Log.Info($"Spawned {spawned} machines with {attempts} attempts.");
     }
 
+
     /// <summary>
     /// Получает имя убийцы из KillSource
     /// </summary>
@@ -462,18 +398,7 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         return "Что-то";
     }
 
-    private void SpawnRespawnMap(SyndieBattleRuleComponent component)
-    {
-        var mapRoot = _mapSystem.CreateMap();
-        var mapId = Comp<MapComponent>(mapRoot).MapId;
 
-        var options = new DeserializationOptions()
-        {
-            InitializeMaps = true
-        };
-
-        _map.TryLoadGrid(mapId, new ResPath(component.RespawnMap), out _, options);
-    }
 
     /// <summary>
     /// Получает место смерти

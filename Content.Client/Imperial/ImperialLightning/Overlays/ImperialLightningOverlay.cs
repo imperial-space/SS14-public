@@ -102,7 +102,7 @@ public sealed class ImperialLightningOverlay : Overlay
     public void AddLightning(
         (Vector2 StartCoords, EntityUid? StartEntityPoint) startPoint,
         (Vector2 TargetCoords, EntityUid? TargetEntityPoint) targetPoint,
-        Vector3 lightningColor,
+        Robust.Shared.Maths.Vector3 lightningColor,
         Vector2 offset,
         float speed,
         float intensity,

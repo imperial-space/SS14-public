@@ -1,8 +1,7 @@
-﻿using Content.Shared.Hands.Components;
-using Robust.Shared.Containers;
+﻿using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 namespace Content.Shared.Silicons.Borgs.Components;
 
@@ -13,40 +12,40 @@ namespace Content.Shared.Silicons.Borgs.Components;
 public sealed partial class ItemBorgModuleComponent : Component
 {
     /// <summary>
-    /// The hands that are provided.
+    /// The items that are provided.
     /// </summary>
-    [DataField(required: true)]
-    public List<BorgHand> Hands = new();
+    [DataField("items", customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>), required: true)]
+    public List<string> Items = new();
 
     /// <summary>
-    /// The items stored within the hands. Null until the first time items are stored.
+    /// The entities from <see cref="Items"/> that were spawned.
     /// </summary>
-    [DataField]
-    public Dictionary<string, EntityUid>? StoredItems;
+    [DataField("providedItems")]
+    public SortedDictionary<string, EntityUid> ProvidedItems = new();
 
     /// <summary>
-    /// An ID for the container where items are stored when not in use.
+    /// A counter that ensures a unique
     /// </summary>
-    [DataField]
-    public string HoldingContainer = "holding_container";
+    [DataField("handCounter")]
+    public int HandCounter;
+
+    /// <summary>
+    /// Whether or not the items have been created and stored in <see cref="ProvidedContainer"/>
+    /// </summary>
+    [DataField("itemsCrated")]
+    public bool ItemsCreated;
+
+    /// <summary>
+    /// A container where provided items are stored when not being used.
+    /// This is helpful as it means that items retain state.
+    /// </summary>
+    [ViewVariables]
+    public Container ProvidedContainer = default!;
+
+    /// <summary>
+    /// An ID for the container where provided items are stored when not used.
+    /// </summary>
+    [DataField("providedContainerId")]
+    public string ProvidedContainerId = "provided_container";
 }
 
-[DataDefinition, Serializable, NetSerializable]
-public partial record struct BorgHand
-{
-    [DataField]
-    public EntProtoId? Item;
-
-    [DataField]
-    public Hand Hand = new();
-
-    [DataField]
-    public bool ForceRemovable = false;
-
-    public BorgHand(EntProtoId? item, Hand hand, bool forceRemovable = false)
-    {
-        Item = item;
-        Hand = hand;
-        ForceRemovable = forceRemovable;
-    }
-}

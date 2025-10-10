@@ -25,11 +25,6 @@
       allowNonHumans: true
       multiAntagSetting: NotExclusive
       startingGear: ThiefGear
-      ### Imperial Syndie Borg
-      blacklist:
-        components:
-        - BorgTransponder
-      ### Imperial Syndie Borg End
       components:
       - type: Pacified
       - type: Thieving
@@ -39,8 +34,6 @@
       - MindRoleThief
       briefing:
         sound: "/Audio/Misc/thief_greeting.ogg"
-  - type: DynamicRuleCost
-    cost: 75
 
 # Needs testing
 - type: entity

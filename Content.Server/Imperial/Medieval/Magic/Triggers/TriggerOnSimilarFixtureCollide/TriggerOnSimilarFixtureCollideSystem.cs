@@ -1,5 +1,4 @@
 using Content.Server.Explosion.EntitySystems;
-using Content.Shared.Trigger;
 using Robust.Shared.Physics.Events;
 
 namespace Content.Server.Imperial.Medieval.Magic.Triggers;
@@ -19,7 +18,7 @@ public sealed partial class TriggerOnSimilarFixtureCollideSystem : EntitySystem
         if (args.OurFixtureId != component.FixtureID) return;
         if ((component.OtherFixtureID ?? args.OurFixtureId) != args.OtherFixtureId) return;
 
-        var triggerEvent = new TriggerEvent(args.OtherEntity);
-        RaiseLocalEvent(uid, ref triggerEvent, true);
+        var triggerEvent = new TriggerEvent(uid, args.OtherEntity);
+        RaiseLocalEvent(uid, triggerEvent, true);
     }
 }

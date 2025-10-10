@@ -81,7 +81,7 @@
     pocket1: MagazineRifle
     pocket2: MagazineRifle
   inhand:
-  - WeaponRifleLecterXL8
+  - WeaponRifleLecter
   storage:
     back:
     - WeaponDisabler
