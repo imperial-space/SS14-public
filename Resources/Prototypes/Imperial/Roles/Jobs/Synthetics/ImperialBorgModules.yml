@@ -131,11 +131,11 @@
     - state: medical
     - state: icon-diagnosis
   - type: ItemBorgModule
-    hands:
-    - item: Saw
-    - item: Retractor
-    - item: ScalpelLaser
-    - item: Cautery
+    items:
+    - Saw
+    - Retractor
+    - ScalpelLaser
+    - Cautery
     # Добавить степлер, руку с вайтлистом для скоб и ампутатор из привата
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: diagnosis-module }
@@ -250,13 +250,13 @@
     - state: syndicate
     - state: icon-chemist
   - type: ItemBorgModule
-    hands:
-    - item: HandheldHealthAnalyzerUnpowered
+    items:
+    - HandheldHealthAnalyzerUnpowered
 #    - Beaker  Imperial Space Удалено в связи с ребалансом медицинского борга
 #    - Beaker
 #    - BorgDropper
 #    - BorgHypo
-    - item: SyndiHypoBorg # Imperial Space Наш кастомный гипоспрей боргов
+    - SyndiHypoBorg # Imperial Space Наш кастомный гипоспрей боргов
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-diagnosis-module }
 
@@ -286,8 +286,8 @@
     - state: security
     - state: icon-security-instrument
   - type: ItemBorgModule
-    hands:
-    - item: JawsOfLife
+    items:
+    - JawsOfLife
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-instrument }
   - type: Tag
@@ -343,10 +343,10 @@
     - state: security
     - state: icon-nonlethalmodule-security
   - type: ItemBorgModule
-    hands:
-    - item: StunbatonBorg
-    - item: WeaponDisablerBorg
-    - item: FlashBorg
+    items:
+    - StunbatonBorg
+    - WeaponDisablerBorg
+    - FlashBorg
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-borg-unlethal } # Надо заменить, пока заглушка
   - type: Tag
@@ -363,8 +363,8 @@
     - state: security
     - state: icon-lethalmodule-security
   - type: ItemBorgModule
-    hands:
-    - item: WeaponLaserBorg
+    items:
+    - WeaponLaserBorg
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-borg-lethal }  #Надо заменить
   - type: Tag

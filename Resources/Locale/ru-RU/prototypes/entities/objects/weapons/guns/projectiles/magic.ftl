@@ -22,5 +22,3 @@ ent-BulletInstakillMagic = волшебный свинцовый цилиндр
 ent-ProjectilePolyboltCluwne = полизаряд клувеня
     .desc = кноХ кноХ!
     .suffix = { "" }
-ent-ProjectileAnomalyFireball = огненный шар
-   .desc = Парящий сгусток пламени из аномалии.

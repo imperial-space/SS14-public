@@ -182,18 +182,7 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: StoolCard
-  graph: Seat
-  startNode: start
-  targetNode: stoolCard
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-  - !type:TileNotBlocked
-
-- type: construction
+  name: Деревянная скамейка # Imperial Recipes Locale
   id: ChairWoodBench
   graph: Seat
   startNode: start
@@ -278,18 +267,7 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: TableCard
-  graph: Table
-  startNode: start
-  targetNode: TableCard
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-  - !type:TileNotBlocked
-
-- type: construction
+  name: Стол из бронестекла # Imperial Recipes Locale
   id: TableReinforcedGlass
   graph: Table
   startNode: start

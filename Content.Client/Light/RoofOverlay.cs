@@ -51,9 +51,8 @@ public sealed class RoofOverlay : Overlay
 
         var worldHandle = args.WorldHandle;
         var lightoverlay = _overlay.GetOverlay<BeforeLightTargetOverlay>();
-        var lightRes = lightoverlay.GetCachedForViewport(args.Viewport);
         var bounds = lightoverlay.EnlargedBounds;
-        var target = lightRes.EnlargedLightTarget;
+        var target = lightoverlay.EnlargedLightTarget;
 
         _grids.Clear();
         _mapManager.FindGridsIntersecting(args.MapId, bounds, ref _grids, approx: true, includeMap: true);
@@ -63,14 +62,14 @@ public sealed class RoofOverlay : Overlay
         worldHandle.RenderInRenderTarget(target,
             () =>
             {
-                var invMatrix = target.GetWorldToLocalMatrix(eye, scale);
-
                 for (var i = 0; i < _grids.Count; i++)
                 {
                     var grid = _grids[i];
 
                     if (!_entManager.TryGetComponent(grid.Owner, out ImplicitRoofComponent? roof))
                         continue;
+
+                    var invMatrix = target.GetWorldToLocalMatrix(eye, scale);
 
                     var gridMatrix = _xformSystem.GetWorldMatrix(grid.Owner);
                     var matty = Matrix3x2.Multiply(gridMatrix, invMatrix);
@@ -95,12 +94,12 @@ public sealed class RoofOverlay : Overlay
         worldHandle.RenderInRenderTarget(target,
             () =>
             {
-                var invMatrix = target.GetWorldToLocalMatrix(eye, scale);
-
                 foreach (var grid in _grids)
                 {
                     if (!_entManager.TryGetComponent(grid.Owner, out RoofComponent? roof))
                         continue;
+
+                    var invMatrix = target.GetWorldToLocalMatrix(eye, scale);
 
                     var gridMatrix = _xformSystem.GetWorldMatrix(grid.Owner);
                     var matty = Matrix3x2.Multiply(gridMatrix, invMatrix);

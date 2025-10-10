@@ -1,8 +1,9 @@
 - type: entity
-  parent: [ DrinkBaseMaterialGlass, DrinkBaseCup, DrinkVisualsFillOverlay ]
+  parent: DrinkGlassBase
   id: BizarreDrinkGlassBase
   abstract: true
   components:
+  - type: Drink
   - type: Sprite
     sprite: Imperial/Food/Bizarre/BizarreCookingDrinks.rsi
 

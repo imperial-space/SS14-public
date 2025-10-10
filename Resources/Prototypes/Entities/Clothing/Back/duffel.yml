@@ -62,12 +62,6 @@
   - type: Storage
     storageOpenSound:
       collection: BikeHorn
-      params:
-        variation: 0.125
-    storageInsertSound:
-      collection: FootstepClown
-      params:
-        variation: 0.125
 
 - type: entity
   parent: [ClothingBackpackDuffel, BaseSecurityContraband]
@@ -122,9 +116,10 @@
   components:
   - type: Sprite
     sprite: Clothing/Back/Duffels/mime.rsi
-  - type: Storage
-    storageOpenSound: null
-    storageInsertSound: null
+    storageOpenSound:
+      collection: null
+    storageInsertSound:
+      collection: null
 
 - type: entity
   parent: ClothingBackpackDuffel
@@ -177,16 +172,8 @@
     - 0,0,8,4
 
 - type: entity
-  parent: [ ClothingBackpackDuffelSyndicate, BaseSyndicateContraband ]
+  parent: ClothingBackpackDuffelSyndicate
   id: ClothingBackpackDuffelSyndicateBundle
-  abstract: true
-  components:
-  - type: Tag
-    tags: [] # ignore "WhitelistChameleon" tag
-
-- type: entity
-  parent: ClothingBackpackDuffel
-  id: ClothingBackpackDuffelBundle
   abstract: true
   components:
   - type: Tag

@@ -18,7 +18,7 @@
   components:
   - type: PolymorphOnTrigger
     polymorph: GnomeCluwne
-  - type: WhitelistTriggerCondition
+  - type: TriggerWhitelist
     whitelist:
       components:
       - Body

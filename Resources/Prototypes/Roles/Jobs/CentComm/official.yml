@@ -22,13 +22,13 @@
     jumpsuit: ClothingUniformJumpsuitCentcomOfficial
     shoes: ClothingShoesBootsCombatFilled
     head: ClothingHeadHatCentComCap # imperial ImperialClothes
-    eyes: ClothingEyesGlassesCommand
+    eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCentCom # imperial ImperialClothes
     outerClothing: ClothingOuterArmorCentCom # imperial ImperialClothes
     id: CentcomPDA
     ears: ClothingHeadsetAltCentCom
     belt: WeaponPistolN1984
-    pocket1: BoxFolderCentComClipboardThreePapers
+    pocket1: BoxFolderBlack
     pocket2: PenCentcom
 
 

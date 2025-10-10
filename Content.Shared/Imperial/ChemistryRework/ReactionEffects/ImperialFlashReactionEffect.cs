@@ -11,7 +11,7 @@ public sealed partial class ImperialFlashReactionEffect : EventEntityEffect<Impe
     public float MaxRange = 10;
 
     [DataField("maxDuration")]
-    public TimeSpan MaxDuration = TimeSpan.FromSeconds(3.0f);
+    public float MaxDuration = 3.0f;
 
     [DataField("slowTo")]
     public float SlowTo = 0.8f;

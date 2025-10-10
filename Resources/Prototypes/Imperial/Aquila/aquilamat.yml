@@ -47,11 +47,8 @@
   - type: SpookySpeaker
     messageSet: SpookySpeakerMessagesAquila
     speakChance: 0.3
-  - type: Vocalizer
-    hideChat: true
-  - type: VocalizerRequiresPower
-  - type: DatasetVocalizer
-    dataset: AquilaMateAdv
+  - type: Advertise
+    pack: AquilaMateAdv
   - type: SpeakOnUIClosed
     pack: AquilaMateGoodbyes
   - type: Sprite

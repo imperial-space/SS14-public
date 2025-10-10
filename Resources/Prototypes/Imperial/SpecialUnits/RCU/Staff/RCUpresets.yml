@@ -47,7 +47,6 @@
         - skillShooting
         - skillSurgery
         - skillNeuroSurgery
-    - type: AntagImmune
 
 - type: entity
   parent: RCUOperatorPreset

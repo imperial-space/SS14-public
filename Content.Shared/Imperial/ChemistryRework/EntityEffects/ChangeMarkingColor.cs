@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Shared.EntityEffects;
 using Content.Shared.Humanoid;
 using Robust.Shared.Prototypes;
@@ -69,6 +68,10 @@ public sealed partial class ChangeMarkingColor : EventEntityEffect<ChangeMarking
 
     public Color Invert(Color color)
     {
-        return new Color(new Vector4(1.0f) - color.RGBA);
+        if (!SkinColor.VerifySkinColor(HumanoidSkinColor.HumanToned, color)) return new Color(1 - color.R, 1 - color.G, 1 - color.B);
+
+        return SkinColor.HumanSkinTone(
+            (int)(100 - SkinColor.HumanSkinToneFromColor(color))
+        );
     }
 }

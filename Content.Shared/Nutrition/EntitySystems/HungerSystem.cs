@@ -25,9 +25,14 @@ public sealed class HungerSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
 
-    private static readonly ProtoId<SatiationIconPrototype> HungerIconOverfedId = "HungerIconOverfed";
-    private static readonly ProtoId<SatiationIconPrototype> HungerIconPeckishId = "HungerIconPeckish";
-    private static readonly ProtoId<SatiationIconPrototype> HungerIconStarvingId = "HungerIconStarving";
+    [ValidatePrototypeId<SatiationIconPrototype>]
+    private const string HungerIconOverfedId = "HungerIconOverfed";
+
+    [ValidatePrototypeId<SatiationIconPrototype>]
+    private const string HungerIconPeckishId = "HungerIconPeckish";
+
+    [ValidatePrototypeId<SatiationIconPrototype>]
+    private const string HungerIconStarvingId = "HungerIconStarving";
 
     public override void Initialize()
     {
@@ -237,13 +242,13 @@ public sealed class HungerSystem : EntitySystem
         switch (component.CurrentThreshold)
         {
             case HungerThreshold.Overfed:
-                _prototype.Resolve(HungerIconOverfedId, out prototype);
+                _prototype.TryIndex(HungerIconOverfedId, out prototype);
                 break;
             case HungerThreshold.Peckish:
-                _prototype.Resolve(HungerIconPeckishId, out prototype);
+                _prototype.TryIndex(HungerIconPeckishId, out prototype);
                 break;
             case HungerThreshold.Starving:
-                _prototype.Resolve(HungerIconStarvingId, out prototype);
+                _prototype.TryIndex(HungerIconStarvingId, out prototype);
                 break;
             default:
                 prototype = null;

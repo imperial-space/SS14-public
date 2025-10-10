@@ -40,7 +40,7 @@
   id: WeaponizedLaserManipulation
   name: research-technology-weaponized-laser-manipulation
   icon:
-    sprite: Imperial/Entities/Weapons/LaserCarbine/laser-carbine-icons.rsi # Imperial Space Изменение спрайта оружия
+    sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
     state: icon
   discipline: Arsenal
   tier: 1
@@ -191,18 +191,6 @@
   - ShuttleGunFriendshipCircuitboard
   technologyPrerequisites:
   - SalvageWeapons
-
-- type: technology
-  id: DualWieldingTechnology
-  name: research-technology-dual-wielding-technology
-  icon:
-    sprite: Clothing/Back/Specific/harmpack.rsi
-    state: icon
-  discipline: Arsenal
-  tier: 2
-  cost: 10000
-  recipeUnlocks:
-  - ClothingBackpackHarmpack
 
 # Tier 3
 

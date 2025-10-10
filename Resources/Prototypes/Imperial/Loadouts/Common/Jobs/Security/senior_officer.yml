@@ -11,14 +11,8 @@
   - SurvivalSecurity
   - Trinkets
   - GroupSpeciesBreathToolSecurity
-  - SeniorOfficerSecStar
 
 # Groups Start
-- type: loadoutGroup
-  id: SeniorOfficerSecStar
-  name: loadout-group-security-star
-  loadouts:
-  - SecStar
 
 - type: loadoutGroup
   id: SeniorOfficerJumpsuit

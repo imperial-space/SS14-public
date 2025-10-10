@@ -88,6 +88,7 @@ public sealed class ImperialEntityEffectSystem : EntitySystem
 
     private void OnExecuteImperialFlashReactionEffect(ref ExecuteEntityEffectEvent<ImperialFlashReactionEffect> args)
     {
+
         var transform = Comp<TransformComponent>(args.Args.TargetEntity);
         var uid = Spawn(args.Effect.FlashEffectPrototype, _transformSystem.GetMapCoordinates(transform));
 
@@ -106,7 +107,7 @@ public sealed class ImperialEntityEffectSystem : EntitySystem
                     args.Args.TargetEntity,
                     null,
                     null,
-                    args.Effect.MaxDuration,
+                    args.Effect.MaxDuration * 1000f,
                     1.0f
                 );
 
@@ -117,7 +118,7 @@ public sealed class ImperialEntityEffectSystem : EntitySystem
                 args.Args.TargetEntity,
                 null,
                 args.Effect.MaxRange,
-                args.Effect.MaxDuration,
+                args.Effect.MaxDuration * 1000f,
                 args.Effect.SlowTo
             );
 
@@ -125,7 +126,7 @@ public sealed class ImperialEntityEffectSystem : EntitySystem
         }
 
         range = MathF.Min((float)(reagentArgs.Quantity * args.Effect.PowerPerUnit), args.Effect.MaxRange);
-        var duration = TimeSpan.FromSeconds(MathF.Min((float)(reagentArgs.Quantity * args.Effect.PowerPerUnit), (float)args.Effect.MaxDuration.TotalSeconds));
+        var duration = MathF.Min((float)(reagentArgs.Quantity * args.Effect.PowerPerUnit), args.Effect.MaxDuration) * 1000f;
 
         if (args.Effect.SlowOnlyTarget)
         {
@@ -133,7 +134,7 @@ public sealed class ImperialEntityEffectSystem : EntitySystem
                 args.Args.TargetEntity,
                 null,
                 null,
-                duration,
+                duration * 1000f,
                 args.Effect.SlowTo
             );
 

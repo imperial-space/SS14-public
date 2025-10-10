@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Hands;
+using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -7,6 +8,7 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Item;
 using Content.Shared.Popups;
 using Robust.Shared.Containers;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Inventory.VirtualItem;
@@ -30,7 +32,8 @@ public abstract class SharedVirtualItemSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
-    private static readonly EntProtoId VirtualItem = "VirtualItem";
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string VirtualItem = "VirtualItem";
 
     public override void Initialize()
     {
@@ -85,9 +88,9 @@ public abstract class SharedVirtualItemSystem : EntitySystem
 
         // if the user is holding the real item the virtual item points to,
         // we allow them to use it in the interaction
-        foreach (var held in _handsSystem.EnumerateHeld(args.User))
+        foreach (var hand in _handsSystem.EnumerateHands(args.User))
         {
-            if (held == ent.Comp.BlockingEntity)
+            if (hand.HeldEntity == ent.Comp.BlockingEntity)
             {
                 args.Used = ent.Comp.BlockingEntity;
                 return;
@@ -103,14 +106,13 @@ public abstract class SharedVirtualItemSystem : EntitySystem
     /// <param name="blockingEnt">The entity we will make a virtual entity copy of</param>
     /// <param name="user">The entity that we want to insert the virtual entity</param>
     /// <param name="dropOthers">Whether or not to try and drop other items to make space</param>
-    /// <param name="silent">If true this won't show a popup when dropping other items</param>
-    public bool TrySpawnVirtualItemInHand(EntityUid blockingEnt, EntityUid user, bool dropOthers = false, bool silent = false)
+    public bool TrySpawnVirtualItemInHand(EntityUid blockingEnt, EntityUid user, bool dropOthers = false)
     {
-        return TrySpawnVirtualItemInHand(blockingEnt, user, out _, dropOthers, silent: silent);
+        return TrySpawnVirtualItemInHand(blockingEnt, user, out _, dropOthers);
     }
 
     /// <inheritdoc cref="TrySpawnVirtualItemInHand(Robust.Shared.GameObjects.EntityUid,Robust.Shared.GameObjects.EntityUid,bool)"/>
-    public bool TrySpawnVirtualItemInHand(EntityUid blockingEnt, EntityUid user, [NotNullWhen(true)] out EntityUid? virtualItem, bool dropOthers = false, string? empty = null, bool silent = false)
+    public bool TrySpawnVirtualItemInHand(EntityUid blockingEnt, EntityUid user, [NotNullWhen(true)] out EntityUid? virtualItem, bool dropOthers = false, Hand? empty = null)
     {
         virtualItem = null;
         if (empty == null && !_handsSystem.TryGetEmptyHand(user, out empty))
@@ -120,7 +122,7 @@ public abstract class SharedVirtualItemSystem : EntitySystem
 
             foreach (var hand in _handsSystem.EnumerateHands(user))
             {
-                if (!_handsSystem.TryGetHeldItem(user, hand, out var held))
+                if (hand.HeldEntity is not { } held)
                     continue;
 
                 if (held == blockingEnt)
@@ -129,7 +131,7 @@ public abstract class SharedVirtualItemSystem : EntitySystem
                 if (!_handsSystem.TryDrop(user, hand))
                     continue;
 
-                if (!silent && !TerminatingOrDeleted(held))
+                if (!TerminatingOrDeleted(held))
                     _popup.PopupClient(Loc.GetString("virtual-item-dropped-other", ("dropped", held)), user, user);
 
                 empty = hand;
@@ -153,11 +155,11 @@ public abstract class SharedVirtualItemSystem : EntitySystem
     /// </summary>
     public void DeleteInHandsMatching(EntityUid user, EntityUid matching)
     {
-        foreach (var held in _handsSystem.EnumerateHeld(user))
+        foreach (var hand in _handsSystem.EnumerateHands(user))
         {
-            if (TryComp(held, out VirtualItemComponent? virt) && virt.BlockingEntity == matching)
+            if (TryComp(hand.HeldEntity, out VirtualItemComponent? virt) && virt.BlockingEntity == matching)
             {
-                DeleteVirtualItem((held, virt), user);
+                DeleteVirtualItem((hand.HeldEntity.Value, virt), user);
             }
         }
     }

@@ -8,13 +8,10 @@
     layers:
     - state: security
     - state: security_e
-  - type: Vocalizer
-    hideChat: true
-    minVocalizeInterval: 30
-    maxVocalizeInterval: 60
-  - type: VocalizerRequiresPower
-  - type: DatasetVocalizer
-    dataset: BorglocalizedDatasetsacerdos
+  - type: Advertise
+    pack: BorglocalizedDatasetsacerdos
+    minimumWait: 30
+    maximumWait: 60
   - type: Speech
   - type: SpeakOnUIClosed
     pack: GenericVendGoodbyes

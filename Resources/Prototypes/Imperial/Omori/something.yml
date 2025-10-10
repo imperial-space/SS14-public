@@ -76,7 +76,7 @@
     fixtureID: fix2
     ignoreOtherNonHard: false
   - type: TriggerOnActivate
-  - type: EmitSoundOnTrigger
+  - type: SoundOnTrigger
     sound:
       path: /Audio/Imperial/Omori/something.ogg
       params:
@@ -85,7 +85,7 @@
   - type: Reflect
     reflectProb: 1
     spread: 360
-  - type: WhitelistTriggerCondition
+  - type: TriggerWhitelist
     whitelist:
      components:
      - MobState
@@ -139,13 +139,13 @@
   - type: Reflect
     reflectProb: 1
     spread: 360
-  - type: EmitSoundOnTrigger
+  - type: SoundOnTrigger
     sound:
       path: /Audio/Imperial/Omori/something.ogg
       params:
         volume: -10
   - type: DeleteOnTrigger
-  - type: WhitelistTriggerCondition
+  - type: TriggerWhitelist
     whitelist:
      components:
      - MobState

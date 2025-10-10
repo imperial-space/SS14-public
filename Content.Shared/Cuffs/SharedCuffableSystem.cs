@@ -15,7 +15,6 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item;
@@ -236,24 +235,19 @@ namespace Content.Shared.Cuffs
 
         private void HandleMoveAttempt(EntityUid uid, CuffableComponent component, UpdateCanMoveEvent args)
         {
-            if (component.CanStillInteract || !TryComp(uid, out PullableComponent? pullable) || !pullable.BeingPulled)
+            if (component.CanStillInteract || !EntityManager.TryGetComponent(uid, out PullableComponent? pullable) || !pullable.BeingPulled)
                 return;
 
             args.Cancel();
         }
 
-        private void HandleStopPull(EntityUid uid, CuffableComponent component, ref AttemptStopPullingEvent args)
+        private void HandleStopPull(EntityUid uid, CuffableComponent component, AttemptStopPullingEvent args)
         {
             if (args.User == null || !Exists(args.User.Value))
                 return;
 
             if (args.User.Value == uid && !component.CanStillInteract)
-            {
-                //TODO: UX feedback. Simply blocking the normal interaction feels like an interface bug
-
                 args.Cancelled = true;
-            }
-
         }
 
         private void OnRemoveCuffsAlert(Entity<CuffableComponent> ent, ref RemoveCuffsAlertEvent args)
@@ -402,10 +396,6 @@ namespace Content.Shared.Cuffs
         /// </summary>
         private void OnHandCountChanged(Entity<CuffableComponent> ent, ref HandCountChangedEvent message)
         {
-            // TODO: either don't store a container ref, or make it actually nullable.
-            if (ent.Comp.Container == default!)
-                return;
-
             var dirty = false;
             var handCount = CompOrNull<HandsComponent>(ent.Owner)?.Count ?? 0;
 
@@ -440,19 +430,19 @@ namespace Content.Shared.Cuffs
                 return;
 
             var freeHands = 0;
-            foreach (var hand in _hands.EnumerateHands((uid, handsComponent)))
+            foreach (var hand in _hands.EnumerateHands(uid, handsComponent))
             {
-                if (!_hands.TryGetHeldItem((uid, handsComponent), hand, out var held))
+                if (hand.HeldEntity == null)
                 {
                     freeHands++;
                     continue;
                 }
 
                 // Is this entity removable? (it might be an existing handcuff blocker)
-                if (HasComp<UnremoveableComponent>(held))
+                if (HasComp<UnremoveableComponent>(hand.HeldEntity))
                     continue;
 
-                _hands.DoDrop(uid, hand, true);
+                _hands.DoDrop(uid, hand, true, handsComponent);
                 freeHands++;
                 if (freeHands == 2)
                     break;
@@ -486,12 +476,7 @@ namespace Content.Shared.Cuffs
             _hands.TryDrop(user, handcuff);
 
             _container.Insert(handcuff, component.Container);
-
-            var ev = new TargetHandcuffedEvent();
-            RaiseLocalEvent(target, ref ev);
-
             UpdateHeldItems(target, handcuff, component);
-
             return true;
         }
 
@@ -822,24 +807,15 @@ namespace Content.Shared.Cuffs
         {
             return component.Container.ContainedEntities;
         }
-    }
 
-    [Serializable, NetSerializable]
-    public sealed partial class UnCuffDoAfterEvent : SimpleDoAfterEvent;
+        [Serializable, NetSerializable]
+        private sealed partial class UnCuffDoAfterEvent : SimpleDoAfterEvent
+        {
+        }
 
-    [Serializable, NetSerializable]
-    public sealed partial class AddCuffDoAfterEvent : SimpleDoAfterEvent;
-
-    /// <summary>
-    /// Raised on the target when they get handcuffed.
-    /// Relayed to their held items.
-    /// </summary>
-    [ByRefEvent]
-    public record struct TargetHandcuffedEvent : IInventoryRelayEvent
-    {
-        /// <summary>
-        /// All slots to relay to
-        /// </summary>
-        public SlotFlags TargetSlots { get; set; }
+        [Serializable, NetSerializable]
+        private sealed partial class AddCuffDoAfterEvent : SimpleDoAfterEvent
+        {
+        }
     }
 }

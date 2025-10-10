@@ -33,12 +33,6 @@
       head-vox:
       - state: equipped-head-light-vox
         shader: unshaded
-      head-vulpkanin:
-      - state: equipped-head-light-vulpkanin
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-light-reptilian
-        shader: unshaded
       head-dog:
       - state: equipped-head-light-dog
         shader: unshaded
@@ -51,14 +45,6 @@
       head-vox:
       - state: equipped-head-vox
       - state: equipped-head-unshaded-vox
-        shader: unshaded
-      head-vulpkanin:
-      - state: equipped-head-vulpkanin
-      - state: equipped-head-unshaded-vulpkanin
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-reptilian
-      - state: equipped-head-unshaded-reptilian
         shader: unshaded
       head-dog:
       - state: equipped-head-dog
@@ -88,56 +74,8 @@
   components:
   - type: Sprite
     sprite: Clothing/Head/Hardsuits/engineering.rsi
-    layers:
-    - state: icon
-    - state: icon-unshaded
-      shader: unshaded
-    - state: light-overlay
-      visible: false
-      shader: unshaded
-      map: [ "light" ]
-  - type: HandheldLight
-    addPrefix: false
-  - type: ToggleableVisuals
-    spriteLayer: light
-    clothingVisuals:
-      head:
-      - state: equipped-head-light
-        shader: unshaded
-      head-vox:
-      - state: equipped-head-light-vox
-        shader: unshaded
-      head-vulpkanin:
-      - state: equipped-head-light-vulpkanin
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-light-reptilian
-        shader: unshaded
-      head-dog:
-      - state: equipped-head-light-dog
-        shader: unshaded
   - type: Clothing
-    clothingVisuals:
-      head:
-      - state: equipped-head
-      - state: equipped-head-unshaded
-        shader: unshaded
-      head-vox:
-      - state: equipped-head-vox
-      - state: equipped-head-unshaded-vox
-        shader: unshaded
-      head-vulpkanin:
-      - state: equipped-head-vulpkanin
-      - state: equipped-head-unshaded-vulpkanin
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-reptilian
-      - state: equipped-head-unshaded-reptilian
-        shader: unshaded
-      head-dog:
-      - state: equipped-head-dog
-      - state: equipped-head-unshaded-dog
-        shader: unshaded
+    sprite: Clothing/Head/Hardsuits/engineering.rsi
   - type: PointLight
     color: "#ffdbad"
   - type: PressureProtection
@@ -175,12 +113,6 @@
       head-vox:
       - state: equipped-head-light-vox
         shader: unshaded
-      head-vulpkanin:
-      - state: equipped-head-light-vulpkanin
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-light-reptilian
-        shader: unshaded
       head-dog:
       - state: equipped-head-light-dog
         shader: unshaded
@@ -193,14 +125,6 @@
       head-vox:
       - state: equipped-head-vox
       - state: equipped-head-unshaded-vox
-        shader: unshaded
-      head-vulpkanin:
-      - state: equipped-head-vulpkanin
-      - state: equipped-head-unshaded-vulpkanin
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-reptilian
-      - state: equipped-head-unshaded-reptilian
         shader: unshaded
       head-dog:
       - state: equipped-head-dog
@@ -238,7 +162,6 @@
     - CorgiWearable
     - WhitelistChameleon
 
-#Goliath Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitGoliath
@@ -265,9 +188,6 @@
       head-vox:
       - state: equipped-head-light-vox
         shader: unshaded
-      head-reptilian:
-      - state: equipped-head-reptilian
-        shader: unshaded
       head-dog:
       - state: equipped-head-light-dog
         shader: unshaded
@@ -280,10 +200,6 @@
       head-vox:
       - state: equipped-head-vox
       - state: equipped-head-unshaded-vox
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-reptilian
-      - state: equipped-head-unshaded-reptilian
         shader: unshaded
       head-dog:
       - state: equipped-head-dog
@@ -299,7 +215,6 @@
     - CorgiWearable
     - WhitelistChameleon
 
-#Maxim Hardsuit
 - type: entity
   parent: ClothingHeadHardsuitBase
   id: ClothingHeadHelmetHardsuitMaxim
@@ -429,56 +344,8 @@
   components:
   - type: Sprite
     sprite: Clothing/Head/Hardsuits/engineering-white.rsi
-    layers:
-    - state: icon
-    - state: icon-unshaded
-      shader: unshaded
-    - state: light-overlay
-      visible: false
-      shader: unshaded
-      map: [ "light" ]
-  - type: HandheldLight
-    addPrefix: false
-  - type: ToggleableVisuals
-    spriteLayer: light
-    clothingVisuals:
-      head:
-      - state: equipped-head-light
-        shader: unshaded
-      head-vox:
-      - state: equipped-head-light-vox
-        shader: unshaded
-      head-vulpkanin:
-      - state: equipped-head-light-vulpkanin
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-light-reptilian
-        shader: unshaded
-      head-dog:
-      - state: equipped-head-light-dog
-        shader: unshaded
   - type: Clothing
-    clothingVisuals:
-      head:
-      - state: equipped-head
-      - state: equipped-head-unshaded
-        shader: unshaded
-      head-vox:
-      - state: equipped-head-vox
-      - state: equipped-head-unshaded-vox
-        shader: unshaded
-      head-vulpkanin:
-      - state: equipped-head-vulpkanin
-      - state: equipped-head-unshaded-vulpkanin
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-reptilian
-      - state: equipped-head-unshaded-reptilian
-        shader: unshaded
-      head-dog:
-      - state: equipped-head-dog
-      - state: equipped-head-unshaded-dog
-        shader: unshaded
+    sprite: Clothing/Head/Hardsuits/engineering-white.rsi
   - type: PointLight
     color: "#daffad"
   - type: PressureProtection
@@ -785,16 +652,13 @@
   components:
   - type: Sprite
     sprite: Clothing/Head/Hardsuits/piratecaptainhelm.rsi
-  - type: ToggleableVisuals
+  - type: ToggleableLightVisuals
     clothingVisuals:
       head:
       - state: equipped-HELMET-light
         shader: unshaded
       head-vox:
       - state: equipped-HELMET-light-vox
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-HELMET-light-reptilian
         shader: unshaded
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/piratecaptainhelm.rsi
@@ -806,10 +670,6 @@
       head-vox:
       - state: equipped-HELMET-vox
       - state: equipped-HELMET-unshaded-vox
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-HELMET-reptilian
-      - state: equipped-HELMET-unshaded-reptilian
         shader: unshaded
   - type: PointLight # Color matches visor colors, radius/energy same as mining hardsuit for the big captain.
     color: "#f3ea9c"
@@ -956,14 +816,6 @@
       head:
       - state: equipped-head
       - state: equipped-head-unshaded
-        shader: unshaded
-      head-vox:
-      - state: equipped-head-vox
-      - state: equipped-head-unshaded-vox
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-reptilian
-      - state: equipped-head-unshaded-reptilian
         shader: unshaded
   - type: PointLight
     color: orange

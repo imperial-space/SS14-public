@@ -7,11 +7,7 @@ namespace Content.Client.Overlays;
 
 public sealed partial class StencilOverlay
 {
-    private void DrawRestrictedRange(
-        in OverlayDrawArgs args,
-        CachedResources res,
-        RestrictedRangeComponent rangeComp,
-        Matrix3x2 invMatrix)
+    private void DrawRestrictedRange(in OverlayDrawArgs args, RestrictedRangeComponent rangeComp, Matrix3x2 invMatrix)
     {
         var worldHandle = args.WorldHandle;
         var renderScale = args.Viewport.RenderScale.X;
@@ -42,20 +38,20 @@ public sealed partial class StencilOverlay
         // Cut out the irrelevant bits via stencil
         // This is why we don't just use parallax; we might want specific tiles to get drawn over
         // particularly for planet maps or stations.
-        worldHandle.RenderInRenderTarget(res.Blep!, () =>
+        worldHandle.RenderInRenderTarget(_blep!, () =>
         {
             worldHandle.UseShader(_shader);
             worldHandle.DrawRect(localAABB, Color.White);
         }, Color.Transparent);
 
         worldHandle.SetTransform(Matrix3x2.Identity);
-        worldHandle.UseShader(_protoManager.Index(StencilMask).Instance());
-        worldHandle.DrawTextureRect(res.Blep!.Texture, worldBounds);
+        worldHandle.UseShader(_protoManager.Index<ShaderPrototype>("StencilMask").Instance());
+        worldHandle.DrawTextureRect(_blep!.Texture, worldBounds);
         var curTime = _timing.RealTime;
         var sprite = _sprite.GetFrame(new SpriteSpecifier.Texture(new ResPath("/Textures/Parallaxes/noise.png")), curTime);
 
         // Draw the rain
-        worldHandle.UseShader(_protoManager.Index(StencilDraw).Instance());
+        worldHandle.UseShader(_protoManager.Index<ShaderPrototype>("StencilDraw").Instance());
         _parallax.DrawParallax(worldHandle, worldAABB, sprite, curTime, position, new Vector2(0.5f, 0f));
     }
 }
