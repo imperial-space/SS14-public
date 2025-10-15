@@ -36,6 +36,7 @@
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
+  - type: HalloweenMobComponent 
 
 - type: entity
   id: MobHalloweenSmallPumpkin
@@ -189,9 +190,23 @@
   description: A swirling pumpkin portal
   components:
   - type: Sprite
-    sprite: Objects/Effects/portal.rsi
+    sprite: /Textures/Effects/portal.rsi
     layers:
-    - state: portal
+    - state: portal-blue
+  - type: Anchorable
+    anchor: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 1.0
+        layer:
+        - MobLayer
+        mask:
+        - MobLayer
   - type: Tag
     tags:
     - Halloween
@@ -210,7 +225,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      1000: Dead
+      600: Dead
   - type: MeleeWeapon
     damage:
       types:
@@ -219,3 +234,6 @@
   - type: NpcFactionMember
     factions:
     - SimpleHostile
+
+- type: Tag
+  id: Halloween
