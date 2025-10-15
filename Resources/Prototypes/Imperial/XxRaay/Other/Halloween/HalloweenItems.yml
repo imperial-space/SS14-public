@@ -201,6 +201,7 @@
     shape:
     - 0,0,0,2
   - type: DisarmMalus
+    malus: 0.225
 
 - type: entity
   name: wand of halloween

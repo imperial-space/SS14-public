@@ -1,192 +1,208 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Threading;
-using System.Threading.Tasks;
-using System;
-using Robust.Shared.Timing;
-using Content.Shared.Chat;
-using Robust.Shared.Random;
-using Robust.Shared.Localization;
+using Content.Server.Chat.Systems;
+using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
-using Content.Shared.Mobs;
+using Content.Server.Maps;
+using Content.Server.Pinpointer;
+using Content.Server.RoundEnd;
+using Content.Server.Station.Components;
+using Content.Server.Station.Systems;
 using Content.Shared.GameTicking.Components;
-using Content.Server.Chat.Managers;
-using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Server.GameTicking;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Player;
-using Content.Server.GameTicking.Rules.Components;
+using Content.Shared.Pinpointer;
 using Robust.Server.Player;
-using Content.Shared.Imperial.XxRaay.Halloween;
-using Content.Server.Station.Systems;
-using Content.Server.Station.Components;
-using Robust.Shared.Physics.Systems;
-using Robust.Shared.Physics.Components;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+using Robust.Shared.Timing;
+using System.Linq;
 
 namespace Content.Server.Imperial.XxRaay.Halloween;
 
 public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
 {
-    [Dependency] private readonly IRobustRandom _rand = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly IEntityManager _entMan = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
+    [Dependency] private readonly NavMapSystem _navMap = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly Content.Server.RoundEnd.RoundEndSystem _roundEnd = default!;
+
+    private static readonly ISawmill Sawmill = Logger.GetSawmill("halloween_rule");
 
     private EntityUid? _portal;
-    private TimeSpan _waveStartTime;
     private int _currentWave = 0;
-    private CancellationTokenSource? _waveCts;
     private EntityUid? _queen;
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<MobStateComponent, MobStateChangedEvent>(OnMobStateChanged);
     }
 
     protected override void Started(EntityUid uid, HalloweenRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
+        Sawmill.Info("Halloween rule started.");
         component.Active = true;
         _currentWave = 0;
 
-        MapCoordinates spawnPos = default;
-        if (_station.GetStations().Count > 0)
+        SubscribeLocalEvent<HalloweenMobComponent, MobStateChangedEvent>(OnHalloweenMobStateChanged);
+
+        var spawnPos = GetRandomPortalCoordinates();
+        if (spawnPos != MapCoordinates.Nullspace)
         {
-            var station = _station.GetStations()[0];
-            if (_station.GetLargestGrid(Comp<StationDataComponent>(station)) is { } grid)
-            {
-                var playableArea = _physics.GetWorldAABB(grid);
-                var center = playableArea.Center;
-                var mapId = Transform(grid).MapID;
-                spawnPos = new MapCoordinates(center, mapId);
-            }
+            _portal = Spawn(component.PortalPrototype, spawnPos);
+            Sawmill.Info($"Halloween portal spawned at {spawnPos}.");
+
+            var portalLoc = GetLocationString(spawnPos);
+            var msgPortal = Loc.GetString("halloween-portal-spawn", ("loc", portalLoc));
+            _chatSystem.DispatchGlobalAnnouncement(msgPortal, "ЦентКом", colorOverride: Color.OrangeRed);
+        }
+        else
+        {
+            Sawmill.Warning("Failed to find a valid position to spawn the Halloween portal.");
         }
 
-        if (spawnPos != default && _proto.HasIndex("HalloweenPortal"))
-        {
-            _portal = Spawn("HalloweenPortal", spawnPos);
-        }
-
-        var locString = spawnPos.ToString();
-        var msgPortal = Loc.GetString("halloween-portal-spawn", ("loc", locString));
-        _chat.ChatMessageToAll(ChatChannel.Server, msgPortal, msgPortal, EntityUid.Invalid, false, false);
-
-        Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromMinutes(3), () => StartNextWave(component));
+        Timer.Spawn(component.TimeBetweenWaves, () => StartNextWave(uid, component));
     }
 
     protected override void Ended(EntityUid uid, HalloweenRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
     {
+        Sawmill.Info("Halloween rule ended.");
         component.Active = false;
-        _waveCts?.Cancel();
-        if (_portal != null && _entMan.EntityExists(_portal.Value))
-            _entMan.DeleteEntity(_portal.Value);
+
+        UnsubscribeLocalEvent<HalloweenMobComponent, MobStateChangedEvent>(OnHalloweenMobStateChanged);
+
+        if (_portal is { } portal && Exists(portal))
+            QueueDel(portal);
+
+        CleanupHalloweenMobs();
+        _portal = null;
+        _queen = null;
+        _currentWave = 0;
     }
 
-    private bool TryGetRandomStationGrid(out EntityUid gridUid, out MapId mapId, out MapCoordinates coords)
+    private void StartNextWave(EntityUid ruleUid, HalloweenRuleComponent component)
     {
-        gridUid = default;
-        mapId = default;
-        coords = default;
-        var stations = _station.GetStations();
-        if (stations.Count == 0)
-            return false;
+        if (!component.Active)
+            return;
 
-        var station = stations[0];
-        if (_station.GetLargestGrid(Comp<StationDataComponent>(station)) is not { } grid)
-            return false;
+        _currentWave++;
 
-        var playableArea = _physics.GetWorldAABB(grid);
-        var center = playableArea.Center;
-        mapId = Transform(grid).MapID;
-        coords = new MapCoordinates(center, mapId);
-        gridUid = grid;
+        if (_currentWave > component.Waves.Count)
+        {
+            if (component.QueenWave != null)
+            {
+                Timer.Spawn(component.TimeBeforeQueen, () => SpawnQueenSequence(ruleUid, component));
+            }
+            return;
+        }
+
+        var waveDef = component.Waves[_currentWave - 1];
+        var portalLocation = GetPortalLocationString();
+        var announcement = GetWaveAnnouncement(_currentWave, portalLocation, component);
+        _chatSystem.DispatchGlobalAnnouncement(announcement, "ЦентКом", colorOverride: Color.OrangeRed);
+
+        SpawnWaveRoutine(waveDef, component);
+    }
+
+    private void SpawnWaveRoutine(HalloweenWave wave, HalloweenRuleComponent comp)
+    {
+        if (wave.MobCount <= 0 || !wave.MobPrototypes.Any())
+            return;
+
+        var interval = wave.WaveLength / wave.MobCount;
+        var spawned = 0;
+
+        Timer.Spawn(interval, SpawnNextMob);
+
+        void SpawnNextMob()
+        {
+            if (!comp.Active || spawned >= wave.MobCount)
+            {
+                MonitorWaveEnd(wave.WaveLength, comp);
+                return;
+            }
+
+            var mobProto = _random.Pick(wave.MobPrototypes);
+            if (TrySpawnMob(mobProto))
+                spawned++;
+
+            Timer.Spawn(interval, SpawnNextMob);
+        }
+    }
+
+    private bool TrySpawnMob(string prototype)
+    {
+        if (!_proto.HasIndex<EntityPrototype>(prototype))
+        {
+            Sawmill.Warning($"Missing prototype for Halloween mob: {prototype}");
+            return false;
+        }
+
+        var spawnCoords = MapCoordinates.Nullspace;
+        if (_portal is {} portal && Exists(portal))
+            spawnCoords = _transform.GetMapCoordinates(portal);
+        else
+            spawnCoords = GetRandomPortalCoordinates();
+
+        if (spawnCoords == MapCoordinates.Nullspace)
+        {
+            Sawmill.Warning("Could not find any valid spawn location for Halloween mob.");
+            return false;
+        }
+
+        Spawn(prototype, spawnCoords);
         return true;
     }
 
-    private void StartNextWave(HalloweenRuleComponent comp)
+    private void MonitorWaveEnd(TimeSpan length, HalloweenRuleComponent comp)
     {
-        _currentWave++;
-        _waveStartTime = Timing.CurTime;
-        _waveCts?.Cancel();
-        _waveCts = new CancellationTokenSource();
-
-        var playerCount = _playerManager.PlayerCount;
-        var baseCounts = new[] { 15, 15, 15, 20, 20, 25, 30, 40 };
-        var target = baseCounts[Math.Clamp(_currentWave - 1, 0, baseCounts.Length - 1)];
-
-        var waveLength = TimeSpan.FromMinutes(_currentWave >= 4 ? 7 : 5);
-
-        _ = SpawnWaveRoutine(target, waveLength, _waveCts.Token, comp);
-    }
-
-    private async Task SpawnWaveRoutine(int total, TimeSpan length, CancellationToken token, HalloweenRuleComponent comp)
-    {
-        var interval = length.TotalSeconds / Math.Max(1, total);
-        for (var i = 0; i < total; i++)
-        {
-            if (token.IsCancellationRequested) return;
-            var mobProto = PickMobForWave(_currentWave);
-            if (_portal != null && _entMan.EntityExists(_portal.Value))
-            {
-                var portalCoords = Transform(_portal.Value).Coordinates.ToMap(_entMan, _transform);
-                Spawn(mobProto, portalCoords);
-            }
-            await Task.Delay(TimeSpan.FromSeconds(interval), token).ContinueWith(_ => { });
-        }
-
         var endTime = Timing.CurTime + length;
-        while (Timing.CurTime < endTime && !token.IsCancellationRequested)
+
+        void CheckWaveEnd()
         {
-            await Task.Delay(1000, token).ContinueWith(_ => { });
-            if (AllHalloweenMobsDead())
-                break;
+            if (!comp.Active)
+                return;
+
+            if (Timing.CurTime >= endTime || AllHalloweenMobsDead())
+            {
+                var allDefeated = AllHalloweenMobsDead();
+                CleanupHalloweenMobs();
+
+                var endMsg = GetWaveEndAnnouncement(_currentWave, allDefeated);
+                _chatSystem.DispatchGlobalAnnouncement(endMsg, "ЦентКом", colorOverride: Color.OrangeRed);
+
+                var query = EntityQueryEnumerator<HalloweenRuleComponent, GameRuleComponent>();
+                while (query.MoveNext(out var uid, out var h, out _))
+                {
+                    if (h == comp)
+                    {
+                        Timer.Spawn(comp.TimeBetweenWaves, () => StartNextWave(uid, comp));
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                Timer.Spawn(TimeSpan.FromSeconds(5), CheckWaveEnd);
+            }
         }
 
-        CleanupHalloweenMobs();
-
-        var defeated = AllHalloweenMobsDead();
-        var msgWave = Loc.GetString("halloween-wave-end", ("wave", _currentWave), ("defeated", defeated));
-        _chat.ChatMessageToAll(ChatChannel.Server, msgWave, msgWave, EntityUid.Invalid, false, false);
-
-        if (_currentWave < 8)
-            Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromMinutes(3), () => StartNextWave(comp));
-        else if (_currentWave == 8)
-        {
-            Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromMinutes(10), SpawnQueenSequence);
-        }
-    }
-
-    private string PickMobForWave(int wave)
-    {
-        return wave switch
-        {
-            1 => "MobHalloweenSmallPumpkin",
-            2 => "MobHalloweenSmallPumpkin",
-            3 => "MobHalloweenAngryPumpkin",
-            4 => "MobHalloweenSwordGuardianPumpkin",
-            5 => "MobHalloweenSpearGuardianPumpkin",
-            6 => "MobHalloweenMinionPumpkin",
-            7 => "MobHalloweenMinionPumpkin",
-            _ => "MobHalloweenMinionPumpkin",
-        };
+        Timer.Spawn(TimeSpan.FromSeconds(5), CheckWaveEnd);
     }
 
     private bool AllHalloweenMobsDead()
     {
-        var query = _entMan.EntityQueryEnumerator<MobStateComponent>();
-        while (query.MoveNext(out var ent, out var mob))
+        var query = EntityQueryEnumerator<HalloweenMobComponent, MobStateComponent>();
+        while (query.MoveNext(out var uid, out _, out var mobState))
         {
-            if (!ent.IsValid())
-                continue;
-            if (MetaData(ent).EntityName?.ToLowerInvariant().Contains("pumpkin") == true && !_mobState.IsDead(ent, mob))
+            if (!_mobState.IsDead(uid, mobState))
                 return false;
         }
         return true;
@@ -194,97 +210,170 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
 
     private void CleanupHalloweenMobs()
     {
-        var query = _entMan.EntityQueryEnumerator<MobStateComponent>();
-        while (query.MoveNext(out var ent, out var mob))
+        var query = EntityQueryEnumerator<HalloweenMobComponent>();
+        while (query.MoveNext(out var uid, out _))
         {
-            if (MetaData(ent).EntityName?.ToLowerInvariant().Contains("pumpkin") == true)
+            if (Exists(uid))
+                QueueDel(uid);
+        }
+        Sawmill.Info("Cleaned up all Halloween mobs.");
+    }
+
+    private void SpawnQueenSequence(EntityUid ruleUid, HalloweenRuleComponent component)
+    {
+        if (!component.Active || component.QueenWave == null)
+            return;
+
+        var brigCoords = GetBrigCoordinates();
+        if (brigCoords == MapCoordinates.Nullspace)
+        {
+            Sawmill.Warning("Could not find Brig for queen spawn, using random location.");
+            brigCoords = GetRandomPortalCoordinates();
+            if (brigCoords == MapCoordinates.Nullspace)
             {
-                if (!_mobState.IsDead(ent, mob))
-                {
-                    _entMan.DeleteEntity(ent);
-                }
+                Sawmill.Error("Could not find any location for queen spawn! Aborting.");
+                return;
             }
         }
+
+        foreach (var (type, count) in component.QueenWave.Escorts)
+        {
+            if (!_proto.HasIndex<EntityPrototype>(type))
+            {
+                Sawmill.Warning($"Missing escort prototype for Queen wave: {type}");
+                continue;
+            }
+            for (var i = 0; i < count; i++)
+            {
+                Spawn(type, brigCoords);
+            }
+        }
+
+        _queen = Spawn(component.QueenWave.QueenPrototype, brigCoords);
+        var queenArrived = Loc.GetString("halloween-queen-arrival");
+        _chatSystem.DispatchGlobalAnnouncement(queenArrived, "ЦентКом", colorOverride: Color.Red);
+
+        Timer.Spawn(component.QueenWave.SurvivalDuration, () => CheckQueenForShuttle(component));
     }
 
-    private void SpawnQueenSequence()
+    private void CheckQueenForShuttle(HalloweenRuleComponent component)
     {
-        if (_portal == null || !_entMan.EntityExists(_portal.Value))
+        if (!component.Active || _queen is not { } queen || !Exists(queen))
             return;
 
-        var coords = Transform(_portal.Value).Coordinates.ToMap(_entMan, _transform);
-        var order = new[]
+        if (!_mobState.IsDead(queen))
         {
-            "MobHalloweenSmallPumpkin",
-            "MobHalloweenSmallPumpkin",
-            "MobHalloweenSmallPumpkin",
-            "MobHalloweenAngryPumpkin",
-            "MobHalloweenAngryPumpkin",
-            "MobHalloweenMinionPumpkin",
-            "MobHalloweenMinionPumpkin",
-            "MobHalloweenSwordGuardianPumpkin",
-            "MobHalloweenSpearGuardianPumpkin",
-            "MobHalloweenMinionPumpkin",
-            "ProjectileHalloweenFireball",
-        };
-        foreach (var proto in order)
-        {
-            Spawn(proto, coords);
-        }
-
-        if (_proto.HasIndex("MobHalloweenQueen"))
-        {
-            _queen = Spawn("MobHalloweenQueen", coords);
-            var msgQueen = Loc.GetString("halloween-queen-arrival");
-            _chat.ChatMessageToAll(ChatChannel.Server, msgQueen, msgQueen, EntityUid.Invalid, false, false);
-            Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromMinutes(15), () => CheckQueenForShuttle());
+            Sawmill.Info("Halloween Queen survived! Ending round.");
+            _roundEnd.EndRound();
         }
     }
 
-    private void CheckQueenForShuttle()
-    {
-        if (_queen == null)
-            return;
-
-        if (!_entMan.EntityExists(_queen.Value))
-            return;
-
-        if (!_mobState.IsDead(_queen.Value))
-        {
-            _roundEnd.RequestRoundEnd(null, false);
-        }
-    }
-
-    private void OnMobStateChanged(EntityUid uid, MobStateComponent comp, MobStateChangedEvent args)
+    private void OnHalloweenMobStateChanged(EntityUid uid, HalloweenMobComponent mob, MobStateChangedEvent args)
     {
         if (args.NewMobState != MobState.Dead)
             return;
 
-        var name = MetaData(uid).EntityName;
-        if (name == null)
-            return;
-
-        if (!name.ToLowerInvariant().Contains("pumpkin"))
-            return;
-
-        if (!_rand.Prob(0.5f))
-            return;
-
-        var pool = new[]
+        if (_queen == uid)
         {
-            "HalloweenSpear",
-            "HalloweenKnife",
-            "ClothingOuterHalloweenVest",
-            "HalloweenSword",
-            "WeaponWandHalloweenFireball",
+            Sawmill.Info("Halloween Queen defeated! Ending round.");
+            _roundEnd.EndRound();
+            return;
+        }
+
+        if (!_random.Prob(0.5f))
+            return;
+
+        if (!TryComp<MetaDataComponent>(uid, out var meta) || meta.EntityPrototype == null)
+            return;
+
+        var pick = meta.EntityPrototype.ID switch
+        {
+            "MobHalloweenSmallPumpkin" or "MobHalloweenFlyingPumpkin" or "MobHalloweenCrystalPumpkin" => "GiftPumpkinRed",
+            "MobHalloweenAngryPumpkin" => _random.Prob(0.5f) ? "GiftPumpkinRed" : "HalloweenKnife",
+            "MobHalloweenSwordGuardianPumpkin" => "HalloweenSword",
+            "MobHalloweenSpearGuardianPumpkin" => "HalloweenSpear",
+            "MobHalloweenMinionPumpkin" or "MobHalloweenQueen" => "WeaponWandHalloweenFireball",
+            _ => "GiftPumpkinRed",
         };
 
-        var pick = _rand.Pick(pool);
-
-        if (_entMan.EntityExists(uid))
+        if (_proto.HasIndex<EntityPrototype>(pick))
         {
-            var coords = Transform(uid).Coordinates.ToMap(_entMan, _transform);
-            Spawn(pick, coords);
+            Spawn(pick, _transform.GetMapCoordinates(uid));
         }
+        else
+        {
+            Sawmill.Warning($"Halloween drop proto missing: {pick}");
+        }
+    }
+
+    private string GetWaveAnnouncement(int wave, string location, HalloweenRuleComponent component)
+    {
+        if (wave == component.Waves.Count)
+            return Loc.GetString("halloween-final-wave-announcement", ("location", location));
+
+        return Loc.GetString("halloween-wave-announcement", ("wave", wave), ("location", location));
+    }
+
+    private string GetWaveEndAnnouncement(int wave, bool allDefeated)
+    {
+        return Loc.GetString("halloween-wave-end-announcement",
+            ("wave", wave),
+            ("result", allDefeated
+                ? Loc.GetString("halloween-wave-end-result-victory")
+                : Loc.GetString("halloween-wave-end-result-partial")));
+    }
+
+    private MapCoordinates GetRandomPortalCoordinates()
+    {
+        var stations = _station.GetStations();
+        if (!stations.Any())
+            return MapCoordinates.Nullspace;
+
+        if (TryComp<StationDataComponent>(stations[0], out var stationData) &&
+            _station.GetLargestGrid(stationData) is { } gridUid &&
+            TryComp<MapGridComponent>(gridUid, out var gridComp))
+        {
+            var tiles = _mapSystem.GetAllTiles(gridUid, gridComp).ToList();
+            if (tiles.Any())
+            {
+                var tile = _random.Pick(tiles);
+                return _transform.ToMapCoordinates(new EntityCoordinates(gridUid, tile.GridIndices));
+            }
+        }
+
+        return MapCoordinates.Nullspace;
+    }
+
+    private MapCoordinates GetBrigCoordinates()
+    {
+        var query = AllEntityQuery<NavMapBeaconComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var beacon, out var xform))
+        {
+            if (beacon.Text != null && beacon.Text.Equals("Brig", StringComparison.OrdinalIgnoreCase))
+            {
+                return _transform.GetMapCoordinates(uid, xform);
+            }
+        }
+        return MapCoordinates.Nullspace;
+    }
+
+    private string GetPortalLocationString()
+    {
+        var coords = MapCoordinates.Nullspace;
+        if (_portal is {} portal && Exists(portal))
+            coords = _transform.GetMapCoordinates(portal);
+
+        return GetLocationString(coords);
+    }
+
+    private string GetLocationString(MapCoordinates coords)
+    {
+        if (coords == MapCoordinates.Nullspace)
+            return Loc.GetString("halloween-location-unknown");
+
+        var beacon = _navMap.GetNearestBeaconString(coords);
+        return string.IsNullOrWhiteSpace(beacon)
+            ? Loc.GetString("halloween-location-station")
+            : beacon;
     }
 }
