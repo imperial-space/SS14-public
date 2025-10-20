@@ -205,3 +205,6 @@ ent-ActionToggleJetpack = Переключить джетпак
 
 ent-ActionMimeInvisibleWall = Создать невидимую стену
     .desc = Создайте невидимую стену прямо перед вами. Никто не пройдёт!
+
+ent-ActionTogglePropulsiveGloves = Переключить перчатки
+    .desc = Включить, Выключить пропульсионные перчатки.

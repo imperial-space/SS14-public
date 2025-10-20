@@ -466,3 +466,14 @@
     itemIconStyle: BigAction
   - type: InstantAction
     event: !type:ChameleonControllerOpenMenuEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionTogglePropulsiveGloves
+  name: Toggle propulsive gloves
+  description: Toggles the propulsive gloves on and off.
+  components:
+  - type: Action
+    itemIconStyle: BigItem
+  - type: InstantAction
+    event: !type:ToggleActionEvent

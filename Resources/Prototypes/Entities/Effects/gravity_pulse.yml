@@ -17,3 +17,12 @@
     tags:
     - HideContextMenu
   - type: AnimationPlayer
+
+- type: entity
+  id: DistortionGravityPulse
+  components:
+  - type: ShockWaveDistortion
+    maxDistance: 0.5
+    thikness: 0.02
+  - type: TimedDespawn
+    lifetime: 1
