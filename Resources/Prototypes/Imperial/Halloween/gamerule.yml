@@ -5,5 +5,3 @@
   - type: HalloweenTechnicalRule
   - type: GameRule
     minPlayers: 10
-  - type: DynamicRuleCost
-    cost: 200
