@@ -1,5 +1,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Server.Atmos;
+using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
@@ -12,10 +14,13 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Physics;
 using Content.Shared.Pinpointer;
 using Robust.Server.Player;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -34,6 +39,8 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
     [Dependency] private readonly NavMapSystem _navMap = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
 
     private static readonly ISawmill Sawmill = Logger.GetSawmill("halloween_rule");
 
@@ -46,6 +53,10 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
         public EntityUid? Queen;
         public int CurrentWave;
         public bool WaveEndScheduled;
+        public bool WaveCompleted;
+        public int MobsSpawned;
+        public int TotalMobsToSpawn;
+        public bool AllMobsSpawned;
     }
 
     // Per-rule runtime state
@@ -62,20 +73,34 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
         Sawmill.Info("Halloween rule started.");
         component.Active = true;
 
-        var st = new EventState { CurrentWave = 0, WaveEndScheduled = false };
+        var st = new EventState { CurrentWave = 0, WaveEndScheduled = false, WaveCompleted = false, MobsSpawned = 0, TotalMobsToSpawn = 0, AllMobsSpawned = false };
         _state[uid] = st;
 
-        var spawnPos = GetRandomPortalCoordinates();
-        if (spawnPos != MapCoordinates.Nullspace)
+        if (TryGetRandomStation(out var chosenStation))
         {
-            st.Portal = Spawn(component.PortalPrototype, spawnPos);
-            Sawmill.Info($"Halloween portal spawned at {spawnPos}.");
+            if (TryComp<StationDataComponent>(chosenStation, out var stationData))
+            {
+                var grid = _station.GetLargestGrid(stationData);
+                if (grid != null)
+                {
+                    SpawnPortalOnRandomGridLocation(grid.Value, component.PortalPrototype);
+                    // Find the spawned portal
+                    var portalQuery = EntityQueryEnumerator<HalloweenPortalComponent>();
+                    while (portalQuery.MoveNext(out var portalUid, out _))
+                    {
+                        st.Portal = portalUid;
+                        break;
+                    }
+                    Sawmill.Info($"Halloween portal spawned on station grid {grid}.");
 
-            var portalLoc = GetLocationString(spawnPos);
-            var msgPortal = Loc.GetString("halloween-portal-spawn", ("loc", portalLoc));
-            _chatSystem.DispatchGlobalAnnouncement(msgPortal, "ЦентКом");
+                    var portalLoc = GetLocationString(_transform.GetMapCoordinates(grid.Value));
+                    var msgPortal = Loc.GetString("halloween-portal-spawn", ("loc", portalLoc));
+                    _chatSystem.DispatchGlobalAnnouncement(msgPortal, "ЦентКом");
+                }
+            }
         }
-        else
+
+        if (st.Portal == null)
         {
             Sawmill.Warning("Failed to find a valid position to spawn the Halloween portal.");
         }
@@ -106,15 +131,28 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
         if (!component.Active)
             return;
 
+        Sawmill.Debug("StartNextWave start");
+
         st.WaveEndScheduled = false;
+        st.WaveCompleted = false;
         st.CurrentWave++;
+
+        Sawmill.Debug($"Current wave: {st.CurrentWave}, Total waves: {component.Waves.Count}");
+
+        if (component.Waves.Count == 0)
+        {
+            Sawmill.Warning("No waves configured in HalloweenRuleComponent!");
+            return;
+        }
 
         if (st.CurrentWave > component.Waves.Count)
         {
             if (component.QueenWave != null)
             {
+                Sawmill.Debug("Timer before queen start");
                 Timer.Spawn(component.TimeBeforeQueen, () => SpawnQueenSequence(ruleUid, component, st));
             }
+            Sawmill.Debug("All waves completed");
             return;
         }
 
@@ -122,39 +160,65 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
         var portalLocation = GetPortalLocationString(st);
         var announcement = GetWaveAnnouncement(st.CurrentWave, portalLocation, component);
         _chatSystem.DispatchGlobalAnnouncement(announcement, "ЦентКом");
-
+        Sawmill.Debug("SpawnWaveRoutine");
         SpawnWaveRoutine(ruleUid, wave, component, st);
     }
 
     private void SpawnWaveRoutine(EntityUid ruleUid, HalloweenWave wave, HalloweenRuleComponent comp, EventState st)
     {
+        Sawmill.Debug($"SpawnWaveRoutine called for wave {st.CurrentWave}");
+        Sawmill.Debug($"Wave details - MobCount: {wave.MobCount}, WaveLength: {wave.WaveLength}, Prototypes: {string.Join(", ", wave.MobPrototypes)}");
+
+        // Initialize wave state
+        st.MobsSpawned = 0;
+        st.TotalMobsToSpawn = wave.MobCount;
+        st.AllMobsSpawned = false;
+
         ScheduleWaveEnd(ruleUid, comp, st, wave.WaveLength);
 
         if (wave.MobCount <= 0 || !wave.MobPrototypes.Any())
+        {
+            Sawmill.Warning($"Wave {st.CurrentWave} has no mobs to spawn (count: {wave.MobCount}, prototypes: {wave.MobPrototypes.Count})");
+            st.AllMobsSpawned = true;
             return;
+        }
 
         var interval = wave.WaveLength / wave.MobCount;
         var attemptsLeft = wave.MobCount;
+        Sawmill.Debug("SpawnWaveRoutine");
 
         void SpawnNext()
         {
             if (!comp.Active || attemptsLeft <= 0)
+            {
+                Sawmill.Debug($"SpawnNext stopped - Active: {comp.Active}, attemptsLeft: {attemptsLeft}");
+                st.AllMobsSpawned = true;
                 return;
+            }
+
+            Sawmill.Debug($"SpawnNext - attemptsLeft: {attemptsLeft}, wave: {st.CurrentWave}");
 
             attemptsLeft--;
+            st.MobsSpawned++;
 
             var mobProto = _random.Pick(wave.MobPrototypes);
-            TrySpawnMob(mobProto, st);
+            var spawned = TrySpawnMob(mobProto, st);
+            Sawmill.Debug($"Tried to spawn {mobProto}, result: {spawned}");
 
             if (attemptsLeft > 0)
                 Timer.Spawn(interval, SpawnNext);
+            else
+                st.AllMobsSpawned = true;
         }
 
+        Sawmill.Debug("Timer SpawnNext");
         Timer.Spawn(TimeSpan.Zero, SpawnNext);
     }
 
     private bool TrySpawnMob(string prototype, EventState? st = null)
     {
+        Sawmill.Debug($"TrySpawnMob called with prototype: {prototype}");
+
         if (!_proto.HasIndex<EntityPrototype>(prototype))
         {
             Sawmill.Warning($"Missing prototype for Halloween mob: {prototype}");
@@ -163,9 +227,15 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
 
         MapCoordinates spawnCoords;
         if (st?.Portal is { } portal && Exists(portal))
+        {
             spawnCoords = _transform.GetMapCoordinates(portal);
+            Sawmill.Debug($"Using portal coordinates: {spawnCoords}");
+        }
         else
+        {
             spawnCoords = GetRandomPortalCoordinates();
+            Sawmill.Debug($"Using random coordinates: {spawnCoords}");
+        }
 
         if (spawnCoords == MapCoordinates.Nullspace)
         {
@@ -175,6 +245,7 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
 
         var mob = Spawn(prototype, spawnCoords);
         EnsureComp<HalloweenMobComponent>(mob);
+        Sawmill.Debug($"Successfully spawned {prototype} at {spawnCoords}");
         return true;
     }
 
@@ -188,11 +259,12 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
 
         void CheckWaveEnd()
         {
-            if (!comp.Active)
+            if (!comp.Active || st.WaveCompleted)
                 return;
 
-            if (Timing.CurTime >= endTime || AllHalloweenMobsDead())
+            if (Timing.CurTime >= endTime || (st.AllMobsSpawned && AllHalloweenMobsDead()))
             {
+                st.WaveCompleted = true;
                 var allDefeated = AllHalloweenMobsDead();
                 CleanupHalloweenMobs();
 
@@ -238,15 +310,58 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
         if (!component.Active || component.QueenWave == null)
             return;
 
+        // Delete old portal
+        if (st.Portal is { } oldPortal && Exists(oldPortal))
+        {
+            QueueDel(oldPortal);
+            st.Portal = null;
+        }
+
         var brigCoords = GetBrigCoordinates();
         if (brigCoords == MapCoordinates.Nullspace)
         {
             Sawmill.Warning("Could not find Brig for queen spawn, using random location.");
-            brigCoords = GetRandomPortalCoordinates();
+            // Get random coordinates and spawn portal there
+            var stations = _station.GetStations();
+            foreach (var station in stations)
+            {
+                if (!TryComp<StationDataComponent>(station, out var stationData))
+                    continue;
+
+                if (_station.GetLargestGrid(stationData) is not { } gridUid)
+                    continue;
+
+                SpawnPortalOnRandomGridLocation(gridUid, component.PortalPrototype);
+                // Find the spawned portal
+                var portalQuery = EntityQueryEnumerator<HalloweenPortalComponent>();
+                while (portalQuery.MoveNext(out var portalUid, out _))
+                {
+                    st.Portal = portalUid;
+                    break;
+                }
+                brigCoords = _transform.GetMapCoordinates(gridUid);
+                break;
+            }
+            
             if (brigCoords == MapCoordinates.Nullspace)
             {
                 Sawmill.Error("Could not find any location for queen spawn! Aborting.");
                 return;
+            }
+        }
+        else
+        {
+            // Spawn portal in brig
+            if (_mapManager.TryFindGridAt(brigCoords, out var brigGrid, out _))
+            {
+                SpawnPortalOnRandomGridLocation(brigGrid, component.PortalPrototype);
+                // Find the spawned portal
+                var portalQuery = EntityQueryEnumerator<HalloweenPortalComponent>();
+                while (portalQuery.MoveNext(out var portalUid, out _))
+                {
+                    st.Portal = portalUid;
+                    break;
+                }
             }
         }
 
@@ -298,7 +413,7 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
             return;
         }
 
-        if (!_random.Prob(0.5f))
+        if (!_random.Prob(0.7f))
             return;
 
         if (!TryComp<MetaDataComponent>(uid, out var meta) || meta.EntityPrototype == null)
@@ -306,11 +421,16 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
 
         var pick = meta.EntityPrototype.ID switch
         {
-            "MobHalloweenSmallPumpkin" or "MobHalloweenFlyingPumpkin" or "MobHalloweenCrystalPumpkin" => "GiftPumpkinRed",
-            "MobHalloweenAngryPumpkin" => _random.Prob(0.5f) ? "GiftPumpkinRed" : "HalloweenKnife",
-            "MobHalloweenSwordGuardianPumpkin" => "HalloweenSword",
-            "MobHalloweenSpearGuardianPumpkin" => "HalloweenSpear",
-            "MobHalloweenMinionPumpkin" or "MobHalloweenQueen" => "WeaponWandHalloweenFireball",
+            "MobHalloweenSmallPumpkin" or "MobHalloweenFlyingPumpkin" or "MobHalloweenCrystalPumpkin" => 
+                _random.Prob(0.5f) ? "GiftPumpkinRed" : "HalloweenKnife",
+            "MobHalloweenAngryPumpkin" => 
+                _random.Prob(0.5f) ? "GiftPumpkinRed" : "HalloweenKnife",
+            "MobHalloweenSwordGuardianPumpkin" => 
+                _random.Prob(0.5f) ? "GiftPumpkinRed" : "HalloweenSword",
+            "MobHalloweenSpearGuardianPumpkin" => 
+                _random.Prob(0.5f) ? "GiftPumpkinRed" : "HalloweenSpear",
+            "MobHalloweenMinionPumpkin" or "MobHalloweenQueen" => 
+                _random.Prob(0.2f) ? "WeaponWandHalloweenFireball" : "GiftPumpkinRed",
             _ => "GiftPumpkinRed",
         };
 
@@ -323,19 +443,64 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
     private string GetWaveAnnouncement(int wave, string location, HalloweenRuleComponent component)
     {
         if (wave == component.Waves.Count)
-            return Loc.GetString("halloween-final-wave-announcement", ("location", location));
+            return Loc.GetString("halloween-final-wave-start", ("wave", wave), ("location", location));
 
-        return Loc.GetString("halloween-wave-announcement", ("wave", wave), ("location", location));
+        return Loc.GetString("halloween-wave-start", ("wave", wave), ("location", location));
     }
 
     private string GetWaveEndAnnouncement(int wave, bool allDefeated)
     {
         return Loc.GetString(
-            "halloween-wave-end-announcement",
+            "halloween-wave-end",
             ("wave", wave),
-            ("result", allDefeated
-                ? Loc.GetString("halloween-wave-end-result-victory")
-                : Loc.GetString("halloween-wave-end-result-partial")));
+            ("defeated", allDefeated));
+    }
+
+    private void SpawnPortalOnRandomGridLocation(EntityUid grid, string toSpawn)
+    {
+        if (!TryComp<MapGridComponent>(grid, out var gridComp))
+            return;
+
+        var xform = Transform(grid);
+        var targetCoords = xform.Coordinates;
+        var gridBounds = gridComp.LocalAABB;
+
+        for (var i = 0; i < 25; i++)
+        {
+            var randomX = _random.Next((int)gridBounds.Left, (int)gridBounds.Right);
+            var randomY = _random.Next((int)gridBounds.Bottom, (int)gridBounds.Top);
+
+            var tile = new Vector2i(randomX, randomY);
+
+            // Check if tile is valid (not space, not air-blocked)
+            if (_atmosphere.IsTileSpace(grid, xform.MapUid, tile) ||
+                _atmosphere.IsTileAirBlocked(grid, tile, mapGridComp: gridComp))
+            {
+                continue;
+            }
+
+            // Don't spawn inside solid objects
+            var valid = true;
+            foreach (var ent in _mapSystem.GetAnchoredEntities(grid, gridComp, tile))
+            {
+                if (!TryComp<PhysicsComponent>(ent, out var body))
+                    continue;
+                if (body.BodyType != BodyType.Static ||
+                    !body.Hard ||
+                    (body.CollisionLayer & (int)CollisionGroup.Impassable) == 0)
+                    continue;
+
+                valid = false;
+                break;
+            }
+            if (!valid)
+                continue;
+
+            targetCoords = _mapSystem.GridTileToLocal(grid, gridComp, tile);
+            break;
+        }
+
+        Spawn(toSpawn, targetCoords);
     }
 
     private MapCoordinates GetRandomPortalCoordinates()
@@ -346,27 +511,18 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
             if (!TryComp<StationDataComponent>(station, out var stationData))
                 continue;
 
-            if (_station.GetLargestGrid(stationData) is not { } gridUid ||
-                !TryComp<MapGridComponent>(gridUid, out var gridComp))
+            if (_station.GetLargestGrid(stationData) is not { } gridUid)
                 continue;
 
-            var tiles = _mapSystem.GetAllTiles(gridUid, gridComp).ToList();
-            if (tiles.Count == 0)
-                continue;
-
-            var tile = _random.Pick(tiles);
-            return _transform.ToMapCoordinates(new EntityCoordinates(gridUid, tile.GridIndices));
+            SpawnPortalOnRandomGridLocation(gridUid, "HalloweenPortal");
+            return _transform.GetMapCoordinates(gridUid);
         }
 
         var anyGridQuery = EntityQueryEnumerator<MapGridComponent>();
-        while (anyGridQuery.MoveNext(out var gridUid, out var gridComp))
+        while (anyGridQuery.MoveNext(out var gridUid, out _))
         {
-            var tiles = _mapSystem.GetAllTiles(gridUid, gridComp).ToList();
-            if (tiles.Count == 0)
-                continue;
-
-            var tile = _random.Pick(tiles);
-            return _transform.ToMapCoordinates(new EntityCoordinates(gridUid, tile.GridIndices));
+            SpawnPortalOnRandomGridLocation(gridUid, "HalloweenPortal");
+            return _transform.GetMapCoordinates(gridUid);
         }
 
         return MapCoordinates.Nullspace;
@@ -408,4 +564,5 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
 
         return ColorTagRegex.Replace(beacon, string.Empty);
     }
+
 }

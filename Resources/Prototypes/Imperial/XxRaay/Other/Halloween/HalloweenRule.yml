@@ -5,3 +5,4 @@
   - type: GameRule
     minPlayers: 1
   - type: HalloweenRule
+

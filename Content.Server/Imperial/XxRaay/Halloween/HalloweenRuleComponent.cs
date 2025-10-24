@@ -12,11 +12,118 @@ public sealed partial class HalloweenRuleComponent : Component
 
     /// <summary>Ordered list of regular waves.</summary>
     [DataField("waves")]
-    public List<HalloweenWave> Waves { get; set; } = new();
+    public List<HalloweenWave> Waves { get; set; } = new()
+    {
+        // Wave 1
+        new HalloweenWave
+        {
+            MobCount = 15,
+            WaveLength = TimeSpan.FromMinutes(3),
+            MobPrototypes = new List<string> { "MobHalloweenSmallPumpkin" }
+        },
+        // Wave 2
+        new HalloweenWave
+        {
+            MobCount = 15,
+            WaveLength = TimeSpan.FromMinutes(3),
+            MobPrototypes = new List<string>
+            {
+                "MobHalloweenSmallPumpkin",
+                "MobHalloweenFlyingPumpkin",
+                "MobHalloweenAngryPumpkin"
+            }
+        },
+        // Wave 3
+        new HalloweenWave
+        {
+            MobCount = 15,
+            WaveLength = TimeSpan.FromMinutes(3),
+            MobPrototypes = new List<string>
+            {
+                "MobHalloweenSmallPumpkin",
+                "MobHalloweenFlyingPumpkin",
+                "MobHalloweenAngryPumpkin"
+            }
+        },
+        // Wave 4
+        new HalloweenWave
+        {
+            MobCount = 20,
+            WaveLength = TimeSpan.FromMinutes(4),
+            MobPrototypes = new List<string>
+            {
+                "MobHalloweenSmallPumpkin",
+                "MobHalloweenFlyingPumpkin",
+                "MobHalloweenAngryPumpkin",
+                "MobHalloweenSwordGuardianPumpkin"
+            }
+        },
+        // Wave 5
+        new HalloweenWave
+        {
+            MobCount = 20,
+            WaveLength = TimeSpan.FromMinutes(4),
+            MobPrototypes = new List<string>
+            {
+                "MobHalloweenSmallPumpkin",
+                "MobHalloweenFlyingPumpkin",
+                "MobHalloweenAngryPumpkin",
+                "MobHalloweenSwordGuardianPumpkin",
+                "MobHalloweenSpearGuardianPumpkin"
+            }
+        },
+        // Wave 6
+        new HalloweenWave
+        {
+            MobCount = 25,
+            WaveLength = TimeSpan.FromMinutes(5),
+            MobPrototypes = new List<string>
+            {
+                "MobHalloweenSmallPumpkin",
+                "MobHalloweenFlyingPumpkin",
+                "MobHalloweenAngryPumpkin",
+                "MobHalloweenSwordGuardianPumpkin",
+                "MobHalloweenSpearGuardianPumpkin",
+                "MobHalloweenMinionPumpkin"
+            }
+        },
+        // Wave 7
+        new HalloweenWave
+        {
+            MobCount = 30,
+            WaveLength = TimeSpan.FromMinutes(5),
+            MobPrototypes = new List<string>
+            {
+                "MobHalloweenSmallPumpkin",
+                "MobHalloweenFlyingPumpkin",
+                "MobHalloweenAngryPumpkin",
+                "MobHalloweenSwordGuardianPumpkin",
+                "MobHalloweenSpearGuardianPumpkin",
+                "MobHalloweenMinionPumpkin",
+                "MobHalloweenCrystalPumpkin"
+            }
+        },
+        // Wave 8
+        new HalloweenWave
+        {
+            MobCount = 40,
+            WaveLength = TimeSpan.FromMinutes(6),
+            MobPrototypes = new List<string>
+            {
+                "MobHalloweenSmallPumpkin",
+                "MobHalloweenFlyingPumpkin",
+                "MobHalloweenAngryPumpkin",
+                "MobHalloweenSwordGuardianPumpkin",
+                "MobHalloweenSpearGuardianPumpkin",
+                "MobHalloweenMinionPumpkin",
+                "MobHalloweenCrystalPumpkin"
+            }
+        }
+    };
 
     /// <summary>Time between waves.</summary>
     [DataField("timeBetweenWaves")]
-    public TimeSpan TimeBetweenWaves { get; set; } = TimeSpan.FromMinutes(3);
+    public TimeSpan TimeBetweenWaves { get; set; } = TimeSpan.FromMinutes(1);
 
     /// <summary>Prototype for the portal entity.</summary>
     [DataField("portalPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
@@ -24,7 +131,17 @@ public sealed partial class HalloweenRuleComponent : Component
 
     /// <summary>Optional final queen wave.</summary>
     [DataField("queenWave")]
-    public QueenWaveDefinition? QueenWave { get; set; }
+    public QueenWaveDefinition? QueenWave { get; set; } = new QueenWaveDefinition
+    {
+        QueenPrototype = "MobHalloweenQueen",
+        Escorts = new Dictionary<string, int>
+        {
+            { "MobHalloweenMinionPumpkin", 3 },
+            { "MobHalloweenSwordGuardianPumpkin", 2 },
+            { "MobHalloweenSpearGuardianPumpkin", 1 }
+        },
+        SurvivalDuration = TimeSpan.FromMinutes(10)
+    };
 
     /// <summary>Delay before queen wave after last regular wave.</summary>
     [DataField("timeBeforeQueen")]

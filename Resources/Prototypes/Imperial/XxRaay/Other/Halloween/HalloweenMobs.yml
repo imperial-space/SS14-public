@@ -69,6 +69,36 @@
         Piercing: 5
 
 - type: entity
+  id: MobHalloweenFlyingPumpkin
+  parent: MobHalloweenBase
+  name: flying pumpkin
+  description: Boo!
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/Asteroid/basilisk.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: basilisk
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: basilisk
+      Dead:
+        Base: basilisk_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 7.5
+
+- type: entity
   id: MobHalloweenAngryPumpkin
   parent: MobHalloweenBase
   name: angry pumpkin
@@ -194,22 +224,50 @@
     layers:
     - state: portal-blue
   - type: Anchorable
-    anchor: true
   - type: Physics
     bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeCircle
-          radius: 1.0
-        layer:
-        - MobLayer
-        mask:
-        - MobLayer
+          !type:PhysShapeAabb
+          bounds: "-1.0,-0.5,1.0,0.5"
+        layer: 1
+        mask: 1
   - type: Tag
     tags:
     - Halloween
+  - type: HalloweenPortal
+
+- type: entity
+  id: MobHalloweenCrystalPumpkin
+  parent: MobHalloweenBase
+  name: crystal pumpkin
+  description: Boo!
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/Asteroid/basilisk.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: basilisk
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: basilisk
+      Dead:
+        Base: basilisk_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 5
 
 - type: entity
   id: MobHalloweenQueen
