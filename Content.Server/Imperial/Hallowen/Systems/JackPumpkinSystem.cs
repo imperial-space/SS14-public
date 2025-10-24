@@ -21,8 +21,8 @@ namespace Content.Server.Imperial.Halloween
         private void RaiseEvent(EntityUid uid, JackPumpkinComponent component)
         {
             component.EventRaised = true;
-            RaiseLocalEvent(new JackSpawnedEvent()
-            { });
+            var ev = new JackSpawnedEvent();
+            RaiseLocalEvent(ev);
         }
         public override void Update(float frameTime)
         {
@@ -40,9 +40,5 @@ namespace Content.Server.Imperial.Halloween
                 }
             }
         }
-    }
-    public sealed class JackSpawnedEvent : EntityEventArgs
-    {
-
     }
 }
