@@ -1,0 +1,130 @@
+- type: entity
+  parent: [ SimpleSpaceMobBase, MobCombat ]
+  id: MobJackHunter
+  name: Jack the Hunter
+  description: run
+  suffix: Halloween
+  components:
+  - type: Sprite
+    sprite: Imperial/Halloween/jack.rsi
+    layers:
+    - state: jackhunter
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 130
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: CombatMode
+  - type: Body
+    prototype: AnimalHemocyanin
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      250: Dead
+  - type: Puller
+    needsHands: false
+  - type: NoSlip
+  - type: IgnoreSpiderWeb
+  - type: Speech
+  - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: MaleHuman
+      Unsexed: MaleHuman
+  - type: TypingIndicator
+    proto: alien
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - StunImmune
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 1.5
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 199
+    damage:
+      types:
+        Poison: -1
+      groups:
+        Brute: -1
+        Burn: -11
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: StatusEffects
+    allowed:
+    - PressureImmunity
+    - Pacified
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    angle: 30
+    animation: WeaponArcClaw
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 10
+        Slash: 15
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 4
+    baseWalkSpeed: 2
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepJack
+  - type: Metabolizer
+    solutionOnBody: false
+    updateInterval: 0.25
+    metabolizerTypes: [ Dragon ]
+    groups:
+    - id: Medicine
+    - id: Poison
+  - type: Bloodstream
+    bloodMaxVolume: 650
+  - type: Devourer
+    foodPreferenceWhitelist:
+      components:
+      - HumanoidAppearance
+    stomachStorageWhitelist:
+      components:
+      - MobState
+    chemical: Ichor
+    healRate: 7.5
+    whitelist:
+      components:
+      - MobState
+  - type: ActionGrant
+    actions:
+    - ActionPolymorphJaunt
+
+- type: soundCollection
+  id: FootstepJack
+  files:
+  - /Audio/Imperial/Halloween/shagi.ogg
+
+- type: entity
+  parent: [ SimpleSpaceMobBase, MobCombat ]
+  id: MobJackPumpkin
+  name: Pumpkin
+  description: xd
+  suffix: Halloween
+  components:
+  - type: Sprite
+    sprite: Imperial/Halloween/jackpumpkin.rsi
+    layers:
+    - state: jackpumpkin
+  - type: JackPumpkin
+    endRoundDelay: 2
