@@ -13,6 +13,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Network;
 using Robust.Shared.Configuration;
 using Robust.Shared.Utility;
+using Content.Client.Info;
 
 namespace Content.Client.Administration.UI.Bwoink
 {
@@ -69,7 +70,7 @@ namespace Content.Client.Administration.UI.Bwoink
                 if (AHelpHelper.TryGetChannel(info.SessionId, out var panel) && panel.Unread > 0)
                 {
                     if (panel.Unread < 11)
-                        sb.Append(new Rune('➀' + (panel.Unread-1)));
+                        sb.Append(new Rune('➀' + (panel.Unread - 1)));
                     else
                         sb.Append(new Rune(0x2639)); // ☹
                     sb.Append(' ');
@@ -197,6 +198,11 @@ namespace Content.Client.Administration.UI.Bwoink
             PopOut.OnPressed += _ =>
             {
                 uiController.PopOut();
+            };
+            Rules.OnPressed += _ =>
+            {
+                var window = new RulesAndInfoWindow();
+                window.OpenCentered();
             };
         }
 
