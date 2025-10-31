@@ -1,5 +1,5 @@
 - type: entity
-  id: HalloweenRule
+  id: HalloweenPortalRule
   parent: BaseGameRule
   components:
   - type: GameRule
