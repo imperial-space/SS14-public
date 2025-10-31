@@ -93,7 +93,7 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
                     }
                     Sawmill.Info($"Halloween portal spawned on station grid {grid}.");
 
-                    var portalLoc = GetLocationString(_transform.GetMapCoordinates(grid.Value));
+                    var portalLoc = GetPortalLocationString(st);
                     var msgPortal = Loc.GetString("halloween-portal-spawn", ("loc", portalLoc));
                     _chatSystem.DispatchGlobalAnnouncement(msgPortal, "ЦентКом");
                 }
@@ -310,6 +310,8 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
         if (!component.Active || component.QueenWave == null)
             return;
 
+        Sawmill.Debug("SpawnQueenSequence start");
+
         // Delete old portal
         if (st.Portal is { } oldPortal && Exists(oldPortal))
         {
@@ -331,15 +333,9 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
                 if (_station.GetLargestGrid(stationData) is not { } gridUid)
                     continue;
 
-                SpawnPortalOnRandomGridLocation(gridUid, component.PortalPrototype);
-                // Find the spawned portal
-                var portalQuery = EntityQueryEnumerator<HalloweenPortalComponent>();
-                while (portalQuery.MoveNext(out var portalUid, out _))
-                {
-                    st.Portal = portalUid;
-                    break;
-                }
-                brigCoords = _transform.GetMapCoordinates(gridUid);
+                // Spawn portal exactly at the target coords
+                var portal = Spawn(component.PortalPrototype, brigCoords);
+                st.Portal = portal;
                 break;
             }
             
@@ -351,18 +347,9 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
         }
         else
         {
-            // Spawn portal in brig
-            if (_mapManager.TryFindGridAt(brigCoords, out var brigGrid, out _))
-            {
-                SpawnPortalOnRandomGridLocation(brigGrid, component.PortalPrototype);
-                // Find the spawned portal
-                var portalQuery = EntityQueryEnumerator<HalloweenPortalComponent>();
-                while (portalQuery.MoveNext(out var portalUid, out _))
-                {
-                    st.Portal = portalUid;
-                    break;
-                }
-            }
+            // Spawn portal exactly at the security beacon location
+            var portal = Spawn(component.PortalPrototype, brigCoords);
+            st.Portal = portal;
         }
 
         foreach (var (type, count) in component.QueenWave.Escorts)
@@ -421,16 +408,16 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
 
         var pick = meta.EntityPrototype.ID switch
         {
-            "MobHalloweenSmallPumpkin" or "MobHalloweenFlyingPumpkin" or "MobHalloweenCrystalPumpkin" => 
-                _random.Prob(0.5f) ? "GiftPumpkinRed" : "HalloweenKnife",
+            "MobHalloweenSmallPumpkin" =>
+                _random.Prob(0.1f) ? "ClothingOuterArmorBasicSlim" : (_random.Prob(0.5f) ? "GiftPumpkinRed" : "CombatKnife"),
+            "MobHalloweenFlyingPumpkin" =>
+                _random.Prob(0.1f) ? "ClothingOuterArmorBasicSlim" : (_random.Prob(0.5f) ? "GiftPumpkinRed" : "CombatKnife"),
+            "MobHalloweenCrystalPumpkin" =>
+                _random.Prob(0.1f) ? "ClothingOuterArmorBasicSlim" : (_random.Prob(0.5f) ? "GiftPumpkinRed" : "CombatKnife"),
             "MobHalloweenAngryPumpkin" => 
-                _random.Prob(0.5f) ? "GiftPumpkinRed" : "HalloweenKnife",
-            "MobHalloweenSwordGuardianPumpkin" => 
-                _random.Prob(0.5f) ? "GiftPumpkinRed" : "HalloweenSword",
-            "MobHalloweenSpearGuardianPumpkin" => 
-                _random.Prob(0.5f) ? "GiftPumpkinRed" : "HalloweenSpear",
+                _random.Prob(0.1f) ? "ClothingOuterArmorBasicSlim" : (_random.Prob(0.5f) ? "GiftPumpkinRed" : "CombatKnife"),
             "MobHalloweenMinionPumpkin" or "MobHalloweenQueen" => 
-                _random.Prob(0.2f) ? "WeaponWandHalloweenFireball" : "GiftPumpkinRed",
+                _random.Prob(0.2f) ? "WeaponWandFireball" : "GiftPumpkinRed",
             _ => "GiftPumpkinRed",
         };
 
@@ -537,7 +524,7 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
                 continue;
 
             var protoId = meta.EntityPrototype?.ID;
-            if (protoId != null && protoId.Equals("DefaultStationBeaconBrig", StringComparison.OrdinalIgnoreCase))
+            if (protoId != null && protoId.Equals("DefaultStationBeaconSecurity", StringComparison.OrdinalIgnoreCase))
                 return _transform.ToMapCoordinates(xform.Coordinates);
         }
 

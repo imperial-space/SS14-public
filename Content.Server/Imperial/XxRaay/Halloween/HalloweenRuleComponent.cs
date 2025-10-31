@@ -14,17 +14,16 @@ public sealed partial class HalloweenRuleComponent : Component
     [DataField("waves")]
     public List<HalloweenWave> Waves { get; set; } = new()
     {
-        // Wave 1
         new HalloweenWave
         {
-            MobCount = 15,
+            MobCount = 7,
             WaveLength = TimeSpan.FromMinutes(3),
             MobPrototypes = new List<string> { "MobHalloweenSmallPumpkin" }
         },
         // Wave 2
         new HalloweenWave
         {
-            MobCount = 15,
+            MobCount = 7,
             WaveLength = TimeSpan.FromMinutes(3),
             MobPrototypes = new List<string>
             {
@@ -36,7 +35,7 @@ public sealed partial class HalloweenRuleComponent : Component
         // Wave 3
         new HalloweenWave
         {
-            MobCount = 15,
+            MobCount = 7,
             WaveLength = TimeSpan.FromMinutes(3),
             MobPrototypes = new List<string>
             {
@@ -48,57 +47,50 @@ public sealed partial class HalloweenRuleComponent : Component
         // Wave 4
         new HalloweenWave
         {
-            MobCount = 20,
+            MobCount = 10,
             WaveLength = TimeSpan.FromMinutes(4),
             MobPrototypes = new List<string>
             {
                 "MobHalloweenSmallPumpkin",
                 "MobHalloweenFlyingPumpkin",
                 "MobHalloweenAngryPumpkin",
-                "MobHalloweenSwordGuardianPumpkin"
             }
         },
         // Wave 5
         new HalloweenWave
         {
-            MobCount = 20,
+            MobCount = 10,
             WaveLength = TimeSpan.FromMinutes(4),
             MobPrototypes = new List<string>
             {
                 "MobHalloweenSmallPumpkin",
                 "MobHalloweenFlyingPumpkin",
-                "MobHalloweenAngryPumpkin",
-                "MobHalloweenSwordGuardianPumpkin",
-                "MobHalloweenSpearGuardianPumpkin"
+                "MobHalloweenAngryPumpkin"
             }
         },
         // Wave 6
         new HalloweenWave
         {
-            MobCount = 25,
+            MobCount = 10,
             WaveLength = TimeSpan.FromMinutes(5),
             MobPrototypes = new List<string>
             {
                 "MobHalloweenSmallPumpkin",
                 "MobHalloweenFlyingPumpkin",
                 "MobHalloweenAngryPumpkin",
-                "MobHalloweenSwordGuardianPumpkin",
-                "MobHalloweenSpearGuardianPumpkin",
                 "MobHalloweenMinionPumpkin"
             }
         },
         // Wave 7
         new HalloweenWave
         {
-            MobCount = 30,
+            MobCount = 10,
             WaveLength = TimeSpan.FromMinutes(5),
             MobPrototypes = new List<string>
             {
                 "MobHalloweenSmallPumpkin",
                 "MobHalloweenFlyingPumpkin",
                 "MobHalloweenAngryPumpkin",
-                "MobHalloweenSwordGuardianPumpkin",
-                "MobHalloweenSpearGuardianPumpkin",
                 "MobHalloweenMinionPumpkin",
                 "MobHalloweenCrystalPumpkin"
             }
@@ -106,15 +98,13 @@ public sealed partial class HalloweenRuleComponent : Component
         // Wave 8
         new HalloweenWave
         {
-            MobCount = 40,
+            MobCount = 15,
             WaveLength = TimeSpan.FromMinutes(6),
             MobPrototypes = new List<string>
             {
                 "MobHalloweenSmallPumpkin",
                 "MobHalloweenFlyingPumpkin",
                 "MobHalloweenAngryPumpkin",
-                "MobHalloweenSwordGuardianPumpkin",
-                "MobHalloweenSpearGuardianPumpkin",
                 "MobHalloweenMinionPumpkin",
                 "MobHalloweenCrystalPumpkin"
             }
@@ -137,15 +127,14 @@ public sealed partial class HalloweenRuleComponent : Component
         Escorts = new Dictionary<string, int>
         {
             { "MobHalloweenMinionPumpkin", 3 },
-            { "MobHalloweenSwordGuardianPumpkin", 2 },
-            { "MobHalloweenSpearGuardianPumpkin", 1 }
+            { "MobHalloweenCrystalPumpkin", 2 }
         },
         SurvivalDuration = TimeSpan.FromMinutes(10)
     };
 
     /// <summary>Delay before queen wave after last regular wave.</summary>
     [DataField("timeBeforeQueen")]
-    public TimeSpan TimeBeforeQueen { get; set; } = TimeSpan.FromMinutes(10);
+    public TimeSpan TimeBeforeQueen { get; set; } = TimeSpan.FromMinutes(1);
 }
 
 [DataDefinition]

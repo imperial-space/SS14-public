@@ -3,7 +3,7 @@ halloween-portal-spawn = Внимание экипажу станции. Обн�
 halloween-wave-start = Началась волна { $wave }! Тыквы появляются в районе { $location }!
 halloween-final-wave-start = Началась финальная волна { $wave }! Тыквы появляются в районе { $location }!
 
-halloween-wave-end = Волна { $wave } закончилась. { SELECT($defeated) ->
+halloween-wave-end = Волна { $wave } закончилась. { $defeated ->
     [true] Все тыквы были побеждены.
     [false] Не все тыквы были побеждены.
     *[other] Статус тыкв неизвестен.
