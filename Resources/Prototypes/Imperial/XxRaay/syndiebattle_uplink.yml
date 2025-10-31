@@ -1806,9 +1806,9 @@
   productEntity: HolyHandGrenade
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 14
+    Telecrystal: 35
   cost:
-    Telecrystal: 20
+    Telecrystal: 50
   categories:
   - SyndiebattleUplinkJob
 
@@ -2039,9 +2039,9 @@
   productEntity: Mjollnir
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 42
+    Telecrystal: 55
   cost:
-    Telecrystal: 54
+    Telecrystal: 85
   categories:
   - SyndiebattleUplinkCustom
 
@@ -2095,9 +2095,9 @@
   productEntity: EnergySwordDouble
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 55
+    Telecrystal: 42
   cost:
-    Telecrystal: 85
+    Telecrystal: 55
   categories:
   - SyndiebattleUplinkCustom
 
@@ -2126,13 +2126,13 @@
     name: Переродится
     description: Дойдите до выхода и вернитесь в битву
   - type: GhostRoleMobSpawner
-    prototype: MobCatSyndy
+    prototype: MobSyndieBattleCatSyndy
     availableTakeovers: 99
     deleteOnSpawn: true
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
-   - state: green
+    - state: green
 
 - type: entity
   name: syndicat
@@ -2152,17 +2152,6 @@
         Base: syndicat_dead
       Dead:
         Base: syndicat_dead
-  - type: GhostRole
-    prob: 1
-    name: ghost-role-information-SyndiCat-name
-    allowMovement: true
-    description: ghost-role-information-SyndiCat-description
-    rules: ghost-role-information-SyndiCat-rules
-    mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: NpcFactionMember
@@ -2208,3 +2197,24 @@
       - feet
     feet:
       part: FeetAnimal
+
+- type: entity
+  name: поисковик искупления
+  id: PinpointerSyndieBattle
+  parent: PinpointerBase
+  components:
+  - type: Pinpointer
+    component: SyndieBattleRedemption
+    targetName: машина искупления
+
+- type: listing
+  id: UplinkPinpointerSyndieBattle
+  name: Поисковик машин искупления
+  description: Показывает стрелку на машину искупления.
+  icon: { sprite: Objects/Devices/pinpointer.rsi, state: icon}
+  productEntity: PinpointerSyndieBattle
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+  categories:
+  - SyndiebattleUplinkCustom
