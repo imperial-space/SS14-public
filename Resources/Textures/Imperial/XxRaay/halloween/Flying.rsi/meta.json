@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "license": "ICLA",
+  "copyright": "totally_not_don_kot",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "flying",
+      "directions": 4,
+      "delays": [
+        [ 0.06, 0.06, 0.06, 0.06 ],
+        [ 0.06, 0.06, 0.06, 0.06 ],
+        [ 0.06, 0.06, 0.06, 0.06 ],
+        [ 0.06, 0.06, 0.06, 0.06 ]
+      ]
+    },
+    {
+      "name": "dead"
+    }
+  ]
+}
