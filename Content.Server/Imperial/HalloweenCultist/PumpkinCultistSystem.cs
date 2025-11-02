@@ -16,6 +16,9 @@ using Content.Shared.Climbing.Events;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Mind;
 using Robust.Shared.Audio.Systems;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage;
+using Content.Shared.DoAfter;
 using Content.Shared.Imperial.HalloweenCultist.Components;
 
 namespace Content.Server.Imperial.HalloweenCultist;
@@ -30,6 +33,7 @@ public class HalloweenCultistSystem : SharedHalloweenCultistSystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
     
     public override void Initialize()
     {
@@ -40,6 +44,8 @@ public class HalloweenCultistSystem : SharedHalloweenCultistSystem
 
         SubscribeLocalEvent<GibCultistRuneComponent, ClimbedOnEvent>(OnClimbedOn);
         SubscribeLocalEvent<PumpkiniteDevourEvent>(OnDevour);
+
+        SubscribeLocalEvent<CultistKnifeComponent, PumpkinCultKnifeDoAfterEvent>(OnDoAfter);
     }
     private void OnMapInit(Entity<PumpkinCultistComponent> ent, ref MapInitEvent args)
     {
@@ -120,6 +126,17 @@ public class HalloweenCultistSystem : SharedHalloweenCultistSystem
         _audio.PlayPvs(ent.Comp.Sound, ent);
 
         //Del(ent);
+    }
+    protected virtual void OnDoAfter(EntityUid uid, CultistKnifeComponent comp, DoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled || args.Args.Target == null)
+            return;
+
+        var rune = Spawn(comp.RuneProto, Transform(args.User).Coordinates);
+        _transform.AttachToGridOrMap(rune, Transform(args.User));
+        _damageable.TryChangeDamage(args.User, comp.Damage, true);
+
+        args.Handled = true;
     }
     
 }

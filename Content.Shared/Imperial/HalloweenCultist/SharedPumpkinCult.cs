@@ -10,8 +10,6 @@ using Robust.Shared.Audio.Systems;
 using Content.Shared.Stunnable;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Imperial.HalloweenCultist;
-using Content.Shared.Damage.Components;
-using Content.Shared.Damage;
 using Content.Shared.Interaction.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Mobs;
@@ -24,6 +22,8 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 using Content.Shared.Mind.Components;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage;
 using Content.Shared.Imperial.HalloweenCultist.Components;
 
 namespace Content.Shared.Imperial.HalloweenCultist;
@@ -34,7 +34,6 @@ public abstract class SharedHalloweenCultistSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] protected readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -47,7 +46,7 @@ public abstract class SharedHalloweenCultistSystem : EntitySystem
         SubscribeLocalEvent<PumpkinGrab2SpellEvent>(OnGrab2);
         
         SubscribeLocalEvent<CultistKnifeComponent, AfterInteractEvent>(OnInteract);
-        SubscribeLocalEvent<CultistKnifeComponent, PumpkinCultKnifeDoAfterEvent>(OnDoAfter);
+        
 
         SubscribeLocalEvent<RobustOfferingComponent, ShotAttemptedEvent>(OnShotAttempted);
         SubscribeLocalEvent<RobustOfferingComponent, MapInitEvent>(OnMapInit);
@@ -105,18 +104,6 @@ public abstract class SharedHalloweenCultistSystem : EntitySystem
             BreakOnMove = true,
             NeedHand = true,
         });
-
-        args.Handled = true;
-    }
-
-    protected virtual void OnDoAfter(EntityUid uid, CultistKnifeComponent comp, DoAfterEvent args)
-    {
-        if (args.Cancelled || args.Handled || args.Args.Target == null)
-            return;
-
-        _damageable.TryChangeDamage(comp.User, comp.Damage, true);
-
-        Spawn(comp.RuneProto, Transform(comp.User).Coordinates);
 
         args.Handled = true;
     }

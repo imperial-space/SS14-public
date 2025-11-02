@@ -98,6 +98,7 @@
     damage:
       types:
         Poison: 1
+        Bloodloss: 1
   - type: Sharp
   - type: Sprite
     sprite: Imperial/PumpkinCult/cult_blade.rsi
@@ -109,7 +110,7 @@
     attackRate: 1.0
     damage:
       types:
-        Slash: 20
+        Slash: 15
         Heat: 15
   - type: Item
     size: Normal

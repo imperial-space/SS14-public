@@ -30,6 +30,8 @@
   description: It would be bad, if you died, don't you?
   components:
   - type: Objective
+    difficulty: 1
+    issuer: objective-issuer-pumpkin-cult
     icon:
       sprite: Imperial/PumpkinCult/tikovki.rsi
       state: pacify
@@ -41,6 +43,8 @@
   description: let them know, about the Pumpkin Moon cult.
   components:
   - type: Objective
+    difficulty: 1
+    issuer: objective-issuer-pumpkin-cult
     icon:
       sprite: Imperial/PumpkinCult/cult_cosa.rsi
       state: icon
@@ -83,5 +87,5 @@
       - MindRoleCultist
       briefing:
         text: cultist-role-greeting
-        color: Orange
+        color: "#a33c00"
         sound: "/Audio/Imperial/PumpkinCultist/cultist_effect.ogg"
