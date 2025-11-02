@@ -1,0 +1,16 @@
+- type: entity
+  id: CultistGibRune
+  name: pumpkin gib rune
+  description: Spooky
+  suffix: Pumpkin Cultist
+  components:
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/PumpkinCult/rune.rsi
+    state: rune
+  - type: Icon
+    sprite: Imperial/PumpkinCult/rune.rsi
+    state: rune
+  - type: Climbable
+    delay: 7
+  - type: GibCultistRune

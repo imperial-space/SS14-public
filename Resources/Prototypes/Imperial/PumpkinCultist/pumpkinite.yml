@@ -1,0 +1,68 @@
+- type: currency
+  id: Pumpkinite
+  displayName: store-currency-display-pumpkinite
+  cash:
+    1: Pumpkinite1
+  canWithdraw: false
+
+- type: stack
+  id: Pumpkinite
+  name: stack-pumpkinite
+  icon:
+    sprite: Imperial/PumpkinCult/ingot.rsi
+    state: gold
+  spawn: Pumpkinite1
+
+- type: entity
+  name: pumpkinite
+  parent: BaseItem
+  id: Pumpkinite
+  suffix: 1, Pumpkin Cultist
+  description: Strange orange metal.
+  components:
+  - type: PointLight
+    color: "#8100b0"
+    radius: 1.8
+    energy: 5.0
+  - type: MobState
+  - type: Pumpkinite
+  - type: Sprite
+    sprite: Imperial/PumpkinCult/ingot.rsi
+    state: gold
+  - type: Item
+    sprite: Imperial/PumpkinCult/ingot.rsi
+    size: Tiny
+  - type: Stack
+    count: 1
+    stackType: Pumpkinite
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 600
+  - type: Currency
+    price:
+      Pumpkinite: 1
+
+- type: entity
+  parent: Pumpkinite
+  id: Pumpkinite1
+  suffix: 1, Pumpkin Cultist
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: Pumpkinite
+  id: Pumpkinite15
+  suffix: 15, Pumpkin Cultist
+  components:
+  - type: Stack
+    count: 15
+
+- type: entity
+  parent: Pumpkinite
+  id: Pumpkinite30
+  suffix: 30, Pumpkin Cultist
+  components:
+  - type: Stack
+    count: 30

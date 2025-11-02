@@ -1,0 +1,45 @@
+- type: entity
+  parent: [ ClothingOuterBaseLarge, ClothingOuterBaseToggleable, AllowSuitStorageClothing ]
+  id: ClothingOuterArmorPumpkinCult
+  name: acolyte armor
+  description: An evil-looking piece of cult armor, made of bones.
+  suffix: Pumpkin Cultist
+  components:
+  - type: Sprite
+    sprite: Imperial/PumpkinCult/armor.rsi
+  - type: Clothing
+    sprite: Imperial/PumpkinCult/armor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Stamina: 0.5
+  - type: GroupExamine
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetPumpkinCult
+
+- type: entity
+  parent: ClothingHeadHelmetBase
+  id: ClothingHeadHelmetPumpkinCult
+  name: cult helmet
+  description: A robust, evil-looking cult helmet.
+  suffix: Pumpkin Cultist
+  components:
+  - type: Sprite
+    sprite: Imperial/PumpkinCult/helmet.rsi
+  - type: Clothing
+    sprite: Imperial/PumpkinCult/helmet.rsi
+  - type: IngestionBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.8
+        Piercing: 0.9
+        Heat: 0.9
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD

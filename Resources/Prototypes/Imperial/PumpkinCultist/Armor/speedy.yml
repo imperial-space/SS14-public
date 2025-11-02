@@ -1,0 +1,22 @@
+- type: entity
+  parent: [ClothingOuterBase, ClothingOuterBaseToggleable]
+  id: ClothingOuterRobesPumpkinCult
+  name: pumpkin cult robes
+  components:
+  - type: Sprite
+    sprite: Imperial/PumpkinCult/cultrobes.rsi
+  - type: Clothing
+    sprite: Imperial/PumpkinCult/cultrobes.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatPumpkin
+  - type: ClothingSpeedModifier
+    walkModifier: 1.45
+    sprintModifier: 1.45
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 1.45
+        Slash: 1.45
+        Piercing: 1.45
+        Heat: 1.45
+        Stamina: 1.45

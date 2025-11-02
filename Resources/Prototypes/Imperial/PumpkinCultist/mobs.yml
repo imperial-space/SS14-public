@@ -1,0 +1,25 @@
+- type: entity
+  name: lil pumpkin
+  parent: MobMouse
+  id: MobLilPumpkin
+  description: Not spooky at all. Almost cute, I will say.
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: Imperial/PumpkinCult/mouse.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-0
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-0
+    noMovementLayers:
+      movement:
+        state: mouse-0
+  - type: Clothing
+    quickEquip: false
+    sprite: Imperial/PumpkinCult/mouse.rsi
+    equippedPrefix: 0
+    slots:
+    - HEAD

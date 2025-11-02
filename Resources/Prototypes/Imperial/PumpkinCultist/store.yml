@@ -1,0 +1,223 @@
+- type: storeCategory
+  id: PumpkinCultistSpells
+  name: store-category-pumpkin-cult-spells
+
+- type: listing
+  id: PumpkinCultGrab1
+  name: cultist-stun-grab-name
+  description: cultist-stun-grab-desc
+  productAction: ActionStunGrab
+  productUpgradeId: PumpkinCultGrab2
+  cost:
+    Pumpkinite: 15
+  categories:
+  - PumpkinCultistSpells
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: PumpkinCultGrab2
+  productUpgradeId: PumpkinCultGrab2
+  name: cultist-stun-grab2-name
+  description: cultist-stun-grab2-desc
+  icon:
+    sprite: Imperial/PumpkinCult/tikovki.rsi
+    state: stun2
+  cost:
+    Pumpkinite: 25
+  categories:
+  - PumpkinCultistSpells
+  conditions:
+  - !type:BuyBeforeCondition
+    whitelist:
+      - PumpkinCultGrab1
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: PumpkinCultImmovableRod
+  name: cultist-rod-name
+  description: cultist-rod-desc
+  productAction: ActionPumpkinCultRod
+  cost:
+    Pumpkinite: 160
+  categories:
+  - PumpkinCultistSpells
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: PumpkinCultPumpkiniteDevour
+  name: cultist-devor-name
+  description: cultist-devor-desc
+  productAction: ActionPumpkiniteDevour
+  cost:
+    Pumpkinite: 20
+  categories:
+  - PumpkinCultistSpells
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: PumpkinCultFireball
+  name: cultist-fireball-name
+  description: cultist-fireball-desc
+  productAction: ActionCultPumpkinRed
+  productUpgradeId: PumpkinCultFireballUpgrade
+  cost:
+    Pumpkinite: 30
+  categories:
+  - PumpkinCultistSpells
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: PumpkinCultFireballUpgrade
+  productUpgradeId: PumpkinCultFireballUpgrade
+  name: cultist-fireball2-name
+  description: cultist-fireball2-desc
+  icon:
+    sprite: Imperial/PumpkinCult/tikovki.rsi
+    state: icon_red
+  cost:
+    Pumpkinite: 45
+  categories:
+  - PumpkinCultistSpells
+  conditions:
+  - !type:BuyBeforeCondition
+    whitelist:
+      - PumpkinCultFireball
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: PumpkinCultGhostBall
+  name: cultist-ghostball-name
+  description: cultist-ghostball-desc
+  productAction: ActionCultPumpkinGhost
+  productUpgradeId: PumpkinCultGhostBallUpgrade
+  cost:
+    Pumpkinite: 35
+  categories:
+  - PumpkinCultistSpells
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: PumpkinCultGhostBallUpgrade
+  productUpgradeId: PumpkinCultGhostBallUpgrade
+  name: cultist-ghostball2-name
+  description: cultist-ghostball2-desc
+  icon:
+    sprite: Imperial/PumpkinCult/tikovki.rsi
+    state: icon_ghost
+  cost:
+    Pumpkinite: 40
+  categories:
+  - PumpkinCultistSpells
+  conditions:
+  - !type:BuyBeforeCondition
+    whitelist:
+      - PumpkinCultGhostBall
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: PumpkinCultRobustOffering
+  name: cultist-robust-name
+  description: cultist-robust-desc
+  productAction: ActionPumpkinCultRobustOffering
+  cost:
+    Pumpkinite: 60
+  categories:
+  - PumpkinCultistSpells
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: storeCategory
+  id: PumpkinCultistEquipment
+  name: store-category-pumpkin-cult-equip
+
+- type: listing
+  id: PumpkinCultDagger
+  productEntity: PumpkinCultDagger
+  cost:
+    Pumpkinite: 5
+  categories:
+  - PumpkinCultistEquipment
+
+- type: listing
+  id: PumpkinCultScythe
+  productEntity: PumpkinCultScythe
+  cost:
+    Pumpkinite: 15
+  categories:
+  - PumpkinCultistEquipment
+
+- type: listing
+  id: PumpkinCultBlade
+  productEntity: PumpkinCultBlade
+  cost:
+    Pumpkinite: 35
+  categories:
+  - PumpkinCultistEquipment
+
+- type: listing
+  id: PumpkinCultHalbeard
+  productEntity: PumpkiniteHalberd
+  cost:
+    Pumpkinite: 45
+  categories:
+  - PumpkinCultistEquipment
+
+- type: listing
+  id: PumpkinCultArmor
+  productEntity: ClothingOuterArmorPumpkinCult
+  cost:
+    Pumpkinite: 45
+  categories:
+  - PumpkinCultistEquipment
+
+- type: listing
+  id: ClothingOuterRobesPumpkinCult
+  productEntity: ClothingOuterRobesPumpkinCult
+  cost:
+    Pumpkinite: 35
+  categories:
+  - PumpkinCultistEquipment
+  
+- type: storeCategory
+  id: PumpkinCultistGlobalSpells
+  name: store-category-pumpkin-cult-global-spells
+
+- type: listing
+  id: PumpkinCultCurseBlind
+  name: cultist-blind-name
+  description: cultist-blind-desc
+  productAction: ActionPumpkinCultBlindCurse
+  cost:
+    Pumpkinite: 85
+  categories:
+  - PumpkinCultistGlobalSpells
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: PumpkinCultBlindPacify
+  name: cultist-pacify-name
+  description: cultist-pacify-desc
+  productAction: ActionPumpkinCultBlindPacify
+  cost:
+    Pumpkinite: 125
+  categories:
+  - PumpkinCultistGlobalSpells
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
