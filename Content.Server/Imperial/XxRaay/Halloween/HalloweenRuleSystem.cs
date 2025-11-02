@@ -16,6 +16,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Pinpointer;
+using Content.Shared.Station.Components;
 using Robust.Server.Player;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -80,7 +81,7 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
         {
             if (TryComp<StationDataComponent>(chosenStation, out var stationData))
             {
-                var grid = _station.GetLargestGrid(stationData);
+                var grid = _station.GetLargestGrid(new Entity<StationDataComponent?>(chosenStation.Value, stationData));
                 if (grid != null)
                 {
                     SpawnPortalOnRandomGridLocation(grid.Value, component.PortalPrototype);
@@ -330,7 +331,7 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
                 if (!TryComp<StationDataComponent>(station, out var stationData))
                     continue;
 
-                if (_station.GetLargestGrid(stationData) is not { } gridUid)
+                if (_station.GetLargestGrid(new Entity<StationDataComponent?>(station, stationData)) is not { } gridUid)
                     continue;
 
                 // Spawn portal exactly at the target coords
@@ -338,7 +339,7 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
                 st.Portal = portal;
                 break;
             }
-            
+
             if (brigCoords == MapCoordinates.Nullspace)
             {
                 Sawmill.Error("Could not find any location for queen spawn! Aborting.");
@@ -414,9 +415,9 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
                 _random.Prob(0.1f) ? "ClothingOuterArmorBasicSlim" : (_random.Prob(0.5f) ? "GiftPumpkinRed" : "CombatKnife"),
             "MobHalloweenCrystalPumpkin" =>
                 _random.Prob(0.1f) ? "ClothingOuterArmorBasicSlim" : (_random.Prob(0.5f) ? "GiftPumpkinRed" : "CombatKnife"),
-            "MobHalloweenAngryPumpkin" => 
+            "MobHalloweenAngryPumpkin" =>
                 _random.Prob(0.1f) ? "ClothingOuterArmorBasicSlim" : (_random.Prob(0.5f) ? "GiftPumpkinRed" : "CombatKnife"),
-            "MobHalloweenMinionPumpkin" or "MobHalloweenQueen" => 
+            "MobHalloweenMinionPumpkin" or "MobHalloweenQueen" =>
                 _random.Prob(0.2f) ? "WeaponWandFireball" : "GiftPumpkinRed",
             _ => "GiftPumpkinRed",
         };
@@ -498,7 +499,7 @@ public sealed class HalloweenRuleSystem : GameRuleSystem<HalloweenRuleComponent>
             if (!TryComp<StationDataComponent>(station, out var stationData))
                 continue;
 
-            if (_station.GetLargestGrid(stationData) is not { } gridUid)
+            if (_station.GetLargestGrid(new Entity<StationDataComponent?>(station, stationData)) is not { } gridUid)
                 continue;
 
             SpawnPortalOnRandomGridLocation(gridUid, "HalloweenPortal");
