@@ -27,3 +27,42 @@ ent-WeaponEnergyTurretSecurityControlPanel = панель управления �
     .desc = { ent-WeaponEnergyTurretStationControlPanelBase.desc }
 ent-WeaponEnergyTurretCommandControlPanel = панель управления турелями командования
     .desc = { ent-WeaponEnergyTurretStationControlPanelBase.desc }
+
+ent-BulletEnergyTurretBase = энергетический снаряд
+ent-BulletEnergyTurretLaser = лазерный снаряд
+ent-BulletEnergyTurretDisabler = стан-снаряд
+
+# панель управления
+
+# Заголовки
+turret-controls-window-title = Автономная Система Управления Защитой
+turret-controls-window-turret-status-label = Соединённых устройств: [{$count}]
+turret-controls-window-armament-controls-label = Режим Защиты
+turret-controls-window-targeting-controls-label = Авторизованный персонал
+
+# Статус
+turret-controls-window-no-turrets = <! Нет соединённых устройств !>
+turret-controls-window-turret-status = » {$device} - Статус: {$status}
+turret-controls-window-turret-disabled = ***ОФФЛАЙН***
+turret-controls-window-turret-retracted = НЕАКТИВНА
+turret-controls-window-turret-retracting = ДЕАКТИВАЦИЯ
+turret-controls-window-turret-deployed = АКТИВНА
+turret-controls-window-turret-deploying = АКТИВАЦИЯ
+turret-controls-window-turret-firing = ЦЕЛЬ ОБНАРУЖЕНА
+turret-controls-window-turret-error = ОШИБКА
+turret-controls-window-turret-broken = ***НЕИСПРАВНА***
+
+# Кнопки
+turret-controls-window-safe = Отключение
+turret-controls-window-stun = Стан
+turret-controls-window-lethal = Летальный
+turret-controls-window-ignore = Игнорирование
+turret-controls-window-target = Цель
+turret-controls-window-access-group-label = {$prefix} {$label}
+turret-controls-window-all-checkbox = Все
+
+# Текст
+turret-controls-window-footer = Неавторизованный персонал должен убедиться, что средства защиты отключены.
+
+# Предупреждения
+turret-controls-access-denied = В доступе отказано.

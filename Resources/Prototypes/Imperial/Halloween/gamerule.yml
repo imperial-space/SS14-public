@@ -1,0 +1,7 @@
+- type: entity
+  parent: BaseGameRule
+  id: HalloweenTechnical
+  components:
+  - type: HalloweenTechnicalRule
+  - type: GameRule
+    minPlayers: 10

@@ -47,9 +47,12 @@
         - PlushieSavir
         - PlushieKarner
         - PlushieVenya
+        - PlushieAid
+        - PlushieZevs
 # CentCom plushies...
         - PlushieYesenia
         - PlushieBM
         - PlushieCSCC
+        - PlushieClaud
       chance: 0.75
       offset: 0.10

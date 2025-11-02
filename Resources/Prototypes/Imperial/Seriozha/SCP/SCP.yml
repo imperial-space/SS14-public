@@ -13,8 +13,6 @@
     - type: SmokeOnTrigger
       duration: 15
       spreadAmount: 3
-    - type: SoundOnTrigger
-      sound: /Audio/Effects/smoke.ogg
     - type: TimerTriggerVisuals
       primingSound:
         path: /Audio/Effects/Smoke-grenade.ogg
@@ -25,7 +23,6 @@
     - type: ZombieImmune
     - type: NonSpreaderZombie
     - type: Clumsy
-    - type: CanHostGuardian
     - type: Damageable
       damageModifierSet: SCPStandart
     - type: Body
@@ -200,6 +197,19 @@
       baseSprintSpeed: 2.8
     - type: Hands
       showInHands: true
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 2000
+      damage:
+        types:
+          Heat: -2
+          Blunt: -2
+        groups:
+          Brute: -1
+          Toxin: -3
+          Airloss: -2
+          Burn: -1
     - type: Puller
     - type: Pullable
     - type: Loadout
@@ -248,7 +258,7 @@
         path: /Audio/Weapons/bladeslice.ogg
   - type: Reflect
     reflectProb: 0.15
-    spread: 90
+    spread: 60
   - type: DisarmMalus
 
 - type: entity
@@ -284,6 +294,11 @@
   id: ImperialSCPDoc
   description: Pray.
   components:
+    - type: MobStateActions
+      actions:
+        Alive:
+        - MiniSyringeProjectileAbility
+        - SCPZombieMorphAction
     - type: Sprite
       drawdepth: Mobs
       layers:
@@ -309,12 +324,14 @@
       animation: WeaponArcPunch
       damage:
         types:
-          Caustic: 150
+          Poison: 100
+          Caustic: 50
+          Structural: 50
     - type: Speech
       speechVerb: LargeMob
     - type: MovementSpeedModifier
-      baseWalkSpeed: 3.2
-      baseSprintSpeed: 2.6
+      baseWalkSpeed: 3.5
+      baseSprintSpeed: 3
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Imperial/Seriozha/SCP/doc.ogg
@@ -347,6 +364,13 @@
           - MobMask
           layer:
           - MobLayer
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+      - NuclearOperative
+      - SyndicateAgent
 
 - type: entity
   name: Jelly monster
@@ -425,6 +449,86 @@
           layer:
           - MobLayer
 
+- type: entity
+  name: Zombie
+  suffix: seriozha, Недра
+  parent: [ ImperialSCPBase, StripableInventoryBase ]
+  id: ImperialSCPZombie
+  description: Ugh...
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/SCP/objects/Zombie.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        160: Dead
+    - type: Speech
+      speechVerb: LargeMob
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2.7
+      baseSprintSpeed: 3.1
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 160
+      damage:
+        types:
+          Heat: -2
+          Blunt: -2
+        groups:
+          Brute: -1
+          Toxin: -3
+          Airloss: -2
+          Burn: -1
+    - type: Puller
+    - type: Pullable
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 300
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+    - type: ReplacementAccent
+      accent: zombie
+    - type: MeleeWeapon
+      soundHit:
+          path: /Audio/Effects/bite.ogg
+      angle: 0
+      animation: WeaponArcBite
+      damage:
+        types:
+          Poison: 2
+          Piercing: 7
+          Blunt: 18
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: ZombieImmune
+    - type: NonSpreaderZombie
+
+
 - type: emoteSounds
   id: DedVoice
   sounds:
@@ -468,21 +572,11 @@
     strippingWindowPos: 0,4
     displayName: Pocket 1
     stripHidden: true
-  - name: id
-    slotTexture: id
-    fullTextureName: template_small
-    slotFlags: IDCARD
-    slotGroup: SecondHotbar
-    stripTime: 6
-    uiWindowPos: 2,1
-    strippingWindowPos: 2,4
-    displayName: ID
 
 - type: startingGear
   id: ImperialDocGear
   equipment:
-    id: SCPIDCardCI
-    pocket1: PillAmbuzolPlus
+    pocket1: SmokeGrenade
   inhand:
   - CaneSheathFilled
 
