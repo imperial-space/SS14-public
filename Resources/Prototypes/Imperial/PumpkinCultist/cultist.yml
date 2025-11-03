@@ -1,0 +1,21 @@
+- type: entity
+  parent: MobHuman
+  id: MobHumanPumpkinCultist
+  name: cultist
+  suffix: Pumpkin Cultist
+  components:
+  - type: PumpkinCultist
+  - type: Store
+    name: store-preset-name-pumpkin-cult
+    categories:
+    - PumpkinCultistEquipment
+    - PumpkinCultistSpells
+    - PumpkinCultistGlobalSpells
+    currencyWhitelist:
+    - Pumpkinite
+    balance:
+      Pumpkinite: 50
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface

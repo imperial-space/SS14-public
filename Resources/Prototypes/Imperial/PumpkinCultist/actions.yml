@@ -1,0 +1,211 @@
+- type: entity
+  parent: BaseAction
+  id: ActionPumpkinCultOpenShop
+  name: Cult Shop
+  description: Devour your pumpkinite.
+  components:
+  - type: Action
+    icon: Interface/Actions/shop.png
+  - type: InstantAction
+    event: !type:CultistShopActionEvent
+  
+- type: entity
+  parent: BaseEntitySpellAction
+  id: ActionStunGrab
+  name: Stun Grab
+  components:
+  - type: Action
+    useDelay: 30
+    icon:
+      sprite: Imperial/PumpkinCult/tikovki.rsi
+      state: stun1
+  - type: EntityTargetAction
+    event: !type:PumpkinGrab1SpellEvent
+  - type: ActionUpgrade
+    effectedLevels:
+      2: ActionStunGrabTwo
+
+- type: entity
+  parent: BaseEntitySpellAction
+  id: ActionStunGrabTwo
+  name: Stun Grab 2
+  components:
+  - type: Action
+    useDelay: 25
+    icon:
+      sprite: Imperial/PumpkinCult/tikovki.rsi
+      state: stun2
+  - type: EntityTargetAction
+    event: !type:PumpkinGrab2SpellEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionPumpkinCultRod
+  name: PumpkinRod
+  description: FIRES FUCKING IMMOVABLE ROD
+  components:
+  - type: Magic
+  - type: Action
+    useDelay: 120
+    itemIconStyle: BigAction
+    raiseOnUser: true
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/PumpkinCultist/cultist_effect.ogg
+    icon:
+      sprite: Objects/Fun/immovable_rod.rsi
+      state: icon
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: ImmovableRodCultist
+
+- type: entity
+  parent: BaseEntitySpellAction
+  id: ActionPumpkiniteDevour
+  name: Devour Pumpkinite
+  components:
+  - type: Action
+    useDelay: 20
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/PumpkinCultist/cultist_effect.ogg
+    icon:
+      sprite: Imperial/PumpkinCult/tikovki.rsi
+      state: devour
+  - type: EntityTargetAction
+    event: !type:PumpkiniteDevourEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultPumpkinRed
+  name: Red Pumpkin
+  description: FIRES IN THE HOLE
+  components:
+  - type: Magic
+  - type: Action
+    useDelay: 17
+    itemIconStyle: BigAction
+    raiseOnUser: true
+    icon:
+      sprite: Imperial/PumpkinCult/tikovki.rsi
+      state: icon_red
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: LightExplosionFireProjectile
+  - type: ActionUpgrade
+    effectedLevels:
+      2: ActionCultPumpkinRedTwo
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultPumpkinRedTwo
+  name: Red Pumpkin
+  description: FIRES IN THE HOLE
+  components:
+  - type: Magic
+  - type: Action
+    useDelay: 35
+    itemIconStyle: BigAction
+    raiseOnUser: true
+    icon:
+      sprite: Imperial/PumpkinCult/tikovki.rsi
+      state: icon_red
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: MeduimExplosionFireProjectile
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultPumpkinGhost
+  name: Ghost Pumpkin
+  description: FIRES IN THE HOLE
+  components:
+  - type: Magic
+  - type: Action
+    useDelay: 20
+    itemIconStyle: BigAction
+    raiseOnUser: true
+    icon:
+      sprite: Imperial/PumpkinCult/tikovki.rsi
+      state: icon_ghost
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: FrozenUndeletableStunProjectile
+  - type: ActionUpgrade
+    effectedLevels:
+      2: ActionCultPumpkinGhostTwo
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultPumpkinGhostTwo
+  name: Ghost Pumpkin
+  description: FIRES IN THE HOLE
+  components:
+  - type: Magic
+  - type: Action
+    useDelay: 40
+    itemIconStyle: BigAction
+    raiseOnUser: true
+    icon:
+      sprite: Imperial/PumpkinCult/tikovki.rsi
+      state: icon_ghost
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: UndeletableGravityWellProjectile
+
+- type: entity
+  parent: BaseAction
+  id: ActionPumpkinCultRobustOffering
+  name: Robust Oferring
+  description: Be robust.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/PumpkinCult/tikovki.rsi
+      state: robust
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:RobustOfferingActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionPumpkinCultBlindCurse
+  name: Blind Curse
+  description: I have no eyes.
+  components:
+  - type: Action
+    useDelay: 180
+    icon:
+      sprite: Imperial/PumpkinCult/tikovki.rsi
+      state: blind
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:CultistCurseBlindActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionPumpkinCultBlindPacify
+  name: Pacify Curse
+  description: I have no arms.
+  components:
+  - type: Action
+    useDelay: 360
+    icon:
+      sprite: Imperial/PumpkinCult/tikovki.rsi
+      state: pacify
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:CultistCursePacifyActionEvent

@@ -1,0 +1,199 @@
+- type: entity
+  parent: ImmovableRod
+  id: ImmovableRodCultist
+  suffix: Pumpkin Cultist
+  components:
+  - type: TimedDespawn
+    lifetime: 3
+  - type: ImmovableRod
+    maxSpeed: 15
+    destroyTiles: false
+    randomizeVelocity: false
+    shouldGib: false
+    damage:
+      types:
+        Blunt: 190
+
+- type: entity
+  id: LightFireProjectile
+  name: firebullet
+  description: meeeoow
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#E25822"
+    radius: 2.0
+    energy: 5.0
+  - type: Projectile
+    damage:
+      types:
+        Heat: 17
+  - type: Sprite
+    sprite: Imperial/PumpkinCult/tikovki.rsi
+    layers:
+    - state: red
+      shader: unshaded
+  - type: IgnitionSource
+    temperature: 400
+    ignited: true
+  - type: IgniteOnCollide
+    fireStacks: 0.35
+  - type: ExplodeOnTrigger
+
+- type: entity
+  id: LightExplosionFireProjectile
+  name: firebally
+  description: meeeoow
+  parent: [BaseBulletTrigger, LightFireProjectile]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/PumpkinCult/tikovki.rsi
+    layers:
+    - state: red
+      shader: unshaded
+  - type: PointLight
+    color: "#E25822"
+    radius: 2.0
+    energy: 5.0
+  - type: Projectile
+    damage:
+      types:
+        Heat: 17
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 2
+    intensitySlope: 5
+    totalIntensity: 10
+    maxTileBreak: 0
+  - type: IgnitionSource
+    temperature: 400
+    ignited: true
+  - type: IgniteOnCollide
+    fireStacks: 0.35
+  - type: ExplodeOnTrigger
+
+- type: entity
+  id: MeduimExplosionFireProjectile
+  name: fireball
+  description: meeeoow
+  parent: [BaseBulletTrigger, LightFireProjectile]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/PumpkinCult/tikovki.rsi
+    layers:
+    - state: red
+      shader: unshaded
+  - type: PointLight
+    color: "#E25822"
+    radius: 2.0
+    energy: 5.0
+  - type: Projectile
+    damage:
+      types:
+        Heat: 17
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 30
+    intensitySlope: 5
+    totalIntensity: 80
+    maxTileBreak: 0
+  - type: IgnitionSource
+    temperature: 400
+    ignited: true
+  - type: IgniteOnCollide
+    fireStacks: 0.35
+  - type: ExplodeOnTrigger
+
+- type: entity
+  id: FrozenUndeletableProjectile
+  name: frozenball
+  description: meeeoow
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#009bd3"
+    radius: 2.0
+    energy: 5.0
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Cold: 7
+  - type: TimedDespawn
+    lifetime: 8
+  - type: Sprite
+    sprite: Imperial/PumpkinCult/tikovki.rsi
+    layers:
+    - state: ghost
+      shader: unshaded
+  - type: ChangeTemperatureOnCollide
+    heat: -160000 ## Не ебу честн сам подкрути если что. Оно там типо в джоулях указывается
+
+- type: entity
+  id: FrozenUndeletableStunProjectile
+  name: frozenstunball
+  description: meeeoow
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/PumpkinCult/tikovki.rsi
+    layers:
+    - state: ghost
+      shader: unshaded
+  - type: PointLight
+    color: "#009bd3"
+    radius: 2.0
+    energy: 5.0
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Cold: 7
+  - type: TimedDespawn
+    lifetime: 8
+  - type: ChangeTemperatureOnCollide
+    heat: -160000 ## Не ебу честн сам подкрути если что. Оно там типо в джоулях указывается
+  - type: StunOnCollide
+    autoStand: true
+    stunAmount: 1
+    knockdownAmount: 1
+    slowdownAmount: 1
+    walkSpeedModifier: 0
+    sprintSpeedModifier: 0
+
+- type: entity
+  id: UndeletableGravityWellProjectile
+  name: gravityball
+  description: meeeoow
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/PumpkinCult/tikovki.rsi
+    layers:
+    - state: ghost
+      shader: unshaded
+  - type: PointLight
+    color: "#300a4a"
+    radius: 2.0
+    energy: 5.0
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Piercing: 0
+  - type: TimedDespawn
+    lifetime: 5
+  - type: EnsureCompAfterDelay
+    delay: 0.1
+    components:
+      - type: GravityWell
+        maxRange: 4
+        baseRadialAcceleration: 120
+        baseTangentialAcceleration: 25
+        gravPulsePeriod: 0.01

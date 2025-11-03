@@ -1,0 +1,93 @@
+- type: antag
+  id: Cultist
+  name: roles-antag-cultist-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-cultist-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 3600 # 1h
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleCultist
+  name: Cultist ROle
+  components:
+  - type: MindRole
+    antagPrototype: Cultist
+    exclusiveAntag: true
+
+- type: startingGear
+  id: PumpkinCultistGear
+  storage:
+    back:
+    - PumpkinCultDagger
+
+- type: entity
+  parent: BaseSurviveObjective
+  id: CultistSurviveObjective
+  name: Survive
+  description: It would be bad, if you died, don't you?
+  components:
+  - type: Objective
+    difficulty: 1
+    issuer: objective-issuer-pumpkin-cult
+    icon:
+      sprite: Imperial/PumpkinCult/tikovki.rsi
+      state: pacify
+
+- type: entity
+  parent: BaseFreeObjective
+  id: CultistRemindObjective
+  name: Remind Of Yourself
+  description: let them know, about the Pumpkin Moon cult.
+  components:
+  - type: Objective
+    difficulty: 1
+    issuer: objective-issuer-pumpkin-cult
+    icon:
+      sprite: Imperial/PumpkinCult/cult_cosa.rsi
+      state: icon
+
+- type: entity
+  parent: BaseGameRule
+  id: PumpkinCult
+  components:
+  - type: AntagObjectives
+    objectives:
+    - CultistSurviveObjective
+    - CultistRemindObjective
+  - type: AntagSelection
+    agentName: cultist-round-end-agent-name
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ Cultist ]
+      max: 4
+      playerRatio: 25
+      lateJoinAdditional: true
+      allowNonHumans: false
+      startingGear: PumpkinCultistGear
+      components:
+      - type: PumpkinCultist
+      - type: Store
+        name: store-preset-name-pumpkin-cult
+        categories:
+        - PumpkinCultistEquipment
+        - PumpkinCultistSpells
+        - PumpkinCultistGlobalSpells
+        currencyWhitelist:
+        - Pumpkinite
+        balance:
+          Pumpkinite: 50
+      - type: UserInterface
+        interfaces:
+          enum.StoreUiKey.Key:
+            type: StoreBoundUserInterface
+          enum.StrippingUiKey.Key:
+            type: StrippableBoundUserInterface
+      mindRoles:
+      - MindRoleCultist
+      briefing:
+        text: cultist-role-greeting
+        color: "#a33c00"
+        sound: "/Audio/Imperial/PumpkinCultist/cultist_effect.ogg"

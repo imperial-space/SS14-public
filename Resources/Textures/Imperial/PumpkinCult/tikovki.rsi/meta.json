@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "MADE BY @de_liva",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "red"
+    },
+    {
+      "name": "icon_red"
+    },
+    {
+      "name": "icon_ghost"
+    },
+    {
+      "name": "ghost"
+    },
+    {
+      "name": "devour"
+    },
+    {
+      "name": "stun1"
+    },
+    {
+      "name": "stun2"
+    },
+    {
+      "name": "blind"
+    },
+    {
+      "name": "voznesenie"
+    },
+    {
+      "name": "pacify"
+    },
+    {
+      "name": "robust"
+    }
+  ]
+}
