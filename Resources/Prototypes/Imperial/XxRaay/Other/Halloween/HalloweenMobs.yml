@@ -1,0 +1,246 @@
+- type: entity
+  id: MobHalloweenBase
+  parent: BaseMobAsteroid
+  name: guardian
+  description: Boo!
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/Asteroid/basilisk.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: basilisk
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: basilisk
+      Dead:
+        Base: basilisk_dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 1.8
+    baseSprintSpeed : 3.3
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Slash: 7
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: HalloweenMob
+
+- type: entity
+  id: MobHalloweenSmallPumpkin
+  parent: MobHalloweenBase
+  name: small pumpkin
+  description: Boo!
+  components:
+  - type: Sprite
+    sprite: Imperial/XxRaay/halloween/Small.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: small
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: small
+      Dead:
+        Base: dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      20: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 2.5
+
+- type: entity
+  id: MobHalloweenFlyingPumpkin
+  parent: MobHalloweenBase
+  name: flying pumpkin
+  description: Boo!
+  components:
+  - type: Sprite
+    sprite: Imperial/XxRaay/halloween/Flying.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: flying
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: flying
+      Dead:
+        Base: dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      25: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 3
+
+- type: entity
+  id: MobHalloweenAngryPumpkin
+  parent: MobHalloweenBase
+  name: angry pumpkin
+  description: Boo!
+  components:
+  - type: Sprite
+    sprite: Imperial/XxRaay/halloween/Angry.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: angry
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: angry
+      Dead:
+        Base: dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 5
+
+- type: entity
+  id: MobHalloweenMinionPumpkin
+  parent: MobHalloweenBase
+  name: minion
+  description: Boo!
+  components:
+  - type: Sprite
+    sprite: Imperial/XxRaay/halloween/Minion.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: minion
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: minion
+      Dead:
+        Base: dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+
+- type: entity
+  id: HalloweenPortal
+  parent: BaseStructure
+  name: pumpkin portal
+  description: A swirling pumpkin portal
+  components:
+  - type: Sprite
+    sprite: Imperial/XxRaay/halloween/Portal.rsi
+    layers:
+    - state: portal
+  - type: Tag
+    tags:
+    - Halloween
+  - type: HalloweenPortal
+
+- type: entity
+  id: MobHalloweenCrystalPumpkin
+  parent: MobHalloweenBase
+  name: crystal pumpkin
+  description: Boo!
+  components:
+  - type: Sprite
+    sprite: Imperial/XxRaay/halloween/Crystal.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: crystal
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: crystal
+      Dead:
+        Base: dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      65: Dead
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: Gun
+    fireRate: 0.666
+    useKey: false
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: RechargeBasicEntityAmmo
+    showExamineText: false
+    rechargeCooldown: 1.5
+    rechargeSound: null
+  - type: BasicEntityAmmoProvider
+    proto: ProjectilePumpkinLaser
+    capacity: 1
+    count: 1
+
+- type: entity
+  id: ProjectilePumpkinLaser
+  name: pumpkin laser
+  parent: BulletLaser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 7
+
+- type: entity
+  id: MobHalloweenQueen
+  parent: MobHalloweenBase
+  name: pumpkin queen
+  description: The fearsome pumpkin queen
+  components:
+  - type: Sprite
+    sprite: Imperial/XxRaay/halloween/Queen.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: queen
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      600: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 20
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+
+- type: Tag
+  id: Halloween

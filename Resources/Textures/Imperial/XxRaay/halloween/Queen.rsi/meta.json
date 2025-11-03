@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "license": "ICLA",
+  "copyright": "totally_not_don_kot",
+  "size": {
+    "x": 64,
+    "y": 64
+  },
+  "states": [
+    {
+      "name": "queen",
+      "directions": 4
+    }
+  ]
+}
