@@ -16,7 +16,10 @@
         Slash: 0.5
         Piercing: 0.5
         Heat: 0.5
-        Stamina: 0.5
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  # Imperial Space Stamina Resistance End
   - type: GroupExamine
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetPumpkinCult
