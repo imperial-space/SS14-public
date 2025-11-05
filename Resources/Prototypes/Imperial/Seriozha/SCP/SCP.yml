@@ -327,7 +327,10 @@
         Poison: 0.45
         Radiation: 0.45
         Caustic: 0.45
-        Stamina: 0.4
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.4
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.0
 
