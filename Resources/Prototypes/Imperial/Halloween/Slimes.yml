@@ -1,0 +1,197 @@
+- type: entity
+  parent: MarkerBase
+  id: HalloweenSlimeSpawner
+  name: random halloween slime spawner
+  suffix: Halloween
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - state: marker
+        sprite: Imperial/Halloween/Mobs/Slimes.rsi
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+      - MobSugarSlime1Angry
+      - MobSugarSlime2Angry
+      - MobSugarSlime3Angry
+      - HalloweenCandyMonster1Angry
+    chance: 1
+
+- type: entity
+  id: HalloweenSlimesSpawn
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/aliens.ogg
+    startDelay: 10
+    earliestStart: 20
+    minimumPlayers: 15
+    weight: 5
+    duration: 60
+  - type: VentCrittersRule
+    entries:
+    - id: MobSugarSlime1Angry
+      prob: 0.02
+    - id: MobSugarSlime2Angry
+      prob: 0.02
+    - id: MobSugarSlime3Angry
+      prob: 0.02
+    - id: HalloweenCandyMonster1Angry
+      prob: 0.02
+
+- type: entity
+  name: Sugar slime
+  desc: Very teasty slime.
+  parent: MobAdultSlimes
+  suffix: Halloween
+  id: MobSugarSlime1
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Halloween/Mobs/Slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: RandomHallowweenCanrySpawnerDrop
+      amount: 5
+  - type: Bloodstream
+    bloodReagent: Sugar
+    bloodlossDamage:
+      types:
+        Bloodloss:
+          0.5
+    bloodlossHealDamage:
+      types:
+        Bloodloss:
+          -0.25
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: blue_adult_slime
+      Dead:
+        Base: blue_adult_slime_dead
+
+- type: entity
+  name: Sugar slime
+  parent: MobSugarSlime1
+  suffix: Halloween, Angry
+  id: MobSugarSlime1Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    raffle:
+      settings: short
+
+- type: entity
+  name: Sugar slime
+  parent: MobSugarSlime1
+  suffix: Halloween
+  id: MobSugarSlime2
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Halloween/Mobs/Slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: green_adult_slime
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: green_adult_slime
+      Dead:
+        Base: green_adult_slime_dead
+
+- type: entity
+  name: Sugar slime
+  parent: MobSugarSlime2
+  suffix: Halloween, Angry
+  id: MobSugarSlime2Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    raffle:
+      settings: short
+
+- type: entity
+  name: Sugar slime
+  parent: MobSugarSlime1
+  suffix: Halloween
+  id: MobSugarSlime3
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Halloween/Mobs/Slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: yellow_adult_slime
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: yellow_adult_slime
+      Dead:
+        Base: yellow_adult_slime_dead
+
+- type: entity
+  name: Sugar slime
+  parent: MobSugarSlime3
+  suffix: Halloween, Angry
+  id: MobSugarSlime3Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    raffle:
+      settings: short
+
+- type: entity
+  name: Sugar slime
+  parent: MobSugarSlime1
+  suffix: Halloween
+  id: HalloweenCandyMonster1
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Halloween/Mobs/CandyMonster.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: icon
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: icon
+      Dead:
+        Base: dead
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: RandomHallowweenCanrySpawnerDrop
+      amount: 10
+
+- type: entity
+  name: Sugar slime
+  parent: HalloweenCandyMonster1
+  suffix: Halloween, Angry
+  id: HalloweenCandyMonster1Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    raffle:
+      settings: short

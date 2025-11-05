@@ -1,0 +1,88 @@
+- type: entity
+  parent: MarkerBase
+  id: HalloweenSpiderSpawner
+  name: random halloween spider spawner
+  suffix: Halloween
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - state: marker
+        sprite: Imperial/Halloween/Mobs/SpiederPumpkin.rsi
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+      - MobPumpkinSpiderAngry
+    chance: 1
+
+- type: entity
+  id: PumpkinSpiderSpawn
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/aliens.ogg
+    startDelay: 10
+    earliestStart: 20
+    minimumPlayers: 15
+    weight: 5
+    duration: 60
+  - type: VentCrittersRule
+    entries:
+    - id: MobPumpkinSpiderAngry
+      prob: 0.05
+
+- type: entity
+  name: PumpkinSpider
+  desc: Its a spider and a pumpkin.
+  parent: MobGiantSpider
+  suffix: Halloween
+  id: MobPumpkinSpider
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Halloween/Mobs/SpiederPumpkin.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: tarantula
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded"]
+      state: glow
+      shader: unshaded
+  - type: Butcherable
+    spawned:
+    - id: PumpkinSeeds
+      amount: 2
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: PumpkinFlesh
+        Quantity: 1
+  - type: Bloodstream
+    bloodMaxVolume: 150
+    bloodReagent: PumpkinFlesh
+
+- type: entity
+  name: Pumpkin spider
+  desc: Its a spider and a pumpkin.
+  parent: MobPumpkinSpider
+  suffix: Halloween, Angry
+  id: MobPumpkinSpiderAngry
+  components:
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-giant-spider-name
+    description: ghost-role-information-giant-spider-description
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: NpcFactionMember
+    factions:
+      - Xeno
