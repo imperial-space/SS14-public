@@ -282,6 +282,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
             return;
 
         var oldDamage = component.StaminaDamage;
+        component.StaminaDamage = MathF.Max(0f, component.StaminaDamage + value);
 
         // Reset the decay cooldown upon taking damage.
         if (oldDamage < component.StaminaDamage)
