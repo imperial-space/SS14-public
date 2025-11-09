@@ -352,6 +352,33 @@
     cost: 150
 
 - type: entity
+  parent: BaseGameRule
+  id: Vampire
+  noSpawn: true
+  components:
+  - type: AntagSelection
+    agentName: vampire-round-end-agent-name
+    definitions:
+    - prefRoles: [ Vampire ]
+      max: 1
+      playerRatio: 1
+      lateJoinAdditional: true
+      allowNonHumans: false
+      multiAntagSetting: NotExclusive
+      briefing:
+        text: vampire-role-greeting-human
+        color: "#8B0000"
+        sound: /Audio/Ambience/Antag/traitor_start.ogg
+      mindComponents:
+      - type: VampireRole
+        prototypes:
+        - VampireSurviveObjective
+        - VampireDrinkBloodVolumeObjective
+        - VampireDrinkBloodTargetsObjective
+        - VampireDrinkBloodRacesObjective
+        - VampireEscapeShuttleObjective
+
+- type: entity
   id: Zombie
   parent: BaseGameRule
   components:

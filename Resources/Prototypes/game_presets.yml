@@ -41,6 +41,7 @@
     - Zombie
     - SyndieBorgroundstart  # Imperial Syndie Borg
     - Pirates # Imperial Space Pirates: New Horizon
+    - Vampire
     - Wizard
     - KesslerSyndromeScheduler
     - RampingStationEventScheduler
@@ -147,6 +148,7 @@
   description: traitor-description
   showInVote: false
   rules:
+  - Vampire
   - DummyNonAntagChance
   - Traitor
   - SyndieBorgroundstart # Imperial Syndie Borg

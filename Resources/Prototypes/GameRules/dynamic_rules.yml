@@ -20,6 +20,12 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+        - id: Vampire
+          weight: 15
+          conditions:
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 1
         - id: Nukeops
           weight: 25
           conditions:
@@ -45,7 +51,7 @@
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 10
+            min: 1
       # Roundstart Minor Rules
       - !type:GroupSelector
         conditions:

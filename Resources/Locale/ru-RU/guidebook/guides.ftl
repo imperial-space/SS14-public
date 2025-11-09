@@ -121,6 +121,7 @@ guide-entry-revolutionaries = Революционеры
 guide-entry-minor-antagonists = Минорные Антагонисты
 guide-entry-space-ninja = Космический Ниндзя
 guide-entry-wizard = Маги
+guide-entry-vampires = Вампиры
 
 guide-entry-writing = Письменность
 guide-entry-glossary = Словарь терминов

@@ -280,6 +280,16 @@
     subtype: role-subtype-traitor-reinforcement
     antagPrototype: GenericTeamAntagonist
 
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleVampire
+  name: Vampire Role
+  components:
+  - type: MindRole
+    antagPrototype: Vampire
+    exclusiveAntag: false
+    subtype: role-subtype-vampire
+  - type: VampireRole
 # Wizards
 - type: entity
   parent: BaseMindRoleAntag
