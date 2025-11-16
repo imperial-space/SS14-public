@@ -1,26 +1,27 @@
 - type: soundCollection
   id: LobbyMusic
   files:
-    - /Audio/Lobby/thunderdome.ogg
-    - /Audio/Lobby/absconditus.ogg
-    # - /Audio/Lobby/space_asshole.ogg # Убрано для соблюдения авторских прав и лицензии Imperial Space
-    # - /Audio/Lobby/the_wizard.ogg # Убрано для соблюдения авторских прав и лицензии Imperial Space
-    - /Audio/Lobby/endless_space.ogg
-    - /Audio/Lobby/singuloose.ogg
-    - /Audio/Lobby/comet_haley.ogg
-    - /Audio/Lobby/title2.ogg
-    - /Audio/Lobby/title3.ogg
-    - /Audio/Lobby/mod.flip-flap.ogg
-    - /Audio/Lobby/Spac_Stac.ogg
-    - /Audio/Lobby/pwmur.ogg
-    - /Audio/Lobby/lasers_rip_apart_the_bulkhead.ogg
-    - /Audio/Lobby/every_light_is_blinking_at_once.ogg
-    - /Audio/Lobby/atomicamnesiammx.ogg
-    - /Audio/Imperial/LobbyMusic/gneiss_bluespace.ogg #Imperial lobby music
-    - /Audio/Imperial/LobbyMusic/gneiss_codebrain.ogg #Imperial lobby music
-    - /Audio/Imperial/LobbyMusic/gneiss_downtown.ogg #Imperial lobby music
-    - /Audio/Imperial/LobbyMusic/gneiss_exploring.ogg #Imperial lobby music
-    - /Audio/Imperial/LobbyMusic/gneiss_metropolis.ogg #Imperial lobby music
-    - /Audio/Imperial/LobbyMusic/gneiss_phoron_industry.ogg #Imperial lobby music
-    - /Audio/Imperial/LobbyMusic/gneiss_phoron_leak.ogg #Imperial lobby music
-    - /Audio/Imperial/LobbyMusic/gneiss_quantums_escape_plan.ogg #Imperial lobby music
+    #- /Audio/Lobby/thunderdome.ogg
+    #- /Audio/Lobby/absconditus.ogg
+    #- /Audio/Lobby/space_asshole.ogg # Убрано для соблюдения авторских прав и лицензии Imperial Space
+    #- /Audio/Lobby/the_wizard.ogg # Убрано для соблюдения авторских прав и лицензии Imperial Space
+    #- /Audio/Lobby/endless_space.ogg
+    #- /Audio/Lobby/singuloose.ogg
+    #- /Audio/Lobby/comet_haley.ogg
+    #- /Audio/Lobby/title2.ogg
+    #- /Audio/Lobby/title3.ogg
+    #- /Audio/Lobby/mod.flip-flap.ogg
+    #- /Audio/Lobby/Spac_Stac.ogg
+    #- /Audio/Lobby/pwmur.ogg
+    #- /Audio/Lobby/lasers_rip_apart_the_bulkhead.ogg
+    #- /Audio/Lobby/every_light_is_blinking_at_once.ogg
+    #- /Audio/Lobby/atomicamnesiammx.ogg
+    #- /Audio/Imperial/LobbyMusic/gneiss_bluespace.ogg #Imperial lobby music
+    #- /Audio/Imperial/LobbyMusic/gneiss_codebrain.ogg #Imperial lobby music
+    #- /Audio/Imperial/LobbyMusic/gneiss_downtown.ogg #Imperial lobby music
+    #- /Audio/Imperial/LobbyMusic/gneiss_exploring.ogg #Imperial lobby music
+    #- /Audio/Imperial/LobbyMusic/gneiss_metropolis.ogg #Imperial lobby music
+    #- /Audio/Imperial/LobbyMusic/gneiss_phoron_industry.ogg #Imperial lobby music
+    #- /Audio/Imperial/LobbyMusic/gneiss_phoron_leak.ogg #Imperial lobby music
+    #- /Audio/Imperial/LobbyMusic/gneiss_quantums_escape_plan.ogg #Imperial lobby music
+    - /Audio/Imperial/LobbyMusic/tiny.ogg
