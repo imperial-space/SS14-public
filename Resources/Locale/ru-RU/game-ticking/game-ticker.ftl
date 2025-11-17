@@ -1,49 +1,47 @@
-game-ticker-restart-round = Перезапуск раунда...
-game-ticker-start-round = Раунд начинается...
+game-ticker-restart-round = Перезапуск смены...
+game-ticker-start-round = Смена начинается...
 game-ticker-start-round-cannot-start-game-mode-fallback = Не удалось запустить режим {$failedGameMode}! Запускаем {$fallbackMode}...
-game-ticker-start-round-cannot-start-game-mode-restart = Не удалось запустить режим {$failedGameMode}! Перезапуск раунда...
-game-ticker-start-round-invalid-map = Выбранная карта {$map} не подходит для режима игры {$mode}. Игровой режим может работать не так, как задумано...
+game-ticker-start-round-cannot-start-game-mode-restart = Не удалось запустить режим {$failedGameMode}! Перезапуск смены...
+game-ticker-start-round-invalid-map = Выбранный цех {$map} не подходит для режима {$mode}. Режим может работать некорректно...
 game-ticker-unknown-role = Неизвестный
-game-ticker-delay-start = Начало раунда было отложено на {$seconds} секунд.
-game-ticker-pause-start = Начало раунда было приостановлено.
-game-ticker-pause-start-resumed = Отсчет начала раунда возобновлен.
-game-ticker-player-join-game-message = Добро пожаловать на Космическую Станцию 14! Если вы играете впервые, обязательно нажмите ESC на клавиатуре и прочитайте правила игры, а также не бойтесь просить помощи в LOOC чате или "Админ помощь".
-game-ticker-get-info-text = Привет и добро пожаловать на [color=white]Космическую Станцию 14![/color]
-                            Текущий раунд: [color=white]#{$roundId}[/color]
-                            Текущее количество игроков: [color=white]{$playerCount}[/color]
-                            Текущая карта: [color=white]{$mapName}[/color]
-                            Текущий режим игры: [color=white]{$gmTitle}[/color]
+game-ticker-delay-start = Начало смены отложено на {$seconds} секунд.
+game-ticker-pause-start = Начало смены приостановлено.
+game-ticker-pause-start-resumed = Отсчет начала смены возобновлен.
+game-ticker-player-join-game-message = Добро пожаловать на завод "Прогресс"! Если вы впервые, нажмите ESC и изучите технику безопасности. За помощью обращайтесь к мастеру смены.
+game-ticker-get-info-text = Приветствуем на [color=white]заводе "Прогресс"![/color]
+                            Текущая смена: [color=white]#{$roundId}[/color]
+                            Рабочих у станков: [color=white]{$playerCount}[/color]
+                            Цех: [color=white]{$mapName}[/color]
+                            Производственный план: [color=white]{$gmTitle}[/color]
                             >[color=yellow]{$desc}[/color]
-game-ticker-get-info-preround-text = Привет и добро пожаловать на [color=white]Космическую Станцию 14![/color]
-                            Текущий раунд: [color=white]#{$roundId}[/color]
-                            Текущее количество игроков: [color=white]{$playerCount}[/color] ([color=white]{$readyCount}[/color] {$readyCount ->
+game-ticker-get-info-preround-text = Приветствуем на [color=white]заводе "Прогресс"![/color]
+                            Текущая смена: [color=white]#{$roundId}[/color]
+                            Рабочих у станков: [color=white]{$playerCount}[/color] ([color=white]{$readyCount}[/color] {$readyCount ->
                                 [one] готов
                                *[other] готовы
                             })
-                            Текущая карта: [color=white]{$mapName}[/color]
-                            Текущий режим игры: [color=white]{$gmTitle}[/color]
+                            Цех: [color=white]{$mapName}[/color]
+                            Производственный план: [color=white]{$gmTitle}[/color]
                             >[color=yellow]{$desc}[/color]
-game-ticker-no-map-selected = [color=yellow]Карта ещё не выбрана![/color]
-game-ticker-player-no-jobs-available-when-joining = При попытке присоединиться к игре ни одной роли не было доступно.
+game-ticker-no-map-selected = [color=yellow]Цех ещё не выбран![/color]
+game-ticker-player-no-jobs-available-when-joining = При попытке присоединиться не найдено вакантных рабочих мест.
 
-# Displayed in chat to admins when a player joins
-player-join-message = Игрок {$name} зашёл.
-player-first-join-message = Игрок {$name} зашёл впервые!
+player-join-message = Рабочий {$name} заступил на смену.
+player-first-join-message = Рабочий {$name} впервые на заводе!
 
-# Displayed in chat to admins when a player leaves
-player-leave-message = Игрок {$name} вышел.
+player-leave-message = Рабочий {$name} завершил смену.
 
-latejoin-arrival-announcement = {$character}, {$job}, прибыл на станцию!
-latejoin-arrival-announcement-special = {$job} {$character} на борту!
-latejoin-arrival-sender = Общее
-latejoin-arrivals-direction = Вскоре прибудет шаттл, который доставит вас на станцию.
-latejoin-arrivals-direction-time = Шаттл, который доставит вас на станцию, прибудет через {$time}.
-latejoin-arrivals-dumped-from-shuttle = Таинственная сила не позволяет вам улететь на шаттле прибытия.
-latejoin-arrivals-teleport-to-spawn = Таинственная сила телепортирует вас с шаттла прибытия. Удачной смены!
+latejoin-arrival-announcement = {$character}, {$job}, прибыл на завод!
+latejoin-arrival-announcement-special = {$job} {$character} в цеху!
+latejoin-arrival-sender = Громкая связь
+latejoin-arrivals-direction = Скоро прибывает рабочая смена.
+latejoin-arrivals-direction-time = Рабочая смена прибывает через {$time}.
+latejoin-arrivals-dumped-from-shuttle = Неведомая сила не позволяет вам покинуть завод.
+latejoin-arrivals-teleport-to-spawn = Неведомая сила телепортирует вас в цех. Удачной смены!
 
-preset-not-enough-ready-players = Невозможно запустить игровой режим {$presetName}. Требуется {$minimumPlayers} готовых игроков, сейчас: {$readyPlayersCount}.
-preset-no-one-ready = Невозможно запустить игровой режим {$presetName}. Нет готовых игроков.
+preset-not-enough-ready-players = Невозможно выполнить план {$presetName}. Требуется {$minimumPlayers} рабочих, сейчас: {$readyPlayersCount}.
+preset-no-one-ready = Невозможно выполнить план {$presetName}. Нет рабочих на участке.
 
-game-run-level-PreRoundLobby = Лобби до начала раунда
-game-run-level-InRound = В раунде
-game-run-level-PostRound = После раунда
+game-run-level-PreRoundLobby = Подготовка к смене
+game-run-level-InRound = В процессе смены
+game-run-level-PostRound = После смены

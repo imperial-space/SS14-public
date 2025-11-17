@@ -1,14 +1,14 @@
-lobby-state-paused = Пауза
-lobby-state-soon = Раунд скоро начнётся
-lobby-state-right-now-question = Прямо сейчас?
-lobby-state-right-now-confirmation = Прямо сейчас
-lobby-state-round-start-countdown-text = Раунд начнётся через: {$timeLeft}
-lobby-state-ready-button-join-state = Присоединиться
-lobby-state-ready-button-ready-up-state = Готов
-lobby-state-player-status-not-ready = Не готов
-lobby-state-player-status-ready = Готов
-lobby-state-player-status-observer = Наблюдатель
-lobby-state-player-status-round-not-started = Раунд ещё не начался
+lobby-state-paused = План перевыполнен!
+lobby-state-soon = Скоро на трудовой фронт!
+lobby-state-right-now-question = Уже мобилизация?
+lobby-state-right-now-confirmation = Да, товарищ!
+lobby-state-round-start-countdown-text = До начала пятилетки: {$timeLeft}
+lobby-state-ready-button-join-state = Вступить в ряды
+lobby-state-ready-button-ready-up-state = К труду и обороне готов!
+lobby-state-player-status-not-ready = Не готов к труду!
+lobby-state-player-status-ready = Боец готов!
+lobby-state-player-status-observer = Народный контролёр
+lobby-state-player-status-round-not-started = Построение ещё не началось
 lobby-state-player-status-round-time =
     Время раунда: { $hours } { $hours ->
         [one] час

@@ -1,7 +1,7 @@
-observe-nevermind = Нет, спасибо
-observe-confirm = Наблюдать
-observe-warning-1 = Вы уверены, что хотите наблюдать?
-observe-warning-2 = Вы не сможете больше участвовать в этом раунде.
-observe-warning-window-title = Предупреждение
-observe-as-admin = Войти как админ
-observe-as-player = Войти как игрок
+observe-nevermind = Отменить решение
+observe-confirm = Заступить на пост
+observe-warning-1 = Товарищ, уверены в своём решении?
+observe-warning-2 = После этого вы будете смотреть со стороны на трудовой процесс.
+observe-warning-window-title = Партийное предупреждение
+observe-as-admin = Войти как уполномоченный
+observe-as-player = Войти как трудящийся
