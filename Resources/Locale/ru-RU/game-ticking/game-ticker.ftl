@@ -1,49 +1,47 @@
-game-ticker-restart-round = Перезапуск раунда...
-game-ticker-start-round = Раунд начинается...
-game-ticker-start-round-cannot-start-game-mode-fallback = Не удалось запустить режим {$failedGameMode}! Запускаем {$fallbackMode}...
-game-ticker-start-round-cannot-start-game-mode-restart = Не удалось запустить режим {$failedGameMode}! Перезапуск раунда...
-game-ticker-start-round-invalid-map = Выбранная карта {$map} не подходит для режима игры {$mode}. Игровой режим может работать не так, как задумано...
+game-ticker-restart-round = Перезапуск...
+game-ticker-start-round = Начинаем...
+game-ticker-start-round-cannot-start-game-mode-fallback = Не удалось запустить {$failedGameMode}! Запускаем {$fallbackMode}...
+game-ticker-start-round-cannot-start-game-mode-restart = Не удалось запустить {$failedGameMode}! Перезапуск...
+game-ticker-start-round-invalid-map = Выбранная карта {$map} не подходит для режима {$mode}. Режим может работать некорректно...
 game-ticker-unknown-role = Неизвестный
-game-ticker-delay-start = Начало раунда было отложено на {$seconds} секунд.
-game-ticker-pause-start = Начало раунда было приостановлено.
-game-ticker-pause-start-resumed = Отсчет начала раунда возобновлен.
-game-ticker-player-join-game-message = Добро пожаловать на Космическую Станцию 14! Если вы играете впервые, обязательно нажмите ESC на клавиатуре и прочитайте правила игры, а также не бойтесь просить помощи в LOOC чате или "Админ помощь".
-game-ticker-get-info-text = Привет и добро пожаловать на [color=white]Космическую Станцию 14![/color]
-                            Текущий раунд: [color=white]#{$roundId}[/color]
-                            Текущее количество игроков: [color=white]{$playerCount}[/color]
-                            Текущая карта: [color=white]{$mapName}[/color]
-                            Текущий режим игры: [color=white]{$gmTitle}[/color]
+game-ticker-delay-start = Начало отложено на {$seconds} секунд.
+game-ticker-pause-start = Начало приостановлено.
+game-ticker-pause-start-resumed = Отсчет возобновлен.
+game-ticker-player-join-game-message = Здравствуйте! Если вы впервые, нажмите ESC и ознакомьтесь с инструкцией. По вопросам обращайтесь к комиссару.
+game-ticker-get-info-text = Здравствуйте!
+                            Текущая сессия: [color=white]#{$roundId}[/color]
+                            Граждан на участке: [color=white]{$playerCount}[/color]
+                            Карта: [color=white]{$mapName}[/color]
+                            Режим: [color=white]{$gmTitle}[/color]
                             >[color=yellow]{$desc}[/color]
-game-ticker-get-info-preround-text = Привет и добро пожаловать на [color=white]Космическую Станцию 14![/color]
-                            Текущий раунд: [color=white]#{$roundId}[/color]
-                            Текущее количество игроков: [color=white]{$playerCount}[/color] ([color=white]{$readyCount}[/color] {$readyCount ->
+game-ticker-get-info-preround-text = Здравствуйте!
+                            Текущая сессия: [color=white]#{$roundId}[/color]
+                            Граждан на участке: [color=white]{$playerCount}[/color] ([color=white]{$readyCount}[/color] {$readyCount ->
                                 [one] готов
                                *[other] готовы
                             })
-                            Текущая карта: [color=white]{$mapName}[/color]
-                            Текущий режим игры: [color=white]{$gmTitle}[/color]
+                            Карта: [color=white]{$mapName}[/color]
+                            Режим: [color=white]{$gmTitle}[/color]
                             >[color=yellow]{$desc}[/color]
-game-ticker-no-map-selected = [color=yellow]Карта ещё не выбрана![/color]
-game-ticker-player-no-jobs-available-when-joining = При попытке присоединиться к игре ни одной роли не было доступно.
+game-ticker-no-map-selected = [color=yellow]Карта не выбрана![/color]
+game-ticker-player-no-jobs-available-when-joining = При попытке присоединиться не найдено доступных должностей.
 
-# Displayed in chat to admins when a player joins
-player-join-message = Игрок {$name} зашёл.
-player-first-join-message = Игрок {$name} зашёл впервые!
+player-join-message = Гражданин {$name} прибыл.
+player-first-join-message = Гражданин {$name} впервые с нами!
 
-# Displayed in chat to admins when a player leaves
-player-leave-message = Игрок {$name} вышел.
+player-leave-message = Гражданин {$name} покинул участок.
 
-latejoin-arrival-announcement = {$character}, {$job}, прибыл на станцию!
-latejoin-arrival-announcement-special = {$job} {$character} на борту!
-latejoin-arrival-sender = Общее
-latejoin-arrivals-direction = Вскоре прибудет шаттл, который доставит вас на станцию.
-latejoin-arrivals-direction-time = Шаттл, который доставит вас на станцию, прибудет через {$time}.
-latejoin-arrivals-dumped-from-shuttle = Таинственная сила не позволяет вам улететь на шаттле прибытия.
-latejoin-arrivals-teleport-to-spawn = Таинственная сила телепортирует вас с шаттла прибытия. Удачной смены!
+latejoin-arrival-announcement = {$character}, {$job}, прибыл на участок!
+latejoin-arrival-announcement-special = {$job} {$character} на месте!
+latejoin-arrival-sender = Объявление
+latejoin-arrivals-direction = Оставьте карту на контроле.
+latejoin-arrivals-direction-time = Подготовьте документы через {$time}.
+latejoin-arrivals-dumped-from-shuttle = Вам отказано в доступе.
+latejoin-arrivals-teleport-to-spawn = Пропуск оформлен. Удачи!
 
-preset-not-enough-ready-players = Невозможно запустить игровой режим {$presetName}. Требуется {$minimumPlayers} готовых игроков, сейчас: {$readyPlayersCount}.
-preset-no-one-ready = Невозможно запустить игровой режим {$presetName}. Нет готовых игроков.
+preset-not-enough-ready-players = Невозможно запустить {$presetName}. Требуется {$minimumPlayers} граждан, сейчас: {$readyPlayersCount}.
+preset-no-one-ready = Невозможно запустить {$presetName}. Нет готовых граждан.
 
-game-run-level-PreRoundLobby = Лобби до начала раунда
-game-run-level-InRound = В раунде
-game-run-level-PostRound = После раунда
+game-run-level-PreRoundLobby = Подготовка
+game-run-level-InRound = Активна
+game-run-level-PostRound = Завершена

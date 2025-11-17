@@ -32,3 +32,8 @@
   license: "Custom"
   copyright: "Quantums Escape Plan by Gneiss. Converted from WAV to OGG."
   source: "https://soundcloud.com/dukegneiss/quantums-escape-plan"
+
+- files: ["tiny.ogg"]
+  license: "CC BY-SA "
+  copyright: "Vladimir Bulaev — Melancholy | Tiny Bunny OST"
+  source: "https://soundcloud.com/vladimirbulaev?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
