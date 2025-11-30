@@ -27,6 +27,7 @@
       blacklist:
         tags:
           - NukeOpsUplink
+  restockTime: 1800
 
 - type: listing
   id: ModsuitNukeOperativeSealed
