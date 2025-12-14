@@ -288,10 +288,6 @@
     contents:
       - id: MedievalChemistryRecipe
         prob: 0.1
-      - id: MedievalScrollBarrierWeak
-        prob: 0.15
-      - id: MedievalScrollBarrierNormal
-        prob: 0.005
       - id: MedievalClothingUniformJumpsuitShitCloth24
         prob: 0.02
       - id: MedievalLockpickPack
@@ -301,6 +297,8 @@
       - id: MedievalCoinBag
         prob: 0.04
       - id: MedievalGlowStone
+        prob: 0.04
+      - id: MedievalReliefStoneWeak
         prob: 0.04
       - id: MedievalClothingUniformJumpsuitFlannel
         prob: 0.02
@@ -334,6 +332,10 @@
         prob: 0.1
       - id: MedievalRepairStone
         prob: 0.05
+      - id: MedievalShieldRepairKit
+        prob: 0.05
+      - id: MedievalScrollBarrier
+        prob: 0.12
       - id: MedievalDrugChemistryBottle
         prob: 0.04
       - id: MedievalBrutepack
@@ -342,38 +344,38 @@
         prob: 0.02
       - id: MedievalLootGoblin
         prob: 0.02
-      - id: FoodBreadPlain
-        prob: 0.002
+      #- id: FoodBreadPlain
+      #  prob: 0.002
       - id: MedievalCoal
         prob: 0.02
       - id: MedievalClothingHeadHelmetHood
         prob: 0.02
-      - id: FoodCheese
-        prob: 0.005
-      - id: FoodBreadMeat
-        prob: 0.005
-      - id: FoodPieMeat
-        prob: 0.005
-      - id: FoodCarrot
-        prob: 0.005
-      - id: FoodOnion
-        prob: 0.005
-      - id: FoodBakedCookie
-        prob: 0.005
-      - id: FoodMeatSpiderlegCooked
-        prob: 0.0075
-      - id: FoodCorn
-        prob: 0.005
-      - id: FoodTomato
-        prob: 0.002
+      #- id: FoodCheese
+      #  prob: 0.005
+      #- id: FoodBreadMeat
+      #  prob: 0.005
+      #- id: FoodPieMeat
+      #  prob: 0.005
+      #- id: FoodCarrot
+      #  prob: 0.005
+      #- id: FoodOnion
+      #  prob: 0.005
+      #- id: FoodBakedCookie
+      #  prob: 0.005
+      #- id: FoodMeatSpiderlegCooked
+      #  prob: 0.0075
+      #- id: FoodCorn
+      #  prob: 0.005
+      #- id: FoodTomato
+      #  prob: 0.002
       - id: MedievalClothingUniformJumpsuitShitCloth5
         prob: 0.03
-      - id: FoodButter
-        prob: 0.005
-      - id: FoodSoupBeetRed
-        prob: 0.008
-      - id: FoodApple
-        prob: 0.002
+      #- id: FoodButter
+      #  prob: 0.005
+      #- id: FoodSoupBeetRed
+      #  prob: 0.008
+      #- id: FoodApple
+      #  prob: 0.002
       - id: ClothingHandsGlovesColorBlack
         prob: 0.04
       - id: MedievalClothingHandsGlovesColorBrown
@@ -514,6 +516,8 @@
         prob: 0.1
       - id: MedievalDaggerT3
         prob: 0.24
+      - id: MedievalReliefStoneStrong
+        prob: 0.01
       - id: MedievalFalshionT3
         prob: 0.04
       - id: MedievalShortSword
@@ -784,20 +788,14 @@
   #  prototype: MedievalChestWithLoot2
   - type: StorageFill
     contents:
-      - id: MedievalScrollBarrierWeak
-        prob: 0.25
-      - id: MedievalScrollBarrierWeak
-        prob: 0.25
-      - id: MedievalScrollBarrierWeak
-        prob: 0.2
-      - id: MedievalScrollBarrierNormal
-        prob: 0.4
       - id: MedievalClothingUniformJumpsuitShitCloth24
         prob: 0.02
       - id: MedievalCoinBag
         prob: 0.04
       - id: MedievalGlowStone
         prob: 0.04
+      - id: MedievalReliefStoneWeak
+        prob: 0.06
       - id: MedievalClothingUniformJumpsuitFlannel
         prob: 0.02
       - id: MedievalClothingUniformJumpsuitShitCloth16
@@ -828,6 +826,8 @@
         prob: 0.22
       - id: MedievalRepairStone
         prob: 0.05
+      - id: MedievalShieldRepairKit
+        prob: 0.05
       - id: MedievalPen
         prob: 0.1
       - id: MedievalDrugChemistryBottle
@@ -838,38 +838,38 @@
         prob: 0.12
       - id: MedievalLootGoblin
         prob: 0.02
-      - id: FoodBreadPlain
-        prob: 0.002
+      #- id: FoodBreadPlain
+      #  prob: 0.002
       - id: MedievalCoal
         prob: 0.02
       - id: MedievalClothingHeadHelmetHood
         prob: 0.02
-      - id: FoodCheese
-        prob: 0.005
-      - id: FoodBreadMeat
-        prob: 0.005
-      - id: FoodPieMeat
-        prob: 0.005
-      - id: FoodCarrot
-        prob: 0.005
-      - id: FoodOnion
-        prob: 0.005
-      - id: FoodBakedCookie
-        prob: 0.005
-      - id: FoodMeatSpiderlegCooked
-        prob: 0.0075
-      - id: FoodCorn
-        prob: 0.005
-      - id: FoodTomato
-        prob: 0.002
+      #- id: FoodCheese
+      #  prob: 0.005
+      #- id: FoodBreadMeat
+      #  prob: 0.005
+      #- id: FoodPieMeat
+      #  prob: 0.005
+      #- id: FoodCarrot
+      #  prob: 0.005
+      #- id: FoodOnion
+      #  prob: 0.005
+      #- id: FoodBakedCookie
+      #  prob: 0.005
+      #- id: FoodMeatSpiderlegCooked
+      #  prob: 0.0075
+      #- id: FoodCorn
+      #  prob: 0.005
+      #- id: FoodTomato
+      #  prob: 0.002
       - id: MedievalClothingUniformJumpsuitShitCloth5
         prob: 0.03
-      - id: FoodButter
-        prob: 0.005
-      - id: FoodSoupBeetRed
-        prob: 0.008
-      - id: FoodApple
-        prob: 0.002
+      #- id: FoodButter
+      #  prob: 0.005
+      #- id: FoodSoupBeetRed
+      #  prob: 0.008
+      #- id: FoodApple
+      #  prob: 0.002
       - id: ClothingHandsGlovesColorBlack
         prob: 0.04
       - id: MedievalClothingHandsGlovesColorBrown
@@ -922,6 +922,8 @@
         prob: 0.1
       - id: MedievalDaggerT3
         prob: 0.24
+      - id: MedievalReliefStoneStrong
+        prob: 0.015
       - id: MedievalFalshionT3
         prob: 0.04
       - id: MedievalShortSword
@@ -1210,6 +1212,8 @@
         prob: 0.07
       - id: MedievalKnut
         prob: 0.09
+      - id: MedievalScrollBarrier
+        prob: 0.25
       - id: MedaljonDark
         prob: 0.015
       - id: MedaljonExpl
@@ -1280,26 +1284,6 @@
   #  prototype: MedievalChestWithLoot3
   - type: StorageFill
     contents:
-      - id: MedievalScrollBarrierWeak
-        prob: 0.4
-      - id: MedievalScrollBarrierWeak
-        prob: 0.4
-      - id: MedievalScrollBarrierWeak
-        prob: 0.15
-      - id: MedievalScrollBarrierWeak
-        prob: 0.03
-      - id: MedievalScrollBarrierWeak
-        prob: 0.03
-      - id: MedievalScrollBarrierNormal
-        prob: 0.01
-      - id: MedievalScrollBarrierNormal
-        prob: 0.1
-      - id: MedievalScrollBarrierNormal
-        prob: 0.2
-      - id: MedievalScrollBarrierGood
-        prob: 0.07
-      - id: MedievalScrollBarrierDebug
-        prob: 0.01
       - id: MedievalClothingUniformJumpsuitShitCloth24
         prob: 0.02
       - id: MedievalCoinBag
@@ -1336,6 +1320,8 @@
         prob: 0.22
       - id: MedievalRepairStone
         prob: 0.05
+      - id: MedievalShieldRepairKit
+        prob: 0.05
       - id: MedievalPen
         prob: 0.1
       - id: MedievalDrugChemistryBottle
@@ -1346,38 +1332,38 @@
         prob: 0.02
       - id: MedievalLootGoblin
         prob: 0.02
-      - id: FoodBreadPlain
-        prob: 0.002
+      #- id: FoodBreadPlain
+      #  prob: 0.002
       - id: MedievalCoal
         prob: 0.02
       - id: MedievalClothingHeadHelmetHood
         prob: 0.02
-      - id: FoodCheese
-        prob: 0.005
-      - id: FoodBreadMeat
-        prob: 0.005
-      - id: FoodPieMeat
-        prob: 0.005
-      - id: FoodCarrot
-        prob: 0.005
-      - id: FoodOnion
-        prob: 0.005
-      - id: FoodBakedCookie
-        prob: 0.005
-      - id: FoodMeatSpiderlegCooked
-        prob: 0.0075
-      - id: FoodCorn
-        prob: 0.005
-      - id: FoodTomato
-        prob: 0.002
+      #- id: FoodCheese
+      #  prob: 0.005
+      #- id: FoodBreadMeat
+      #  prob: 0.005
+      #- id: FoodPieMeat
+      #  prob: 0.005
+      #- id: FoodCarrot
+      #  prob: 0.005
+      #- id: FoodOnion
+      #  prob: 0.005
+      #- id: FoodBakedCookie
+      #  prob: 0.005
+      #- id: FoodMeatSpiderlegCooked
+      #  prob: 0.0075
+      #- id: FoodCorn
+      #  prob: 0.005
+      #- id: FoodTomato
+      #  prob: 0.002
       - id: MedievalClothingUniformJumpsuitShitCloth5
         prob: 0.03
-      - id: FoodButter
-        prob: 0.005
-      - id: FoodSoupBeetRed
-        prob: 0.008
-      - id: FoodApple
-        prob: 0.002
+      #- id: FoodButter
+      #  prob: 0.005
+      #- id: FoodSoupBeetRed
+      #  prob: 0.008
+      #- id: FoodApple
+      #  prob: 0.002
       - id: ClothingHandsGlovesColorBlack
         prob: 0.04
       - id: MedievalClothingHandsGlovesColorBrown
@@ -1442,6 +1428,12 @@
         prob: 0.04
       - id: MedievalBanjoInstrument
         prob: 0.1
+      - id: MedievalScrollBarrier
+        prob: 0.6
+      - id: MedievalScrollBarrier
+        prob: 0.6
+      - id: MedievalScrollBarrier
+        prob: 0.6
       - id: MedievalShovel
         prob: 0.03
       #- id: MedievalWrench
@@ -1842,8 +1834,6 @@
   #  prototype: MedievalChestWithLoot4
   - type: StorageFill
     contents:
-      - id: MedievalScrollBarrierWeak
-        prob: 0.15
       - id: MedievalClothingUniformJumpsuitShitCloth24
         prob: 0.02
       - id: MedievalCoinBag
@@ -1878,7 +1868,11 @@
         prob: 0.075
       - id: MedievalPaper
         prob: 0.22
+      - id: MedievalScrollBarrier
+        prob: 0.05
       - id: MedievalRepairStone
+        prob: 0.05
+      - id: MedievalShieldRepairKit
         prob: 0.05
       - id: MedievalPen
         prob: 0.1
@@ -1890,38 +1884,38 @@
         prob: 0.02
       - id: MedievalLootGoblin
         prob: 0.02
-      - id: FoodBreadPlain
-        prob: 0.002
+      #- id: FoodBreadPlain
+      #  prob: 0.002
       - id: MedievalCoal
         prob: 0.02
       - id: MedievalClothingHeadHelmetHood
         prob: 0.02
-      - id: FoodCheese
-        prob: 0.005
-      - id: FoodBreadMeat
-        prob: 0.005
-      - id: FoodPieMeat
-        prob: 0.005
-      - id: FoodCarrot
-        prob: 0.005
-      - id: FoodOnion
-        prob: 0.005
-      - id: FoodBakedCookie
-        prob: 0.005
-      - id: FoodMeatSpiderlegCooked
-        prob: 0.0075
-      - id: FoodCorn
-        prob: 0.005
-      - id: FoodTomato
-        prob: 0.002
+      #- id: FoodCheese
+      #  prob: 0.005
+      #- id: FoodBreadMeat
+      #  prob: 0.005
+      #- id: FoodPieMeat
+      #  prob: 0.005
+      #- id: FoodCarrot
+      #  prob: 0.005
+      #- id: FoodOnion
+      #  prob: 0.005
+      #- id: FoodBakedCookie
+      #  prob: 0.005
+      #- id: FoodMeatSpiderlegCooked
+      #  prob: 0.0075
+      #- id: FoodCorn
+      #  prob: 0.005
+      #- id: FoodTomato
+      #  prob: 0.002
       - id: MedievalClothingUniformJumpsuitShitCloth5
         prob: 0.03
-      - id: FoodButter
-        prob: 0.005
-      - id: FoodSoupBeetRed
-        prob: 0.008
-      - id: FoodApple
-        prob: 0.002
+      #- id: FoodButter
+      #  prob: 0.005
+      #- id: FoodSoupBeetRed
+      #  prob: 0.008
+      #- id: FoodApple
+      #  prob: 0.002
       - id: ClothingHandsGlovesColorBlack
         prob: 0.04
       - id: MedievalClothingHandsGlovesColorBrown

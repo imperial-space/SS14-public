@@ -6,7 +6,7 @@ namespace Content.Server.Quest.Components
     [RegisterComponent]
     public sealed partial class QuestContractComponent : Component
     {
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string RewardEffectSound = "/Audio/Imperial/Medieval/quest_reward.ogg";
 
         /// <summary>
@@ -42,6 +42,11 @@ namespace Content.Server.Quest.Components
         public int MaxAmount = 7;
         [DataField]
         public int Amount = 4;
+
+        [DataField]
+        public float ReputationReward = 10;
+
+        public Guid? ContractGuildId;
 
     }
 }

@@ -1,0 +1,119 @@
+# TODO: Add descriptions (many)
+# TODO BODY: Part damage
+- type: entity
+  id: PartLamian
+  parent: [BaseItem, BasePart]
+  name: "Lamian body part"
+  abstract: true
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 3
+      - ReagentId: Blood
+        Quantity: 10
+
+- type: entity
+  id: TorsoLamian
+  name: "Lamian torso"
+  parent: [PartLamian, BaseTorso]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: "torso_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: Blood
+        Quantity: 20
+
+- type: entity
+  id: HeadLamian
+  name: "Lamian head"
+  parent: [PartLamian, BaseHead]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: "head_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 5
+      - ReagentId: Blood
+        Quantity: 10
+
+- type: entity
+  id: LeftArmLamian
+  name: "left Lamian arm"
+  parent: [PartLamian, BaseLeftArm]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: "l_arm"
+
+- type: entity
+  id: RightArmLamian
+  name: "right Lamian arm"
+  parent: [PartLamian, BaseRightArm]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: "r_arm"
+
+- type: entity
+  id: LeftHandLamian
+  name: "left Lamian hand"
+  parent: [PartLamian, BaseLeftHand]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: RightHandLamian
+  name: "right Lamian hand"
+  parent: [PartLamian, BaseRightHand]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: "r_hand"
+
+- type: entity
+  id: LeftLegLamian
+  name: "left Lamian leg"
+  parent: [PartLamian, BaseLeftLeg]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: "l_leg"
+
+- type: entity
+  id: RightLegLamian
+  name: "right Lamian leg"
+  parent: [PartLamian, BaseRightLeg]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: "r_leg"
+
+- type: entity
+  id: LeftFootLamian
+  name: "left Lamian foot"
+  parent: [PartLamian, BaseLeftFoot]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: "l_foot"
+
+- type: entity
+  id: RightFootLamian
+  name: "right Lamian foot"
+  parent: [PartLamian, BaseRightFoot]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: "r_foot"

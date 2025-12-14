@@ -5,13 +5,13 @@
   name: medieval-store-spells-light-lightning-middle-name
   description: medieval-store-spells-light-lightning-middle-desc
   productAction: MedievalActionLightningMiddle
-  priority: 6
+  priority: 7
   productUpgradeId:
     - MedievalSpellLightningSenior
-    - MedievalSpellFireLightningMiddle
+    # - MedievalSpellFireLightningMiddle # Remove this line, to return spell in Grimoire
   icon:
-    sprite: Imperial/Medieval/Magic/lightning.rsi
-    state: lightning-basic
+    sprite: Imperial/Medieval/Magic/MultiCurrency/Lightning/icons.rsi
+    state: middle-light
   cost:
     MagicMedievalLight: 40
   categories:
@@ -26,12 +26,12 @@
   id: MedievalSpellLightningSenior
   name: medieval-store-spells-light-lightning-senior-name
   description: medieval-store-spells-light-lightning-senior-desc
-  priority: 6
+  priority: 7
   productUpgradeId:
     - MedievalSpellLightningSenior
   icon:
-    sprite: Imperial/Medieval/Magic/lightning.rsi
-    state: lightning-adv
+    sprite: Imperial/Medieval/Magic/MultiCurrency/Lightning/icons.rsi
+    state: senior-light
   cost:
     MagicMedievalLight: 75
     ArchmagePoints: 1

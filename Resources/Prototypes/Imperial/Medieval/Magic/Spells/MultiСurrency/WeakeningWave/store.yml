@@ -7,15 +7,13 @@
   productAction: MedievalActionWeakeningWaveSenior
   priority: 1
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   cost:
-    MagicMedievalLight: 60
-    MagicMedievalVodka: 60
+    MagicMedievalLight: 120
     ArchmagePoints: 1
   categories:
   - MedievalLightSpells
-  - MedievalVodkaSpells
   conditions:
   - !type:ImperialListingLimitedStockCondition
     stock: 1

@@ -1,9 +1,19 @@
-﻿ent-ERTLeaderEVAPresetAlternative = Лидер ОБР
+﻿ent-ERTLeaderEVAPresetAlternative = лидер ОБР
+    .suffix = EVA, Alter, Гост роль
+    .desc = { ent-MobHuman.desc }
 
-ent-ERTMedicEVAPresetAlternative = Медик ОБР
+ent-ERTMedicEVAPresetAlternative = медик ОБР
+    .suffix = EVA, Alter, Гост роль
+    .desc = { ent-MobHuman.desc }
 
-ent-ERTSecurityEVAPresetAlternative = Боец ОБР
+ent-ERTSecurityEVAPresetAlternative = боец ОБР
+    .suffix = EVA, Alter, Гост роль
+    .desc = { ent-MobHuman.desc }
 
-ent-ERTEngineerEVAPresetAlternative = Инженер ОБР
+ent-ERTEngineerEVAPresetAlternative = инженер ОБР
+    .suffix = EVA, Alter, Гост роль
+    .desc = { ent-MobHuman.desc }
 
-ent-ERTJanitorEVAPresetAlternative = Уборщик ОБР
+ent-ERTJanitorEVAPresetAlternative = уборщик ОБР
+    .suffix = EVA, Alter, Гост роль
+    .desc = { ent-MobHuman.desc }

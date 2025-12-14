@@ -27,6 +27,14 @@
                             Text="Тут будет уровень"
                             HorizontalExpand="True" />
                     </BoxContainer>
+                    <BoxContainer HorizontalExpand="True" Margin="4" VerticalExpand="True" Orientation="Vertical">
+                        <TextureButton Name="Info" Scale="0.5 0.5"
+                                       VerticalAlignment="Top"
+                                       SetSize="32 32"
+                                       Margin="4 0"
+                                       TexturePath="/Textures/Interface/VerbIcons/information.svg.192dpi.png"
+                                       MouseFilter="Stop"/>
+                    </BoxContainer>
                 </BoxContainer>
                 <BoxContainer Margin="4" Orientation="Horizontal">
                     <Button

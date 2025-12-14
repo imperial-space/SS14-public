@@ -9,19 +9,19 @@ namespace Content.Server.CustomDoorKey.Components
         [DataField]
         public int UseCount = 5;
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSoundOnOpen = "/Audio/Imperial/Medieval/lockpick_open.ogg";
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSoundOnSucces = "/Audio/Imperial/Medieval/lockpick_succes.ogg";
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSoundOnNext = "/Audio/Imperial/Medieval/lockpick_next.ogg";
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSoundOnBreak = "/Audio/Imperial/Medieval/lockpick_break.ogg";
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSoundOnNo = "/Audio/Imperial/Medieval/lockpick_no.ogg";
 
 

@@ -1,0 +1,26 @@
+- type: entity
+  parent: BaseGameRule
+  id: MedievalWerewolves
+  components:
+  - type: GameRule
+    minPlayers: 30
+  - type: LycantropyGameRule
+  - type: AntagSelection
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ Werewolf ]
+      max: 3
+      playerRatio: 15
+      blacklist:
+        components:
+        - CommandStaff
+        - AntagImmune
+      lateJoinAdditional: true
+      mindRoles:
+      - MindRoleWerewolf
+      components:
+      - type: Lycantropy
+      briefing:
+        text: werewolf-intro-text
+        color: brown
+        sound: /Audio/Imperial/Medieval/Werewolf/spawn.ogg

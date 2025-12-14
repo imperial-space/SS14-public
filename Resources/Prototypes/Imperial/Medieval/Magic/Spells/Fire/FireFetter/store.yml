@@ -1,0 +1,21 @@
+- type: imperialListing
+  id: MedievalSpellFireFetter
+  name: ent-MedievalActionFireFetter
+  description: ent-MedievalActionFireFetter
+  productAction: MedievalActionFireFetter
+  priority: 10
+  productUpgradeId:
+    - MedievalSpellCursedFetter
+  icon:
+    sprite: Imperial/Medieval/Magic/Fire/FireFetter/icons.rsi
+    state: beginner
+  cost:
+    MagicMedievalFire: 35
+  categories:
+  - MedievalFireSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    blacklist:
+      - MedievalSpellCursedFetter

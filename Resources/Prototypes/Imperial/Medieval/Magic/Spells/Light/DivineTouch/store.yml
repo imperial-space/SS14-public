@@ -5,12 +5,12 @@
   name: medieval-store-spells-light-divine-touch-beginner-name
   description: medieval-store-spells-light-divine-touch-beginner-desc
   productAction: MedievalActionDivineTouchBeginner
-  priority: 4
+  priority: 1
   productUpgradeId:
     - MedievalSpellDivineTouchMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/Light/DivineTouch/icons.rsi
+    state: beginner
   cost:
     MagicMedievalLight: 15
   categories:
@@ -25,12 +25,12 @@
   id: MedievalSpellDivineTouchMiddle
   name: medieval-store-spells-light-divine-touch-middle-name
   description: medieval-store-spells-light-divine-touch-middle-desc
-  priority: 4
+  priority: 1
   productUpgradeId:
     - MedievalSpellDivineTouchSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
-    state: 2
+    sprite: Imperial/Medieval/Magic/Light/DivineTouch/icons.rsi
+    state: middle
   cost:
     MagicMedievalLight: 55
   categories:
@@ -48,12 +48,12 @@
   id: MedievalSpellDivineTouchSenior
   name: medieval-store-spells-light-divine-touch-senior-name
   description: medieval-store-spells-light-divine-touch-senior-desc
-  priority: 4
+  priority: 1
   productUpgradeId:
     - MedievalSpellDivineTouchSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/Light/DivineTouch/icons.rsi
+    state: senior
   cost:
     MagicMedievalLight: 90
     ArchmagePoints: 1

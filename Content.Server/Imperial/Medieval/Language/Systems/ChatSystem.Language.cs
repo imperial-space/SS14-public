@@ -91,7 +91,7 @@ public sealed partial class ChatSystem
                     (wrappedMessage, wrappedobfuscatedMessage, wrappedUnknownMessage) :
                     (wrappedLanguageMessage, wrappedobfuscatedLanguageMessage, wrappedUnknownLanguageMessage);
 
-            if (!data.Muffled)
+            if (data.Range <= WhisperClearRange || data.Observer)
                 _chatManager.ChatMessageToOne(ChatChannel.Whisper, message, langMessage, source, false, session.Channel);
 
             //If listener is too far, they only hear fragments of the message

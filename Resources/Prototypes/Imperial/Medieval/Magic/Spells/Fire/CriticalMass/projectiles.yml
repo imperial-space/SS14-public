@@ -2,8 +2,8 @@
   id: MedievalEffectCriticalMassBeginner
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   - type: MedievalParticles
     color: "#F5E72D"
     speed: 2.0

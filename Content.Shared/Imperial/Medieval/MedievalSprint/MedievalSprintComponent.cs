@@ -36,4 +36,6 @@ public sealed partial class MedievalSprintComponent : Component
 
     [ViewVariables]
     public bool Tried = false;
+
+    public bool Sprinting = false;
 }

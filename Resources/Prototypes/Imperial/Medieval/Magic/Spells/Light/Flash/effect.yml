@@ -22,3 +22,23 @@
       path: /Audio/Imperial/Medieval/flashbang_blast.ogg
       params:
         variation: 0.2
+
+#Beginner
+
+- type: entity
+  id: FlashSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/light/flash.rsi
+    color: "#FFE57E"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#FFE57E"
+  - type: TimedDespawn
+    lifetime: 0.5
+

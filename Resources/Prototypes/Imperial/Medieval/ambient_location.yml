@@ -1,0 +1,300 @@
+- type: entity
+  parent: MarkerBase
+  id: AmbientLocationBase
+  abstract: true
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Objects/Fun/Instruments/guitar.rsi
+        state: icon
+  - type: LocationTrigger
+    fixtureId: trigger-collision
+  - type: Fixtures
+    fixtures:
+      trigger-collision:
+        shape:
+          !type:PhysShapeCircle
+          radius: 3.5
+        hard: false
+        density: 0
+        mask:
+        - MobMask
+        layer:
+        - Impassable
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbient7orest
+  name: Imperial Ambient Trigger 7
+  description: Desc
+  suffix: AUDIO TEST
+  components:
+  - type: LocationTrigger
+    locationId: ambigen7_trigger
+    sound:
+      path: "/Audio/Ambience/ambigen7.ogg"
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbient8orest
+  name: Imperial Ambient Trigger 8
+  description: Desc
+  suffix: AUDIO TEST
+  components:
+  - type: LocationTrigger
+    locationId: ambigen8_trigger
+    sound:
+      path: "/Audio/Ambience/ambigen7.ogg"
+    randomSounds:
+      - path: "/Audio/Ambience/single/forest_day/crow3.ogg"
+    minRandomInterval: 1
+    maxRandomInterval: 2
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbientTriggerForest_day
+  name: Imperial Ambient Trigger - Forest_day
+  description: Desc
+  suffix: AUDIO AMBIENCE
+  components:
+  - type: LocationTrigger
+    locationId: location_forest_day
+    sound:
+      path: "/Audio/Ambience/loops/forest_day.ogg"
+    randomSounds:
+      - path: "/Audio/Ambience/single/forest_day/crow1.ogg"
+      - path: "/Audio/Ambience/single/forest_day/crow2.ogg"
+      - path: "/Audio/Ambience/single/forest_day/crow3.ogg"
+      - path: "/Audio/Ambience/single/forest_day/crow4.ogg"
+      - path: "/Audio/Ambience/single/forest_day/crow5.ogg"
+      - path: "/Audio/Ambience/single/forest_day/crow6.ogg"
+      - path: "/Audio/Ambience/single/forest_day/crow7.ogg"
+      - path: "/Audio/Ambience/single/forest_day/crow8.ogg"
+      - path: "/Audio/Ambience/single/forest_day/mouring_dove1.ogg"
+      - path: "/Audio/Ambience/single/forest_day/mouring_dove2.ogg"
+    minRandomInterval: 15
+    maxRandomInterval: 30
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbientTriggerBeach
+  name: Imperial Ambient Trigger - Beach
+  description: Desc
+  suffix: AUDIO AMBIENCE
+  components:
+  - type: LocationTrigger
+    locationId: location_beach
+    sound:
+      path: "/Audio/Ambience/loops/beach.ogg"
+    randomSounds:
+      - path: "/Audio/Ambience/single/beach/seagull1.ogg"
+      - path: "/Audio/Ambience/single/beach/seagull2.ogg"
+      - path: "/Audio/Ambience/single/beach/seagull3.ogg"
+      - path: "/Audio/Ambience/single/beach/seagull4.ogg"
+      - path: "/Audio/Ambience/single/beach/seagull5.ogg"
+    minRandomInterval: 15
+    maxRandomInterval: 30
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbientTriggerVillage_day
+  name: Imperial Ambient Trigger - Village_day
+  description: Desc
+  suffix: AUDIO AMBIENCE
+  components:
+  - type: LocationTrigger
+    locationId: location_village_day
+    sound:
+      path: "/Audio/Ambience/loops/village_day.ogg"
+    randomSounds:
+      - path: "/Audio/Ambience/single/village_day/cock.ogg"
+      - path: "/Audio/Ambience/single/village_day/crow1.ogg"
+      - path: "/Audio/Ambience/single/village_day/crow2.ogg"
+      - path: "/Audio/Ambience/single/village_day/crow3.ogg"
+      - path: "/Audio/Ambience/single/village_day/crow4.ogg"
+      - path: "/Audio/Ambience/single/village_day/crow5.ogg"
+      - path: "/Audio/Ambience/single/village_day/crow6.ogg"
+      - path: "/Audio/Ambience/single/village_day/crow7.ogg"
+      - path: "/Audio/Ambience/single/village_day/crow8.ogg"
+      - path: "/Audio/Ambience/single/village_day/dog1.ogg"
+      - path: "/Audio/Ambience/single/village_day/dog2.ogg"
+      - path: "/Audio/Ambience/single/village_day/dog3.ogg"
+      - path: "/Audio/Ambience/single/village_day/dog4.ogg"
+      - path: "/Audio/Ambience/single/village_day/dog5.ogg"
+    minRandomInterval: 15
+    maxRandomInterval: 30
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbientTriggerBarrier_bad
+  name: Imperial Ambient Trigger - Barrier_bad
+  description: Desc
+  suffix: AUDIO AMBIENCE
+  components:
+  - type: LocationTrigger
+    locationId: location_barrier_bad
+    sound:
+      path: "/Audio/Ambience/loops/barrier_bad.ogg"
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbientTriggerCave
+  name: Imperial Ambient Trigger - Cave
+  description: Desc
+  suffix: AUDIO AMBIENCE
+  components:
+  - type: LocationTrigger
+    locationId: location_cave
+    sound:
+      path: "/Audio/Ambience/loops/cave.ogg"
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbientTriggerCollege
+  name: Imperial Ambient Trigger - College
+  description: Desc
+  suffix: AUDIO AMBIENCE
+  components:
+  - type: LocationTrigger
+    locationId: location_college
+    sound:
+      path: "/Audio/Ambience/loops/college.ogg"
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbientTriggerCult
+  name: Imperial Ambient Trigger - Cult
+  description: Desc
+  suffix: AUDIO AMBIENCE
+  components:
+  - type: LocationTrigger
+    locationId: location_cult
+    sound:
+      path: "/Audio/Ambience/loops/cult.ogg"
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbientTriggerDefault
+  name: Imperial Ambient Trigger - Default
+  description: Desc
+  suffix: AUDIO AMBIENCE
+  components:
+  - type: LocationTrigger
+    locationId: location_default
+    sound:
+      path: "/Audio/Ambience/loops/default.ogg"
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbientTriggerDesert_day
+  name: Imperial Ambient Trigger - Desert_day
+  description: Desc
+  suffix: AUDIO AMBIENCE
+  components:
+  - type: LocationTrigger
+    locationId: location_desert_day
+    sound:
+      path: "/Audio/Ambience/loops/desert_day.ogg"
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbientTriggerHell
+  name: Imperial Ambient Trigger - Hell
+  description: Desc
+  suffix: AUDIO AMBIENCE
+  components:
+  - type: LocationTrigger
+    locationId: location_hell
+    sound:
+      path: "/Audio/Ambience/loops/hell.ogg"
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbientTriggerNecrople
+  name: Imperial Ambient Trigger - Necrople
+  description: Desc
+  suffix: AUDIO AMBIENCE
+  components:
+  - type: LocationTrigger
+    locationId: location_necrople
+    sound:
+      path: "/Audio/Ambience/loops/necrople.ogg"
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbientTriggerRiver
+  name: Imperial Ambient Trigger - River
+  description: Desc
+  suffix: AUDIO AMBIENCE
+  components:
+  - type: LocationTrigger
+    locationId: location_river
+    sound:
+      path: "/Audio/Ambience/loops/river.ogg"
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbientTriggerSnow
+  name: Imperial Ambient Trigger - Snow
+  description: Desc
+  suffix: AUDIO AMBIENCE
+  components:
+  - type: LocationTrigger
+    locationId: location_snow
+    sound:
+      path: "/Audio/Ambience/loops/snow.ogg"
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbientTriggerSwamp_day
+  name: Imperial Ambient Trigger - Swamp_day
+  description: Desc
+  suffix: AUDIO AMBIENCE
+  components:
+  - type: LocationTrigger
+    locationId: location_swamp_day
+    sound:
+      path: "/Audio/Ambience/loops/swamp_day.ogg"
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbientTriggerVillage_rebel
+  name: Imperial Ambient Trigger - Village_rebel
+  description: Desc
+  suffix: AUDIO AMBIENCE
+  components:
+  - type: LocationTrigger
+    locationId: location_village_rebel
+    sound:
+      path: "/Audio/Ambience/loops/village_rebel.ogg"
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbientTriggerBasement
+  name: Imperial Ambient Trigger - Basement
+  description: Desc
+  suffix: AUDIO AMBIENCE
+  components:
+  - type: LocationTrigger
+    locationId: location_basement
+    sound:
+      path: "/Audio/Ambience/loops/basement.ogg"
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbientTriggerBuilding
+  name: Imperial Ambient Trigger - Building
+  description: Desc
+  suffix: AUDIO AMBIENCE
+  components:
+  - type: LocationTrigger
+    locationId: location_building
+    sound:
+      path: "/Audio/Ambience/loops/building.ogg"

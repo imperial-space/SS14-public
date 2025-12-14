@@ -34,16 +34,17 @@
       - id: PlushieKainov
       - id: PlushieYesenia
       - id: PlushieCSCC
-      - id: PlushieIsaac
       - id: PlushieSavir
       - id: PlushieKarner
+      - id: PlushieAid
+      - id: PlushieZevs
 
 - type: cargoProduct
   id: FunPlushieCommunity
   icon:
-    sprite: Objects/Fun/toys.rsi
-    state: plushie_h
+    sprite: Objects/Fun/Plushies/bee.rsi
+    state: icon
   product: CrateFunPlushieCommunity
   cost: 2500
-  category: Развлечение
+  category: Развлечения
   group: market

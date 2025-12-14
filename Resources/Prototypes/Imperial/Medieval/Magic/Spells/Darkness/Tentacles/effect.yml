@@ -1,0 +1,18 @@
+# Beginner
+
+- type: entity
+  id: TentaclesSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/darkness/tentacles.rsi
+    color: "#B277FF"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#B277FF"
+  - type: TimedDespawn
+    lifetime: 1

@@ -1,0 +1,128 @@
+- type: entity
+  id: Easel
+  name: easel
+  description: easel i think
+  components:
+    - type: MultiHandedItem
+    - type: Item
+      size: Large
+      shape:
+      - 0,0,2,2
+    - type: Easel
+    - type: ContainerContainer
+      containers:
+        Easel: !type:ContainerSlot
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.EaselVisuals.ContainsItem:
+          enum.EaselVisuals.Layer:
+            True: { visible: true }
+            False: { visible: false }
+    - type: Transform
+      noRot: true
+      anchored: false
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Sprite
+      sprite: Imperial/Medieval/Paintings/easel.rsi
+      snapCardinals: true
+      layers:
+      - state: easel
+      - state: canvas
+        map: ["enum.EaselVisuals.Layer"]
+        visible: true
+    - type: ItemSlots
+      slots:
+        Easel:
+          ejectOnInteract: false
+          whitelist:
+            components:
+            - Canvas
+    - type: UserInterface
+      interfaces:
+        enum.EaselUiKey.Key:
+          type: EaselBoundUserInterface
+    - type: Damageable
+      damageModifierSet: Wood
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 80
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 40
+          behaviors:
+            - !type:EmptyAllContainersBehaviour
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+
+- type: entity
+  parent: BaseItem
+  id: Canvas
+  name: canvas
+  components:
+  - type: Canvas
+  - type: UserInterface
+    interfaces:
+      enum.PaintUiKey.Key:
+        type: PaintingBoundUserInterface
+  - type: Sprite
+    sprite: Imperial/Medieval/Paintings/canvas.rsi
+    layers:
+    - state: canvas
+    - state: dynamic
+  - type: Appearance
+  - type: Flammable
+    fireSpread: true
+    alwaysCombustible: true
+    damage:
+      types:
+        Heat: 1
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Item
+    size: Tiny
+  - type: PhysicalComposition
+
+- type: entity
+  parent: PosterBase
+  id: CanvasPoster
+  name: Poster
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Paintings/canvas.rsi
+    layers:
+    - state: canvas
+    - state: dynamic
+  - type: Canvas
+
+- type: entity
+  parent: BaseItem
+  id: PaintKit
+  name: paint kit
+  description: ye
+  components:
+  - type: PaintKit
+  - type: Sprite
+    sprite: Imperial/Medieval/Paintings/palette.rsi
+    state: palette
+

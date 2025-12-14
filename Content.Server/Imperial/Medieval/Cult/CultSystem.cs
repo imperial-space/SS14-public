@@ -28,9 +28,11 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs;
 using Content.Server.SSDFree;
 using Content.Server.SSDFree.Components;
+using Content.Shared.SSDFree.Components;
 using Content.Shared.Cuffs.Components;
 using Robust.Shared.Containers;
 using Content.Shared.Containers;
+using Content.Shared.Body.Components;
 
 namespace Content.Server.Cult
 {
@@ -147,6 +149,8 @@ namespace Content.Server.Cult
                         {
                             if (tp.Base != teleport.Base && tp.Sector == teleport.Sector && HasComp<MedievalSpikeTargetComponent>(target))
                             {
+                                var teleported = EnsureComp<CultTeleportedComponent>(target);
+                                teleported.Portal = from;
                                 var txform = Transform(target);
                                 var tcoords = txform.Coordinates;
                                 Spawn("MedievalTeleportEffect", tcoords);
@@ -367,12 +371,16 @@ namespace Content.Server.Cult
                                             needAltars.Add(altar);
                                         }
                                     }
-                                    var ouraltar = _random.Pick(needAltars);
-                                    var oxform = Transform(ouraltar.Owner);
+                                    // var ouraltar = _random.Pick(needAltars); // Obsolete
+
+                                    var ouraltar = EnsureComp<CultTeleportedComponent>(victim).Portal;
+
+                                    var oxform = Transform(ouraltar);
                                     var ocoords = oxform.Coordinates;
                                     _transform.SetCoordinates(victim, ocoords);
                                     if (TryComp<CuffableComponent>(victim, out var cuff))
                                         _container.EmptyContainer(cuff.Container, true);
+                                    _audioSystem.PlayEntity(comp.VictimSuccessSound, Filter.Entities(victim), victim, false, AudioParams.Default.WithVolume(20f));
                                     _chat.TrySendInGameICMessage(victim, "Культ истины провел со мной ритуал связи. Если я буду жертвовать кровь... то есть резать себя около этих кровавых сосудов, к одному из которых меня телепортировало, раз в какое-то время, то я буду получать длительную магическую регенерацию, а культ - алые кристаллы. Это... взаимовыгодно? Лишь бы другие не узнали...", InGameICChatType.Whisper, false);
                                     var cyr = EnsureComp<CultCursedComponent>(victim);
                                     cyr.CurseLevel = cyr.MaxCurseLevel;

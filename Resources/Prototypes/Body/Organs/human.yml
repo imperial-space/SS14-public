@@ -26,6 +26,7 @@
   - type: Tag
     tags:
       - Meat
+      - MedicalBorgItem # Тег, позволяющий медицинскому боргу брать органы
   # Imperial Medieval Start
   - type: TrashClear
     safe: false
@@ -59,6 +60,7 @@
   - type: Tag
     tags:
       - Meat
+      - MedicalBorgItem
   - type: SolutionContainerManager
     solutions:
       organ:

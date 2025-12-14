@@ -1,0 +1,18 @@
+#Beginner
+
+- type: entity
+  id: HolyTouchSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/light/holy.rsi
+    color: "#00981C"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#00981C"
+  - type: TimedDespawn
+    lifetime: 2

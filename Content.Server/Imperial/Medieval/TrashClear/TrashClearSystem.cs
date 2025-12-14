@@ -8,6 +8,7 @@ using Content.Shared.Chat;
 using Content.Server.Storage.Components;
 using Content.Shared.Storage;
 using Robust.Shared.Random;
+using Content.Shared.Storage.Components;
 
 namespace Content.Server.TrashClear;
 

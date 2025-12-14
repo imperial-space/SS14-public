@@ -1,0 +1,34 @@
+- type: listing
+  id: UplinkRapier
+  name: uplink-rapier-name
+  description: uplink-rapier-desc
+  icon: { sprite: /Textures/Imperial/Other/Rapier/syndie-rapiera.rsi, state: rapier }
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 11
+  productEntity: ClothingBeltSheathRapierFilled
+  cost:
+    Telecrystal: 13
+  categories:
+  - UplinkWeaponry
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkNukiesRapier
+  name: uplink-rapier-name
+  description: uplink-rapier-desc
+  icon: { sprite: /Textures/Imperial/Other/Rapier/syndie-rapiera.rsi, state: rapier }
+  productEntity: ClothingBeltSheathRapierFilled
+  cost:
+    Telecrystal: 18
+  categories:
+  - UplinkWeaponry
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink

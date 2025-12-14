@@ -5,12 +5,12 @@
   name: medieval-store-spells-fire-magic-arrow-kunai-beginner-name
   description: medieval-store-spells-fire-magic-arrow-kunai-beginner-desc
   actionLevelUp: 7
-  priority: 7
+  priority: 5
   productUpgradeId:
     - MedievalSpellMagicArrowKunaiMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-    state: 2
+    sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+    state: beginner-kunai
   cost:
     MagicMedievalFire: 25
   categories:
@@ -48,12 +48,12 @@
   id: MedievalSpellMagicArrowKunaiMiddle
   name: medieval-store-spells-fire-magic-arrow-kunai-middle-name
   description: medieval-store-spells-fire-magic-arrow-kunai-middle-desc
-  priority: 7
+  priority: 5
   productUpgradeId:
     - MedievalSpellMagicArrowKunaiSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+    state: middle-kunai
   cost:
     MagicMedievalFire: 50
   categories:
@@ -91,12 +91,12 @@
   id: MedievalSpellMagicArrowKunaiSenior
   name: medieval-store-spells-fire-magic-arrow-kunai-senior-name
   description: medieval-store-spells-fire-magic-arrow-kunai-senior-desc
-  priority: 7
+  priority: 5
   productUpgradeId:
     - MedievalSpellMagicArrowKunaiSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+    state: senior-kunai
   cost:
     MagicMedievalFire: 80
     ArchmagePoints: 1

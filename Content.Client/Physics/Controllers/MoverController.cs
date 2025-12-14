@@ -1,6 +1,7 @@
 using Content.Shared.Alert;
 using Content.Shared.CCVar;
 using Content.Shared.Imperial.Medieval.Grab.Components;
+using Content.Shared.Friction;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Systems;
@@ -131,8 +132,8 @@ public sealed class MoverController : SharedMoverController
         base.SetSprinting(entity, subTick, walking);
 
         //if (walking && _cfg.GetCVar(CCVars.ToggleWalk)) // imperial medieval
-        //    _alerts.ShowAlert(entity, WalkingAlert, showCooldown: false, autoRemove: false);
+        //    _alerts.ShowAlert(entity.Owner, WalkingAlert, showCooldown: false, autoRemove: false);
         //else
-        //    _alerts.ClearAlert(entity, WalkingAlert); // imperial medieval
+        //    _alerts.ClearAlert(entity.Owner, WalkingAlert); // imperial medieval
     }
 }

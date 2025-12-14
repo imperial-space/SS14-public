@@ -1,0 +1,76 @@
+{
+    "version": 1,
+    "size":
+    {
+      "x": 32,
+      "y": 32
+    },
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "by crookielv",
+    "states":
+    [
+      {
+        "name": "dash"
+      },
+      {
+        "name": "frame"
+      },
+      {
+        "name": "groupheal"
+      },
+      {
+        "name": "heal"
+      },
+      {
+        "name": "hotblood"
+      },
+      {
+        "name": "howl"
+      },
+      {
+        "name": "hunt"
+      },
+      {
+        "name": "jump"
+      },
+      {
+        "name": "moon"
+      },
+      {
+        "name": "shop"
+      },
+      {
+        "name": "skin"
+      },
+      {
+        "name": "steel"
+      },
+      {
+        "name": "stone"
+      },
+      {
+        "name": "tearingoff"
+      },
+      {
+        "name": "tearingon"
+      },
+      {
+        "name": "termaloff"
+      },
+      {
+        "name": "termalon"
+      },
+      {
+        "name": "thick"
+      },
+      {
+        "name": "turn"
+      },
+      {
+        "name": "turnoff"
+      },
+      {
+        "name": "turnon"
+      }
+    ]
+  }

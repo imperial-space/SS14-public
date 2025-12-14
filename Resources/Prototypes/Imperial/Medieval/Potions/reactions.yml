@@ -1,0 +1,100 @@
+- type: reaction
+  id: medievalexplosion
+  priority: 20
+  reactants:
+    Chlorine:
+      amount: 1
+    Fluorine:
+      amount: 3
+  effects:
+  - !type:ExplosionReactionEffect
+    explosionType: Default # 15 damage per intensity.
+    maxIntensity: 200
+    intensityPerUnit: 5
+    intensitySlope: 5
+    maxTotalIntensity: 200
+  products:
+    medievalexplosion: 2
+
+- type: reaction
+  id: medievalsmoke
+  priority: 20
+  reactants:
+    Chlorine:
+      amount: 1
+    Fluorine:
+      amount: 3
+  effects:
+    - !type:AreaReactionEffect
+      duration: 10
+      prototypeId: MedievalEmptySmoke
+      volume: 0
+      sound:
+        path: /Audio/Effects/smoke.ogg
+  products:
+    medievalsmoke: 2
+
+- type: reaction
+  id: medievalcryoexplosion
+  priority: 20
+  reactants:
+    Chlorine:
+      amount: 1
+    Fluorine:
+      amount: 3
+  effects:
+  - !type:ExplosionReactionEffect
+    explosionType: Cryo # 15 damage per intensity.
+    maxIntensity: 200
+    intensityPerUnit: 5
+    intensitySlope: 5
+    maxTotalIntensity: 200
+  products:
+    medievalcryoexplosion: 2
+
+- type: reaction
+  id: medievaladvancedsmokeandexplosion
+  priority: 20
+  reactants:
+    Chlorine:
+      amount: 1
+    Fluorine:
+      amount: 3
+  effects:
+  - !type:ExplosionReactionEffect
+    explosionType: Default # 15 damage per intensity.
+    maxIntensity: 400
+    intensityPerUnit: 8
+    intensitySlope: 8
+    maxTotalIntensity: 400
+  - !type:AreaReactionEffect
+    duration: 10
+    prototypeId: MedievalEmptySmoke
+    volume: 0
+    sound:
+      path: /Audio/Effects/smoke.ogg
+  products:
+    medievaladvancedsmokeandexplosion: 3
+
+- type: reaction
+  id: medievalbestexplosion
+  priority: 20
+  reactants:
+    Chlorine:
+      amount: 1
+    Fluorine:
+      amount: 3
+  effects:
+  - !type:ExplosionReactionEffect
+    explosionType: Default # 15 damage per intensity.
+    maxIntensity: 1000
+    intensityPerUnit: 100
+    intensitySlope: 5
+    maxTotalIntensity: 1000
+  - !type:AreaReactionEffect
+    duration: 10
+    prototypeId: Smoke
+    sound:
+      path: /Audio/Effects/smoke.ogg
+  products:
+    medievaladvancedacidradiation: 20

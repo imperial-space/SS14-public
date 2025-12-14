@@ -1,0 +1,19 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "Made by @crookielv",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "t1",
+        "directions": 4
+      },
+      {
+        "name": "t2",
+        "directions": 4
+      }
+    ]
+  }

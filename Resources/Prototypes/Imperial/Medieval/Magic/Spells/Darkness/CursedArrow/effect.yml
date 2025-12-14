@@ -1,0 +1,18 @@
+#Beginner
+
+- type: entity
+  id: CursedArrowSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/darkness/arrow.rsi
+    color: "#B600FF"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#B600FF"
+  - type: TimedDespawn
+    lifetime: 0.5

@@ -73,6 +73,11 @@ public partial class StatusIconData : IComparable<StatusIconData>
     /// </summary>
     [DataField]
     public bool IsShaded = false;
+
+    // Imperial Medieval start
+    [DataField]
+    public bool ShowToSelf = true;
+    // Imperial Medieval end
     public int CompareTo(StatusIconData? other)
     {
         return Priority.CompareTo(other?.Priority ?? int.MaxValue);

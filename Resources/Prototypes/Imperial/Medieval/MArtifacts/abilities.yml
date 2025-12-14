@@ -1,0 +1,146 @@
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: .
+  description: .
+  id: MAignite
+  components:
+  - type: ArtifactIgniteOnDamage
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: .
+  description: .
+  id: MAvampirism
+  components:
+  - type: ArtifactVampirismOnHit
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: .
+  description: .
+  id: MAblink
+  components:
+  - type: ArtifactActionAdd
+    actions:
+    - ActionBlink
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: .
+  description: .
+  id: MAdamage
+  components:
+  - type: ArtifactMultiplyDamage
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: .
+  description: .
+  id: MApenetrate
+  components:
+  - type: ArtifactPenetrateDamage
+  - type: ArtifactMultiplyDamage
+    multiplier: 0.5
+
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: .
+  description: .
+  id: MAhunger
+  components:
+  - type: ArtifactHungerHeal
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: .
+  description: .
+  id: MAlight
+  components:
+  - type: ArtifactLightWeapon
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: .
+  description: .
+  id: MApoison
+  components:
+  - type: ArtifactPoison
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: .
+  description: .
+  id: MAblooddamage
+  components:
+  - type: ArtifactAddDamageOnInit
+    damage:
+      types:
+        Bloodloss: 10
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: .
+  description: .
+  id: MAmidas
+  components:
+  - type: ArtifactMidas
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: .
+  description: .
+  id: MAthrow
+  components:
+  - type: ArtifactThrow
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: .
+  description: .
+  id: MAexplosion
+  components:
+  - type: ArtifactExplosionMelee
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: .
+  description: .
+  id: MArange
+  components:
+  - type: ArtifactRange
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: .
+  description: .
+  id: MAspeed
+  components:
+  - type: ArtifactSpeed
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: .
+  description: .
+  id: MAstructural
+  components:
+  - type: ArtifactAddDamageOnInit
+    damage:
+      types:
+        Structural: 100
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: .
+  description: .
+  id: MAdura
+  components:
+  - type: ArtifactDurability
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: .
+  description: .
+  id: MAstamina
+  components:
+  - type: ArtifactStaminaDamage

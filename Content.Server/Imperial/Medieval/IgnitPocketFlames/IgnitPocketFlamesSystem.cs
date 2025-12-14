@@ -3,6 +3,7 @@ using Content.Shared.IgnitionSource;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Server.Atmos.Components;
+using Content.Shared.Atmos.Components;
 
 namespace Content.Server.Imperial.Medieval;
 

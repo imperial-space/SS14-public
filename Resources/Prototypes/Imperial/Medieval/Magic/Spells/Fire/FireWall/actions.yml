@@ -1,0 +1,185 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionFireWallBeginner
+  name: medieval-store-spells-fire-wall-beginner-name
+  description: medieval-store-spells-fire-wall-beginner-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.0007
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalFire: 1
+        bonusEssences:
+          MagicMedievalFire: 1
+  - type: ManaDrainSpell
+    manaDrain: 30
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 18
+  - type: SpellCastEffect
+    effectProto: FireWallSpellCastEffectBeginner
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 22
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/fireball_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Fire/FireWall/icons.rsi
+      state: beginner
+  - type: TargetAction
+    targetingIndicator: false
+    range: 5
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalFireWallBeginner
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 2.5
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-fire-wall
+          color: "#ff9c24"
+          hideChat: true
+  - type: ActionUpgrade
+    effectedLevels:
+      2: MedievalActionFireWallMiddle
+      3: MedievalActionFireWallSenior
+  - type: ShowSpawnedEntity
+    sprites:
+      - drawedSprite:
+          sprite: Imperial/Medieval/Magic/Fire/FireWall/icons.rsi
+          state: firewall1
+        alwaysRender: true
+        spriteColor: "#47f8ff"
+        inRangeColor: "#CC00AF"
+        outOfRangeColor: "#CC0000"
+        range: 5
+    rotationPerClick: 45
+  - type: CheckInitialBarrier
+
+# Middle
+
+- type: entity
+  id: MedievalActionFireWallMiddle
+  parent: MedievalActionFireWallBeginner
+  name: medieval-store-spells-fire-wall-middle-name
+  description: medieval-store-spells-fire-wall-middle-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 40
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 18
+  - type: SpellCastEffect
+    effectProto: FireWallSpellCastEffectMiddle
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 22
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/fireball_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Fire/FireWall/icons.rsi
+      state: middle
+  - type: TargetAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 5
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalFireWallMiddle
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 3
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-fire-wall
+          color: "#ff9c24"
+          hideChat: true
+  - type: ShowSpawnedEntity
+    sprites:
+      - drawedSprite:
+          sprite: Imperial/Medieval/Magic/Fire/FireWall/icons.rsi
+          state: firewall2
+        alwaysRender: true
+        spriteColor: "#47f8ff"
+        inRangeColor: "#CC00AF"
+        outOfRangeColor: "#CC0000"
+        range: 5
+    rotationPerClick: 45
+
+# Senior
+
+- type: entity
+  id: MedievalActionFireWallSenior
+  parent: MedievalActionFireWallBeginner
+  name: medieval-store-spells-fire-wall-senior-name
+  description: medieval-store-spells-fire-wall-senior-desc
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 55
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 18
+  - type: SpellCastEffect
+    effectProto: FireWallSpellCastEffectSenior
+  - type: Action
+    useDelay: 29
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/fireball_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Fire/FireWall/icons.rsi
+      state: senior
+  - type: TargetAction
+    range: 5
+    checkCanAccess: false
+    targetingIndicator: false
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalFireWallSenior
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 3.5
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-fire-wall
+          color: "#ff9c24"
+          hideChat: true
+  - type: ShowSpawnedEntity
+    sprites:
+      - drawedSprite:
+          sprite: Imperial/Medieval/Magic/Fire/FireWall/icons.rsi
+          state: firewall3
+        alwaysRender: true
+        spriteColor: "#47f8ff"
+        inRangeColor: "#CC00AF"
+        outOfRangeColor: "#CC0000"
+        range: 5
+    rotationPerClick: 45

@@ -53,9 +53,9 @@
     Snout:
       points: 1
       required: false
-#  Tail: # the cat tail joke # Imperial Medieval
-#    points: 1 # imperial HairAndTail
-#    required: false
+    #  Tail: # disabled for humans
+    #    points: 0
+    #    required: false
     HeadTop:
       points: 1
       required: false

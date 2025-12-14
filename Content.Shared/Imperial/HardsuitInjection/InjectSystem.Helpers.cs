@@ -48,12 +48,13 @@ public sealed partial class InjectSystem
     public void Inject(EntityUid uid, EntityUid performer)
     {
         if (!TryComp<InjectComponent>(uid, out var component)) return;
-        if (!_actionsSystem.TryGetActionData(component!.InjectionActionEntity, out var action)) return;
+        var action = _actionsSystem.GetAction(component!.InjectionActionEntity);
 
-        if (action.AttachedEntity == null) return;
-        if (TryComp<ItemSlotsComponent>(action.AttachedEntity, out var itemslots)) return;
+        if (action == null) return;
+        if (action.Value.Comp.AttachedEntity == null) return;
+        if (TryComp<ItemSlotsComponent>(action.Value.Comp.AttachedEntity, out var itemslots)) return;
 
-        var user = action.AttachedEntity.Value;
+        var user = action.Value.Comp.AttachedEntity.Value;
         var beaker = _itemSlotsSystem.GetItemOrNull(uid, component.ContainerId, itemslots);
 
         if (beaker == null)
@@ -101,7 +102,7 @@ public sealed partial class InjectSystem
             _sharedAdminLogSystem.Add(LogType.ForceFeed, $"{_entManager.ToPrettyString(user):user} ES injected with a solution {SharedSolutionContainerSystem.ToPrettyString(removedSolution):removedSolution}");
 
         _reactiveSystem.DoEntityReaction(user, removedSolution, ReactionMethod.Injection);
-        _solutions.TryAddSolution((user, targetSolutionEntity.Value.Comp), removedSolution);
+        _solutions.TryAddSolution(targetSolutionEntity.Value, removedSolution);
 
         _audio.PlayPvs(component.InjectSound, user);
         _popupSystem.PopupEntity(Loc.GetString("hypospray-component-feel-prick-message"), user, user);

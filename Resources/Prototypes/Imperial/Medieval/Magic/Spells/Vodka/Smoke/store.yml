@@ -5,12 +5,12 @@
   name: medieval-store-spells-vodka-smoke-beginner-name
   description: medieval-store-spells-vodka-smoke-beginner-desc
   productAction: MedievalActionSmokeBeginner
-  priority: 2
+  priority: 6
   productUpgradeId:
     - MedievalSpellSmokeMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/smoke.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/Vodka/Smoke/icons.rsi
+    state: beginner
   cost:
     MagicMedievalVodka: 10
   categories:
@@ -25,12 +25,12 @@
   id: MedievalSpellSmokeMiddle
   name: medieval-store-spells-vodka-smoke-middle-name
   description: medieval-store-spells-vodka-smoke-middle-desc
-  priority: 2
+  priority: 6
   productUpgradeId:
     - MedievalSpellSmokeSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/smoke.rsi
-    state: 2
+    sprite: Imperial/Medieval/Magic/Vodka/Smoke/icons.rsi
+    state: middle
   cost:
     MagicMedievalVodka: 30
   categories:
@@ -48,12 +48,12 @@
   id: MedievalSpellSmokeSenior
   name: medieval-store-spells-vodka-smoke-senior-name
   description: medieval-store-spells-vodka-smoke-senior-desc
-  priority: 2
+  priority: 6
   productUpgradeId:
     - MedievalSpellSmokeSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/smoke.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/Vodka/Smoke/icons.rsi
+    state: senior
   cost:
     MagicMedievalVodka: 60
     ArchmagePoints: 1

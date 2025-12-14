@@ -1,4 +1,6 @@
-﻿using Robust.Shared.GameStates;
+﻿using Content.Shared.Damage;
+using Robust.Shared.GameStates;
+using Robust.Shared.Physics.Collision.Shapes;
 
 namespace Content.Shared.Imperial.Medieval.MobRiding
 {
@@ -13,5 +15,20 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
         [DataField, AutoNetworkedField]
         public EntityUid? Rider;
 
+        [DataField, AutoNetworkedField] public EntityUid? Pike;
+
+        [DataField] public string PikeShapeId = "PikeShape";
+        [DataField] public IPhysShape PikeShape;
+
+        [DataField] public Dictionary<EntityUid, TimeSpan> StunList = new();
+
+    }
+
+    public enum CheckResult
+    {
+        Self,
+        Other,
+        Both,
+        Draw,
     }
 }

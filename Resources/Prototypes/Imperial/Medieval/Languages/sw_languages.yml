@@ -262,3 +262,23 @@
     - вэ
     - та
     - арэ
+
+- type: language
+  id: Plague
+  roundstart: false
+  priority: 10
+  highIntelligenceAllowed: false
+  speech: !type:CollectiveMind
+    showRank: false
+    color: crimson
+    font: SpellwardSpecialeliteFont
+    fontSize: 14
+
+- type: language
+  id: Resonat
+  roundstart: true
+  priority: 10
+  highIntelligenceAllowed: false
+  speech: !type:CollectiveMind
+    showRank: false
+    color: "#ae76db"

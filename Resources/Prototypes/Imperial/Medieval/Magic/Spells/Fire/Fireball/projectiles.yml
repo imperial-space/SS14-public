@@ -12,7 +12,7 @@
     - state: fireball
   - type: Explosive
     explosionType: Default
-    maxIntensity: 1.1
+    maxIntensity: 2
     intensitySlope: 8
     totalIntensity: 36
     maxTileBreak: 0
@@ -63,7 +63,7 @@
     - state: fireball
   - type: Explosive
     explosionType: Default
-    maxIntensity: 2.1
+    maxIntensity: 5
     intensitySlope: 6
     totalIntensity: 90
     maxTileBreak: 0
@@ -118,7 +118,7 @@
     - state: fireball
   - type: Explosive
     explosionType: Default
-    maxIntensity: 5
+    maxIntensity: 10
     intensitySlope: 5
     totalIntensity: 210
     maxTileBreak: 0

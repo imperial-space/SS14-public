@@ -10,3 +10,4 @@ admin-player-actions-window-admin-notes = Админ записи
 admin-player-actions-window-admin-fax = Админ Факс
 admin-player-actions-window-admin-chat = Админ Чат
 admin-player-actions-window-nrp-panel = НРП
+admin-player-actions-window-creations-panel = Творчество

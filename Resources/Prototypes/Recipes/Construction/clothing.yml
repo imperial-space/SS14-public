@@ -42,7 +42,24 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Парик и маска бананового клоуна # Imperial Recipes Locale
+  id: cardHelmet
+  graph: cardHelmet
+  startNode: start
+  targetNode: cardhelmet
+  category: construction-category-clothing
+  objectType: Item
+
+- type: construction
+  hide: true # imperial medieval craft disable
+  id: cardArmour
+  graph: cardArmour
+  startNode: start
+  targetNode: cardarmour
+  category: construction-category-clothing
+  objectType: Item
+
+- type: construction
+  hide: true # imperial medieval craft disable
   id: BananaClownMask
   graph: BananaClownMask
   startNode: start

@@ -1,0 +1,225 @@
+- type: entity
+  id: SkeletonSkullBoss
+  name: древний череп
+  description: Оно живое!
+  placement:
+    mode: AlignTileAny
+  components:
+  - type: Sprite
+    snapCardinals: true
+    sprite: Imperial/Medieval/Mobs/Bosses/SkeletonSkull/skeleton-skull.rsi
+    layers:
+    - map: [ "enum.BossStageVisuals.Layer" ]
+      state: skull
+    - map: [ "enum.AdditionalBossVisuals.Layer" ]
+      state: null
+      visible: false
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1,-1,1,1"
+        density: 50
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.BossStageVisuals.Stage:
+        enum.BossStageVisuals.Layer:
+          1: {state: skull}
+          2: {state: skull-1}
+          3: {state: skull-2}
+      enum.AdditionalBossVisuals.State:
+        enum.AdditionalBossVisuals.Layer:
+          "none": {state: null, visible: false}
+          "healing": {state: healing, visible: true}
+          "red": {state: redglow, visible: true}
+          "purple": {state: purpleglow, visible: true}
+          "green": {state: greenglow, visible: true}
+  - type: Clickable
+  - type: InteractionOutline
+  - type: DoAfter
+  - type: StatusEffects
+    allowed:
+    - Jitter
+  - type: FloatingVisuals
+    ignoreGravity: true
+  - type: Boss
+    song:
+      path: /Audio/Imperial/Medieval/Locations/Pantheon's-wrath.ogg
+      params:
+        volume: -9
+    health: 5000
+    loseSound:
+      path: /Audio/Imperial/Medieval/Effects/boss_fail.ogg
+    defeatSound:
+      path: /Audio/Imperial/Medieval/Effects/boss_fail.ogg
+    componentsOnDefeat:
+    - type: ExplosionDefeatedBoss
+    stages:
+      1:
+        stageDelay: 3
+        threshold: 4500
+        attacks:
+        - !type:MarkerTargetedAttack
+          markerTag: BoneSpikeSpawnPosition
+          countLimits: [1, 1]
+          priority: 7
+          cooldown: 60
+          actions:
+          - !type:SpawnAtPosition
+            prototypes: BoneSpikeBig
+            randomDistance: 12
+            spawnCount: 5
+          - !type:PlaySound
+            sound:
+              path: /Audio/Imperial/Medieval/Effects/spike-spawn.ogg
+            soundType: Position
+        - !type:PlayerTargetedAttack
+          countLimits: [2, 6]
+          cooldown: 20
+          actions:
+          - !type:AddComponent
+            components:
+            - type: CursedMark
+          - !type:PlaySound
+            sound:
+              path: /Audio/Imperial/Medieval/Effects/cursed-mark.ogg
+            soundType: Player
+          - !type:BossAppearance
+              state: green
+              duration: 1.9
+        - !type:MarkerTargetedAttack
+          markerTag: BossSpikesSpawnPosition
+          countLimits: [2, 5]
+          priority: 2
+          actions:
+          - !type:SpawnAtPosition
+            prototypes: [BossSpikesSpawnMarkerWaveRight, BossSpikesSpawnMarkerWaveLeft, BossSpikesSpawnMarkerCross, BossSpikesSpawnMarkerSpiralOut, BossSpikesSpawnMarkerCrossRotating]
+            randomDistance: 7
+            spawnCount: 1
+      2:
+        stageDelay: 2.3
+        threshold: 2950
+        attacksPerTime: [1,2]
+        sound:
+          path: /Audio/Imperial/Medieval/Effects/boss-stage-2.ogg
+        attacks:
+        - !type:MarkerTargetedAttack
+          markerTag: BossRuneSpawnPosition
+          countLimits: [2, 3]
+          cooldown: 50
+          actions:
+          - !type:AddComponent
+            toBoss: true
+            components:
+            - type: BossBullethellSource
+              weaponProto: WeaponSkullBossBHell
+              delay: 0.4
+              degreesPerShot: 15
+              shots: 30
+          - !type:BossAppearance
+              state: red
+              duration: 1.9
+        - !type:MarkerTargetedAttack
+          markerTag: HealingSkullSpawnPosition
+          countLimits: [2, 3]
+          cooldown: 30
+          priority: 1.25
+          actions:
+          - !type:SpawnAtPosition
+            prototypes: MobBossHealingSkull
+            randomDistance: 1
+            spawnCount: 2
+          - !type:PlaySound
+            sound:
+              path: /Audio/Imperial/Medieval/Effects/heal-skulls-spawn.ogg
+            soundType: BossPvs
+        - !type:MarkerTargetedAttack
+          markerTag: BossRuneSpawnPosition
+          countLimits: [2, 3]
+          cooldown: 50
+          priority: 1.25
+          actions:
+          - !type:AddComponent
+            toBoss: true
+            components:
+            - type: ChargingRuneExplosion
+          - !type:SpawnAtPosition
+            prototypes: SkullBossExplosionRune
+            randomDistance: 5
+            spawnCount: 2
+          - !type:PlaySound
+            sound:
+              path: /Audio/Imperial/Medieval/Effects/rune-spawn.ogg
+            soundType: BossPvs
+          - !type:BossAppearance
+              state: purple
+              duration: 1.9
+        - !type:MarkerTargetedAttack
+          markerTag: BossSpikesSpawnPosition
+          countLimits: [2, 4]
+          priority: 1.25
+          actions:
+          - !type:SpawnAtPosition
+            prototypes: [BossSpikesSpawnMarkerPincerVertical, BossSpikesSpawnMarkerRandomBurst, BossSpikesSpawnMarkerDiagonalSweep, BossSpikesSpawnMarkerBox]
+            randomDistance: 2
+            spawnCount: 1
+        - !type:GridTargetedAttack
+          cooldown: 50
+          priority: 2
+          actions:
+          - !type:AddComponent
+            components:
+            - type: SpikedGrid
+              targetIndex: 16
+              spikeProto: EffectSkullBossSpikesSpawn
+      3:
+        stageDelay: 1.6
+        threshold: 900
+        attacksPerTime: [1,3]
+        sound:
+          path: /Audio/Imperial/Medieval/Effects/boss-stage-3.ogg
+        attacks:
+        - !type:MarkerTargetedAttack
+          markerTag: BossRuneSpawnPosition
+          countLimits: [2, 3]
+          cooldown: 20
+          priority: 1.25
+          actions:
+          - !type:AddComponent
+            toBoss: true
+            components:
+            - type: BossBullethellSource
+              weaponProto: WeaponSkullBossBHell
+              delay: 0.1
+              degreesPerShot: 11
+              shots: 60
+          - !type:BossAppearance
+              state: red
+              duration: 1.9
+        - !type:MarkerTargetedAttack
+          markerTag: BossRuneSpawnPosition
+          countLimits: [1, 1]
+          cooldown: 50
+          priority: 3
+          actions:
+          - !type:SpawnAtPosition
+            prototypes: SkullBossCrystalTrap
+            randomDistance: 2
+            spawnCount: 1
+          - !type:PlaySound
+            sound:
+              path: /Audio/Imperial/Medieval/Effects/crystal.ogg
+            soundType: Position
+          - !type:BossAppearance
+              state: purple
+              duration: 1.9

@@ -37,12 +37,12 @@ public sealed partial class SiegeWeaponComponent : Component
     [DataField]
     public bool SpringCharged = false;
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public string EffectSoundOnAim = "/Audio/Imperial/Medieval/Siege/catapult_aim.ogg";
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public string EffectSoundOnLoad = "/Audio/Imperial/Medieval/Siege/catapult_load.ogg";
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public string EffectSoundOnShoot = "/Audio/Imperial/Medieval/Siege/catapult_shot.ogg";
 }

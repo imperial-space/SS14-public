@@ -1,9 +1,7 @@
 - type: soundCollection
   id: LobbyMusic
   files:
-    - /Audio/Imperial/Medieval/LobbyMusic/Spellward-Main-Theme.ogg #Imperial medieval lobby music start
+    - /Audio/Imperial/Medieval/LobbyMusic/Divine-intervention.ogg #Imperial medieval lobby music start
+    - /Audio/Imperial/Medieval/LobbyMusic/Crab-Lagoon-(Cover).ogg
     - /Audio/Imperial/Medieval/LobbyMusic/Royal-Overture.ogg
-    - /Audio/Imperial/Medieval/LobbyMusic/You-can_t-stop-a-rebelion.ogg
-    - /Audio/Imperial/Medieval/LobbyMusic/Legatus-orderus.ogg
-    - /Audio/Imperial/Medieval/LobbyMusic/Onslought.ogg
-    - /Audio/Imperial/Medieval/LobbyMusic/Our-equitable-Dux.ogg #Imperial medieval lobby music end
+    - /Audio/Imperial/Medieval/LobbyMusic/Gremlin-(new).ogg #Imperial medieval lobby music end

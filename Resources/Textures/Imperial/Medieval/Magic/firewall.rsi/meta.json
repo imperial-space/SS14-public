@@ -1,0 +1,43 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "by mr_fraxu",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+  "states":
+  [
+    {
+      "name": "fire",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "firewall1"
+    },
+    {
+      "name": "firewall2"
+    },
+    {
+      "name": "firewall3"
+    }
+  ]
+}

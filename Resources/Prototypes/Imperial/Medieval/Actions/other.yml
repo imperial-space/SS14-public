@@ -1,0 +1,14 @@
+# просто действия, которые не подходят ни под одну группу, и скорее всего по одиночке
+
+- type: entity
+  id: HideHairAction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: Interface/Actions/actions_mecha.rsi
+      state: mech_cycle_equip_on
+    useDelay: 0.5
+  - type: InstantAction
+    event: !type:HideHairToggleEvent

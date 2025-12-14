@@ -185,9 +185,6 @@
       0: Alive
       130: Critical
       220: Dead
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 3.4
-    baseSprintSpeed: 3.4
   - type: MeleeWeapon
     attackRate: 0.8
     damage:
@@ -219,7 +216,7 @@
   sprites: MobOrcSprites
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobOrcDummy
-  skinColoration: TintedHues
+  skinColoration: OrcColors
 
 - type: speciesBaseSprites
   id: MobOrcSprites

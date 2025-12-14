@@ -1,0 +1,312 @@
+- type: entity
+  id: OpenPlagueMenuAction
+  name: Plague menu
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Interface/Plague/actions.rsi
+        state: shop
+      useDelay: 30
+    - type: InstantAction
+      event: !type:OpenPlagueEvolutionMenuActionEvent
+
+- type: entity
+  id: PlagueInfectAction
+  name: Infect
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Interface/Plague/actions.rsi
+        state: infection
+      useDelay: 30
+    - type: TargetAction
+      interactOnMiss: false
+    - type: EntityTargetAction
+      whitelist:
+        components:
+        - Body
+      canTargetSelf: false
+      event: !type:InfectTargetActionEvent
+
+- type: entity
+  id: PlagueForcedVomitAction
+  name: Infect
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Interface/Plague/actions.rsi
+        state: retch
+      useDelay: 45
+    - type: TargetAction
+      interactOnMiss: false
+    - type: EntityTargetAction
+      event: !type:PlagueForcedVomitActionEvent
+      whitelist:
+        components:
+        - Body
+      canTargetSelf: false
+
+- type: entity
+  id: PlagueAsthmaticAction
+  name: Infect
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Interface/Plague/actions.rsi
+        state: asthma
+      useDelay: 45
+    - type: TargetAction
+      interactOnMiss: false
+    - type: EntityTargetAction
+      event: !type:PlagueAsthmaticActionEvent
+        cost: 1
+      whitelist:
+        components:
+        - Body
+      canTargetSelf: false
+
+- type: entity
+  id: PlagueDizzinessAction
+  name: Infect
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Interface/Plague/actions.rsi
+        state: dizziness
+      useDelay: 45
+    - type: TargetAction
+      interactOnMiss: false
+    - type: EntityTargetAction
+      whitelist:
+        components:
+        - Body
+      canTargetSelf: false
+      event: !type:PlagueDizzinessActionEvent
+        cost: 0
+
+- type: entity
+  id: PlagueSleepyAction
+  name: Infect
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Interface/Plague/actions.rsi
+        state: sleepy
+      useDelay: 45
+    - type: TargetAction
+      interactOnMiss: false
+    - type: EntityTargetAction
+      canTargetSelf: false
+      event: !type:PlagueSleepyActionEvent
+        cost: 0
+      whitelist:
+        components:
+        - Body
+
+- type: entity
+  id: PlagueInjuryAction
+  name: Infect
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Interface/Plague/actions.rsi
+        state: wound
+      useDelay: 45
+    - type: TargetAction
+      interactOnMiss: false
+    - type: EntityTargetAction
+      whitelist:
+        components:
+        - Body
+      canTargetSelf: false
+      event: !type:PlagueInjuryActionEvent
+        cost: 2
+
+- type: entity
+  id: PlagueCataractAction
+  name: Infect
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Interface/Plague/actions.rsi
+        state: cataract
+      useDelay: 90
+    - type: TargetAction
+      interactOnMiss: false
+    - type: EntityTargetAction
+      canTargetSelf: false
+      event: !type:PlagueCataractActionEvent
+        cost: 2
+      whitelist:
+        components:
+        - Body
+
+- type: entity
+  id: PlagueHeartAttackAction
+  categories: [ HideSpawnMenu ]
+  name: Infect
+  description: queueueueueueueue
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Interface/Plague/actions.rsi
+        state: heart
+      useDelay: 90
+    - type: TargetAction
+      interactOnMiss: false
+    - type: EntityTargetAction
+      event: !type:PlagueHeartAttackActionEvent
+        cost: 3
+      canTargetSelf: false
+      whitelist:
+        components:
+        - Body
+
+- type: entity
+  id: PlagueImmunityBreakAction
+  categories: [ HideSpawnMenu ]
+  name: Infect
+  description: queueueueueueueue
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Interface/Plague/actions.rsi
+        state: immunefull
+      useDelay: 90
+    - type: TargetAction
+      interactOnMiss: false
+    - type: EntityTargetAction
+      event: !type:PlagueBreakImmunityActionEvent
+        cost: 2
+      canTargetSelf: false
+      whitelist:
+        components:
+        - Body
+
+- type: entity
+  id: PlagueSpawnSlimesAction
+  name: Infect
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Interface/Plague/actions.rsi
+        state: slime
+      useDelay: 90
+    - type: TargetAction
+      checkCanAccess: false
+      range: 5
+    - type: WorldTargetAction
+      event: !type:PlagueSpawnEntityActionEvent
+        prototype: MedievalPlagueSlimeSpawn
+        cost: 1
+
+- type: entity
+  id: PlagueSpawnBugsAction
+  name: Infect
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Interface/Plague/actions.rsi
+        state: bugs
+      useDelay: 90
+    - type: TargetAction
+      range: 5
+      checkCanAccess: false
+    - type: WorldTargetAction
+      event: !type:PlagueSpawnEntityActionEvent
+        prototype: MedievalPlagueBugsSpawn
+        cost: 1
+
+- type: entity
+  id: PlagueTpInfectedAction
+  name: Plague menu
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Interface/Plague/actions.rsi
+        state: tpsick
+      useDelay: 30
+    - type: InstantAction
+      event: !type:PlagueTeleportInfectedActionEvent
+
+- type: entity
+  id: PlagueTpNotInfectedAction
+  name: Plague menu
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Interface/Plague/actions.rsi
+        state: tphealthy
+      useDelay: 30
+    - type: InstantAction
+      event: !type:PlagueTeleportNotInfectedActionEvent
+
+- type: entity
+  id: PlaguePolymorphMouseAction
+  name: Plague menu
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Interface/Plague/actions.rsi
+        state: polymorphrat
+      useDelay: 120
+    - type: InstantAction
+      event: !type:PlaguePolymorphMouseActionEvent
+        cost: 1
+
+- type: entity
+  id: PlagueRevertPolymorphMouseAction
+  name: Plague menu
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Interface/Plague/actions.rsi
+        state: polymorphghost
+      useDelay: 90
+    - type: InstantAction
+      event: !type:RevertPolymorphActionEvent
+        cost: 1

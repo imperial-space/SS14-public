@@ -177,6 +177,11 @@ namespace Content.Shared.Atmos
             [Gas.Plasma] = Loc.GetString("gas-plasma-abbreviation"),
             [Gas.Tritium] = Loc.GetString("gas-tritium-abbreviation"),
             [Gas.WaterVapor] = Loc.GetString("gas-water-vapor-abbreviation"),
+            [Gas.Thermonium] = Loc.GetString("gas-thermonium-abbreviation"), /// Imperial Added Thermonium
+            [Gas.Phazonium] = Loc.GetString("gas-phazonium-abbreviation"), /// Imperial Added Phazonium and Ozonium
+            [Gas.Ozonium] = Loc.GetString("gas-ozonium-abbreviation"), /// Imperial Added Phazonium and Ozonium
+            [Gas.Hydrogen] = Loc.GetString("gas-hydrogen-abbreviation"), /// Imperial Added Hydrogen
+
         };
 
         #region Excited Groups
@@ -206,7 +211,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 9;
+        public const int TotalNumberOfGases = 13; /// Imperial Added Thermonium
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
@@ -241,6 +246,16 @@ namespace Content.Shared.Atmos
         public const float TritiumBurnOxyFactor = 100f;
         public const float TritiumBurnTritFactor = 10f;
 
+        /// Imperial Added Hydrogen start
+        public const float MinimumHydrogenOxyburnEnergy = 143000f;
+        public const float HydrogenBurnOxyFactor = 100f;
+        public const float HydrogenBurnHydrFactor = 10f;
+        public const float HydrogenProductionMaxEfficiencyTemperature = 2273f;
+        public const float HydrogenProductionConversionRate = 2273f;
+        public const float N2OzonProductionMaxEfficiencyTemperature = 2273f;
+        public const float N2OzonProductionConversionRate = 2273f;
+
+        /// Imperial Added Hydrogen end
         public const float FrezonCoolLowerTemperature = 23.15f;
 
         /// <summary>
@@ -283,6 +298,19 @@ namespace Content.Shared.Atmos
         ///     Divisor for Ammonia Oxygen reaction so that it doesn't happen instantaneously.
         /// </summary>
         public const float AmmoniaOxygenReactionRate = 10f;
+        /// Imperial Added Thermonium Start
+
+         public const float ThermoniumProductionConversionRate = 2273f;
+         public const float ThermoniumProductionMaxEfficiencyTemperature = 2273f;
+        /// Imperial Added Thermonium end
+        /// Imperial Added Phazonium and Ozonium start
+        public const float PhazoniumProductionConversionRate = 2273f;
+        public const float PhazoniumProductionMaxEfficiencyTemperature = 13.15f;
+
+        public const float OzoniumProductionConversionRate = 2273f;
+        public const float OzoniumProductionMaxEfficiencyTemperature = 33.15f;
+
+        /// Imperial Added Phazonium and Ozonium end
 
         /// <summary>
         ///     Determines at what pressure the ultra-high pressure red icon is displayed.
@@ -320,8 +348,7 @@ namespace Content.Shared.Atmos
         ///     (The pressure threshold is so low that it doesn't make sense to do any calculations,
         ///     so it just applies this flat value).
         /// </summary>
-        // Original value is 4, buff back when we have proper ways for players to deal with breaches.
-        public const int LowPressureDamage = 1;
+        public const int LowPressureDamage = 4;
 
         public const float WindowHeatTransferCoefficient = 0.1f;
 
@@ -370,6 +397,10 @@ namespace Content.Shared.Atmos
         WaterVapor = 5,
         Ammonia = 6,
         NitrousOxide = 7,
-        Frezon = 8
+        Frezon = 8, /// Imperial Added Thermonium
+        Thermonium = 9, /// Imperial Added Thermonium
+        Phazonium = 10, /// Imperial Added Phazonium and Ozonium
+        Ozonium = 11, /// Imperial Added Phazonium and Ozonium
+        Hydrogen = 12 /// Imperial Added Hydrogen
     }
 }

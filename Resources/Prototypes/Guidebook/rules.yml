@@ -27,6 +27,7 @@
   - ImperialGameRule5
   - ImperialGameRule6
   - ImperialGameRule7
+  - ImperialGameRule8
 
 - type: guideEntry
   id: CommunityRulesImperial # Основная страница правил сообщества
@@ -102,6 +103,12 @@
   name: guide-entry-rules-imperial-game-7
   ruleEntry: true
   text: "/ServerInfo/Guidebook/ServerRules/Imperial/GameRules/ImperialGameRule7.xml"
+
+- type: guideEntry
+  id: ImperialGameRule8
+  name: guide-entry-rules-imperial-game-8
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/Imperial/GameRules/ImperialGameRule8.xml"
 
 # Правила сообщества Imperial Space
 

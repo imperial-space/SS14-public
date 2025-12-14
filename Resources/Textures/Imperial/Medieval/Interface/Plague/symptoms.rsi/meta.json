@@ -1,0 +1,187 @@
+{
+    "version": 1,
+    "size":
+    {
+      "x": 32,
+      "y": 32
+    },
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "-",
+    "states":
+    [
+      {
+        "name": "allergy"
+      },
+      {
+        "name": "animaltier1"
+      },
+      {
+        "name": "animaltier2"
+      },
+      {
+        "name": "asthma"
+      },
+      {
+        "name": "bugs"
+      },
+      {
+        "name": "cataract"
+      },
+      {
+        "name": "cleantier1"
+      },
+      {
+        "name": "cleantier2"
+      },
+      {
+        "name": "cleantier3"
+      },
+      {
+        "name": "coughtier1"
+      },
+      {
+        "name": "coughtier2"
+      },
+      {
+        "name": "coughupgrade"
+      },
+      {
+        "name": "cure"
+      },
+      {
+        "name": "dizzinessupgrade"
+      },
+      {
+        "name": "frame"
+      },
+      {
+        "name": "gastrite"
+      },
+      {
+        "name": "headache"
+      },
+      {
+        "name": "healresistance1"
+      },
+      {
+        "name": "healresistance2"
+      },
+      {
+        "name": "healresistance3"
+      },
+      {
+        "name": "heart"
+      },
+      {
+        "name": "hiccup1"
+      },
+      {
+        "name": "hiccup2"
+      },
+      {
+        "name": "hiccup3"
+      },
+      {
+        "name": "hunger"
+      },
+      {
+        "name": "immunetier1"
+      },
+      {
+        "name": "immunetier2"
+      },
+      {
+        "name": "infectiontier1"
+      },
+      {
+        "name": "infectiontier2"
+      },
+      {
+        "name": "infectiontier3"
+      },
+      {
+        "name": "intolerance"
+      },
+      {
+        "name": "invis1"
+      },
+      {
+        "name": "invis2"
+      },
+      {
+        "name": "legs"
+      },
+      {
+        "name": "lowprotecttier1"
+      },
+      {
+        "name": "lowprotecttier2"
+      },
+      {
+        "name": "lowprotecttier3"
+      },
+      {
+        "name": "lungs"
+      },
+      {
+        "name": "mime1"
+      },
+      {
+        "name": "mime2"
+      },
+      {
+        "name": "nausea"
+      },
+      {
+        "name": "ratstier1"
+      },
+      {
+        "name": "ratstier2"
+      },
+      {
+        "name": "retchtier1"
+      },
+      {
+        "name": "retchtier2"
+      },
+      {
+        "name": "retchupgrade"
+      },
+      {
+        "name": "runny"
+      },
+      {
+        "name": "skeleton"
+      },
+      {
+        "name": "skin"
+      },
+      {
+        "name": "skincancer"
+      },
+      {
+        "name": "sleepy"
+      },
+      {
+        "name": "slimeupgrade"
+      },
+      {
+        "name": "stomach"
+      },
+      {
+        "name": "temperature"
+      },
+      {
+        "name": "tpsick"
+      },
+      {
+        "name": "tphealthy"
+      },
+      {
+        "name": "weakskin"
+      },
+      {
+        "name": "wound"
+      }
+    ]
+  }

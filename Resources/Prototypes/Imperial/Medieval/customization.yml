@@ -37,7 +37,7 @@
   followSkinColor: true
   speciesRestriction: [Zveres]
   sprites:
-  - sprite: Imperial/Medieval/Species/Zveres/parts.rsi
+  - sprite: Imperial/Medieval/Species/Customization/Zveres/tails.rsi
     state: tail
 
 - type: marking
@@ -59,6 +59,37 @@
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Zveres/tails.rsi
     state: short
+
+# Animated tails
+- type: marking
+  id: ZveresTailDefaultAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  followSkinColor: true
+  speciesRestriction: []
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Zveres/tails.rsi
+    state: tail_wagging
+
+- type: marking
+  id: ZveresTailRoundedAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  followSkinColor: true
+  speciesRestriction: []
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Zveres/tails.rsi
+    state: rounded_wagging
+
+- type: marking
+  id: ZveresTailShortAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  followSkinColor: true
+  speciesRestriction: []
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Zveres/tails.rsi
+    state: short_wagging
 
 ### TAILS END
 ### EARS

@@ -1,0 +1,56 @@
+#Beginner
+
+- type: entity
+  id: FireWallSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/wall.rsi
+    color: "#ff9c24"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#ff9c24"
+  - type: TimedDespawn
+    lifetime: 2.5
+
+#Middle
+
+- type: entity
+  id: FireWallSpellCastEffectMiddle
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/wall.rsi
+    color: "#ff9c24"
+    noRot: true
+    layers:
+      - state: middle
+        shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#ff9c24"
+  - type: TimedDespawn
+    lifetime: 3.0
+
+#Senior
+
+- type: entity
+  id: FireWallSpellCastEffectSenior
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/wall.rsi
+    color: "#ff9c24"
+    noRot: true
+    layers:
+      - state: senior
+        shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#ff9c24"
+  - type: TimedDespawn
+    lifetime: 3.5

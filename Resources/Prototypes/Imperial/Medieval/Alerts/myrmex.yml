@@ -1,0 +1,8 @@
+- type: alert
+  id: MyrmexHungry
+  category: Hunger
+  icons:
+  - sprite: /Textures/Interface/Alerts/hunger.rsi
+    state: starving
+  name: alerts-starving-name
+  description: alerts-starving-desc

@@ -1,0 +1,30 @@
+- type: entity
+  id: CultDaggerParticles
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
+  - type: MedievalParticles
+    color: "#420d0d"
+  - type: TimedDespawn
+    lifetime: 5
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/stone_release.ogg
+
+- type: entity
+  id: CultDaggerSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/darkness/dagger.rsi
+    color: "#420d0d"
+    noRot: true
+    layers:
+      - state: beginner
+        unshaded: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#420d0d"
+  - type: TimedDespawn
+    lifetime: 0.5

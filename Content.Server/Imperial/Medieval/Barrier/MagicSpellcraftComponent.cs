@@ -39,9 +39,9 @@ namespace Content.Server.MagicSpellcraft.Components
         [DataField]
         public string SpawnedEntity = "MobMonkey";
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSoundOnScrollAdd = "/Audio/Imperial/Medieval/scroll_use.ogg";
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSoundOnFinish = "/Audio/Imperial/Medieval/magic_craft.ogg";
 
         [DataField]

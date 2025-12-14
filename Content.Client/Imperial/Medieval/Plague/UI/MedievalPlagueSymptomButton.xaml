@@ -1,0 +1,12 @@
+<imp:FancyButton
+    xmlns="https://spacestation14.io"
+    xmlns:imp="clr-namespace:Content.Client.Imperial.UI.Buttons.FancyButton"
+    StyleClasses="ButtonSquare"
+    SetSize="64 64">
+    <TextureRect
+        Name="Texture"
+        HorizontalExpand="True"
+        Stretch="KeepAspectCentered"
+        VerticalExpand="True"
+        TextureScale="1 1" />
+</imp:FancyButton>

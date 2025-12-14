@@ -1,0 +1,8 @@
+- type: entity
+  parent: BaseGameRule
+  id: MedievalFactionGoalsRule
+  components:
+  - type: GameRule
+  - type: FactionGoalsRule
+    goals:
+      Merc: [TestPack]

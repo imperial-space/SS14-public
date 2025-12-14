@@ -1,0 +1,14 @@
+- type: polymorph
+  id: MedievalPlagueMousePolymorph
+  configuration:
+    entity: MedievalMobPlagueMouse
+    forced: true
+    revertOnEat: true
+    revertOnCrit: false
+    transferDamage: false
+    allowRepeatedMorphs: false
+    transferName: false
+    polymorphSound:
+      path: /Audio/Imperial/Medieval/Plague/morph_mouse.ogg
+    exitPolymorphSound:
+      path: /Audio/Imperial/Medieval/Plague/morph_ghost.ogg

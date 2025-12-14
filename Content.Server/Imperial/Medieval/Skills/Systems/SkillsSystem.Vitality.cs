@@ -7,6 +7,7 @@ using Content.Server.Imperial.Medieval.Body;
 using Content.Server.Imperial.Medieval.NeedSleep;
 using Content.Server.Popups;
 using Content.Shared.Damage.ForceSay;
+using Content.Shared.Imperial.Medieval.Body;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;

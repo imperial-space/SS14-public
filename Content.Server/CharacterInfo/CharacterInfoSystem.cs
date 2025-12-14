@@ -1,10 +1,10 @@
-﻿using Content.Server.Friends;
+﻿using Content.Server.Imperial.Medieval.Factions;
 using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Server.Roles.Jobs;
 using Content.Shared.CharacterInfo;
-using Content.Shared.Friends;
-using Content.Shared.Friends.Components;
+using Content.Shared.Imperial.Medieval.Factions;
+using Content.Shared.Imperial.Medieval.Factions.Components;
 using Content.Shared.Objectives;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives.Systems;
@@ -18,7 +18,7 @@ public sealed class CharacterInfoSystem : EntitySystem
     [Dependency] private readonly MindSystem _minds = default!;
     [Dependency] private readonly RoleSystem _roles = default!;
     [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
-    [Dependency] private readonly FriendsSystem _friends = default!;
+    [Dependency] private readonly MedievalFactionsSystem _friends = default!;
 
     public override void Initialize()
     {
@@ -63,7 +63,7 @@ public sealed class CharacterInfoSystem : EntitySystem
 
         // Imperial medieval faction menu start
         List<string> faction = new();
-        if (TryComp<FriendsComponent>(entity, out var friend))
+        if (TryComp<MedievalFactionMemberComponent>(entity, out var friend))
         {
             if (!_friends.TryGetFactionDataContainer(out var container))
                 return;

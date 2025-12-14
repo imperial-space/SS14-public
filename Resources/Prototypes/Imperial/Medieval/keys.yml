@@ -251,6 +251,294 @@
 
 - type: entity
   parent: MedievalKeyBase
+  id: MedievalKeyLegionAlch
+  name: legion alchemists key
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: tavern
+  - type: Key
+    accesses:
+    - Cryogenics
+  - type: Tag
+    tags:
+    - LegionnaireKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyRebelAlch
+  name: rebel alchemists key
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: tavern
+  - type: Key
+    accesses:
+    - HeadOfSecurity
+  - type: Tag
+    tags:
+    - RebelKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyLegionBlack
+  name: legion blacksmith key
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: tavern
+  - type: Key
+    accesses:
+    - Quartermaster
+  - type: Tag
+    tags:
+    - LegionnaireKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyRebelBlack
+  name: rebel blacksmith key
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: tavern
+  - type: Key
+    accesses:
+    - ResearchDirector
+  - type: Tag
+    tags:
+    - RebelKey
+
+# Rebel tavern room keys
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyRebelTavern1
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: tavern
+  - type: Key
+    accesses:
+    - RebelTavern1
+  - type: Tag
+    tags:
+    - RebelKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyRebelTavern2
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: tavern
+  - type: Key
+    accesses:
+    - RebelTavern2
+  - type: Tag
+    tags:
+    - RebelKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyRebelTavern3
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: tavern
+  - type: Key
+    accesses:
+    - RebelTavern3
+  - type: Tag
+    tags:
+    - RebelKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyRebelTavern4
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: tavern
+  - type: Key
+    accesses:
+    - RebelTavern4
+  - type: Tag
+    tags:
+    - RebelKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyRebelTavern5
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: tavern
+  - type: Key
+    accesses:
+    - RebelTavern5
+  - type: Tag
+    tags:
+    - RebelKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyRebelTavern6
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: tavern
+  - type: Key
+    accesses:
+    - RebelTavern6
+  - type: Tag
+    tags:
+    - RebelKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyRebelTavern7
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: tavern
+  - type: Key
+    accesses:
+    - RebelTavern7
+  - type: Tag
+    tags:
+    - RebelKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyRebelTavern8
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: tavern
+  - type: Key
+    accesses:
+    - RebelTavern8
+  - type: Tag
+    tags:
+    - RebelKey
+
+# Legion tavern room keys
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyLegionTavern1
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: tavern
+  - type: Key
+    accesses:
+    - LegionTavern1
+  - type: Tag
+    tags:
+    - LegionnaireKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyLegionTavern2
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: tavern
+  - type: Key
+    accesses:
+    - LegionTavern2
+  - type: Tag
+    tags:
+    - LegionnaireKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyLegionTavern3
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: tavern
+  - type: Key
+    accesses:
+    - LegionTavern3
+  - type: Tag
+    tags:
+    - LegionnaireKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyLegionTavern4
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: tavern
+  - type: Key
+    accesses:
+    - LegionTavern4
+  - type: Tag
+    tags:
+    - LegionnaireKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyLegionTavern5
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: tavern
+  - type: Key
+    accesses:
+    - LegionTavern5
+  - type: Tag
+    tags:
+    - LegionnaireKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyLegionTavern6
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: tavern
+  - type: Key
+    accesses:
+    - LegionTavern6
+  - type: Tag
+    tags:
+    - LegionnaireKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyLegionTavern7
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: tavern
+  - type: Key
+    accesses:
+    - LegionTavern7
+  - type: Tag
+    tags:
+    - LegionnaireKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyLegionTavern8
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: tavern
+  - type: Key
+    accesses:
+    - LegionTavern8
+  - type: Tag
+    tags:
+    - LegionnaireKey
+
+- type: entity
+  parent: MedievalKeyBase
   id: MedievalKeyCargo
   name: legion armoury key
   components:

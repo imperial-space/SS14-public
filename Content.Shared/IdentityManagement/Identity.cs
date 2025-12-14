@@ -35,6 +35,13 @@ public static class Identity
 
         var identName = ent.GetComponent<MetaDataComponent>(ident.Value).EntityName;
 
+        // imperial medieval start
+        if (viewer == null)
+        {
+            return identName;
+        }
+        // imperial medieval end
+
         // Imperial medieval start
         if (ent.TryGetComponent<IdentityRequiresKnowledgeComponent>(uid, out var identReqTarget) && ent.TryGetComponent<IdentityRequiresKnowledgeComponent>(viewer, out var identReqViewer))
         {
@@ -53,9 +60,9 @@ public static class Identity
                 Sex.Unsexed or _ => $"{ageStr} {Loc.GetString("identity-gender-person")}" + (showId ? $" ({identReqTarget.Identifier})" : "")
             };
         }
-        // Imperial medieval end
 
-        if (viewer == null || !CanSeeThroughIdentity(uid, viewer.Value, ent))
+        if (!CanSeeThroughIdentity(uid, viewer.Value, ent))
+            // Imperial medieval end
         {
             return identName;
         }

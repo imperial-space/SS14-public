@@ -1,0 +1,23 @@
+<DefaultWindow
+    xmlns="https://spacestation14.io"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
+    xmlns:friends="clr-namespace:Content.Client.Imperial.Medieval.Friends.UI.Elements"
+    Title="Предложить отношения"
+    MinSize="512 240"
+    SetSize="512 248">
+    <BoxContainer Name="Main"
+                  Orientation="Vertical"
+                  HorizontalExpand="True"
+                  VerticalExpand="True">
+        <OptionButton Name="FactionSelectButton" Margin="4" HorizontalAlignment="Left"/>
+        <OptionButton Name="RelationSelectButton" Margin="4" HorizontalAlignment="Left"/>
+        <RichTextLabel Name="MainLabel" Margin="4"/>
+        <RichTextLabel Name="PaperWarning" Text="Вы не сможете изменить содержимое послания после подтверждения!" Visible="False" Margin="4"/>
+        <BoxContainer Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalExpand="True" Margin="4">
+            <Button Name="SendButton" Text="Предложить" Margin="8 4" HorizontalAlignment="Center"/>
+            <Button Name="DiscardButton" Text="Отмена" Margin="8 4" HorizontalAlignment="Center"/>
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>

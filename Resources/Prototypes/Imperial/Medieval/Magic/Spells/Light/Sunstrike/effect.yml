@@ -1,0 +1,37 @@
+#Middle
+
+- type: entity
+  id: SunstrikeSpellCastEffectMiddle
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/light/sunstrike.rsi
+    color: "#fee218"
+    noRot: true
+    layers:
+      - state: middle
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#fee218"
+  - type: TimedDespawn
+    lifetime: 2.52
+
+#Senior
+
+- type: entity
+  id: SunstrikeSpellCastEffectSenior
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/light/sunstrike.rsi
+    color: "#fee218"
+    noRot: true
+    layers:
+      - state: senior
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#fee218"
+  - type: TimedDespawn
+    lifetime: 2.52

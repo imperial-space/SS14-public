@@ -8,9 +8,12 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.7
+        essenceAddProbability: 0.0007
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalFire1: 1
+          MagicMedievalFire: 1
+        bonusEssences:
+          MagicMedievalFire: 1
   - type: ManaDrainSpell
     manaDrain: 20
     canUseWithoutMana: true
@@ -18,17 +21,21 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 12
+  - type: SpellCastEffect
+    effectProto: CriticalMassSpellCastEffectBeginner
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 22
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 3
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/nova.rsi
-      state: supermass
+      sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
+      state: beginner
+  - type: TargetAction
+    checkCanAccess: false
+    range: 3
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalEffectCriticalMassBeginner
       spawnType: SpawnOnMousePosition
@@ -40,7 +47,7 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Imperial/Medieval/Magic/nova.rsi
+          sprite: Imperial/Medieval/Magic/Fire/CriticalMass/projectiles.rsi
           state: supermass
         alwaysRender: true
         mixColor: 0.1

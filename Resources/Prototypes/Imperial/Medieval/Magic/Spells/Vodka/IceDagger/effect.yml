@@ -1,0 +1,18 @@
+#Beginner
+
+- type: entity
+  id: IceDaggerSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/vodka/dagger.rsi
+    color: "#41b4ee"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#41b4ee"
+  - type: TimedDespawn
+    lifetime: 0.5

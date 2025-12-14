@@ -1,0 +1,18 @@
+#Beginner
+
+- type: entity
+  id: DisablerSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/vodka/disabler.rsi
+    color: "#4AF1FE"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#4AF1FE"
+  - type: TimedDespawn
+    lifetime: 0.5

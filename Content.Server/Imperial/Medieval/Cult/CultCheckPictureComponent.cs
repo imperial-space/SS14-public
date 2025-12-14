@@ -54,6 +54,10 @@ public sealed partial class CultCheckPictureComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField, AutoNetworkedField]
+    public SoundSpecifier VictimSuccessSound { get; set; } = new SoundPathSpecifier("/Audio/Imperial/Medieval/Cult/victim_ritual_success.ogg");
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField, AutoNetworkedField]
     public SoundSpecifier FailSound { get; set; } = new SoundPathSpecifier("/Audio/Imperial/Medieval/Cult/ritual_deny.ogg")
     {
         Params = AudioParams.Default.WithVolume(-2f).WithVariation(0.015f),

@@ -27,6 +27,9 @@
     - WhitelistChameleon
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  - type: HideLayerClothing
+    slots:
+      - Tail
 
 - type: entity
   parent: ClothingOuterSuitBomb
@@ -64,12 +67,15 @@
         Heat: 0.8
         Cold: 0.8
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
+    walkModifier: 0.7
     sprintModifier: 0.7
   - type: HeldSpeedModifier
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  - type: HideLayerClothing
+    slots:
+    - Tail
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
@@ -102,6 +108,13 @@
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Tail
 
 - type: entity
   parent: [ClothingOuterBaseLarge, GeigerCounterClothing, AllowSuitStorageClothing]
@@ -127,9 +140,12 @@
       toggleable-clothing: !type:ContainerSlot {}
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  - type: HideLayerClothing
+    slots:
+    - Tail
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseToggleClothing, BaseMajorContraband]
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseToggleClothing, BaseHighlyIllegalContraband]
   id: ClothingOuterSuitSpaceNinja
   name: space ninja suit
   description: This black technologically advanced, cybernetically-enhanced suit provides many abilities like invisibility or teleportation.
@@ -152,7 +168,10 @@
         Slash: 0.8
         Piercing: 0.8
         Heat: 0.8
-        Stamina: 0.4 ## Stamina resistance
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.4
+  # Imperial Space Stamina Resistance End
   # phase cloak
   - type: ToggleClothing
     action: ActionTogglePhaseCloak
@@ -193,6 +212,9 @@
         whitelist:
           tags:
             - PowerCell
+  - type: HideLayerClothing
+    slots:
+    - Tail
 
 - type: entity
   parent: ClothingOuterBase
@@ -267,6 +289,10 @@
     node: suit
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: ClothingOuterBase
@@ -286,6 +312,9 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+  - type: HideLayerClothing
+    slots:
+    - Tail
 
 - type: entity
   parent: ClothingOuterSuitCarp
@@ -301,3 +330,6 @@
     coolingCoefficient: 0.01
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitCarp
+  - type: StaticPrice
+    price: 1500
+

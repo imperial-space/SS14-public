@@ -7,7 +7,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Medieval.SmithingSystem;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class SmithingWorkplaceComponent : Component
 {
     [DataField]
@@ -18,6 +18,9 @@ public sealed partial class SmithingWorkplaceComponent : Component
 
     [DataField]
     public string SmithingToolTag = "SmithingTool";
+
+    [DataField, AutoNetworkedField]
+    public EntProtoId EffectProto = "EffectSparks";
 
     public Entity<SmithingWorkpieceComponent>? Workpiece;
 

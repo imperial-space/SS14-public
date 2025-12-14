@@ -1,0 +1,50 @@
+- type: entity
+  parent:
+  - Incorporeal
+  - BaseMob
+  id: MedievalMobPlagueGhost
+  name: plague ghost
+  description: wuewuewue
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/plague_ghost.rsi
+    layers:
+    - state: ghost
+      shader: unshaded
+  - type: Eye
+    visMask: 2
+    drawFov: false
+  - type: Visibility
+    layer: 2
+  - type: Input
+    context: "ghost"
+  - type: Examiner
+    skipChecks: true
+  - type: PointLight
+    radius: 4
+    color: "#a17f51"
+    castShadows: false
+    enabled: true
+  - type: LanguageSpeaker
+    languages:
+      Plague: Speak
+  - type: UniversalLanguageSpeaker
+  - type: MedievalPlagueGhost
+  - type: CanFollow
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 5
+    baseWalkSpeed: 3.25
+  - type: NameIdentifier
+    group: GenericNumber
+
+- type: entity
+  id: SpawnPointPlagueGhost
+  parent: MarkerBase
+  name: plague ghost spawner
+  components:
+  - type: SpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/Medieval/Mobs/plague_ghost.rsi
+      state: ghost

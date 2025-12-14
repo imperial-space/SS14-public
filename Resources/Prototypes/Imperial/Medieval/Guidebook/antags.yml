@@ -1,0 +1,4 @@
+- type: guideEntry
+  id: Werewolf
+  name: guide-entry-werewolf
+  text: "/ServerInfo/Imperial/Medieval/Guidebook/Werewolf.xml"

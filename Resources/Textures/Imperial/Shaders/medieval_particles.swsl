@@ -34,7 +34,7 @@ void fragment() {
         pPos.x = tPos.x * timecycle;
 		pPos.y = gravity * (timecycle * timecycle) + tPos.y * timecycle + pPos.y;
 
-        highp float particle = smoothstep(0.0, 200.0, 1.0 / distance(uv, pPos + 0.015));
+        highp float particle = smoothstep(10.0, 200.0, 1.5 / distance(uv, pPos + 0.015));
 
 	    alpha += particle * (sin(timecycle * 20.0 + i) + 1.0);
         seed += i + tan(seed);

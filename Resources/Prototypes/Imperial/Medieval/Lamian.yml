@@ -1,0 +1,382 @@
+- type: entity
+  id: OrganLamianHeart
+  parent: OrganHumanHeart
+  name: Lamian heart
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [Lamian]
+
+- type: entity
+  id: OrganLamianLiver
+  parent: OrganHumanLiver
+  name: Lamian liver
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [Lamian]
+
+- type: entity
+  id: OrganLamianStomach
+  parent: OrganHumanStomach
+  name: Lamian stomach
+  components:
+  - type: Sprite
+    state: stomach
+  - type: Organ
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 75
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: Stomach
+  - type: Metabolizer
+    # mm very yummy
+    maxReagents: 5
+    metabolizerTypes: [Lamian]
+
+- type: body
+  id: Lamian
+  name: "Lamian"
+  root: torso
+  slots:
+    head:
+      part: HeadLamian
+      connections:
+      - torso
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganHumanEyes
+    torso:
+      part: TorsoLamian
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganLamianHeart
+        lungs: OrganHumanLungs
+        stomach: OrganReptilianStomach
+        liver: OrganLamianLiver
+        kidneys: OrganHumanKidneys
+    right arm:
+      part: RightArmLamian
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmLamian
+      connections:
+      - left hand
+    right hand:
+      part: RightHandLamian
+    left hand:
+      part: LeftHandLamian
+    right leg:
+      part: RightLegLamian
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegLamian
+      connections:
+      - left foot
+    right foot:
+      part: RightFootLamian
+    left foot:
+      part: LeftFootLamian
+
+- type: metabolizerType
+  id: Lamian
+  name: Lamian
+
+- type: entity
+  save: false
+  name: Урист МакЛамиан
+  parent: BaseMobLamian
+  id: MobLamian
+
+- type: entity
+  save: false
+  name: Urist McHands The Lamian
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobLamian
+  abstract: true
+  components:
+  - type: Hunger
+    baseDecayRate: 0.0096
+  - type: Thirst
+    baseDecayRate: 0.15
+  - type: Icon
+    sprite: Mobs/Species/Slime/parts.rsi # It was like this beforehand, no idea why.
+    state: full
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 1
+    damageRecovery:
+      types:
+        Asphyxiation: -1
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+  - type: Body
+    prototype: Lamian
+    requiredLegs: 2
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Understand
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      Hissing: Speak
+      #Elf: Speak
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 6
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        # they r smaller
+        density: 150
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+      medieval-spawner: # imperial medieval start
+        shape: !type:PhysShapeCircle
+          radius: 0.4
+        layer: []
+        #layer:
+        #- DoorPassable
+        mask:
+        - MedievalSpawnerLayer
+        hard: false # imperial medieval end
+  - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
+  - type: Speech
+    speechSounds: Alto
+  - type: HumanoidAppearance
+    species: Lamian
+  - type: Mana
+    maxManaRaceModifier: 1.1
+    regenRaceModifier: 1.1
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Imperial/Medieval/Species/Lamian/displacement.rsi
+            state: jumpsuit-female
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Critical
+      180: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.4
+    baseSprintSpeed: 3.4
+  - type: MeleeWeapon
+    attackRate: 0.8
+    damage:
+      types:
+        Blunt: 5
+  - type: NeedSleep
+    sleepLevelPerUpdate: 0.35
+  - type: BadSmellRaceModifier
+    modifier: 1.25
+  - type: Tag
+    tags:
+    - Lamian
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+  - type: Damageable
+    damageModifierSet: Lamian
+  - type: Wagging
+
+- type: damageModifierSet
+  id: Lamian
+  coefficients:
+    Heat: 1.15
+    Poison: 0.5
+
+- type: entity
+  parent: BaseMobLamian
+  id: MobLamianDummy
+  noSpawn: true
+  components:
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Imperial/Medieval/Species/Lamian/displacement.rsi
+            state: jumpsuit-female
+
+- type: species
+  id: Lamian
+  name: Ламиан
+  roundStart: true
+  prototype: MobLamian
+  sprites: MobLamianSprites
+  markingLimits: MobLamianMarkingLimits
+  dollPrototype: MobLamianDummy
+  skinColoration: Hues
+
+- type: markingPoints
+  id: MobLamianMarkingLimits
+  points:
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Tail: 
+      points: 1 
+      required: true
+      defaultMarkings: [ LamianTailSmooth ]
+
+- type: speciesBaseSprites
+  id: MobLamianSprites
+  sprites:
+    Head: MobLamianHead
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
+    Chest: MobLamianTorso
+    Eyes: MobHumanoidEyes
+    LArm: MobLamianLArm
+    RArm: MobLamianRArm
+    LHand: MobLamianLHand
+    RHand: MobLamianRHand
+    LLeg: MobLamianLLeg
+    RLeg: MobLamianRLeg
+    LFoot: MobLamianLFoot
+    RFoot: MobLamianRFoot
+    Tail: MobHumanoidAnyMarking 
+    HeadTop: MobLamianEars # imperial HairAndTail
+
+- type: humanoidBaseSprite
+  id: MobLamianEars
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: ears
+
+- type: humanoidBaseSprite
+  id: MobLamianHead
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobLamianHeadMale
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobLamianHeadFemale
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobLamianTorso
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobLamianTorsoMale
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobLamianTorsoFemale
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobLamianLLeg
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobLamianLArm
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobLamianLHand
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobLamianLFoot
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: MobLamianRLeg
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobLamianRArm
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobLamianRHand
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobLamianRFoot
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
+    state: r_foot
+
+- type: marking
+  id: LamianTailSmooth
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Lamian]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: tail_smooth_primary
+
+- type: marking
+  id: LamianTailSmoothAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: tail_smooth_wagging
+

@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared.Examine;
 using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Toggleable;
 
 namespace Content.Shared.Imperial.Medieval.Language;
@@ -8,6 +9,7 @@ namespace Content.Shared.Imperial.Medieval.Language;
 public abstract partial class SharedLanguageSystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
 
     private void InitializeTranslator()
     {
@@ -18,10 +20,9 @@ public abstract partial class SharedLanguageSystem
 
     private void OnGetLanguages(EntityUid uid, HandsComponent comp, ref GetLanguagesEvent args)
     {
-        foreach (var (_, hand) in comp.Hands)
+        foreach (var item in _hands.EnumerateHeld(uid))
         {
-            if (hand.HeldEntity.HasValue)
-                RaiseLocalEvent(hand.HeldEntity.Value, ref args);
+            RaiseLocalEvent(item, ref args);
         }
     }
 
@@ -61,6 +62,6 @@ public abstract partial class SharedLanguageSystem
         if (comp == null && !TryComp(translator, out comp))
             return;
 
-        _appearance.SetData(translator, ToggleVisuals.Toggled, comp.Enabled);
+        _appearance.SetData(translator, ToggleableVisuals.Enabled, comp.Enabled);
     }
 }

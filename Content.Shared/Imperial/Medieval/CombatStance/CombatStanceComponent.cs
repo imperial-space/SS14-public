@@ -1,4 +1,4 @@
-using Content.Shared.Friends;
+using Content.Shared.Imperial.Medieval.Factions;
 using Content.Shared.NPC.Prototypes;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;

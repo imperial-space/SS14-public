@@ -38,7 +38,7 @@ namespace Content.Client.Construction.UI
         private ConstructionSystem? _constructionSystem;
         private ConstructionPrototype? _selected;
         private List<ConstructionPrototype> _favoritedRecipes = [];
-        private Dictionary<string, ContainerButton> _recipeButtons = new();
+        private readonly Dictionary<string, ContainerButton> _recipeButtons = new();
         private string _selectedCategory = string.Empty;
 
         private const string FavoriteCatName = "construction-category-favorites";
@@ -177,7 +177,14 @@ namespace Content.Client.Construction.UI
 
             PopulateInfo(_selected);
         }
-
+        //Imperial Space; Start
+        private string NormalizeRussianText(string text)
+        {
+            return text
+                .Replace('ё', 'е')
+                .Replace('Ё', 'Е');
+        }
+        //Imperial Space Search; End
         private void OnViewPopulateRecipes(object? sender, (string search, string catagory) args)
         {
             if (_constructionSystem is null)
@@ -217,8 +224,8 @@ namespace Content.Client.Construction.UI
                 var itemButton = new ContainerButton()
                 {
                     VerticalAlignment = Control.VAlignment.Center,
-                    Name = recipe.TargetPrototype.Name,
-                    ToolTip = recipe.TargetPrototype.Name,
+                    Name = recipe.Prototype.Name,
+                    ToolTip = recipe.Prototype.Name,
                     ToggleMode = true,
                     Children = { protoView },
                 };
@@ -235,7 +242,7 @@ namespace Content.Client.Construction.UI
 
                     if (buttonToggledEventArgs.Pressed &&
                         _selected != null &&
-                        _recipeButtons.TryGetValue(_selected.Name!, out var oldButton))
+                        _recipeButtons.TryGetValue(_selected.ID, out var oldButton))
                     {
                         oldButton.Pressed = false;
                         SelectGridButton(oldButton, false);
@@ -245,7 +252,7 @@ namespace Content.Client.Construction.UI
                 };
 
                 recipesGrid.AddChild(itemButtonPanelContainer);
-                _recipeButtons[recipe.Prototype.Name!] = itemButton;
+                _recipeButtons[recipe.Prototype.ID] = itemButton;
                 var isCurrentButtonSelected = _selected == recipe.Prototype;
                 itemButton.Pressed = isCurrentButtonSelected;
                 SelectGridButton(itemButton, isCurrentButtonSelected);
@@ -271,7 +278,7 @@ namespace Content.Client.Construction.UI
                     continue;
 
                 if (!string.IsNullOrEmpty(search) && (recipe.Name is { } name &&
-                                                      !name.Contains(search.Trim(),
+                                                      !NormalizeRussianText(name).Contains(NormalizeRussianText(search.Trim()), //Imperial Space Search
                                                           StringComparison.InvariantCultureIgnoreCase)))
                     continue;
 
@@ -307,7 +314,7 @@ namespace Content.Client.Construction.UI
             if (button.Parent is not PanelContainer buttonPanel)
                 return;
 
-            button.Modulate = select ? Color.Green : Color.Transparent;
+            button.Children.Single().Modulate = select ? Color.Green : Color.White;
             var buttonColor = select ? StyleNano.ButtonColorDefault : Color.Transparent;
             buttonPanel.PanelOverride = new StyleBoxFlat { BackgroundColor = buttonColor };
         }
@@ -510,7 +517,7 @@ namespace Content.Client.Construction.UI
 
             foreach (var id in favorites)
             {
-                if (_prototypeManager.TryIndex(id, out ConstructionPrototype? recipe, logError: false))
+                if (_prototypeManager.TryIndex(id, out ConstructionPrototype? recipe))
                     _favoritedRecipes.Add(recipe);
             }
 

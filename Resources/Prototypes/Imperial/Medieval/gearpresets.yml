@@ -251,3 +251,76 @@
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth23
     pocket1: MedievalRevent100
     pocket2: MedievalRevent50
+
+- type: startingGear
+  id: MedievalFastGearMediumAlt2
+  equipment:
+    shoes: MedievalClothingFeetSteel
+    head: MedievalClothingHeadHelmetShapel
+    gloves: MedievalIronGlovesBrig
+    outerClothing: MedievalClothingOuterArmorBrigantin
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth63
+    back: MedievalClothingBackpackSatchelLeather
+    belt: MedievalHatchet
+    pocket1: MedievalIronSekir
+  storage:
+    back:
+    - Brutepack
+    - Brutepack
+    - Ointment
+    - Gauze
+
+- type: startingGear
+  id: MedievalFastGearLightAlt2
+  equipment:
+    shoes: MedievalShoesSapogi
+    head: MedievalClothingHeadHelmetLeatherHelmet
+    gloves: MedievalIronGloves
+    outerClothing: MedievalClothingOuterArmorStudded
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth62
+    back: MedievalClothingBackpackSatchelLeather
+    belt: MedievalHatchet
+  storage:
+    back:
+    - Brutepack
+    - Brutepack
+    - Ointment
+    - Gauze
+
+- type: startingGear
+  id: MedievalFastGearMediumAlt3
+  equipment:
+    shoes: MedievalClothingFeetSteel
+    head: MedievalClothingHeadHelmetSaladLight
+    gloves: MedievalClothingHandsGlovesColorBlack
+    outerClothing: MedievalClothingOuterArmorStudded
+    mask: MedievalMaskFace
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth10
+    back: MedievalClothingBackpackSatchelLeather
+    belt: MedievalFalshionT3
+  inhand:
+    - MedievalWoodenShieldKnight
+  storage:
+    back:
+    - Brutepack
+    - Brutepack
+    - Ointment
+    - Gauze
+
+- type: startingGear
+  id: MedievalFastGearLightAlt3
+  equipment:
+    shoes: MedievalShoesSapogi
+    gloves: MedievalClothingHandsGlovesCloth
+    outerClothing: MedievalClothingOuterArmorLeather
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth16
+    back: MedievalClothingBackpackSatchelLeather
+    belt: MedievalShortSword
+  inhand:
+    - WoodenBuckler
+  storage:
+    back:
+    - Brutepack
+    - Brutepack
+    - Ointment
+    - Gauze

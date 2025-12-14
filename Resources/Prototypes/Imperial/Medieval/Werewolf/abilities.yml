@@ -1,0 +1,164 @@
+- type: lycantropyAbility
+  id: HealAllies
+  name: lycantropy-heal-allies-name
+  desc: lycantropy-heal-allies-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+    state: groupheal
+  cost: 4
+  position: -50,0
+  werewolfActions: [WerewolfHealAlliesAction]
+
+- type: lycantropyAbility
+  id: SteelClaws
+  name: lycantropy-steel-claws-name
+  desc: lycantropy-steel-claws-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+    state: steel
+  cost: 6
+  position: 60,40
+  required: [StoneClaws]
+  event: !type:SetWerewolfDamageEvent
+    replacements:
+      Blunt: 7
+      Slash: 9
+      Piercing: 9
+
+- type: lycantropyAbility
+  id: LongJump
+  name: lycantropy-long-jump-name
+  desc: lycantropy-long-jump-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+    state: jump
+  cost: 4
+  position: 0,-40
+  required: [HealAllies]
+  event: !type:SetWerewolfDashStrengthEvent
+    modifier: 1.3
+
+- type: lycantropyAbility
+  id: ThickFur
+  name: lycantropy-thick-fur-name
+  desc: lycantropy-thick-fur-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+    state: thick
+  cost: 4
+  position: 10,0
+  required: [HealAllies]
+  event: !type:SetWerewolfMobThresholdsEvent
+    crit: 520
+    death: 870
+
+- type: lycantropyAbility
+  id: StoneClaws
+  name: lycantropy-stone-claws-name
+  desc: lycantropy-stone-claws-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+    state: stone
+  cost: 3
+  position: 0,40
+  required: [HealAllies]
+  event: !type:SetWerewolfDamageEvent
+    replacements:
+      Structural: 50
+
+- type: lycantropyAbility
+  id: Regenerate
+  name: lycantropy-regen-name
+  desc: lycantropy-regen-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+    state: heal
+  cost: 7
+  position: 70,0
+  required: [ThickFur]
+  werewolfActions: [WerewolfRegenAction]
+
+- type: lycantropyAbility
+  id: BloodFeel
+  name: lycantropy-blood-feel-name
+  desc: lycantropy-blood-feel-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+    state: termalon
+  cost: 4
+  position: 120,-40
+  required: [HotBlood, Regenerate]
+  werewolfActions: [WerewolfBloodFeelAction]
+
+- type: lycantropyAbility
+  id: HotBlood
+  name: lycantropy-hot-blood-name
+  desc: lycantropy-hot-blood-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+    state: hotblood
+  cost: 4
+  position: 60,-40
+  required: [LongJump]
+  werewolfActions: [WerewolfHotBloodAction]
+
+- type: lycantropyAbility
+  id: ShadowDash
+  name: lycantropy-shadow-dash-name
+  desc: lycantropy-shadow-dash-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+    state: dash
+  cost: 5
+  position: 120,-80
+  required: [HotBlood]
+  werewolfActions: [WerewolfDashAction]
+
+- type: lycantropyAbility
+  id: BloodHunt
+  name: lycantropy-blood-hunt-name
+  desc: lycantropy-blood-hunt-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+    state: hunt
+  cost: 5
+  position: 120,40
+  required: [SteelClaws, Regenerate]
+  werewolfActions: [WerewolfHuntAction]
+
+- type: lycantropyAbility
+  id: MoonRage
+  name: lycantropy-rage-name
+  desc: lycantropy-rage-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+    state: moon
+  cost: 6
+  position: 120,80
+  required: [SteelClaws]
+  werewolfActions: [WerewolfMoonAction]
+
+- type: lycantropyAbility
+  id: Tearing
+  name: lycantropy-tearing-name
+  desc: lycantropy-tearing-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+    state: tearingon
+  cost: 9
+  position: 180,60
+  required: [MoonRage, BloodHunt]
+  werewolfActions: [WerewolfTearingAction]
+
+- type: lycantropyAbility
+  id: ForceMorph
+  name: lycantropy-morph-name
+  desc: lycantropy-morph-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+    state: turn
+  cost: 8
+  position: 180,-60
+  required: [ShadowDash, BloodFeel]
+  humanActions: [PolymorphWerewolfAction]
+  werewolfActions: [RevertPolymorphWerewolfAction]

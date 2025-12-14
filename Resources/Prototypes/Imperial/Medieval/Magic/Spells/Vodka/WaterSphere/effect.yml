@@ -1,0 +1,168 @@
+# Beginner
+
+- type: entity
+  id: MedievalEffectWaterSphereBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
+  - type: PointLight
+    color: cyan
+    energy: 2
+    radius: 3.8
+  - type: MedievalParticles
+    color: "#0CBFE9"
+    speed: 2.0
+    particlesCount: 32
+    gravity: 0
+    inverted: true
+    collapseOnMinDistance: true
+  - type: Gun
+    selectedMode: FullAuto
+    fireRate: 1.1
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/icebeam_shot.ogg
+  - type: MedievalShootAfterSpawn
+    shootRate: 1
+  - type: HitscanBatteryAmmoProvider
+    proto: MedievalProjectileWaterSphereBeginner
+    fireCost: 1000
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: SpawnEntityOnNullSpaceTeleport
+    spawn: MedievalEffectWaterSphereBeginnerDespawn
+  - type: TimedDespawn
+    lifetime: 2
+
+- type: entity
+  id: MedievalEffectWaterSphereBeginnerDespawn
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
+  - type: MedievalParticles
+    color: "#0CBFE9"
+  - type: TimedDespawn
+    lifetime: 5
+
+- type: entity
+  id: WaterSphereSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/vodka/sphere.rsi
+    color: "#0CBFE9"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#0CBFE9"
+  - type: TimedDespawn
+    lifetime: 0.5
+
+
+# Middle
+
+- type: entity
+  id: MedievalEffectWaterSphereMiddle
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
+  - type: PointLight
+    color: cyan
+    energy: 2
+    radius: 3.8
+  - type: MedievalParticles
+    color: "#0CBFE9"
+    speed: 2.0
+    particlesCount: 32
+    gravity: 0
+    inverted: true
+    collapseOnMinDistance: true
+  - type: Gun
+    selectedMode: FullAuto
+    fireRate: 1.1
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/icebeam_shot.ogg
+  - type: MedievalShootAfterSpawn
+    shootRate: 1.1
+  - type: HitscanBatteryAmmoProvider
+    proto: MedievalProjectileWaterSphereMiddle
+    fireCost: 1000
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: SpawnEntityOnNullSpaceTeleport
+    spawn: MedievalEffectWaterSphereMiddleDespawn
+  - type: TimedDespawn
+    lifetime: 2
+
+- type: entity
+  id: MedievalEffectWaterSphereMiddleDespawn
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
+  - type: MedievalParticles
+    color: "#0CBFE9"
+  - type: TimedDespawn
+    lifetime: 5
+
+
+# Senior
+
+- type: entity
+  id: MedievalEffectWaterSphereSenior
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
+  - type: PointLight
+    color: cyan
+    energy: 2
+    radius: 3.8
+  - type: MedievalParticles
+    color: "#0CBFE9"
+    speed: 2.0
+    particlesCount: 32
+    gravity: 0
+    inverted: true
+    collapseOnMinDistance: true
+  - type: Gun
+    selectedMode: FullAuto
+    fireRate: 1
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/icebeam_shot.ogg
+  - type: MedievalShootAfterSpawn
+    shootRate: 1.1
+  - type: HitscanBatteryAmmoProvider
+    proto: MedievalProjectileWaterSphereSenior
+    fireCost: 1000
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: SpawnEntityOnNullSpaceTeleport
+    spawn: MedievalEffectWaterSphereSeniorDespawn
+  - type: TimedDespawn
+    lifetime: 2
+
+- type: entity
+  id: MedievalEffectWaterSphereSeniorDespawn
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
+  - type: MedievalParticles
+    color: "#0CBFE9"
+  - type: TimedDespawn
+    lifetime: 5

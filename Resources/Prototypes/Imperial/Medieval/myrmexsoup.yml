@@ -36,6 +36,10 @@
   - type: Construction
     graph: MSoupPlace
     node: medievalMyrmexSoupPlace
+  - type: ReplaceFloorOnSpawn
+    replaceableTiles:
+    replacementTiles:
+    - MedievalMyrmexFloor2
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/blub3.ogg"
     recipes:
@@ -50,6 +54,11 @@
   name: soup Resin
   description: Soup.
   components:
+  - type: MyrmexStew
+    buff:
+      damage: 1.05
+      health: 1.02
+      stamina: 0.98
   - type: Sprite
     sprite: Imperial/Medieval/Myrmex/Soups/resinsoup.rsi
     state: icon
@@ -62,6 +71,11 @@
   name: soup Yant
   description: Soup.
   components:
+  - type: MyrmexStew
+    buff:
+      damage: 1.03
+      health: 0.98
+      stamina: 0.97
   - type: Sprite
     sprite: Imperial/Medieval/Myrmex/Soups/yantsoup.rsi
     state: icon
@@ -74,6 +88,7 @@
   name: soup Root
   description: Soup.
   components:
+  - type: MyrmexStew
   - type: Sprite
     sprite: Imperial/Medieval/Myrmex/Soups/rootsoup.rsi
     state: icon
@@ -86,6 +101,11 @@
   name: soup Mushroom
   description: Soup.
   components:
+  - type: MyrmexStew
+    buff:
+      damage: 0.98
+      health: 1.02
+      stamina: 0.84
   - type: Sprite
     sprite: Imperial/Medieval/Myrmex/Soups/mushroomsoup.rsi
     state: icon
@@ -104,6 +124,8 @@
   craftTime: 3
   entities:
     MedievalMyrmexResourceYant: 2
+    MedievalRootItem: 2
+    MedievalLootAnt: 2
   result: MedievalSoupYant
 
 - type: CP14Recipe
@@ -135,3 +157,11 @@
   entities:
     MedievalMyrmexResourceGum: 1
   result: MedievalMyrmexFibeStack5
+
+- type: CP14Recipe
+  id: MedievalMyrmexResourceGum
+  craftTime: 5
+  entities:
+    Log: 3
+    MedievalGrass: 1
+  result: MedievalMyrmexResourceGum

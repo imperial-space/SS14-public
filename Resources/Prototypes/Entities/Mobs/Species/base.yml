@@ -42,6 +42,7 @@
     # - map: [ "outerClothing" ]
     - map: [ "back" ]
     - map: [ "neck" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
@@ -109,6 +110,7 @@
     horizontalRotation: 90
   - type: HumanoidAppearance
     species: Human
+  - type: TypingIndicator
   - type: SlowOnDamage
     speedModifierThresholds:
       # Imperial Medieval Start
@@ -169,24 +171,16 @@
       - !type:WashCreamPieReaction
   - type: StatusEffects
     allowed:
-    - Stun
-    - KnockedDown
-    - SlowedDown
-    - Stutter
-    - SeeingRainbows
+    - IllitidFlashed
     - Electrocution
-    - Drunk
-    - SlurredSpeech
     - RatvarianLanguage
     - PressureImmunity
     - Muted
-    - ForcedSleep
     - TemporaryBlindness
     - Pacified
     - StaminaModifier
     - Flashed
     - RadiationProtection
-    - Drowsiness
     - Adrenaline
     - MedievalFarmerBoost # Imperial medieval
   - type: Body
@@ -219,6 +213,7 @@
   - type: SleepEmitSound
   - type: SSDIndicator
   - type: StandingState
+  - type: Crawler
   - type: Dna
   - type: MindContainer
     showExamineInfo: true
@@ -326,6 +321,47 @@
   - type: LocalLight
     energy: 0.3
     radius: 1.18
+  - type: RDWeight
+    value: 63
+  - type: RDWeightSpeedModifier
+    curve: !type:RDWeightModifierLinearCurve
+      min: 90
+      max: 220 # CURSE OF 220
+  - type: RDWeightExamine
+    examines:
+      "[color=#ADFF2F]Налегке[/color]":
+        min: 0
+        max: 85       # несет до 10 кг (легкая сумка, пистолет)
+      "[color=#FFFF00]Слегка загружен[/color]":
+        min: 85
+        max: 95       # несет 10-20 кг (штурмовой рюкзак, автомат)
+      "[color=#FFD700]Хорошо загружен[/color]":
+        min: 95
+        max: 110      # несет 20-35 кг (полный рюкзак, легкая броня)
+      "[color=#FF8C00]Перегружен[/color]":
+        min: 110
+        max: 125      # несет 35-50 кг (тяжелая броня и снаряжение)
+      "[color=#FF4500]Критический перегруз[/color]":
+        min: 125
+        max: 140      # несет 50-65 кг (скорость и выносливость сильно снижены)
+      "[color=#FF0000]Задавлен тяжестью[/color]":
+        min: 140
+        max: 160      # несет 65-85 кг (движение крайне затруднено)
+      "[color=#DC143C]Нечеловеческая ноша[/color]":
+        min: 160
+        max: 180      # несет 85-105 кг (едва способен сделать шаг)
+      "[color=#8B0000]Обездвижен переносимым весом[/color]":
+        min: 180
+        max: 20000      # несет более 105 кг (не может двигаться без посторонней помощи)
+  - type: RDWeightThrowerModifier
+  - type: AffectRoundStats
+  - type: Skills
+    levels:
+      Vitality: 10
+      Strength: 10
+      Agility: 10
+      Intelligence: 10
+      Endurance: 10
 # Imperial Medieval End
 
 - type: entity
@@ -339,6 +375,7 @@
   id: BaseMobSpeciesOrganic
   abstract: true
   components:
+  - type: BloodTrail # Imperial Space BloodTrail
   - type: Barotrauma
     damage:
       types:
@@ -369,9 +406,9 @@
         Heat: 1.5 #per second, scales with temperature & other constants
   - type: TemperatureSpeed
     thresholds:
-      293: 0.8
-      280: 0.6
-      260: 0.4
+      293: 0.9
+      280: 0.8
+      260: 0.7
   - type: ThermalRegulator
     metabolismHeat: 800
     radiatedHeat: 100
@@ -395,6 +432,8 @@
         Asphyxiation: -1.0
   - type: FireVisuals
     alternateState: Standing
+  - type: MedievalCanBeInfected # Imperial Medieval plague
+  - type: StunVisuals
 
 - type: entity
   save: false
@@ -443,6 +482,7 @@
     # - map: [ "outerClothing" ]
     - map: [ "back" ]
     - map: [ "neck" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]

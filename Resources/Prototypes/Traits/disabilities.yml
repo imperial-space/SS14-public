@@ -35,8 +35,10 @@
   cost: -3 # imperial medieval
   components:
     - type: Narcolepsy
-      timeBetweenIncidents: 300, 600
-      durationOfIncident: 10, 30
+      maxTimeBetweenIncidents: 600
+      minTimeBetweenIncidents: 300
+      maxDurationOfIncident: 30
+      minDurationOfIncident: 10
 
 - type: trait
   id: Unrevivable
@@ -46,6 +48,14 @@
   components:
     - type: Unrevivable
       cloneable: true
+
+- type: trait
+  id: Monochromacy
+  name: trait-monochromacy-name
+  description: trait-monochromacy-desc
+  category: Disabilities
+  components:
+  - type: BlackAndWhiteOverlay
 
 - type: trait
   id: Muted
@@ -73,3 +83,20 @@
 #       sounds:
 #         collection: Paracusia
 # Imperial Medieval End
+
+- type: trait
+  id: Hemophilia
+  name: trait-hemophilia-name
+  description: trait-hemophilia-desc
+  category: Disabilities
+  components:
+  - type: Hemophilia
+
+#- type: trait
+#  id: ImpairedMobility
+#  name: trait-impaired-mobility-name
+#  description: trait-impaired-mobility-desc
+#  traitGear: OffsetCane
+#  category: Disabilities
+#  components:
+#    - type: ImpairedMobility

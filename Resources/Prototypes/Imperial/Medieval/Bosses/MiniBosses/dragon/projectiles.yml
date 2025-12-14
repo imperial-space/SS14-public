@@ -1,0 +1,53 @@
+- type: entity
+  id: MedievalProjectileAcidDragon
+  parent: BaseBulletTrigger
+  name: fireball
+  description: You better GITTAH WEIGH.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Caustic: 30
+    - type: Sprite
+      sprite: /Textures/Imperial/Medieval/Myrmex/Structures/Turret/myrmex_acid.rsi
+      layers:
+        - state: myrmex_acid
+    - type: SingularityDistortion
+      falloffPower: 3
+      intensity: 100
+    - type: SmokeOnTrigger
+      duration: 40
+      spreadAmount: 10
+      solution:
+        reagents:
+        - ReagentId: MedievalMyrmexPoison
+          Quantity: 30
+    - type: Ammo
+      muzzleFlash: null
+
+- type: entity
+  id: MedievalProjectileThunderDragon
+  parent: BaseBulletTrigger
+  name: fireball
+  description: You better GITTAH WEIGH.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Shock: 18
+    - type: Sprite
+      sprite: /Textures/Imperial/Medieval/Myrmex/Structures/Turret/myrmex_acid.rsi
+      layers:
+        - state: myrmex_acid
+    - type: SingularityDistortion
+      falloffPower: 3
+      intensity: 100
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: LightningRune
+    - type: SpawnOnTrigger
+      proto: MedievalLightningEffect
+    - type: Ammo
+      muzzleFlash: null

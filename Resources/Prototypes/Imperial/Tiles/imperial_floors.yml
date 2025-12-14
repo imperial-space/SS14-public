@@ -221,6 +221,7 @@
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
   badSmellMod: 0.75
+  weather: true
 
 - type: tile
   id: FloorCrossWoodBroken
@@ -242,6 +243,7 @@
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
   badSmellMod: 0.75
+  weather: true
 
 - type: tile
   id: FloorDarkWood
@@ -263,6 +265,7 @@
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
   badSmellMod: 0.75
+  weather: true
 
 - type: tile
   id: FloorDarkWoodBroken
@@ -284,6 +287,7 @@
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
   badSmellMod: 0.75
+  weather: true
 
 - type: tile
   id: FloorLargeWood
@@ -305,6 +309,7 @@
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
   badSmellMod: 0.75
+  weather: true
 
 - type: tile
   id: FloorLargeWoodBroken
@@ -326,6 +331,7 @@
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
   badSmellMod: 0.75
+  weather: true
 
 - type: tile
   id: FloorLongWood
@@ -347,6 +353,7 @@
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
   badSmellMod: 0.75
+  weather: true
 
 - type: tile
   id: FloorLongWoodBroken
@@ -368,6 +375,7 @@
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
   badSmellMod: 0.75
+  weather: true
 
 - type: tile
   id: FloorWoodenTile
@@ -389,6 +397,7 @@
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
   badSmellMod: 0.75
+  weather: true
 
 - type: tile
   id: FloorWoodenTileBroken
@@ -410,3 +419,4 @@
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
   badSmellMod: 0.75
+  weather: true

@@ -61,6 +61,7 @@ ent-MedievalMobSkeletDaggerGhost = скелет с кинжалами
 
 
 ghost-role-information-skelet-rules = Вы - скелет. Смерть жалким человечкам. Аве некромантам и чернокнижникам.
+ghost-role-information-skelet-hightier-rules = Вы - скелет. Смерть жалким человечкам. Аве некромантам и чернокнижникам. [color=red]Вам запрещенно покидать локацию в которой появились[/color]
 ghost-role-information-skelet-weak-name = Хилый скелет
 ghost-role-information-skelet-weak-description = Самый слабый представитель скелетов.
 ghost-role-information-skelet-meat-name = Мясной скелет

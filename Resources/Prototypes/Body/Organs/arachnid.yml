@@ -24,11 +24,11 @@
   - type: Tag
     tags:
       - Meat
+      - MedicalBorgItem # Тег, позволяющий медицинскому боргу брать органы
 
 - type: entity
   id: OrganArachnidStomach
   parent: OrganAnimalStomach
-  name: stomach
   description: "Gross. This is hard to stomach."
   components:
   - type: Sprite

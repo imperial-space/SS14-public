@@ -42,10 +42,22 @@ public sealed class AlwaysPvsSystem
     {
         if (_override.ContainsKey(args.Session.Channel.UserId) && args.NewStatus == Robust.Shared.Enums.SessionStatus.Connected)
         {
-            foreach (var entity in _override[args.Session.Channel.UserId])
+            var overridet = _override[args.Session.Channel.UserId];
+            var delete = new List<EntityUid>();
+            foreach (var entity in overridet)
             {
+                if (_ent.Deleted(entity))
+                {
+                    delete.Add(entity);
+                    continue;
+                }
                 _ent.System<PvsOverrideSystem>().AddForceSend(entity, args.Session);
             }
+            foreach (var entity in delete)
+            {
+                overridet.Remove(entity);
+            }
+            _override[args.Session.Channel.UserId] = overridet;
         }
     }
 

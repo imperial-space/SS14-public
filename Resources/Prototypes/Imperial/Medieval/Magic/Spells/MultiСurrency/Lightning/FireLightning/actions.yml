@@ -9,20 +9,25 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.65
+        essenceAddProbability: 0.00065
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalLight1: 1
+          MagicMedievalLight: 1
+        bonusEssences:
+          MagicMedievalLight: 1
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 35
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/lightning_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/lightning.rsi
-      state: fire-mid
+      sprite: Imperial/Medieval/Magic/MultiCurrency/Lightning/icons.rsi
+      state: middle-fire
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalLightningSpellEvent
       spawnedEffectPrototype: MedievalFireLightningExplosionMiddle
       amplitude: 0.4
@@ -63,6 +68,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 22
+  - type: SpellCastEffect
+    effectProto: FireLightningSpellCastEffectMiddle
 
 # Senior
 
@@ -73,16 +80,18 @@
   parent: MedievalActionFireLightningMiddle
   components:
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 42
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/lightning_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/lightning.rsi
-      state: fire-adv
+      sprite: Imperial/Medieval/Magic/MultiCurrency/Lightning/icons.rsi
+      state: senior-fire
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalLightningSpellEvent
       spawnedEffectPrototype: MedievalFireLightningExplosionSenior
       amplitude: 0.4
@@ -111,7 +120,7 @@
       speechPoints:
         0:
           speech: medieval-spell-speach-fire-lightning
-          color: "#A5C2F3"
+          color: "#F37500"
           hideChat: true
   - type: ManaDrainSpell
     manaDrain: 77
@@ -120,3 +129,5 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 22
+  - type: SpellCastEffect
+    effectProto: FireLightningSpellCastEffectSenior

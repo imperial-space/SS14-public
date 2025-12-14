@@ -6,14 +6,15 @@
   description: medieval-store-spells-light-magic-light-beginner-desc
   components:
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 20
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/lightsphere_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/light.rsi
-      state: light
+      sprite: Imperial/Medieval/Magic/Light/MagicLight/icons.rsi
+      state: beginner
+  - type: InstantAction
     event: !type:MedievalInstantSpawnEvent
       spawnedEntityPrototype: MedievalProjectileLightFollower
       speechPoints:
@@ -27,9 +28,12 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.4
+        essenceAddProbability: 0.0004
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalLight1: 1
+          MagicMedievalLight: 1
+        bonusEssences:
+          MagicMedievalLight: 1
   - type: ManaDrainSpell
     manaDrain: 25
     canUseWithoutMana: true
@@ -37,3 +41,5 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 5
+  - type: SpellCastEffect
+    effectProto: MagicLightSpellCastEffectBeginner

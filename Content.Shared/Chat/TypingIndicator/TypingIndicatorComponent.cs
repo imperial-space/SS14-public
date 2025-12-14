@@ -14,6 +14,6 @@ public sealed partial class TypingIndicatorComponent : Component
     /// <summary>
     ///     Prototype id that store all visual info about typing indicator.
     /// </summary>
-    [DataField("proto"), AutoNetworkedField] // imperial medieval changes
+    [DataField("proto"), AutoNetworkedField]
     public ProtoId<TypingIndicatorPrototype> TypingIndicatorPrototype = "default";
 }

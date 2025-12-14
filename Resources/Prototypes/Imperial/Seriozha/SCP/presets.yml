@@ -1,0 +1,477 @@
+- type: entity
+  abstract: true
+  parent: MobHuman
+  id: ImperialSCPBasePreset
+  components:
+    - type: AntagImmune
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: CrewSkills
+      skills:
+        - skillBotany #Base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPDClass
+  name: Preset
+  suffix: seriozha, Недра, GhostRole
+  components:
+    - type: Loadout
+      prototypes: [ DClassGear ]
+    - type: GhostRole
+      makeSentient: true
+      name: ghost-role-information-dclass-name
+      description: ghost-role-information-dclass-desc
+      rules: ghost-role-information-rules-team-antagonist
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: short
+    - type: GhostTakeoverAvailable
+    - type: RandomMetadata
+      nameSegments:
+        - NamesDClass
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPMTF
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: Loadout
+      prototypes: [ MTFGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMTF
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPMTFNU
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: Loadout
+      prototypes: [ NuGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMTFNU
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPMTFCMD
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: Loadout
+      prototypes: [ MTFCMDGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMTFCom
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPMTFNUCMD
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: Loadout
+      prototypes: [ NuCMDGear]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMTFNUCom
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPAlpha
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: NoSlip
+    - type: Loadout
+      prototypes: [ AlphaGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+      - DeathAcidifierImplant
+      - ScramImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesAlpha
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPOxrana
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: Loadout
+      prototypes: [ OxranaGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - Namesguardscp
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPOxrana-name
+      description: ghost-role-information-PresetSCPOxrana-desc
+      rules: rule
+      raffle:
+        settings: short
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPDoc
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: Loadout
+      prototypes: [ DocGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - Namesscientistscp
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPDoc-name
+      description: ghost-role-information-PresetSCPDoc-desc
+      rules: rule
+      raffle:
+        settings: short
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPDocCMD
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: Loadout
+      prototypes: [ DocCMDGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - Namesscientistcomscp
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPAdm
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: Loadout
+      prototypes: [ ADMGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomHumanoidAppearance
+      enabled: false
+    - type: RandomMetadata
+      nameSegments:
+        - NamesAdmscp
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPCI
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: Loadout
+      prototypes: [ CIGear ]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesCISCP
+    - type: NpcFactionMember
+      factions:
+      - rebelsscp
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPCI-name
+      description: ghost-role-information-PresetSCPCI-desc
+      rules: CI
+      raffle:
+        settings: short
+
+- type: startingGear
+  id: MTFGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMinuteMan
+    back: ClothingBackpackSatchelDSO
+    mask: ProtectiveBalaclava
+    shoes: ClothingShoesBootsWorkSCP
+    head: ClothingHeadHelmetMTF
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorMTF
+    id: SCPIDCardFour
+    ears: ClothingHeadsetSCPMain
+    belt: ClothingBeltSecurityFilled
+    suitstorage: WeaponRifleAk
+    pocket1: MagazineLightRifle
+    pocket2: MagazineLightRifle
+  storage:
+    back:
+    - EncryptionKeyNedraCMDconnection
+    - EncryptionKeyNedraMTFconnection
+    - FondUplinkEpsilon11Eta10Beta7epsilon9
+
+- type: startingGear
+  id: MTFCMDGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMinuteMan
+    back: ClothingBackpackSatchelDSO
+    mask: ProtectiveBalaclava
+    shoes: ClothingShoesBootsWorkSCP
+    head: ClothingHeadHelmetMTF
+    neck: USSPMajorPin
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorMTF
+    id: SCPIDCardFive
+    ears: ClothingHeadsetSCPAlt
+    suitstorage: WeaponRifleAk
+    belt: ClothingBeltSecurityFilled
+    pocket1: MagazineLightRifle
+    pocket2: MagazineLightRifle
+  storage:
+    back:
+    - EncryptionKeyNedraCMDconnection
+    - EncryptionKeyNedraMTFconnection
+    - DoorRemoteSCP
+    - FondUplinkCommander
+
+- type: startingGear
+  id: NuGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    back: ClothingBackpackSatchel
+    mask: ClothingMaskSterile
+    shoes: ClothingShoesBootsWorkSCP
+    head: ClothingHeadHardsuitSingularitySienceOrange
+    eyes: ClothingEyesGlassesChemical
+    gloves: ClothingHandsGlovesNitrile
+    outerClothing: ClothingOuterHardsuitSingularitySienceOrangeArmored
+    id: SCPIDCardFour
+    ears: ClothingHeadsetSCPMain
+    belt: ClothingBeltParamedicFilled
+    pocket1: EncryptionKeyNedraMTFconnection
+  inhand:
+  - FlameThrower
+  storage:
+    back:
+    - FondUplinkEpsilon11Eta10Beta7epsilon9
+
+- type: startingGear
+  id: NuCMDGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    back: ClothingBackpackSatchel
+    mask: ClothingMaskSterile
+    shoes: ClothingShoesBootsWorkSCP
+    head: ClothingHeadHardsuitSingularitySienceOrange
+    neck: USSPMajorPin
+    eyes: ClothingEyesGlassesChemical
+    gloves: ClothingHandsGlovesNitrile
+    outerClothing: ClothingOuterHardsuitSingularitySienceOrangeArmored
+    id: SCPIDCardFive
+    ears: ClothingHeadsetSCPAlt
+    belt: ClothingBeltParamedicFilled
+    pocket1: EncryptionKeyNedraMTFconnection
+    pocket2: EncryptionKeyNedraCMDconnection
+  inhand:
+  - FlameThrowerBorg
+  storage:
+    back:
+    - FondUplinkCommander
+
+- type: startingGear
+  id: OxranaGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoUrban
+    mask: ClothingMaskGasSecurity
+    shoes: ClothingShoesBootsWorkSCP
+    head: ClothingHeadHelmetSCPSecurity
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorSCPSecurity
+    id: SCPIDCardThreeGray
+    ears: ClothingHeadsetSCPMain
+    belt: ClothingBeltSecurityFilled
+    suitstorage: CSWeaponP90
+    pocket1: FondUplinkBase
+  inhand:
+  - PaperOGK
+
+- type: startingGear
+  id: DocGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitScientist
+    back: ClothingBackpackSatchelScience
+    neck: ClothingNeckTieSci
+    shoes: ClothingShoesSCP
+    eyes: ClothingEyesGlasses
+    gloves: ClothingHandsGlovesColorPurple
+    outerClothing: ClothingOuterCoatSCP
+    id: SCPIDCardThree
+    ears: ClothingHeadsetSCPMain
+    belt: BoxFolderClipboard
+  inhand:
+  - PaperScience
+
+- type: startingGear
+  id: DocCMDGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitScientist
+    back: ClothingBackpackSatchelScience
+    neck: ClothingNeckTieSci
+    shoes: ClothingShoesSCP
+    head: ClothingHeadHatBeretRND
+    eyes: ClothingEyesGlasses
+    gloves: ClothingHandsGlovesColorPurple
+    outerClothing: ClothingOuterCoatRD
+    id: SCPIDCardFive
+    ears: ClothingHeadsetSCPAlt
+    belt: BoxFolderClipboard
+  storage:
+    back:
+    - EncryptionKeyNedraCMDconnection
+
+- type: startingGear
+  id: ADMGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCCAgent
+    back: ClothingBackpackSatchelDSO
+    shoes: ClothingShoesBootsWorkSCP
+    head: AdministrationBeret
+    eyes: ClothingCentComGlassesEmerald
+    gloves: ClothingHandsGlovesCombat
+    neck: ClothingNeckDSOMedal
+    id: SCPIDCardAdm
+    ears: ClothingHeadsetSCPAlt
+    belt: BlackShieldPistol
+  storage:
+    back:
+    - EncryptionKeyNedraCMDconnection
+  inhand:
+  - PaperAdmNDA
+
+- type: startingGear
+  id: CIGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
+    back: ClothingBackpackSatchel
+    mask: ClothingMaskGasMerc
+    shoes: ClothingShoesBootsWorkSCP
+    head: ClothingHeadHelmetCI
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorCI
+    id: SCPIDCardCI
+    ears: ClothingHeadsetSCPMain
+    suitstorage: WeaponSubMachineGunC20r
+    pocket1: MagazinePistolSubMachineGun
+    pocket2: MagazinePistolSubMachineGun
+  storage:
+    back:
+    - EncryptionKeyRadio1
+    - EncryptionKeyGanza
+    - CIUplinkBase
+
+- type: startingGear
+  id: AlphaGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAlpha
+    back: AlphaBackpack
+    mask: AlphaGasMask
+    shoes: ClothingShoesAlpha
+    head: ClothingHeadHelmetSCPAlpha
+    eyes: AlphaVisor
+    gloves: ClothingHandsGlovesCombat
+    neck: ClothingSCPCloakRed
+    outerClothing: ClothingOuterArmorSCPAlpha
+    id: SCPIDCardFive
+    ears: ClothingHeadsetSCPAlt
+    suitstorage: WeaponRifleAk
+    belt: WeaponAlphaPulsePistol
+    pocket1: MagazineLightRifle
+    pocket2: MagazineLightRifle
+  storage:
+    back:
+    - EncryptionKeyNedraCMDconnection
+    - EncryptionKeyNedraAlphaconnection
+    - FondUplinkAlpha1
+    - CompactDefibrillator
+    - DoorRemoteSCPAll
+
+- type: startingGear
+  id: DClassGear
+  equipment:
+    jumpsuit: ClothingJumpsuitClassD
+    shoes: ClothingShoesSCP

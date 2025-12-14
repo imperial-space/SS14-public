@@ -50,6 +50,8 @@ namespace Content.Client.Lobby.UI
         private readonly MarkingManager _markingManager;
         private readonly JobRequirementsManager _requirements;
         private readonly LobbyUIController _controller;
+        private readonly Imperial.Medieval.Flavors.ClientFlavorManager _flavors; // Imperial Medieval Flavor Images
+        private readonly Shared.Players.PlayTimeTracking.ISharedPlaytimeManager _playtime; // Imperial Medieval Flavor Images
 
         private readonly SpriteSystem _sprite;
 
@@ -103,8 +105,7 @@ namespace Content.Client.Lobby.UI
 
         private bool _isDirty;
 
-        [ValidatePrototypeId<GuideEntryPrototype>]
-        private const string DefaultSpeciesGuidebook = "Species";
+        private static readonly ProtoId<GuideEntryPrototype> DefaultSpeciesGuidebook = "Species";
 
         public event Action<List<ProtoId<GuideEntryPrototype>>>? OnOpenGuidebook;
 
@@ -120,7 +121,8 @@ namespace Content.Client.Lobby.UI
             IPrototypeManager prototypeManager,
             IResourceManager resManager,
             JobRequirementsManager requirements,
-            MarkingManager markings)
+            MarkingManager markings,
+            Imperial.Medieval.Flavors.ClientFlavorManager flavors, Shared.Players.PlayTimeTracking.ISharedPlaytimeManager playtime) // Imperial Medieval Flavor Images
         {
             RobustXamlLoader.Load(this);
             _sawmill = logManager.GetSawmill("profile.editor");
@@ -135,6 +137,8 @@ namespace Content.Client.Lobby.UI
             _requirements = requirements;
             _controller = UserInterfaceManager.GetUIController<LobbyUIController>();
             _sprite = _entManager.System<SpriteSystem>();
+            _flavors = flavors; // Imperial Medieval Flavor Images
+            _playtime = playtime; // Imperial Medieval Flavor Images
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
@@ -228,6 +232,7 @@ namespace Content.Client.Lobby.UI
             {
                 SpeciesButton.SelectId(args.Id);
                 SetSpecies(_species[args.Id].ID);
+                UpdateSkinColor(); // imperial medieval color selector
                 UpdateHairPickers();
                 OnSkinColorOnValueChanged();
             };
@@ -240,10 +245,18 @@ namespace Content.Client.Lobby.UI
             };
 
             RgbSkinColorContainer.AddChild(_rgbSkinColorSelector = new ColorSelectorSliders());
+            _rgbSkinColorSelector.SelectorType = ColorSelectorSliders.ColorSelectorType.Hsv; // defaults color selector to HSV
             _rgbSkinColorSelector.OnColorChanged += _ =>
             {
                 OnSkinColorOnValueChanged();
             };
+
+            // imperial medieval color selector start
+            SelectorControl.OnColorChanged += _ =>
+            {
+                OnSkinColorOnValueChanged();
+            };
+            // imperial medieval color selector end
 
             #endregion
 
@@ -486,6 +499,7 @@ namespace Content.Client.Lobby.UI
                 _flavorTextEdit = null;
                 _flavorText = null;
             }
+            UpdateFlavorHandle(); // Imperial Medieval Flavors Image
         }
 
         /// <summary>
@@ -493,7 +507,7 @@ namespace Content.Client.Lobby.UI
         /// </summary>
         public void RefreshTraits()
         {
-            TraitsList.DisposeAllChildren();
+            TraitsList.RemoveAllChildren();
 
             var traits = _prototypeManager.EnumeratePrototypes<TraitPrototype>().OrderBy(t => Loc.GetString(t.Name)).ToList();
             TabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-traits-tab"));   // imperial medieval languages: tab 3 -> 4
@@ -634,7 +648,7 @@ namespace Content.Client.Lobby.UI
 
         public void RefreshAntags()
         {
-            AntagList.DisposeAllChildren();
+            AntagList.RemoveAllChildren();
             var items = new[]
             {
                 ("humanoid-profile-editor-antag-preference-yes-button", 0),
@@ -662,8 +676,10 @@ namespace Content.Client.Lobby.UI
                 selector.Setup(items, title, 250, description, guides: antag.Guides);
                 selector.Select(Profile?.AntagPreferences.Contains(antag.ID) == true ? 0 : 1);
 
-                var requirements = _entManager.System<SharedRoleSystem>().GetAntagRequirement(antag);
-                if (!_requirements.CheckRoleRequirements(requirements, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason))
+                if (!_requirements.IsAllowed(
+                        antag,
+                        (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter,
+                        out var reason))
                 {
                     selector.LockRequirements(reason);
                     Profile = Profile?.WithAntagPreference(antag.ID, false);
@@ -811,9 +827,9 @@ namespace Content.Client.Lobby.UI
             var species = Profile?.Species ?? SharedHumanoidAppearanceSystem.DefaultSpecies;
             var page = DefaultSpeciesGuidebook;
             if (_prototypeManager.HasIndex<GuideEntryPrototype>(species))
-                page = species;
+                page = new ProtoId<GuideEntryPrototype>(species.Id); // Gross. See above todo comment.
 
-            if (_prototypeManager.TryIndex<GuideEntryPrototype>(DefaultSpeciesGuidebook, out var guideRoot))
+            if (_prototypeManager.Resolve(DefaultSpeciesGuidebook, out var guideRoot))
             {
                 var dict = new Dictionary<ProtoId<GuideEntryPrototype>, GuideEntry>();
                 dict.Add(DefaultSpeciesGuidebook, guideRoot);
@@ -827,7 +843,7 @@ namespace Content.Client.Lobby.UI
         /// </summary>
         public void RefreshJobs()
         {
-            JobList.DisposeAllChildren();
+            JobList.RemoveAllChildren();
             _jobCategories.Clear();
             _jobPriorities.Clear();
             var firstCategory = true;
@@ -1023,7 +1039,7 @@ namespace Content.Client.Lobby.UI
 
             _loadoutWindow = new LoadoutWindow(Profile, roleLoadout, roleLoadoutProto, _playerManager.LocalSession, collection)
             {
-                Title = jobProto?.ID + "-loadout",
+                Title = Loc.GetString("loadout-window-title-loadout", ("job", $"{jobProto?.LocalizedName}")),
             };
 
             // Refresh the buttons etc.
@@ -1091,63 +1107,62 @@ namespace Content.Client.Lobby.UI
             if (Profile is null) return;
 
             var skin = _prototypeManager.Index<SpeciesPrototype>(Profile.Species).SkinColoration;
+            var strategy = _prototypeManager.Index(skin).Strategy;
 
-            switch (skin)
+            switch (strategy.InputType)
             {
-                case HumanoidSkinColor.HumanToned:
+                case SkinColorationStrategyInput.Unary:
                 {
                     if (!Skin.Visible)
                     {
                         Skin.Visible = true;
                         RgbSkinColorContainer.Visible = false;
+                        SelectorControl.Visible = false; // imperial medieval color selector
                     }
 
-                    var color = SkinColor.HumanSkinTone((int) Skin.Value);
-
-                    Markings.CurrentSkinColor = color;
-                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));//
-                    break;
-                }
-                case HumanoidSkinColor.Hues:
-                {
-                    if (!RgbSkinColorContainer.Visible)
-                    {
-                        Skin.Visible = false;
-                        RgbSkinColorContainer.Visible = true;
-                    }
-
-                    Markings.CurrentSkinColor = _rgbSkinColorSelector.Color;
-                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(_rgbSkinColorSelector.Color));
-                    break;
-                }
-                case HumanoidSkinColor.TintedHues:
-                {
-                    if (!RgbSkinColorContainer.Visible)
-                    {
-                        Skin.Visible = false;
-                        RgbSkinColorContainer.Visible = true;
-                    }
-
-                    var color = SkinColor.TintedHues(_rgbSkinColorSelector.Color);
+                    var color = strategy.FromUnary(Skin.Value);
 
                     Markings.CurrentSkinColor = color;
                     Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
+
                     break;
                 }
-                case HumanoidSkinColor.VoxFeathers:
+                case SkinColorationStrategyInput.Color:
                 {
                     if (!RgbSkinColorContainer.Visible)
                     {
                         Skin.Visible = false;
                         RgbSkinColorContainer.Visible = true;
+                        SelectorControl.Visible = false; // imperial medieval color selector
                     }
 
-                    var color = SkinColor.ClosestVoxColor(_rgbSkinColorSelector.Color);
+                    var color = strategy.ClosestSkinColor(_rgbSkinColorSelector.Color);
 
                     Markings.CurrentSkinColor = color;
                     Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
+
                     break;
                 }
+                // imperial medieval color selector start
+                case SkinColorationStrategyInput.Selector:
+                {
+                    if (!SelectorControl.Visible)
+                    {
+                        Skin.Visible = false;
+                        RgbSkinColorContainer.Visible = false;
+                        SelectorControl.Visible = true;
+                    }
+
+                    var color = strategy.ClosestSkinColor(SelectorControl.SelectedColor);
+
+                    SelectorControl.UpdateSelectedButton();
+
+                    Markings.CurrentSkinColor = color;
+                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
+
+                    break;
+                }
+                // imperial medieval color selector end
             }
 
             ReloadProfilePreview();
@@ -1294,7 +1309,7 @@ namespace Content.Client.Lobby.UI
             var sexes = new List<Sex>();
 
             // add species sex options, default to just none if we are in bizzaro world and have no species
-            if (_prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesProto))
+            if (_prototypeManager.Resolve<SpeciesPrototype>(Profile.Species, out var speciesProto))
             {
                 foreach (var sex in speciesProto.Sexes)
                 {
@@ -1324,59 +1339,58 @@ namespace Content.Client.Lobby.UI
                 return;
 
             var skin = _prototypeManager.Index<SpeciesPrototype>(Profile.Species).SkinColoration;
+            var strategy = _prototypeManager.Index(skin).Strategy;
 
-            switch (skin)
+            switch (strategy.InputType)
             {
-                case HumanoidSkinColor.HumanToned:
+                case SkinColorationStrategyInput.Unary:
                 {
                     if (!Skin.Visible)
                     {
                         Skin.Visible = true;
                         RgbSkinColorContainer.Visible = false;
+                        SelectorControl.Visible = false; // imperial medieval color selector
                     }
 
-                    Skin.Value = SkinColor.HumanSkinToneFromColor(Profile.Appearance.SkinColor);
+                    Skin.Value = strategy.ToUnary(Profile.Appearance.SkinColor);
 
                     break;
                 }
-                case HumanoidSkinColor.Hues:
+                case SkinColorationStrategyInput.Color:
                 {
                     if (!RgbSkinColorContainer.Visible)
                     {
                         Skin.Visible = false;
                         RgbSkinColorContainer.Visible = true;
+                        SelectorControl.Visible = false; // imperial medieval color selector
                     }
 
-                    // set the RGB values to the direct values otherwise
-                    _rgbSkinColorSelector.Color = Profile.Appearance.SkinColor;
+                    _rgbSkinColorSelector.Color = strategy.ClosestSkinColor(Profile.Appearance.SkinColor);
+
                     break;
                 }
-                case HumanoidSkinColor.TintedHues:
+                // imperial medieval color selector start
+                case SkinColorationStrategyInput.Selector:
                 {
-                    if (!RgbSkinColorContainer.Visible)
+                    if (!SelectorControl.Visible)
                     {
                         Skin.Visible = false;
-                        RgbSkinColorContainer.Visible = true;
+                        RgbSkinColorContainer.Visible = false;
+                        SelectorControl.Visible = true;
                     }
 
-                    // set the RGB values to the direct values otherwise
-                    _rgbSkinColorSelector.Color = Profile.Appearance.SkinColor;
-                    break;
-                }
-                case HumanoidSkinColor.VoxFeathers:
-                {
-                    if (!RgbSkinColorContainer.Visible)
+                    if (strategy is SelectorColoration selector)
                     {
-                        Skin.Visible = false;
-                        RgbSkinColorContainer.Visible = true;
+                        SelectorControl.Colors = selector.Colors;
                     }
 
-                    _rgbSkinColorSelector.Color = SkinColor.ClosestVoxColor(Profile.Appearance.SkinColor);
+                    SelectorControl.SelectedColor = strategy.ClosestSkinColor(Profile.Appearance.SkinColor);
+                    SelectorControl.Populate();
 
                     break;
                 }
+                // imperial medieval color selector end
             }
-
         }
 
         public void UpdateSpeciesGuidebookIcon()
@@ -1387,7 +1401,7 @@ namespace Content.Client.Lobby.UI
             if (species is null)
                 return;
 
-            if (!_prototypeManager.TryIndex<SpeciesPrototype>(species, out var speciesProto))
+            if (!_prototypeManager.Resolve<SpeciesPrototype>(species, out var speciesProto))
                 return;
 
             // Don't display the info button if no guide entry is found
@@ -1436,17 +1450,13 @@ namespace Content.Client.Lobby.UI
             {
                 return;
             }
-            var hairMarking = Profile.Appearance.HairStyleId switch
-            {
-                HairStyles.DefaultHairStyle => new List<Marking>(),
-                _ => new() { new(Profile.Appearance.HairStyleId, new List<Color>() { Profile.Appearance.HairColor }) },
-            };
+            var hairMarking = Profile.Appearance.HairStyleId == HairStyles.DefaultHairStyle
+                ? new List<Marking>()
+                : new() { new(Profile.Appearance.HairStyleId, new List<Color>() { Profile.Appearance.HairColor }) };
 
-            var facialHairMarking = Profile.Appearance.FacialHairStyleId switch
-            {
-                HairStyles.DefaultFacialHairStyle => new List<Marking>(),
-                _ => new() { new(Profile.Appearance.FacialHairStyleId, new List<Color>() { Profile.Appearance.FacialHairColor }) },
-            };
+            var facialHairMarking = Profile.Appearance.FacialHairStyleId == HairStyles.DefaultFacialHairStyle
+                ? new List<Marking>()
+                : new() { new(Profile.Appearance.FacialHairStyleId, new List<Color>() { Profile.Appearance.FacialHairColor }) };
 
             HairStylePicker.UpdateData(
                 hairMarking,

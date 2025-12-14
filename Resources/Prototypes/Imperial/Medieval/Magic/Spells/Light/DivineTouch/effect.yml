@@ -1,0 +1,30 @@
+- type: entity
+  id: DivineParticles
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
+  - type: MedievalParticles
+    color: "#009933"
+  - type: TimedDespawn
+    lifetime: 5
+
+#Beginner
+
+- type: entity
+  id: DivineTouchSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/light/divine.rsi
+    color: "#00981C"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#00981C"
+  - type: TimedDespawn
+    lifetime: 3.5
+

@@ -341,6 +341,12 @@
           sprite: Imperial/Medieval/Chem/Garden/root.rsi
           state: icon
         doAfter: 1
+      - tag: Mushroom2
+        name: железошляпник # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/mushroom2.rsi
+          state: produce
+        doAfter: 1
   - node: medievalMyrmexSoupPlace
     entity: MedievalMyrmexSoupPlace
 
@@ -498,8 +504,8 @@
         southRotation: true
       steps:
         - material: MedievalMyrmexFibe
-          amount: 3
-          doAfter: 3
+          amount: 2
+          doAfter: 2
   - node: medievalMyrmexWeb
     entity: MedievalMyrmexWeb
 
@@ -600,3 +606,592 @@
         doAfter: 1
   - node: medievalMyrmexToxicHole
     entity: MedievalMyrmexToxicHole
+
+- type: construction
+  id: MedievalWoodenSupport
+  graph: MWoodenSupport
+  startNode: start
+  targetNode: medievalWoodenSupport
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MWoodenSupport
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalWoodenSupport
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+        - material: WoodPlank
+          amount: 4
+          doAfter: 4
+  - node: medievalWoodenSupport
+    entity: WoodenSupport
+
+- type: construction
+  id: MedievalWoodenSupportBeam
+  graph: MWoodenSupportBeam
+  startNode: start
+  targetNode: medievalWoodenSupportBeam
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MWoodenSupportBeam
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalWoodenSupportBeam
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+        - material: WoodPlank
+          amount: 4
+          doAfter: 4
+  - node: medievalWoodenSupportBeam
+    entity: WoodenSupportBeam
+
+- type: construction
+  id: MedievalWoodenSupportWall
+  graph: MWoodenSupportWall
+  startNode: start
+  targetNode: medievalWoodenSupportWall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MWoodenSupportWall
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalWoodenSupportWall
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+        - material: WoodPlank
+          amount: 4
+          doAfter: 4
+  - node: medievalWoodenSupportWall
+    entity: WoodenSupportWall
+
+- type: construction
+  id: MedievalMyrmexStrongWall
+  graph: MMyrmexStrongWall
+  startNode: start
+  targetNode: medievalMyrmexStrongWall
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MMyrmexStrongWall
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexStrongWall
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: medievalMyrmexStrongWall
+    entity: MedievalMyrmexStrongWall
+
+- type: construction
+  id: MedievalMyrmexFlimsyWall
+  graph: MMyrmexFlimsyWall
+  startNode: start
+  targetNode: medievalMyrmexFlimsyWall
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MMyrmexFlimsyWall
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexFlimsyWall
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - tag: MyrmexResourceGum
+        name: живица # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: resin
+        doAfter: 1
+  - node: medievalMyrmexFlimsyWall
+    entity: MedievalMyrmexFlimsyWall
+
+- type: construction
+  id: MedievalMyrmexDoor
+  graph: MMyrmexDoor
+  startNode: start
+  targetNode: medievalMyrmexDoor
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MMyrmexDoor
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexDoor
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: medievalMyrmexDoor
+    entity: MedievalMyrmexDoor
+
+- type: construction
+  id: MedievalMyrmexBigHole
+  graph: MBigHole
+  startNode: start
+  targetNode: medievalMyrmexBigHole
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MBigHole
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexBigHole
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: муравьиный хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: муравьиный хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: муравьиный хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: муравьиный хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: муравьиный хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: муравьиный хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: муравьиный хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: муравьиный хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: муравьиный хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: муравьиный хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+  - node: medievalMyrmexBigHole
+    entity: MedievalMyrmexBigHole
+
+- type: construction
+  id: MedievalMyrmexIncubator
+  graph: MMyrmexIncubatorCraft
+  startNode: start
+  targetNode: medievalMyrmexIncubator
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MMyrmexIncubatorCraft
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexIncubator
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: medievalMyrmexIncubator
+    entity: MedievalMyrmexIncubator

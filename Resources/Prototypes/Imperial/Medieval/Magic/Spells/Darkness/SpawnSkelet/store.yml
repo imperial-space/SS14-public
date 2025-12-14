@@ -1,0 +1,61 @@
+- type: imperialListing
+  id: MedievalSpellSpawnSkeletBeginner
+  name: medieval-store-spells-darkness-spawn-skelet-beginner-name
+  description: medieval-store-spells-darkness-spawn-skelet-beginner-desc
+  productAction: MedievalActionSpawnSkeletBeginner
+  priority: 5
+  productUpgradeId:
+    - MedievalSpellSpawnSkeletMiddle
+  icon:
+    sprite: Imperial/Medieval/Magic/Darkness/SpawnSkelet/icons.rsi
+    state: beginner
+  cost:
+    MagicMedievalDarkness: 20
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+- type: imperialListing
+  id: MedievalSpellSpawnSkeletMiddle
+  name: medieval-store-spells-darkness-spawn-skelet-middle-name
+  description: medieval-store-spells-darkness-spawn-skelet-middle-desc
+  priority: 5
+  productUpgradeId:
+    - MedievalActionSpawnSkeletSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Darkness/SpawnSkelet/icons.rsi
+    state: middle
+  cost:
+    MagicMedievalDarkness: 50
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellSpawnSkeletBeginner
+
+- type: imperialListing
+  id: MedievalActionSpawnSkeletSenior
+  name: medieval-store-spells-darkness-spawn-skelet-senior-name
+  description: medieval-store-spells-darkness-spawn-skelet-senior-desc
+  priority: 5
+  productUpgradeId:
+    - MedievalActionSpawnSkeletSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Darkness/SpawnSkelet/icons.rsi
+    state: senior
+  cost:
+    MagicMedievalDarkness: 80
+    ArchmagePoints: 1
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellSpawnSkeletMiddle

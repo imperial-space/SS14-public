@@ -1,0 +1,61 @@
+- type: entity
+  abstract: true
+  id: BaseChargedAttack
+  components:
+  - type: ChargedAttack
+  - type: Appearance
+
+- type: entity
+  abstract: true
+  id: BaseSpearCharged
+  components:
+  - type: ChargedAttack
+    maxAttackTime: 3.0
+    staticModifier: 1.4
+    staminaDamage: 10
+    speedModifer: 0.65
+    effectProtoId: AttackEffect3s
+
+- type: entity
+  abstract: true
+  id: BaseOneHandedCharged
+  components:
+  - type: ChargedAttack
+    maxAttackTime: 2.0
+    staticModifier: 0.55
+    staminaDamage: 7
+    speedModifer: 0.75
+    effectProtoId: AttackEffect2s
+
+- type: entity
+  abstract: true
+  id: BaseDaggerCharged
+  components:
+  - type: ChargedAttack
+    maxAttackTime: 1.5
+    staticModifier: 1
+    staminaDamage: 5
+    speedModifer: 0.8
+    effectProtoId: AttackEffect1dot5s
+
+- type: entity
+  abstract: true
+  id: BaseCrushingCharged
+  components:
+  - type: ChargedAttack
+    maxAttackTime: 3.0
+    staticModifier: 0.75
+    staminaDamage: 9
+    speedModifer: 0.7
+    effectProtoId: AttackEffect3s
+
+- type: entity
+  abstract: true
+  id: BaseTwoHandedCharged
+  components:
+  - type: ChargedAttack
+    maxAttackTime: 4.0
+    staticModifier: 1
+    staminaDamage: 16
+    speedModifer: 0.55
+    effectProtoId: AttackEffect4s

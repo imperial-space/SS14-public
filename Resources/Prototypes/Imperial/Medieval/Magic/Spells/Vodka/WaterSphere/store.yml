@@ -5,12 +5,12 @@
   name: medieval-store-spells-vodka-water-sphere-beginner-name
   description: medieval-store-spells-vodka-water-sphere-beginner-desc
   productAction: MedievalActionWaterSphereBeginner
-  priority: 4
+  priority: 5
   productUpgradeId:
     - MedievalSpellWaterSphereMiddle
   icon:
-    sprite: Imperial/Medieval/Magic/ice_pulse.rsi
-    state: ice-basic
+    sprite: Imperial/Medieval/Magic/Vodka/WaterSphere/icons.rsi
+    state: beginner
   cost:
     MagicMedievalVodka: 10
   categories:
@@ -25,12 +25,12 @@
   id: MedievalSpellWaterSphereMiddle
   name: medieval-store-spells-vodka-water-sphere-middle-name
   description: medieval-store-spells-vodka-water-sphere-middle-desc
-  priority: 4
+  priority: 5
   productUpgradeId:
     - MedievalSpellWaterSphereSenior
   icon:
-    sprite: Imperial/Medieval/Magic/ice_pulse.rsi
-    state: ice-mid
+    sprite: Imperial/Medieval/Magic/Vodka/WaterSphere/icons.rsi
+    state: middle
   cost:
     MagicMedievalVodka: 30
   categories:
@@ -48,12 +48,12 @@
   id: MedievalSpellWaterSphereSenior
   name: medieval-store-spells-vodka-water-sphere-senior-name
   description: medieval-store-spells-vodka-water-sphere-senior-desc
-  priority: 4
+  priority: 5
   productUpgradeId:
     - MedievalSpellWaterSphereSenior
   icon:
-    sprite: Imperial/Medieval/Magic/ice_pulse.rsi
-    state: ice-adv
+    sprite: Imperial/Medieval/Magic/Vodka/WaterSphere/icons.rsi
+    state: senior
   cost:
     MagicMedievalVodka: 60
     ArchmagePoints: 1

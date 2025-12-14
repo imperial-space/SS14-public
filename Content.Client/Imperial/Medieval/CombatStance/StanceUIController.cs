@@ -2,7 +2,7 @@ using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
-using Content.Shared.Friends;
+using Content.Shared.Imperial.Medieval.Factions;
 using Content.Shared.Imperial.Medieval.CombatStance;
 using Content.Shared.Input;
 using Content.Shared.Speech;
@@ -28,86 +28,86 @@ public sealed class StanceUIController : UIController
     [Dependency] private readonly IPlacementManager _placement = default!;
     [Dependency] private readonly IClientNetManager _net = default!;
     private SimpleRadialMenu? _menu;
-    private RadialMenuOption[] _models = default!;
+    private RadialMenuOptionBase[] _models = default!;
 
     public override void Initialize()
     {
         SubscribeNetworkEvent<CombatStanceMenuEvent>((_, _) => ToggleStanceMenu(false));
-        _models = new RadialMenuOption[5];
-        _models[4] = new RadialMenuNestedLayerOption(new RadialMenuOption[2] {
+        _models = new RadialMenuOptionBase[5];
+        _models[4] = new RadialMenuNestedLayerOption(new RadialMenuOptionBase[2] {
             new RadialMenuActionOption<FactionMemberGroup>(PlacePressed, FactionMemberGroup.Alpha)
             {
                 ToolTip = Loc.GetString("medieval-place-stancepoint"),
-                Sprite = new SpriteSpecifier.Rsi(new("Imperial/Medieval/CombatStance/point.rsi"), "green")
+                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Rsi(new("Imperial/Medieval/CombatStance/point.rsi"), "green"))
             },
             new RadialMenuActionOption<FactionMemberGroup>(RemovePressed, FactionMemberGroup.Alpha)
             {
                 ToolTip = Loc.GetString("medieval-remove-stancepoints"),
-                Sprite = new SpriteSpecifier.Rsi(new("Imperial/Medieval/CombatStance/point.rsi"), "red")
+                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Rsi(new("Imperial/Medieval/CombatStance/point.rsi"), "red"))
             }
         })
         {
             ToolTip = Loc.GetString("medieval-place-alpha"),
             BackgroundColor = Color.FromHex("#794646")
         };
-        _models[3] = new RadialMenuNestedLayerOption(new RadialMenuOption[2] {
+        _models[3] = new RadialMenuNestedLayerOption(new RadialMenuOptionBase[2] {
             new RadialMenuActionOption<FactionMemberGroup>(PlacePressed, FactionMemberGroup.Bravo)
             {
                 ToolTip = Loc.GetString("medieval-place-stancepoint"),
-                Sprite = new SpriteSpecifier.Rsi(new("Imperial/Medieval/CombatStance/point.rsi"), "green")
+                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Rsi(new("Imperial/Medieval/CombatStance/point.rsi"), "green"))
             },
             new RadialMenuActionOption<FactionMemberGroup>(RemovePressed, FactionMemberGroup.Bravo)
             {
                 ToolTip = Loc.GetString("medieval-remove-stancepoints"),
-                Sprite = new SpriteSpecifier.Rsi(new("Imperial/Medieval/CombatStance/point.rsi"), "red")
+                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Rsi(new("Imperial/Medieval/CombatStance/point.rsi"), "red"))
             }
         })
         {
             ToolTip = Loc.GetString("medieval-place-bravo"),
             BackgroundColor = Color.FromHex("#4E4679")
         };
-        _models[2] = new RadialMenuNestedLayerOption(new RadialMenuOption[2] {
+        _models[2] = new RadialMenuNestedLayerOption(new RadialMenuOptionBase[2] {
             new RadialMenuActionOption<FactionMemberGroup>(PlacePressed, FactionMemberGroup.Delta)
             {
                 ToolTip = Loc.GetString("medieval-place-stancepoint"),
-                Sprite = new SpriteSpecifier.Rsi(new("Imperial/Medieval/CombatStance/point.rsi"), "green")
+                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Rsi(new("Imperial/Medieval/CombatStance/point.rsi"), "green"))
             },
             new RadialMenuActionOption<FactionMemberGroup>(RemovePressed, FactionMemberGroup.Delta)
             {
                 ToolTip = Loc.GetString("medieval-remove-stancepoints"),
-                Sprite = new SpriteSpecifier.Rsi(new("Imperial/Medieval/CombatStance/point.rsi"), "red")
+                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Rsi(new("Imperial/Medieval/CombatStance/point.rsi"), "red"))
             }
         })
         {
             ToolTip = Loc.GetString("medieval-place-delta"),
             BackgroundColor = Color.FromHex("#467953")
         };
-        _models[1] = new RadialMenuNestedLayerOption(new RadialMenuOption[2] {
+        _models[1] = new RadialMenuNestedLayerOption(new RadialMenuOptionBase[2] {
             new RadialMenuActionOption<FactionMemberGroup>(PlacePressed, FactionMemberGroup.Gamma)
             {
                 ToolTip = Loc.GetString("medieval-place-stancepoint"),
-                Sprite = new SpriteSpecifier.Rsi(new("Imperial/Medieval/CombatStance/point.rsi"), "green")
+                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Rsi(new("Imperial/Medieval/CombatStance/point.rsi"), "green"))
             },
             new RadialMenuActionOption<FactionMemberGroup>(RemovePressed, FactionMemberGroup.Gamma)
             {
                 ToolTip = Loc.GetString("medieval-remove-stancepoints"),
-                Sprite = new SpriteSpecifier.Rsi(new("Imperial/Medieval/CombatStance/point.rsi"), "red")
+                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Rsi(new("Imperial/Medieval/CombatStance/point.rsi"), "red"))
             }
         })
         {
             ToolTip = Loc.GetString("medieval-place-gamma"),
             BackgroundColor = Color.FromHex("#797746")
         };
-        _models[0] = new RadialMenuNestedLayerOption(new RadialMenuOption[2] {
+        _models[0] = new RadialMenuNestedLayerOption(new RadialMenuOptionBase[2] {
             new RadialMenuActionOption<FactionMemberGroup>(PlacePressed, FactionMemberGroup.Omega)
             {
                 ToolTip = Loc.GetString("medieval-place-stancepoint"),
-                Sprite = new SpriteSpecifier.Rsi(new("Imperial/Medieval/CombatStance/point.rsi"), "green")
+                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Rsi(new("Imperial/Medieval/CombatStance/point.rsi"), "green"))
             },
             new RadialMenuActionOption<FactionMemberGroup>(RemovePressed, FactionMemberGroup.Omega)
             {
                 ToolTip = Loc.GetString("medieval-remove-stancepoints"),
-                Sprite = new SpriteSpecifier.Rsi(new("Imperial/Medieval/CombatStance/point.rsi"), "red")
+                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Rsi(new("Imperial/Medieval/CombatStance/point.rsi"), "red"))
             }
         })
         {

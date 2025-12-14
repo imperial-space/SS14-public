@@ -1,0 +1,50 @@
+- type: entity
+  id: MedievalActionFireFetter
+  name: ent-MedievalActionFireFetter
+  description: ent-MedievalActionFireFetter
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.00085
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalFire: 1
+        bonusEssences:
+          MagicMedievalFire: 1
+  - type: ManaDrainSpell
+    manaDrain: 35
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+  - type: SpellCastEffect
+    effectProto: FireFetterSpellCastEffectBeginner
+  - type: MedievalInstantSpell
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/touch_summon.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Fire/FireFetter/icons.rsi
+      state: beginner
+  - type: InstantAction
+    event: !type:MedievalSpawnInHandSpellEvent
+      spawnedEntityPrototype: MedievalFireFetter
+      spellCastDoAfter:
+        delay: 2
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        breakOnDamage: true
+        needHand: true
+        speedModifier: 1
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-fire-fetter
+          color: "#FF4500"
+          hideChat: true
+  - type: MedievalSpawnOnlyInFreeHands
+

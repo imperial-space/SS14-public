@@ -1,0 +1,60 @@
+- type: entity
+  id: MedievalActionLightningRune
+  name: medieval-store-spells-light-lightning-rune-name
+  description: medieval-store-spells-light-lightning-rune-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.0007
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalLight: 1
+        bonusEssences:
+          MagicMedievalLight: 1
+  - type: ManaDrainSpell
+    manaDrain: 40
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 12
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 120
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/Effects/electro_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/lightning_rune.rsi
+      state: icon
+  - type: TargetAction
+    range: 3
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalLightningRune
+      spawnType: SpawnOnMousePosition
+      speechPoints:
+        0:
+          speech: medieval-spell-speech-lightning-rune
+          color: "#6be0db"
+          hideChat: true
+      spellCastDoAfter:
+        delay: 6
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+  - type: ShowSpawnedEntity
+    sprites:
+      - drawedSprite:
+          sprite: Imperial/Medieval/Magic/lightning_rune.rsi
+          state: rune
+        alwaysRender: true
+        mixColor: 0.1
+        inRangeColor: "#4bb365"
+        # outOfRangeColor: "#FF0000"
+        range: 3
+    rotationPerClick: 0

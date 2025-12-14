@@ -31,9 +31,9 @@ namespace Content.Server.MagicPotionsMaker.Components
         [DataField]
         public string SecondIngredient = "None";
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSoundOnAddingIngredient = "/Audio/Imperial/Medieval/short_kipenie.ogg";
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSoundOnFinish = "/Audio/Imperial/Medieval/kipenie.ogg";
 
 

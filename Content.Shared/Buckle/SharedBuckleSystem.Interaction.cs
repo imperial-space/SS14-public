@@ -3,6 +3,7 @@ using Content.Shared.Buckle.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Imperial.Medieval.MobRiding;
 using Content.Shared.Interaction;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
@@ -43,6 +44,10 @@ public abstract partial class SharedBuckleSystem
         }
         else
         {
+            if (!TryComp(args.Dragged, out BuckleComponent? buckle) ||
+                !CanBuckle(args.Dragged, args.User, uid, true, out var _, buckle))
+                return;
+
             var doAfterArgs = new DoAfterArgs(EntityManager, args.User, component.BuckleDoafterTime, new BuckleDoAfterEvent(), args.Dragged, args.Dragged, uid)
             {
                 BreakOnMove = true,
@@ -84,6 +89,15 @@ public abstract partial class SharedBuckleSystem
         if (!TryComp(args.User, out BuckleComponent? buckle))
             return;
 
+        // imperial medieval riding start
+        // TODO: сделать DoAfter
+        if (TryComp<RideableComponent>(uid, out var rideable))
+        {
+            if (rideable.IsRiding && rideable.Rider.HasValue)
+                return;
+        }
+        // imperial medieval riding end
+
         // Buckle self
         if (buckle.BuckledTo == null && component.BuckleOnInteractHand && StrapHasSpace(uid, buckle, component))
         {
@@ -114,8 +128,20 @@ public abstract partial class SharedBuckleSystem
         if (args.Handled)
             return;
 
-        if (ent.Comp.BuckledTo != null)
-            args.Handled = TryUnbuckle(ent!, args.User, popup: true);
+        // imperial medieval riding starts
+        // if (ent.Comp.BuckledTo != null)
+        //     args.Handled = TryUnbuckle(ent!, args.User, popup: true);
+
+        // TODO: сделать DoAfter
+        if (ent.Comp.BuckledTo == null)
+            return;
+        if (TryComp<RideableComponent>(ent.Comp.BuckledTo, out var rideable))
+        {
+            if (rideable.IsRiding && rideable.Rider.HasValue)
+                return;
+        }
+        args.Handled = TryUnbuckle(ent!, args.User, popup: true);
+        // imperial medieval riding end
 
         // TODO BUCKLE add out bool for whether a pop-up was generated or not.
     }
@@ -198,6 +224,9 @@ public abstract partial class SharedBuckleSystem
     private void AddUnbuckleVerb(EntityUid uid, BuckleComponent component, GetVerbsEvent<InteractionVerb> args)
     {
         if (!args.CanAccess || !args.CanInteract || !component.Buckled)
+            return;
+
+        if (!CanUnbuckle((uid, component), args.User, false))
             return;
 
         InteractionVerb verb = new()

@@ -1,0 +1,235 @@
+# Base
+
+- type: entity
+  id: MedievalFireWall
+  name: Fire Wall
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
+    drawdepth: Mobs
+    noRot: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 60
+        mask:
+          - MachineMask
+        layer:
+          - MidImpassable
+          - LowImpassable
+          - BulletImpassable
+          - Opaque
+        hard: false
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#ff9c24"
+  - type: DamageContacts
+    damage:
+      types:
+        Heat: 10
+  - type: IgniteOnCollide
+    fixtureId: fix1
+    fireStacks: 2
+
+# Beginner
+
+- type: entity
+  id: MedievalFireWallBeginner
+  parent: MedievalFireWall
+  name: Fire Wall
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
+  - type: TimedDespawn
+    lifetime: 8
+  - type: Brarrier
+    spawnedEntity: MedievalFireWallBeginnerClone
+    spawnedOnInvalidLocation: MedievalFireWallBeginnerInvalidPosition
+    barrierLength: 1
+    lookupRadius: 0.45
+    barrierSpawnTime: 0.1
+    permissibleIntersectionsPercentage: 0.3
+    spawnRelativePosition: 1,1
+    layersBlackList:
+      - Impassable
+
+- type: entity
+  id: MedievalFireWallBeginnerClone
+  parent: MedievalFireWall
+  name: Fire Wall
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
+    drawdepth: Mobs
+  - type: TimedDespawn
+    lifetime: 8
+
+- type: entity
+  id: MedievalFireWallBeginnerInvalidPosition
+  name: Fire Wall
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: TimedDespawn
+    lifetime: 8
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 60
+        hard: false
+  - type: Brarrier
+    spawnedEntity: MedievalFireWallBeginnerClone
+    barrierLength: 1
+    lookupRadius: 0.45
+    barrierSpawnTime: 0.1
+    permissibleIntersectionsPercentage: 0.3
+    spawnRelativePosition: 1,1
+    layersBlackList:
+      - Impassable
+
+# Middle
+
+- type: entity
+  id: MedievalFireWallMiddle
+  parent: MedievalFireWall
+  name: Fire Wall
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
+  - type: TimedDespawn
+    lifetime: 20
+  - type: IgniteOnCollide
+    fixtureId: fix1
+    fireStacks: 3
+  - type: Brarrier
+    spawnedEntity: MedievalFireWallMiddleClone
+    spawnedOnInvalidLocation: MedievalFireWallMiddleInvalidPosition
+    barrierLength: 2
+    lookupRadius: 0.45
+    barrierSpawnTime: 0.1
+    permissibleIntersectionsPercentage: 0.3
+    spawnRelativePosition: 1,1
+    layersBlackList:
+      - Impassable
+
+- type: entity
+  id: MedievalFireWallMiddleClone
+  parent: MedievalFireWall
+  name: Fire Wall
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
+    drawdepth: Mobs
+  - type: TimedDespawn
+    lifetime: 20
+  - type: IgniteOnCollide
+    fixtureId: fix1
+    fireStacks: 3
+
+- type: entity
+  id: MedievalFireWallMiddleInvalidPosition
+  name: Fire Wall
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: TimedDespawn
+    lifetime: 20
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 60
+  - type: Brarrier
+    spawnedEntity: MedievalFireWallMiddleClone
+    barrierLength: 2
+    lookupRadius: 0.45
+    barrierSpawnTime: 0.1
+    permissibleIntersectionsPercentage: 0.3
+    spawnRelativePosition: 1,1
+    layersBlackList:
+      - Impassable
+
+# Senior
+
+- type: entity
+  id: MedievalFireWallSenior
+  parent: MedievalFireWall
+  name: Fire Wall
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
+    drawdepth: Mobs
+  - type: TimedDespawn
+    lifetime: 20
+  - type: IgniteOnCollide
+    fixtureId: fix1
+    fireStacks: 3.5
+  - type: Brarrier
+    spawnedEntity: MedievalFireWallSeniorClone
+    spawnedOnInvalidLocation: MedievalFireWallSeniorInvalidPosition
+    barrierLength: 3
+    lookupRadius: 0.45
+    barrierSpawnTime: 0.1
+    permissibleIntersectionsPercentage: 0.3
+    spawnRelativePosition: 1,1
+    layersBlackList:
+      - Impassable
+
+- type: entity
+  id: MedievalFireWallSeniorClone
+  parent: MedievalFireWall
+  name: Fire Wall
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
+    drawdepth: Mobs
+  - type: TimedDespawn
+    lifetime: 20
+  - type: IgniteOnCollide
+    fixtureId: fix1
+    fireStacks: 5
+
+- type: entity
+  id: MedievalFireWallSeniorInvalidPosition
+  name: Fire Wall
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: TimedDespawn
+    lifetime: 20
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 60
+  - type: Brarrier
+    spawnedEntity: MedievalFireWallSeniorClone
+    barrierLength: 3
+    lookupRadius: 0.45
+    barrierSpawnTime: 0.1
+    permissibleIntersectionsPercentage: 0.3
+    spawnRelativePosition: 1,1
+    layersBlackList:
+      - Impassable

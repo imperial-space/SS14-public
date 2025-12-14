@@ -10,6 +10,7 @@ species-colored-Skeleton = [color=white]скелетон[/color]
 species-colored-Elf = [color=lightgreen]лесной эльф[/color]
 species-colored-Beastmen = [color=pink]зверолюд[/color]
 species-colored-Diona = [color=green]дендрит[/color]
+species-colored-Lamian = [color=blue]ламиан[/color]
 
 species-DarkElf = темный эльф
 species-Tifling = инферн
@@ -22,3 +23,4 @@ species-Reptilian = ящер
 species-Skeleton = скелетон
 species-Elf = лесной эльф
 species-Beastmen = зверолюд
+species-Lamian = ламиан

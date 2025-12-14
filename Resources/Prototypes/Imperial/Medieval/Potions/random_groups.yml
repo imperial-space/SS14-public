@@ -1,0 +1,219 @@
+# Темплейт для будущих прототиперов с использованием всех возможных полей
+#
+# - type: chemRandom
+#   id: Template
+#   potions:
+#   - Potion1
+#   - Potion2
+#   reagents:
+#   - Reactant1
+#   - Reactant2
+#   - Reactant3
+#   descriptions:
+#   - reagent-physical-desc-opaque
+#   - reagent-physical-desc-cloudy
+#   flavors:
+#   - sweet
+#   - cold
+#   colors:
+#   - "#c8c4ff"
+#   - "#ff1414"
+#   - "#7e2323"
+#   sounds:
+#   - path: /Audio/Effects/Chemistry/bubbles.ogg
+#   - path: /Audio/Effects/Chemistry/chtot-echo.ogg
+#   effectRandom:
+#     probability: 0.3
+#     count: 1
+#     effects:
+#     - !type:PopupMessage
+#       messages: [ "clf3-explosion" ]
+#       type: Pvs
+#       visualType: LargeCaution
+#     - !type:AreaReactionEffect
+#       duration: 10
+#       prototypeId: AluminiumMetalFoam
+#       sound:
+#         path: /Audio/Effects/extinguish.ogg
+#   mixerRandom:
+#     probability: 1
+#     categories:
+#     - Stir
+#     - Shake
+#   usedGroups:
+#   - EasyPack
+#   reactants: 2
+#   minTemperature:
+#     min: 0
+#     max: 10
+#   maxTemperature:
+#     min: 100
+#     max: 1000
+
+- type: chemRandom
+  id: EasyPack
+  priority: 1
+  potions:
+  - medievalexplosion
+  - medievalhealburn
+  - medievalhealbloodandoxygen
+  - medievalacid
+  - medievalradiation
+  - medievaldrughealmech
+  - medievalvomit
+  - Ammonia
+  - PlantBGone
+  - Left4Zed
+  - Diethylamine
+  - medievalslow
+  - medievalfast
+  - medievalstamina
+  - medievalsmoke
+  - Antihol
+  - medievalcryoexplosion
+  - medievalhealslash
+  - medievalhealpiercing
+  - medievalhealblunt
+  - medievalmute
+  - medievalblind
+  - medievaljitter
+  - medievalsleep
+  - medievalignite
+  - medievalhealandstopblood
+  colors:
+  - "#ff1414"
+  - "#ffdc14"
+  - "#adff14"
+  - "#143fff"
+  - "#14dcff"
+  - "#eb14ff"
+  - "#006b20"
+  - "#4bff14"
+  - "#818181"
+  - "#8a9900"
+  - "#ff6b6b"
+  - "#83ffda"
+  - "#c8c4ff"
+  - "#ff1414"
+  - "#7e2323"
+  - "#009aa5"
+  - "#ff8614"
+  - "#ffb274"
+  - "#5a7e45"
+  - "#ffffff"
+  - "#3d3d3d"
+  recipeCount: 2
+  potionCount: 26
+
+- type: chemRandom
+  id: MediumPack
+  priority: 2
+  potions:
+  - medievaladvancedhealeverything
+  - medievaladvancedhealslash
+  - medievaladvancedhealpiercing
+  - medievaladvancedhealblunt
+  - medievaladvancedhealburn
+  - medievaladvancedacidradiation
+  - medievaladvancedfast
+  - medievaladvancedslow
+  - medievaladvancedpacifism
+  - medievaladvancedteleport
+  - medievaladvancedhealandstopblood
+  - medievaladvancedstimulant
+  - medievaladvancedignite
+  - medievaladvancednocturnblood
+  - medievaladvancedsmokeandexplosion
+  reactants: 0
+  usedGroups:
+  - EasyPack
+  usedGroupsRecipes:
+  - EasyPack
+  colors:
+  - "#ff1414"
+  - "#ffdc14"
+  - "#adff14"
+  - "#143fff"
+  - "#14dcff"
+  - "#eb14ff"
+  - "#006b20"
+  - "#4bff14"
+  - "#818181"
+  - "#8a9900"
+  - "#ff6b6b"
+  - "#83ffda"
+  - "#c8c4ff"
+  - "#ff1414"
+  - "#7e2323"
+  - "#009aa5"
+  - "#ff8614"
+  - "#ffb274"
+  - "#5a7e45"
+  - "#ffffff"
+  - "#3d3d3d"
+  potionCount: 8
+
+- type: chemRandom
+  id: HardPack
+  potions:
+  - medievalbestexplosion
+  - medievalbestheal
+  - medievalbestpoison
+  - medievalbeststimulant
+  reactants: 1
+  potionCount: 1
+  priority: 3
+  usedGroups:
+  - EasyPack
+  - MediumPack
+  colors:
+  - "#ff1414"
+  - "#ffdc14"
+  - "#adff14"
+  - "#143fff"
+  - "#14dcff"
+  - "#eb14ff"
+  - "#006b20"
+  - "#4bff14"
+  - "#818181"
+  - "#8a9900"
+  - "#ff6b6b"
+  - "#83ffda"
+  - "#c8c4ff"
+  - "#ff1414"
+  - "#7e2323"
+  - "#009aa5"
+  - "#ff8614"
+  - "#ffb274"
+  - "#5a7e45"
+  - "#ffffff"
+  - "#3d3d3d"
+
+- type: chemRandom
+  id: PlagueCure
+  potions:
+  - MedievalPlagueCure1
+  - MedievalPlagueCure2
+  - MedievalPlagueCure3
+  - MedievalPlagueCure4
+  reactants: 0
+  priority: 2
+  usedGroups:
+  - EasyPack
+  usedGroupsRecipes:
+  - EasyPack
+  colors:
+  - "#48004e"
+  - "#006b20"
+  - "#4bff14"
+  - "#818181"
+  - "#8a9900"
+  - "#ff6b6b"
+  - "#83ffda"
+  - "#c8c4ff"
+  - "#7e2323"
+  - "#009aa5"
+  - "#ffb274"
+  - "#5a7e45"
+  - "#ffffff"
+  - "#3d3d3d"

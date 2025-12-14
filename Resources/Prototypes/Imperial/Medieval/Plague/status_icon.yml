@@ -1,0 +1,41 @@
+- type: factionIcon
+  id: MedievalPlagueInfectedIncubation
+  priority: 11
+  showToSelf: false
+  showTo:
+    components:
+    - Ghost
+    - MedievalPlagueGhost
+    tags:
+    - MedievalShowPlagueIcons
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/Plague/status_icons.rsi
+    state: incub
+
+- type: factionIcon
+  id: MedievalPlagueInfectedActive
+  priority: 11
+  showToSelf: false
+  showTo:
+    components:
+    - Ghost
+    - MedievalPlagueGhost
+    tags:
+    - MedievalShowPlagueIcons
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/Plague/status_icons.rsi
+    state: active
+
+- type: factionIcon
+  id: MedievalPlagueImmune
+  priority: 11
+  showToSelf: false
+  showTo:
+    components:
+    - Ghost
+    - MedievalPlagueGhost
+    tags:
+    - MedievalShowPlagueIcons
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/Plague/status_icons.rsi
+    state: immune

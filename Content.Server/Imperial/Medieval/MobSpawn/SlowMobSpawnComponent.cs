@@ -31,7 +31,7 @@ namespace Content.Server.SlowMobSpawn.Components
         [DataField]
         public bool Active = false;
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string SoundEffect = "/Audio/Imperial/Medieval/mob_spawn_effect.ogg";
     }
 }

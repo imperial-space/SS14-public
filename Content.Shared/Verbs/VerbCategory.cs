@@ -87,5 +87,8 @@ namespace Content.Shared.Verbs
         public static readonly VerbCategory PowerLevel = new("verb-categories-power-level", null);
 
         public static readonly VerbCategory Customization = new("verb-categories-customization", null);
+
+        public static readonly VerbCategory Adjust =
+            new("verb-categories-adjust", "/Textures/Interface/VerbIcons/screwdriver.png");
     }
 }

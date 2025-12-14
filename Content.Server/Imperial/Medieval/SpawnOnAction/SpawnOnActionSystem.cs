@@ -3,6 +3,7 @@ using Content.Shared.Imperial.SpawnOnAction.Events;
 using Robust.Server.GameObjects;
 using Content.Shared.Imperial.SpawnOnAction.Components;
 using Content.Server.Actions;
+using Content.Shared.Imperial.Medieval.Trading;
 
 namespace Content.Server.Imperial.SpawnOnAction.Systems;
 
@@ -37,6 +38,12 @@ public sealed partial class SpawnOnActionSystem : EntitySystem
             comp.Object.Value,
             ev.Target
         );
+
+        // не лучшее место для этого, но компонент в любом случае используется
+        // только для торговой дыры
+        if (TryComp<TradingComponent>(comp.Object, out var trading))
+            trading.AccountOwner = ev.Performer;
+
         ev.Handled = true;
     }
     private void OnComponentInit(EntityUid uid, SpawnOnActionComponent comp, ComponentInit ev)

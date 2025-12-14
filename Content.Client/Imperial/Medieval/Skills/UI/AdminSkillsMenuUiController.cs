@@ -1,6 +1,6 @@
-using Content.Shared.Friends;
-using Content.Shared.Friends.Components;
-using Content.Shared.Friends.Prototypes;
+using Content.Shared.Imperial.Medieval.Factions;
+using Content.Shared.Imperial.Medieval.Factions.Components;
+using Content.Shared.Imperial.Medieval.Factions.Prototypes;
 using Content.Shared.Imperial.Medieval.Skills;
 using JetBrains.Annotations;
 using Robust.Client.Player;

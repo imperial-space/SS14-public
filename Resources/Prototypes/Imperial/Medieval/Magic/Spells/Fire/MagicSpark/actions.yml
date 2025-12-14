@@ -1,0 +1,52 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionSparkBeginner
+  name: medieval-store-spells-fire-spark-beginner-name
+  description: medieval-store-spells-fire-spark-beginner-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.0001
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalFire: 1
+        bonusEssences:
+          MagicMedievalFire: 1
+  - type: MedievalInstantSpell
+  - type: Action
+    useDelay: 8
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/fireball_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Fire/MagicSpark/icons.rsi
+      state: beginner
+  - type: InstantAction
+    event: !type:MedievalSpawnInHandSpellEvent
+      spawnedEntityPrototype: SparkBeginner
+      spellCastDoAfter:
+        delay: 0
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        breakOnDamage: true
+        speedModifier: 1
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-spark
+          speechType: Emote
+          color: "#FF4500"
+          hideChat: true
+  - type: MedievalSpawnOnlyInFreeHands
+  - type: ManaDrainSpell
+    manaDrain: 5
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 7
+  - type: SpellCastEffect
+    effectProto: SparkSpellCastEffectBeginner

@@ -1,0 +1,240 @@
+- type: entity
+  id: SelectWerewolfFormAction
+  name: e
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: skin
+  - type: InstantAction
+    event: !type:SelectWerewolfFormActionEvent
+
+- type: entity
+  id: LycantropyProgressMenuAction
+  name: e
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: shop
+  - type: InstantAction
+    event: !type:OpenLycantropyMenuActionEvent
+
+- type: entity
+  id: LycantropyHowlAction
+  name: e
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: howl
+    useDelay: 90
+  - type: InstantAction
+    event: !type:WerewolfHowlActionEvent
+
+- type: entity
+  id: PolymorphWerewolfAction
+  name: e
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: turn
+  - type: InstantAction
+    event: !type:PolymorphWerewolfActionEvent
+
+- type: entity
+  id: RevertPolymorphWerewolfAction
+  name: Plague menu
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: turn
+  - type: InstantAction
+    event: !type:RevertPolymorphActionEvent
+
+- type: entity
+  id: WerewolfInfectAction
+  name: e
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: turnoff
+    iconOn:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: turnon
+  - type: InstantAction
+    event: !type:ToggleLycantropyInfectActionEvent
+      sound:
+        path: /Audio/Imperial/Medieval/Werewolf/infection-switch.ogg
+
+- type: entity
+  id: WerewolfHealAlliesAction
+  name: e
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: groupheal
+    useDelay: 90
+  - type: InstantAction
+    event: !type:WerewolfHealAlliesActionEvent
+      sound:
+        path: /Audio/Imperial/Medieval/Werewolf/team-regeneration.ogg
+
+- type: entity
+  id: WerewolfRegenAction
+  name: e
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: heal
+    useDelay: 90
+    checkConsciousness: false
+  - type: InstantAction
+    event: !type:WerewolfRegenActionEvent
+      sound:
+        path: /Audio/Imperial/Medieval/Werewolf/solo-regeneration.ogg
+
+- type: entity
+  id: WerewolfHotBloodAction
+  name: e
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: hotblood
+    useDelay: 120
+  - type: InstantAction
+    event: !type:WerewolfStatusEffectActionEvent
+      key: MedievalWerewolfHotBlood
+      component: WerewolfHotBlood
+      time: 30
+      sound:
+        path: /Audio/Imperial/Medieval/Werewolf/boiling-blood.ogg
+      global: true
+
+- type: entity
+  id: WerewolfHuntAction
+  name: e
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: hunt
+    useDelay: 150
+  - type: InstantAction
+    event: !type:WerewolfStatusEffectActionEvent
+      key: MedievalWerewolfHunt
+      component: WerewolfBloodHunt
+      time: 20
+      sound:
+        collection: WerewolfGrowl
+
+- type: entity
+  id: WerewolfMoonAction
+  name: e
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: moon
+    useDelay: 180
+  - type: InstantAction
+    event: !type:WerewolfStatusEffectActionEvent
+      key: MedievalWerewolfMoonRage
+      component: WerewolfMoonRage
+      time: 20
+      sound:
+        collection: WerewolfEnraged
+      global: true
+
+- type: entity
+  id: WerewolfTearingAction
+  name: e
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: tearingoff
+    iconOn:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: tearingon
+    useDelay: 60
+  - type: InstantAction
+    event: !type:WerewolfTearingActionEvent
+      sound:
+        path: /Audio/Imperial/Medieval/Werewolf/bite-open.ogg
+
+- type: entity
+  id: WerewolfDashAction
+  name: e
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: dash
+    useDelay: 60
+  - type: InstantAction
+    event: !type:WerewolfShadowDashActionEvent
+      sound:
+        path: /Audio/Imperial/Medieval/Werewolf/dash.ogg
+
+- type: entity
+  id: WerewolfBloodFeelAction
+  name: e
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: termaloff
+    iconOn:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: termalon
+  - type: InstantAction
+    event: !type:WerewolfBloodFeelActionEvent

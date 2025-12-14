@@ -5,12 +5,12 @@
   name: medieval-store-spells-fire-magic-arrow-player-follover-beginner-name
   description: medieval-store-spells-fire-magic-arrow-player-follover-beginner-desc
   actionLevelUp: 4
-  priority: 8
+  priority: 7
   productUpgradeId:
     - MedievalSpellMagicArrowPlayerFolloverMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+    state: beginner-aim
   cost:
     MagicMedievalFire: 25
   categories:
@@ -48,12 +48,12 @@
   id: MedievalSpellMagicArrowPlayerFolloverMiddle
   name: medieval-store-spells-fire-magic-arrow-player-follover-middle-name
   description: medieval-store-spells-fire-magic-arrow-player-follover-middle-desc
-  priority: 8
+  priority: 7
   productUpgradeId:
     - MedievalSpellMagicArrowPlayerFolloverSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-    state: 2
+    sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+    state: middle-aim
   cost:
     MagicMedievalFire: 50
   categories:
@@ -91,12 +91,12 @@
   id: MedievalSpellMagicArrowPlayerFolloverSenior
   name: medieval-store-spells-fire-magic-arrow-player-follover-senior-name
   description: medieval-store-spells-fire--magic-arrow-player-follover-senior-desc
-  priority: 8
+  priority: 7
   productUpgradeId:
     - MedievalSpellMagicArrowPlayerFolloverSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+    state: senior-aim
   cost:
     MagicMedievalFire: 80
     ArchmagePoints: 1

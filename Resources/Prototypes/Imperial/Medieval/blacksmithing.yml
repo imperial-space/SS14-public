@@ -7,10 +7,12 @@
 
 - type: entity
   name: blacksmith hammer
-  parent: BaseItem
+  parent: [ BaseItem, BaseCrushingCharged ]
   id: MedievalHammerBlacksmith
   description: An ancient war blade.
   components:
+  - type: RDWeight
+    value: 2
   - type: Sharp
   - type: Tag
     tags:
@@ -19,6 +21,10 @@
     sprite: Imperial/Medieval/Melee/blacksmith_hammer.rsi
     state: icon
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     attackRate: 1
     wideAnimationRotation: -140
     damage:
@@ -30,7 +36,7 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Blunt: 7
+        Blunt: 12
   - type: Tool
     qualities:
       - MedievalBlacksmithing

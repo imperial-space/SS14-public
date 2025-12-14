@@ -8,18 +8,22 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 1
+        essenceAddProbability: 0.0001
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalFire1: 1
+          MagicMedievalFire: 1
+        bonusEssences:
+          MagicMedievalFire: 1
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 90
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/boost.rsi
-      state: 1
+      sprite: Imperial/Medieval/Magic/Fire/Boost/icons.rsi
+      state: beginner
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: BoostBeginner
       spellCastDoAfter:
@@ -43,6 +47,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 19
+  - type: SpellCastEffect
+    effectProto: BoostSpellCastEffectBeginner
   - type: ActionUpgrade
     effectedLevels:
       2: MedievalActionBoostMiddle
@@ -64,14 +70,15 @@
       groups:
         Burn: 19
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 75
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/boost.rsi
-      state: 2
+      sprite: Imperial/Medieval/Magic/Fire/Boost/icons.rsi
+      state: middle
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: BoostMiddle
       spellCastDoAfter:
@@ -104,14 +111,15 @@
       groups:
         Burn: 19
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 70
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/boost.rsi
-      state: 3
+      sprite: Imperial/Medieval/Magic/Fire/Boost/icons.rsi
+      state: senior
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: BoostSenior
       spellCastDoAfter:

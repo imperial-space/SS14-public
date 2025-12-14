@@ -412,6 +412,9 @@
           Log:
             min: 4
             max: 6
+          MedievalRootItem:
+            min: 2
+            max: 4
   # Imperial Medieval End
 
 - type: entity
@@ -538,6 +541,9 @@
           Log:
             min: 4
             max: 6
+          MedievalRootItem:
+            min: 2
+            max: 4
   # Imperial Medieval End
 
 - type: entity

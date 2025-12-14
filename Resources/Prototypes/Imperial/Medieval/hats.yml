@@ -2,8 +2,8 @@
   parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
   id: MedievalStrawHat
   name: Hat
-  description: 1 
-  components: 
+  description: 1
+  components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/straw_hat.rsi
   - type: Clothing
@@ -15,7 +15,7 @@
   parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
   id: MedievalWhiteHat
   name: Hat
-  description: 
+  description:
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/white_hat.rsi
@@ -29,7 +29,7 @@
   parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
   id: MedievalRedHat
   name: Hat
-  description: 
+  description:
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/red_hat.rsi
@@ -43,7 +43,7 @@
   parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
   id: MedievalPurpleHat
   name: Hat
-  description: 
+  description:
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/purple_hat.rsi
@@ -57,7 +57,7 @@
   parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
   id: MedievalMotleyHat
   name: Hat
-  description: 
+  description:
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/motley_hat.rsi
@@ -71,7 +71,7 @@
   parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
   id: MedievalWreath
   name: Hat
-  description: 
+  description:
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/wreath.rsi
@@ -85,7 +85,7 @@
   parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
   id: MedievalWanderHat
   name: Hat
-  description: 
+  description:
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/wanderehat.rsi
@@ -99,7 +99,7 @@
   parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
   id: MedievalGreenHat
   name: Hat
-  description: 
+  description:
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/green hat.rsi
@@ -113,7 +113,7 @@
   parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
   id: MedievalGrayHat
   name: Hat
-  description: 
+  description:
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/gray_hat.rsi
@@ -126,7 +126,7 @@
   parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
   id: MedievalBlueHat
   name: Hat
-  description: 
+  description:
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/blue_hat.rsi
@@ -140,11 +140,37 @@
   parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
   id: MedievalBlackHat
   name: Hat
-  description: 
+  description:
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/black_hat.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/black_hat.rsi
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalTraderLegionHat
+  name: Hat
+  description: 1
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/traderlegioneagle.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/traderlegioneagle.rsi
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalTraderFoxHat
+  name: Hat
+  description: 1
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/traderfox.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/traderfox.rsi
   - type: Item
     size: Normal

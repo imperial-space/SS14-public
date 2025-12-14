@@ -1,0 +1,17 @@
+uniform highp float percentComplete;
+uniform highp float vignetteStrength;
+
+void fragment() {
+    highp vec2 centeredUV = UV - vec2(0.5);
+    highp float dist = length(centeredUV) * 2.0;
+    highp float vignette = smoothstep(0.4, 1.0, dist);
+    highp float timeFade = (1.0 - percentComplete);
+
+    highp float blink = 0.75 + 0.25 * sin(TIME * 10.0);
+
+    highp float totalVignetteStrength = vignetteStrength * timeFade * blink;
+    highp float alpha = vignette * totalVignetteStrength;
+
+    highp vec4 violet = vec4(0.7, 0.2, 1.0, 1.0);
+    COLOR = vec4(violet.rgb, alpha);
+}

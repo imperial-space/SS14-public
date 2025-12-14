@@ -1,0 +1,17 @@
+- type: alert
+  id: MedievalIllitidPsi
+  icons:
+  - sprite: /Textures/Imperial/Medieval/Interface/Alerts/illitid.rsi
+    state: s0
+  alertViewEntity: AlertEssenceSpriteView
+  name: Пси-энергия
+  description: placeholder
+
+- type: entity
+  id: MedievalAlertIllitidSpriteView
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/Interface/Alerts/illitid.rsi
+    layers:
+    - map: [ "enum.AlertVisualLayers.Base" ]

@@ -1,0 +1,79 @@
+- type: entity
+  name: маркер костяного шипа
+  id: BoneSpikeSpawnMarker
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/Medieval/Structures/bone_spike_big.rsi
+      state: icon
+  - type: Tag
+    tags:
+    - BoneSpikeSpawnPosition
+
+- type: entity
+  name: маркер лечащего черепа
+  id: HealingSkullSpawnMarker
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/Medieval/Mobs/Bosses/SkeletonSkull/minion.rsi
+      state: minion
+  - type: Tag
+    tags:
+    - HealingSkullSpawnPosition
+
+- type: entity
+  name: маркер шипов босса
+  id: BossSpikesSpawnMarker
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/Medieval/Structures/bone_spikes.rsi
+      state: spikes
+  - type: Tag
+    tags:
+    - BossSpikesSpawnPosition
+
+- type: entity
+  name: маркер взрывной руны босса
+  id: BossRuneSpawnMarker
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/Medieval/Mobs/Bosses/SkeletonSkull/runes.rsi
+      state: skull
+  - type: Tag
+    tags:
+    - BossRuneSpawnPosition
+
+- type: entity
+  name: маркер члена рейда на босса
+  id: BossFighterSpawnMarker
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: Tag
+    tags:
+    - BossSpawnPosition
+
+- type: entity
+  name: маркер кристальной ловушки
+  id: BossTrapPlayerSpawnMarker
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: Tag
+    tags:
+    - BossTrapPlayerSpawnPosition

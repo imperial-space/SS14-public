@@ -1,9 +1,8 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: USSPSoldierCoat
-  name: Body armor S-o.N.A
-  suffix: Vl, S-o.N.A
-  description: The bulletproof vest of S-o.N.A. AI Dynamics corporation, designed to bring maximum convenience to the wearer, also giving decent protection.
+  name: Military coat
+  description: Military camo coat.
   components:
   - type: Item
     size: Normal
@@ -18,7 +17,10 @@
         Slash: 0.8
         Piercing: 0.8
         Heat: 0.8
-        Stamina: 0.8
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.8
   - type: ClothingSpeedModifier
@@ -31,9 +33,8 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: USSPstormdivisionCoat
-  name: Body armor S-o.N.A
-  suffix: Vl, S-o.N.A
-  description: The bulletproof vest of S-o.N.A. AI Dynamics corporation, designed to bring maximum convenience to the wearer, also giving decent protection.
+  name: Elite coat
+  description: Good protection and look.
   components:
   - type: Item
     size: Normal
@@ -48,7 +49,10 @@
         Slash: 0.75
         Piercing: 0.75
         Heat: 0.75
-        Stamina: 0.5
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.75
   - type: ClothingSpeedModifier
@@ -61,9 +65,8 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: USSPguardsmenArmor
-  name: Body armor S-o.N.A
-  suffix: Vl, S-o.N.A
-  description: The bulletproof vest of S-o.N.A. AI Dynamics corporation, designed to bring maximum convenience to the wearer, also giving decent protection.
+  name: Elite guardsmen armor
+  description: bulletproof armor made for engineers.
   components:
   - type: Item
     size: Normal
@@ -78,7 +81,10 @@
         Slash: 0.55
         Piercing: 0.55
         Heat: 0.55
-        Stamina: 0.55
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.55
+  # Imperial Space Stamina Resistance End
   - type: ExplosionResistance
     damageCoefficient: 0.55
   - type: ClothingSpeedModifier
@@ -87,3 +93,171 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterArmorComissarRed
+  name: Parade Comissar vest
+  description: Wery official.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/agitcomissar/comissarvest.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/agitcomissar/comissarvest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.50
+        Slash: 0.50
+        Piercing: 0.50
+        Heat: 0.60
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
+  - type: ExplosionResistance
+    damageCoefficient: 0.90
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterArmorComissarGreen
+  name: Comissar vest
+  description: Gold!
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/battlecomissar/comissarvest.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/battlecomissar/comissarvest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.50
+        Slash: 0.50
+        Piercing: 0.50
+        Heat: 0.60
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.8
+  # Imperial Space Stamina Resistance End
+  - type: ExplosionResistance
+    damageCoefficient: 0.90
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: USSPMilitiaCoat
+  name: armor vest
+  description: A slim Type I armored vest that provides decent protection against most types of damage.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/police/coat.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/police/coat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.60
+        Slash: 0.60
+        Piercing: 0.60
+        Heat: 0.70
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.7
+  # Imperial Space Stamina Resistance End
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: USSPChefCoat
+  name: armor vest
+  description: A slim Type I armored vest that provides decent protection against most types of damage.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/chef/coat.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/chef/coat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.60
+        Slash: 0.60
+        Piercing: 0.60
+        Heat: 0.70
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.7
+  # Imperial Space Stamina Resistance End
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: USSPMilitiaMajorCoat
+  name: major armor vest
+  description: A slim Type I armored vest that provides decent protection against most types of damage.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/policemajor/coat.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/policemajor/coat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.55
+        Heat: 0.65
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.65
+  # Imperial Space Stamina Resistance End
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: USSPGeneralCoat
+  name: general armor vest
+  description: A slim Type I armored vest that provides decent protection against most types of damage.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/general/coat.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/general/coat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.50
+        Slash: 0.50
+        Piercing: 0.50
+        Heat: 0.60
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.6
+  # Imperial Space Stamina Resistance End
+  - type: ExplosionResistance
+    damageCoefficient: 0.70
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: USSPMarshalCoat
+  name: marshal armor vest
+  description: A slim Type I armored vest that provides decent protection against most types of damage.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/highcommand/coat.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/highcommand/coat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.40
+        Slash: 0.40
+        Piercing: 0.40
+        Heat: 0.50
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  # Imperial Space Stamina Resistance End
+  - type: ExplosionResistance
+    damageCoefficient: 0.60

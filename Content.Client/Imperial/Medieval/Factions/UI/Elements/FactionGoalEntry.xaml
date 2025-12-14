@@ -1,0 +1,41 @@
+<BoxContainer
+    xmlns="https://spacestation14.io"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
+    Orientation="Vertical"
+    Margin="4">
+    <imp:BorderedPanelContainer Name="BorderedPanel"
+            VerticalExpand="True"
+            HorizontalExpand="True"
+            ModulateSelfOverride="White"
+            BorderRadius="25"
+            BackgroundPanelColor="#16161a">
+        <BoxContainer
+                    Margin="4"
+                    VerticalExpand="True"
+                    HorizontalExpand="True"
+                    Orientation="Horizontal"
+                    Access="Public">
+            <BoxContainer
+                Orientation="Vertical"
+                HorizontalExpand="True"
+                VerticalExpand="True"
+                SizeFlagsStretchRatio="4">
+                <RichTextLabel Name="Name" Text="Бла бла" Margin="8 4"/>
+                <RichTextLabel Name="Desc" Text="Бла бла" Margin="8 4" HorizontalAlignment="Left" MaxWidth="850"/>
+                <ProgressBar Name="Progress" Margin="8 4 4 8" MaxValue="1">
+                    <RichTextLabel Name="ProgressText" Text="Бла бла" Margin="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </ProgressBar>
+            </BoxContainer>
+            <TextureRect
+                        HorizontalExpand="True"
+                        VerticalExpand="True"
+                        SizeFlagsStretchRatio="1"
+                        Name="Icon"
+                        TextureScale="1 1"
+                        Margin="8"
+                        Stretch="KeepAspectCentered"/>
+        </BoxContainer>
+    </imp:BorderedPanelContainer>
+</BoxContainer>

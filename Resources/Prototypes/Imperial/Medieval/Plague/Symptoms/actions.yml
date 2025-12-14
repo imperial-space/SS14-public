@@ -1,0 +1,179 @@
+- type: plagueSymptom
+  id: VomitAction
+  name: plague-forced-vomit-name
+  desc: plague-forced-vomit-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: retchupgrade
+  position: 100,-30
+  tier: 1
+  cost: 5
+  category: Action
+  actions: [PlagueForcedVomitAction]
+  required: [Vomit]
+
+- type: plagueSymptom
+  id: AsthmaticAction
+  name: plague-asthmatic-name
+  desc: plague-asthmatic-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: coughupgrade
+  position: -100,-30
+  tier: 1
+  cost: 5
+  category: Action
+  actions: [PlagueAsthmaticAction]
+  required: [Cough]
+
+- type: plagueSymptom
+  id: DizzinessAction
+  name: plague-dizziness-name
+  desc: plague-dizziness-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: dizzinessupgrade
+  position: -80,30
+  tier: 1
+  cost: 2
+  category: Action
+  actions: [PlagueDizzinessAction]
+
+- type: plagueSymptom
+  id: SleepyAction
+  name: plague-sleepy-name
+  desc: plague-sleepy-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: sleepy
+  position: -50,30
+  tier: 1
+  cost: 5
+  category: Action
+  actions: [PlagueSleepyAction]
+  required: [DizzinessAction]
+
+- type: plagueSymptom
+  id: MorphRatAction
+  name: plague-rat-name
+  desc: plague-rat-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: ratstier1
+  position: 80,30
+  tier: 1
+  cost: 5
+  category: Action
+  actions: [PlaguePolymorphMouseAction]
+
+- type: plagueSymptom
+  id: MorphRatsAction
+  name: plague-rats-name
+  desc: plague-rats-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: ratstier2
+  position: 50,30
+  tier: 1
+  cost: 5
+  category: Action
+  required: [MorphRatAction]
+
+- type: plagueSymptom
+  id: SlimesAction
+  name: plague-slimes-name
+  desc: plague-slimes-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: slimeupgrade
+  position: -95,0
+  tier: 1
+  cost: 5
+  category: Action
+  actions: [PlagueSpawnSlimesAction]
+
+- type: plagueSymptom
+  id: BugsAction
+  name: plague-bugs-name
+  desc: plague-bugs-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: bugs
+  position: -65,0
+  tier: 1
+  cost: 5
+  category: Action
+  actions: [PlagueSpawnBugsAction]
+  required: [SlimesAction]
+
+- type: plagueSymptom
+  id: TpSickAction
+  name: plague-tp-sick-name
+  desc: plague-tp-sick-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: tpsick
+  position: 95,0
+  tier: 1
+  cost: 5
+  category: [Action]
+  actions: [PlagueTpInfectedAction]
+
+- type: plagueSymptom
+  id: TpNotSickAction
+  name: plague-tp-not-sick-name
+  desc: plague-tp-not-sick-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: tphealthy
+  position: 65,0
+  tier: 1
+  cost: 5
+  category: Action
+  actions: [PlagueTpNotInfectedAction]
+  required: [TpSickAction]
+
+- type: plagueSymptom
+  id: CataractAction
+  name: plague-cataract-name
+  desc: plague-cataract-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: cataract
+  position: 30,-60
+  tier: 3
+  cost: 10
+  category: Action
+  actions: [PlagueCataractAction]
+  required: [StomachCancer]
+
+- type: plagueSymptom
+  id: WoundAction
+  name: plague-injury-name
+  desc: plague-injury-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: wound
+  position: -30,-60
+  tier: 3
+  cost: 10
+  category: Action
+  actions: [PlagueInjuryAction]
+  required: [SkinCancer]
+
+- type: plagueSymptom
+  id: HeartAttackAction
+  name: plague-heart-name
+  desc: plague-heart-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: heart
+  position: 0,-25
+  tier: 3
+  cost: 15
+  category: Action
+  actions: [PlagueHeartAttackAction]
+  required:
+  - LungsCancer
+  - CataractAction
+  - WoundAction

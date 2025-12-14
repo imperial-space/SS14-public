@@ -74,7 +74,7 @@ public sealed class StatusIconSystem : SharedStatusIconSystem
         var viewer = _playerManager.LocalSession?.AttachedEntity;
 
         // Always show our icons to our entity
-        if (viewer == ent.Owner)
+        if (viewer == ent.Owner && data.ShowToSelf) // Imperial Medieval - ShowToSelf check
             return true;
 
         if (data.VisibleToGhosts && HasComp<GhostComponent>(viewer))

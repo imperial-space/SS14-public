@@ -3,6 +3,7 @@ using Content.Client.Gameplay;
 using Content.Shared.CombatMode;
 using Content.Shared.Effects;
 using Content.Shared.Hands.Components;
+using Content.Shared.Imperial.Medieval.ChargedAttack;
 using Content.Shared.Mobs.Components;
 using Content.Shared.StatusEffect;
 using Content.Shared.Weapons.Melee;
@@ -133,8 +134,45 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
             return;
         }
 
-        // Heavy attack.
-        if (altDown == BoundKeyState.Down)
+        // imperial medieval charged attack start
+        if (TryComp<ChargedAttackComponent>(weaponUid, out var charged))
+        {
+            if (!charged.CurrentAttacking)
+            {
+                if (altDown == BoundKeyState.Down)
+                {
+                    RaisePredictiveEvent(new ChargedAttackStart(GetNetEntity(weaponUid)));
+                    return;
+                }
+                else if (useDown == BoundKeyState.Down)
+                {
+                    ClientLightAttack(entity, mousePos, coordinates, weaponUid, weapon);
+                    return;
+                }
+            }
+            else if (charged.AttackStart != TimeSpan.FromSeconds(0f))
+            {
+                var attackTime = Timing.CurTime - charged.AttackStart;
+                if (altDown == BoundKeyState.Up && attackTime >= TimeSpan.FromSeconds(charged.MinAttackTime) || attackTime >= TimeSpan.FromSeconds(charged.MaxAttackTime))
+                {
+                    RaisePredictiveEvent(new ChargedAttackEnd(GetNetCoordinates(coordinates), GetNetEntity(weaponUid), attackTime));
+                    Log.Info("1");
+                    return;
+                }
+                else if (altDown == BoundKeyState.Up && attackTime <= TimeSpan.FromSeconds(charged.MinAttackTime))
+                {
+                    if (weapon.AltDisarm && weaponUid == entity)
+                    {
+                        ClientDisarm(entity, mousePos, coordinates);
+                        return;
+                    }
+
+                    ClientHeavyAttack(entity, coordinates, weaponUid, weapon);
+                    return;
+                }
+            }
+        }
+        else if (altDown == BoundKeyState.Down) // Heavy Attack
         {
             // If it's an unarmed attack then do a disarm
             if (weapon.AltDisarm && weaponUid == entity)
@@ -146,10 +184,9 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
             ClientHeavyAttack(entity, coordinates, weaponUid, weapon);
             return;
         }
-
-        // Light attack
-        if (useDown == BoundKeyState.Down)
+        else if (useDown == BoundKeyState.Down) // Light attack
             ClientLightAttack(entity, mousePos, coordinates, weaponUid, weapon);
+        // imperial medieval charged attack end
     }
 
     protected override bool InRange(EntityUid user, EntityUid target, float range, ICommonSession? session)

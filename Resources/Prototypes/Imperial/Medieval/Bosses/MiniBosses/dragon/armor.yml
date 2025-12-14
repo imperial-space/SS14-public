@@ -1,0 +1,167 @@
+- type: entity
+  parent: MedievalForstoneGloves
+  id: MedievalDragonBoneGlovesIce
+  name: IronGloves
+  description: gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Gloves/ice.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Gloves/ice.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorForstone
+  id: MedievalClothingOuterArmorDragonBoneIce
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Armor/ice.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Armor/ice.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetForstone
+  id: MedievalClothingHeadHelmetDragonBoneIce
+  name: normand helmet
+  description: Medieval normand helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Helmet/ice.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Helmet/ice.rsi
+
+- type: entity
+  parent: MedievalClothingFeetForstone
+  id: MedievalClothingFeetDragonBoneIce
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Boots/ice.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Boots/ice.rsi
+
+- type: entity
+  parent: MedievalForstoneGloves
+  id: MedievalDragonBoneGlovesFire
+  name: IronGloves
+  description: gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Gloves/fire.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Gloves/fire.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorForstone
+  id: MedievalClothingOuterArmorDragonBoneFire
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Armor/fire.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Armor/fire.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetForstone
+  id: MedievalClothingHeadHelmetDragonBoneFire
+  name: normand helmet
+  description: Medieval normand helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Helmet/fire.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Helmet/fire.rsi
+
+- type: entity
+  parent: MedievalClothingFeetForstone
+  id: MedievalClothingFeetDragonBoneFire
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Boots/fire.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Boots/fire.rsi
+
+- type: entity
+  parent: MedievalForstoneGloves
+  id: MedievalDragonBoneGlovesThunder
+  name: IronGloves
+  description: gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Gloves/thunder.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Gloves/thunder.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorForstone
+  id: MedievalClothingOuterArmorDragonBoneThunder
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Armor/thunder.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Armor/thunder.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetForstone
+  id: MedievalClothingHeadHelmetDragonBoneThunder
+  name: normand helmet
+  description: Medieval normand helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Helmet/thunder.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Helmet/thunder.rsi
+
+- type: entity
+  parent: MedievalClothingFeetForstone
+  id: MedievalClothingFeetDragonBoneThunder
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Boots/thunder.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Boots/thunder.rsi
+
+- type: entity
+  parent: MedievalForstoneGloves
+  id: MedievalDragonBoneGlovesAcid
+  name: IronGloves
+  description: gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Gloves/acid.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Gloves/acid.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorForstone
+  id: MedievalClothingOuterArmorDragonBoneAcid
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Armor/acid.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Armor/acid.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetForstone
+  id: MedievalClothingHeadHelmetDragonBoneAcid
+  name: normand helmet
+  description: Medieval normand helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Helmet/acid.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Helmet/acid.rsi
+
+- type: entity
+  parent: MedievalClothingFeetForstone
+  id: MedievalClothingFeetDragonBoneAcid
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Boots/acid.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/Clothing/Boots/acid.rsi

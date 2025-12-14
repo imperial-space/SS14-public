@@ -1,0 +1,240 @@
+- type: entity
+  name: wolf
+  parent: SimpleMobBase
+  id: MedievalMobWerwolfBlack
+  description: They're a wolf.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/werwolf.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: black
+    - map: ["red-eyes"]
+      state: red_eyes
+      shader: unshaded
+      visible: false
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.38
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Appearance
+  - type: Bloodstream
+    bloodMaxVolume: 750
+    bloodRefreshAmount: 3
+  - type: ReplacementAccent
+    accent: dog
+  - type: MeleeWeapon
+    altDisarm: false
+    range: 2.25
+    hidden: true
+    angle: 0
+    soundHit:
+     path: /Audio/Imperial/Medieval/Werewolf/hit.ogg
+    soundSwing:
+      path: /Audio/Imperial/Medieval/Werewolf/miss.ogg
+    animation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 18
+  - type: Puller
+  - type: Tag
+    tags:
+      - CannotSuicide
+      - DoorBumpOpener
+      - FootstepSound
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      410: Critical
+      750: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 5.6
+    baseSprintSpeed : 3.4
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      125: 0.95
+      200: 0.85
+      295: 0.65
+      350: 0.55
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Vocal
+    sounds:
+      Unsexed: Werewolf
+  - type: Speech
+    allowedEmotes:
+    - Howl
+  - type: StaminaDamageOnHit
+    damage: 20
+  - type: Werewolf
+  - type: ContainerContainer
+    containers:
+      tearing_weapon: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      tearing_weapon:
+        locked: true
+        disableEject: true
+        insertOnInteract: true
+        startingItem: MedievalWerwolfTearingWeapon
+  - type: InnerWeapon
+  - type: StatusEffects
+    allowed:
+    - IllitidFlashed
+    - Stun
+    - KnockedDown
+    - SlowedDown
+    - Stutter
+    - Electrocution
+    - ForcedSleep
+    - TemporaryBlindness
+    - Pacified
+    - StaminaModifier
+    - Flashed
+    - RadiationProtection
+    - Drowsiness
+    - Adrenaline
+    - Jitter
+    - MedievalWerewolfRegen
+    - MedievalWerewolfHotBlood
+    - MedievalWerewolfHunt
+    - MedievalWerewolfMoonRage
+  - type: GenericVisualizer
+    visuals:
+      enum.WerewolfBloodFeelVisuals.Active:
+        red-eyes:
+          True: { visible: true }
+          False: { visible: false }
+
+- type: entity
+  name: wolf
+  parent: MedievalMobWerwolfBlack
+  id: MedievalMobWerwolfBlueDark
+  description: They're a wolf.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: dark_blue
+    - map: ["red-eyes"]
+      state: red_eyes
+      shader: unshaded
+      visible: false
+
+- type: entity
+  name: wolf
+  parent: MedievalMobWerwolfBlack
+  id: MedievalMobWerwolfBlueLight
+  description: They're a wolf.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: light_blue
+    - map: ["red-eyes"]
+      state: red_eyes
+      shader: unshaded
+      visible: false
+
+- type: entity
+  name: wolf
+  parent: MedievalMobWerwolfBlack
+  id: MedievalMobWerwolfBrown
+  description: They're a wolf.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: brown
+    - map: ["red-eyes"]
+      state: red_eyes
+      shader: unshaded
+      visible: false
+
+- type: entity
+  name: wolf
+  parent: MedievalMobWerwolfBlack
+  id: MedievalMobWerwolfLight
+  description: They're a wolf.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: grey
+    - map: ["red-eyes"]
+      state: red_eyes
+      shader: unshaded
+      visible: false
+
+- type: entity
+  name: wolf
+  parent: MedievalMobWerwolfBlack
+  id: MedievalMobWerwolfPurple
+  description: They're a wolf.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: purple
+    - map: ["red-eyes"]
+      state: red_eyes
+      shader: unshaded
+      visible: false
+
+- type: entity
+  name: wolf
+  parent: MedievalMobWerwolfBlack
+  id: MedievalMobWerwolfRed
+  description: They're a wolf.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: red
+    - map: ["red-eyes"]
+      state: red_eyes
+      shader: unshaded
+      visible: false
+
+- type: entity
+  name: tearing chtuka
+  parent: BaseItem
+  id: MedievalWerwolfTearingWeapon
+  description: s
+  categories: [HideSpawnMenu]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Werewolf/black.rsi
+    state: icon
+  - type: MeleeWeapon
+    range: 2
+    hidden: true
+    angle: 0
+    soundHit:
+     collection: AlienClaw
+    animation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 35
+  - type: StaminaDamageOnHit
+    damage: 300
+  - type: MeleeThrowOnHit
+    distance: 4
+  - type: MedievalMeleeResource
+    resourceWaste: 0

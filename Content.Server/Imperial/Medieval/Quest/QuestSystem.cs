@@ -1,4 +1,5 @@
-﻿using Content.Server.Quest.Components;
+﻿using System.Linq;
+using Content.Server.Quest.Components;
 using Content.Shared.Speech;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Random;
@@ -11,6 +12,8 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Content.Server.Chat.Systems;
+using Content.Server.Imperial.Medieval.Trading;
+using Content.Shared.Storage.Components;
 
 namespace Content.Server.Quest;
 public partial class QuestSystem : EntitySystem
@@ -20,6 +23,7 @@ public partial class QuestSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] protected readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly TradingSystem _trading = null!;
 
     public override void Initialize()
     {
@@ -37,6 +41,11 @@ public partial class QuestSystem : EntitySystem
     {
         if (!args.CanReach)
             return;
+
+        if (EntityManager.Deleted(args.User) || EntityManager.Deleted(args.Used) || args.Target != null && EntityManager.Deleted(args.Target.Value))
+            return;
+
+        args.Handled = true;
         OnUse(args.Target, args.User, args.Used, comp);
     }
 
@@ -55,7 +64,7 @@ public partial class QuestSystem : EntitySystem
             }
             if (lootCount >= comp.Amount)
             {
-                GetReward(used, user, storage.Owner, comp.Reward, comp.ContractPartner);
+                GetReward(used, user, storage.Owner, comp.Reward, comp.ContractPartner, comp.ReputationReward, comp.ContractGuildId);
             }
         }
     }
@@ -64,6 +73,8 @@ public partial class QuestSystem : EntitySystem
     {
         if (!args.CanReach)
             return;
+
+        args.Handled = true;
         OnUsePallete(args.Target, args.User, args.Used, comp);
     }
 
@@ -71,16 +82,23 @@ public partial class QuestSystem : EntitySystem
     {
         if (target == null)
             return;
+
         if (TryComp<PalletStorageComponent>(target.Value, out var pallet) && pallet.ContractPartner == comp.ContractPartner)
-            GetReward(used, user, target.Value, comp.Reward, comp.ContractPartner);
+            GetReward(used, user, target.Value, comp.Reward, comp.ContractPartner, comp.ReputationReward, comp.ContractGuildId);
     }
 
-    public void GetReward(EntityUid contract, EntityUid user, EntityUid chest, int Reward, string ContractPartner)
+    public void GetReward(EntityUid contract,
+        EntityUid user,
+        EntityUid chest,
+        int reward,
+        string contractPartner,
+        float reputationReward,
+        Guid? contractGuildId)
     {
-        int remainingAmount = Reward;
+        int remainingAmount = reward;
         var xform = Transform(chest);
         var coords = xform.Coordinates;
-        if (!CheckQuestArea(coords, ContractPartner))
+        if (!CheckQuestArea(coords, contractPartner))
             return;
         while (remainingAmount >= 100)
         {
@@ -91,6 +109,18 @@ public partial class QuestSystem : EntitySystem
         if (TryComp<StackComponent>(lastStack, out var stack) && stack != null)
             _stack.SetCount(lastStack, remainingAmount, stack);
         _audio.PlayEntity("/Audio/Imperial/Medieval/quest_reward.ogg", Filter.Entities(user), user, false, AudioParams.Default.WithVolume(20f));
+
+        if (contractGuildId != null)
+        {
+            var guild = _trading.Guilds
+                .FirstOrDefault(t => t.Id == contractGuildId);
+            if (guild == null)
+                return;
+
+            var netUser = GetNetEntity(user);
+            guild.AddReputation(netUser, reputationReward);
+        }
+
         QueueDel(contract);
         QueueDel(chest);
     }

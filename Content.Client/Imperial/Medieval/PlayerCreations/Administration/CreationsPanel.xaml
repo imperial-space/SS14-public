@@ -1,0 +1,11 @@
+﻿<DefaultWindow
+    xmlns="https://spacestation14.io"
+    Title="{Loc creations-panel-title}" MinSize="650 500"
+    xmlns:creations="clr-namespace:Content.Client.Imperial.Medieval.PlayerCreations.Administration">
+    <TabContainer Name="Tabs" Access="Public">
+        <creations:PaintingTab Name="IncomingPaintings"/>
+        <creations:BookTab Name="IncomingBooks"/>
+        <creations:PaintingTab Name="AcceptedPaintings"/>
+        <creations:BookTab Name="AcceptedBooks"/>
+    </TabContainer>
+</DefaultWindow>

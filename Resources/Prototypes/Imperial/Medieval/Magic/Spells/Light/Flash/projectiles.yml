@@ -7,9 +7,9 @@
   parent: BulletRocket
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/flash.rsi
+    sprite: Imperial/Medieval/Magic/Light/Flash/projectiles.rsi
     layers:
-    - state: proto
+    - state: beginner
       shader: unshaded
   - type: StaminaDamageOnCollide
     damage: 16
@@ -36,9 +36,9 @@
   parent: BulletRocket
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/flash.rsi
+    sprite: Imperial/Medieval/Magic/Light/Flash/projectiles.rsi
     layers:
-    - state: proto
+    - state: beginner
       shader: unshaded
   - type: StaminaDamageOnCollide
     damage: 24

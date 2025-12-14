@@ -1,9 +1,0 @@
-ent-MechEquipmentRepairDrone1 = Ремонтный дрон механоида MK1
-    .suffix = Механоид
-    .desc = Осуществляет ремонт механоида при активации.
-ent-MechEquipmentRepairDrone2 = Ремонтный дрон механоида MK2
-    .suffix = Механоид
-    .desc = Осуществляет ремонт механоида при активации.
-ent-MechEquipmentRepairDrone3 = Ремонтный дрон механоида MK3
-    .suffix = Механоид
-    .desc = Осуществляет ремонт механоида при активации.

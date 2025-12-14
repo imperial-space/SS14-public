@@ -79,15 +79,6 @@
   categories:
   - RCUAmmoCombat
 
-- type: listing
-  id: RCUCallUplinkSpeedLoaderGrenadeFrag
-  name: ert-uplink-ammononcombat-speedloaderfraggrenade-name
-  description: ert-uplink-ammononcombat-speedloaderfraggrenade-desc
-  productEntity: SpeedLoaderGrenadeFrag
-  cost:
-    BlueSpaceCube: 6
-  categories:
-  - RCUAmmoCombat
 
 - type: listing
   id: RCUCallUplinkMagazineBoxMagnumAP
@@ -580,15 +571,15 @@
   categories:
   - RCUWeaponCombat
 
-- type: listing
-  id: RCUCallUplinkWeaponMilkorMGL
-  name: ert-uplink-weaponcombat-milkormgl-name
-  description: ert-uplink-weaponcombat-milkormgl-desc
-  productEntity: WeaponLauncherMilkorMGL
-  cost:
-    BlueSpaceCube: 25
-  categories:
-  - RCUWeaponCombat
+# - type: listing # У RCU не должно быть гранатометов. Это охрана, а не убийцы
+#   id: RCUCallUplinkWeaponMilkorMGL
+#   name: ert-uplink-weaponcombat-milkormgl-name
+#   description: ert-uplink-weaponcombat-milkormgl-desc
+#   productEntity: WeaponLauncherMilkorMGL
+#   cost:
+#     BlueSpaceCube: 25
+#   categories:
+#   - RCUWeaponCombat
 
 - type: listing
   id: RCUCallUplinkWeaponTaser
@@ -621,15 +612,18 @@
   categories:
   - RCUUtilities
 
-- type: listing
-  id: RCUAmeliaPlushieEasterEgg
-  name: ert-uplink-utilities-ami-name
-  description: ert-uplink-utilities-ami2-desc
-  productEntity: PlushieSOO
-  cost:
-    BlueSpaceCube: 1
-  categories:
-  - RCUUtilities
+# - type: listing # Убрано для соблюдения игровой атмосферы
+#   id: RCUAmeliaPlushieEasterEgg
+#   name: ert-uplink-utilities-ami-name
+#   description: ert-uplink-utilities-ami2-desc
+#   productEntity: PlushieSOO
+#   cost:
+#     BlueSpaceCube: 10
+#   categories:
+#   - RCUUtilities
+#   conditions:
+#   - !type:ListingLimitedStockCondition
+#     stock: 1
 
 - type: listing
   id: RCUCallUplinkHandheldGPSBasic

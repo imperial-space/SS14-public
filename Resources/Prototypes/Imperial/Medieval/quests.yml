@@ -32,6 +32,7 @@
     maxReward: 110
     minAmount: 3
     maxAmount: 5
+    reputationReward: 8
 
 - type: entity
   name: MedievalQuestContract
@@ -54,6 +55,7 @@
     maxReward: 220
     minAmount: 4
     maxAmount: 6
+    reputationReward: 8
 
 - type: entity
   name: MedievalQuestContract
@@ -74,6 +76,7 @@
     maxReward: 165
     minAmount: 3
     maxAmount: 6
+    reputationReward: 8
 
 - type: entity
   name: MedievalQuestContract
@@ -92,6 +95,7 @@
     maxReward: 230
     minAmount: 3
     maxAmount: 6
+    reputationReward: 8
 
 - type: entity
   name: MedievalQuestContract
@@ -110,6 +114,7 @@
     maxReward: 305
     minAmount: 2
     maxAmount: 4
+    reputationReward: 8
 
 - type: entity
   name: MedievalQuestContract
@@ -127,6 +132,7 @@
     maxReward: 675
     minAmount: 1
     maxAmount: 1
+    reputationReward: 8
 
 - type: entity
   name: MedievalQuestContract
@@ -152,6 +158,7 @@
     maxReward: 150
     minAmount: 14
     maxAmount: 20
+    reputationReward: 8
 
 - type: entity
   name: MedievalQuestContract
@@ -169,6 +176,7 @@
     maxReward: 28
     minAmount: 14
     maxAmount: 20
+    reputationReward: 8
 
 - type: entity
   name: MedievalQuestContract
@@ -186,6 +194,7 @@
     maxReward: 28
     minAmount: 14
     maxAmount: 20
+    reputationReward: 8
 
 - type: entity
   name: MedievalQuestContract
@@ -209,6 +218,7 @@
     maxReward: 110
     minAmount: 3
     maxAmount: 5
+    reputationReward: 8
 
 - type: entity
   name: MedievalQuestContract
@@ -231,6 +241,7 @@
     maxReward: 220
     minAmount: 4
     maxAmount: 6
+    reputationReward: 8
 
 - type: entity
   name: MedievalQuestContract
@@ -251,6 +262,7 @@
     maxReward: 165
     minAmount: 3
     maxAmount: 6
+    reputationReward: 8
 
 - type: entity
   name: MedievalQuestContract
@@ -269,6 +281,7 @@
     maxReward: 230
     minAmount: 3
     maxAmount: 6
+    reputationReward: 8
 
 - type: entity
   name: MedievalQuestContract
@@ -287,6 +300,7 @@
     maxReward: 305
     minAmount: 2
     maxAmount: 4
+    reputationReward: 8
 
 - type: entity
   name: MedievalQuestContract
@@ -304,6 +318,7 @@
     maxReward: 675
     minAmount: 1
     maxAmount: 1
+    reputationReward: 8
 
 - type: entity
   name: MedievalQuestContract
@@ -329,3 +344,4 @@
     maxReward: 150
     minAmount: 14
     maxAmount: 20
+    reputationReward: 8

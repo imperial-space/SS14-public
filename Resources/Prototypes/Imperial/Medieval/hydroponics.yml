@@ -86,8 +86,8 @@
     - MedievalMushroom1
   lifespan: 30
   maturation: 12
-  production: 4
-  yield: 4
+  production: 2
+  yield: 2
   potency: 12
   growthStages: 3
   waterConsumption: 0.80
@@ -111,8 +111,8 @@
     - MedievalMushroom2
   lifespan: 30
   maturation: 12
-  production: 4
-  yield: 4
+  production: 2
+  yield: 2
   potency: 12
   growthStages: 3
   waterConsumption: 0.80
@@ -136,8 +136,8 @@
     - MedievalMushroom3
   lifespan: 30
   maturation: 12
-  production: 4
-  yield: 4
+  production: 2
+  yield: 2
   potency: 12
   growthStages: 3
   waterConsumption: 0.80
@@ -161,8 +161,8 @@
     - MedievalFlowerVetr
   lifespan: 28
   maturation: 9
-  production: 4
-  yield: 4
+  production: 3
+  yield: 3
   potency: 11
   growthStages: 3
   waterConsumption: 0.65
@@ -186,8 +186,8 @@
     - MedievalFlowerCryo
   lifespan: 30
   maturation: 11
-  production: 3
-  yield: 3
+  production: 2
+  yield: 2
   potency: 10
   growthStages: 3
   waterConsumption: 0.60
@@ -211,8 +211,8 @@
     - MedievalFlowerLava
   lifespan: 30
   maturation: 11
-  production: 3
-  yield: 3
+  production: 2
+  yield: 2
   potency: 10
   growthStages: 3
   waterConsumption: 0.55
@@ -236,8 +236,8 @@
     - MedievalFlowerLipad
   lifespan: 28
   maturation: 9
-  production: 4
-  yield: 4
+  production: 3
+  yield: 3
   potency: 11
   growthStages: 3
   waterConsumption: 0.65
@@ -269,6 +269,8 @@
   id: MedievalFlowerVetr
   description: gol
   components:
+  - type: RDWeight
+    value: 0.05
   - type: Sprite
     sprite: Imperial/Medieval/Chem/Garden/vetr.rsi
     state: produce
@@ -278,7 +280,10 @@
     ingredientType: Vetr
   - type: Currency
     price:
-      Revent: 5
+      Revent: 3
+  - type: MedievalCurrency
+    price:
+      Revent: 3
   - type: Tag
     tags:
     - AlchemicIngredient
@@ -288,7 +293,7 @@
     juiceSolution:
       reagents:
       - ReagentId: MedievalFlowerVetr
-        Quantity: 10
+        Quantity: 35
 
 - type: reagent
   id: MedievalFlowerLipad
@@ -309,6 +314,8 @@
   id: MedievalFlowerLipad
   description: gol
   components:
+  - type: RDWeight
+    value: 0.05
   - type: Sprite
     sprite: Imperial/Medieval/Chem/Garden/lipad.rsi
     state: produce
@@ -318,7 +325,10 @@
     ingredientType: Lipad
   - type: Currency
     price:
-      Revent: 5
+      Revent: 3
+  - type: MedievalCurrency
+    price:
+      Revent: 3
   - type: Tag
     tags:
     - AlchemicIngredient
@@ -328,7 +338,7 @@
     juiceSolution:
       reagents:
       - ReagentId: MedievalFlowerLipad
-        Quantity: 10
+        Quantity: 35
 
 - type: reagent
   id: MedievalFlowerLava
@@ -349,6 +359,8 @@
   id: MedievalFlowerLava
   description: gol
   components:
+  - type: RDWeight
+    value: 0.05
   - type: Sprite
     sprite: Imperial/Medieval/Chem/Garden/lava.rsi
     state: produce
@@ -358,7 +370,10 @@
     ingredientType: Lava
   - type: Currency
     price:
-      Revent: 5
+      Revent: 3
+  - type: MedievalCurrency
+    price:
+      Revent: 3
   - type: Tag
     tags:
     - AlchemicIngredient
@@ -368,7 +383,7 @@
     juiceSolution:
       reagents:
       - ReagentId: MedievalFlowerLava
-        Quantity: 10
+        Quantity: 35
 
 - type: reagent
   id: MedievalFlowerCryo
@@ -389,6 +404,8 @@
   id: MedievalFlowerCryo
   description: gol
   components:
+  - type: RDWeight
+    value: 0.05
   - type: Sprite
     sprite: Imperial/Medieval/Chem/Garden/cryo.rsi
     state: produce
@@ -398,7 +415,10 @@
     ingredientType: Cryo
   - type: Currency
     price:
-      Revent: 5
+      Revent: 3
+  - type: MedievalCurrency
+    price:
+      Revent: 3
   - type: Tag
     tags:
     - AlchemicIngredient
@@ -408,7 +428,7 @@
     juiceSolution:
       reagents:
       - ReagentId: MedievalFlowerCryo
-        Quantity: 10
+        Quantity: 35
 
 - type: reagent
   id: MedievalMushroom1
@@ -436,14 +456,17 @@
     seedId: Mushroom1
   - type: Currency
     price:
-      Revent: 8
+      Revent: 3
+  - type: MedievalCurrency
+    price:
+      Revent: 3
   - type: Item
     size: Tiny
   - type: Extractable
     juiceSolution:
       reagents:
       - ReagentId: MedievalMushroom1
-        Quantity: 10
+        Quantity: 35
   - type: Tag
     tags:
     - AlchemicIngredient
@@ -476,14 +499,17 @@
     seedId: Mushroom2
   - type: Currency
     price:
-      Revent: 8
+      Revent: 3
+  - type: MedievalCurrency
+    price:
+      Revent: 3
   - type: Item
     size: Tiny
   - type: Extractable
     juiceSolution:
       reagents:
       - ReagentId: MedievalMushroom2
-        Quantity: 10
+        Quantity: 35
   - type: Tag
     tags:
     - AlchemicIngredient
@@ -516,16 +542,20 @@
     seedId: Mushroom3
   - type: Currency
     price:
-      Revent: 8
+      Revent: 3
+  - type: MedievalCurrency
+    price:
+      Revent: 3
   - type: Item
     size: Tiny
   - type: Extractable
     juiceSolution:
       reagents:
       - ReagentId: MedievalMushroom3
-        Quantity: 10
+        Quantity: 35
   - type: Tag
     tags:
     - AlchemicIngredient
     - MyrmexCanTake
     - Mushroom3
+

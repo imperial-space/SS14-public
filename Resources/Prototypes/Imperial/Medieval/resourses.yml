@@ -22,6 +22,9 @@
   - type: Currency
     price:
       Revent: 2
+  - type: MedievalCurrency
+    price:
+      Revent: 2
 
 - type: entity
   name: MedievalStone
@@ -79,6 +82,9 @@
   - type: Currency
     price:
       Revent: 10
+  - type: MedievalCurrency
+    price:
+      Revent: 10
 
 - type: entity
   name: MedievalTopazOre
@@ -129,6 +135,9 @@
     stackType: MedievalRope
     count: 1
   - type: Currency
+    price:
+      Revent: 4
+  - type: MedievalCurrency
     price:
       Revent: 4
 
@@ -211,6 +220,25 @@
     count: 10
 
 - type: entity
+  parent: BaseItem
+  id: MedievalStoneBrick
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: stone_brick
+  - type: Tag
+    tags:
+    - RawMaterial
+    - Sheet
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      MedievalStoneBrick: 100
+  - type: Stack
+    stackType: MedievalStoneBrick
+    count: 1
+
+- type: entity
   name: MedievalSpiderHair
   parent: BaseItem
   id: MedievalSpiderHair
@@ -231,6 +259,9 @@
     stackType: MedievalSpiderHair
     count: 1
   - type: Currency
+    price:
+      Revent: 4
+  - type: MedievalCurrency
     price:
       Revent: 4
 
@@ -265,6 +296,9 @@
     stackType: MedievalSpiderEye
     count: 1
   - type: Currency
+    price:
+      Revent: 7
+  - type: MedievalCurrency
     price:
       Revent: 7
 
@@ -379,6 +413,9 @@
   - type: Currency
     price:
       Revent: 20
+  - type: MedievalCurrency
+    price:
+      Revent: 20
 
 - type: entity
   name: MedievalEssence30
@@ -424,6 +461,9 @@
     materialComposition:
       MedievalLeather1: 100
   - type: Currency
+    price:
+      Revent: 2
+  - type: MedievalCurrency
     price:
       Revent: 2
 
@@ -568,6 +608,20 @@
   name: materials-medieval-steel
   icon: { sprite: Imperial/Medieval/Materials/mdv.rsi, state: iron_ingot }
   spawn: MedievalIronIngot
+  maxCount: 30
+
+- type: material
+  id: MedievalStoneBrick
+  stackEntity: MedievalStoneBrick
+  icon: { sprite: Imperial/Medieval/Materials/mdv.rsi, state: stone_brick }
+  color: "#d9d9d9"
+  price: 0.1
+
+- type: stack
+  id: MedievalStoneBrick
+  name: materials-medievalstonebrick
+  icon: { sprite: Imperial/Medieval/Materials/mdv.rsi, state: stone_brick }
+  spawn: MedievalStoneBrick
   maxCount: 30
 
 - type: material
@@ -799,6 +853,9 @@
   - type: Currency
     price:
       Revent: 7
+  - type: MedievalCurrency
+    price:
+      Revent: 7
 
 - type: entity
   name: MedievalAdamOre
@@ -849,6 +906,9 @@
   - type: Currency
     price:
       Revent: 10
+  - type: MedievalCurrency
+    price:
+      Revent: 10
 
 - type: entity
   name: MedievalIngotGold
@@ -877,6 +937,9 @@
       types:
         Blunt: 6
   - type: Currency
+    price:
+      Revent: 30
+  - type: MedievalCurrency
     price:
       Revent: 30
 
@@ -919,6 +982,9 @@
   - type: Currency
     price:
       Revent: 10
+  - type: MedievalCurrency
+    price:
+      Revent: 10
 
 - type: material
   id: MedievalEbonitIngot
@@ -957,6 +1023,9 @@
     stackType: MedievalEbonitIngot
     count: 1
   - type: Currency
+    price:
+      Revent: 4
+  - type: MedievalCurrency
     price:
       Revent: 4
 
@@ -1009,6 +1078,9 @@
   - type: Currency
     price:
       Revent: 4
+  - type: MedievalCurrency
+    price:
+      Revent: 4
 
 - type: entity
   name: MedievalEbonitOre10
@@ -1033,6 +1105,8 @@
   id: MedievalChain
   description: lol
   components:
+  - type: RDWeight
+    value: 0.8
   - type: Sprite
     sprite: Imperial/Medieval/Materials/mdv.rsi
     state: chain
@@ -1081,6 +1155,8 @@
   id: MedievalIronPlate
   description: lol
   components:
+  - type: RDWeight
+    value: 1.5
   - type: Sprite
     sprite: Imperial/Medieval/Materials/mdv.rsi
     state: plate
@@ -1105,6 +1181,8 @@
   id: MedievalIronPlateSmall
   description: lol
   components:
+  - type: RDWeight
+    value: 0.3
   - type: Sprite
     sprite: Imperial/Medieval/Materials/mdv.rsi
     state: plate_small
@@ -1368,6 +1446,9 @@
   - type: Currency
     price:
       Revent: 4
+  - type: MedievalCurrency
+    price:
+      Revent: 4
 
 - type: entity
   name: MedievalForstoneIngot10
@@ -1416,6 +1497,9 @@
     stackType: MedievalForstoneOre
     count: 1
   - type: Currency
+    price:
+      Revent: 4
+  - type: MedievalCurrency
     price:
       Revent: 4
 

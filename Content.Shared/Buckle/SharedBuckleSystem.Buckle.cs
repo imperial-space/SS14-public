@@ -12,19 +12,18 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Popups;
 using Content.Shared.Pulling.Events;
-using Content.Shared.Rotation;
 using Content.Shared.Standing;
 using Content.Shared.Storage.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
-using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Imperial.ImperialVehicle.Components; // Imperial "ImperialVehicle"
 
 namespace Content.Shared.Buckle;
 
@@ -126,6 +125,8 @@ public abstract partial class SharedBuckleSystem
         if (buckle.Comp.BuckledTo is not { } strapUid)
             return;
 
+        if (HasComp<ImperialVehicleComponent>(strapUid)) // Imperial "ImperialVehicle"
+            return; // Imperial "ImperialVehicle"
         if (!TryComp<StrapComponent>(strapUid, out var strapComp))
         {
             Log.Error($"Encountered buckle entity {ToPrettyString(buckle)} without a valid strap entity {ToPrettyString(strapUid)}");
@@ -166,7 +167,7 @@ public abstract partial class SharedBuckleSystem
 
     private void OnBuckleStandAttempt(EntityUid uid, BuckleComponent component, StandAttemptEvent args)
     {
-        if (component.Buckled)
+        if (component.Buckled && HasComp<ImperialVehicleComponent>(component.BuckledTo)) // Imperial "ImperialVehicle"
             args.Cancel();
     }
 
@@ -181,6 +182,8 @@ public abstract partial class SharedBuckleSystem
         if (HasComp<RideableComponent>(component.BuckledTo))
             return; // imperial medieval rideable
 
+        if (component.Buckled && HasComp<ImperialVehicleComponent>(component.BuckledTo)) // Imperial "ImperialVehicle"
+            return; // Imperial "ImperialVehicle"
         if (component.Buckled)
             args.Cancel();
     }
@@ -202,11 +205,11 @@ public abstract partial class SharedBuckleSystem
         {
             strapEnt.Comp.BuckledEntities.Add(buckle);
             Dirty(strapEnt);
-            _alerts.ShowAlert(buckle, strapEnt.Comp.BuckledAlertType);
+            _alerts.ShowAlert(buckle.Owner, strapEnt.Comp.BuckledAlertType);
         }
         else
         {
-            _alerts.ClearAlertCategory(buckle, BuckledAlertCategory);
+            _alerts.ClearAlertCategory(buckle.Owner, BuckledAlertCategory);
         }
 
         buckle.Comp.BuckledTo = strap;
@@ -359,6 +362,14 @@ public abstract partial class SharedBuckleSystem
 
     private void Buckle(Entity<BuckleComponent> buckle, Entity<StrapComponent> strap, EntityUid? user)
     {
+        // imperial medieval riding start
+        var beforeEv = new BeforeBuckledEvent(strap, buckle);
+        RaiseLocalEvent(buckle, ref beforeEv);
+
+        if (beforeEv.Cancelled)
+            return;
+        // imperial medieval riding end
+
         if (user == buckle.Owner)
             _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(user):player} buckled themselves to {ToPrettyString(strap)}");
         else if (user != null)
@@ -397,6 +408,8 @@ public abstract partial class SharedBuckleSystem
         if (TryComp<PhysicsComponent>(buckle, out var physics))
             _physics.ResetDynamics(buckle, physics);
 
+        if (HasComp<ImperialVehicleComponent>(strap)) // Imperial "ImperialVehicle"
+            return;// Imperial "ImperialVehicle"
         DebugTools.AssertEqual(xform.ParentUid, strap.Owner);
     }
 
@@ -451,9 +464,9 @@ public abstract partial class SharedBuckleSystem
     private void Unbuckle(Entity<BuckleComponent> buckle, Entity<StrapComponent> strap, EntityUid? user)
     {
         if (user == buckle.Owner)
-            _adminLogger.Add(LogType.Action, LogImpact.Low, $"{user} unbuckled themselves from {strap}");
+            _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(user):user} unbuckled themselves from {ToPrettyString(strap):strap}");
         else if (user != null)
-            _adminLogger.Add(LogType.Action, LogImpact.Low, $"{user} unbuckled {buckle} from {strap}");
+            _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(user):user} unbuckled {ToPrettyString(buckle):target} from {ToPrettyString(strap):strap}");
 
         _audio.PlayPredicted(strap.Comp.UnbuckleSound, strap, user);
 
@@ -520,8 +533,14 @@ public abstract partial class SharedBuckleSystem
         if (_gameTiming.CurTime < buckle.Comp.BuckleTime + buckle.Comp.Delay)
             return false;
 
-        if (user != null && !_interaction.InRangeUnobstructed(user.Value, strap.Owner, buckle.Comp.Range, popup: popup))
-            return false;
+        if (user != null)
+        {
+            if (!_interaction.InRangeUnobstructed(user.Value, strap.Owner, buckle.Comp.Range, popup: popup))
+                return false;
+
+            if (user.Value != buckle.Owner && !ActionBlocker.CanComplexInteract(user.Value))
+                return false;
+        }
 
         var unbuckleAttempt = new UnbuckleAttemptEvent(strap, buckle!, user, popup);
         RaiseLocalEvent(buckle, ref unbuckleAttempt);

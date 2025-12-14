@@ -1,0 +1,16 @@
+ent-ImperialMetalDetector = рамка металлоискателя
+    .desc = Сигнализирует о наличии оружия и контрабанды у проходящего.
+wires-board-name-metal-detector = техническая панель металлоискателя
+ent-MetalDetectorSecure = { ent-ImperialMetalDetector }
+    .desc = { ent-ImperialMetalDetector.desc }
+ent-MetalDetectorFrame = каркас металлоискателя
+    .desc = Конструкция, которую нужно закончить.
+ent-MetalDetectorCircuitboard = микросхема металлоискателя
+    .desc = Микросхема.
+research-technology-metal-detector = Металлоискатель
+metal-detector-circuitboard = микросхема металлоискателя
+metal-detector-electrocuted = Вас бьёт током! Всё ваше энергетическое снаряжение разряжается...
+ent-MetalDetectorSyndicate = { ent-ImperialMetalDetector }
+    .desc = { ent-ImperialMetalDetector.desc }
+ent-MetalDetectorNonAccess = { ent-ImperialMetalDetector }
+    .desc = { ent-ImperialMetalDetector.desc }

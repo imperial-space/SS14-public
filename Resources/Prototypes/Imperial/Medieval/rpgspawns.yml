@@ -202,7 +202,7 @@
     prototypes:
     - MedievalLateMobSpawnerMedievalMobGoblin
     chance: 0.35
-    intervalSeconds: 60
+    intervalSeconds: 900
     minimumEntitiesSpawned: 5
     maximumEntitiesSpawned: 9
 
@@ -1335,8 +1335,8 @@
         offset: 0.35
         spawn:
           SteelOre1:
-            min: 9
-            max: 14
+            min: 11
+            max: 17
   - type: Fixtures
     fixtures:
       fix1:

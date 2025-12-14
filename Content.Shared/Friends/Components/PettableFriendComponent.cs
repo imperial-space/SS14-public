@@ -1,7 +1,7 @@
-using Content.Shared.Friends.Systems;
+using Content.Shared.Imperial.Medieval.Factions.Systems;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Friends.Components;
+namespace Content.Shared.Imperial.Medieval.Factions.Components;
 
 /// <summary>
 /// Pet something to become friends with it (use in hand, press Z)

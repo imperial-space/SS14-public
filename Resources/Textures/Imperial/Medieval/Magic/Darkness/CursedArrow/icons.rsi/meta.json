@@ -1,0 +1,44 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "by discord: fortengamer",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "beginner"
+        },
+
+        {
+            "name": "beginner-aim"
+        },
+        {
+            "name": "middle-aim"
+        },
+        {
+            "name": "senior-aim"
+        },
+
+        {
+            "name": "beginner-cursor"
+        },
+        {
+            "name": "middle-cursor"
+        },
+        {
+            "name": "senior-cursor"
+        },
+
+        {
+            "name": "beginner-kunai"
+        },
+        {
+            "name": "middle-kunai"
+        },
+        {
+            "name": "senior-kunai"
+        }
+    ]
+}

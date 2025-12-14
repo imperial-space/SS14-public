@@ -12,6 +12,7 @@ using Content.Shared.Coordinates;
 using Content.Shared.Popups;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Events;
+using Content.Shared.Hands.EntitySystems;
 
 namespace Content.Shared.MeleeParry
 {
@@ -25,6 +26,7 @@ namespace Content.Shared.MeleeParry
         [Dependency] private readonly UseDelaySystem _useDelay = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly INetManager _netMan = default!;
+        [Dependency] private readonly SharedHandsSystem _hands = default!;
 
         public override void Initialize()
         {
@@ -53,48 +55,44 @@ namespace Content.Shared.MeleeParry
         public bool CheckParryChanceStamina(EntityUid uid, float modifier)
         { // Захардкожено для деревянного меча
             int oneHanded = 0;
-
-            foreach (var itemH in _inventory.GetHandOrInventoryEntities(uid, SlotFlags.NONE))
+            var itemH = _hands.GetActiveItem(uid);
+            var item = itemH;
+            if (_hands.GetActiveItem(uid) is null) return false;
+            if (TryComp<MeleeWeaponComponent>(itemH, out var melee))
             {
-                if (TryComp<MeleeWeaponComponent>(itemH, out var melee))
+                if (melee.ResetOnHandSelected)
+                    oneHanded++;
+                if (oneHanded > 1)
+                    return false;
+            }
+
+            if (TryComp<MeleeParryComponent>(item, out var parry) &&
+                TryComp<UseDelayComponent>(item, out var delay) &&
+                !_useDelay.IsDelayed((item.Value, delay)) &&
+                parry.ParriedAgo <= 0f &&
+                TryComp<MeleeParryStaminaComponent>(item, out var stamina))
+            {
+                if (TryComp<WieldableComponent>(item, out var wield) && wield.Wielded)
                 {
-                    if (melee.ResetOnHandSelected)
-                        oneHanded++;
-                    if (oneHanded > 1)
+                    if (_random.Prob(parry.ParryChanse * modifier))
+                    {
+                        parry.ParriedAgo = parry.ParriedTime;
+                        Spawn(parry.ParryEffect, parry.Owner.ToCoordinates());
+                        return true;
+                    }
+                    else
                         return false;
                 }
-            }
-            foreach (var item in _inventory.GetHandOrInventoryEntities(uid, SlotFlags.NONE))
-            {
-                if (TryComp<MeleeParryComponent>(item, out var parry) &&
-                    TryComp<UseDelayComponent>(item, out var delay) &&
-                    !_useDelay.IsDelayed((uid, delay)) &&
-                    parry.ParriedAgo <= 0f &&
-                    TryComp<MeleeParryStaminaComponent>(item, out var stamina))
+                if (!HasComp<WieldableComponent>(item))
                 {
-                    if (TryComp<WieldableComponent>(item, out var wield) && wield.Wielded)
+                    if (_random.Prob(parry.ParryChanse * modifier))
                     {
-                        if (_random.Prob(parry.ParryChanse * modifier))
-                        {
-                            parry.ParriedAgo = parry.ParriedTime;
-                            Spawn(parry.ParryEffect, parry.Owner.ToCoordinates());
-                            return true;
-                        }
-                        else
-                            return false;
+                        parry.ParriedAgo = parry.ParriedTime;
+                        Spawn(parry.ParryEffect, parry.Owner.ToCoordinates());
+                        return true;
                     }
-                    if (!HasComp<WieldableComponent>(item))
-                    {
-                        if (_random.Prob(parry.ParryChanse * modifier))
-                        {
-                            parry.ParriedAgo = parry.ParriedTime;
-                            Spawn(parry.ParryEffect, parry.Owner.ToCoordinates());
-                            return true;
-                        }
-                        else
-                            return false;
-                    }
-
+                    else
+                        return false;
                 }
 
             }
@@ -120,47 +118,44 @@ namespace Content.Shared.MeleeParry
         public bool CheckParryChance(EntityUid uid, float modifier)
         {
             int oneHanded = 0;
+            var itemH = _hands.GetActiveItem(uid);
+            var item = itemH;
 
-            foreach (var itemH in _inventory.GetHandOrInventoryEntities(uid, SlotFlags.NONE))
+
+            if (TryComp<MeleeWeaponComponent>(itemH, out var melee))
             {
-                if (TryComp<MeleeWeaponComponent>(itemH, out var melee))
+                if (melee.ResetOnHandSelected)
+                    oneHanded++;
+                if (oneHanded > 1)
+                    return false;
+            }
+
+            if (TryComp<MeleeParryComponent>(item, out var parry) && TryComp<UseDelayComponent>(item, out var delay) && !_useDelay.IsDelayed((item.Value, delay)) && parry.ParriedAgo <= 0f && parry.RealParry)
+            {
+                if (TryComp<WieldableComponent>(item, out var wield) && wield.Wielded)
                 {
-                    if (melee.ResetOnHandSelected)
-                        oneHanded++;
-                    if (oneHanded > 1)
+                    if (_random.Prob(parry.ParryChanse * modifier))
+                    {
+                        parry.ParriedAgo = parry.ParriedTime;
+                        Spawn(parry.ParryEffect, parry.Owner.ToCoordinates());
+                        //_audio.PlayPvs(new SoundPathSpecifier(parry.EffectSoundOnHit), uid, AudioParams.Default.WithVariation(0.15f));
+                        //_audio.PlayEntity(new SoundPathSpecifier(parry.EffectSoundOnHit), Filter.Pvs(uid), uid, true, AudioParams.Default.WithVariation(0.15f));
+                        return true;
+                    }
+                    else
                         return false;
                 }
-            }
-            foreach (var item in _inventory.GetHandOrInventoryEntities(uid, SlotFlags.NONE))
-            {
-                if (TryComp<MeleeParryComponent>(item, out var parry) && TryComp<UseDelayComponent>(item, out var delay) && !_useDelay.IsDelayed((uid, delay)) && parry.ParriedAgo <= 0f && parry.RealParry)
+                if (!HasComp<WieldableComponent>(item))
                 {
-                    if (TryComp<WieldableComponent>(item, out var wield) && wield.Wielded)
+                    if (_random.Prob(parry.ParryChanse * modifier))
                     {
-                        if (_random.Prob(parry.ParryChanse * modifier))
-                        {
-                            parry.ParriedAgo = parry.ParriedTime;
-                            Spawn(parry.ParryEffect, parry.Owner.ToCoordinates());
-                            //_audio.PlayPvs(new SoundPathSpecifier(parry.EffectSoundOnHit), uid, AudioParams.Default.WithVariation(0.15f));
-                            //_audio.PlayEntity(new SoundPathSpecifier(parry.EffectSoundOnHit), Filter.Pvs(uid), uid, true, AudioParams.Default.WithVariation(0.15f));
-                            return true;
-                        }
-                        else
-                            return false;
+                        parry.ParriedAgo = parry.ParriedTime;
+                        Spawn(parry.ParryEffect, parry.Owner.ToCoordinates());
+                        //_audio.PlayEntity(new SoundPathSpecifier(parry.EffectSoundOnHit), Filter.Pvs(uid), uid, true, AudioParams.Default.WithVariation(0.15f));
+                        return true;
                     }
-                    if (!HasComp<WieldableComponent>(item))
-                    {
-                        if (_random.Prob(parry.ParryChanse * modifier))
-                        {
-                            parry.ParriedAgo = parry.ParriedTime;
-                            Spawn(parry.ParryEffect, parry.Owner.ToCoordinates());
-                            //_audio.PlayEntity(new SoundPathSpecifier(parry.EffectSoundOnHit), Filter.Pvs(uid), uid, true, AudioParams.Default.WithVariation(0.15f));
-                            return true;
-                        }
-                        else
-                            return false;
-                    }
-
+                    else
+                        return false;
                 }
 
             }

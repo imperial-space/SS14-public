@@ -1,0 +1,67 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellFireWallBeginner
+  name: medieval-store-spells-fire-wall-beginner-name
+  description: medieval-store-spells-fire-wall-beginner-desc
+  productAction: MedievalActionFireWallBeginner
+  priority: 8
+  productUpgradeId:
+    - MedievalSpellFireWallMiddle
+  icon:
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/icons.rsi
+    state: beginner
+  cost:
+    MagicMedievalFire: 20
+  categories:
+  - MedievalFireSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellFireWallMiddle
+  name: medieval-store-spells-fire-wall-middle-name
+  description: medieval-store-spells-fire-wall-middle-desc
+  priority: 8
+  productUpgradeId:
+    - MedievalSpellFireWallSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/icons.rsi
+    state: middle
+  cost:
+    MagicMedievalFire: 45
+  categories:
+  - MedievalFireSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellFireWallBeginner
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellFireWallSenior
+  name: medieval-store-spells-fire-wall-senior-name
+  description: medieval-store-spells-fire-wall-senior-desc
+  priority: 8
+  productUpgradeId:
+    - MedievalSpellFireWallSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/icons.rsi
+    state: senior
+  cost:
+    MagicMedievalFire: 70
+    ArchmagePoints: 1
+  categories:
+  - MedievalFireSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellFireWallMiddle

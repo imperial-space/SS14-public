@@ -1,0 +1,18 @@
+#Beginner
+
+- type: entity
+  id: SpawnSkeletSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/darkness/skelet.rsi
+    color: "#B277FF"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#B277FF"
+  - type: TimedDespawn
+    lifetime: 0.5

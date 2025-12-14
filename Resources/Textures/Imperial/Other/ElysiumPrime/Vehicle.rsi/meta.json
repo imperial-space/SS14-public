@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "Made by Sir_Felix",
+  "size": {
+    "x": 64,
+    "y": 64
+  },
+  "states": [
+    {
+      "name": "crane_cargo"
+    },
+    {
+      "name": "crane_cargo2"
+    },
+    {
+      "name": "crawler"
+    },
+    {
+      "name": "crawler2"
+    },
+    {
+      "name": "crawler_crate_alt"
+    },
+    {
+      "name": "crawler_crate_alt2"
+    },
+    {
+      "name": "crawler_fuel"
+    },
+    {
+      "name": "crawler_fuel2"
+    },
+    {
+      "name": "tractor_damaged"
+    },
+    {
+      "name": "tractor_damaged2"
+    },
+    {
+      "name": "truck_damaged"
+    },
+    {
+      "name": "truck_damaged2"
+    },
+    {
+      "name": "truck_mining"
+    },
+    {
+      "name": "truck_mining2"
+    }
+  ]
+}

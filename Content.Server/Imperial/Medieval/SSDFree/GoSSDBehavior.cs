@@ -2,6 +2,7 @@ using Content.Shared.Body.Components;
 using JetBrains.Annotations;
 using Content.Server.SSDFree;
 using Content.Server.SSDFree.Components;
+using Content.Shared.SSDFree.Components;
 
 namespace Content.Server.Destructible.Thresholds.Behaviors
 {

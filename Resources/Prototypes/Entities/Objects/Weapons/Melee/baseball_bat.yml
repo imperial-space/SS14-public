@@ -1,6 +1,6 @@
 - type: entity
   name: baseball bat
-  parent: [BaseItem, BaseMinorContraband]
+  parent: [BaseItem, BaseMinorContraband, BaseCrushingCharged]
   id: BaseBallBat
   description: A robust baseball bat.
   components:
@@ -8,6 +8,10 @@
     sprite: Objects/Weapons/Melee/baseball_bat.rsi
     state: icon
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     wideAnimationRotation: -135
     damage:
       types:
@@ -25,6 +29,11 @@
     damage: 12
   - type: Item
     size: Normal
+    shape:
+    - 0,0,0,3
+    storedSprite:
+      state: storage
+      sprite: Objects/Weapons/Melee/baseball_bat.rsi
   - type: Tool
     qualities:
     - Rolling
@@ -61,6 +70,11 @@
     state: icon
   - type: Item
     size: Normal
+    shape:
+    - 0,0,0,3
+    storedSprite:
+      state: storage
+      sprite: Objects/Weapons/Melee/incomplete_bat.rsi
     sprite: Objects/Weapons/Melee/incomplete_bat.rsi
   - type: Construction
     graph: WoodenBat

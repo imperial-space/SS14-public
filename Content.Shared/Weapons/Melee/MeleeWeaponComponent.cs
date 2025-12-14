@@ -150,6 +150,30 @@ public sealed partial class MeleeWeaponComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool MustBeEquippedToUse = false;
+
+    /// <summary>
+    /// CrystallEdge melee upgrade. Next attack will be a left swing if true, right if false.
+    /// </summary>
+    //[DataField, AutoNetworkedField]
+    //public bool CPSwingLeft;
+
+    /// <summary>
+    /// CrystallEdge Melee upgrade. Allows each attack to take turns being either left or right
+    /// </summary>
+    [DataField]
+    public bool CPSwingBeverage = true;
+
+    /// <summary>
+    /// CrystallEdge Melee upgrade. Modifier of wide attack animation speed
+    /// </summary>
+    [DataField]
+    public float CPAnimationLength = 0.45f;
+
+    /// <summary>
+    /// CrystallEdge Melee upgrade. how far away from the player the animation should be played.
+    /// </summary>
+    [DataField]
+    public float CPAnimationOffset = 1f;
 }
 
 /// <summary>

@@ -18,6 +18,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Audio;
 using Content.Server.SpikeTrap.Components;
 using Content.Server.MagicBarrier.Components;
+using Content.Server.Imperial.Medieval.GameTicking.Rules;
+using Content.Shared.Imperial.Medieval.GameTicking.Rules;
 
 namespace Content.Server._CP14.Workbench;
 
@@ -134,10 +136,10 @@ public sealed partial class CP14WorkbenchSystem : SharedCP14WorkbenchSystem
         _transform.SetCoordinates(resultEntity, Transform(ent).Coordinates);
         _audio.PlayPvs(recipe.OverrideCraftSound ?? new SoundPathSpecifier(ent.Comp.CraftSound), ent);
 
-        if (TryComp<MedievalSpikeTargetComponent>(args.User, out var player))
+        if (TryComp<AffectRoundStatsComponent>(args.User, out var player))
         {
             player.Crafts++;
-            foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
+            foreach (var barrier in EntityManager.EntityQuery<RoundStatCounterRuleComponent>())
             {
                 barrier.TotalCrafts++;
             }

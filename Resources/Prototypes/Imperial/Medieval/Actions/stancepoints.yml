@@ -4,10 +4,11 @@
   name: Обозначить построение
   description: Обозначьте отдельно для каждого отряда построение. Если в построение будет не меньше 4 человек - они получат серьезные бонусы, а входящий урон снизится вдвое
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: Imperial/Medieval/CombatStance/point.rsi
       state: marker-icon
-    event: !type:CombatStancePointEvent
     useDelay: 0.5
+  - type: InstantAction
+    event: !type:CombatStancePointEvent

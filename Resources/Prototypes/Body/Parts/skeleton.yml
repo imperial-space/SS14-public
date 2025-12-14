@@ -65,6 +65,10 @@
         proper: true
     - type: Examiner
     - type: DoAfter
+    - type: LanguageSpeaker
+      languages:
+        Common: Speak
+        Cursed: Speak
     - type: MobState
       allowedStates:
         - Alive

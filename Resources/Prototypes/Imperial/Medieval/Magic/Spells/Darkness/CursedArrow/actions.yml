@@ -8,13 +8,16 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.3
+        essenceAddProbability: 0.0003
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalDarkness1: 1
+          MagicMedievalDarkness: 1
+        bonusEssences:
+          MagicMedievalDarkness: 1
   - type: DamageTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.4
+        probability: 0.0004
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -22,7 +25,7 @@
         addedEssences:
           MagicMedievalDarkness1: 1
       - !type:AddMagicEssence
-        probability: 0.4
+        probability: 0.0004
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -38,17 +41,21 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 5
+  - type: SpellCastEffect
+    effectProto: CursedArrowSpellCastEffectBeginner
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 5
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
-      state: 1
+      sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/icons.rsi
+      state: beginner
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileCursedArrow

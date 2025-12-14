@@ -32,6 +32,12 @@
     damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 60
@@ -77,6 +83,12 @@
   - type: Construction
     graph: BarricadeCovering
     node: barricadecover
+  # Imperial medieval start
+  - type: MedievalDoAfterEvery
+    nameLocId: remove-barricade-doafter-name
+    time: 20
+    numHit: 200
+  # Imperial medieval end
 
 #Directional Barricade
 - type: entity
@@ -116,3 +128,9 @@
   - type: FireVisuals
     sprite: Effects/fire.rsi
     normalState: 1
+  # Imperial medieval start
+  - type: MedievalDoAfterEvery
+    nameLocId: remove-barricade-doafter-name
+    time: 20
+    numHit: 200
+  # Imperial medieval end

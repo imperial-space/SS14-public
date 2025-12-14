@@ -14,6 +14,7 @@
 
   defaultModules:
   - BorgModuleTool
+  - BorgModuleInflatable
   - BorgModuleArtifact
   - BorgModuleAnomaly
   radioChannels:
@@ -164,6 +165,7 @@
   - BorgModuleTopicals
   - BorgModuleRescue # Imperial Space Ребаланс боргов (добавлен модуль дефиба)
   - BorgModuleAdvancedChemical # Imperial Space Ребаланс боргов (добавлен модуль гипоспрея)
+  - BorgModuleSurgeryTools # Imperial Space хирургия
 
   radioChannels:
   - Science

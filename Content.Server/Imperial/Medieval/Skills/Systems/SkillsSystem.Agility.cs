@@ -102,7 +102,7 @@ public sealed partial class SkillsSystem
                 if (!_random.Prob(0.01f))
                     continue;
 
-                _stun.TryParalyze(uid, TimeSpan.FromSeconds(0.5f), false);
+                _stun.TryAddParalyzeDuration(uid, TimeSpan.FromSeconds(0.5f));
                 _popup.PopupEntity("Вы споткнулись на ровном месте!", uid, uid, PopupType.MediumCaution);
             }
 

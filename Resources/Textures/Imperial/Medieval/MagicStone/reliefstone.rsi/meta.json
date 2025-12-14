@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "Made for the Imperial Space community",
+  "size": { "x": 32, "y": 32 },
+  "states": [
+    { "name": "standart" },
+    { "name": "good", "directions": 1, "delays": [[0.1, 0.1, 0.1, 0.1]] },
+    { "name": "antigravitation", "directions": 1, "delays": [[0.1, 0.1, 0.1, 0.1]] }
+  ]
+}
+
+

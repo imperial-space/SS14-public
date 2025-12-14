@@ -1,0 +1,17 @@
+- type: Tag
+  id: BoneSpikeSpawnPosition
+
+- type: Tag
+  id: HealingSkullSpawnPosition
+
+- type: Tag
+  id: BossSpikesSpawnPosition
+
+- type: Tag
+  id: BossRuneSpawnPosition
+
+- type: Tag
+  id: BossSpawnPosition
+
+- type: Tag
+  id: BossTrapPlayerSpawnPosition

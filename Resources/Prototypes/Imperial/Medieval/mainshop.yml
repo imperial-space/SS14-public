@@ -1,3 +1,106 @@
+
+# генерируемое имя для гильдии
+- type: guildName
+  id: TestName
+  # количество частей в имени
+  partCount: 3
+
+  # как разделяются эти части
+  # к примеру, "-" превратит части 1, 2, 3 в 1-2-3
+  split: ""
+
+  # сами части имени
+  parts:
+  - text: "Те" # текст части
+    max: 1     # максимальная позиция этой части
+               # здесь указано 1 - часть будет только в начале
+               # то есть после позиции 1 (начинается с 1, не с 0) она не будет генерироваться
+               # аналогично для минимальной позиции
+  - text: "То"
+    max: 1
+  - text: "тес"
+    min: 2
+    max: 2
+  - text: "тос"
+    min: 2
+    max: 2
+  - text: "-"
+    min: 2
+    max: 2
+  - text: "ты"
+    min: 3
+  - text: "мы"
+    min: 3
+  - text: "сты"
+    min: 3
+
+
+# иконка гильдии
+- type: guildIcon
+  id: Deprecated
+
+  # пусть до png
+  texturePath: "/Textures/deprecated.rsi/deprecated.png"
+
+- type: guildIcon
+  id: Test2
+  texturePath: "/Textures/Interface/pray.svg.png"
+
+# сам тип гильдии
+- type: guildType
+  id: TestType2
+
+  # прототип имени гильдии (см. выше)
+  name: TestName
+
+  # максимальное число гильдий, которые сгенерируются по этому прототипу
+  maximumGuilds: 15
+
+  # валюта гильдии
+  # Revent по умолчанию, можно не указывать
+  currency: Revent
+
+  # продающиеся предметы в гильдии
+  items:
+  - productEntity: FoodPizzaPineapple
+
+    # минимальное кол-во репутации для покупки
+    # по умолчанию 0
+    minReputation: 10
+
+    # цена предмета
+    cost: 10
+  - productEntity: FoodBurgerBacon
+    cost: 5
+
+    # на какой позиции в рейтинге гильдии
+    # должен находиться игрок, чтобы купить
+    # по умолчанию 0 - на любом месте
+    minReputationPlace: 1
+
+    # сколько дают репутации за покупку этого предмета
+    # по умолчанию 2
+    reputationForBuying: 0.2
+
+    # в квесте нужно указать reputationReward: ...
+  - productEntity: MedievalQuestContractLegionMelee
+    cost: 0
+
+    # позволяет "отделить" северных торговцев от южных
+    # можно указать какой ActionId должен быть
+    # в компоненте MedievalJobSpawnComponent
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
+
+    # если не указывать, то будут использоваться имя и описание предмета
+    name: тест квеста
+    description: тесты
+  - productEntity: FoodBurgerBacon
+    cost: 10
+  - productEntity: DrinkColaCan
+    cost: 2
+  - productEntity: IngotGold
+    cost: 3
+
 - type: entity
   id: MedievalShopHole
   name: MedievalShopHole
@@ -11,28 +114,32 @@
     netsync: false
   - type: UserInterface
     interfaces:
-      enum.StoreUiKey.Key:
-        type: StoreBoundUserInterface
+      enum.TradingUiKey.Key:
+        type: TradingBoundUserInterface
   - type: ActivatableUI
     singleUser: true
-    key: enum.StoreUiKey.Key
-  - type: Store
-    categories:
-    - MedievalFood
-    - MedievalBuild
-    - MedievalArmor
-    - MedievalMed
-    - MedievalWeapon
-    - MedievalMisc
-    - MedievalClothing
-    - MedievalBackpack
-    - MedievalMagic
-    #- MedievalUpgrade
-    - MedievalPlants
-    currencyWhitelist:
-    - Revent
-    balance:
-      Revent: 0
+    key: enum.TradingUiKey.Key
+    # трейдинг указывать здесь
+  - type: Trading
+    # прототипы гильдий, которые находятся
+    # в данном магазине
+    guildTypes:
+    - MagicGuild
+    - WeaponGuild
+    - ArmorGuild
+    - FoodGuild
+    - ClothGuild
+    - BuilderGuild
+    # прототип валюты, которая используется в магазине
+    # по умолчанию Revent
+    # должно совпадать с currency во всех guildTypes
+    currency: Revent
+    balance: 0
+    # может ли эту дыру открывать только её владелец
+    # сейчас включено, при необходимости выключить
+    # нужно создать прототип личной торговой дыры (?)
+    # все остальные ограничения по типу дыры для легиона настраиваются также, как раньше
+    ownerOnly: true
   - type: TrashDefendArea
   - type: Transform
     anchored: true
@@ -56,67 +163,66 @@
       - Structure
   - type: PointLight
 
+#- type: entity
+#  parent: MedievalShopHole
+#  id: MedievalShopHoleLockedLegion
+#  name: MedievalShopHole
+#  description: Suspiciously looking old radio...
+#  suffix: Empty
+#  components:
+#  - type: ActivatableUIRequiresAccess
+#  - type: AccessReader
+#    access: [["ImperialLibrary"]]
+#  - type: Store
+#    categories:
+#    - MedievalFood
+#    - MedievalBuild
+#    - MedievalArmor
+#    - MedievalMed
+#    - MedievalWeapon
+#    - MedievalMisc
+#    - MedievalClothing
+#    - MedievalBackpack
+#    - MedievalMagic
+#    - MedievalQuestLegion
+#    - MedievalPlants
+#    - MedievalTransport
+#    - MedievalBoss
+#    currencyWhitelist:
+#    - Revent
+#    balance:
+#      Revent: 0
 
 
-
-
-
-
-- type: entity
-  parent: MedievalShopHole
-  id: MedievalShopHoleLockedLegion
-  name: MedievalShopHole
-  description: Suspiciously looking old radio...
-  suffix: Empty
-  components:
-  - type: ActivatableUIRequiresAccess
-  - type: AccessReader
-    access: [["ImperialLibrary"]]
-  - type: Store
-    categories:
-    - MedievalFood
-    - MedievalBuild
-    - MedievalArmor
-    - MedievalMed
-    - MedievalWeapon
-    - MedievalMisc
-    - MedievalClothing
-    - MedievalBackpack
-    - MedievalMagic
-    - MedievalQuestLegion
-    - MedievalPlants
-    currencyWhitelist:
-    - Revent
-    balance:
-      Revent: 0
-
-- type: entity
-  parent: MedievalShopHole
-  id: MedievalShopHoleLockedIns
-  name: MedievalShopHole
-  description: Suspiciously looking old radio...
-  suffix: Empty
-  components:
-  - type: ActivatableUIRequiresAccess
-  - type: AccessReader
-    access: [["ImperialLibrary"]]
-  - type: Store
-    categories:
-    - MedievalFood
-    - MedievalBuild
-    - MedievalArmor
-    - MedievalMed
-    - MedievalWeapon
-    - MedievalMisc
-    - MedievalClothing
-    - MedievalBackpack
-    - MedievalMagic
-    - MedievalQuestIns
-    - MedievalPlants
-    currencyWhitelist:
-    - Revent
-    balance:
-      Revent: 0
+#- type: entity
+#  parent: MedievalShopHole
+#  id: MedievalShopHoleLockedIns
+#  name: MedievalShopHole
+#  description: Suspiciously looking old radio...
+#  suffix: Empty
+#  components:
+#  - type: ActivatableUIRequiresAccess
+#  - type: AccessReader
+#    access: [["ImperialLibrary"]]
+#  - type: Store
+#    categories:
+#    - MedievalFood
+#    - MedievalBuild
+#    - MedievalArmor
+#    - MedievalMed
+#    - MedievalWeapon
+#    - MedievalMisc
+#    - MedievalClothing
+#    - MedievalBackpack
+#    - MedievalMagic
+#    - MedievalQuestIns
+#    - MedievalPlants
+#    - MedievalTransport
+#    - MedievalBoss
+#    currencyWhitelist:
+#    - Revent
+#    balance:
+#      Revent: 0
 
 - type: storeCategory
   id: MedievalFood
@@ -154,6 +260,11 @@
   priority: 9
 
 - type: storeCategory
+  id: MedievalTransport
+  name: medieval-category-transport
+  priority: 9
+
+- type: storeCategory
   id: MedievalQuestLegion
   name: medieval-category-quest
   priority: 7
@@ -172,6 +283,43 @@
   id: MedievalClothing
   name: medieval-category-clothing
   priority: 5
+
+- type: storeCategory
+  id: MedievalBoss
+  name: medieval-category-boss
+  priority: 10
+
+- type: listing
+  id: MdvShopBossIceDragonTablet
+  productEntity: MedievalIceDragonTablet
+  cost:
+    Revent: 800
+  categories:
+  - MedievalBoss
+
+- type: listing
+  id: MdvShopBossFireDragonTablet
+  productEntity: MedievalFireDragonTablet
+  cost:
+    Revent: 800
+  categories:
+  - MedievalBoss
+
+- type: listing
+  id: MdvShopBossAcidDragonTablet
+  productEntity: MedievalAcidDragonTablet
+  cost:
+    Revent: 800
+  categories:
+  - MedievalBoss
+
+- type: listing
+  id: MdvShopBossThunderDragonTablet
+  productEntity: MedievalThunderDragonTablet
+  cost:
+    Revent: 800
+  categories:
+  - MedievalBoss
 
 - type: listing
   id: MdvShopFoodBreadPlain
@@ -420,6 +568,28 @@
   - MedievalBuild
 
 - type: listing
+  id: MdvShopMedievalMeltingPlaceCraft
+  productEntity: MedievalMeltingPlaceCraft
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 35
+  cost:
+    Revent: 50
+  categories:
+  - MedievalBuild
+  
+- type: listing
+  id: MdvShopMedievalalchem_dispenserCraft
+  productEntity: Medievalalchem_dispenserCraft
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 35
+  cost:
+    Revent: 50
+  categories:
+  - MedievalBuild
+
+- type: listing
   id: MdvShopMedievalLeatherWorkingPlaceCraft
   productEntity: MedievalLeatherWorkingPlaceCraft
   discountCategory: medievalDiscounts
@@ -582,6 +752,78 @@
   productEntity: MedievalMedicalBedCraft
   cost:
     Revent: 25
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign1Craft
+  productEntity: MedievalSign1Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign2Craft
+  productEntity: MedievalSign2Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign3Craft
+  productEntity: MedievalSign3Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign4Craft
+  productEntity: MedievalSign4Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign5Craft
+  productEntity: MedievalSign5Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign6Craft
+  productEntity: MedievalSign6Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign7Craft
+  productEntity: MedievalSign7Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign8Craft
+  productEntity: MedievalSign8Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign9Craft
+  productEntity: MedievalSign9Craft
+  cost:
+    Revent: 80
   categories:
   - MedievalBuild
 
@@ -2134,8 +2376,67 @@
   - MedievalMisc
 
 - type: listing
+  id: MdvShopCreationsBook
+  productEntity: CreationsBook
+  cost:
+    Revent: 15
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopPaintKit
+  productEntity: PaintKit
+  cost:
+    Revent: 8
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopEasel
+  productEntity: Easel
+  cost:
+    Revent: 22
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopCanvas
+  productEntity: Canvas
+  cost:
+    Revent: 10
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalRecipeBook
+  productEntity: MedievalRecipeBook
+  cost:
+    Revent: 45
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalChemistryRecipe
+  productEntity: MedievalChemistryRecipe
+  cost:
+    Revent: 25
+  categories:
+  - MedievalMisc
+
+- type: listing
   id: MdvShopMedievalRepairStone
   productEntity: MedievalRepairStone
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 20
+  cost:
+    Revent: 30
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalShieldRepairKit
+  productEntity: MedievalShieldRepairKit
   discountCategory: medievalDiscounts
   discountDownTo:
     Revent: 12
@@ -2232,6 +2533,30 @@
     Revent: 35
   categories:
   - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalReliefStoneWeak
+  productEntity: MedievalReliefStoneWeak
+  cost:
+    Revent: 220
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalReliefStoneStrong
+  productEntity: MedievalReliefStoneStrong
+  cost:
+    Revent: 480
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalAntiGravitationStone
+  productEntity: MedievalAntiGravitationStone
+  cost:
+    Revent: 1150
+  categories:
+  - MedievalMagic
 
 - type: listing
   id: MdvShopMedievalHandheldGPSBasic
@@ -2474,6 +2799,7 @@
     - MedievalQuestDemo
     - MedievalPlantsDemo
     - MedievalMagicDemo
+    - MedievalTransportDemo
     currencyWhitelist:
     - UnknownMedieval
     balance:
@@ -2591,22 +2917,6 @@
   - MedievalMagic
 
 - type: listing
-  id: MdvShopMedievalScrollBarrierWeak
-  productEntity: MedievalScrollBarrierWeak
-  cost:
-    Revent: 32
-  categories:
-  - MedievalMagic
-
-- type: listing
-  id: MdvShopMedievalScrollBarrierNormal
-  productEntity: MedievalScrollBarrierNormal
-  cost:
-    Revent: 75
-  categories:
-  - MedievalMagic
-
-- type: listing
   id: MdvShopBible
   productEntity: Bible
   discountCategory: medievalDiscounts
@@ -2663,6 +2973,25 @@
     Revent: 75
   cost:
     Revent: 100
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvMedievalCavalerySpearT3
+  productEntity: MedievalCavalerySpearT3
+  cost:
+    Revent: 220
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalScrollBarrier
+  productEntity: MedievalScrollBarrier
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 30
+  cost:
+    Revent: 50
   categories:
   - MedievalMagic
 
@@ -2944,3 +3273,91 @@
     Revent: 10
   categories:
   - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalHorseWhistle
+  productEntity: MedievalHorseWhistle
+  cost:
+    Revent: 680
+  categories:
+  - MedievalTransport
+
+- type: listing
+  id: MdvShopMedievalBlackHorseWhistle
+  productEntity: MedievalBlackHorseWhistle
+  cost:
+    Revent: 800
+  categories:
+  - MedievalTransport
+
+- type: listing
+  id: MdvShopMedievalBlackSpotHorseWhistle
+  productEntity: MedievalBlackSpotHorseWhistle
+  cost:
+    Revent: 360
+  categories:
+  - MedievalTransport
+
+- type: listing
+  id: MdvShopMedievalBlackWhiteHorseWhistle
+  productEntity: MedievalBlackWhiteHorseWhistle
+  cost:
+    Revent: 480
+  categories:
+  - MedievalTransport
+
+- type: listing
+  id: MdvShopMedievalGreyHorseWhistle
+  productEntity: MedievalGreyHorseWhistle
+  cost:
+    Revent: 600
+  categories:
+  - MedievalTransport
+
+- type: listing
+  id: MdvShopMedievalWhiteHorseWhistle
+  productEntity: MedievalWhiteHorseWhistle
+  cost:
+    Revent: 730
+  categories:
+  - MedievalTransport
+
+- type: listing
+  id: MdvShopMedievalWhiteRoyalHorseWhistle
+  productEntity: MedievalWhiteRoyalHorseWhistle
+  cost:
+    Revent: 1200
+  categories:
+  - MedievalTransport
+
+- type: listing
+  id: MdvShopMedievalCatapultCraft
+  productEntity: MedievalCatapultCraft
+  cost:
+    Revent: 500
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalCatapultAmmoBarrelStone
+  productEntity: MedievalCatapultAmmoBarrelStone
+  cost:
+    Revent: 12
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalCatapultAmmoBarrelGunpowder
+  productEntity: MedievalCatapultAmmoBarrelGunpowder
+  cost:
+    Revent: 60
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalCatapultAmmoBarrelAp
+  productEntity: MedievalCatapultAmmoBarrelAp
+  cost:
+    Revent: 80
+  categories:
+  - MedievalWeapon

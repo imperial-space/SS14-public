@@ -24,6 +24,7 @@
     soundHit:
       collection: MetalThud
   - type: CollisionWake
+  - type: GravityAffected
   - type: Physics
     bodyType: Dynamic
     fixedRotation: false
@@ -46,7 +47,60 @@
   - type: UseDelayOnMelee # imperial medieval start
   - type: UseDelay
     delay: 0.1
-  - type: Customizable # imperial medieval
+  - type: Customizable
+  - type: RDWeight
+    value: 0.2
+  - type: RDWeightExamine
+    examines:
+      "Вес: [color=#A8FF99]невесомый[/color]":
+        min: 0
+        max: 0.05   # вес пера
+      "Вес: [color=#7DFF66]легкий[/color]":
+        min: 0.05
+        max: 0.22   # CURSE OF 220
+      "Вес: [color=#ADFF2F]небольшой[/color]":
+        min: 0.22
+        max: 1      # вес смартфона или книги
+      "Вес: [color=#D4FF33]ощутимый[/color]":
+        min: 1
+        max: 3      # вес ноутбука
+      "Вес: [color=#FFFF00]умеренный[/color]":
+        min: 3
+        max: 7      # вес домашней кошки
+      "Вес: [color=#FFD700]увесистый[/color]":
+        min: 7
+        max: 15     # вес тяжелого рюкзака
+      "Вес: [color=#FFBF00]довольно тяжелый[/color]":
+        min: 15
+        max: 25     # вес микроволновки
+      "Вес: [color=#FF8C00]тяжелый[/color]":
+        min: 25
+        max: 40     # вес мешка с цементом
+      "Вес: [color=#FF4500]очень тяжелый[/color]":
+        min: 40
+        max: 55     # вес крупной собаки
+      "Вес: [color=#FF0000]громоздкий[/color]":
+        min: 55
+        max: 70     # вес среднего человека
+      "Вес: [color=#DC143C]весьма солидный[/color]":
+        min: 70
+        max: 85     # вес крупного человека
+      "Вес: [color=#B22222]чрезвычайно тяжелый[/color]":
+        min: 85
+        max: 100    # вес наковальни
+      "Вес: [color=#8B0000]невероятно тяжелый[/color]":
+        min: 100
+        max: 120    # вес холодильника
+      "Вес: [color=#800000]почти неподъемный[/color]":
+        min: 120
+        max: 135    # вес мотоциклетного двигателя
+      "Вес: [color=#660000]недвижимый[/color]":
+        min: 135
+        max: 25000    # вес пианино
+  - type: RDWeightThrowModifier
+    curve: !type:RDWeightModifierLinearCurve
+      min: 5
+      max: 20
   - type: TrashClear # imperial medieval end
 
 - type: entity

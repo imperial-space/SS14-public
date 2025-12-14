@@ -1,0 +1,338 @@
+- type: entity
+  id: MedievalPlagueSlimeSpawn
+  name: falling slime
+  description: ""
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/plague_slime_spawn.rsi
+    state: slimefall
+  - type: TimedDespawn
+    lifetime: 1.15
+  - type: SpawnMultipleOnDespawn
+    prototypes:
+    - MedievalPlagueSlimeSpawnEffect
+    - MedievalMobPlagueSlime
+    - MedievalMobPlagueSlime
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: MedievalPlagueBugsSpawn
+  name: falling slime
+  description: ""
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/plague_slime_spawn.rsi
+    state: slimefall
+  - type: TimedDespawn
+    lifetime: 1.15
+  - type: SpawnMultipleOnDespawn
+    prototypes:
+    - MedievalPlagueSlimeSpawnEffect
+    - MedievalMobPlagueBugs
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: MedievalPlagueSlimeSpawnEffect
+  name: ""
+  description: ""
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/plague_slime_explode.rsi
+    state: slimeexplode
+  - type: TimedDespawn
+    lifetime: 1.35
+  - type: EmitSoundOnSpawn
+    sound:
+      collection: gib
+    positional: true
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: MedievalMobPlagueSlime
+  name: plague slime
+  description: wuewuewue
+  parent: MobAdultSlimes
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/plague_slime.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: slime
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: slime
+      Dead:
+        Base: slime
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+            Ash:
+              min: 1
+              max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MedievalPlagueInfectOnHit
+    chance: 0.15
+  - type: Explosive
+    explosionType: Cryo
+    maxIntensity: 0.05
+    intensitySlope: 1
+    totalIntensity: 0.1
+    deleteAfterExplosion: true
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: ExplodeOnTrigger
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 4
+        Structural: 4
+        Caustic: 3
+
+- type: entity
+  name: bugs swarm
+  id: MedievalMobPlagueBugs
+  parent: [ SimpleMobBase, MobCombat ]
+  description: ee
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/plague_swarm.rsi
+    state: bugs
+  - type: AmbientSound
+    range: 6
+    sound:
+      path: "/Audio/Imperial/Medieval/Plague/bug_swarm.ogg"
+    volume: -4
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.30
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSlime
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 0.2
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+    maxSaturation: 15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MedievalMobPlagueBugsSmall:
+            min: 2
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Damageable
+    damageContainer: Biological
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+  - type: MeleeWeapon
+    attackRate: 1
+    altDisarm: false
+    soundHit:
+      collection: AlienClaw
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Piercing: 1.5
+  - type: MedievalPlagueInfectOnHit
+    chance: 0.1
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    constantlyReplan: false
+    rootTask:
+      task: SimpleHostileCompound
+
+- type: entity
+  name: bugs swarm
+  id: MedievalMobPlagueBugsSmall
+  parent: MedievalMobPlagueBugs
+  description: ee
+  components:
+  - type: Sprite
+    state: smallbugs
+  - type: AmbientSound
+    sound:
+      path: "/Audio/Imperial/Medieval/Plague/bug_swarm.ogg"
+    volume: -7
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      15: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 4.2
+  - type: MeleeWeapon
+    attackRate: 0.8
+    damage:
+      types:
+        Piercing: 1
+
+- type: entity
+  name: mouse
+  parent: SimpleMobBase
+  id: MedievalMobPlagueMouse
+  description: Squeak!
+  components:
+  - type: Speech
+    speechSounds: Squeak
+    speechVerb: SmallMob
+    allowedEmotes: ['Squeak']
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: Imperial/Medieval/Mobs/plague_rat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: mouse
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: HTN
+    constantlyReplan: false
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: MobState
+  - type: Deathgasp
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Critical
+      40: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.5
+    baseSprintSpeed : 5
+  - type: Food
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: Extractable
+    grindableSolutionName: food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatRat
+      amount: 1
+  - type: ReplacementAccent
+    accent: mouse
+  - type: Tag
+    tags:
+    - Trash
+    - Mouse
+    - Meat
+    - MedievalShowPlagueIcons
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 0.25
+    damageRecovery:
+      types:
+        Asphyxiation: -0.25
+  - type: Vocal
+    sounds:
+      Male: Mouse
+      Female: Mouse
+      Unsexed: Mouse
+    wilhelmProbability: 0.001
+  - type: ActionGrant
+    actions:
+    - PlagueRevertPolymorphMouseAction
+  - type: CombatMode
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 4
+  - type: Bloodstream
+    bloodMaxVolume: 50
+  - type: BadFood
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Mouse_burning
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 60
+      behaviors:
+      - !type:GibBehavior
+        recursive: false
+  - type: MedievalPlagueInfectOnHit
+    chance: 0.12

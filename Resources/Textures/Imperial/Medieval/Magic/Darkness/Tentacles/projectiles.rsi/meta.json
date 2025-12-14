@@ -1,0 +1,57 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "by discord: mrbadibadls",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+  "states":
+  [
+    {
+      "name": "beginner",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          9.4,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "middle",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          13.4,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "senior",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          17.4,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "spawn-icon"
+    }
+  ]
+}

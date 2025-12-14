@@ -5,12 +5,12 @@
   name: medieval-store-spells-light-boost-beginner-name
   description: medieval-store-spells-light-boost-beginner-desc
   productAction: MedievalActionBoostBeginner
-  priority: 5
+  priority: 9
   productUpgradeId:
     - MedievalSpellBoostMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/boost.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/Fire/Boost/icons.rsi
+    state: beginner
   cost:
     MagicMedievalFire: 20
   categories:
@@ -25,12 +25,12 @@
   id: MedievalSpellBoostMiddle
   name: medieval-store-spells-light-boost-middle-name
   description: medieval-store-spells-light-boost-middle-desc
-  priority: 5
+  priority: 9
   productUpgradeId:
     - MedievalSpellBoostSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/boost.rsi
-    state: 2
+    sprite: Imperial/Medieval/Magic/Fire/Boost/icons.rsi
+    state: middle
   cost:
     MagicMedievalFire: 45
   categories:
@@ -48,12 +48,12 @@
   id: MedievalSpellBoostSenior
   name: medieval-store-spells-light-boost-senior-name
   description: medieval-store-spells-light-boost-senior-desc
-  priority: 5
+  priority: 9
   productUpgradeId:
     - MedievalSpellBoostSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/boost.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/Fire/Boost/icons.rsi
+    state: senior
   cost:
     MagicMedievalFire: 70
     ArchmagePoints: 1

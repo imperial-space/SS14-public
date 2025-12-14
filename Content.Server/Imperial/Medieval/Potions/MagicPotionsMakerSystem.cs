@@ -9,6 +9,8 @@ using Content.Shared.Random.Helpers;
 using Robust.Shared.Audio;
 using Content.Server.SpikeTrap.Components;
 using Content.Server.MagicBarrier.Components;
+using Content.Server.Imperial.Medieval.GameTicking.Rules;
+using Content.Shared.Imperial.Medieval.GameTicking.Rules;
 
 namespace Content.Server.MagicPotionsMaker
 {
@@ -88,10 +90,10 @@ namespace Content.Server.MagicPotionsMaker
                 return;
             // Cryo Vetr Lipad Lava
             CookPotion(uid, comp, comp.FirstIngredient + comp.SecondIngredient);
-            if (TryComp<MedievalSpikeTargetComponent>(args.User, out var player))
+            if (TryComp<AffectRoundStatsComponent>(args.User, out var player))
             {
                 player.Potions++;
-                foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
+                foreach (var barrier in EntityManager.EntityQuery<RoundStatCounterRuleComponent>())
                 {
                     barrier.TotalPotions++;
                 }

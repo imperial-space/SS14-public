@@ -1,14 +1,16 @@
+using System.Collections.Frozen;
+using System.Linq;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Database;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
+using Content.Shared.Imperial.Medieval.ChemistryRandomization;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using System.Collections.Frozen;
-using System.Linq;
 
 
 namespace Content.Shared.Chemistry.Reaction
@@ -25,10 +27,12 @@ namespace Content.Shared.Chemistry.Reaction
         /// </summary>
         private const int MaxReactionIterations = 20;
 
+        [Dependency] private readonly INetManager _netMan = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+        [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+        [Dependency] private readonly SharedChemistryRandomizationSystem _chemRandom = default!;
 
         /// <summary>
         /// A cache of all reactions indexed by at most ONE of their required reactants.
@@ -225,7 +229,11 @@ namespace Content.Shared.Chemistry.Reaction
                 effect.Effect(args);
             }
 
-            _audio.PlayPvs(reaction.Sound, soln);
+            // Someday, some brave soul will thread through an optional actor
+            // argument in from every call of OnReaction up, all just to pass
+            // it to PlayPredicted. I am not that brave soul.
+            if (_netMan.IsServer)
+                _audio.PlayPvs(reaction.Sound, soln);
         }
 
         /// <summary>
@@ -235,7 +243,6 @@ namespace Content.Shared.Chemistry.Reaction
         /// </summary>
         private bool ProcessReactions(Entity<SolutionComponent> soln, SortedSet<ReactionPrototype> reactions, ReactionMixerComponent? mixerComponent)
         {
-            HashSet<ReactionPrototype> toRemove = new();
             List<string>? products = null;
 
             // attempt to perform any applicable reaction
@@ -243,7 +250,6 @@ namespace Content.Shared.Chemistry.Reaction
             {
                 if (!CanReact(soln, reaction, mixerComponent, out var unitReactions))
                 {
-                    toRemove.Add(reaction);
                     continue;
                 }
 
@@ -274,6 +280,8 @@ namespace Content.Shared.Chemistry.Reaction
         /// </summary>
         public void FullyReactSolution(Entity<SolutionComponent> soln, ReactionMixerComponent? mixerComponent = null)
         {
+            _chemRandom.FullyReactSolution(soln, mixerComponent);   // Imperial Medieval chemistry randomization
+
             // construct the initial set of reactions to check.
             SortedSet<ReactionPrototype> reactions = new();
             foreach (var reactant in soln.Comp.Solution.Contents)
@@ -301,9 +309,9 @@ namespace Content.Shared.Chemistry.Reaction
     ///     Some solution containers (e.g., bloodstream, smoke, foam) use this to block certain reactions from occurring.
     /// </reamrks>
     [ByRefEvent]
-    public record struct ReactionAttemptEvent(ReactionPrototype Reaction, Entity<SolutionComponent> Solution)
+    public record struct ReactionAttemptEvent(ReactionData Reaction, Entity<SolutionComponent> Solution)    // Imperial Medieval - ReactionData
     {
-        public readonly ReactionPrototype Reaction = Reaction;
+        public readonly ReactionData Reaction = Reaction;   // Imperial Medieval - ReactionData
         public readonly Entity<SolutionComponent> Solution = Solution;
         public bool Cancelled = false;
     }

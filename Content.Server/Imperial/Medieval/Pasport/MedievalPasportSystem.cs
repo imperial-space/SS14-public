@@ -9,7 +9,7 @@ using Content.Shared.Item;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid;
-using Content.Shared.Friends;
+using Content.Shared.Imperial.Medieval.Factions;
 
 namespace Content.Server.MedievalPasport
 {

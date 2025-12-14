@@ -1,0 +1,16 @@
+- type: imperialListing
+  id: MedievalActionHolyTouchBeginner
+  name: medieval-store-spells-light-holy-touch-beginner-name
+  description: medieval-store-spells-light-holy-touch-beginner-desc
+  productAction: MedievalActionHolyTouchBeginner
+  priority: 2
+  icon:
+    sprite: Imperial/Medieval/Magic/Light/HolyTouch/icons.rsi
+    state: beginner
+  cost:
+    MagicMedievalLight: 15
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1

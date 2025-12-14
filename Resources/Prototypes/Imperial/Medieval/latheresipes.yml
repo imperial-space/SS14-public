@@ -1476,3 +1476,132 @@
     WoodPlank: 2
     MedievalIronIngot: 2
   result: MedievalHammerBlacksmith
+
+- type: CP14Recipe
+  id: MedievalHorseLeatherArmor
+  craftTime: 20
+  iconOverride: MedievalClothingOuterHorseArmorLeather
+  stacks:
+    MedievalLeather1: 8
+    MedievalLeatherBelt: 2
+    MedievalRope: 3
+  result: MedievalClothingOuterHorseArmorLeather
+
+- type: CP14Recipe
+  id: MedievalHorseChainMailArmor
+  craftTime: 25
+  iconOverride: MedievalClothingOuterHorseArmorChainMail
+  stacks:
+    MedievalChain: 10
+    MedievalLeather1: 2
+    MedievalRope: 2
+    MedievalLeatherBelt: 2
+    Cloth: 7
+    MedievalIronIngot: 6
+    MedievalRivets: 1
+  result: MedievalClothingOuterHorseArmorChainMail
+
+- type: CP14Recipe
+  id: MedievalHorseUpIronArmor
+  craftTime: 45
+  iconOverride: MedievalClothingOuterHorseArmorUpIron
+  stacks:
+    MedievalIronIngot: 9
+    MedievalRivets: 8
+    MedievalSteelIngot: 7
+    MedievalLeatherBelt: 2
+    Cloth: 12
+    MedievalIronPlateSmall: 12
+    MedievalIronPlate: 4
+  result: MedievalClothingOuterHorseArmorUpIron
+
+- type: CP14Recipe
+  id: MedievalHorseHorseshoe
+  craftTime: 3
+  iconOverride: MedievalClothingHorseshoe
+  stacks:
+    MedievalRivets: 1
+    MedievalIronIngot: 2
+  result: MedievalClothingHorseshoe
+
+- type: CP14Recipe
+  id: MedievalSpearCavalerySpear
+  craftTime: 12
+  iconOverride: MedievalCavalerySpearT3
+  stacks:
+    WoodPlank: 12
+    MedievalIronIngot: 14
+  result: WorkpieceMedievalCavalerySpearT3
+
+- type: CP14Recipe
+  id: MedievalMyrmexCurseClot
+  craftTime: 5
+  iconOverride: MedievalCurseClot
+  entities:
+    MedievalMyrmexResourceYant: 4
+    MedievalRootItem: 3
+    MedievalMushroom1: 1
+    MedievalMushroom2: 1
+    MedievalMushroom3: 1
+  result: MedievalCurseClot
+
+- type: CP14Recipe
+  id: MedievalIronClaymore
+  craftTime: 22
+  iconOverride: MedievalIronClaymore
+  stacks:
+    MedievalIronIngot: 40
+    WoodPlank: 6
+  result: WorkpieceMedievalIronClaymore
+
+- type: CP14Recipe
+  id: MedievalIronClaymoreSteel
+  craftTime: 22
+  iconOverride: MedievalIronClaymoreSteel
+  stacks:
+    MedievalSteelIngot: 31
+    WoodPlank: 6
+  result: WorkpieceMedievalIronClaymoreSteel
+
+- type: CP14Recipe
+  id: MedievalIronZweihander
+  craftTime: 22
+  iconOverride: MedievalIronZweihander
+  stacks:
+    MedievalIronIngot: 40
+    WoodPlank: 6
+  result: WorkpieceMedievalIronZweihander
+
+- type: CP14Recipe
+  id: MedievalIronZweihanderSteel
+  craftTime: 22
+  iconOverride: MedievalIronZweihanderSteel
+  stacks:
+    MedievalSteelIngot: 31
+    WoodPlank: 6
+  result: WorkpieceMedievalIronZweihanderSteel
+
+- type: CP14Recipe
+  id: MedievalStoneWallCraft
+  craftTime: 10
+  iconOverride: MedievalStoneWallCraft
+  stacks:
+    MedievalStoneBrick: 5
+  result: MedievalStoneWallCraft
+
+- type: CP14Recipe
+  id: MedievalStoneLoopHoleCraft
+  craftTime: 10
+  iconOverride: MedievalStoneLoopHoleCraft
+  stacks:
+    MedievalStoneBrick: 6
+  result: MedievalStoneLoopHoleCraft
+
+- type: CP14Recipe
+  id: MedievalStoneBrick
+  craftTime: 3
+  iconOverride: MedievalStoneBrick
+  stacks:
+    MedievalGlina: 5
+    MedievalCoal: 1
+  result: MedievalStoneBrick

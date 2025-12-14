@@ -1,0 +1,121 @@
+- type: entity
+  name: .
+  description: .
+  id: SuperArtifact
+  abstract: true
+  components:
+  - type: Artifact
+    amount: 2
+
+- type: entity
+  name: .
+  description: .
+  id: BasicArtifact
+  abstract: true
+  components:
+  - type: Artifact
+
+
+- type: entity
+  name: testsword
+  description: test
+  id: TestSwordArtifact
+  parent: [ "BasicArtifact", "MedievalFalshionT3Steel" ]
+  components:
+    - type: Artifact
+      spriteData: artifactSpritesSword
+    - type: MeleeWeapon
+      damage:
+        types:
+          Slash: 32
+
+- type: entity
+  name: testswordsuper
+  description: test
+  id: TestSuperSwordArtifact
+  parent: [ "SuperArtifact", "MedievalFalshionT3Steel" ]
+  components:
+    - type: Artifact
+      spriteData: artifactSpritesSword
+    - type: MeleeWeapon
+      damage:
+        types:
+          Slash: 32
+
+- type: entity
+  name: testSekir
+  description: test
+  id: TestSekirArtifact
+  parent: [ "BasicArtifact", "MedievalIronSekirSteel" ]
+  components:
+    - type: Artifact
+      spriteData: artifactSpritesSekira
+    - type: MeleeWeapon
+      attackRate: 1
+
+- type: entity
+  name: testSekirsuper
+  description: test
+  id: TestSuperSekirArtifact
+  parent: [ "SuperArtifact", "MedievalIronSekirSteel" ]
+  components:
+    - type: Artifact
+      spriteData: artifactSpritesSekira
+    - type: MeleeWeapon
+      attackRate: 1
+
+- type: entity
+  name: testSpear
+  description: test
+  id: TestSpearArtifact
+  parent: [ "BasicArtifact", "MedievalSpearT3Steel" ]
+  components:
+  - type: Artifact
+    spriteData: artifactSpritesSpear
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 23
+
+- type: entity
+  name: testspearsuper
+  description: test
+  id: TestSuperSpearArtifact
+  parent: [ "SuperArtifact", "MedievalSpearT3Steel" ]
+  components:
+  - type: Artifact
+    spriteData: artifactSpritesSpear
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 23
+
+- type: entity
+  name: artifact spawner
+  id: ImperialMedievalArtifactSpawner
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      sprite: Markers/cross.rsi
+      layers:
+      - state: red
+    - type: RandomSpawner
+      prototypes:
+        - TestSwordArtifact
+        - TestSekirArtifact
+        - TestSpearArtifact
+
+- type: entity
+  name: super artifact spawner
+  id: ImperialMedievalSuperArtifactSpawner
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      sprite: Markers/cross.rsi
+      layers:
+      - state: red
+    - type: RandomSpawner
+      prototypes:
+        - TestSuperSwordArtifact
+        - TestSuperSekirArtifact
+        - TestSuperSpearArtifact

@@ -1,0 +1,16 @@
+- type: factionGoal
+  id: MercSurvivalGoal
+  name: Test Goal
+  description: Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc
+  icon:
+    sprite: Imperial/Medieval/Interface/factions.rsi
+    state: legion
+  completer: !type:FactionMembersDeathsCounter
+    faction: Merc
+    lessThan: true
+    randomCount: [5, 10]
+
+- type: factionGoalsPack
+  id: TestPack
+  goals:
+  - MercSurvivalGoal

@@ -48,7 +48,7 @@ ent-MedievalClothingHeadHelmetCrusader = железный шлем "Топфхе
     .suffix = { "Средневековье, одежда" }
 ent-MedievalClothingHeadHelmetGoblinSlayer = шлем убийцы гоблинов
     .desc = Время вам умирать, зеленые твари.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingHeadHelmetCap = кожаный чепчик
     .desc = Ты серьезно веришь в то что он тебя спасет?
     .suffix = { "Средневековье, одежда" }
@@ -109,12 +109,18 @@ ent-MedievalClothingOuterArmorLeather = легкая броня
 ent-MedievalClothingOuterArmorLeatherLight = облегченная кожаная кираса
     .desc = Броня из кожи, не сковывает движения
     .suffix = { "Средневековье, одежда" }
+ent-MedievalClothingOuterRoyalArmorLeatherLight = белоснежная кожаная броня
+    .desc = Дублённый доспех из множества слоёв кожи. Некоторые участки были окрашены и задекорированы под цвета известной династии купцов - "Белосвет". Броня была сформована и упрочнена, позволяя носить её налегке и с большой гибкостью в движении. Данный доспех самый доступный среди пехоты семьи.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingOuterRoyalArmorLeather = лёгкий жилет
+    .desc = Кожаный жилет облегчённого типа без накладок и плечевых элементов, что удобно обтягивает грудную клетку и способствует её защите. Качество кожи на высшем уровне, поверх натянуты крашенные элементы из тонких слоёв ткани и кожи. Цвета накладок относят её к династии "Белосвет".
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingOuterArmorLeatherHeavy = крепкая кожаная броня
     .desc = Хороша для начала путешествия, не сковывает движения
     .suffix = { "Средневековье, одежда" }
 ent-MedievalClothingOuterArmorGoblinSlayer = пластинчатая броня убийцы гоблинов
     .desc = Берегитесь, зеленые ублюдки. Смерть ваша идет.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingOuterArmorIron = прочная железная броня
     .desc = Старая надежная "железка"
     .suffix = { "Средневековье, одежда" }
@@ -225,19 +231,19 @@ ent-MedievalIronShieldBuckler = стальной щит баклер
     .suffix = { "Средневековье, ближка" }
 ent-MedievalIronShieldBucklerGoblinSlayer = стальной щит убийцы гоблинов
     .desc = Простой и лёгкий в переносе щит, не замедлит ваше движение и подходит под узкие пространства.
-    .suffix = { "Средневековье, ближка" }
+    .suffix = { "СКИН, Средневековье, ближка" }
 ent-MedievalWoodenShieldCross = каплевидный деревянный щит
     .desc = Спасет вашу шкуру от нескольких ударов, сильно на него лучше не расчитывать
-    .suffix = { "Средневековье, ближка" }
+    .suffix = { "СКИН, Средневековье, ближка" }
 ent-MedievalWoodenShieldKnightCross = рыцарский деревянный щит
     .desc = Может довольно хорошо вас защитить, но с таким не побегаешь.
-    .suffix = { "Средневековье, ближка" }
+    .suffix = { "СКИН, Средневековье, ближка" }
 ent-MedievalWoodenShieldBucklerCross = деревянный щит баклер
     .desc = Защищает хуже простого каплевидного щита, но зато практически не замедляет.
-    .suffix = { "Средневековье, ближка" }
+    .suffix = { "СКИН, Средневековье, ближка" }
 ent-MedievalWoodenShieldBucklerGoblinCross = ветхий гоблинский щит
     .desc = Это... оторванная крышка от бочки?? Серьезно?...
-    .suffix = { "Средневековье, ближка" }
+    .suffix = { "СКИН, Средневековье, ближка" }
 ent-MedievalIronShield = железный щит
     .desc = Надежная защита в бою
     .suffix = { "Средневековье, ближка" }
@@ -341,6 +347,12 @@ ent-MedievalClothWorkingPlace = рабочее место портного
 ent-MedievalWeaponCrossbow = арбалет
     .desc = Старинное оружие, похожее на лук. Использует тяжелые металические болты.
     .suffix = { "Средневековье, арбалет" }
+ent-MedievalWeaponCrossbowWhois = арбалет
+    .desc = Старинное оружие, похожее на лук. Использует тяжелые металические болты.
+    .suffix = { "СКИН, Средневековье, арбалет" }
+ent-MedievalWeaponMiniCrossbow = наручный арбалет
+    .desc = Старинное оружие, похожее на лук. Крепится на наручи и использует тяжелые металические болты.
+    .suffix = { "СКИН, Средневековье, арбалет" }
 ent-MedievalBolt = железный арбалетный болт
     .desc = Болт — боеприпас для стрельбы из арбалета. Представляет собой короткую толстую стрелу длиной 30—40 см.
     .suffix = { "Средневековье, арбалет" }
@@ -353,6 +365,12 @@ ent-MedievalBoltPractice = арбалетный тренировочный бо�
 ent-MedievalWeaponBow = длинный лук
     .desc = Длинный лук — один из видов лука, очень длинный, что позволяет делать достаточно дальние выстрелы. Лук не загнут сильно назад. Его конечности являются относительно узкими, так что они имеют круглое или D-образное сечение.
     .suffix = { "Средневековье, лук" }
+ent-MedievalWeaponBowWhois = длинный лук
+    .desc = Длинный лук — один из видов лука, очень длинный, что позволяет делать достаточно дальние выстрелы. Лук не загнут сильно назад. Его конечности являются относительно узкими, так что они имеют круглое или D-образное сечение.
+    .suffix = { "СКИН, Средневековье, лук" }
+ent-BowImprovisedWhois = { ent-BaseBow }
+    .suffix = { "СКИН, Средневековье, лук" }
+    .desc = { ent-BaseBow.desc }
 ent-MedievalArrow = железная стрела
     .desc = Стрела — метательный снаряд для стрельбы из лука. Как правило, стрела — это тонкий стержень, с одной стороны которого имеется острый наконечник, а с другой — узкие лопасти (оперение).
     .suffix = { "Средневековье, лук" }
@@ -380,6 +398,12 @@ ent-MedievalQuiver = простой кожаный колчан
 ent-MedievalQuiverSteel = укрепленный кожаный колчан
     .desc = В нем можно удобно хранить стрелы или болты
     .suffix = { "Средневековье, одежда" }
+ent-MedievalQuiverWhois = простой кожаный колчан
+    .desc = В нем можно удобно хранить стрелы или болты
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalQuiverSteelWhois = укрепленный кожаный колчан
+    .desc = В нем можно удобно хранить стрелы или болты
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingOuterArmorChainMailLight = легкая кольчужная рубаха
     .desc = Простенькая кольчужная рубашка. Вы серьезно верите в то, что эта кучка железных колечек что-то остановит?
     .suffix = { "Средневековье, одежда" }
@@ -454,7 +478,7 @@ ent-MedievalIronGlovesBrig = железные перчатки бриганти�
     .suffix = { "Средневековье, одежда" }
 ent-MedievalIronGlovesGoblinSlayer = перчатки убийцы гоблинов
     .desc = Довольно лёгкие и хорошо защищают.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingHandsGlovesCloth = тканевые обмотки
     .desc = Обычно такое носят только отчаянные люди.
     .suffix = { "Средневековье, одежда" }
@@ -549,6 +573,216 @@ ent-MedievalKeyTavern = ключ от таверны
 ent-MedievalKeyKing = ключ культа истины
     .desc = Барьер - ложь!
     .suffix = { "Средневековье, ключ, капитан" }
+ent-MedievalKeyLegionAlch = ключ алхимика южных земель
+    .desc = Во все тяжкие
+    .suffix = { "Средневековье, ключ, алхимик" }
+ent-MedievalKeyRebelAlch = ключ алхимика северных земель
+    .desc = Во все тяжкие
+    .suffix = { "Средневековье, ключ, алхимик" }
+ent-MedievalKeyLegionBlack = ключ кузнеца южных земель
+    .desc = Мне нравятся искры
+    .suffix = { "Средневековье, ключ, кузнец" }
+ent-MedievalKeyRebelBlack = ключ кузнеца северных земель
+    .desc = Мне нравятся искры
+    .suffix = { "Средневековье, ключ, кузнец" }
+ent-MedievalKeyRebelTavern1 = ключ таверны северных земель
+    .desc = Ключ тавернщика северных земель от первой комнаты
+    .suffix = { "Средневековье, ключ, тавернщик, 1" }
+ent-MedievalKeyRebelTavern2 = ключ таверны северных земель
+    .desc = Ключ тавернщика северных земель от второй комнаты
+    .suffix = { "Средневековье, ключ, тавернщик, 2" }
+ent-MedievalKeyRebelTavern3 = ключ таверны северных земель
+    .desc = Ключ тавернщика северных земель от третьей комнаты
+    .suffix = { "Средневековье, ключ, тавернщик, 3" }
+ent-MedievalKeyRebelTavern4 = ключ таверны северных земель
+    .desc = Ключ тавернщика северных земель от четвёртой комнаты
+    .suffix = { "Средневековье, ключ, тавернщик, 4" }
+ent-MedievalKeyRebelTavern5 = ключ таверны северных земель
+    .desc = Ключ тавернщика северных земель от пятой комнаты
+    .suffix = { "Средневековье, ключ, тавернщик, 5" }
+ent-MedievalKeyRebelTavern6 = ключ таверны северных земель
+    .desc = Ключ тавернщика северных земель от шестой комнаты
+    .suffix = { "Средневековье, ключ, тавернщик, 6" }
+ent-MedievalKeyRebelTavern7 = ключ таверны северных земель
+    .desc = Ключ тавернщика северных земель от седьмой комнаты
+    .suffix = { "Средневековье, ключ, тавернщик, 7" }
+ent-MedievalKeyRebelTavern8 = ключ таверны северных земель
+    .desc = Ключ тавернщика северных земель от восьмой комнаты
+    .suffix = { "Средневековье, ключ, тавернщик, 8" }
+ent-MedievalKeyLegionTavern1 = ключ таверны южных земель
+    .desc = Ключ тавернщика южных земель от первой комнаты
+    .suffix = { "Средневековье, ключ, тавернщик, 1" }
+ent-MedievalKeyLegionTavern2 = ключ таверны южных земель
+    .desc = Ключ тавернщика южных земель от второй комнаты
+    .suffix = { "Средневековье, ключ, тавернщик, 2" }
+ent-MedievalKeyLegionTavern3 = ключ таверны южных земель
+    .desc = Ключ тавернщика южных земель от третьей комнаты
+    .suffix = { "Средневековье, ключ, тавернщик, 3" }
+ent-MedievalKeyLegionTavern4 = ключ таверны южных земель
+    .desc = Ключ тавернщика южных земель от четвёртой комнаты
+    .suffix = { "Средневековье, ключ, тавернщик, 4" }
+ent-MedievalKeyLegionTavern5 = ключ таверны южных земель
+    .desc = Ключ тавернщика южных земель от пятой комнаты
+    .suffix = { "Средневековье, ключ, тавернщик, 5" }
+ent-MedievalKeyLegionTavern6 = ключ таверны южных земель
+    .desc = Ключ тавернщика южных земель от шестой комнаты
+    .suffix = { "Средневековье, ключ, тавернщик, 6" }
+ent-MedievalKeyLegionTavern7 = ключ таверны южных земель
+    .desc = Ключ тавернщика южных земель от седьмой комнаты
+    .suffix = { "Средневековье, ключ, тавернщик, 7" }
+ent-MedievalKeyLegionTavern8 = ключ таверны южных земель
+    .desc = Ключ тавернщика южных земель от восьмой комнаты
+    .suffix = { "Средневековье, ключ, тавернщик, 8" }
+ent-MedievalRichHouseKey1 = ключ богатого дома №1
+    .desc = Ключ от богатого дома №1
+    .suffix = { "Средневековье" }
+ent-MedievalRichHouseKey2 = ключ богатого дома №2
+    .desc = Ключ от богатого дома №2
+    .suffix = { "Средневековье" }
+ent-MedievalRichHouseKey3 = ключ богатого дома №3
+    .desc = Ключ от богатого дома №3
+    .suffix = { "Средневековье" }
+ent-MedievalRichHouseKey4 = ключ богатого дома №4
+    .desc = Ключ от богатого дома №4
+    .suffix = { "Средневековье" }
+ent-MedievalRichHouseKey5 = ключ богатого дома №5
+    .desc = Ключ от богатого дома №5
+    .suffix = { "Средневековье" }
+ent-MedievalHouseKey6 = ключ дома №6
+    .desc = Ключ от дома №6
+    .suffix = { "Средневековье" }
+ent-MedievalHouseKey7 = ключ дома №7
+    .desc = Ключ от дома №7
+    .suffix = { "Средневековье" }
+ent-MedievalHouseKey8 = ключ дома №8
+    .desc = Ключ от дома №8
+    .suffix = { "Средневековье" }
+ent-MedievalHouseKey9 = ключ дома №9
+    .desc = Ключ от дома №9
+    .suffix = { "Средневековье" }
+ent-MedievalHouseKey10 = ключ дома №10
+    .desc = Ключ от дома №10
+    .suffix = { "Средневековье" }
+ent-MedievalHouseKey11 = ключ дома №11
+    .desc = Ключ от дома №11
+    .suffix = { "Средневековье" }
+ent-MedievalHouseKey12 = ключ дома №12
+    .desc = Ключ от дома №12
+    .suffix = { "Средневековье" }
+ent-MedievalHouseKey13 = ключ дома №13
+    .desc = Ключ от дома №13
+    .suffix = { "Средневековье" }
+ent-MedievalHouseKey14 = ключ дома №14
+    .desc = Ключ от дома №14
+    .suffix = { "Средневековье" }
+ent-MedievalHouseKey15 = ключ дома №15
+    .desc = Ключ от дома №15
+    .suffix = { "Средневековье" }
+ent-MedievalAirlockRichHouse1Locked = укрепленная дверь дома №1
+    .desc = Укрепленная дверь богатого дома №1
+    .suffix = { "Средневековье" }
+ent-MedievalAirlockRichHouse2Locked = укрепленная дверь дома №2
+    .desc = Укрепленная дверь богатого дома №2
+    .suffix = { "Средневековье" }
+ent-MedievalAirlockRichHouse3Locked = укрепленная дверь дома №3
+    .desc = Укрепленная дверь богатого дома №3
+    .suffix = { "Средневековье" }
+ent-MedievalAirlockRichHouse4Locked = укрепленная дверь дома №4
+    .desc = Укрепленная дверь богатого дома №4
+    .suffix = { "Средневековье" }
+ent-MedievalAirlockRichHouse5Locked = укрепленная дверь дома №5
+    .desc = Укрепленная дверь богатого дома №5
+    .suffix = { "Средневековье" }
+ent-MedievalAirlockHouse6Locked = дверь дома №6
+    .desc = Дверь дома №6
+    .suffix = { "Средневековье" }
+ent-MedievalAirlockHouse7Locked = дверь дома №7
+    .desc = Дверь дома №7
+    .suffix = { "Средневековье" }
+ent-MedievalAirlockHouse8Locked = дверь дома №8
+    .desc = Дверь дома №8
+    .suffix = { "Средневековье" }
+ent-MedievalAirlockHouse9Locked = дверь дома №9
+    .desc = Дверь дома №9
+    .suffix = { "Средневековье" }
+ent-MedievalAirlockHouse10Locked = дверь дома №10
+    .desc = Дверь дома №10
+    .suffix = { "Средневековье" }
+ent-MedievalAirlockHouse11Locked = дверь дома №11
+    .desc = Дверь дома №11
+    .suffix = { "Средневековье" }
+ent-MedievalAirlockHouse12Locked = дверь дома №12
+    .desc = Дверь дома №12
+    .suffix = { "Средневековье" }
+ent-MedievalAirlockHouse13Locked = дверь дома №13
+    .desc = Дверь дома №13
+    .suffix = { "Средневековье" }
+ent-MedievalAirlockHouse14Locked = дверь дома №14
+    .desc = Дверь дома №14
+    .suffix = { "Средневековье" }
+ent-MedievalAirlockHouse15Locked = дверь дома №15
+    .desc = Дверь дома №15
+    .suffix = { "Средневековье" }
+ent-MedievalAirlockCryogenicsLocked = дверь алхимика южных земель
+    .desc = Дверь ведущая к комнате алхимика южных земель
+    .suffix = { "Средневековье, ключ, алхимик" }
+ent-MedievalAirlockHeadOfSecurityLocked = дверь алхимика северных земель
+    .desc = Дверь ведущая к комнате алхимика северных земель
+    .suffix = { "Средневековье, ключ, алхимик" }
+ent-MedievalAirlockQuartermasterLocked = дверь кузнеца южных земель
+    .desc = Дверь ведущая к кузне южных земель
+    .suffix = { "Средневековье, ключ, кузнец" }
+ent-MedievalAirlockResearchDirectorLocked = дверь кузнеца северных земель
+    .desc = Дверь ведущая к кузне северных земель
+    .suffix = { "Средневековье, ключ, кузнец" }
+ent-MedievalAirlockLegionTavern1Locked = дверь таверны южных земель
+    .desc = Первая комната
+    .suffix = { "Средневековье, дверь, тавернщик, 1" }
+ent-MedievalAirlockLegionTavern2Locked = дверь таверны южных земель
+    .desc = Вторая комната
+    .suffix = { "Средневековье, дверь, тавернщик, 2" }
+ent-MedievalAirlockLegionTavern3Locked = дверь таверны южных земель
+    .desc = Третья комната
+    .suffix = { "Средневековье, дверь, тавернщик, 3" }
+ent-MedievalAirlockLegionTavern4Locked = дверь таверны южных земель
+    .desc = Четвёртая комната
+    .suffix = { "Средневековье, дверь, тавернщик, 4" }
+ent-MedievalAirlockLegionTavern5Locked = дверь таверны южных земель
+    .desc = Пятая комната
+    .suffix = { "Средневековье, дверь, тавернщик, 5" }
+ent-MedievalAirlockLegionTavern6Locked = дверь таверны южных земель
+    .desc = Шестая комната
+    .suffix = { "Средневековье, дверь, тавернщик, 6" }
+ent-MedievalAirlockLegionTavern7Locked = дверь таверны южных земель
+    .desc = Седьмая комната
+    .suffix = { "Средневековье, дверь, тавернщик, 7" }
+ent-MedievalAirlockLegionTavern8Locked = дверь таверны южных земель
+    .desc = Восьмая комната
+    .suffix = { "Средневековье, дверь, тавернщик, 8" }
+ent-MedievalAirlockRebelTavern1Locked = дверь таверны северных земель
+    .desc = Первая комната
+    .suffix = { "Средневековье, дверь, тавернщик, 1" }
+ent-MedievalAirlockRebelTavern2Locked = дверь таверны северных земель
+    .desc = Вторая комната
+    .suffix = { "Средневековье, дверь, тавернщик, 2" }
+ent-MedievalAirlockRebelTavern3Locked = дверь таверны северных земель
+    .desc = Третья комната
+    .suffix = { "Средневековье, дверь, тавернщик, 3" }
+ent-MedievalAirlockRebelTavern4Locked = дверь таверны северных земель
+    .desc = Четвёртая комната
+    .suffix = { "Средневековье, дверь, тавернщик, 4" }
+ent-MedievalAirlockRebelTavern5Locked = дверь таверны северных земель
+    .desc = Пятая комната
+    .suffix = { "Средневековье, дверь, тавернщик, 5" }
+ent-MedievalAirlockRebelTavern6Locked = дверь таверны северных земель
+    .desc = Шестая комната
+    .suffix = { "Средневековье, дверь, тавернщик, 6" }
+ent-MedievalAirlockRebelTavern7Locked = дверь таверны северных земель
+    .desc = Седьмая комната
+    .suffix = { "Средневековье, дверь, тавернщик, 7" }
+ent-MedievalAirlockRebelTavern8Locked = дверь таверны северных земель
+    .desc = Восьмая комната
+    .suffix = { "Средневековье, дверь, тавернщик, 8" }
 ent-MedievalKeyCargo = ключ оружейной легиона
     .desc = За императора!
     .suffix = { "Средневековье, ключ, снабжение" }
@@ -973,34 +1207,34 @@ ent-MedaljonSpeed = медальон с чарами скорости
     .suffix = { "Средневековье, одежда" }
 ent-MedaljonSpeedSkin = медальон с чарами скорости
     .desc = Ускоряет своего носителя
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedaljonSandClock = волшебные песочные часы
     .desc = В них, словно бесконечный, сыпет песок, указывая вам точное время.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedaljonMana = медальон с чарами восстановления маны
     .desc = Ускоряет регенерацию маны носителем.
     .suffix = { "Средневековье, одежда" }
 ent-MedaljonManaSkin = медальон с чарами восстановления маны
     .desc = Ускоряет регенерацию маны носителем.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedaljonAntiMana = анти-магический ошейник
     .desc = Постоянно высасывает в себя ману из носителя. Такой будет непросто снять.
     .suffix = { "Средневековье, одежда" }
 ent-MedaljonAntiManaSkin = анти-магический медальон
     .desc = Постоянно высасывает в себя ману из носителя. Такой будет непросто снять.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedaljonDark = медальон с чарами защиты от темных сил
     .desc = Довольно сильно снижает входящий темный урон по носителю. Незаменимая вещь для борьбы с призраками или некромантами.
     .suffix = { "Средневековье, одежда" }
 ent-MedaljonDarkSkin = медальон с чарами защиты от темных сил
     .desc = Довольно сильно снижает входящий темный урон по носителю. Незаменимая вещь для борьбы с призраками или некромантами.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedaljonDef = медальон с чарами защиты
     .desc = Повышает защиту своего носителя
     .suffix = { "Средневековье, одежда" }
 ent-MedaljonDefSkin = медальон с чарами защиты
     .desc = Повышает защиту своего носителя
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalWizardPlace = рунический алтарь
     .desc = Если у вас есть знания и ресурсы - вы можете создавать на нем удивительнейшие вещи. Для использования станка положите на него нужные для крафта ресурсы кнопкой Q, потом откройте (если что переоткройте) меню верстака и нажмите кнопку создать.
     .suffix = { "Средневековье, станок" }
@@ -1021,6 +1255,9 @@ ent-MedievalLeatherWorkingPlaceCraft = заготовка рабочего ме�
     .suffix = { "Средневековье" }
 ent-MedievalBlacksmithArmorCraft = заготовка кузницы
     .desc = Кликните с заготовкой в активной руке по месту, куда вы хотите разместить объект, чтобы смастерить кузницу.
+    .suffix = { "Средневековье" }
+ent-MedievalMeltingPlaceCraft = заготовка плавильни
+    .desc = Кликните с заготовкой в активной руке по месту, куда вы хотите разместить объект, чтобы смастерить плавильню.
     .suffix = { "Средневековье" }
 ent-MedievalCampfireCraft = заготовка костра
     .desc = Кликните с заготовкой в активной руке по месту, куда вы хотите разместить объект, чтобы смастерить костер.
@@ -1173,7 +1410,7 @@ ent-MedaljonFlashImmune = медальон с чарами защиты глаз
     .suffix = { "Средневековье, одежда" }
 ent-MedaljonFlashImmuneSkin = медальон с чарами защиты глаз
     .desc = Делает носителя невосприимчевым к ярким вспышкам
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalHandheldHealthAnalyzer = око жизни
     .desc = Позволяет проверить состояние здоровья больного
     .suffix = { "Средневековье" }
@@ -1470,19 +1707,19 @@ ent-MedaljonThieving = медальон ловких рук
     .suffix = { "Средневековье, одежда" }
 ent-MedaljonThievingSkin = медальон ловких рук
     .desc = Ускоряет скорость снятия предметов с сущностей и скрывает пользователю уведомление о краже. Хорошо подходит для воров.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedaljonExpl = медальон с чарами защиты от взрывов
     .desc = Повышает защиту своего носителя от взрывов
     .suffix = { "Средневековье, одежда" }
 ent-MedaljonExplSkin = медальон с чарами защиты от взрывов
     .desc = Повышает защиту своего носителя от взрывов
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedaljonNoslip = медальон с чарами устойчивости
     .desc = Делает носителя невосприимчевым к скользким лужам и предметам.
     .suffix = { "Средневековье, одежда" }
 ent-MedaljonNoslipSkin = медальон с чарами устойчивости
     .desc = Делает носителя невосприимчевым к скользким лужам и предметам.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalAirlockCraft = заготовка двери без замка
     .desc = Кликните с заготовкой в активной руке по месту, куда вы хотите разместить объект, чтобы смастерить дверь.
     .suffix = { "Средневековье" }
@@ -1698,7 +1935,7 @@ ent-MedievalShortSword = железный короткий меч
     .suffix = { "Средневековье, ближка" }
 ent-MedievalShortSwordGoblinSlayer = короткий меч убийцы гоблинов
     .desc = Непримечательный железный меч. Сойдёт для того, чтобы порубить гоблинов.
-    .suffix = { "Средневековье, ближка" }
+    .suffix = { "СКИН, Средневековье, ближка" }
 ent-MedievalShortSwordGold = железный короткий позолоченный меч
     .desc = Чуть быстрее и немного слабее, чем длинный меч.
     .suffix = { "Средневековье, ближка" }
@@ -1707,7 +1944,7 @@ ent-MedievalShortSwordSteel = стальной короткий меч
     .suffix = { "Средневековье, ближка" }
 ent-MedievalShortSwordSteelGoblinSlayer = короткий меч убийцы гоблинов
     .desc = Непримечательный стальной меч. Сойдёт для того, чтобы порубить гоблинов.
-    .suffix = { "Средневековье, ближка" }
+    .suffix = { "СКИН, Средневековье, ближка" }
 ent-MedievalShortSwordGoldSteel = стальной короткий позолоченный меч
     .desc = Чуть быстрее и немного слабее, чем длинный меч.
     .suffix = { "Средневековье, ближка" }
@@ -1944,7 +2181,7 @@ ent-MedievalClothingUniformJumpsuitShitCloth34 = костюм с оранжев�
 ent-MedievalBossSummonMedievalMobGolemLarge = древняя опасность
     .desc = Подсказка: если разрушить данную структуру, то появится сильный босс. Он обладают очень ценным лутом, большим запасом здоровья и сильным уроном.
     .suffix = { "Средневековье, босс" }
-ent-MedievalBossSummonMedievalMobSpiderKing = Паучий кокон
+ent-MedievalBossSummonMedievalMobSpiderKing = паучий кокон
     .desc = Подсказка: если разрушить данную структуру, то появится сильный босс. Он обладают очень ценным лутом, большим запасом здоровья и сильным уроном.
     .suffix = { "Средневековье, босс" }
 ent-MedievalHumanSummoner = книга призыва нового поселенца
@@ -1955,7 +2192,7 @@ ent-MedievalStartPlaceCraft = заготовка стартового пеньк
     .suffix = { "Средневековье" }
 ghost-role-information-medieval-newbie-name = Поселенец
 ghost-role-information-medieval-newbiedescription = Призванный человек
-ent-MedievalRandomHumanoidSpawnerHewbie = Призыв поселенца
+ent-MedievalRandomHumanoidSpawnerHewbie = призыв поселенца
     .desc = спавнит рандомного поселенца
     .suffix = { "Средневековье" }
 ent-MedievalAlcPlace = место для производства алкоголя
@@ -2239,10 +2476,16 @@ ent-MedievalFalshionT3 = железный длинный меч
     .suffix = { "Средневековье, ближка" }
 ent-MedievalFalshionT3DarkSword = тёмный меч
     .desc = Это таинственное и могущественное оружие, покрытое вековыми тайнами. Его изогнутое лезвие черного цвета, словно поглощающее свет, сверкает лишь в свете луны, благодаря древним рунным надписям, которые мерцают как звезды на ночном небосводе. Рукоятка, обернутая черной кожей и украшенная загадочными символами, излучает холод, заставляя знатоков искусства боя ощущать внутреннюю силу и притяжение.
-    .suffix = { "Средневековье, ближка" }
+    .suffix = { "СКИН, Средневековье, ближка" }
 ent-MedievalFalshionT3DarkSwordSteel = тёмный меч
     .desc = Это таинственное и могущественное оружие, покрытое вековыми тайнами. Его изогнутое лезвие черного цвета, словно поглощающее свет, сверкает лишь в свете луны, благодаря древним рунным надписям, которые мерцают как звезды на ночном небосводе. Рукоятка, обернутая черной кожей и украшенная загадочными символами, излучает холод, заставляя знатоков искусства боя ощущать внутреннюю силу и притяжение.
-    .suffix = { "Средневековье, ближка" }
+    .suffix = { "СКИН, Средневековье, ближка" }
+ent-MedievalFalshionT3DarkerSword = тёмный меч
+    .desc = Меч из тёмной стали необычной формы, на эфесе есть гравировка неизвестной символики.
+    .suffix = { "СКИН, Средневековье, ближка" }
+ent-MedievalFalshionT3DarkerSwordSteel = тёмный меч
+    .desc = Меч из тёмной стали необычной формы, на эфесе есть гравировка неизвестной символики.
+    .suffix = { "СКИН, Средневековье, ближка" }
 ent-MedievalGoblinFalshion = загнутый гоблинский меч
     .desc = Нье-хе-хе-хе-хе
     .suffix = { "Средневековье, ближка" }
@@ -2307,6 +2550,18 @@ ent-MedievalIronSekir = железная секира
     .suffix = { "Средневековье, ближка" }
 ent-MedievalIronSekirSteel = стальная секира
     .desc = Оружие берсерков. Двуручное. Надежное.
+    .suffix = { "Средневековье, ближка" }
+ent-MedievalIronClaymore = железный клеймор
+    .desc = Двуручный меч шотландских горцев. Надежный.
+    .suffix = { "Средневековье, ближка" }
+ent-MedievalIronClaymoreSteel = стальной клеймор
+    .desc = Двуручный меч шотландских горцев. Надежный.
+    .suffix = { "Средневековье, ближка" }
+ent-MedievalIronZweihander = железный цвайхендер
+    .desc = Немецкий двуручный меч. Надежный.
+    .suffix = { "Средневековье, ближка" }
+ent-MedievalIronZweihanderSteel = стальной цвайхендер
+    .desc = Немецкий двуручный меч. Надежный.
     .suffix = { "Средневековье, ближка" }
 ent-MedievalIronHammerNotReady = заготовка тяжелого молота
     .desc = Постучите по ней кузнечным молоточком, чтобы создать тяжелый молот
@@ -2896,7 +3151,7 @@ ent-MedievalShopHoleRespawn = магическая торговая дыра а�
     .suffix = { "Средневековье, респавн" }
 ghost-role-information-medieval-traveller-name = Путник
 ghost-role-information-medieval-traveller-description = Сам себе хозяин
-ent-MedievalRandomHumanoidSpawnerTraveller = Путник
+ent-MedievalRandomHumanoidSpawnerTraveller = путник
     .desc = Средневековье
     .suffix = { "Средневековье, болванка, разные рассы" }
 ent-MedievalMobHumanTraveller = путник
@@ -2932,27 +3187,6 @@ ghost-role-information-medieval-flame-name = Инквизитор адского
 ghost-role-information-medieval-flame-description = Люди - сила!
 ghost-role-information-medieval-eagle-name = Легионер клана синего орла
 ghost-role-information-medieval-eagle-description = Смиииирно!
-ent-MedievalMobWerwolfBlack = оборотень с черной шерстью
-    .desc = Чудище. Кто же скрывается под твоей маской?
-    .suffix = { "Средневековье, werewolf" }
-ent-MedievalMobWerwolfBlueDark = оборотень с тёмной синеватой шерстью
-    .desc = Чудище. Кто же скрывается под твоей маской?
-    .suffix = { "Средневековье, werewolf" }
-ent-MedievalMobWerwolfBlueLight = оборотень с светлой синеватой шерстью
-    .desc = Чудище. Кто же скрывается под твоей маской?
-    .suffix = { "Средневековье, werewolf" }
-ent-MedievalMobWerwolfBrown = оборотень с бурой шерстью
-    .desc = Чудище. Кто же скрывается под твоей маской?
-    .suffix = { "Средневековье, werewolf" }
-ent-MedievalMobWerwolfLight = оборотень с светлой шерстью
-    .desc = Чудище. Кто же скрывается под твоей маской?
-    .suffix = { "Средневековье, werewolf" }
-ent-MedievalMobWerwolfPurple = оборотень с фиолетоватой шерстью
-    .desc = Чудище. Кто же скрывается под твоей маской?
-    .suffix = { "Средневековье, werewolf" }
-ent-MedievalMobWerwolfRed = оборотень с бардовой шерстью
-    .desc = Чудище. Кто же скрывается под твоей маской?
-    .suffix = { "Средневековье, werewolf" }
 ghost-role-information-medieval-leader-name = НЕ БРАТЬ!
 ghost-role-information-medieval-leader-description = ЗАПРЕЩЕНО БРАТЬ ЭТУ РОЛЬ, ЕСЛИ АДМИНИСТРАТОР НЕ СКАЗАЛ ОБРАТНОЕ, иначе отстранение с ивента
 ent-MedievalMultitool = навесной замок
@@ -3435,8 +3669,8 @@ ent-MedievalScrollBarrierDebug = магический свиток божест�
 ent-MedievalScrollBarrierDebugBad = магический свиток дьявольский
     .desc = Понижает стабильность барьера на 60 единиц. Вставьте свиток в барьер, чтобы изменить стабильность.
     .suffix = { "Средневековье, барьер" }
-ent-MedievalBarrierMagic = магический барьер
-    .desc = Работает следующим образом: у него есть запас стабильности. Максимальный он 60. Каждую минуту он тратит единицу стабильности. За каждое возрождение человека -1.2 стабильности. Если стабильность падает до нуля - происходит окончание раунда. Стабильность барьера можно пополнять, кладя на него свитки, он будет их автоматически поглощать. Свитки есть 3 разных категорий - слабые, средние и мощные. Слабый свиток восполняет 3 единицы стабильности, средний 7, мощный 12. Свитки можно найти в сундуках и купить у торговцев. Это по сути альфа версия барьера, в будущем его механика будет сильно переработана.
+ent-MedievalBarrierMagic = Spellward
+    .desc = Магический барьер, хранящий остров от темных сил
     .suffix = { "НЕ СПАВНИТЬ ВООБЩЕ, Средневековье, барьер" }
 ent-MedievalSpawnerMedievalBarrierMagic = магический барьер спавнеп
     .desc = Манке гооооооооол
@@ -3502,10 +3736,10 @@ ent-MedievalMagicSpellcraftFire = магический обелиск для с�
 ent-MedievalMagicSpellcraftHoly = магический обелиск для создания святых гримуаров
     .desc = Положите те же самые свитки, что использует магический барьер к этому обелиску, чтобы пополнить его заряд. Как только заряд достигнет максимума - он с некоторым шансом создаст магический гримуар, который можно даровать желающему обучиться магии. Как только ученик возьмет его в руки - гримуар тут же привяжется к нему. Количество разных эссенций зависит от того, на каком обелсике создавался гримуар.
     .suffix = { "Средневековье" }
-medieval-title = Спокойное пребывание
-medieval-description = Острову совсем ничего не угрожает, кроме внутренних воин. Что может пойти не так?
-medieval-myrmex-title = Испытание Бога: Терра
-medieval-myrmex-description = Над островом нависла опасность. Земля под ногами странно сотрясается. Что происходит?
+medieval-title = Нексар
+medieval-description = Сумеют ли жители острова проявить благоразумие, чтобы сохранить единство и не перегрызть друг другу глотки, когда им ничто не угрожает извне?
+medieval-myrmex-title = Терра
+medieval-myrmex-description = Земля под ногами странно сотрясается. Что происходит?
 spell-requirements-failed = Для этого заклинания нужна специальная одежда
 ent-CP14HighBush = куст
     .desc = Опасайтесь СБЭУ комаров, обитающих в нем.
@@ -3830,589 +4064,6 @@ ent-MedievalClothingHandsGlovesColorBrown = длинные коричневые 
 ent-MedievalClothingHandsGlovesColorLightBrown = длинные светло-коричневые кожаные перчатки
     .desc = Длинные светло-коричневые перчатки, которые не спасут вас от поджаривания.
     .suffix = { "" }
-
-chatsan-word-68 = долбоеб
-chatsan-replacement-68 = тугодум
-
-chatsan-word-69 = далбоеб
-chatsan-replacement-69 = тугодум
-
-chatsan-word-70 = долбоебы
-chatsan-replacement-70 = тугодумы
-
-chatsan-word-71 = далбоебы
-chatsan-replacement-71 = тугодумы
-
-chatsan-word-72 = долбоёб
-chatsan-replacement-72 = тугодум
-
-chatsan-word-73 = далбоёб
-chatsan-replacement-73 = тугодум
-
-chatsan-word-74 = долбоёбы
-chatsan-replacement-74 = тугодумы
-
-chatsan-word-75 = далбоёбы
-chatsan-replacement-75 = тугодумы
-
-chatsan-word-76 = хуила
-chatsan-replacement-76 = падла
-
-chatsan-word-77 = хуилы
-chatsan-replacement-77 = падлы
-
-chatsan-word-78 = хуесос
-chatsan-replacement-78 = недоносок
-
-chatsan-word-79 = хуесосы
-chatsan-replacement-79 = недоноски
-
-chatsan-word-80 = уебище
-chatsan-replacement-80 = иродивый
-
-chatsan-word-111 = уебища
-chatsan-replacement-111 = иродивые
-
-chatsan-word-81 = ахуеть
-chatsan-replacement-81 = вот это да
-
-chatsan-word-82 = охуеть
-chatsan-replacement-82 = вот это да
-
-chatsan-word-83 = вахуе
-chatsan-replacement-83 = очень удивлен
-
-chatsan-word-84 = вахуи
-chatsan-replacement-84 = очень удивлен
-
-chatsan-word-85 = разъебал
-chatsan-replacement-85 = низверг
-
-chatsan-word-86 = выебал
-chatsan-replacement-86 = спустил с небес на землю
-
-chatsan-word-87 = разъебали
-chatsan-replacement-87 = низвергли
-
-chatsan-word-88 = выебали
-chatsan-replacement-88 = спустили с небес на землю
-
-chatsan-word-89 = дебил
-chatsan-replacement-89 = тугодум
-
-chatsan-word-90 = дебилы
-chatsan-replacement-90 = тугодумы
-
-chatsan-word-91 = робаст
-chatsan-replacement-91 = умелец
-
-chatsan-word-92 = робастный
-chatsan-replacement-92 = умелый
-
-chatsan-word-93 = пиздишь
-chatsan-replacement-93 = балаболишь
-
-chatsan-word-94 = пиздишь
-chatsan-replacement-94 = балаболишь
-
-chatsan-word-95 = нахуй
-chatsan-replacement-95 = к черту
-
-chatsan-word-96 = пиздит
-chatsan-replacement-96 = брешет
-
-chatsan-word-97 = бомж
-chatsan-replacement-97 = нищий
-
-chatsan-word-98 = заебал
-chatsan-replacement-98 = задрал
-
-chatsan-word-99 = съебал
-chatsan-replacement-99 = дал деру
-
-chatsan-word-100 = ЕРП
-chatsan-replacement-100 = грех
-
-chatsan-word-101 = ахуел
-chatsan-replacement-101 = ошалел
-
-chatsan-word-102 = охуел
-chatsan-replacement-102 = ошалел
-
-chatsan-word-103 = пиздюк
-chatsan-replacement-103 = отпрыск
-
-chatsan-word-104 = выебать
-chatsan-replacement-104 = спустить с небес на землю
-
-chatsan-word-105 = дохуя
-chatsan-replacement-105 = очень много
-
-chatsan-word-106 = нихуя
-chatsan-replacement-106 = вот это да
-
-chatsan-word-107 = ебал
-chatsan-replacement-107 = проклинал
-
-chatsan-word-108 = ебанутый
-chatsan-replacement-108 = безбашенный
-
-chatsan-word-109 = ебанутые
-chatsan-replacement-109 = безбашенные
-
-chatsan-word-110 = хуй
-chatsan-replacement-110 = хрен
-
-chatsan-word-153 = пидоры
-chatsan-replacement-153 = содомиты
-
-chatsan-word-112 = пидорас
-chatsan-replacement-112 = содомит
-
-chatsan-word-113 = пидорасы
-chatsan-replacement-113 = содомиты
-
-chatsan-word-114 = пидарас
-chatsan-replacement-114 = содомит
-
-chatsan-word-115 = пидарасы
-chatsan-replacement-115 = содомиты
-
-chatsan-word-116 = сука
-chatsan-replacement-116 = самка ликантропа
-
-chatsan-word-117 = мразь
-chatsan-replacement-117 = бездушный
-
-chatsan-word-118 = мрази
-chatsan-replacement-118 = бездушные
-
-chatsan-word-154 = затупок
-chatsan-replacement-154 = колупай
-
-chatsan-word-119 = затупки
-chatsan-replacement-119 = колупаи
-
-chatsan-word-155 = затупки
-chatsan-replacement-155 = колупаи
-
-chatsan-word-120 = дурак
-chatsan-replacement-120 = остолыбень
-
-chatsan-word-121 = дураки
-chatsan-replacement-121 = остолыбни
-
-chatsan-word-122 = урод
-chatsan-replacement-122 = страхолюд
-
-chatsan-word-123 = уроды
-chatsan-replacement-123 = страхолюды
-
-chatsan-word-124 = долбаеб
-chatsan-replacement-124 = баламошка
-
-chatsan-word-125 = далбаеб
-chatsan-replacement-125 = баламошка
-
-chatsan-word-126 = долбаебы
-chatsan-replacement-126 = баламошки
-
-chatsan-word-127 = далбаебы
-chatsan-replacement-127 = баламошки
-
-chatsan-word-128 = скуф
-chatsan-replacement-128 = пентюх
-
-chatsan-word-129 = скуфы
-chatsan-replacement-129 = пентюхи
-
-chatsan-word-130 = пиздабол
-chatsan-replacement-130 = пустобрех
-
-chatsan-word-131 = пиздобол
-chatsan-replacement-131 = пустобрех
-
-chatsan-word-132 = пиздаболы
-chatsan-replacement-132 = пустобрехи
-
-chatsan-word-133 = пиздоболы
-chatsan-replacement-133 = пустобрехи
-
-chatsan-word-134 = выебываться
-chatsan-replacement-134 = бахвалиться
-
-chatsan-word-135 = выебывается
-chatsan-replacement-135 = бахвалится
-
-chatsan-word-136 = выебываются
-chatsan-replacement-136 = бахвалятся
-
-chatsan-word-137 = выебон
-chatsan-replacement-137 = бахвальство
-
-chatsan-word-138 = губы
-chatsan-replacement-138 = уста
-
-chatsan-word-139 = палец
-chatsan-replacement-139 = перст
-
-chatsan-word-140 = пальцы
-chatsan-replacement-140 = перста
-
-chatsan-word-141 = глаз
-chatsan-replacement-141 = око
-
-chatsan-word-142 = глаза
-chatsan-replacement-142 = ока
-
-chatsan-word-143 = убийца
-chatsan-replacement-143 = душегуб
-
-chatsan-word-144 = убийцы
-chatsan-replacement-144 = душегубы
-
-chatsan-word-145 = воняет
-chatsan-replacement-145 = смердит
-
-chatsan-word-156 = воняет
-chatsan-replacement-156 = смердит
-
-chatsan-word-146 = шлюха
-chatsan-replacement-146 = лярва
-
-chatsan-word-147 = гнида
-chatsan-replacement-147 = подлец
-
-chatsan-word-148 = гниды
-chatsan-replacement-148 = подлецы
-
-chatsan-word-149 = гниде
-chatsan-replacement-149 = подлецу
-
-chatsan-word-150 = спс
-chatsan-replacement-150 = спасибо
-
-chatsan-word-151 = ахуели
-chatsan-replacement-151 = ошалели
-
-chatsan-word-152 = охуели
-chatsan-replacement-152 = ошалели
-
-chatsan-word-157 = выебу
-chatsan-replacement-157 = спущу с небес на землю
-
-chatsan-word-158 = уебок
-chatsan-replacement-158 = иродивый
-
-chatsan-word-159 = разъебу
-chatsan-replacement-159 = спущу с небес на землю
-
-chatsan-word-160 = выебу
-chatsan-replacement-160 = спущу с небес на землю
-
-chatsan-word-161 = пидораса
-chatsan-replacement-161 = содомита
-
-chatsan-word-162 = пидорасов
-chatsan-replacement-162 = содомитов
-
-chatsan-word-163 = пидорасу
-chatsan-replacement-163 = содомиту
-
-chatsan-word-164 = пидорасам
-chatsan-replacement-164 = содомитам
-
-chatsan-word-165 = пидору
-chatsan-replacement-165 = содомиту
-
-chatsan-word-166 = пидорам
-chatsan-replacement-166 = содомитам
-
-chatsan-word-167 = пидора
-chatsan-replacement-167 = содомита
-
-chatsan-word-168 = пидоров
-chatsan-replacement-168 = содомитов
-
-chatsan-word-169 = съебались
-chatsan-replacement-169 = дали деру
-
-chatsan-word-170 = съебался
-chatsan-replacement-170 = дал деру
-
-chatsan-word-171 = ахуела
-chatsan-replacement-171 = ошалела
-
-chatsan-word-172 = пизда
-chatsan-replacement-172 = оказия
-
-chatsan-word-173 = ебнул
-chatsan-replacement-173 = прикончил
-
-chatsan-word-174 = ебну
-chatsan-replacement-174 = прикончу
-
-chatsan-word-175 = ебнули
-chatsan-replacement-175 = прикончили
-
-chatsan-word-176 = ебнула
-chatsan-replacement-176 = прикончила
-
-chatsan-word-177 = ебанутая
-chatsan-replacement-177 = безбашенная
-
-chatsan-word-178 = скуфу
-chatsan-replacement-178 = пентюху
-
-chatsan-word-179 = скуфам
-chatsan-replacement-179 = пентюхам
-
-chatsan-word-180 = бля
-chatsan-replacement-180 = черт
-
-chatsan-word-181 = бл
-chatsan-replacement-181 = черт
-
-chatsan-word-182 = хуево
-chatsan-replacement-182 = неважно
-
-chatsan-word-183 = похуй
-chatsan-replacement-183 = насрать
-
-chatsan-word-184 = поебать
-chatsan-replacement-184 = наплевать
-
-chatsan-word-185 = доебался
-chatsan-replacement-185 = прикопался
-
-chatsan-word-186 = доебаться
-chatsan-replacement-186 = прикопаться
-
-chatsan-word-187 = доебалась
-chatsan-replacement-187 = прикопалась
-
-chatsan-word-188 = ебало
-chatsan-replacement-188 = морда
-
-chatsan-word-189 = ебло
-chatsan-replacement-189 = морда
-
-chatsan-word-190 = еблет
-chatsan-replacement-190 = морда
-
-chatsan-word-191 = хуйло
-chatsan-replacement-191 = выродок
-
-chatsan-word-192 = ебейшая
-chatsan-replacement-192 = замечательная
-
-chatsan-word-193 = ебейшие
-chatsan-replacement-193 = замечательные
-
-chatsan-word-194 = блядский
-chatsan-replacement-194 = брыдлый
-
-chatsan-word-195 = блядство
-chatsan-replacement-195 = брылство
-
-chatsan-word-196 = блядские
-chatsan-replacement-196 = брыдлые
-
-chatsan-word-197 = блядстая
-chatsan-replacement-197 = брыдлая
-
-chatsan-word-198 = блядскому
-chatsan-replacement-198 = брыдлому
-
-chatsan-word-199 = блядской
-chatsan-replacement-199 = брыдлой
-
-chatsan-word-200 = ебейше
-chatsan-replacement-200 = лютейше
-
-chatsan-word-201 = пиздеть
-chatsan-replacement-201 = пустобрешить
-
-chatsan-word-202 = пиздить
-chatsan-replacement-202 = лупасить
-
-chatsan-word-203 = пизди
-chatsan-replacement-203 = лупась
-
-chatsan-word-204 = спиздил
-chatsan-replacement-204 = одолжил
-
-chatsan-word-205 = спиздили
-chatsan-replacement-205 = одолжили
-
-chatsan-word-206 = спиздить
-chatsan-replacement-206 = одолжить
-
-chatsan-word-207 = спиздила
-chatsan-replacement-207 = одолжила
-
-chatsan-word-208 = наебать
-chatsan-replacement-208 = опростоволосить
-
-chatsan-word-209 = наебал
-chatsan-replacement-209 = опростоволосил
-
-chatsan-word-210 = наебали
-chatsan-replacement-210 = опростоволосили
-
-chatsan-word-211 = наебала
-chatsan-replacement-211 = опростоволосила
-
-chatsan-word-212 = наебалово
-chatsan-replacement-212 = ненадежное дело
-
-chatsan-word-213 = отпиздил
-chatsan-replacement-213 = низверг
-
-chatsan-word-214 = отпизжу
-chatsan-replacement-214 = низвергну
-
-chatsan-word-215 = отпиздил
-chatsan-replacement-215 = низверг
-
-chatsan-word-216 = отпиздили
-chatsan-replacement-216 = низвергли
-
-chatsan-word-217 = отпиздилиа
-chatsan-replacement-217 = низвергла
-
-chatsan-word-218 = дебила
-chatsan-replacement-218 = тугодума
-
-chatsan-word-219 = дебилу
-chatsan-replacement-219 = тугодуму
-
-chatsan-word-220 = дебилам
-chatsan-replacement-220 = тугодумам
-
-chatsan-word-221 = спс
-chatsan-replacement-221 = благодарствую
-
-chatsan-word-222 = пж
-chatsan-replacement-222 = будьте добры
-
-chatsan-word-223 = ок
-chatsan-replacement-223 = хорошо
-
-chatsan-word-224 = оке
-chatsan-replacement-224 = хорошо
-
-chatsan-word-225 = окей
-chatsan-replacement-225 = хорошо
-
-chatsan-word-226 = кд
-chatsan-replacement-226 = перезарядка
-
-chatsan-word-227 = пии
-chatsan-replacement-227 = умная коробка
-
-chatsan-word-228 = схуяли
-chatsan-replacement-228 = почему же
-
-chatsan-word-229 = хули
-chatsan-replacement-229 = почему же
-
-chatsan-word-230 = гойда
-chatsan-replacement-230 = вперед
-
-chatsan-word-231 = хуйня
-chatsan-replacement-231 = дребедень
-
-chatsan-word-232 = втф
-chatsan-replacement-232 = что за дребедень
-
-chatsan-word-233 = чзх
-chatsan-replacement-233 = что за дребедень
-
-chatsan-word-234 = ебашь
-chatsan-replacement-234 = лупась
-
-chatsan-word-235 = заебашу
-chatsan-replacement-235 = залупашу
-
-chatsan-word-236 = поебота
-chatsan-replacement-236 = бред
-
-chatsan-word-237 = хуярь
-chatsan-replacement-237 = рази
-
-chatsan-word-238 = хуярю
-chatsan-replacement-238 = разю
-
-chatsan-word-239 = захуярь
-chatsan-replacement-239 = срази
-
-chatsan-word-240 = захуярю
-chatsan-replacement-240 = сражу
-
-chatsan-word-241 = захуярим
-chatsan-replacement-241 = сразим
-
-chatsan-word-242 = хуя
-chatsan-replacement-242 = черта
-
-chatsan-word-243 = блядота
-chatsan-replacement-243 = ничтожество
-
-chatsan-word-244 = отпиздят
-chatsan-replacement-244 = низверргнут
-
-chatsan-word-245 = суки
-chatsan-replacement-245 = самки ликонтропа
-
-chatsan-word-246 = суке
-chatsan-replacement-246 = самке ликонтропа
-
-chatsan-word-247 = нехуй
-chatsan-replacement-247 = нЕчего
-
-chatsan-word-248 = ебашить
-chatsan-replacement-248 = лупасим
-
-chatsan-word-249 = блядина
-chatsan-replacement-249 = ничтожество
-
-chatsan-word-250 = ебашит
-chatsan-replacement-250 = лупасит
-
-chatsan-word-251 = заебашим
-chatsan-replacement-251 = прикончим
-
-chatsan-word-252 = ебучие
-chatsan-replacement-252 = окоянные
-
-chatsan-word-253 = ебучий
-chatsan-replacement-253 = окоянный
-
-chatsan-word-254 = ебучему
-chatsan-replacement-254 = окоянному
-
-chatsan-word-255 = ебучим
-chatsan-replacement-255 = окоянным
-
-chatsan-word-256 = ебучего
-chatsan-replacement-256 = окоянного
-
-chatsan-word-257 = ебучих
-chatsan-replacement-257 = окоянных
-
-chatsan-word-258 = напиздел
-chatsan-replacement-258 = спустобрешил
-
-chatsan-word-259 = напиздела
-chatsan-replacement-259 = спустобрешила
-
-chatsan-word-260 = напиздели
-chatsan-replacement-260 = спустобрешили
-
-chatsan-word-261 = напиздеть
-chatsan-replacement-261 = спустобрешить
-
 trait-medieval-skills-alchemy = Зельевар
 trait-medieval-skills-alchemy-desc = Осмотрев зелье, сваренное на котле, через шифт+клик вы способны определить его примерные свойства.
 ent-MedievalBarrierCurse = проклятый нарост
@@ -4464,8 +4115,8 @@ medieval-category-necro-weapon = Оружие
 medieval-category-necro-armor = Броня
 medieval-category-necro-other = Прочее
 medieval-necro-fighter-name = Посланник темного повелителя
-medieval-necro-fighter-desc = Устройте хаос в этих землях!
-medieval-necro-fighter-rules = Закупите снаряжение, составьте план, подождите до открытия ворот, и вырежите всех!
+medieval-necro-fighter-desc = Восстановите древний череп для призыва армии тьмы!
+medieval-necro-fighter-rules = Если череп уже восстановлен - устройте хаос в этих землях!
 medieval-necro-leader-name = Воитель темного повелителя
 medieval-necro-leader-desc = Устройте хаос в этих землях!
 medieval-necro-leader-rules = Закупите снаряжение, составьте план, подождите до открытия ворот, и вырежите всех!
@@ -4506,6 +4157,15 @@ ent-MedievalTimedSpawnerOreCave = место появления руды пещ�
     .desc = манке гооооооол
     .suffix = { "Средневековье" }
 ent-MedievalGlowStone = светокамень
+    .desc = Полезен при чрезвычайных ситуациях.
+ent-MedievalReliefStoneWeak = слабый камень облегчения
+    .desc = Слегка снижает вес переносимой ноши.
+    .suffix = { "Средневековье" }
+ent-MedievalReliefStoneStrong = мощный камень облегчения
+    .desc = Существенно снижает вес переносимой ноши.
+    .suffix = { "Средневековье" }
+ent-MedievalAntiGravitationStone = магический камень антигравитации
+    .desc = Почти полностью нейтрализует вес.
     .desc = В отличии от факела, его можно безопасно класть в карман.
     .suffix = { "Средневековье" }
 expendable-light-spent-yellow-glowstone-name = погасший жёлтый светокамень
@@ -4519,6 +4179,9 @@ trait-medieval-skills-digger = Шахтер
 trait-medieval-skills-digger-desc = Вы быстрее вскапываете жилы руды, если взяли кирку в 2 руки.
 ent-MedievalRepairStone = точильный камень
     .desc = Одноразовый точильный камень. Кликните им по оружию, чтобы восстановить часть прочности. Учтите, что каждое использование точильного камня ускорит поломку оружия на 5%, если вы не обладаете чертой точильщика. Если ваше оружие ломается слишком часто - может быть стоит задуматься. Не стоит бить мечом деревья, или копьем пытаться добывать руду.
+    .suffix = { "Средневековье" }
+ent-MedievalShieldRepairKit = набор починки щитов
+    .desc = Полностью восстанавливает прочность щита.
     .suffix = { "Средневековье" }
 ent-MedievalSharpeningMachine = точильный станок
     .desc = Точильный станок. Кликните по нему оружием, чтобы восстановить часть прочности. Учтите, что каждое использование точильного камня ускорит поломку оружия на 5%, если вы не обладаете чертой точильщика. Если ваше оружие ломается слишком часто - может быть стоит задуматься. Не стоит бить мечом деревья, или копьем пытаться добывать руду.
@@ -4559,19 +4222,19 @@ cp14-workbench-craft = Создать
 cp14-workbench-recipe-list = Рецепт:
 cp14-workbench-no-resource = Не хватает ингредиентов!
 trait-category-medieval-religion = Вера в бога
-trait-medieval-skills-religion1 = Аэриус
+trait-medieval-skills-religion1 = Креза
 trait-medieval-skills-religion1-desc =  Богиня торговли и свободы. Поклоняются ей купцы и те, кто ценит независимость.
 trait-medieval-skills-religion2 = Терра
 trait-medieval-skills-religion2-desc = Богиня земли и плодородия. Поклоняются ей фермеры и те, кто ценит природу.
 trait-medieval-skills-religion3 = Пиркс
 trait-medieval-skills-religion3-desc = Бог огня и силы. Поклоняются ему кузнецы и те, кто ценит силу.
-trait-medieval-skills-religion4 = Калинда
+trait-medieval-skills-religion4 = Сома
 trait-medieval-skills-religion4-desc = Богиня милосердия и исцеления. Ей зачастую поклоняются жрецы и врачеватели.
 trait-medieval-skills-religion5 = Магнус
 trait-medieval-skills-religion5-desc = Бог знаний и магии. Поклоняются ему маги, и те, кто ценит мудрость.
 trait-medieval-skills-religion6 = Морбиус
 trait-medieval-skills-religion6-desc = Бог смерти и разложения. Вера в него запрещена на землях легиона.
-trait-medieval-skills-religion7 = Тенебрис
+trait-medieval-skills-religion7 = Зайго
 trait-medieval-skills-religion7-desc = Богиня обмана и коварства. Поклоняются ей воры и те, кто ценит хитрость.
 trait-medieval-skills-religion8 = Валтор
 trait-medieval-skills-religion8-desc = Бог войны и насилия. Покровитель воинов.
@@ -4638,6 +4301,10 @@ ent-MedievalTimedSpawnerOreGlina = спавнер глиняная кучка
     .suffix = { "Средневековье" }
 ent-MedievalGlinaFormaBowl = сырая глиняная миска
     .desc = Ее нужно обжечь.
+    .suffix = { "Средневековье, ресурс" }
+materials-medievalstonebrick = каменный кирпич
+ent-MedievalStoneBrick = каменный кирпич
+    .desc = Из него можно сделать заготовку каменной стены
     .suffix = { "Средневековье, ресурс" }
 ent-MedievalDoorLock = дверной замок
     .desc = Если кликнуть им по двери - код, который нужен для взлома сменится на случайный, а количество зубцов в замке увеличится на 2.
@@ -4922,13 +4589,13 @@ job-description-miner-medieval = Копайте древний опасный р
 ent-ZveresScreamAction = Звериный дух
     .desc = Завойте как зверь, чтобы получить бонус к скорости на несколько секунд взамен на увеличение вашей сонливости.
     .suffix = { "Средневековье" }
-job-name-blacksmith = Кузнец легиона
+job-name-blacksmith = Кузнец южных земель
 job-description-blacksmith = Выполняйте различные заказы, следите за своей небольшой лавкой.
-job-name-blacksmithN = Кузнец мятежников
+job-name-blacksmithN = Кузнец северных земель
 job-description-blacksmithN = Выполняйте различные заказы, следите за своей небольшой лавкой.
-job-name-blacksmithyoung = Подмастерье легиона
+job-name-blacksmithyoung = Подмастерье южных земель
 job-description-blacksmithyoung = Обучитесь основам ремесла.
-job-name-blacksmithyoungN = Подмастерье мятежников
+job-name-blacksmithyoungN = Подмастерье северных земель
 job-description-blacksmithyoungN = Обучитесь основам ремесла.
 department-Crafters = Ремесленники
 department-Crafters-description = Создавайте и творите.
@@ -5002,22 +4669,22 @@ ent-MedievalClothingOuterArmorCultLeader = святая роба культа и
     .suffix = { "Средневековье" }
 ent-MedievalClothingOuterAltArmorCult = роба культа истины
     .desc = Обычные одеяния культистов истины.
-    .suffix = { "Средневековье" }
+    .suffix = { "СКИН, Средневековье" }
 ent-MedievalClothingOuterAltArmorCultMana = магическая роба культа истины
     .desc = Роба, созданная специально для магов. Неплохо восстанавливает ману.
-    .suffix = { "Средневековье" }
+    .suffix = { "СКИН, Средневековье" }
 ent-MedievalClothingOuterAltArmorCultUp = бронированная роба культа истины
     .desc = Роба, совмещенная с кирасой.
-    .suffix = { "Средневековье" }
+    .suffix = { "СКИН, Средневековье" }
 ent-MedievalClothingOuterAltArmorCultLeader = святая роба культа истины
     .desc = Роба проповедника культа.
-    .suffix = { "Средневековье" }
+    .suffix = { "СКИН, Средневековье" }
 ent-MedievalClothingShoesCult = ботинки культа истины
     .desc = Отлично сочетаются с робами культа истины.
     .suffix = { "Средневековье" }
 ent-MedievalClothingAltShoesCult = ботинки культа истины
     .desc = Отлично сочетаются с робами культа истины.
-    .suffix = { "Средневековье" }
+    .suffix = { "СКИН, Средневековье" }
 ent-MedievalClothingUniformJumpsuitShitCloth65 = ряса культа истины
     .desc = Барьер - ложь!
     .suffix = { "Средневековье" }
@@ -5029,10 +4696,10 @@ ent-MedievalClothingHeadHelmetCult = капюшон робы культа ист
     .suffix = { "Средневековье" }
 ent-MedievalClothingHeadAltHelmetCult = капюшон робы культа истины
     .desc = Удобный капюшон для ношения с робой.
-    .suffix = { "Средневековье" }
+    .suffix = { "СКИН, Средневековье" }
 ent-MedievalClothingHeadAltHelmetCultLeader = капюшон святой робы культа истины
     .desc = Удобный капюшон для ношения с робой.
-    .suffix = { "Средневековье" }
+    .suffix = { "СКИН, Средневековье" }
 ent-MedievalDaggerCultLeader = ритуальный кинжал проповедника культа истины
     .desc = Святой кинжал, необходимый культистам для некоторых ритуалов.
     .suffix = { "Средневековье, ближка" }
@@ -5110,10 +4777,10 @@ ent-MedievalTimedSpawnerMedievalMobSpiderStrongCave = Периодический
     .suffix = { "Средневековье, спавнер" }
 ent-MedievalClothingOuterArmorCeremonialRobe = роскошная мантия
     .desc = Далеко не все могут позволить себе такое.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingHeadHelmetCeremonialRobe = благородный золотой шлем
     .desc = Вы не сможете найти на нём ни крупицы настоящего золота.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-WoodRailing = деревянные перила
     .desc = Простое ограждение.
     .suffix = { "Прямой, Средневековье, декор" }
@@ -5173,15 +4840,17 @@ plush-dog-4 = Ты-ы-ы-ы. Не-е-е-е. Пройдё-ё-ё-ёшь!
 ent-PlushieDog = злющий Неверус
     .desc = Верный цепной пёс Империи, стоящий на страже врат порта Легиона. Похоже, даже после смерти его заставили сторожить врата, в виде набивного чучела. В его глазах вы видите злость и блеск монет. На шее у пса повешана медаль "За поддержку Империи".
     .suffix = { "Средневековье, игрушка" }
+ent-PlushieVikta = игрушечный дворянин
+    .desc = Замечательно изготовленная игрушка местного Дворянина "Викта Белосвет", одет в одеяния его династии, очень красив. В куклу вшиты натуральные волосы, предположительно коня.
+    .suffix = { "СКИН, Средневековье, игрушка" }
 ent-MedievalClothingHeadHelmetCollegiumPurpleHat = фиолетовая шляпа коллегии
     .desc = Соткана из магической ткани, помогает фокусировать ману в теле носителя и даёт какую-никакую защиту.
 ent-MedievalClothingHeadHelmeCollegiumWhitetHat = белая шляпа коллегии
     .desc = Соткана из магической ткани, помогает фокусировать ману в теле носителя и даёт какую-никакую защиту.
-    .desc = От него исходит святая энергия.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingNeckCloakInqVeteran = плащ ветерана инквизиции адского пламени
     .desc = Наградной плащ, выдаваемый бойцам инквизиции адского пламени за выдающиеся заслуги. Отличается от обычного, наличием серебряного наплечника и золотого плетения.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalPickaxeEbonit = эбонитовая кирка
     .desc = Кирка из прочнейшего материала, но крайне тяжелая.
     .suffix = { "Средневековье, ближка" }
@@ -5190,22 +4859,25 @@ ent-MedievalPickaxeForStone = кирка из форстоуна
     .suffix = { "Средневековье, ближка" }
 ent-MedievalClothingNeckCloakCivYellow = плащ наёмников
     .desc = Необходим для опознания свой/чужой
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingNeckCloakCivRed = плащ мятежника
     .desc = Необходим для опознания свой/чужой
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingNeckCloakCivPurple = плащ члена коллегии магов
     .desc = Необходим для опознания свой/чужой
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingNeckCloakCivGrey = плащ разбойника
     .desc = Необходим для опознания свой/чужой
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingNeckCloakCivOrange = плащ разбойника
+    .desc = Необходим для опознания свой/чужой
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingNeckCloakCivGreen = плащ шахтеров
     .desc = Необходим для опознания свой/чужой
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingNeckCloakCivBlue = плащ легиона
     .desc = Необходим для опознания свой/чужой
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalMobNastyGrowth = мерзкая поросль
     .desc = Это огромное и явно настроенное не дружелюбно растение.
     .suffix = { "Средневековье, моб" }
@@ -5227,16 +4899,16 @@ ent-MedievalSpawnerRandomTreeLifetime1200SnowConifer = зимний пень
 cactus-component-contact-damage = В вашу кожу впивается пара колючек
 ent-MedievalClothingOuterArmorPodWarsSkinWarhammer = необычная железная броня
     .desc = Железная броня, выполненная в необычном стиле. Чем-то напоминает вам космодесант...
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingOuterArmorPodWarsSkinWarhammerUp = необычная латная броня
     .desc = Тяжелая латная броня, выполненная в необычном стиле. Чем-то напоминает вам космодесант...
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingHeadHelmetCrusaderWarhammer = серебрянный рогатый шлем
     .desc = Необычный топфхельм. Чем-то напоминает вам космодесант...
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingHeadHelmetCrusaderWarhammer2 = позолоченный закрытый шлем
     .desc = Необычный топфхельм. Чем-то напоминает вам космодесант...
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalMobShieldSlug = щитомордый слизень
     .desc = Это огромный и бронированный слизень.
     .suffix = { "Средневековье, моб" }
@@ -5285,7 +4957,7 @@ ent-MedievalMobWingedShadow = крылатая тень
 species-Diona = Дендрит
 ent-MedievalClothingHeadHelmetNimbus = золотой нимб
     .desc = Красивый нимб, признак роскоши
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalDecorStoragePallet = ценный груз
     .desc = Коробка с хрупким ценным грузом. Обычно идет в комплекте с контрактом на его доставку. Если доставить его - можно получить неплохую сумму.
     .suffix = { "Средневековье, К ЛЕГИОНУ" }
@@ -5314,16 +4986,16 @@ ent-MedievalPaperOnValuableCargoIns = бумага на ценный груз
     .suffix = { "Средневековье" }
 ent-MedievalClothingHeadHelmetCharmerInsBlood = защитный шлем мага мятежника
     .desc = Скован из магического металла, не сковывает движения и дает какую-никакую защиту.
-    .suffix = { "Средневековье, одежда, чародей" }
+    .suffix = { "СКИН, Средневековье, одежда, чародей" }
 ent-MedievalClothingOuterArmorCharmerLightInsBlood = броня мага мятежников
     .desc = Скована из магического металла, не сковывает движения и дает какую-никакую защиту.
-    .suffix = { "Средневековье, одежда, чародей" }
+    .suffix = { "СКИН, Средневековье, одежда, чародей" }
 ent-MedievalClothingElectroMask = маска Прокажённого
     .desc = Металлическая маска, на которой изображено множество узоров.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-ClothingEyesElectroBlindfold = повязка Уайса
     .desc = Повязка из магической ткани, сдерживает некую мощь.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalSecretLootBox = заначка
     .desc = Чья-то заначка покрыта пылью, можно разглядеть буквы: Ф.Б
     .suffix = { "Средневековье" }
@@ -5356,63 +5028,60 @@ ent-MedievalDarkMageObject = внутреннее подсознание
 ent-MedievalDarkMageFlame = огонек
     .desc = Возможно, стоит задуматься, сменить ли позицию?
 job-description-LegionAlchemic-medieval = Создавайте зелья и другие алхимические вещи.
-job-name-LegionAlchemic-medieval = Алхимик легиона
+job-name-LegionAlchemic-medieval = Алхимик южных земель
 job-description-InsurgencyAlchemic-medieval = Создавайте зелья и другие алхимические вещи.
-job-name-InsurgencyAlchemic-medieval = Алхимик Мятежников
+job-name-InsurgencyAlchemic-medieval = Алхимик северных земель
 ent-MedievalClothingUniformJumpsuitShitCloth69 = одеяние династии Белосвет
     .desc = Благородное одеяние сшитое белыми тканями и золотистой обделкой нитями и фурнитурой.
-    .suffix = { "Средневековье, одежда" }
-ent-MedievalClothingUniformJumpsuitShitCloth70 = одеяние династии Белосвет
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingUniformJumpsuitShitCloth70 = платье династии Белосвет
     .desc = Благородное одеяние сшитое белыми тканями и золотистой обделкой нитями и фурнитурой.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingUniformJumpsuitShitCloth72 = одеяния послушника
     .desc = ФАЕРБОООЛ
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingNeckRoyalCloak = белоснежная мантия
     .desc = Мантия богатых Купцов с богатой семьи, купцы потратили не мало денег, это точно Белосветы.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingNeckRoyalCloakAlt = белоснежная мантия
     .desc = Мантия богатых Купцов с богатой семьи, купцы потратили не мало денег, это точно Белосветы.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingHandsRoyalGloves = белоснежные перчатки
     .desc = Шелковистые и приятные на ощупь перчатки, определённо сделаны на заказ.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingOuterRoyalCoat = дворянская шинель
     .desc = Крепкая шинель сделанная лучшими мастерами торговых островов, цвета и позолота отсылает к Белосветам, что имеют купеческие связи в портах Легиона.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-ClothingBeltRoyalSheath = дворянские ножны
     .desc = Позолоченные ножны, сделанные из лучшей кожи.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingRoyalBoots = украшенные ботинки
     .desc = Твёрдая обувь, что сочетает собой стиль и удобство, подошва весьма мягка и прочна.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingOuterRoyalArmorUpIron = тяжёлый доспех Белосвет
     .desc = Доспех составленный  из металлических пластин, откованных по телосложению заказчика, закрывая всё целиком. Кираса украшена и позолочена. С пояса свисает тканевая юбка.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingRoyalFeetSteel = сабатоны Белосвет
     .desc = Ярко украшенная пластинчатая обувь, закреплённая к нижней части голени доспеха. Окрашено в цвета династии знатных Купцов.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalRoyalIronGloves = белоснежные латные перчатки
     .desc = Рыцарские перчатки с сегментированным строением для защиты кистей и предплечья, на поверхности нанесены узоры. Символика Белосвет на тыльной стороне перчаток.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingRoyalMask = половинчатая маска
     .desc = Маска венецианского стиля, что изображена в половину лица и окрашена в золотистые оттенки с белым корпусом. Не скрывает личность носителя, но украшает лицо. На обороте маски написано чернилами - "Белосвет".
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingHeadRoyalHelmet = шлем знати
     .desc = Изготовленный на заказ Армет с забралом, украшен плюмажем - красное перо. Горжет перетекает в основание шеи, где закреплён рондель. Острое забрало украшено позолотой.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingHeadRoyalHoop = дворянский обруч
     .desc = Золотой обруч красиво украшенный узорами, несущие историю династии Белосвет в их процветание. Имеется камень посередине, похожий на рубин.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalIronRoyalSword = длинный меч святых Белосветов
     .desc = Длинный меч украшенный в самоцветах, на поверхности металла - позолота.
-    .suffix = { "Средневековье, ближка" }
+    .suffix = { "СКИН, Средневековье, ближка" }
 ent-MedievalSteelRoyalSword = длинный меч святых Белосветов
     .desc = Длинный меч украшенный в самоцветах, на поверхности металла - позолота.
-    .suffix = { "Средневековье, ближка" }
-ent-ChemistryBottleRobustHarvest = фермерское зелье
-    .desc = Это повысит потенцию ваших растений.
-    .suffix = { "" }
+    .suffix = { "СКИН, Средневековье, ближка" }
 medieval-warning-base = Общее:
         - Помните, что каждый персонаж - такой же игрок как и вы. Играйте, не создавая проблем для других участников процесса, проявляйте уважение ко всем игрокам, встречающимся вам в игре.
         - Жизнь персонажа - огромная ценность.  Наличие возможности респавна не означает, что к полному выведению игрока из раунда можно относиться легкомысленно.
@@ -5457,7 +5126,7 @@ medieval-warning-coll = Общее:
 
         Магия:
         - Разумно используйте магию. Кинуть огненный шар в городе ради прокачки или ослепить своего собеседника не только выглядит крайне неуважительно, но еще и рушит атмосферу всем окружающим игрокам это может повлечь за собой как IC, так и OOC наказание.
-        - Прокачка идет быстрее в настоящем бою. Попадание заклинанием в живую сущность, по типу персонажа или NPC-монстра, сильно ускоряет вашу прокачку. Нет необходимости час кидать заклинания в стену сидя в коллегии.
+
 
         P. S. Сервер находится в стадии разработки, нахождение багов и ваша финансовая поддержка сильно приближает проект к полноценному релизу.
 medieval-warning-mag = Общее:
@@ -5489,7 +5158,7 @@ medieval-warning-cult = Общее:
 
         Магия:
         - Разумно используйте магию. Кинуть огненный шар в городе ради прокачки или ослепить своего собеседника не только выглядит крайне неуважительно, но еще и рушит атмосферу всем окружающим игрокам это может повлечь за собой как IC, так и OOC наказание.
-        - Прокачка идет быстрее в настоящем бою. Попадание заклинанием в живую сущность, по типу персонажа или NPC-монстра, сильно ускоряет вашу прокачку. Нет необходимости час кидать заклинания в стену сидя в коллегии.
+
 
         Пленение:
         - Если вы решили пленить игрока - постарайтесь сделать его ролевой процесс интересным с помощью различных взаимодействий.
@@ -5533,7 +5202,7 @@ medieval-warning-ins-mag = Общее:
 
         Магия:
         - Разумно используйте магию. Кинуть огненный шар в городе ради прокачки или ослепить своего собеседника не только выглядит крайне неуважительно, но еще и рушит атмосферу всем окружающим игрокам это может повлечь за собой как IC, так и OOC наказание.
-        - Прокачка идет быстрее в настоящем бою. Попадание заклинанием в живую сущность, по типу персонажа или NPC-монстра, сильно ускоряет вашу прокачку. Нет необходимости час кидать заклинания в стену сидя в коллегии.
+
 
         Пленение:
         - Если вы решили пленить игрока - постарайтесь сделать его ролевой процесс интересным с помощью различных взаимодействий.
@@ -5577,7 +5246,7 @@ medieval-warning-leg-mag = Общее:
 
         Магия:
         - Разумно используйте магию. Кинуть огненный шар в городе ради прокачки или ослепить своего собеседника не только выглядит крайне неуважительно, но еще и рушит атмосферу всем окружающим игрокам это может повлечь за собой как IC, так и OOC наказание.
-        - Прокачка идет быстрее в настоящем бою. Попадание заклинанием в живую сущность, по типу персонажа или NPC-монстра, сильно ускоряет вашу прокачку. Нет необходимости час кидать заклинания в стену сидя в коллегии.
+
 
         Пленение:
         - Если вы решили пленить игрока - постарайтесь сделать его ролевой процесс интересным с помощью различных взаимодействий.
@@ -5641,31 +5310,34 @@ medieval-warning-cardef = Общее:
         P. S. Сервер находится в стадии разработки, нахождение багов и ваша финансовая поддержка сильно приближает проект к полноценному релизу.
 ent-AhrimanStaffMedieval = чёрный посох
     .desc = "Невозмутимо убрав посох в сторону, чемпион сложил руки." Некогда великое оружие, которое утратило свою силу.
-    .suffix = { "Средневековье, ближка" }
+    .suffix = { "СКИН, Средневековье, ближка" }
 ent-MedievalClothingHeadHelmetCollegiumHatBaronSaturday = чёрный цилиндр
     .desc = Шляпа, окружённая ожерельем из черепов и пером цвета киновари.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingOuterArmorCharmerLightBaronSaturday = чёрный фрак
     .desc = Дорогой и статный костюм, выполненный в викторианском стиле.
-    .suffix = { "Средневековье, одежда" }
-ent-MedievalClothingHeadHelmetCharmerLightPurpleScar = капюшон звездного скитальца
-    .desc = Если ты слеп - прими это призму как должное восприятие.
-    .suffix = { "Средневековье, одежда" }
-ent-MedievalClothingHeadHelmetCharmerWeakPurpleScar = капюшон звездного скитальца
-    .desc = Если ты слеп - прими это призму как должное восприятие.
-    .suffix = { "Средневековье, одежда" }
-ent-MedievalClothingOuterArmorCharmerLightPurpleScar = одеяние звездного скитальца
-    .desc = Звезды созданы для нас. Они превыше всяких богов.
-    .suffix = { "Средневековье, одежда" }
-ent-MedievalClothingOuterArmorCharmerWeakPurpleScar = одеяние звездного скитальца
-    .desc = Звезды созданы для нас. Они превыше всяких богов.
-    .suffix = { "Средневековье, одежда" }
-ent-MedievalShoesCharmerPurpleScar = ботфорты звездного скитальца
-    .desc = Каждый шаг связывает нас. Мы должны держаться вместе - как звезды.
-    .suffix = { "Средневековье, одежда" }
-ent-MedievalClothingHandsGlovesPurpleScar = перчатки звездного скитальца
-    .desc = Они не сжигаются пламенем, не высвечиваются ярким светом.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingHeadHelmetCharmerLightPurpleScar = капюшон отчужденной звезды
+    .desc = Плотный капюшон из ткани со звездным напылением. В центре яркий огонек туманности затмевает лик носителя и в том числе, возможно, даже его разум. Кто-то очень не хотел видеть жестокость сие мира.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingHeadHelmetCharmerWeakPurpleScar = капюшон отчужденной звезды
+    .desc = Плотный капюшон из ткани со звездным напылением. В центре яркий огонек туманности затмевает лик носителя и в том числе, возможно, даже его разум. Кто-то очень не хотел видеть жестокость сие мира.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingOuterArmorCharmerLightPurpleScar = одеяние дихтомии
+    .desc = Одеяние из плотного материала, настолько плотного, что как будто становится единым целым с его носителем. Оно пытается вас обнять и защитить, или же задушить и погубить?
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingOuterArmorCharmerWeakPurpleScar = одеяние дихтомии
+    .desc = Одеяние из плотного материала, настолько плотного, что как будто становится единым целым с его носителем. Оно пытается вас обнять и защитить, или же задушить и погубить?
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalShoesCharmerPurpleScar = ботфорты звездного искариота
+    .desc = Обувь из твердого полированного материала. Продолжительное ношение лишит вас чувства ног, и все равно, несмотря на это, вы продолжите идти, но...
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingHandsGlovesPurpleScar = перчатки алиенации
+    .desc = Перчатки с переливающимся звездным сплавом. Они запомнили движение рук, но...
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingUniformJumpsuitShitCloth77 = рунический комбинезон
+    .desc = Одеяние фиолетового цвета. Ткань обшита маленькими рунными знаками, которые составляют композицию полноценного полотна и совершенно не видны с дальнего ракурса. Знающие могут узреть среди рун заклинание исцеления, но оно перечеркнуто и заменено чем-то незнакомым...
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingOuterArmorCharmerNecro2 = проклятая магическая роба
     .desc = Каждая нить этой мантии пронизана маной.
     .suffix = { "Средневековье, одежда" }
@@ -5674,58 +5346,58 @@ ent-MedievalClothingOuterArmorCharmerNecro = проклятая защитная
     .suffix = { "Средневековье, одежда" }
 ent-MedievalClothingOuterArmorUpIronDarkArmorArchaont = тёмный нагрудник
     .desc = Неявственно черный доспех, сделанный из прочного материала. На некоторых его частях можно увидеть символы, повещённые древним богам. Сзади доспехов видиечется невероятной прочности кожаный, обожженный адским пламенем плащ. На плаще нету не одного свободного места, весь он украшен символами. На плечах находятся по одному человеческому черепу, которые будто истекают кровь.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingHeadHelmetCrusaderDarkHelmetArchaont = тёмный шлем
     .desc = Неестественно черного цвета шлем на котором виднеются узоры и символы древних богов. По бокам шлема располагаются два величественных бивня неизвестного животного. Глаза не естественно синют алым пламенем, когда на лбу красуется ещё одна огненная точка, не удается точно разобрать что это, глаз или что-то иное.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingFeetSteelDarkBootsArchaont = тёмные ботинки
     .desc = Сабатоны неестественно черного цвета, сделаны из неизвестного материала на котором виднеются узоры и символы древних богов
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingHeadHelmetCrusaderMorbius = церемониальный шлем
     .desc = Это не просто шлем — это врата. Каждый, кто носит его слишком долго, начинает слышать зов Морбиуса. Сначала во сне. Потом наяву. В конце концов, владелец забывает своё имя… но шлем помнит.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingOuterArmorUpIronMorbius = церемониальный панцирь
     .desc = На ощупь не металл и не ткань, а скорее хитин, будто выращенный в потустороннем мире. На нём нанесены узоры, символы божества Морбиуса, они будто пульсируют.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingOuterArmorWhiteWizardCharmerLight = белоснежная мантия
     .desc = Зачарованная мантия, украшенная такими же белоснежными драгоценными камнями.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingHandsGlovesWhiteWizard = белоснежные перчатки
     .desc = Бархатные перчатки, приятные на ощупь.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingHeadHelmetCharmerLightWhiteWizard = белоснежный капюшон
     .desc = Капюшон зачарованной мантии.
-    .suffix = { "Средневековье, одежда" }
-ent-MedievalClothingNeckCloakRoyalLegionEagle = плащ
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingNeckCloakRoyalLegionEagle = лазурный плащ
     .desc = Длинный плащ богато исполненный в цветах местного Государства, обшит золотыми нитями. В области шеи скрепляется золотыми арматурами и креплениями, сделанные портными мастерами и кузнецами в сочетании работ. На спине красуется герб Легиона. Необходим для опознания свой/чужой.
-    .suffix = { "Средневековье, одежда" }
-ent-MedievalClothingNeckCloakRoyalInsFox = плащ
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingNeckCloakRoyalInsFox = окровавленный плащ
     .desc = Кровавый плащ достигающий ног его носителя, окутывая корпус и закрывающий шею. Края обвиты серебряными нитями с креплениями и арматурами из серебра. Работа выполнена местными ремесленниками, что приняли устой Мятежа. На шее имеется красивый мех для защиты от морозов. Необходим для опознания свой/чужой.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingBlackBoots = тёмные сапоги
     .desc = Походные сапоги из крепкой кожи.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingHandsBlackGloves = тёмные перчатки
     .desc = Удобные и лёгкие перчатки.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingOuterBlackArmorLeather = тёмный костюм
     .desc = Удобный костюм с крепкими кожаными вставками, практически не замедлит ваше движение.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingHelmetBlackLeather = тёмный капюшон
     .desc = Лёгкий капюшон с маской, скрывающей вашу личность.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingOuterArmorCharmerLightAncientMage = древняя мантия
     .desc = Необычная мантия, окутанная зачарованными пластинами неизвестного происхождения, она покрыта светящимися рунами.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingHeadHelmetCharmerLightAncientMage = капюшон
     .desc = Некогда могла свести с ума владельца и окружающих его людей, но сейчас она утратила свою силу, однако вы продолжаете слышать некий шёпот...
-    .suffix = { "Средневековье, одежда" }
-ent-MedievalClothingOuterArmorCharmerWeakStrayMage = vантия бродячего мага
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingOuterArmorCharmerWeakStrayMage = мантия бродячего мага
     .desc = Потрёпанная мантия с потускневшими цветами полотна. Ткани покрывают носителя от жары и сдерживают тепло в себе. Веет магической эссенцией от каждой нити свеянной между собой, порой освобождается слабое сияние.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalClothingHeadHelmetCharmerWeakStrayMage = cобранная накидка
     .desc = Плотный кусок ткани, что покрывает плечи и половину головы носителя. Имеет магические свойства, что способствуют развитию жизненной способности владельца. В некоторых местах имеются потрёпанные участки, грязь и торчащие нитки.
-    .suffix = { "Средневековье, одежда" }
+    .suffix = { "СКИН, Средневековье, одежда" }
 ent-MedievalWallSoilSolid = твёрдая почва
     .desc = Её можно раздолбить.
     .suffix = { "Средневековье" }
@@ -5783,6 +5455,650 @@ ent-MedievalWallSoilSolidRoot = твёрдая почва
 ent-MedievalRootItem = корень
     .desc = Горький на вкус.
     .suffix = { "Средневековье" }
-ent-MedievalMonsterBag = сумка охтника на монстров
+ent-MedievalMonsterBag = сумка охотника на монстров
     .desc = Сумка для настоящих охотников.
     .suffix = { "Средневековье, одежда" }
+ent-MedievalClothingUniformJumpsuitShitCloth73 = одеяния послушника
+    .desc = ФАЕРБОООЛ
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalHorseTransport = степная лошадь
+    .desc = Иии-го-го! Пробел - ускорение
+    .suffix = { "Средневековье, транспорт" }
+ent-MedievalBlackHorseTransport = строевая лошадь
+    .desc = Иии-го-го! Пробел - ускорение
+    .suffix = { "Средневековье, транспорт" }
+ent-MedievalBlackSpotHorseTransport = кляча
+    .desc = Иии-го-го! Пробел - ускорение
+    .suffix = { "Средневековье, транспорт" }
+ent-MedievalBlackWhiteHorseTransport = вьючная лошадь
+    .desc = Иии-го-го! Пробел - ускорение
+    .suffix = { "Средневековье, транспорт" }
+ent-MedievalGreyHorseTransport = охотничья лошадь
+    .desc = Иии-го-го! Пробел - ускорение
+    .suffix = { "Средневековье, транспорт" }
+ent-MedievalWhiteHorseTransport = скаковая лошадь
+    .desc = Иии-го-го! Пробел - ускорение
+    .suffix = { "Средневековье, транспорт" }
+ent-MedievalWhiteRoyalHorseTransport = благородная лошадь
+    .desc = Иии-го-го! Пробел - ускорение
+    .suffix = { "Средневековье, транспорт" }
+ent-MedievalSkeletonHorseTransport = проклятая лошадь
+    .desc = Жуть... Пробел - ускорение
+    .suffix = { "Средневековье, транспорт" }
+ent-MedievalClothingHorseshoe = подкова
+    .desc = Изделие, предназначенное для защиты копыта рабочих животных от износа.
+    .suffix = { "Средневековье, одежда, транспорт" }
+ent-MedievalClothingOuterHorseArmorUpIron = латная лошадиная броня
+    .desc = Броня с пластинами для защиты от холодного оружия.
+    .suffix = { "Средневековье, одежда, транспорт" }
+ent-MedievalClothingOuterHorseArmorChainMail = кольчужная лошадиная броня
+    .desc = Хорошо сделанная кольчуга.
+    .suffix = { "Средневековье, одежда, транспорт" }
+ent-MedievalClothingOuterHorseArmorLeather = кожаная лошадиная броня
+    .desc = Несколько мотков ткани, скреплённых веревкой.
+    .suffix = { "Средневековье, одежда, транспорт" }
+ent-MedievalTraderLegionHat = роскошный берет южного торговца
+    .desc = Богато украшенный берет, предназначенный только для самых опытных торговцев.
+    .suffix = { "Средневековье, одежда" }
+ent-MedievalTraderFoxHat = роскошный берет северного торговца
+    .desc = Богато украшенный берет, предназначенный только для самых опытных торговцев.
+    .suffix = { "Средневековье, одежда" }
+ent-MedievalClothingNeckCloakTraderLegionEagle = роскошный плащ южного торговца
+    .desc = Богато украшенный плащ, предназначенный только для самых опытных торговцев.
+    .suffix = { "Средневековье, одежда" }
+ent-MedievalClothingNeckCloakTraderFox = роскошный плащ северного торговца
+    .desc = Богато украшенный плащ, предназначенный только для самых опытных торговцев.
+    .suffix = { "Средневековье, одежда" }
+ent-MedievalPasportLegionCatFireBattle = волшебное удостоверение Викта Белосвет
+    .desc = { ent-BaseMobHuman.desc }
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalRoyalWoodenShield = каплевидная Геральдика
+    .desc = Крупный щит изготовленный из деревянных пластинок наложенные слоями друг за другом. В центре щита можно заметить Геральдику дома "Белосвет" и умбон из серебра, что был заострён к углам. Крепок, крупен и достаточно лёгкий.
+    .suffix = { "СКИН, Средневековье, ближка" }
+ent-MedievalRoyalWoodenShieldKnight = рыцарский щит с Геральдикой
+    .desc = Плоский щит сформированный из согнутой древесины с свисающим ремнём с обратной стороны. На лицевой части красуется Геральдика дома "Белосвет", умбом круглый и закреплён по центру. К низу заостряется для защиты одной из конечностей.
+    .suffix = { "СКИН, Средневековье, ближка" }
+ent-MedievalClothingOuteRoyalArmorIronCuirassLight = облегчённая кираса Белосвет
+    .desc = Железная кираса с накинутой тканью с вышивкой герба знатной семьи. Вы можете узнать этот герб, это точно "Белосвет". Хорошая защита для своего носителя. Сделана из войлока, что обтянут железными листами шарнирным соединением.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingOuterRoyalArmorIronCuirass = крепкая кираса Белосвет
+    .desc = Утяжелённый вариант кирасы с дополнительными пластинами, что навешаны на войколу, куча ремешков свисает с плеч и спины. На доспехе изображена Геральдика династии "Белосвет". Вероятно владелец решил выбрать более крепкий вариант защиты.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingOuterHorseRoyalArmorUpIron = латная лошадиная броня Белосвет
+    .desc = Броня из пластин белоснежного цвета, украшена золотыми вставками, по бокам красуются знамёна с гербом Белосвет.
+    .suffix = { "СКИН, Средневековье, одежда, транспорт" }
+
+boss-defeated-announce = Скелетрон сокрушён! Смертные доказали, что даже воля Морбиуса не вечна!
+boss-won-announce = Воля Морбиуса восторжествовала. Ваши кости пополнят его костяной трон. Смерть неизбежна.
+
+skeletron-roundend-no-boss = Осколки древнего черепа так и не были соединены.
+skeletron-roundend-defeated = [color=green]Жители острова успешно прошли испытание Морбиуса![/color]
+skeletron-roundend-lost = [color=crimson]Жители острова не справились с испытанием Морбиуса.[/color]
+skeletron-roundend-skeletons = [color=crimson]Жители острова не справились с испытанием Морбиуса.[/color]
+ent-MedievalClothingOuterYamuroArmorCharmer = тёмная мантия
+    .desc = Лёгкая и прочная броня из неизвестного материала окутывает эту мантию, она словно отражает в себе звёзды...
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingHeadYamuroHelmetCharmer = пространственный капюшон
+    .desc = Тёмный капюшон, под которым располагается потусторонняя сфера, приглядевшись, вы видите космос...
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingNeckCloakDarkBlueGold = плащ
+    .desc = Тёмный плащ, украшенный металическими и позолоченными узорами, имеется пышный мех.
+    .suffix = { "СКИН, Средневековье, одежда" }
+mc-weight-examine = {$name}
+ent-MedievalScrollBarrier = магический свиток
+    .desc = Свиток, нуждающийся в расшифровке
+    .suffix = { "Средневековье" }
+ent-MedievalMagicWeaponPrism = потусторонняя призма
+    .desc = Переливающаяся призма, резонирует в вашей руке и готова выплеснуть мощь в любую секунду.
+    .suffix = { "СКИН, Средневековье" }
+ent-MedievalMagicWeaponBeam = магический луч
+    .desc = Выстреливает быстрым лучом из рук, наносящим ожоги по цели.
+    .suffix = { "Средневековье" }
+ent-MedievalClothingOuterLeafRoyalArmorLeatherHeavy = листовидный доспех
+    .desc = Укреплённый кожаный доспех после формовки и дубления по технологии Эльфов. Весь доспех украшен и упрочнён лоскутами. Лёгкая и гибкая форма позволяет иметь преимущество над врагом благодаря скорости. На самом доспехе магическое покрытие, что защитит от влаги и повреждений.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalFalshionT3ChainMace = булава на цепи
+    .desc = Ха-ха, смешная взбучка крестьян.
+    .suffix = { "СКИН, Средневековье, ближка" }
+ent-MedievalFalshionT3SteelChainMace = булава на цепи
+    .desc = Ха-ха, смешная взбучка крестьян.
+    .suffix = { "СКИН, Средневековье, ближка" }
+ent-MedievalHorseWhistle = свисток
+    .desc = Свисток для призыва вашего верного спутника - степной лошади. Одноразовый.
+    .suffix = { "Средневековье" }
+ent-MedievalBlackHorseWhistle = свисток
+    .desc = Свисток для призыва вашего верного спутника - строевой лошади. Одноразовый.
+    .suffix = { "Средневековье" }
+ent-MedievalBlackSpotHorseWhistle = свисток
+    .desc = Свисток для призыва вашего верного спутника - клячи. Одноразовый.
+    .suffix = { "Средневековье" }
+ent-MedievalBlackWhiteHorseWhistle = свисток
+    .desc = Свисток для призыва вашего верного спутника - вьючной лошади. Одноразовый.
+    .suffix = { "Средневековье" }
+ent-MedievalGreyHorseWhistle = свисток
+    .desc = Свисток для призыва вашего верного спутника - охотничьей лошади. Одноразовый.
+    .suffix = { "Средневековье" }
+ent-MedievalWhiteHorseWhistle = свисток
+    .desc = Свисток для призыва вашего верного спутника - скаковой лошади. Одноразовый.
+    .suffix = { "Средневековье" }
+ent-MedievalWhiteRoyalHorseWhistle = свисток
+    .desc = Свисток для призыва вашего верного спутника - благородной лошади. Одноразовый.
+    .suffix = { "Средневековье" }
+ent-MedievalHorseNecroWhistle = проклятый свисток
+    .desc = Свисток для призыва вашего верного спутника - проклятой лошади. Одноразовый.
+    .suffix = { "Средневековье" }
+petting-success-soft-skeletonhorse = Вы гладите { $target } по { POSS-ADJ($target) } жёсткой костлявой голове.
+petting-failure-skeletonhorse = Вы тянетесь погладить { $target }, но { $target } настороженно уклоняется от вас.
+medieval-category-transport = Верховые животные
+ent-MedievalCavalerySpearT3 = кавалерийская пика
+    .desc = Разновидность копья, которое используется в кавалерии.
+    .suffix = { "Средневековье, ближка" }
+ent-MedievalCavaleryNecroSpearT3 = кавалерийская проклятая пика
+    .desc = Разновидность копья, которое используется в кавалерии. От неё исходит зловещая энергия.
+    .suffix = { "Средневековье, ближка" }
+medieval-skeletron-description = Слуги Морбиуса прибывают, чтобы восстановить проклятый череп! Перехватите их, пока не стало слишком поздно!
+medieval-skeletron-title = Морбиус
+ent-MedievalClothingUniformJumpsuitShitCloth74 = поношенное платье
+    .desc = Поношенное платье из шкур животных.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingUniformJumpsuitShitCloth75 = белоснежный гамбезон
+    .desc = Белая поддоспешная одежда из нескольких слоёв плотной ткани, что имеет поверх себя красные ленты и нити. Стёганный материал набитый тканями и кожей. Узкая и плотная, облегает воина династии "Белосвет". Вертикальный узор параллельных швов, а меж ними набита пакля, тканями и кусками пряжи.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingNeckCloakSpookyVendigo = мрачная накидка
+    .desc = Мрачная накидка из шкуры вендиго.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingHeadHelmetLegionOpcionWeakRoyal = вайзенау Опциона Белосвет
+    .desc = Шлем типа Вайзенау, что был модифицирован дополнительными пластинами, а так же окрашен в династические цвета семьи "Белосвет". Шлем изображён в куполообразном стиле с широким назатыльником с свисающими красными ремнями. На лбу красовалась золотая пластина с серебряным наносником, что была из двух сплавов металлов. Офицерская власть. На стержне вертикальный гребень красно-белого цвета.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingHeadHelmetRoyalLegioner = вайзенау пехотинца Белосвет
+    .desc = Шлем типа Вайзенау, что был модифицирован дополнительными пластинами, а так же окрашен в династические цвета семьи "Белосвет". Шлем изображён в куполообразном стиле с широким назатыльником с свисающими красными ремнями. На лбу красовалась золотая пластина, что хоть и была из мягкого металла, но могла дополнить класс защиты.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingOuterArmorCharmerPurple = роба архимага коллегии
+    .desc = Тёмно-фиолетовая роба с простым, но стильным кроем. Ничего лишнего — только удобство и намёк на таинственность.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingHeadHelmetCharmerPurple = капюшон архимага коллегии
+    .desc = Глубокий капюшон, оттенённый в тёмно-фиолетовый. Хорошо скрывает лицо, но не мешает обзору.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingOuterArmorCharmerLightPurple = роба мага коллегии
+    .desc = Тёмно-фиолетовая роба с простым, но стильным кроем. Ничего лишнего — только удобство и намёк на таинственность.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingHeadHelmetCharmerLightPurple = капюшон мага коллегии
+    .desc = Глубокий капюшон, оттенённый в тёмно-фиолетовый. Хорошо скрывает лицо, но не мешает обзору.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingOuterArmorCharmerWeakApocrif = роба послушника Мора
+    .desc = Почти ничем не примечательная роба, за исключением неизвестных символов и слабой таинственной ауры.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingOuterArmorCharmerLightApocrif = роба мага Мора
+    .desc = Легкая роба оснащенная манна проводимым сплавом. От неё веет загадочностью и знаниями.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingHeadHelmetCharmerLightApocrif = маска мага Мора
+    .desc = Маска выполнена в форме осьминога, сделанная из неизвестного материала. От неё веет смирением и покорством. Не известно как владелец видит из неё, вероятно это результат таинственной магии. От неё источает аура осьминога.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingOuterArmorCharmerApocrif = роба Хермеуса-Моры
+    .desc = Невероятно прекрасная мантия. Вышита из неизвестного человечеству материала, имеются прошивки из металла, что подчёркивает статус и повышает проводимость маны этой мантии. Она пропитана запахом запретных знаний. На груди виднеется амулет в форме осьминога, сделанный из того же материала, что и вышивки.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingHeadHelmetCharmerApocrif = маска Хермеуса-Моры
+    .desc = Маска сделана из неизвестного материала, проводящего ману, сделана она в форме лица с щупальцами, интересно для чего? Она пропитана запахом гнилых книг.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingApocrifBoots = ботинки Хермеуса-Моры
+    .desc = Сделанные полностью из метала неизвестного происхождения, несмотря на свою громоздкость они сохраняют мобильность и созданы для накопления маны.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingApocrifBootsLight = ботинки мага Мора
+    .desc = Изящные манна проводимые ботинки от которых веет запахом гнилых книг.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingApocrifBootsWeak = ботинки послушника Мора
+    .desc = Почти ничем не примечательные ботинки, за исключением неизвестных символов и таинственной ауры.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingHandsApocrif = перчатки Хермеуса-Моры
+    .desc = Сделанные полностью из металла неизвестного происхождения, по всей перчатки выступают небольшого размера шипы.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingNeckCloakViking = меховая накидка
+    .desc = Накидка, сотканная из шкур животных, имеется тёплый мех.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingOuterArmorChainMailViking = кольчуга северянина
+    .desc = Кольчуга с потертыми кольцами и починенными участками. Видно, что её носили долго и в не самых спокойных местах. Зато своё дело знает.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingHeadHelmetViking = шлем северянина
+    .desc = Крепкий стальной шлем с позолоченной окантовкой и коротким гребнем.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalFalshionT3LegionViking = зачарованный клинок
+    .desc = Клинок, выкованный на дальних островах, из неизвестной стали, у этой стали есть уникальное свойство - излучаемый свет.
+    .suffix = { "СКИН, Средневековье, ближка" }
+ent-MedievalFalshionT3SteelViking = зачарованный клинок
+    .desc = Клинок, выкованный на дальних островах, из неизвестной стали, у этой стали есть уникальное свойство - излучаемый свет.
+    .suffix = { "СКИН, Средневековье, ближка" }
+ent-MedievalClothingUniformJumpsuitShitCloth76 = белоснежный подрясник
+    .desc = Нижнее облачение духовенства и монашества, длинная до пят одежда с длинными узкими рукавами. Подрясник белого цвета прямого кроя, что застёгивается встык и обвивается золотистым поясом из сукна. Роба мягкая, приятная на ощупь и сама сделана из льна. Вы можете заметить оттенки знаменитой династии-купцов "Белосвет", а сам член семьи или близкого дома пошёл в монахи.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingOuterRoyalChaplain = сияющая роба
+    .desc = Облачения божественного дитя, что отдаёт свою жизнь под власть одного из богов земель Легиона. Сами цвета отсылают принадлежность аскетического монаха к родословной "Белосвет", что был сослан старшим членом семьи в служители. Роба длинная, рукава падают по кистей носителя, а сами одеяния свободны и широки - свисают по ноги.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingHeadHatRoyalChaplain = святой лик
+    .desc = Цельнотянутый конический шлем из золота, что обвит дополнительными элементами из пластин и длинных игл. Вглядевшись вы можете увидеть очертания лика Матриархата, что изображены на лицевой части шлема-маски. Обод шлема сформирован из стальных  жестей, что окрашены в чёрное золото и скрепляют детали маски. Сняв шлем и перевернув вы можете заметить подпись "Белосвет.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingRoyalChaplainBoots = роскошные сандалии
+    .desc = Богато украшенная и хорошо сделанная обувь монаха для путешествий и паломничества. Подошва имеет образ каблука, имеются пару ремешков из мягкой кожи, что крепятся к подряснику. Сама кожа светлая и была сделана лучшими сапожниками материка.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalFireFetter = огненные оковы
+    .desc = Магические оковы, созданные из огненной магии. При ударе наносят огненный урон и поджигают цель.
+    .suffix = { "Средневековье, одежда" }
+ent-MedievalCursedFetter = теневые оковы
+    .desc = Магические оковы, созданные из проклятой магии. При ударе наносят урон по выносливости.
+    .suffix = { "Средневековье, одежда" }
+ent-MedievalActionFireFetter = Огненные оковы
+    .desc = Призывает магические огненные оковы в руку. При ударе наносят огненный урон и поджигают цель. Стоимость 35 эссенции огня.
+    .suffix = { "Средневековье, магия" }
+ent-MedievalActionCursedFetter = Теневые оковы
+    .desc = Призывает магические проклятые оковы в руку. При ударе наносят урон по выносливости. Стоимость 35 эссенции тьмы.
+    .suffix = { "Средневековье, магия" }
+medieval-spell-speach-fire-fetter = Kɛlɛ faama nɛɛma
+medieval-spell-speach-cursed-fetter = Nɛɛma tɔgbee kɛlɛ
+ent-MedievalMagicDaggerCult = магический кинжал культа истины
+    .desc = Этот ты точно не потеряешь
+    .suffix = { "Средневековье" }
+ent-IceDaggerBeginner = тупой ледяной кинжал
+    .desc = Поторопись, он скоро растает
+    .suffix = { "Средневековье" }
+ent-IceDaggerMiddle = ледяной кинжал
+    .desc = Поторопись, он скоро растает
+    .suffix = { "Средневековье" }
+ent-IceDaggerSenior = совершенный ледяной кинжал
+    .desc = Поторопись, он скоро растает
+    .suffix = { "Средневековье" }
+ent-SparkBeginner = магическая искра
+    .desc = Огонёк скоро потухнет
+    .suffix = { "Средневековье" }
+ent-MedievalMagicLightningRune = грозовая руна
+    .desc = Используйте, чтобы изучить заклинание грозовой руны.
+    .suffix = { "СКИН, Средневековье" }
+ent-MedievalMagicCrowItem = магическая ворона
+    .desc = Используйте, чтобы изучить заклинание призыва магической вороны.
+    .suffix = { "СКИН, Средневековье" }
+ent-MedievalMagicCrowFollower = Деймос
+    .desc = Ваш верный спутник. Будьте осторожнее, размахивая вашим мечом, не заденьте его.
+    .suffix = { "Средневековье" }
+ent-HideHairAction = Заправить/расправить волосы
+    .desc = Ходите так, как вам удобнее
+ent-MedievalClothingHeadHelmetCharmerWeakGreen = капюшон скитальца
+    .desc = Капюшон, под которым видно цельнометаллическую маску, полностью скрывающую голову и лицо. Имеет угловатую форму со сглаженными чертами, прорези для глаз.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingOuterArmorCharmerWeakGreen = одеяние скитальца
+    .desc = Длинная накидка зелёного цвета из плотной ткани, доходит до щиколоток и имеет высокий воротник. Застёгивается на крупную, простую металлическую пряжку на шее.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalIronGlovesDraconic = драконьи перчатки
+    .desc = Перчатки из довольно прочного и древнего материала, пахнет пеплом.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingFeetSteelDraconic = драконьи сапоги
+    .desc = Сапоги из довольно прочного и древнего материала, пахнет пеплом.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingHeadHelmetDraconic = драконий шлем
+    .desc = Шлем из довольно прочного и древнего материала, пахнет пеплом.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingOuterArmorUpIronDraconic = драконьи латы
+    .desc = Латы из довольно прочного и древнего материала, пахнет пеплом.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalSign1Craft = заготовка вывески "Припасы"
+    .desc = заготовка для установки вывески.
+ent-MedievalSign2Craft = заготовка вывески "Кузня"
+    .desc = заготовка для установки вывески.
+ent-MedievalSign3Craft = заготовка вывески "Всячина"
+    .desc = заготовка для установки вывески.
+ent-MedievalSign4Craft = заготовка вывески "Замок"
+    .desc = заготовка для установки вывески.
+ent-MedievalSign5Craft = заготовка вывески "Ферма"
+    .desc = заготовка для установки вывески.
+ent-MedievalSign6Craft = заготовка вывески "Лавка"
+    .desc = заготовка для установки вывески.
+ent-MedievalSign7Craft = заготовка вывески "Таверна"
+    .desc = заготовка для установки вывески.
+ent-MedievalSign8Craft = заготовка вывески "Темница"
+    .desc = заготовка для установки вывески.
+ent-MedievalSign9Craft = заготовка вывески "Порт"
+    .desc = заготовка для установки вывески.
+ent-MedievalClothingHeadHelmetLegionOpcionRoyal = вайзенау Трибуна Белосвет
+    .desc = Шлем типа Вайзенау, что был модифицирован дополнительными пластинами, а так же окрашен в династические цвета семьи "Белосвет". Шлем изображён в куполообразном стиле с широким назатыльником с свисающими красными ремнями. На лбу красовалась золотая пластина с серебряным наносником, что была из двух сплавов металлов. Престиж над пехотой. На стержне был гребень красного цвета.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingHeadHelmetLegionLegatRoyal = вайзенау Легата Белосвет
+    .desc = Шлем типа Вайзенау, что был модифицирован дополнительными пластинами, а так же окрашен в династические цвета семьи "Белосвет". Шлем изображён в куполообразном стиле с широким назатыльником с свисающими красными ремнями. На лбу красовалась полная золотая пластина, что была из более твёрдого сплава металлов, чем у обычного пехотинца. На стержне был гребень красного оттенка с белой центренной окраской.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalWoodenShieldBucklerRoyal = круглый щит
+    .desc = Щит круглой формы на который была нанесена геральдика династии "Белосвет" яркими красками. Деревянные элементы были взяты из лучшей древесины, что ловко и качественно обработали. Рука мастера-плотника видна в работе над щитом.
+    .suffix = { "СКИН, Средневековье, ближка" }
+ent-RoyalBible = писание Матери
+    .desc = Большая книга на обложке которой изображена геральдика династии "Белосвет", а сама окрашена в белые цвета с красной тканевой закладкой. На страницах изображены текста верования в Ярую Мать рукописным почерком. В уголку неизвестная консистенция, что уже впиталась.
+    .suffix = { "СКИН, Средневековье" }
+ent-MedievalClothingBackpackSatchelLeatherRoyal = богато украшенная сумка
+    .desc = Удобная и вместительная сумка представителя богатых сословий. Открыв ту вы могли наблюдать основное отделение и несколько малых для разделения разных припасов, вещей и мелочей. Цветовая палитра напоминает вам известных купцов "Белосвет", видимо они открыли новое формирование ателье для изготовления собственных ёмких сумок, рюкзаков и мешков.
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingOuterArmorLeatherRoyal = лёгкий жилет
+    .desc = Кожаный жилет облегчённого типа без накладок и плечевых элементов, что удобно обтягивает грудную клетку и способствует её защите. Качество кожи на высшем уровне, поверх натянуты крашенные элементы из тонких слоёв ткани и кожи. Цвета накладок относят её к династии "Белосвет".
+    .suffix = { "СКИН, Средневековье, одежда" }
+ent-MedievalClothingOuterArmorFurRoyal = наплечник с ремнём
+    .desc = Кожаный наплечник в тёмных накладках, что сформированы поверх основной части кожи. Золотые арматуры держат ремешок, что обвивает корпус тела и держит на плече слабый доспех. Маловероятно, что данный тип доспеха защитит своего владельца. Вы можете узнать обратные цвета династии "Белосвет", видимо белых красителей пожалели на столь ненужный элемент гардероба.
+    .suffix = { "СКИН, Средневековье, одежда" }
+marking-TiflingHornsOne = Прямые рога
+marking-TiflingHornsTwo = Искривленные рога
+marking-TiflingHornsThree = Удлинённые рога
+marking-TiflingHornsFour = Кривые рога
+marking-TiflingTailSmooth = Хвост инферна
+marking-TiflingChestPlatesOne = Шрам на теле (плечи)
+marking-TiflingChestPlatesTwo = шрам на теле (бёдра)
+marking-TiflingChestPlatesThree = Шрам на теле (грудь)
+marking-TiflingLArmPlatesOne = Шрам на руке (левая)
+marking-TiflingRArmPlatesOne = Шрам на руке (правая)
+marking-TiflingLLegPlatesOne = Шрам на ноге (левая)
+marking-TiflingLLegPlatesTwo = Длинный шрам на ноге (левая)
+marking-TiflingRLegPlatesOne = Шрам на ноге (правая)
+marking-TiflingRLegPlatesTwo = Длинный шрам на ноге (правая)
+ent-MedievalFichtyGlasses = роскошные очки
+    .desc = Позолоченные стильные очки.
+    .suffix = { "СКИН, Средневековье, одежда" }
+marking-ELfEarsSmall = Короткие эльфийские ушки
+marking-ELfEarsStabdart = Обычные эльфийские ушки
+marking-ELfEarsThin = Тонкие эльфийские ушки
+marking-ELfEarsUpwards = Наостренные эльфийские ушки
+marking-ELfEarsWide = Широкие эльфийские ушки
+marking-ELfLongEars = Длинные эльфийские ушки
+ent-MedievalClothingNeckCloakGreenKnight = плащ зелёного рыцаря
+    .desc = Короткий зеленый плащ, застегнутый на железную прялку в виде дубового листа... На плечах есть пластины, окантованные покрашенной кожей.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingNeckCloakGreenKnightLegion = плащ зелёного рыцаря
+    .desc = Короткий синий плащ, застегнутый на железную прялку... На плечах есть пластины, окантованные покрашенной кожей. Указывает на принадлежность к Легиону.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingNeckCloakGreenKnightMerc = плащ зелёного рыцаря
+    .desc = Короткий зеленый плащ, застегнутый на железную прялку в виде дубового листа... На плечах есть пластины, окантованные покрашенной кожей. Указывает на принадлежность к Наёмникам.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingNeckCloakGreenKnightCollegia = плащ зелёного рыцаря
+    .desc = Короткий синий плащ, застегнутый на железную прялку... На плечах есть пластины, окантованные покрашенной кожей. Указывает на принадлежность к Магам.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedaljonGreenKnight = крестик
+    .desc = Нашейный медальон, явно указывающий на приверженность к некоей религии.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalIronGlovesGreenKnight = рукавицы зелёного рыцаря
+    .desc = Железные перчатки с тонкой зеленой вышивкой на запястьях.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingFeetSteelGreenKnight = ботфорты зелёного рыцаря
+    .desc = Высокие железные сапоги, по которым вьется узор из плюща.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingOuterArmorIronCuirassGreenKnight = кираса зелёного рыцаря
+    .desc = Прочная железная кираса, на которой красуется зеленая туника.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingOuterArmorBrigantinGreenKnight = кираса зелёного рыцаря
+    .desc = Прочная железная кираса, на которой красуется зеленая туника.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingOuterArmorIronCuirassLightGreenKnight = кираса зелёного рыцаря
+    .desc = Прочная железная кираса, на которой красуется зеленая туника.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingOuterArmorChainMailGreenKnight = кираса зелёного рыцаря
+    .desc = Прочная железная кираса, на которой красуется зеленая туника.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingOuterArmorCharmerGreenKnight = кираса зелёного рыцаря
+    .desc = Прочная железная кираса, на которой красуется зеленая туника.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingOuterArmorCharmerWeakGreenKnight = кираса зелёного рыцаря
+    .desc = Прочная железная кираса, на которой красуется зеленая туника.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingOuterArmorCharmerLightGreenKnight = кираса зелёного рыцаря
+    .desc = Прочная железная кираса, на которой красуется зеленая туника.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingHeadHelmetCharmerLightGreenKnight = капюшон зелёного рыцаря
+    .desc = Плотный магический капюшон, восстанавливающий вашу ману.
+ent-MedievalClothingHeadHelmetCharmerWeakGreenKnight = капюшон зелёного рыцаря
+    .desc = Плотный магический капюшон, восстанавливающий вашу ману.
+ent-MedievalClothingHeadHelmetCharmerGreenKnight = капюшон зелёного рыцаря
+    .desc = Плотный магический капюшон, восстанавливающий вашу ману.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingHeadHelmeCollegiumHatGreenKnight = капюшон зелёного рыцаря
+    .desc = Плотный магический капюшон, восстанавливающий вашу ману.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingHeadHelmetGreenKnight = шлем зелёного рыцаря
+    .desc = Железный шлем, увенчанный высоким зеленым пером.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-ClothingMaskAskalSkeleton = латунный череп
+    .desc = Блестящий и отполированный.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingNeckCloakAskalSkeleton = старая накидка
+    .desc = Поношенная накидка с капюшоном, вероятно, ей не один десяток лет.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingHandsAskalSkeleton = латунные перчатки
+    .desc = Древние на вид перчатки. Можно спутать с двемерской сталью.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-ClothingMedievalHeadHatHoodCloakAskalSkeleton = капюшон
+    .desc = Просто капюшон.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalIronClaymoreAbibi = алый клеймор
+    .desc = Излучает алый туман.
+    .suffix = {"СКИН, Средневековье, ближка"}
+ent-MedievalIronClaymoreSteelAbibi = алый клеймор
+    .desc = Излучает алый туман.
+    .suffix = {"СКИН, Средневековье, ближка"}
+ent-MedievalIronZweihanderAbibi = алый клеймор
+    .desc = Излучает алый туман.
+    .suffix = {"СКИН, Средневековье, ближка"}
+ent-MedievalIronZweihanderSteelAbibi = алый клеймор
+    .desc = Излучает алый туман.
+    .suffix = {"СКИН, Средневековье, ближка"}
+ent-MedievalIronClaymoreKosmos = теневой клеймор
+    .desc = Древнее орудие, что было украдено у могущественной сущности. Даже растеряв большую часть своей силы, оно всё ещё пульсирует тьмой.
+    .suffix = {"СКИН, Средневековье, ближка"}
+ent-MedievalIronClaymoreSteelKosmos = теневой клеймор
+    .desc = Древнее орудие, что было украдено у могущественной сущности. Даже растеряв большую часть своей силы, оно всё ещё пульсирует тьмой.
+    .suffix = {"СКИН, Средневековье, ближка"}
+ent-MedievalDaggerT3Kosmos = костяная хватка
+    .desc = Проклятый оживший кинжал, что верно помогает расправляться с врагами своего владельца. Кажется, раньше он был чьей-то частью тела.
+    .suffix = {"СКИН, Средневековье, ближка"}
+ent-MedievalDaggerT3SteelKosmos = костяная хватка
+    .desc = Проклятый оживший кинжал, что верно помогает расправляться с врагами своего владельца. Кажется, раньше он был чьей-то частью тела.
+    .suffix = {"СКИН, Средневековье, ближка"}
+ent-MedievalClothingOuterArmorCharmerKonnor = тёмное одеяние
+    .desc = Отлично подойдёт тому, кто хочет оставаться в тени.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingOuterArmorCharmerWeakKonnor = тёмное одеяние
+    .desc = Отлично подойдёт тому, кто хочет оставаться в тени.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingOuterArmorCharmerLightKonnor = тёмное одеяние
+    .desc = Отлично подойдёт тому, кто хочет оставаться в тени.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingHeadHelmetCharmerLightKonnor = капюшон
+    .desc = Просто капюшон.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingHeadHelmetCharmerWeakKonnor = капюшон
+    .desc = Просто капюшон.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingHeadHelmetCharmerKonnor = капюшон
+    .desc = Просто капюшон.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingHeadHelmetCollegiumPurpleHatKonnor = капюшон
+    .desc = Просто капюшон.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalShoesChamberKonnor = тёмные сапоги
+    .desc = Удобные походные сапоги.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingHandsGlovesClothKonnor = перчатки
+    .desc = Удобные беспальцевые перчатки.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingNeckCloakKonnor = тёмные плащ
+    .desc = Укрывает владельца.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingUniformJumpsuitShitCloth79 = тёмное одеяние
+    .desc = Простая на вид одежда.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingOuterArmorCharmerBib = полуночная мантия
+    .desc = Украшенная яркими металлами магическая мантия, что будто поглощает свет под собой.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingOuterArmorCharmerWeakBib = полуночная мантия
+    .desc = Украшенная яркими металлами магическая мантия, что будто поглощает свет под собой.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingOuterArmorCharmerLightBib = полуночная мантия
+    .desc = Украшенная яркими металлами магическая мантия, что будто поглощает свет под собой.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingHeadHelmetCollegiumPurpleHatBib = шляпа мерцания
+    .desc = Магическая шляпа из лунного шёлка с вкраплениями ярких металлов на полях.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingHeadHelmetCharmerLightBib = шляпа мерцания
+    .desc = Магическая шляпа из лунного шёлка с вкраплениями ярких металлов на полях.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingHeadHelmetCharmerBib = шляпа мерцания
+    .desc = Магическая шляпа из лунного шёлка с вкраплениями ярких металлов на полях.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingHeadHelmetCharmerWeakBib = шляпа мерцания
+    .desc = Магическая шляпа из лунного шёлка с вкраплениями ярких металлов на полях.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingHandsGlovesClothBib = сверкающая перчатка
+    .desc = Украшена изящными извилистыми узорами, что постоянно играют на свету.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalShoesChamberBib = грубые сапоги
+    .desc = Покоцанная пара толстых сапог, протоптавшая не один десяток руин.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingNeckCloakBib = лунный шёлк
+    .desc = Полотно позолоченного у кромок лунного шёлка, что принято обвязывать у шеи.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingUniformJumpsuitShitCloth78 = роба полумесяца
+    .desc = Грубо сшитая, но инкрустированная яркими металлами роба из лунного шёлка.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-ClothingMaskBib = звёздная маска
+    .desc = Гладкая литая маска, испускающая слабое свечение.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalSpearT3SteelBib = небосводное копьё
+    .desc = Превосходно исполненное копьё, граничащее с произведением искусства, украшенное многочисленными узорами звёзд и небесных картин.
+    .suffix = {"СКИН, Средневековье, ближка"}
+ent-MedievalClothingOuterArmorCharmerLightDrGnar = алое одеяние
+    .desc = Магическая роба с золотой окантовкой.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingHeadHelmetCharmerLightDrGnar = латунный обруч
+    .desc = Головной магический обруч, вы словно божество.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-BaseBallBatAlaraniel = трость Главы наемников
+    .desc = Странная на вид трость, с переплетом рукояти и утяжеленным укрепленным концом. У рукояти явно видны насечки: 9..10.. 11.. Посещенные города?
+    .suffix = {"СКИН, Средневековье, ближка"}
+ent-MedievalClothingUniformJumpsuitShitCloth80 = панцирь молчания
+    .desc = Пластины холодного, отполированного временем хитина. Хранит вмятины от ударов, которые так и не были нанесены. Защищает без тяжести.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingHandsGlovesClothArtur = хитиновые перчатки
+    .desc = Хитиновые наручи, переходящие в ловкие, острые перчатки. Пальцы заканчиваются стальными когтями, тихими и готовыми впиться в древнюю каменную кладку или в хитин врага. В них чувствуется холод пещер и память о бесчисленных схватках.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingBootsArtur = бродяжьи оболочки
+    .desc = Плотная хитиновая обувь, будто выросшая из ног. Покрыта тонкими трещинами, из которых доносится едва слышный гул забытых троп.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingNeckCloakArtur = разорённый саван
+    .desc = Истончённый, цвета стального пепла плащ. Развевается в такт несуществующему ветру Пустоты. Его край будто растворяется в тенях.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-ClothingMaskArtur = безликая маска
+    .desc = Гладкая, белая маска без следов мастерской работы. Два пустых глаза и тонкая трещина на лбу. Не выражает ничего, кроме тишины.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalShortSwordArtur = острие воспоминаний
+    .desc = Длинная, идеально отточенная игла из бледного металла. Лезвие отбрасывает тусклый отсвет, неясный, как сон. Рукоять обмотана чёрными лентами.
+    .suffix = {"СКИН, Средневековье, ближка"}
+ent-MedievalShortSwordSteelArtur = острие воспоминаний
+    .desc = Длинная, идеально отточенная игла из бледного металла. Лезвие отбрасывает тусклый отсвет, неясный, как сон. Рукоять обмотана чёрными лентами.
+    .suffix = {"СКИН, Средневековье, ближка"}
+grass-bush-doafter-name = Собрать ягоды
+remove-barricade-doafter-name = Убрать баррикаду
+ent-MedievalBossIceDragon = ледяной дракон
+    .desc = Крестьянин с копьём бессилен... Бегите со всех ног.
+    .suffix = { "Средневековье, моб, босс" }
+ent-MedievalBossFireDragon = огненный дракон
+    .desc = Крестьянин с копьём бессилен... Бегите со всех ног.
+    .suffix = { "Средневековье, моб, босс" }
+ent-MedievalBossAcidDragon = кислотный дракон
+    .desc = Крестьянин с копьём бессилен... Бегите со всех ног.
+    .suffix = { "Средневековье, моб, босс" }
+ent-MedievalBossThunderDragon = громовой дракон
+    .desc = Крестьянин с копьём бессилен... Бегите со всех ног.
+    .suffix = { "Средневековье, моб, босс" }
+ent-MedievalIceDragonTablet = древняя скрижаль
+    .desc = Неизвестное устройство, которое является маяком для древних существ - ледяных драконов. Одноразовая. Не используйте в городах!
+    .suffix = { "Средневековье, босс" }
+ent-MedievalFireDragonTablet = древняя скрижаль
+    .desc = Неизвестное устройство, которое является маяком для древних существ - огненных драконов. Одноразовая. Не используйте в городах!
+    .suffix = { "Средневековье, босс" }
+ent-MedievalAcidDragonTablet = древняя скрижаль
+    .desc = Неизвестное устройство, которое является маяком для древних существ - кислотных драконов. Одноразовая. Не используйте в городах!
+    .suffix = { "Средневековье, босс" }
+ent-MedievalThunderDragonTablet = древняя скрижаль
+    .desc = Неизвестное устройство, которое является маяком для древних существ - громовых драконов. Одноразовая. Не используйте в городах!
+    .suffix = { "Средневековье, босс" }
+ent-MedievalDragonLootBones = драконьи кости
+    .desc = Тяжёлые и прочные кости.
+    .suffix = { "Средневековье, босс, лут" }
+ent-MedievalDragonLootIcescale = морозная драконья чешуя
+    .desc = Осторожно! Не получите обморожение ваших рук.
+    .suffix = { "Средневековье, босс, лут" }
+ent-MedievalDragonLootFirescale = огненная драконья чешуя
+    .desc = Как горячо!
+    .suffix = { "Средневековье, босс, лут" }
+ent-MedievalDragonLootAcidscale = кислотная драконья чешуя
+    .desc = Покалывает ваши руки, надейтесь, что она их не растворит.
+    .suffix = { "Средневековье, босс, лут" }
+ent-MedievalDragonLootThunderscale = громовая драконья чешуя
+    .desc = Легко бьёт током.
+    .suffix = { "Средневековье, босс, лут" }
+ent-MedievalDragonLootTrueFireEssence = истинная эссенция огня
+    .desc = Материальный аспект.
+    .suffix = { "Средневековье, босс, лут" }
+ent-MedievalDragonLootTrueWaterEssence = истинная эссенция воды
+    .desc = Материальный аспект.
+    .suffix = { "Средневековье, босс, лут" }
+ent-MedievalDragonLootTrueAirEssence = истинная эссенция воздуха
+    .desc = Материальный аспект.
+    .suffix = { "Средневековье, босс, лут" }
+ent-MedievalDragonLootTrueEarthEssence = истинная эссенция земли
+    .desc = Материальный аспект.
+    .suffix = { "Средневековье, босс, лут" }
+ent-MedievalDragonQuantEssence = квантэссенция
+    .desc = Первородные эссенции, что при помощи мощной магии были скроены воедино. Настолько нестабильно, что готово выпустить чудовищную энергию обратно в мир с ОШЕЛОМИТЕЛЬНЫМ эффектом. Будьте КРАЙНЕ осторожны с этой штукой, если не хотите, чтобы всё взлетело на воздух вместе с вами.
+    .suffix = { "Средневековье, босс" }
+ent-MedievalDragonBoneGlovesAcid = драконьи перчатки
+    .desc = Рукавицы с встроенными стальными когтями.
+    .suffix = { "Средневековье, босс, одежда" }
+ent-MedievalDragonBoneGlovesIce = драконьи перчатки
+    .desc = Рукавицы с встроенными стальными когтями.
+    .suffix = { "Средневековье, босс, одежда" }
+ent-MedievalDragonBoneGlovesFire = драконьи перчатки
+    .desc = Рукавицы с встроенными стальными когтями.
+    .suffix = { "Средневековье, босс, одежда" }
+ent-MedievalDragonBoneGlovesThunder = драконьи перчатки
+    .desc = Рукавицы с встроенными стальными когтями.
+    .suffix = { "Средневековье, босс, одежда" }
+ent-MedievalClothingFeetDragonBoneAcid = драконьи сапоги
+    .desc = Высокие ботинки с укрепленной подошвой из драконьей кожи.
+    .suffix = { "Средневековье, босс, одежда" }
+ent-MedievalClothingFeetDragonBoneIce = драконьи сапоги
+    .desc = Высокие ботинки с укрепленной подошвой из драконьей кожи.
+    .suffix = { "Средневековье, босс, одежда" }
+ent-MedievalClothingFeetDragonBoneFire = драконьи сапоги
+    .desc = Высокие ботинки с укрепленной подошвой из драконьей кожи.
+    .suffix = { "Средневековье, босс, одежда" }
+ent-MedievalClothingFeetDragonBoneThunder = драконьи сапоги
+    .desc = Высокие ботинки с укрепленной подошвой из драконьей кожи.
+    .suffix = { "Средневековье, босс, одежда" }
+ent-MedievalClothingOuterArmorDragonBoneAcid = драконий нагрудник
+    .desc = Массивная кираса, покрытая орнаментом в виде сплетенных чешуек.
+    .suffix = { "Средневековье, босс, одежда" }
+ent-MedievalClothingOuterArmorDragonBoneIce = драконий нагрудник
+    .desc = Массивная кираса, покрытая орнаментом в виде сплетенных чешуек.
+    .suffix = { "Средневековье, босс, одежда" }
+ent-MedievalClothingOuterArmorDragonBoneFire = драконий нагрудник
+    .desc = Массивная кираса, покрытая орнаментом в виде сплетенных чешуек.
+    .suffix = { "Средневековье, босс, одежда" }
+ent-MedievalClothingOuterArmorDragonBoneThunder = драконий нагрудник
+    .desc = Массивная кираса, покрытая орнаментом в виде сплетенных чешуек.
+    .suffix = { "Средневековье, босс, одежда" }
+ent-MedievalClothingHeadHelmetDragonBoneAcid = драконий шлем
+    .desc = Тяжелый шлем, выкованный из чешуи древнего дракона.
+    .suffix = { "Средневековье, босс, одежда" }
+ent-MedievalClothingHeadHelmetDragonBoneIce = драконий шлем
+    .desc = Тяжелый шлем, выкованный из чешуи древнего дракона.
+    .suffix = { "Средневековье, босс, одежда" }
+ent-MedievalClothingHeadHelmetDragonBoneFire = драконий шлем
+    .desc = Тяжелый шлем, выкованный из чешуи древнего дракона.
+    .suffix = { "Средневековье, босс, одежда" }
+ent-MedievalClothingHeadHelmetDragonBoneThunder = драконий шлем
+    .desc = Тяжелый шлем, выкованный из чешуи древнего дракона.
+    .suffix = { "Средневековье, босс, одежда" }
+ghost-role-information-dragon-name = древний дракон
+ghost-role-information-dragon-description = Низшие существа потревожили ваш сон.
+ghost-role-information-dragon-rules = Вы – [color=red]антагонист[/color]. Кусайте, бейте, и крушите! [color=yellow]ЛКМ - бить[/color], [color=yellow]ПКМ - способность[/color]
+dragon-spawn-announcement = Вы слышите рёв, эхом раздающийся по всему континенту, кажется, кто-то пробудил древнего дракона.
+ancient-entity = Древняя сущность
+medieval-category-boss = Призыв

@@ -1,4 +1,5 @@
 using Content.Server.SSDFree.Components;
+using Content.Shared.SSDFree.Components;
 using Robust.Shared.Timing;
 using Robust.Shared.Map;
 using Robust.Shared.Audio.Systems;
@@ -100,7 +101,9 @@ namespace Content.Server.SSDFree
                         if (comp.CommonSession != null && comp.UnholyValue >= comp.UnholyMaxValue)
                         {
                             var targetUser = comp.CommonSession.UserId;
+
                             GoToSSD(comp.Owner, targetUser, true, comp);
+
                         }
 
                         if (comp.CommonSession != null &&
@@ -126,6 +129,7 @@ namespace Content.Server.SSDFree
         }
         public void GoToSSD(EntityUid uid, NetUserId? userId, bool skelet, SSDFreeComponent comp)
         {
+            comp.Enabled = false;
             // if we have a session, we use that to add back in all the job slots the player had.
             if (userId != null)
             {
@@ -155,14 +159,21 @@ namespace Content.Server.SSDFree
                 {
                     Transform(item).Coordinates = coords;
                 }
-                if (ssdfree.GoSkeleton && !HasComp<ActorComponent>(uid) && !CheckSpawnArea(Transform(uid).Coordinates))
+                if (!comp.DragonEaten)
                 {
-                    Spawn("MedievalMobSkeletMeat", coords);
-                    QueueDel(uid);
+                    if (ssdfree.GoSkeleton && !HasComp<ActorComponent>(uid) && !CheckSpawnArea(Transform(uid).Coordinates))
+                    {
+                        Spawn("MedievalMobSkeletMeat", coords);
+                        QueueDel(uid);
+                    }
+                    else
+                    {
+                        QueueDel(uid);
+                    }
                 }
                 else
                 {
-                    QueueDel(uid);
+
                 }
 
             }

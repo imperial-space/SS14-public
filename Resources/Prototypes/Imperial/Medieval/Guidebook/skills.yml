@@ -1,0 +1,70 @@
+- type: guideEntry
+  id: Skills
+  name: guide-entry-skills
+  text: "/ServerInfo/Imperial/Medieval/Guidebook/Skills.xml"
+  children:
+  - Agility
+  - Strength
+  - Vitality
+  - Endurance
+  - Intelligence
+
+- type: guideEntry
+  id: Agility
+  name: skill-agility-name
+  text: "/ServerInfo/Imperial/Medieval/Guidebook/Agility.xml"
+
+- type: guideEntry
+  id: Strength
+  name: skill-strength-name
+  text: "/ServerInfo/Imperial/Medieval/Guidebook/Strength.xml"
+
+- type: guideEntry
+  id: Vitality
+  name: skill-vitality-name
+  text: "/ServerInfo/Imperial/Medieval/Guidebook/Vitality.xml"
+
+- type: guideEntry
+  id: Endurance
+  name: skill-endurance-name
+  text: "/ServerInfo/Imperial/Medieval/Guidebook/Endurance.xml"
+
+- type: guideEntry
+  id: Intelligence
+  name: skill-intelligence-name
+  text: "/ServerInfo/Imperial/Medieval/Guidebook/Intelligence.xml"
+
+- type: entity
+  id: GuidebookAgility
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Interface/Skills/agility.rsi
+    state: best
+
+- type: entity
+  id: GuidebookStrength
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Interface/Skills/strength.rsi
+    state: best
+
+- type: entity
+  id: GuidebookVitality
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Interface/Skills/vitality.rsi
+    state: best
+
+- type: entity
+  id: GuidebookEndurance
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Interface/Skills/endurance.rsi
+    state: best
+
+- type: entity
+  id: GuidebookIntelligence
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Interface/Skills/intelligence.rsi
+    state: best

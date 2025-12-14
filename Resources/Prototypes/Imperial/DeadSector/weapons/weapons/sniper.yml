@@ -1,6 +1,6 @@
 - type: entity
   name: SVU Mk-I
-  parent: [BaseItem, BaseGunWieldable]
+  parent: [BaseItem, BaseGunWieldable, BaseMinorContraband]
   id: WeaponFelixSVUMkI
   components:
   - type: Sprite
@@ -38,8 +38,6 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
-      params:
-        volume: -15
   - type: BallisticAmmoProvider
     capacity: 16
     proto: CartridgeSniperSVUMkI
@@ -53,7 +51,7 @@
 
 - type: entity
   name: SVU Mk II
-  parent: [BaseItem, BaseGunWieldable]
+  parent: [BaseItem, BaseGunWieldable, BaseMinorContraband]
   id: WeaponSniperSVUMkII
   description: Rifle model SVU Mk II. Average size and ammunition capacity of 15 rounds. Has a black color. Uses 7x62x39 ammo.
   components:
@@ -107,7 +105,7 @@
 
 - type: entity
   name: SVD
-  parent: [BaseItem, BaseGunWieldable]
+  parent: [BaseItem, BaseGunWieldable, BaseMinorContraband]
   id: WeaponSniperSVD
   description: Large SVD model rifle with 22 rounds of ammunition. It has a silver color mixed with a set of wooden body parts. Uses 7x62x39 ammo.
   components:
@@ -159,7 +157,7 @@
 
 - type: entity
   name: VSS Mk-I
-  parent: [BaseItem, BaseGunWieldable]
+  parent: [BaseItem, BaseGunWieldable, BaseMinorContraband]
   id: WeaponFelixVSSMkI
   components:
   - type: Sprite
@@ -191,7 +189,7 @@
     minAngle: -32
     maxAngle: -32
   - type: Gun
-    fireRate: 0.75
+    fireRate: 5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -200,7 +198,7 @@
       params:
         volume: -15
   - type: BallisticAmmoProvider
-    capacity: 16
+    capacity: 15
     proto: CartridgeSniperVSSMkI
     whitelist:
       tags:
@@ -213,7 +211,7 @@
 
 - type: entity
   name: VSS Mk-II
-  parent: [BaseItem, BaseGunWieldable]
+  parent: [BaseItem, BaseGunWieldable, BaseMinorContraband]
   id: WeaponFelixVSSMkII
   components:
   - type: Sprite
@@ -245,7 +243,7 @@
     minAngle: -32
     maxAngle: -32
   - type: Gun
-    fireRate: 0.75
+    fireRate: 5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -254,7 +252,7 @@
       params:
         volume: -15
   - type: BallisticAmmoProvider
-    capacity: 16
+    capacity: 20
     proto: CartridgeSniperVSSMkII
     whitelist:
       tags:

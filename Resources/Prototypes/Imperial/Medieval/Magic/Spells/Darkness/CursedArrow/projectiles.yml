@@ -5,9 +5,9 @@
   parent: BulletRocket
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/projectiles.rsi
     layers:
-    - state: proto
+    - state: kunai
       shader: unshaded
   - type: StaminaDamageOnCollide
     damage: 15

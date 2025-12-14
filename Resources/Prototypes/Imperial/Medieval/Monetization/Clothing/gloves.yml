@@ -1,0 +1,62 @@
+- type: entity
+  parent: ClothingHandsGlovesSyntheticBase
+  id: MedievalClothingHandsGlovesPass1
+  name: MedievalClothingHandsGlovesPass
+  description: MedievalClothingHandsGlovesPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves1.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves1.rsi
+  - type: Fiber
+    fiberColor: fibers-white
+
+- type: entity
+  parent: ClothingHandsGlovesSyntheticBase
+  id: MedievalClothingHandsGlovesPass2
+  name: MedievalClothingHandsGlovesPass
+  description: MedievalClothingHandsGlovesPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves2.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves2.rsi
+  - type: Fiber
+    fiberColor: fibers-black
+
+- type: entity
+  parent: ClothingHandsGlovesSyntheticBase
+  id: MedievalClothingHandsGlovesPass3
+  name: MedievalClothingHandsGlovesPass
+  description: MedievalClothingHandsGlovesPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves3.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves3.rsi
+  - type: Fiber
+    fiberColor: fibers-black
+
+- type: entity
+  parent: ClothingHandsGlovesSyntheticBase
+  id: MedievalClothingHandsGlovesPass4
+  name: MedievalClothingHandsGlovesPass
+  description: MedievalClothingHandsGlovesPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves4.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves4.rsi
+
+- type: entity
+  parent: ClothingHandsGlovesSyntheticBase
+  id: MedievalClothingHandsGlovesPass5
+  name: MedievalClothingHandsGlovesPass
+  description: MedievalClothingHandsGlovesPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves5.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves5.rsi
+  - type: Fiber
+    fiberColor: fibers-red

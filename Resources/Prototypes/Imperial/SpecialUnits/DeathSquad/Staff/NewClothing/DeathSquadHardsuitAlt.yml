@@ -16,7 +16,7 @@
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
   - type: ExplosionResistance
-    damageCoefficient: 0.2
+    damageCoefficient: 0.1
   - type: FireProtection
     reduction: 0.8
   - type: Armor
@@ -30,7 +30,6 @@
         Caustic: 0.1
         Cold: 0.1
         Shock: 0.1 ## Added after adding stamina resist by Artur.
-        Stamina: 0.3 ## Stamina resistance Imperial
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
@@ -42,6 +41,11 @@
     chance: 1
   - type: Speech
     speechSounds: Pai
+  - type: Tag
+    tags:
+      - MonkeyWearable
+  - type: StaminaResistance
+    damageCoefficient: 0.15 # Needs 21 hits with a disabler to stun :godo:
 
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
@@ -76,4 +80,4 @@
     clothingVisuals:
       head:
       - state: on-equipped-HELMET
-        shader: unshaded
+#        shader: unshaded

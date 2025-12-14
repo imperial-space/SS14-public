@@ -1,5 +1,12 @@
 ﻿<Control Name="CFlavorText" xmlns="https://spacestation14.io">
     <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+        <!-- Imperial Medieval Flavor Images Begin -->
+        <Button Name="Help" Access="Public" HorizontalAlignment="Center" Text="?"  />
+        <TextureButton Name="FlavorImage" Access="Public" HorizontalAlignment="Center" MinSize="220 100"  />
+        <!-- Imperial Medieval Flavor Images End -->
         <TextEdit Name="CFlavorTextInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />
+        <!-- Imperial Medieval Flavor Images Begin-->
+        <Button Name="Test" Text="{Loc imperial-medieval-flavor-test}"/>
+        <!-- Imperial Medieval Flavor Images End-->
     </BoxContainer>
 </Control>

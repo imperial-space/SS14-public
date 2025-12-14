@@ -1,0 +1,62 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "sprited by @crookielv",
+    "size": {
+      "x": 96,
+      "y": 96
+    },
+    "states": [
+      {
+        "name": "stand"
+      },
+      {
+        "name": "skull1"
+      },
+      {
+        "name": "skull2"
+      },
+      {
+        "name": "skull3"
+      },
+      {
+        "name": "skull4"
+      },
+      {
+        "name": "skull5"
+      },
+      {
+        "name": "skull6"
+      },
+      {
+        "name": "skull7"
+      },
+      {
+        "name": "skull8"
+      },
+      {
+        "name": "holy-skull1"
+      },
+      {
+        "name": "holy-skull2"
+      },
+      {
+        "name": "holy-skull3"
+      },
+      {
+        "name": "holy-skull4"
+      },
+      {
+        "name": "holy-skull5"
+      },
+      {
+        "name": "holy-skull6"
+      },
+      {
+        "name": "holy-skull7"
+      },
+      {
+        "name": "holy-skull8"
+      }
+    ]
+  }

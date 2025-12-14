@@ -55,6 +55,10 @@
     PassiveScream:
       collection: MalePassiveScream
 # imperial medieval "emotions" end
+## Imperial UwU reagent start
+    UwU:
+      collection: UwU
+## Imperial UwU reagent end
 
 - type: emoteSounds
   id: FemaleHuman
@@ -112,6 +116,10 @@
     PassiveScream:
       collection: FemalePassiveScream
 # imperial medieval "emotions" end
+## Imperial UwU reagent start
+    UwU:
+      collection: UwU
+## Imperial UwU reagent end
 
 - type: emoteSounds
   id: MaleReptilian
@@ -151,6 +159,10 @@
     PassiveScream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
 # imperial medieval "emotions" end
+## Imperial UwU reagent start
+    UwU:
+      collection: UwU
+## Imperial UwU reagent end
 
 - type: emoteSounds
   id: FemaleReptilian
@@ -190,6 +202,10 @@
     PassiveScream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
 # imperial medieval "emotions" end
+## Imperial UwU reagent start
+    UwU:
+      collection: UwU
+## Imperial UwU reagent end
 
 - type: emoteSounds
   id: MaleSlime
@@ -337,6 +353,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: DeathGasp
+## Imperial UwU reagent start
+    UwU:
+      collection: UwU
+## Imperial UwU reagent end
 
 - type: emoteSounds
   id: UnisexDwarf
@@ -377,6 +397,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
+## Imperial UwU reagent start
+    UwU:
+      collection: UwU
+## Imperial UwU reagent end
 # imperial medieval "emotions" start
     Dreaminess:
       collection: MaleDreaminess
@@ -435,6 +459,10 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+## Imperial UwU reagent start
+    UwU:
+      collection: UwU
+## Imperial UwU reagent end
 # imperial medieval "emotions" start
     Dreaminess:
       collection: FemaleDreaminess
@@ -476,6 +504,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MothDeathGasp
+## Imperial UwU reagent start
+    UwU:
+      collection: UwU
+## Imperial UwU reagent end
 
 - type: emoteSounds
   id: UnisexSilicon
@@ -524,6 +556,8 @@
   params:
     variation: 0.05
   sounds:
+    Scream:
+      collection: XenoborgScream
     Laugh:
       collection: XenoborgLaugh
     Beep:
@@ -538,6 +572,63 @@
       collection: XenoborgBikeHorn
     Ping:
       collection: XenoborgPing
+
+# Vulp Sounds
+- type: emoteSounds
+  id: MaleVulpkanin
+  params:
+    variation: 0.125
+  sounds:
+    Laugh:
+      collection: MaleLaugh
+    Sneeze:
+      collection: MaleSneezes
+    Cough:
+      collection: MaleCoughs
+    Whistle:
+      collection: Whistles
+    Sigh:
+      collection: MaleSigh
+    Scream:
+      collection: VulpkaninScreams
+    Growl:
+      collection: VulpkaninGrowls
+    Snarl:
+      collection: VulpkaninSnarls
+    Bark:
+      collection: VulpkaninBarks
+    Whine:
+      collection: VulpkaninWhines
+    Howl:
+      collection: VulpkaninHowls
+
+- type: emoteSounds
+  id: FemaleVulpkanin
+  params:
+    variation: 0.125
+  sounds:
+    Laugh:
+      collection: FemaleLaugh
+    Sneeze:
+      collection: FemaleSneezes
+    Cough:
+      collection: FemaleCoughs
+    Whistle:
+      collection: Whistles
+    Sigh:
+      collection: FemaleSigh
+    Scream:
+      collection: VulpkaninScreams
+    Growl:
+      collection: VulpkaninGrowls
+    Snarl:
+      collection: VulpkaninSnarls
+    Bark:
+      collection: VulpkaninBarks
+    Whine:
+      collection: VulpkaninWhines
+    Howl:
+      collection: VulpkaninHowls
 
 # body emotes
 - type: emoteSounds
@@ -658,3 +749,51 @@
     path: /Audio/Animals/goat_bah.ogg
     params:
       variation: 0.125
+
+- type: emoteSounds
+  id: Scurret
+  params:
+    variation: 0.125
+  sounds:
+    Thump:
+      path: /Audio/Effects/soft_thump.ogg
+      params:
+        variation: 0.125
+    Clap:
+      collection: Claps
+    ClapSingle:
+      collection: ClapSingle
+    Snap:
+      collection: Snaps
+      params:
+        volume: -6
+    Salute:
+      collection: Salutes
+    Laugh:
+      collection: WawaLaugh
+    Sneeze:
+      collection: WawaSneeze
+    Cough:
+      collection: MaleCoughs
+    Whistle:
+      collection: Whistles
+    Sigh:
+      collection: WawaSigh
+    Scream:
+      collection: WawaScream
+    Yawn:
+      collection: WawaYawn
+    Crying:
+      collection: WawaCry
+    Snore:
+      collection: Snores
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Honk:
+      collection: BikeHorn
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: WawaDeath

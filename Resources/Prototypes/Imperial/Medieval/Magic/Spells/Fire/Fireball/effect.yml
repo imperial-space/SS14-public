@@ -16,3 +16,60 @@
       path: /Audio/Imperial/Medieval/fireball_blast.ogg
       params:
         variation: 0.2
+
+#Beginner
+
+- type: entity
+  id: FireballSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/fireball.rsi
+    color: "#FF7300"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 1
+    color: "#ff9c24"
+  - type: TimedDespawn
+    lifetime: 3.0
+
+#Middle
+
+- type: entity
+  id: FireballSpellCastEffectMiddle
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/fireball.rsi
+    color: "#ff4800"
+    noRot: true
+    layers:
+     - state: middle
+       shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#FF7300"
+  - type: TimedDespawn
+    lifetime: 2.5
+
+#Senior
+
+- type: entity
+  id: FireballSpellCastEffectSenior
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/fireball.rsi
+    color: "#FF0000"
+    noRot: true
+    layers:
+      - state: senior
+        shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#FF0000"
+  - type: TimedDespawn
+    lifetime: 3.5

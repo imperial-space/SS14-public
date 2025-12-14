@@ -1,0 +1,31 @@
+<Control
+    xmlns="https://spacestation14.io"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI">
+    <Button Name="MainButton"
+            VerticalExpand="True"
+            HorizontalExpand="True"
+            StyleClasses="ButtonSquare"
+            ModulateSelfOverride="#00000000">
+        <BoxContainer VerticalExpand="True"
+                HorizontalExpand="True">
+            <imp:BorderedPanelContainer
+                    Name="Panel"
+                    VerticalExpand="True"
+                    HorizontalExpand="True"
+                    ModulateSelfOverride="White"
+                    BackgroundPanelColor="#31313D"
+                    BorderRadius="25">
+                <RichTextLabel
+                    Name="Label"
+                    Text="Дипломатия"
+                    HorizontalExpand="True"
+                    VerticalExpand="True"
+                    Margin="0 0"
+                    HorizontalAlignment="Center"/>
+            </imp:BorderedPanelContainer>
+        </BoxContainer>
+    </Button>
+
+</Control>

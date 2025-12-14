@@ -1,0 +1,157 @@
+#Beginner
+
+- type: entity
+  id: MedievalActionIceDaggerBeginner
+  name: medieval-store-spells-vodka-ice-dagger-beginner-name
+  description: medieval-store-spells-vodka-ice-dagger-beginner-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.0001
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalVodka: 1
+        bonusEssences:
+          MagicMedievalVodka: 1
+  - type: MedievalInstantSpell
+  - type: Action
+    useDelay: 4
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/icewall_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Vodka/IceDagger/icons.rsi
+      state: beginner
+  - type: InstantAction
+    event: !type:MedievalSpawnInHandSpellEvent
+      spawnedEntityPrototype: IceDaggerBeginner
+      spellCastDoAfter:
+        delay: 0.5
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        breakOnDamage: true
+        speedModifier: 1
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-ice-dagger
+          color: "#78C6ED"
+          hideChat: true
+  - type: MedievalSpawnOnlyInFreeHands
+  - type: ManaDrainSpell
+    manaDrain: 12
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 5
+  - type: SpellCastEffect
+    effectProto: IceDaggerSpellCastEffectBeginner
+  - type: ActionUpgrade
+    effectedLevels:
+      2: MedievalActionIceDaggerMiddle
+      3: MedievalActionIceDaggerSenior
+
+#Middle
+
+- type: entity
+  id: MedievalActionIceDaggerMiddle
+  parent: MedievalActionIceDaggerBeginner
+  name: medieval-store-spells-vodka-ice-dagger-middle-name
+  description: medieval-store-spells-vodka-ice-dagger-middle-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.0001
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalVodka: 1
+        bonusEssences:
+          MagicMedievalVodka: 1
+  - type: MedievalInstantSpell
+  - type: Action
+    useDelay: 2.5
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/icewall_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Vodka/IceDagger/icons.rsi
+      state: middle
+  - type: InstantAction
+    event: !type:MedievalSpawnInHandSpellEvent
+      spawnedEntityPrototype: IceDaggerMiddle
+      spellCastDoAfter:
+        delay: 0.5
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        breakOnDamage: true
+        speedModifier: 1
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-ice-dagger
+          color: "#41b4ee"
+          hideChat: true
+  - type: MedievalSpawnOnlyInFreeHands
+  - type: ManaDrainSpell
+    manaDrain: 12
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 5
+
+#Senior
+
+- type: entity
+  id: MedievalActionIceDaggerSenior
+  parent: MedievalActionIceDaggerBeginner
+  name: medieval-store-spells-vodka-ice-dagger-senior-name
+  description: medieval-store-spells-vodka-ice-dagger-senior-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.0001
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalVodka: 1
+        bonusEssences:
+          MagicMedievalVodka: 1
+  - type: MedievalInstantSpell
+  - type: Action
+    useDelay: 1.5
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/icewall_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Vodka/IceDagger/icons.rsi
+      state: senior
+  - type: InstantAction
+    event: !type:MedievalSpawnInHandSpellEvent
+      spawnedEntityPrototype: IceDaggerSenior
+      spellCastDoAfter:
+        delay: 0.5
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        breakOnDamage: true
+        speedModifier: 1
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-ice-dagger
+          color: "#20aaf0"
+          hideChat: true
+  - type: MedievalSpawnOnlyInFreeHands
+  - type: ManaDrainSpell
+    manaDrain: 12
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 5

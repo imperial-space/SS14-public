@@ -193,7 +193,19 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Деревянная скамейка # Imperial Recipes Locale
+  hide: true # imperial medieval craft disable
+  id: StoolCard
+  graph: Seat
+  startNode: start
+  targetNode: stoolCard
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
   id: ChairWoodBench
   graph: Seat
   startNode: start
@@ -208,8 +220,8 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Удобная красная скамейка # Imperial Recipes Locale
   id: RedComfBench
+  name: Удобная красная скамейка # Imperial Recipes Locale
   graph: Seat
   startNode: start
   targetNode: redComfBench
@@ -284,7 +296,19 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Стол из бронестекла # Imperial Recipes Locale
+  id: TableCard
+  graph: Table
+  startNode: start
+  targetNode: TableCard
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  hide: true # imperial medieval craft disable
   id: TableReinforcedGlass
   graph: Table
   startNode: start
@@ -606,6 +630,7 @@
 
 #misc
 - type: construction
+  hide: true # imperial medieval craft disable
   id: MeatSpike
   name: Мясной крюк # Imperial Recipes Locale
   description: Крюк для снятия мяса с животных. # Imperial Recipes Locale

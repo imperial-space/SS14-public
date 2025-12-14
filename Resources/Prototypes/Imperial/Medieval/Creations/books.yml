@@ -1,0 +1,34 @@
+- type: entity
+  parent: BookBase
+  id: CreationsBook
+  name: custom book
+  components:
+  - type: CreationsBook
+
+- type: entity
+  parent: BookBase
+  id: RandomCreationsBook
+  name: random custom book
+  components:
+  - type: CreationsBook
+  - type: RandomCreationsBook
+
+
+- type: entity
+  parent: Bookshelf
+  id: BookshelfCreationsFilled
+  suffix: random creations filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: BookshelfCreationsEntityTable
+
+# Entity tables
+- type: entityTable
+  id: BookshelfCreationsEntityTable
+  table: !type:AllSelector
+    children:
+    - id: RandomCreationsBook
+      amount: !type:RangeNumberSelector
+        range: 9, 16

@@ -27,6 +27,8 @@
     color: red
     energy: 1.8
     radius: 2.5
+    netsync: true
+    enabled: true
   - type: HealCurse
   - type: LanguageSpeaker
     languages:
@@ -39,7 +41,7 @@
       #Growling: Speak
       #Hissing: Speak
       #Elf: Speak
-
+  - type: AffectRoundStats
 
 - type: damageContainer
   id: SkeletonNecro
@@ -125,6 +127,7 @@
         #Growling: Speak
         #Hissing: Speak
         #Elf: Speak
+    - type: IgnoreBossStart
 
 - type: startingGear
   id: MedievalNecroSender
@@ -180,6 +183,7 @@
         #Growling: Speak
         #Hissing: Speak
         # Elf: Speak
+    - type: IgnoreBossStart
 
 - type: startingGear
   id: MedievalNecroFighter
@@ -230,6 +234,7 @@
   - type: Mana
     maxManaRaceModifier: 3.9
     regenRaceModifier: 3.9
+  - type: IgnoreBossStart
 
 - type: startingGear
   id: MedievalNecroLeader
@@ -505,6 +510,14 @@
   - MedievalNecroWeapon
 
 - type: listing
+  id: MagicNecroShopMedievalCavaleryNecroSpearT3
+  productEntity: MedievalCavaleryNecroSpearT3
+  cost:
+    UnholyMedieval: 22
+  categories:
+  - MedievalNecroWeapon
+
+- type: listing
   id: MagicNecroShopMedievalGrenade
   productEntity: MedievalGrenade
   cost:
@@ -576,6 +589,14 @@
   categories:
   - MedievalNecroOther
 
+- type: listing
+  id: MagicNecroShopMedievalHorseNecroWhistle
+  productEntity: MedievalHorseNecroWhistle
+  cost:
+    UnholyMedieval: 70
+  categories:
+  - MedievalNecroOther
+
 - type: entity
   parent: ClothingBackpackSatchelNecro
   id: ClothingBackpackSatchelNecroArmor
@@ -622,7 +643,8 @@
         Piercing: 0.75
         Heat: 0.45
         Cold: 0.55
-        Stamina: 0.5 ## Stamina resistance
+  - type: StaminaResistance
+    damageCoefficient: 0.5
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -650,7 +672,8 @@
         Piercing: 0.9
         Heat: 0.75
         Cold: 0.75
-        Stamina: 0.8 ## Stamina resistance
+  - type: StaminaResistance
+    damageCoefficient: 0.8
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -666,6 +689,13 @@
   categories:
   - MedievalNecroOther
 
+- type: listing
+  id: NecroListingMedievalShieldRepairKit
+  productEntity: MedievalShieldRepairKit
+  cost:
+    UnholyMedieval: 4
+  categories:
+  - MedievalNecroOther
 
 - type: listing
   id: ListingMedievalClothingOuterArmorCharmerNecro2

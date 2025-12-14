@@ -1,0 +1,6 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:aui="clr-namespace:Content.Client.Imperial.Medieval.Lobby.UI" HorizontalAlignment="Stretch" HorizontalExpand="False">
+    <BoxContainer HorizontalAlignment="Stretch" HorizontalExpand="True" Orientation="Vertical">
+        <GridContainer HorizontalAlignment="Stretch" HorizontalExpand="True" VerticalAlignment="Stretch" VerticalExpand="True" Name="Grid" Columns="12"/>
+    </BoxContainer>
+</Control>

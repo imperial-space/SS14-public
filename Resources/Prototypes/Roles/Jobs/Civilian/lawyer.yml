@@ -23,8 +23,19 @@
     id: LawyerPDA
     ears: ClothingHeadsetSecurity
   inhand:
-    - BriefcaseBrownFilled
+    - BriefcaseLocker # Imperial Space Стандартный чемоданчик изменен на чемодан с замком
   storage:
     back:
     - RubberStampLawyer
     - BookSpaceLaw
+
+- type: chameleonOutfit
+  id: LawyerChameleonOutfit
+  job: Lawyer
+  equipment:
+    head: ClothingHeadHatBowlerHat
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskBreath
+    neck: ClothingNeckLawyerbadge
+    outerClothing: ClothingOuterWinterColorBlack
+    gloves: ClothingHandsGlovesColorBlack

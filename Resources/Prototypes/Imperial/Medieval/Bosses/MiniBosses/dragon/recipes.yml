@@ -1,0 +1,334 @@
+### ICE
+- type: entity
+  id: WorkpieceMedievalClothingHeadHelmetDragonBoneIce
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingHeadHelmetDragonBoneIce
+
+- type: entity
+  id: WorkpieceMedievalClothingOuterArmorDragonBoneIce
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingOuterArmorDragonBoneIce
+
+- type: entity
+  id: WorkpieceMedievalDragonBoneGlovesIce
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalDragonBoneGlovesIce
+
+- type: entity
+  id: WorkpieceMedievalClothingFeetDragonBoneIce
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingFeetDragonBoneIce
+
+- type: CP14Recipe
+  id: MedievalClothingHeadHelmetDragonBoneIce
+  craftTime: 30
+  iconOverride: MedievalClothingHeadHelmetDragonBoneIce
+  stacks:
+    MedievalSteelIngot: 5
+    MedievalRivets: 2
+  entities:
+    MedievalDragonLootIcescale: 2
+    MedievalDragonLootBones: 1
+  result: WorkpieceMedievalClothingHeadHelmetDragonBoneIce
+
+- type: CP14Recipe
+  id: MedievalClothingOuterArmorDragonBoneIce
+  craftTime: 60
+  iconOverride: MedievalClothingOuterArmorDragonBoneIce
+  stacks:
+    MedievalRivets: 4
+    MedievalIronPlate: 12
+    MedievalSteelIngot: 10
+    MedievalChain: 2
+    MedievalShoulder: 2
+  entities:
+    MedievalDragonLootIcescale: 2
+    MedievalDragonLootBones: 1
+  result: WorkpieceMedievalClothingOuterArmorDragonBoneIce
+
+- type: CP14Recipe
+  id: MedievalDragonBoneGlovesIce
+  craftTime: 25
+  iconOverride: MedievalDragonBoneGlovesIce
+  stacks:
+    MedievalRivets: 1
+    MedievalSteelIngot: 2
+  entities:
+    MedievalDragonLootIcescale: 1
+    MedievalDragonLootBones: 1
+  result: WorkpieceMedievalDragonBoneGlovesIce
+
+- type: CP14Recipe
+  id: MedievalClothingFeetDragonBoneIce
+  craftTime: 30
+  iconOverride: MedievalClothingFeetDragonBoneIce
+  stacks:
+    MedievalRivets: 1
+    MedievalSteelIngot: 2
+  entities:
+    MedievalDragonLootIcescale: 2
+    MedievalDragonLootBones: 1
+  result: WorkpieceMedievalClothingFeetDragonBoneIce
+### ICE
+
+### FIRE
+- type: entity
+  id: WorkpieceMedievalClothingHeadHelmetDragonBoneFire
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingHeadHelmetDragonBoneFire
+
+- type: entity
+  id: WorkpieceMedievalClothingOuterArmorDragonBoneFire
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingOuterArmorDragonBoneFire
+
+- type: entity
+  id: WorkpieceMedievalDragonBoneGlovesFire
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalDragonBoneGlovesFire
+
+- type: entity
+  id: WorkpieceMedievalClothingFeetDragonBoneFire
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingFeetDragonBoneFire
+
+- type: CP14Recipe
+  id: MedievalClothingHeadHelmetDragonBoneFire
+  craftTime: 30
+  iconOverride: MedievalClothingHeadHelmetDragonBoneFire
+  stacks:
+    MedievalSteelIngot: 5
+    MedievalRivets: 2
+  entities:
+    MedievalDragonLootFirescale: 2
+    MedievalDragonLootBones: 1
+  result: WorkpieceMedievalClothingHeadHelmetDragonBoneFire
+
+- type: CP14Recipe
+  id: MedievalClothingOuterArmorDragonBoneFire
+  craftTime: 60
+  iconOverride: MedievalClothingOuterArmorDragonBoneFire
+  stacks:
+    MedievalRivets: 4
+    MedievalIronPlate: 12
+    MedievalSteelIngot: 10
+    MedievalChain: 2
+    MedievalShoulder: 2
+  entities:
+    MedievalDragonLootFirescale: 2
+    MedievalDragonLootBones: 1
+  result: WorkpieceMedievalClothingOuterArmorDragonBoneFire
+
+- type: CP14Recipe
+  id: MedievalDragonBoneGlovesFire
+  craftTime: 25
+  iconOverride: MedievalDragonBoneGlovesFire
+  stacks:
+    MedievalRivets: 1
+    MedievalSteelIngot: 2
+  entities:
+    MedievalDragonLootFirescale: 1
+    MedievalDragonLootBones: 1
+  result: WorkpieceMedievalDragonBoneGlovesFire
+
+- type: CP14Recipe
+  id: MedievalClothingFeetDragonBoneFire
+  craftTime: 30
+  iconOverride: MedievalClothingFeetDragonBoneFire
+  stacks:
+    MedievalRivets: 1
+    MedievalSteelIngot: 2
+  entities:
+    MedievalDragonLootFirescale: 2
+    MedievalDragonLootBones: 1
+  result: WorkpieceMedievalClothingFeetDragonBoneFire
+### FIRE
+
+### ACID
+- type: entity
+  id: WorkpieceMedievalClothingHeadHelmetDragonBoneAcid
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingHeadHelmetDragonBoneAcid
+
+- type: entity
+  id: WorkpieceMedievalClothingOuterArmorDragonBoneAcid
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingOuterArmorDragonBoneAcid
+
+- type: entity
+  id: WorkpieceMedievalDragonBoneGlovesAcid
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalDragonBoneGlovesAcid
+
+- type: entity
+  id: WorkpieceMedievalClothingFeetDragonBoneAcid
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingFeetDragonBoneAcid
+
+- type: CP14Recipe
+  id: MedievalClothingHeadHelmetDragonBoneAcid
+  craftTime: 30
+  iconOverride: MedievalClothingHeadHelmetDragonBoneAcid
+  stacks:
+    MedievalSteelIngot: 5
+    MedievalRivets: 2
+  entities:
+    MedievalDragonLootAcidscale: 2
+    MedievalDragonLootBones: 1
+  result: WorkpieceMedievalClothingHeadHelmetDragonBoneAcid
+
+- type: CP14Recipe
+  id: MedievalClothingOuterArmorDragonBoneAcid
+  craftTime: 60
+  iconOverride: MedievalClothingOuterArmorDragonBoneAcid
+  stacks:
+    MedievalRivets: 4
+    MedievalIronPlate: 12
+    MedievalSteelIngot: 10
+    MedievalChain: 2
+    MedievalShoulder: 2
+  entities:
+    MedievalDragonLootAcidscale: 2
+    MedievalDragonLootBones: 1
+  result: WorkpieceMedievalClothingOuterArmorDragonBoneAcid
+
+- type: CP14Recipe
+  id: MedievalDragonBoneGlovesAcid
+  craftTime: 25
+  iconOverride: MedievalDragonBoneGlovesAcid
+  stacks:
+    MedievalRivets: 1
+    MedievalSteelIngot: 2
+  entities:
+    MedievalDragonLootAcidscale: 1
+    MedievalDragonLootBones: 1
+  result: WorkpieceMedievalDragonBoneGlovesAcid
+
+- type: CP14Recipe
+  id: MedievalClothingFeetDragonBoneAcid
+  craftTime: 30
+  iconOverride: MedievalClothingFeetDragonBoneAcid
+  stacks:
+    MedievalRivets: 1
+    MedievalSteelIngot: 2
+  entities:
+    MedievalDragonLootAcidscale: 2
+    MedievalDragonLootBones: 1
+  result: WorkpieceMedievalClothingFeetDragonBoneAcid
+### ACID
+
+### THUNDER
+- type: entity
+  id: WorkpieceMedievalClothingHeadHelmetDragonBoneThunder
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingHeadHelmetDragonBoneThunder
+
+- type: entity
+  id: WorkpieceMedievalClothingOuterArmorDragonBoneThunder
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingOuterArmorDragonBoneThunder
+
+- type: entity
+  id: WorkpieceMedievalDragonBoneGlovesThunder
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalDragonBoneGlovesThunder
+
+- type: entity
+  id: WorkpieceMedievalClothingFeetDragonBoneThunder
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingFeetDragonBoneThunder
+
+- type: CP14Recipe
+  id: MedievalClothingHeadHelmetDragonBoneThunder
+  craftTime: 30
+  iconOverride: MedievalClothingHeadHelmetDragonBoneThunder
+  stacks:
+    MedievalSteelIngot: 5
+    MedievalRivets: 2
+  entities:
+    MedievalDragonLootThunderscale: 2
+    MedievalDragonLootBones: 1
+  result: WorkpieceMedievalClothingHeadHelmetDragonBoneThunder
+
+- type: CP14Recipe
+  id: MedievalClothingOuterArmorDragonBoneThunder
+  craftTime: 60
+  iconOverride: MedievalClothingOuterArmorDragonBoneThunder
+  stacks:
+    MedievalRivets: 4
+    MedievalIronPlate: 12
+    MedievalSteelIngot: 10
+    MedievalChain: 2
+    MedievalShoulder: 2
+  entities:
+    MedievalDragonLootThunderscale: 2
+    MedievalDragonLootBones: 1
+  result: WorkpieceMedievalClothingOuterArmorDragonBoneThunder
+
+- type: CP14Recipe
+  id: MedievalDragonBoneGlovesThunder
+  craftTime: 25
+  iconOverride: MedievalDragonBoneGlovesThunder
+  stacks:
+    MedievalRivets: 1
+    MedievalSteelIngot: 2
+  entities:
+    MedievalDragonLootThunderscale: 1
+    MedievalDragonLootBones: 1
+  result: WorkpieceMedievalDragonBoneGlovesThunder
+
+- type: CP14Recipe
+  id: MedievalClothingFeetDragonBoneThunder
+  craftTime: 30
+  iconOverride: MedievalClothingFeetDragonBoneThunder
+  stacks:
+    MedievalRivets: 1
+    MedievalSteelIngot: 2
+  entities:
+    MedievalDragonLootThunderscale: 2
+    MedievalDragonLootBones: 1
+  result: WorkpieceMedievalClothingFeetDragonBoneThunder
+### THUNDER
+
+- type: CP14Recipe
+  id: MedievalDragonQuantEssence
+  craftTime: 60
+  iconOverride: MedievalDragonQuantEssence
+  entities:
+    MedievalDragonLootTrueFireEssence: 1
+    MedievalDragonLootTrueWaterEssence: 1
+    MedievalDragonLootTrueAirEssence: 1
+    MedievalDragonLootTrueEarthEssence: 1
+  result: MedievalDragonQuantEssence

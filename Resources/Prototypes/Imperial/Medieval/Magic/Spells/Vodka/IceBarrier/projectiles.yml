@@ -6,8 +6,8 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Structures/Decoration/crystal.rsi
-    state: crystal_grey
+    sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+    state: beginner
     drawdepth: Mobs
     noRot: true
   - type: Reflect
@@ -59,8 +59,8 @@
   name: Ice Barrier
   components:
   - type: Sprite
-    sprite: Structures/Decoration/crystal.rsi
-    state: crystal_grey
+    sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+    state: beginner
     color: "#47f8ff"
   - type: TimedDespawn
     lifetime: 8
@@ -94,8 +94,8 @@
   name: Ice Barrier
   components:
   - type: Sprite
-    sprite: Structures/Decoration/crystal.rsi
-    state: crystal_grey
+    sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+    state: beginner
     drawdepth: Mobs
     color: "#47f8ff"
   - type: TimedDespawn
@@ -147,8 +147,8 @@
   name: Ice Barrier
   components:
   - type: Sprite
-    sprite: Structures/Decoration/crystal.rsi
-    state: crystal_grey
+    sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+    state: beginner
     color: "#47f8ff"
   - type: TimedDespawn
     lifetime: 20
@@ -182,8 +182,8 @@
   name: Ice Barrier
   components:
   - type: Sprite
-    sprite: Structures/Decoration/crystal.rsi
-    state: crystal_grey
+    sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+    state: beginner
     drawdepth: Mobs
     color: "#47f8ff"
   - type: TimedDespawn
@@ -235,8 +235,8 @@
   name: Ice Barrier
   components:
   - type: Sprite
-    sprite: Structures/Decoration/crystal.rsi
-    state: crystal_grey
+    sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+    state: beginner
     color: "#47f8ff"
   - type: TimedDespawn
     lifetime: 20
@@ -270,8 +270,8 @@
   name: Ice Barrier
   components:
   - type: Sprite
-    sprite: Structures/Decoration/crystal.rsi
-    state: crystal_grey
+    sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+    state: beginner
     drawdepth: Mobs
     color: "#47f8ff"
   - type: TimedDespawn

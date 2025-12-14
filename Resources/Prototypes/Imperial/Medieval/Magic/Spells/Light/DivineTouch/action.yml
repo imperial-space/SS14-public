@@ -8,9 +8,12 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.85
+        essenceAddProbability: 0.00085
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalLight1: 1
+          MagicMedievalLight: 1
+        bonusEssences:
+          MagicMedievalLight: 1
   - type: ManaDrainSpell
     manaDrain: 25
     canUseWithoutMana: true
@@ -18,15 +21,18 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 10
+  - type: SpellCastEffect
+    effectProto: DivineTouchSpellCastEffectBeginner
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 15
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
-      state: 1
+      sprite: Imperial/Medieval/Magic/Light/DivineTouch/icons.rsi
+      state: beginner
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: DivineTouchBeginner
       spellCastDoAfter:
@@ -64,14 +70,15 @@
       groups:
         Burn: 15
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 19
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
-      state: 2
+      sprite: Imperial/Medieval/Magic/Light/DivineTouch/icons.rsi
+      state: middle
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: DivineTouchMiddle
       spellCastDoAfter:
@@ -104,14 +111,15 @@
       groups:
         Burn: 22
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 27
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
-      state: 3
+      sprite: Imperial/Medieval/Magic/Light/DivineTouch/icons.rsi
+      state: senior
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: DivineTouchSenior
       spellCastDoAfter:

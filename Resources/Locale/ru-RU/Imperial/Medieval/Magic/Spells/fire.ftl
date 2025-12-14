@@ -28,7 +28,7 @@ medieval-store-spells-fire-critical-mass-senior-desc = Уничтожьте св
 
 ## Concentrated displacement
 
-medieval-spell-speach-concentrated-displacement = D̰̰̂̄Ḭ͞͝͝͡S̲̲̲̲̲̯̃̃̅̃͟P̲̯̮̮̄͟͜͜ ̅̅̄̄̄͜͜͡͡Ḽ̰̰̰̰A̱̭̲̲̭͜͜͜͝͞C̰̰Ễ̯̱̲M̗̱̭̯̱̭̑̅̀̀͜Ḛ̮̄N̲̗̯̄̄͟͡Ṱ̗̯̰̗̱̑̂̄̂̄̃͞͡
+medieval-spell-speach-concentrated-displacement = D͏̶͞I̶̴͘̕͘͢S̸̸̕̕͠C̨͟͢͝L͢͜͏Ǫ̵C̛͏̡̨̀́͜AT̶́͡͠͞I̢̢͏O͏̡͜͟͟
 
 medieval-store-spells-fire-concentrated-displacement-middle-name = Сверхмасса: Концентрированное смещение
 medieval-store-spells-fire-concentrated-displacement-middle-desc = Сместите полученную энергию от коллапса по выбранной прямой. Стоимость 50 маны.
@@ -39,7 +39,7 @@ medieval-store-spells-fire-concentrated-displacement-senior-desc = Рассей�
 
 ## Diffusion
 
-medieval-spell-speach-diffusion = D̗̭̖̰̱̣̃Î̭̭̲̩F͟͜͝͝F̤̯̲̅̂͜͟͞͝͡Ū̯̮̱̆͜͟͝͡S̤̤̯̲̲̰̰Ī̗̭̰̂̀͜͟͝Ỗ̥̣͜͜͟͟͝͡Ǹ̯̱̗̖́̃̄̄̄̅͜͝͝
+medieval-spell-speach-diffusion = D̵͝I͢F̢̕F̴̷͘U̷͟S̷̡̢IO
 
 medieval-store-spells-fire-diffusion-middle-name = Сверхмасса: Рассеивание
 medieval-store-spells-fire-diffusion-middle-desc = Выпустите накопленную энергию от коллапса в две противоположные стороны, но с меньшим уроном. Стоимость 40 маны.
@@ -49,7 +49,7 @@ medieval-store-spells-fire-diffusion-senior-desc = Ха-ха, поле битв�
 
 # Boost
 
-medieval-spell-speach-boost = B̲̄́͜͟͝͡Ō̲̱̲̅͟͡Ṍ͜͜͡S̲̗͜͝T̲̱̭͜͝
+medieval-spell-speach-boost = A̷̡͡UĢ͡Ḿ̷̛ENTU̷͢͞M̡
 
 medieval-store-spells-light-boost-beginner-name = Усиление
 medieval-store-spells-light-boost-beginner-desc = Вводит в цель жидкую ману из-за чего она начинает двигаться быстрее. Стоимость 50 маны.
@@ -62,7 +62,7 @@ medieval-store-spells-light-boost-senior-desc = Вводит в цель жид�
 
 # Magic Arrow
 
-medieval-spell-speach-magic-arrow = Teemɔŋ gãimlibi
+medieval-spell-speach-magic-arrow = Mis̛sil͢͞e͞ m̡a̧͟g̵̵i͠cum
 
 medieval-store-spells-fire-magic-arrow-beginner-name = Магическая стрела
 medieval-store-spells-fire-magic-arrow-beginner-desc = Сформируйте ману в стрелу и выпустите ее из рук. Стоимость 15 маны.
@@ -78,7 +78,7 @@ medieval-store-spells-fire-magic-arrow-kunai-senior-desc = Выпустите и
 
 ## Cursor Follover
 
-medieval-spell-speach-magic-arrow-cursor-follover = Nyiɛmɔ misɛɛ
+medieval-spell-speach-magic-arrow-cursor-follover = Mis̛sil͢͞e͞ m̡a̧͟g̵̵i͠cum
 
 medieval-store-spells-fire-magic-arrow-cursor-follover-beginner-name = Магическая стрела: Последователь
 medieval-store-spells-fire-magic-arrow-cursor-follover-beginner-desc = Выпустите снаряд, который будет лететь за вашим курсором. Стоимость 25 маны.
@@ -91,7 +91,7 @@ medieval-store-spells-fire-magic-arrow-cursor-follover-senior-desc = Выпус�
 
 ## Player Follover
 
-medieval-spell-speach-magic-arrow-player-follover = Gbemɔ mihenyɛlɔi lɛ
+medieval-spell-speach-magic-arrow-player-follover = Mis̛sil͢͞e͞ m̡a̧͟g̵̵i͠cum
 
 medieval-store-spells-fire-magic-arrow-player-follover-beginner-name = Магическая стрела: Самонаведение
 medieval-store-spells-fire-magic-arrow-player-follover-beginner-desc = Выпустите самонаводящуюся стрелы из своих рук. Стоимость 25 маны.
@@ -101,3 +101,22 @@ medieval-store-spells-fire-magic-arrow-player-follover-middle-desc = Выпус�
 
 medieval-store-spells-fire-magic-arrow-player-follover-senior-name = Магическая стрела: Преследование
 medieval-store-spells-fire--magic-arrow-player-follover-senior-desc = Выпустите до шести самонаводящихся стрел. Стоимость 45 маны. Используйте среднюю кнопку мыши для выбора нескольких целей.
+
+# Fire Wall
+
+medieval-spell-speach-fire-wall =  ͚̟̼̳̗̂͂M̂u̘͓̠͖̿ͧ͑̏r̘͑ͮu̬̹͓̖s̯͔̋ ͛̾Í̟̞͎g͈̫̜ͩͭͅn̝̼͎̠ḭ̦̱̜̓ͦs͍͕̠
+
+medieval-store-spells-fire-wall-beginner-name = Огненная преграда
+medieval-store-spells-fire-wall-beginner-desc = Создает небольшу огненную преграду, поджигающую ваших врагов. Стоимость 30 маны.
+
+medieval-store-spells-fire-wall-middle-name = Огненная стена
+medieval-store-spells-fire-wall-middle-desc = Создает огненную стену, поджигающую ваших врагов. Стоимость 40 маны.
+
+medieval-store-spells-fire-wall-senior-name = Небесный огонь
+medieval-store-spells-fire-wall-senior-desc = Кто вам сказал что в средневековье не было напалма? Стоимость 55 маны.
+
+# Magic Spark
+medieval-spell-speach-spark = щёлкает пальцами
+
+medieval-store-spells-fire-spark-beginner-name = Магическая искра
+medieval-store-spells-fire-spark-beginner-desc = Создаёт магическую искру в вашей руке, способную поджечь что-либо. Пригодится, если вдруг забыли огниво

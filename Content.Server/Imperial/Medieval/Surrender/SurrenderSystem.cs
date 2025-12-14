@@ -3,6 +3,8 @@ using Content.Server.Actions;
 using Content.Shared.CombatMode.Pacification;
 using Robust.Shared.Timing;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio.Systems;
+using Content.Shared.Coordinates;
 
 namespace Content.Server.Imperial.Medieval.Surrender;
 
@@ -11,6 +13,7 @@ public sealed class SurrenderSystem : EntitySystem
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly IGameTiming _tick = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<CanSurrenderComponent, ComponentInit>(CompInit);
@@ -28,12 +31,14 @@ public sealed class SurrenderSystem : EntitySystem
             return;
         if (HasComp<PacifiedComponent>(uid))
             return;
-        _actions.SetCooldown(args.Action, component.SurrenderTime);
+        //_actions.SetCooldown((args.Action.Owner, args.Action.Comp), component.SurrenderTime); poshel nahui
         EnsureComp<PacifiedComponent>(uid);
         component.SurrenderActive = true;
         component.Unsurrender = _tick.CurTime + component.SurrenderTime;
         _appearance.SetData(uid, SurrenderVisuals.Key, true);
-        // Dirty(uid, component);
+        _audio.PlayPvs(component.Sound, uid.ToCoordinates());
+        Dirty(uid, component);
+        args.Handled = true;
     }
     public override void Update(float delta)
     {
@@ -46,7 +51,7 @@ public sealed class SurrenderSystem : EntitySystem
             RemComp<PacifiedComponent>(component.Owner);
             component.SurrenderActive = false;
             _appearance.SetData(component.Owner, SurrenderVisuals.Key, false);
-            // Dirty(component.Owner, component);
+            Dirty(component.Owner, component);
         }
     }
 }

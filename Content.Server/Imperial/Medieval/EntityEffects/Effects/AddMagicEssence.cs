@@ -1,57 +1,53 @@
 using Content.Server.Imperial.ImperialStore;
 using Content.Server.Imperial.Medieval.Magic.BindStoreOnEquip;
 using Content.Shared.EntityEffects;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.Medieval.EntityEffects;
 
 
 public sealed partial class AddMagicEssence : EntityEffect
 {
-    /// <summary>
-    /// Added reagents to entity
-    /// </summary>
-    [DataField(required: true)]
-    public Dictionary<EntProtoId, int> AddedEssences = new();
+    private IRobustRandom? _random;
+    private ImperialStoreSystem? _storeSys;
+
+    [DataField]
+    public Dictionary<EntProtoId, FixedPoint2> AddedEssences = [];
+
+    [DataField]
+    public Dictionary<EntProtoId, FixedPoint2> BonusEssences = [];
+
+    [DataField]
+    public float EssenceAddProbability;
+
+    [DataField]
+    public float BonusAddProbability;
 
 
     public override void Effect(EntityEffectBaseArgs args)
     {
-        //if (args is not MagicEntityEffectsArgs magicEntityEffectsArgs) return;
-//
-        //var enumerator = args.EntityManager.EntityQueryEnumerator<BindStoreOnEquipComponent>();
-//
-        //while (enumerator.MoveNext(out var spellBookUid, out var bindStoreOnEquipComponent))
-        //{
-        //    if (bindStoreOnEquipComponent.BindedEntity != magicEntityEffectsArgs.Performer) continue;
-//
-        //    //foreach (var (currencyPrototype, count) in AddedEssences) poka chto was sdelana another system of poluschenie essence
-        //    //    TryAddEssence(currencyPrototype, count, spellBookUid, args.EntityManager);
-//
-        //    return;
-        //}
+        _random ??= IoCManager.Resolve<IRobustRandom>();
+        _storeSys ??= args.EntityManager.System<ImperialStoreSystem>();
+
+        if (args is not MagicEntityEffectsArgs magicEntityEffectsArgs)
+            return;
+
+        var enumerator = args.EntityManager.EntityQueryEnumerator<BindStoreOnEquipComponent>();
+
+        while (enumerator.MoveNext(out var spellBookUid, out var bindStoreOnEquipComponent))
+        {
+            if (bindStoreOnEquipComponent.BindedEntity != magicEntityEffectsArgs.Performer)
+                continue;
+
+            if (_random.Prob(EssenceAddProbability))
+                _storeSys.TryAddCurrency(AddedEssences, spellBookUid);
+
+            if (_random.Prob(BonusAddProbability))
+                _storeSys.TryAddBonus(BonusEssences, spellBookUid);
+        }
     }
 
     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) => "";
-
-    #region Helpers
-
-    private bool TryAddEssence(EntProtoId currencyPrototype, int count, EntityUid spellBookUid, IEntityManager entityManager)
-    {
-        var imperialStoreSystem = entityManager.System<ImperialStoreSystem>();
-
-        var addOneOrMoreEssence = false;
-
-        for (var i = 0; i < count; i++)
-        {
-            var essenceEntity = entityManager.Spawn(currencyPrototype);
-
-            addOneOrMoreEssence = true;
-            imperialStoreSystem.TryAddCurrency(essenceEntity, spellBookUid);
-        }
-
-        return addOneOrMoreEssence;
-    }
-
-    #endregion
 }

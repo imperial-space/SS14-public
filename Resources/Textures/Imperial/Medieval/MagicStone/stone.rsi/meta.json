@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "By @crookielv",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+        {
+            "name": "kael"
+        },
+        {
+            "name": "lun"
+        },
+        {
+            "name": "mira"
+        },
+        {
+            "name": "oth"
+        },
+        {
+            "name": "ryn"
+        },
+        {
+            "name": "seth"
+        },
+        {
+            "name": "thar"
+        },
+        {
+            "name": "vel"
+        }
+    ]
+  }

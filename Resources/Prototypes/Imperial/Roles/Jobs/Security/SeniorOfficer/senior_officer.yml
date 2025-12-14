@@ -34,8 +34,10 @@
   id: SeniorOfficerGear
   equipment:
     eyes: ClothingEyesGlassesSecurity
-    head: ClothingHeadHatSeniorOfficerBeret
     id: SeniorOfficerPDA
     ears: ClothingHeadsetSecurity
     neck: SecurityWhistle
     pocket1: WeaponPistolMk58Nonlethal
+  storage:
+    back:
+    - EmergencyButton # Imperial Emergency Button

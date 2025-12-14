@@ -2244,25 +2244,25 @@
       manaCost: 31
       preventCollide: true
 
-- type: entity
-  id: MedievalProjectilePolyboltSkelet
-  parent: ProjectilePolyboltBase
-  name: monkey polybolt
-  description: Nooo, I don't wanna be monkey!
-  noSpawn: true
-  components:
-  #- type: PolymorphOnCollide
-  #  polymorph: MedievalSkelet
-  #  whitelist:
-  #    components:
-  #    - Body
-  - type: TimedDespawn
-    lifetime: 0.1
-  - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
-    layers:
-    - state: proto
-      shader: unshaded
+#- type: entity
+#  id: MedievalProjectilePolyboltSkelet
+#  parent: ProjectilePolyboltBase
+#  name: monkey polybolt
+#  description: Nooo, I don't wanna be monkey!
+#  noSpawn: true
+#  components:
+#  #- type: PolymorphOnCollide
+#  #  polymorph: MedievalSkelet
+#  #  whitelist:
+#  #    components:
+#  #    - Body
+#  - type: TimedDespawn
+#    lifetime: 0.1
+#  - type: Sprite
+#    sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
+#    layers:
+#    - state: proto
+#      shader: unshaded
 
 - type: polymorph
   id: MedievalSkelet
@@ -2276,48 +2276,48 @@
     transferDamage: false
     forced: true
     delay: 1
-
-- type: entity
-  id: MedievalSpellbookNecro
-  name: necro spellbook
-  parent: BaseSpellbook
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/necro.rsi
-    layers:
-    - state: book
-  - type: Spellbook
-    learnOnce: true
-    learnPermanently: true
-    learnTime: 3
-    spellActions:
-      MedievalActionNecro: -1
-
-
-- type: entity
-  id: MedievalActionNecro
-  name: action-name-spell-necro
-  description: action-description-spell-necro
-  noSpawn: true
-  components:
-  - type: WorldTargetAction
-    useDelay: 25
-    itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
-    sound: !type:SoundPathSpecifier
-      path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
-    icon:
-      sprite: Imperial/Medieval/Gun/Charmer/necro.rsi
-      state: 1
-    event: !type:ProjectileSpellEvent
-      prototype: MedievalProjectilePolyboltSkelet
-      posData: !type:TargetCasterPos
-        width: 0
-      speech: medieval-cahrm-speech-necro1
-      manaCost: 40
-      preventCollide: true
-
+#
+#- type: entity
+#  id: MedievalSpellbookNecro
+#  name: necro spellbook
+#  parent: BaseSpellbook
+#  components:
+#  - type: Sprite
+#    sprite: Imperial/Medieval/Gun/Charmer/necro.rsi
+#    layers:
+#    - state: book
+#  - type: Spellbook
+#    learnOnce: true
+#    learnPermanently: true
+#    learnTime: 3
+#    spellActions:
+#      MedievalActionNecro: -1
+#
+#
+#- type: entity
+#  id: MedievalActionNecro
+#  name: action-name-spell-necro
+#  description: action-description-spell-necro
+#  noSpawn: true
+#  components:
+#  - type: WorldTargetAction
+#    useDelay: 25
+#    itemIconStyle: BigAction
+#    checkCanAccess: false
+#    range: 60
+#    sound: !type:SoundPathSpecifier
+#      path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
+#    icon:
+#      sprite: Imperial/Medieval/Gun/Charmer/necro.rsi
+#      state: 1
+#    event: !type:ProjectileSpellEvent
+#      prototype: MedievalProjectilePolyboltSkelet
+#      posData: !type:TargetCasterPos
+#        width: 0
+#      speech: medieval-cahrm-speech-necro1
+#      manaCost: 40
+#      preventCollide: true
+#
 - type: entity
   parent: Puddle
   id: MedievalBeakerCharmerSmoke

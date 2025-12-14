@@ -1,4 +1,5 @@
 using Content.Shared.Interaction.Components;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.SSDIndicator;
@@ -27,7 +28,7 @@ public partial class AntiStealAfkSystem : EntitySystem
         if (TryComp<AntiStealAfkComponent>(target, out var comp))
             if (TryComp<SSDIndicatorComponent>(target, out var ssd) && ssd.IsSSD)
             {
-                if (TryComp<MobStateComponent>(target, out var mobstate) && mobstate.CurrentState != Mobs.MobState.Alive)
+                if (TryComp<MobStateComponent>(target, out var mobstate) && mobstate.CurrentState != MobState.Alive)
                     return true;
                 if (HasComp<BypassInteractionChecksComponent>(user))
                     return true;

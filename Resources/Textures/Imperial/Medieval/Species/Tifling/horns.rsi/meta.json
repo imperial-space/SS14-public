@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "By fortengamer",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    { "name": "horn1", "directions": 4 },
+    { "name": "horn2", "directions": 4 },
+    { "name": "horn3", "directions": 4 },
+    { "name": "horn4", "directions": 4 }
+  ]
+}

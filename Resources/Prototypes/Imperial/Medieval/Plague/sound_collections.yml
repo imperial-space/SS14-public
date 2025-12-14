@@ -1,0 +1,7 @@
+- type: soundCollection
+  id: PlagueDizziness
+  files:
+    - /Audio/Imperial/Medieval/Plague/dizziness1.ogg
+    - /Audio/Imperial/Medieval/Plague/dizziness2.ogg
+    - /Audio/Imperial/Medieval/Plague/dizziness3.ogg
+

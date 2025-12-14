@@ -1,0 +1,18 @@
+#Beginner
+
+- type: entity
+  id: SparkSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/boost.rsi
+    color: "#FF5900"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 1.2
+    energy: 1
+    color: "#FF5900"
+  - type: TimedDespawn
+    lifetime: 0.5

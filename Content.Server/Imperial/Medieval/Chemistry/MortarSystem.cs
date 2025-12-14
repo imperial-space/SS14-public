@@ -43,9 +43,19 @@ public sealed class MortarSystem : EntitySystem
         {
             if (!TryComp<ExtractableComponent>(item, out var extractable))
                 continue;
+            Solution transfer;
             if (extractable.JuiceSolution == null)
-                continue;
-            var transfer = extractable.JuiceSolution;
+            {
+                if (extractable.GrindableSolution == null)
+                    continue;
+                if (!_solution.TryGetSolution(item, extractable.GrindableSolution, out _, out var itemsolution))
+                    continue;
+                transfer = itemsolution;
+            }
+            else
+            {
+                transfer = extractable.JuiceSolution;
+            }
             if (TryComp<StackComponent>(item, out var stack))
             {
                 var totalVolume = transfer.Volume * stack.Count;

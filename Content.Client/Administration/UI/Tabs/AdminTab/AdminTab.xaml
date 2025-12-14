@@ -18,6 +18,7 @@
             <cc:CommandButton Command="faxui" Text="{Loc admin-player-actions-window-admin-fax}"/>
             <cc:CommandButton Command="achatwindow" Text="{Loc admin-player-actions-window-admin-chat}"/>
             <cc:CommandButton Command="nrppanel" Text="{Loc admin-player-actions-window-nrp-panel}"/> <!--imperial medieval edit-->
+            <cc:CommandButton Command="creationspanel" Text="{Loc admin-player-actions-window-creations-panel}"/> <!--imperial medieval edit-->
         </GridContainer>
     </BoxContainer>
 </Control>

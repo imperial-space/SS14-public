@@ -1,0 +1,18 @@
+#Senior
+
+- type: entity
+  id: MagicArrowCursorFollowerSpellCastEffectSenior
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/arrow.rsi
+    color: "#FF0000"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#FF0000"
+  - type: TimedDespawn
+    lifetime: 0.5

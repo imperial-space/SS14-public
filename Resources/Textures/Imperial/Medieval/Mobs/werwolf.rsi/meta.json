@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "size": {
+    "x": 60,
+    "y": 60
+  },
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "by pyrolizz",
+  "states": [
+    {
+      "name": "black",
+      "directions": 4
+    },
+    {
+      "name": "brown",
+      "directions": 4
+    },
+    {
+      "name": "dark_blue",
+      "directions": 4
+    },
+    {
+      "name": "grey",
+      "directions": 4
+    },
+    {
+      "name": "light_blue",
+      "directions": 4
+    },
+    {
+      "name": "purple",
+      "directions": 4
+    },
+    {
+      "name": "red_eyes",
+      "directions": 4
+    },
+    {
+      "name": "red",
+      "directions": 4
+    }
+  ]
+}

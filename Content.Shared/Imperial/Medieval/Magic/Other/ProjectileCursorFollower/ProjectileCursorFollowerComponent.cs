@@ -12,7 +12,6 @@ public sealed partial class ProjectileCursorFollowerComponent : Component
 
     [DataField]
     public float MaxLinearVelocityIntensy = 15.0f;
-
     [DataField]
     public Angle RelativeAngle = Angle.Zero;
 }

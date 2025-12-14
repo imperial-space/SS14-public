@@ -22,38 +22,78 @@
 - type: soundCollection
   id: AmbienceMedievalLegion
   files:
-    - /Audio/Imperial/Medieval/Locations/Adventurer_s-fate.ogg
-    - /Audio/Imperial/Medieval/Locations/Provincefield.ogg
-    - /Audio/Imperial/Medieval/Locations/VastnessFields.ogg
-    - /Audio/Imperial/Medieval/Locations/Ontheedgeoftheforest.ogg
+    - /Audio/Imperial/Medieval/Locations/Be-brave-adventurer.ogg
+    - /Audio/Imperial/Medieval/Locations/Running-around.ogg
+    - /Audio/Imperial/Medieval/Locations/Mushroom-picking.ogg
+    - /Audio/Imperial/Medieval/Locations/Free-in-your-mind.ogg
 
 - type: soundCollection
   id: AmbienceMedievalInsurgency
   files:
-    - /Audio/Imperial/Medieval/Locations/Severefrost.ogg
-    - /Audio/Imperial/Medieval/Locations/LegionsAdrift.ogg
-    - /Audio/Imperial/Medieval/Locations/Freedom-fantasy.ogg
+    - /Audio/Imperial/Medieval/Locations/Refrosted.ogg
+    - /Audio/Imperial/Medieval/Locations/Enchanted-blizzard.ogg
+    - /Audio/Imperial/Medieval/Locations/Severe-frost-(new).ogg
+    - /Audio/Imperial/Medieval/Locations/In-snow-we-trust.ogg
+
+- type: soundCollection
+  id: AmbienceMedievalLegionTown
+  files:
+    - /Audio/Imperial/Medieval/Locations/Imperial-Remnant.ogg
+    - /Audio/Imperial/Medieval/Locations/Safety-for-our-people.ogg
+    - /Audio/Imperial/Medieval/Locations/Honorable-assignment.ogg
+
+- type: soundCollection
+  id: AmbienceMedievalInsurgencyTown
+  files:
+    - /Audio/Imperial/Medieval/Locations/We-rebelled.ogg
+    - /Audio/Imperial/Medieval/Locations/We-had-no-choice.ogg
+    - /Audio/Imperial/Medieval/Locations/Rebel's-life.ogg
+    - /Audio/Imperial/Medieval/Locations/Northtown.ogg
+
+- type: soundCollection
+  id: AmbienceMedievalVillage
+  files:
+    - /Audio/Imperial/Medieval/Locations/Come-to-my-village.ogg
+    - /Audio/Imperial/Medieval/Locations/Sounds-of-prosperity.ogg
+
+- type: soundCollection
+  id: AmbienceMedievalMyrmex
+  files:
+    - /Audio/Imperial/Medieval/Locations/Serve-the-Terra.ogg
+
+- type: soundCollection
+  id: AmbienceMedievalMine
+  files:
+    - /Audio/Imperial/Medieval/LobbyMusic/Gremlin-(new).ogg
+    - /Audio/Imperial/Medieval/Locations/Embark-in-to-the-dark.ogg
+
+- type: soundCollection
+  id: AmbienceMedievalSwamp
+  files:
+    - /Audio/Imperial/Medieval/Locations/Watch-your-step.ogg
 
 - type: soundCollection
   id: AmbienceMedievalSands
   files:
-    - /Audio/Imperial/Medieval/Locations/Thoughtsofamummy.ogg
-    - /Audio/Imperial/Medieval/Locations/Sandwalk.ogg
+    - /Audio/Imperial/Medieval/Locations/Sandwalk-(new).ogg
+    - /Audio/Imperial/Medieval/Locations/Mummy's-thoughts-(new).ogg
 
 - type: soundCollection
   id: AmbienceMedievalTribe
   files:
-    - /Audio/Imperial/Medieval/Locations/Crab-Lagoon.ogg
+    - /Audio/Imperial/Medieval/Locations/Trbal-trial.ogg
 
 - type: soundCollection
   id: AmbienceMedievalGoblin
   files:
-    - /Audio/Imperial/Medieval/Locations/Gremlin.ogg
+    - /Audio/Imperial/Medieval/Locations/Full-pockets.ogg
 
 - type: soundCollection
   id: AmbienceMedievalDark
   files:
-    - /Audio/Imperial/Medieval/Locations/Dark-times-ahead.ogg
+    - /Audio/Imperial/Medieval/Locations/Fear-the-ghosts.ogg
+    - /Audio/Imperial/Medieval/Locations/One-wrong-step.ogg
+    - /Audio/Imperial/Medieval/Locations/The-dark-we-conquer.ogg
 
 - type: soundCollection
   id: AmbienceMedievalMage
@@ -63,10 +103,31 @@
 - type: soundCollection
   id: AmbienceMedievalHell
   files:
-    - /Audio/Imperial/Medieval/Locations/Laststandofspellward.ogg
-    - /Audio/Imperial/Medieval/Locations/Laststandofspellward2.ogg
+    - /Audio/Imperial/Medieval/Locations/We-will-be-back.ogg
+    - /Audio/Imperial/Medieval/Locations/Infernal-Overture.ogg
 
 
+- type: ambientMusic
+  id: MedievalLegionTown
+  sound:
+    params:
+      volume: -10
+    collection: AmbienceMedievalLegionTown
+  rules: NearLegionTown
+  priority: 4
+  fadeIn: true
+  interruptable: true
+
+- type: ambientMusic
+  id: MedievalInsurgencyTown
+  sound:
+    params:
+      volume: -10
+    collection: AmbienceMedievalInsurgencyTown
+  rules: NearInsurgencyTown
+  priority: 4
+  fadeIn: true
+  interruptable: true
 
 - type: ambientMusic
   id: MedievalLegion
@@ -86,6 +147,50 @@
       volume: -10
     collection: AmbienceMedievalInsurgency
   rules: NearInsurgency
+  priority: 4
+  fadeIn: true
+  interruptable: true
+
+- type: ambientMusic
+  id: MedievalMine
+  sound:
+    params:
+      volume: -10
+    collection: AmbienceMedievalMine
+  rules: NearMine
+  priority: 4
+  fadeIn: true
+  interruptable: true
+
+- type: ambientMusic
+  id: MedievalVillage
+  sound:
+    params:
+      volume: -10
+    collection: AmbienceMedievalVillage
+  rules: NearVillage
+  priority: 4
+  fadeIn: true
+  interruptable: true
+
+- type: ambientMusic
+  id: MedievalMyrmex
+  sound:
+    params:
+      volume: -10
+    collection: AmbienceMedievalMyrmex
+  rules: NearMyrmex
+  priority: 4
+  fadeIn: true
+  interruptable: true
+
+- type: ambientMusic
+  id: MedievalSwamp
+  sound:
+    params:
+      volume: -10
+    collection: AmbienceMedievalSwamp
+  rules: NearSwamp
   priority: 4
   fadeIn: true
   interruptable: true
@@ -153,6 +258,77 @@
   rules: NearHell
   priority: 4
   fadeIn: true
+
+
+
+
+
+
+- type: entity
+  name: MedievalAmbientMine
+  id: MedievalAmbientMine
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - sprite: Imperial/Medieval/Markers/cross.rsi
+          state: def
+    - type: MedievalAmbientMine
+
+- type: entity
+  name: MedievalAmbientSwamp
+  id: MedievalAmbientSwamp
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - sprite: Imperial/Medieval/Markers/cross.rsi
+          state: def
+    - type: MedievalAmbientSwamp
+
+- type: entity
+  name: MedievalAmbientVillage
+  id: MedievalAmbientVillage
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - sprite: Imperial/Medieval/Markers/cross.rsi
+          state: def
+    - type: MedievalAmbientVillage
+
+- type: entity
+  name: MedievalAmbientMyrmex
+  id: MedievalAmbientMyrmex
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - sprite: Imperial/Medieval/Markers/cross.rsi
+          state: def
+    - type: MedievalAmbientMyrmex
+
+- type: entity
+  name: MedievalAmbientLegionTown
+  id: MedievalAmbientLegionTown
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - sprite: Imperial/Medieval/Markers/cross.rsi
+          state: def
+    - type: MedievalAmbientLegionTown
+
+- type: entity
+  name: MedievalAmbientInsurgencyTown
+  id: MedievalAmbientInsurgencyTown
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - sprite: Imperial/Medieval/Markers/cross.rsi
+          state: def
+    - type: MedievalAmbientInsurgencyTown
 
 - type: entity
   name: MedievalAmbientLegion

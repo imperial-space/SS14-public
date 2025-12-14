@@ -1,14 +1,20 @@
-using Content.Server.Administration.Logs;
+using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
-using Content.Shared.Friends;
+using Content.Shared.Imperial.Medieval.Factions;
 using Content.Shared.Imperial.Medieval.IdentityManagement;
+using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
+using Content.Shared.Players;
+using Robust.Server.Player;
 using Robust.Shared.Player;
 
 namespace Content.Server.Imperial.Medieval.IdentityManagement;
 
 public sealed class MedievalIdentitySystem : SharedMedievalIdentitySystem
 {
-    [Dependency] private readonly IAdminLogManager _logger = default!;
+    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     private int _nextId = 1;
 
@@ -16,7 +22,7 @@ public sealed class MedievalIdentitySystem : SharedMedievalIdentitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<IdentityRequiresKnowledgeComponent, ComponentInit>(OnComponentInit, before: new[] { typeof(SharedFriendsSystem) });
+        SubscribeLocalEvent<IdentityRequiresKnowledgeComponent, ComponentInit>(OnComponentInit, before: new[] { typeof(SharedMedievalFactionsSystem) });
         SubscribeLocalEvent<IdentityRequiresKnowledgeComponent, PlayerAttachedEvent>(OnPlayerAttached);
     }
 
@@ -25,12 +31,15 @@ public sealed class MedievalIdentitySystem : SharedMedievalIdentitySystem
         component.Identifier = _nextId;
         _nextId++;
         Dirty(uid, component);
-
-        _logger.Add(LogType.EventRan, LogImpact.Low, $"Assigned identity identifier to entity {ToPrettyString(uid)}: {component.Identifier}");
     }
 
     private void OnPlayerAttached(EntityUid uid, IdentityRequiresKnowledgeComponent component, PlayerAttachedEvent args)
     {
-        _logger.Add(LogType.EventRan, LogImpact.Low, $"Player {args.Player.UserId} attached to entity with identity id: {component.Identifier}");
+        if (!_playerManager.TryGetSessionByEntity(uid, out var session))
+            return;
+        var mindUid = session.GetMind();
+        if (!TryComp<MindComponent>(mindUid, out var mind))
+            return;
+        _adminLogger.Add(LogType.EventRan, LogImpact.Low, $"Player {session.Name} attached to entity with identity id: {component.Identifier}");
     }
 }

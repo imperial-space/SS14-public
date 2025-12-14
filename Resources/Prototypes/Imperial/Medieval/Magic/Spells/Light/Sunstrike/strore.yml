@@ -1,0 +1,45 @@
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellSunstrikeMiddle
+  name: medieval-store-spells-light-sunstrike-middle-name
+  description: medieval-store-spells-light-sunstrike-middle-desc
+  productAction: MedievalActionSunstrikeMiddle
+  productUpgradeId:
+    - MedievalSpellSunstrikeSenior
+  priority: 6
+  icon:
+    sprite: Imperial/Medieval/Magic/Light/Sunstrike/icons.rsi
+    state: middle
+  cost:
+    MagicMedievalLight: 50
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellSunstrikeSenior
+  name: medieval-store-spells-light-sunstrike-senior-name
+  description: medieval-store-spells-light-sunstrike-senior-desc
+  productUpgradeId:
+    - MedievalSpellSunstrikeSenior
+  priority: 6
+  icon:
+    sprite: Imperial/Medieval/Magic/Light/Sunstrike/icons.rsi
+    state: senior
+  cost:
+    MagicMedievalLight: 80
+    ArchmagePoints: 1
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    requiredPurchases:
+      - MedievalSpellSunstrikeMiddle
+      - MedievalSpellFireWallMiddle

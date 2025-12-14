@@ -292,6 +292,15 @@
       time: 108 # 00 RETURN AFTER STRESSTEST0
 
 - type: loadoutEffectGroup
+  id: TradersTimer50hours
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Traders
+      time: 180 # 00 RETURN AFTER STRESSTEST0
+
+- type: loadoutEffectGroup
   id: MedievalTimer10hours
   effects:
   - !type:JobRequirementLoadoutEffect

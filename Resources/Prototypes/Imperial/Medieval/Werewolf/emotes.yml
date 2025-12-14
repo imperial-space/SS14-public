@@ -1,0 +1,70 @@
+- type: emoteSounds
+  id: Werewolf
+  # imperial medieval "pitch delete"
+  sounds:
+    Scream:
+      collection: MaleScreamsZveres
+    Laugh:
+      collection: MaleLaughZveres
+    Sneeze:
+      collection: MaleSneezes
+    Cough:
+      collection: MaleCoughs
+    CatMeow:
+      collection: CatMeows
+    CatHisses:
+      collection: CatHisses
+    MonkeyScreeches:
+      collection: MonkeyScreeches
+    RobotBeep:
+      collection: RobotBeeps
+    Yawn:
+      collection: MaleYawn
+    Snore:
+      collection: Snores
+    Honk:
+      collection: BikeHorn
+    Sigh:
+      collection: MaleSigh
+    Crying:
+      collection: MaleCry
+    Whistle:
+      collection: Whistles
+    Weh:
+      collection: Weh
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: MaleDeathZveres
+    Dreaminess:
+      collection: MaleDreaminess
+    Questioning:
+      collection: MaleQuestioning
+    Warcry:
+      collection: MaleWarcry
+    Charge:
+      collection: MaleCharge
+    Woo:
+      collection: MaleWoo
+    PainScream:
+      collection: MaleScreamsZveres
+    PassiveScream:
+      collection: MaleScreamsZveres
+    Howl:
+      collection: WerewolfHowl
+
+- type: emote
+  id: Howl
+  name: chat-emote-name-howl
+  category: Vocal
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-howl"]
+  available: false
+  chatTriggers:
+    - воет
+    - воет!

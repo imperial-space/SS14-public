@@ -5,14 +5,14 @@
   name: medieval-store-spells-fire-magic-arrow-beginner-name
   description: medieval-store-spells-fire-magic-arrow-beginner-desc
   productAction: MedievalActionMagicArrowBeginner
-  priority: 6
+  priority: 5
   productUpgradeId:
     - MedievalSpellMagicArrowCursorFolloverBeginner
     - MedievalSpellMagicArrowPlayerFolloverBeginner
     - MedievalSpellMagicArrowKunaiBeginner
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+    state: beginner
   cost:
     MagicMedievalFire: 15
   categories:

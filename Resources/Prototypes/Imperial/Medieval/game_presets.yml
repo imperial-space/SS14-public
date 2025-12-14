@@ -1,0 +1,71 @@
+- type: gamePreset
+  id: Medieval
+  alias:
+  - medieval
+  name: medieval-title
+  showInVote: true
+  description: medieval-description
+  rules:
+  - TDM
+  - MedievalStatsCounter
+  - MedievalFactionGoalsRule
+
+- type: gamePreset
+  id: MedievalDevelop
+  alias:
+  - medievaldevelop
+  name: medieval-title
+  showInVote: false
+  description: medieval-description
+
+- type: gamePreset
+  id: MedievalMyrmex
+  alias:
+  - medievalmyrmex
+  name: medieval-myrmex-title
+  showInVote: true
+  description: medieval-myrmex-description
+  rules:
+  - TDM
+  - Myrmex
+  - MedievalStatsCounter
+  - MedievalFactionGoalsRule
+
+- type: gamePreset
+  id: MedievalSkeletron
+  alias:
+  - medievalskeletron
+  name: medieval-skeletron-title
+  description: medieval-skeletron-description
+  showInVote: true
+  rules:
+  - TDM
+  - MedievalStatsCounter
+  - MedievalSkeletonInvasionRule
+  - MedievalFactionGoalsRule
+
+- type: gamePreset
+  id: MedievalPlague
+  alias:
+  - medievalmyrmex
+  name: medieval-plague-title
+  showInVote: true
+  description: medieval-plague-description
+  rules:
+  - TDM
+  - MedievalPlague
+  - MedievalStatsCounter
+  - MedievalFactionGoalsRule
+
+- type: gamePreset
+  id: MedievalWerewolves
+  alias:
+  - medievalwerewolf
+  name: medieval-werewolf-title
+  showInVote: true
+  description: medieval-werewolf-description
+  rules:
+  - TDM
+  - MedievalWerewolves
+  - MedievalStatsCounter
+  - MedievalFactionGoalsRule

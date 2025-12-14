@@ -33,34 +33,34 @@ public sealed partial class ImperialStoreComponent : Component
     public Dictionary<string, FixedPoint2> Balance = [];
 
     /// <summary>
-    /// If set and 'DepositCount' is not zero then 'LastDepositSum' will replace the 'Balance', otherwise they will be added together.
+    /// If set and 'BonusCount' is not zero then 'BonusSum' will replace the 'Balance', otherwise they will be added together.
     /// </summary>
-    public bool BalanceOverride = false;
+    public bool BonusBalanceOverride = false;
 
     /// <summary>
-    /// Length of the 'LastDeposits'. If it's equal to zero then 'LastDeposits' will be empty and all of the deposits will be directly added to the balance.
+    /// Length of the 'Bonuses'. If it's equal to zero then they will be empty.
     /// </summary>
     [DataField]
-    public int DepositCount
+    public int BonusCount
     {
-        set => Array.Resize(ref LastDeposits, value);
-        get => LastDeposits.Length;
+        set => Array.Resize(ref Bonuses, value);
+        get => Bonuses.Length;
     }
 
     /// <summary>
-    /// Last modified index inside of the 'LastDeposits'. Required to replace old deposits.
+    /// Last modified index inside of the 'Bonuses'.
     /// </summary>
-    public int LastDepositIndex;
+    public int LastBonusIndex;
 
     /// <summary>
-    /// Last deposits.
+    /// Bonuses which are regularly added to the balance. Max amount of bonuses is limited by 'BonusCount' so when adding a new bonus it will replace the oldest one.
     /// </summary>
-    public Dictionary<string, FixedPoint2>[] LastDeposits = [];
+    public Dictionary<string, FixedPoint2>[] Bonuses = [];
 
     /// <summary>
-    /// Sum of the last deposits.
+    /// Sum of the bonuses.
     /// </summary>
-    public Dictionary<string, FixedPoint2> LastDepositSum = [];
+    public Dictionary<string, FixedPoint2> BonusSum = [];
 
     /// <summary>
     /// All the listing categories that are available on this store.

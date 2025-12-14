@@ -1,0 +1,16 @@
+- type: entity
+  id: FireFetterSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/fetter.rsi
+    color: "#FF4500"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 1
+    color: "#FF4500"
+  - type: TimedDespawn
+    lifetime: 2.0

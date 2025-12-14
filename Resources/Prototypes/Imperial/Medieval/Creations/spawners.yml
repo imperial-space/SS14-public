@@ -1,0 +1,12 @@
+- type: entity
+  parent: MarkerBase
+  id: RandomCreationsPainting
+  name: random custom painting spawner
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Wallmounts/paintings.rsi
+        state: painting6
+  - type: RandomCreationsPainting
+    paintingPrototype: CanvasPoster

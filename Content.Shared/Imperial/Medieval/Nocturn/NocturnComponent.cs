@@ -77,10 +77,10 @@ namespace Content.Shared.Nocturn.Components
             }
         };
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSoundOnDrink = "/Audio/Imperial/Medieval/drink_blood.ogg";
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSoundOnDisguise = "/Audio/Magic/Eldritch/voidblink.ogg";
 
         [DataField]

@@ -34,7 +34,7 @@ namespace Content.Server.BadSmell.Components
         [DataField("reloadTime")]
         public TimeSpan ReloadTime = TimeSpan.FromSeconds(30f);
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSound = "/Audio/Imperial/Medieval/bad_smell_effect.ogg";
         public ProtoId<AlertPrototype> SmellAlert = "BadSmell";
     }

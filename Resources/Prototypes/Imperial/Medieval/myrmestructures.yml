@@ -151,6 +151,10 @@
   components:
   - type: Physics
     bodyType: Static
+  - type: ReplaceFloorOnSpawn
+    replaceableTiles:
+    replacementTiles:
+    - MedievalMyrmexFloor2
   - type: Damageable
   - type: Destructible
     thresholds:
@@ -378,16 +382,20 @@
   - type: HealOnBuckle
     damage:
       groups:
-        Brute: -0.5
-        Burn: -0.5
-        Airloss: -1.6
+        Brute: -1.5
+        Burn: -1.5
+        Airloss: -4.8
       types:
-        Poison: -0.2
-        Caustic: -0.1
-        Radiation: -0.2
+        Poison: -0.6
+        Caustic: -0.3
+        Radiation: -0.6
   - type: Construction
     graph: MMyrmexBed
     node: medievalMyrmexBed
+  - type: ReplaceFloorOnSpawn
+    replaceableTiles:
+    replacementTiles:
+    - MedievalMyrmexFloor2
 
 - type: entity
   parent: IngotBase
@@ -491,11 +499,16 @@
   - type: Construction
     graph: MRecycler
     node: medievalMyrmexRecycler
+  - type: ReplaceFloorOnSpawn
+    replaceableTiles:
+    replacementTiles:
+    - MedievalMyrmexFloor2
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/blub2.ogg"
     recipes:
     - MedievalMyrmexResourceYant
     - MedievalMyrmexFibeStack5
+    - MedievalMyrmexResourceGum
 
 - type: entity
   id: MedievalMyrmexToxicHole
@@ -512,12 +525,27 @@
       shader: unshaded
   - type: Physics
     bodyType: Static
-    canCollide: false
   - type: InteractionOutline
   - type: Clickable
   - type: Appearance
   - type: Transform
     anchored: true
+  - type: DamageContacts
+    damage:
+      types:
+        Caustic: 5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.24,-0.24,0.24,0.24"
+        layer:
+          - SlipLayer
+        mask:
+          - ItemMask
+        density: 1000
+        hard: false
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
@@ -532,3 +560,83 @@
   - type: Construction
     graph: MToxicHole
     node: medievalMyrmexToxicHole
+
+- type: entity
+  parent: BaseLadder
+  id: MedievalMyrmexBigHole
+  name: big hole
+  description: it's a BIG hole.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ReplaceFloorOnSpawn
+    replaceableTiles:
+    replacementTiles:
+    - MedievalMyrmexFloor2
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/Structures/myrmex_hole.rsi
+    state: icon
+    drawdepth: FloorObjects
+  - type: Appearance
+  - type: Transform
+    anchored: true
+  - type: Construction
+    graph: MBigHole
+    node: medievalMyrmexBigHole
+  - type: Ladder
+    activationTime: 4
+  - type: MyrmexHole
+    entrance: false
+
+- type: entity
+  parent: MedievalMyrmexBigHole
+  id: MedievalMyrmexBigHoleExit
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: MyrmexHole
+    entrance: true
+
+- type: entity
+  parent: CP14BaseWorkbench
+  id: MedievalMyrmexIncubator
+  name: incubator
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/Structures/incubator.rsi
+    state: icon
+  - type: Appearance
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepWood
+  - type: Transform
+    anchored: true
+  - type: Pullable
+  - type: CP14Workbench
+    craftSound: "/Audio/Imperial/Medieval/blub2.ogg"
+    recipes:
+      - MedievalMyrmexCurseClot
+  - type: Construction
+    graph: MMyrmexIncubatorCraft
+    node: medievalMyrmexIncubator

@@ -17,5 +17,5 @@ public sealed partial class BellMapComponent : Component
     public TimeSpan? LastRingTime;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float Cooldown = 30f; //Default cooldown of 30 seconds.
+    public float Cooldown = 5f; //Default cooldown of 5 seconds.
 }

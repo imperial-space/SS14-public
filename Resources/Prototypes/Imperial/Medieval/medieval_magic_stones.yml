@@ -1,0 +1,90 @@
+- type: entity
+  id: MedievalReliefStoneWeak
+  parent: BaseItem
+  name: ent-MedievalReliefStoneWeak
+  description: ent-MedievalReliefStoneWeak.desc
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/reliefstone.rsi
+    state: standart
+  - type: Item
+    size: Tiny
+  - type: RDWeight
+    value: -3
+  - type: Currency
+    price:
+      Revent: 90
+  - type: MedievalCurrency
+    price:
+      Revent: 90
+
+- type: entity
+  id: MedievalReliefStoneStrong
+  parent: BaseItem
+  name: ent-MedievalReliefStoneStrong
+  description: ent-MedievalReliefStoneStrong.desc
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/reliefstone.rsi
+    state: good
+  - type: Item
+    size: Small
+  - type: RDWeight
+    value: -7.5
+  - type: Currency
+    price:
+      Revent: 180
+  - type: MedievalCurrency
+    price:
+      Revent: 180
+
+- type: entity
+  id: MedievalAntiGravitationStone
+  parent: BaseItem
+  name: ent-MedievalAntiGravitationStone
+  description: ent-MedievalAntiGravitationStone.desc
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/reliefstone.rsi
+    state: antigravitation
+  - type: Item
+    size: Normal
+  - type: RDWeight
+    value: -25
+  - type: Currency
+    price:
+      Revent: 350
+  - type: MedievalCurrency
+    price:
+      Revent: 350
+
+# Crafting recipes (Magic blacksmith)
+- type: CP14Recipe
+  id: MedievalReliefStoneWeakCraft
+  result: MedievalReliefStoneWeak
+  stacks:
+    MedievalForstoneIngot: 1
+    MedievalGold: 1
+    MedievalAdam: 1
+
+- type: CP14Recipe
+  id: MedievalReliefStoneStrongCraft
+  result: MedievalReliefStoneStrong
+  stacks:
+    MedievalForstoneIngot: 2
+    MedievalGold: 3
+    MedievalAdam: 2
+    MedievalTopaz: 1
+
+- type: CP14Recipe
+  id: MedievalAntiGravitationStoneCraft
+  result: MedievalAntiGravitationStone
+  stacks:
+    MedievalForstoneIngot: 3
+    MedievalEbonitIngot: 1
+    MedievalGold: 5
+    MedievalAdam: 3
+    MedievalTopaz: 2
+    MedievalFireSerdolick: 2
+
+

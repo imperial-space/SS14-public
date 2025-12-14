@@ -1,5 +1,6 @@
 <paper:PaperWindow xmlns="https://spacestation14.io"
     xmlns:paper="clr-namespace:Content.Client.Paper.UI"
+    xmlns:imp="clr-namespace:Content.Client.Imperial.Medieval.UserInterface.Elements"
     MouseFilter="Stop" Resizable="True" MinSize="150 150"
     SetSize="510 660"> <!-- Provide some reasonable sizes by default. Can be changed by the component -->
 
@@ -25,9 +26,17 @@
                         <TextureButton Name="FooterImage" HorizontalAlignment="Center" VerticalAlignment="Top" MouseFilter="Ignore"/>
                     </BoxContainer>
                     <paper:StampCollection Name="StampDisplay" VerticalAlignment="Bottom" Margin="6"/>
-
                 </PanelContainer>
             </ScrollContainer>
+            <!-- Imperial Medieval Start -->
+            <BoxContainer Orientation="Vertical" VerticalAlignment="Bottom" >
+                <RichTextLabel StyleClasses="PaperWrittenText" Name="RelationsLabel" HorizontalAlignment="Center" />
+                <BoxContainer Name="RelationsContainer" Orientation="Horizontal" SetHeight="46" Margin="4">
+                    <imp:BorderedButton Name="AcceptRelation" Text="{Loc 'paper-ui-faction-relations-accept'}" BackgroundColor="#3cd604ff" HorizontalExpand="True" />
+                    <imp:BorderedButton Name="DeclineRelation" Text="{Loc 'paper-ui-faction-relations-decline'}" BackgroundColor="#ff002fff" HorizontalExpand="True" />
+                </BoxContainer>
+            </BoxContainer>
+            <!-- Imperial Medieval End -->
         </PanelContainer>
         <!-- Bottom buttons for editing -->
         <BoxContainer Name="EditButtons" Orientation="Horizontal" HorizontalAlignment="Right" Margin="6">

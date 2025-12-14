@@ -73,6 +73,13 @@ public abstract class MedievalSharedTimedDespawnSystem : EntitySystem
                         break;
                 }
             }
+            if (check)
+            {
+                if (_players.TryGetSessionByEntity(uid, out _))
+                {
+                    check = false;
+                }
+            }
             if (!check)
             {
                 comp.Lifetime = comp.OriginalLifeTime;

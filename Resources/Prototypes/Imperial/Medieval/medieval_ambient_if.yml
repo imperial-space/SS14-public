@@ -19,6 +19,66 @@
       #count: 2
 
 - type: rules
+  id: NearLegionTown
+  rules:
+    - !type:NearbyComponentsRule
+      components:
+        - type: MedievalAmbientLegionTown
+      range: 8
+      anchored: false
+      #count: 2
+
+- type: rules
+  id: NearInsurgencyTown
+  rules:
+    - !type:NearbyComponentsRule
+      components:
+        - type: MedievalAmbientInsurgencyTown
+      range: 8
+      anchored: false
+      #count: 2
+
+- type: rules
+  id: NearVillage
+  rules:
+    - !type:NearbyComponentsRule
+      components:
+        - type: MedievalAmbientVillage
+      range: 8
+      anchored: false
+      #count: 2
+
+- type: rules
+  id: NearMyrmex
+  rules:
+    - !type:NearbyComponentsRule
+      components:
+        - type: MedievalAmbientMyrmex
+      range: 8
+      anchored: false
+      #count: 2
+
+- type: rules
+  id: NearMine
+  rules:
+    - !type:NearbyComponentsRule
+      components:
+        - type: MedievalAmbientMine
+      range: 8
+      anchored: false
+      #count: 2
+
+- type: rules
+  id: NearSwamp
+  rules:
+    - !type:NearbyComponentsRule
+      components:
+        - type: MedievalAmbientSwamp
+      range: 8
+      anchored: false
+      #count: 2
+
+- type: rules
   id: NearSands
   rules:
     - !type:NearbyComponentsRule

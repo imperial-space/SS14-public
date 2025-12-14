@@ -1,0 +1,159 @@
+- type: entity
+  id: MedievalActionSpawnSkeletBeginner
+  name: medieval-store-spells-darkness-spawn-skelet-beginner-name
+  description: medieval-store-spells-darkness-spawn-skelet-beginner-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.00085
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalDarkness: 1
+        bonusEssences:
+          MagicMedievalDarkness: 1
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/Effects/spike-spawn.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Darkness/SpawnSkelet/icons.rsi
+      state: beginner
+  - type: TargetAction
+    range: 20
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalSpellMobSpawnerMedievalSpawnerSkeletonSpawnerWeak
+      spawnType: SpawnOnMousePosition
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-spawn-skelet
+          color: "#B277FF"
+          hideChat: true
+      spellCastDoAfter:
+        delay: 1
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+  - type: ManaDrainSpell
+    manaDrain: 20
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 19
+  - type: SpellCastEffect
+    effectProto: SpawnSkeletSpellCastEffectBeginner
+  - type: ActionUpgrade
+    effectedLevels:
+      2: MedievalActionSpawnSkeletMiddle
+      3: MedievalActionSpawnSkeletSenior
+
+- type: entity
+  id: MedievalActionSpawnSkeletMiddle
+  parent: MedievalActionSpawnSkeletBeginner
+  name: medieval-store-spells-darkness-spawn-skelet-middle-name
+  description: medieval-store-spells-darkness-spawn-skelet-middle-desc
+  components:
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/Effects/spike-spawn.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Darkness/SpawnSkelet/icons.rsi
+      state: middle
+  - type: TargetAction
+    range: 20
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalSpellMobSpawnerMedievalSpawnerSkeletonSpawnerMeat
+      spawnType: SpawnOnMousePosition
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-spawn-skelet
+          color: "#B277FF"
+          hideChat: true
+      spellCastDoAfter:
+        delay: 1
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+  - type: ManaDrainSpell
+    manaDrain: 35
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 19
+
+- type: entity
+  id: MedievalActionSpawnSkeletSenior
+  parent: MedievalActionSpawnSkeletBeginner
+  name: medieval-store-spells-darkness-spawn-skelet-senior-name
+  description: medieval-store-spells-darkness-spawn-skelet-senior-desc
+  components:
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/Effects/spike-spawn.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Darkness/SpawnSkelet/icons.rsi
+      state: senior
+  - type: TargetAction
+    range: 20
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalSpellMobSpawnerMedievalSpawnerSkeletonSpawnerFighter
+      spawnType: SpawnOnMousePosition
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-spawn-skelet
+          color: "#B277FF"
+          hideChat: true
+      spellCastDoAfter:
+        delay: 1
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+  - type: ManaDrainSpell
+    manaDrain: 50
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 19
+
+- type: entity
+  id: MedievalSpellMobSpawnerMedievalSpawnerSkeletonSpawnerWeak
+  name: spell mob spawn weak skelet
+  parent: MedievalLateMobSpawnerBase
+  components:
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobSkeletWeak
+
+- type: entity
+  id: MedievalSpellMobSpawnerMedievalSpawnerSkeletonSpawnerMeat
+  name: spell mob spawn Meat skelet
+  parent: MedievalLateMobSpawnerBase
+  components:
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobSkeletMeat
+
+- type: entity
+  id: MedievalSpellMobSpawnerMedievalSpawnerSkeletonSpawnerFighter
+  name: spell mob spawn Fighter skelet
+  parent: MedievalLateMobSpawnerBase
+  components:
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobSkeletFighter

@@ -21,6 +21,7 @@
     categories:
     - MedievalInsWeapon
     - MedievalInsArmor
+    - MedievalInsTransport
     currencyWhitelist:
     - MedalIns
     balance:
@@ -39,6 +40,11 @@
   id: MedievalInsArmor
   name: medieval-category-armor
   priority: 1
+
+- type: storeCategory
+  id: MedievalInsTransport
+  name: medieval-category-transport
+  priority: 2
 
 - type: currency
   id: MedalIns
@@ -210,10 +216,42 @@
   - MedievalInsWeapon
 
 - type: listing
+  id: MdvInsMedievalIronClaymore
+  productEntity: MedievalIronClaymore
+  cost:
+    MedalIns: 4
+  categories:
+  - MedievalInsWeapon
+
+- type: listing
+  id: MdvInsMedievalIronClaymoreSteel
+  productEntity: MedievalIronClaymoreSteel
+  cost:
+    MedalIns: 10
+  categories:
+  - MedievalInsWeapon
+
+- type: listing
+  id: MdvInsMedievalIronZweihander
+  productEntity: MedievalIronZweihander
+  cost:
+    MedalIns: 4
+  categories:
+  - MedievalInsWeapon
+
+- type: listing
+  id: MdvInsMedievalIronZweihanderSteel
+  productEntity: MedievalIronZweihanderSteel
+  cost:
+    MedalIns: 10
+  categories:
+  - MedievalInsWeapon
+
+- type: listing
   id: MdvInsMedievalIronSekir
   productEntity: MedievalIronSekir
   cost:
-    MedalIns: 3
+    MedalIns: 4
   categories:
   - MedievalInsWeapon
 
@@ -245,7 +283,15 @@
   id: MdvInsMedievalCatapultCraft
   productEntity: MedievalCatapultCraft
   cost:
-    MedalIns: 30
+    MedalIns: 15
+  categories:
+  - MedievalInsWeapon
+
+- type: listing
+  id: MdvInsMedievalCavalerySpearT3
+  productEntity: MedievalCavalerySpearT3
+  cost:
+    MedalIns: 5
   categories:
   - MedievalInsWeapon
 
@@ -377,5 +423,60 @@
   categories:
   - MedievalInsArmor
 
+- type: listing
+  id: MdvInsMedievalHorseWhistle
+  productEntity: MedievalHorseWhistle
+  cost:
+    MedalIns: 18
+  categories:
+  - MedievalInsTransport
+
+- type: listing
+  id: MdvInsMedievalBlackHorseWhistle
+  productEntity: MedievalBlackHorseWhistle
+  cost:
+    MedalIns: 22
+  categories:
+  - MedievalInsTransport
+
+- type: listing
+  id: MdvInsMedievalBlackSpotHorseWhistle
+  productEntity: MedievalBlackSpotHorseWhistle
+  cost:
+    MedalIns: 8
+  categories:
+  - MedievalInsTransport
+
+- type: listing
+  id: MdvInsMedievalBlackWhiteHorseWhistle
+  productEntity: MedievalBlackWhiteHorseWhistle
+  cost:
+    MedalIns: 13
+  categories:
+  - MedievalInsTransport
+
+- type: listing
+  id: MdvInsMedievalGreyHorseWhistle
+  productEntity: MedievalGreyHorseWhistle
+  cost:
+    MedalIns: 15
+  categories:
+  - MedievalInsTransport
+
+- type: listing
+  id: MdvInsMedievalWhiteHorseWhistle
+  productEntity: MedievalWhiteHorseWhistle
+  cost:
+    MedalIns: 18
+  categories:
+  - MedievalInsTransport
+
+- type: listing
+  id: MdvInsMedievalWhiteRoyalHorseWhistle
+  productEntity: MedievalWhiteRoyalHorseWhistle
+  cost:
+    MedalIns: 40
+  categories:
+  - MedievalInsTransport
 
 

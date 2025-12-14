@@ -185,6 +185,7 @@
     actions:
       - MedievalActionMagicArrowCursorFolloverBeginner
       - MedievalActionDivineTouchBeginner
+  - type: NrpIgnore
 
 - type: startingGear
   id: MedievalRespawnPlayer

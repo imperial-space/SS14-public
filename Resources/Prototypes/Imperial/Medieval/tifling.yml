@@ -116,7 +116,42 @@
     sprite: Imperial/Medieval/Species/Tifling/parts.rsi
     state: "r_foot"
 
-#2
+- type: marking
+  id: TiflingHornsOne
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Tifling]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Tifling/horns.rsi
+    state: horn1
+
+- type: marking
+  id: TiflingHornsTwo
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Tifling]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Tifling/horns.rsi
+    state: horn2
+
+- type: marking
+  id: TiflingHornsThree
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Tifling]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Tifling/horns.rsi
+    state: horn3
+
+- type: marking
+  id: TiflingHornsFour
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Tifling]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Tifling/horns.rsi
+    state: horn4
+
 - type: damageModifierSet
   id: Tifling
   coefficients:
@@ -292,6 +327,10 @@
     regenRaceModifier: 1.07
   - type: NeedSleep
     sleepLevelPerUpdate: 0.32
+  - type: Wagging
+  - type: AddActionOnSpawn
+    actions:
+      - MedievalActionSparkBeginner
 
 - type: entity
   parent: BaseSpeciesDummy
@@ -323,10 +362,21 @@
   id: TiflingTailSmooth
   bodyPart: Tail
   markingCategory: Tail
+  followSkinColor: true
   speciesRestriction: [Tifling]
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/tails.rsi
     state: tail_smooth_primary
+
+- type: marking
+  id: TiflingTailSmoothAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  followSkinColor: true
+  speciesRestriction: []
+  sprites:
+  - sprite: Imperial/Medieval/Species/Tifling/tails.rsi
+    state: tail_smooth_wagging
 
 - type: marking
   id: TiflingChestPlatesOne
@@ -425,10 +475,10 @@
   roundStart: true
   prototype: MobTifling
   sprites: MobTiflingSprites
-  defaultSkinTone: "#34a223"
+  defaultSkinTone: "#ffffff"
   markingLimits: MobTiflingMarkingLimits
   dollPrototype: MobTiflingDummy
-  skinColoration: TintedHues
+  skinColoration: TiflingColors
   maleFirstNames: NamesReptilianMale
   femaleFirstNames: NamesReptilianFemale
   naming: FirstDashFirst
@@ -468,8 +518,9 @@
       required: true
       defaultMarkings: [ TiflingTailSmooth ]
     HeadTop:
-      points: 2
-      required: false
+      points: 1
+      required: true
+      defaultMarkings: [ TiflingHornsOne ]
     HeadSide:
       points: 1
       required: false

@@ -1,0 +1,12 @@
+- type: factionIcon
+  id: MedievalLycantropy
+  priority: 11
+  showToSelf: true
+  showTo:
+    components:
+    - Lycantropy
+    - Werewolf
+    - ShowAntagIcons
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/Werewolf/status_icon.rsi
+    state: werewolf

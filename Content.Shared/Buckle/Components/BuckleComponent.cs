@@ -126,6 +126,17 @@ public record struct UnbuckleAttemptEvent(
     public bool Cancelled;
 }
 
+// imperial medieval riding start
+/// <summary>
+/// Event raised directed at a buckle entity before it has been buckled.
+/// </summary>
+[ByRefEvent]
+public record struct BeforeBuckledEvent(Entity<StrapComponent> Strap, Entity<BuckleComponent> Buckle)
+{
+    public bool Cancelled;
+}
+// imperial medieval riding end
+
 /// <summary>
 /// Event raised directed at a strap entity after something has been buckled to it.
 /// </summary>

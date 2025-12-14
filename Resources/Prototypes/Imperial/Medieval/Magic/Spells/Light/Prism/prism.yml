@@ -1,0 +1,102 @@
+- type: hitscan
+  id: MedievalMagicBeam
+  damage:
+    types:
+      Heat: 1
+  muzzleFlash:
+    sprite: Imperial/Medieval/Magic/beam.rsi
+    state: muzzle_laser
+  travelFlash:
+    sprite: Imperial/Medieval/Magic/beam.rsi
+    state: beam
+  impactFlash:
+    sprite: Imperial/Medieval/Magic/beam.rsi
+    state: impact_laser
+
+- type: entity
+  id: MedievalMagicWeaponPrism
+  parent: BaseItem
+  components:
+  - type: TimedDespawn
+    lifetime: 8
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/prism.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Huge
+  - type: Gun
+    fireRate: 15
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+    fireCost: 50
+  - type: Battery
+    maxCharge: 2500
+    startingCharge: 2500
+  - type: HitscanBatteryAmmoProvider
+    proto: MedievalMagicBeam
+  - type: Appearance
+
+- type: entity
+  id: MedievalMagicWeaponBeam
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/magic_beam.rsi
+    layers:
+    - state: base
+  - type: AddActionOnUse
+    actionId: MedievalActionMagicBeam
+
+- type: entity
+  id: MedievalActionMagicBeam
+  name: medieval-store-spells-light-prism-name
+  description: medieval-store-spells-light-prism-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.00085
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalLight: 1
+        bonusEssences:
+          MagicMedievalLight: 1
+  - type: ManaDrainSpell
+    manaDrain: 25
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 10
+  - type: MedievalInstantSpell
+  - type: Action
+    useDelay: 20
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/touch_summon.ogg
+    icon:
+      sprite: Imperial/Medieval/Gun/prism.rsi
+      state: base
+  - type: InstantAction
+    event: !type:MedievalSpawnInHandSpellEvent
+      spawnedEntityPrototype: MedievalMagicWeaponPrism
+      spellCastDoAfter:
+        delay: 3.5
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        breakOnDamage: true
+        needHand: true
+        speedModifier: 1
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-prism
+          color: "#FFE57E"
+          hideChat: true
+  - type: MedievalSpawnOnlyInFreeHands

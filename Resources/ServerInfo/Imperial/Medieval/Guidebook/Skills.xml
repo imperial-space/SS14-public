@@ -1,0 +1,21 @@
+<Document>
+  # Навыки
+
+  <Box Orientation="Horizontal">
+    <GuideEntityEmbed Entity="GuidebookAgility" Margin="24 4" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookStrength" Margin="24 4" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookVitality" Margin="24 4" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookEndurance" Margin="24 4" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookIntelligence" Margin="24 4" Caption=""/>
+  </Box>
+
+  Навыки - это показатели, определяющие способности вашего персонажа в различных областях. Уровень навыков влияет на эффективность вашего персонажа в соответствующих действиях и взаимодействиях.
+
+  Навыки делятся на пять основных категорий:
+  - Ловкость
+  - Сила
+  - Живучесть
+  - Выносливость
+  - Интеллект
+
+</Document>

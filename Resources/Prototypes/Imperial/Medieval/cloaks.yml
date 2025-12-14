@@ -406,6 +406,100 @@
 
 - type: entity
   parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakPurple
+  name: purple cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/purple.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakGreenKnight
+  name: cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/greenknight.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakGreenKnightLegion
+  name: cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/greenknight_legion.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakGreenKnightMerc
+  name: cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/greenknight_merc.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakGreenKnightCollegia
+  name: cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/greenknight_mage.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakBib
+  name: cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/bib_neck.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakArtur
+  name: cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/artur_neck.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakKonnor
+  name: cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/konnor_neck.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakAskalSkeleton
+  name: cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/closed_cape.rsi
+  - type: Insulated
+  - type: ToggleableClothing
+    clothingPrototype: ClothingMedievalHeadHatHoodCloakAskalSkeleton
+    requiredSlot:
+    - neck
+
+- type: entity
+  parent: ClothingNeckBase
   id: MedievalClothingNeckCloakCivGrey
   name: grey cloak
   description: A cloak to distinguish allies.
@@ -422,6 +516,16 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Cloaks/redcloak.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakCivOrange
+  name: red cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/orangecloak.rsi
   - type: Insulated
 
 - type: entity
@@ -486,6 +590,16 @@
 
 - type: entity
   parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakDarkBlueGold
+  name: red cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/darkbluegold.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
   id: MedievalClothingNeckRoyalCloak
   name: red cloak
   description: A cloak to distinguish allies.
@@ -503,3 +617,50 @@
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Cloaks/royalcloakalt.rsi
   - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakTraderFox
+  name: blue cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/traderfox.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakTraderLegionEagle
+  name: blue cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/tradereagle.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakViking
+  name: blue cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/viking.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakSpookyVendigo
+  name: blue cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/spookyvendigo.rsi
+  - type: Insulated
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide

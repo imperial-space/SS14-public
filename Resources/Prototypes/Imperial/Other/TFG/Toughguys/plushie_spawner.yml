@@ -7,8 +7,8 @@
     - type: Sprite
       layers:
         - state: red
-        - sprite: Objects/Fun/toys.rsi
-          state: plushie_h
+        - sprite: Objects/Fun/Plushies/bee.rsi
+          state: icon
     - type: RandomSpawner
       rarePrototypes:
         - PlushieCPGift
@@ -20,6 +20,7 @@
         - PlushieBMGift
       rareChance: 0.15
       prototypes:
+        - PlushiePassenger
         - PlushieCapitan
         - PlushieChemist
         - PlushieCP
@@ -43,12 +44,15 @@
         - PlushieErika
         - PlushieAiden
         - PlushieKainov
-        - PlushieIsaac
         - PlushieSavir
         - PlushieKarner
+        - PlushieVenya
+        - PlushieAid
+        - PlushieZevs
 # CentCom plushies...
         - PlushieYesenia
         - PlushieBM
         - PlushieCSCC
+        - PlushieClaud
       chance: 0.75
       offset: 0.10

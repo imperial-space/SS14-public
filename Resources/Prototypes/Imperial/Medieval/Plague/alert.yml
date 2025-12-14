@@ -1,0 +1,26 @@
+- type: alert
+  id: MedievalPlaguePoints
+  category: Health
+  icons:
+  - sprite: /Textures/Imperial/Medieval/Interface/Plague/points_counter.rsi
+    state: background
+  alertViewEntity: MedievalAlertPlagueSpriteView
+  name: alerts-plague-points-name
+  description: alerts-plague-points-desc
+
+- type: entity
+  id: MedievalAlertPlagueSpriteView
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GenericCounterAlert
+    centerGlyph: false
+    hideLeadingZeroes: false
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/Interface/Plague/points_counter.rsi
+    layers:
+    - map: [ "enum.AlertVisualLayers.Base" ]
+    - map: [ "1" ]
+      offset: 0.25, 0
+    - map: [ "10" ]
+      offset: 0.125, 0
+    - map: [ "100" ]

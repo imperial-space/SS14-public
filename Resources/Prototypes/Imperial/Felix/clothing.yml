@@ -213,6 +213,42 @@
   - type: Sprite
     sprite: Imperial/Felix/Clothing/neck/guard_cloak.rsi
 
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckFelixGreenMedal
+  name: medal
+  description: medal
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Medals/Imperial/ver1.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Objects/Medals/Imperial/ver1.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckFelixSilverMedal
+  name: medal
+  description: medal
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Medals/Imperial/ver2.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Objects/Medals/Imperial/ver2.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckFelixSapphireMedal
+  name: medal
+  description: medal
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Medals/RMK/ver3.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Objects/Medals/RMK/ver3.rsi
+
 # Униформа
 - type: entity
   parent: ClothingUniformBase
@@ -334,7 +370,10 @@
         Cold: 0.95
         Radiation: 0.85
         Caustic: 0.85
-        Stamina: 0.6
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.6
+  # Imperial Space Stamina Resistance End
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -344,7 +383,7 @@
   id: ClothingHeadHelmetHardsuitRegularForce
   name: Regular Force spacesuit helmet
   suffix: Felix
-  description: 
+  description:
   components:
   - type: Armor
     modifiers:
@@ -390,7 +429,10 @@
         Cold: 0.85
         Radiation: 0.85
         Caustic: 0.85
-        Stamina: 0.6
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.6
+  # Imperial Space Stamina Resistance End
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1.1
@@ -400,7 +442,7 @@
   id: ClothingHeadHelmetHardsuitRegularForceMedic
   name: medic spacesuit helmet
   suffix: Felix
-  description: 
+  description:
   components:
   - type: Armor
     modifiers:
@@ -446,7 +488,10 @@
         Heat: 0.65
         Cold: 0.85
         Shock: 0.6
-        Stamina: 0.6
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.6
+  # Imperial Space Stamina Resistance End
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -456,7 +501,7 @@
   id: ClothingHeadHelmetHardsuitRegularForceGuard
   name: guardsman's spacesuit helmet
   suffix: Felix
-  description: 
+  description:
   components:
   - type: Armor
     modifiers:
@@ -500,7 +545,10 @@
         Piercing: 0.95
         Heat: 0.95
         Cold: 0.95
-        Stamina: 0.6
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.6
+  # Imperial Space Stamina Resistance End
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -510,7 +558,7 @@
   id: ClothingHeadHelmetHardsuitRegularForcePilot
   name: pilot spacesuit helmet
   suffix: Felix
-  description: 
+  description:
   components:
   - type: Armor
     modifiers:
@@ -540,8 +588,8 @@
     parent: true
     components:
     - type: Stealth
-      minVisibility: -10 
-      lastVisibility: -1 
+      minVisibility: -10
+      lastVisibility: -1
       maxVisibility: 1
   - type: Item
     size: Large
@@ -567,7 +615,10 @@
         Shock: 0.55
         Radiation: 0.55
         Caustic: 0.55
-        Stamina: 0.6
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.6
+  # Imperial Space Stamina Resistance End
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1.2
@@ -577,7 +628,7 @@
   id: ClothingHeadHelmetHardsuitRegularForceAssassin
   name: assassin spacesuit helmet
   suffix: Felix
-  description: 
+  description:
   components:
   - type: Armor
     modifiers:

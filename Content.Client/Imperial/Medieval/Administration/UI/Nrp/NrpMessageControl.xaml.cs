@@ -4,19 +4,26 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Network;
+using Content.Shared.IdentityManagement;
+using Content.Shared.Imperial.Medieval.Administration.Nrp;
 
 namespace Content.Client.Imperial.Medieval.Administration.UI.Nrp;
 
 [GenerateTypedNameReferences]
 public sealed partial class NrpMessageControl : Control
 {
-    public NrpMessageControl(string playerCKey, NetUserId playerId, string message)
+    public NrpMessageControl(NrpMessage message)
     {
         RobustXamlLoader.Load(this);
 
-        PlayerInformation.Text = $"[color=white]{playerCKey}[/color]";
-        Message.SetMarkup(message);
-        AHelp.Command = $"openahelp \"{playerId}\"";
+        var info = $"[color=red][{message.Violations}][/color] [color=white]{message.PlayerName}[/color] - [color=white]{message.EntityName}[/color]";
+        var job = $", {message.JobName}";
+
+        var infoText = info + (string.IsNullOrEmpty(message.JobName) ? "" : job);
+
+        PlayerInformation.Text = infoText;
+        Message.SetMarkup(message.Message);
+        AHelp.Command = $"openahelp \"{message.PlayerId}\"";
     }
 
     public Button ResolveRpButton => ResolveRP;

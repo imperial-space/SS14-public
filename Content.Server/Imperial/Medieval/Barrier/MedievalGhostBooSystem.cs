@@ -5,6 +5,8 @@ using Robust.Shared.Network;
 using Content.Shared.Actions;
 using Content.Server.MagicBarrier.Components;
 using Content.Server.SpikeTrap.Components;
+using Content.Server.Imperial.Medieval.GameTicking.Rules;
+using Content.Shared.Imperial.Medieval.GameTicking.Rules;
 
 namespace Content.Server.MedievalGhost;
 public partial class MedievalGhostBooSystem : EntitySystem
@@ -33,7 +35,7 @@ public partial class MedievalGhostBooSystem : EntitySystem
         var xform = Transform(args.Performer);
         var coords = xform.Coordinates;
         Spawn("MedievalGhostWind", coords);
-        foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
+        foreach (var barrier in EntityManager.EntityQuery<RoundStatCounterRuleComponent>())
         {
             barrier.GhostBoo++;
         }
@@ -47,9 +49,9 @@ public partial class MedievalGhostBooSystem : EntitySystem
             if (uid != args.Performer)
             {
                 _popup.PopupEntity("Вы чувствуете дуновение ветра", uid, uid, PopupType.LargeCaution);
-                if (HasComp<MedievalSpikeTargetComponent>(uid))
+                if (HasComp<AffectRoundStatsComponent>(uid))
                 {
-                    foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
+                    foreach (var barrier in EntityManager.EntityQuery<RoundStatCounterRuleComponent>())
                     {
                         barrier.GhostBooPlayers++;
                     }

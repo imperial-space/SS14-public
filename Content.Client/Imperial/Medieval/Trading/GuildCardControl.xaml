@@ -1,0 +1,15 @@
+﻿<Control xmlns="https://spacestation14.io" MinSize="200 200">
+    <Button MaxWidth="194" StyleClasses="ButtonSquare" Name="GuildButton" HorizontalExpand="True" VerticalExpand="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5">
+        <PanelContainer>
+            <BoxContainer Orientation="Vertical">
+                <TextureRect Name="GuildIcon" Margin="5" Stretch="KeepAspectCentered" HorizontalExpand="True" VerticalExpand="True" HorizontalAlignment="Stretch" TexturePath="/Textures/deprecated.rsi/deprecated.png"></TextureRect>
+                <RichTextLabel HorizontalAlignment="Center" Name="GuildName"/>
+                <Label StyleClasses="LabelSmall" Name="GuildType" Modulate="#AAAAAA" HorizontalAlignment="Center" Text=""></Label>
+            </BoxContainer>
+        </PanelContainer>
+    </Button>
+    <PanelContainer Margin="5" Name="ReputationBarContainer" SetWidth="6" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+        <TextureRect HorizontalExpand="True" Stretch="Scale" VerticalAlignment="Stretch" Modulate="#000000" VerticalExpand="True" TexturePath="/Textures/Imperial/Medieval/Interface/Trading/progressbar.png"></TextureRect>
+        <TextureRect HorizontalExpand="True" Name="ReputationBar" Stretch="Scale" VerticalAlignment="Bottom" SetHeight="0" Modulate="#00FF00" TexturePath="/Textures/Imperial/Medieval/Interface/Trading/progressbar.png"></TextureRect>
+    </PanelContainer>
+</Control>

@@ -8,8 +8,8 @@
   productUpgradeId:
     - MedievalSpellMagicArrowCursorFolloverMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+    state: beginner-cursor
   cost:
     MagicMedievalFire: 25
   categories:
@@ -53,8 +53,8 @@
   productUpgradeId:
     - MedievalSpellMagicArrowCursorFolloverSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-    state: 2
+    sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+    state: middle-cursor
   cost:
     MagicMedievalFire: 50
   categories:
@@ -96,8 +96,8 @@
   productUpgradeId:
     - MedievalSpellMagicArrowCursorFolloverSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+    state: senior-cursor
   cost:
     MagicMedievalFire: 80
     ArchmagePoints: 1

@@ -1,0 +1,241 @@
+- type: entity
+  parent: Smoke
+  id: SummonSmoke
+  name: smoke
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Smoke
+    duration: 6
+    spreadAmount: 5
+
+- type: entity
+  parent: BaseItem
+  id: MedievalIceDragonTablet
+  name: tablet
+  description: summon dragon
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/items.rsi
+    layers:
+      - state: icetablet
+      - state: icetablet-unshaded
+        shader: unshaded
+  - type: Item
+    size: Normal
+  - type: MedievalSummonOnUse
+    entitySummoned: MedievalBossIceDragon
+    sound:
+      path: /Audio/Imperial/Medieval/Effects/crystal.ogg
+
+- type: entity
+  parent: BaseItem
+  id: MedievalFireDragonTablet
+  name: tablet
+  description: summon dragon
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/items.rsi
+    layers:
+      - state: firetablet
+      - state: firetablet-unshaded
+        shader: unshaded
+  - type: Item
+    size: Normal
+  - type: MedievalSummonOnUse
+    entitySummoned: MedievalBossFireDragon
+    sound:
+      path: /Audio/Imperial/Medieval/Effects/crystal.ogg
+
+- type: entity
+  parent: BaseItem
+  id: MedievalAcidDragonTablet
+  name: tablet
+  description: summon dragon
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/items.rsi
+    layers:
+      - state: acidtablet
+      - state: acidtablet-unshaded
+        shader: unshaded
+  - type: Item
+    size: Normal
+  - type: MedievalSummonOnUse
+    entitySummoned: MedievalBossAcidDragon
+    sound:
+      path: /Audio/Imperial/Medieval/Effects/crystal.ogg
+
+- type: entity
+  parent: BaseItem
+  id: MedievalThunderDragonTablet
+  name: tablet
+  description: summon dragon
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/items.rsi
+    layers:
+      - state: thundertablet
+      - state: thundertablet-unshaded
+        shader: unshaded
+  - type: Item
+    size: Normal
+  - type: MedievalSummonOnUse
+    entitySummoned: MedievalBossThunderDragon
+    sound:
+      path: /Audio/Imperial/Medieval/Effects/crystal.ogg
+
+- type: entity
+  name: MedievalLoot
+  parent: BaseItem
+  id: MedievalDragonLootIcescale
+  description: MedievalLoot
+  components:
+  - type: RDWeight
+    value: 3
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/items.rsi
+    state: icescale
+  - type: Currency
+    price:
+      Revent: 75
+  - type: MedievalCurrency
+    price:
+      Revent: 75
+  - type: Item
+    size: Normal
+  - type: Tag
+    tags:
+      - MonsterLoot
+
+- type: entity
+  name: MedievalLoot
+  parent: MedievalDragonLootIcescale
+  id: MedievalDragonLootFirescale
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    state: firescale
+
+- type: entity
+  name: MedievalLoot
+  parent: MedievalDragonLootIcescale
+  id: MedievalDragonLootAcidscale
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    state: acidscale
+
+- type: entity
+  name: MedievalLoot
+  parent: MedievalDragonLootIcescale
+  id: MedievalDragonLootThunderscale
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    state: thunderscale
+
+- type: entity
+  name: MedievalLoot
+  parent: BaseItem
+  id: MedievalDragonLootBones
+  description: MedievalLoot
+  components:
+  - type: RDWeight
+    value: 4
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/items.rsi
+    state: bones
+  - type: Currency
+    price:
+      Revent: 80
+  - type: MedievalCurrency
+    price:
+      Revent: 80
+  - type: Item
+    size: Normal
+  - type: Tag
+    tags:
+      - MonsterLoot
+
+- type: entity
+  name: MedievalLoot
+  parent: BaseItem
+  id: MedievalDragonLootTrueFireEssence
+  description: MedievalLoot
+  components:
+  - type: RDWeight
+    value: 1
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/items.rsi
+    state: truefire
+    shader: unshaded
+  - type: Currency
+    price:
+      Revent: 150
+  - type: MedievalCurrency
+    price:
+      Revent: 150
+  - type: Item
+    size: Small
+  - type: Tag
+    tags:
+      - MonsterLoot
+
+- type: entity
+  name: MedievalLoot
+  parent: MedievalDragonLootTrueFireEssence
+  id: MedievalDragonLootTrueWaterEssence
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    state: truewater
+    shader: unshaded
+
+- type: entity
+  name: MedievalLoot
+  parent: MedievalDragonLootTrueFireEssence
+  id: MedievalDragonLootTrueAirEssence
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    state: trueair
+    shader: unshaded
+
+- type: entity
+  name: MedievalLoot
+  parent: MedievalDragonLootTrueFireEssence
+  id: MedievalDragonLootTrueEarthEssence
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    state: trueearth
+    shader: unshaded
+
+- type: entity
+  name: the nuclear option
+  description: Please don't throw it, think of the children.
+  parent: NuclearGrenade
+  id: MedievalDragonQuantEssence
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/quantessence.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+      shader: unshaded
+  - type: TimerTrigger
+    beepSound:
+      path: "/Audio/Imperial/Medieval/Effects/crystal.ogg"
+    delay: 10
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Imperial/Medieval/quant_readiness.ogg
+  - type: AmbientSound
+    volume: -15
+    range: 2
+    sound:
+      path: /Audio/Ambience/Objects/light_hum.ogg

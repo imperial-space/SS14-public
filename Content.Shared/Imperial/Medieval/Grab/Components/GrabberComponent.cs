@@ -9,7 +9,8 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.Medieval.Grab.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent]
+[AutoGenerateComponentState(true, true)]
 public sealed partial class GrabberComponent : Component
 {
     /// <summary>

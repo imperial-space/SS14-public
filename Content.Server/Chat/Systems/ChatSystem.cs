@@ -5,10 +5,8 @@ using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
-using Content.Server.Players.RateLimiting;
-using Content.Server.Speech.Prototypes;
 using Content.Server.Speech.EntitySystems;
-using Content.Server.Station.Components;
+using Content.Server.Speech.Prototypes;
 using Content.Server.Station.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
@@ -22,6 +20,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Players;
 using Content.Shared.Players.RateLimiting;
 using Content.Shared.Radio;
+using Content.Shared.Station.Components;
 using Content.Shared.Whitelist;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
@@ -67,11 +66,6 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly LanguageSystem _language = default!;  // imperial medieval Languages
     [Dependency] private readonly SponsorsManager _sponsorsManager = default!;
 
-    public const int VoiceRange = 10; // how far voice goes in world units
-    public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
-    public const int WhisperMuffledRange = 5; // how far whisper goes at all, in world units
-    public const string DefaultAnnouncementSound = "/Audio/Imperial/Medieval/horn.ogg"; // Imperial Medieval
-    public const string CentComAnnouncementSound = "/Audio/Corvax/Announcements/centcomm.ogg"; // Corvax-Announcements
     private bool _loocEnabled = true;
     private bool _deadLoocEnabled;
     private bool _critLoocEnabled;
@@ -181,7 +175,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool checkRadioPrefix = true,
         bool ignoreActionBlocker = false,
         Color? color = null,                // Impreial Medieval Magic
-        LanguagePrototype? language = null  // imperial medieval Languages
+        LanguagePrototype? language = null,  // imperial medieval Languages
+        bool checkNrp = true // imperial medieval nrp
         )
     {
         if (HasComp<GhostComponent>(source))
@@ -257,7 +252,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         switch (desiredType)
         {
             case InGameICChatType.Speak:
-                SendEntitySpeak(source, message, range, nameOverride, hideLog, ignoreActionBlocker, color, language);  // imperial medieval Languages
+                SendEntitySpeak(source, message, range, nameOverride, hideLog, ignoreActionBlocker, color, language, checkNrp);  // imperial medieval Languages & nrp
                 break;
             case InGameICChatType.Whisper:
                 SendEntityWhisper(source, message, range, null, nameOverride, hideLog, ignoreActionBlocker, color, language);  // imperial medieval Languages
@@ -338,8 +333,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         _chatManager.ChatMessageToAll(ChatChannel.Radio, message, wrappedMessage, default, false, true, colorOverride);
         if (playSound)
         {
-            if (sender == Loc.GetString("admin-announce-announcer-default")) announcementSound = new SoundPathSpecifier(CentComAnnouncementSound); // Corvax-Announcements: Support custom alert sound from admin panel
-            _audio.PlayGlobal(announcementSound == null ? DefaultAnnouncementSound : _audio.ResolveSound(announcementSound), Filter.Broadcast(), true, AudioParams.Default.WithVolume(-2f));
+            if (sender == Loc.GetString("admin-announce-announcer-default")) announcementSound = CentComAnnouncementSound; // Corvax-Announcements: Support custom alert sound from admin panel
+            _audio.PlayGlobal(announcementSound ?? DefaultAnnouncementSound, Filter.Broadcast(), true, AudioParams.Default.WithVolume(-2f));
         }
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Global station announcement from {sender}: {message}");
     }
@@ -369,7 +364,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source ?? default, false, true, colorOverride);
         if (playSound)
         {
-            _audio.PlayGlobal(announcementSound?.ToString() ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
+            _audio.PlayGlobal(announcementSound ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
         }
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement from {sender}: {message}");
     }
@@ -401,7 +396,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
         }
 
-        if (!EntityManager.TryGetComponent<StationDataComponent>(station, out var stationDataComp)) return;
+        if (!TryComp<StationDataComponent>(station, out var stationDataComp)) return;
 
         var filter = _stationSystem.GetInStation(stationDataComp);
 
@@ -409,7 +404,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (playDefaultSound)
         {
-            _audio.PlayGlobal(announcementSound?.ToString() ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
+            _audio.PlayGlobal(announcementSound ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
         }
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement on {station} from {sender}: {message}");
@@ -427,7 +422,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool hideLog = false,
         bool ignoreActionBlocker = false,
         Color? color = null, // Impreial Medieval Magic
-        LanguagePrototype? language = null  // imperial medieval languages
+        LanguagePrototype? language = null,  // imperial medieval languages
+        bool checkNrp = true // imperial medieval nrp
         )
     {
         // if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)    // imperial medieval Commented
@@ -467,7 +463,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             RaiseLocalEvent(source, nameEv);
             name = nameEv.VoiceName;
             // Check for a speech verb override
-            if (nameEv.SpeechVerb != null && _prototypeManager.TryIndex(nameEv.SpeechVerb, out var proto))
+            if (nameEv.SpeechVerb != null && _prototypeManager.Resolve(nameEv.SpeechVerb, out var proto))
                 speech = proto;
         }
 
@@ -486,7 +482,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (language.LanguageType.RaiseEvent)
         {
-            var ev = new EntitySpokeEvent(source, resultMessage, language, null, null);  // imperial medieval message => resultMessage
+            var ev = new EntitySpokeEvent(source, resultMessage, language, null, null, checkNrp: checkNrp);  // imperial medieval message => resultMessage
             RaiseLocalEvent(source, ev, true);
         }
         // imperial medieval Languages end
@@ -629,8 +625,10 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("entity", ent),
             ("message", FormattedMessage.RemoveMarkupOrThrow(action)));
 
-        if (checkEmote)
-            TryEmoteChatInput(source, action);
+        if (checkEmote &&
+            !TryEmoteChatInput(source, action))
+            return;
+
         SendIdentityEmote(FormattedMessage.RemoveMarkupOrThrow(action), source, range, author); // Imperial medieval identity
         //SendInVoiceRange(ChatChannel.Emotes, action, wrappedMessage, wrappedMessage, source, range, author, ignoreLanguage: true);  // imperial medieval commented
         if (!hideLog)
@@ -882,8 +880,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         return message;
     }
 
-    [ValidatePrototypeId<ReplacementAccentPrototype>]
-    public const string ChatSanitize_Accent = "chatsanitize";
+    public static readonly ProtoId<ReplacementAccentPrototype> ChatSanitize_Accent = "chatsanitize";
 
     public string SanitizeMessageReplaceWords(string message)
     {
@@ -1025,8 +1022,9 @@ public sealed class EntitySpokeEvent : EntityEventArgs
     public RadioChannelPrototype? Channel;
     public readonly LanguagePrototype Language;  // imperial medieval languages
     public readonly bool Whisper;                // imperial medieval languages
+    public readonly bool CheckNrp;               // imperial medieval nrp
 
-    public EntitySpokeEvent(EntityUid source, string message, LanguagePrototype language, RadioChannelPrototype? channel, string? obfuscatedMessage, bool whisper = false)  // imperial medieval languages tweaked
+    public EntitySpokeEvent(EntityUid source, string message, LanguagePrototype language, RadioChannelPrototype? channel, string? obfuscatedMessage, bool whisper = false, bool checkNrp = true)  // imperial medieval languages tweaked
     {
         Source = source;
         Message = message;
@@ -1034,6 +1032,7 @@ public sealed class EntitySpokeEvent : EntityEventArgs
         ObfuscatedMessage = obfuscatedMessage;
         Language = language;    // imperial medieval languages
         Whisper = whisper;      // imperial medieval languages
+        CheckNrp = checkNrp; // imperial medieval nrp
     }
 }
 

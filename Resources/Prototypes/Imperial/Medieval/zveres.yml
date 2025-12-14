@@ -199,6 +199,7 @@
     sleepLevelPerUpdate: 0.36
   - type: BadSmellRaceModifier
     modifier: 1.35
+  - type: Wagging
   - type: Damageable
     damageModifierSet: Zveres
   - type: LocalLight
@@ -231,7 +232,7 @@
   sprites: MobZveresSprites
   markingLimits: MobZveresMarkingLimits
   dollPrototype: MobZveresDummy
-  skinColoration: Hues
+  skinColoration: MoonwolfColors
   defaultSkinTone: "#5f5f5f"
 
 - type: speciesBaseSprites

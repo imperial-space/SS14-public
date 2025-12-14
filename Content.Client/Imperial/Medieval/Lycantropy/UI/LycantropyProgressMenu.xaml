@@ -1,0 +1,70 @@
+<DefaultWindow
+    xmlns="https://spacestation14.io"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
+    xmlns:lyc="clr-namespace:Content.Client.Imperial.Medieval.Lycantropy.UI"
+    Title="{Loc 'lycantropy-menu-title'}"
+    MinSize="1000 650"
+    SetSize="1000 650"
+    Resizable="False" >
+    <BoxContainer
+        HorizontalExpand="True"
+        Orientation="Vertical"
+        SizeFlagsStretchRatio="4"
+        VerticalExpand="True">
+        <BoxContainer
+            HorizontalExpand="True"
+            Orientation="Horizontal"
+            SizeFlagsStretchRatio="1"
+            VerticalExpand="True">
+            <Button
+                Name="Recenter"
+                Margin="4"
+                StyleClasses="ButtonSquare"
+                Text="Центрировать"/>
+            <RichTextLabel
+                Name="PointsCounter"
+                Margin="4 0" />
+            <TextureButton Name="Info" Scale="0.5 0.5"
+                           VerticalAlignment="Center"
+                           SetSize="32 32"
+                           Margin="4"
+                           TexturePath="/Textures/Interface/VerbIcons/information.svg.192dpi.png"
+                           MouseFilter="Stop"/>
+        </BoxContainer>
+        <PanelContainer
+            Name="Panel"
+            Margin="4"
+            HorizontalExpand="True"
+            RectClipContent="True"
+            SizeFlagsStretchRatio="10"
+            VerticalExpand="True"
+            MouseFilter="Pass">
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat
+                    BackgroundColor="#141414FF"
+                    BorderColor="#00000000"
+                    BorderThickness="2" />
+            </PanelContainer.PanelOverride>
+            <lyc:LycantropyLayout
+                Name="Abilities"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                HorizontalExpand="True"
+                VerticalExpand="True" />
+            <PanelContainer
+                Margin="-2"
+                HorizontalExpand="True"
+                VerticalExpand="True">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat
+                        BackgroundColor="#00000000"
+                        BorderColor="#e8e8e8FF"
+                        BorderThickness="2" />
+                </PanelContainer.PanelOverride>
+            </PanelContainer>
+        </PanelContainer>
+    </BoxContainer>
+</DefaultWindow>

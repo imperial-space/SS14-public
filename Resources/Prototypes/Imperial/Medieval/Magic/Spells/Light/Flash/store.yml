@@ -5,12 +5,12 @@
   name: medieval-store-spells-light-flash-beginner-name
   description: medieval-store-spells-light-flash-beginner-desc
   productAction: MedievalActionFlashBeginner
-  priority: 1
+  priority: 3
   productUpgradeId:
     - MedievalSpellFlashMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/flash.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/Light/Flash/icons.rsi
+    state: beginner
   cost:
     MagicMedievalLight: 15
   categories:
@@ -25,12 +25,12 @@
   id: MedievalSpellFlashMiddle
   name: medieval-store-spells-light-flash-middle-name
   description: medieval-store-spells-light-flash-middle-desc
-  priority: 1
+  priority: 3
   productUpgradeId:
     - MedievalSpellFlashMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/flash.rsi
-    state: 2
+    sprite: Imperial/Medieval/Magic/Light/Flash/icons.rsi
+    state: middle
   cost:
     MagicMedievalLight: 40
   categories:

@@ -7,16 +7,18 @@
   description: medieval-store-spells-fire-magic-arrow-player-follover-beginner-desc
   components:
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 8
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-      state: 3
+      sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+      state: beginner-aim
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalHomingProjectilesSpellEvent
       projectilePrototype: MedievalProjectileMagicArrowPlayerFolloverBeginner
       relativeAngle: 90
@@ -35,13 +37,16 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.35
+        essenceAddProbability: 0.00035
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalFire1: 1
+          MagicMedievalFire: 1
+        bonusEssences:
+          MagicMedievalFire: 1
   - type: DamageTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.25
+        probability: 0.00025
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -49,7 +54,7 @@
         addedEssences:
           MagicMedievalFire1: 1
       - !type:AddMagicEssence
-        probability: 0.3
+        probability: 0.0003
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -75,16 +80,18 @@
   description: medieval-store-spells-fire-magic-arrow-player-follover-middle-desc
   components:
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 10
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-      state: 2
+      sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+      state: middle-aim
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalHomingProjectilesSpellEvent
       projectilePrototype: MedievalProjectileMagicArrowPlayerFolloverMiddle
       relativeAngle: 90
@@ -103,13 +110,16 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.4
+        essenceAddProbability: 0.0004
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalFire1: 1
+          MagicMedievalFire: 1
+        bonusEssences:
+          MagicMedievalFire: 1
   - type: DamageTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.25
+        probability: 0.00025
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -117,7 +127,7 @@
         addedEssences:
           MagicMedievalFire1: 1
       - !type:AddMagicEssence
-        probability: 0.3
+        probability: 0.0003
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -144,16 +154,18 @@
   description: medieval-store-spells-fire--magic-arrow-player-follover-senior-desc
   components:
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 13
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-      state: 1
+      sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+      state: senior-aim
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalHomingProjectilesSpellEvent
       projectilePrototype: MedievalProjectileMagicArrowPlayerFolloverSenior
       relativeAngle: 90
@@ -179,13 +191,16 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.45
+        essenceAddProbability: 0.00045
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalFire1: 1
+          MagicMedievalFire: 1
+        bonusEssences:
+          MagicMedievalFire: 1
   - type: DamageTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.2
+        probability: 0.0002
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -193,7 +208,7 @@
         addedEssences:
           MagicMedievalFire1: 1
       - !type:AddMagicEssence
-        probability: 0.3
+        probability: 0.0003
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:

@@ -1,0 +1,8 @@
+﻿<DefaultWindow
+  xmlns="https://spacestation14.io"
+  Title="{Loc painting-window-title}" MinSize="600 600"
+  xmlns:paintings="clr-namespace:Content.Client.Imperial.Medieval.PlayerCreations.Paintings">
+  <BoxContainer Orientation="Vertical">
+      <TextureRect Name="PaintingTexture" HorizontalExpand="True" VerticalExpand="True" Stretch="KeepAspectCentered"/>
+  </BoxContainer>
+</DefaultWindow>

@@ -1,0 +1,32 @@
+- type: entity
+  id: MedievalActionMagicCrow
+  name: medieval-store-spells-magic-crow-name
+  description: medieval-store-spells-magic-crow-desc
+  components:
+  - type: MedievalInstantSpell
+  - type: Action
+    useDelay: 40
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/buff_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Mobs/crow.rsi
+      state: crow
+  - type: InstantAction
+    event: !type:MedievalInstantSpawnEvent
+      spawnedEntityPrototype: MedievalMagicCrowFollower
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-crow
+          color: "#b3ae9e"
+          hideChat: true
+  - type: MedievalSpellRandomRelativeSpawn
+    maxSpawnRadius: 2
+    minSpawnRadius: 1
+  - type: ManaDrainSpell
+    manaDrain: 0
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 5

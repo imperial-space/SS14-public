@@ -1,0 +1,76 @@
+<DefaultWindow
+    xmlns="https://spacestation14.io"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:plague="clr-namespace:Content.Client.Imperial.Medieval.Plague.UI"
+    Title="{Loc 'plague-menu-title'}"
+    MinSize="1000 650"
+    SetSize="1000 650"
+    Resizable="False">
+    <BoxContainer Orientation="Vertical"
+                HorizontalExpand="True"
+                VerticalExpand="True"
+                SizeFlagsStretchRatio="4">
+        <BoxContainer Margin="4"
+                    Orientation="Horizontal"
+                    HorizontalExpand="True"
+                    VerticalExpand="True"
+                    SizeFlagsStretchRatio="1">
+            <Button Name="InfoButton"
+                    Text="Info"
+                    HorizontalAlignment="Left"
+                    StyleClasses="ButtonSquare"
+                    SetHeight="48"
+                    SetWidth="64"
+                    Margin="0 0 16 0"/>
+            <controls:StripeBack MinSize="52 52" HorizontalExpand="True">
+                <BoxContainer Name="ModesContainer"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Stretch"
+                            MinSize="52 52"
+                            Margin="5">
+                    <Button Name="ActionsMode"
+                            Text="Действия"
+                            ToggleMode="True"
+                            VerticalExpand="True"
+                            HorizontalExpand="True"
+                            StyleClasses="ButtonSquare"
+                            Margin="4"/>
+                    <Button Name="SymptomsMode"
+                            Text="Симптомы"
+                            ToggleMode="True"
+                            VerticalExpand="True"
+                            HorizontalExpand="True"
+                            StyleClasses="ButtonSquare"
+                            Margin="4"/>
+                    <Button Name="SpreadMode"
+                            Text="Передача"
+                            ToggleMode="True"
+                            VerticalExpand="True"
+                            HorizontalExpand="True"
+                            StyleClasses="ButtonSquare"
+                            Margin="4"/>
+                </BoxContainer>
+            </controls:StripeBack>
+        </BoxContainer>
+        <TextureRect
+            Name="Texture"
+            HorizontalExpand="True"
+            VerticalExpand="True"
+            TexturePath="/Textures/Imperial/Medieval/Interface/Plague/background.png"
+            Stretch="KeepAspectCentered"
+            SizeFlagsStretchRatio="8"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            TextureScale="4 4" >
+            <plague:MedievalPlagueSymptomsLayout
+                Name="Layout"
+                HorizontalExpand="True"
+                VerticalExpand="True"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
+        </TextureRect>
+    </BoxContainer>
+</DefaultWindow>

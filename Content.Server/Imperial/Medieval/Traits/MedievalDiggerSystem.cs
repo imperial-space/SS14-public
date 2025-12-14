@@ -6,6 +6,8 @@ using Content.Shared.Inventory;
 using Content.Server.SpikeTrap.Components;
 using Content.Server.MagicBarrier.Components;
 using Content.Shared.Weapons.Melee.Events;
+using Content.Server.Imperial.Medieval.GameTicking.Rules;
+using Content.Shared.Imperial.Medieval.GameTicking.Rules;
 
 namespace Content.Server.MedievalDigger
 {
@@ -23,10 +25,10 @@ namespace Content.Server.MedievalDigger
 
         public void OnAttack(EntityUid uid, MedievalDiggerInstrumentComponent component, MeleeHitEvent args)
         {
-            if (TryComp<MedievalSpikeTargetComponent>(args.User, out var player))
+            if (TryComp<AffectRoundStatsComponent>(args.User, out var player))
             {
                 player.Diggs++;
-                foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
+                foreach (var barrier in EntityManager.EntityQuery<RoundStatCounterRuleComponent>())
                 {
                     barrier.TotalDiggs++;
                 }

@@ -304,7 +304,7 @@ public sealed class GrabSystem : EntitySystem
 
     private void OnGrabDoAfter(EntityUid uid, GrabberComponent component, GrabDoAfterEvent args)
     {
-        if(_net.IsClient)
+        if (_net.IsClient)
             return;
 
         if (args.Cancelled || args.Handled)
@@ -363,15 +363,18 @@ public sealed class GrabSystem : EntitySystem
         if (!args.GrabberUid.HasValue)
             return;
 
-        foreach (var hand in component.Hands.Values)
+        foreach (var item in _handsSystem.EnumerateHeld(args.GrabberUid.Value))
         {
-            if (hand.HeldEntity == null
-                || !TryComp(hand.HeldEntity, out VirtualItemComponent? virtualItem)
+            if (!TryComp(item, out VirtualItemComponent? virtualItem)
                 || virtualItem.BlockingEntity != args.GrabbedUid)
                 continue;
 
-            _handsSystem.TryDrop(args.GrabberUid.Value, hand, handsComp: component);
-            break;
+            // Находим руку, в которой находится виртуальный предмет
+            if (_handsSystem.IsHolding(args.GrabberUid.Value, item, out var handId))
+            {
+                _handsSystem.TryDrop(args.GrabberUid.Value, handId);
+                break;
+            }
         }
     }
 

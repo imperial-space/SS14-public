@@ -214,6 +214,24 @@
     state: snout_splotch_secondary
 
 - type: marking
+  id: LizardSnoutVisageRound
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Reptilian]
+  sprites:
+  - sprite: Mobs/Customization/reptilian_parts.rsi
+    state: visage_round
+
+- type: marking
+  id: LizardSnoutVisageSharp
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Reptilian]
+  sprites:
+  - sprite: Mobs/Customization/reptilian_parts.rsi
+    state: visage_sharp
+
+- type: marking
   id: LizardChestTiger
   bodyPart: Chest
   markingCategory: Chest
@@ -370,6 +388,15 @@
       state: tail_smooth_wagging_secondary
 
 - type: marking
+  id: LizardTailLargeAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+  - sprite: Mobs/Customization/reptilian_parts.rsi
+    state: tail_large_wagging
+
+- type: marking
   id: LizardTailSpikesAnimated
   bodyPart: Tail
   markingCategory: Tail
@@ -400,7 +427,7 @@
   id: LizardTailAquaticAnimated
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: []
+  speciesRestriction: [Reptilian]
   sprites:
     - sprite: Mobs/Customization/reptilian_parts.rsi
       state: tail_aquatic_wagging

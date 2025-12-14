@@ -22,7 +22,7 @@ public sealed partial class AdminSkillsMenu : DefaultWindow
 
         foreach (var (skill, level) in skills)
         {
-            var skillEntry = new MiniSkillEntry(proto.Index<SkillPrototype>(skill).Name, level)
+            var skillEntry = new MiniSkillEntry(Loc.GetString(proto.Index<SkillPrototype>(skill).Name), level)
             {
                 HorizontalExpand = true,
             };

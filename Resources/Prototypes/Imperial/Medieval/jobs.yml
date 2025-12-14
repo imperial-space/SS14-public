@@ -1796,6 +1796,7 @@
       regen: 0.4
     - type: MedievalJobSpawn
       spawnType: Default
+    - type: MagicRuneKnowledge
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
@@ -1856,8 +1857,8 @@
     species:
     - Skeleton
     inverted: true
-  #- !type:OverallPlaytimeRequirement
-  #  time: 6000 #Imperial role timers
+  - !type:OverallPlaytimeRequirement
+    time: 6000 #Imperial role timers
   startingGear: MedievalLegionJailedGear
   icon: "JobIconMedievalLegionJailed"
   special:
@@ -1892,9 +1893,9 @@
     species:
     - Skeleton
     inverted: true
-  #  - !type:DepartmentTimeRequirement
-  #    department: Legion
-  #    time: 7200 # Imperial medieval role timers (2 hours)
+  - !type:DepartmentTimeRequirement
+    department: Legion
+    time: 14400 # Imperial medieval role timers
   startingGear: MedievalLegionLegionerGear
   icon: "JobIconMedievalLegionJailer"
   special:
@@ -1902,13 +1903,13 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-leg
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
     #  faction: Legion
     - type: MedievalJobSpawn
-      spawnType: LegionJailer
+      spawnType: Legion
     - type: MedievalPasportPerson
       personJob: "[color=cyan]Тюремщик легиона[/color]"
       pasport: MedievalPasportLegion
@@ -1966,7 +1967,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-leg
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
@@ -2046,9 +2047,9 @@
     species:
     - Skeleton
     inverted: true
-  #- !type:DepartmentTimeRequirement
-  #  department: Legion
-  #  time: 7200 # Imperial medieval role timers (2 hours)
+  - !type:DepartmentTimeRequirement
+    department: Legion
+    time: 14400 # Imperial medieval role timers
   startingGear: MedievalLegionLegionerGear
   icon: "JobIconMedievalLegionLegioner"
   special:
@@ -2056,7 +2057,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-leg
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
@@ -2103,9 +2104,9 @@
     species:
     - Skeleton
     inverted: true
-  #- !type:DepartmentTimeRequirement
-  #  department: Legion
-  #  time: 7200 # Imperial medieval role timers (2 hours)
+  - !type:DepartmentTimeRequirement
+    department: Legion
+    time: 10800 # Imperial medieval role timers
   startingGear: MedievalLegionLegionerGear
   icon: "JobIconMedievalLegionGateman"
   special:
@@ -2113,7 +2114,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-leg
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
@@ -2171,9 +2172,9 @@
     species:
     - Skeleton
     inverted: true
-  #  - !type:DepartmentTimeRequirement
-  #    department: Legion
-  #    time: 36000 # Imperial medieval role timers (10 hours)
+  - !type:DepartmentTimeRequirement
+    department: Legion
+    time: 28800 # Imperial medieval role timers
   startingGear: MedievalLegionOpcionGear
   icon: "JobIconMedievalLegionOpcion"
   special:
@@ -2181,7 +2182,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-leg
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
@@ -2238,9 +2239,9 @@
     species:
     - Skeleton
     inverted: true
-  #  - !type:DepartmentTimeRequirement
-  #    department: Legion
-  #    time: 36000 # Imperial medieval role timers (10 hours)
+  - !type:DepartmentTimeRequirement
+    department: Legion
+    time: 36000 # Imperial medieval role timers
   startingGear: MedievalLegionTribunGear
   icon: "JobIconMedievalLegionTribun"
   special:
@@ -2248,7 +2249,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-leg
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
@@ -2306,9 +2307,9 @@
     species:
     - Skeleton
     inverted: true
-  #  - !type:DepartmentTimeRequirement
-  #    department: Legion
-  #    time: 72000 # Imperial medieval role timers (20 hours)
+  - !type:DepartmentTimeRequirement
+    department: Legion
+    time: 50400 # Imperial medieval role timers
   startingGear: MedievalLegionLegatGear
   icon: "JobIconMedievalLegionLegat"
   special:
@@ -2316,7 +2317,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-leg
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
       menuAccess: Full
@@ -2351,7 +2352,7 @@
   id: MedievalLegionMagGear
   equipment:
     pocket1: MedievalCommsCrystallLeg
-    pocket2: MedievalKeyCargo
+    #pocket2: MedievalKeyCargo
     #back: MedievalClothingBackpackSatchelLeather
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth26
     head: MedievalClothingHeadHelmetCharmerLegion
@@ -2384,9 +2385,9 @@
     - Skeleton
     - Orc
     inverted: true
-  #  - !type:DepartmentTimeRequirement
-  #    department: Legion
-  #    time: 72000 # Imperial medieval role timers (20 hours)
+  - !type:DepartmentTimeRequirement
+    department: Legion
+    time: 28800 # Imperial medieval role timers (20 hours)
   startingGear: MedievalLegionMagGear
   icon: "JobIconMedievalLegionMag"
   special:
@@ -2397,13 +2398,14 @@
     - type: Mana
       maxMana: 140
       regen: 0.4
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
     #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: Legion
+    - type: MagicRuneKnowledge
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
@@ -2437,16 +2439,19 @@
 - type: startingGear
   id: MedievalLegionAlchemicGear
   equipment:
-    pocket1: MedievalCommsCrystallLeg
+    #pocket1: MedievalCommsCrystallLeg
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
-    neck: MedievalClothingNeckCloakClanEagle
+    #neck: MedievalClothingNeckCloakClanEagle
     belt: MedievalAlchemicBelt
-    id: MedievalLeatherKey
+    id: MedievalKeyLegionAlch
   storage:
     back:
     - MedievalChemistryRecipe
     - MedievalChemistryRecipe
     - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalRecipeBook
 
 - type: playTimeTracker
   id: JobMedievalLegionAlchemic
@@ -2470,8 +2475,8 @@
     - Orc
     - Skeleton
     inverted: true
-  #  - !type:OverallPlaytimeRequirement
-  #    time: 36000 #Imperial role timers
+  - !type:OverallPlaytimeRequirement
+    time: 14400 #Imperial role timers
   startingGear: MedievalLegionAlchemicGear
   icon: "JobIconMedievalLegionAlchemic"
   special:
@@ -2479,18 +2484,18 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-leg
-    - type: Friends
-      faction: Legion
-      factionMenuAction: LegionFactionMenuAction
+    # - type: MedievalFactionMember
+    #   faction: Legion
+    #   factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
     #  faction: Insurgency
     - type: MedievalJobSpawn
-      spawnType: Legion
+      spawnType: LegionTrader
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
     - type: MedievalPasportPerson
-      personJob: "[color=red]Алхимик легиона[/color]"
+      personJob: "[color=red]Алхимик южных земель[/color]"
       pasport: MedievalPasportLegion
       jobPrefix: "[АлхимикЛ]"
     - type: MedievalPotionChecker
@@ -2554,7 +2559,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-ins
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
@@ -2629,10 +2634,10 @@
   name: job-name-InsurgencyInsurgencyer-medieval
   description: job-description-InsurgencyInsurgencyer-medieval
   playTimeTracker: JobMedievalInsurgencyInsurgencyer
-  #requirements:
-  #  - !type:DepartmentTimeRequirement
-  #    department: Insurgency
-  #    time: 7200 # Imperial medieval role timers (2 hours)
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Insurgency
+    time: 14400 # Imperial medieval role timers
   startingGear: MedievalInsurgencyInsurgencyerGear
   icon: "JobIconMedievalInsurgencyInsurgencyer"
   special:
@@ -2640,7 +2645,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-ins
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
@@ -2682,10 +2687,10 @@
   name: job-name-insurgencyGateman-medieval
   description: job-description-insurgencyGateman-medieval
   playTimeTracker: JobMedievalInsurgencyGateman
-  #requirements:
-  #- !type:DepartmentTimeRequirement
-  #  department: Insurgency
-  #  time: 7200 # Imperial medieval role timers (2 hours)
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Insurgency
+    time: 14400 # Imperial medieval role timers (2 hours)
   startingGear: MedievalInsurgencyInsurgencyerGear
   icon: "JobIconMedievalInsurgencyGateman"
   special:
@@ -2693,7 +2698,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-ins
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
@@ -2746,10 +2751,10 @@
   name: job-name-InsurgencyOpcion-medieval
   description: job-description-InsurgencyOpcion-medieval
   playTimeTracker: JobMedievalInsurgencyOpcion
-  #requirements:
-  #  - !type:DepartmentTimeRequirement
-  #    department: Insurgency
-  #    time: 36000 # Imperial medieval role timers (10 hours)
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Insurgency
+    time: 28800 # Imperial medieval role timers (10 hours)
   startingGear: MedievalInsurgencyOpcionGear
   icon: "JobIconMedievalInsurgencyOpcion"
   special:
@@ -2757,7 +2762,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-ins
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
@@ -2808,10 +2813,10 @@
   name: job-name-InsurgencyTribun-medieval
   description: job-description-InsurgencyTribun-medieval
   playTimeTracker: JobMedievalInsurgencyTribun
-  #requirements:
-  #  - !type:DepartmentTimeRequirement
-  #    department: Insurgency
-  #    time: 36000 # Imperial medieval role timers (10 hours)
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Insurgency
+    time: 36000 # Imperial medieval role timers (10 hours)
   startingGear: MedievalInsurgencyTribunGear
   icon: "JobIconMedievalInsurgencyTribun"
   special:
@@ -2819,7 +2824,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-ins
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
@@ -2877,9 +2882,9 @@
     species:
     - Skeleton
     inverted: true
-  #  - !type:DepartmentTimeRequirement
-  #    department: Insurgency
-  #    time: 72000 # Imperial medieval role timers (20 hours)
+  - !type:DepartmentTimeRequirement
+    department: Insurgency
+    time: 50400 # Imperial medieval role timers
   startingGear: MedievalInsurgencyLegatGear
   icon: "JobIconMedievalInsurgencyLegat"
   special:
@@ -2887,7 +2892,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-ins
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
       menuAccess: Full
@@ -2922,7 +2927,7 @@
   id: MedievalInsurgencyMagGear
   equipment:
     pocket1: MedievalCommsCrystallIns
-    pocket2: MedievalGuardKey
+    #pocket2: MedievalGuardKey
     #back: MedievalClothingBackpackSatchelLeather
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth5
     head: MedievalClothingHeadHelmetCharmerIns
@@ -2954,8 +2959,8 @@
     species:
     - Orc
     inverted: true
-  #  - !type:OverallPlaytimeRequirement
-  #    time: 36000 #Imperial role timers
+  - !type:OverallPlaytimeRequirement
+    time: 36000 #Imperial role timers
   startingGear: MedievalInsurgencyMagGear
   icon: "JobIconMedievalInsurgencyMag"
   special:
@@ -2966,13 +2971,14 @@
     - type: Mana
       maxMana: 140
       regen: 0.4
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
     #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: Insurgency
+    - type: MagicRuneKnowledge
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
@@ -3006,16 +3012,19 @@
 - type: startingGear
   id: MedievalInsurgencyAlchemicGear
   equipment:
-    pocket1: MedievalCommsCrystallIns
+    #pocket1: MedievalCommsCrystallIns
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
-    neck: MedievalClothingNeckCloakClanFox
+    #neck: MedievalClothingNeckCloakClanFox
     belt: MedievalAlchemicBelt
-    id: MedievalKeyGuard
+    id: MedievalKeyRebelAlch
   storage:
     back:
     - MedievalChemistryRecipe
     - MedievalChemistryRecipe
     - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalRecipeBook
 
 - type: playTimeTracker
   id: JobMedievalInsurgencyAlchemic
@@ -3038,8 +3047,8 @@
     species:
     - Orc
     inverted: true
-  #  - !type:OverallPlaytimeRequirement
-  #    time: 36000 #Imperial role timers
+  - !type:OverallPlaytimeRequirement
+    time: 14400 #Imperial role timers
   startingGear: MedievalInsurgencyAlchemicGear
   icon: "JobIconMedievalInsurgencyAlchemic"
   special:
@@ -3047,18 +3056,18 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-ins
-    - type: Friends
-      faction: Insurgency
-      factionMenuAction: InsurgencyFactionMenuAction
+    # - type: MedievalFactionMember
+    #   faction: Insurgency
+    #   factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
     #  faction: Insurgency
     - type: MedievalJobSpawn
-      spawnType: Insurgency
+      spawnType: InsurgencyTrader
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
     - type: MedievalPasportPerson
-      personJob: "[color=red]Алхимик мятежников[/color]"
+      personJob: "[color=red]Алхимик северных земель[/color]"
       pasport: MedievalPasportInsurgency
       jobPrefix: "[АлхимикМ]"
     - type: MedievalPotionChecker
@@ -3094,7 +3103,7 @@
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth16
     mask: MedievalMaskFace
     head: MedievalClothingHeadHelmetHood
-    neck: MedievalClothingNeckCloakClanKayot
+    neck: MedievalClothingNeckCloakClanWolf
     id: MedievalKeyAlchem
 
 - type: playTimeTracker
@@ -3113,9 +3122,9 @@
   name: job-name-banditRecruit-medieval
   description: job-description-banditRecruit-medieval
   playTimeTracker: JobMedievalBanditRecruit
-  #requirements:
-  #  - !type:OverallPlaytimeRequirement
-  #    time: 6000 #Imperial role timers
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 21600 #Imperial role timers
   startingGear: MedievalBanditRecruitGear
   icon: "JobIconMedievalBanditRecruit"
   special:
@@ -3123,7 +3132,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-band
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Bandit
       factionMenuAction: BanditFactionMenuAction
     #- type: IdentityFaction
@@ -3157,7 +3166,7 @@
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth16
     mask: MedievalMaskFace
     head: MedievalClothingHeadHelmetBand1
-    neck: MedievalClothingNeckCloakClanKayot
+    neck: MedievalClothingNeckCloakClanWolf
     id: MedievalKeyAlchem
 
 - type: playTimeTracker
@@ -3176,10 +3185,10 @@
   name: job-name-banditRegular-medieval
   description: job-description-banditRegular-medieval
   playTimeTracker: JobMedievalBanditRegular
-  #requirements:
-  #  - !type:DepartmentTimeRequirement
-  #    department: Band
-  #    time: 3600 #Imperial role timers
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Band
+      time: 21600 #Imperial role timers
   startingGear: MedievalBanditRegularGear
   icon: "JobIconMedievalBanditRegular"
   special:
@@ -3187,7 +3196,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-band
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Bandit
       factionMenuAction: BanditFactionMenuAction
     #- type: IdentityFaction
@@ -3221,7 +3230,7 @@
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth16
     mask: MedievalMaskFace
     head: MedievalClothingHeadHelmetBand2
-    neck: MedievalClothingNeckCloakClanKayot
+    neck: MedievalClothingNeckCloakClanWolf
     id: MedievalKeyAlchem
 
 - type: playTimeTracker
@@ -3241,10 +3250,10 @@
   name: job-name-banditVeteran-medieval
   description: job-description-banditVeteran-medieval
   playTimeTracker: JobMedievalBanditVeteran
-  #requirements:
-  #  - !type:DepartmentTimeRequirement
-  #    department: Band
-  #    time: 7200 #Imperial role timers
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Band
+      time: 36000 #Imperial role timers
   startingGear: MedievalBanditVeteranGear
   icon: "JobIconMedievalBanditVeteran"
   special:
@@ -3252,7 +3261,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-band
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Bandit
       factionMenuAction: BanditFactionMenuAction
     #- type: IdentityFaction
@@ -3286,7 +3295,7 @@
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth16
     mask: MedievalMaskFace
     head: MedievalClothingHeadHelmetBand3
-    neck: MedievalClothingNeckCloakClanKayot
+    neck: MedievalClothingNeckCloakClanWolf
     id: MedievalKeyAlchem
 
 - type: playTimeTracker
@@ -3305,10 +3314,10 @@
   name: job-name-banditLeader-medieval
   description: job-description-banditLeader-medieval
   playTimeTracker: JobMedievalBanditLeader
-  #requirements:
-  #  - !type:DepartmentTimeRequirement
-  #    department: Band
-  #    time: 7200 #Imperial role timers
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Band
+    time: 50400 #Imperial role timers
   startingGear: MedievalBanditLeaderGear
   icon: "JobIconMedievalBanditLeader"
   special:
@@ -3316,7 +3325,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-band
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Bandit
       factionMenuAction: BanditFactionMenuAction
       menuAccess: Full
@@ -3375,9 +3384,9 @@
   name: Молодняк
   description: Самый неопытный разбойник в банде.
   playTimeTracker: JobMedievalKayotRecruit
-  #requirements:
-  #  - !type:OverallPlaytimeRequirement
-  #    time: 6000 #Imperial role timers
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 21600 #Imperial role timers
   startingGear: MedievalKayotRecruitGear
   icon: "JobIconMedievalKayotRecruit"
   special:
@@ -3385,7 +3394,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-band
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Kayot
       factionMenuAction: KayotFactionMenuAction
     #- type: IdentityFaction
@@ -3438,10 +3447,10 @@
   name: Бывалый разбойник
   description: Обычный член банды с хоть каким-то опытом.
   playTimeTracker: JobMedievalKayotRegular
-  #requirements:
-  #  - !type:DepartmentTimeRequirement
-  #    department: Band
-  #    time: 3600 #Imperial role timers
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Kayot
+      time: 21600 #Imperial role timers
   startingGear: MedievalKayotRegularGear
   icon: "JobIconMedievalKayotRegular"
   special:
@@ -3449,7 +3458,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-band
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Kayot
       factionMenuAction: KayotFactionMenuAction
     #- type: IdentityFaction
@@ -3503,10 +3512,10 @@
   name: Ветеран
   description: Правая рука главаря. Разбойник, прошедший немало боев.
   playTimeTracker: JobMedievalKayotVeteran
-  #requirements:
-  #  - !type:DepartmentTimeRequirement
-  #    department: Band
-  #    time: 7200 #Imperial role timers
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Kayot
+      time: 36000 #Imperial role timers
   startingGear: MedievalKayotVeteranGear
   icon: "JobIconMedievalKayotVeteran"
   special:
@@ -3514,7 +3523,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-band
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Kayot
       factionMenuAction: KayotFactionMenuAction
     #- type: IdentityFaction
@@ -3567,10 +3576,10 @@
   name: Главарь шайки
   description: Руководите шайкой разбойников, богайтейте.
   playTimeTracker: JobMedievalKayotLeader
-  #requirements:
-  #  - !type:DepartmentTimeRequirement
-  #    department: Band
-  #    time: 7200 #Imperial role timers
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Kayot
+      time: 50400 #Imperial role timers
   startingGear: MedievalKayotLeaderGear
   icon: "JobIconMedievalKayotLeader"
   special:
@@ -3578,7 +3587,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-band
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Kayot
       factionMenuAction: KayotFactionMenuAction
       menuAccess: Full
@@ -3635,9 +3644,9 @@
   name: job-name-merc-medieval
   description: job-description-merc-medieval
   playTimeTracker: JobMedievalMerc
-  #requirements:
-  #  - !type:OverallPlaytimeRequirement
-  #    time: 6000 #Imperial role timers
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 36000 #Imperial role timers
   startingGear: MedievalMercGear
   icon: "JobIconMedievalMerc"
   special:
@@ -3646,7 +3655,7 @@
     - type: WarningOnAttach
       message: medieval-warning-base
     - type: Mercenary
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Merc
       factionMenuAction: MercFactionMenuAction
     #- type: IdentityFaction
@@ -3704,9 +3713,9 @@
     species:
     - Skeleton
     inverted: true
-  #  - !type:DepartmentTimeRequirement
-  #    department: Merc
-  #    time: 2000 #Imperial role timers
+  - !type:DepartmentTimeRequirement
+    department: Merc
+    time: 50400 #Imperial role timers
   startingGear: MedievalMercLeaderGear
   icon: "JobIconMedievalMercLeader"
   special:
@@ -3715,7 +3724,7 @@
     - type: WarningOnAttach
       message: medieval-warning-base
     - type: Mercenary
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Merc
       factionMenuAction: MercFactionMenuAction
       menuAccess: Full
@@ -3784,8 +3793,8 @@
     species:
     - Orc
     inverted: true
-  #  - !type:OverallPlaytimeRequirement
-  #    time: 6000 #Imperial role timers
+  - !type:OverallPlaytimeRequirement
+    time: 14400 #Imperial role timers
   startingGear: MedievalCollegiumRecruitGear
   icon: "JobIconMedievalCollegiumRecruit"
   special:
@@ -3796,7 +3805,7 @@
     - type: Mana
       maxMana: 120
       regen: 0.325
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Collegium
       factionMenuAction: CollegiumFactionMenuAction
     #- type: IdentityFaction
@@ -3806,6 +3815,7 @@
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
+    - type: MagicRuneKnowledge
     - type: MedievalPasportPerson
       personJob: "[color=purple]Послушник коллегии[/color]"
       pasport: MedievalPasportCollegium
@@ -3859,9 +3869,9 @@
     species:
     - Orc
     inverted: true
-  #  - !type:DepartmentTimeRequirement
-  #    department: Collegium
-  #    time: 21600 #Imperial role timers
+  - !type:DepartmentTimeRequirement
+    department: Collegium
+    time: 21600 #Imperial role timers
   startingGear: MedievalCollegiumCommonGear
   icon: "JobIconMedievalCollegiumCommon"
   special:
@@ -3872,7 +3882,7 @@
     - type: Mana
       maxMana: 150
       regen: 0.475
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Collegium
       factionMenuAction: CollegiumFactionMenuAction
     #- type: IdentityFaction
@@ -3886,6 +3896,7 @@
       personJob: "[color=purple]Маг коллегии[/color]"
       pasport: MedievalPasportCollegium
       jobPrefix: "[МагК]"
+    - type: MagicRuneKnowledge
 
 - type: roleLoadout
   id: JobMedievalCollegiumCommon
@@ -3936,9 +3947,9 @@
     - Skeleton
     - Orc
     inverted: true
-  #  - !type:DepartmentTimeRequirement
-  #    department: Collegium
-  #    time: 43200 #Imperial role timers
+  - !type:DepartmentTimeRequirement
+    department: Collegium
+    time: 50400 #Imperial role timers
   startingGear: MedievalCollegiumLeaderGear
   icon: "JobIconMedievalCollegiumLeader"
   special:
@@ -3949,7 +3960,7 @@
     - type: Mana
       maxMana: 180
       regen: 0.5
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Collegium
       factionMenuAction: CollegiumFactionMenuAction
       menuAccess: Full
@@ -3968,6 +3979,7 @@
     - type: CloackMessage
       action: CloackMessageActionCollegium
       faction: "collegium"
+    - type: MagicRuneKnowledge
 
 - type: roleLoadout
   id: JobMedievalCollegiumLeader
@@ -4008,9 +4020,9 @@
   name: job-name-TribeRecruit-medieval
   description: job-description-TribeRecruit-medieval
   playTimeTracker: JobMedievalTribeRecruit
-  #requirements:
-  #  - !type:OverallPlaytimeRequirement
-  #    time: 6000 #Imperial role timers
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 21600 #Imperial role timers
   startingGear: MedievalTribeRecruitGear
   icon: "JobIconMedievalTribeRecruit"
   special:
@@ -4019,7 +4031,7 @@
     - type: WarningOnAttach
       message: medieval-warning-tribe
     #- type: GigaMonkeyAccent
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Tribe
       factionMenuAction: TribeFactionMenuAction
     #- type: IdentityFaction
@@ -4084,9 +4096,9 @@
     species:
     - Orc
     inverted: true
-  #  - !type:DepartmentTimeRequirement
-  #    department: Tribe
-  #    time: 14400 #Imperial role timers
+  - !type:DepartmentTimeRequirement
+    department: Tribe
+    time: 21600 #Imperial role timers
   startingGear: MedievalTribeCommonGear
   icon: "JobIconMedievalTribeCommon"
   special:
@@ -4098,7 +4110,7 @@
       maxMana: 180
       regen: 0.65
     #- type: GigaMonkeyAccent
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Tribe
       factionMenuAction: TribeFactionMenuAction
     #- type: IdentityFaction
@@ -4155,10 +4167,10 @@
   name: job-name-TribeLeader-medieval
   description: job-description-TribeLeader-medieval
   playTimeTracker: JobMedievalTribeLeader
-  #requirements:
-  #  - !type:DepartmentTimeRequirement
-  #    department: Tribe
-  #    time: 28800 #Imperial role timers
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Tribe
+    time: 36000 #Imperial role timers
   startingGear: MedievalTribeLeaderGear
   icon: "JobIconMedievalTribeLeader"
   special:
@@ -4166,7 +4178,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-tribe
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Tribe
       factionMenuAction: TribeFactionMenuAction
       menuAccess: Full
@@ -4238,7 +4250,7 @@
       objectivePrototype: MedievalGetMoneyObjective5001000
     - type: SpawnOnAction
       actionId: ActionSpellwardSpawnTradeLegion
-      prototype: MedievalShopHoleLockedLegion
+      prototype: MedievalShopHole
 
 - type: entity
   id: ActionSpellwardSpawnTradeLegion
@@ -4246,16 +4258,18 @@
   description: Spawn urist
   noSpawn: true
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: { sprite: Imperial/Medieval/Misc/mdv_shop.rsi, state: shop }
     useDelay: 3000
-    event: !type:SpawnOnActionEvent ""
     itemIconStyle: BigAction
+  - type: TargetAction
+  - type: WorldTargetAction
+    event: !type:SpawnOnActionEvent ""
 
 - type: roleLoadout
   id: JobMedievalTrader
   groups:
-  - TraderHead
+  - SouthTraderHead
   - TraderJumpsuit
   - MedievalBackpack
   - MedievalShoes
@@ -4356,7 +4370,7 @@
       objectivePrototype: MedievalGetMoneyObjective5001000
     - type: SpawnOnAction
       actionId: ActionSpellwardSpawnTradeIns
-      prototype: MedievalShopHoleLockedIns
+      prototype: MedievalShopHole
 
 - type: entity
   id: ActionSpellwardSpawnTradeIns
@@ -4364,16 +4378,18 @@
   description: Spawn urist
   noSpawn: true
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: { sprite: Imperial/Medieval/Misc/mdv_shop.rsi, state: shop }
     useDelay: 3000
-    event: !type:SpawnOnActionEvent ""
     itemIconStyle: BigAction
+  - type: TargetAction
+  - type: WorldTargetAction
+    event: !type:SpawnOnActionEvent ""
 
 - type: roleLoadout
   id: JobMedievalTraderN
   groups:
-  - TraderHead
+  - NordTraderHead
   - TraderJumpsuit
   - MedievalBackpack
   - MedievalShoes
@@ -4383,7 +4399,7 @@
   - MedievalGloves
 
 - type: loadoutGroup
-  id: TraderHead
+  id: SouthTraderHead
   name: loadout-group-traveller-head
   minLimit: 0
   loadouts:
@@ -4397,6 +4413,24 @@
   - MedievalFeatherHat
   - MedievalWanderHat
   - MedievalGreenHat
+  - MedievalTraderLegionHat
+
+- type: loadoutGroup
+  id: NordTraderHead
+  name: loadout-group-traveller-head
+  minLimit: 0
+  loadouts:
+  - TraderMedievalClothingHeadCloth
+  - ClothingHeadHatCowboyBrown
+  - MedievalClothingHeadFurHatLoadout
+  - MedievalStrawHat #New Hats
+  - MedievalMotleyHat
+  - MedievalWreath
+  - MedievalGrayHat
+  - MedievalFeatherHat
+  - MedievalWanderHat
+  - MedievalGreenHat
+  - MedievalTraderFoxHat
 
 
 - type: loadout
@@ -4406,6 +4440,22 @@
     proto: TradersTimer5hours
   equipment:
     outerClothing: MedievalClothingHeadCloth
+
+- type: loadout
+  id: MedievalTraderLegionHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: TradersTimer50hours
+  equipment:
+    head: MedievalTraderLegionHat
+
+- type: loadout
+  id: MedievalTraderFoxHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: TradersTimer50hours
+  equipment:
+    head: MedievalTraderFoxHat
 
 # MEDIEVAL Miner REGULAR
 
@@ -4436,9 +4486,9 @@
   name: job-name-miner-medieval
   description: job-description-miner-medieval
   playTimeTracker: JobMedievalMiner
-  #requirements:
-  #  - !type:OverallPlaytimeRequirement
-  #    time: 6000 #Imperial role timers
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 3600 #Imperial role timers
   startingGear: MedievalMinerGear
   icon: "JobIconMedievalMiner"
   special:
@@ -4447,7 +4497,7 @@
     - type: WarningOnAttach
       message: medieval-warning-base
     - type: MedievalDigger
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Miner
       factionMenuAction: MinerFactionMenuAction
     #- type: IdentityFaction
@@ -4505,9 +4555,9 @@
     species:
     - Skeleton
     inverted: true
-  #  - !type:DepartmentTimeRequirement
-  #    department: Mine
-  #    time: 2000 #Imperial role timers
+  - !type:DepartmentTimeRequirement
+    department: Mine
+    time: 28800 #Imperial role timers
   startingGear: MedievalMinerLeaderGear
   icon: "JobIconMedievalMinerLeader"
   special:
@@ -4516,7 +4566,7 @@
     - type: WarningOnAttach
       message: medieval-warning-base
     - type: MedievalDigger
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Miner
       factionMenuAction: MinerFactionMenuAction
       menuAccess: Full
@@ -4552,10 +4602,10 @@
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth66
     pocket1: MedievalHammerBlacksmith
-    pocket2: MedievalCommsCrystallLeg
-    neck: MedievalClothingNeckCloakClanEagle
+    #pocket2: MedievalCommsCrystallLeg
+    #neck: MedievalClothingNeckCloakClanEagle
     gloves: MedievalGlovesBlacksmith
-    id: MedievalLeatherKey
+    id: MedievalKeyLegionBlack
 
 - type: playTimeTracker
   id: JobMedievalBlacksmith
@@ -4581,9 +4631,9 @@
     - type: WarningOnAttach
       message: medieval-warning-base
     - type: CrafterTrait
-    - type: Friends
-      faction: Legion
-      factionMenuAction: LegionFactionMenuAction
+    # - type: MedievalFactionMember
+    #   faction: Legion
+    #   factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
     #  faction: Legion
     - type: MedievalJobSpawn
@@ -4592,7 +4642,7 @@
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective5001000
     - type: MedievalPasportPerson
-      personJob: "[color=cyan]Кузнец легиона[/color]"
+      personJob: "[color=cyan]Кузнец южных земель[/color]"
       pasport: MedievalPasportLegion
       jobPrefix: "[КузЛ]"
 
@@ -4611,9 +4661,9 @@
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth43
     pocket1: MedievalHammerBlacksmith
-    pocket2: MedievalCommsCrystallIns
-    neck: MedievalClothingNeckCloakClanFox
-    id: MedievalKeyGuard
+    #pocket2: MedievalCommsCrystallIns
+    #neck: MedievalClothingNeckCloakClanFox
+    id: MedievalKeyRebelBlack
     gloves: MedievalGlovesBlacksmith
 
 - type: playTimeTracker
@@ -4640,9 +4690,9 @@
     - type: WarningOnAttach
       message: medieval-warning-base
     - type: CrafterTrait
-    - type: Friends
-      faction: Insurgency
-      factionMenuAction: InsurgencyFactionMenuAction
+    # - type: MedievalFactionMember
+    #   faction: Insurgency
+    #   factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
     #  faction: Insurgency
     - type: MedievalJobSpawn
@@ -4651,7 +4701,7 @@
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective5001000
     - type: MedievalPasportPerson
-      personJob: "[color=red]Кузнец мятежников[/color]"
+      personJob: "[color=red]Кузнец северных земель[/color]"
       pasport: MedievalPasportInsurgency
       jobPrefix: "[КузМ]"
 
@@ -4670,9 +4720,9 @@
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth14
     pocket1: MedievalRevent50
-    pocket2: MedievalCommsCrystallLeg
-    id: MedievalLeatherKey
-    neck: MedievalClothingNeckCloakClanEagle
+    #pocket2: MedievalCommsCrystallLeg
+    id: MedievalKeyLegionBlack
+    #neck: MedievalClothingNeckCloakClanEagle
 
 - type: playTimeTracker
   id: JobMedievalBlacksmithYoung
@@ -4698,9 +4748,9 @@
     - type: WarningOnAttach
       message: medieval-warning-base
     - type: CrafterTrait
-    - type: Friends
-      faction: Legion
-      factionMenuAction: LegionFactionMenuAction
+    # - type: MedievalFactionMember
+    #   faction: Legion
+    #   factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
     #  faction: Legion
     - type: MedievalJobSpawn
@@ -4709,7 +4759,7 @@
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective5001000
     - type: MedievalPasportPerson
-      personJob: "[color=cyan]Подмастерье кузнеца легиона[/color]"
+      personJob: "[color=cyan]Подмастерье кузнеца южных земель[/color]"
       pasport: MedievalPasportLegion
       jobPrefix: "[МлКузЛ]"
 
@@ -4728,9 +4778,9 @@
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth14
     pocket1: MedievalRevent50
-    pocket2: MedievalCommsCrystallIns
-    neck: MedievalClothingNeckCloakClanFox
-    id: MedievalKeyGuard
+    #pocket2: MedievalCommsCrystallIns
+    #neck: MedievalClothingNeckCloakClanFox
+    id: MedievalKeyRebelBlack
 
 - type: playTimeTracker
   id: JobMedievalBlacksmithYoungN
@@ -4756,9 +4806,9 @@
     - type: WarningOnAttach
       message: medieval-warning-base
     - type: CrafterTrait
-    - type: Friends
-      faction: Insurgency
-      factionMenuAction: InsurgencyFactionMenuAction
+    # - type: MedievalFactionMember
+    #   faction: Insurgency
+    #   factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
     #  faction: Insurgency
     - type: MedievalJobSpawn
@@ -4767,7 +4817,7 @@
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective5001000
     - type: MedievalPasportPerson
-      personJob: "[color=red]Подмастерье кузнеца мятежников[/color]"
+      personJob: "[color=red]Подмастерье кузнеца северных земель[/color]"
       pasport: MedievalPasportInsurgency
       jobPrefix: "[МлКузМ]"
 
@@ -4818,9 +4868,9 @@
   name: job-name-cult-medieval
   description: job-description-cult-medieval
   playTimeTracker: JobMedievalCult
-  #requirements:
-  #  - !type:OverallPlaytimeRequirement
-  #    time: 6000 #Imperial role timers
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 21600 #Imperial role timers
   startingGear: MedievalCultGear
   icon: "JobIconMedievalCult"
   special:
@@ -4829,7 +4879,7 @@
     - type: WarningOnAttach
       message: medieval-warning-cult
     - type: CultMember
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Cult
       factionMenuAction: CultFactionMenuAction
     #- type: IdentityFaction
@@ -4886,9 +4936,9 @@
     species:
     - Skeleton
     inverted: true
-  #  - !type:DepartmentTimeRequirement
-  #    department: Cult
-  #    time: 2000 #Imperial role timers
+  - !type:DepartmentTimeRequirement
+    department: Cult
+    time: 36000 #Imperial role timers
   startingGear: MedievalCultLeaderGear
   icon: "JobIconMedievalCultLeader"
   special:
@@ -4897,7 +4947,7 @@
     - type: WarningOnAttach
       message: medieval-warning-cult
     - type: CultMember
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Cult
       factionMenuAction: CultFactionMenuAction
       menuAccess: Full
@@ -4945,7 +4995,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-base
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Village
       factionMenuAction: VillageFactionMenuAction
     - type: MedievalPasportPerson
@@ -4999,7 +5049,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-base
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Village
       factionMenuAction: VillageFactionMenuAction
     - type: MedievalPasportPerson
@@ -5055,9 +5105,9 @@
     species:
     - Skeleton
     inverted: true
-  #  - !type:DepartmentTimeRequirement
-  #    department: Village
-  #    time: 2000 #Imperial role timers
+  - !type:DepartmentTimeRequirement
+    department: Village
+    time: 28800 #Imperial role timers
   startingGear: MedievalVillagerLeaderGear
   icon: "JobIconMedievalVillagerLeader"
   special:
@@ -5065,7 +5115,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-base
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Village
       factionMenuAction: VillageFactionMenuAction
       menuAccess: Full

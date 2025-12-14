@@ -1,0 +1,97 @@
+- type: explosion
+  id: LightningRune
+  damagePerIntensity:
+    types:
+      Shock: 6
+      Heat: 6
+      Blunt: 8
+  tileBreakChance: [0]
+  tileBreakIntensity: [0]
+  lightColor: Blue
+  texturePath: /Textures/Imperial/Medieval/Misc/fire.rsi
+  fireStates: 1
+
+- type: entity
+  id: MedievalMagicLightningRune
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/lightning_rune.rsi
+    state: empty
+  - type: TimedDespawn
+    lifetime: 20
+  - type: AddActionOnUse
+    actionId: MedievalActionLightningRune
+
+- type: entity
+  name: charged lightning
+  id: MedievalLightningEffect
+  parent: BaseLightning
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TimedDespawn
+      lifetime: 0.6
+    - type: EmitSoundOnSpawn
+      sound:
+        path: /Audio/Imperial/Medieval/Effects/electro_trigger.ogg
+        params:
+          variation: 0.2
+    - type: Sprite
+      sprite: /Textures/Imperial/Medieval/Effects/lightning.rsi
+      drawdepth: Effects
+      layers:
+        - state: lightning
+          shader: unshaded
+          offset: 0, 1
+    - type: Lightning
+      canArc: true
+      lightningPrototype: ChargedLightning
+
+- type: entity
+  id: MedievalLightningRune
+  components:
+    - type: Physics
+      bodyType: Static
+      canCollide: true
+    - type: InteractionOutline
+    - type: Sprite
+      sprite: Imperial/Medieval/Magic/lightning_rune.rsi
+      state: rune
+    - type: TriggerOnCollide
+      fixtureID: rune
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: LightningRune
+    - type: SpawnOnTrigger
+      proto: MedievalLightningEffect
+    - type: Fixtures
+      fixtures:
+        rune:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.4,-0.4,0.4,0.4"
+          mask:
+          - Impassable
+          layer:
+          - Impassable
+          hard: false
+    - type: TimedDespawn
+      lifetime: 900
+    - type: SpawnOnDespawn
+      prototype: MedievalLightningRuneDespawnEffect
+    - type: AmbientSound
+      sound: /Audio/Imperial/Medieval/Effects/electro_ambient.ogg
+      range: 3
+      volume: -28
+    - type: Armable
+
+- type: entity
+  id: MedievalLightningRuneDespawnEffect
+  components:
+  - type: TimedDespawn
+    lifetime: 5
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/Effects/electro_despawn.ogg
+      params:
+        variation: 0.2

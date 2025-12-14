@@ -31,6 +31,7 @@ namespace Content.Server.Preferences.Managers
         [Dependency] private readonly UserDbDataManager _userDb = default!;
         [Dependency] private readonly SponsorsManager _sponsorsManager = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly Imperial.Medieval.Flavors.ServerFlavorManager _serverFlavors = default!; // Imperial Medieval Flavor Images
 
         // Cache player prefs on the server so we don't need as much async hell related to them.
         private readonly Dictionary<NetUserId, PlayerPrefData> _cachedPlayerPrefs =
@@ -57,7 +58,7 @@ namespace Content.Server.Preferences.Managers
 
             if (!_cachedPlayerPrefs.TryGetValue(userId, out var prefsData) || !prefsData.PrefsLoaded)
             {
-                Logger.WarningS("prefs", $"User {userId} tried to modify preferences before they loaded.");
+                _sawmill.Warning($"User {userId} tried to modify preferences before they loaded.");
                 return;
             }
 
@@ -143,7 +144,7 @@ namespace Content.Server.Preferences.Managers
 
             if (!_cachedPlayerPrefs.TryGetValue(userId, out var prefsData) || !prefsData.PrefsLoaded)
             {
-                Logger.WarningS("prefs", $"User {userId} tried to modify preferences before they loaded.");
+                _sawmill.Warning($"User {userId} tried to modify preferences before they loaded.");
                 return;
             }
 
@@ -185,6 +186,7 @@ namespace Content.Server.Preferences.Managers
                 {
                     await _db.SaveCharacterSlotAsync(userId, null, slot);
                 }
+                await _db.RemoveFlavorImage(userId, slot, new()); // Imperial Medieval Flavor Images
             }
         }
 
@@ -272,6 +274,7 @@ namespace Content.Server.Preferences.Managers
                 MaxCharacterSlots = GetMaxUserCharacterSlots(session.UserId),  // Imperial Pass
             };
             _netManager.ServerSendMessage(msg, session.Channel);
+            _serverFlavors.FinishLoad(session, msg); // Imperial Medieval Flavors Images
         }
 
         public void OnClientDisconnected(ICommonSession session)

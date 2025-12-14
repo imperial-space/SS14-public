@@ -214,7 +214,7 @@
   cost: 1
   components:
     - type: ReligionMember
-      religion: Аэриус
+      religion: Креза
 
 - type: trait
   id: MedievalReligion2
@@ -244,7 +244,7 @@
   cost: 1
   components:
     - type: ReligionMember
-      religion: Калинда
+      religion: Сома
 
 - type: trait
   id: MedievalReligion5
@@ -274,7 +274,7 @@
   cost: 1
   components:
     - type: ReligionMember
-      religion: Тенебрис
+      religion: Зайго
 
 - type: trait
   id: MedievalReligion8

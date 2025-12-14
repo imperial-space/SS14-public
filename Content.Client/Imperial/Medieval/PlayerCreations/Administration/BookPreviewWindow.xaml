@@ -1,0 +1,14 @@
+﻿<DefaultWindow
+  xmlns="https://spacestation14.io"
+  Title="{Loc creations-panel-book-preview-window-title}" MinSize="510 660"
+  xmlns:paintings="clr-namespace:Content.Client.Imperial.Medieval.PlayerCreations.Paintings">
+  <BoxContainer Orientation="Vertical">
+      <ScrollContainer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False">
+          <PanelContainer VerticalExpand="True" HorizontalExpand="True" SetWidth="470" MinWidth="120">
+            <BoxContainer Orientation="Vertical" VerticalAlignment="Stretch">
+                <RichTextLabel VerticalAlignment="Top" Name="TextContent" HorizontalExpand="True" VerticalExpand="True"/>
+            </BoxContainer>
+          </PanelContainer>
+      </ScrollContainer>
+  </BoxContainer>
+</DefaultWindow>

@@ -9,8 +9,8 @@ using Robust.Server.Audio;
 using Robust.Shared.Audio;
 using Content.Shared.Imperial.Medieval.CombatStance;
 using Robust.Shared.Physics.Events;
-using Content.Shared.Friends.Components;
-using Content.Server.Friends;
+using Content.Shared.Imperial.Medieval.Factions.Components;
+using Content.Server.Imperial.Medieval.Factions;
 using Content.Shared.Mobs;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Humanoid;
@@ -21,7 +21,7 @@ using Robust.Shared.Network;
 using Robust.Server.GameStates;
 using Robust.Shared.Player;
 using Content.Server.Imperial.PVS;
-using Content.Shared.Friends;
+using Content.Shared.Imperial.Medieval.Factions;
 using Content.Shared.FixedPoint;
 using Content.Shared.Damage.Events;
 using Content.Shared.Explosion;
@@ -31,7 +31,7 @@ namespace Content.Server.Imperial.Medieval.CombatStance;
 
 public sealed class CombatStancePointTestSystem : EntitySystem
 {
-    [Dependency] private readonly FriendsSystem _friends = default!;
+    [Dependency] private readonly MedievalFactionsSystem _friends = default!;
     [Dependency] private readonly EntityLookupSystem _look = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly IPlayerManager _players = default!;
@@ -42,7 +42,7 @@ public sealed class CombatStancePointTestSystem : EntitySystem
     {
         SubscribeLocalEvent<CombatStancePointComponent, StartCollideEvent>(OnCollide);
         SubscribeLocalEvent<CombatStancePointComponent, EndCollideEvent>(EndCollide);
-        SubscribeLocalEvent<FriendsComponent, CombatStancePointEvent>(Prompt);
+        SubscribeLocalEvent<MedievalFactionMemberComponent, CombatStancePointEvent>(Prompt);
         _net.RegisterNetMessage<CombatStancePointPlaceMessage>(PlacePoint);
         _net.RegisterNetMessage<CombatStancePointRemoveMessage>(RemovePoints);
         SubscribeLocalEvent<CombatStanceComponent, DamageModifyEvent>(ModifyDamage);
@@ -63,7 +63,7 @@ public sealed class CombatStancePointTestSystem : EntitySystem
     }
     private void BlockBegin(EntityUid uid, CombatStanceComponent component, AnchorStateChangedEvent args)
     {
-        if (!TryComp<FriendsComponent>(uid, out var friends))
+        if (!TryComp<MedievalFactionMemberComponent>(uid, out var friends))
             return;
         if (!_friends.TryGetFactionMemberData(friends.MemberID, out var data))
             return;
@@ -110,7 +110,7 @@ public sealed class CombatStancePointTestSystem : EntitySystem
             return;
         if (!_players.TryGetSessionByEntity(uid, out var session))
             return;
-        if (!TryComp<FriendsComponent>(uid, out var friends))
+        if (!TryComp<MedievalFactionMemberComponent>(uid, out var friends))
             return;
         if (friends.MenuAccess == FactionMenuAccess.Full)
             return;
@@ -146,7 +146,7 @@ public sealed class CombatStancePointTestSystem : EntitySystem
         var uid = player.AttachedEntity;
         if (uid == null)
             return;
-        if (!TryComp<FriendsComponent>(uid, out var friends))
+        if (!TryComp<MedievalFactionMemberComponent>(uid, out var friends))
             return;
         if (friends.MenuAccess != FactionMenuAccess.Full)
             return;
@@ -167,7 +167,7 @@ public sealed class CombatStancePointTestSystem : EntitySystem
         var uid = player.AttachedEntity;
         if (uid == null)
             return;
-        if (!TryComp<FriendsComponent>(uid, out var friends))
+        if (!TryComp<MedievalFactionMemberComponent>(uid, out var friends))
             return;
         if (friends.MenuAccess != FactionMenuAccess.Full)
             return;
@@ -220,7 +220,7 @@ public sealed class CombatStancePointTestSystem : EntitySystem
         points.Add(ent);
         Init(ent, newpoint);
     }
-    private void Prompt(EntityUid uid, FriendsComponent component, CombatStancePointEvent args)
+    private void Prompt(EntityUid uid, MedievalFactionMemberComponent component, CombatStancePointEvent args)
     {
         if (!_players.TryGetSessionByEntity(uid, out var session))
             return;
@@ -288,7 +288,7 @@ public sealed class CombatStancePointTestSystem : EntitySystem
     }
     private void OnCollide(EntityUid uid, CombatStancePointComponent component, EntityUid other)
     {
-        if (!TryComp<FriendsComponent>(other, out var friends))
+        if (!TryComp<MedievalFactionMemberComponent>(other, out var friends))
             return;
         if (!_friends.TryGetFactionMemberData(friends.MemberID, out var data))
             return;

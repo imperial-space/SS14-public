@@ -70,13 +70,13 @@
   craftTime: 90
   iconOverride: MedievalCatapultCraft
   stacks:
-    MedievalRope: 12
-    WoodPlank: 30
+    MedievalRope: 6
+    WoodPlank: 15
     MedievalSteelIngot: 1
-    MedievalRivets: 6
-    MedievalIronPlateSmall: 8
-    MedievalIronPlate: 4
-    MedievalGear: 5
+    MedievalRivets: 3
+    MedievalIronPlateSmall: 4
+    MedievalIronPlate: 2
+    MedievalGear: 3
   result: WorkpieceMedievalCatapultCraft
 
 - type: CP14Recipe
@@ -94,8 +94,8 @@
   craftTime: 4
   iconOverride: MedievalCatapultAmmoBarrelGunpowder
   stacks:
-    MedievalRivets: 2
-    Gunpowder: 10
+    MedievalRivets: 1
+    Gunpowder: 5
     MedievalRope: 1
   entities:
     MedievalCatapultAmmoBarrel: 1
@@ -103,12 +103,12 @@
 
 - type: CP14Recipe
   id: MedievalCatapultAmmoBarrelAp
-  craftTime: 11
+  craftTime: 6
   iconOverride: MedievalCatapultAmmoBarrelAp
   stacks:
-    MedievalIronIngot: 5
+    MedievalIronIngot: 2
     MedievalSteelIngot: 1
-    Gunpowder: 6
+    Gunpowder: 2
   entities:
     MedievalGrenade: 1
   result: WorkpieceMedievalCatapultAmmoBarrelAp
@@ -118,7 +118,7 @@
   craftTime: 3
   iconOverride: MedievalCatapultAmmoBarrelStone
   stacks:
-    MedievalIronIngot: 2
+    MedievalIronIngot: 1
   result: WorkpieceMedievalCatapultAmmoBarrelStone
 
 - type: CP14Recipe
@@ -808,6 +808,15 @@
   result: WorkpieceMedievalRepairStone
 
 - type: CP14Recipe
+  id: MedievalShieldRepairKit
+  craftTime: 4
+  iconOverride: MedievalShieldRepairKit
+  stacks:
+    MedievalLeather1: 2
+    MedievalIronIngot: 1
+  result: MedievalShieldRepairKit
+
+- type: CP14Recipe
   id: MedievalHoe
   craftTime: 7
   iconOverride: MedievalHoe
@@ -977,3 +986,11 @@
     MedievalLeatherBelt: 1
     MedievalShoulder: 2
   result: WorkpieceMedievalClothingOuterArmorGoblinIron
+
+- type: CP14Recipe
+  id: MedievalBloodlettingNeedle
+  iconOverride: MedievalBloodlettingNeedle
+  craftTime: 4
+  stacks:
+    MedievalIronIngot: 1
+  result: MedievalBloodlettingNeedle

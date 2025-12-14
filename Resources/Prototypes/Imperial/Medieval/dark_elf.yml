@@ -229,7 +229,7 @@
   sprites: MobDarkElfSprites
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobDarkElfDummy
-  skinColoration: Hues
+  skinColoration: DarkElfColors
 
 - type: speciesBaseSprites
   id: MobDarkElfSprites

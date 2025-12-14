@@ -1,0 +1,148 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionTentaclesBeginner
+  name: medieval-store-spells-darkness-tentacles-beginner-name
+  description: medieval-store-spells-darkness-tentacles-beginner-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.0007
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalDarkness: 1
+        bonusEssences:
+          MagicMedievalDarkness: 1
+  - type: ManaDrainSpell
+    manaDrain: 30
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 18
+  - type: SpellCastEffect
+    effectProto: TentaclesSpellCastEffectBeginner
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 40
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Darkness/Tentacles/icons.rsi
+      state: beginner
+  - type: TargetAction
+    targetingIndicator: false
+    range: 5
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalTentaclesBeginner
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 1
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-tentacles
+          color: "#B277FF"
+          hideChat: true
+  - type: ShowSpawnedEntity
+    sprites:
+      - drawedSprite:
+          sprite: Imperial/Medieval/Magic/Darkness/Tentacles/projectiles.rsi
+          state: spawn-icon
+        alwaysRender: true
+        spriteColor: "#47f8ff"
+        inRangeColor: "#CC00AF"
+        outOfRangeColor: "#CC0000"
+        range: 5
+  - type: ActionUpgrade
+    effectedLevels:
+      2: MedievalActionTentaclesMiddle
+      3: MedievalActionTentaclesSenior
+
+# Middle
+
+- type: entity
+  id: MedievalActionTentaclesMiddle
+  name: medieval-store-spells-darkness-tentacles-middle-name
+  description: medieval-store-spells-darkness-tentacles-middle-desc
+  parent: MedievalActionTentaclesBeginner
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 40
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 18
+  - type: Action
+    useDelay: 50
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Darkness/Tentacles/icons.rsi
+      state: middle
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalTentaclesMiddle
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 1
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-tentacles
+          color: "#B277FF"
+          hideChat: true
+
+# Senior
+
+- type: entity
+  id: MedievalActionTentaclesSenior
+  name: medieval-store-spells-darkness-tentacles-senior-name
+  description: medieval-store-spells-darkness-tentacles-senior-desc
+  parent: MedievalActionTentaclesBeginner
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 55
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 18
+  - type: Action
+    useDelay: 60
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Darkness/Tentacles/icons.rsi
+      state: senior
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalTentaclesSenior
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 1
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-tentacles
+          color: "#B277FF"
+          hideChat: true

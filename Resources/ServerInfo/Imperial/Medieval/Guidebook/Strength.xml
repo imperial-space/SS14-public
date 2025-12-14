@@ -1,0 +1,17 @@
+<Document>
+  <Box HorizontalAlignment="Left">
+    <GuideEntityEmbed Entity="GuidebookStrength" Caption=""/>
+    <Box Orientation="Vertical">
+      # Сила
+      [italic]Сила[/italic] влияет на... Вашу физическую силу, ого.
+    </Box>
+  </Box>
+
+  ## Показатель силы влияет на:
+  - Урон в ближнем бою
+  - Скорость расковывания наручников
+  - Скорость взаимодействия с воротами
+  - Сила вашего рукопашного захвата
+  - Сила вашего рукопашного броска
+
+</Document>

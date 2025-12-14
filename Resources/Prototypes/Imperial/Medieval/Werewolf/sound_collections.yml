@@ -1,0 +1,24 @@
+- type: soundCollection
+  id: WerewolfHowl
+  files:
+    - /Audio/Imperial/Medieval/Werewolf/howl-close-1.ogg
+    - /Audio/Imperial/Medieval/Werewolf/howl-close-2.ogg
+
+- type: soundCollection
+  id: WerewolfTransform
+  files:
+    - /Audio/Imperial/Medieval/Werewolf/transformation-1.ogg
+    - /Audio/Imperial/Medieval/Werewolf/transformation-2.ogg
+
+- type: soundCollection
+  id: WerewolfGrowl
+  files:
+    - /Audio/Imperial/Medieval/Werewolf/growl-1.ogg
+    - /Audio/Imperial/Medieval/Werewolf/growl-2.ogg
+    - /Audio/Imperial/Medieval/Werewolf/growl-3.ogg
+
+- type: soundCollection
+  id: WerewolfEnraged
+  files:
+    - /Audio/Imperial/Medieval/Werewolf/enraged-var1.ogg
+    - /Audio/Imperial/Medieval/Werewolf/enraged-var2.ogg

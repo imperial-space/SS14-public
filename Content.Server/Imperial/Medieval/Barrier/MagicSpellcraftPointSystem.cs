@@ -23,19 +23,6 @@ namespace Content.Server.MagicSpellcraft
             base.Initialize();
 
             SubscribeLocalEvent<MagicSpellcraftComponent, ExaminedEvent>(OnExamine);
-            SubscribeLocalEvent<MagicSpellcraftComponent, StartCollideEvent>(OnCollide);
-        }
-
-        private void OnCollide(EntityUid uid, MagicSpellcraftComponent component, ref StartCollideEvent args)
-        {
-            var scrollent = args.OtherEntity;
-            if (TryComp<MagicScrollComponent>(scrollent, out var scroll))
-            {
-                component.Charge += scroll.Power;
-                Audio.PlayPvs(new SoundPathSpecifier(component.EffectSoundOnScrollAdd), uid);
-                QueueDel(scroll.Owner);
-            }
-
         }
 
         private void OnExamine(EntityUid uid, MagicSpellcraftComponent component, ExaminedEvent args)

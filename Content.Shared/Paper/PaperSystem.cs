@@ -12,6 +12,7 @@ using Robust.Shared.Audio.Systems;
 using static Content.Shared.Paper.PaperComponent;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared.Imperial.Medieval.Paper;
 
 namespace Content.Shared.Paper;
 
@@ -217,7 +218,7 @@ public sealed class PaperSystem : EntitySystem
     {
         if (!_paperQuery.TryComp(ent, out var paperComp))
         {
-            Log.Warning($"{EntityManager.ToPrettyString(ent)} has a {nameof(RandomPaperContentComponent)} but no {nameof(PaperComponent)}!");
+            Log.Warning($"{ToPrettyString(ent)} has a {nameof(RandomPaperContentComponent)} but no {nameof(PaperComponent)}!");
             RemCompDeferred(ent, ent.Comp);
             return;
         }
@@ -247,6 +248,11 @@ public sealed class PaperSystem : EntitySystem
     /// </summary>
     public bool TryStamp(Entity<PaperComponent> entity, StampDisplayInfo stampInfo, string spriteStampState)
     {
+        // Imperial Medieval start
+        if (HasComp<BlockStampingComponent>(entity))
+            return false;
+        // Imperial Medieval end
+
         if (!entity.Comp.StampedBy.Contains(stampInfo))
         {
             entity.Comp.StampedBy.Add(stampInfo);

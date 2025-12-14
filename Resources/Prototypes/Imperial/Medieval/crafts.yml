@@ -1216,3 +1216,183 @@
     prototype: SmithWorkplace
     doAfter: 9
     deleteOnInteract: true
+
+- type: entity
+  name: MedievalSign1Craft
+  description: MedievalSign1Craft
+  id: MedievalSign1Craft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: sign_1
+  #- type: Damageable
+  #- type: Anchorable
+  - type: SpawnAfterInteract
+    prototype: MedievalSign1
+    doAfter: 5
+    deleteOnInteract: true
+
+- type: entity
+  name: MedievalSign2Craft
+  description: MedievalSign2Craft
+  id: MedievalSign2Craft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: sign_2
+  #- type: Damageable
+  #- type: Anchorable
+  - type: SpawnAfterInteract
+    prototype: MedievalSign2
+    doAfter: 5
+    deleteOnInteract: true
+
+- type: entity
+  name: MedievalSign3Craft
+  description: MedievalSign3Craft
+  id: MedievalSign3Craft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: sign_3
+  #- type: Damageable
+  #- type: Anchorable
+  - type: SpawnAfterInteract
+    prototype: MedievalSign3
+    doAfter: 5
+    deleteOnInteract: true
+
+- type: entity
+  name: MedievalSign4Craft
+  description: MedievalSign4Craft
+  id: MedievalSign4Craft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: sign_4
+  #- type: Damageable
+  #- type: Anchorable
+  - type: SpawnAfterInteract
+    prototype: MedievalSign4
+    doAfter: 5
+    deleteOnInteract: true
+
+- type: entity
+  name: MedievalSign5Craft
+  description: MedievalSign5Craft
+  id: MedievalSign5Craft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: sign_5
+  #- type: Damageable
+  #- type: Anchorable
+  - type: SpawnAfterInteract
+    prototype: MedievalSign5
+    doAfter: 5
+    deleteOnInteract: true
+
+- type: entity
+  name: MedievalSign6Craft
+  description: MedievalSign6Craft
+  id: MedievalSign6Craft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: sign_6
+  #- type: Damageable
+  #- type: Anchorable
+  - type: SpawnAfterInteract
+    prototype: MedievalSign6
+    doAfter: 5
+    deleteOnInteract: true
+
+- type: entity
+  name: MedievalSign7Craft
+  description: MedievalSign7Craft
+  id: MedievalSign7Craft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: sign_7
+  #- type: Damageable
+  #- type: Anchorable
+  - type: SpawnAfterInteract
+    prototype: MedievalSign7
+    doAfter: 5
+    deleteOnInteract: true
+
+- type: entity
+  name: MedievalSign8Craft
+  description: MedievalSign8Craft
+  id: MedievalSign8Craft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: sign_8
+  #- type: Damageable
+  #- type: Anchorable
+  - type: SpawnAfterInteract
+    prototype: MedievalSign8
+    doAfter: 5
+    deleteOnInteract: true
+
+- type: entity
+  name: MedievalSign9Craft
+  description: MedievalSign9Craft
+  id: MedievalSign9Craft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: sign_9
+  #- type: Damageable
+  #- type: Anchorable
+  - type: SpawnAfterInteract
+    prototype: MedievalSign9
+    doAfter: 5
+    deleteOnInteract: true
+
+- type: entity
+  name: MedievalMeltingPlaceCraft
+  description: MedievalMeltingPlaceCraft
+  id: MedievalMeltingPlaceCraft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Large
+  - type: SpawnAfterInteract
+    prototype: MedievalMeltingPlace
+    doAfter: 9
+    deleteOnInteract: true
+  - type: Sprite
+    sprite: Imperial/Medieval/CraftBosses/stone_wall.rsi
+    state: icon
+  #- type: Damageable
+  #- type: Anchorable

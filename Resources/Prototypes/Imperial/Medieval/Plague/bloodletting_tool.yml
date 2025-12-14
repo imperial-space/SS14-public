@@ -1,0 +1,34 @@
+- type: entity
+  name: needle
+  parent: BaseItem
+  id: MedievalBloodlettingNeedle
+  description: e
+  components:
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/screwdriver_drop.ogg
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Medical/bloodletting_needle.rsi
+    layers:
+      - state: icon
+      - map: [ "enum.BloodlettingVisuals.Layer" ]
+        state: status
+        visible: false
+  - type: Item
+    sprite: Objects/Tools/screwdriver.rsi
+    storedRotation: -90
+  - type: BloodlettingTool
+    duration: 10
+    damage:
+      types:
+        Piercing: 12
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.BloodlettingVisuals.Data:
+        enum.BloodlettingVisuals.Layer:
+          0: { visible: false, color: "#FFFFFFFF" }
+          1: { visible: true, color: "#098b10" }
+          2: { visible: true, color: "#a70d0d" }
+          3: { visible: true, color: "#0d6fa7" }
+          4: { visible: true, color: "#065e0b" }

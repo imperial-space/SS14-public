@@ -29,6 +29,6 @@ public abstract class RDControl : Control
         base.Draw(handle);
 
         if (BackgroundColor is not null)
-            handle.DrawRect(new UIBox2(Vector2.Zero, Size), BackgroundColor.Value);
+            handle.DrawRect(new UIBox2(Vector2.Zero, Size * UIScale), BackgroundColor.Value);
     }
 }

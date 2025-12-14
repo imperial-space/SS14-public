@@ -1,0 +1,15 @@
+- type: factionIcon
+  id: FactionFriend
+  priority: 9
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Medieval/StatusIcons/faction_icons.rsi
+    state: friend
+
+- type: factionIcon
+  id: FactionHead
+  priority: 9
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Medieval/StatusIcons/faction_icons.rsi
+    state: head

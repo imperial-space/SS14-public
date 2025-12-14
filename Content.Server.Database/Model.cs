@@ -4,6 +4,7 @@ using System.Collections.Immutable;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text.Json;
@@ -47,6 +48,11 @@ namespace Content.Server.Database
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
         public DbSet<NrpViolation> NrpViolations { get; set; } = null!; // Imperial medieval nrp
+        public DbSet<NrpResolves> NrpResolves { get; set; } = null!; // Imperial medieval nrp
+        public DbSet<Painting> Paintings { get; set; } = null!;
+        public DbSet<Book> Books { get; set; } = null!;
+        public DbSet<FlavorImage> FlavorImages { get; set; } = null!; // Imperial Medieval Flavor Images
+        // imperial medieval end
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -77,6 +83,15 @@ namespace Content.Server.Database
 
             modelBuilder.Entity<NrpViolation>()
                 .HasIndex(p => p.UserId);
+
+            modelBuilder.Entity<NrpResolves>()
+                .HasIndex(p => p.UserId);
+
+            modelBuilder.Entity<Painting>()
+                .HasIndex(p => p.AuthorUserId);
+
+            modelBuilder.Entity<Book>()
+                .HasIndex(p => p.AuthorUserId);
             // imperial medieval end
 
             modelBuilder.Entity<ProfileRoleLoadout>()
@@ -511,6 +526,53 @@ namespace Content.Server.Database
         public Guid UserId { get; set; }
         public DateTime ViolationTime { get; set; }
     }
+    [Table("nrp_resolves")]
+    public class NrpResolves
+    {
+        public int Id { get; set; }
+        public Guid UserId { get; set; }
+        public int Rp { get; set; }
+        public int Nrp { get; set; }
+    }
+
+
+    [Table("painting")]
+    public class Painting
+    {
+        public int Id { get; set; }
+        public string Texture { get; set; } = null!;
+        public string Name { get; set; } = null!;
+        public string Description { get; set; } = null!;
+        public string Author { get; set; } = null!;
+        public Guid AuthorUserId { get; set; }
+        public DateTime CreationTime {get; set; }
+
+        public bool Accepted { get; set; }
+    }
+
+    [Table("book")]
+    public class Book
+    {
+        public int Id { get; set; }
+        public string Text { get; set; } = null!;
+        public string Name { get; set; } = null!;
+        public string Description { get; set; } = null!;
+        public string Author { get; set; } = null!;
+        public Guid AuthorUserId { get; set; }
+        public DateTime CreationTime {get; set; }
+
+        public bool Accepted { get; set; }
+    }
+
+    public class FlavorImage
+    {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity), Required]
+        public int Id { get; set; }
+        [ForeignKey(nameof(Profile)), Required]
+        public int ProfileId { get; set; }
+        public byte[] Image { get; set; } = Array.Empty<byte>();
+    }
+
     #endregion
 
     #region Loadouts

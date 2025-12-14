@@ -59,36 +59,45 @@ public sealed partial class MedievalMagicSystem : SharedMedievalMagicSystem
         InitializeEntityAimingSpells();
     }
 
+    TimeSpan StartTime = TimeSpan.FromSeconds(0f);
+    TimeSpan EndTime = TimeSpan.FromSeconds(0f);
+    TimeSpan ReloadTime = TimeSpan.FromSeconds(0.25f);
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        var enumerator = EntityQueryEnumerator<MedievalSpellCasterComponent>();
-
-        while (enumerator.MoveNext(out var uid, out var component))
+        if (_timing.CurTime > EndTime)
         {
-            foreach (var speakPoint in component.SpellWordsStack.ToList())
+            EndTime = _timing.CurTime + ReloadTime;
+
+            var enumerator = EntityQueryEnumerator<MedievalSpellCasterComponent>();
+
+            while (enumerator.MoveNext(out var uid, out var component))
             {
-                if (speakPoint.Item1 > _timing.CurTime) continue;
+                foreach (var speakPoint in component.SpellWordsStack.ToList())
+                {
+                    if (speakPoint.Item1 > _timing.CurTime) continue;
 
-                var spellSpeech = speakPoint.Item2;
+                    var spellSpeech = speakPoint.Item2;
 
-                var ev = new MedievalSpeakSpellEvent(uid, spellSpeech.Speech);
-                RaiseLocalEvent(ref ev);
+                    var ev = new MedievalSpeakSpellEvent(uid, spellSpeech.Speech);
+                    RaiseLocalEvent(ref ev);
 
-                component.SpellWordsStack.Remove(speakPoint);
-                Dirty(uid, component);
+                    component.SpellWordsStack.Remove(speakPoint);
+                    Dirty(uid, component);
 
-                if (ev.Cancelled) continue;
+                    if (ev.Cancelled) continue;
 
-                _chatSystem.TrySendInGameICMessage(
-                    uid,
-                    Loc.GetString(spellSpeech.Speech),
-                    TransformToChatEnum(spellSpeech.SpeechType),
-                    spellSpeech.HideChat,
-                    color: spellSpeech.Color,
-                    language: _proto.Index(SharedLanguageSystem.Universal)
-                );
+                    _chatSystem.TrySendInGameICMessage(
+                        uid,
+                        Loc.GetString(spellSpeech.Speech),
+                        TransformToChatEnum(spellSpeech.SpeechType),
+                        spellSpeech.HideChat,
+                        color: spellSpeech.Color,
+                        language: _proto.Index(SharedLanguageSystem.Universal)
+                    );
+                }
             }
         }
     }
@@ -98,7 +107,7 @@ public sealed partial class MedievalMagicSystem : SharedMedievalMagicSystem
         base.OnSpellDoAfterCast(uid, component, args);
 
         var spellData = GetSpellData(args);
-        SpellCastedMetrics.WithLabels(MetaData(GetEntity(spellData.Action)).EntityName).Inc();
+        //SpellCastedMetrics.WithLabels(MetaData(GetEntity(spellData.Action)).EntityName).Inc();
     }
 
     protected override void CastSpell(MedievalSpellDoAfterEvent args)
@@ -106,7 +115,7 @@ public sealed partial class MedievalMagicSystem : SharedMedievalMagicSystem
         base.CastSpell(args);
 
         var spellData = GetSpellData(args);
-        SpellSuccessCastedMetrics.WithLabels(MetaData(GetEntity(spellData.Action)).EntityName).Inc();
+        //SpellSuccessCastedMetrics.WithLabels(MetaData(GetEntity(spellData.Action)).EntityName).Inc();
     }
 
     #region Helpers

@@ -14,7 +14,7 @@
     state: icon
   - type: StorageFill
     contents:
-      - id: VlPCFlowerTwo
+    - id: VlPCFlowerTwo
 
 - type: entity
   parent: BasePlushieCharacter
@@ -94,7 +94,7 @@
   id: PlushieErika
   name: Erika Steinhofer
   suffix: Crook, COMMUNITY, TOY
-  description: Doesn't believe in coincidences. Especially when a passenger is standing next to a body.
+  description: Believes that the perfect mixture exists. Unlike perfect people.
   components:
   - type: Item
     size: Normal
@@ -105,8 +105,7 @@
     state: icon
   - type: StorageFill
     contents:
-      - id: ForensicPad
-      - id: ForensicPad
+      - id: GasAnalyzer
 
 - type: entity
   parent: BasePlushieCharacter
@@ -209,7 +208,7 @@
     speechSounds: SavirSaid
   - type: SpeakOnTrigger
     pack: SavirWords
-  
+
 - type: speechSounds
   id: SavirSaid
   saySound:
@@ -218,6 +217,42 @@
     path: /Audio/Voice/Talk/Silicon/syndieborg_ask.ogg
   exclaimSound:
     path: /Audio/Voice/Talk/Silicon/syndieborg_exclaim.ogg
+
+- type: localizedDataset
+  id: HornetWords
+  values:
+    prefix: plushie-hornet-
+    count: 4
+
+- type: speechSounds
+  id: HornetSaid
+  saySound:
+    path: /Audio/Items/Toys/weh.ogg
+  askSound:
+    path: /Audio/Items/Toys/weh.ogg
+  exclaimSound:
+    path: /Audio/Items/Toys/weh.ogg
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: PlushieHornet
+  name: Hornet
+  suffix: Crook, COMMUNITY, TOY
+  description: Shaw!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/hornet.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: UseDelay
+    delay: 5.0
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Speech
+    speechSounds: HornetSaid
+  - type: SpeakOnTrigger
+    pack: HornetWords
 
 # Фумо @buhoj_med
 
@@ -261,6 +296,11 @@
   id: FumoEirin
   values:
     prefix: fumo-eirin-
+    count: 2
+- type: localizedDataset
+  id: FumoTeto
+  values:
+    prefix: fumo-teto-
     count: 2
 # Datasets for Fumo
 
@@ -317,6 +357,21 @@
     speechSounds: Fumo
   - type: SpeakOnTrigger
     pack: FumoJunko
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: PlushieFumoTeto
+  name: Teto
+  suffix: Crook, COMMUNITY, TOY
+  description: "The text on the tag reads: 'Feed her a baguette and she'll sing.'"
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/fumoplush.rsi
+    state: teto
+  - type: Speech
+    speechSounds: Fumo
+  - type: SpeakOnTrigger
+    pack: FumoTeto
 
 - type: entity
   parent: PlushieFumoJunko
@@ -455,6 +510,15 @@
       - id: PlushieFumoCirno
         orGroup: GiftPool
         prob: .1
+      - id: PlushieFumoSakuya
+        orGroup: GiftPool
+        prob: .1
+      - id: PlushieFumoEirin
+        orGroup: GiftPool
+        prob: .1
+      - id: PlushieFumoTeto
+        onGroup: GiftPool
+        prob: .1
     sound:
       path: /Audio/Effects/unwrap.ogg
 - type: entity
@@ -474,3 +538,26 @@
   - type: SpaceGarbage
 
 # Фумо @buhoj_med
+
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieClaud
+  name: Claudius the Great
+  suffix: Vl, COMMUNITY, TOY
+  description: A toy of a thoughtful captain with gorgeous hair holding a chess piece of a pawn in his hand.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/plushclaud.rsi
+    state: Plush
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Speech
+    speechSounds: Fumo
+  - type: SpeakOnTrigger
+    pack: FumoJunko
+  - type: StorageFill
+    contents:
+      - id: ChessBoardTabletop

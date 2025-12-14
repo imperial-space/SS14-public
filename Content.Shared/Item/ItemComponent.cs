@@ -12,7 +12,10 @@ namespace Content.Shared.Item;
 /// </summary>
 [RegisterComponent]
 [NetworkedComponent]
-[Access(typeof(SharedItemSystem)), AutoGenerateComponentState(true)]
+// Imperial Medieval ArtifactSystem begin
+//[Access(typeof(SharedItemSystem)), AutoGenerateComponentState(true)]
+[AutoGenerateComponentState(true)]
+// Imperial Medieval ArtifactSystem end
 public sealed partial class ItemComponent : Component
 {
     [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
@@ -31,7 +34,9 @@ public sealed partial class ItemComponent : Component
     /// <summary>
     ///     Rsi of the sprite shown on the player when this item is in their hands. Used to generate a default entry for <see cref="InhandVisuals"/>
     /// </summary>
-    [Access(typeof(SharedItemSystem))]
+    // Imperial Medieval ArtifactSystem begin
+    //[Access(typeof(SharedItemSystem))]
+    // Imperial Medieval ArtifactSystem end
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("sprite")]
     public string? RsiPath;

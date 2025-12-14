@@ -7,8 +7,8 @@
   productAction: MedievalActionMagicLightBeginner
   priority: 5
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/light.rsi
-    state: light
+    sprite: Imperial/Medieval/Magic/Light/MagicLight/icons.rsi
+    state: beginner
   cost:
     MagicMedievalLight: 15
   categories:

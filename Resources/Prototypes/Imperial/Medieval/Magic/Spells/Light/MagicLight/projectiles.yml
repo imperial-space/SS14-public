@@ -5,8 +5,8 @@
   components:
     - type: CargoSellBlacklist
     - type: Sprite
-      sprite: Objects/Fun/toys.rsi
-      state: orb
+      sprite: Objects/Fun/pondering_orb.rsi
+      state: icon
     - type: MedievalParticles
       color: cyan
       speed: 2.0
@@ -79,3 +79,24 @@
       path: /Audio/Imperial/Medieval/lightsphere_discharge.ogg
       params:
         variation: 0.2
+
+- type: entity
+  id: MedievalEventEffectSparkleTrail
+  components:
+    - type: Sprite
+      sprite: Objects/Fun/pondering_orb.rsi
+      state: icon
+    - type: MedievalParticles
+      color: yellow
+      speed: 2.0
+      particlesCount: 32
+      gravity: 0
+      inverted: true
+      collapseOnMinDistance: true
+    - type: PointLight
+      color: orange
+      energy: 2
+      radius: 3.8
+      castShadows: false
+    - type: TimedDespawn
+      lifetime: 1

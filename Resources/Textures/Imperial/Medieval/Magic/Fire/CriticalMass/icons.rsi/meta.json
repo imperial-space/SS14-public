@@ -1,0 +1,32 @@
+{
+    "version": 1,
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "by @thenekron",
+    "states": [
+        {
+            "name": "beginner"
+        },
+        {
+            "name": "middle-nova"
+        },
+        {
+            "name": "senior-nova"
+        },
+        {
+            "name": "middle-diff"
+        },
+        {
+            "name": "senior-diff"
+        },
+        {
+            "name": "middle-disp"
+        },
+        {
+            "name": "senior-disp"
+        }
+    ]
+}

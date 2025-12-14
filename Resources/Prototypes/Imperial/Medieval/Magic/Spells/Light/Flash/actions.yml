@@ -8,9 +8,12 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.45
+        essenceAddProbability: 0.00045
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalLight1: 1
+          MagicMedievalLight: 1
+        bonusEssences:
+          MagicMedievalLight: 1
   - type: ManaDrainSpell
     manaDrain: 25
     canUseWithoutMana: true
@@ -18,17 +21,21 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 10
+  - type: SpellCastEffect
+    effectProto: FlashSpellCastEffectBeginner
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 17
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/flashbang_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/flash.rsi
-      state: 1
+      sprite: Imperial/Medieval/Magic/Light/Flash/icons.rsi
+      state: beginner
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileFlashBeginner
@@ -57,16 +64,18 @@
       groups:
         Burn: 10
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 12
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/flashbang_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/flash.rsi
-      state: 2
+      sprite: Imperial/Medieval/Magic/Light/Flash/icons.rsi
+      state: middle
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileFlashMiddle

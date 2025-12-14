@@ -1,0 +1,127 @@
+- type: skinColoration
+  id: Hues
+  strategy: !type:ClampedHsvColoration
+    value: [0.175, 1]
+
+- type: skinColoration
+  id: TintedHues
+  strategy: !type:ClampedHslColoration
+    saturation: [0, 0.1]
+    lightness: [0.85, 1]
+
+- type: skinColoration
+  id: VoxFeathers
+  strategy: !type:ClampedHsvColoration
+    hue: [0.081, 0.48]
+    saturation: [0.2, 0.8]
+    value: [0.36, 0.55]
+
+- type: skinColoration
+  id: HumanToned
+  strategy: !type:HumanTonedSkinColoration {}
+
+- type: skinColoration
+  id: VulpkaninColors
+  strategy: !type:ClampedHslColoration
+    saturation: [0.0, 0.60]
+    lightness: [0.2, 0.9]
+
+- type: skinColoration
+  id: TiflingColors
+  strategy: !type:SelectorColoration
+    colors:
+    - "#ff5500"
+    - "#ff2122"
+    - "#ff0000"
+    - "#6f87ff"
+    - "#b480da"
+    - "#b55fda"
+    - "#965fda"
+    - "#ff8aff"
+
+- type: skinColoration
+  id: DarkElfColors
+  strategy: !type:SelectorColoration
+    colors:
+    - "#ffffff"
+    - "#ccccff"
+    - "#ccbade"
+    - "#c198e9"
+    - "#8898e9"
+    - "#b5c4ff"
+
+- type: skinColoration
+  id: MoonwolfColors
+  strategy: !type:SelectorColoration
+    colors:
+    - "#D2691E"
+    - "#B35900"
+    - "#A0522D"
+    - "#A86F3A"
+    - "#A45F1A"
+    - "#B07A4A"
+    - "#9d744f"
+    - "#a87f58"
+    - "#997149"
+    - "#ae865c"
+    - "#593c47"
+    - "#63444f"
+    - "#553a43"
+    - "#684755"
+    - "#fafafa"
+    - "#f5f5f5"
+    - "#ededed"
+    - "#ffffff"
+    - "#f8ffff"
+    - "#fffaf5"
+    - "#858585"
+    - "#929292"
+    - "#7f7f7f"
+    - "#979797"
+    - "#272121"
+    - "#312828"
+    - "#231e1e"
+    - "#372d2d"
+    - "#475c5e"
+    - "#516769"
+    - "#43585a"
+    - "#576d70"
+    - "#4b475d"
+    - "#555169"
+    - "#474356"
+    - "#5a5670"
+
+
+
+
+- type: skinColoration
+  id: SkeletonColors
+  strategy: !type:SelectorColoration
+    colors:
+    - "#ffffff"
+    - "#fff9e2"
+
+- type: skinColoration
+  id: OrcColors
+  strategy: !type:SelectorColoration
+    colors:
+    - "#00ff00"
+    - "#3d6424"
+    - "#51a322"
+    - "#b0e68e"
+    - "#3faa42"
+    - "#1dcc22"
+    - "#8fcc1d"
+
+
+- type: skinColoration
+  id: IllitidColors
+  strategy: !type:SelectorColoration
+    colors:
+    - "#B8A2C8"
+    - "#A38FB2"
+    - "#6f7d7d"
+    - "#7d6f7c"
+    - "#443652"
+    - "#4042bd"
+    - "#703d6d"

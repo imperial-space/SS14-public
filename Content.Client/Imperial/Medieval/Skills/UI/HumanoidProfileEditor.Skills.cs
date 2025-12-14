@@ -39,14 +39,14 @@ public sealed partial class HumanoidProfileEditor
         };
 
         var list = _prototypeManager.EnumeratePrototypes<SkillPrototype>();
-        list.OrderBy(x => x.Name);
+        list.OrderBy(x => Loc.GetString(x.Name));
 
         foreach (var item in list)
         {
             var level = Profile.Skills.GetValueOrDefault(item.ID, 10);
             var icon = item.Icons[item.Icons.Keys.Where(x => x <= level).Max()];
 
-            var entry = new SkillEntry(item.Name, level, new SpriteSpecifier.Rsi(new(item.RsiPath), icon), item.Color);
+            var entry = new SkillEntry(item.ID, Loc.GetString(item.Name), level, new SpriteSpecifier.Rsi(new(item.RsiPath), icon), item.Color, _prototypeManager);
             entry.IncreaseButton.Disabled = sum <= 0;
 
             SkillsContainer.AddChild(entry);

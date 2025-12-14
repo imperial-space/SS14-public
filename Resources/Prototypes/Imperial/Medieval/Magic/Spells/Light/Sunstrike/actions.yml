@@ -1,0 +1,110 @@
+# Middle
+
+- type: entity
+  id: MedievalActionSunstrikeMiddle
+  name: medieval-store-spells-light-sunstrike-middle-name
+  description: medieval-store-spells-light-sunstrike-middle-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.00085
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalFire: 1
+        bonusEssences:
+          MagicMedievalFire: 1
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 80
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/fireball_cast.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Light/Sunstrike/icons.rsi
+      state: middle
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
+    event: !type:MedievalProjectileSpellEvent
+      projectilePrototype:
+        0: MedievalProjectileSunstrikeSpotMiddle
+      projectileSpeed: 1.7
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 1
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-light-sunstrike1
+          color: "#fee218"
+          hideChat: true
+        0.5:
+          speech: medieval-spell-speach-light-sunstrike2
+          color: "#fee218"
+          hideChat: true
+  - type: ManaDrainSpell
+    manaDrain: 55
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 19
+  - type: SpellCastEffect
+    effectProto: SunstrikeSpellCastEffectMiddle
+  - type: ActionUpgrade
+    effectedLevels:
+      2: MedievalActionSunstrikeSenior
+
+# Senior
+
+- type: entity
+  id: MedievalActionSunstrikeSenior
+  name: medieval-store-spells-light-sunstrike-senior-name
+  parent: MedievalActionSunstrikeMiddle
+  description: medieval-store-spells-light-sunstrike-senior-desc
+  components:
+  - type: WorldTargetAction
+    useDelay: 90
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 60
+    icon:
+      sprite: Imperial/Medieval/Magic/Light/Sunstrike/icons.rsi
+      state: senior
+    event: !type:MedievalProjectileSpellEvent
+      projectilePrototype:
+        0: MedievalProjectileSunstrikeSpotSenior
+      projectileSpeed: 2.3
+      spellCastDoAfter:
+        delay: 1
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-light-sunstrike1
+          color: "#fee218"
+          hideChat: true
+        0.5:
+          speech: medieval-spell-speach-light-sunstrike2
+          color: "#fee218"
+          hideChat: true
+  - type: ManaDrainSpell
+    manaDrain: 60
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 19
+  - type: SpellCastEffect
+    effectProto: SunstrikeSpellCastEffectSenior

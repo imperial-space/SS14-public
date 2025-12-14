@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Friends.Components
+namespace Content.Shared.Imperial.Medieval.Factions.Components
 {
 
     [RegisterComponent, NetworkedComponent]

@@ -21,10 +21,10 @@ public sealed partial class DamageOnHighSpeedImpactComponent : Component
     public SoundSpecifier SoundHit = default!;
 
     [DataField("stunChance"), ViewVariables(VVAccess.ReadWrite)]
-    public float StunChance = 0.25f;
+    public float StunChance = 0.5f;
 
     [DataField("stunMinimumDamage"), ViewVariables(VVAccess.ReadWrite)]
-    public int StunMinimumDamage = 10;
+    public int StunMinimumDamage = 5;
 
     [DataField("stunSeconds"), ViewVariables(VVAccess.ReadWrite)]
     public float StunSeconds = 1f;

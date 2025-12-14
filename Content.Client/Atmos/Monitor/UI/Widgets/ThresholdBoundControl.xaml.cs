@@ -30,7 +30,10 @@ public sealed partial class ThresholdBoundControl : BoxContainer
     public void SetValue(float value)
     {
         _value = value;
-        CSpinner.Value = ScaledValue;
+        if (!CSpinner.HasKeyboardFocus())
+        {
+            CSpinner.Value = ScaledValue;
+        }
     }
 
     public void SetEnabled(bool enabled)
@@ -72,6 +75,7 @@ public sealed partial class ThresholdBoundControl : BoxContainer
 
         CSpinner.OnValueChanged += SpinnerValueChanged;
         CBoundEnabled.OnToggled += CheckboxToggled;
+        CBoundEnabled.Text = Loc.GetString("air-alarm-ui-widget-enable");  // Imperial Space Translation
     }
 
     private void SpinnerValueChanged(FloatSpinBox.FloatSpinBoxEventArgs args)

@@ -403,3 +403,4 @@
     attackRate: 0.65
   - type: MedievalSpikeTarget # imperial medieval
     enabled: false
+  - type: AffectRoundStats

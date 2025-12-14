@@ -7,7 +7,7 @@
   description: You better GITTAH WEIGH.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/black_hole.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/BlackHole/projectiles.rsi
     layers:
     - state: icon
       shader: unshaded
@@ -78,7 +78,7 @@
   description: You better GITTAH WEIGH.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/black_hole.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/BlackHole/projectiles.rsi
     layers:
     - state: black-hole
       shader: unshaded
@@ -149,7 +149,7 @@
   description: You better GITTAH WEIGH.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/black_hole.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/BlackHole/projectiles.rsi
     layers:
     - state: black-hole
       shader: unshaded

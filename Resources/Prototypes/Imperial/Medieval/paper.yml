@@ -1,0 +1,164 @@
+- type: entity
+  name: papr
+  parent: Paper
+  id: MedievalPaperEnvelopeBasic
+  description: "e."
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Envelope/basic.rsi
+    layers:
+    - state: icon
+    - state: icon
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
+    - state: icon
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+  - type: Item
+    left:
+    - state: inhand-left
+    right:
+    - state: inhand-right
+  - type: PaperVisuals
+    backgroundModulate: "#fff4d7"
+  - type: BlockStamping
+
+- type: entity
+  name: papr
+  parent: MedievalPaperEnvelopeBasic
+  id: MedievalPaperEnvelopeLegion
+  description: "e."
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Envelope/legion.rsi
+  - type: PaperVisuals
+    headerImagePath: "/Textures/Imperial/Medieval/Interface/Paper/legion.png"
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    contentMargin: 32.0, 16.0, 32.0, 0.0
+
+- type: entity
+  name: papr
+  parent: MedievalPaperEnvelopeBasic
+  id: MedievalPaperEnvelopeBandit
+  description: "e."
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Envelope/bandit.rsi
+  - type: PaperVisuals
+    headerImagePath: "/Textures/Imperial/Medieval/Interface/Paper/bandits.png"
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    contentMargin: 32.0, 16.0, 32.0, 0.0
+
+- type: entity
+  name: papr
+  parent: MedievalPaperEnvelopeBasic
+  id: MedievalPaperEnvelopeRebel
+  description: "e."
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Envelope/rebel.rsi
+  - type: PaperVisuals
+    headerImagePath: "/Textures/Imperial/Medieval/Interface/Paper/rebel.png"
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    contentMargin: 32.0, 16.0, 32.0, 0.0
+
+- type: entity
+  name: papr
+  parent: MedievalPaperEnvelopeBasic
+  id: MedievalPaperEnvelopeCollegium
+  description: "e."
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Envelope/collegium.rsi
+  - type: PaperVisuals
+    headerImagePath: "/Textures/Imperial/Medieval/Interface/Paper/mage.png"
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    contentMargin: 32.0, 16.0, 32.0, 0.0
+
+- type: entity
+  name: papr
+  parent: MedievalPaperEnvelopeBasic
+  id: MedievalPaperEnvelopeCoyote
+  description: "e."
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Envelope/coyote.rsi
+  - type: PaperVisuals
+    headerImagePath: "/Textures/Imperial/Medieval/Interface/Paper/coyote.png"
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    contentMargin: 32.0, 16.0, 32.0, 0.0
+
+- type: entity
+  name: papr
+  parent: MedievalPaperEnvelopeBasic
+  id: MedievalPaperEnvelopeCult
+  description: "e."
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Envelope/cult.rsi
+  - type: PaperVisuals
+    headerImagePath: "/Textures/Imperial/Medieval/Interface/Paper/cult.png"
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    contentMargin: 32.0, 16.0, 32.0, 0.0
+
+- type: entity
+  name: papr
+  parent: MedievalPaperEnvelopeBasic
+  id: MedievalPaperEnvelopeTribe
+  description: "e."
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Envelope/tribe.rsi
+  - type: PaperVisuals
+    headerImagePath: "/Textures/Imperial/Medieval/Interface/Paper/tribe.png"
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    contentMargin: 32.0, 16.0, 32.0, 0.0
+
+- type: entity
+  name: papr
+  parent: MedievalPaperEnvelopeBasic
+  id: MedievalPaperEnvelopeMiner
+  description: "e."
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Envelope/miner.rsi
+  - type: PaperVisuals
+    headerImagePath: "/Textures/Imperial/Medieval/Interface/Paper/miner.png"
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    contentMargin: 32.0, 16.0, 32.0, 0.0
+
+- type: entity
+  name: papr
+  parent: MedievalPaperEnvelopeBasic
+  id: MedievalPaperEnvelopeMerc
+  description: "e."
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Envelope/merc.rsi
+  - type: PaperVisuals
+    headerImagePath: "/Textures/Imperial/Medieval/Interface/Paper/merc.png"
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    contentMargin: 32.0, 16.0, 32.0, 0.0
+
+- type: entity
+  name: papr
+  parent: MedievalPaperEnvelopeBasic
+  id: MedievalPaperEnvelopeVillage
+  description: "e."
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Envelope/miner.rsi
+  - type: PaperVisuals
+    headerImagePath: "/Textures/Imperial/Medieval/Interface/Paper/miner.png"
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    contentMargin: 32.0, 16.0, 32.0, 0.0

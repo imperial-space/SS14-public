@@ -1,0 +1,27 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "Made by @crookielv",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "chest",
+        "directions": 4
+      },
+      {
+        "name": "headtop",
+        "directions": 4
+      },
+      {
+        "name": "hitin",
+        "directions": 4
+      },
+      {
+        "name": "eye",
+        "directions": 4
+      }
+    ]
+  }

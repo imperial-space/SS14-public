@@ -4,8 +4,8 @@
   id: MedievalEffectConcentratedDisplacementMiddle
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   - type: MedievalParticles
     color: "#764ADB"
     speed: 2.0
@@ -26,14 +26,31 @@
   - type: TimedDespawn
     lifetime: 1.25
 
+- type: entity
+  id: ConcentratedDisplacementSpellCastEffectMiddle
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
+    color: "#764ADB"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#764ADB"
+  - type: TimedDespawn
+    lifetime: 0.5
+
 # Senior
 
 - type: entity
   id: MedievalEffectConcentratedDisplacementSenior
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   - type: MedievalParticles
     color: "#B84ADB"
     speed: 2.0
@@ -53,3 +70,20 @@
     onlyOneSide: true
   - type: TimedDespawn
     lifetime: 1.65
+
+- type: entity
+  id: ConcentratedDisplacementSpellCastEffectSenior
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
+    color: "#B84ADB"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#B84ADB"
+  - type: TimedDespawn
+    lifetime: 0.5

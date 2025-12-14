@@ -7,7 +7,7 @@
   parent: BaseBulletTrigger
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/sleep.rsi
+    sprite: Imperial/Medieval/Magic/MultiCurrency/Sleep/projectiles.rsi
     state: bullet
   - type: Projectile
     deleteOnCollide: true
@@ -26,7 +26,7 @@
   parent: BaseBulletTrigger
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/sleep.rsi
+    sprite: Imperial/Medieval/Magic/MultiCurrency/Sleep/projectiles.rsi
     state: bullet
   - type: Projectile
     deleteOnCollide: true

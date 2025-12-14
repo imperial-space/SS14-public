@@ -1,0 +1,16 @@
+- type: imperialListing
+  id: MedievalSpellCultDagger
+  name: medieval-store-spells-darkness-cult-dagger-name
+  description: medieval-store-spells-darkness-cult-dagger-desc
+  productAction: MedievalActionCultDagger
+  priority: 8
+  icon:
+    sprite: Imperial/Medieval/Magic/Darkness/CultDagger/icons.rsi
+    state: beginner
+  cost:
+    MagicMedievalDarkness: 25
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1

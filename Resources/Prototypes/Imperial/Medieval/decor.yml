@@ -1198,6 +1198,10 @@
   - type: Strap
     buckleTime: 0.5
     unbuckleTime: 0.5
+    buckleSound:
+      path: /Audio/Imperial/Medieval/Effects/lay_on_bed1.ogg
+    unbuckleSound:
+      path: /Audio/Imperial/Medieval/Effects/lay_on_bed2.ogg
   - type: Buckle
   - type: BloodRegenBed
     bloodRegenMultiplier: 2.0
@@ -1214,6 +1218,7 @@
         Poison: -0.2
         Caustic: -0.1
         Radiation: -0.2
+  - type: MedievalPlagueHealStrapped
 
 - type: entity
   parent: Bed
@@ -1224,6 +1229,10 @@
   - type: Strap
     buckleTime: 0.5
     unbuckleTime: 0.5
+    buckleSound:
+      path: /Audio/Imperial/Medieval/Effects/lay_on_bed1.ogg
+    unbuckleSound:
+      path: /Audio/Imperial/Medieval/Effects/lay_on_bed2.ogg
   - type: Buckle
   - type: BloodRegenBed
     bloodRegenMultiplier: 5.0
@@ -1240,6 +1249,8 @@
         Poison: -1.8
         Caustic: -0.5
         Radiation: -0.8
+  - type: MedievalPlagueHealStrapped
+    level: 2
 
 - type: entity
   id: MedievalDecorAnons
@@ -1884,6 +1895,9 @@
   - type: Currency
     price:
       Revent: 18
+  - type: MedievalCurrency
+    price:
+      Revent: 18
 
 - type: entity
   parent: BasePlushie
@@ -1895,6 +1909,9 @@
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: plushie_traveller
   - type: Currency
+    price:
+      Revent: 12
+  - type: MedievalCurrency
     price:
       Revent: 12
 
@@ -1910,6 +1927,9 @@
   - type: Currency
     price:
       Revent: 14
+  - type: MedievalCurrency
+    price:
+      Revent: 14
 
 - type: entity
   parent: BasePlushie
@@ -1921,6 +1941,9 @@
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: plushie_wizard
   - type: Currency
+    price:
+      Revent: 15
+  - type: MedievalCurrency
     price:
       Revent: 15
 
@@ -3164,6 +3187,10 @@
     fixtureID: fix1
   - type: EmitSoundOnTrigger
     sound: "/Audio/Imperial/Medieval/bush_collide.ogg"
+  - type: MedievalDoAfterEvery
+    nameLocId: grass-bush-doafter-name
+    numHit: 45.0
+    time: 5
 
 - type: entity
   id: RandomBushOffsetSpawner
@@ -4094,6 +4121,10 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.27
     sprintSpeedModifier: 0.27
+  - type: MedievalDoAfterEvery
+    nameLocId: grass-bush-doafter-name
+    numHit: 45.0
+    time: 5
   - type: TriggerOnCollide
     fixtureID: fix1
 
@@ -4231,10 +4262,11 @@
   - type: QuestArea
     contractPartner: "тотем племени"
   - type: Speech
-  - type: Advertise
-    pack: MedievalTribeAltarAdvertise
-    minimumWait: 60
-    maximumWait: 180
+  - type: Vocalizer
+    minVocalizeInterval: 1m # Arcades are noisy
+    maxVocalizeInterval: 3m
+  - type: DatasetVocalizer
+    dataset: MedievalTribeAltarAdvertise
   - type: SpriteFade
 
 - type: localizedDataset

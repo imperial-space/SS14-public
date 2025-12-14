@@ -6,13 +6,13 @@ using Robust.Shared.Timing;
 namespace Content.Shared.Imperial.Dash;
 
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class MedievalDashComponent : Component
 {
     /// <summary>
     /// Force of dash
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float Force = 770.0f;
 
     /// <summary>

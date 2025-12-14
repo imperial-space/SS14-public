@@ -1,9 +1,6 @@
 using Content.Server.MagicBarrier.Components;
 using Robust.Shared.Timing;
-using Robust.Shared.Map;
 using Robust.Shared.Audio.Systems;
-using Content.Server.Imperial.DayTime;
-using Content.Server.GameTicking;
 using Content.Server.Chat.Systems;
 using Content.Server.RoundEnd;
 using Content.Shared.Examine;
@@ -11,46 +8,93 @@ using Robust.Shared.Audio;
 using Content.Shared.Damage;
 using Robust.Shared.Random;
 using System.Linq;
-using Content.Shared.Mobs.Systems;
-using Content.Server.Tips;
-using Content.Server.MedievalFactionFlag.Components;
-using Content.Server.SpikeTrap.Components;
-using Content.Shared.Mobs;
-using Content.Shared.Speech;
 using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
-using Content.Server.BadSmell.Components;
-using Content.Shared.Nocturn.Components;
+using Content.Server.MagicSpellcraft.Components;
+using Content.Shared.DoAfter;
+using Content.Shared.Imperial.Medieval.MagicRunes.Components;
+using Content.Shared.Imperial.Medieval.MagicRunes.Data;
+using Content.Shared.Imperial.Medieval.MagicRunes.Systems;
 using Content.Shared.Interaction;
+using Content.Shared.Popups;
+using Content.Shared.Verbs;
+using Content.Server.Imperial.Medieval.GameTicking.Rules;
+using Content.Shared.GameTicking;
 
 namespace Content.Server.MagicBarrier
 {
     public sealed partial class MagicBarrierSystem : EntitySystem
     {
-        [Dependency] internal readonly IEntityManager _entityManager = default!;
-        [Dependency] internal readonly IMapManager _mapManager = default!;
-        [Dependency] protected readonly SharedAudioSystem Audio = default!;
+        [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly ChatSystem _chat = default!;
         [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly MobStateSystem _mobState = default!;
-        [Dependency] private readonly DayTimeSystem _dayTime = default!;
-        [Dependency] private readonly TipsSystem _tips = default!;
+        [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+        [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+        [Dependency] private readonly MagicRuneSystem _rune = default!;
+        [Dependency] private readonly DamageableSystem _damageable = default!;
+
+        public static bool IsBarrierActive = true;
 
         public override void Initialize()
         {
             base.Initialize();
+            SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
             SubscribeLocalEvent<MagicBarrierComponent, ExaminedEvent>(OnExamine);
             SubscribeLocalEvent<MagicScrollComponent, BeforeRangedInteractEvent>(OnUseInHand);
             SubscribeLocalEvent<MagicBarrierCurseComponent, BeforeDamageChangedEvent>(OnCurseDamage);
             SubscribeLocalEvent<MagicBarrierComponent, ComponentStartup>(OnStart);
-            SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
-            SubscribeLocalEvent<MedievalSpikeTargetComponent, MobStateChangedEvent>(OnDeath);
-            SubscribeLocalEvent<MedievalSpikeTargetComponent, BeforeDamageChangedEvent>(OnDamage);
-            SubscribeLocalEvent<MedievalSpikeTargetComponent, ScreamActionEvent>(OnScreamAction);
+            SubscribeLocalEvent<MagicBarrierComponent, GetVerbsEvent<AlternativeVerb>>(AddSuicideVerb);
+            SubscribeLocalEvent<MagicRuneKnowledgeComponent, BarrierSuicideDoAfterEvent>(OnBarrierSuicideDoAfterEvent);
         }
 
+        private void OnRoundStarted(RoundStartedEvent args)
+        {
+            IsBarrierActive = true;
+        }
+
+        private void OnBarrierSuicideDoAfterEvent(EntityUid uid, MagicRuneKnowledgeComponent component, BarrierSuicideDoAfterEvent args)
+        {
+            if (args.Cancelled || args.Handled)
+                return;
+
+            var points = _rune.CalculateIntegrityGiven(args.User);
+            if (TryComp<MagicBarrierComponent>(args.Target, out var barrierComponent))
+            {
+                barrierComponent.Stability += points;
+            }
+
+            var dspec = new DamageSpecifier();
+            dspec.DamageDict.Add("Slash", 10000);
+            _damageable.TryChangeDamage(uid, dspec, true, false);
+
+            args.Handled = true;
+        }
+
+        private void AddSuicideVerb(EntityUid uid, MagicBarrierComponent component, GetVerbsEvent<AlternativeVerb> args)
+        {
+            AlternativeVerb verb = new()
+            {
+                Text = "Пожертвовать собой",
+                Act = () => TrySuicide(args.User, uid),
+            };
+            args.Verbs.Add(verb);
+        }
+
+        private void TrySuicide(EntityUid uid, EntityUid barrier)
+        {
+            if (!HasComp<MagicRuneKnowledgeComponent>(uid))
+            {
+                _popupSystem.PopupEntity("Я слишком бесполезен..", uid, uid);
+                return;
+            }
+
+            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, uid, 5, new BarrierSuicideDoAfterEvent(), uid, target: barrier, used: uid)
+            {
+                BreakOnMove = true,
+            });
+        }
 
         public void OnUseInHand(EntityUid uid, MagicScrollComponent comp, BeforeRangedInteractEvent args)
         {
@@ -67,282 +111,32 @@ namespace Content.Server.MagicBarrier
             if (TryComp<MagicBarrierComponent>(target, out var barrier))
             {
                 barrier.Stability += comp.Power;
-                Audio.PlayPvs(new SoundPathSpecifier(barrier.EffectSoundOnScrollAdd), barrier.Owner);
+                _audio.PlayPvs(new SoundPathSpecifier(barrier.EffectSoundOnScrollAdd), target.Value);
+                QueueDel(used);
+                return;
+            }
+
+            if (TryComp<MagicSpellcraftComponent>(target, out var magicSpellcraft))
+            {
+                magicSpellcraft.Charge += comp.Power;
+
+                _audio.PlayPvs(new SoundPathSpecifier(magicSpellcraft.EffectSoundOnScrollAdd), target.Value);
                 QueueDel(used);
             }
         }
 
-        private void OnRoundEnd(RoundEndTextAppendEvent ev)
-        {
-            int punchingBagHits = 0;
-            string punchingBagName = "никто";
-            int screamerScreams = 0;
-            string screamerName = "никто";
-            int potionsCount = 0;
-            string potionsName = "никто";
-            int lockpickCount = 0;
-            string lockpickerName = "никто";
-            int craftsCount = 0;
-            string crafterName = "никто";
-            int diggsCount = 0;
-            string diggerName = "никто";
-            int alcoholDrinks = 0;
-            string alcoholickName = "никто";
-            foreach (var comp in EntityManager.EntityQuery<MedievalSpikeTargetComponent>())
-            {
-                if (comp.Potions > potionsCount)
-                {
-                    potionsCount = comp.Potions;
-                    potionsName = MetaData(comp.Owner).EntityName;
-                }
-                if (comp.Lockpicks > lockpickCount)
-                {
-                    lockpickCount = comp.Lockpicks;
-                    lockpickerName = MetaData(comp.Owner).EntityName;
-                }
-                if (comp.Diggs > diggsCount)
-                {
-                    diggsCount = comp.Diggs;
-                    diggerName = MetaData(comp.Owner).EntityName;
-                }
-                if (comp.Alcohol / 2 > alcoholDrinks / 2)
-                {
-                    alcoholDrinks = comp.Alcohol / 2;
-                    alcoholickName = MetaData(comp.Owner).EntityName;
-                }
-                if (comp.Crafts > craftsCount)
-                {
-                    craftsCount = comp.Crafts;
-                    crafterName = MetaData(comp.Owner).EntityName;
-                }
-                if (comp.Screams > screamerScreams)
-                {
-                    screamerScreams = comp.Screams;
-                    screamerName = MetaData(comp.Owner).EntityName;
-                }
-                if (!_mobState.IsAlive(comp.Owner))
-                    continue;
-                var xform = Transform(comp.Owner);
-                var coords = xform.Coordinates;
-                if (comp.HitCount > punchingBagHits)
-                {
-                    punchingBagHits = comp.HitCount;
-                    punchingBagName = MetaData(comp.Owner).EntityName;
-                }
-
-                Spawn("MedievalSpawnerDarkSkeletonRandom", coords);
-                //Spawn("MedievalSpawnerDarkSkeletonRandom", coords);
-            }
-
-            int worstSmell = 0;
-            string worstSmellName = "никто";
-            int bestSmell = 0;
-            string bestSmellName = "никто";
-            foreach (var smell in EntityManager.EntityQuery<BadSmellComponent>())
-            {
-                if (smell.WorstSmell > worstSmell)
-                {
-                    worstSmell = smell.WorstSmell;
-                    worstSmellName = MetaData(smell.Owner).EntityName;
-                }
-                if (smell.BestSmell > bestSmell)
-                {
-                    bestSmell = smell.BestSmell;
-                    bestSmellName = MetaData(smell.Owner).EntityName;
-                }
-            }
-
-            _dayTime.ChangePreset("0", "bloody", true);
-
-            int legion = 0;
-            int insurgency = 0;
-            foreach (var flag in EntityManager.EntityQuery<MedievalFactionFlagComponent>())
-            {
-                switch (flag.Faction)
-                {
-                    case "legion":
-                        legion += 1;
-                        break;
-                    case "insurgency":
-                        insurgency += 1;
-                        break;
-                }
-            }
-
-            int nocturnAnimals = 0;
-            int nocturnHumans = 0;
-            int nocturnAnimalsMost = 0;
-            string nocturnAnimalsMostName = "никто";
-            int nocturnHumansMost = 0;
-            string nocturnHumansMostName = "никто";
-
-            foreach (var comp in EntityManager.EntityQuery<NocturnComponent>())
-            {
-                nocturnAnimals += comp.DrinkAnimals;
-                nocturnHumans += comp.DrinkHumans;
-                if (comp.DrinkAnimals > nocturnAnimalsMost)
-                {
-                    nocturnAnimalsMost = comp.DrinkAnimals;
-                    nocturnAnimalsMostName = MetaData(comp.Owner).EntityName;
-                }
-                if (comp.DrinkHumans > nocturnHumansMost)
-                {
-                    nocturnHumansMost = comp.DrinkHumans;
-                    nocturnHumansMostName = MetaData(comp.Owner).EntityName;
-                }
-            }
-            int nocturnTotal = nocturnAnimals + nocturnHumans;
-
-            int traps = 0;
-            int humansHurt = 0;
-            int deaths = 0;
-            string firstDeath = "никто";
-            int openedDungeons = 0;
-            string firstDungeonVisiter = "никто";
-            int screams = 0;
-            double zveresHeat = 0;
-            int alcohol = 0;
-            int ghostBoo = 0;
-            int ghostBooPlayers = 0;
-            int potionsTotal = 0;
-            int lockpicksTotal = 0;
-            int craftsTotal = 0;
-            int diggsTotal = 0;
-            foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
-            {
-                traps = barrier.SpikeTrapActiveted;
-                humansHurt = barrier.HumanHurt;
-                deaths = barrier.HumanDeath;
-                firstDeath = barrier.FirstDeath;
-                openedDungeons = barrier.OpenedDungeons;
-                firstDungeonVisiter = barrier.FirstDungeonVisiter;
-                if (firstDungeonVisiter == "nobody")
-                    firstDungeonVisiter = "никто";
-                screams = barrier.Screams;
-                zveresHeat = Math.Round(barrier.ZveresHeat, 2);
-                alcohol = barrier.AlcoholDrink / 2;
-                ghostBoo = barrier.GhostBoo;
-                ghostBooPlayers = barrier.GhostBooPlayers;
-                potionsTotal = barrier.TotalPotions;
-                lockpicksTotal = barrier.TotalLockpicks;
-                craftsTotal = barrier.TotalCrafts;
-                diggsTotal = barrier.TotalDiggs;
-            }
-            ev.AddLine("Война: ");
-            ev.AddLine("  [color=cyan]Легиону[/color] подконтрольно: " + legion + " точек в регионе");
-            ev.AddLine("  [color=red]Мятежникам[/color] подконтрольно: " + insurgency + " точек в регионе");
-            ev.AddLine(" ");
-            ev.AddLine("Исследование: ");
-            ev.AddLine("  [color=pink]Открыто древних склепов[/color] " + openedDungeons + ", первый из них открыл(а) [color=pink]" + firstDungeonVisiter + "[/color]!");
-            ev.AddLine("  [color=lightgreen]Шипы в полу[/color] сработали: " + traps + " раз, нанеся " + traps * 23 + " урона");
-            ev.AddLine(" ");
-            ev.AddLine("Бой: ");
-            ev.AddLine("  [color=red]Смертей[/color] за временную петлю: " + deaths);
-            ev.AddLine("  [color=pink]Умер(ла) первым[/color]: " + firstDeath);
-            ev.AddLine("  [color=orange]Ударов по людям[/color] за временную петлю: " + humansHurt);
-            ev.AddLine("  [color=lightblue]Был(а) атакован(а) больше всех [/color](" + punchingBagHits + " раз!) и остался(ась) жив(а) [color=lightblue]" + punchingBagName + "[/color]");
-            ev.AddLine(" ");
-            ev.AddLine("Веселье: ");
-            ev.AddLine("  [color=yellow]Криков[/color] " + screams + ", самый крикливый [color=yellow]" + screamerName + "[/color] (кричал(а) " + screamerScreams + " раз)");
-            ev.AddLine("  [color=orange]Мунвульфы получили[/color] " + zveresHeat + " единиц урона ожогами за временную петлю");
-            ev.AddLine("  [color=yellow]Алкоголя выпито[/color] " + alcohol + " унций, самый пьющий - [color=yellow]" + alcoholickName + "[/color], он(а) выпил(а) " + alcoholDrinks + " унций");
-            ev.AddLine("  [color=pink]Призраки всколыхнули воздух[/color] " + ghostBoo + " раз, затронув " + ghostBooPlayers + " людей");
-            ev.AddLine("  Самый грязный(ая) [color=pink]" + worstSmellName + "[/color], а самый чистый(ая) [color=cyan]" + bestSmellName + "[/color]");
-            ev.AddLine(" ");
-            ev.AddLine("Ремесло: ");
-            ev.AddLine("  [color=lightgreen]Зелий сварено[/color] " + potionsTotal + ", больше всех приготовил(а) [color=lightgreen]" + potionsName + "[/color] (" + potionsCount + " бутыльков!)");
-            ev.AddLine("  [color=yellow]Дверей взломано[/color] " + lockpicksTotal + ", больше всех взломал(а) [color=yellow]" + lockpickerName + "[/color] (" + lockpickCount + " дверей!)");
-            ev.AddLine("  [color=red]Вещей создано[/color] " + craftsTotal + ", больше всех создал(а) [color=red]" + crafterName + "[/color] (" + craftsCount + " вещей!)");
-            ev.AddLine("  [color=gray]Взмахов киркой[/color] " + diggsTotal + ", больше всех копал(а) [color=gray]" + diggerName + "[/color] (" + diggsCount + " взмахов!)");
-            ev.AddLine(" ");
-            ev.AddLine("Ноктюрны: ");
-            ev.AddLine("  [color=red]Крови всего выпито [/color]" + nocturnTotal + " раз. У животных - " + nocturnAnimals + " раз, у людей - " + nocturnHumans + " раз");
-            ev.AddLine("  [color=pink]Больше всего людской крови[/color] пил [color=pink]" + nocturnHumansMostName + "[/color] - " + nocturnHumansMost + " раз");
-            ev.AddLine("  [color=lightgreen]Больше всего животной крови[/color] пил [color=lightgreen]" + nocturnAnimalsMostName + "[/color] - " + nocturnAnimalsMost + " раз");
-        }
-
-        private void OnScreamAction(EntityUid uid, MedievalSpikeTargetComponent comp, ScreamActionEvent args)
-        {
-            if (args.Handled)
-                return;
-            comp.Screams++;
-            foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
-            {
-                barrier.Screams++;
-            }
-        }
-
-        private void OnDeath(EntityUid uid, MedievalSpikeTargetComponent comp, MobStateChangedEvent args)
-        {
-            if (args.NewMobState != MobState.Dead)
-                return;
-            foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
-            {
-                barrier.HumanDeath++;
-                if (barrier.FirstDeath == "nobody")
-                    barrier.FirstDeath = MetaData(comp.Owner).EntityName;
-            }
-        }
-        private void OnDamage(EntityUid uid, MedievalSpikeTargetComponent comp, ref BeforeDamageChangedEvent args)
-        {
-            if (args.Damage.DamageDict.TryGetValue("Heat", out var heat) && HasComp<MedievalZveresHeatComponent>(uid) && heat > 0)
-            {
-                foreach (var barrierheat in EntityManager.EntityQuery<MagicBarrierComponent>())
-                    barrierheat.ZveresHeat += heat.Float();
-            }
-            if (args.Damage.GetTotal() < 4)
-                return;
-            comp.HitCount++;
-            foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
-                barrier.HumanHurt++;
-        }
-
         public void OnStart(EntityUid uid, MagicBarrierComponent component, ComponentStartup args)
         {
-            var necrobookspawners = EntityManager.EntityQuery<NecroBookSpawnComponent>().ToArray();
-            if (necrobookspawners.Length == 0)
+            var necrobookspawners = EntityManager.AllEntities<NecroBookSpawnComponent>().ToArray();
+            if (!necrobookspawners.Any())
                 return;
 
-            var choosenSpawner = _random.Pick(necrobookspawners);
-            var necrobookxform = Transform(choosenSpawner.Owner);
-            var necrobookcoords = necrobookxform.Coordinates;
-            Spawn("MedievalBookNecro1", necrobookcoords);
+            Spawn("MedievalBookNecro1", Transform(_random.Pick(necrobookspawners)).Coordinates);
+            Spawn("MedievalBookNecro2", Transform(_random.Pick(necrobookspawners)).Coordinates);
+            Spawn("MedievalBookNecro3", Transform(_random.Pick(necrobookspawners)).Coordinates);
 
-            var choosenSpawner2 = _random.Pick(necrobookspawners);
-            var necrobookxform2 = Transform(choosenSpawner2.Owner);
-            var necrobookcoords2 = necrobookxform2.Coordinates;
-            Spawn("MedievalBookNecro2", necrobookcoords2);
-
-            var choosenSpawner3 = _random.Pick(necrobookspawners);
-            var necrobookxform3 = Transform(choosenSpawner3.Owner);
-            var necrobookcoords3 = necrobookxform3.Coordinates;
-            Spawn("MedievalBookNecro3", necrobookcoords3);
-
-            var choosenSpawner4 = _random.Pick(necrobookspawners);
-            var necrobookxform4 = Transform(choosenSpawner4.Owner);
-            var necrobookcoords4 = necrobookxform4.Coordinates;
-            Spawn("MedievalDungeonKey", necrobookcoords4);
-
-            var choosenSpawner5 = _random.Pick(necrobookspawners);
-            var necrobookxform5 = Transform(choosenSpawner5.Owner);
-            var necrobookcoords5 = necrobookxform5.Coordinates;
-            Spawn("MedievalDungeonKey", necrobookcoords5);
-
-            var choosenSpawner6 = _random.Pick(necrobookspawners);
-            var necrobookxform6 = Transform(choosenSpawner6.Owner);
-            var necrobookcoords6 = necrobookxform6.Coordinates;
-            Spawn("MedievalDungeonKey", necrobookcoords6);
-
-            var choosenSpawner7 = _random.Pick(necrobookspawners);
-            var necrobookxform7 = Transform(choosenSpawner7.Owner);
-            var necrobookcoords7 = necrobookxform7.Coordinates;
-            Spawn("MedievalDungeonKey", necrobookcoords7);
-
-            var choosenSpawner8 = _random.Pick(necrobookspawners);
-            var necrobookxform8 = Transform(choosenSpawner8.Owner);
-            var necrobookcoords8 = necrobookxform8.Coordinates;
-            Spawn("MedievalDungeonKey", necrobookcoords8);
-
+            for (var i = 0; i < 5; i++)
+                Spawn("MedievalDungeonKey", Transform(_random.Pick(necrobookspawners)).Coordinates);
         }
 
         private void OnCurseDamage(EntityUid uid, MagicBarrierCurseComponent component, ref BeforeDamageChangedEvent args)
@@ -359,11 +153,13 @@ namespace Content.Server.MagicBarrier
                 comp.Stability += 7f;
             }
         }
+
         private void OnExamine(EntityUid uid, MagicBarrierComponent component, ExaminedEvent args)
         {
             args.PushMarkup("[color=red]Текущая стабильность барьера " + Math.Round(component.Stability, 2) + " из " + component.MaxStability + "[/color]");
             args.PushMarkup("[color=cyan]Текущий расход " + Math.Round(component.Lose, 2) + " стабильности в минуту[/color]");
         }
+
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
@@ -453,31 +249,31 @@ namespace Content.Server.MagicBarrier
                         }
                     }
 
-                    if (comp.Cycle == 85)
-                    {
-                        var cursespawners = EntityManager.EntityQuery<MagicBarrierCurseSpawnComponent>().ToArray();
-                        var choosenSpawner = _random.Pick(cursespawners);
-                        var cursexform = Transform(choosenSpawner.Owner);
-                        var cursecoords = cursexform.Coordinates;
-                        Spawn("MedievalSpawnNecroSenderPreset", cursecoords);
-                        _chat.DispatchGlobalAnnouncement("Посланник темного повелителя замечен на этих землях.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
-                    }
+                    //if (comp.Cycle == 85)
+                    //{
+                    //    var cursespawners = EntityManager.EntityQuery<MagicBarrierCurseSpawnComponent>().ToArray();
+                    //    var choosenSpawner = _random.Pick(cursespawners);
+                    //    var cursexform = Transform(choosenSpawner.Owner);
+                    //    var cursecoords = cursexform.Coordinates;
+                    //    Spawn("MedievalSpawnNecroSenderPreset", cursecoords);
+                    //    _chat.DispatchGlobalAnnouncement("Посланник темного повелителя замечен на этих землях.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
+                    //}
 
-                    if (comp.Cycle == 161)
-                    {
-                        var cursespawners = EntityManager.EntityQuery<MagicBarrierNecroSpawnComponent>().ToArray();
-                        var choosenSpawner = _random.Pick(cursespawners);
-                        var cursexform = Transform(choosenSpawner.Owner);
-                        var cursecoords = cursexform.Coordinates;
-                        for (int i = 0; i < 100; i++)
-                            Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroLeaderPreset", cursecoords);
-                        _chat.DispatchGlobalAnnouncement("Бойтесь, ОНИ идут... Объединение - единственный шанс на спасение.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
-
-                    }
+                    //if (comp.Cycle == 161)
+                    //{
+                    //    var cursespawners = EntityManager.EntityQuery<MagicBarrierNecroSpawnComponent>().ToArray();
+                    //    var choosenSpawner = _random.Pick(cursespawners);
+                    //    var cursexform = Transform(choosenSpawner.Owner);
+                    //    var cursecoords = cursexform.Coordinates;
+                    //    for (int i = 0; i < 100; i++)
+                    //        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                    //    Spawn("MedievalSpawnNecroLeaderPreset", cursecoords);
+                    //    _chat.DispatchGlobalAnnouncement("Бойтесь, ОНИ идут... Объединение - единственный шанс на спасение.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
+                    //}
 
                     if (comp.Cycle == 180)
                     {
+                        IsBarrierActive = false;
                         _chat.DispatchGlobalAnnouncement("Барьер изветшал и рассыпался в пыль.", playSound: true, colorOverride: Color.Red, sender: "Барьер");
                         _roundEndSystem.EndRound();
                     }
@@ -485,22 +281,5 @@ namespace Content.Server.MagicBarrier
             }
         }
     }
-    public sealed partial class AlcoholDrink : EntityEffect
-    {
-        protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-        {
-            return "In round end greentext";
-        }
 
-        public override void Effect(EntityEffectBaseArgs args)
-        {
-            if (!(args is EntityEffectReagentArgs reagentArgs)) return;
-            if (reagentArgs.EntityManager.TryGetComponent<MedievalSpikeTargetComponent>(args.TargetEntity, out var player))
-                player.Alcohol++;
-            foreach (var barrier in reagentArgs.EntityManager.EntityQuery<MagicBarrierComponent>())
-            {
-                barrier.AlcoholDrink++;
-            }
-        }
-    }
 }

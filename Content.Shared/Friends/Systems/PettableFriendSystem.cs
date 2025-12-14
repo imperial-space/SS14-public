@@ -1,12 +1,12 @@
 using Content.Shared.Chemistry.Components;
-using Content.Shared.Friends.Components;
+using Content.Shared.Imperial.Medieval.Factions.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Timing;
 
-namespace Content.Shared.Friends.Systems;
+namespace Content.Shared.Imperial.Medieval.Factions.Systems;
 
 public sealed class PettableFriendSystem : EntitySystem
 {

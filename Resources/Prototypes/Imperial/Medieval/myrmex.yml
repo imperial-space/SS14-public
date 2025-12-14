@@ -162,6 +162,13 @@
   - type: IconSmooth
     key: walls
     mode: NoSprite
+  - type: Construction
+    graph: MMyrmexDoor
+    node: medievalMyrmexDoor
+  - type: ReplaceFloorOnSpawn
+    replaceableTiles:
+    replacementTiles:
+    - MedievalMyrmexFloor2
   - type: Occluder
   placement:
     mode: SnapgridCenter
@@ -192,6 +199,13 @@
     base: flimsy
   - type: ExplosionResistance
     damageCoefficient: 10
+  - type: Construction
+    graph: MMyrmexFlimsyWall
+    node: medievalMyrmexFlimsyWall
+  - type: ReplaceFloorOnSpawn
+    replaceableTiles:
+    replacementTiles:
+    - MedievalMyrmexFloor2
 
 - type: entity
   parent: BaseWall
@@ -210,7 +224,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 800
+        damage: 1600
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -219,6 +233,13 @@
     base: strong
   - type: ExplosionResistance
     damageCoefficient: 20
+  - type: Construction
+    graph: MMyrmexStrongWall
+    node: medievalMyrmexStrongWall
+  - type: ReplaceFloorOnSpawn
+    replaceableTiles:
+    replacementTiles:
+    - MedievalMyrmexFloor2
 
 - type: entity
   id: MedievalMyrmexWeb
@@ -295,6 +316,10 @@
     - type: Construction
       graph: MMyrmexWeb
       node: medievalMyrmexWeb
+    - type: ReplaceFloorOnSpawn
+      replaceableTiles:
+      replacementTiles:
+      - MedievalMyrmexFloor2
     - type: SpeedModifierContacts
       walkSpeedModifier: 0.3
       sprintSpeedModifier: 0.3
@@ -366,8 +391,12 @@
   name: myrmex trap
   description: goal
   components:
+  - type: Stealth
+    maxVisibility: 0.33
+    minVisibility: 0.33
+    lastVisibility: 0.33
   - type: SmokeOnTrigger
-    duration: 10
+    duration: 25 # Я ЕБНУТЫЙ, БЕГИТЕ
     spreadAmount: 30
     solution:
       reagents:
@@ -406,6 +435,10 @@
   - type: Construction
     graph: MMyrmexTrapBase
     node: medievalMyrmexTrapBase
+  - type: ReplaceFloorOnSpawn
+    replaceableTiles:
+    replacementTiles:
+    - MedievalMyrmexFloor2
   - type: SpawnOnDespawn
     prototype: MedievalMyrmexTrapFull
 
@@ -442,16 +475,142 @@
 - type: Tag
   id: MyrmexCanTake
 
+# ===========================
+
+- type: entity
+  name: Shoot
+  id: MedievalMyrmexShootAction
+  components:
+  - type: Action
+    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
+    priority: -12
+    useDelay: 5
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
+    event: !type:ActionMyrmexShootEvent
+      projectileProto: MedievalProjectileFireballBeginner
+      speed: 10
+
+- type: entity
+  name: Boost
+  id: MedievalMyrmexBoostAction
+  components:
+  - type: Action
+    icon: Imperial/Medieval/Myrmex/Icons/boost.png
+    priority: -12
+    checkCanAccess: false
+    useDelay: 90
+  - type: InstantAction
+    event: !type:ActionMyrmexBoostEvent
+      duration: 3.5
+      multiplier: 0.7
+
+- type: entity
+  name: Toggle armor
+  id: MedievalMyrmexToggleArmorAction
+  components:
+  - type: Action
+    icon: Imperial/Medieval/Myrmex/Icons/armor.png
+    priority: -12
+    checkCanAccess: false
+    useDelay: 5
+  - type: InstantAction
+    event: !type:ActionMyrmexToggleArmorEvent
+
+- type: entity
+  name: Enable stun
+  id: MedievalMyrmexToggleStunAction
+  components:
+  - type: Action
+    icon: Imperial/Medieval/Myrmex/Icons/stun.png
+    priority: -12
+    checkCanAccess: false
+    useDelay: 120
+  - type: InstantAction
+    event: !type:ActionMyrmexToggleStunEvent
+
+- type: entity
+  name: Spawn
+  id: MedievalMyrmexSpawnAction
+  components:
+  - type: Action
+    icon: Imperial/Medieval/Myrmex/Icons/wall.png
+    priority: -12
+    checkCanAccess: false
+    useDelay: 18
+  - type: InstantAction
+    event: !type:ActionMyrmexSpawnEvent
+      proto: MedievalMyrmexFlimsyWall
+      doAfterDuration: 3
+
+- type: entity
+  name: Toggle stealth
+  id: MedievalMyrmexToggleStealthAction
+  components:
+  - type: Action
+    icon: Imperial/Medieval/Myrmex/Icons/invis.png
+    priority: -12
+    checkCanAccess: false
+    useDelay: 1
+  - type: InstantAction
+    event: !type:ActionMyrmexToggleStealthEvent
+
+- type: entity
+  name: Heal
+  id: MedievalMyrmexHealAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon: Imperial/Medieval/Myrmex/Icons/heal.png
+    priority: -12
+    useDelay: 40
+  - type: TargetAction
+    range: 2
+    checkCanAccess: false
+  - type: EntityTargetAction
+    event: !type:ActionMyrmexHealEvent
+      healedDamage:
+        groups:
+          Brute: -50
+          Burn: -50
+    canTargetSelf: false
+    whitelist:
+      requireAll: true
+      components:
+      - Myrmex
+
+- type: entity
+  name: Lay egg
+  id: MedievalMyrmexQueenLayEggAction
+  components:
+  - type: Action
+    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
+    useDelay: 180
+  - type: InstantAction
+    event: !type:ActionMyrmexQueenLayEggEvent
+
+# ===========================
+
 - type: entity
   abstract: true
   parent: SimpleMobBaseNoFood
   id: MedievalMyrmexBase
   components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Myrmex/Castes/myrmex_worker.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: MyrmexHunger
   - type: BorgHandsImperial
     whitelistHandTag: MyrmexCanTake
   - type: Hands
     throwRange: 2
   - type: Body
+    requiredLegs: 0
     prototype: Myrmex
   - type: Strippable
   - type: UserInterface
@@ -543,6 +702,47 @@
   - type: LocalLight
     energy: 1
     radius: 6
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 1000
+      behaviors:
+      - !type:GoSSDBehavior { }
+      - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:GoSSDBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Caustic
+        damage: 100
+      behaviors:
+      - !type:GoSSDBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MedievalLootAnt:
+            min: 2
+            max: 4
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/lightburn.ogg
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   name: myrmeling
@@ -567,7 +767,7 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 10
+        Brute: 8
       types:
         ParryAble: 1
         Structural: 85
@@ -575,7 +775,7 @@
     thresholds:
       0: Alive
       65: Critical
-      110: Dead
+      140: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.2
     baseSprintSpeed: 2
@@ -591,12 +791,16 @@
     rootTask:
       task: SimpleHostileCompound
   - type: StaminaDamageOnHit
-    damage: 10
+    damage: 4
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-myrmex-worker-name
     description: ghost-role-information-myrmex-worker-description
     rules: ghost-role-information-myrmex-rules
+  - type: Myrmex
+    actions:
+    - MedievalMyrmexSpawnAction
+    - MedievalMyrmexHealAction
 
 - type: entity
   name: myrmacrid
@@ -629,7 +833,7 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 7
+        Brute: 5
         Airloss: 2
       types:
         ParryAble: 1
@@ -644,7 +848,7 @@
     thresholds:
       0: Alive
       100: Critical
-      120: Dead
+      170: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.4
     baseSprintSpeed: 2.2
@@ -660,12 +864,20 @@
     rootTask:
       task: SimpleHostileCompound
   - type: StaminaDamageOnHit
-    damage: 15
+    damage: 7
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-myrmex-spitter-name
     description: ghost-role-information-myrmex-spitter-description
     rules: ghost-role-information-myrmex-rules
+  - type: Myrmex
+    actions:
+    - MedievalMyrmexToggleStealthAction
+  - type: Stealth
+    enabled: false
+  - type: StealthOnMove
+    passiveVisibilityRate: -0.3
+    movementVisibilityRate: 0.7
 
 - type: entity
   name: myrmalisk
@@ -690,37 +902,45 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 22
-        Airloss: 5
+        Brute: 14
+        Airloss: 3
       types:
         ParryAble: 1
         Bloodloss: 4
   - type: MobThresholds
     thresholds:
       0: Alive
-      220: Critical # curse of 220
-      260: Dead
+      310: Critical # curse of 220. no. 310
+      450: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3.4
-    baseSprintSpeed: 2.2
+    baseWalkSpeed: 3
+    baseSprintSpeed: 1.8
   - type: InputMover
   - type: SlowOnDamage
     speedModifierThresholds:
       120: 1
       130: 0.8
-      140: 0.7
-      150: 0.6
-      160: 0.5
+      170: 0.7
+      210: 0.6
+      230: 0.5
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
   - type: StaminaDamageOnHit
-    damage: 17
+    damage: 6
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-myrmex-elite-name
     description: ghost-role-information-myrmex-elite-description
     rules: ghost-role-information-myrmex-rules
+  - type: Myrmex
+    actions:
+    - MedievalMyrmexToggleArmorAction
+    - MedievalMyrmexToggleStunAction
+    stunDuration: 3
+    standardArmorProto: MyrmexArmorOff
+    activeArmorProto: MyrmexArmorOn
+    activeArmorSpeedMultiplier: 0.4
 
 - type: entity
   name: myrmedon
@@ -745,15 +965,15 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 15
-        Airloss: 6
+        Brute: 10
+        Airloss: 2
       types:
         ParryAble: 1
-        Bloodloss: 3
+        Bloodloss: 2
   - type: MobThresholds
     thresholds:
       0: Alive
-      195: Critical
+      155: Critical
       270: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 4.2
@@ -770,18 +990,28 @@
     rootTask:
       task: SimpleHostileCompound
   - type: StaminaDamageOnHit
-    damage: 15
+    damage: 3
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-myrmex-warrior-name
     description: ghost-role-information-myrmex-warrior-description
     rules: ghost-role-information-myrmex-rules
+  - type: Myrmex
+    actions:
+    - MedievalMyrmexBoostAction
+    - MedievalMyrmexToggleStealthAction
+  - type: Stealth
+    enabled: false
+  - type: StealthOnMove
+    passiveVisibilityRate: -0.3
+    movementVisibilityRate: 0.7
 
 - type: entity
   name: myrmelarva
   parent: MedievalMyrmexBase
   id: MedievalMyrmexLarva
   components:
+  - type: Larva
   - type: Butcherable
     spawned:
     - id: FoodMeat
@@ -862,6 +1092,7 @@
   id: MedievalMyrmexQueen
   description: muravey ebanniy
   components:
+  - type: MyrmexQueen
   - type: Sprite
     drawdepth: Mobs
     sprite: Imperial/Medieval/Myrmex/Castes/myrmex_queen.rsi
@@ -885,11 +1116,11 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 23
-        Airloss: 9
+        Brute: 20
+        Airloss: 3
       types:
         ParryAble: 1
-        Bloodloss: 3
+        Bloodloss: 5
         Structural: 155
   - type: MobThresholds
     thresholds:
@@ -912,7 +1143,7 @@
     rootTask:
       task: SimpleHostileCompound
   - type: StaminaDamageOnHit
-    damage: 17
+    damage: 12
   - type: LanguageSpeaker
     languages:
       Common: Understand
@@ -930,6 +1161,41 @@
     name: ghost-role-information-myrmex-queen-name
     description: ghost-role-information-myrmex-queen-description
     rules: ghost-role-information-myrmex-rules
+  - type: Myrmex
+    actions:
+    - MedievalMyrmexBoostAction
+    - MedievalMyrmexToggleArmorAction
+    - MedievalMyrmexToggleStunAction
+    - MedievalMyrmexHealAction
+    stunDuration: 5
+    standardArmorProto: MyrmexArmorOff
+    activeArmorProto: MyrmexArmorOn
+    activeArmorSpeedMultiplier: 0.4
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 1000
+      behaviors:
+      - !type:GoSSDBehavior { }
+      - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:GoSSDBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
 
 - type: entity
   id: BaseItemMyrmex
@@ -1006,3 +1272,39 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: MyrmexEgg
+
+- type: entity
+  id: MedievalCurseClot
+  parent: BaseItemMyrmex
+  name: myrmex curse clot
+  description: slizen
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/curse.rsi
+    state: clot
+  - type: Item
+    size: Ginormous
+  - type: Tag
+    tags:
+    - MyrmexCanTake
+    - MagicScroll
+  - type: MagicScroll
+    bad: true
+    basicPower: -15
+
+- type: damageModifierSet
+  id: MyrmexArmorOff
+  coefficients:
+    Blunt: 0.9
+    Slash: 0.9
+    Piercing: 0.9
+    Heat: 0.9
+
+- type: damageModifierSet
+  id: MyrmexArmorOn
+  coefficients:
+    Blunt: 0.35
+    Slash: 0.35
+    Piercing: 0.35
+    Heat: 0.35
+

@@ -1,7 +1,10 @@
+using System.Windows.Input;
 using Content.Shared.Examine;
 using Content.Shared.Imperial.Medieval.Construction;
+using Content.Shared.Imperial.Medieval.Illitid;
 using Content.Shared.Paper;
 using Content.Shared.Verbs;
+using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Imperial.Medieval.Skills;
@@ -38,6 +41,7 @@ public abstract partial class SharedSkillsSystem
         args.FailReason = "Вы слишком глупы.";
     }
 
+
     private void OnSkillsExamined(EntityUid uid, SkillsComponent component, GetVerbsEvent<ExamineVerb> args)
     {
         if (!_player.TryGetSessionByEntity(uid, out var session))
@@ -46,7 +50,8 @@ public abstract partial class SharedSkillsSystem
         var (_, self) = GetSkill(args.User, IntelligenceId);
         var (_, otherLevel) = GetSkill(uid, IntelligenceId);
 
-        if (self >= 20 && otherLevel < 14)
+        // в идеале конечно для резонатов перенести в их систему, ведь иначе будет путаница, но
+        if ((self >= 20 || HasComp<IllitidComponent>(args.User)) && otherLevel < 14)
         {
             var verb = new ExamineVerb
             {
@@ -64,7 +69,6 @@ public abstract partial class SharedSkillsSystem
                 Message = args.CanAccess ? null : Loc.GetString("detail-examinable-verb-disabled"),
                 Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/Medieval/Interface/Brain.png"))
             };
-
             args.Verbs.Add(verb);
         }
     }

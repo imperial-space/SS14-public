@@ -9,19 +9,24 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.65
+        essenceAddProbability: 0.00065
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalLight1: 1
-  - type: WorldTargetAction
+          MagicMedievalLight: 1
+        bonusEssences:
+          MagicMedievalLight: 1
+  - type: Action
     useDelay: 22
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/lightning_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/lightning.rsi
-      state: lightning-basic
+      sprite: Imperial/Medieval/Magic/MultiCurrency/Lightning/icons.rsi
+      state: middle-light
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalLightningSpellEvent
       spawnedEffectPrototype: MedievalLightningExplosion
       amplitude: 0.4
@@ -59,12 +64,14 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 22
+  - type: SpellCastEffect
+    effectProto: LightningSpellCastEffectMiddle
   - type: ActionUpgrade
     effectedLevels:
       2: MedievalActionLightningSenior
-      # Fire Lightning
-      3: MedievalActionFireLightningMiddle
-      4: MedievalActionFireLightningSenior
+      # # Fire Lightning
+      # 3: MedievalActionFireLightningMiddle # Remove this lines, to return spell in Grimoire
+      # 4: MedievalActionFireLightningSenior
 
 # Senior
 
@@ -75,16 +82,18 @@
   parent: MedievalActionLightningMiddle
   components:
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 20
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/lightning_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/lightning.rsi
-      state: lightning-adv
+      sprite: Imperial/Medieval/Magic/MultiCurrency/Lightning/icons.rsi
+      state: senior-light
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalLightningSpellEvent
       spawnedEffectPrototype: MedievalLightningExplosion
       amplitude: 0.4

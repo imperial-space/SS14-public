@@ -1,0 +1,45 @@
+- type: entity
+  name: MobSkullBossSkeleton
+  parent: [ BaseSimpleMob, MobCombat ]
+  id: MobSkullBossSkeleton
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/Bosses/SkeletonSkull/clawed-skeleton.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: skeleton
+  - type: NpcFactionMember
+    factions:
+      - Syndicate
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.2
+    baseSprintSpeed : 3.2
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      110: Dead
+  - type: TransferMindOnGib
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 110
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MeleeWeapon
+    range: 1.1
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 5
+        Slash: 14

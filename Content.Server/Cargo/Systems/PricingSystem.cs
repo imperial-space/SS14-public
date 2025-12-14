@@ -4,6 +4,7 @@ using Content.Server.Cargo.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Administration;
 using Content.Shared.Body.Components;
+using Content.Shared.Cargo;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Materials;
@@ -17,6 +18,10 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.Research.Prototypes;
+//Imperial Space Pirates: New Horizon; Start
+using Content.Server.Imperial.PiratesNewHorizon.GPS.Components;
+using Content.Shared.Store.Components;
+//Imperial Space Pirates: New Horizon; End
 
 namespace Content.Server.Cargo.Systems;
 
@@ -83,25 +88,78 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
         }
     }
 
+// Imperial Space Pirates: New Horizon; Start
+    private double GetGPSTrackerPrice(EntityUid uid)
+    {
+        double price = 0;
+
+        if(TryComp<GPSTrackerPriceComponent>(uid, out var gpsTracker))
+        {
+            if (gpsTracker.GPSTrackerInstalled == true)
+            {
+                price = gpsTracker.StartPrice;
+            }
+            else price = gpsTracker.EndPrice;
+        }
+        return price;
+    }
+
+    private double GetStorePrice(EntityUid uid)
+    {
+        double price = 0;
+
+        if (!TryComp<StoreComponent>(uid, out var storeComp) || storeComp.Balance == null)
+            return price;
+
+        foreach (var (currencyProto, amount) in storeComp.Balance)
+        {
+            if (!_prototypeManager.TryIndex<EntityPrototype>(currencyProto, out var currencyEntityProto))
+                continue;
+            double unitPrice = GetStackPricePerUnit(currencyEntityProto);
+            price += amount.Double() * unitPrice;
+        }
+
+        return price;
+    }
+
+    private double GetStackPricePerUnit(EntityPrototype prototype)
+    {
+        var price = 0.0;
+
+        if (prototype.Components.TryGetValue(Factory.GetComponentName<StackPriceComponent>(), out var stackpriceProto) &&
+            prototype.Components.TryGetValue(Factory.GetComponentName<StackComponent>(), out var stackProto) &&
+            !prototype.Components.ContainsKey(Factory.GetComponentName<MaterialComponent>()))
+        {
+            var stackPrice = (StackPriceComponent) stackpriceProto.Component;
+            var stack = (StackComponent) stackProto.Component;
+            price += stackPrice.Price;
+        }
+
+        return price;
+    }
+// Imperial Space Pirates: New Horizon; End
     private void CalculateMobPrice(EntityUid uid, MobPriceComponent component, ref PriceCalculationEvent args)
     {
         // TODO: Estimated pricing.
         if (args.Handled)
             return;
 
-        if (!TryComp<BodyComponent>(uid, out var body) || !TryComp<MobStateComponent>(uid, out var state))
+        if (!TryComp<MobStateComponent>(uid, out var state))
         {
-            Log.Error($"Tried to get the mob price of {ToPrettyString(uid)}, which has no {nameof(BodyComponent)} and no {nameof(MobStateComponent)}.");
+            Log.Error($"Tried to get the mob price of {ToPrettyString(uid)}, which has no {nameof(MobStateComponent)}.");
             return;
         }
 
-        // TODO: Better handling of missing.
-        var partList = _bodySystem.GetBodyChildren(uid, body).ToList();
-        var totalPartsPresent = partList.Sum(_ => 1);
-        var totalParts = partList.Count;
+        var partPenalty = 0.0;
+        if (TryComp<BodyComponent>(uid, out var body))
+        {
+            var partList = _bodySystem.GetBodyChildren(uid, body).ToList();
+            var totalPartsPresent = partList.Sum(_ => 1);
+            var totalParts = partList.Count;
 
-        var partRatio = totalPartsPresent / (double) totalParts;
-        var partPenalty = component.Price * (1 - partRatio) * component.MissingBodyPartPenalty;
+            var partRatio = totalPartsPresent / (double) totalParts;
+            partPenalty = component.Price * (1 - partRatio) * component.MissingBodyPartPenalty;
+        }
 
         args.Price += (component.Price - partPenalty) * (_mobStateSystem.IsAlive(uid, state) ? 1.0 : component.DeathPenalty);
     }
@@ -183,10 +241,7 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
     /// </summary>
     public double GetEstimatedPrice(EntityPrototype prototype)
     {
-        var ev = new EstimatedPriceCalculationEvent()
-        {
-            Prototype = prototype,
-        };
+        var ev = new EstimatedPriceCalculationEvent(prototype);
 
         RaiseLocalEvent(ref ev);
 
@@ -195,7 +250,7 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
 
         var price = ev.Price;
         price += GetMaterialsPrice(prototype);
-        price += GetSolutionsPrice(prototype);
+        // price += GetSolutionsPrice(prototype); // Imperial Lathe Nerf
         // Can't use static price with stackprice
         var oldPrice = price;
         price += GetStackPrice(prototype);
@@ -206,8 +261,13 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
         }
 
         // TODO: Proper container support.
+        // Imperial Lathe Nerf; Start
+        price = ApplyPrototypePriceModifier(prototype, price);
+        price += GetSolutionsPrice(prototype);
 
-        return ApplyPrototypePriceModifier(prototype, price); // Imperial Lathe Nerf
+        // return ApplyPrototypePriceModifier(prototype, price); // Imperial Lathe Nerf
+        return price;
+        // Imperial Lathe Nerf; end
     }
 
     /// <summary>
@@ -230,9 +290,8 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
         var price = ev.Price;
         //TODO: Add an OpaqueToAppraisal component or similar for blocking the recursive descent into containers, or preventing material pricing.
         // DO NOT FORGET TO UPDATE ESTIMATED PRICING
-        price += GetMaterialsPrice(uid);
-        price += GetSolutionsPrice(uid);
-
+        price += GetMaterialsPrice(uid);// Imperial Lathe Nerf
+        //price += GetSolutionsPrice(uid); //Imperial Lathe Nerf
         // Can't use static price with stackprice
         var oldPrice = price;
         price += GetStackPrice(uid);
@@ -240,8 +299,14 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
         if (oldPrice.Equals(price))
         {
             price += GetStaticPrice(uid);
+            //Imperial Space Pirates: New Horizon
+            price += GetGPSTrackerPrice(uid);
         }
-
+        // Imperial Lathe Nerf; Start
+        price = ApplyPriceModifier(uid, price);
+        price += GetSolutionsPrice(uid);
+        price += GetStorePrice(uid);
+        // Imperial Lathe Nerf; End
         if (includeContents && TryComp<ContainerManagerComponent>(uid, out var containers))
         {
             foreach (var container in containers.Containers.Values)
@@ -252,8 +317,9 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
                 }
             }
         }
-
-        return ApplyPriceModifier(uid, price); // Imperial Lathe Nerf
+        //return ApplyPriceModifier(uid, price); // Imperial Lathe Nerf
+        return price;
+        // Imperial Lathe Nerf
     }
 
     private double GetMaterialsPrice(EntityUid uid)
@@ -398,40 +464,4 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
 
         return price;
     }
-}
-
-/// <summary>
-/// A directed by-ref event fired on an entity when something needs to know it's price. This value is not cached.
-/// </summary>
-[ByRefEvent]
-public record struct PriceCalculationEvent()
-{
-    /// <summary>
-    /// The total price of the entity.
-    /// </summary>
-    public double Price = 0;
-
-    /// <summary>
-    /// Whether this event was already handled.
-    /// </summary>
-    public bool Handled = false;
-}
-
-/// <summary>
-/// Raised broadcast for an entity prototype to determine its estimated price.
-/// </summary>
-[ByRefEvent]
-public record struct EstimatedPriceCalculationEvent()
-{
-    public required EntityPrototype Prototype;
-
-    /// <summary>
-    /// The total price of the entity.
-    /// </summary>
-    public double Price = 0;
-
-    /// <summary>
-    /// Whether this event was already handled.
-    /// </summary>
-    public bool Handled = false;
 }

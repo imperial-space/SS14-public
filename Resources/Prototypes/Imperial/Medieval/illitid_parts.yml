@@ -1,0 +1,119 @@
+# TODO: Add descriptions (many)
+# TODO BODY: Part damage
+- type: entity
+  id: PartIllitid
+  parent: [BaseItem, BasePart]
+  name: "Illitid body part"
+  abstract: true
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 3
+      - ReagentId: Blood
+        Quantity: 10
+
+- type: entity
+  id: TorsoIllitid
+  name: "Illitid torso"
+  parent: [PartIllitid, BaseTorso]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
+    state: "torso_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: Blood
+        Quantity: 20
+
+- type: entity
+  id: HeadIllitid
+  name: "Illitid head"
+  parent: [PartIllitid, BaseHead]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
+    state: "head_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 5
+      - ReagentId: Blood
+        Quantity: 10
+
+- type: entity
+  id: LeftArmIllitid
+  name: "left Illitid arm"
+  parent: [PartIllitid, BaseLeftArm]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
+    state: "l_arm"
+
+- type: entity
+  id: RightArmIllitid
+  name: "right Illitid arm"
+  parent: [PartIllitid, BaseRightArm]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
+    state: "r_arm"
+
+- type: entity
+  id: LeftHandIllitid
+  name: "left Illitid hand"
+  parent: [PartIllitid, BaseLeftHand]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: RightHandIllitid
+  name: "right Illitid hand"
+  parent: [PartIllitid, BaseRightHand]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
+    state: "r_hand"
+
+- type: entity
+  id: LeftLegIllitid
+  name: "left Illitid leg"
+  parent: [PartIllitid, BaseLeftLeg]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
+    state: "l_leg"
+
+- type: entity
+  id: RightLegIllitid
+  name: "right Illitid leg"
+  parent: [PartIllitid, BaseRightLeg]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
+    state: "r_leg"
+
+- type: entity
+  id: LeftFootIllitid
+  name: "left Illitid foot"
+  parent: [PartIllitid, BaseLeftFoot]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
+    state: "l_foot"
+
+- type: entity
+  id: RightFootIllitid
+  name: "right Illitid foot"
+  parent: [PartIllitid, BaseRightFoot]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Illitid/parts.rsi
+    state: "r_foot"

@@ -6,14 +6,15 @@
   description: medieval-store-spells-multi-currency-weakening-wave-senior-desc
   components:
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 185
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-      state: 3
+      sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+      state: senior
+  - type: InstantAction
     event: !type:MedievalInstantSpawnEvent
       spawnedEntityPrototype: WeakeningWave
       spellCastDoAfter:
@@ -34,13 +35,19 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 1
+        essenceAddProbability: 0.0001
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalLight1: 2
+          MagicMedievalLight: 2
+        bonusEssences:
+          MagicMedievalLight: 1
       - !type:AddMagicEssence
-        probability: 1
+        essenceAddProbability: 0.0001
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalVodka1: 2
+          MagicMedievalVodka: 2
+        bonusEssences:
+          MagicMedievalVodka: 1
   - type: ManaDrainSpell
     manaDrain: 95
     canUseWithoutMana: true
@@ -48,3 +55,5 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 30
+  - type: SpellCastEffect
+    effectProto: WeakeningWaveSpellCastEffectBeginner

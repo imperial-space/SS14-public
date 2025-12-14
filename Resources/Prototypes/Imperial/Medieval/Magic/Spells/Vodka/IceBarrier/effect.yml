@@ -2,8 +2,8 @@
   id: IceBarrierParticles
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   - type: MedievalParticles
     color: "#39FFFF"
   - type: TimedDespawn
@@ -11,3 +11,23 @@
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Imperial/Medieval/icewall_down.ogg
+
+#Beginner
+
+- type: entity
+  id: IceBarrierSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/vodka/barrier.rsi
+    color: "#78C6ED"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#78C6ED"
+  - type: TimedDespawn
+    lifetime: 0.5
+

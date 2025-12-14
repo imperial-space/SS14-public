@@ -118,6 +118,15 @@
 
 - type: entity
   parent: Paper
+  id: RequestCleaning
+  name: "Запрос на вызов УБР"
+  description: "Распечатанный документ с заголовком отдела: командование"
+  components:
+    - type: Paper
+      content: doc-text-printer-request-cleaning
+
+- type: entity
+  parent: Paper
   id: RequestForCentCom
   name: "Запрос на вызов пЦК"
   description: "Распечатанный документ с заголовком отдела: командование"
@@ -511,3 +520,12 @@
   components:
     - type: Paper
       content: doc-text-printer-divorce-certificate
+
+- type: entity
+  parent: Paper
+  id: ChallengeJRT
+  name: "Запрос на вызов УБР"
+  description: "Распечатанный документ с заголовком отдела: запрос на вызов уборщиков быстрого реагирования"
+  components:
+    - type: Paper
+      content: doc-text-printer-challenge-jrt

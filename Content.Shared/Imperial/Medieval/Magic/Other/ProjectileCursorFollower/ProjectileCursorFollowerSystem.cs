@@ -69,7 +69,6 @@ public sealed partial class ProjectileCursorFollowerSystem : EntitySystem
         resultVelocity = resultVelocity.Length() > component.MaxLinearVelocityIntensy
             ? direction.Normalized() * new Vector2(component.MaxLinearVelocityIntensy)
             : resultVelocity;
-
         _transformSystem.SetLocalRotation(uid, rotation);
         _physicsSystem.SetLinearVelocity(uid, resultVelocity, body: physicsComponent);
     }

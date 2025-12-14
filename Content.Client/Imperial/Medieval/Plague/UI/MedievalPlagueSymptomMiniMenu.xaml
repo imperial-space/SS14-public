@@ -1,0 +1,102 @@
+<DefaultWindow
+    xmlns="https://spacestation14.io"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
+    xmlns:plague="clr-namespace:Content.Client.Imperial.Medieval.Plague.UI"
+    Title="{Loc 'plague-symptom-display-title'}"
+    MinSize="376 365"
+    SetSize="376 365">
+    <BoxContainer
+        HorizontalExpand="True"
+        Orientation="Horizontal"
+        VerticalExpand="True">
+        <ScrollContainer
+            HorizontalExpand="True"
+            VerticalExpand="True"
+            HScrollEnabled="False"
+            Margin="2">
+            <BoxContainer
+                Name="SymptomContainer"
+                HorizontalExpand="True"
+                Orientation="Vertical"
+                SizeFlagsStretchRatio="2"
+                VerticalExpand="True">
+                <RichTextLabel
+                    Name="SymptomName"
+                    Margin="2"
+                    HorizontalAlignment="Center" />
+                <TextureRect
+                    Name="SymptomDisplay"
+                    Margin="2"
+                    HorizontalAlignment="Center"
+                    TextureScale="6 6" />
+                <RichTextLabel
+                    Name="SymptomDesc"
+                    Margin="2"
+                    HorizontalAlignment="Center" />
+                <Button
+                    Name="OpenSliderButton"
+                    HorizontalExpand="True"
+                    Text="Добавить очки" />
+                <BoxContainer
+                    Name="SliderContainer"
+                    Orientation="Horizontal"
+                    SetHeight="48"
+                    Visible="False">
+                    <Slider
+                        Name="PointsSlider"
+                        VerticalAlignment="Center"
+                        HorizontalExpand="True" />
+                    <Label
+                        Name="SliderValue"
+                        Margin="2"
+                        SetSize="48 48" />
+                    <Button
+                        Name="AddPointsButton"
+                        VerticalAlignment="Center"
+                        HorizontalExpand="True"
+                        Text="Подтв" />
+                </BoxContainer>
+            </BoxContainer>
+
+            <BoxContainer
+                Name="InfoContainer"
+                HorizontalExpand="True"
+                Orientation="Vertical"
+                SizeFlagsStretchRatio="2"
+                VerticalExpand="True">
+                <RichTextLabel
+                    Text="Прогресс болезни"
+                    Margin="4"
+                    HorizontalAlignment="Center" />
+                <ProgressBar
+                    Name="Progress"
+                    Margin="4"
+                    HorizontalExpand="True"
+                    SetHeight="24" />
+                <RichTextLabel
+                    Name="InfectedCount"
+                    Margin="4"
+                    HorizontalAlignment="Left" />
+                <RichTextLabel
+                    Name="ImmuneCount"
+                    Margin="4"
+                    HorizontalAlignment="Left" />
+                <RichTextLabel
+                    Name="PlagueTier"
+                    Margin="4"
+                    HorizontalAlignment="Left" />
+                <RichTextLabel
+                    Name="SymptomsCount"
+                    Margin="4"
+                    HorizontalAlignment="Left" />
+                <RichTextLabel
+                    Name="PlaguePoints"
+                    Margin="4"
+                    HorizontalAlignment="Left" />
+            </BoxContainer>
+        </ScrollContainer>
+    </BoxContainer>
+</DefaultWindow>

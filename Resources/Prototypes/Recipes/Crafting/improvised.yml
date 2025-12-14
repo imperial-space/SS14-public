@@ -227,3 +227,30 @@
   targetNode: hardsuitGoliath
   category: construction-category-clothing
   objectType: Item
+
+- type: construction
+  hide: true # imperial medieval craft disable
+  id: scraparmor
+  graph: scraparmor
+  startNode: start
+  targetNode: scraparmorfinished
+  category: construction-category-clothing
+  objectType: Item
+
+- type: construction
+  hide: true # imperial medieval craft disable
+  id: scraphelmet
+  graph: scraphelmet
+  startNode: start
+  targetNode: scraphelmet
+  category: construction-category-clothing
+  objectType: Item
+
+- type: construction
+  hide: true # imperial medieval craft disable
+  id: ClothingBagPet
+  graph: ClothingBagPet
+  startNode: start
+  targetNode: bagPet
+  category: construction-category-clothing
+  objectType: Item

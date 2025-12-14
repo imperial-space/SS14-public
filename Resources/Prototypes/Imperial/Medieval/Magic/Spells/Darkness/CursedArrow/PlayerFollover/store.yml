@@ -9,8 +9,8 @@
   productUpgradeId:
     - MedievalSpellCursedArrowPlayerFolloverMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/icons.rsi
+    state: beginner-aim
   cost:
     MagicMedievalDarkness: 45
   categories:
@@ -54,8 +54,8 @@
   productUpgradeId:
     - MedievalSpellCursedArrowPlayerFolloverSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
-    state: 2
+    sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/icons.rsi
+    state: middle-aim
   cost:
     MagicMedievalDarkness: 60
   categories:
@@ -99,8 +99,8 @@
   productUpgradeId:
     - MedievalSpellCursedArrowPlayerFolloverSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/icons.rsi
+    state: senior-aim
   cost:
     MagicMedievalDarkness: 75
     ArchmagePoints: 1

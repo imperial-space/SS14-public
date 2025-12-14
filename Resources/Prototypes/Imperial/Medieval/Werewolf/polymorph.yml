@@ -1,0 +1,69 @@
+- type: polymorph
+  id: WerwolfBlack
+  configuration:
+    entity: MedievalMobWerwolfBlack
+    inventory: Drop
+    revertOnCrit: true
+    revertOnDeath: true
+    forced: true
+    delay: 5
+
+- type: polymorph
+  id: WerwolfBlueDark
+  configuration:
+    entity: MedievalMobWerwolfBlueDark
+    inventory: Drop
+    revertOnCrit: true
+    revertOnDeath: true
+    forced: true
+    delay: 5
+
+- type: polymorph
+  id: WerwolfBlueLight
+  configuration:
+    entity: MedievalMobWerwolfBlueLight
+    inventory: Drop
+    revertOnCrit: true
+    revertOnDeath: true
+    forced: true
+    delay: 5
+
+- type: polymorph
+  id: WerwolfBrown
+  configuration:
+    entity: MedievalMobWerwolfBrown
+    inventory: Drop
+    revertOnCrit: true
+    revertOnDeath: true
+    forced: true
+    delay: 5
+
+- type: polymorph
+  id: WerwolfLight
+  configuration:
+    entity: MedievalMobWerwolfLight
+    inventory: Drop
+    revertOnCrit: true
+    revertOnDeath: true
+    forced: true
+    delay: 5
+
+- type: polymorph
+  id: WerwolfPurple
+  configuration:
+    entity: MedievalMobWerwolfPurple
+    inventory: Drop
+    revertOnCrit: true
+    revertOnDeath: true
+    forced: true
+    delay: 5
+
+- type: polymorph
+  id: WerwolfRed
+  configuration:
+    entity: MedievalMobWerwolfRed
+    inventory: Drop
+    revertOnCrit: true
+    revertOnDeath: true
+    forced: true
+    delay: 5

@@ -1,0 +1,37 @@
+#Middle
+
+- type: entity
+  id: FireLightningSpellCastEffectMiddle
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/MultiCurrency/lightning.rsi
+    color: "#F33900"
+    noRot: true
+    layers:
+      - state: middleFire
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#F33900"
+  - type: TimedDespawn
+    lifetime: 3
+
+#Senior
+
+- type: entity
+  id: FireLightningSpellCastEffectSenior
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/MultiCurrency/lightning.rsi
+    color: "#F33900"
+    noRot: true
+    layers:
+      - state: seniorFire
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#F33900"
+  - type: TimedDespawn
+    lifetime: 3.5

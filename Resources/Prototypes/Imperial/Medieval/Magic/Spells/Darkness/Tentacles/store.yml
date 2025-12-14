@@ -1,0 +1,67 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellTentaclesBeginner
+  name: medieval-store-spells-darkness-tentacles-beginner-name
+  description: medieval-store-spells-darkness-tentacles-beginner-desc
+  productAction: MedievalActionTentaclesBeginner
+  priority: 8
+  productUpgradeId:
+    - MedievalSpellTentaclesMiddle
+  icon:
+    sprite: Imperial/Medieval/Magic/Darkness/Tentacles/icons.rsi
+    state: beginner
+  cost:
+    MagicMedievalDarkness: 25
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellTentaclesMiddle
+  name: medieval-store-spells-darkness-tentacles-middle-name
+  description: medieval-store-spells-darkness-tentacles-middle-desc
+  priority: 8
+  productUpgradeId:
+    - MedievalSpellTentaclesSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Darkness/Tentacles/icons.rsi
+    state: middle
+  cost:
+    MagicMedievalDarkness: 60
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellTentaclesBeginner
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellTentaclesSenior
+  name: medieval-store-spells-darkness-tentacles-senior-name
+  description: medieval-store-spells-darkness-tentacles-senior-desc
+  priority: 8
+  productUpgradeId:
+    - MedievalSpellTentaclesSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Darkness/Tentacles/icons.rsi
+    state: senior
+  cost:
+    MagicMedievalDarkness: 80
+    ArchmagePoints: 1
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellTentaclesMiddle

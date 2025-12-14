@@ -1,0 +1,49 @@
+- type: entity
+  id: MedievalActionHolyTouchBeginner
+  name: medieval-store-spells-light-holy-touch-beginner-name
+  description: medieval-store-spells-light-holy-touch-beginner-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.00085
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalLight: 1
+        bonusEssences:
+          MagicMedievalLight: 1
+  - type: ManaDrainSpell
+    manaDrain: 25
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 10
+  - type: SpellCastEffect
+    effectProto: HolyTouchSpellCastEffectBeginner
+  - type: MedievalInstantSpell
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/touch_summon.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Light/HolyTouch/icons.rsi
+      state: beginner
+  - type: InstantAction
+    event: !type:MedievalSpawnInHandSpellEvent
+      spawnedEntityPrototype: HolyTouch
+      spellCastDoAfter:
+        delay: 2
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        breakOnDamage: true
+        needHand: true
+        speedModifier: 1
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-holy-touch
+          color: "#00981C"
+          hideChat: true
+  - type: MedievalSpawnOnlyInFreeHands

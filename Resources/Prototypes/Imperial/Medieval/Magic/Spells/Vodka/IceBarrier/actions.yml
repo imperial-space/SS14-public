@@ -8,9 +8,12 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.7
+        essenceAddProbability: 0.0007
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalVodka1: 1
+          MagicMedievalVodka: 1
+        bonusEssences:
+          MagicMedievalVodka: 1
   - type: ManaDrainSpell
     manaDrain: 28
     canUseWithoutMana: true
@@ -18,18 +21,22 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 18
+  - type: SpellCastEffect
+    effectProto: IceBarrierSpellCastEffectBeginner
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 22
     itemIconStyle: BigAction
-    checkCanAccess: false
-    targetingIndicator: false
-    range: 5
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icewall_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/barrier.rsi
-      state: 1
+      sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/icons.rsi
+      state: beginner
+  - type: TargetAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 5
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalIceBarrierBeginner
       spawnType: SpawnOnMousePosition
@@ -45,8 +52,8 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Structures/Decoration/crystal.rsi
-          state: crystal_grey
+          sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+          state: beginner
         alwaysRender: true
         spriteColor: "#47f8ff"
         inRangeColor: "#CC00AF"
@@ -71,17 +78,19 @@
       groups:
         Burn: 18
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 22
     itemIconStyle: BigAction
-    checkCanAccess: false
-    targetingIndicator: false
-    range: 5
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icewall_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/barrier.rsi
-      state: 2
+      sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/icons.rsi
+      state: middle
+  - type: TargetAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 5
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalIceBarrierMiddle
       spawnType: SpawnOnMousePosition
@@ -93,8 +102,8 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Structures/Decoration/crystal.rsi
-          state: crystal_grey
+          sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+          state: beginner
         alwaysRender: true
         spriteColor: "#47f8ff"
         inRangeColor: "#CC00AF"
@@ -117,17 +126,19 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 18
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 29
     itemIconStyle: BigAction
-    checkCanAccess: false
-    targetingIndicator: false
-    range: 5
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icewall_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/barrier.rsi
-      state: 3
+      sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/icons.rsi
+      state: senior
+  - type: TargetAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 5
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalIceBarrierSenior
       spawnType: SpawnOnMousePosition
@@ -139,8 +150,8 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Structures/Decoration/crystal.rsi
-          state: crystal_grey
+          sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+          state: beginner
         alwaysRender: true
         spriteColor: "#47f8ff"
         inRangeColor: "#CC00AF"

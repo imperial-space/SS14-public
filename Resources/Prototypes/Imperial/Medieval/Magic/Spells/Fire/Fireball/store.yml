@@ -9,8 +9,8 @@
   productUpgradeId:
     - MedievalSpellFireballMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/fireball.rsi
-    state: 2
+    sprite: Imperial/Medieval/Magic/Fire/Fireball/icons.rsi
+    state: beginner
   cost:
     MagicMedievalFire: 25
   categories:
@@ -29,8 +29,8 @@
   productUpgradeId:
     - MedievalSpellFireballSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/fireball.rsi
-    state: 2
+    sprite: Imperial/Medieval/Magic/Fire/Fireball/icons.rsi
+    state: middle
   cost:
     MagicMedievalFire: 55
   categories:
@@ -52,8 +52,8 @@
   productUpgradeId:
     - MedievalSpellFireballSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/fireball.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/Fire/Fireball/icons.rsi
+    state: senior
   cost:
     MagicMedievalFire: 80
     ArchmagePoints: 1

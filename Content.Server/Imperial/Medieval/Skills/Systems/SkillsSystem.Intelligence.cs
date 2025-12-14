@@ -10,6 +10,7 @@ using Content.Shared.Imperial.Medieval.Language;
 using Content.Shared.Imperial.Medieval.Magic.Mana;
 using Content.Shared.Imperial.Medieval.Medical;
 using Content.Shared.Imperial.Medieval.Skills;
+using Content.Shared.Speech;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
@@ -63,11 +64,11 @@ public sealed partial class SkillsSystem
 
         var diff = level - oldLevel;
 
-        //if (TryComp<ManaComponent>(uid, out var mana))
-        //{
-        //    mana.MaxMana += (level > 10 ? proto.Modifiers["PositiveManaModifier"] : proto.Modifiers["NegativeManaModifier"]) * diff;
-        //    Dirty(uid, mana);
-        //}
+        if (TryComp<ManaComponent>(uid, out var mana))
+        {
+            mana.MaxMana += (level > 10 ? proto.Modifiers["PositiveManaModifier"] : proto.Modifiers["NegativeManaModifier"]) * diff;
+            Dirty(uid, mana);
+        }
 
         var skills = EnsureComp<SkillsComponent>(uid);
         if (skills.LanguagesGain)

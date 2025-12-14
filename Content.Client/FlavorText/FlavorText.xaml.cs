@@ -2,12 +2,25 @@
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Utility;
+// Imperial Medieval Flavor Images Begin
+using Robust.Client.GameObjects;
+using Content.Client.Imperial.Medieval.Flavors;
+// Imperial Medieval Flavor Images End
 
 namespace Content.Client.FlavorText
 {
     [GenerateTypedNameReferences]
     public sealed partial class FlavorText : Control
     {
+        // Imperial Medieval Flavor Images Begin
+        [Dependency] private readonly IFileDialogManager _dialogs = default!;
+        [Dependency] private readonly IEntityManager _ent = default!;
+        private SpriteSystem _sprite = default!;
+        private bool _fileWindowOpen = false;
+        public Action<byte[]>? OnFlavorImageChanged;
+        public Action? OnHelpPressed;
+        public Action? OnTestPressed;
+        // Imperial Medieval Flavor Images End
         public Action<string>? OnFlavorTextChanged;
 
         public FlavorText()
@@ -17,8 +30,31 @@ namespace Content.Client.FlavorText
 
             var loc = IoCManager.Resolve<ILocalizationManager>();
             CFlavorTextInput.Placeholder = new Rope.Leaf(loc.GetString("flavor-text-placeholder"));
-            CFlavorTextInput.OnTextChanged  += _ => FlavorTextChanged();
+            CFlavorTextInput.OnTextChanged += _ => FlavorTextChanged();
+            // Imperial Medieval Flavor Images Begin
+            _sprite = _ent.System<SpriteSystem>();
+            FlavorImage.TextureNormal = _sprite.Frame0(new SpriteSpecifier.Rsi(new(ClientFlavorManager.FallbackFlavorImagePath), ClientFlavorManager.FallbackFlavorImageState));
+            FlavorImage.OnPressed += _ => ImagePressed();
+            Help.OnPressed += _ => OnHelpPressed?.Invoke();
+            Test.OnPressed += _ => OnTestPressed?.Invoke();
+            // Imperial Medieval Flavor Images End
         }
+        // Imperial Medieval Flavor Images Begin
+        public async void ImagePressed()
+        {
+            if (_fileWindowOpen)
+                return;
+
+            var filters = new FileDialogFilters(new FileDialogFilters.Group("png", "jpeg", "webp"));
+            _fileWindowOpen = true;
+            await using var file = await _dialogs.OpenFile(filters);
+            _fileWindowOpen = false;
+            if (file == null)
+                return;
+
+            OnFlavorImageChanged?.Invoke(file.CopyToArray());
+        }
+        // Imperial Medieval Flavor Images End
 
         public void FlavorTextChanged()
         {

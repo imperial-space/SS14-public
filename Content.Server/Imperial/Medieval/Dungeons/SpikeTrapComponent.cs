@@ -48,10 +48,10 @@ namespace Content.Server.SpikeTrap.Components
         [DataField]
         public bool Ready = false;
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string DeactiveSoundEffect = "/Audio/Imperial/Medieval/trap-closed.ogg";
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string ActiveSoundEffect = "/Audio/Imperial/Medieval/trap-activated.ogg";
 
     }

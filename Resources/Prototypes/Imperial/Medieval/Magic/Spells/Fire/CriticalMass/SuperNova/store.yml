@@ -8,8 +8,8 @@
   productUpgradeId:
     - MedievalSpellCriticalMassSenior
   icon:
-    sprite: Imperial/Medieval/Magic/nova.rsi
-    state: supermass2
+    sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
+    state: middle-nova
   cost:
     MagicMedievalFire: 30
   categories:
@@ -36,8 +36,8 @@
   productUpgradeId:
     - MedievalSpellCriticalMassSenior
   icon:
-    sprite: Imperial/Medieval/Magic/nova.rsi
-    state: supermass3
+    sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
+    state: senior-nova
   cost:
     MagicMedievalFire: 65
     ArchmagePoints: 1

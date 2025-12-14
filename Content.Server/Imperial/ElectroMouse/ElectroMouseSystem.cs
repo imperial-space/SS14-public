@@ -38,8 +38,27 @@ using Robust.Shared.Physics;
 using Content.Shared.Body.Components;
 using CollisionGroup = Content.Shared.Physics.CollisionGroup;
 using Content.Server.Chat.Systems;
+using Content.Shared.Light.Components;
 
 namespace Content.Server.Imperial.ElectroMouse.EntitySystems;
+
+/*
+　　　　　　　　　　_,.. -──- ､,
+　　　　　　　　,　'" 　 　　　 　　 `ヽ.
+　　　　　　 ／/¨7__　　/ 　 　 i　 _厂廴
+　　　　　 /￣( ノ__/　/{　　　　} ｢　（_冫}
+　　　　／￣l＿// 　/-|　 ,!　 ﾑ ￣|＿｢ ＼＿_
+　　. イ　 　 ,　 /!_∠_　|　/　/_⊥_,ﾉ ハ　 　イ
+　　　/ ／ / 　〃ん心 ﾚ'|／　ｆ,心 Y　i ＼_＿＞　
+　 ∠イ 　/　 　ﾄ弋_ツ　　 　 弋_ﾂ i　 |　 | ＼
+　 _／ _ノ|　,i　⊂⊃　　　'　　　⊂⊃ ./　 !､＿ン
+　　￣　　∨|　,小、　　` ‐ ' 　　 /|／|　/
+　 　 　 　 　 Y　|ﾍ＞ 、 ＿ ,.　イﾚ|　 ﾚ'
+　　　　　　 r'.| 　|;;;入ﾞ亠―亠' );;;;;! 　|､
+　　　　　 ,ノ:,:|.　!|く　__￣￣￣__У　ﾉ|:,:,ヽ
+　　　　　(:.:.:.:ﾑ人!ﾍ　 　` ´ 　　 厂|ノ:.:.:丿
+*/
+
 
 public sealed partial class ElectroMouseSystem : EntitySystem
 {
@@ -255,9 +274,9 @@ public sealed partial class ElectroMouseSystem : EntitySystem
 
         AddEnergy(uid, component, -10);
 
-        _stun.TryStun(uid, TimeSpan.FromSeconds(2f), false);
+        _stun.TryUpdateStunDuration(uid, TimeSpan.FromSeconds(2f));
         _beam.TryCreateBeam(uid, target, "LightningRevenant");
-        _stun.TryParalyze(target, TimeSpan.FromSeconds(7f), true);
+        _stun.TryAddParalyzeDuration(target, TimeSpan.FromSeconds(7f));
     }
 
     private void OnSpeed(EntityUid uid, ElectroMouseComponent component, ElectroMouseSpeedEvent args)
@@ -507,7 +526,7 @@ public sealed partial class ElectroMouseSystem : EntitySystem
 
         if (!_doAfter.TryStartDoAfter(doAfter))
             return;
-        _stun.TryStun(uid, TimeSpan.FromSeconds(5f), false);
+        _stun.TryUpdateStunDuration(uid, TimeSpan.FromSeconds(5f));
 
         _popup.PopupEntity(Loc.GetString("electromouse-startharvest", ("target", target)),
             target, PopupType.Large);

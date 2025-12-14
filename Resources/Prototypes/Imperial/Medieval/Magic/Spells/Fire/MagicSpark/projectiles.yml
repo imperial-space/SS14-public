@@ -1,0 +1,58 @@
+# Beginner
+
+- type: entity
+  id: SparkBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Fire/MagicSpark/projectiles.rsi
+    state: beginner
+  - type: PointLight
+    radius: 1.2
+    color: orange
+  - type: Igniter
+    igniteTime: 1
+    igniteChance: 1
+    flammableStacks: 0.5
+  - type: TimedDespawn
+    lifetime: 6
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Heat: 5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.15
+        density: 60
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+      ignition:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.15
+        density: 60
+        mask:
+          - MachineMask
+        layer:
+          - HighImpassable
+          - MidImpassable
+          - LowImpassable
+          - BulletImpassable
+          - Opaque
+        hard: false
+  - type: ThrowingAngle
+    angle: 0
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Imperial/Medieval/craft_foundry.ogg
+  - type: IgniteOnCollide
+    fireStacks: 1
+  - type: Item
+    size: Ginormous
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false

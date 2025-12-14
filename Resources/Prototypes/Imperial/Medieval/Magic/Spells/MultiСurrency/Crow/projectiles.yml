@@ -1,0 +1,120 @@
+- type: entity
+  id: MedievalMagicCrowItem
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/magic_beam.rsi
+    layers:
+    - state: base
+  - type: TimedDespawn
+    lifetime: 8
+  - type: AddActionOnUse
+    actionId: MedievalActionMagicCrow
+
+- type: entity
+  id: MedievalMagicCrowFollower
+  components:
+    - type: PickupLock
+      holder:
+        - "fade5f41-5240-42e4-a425-e84c5719b3f2"
+    - type: Item
+      size: Huge
+    - type: InteractionOutline
+    - type: Clickable
+    - type: Sprite
+      noRot: true
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: crow
+        sprite: Imperial/Medieval/Mobs/crow.rsi
+    - type: Damageable
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 5
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            path: /Audio/Imperial/Medieval/buff_cast.ogg
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            MedievalMagicCrowGibEffect:
+              min: 1
+              max: 1
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.25
+          density: 10
+          mask:
+          - FlyingMobMask
+          layer:
+          - FlyingMobLayer
+    - type: MovementSpeedModifier
+      baseSprintSpeed: 4.6
+      baseWalkSpeed: 2.2
+    - type: MovementIgnoreGravity
+    - type: Physics
+      bodyType: KinematicController
+      bodyStatus: InAir
+    - type: InteractionPopup
+      successChance: 0.6
+      interactSuccessString: petting-success-bird
+      interactFailureString: petting-failure-generic
+      interactSuccessSpawn: EffectHearts
+      interactSuccessSound:
+        path: /Audio/Imperial/Medieval/buff_cast.ogg
+    - type: CanMoveInAir
+    - type: Tag
+      tags:
+      - BypassInteractionRangeChecks
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: FollowCompound
+      blackboard:
+        FollowCloseRange: !type:Single
+          0.5
+        FollowRange: !type:Single
+          0.0
+    - type: MedievalProjectilePlayerFollower
+      activateTime: 0.3
+    - type: TimedDespawn
+      lifetime: 300
+    - type: SpawnOnDespawn
+      prototype: MedievalMagicCrowDespawnEffect
+
+- type: entity
+  id: MedievalMagicCrowGibEffect
+  components:
+  - type: TimedDespawn
+    lifetime: 0.8
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/crow.rsi
+    state: eliminate
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/buff_cast.ogg
+      params:
+        variation: 0.2
+
+- type: entity
+  id: MedievalMagicCrowDespawnEffect
+  components:
+  - type: TimedDespawn
+    lifetime: 0.8
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/crow.rsi
+    state: eliminate
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/buff_cast.ogg
+      params:
+        variation: 0.2

@@ -1,0 +1,193 @@
+# Base
+
+- type: entity
+  id: MedievalTentacles
+  name: Tentacles
+  abstract: true
+  components:
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path: "/Audio/Weapons/slash.ogg"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 60
+        mask:
+          - MachineMask
+        layer:
+          - MidImpassable
+          - LowImpassable
+          - BulletImpassable
+          - Opaque
+        hard: false
+  - type: Damageable
+  - type: MedievalNotAllowDash
+
+# Beginner
+
+- type: entity
+  id: MedievalTentaclesBeginner
+  parent: MedievalTentacles
+  name: Tentacles
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Darkness/Tentacles/projectiles.rsi
+    state: beginner
+    drawdepth: FloorTiles
+    noRot: true
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 35
+        behaviors:
+          - !type:DoActsBehavior
+             acts: [ "Destruction" ]
+  - type: TimedDespawn
+    lifetime: 10
+  - type: VectoredSpawn
+    spawnedEntityID: MedievalTentaclesBeginnerClone
+    spawnPositions: ["-1, -1", "1, -1", "-1, 1", "1, 1"]
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.3
+    sprintSpeedModifier: 0.3
+
+
+- type: entity
+  id: MedievalTentaclesBeginnerClone
+  parent: MedievalTentacles
+  name: Tentacles
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Darkness/Tentacles/projectiles.rsi
+    state: beginner
+    drawdepth: FloorTiles
+    noRot: true
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 35
+        behaviors:
+          - !type:DoActsBehavior
+             acts: [ "Destruction" ]
+  - type: TimedDespawn
+    lifetime: 10
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.3
+    sprintSpeedModifier: 0.3
+
+# Middle
+
+- type: entity
+  id: MedievalTentaclesMiddle
+  parent: MedievalTentacles
+  name: Tentacles
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Darkness/Tentacles/projectiles.rsi
+    state: middle
+    drawdepth: FloorTiles
+    noRot: true
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 45
+        behaviors:
+          - !type:DoActsBehavior
+             acts: [ "Destruction" ]
+  - type: TimedDespawn
+    lifetime: 14
+  - type: VectoredSpawn
+    spawnedEntityID: MedievalTentaclesMiddleClone
+    spawnPositions: ["-1, -1", "1, -1", "-1, 1", "1, 1", "0, -1", "-1, 0", "1, 0", "0, 1"]
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.2
+    sprintSpeedModifier: 0.2
+
+
+- type: entity
+  id: MedievalTentaclesMiddleClone
+  parent: MedievalTentacles
+  name: Tentacles
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Darkness/Tentacles/projectiles.rsi
+    state: middle
+    drawdepth: FloorTiles
+    noRot: true
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 45
+        behaviors:
+          - !type:DoActsBehavior
+             acts: [ "Destruction" ]
+  - type: TimedDespawn
+    lifetime: 14
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.2
+    sprintSpeedModifier: 0.2
+
+# Senior
+
+- type: entity
+  id: MedievalTentaclesSenior
+  parent: MedievalTentacles
+  name: Tentacles
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Darkness/Tentacles/projectiles.rsi
+    state: senior
+    drawdepth: FloorTiles
+    noRot: true
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+          - !type:DoActsBehavior
+             acts: [ "Destruction" ]
+  - type: TimedDespawn
+    lifetime: 18
+  - type: VectoredSpawn
+    spawnedEntityID: MedievalTentaclesSeniorClone
+    spawnPositions: ["-1, -1", "1, -1", "-1, 1", "1, 1", "0, -1", "-1, 0", "1, 0", "0, 1", "0, -2", "-2, 0", "2, 0", "0, 2"]
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.1
+    sprintSpeedModifier: 0.1
+
+
+- type: entity
+  id: MedievalTentaclesSeniorClone
+  parent: MedievalTentacles
+  name: Tentacles
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Darkness/Tentacles/projectiles.rsi
+    state: senior
+    drawdepth: FloorTiles
+    noRot: true
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+          - !type:DoActsBehavior
+             acts: [ "Destruction" ]
+  - type: TimedDespawn
+    lifetime: 18
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.1
+    sprintSpeedModifier: 0.1

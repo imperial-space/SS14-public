@@ -1,0 +1,566 @@
+# Stomach
+- type: plagueSymptom
+  id: Nausea
+  name: plague-nausea-name
+  desc: plague-nausea-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: nausea
+  position: -120,-60
+  tier: 1
+  cost: 3
+  category: Symptom
+  targetEvent: !type:AddSymptomEffectsEvent
+    id: Vomit
+    effect: !type:AddComponents
+      other:
+      - !type:Slowdown
+          duration: 5
+      - !type:PlaySound
+          sound: /Audio/Imperial/Medieval/Plague/before_vomit.ogg
+      delay:
+        min: 30
+        max: 90
+      components:
+      - type: VomitSickness
+
+- type: plagueSymptom
+  id: Vomit
+  name: plague-vomit-name
+  desc: plague-vomit-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: retchtier1
+  position: -95,-45
+  tier: 1
+  cost: 5
+  category: Symptom
+  targetEvent: !type:AddSymptomEffectsEvent
+    id: Vomit
+    effect: !type:AddComponents
+      other:
+      - !type:Slowdown
+          duration: 5
+      - !type:PlaySound
+          sound: /Audio/Imperial/Medieval/Plague/before_vomit.ogg
+      - !type:Infect
+          radius: 3.5
+          chance: 0.02
+      delay:
+        min: 60
+        max: 150
+      components:
+      - type: VomitSickness
+        level: Vomit
+  required: [Nausea]
+
+- type: plagueSymptom
+  id: BloodVomit
+  name: plague-blood-vomit-name
+  desc: plague-blood-vomit-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: retchtier2
+  position: -95,-15
+  tier: 2
+  cost: 8
+  category: Symptom
+  targetEvent: !type:AddSymptomEffectsEvent
+    id: Vomit
+    effect: !type:AddComponents
+      other:
+      - !type:Slowdown
+          duration: 5
+      - !type:PlaySound
+          sound: /Audio/Imperial/Medieval/Plague/before_vomit.ogg
+      - !type:Infect
+          radius: 3.5
+          chance: 0.05
+      delay:
+        min: 40
+        max: 125
+      components:
+      - type: VomitSickness
+        level: Blood
+  required: [Vomit]
+
+- type: plagueSymptom
+  id: ReagentAllergy
+  name: plague-reagent-allergy-name
+  desc: plague-reagent-allergy-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: intolerance
+  position: -145,-30
+  tier: 1
+  cost: 8
+  category: Symptom
+  targetEvent: !type:PlagueAddComponentsEvent
+    components:
+    - type: ReagentAllergy
+      randomReagents:
+      - medievalhealburn
+      - medievalhealbloodandoxygen
+      - medievaldrughealmech
+      - medievalslow
+      - medievalfast
+      - medievalstamina
+      - medievalsmoke
+      - medievalhealslash
+      - medievalhealpiercing
+      - medievalhealblunt
+  required: [Nausea]
+
+- type: plagueSymptom
+  id: Gastrite
+  name: plague-gastrite-name
+  desc: plague-gastrite-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: stomach
+  position: -120,0
+  tier: 2
+  cost: 10
+  category: Symptom
+  targetEvent: !type:PlagueAddComponentsEvent
+    components:
+    - type: Gastrite
+  required:
+  - BloodVomit
+  - ReagentAllergy
+
+- type: plagueSymptom
+  id: StomachCancer
+  name: plague-stom-cancer-name
+  desc: plague-stom-cancer-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: gastrite
+  position: -120,30
+  tier: 3
+  cost: 13
+  category: Symptom
+  targetEvent: !type:PlagueAddComponentsEvent
+    components:
+    - type: StomachCancer
+  required: [Gastrite]
+
+# Lungs
+- type: plagueSymptom
+  id: RunnyNose
+  name: plague-runny-nose-name
+  desc: plague-runny-nose-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: runny
+  position: 120,60
+  tier: 1
+  cost: 2
+  category: Symptom
+  targetEvent: !type:AddSymptomEffectsEvent
+    id: Runny
+    effect: !type:Emote
+      delay:
+        min: 20
+        max: 120
+      emotes: [Sneeze]
+      other:
+      - !type:Infect
+          radius: 3.5
+          chance: 0.02
+
+- type: plagueSymptom
+  id: Cough
+  name: plague-cough-name
+  desc: plague-cough-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: coughtier1
+  position: 120,30
+  tier: 1
+  cost: 5
+  category: Symptom
+  targetEvent: !type:AddSymptomEffectsEvent
+    id: Cough
+    effect: !type:Emote
+      delay:
+        min: 10
+        max: 45
+      emotes: [Cough]
+      other:
+      - !type:Infect
+          radius: 4.5
+          chance: 0.05
+  required: [RunnyNose]
+
+- type: plagueSymptom
+  id: BloodCough
+  name: plague-blood-cough-name
+  desc: plague-blood-cough-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: coughtier2
+  position: 120,0
+  tier: 2
+  cost: 8
+  category: Symptom
+  targetEvent: !type:AddSymptomEffectsEvent
+    id: Cough
+    effect: !type:Emote
+      delay:
+        min: 10
+        max: 65
+      emotes: [Cough]
+      other:
+      - !type:Infect
+          radius: 4.5
+          chance: 0.08
+      - !type:ChangeDamage
+          damage:
+            types:
+              Bloodloss: 12
+              Cellular: 3
+  required: [Cough]
+
+- type: plagueSymptom
+  id: EntityAllergy
+  name: plague-entity-allergy-name
+  desc: plague-entity-allergy-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: allergy
+  position: 145,10
+  tier: 1
+  cost: 7
+  category: Symptom
+  targetEvent: !type:PlagueAddComponentsEvent
+    components:
+    - type: EntityAllergy
+      randomIds:
+      - Fur
+      - Goblin
+      - Pet
+      - Spider
+      - Skeleton
+      randomCount: 3
+  required: [Cough]
+
+- type: plagueSymptom
+  id: Asthma
+  name: plague-asthma-name
+  desc: plague-asthma-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: asthma
+  position: 95,10
+  tier: 2
+  cost: 8
+  category: Symptom
+  targetEvent: !type:PlagueAddComponentsEvent
+    components:
+    - type: Asthma
+  required: [Cough]
+
+- type: plagueSymptom
+  id: LungsCancer
+  name: plague-lungs-cancer-name
+  desc: plague-lungs-cancer-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: lungs
+  position: 120,-30
+  tier: 3
+  cost: 13
+  category: Symptom
+  targetEvent: !type:PlagueAddComponentsEvent
+    components:
+    - type: LungsCancer
+      delay:
+        min: 120
+        max: 240
+      duration:
+        min: 25
+        max: 45
+  required:
+  - BloodCough
+  - EntityAllergy
+  - Asthma
+
+# Skin
+- type: plagueSymptom
+  id: Itch
+  name: plague-itch-name
+  desc: plague-itch-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: skin
+  position: -40,60
+  tier: 1
+  cost: 2
+  category: Symptom
+  targetEvent: !type:AddSymptomEffectsEvent
+    id: Itch
+    effect: !type:Popup
+      delay:
+        min: 20
+        max: 60
+      text: plague-itch-popup
+      type: SmallCaution
+      other:
+      - !type:Jitter
+          duration: 1
+
+- type: plagueSymptom
+  id: ItchHard
+  name: plague-itch-hard-name
+  desc: plague-itch-hard-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: skin
+  position: -40,30
+  tier: 1
+  cost: 5
+  category: Symptom
+  targetEvent: !type:AddSymptomEffectsEvent
+    id: Itch
+    effect: !type:Popup
+      delay:
+        min: 20
+        max: 60
+      text: plague-itch-hard-popup
+      type: SmallCaution
+      other:
+      - !type:Infect
+          radius: 0.5
+          chance: 0.03
+      - !type:ChangeDamage
+          damage:
+            types:
+              Slash: 3
+      - !type:ModifyBleed
+          bleed: 1.25
+      - !type:Jitter
+          duration: 2
+  required: [Itch]
+
+- type: plagueSymptom
+  id: WeakSkin
+  name: plague-weak-skin-name
+  desc: plague-weak-skin-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: weakskin
+  position: -40,0
+  tier: 2
+  cost: 8
+  category: Symptom
+  targetEvent: !type:PlagueAddComponentsEvent
+    components:
+    - type: WeakSkin
+      typeModifiers:
+        Slash: 1.5
+        Piercing: 1.5
+  required: [ItchHard]
+
+- type: plagueSymptom
+  id: Clumsiness
+  name: plague-clumsy-name
+  desc: plague-clumsy-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: legs
+  position: -10,15
+  tier: 1
+  cost: 5
+  category: Symptom
+  targetEvent: !type:PlagueAddComponentsEvent
+    components:
+    - type: MedievalPlagueClumsiness
+      delay:
+        min: 30
+        max: 90
+  required: [ItchHard]
+
+- type: plagueSymptom
+  id: Temperature
+  name: plague-temperature-name
+  desc: plague-temperature-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: temperature
+  position: -70,15
+  tier: 2
+  cost: 12
+  category: Symptom
+  targetEvent: !type:PlagueAddComponentsEvent
+    components:
+    - type: LoweredSkills
+  required: [ItchHard]
+
+- type: plagueSymptom
+  id: SkinCancer
+  name: plague-skin-cancer-name
+  desc: plague-skin-cancer-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: skincancer
+  position: -40,-30
+  tier: 3
+  cost: 13
+  category: Symptom
+  targetEvent: !type:AddSymptomEffectsEvent
+    id: Itch
+    effect: !type:Popup
+      delay:
+        min: 10
+        max: 60
+      text: plague-itch-hard-popup
+      type: MediumCaution
+      other:
+      - !type:Infect
+          radius: 0.5
+          chance: 0.05
+      - !type:ChangeDamage
+          damage:
+            types:
+              Slash: 6
+      - !type:ModifyBleed
+          bleed: 3
+      - !type:Jitter
+          duration: 2
+  required:
+  - WeakSkin
+  - Clumsiness
+  - Temperature
+
+# Hiccup
+- type: plagueSymptom
+  id: Hiccup1
+  name: plague-hiccup-1-name
+  desc: plague-hiccup-1-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: hiccup1
+  position: 40,-60
+  tier: 1
+  cost: 2
+  category: Symptom
+  targetEvent: !type:AddSymptomEffectsEvent
+    id: Hiccup
+    effect: !type:Emote
+      emotes: [Hiccup]
+      delay:
+        min: 25
+        max: 95
+      other:
+      - !type:PlaySound
+          sound: /Audio/Imperial/Medieval/Plague/hiccup.ogg
+          global: false
+      - !type:ForceSay
+          performChance: 0.2
+
+- type: plagueSymptom
+  id: Hiccup2
+  name: plague-hiccup-2-name
+  desc: plague-hiccup-2-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: hiccup2
+  position: 40,-30
+  tier: 1
+  cost: 4
+  category: Symptom
+  targetEvent: !type:AddSymptomEffectsEvent
+    id: Hiccup
+    effect: !type:Emote
+      emotes: [Hiccup]
+      delay:
+        min: 20
+        max: 75
+      other:
+      - !type:PlaySound
+          sound: /Audio/Imperial/Medieval/Plague/hiccup.ogg
+          global: false
+      - !type:ChangeDamage
+          damage:
+            types:
+              Asphyxiation: 3
+      - !type:Slowdown
+          duration: 1.5
+      - !type:ForceSay
+          performChance: 0.4
+  required: [Hiccup1]
+
+- type: plagueSymptom
+  id: Hiccup3
+  name: plague-hiccup-3-name
+  desc: plague-hiccup-3-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: hiccup3
+  position: 25,0
+  tier: 2
+  cost: 5
+  category: Symptom
+  targetEvent: !type:AddSymptomEffectsEvent
+    id: Hiccup
+    effect: !type:Emote
+      emotes: [Hiccup]
+      delay:
+        min: 20
+        max: 60
+      other:
+      - !type:PlaySound
+          sound: /Audio/Imperial/Medieval/Plague/hiccup.ogg
+          global: false
+      - !type:ChangeDamage
+          damage:
+            types:
+              Asphyxiation: 6
+      - !type:Slowdown
+          duration: 1.5
+      - !type:ForceSay
+          performChance: 0.6
+  required: [Hiccup2]
+
+- type: plagueSymptom
+  id: LethalPantomime1
+  name: plague-pantomime-1-name
+  desc: plague-pantomime-1-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: mime1
+  position: 55,0
+  tier: 2
+  cost: 7
+  category: Symptom
+  targetEvent: !type:PlagueAddComponentsEvent
+    components:
+    - type: PlagueBlockSpeech
+      chance: 0.5
+      damage:
+        types:
+          Asphyxiation: 6
+  required: [Hiccup2]
+
+- type: plagueSymptom
+  id: LethalPantomime2
+  name: plague-pantomime-2-name
+  desc: plague-pantomime-2-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: mime2
+  position: 40,30
+  tier: 3
+  cost: 9
+  category: Symptom
+  targetEvent: !type:PlagueAddComponentsEvent
+    components:
+    - type: PlagueBlockSpeech
+      chance: 0.8
+      damage:
+        types:
+          Asphyxiation: 10
+  required:
+  - LethalPantomime1
+  - Hiccup3

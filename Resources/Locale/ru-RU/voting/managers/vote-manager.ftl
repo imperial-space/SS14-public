@@ -11,9 +11,9 @@ ui-vote-restart-yes = Да
 ui-vote-restart-no = Нет
 ui-vote-restart-abstain = Воздержаться
 
-ui-vote-gamemode-title = Следующий режим игры
-ui-vote-gamemode-tie = Ничья в голосовании за игровой режим! Выбирается... { $picked }
-ui-vote-gamemode-win = { $winner } победил в голосовании за игровой режим!
+ui-vote-gamemode-title = Следующее испытание Бога
+ui-vote-gamemode-tie = Ничья в голосовании за испытание Бога! Выбирается... { $picked }
+ui-vote-gamemode-win = { $winner } победил в голосовании за испытание Бога!
 
 ui-vote-map-title = Следующая карта
 ui-vote-map-tie = Ничья в голосовании за карту! Выбирается... { $picked }

@@ -1,0 +1,19 @@
+#Middle
+
+- type: entity
+  id: LightningSpellCastEffectMiddle
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/MultiCurrency/lightning.rsi
+    color: "#A5C2F3"
+    noRot: true
+    layers:
+      - state: middle
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#A5C2F3"
+  - type: TimedDespawn
+    lifetime: 2
+

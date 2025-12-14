@@ -123,6 +123,7 @@
     - PartsStatic
     - AtmosStatic
     - CablesStatic
+    - PaperworkStatic
     - CargoStatic
     - MaterialsStatic
     - BasicChemistryStatic
@@ -192,6 +193,7 @@
     unlitIdleState: unlit
     unlitRunningState: unlit-building
     staticPacks:
+    - MedicalImperialVehicleStatic # Imperial "ImperialVehicle"
     - ChemistryStatic
     - SurgeryStatic
     dynamicPacks:
@@ -210,7 +212,6 @@
     - Janitor
     - Instruments
     - Equipment
-    - FauxTiles
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - SecurityAmmo
@@ -258,7 +259,6 @@
     - CargoBoardsStatic
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
-    - CircuitFloorsStatic
     - ImperialCircuitStatic # Imperial Space
     dynamicPacks:
     - EngineeringBoards
@@ -410,6 +410,7 @@
     - SecurityAmmo
     - SecurityWeapons
     - ImperialSecurityDynamic # Imperial Space
+    - ImperialSecurityEquipment # Imperial Space Emergency Button
     - SecurityDisablers
   - type: MaterialStorage
     whitelist:
@@ -478,6 +479,7 @@
     idleState: icon
     runningState: icon
     staticPacks:
+    - MedicalImperialVehicleStatic # Imperial "ImperialVehicle"
     - TopicalsStatic
     - ChemistryStatic
     - MedicalStatic
@@ -694,7 +696,16 @@
     idleState: icon
     runningState: building
     staticPacks:
-    - FloorTilesStatic
+    - FloorDarkTilesStatic
+    - FloorSteelTilesStatic
+    - FloorWhiteTilesStatic
+    - FloorMaintsTilesStatic
+    - FloorWoodTilesStatic
+    - FloorConcreteTilesStatic
+    - CircuitFloorsStatic
+    - FloorMarbleTilesStatic
+    dynamicPacks:
+    - FauxTiles
   - type: MaterialStorage
     whitelist:
       tags:

@@ -1,0 +1,201 @@
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseMajorContraband]
+  id: ClothingOuterSuitSpaceSamurai
+  name: space samurai suit
+  suffix: Crook, Samurai
+  description: This black technologically advanced, cybernetically-enhanced suit provides many abilities.
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Imperial/Crook/Samurai/suit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Samurai/suit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1.05
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.2
+        Heat: 0.4
+        Radiation: 0
+        Caustic: 0
+  # Imperial Space Stamina Resistance Start
+  - type: StaminaResistance
+    damageCoefficient: 0.45
+  # Imperial Space Stamina Resistance End
+  - type: ExplosionResistance
+    damageCoefficient: 0.15
+  - type: FireProtection
+    reduction: 1
+
+- type: entity
+  parent: [ClothingHeadEVAHelmetBase, BaseMajorContraband]
+  id: ClothingHeadHelmetSpaceSamurai
+  name: space samurai helmet
+  suffix: Crook, Samurai
+  description: What may appear to be a simple black garment is in fact a highly sophisticated nano-weave helmet.
+  components:
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: Sprite
+    sprite: Imperial/Crook/Samurai/helmet.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Samurai/helmet.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+      Snout: HEAD
+
+- type: entity
+  parent: [ClothingShoesBaseButcherable, BaseMajorContraband]
+  id: ShoesSpaceSamurai
+  name: space ninja shoes
+  suffix: Crook, Samurai
+  description: A pair of nano-enhanced boots with built-in magnetic suction cups. It has a red glow.
+  components:
+  - type: Sprite
+    sprite: Imperial/SpiderClan/Clothing/Default/Boots/redninja.rsi
+    state: icon-on
+  - type: Clothing
+    sprite: Imperial/SpiderClan/Clothing/Default/Boots/redninja.rsi
+  - type: NoSlip
+  - type: Magboots
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSpecialOfficer
+
+- type: entity
+  name: red energy katana
+  suffix: Crook, Samurai
+  parent: RedEnergyKatana
+  id: RedEnergyKatanaSamurai
+  description: A katana infused with strong energy. It has a red glow.
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: -60
+    damage:
+      types:
+        Slash: 20
+  - type: PointLight
+    radius: 5
+    energy: 1.6
+    color: "#6a0b0b"
+  - type: AmbientSound
+    range: 7
+    volume: 3
+    sound:
+      path: /Audio/Weapons/ebladehum.ogg
+  - type: Reflect
+    reflectProb: 0.8
+    spread: 45
+  - type: StaticPrice
+    price: 5750
+
+- type: entity
+  name: jumpsuit
+  suffix: Неснимаемое, Crook, Samurai
+  parent: ClothingUniformJumpsuitOperative
+  id: ClothingUniformJumpsuitOperativeUnremoveable
+  components:
+    - type: Unremoveable
+
+- type: entity
+  name: gloves
+  suffix: Неснимаемое, Crook, Samurai
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGlovesCombatUnremoveable
+  components:
+    - type: Unremoveable
+
+- type: startingGear
+  id: SpaceSamuraiGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperativeUnremoveable
+    shoes: ShoesSpaceSamurai
+    head: ClothingHeadHelmetSpaceSamurai
+    gloves: ClothingHandsGlovesCombatUnremoveable
+    outerClothing: ClothingOuterSuitSpaceSamurai
+    pocket1: PinpointerStation
+    belt: RedEnergyKatanaSamurai
+
+- type: entity
+  name: Space Samurai
+  suffix: Crook, Samurai
+  parent: MobMechanicSyndicate
+  id: SpaceSamurai
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesNinjaTitle
+    - NamesNinja
+    nameFormat: name-format-ninja
+  - type: Sprite
+    netsync: false
+    sprite: Markers/jobs.rsi
+    state: ertleadereva
+  - type: Loadout
+    prototypes: [ SpaceSamuraiGear ]
+  - type: AutoImplant
+    implants:
+    - DeathAcidifierImplant
+    - FreedomImplant
+    - ScramImplant
+    - ImperialBlinkImplant
+    - ImperialSmokeImplant
+    - EmpImplant
+    - EmpImplant
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: SiliconLawProvider
+    laws: SamuraiLawset
+  - type: IntrinsicRadioTransmitter
+    channels: []
+  - type: ActiveRadio
+    channels: []
+  - type: Repairable
+    fuelCost: 50
+    doAfterDelay: 15
+  - type: Prying
+    speedModifier: 1.5
+    pryPowered: true
+    useSound: /Audio/Effects/metal_scrape2.ogg
+
+- type: entity
+  name: Space Samurai
+  suffix: Ghost, Crook, Samurai
+  parent: SpaceSamurai
+  id: SpaceSamuraiGhostRole
+  components:
+  - type: GhostRole
+    name: ghost-role-information-space-samurai-name
+    description: ghost-role-information-space-samurai-description
+    rules: ghost-role-information-space-samurai-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable

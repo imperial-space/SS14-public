@@ -41,10 +41,14 @@
   - type: Currency
     price:
       Revent: 1
+  - type: MedievalCurrency
+    price:
+      Revent: 1
   - type: Appearance
   - type: StealTarget
     stealGroup: MedievalMoney
-
+  - type: RDWeight
+    value: 0.005
 
 - type: entity
   name: MedievalRevent

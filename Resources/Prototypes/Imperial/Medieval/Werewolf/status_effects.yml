@@ -1,0 +1,15 @@
+- type: statusEffect
+  id: MedievalWerewolfRegen
+  alert: MedievalWerewolfRegen
+
+- type: statusEffect
+  id: MedievalWerewolfHotBlood
+  alert: MedievalWerewolfHotBlood
+
+- type: statusEffect
+  id: MedievalWerewolfHunt
+  alert: MedievalWerewolfHunt
+
+- type: statusEffect
+  id: MedievalWerewolfMoonRage
+  alert: MedievalWerewolfMoonRage

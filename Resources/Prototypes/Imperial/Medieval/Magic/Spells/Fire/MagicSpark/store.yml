@@ -1,0 +1,19 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellSparkBeginner
+  name: medieval-store-spells-fire-spark-beginner-name
+  description: medieval-store-spells-fire-spark-beginner-desc
+  productAction: MedievalActionSparkBeginner
+  priority: 10
+  icon:
+    sprite: Imperial/Medieval/Magic/Fire/MagicSpark/icons.rsi
+    state: beginner
+  cost:
+    MagicMedievalFire: 20
+  categories:
+  - MedievalFireSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+

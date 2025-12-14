@@ -12,6 +12,8 @@ using Content.Server.Imperial.Zlevels;
 using Content.Server.MagicBarrier.Components;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.EntitySerialization;
+using Content.Server.Imperial.Medieval.GameTicking.Rules;
+using Content.Shared.Imperial.Medieval.GameTicking.Rules;
 
 namespace Content.Server.MedievalDungeon
 {
@@ -67,11 +69,11 @@ namespace Content.Server.MedievalDungeon
                 ladder.CanClosed = false;
                 QueueDel(used);
 
-                foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
+                foreach (var barrier in EntityManager.EntityQuery<RoundStatCounterRuleComponent>())
                 {
                     barrier.OpenedDungeons++;
                     if (barrier.FirstDungeonVisiter == "nobody")
-                        barrier.FirstDungeonVisiter = MetaData(user).EntityName;
+                        barrier.FirstDungeonVisiter = Name(user);
                 }
             }
         }

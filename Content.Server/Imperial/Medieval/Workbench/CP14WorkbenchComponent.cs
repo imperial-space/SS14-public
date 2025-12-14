@@ -33,7 +33,7 @@ public sealed partial class CP14WorkbenchComponent : Component
     /// </summary>
     ///
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public string CraftSound = "/Audio/Imperial/Medieval/craft_wood.ogg";
 
 }

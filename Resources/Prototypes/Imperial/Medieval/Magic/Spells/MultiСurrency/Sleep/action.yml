@@ -8,13 +8,19 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 1
+        essenceAddProbability: 0.0001
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalLight1: 1
+          MagicMedievalLight: 1
+        bonusEssences:
+          MagicMedievalLight: 1
       - !type:AddMagicEssence
-        probability: 1
+        essenceAddProbability: 0.0001
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalVodka1: 1
+          MagicMedievalVodka: 1
+        bonusEssences:
+          MagicMedievalVodka: 1
   - type: ManaDrainSpell
     manaDrain: 80
     canUseWithoutMana: false
@@ -23,16 +29,18 @@
       groups:
         Burn: 18
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 145
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/sedation_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/sleep.rsi
-      state: 1
+      sprite: Imperial/Medieval/Magic/MultiCurrency/Sleep/icons.rsi
+      state: middle
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileSleepMiddle
@@ -60,17 +68,21 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 18
+  - type: SpellCastEffect
+    effectProto: SleepSpellCastEffectBeginner
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 130
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/sedation_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/sleep.rsi
-      state: 2
+      sprite: Imperial/Medieval/Magic/MultiCurrency/Sleep/icons.rsi
+      state: senior
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileSleepSenior

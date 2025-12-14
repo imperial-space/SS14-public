@@ -4,30 +4,32 @@
   description: drink blood
   noSpawn: true
   components:
-    - type: EntityTargetAction
+    - type: Action
       itemIconStyle: BigAction
       useDelay: 2.2
-      deselectOnMiss: true
-      repeat: false
-      canTargetSelf: false
-      checkCanAccess: false
-      interactOnMiss: false
-      targetingIndicator: true
       icon:
         sprite: /Textures/Imperial/Medieval/Vampire/actions.rsi
         state: drink
-      event: !type:NocturnDrinkActionEvent
+    - type: TargetAction
+      interactOnMiss: false
+      targetingIndicator: true
+      deselectOnMiss: true
+      repeat: false
+      checkCanAccess: false
+    - type: EntityTargetAction
+      canTargetSelf: false
       whitelist:
         components:
           - HumanoidAppearance
           - NocturnBadFood
+      event: !type:NocturnDrinkActionEvent
 
 - type: entity
   id: NocturnDisguiseAction
   name: Apply a disguise
   description: Use a disguise to take on a human form. If there is a lack of blood, the ability will become unavailable.
   components:
-    - type: InstantAction
+    - type: Action
       itemIconStyle: BigAction
       icon:
         sprite: /Textures/Imperial/Medieval/Vampire/actions.rsi
@@ -35,8 +37,9 @@
       iconOn:
         sprite: /Textures/Imperial/Medieval/Vampire/actions.rsi
         state: disguise_on
-      event: !type:NocturnDisguiseActionEvent
       useDelay: 30
+    - type: InstantAction
+      event: !type:NocturnDisguiseActionEvent
 
 - type: alert
   id: NocturnBlood
@@ -74,11 +77,12 @@
   description: drink blood
   noSpawn: true
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 240
       icon:
         sprite: /Textures/Imperial/Medieval/Vampire/actions.rsi
         state: zveres
+    - type: InstantAction
       event: !type:ZveresScreamActionEvent
 
 - type: entity
@@ -87,11 +91,12 @@
   description: magic
   noSpawn: true
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 90
       icon:
         sprite: /Textures/Imperial/Medieval/Misc/cloack_message.rsi
         state: legion
+    - type: InstantAction
       event: !type:CloackMessageActionEvent
 
 - type: entity
@@ -100,11 +105,12 @@
   description: magic
   noSpawn: true
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 90
       icon:
         sprite: /Textures/Imperial/Medieval/Misc/cloack_message.rsi
         state: myateg
+    - type: InstantAction
       event: !type:CloackMessageActionEvent
 
 - type: entity
@@ -113,11 +119,12 @@
   description: magic
   noSpawn: true
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 90
       icon:
         sprite: /Textures/Imperial/Medieval/Misc/cloack_message.rsi
         state: bandits
+    - type: InstantAction
       event: !type:CloackMessageActionEvent
 
 - type: entity
@@ -126,11 +133,12 @@
   description: magic
   noSpawn: true
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 90
       icon:
         sprite: /Textures/Imperial/Medieval/Misc/cloack_message.rsi
         state: naemniki
+    - type: InstantAction
       event: !type:CloackMessageActionEvent
 
 - type: entity
@@ -139,11 +147,12 @@
   description: magic
   noSpawn: true
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 90
       icon:
         sprite: /Textures/Imperial/Medieval/Misc/cloack_message.rsi
         state: naemniki
+    - type: InstantAction
       event: !type:CloackMessageActionEvent
 
 - type: entity
@@ -152,11 +161,12 @@
   description: magic
   noSpawn: true
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 90
       icon:
         sprite: /Textures/Imperial/Medieval/Misc/cloack_message.rsi
         state: kollegiya
+    - type: InstantAction
       event: !type:CloackMessageActionEvent
 
 - type: entity
@@ -165,9 +175,10 @@
   description: magic
   noSpawn: true
   components:
-    - type: InstantAction
+    - type: Action
       useDelay: 90
       icon:
         sprite: /Textures/Imperial/Medieval/Misc/cloack_message.rsi
         state: miner
+    - type: InstantAction
       event: !type:CloackMessageActionEvent

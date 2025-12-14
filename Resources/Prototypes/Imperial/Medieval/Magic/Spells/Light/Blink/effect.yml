@@ -1,0 +1,18 @@
+#Beginner
+
+- type: entity
+  id: BlinkSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/light/blink.rsi
+    color: "#7D7D7D"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#7D7D7D"
+  - type: TimedDespawn
+    lifetime: 0.5

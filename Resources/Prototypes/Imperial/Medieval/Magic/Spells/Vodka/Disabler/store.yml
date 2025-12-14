@@ -9,8 +9,8 @@
   productUpgradeId:
     - MedievalSpellDisablerMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/Vodka/Disabler/icons.rsi
+    state: beginner
   cost:
     MagicMedievalVodka: 20
   categories:
@@ -29,8 +29,8 @@
   productUpgradeId:
     - MedievalSpellDisablerMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 2
+    sprite: Imperial/Medieval/Magic/Vodka/Disabler/icons.rsi
+    state: middle
   cost:
     MagicMedievalVodka: 45
   categories:

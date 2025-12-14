@@ -1,0 +1,67 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellIceDaggerBeginner
+  name: medieval-store-spells-vodka-ice-dagger-beginner-name
+  description: medieval-store-spells-vodka-ice-dagger-beginner-desc
+  productAction: MedievalActionIceDaggerBeginner
+  priority: 3
+  productUpgradeId:
+    - MedievalSpellIceDaggerMiddle
+  icon:
+    sprite: Imperial/Medieval/Magic/Vodka/IceDagger/icons.rsi
+    state: beginner
+  cost:
+    MagicMedievalVodka: 25
+  categories:
+  - MedievalVodkaSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellIceDaggerMiddle
+  name: medieval-store-spells-vodka-ice-dagger-middle-name
+  description: medieval-store-spells-vodka-ice-dagger-middle-desc
+  priority: 3
+  productUpgradeId:
+    - MedievalSpellIceDaggerSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Vodka/IceDagger/icons.rsi
+    state: middle
+  cost:
+    MagicMedievalVodka: 40
+  categories:
+  - MedievalVodkaSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellIceDaggerBeginner
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellIceDaggerSenior
+  name: medieval-store-spells-vodka-ice-dagger-senior-name
+  description: medieval-store-spells-vodka-ice-dagger-senior-desc
+  priority: 3
+  productUpgradeId:
+    - MedievalSpellIceDaggerSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Vodka/IceDagger/icons.rsi
+    state: senior
+  cost:
+    MagicMedievalVodka: 75
+    ArchmagePoints: 1
+  categories:
+  - MedievalVodkaSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellIceDaggerMiddle

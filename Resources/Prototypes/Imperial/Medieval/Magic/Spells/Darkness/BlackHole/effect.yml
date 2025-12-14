@@ -1,0 +1,18 @@
+#Beginner
+
+- type: entity
+  id: BlackHoleSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/darkness/black_hole.rsi
+    color: "#B277FF"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#B277FF"
+  - type: TimedDespawn
+    lifetime: 1

@@ -1,4 +1,4 @@
-# Middle
+# Beginner
 
 - type: entity
   id: MedievalActionCursedArrowCursorFolloverBeginner
@@ -17,13 +17,16 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.3
+        essenceAddProbability: 0.0003
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalDarkness1: 1
+          MagicMedievalDarkness: 1
+        bonusEssences:
+          MagicMedievalDarkness: 1
   - type: DamageTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.3
+        probability: 0.0003
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -31,7 +34,7 @@
         addedEssences:
           MagicMedievalDarkness1: 1
       - !type:AddMagicEssence
-        probability: 0.5
+        probability: 0.0005
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -40,16 +43,18 @@
             allowedState: Alive
         addedEssences:
           MagicMedievalDarkness1: 1
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 8
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
-      state: 1
+      sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/icons.rsi
+      state: beginner-cursor
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileCursedArrowCursorFolloverBeginner
@@ -84,13 +89,16 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.4
+        essenceAddProbability: 0.0004
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalDarkness1: 1
+          MagicMedievalDarkness: 1
+        bonusEssences:
+          MagicMedievalDarkness: 1
   - type: DamageTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.25
+        probability: 0.00025
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -98,7 +106,7 @@
         addedEssences:
           MagicMedievalDarkness1: 1
       - !type:AddMagicEssence
-        probability: 0.35
+        probability: 0.00035
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -107,16 +115,18 @@
             allowedState: Alive
         addedEssences:
           MagicMedievalDarkness1: 1
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 9
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
-      state: 2
+      sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/icons.rsi
+      state: middle-cursor
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileCursedArrowCursorFolloverMiddle
@@ -144,13 +154,16 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.5
+        essenceAddProbability: 0.0005
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalDarkness1: 1
+          MagicMedievalDarkness: 1
+        bonusEssences:
+          MagicMedievalDarkness: 1
   - type: DamageTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.2
+        probability: 0.0002
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -158,7 +171,7 @@
         addedEssences:
           MagicMedievalDarkness1: 1
       - !type:AddMagicEssence
-        probability: 0.2
+        probability: 0.0002
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -175,16 +188,18 @@
       groups:
         Burn: 15
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 11
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
-      state: 3
+      sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/icons.rsi
+      state: senior-cursor
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileCursedArrowCursorFolloverSenior

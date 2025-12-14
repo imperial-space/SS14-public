@@ -1,0 +1,28 @@
+- type: entity
+  id: SleepParticles
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
+  - type: MedievalParticles
+    color: "#732CD3"
+  - type: TimedDespawn
+    lifetime: 5
+
+- type: entity
+  id: SleepSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/MultiCurrency/sleep.rsi-
+    color: "#732CD3"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#732CD3"
+  - type: TimedDespawn
+    lifetime: 0.5
+

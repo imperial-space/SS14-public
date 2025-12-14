@@ -18,7 +18,7 @@
   - type: Gun
     fireRate: 1
     selectedMode: FullAuto
-    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+    soundGunshot: /Audio/Imperial/Medieval/ant_acidshot.ogg
   - type: HTN
     rootTask:
       task: TurretCompound
@@ -41,6 +41,10 @@
   - type: Construction
     graph: Mturret
     node: medievalMyrmexTurret
+  - type: ReplaceFloorOnSpawn
+    replaceableTiles:
+    replacementTiles:
+    - MedievalMyrmexFloor2
 
 - type: entity
   id: MedievalMyrmexBulletAcid
@@ -114,7 +118,7 @@
                  sprite: Imperial/Medieval/Myrmex/resin.rsi
                  state: resin
                doAfter: 1
-             - tag: Mushroom1
+             - tag: Mushroom3
                name: едкий споровик # Imperial Recipes Locale
                icon:
                  sprite: Imperial/Medieval/Chem/Garden/mushroom3.rsi

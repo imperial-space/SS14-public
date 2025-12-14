@@ -3,6 +3,7 @@ using Content.Server.Mind;
 using Content.Server.Roles.Jobs;
 using Content.Server.SSDFree;
 using Content.Server.SSDFree.Components;
+using Content.Shared.SSDFree.Components;
 using Content.Server.Stack;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared.Humanoid;

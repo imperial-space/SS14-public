@@ -26,6 +26,7 @@ using Content.Server.Nutrition.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Chat;
 using Content.Shared.Chat.TypingIndicator;
+using Content.Shared.Body.Components;
 
 namespace Content.Server.Nocturn
 {
@@ -282,7 +283,7 @@ namespace Content.Server.Nocturn
                         {
                             food.TimesCanBeBiten -= 1;
                             component.DrinkAnimals++;
-                            _blood.TryModifyBloodLevel(args.Args.Target.Value, -25, bloodstream);
+                            _blood.TryModifyBloodLevel(args.Args.Target.Value, -25);
                             component.BloodLevel += 30f * food.BloodMultiplier;
                             var xform = Transform(component.Owner);
                             var coords = xform.Coordinates;
@@ -323,7 +324,7 @@ namespace Content.Server.Nocturn
                                 }
                             }
                             ShowEyes(uid);
-                            _blood.TryModifyBloodLevel(args.Args.Target.Value, -25, bloodstream);
+                            _blood.TryModifyBloodLevel(args.Args.Target.Value, -25);
                             component.BloodLevel += 30f;
                             var xform = Transform(component.Owner);
                             var coords = xform.Coordinates;
@@ -401,7 +402,7 @@ namespace Content.Server.Nocturn
         private void ApplyDisguise(EntityUid uid, NocturnComponent component, HumanoidAppearanceComponent appearance)
         {
             appearance.Species = "Human";
-            component.BloodDrainPerSecond *= 2;
+            component.BloodDrainPerSecond *= 1.4f;
             component.BloodLevel -= 10;
 
             component.IsDisguised = true;
@@ -417,7 +418,7 @@ namespace Content.Server.Nocturn
         private void RevertToOriginalForm(EntityUid uid, NocturnComponent component, HumanoidAppearanceComponent appearance)
         {
             appearance.Species = "Drou";
-            component.BloodDrainPerSecond /= 2;
+            component.BloodDrainPerSecond /= 1.4f;
 
             component.IsDisguised = false;
             _action.SetToggled(component.DisguiseActionEntity, component.IsDisguised);

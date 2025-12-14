@@ -10,17 +10,17 @@
 
 using Content.Shared._RD.Weight.Components;
 using Content.Shared._RD.Weight.Events;
+using Content.Shared.Stacks;
 using Robust.Shared.Configuration;
-using Robust.Shared.Map.Components;
 
 namespace Content.Shared._RD.Weight.Systems;
 
-// TODO: Work with stack and reagents
 public sealed class RDWeightSystem : RDEntitySystem
 {
     [Dependency] private readonly IConfigurationManager _configuration = default!;
 
     private EntityQuery<RDWeightComponent> _weightQuery;
+    private EntityQuery<StackComponent> _stackQuery;
     private int _maxUpdates;
 
     public override void Initialize()
@@ -28,13 +28,20 @@ public sealed class RDWeightSystem : RDEntitySystem
         base.Initialize();
 
         _weightQuery = GetEntityQuery<RDWeightComponent>();
+        _stackQuery = GetEntityQuery<StackComponent>();
         _configuration.OnValueChanged(RDConfigVars.WeightMaxUpdates, value => _maxUpdates = value, true);
 
         SubscribeLocalEvent<RDWeightComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<RDWeightComponent, StackCountChangedEvent>(OnStackChanged);
         SubscribeLocalEvent<RDWeightComponent, EntParentChangedMessage>(OnParentChanged);
     }
 
-    private void OnStartup(Entity<RDWeightComponent> entity, ref ComponentStartup _)
+    private void OnStartup(Entity<RDWeightComponent> entity, ref ComponentStartup args)
+    {
+        Refresh((entity, entity));
+    }
+
+    private void OnStackChanged(Entity<RDWeightComponent> entity, ref StackCountChangedEvent args)
     {
         Refresh((entity, entity));
     }
@@ -104,6 +111,7 @@ public sealed class RDWeightSystem : RDEntitySystem
         if (refresh)
             Refresh(entity);
 
-        return entity.Comp.Inside + entity.Comp.Value;
+        var count = _stackQuery.CompOrNull(entity)?.Count ?? 1;
+        return entity.Comp.Inside + entity.Comp.Value * count;
     }
 }

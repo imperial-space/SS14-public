@@ -1,0 +1,13 @@
+- type: entity
+  id: HolyTouch
+  parent: BaseItem
+  name: Holy Touch
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/hand.rsi
+    state: bananium
+  - type: Unremoveable
+  - type: HolySalt
+  - type: MedievalSpellOnInteract
+    soundOnInteract:
+      path: /Audio/Imperial/Medieval/heal_cast.ogg

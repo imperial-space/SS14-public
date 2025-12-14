@@ -1,0 +1,75 @@
+- type: reagent
+  id: MedievalPlagueCure1
+  name: ""
+  group: Medicine
+  desc: ""
+  physicalDesc: ""
+  flavor: medicine
+  color: "#ffffff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:ProgressPlague
+        progressAmount: -4
+      - !type:GrantPlagueImmunity
+        probability: 0.4
+      - !type:Drunk
+        slurSpeech: false
+        boozePower: 20
+
+- type: reagent
+  id: MedievalPlagueCure2
+  name: ""
+  group: Medicine
+  desc: ""
+  physicalDesc: ""
+  flavor: medicine
+  color: "#ffffff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:ProgressPlague
+        progressAmount: -4
+      - !type:GrantPlagueImmunity
+        probability: 0.4
+      - !type:Drunk
+        slurSpeech: false
+        boozePower: 20
+
+- type: reagent
+  id: MedievalPlagueCure3
+  name: ""
+  group: Medicine
+  desc: ""
+  physicalDesc: ""
+  flavor: medicine
+  color: "#ffffff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:ProgressPlague
+        progressAmount: -4
+      - !type:GrantPlagueImmunity
+        probability: 0.4
+      - !type:Drunk
+        slurSpeech: false
+        boozePower: 20
+
+- type: reagent
+  id: MedievalPlagueCure4
+  name: ""
+  group: Medicine
+  desc: ""
+  physicalDesc: ""
+  flavor: medicine
+  color: "#ffffff"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:ProgressPlague
+        progressAmount: -4
+      - !type:GrantPlagueImmunity
+        probability: 0.4
+      - !type:Drunk
+        slurSpeech: false
+        boozePower: 20

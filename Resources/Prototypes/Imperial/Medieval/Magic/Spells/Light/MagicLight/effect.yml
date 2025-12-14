@@ -1,0 +1,18 @@
+#Beginner
+
+- type: entity
+  id: MagicLightSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/light/magic_light.rsi
+    color: "#FFE57E"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#FFE57E"
+  - type: TimedDespawn
+    lifetime: 0.5

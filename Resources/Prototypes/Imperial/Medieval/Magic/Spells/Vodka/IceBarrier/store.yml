@@ -5,12 +5,12 @@
   name: medieval-store-spells-vodka-ice-barrier-beginner-name
   description: medieval-store-spells-vodka-ice-barrier-beginner-desc
   productAction: MedievalActionIceBarrierBeginner
-  priority: 3
+  priority: 2
   productUpgradeId:
     - MedievalSpellIceBarrierMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/barrier.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/icons.rsi
+    state: beginner
   cost:
     MagicMedievalVodka: 20
   categories:
@@ -25,12 +25,12 @@
   id: MedievalSpellIceBarrierMiddle
   name: medieval-store-spells-vodka-ice-barrier-middle-name
   description: medieval-store-spells-vodka-ice-barrier-middle-desc
-  priority: 3
+  priority: 2
   productUpgradeId:
     - MedievalSpellIceBarrierSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/barrier.rsi
-    state: 2
+    sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/icons.rsi
+    state: middle
   cost:
     MagicMedievalVodka: 45
   categories:
@@ -48,12 +48,12 @@
   id: MedievalSpellIceBarrierSenior
   name: medieval-store-spells-vodka-ice-barrier-senior-name
   description: medieval-store-spells-vodka-ice-barrier-senior-desc
-  priority: 3
+  priority: 2
   productUpgradeId:
     - MedievalSpellIceBarrierSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/barrier.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/icons.rsi
+    state: senior
   cost:
     MagicMedievalVodka: 70
     ArchmagePoints: 1

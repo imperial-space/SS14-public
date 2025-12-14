@@ -545,6 +545,53 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("blacklist", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.Book", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("book_id");
+
+                    b.Property<bool>("Accepted")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("accepted");
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("author");
+
+                    b.Property<Guid>("AuthorUserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("author_user_id");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("creation_time");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("description");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("name");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("text");
+
+                    b.HasKey("Id")
+                        .HasName("PK_book");
+
+                    b.HasIndex("AuthorUserId");
+
+                    b.ToTable("book", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.ConnectionLog", b =>
                 {
                     b.Property<int>("Id")
@@ -595,6 +642,28 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.HasIndex("UserId");
 
                     b.ToTable("connection_log", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.FlavorImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("flavor_images_id");
+
+                    b.Property<byte[]>("Image")
+                        .IsRequired()
+                        .HasColumnType("BLOB")
+                        .HasColumnName("image");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("profile_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_flavor_images");
+
+                    b.ToTable("flavor_images", (string)null);
                 });
 
             modelBuilder.Entity("Content.Server.Database.IPIntelCache", b =>
@@ -686,6 +755,33 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("language", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.NrpResolves", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("nrp_resolves_id");
+
+                    b.Property<int>("Nrp")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("nrp");
+
+                    b.Property<int>("Rp")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("rp");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_nrp_resolves");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("nrp_resolves", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.NrpViolation", b =>
                 {
                     b.Property<int>("Id")
@@ -707,6 +803,53 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.HasIndex("UserId");
 
                     b.ToTable("nrp_violation", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.Painting", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("painting_id");
+
+                    b.Property<bool>("Accepted")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("accepted");
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("author");
+
+                    b.Property<Guid>("AuthorUserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("author_user_id");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("creation_time");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("description");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("name");
+
+                    b.Property<string>("Texture")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("texture");
+
+                    b.HasKey("Id")
+                        .HasName("PK_painting");
+
+                    b.HasIndex("AuthorUserId");
+
+                    b.ToTable("painting", (string)null);
                 });
 
             modelBuilder.Entity("Content.Server.Database.PlayTime", b =>

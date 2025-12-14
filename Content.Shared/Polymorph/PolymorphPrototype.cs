@@ -22,7 +22,7 @@ public sealed partial class PolymorphPrototype : IPrototype, IInheritingPrototyp
     [AbstractDataField]
     public bool Abstract { get; private set; }
 
-    [DataField(required: true, serverOnly: true)]
+    [DataField(required: true)] // Imperial Medieval - serverOnly removed
     public PolymorphConfiguration Configuration = new();
 
 }
@@ -37,7 +37,7 @@ public sealed partial record PolymorphConfiguration
     /// What entity the polymorph will turn the target into
     /// must be in here because it makes no sense if it isn't
     /// </summary>
-    [DataField(required: true, serverOnly: true)]
+    [DataField(required: true)] // Imperial Medieval - serverOnly removed
     public EntProtoId Entity;
 
     /// <summary>
@@ -106,16 +106,32 @@ public sealed partial record PolymorphConfiguration
     public bool RevertOnDeath = true;
 
     /// <summary>
+    /// Whether or not the polymorph reverts when the entity is deleted.
+    /// </summary>
+    [DataField(serverOnly: true)]
+    public bool RevertOnDelete = true;
+
+    /// <summary>
     /// Whether or not the polymorph reverts when the entity is eaten or fully sliced.
     /// </summary>
     [DataField(serverOnly: true)]
     public bool RevertOnEat;
 
     /// <summary>
-    /// Whether or not an already polymorphed entity is able to be polymorphed again
+    /// If true, attempts to polymorph this polymorph will fail, unless
+    /// <see cref="IgnoreAllowRepeatedMorphs"/> is true on the /new/ morph.
     /// </summary>
     [DataField(serverOnly: true)]
     public bool AllowRepeatedMorphs;
+
+    /// <summary>
+    /// If true, this morph will succeed even when used on an entity
+    /// that is already polymorphed with a configuration that has
+    /// <see cref="AllowRepeatedMorphs"/> set to false. Helpful for
+    /// smite polymorphs which should always succeed.
+    /// </summary>
+    [DataField(serverOnly: true)]
+    public bool IgnoreAllowRepeatedMorphs;
 
     /// <summary>
     /// The amount of time that should pass after this polymorph has ended, before a new one

@@ -1,0 +1,115 @@
+#Middle
+
+- type: entity
+  id: MedievalProjectileSunstrikeSpotMiddle
+  parent: BaseBullet
+  name: SunstrikeSpot
+  description: You better GITTAH WEIGH.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Light/Sunstrike/projectiles.rsi
+    noRot: true
+    layers:
+    - state: middle-spot
+      shader: unshaded
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 3.2
+  - type: Projectile
+    deleteOnCollide: false
+  - type: TimedDespawn
+    lifetime: 7
+  - type: ProjectileCursorFollower
+    maxLinearVelocityIntensy: 2.6
+  - type: DelayedSpawn
+    proto: MedievalSunstrikeMiddle
+    delay: 1
+    attached: true
+
+- type: entity
+  id: MedievalSunstrikeMiddle
+  name: Sunstrike
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Light/Sunstrike/projectiles.rsi
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - state: middle
+      shader: unshaded
+  - type: Clickable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 60
+        mask:
+          - MachineMask
+        layer:
+          - MidImpassable
+          - LowImpassable
+          - BulletImpassable
+          - Opaque
+        hard: false
+  - type: Physics
+    bodyType: Static
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#ff9c24"
+  - type: DamageContacts
+    damage:
+      types:
+        Heat: 10
+  - type: IgniteOnCollide
+    fixtureId: fix1
+    fireStacks: 2
+  - type: AmbientSound
+    volume: -3
+    range: 6
+    sound:
+      path: /Audio/Imperial/Medieval/sunstrike_static.ogg
+
+# Senior
+
+- type: entity
+  id: MedievalProjectileSunstrikeSpotSenior
+  parent: MedievalProjectileSunstrikeSpotMiddle
+  name: SunstrikeSpot
+  description: You better GITTAH WEIGH.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Light/Sunstrike/projectiles.rsi
+    noRot: true
+    layers:
+    - state: senior-spot
+      shader: unshaded
+  - type: ProjectileCursorFollower
+    maxLinearVelocityIntensy: 3.4
+  - type: DelayedSpawn
+    proto: MedievalSunstrikeSenior
+    delay: 1
+    attached: true
+
+- type: entity
+  id: MedievalSunstrikeSenior
+  parent: MedievalSunstrikeMiddle
+  name: Sunstrike
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Light/Sunstrike/projectiles.rsi
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - state: senior
+      shader: unshaded

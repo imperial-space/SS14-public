@@ -1,0 +1,143 @@
+# Encryption Keys
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeySCPconnection
+  name: common encryption key
+  suffix: seriozha, Недра
+  description: An encryption key used by anyone.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SCPconnection
+    defaultChannel: SCPconnection
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/misc/scpencryptionkey.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Seriozha/SCP/misc/scpencryptionkey.rsi
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyNedraconnection
+  name: common encryption key
+  suffix: seriozha, Недра
+  description: An encryption key used by anyone.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Nedraconnection
+    defaultChannel: Nedraconnection
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/misc/encryptionkey.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Seriozha/SCP/misc/encryptionkey.rsi
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyNedraCMDconnection
+  name: common encryption key
+  suffix: seriozha, Недра
+  description: An encryption key used by anyone.
+  components:
+  - type: EncryptionKey
+    channels:
+    - NedraCMDconnection
+    defaultChannel: NedraCMDconnection
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/misc/cmdencryptionkey.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Seriozha/SCP/misc/cmdencryptionkey.rsi
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyNedraMTFconnection
+  name: common encryption key
+  suffix: seriozha, Недра
+  description: An encryption key used by anyone.
+  components:
+  - type: EncryptionKey
+    channels:
+    - NedraMTFconnection
+    defaultChannel: NedraMTFconnection
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/misc/mtfencryptionkey.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Seriozha/SCP/misc/mtfencryptionkey.rsi
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyNedraAlphaconnection
+  name: common encryption key
+  suffix: seriozha, Недра
+  description: An encryption key used by anyone.
+  components:
+  - type: EncryptionKey
+    channels:
+    - NedraAlphaconnection
+    defaultChannel: NedraAlphaconnection
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/misc/alphaencryptionkey.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Seriozha/SCP/misc/alphaencryptionkey.rsi
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyNedraLastHopeconnection
+  name: common encryption key
+  suffix: seriozha, Недра
+  description: An encryption key used by anyone.
+  components:
+  - type: EncryptionKey
+    channels:
+    - NedraLastHopeconnection
+    defaultChannel: NedraLastHopeconnection
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/misc/lasthopeencryptionkey.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Seriozha/SCP/misc/lasthopeencryptionkey.rsi
+
+# Stamps
+- type: entity
+  name: Nedra stamp
+  parent: RubberStampMime
+  id: RubberStampNedra
+  suffix: seriozha, Недра
+  components:
+    - type: Stamp
+      stampedName: stamp-nedra-name
+      stampState: paper_stamp-generic
+      stampedColor: "#FFA500"
+    - type: Sprite
+      sprite: Imperial/ussp/stamp.rsi
+      state: stamp-ussp
+
+- type: entity
+  name: Nedra command stamp
+  parent: RubberStampNedra
+  id: RubberStampNedraCommand
+  components:
+    - type: Stamp
+      stampedName: stamp-command-nedra-name
+      stampState: paper_stamp-generic
+      stampedColor: "#ff7e2e"
+    - type: Sprite
+      sprite: Imperial/ussp/stamp.rsi
+      state: stamp-ussp
+
+- type: entity
+  name: Nedra comitet stamp
+  parent: RubberStampNedra
+  id: RubberStampNedraComitet
+  components:
+    - type: Stamp
+      stampedName: stamp-comitet-nedra-name
+      stampState: paper_stamp-generic
+      stampedColor: "#60008f"
+    - type: Sprite
+      sprite: Imperial/ussp/stamp.rsi
+      state: stamp-ussp

@@ -18,6 +18,10 @@ using Content.Shared.IdentityManagement;
 using Robust.Server.GameObjects;
 using Content.Server.Imperial.Medieval.RandomSteal;
 using Content.Shared.Imperial.Medieval.Additions;
+using Content.Shared.Imperial.Medieval.Skills;
+using Robust.Shared.Toolshed.TypeParsers;
+using Content.Shared.Stacks;
+using Content.Server.Stack;
 
 namespace Content.Shared.Imperial.RandomSteal.Systems;
 
@@ -32,6 +36,7 @@ public sealed partial class RandomStealSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly IEntitySystemManager _sys = default!;
+    [Dependency] private readonly StackSystem _stackSystem = default!;
 
     public override void Initialize()
     {
@@ -56,7 +61,11 @@ public sealed partial class RandomStealSystem : EntitySystem
             {
                 if (TryComp<StorageComponent>(targetEntity, out var storage) && storage.Container.ContainedEntities.Any())
                 {
-                    targetEntities.Add(_random.Pick(storage.Container.ContainedEntities.Where(x => comp.Sizes.Contains(CompOrNull<ItemComponent>(x)?.Size ?? "")).ToList()));
+                    var potentialTargets = storage.Container.ContainedEntities.Where(x => comp.Sizes.Contains(CompOrNull<ItemComponent>(x)?.Size ?? "")).ToList();
+
+                    if (potentialTargets.Any())
+                        targetEntities.Add(_random.Pick(potentialTargets));
+
                     continue;
                 }
 
@@ -109,13 +118,34 @@ public sealed partial class RandomStealSystem : EntitySystem
         if (!_sys.GetEntitySystem<AntiStealAfkSystem>().TryStrip(uid, target))
             return;
 
-        var nameStealer = Identity.Name(uid, EntityManager);
-        var nameFrom = Identity.Name(target, EntityManager);
+        var nameStealer = Identity.Name(uid, EntityManager); // Имя вора
+        var nameFrom = Identity.Name(target, EntityManager); // Имя жертвы
+
+        var victimUid = target;
+        var victimIntelligenceContribution = 0f; // Вклад интеллекта жертвы на шанс удачного воровства
+
+        if (TryComp<SkillsComponent>(victimUid, out var victimSkillsComponent))
+        {
+            if (victimSkillsComponent.Levels.TryGetValue(SharedSkillsSystem.IntelligenceId, out var levelIntelligence))
+            {
+                if (levelIntelligence < 3) victimIntelligenceContribution = 0.1f; // Если интеллект жертвы меньше 3, то шанс успешно обворовать увеличивается на 10%
+                else if (levelIntelligence < 12) victimIntelligenceContribution = 0; // Если интеллект жертвы от 3 до 12, то шанс успешно обворовать не изменяется
+                else if (levelIntelligence < 15) victimIntelligenceContribution = -0.1f; // Если интеллект жертвы больше 12, то шанс успешно обворовать уменьшается на 10%
+            }
+        }
 
         var modEv = new GetStealChanceModifiersEvent(1f);
         RaiseLocalEvent(ev.User, ref modEv);
+        var stealChance = (comp.Chance / 100) * modEv.Modifier;
+        // Дополнительные проверки
+        if (stealChance >= 0.85) stealChance = 0.85f;
+        // Добавление влияния интеллекта жертвы
+        stealChance += victimIntelligenceContribution;
 
-        if (_random.Next(100) > comp.Chance * modEv.Modifier)
+        if (stealChance < 0) stealChance = 0;
+
+        // _random.Next(100) изменено на _random.Prob, поскольку это математически более верный способ высчитывания случайностей.
+        if (_random.Prob(stealChance))
         {
             _popupSystem.PopupEntity(Loc.GetString("stealFailedSpellward", ("entity1", nameStealer)), uid, target, Popups.PopupType.LargeCaution);
             _popupSystem.PopupEntity(Loc.GetString("stealFailedSpellwardUser"), target, uid, Popups.PopupType.LargeCaution);
@@ -129,9 +159,23 @@ public sealed partial class RandomStealSystem : EntitySystem
 
         foreach (var item in ev.Entities)
         {
-            _transform.SetCoordinates(item, Transform(uid).Coordinates);
-            _hands.TryForcePickupAnyHand(uid, item);
-            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"User {ToPrettyString(target):user} steal from {ToPrettyString(uid):target} item: {ToPrettyString(item):item}.");
+            if (TryComp<StackComponent>(item, out var itemStackComp))
+            {
+                int maximalAmountToSteal = (int)Math.Round(itemStackComp.Count * 0.7);
+                // Так как _random.Next(a) возвращает int От 0 до a, мы вынуждены сделать смещение на 1,
+                // чтобы при удачной попытке воровства мы своровали хотя бы 1 штуку стакабельного предмета.
+                int amountToSteal = _random.Next(maximalAmountToSteal - 1) + 1;
+                var stolenItems = _stackSystem.Split(item, amountToSteal, Transform(uid).Coordinates);
+                if (stolenItems != null) _hands.TryForcePickupAnyHand(uid, stolenItems.Value);
+                else throw new Exception("Попытка своровать стакабельный предмет произошла с ошибкой");
+                _adminLogger.Add(LogType.Action, LogImpact.Medium, $"User {ToPrettyString(target):user} steal from {ToPrettyString(uid):target} item: {ToPrettyString(item):item}, amount: {amountToSteal}.");
+            }
+            else
+            {
+                _transform.SetCoordinates(item, Transform(uid).Coordinates);
+                _hands.TryForcePickupAnyHand(uid, item);
+                _adminLogger.Add(LogType.Action, LogImpact.Medium, $"User {ToPrettyString(target):user} steal from {ToPrettyString(uid):target} item: {ToPrettyString(item):item}.");
+            }
         }
     }
 }

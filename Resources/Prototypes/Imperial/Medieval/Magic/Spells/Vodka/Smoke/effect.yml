@@ -1,0 +1,18 @@
+#Beginner
+
+- type: entity
+  id: SmokeSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/vodka/smoke.rsi
+    color: "#646464"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#646464"
+  - type: TimedDespawn
+    lifetime: 0.5

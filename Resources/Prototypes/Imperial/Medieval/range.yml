@@ -4,6 +4,8 @@
   id: MedievalWeaponCrossbow
   description: A portable anti-armour rifle. Fires armor piercing 14.5mm shells. Uses .60 anti-material ammo.
   components:
+  - type: RDWeight
+    value: 4.5
   - type: Sprite
     sprite: Imperial/Medieval/Gun/crossbow.rsi
   - type: Clothing
@@ -36,6 +38,49 @@
     delay: 4
   - type: TrashClear
     safe: true
+
+- type: entity
+  name: crossbow
+  parent: MedievalWeaponCrossbow
+  id: MedievalWeaponCrossbowWhois
+  description: A portable anti-armour rifle. Fires armor piercing 14.5mm shells. Uses .60 anti-material ammo.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/crossbow_whois.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Gun/crossbow_whois.rsi
+
+- type: entity
+  name: bow
+  parent: MedievalWeaponBow
+  id: MedievalWeaponBowWhois
+  description: A portable anti-armour rifle. Fires armor piercing 14.5mm shells. Uses .60 anti-material ammo.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/bow_whois.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Gun/bow_whois.rsi
+
+- type: entity
+  name: bow
+  parent: BaseBow
+  id: BaseBowWhois
+  description: The original rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/bow_whois.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Gun/bow_whois.rsi
+
+- type: entity
+  name: crossbow
+  parent: MedievalWeaponCrossbow
+  id: MedievalWeaponMiniCrossbow
+  description: A portable anti-armour rifle. Fires armor piercing 14.5mm shells. Uses .60 anti-material ammo.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/minicrossbow.rsi
 
 - type: entity
   name: crossbow

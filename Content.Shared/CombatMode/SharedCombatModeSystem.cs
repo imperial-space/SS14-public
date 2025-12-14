@@ -17,7 +17,6 @@ public abstract class SharedCombatModeSystem : EntitySystem
     [Dependency] private   readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private   readonly SharedPopupSystem _popup = default!;
     [Dependency] private   readonly SharedMindSystem  _mind = default!;
-    [Dependency] private   readonly IGameTiming _gameTiming = default!; // Imperial medieval edit start
     [Dependency] private   readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly INetManager _netMan = default!; // Imperial medieval edit end
     [Dependency] private   readonly MobStateSystem _mobStateSystem = default!;
@@ -34,7 +33,7 @@ public abstract class SharedCombatModeSystem : EntitySystem
     private void OnMapInit(EntityUid uid, CombatModeComponent component, MapInitEvent args)
     {
         _actionsSystem.AddAction(uid, ref component.CombatToggleActionEntity, component.CombatToggleAction);
-        component.NextTimeAudioPlay = _gameTiming.CurTime; // Imperial medieval edit
+        component.NextTimeAudioPlay = Timing.CurTime; // Imperial medieval edit
         Dirty(uid, component);
     }
 
@@ -82,14 +81,14 @@ public abstract class SharedCombatModeSystem : EntitySystem
         Dirty(entity, component);
 
         // Imperial medieval edit start
-        if (component.NextTimeAudioPlay < _gameTiming.CurTime && _netMan.IsServer && _mobStateSystem.IsAlive(entity))
+        if (component.NextTimeAudioPlay < Timing.CurTime && _netMan.IsServer && _mobStateSystem.IsAlive(entity))
         {
             var sound = component.IsInCombatMode ? component.ActivationSound : component.DeactivationSound;
             var audioParams = AudioParams.Default.WithMaxDistance(3).AddVolume(-5f).WithVariation(0.1f);
 
             _audioSystem.PlayPvs(sound, entity, audioParams);
 
-            component.NextTimeAudioPlay = _gameTiming.CurTime + component.AudioPlayCooldown;
+            component.NextTimeAudioPlay = Timing.CurTime + component.AudioPlayCooldown;
         }
         // Imperial medieval edit end
 

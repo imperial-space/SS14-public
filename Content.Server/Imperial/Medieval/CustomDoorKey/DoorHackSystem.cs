@@ -14,6 +14,8 @@ using Content.Server.MagicBarrier.Components;
 using Content.Shared.Doors.Components;
 using Content.Server.Doors.Systems;
 using Content.Shared.Imperial.Medieval.Skills;
+using Content.Server.Imperial.Medieval.GameTicking.Rules;
+using Content.Shared.Imperial.Medieval.GameTicking.Rules;
 
 namespace Content.Server.CustomDoorKey
 {
@@ -157,10 +159,10 @@ namespace Content.Server.CustomDoorKey
                         var doorEntity = new Entity<DoorBoltComponent>(door.Owner, bolt);
                         _door.TrySetBoltDown(doorEntity, false);
                         door.LockPickProgress = 0;
-                        if (TryComp<MedievalSpikeTargetComponent>(sender.AttachedEntity, out var player))
+                        if (TryComp<AffectRoundStatsComponent>(sender.AttachedEntity, out var player))
                         {
                             player.Lockpicks++;
-                            foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
+                            foreach (var barrier in EntityManager.EntityQuery<RoundStatCounterRuleComponent>())
                             {
                                 barrier.TotalLockpicks++;
                             }

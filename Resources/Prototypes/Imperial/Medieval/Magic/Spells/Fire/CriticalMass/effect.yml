@@ -1,0 +1,16 @@
+- type: entity
+  id: CriticalMassSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
+    color: "#FF5900"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#F5E72D"
+  - type: TimedDespawn
+    lifetime: 0.5

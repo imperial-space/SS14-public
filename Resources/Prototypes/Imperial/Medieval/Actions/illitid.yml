@@ -1,0 +1,86 @@
+- type: entity
+  id: MedievalActionIllitidThought
+  name: Шёпот
+  description: placeholder
+  components:
+  - type: Action
+    checkCanInteract: false
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/illitid.rsi
+      state: thought
+    itemIconStyle: BigAction
+  - type: TargetAction
+    interactOnMiss: false
+    range: 15
+    checkCanAccess: false
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      requireAll: true
+      components:
+      - MobThresholds
+    event: !type:IllitidThoughtActionEvent
+
+- type: entity
+  id: MedievalActionIllitidMassThought
+  name: Массовый шёпот
+  description: placeholder
+  components:
+  - type: Action
+    checkCanInteract: false
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/illitid.rsi
+      state: mass
+    itemIconStyle: BigAction
+  - type: InstantAction
+    useDelay: 40
+    event: !type:IllitidMassThoughtActionEvent
+
+- type: entity
+  id: MedievalActionIllitidForceTalk
+  name: Принудительное слово
+  description: placeholder
+  components:
+  - type: Action
+    checkCanInteract: false
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/illitid.rsi
+      state: control
+    itemIconStyle: BigAction
+  - type: TargetAction
+    interactOnMiss: false
+    range: 15
+    checkCanAccess: false
+  - type: EntityTargetAction
+    useDelay: 60
+    canTargetSelf: false
+    whitelist:
+      requireAll: true
+      components:
+      - Vocal
+      - MobThresholds
+    event: !type:IllitidForceSayActionEvent
+
+- type: entity
+  id: MedievalActionIllitidBlindness
+  name: Ментальная вспышка
+  description: placeholder
+  components:
+  - type: Action
+    checkCanInteract: false
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/illitid.rsi
+      state: blind
+    itemIconStyle: BigAction
+  - type: TargetAction
+    interactOnMiss: false
+    range: 15
+    checkCanAccess: false
+  - type: EntityTargetAction
+    useDelay: 40
+    canTargetSelf: false
+    whitelist:
+      requireAll: true
+      components:
+      - MobThresholds
+    event: !type:IllitidBlindnessActionEvent

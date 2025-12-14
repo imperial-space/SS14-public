@@ -7,6 +7,7 @@
   - type: Transform
     anchored: true
   - type: Clickable
+  - type: GravityAffected
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -59,6 +60,10 @@
         - MidImpassable
         - LowImpassable
   - type: Anchorable
+  # imperial medieval start
+  - type: RDWeight
+    value: 40
+  # imperial medieval end
 
 # For use with yaml composition, so that all wheeled structures can easily be changed.
 - type: entity

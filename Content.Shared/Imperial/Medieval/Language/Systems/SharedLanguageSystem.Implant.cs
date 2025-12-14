@@ -31,15 +31,13 @@ public abstract partial class SharedLanguageSystem
 
     private void OnImplanted(EntityUid uid, TranslatorImplantComponent comp, ref ImplantImplantedEvent args)
     {
-        if (args.Implanted.HasValue)
-            UpdateUi(args.Implanted.Value);
+        UpdateUi(args.Implanted);
         comp.ImplantedEntity = args.Implanted;
     }
 
     private void OnUnimplanted(EntityUid uid, TranslatorImplantComponent comp, ref ImplantRemovedEvent args)
     {
-        if (args.Implanted.HasValue)
-            UpdateUi(args.Implanted.Value);
+        UpdateUi(args.Implanted);
         comp.ImplantedEntity = null;
     }
 

@@ -233,7 +233,7 @@ namespace Content.Server.MedievalMeleeResource
                 EnsureComp<DurabilityDisplayComponent>(uid);
             }
         }
-        private void OnStart(EntityUid uid, MedievalMeleeResourceComponent component, ComponentStartup args)
+        public void OnStart(EntityUid uid, MedievalMeleeResourceComponent component, ComponentStartup args)
         {
             //EnsureComp<MedievalItemRustComponent>(uid); временное выключение ржавчины
 

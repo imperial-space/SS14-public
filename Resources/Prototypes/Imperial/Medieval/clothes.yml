@@ -291,6 +291,17 @@
     regen: 0.6
 
 - type: entity
+  parent: MedievalClothingUniformJumpsuitShitCloth23
+  id: MedievalClothingUniformJumpsuitShitCloth73
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_73.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_73.rsi
+
+- type: entity
   parent: ClothingUniformBase
   id: MedievalClothingUniformJumpsuitShitCloth24
   name: shit cloth
@@ -855,11 +866,49 @@
   - type: Insulated
 
 - type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth74
+  name: shot clith
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_74.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_74.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth75
+  name: shot clith
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_75.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_75.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth76
+  name: shot clith
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_76.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_76.rsi
+  - type: Insulated
+
+- type: entity
   parent: ClothingBeltStorageBase
   id: MedievalQuiver
   name: MedievalQuiver
   description: A belt used to hold arrows and bolts.
   components:
+  - type: RDWeight
+    value: 1.5
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Belt/quiver.rsi
   - type: Clothing
@@ -877,11 +926,35 @@
     size: Ginormous
 
 - type: entity
+  parent: MedievalQuiver
+  id: MedievalQuiverWhois
+  name: MedievalQuiver
+  description: A belt used to hold arrows and bolts.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Belt/quiver_whois.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Belt/quiver_whois.rsi
+
+- type: entity
+  parent: MedievalQuiverSteel
+  id: MedievalQuiverSteelWhois
+  name: MedievalQuiverSteel
+  description: A belt used to hold arrows and bolts.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Belt/quiver_whois.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Belt/quiver_whois.rsi
+
+- type: entity
   parent: ClothingBeltStorageBase
   id: MedievalQuiverSteel
   name: MedievalQuiverSteel
   description: A belt used to hold arrows and bolts.
   components:
+  - type: RDWeight
+    value: 2
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Belt/quiver_steel.rsi
   - type: Clothing
@@ -904,6 +977,8 @@
   name: MedievalQuiverNecro
   description: A belt used to hold arrows and bolts.
   components:
+  - type: RDWeight
+    value: 2
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Belt/quiver_necro.rsi
   - type: Clothing
@@ -938,6 +1013,8 @@
   name: MedievalFetter
   description: At last...
   components:
+  - type: RDWeight
+    value: 7
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Shoes/fetter.rsi
   - type: Clothing
@@ -980,12 +1057,18 @@
   id: MedievalClothingHeadHatPlaguedoctor
   name: MedievalClothingHeadHatPlaguedoctor
   description: MedievalClothingHeadHatPlaguedoctor
+  components:
+  - type: MedievalPlagueSpreadBlocking
+    modifier: 0.65
 
 - type: entity
   parent: ClothingMaskPlague
   id: MedievalClothingMaskPlague
   name: MedievalClothingMaskPlague
   description: MedievalClothingMaskPlague
+  components:
+  - type: MedievalPlagueSpreadBlocking
+    modifier: 0.4
 
 - type: entity
   parent: ClothingMaskMuzzle
@@ -1087,6 +1170,31 @@
     sprite: Imperial/Medieval/Clothing/Shoes/white_charmer.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Shoes/white_charmer.rsi
+
+- type: entity
+  parent: MedievalShoesChamber
+  id: MedievalShoesChamberKonnor
+  name: MedievalShoesChamberKonnor
+  description: MedievalShoesChamberKonnor
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/konnor_boots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/konnor_boots.rsi
+
+- type: entity
+  parent: MedievalClothingHandsGlovesCloth
+  id: MedievalClothingHandsGlovesClothKonnor
+  name: Cloth Gloves
+  description: Cloth Gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/konnor_gloves.rsi
+    layers:
+    - state: icon
+  - type: Item
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/konnor_gloves.rsi
 
 - type: entity
   parent: MedievalShoesChamber
@@ -1329,8 +1437,8 @@
   - type: UseDelay
     delay: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.95
-    sprintModifier: 0.95
+    walkModifier: 0.97
+    sprintModifier: 0.97
   - type: HeldSpeedModifier
 
 - type: entity
@@ -1341,6 +1449,16 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Backpack/leather2.rsi
+    state: icon
+
+- type: entity
+  parent: MedievalClothingBackpackSatchelLeather
+  id: MedievalClothingBackpackSatchelLeatherRoyal
+  name: satchel
+  description: A trendy looking satchel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Backpack/royal.rsi
     state: icon
 
 - type: entity
@@ -1472,8 +1590,8 @@
   - type: UseDelay
     delay: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.65
-    sprintModifier: 0.65
+    walkModifier: 0.88
+    sprintModifier: 0.88
   - type: HeldSpeedModifier
 
 # Light Brown Gloves
@@ -1645,6 +1763,67 @@
       - state: unshaded
         shader: unshaded
 
+- type: entity
+  parent: ClothingMaskPlague
+  id: ClothingMaskAskalSkeleton
+  name: mask
+  description: mask
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Mask/brass_skull.rsi
+    layers:
+      - state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Mask/brass_skull.rsi
+    clothingVisuals:
+      mask:
+      - state: equipped-MASK
+      - state: unshaded
+        shader: unshaded
+
+- type: entity
+  parent: ClothingMaskSterile
+  id: ClothingMaskBib
+  name: mask
+  description: mask
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Mask/bib_mask.rsi
+    layers:
+      - state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Mask/bib_mask.rsi
+    clothingVisuals:
+      eyes:
+      - state: equipped-MASK
+  - type: MedievalPlagueSpreadBlocking
+    modifier: 0.5
+
+- type: entity
+  parent: ClothingMaskPlague
+  id: ClothingMaskArtur
+  name: head
+  description: head
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/artur_head.rsi
+    layers:
+      - state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/artur_head.rsi
+    clothingVisuals:
+      mask:
+      - state: equipped-HELMET
+  - type: MedievalPlagueSpreadBlocking
+    modifier: 0.5
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+    hideOnToggle: true
+
 - type: Tag
   id: MedievalIronRoyalSword
 - type: Tag
@@ -1697,9 +1876,53 @@
 
 - type: entity
   parent: ClothingShoesBase
+  id: MedievalClothingRoyalChaplainBoots
+  name: MedievalClothingRoyalChaplainBoots
+  description: MedievalClothingRoyalChaplainBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/royalchaplain.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/royalchaplain.rsi
+
+- type: entity
+  parent: ClothingShoesBase
   id: MedievalClothingBlackBoots
   name: MedievalClothingBlackBoots
   description: MedievalClothingBlackBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+
+- type: entity
+  parent: MedievalShoesChamber
+  id: MedievalClothingApocrifBoots
+  name: MedievalClothingApocrifBoots
+  description: MedievalClothingApocrifBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+
+- type: entity
+  parent: MedievalShoesChamber
+  id: MedievalClothingApocrifBootsLight
+  name: MedievalClothingApocrifBootsLight
+  description: MedievalClothingApocrifBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+
+- type: entity
+  parent: MedievalShoesChamber
+  id: MedievalClothingApocrifBootsWeak
+  name: MedievalClothingApocrifBootsWeak
+  description: MedievalClothingApocrifBoots
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
@@ -1722,7 +1945,35 @@
 
 - type: entity
   parent: MedievalClothingHandsGlovesCloth
+  id: MedievalClothingHandsAskalSkeleton
+  name: Cloth Gloves
+  description: Cloth Gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/brass_gloves.rsi
+    layers:
+    - state: icon
+  - type: Item
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/brass_gloves.rsi
+
+- type: entity
+  parent: MedievalClothingHandsGlovesCloth
   id: MedievalClothingHandsBlackGloves
+  name: Cloth Gloves
+  description: Cloth Gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/blackgloves.rsi
+    layers:
+    - state: icon
+  - type: Item
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/blackgloves.rsi
+
+- type: entity
+  parent: MedievalClothingHandsGlovesCloth
+  id: MedievalClothingHandsApocrif
   name: Cloth Gloves
   description: Cloth Gloves
   components:
@@ -1744,6 +1995,21 @@
     sprite: Imperial/Medieval/Clothing/Coats/royalcoat.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Coats/royalcoat.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: MedievalClothingOuterRoyalChaplain
+  name: MedievalClothingOuterRoyalChaplain
+  description: MedievalClothingOuterRoyalChaplain
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Coats/royalchaplain.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Coats/royalchaplain.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Cold: 0.95
 
 - type: entity
   parent: ClothingEyesBase
@@ -1787,9 +2053,9 @@
   description: Походные сапоги из крепкой кожи.
   components:
   - type: Sprite
-    sprite: Imperial\Medieval\Clothing\Shoes\desert_ambassador.rsi
+    sprite: Imperial/Medieval/Clothing/Shoes/desert_ambassador.rsi
   - type: Clothing
-    sprite: Imperial\Medieval\Clothing\Shoes\desert_ambassador.rsi
+    sprite: Imperial/Medieval/Clothing/Shoes/desert_ambassador.rsi
 
 - type: entity
   name: monster bag
@@ -1814,5 +2080,254 @@
     areaInsert: true
     whitelist:
       tags:
-        - MonsterLoot 
+        - MonsterLoot
   - type: Dumpable
+
+- type: entity
+  id: MedievalFireFetter
+  name: ent-MedievalFireFetter
+  description: ent-MedievalFireFetter
+  components:
+  - type: RDWeight
+    value: 7
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Fire/FireFetter/projectiles.rsi
+    state: handcuff
+  - type: TimedDespawn
+    lifetime: 180
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    resetOnHandSelected: false
+    animation: WeaponArcDisarm
+    damage:
+      types:
+        Blunt: 3
+  - type: IgniteOnMeleeHit
+    fireStacks: 0.2
+  - type: Handcuff
+    cuffedRSI: Imperial/Medieval/Magic/Fire/FireFetter/projectiles.rsi
+    bodyIconState: body-overlay
+    breakoutTime: 10
+    cuffTime: 3.5
+    uncuffTime: 3.5
+  - type: Item
+    size: Small
+    storedRotation: 90
+  - type: Tag
+    tags:
+    - Handcuffs
+
+- type: entity
+  id: MedievalCursedFetter
+  name: ent-MedievalCursedFetter
+  description: ent-MedievalCursedFetter
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Darkness/CursedFetter/projectiles.rsi
+    state: handcuff
+  - type: MeleeWeapon
+    resetOnHandSelected: false
+    animation: WeaponArcDisarm
+    damage:
+      types:
+        Blunt: 3
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Handcuff
+    cuffedRSI: Imperial/Medieval/Magic/Darkness/CursedFetter/projectiles.rsi
+    bodyIconState: body-overlay
+    breakoutTime: 10
+    cuffTime: 3.5
+    uncuffTime: 3.5
+  - type: RDWeight
+    value: 7
+  - type: TimedDespawn
+    lifetime: 180
+  - type: Item
+    size: Small
+    storedRotation: 90
+  - type: Tag
+    tags:
+    - Handcuffs
+
+- type: entity
+  parent: MedievalClothingHeadHelmetShapel
+  id: MedievalSteampunkHat
+  name: Steampunk Hat
+  description: A pretty old inventor's hat with a flashlight on it. Quite a valuable artifact for a person interested in it.
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Clothing/Head/steampunk-hat.rsi
+    - type: Clothing
+      sprite: Imperial/Medieval/Clothing/Head/steampunk-hat.rsi
+    - type: PointLight
+      color: "#a0f1e8"
+      enabled: false
+      mask: /Textures/Effects/LightMasks/cone.png
+      radius: 5
+      softness: 20
+      autoRot: true
+    - type: UnpoweredFlashlight
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+    - type: LightBehaviour
+      behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        interpolate: Linear
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        minValue: 0.1
+        maxValue: 2.0
+        isLooped: true
+    - type: HideLayerClothing
+      layers:
+        Hair: HEAD
+        HeadTop: HEAD
+        HeadSide: HEAD
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.85
+          Piercing: 0.95
+
+- type: entity
+  parent: ClothingEyesBase
+  id: MedievalSteampunkGlasses
+  name: Steampunk Glasses
+  description: Homemade glasses with a built-in magnifying glass for zooming in on small details. Its frame is made of pure gold, and the eyepieces are made of rather heavily tempered glass.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Eyes/steampunk.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Eyes/steampunk.rsi
+    slots: eyes
+  - type: Item
+    size: Small
+    storedRotation: -90
+
+- type: entity
+  parent: ClothingEyesBase
+  id: MedievalFichtyGlasses
+  name: glasses
+  description: cool glasses
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Eyes/fichty.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Eyes/fichty.rsi
+    slots: eyes
+  - type: Item
+    size: Small
+    storedRotation: -90
+
+- type: entity
+  parent: MedievalClothingUniformJumpsuitShitCloth23
+  id: MedievalClothingUniformJumpsuitShitCloth77
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_77.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_77.rsi
+
+- type: entity
+  parent: MedievalClothingUniformJumpsuitShitCloth23
+  id: MedievalClothingUniformJumpsuitShitCloth78
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_78.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_78.rsi
+
+- type: entity
+  parent: MedievalClothingUniformJumpsuitShitCloth23
+  id: MedievalClothingUniformJumpsuitShitCloth79
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_79.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_79.rsi
+
+- type: entity
+  parent: MedievalClothingUniformJumpsuitShitCloth23
+  id: MedievalClothingUniformJumpsuitShitCloth80
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_80.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_80.rsi
+
+- type: entity
+  parent: MedievalClothingHandsGlovesCloth
+  id: MedievalClothingHandsGlovesClothArtur
+  name: Cloth Gloves
+  description: Cloth Gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/artur_gloves.rsi
+    layers:
+    - state: icon
+  - type: Item
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/artur_gloves.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: MedievalClothingBootsArtur
+  name: MedievalClothingBootsArtur
+  description: MedievalClothingBootsArtur
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/artur_boots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/artur_boots.rsi
+
+- type: entity
+  parent: MedievalClothingHandsGlovesCloth
+  id: MedievalClothingHandsGlovesClothBib
+  name: Cloth Gloves
+  description: Cloth Gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/bib_gloves.rsi
+    layers:
+    - state: icon
+  - type: Item
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/bib_gloves.rsi
+
+- type: entity
+  parent: MedievalShoesChamber
+  id: MedievalShoesChamberBib
+  name: MedievalShoesChamberBib
+  description: MedievalShoesChamberBib
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/bib_boots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/bib_boots.rsi

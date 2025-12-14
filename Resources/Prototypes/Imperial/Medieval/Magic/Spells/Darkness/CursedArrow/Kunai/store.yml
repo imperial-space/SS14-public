@@ -5,12 +5,12 @@
   name: medieval-store-spells-darkness-cursed-arrow-kunai-beginner-name
   description: medieval-store-spells-darkness-cursed-arrow-kunai-beginner-desc
   actionLevelUp: 7
-  priority: 4
+  priority: 2
   productUpgradeId:
     - MedievalSpellCursedArrowKunaiMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
-    state: 2
+    sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/icons.rsi
+    state: beginner-kunai
   cost:
     MagicMedievalDarkness: 45
   categories:
@@ -48,12 +48,12 @@
   id: MedievalSpellCursedArrowKunaiMiddle
   name: medieval-store-spells-darkness-cursed-arrow-kunai-middle-name
   description: medieval-store-spells-darkness-cursed-arrow-kunai-middle-desc
-  priority: 4
+  priority: 2
   productUpgradeId:
     - MedievalSpellCursedArrowKunaiSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/icons.rsi
+    state: middle-kunai
   cost:
     MagicMedievalDarkness: 65
   categories:
@@ -91,12 +91,12 @@
   id: MedievalSpellCursedArrowKunaiSenior
   name: medieval-store-spells-darkness-cursed-arrow-kunai-senior-name
   description: medieval-store-spells-darkness-cursed-arrow-kunai-senior-desc
-  priority: 4
+  priority: 2
   productUpgradeId:
     - MedievalSpellCursedArrowKunaiSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/icons.rsi
+    state: senior-kunai
   cost:
     MagicMedievalDarkness: 80
     ArchmagePoints: 1

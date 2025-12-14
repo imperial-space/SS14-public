@@ -4,6 +4,8 @@
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
+  - type: RDWeight
+    value: 55
   - type: Sprite
     sprite: Imperial/Medieval/Decor/catapult.rsi
     layers:
@@ -48,6 +50,8 @@
   name: moon battlemap
   description: A battlemap for your epic moon exploring to begin, pieces not included!
   components:
+    - type: RDWeight
+      value: 1.5
     - type: Sprite
       sprite: Imperial/Medieval/Decor/catapult_ammo.rsi
       state: barrel
@@ -63,6 +67,8 @@
   name: moon battlemap
   description: A battlemap for your epic moon exploring to begin, pieces not included!
   components:
+    - type: RDWeight
+      value: 3
     - type: Sprite
       sprite: Imperial/Medieval/Decor/catapult_ammo.rsi
       state: gunpowder
@@ -78,6 +84,8 @@
   name: moon battlemap
   description: A battlemap for your epic moon exploring to begin, pieces not included!
   components:
+    - type: RDWeight
+      value: 7
     - type: Sprite
       sprite: Imperial/Medieval/Decor/catapult_ammo.rsi
       state: ap
@@ -93,6 +101,8 @@
   name: moon battlemap
   description: A battlemap for your epic moon exploring to begin, pieces not included!
   components:
+    - type: RDWeight
+      value: 5
     - type: Sprite
       sprite: Imperial/Medieval/Decor/catapult_ammo.rsi
       state: stone

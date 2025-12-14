@@ -1,0 +1,8 @@
+﻿<DefaultWindow
+    xmlns="https://spacestation14.io"
+    Title="{Loc afk-warning-title}" MinSize="600 140">
+    <BoxContainer Orientation="Vertical">
+        <Label Name='Warning' Text="{Loc afk-warning-text}"/>
+        <Button Text="{Loc afk-confirm-button}"/>
+    </BoxContainer>
+</DefaultWindow>

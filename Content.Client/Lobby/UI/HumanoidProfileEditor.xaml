@@ -4,6 +4,7 @@
          xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
          xmlns:ui="clr-namespace:Content.Client.Lobby.UI"
          xmlns:skills="clr-namespace:Content.Client.Imperial.Medieval.Skills.UI"
+         xmlns:ui1="clr-namespace:Content.Client.Imperial.Medieval.Lobby.UI"
          HorizontalExpand="True">
         <!-- Left side -->
         <BoxContainer Orientation="Vertical" Margin="10 10 10 10" HorizontalExpand="True">
@@ -98,6 +99,7 @@
                                 <Label Text="{Loc 'humanoid-profile-editor-skin-color-label'}" />
                                 <Slider HorizontalExpand="True" Name="Skin" MinValue="0" MaxValue="100" Value="20" />
                                 <BoxContainer Name="RgbSkinColorContainer" Visible="False" Orientation="Vertical" HorizontalExpand="True"></BoxContainer>
+                                <ui1:ColorSelectorControl HorizontalExpand="True" HorizontalAlignment="Stretch" Name="SelectorControl" Visible="False"/>
                             </BoxContainer>
                             <!-- Hair -->
                             <BoxContainer Margin="10" Orientation="Horizontal">

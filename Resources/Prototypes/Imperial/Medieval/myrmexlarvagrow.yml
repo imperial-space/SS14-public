@@ -1,0 +1,102 @@
+- type: larvaGrow
+  id: LarvaGrowWorker
+  recipe:
+  - Any
+  - Any
+  - Any
+  - Any
+  resultEntity: PolymorphMedievalMyrmexWorker
+  priority: 999
+
+- type: polymorph
+  id: PolymorphMedievalMyrmexWorker
+  configuration:
+    entity: MedievalMyrmexWorker
+    forced: true
+    revertOnDeath: false
+    revertOnCrit: false
+    allowRepeatedMorphs: true
+
+# Any - любой предмет
+# Условие a и b - индексы двух предметов в рецепте (от 0)
+# Предметы под этим индексом не должны быть одинаковыми
+# except - исключение, предметы с этим id могут быть одинаковыми
+# Изначально система условий должна была быть более гибкой, но увы
+# Например,
+# Рецепт [MedievalSoupMushroom, MedievalSoupMushroom, Any, Any]
+# Условие a: 2, b: 3, except: MedievalSoupMushroom
+# То есть будет работать
+# MedievalSoupMushroom, MedievalSoupMushroom, MedievalSoupRoot, MedievalSoupYant
+# MedievalSoupMushroom, MedievalSoupMushroom, MedievalSoupMushroom, MedievalSoupMushroom
+# Но не будет работать
+# MedievalSoupMushroom, MedievalSoupMushroom, MedievalSoupYant, MedievalSoupYant
+
+- type: larvaGrow
+  id: LarvaGrowSpitter
+  recipe:
+  - MedievalSoupMushroom
+  - MedievalSoupMushroom
+  - Any
+  - Any
+  condition:
+    a: 2
+    b: 3
+    except: MedievalSoupMushroom
+  resultEntity: PolymorphMedievalMyrmexSpitter
+
+- type: polymorph
+  id: PolymorphMedievalMyrmexSpitter
+  configuration:
+    entity: MedievalMyrmexSpitter
+    forced: true
+    revertOnDeath: false
+    revertOnCrit: false
+    allowRepeatedMorphs: true
+
+
+
+- type: larvaGrow
+  id: LarvaGrowElite
+  recipe:
+  - MedievalSoupYant
+  - MedievalSoupYant
+  - Any
+  - Any
+  condition:
+    a: 2
+    b: 3
+    except: MedievalSoupYant
+  resultEntity: PolymorphMedievalMyrmexElite
+
+- type: polymorph
+  id: PolymorphMedievalMyrmexElite
+  configuration:
+    entity: MedievalMyrmexElite
+    forced: true
+    revertOnDeath: false
+    revertOnCrit: false
+    allowRepeatedMorphs: true
+
+
+
+- type: larvaGrow
+  id: LarvaGrowWarrior
+  recipe:
+  - MedievalSoupResin
+  - MedievalSoupResin
+  - Any
+  - Any
+  condition:
+    a: 2
+    b: 3
+    except: MedievalSoupResin
+  resultEntity: PolymorphMedievalMyrmexWarrior
+
+- type: polymorph
+  id: PolymorphMedievalMyrmexWarrior
+  configuration:
+    entity: MedievalMyrmexWarrior
+    forced: true
+    revertOnDeath: false
+    revertOnCrit: false
+    allowRepeatedMorphs: true

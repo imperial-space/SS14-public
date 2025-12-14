@@ -11,10 +11,17 @@ medieval-store-spells-multi-currency-weakening-wave-senior-desc = Выпусти
 
 # Sleep spell
 
-medieval-spell-speach-sleep = S̮̲̮̱̗̗̖̯̆̅́͜͟͟͜͝͡͡͞͝L̰̖̱̯̄̏̉͜͟͡͞È̮̲͜͟͞Ẻ̱̰̖̱͜͝P̭̯̣̤̰̭̲̅͜͞
+medieval-spell-speach-sleep = S̨͟͡͏ơmn͏͏ú͝s̡
 
 medieval-store-spells-multi-currency-sleep-middle-name = Успыление
 medieval-store-spells-multi-currency-sleep-middle-desc = Позволяет усыпить вашего противника, но будьте осторожны, если его воля окажется сильнее вашей, то уснете вы. Стоимость 80 маны.
 
 medieval-store-spells-multi-currency-senior-senior-name = Хлороформирование
 medieval-store-spells-multi-currency-senior-senior-desc = Вторая итерация успыления. Не позволяет усыпить вас. Стоимость 80 маны.
+
+# Crow
+
+medieval-spell-speach-crow = C͏̛̛̕͠o͝r̨̀vu̶͘͜͝s̸̶̀́ ̕S͘̕͠͠͡anǵứ͢͝in͞ȩ̸̷̧͜u͏̴̵̕͏s͟͝
+
+medieval-store-spells-magic-crow-name = Магический ворон
+medieval-store-spells-magic-crow-desc = Призывает вашего верного спутника - ворона.

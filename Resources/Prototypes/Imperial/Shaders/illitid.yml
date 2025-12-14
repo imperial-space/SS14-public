@@ -1,0 +1,7 @@
+- type: shader
+  id: IllitidFlashedEffect
+  kind: source
+  path: "/Textures/Imperial/Medieval/Shaders/illitid_flash.swsl"
+
+- type: statusEffect
+  id: IllitidFlashed

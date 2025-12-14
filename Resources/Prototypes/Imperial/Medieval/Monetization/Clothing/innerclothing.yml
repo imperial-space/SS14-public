@@ -1,0 +1,119 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitPass1
+  name: MedievalClothingUniformJumpsuitPass
+  description: MedievalClothingUniformJumpsuitPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Innerclothing/cloth1.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Innerclothing/cloth1.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitPass2
+  name: MedievalClothingUniformJumpsuitPass
+  description: MedievalClothingUniformJumpsuitPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Innerclothing/cloth2.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Innerclothing/cloth2.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitPass3
+  name: MedievalClothingUniformJumpsuitPass
+  description: MedievalClothingUniformJumpsuitPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Innerclothing/cloth3.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Innerclothing/cloth3.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitPass4
+  name: MedievalClothingUniformJumpsuitPass
+  description: MedievalClothingUniformJumpsuitPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Innerclothing/cloth4.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Innerclothing/cloth4.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitPass5
+  name: MedievalClothingUniformJumpsuitPass
+  description: MedievalClothingUniformJumpsuitPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Innerclothing/cloth5.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Innerclothing/cloth5.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitPass6
+  name: MedievalClothingUniformJumpsuitPass
+  description: MedievalClothingUniformJumpsuitPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Innerclothing/cloth6.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Innerclothing/cloth6.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitPass7
+  name: MedievalClothingUniformJumpsuitPass
+  description: MedievalClothingUniformJumpsuitPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Innerclothing/cloth7.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Innerclothing/cloth7.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitPass8
+  name: MedievalClothingUniformJumpsuitPass
+  description: MedievalClothingUniformJumpsuitPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Innerclothing/cloth8.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Innerclothing/cloth8.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitPass9
+  name: MedievalClothingUniformJumpsuitPass
+  description: MedievalClothingUniformJumpsuitPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Innerclothing/cloth9.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Innerclothing/cloth9.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitPass10
+  name: MedievalClothingUniformJumpsuitPass
+  description: MedievalClothingUniformJumpsuitPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Innerclothing/cloth10.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Innerclothing/cloth10.rsi
+  - type: Insulated

@@ -54,6 +54,11 @@ public sealed class JoinQueueManager
     /// </remarks>
     private readonly List<ICommonSession> _queue = [];
 
+    public bool IsInQueue(ICommonSession session)
+    {
+        return _queue.Contains(session);
+    }
+
     private int PlayerInQueueCount => _queue.Count;
 
     /// <remarks>

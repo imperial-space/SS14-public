@@ -1,7 +1,7 @@
 # Black Hole
 
-medieval-spell-speach-black-hole = Ni mihenyɛlɔi lɛ baagbee shi
-medieval-spell-speach-black-hole2 = Kɛjɛ mi misa lɛ mli...
+medieval-spell-speach-black-hole = Atrum Foramen Crea
+medieval-spell-speach-black-hole2 = Foramen Nigrum...
 
 medieval-store-spells-darkness-black-hole-beginner-name = Черная дыра
 medieval-store-spells-darkness-black-hole-beginner-desc = Слабый кусок сжатой маны следующий за вашим курсором мыши. Стоимость 50 маны.
@@ -14,7 +14,7 @@ medieval-store-spells-darkness-black-hole-senior-desc = Огромная чер�
 
 # Stone Touch
 
-medieval-spell-speach-stone-touch = Tsɔɔmɔ kɛya tɛ nɔ
+medieval-spell-speach-stone-touch = Tactus Lapideus
 
 turned-to-stone = Ваша плоть каменеет
 turned-to-stone-examine = Обращен в [color=#7D7D7D]камень[/color]
@@ -27,7 +27,7 @@ medieval-store-spells-darkness-stone-touch-middle-desc = Превратите в
 
 # Cursed Arrow
 
-medieval-spell-speach-cursed-arrow = Loomɔ
+medieval-spell-speach-cursed-arrow = Sagitta Maledicta
 
 medieval-store-spells-darkness-cursed-arrow-beginner-name = Проклятая стрела
 medieval-store-spells-darkness-cursed-arrow-beginner-desc = Выпустите проклятый снаряд из своих рук. Стоимость 15 маны.
@@ -43,9 +43,8 @@ medieval-store-spells-darkness-cursed-arrow-kunai-senior-desc = Выпустит
 
 ## Cursor Follover
 
-medieval-spell-speach-cursed-arrow-cursor-follover = Nyiɛmɔ misɛɛ
-medieval-spell-speach-cursed-arrow-cursor-follover2 = Mi susumai ni afolɔ amɛnaa lɛ
-
+medieval-spell-speach-cursed-arrow-cursor-follover = Sagitta Maledicta
+medieval-spell-speach-cursed-arrow-cursor-follover2 = Mentem tuam rego
 medieval-store-spells-darkness-cursed-arrow-cursor-follover-beginner-name = Магическая стрела: Последователь
 medieval-store-spells-darkness-cursed-arrow-cursor-follover-beginner-desc = Выпустите снаряд, который будет лететь за вашим курсором. Стоимость 25 маны.
 
@@ -57,8 +56,8 @@ medieval-store-spells-darkness--cursed-arrow-cursor-follover-senior-desc = Вы�
 
 ## Player Follover
 
-medieval-spell-speach-cursed-arrow-player-follover = Gbemɔ mihenyɛlɔi lɛ
-medieval-spell-speach-cursed-arrow-player-follover2 = Mi susumai ni afolɔ amɛnaa lɛ
+medieval-spell-speach-cursed-arrow-player-follover = Telum Insecutum
+medieval-spell-speach-cursed-arrow-player-follover2 = Mentem tuam rego
 
 medieval-store-spells-darkness-cursed-arrow-player-follover-beginner-name = Магическая стрела: Самонаведение
 medieval-store-spells-darkness-cursed-arrow-player-follover-beginner-desc = Выпустите самонаводящуюся стрелы из своих рук. Стоимость 25 маны.
@@ -68,3 +67,36 @@ medieval-store-spells-darkness-cursed-arrow-player-follover-middle-desc = Вып
 
 medieval-store-spells-darkness-cursed-arrow-player-follover-senior-name = Магическая стрела: Преследование
 medieval-store-spells-darkness--cursed-arrow-player-follover-senior-desc = Выпустите до шести самонаводящихся стрел. Стоимость 45 маны. Используйте среднюю кнопку мыши для выбора нескольких целей.
+
+# Spawn Skelet
+
+medieval-spell-speach-spawn-skelet = Ossium Surgens
+
+medieval-store-spells-darkness-spawn-skelet-beginner-name = Призыв слабого скелета
+medieval-store-spells-darkness-spawn-skelet-beginner-desc = Призывает слабого скелета, агрессивного ко всем в выбранной вами точке. Стоимость 20 маны.
+
+medieval-store-spells-darkness-spawn-skelet-middle-name = Призыв мясного скелета
+medieval-store-spells-darkness-spawn-skelet-middle-desc = Призывает мясного скелета, агрессивного ко всем в выбранной вами точке. Стоимость 35 маны.
+
+medieval-store-spells-darkness-spawn-skelet-senior-name = Призыв скелета воина
+medieval-store-spells-darkness-spawn-skelet-senior-desc = Призывает скелета воина, агрессивного ко всем в выбранной вами точке. Стоимость 50 маны.
+
+# Cult Dagger
+
+medieval-spell-speach-cult-dagger = C͢ųlt͝ȩl̡l͜us Sang̢úi̷nis̶
+
+medieval-store-spells-darkness-cult-dagger-name = Создание кинжала культа
+medieval-store-spells-darkness-cult-dagger-desc = Создаёт в руке кинжал культа. Пригодится, если вы потеряете настоящий.
+
+# Tentacles
+
+medieval-spell-speach-tentacles = Ŕadįc̀ès ̡Mąl͏edi̸ctae
+
+medieval-store-spells-darkness-tentacles-beginner-name = Проклятые корни
+medieval-store-spells-darkness-tentacles-beginner-desc = Создаёт проклятые корни, которые слегка замедляют противника на них.
+
+medieval-store-spells-darkness-tentacles-middle-name = Проклятая роща
+medieval-store-spells-darkness-tentacles-middle-desc = Создаёт проклятые корни, которые умеренно замедляют противника на них.
+
+medieval-store-spells-darkness-tentacles-senior-name = Проклятая роща
+medieval-store-spells-darkness-tentacles-senior-desc = Создаёт проклятые корни, которые сильно замедляют противника на них.

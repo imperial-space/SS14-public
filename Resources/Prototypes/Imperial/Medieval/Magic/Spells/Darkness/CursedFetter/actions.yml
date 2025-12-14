@@ -1,0 +1,50 @@
+- type: entity
+  id: MedievalActionCursedFetter
+  name: ent-MedievalActionCursedFetter
+  description: ent-MedievalActionCursedFetter
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.00085
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalDarkness: 1
+        bonusEssences:
+          MagicMedievalDarkness: 1
+  - type: ManaDrainSpell
+    manaDrain: 35
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 15
+  - type: SpellCastEffect
+    effectProto: CursedFetterSpellCastEffectBeginner
+  - type: MedievalInstantSpell
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/touch_summon.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Darkness/CursedFetter/icons.rsi
+      state: beginner
+  - type: InstantAction
+    event: !type:MedievalSpawnInHandSpellEvent
+      spawnedEntityPrototype: MedievalCursedFetter
+      spellCastDoAfter:
+        delay: 2
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        breakOnDamage: true
+        needHand: true
+        speedModifier: 1
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-cursed-fetter
+          color: "#8B008B"
+          hideChat: true
+  - type: MedievalSpawnOnlyInFreeHands
+

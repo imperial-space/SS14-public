@@ -1,0 +1,549 @@
+- type: Tag
+  id: HorseWearable
+
+- type: soundCollection
+  id: MedievalHorseFootstep
+  files:
+  - /Audio/Imperial/Medieval/horsestep1.ogg
+  - /Audio/Imperial/Medieval/horsestep2.ogg
+  - /Audio/Imperial/Medieval/horsestep3.ogg
+  - /Audio/Imperial/Medieval/horsestep4.ogg
+
+- type: entity
+  parent: ClothingOuterBase
+  id: MedievalClothingOuterHorseArmorLeather
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: RDWeight
+    value: 9
+  - type: HorseArmor
+    bluntModifier: 1.2
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Horse/leatherarmor.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Horse/leatherarmor.rsi
+  - type: WhitelistClothing
+    whitelistState: clothing
+  - type: Tag
+    tags:
+    - HorseWearable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.55
+        Piercing: 0.8
+        Heat: 0.65
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+  - type: Item
+    size: Huge
+
+- type: entity
+  parent: ClothingOuterBase
+  id: MedievalClothingOuterHorseArmorChainMail
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: RDWeight
+    value: 27
+  - type: HorseArmor
+    bluntModifier: 2.2
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Horse/chainmailarmor.rsi
+  - type: Clothing
+    equipDelay: 6
+    unequipDelay: 6
+    sprite: Imperial/Medieval/Clothing/Horse/chainmailarmor.rsi
+  - type: WhitelistClothing
+    whitelistState: clothing
+  - type: Tag
+    tags:
+    - HorseWearable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.4
+        Piercing: 0.65
+        Heat: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Item
+    size: Huge
+  - type: MedievalIronHitSound
+    effectSoundOnHit: "/Audio/Imperial/Medieval/chainmail_hit.ogg"
+  - type: ClothingSpeedModifier
+    walkModifier: 0.93
+    sprintModifier: 0.93
+
+- type: entity
+  parent: ClothingOuterBase
+  id: MedievalClothingOuterHorseArmorUpIron
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: RDWeight
+    value: 46
+  - type: HorseArmor
+    bluntModifier: 3
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Horse/ironuparmor.rsi
+  - type: Clothing
+    equipDelay: 8
+    unequipDelay: 8
+    sprite: Imperial/Medieval/Clothing/Horse/ironuparmor.rsi
+    equipSound:
+      path: /Audio/Imperial/Medieval/iron_armor_eqiped.ogg
+    unequipSound:
+      path: /Audio/Imperial/Medieval/iron_armor_eqiped.ogg
+  - type: WhitelistClothing
+    whitelistState: clothing
+  - type: Tag
+    tags:
+    - HorseWearable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.3
+        Piercing: 0.5
+        Heat: 0.2
+  - type: ExplosionResistance
+    damageCoefficient: 0.25
+  - type: ClothingSpeedModifier
+    walkModifier: 0.86
+    sprintModifier: 0.86
+  - type: Item
+    size: Huge
+  - type: MedievalIronHitSound
+
+- type: entity
+  parent: MedievalClothingOuterHorseArmorUpIron
+  id: MedievalClothingOuterHorseRoyalArmorUpIron
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Horse/royalarmor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Horse/royalarmor.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: MedievalClothingHorseshoe
+  name: horseshoe
+  description: MedievalClothingHorseshoe
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Horse/horse.rsi
+  - type: Clothing
+    equipDelay: 3
+    unequipDelay: 3
+    sprite: Imperial/Medieval/Clothing/Horse/horse.rsi
+  - type: WhitelistClothing
+    whitelistState: clothing
+  - type: Tag
+    tags:
+    - HorseWearable
+  - type: ClothingSpeedModifier
+    walkModifier: 1.02
+    sprintModifier: 1.02
+
+- type: inventoryTemplate
+  id: horse
+  slots:
+    - name: horse1
+      slotTexture: horse
+      slotFlags: FEET
+      stripTime: 3
+      uiWindowPos: 0,1
+      strippingWindowPos: 0,2
+      displayName: Horse
+      whitelist:
+        tags:
+          - HorseWearable
+    - name: horse2
+      slotTexture: horse
+      slotFlags: FEET
+      stripTime: 3
+      uiWindowPos: 0,2
+      strippingWindowPos: 0,1
+      displayName: Horse 2
+      whitelist:
+        tags:
+          - HorseWearable
+    - name: horse3
+      slotTexture: horse
+      slotFlags: FEET
+      stripTime: 3
+      uiWindowPos: 0,3
+      strippingWindowPos: 0,0
+      displayName: Horse 3
+      whitelist:
+        tags:
+          - HorseWearable
+    - name: horse4
+      slotTexture: horse
+      slotFlags: FEET
+      stripTime: 3
+      uiWindowPos: 0,3
+      strippingWindowPos: 0,3
+      displayName: Horse 4
+      whitelist:
+        tags:
+          - HorseWearable
+    - name: outerClothing
+      slotTexture: suit
+      slotFlags: OUTERCLOTHING
+      stripTime: 8
+      uiWindowPos: 1,3
+      strippingWindowPos: 1,0
+      displayName: Suit
+      whitelist:
+        tags:
+          - HorseWearable
+
+- type: entity
+  parent: SimpleMobBase
+  id: MedievalHorseTransport
+  name: horse
+  description: MedievalHorseTransport
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/horse.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.49
+        density: 30
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: InteractionPopup
+    successChance: 0.2
+    interactSuccessString: petting-success-soft-floofy
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Imperial/Medieval/animal_horse.ogg
+  - type: InventorySlots
+  - type: Inventory
+    speciesId: horse
+    templateId: horse
+    displacements:
+      outerclothing:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/mothroach/displacement.rsi
+            state: outerclothing
+      shoes1:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/mothroach/displacement.rsi
+            state: shoes
+      shoes2:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/mothroach/displacement.rsi
+            state: shoes
+      shoes3:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/mothroach/displacement.rsi
+            state: shoes
+      shoes4:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/mothroach/displacement.rsi
+            state: shoes
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: MedievalHorseFootstep
+      params:
+        variation: 0.125
+        volume: -5
+  - type: Appearance
+  - type: Strippable
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - FootstepSound
+  - type: WhitelistClothing
+    whitelist: HorseWearable
+    whitelistState: clothing
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+  - type: MovementSpeedModifier
+    acceleration: 1
+    friction: 1
+    baseWalkSpeed: 3
+    baseSprintSpeed: 3
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      270: Critical
+      390: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 1
+      150: 0.9
+      205: 0.8
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: horse
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 4
+  - type: Strap
+    position: Stand
+    buckleOffset: "-0.00, -0.02"
+    buckleDoafterTime: 5
+    maxBuckleDistance: 1
+    buckleSound:
+      path: /Audio/Imperial/Medieval/Effects/on_horse.ogg
+    unbuckleSound:
+      path: /Audio/Imperial/Medieval/Effects/on_horse.ogg
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/animal_horse.ogg
+  - type: Rideable
+    pikeShape: !type:PolygonShape
+      vertices:
+      - -0.75, -1.6
+      - 0.75, -1.6
+      - -0.75, 0
+      - 0.75, 0
+  - type: RideableSprint
+    accelerationTime: 8
+    maxSpeedModifier: 1.76
+
+- type: entity
+  parent: MedievalHorseTransport
+  id: MedievalSkeletonHorseTransport
+  name: horse
+  description: MedievalSkeletonHorseTransport
+  components:
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/skeletonhorse.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: InteractionPopup
+    successChance: 0.2
+    interactSuccessString: petting-success-soft-skeletonhorse
+    interactFailureString: petting-failure-skeletonhorse
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Imperial/Medieval/skeletonhorse_pet.ogg
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/skeletonhorse_arrive.ogg
+
+- type: entity
+  parent: MedievalHorseTransport
+  id: MedievalBlackHorseTransport
+  name: horse
+  description: MedievalHorseTransport
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/black.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: MovementSpeedModifier
+    acceleration: 1
+    friction: 1
+    baseWalkSpeed: 3.2
+    baseSprintSpeed: 3.2
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      360: Critical
+      430: Dead
+  - type: RideableSprint
+    accelerationTime: 2
+    maxSpeedModifier: 1.4
+    riderDamageOnCollide:
+      types:
+        Blunt: 12
+    damageOnCollide:
+      types:
+        Blunt: 16
+
+- type: entity
+  parent: MedievalHorseTransport
+  id: MedievalBlackSpotHorseTransport
+  name: horse
+  description: MedievalHorseTransport
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/blackspot.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: MovementSpeedModifier
+    acceleration: 1
+    friction: 1
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 2.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Critical
+      170: Dead
+  - type: RideableSprint
+    accelerationTime: 16
+    maxSpeedModifier: 1.6
+    riderDamageOnCollide:
+      types:
+        Blunt: 15
+    damageOnCollide:
+      types:
+        Blunt: 4
+
+- type: entity
+  parent: MedievalHorseTransport
+  id: MedievalBlackWhiteHorseTransport
+  name: horse
+  description: MedievalHorseTransport
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/blackwhite.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: MovementSpeedModifier
+    acceleration: 1
+    friction: 1
+    baseWalkSpeed: 2.4
+    baseSprintSpeed: 2.4
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      430: Critical
+      480: Dead
+  - type: RideableSprint
+    accelerationTime: 12
+    maxSpeedModifier: 1.7
+    riderDamageOnCollide:
+      types:
+        Blunt: 5
+    damageOnCollide:
+      types:
+        Blunt: 5
+
+- type: entity
+  parent: MedievalHorseTransport
+  id: MedievalGreyHorseTransport
+  name: horse
+  description: MedievalHorseTransport
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/grey.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      260: Critical
+      310: Dead
+  - type: RideableSprint
+    accelerationTime: 16
+    maxSpeedModifier: 1.8
+    riderDamageOnCollide:
+      types:
+        Blunt: 12
+    damageOnCollide:
+      types:
+        Blunt: 7
+
+- type: entity
+  parent: MedievalHorseTransport
+  id: MedievalWhiteHorseTransport
+  name: horse
+  description: MedievalHorseTransport
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/white.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Critical
+      200: Dead
+  - type: RideableSprint
+    accelerationTime: 10
+    maxSpeedModifier: 2
+    riderDamageOnCollide:
+      types:
+        Blunt: 45
+    damageOnCollide:
+      types:
+        Blunt: 4
+
+- type: entity
+  parent: MedievalHorseTransport
+  id: MedievalWhiteRoyalHorseTransport
+  name: horse
+  description: MedievalHorseTransport
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/royal.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: MovementSpeedModifier
+    acceleration: 1
+    friction: 1
+    baseWalkSpeed: 3.2
+    baseSprintSpeed: 3.2
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      510: Critical
+      570: Dead
+  - type: RideableSprint
+    accelerationTime: 2.5
+    maxSpeedModifier: 2
+    riderDamageOnCollide:
+      types:
+        Blunt: 4
+    damageOnCollide:
+      types:
+        Blunt: 28

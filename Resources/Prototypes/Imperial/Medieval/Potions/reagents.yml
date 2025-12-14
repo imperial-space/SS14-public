@@ -1,0 +1,1713 @@
+- type: reagent
+  id: medievalexplosion
+  name: ""
+  desc: imperial-medieval-medievalexplosion-desc
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: bitter
+  color: "#FFC8C8"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+
+- type: reagent
+  id: medievalhealburn
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#215263"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Heat: -3
+            Shock: -3
+            Cold: -3
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalhealbloodandoxygen
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#0041a8"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Asphyxiation: -1
+            Bloodloss: -0.5
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalacid
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#a1000b"
+  boilingPoint: 78.2 # This isn't a real chemical...
+  meltingPoint: -19.4
+  plantMetabolism:
+  - !type:PlantAdjustToxins
+    amount: 20
+  - !type:PlantAdjustWeeds
+    amount: -4
+  - !type:PlantAdjustHealth
+    amount: -8
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        ignoreResistances: false
+        damage:
+          types:
+            Caustic: 0.5
+      - !type:Emote
+        emote: Scream
+        probability: 0.3
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Caustic: 2
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "generic-reagent-effect-burning-insides" ]
+        probability: 0.33
+      - !type:Emote
+        emote: Scream
+        probability: 0.3
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalradiation
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#00ff5f"
+  boilingPoint: 340282300000000000000000000000000000000 # Ethidium bromide, which doesn't boil.
+  meltingPoint: 261.0
+  plantMetabolism:
+  - !type:PlantAdjustMutationLevel
+    amount: 1
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        ignoreResistances: false
+        damage:
+          types:
+            Radiation: 1
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: 3
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievaldrughealmech
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 5
+        refresh: false
+      - !type:HealthChange
+        damage:
+          groups:
+            Brute: -6
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalvomit
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:ChemVomit
+        probability: 0.5
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalslow
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:MovespeedModifier
+        walkSpeedModifier: 0.8
+        sprintSpeedModifier: 0.8
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalfast
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:MovespeedModifier
+        walkSpeedModifier: 1.2
+        sprintSpeedModifier: 1.2
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalstamina
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:GenericStatusEffect
+        key: StaminaModifier
+        component: StaminaModifier
+        time: 3
+        type: Add
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalsmoke
+  name: ""
+  desc: imperial-medieval-medievalsmoke-desc
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#FFC8C8"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalcryoexplosion
+  name: ""
+  desc: imperial-medieval-medievalcryoexplosion-desc
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#FFC8C8"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalhealslash
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Slash: -2
+          groups:
+            Brute: -3
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalhealpiercing
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Piercing: -2
+          groups:
+            Brute: -3
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalhealblunt
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Blunt: -2
+          groups:
+            Brute: -3
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalmute
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:GenericStatusEffect
+        key: Muted
+        component: Muted
+        type: Add
+        time: 10
+        refresh: false
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalblind
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:PopupMessage
+        type: Local
+        messages:
+        - generic-reagent-effect-burning-eyes
+        - generic-reagent-effect-burning-eyes-a-bit
+        - generic-reagent-effect-tearing-up
+        - norepinephricacid-effect-eyelids
+        - norepinephricacid-effect-eyes-itch
+        - norepinephricacid-effect-vision-fade
+        - norepinephricacid-effect-vision-fail
+        probability: 0.08
+      - !type:PopupMessage
+        visualType: MediumCaution
+        type: Local
+        messages:
+        - norepinephricacid-effect-eye-disconnect
+        - norepinephricacid-effect-eye-pain
+        - norepinephricacid-effect-darkness
+        - norepinephricacid-effect-blindness
+        #conditions:
+        #- !type:ReagentThreshold
+        #  min: 20
+        probability: 0.03
+        #If anyone wants to add a light dimming or grayscale effect when under 20u, be my guest
+      - !type:GenericStatusEffect
+        key: TemporaryBlindness
+        component: TemporaryBlindness
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievaljitter
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+      - !type:Jitter
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalsleep
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:Emote
+        emote: Yawn
+        showInChat: true
+        probability: 0.1
+      - !type:GenericStatusEffect
+        key: Drowsiness
+        component: Drowsiness
+        time: 4
+        type: Add
+        refresh: false
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalignite
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  reactiveEffects:
+    Flammable:
+      methods: [ Touch ]
+      effects:
+      - !type:FlammableReaction
+        multiplier: 0.2
+      - !type:Ignite
+  metabolisms:
+    Poison:
+      effects:
+      - !type:FlammableReaction
+        multiplier: 2
+      - !type:AdjustTemperature
+        amount: 6000
+      - !type:Ignite
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalhealandstopblood
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Bloodloss: -0.5
+      - !type:ModifyBleedAmount
+        amount: -0.25
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievaladvancedsmokeandexplosion
+  name: ""
+  desc: imperial-medieval-medievaladvancedsmokeandexplosion-desc
+  physicalDesc: ""
+  showinbook: false
+  flavor: null
+  color: "#FFC8C8"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievaladvancedhealeverything
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#215263"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -2
+            Toxin: -2
+            Airloss: -2
+            Brute: -2
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievaladvancedhealslash
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Slash: -4
+          groups:
+            Brute: -6
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievaladvancedhealpiercing
+  evaporationSpeed: 0.3
+  absorbent: true
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Piercing: -4
+          groups:
+            Brute: -6
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievaladvancedhealblunt
+  evaporationSpeed: 0.3
+  absorbent: true
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Blunt: -4
+          groups:
+            Brute: -6
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievaladvancedhealburn
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#215263"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Heat: -3
+            Shock: -3
+            Cold: -3
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievaladvancedacidradiation
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#a1000b"
+  boilingPoint: 78.2 # This isn't a real chemical...
+  meltingPoint: -19.4
+  plantMetabolism:
+  - !type:PlantAdjustToxins
+    amount: 20
+  - !type:PlantAdjustWeeds
+    amount: -4
+  - !type:PlantAdjustHealth
+    amount: -8
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        ignoreResistances: false
+        damage:
+          types:
+            Caustic: 2
+            Radiation: 2
+      - !type:Emote
+        emote: Scream
+        probability: 0.3
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Caustic: 4
+            Radiation: 4
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "generic-reagent-effect-burning-insides" ]
+        probability: 0.33
+      - !type:Emote
+        emote: Scream
+        probability: 0.3
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievaladvancedfast
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:MovespeedModifier
+        walkSpeedModifier: 1.3
+        sprintSpeedModifier: 1.3
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievaladvancedslow
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:MovespeedModifier
+        walkSpeedModifier: 0.6
+        sprintSpeedModifier: 0.6
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievaladvancedpacifism
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:GenericStatusEffect
+        key: Pacified
+        component: Pacified
+        type: Add
+        time: 4
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievaladvancedteleport
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:TeleportEntityEffect
+        energyPerUnit: 1
+        teleportType: Random
+  metabolisms:
+    Poison:
+      effects:
+        - !type:TeleportEntityEffect
+          energyPerUnit: 1
+          teleportType: Random
+        - !type:Jitter
+          conditions:
+          - !type:ReagentThreshold
+            min: 30
+        - !type:GenericStatusEffect
+          key: Stutter
+          component: StutteringAccent
+          conditions:
+          - !type:ReagentThreshold
+            min: 30
+        - !type:HealthChange
+          damage:
+            groups:
+              Toxin: 6
+          conditions:
+          - !type:ReagentThreshold
+            min: 30
+
+- type: reagent
+  id: medievaladvancedhealandstopblood
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Bloodloss: -2
+      - !type:ModifyBleedAmount
+        amount: -1
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievaladvancedstimulant
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#9A040E"
+  boilingPoint: 212.0
+  meltingPoint: 170.0
+  metabolisms:
+    Narcotic:
+      metabolismRate: 1.0
+      effects:
+      - !type:MovespeedModifier
+        walkSpeedModifier: 1.1
+        sprintSpeedModifier: 1.1
+      - !type:GenericStatusEffect
+        key: Stun
+        time: 3
+        type: Remove
+      - !type:GenericStatusEffect
+        key: KnockedDown
+        time: 3
+        type: Remove
+      - !type:GenericStatusEffect
+        key: StaminaModifier
+        component: StaminaModifier
+        time: 3
+        type: Add
+      - !type:GenericStatusEffect
+        key: ForcedSleep
+        time: 3
+        type: Remove
+      - !type:GenericStatusEffect
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Haloperidol
+          max: 0.01
+        key: Drowsiness
+        time: 10
+        type: Remove
+    Medicine:
+      metabolismRate: 1.0
+      effects:
+        - !type:HealthChange
+          damage: # heals at the same rate as tricordrazine, doesn't heal poison because if you OD'd I'm not giving you a safety net
+            groups:
+              Brute: -2
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievaladvancedignite
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:FlammableReaction
+        multiplier: 5
+      - !type:AdjustTemperature
+        amount: 10000
+      - !type:Ignite
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+  reactiveEffects:
+    Flammable:
+      methods: [ Touch ]
+      effects:
+      - !type:FlammableReaction
+        multiplier: 0.5
+      - !type:Ignite
+
+- type: reagent
+  id: medievaladvancednocturnblood
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:NocturnBloodAdd
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalbestexplosion
+  name: ""
+  desc: imperial-medieval-bestexplosion-desc
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#FFC8C8"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        ignoreResistances: false
+        damage:
+          types:
+            Caustic: 20
+            Radiation: 20
+      - !type:Emote
+        emote: Scream
+        probability: 0.3
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Caustic: 40
+            Radiation: 40
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "generic-reagent-effect-burning-insides" ]
+        probability: 1
+      - !type:Emote
+        emote: Scream
+        probability: 0.3
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalbestheal
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:AdjustTemperature
+        conditions:
+        - !type:Temperature
+          max: 293.15
+        amount: 100000
+      - !type:AdjustTemperature
+        conditions:
+        - !type:Temperature
+          min: 293.15
+        amount: -10000
+      - !type:HealthChange
+        damage:
+          types:
+            Cellular: -10
+            Bloodloss: -10
+          groups:
+            Burn: -10
+            Toxin: -10
+            Airloss: -10
+            Brute: -10
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalbestpoison
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:MovespeedModifier
+        walkSpeedModifier: 0.2
+        sprintSpeedModifier: 0.2
+        statusLifetime: 6
+      - !type:ChemVomit
+        probability: 1
+      - !type:GenericStatusEffect
+        key: TemporaryBlindness
+        component: TemporaryBlindness
+        time: 6
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
+- type: reagent
+  id: medievalbeststimulant
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  showinbook: false
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#63806e"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+      - !type:Jitter
+      - !type:MovespeedModifier
+        walkSpeedModifier: 1.4
+        sprintSpeedModifier: 1.4
+      - !type:GenericStatusEffect
+        key: Stun
+        time: 3
+        type: Remove
+      - !type:GenericStatusEffect
+        key: KnockedDown
+        time: 3
+        type: Remove
+      - !type:GenericStatusEffect
+        key: StaminaModifier
+        component: StaminaModifier
+        time: 3
+        type: Add
+      - !type:GenericStatusEffect
+        key: ForcedSleep
+        time: 3
+        type: Remove
+      - !type:GenericStatusEffect
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Haloperidol
+          max: 0.01
+        key: Drowsiness
+        time: 10
+        type: Remove
+    Medicine:
+      effects:
+        - !type:ResetNarcolepsy
+        - !type:SatiateHunger
+          factor: 1
+        - !type:SatiateThirst
+          factor: 1
+        - !type:HealthChange
+          damage:
+            types:
+              Cellular: -5
+              Bloodloss: -5
+            groups:
+              Burn: -5
+              Toxin: -5
+              Airloss: -5
+              Brute: -5
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30

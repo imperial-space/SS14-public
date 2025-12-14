@@ -1,0 +1,115 @@
+- type: dataset
+  id: artifactabilities
+  values:
+  - MAignite
+  - MAvampirism
+  - MAblink
+  - MAdamage
+  - MApenetrate
+  - MAhunger
+  - MAlight
+  - MApoison
+  - MAblooddamage
+  - MAmidas
+  - MAthrow
+  - MAexplosion
+  - MArange
+  - MAspeed
+  - MAstructural
+  - MAdura
+  - MAstamina
+
+- type: dataset
+  id: artifactFirstName
+  values:
+  - легендарный
+  - возвращенный
+  - древний
+  - утерянный
+  - найденный
+  - отомщенный
+  - святой
+  - освященный
+  - архимагический
+  - сокрытый
+  - забытый
+  - пробужденный
+  - избранный
+  - непокорный
+  - нетленный
+  - вечный
+  - глубинный
+  - лазурный
+  - кровавый
+  - венценосный
+  - свирепый
+  - безжалостный
+  - полуночный
+  - сумеречный
+  - царственный
+  - элитный
+  - могучий
+  - властный
+  - несокрушимый
+  - неодолимый
+  - хронический
+  - благородный
+  - закаленный
+  - призрачный
+  - астральный
+  - рунический
+  - колдовской
+  - благословленный
+  - окаянный
+  - демонический
+  - пророческий
+  - судьбоносный
+  - роковой
+  - падший
+  - карающий
+
+- type: dataset
+  id: artifactLastName
+  values:
+  - клинок
+  - страж
+  - палач
+  - сокрушитель
+  - рок
+  - каратель
+  - владыка
+  - властелин
+  - хрономер
+  - кошмар
+  - осколок
+  - клык
+  - гнев
+  - страх
+  - арбитр
+  - вестник
+  - предел
+  - морок
+  - узурпатор
+  - летописец
+  - закат
+  - кремень
+
+- type: dataset
+  id: artifactSpritesSword
+  values:
+  - /Textures/Imperial/Medieval/MArtifacts/swords/realknife
+  - /Textures/Imperial/Medieval/MArtifacts/swords/sword
+  - /Textures/Imperial/Medieval/MArtifacts/swords/sword2
+  - /Textures/Imperial/Medieval/MArtifacts/swords/sword3
+  - /Textures/Imperial/Medieval/MArtifacts/swords/dragonslayer
+
+- type: dataset
+  id: artifactSpritesSekira
+  values:
+  - /Textures/Imperial/Medieval/MArtifacts/sekira/scythe
+
+- type: dataset
+  id: artifactSpritesSpear
+  values:
+  - /Textures/Imperial/Medieval/MArtifacts/spear/beater
+  - /Textures/Imperial/Medieval/MArtifacts/spear/thunder

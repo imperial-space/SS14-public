@@ -12,7 +12,7 @@ namespace Content.Server.MedievalIronHitSound.Components
     [RegisterComponent]
     public sealed partial class MedievalIronHitSoundComponent : Component
     {
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSoundOnHit = "/Audio/Imperial/Medieval/iron-hit-armor.ogg";
 
     }

@@ -1,0 +1,31 @@
+- type: alert
+  id: MedievalWerewolfRegen
+  icons:
+    - sprite: /Textures/Imperial/Medieval/Interface/Werewolf/status_effects.rsi
+      state: heal
+  name: Регенерация
+  description: Ваши раны быстро заживают.
+
+- type: alert
+  id: MedievalWerewolfHotBlood
+  icons:
+    - sprite: /Textures/Imperial/Medieval/Interface/Werewolf/status_effects.rsi
+      state: hotblood
+  name: Горячая кровь
+  description: Вы двигаетесь быстрее обычного.
+
+- type: alert
+  id: MedievalWerewolfHunt
+  icons:
+    - sprite: /Textures/Imperial/Medieval/Interface/Werewolf/status_effects.rsi
+      state: hunt
+  name: Кровавая охота
+  description: Прыгайте на своих жертв без ограничений.
+
+- type: alert
+  id: MedievalWerewolfMoonRage
+  icons:
+    - sprite: /Textures/Imperial/Medieval/Interface/Werewolf/status_effects.rsi
+      state: moon
+  name: Лунная ярость
+  description: Вы игнорируете весь входящий стамина-урон.

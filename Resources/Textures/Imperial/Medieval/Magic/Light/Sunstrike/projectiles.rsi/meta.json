@@ -1,0 +1,80 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "By discord: BiNNiBuX",
+    "size": {
+      "x": 32,
+      "y": 96
+    },
+    "states":
+    [
+    {
+      "name": "middle-spot",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "middle",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.15,
+          1.175,
+          1.175,
+          1.175,
+          1.175,
+          0.15,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "senior-spot",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "senior",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.15,
+          1.175,
+          1.175,
+          1.175,
+          1.175,
+          0.15,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    }
+    ]
+  }

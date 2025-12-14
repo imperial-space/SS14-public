@@ -1,12 +1,13 @@
+using System.Collections;
+using System.Linq;
+using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
-using System.Collections;
-using System.Linq;
-using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Imperial.Medieval.ChemistryRandomization;
 
 namespace Content.Shared.Chemistry.Components
 {
@@ -15,7 +16,7 @@ namespace Content.Shared.Chemistry.Components
     /// </summary>
     [Serializable, NetSerializable]
     [DataDefinition]
-    public sealed partial class Solution : IEnumerable<ReagentQuantity>, ISerializationHooks
+    public sealed partial class Solution : IEnumerable<ReagentQuantity>, ISerializationHooks, IRobustCloneable<Solution>
     {
         // This is a list because it is actually faster to add and remove reagents from
         // a list than a dictionary, though contains-reagent checks are slightly slower,
@@ -174,6 +175,7 @@ namespace Content.Shared.Chemistry.Components
             Volume = solution.Volume;
             MaxVolume = solution.MaxVolume;
             Temperature = solution.Temperature;
+            CanReact = solution.CanReact;
             _heatCapacity = solution._heatCapacity;
             _heatCapacityDirty = solution._heatCapacityDirty;
             _heatCapacityUpdateCounter = solution._heatCapacityUpdateCounter;
@@ -582,7 +584,40 @@ namespace Content.Shared.Chemistry.Components
         /// <summary>
         /// Splits a solution without the specified reagent prototypes.
         /// </summary>
+        [Obsolete("Use SplitSolutionWithout with params ProtoId<ReagentPrototype>")]
         public Solution SplitSolutionWithout(FixedPoint2 toTake, params string[] excludedPrototypes)
+        {
+            // First remove the blacklisted prototypes
+            List<ReagentQuantity> excluded = new();
+            foreach (var id in excludedPrototypes)
+            {
+                foreach (var tuple in Contents)
+                {
+                    if (tuple.Reagent.Prototype != id)
+                        continue;
+
+                    excluded.Add(tuple);
+                    RemoveReagent(tuple);
+                    break;
+                }
+            }
+
+            // Then split the solution
+            var sol = SplitSolution(toTake);
+
+            // Then re-add the excluded reagents to the original solution.
+            foreach (var reagent in excluded)
+            {
+                AddReagent(reagent);
+            }
+
+            return sol;
+        }
+
+        /// <summary>
+        /// Splits a solution without the specified reagent prototypes.
+        /// </summary>
+        public Solution SplitSolutionWithout(FixedPoint2 toTake, params ProtoId<ReagentPrototype>[] excludedPrototypes)
         {
             // First remove the blacklisted prototypes
             List<ReagentQuantity> excluded = new();
@@ -835,12 +870,12 @@ namespace Content.Shared.Chemistry.Components
                 if (first)
                 {
                     first = false;
-                    mixColor = proto.SubstanceColor;
+                    mixColor = SharedChemistryRandomizationSystem.GetColor(proto);  // Imperial Medieval tweak
                     continue;
                 }
 
                 var interpolateValue = quantity.Float() / runningTotalQuantity.Float();
-                mixColor = Color.InterpolateBetween(mixColor, proto.SubstanceColor, interpolateValue);
+                mixColor = Color.InterpolateBetween(mixColor, SharedChemistryRandomizationSystem.GetColor(proto), interpolateValue);  // Imperial Medieval color randomization
             }
             return mixColor;
         }
@@ -878,12 +913,12 @@ namespace Content.Shared.Chemistry.Components
                 if (first)
                 {
                     first = false;
-                    mixColor = proto.SubstanceColor;
+                    mixColor = SharedChemistryRandomizationSystem.GetColor(proto);    // Imperial Medieval tweak
                     continue;
                 }
 
                 var interpolateValue = quantity.Float() / runningTotalQuantity.Float();
-                mixColor = Color.InterpolateBetween(mixColor, proto.SubstanceColor, interpolateValue);
+                mixColor = Color.InterpolateBetween(mixColor, SharedChemistryRandomizationSystem.GetColor(proto), interpolateValue);  // Imperial Medieval color randomization
             }
             return mixColor;
         }

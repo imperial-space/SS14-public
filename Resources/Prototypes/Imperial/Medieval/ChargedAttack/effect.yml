@@ -1,0 +1,40 @@
+- type: entity
+  abstract: true
+  id: BaseAttackEffect
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/ChargedAttack/effect.rsi
+    drawdepth: Effects
+  - type: Physics
+    canCollide: false
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  parent: BaseAttackEffect
+  id: AttackEffect4s
+  components:
+  - type: Sprite
+    state: charging-attack-4s
+
+- type: entity
+  parent: BaseAttackEffect
+  id: AttackEffect2s
+  components:
+  - type: Sprite
+    state: charging-attack-2s
+
+- type: entity
+  parent: BaseAttackEffect
+  id: AttackEffect3s
+  components:
+  - type: Sprite
+    state: charging-attack-3s
+
+- type: entity
+  parent: BaseAttackEffect
+  id: AttackEffect1dot5s
+  components:
+  - type: Sprite
+    state: charging-attack-1-5s

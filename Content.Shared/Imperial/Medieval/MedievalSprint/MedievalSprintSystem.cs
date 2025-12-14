@@ -36,13 +36,24 @@ public sealed partial class MedievalSprintSystem : EntitySystem
                 continue;
 
             if ((inputMoverComponent.HeldMoveButtons & MoveButtons.Walk) == 0 && inputMoverComponent.HeldMoveButtons != MoveButtons.Walk)
+            {
+                component.Sprinting = false;
                 continue;
+            }
 
             if (physicsComponent.LinearVelocity == Vector2.Zero || staminaComponent.Critical)
+            {
+                component.Sprinting = false;
                 continue;
+            }
 
             if (!EnoughStamina(component, staminaComponent))
+            {
+                component.Sprinting = false;
                 continue;
+            }
+
+            component.Sprinting = true;
 
             if (component.Tried)
                 _speedModifierSystem.RefreshMovementSpeedModifiers(uid);
@@ -52,9 +63,9 @@ public sealed partial class MedievalSprintSystem : EntitySystem
 
             var stam = component.StaminaDamage;
             if (HasComp<FarmerBoostComponent>(uid))
-                stam *= 0.7f;
+                stam *= 0.3f;
 
-            _staminaSystem.TryTakeStamina(uid, stam * ev.Modifier, ignoreResistances: true);
+            _staminaSystem.TryTakeStamina(uid, stam * ev.Modifier, ignoreResist: true);
 
             component.Tried = false;
             component.NextStaminaDamageTime = _timing.CurTime + component.StaminaGainPeriod;

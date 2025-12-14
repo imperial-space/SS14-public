@@ -39,16 +39,16 @@ public sealed class RDWeightAlertSystem : EntitySystem
 
         if (previous == current)
             return;
-
-        if (previous is not null)
-            _alerts.ClearAlert(entity, previous.Value);
-
-        entity.Comp.Alert = current;
-        DirtyField(entity, entity.Comp, nameof(RDWeightAlertsComponent.Alert));
-
-        if (current is null)
-            return;
-
-        _alerts.ShowAlert(entity, current.Value);
+        // need to fix - upstream vse otъebnul
+        //if (previous is not null)
+        //    _alerts.ClearAlert(entity.Comp, previous.Value);
+//
+        //entity.Comp.Alert = current;
+        //DirtyField(entity, entity.Comp, nameof(RDWeightAlertsComponent.Alert));
+//
+        //if (current is null)
+        //    return;
+//
+        //_alerts.ShowAlert(entity.Comp, current.Value);
     }
 }

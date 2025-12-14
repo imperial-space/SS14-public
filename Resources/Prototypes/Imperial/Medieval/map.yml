@@ -392,35 +392,6 @@
             MedievalBlacksmithYoung: [ 1, 1 ]
             MedievalBlacksmithYoungN: [ 1, 1 ]
 
-- type: gamePreset
-  id: Medieval
-  alias:
-  - medieval
-  name: medieval-title
-  showInVote: true
-  description: medieval-description
-  rules:
-  - TDM
-
-- type: gamePreset
-  id: MedievalMyrmex
-  alias:
-  - medieval
-  name: medieval-myrmex-title
-  showInVote: true
-  description: medieval-myrmex-description
-  rules:
-  - TDM
-  - Myrmex
-
-- type: gamePreset
-  id: MedievalDevelop
-  alias:
-  - medievaldevelop
-  name: medieval-title
-  showInVote: false
-  description: medieval-description
-
 - type: gameMap
   id: MedievalStationEvent
   mapName: Northern rebels (traveller only)

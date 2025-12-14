@@ -121,6 +121,8 @@
   # Imperial Medieval Start
   - type: TrashClear
     safe: true
+  - type: RDWeight
+    value: 0.3
   # Imperial Medieval End
 
 - type: entity
@@ -433,3 +435,4 @@
   components:
   - type: Stack
     count: 1
+

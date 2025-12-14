@@ -1,0 +1,18 @@
+#Beginner
+
+- type: entity
+  id: MagicArrowSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/arrow.rsi
+    color: "#FF5900"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#5B6EE1"
+  - type: TimedDespawn
+    lifetime: 0.5

@@ -29,8 +29,8 @@ public sealed class ChemistryGuideDataSystem : SharedChemistryGuideDataSystem
         foreach (var proto in PrototypeManager.EnumeratePrototypes<ReagentPrototype>())
         {
             // Imperial Medieval Chemistry Begin
-            if (!proto.ShowInBook)
-                continue;
+            //if (!proto.ShowInBook)
+            //    continue;
             // Imperial Medieval Chemistry End
             var entry = new ReagentGuideEntry(proto, PrototypeManager, EntityManager.EntitySysManager);
             changeset.GuideEntries.Add(proto.ID, entry);

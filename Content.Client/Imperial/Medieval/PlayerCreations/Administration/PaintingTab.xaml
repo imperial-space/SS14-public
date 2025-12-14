@@ -1,0 +1,10 @@
+﻿<Control xmlns="https://spacestation14.io"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:ui="clr-namespace:Content.Client.Options.UI"
+         xmlns:creations="clr-namespace:Content.Client.Imperial.Medieval.PlayerCreations.Administration">
+    <BoxContainer HorizontalExpand="True" Orientation="Vertical" VerticalExpand="True">
+        <ScrollContainer VerticalExpand="True" Name="Scroll" HScrollEnabled="False">
+            <GridContainer Name="PaintingContainer" Columns="2" VerticalExpand="True" HorizontalAlignment="Center"/>
+        </ScrollContainer>
+    </BoxContainer>
+</Control>

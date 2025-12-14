@@ -8,9 +8,12 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.7
+        essenceAddProbability: 0.0007
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalLight1: 1
+          MagicMedievalLight: 1
+        bonusEssences:
+          MagicMedievalLight: 1
   - type: ManaDrainSpell
     manaDrain: 45
     canUseWithoutMana: true
@@ -19,16 +22,18 @@
       groups:
         Burn: 15
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 30
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 3
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/blink.rsi
-      state: blink
+      sprite: Imperial/Medieval/Magic/Light/Blink/icons.rsi
+      state: beginner
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalTeleportSpellEvent
       spellCastDoAfter:
         delay: 1
@@ -44,8 +49,8 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Imperial/Medieval/Gun/Charmer/blink.rsi
-          state: blink
+          sprite: Imperial/Medieval/Magic/Light/Blink/icons.rsi
+          state: beginner
         inRangeColor: "#000062"
         outOfRangeColor: "#4A5076"
         alwaysRender: true
@@ -105,17 +110,21 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 15
+  - type: SpellCastEffect
+    effectProto: BlinkSpellCastEffectBeginner
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 25
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 7
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/blink.rsi
-      state: blink
+      sprite: Imperial/Medieval/Magic/Light/Blink/icons.rsi
+      state: beginner
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:MedievalTeleportSpellEvent
       spellCastDoAfter:
         delay: 1
@@ -131,8 +140,8 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Imperial/Medieval/Gun/Charmer/blink.rsi
-          state: blink
+          sprite: Imperial/Medieval/Magic/Light/Blink/icons.rsi
+          state: beginner
         inRangeColor: "#000062"
         outOfRangeColor: "#4A5076"
         alwaysRender: true

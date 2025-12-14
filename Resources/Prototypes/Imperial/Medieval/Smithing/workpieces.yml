@@ -431,7 +431,7 @@
   parent: BaseWeaponWorkpiece
   components:
   - type: SmithingWorkpiece
-    finalProductEntity: MedievalDagger
+    finalProductEntity: MedievalDaggerT3
 
 - type: entity
   id: WorkpieceMedievalDaggerT3Steel
@@ -445,7 +445,7 @@
   parent: BaseWeaponWorkpiece
   components:
   - type: SmithingWorkpiece
-    finalProductEntity: MedievalFalshion
+    finalProductEntity: MedievalFalshionT3
 
 - type: entity
   id: WorkpieceMedievalFalshionT3Steel
@@ -508,7 +508,7 @@
   parent: BaseWeaponWorkpiece
   components:
   - type: SmithingWorkpiece
-    finalProductEntity: MedievalIronHalberd
+    finalProductEntity: MedievalIronHalberdT3
 
 - type: entity
   id: WorkpieceMedievalIronHalberdT3Steel
@@ -809,3 +809,39 @@
   components:
   - type: SmithingWorkpiece
     finalProductEntity: MedievalClothingOuterArmorGoblinIron
+
+- type: entity
+  id: WorkpieceMedievalCavalerySpearT3
+  parent: BaseWeaponWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalCavalerySpearT3
+
+- type: entity
+  id: WorkpieceMedievalIronClaymore
+  parent: BaseWeaponWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronClaymore
+
+- type: entity
+  id: WorkpieceMedievalIronClaymoreSteel
+  parent: BaseWeaponWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronClaymoreSteel
+
+- type: entity
+  id: WorkpieceMedievalIronZweihander
+  parent: BaseWeaponWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronZweihander
+
+- type: entity
+  id: WorkpieceMedievalIronZweihanderSteel
+  parent: BaseWeaponWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronZweihanderSteel
+

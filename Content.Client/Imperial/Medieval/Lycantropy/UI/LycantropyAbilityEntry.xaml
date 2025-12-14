@@ -1,0 +1,78 @@
+<Control xmlns="https://spacestation14.io"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:fb="clr-namespace:Content.Client.Imperial.UI.Buttons.FancyButton">
+    <BoxContainer Orientation="Vertical">
+        <PanelContainer Name="Panel">
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BorderThickness="2" BorderColor="#000000FF" BackgroundColor="#e8e8e8FF"/>
+            </PanelContainer.PanelOverride>
+            <BoxContainer Orientation="Vertical">
+                <PanelContainer
+                    HorizontalExpand="True"
+                    VerticalExpand="True"
+                    SizeFlagsStretchRatio="1"
+                    Margin="4">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BorderThickness="2" BorderColor="#e8e8e8FF" BackgroundColor="#000000FF"/>
+                    </PanelContainer.PanelOverride>
+                    <BoxContainer
+                        HorizontalExpand="True"
+                        Orientation="Horizontal"
+                        VerticalExpand="True">
+                        <TextureRect Name="AbilityIcon" Margin="4" />
+                        <RichTextLabel
+                            Name="AbilityName"
+                            Margin="4"
+                            VerticalExpand="True" />
+                    </BoxContainer>
+                </PanelContainer>
+                <PanelContainer
+                    HorizontalExpand="True"
+                    VerticalExpand="True"
+                    SizeFlagsStretchRatio="4"
+                    Margin="4">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BorderThickness="2" BorderColor="#e8e8e8FF" BackgroundColor="#000000FF"/>
+                    </PanelContainer.PanelOverride>
+                    <BoxContainer
+                        Name="Details"
+                        HorizontalExpand="True"
+                        Orientation="Vertical">
+                        <ScrollContainer
+                            Margin="4"
+                            HorizontalExpand="True"
+                            HScrollEnabled="False"
+                            SetHeight="75"
+                            SetWidth="300">
+                            <RichTextLabel
+                                Name="AbilityDesc"
+                                HorizontalExpand="True"
+                                VerticalExpand="True"
+                                VerticalAlignment="Top"
+                                HorizontalAlignment="Left"
+                                Margin="4" />
+                        </ScrollContainer>
+                        <BoxContainer
+                            Margin="4"
+                            HorizontalExpand="True"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            VerticalExpand="True">
+                            <fb:FancyButton
+                                Name="BuyButton"
+                                Access="Public"
+                                SetSize="100 40">
+                                <Label Text="Купить" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </fb:FancyButton>
+                            <RichTextLabel
+                                Name="Cost"
+                                MinWidth="50"
+                                Margin="4"
+                                HorizontalExpand="True" />
+                        </BoxContainer>
+                    </BoxContainer>
+                </PanelContainer>
+            </BoxContainer>
+        </PanelContainer>
+    </BoxContainer>
+</Control>

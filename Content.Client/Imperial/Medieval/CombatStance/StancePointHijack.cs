@@ -1,7 +1,7 @@
 using System.Linq;
 using Content.Client.Imperial.Medieval.CombatStance;
 using Content.Shared.Construction.Prototypes;
-using Content.Shared.Friends;
+using Content.Shared.Imperial.Medieval.Factions;
 using Robust.Client.Placement;
 using Robust.Client.Utility;
 using Robust.Shared.Map;

@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Numerics;
 using Content.Shared.Imperial.Medieval.SmithingSystem;
 using Content.Shared.Imperial.Medieval.SmithingSystem.Bui;
 using Content.Shared.Imperial.Medieval.SmithingSystem.Events;
@@ -6,7 +7,9 @@ using Content.Shared.Interaction;
 using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Tag;
 using Robust.Shared.Containers;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Toolshed.TypeParsers;
 
 namespace Content.Server.Imperial.Medieval.SmithingSystem;
 
@@ -16,7 +19,8 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
-
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -68,6 +72,15 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
     protected override void OnSmithHit(Entity<SmithingWorkplaceComponent> ent, ref SmithHitMesage args)
     {
         base.OnSmithHit(ent, ref args);
+
+        if (!TryComp<SmithingWorkplaceComponent>(ent, out var comp))
+            return;
+        // Добавляем эффект искры
+        var randOffsetX = _random.NextFloat();
+        var offset = new Vector2(-0.5f + randOffsetX, 0.08f);
+        var sparkleCoords = Transform(ent).Coordinates.Offset(offset);
+        var effect = Spawn(comp.EffectProto, sparkleCoords);
+        _transform.SetParent(effect, ent);
 
         ent.Comp.GameState?.AddStep(args.State, args.Increment);
     }
