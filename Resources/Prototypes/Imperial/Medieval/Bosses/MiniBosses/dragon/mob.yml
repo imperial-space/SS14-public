@@ -88,7 +88,7 @@
         path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
       damage:
         groups:
-          Brute: 49
+          Brute: 38
         types:
           Structural: 600
       range: 2.5
