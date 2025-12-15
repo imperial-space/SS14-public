@@ -138,7 +138,7 @@
         components:
         - MobState
       chemical: Ichor
-      healRate: 30
+      healRate: 8
       whitelist:
         components:
         - MobState
