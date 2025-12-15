@@ -142,9 +142,9 @@
       whitelist:
         components:
         - MobState
-        - Door
-        tags:
-        - Wall
+        #- Door
+        #tags:
+        #- Wall
 
 - type: entity
   name: dragon
