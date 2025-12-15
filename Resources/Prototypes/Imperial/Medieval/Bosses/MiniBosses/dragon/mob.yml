@@ -51,9 +51,11 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        2000: Dead
+        1850: Dead
     - type: SlowOnDamage
       speedModifierThresholds:
+        500: 0.9
+        1000: 0.8
         1500: 0.7
     - type: Tag
       tags:
