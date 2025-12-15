@@ -277,16 +277,16 @@
     minReputation: 10
     reputationForBuying: 41.7
   - productEntity: MedievalIceDragonTablet
-    cost: 1200
+    cost: 1500
     reputationForBuying: 25.5
   - productEntity: MedievalFireDragonTablet
-    cost: 1200
+    cost: 1500
     reputationForBuying: 25.5
   - productEntity: MedievalAcidDragonTablet
-    cost: 1200
+    cost: 1500
     reputationForBuying: 25.5
   - productEntity: MedievalThunderDragonTablet
-    cost: 1200
+    cost: 1500
     reputationForBuying: 25.5
   - productEntity: MedievalPaperOnValuableCargoLeg
     cost: 220
