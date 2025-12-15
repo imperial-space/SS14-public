@@ -94,11 +94,11 @@
         types:
           Structural: 600
       range: 2.5
-      attackRate: 0.75
+      attackRate: 0.5
     - type: StaminaDamageOnHit
-      damage: 65
+      damage: 50
     - type: Stamina
-      critThreshold: 1000
+      critThreshold: 500
     - type: MedievalUnthrowable
     - type: MeleeThrowOnHit
       distance: 7
