@@ -239,3 +239,8 @@
     range: 2
     sound:
       path: /Audio/Ambience/Objects/light_hum.ogg
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 400000 # ~15 tile radius.
+    intensitySlope: 5
+    maxIntensity: 1000

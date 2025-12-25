@@ -139,7 +139,7 @@ namespace Content.Shared.Ghost
         /// <summary>
         /// Whether this warp represents a warp point or a player
         /// </summary>
-        public bool IsWarpPoint { get;  }
+        public bool IsWarpPoint { get; }
     }
 
     /// <summary>

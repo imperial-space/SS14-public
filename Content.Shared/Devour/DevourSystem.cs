@@ -70,7 +70,6 @@ public sealed class DevourSystem : EntitySystem
         {
             switch (targetState.CurrentState)
             {
-                case MobState.Critical:
                 case MobState.Dead:
 
                     _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, ent.Owner, ent.Comp.DevourTime, new DevourDoAfterEvent(), ent.Owner, target: target, used: ent.Owner)
@@ -78,6 +77,7 @@ public sealed class DevourSystem : EntitySystem
                         BreakOnMove = true,
                     });
                     break;
+                case MobState.Critical: // imperial medieval dragon
                 case MobState.Invalid:
                 case MobState.Alive:
                 default:

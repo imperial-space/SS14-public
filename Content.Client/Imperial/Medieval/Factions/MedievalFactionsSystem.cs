@@ -18,6 +18,7 @@ public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSyste
     [Dependency] private readonly IGameTiming _time = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly MedievalFactionsSystem _factions = default!;
 
     public static Dictionary<FactionMemberGroup, Color> GroupColors = new()
     {
@@ -31,6 +32,7 @@ public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSyste
 
     private ProtoId<FactionIconPrototype> _friendIcon = "FactionFriend";
     private ProtoId<FactionIconPrototype> _headIcon = "FactionHead";
+    private ProtoId<FactionIconPrototype> _enemyIcon = "FactionEnemy";
 
     public override void Initialize()
     {
@@ -75,13 +77,25 @@ public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSyste
             return;
 
         if (comp.Faction != playerFaction.Faction)
+        {
+            if (IsRelationEnemy(playerFaction.Faction, comp.Faction))
+                args.StatusIcons.Add(_proto.Index(_enemyIcon));
             return;
+        }
 
         if (Shared.IdentityManagement.Identity.Name(uid, EntityManager, _player.LocalEntity) != Name(uid))
             return;
 
         var iconId = comp.MenuAccess == FactionMenuAccess.Full ? _headIcon : _friendIcon;
         args.StatusIcons.Add(_proto.Index(iconId));
+    }
+    private bool IsRelationEnemy(ProtoId<MedievalFactionPrototype> faction1, ProtoId<MedievalFactionPrototype> faction2)
+    {
+        if (_factions.TryGetRelation(faction1, faction2, out var relation))
+        {
+            return relation.Id == "War";
+        }
+        return false;
     }
 
     private void OnOpenOfferWindow(OpenOfferFactionRelationsEvent ev)

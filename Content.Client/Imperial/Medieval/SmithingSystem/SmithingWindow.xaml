@@ -1,20 +1,20 @@
 ﻿<controls:FancyWindow xmlns="https://spacestation14.io"
-               xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-               Title="{Loc 'cp14-smith-ui-title'}"
-               MinSize="240 230">
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      Title="{Loc 'cp14-smith-ui-title'}"
+                      MinSize="520 480">
 
     <BoxContainer Orientation="Vertical">
         <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-            <Label Name="StepsLabel" Align="Left" HorizontalExpand="True" Margin="5 0 0 0"/>
-            <Label Name="PointsLabel" Align="Right" HorizontalExpand="True" Margin="0 0 5 0"></Label>
+            <Label Name="StepsLabel" Align="Left" HorizontalExpand="True" Margin="5 0 0 0" />
+            <Label Name="PointsLabel" Align="Right" HorizontalExpand="True" Margin="0 0 5 0" />
         </BoxContainer>
 
         <LayoutContainer Margin="5" Name="MainLayout" HorizontalExpand="True" VerticalExpand="True">
-            <TextureRect SetSize="192 192" Stretch="Scale" Name="ItemSpriteView"/>
+            <TextureRect Name="ItemSpriteView"
+                         Stretch="KeepAspectCentered"
+                         MouseFilter="Ignore" />
         </LayoutContainer>
 
-        <Button Name="StartGameButton" Text="Начать!" HorizontalExpand="True" SetHeight="25"></Button>
-
+        <Button Name="StartGameButton" Text="Начать!" HorizontalExpand="True" SetHeight="30" />
     </BoxContainer>
-
 </controls:FancyWindow>

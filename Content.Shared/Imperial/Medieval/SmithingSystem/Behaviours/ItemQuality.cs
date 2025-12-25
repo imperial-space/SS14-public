@@ -1,7 +1,9 @@
-﻿namespace Content.Shared.Imperial.Medieval.SmithingSystem.Behaviours;
+﻿using Robust.Shared.Serialization;
 
-[Serializable]
-public enum ItemQuality
+namespace Content.Shared.Imperial.Medieval.SmithingSystem.Behaviours;
+
+[Serializable] [NetSerializable]
+public enum ItemQuality : byte
 {
     Worst,
     ReallyBad,

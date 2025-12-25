@@ -38,6 +38,7 @@
     - Brute
   supportedTypes:
     - Heat
+    - Structural # spellward shields changes
 
 - type: damageContainer
   id: Box

@@ -1,0 +1,474 @@
+- type: entity
+  id: DraftParticles
+  noSpawn: true
+  components:
+  - type: TimedDespawn
+    lifetime: 5
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/scrolls/Magic_weap_ischez_3.ogg
+
+- type: entity
+  name: draft halberd
+  parent: MedievalIronHalberdT3Steel
+  id: MedievalDraftIronHalberdT3Steel
+  description: A medieval poleaxe.
+  components:
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/draft_halberd.rsi
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/draft_halberd.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/draft_halberd.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: TimedDespawn
+    lifetime: 900 # 900 = 15 minutes
+  - type: SpawnOnDespawn
+    prototype: DraftParticles
+  - type: PointLight
+    radius: 1.5
+    energy: 1.5
+    color: "#39a1ff"
+
+- type: entity
+  name: draft sword
+  parent: MedievalFalshionT3Steel
+  id: MedievalDraftFalshionT3Steel
+  description: An ancient war blade.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/draft_iron_sword.rsi
+    state: icon
+  - type: TimedDespawn
+    lifetime: 900    # 900 = 15 minutes
+  - type: SpawnOnDespawn
+    prototype: DraftParticles
+  - type: PointLight
+    radius: 1.5
+    energy: 1.5
+    color: "#39a1ff"
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/draft_iron_sword.rsi
+    slots:
+    - back
+    - suitStorage
+    - belt
+    quickEquip: false
+    equipSound:
+      path: /Audio/Imperial/Medieval/sword_uneqip.ogg
+    unequipSound:
+      path: /Audio/Imperial/Medieval/sword_eqip.ogg
+
+- type: entity
+  name: draft dagger
+  parent:  MedievalDaggerT3Steel
+  id: MedievalDraftDaggerT3Steel
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/draft_dagger.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/draft_dagger.rsi
+  - type: TimedDespawn
+    lifetime: 900    # 900 = 15 minutes
+  - type: SpawnOnDespawn
+    prototype: DraftParticles
+  - type: PointLight
+    radius: 1.5
+    energy: 1.5
+    color: "#39a1ff"
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/draft_dagger.rsi
+    slots:
+    - belt
+    quickEquip: false
+
+- type: entity
+  name: MedievalDraftBaseBow
+  parent: BaseItem # imperial medieval no contraband
+  id: MedievalDraftBaseBow
+  description: The original rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/draft_bow.rsi
+  - type: Item
+    size: Normal
+  - type: Clothing
+    quickEquip: false
+    slots:
+      - Back
+      - suitStorage
+  - type: Wieldable
+    wieldSound:
+      path: /Audio/Items/bow_pull.ogg
+  - type: UseDelay
+    delay: 1
+  - type: GunRequiresWield
+  - type: Gun
+    minAngle: 0
+    maxAngle: 5
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      collection: BulletMiss
+    soundEmpty: null
+  - type: ItemSlots
+    slots:
+      projectiles:
+        name: Projectiles
+        startingItem: null
+        insertSound: /Audio/Weapons/Guns/Misc/arrow_nock.ogg
+        whitelist:
+          tags:
+          - Arrow
+          - Plunger
+  - type: ContainerContainer
+    containers:
+      projectiles: !type:ContainerSlot
+  - type: ContainerAmmoProvider
+    container: projectiles
+  - type: TimedDespawn
+    lifetime: 900    # 900 = 15 minutes
+  - type: SpawnOnDespawn
+    prototype: DraftParticles
+
+- type: entity
+  id: MedievalDraftBowImprovised
+  parent: MedievalDraftBaseBow
+  name: draft improvised shortbow
+  description: The original rooty tooty point and shooty.
+  components:
+  - type: Sprite
+    layers:
+    - state: unwielded
+      map: [ base ]
+    - state: unwielded-arrow
+      map: [ arrow ]
+      visible: false
+    - state: unwielded-plunger
+      map: [ plunger ]
+      visible: false
+  # to elucidate whats intended here:
+  # arrow is inserted -> ItemMapper sets layer with map `arrow` to visible
+  # bow is wielded -> generic vis sets states of layers with map `arrow` and `base`
+  # arrow is removed -> itemmapper sets layer with map `arrow` to invisible
+  - type: Appearance
+  - type: ItemMapper
+    spriteLayers:
+    - arrow
+    - plunger
+    mapLayers:
+      arrow:
+        whitelist:
+          tags:
+          - Arrow
+      plunger:
+        whitelist:
+          tags:
+          - Plunger
+  - type: GenericVisualizer
+    visuals:
+      enum.WieldableVisuals.Wielded:
+        arrow:
+          True: { state: wielded-arrow }
+          False: { state: unwielded-arrow }
+        plunger:
+          True: { state: wielded-plunger }
+          False: { state: unwielded-plunger }
+        base:
+          True: { state: wielded }
+          False: { state: unwielded }
+  - type: Construction
+    graph: ImprovisedBow
+    node: ImprovisedBow
+  - type: RDWeight
+    value: 1.5
+  - type: PointLight
+    radius: 1.5
+    energy: 1.5
+    color: "#39a1ff"
+
+- type: entity
+  parent: BaseArrow
+  id: MedievalDraftBaseArrow
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/draft_arrows.rsi
+    rotation: -135
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+
+- type: entity
+  parent: MedievalDraftBaseArrow
+  id: MedievalDraftArrowSteelPhysics
+  name: draft arrow
+  description: You can feel the power of the steppe within you.
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 28
+  - type: TimedDespawn
+    lifetime: 900    # 900 = 15 minutes
+  - type: SpawnOnDespawn
+    prototype: DraftParticles
+  - type: PointLight
+    radius: 1.5
+    energy: 1.5
+    color: "#39a1ff"
+
+- type: entity
+  name: draft crossbow
+  parent: MedievalWeaponCrossbow
+  id: MedievalDraftWeaponCrossbow
+  description: A portable anti-armour rifle. Fires armor piercing 14.5mm shells. Uses .60 anti-material ammo.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/draft_crossbow.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Gun/draft_crossbow.rsi
+  - type: TimedDespawn
+    lifetime: 900    # 900 = 15 minutes
+  - type: SpawnOnDespawn
+    prototype: DraftParticles
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - Bolt
+    capacity: 1
+    proto: MedievalDraftBoltSteel
+    autoCycle: true
+    soundInsert:
+      path: /Audio/Imperial/Medieval/ES_Crossbow_Fire_10_-_SFX_Producer.ogg
+  - type: PointLight
+    radius: 1.5
+    energy: 1.5
+    color: "#39a1ff"
+    
+- type: entity
+  parent: MedievalBoltSteel
+  id: MedievalDraftBoltSteel
+  name: draft bolt
+  components:
+  - type: CartridgeAmmo
+    proto: MedievalDraftBoltBulletSteel
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/draft_bolt.rsi
+    rotation: -135
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: TimedDespawn
+    lifetime: 900    # 900 = 15 minutes
+  - type: SpawnOnDespawn
+    prototype: DraftParticles
+
+- type: entity
+  id: MedievalDraftBoltBulletSteel
+  name: draft base bolt
+  parent: MedievalBoltBulletSteel
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/draft_bolt.rsi
+    rotation: -135
+    layers:
+    - state: proto
+  - type: PointLight
+    radius: 1.5
+    energy: 1.5
+    color: "#39a1ff"
+    
+- type: entity
+  parent: MedievalQuiverSteel
+  id: MedievalDraftQuiverSteel
+  name: draft quiver
+  description: A belt used to hold arrows and bolts.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Belt/draft_quiver_steel.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Belt/draft_quiver_steel.rsi
+  - type: Storage
+    grid:
+    - 0,0,7,7
+    whitelist:
+      tags:
+      - Bolt
+      - Arrow
+      - ThrowingSpear
+  - type: TimedDespawn
+    lifetime: 900    # 900 = 15 minutes
+  - type: SpawnOnDespawn
+    prototype: DraftParticles
+  - type: PointLight
+    radius: 1.5
+    energy: 1.5
+    color: "#39a1ff"
+
+- type: entity
+  parent: MedievalDraftQuiverSteel
+  id: MedievalDraftQuiverSteelFullArrow
+  suffix: arrows
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalDraftArrowSteelPhysics
+      amount: 30
+      
+- type: entity
+  parent: MedievalDraftQuiverSteel
+  id: MedievalDraftQuiverSteelFullBolt
+  suffix: bolts
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalDraftBoltSteel
+      amount: 30
+
+#scrolls
+- type: entity
+  parent: BaseItem
+  id: MedievalScrollsHalberd
+  name: halberd summoning scroll
+  description: A blueprint for some machine. It can be inserted into an autolathe.
+  components:
+  - type: Item
+    shape:
+    - 0,0,1,0
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalDraftIronHalberdT3Steel
+    sound:
+      path: /Audio/Imperial/Medieval/scrolls/Magic_weap_sword_poyav_2.ogg
+  - type: Appearance
+  - type: Sprite
+    sprite: Imperial/Medieval/scrolls.rsi
+    layers:
+      - state: halberd
+
+- type: entity
+  parent: BaseItem
+  id: MedievalScrollsFalshion
+  name: sword summoning scroll
+  description: A blueprint for some machine. It can be inserted into an autolathe.
+  components:
+  - type: Item
+    shape:
+    - 0,0,1,0
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalDraftFalshionT3Steel
+    sound:
+      path: /Audio/Imperial/Medieval/scrolls/Magic_weap_sword_poyav_2.ogg
+  - type: Appearance
+  - type: Sprite
+    sprite: Imperial/Medieval/scrolls.rsi
+    layers:
+      - state: sword
+
+- type: entity
+  parent: BaseItem
+  id: MedievalScrollsDagger
+  name: dagger summoning scroll
+  description: A blueprint for some machine. It can be inserted into an autolathe.
+  components:
+  - type: Item
+    shape:
+    - 0,0,1,0
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalDraftDaggerT3Steel
+    - id: MedievalDraftDaggerT3Steel
+    sound:
+      path: /Audio/Imperial/Medieval/scrolls/Magic_weap_sword_poyav_2.ogg
+  - type: Appearance
+  - type: Sprite
+    sprite: Imperial/Medieval/scrolls.rsi
+    layers:
+      - state: dagger
+
+- type: entity
+  parent: BaseItem
+  id: MedievalScrollsBow
+  name: bow summoning scroll
+  description: A blueprint for some machine. It can be inserted into an autolathe.
+  components:
+  - type: Item
+    shape:
+    - 0,0,1,0
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalDraftBowImprovised
+    - id: MedievalDraftQuiverSteelFullArrow
+    sound:
+      path: /Audio/Imperial/Medieval/scrolls/Magic_weap_sword_poyav_1.ogg
+  - type: Appearance
+  - type: Sprite
+    sprite: Imperial/Medieval/scrolls.rsi
+    layers:
+      - state: bow
+
+- type: entity
+  parent: BaseItem
+  id: MedievalScrollsCrossbow
+  name: crossbow summoning scroll
+  description: A blueprint for some machine. It can be inserted into an autolathe.
+  components:
+  - type: Item
+    shape:
+    - 0,0,1,0
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalDraftWeaponCrossbow
+    - id: MedievalDraftQuiverSteelFullBolt
+    sound:
+      path: /Audio/Imperial/Medieval/scrolls/Magic_weap_sword_poyav_1.ogg
+  - type: Appearance
+  - type: Sprite
+    sprite: Imperial/Medieval/scrolls.rsi
+    layers:
+      - state: crossbow
+
+#CRAFTS
+- type: CP14Recipe
+  id: MedievalScrollsHalberdCraft
+  result: MedievalScrollsHalberd
+  entities:
+    MedievalScrollBarrier: 1
+
+- type: CP14Recipe
+  id: MedievalScrollsFalshionCraft
+  result: MedievalScrollsFalshion
+  entities:
+    MedievalScrollBarrier: 1
+
+- type: CP14Recipe
+  id: MedievalScrollsDaggerCraft
+  result: MedievalScrollsDagger
+  entities:
+    MedievalScrollBarrier: 1
+
+- type: CP14Recipe
+  id: MedievalScrollsBowCraft
+  result: MedievalScrollsBow
+  entities:
+    MedievalScrollBarrier: 1
+
+- type: CP14Recipe
+  id: MedievalScrollsCrossbowCraft
+  result: MedievalScrollsCrossbow
+  entities:
+    MedievalScrollBarrier: 1

@@ -476,6 +476,16 @@
 
 - type: entity
   parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakDeimon
+  name: cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/deimon_cloak.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
   id: MedievalClothingNeckCloakKonnor
   name: cloak
   description: A cloak to distinguish allies.

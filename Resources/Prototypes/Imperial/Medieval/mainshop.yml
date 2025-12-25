@@ -568,6 +568,17 @@
   - MedievalBuild
 
 - type: listing
+  id: MdvShopMedievalWizardBlacksmithCraft
+  productEntity: MedievalWizardBlacksmithCraft
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 50
+  cost:
+    Revent: 75
+  categories:
+  - MedievalBuild
+
+- type: listing
   id: MdvShopMedievalMeltingPlaceCraft
   productEntity: MedievalMeltingPlaceCraft
   discountCategory: medievalDiscounts
@@ -2379,7 +2390,7 @@
   id: MdvShopCreationsBook
   productEntity: CreationsBook
   cost:
-    Revent: 15
+    Revent: 10
   categories:
   - MedievalMisc
 
@@ -2531,6 +2542,22 @@
   productEntity: MedievalWineskin
   cost:
     Revent: 35
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalGoldCup
+  productEntity: MedievalGoldCup
+  cost:
+    Revent: 80
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalSilverCup
+  productEntity: MedievalSilverCup
+  cost:
+    Revent: 50
   categories:
   - MedievalMisc
 
@@ -2913,6 +2940,61 @@
     Revent: 260
   cost:
     Revent: 300
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalScrollsHalberd
+  productEntity: MedievalScrollsHalberd
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 50
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalScrollsFalshion
+  productEntity: MedievalScrollsFalshion
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 50
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalScrollsDagger
+  productEntity: MedievalScrollsDagger
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 50
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalScrollsBow
+  productEntity: MedievalScrollsBow
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 50
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalScrollsCrossbow
+  productEntity: MedievalScrollsCrossbow
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 50
+  cost:
+    Revent: 50
   categories:
   - MedievalMagic
 

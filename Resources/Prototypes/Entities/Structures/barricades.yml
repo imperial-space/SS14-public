@@ -71,6 +71,12 @@
   - type: FireVisuals
     sprite: Effects/fire.rsi
     normalState: 1
+  # Imperial medieval start
+  - type: MedievalDoAfterEvery
+    nameLocId: remove-barricade-doafter-name
+    time: 20
+    numHit: 200
+  # Imperial medieval end
 
 #Structure-Mounted Barricade
 - type: entity

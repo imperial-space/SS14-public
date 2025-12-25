@@ -14,7 +14,7 @@
     inverted: true
     collapseOnMinDistance: true
   - type: RepeatingTrigger
-    delay: 0.75
+    delay: 1.2
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
@@ -39,7 +39,7 @@
     inverted: true
     collapseOnMinDistance: true
   - type: RepeatingTrigger
-    delay: 0.75
+    delay: 1.2
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default

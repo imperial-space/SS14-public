@@ -299,6 +299,14 @@
   - MedievalBuildDemo
 
 - type: listing
+  id: DemoMdvShopMedievalWizardBlacksmithCraft
+  productEntity: MedievalWizardBlacksmithCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
   id: DemoMdvShopMedievalMeltingPlaceCraft
   productEntity: MedievalMeltingPlaceCraft
   cost:
@@ -2447,6 +2455,46 @@
 - type: listing
   id: DemoMdvShopMedaljonAntiMana
   productEntity: MedaljonAntiMana
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalScrollsHalberd
+  productEntity: MedievalScrollsHalberd
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalScrollsFalshion
+  productEntity: MedievalScrollsFalshion
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalScrollsDagger
+  productEntity: MedievalScrollsDagger
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalScrollsBow
+  productEntity: MedievalScrollsBow
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalScrollsCrossbow
+  productEntity: MedievalScrollsCrossbow
   cost:
     UnknownMedieval: 1
   categories:

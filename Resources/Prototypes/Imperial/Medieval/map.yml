@@ -19,7 +19,7 @@
             MedievalBum: [ 10, 10 ]
             MedievalInnkeeper: [ 1, 1 ]
             MedievalInnkeeperN: [ 1, 1 ]
-            MedievalChaplain: [ 6, 6 ]
+            MedievalChaplain: [ 7, 7 ]
             MedievalWanderMag: [ 4, 4 ]
             # Legion (29 total)
             MedievalLegionJailed: [ 5, 5 ]

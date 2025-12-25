@@ -23,7 +23,7 @@
         Burn: 15
   - type: MedievalTargetSpell
   - type: Action
-    useDelay: 30
+    useDelay: 60
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
@@ -32,7 +32,7 @@
       state: beginner
   - type: TargetAction
     checkCanAccess: false
-    range: 60
+    range: 6
   - type: WorldTargetAction
     event: !type:MedievalTeleportSpellEvent
       spellCastDoAfter:
@@ -54,7 +54,7 @@
         inRangeColor: "#000062"
         outOfRangeColor: "#4A5076"
         alwaysRender: true
-        range: 3
+        range: 6
     rotationPerClick: 0
   - type: MedievalSpellTeleportEffect
     fadeDistortion:
@@ -114,7 +114,7 @@
     effectProto: BlinkSpellCastEffectBeginner
   - type: MedievalTargetSpell
   - type: Action
-    useDelay: 25
+    useDelay: 60
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
@@ -145,5 +145,5 @@
         inRangeColor: "#000062"
         outOfRangeColor: "#4A5076"
         alwaysRender: true
-        range: 7
+        range: 10
     rotationPerClick: 0

@@ -149,8 +149,8 @@ namespace Content.Server.MagicBarrier
             _chat.DispatchGlobalAnnouncement("Проклятый нарост уничтожен, расход стабильности барьера снижен.", playSound: false, colorOverride: Color.LimeGreen, sender: "Барьер");
             foreach (var comp in EntityManager.EntityQuery<MagicBarrierComponent>())
             {
-                comp.Lose = comp.Lose / (comp.Rate - 0.03f);
-                comp.Stability += 7f;
+                comp.Lose *= 0.8f;
+                comp.Stability += 4f;
             }
         }
 

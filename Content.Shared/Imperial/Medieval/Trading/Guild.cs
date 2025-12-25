@@ -9,7 +9,10 @@ namespace Content.Shared.Imperial.Medieval.Trading;
 [Serializable, NetSerializable]
 public sealed class Guild : IEquatable<Guild>
 {
+    [DataField]
     public Guid Id { get; }
+
+    [DataField]
     public string Name { get; private set; }
 
     // TODO: указать здесь стандартную иконку
@@ -17,9 +20,11 @@ public sealed class Guild : IEquatable<Guild>
 
     public ProtoId<GuildTypePrototype> TypePrototype { get; private set; }
 
+    [DataField]
     public List<GuildTradingItem> Items;
     public Dictionary<GuildTradingItem, string> UnavailableItems = new();
 
+    [DataField]
     public Dictionary<NetEntity, float> Reputation = new();
 
     public float GetReputation(NetEntity ent)

@@ -36,13 +36,13 @@
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: DivineTouchBeginner
       spellCastDoAfter:
-        delay: 3.5
+        delay: 7
         breakOnDropItem: false
         breakOnWeightlessMove: false
         breakOnMove: false
         breakOnDamage: true
         needHand: true
-        speedModifier: 1
+        speedModifier: 0.2
       speechPoints:
         0:
           speech: medieval-spell-speach-divine-touch
@@ -82,13 +82,13 @@
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: DivineTouchMiddle
       spellCastDoAfter:
-        delay: 3.5
+        delay: 7
         breakOnDropItem: false
         breakOnWeightlessMove: false
         breakOnMove: false
         breakOnDamage: true
         needHand: true
-        speedModifier: 0.3
+        speedModifier: 0.2
       speechPoints:
         0:
           speech: medieval-spell-speach-divine-touch
@@ -123,13 +123,13 @@
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: DivineTouchSenior
       spellCastDoAfter:
-        delay: 3.5
+        delay: 7
         breakOnDropItem: false
         breakOnWeightlessMove: false
         breakOnMove: false
         breakOnDamage: true
         needHand: true
-        speedModifier: 0.3
+        speedModifier: 0.2
       speechPoints:
         0:
           speech: medieval-spell-speach-divine-touch

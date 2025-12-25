@@ -2181,6 +2181,78 @@
     sprintModifier: 0.85
 
 - type: entity
+  name: iron halberd
+  parent: MedievalIronHalberdT3
+  id: MedievalIronHalberdT3Deimon
+  description: A medieval poleaxe.
+  components:
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    slots:
+    - back
+    - suitStorage
+
+- type: entity
+  name: iron halberd
+  parent: MedievalIronHalberdT3Steel
+  id: MedievalIronHalberdT3SteelDeimon
+  description: A medieval poleaxe.
+  components:
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    slots:
+    - back
+    - suitStorage
+
+- type: entity
+  name: iron halberd
+  parent: MedievalIronSekirSteel
+  id: MedievalIronSekirSteelDeimon
+  description: A medieval poleaxe.
+  components:
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    slots:
+    - back
+    - suitStorage
+
+- type: entity
+  name: iron halberd
+  parent: MedievalIronSekir
+  id: MedievalIronSekirDeimon
+  description: A medieval poleaxe.
+  components:
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    slots:
+    - back
+    - suitStorage
+
+- type: entity
   name: iron zweihander
   parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronZweihander

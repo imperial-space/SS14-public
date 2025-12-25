@@ -1,6 +1,4 @@
 using Content.Shared.Damage;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Robust.Shared.Prototypes;
 using Robust.Shared.GameStates;
 using Robust.Shared.Audio;
 
@@ -30,6 +28,16 @@ public sealed partial class MedievalMeleeResourceComponent : Component
 
     [DataField]
     public string SafeToHitGroup = "all";
+
+    [DataField]
+    public DamageSpecifier? BaseDamage;
+
+    [DataField]
+    public DamageSpecifier? BaseWieldBonus;
+
+    [DataField]
+    public float QualityMultiplier = 1f;
+
 
     // Full
     // AlmostFull

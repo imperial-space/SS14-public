@@ -10,8 +10,7 @@ public sealed partial class SmithingFurnaceComponent : Component
     public float MeltingTime { get; set; } = 10f;
 
     [DataField]
-    public ItemSlot MeltingSlot { get; set; }
+    public ItemSlot MeltingSlot { get; set; } = new();
 
     public TimeSpan? UnlockTime { get; set; }
-
 }

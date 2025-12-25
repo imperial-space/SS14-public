@@ -12,3 +12,19 @@
     useDelay: 0.5
   - type: InstantAction
     event: !type:HideHairToggleEvent
+
+- type: entity
+  id: FightForLifeAction
+  parent: ActionCritSuccumb
+  components:
+  - type: Action
+    startDelay: true
+    itemIconStyle: NoItem
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/actions.rsi
+      state: fight
+    useDelay: 40.0
+    checkCanInteract: false
+    enabled: true
+  - type: InstantAction
+    event: !type:CanselDeathEvent

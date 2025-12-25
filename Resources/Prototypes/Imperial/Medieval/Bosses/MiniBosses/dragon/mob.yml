@@ -51,7 +51,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        1850: Dead
+        1500: Dead
     - type: SlowOnDamage
       speedModifierThresholds:
         500: 0.9
@@ -113,8 +113,8 @@
       speechVerb: LargeMob
       speechSounds: MedievalDragon
     - type: MovementSpeedModifier
-      baseWalkSpeed: 3.4
-      baseSprintSpeed: 2.4
+      baseWalkSpeed: 3.3
+      baseSprintSpeed: 2
     - type: AnnounceOnSpawn
       message: dragon-spawn-announcement
       color: "yellow"
@@ -140,7 +140,7 @@
         components:
         - MobState
       chemical: Ichor
-      healRate: 8
+      healRate: 5
       whitelist:
         components:
         - MobState
@@ -200,7 +200,7 @@
         state: alive
       sprite: Imperial/Medieval/Mobs/Bosses/Dragons/firedragon.rsi
     - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 18
+      rechargeCooldown: 30
       rechargeSound:
         path: /Audio/Imperial/Medieval/fireball_blast.ogg
     - type: BasicEntityAmmoProvider
@@ -208,7 +208,7 @@
       capacity: 1
       count: 1
     - type: Gun
-      projectileSpeed: 11.5
+      projectileSpeed: 10
       fireRate: 1
       useKey: false
       selectedMode: SemiAuto

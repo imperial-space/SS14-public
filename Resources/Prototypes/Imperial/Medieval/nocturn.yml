@@ -266,14 +266,14 @@
     thresholds:
       0: Alive
       95: Critical
-      160: Dead
+      180: Dead
   - type: Mana
     maxManaRaceModifier: 0.95
     regenRaceModifier: 0.95
   - type: Nocturn
   - type: LocalLight
-    energy: 0.22
-    radius: 3.5
+    energy: 0.4
+    radius: 4.5
   #- type: Thieving
   #  stripTimeReduction: 1.5
   #  stealthy: false

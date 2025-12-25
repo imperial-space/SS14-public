@@ -1553,6 +1553,7 @@
   id: MedievalChaplainGear
   equipment:
     pocket1: MedievalRevent10
+    pocket2: MedievalPinpointerCritical
     #belt: Bible
 
 - type: playTimeTracker
@@ -1801,6 +1802,9 @@
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 12
   - !type:SpeciesRequirement
     species:
     - Orc
@@ -2303,6 +2307,9 @@
   description: job-description-legionLegat-medieval
   playTimeTracker: JobMedievalLegionLegat
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 6
   - !type:SpeciesRequirement
     species:
     - Skeleton
@@ -2380,6 +2387,9 @@
   description: job-description-legionMag-medieval
   playTimeTracker: JobMedievalLegionMag
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 12
   - !type:SpeciesRequirement
     species:
     - Skeleton
@@ -2878,6 +2888,9 @@
   description: job-description-InsurgencyLegat-medieval
   playTimeTracker: JobMedievalInsurgencyLegat
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 6
   - !type:SpeciesRequirement
     species:
     - Skeleton
@@ -2955,6 +2968,9 @@
   description: job-description-InsurgencyMag-medieval
   playTimeTracker: JobMedievalInsurgencyMag
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 12
   - !type:SpeciesRequirement
     species:
     - Orc
@@ -3315,6 +3331,9 @@
   description: job-description-banditLeader-medieval
   playTimeTracker: JobMedievalBanditLeader
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 6
   - !type:DepartmentTimeRequirement
     department: Band
     time: 50400 #Imperial role timers
@@ -3577,7 +3596,10 @@
   description: Руководите шайкой разбойников, богайтейте.
   playTimeTracker: JobMedievalKayotLeader
   requirements:
-    - !type:DepartmentTimeRequirement
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 6
+  - !type:DepartmentTimeRequirement
       department: Kayot
       time: 50400 #Imperial role timers
   startingGear: MedievalKayotLeaderGear
@@ -3709,6 +3731,9 @@
   description: job-description-MercLeader-medieval
   playTimeTracker: JobMedievalMercLeader
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 6
   - !type:SpeciesRequirement
     species:
     - Skeleton
@@ -3789,6 +3814,9 @@
   description: job-description-collegiumRecruit-medieval
   playTimeTracker: JobMedievalCollegiumRecruit
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 12
   - !type:SpeciesRequirement
     species:
     - Orc
@@ -3865,6 +3893,9 @@
   description: job-description-collegiumCommon-medieval
   playTimeTracker: JobMedievalCollegiumCommon
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 12
   - !type:SpeciesRequirement
     species:
     - Orc
@@ -3942,6 +3973,9 @@
   description: job-description-collegiumLeader-medieval
   playTimeTracker: JobMedievalCollegiumLeader
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 16
   - !type:SpeciesRequirement
     species:
     - Skeleton
@@ -4092,6 +4126,9 @@
   description: job-description-TribeCommon-medieval
   playTimeTracker: JobMedievalTribeCommon
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 12
   - !type:SpeciesRequirement
     species:
     - Orc
@@ -4168,6 +4205,9 @@
   description: job-description-TribeLeader-medieval
   playTimeTracker: JobMedievalTribeLeader
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 6
   - !type:DepartmentTimeRequirement
     department: Tribe
     time: 36000 #Imperial role timers
@@ -4551,6 +4591,9 @@
   description: job-descriptionminerLeader-medieval
   playTimeTracker: JobMedievalMinerLeader
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 6
   - !type:SpeciesRequirement
     species:
     - Skeleton
@@ -4932,6 +4975,9 @@
   description: job-descriptioncultLeader-medieval
   playTimeTracker: JobMedievalCultLeader
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 6
   - !type:SpeciesRequirement
     species:
     - Skeleton
@@ -5101,6 +5147,9 @@
   description: job-descriptionvillagerLeader-medieval
   playTimeTracker: JobMedievalVillagerLeader
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 6
   - !type:SpeciesRequirement
     species:
     - Skeleton

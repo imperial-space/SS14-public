@@ -229,7 +229,7 @@
     cost: 2
     reputationForBuying: 0.1
   - productEntity: CreationsBook
-    cost: 15
+    cost: 10
     reputationForBuying: 0.5
   - productEntity: MedievalHolySalt
     cost: 25
@@ -246,6 +246,9 @@
   - productEntity: MedievalRecipeBook
     cost: 45
     reputationForBuying: 1.5
+  - productEntity: MedievalPinpointerCritical
+    cost: 80
+    reputationForBuying: 2
   - productEntity: CompactDefibrillator
     cost: 100
     reputationForBuying: 3.3
@@ -256,8 +259,9 @@
     cost: 100
     reputationForBuying: 3.3
   - productEntity: MedievalScrollBarrier
-    cost: 50
+    cost: 100
     reputationForBuying: 2
+    minReputation: 15
   - productEntity: Bible
     cost: 150
     reputationForBuying: 5
@@ -277,16 +281,16 @@
     minReputation: 10
     reputationForBuying: 41.7
   - productEntity: MedievalIceDragonTablet
-    cost: 1500
+    cost: 1600
     reputationForBuying: 25.5
   - productEntity: MedievalFireDragonTablet
-    cost: 1500
+    cost: 1600
     reputationForBuying: 25.5
   - productEntity: MedievalAcidDragonTablet
-    cost: 1500
+    cost: 1600
     reputationForBuying: 25.5
   - productEntity: MedievalThunderDragonTablet
-    cost: 1500
+    cost: 1600
     reputationForBuying: 25.5
   - productEntity: MedievalPaperOnValuableCargoLeg
     cost: 220
@@ -296,6 +300,21 @@
     cost: 220
     reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
+  - productEntity: MedievalScrollsHalberd
+    cost: 50
+    reputationForBuying: 1
+  - productEntity: MedievalScrollsFalshion
+    cost: 50
+    reputationForBuying: 1
+  - productEntity: MedievalScrollsDagger
+    cost: 50
+    reputationForBuying: 1
+  - productEntity: MedievalScrollsBow
+    cost: 50
+    reputationForBuying: 1
+  - productEntity: MedievalScrollsCrossbow
+    cost: 50
+    reputationForBuying: 1
 
 - type: guildName
   id: WeaponGuild
@@ -1496,6 +1515,9 @@
     reputationForBuying: 1.7
   - productEntity: MedievalKotel
     cost: 50
+    reputationForBuying: 1.7
+  - productEntity: MedievalWizardBlacksmithCraft
+    cost: 75
     reputationForBuying: 1.7
   - productEntity: MedievalWoodenFloorCraft
     cost: 10

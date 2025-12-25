@@ -13,3 +13,11 @@
   icon:
     sprite: /Textures/Imperial/Medieval/StatusIcons/faction_icons.rsi
     state: head
+
+- type: factionIcon
+  id: FactionEnemy
+  priority: 9
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Medieval/StatusIcons/faction_icons.rsi
+    state: enemy

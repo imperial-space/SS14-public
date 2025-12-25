@@ -1,19 +1,20 @@
 {
-    "version": 1,
-    "size":
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "Made by crookielv",
+  "size": {
+    "x": 8,
+    "y": 8
+  },
+  "states": [
     {
-      "x": 8,
-      "y": 8
+      "name": "friend"
     },
-    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
-    "copyright": "Made by crookielv",
-    "states":
-    [
-      {
-        "name": "friend"
-      },
-      {
-        "name": "head"
-      }
-    ]
-  }
+    {
+      "name": "head"
+    },
+    {
+      "name": "enemy"
+    }
+  ]
+}

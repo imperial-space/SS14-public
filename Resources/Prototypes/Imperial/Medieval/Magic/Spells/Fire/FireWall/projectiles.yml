@@ -57,7 +57,7 @@
     spawnedOnInvalidLocation: MedievalFireWallBeginnerInvalidPosition
     barrierLength: 1
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
     layersBlackList:
@@ -95,7 +95,7 @@
     spawnedEntity: MedievalFireWallBeginnerClone
     barrierLength: 1
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
     layersBlackList:
@@ -121,7 +121,7 @@
     spawnedOnInvalidLocation: MedievalFireWallMiddleInvalidPosition
     barrierLength: 2
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
     layersBlackList:
@@ -161,7 +161,7 @@
     spawnedEntity: MedievalFireWallMiddleClone
     barrierLength: 2
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
     layersBlackList:
@@ -188,7 +188,7 @@
     spawnedOnInvalidLocation: MedievalFireWallSeniorInvalidPosition
     barrierLength: 3
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
     layersBlackList:
@@ -228,7 +228,7 @@
     spawnedEntity: MedievalFireWallSeniorClone
     barrierLength: 3
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
     layersBlackList:

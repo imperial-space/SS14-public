@@ -1,69 +1,58 @@
 ﻿namespace Content.Shared.Imperial.Medieval.SmithingSystem.Bui;
 
-public sealed class SmithGameState
+public sealed class SmithGameState(int steps, float maxGameTime)
 {
-    public TimeSpan StartTime;
-    public TimeSpan ForceEndTime;
-    public bool Started { get; private set; }
-
-    private readonly int _steps;
-    private int _completedSteps;
-    private readonly float _maxGameTime;
-
     private readonly Dictionary<SmithHitState, int> _hitStates = new()
     {
-        { SmithHitState.Good, 0},
-        { SmithHitState.Neutral, 0},
-        { SmithHitState.Missed, 0},
+        { SmithHitState.Good, 0 },
+        { SmithHitState.Neutral, 0 },
+        { SmithHitState.Missed, 0 },
     };
 
-    public SmithGameState(int steps, float maxGameTime)
-    {
-        _steps = steps;
-        _maxGameTime = maxGameTime;
-    }
+    private int _misclickPenalty;
+    public TimeSpan ForceEndTime;
+    public TimeSpan StartTime;
+
+    public bool Started { get; private set; }
+    public int StepsTotal { get; } = steps;
+
+    public int CompletedSteps { get; private set; }
 
     public void Start(TimeSpan currentTime)
     {
         StartTime = currentTime;
-        ForceEndTime = currentTime + TimeSpan.FromSeconds(_maxGameTime + 5f);
+        ForceEndTime = currentTime + TimeSpan.FromSeconds(maxGameTime + 5f);
 
         Started = true;
     }
 
     public void AddStep(SmithHitState state, bool incrementSteps = true)
     {
-        if (_completedSteps >= _steps)
-        {
+        if (CompletedSteps >= StepsTotal)
             return;
-        }
-
-        _hitStates[state]++;
 
         if (incrementSteps)
         {
-            _completedSteps++;
+            _hitStates[state]++;
+            CompletedSteps++;
+            return;
         }
+
+        if (state == SmithHitState.Missed)
+            _misclickPenalty++;
     }
 
     public int CalculateScore()
     {
         var score = 0;
 
-        foreach (var kvp in _hitStates)
-        {
-            if (kvp.Key == SmithHitState.Good)
-            {
-                score += kvp.Value;
-            }
-            else if (kvp.Key == SmithHitState.Missed)
-            {
-                score -= kvp.Value;
-            }
-        }
+        score += _hitStates[SmithHitState.Good];
+        score -= _hitStates[SmithHitState.Missed];
 
-        var forceEnded = _steps - _completedSteps;
+        var forceEnded = StepsTotal - CompletedSteps;
         score -= forceEnded;
+
+        score -= _misclickPenalty;
 
         return score;
     }

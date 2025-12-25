@@ -421,6 +421,10 @@
     - id: FoodMeatCooked
     - id: MedievalHatchet
     - id: MedievalJailPosxalka
+    - id: MedievalGoldCup
+      weight: 0.5
+    - id: MedievalSilverCup
+      weight: 0.5
 
 - type: entity
   parent: BaseStructure
@@ -904,8 +908,8 @@
     solution: beaker
   - type: RefillableSolution
     solution: beaker
-  # - type: DrainableSolution
-    # solution: beaker
+  - type: DrainableSolution
+    solution: beaker
   #- type: ExaminableSolution
   #  solution: beaker
   - type: DrawableSolution
@@ -953,6 +957,94 @@
     damage:
       types:
         Blunt: 0
+
+- type: entity
+  abstract: true
+  id: MedievalDrinkBaseMaterialGold
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: FlimsyMetallic
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 2
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 25
+
+- type: entity
+  abstract: true
+  id: MedievalDrinkBaseMaterialSilver
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: FlimsyMetallic
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 2
+  - type: PhysicalComposition
+    materialComposition:
+      Silver: 25
+
+- type: entity
+  parent: [MedievalDrinkBaseMaterialGold, DrinkBaseCup, DrinkVisualsFill]
+  id: MedievalGoldCup
+  name: golden cup
+  description: An elegant golden cup.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 25
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/goldcup.rsi
+    layers:
+      - state: icon
+      - state: Fill-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 5
+    fillBaseName: Fill-
+    inHandsMaxFillLevels: 0
+    inHandsFillBaseName: null
+  - type: StaticPrice
+    price: 150
+  - type: Tag
+    tags:
+    - DrinkCup
+    - DrinkGlass
+
+- type: entity
+  parent: [MedievalDrinkBaseMaterialSilver, DrinkBaseCup, DrinkVisualsFill]
+  id: MedievalSilverCup
+  name: silver cup
+  description: An elegant silver cup.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 25
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/silvercup.rsi
+    layers:
+      - state: icon
+      - state: Fill-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 5
+    fillBaseName: Fill-
+    inHandsMaxFillLevels: 0
+    inHandsFillBaseName: null
+  - type: StaticPrice
+    price: 100
+  - type: Tag
+    tags:
+    - DrinkCup
+    - DrinkGlass
 
 # - type: entity
 #   parent: BaseAPC
@@ -8050,6 +8142,19 @@
         volume: -10
   - type: UseDelay
     delay: 2.0
+
+- type: entity
+  parent: BaseItem
+  id: DeimonStaffMedieval
+  name: DeimonStaffMedieval
+  description: DeimonStaffMedieval
+  components:
+  - type: Item
+    sprite: Imperial/Medieval/Misc/ahrimanstaff.rsi
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/ahrimanstaff.rsi
+    state: icon
 
 - type: entity
   parent: BaseStructureMedieval

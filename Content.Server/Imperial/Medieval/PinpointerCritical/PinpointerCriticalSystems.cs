@@ -1,3 +1,4 @@
+using Content.Shared.Humanoid;
 using Content.Shared.Imperial.PinpointerCritical.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs;
@@ -27,7 +28,8 @@ public sealed partial class PinpointerCriticalSystem : EntitySystem
         var query = EntityQueryEnumerator<MobThresholdsComponent>();
         while (query.MoveNext(out var uidd, out var compp))
         {
-            if (compp.CurrentThresholdState == MobState.Critical) // Проверка на критическое состояние
+            if (HasComp<HumanoidAppearanceComponent>(uidd) && compp.CurrentThresholdState == MobState.Critical
+             && Transform(ev.User).ParentUid == Transform(uidd).ParentUid) // Проверка на критическое состояние
             {
                 var targetCoords = _transform.GetMapCoordinates(uidd); // Координаты цели
                 var distance = (float)(targetCoords.Position - userCoords.Position).LengthSquared(); // Квадрат расстояния

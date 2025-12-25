@@ -2,8 +2,14 @@
                   xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Ghost.Widgets"
                   HorizontalAlignment="Center">
     <BoxContainer Orientation="Horizontal">
-        <Button Name="ReturnToBodyButton" Text="{Loc ghost-gui-return-to-body-button}" />
-        <Button Name="GhostWarpButton" Text="{Loc ghost-gui-ghost-warp-button}" />
-        <Button Name="GhostRolesButton" />
+        <Button Name="ReturnToBodyButton"
+                Text="{Loc ghost-gui-return-to-body-button}"/>
+        <Button Name="GhostWarpButton"
+                Text="{Loc ghost-gui-ghost-warp-button}"/>
+        <Button Name="GhostRolesButton"/>
+        <!-- Imperial Medieval Revive start -->
+        <Button Name="GhostReviveButton"
+                Text="{Loc ghost-gui-ghost-revive-button}"/>
+        <!-- Imperial Medieval Revive end -->
     </BoxContainer>
 </widgets:GhostGui>

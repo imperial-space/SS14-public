@@ -1,0 +1,38 @@
+- type: entity
+  name: universal pinpointer
+  description: A handheld tracking device that locks onto any physical entity while off. Keep upright to retain accuracy.
+  id: MedievalPinpointerCritical
+  parent: PinpointerBase
+  components:
+  - type: Pinpointer
+    updateTargetName: true
+    canRetarget: false
+  - type: PinpointerCritical
+  - type: Sprite
+    noRot: True
+    sprite: Objects/Devices/pinpointer.rsi
+    layers:
+    - state: pinpointer
+      map: ["enum.PinpointerLayers.Base"]
+    - state: pinonnull
+      map: ["enum.PinpointerLayers.Screen"]
+      shader: unshaded
+      visible: false
+  - type: Icon
+    sprite: Objects/Devices/pinpointer.rsi
+    state: pinpointer-way
+  - type: Item
+    sprite: Objects/Devices/pinpointer.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#8e1518"
+      - state: inhand-left-stripe
+        color: "#8e1518"
+      - state: inhand-left-top
+      right:
+      - state: inhand-right-base
+        color: "#8e1518"
+      - state: inhand-right-stripe
+        color: "#8e1518"
+      - state: inhand-right-top

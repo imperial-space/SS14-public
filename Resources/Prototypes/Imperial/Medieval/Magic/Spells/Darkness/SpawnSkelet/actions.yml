@@ -140,7 +140,7 @@
   parent: MedievalLateMobSpawnerBase
   components:
   - type: SlowMobSpawn
-    spawnMob: MedievalMobSkeletWeak
+    spawnMob: MedievalMobSkeletWeakSpell
 
 - type: entity
   id: MedievalSpellMobSpawnerMedievalSpawnerSkeletonSpawnerMeat
@@ -148,7 +148,7 @@
   parent: MedievalLateMobSpawnerBase
   components:
   - type: SlowMobSpawn
-    spawnMob: MedievalMobSkeletMeat
+    spawnMob: MedievalMobSkeletMeatSpell
 
 - type: entity
   id: MedievalSpellMobSpawnerMedievalSpawnerSkeletonSpawnerFighter
@@ -156,4 +156,4 @@
   parent: MedievalLateMobSpawnerBase
   components:
   - type: SlowMobSpawn
-    spawnMob: MedievalMobSkeletFighter
+    spawnMob: MedievalMobSkeletFighterSpell

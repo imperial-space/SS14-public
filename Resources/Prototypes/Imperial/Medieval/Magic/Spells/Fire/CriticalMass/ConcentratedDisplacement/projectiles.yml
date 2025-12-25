@@ -4,7 +4,7 @@
   id: MedievalProjectileConcentratedDisplacementMiddle
   components:
   - type: RepeatingTrigger
-    delay: 0.75
+    delay: 1.2
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
@@ -19,7 +19,7 @@
   id: MedievalProjectileConcentratedDisplacementSenior
   components:
   - type: RepeatingTrigger
-    delay: 0.75
+    delay: 1.2
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default

@@ -1133,13 +1133,12 @@
         density: 190
         mask:
         - SmallMobMask
-        layer:
-        - MachineLayer
   - type: PointLight
     color: Orange
     radius: 12
     energy: 2.3
   - type: Anchorable
+  - type: AlwaysHot
   - type: AmbientSound
     volume: -15
     range: 1.5
@@ -1175,8 +1174,6 @@
         density: 190
         mask:
         - SmallMobMask
-        layer:
-        - MachineLayer
   - type: PointLight
     color: Orange
     radius: 18

@@ -9,26 +9,26 @@ namespace Content.Shared.Armor;
 /// <summary>
 /// Used for clothing that reduces damage when worn.
 /// </summary>
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedArmorSystem), typeof(SharedSmithingSystem))] // Imperial medieval smithing
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(SharedArmorSystem), typeof(SharedSmithingSystem))] // Imperial medieval smithing
 public sealed partial class ArmorComponent : Component
 {
     /// <summary>
     /// The damage reduction
     /// </summary>
-    [DataField(required: true)]
+    [DataField(required: true), AutoNetworkedField] // Imperial medieval smithing
     public DamageModifierSet Modifiers = default!;
 
     /// <summary>
     /// A multiplier applied to the calculated point value
     /// to determine the monetary value of the armor
     /// </summary>
-    [DataField]
-    public float PriceMultiplier = 1;
+    [DataField, AutoNetworkedField] // Imperial medieval smithing
+    public float PriceMultiplier = 1f; // Imperial medieval smithing
 
     /// <summary>
     /// If true, you can examine the armor to see the protection. If false, the verb won't appear.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField] // Imperial medieval smithing
     public bool ShowArmorOnExamine = true;
 }
 

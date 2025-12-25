@@ -21,6 +21,19 @@ public abstract partial class SharedMedievalFactionsSystem
 
         return false;
     }
+    public bool TryGetRelation(ProtoId<MedievalFactionPrototype> faction1, ProtoId<MedievalFactionPrototype> faction2, out ProtoId<FactionRelationsPrototype> relation)
+    {
+        if (!TryGetFactionDataContainer(out var container))
+        {
+            relation = default;
+            return false;
+        }
+        var relations = container.Value.Comp.Relations;
+        if (relations.TryGetValue(faction1, out var dict) && dict.TryGetValue(faction2, out relation))
+            return true;
+        relation = default;
+        return false;
+    }
 
     public bool TryGetFactionMemberData(int id, [NotNullWhen(true)] out FactionMemberData? data)
     {

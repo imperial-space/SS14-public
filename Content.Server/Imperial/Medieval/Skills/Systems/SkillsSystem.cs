@@ -40,6 +40,14 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
 
         SubscribeNetworkEvent<SetSkillLevelMessage>(OnSetSkillLevel);
     }
+    public bool TryGetSkill(EntityUid uid, string skillId, out int level)
+    {
+        level = 0;
+        if (!TryComp<SkillsComponent>(uid, out var skills))
+            return false;
+
+        return skills.Levels.TryGetValue(skillId, out level);
+    }
 
     private void OnLevelChanged(EntityUid uid, SkillsComponent comp, ref SkillLevelChangedEvent args)
     {

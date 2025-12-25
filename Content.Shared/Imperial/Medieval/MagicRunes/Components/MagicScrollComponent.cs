@@ -14,7 +14,7 @@ namespace Content.Shared.Imperial.Medieval.MagicRunes.Components;
 public sealed partial class MagicScrollComponent : Component
 {
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
-    public int BasicPower = 5;
+    public int BasicPower = 2;
 
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
     public int MaxRunes = 4;
@@ -32,12 +32,12 @@ public sealed partial class MagicScrollComponent : Component
     public HashSet<MagicRune> DecodedRunes = new();
 
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
-    public int GridSize = 8;
+    public int GridSize = 7;
 
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
-    public int TotalMines = 9;
+    public int TotalMines = 7;
 
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
-    public int PointsPerDecodedRune = 6;
+    public int PointsPerDecodedRune = 8;
 }
 

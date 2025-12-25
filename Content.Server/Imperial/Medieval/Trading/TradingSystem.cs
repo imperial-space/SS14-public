@@ -26,6 +26,7 @@ public partial class TradingSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
 
 
+    [ViewVariables]
     public List<Guild> Guilds = new();
 
     public override void Initialize()

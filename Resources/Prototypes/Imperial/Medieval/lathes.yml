@@ -938,6 +938,8 @@
     - MedievalMopItem
     - MedievalMopBucket
     - MedievalKnut
+    - MedievalGoldCup
+    - MedievalSilverCup
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -1047,6 +1049,11 @@
     - MedievalReliefStoneStrongCraft
     - MedievalAntiGravitationStoneCraft
     - MedievalDragonQuantEssence
+    - MedievalScrollsHalberdCraft
+    - MedievalScrollsFalshionCraft
+    - MedievalScrollsDaggerCraft
+    - MedievalScrollsBowCraft
+    - MedievalScrollsCrossbowCraft
 
 - type: entity
   parent: CP14BaseWorkbench

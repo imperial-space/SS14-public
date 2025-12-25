@@ -1,91 +1,159 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Text;
+using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
+using Content.Shared.Imperial.Medieval.Language;
+using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Speech;
-using Robust.Shared.Random;
 
 namespace Content.Server.Speech.EntitySystems;
 
 public sealed class OrcAccentSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    // Окончания, суффиксы и другие части слов для замены
+    // Увы, без NLP дальше не уйти!
+    // Причастия/деепричастия обрабатываться не должны.
+    private static readonly (string ending, string replacement)[] VerbEndings =
+    {
+        // Настоящее + будущее совершенное время
+        ("аю", "ать"), ("аешь", "ать"), ("аёшь", "ать"), ("ает", "ать"),
+        ("аёт", "ать"), ("аем", "ать"), ("аём", "ать"), ("ают", "ать"),
+
+        ("ят", "еть"), ("ит", "еть"), ("ишь", "еть"),
+
+        ("лю", "ить"), ("ью", "ить"), ("ьешь", "ить"), ("ьет", "ить"),
+        ("ьем", "ить"), ("ьют", "ить"), ("иву", "ить"), ("ивешь", "ить"),
+        ("ивет", "ить"), ("ивем", "ить"), ("ивут", "ить"),
+
+        // Будущее время
+        ("ам", "ать"), ("ашь", "ать"), ("ану", "ать"), ("аст", "ать"),
+        ("адим", "ать"),
+
+        // Прошедшее время
+        ("ал", "ать"), ("ала", "ать"), ("ало", "ать"), ("али", "ать"),
+        ("ил", "ить"), ("ила", "ить"), ("ило", "ить"), ("или", "ить"),
+        ("ел", "еть"), ("ели", "еть"), ("ело", "еть"), ("ела", "еть"),
+        ("ул", "уть"), ("ула", "уть"), ("ули", "уть"), ("уло", "уть"),
+        ("ыл", "ыть"), ("ыла", "ыть"), ("ыло", "ыть"), ("ыли", "ыть"),
+        ("ял", "ять"), ("яла", "ять"), ("яло", "ять"), ("яли", "ять"),
+        ("ла", "ти"), ("ло", "ти"), ("ли", "ти"),
+
+        // Повелительное наклонение (исключения)
+        ("ай", "ать"), ("иви", "ить")
+    };
+    // Замены в повелительных глаголах проверяется отдельно:
+    // Орки – Оркать (неправильно, не обрабатывается);
+    // БегиТЕ - Бегать (правильно, обрабатывается).
+    private static readonly (string ending, string replacement)[] VerbEndingsImperative =
+    {
+        ("иви", "ить"), ("иве", "ить"), ("йди", "йти"), ("ли", "лить"),
+        ("ади", "ать"), ("ди", "дти"), ("ей", "ить"), ("ае", "ать"),
+        ("аё", "ать"), ("ье", "ить"), ("ьё", "ить"), ("ай", "ать"),
+        ("и", "ать"), ("ь", "ить"),
+    };
+    private static readonly Regex RegexWordSplit = new(@"(?<=[^\p{L}\d])|(?=[^\p{L}\d])");
+    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private readonly SharedSkillsSystem _skills = default!;
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<OrcAccentComponent, AccentGetEvent>(OnAccent);
     }
 
-    private void OnAccent(EntityUid uid, OrcAccentComponent component, AccentGetEvent args)
+    private string MatchCase(string src, string dest)
     {
-        var message = args.Message;
+        if (string.IsNullOrEmpty(src)) return dest;
+        // Целевое окончание может иметь только два регистра;
+        // Проверяем его по последней букве корня.
+        if (char.IsUpper(src[^1])) return dest.ToUpper();
+        return dest;
+    }
 
+    public string ToInfinitive(string word)
+    {
+        var lower = word.ToLower();
 
+        // Удаление постфиксов (повелительных и возвратных) если они есть:
+        // Бьется - Бьет;
+        // Рубитесь - Руби.
+        bool reflexive = lower.EndsWith("ся") || lower.EndsWith("сь");
+        if (reflexive) lower = lower.Substring(0, lower.Length - 2);
+        bool imperative = lower.EndsWith("те");
 
-        if (message.StartsWith("я", StringComparison.Ordinal))
+        // Повелительное наклонение – отдельная проверка...
+        if (imperative)
         {
-            message.Remove(0, 1).Insert(0, "моя");
+            lower = lower.Substring(0, lower.Length - 2);
+            foreach (var (ending, replacement) in VerbEndingsImperative)
+            {
+                if (lower.EndsWith(ending))
+                {
+                    int end_index = lower.Length - ending.Length;
+
+                    if (end_index == 0) return word;
+
+                    string stem = word.Substring(0, end_index);
+                    string infinitive = reflexive ? stem + replacement + "ся" : stem + replacement;
+                    return MatchCase(word, infinitive);
+                }
+            }
+            return word;
         }
 
-        message = Regex.Replace(message, "ты+", "твоя");
-        message = Regex.Replace(message, "Ты+", "Твоя");
-        message = Regex.Replace(message, "ТЫ+", "ТВОЯ");
+        // Последовательная проверка на окончания вместо наивных Regex замен
+        foreach (var (ending, replacement) in VerbEndings)
+        {
+            if (lower.EndsWith(ending))
+            {
+                int end_index = lower.Length - ending.Length;
 
-        message = Regex.Replace(message, "тебе+", "твоя");
-        message = Regex.Replace(message, "Тебе+", "Твоя");
-        message = Regex.Replace(message, "ТЕБЕ+", "ТВОЯ");
+                if (end_index == 0) return word;
 
-        message = Regex.Replace(message, "маг+", "колдубей");
-        message = Regex.Replace(message, "Маг+", "Колдубей");
-        message = Regex.Replace(message, "МАГ+", "КОЛДУБЕЙ");
+                string stem = word.Substring(0, end_index);
+                // TODO: Проверить корень и заменить исключения (i.e. сарай, аколит).
+                string infinitive = reflexive ? stem + replacement + "ся" : stem + replacement;
+                return MatchCase(word, infinitive);
+            }
+        }
+        return word;
+    }
 
-        message = Regex.Replace(message, "волшебник+", "колдубей");
-        message = Regex.Replace(message, "Волшебник+", "Колдубей");
-        message = Regex.Replace(message, "ВОЛШЕБНИК+", "КОЛДУБЕЙ");
+    public string Accentuate(string message, OrcAccentComponent component, string? name)
+    {
+        // Прямые замены слов и местоимений через акцент замены
+        var msg = _replacement.ApplyReplacements(message, "orc");
 
-        message = Regex.Replace(message, "чародей+", "колдубей");
-        message = Regex.Replace(message, "Чародей+", "Колдубей");
-        message = Regex.Replace(message, "ЧАРОДЕЙ+", "КОЛДУБЕЙ");
+        var result = new StringBuilder();
 
-        message = Regex.Replace(message, "не+", "ны");
-        message = Regex.Replace(message, "Не+", "Ны");
-        message = Regex.Replace(message, "НЕ+", "НЫ");
+        // Каждое слово обрабатывается отдельно и единожды
+        foreach (var element in RegexWordSplit.Split(msg))
+        {
+            // Замена "Я" с учетом регистра
+            if (element.ToLower() == "я")
+            {
+                var pronoun = name == null ? "моя" : name;
+                result.Append(MatchCase(element, pronoun.Substring(0, 1))).Append(pronoun.Substring(1));
+                continue;
+            }
 
-        message = Regex.Replace(message, "ай+", "ать");
-        message = Regex.Replace(message, "АЙ+", "АТЬ");
+            // Приведение глаголов к неопределённой форме
+            result.Append(element.Length <= 1 ? element : ToInfinitive(element));
+        }
 
-        message = Regex.Replace(message, "да ", "ды ");
-        message = Regex.Replace(message, "Да ", "Ды ");
-        message = Regex.Replace(message, "ДА ", "ДЫ ");
+        return result.ToString();
+    }
 
-        message = Regex.Replace(message, "аю+", "ать");
-        message = Regex.Replace(message, "АЮ+", "АТЬ");
-
-        message = Regex.Replace(message, "ешь+", "ать");
-        message = Regex.Replace(message, "ЕШЬ+", "АТЬ");
-
-        message = Regex.Replace(message, "ёшь+", "ать");
-        message = Regex.Replace(message, "ЁШЬ+", "АТЬ");
-
-        message = Regex.Replace(message, "ете+", "ать");
-        message = Regex.Replace(message, "ЕТЕ+", "АТЬ");
-
-        message = Regex.Replace(message, "ет+", "ать");
-        message = Regex.Replace(message, "ЕТ+", "АТЬ");
-
-        message = Regex.Replace(message, "им+", "ать");
-        message = Regex.Replace(message, "ИМ+", "АТЬ");
-
-        message = Regex.Replace(message, "ишь+", "ать");
-        message = Regex.Replace(message, "ИШЬ+", "АТЬ");
-
-        message = Regex.Replace(message, "ите+", "ать");
-        message = Regex.Replace(message, "ИТЕ+", "АТЬ");
-
-        message = Regex.Replace(message, "ят+", "ать");
-        message = Regex.Replace(message, "ЯТ+", "АТЬ");
-
-        message = Regex.Replace(message, "ал+", "ать");
-        message = Regex.Replace(message, "АЛ+", "АТЬ");
-
-        args.Message = message;
+    private void OnAccent(EntityUid uid, OrcAccentComponent component, AccentGetEvent args)
+    {
+        // При разговоре на орочьем языке акцент не применяется
+        if (TryComp<LanguageSpeakerComponent>(uid, out var comp))
+        {
+            if (comp.CurrentLanguage == "Orc")
+            {
+                return;
+            }
+        }
+        // Достаточно глупые орки вместо "я" используют свое имя
+        var firstname = Name(uid).Split(' ')[0];
+        args.Message = Accentuate(args.Message, component, _skills.CanRead(uid) ? null : firstname);
     }
 }

@@ -1,22 +1,22 @@
-
 - type: entity
   id: SpawnPointMedievalMobPlayerRespawn
   name: ghost role spawn point
   suffix: rat king
   parent: MarkerBase
   components:
-  - type: GhostRole
-    name: Перерождение
-    description: Пройдите испытание для респавна
-    rules: Выбейте необходимое количество магической эссенции из злых духов вокруг и купите за нее магический ключ. После чего кликните ключом по особой двери и отправьтесь на респавн. Учтите, [color=red]ЗАХОДИТЬ ЗА ТОГО ЖЕ ПЕРСОНАЖА НЕЛЬЗЯ[/color]!!
+    # - type: GhostRole
+    #   name: Перерождение
+    #   description: Пройдите испытание для респавна
+    #   rules: Выбейте необходимое количество магической эссенции из злых духов вокруг и купите за нее магический ключ. После чего кликните ключом по особой двери и отправьтесь на респавн. Учтите, [color=red]ЗАХОДИТЬ ЗА ТОГО ЖЕ ПЕРСОНАЖА НЕЛЬЗЯ[/color]!!
     #raffle:
     #  settings: default
-  - type: GhostRoleMobSpawner
-    prototype: MedievalMobPlayerRespawn
-  - type: Sprite
-    sprite: Markers/jobs.rsi
-    layers:
-      - state: green
+    # - type: GhostRoleMobSpawner
+    #   prototype: MedievalMobPlayerRespawn
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+    - type: MedievalReviveSpawner
 
 - type: entity
   name: Urist GigaResp
@@ -24,168 +24,167 @@
   parent: [SimpleMobBase, StripableInventoryBase]
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a resp. Tastes like pork, and killing them is both fun and relaxing.
   components:
-  - type: AreaMarkerInvoker
-  - type: Damageable
-    damageModifierSet: MedievalRespawnPlayer
-  - type: CombatMode
-  - type: MedievalMobTrigger
-    fixtureId: "medieval-spawner"
-  - type: TDMNaming
-  - type: Inventory
-    templateId: goblin
-  - type: InventorySlots
-  - type: Cuffable
-  - type: RotationVisuals
-    defaultRotation: 90
-    horizontalRotation: 90
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-        density: 80
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-      medieval-spawner: # imperial medieval start
-        shape: !type:PhysShapeCircle
-          radius: 0.4
-        layer: []
-        #layer:
-        #- DoorPassable
-        mask:
-        - MedievalSpawnerLayer
-        hard: false # imperial medieval end
-  - type: Stripping
-  - type: Strippable
-  - type: UserInterface
-    interfaces:
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: player
-      sprite: Imperial/Medieval/Mobs/Respawn/player.rsi
-    - map: ["jumpsuit"]
-    - map: [ "id" ]
-    - map: [ "gloves" ]
-    - map: [ "shoes" ]
-    - map: [ "ears" ]
-    - map: [ "outerClothing" ]
-    - map: [ "eyes" ]
-    - map: [ "belt" ]
-    - map: [ "neck" ]
-    - map: [ "back" ]
-    - map: [ "mask" ]
-    - map: [ "head" ]
-    - map: [ "pocket1" ]
-    - map: [ "pocket2" ]
-    - map: ["enum.HumanoidVisualLayers.Handcuffs"]
-      color: "#ffffff"
-      sprite: Objects/Misc/handcuffs.rsi
-      state: body-overlay-2
-      visible: false
-    - map: [ "clownedon" ]
-      sprite: "Effects/creampie.rsi"
-      state: "creampie_human"
-      visible: false
-  - type: Hands
-  - type: GenericVisualizer
-    visuals:
-      enum.CreamPiedVisuals.Creamed:
-        clownedon:
-          True: {visible: true}
-          False: {visible: false}
-  - type: Speech
-    speechVerb: Ghost
-  - type: Body
-    prototype: Reptilian
-    requiredLegs: 2
-  - type: CreamPied
-  - type: FireVisuals
-    sprite: Mobs/Effects/onfire.rsi
-    normalState: Standing
-  - type: Puller
-  - type: CanHostGuardian
-  - type: NPCRetaliation
-    attackMemoryLength: 40
-  - type: FactionException
-  - type: ComplexInteraction
-  - type: NpcFactionMember
-    factions:
-      - Passive
-  - type: HTN
-    rootTask:
-      task: SimpleHostileCompound
-  - type: GhostRole
-    prob: 1
-    makeSentient: true
-    name: Перерождение
-    description: Пройдите испытание для респавна
-    rules: Выбейте необходимое количество магической эссенции из злых духов вокруг и купите за нее магический ключ. После чего кликните ключом по особой двери и отправьтесь на респавн. Учтите, [color=red]ЗАХОДИТЬ ЗА ТОГО ЖЕ ПЕРСОНАЖА НЕЛЬЗЯ[/color]!!
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
-  #- type: IdExaminable
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      150: 0.7
-      255: 0.5
-  - type: MeleeWeapon
-    hidden: true
-    soundHit:
-      collection: Punch
-    angle: 30
-    animation: WeaponArcFist
-    attackRate: 1
-    damage:
-      types:
-        Blunt: 28
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      500: Critical
-      501: Dead
-  - type: Bloodstream
-    bloodMaxVolume: 0
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 501
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: Loadout
-    prototypes: [ MedievalRespawnPlayer ]
-  - type: Mana
-    maxMana: 150
-    regen: 8
-  - type: PassiveDamage # Slight passive regen. Assuming one damage type, comes out to about 4 damage a minute.
-    allowedStates:
-    - Alive
-    damageCap: 500
-    damage:
-      types:
-        Heat: -9
-      groups:
-        Brute: -8
-  - type: Thirst
-    baseDecayRate: 0
-  - type: Hunger
-    baseDecayRate: 0
-  - type: TriggerOnSpawn
-  - type: SpawnOnTrigger
-    proto: SpawnPointMedievalMobPlayerRespawn
-  - type: AddActionOnSpawn
-    actions:
-      - MedievalActionMagicArrowCursorFolloverBeginner
-      - MedievalActionDivineTouchBeginner
-  - type: NrpIgnore
+    - type: AreaMarkerInvoker
+    - type: Damageable
+      damageModifierSet: MedievalRespawnPlayer
+    - type: CombatMode
+    - type: MedievalMobTrigger
+      fixtureId: "medieval-spawner"
+    - type: TDMNaming
+    - type: Inventory
+      templateId: goblin
+    - type: InventorySlots
+    - type: Cuffable
+    - type: RotationVisuals
+      defaultRotation: 90
+      horizontalRotation: 90
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PhysShapeCircle
+            radius: 0.35
+          density: 80
+          mask:
+            - MobMask
+          layer:
+            - MobLayer
+        medieval-spawner: # imperial medieval start
+          shape: !type:PhysShapeCircle
+            radius: 0.4
+          layer: []
+          #layer:
+          #- DoorPassable
+          mask:
+            - MedievalSpawnerLayer
+          hard: false # imperial medieval end
+    - type: Stripping
+    - type: Strippable
+    - type: UserInterface
+      interfaces:
+        enum.StrippingUiKey.Key:
+          type: StrippableBoundUserInterface
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+        - map: ["enum.DamageStateVisualLayers.Base"]
+          state: player
+          sprite: Imperial/Medieval/Mobs/Respawn/player.rsi
+        - map: ["jumpsuit"]
+        - map: ["id"]
+        - map: ["gloves"]
+        - map: ["shoes"]
+        - map: ["ears"]
+        - map: ["outerClothing"]
+        - map: ["eyes"]
+        - map: ["belt"]
+        - map: ["neck"]
+        - map: ["back"]
+        - map: ["mask"]
+        - map: ["head"]
+        - map: ["pocket1"]
+        - map: ["pocket2"]
+        - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+          color: "#ffffff"
+          sprite: Objects/Misc/handcuffs.rsi
+          state: body-overlay-2
+          visible: false
+        - map: ["clownedon"]
+          sprite: "Effects/creampie.rsi"
+          state: "creampie_human"
+          visible: false
+    - type: Hands
+    - type: GenericVisualizer
+      visuals:
+        enum.CreamPiedVisuals.Creamed:
+          clownedon:
+            True: { visible: true }
+            False: { visible: false }
+    - type: Speech
+      speechVerb: Ghost
+    - type: Body
+      prototype: Reptilian
+      requiredLegs: 2
+    - type: CreamPied
+    - type: FireVisuals
+      sprite: Mobs/Effects/onfire.rsi
+      normalState: Standing
+    - type: Puller
+    - type: CanHostGuardian
+    - type: NPCRetaliation
+      attackMemoryLength: 40
+    - type: FactionException
+    - type: ComplexInteraction
+    - type: NpcFactionMember
+      factions:
+        - Passive
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: GhostRole
+      prob: 1
+      makeSentient: true
+      name: Перерождение
+      description: Пройдите испытание для респавна
+      rules: Выбейте необходимое количество магической эссенции из злых духов вокруг и купите за нее магический ключ. После чего кликните ключом по особой двери и отправьтесь на респавн. Учтите, [color=red]ЗАХОДИТЬ ЗА ТОГО ЖЕ ПЕРСОНАЖА НЕЛЬЗЯ[/color]!!
+      raffle:
+        settings: default
+    - type: GhostTakeoverAvailable
+    #- type: IdExaminable
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        150: 0.7
+        255: 0.5
+    - type: MeleeWeapon
+      hidden: true
+      soundHit:
+        collection: Punch
+      angle: 30
+      animation: WeaponArcFist
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 28
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        500: Critical
+        501: Dead
+    - type: Bloodstream
+      bloodMaxVolume: 0
+    - type: Destructible
+      thresholds:
+        - trigger: !type:DamageTrigger
+            damage: 501
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+    - type: Loadout
+      prototypes: [MedievalRespawnPlayer]
+    - type: Mana
+      maxMana: 150
+      regen: 8
+    - type: PassiveDamage # Slight passive regen. Assuming one damage type, comes out to about 4 damage a minute.
+      allowedStates:
+        - Alive
+      damageCap: 500
+      damage:
+        types:
+          Heat: -9
+        groups:
+          Brute: -8
+    - type: Thirst
+      baseDecayRate: 0
+    - type: Hunger
+      baseDecayRate: 0
+    - type: TriggerOnSpawn
+    - type: SpawnOnTrigger
+      proto: SpawnPointMedievalMobPlayerRespawn
+    - type: AddActionOnSpawn
+      actions:
+        - MedievalActionMagicArrowCursorFolloverBeginner
+        - MedievalActionDivineTouchBeginner
+    - type: NrpIgnore
+    - type: KillsUntilRevive
 
 - type: startingGear
   id: MedievalRespawnPlayer
@@ -200,106 +199,105 @@
   id: MedievalMobGhostRespawnDefence
   description: They're a golem.
   components:
-  - type: Temperature
-    heatDamageThreshold: 325
-    coldDamageThreshold: 260
-    currentTemperature: 310.15
-    specificHeat: 42
-    coldDamage:
-      types:
-        Cold: 0.01 #per second, scales with temperature & other constants
-    heatDamage:
-      types:
-        Heat: 0.01
-  - type: TimedDespawn
-    lifetime: 180
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: Imperial/Medieval/Mobs/Respawn/angry.rsi
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: ghost
-  - type: Physics
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.45
-        density: 50
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-  - type: Appearance
-  - type: Bloodstream
-    bloodMaxVolume: 0
-  - type: Puller
-  - type: Tag
-    tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      12: Critical
-      13: Dead
-  - type: Damageable
-    damageModifierSet: MedievalRespawn
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 3.7
-    baseSprintSpeed : 3.7
-  - type: PointLight
-    color: red
-    energy: 2
-    radius: 1.5
-  - type: NpcFactionMember
-    factions:
-      - Xeno
-  - type: InputMover
-  - type: MobMover
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      10: 1
-      30: 0.8
-      50: 0.7
-      70: 0.6
-  - type: IgnoreSpiderWeb
-  - type: Thirst
-    baseDecayRate: 0
-  - type: Hunger
-    baseDecayRate: 0
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 12
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          MedievalEssence:
-            min: 1
-            max: 1
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: HTN
-    rootTask:
-      task: SimpleRangedHostileCompound
-  - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 1.2
-  - type: BasicEntityAmmoProvider
-    proto: MedievalBulletUnholly
-    capacity: 1
-    count: 1
-  - type: Gun
-    projectileSpeed: 7
-    fireRate: 1
-    useKey: false
-    selectedMode: FullAuto
-    availableModes:
-      - FullAuto
-    soundGunshot: /Audio/Magic/blink.ogg
+    - type: Temperature
+      heatDamageThreshold: 325
+      coldDamageThreshold: 260
+      currentTemperature: 310.15
+      specificHeat: 42
+      coldDamage:
+        types:
+          Cold: 0.01 #per second, scales with temperature & other constants
+      heatDamage:
+        types:
+          Heat: 0.01
+    - type: TimedDespawn
+      lifetime: 180
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: Imperial/Medieval/Mobs/Respawn/angry.rsi
+      layers:
+        - map: ["enum.DamageStateVisualLayers.Base"]
+          state: ghost
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PhysShapeCircle
+            radius: 0.45
+          density: 50
+          mask:
+            - MobMask
+          layer:
+            - MobLayer
+    - type: Appearance
+    - type: Bloodstream
+      bloodMaxVolume: 0
+    - type: Puller
+    - type: Tag
+      tags:
+        - CannotSuicide
+        - DoorBumpOpener
+        - FootstepSound
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        12: Critical
+        13: Dead
+    - type: Damageable
+      damageModifierSet: MedievalRespawn
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3.7
+      baseSprintSpeed: 3.7
+    - type: PointLight
+      color: red
+      energy: 2
+      radius: 1.5
+    - type: NpcFactionMember
+      factions:
+        - Xeno
+    - type: InputMover
+    - type: MobMover
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        10: 1
+        30: 0.8
+        50: 0.7
+        70: 0.6
+    - type: IgnoreSpiderWeb
+    - type: Thirst
+      baseDecayRate: 0
+    - type: Hunger
+      baseDecayRate: 0
+    - type: Destructible
+      thresholds:
+        - trigger: !type:DamageTrigger
+            damage: 12
+          behaviors:
+            # - !type:SpawnEntitiesBehavior
+            #   spawn:
+            #     MedievalEssence:
+            #       min: 1
+            #       max: 1
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+    - type: HTN
+      rootTask:
+        task: SimpleRangedHostileCompound
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 1.2
+    - type: BasicEntityAmmoProvider
+      proto: MedievalBulletUnholly
+      capacity: 1
+      count: 1
+    - type: Gun
+      projectileSpeed: 7
+      fireRate: 1
+      useKey: false
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot: /Audio/Magic/blink.ogg
+    - type: KillReviveGoal
 
 - type: damageModifierSet
   id: MedievalRespawn
@@ -323,7 +321,7 @@
   id: MedievalBulletUnholly
   name: acid spit
   parent: BaseBullet
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Projectile
       damage:
@@ -352,10 +350,10 @@
           shape: !type:PhysShapeCircle
             radius: 11
           layer:
-          - DoorPassable
+            - DoorPassable
           hard: false
           mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
+            - MedievalSpawnerLayer # imperial medieval end
     - type: Physics
       bodyType: Static
     - type: MedievalMobSpawner
@@ -371,30 +369,30 @@
   description: Suspiciously looking old radio...
   suffix: Empty
   components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Misc/mdv_shop.rsi
-    layers:
-    - state: necro
-    netsync: false
-  - type: UserInterface
-    interfaces:
-      enum.StoreUiKey.Key:
-        type: StoreBoundUserInterface
-  - type: ActivatableUI
-    singleUser: true
-    key: enum.StoreUiKey.Key
-  - type: Store
-    categories:
-    - MedievalRespawn
-    currencyWhitelist:
-    - Revent
-    balance:
-      Revent: 0
-  - type: AmbientSound
-    range: 6
-    volume: -3
-    sound:
-      path: /Audio/Ambience/anomaly_scary.ogg
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/mdv_shop.rsi
+      layers:
+        - state: necro
+      netsync: false
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+    - type: ActivatableUI
+      singleUser: true
+      key: enum.StoreUiKey.Key
+    - type: Store
+      categories:
+        - MedievalRespawn
+      currencyWhitelist:
+        - Revent
+      balance:
+        Revent: 0
+    - type: AmbientSound
+      range: 6
+      volume: -3
+      sound:
+        path: /Audio/Ambience/anomaly_scary.ogg
 
 - type: storeCategory
   id: MedievalRespawn
@@ -407,10 +405,10 @@
   id: MedievalRespawnKey
   description: gol
   components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Misc/respawn_key.rsi
-    state: icon
-  - type: HellRespawnAble
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/respawn_key.rsi
+      state: icon
+    - type: HellRespawnAble
 
 - type: listing
   id: MdvShopRespMedievalRespawnKey
@@ -418,8 +416,7 @@
   cost:
     Revent: 250
   categories:
-  - MedievalRespawn
-
+    - MedievalRespawn
 #- type: listing
 #  id: MdvShopRespMedievalSpellbookBarrier
 #  productEntity: MedievalSpellbookBarrier
@@ -444,3 +441,37 @@
 #  categories:
 #  - MedievalRespawn
 #
+- type: alert
+  id: KilledSpirits
+  category: SuitPower # Костыльно, но зато без изменения кода визов
+  icons:
+    - sprite: /Textures/Imperial/Medieval/Revive/revive.rsi
+      state: 0
+    - sprite: /Textures/Imperial/Medieval/Revive/revive.rsi
+      state: 1
+    - sprite: /Textures/Imperial/Medieval/Revive/revive.rsi
+      state: 2
+    - sprite: /Textures/Imperial/Medieval/Revive/revive.rsi
+      state: 3
+    - sprite: /Textures/Imperial/Medieval/Revive/revive.rsi
+      state: 4
+    - sprite: /Textures/Imperial/Medieval/Revive/revive.rsi
+      state: 5
+    - sprite: /Textures/Imperial/Medieval/Revive/revive.rsi
+      state: 6
+    - sprite: /Textures/Imperial/Medieval/Revive/revive.rsi
+      state: 7
+    - sprite: /Textures/Imperial/Medieval/Revive/revive.rsi
+      state: 8
+    - sprite: /Textures/Imperial/Medieval/Revive/revive.rsi
+      state: 9
+    - sprite: /Textures/Imperial/Medieval/Revive/revive.rsi
+      state: 10
+    - sprite: /Textures/Imperial/Medieval/Revive/revive.rsi
+      state: 11
+    - sprite: /Textures/Imperial/Medieval/Revive/revive.rsi
+      state: 12ormore
+  name: Необходимое количество убитых духов
+  description: Показывает, сколько осталось убить духов до возрождения
+  minSeverity: 0
+  maxSeverity: 12

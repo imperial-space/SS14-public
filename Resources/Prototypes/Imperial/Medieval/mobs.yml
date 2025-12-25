@@ -2357,6 +2357,41 @@
 
 - type: entity
   name: weak skeleton
+  parent: MedievalMobSkeletBase
+  id: MedievalMobSkeletWeakSpell
+  description: Practically no threat, you can kick back even with your fists
+  components:
+  - type: MedievalTimedDespawn
+    lifetime: 240
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/skelet_weak.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: MeleeWeapon
+    damage:
+      types:
+        ParryAble: 1
+        Radiation: 0.2
+        Blunt: 4
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      35: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.6
+    baseSprintSpeed: 3.6
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      14: 0.8
+      22: 0.7
+      30: 0.6
+      44: 0.5
+
+- type: entity
+  name: weak skeleton
   parent: MedievalMobSkeletWeak
   id: MedievalMobSkeletWeakGhost
   description: You are a skeleton. Death to the weak.
@@ -2409,6 +2444,41 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.04
+
+- type: entity
+  name: meat skeleton
+  parent: MedievalMobSkeletBase
+  id: MedievalMobSkeletMeatSpell
+  description: Slightly stronger than its previous counterpart, but still squishy.
+  components:
+  - type: MedievalTimedDespawn
+    lifetime: 240
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/skelet_meat.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: MeleeWeapon
+    damage:
+      types:
+        ParryAble: 1
+        Radiation: 1
+        Blunt: 7
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.7
+    baseSprintSpeed: 3.7
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      20: 0.8
+      30: 0.7
+      40: 0.6
+      55: 0.5
 
 - type: entity
   name: meat skeleton
@@ -2465,6 +2535,42 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.09
+
+- type: entity
+  name: fighter skeleton
+  parent: MedievalMobSkeletBase
+  id: MedievalMobSkeletFighterSpell
+  description: This one's already looking serious. But 1 on 1, he can still be beaten.
+  components:
+  - type: MedievalTimedDespawn
+    lifetime: 540
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/skelet_fighter.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: MeleeWeapon
+    damage:
+      groups:
+        Brute: 8.5
+      types:
+        ParryAble: 1
+        Radiation: 1.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.9
+    baseSprintSpeed: 3.9
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      45: 0.8
+      60: 0.7
+      85: 0.6
+      100: 0.5
 
 - type: entity
   name: fighter skeleton

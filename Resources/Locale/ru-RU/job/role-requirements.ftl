@@ -15,3 +15,5 @@ role-timer-department-unknown = Неизвестный отдел
 role-ban = Эта должность для вас заблокирована.
 role-timer-age-too-old = Для игры на этой роли ваш персонаж должен быть младше [color=yellow]{$age}[/color].
 role-timer-age-too-young = Для игры на этой роли ваш персонаж должен быть старше [color=yellow]{$age}[/color].
+role-requirement-skill-too-low = Требуется [color=yellow]{ $skill }[/color] не ниже [color=yellow]{ $level }[/color].
+role-requirement-skill-too-high = Требуется [color=yellow]{ $skill }[/color] не выше [color=yellow]{ $level }[/color].

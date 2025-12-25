@@ -13,7 +13,7 @@
   id: SleepSpellCastEffectBeginner
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/SpellCastEffects/MultiCurrency/sleep.rsi-
+    sprite: Imperial/Medieval/SpellCastEffects/MultiCurrency/sleep.rsi
     color: "#732CD3"
     noRot: true
     layers:

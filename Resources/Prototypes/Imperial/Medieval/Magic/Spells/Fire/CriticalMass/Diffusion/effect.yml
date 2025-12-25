@@ -23,7 +23,7 @@
     spawnedEntity: MedievalProjectileDiffusionMiddle
     barrierLength: 5
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
   - type: TimedDespawn
@@ -71,7 +71,7 @@
     spawnedEntity: MedievalProjectileDiffusionSenior
     barrierLength: 9
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
   - type: TimedDespawn

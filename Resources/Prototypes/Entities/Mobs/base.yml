@@ -122,9 +122,11 @@
       0: Alive
       100: Critical
       200: Dead
+  - type: FightForLifeAction
   - type: MobStateActions
     actions:
       Critical:
+      - FightForLifeAction
       - ActionCritSuccumb
       - ActionCritFakeDeath
       - ActionCritLastWords
