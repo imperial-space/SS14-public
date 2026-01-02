@@ -1,0 +1,28 @@
+## FNAF Event Portable Controller (Admin tool)
+- type: entity
+  id: animatronic_controller
+  name: animatronic Controller
+  suffix: XxRaay, FNAF, Admin
+  components:
+  - type: Transform
+  - type: MetaData
+  - type: Sprite
+    noRot: true
+    sprite: Objects/Devices/tablets.rsi
+    state: tablet
+  - type: Item
+    size: Small
+  - type: Clickable
+  - type: InteractionOutline
+  - type: AnimatronicController
+  - type: ActivatableUI
+    key: enum.AnimatronicControllerUiKey.Key
+    singleUser: true
+    inHandsOnly: true
+    adminOnly: true
+  - type: UserInterface
+    interfaces:
+      enum.AnimatronicControllerUiKey.Key:
+        type: AnimatronicControllerBoundUserInterface
+
+

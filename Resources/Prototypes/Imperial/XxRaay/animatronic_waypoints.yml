@@ -1,0 +1,72 @@
+## FNAF Event Waypoints (ghost-visible only)
+- type: entity
+  id: animatronic_waypoint_base
+  abstract: true
+  name: Animatronic Waypoint
+  suffix: XxRaay, FNAF
+  components:
+  - type: Transform
+  - type: MetaData
+  - type: Visibility
+    layer: 2
+  - type: Sprite
+    noRot: true
+    sprite: Objects/Misc/module.rsi
+    state: cpu_super
+    drawdepth: Effects
+  - type: AnimatronicWaypoint
+
+- type: entity
+  id: animatronic_waypoint_wp1
+  parent: animatronic_waypoint_base
+  name: Animatronic Waypoint WP1
+  components:
+  - type: AnimatronicWaypoint
+    waypointId: WP1
+    displayName: WP1
+
+- type: entity
+  id: animatronic_waypoint_wp2
+  parent: animatronic_waypoint_base
+  name: Animatronic Waypoint WP2
+  components:
+  - type: AnimatronicWaypoint
+    waypointId: WP2
+    displayName: WP2
+
+- type: entity
+  id: animatronic_waypoint_wp3
+  parent: animatronic_waypoint_base
+  name: Animatronic Waypoint WP3
+  components:
+  - type: AnimatronicWaypoint
+    waypointId: WP3
+    displayName: WP3
+
+- type: entity
+  id: animatronic_waypoint_wp4
+  parent: animatronic_waypoint_base
+  name: Animatronic Waypoint WP4
+  components:
+  - type: AnimatronicWaypoint
+    waypointId: WP4
+    displayName: WP4
+
+- type: entity
+  id: animatronic_waypoint_wp5
+  parent: animatronic_waypoint_base
+  name: Animatronic Waypoint WP5
+  components:
+  - type: AnimatronicWaypoint
+    waypointId: WP5
+    displayName: WP5
+
+- type: entity
+  id: animatronic_waypoint_wp6
+  parent: animatronic_waypoint_base
+  name: Animatronic Waypoint WP6
+  components:
+  - type: AnimatronicWaypoint
+    waypointId: WP6
+    displayName: WP6
+

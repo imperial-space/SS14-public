@@ -1,0 +1,88 @@
+## FNAF Event Animatronics
+- type: entity
+  id: animatronic_base
+  abstract: true
+  components:
+  - type: Transform
+  - type: MetaData
+  - type: Physics
+    bodyType: KinematicController
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle { radius: 0.40 }
+        density: 100
+        mask: [ MobMask ]
+        layer: [ MobLayer ]
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/XxRaay/animatronics.rsi
+  - type: MobMover
+  - type: InputMover
+  - type: MovementSpeedModifier
+  - type: ActiveNPC
+  - type: Animatronic
+
+- type: entity
+  id: animatronic_bear
+  parent: animatronic_base
+  name: animatronic
+  suffix: XxRaay, FNAF
+  components:
+  - type: Sprite
+    layers:
+    - state: freddy
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.7
+    baseSprintSpeed: 2.7
+  - type: Animatronic
+    displayName: Bear
+    moveSpeed: 2.7
+
+- type: entity
+  id: animatronic_bunny
+  parent: animatronic_base
+  name: animatronic
+  suffix: XxRaay, FNAF
+  components:
+  - type: Sprite
+    layers:
+    - state: bonnie
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.2
+    baseSprintSpeed: 2.2
+  - type: Animatronic
+    displayName: Bunny
+    moveSpeed: 2.2
+
+- type: entity
+  id: animatronic_chicken
+  parent: animatronic_base
+  name: animatronic
+  suffix: XxRaay, FNAF
+  components:
+  - type: Sprite
+    layers:
+    - state: chica
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.2
+    baseSprintSpeed: 2.2
+  - type: Animatronic
+    displayName: Chicken
+    moveSpeed: 2.2
+
+- type: entity
+  id: animatronic_foxar
+  parent: animatronic_base
+  name: animatronic
+  suffix: XxRaay, FNAF
+  components:
+  - type: Sprite
+    layers:
+    - state: foxy
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 7
+    baseSprintSpeed: 7
+  - type: Animatronic
+    displayName: Foxar
+    moveSpeed: 7
