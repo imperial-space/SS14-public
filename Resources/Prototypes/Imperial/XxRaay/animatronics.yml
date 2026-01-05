@@ -22,6 +22,8 @@
   - type: MovementSpeedModifier
   - type: ActiveNPC
   - type: Animatronic
+  - type: AnimatronicPathfinding
+  - type: AnimatronicDamage
 
 - type: entity
   id: animatronic_bear
