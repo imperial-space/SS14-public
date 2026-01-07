@@ -1,5 +1,7 @@
 using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;

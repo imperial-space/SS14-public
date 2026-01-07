@@ -58,7 +58,7 @@ public sealed class AnimatronicControllerSystem : EntitySystem
 			return;
 		}
 
-		var wpUid = args.Clear ? null : GetEntity(args.Waypoint);
+		EntityUid? wpUid = args.Clear ? null : GetEntity(args.Waypoint);
 		_targetSystem.SetTarget(animUid, wpUid);
 
 		if (!args.Clear && TryComp<AnimatronicPathfindingComponent>(animUid, out var pathfinding))

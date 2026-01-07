@@ -2,6 +2,9 @@ using System.Numerics;
 using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.Imperial.XxRaay.Components.Events;
 using Content.Shared.Movement.Components;
+using Content.Shared.NPC;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.Systems;
 using Robust.Shared.GameObjects;
@@ -15,6 +18,7 @@ namespace Content.Server.Imperial.XxRaay.Systems;
 public sealed class AnimatronicTargetSystem : EntitySystem
 {
 	[Dependency] private readonly NPCSteeringSystem _steering = default!;
+	[Dependency] private readonly SharedTransformSystem TransformSystem = default!;
 
 	public bool SetTarget(EntityUid animatronic, EntityUid? waypoint)
 	{
