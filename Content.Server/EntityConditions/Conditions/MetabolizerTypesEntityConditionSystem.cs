@@ -1,7 +1,6 @@
-﻿using System.Linq;
-using Content.Server.Body.Components;
-using Content.Shared.EntityConditions;
+﻿using Content.Shared.EntityConditions;
 using Content.Shared.EntityConditions.Conditions.Body;
+using Content.Shared.Metabolism;
 
 namespace Content.Server.EntityConditions.Conditions;
 

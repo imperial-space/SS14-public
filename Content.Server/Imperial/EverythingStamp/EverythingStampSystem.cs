@@ -3,7 +3,6 @@ using Content.Shared.Interaction;
 using Content.Shared.Paper;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Popups;
-using Microsoft.CodeAnalysis.Elfie.Diagnostics;
 
 namespace Content.Server.Paper
 {

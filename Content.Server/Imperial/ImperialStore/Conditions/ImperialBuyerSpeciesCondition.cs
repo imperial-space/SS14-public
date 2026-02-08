@@ -27,21 +27,6 @@ public sealed partial class ImperialBuyerSpeciesCondition : ImperialListingCondi
     {
         var ent = args.EntityManager;
 
-        if (!ent.TryGetComponent<HumanoidAppearanceComponent>(args.Buyer, out var appearance))
-            return true; // inanimate or non-humanoid entities should be handled elsewhere, main example being surplus crates
-
-        if (Blacklist != null)
-        {
-            if (Blacklist.Contains(appearance.Species))
-                return false;
-        }
-
-        if (Whitelist != null)
-        {
-            if (!Whitelist.Contains(appearance.Species))
-                return false;
-        }
-
         return true;
     }
 }

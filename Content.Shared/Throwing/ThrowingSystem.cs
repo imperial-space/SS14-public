@@ -41,6 +41,7 @@ public sealed class ThrowingSystem : EntitySystem
 
     private EntityQuery<AnchorableComponent> _anchorableQuery;
 
+
     public override void Initialize()
     {
         base.Initialize();

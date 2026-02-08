@@ -32,7 +32,7 @@
       - PowerCell
   - type: Riggable
   - type: Appearance
-  - type: PredictedBatteryVisuals
+  - type: BatteryVisuals
   - type: GenericVisualizer
     visuals:
       enum.BatteryVisuals.State:
@@ -104,7 +104,7 @@
   name: small-capacity nuclear power cell
   description: A self rechargeable power cell, designed for fast recharge rate at the expense of capacity.
   components:
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRechargeRate: 36 # 10 seconds to recharge
     autoRechargePauseTime: 30
 
@@ -230,7 +230,7 @@
   - type: PredictedBattery
     maxCharge: 720
     startingCharge: 720
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRechargeRate: 12 # takes 1 minute to charge itself back to full
 
 - type: entity
@@ -265,7 +265,7 @@
     - type: PredictedBattery
       maxCharge: 1200
       startingCharge: 1200
-    - type: PredictedBatterySelfRecharger
+    - type: BatterySelfRecharger
       autoRechargeRate: 40
 
 # Power cage (big heavy power cell for big devices)

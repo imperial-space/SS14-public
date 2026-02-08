@@ -686,6 +686,38 @@
   - GasPressurePumpAlt2
 
 - type: construction
+  id: GasPressurePumpAlt1
+  hide: true
+  graph: GasBinary
+  startNode: start
+  targetNode: pressurepumpAlt1
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - GasPressurePump
+  - GasPressurePumpAlt1
+  - GasPressurePumpAlt2
+
+- type: construction
+  id: GasPressurePumpAlt2
+  hide: true
+  graph: GasBinary
+  startNode: start
+  targetNode: pressurepumpAlt2
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - GasPressurePump
+  - GasPressurePumpAlt1
+  - GasPressurePumpAlt2
+
+- type: construction
   name: Объёмный газовый насос # Imperial Recipes Locale
   description: Насос, перемещающий газ с определённым объёмом. # Imperial Recipes Locale
   id: GasVolumePump

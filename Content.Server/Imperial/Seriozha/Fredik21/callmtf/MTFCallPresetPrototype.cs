@@ -7,7 +7,7 @@ using Robust.Shared.Localization; // Для LocId
 namespace Content.Server.Imperial.MTFCall;
 
 [Prototype("MTFCall")]
-public sealed class MTFCallPresetPrototype : IPrototype
+public sealed partial class MTFCallPresetPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;

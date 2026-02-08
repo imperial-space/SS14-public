@@ -1,4 +1,5 @@
 using Content.Shared.EntityEffects;
+using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Robust.Shared.Prototypes;
 
@@ -10,10 +11,10 @@ namespace Content.Shared.Chemistry.ReactionEffects;
 public sealed partial class RemoveMark : EntityEffectBase<RemoveMark>
 {
     /// <summary>
-    ///     All types of marks can be seen in <see cref="Shared.Humanoid.Markings.MarkingCategories"/>.
+    ///     All types of marks can be seen in <see cref="Content.Shared.Humanoid.HumanoidVisualLayers"/>.
     /// </summary>
     [DataField]
-    public MarkingCategories MarkingCategory = MarkingCategories.Hair;
+    public HumanoidVisualLayers MarkingCategory = HumanoidVisualLayers.Hair;
 
     public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
         Loc.GetString("reagent-effect-guidebook-remove-mark",

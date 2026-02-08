@@ -13,7 +13,6 @@ namespace Content.Server.Imperial.ChemistryRework;
 
 public sealed partial class ResurrectionEntityEffectSystem : EntityEffectSystem<DamageableComponent, Resurrection>
 {
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
     [Dependency] private readonly RejuvenateSystem _rejuvenateSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;

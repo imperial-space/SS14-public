@@ -23,6 +23,7 @@ using Robust.Shared.Utility;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 using Content.Server.Hands.Systems;
+using Content.Shared.Body;
 namespace Content.Server.Imperial.PiratesNewHorizon.GPS.Systems;
 
 public sealed class GPSTrackerRemoverSystem : EntitySystem

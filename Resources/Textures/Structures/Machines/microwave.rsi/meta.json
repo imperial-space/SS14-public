@@ -17,17 +17,7 @@
             "name": "mw0"
         },
         {
-            "name": "mw_running_unlit",
-            "delays": [
-                [
-                    1.0,
-                    1.0,
-                    1.0,
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            ]
+            "name": "mw_running_unlit"
         },
         {
             "name": "mwb"
@@ -39,38 +29,13 @@
             "name": "mwbloody0"
         },
         {
-            "name": "mwbloody1",
-            "delays": [
-                [
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1,
-                    0.1
-                ]
-            ]
+            "name": "mwbloody1"
         },
         {
-            "name": "mwbloodyo",
-            "delays": [
-                [
-                    0.1,
-                    0.1
-                ]
-            ]
+            "name": "mwbloodyo"
         },
         {
-            "name": "mwo",
-            "delays": [
-                [
-                    0.1,
-                    0.1
-                ]
-            ]
-        },
-        {
-            "name": "mw-o"
+            "name": "mwo"
         },
         {
             "name": "inhand-right",

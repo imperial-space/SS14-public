@@ -140,7 +140,6 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     /// </summary>
     private void OnPostFlash(EntityUid uid, HeadRevolutionaryComponent comp, ref AfterFlashedEvent ev)
     {
-
         if (comp.OnlyConsentConvert) // # Imperial RevaConsent
             return;
 
@@ -151,7 +150,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
         if (HasComp<RevolutionaryComponent>(ev.Target) ||
             HasComp<MindShieldComponent>(ev.Target) ||
-            !HasComp<HumanoidAppearanceComponent>(ev.Target) &&
+            !HasComp<HumanoidProfileComponent>(ev.Target) &&
             !alwaysConvertible ||
             !_mobState.IsAlive(ev.Target) ||
             HasComp<ZombieComponent>(ev.Target))
@@ -396,7 +395,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         // - Мертв или является зомби
         if (HasComp<RevolutionaryComponent>(uid) ||
             HasComp<MindShieldComponent>(uid) ||
-            !HasComp<HumanoidAppearanceComponent>(uid) && !alwaysConvertible ||
+            !HasComp<HumanoidProfileComponent>(uid) && !alwaysConvertible ||
             !_mobState.IsAlive(uid) ||
             HasComp<ZombieComponent>(uid))
         {

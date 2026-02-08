@@ -14,7 +14,7 @@ public sealed partial class AddReagentToTargetEntityEffectSystem : EntityEffectS
 
     protected override void Effect(Entity<BloodstreamComponent> entity, ref EntityEffectEvent<AddReagentToTarget> args)
     {
-        if (!_solutionContainerSystem.TryGetSolution(entity.Owner, entity.Comp.ChemicalSolutionName, out var injectorSolution)) return;
+        if (!_solutionContainerSystem.TryGetSolution(entity.Owner, entity.Comp.BloodSolutionName, out var injectorSolution)) return;
 
         foreach (var reagent in args.Effect.Reagents)
             injectorSolution.Value.Comp.Solution.AddReagent(reagent.Reagent, reagent.Quantity);

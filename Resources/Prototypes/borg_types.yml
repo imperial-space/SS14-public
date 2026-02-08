@@ -212,7 +212,6 @@
     - BorgModuleService
 
   defaultModules:
-  - BorgModuleTool
   - BorgModuleMusique
   - BorgModuleService
   - BorgModuleClowning

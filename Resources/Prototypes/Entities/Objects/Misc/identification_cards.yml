@@ -73,11 +73,6 @@
     price: 2000 #Imperial Space Pirates: New Horizon
   - type: StealTarget
     stealGroup: CaptainIDCard
-  #Imperial Space Pirates: New Horizon; Start
-  - type: GPSTrackerPrice
-    startprice: 0
-    endprice: 10000
-  #Imperial Space Pirates: New Horizon; End
 
 - type: entity
   parent: IDCardStandard
@@ -522,8 +517,6 @@
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Brigmedic
-  - type: PresetIdCard # imperial Brigmedic
-    job: Brigmedic # imperial Brigmedic
 
 - type: entity
   parent: SecurityIDCard
@@ -793,8 +786,6 @@
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Boxer
-  - type: PresetIdCard
-    job: Boxer
 
 - type: entity
   parent: IDCardStandard
@@ -811,8 +802,8 @@
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Zookeeper
-  - type: PresetIdCard
-    job: Zookeeper
+
+#Supply
 
 #Supply
 
@@ -1008,6 +999,8 @@
       offset: *icon-offset
       state: SyndicateOperative
   - type: AgentIDCard
+  - type: IdCard
+    jobIcon: JobIconSyndicateOperative
 
 - type: entity
   parent: [ SyndiOperativeIDCard, BaseSyndicateContraband ]
@@ -1024,6 +1017,8 @@
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SyndicateCorpsman
+  - type: IdCard
+    jobIcon: JobIconSyndicateCorpsman
 
 - type: entity
   parent: [ SyndiOperativeIDCard, BaseSyndicateContraband ]
@@ -1040,6 +1035,33 @@
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SyndicateCommander
+  - type: IdCard
+    jobIcon: JobIconSyndicateCommander
+
+- type: entity
+  parent: [ IDCardStandard, BaseHighlyIllegalContraband ]
+  id: NinjaIDCard
+  name: ninja ID card
+  suffix: Ninja
+  components:
+  - type: Sprite
+    layers:
+    - state: ninja
+    - state: stripe_top
+      color: "#38D848"
+    - state: stripe_bottom
+      color: "#309000"
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Ninja
+  - type: Item
+    heldPrefix: green
+  - type: AgentIDCard
+  - type: IdCard
+    jobIcon: JobIconNinja
+  - type: Access
+    tags:
+    - Maintenance
 
 - type: entity
   parent: [ IDCardStandard, BaseMajorContraband ]
@@ -1049,15 +1071,28 @@
   - type: Sprite
     layers:
     - state: pirate
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Pirate
   - type: Item
     heldPrefix: orange #this is close enough to the weird puce color pirate IDs have going on
-  - type: Access
-    tags:
-    - NuclearOperative
-    - SyndicateAgent
+  - type: IdCard
+    jobIcon: JobIconPirate
 
 - type: entity
   parent: IDCardStandard
+  id: XenoborgIDCard
+  name: xenoborg ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+  - type: Access
+    tags:
+    - Xenoborg
+
+- type: entity
+  parent: [ IDCardStandard, BaseMagicalContraband ]
   id: WizardIDCard
   name: wizard ID card
   components:
@@ -1074,6 +1109,189 @@
     - Wizard
     - External
     - Maintenance
+  - type: IdCard
+    jobIcon: JobIconWizard
+
+#ERT/Centcomm
+
+- type: entity
+  parent: IDCardStandard
+  id: CentcomIDCard
+  name: command officer ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: stripe_top
+      color: &color-centcomm-top "#134975"
+    - state: stripe_bottom
+      color: &color-centcomm-bottom "#0d304d"
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Nanotrasen
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: CentralCommandOfficial
+
+- type: entity
+  parent: IDCardStandard
+  id: ERTLeaderIDCard
+  name: ERT leader ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: gold
+    - state: stripe_top
+      color: *color-centcomm-top
+    - state: stripe_bottom
+      color: *color-centcomm-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: ERTLeader
+  - type: Item
+    heldPrefix: gold
+  - type: PresetIdCard
+    job: ERTLeader
+
+- type: entity
+  parent: IDCardStandard
+  id: ERTChaplainIDCard
+  name: ERT chaplain ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: stripe_top
+      color: *color-service-top
+    - state: stripe_bottom
+      color: *color-service-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: ERTChaplain
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: ERTChaplain
+
+- type: entity
+  parent: IDCardStandard
+  id: ERTEngineerIDCard
+  name: ERT engineer ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: stripe_top
+      color: *color-engineering-top
+    - state: stripe_bottom
+      color: *color-engineering-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: ERTEngineer
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: ERTEngineer
+
+- type: entity
+  parent: IDCardStandard
+  id: ERTJanitorIDCard
+  name: ERT janitor ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: stripe_top
+      color: *color-service-top
+    - state: stripe_bottom
+      color: *color-service-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: ERTJanitor
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: ERTJanitor
+
+- type: entity
+  parent: IDCardStandard
+  id: ERTMedicIDCard
+  name: ERT medic ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: stripe_top
+      color: *color-medical-top
+    - state: stripe_bottom
+      color: *color-medical-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: ERTMedical
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: ERTMedical
+
+- type: entity
+  parent: IDCardStandard
+  id: ERTSecurityIDCard
+  name: ERT security ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: stripe_top
+      color: *color-security-top
+    - state: stripe_bottom
+      color: *color-security-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: ERTSecurity
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: ERTSecurity
+
+- type: entity
+  parent: IDCardStandard
+  id: CentcomIDCardDeathsquad
+  name: death squad ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: stripe_top
+      color: *color-centcomm-top
+    - state: stripe_bottom
+      color: *color-centcomm-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: DeathSquad
+  - type: PresetIdCard
+    job: DeathSquad
+
+- type: entity
+  parent: IDCardStandard
+  id: CBURNIDcard
+  name: CBURN ID card
+  suffix: CBURN
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: stripe_top
+      color: *color-centcomm-top
+    - state: stripe_bottom
+      color: *color-centcomm-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: CBURN
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: CBURN
 
 #ERT/Centcomm
 

@@ -1,5 +1,5 @@
 - type: entity
-  parent: CratePirateSecure
+  parent: CratePirate
   id: CratePirateChestCaptain
   name: captains pirate chest
   suffix: Filled
@@ -15,7 +15,7 @@
     access: [["CaptainPirate"]] #Imperial Space Pirates: New Horizon
 
 - type: entity
-  parent: CratePirateSecure
+  parent: CratePirate
   id: CratePirateChest
   name: crews pirate chest
   suffix: Filled
