@@ -6,9 +6,9 @@
   suffix: DeadSector
   components:
   - type: Sprite
-    sprite: Imperial/Clothing/Head/Helmets/k6_3.rsi
+    sprite: Imperial/Clothing/Head/Helmets/k6_3_new.rsi
   - type: Clothing
-    sprite: Imperial/Clothing/Head/Helmets/k6_3.rsi
+    sprite: Imperial/Clothing/Head/Helmets/k6_3_new.rsi
     quickEquip: true
     clothingVisuals:
       head:
@@ -21,20 +21,125 @@
         Blunt: 0.7
         Slash: 0.7
         Piercing: 0.93
-        Heat: 0.93
-        Shock: 0.8
   - type: ExplosionResistance
-    damageCoefficient: 0.7
+    damageCoefficient: 0.75
   - type: HideLayerClothing
     slots:
     - Hair
     - HeadTop
+  - type: PullableHelmet
+    untoggledPrototype: ClothingHeadHelmetK63
+    toggledPrototype: ClothingHeadHelmetK63Lowered
+    pullAction: ToggleK63Helmet
 
-# gloves
+- type: entity
+  id: ClothingHeadHelmetK63Lowered
+  parent: ClothingHeadHelmetK63
+  name: fire helmet
+  categories: [ HideSpawnMenu ]
+  description: An atmos tech's best friend. Provides some heat resistance and looks cool.
+  suffix: DeadSector
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Head/Helmets/k6_3_new.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Head/Helmets/k6_3_new.rsi
+    quickEquip: true
+    clothingVisuals:
+      head:
+      - state: on-equipped-HELMET
+  - type: Item
+    size: Normal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.75
+        Heat: 0.75
+        Shock: 0.75
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+  - type: IngestionBlocker
+
 - type: entity
   id: ToggleK63Helmet
   name: Toggle ninja gloves
   description: Toggles all glove actions on left click. Includes your doorjack, draining power, stunning enemies and hacking certain computers.
   components:
   - type: InstantAction
-    event: !type:ToggleActionEvent {}
+    event: !type:PullHelmetActionEvent
+  - type: Action
+    itemIconStyle: BigItem
+    useDelay: 1
+
+- type: entity
+  id: ClothingHeadHelmetK63Alternate
+  parent: ClothingHeadHelmetBase
+  name: fire helmet
+  description: An atmos tech's best friend. Provides some heat resistance and looks cool.
+  suffix: DeadSector
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Head/Helmets/k6_3_new_alt.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Head/Helmets/k6_3_new_alt.rsi
+    quickEquip: true
+    clothingVisuals:
+      head:
+      - state: off-equipped-HELMET
+  - type: Item
+    size: Normal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.93
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+  - type: PullableHelmet
+    untoggledPrototype: ClothingHeadHelmetK63Alternate
+    toggledPrototype: ClothingHeadHelmetK63AlternateLowered
+    pullAction: ToggleK63Helmet
+- type: entity
+  id: ClothingHeadHelmetK63AlternateLowered
+  parent: ClothingHeadHelmetK63Alternate
+  name: fire helmet
+  categories: [ HideSpawnMenu ]
+  description: An atmos tech's best friend. Provides some heat resistance and looks cool.
+  suffix: DeadSector
+  components:
+  - type: Sprite
+    sprite: Imperial/Clothing/Head/Helmets/k6_3_new_alt.rsi
+  - type: Clothing
+    sprite: Imperial/Clothing/Head/Helmets/k6_3_new_alt.rsi
+    quickEquip: true
+    clothingVisuals:
+      head:
+      - state: on-equipped-HELMET
+  - type: Item
+    size: Normal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.75
+        Heat: 0.75
+        Shock: 0.75
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+  - type: IngestionBlocker
