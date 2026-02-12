@@ -21,7 +21,7 @@ public sealed class AnimatronicDamageSystem : EntitySystem
 	[Dependency] private readonly IGameTiming _timing = default!;
 	[Dependency] private readonly DamageableSystem _damageable = default!;
 	[Dependency] private readonly MobStateSystem _mobState = default!;
-	[Dependency] private readonly IPrototypeManager _prototype = default!;
+	[Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
 	public override void Initialize()
 	{
@@ -45,7 +45,8 @@ public sealed class AnimatronicDamageSystem : EntitySystem
 		    (_timing.CurTime - lastDamage) < damageComp.ContactDamageCooldown)
 			return;
 
-		if (!_prototype.TryIndex<DamageGroupPrototype>("Brute", out var bruteGroup))
+		ProtoId<DamageGroupPrototype> bruteGroupId = "Brute";
+		if (!_prototypeManager.TryIndex(bruteGroupId, out var bruteGroup))
 		{
 			Log.Error($"AnimatronicDamageSystem: Failed to find Brute damage group prototype");
 			return;

@@ -3,7 +3,7 @@
     xmlns:i="clr-namespace:Content.Client.Imperial.UI.Windows.BaseImperialWindow"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     xmlns:ac="clr-namespace:Content.Client.Imperial.XxRaay.UI"
-    HeaderText="Animatronic Controller"
+    HeaderText="{Loc animatronic-controller-window-title}"
     MinSize="700 400"
     SetSize="800 450"
     Resizable="True">

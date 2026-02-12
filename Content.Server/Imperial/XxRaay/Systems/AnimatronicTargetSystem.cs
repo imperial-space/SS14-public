@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.Imperial.XxRaay.Components.Events;
 using Content.Shared.Movement.Components;
@@ -18,7 +17,7 @@ namespace Content.Server.Imperial.XxRaay.Systems;
 public sealed class AnimatronicTargetSystem : EntitySystem
 {
 	[Dependency] private readonly NPCSteeringSystem _steering = default!;
-	[Dependency] private readonly SharedTransformSystem TransformSystem = default!;
+	[Dependency] private readonly SharedTransformSystem _transform = default!;
 
 	public bool SetTarget(EntityUid animatronic, EntityUid? waypoint)
 	{
@@ -70,8 +69,8 @@ public sealed class AnimatronicTargetSystem : EntitySystem
 		if (animXform.MapID == MapId.Nullspace || animXform.MapID != targetXform.MapID)
 			return false;
 
-		var pos = TransformSystem.GetWorldPosition(animXform);
-		var goal = TransformSystem.GetWorldPosition(targetXform);
+		var pos = _transform.GetWorldPosition(animXform);
+		var goal = _transform.GetWorldPosition(targetXform);
 		var distance = (pos - goal).Length();
 
 		return distance <= AnimatronicConstants.ReachDistance;
