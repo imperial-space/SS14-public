@@ -11,6 +11,9 @@
         "name": "icon"
       },
       {
+        "name": "icon-off"
+      },
+      {
         "name": "off-equipped-HELMET",
         "directions": 4
       },
