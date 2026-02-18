@@ -1,0 +1,223 @@
+- type: entity
+  parent: MobHuman
+  id: EventHumanSkillsTTSGhostrole
+  name: spawn event human
+  suffix: skills, TTS, ghostrole
+  components:
+    - type: AntagImmune
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+    - type: CrewSkills
+      skills:
+        - skillBotany #Base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+    - type: GhostRole
+      name: ghostrole-event-name
+      description: ghostrole-event-allskills-desc
+      rules: ghostrole-event-rules
+      raffle:
+        settings: short
+    - type: Damageable
+      damageContainer: BiologicalMemetical
+      damageModifierSet: Infernal
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
+
+- type: entity
+  parent: MobHuman
+  id: EventHumanSkillsTTSGhostroleNoShooting
+  name: spawn event human
+  suffix: no shooting, skills, TTS, ghostrole
+  components:
+    - type: AntagImmune
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+    - type: CrewSkills
+      skills:
+        - skillBotany #Base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillSurgery
+        - skillNeuroSurgery
+    - type: GhostRole
+      name: ghostrole-event-name
+      description: ghostrole-event-skills-desc
+      rules: ghostrole-event-rules
+      raffle:
+        settings: short
+    - type: Damageable
+      damageContainer: BiologicalMemetical
+      damageModifierSet: Infernal
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
+
+- type: entity
+  parent: MobHuman
+  id: EventHumanSkillsTTS
+  name: spawn event human
+  suffix: skills, TTS
+  components:
+    - type: AntagImmune
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+    - type: CrewSkills
+      skills:
+        - skillBotany #Base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+    - type: GhostRole
+      name: ghostrole-event-name
+      description: ghostrole-event-allskills-desc
+      rules: ghostrole-event-rules
+      raffle:
+        settings: short
+    - type: Damageable
+      damageContainer: BiologicalMemetical
+      damageModifierSet: Infernal
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
+
+- type: entity
+  parent: MobHuman
+  id: FedHumanSkillsTTSGhostrole
+  name: spawn federation human
+  suffix: ghostrole
+  components:
+    - type: AntagImmune
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+    - type: CrewSkills
+      skills:
+        - skillBotany #Base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+    - type: GhostRole
+      name: ghostrole-event-fed-name
+      description: ghostrole-event-fed-desc
+      rules: ghostrole-event-fed-rules
+      raffle:
+        settings: short
+    - type: Damageable
+      damageContainer: BiologicalMemetical
+      damageModifierSet: Infernal
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
+
+- type: entity
+  parent: MobHuman
+  id: EmpHumanSkillsTTSGhostrole
+  name: spawn empire human
+  suffix: ghostrole
+  components:
+    - type: AntagImmune
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+    - type: CrewSkills
+      skills:
+        - skillBotany #Base
+        - skillBaseMed
+        - skillBaseConstraction
+        - skillCooking  #Easy
+        - skillBartending
+        - skillHacking
+        - skillInstrumentation #Medium
+        - skillMaintenance
+        - skillMediumConstruction
+        - skillMediumBotany
+        - skillBasicAtmos
+        - skillMedicalEquipment
+        - skillPharmacology
+        - skillPiloting #Hard
+        - skillAtmos
+        - skillHardInstrumentation
+        - skillRobotics
+        - skillResearch
+        - skillPharmaceuticals
+        - skillShooting
+        - skillSurgery
+        - skillNeuroSurgery
+    - type: GhostRole
+      name: ghostrole-event-emp-name
+      description: ghostrole-event-emp-desc
+      rules: ghostrole-event-emp-rules
+      raffle:
+        settings: short
+    - type: Damageable
+      damageContainer: BiologicalMemetical
+      damageModifierSet: Infernal
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
