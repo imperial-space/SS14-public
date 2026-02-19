@@ -697,7 +697,7 @@
 
 - type: entity
   id: ActionSCPFiremanIgnite
-  name: Поджёг
+  name: Поджог
   description: Создаёт огонь под собой.
   components:
     - type: Action

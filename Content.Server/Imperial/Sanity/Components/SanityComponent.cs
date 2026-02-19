@@ -156,8 +156,8 @@ public sealed partial class SanityComponent : Component
     [DataField("lowSanitySounds")]
     public List<SoundSpecifier> LowSanitySounds =
     [
-        new SoundPathSpecifier("/Textures/Imperial/Seriozha/Fredik21/reason/breath.ogg"),
-        new SoundPathSpecifier("/Textures/Imperial/Seriozha/Fredik21/reason/heart.ogg")
+        new SoundPathSpecifier("/Audio/Imperial/Seriozha/Fredik21/reason/breath.ogg"),
+        new SoundPathSpecifier("/Audio/Imperial/Seriozha/Fredik21/reason/heart.ogg")
     ];
 
     [ViewVariables]
@@ -186,15 +186,6 @@ public sealed partial class SanityComponent : Component
 
     [ViewVariables]
     public float LastThirst;
-
-    [ViewVariables]
-    public float AppliedHungerMultiplier = 1f;
-
-    [ViewVariables]
-    public float AppliedThirstMultiplier = 1f;
-
-    [ViewVariables]
-    public float AppliedBloodUpdateMultiplier = 1f;
 
     [ViewVariables]
     public SanityState State = SanityState.Normal;

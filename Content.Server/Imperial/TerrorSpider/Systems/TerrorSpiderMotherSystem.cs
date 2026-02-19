@@ -41,7 +41,6 @@ public sealed class TerrorSpiderMotherSystem : EntitySystem
         SubscribeLocalEvent<TerrorSpiderMotherComponent, BeforeInteractHandEvent>(OnBeforeInteractHand);
         SubscribeLocalEvent<TerrorSpiderMotherComponent, MeleeHitEvent>(OnMeleeHit);
         SubscribeLocalEvent<TerrorSpiderWebBuffReceiverComponent, MeleeHitEvent>(OnAnyMeleeHit);
-        SubscribeLocalEvent<TerrorSpiderMotherJellyComponent, EntityTerminatingEvent>(OnJellyTerminating);
     }
 
     public override void Update(float frameTime)
@@ -280,10 +279,6 @@ public sealed class TerrorSpiderMotherSystem : EntitySystem
 
             ApplyHealAllDamageTypes(target, ent.Comp.TouchHealAmount);
         }
-    }
-
-    private void OnJellyTerminating(Entity<TerrorSpiderMotherJellyComponent> ent, ref EntityTerminatingEvent args)
-    {
     }
 
     private void OnAnyMeleeHit(Entity<TerrorSpiderWebBuffReceiverComponent> ent, ref MeleeHitEvent args)

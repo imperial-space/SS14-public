@@ -461,7 +461,11 @@ public sealed class SanitySystem : EntitySystem
             if (string.IsNullOrWhiteSpace(protoId))
                 continue;
 
-            if (!PrototypeInherits(protoId, ScpBaseParent) && !PrototypeInherits(protoId, ScpPresetParent))
+            // Skip friendly SCPs — they are handled by ProcessScpProximity
+            if (FriendlyScpIds.Contains(protoId) || PrototypeInherits(protoId, ScpPresetParent))
+                continue;
+
+            if (!PrototypeInherits(protoId, ScpBaseParent))
                 continue;
 
             if (!_interaction.InRangeUnobstructed(uid, ent, radius + 0.1f))

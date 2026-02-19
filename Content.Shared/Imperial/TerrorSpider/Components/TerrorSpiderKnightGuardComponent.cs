@@ -2,7 +2,6 @@ using Content.Shared.Damage;
 using Content.Shared.Imperial.TerrorSpider.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Imperial.TerrorSpider.Components;
 

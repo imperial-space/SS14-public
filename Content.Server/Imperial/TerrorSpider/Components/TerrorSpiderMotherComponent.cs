@@ -1,5 +1,4 @@
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Imperial.TerrorSpider.Components;
 
@@ -9,31 +8,31 @@ public sealed partial class TerrorSpiderMotherComponent : Component
     [DataField]
     public EntProtoId PulseAction = "ActionTerrorSpiderMotherPulse";
 
-    [DataField]
+    [ViewVariables]
     public EntityUid? PulseActionEntity;
 
     [DataField]
     public EntProtoId RemoteViewNextAction = "ActionTerrorSpiderMotherRemoteViewNext";
 
-    [DataField]
+    [ViewVariables]
     public EntityUid? RemoteViewNextActionEntity;
 
     [DataField]
     public EntProtoId RemoteViewPreviousAction = "ActionTerrorSpiderMotherRemoteViewPrevious";
 
-    [DataField]
+    [ViewVariables]
     public EntityUid? RemoteViewPreviousActionEntity;
 
     [DataField]
     public EntProtoId RemoteViewExitAction = "ActionTerrorSpiderMotherRemoteViewExit";
 
-    [DataField]
+    [ViewVariables]
     public EntityUid? RemoteViewExitActionEntity;
 
     [DataField]
     public EntProtoId LayJellyAction = "ActionTerrorSpiderMotherLayJelly";
 
-    [DataField]
+    [ViewVariables]
     public EntityUid? LayJellyActionEntity;
 
     [DataField]
