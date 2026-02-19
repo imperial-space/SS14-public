@@ -142,6 +142,9 @@
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: alive
         sprite: Imperial/Seriozha/SCP/objects/Fireman.rsi
+      - map: ["enum.TriggerVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/SCP/objects/Fireman.rsi
     - type: DamageStateVisuals
       states:
         Alive:
@@ -203,6 +206,9 @@
     - type: ToggleClothing
       action: ActionToggleSCPMusic
       mustEquip: false
+    - type: TimerTriggerVisuals
+      unprimedSprite: alive
+      primingSprite: alive
     - type: Reactive
       groups:
         Flammable: [ Touch ]
@@ -237,6 +243,8 @@
         params:
           loop: true
           stream: true
+    - type: SCPFireman
+      maxOwnedFires: 50
 
 - type: entity
   name: Avel
@@ -686,3 +694,161 @@
   id: ImperialAvelGear
   inhand:
   - ImperialSCPKatana
+
+- type: entity
+  id: ActionSCPFiremanIgnite
+  name: Поджёг
+  description: Создаёт огонь под собой.
+  components:
+    - type: Action
+      checkCanAccess: false
+      useDelay: 1
+    - type: InstantAction
+      event: !type:SCPFiremanIgniteActionEvent
+
+- type: entity
+  id: ActionSCPFiremanFireball
+  name: Огненный шар
+  description: Создаёт взрыв огня в выбранной точке.
+  components:
+    - type: Action
+      checkCanAccess: false
+      useDelay: 2
+    - type: TargetAction
+      checkCanAccess: false
+      range: 60
+    - type: WorldTargetAction
+      event: !type:SCPFiremanFireballActionEvent
+
+- type: entity
+  id: ActionSCPFiremanWhirl
+  name: Огненный вихрь
+  description: Выпускает огненный вихрь в направлении курсора.
+  components:
+    - type: Action
+      checkCanAccess: false
+      useDelay: 2
+    - type: TargetAction
+      checkCanAccess: false
+      range: 60
+    - type: WorldTargetAction
+      event: !type:SCPFiremanWhirlActionEvent
+
+- type: entity
+  id: ActionSCPFiremanMelt
+  name: Плавление
+  description: Наносит 100 урона выбранной структуре и поджигает её.
+  components:
+    - type: Action
+      checkCanAccess: false
+      useDelay: 2
+    - type: TargetAction
+      checkCanAccess: false
+      range: 20
+    - type: EntityTargetAction
+      event: !type:SCPFiremanMeltActionEvent
+
+- type: entity
+  id: ActionSCPFiremanTrueFlame
+  name: Истинное пламя
+  description: Делает вас неуязвимым на 25 секунд.
+  components:
+    - type: Action
+      checkCanAccess: false
+      useDelay: 2
+    - type: InstantAction
+      event: !type:SCPFiremanTrueFlameActionEvent
+
+- type: entity
+  id: ActionSCPFiremanStrike
+  name: Огненный удар
+  description: Через 1.5 секунды поджигает существ в радиусе 20 клеток.
+  components:
+    - type: Action
+      checkCanAccess: false
+      useDelay: 2
+    - type: InstantAction
+      event: !type:SCPFiremanStrikeActionEvent
+
+- type: entity
+  id: ActionSCPFiremanSecondMode
+  name: Второй режим
+  description: Переключает режим ЛКМ-излучения огня.
+  components:
+    - type: Action
+      checkCanAccess: false
+      useDelay: 0.5
+    - type: InstantAction
+      event: !type:SCPFiremanSecondModeActionEvent
+
+- type: entity
+  id: SCPFiremanFlame
+  name: Пламя
+  description: Горячее пламя.
+  components:
+    - type: Transform
+      anchored: true
+    - type: Physics
+      bodyType: Static
+    - type: TimedDespawn
+      lifetime: 120
+    - type: Sprite
+      noRot: true
+      sprite: Effects/fire.rsi
+      layers:
+        - state: 1
+    - type: Appearance
+    - type: FireVisuals
+      sprite: Effects/fire.rsi
+      normalState: 1
+    - type: PointLight
+      color: "#ff8c32"
+      radius: 2
+      energy: 2
+    - type: IgnitionSource
+      temperature: 1000
+    - type: Flammable
+      onFire: true
+      fireStacks: 5
+      alwaysCombustible: true
+      canExtinguish: true
+      damage:
+        types:
+          Heat: 0
+    - type: Reactive
+      groups:
+        Extinguish: [ Touch ]
+      reactions:
+      - reagents: [ Water, SpaceCleaner ]
+        methods: [ Touch ]
+        effects:
+        - !type:Extinguish
+    - type: SCPFireSpread
+      igniteRadius: 0.55
+      igniteInterval: 1.5
+      spreadInterval: 18
+      maxSpreadPerPulse: 2
+
+- type: entity
+  id: SCPFiremanWhirl
+  name: Огненный вихрь
+  description: Движущийся огонь.
+  components:
+    - type: Transform
+      anchored: false
+    - type: TimedDespawn
+      lifetime: 8
+    - type: Sprite
+      noRot: true
+      sprite: Effects/fire.rsi
+      layers:
+        - state: 2
+    - type: PointLight
+      color: "#ff8c32"
+      radius: 2
+      energy: 2
+    - type: IgnitionSource
+      temperature: 1000
+    - type: SCPFireWhirl
+      lifetime: 8
+      effectInterval: 0.33

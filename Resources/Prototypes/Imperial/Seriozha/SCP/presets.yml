@@ -4,6 +4,7 @@
   id: ImperialSCPBasePreset
   components:
     - type: AntagImmune
+    - type: Sanity
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: CrewSkills
@@ -33,6 +34,15 @@
     - type: Damageable
       damageContainer: BiologicalMemetical
       damageModifierSet: Infernal
+    - type: SCPBlinkable
+      blinkInterval: 14
+      blinkDuration: 0.8
+      manualBlinkCooldown: 4
+      manualBlinkPopup: "Вы моргнули."
+      blinkStartPopup: "Вы моргаете..."
+      blinkEndPopup: ""
+      blinkStartSound: null
+      blinkEndSound: null
     - type: ShowJobIcons
     - type: ShowMindShieldIcons
 

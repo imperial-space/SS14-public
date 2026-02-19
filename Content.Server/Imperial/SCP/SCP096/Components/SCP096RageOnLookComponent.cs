@@ -1,0 +1,71 @@
+namespace Content.Server.Imperial.SCP.SCP096.Components;
+
+using System.Collections.Generic;
+using Robust.Shared.Audio;
+
+[RegisterComponent]
+public sealed partial class SCP096RageOnLookComponent : Component
+{
+    [DataField("observeRadius")]
+    public float ObserveRadius = 9f;
+
+    [DataField("minLookDot")]
+    public float MinLookDot = 0.42f;
+
+    [DataField("requireUnobstructed")]
+    public bool RequireUnobstructed = true;
+
+    [DataField("enragedWalkModifier")]
+    public float EnragedWalkModifier = 1.7f;
+
+    [DataField("enragedSprintModifier")]
+    public float EnragedSprintModifier = 1.7f;
+
+    [DataField("enragedAttackRate")]
+    public float EnragedAttackRate = 1.7f;
+
+    [DataField("calmAttackRate")]
+    public float CalmAttackRate = 1.0f;
+
+    [DataField("rageWindup")]
+    public TimeSpan RageWindup = TimeSpan.FromSeconds(10);
+
+    [DataField("rageDuration")]
+    public TimeSpan RageDuration = TimeSpan.FromSeconds(120);
+
+    [DataField("rageWindupPopup")]
+    public string RageWindupPopup = "SCP-096 начинает входить в ярость!";
+
+    [DataField("ragePopup")]
+    public string RagePopup = "SCP-096 входит в ярость!";
+
+    [DataField("rageCalmPopup")]
+    public string RageCalmPopup = "SCP-096 успокаивается.";
+
+    [DataField("rageSound")]
+    public SoundSpecifier RageSound = new SoundPathSpecifier("/Audio/Voice/Human/malescream_1.ogg");
+
+    [DataField("cryingSound")]
+    public SoundSpecifier CryingSound = new SoundPathSpecifier("/Audio/Voice/Human/cry_male_1.ogg");
+
+    [DataField("rageLoopSound")]
+    public SoundSpecifier RageLoopSound = new SoundPathSpecifier("/Audio/Ambience/Objects/anomaly_generator_ambi.ogg");
+
+    [ViewVariables]
+    public bool IsEnraged;
+
+    [ViewVariables]
+    public bool IsRageWindup;
+
+    [ViewVariables]
+    public TimeSpan RageWindupEndTime;
+
+    [ViewVariables]
+    public TimeSpan RageEndTime;
+
+    [ViewVariables]
+    public bool UsingRageLoopSound;
+
+    [ViewVariables]
+    public HashSet<EntityUid> RageTargets = new();
+}
