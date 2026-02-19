@@ -1,7 +1,6 @@
 using Content.Shared.Imperial.TerrorSpider.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Content.Shared.Damage;
 
 namespace Content.Shared.Imperial.TerrorSpider.Components;
@@ -53,4 +52,7 @@ public sealed partial class TerrorSpiderKnightRageComponent : Component
 
     [ViewVariables]
     public float CachedBurnModifier;
+
+    [ViewVariables]
+    public bool HasCachedArmor;
 }

@@ -49,13 +49,16 @@ public sealed class SCP096RageOnLookSystem : EntitySystem
             if (args.Target is not { } target)
                 return;
 
+            // Allow attacking doors regardless of rage target
             if (HasComp<DoorComponent>(target))
                 return;
 
+            // Allow attacking rage targets
             if (ent.Comp.RageTargets.Contains(target))
                 return;
         }
 
+        // Block all other attacks (non-enraged or non-target entities)
         args.Cancel();
     }
 
@@ -117,11 +120,12 @@ public sealed class SCP096RageOnLookSystem : EntitySystem
 
                 if (TryComp<MeleeWeaponComponent>(uid, out var enragedMelee))
                 {
+                    comp.OriginalAttackRate ??= enragedMelee.AttackRate;
                     enragedMelee.AttackRate = comp.EnragedAttackRate;
                     Dirty(uid, enragedMelee);
                 }
 
-                _popup.PopupEntity(comp.RagePopup, uid, PopupType.LargeCaution);
+                _popup.PopupEntity(Loc.GetString(comp.RagePopup), uid, PopupType.LargeCaution);
                 UpdateStageAmbient(uid, comp, true);
                 SetVisualState(uid, SCP096VisualState.Chasing);
                 continue;
@@ -143,7 +147,7 @@ public sealed class SCP096RageOnLookSystem : EntitySystem
             comp.IsRageWindup = true;
             comp.RageWindupEndTime = curTime + comp.RageWindup;
             _movement.RefreshMovementSpeedModifiers(uid);
-            _popup.PopupEntity(comp.RageWindupPopup, uid, PopupType.MediumCaution);
+            _popup.PopupEntity(Loc.GetString(comp.RageWindupPopup), uid, PopupType.MediumCaution);
             _audio.PlayPvs(comp.RageSound, uid);
             UpdateStageAmbient(uid, comp, true);
             SetVisualState(uid, SCP096VisualState.Screaming);
@@ -162,11 +166,12 @@ public sealed class SCP096RageOnLookSystem : EntitySystem
 
         if (TryComp<MeleeWeaponComponent>(uid, out var calmMelee))
         {
-            calmMelee.AttackRate = comp.CalmAttackRate;
+            calmMelee.AttackRate = comp.OriginalAttackRate ?? comp.CalmAttackRate;
+            comp.OriginalAttackRate = null;
             Dirty(uid, calmMelee);
         }
 
-        _popup.PopupEntity(comp.RageCalmPopup, uid, PopupType.Medium);
+        _popup.PopupEntity(Loc.GetString(comp.RageCalmPopup), uid, PopupType.Medium);
         UpdateStageAmbient(uid, comp, true);
         SetVisualState(uid, SCP096VisualState.Calm);
     }
@@ -192,8 +197,9 @@ public sealed class SCP096RageOnLookSystem : EntitySystem
 
     private bool UpdateRageTargets(EntityUid target, SCP096RageOnLookComponent comp)
     {
-        var targetPosition = _transform.GetWorldPosition(target);
-        var targetMap = Transform(target).MapID;
+        var targetXform = Transform(target);
+        var targetPosition = _transform.GetWorldPosition(targetXform);
+        var targetMap = targetXform.MapID;
         var watched = false;
 
         foreach (var observer in _lookup.GetEntitiesInRange(target, comp.ObserveRadius, LookupFlags.Dynamic))

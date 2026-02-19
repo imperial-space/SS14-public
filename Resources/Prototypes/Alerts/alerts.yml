@@ -66,8 +66,8 @@
     state: battery10
   minSeverity: 0
   maxSeverity: 10
-  name: Рассудок
-  description: Текущее состояние психики.
+  name: alerts-sanity-name
+  description: alerts-sanity-desc
 
 - type: alert
   id: SCPBlink
@@ -75,8 +75,8 @@
   - sprite: /Textures/Clothing/Eyes/Glasses/glasses.rsi
     state: icon
   clickEvent: !type:SCPBlinkAlertEvent
-  name: Моргание
-  description: До следующего моргания.
+  name: alerts-scp-blink-name
+  description: alerts-scp-blink-desc
 
 - type: alert
   id: SCPFiremanPoints
@@ -105,8 +105,8 @@
     state: battery10
   minSeverity: 0
   maxSeverity: 10
-  name: Огненные очки
-  description: Текущий запас огненной энергии.
+  name: alerts-scp-fireman-points-name
+  description: alerts-scp-fireman-points-desc
 
 - type: alert
   id: LowOxygen

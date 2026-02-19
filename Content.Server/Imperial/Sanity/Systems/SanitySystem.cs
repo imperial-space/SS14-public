@@ -477,8 +477,11 @@ public sealed class SanitySystem : EntitySystem
         return false;
     }
 
-    private bool PrototypeInherits(string prototypeId, string parentId)
+    private bool PrototypeInherits(string prototypeId, string parentId, int depth = 0)
     {
+        if (depth > 16)
+            return false;
+
         if (prototypeId.Equals(parentId, StringComparison.Ordinal))
             return true;
 
@@ -490,7 +493,7 @@ public sealed class SanitySystem : EntitySystem
             if (parent.Equals(parentId, StringComparison.Ordinal))
                 return true;
 
-            if (PrototypeInherits(parent, parentId))
+            if (PrototypeInherits(parent, parentId, depth + 1))
                 return true;
         }
 
@@ -508,10 +511,10 @@ public sealed class SanitySystem : EntitySystem
             return;
 
         if (ent.Comp.Value <= ent.Comp.LowThreshold && old > ent.Comp.LowThreshold)
-            _popup.PopupEntity("Ваш рассудок на исходе.", ent, ent);
+            _popup.PopupEntity(Loc.GetString("sanity-low-warning"), ent, ent);
 
         if (ent.Comp.Value >= ent.Comp.HighThreshold && old < ent.Comp.HighThreshold)
-            _popup.PopupEntity("Вы чувствуете душевный подъём.", ent, ent);
+            _popup.PopupEntity(Loc.GetString("sanity-high-feeling"), ent, ent);
     }
 
     private void UpdateAlert(EntityUid uid, SanityComponent comp)

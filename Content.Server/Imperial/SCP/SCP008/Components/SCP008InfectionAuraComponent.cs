@@ -24,7 +24,7 @@ public sealed partial class SCP008InfectionAuraComponent : Component
     public TimeSpan WarningDelay = TimeSpan.FromSeconds(3);
 
     [DataField("warningPopup")]
-    public string WarningPopup = "SCP-008: покиньте зону немедленно, иначе вы превратитесь в зомби!";
+    public LocId WarningPopup = "scp008-warning-popup";
 
     [ViewVariables]
     public TimeSpan NextUpdate;

@@ -22,6 +22,7 @@
       primingSound:
         path: /Audio/Effects/Smoke-grenade.ogg
     - type: NoSlip
+    - type: Appearance
     - type: MovementIgnoreGravity
     - type: ZombieImmune
     - type: NonSpreaderZombie
@@ -697,6 +698,7 @@
 
 - type: entity
   id: ActionSCPFiremanIgnite
+  parent: BaseAction
   name: Поджог
   description: Создаёт огонь под собой.
   components:
@@ -708,6 +710,7 @@
 
 - type: entity
   id: ActionSCPFiremanFireball
+  parent: BaseAction
   name: Огненный шар
   description: Создаёт взрыв огня в выбранной точке.
   components:
@@ -722,6 +725,7 @@
 
 - type: entity
   id: ActionSCPFiremanWhirl
+  parent: BaseAction
   name: Огненный вихрь
   description: Выпускает огненный вихрь в направлении курсора.
   components:
@@ -736,6 +740,7 @@
 
 - type: entity
   id: ActionSCPFiremanMelt
+  parent: BaseAction
   name: Плавление
   description: Наносит 100 урона выбранной структуре и поджигает её.
   components:
@@ -750,6 +755,7 @@
 
 - type: entity
   id: ActionSCPFiremanTrueFlame
+  parent: BaseAction
   name: Истинное пламя
   description: Делает вас неуязвимым на 25 секунд.
   components:
@@ -761,6 +767,7 @@
 
 - type: entity
   id: ActionSCPFiremanStrike
+  parent: BaseAction
   name: Огненный удар
   description: Через 1.5 секунды поджигает существ в радиусе 20 клеток.
   components:
@@ -772,6 +779,7 @@
 
 - type: entity
   id: ActionSCPFiremanSecondMode
+  parent: BaseAction
   name: Второй режим
   description: Переключает режим ЛКМ-излучения огня.
   components:

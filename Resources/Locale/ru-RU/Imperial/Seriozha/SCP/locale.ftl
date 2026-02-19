@@ -192,3 +192,28 @@ ent-RubberStampComitetNedra = Печать комитета управления
     .desc = Печать, повышает уровень важности документа
 ent-ChemistryBottleSaline = бутылочка физраствора
     .desc = { ent-BaseChemistryEmptyBottle.desc }
+
+# SCP008
+scp008-warning-popup = SCP-008: покиньте зону немедленно, иначе вы превратитесь в зомби!
+
+# SCP096
+scp096-rage-windup-popup = SCP-096 начинает входить в ярость!
+scp096-rage-popup = SCP-096 входит в ярость!
+scp096-rage-calm-popup = SCP-096 успокаивается.
+
+# Sanity
+sanity-low-warning = Ваш рассудок на исходе.
+sanity-high-feeling = Вы чувствуете душевный подъём.
+
+# Alerts
+alerts-sanity-name = Рассудок
+alerts-sanity-desc = Текущее состояние психики.
+alerts-scp-blink-name = Моргание
+alerts-scp-blink-desc = До следующего моргания.
+alerts-scp-fireman-points-name = Огненные очки
+alerts-scp-fireman-points-desc = Текущий запас огненной энергии.
+
+# Terror Spider
+terror-spider-hive-sense-empty = Чувство улья: потомства не обнаружено.
+terror-spider-hive-sense-entry = {$name}: {$hp}/{$hpMax} HP, маяк: {$beacon}
+terror-spider-hive-sense-unknown = неизвестно

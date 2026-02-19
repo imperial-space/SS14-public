@@ -5,7 +5,6 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Imperial.TerrorSpider.Components;
 using Content.Shared.Imperial.TerrorSpider.Events;
-using Content.Shared.Interaction;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Systems;
@@ -23,6 +22,7 @@ public sealed class TerrorSpiderMotherSystem : EntitySystem
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedEyeSystem _eye = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly MovementModStatusSystem _movementModStatus = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
@@ -49,9 +49,9 @@ public sealed class TerrorSpiderMotherSystem : EntitySystem
 
         var now = _timing.CurTime;
         UpdateRegenBuffs(now);
-        var mothers = EntityQueryEnumerator<TerrorSpiderMotherComponent, TransformComponent>();
+        var mothers = EntityQueryEnumerator<TerrorSpiderMotherComponent>();
 
-        while (mothers.MoveNext(out var mother, out var comp, out var motherXform))
+        while (mothers.MoveNext(out var mother, out var comp))
         {
             if (TryComp<EyeComponent>(mother, out var eye))
                 UpdateRemoteViewMovementLock((mother, comp), eye.Target);
@@ -64,16 +64,12 @@ public sealed class TerrorSpiderMotherSystem : EntitySystem
 
             comp.NextAuraTick = now + TimeSpan.FromSeconds(comp.AuraInterval);
 
-            var motherPos = motherXform.MapPosition;
-            var targets = EntityQueryEnumerator<DamageableComponent, TransformComponent>();
-
-            while (targets.MoveNext(out var target, out var damageable, out var targetXform))
+            foreach (var target in _lookup.GetEntitiesInRange(mother, comp.AuraHalfRange, LookupFlags.Dynamic))
             {
-                if (targetXform.MapPosition.MapId != motherPos.MapId)
+                if (target == mother)
                     continue;
 
-                var delta = targetXform.MapPosition.Position - motherPos.Position;
-                if (MathF.Abs(delta.X) > comp.AuraHalfRange || MathF.Abs(delta.Y) > comp.AuraHalfRange)
+                if (!TryComp<DamageableComponent>(target, out var damageable))
                     continue;
 
                 if (IsTerrorSpider(target))
@@ -115,19 +111,12 @@ public sealed class TerrorSpiderMotherSystem : EntitySystem
         if (args.Handled)
             return;
 
-        var origin = Transform(ent.Owner).MapPosition;
-        var rangeSquared = ent.Comp.PulseRange * ent.Comp.PulseRange;
-        var query = EntityQueryEnumerator<DamageableComponent, TransformComponent>();
-
-        while (query.MoveNext(out var target, out var damageable, out var xform))
+        foreach (var target in _lookup.GetEntitiesInRange(ent.Owner, ent.Comp.PulseRange, LookupFlags.Dynamic))
         {
             if (!IsTerrorSpider(target))
                 continue;
 
-            if (xform.MapPosition.MapId != origin.MapId)
-                continue;
-
-            if ((xform.MapPosition.Position - origin.Position).LengthSquared() > rangeSquared)
+            if (!TryComp<DamageableComponent>(target, out var damageable))
                 continue;
 
             ApplyHealAllDamageTypes(target, damageable, ent.Comp.PulseHealAmount);

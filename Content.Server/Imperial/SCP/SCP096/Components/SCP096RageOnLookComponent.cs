@@ -34,13 +34,13 @@ public sealed partial class SCP096RageOnLookComponent : Component
     public TimeSpan RageDuration = TimeSpan.FromSeconds(120);
 
     [DataField("rageWindupPopup")]
-    public string RageWindupPopup = "SCP-096 начинает входить в ярость!";
+    public LocId RageWindupPopup = "scp096-rage-windup-popup";
 
     [DataField("ragePopup")]
-    public string RagePopup = "SCP-096 входит в ярость!";
+    public LocId RagePopup = "scp096-rage-popup";
 
     [DataField("rageCalmPopup")]
-    public string RageCalmPopup = "SCP-096 успокаивается.";
+    public LocId RageCalmPopup = "scp096-rage-calm-popup";
 
     [DataField("rageSound")]
     public SoundSpecifier RageSound = new SoundPathSpecifier("/Audio/Voice/Human/malescream_1.ogg");
@@ -65,6 +65,9 @@ public sealed partial class SCP096RageOnLookComponent : Component
 
     [ViewVariables]
     public bool UsingRageLoopSound;
+
+    [ViewVariables]
+    public float? OriginalAttackRate;
 
     [ViewVariables]
     public HashSet<EntityUid> RageTargets = new();

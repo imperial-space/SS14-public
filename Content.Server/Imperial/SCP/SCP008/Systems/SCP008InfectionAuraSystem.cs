@@ -5,6 +5,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Zombies;
 using Robust.Shared.Timing;
+using Robust.Shared.Localization;
 
 namespace Content.Server.Imperial.SCP.SCP008.Systems;
 
@@ -89,7 +90,7 @@ public sealed class SCP008InfectionAuraSystem : EntitySystem
                     warningStart = TimeSpan.Zero;
 
                 if (previousExposure < warningStart && totalExposure >= warningStart && totalExposure < comp.ZombifyDelay)
-                    _popup.PopupEntity(comp.WarningPopup, target, target, PopupType.MediumCaution);
+                    _popup.PopupEntity(Loc.GetString(comp.WarningPopup), target, target, PopupType.MediumCaution);
 
                 if (totalExposure >= comp.ZombifyDelay)
                 {

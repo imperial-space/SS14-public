@@ -229,7 +229,7 @@ public sealed class TerrorSpiderQueenSystem : EntitySystem
 
         var lines = BuildHiveSenseLines(ent.Owner);
         if (lines.Count == 0)
-            lines.Add("Чувство улья: потомства не обнаружено.");
+            lines.Add(Loc.GetString("terror-spider-hive-sense-empty"));
 
         foreach (var line in lines)
         {
@@ -301,7 +301,7 @@ public sealed class TerrorSpiderQueenSystem : EntitySystem
         }
 
         if (nearest == null)
-            return "неизвестно";
+            return Loc.GetString("terror-spider-hive-sense-unknown");
 
         if (TryComp<NavMapBeaconComponent>(nearest, out var beaconComp) && !string.IsNullOrWhiteSpace(beaconComp.Text))
             return beaconComp.Text;

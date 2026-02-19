@@ -81,6 +81,7 @@ public abstract class SharedTerrorSpiderKnightRageSystem : EntitySystem
         {
             ent.Comp.CachedBruteModifier = armor.BruteModifier;
             ent.Comp.CachedBurnModifier = armor.BurnModifier;
+            ent.Comp.HasCachedArmor = true;
             armor.BruteModifier = ent.Comp.BruteIncomingMultiplier;
             armor.BurnModifier = ent.Comp.BurnIncomingMultiplier;
             Dirty(ent.Owner, armor);
@@ -111,12 +112,14 @@ public abstract class SharedTerrorSpiderKnightRageSystem : EntitySystem
         comp.CachedMeleeDamage = null;
         comp.CachedPassiveDamage = null;
 
-        if (TryComp<TerrorSpiderArmorComponent>(uid, out var armor))
+        if (ent.Comp.HasCachedArmor && TryComp<TerrorSpiderArmorComponent>(uid, out var armor))
         {
             armor.BruteModifier = comp.CachedBruteModifier;
             armor.BurnModifier = comp.CachedBurnModifier;
             Dirty(uid, armor);
         }
+
+        comp.HasCachedArmor = false;
 
         _movement.RefreshMovementSpeedModifiers(uid);
         Dirty(uid, comp);
