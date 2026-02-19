@@ -350,9 +350,11 @@ public sealed class SCPFiremanSystem : EntitySystem
                 continue;
             }
 
+            var hasOwner = comp.FireOwner != EntityUid.Invalid;
+
             while (now >= comp.NextPointTime)
             {
-                if (TryComp<SCPFiremanComponent>(comp.FireOwner, out var fireman))
+                if (hasOwner && TryComp<SCPFiremanComponent>(comp.FireOwner, out var fireman))
                     AddPoints(comp.FireOwner, 1f, fireman);
 
                 comp.NextPointTime += comp.PointInterval;
@@ -360,7 +362,9 @@ public sealed class SCPFiremanSystem : EntitySystem
 
             while (now >= comp.NextHealTime)
             {
-                HealOwner(comp.FireOwner, comp.HealPerType);
+                if (hasOwner)
+                    HealOwner(comp.FireOwner, comp.HealPerType);
+
                 comp.NextHealTime += comp.HealInterval;
             }
 

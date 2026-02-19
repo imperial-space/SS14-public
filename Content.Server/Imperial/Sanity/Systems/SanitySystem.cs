@@ -76,7 +76,6 @@ public sealed class SanitySystem : EntitySystem
         ent.Comp.NextCoffeeGain = now;
         ent.Comp.NextLowSound = now + TimeSpan.FromSeconds(8);
         ent.Comp.NextHighRegenTick = now + TimeSpan.FromSeconds(1);
-        ent.Comp.NextShockSound = now;
 
         if (TryComp<HungerComponent>(ent, out var hungerComp))
             ent.Comp.LastHunger = _hunger.GetHunger(hungerComp);
@@ -240,9 +239,6 @@ public sealed class SanitySystem : EntitySystem
 
         if (sawScp)
             ModifySanity(ent, -ent.Comp.SeenScpLoss);
-
-        if (sawCorpse || sawScp)
-            TryPlayShockSound(ent);
 
         if (IsNdaObjectNear(ent.Owner, ent.Comp.NdaRadius))
             ModifySanity(ent, ent.Comp.NearNdaGain);
@@ -475,23 +471,6 @@ public sealed class SanitySystem : EntitySystem
         }
 
         return false;
-    }
-
-    private void TryPlayShockSound(Entity<SanityComponent> ent)
-    {
-        if (ent.Comp.State != SanityState.Low)
-            return;
-
-        var now = _timing.CurTime;
-        if (now < ent.Comp.NextShockSound)
-            return;
-
-        if (ent.Comp.ShockSounds.Count == 0)
-            return;
-
-        var sound = _random.Pick(ent.Comp.ShockSounds);
-        _audio.PlayPvs(sound, ent);
-        ent.Comp.NextShockSound = now + ent.Comp.ShockSoundCooldown;
     }
 
     private bool PrototypeInherits(string prototypeId, string parentId)

@@ -21,7 +21,7 @@ public sealed partial class SCP173LightFlickerComponent : Component
     [DataField("activationSound")]
     public SoundSpecifier? ActivationSound = new SoundPathSpecifier("/Audio/Machines/lightswitch.ogg");
 
-    [DataField]
+    [ViewVariables]
     public EntityUid? ActionEntity;
 
     [ViewVariables]

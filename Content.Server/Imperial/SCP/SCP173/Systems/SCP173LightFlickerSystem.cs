@@ -3,6 +3,7 @@ using Content.Server.Imperial.SCP.SCP173.Components;
 using Content.Shared.Imperial.SCP.SCP173;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.SCP.SCP173.Systems;
 
@@ -13,7 +14,7 @@ public sealed class SCP173LightFlickerSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -95,12 +96,12 @@ public sealed class SCP173LightFlickerSystem : EntitySystem
             if (!TryComp<TransformComponent>(lightUid, out var lightXform) || lightXform.MapID != map)
                 continue;
 
-            if (!ent.Comp.CapturedLightStates.ContainsKey(lightUid))
-                ent.Comp.CapturedLightStates[lightUid] = pointLight.Enabled;
-
             var distance = (_transform.GetWorldPosition(lightUid) - origin).Length();
             if (distance > ent.Comp.Radius)
                 continue;
+
+            if (!ent.Comp.CapturedLightStates.ContainsKey(lightUid))
+                ent.Comp.CapturedLightStates[lightUid] = pointLight.Enabled;
 
             var targetEnabled = turnOn ? ent.Comp.CapturedLightStates[lightUid] : false;
             _pointLight.SetEnabled(lightUid, targetEnabled, pointLight);

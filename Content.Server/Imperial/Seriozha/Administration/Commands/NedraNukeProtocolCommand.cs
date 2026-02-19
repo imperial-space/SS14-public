@@ -101,6 +101,9 @@ public sealed class NedraNukeProtocolCommand : IConsoleCommand
 
         Timer.Spawn(phaseSeconds * 1000, () =>
         {
+            if (_entManager.Deleted(mapUid))
+                return;
+
             var centcommHermetics = CloseCentcommHermeticsAndEnableGodmode(targetMap.Value);
 
             TriggerExplosionSpawners(targetMap.Value);

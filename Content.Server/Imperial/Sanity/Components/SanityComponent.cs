@@ -147,15 +147,6 @@ public sealed partial class SanityComponent : Component
     [DataField("seenScpLoss")]
     public float SeenScpLoss = 1f;
 
-    [DataField("shockSoundCooldown")]
-    public TimeSpan ShockSoundCooldown = TimeSpan.FromSeconds(6);
-
-    [DataField("shockSounds")]
-    public List<SoundSpecifier> ShockSounds =
-    [
-        new SoundPathSpecifier("/Audio/Imperial/Mission_Blackout/PsychoStart.ogg")
-    ];
-
     [DataField("lowSoundMinInterval")]
     public TimeSpan LowSoundMinInterval = TimeSpan.FromSeconds(12);
 
@@ -189,9 +180,6 @@ public sealed partial class SanityComponent : Component
 
     [ViewVariables]
     public TimeSpan NextHighRegenTick;
-
-    [ViewVariables]
-    public TimeSpan NextShockSound;
 
     [ViewVariables]
     public float LastHunger;
