@@ -28,11 +28,11 @@ namespace Content.Server.Imperial.Sanity.Systems;
 
 public sealed class SanitySystem : EntitySystem
 {
-    private static readonly ProtoId<AlertPrototype> SanityAlert = "Sanity";
+    private static readonly ProtoId<AlertPrototype> _sanityAlert = "Sanity";
     private const string ScpBaseParent = "ImperialSCPBase";
     private const string ScpPresetParent = "ImperialSCPBasePreset";
 
-    private static readonly HashSet<string> FriendlyScpIds =
+    private static readonly HashSet<string> _friendlyScpIds =
     [
         "ImperialSCPNDA131",
         "ImperialSCPNDA131A",
@@ -89,7 +89,7 @@ public sealed class SanitySystem : EntitySystem
 
     private void OnShutdown(Entity<SanityComponent> ent, ref ComponentShutdown args)
     {
-        _alerts.ClearAlert(ent.Owner, SanityAlert);
+        _alerts.ClearAlert(ent.Owner, _sanityAlert);
     }
 
     private void OnDamageChanged(Entity<SanityComponent> ent, ref DamageChangedEvent args)
@@ -264,7 +264,7 @@ public sealed class SanitySystem : EntitySystem
             if (string.IsNullOrWhiteSpace(protoId))
                 continue;
 
-            if (FriendlyScpIds.Contains(protoId))
+            if (_friendlyScpIds.Contains(protoId))
             {
                 hasFriendly = true;
                 continue;
@@ -471,7 +471,7 @@ public sealed class SanitySystem : EntitySystem
                 continue;
 
             // Skip friendly SCPs — they are handled by ProcessScpProximity
-            if (FriendlyScpIds.Contains(protoId) || PrototypeInherits(protoId, ScpPresetParent))
+            if (_friendlyScpIds.Contains(protoId) || PrototypeInherits(protoId, ScpPresetParent))
                 continue;
 
             if (!PrototypeInherits(protoId, ScpBaseParent))
@@ -529,6 +529,6 @@ public sealed class SanitySystem : EntitySystem
     private void UpdateAlert(EntityUid uid, SanityComponent comp)
     {
         var severity = (short) Math.Clamp((int) MathF.Floor(comp.Value / comp.MaxSanity * 10f), 0, 10);
-        _alerts.ShowAlert(uid, SanityAlert, severity);
+        _alerts.ShowAlert(uid, _sanityAlert, severity);
     }
 }

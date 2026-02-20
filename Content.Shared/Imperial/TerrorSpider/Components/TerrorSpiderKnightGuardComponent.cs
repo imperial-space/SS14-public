@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.TerrorSpider.Components;
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedTerrorSpiderKnightGuardSystem)), AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedTerrorSpiderKnightGuardSystem)), AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class TerrorSpiderKnightGuardComponent : Component
 {
     [DataField]
@@ -39,6 +39,7 @@ public sealed partial class TerrorSpiderKnightGuardComponent : Component
     public bool IsGuarding;
 
     [ViewVariables]
+    [AutoPausedField]
     [AutoNetworkedField]
     public TimeSpan GuardEndTime;
 

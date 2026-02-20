@@ -320,6 +320,7 @@ public sealed class SCPFiremanSystem : EntitySystem
                 if (comp.FirePoints <= 0f)
                 {
                     comp.SecondModeEnabled = false;
+                    comp.NextSecondModeDrainTick = now + TimeSpan.FromSeconds(1);
                     break;
                 }
 
@@ -329,6 +330,7 @@ public sealed class SCPFiremanSystem : EntitySystem
                 if (comp.FirePoints <= 0f)
                 {
                     comp.SecondModeEnabled = false;
+                    comp.NextSecondModeDrainTick = now + TimeSpan.FromSeconds(1);
                     break;
                 }
             }

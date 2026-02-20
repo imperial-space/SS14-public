@@ -93,7 +93,7 @@ public abstract class SharedTerrorSpiderKnightRageSystem : EntitySystem
         }
 
         _movement.RefreshMovementSpeedModifiers(ent.Owner);
-        Dirty(ent);
+        Dirty(ent.Owner, ent.Comp);
         args.Handled = true;
     }
 

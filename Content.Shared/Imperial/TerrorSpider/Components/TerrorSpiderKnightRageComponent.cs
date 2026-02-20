@@ -5,7 +5,7 @@ using Content.Shared.Damage;
 
 namespace Content.Shared.Imperial.TerrorSpider.Components;
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedTerrorSpiderKnightRageSystem)), AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedTerrorSpiderKnightRageSystem)), AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class TerrorSpiderKnightRageComponent : Component
 {
     [DataField]
@@ -39,6 +39,7 @@ public sealed partial class TerrorSpiderKnightRageComponent : Component
     public bool IsEnraged;
 
     [ViewVariables]
+    [AutoPausedField]
     public TimeSpan RageEndTime;
 
     [ViewVariables]

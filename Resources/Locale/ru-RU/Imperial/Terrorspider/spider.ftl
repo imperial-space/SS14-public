@@ -110,32 +110,32 @@ ent-MobGiantHealerSpiderAngry = целитель ужаса
 # Webs
 # ==========================================
 
-ent-SpiderWebTerrorRusar = паутина паука ужаса
-    .desc = Ужасно!
+ent-SpiderWebTerrorRusar = паутина паука-рыцаря
+    .desc = Липкая паутина, сотканная рыцарем ужаса.
 
-ent-SpiderWebTerrorDron = паутина паука ужаса
-    .desc = Ужасно!
+ent-SpiderWebTerrorDron = паутина паука-дрона
+    .desc = Липкая паутина, сотканная дроном ужаса.
 
-ent-SpiderWebTerrorLurker = паутина паука ужаса
-    .desc = Ужасно!
+ent-SpiderWebTerrorLurker = паутина соглядатая
+    .desc = Липкая паутина, сотканная соглядатаем ужаса.
 
-ent-SpiderWebTerrorWidow = паутина паука ужаса
-    .desc = Ужасно!
+ent-SpiderWebTerrorWidow = паутина вдовы
+    .desc = Ядовитая паутина паука-вдовы.
 
-ent-SpiderWebTerrorGuardian = паутина паука ужаса
-    .desc = Ужасно!
+ent-SpiderWebTerrorGuardian = паутина стража
+    .desc = Прочная паутина, сотканная стражем ужаса.
 
 ent-SpiderWebTerrorGuardianBarrier = защитный барьер стража
     .desc = Ужасно!
 
-ent-SpiderWebTerrorHealer = паутина паука ужаса
-    .desc = Ужасно!
+ent-SpiderWebTerrorHealer = паутина целителя
+    .desc = Лечебная паутина, сотканная целителем ужаса.
 
-ent-SpiderWebPrincess = паутина паука ужаса
-    .desc = Ужасно!
+ent-SpiderWebPrincess = паутина принцессы
+    .desc = Паутина, сотканная принцессой ужаса.
 
-ent-SpiderWebTerrorUwU = паутина паука ужаса
-    .desc = Ужасно!
+ent-SpiderWebTerrorUwU = паутина паука UwU
+    .desc = Мягкая, но крайне опасная паутина.
 
 # ==========================================
 # Eggs
@@ -240,34 +240,34 @@ ent-TerrorSpiderMotherJelly = желе улья
 # ==========================================
 
 ent-WeaponTerrorSpit = плевок ужаса
-    .desc = Плевок
+    .desc = Ядовитый плевок паука ужаса.
 
 ent-TerrorSpitBullet = плевок ужаса
-    .desc = Плевок
+    .desc = Ядовитый плевок паука ужаса.
 
 ent-TerrorDrontAcid = кислотный плевок ужаса
-    .desc = Кислота
+    .desc = Разъедающая кислота паука-дрона.
 
 ent-TerrorRavAcid = ЭМИ-кислотный плевок ужаса
-    .desc = Кислота
+    .desc = Кислотный плевок с ЭМИ-зарядом.
 
 ent-BulletGrenadeEMPToxin = ЭМИ-плевок ужаса
-    .desc = ЭМИ
+    .desc = Плевок с мощным электромагнитным импульсом.
 
 ent-TerrorWidowSpit = плевок вдовы
-    .desc = Яд
+    .desc = Ядовитый плевок паука-вдовы.
 
 ent-TerrorWidowSmokeSpitBullet = дымный плевок вдовы
-    .desc = Дым
+    .desc = Плевок паука-вдовы, создающий облако дыма.
 
 ent-TerrorWidowPoisonSpitBullet = ядовитый плевок вдовы
-    .desc = Яд
+    .desc = Концентрированный яд паука-вдовы.
 
 ent-TerrorPrincessSpit = плевок принцессы
-    .desc = Плевок
+    .desc = Плевок паука-принцессы.
 
 ent-TerrorQueentAcid = кислотный плевок королевы
-    .desc = Кислота
+    .desc = Мощная кислота королевы пауков ужаса.
 
 ent-ProjectileHealingBoltTerror = лечащий сгусток
     .desc = Я ПРИКАЗЫВАЮ ТЕБЕ ЖИТЬ!

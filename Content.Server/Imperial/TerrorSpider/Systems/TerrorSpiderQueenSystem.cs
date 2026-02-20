@@ -27,7 +27,7 @@ namespace Content.Server.Imperial.TerrorSpider.Systems;
 
 public sealed class TerrorSpiderQueenSystem : EntitySystem
 {
-    private static readonly ProtoId<TagPrototype> TerrorSpiderTag = "TerrorSpider";
+    private static readonly ProtoId<TagPrototype> _terrorSpiderTag = "TerrorSpider";
 
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly IChatManager _chat = default!;
@@ -557,7 +557,7 @@ public sealed class TerrorSpiderQueenSystem : EntitySystem
 
     private bool IsTerrorSpider(EntityUid uid)
     {
-        return HasComp<TerrorSpiderWebBuffReceiverComponent>(uid) || _tagSystem.HasTag(uid, TerrorSpiderTag);
+        return HasComp<TerrorSpiderWebBuffReceiverComponent>(uid) || _tagSystem.HasTag(uid, _terrorSpiderTag);
     }
 
     private void AddHiveActions(EntityUid uid, TerrorSpiderQueenComponent comp)
