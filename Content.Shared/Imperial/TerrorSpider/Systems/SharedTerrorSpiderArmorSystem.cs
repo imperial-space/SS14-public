@@ -20,7 +20,7 @@ public abstract class SharedTerrorSpiderArmorSystem : EntitySystem
         SubscribeLocalEvent<TerrorSpiderArmorComponent, DamageModifyEvent>(OnDamageModify);
     }
 
-    private void OnDamageModify(Entity<TerrorSpiderArmorComponent> ent, DamageModifyEvent args)
+    private void OnDamageModify(Entity<TerrorSpiderArmorComponent> ent, ref DamageModifyEvent args)
     {
         var comp = ent.Comp;
 
