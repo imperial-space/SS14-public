@@ -165,8 +165,8 @@
     speedModifierThresholds:
       200: 0.7
   - type: TerrorSpiderArmor
-    bruteModifier: 0.6
-    burnModifier: 1.1
+    bruteModifier: 0.75
+    burnModifier: 1.25
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
@@ -309,7 +309,6 @@
   - type: NoSlip
   - type: Spider
     webPrototype: SpiderWebTerrorDron
-    webAction: TerrorWeedsAction
     spawnsWebsAsNonPlayer: false
   - type: IgnoreSpiderWeb
   - type: Bloodstream
@@ -1262,8 +1261,8 @@
         Brute: -2
         Burn: -2
   - type: TerrorSpiderArmor
-    bruteModifier: 0.6
-    burnModifier: 1.1
+    bruteModifier: 0.75
+    burnModifier: 1.25
 
 - type: entity
   name: Mother terror

@@ -5,6 +5,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Imperial.TerrorSpider.Components;
 using Content.Shared.Imperial.TerrorSpider.Events;
+using Content.Shared.Interaction;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Systems;
