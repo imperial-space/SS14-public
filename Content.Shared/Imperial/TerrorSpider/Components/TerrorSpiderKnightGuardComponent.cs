@@ -39,7 +39,6 @@ public sealed partial class TerrorSpiderKnightGuardComponent : Component
     public bool IsGuarding;
 
     [ViewVariables]
-    [ViewVariables]
     [AutoNetworkedField]
     public TimeSpan GuardEndTime;
 

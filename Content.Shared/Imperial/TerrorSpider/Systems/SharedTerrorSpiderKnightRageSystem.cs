@@ -17,6 +17,8 @@ public abstract class SharedTerrorSpiderKnightRageSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
+    private const string PiercingDamageType = "Piercing";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -69,7 +71,7 @@ public abstract class SharedTerrorSpiderKnightRageSystem : EntitySystem
         if (TryComp<MeleeWeaponComponent>(ent.Owner, out var melee))
         {
             ent.Comp.CachedMeleeDamage = new DamageSpecifier(melee.Damage);
-            SetDamageValue(melee.Damage, "Piercing", ent.Comp.EnragedMeleeDamage);
+            SetDamageValue(melee.Damage, PiercingDamageType, ent.Comp.EnragedMeleeDamage);
             Dirty(ent.Owner, melee);
         }
 

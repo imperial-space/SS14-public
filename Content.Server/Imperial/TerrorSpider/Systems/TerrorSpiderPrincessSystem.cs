@@ -28,7 +28,7 @@ namespace Content.Server.Imperial.TerrorSpider.Systems;
 
 public sealed class TerrorSpiderPrincessSystem : EntitySystem
 {
-    private static readonly ProtoId<TagPrototype> TerrorSpiderTag = "TerrorSpider";
+    private static readonly ProtoId<TagPrototype> _terrorSpiderTag = "TerrorSpider";
 
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly IChatManager _chat = default!;
@@ -355,7 +355,7 @@ public sealed class TerrorSpiderPrincessSystem : EntitySystem
             var hatchProto = SelectHatchPrototype(egg, xform.MapID);
             if (hatchProto == null)
             {
-                Del(uid);
+                QueueDel(uid);
                 continue;
             }
 
@@ -367,7 +367,7 @@ public sealed class TerrorSpiderPrincessSystem : EntitySystem
                 brood.Elite = egg.TierTwo && egg.TierTwoElitePrototypes.Contains(hatchProto);
             }
 
-            Del(uid);
+            QueueDel(uid);
         }
     }
 
@@ -442,7 +442,7 @@ public sealed class TerrorSpiderPrincessSystem : EntitySystem
 
     private bool IsTerrorSpider(EntityUid uid)
     {
-        return HasComp<TerrorSpiderWebBuffReceiverComponent>(uid) || _tagSystem.HasTag(uid, TerrorSpiderTag);
+        return HasComp<TerrorSpiderWebBuffReceiverComponent>(uid) || _tagSystem.HasTag(uid, _terrorSpiderTag);
     }
 
     private List<string> BuildHiveSenseLines(EntityUid princess)
@@ -478,7 +478,7 @@ public sealed class TerrorSpiderPrincessSystem : EntitySystem
 
             var name = MetaData(uid).EntityName;
             var beacon = FindNearestBeaconName(xform.MapPosition);
-            lines.Add($"{name}: {hp:0}/{hpMax:0} HP, маяк: {beacon}");
+            lines.Add(Loc.GetString("terror-spider-hive-sense-entry", ("name", name), ("hp", $"{hp:0}"), ("hpMax", $"{hpMax:0}"), ("beacon", beacon)));
         }
 
         return lines;
@@ -507,7 +507,7 @@ public sealed class TerrorSpiderPrincessSystem : EntitySystem
         }
 
         if (nearest == null)
-            return "неизвестно";
+            return Loc.GetString("terror-spider-hive-sense-unknown");
 
         if (TryComp<NavMapBeaconComponent>(nearest, out var beaconComp) && !string.IsNullOrWhiteSpace(beaconComp.Text))
             return beaconComp.Text;

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Robust.Shared.Audio;
 
 namespace Content.Server.Imperial.SCP.SCP096.Components;

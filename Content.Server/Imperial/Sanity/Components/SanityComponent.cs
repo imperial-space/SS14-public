@@ -96,9 +96,6 @@ public sealed partial class SanityComponent : Component
     [DataField("nearHumanGain")]
     public float NearHumanGain = 0.35f;
 
-    [DataField("nearJellyGain")]
-    public float NearJellyGain = 0.5f;
-
     [DataField("corpseLoss")]
     public float CorpseLoss = 0.9f;
 
@@ -131,9 +128,6 @@ public sealed partial class SanityComponent : Component
 
     [DataField("nearHumanRadius")]
     public float NearHumanRadius = 4f;
-
-    [DataField("nearJellyRadius")]
-    public float NearJellyRadius = 6f;
 
     [DataField("corpseRadius")]
     public float CorpseRadius = 8f;

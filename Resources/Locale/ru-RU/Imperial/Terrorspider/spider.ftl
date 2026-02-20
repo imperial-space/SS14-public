@@ -582,3 +582,11 @@ ent-hiveconnection = Улей
 
 ent-Terrorspider = Пауки ужаса
     .desc = На станции появились пауки ужаса. Эти мерзкие и кровожадные пауки хотят захватить станцию, превратив её в свой улей.
+
+# ==========================================
+# Hive sense
+# ==========================================
+
+terror-spider-hive-sense-entry = { $name }: { $hp }/{ $hpMax } HP, маяк: { $beacon }
+terror-spider-hive-sense-empty = Чувство улья: потомства не обнаружено.
+terror-spider-hive-sense-unknown = неизвестно

@@ -528,7 +528,7 @@ public sealed class SanitySystem : EntitySystem
 
     private void UpdateAlert(EntityUid uid, SanityComponent comp)
     {
-        var severity = (short) Math.Clamp((int) MathF.Floor(comp.Value / 10f), 0, 10);
+        var severity = (short) Math.Clamp((int) MathF.Floor(comp.Value / comp.MaxSanity * 10f), 0, 10);
         _alerts.ShowAlert(uid, SanityAlert, severity);
     }
 }

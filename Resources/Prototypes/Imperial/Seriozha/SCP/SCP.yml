@@ -845,7 +845,6 @@
     - type: Transform
       anchored: false
     - type: TimedDespawn
-      lifetime: 8
     - type: Sprite
       noRot: true
       sprite: Effects/fire.rsi

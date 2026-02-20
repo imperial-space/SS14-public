@@ -198,6 +198,8 @@ public sealed class SCPFiremanSystem : EntitySystem
         ent.Comp.TrueFlameActive = true;
         ent.Comp.TrueFlameEnd = _timing.CurTime + ent.Comp.TrueFlameDuration;
         _godmode.EnableGodmode(ent.Owner);
+        if (ent.Comp.TrueFlameActionEntity != null)
+            _actions.SetCooldown(ent.Comp.TrueFlameActionEntity.Value, _timing.CurTime, _timing.CurTime + ent.Comp.TrueFlameDuration);
         args.Handled = true;
     }
 

@@ -272,7 +272,7 @@ public sealed class TerrorSpiderQueenSystem : EntitySystem
 
             var name = MetaData(uid).EntityName;
             var beacon = FindNearestBeaconName(xform.MapPosition);
-            lines.Add($"{name}: {hp:0}/{hpMax:0} HP, маяк: {beacon}");
+            lines.Add(Loc.GetString("terror-spider-hive-sense-entry", ("name", name), ("hp", $"{hp:0}"), ("hpMax", $"{hpMax:0}"), ("beacon", beacon)));
         }
 
         return lines;
@@ -426,7 +426,7 @@ public sealed class TerrorSpiderQueenSystem : EntitySystem
 
             if (string.IsNullOrWhiteSpace(egg.SpawnPrototype))
             {
-                Del(uid);
+                QueueDel(uid);
                 continue;
             }
 
@@ -438,7 +438,7 @@ public sealed class TerrorSpiderQueenSystem : EntitySystem
                 brood.RoyalCooldownKey = egg.RoyalCooldownKey;
             }
 
-            Del(uid);
+            QueueDel(uid);
         }
     }
 
