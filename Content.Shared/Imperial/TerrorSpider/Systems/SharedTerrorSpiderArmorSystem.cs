@@ -17,18 +17,15 @@ public abstract class SharedTerrorSpiderArmorSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<TerrorSpiderArmorComponent, BeforeDamageChangedEvent>(OnBeforeDamageChanged);
+        SubscribeLocalEvent<TerrorSpiderArmorComponent, DamageModifyEvent>(OnDamageModify);
     }
 
-    private void OnBeforeDamageChanged(Entity<TerrorSpiderArmorComponent> ent, ref BeforeDamageChangedEvent args)
+    private void OnDamageModify(Entity<TerrorSpiderArmorComponent> ent, DamageModifyEvent args)
     {
         var comp = ent.Comp;
 
         if (comp.BruteModifier == 1f && comp.BurnModifier == 1f)
             return;
-
-        // Clone to avoid permanently mutating source DamageSpecifier (e.g. PassiveDamageComponent.Damage)
-        args.Damage = new DamageSpecifier(args.Damage);
 
         // Apply Brute modifier to individual types and the group key
         if (comp.BruteModifier != 1f)
