@@ -74,8 +74,8 @@ public sealed class SanitySystem : EntitySystem
         ent.Comp.LastDialogueTime = now;
         ent.Comp.NextSilencePenalty = now + ent.Comp.SilencePenaltyInterval;
         ent.Comp.NextCoffeeGain = now;
-        ent.Comp.NextLowSound = now + TimeSpan.FromSeconds(8);
-        ent.Comp.NextHighRegenTick = now + TimeSpan.FromSeconds(1);
+        ent.Comp.NextLowSound = now + ent.Comp.InitialLowSoundDelay;
+        ent.Comp.NextHighRegenTick = now + ent.Comp.InitialHighRegenDelay;
 
         if (TryComp<HungerComponent>(ent, out var hungerComp))
             ent.Comp.LastHunger = _hunger.GetHunger(hungerComp);
@@ -355,9 +355,12 @@ public sealed class SanitySystem : EntitySystem
             return;
 
         var healing = new DamageSpecifier();
-        foreach (var damageType in damageable.Damage.DamageDict.Keys)
+        foreach (var kv in damageable.Damage.DamageDict)
         {
-            healing.DamageDict[damageType] = FixedPoint2.New(-ent.Comp.HighRegenPerType);
+            if (kv.Value == FixedPoint2.Zero)
+                continue;
+
+            healing.DamageDict[kv.Key] = FixedPoint2.New(-ent.Comp.HighRegenPerType);
         }
 
         if (!healing.Empty)
@@ -373,7 +376,7 @@ public sealed class SanitySystem : EntitySystem
             return;
 
         var sound = _random.Pick(ent.Comp.LowSanitySounds);
-        _audio.PlayPvs(sound, ent);
+        _audio.PlayEntity(sound, Filter.Entities(ent.Owner), ent.Owner, true);
 
         var min = ent.Comp.LowSoundMinInterval.TotalSeconds;
         var max = ent.Comp.LowSoundMaxInterval.TotalSeconds;
@@ -423,6 +426,12 @@ public sealed class SanitySystem : EntitySystem
     {
         foreach (var ent in _lookup.GetEntitiesInRange(uid, radius, LookupFlags.Dynamic))
         {
+            if (ent == uid)
+                continue;
+
+            if (!_interaction.InRangeUnobstructed(uid, ent, radius + 0.1f))
+                continue;
+
             if (TryComp<MetaDataComponent>(ent, out var meta) &&
                 meta.EntityPrototype?.ID.Contains("NDA", StringComparison.OrdinalIgnoreCase) == true)
             {

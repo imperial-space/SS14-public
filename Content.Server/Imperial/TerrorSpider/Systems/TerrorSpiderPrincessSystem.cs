@@ -208,7 +208,7 @@ public sealed class TerrorSpiderPrincessSystem : EntitySystem
 
         var lines = BuildHiveSenseLines(ent.Owner);
         if (lines.Count == 0)
-            lines.Add("Чувство улья: потомства не обнаружено.");
+            lines.Add(Loc.GetString("terror-spider-hive-sense-empty"));
 
         foreach (var line in lines)
         {
@@ -438,6 +438,13 @@ public sealed class TerrorSpiderPrincessSystem : EntitySystem
         return count;
     }
 
+    
+
+    private bool IsTerrorSpider(EntityUid uid)
+    {
+        return HasComp<TerrorSpiderWebBuffReceiverComponent>(uid) || _tagSystem.HasTag(uid, TerrorSpiderTag);
+    }
+
     private List<string> BuildHiveSenseLines(EntityUid princess)
     {
         var lines = new List<string>();
@@ -533,10 +540,5 @@ public sealed class TerrorSpiderPrincessSystem : EntitySystem
 
         candidates.Sort((a, b) => a.Id.CompareTo(b.Id));
         return candidates;
-    }
-
-    private bool IsTerrorSpider(EntityUid uid)
-    {
-        return HasComp<TerrorSpiderWebBuffReceiverComponent>(uid) || _tagSystem.HasTag(uid, TerrorSpiderTag);
     }
 }

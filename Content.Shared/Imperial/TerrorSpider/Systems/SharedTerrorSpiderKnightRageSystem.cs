@@ -49,6 +49,9 @@ public abstract class SharedTerrorSpiderKnightRageSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, TerrorSpiderKnightRageComponent comp, ComponentShutdown args)
     {
+        if (comp.IsEnraged)
+            EndRage(uid, comp);
+
         _actions.RemoveAction(uid, comp.ActionEntity);
     }
 
@@ -112,7 +115,7 @@ public abstract class SharedTerrorSpiderKnightRageSystem : EntitySystem
         comp.CachedMeleeDamage = null;
         comp.CachedPassiveDamage = null;
 
-        if (ent.Comp.HasCachedArmor && TryComp<TerrorSpiderArmorComponent>(uid, out var armor))
+        if (comp.HasCachedArmor && TryComp<TerrorSpiderArmorComponent>(uid, out var armor))
         {
             armor.BruteModifier = comp.CachedBruteModifier;
             armor.BurnModifier = comp.CachedBurnModifier;

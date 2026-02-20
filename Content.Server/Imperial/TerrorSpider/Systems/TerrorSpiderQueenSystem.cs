@@ -309,6 +309,8 @@ public sealed class TerrorSpiderQueenSystem : EntitySystem
         return MetaData(nearest.Value).EntityName;
     }
 
+    
+
     private void OnLayEggAction(Entity<TerrorSpiderQueenComponent> ent, ref TerrorSpiderQueenLayEggActionEvent args)
     {
         if (args.Handled)

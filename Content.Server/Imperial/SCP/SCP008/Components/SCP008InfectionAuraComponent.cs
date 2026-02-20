@@ -1,4 +1,4 @@
-using Content.Shared.Mobs;
+// usings moved to file-level globals; removed unused using
 
 namespace Content.Server.Imperial.SCP.SCP008.Components;
 
@@ -14,7 +14,7 @@ public sealed partial class SCP008InfectionAuraComponent : Component
     [DataField("updateInterval")]
     public TimeSpan UpdateInterval = TimeSpan.FromSeconds(1);
 
-    [DataField]
+    [DataField("lookupFlags")]
     public LookupFlags LookupFlags = LookupFlags.Dynamic;
 
     [DataField("allowCritical")]

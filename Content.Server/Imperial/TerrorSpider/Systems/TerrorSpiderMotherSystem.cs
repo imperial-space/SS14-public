@@ -205,32 +205,7 @@ public sealed class TerrorSpiderMotherSystem : EntitySystem
             speedMultiplier);
     }
 
-    private List<EntityUid> GetRemoteViewCandidates(EntityUid mother)
-    {
-        var candidates = new List<EntityUid>();
-        var motherPos = Transform(mother).MapPosition;
-        var query = EntityQueryEnumerator<MobStateComponent, TransformComponent>();
-
-        while (query.MoveNext(out var uid, out var mob, out var xform))
-        {
-            if (uid == mother)
-                continue;
-
-            if (mob.CurrentState != MobState.Alive)
-                continue;
-
-            if (!IsTerrorSpider(uid))
-                continue;
-
-            if (xform.MapPosition.MapId != motherPos.MapId)
-                continue;
-
-            candidates.Add(uid);
-        }
-
-        candidates.Sort((a, b) => a.Id.CompareTo(b.Id));
-        return candidates;
-    }
+    
 
     private void OnLayJellyAction(Entity<TerrorSpiderMotherComponent> ent, ref TerrorSpiderMotherLayJellyActionEvent args)
     {
@@ -337,6 +312,33 @@ public sealed class TerrorSpiderMotherSystem : EntitySystem
             return;
 
         _damageable.TryChangeDamage(target, heal, ignoreResistances: true, interruptsDoAfters: false);
+    }
+
+    private List<EntityUid> GetRemoteViewCandidates(EntityUid mother)
+    {
+        var candidates = new List<EntityUid>();
+        var motherPos = Transform(mother).MapPosition;
+        var query = EntityQueryEnumerator<MobStateComponent, TransformComponent>();
+
+        while (query.MoveNext(out var uid, out var mob, out var xform))
+        {
+            if (uid == mother)
+                continue;
+
+            if (mob.CurrentState != MobState.Alive)
+                continue;
+
+            if (!IsTerrorSpider(uid))
+                continue;
+
+            if (xform.MapPosition.MapId != motherPos.MapId)
+                continue;
+
+            candidates.Add(uid);
+        }
+
+        candidates.Sort((a, b) => a.Id.CompareTo(b.Id));
+        return candidates;
     }
 
     private bool IsTerrorSpider(EntityUid uid)

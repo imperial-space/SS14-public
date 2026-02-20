@@ -22,7 +22,7 @@ public sealed partial class SanityComponent : Component
     public float LowThreshold = 10f;
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public float Value;
+    public float Value = 50f;
 
     [DataField("updateInterval")]
     public TimeSpan UpdateInterval = TimeSpan.FromSeconds(1);
@@ -38,6 +38,12 @@ public sealed partial class SanityComponent : Component
 
     [DataField("coffeeGainCooldown")]
     public TimeSpan CoffeeGainCooldown = TimeSpan.FromSeconds(20);
+
+    [DataField("initialLowSoundDelay")]
+    public TimeSpan InitialLowSoundDelay = TimeSpan.FromSeconds(8);
+
+    [DataField("initialHighRegenDelay")]
+    public TimeSpan InitialHighRegenDelay = TimeSpan.FromSeconds(1);
 
     [DataField("highWalkMultiplier")]
     public float HighWalkMultiplier = 1.05f;

@@ -11,6 +11,7 @@ namespace Content.Server.Imperial.SCP.SCP008.Systems;
 
 public sealed class SCP008InfectionAuraSystem : EntitySystem
 {
+    private readonly HashSet<EntityUid> _reusableInRange = new();
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly ZombieSystem _zombie = default!;
@@ -55,7 +56,7 @@ public sealed class SCP008InfectionAuraSystem : EntitySystem
             if (elapsed <= TimeSpan.Zero)
                 continue;
 
-            var currentlyInRange = new HashSet<EntityUid>();
+            _reusableInRange.Clear();
             var nearbyEntities = _lookup.GetEntitiesInRange(uid, comp.Radius, comp.LookupFlags);
 
             foreach (var target in nearbyEntities)
@@ -75,7 +76,7 @@ public sealed class SCP008InfectionAuraSystem : EntitySystem
                 if (HasComp<ZombieComponent>(target) || HasComp<ZombieImmuneComponent>(target))
                     continue;
 
-                currentlyInRange.Add(target);
+                _reusableInRange.Add(target);
 
                 var totalExposure = elapsed;
                 var previousExposure = TimeSpan.Zero;
@@ -105,7 +106,7 @@ public sealed class SCP008InfectionAuraSystem : EntitySystem
             var toRemove = new List<EntityUid>();
             foreach (var (tracked, _) in comp.ExposureTime)
             {
-                if (!currentlyInRange.Contains(tracked))
+                if (!_reusableInRange.Contains(tracked))
                     toRemove.Add(tracked);
             }
 

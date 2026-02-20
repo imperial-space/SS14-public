@@ -1,7 +1,7 @@
-namespace Content.Server.Imperial.SCP.SCP096.Components;
-
 using System.Collections.Generic;
 using Robust.Shared.Audio;
+
+namespace Content.Server.Imperial.SCP.SCP096.Components;
 
 [RegisterComponent]
 public sealed partial class SCP096RageOnLookComponent : Component
