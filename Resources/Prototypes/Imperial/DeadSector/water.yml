@@ -44,6 +44,7 @@
     base: water
   - type: Sprite
     drawdepth: Puddles
+    sprite: Imperial/DeadSector/water/water.rsi
     layers:
     - sprite: Imperial/DeadSector/water/waterbuble.rsi
       state: Water-buble-Sheet
