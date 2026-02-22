@@ -39,11 +39,12 @@
         layer:
         - SlipLayer
         hard: false
+  - type: IconSmooth
+    key: deadsector_water
+    base: water
   - type: Sprite
     drawdepth: Puddles
     layers:
-    - sprite: Imperial/DeadSector/water/water.rsi
-      state: full
     - sprite: Imperial/DeadSector/water/waterbuble.rsi
       state: Water-buble-Sheet
   - type: SolutionContainerManager
