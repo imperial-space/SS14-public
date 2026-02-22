@@ -59,8 +59,12 @@
       reagents:
       - ReagentId: DeadSectorWaterToxin
         Quantity: 5
-  - type: Puddle
-  - type: StepTrigger
+  - type: DrawableSolution
+    solution: puddle
+  - type: DamageContacts
+    damage:
+      types:
+        Poison: 1
   - type: Appearance
   - type: RadiationSource
     intensity: 0.7
