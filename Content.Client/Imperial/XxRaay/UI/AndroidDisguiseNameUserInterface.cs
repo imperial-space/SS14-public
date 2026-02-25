@@ -89,8 +89,12 @@ public sealed class AndroidDisguiseNameUserInterface : BoundUserInterface
 
     private void OnAcceptPressed(string name)
     {
+        if (string.IsNullOrWhiteSpace(name))
+            return;
+
         SendMessage(new AndroidDisguiseNameChosenMessage(name));
         Close();
+    }
     }
 
     private void OnDeclinePressed()

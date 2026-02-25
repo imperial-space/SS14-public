@@ -33,12 +33,7 @@ public sealed class AndroidRk800ForensicsSystem : EntitySystem
         }
 
         const int maxShown = 5;
-        var total = component.Fingerprints.Count;
-        var startIndex = total > maxShown ? total - maxShown : 0;
-
-        var recentPrints = component.Fingerprints
-            .Skip(startIndex)
-            .Take(maxShown);
+        var recentPrints = component.Fingerprints.Take(maxShown);
 
         var key = total == 1
             ? "android-rk800-examine-fingerprints-one"

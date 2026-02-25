@@ -56,10 +56,12 @@ public sealed partial class AndroidEnergyComponent : Component
     /// <summary>
     /// Базовая скорость ходьбы
     /// </summary>
+    [ViewVariables]
     public float? DefaultWalkSpeed;
 
     /// <summary>
     /// Базовая скорость бега
     /// </summary>
+    [ViewVariables]
     public float? DefaultSprintSpeed;
 }

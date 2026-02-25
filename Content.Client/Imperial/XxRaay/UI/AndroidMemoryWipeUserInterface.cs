@@ -99,10 +99,7 @@ public sealed class AndroidMemoryWipeUserInterface : BoundUserInterface
 
     protected override void Dispose(bool disposing)
     {
-        if (!disposing)
-            return;
-
-        if (_window != null)
+        if (disposing && _window != null)
         {
             _window.ConfirmAndClosePressed -= OnConfirmAndClosePressed;
             _window = null;

@@ -5,6 +5,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Localization;
+using Robust.Shared.ViewVariables;
 
 namespace Content.Client.Imperial.XxRaay.UI;
 

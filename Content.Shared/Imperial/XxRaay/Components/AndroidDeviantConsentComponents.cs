@@ -49,6 +49,7 @@ public sealed partial class AndroidDeviantConsentDenyCooldownComponent : Compone
     /// <summary>
     /// Момент времени, после которого цель снова может получать запросы.
     /// </summary>
+    [ViewVariables]
     public TimeSpan DenyEndTime;
 
     /// <summary>

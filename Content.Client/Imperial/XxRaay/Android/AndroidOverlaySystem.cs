@@ -28,8 +28,7 @@ public sealed partial class AndroidOverlaySystem : EntitySystem
     public override void Shutdown()
     {
         base.Shutdown();
-        _overlayMgr.RemoveOverlay<AndroidOverlay>();
-        _overlay = null;
+        RemoveOverlay();
     }
 
     private void OnOverlayInit(Entity<AndroidOverlayComponent> ent, ref ComponentInit args)

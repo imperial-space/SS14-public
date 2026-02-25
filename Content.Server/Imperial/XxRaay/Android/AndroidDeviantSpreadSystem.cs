@@ -17,19 +17,18 @@ namespace Content.Server.Imperial.XxRaay.Android;
 /// <summary>
 /// Серверная система, управляющая передачей девиантности от одного андроида к другому
 /// </summary>
-    public sealed class AndroidDeviantSpreadSystem : EntitySystem
-    {
-        private static readonly TimeSpan ConversionDuration = TimeSpan.FromSeconds(30);
+public sealed class AndroidDeviantSpreadSystem : EntitySystem
+{
+    private static readonly TimeSpan ConversionDuration = TimeSpan.FromSeconds(30);
 
-        [Dependency] private readonly AndroidStressSystem _stress = default!;
-        [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-        [Dependency] private readonly PopupSystem _popup = default!;
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
-        [Dependency] private readonly UserInterfaceSystem _ui = default!;
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly MobStateSystem _mobState = default!;
-        [Dependency] private readonly AndroidMemoryWipeSystem _memoryWipe = default!;
-
+    [Dependency] private readonly AndroidStressSystem _stress = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly AndroidMemoryWipeSystem _memoryWipe = default!;
     public override void Initialize()
     {
         base.Initialize();

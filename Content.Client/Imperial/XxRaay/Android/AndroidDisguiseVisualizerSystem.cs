@@ -8,7 +8,7 @@ namespace Content.Client.Imperial.XxRaay.Android;
 /// <summary>
 /// Клиентская визуализирующая система маскировки андроида
 ///</summary>
-public sealed class AndroidDisguiseVisualizerSystem : EntitySystem
+public sealed partial class AndroidDisguiseVisualizerSystem : EntitySystem
 {
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
