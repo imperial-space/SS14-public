@@ -11,26 +11,31 @@ public sealed partial class AndroidDeviantConsentConversionComponent : Component
     /// <summary>
     /// Инициатор передачи девиантности.
     /// </summary>
+    [ViewVariables]
     public EntityUid? Converter;
 
     /// <summary>
     /// Цель передачи девиантности.
     /// </summary>
+    [ViewVariables]
     public EntityUid? Target;
 
     /// <summary>
     /// Время начала текущего запроса.
     /// </summary>
+    [ViewVariables]
     public TimeSpan? RequestStartTime;
 
     /// <summary>
     /// Максимальное время ожидания ответа на запрос.
     /// </summary>
+    [DataField]
     public TimeSpan ResponseTime = TimeSpan.FromSeconds(30);
 
     /// <summary>
     /// Максимальная дистанция между инициатором и целью во время обработки запроса.
     /// </summary>
+    [DataField]
     public float MaxDistance = 3f;
 }
 
