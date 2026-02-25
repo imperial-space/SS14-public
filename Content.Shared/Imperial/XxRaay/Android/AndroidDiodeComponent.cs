@@ -15,7 +15,7 @@ public sealed partial class AndroidDiodeComponent : Component
     /// <summary>
     /// Есть ли ещё диод
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public bool HasDiode = true;
 
     /// <summary>
