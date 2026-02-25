@@ -1,5 +1,4 @@
 using System;
-using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.XxRaay.Components;
 
@@ -36,6 +35,7 @@ public sealed partial class AndroidRk800Component : Component
     /// <summary>
     /// Время, после которого снова можно пытаться обнулить память
     /// </summary>
+    [ViewVariables]
     public TimeSpan NextMemoryWipeTime;
 }
 
