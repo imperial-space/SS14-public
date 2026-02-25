@@ -31,6 +31,7 @@ public sealed partial class AndroidMemoryWipeResultComponent : Component
     /// <summary>
     /// Подтвердил ли игрок, что ознакомился с последствиями обнуления
     /// </summary>
+    [ViewVariables]
     public bool Acknowledged;
 }
 
