@@ -95,7 +95,6 @@ public sealed class AndroidDisguiseNameUserInterface : BoundUserInterface
         SendMessage(new AndroidDisguiseNameChosenMessage(name));
         Close();
     }
-    }
 
     private void OnDeclinePressed()
     {
