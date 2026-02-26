@@ -252,7 +252,7 @@
     - ActionViewLaws
     - ActionAndroidDisguise
   - type: SiliconLawProvider
-    laws: DetroitRk800
+    laws: DetroitAndroid
   - type: EmagSiliconLaw
     stunTime: 5
   - type: AndroidEnergy
@@ -386,6 +386,8 @@
   - type: Loadout
     prototypes: [ AndroidRK800Gear ]
   - type: AndroidRk800
+  - type: SiliconLawProvider
+    laws: DetroitRk800
   - type: AndroidStress
     CanBeDeviant: false
     CanForceRevealAndroids: true
