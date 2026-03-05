@@ -1,5 +1,4 @@
 using System;
-using Content.Shared.Actions;
 using Content.Shared.CCVar;
 using Content.Shared.Imperial.XxRaay.Android;
 using Content.Shared.Mind;
@@ -17,7 +16,6 @@ namespace Content.Server.Imperial.XxRaay.Android;
 public sealed class AndroidDisguiseSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -56,12 +54,10 @@ public sealed class AndroidDisguiseSystem : EntitySystem
         {
             case AndroidDisguiseState.Android:
                 StartTransformToHuman(uid, ref comp);
-                ApplyCooldown(args, comp, comp.TransformDuration);
                 break;
 
             case AndroidDisguiseState.Human:
                 StartTransformToAndroid(uid, ref comp);
-                ApplyCooldown(args, comp, comp.RetransformDuration);
                 break;
 
             default:
@@ -95,10 +91,6 @@ public sealed class AndroidDisguiseSystem : EntitySystem
                 FinishTransition(uid, ref comp);
             }
         }
-    }
-
-    private void ApplyCooldown(AndroidToggleDisguiseEvent args, in AndroidDisguiseComponent comp, TimeSpan animationDuration)
-    {
     }
 
     private void StartTransformToHuman(EntityUid uid, ref AndroidDisguiseComponent comp)
@@ -169,4 +161,3 @@ public sealed class AndroidDisguiseSystem : EntitySystem
         _metaData.SetEntityName(uid, comp.OriginalName);
     }
 }
-

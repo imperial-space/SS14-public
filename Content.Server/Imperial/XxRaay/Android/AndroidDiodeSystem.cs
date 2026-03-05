@@ -53,7 +53,7 @@ public sealed class AndroidDiodeSystem : EntitySystem
 
         var hasCuttingTool =
             TryComp<ToolComponent>(activeItem.Value, out var toolComp) &&
-            _tool.HasQuality(activeItem.Value, "Cutting", toolComp);
+            _tool.HasQuality(activeItem.Value, SharedToolSystem.CutQuality, toolComp);
 
         var hasSharp = HasComp<SharpComponent>(activeItem.Value);
 
