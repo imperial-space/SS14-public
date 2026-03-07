@@ -1,8 +1,8 @@
 using Content.Shared.Imperial.XxRaay.Components;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -18,6 +18,8 @@ namespace Content.Server.Imperial.XxRaay.Systems;
 /// </summary>
 public sealed class AnimatronicDamageSystem : EntitySystem
 {
+	private static readonly ProtoId<DamageGroupPrototype> BruteDamageGroupId = "Brute";
+
 	[Dependency] private readonly IGameTiming _timing = default!;
 	[Dependency] private readonly DamageableSystem _damageable = default!;
 	[Dependency] private readonly MobStateSystem _mobState = default!;
@@ -45,8 +47,7 @@ public sealed class AnimatronicDamageSystem : EntitySystem
 		    (_timing.CurTime - lastDamage) < damageComp.ContactDamageCooldown)
 			return;
 
-		ProtoId<DamageGroupPrototype> bruteGroupId = "Brute";
-		if (!_prototypeManager.TryIndex(bruteGroupId, out var bruteGroup))
+		if (!_prototypeManager.TryIndex(BruteDamageGroupId, out var bruteGroup))
 		{
 			Log.Error($"AnimatronicDamageSystem: Failed to find Brute damage group prototype");
 			return;

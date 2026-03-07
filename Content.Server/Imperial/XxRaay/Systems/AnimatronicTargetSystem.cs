@@ -61,6 +61,7 @@ public sealed class AnimatronicTargetSystem : EntitySystem
 		{
 			pathfinding.LastPathRetryTime = null;
 			pathfinding.LastWaypointUpdateTime = null;
+			Dirty(animatronic, pathfinding);
 		}
 	}
 
