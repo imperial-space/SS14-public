@@ -1,0 +1,67 @@
+- type: entity
+  parent: BaseStorageItem
+  id: BoxBlueMRE
+  name: M.R.E.
+  description: A box of decades old military surplus rations. It is surprisingly not rotten
+  suffix: DeadSector, Other
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DrinkWaterBottleFull
+          amount: 2
+        - id: TomatoCanDeadSector
+        - id: FlareBlue
+          amount: 2
+  - type: Sprite
+    sprite: Imperial/DeadSector/items/FoodPacket.rsi
+    state: iconBlue
+  - type: Item
+    sprite: Imperial/DeadSector/items/FoodPacket.rsi
+    size: Large
+    shape:
+    - 0,0,2,2
+  - type: Storage
+    grid:
+    - 0,0,2,2
+    whitelist:
+      tags:
+      - DrinkBottle
+      - Meat
+      - Flare
+      - Radio
+
+- type: entity
+  parent: BaseStorageItem
+  id: BoxiconGreenMRE
+  name: M.R.E.
+  description: A box of decades old military surplus rations. It is surprisingly not rotten
+  suffix: DeadSector, Other
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DrinkWaterBottleFull
+          amount: 2
+        - id: MeatCanDeadSector
+        - id: Flare
+          amount: 2
+  - type: Sprite
+    sprite: Imperial/DeadSector/items/FoodPacket.rsi
+    state: iconGreen
+  - type: Item
+    sprite: Imperial/DeadSector/items/FoodPacket.rsi
+    size: Large
+    shape:
+    - 0,0,2,2
+  - type: Storage
+    grid:
+    - 0,0,2,2
+    whitelist:
+      tags:
+      - DrinkBottle
+      - Meat
+      - Flare
+      - Radio

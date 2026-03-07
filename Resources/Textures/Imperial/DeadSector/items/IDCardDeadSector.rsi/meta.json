@@ -1,0 +1,17 @@
+{
+    "version": 1,
+    "license": "CC-BY-NC-SA-3.0",
+    "copyright": "by @this_is_sir_felix",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "ID1"
+        },
+        {
+            "name": "ID2"
+        }
+    ]
+}

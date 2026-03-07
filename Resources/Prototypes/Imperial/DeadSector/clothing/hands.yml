@@ -13,3 +13,39 @@
     fiberMaterial: fibers-leather
     fiberColor: fibers-green
   - type: FingerprintMask
+
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGlovesDefaultDeadSector
+  name: gloves
+  description: These tactical gloves are fireproof and shock resistant.
+  suffix: DeadSector, Other
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/hands/Default.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/hands/Default.rsi
+
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGlovesDeadSector
+  name: gloves
+  description: These tactical gloves are fireproof and shock resistant.
+  suffix: DeadSector, Other
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/hands/Green.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/hands/Green.rsi
+
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGlovesHazard
+  name: gloves
+  description: These tactical gloves are fireproof and shock resistant.
+  suffix: DeadSector, Other
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/hands/Hazard.rsi
+  - type: Clothing
+    sprite: Imperial/DeadSector/hands/Hazard.rsi

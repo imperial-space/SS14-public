@@ -1,0 +1,21 @@
+- type: entity
+  parent: PoweredStrobeLightEmpty
+  id: PoweredStrobeLightSirenDeadSectorEmpty
+  suffix: "DeadSector, Structure, Empty"
+  components:
+  - type: AmbientSound
+    volume: -5
+    range: 10
+    sound:
+      path: "/Audio/Imperial/DeadSector/Sound/Ambient/Other/Strobosiren.ogg"
+
+- type: entity
+  parent: PoweredStrobeLightRedLow
+  id: PoweredStrobeLightSirenDeadSectorRed
+  suffix: "DeadSector, Structure"
+  components:
+  - type: AmbientSound
+    volume: -5
+    range: 10
+    sound:
+      path: "/Audio/Imperial/DeadSector/Sound/Ambient/Other/Strobosiren.ogg"

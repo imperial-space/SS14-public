@@ -1,0 +1,23 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "@this_is_sir_felix",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "Sandbags1"
+        },
+        {
+            "name": "Sandbags2"
+        },
+        {
+            "name": "Sandbags3"
+        },
+        {
+            "name": "Sandbags4"
+        }
+    ]
+}

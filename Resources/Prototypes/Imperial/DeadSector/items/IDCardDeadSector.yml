@@ -1,0 +1,27 @@
+- type: entity
+  parent: IDCardStandard
+  id: DeadSectorAdminIDCard1
+  name: Federation ID card
+  description: Identification Card.
+  components:
+    - type: Access
+      tags:
+      - Federationadmin
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/IDCardDeadSector.rsi
+      layers:
+        - state: ID1
+
+- type: entity
+  parent: IDCardStandard
+  id: DeadSectorStarCorpsIDCard2
+  name: Federation ID card
+  description: Identification Card.
+  components:
+    - type: Access
+      tags:
+      - StarCorps
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/IDCardDeadSector.rsi
+      layers:
+        - state: ID2

@@ -1,0 +1,13 @@
+- type: entity
+  parent: Chainsaw
+  id: ChainsawYellow
+  name: chainsaw yellow
+  description: A very large chainsaw. Usually you use this for cutting down trees... usually.
+  suffix: DeadSector
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/items/ChainsawYellow.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/DeadSector/items/ChainsawYellow.rsi

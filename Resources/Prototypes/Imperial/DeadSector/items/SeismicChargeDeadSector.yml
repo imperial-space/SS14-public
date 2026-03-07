@@ -1,0 +1,13 @@
+- type: entity
+  parent: SeismicCharge
+  id: SeismicChargeDeadSector
+  name: seismic charge
+  description: Concussion based explosive designed to destroy large amounts of rock.
+  suffix: DeadSector, Weapons
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/items/SeismicChargeDeadSector.rsi
+    state: icon
+    layers:
+    - state: icon
+      map: ["base"]

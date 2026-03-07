@@ -1,0 +1,194 @@
+
+- type: entity
+  parent: BaseItem
+  id: spacecash1
+  name: federation spacecash
+  description: You gotta have money.
+  suffix: DeadSector, Other
+  components:
+  - type: Cash
+  - type: Item
+    shape:
+    - 0,0,1,0
+    storedOffset: 0,-2
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Credit: 5
+  - type: StaticPrice
+    price: 0
+  - type: Stack
+    stackType: spacecashCredit
+    count: 1
+    baseLayer: base
+    layerStates:
+    - spacecash1
+    - spacecash10
+    - spacecash100
+    - spacecash500
+    - spacecash1000
+    - spacecash2500
+    - spacecash5000
+    - spacecash10000
+    - spacecash20000
+    - spacecash30000
+    - spacecash100000
+    - spacecash1000000
+    layerFunction: Threshold
+  - type: StackLayerThreshold
+    thresholds: [10, 100, 100, 500, 1000, 2500, 5000, 10000, 20000, 30000, 100000, 1000000]
+  - type: Sprite
+    sprite: Imperial/DeadSector/items/Cash.rsi
+    state: spacecash1
+    layers:
+    - state: spacecash1
+      map: ["base"]
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        density: 30
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.2,0.25,0.1"
+        mask:
+        - ItemMask
+  - type: Appearance
+  - type: Currency
+    price:
+      spacecashCredit: 1
+
+- type: currency
+  id: spacecash
+  displayName: spacecash
+  cash:
+    1: spacecashCredit
+  canWithdraw: true
+
+- type: stack
+  id: spacecashCredit
+  name: federation credit
+  icon: { sprite: /Textures/Imperial/DeadSector/items/Cash.rsi, state: spacecash1 }
+  spawn: spacecash1
+
+- type: entity
+  parent: spacecash1
+  id: spacecash10
+  suffix: DeadSector, Other, 10
+  components:
+  - type: Icon
+    sprite: Imperial/DeadSector/items/Cash.rsi
+    state: spacecash10
+  - type: Stack
+    count: 10
+
+- type: entity
+  parent: spacecash1
+  id: spacecash100
+  suffix: DeadSector, Other, 100
+  components:
+  - type: Icon
+    sprite: Imperial/DeadSector/items/Cash.rsi
+    state: spacecash100
+  - type: Stack
+    count: 100
+
+- type: entity
+  parent: spacecash1
+  id: spacecash500
+  suffix: DeadSector, Other, 500
+  components:
+  - type: Icon
+    sprite: Imperial/DeadSector/items/Cash.rsi
+    state: spacecash100
+  - type: Stack
+    count: 500
+
+- type: entity
+  parent: spacecash1
+  id: spacecash1000
+  suffix: DeadSector, Other, 1000
+  components:
+  - type: Icon
+    sprite: Imperial/DeadSector/items/Cash.rsi
+    state: spacecash1000
+  - type: Stack
+    count: 1000
+
+- type: entity
+  parent: spacecash1
+  id: spacecash2500
+  suffix: DeadSector, Other, 2500
+  components:
+  - type: Icon
+    sprite: Imperial/DeadSector/items/Cash.rsi
+    state: spacecash2500
+  - type: Stack
+    count: 2500
+
+- type: entity
+  parent: spacecash1
+  id: spacecash5000
+  suffix: DeadSector, 5000
+  components:
+  - type: Icon
+    sprite: Imperial/DeadSector/items/Cash.rsi
+    state: spacecash5000
+  - type: Stack
+    count: 5000
+
+- type: entity
+  parent: spacecash1
+  id: spacecash10000
+  suffix: DeadSector, 10000
+  components:
+  - type: Icon
+    sprite: Imperial/DeadSector/items/Cash.rsi
+    state: spacecash10000
+  - type: Stack
+    count: 10000
+
+- type: entity
+  parent: spacecash1
+  id: spacecash20000
+  suffix: DeadSector, Other, 20000
+  components:
+  - type: Icon
+    sprite: Imperial/DeadSector/items/Cash.rsi
+    state: spacecash20000
+  - type: Stack
+    count: 20000
+
+- type: entity
+  parent: spacecash1
+  id: spacecash30000
+  suffix: DeadSector, Other, 30000
+  components:
+  - type: Icon
+    sprite: Imperial/DeadSector/items/Cash.rsi
+    state: spacecash30000
+  - type: Stack
+    count: 30000
+
+- type: entity
+  parent: spacecash1
+  id: spacecash100000
+  suffix: DeadSector, Other, 100000
+  components:
+  - type: Icon
+    sprite: Imperial/DeadSector/items/Cash.rsi
+    state: spacecash100000
+  - type: Stack
+    count: 100000
+
+- type: entity
+  parent: spacecash1
+  id: spacecash1000000
+  suffix: DeadSector, Other, 1000000
+  components:
+  - type: Icon
+    sprite: Imperial/DeadSector/items/Cash.rsi
+    state: spacecash1000000
+  - type: Stack
+    count: 1000000

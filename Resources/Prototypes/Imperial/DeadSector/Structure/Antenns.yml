@@ -1,0 +1,110 @@
+
+- type: entity
+  parent: DeadSectorDecorTrafficlight
+  id: DeadSectorAntenns
+  name: light
+  suffix: DeadSector, Structure
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/Structure/Antenns.rsi
+    snapCardinals: true
+    drawdepth: Overdoors
+    offset: 0,0.4
+    noRot: true
+    layers:
+    - state: icon
+  - type: PointLight
+    enabled: true
+    radius: 5
+    energy: 1
+    color: "#962323"
+  - type: AmbientSound
+    volume: -15
+    range: 3
+    sound:
+      path: /Audio/Ambience/Objects/light_hum.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 8
+          PartRodMetal1:
+            min: 1
+            max: 2
+          CableApcStack1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: DeadSectorDecorTrafficlight
+  id: DeadSectorAntennsAnimation
+  name: light
+  suffix: DeadSector, Structure
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/Structure/Antenns.rsi
+    snapCardinals: true
+    drawdepth: Overdoors
+    offset: 0,0.4
+    noRot: true
+    layers:
+    - state: icon2
+  - type: PointLight
+    enabled: true
+    radius: 5
+    energy: 1
+    color: "#962323"
+  - type: AmbientSound
+    volume: -15
+    range: 3
+    sound:
+      path: /Audio/Ambience/Objects/light_hum.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 8
+          PartRodMetal1:
+            min: 1
+            max: 2
+          CableApcStack1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

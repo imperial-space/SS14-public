@@ -1,0 +1,87 @@
+- type: entity
+  parent: BaseStructure
+  id: Sandbags1
+  name: Sandbags
+  description: Sandbags
+  suffix: DeadSector, Structure
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/Structure/Sandbags.rsi
+    state: Sandbags1
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.5,0.25,0.5"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+
+- type: entity
+  parent: BaseStructure
+  id: Sandbags2
+  name: Sandbags
+  description: Sandbags
+  suffix: DeadSector, Structure
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/Structure/Sandbags.rsi
+    state: Sandbags2
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.5,0.25,0.5"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+
+- type: entity
+  parent: BaseStructure
+  id: Sandbags3
+  name: Sandbags
+  description: Sandbags
+  suffix: DeadSector, Structure
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/Structure/Sandbags.rsi
+    state: Sandbags3
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.5,0.25,0.5"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+
+- type: entity
+  parent: BaseStructure
+  id: Sandbags4
+  name: Sandbags
+  description: Sandbags
+  suffix: DeadSector, Structure
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/Structure/Sandbags.rsi
+    state: Sandbags4
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.65,0.25,0.65"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer

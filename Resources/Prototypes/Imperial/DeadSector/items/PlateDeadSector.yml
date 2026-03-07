@@ -1,0 +1,9 @@
+- type: entity
+  parent: BaseItem
+  id: PlateDeadSector
+  name: Plate
+  description: Delicate
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/items/PlateDeadSector.rsi
+    state: icon

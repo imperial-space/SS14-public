@@ -1,0 +1,25 @@
+- type: entity
+  parent: BaseStructure
+  id: Helicopter
+  name: Helicopter
+  description: Helicopter
+  suffix: DeadSector, Events
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/Structure/Helicopter.rsi
+    state: icon
+  - type: Fixtures
+    fixtures:
+      slips:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        density: 2000
+        hard: false
+        layer:
+        - SlipLayer
+  - type: AmbientSound
+    volume: -3
+    range: 6
+    sound:
+      path: /Audio/Imperial/DeadSector/Sound/Ambient/WarAmbient/Flying.ogg

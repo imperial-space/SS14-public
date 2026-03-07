@@ -1,0 +1,371 @@
+- type: entity
+  id: TimedSpawnerAmbientbirds
+  parent: MarkerBase
+  suffix: DeadSector, SFX
+  components:
+    - type: Sprite
+      layers:
+        - sprite: Markers/cross.rsi
+          state: red
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - Ambientbirds1
+        - Ambientbirds2
+        - Ambientbirds3
+        - Ambientbirds4
+      chance: 0.8
+      intervalSeconds: 85
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  id: Ambientbirds1
+  components:
+  - type: AmbientSound
+    volume: -5
+    range: 11
+    sound:
+      path: /Audio/Imperial/DeadSector/Sound/Ambient/Alive/birds1.ogg
+  - type: TimedDespawn
+    lifetime: 40
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: Ambientbirds2
+  parent: Ambientbirds1
+  components:
+  - type: AmbientSound
+    volume: -5
+    range: 11
+    sound:
+      path: /Audio/Imperial/DeadSector/Sound/Ambient/Alive/birds2.ogg
+
+- type: entity
+  id: Ambientbirds3
+  parent: Ambientbirds1
+  components:
+  - type: AmbientSound
+    volume: -5
+    range: 11
+    sound:
+      path: /Audio/Imperial/DeadSector/Sound/Ambient/Alive/birds3.ogg
+
+- type: entity
+  id: Ambientbirds4
+  parent: Ambientbirds1
+  components:
+  - type: AmbientSound
+    volume: -5
+    range: 11
+    sound:
+      path: /Audio/Imperial/DeadSector/Sound/Ambient/Alive/birds4.ogg
+
+#################################################################################################################################################################################################################################################################################
+#################################################################################################################################################################################################################################################################################
+#################################################################################################################################################################################################################################################################################
+
+- type: entity
+  id: TimedSpawnerAmbientbirdslong
+  parent: MarkerBase
+  suffix: DeadSector, SFX
+  components:
+    - type: Sprite
+      layers:
+        - sprite: Markers/cross.rsi
+          state: red
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - Ambientbirdslong
+      chance: 0.8
+      intervalSeconds: 85
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  id: Ambientbirdslong
+  components:
+  - type: AmbientSound
+    volume: -5
+    range: 11
+    sound:
+      path: /Audio/Imperial/DeadSector/Sound/Ambient/Alive/birdslong.ogg
+  - type: TimedDespawn
+    lifetime: 40
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+#################################################################################################################################################################################################################################################################################
+#################################################################################################################################################################################################################################################################################
+#################################################################################################################################################################################################################################################################################
+
+- type: entity
+  id: TimedSpawnerAmbientbCold
+  parent: MarkerBase
+  suffix: DeadSector, SFX
+  components:
+    - type: Sprite
+      layers:
+        - sprite: Markers/cross.rsi
+          state: red
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - AmbientCold1
+        - AmbientCold2
+      chance: 0.8
+      intervalSeconds: 85
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  id: AmbientCold1
+  components:
+
+  - type: AmbientSound
+    volume: -5
+    range: 11
+    sound:
+      path: /Audio/Imperial/DeadSector/Sound/Ambient/Alive/cold1.ogg
+  - type: TimedDespawn
+    lifetime: 40
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: AmbientCold2
+  components:
+  - type: AmbientSound
+    volume: -5
+    range: 11
+    sound:
+      path: /Audio/Imperial/DeadSector/Sound/Ambient/Alive/cold2.ogg
+  - type: TimedDespawn
+    lifetime: 40
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+#################################################################################################################################################################################################################################################################################
+#################################################################################################################################################################################################################################################################################
+#################################################################################################################################################################################################################################################################################
+
+- type: entity
+  id: TimedSpawnerAmbientFrogs
+  parent: MarkerBase
+  suffix: DeadSector, SFX
+  components:
+    - type: Sprite
+      layers:
+        - sprite: Markers/cross.rsi
+          state: red
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - AmbientFrogs
+      chance: 0.8
+      intervalSeconds: 85
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  id: AmbientFrogs
+  components:
+  - type: AmbientSound
+    volume: -5
+    range: 11
+    sound:
+      path: /Audio/Imperial/DeadSector/Sound/Ambient/Alive/frogs.ogg
+  - type: TimedDespawn
+    lifetime: 40
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+#################################################################################################################################################################################################################################################################################
+#################################################################################################################################################################################################################################################################################
+#################################################################################################################################################################################################################################################################################
+
+- type: entity
+  id: TimedSpawnerAmbientlab
+  parent: MarkerBase
+  suffix: DeadSector, SFX
+  components:
+    - type: Sprite
+      layers:
+        - sprite: Markers/cross.rsi
+          state: red
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - AmbientLabCreak
+        - AmbientLabEngineStop
+        - AmbientLabFootsteps
+        - AmbientLabGrateFall
+        - AmbientLabPsy
+        - AmbientLabPsyAmbient
+        - AmbientLabStoneFall
+        - AmbientLabStone2Fall
+      chance: 0.8
+      intervalSeconds: 85
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  id: AmbientLabCreak
+  components:
+  - type: AmbientSound
+    volume: -5
+    range: 11
+    sound:
+      path: /Audio/Imperial/DeadSector/Sound/Ambient/Alive/labcreak.ogg
+  - type: TimedDespawn
+    lifetime: 40
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: AmbientLabEngineStop
+  components:
+  - type: AmbientSound
+    volume: -5
+    range: 11
+    sound:
+      path: /Audio/Imperial/DeadSector/Sound/Ambient/Alive/labenginestop.ogg
+  - type: TimedDespawn
+    lifetime: 40
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: AmbientLabFootsteps
+  components:
+  - type: AmbientSound
+    volume: -5
+    range: 11
+    sound:
+      path: /Audio/Imperial/DeadSector/Sound/Ambient/Alive/labfootsteps.ogg
+  - type: TimedDespawn
+    lifetime: 40
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: AmbientLabGrateFall
+  components:
+  - type: AmbientSound
+    volume: -5
+    range: 11
+    sound:
+      path: /Audio/Imperial/DeadSector/Sound/Ambient/Alive/labgratefall.ogg
+  - type: TimedDespawn
+    lifetime: 40
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: AmbientLabPsy
+  components:
+  - type: AmbientSound
+    volume: -5
+    range: 11
+    sound:
+      path: /Audio/Imperial/DeadSector/Sound/Ambient/Alive/labpsy.ogg
+  - type: TimedDespawn
+    lifetime: 40
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: AmbientLabPsyAmbient
+  components:
+  - type: AmbientSound
+    volume: -5
+    range: 11
+    sound:
+      path: /Audio/Imperial/DeadSector/Sound/Ambient/Alive/labpsyambient.ogg
+  - type: TimedDespawn
+    lifetime: 40
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: AmbientLabStoneFall
+  components:
+  - type: AmbientSound
+    volume: -5
+    range: 11
+    sound:
+      path: /Audio/Imperial/DeadSector/Sound/Ambient/Alive/labstonefall.ogg
+  - type: TimedDespawn
+    lifetime: 40
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: AmbientLabStone2Fall
+  components:
+  - type: AmbientSound
+    volume: -5
+    range: 11
+    sound:
+      path: /Audio/Imperial/DeadSector/Sound/Ambient/Alive/labstone2fall.ogg
+  - type: TimedDespawn
+    lifetime: 40
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+#################################################################################################################################################################################################################################################################################
+#################################################################################################################################################################################################################################################################################
+#################################################################################################################################################################################################################################################################################
+
+- type: entity
+  id: TimedSpawnerAmbientWaterDrops
+  parent: MarkerBase
+  suffix: DeadSector, SFX
+  components:
+    - type: Sprite
+      layers:
+        - sprite: Markers/cross.rsi
+          state: red
+        - state: timed
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - AmbientWaterDrops1
+      chance: 0.8
+      intervalSeconds: 85
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+
+- type: entity
+  id: AmbientWaterDrops1
+  components:
+  - type: AmbientSound
+    volume: -5
+    range: 11
+    sound:
+      path: /Audio/Imperial/DeadSector/Sound/Ambient/Alive/waterdrops1.ogg
+  - type: TimedDespawn
+    lifetime: 35
+  - type: Tag
+    tags:
+    - HideContextMenu

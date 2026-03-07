@@ -1,0 +1,49 @@
+- type: entity
+  parent: BaseItem
+  id: Artifacts1
+  name: Artifacts
+  suffix: DeadSector, Other
+  components:
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/Artifacts.rsi
+      state: Artifacts1
+
+- type: entity
+  parent: BaseItem
+  id: Artifacts2
+  name: Artifacts
+  suffix: DeadSector, Other
+  components:
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/Artifacts.rsi
+      state: Artifacts2
+
+- type: entity
+  parent: BaseItem
+  id: Artifacts3
+  name: Artifacts
+  suffix: DeadSector, Other
+  components:
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/Artifacts.rsi
+      state: Artifacts3
+
+- type: entity
+  parent: BaseItem
+  id: Artifacts4
+  name: Artifacts
+  suffix: DeadSector, Other
+  components:
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/Artifacts.rsi
+      state: Artifacts4
+
+- type: entity
+  parent: BaseItem
+  id: Artifacts5
+  name: Artifacts
+  suffix: DeadSector, Other
+  components:
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/Artifacts.rsi
+      state: Artifacts5

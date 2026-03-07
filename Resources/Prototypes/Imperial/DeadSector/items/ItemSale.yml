@@ -1,0 +1,69 @@
+- type: entity
+  parent: BaseItem
+  id: Sim
+  name: Sim
+  suffix: DeadSector, Other
+  components:
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/ItemSale/Sim.rsi
+      state: icon
+
+- type: entity
+  parent: BaseItem
+  id: Rope
+  name: Rope
+  suffix: DeadSector, Other
+  components:
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/ItemSale/Rope.rsi
+      state: icon
+
+- type: entity
+  parent: BaseItem
+  id: CopperWire
+  name: CopperWire
+  suffix: DeadSector, Other
+  components:
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/ItemSale/CopperWire.rsi
+      state: icon
+
+- type: entity
+  parent: BaseItem
+  id: PotEmpty
+  name: PotEmpty
+  suffix: DeadSector, Other
+  components:
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/ItemSale/Bottle.rsi
+      state: PotEmpty
+
+- type: entity
+  parent: BaseItem
+  id: PotTrass
+  name: PotTrass
+  suffix: DeadSector, Other
+  components:
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/ItemSale/Bottle.rsi
+      state: PotTrass
+
+- type: entity
+  parent: BaseItem
+  id: MoneyCard
+  name: MoneyCard
+  suffix: ElysiumPrime, Structure
+  components:
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/ItemSale/MoneyCard.rsi
+      state: icon
+
+- type: entity
+  parent: BaseItem
+  id: Journals
+  name: Journals
+  suffix: DeadSector, Other
+  components:
+    - type: Sprite
+      sprite: Imperial/DeadSector/items/ItemSale/Journals.rsi
+      state: icon

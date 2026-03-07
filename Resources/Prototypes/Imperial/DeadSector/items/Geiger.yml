@@ -1,0 +1,17 @@
+- type: entity
+  parent: GeigerCounter
+  id: GeigerCounterNu7
+  name: Geiger counter Nu-7
+  description: A handheld device used for detecting and measuring radiation pulses.
+  suffix: DeadSector, Other
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/items/Geiger.rsi
+    layers:
+      - state: geiger_base
+      - state: geiger_on_idle
+        map: ["enum.GeigerLayers.Screen"]
+        shader: unshaded
+        visible: false
+  - type: Item
+    sprite: Imperial/DeadSector/items/Geiger.rsi
