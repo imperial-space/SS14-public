@@ -34,19 +34,19 @@ public sealed class AnimatronicControllerSystem : EntitySystem
 		SubscribeLocalEvent<AnimatronicReachedTargetEvent>(OnAnimatronicReachedTarget);
 	}
 
-	private void OnAnimatronicReachedTarget(AnimatronicReachedTargetEvent ev)
+	private void OnAnimatronicReachedTarget(AnimatronicReachedTargetEvent _)
 	{
 		UpdateAllOpenUis();
 	}
 
 	private void OnBuiOpened(Entity<AnimatronicControllerComponent> ent, ref BoundUIOpenedEvent args)
 	{
-		UpdateUi(ent.Owner, args.Actor);
+		UpdateUi(ent.Owner);
 	}
 
 	private void OnRequestAnimData(Entity<AnimatronicControllerComponent> ent, ref RequestAnimDataEvent args)
 	{
-		UpdateUi(ent.Owner, args.Actor);
+		UpdateUi(ent.Owner);
 	}
 
 	private void OnSetTarget(Entity<AnimatronicControllerComponent> ent, ref SetAnimatronicTargetEvent args)
@@ -54,7 +54,7 @@ public sealed class AnimatronicControllerSystem : EntitySystem
 		var animUid = GetEntity(args.Animatronic);
 		if (!TryComp<AnimatronicComponent>(animUid, out var anim))
 		{
-			UpdateUi(ent.Owner, args.Actor);
+			UpdateUi(ent.Owner);
 			return;
 		}
 
@@ -66,10 +66,10 @@ public sealed class AnimatronicControllerSystem : EntitySystem
 			_pathfindingSystem.InitializePathRetryIfNeeded(animUid, pathfinding);
 		}
 
-		UpdateUi(ent.Owner, args.Actor);
+		UpdateUi(ent.Owner);
 	}
 
-	private void OnSetObserving(Entity<AnimatronicControllerComponent> ent, ref SetAnimatronicObservingEvent args)
+	private void OnSetObserving(Entity<AnimatronicControllerComponent> _, ref SetAnimatronicObservingEvent args)
 	{
 		if (args.Actor is not { Valid: true } player)
 			return;
@@ -108,7 +108,7 @@ public sealed class AnimatronicControllerSystem : EntitySystem
 		return new AnimDataStateEvent(anims, waypoints);
 	}
 
-	private void UpdateUi(EntityUid controller, EntityUid user)
+	private void UpdateUi(EntityUid controller)
 	{
 		var state = BuildAnimDataState();
 		_ui.SetUiState(controller, AnimatronicControllerUiKey.Key, state);

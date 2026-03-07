@@ -45,7 +45,7 @@ public sealed class AnimatronicPathfindingSystem : EntitySystem
 
 			if (_targetSystem.HasReachedTarget(uid, xform, targetXform))
 			{
-				OnReachedTarget(uid, anim, pathfinding, target);
+				OnReachedTarget(uid, pathfinding);
 			}
 		}
 	}
@@ -128,7 +128,7 @@ public sealed class AnimatronicPathfindingSystem : EntitySystem
 		}
 	}
 
-	private void OnReachedTarget(EntityUid uid, AnimatronicComponent anim, AnimatronicPathfindingComponent pathfinding, EntityUid target)
+	private void OnReachedTarget(EntityUid uid, AnimatronicPathfindingComponent pathfinding)
 	{
 		_steering.Unregister(uid);
 		_targetSystem.ClearTarget(uid);
