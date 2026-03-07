@@ -5,6 +5,7 @@ using Content.Shared.UserInterface;
 using Content.Server.Administration.UI;
 using Content.Server.EUI;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Player;
 using Robust.Server.Player;
 using Robust.Server.GameObjects;
 
