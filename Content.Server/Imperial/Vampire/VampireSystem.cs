@@ -282,10 +282,10 @@ public sealed partial class VampireSystem : EntitySystem
         }
 
         // после того, как вампир выпивает кровь его глаза становятся красными
-        if (TryComp<HumanoidAppearanceComponent>(drinker, out var appear))
+        if (TryComp<HumanoidAppearanceComponent>(drinker, out var humanoidAppearance))
         {
-            appear.EyeColor = Color.Red;
-            Dirty(drinker, appear);
+            humanoidAppearance.EyeColor = Color.Red;
+            Dirty(drinker, humanoidAppearance);
         }
 
         // наносим жертве урон от кровопотери
