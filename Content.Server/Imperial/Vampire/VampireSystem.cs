@@ -53,6 +53,8 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly AlertsSystem _alert = default!;
+    [Dependency] private readonly VisualBodySystem _visualBodySystem = default!;
+    
 
     private void VampireInitialize()
     {
