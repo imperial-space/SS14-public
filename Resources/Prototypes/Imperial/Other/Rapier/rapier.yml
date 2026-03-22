@@ -15,7 +15,7 @@
     wideAnimationRotation: -135
     angle: 0
     animation: WeaponArcThrust
-    attackRate: 1.19
+    attackRate: 1.185
     damage:
       types:
         Piercing: 16
@@ -23,8 +23,8 @@
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
   - type: Reflect
-    reflectProb: 0.30
-    spread: 120
+    reflectProb: 0.27
+    spread: 90
   - type: SolutionContainerManager
     solutions:
       melee:
