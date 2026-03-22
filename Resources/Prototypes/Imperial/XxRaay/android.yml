@@ -301,6 +301,7 @@
   - type: Repairable
     fuelCost: 40
     doAfterDelay: 10
+  - type: TTSProvider
 
 - type: entity
   name: Urist McAndroid
