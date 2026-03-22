@@ -28,7 +28,7 @@ using Content.Shared.Mobs;
 using Content.Server.Bible.Components;
 using Content.Shared.Alert;
 using System.Runtime.CompilerServices;
-using Content.Server.Body;
+// using Content.Server.Body; временно удалено (до апстрима)
 using System.Linq;
 
 namespace Content.Server.Imperial.Vampire;
@@ -53,7 +53,7 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly AlertsSystem _alert = default!;
-    [Dependency] private readonly VisualBodySystem _visualBodySystem = default!;
+    // [Dependency] private readonly VisualBodySystem _visualBodySystem = default!; временно удалено (до апстрима)
     
 
     private void VampireInitialize()
@@ -246,7 +246,7 @@ public sealed partial class VampireSystem : EntitySystem
             eui.GrantAbilities(drinker, vamp.SelectedSubgroup);
 
             // после того, как вампир выпивает кровь его глаза становятся красными
-            TrySetEntityEyeColor(drinker, Color.Red);
+            // TrySetEntityEyeColor(drinker, Color.Red); временно удалено (до апстрима)
 
                 if (_mobState.IsAlive(target))
                     StartDrinking(drinker, target);
@@ -282,7 +282,7 @@ public sealed partial class VampireSystem : EntitySystem
         }
 
         // после того, как вампир выпивает кровь его глаза становятся красными
-        TrySetEntityEyeColor(drinker, Color.Red);
+        // TrySetEntityEyeColor(drinker, Color.Red); временно удалено (до апстрима)
 
         // наносим жертве урон от кровопотери
         damage.DamageDict["Bloodloss"] = FixedPoint2.New(amount * 2);
@@ -385,13 +385,14 @@ public sealed partial class VampireSystem : EntitySystem
         }
     }
 
-    private bool TrySetEntityEyeColor(EntityUid uid, Color eyeColor)
-    {
-        if (!_visualBodySystem.TryGatherMarkingsData(uid, null, out var profiles, out _, out var markings)) return false;
+    // временно удалено (до апстрима)
+    // private bool TrySetEntityEyeColor(EntityUid uid, Color eyeColor) 
+    // {
+    //     if (!_visualBodySystem.TryGatherMarkingsData(uid, null, out var profiles, out _, out var markings)) return false;
 
-        var coloredProfile = profiles.ToDictionary(pair => pair.Key, pair => pair.Value with { EyeColor = eyeColor });
-        _visualBodySystem.ApplyProfiles(uid, coloredProfile);
+    //     var coloredProfile = profiles.ToDictionary(pair => pair.Key, pair => pair.Value with { EyeColor = eyeColor });
+    //     _visualBodySystem.ApplyProfiles(uid, coloredProfile);
 
-        return true;
-    }
+    //     return true;
+    // }
 }
