@@ -1,7 +1,7 @@
 using System;
 using Content.Server.Silicons.Laws;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage;
@@ -28,7 +28,7 @@ namespace Content.Server.Imperial.XxRaay.Android;
 public sealed class AndroidStressSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SiliconLawSystem _siliconLaws = default!;
@@ -107,7 +107,10 @@ public sealed class AndroidStressSystem : EntitySystem
 
             if (TryComp<BloodstreamComponent>(uid, out var blood))
             {
-                var percent = _bloodstream.GetBloodLevelPercentage((uid, blood));
+                var percent =
+                    _solutionContainer.ResolveSolution(uid, blood.BloodSolutionName, ref blood.BloodSolution, out var bloodSolution)
+                        ? bloodSolution.FillFraction
+                        : 0f;
                 if (percent <= comp.LowEnergyStressThreshold)
                 {
                     var delta = comp.LowEnergyStressPerSecond * frameTime;

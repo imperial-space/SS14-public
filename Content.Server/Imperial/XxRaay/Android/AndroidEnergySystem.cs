@@ -1,7 +1,7 @@
 using System;
 using Content.Shared.Alert;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Imperial.XxRaay.Android;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
@@ -15,7 +15,7 @@ namespace Content.Server.Imperial.XxRaay.Android;
 public sealed class AndroidEnergySystem : EntitySystem
 {
     [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
 
@@ -33,7 +33,10 @@ public sealed class AndroidEnergySystem : EntitySystem
 
             energyComp.NextUpdate = curTime + energyComp.UpdateInterval;
 
-            var percent = _bloodstream.GetBloodLevelPercentage((uid, blood));
+            var percent =
+                _solutionContainer.ResolveSolution(uid, blood.BloodSolutionName, ref blood.BloodSolution, out var bloodSolution)
+                    ? bloodSolution.FillFraction
+                    : 0f;
 
             var maxSeverity = _alerts.GetMaxSeverity(energyComp.Alert);
             var minSeverity = _alerts.GetMinSeverity(energyComp.Alert);
