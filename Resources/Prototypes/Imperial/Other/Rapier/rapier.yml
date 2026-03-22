@@ -24,7 +24,7 @@
         path: /Audio/Weapons/bladeslice.ogg
   - type: Reflect
     reflectProb: 0.30
-    spread: 90
+    spread: 120
   - type: SolutionContainerManager
     solutions:
       melee:
