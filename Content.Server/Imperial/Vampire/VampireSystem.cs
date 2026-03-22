@@ -93,7 +93,7 @@ public sealed partial class VampireSystem : EntitySystem
                 Act = () => StartConversion(args.User, args.Target),
                 Text = Loc.GetString("vampire-verb-envelope-ghoul-text"),
                 Message = Loc.GetString("vampire-verb-envelope-ghoul-message"),
-                Icon = new SpriteSpecifier.Texture(new("/Textures/Mobs/Species/Human/organs.rsi/brain.png")),
+                Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Mobs/Species/Human/organs.rsi"), "brain"),
                 Priority = 0
             };
             args.Verbs.Add(verbConvert);
