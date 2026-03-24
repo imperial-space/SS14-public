@@ -299,6 +299,7 @@
     fuelCost: 40
     doAfterDelay: 10
   - type: TTSProvider
+    voice: sentrybot
 
 - type: entity
   name: Urist McAndroid
