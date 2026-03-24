@@ -101,8 +101,6 @@
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
-  - type: HumanoidAppearance
-    species: Human
   - type: TypingIndicator
   - type: SlowOnDamage
     speedModifierThresholds:
