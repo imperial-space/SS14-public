@@ -1,6 +1,5 @@
 - type: entity
   parent:
-  - BaseMobSpecies
   - MobBloodstream
   id: BaseMobAndroid
   name: Urist McAndroid
