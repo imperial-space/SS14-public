@@ -94,8 +94,6 @@ public partial class VampireSystem : EntitySystem
         }
 
         var target = vamp.TargetUser ? args.Performer : args.Performer;
-        if (target == null)
-            return;
 
         var fromCoords = Transform(target).Coordinates;
         var toCoords = _vampireSystem.VampireRandomTileInRange(Transform(target), args.TeleportRadius);
@@ -178,7 +176,8 @@ public partial class VampireSystem : EntitySystem
             BreakOnMove = true,
             BreakOnDamage = true,
             NeedHand = false,
-            BlockDuplicate = true
+            BlockDuplicate = true,
+            Hidden = true
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);
@@ -267,14 +266,6 @@ public partial class VampireSystem : EntitySystem
             return;
         }
 
-        if (vamp.GhoulQuantity < args.NecessaryGhoulQuantity)
-        {
-            _popup.PopupEntity(Loc.GetString("vampire-popup-ghoul-quantity", ("quantity", args.NecessaryGhoulQuantity - vamp.GhoulQuantity)),
-            args.Performer, args.Performer, PopupType.Medium);
-
-            return;
-        }
-
         switch (vamp.SelectedSubgroup)
         {
             case VampireAbilityType.Hemomancer:
@@ -312,10 +303,8 @@ public partial class VampireSystem : EntitySystem
         args.Handled = true;
     }
 
-    public override void Update(float frameTime)
+    public void AbilitiesUpdate()
     {
-        base.Update(frameTime);
-
         var queryVampBat = EntityQueryEnumerator<VampireComponent>();
         while (queryVampBat.MoveNext(out var uid, out var vamp))
         {
