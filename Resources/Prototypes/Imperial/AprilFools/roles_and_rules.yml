@@ -1,0 +1,75 @@
+- type: antag
+  id: HonklingSoldier
+  name: roles-antag-honkling-soldier-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-honkling-soldier-obj
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleHonkling
+  name: Honkling Soldier
+  components:
+  - type: MindRole
+    antagPrototype: HonklingSoldier
+    exclusiveAntag: true
+
+- type: antag
+  id: HonklingLeader
+  name: roles-antag-honkling-leader-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-honkling-leader-obj
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleHonklingLeader
+  name: Honkling Leader
+  components:
+  - type: MindRole
+    antagPrototype: HonklingLeader
+    exclusiveAntag: true
+
+- type: entity
+  abstract: true
+  parent: BaseGameRule
+  id: BaseHonkLegion
+  components:
+  - type: RuleGrids
+  - type: LoadMapRule
+    gridPath: /Maps/Imperial/AprilFools/ClownOfWar.yml 
+
+- type: entity
+  parent: BaseHonkLegion
+  id: HonkLegion
+  components:
+  - type: GameRule
+    minPlayers: 0
+  - type: AntagMultipleRoleSpawner
+    antagRoleToPrototypes:
+      HonklingSoldier: [ MobHonklingSoldier ]
+      HonklingLeader: [ MobHonklingLeader ]
+    pickAndTake: true
+  - type: AntagSelection
+    selectionTime: PrePlayerSpawn
+    definitions:
+    - prefRoles: [ HonklingLeader ]
+      fallbackRoles: [ HonklingSoldier ]
+      spawnerPrototype: SpawnPointHonklingSoldier
+      mindRoles:
+      - MindRoleHonkling
+      briefing:
+        text: honkling-soldier-briefing
+        color: Pink
+    - prefRoles: [ HonklingSoldier ]
+      fallbackRoles: [ HonklingLeader ]
+      spawnerPrototype: SpawnPointHonklingSoldier
+      briefing:
+        text: honkling-leader-briefing
+        color: Pink
+      mindRoles:
+      - MindRoleHonklingLeader
+      playerRatio: 2
+      max: 30
+  - type: DynamicRuleCost
+    cost: 0

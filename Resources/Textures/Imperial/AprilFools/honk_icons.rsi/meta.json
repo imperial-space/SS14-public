@@ -1,0 +1,32 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "made by de_liva",
+    "size": {
+        "x": 8,
+        "y": 8
+    },
+    "states": [
+        {
+            "name": "medic"
+        },
+        {
+            "name": "eng"
+        },
+        {
+            "name": "fighter"
+        },
+        {
+            "name": "scout"
+        },
+        {
+            "name": "leader"
+        },
+        {
+            "name": "demoman"
+        },
+        {
+            "name": "fencer"
+        }
+    ]
+}

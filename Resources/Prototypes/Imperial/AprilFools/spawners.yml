@@ -1,0 +1,15 @@
+- type: entity
+  id: SpawnPointHonklingSoldier
+  parent: MarkerBase
+  name: soldier honkling
+  components:
+  - type: GridSpawnPointWhitelist
+    whitelist:
+      tags:
+      - Honkling
+  - type: SpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/AprilFools/honkling.rsi
+      state: honkling
