@@ -38,13 +38,12 @@ using Content.Server.Buckle.Systems;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Movement.Pulling.Components;
-using Content.Shared.Mobs;
+using Robust.Server.GameObjects;
 namespace Content.Server.Imperial.SCP.SCP106.Systems;
 
 public sealed partial class SCP106System : EntitySystem
 {
     #region Dependencies
-    [Dependency] private readonly BuckleSystem _buckleSystem = default!;
     [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly IChatManager _chatM = default!;
@@ -70,10 +69,11 @@ public sealed partial class SCP106System : EntitySystem
     [Dependency] private readonly SharedGodmodeSystem _godmode = default!;
     [Dependency] private readonly SleepingSystem _sleep = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
+    [Dependency] private readonly VisibilitySystem _visibility = default!;
     #endregion
+
     #region Init and Stuff
-    private readonly List<string> BlacklistedTags = ["Wall", "Window"];
+    private readonly List<string> _blacklistedTags = ["Wall", "Window"];
     public override void Initialize()
     {
         base.Initialize();
@@ -115,8 +115,9 @@ public sealed partial class SCP106System : EntitySystem
             if (mobd.CurrentState == Shared.Mobs.MobState.Dead ||
                 mobd.CurrentState == Shared.Mobs.MobState.Critical)
                 continue;
-            if (!TryComp<TransformComponent>(mob, out var mobTransform))
-                continue;
+
+            var mobTransform = Transform(mob);
+
             if (mobTransform.MapID != mapCoords.MapId)
                 continue;
             var mobPos = _transform.GetWorldPosition(mobTransform);
@@ -138,8 +139,10 @@ public sealed partial class SCP106System : EntitySystem
 
         foreach (var puddle in scp.Puddles)
         {
-            if (!Exists(puddle) || !TryComp<TransformComponent>(puddle, out var puddleTransform))
+            if (!Exists(puddle))
                 continue;
+
+            var puddleTransform = Transform(puddle);
 
             if (puddleTransform.MapID != targetMap)
                 continue;
@@ -192,7 +195,7 @@ public sealed partial class SCP106System : EntitySystem
 
         foreach (var anchovy in anchovies)
         {
-            foreach (string tag in BlacklistedTags)
+            foreach (string tag in _blacklistedTags)
             {
                 if (_tag.HasTag(anchovy, tag))
                 {
@@ -245,7 +248,8 @@ public sealed partial class SCP106System : EntitySystem
             EnsureComp<PullableComponent>(subject);
 
         }
-        _audio.PlayGlobal(globaltpsound, Filter.Broadcast(), true, AudioParams.Default.WithVolume(-2f)); //i love this
+        _audio.PlayPredicted(globaltpsound, hole, subject, AudioParams.Default.WithMaxDistance(30)); //i love this
+        _audio.PlayPredicted(globaltpsound, subject, hole, AudioParams.Default.WithMaxDistance(30));
     }
     #endregion
     #region Dimension Debuff Handling
@@ -267,7 +271,7 @@ public sealed partial class SCP106System : EntitySystem
             if (curTime >= debuff.NextDamage)
             {
                 _damageable.TryChangeDamage(entity, debuff.DamagePerSecond);
-                debuff.NextDamage += TimeSpan.FromSeconds(1.0f);
+                debuff.NextDamage += TimeSpan.FromSeconds(2.0f);
             }
         }
     }
