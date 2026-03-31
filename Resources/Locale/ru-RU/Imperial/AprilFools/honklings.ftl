@@ -74,3 +74,8 @@ ent-HonklingScoutSawedOff = скоростной обрез
     .desc = Хихун Несмешнов-Шуткович признает, что взял идею обреза для разведчика из видеоигры.
 
 chat-honklings = Легион
+
+ent-HonklingComputerComms = компьютер хонклингов
+    .desc = ЛЕРОООООООООООООООООООЙ ЙЕЕЕЕНКИИНС
+
+chigur-prey-name - вора денег
