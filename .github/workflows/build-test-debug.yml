@@ -2,11 +2,11 @@ name: Build & Test Debug
 
 on:
   push:
-    branches: [ master, staging, stable ]
+    branches: [ develop, event, aquila, eridani ]
   merge_group:
   pull_request:
     types: [ opened, reopened, synchronize, ready_for_review ]
-    branches: [ master, staging, stable ]
+    branches: [ develop, event, aquila, eridani ]
 
 jobs:
   build:
@@ -36,7 +36,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4.1.0
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: 10.0.x
 
     - name: Install dependencies
       run: dotnet restore
