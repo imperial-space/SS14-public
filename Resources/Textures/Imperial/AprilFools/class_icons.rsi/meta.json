@@ -1,0 +1,32 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+	"copyright": "resprite by de_liva",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "medic"
+        },
+        {
+            "name": "scout"
+        },
+        {
+            "name": "engineer"
+        },
+        {
+            "name": "fighter"
+        },
+        {
+            "name": "frontline"
+        },
+        {
+            "name": "demoman"
+        },
+        {
+            "name": "fencer"
+        }
+    ]
+}

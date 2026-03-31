@@ -1,0 +1,191 @@
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineMP9Clown
+  result: MagazineMP9
+  materials:
+    Steel: 650
+
+- type: startingGear
+  id: HonklingSoldier
+  equipment:
+    back: HonklingSoldierSet
+
+- type: startingGear
+  id: HonklingLeader
+  equipment:
+    back: HonklingLeaderSet
+
+- type: entity
+  id: HonklingSoldierSet
+  name: clowning stuff backpack
+  parent: ToolboxThief
+  components:
+  - type: Unremoveable
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+  - type: Sprite
+    sprite: Clothing/Back/Backpacks/clown.rsi
+  - type: ThiefUndeterminedBackpack
+    spawnedStoragePrototype: ClothingBackpackClown
+    maxSelectedSets: 1
+    possibleSets:
+    - MedicClownSet
+    - FighterClownSet
+    - EngineerClownSet
+    - ScoutClownSet
+
+- type: thiefBackpackSet
+  id: MedicClownSet
+  name: medic-clow-set-name
+  description: medic-clow-set-desc
+  sprite:
+    sprite: Imperial/AprilFools/class_icons.rsi
+    state: medic
+  content:
+  - WeaponFelixMP9
+  - MagazineMP9
+  - MagazineMP9
+  - MedkitCombatFilled
+  - DefibrillatorCompact
+  - HonklingMedicID
+  - HandheldHealthAnalyzer
+
+- type: thiefBackpackSet
+  id: FighterClownSet
+  name: fight-clow-set-name
+  description: fight-clow-set-desc
+  sprite:
+    sprite: Imperial/AprilFools/class_icons.rsi
+    state: fighter
+  content:
+  - WeaponSubMachineGunDrozd
+  - MagazinePistolSubMachineGun
+  - MagazinePistolSubMachineGun
+  - MagazinePistolSubMachineGun
+  - MagazinePistolSubMachineGun
+  - EmpGrenade
+  - EmpGrenade
+  - CombatMedipen
+  - HonklingFighterID
+  - CombatKnife
+
+- type: thiefBackpackSet
+  id: EngineerClownSet
+  name: eng-clow-set-name
+  description: eng-clow-set-desc
+  sprite:
+    sprite: Imperial/AprilFools/class_icons.rsi
+    state: engineer
+  content:
+  - WeaponShotgunKammerer
+  - MagazineShotgun
+  - MagazineShotgun
+  - MagazineShotgun
+  - Omnitool
+  - WelderExperimental
+  - C4
+  - C4
+  - C4
+  - C4
+  - HonklingEngID
+
+- type: thiefBackpackSet
+  id: ScoutClownSet
+  name: scout-clow-set-name
+  description: scout-clow-set-desc
+  sprite:
+    sprite: Imperial/AprilFools/class_icons.rsi
+    state: scout
+  content:
+  - HonklingScoutSawedOff
+  - ShellShotgunImprovised
+  - ShellShotgunImprovised
+  - ShellShotgunImprovised
+  - ShellShotgunImprovised
+  - ShellShotgunImprovised
+  - ShellShotgunImprovised
+  - ShellShotgunImprovised
+  - ShellShotgunImprovised
+  - Binoculars
+  - ChameleonProjectorNoBattery
+  - HonklingScoutID
+
+- type: entity
+  id: HonklingLeaderSet
+  parent: HonklingSoldierSet
+  components:
+  - type: Unremoveable
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+  - type: Sprite
+    sprite: Clothing/Back/Backpacks/clown.rsi
+  - type: ThiefUndeterminedBackpack
+    spawnedStoragePrototype: HonklingLeaderBackpack
+    maxSelectedSets: 1
+    possibleSets:
+    - TagilaClownSet
+    - DemoClownSet
+    - FencerClownSet
+
+- type: thiefBackpackSet
+  id: TagilaClownSet
+  name: tagila-clow-set-name
+  description: tagila-clow-set-desc
+  sprite:
+    sprite: Imperial/AprilFools/class_icons.rsi
+    state: frontline
+  content:
+  - SledgehammerTagila
+  - WeaponLightMachineGunL6
+  - MagazineLightRifleBox
+  - MagazineLightRifleBox
+  - MagazineLightRifleBox
+  - MagazineLightRifleBox
+  - CombatMedipen
+  - HonklingLeaderID
+
+- type: thiefBackpackSet
+  id: DemoClownSet
+  name: demo-clow-set-name
+  description: demo-clow-set-desc
+  sprite:
+    sprite: Imperial/AprilFools/class_icons.rsi
+    state: demoman
+  content:
+  - WeaponLauncherChinaLake
+  - GrenadeFrag
+  - GrenadeFrag
+  - GrenadeFrag
+  - GrenadeFrag
+  - GrenadeFrag
+  - GrenadeFrag
+  - MacroBombImplanter
+  - MicroBombImplanter
+  - MicroBombImplanter
+  - MicroBombImplanter
+  - HonklingDemomanID
+  - SyndicateBomb
+
+- type: thiefBackpackSet
+  id: FencerClownSet
+  name: fencer-clow-set-name
+  description: fencer-clow-set-desc
+  sprite:
+    sprite: Imperial/AprilFools/class_icons.rsi
+    state: fencer
+  content:
+  - CaptainSabre
+  - Stimpack
+  - Stimpack
+  - StimpackMini
+  - StimpackMini
+  - StimpackMini
+  - StimpackMini
+  - TelescopicShield
+  - TelescopicShield
+  - TelescopicShield
+  - HonklingFencerID

@@ -1,0 +1,268 @@
+- type: inventoryTemplate
+  id: honkling
+  slots:
+    - name: back
+      slotTexture: back
+      slotFlags: BACK
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 2,1
+      strippingWindowPos: 2,4
+      displayName: Back
+    - name: id
+      slotTexture: id
+      fullTextureName: template_small
+      slotFlags: IDCARD
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 2,2
+      strippingWindowPos: 2,3
+      displayName: ID
+
+- type: Tag 
+  id: Honkling
+
+- type: localizedDataset
+  id: NamesHonkling
+  values:
+    prefix: names-honkling-
+    count: 33
+
+- type: localizedDataset
+  id: NamesHonklingLeader
+  values:
+    prefix: names-honkling-leader-
+    count: 5
+
+- type: radioChannel
+  id: Honklings
+  name: chat-honklings
+  keycode: 'е'
+  frequency: 220220
+  color: "#d8eb63"
+  longRange: true
+
+- type: entity
+  name: leader backpack
+  id: HonklingLeaderBackpack
+  parent: ClothingBackpackClown
+  components:
+  - type: Storage
+    grid:
+    - 0,0,8,4
+
+- type: entity
+  name: tagila hammer
+  id: SledgehammerTagila
+  parent: Sledgehammer
+  components:
+  - type: MeleeThrowOnHit
+    speed: 35.0
+  - type: Reflective
+  - type: Reflect
+    reflectProb: 0.4
+
+- type: entity
+  name: scouting sawed off
+  id: HonklingScoutSawedOff
+  parent: WeaponShotgunSawn
+  components:
+  - type: HeldSpeedModifier
+    sprintModifier: 1.2
+
+- type: entity
+  name: honkling
+  id: MobHonkling
+  parent: [ SimpleSpaceMobBase, StripableInventoryBase ]
+  description: Oh god.
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesHonkling
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Honklings
+  - type: ActiveRadio
+    channels:
+    - Honklings
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    color: "#eb71d6"
+    enabled: false
+    radius: 3
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 30
+    animation: WeaponArcBite
+    damage:
+      types:
+        Blunt: 3
+        Piercing: 3
+  - type: ComplexInteraction
+  - type: GenericVisualizer
+    visuals:
+      enum.CreamPiedVisuals.Creamed:
+        clownedon:
+          True: {visible: true}
+          False: {visible: false}
+  - type: CreamPied
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Monkey_burning
+  - type: Deathgasp
+    prototype: MonkeyDeathgasp
+  - type: Cuffable
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Stripping
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+    reactions:
+    - reagents: [ Water, SpaceCleaner ]
+      methods: [ Touch ]
+      effects:
+      - !type:WashCreamPie
+  - type: Crawler
+  - type: StatusIcon
+    bounds: -0.5,-0.5,0.5,0.5
+  - type: CombatMode
+    canDisarm: true
+  - type: NoSlip
+  - type: Puller
+    needsHands: false
+  - type: Tag
+    tags:
+    - Honkling
+    - CanPilot 
+    - DoorBumpOpener
+  - type: CrewSkills
+    skills:
+    - skillBotany #base
+    - skillBaseMed
+    - skillBaseConstraction
+    - skillCooking  #Easy
+    - skillBartending
+    - skillHacking
+    - skillInstrumentation #Medium
+    - skillMaintenance
+    - skillMediumConstruction
+    - skillMediumBotany
+    - skillBasicAtmos
+    - skillMedicalEquipment
+    - skillPharmacology
+    - skillPiloting #Hard
+    - skillAtmos
+    - skillHardInstrumentation
+    - skillRobotics
+    - skillResearch
+    - skillPharmaceuticals
+    - skillShooting
+    - skillSurgery
+    - skillNeuroSurgery
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepClownFast
+  - type: Speech
+    speechVerb: Cluwne
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Laughter
+        Quantity: 150
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Critical
+      80: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: honkling
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: honkling
+      sprite: Imperial/AprilFools/honkling.rsi
+    - map: [ "back" ]
+  - type: Hands
+    activeHandId: hand_right
+    hands:
+      hand_right:
+        location: Right
+      hand_left:
+        location: Left
+    sortedHands:
+    - hand_right
+    - hand_left
+  - type: Inventory
+    templateId: honkling
+    speciesId: honkling
+  
+- type: entity
+  name: honkling soldier
+  id: MobHonklingSoldier
+  parent: MobHonkling
+  description: Oh god. With guns.
+  components:
+  - type: JobStatus
+  - type: Insulated
+  - type: ShowJobIcons
+  - type: Loadout
+    prototypes: [HonklingSoldier]
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: honkling
+      sprite: Imperial/AprilFools/honkling_soldier.rsi
+    - map: [ "back" ]
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Critical
+      220: Dead
+
+- type: entity
+  name: honkling leader
+  id: MobHonklingLeader
+  parent: MobHonklingSoldier
+  description: Oh god. With premission to launch nuclear strikes.
+  components:
+  - type: Loadout
+    prototypes: [HonklingLeader]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesHonklingLeader
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: honkling
+      sprite: Imperial/AprilFools/honkling_leader.rsi
+    - map: [ "back" ]
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      300: Dead

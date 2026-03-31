@@ -33,6 +33,7 @@
 - type: latheRecipePack
   id: SecurityAmmoStatic
   recipes:
+  - MagazineMP9Clown
   - BoxLethalshot
   - BoxShotgunSlug
   - MagazineBoxLightRifle

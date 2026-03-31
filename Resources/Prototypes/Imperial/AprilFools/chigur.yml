@@ -1,0 +1,178 @@
+- type: entity
+  parent: BriefcasePresentable
+  id: ChigurCase
+  name: case with money
+  description: MONEY MONEY
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SpaceCash10000
+          amount: 12
+  - type: StealTarget
+    stealGroup: ChigurMoney
+  - type: Item 
+    size: Normal
+
+- type: antag
+  id: Chigur
+  name: roles-antag-chigur-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-chigur-obj
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleChigurPrey
+  name: Chigur Prey
+  components:
+  - type: MindRole
+    antagPrototype: Chigur
+    exclusiveAntag: true
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleChigur
+  name: Chigur
+  components:
+  - type: MindRole
+    antagPrototype: Chigur
+    exclusiveAntag: true
+
+- type: startingGear
+  id: ChigurGear
+  storage:
+    back:
+    - BoxLethalshot
+    - BriefcaseWeaponHushpupFilled
+
+- type: startingGear
+  id: ChigurPreyGear
+  storage:
+    back:
+    - ChigurCase
+
+- type: entity
+  parent: BaseGameRule
+  id: Chigur
+  components:
+  - type: AntagObjectives
+    objectives:
+    - KillMoneyThief
+    - KeepMoneySafe
+  - type: AntagSelection
+    agentName: end-round-chigur
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ Chigur ]
+      max: 1
+      lateJoinAdditional: false
+      allowNonHumans: false
+      multiAntagSetting: NotExclusive
+      startingGear: ChigurGear
+      blacklist:
+        components:
+        - BorgTransponder
+      mindRoles:
+      - MindRoleChigur
+      briefing:
+        text: chigur-brief
+        color: Red
+  - type: DynamicRuleCost
+    cost: 0
+  - type: GameRule
+    cancelPresetOnTooFewPlayers: false
+
+- type: entity
+  parent: BaseGameRule
+  id: ChigurPrey
+  components:
+  - type: AntagObjectives
+    objectives:
+    - EscapeShuttleCgigur
+    - KeepMoneySafe
+  - type: AntagSelection
+    agentName: end-round-chigur-prey
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ Chigur ]
+      max: 1
+      lateJoinAdditional: false
+      allowNonHumans: false
+      multiAntagSetting: NotExclusive
+      startingGear: ChigurPreyGear
+      blacklist:
+        components:
+        - BorgTransponder
+      components:
+      - type: ChigurStealer
+      mindRoles:
+      - MindRoleChigurPrey
+      briefing:
+        text: chigur-prey-brief
+        color: Green
+  - type: DynamicRuleCost
+    cost: 0
+  - type: GameRule
+    cancelPresetOnTooFewPlayers: false
+
+- type: entity
+  parent: BaseStealObjective
+  name: Кровавые Деньги
+  description: Украденные у Картеля деньги должны принадлежать мне.
+  id: KeepMoneySafe
+  components:
+  - type: Objective
+    issuer: objective-issuer-chigur
+    difficulty: 1
+  - type: StealCondition
+    verifyMapExistence: false
+    stealGroup: ChigurMoney
+    owner: chigur-prey-name
+
+- type: entity
+  parent: BaseLivingObjective
+  id: EscapeShuttleCgigur
+  name: Сбежать
+  description: Нужно скрыться с деньгами на центкомм. Там Чугун не найдет меня.
+  components:
+  - type: Objective
+    issuer: objective-issuer-chigur
+    difficulty: 1
+    icon:
+      sprite: Structures/Furniture/chairs.rsi
+      state: shuttle
+  - type: EscapeShuttleCondition
+
+- type: stealTargetGroup
+  id: ChigurMoney
+  name: деньги картеля 
+  sprite:
+    sprite: Imperial/Objects/Storage/rfi_briefcase.rsi
+    state: icon
+
+- type: entity
+  parent: BaseKillObjective
+  id: KillMoneyThief
+  description: Этот человек украл большие деньги. Мне нужно его убрать.
+  components:
+  - type: Objective
+    issuer: objective-issuer-chigur
+    difficulty: 1
+    unique: true
+  - type: TargetObjective
+    title: objective-condition-kill-chigur
+  - type: PickRandomPerson
+    filters:
+    - !type:BodyMindFilter
+      whitelist:
+        components:
+        - ChigurStealer
+    - !type:TargetObjectiveMindFilter
+      blacklist:
+        components:
+        - KillPersonCondition
+  - type: KillPersonCondition
+    requireDead: true
+    requireMaroon: true
