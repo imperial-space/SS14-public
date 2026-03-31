@@ -1,0 +1,175 @@
+﻿# =============================================================================
+# Xenobiology: Xeno Console
+# Консоль для управления ксенобиологической лабораторией
+# =============================================================================
+
+# -- Консоль ------------------------------------------------------------------
+
+- type: entity
+  id: XenoConsole
+  parent: BaseComputer
+  name: консоль ксенобиологии
+  suffix: Xenobiology
+  description: >
+    Специализированная консоль для управления ксенобиологической лабораторией.
+    Нажмите E, чтобы войти в режим камеры-оператора.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: rdcomp
+      color: "#44BB44"
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+  - type: XenoConsole
+  - type: SolutionContainerManager
+    solutions:
+      xeno_console_potion:
+        maxVol: 50
+  - type: RefillableSolution
+    solution: xeno_console_potion
+  - type: DrawableSolution
+    solution: xeno_console_potion
+
+# -- Призрак-оператор ---------------------------------------------------------
+
+- type: entity
+  id: XenoConsoleGhost
+  name: камера ксенобиологии
+  description: Операторский модуль ксенобиологической консоли.
+  noSpawn: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/station_ai.rsi
+    noRot: true
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    layers:
+    - state: ai_camera
+      shader: unshaded
+  - type: Eye
+    drawFov: false
+  - type: ContentEye
+    maxZoom: 1.44, 1.44
+  - type: MindContainer
+  - type: Actions
+  - type: ActionGrant
+    actions:
+    - XenoGhostCameraOff
+    - XenoGhostMonkeyUp
+    - XenoGhostMonkeyDown
+    - XenoGhostSlimeUp
+    - XenoGhostSlimeDown
+    - XenoGhostSlimePotion
+    - XenoGhostSlimeScan
+  - type: Input
+    context: "ghost"
+  - type: InputMover
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 6
+    baseSprintSpeed: 6
+  - type: MovementIgnoreGravity
+  - type: Physics
+    bodyType: KinematicController
+    bodyStatus: InAir
+  - type: CanMoveInAir
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 15
+        layer:
+        - GhostImpassable
+  - type: Examiner
+    skipChecks: true
+  - type: Tag
+    tags:
+    - BypassInteractionRangeChecks
+  - type: XenoConsoleGhost
+
+# -- Действия камеры ----------------------------------------------------------
+
+- type: entity
+  id: XenoGhostCameraOff
+  name: Выйти из камеры
+  description: Отключить камеру и вернуться в тело.
+  parent: BaseMentalAction
+  components:
+  - type: Action
+    icon: { sprite: Imperial/xenobiology/actions.rsi, state: camera_off }
+  - type: InstantAction
+    event: !type:XenoGhostCameraOffEvent
+
+- type: entity
+  id: XenoGhostMonkeyUp
+  name: Взять обезьяну
+  description: Взять ксено-обезьяну из-под камеры и поместить в хранилище консоли.
+  parent: BaseMentalAction
+  components:
+  - type: Action
+    icon: { sprite: Imperial/xenobiology/actions.rsi, state: monkey_up }
+  - type: InstantAction
+    event: !type:XenoGhostMonkeyUpEvent
+
+- type: entity
+  id: XenoGhostMonkeyDown
+  name: Положить обезьяну
+  description: Достать обезьяну из хранилища и выложить под камерой.
+  parent: BaseMentalAction
+  components:
+  - type: Action
+    icon: { sprite: Imperial/xenobiology/actions.rsi, state: monkey_down }
+  - type: InstantAction
+    event: !type:XenoGhostMonkeyDownEvent
+
+- type: entity
+  id: XenoGhostSlimeUp
+  name: Взять слайма
+  description: Взять ксено-слайма из-под камеры и поместить в хранилище консоли.
+  parent: BaseMentalAction
+  components:
+  - type: Action
+    icon: { sprite: Imperial/xenobiology/actions.rsi, state: slime_up }
+  - type: InstantAction
+    event: !type:XenoGhostSlimeUpEvent
+
+- type: entity
+  id: XenoGhostSlimeDown
+  name: Положить слайма
+  description: Достать слайма из хранилища и выложить под камерой.
+  parent: BaseMentalAction
+  components:
+  - type: Action
+    icon: { sprite: Imperial/xenobiology/actions.rsi, state: slime_down }
+  - type: InstantAction
+    event: !type:XenoGhostSlimeDownEvent
+
+- type: entity
+  id: XenoGhostSlimePotion
+  name: Ввести реагент
+  description: Ввести реагенты из консоли слайму, находящемуся под камерой.
+  parent: BaseMentalAction
+  components:
+  - type: Action
+    icon: { sprite: Imperial/xenobiology/actions.rsi, state: slime_potion }
+  - type: InstantAction
+    event: !type:XenoGhostSlimePotionEvent
+
+- type: entity
+  id: XenoGhostSlimeScan
+  name: Сканировать слайма
+  description: Показать информацию о слайме под камерой (вид, HP, голод, возраст, шанс мутации).
+  parent: BaseMentalAction
+  components:
+  - type: Action
+    icon: { sprite: Imperial/xenobiology/actions.rsi, state: slime_scan }
+  - type: InstantAction
+    event: !type:XenoGhostSlimeScanEvent
+

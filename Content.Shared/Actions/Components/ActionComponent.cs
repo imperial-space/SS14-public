@@ -36,6 +36,13 @@ public sealed partial class ActionComponent : Component
     public SpriteSpecifier? BackgroundOn;
 
     /// <summary>
+    ///     Background sprite to show at all times (overrides the default slot background).
+    ///     Used e.g. for cult actions that always show the cult-themed background.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public SpriteSpecifier? Background;
+
+    /// <summary>
     ///     If not null, this color will modulate the action icon color.
     /// </summary>
     /// <remarks>

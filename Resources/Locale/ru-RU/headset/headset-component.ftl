@@ -19,5 +19,7 @@ chat-radio-freelance = Внештатный
 # not headset but whatever
 chat-radio-handheld = Портативная
 chat-radio-binary = Двоичный
+chat-radio-blob = Блоб
+chat-radio-blob-hive = Улей Блоба
 chat-radio-xenoborg = Ксеноборг
 chat-radio-mothership = Материнский корабль

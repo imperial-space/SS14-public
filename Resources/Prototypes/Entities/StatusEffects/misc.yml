@@ -92,3 +92,32 @@
   parent: [ StatusEffectWoozy, StatusEffectSlurred ]
   id: StatusEffectDrunk
   name: drunk
+
+# === Xenobiology potion status effects ===
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectXenoLaserProt
+  name: laser protection
+  components:
+  - type: DamageProtectionBuff
+    modifiers:
+      xenoLaser: XenoLaserProtection
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectXenoExplosionProt
+  name: explosion protection
+  components:
+  - type: DamageProtectionBuff
+    modifiers:
+      xenoExplosion: XenoExplosionProtection
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectXenoAcidProt
+  name: acid protection
+  components:
+  - type: DamageProtectionBuff
+    modifiers:
+      xenoAcid: XenoAcidProtection

@@ -1,0 +1,44 @@
+# ─────────────────────────────────────────
+#  Культ Нар'Си — Objectives
+# ─────────────────────────────────────────
+
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseCultObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-cult
+    difficulty: 1
+  - type: RoleRequirement
+    roles:
+    - CultistRole
+
+- type: entity
+  parent: BaseCultObjective
+  id: CultSacrificeTargetsObjective
+  name: cult-objective-sacrifice-targets-fallback-name
+  description: cult-objective-sacrifice-targets-desc
+  components:
+  - type: Objective
+    issuer: objective-issuer-cult
+    difficulty: 2
+    icon:
+      sprite: Imperial/cult/rune.rsi
+      state: rune3
+  - type: CultSacrificeTargetsCondition
+
+- type: entity
+  parent: BaseCultObjective
+  id: CultSummonNarSieObjective
+  name: cult-objective-summon-narsie-name
+  description: cult-objective-summon-narsie-desc
+  components:
+  - type: Objective
+    issuer: objective-issuer-cult
+    difficulty: 4
+    icon:
+      sprite: Imperial/cult/rune.rsi
+      state: rune3
+  - type: CultSummonNarSieCondition
+

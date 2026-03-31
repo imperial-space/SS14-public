@@ -1,6 +1,8 @@
 using Content.Server.Antag;
+using Content.Server.Administration;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules.Components;
+using Content.Server.GameTicking.Rules;
 using Content.Server.Zombies;
 using Content.Shared.Administration;
 using Content.Server.Clothing.Systems;
@@ -19,6 +21,7 @@ namespace Content.Server.Administration.Systems;
 public sealed partial class AdminVerbSystem
 {
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
+    [Dependency] private readonly BloodBrotherRuleSystem _bloodBrother = default!;
     [Dependency] private readonly ZombieSystem _zombie = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly OutfitSystem _outfit = default!;
@@ -31,6 +34,8 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultChangelingRule = "Changeling";
     private static readonly EntProtoId ParadoxCloneRuleId = "ParadoxCloneSpawn";
     private static readonly EntProtoId DefaultWizardRule = "Wizard";
+    private static readonly EntProtoId DefaultCultRule = "Cult";
+    private static readonly EntProtoId DefaultBloodBrotherRule = "BloodBrother";
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
 
     // All antag verbs have names so invokeverb works.
@@ -207,7 +212,67 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(wizard);
 
+        var cultistName = Loc.GetString("admin-verb-text-make-cultist");
+        Verb cultist = new()
+        {
+            Text = cultistName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Objects/Weapons/Melee/cult_dagger.rsi"), "icon"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<CultRuleComponent>(targetPlayer, DefaultCultRule);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", cultistName, Loc.GetString("admin-verb-make-cultist")),
+        };
+        args.Verbs.Add(cultist);
+
+        var bloodBrotherName = Loc.GetString("admin-verb-text-make-blood-brother");
+        Verb bloodBrother = new()
+        {
+            Text = bloodBrotherName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Misc/job_icons.rsi"), "Syndicate"),
+            Act = () =>
+            {
+                var candidates = GetBloodBrotherCandidates(targetPlayer);
+
+                if (candidates.Count == 0)
+                {
+                    _bloodBrother.TryMakeSoloBloodBrother(targetPlayer);
+                    return;
+                }
+
+                var targetName = _mindSystem.GetCharacterName(targetPlayer.UserId) ?? Name(args.Target);
+                var ui = new BloodBrotherSelectionEui(targetPlayer, targetName, candidates, _bloodBrother);
+                _euiManager.OpenEui(ui, player);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", bloodBrotherName, Loc.GetString("admin-verb-make-blood-brother")),
+        };
+        args.Verbs.Add(bloodBrother);
+
         if (HasComp<HumanoidAppearanceComponent>(args.Target)) // only humanoids can be cloned
             args.Verbs.Add(paradox);
+    }
+
+    private List<BloodBrotherSelectablePlayer> GetBloodBrotherCandidates(ICommonSession targetPlayer)
+    {
+        var candidates = new List<BloodBrotherSelectablePlayer>();
+
+        foreach (var session in _playerManager.Sessions)
+        {
+            if (session == targetPlayer || session.AttachedEntity == null)
+                continue;
+
+            if (!HasComp<MindContainerComponent>(session.AttachedEntity.Value))
+                continue;
+
+            var name = _mindSystem.GetCharacterName(session.UserId) ?? Name(session.AttachedEntity.Value);
+            candidates.Add(new BloodBrotherSelectablePlayer(session.UserId, $"{name} ({session.Name})"));
+        }
+
+        candidates.Sort((left, right) => string.Compare(left.Name, right.Name, StringComparison.OrdinalIgnoreCase));
+        return candidates;
     }
 }

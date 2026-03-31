@@ -1,0 +1,160 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from ss220 paradise",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "artificer",
+      "directions": 4
+    },
+    {
+      "name": "wraith",
+      "directions": 4
+    },
+    {
+      "name": "juggernaut",
+      "directions": 4
+    },
+    {
+      "name": "harvester",
+      "directions": 4
+    },
+    {
+      "name": "proteon",
+      "directions": 4
+    },
+    {
+      "name": "glow_artificer_cult",
+      "directions": 4
+    },
+    {
+      "name": "glow_wraith_cult",
+      "directions": 4
+    },
+    {
+      "name": "glow_juggernaut_cult",
+      "directions": 4
+    },
+    {
+      "name": "glow_harvester_cult",
+      "directions": 4
+    },
+    {
+      "name": "glow_proteon_cult",
+      "directions": 4
+    },
+    {
+      "name": "make_artificer_cult",
+      "delays": [
+        [
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "make_wraith_cult",
+      "delays": [
+        [
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "make_juggernaut_cult",
+      "delays": [
+        [
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "phase_shift_cult",
+      "directions": 4,
+      "delays": [
+        [
+          0.01,
+          0.05,
+          0.030000001,
+          0.07,
+          0.1,
+          0.08,
+          0.060000002,
+          0.060000002,
+          0.04,
+          0.04,
+          0.1
+        ],
+        [
+          0.01,
+          0.05,
+          0.030000001,
+          0.07,
+          0.1,
+          0.08,
+          0.060000002,
+          0.060000002,
+          0.04,
+          0.04,
+          0.1
+        ],
+        [
+          0.01,
+          0.05,
+          0.030000001,
+          0.07,
+          0.1,
+          0.08,
+          0.060000002,
+          0.060000002,
+          0.04,
+          0.04,
+          0.1
+        ],
+        [
+          0.01,
+          0.05,
+          0.030000001,
+          0.07,
+          0.1,
+          0.08,
+          0.060000002,
+          0.060000002,
+          0.04,
+          0.04,
+          0.1
+        ]
+      ]
+    }
+  ]
+}

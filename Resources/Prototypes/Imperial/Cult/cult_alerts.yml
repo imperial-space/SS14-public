@@ -1,0 +1,7 @@
+- type: alert
+  id: CultistHud
+  icons:
+  - sprite: /Textures/Imperial/cult/hud.rsi
+    state: hudcultist
+  name: alerts-cultist-hud-name
+  description: alerts-cultist-hud-desc

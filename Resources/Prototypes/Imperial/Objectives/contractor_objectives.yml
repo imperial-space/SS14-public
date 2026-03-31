@@ -1,0 +1,46 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseContractorObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-contractor
+    difficulty: 1
+  - type: RoleRequirement
+    roles:
+    - ContractorRole
+
+- type: entity
+  parent: [BaseContractorObjective, BaseSurviveObjective]
+  id: ContractorSurviveObjective
+  name: contractor-survive-objective-name
+  description: contractor-survive-objective-desc
+  components:
+  - type: Objective
+    difficulty: 0.75
+    icon:
+      sprite: Imperial/contractor/hardsuit/helmet.rsi
+      state: icon
+
+- type: entity
+  parent: BaseContractorObjective
+  id: ContractorExtractObjective
+  description: contractor-extract-objective-desc
+  components:
+  - type: Objective
+    difficulty: 2.25
+    unique: false
+    icon:
+      sprite: Objects/Tools/fulton.rsi
+      state: extraction_point
+  - type: TargetObjective
+    title: contractor-extract-objective-title
+  - type: PickRandomPerson
+    filters:
+    - !type:AntagonistMindFilter
+      inverted: true
+    - !type:ObjectiveMindFilter
+      blacklist:
+        components:
+        - ContractorExtractCondition
+  - type: ContractorExtractCondition

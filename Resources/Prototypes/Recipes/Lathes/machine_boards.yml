@@ -467,3 +467,8 @@
   parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
   id: HolopadMachineCircuitboard
   result: HolopadMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: XenoSlimeCrusherMachineCircuitboard
+  result: XenoSlimeCrusherMachineCircuitboard

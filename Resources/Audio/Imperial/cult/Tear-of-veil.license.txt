@@ -1,0 +1,5 @@
+Asset: Tear-of-veil.ogg
+License: Creative Commons Attribution (CC BY)
+Source evidence: user-provided YouTube screenshot stating "Creative Commons - Attribution" and allowing reuse.
+Attribution note: keep credit to the original author/channel from the source upload when redistributing this asset.
+Project note: this file was added to document the license status for the cult summoning track used in-game.

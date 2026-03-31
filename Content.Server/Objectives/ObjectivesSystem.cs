@@ -230,18 +230,9 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
             return null;
         }
 
-        // Make a copy of the weights so we don't trash the prototype by removing entries
-        var groups = groupsProto.Weights.ShallowClone();
-
-        while (_random.TryPickAndTake(groups, out var groupName))
+        EntityUid? TryPickObjective(WeightedRandomPrototype prototype)
         {
-            if (!_prototypeManager.TryIndex<WeightedRandomPrototype>(groupName, out var group))
-            {
-                Log.Error($"Couldn't index objective group prototype {groupName}");
-                return null;
-            }
-
-            var objectives = group.Weights.ShallowClone();
+            var objectives = prototype.Weights.ShallowClone();
             while (_random.TryPickAndTake(objectives, out var objectiveProto))
             {
                 if (!_prototypeManager.Index(objectiveProto).TryGetComponent<ObjectiveComponent>(out var objectiveComp, EntityManager.ComponentFactory))
@@ -250,6 +241,24 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                 if (objectiveComp.Difficulty <= maxDifficulty && TryCreateObjective((mindId, mind), objectiveProto, out var objective))
                     return objective;
             }
+
+            return null;
+        }
+
+        // Make a copy of the weights so we don't trash the prototype by removing entries
+        var groups = groupsProto.Weights.ShallowClone();
+
+        while (_random.TryPickAndTake(groups, out var groupName))
+        {
+            if (!_prototypeManager.TryIndex<WeightedRandomPrototype>(groupName, out var group))
+            {
+                // Some content packs pass a direct objective weighted-random here instead of a weighted-random of groups.
+                // Fall back to treating the provided prototype itself as the objective group.
+                return TryPickObjective(groupsProto);
+            }
+
+            if (TryPickObjective(group) is { } objective)
+                return objective;
         }
 
         return null;

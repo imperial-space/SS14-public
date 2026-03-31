@@ -294,17 +294,20 @@ public sealed class ActionButton : Control, IEntityControl
         _controller ??= UserInterfaceManager.GetUIController<ActionUIController>();
         _spriteSys ??= _entities.System<SpriteSystem>();
         var icon = action.Comp.Icon;
+
+        // Базовый фон: пользовательский или дефолтный
+        if (action.Comp.Background is {} bg)
+            _buttonBackgroundTexture = _spriteSys.Frame0(bg);
+        else
+            _buttonBackgroundTexture = Theme.ResolveTexture("SlotBackground");
+
         if (_controller.SelectingTargetFor == action || action.Comp.Toggled)
         {
             if (action.Comp.IconOn is {} iconOn)
                 icon = iconOn;
 
-            if (action.Comp.BackgroundOn is {} background)
-                _buttonBackgroundTexture = _spriteSys.Frame0(background);
-        }
-        else
-        {
-            _buttonBackgroundTexture = Theme.ResolveTexture("SlotBackground");
+            if (action.Comp.BackgroundOn is {} backgroundOn)
+                _buttonBackgroundTexture = _spriteSys.Frame0(backgroundOn);
         }
 
         SetActionIcon(icon != null ? _spriteSys.Frame0(icon) : null);

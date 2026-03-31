@@ -78,6 +78,13 @@
     state: base
 
 - type: stealTargetGroup
+  id: WeaponEnergyMagnum
+  name: энергетический магнум # Imperial objectives translate
+  sprite:
+    sprite: Objects/Weapons/Guns/Battery/energy_magnum.rsi
+    state: base
+
+- type: stealTargetGroup
   id: NukeDisk
   name: диск ядерной авторизации # Imperial objectives translate
   sprite:

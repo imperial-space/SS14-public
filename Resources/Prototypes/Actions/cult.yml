@@ -1,0 +1,426 @@
+﻿# ==============================================
+#  Культ Нар'Си  Кнопки действий (Blood Spells)
+#  Иконки: Imperial/cult/action.rsi
+#  Фон (bg_cult): задний фон всех action
+# ==============================================
+
+#  Commune (Общение с культом) 
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultCommune
+  name: cult-action-commune-name
+  description: cult-action-commune-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: cult_comms
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 5
+  - type: InstantAction
+    event: !type:CultCommuneActionEvent
+
+#  Стан (Stun) 
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultStun
+  name: cult-action-stun-name
+  description: cult-action-stun-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: stun
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultStunActionEvent
+
+#  Теневые наручники (Shadow Shackles) 
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultShackles
+  name: cult-action-shackles-name
+  description: cult-action-shackles-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: shackles
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultShacklesActionEvent
+
+#  Телепортация (Teleport) 
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultTeleport
+  name: cult-action-teleport-name
+  description: cult-action-teleport-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: teleport
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultTeleportActionEvent
+
+#  ЭМП (EMP) 
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultEmp
+  name: cult-action-emp-name
+  description: cult-action-emp-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: emp
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 30
+  - type: InstantAction
+    event: !type:CultEmpActionEvent
+
+#  Искажение Конструкции (Twisted Construction) 
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultTwistedConstruction
+  name: cult-action-twisted-construction-name
+  description: cult-action-twisted-construction-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: transmute
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultTwistedConstructionActionEvent
+
+#  Призыв кинжала (Summon Dagger) 
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultSummonDagger
+  name: cult-action-summon-dagger-name
+  description: cult-action-summon-dagger-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: blood_dagger
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 30
+  - type: InstantAction
+    event: !type:CultSummonDaggerActionEvent
+
+#  Призыв снаряжения (Summon Equipment) 
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultSummonEquipment
+  name: cult-action-summon-equipment-name
+  description: cult-action-summon-equipment-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: equip
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 120
+  - type: InstantAction
+    event: !type:CultSummonEquipmentActionEvent
+
+#  Скрыть присутствие (Conceal Presence) 
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultConcealPresence
+  name: cult-action-conceal-presence-name
+  description: cult-action-conceal-presence-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: veiling
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 15
+  - type: InstantAction
+    event: !type:CultConcealPresenceActionEvent
+
+#  Обряд крови (Blood Rites) 
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultBloodRites
+  name: cult-action-blood-rites-name
+  description: cult-action-blood-rites-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: blood_rites
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 20
+  - type: InstantAction
+    event: !type:CultBloodRitesActionEvent
+
+# --- Кровавая магия (Blood Magic) ---
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultBloodMagic
+  name: cult-action-blood-magic-name
+  description: cult-action-blood-magic-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: blood_charge
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultBloodMagicActionEvent
+# Тёмный дух: вернуться в тело
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultDarkSpiritReturn
+  name: cult-action-dark-spirit-return-name
+  description: cult-action-dark-spirit-return-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 5
+    checkCanInteract: false
+    checkConsciousness: false
+  - type: InstantAction
+    event: !type:CultDarkSpiritReturnActionEvent
+
+# Тёмный дух: общение культа
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultDarkSpiritCommune
+  name: cult-action-commune-name
+  description: cult-action-commune-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: cult_comms
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 5
+    checkCanInteract: false
+    checkConsciousness: false
+  - type: InstantAction
+    event: !type:CultDarkSpiritCommuneActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultRecallBloodSpear
+  name: cult-action-recall-blood-spear-name
+  description: cult-action-recall-blood-spear-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: bloodspear
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 3
+  - type: InstantAction
+    event: !type:CultRecallBloodSpearActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultConstructCreateJuggernautShell
+  name: cult-action-construct-juggernaut-shell-name
+  description: cult-action-construct-juggernaut-shell-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: transmute
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 30
+  - type: InstantAction
+    event: !type:CultConstructSpawnItemActionEvent
+      prototype: CultJuggernautShell
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultConstructCreateWraithShell
+  name: cult-action-construct-wraith-shell-name
+  description: cult-action-construct-wraith-shell-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: transmute
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 20
+  - type: InstantAction
+    event: !type:CultConstructSpawnItemActionEvent
+      prototype: CultWraithShell
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultConstructCreateArtificerShell
+  name: cult-action-construct-artificer-shell-name
+  description: cult-action-construct-artificer-shell-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: transmute
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 25
+  - type: InstantAction
+    event: !type:CultConstructSpawnItemActionEvent
+      prototype: CultArtificerShell
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultConstructCreateSoulStone
+  name: cult-action-construct-soulstone-name
+  description: cult-action-construct-soulstone-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: blood_rites
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 35
+  - type: InstantAction
+    event: !type:CultConstructSpawnItemActionEvent
+      prototype: CultSoulStone
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultConstructCreatePylon
+  name: cult-action-construct-pylon-name
+  description: cult-action-construct-pylon-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: artificer
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 45
+  - type: TargetAction
+    checkCanAccess: false
+    range: 2
+  - type: WorldTargetAction
+    event: !type:CultConstructSpawnStructureActionEvent
+      prototype: CultPylon
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultConstructCreateFloor
+  name: cult-action-construct-floor-name
+  description: cult-action-construct-floor-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: floorconstruct
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: TargetAction
+    checkCanAccess: false
+    range: 2
+  - type: WorldTargetAction
+    event: !type:CultConstructCreateFloorActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultConstructHealAlly
+  name: cult-action-construct-heal-name
+  description: cult-action-construct-heal-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: blood_rites
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 12
+  - type: TargetAction
+    checkCanAccess: false
+    range: 2
+  - type: EntityTargetAction
+    event: !type:CultConstructHealTargetActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultConstructCreateWall
+  name: cult-action-construct-wall-name
+  description: cult-action-construct-wall-desc
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/cult/action.rsi
+      state: cultforcewall
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 18
+  - type: TargetAction
+    checkCanAccess: false
+    range: 2
+  - type: WorldTargetAction
+    event: !type:CultConstructSpawnStructureActionEvent
+      prototype: CultWallForce

@@ -1,0 +1,660 @@
+# =============================================================================
+# Xenobiology: Xeno Extract Reactions
+#
+# Механика grinding:
+#   1. Измельчить экстракт в блендере → получить XenoRaw<Цвет> в стакане.
+#   2. Смешать с катализатором (Blood / Plasma / Water) → реакция даёт продукт.
+#
+# Количество: 5u XenoRaw + 5u катализатор = 10u продукта (ProduceReagent)
+#          или спавн сущности/эффект (SpawnEntity, Emp, Ignite...).
+#
+# Для эффектов SpawnRandom, SnapCool — всё ещё работает старый инъекционный
+# механизм (slime-контейнер), т.к. нет стандартного EntityEffect для них.
+# =============================================================================
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 0 — СЕРЫЙ (Grey)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Grey + Blood → MonkeyCube ×3
+- type: reaction
+  id: XenoGreyBlood
+  quantized: true
+  reactants:
+    XenoRawGrey:
+      amount: 5
+    Blood:
+      amount: 5
+  effects:
+    - !type:SpawnEntity
+      entity: MonkeyCube
+      number: 3
+      predicted: false
+
+# Grey + Plasma → XenoSlimeGrowthFactor
+- type: reaction
+  id: XenoGreyPlasma
+  reactants:
+    XenoRawGrey:
+      amount: 5
+    Plasma:
+      amount: 5
+  products:
+    XenoSlimeGrowthFactor: 10
+
+# Grey + Water → Epinephrine
+- type: reaction
+  id: XenoGreyWater
+  reactants:
+    XenoRawGrey:
+      amount: 5
+    Water:
+      amount: 5
+  products:
+    Epinephrine: 10
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 1 — ОРАНЖЕВЫЙ (Orange)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Orange + Blood → CapsaicinOil
+- type: reaction
+  id: XenoOrangeBlood
+  reactants:
+    XenoRawOrange:
+      amount: 5
+    Blood:
+      amount: 5
+  products:
+    CapsaicinOil: 10
+
+# Orange + Plasma → поджог (Ignite на бросившего/содержащий сосуд)
+- type: reaction
+  id: XenoOrangePlasma
+  reactants:
+    XenoRawOrange:
+      amount: 5
+    Plasma:
+      amount: 5
+  effects:
+    - !type:Ignite
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 2 — ФИОЛЕТОВЫЙ (Purple)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Purple + Plasma → SlimeSteroid
+- type: reaction
+  id: XenoPurplePlasma
+  reactants:
+    XenoRawPurple:
+      amount: 5
+    Plasma:
+      amount: 5
+  products:
+    SlimeSteroid: 10
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 3 — СИНИЙ (Blue)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Blue + Blood → SlimeStabilizer
+- type: reaction
+  id: XenoBlueBlood
+  reactants:
+    XenoRawBlue:
+      amount: 5
+    Blood:
+      amount: 5
+  products:
+    SlimeStabilizer: 10
+
+# Blue + Plasma → FrostOil
+- type: reaction
+  id: XenoBluePlasma
+  reactants:
+    XenoRawBlue:
+      amount: 5
+    Plasma:
+      amount: 5
+  products:
+    FrostOil: 10
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 4 — МЕТАЛЛИЧЕСКИЙ (Metal)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Metal + Plasma → SheetSteel ×2 + SheetPlasteel
+- type: reaction
+  id: XenoMetalPlasma
+  quantized: true
+  reactants:
+    XenoRawMetal:
+      amount: 5
+    Plasma:
+      amount: 5
+  effects:
+    - !type:SpawnEntity
+      entity: SheetSteel
+      number: 2
+      predicted: false
+    - !type:SpawnEntity
+      entity: SheetPlasteel
+      number: 1
+      predicted: false
+
+# Metal + Water → SheetGlass ×2 + SheetRGlass
+- type: reaction
+  id: XenoMetalWater
+  quantized: true
+  reactants:
+    XenoRawMetal:
+      amount: 5
+    Water:
+      amount: 5
+  effects:
+    - !type:SpawnEntity
+      entity: SheetGlass
+      number: 2
+      predicted: false
+    - !type:SpawnEntity
+      entity: SheetRGlass
+      number: 1
+      predicted: false
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 5 — ЖЁЛТЫЙ (Yellow)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Yellow + Blood → EMP (Emp effect)
+- type: reaction
+  id: XenoYellowBlood
+  reactants:
+    XenoRawYellow:
+      amount: 5
+    Blood:
+      amount: 5
+  effects:
+    - !type:Emp
+      maxRange: 4
+      energyConsumption: 400
+      duration: 20
+
+# Yellow + Plasma → XenoChargedCoreYellow
+- type: reaction
+  id: XenoYellowPlasma
+  quantized: true
+  reactants:
+    XenoRawYellow:
+      amount: 5
+    Plasma:
+      amount: 5
+  effects:
+    - !type:SpawnEntity
+      entity: XenoChargedCoreYellow
+      number: 1
+      predicted: false
+
+# Yellow + Water → LightBulb ×3
+- type: reaction
+  id: XenoYellowWater
+  quantized: true
+  reactants:
+    XenoRawYellow:
+      amount: 5
+    Water:
+      amount: 5
+  effects:
+    - !type:SpawnEntity
+      entity: LightBulb
+      number: 3
+      predicted: false
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 6 — ТЁМНО-ФИОЛЕТОВЫЙ (DarkPurple)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# DarkPurple + Plasma → SheetPlasma ×2 (обычная плазма)
+- type: reaction
+  id: XenoDarkPurplePlasma
+  quantized: true
+  reactants:
+    XenoRawDarkPurple:
+      amount: 5
+    Plasma:
+      amount: 5
+  effects:
+    - !type:SpawnEntity
+      entity: SheetPlasma
+      number: 2
+      predicted: false
+
+# DarkPurple + Water → SheetPGlass ×2
+- type: reaction
+  id: XenoDarkPurpleWater
+  quantized: true
+  reactants:
+    XenoRawDarkPurple:
+      amount: 5
+    Water:
+      amount: 5
+  effects:
+    - !type:SpawnEntity
+      entity: SheetPGlass
+      number: 2
+      predicted: false
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 7 — ТЁМНО-СИНИЙ (DarkBlue)
+# (SnapCool нет в EntityEffect → только ProduceReagent для Water)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# DarkBlue + Water → CoolingPotion
+- type: reaction
+  id: XenoDarkBlueWater
+  reactants:
+    XenoRawDarkBlue:
+      amount: 5
+    Water:
+      amount: 5
+  products:
+    CoolingPotion: 10
+
+# DarkBlue + Plasma → AdjustTemperature (охлаждение носителя)
+- type: reaction
+  id: XenoDarkBluePlasma
+  reactants:
+    XenoRawDarkBlue:
+      amount: 5
+    Plasma:
+      amount: 5
+  effects:
+    - !type:AdjustTemperature
+      amount: -200
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 8 — СЕРЕБРЯНЫЙ (Silver)
+# SpawnRandom нет как стандартный EntityEffect — пропускаем, используется inject
+# ─────────────────────────────────────────────────────────────────────────────
+# (нет реакций для Silver — SpawnRandomFromPool требует кастомного эффекта)
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 9 — БЛЮСПЕЙС (Bluespace)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Bluespace + Blood → XenoBluespaceFloorTile ×3
+- type: reaction
+  id: XenoBluespaceBlood
+  quantized: true
+  reactants:
+    XenoRawBluespace:
+      amount: 5
+    Blood:
+      amount: 5
+  effects:
+    - !type:SpawnEntity
+      entity: XenoBluespaceFloorTile
+      number: 3
+      predicted: false
+
+# Bluespace + Plasma → XenoBluespaceCrystal
+- type: reaction
+  id: XenoBluespacePlasma
+  quantized: true
+  reactants:
+    XenoRawBluespace:
+      amount: 5
+    Plasma:
+      amount: 5
+  effects:
+    - !type:SpawnEntity
+      entity: XenoBluespaceCrystal
+      number: 1
+      predicted: false
+
+# Bluespace + Water → TeleportPotion
+- type: reaction
+  id: XenoBluespaceWater
+  reactants:
+    XenoRawBluespace:
+      amount: 5
+    Water:
+      amount: 5
+  products:
+    TeleportPotion: 10
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 10 — СЕПИЯ (Sepia)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Sepia + Blood → XenoInstantCamera
+- type: reaction
+  id: XenaSepiaBlood
+  quantized: true
+  reactants:
+    XenoRawSepia:
+      amount: 5
+    Blood:
+      amount: 5
+  effects:
+    - !type:SpawnEntity
+      entity: XenoInstantCamera
+      number: 1
+      predicted: false
+
+# Sepia + Plasma → XenoSepiaPotion
+- type: reaction
+  id: XenoSepiaPlasma
+  reactants:
+    XenoRawSepia:
+      amount: 5
+    Plasma:
+      amount: 5
+  products:
+    XenoSepiaPotion: 10
+
+# Sepia + Water → LaserProtPotion
+- type: reaction
+  id: XenoSepiaWater
+  reactants:
+    XenoRawSepia:
+      amount: 5
+    Water:
+      amount: 5
+  products:
+    LaserProtPotion: 10
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 11 — ЛАЗУРНЫЙ (Cerulean)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Cerulean + Plasma → XenoCeruleanPotion
+- type: reaction
+  id: XenoCeruleanPlasma
+  reactants:
+    XenoRawCerulean:
+      amount: 5
+    Plasma:
+      amount: 5
+  products:
+    XenoCeruleanPotion: 10
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 12 — ПИРИТОВЫЙ (Pyrite)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Pyrite + Plasma → Crayons ×4
+- type: reaction
+  id: XenoPyritePlasma
+  quantized: true
+  reactants:
+    XenoRawPyrite:
+      amount: 5
+    Plasma:
+      amount: 5
+  effects:
+    - !type:SpawnEntity
+      entity: CrayonRed
+      number: 1
+      predicted: false
+    - !type:SpawnEntity
+      entity: CrayonBlue
+      number: 1
+      predicted: false
+    - !type:SpawnEntity
+      entity: CrayonGreen
+      number: 1
+      predicted: false
+    - !type:SpawnEntity
+      entity: CrayonYellow
+      number: 1
+      predicted: false
+
+# Pyrite + Water → RadProtPotion
+- type: reaction
+  id: XenoPyriteWater
+  reactants:
+    XenoRawPyrite:
+      amount: 5
+    Water:
+      amount: 5
+  products:
+    RadProtPotion: 10
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 13 — ЗЕЛЁНЫЙ (Green)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Green + Plasma → UnstableMutagen
+- type: reaction
+  id: XenoGreenPlasma
+  reactants:
+    XenoRawGreen:
+      amount: 5
+    Plasma:
+      amount: 5
+  products:
+    UnstableMutagen: 10
+
+# Green + Water → BioProtPotion
+- type: reaction
+  id: XenoGreenWater
+  reactants:
+    XenoRawGreen:
+      amount: 5
+    Water:
+      amount: 5
+  products:
+    BioProtPotion: 10
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 14 — КРАСНЫЙ (Red)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Red + Plasma → SlimeMutationPotion
+- type: reaction
+  id: XenoRedPlasma
+  reactants:
+    XenoRawRed:
+      amount: 5
+    Plasma:
+      amount: 5
+  products:
+    SlimeMutationPotion: 10
+
+# Red + Water → SpeedPotion
+- type: reaction
+  id: XenoRedWater
+  reactants:
+    XenoRawRed:
+      amount: 5
+    Water:
+      amount: 5
+  products:
+    SpeedPotion: 10
+
+# Red + Blood → MakeSlimesBerserk (нет стандартного EntityEffect — inject-механизм)
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 15 — РОЗОВЫЙ (Pink)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Pink + Plasma → ObediencePotion
+- type: reaction
+  id: XenoPinkPlasma
+  reactants:
+    XenoRawPink:
+      amount: 5
+    Plasma:
+      amount: 5
+  products:
+    ObediencePotion: 10
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 16 — ЗОЛОТОЙ (Gold)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Gold + Blood → MobChicken
+- type: reaction
+  id: XenoGoldBlood
+  quantized: true
+  reactants:
+    XenoRawGold:
+      amount: 5
+    Blood:
+      amount: 5
+  effects:
+    - !type:SpawnEntity
+      entity: MobChicken
+      number: 1
+      predicted: false
+
+# Gold + Plasma → MobGoat
+- type: reaction
+  id: XenoGoldPlasma
+  quantized: true
+  reactants:
+    XenoRawGold:
+      amount: 5
+    Plasma:
+      amount: 5
+  effects:
+    - !type:SpawnEntity
+      entity: MobGoat
+      number: 1
+      predicted: false
+
+# Gold + Water → MobCorgi
+- type: reaction
+  id: XenoGoldWater
+  quantized: true
+  reactants:
+    XenoRawGold:
+      amount: 5
+    Water:
+      amount: 5
+  effects:
+    - !type:SpawnEntity
+      entity: MobCorgi
+      number: 1
+      predicted: false
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 17 — МАСЛЯНЫЙ (Oil)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Oil + Plasma → Explosion
+- type: reaction
+  id: XenoOilPlasma
+  reactants:
+    XenoRawOil:
+      amount: 5
+    Plasma:
+      amount: 5
+  effects:
+    - !type:Explode
+      intensity: 60
+      radius: 3
+
+# Oil + Water → ExplosionProtPotion
+- type: reaction
+  id: XenoOilWater
+  reactants:
+    XenoRawOil:
+      amount: 5
+    Water:
+      amount: 5
+  products:
+    ExplosionProtPotion: 10
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 18 — ЧЁРНЫЙ (Black)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Black + Plasma → AdvancedMutationToxin
+- type: reaction
+  id: XenoBlackPlasma
+  reactants:
+    XenoRawBlack:
+      amount: 5
+    Plasma:
+      amount: 5
+  products:
+    AdvancedMutationToxin: 10
+
+# Black + Water → AcidProtPotion
+- type: reaction
+  id: XenoBlackWater
+  reactants:
+    XenoRawBlack:
+      amount: 5
+    Water:
+      amount: 5
+  products:
+    AcidProtPotion: 10
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 19 — СВЕТЛО-РОЗОВЫЙ (LightPink)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# LightPink + Plasma → MindPotion
+- type: reaction
+  id: XenoLightPinkPlasma
+  reactants:
+    XenoRawLightPink:
+      amount: 5
+    Plasma:
+      amount: 5
+  products:
+    MindPotion: 10
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 20 — АДАМАНТИНОВЫЙ (Adamantine)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Adamantine + Plasma → XenoAdamantineBar
+- type: reaction
+  id: XenoAdamantinePlasma
+  quantized: true
+  reactants:
+    XenoRawAdamantine:
+      amount: 5
+    Plasma:
+      amount: 5
+  effects:
+    - !type:SpawnEntity
+      entity: XenoAdamantineBar
+      number: 1
+      predicted: false
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 21 — РАДУЖНЫЙ (Rainbow)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Rainbow + Blood → ConsciousnessTransferPotion
+- type: reaction
+  id: XenoRainbowBlood
+  reactants:
+    XenoRawRainbow:
+      amount: 5
+    Blood:
+      amount: 5
+  products:
+    ConsciousnessTransferPotion: 10
+
+# Rainbow + Plasma → SpawnRandomSlime (нет стандартного EntityEffect → inject-механизм)
+
+# Rainbow + Plasma → случайный слайм (raw-путь: серый; инъекция даёт случайный цвет)
+- type: reaction
+  id: XenoRainbowPlasma
+  quantized: true
+  reactants:
+    XenoRawRainbow:
+      amount: 5
+    Plasma:
+      amount: 5
+  effects:
+    - !type:SpawnEntity
+      entity: XenoSlimeGreySmall
+      number: 1
+      predicted: false

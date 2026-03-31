@@ -4,12 +4,14 @@ using Content.Shared.CombatMode;
 using Content.Shared.Doors;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
+using Content.Shared.Imperial.Blob.Components;
 using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.Imperial.XxRaay.Types;
 using Content.Shared.Maps;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Physics;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
@@ -34,6 +36,7 @@ public sealed class SharedEntityTileMovementSystem : VirtualController
     [Dependency] private readonly SharedDoorSystem _doorSystem = default!;
     [Dependency] private readonly SharedCombatModeSystem _combatModeSystem = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
 
     public override void Initialize()
     {
@@ -357,6 +360,9 @@ public sealed class SharedEntityTileMovementSystem : VirtualController
         if (!TryComp<PhysicsComponent>(otherEntity, out var otherPhysics) || !otherPhysics.CanCollide)
             return null;
 
+        if (ShouldIgnoreBlobStructureCollision(uid, otherEntity))
+            return null;
+
         var hasCollision = (physics.CollisionMask & otherPhysics.CollisionLayer) != 0 ||
                           (otherPhysics.CollisionMask & physics.CollisionLayer) != 0;
         if (!hasCollision)
@@ -377,6 +383,20 @@ public sealed class SharedEntityTileMovementSystem : VirtualController
             return new CanMoveResult(false, true);
 
         return new CanMoveResult(false, false, false);
+    }
+
+    private bool ShouldIgnoreBlobStructureCollision(EntityUid mover, EntityUid otherEntity)
+    {
+        if (!TryComp<BlobStructureComponent>(otherEntity, out var structure) || structure.OwnerMind is not { } blobId)
+            return false;
+
+        if (TryComp<BlobMobComponent>(mover, out var blobMob) && blobMob.OwnerMind == blobId)
+            return true;
+
+        if (TryComp<BlobOvermindComponent>(mover, out var overmind) && overmind.BlobId == blobId)
+            return true;
+
+        return _npcFaction.IsMember(mover, "Blob");
     }
 
     private Vector2 GetDirectionFromButtons(MoveButtons buttons)

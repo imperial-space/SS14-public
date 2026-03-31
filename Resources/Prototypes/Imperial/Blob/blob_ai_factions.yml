@@ -1,0 +1,17 @@
+- type: npcFaction
+  id: Blob
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - Passive
+  - PetsNT
+  - Revolutionary
+  - Dragon
+  - Xeno
+  - AllHostile
+  - SyndicateAgent
+  - Wizard
+  - Pirate
+  - DeathSquad
+  - RiotControlUnit
+  - Xenoborg

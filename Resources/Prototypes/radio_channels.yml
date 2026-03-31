@@ -88,6 +88,22 @@
   longRange: true
 
 - type: radioChannel
+  id: Blob
+  name: chat-radio-blob
+  keycode: 'б'
+  frequency: 1441
+  color: "#6bcf6b"
+  longRange: true
+
+- type: radioChannel
+  id: BlobHive
+  name: chat-radio-blob-hive
+  keycode: 'h'
+  frequency: 1442
+  color: "#6bcf6b"
+  longRange: true
+
+- type: radioChannel
   id: Freelance
   name: chat-radio-freelance
   keycode: 'ф' # key code changed imperial

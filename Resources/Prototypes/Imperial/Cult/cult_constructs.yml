@@ -1,0 +1,388 @@
+# ==============================================
+#  Культ Нар'Си — Конструкты
+#  Спрайты: Imperial/cult/construct.rsi
+#  Glow-слои: shader: unshaded
+# ==============================================
+
+# === Базовый конструкт ===
+
+- type: entity
+  abstract: true
+  save: false
+  id: BaseCultConstruct
+  name: Конструкт культа
+  description: Оживлённая оболочка, несущая душу жертвы.
+  parent:
+  - BaseSimpleMob
+  - MobCombat
+  components:
+  - type: GhostRole
+    allowMovement: true
+    makeSentient: true
+    name: ghost-role-information-cult-construct-name
+    description: ghost-role-information-cult-construct-description
+    rules: ghost-role-information-cult-construct-rules
+  - type: GhostTakeoverAvailable
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: NpcFactionMember
+    factions:
+    - Cult
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: StatusEffects
+    allowed:
+    - Electrocution
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+  - type: Appearance
+  - type: ZombieImmune
+  - type: ProtectedFromStepTriggers
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepBorg
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 4
+
+# ─── Созидатель (Artificer) ───
+
+- type: entity
+  id: MobCultArtificer
+  name: Созидатель
+  description: Слабый, но незаменимый поддерживающий конструкт. Может создавать оболочки и камни душ.
+  parent: BaseCultConstruct
+  components:
+  - type: CultConstruct
+    kind: Artificer
+  - type: Sprite
+    sprite: Imperial/cult/construct.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: artificer
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: glow_artificer_cult
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: artificer
+        BaseUnshaded: glow_artificer_cult
+      Dead:
+        Base: artificer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: MeleeWeapon
+    hidden: true
+    range: 1.5
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 4.5
+
+# ─── Фантом (Wraith) ───
+
+- type: entity
+  id: MobCultWraith
+  name: Фантом
+  description: Скрытный конструкт, способный проходить через стены.
+  parent: BaseCultConstruct
+  components:
+  - type: CultConstruct
+    kind: Wraith
+  - type: Jaunt
+    jauntAction: ActionPolymorphJaunt
+  - type: Sprite
+    sprite: Imperial/cult/construct.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: wraith
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: glow_wraith_cult
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: wraith
+        BaseUnshaded: glow_wraith_cult
+      Dead:
+        Base: wraith
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Dead
+  - type: MeleeWeapon
+    hidden: true
+    range: 1.5
+    damage:
+      types:
+        Slash: 20
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 5.5
+
+# ─── Джаггернаут (Juggernaut) ───
+
+- type: entity
+  id: MobCultJuggernaut
+  name: Джаггернаут
+  description: Тяжёлый боевой конструкт. Огромный, медленный, почти неуязвимый.
+  parent: BaseCultConstruct
+  components:
+  - type: CultConstruct
+    kind: Juggernaut
+  - type: Sprite
+    sprite: Imperial/cult/construct.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: juggernaut
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: glow_juggernaut_cult
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: juggernaut
+        BaseUnshaded: glow_juggernaut_cult
+      Dead:
+        Base: juggernaut
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: Reflect
+    reflectProb: 0.35
+    spread: 30
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 200
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MeleeWeapon
+    hidden: true
+    range: 1.5
+    damage:
+      types:
+        Blunt: 30
+    soundHit:
+      path: /Audio/Effects/metalbreak.ogg
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2.1
+
+# ─── Жнец (Harvester) — появляется после призыва Нар'Си ───
+
+- type: entity
+  id: MobCultHarvester
+  name: Жнец
+  description: Порождение Нар'Си. Оглушает и захватывает врагов богини.
+  parent: BaseCultConstruct
+  components:
+  - type: CultConstruct
+    kind: Harvester
+  - type: Sprite
+    sprite: Imperial/cult/construct.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: harvester
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: glow_harvester_cult
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: harvester
+        BaseUnshaded: glow_harvester_cult
+      Dead:
+        Base: harvester
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      125: Dead
+  - type: MeleeWeapon
+    hidden: true
+    range: 1.5
+    damage:
+      types:
+        Slash: 20
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 5
+
+- type: entity
+  abstract: true
+  id: BaseCultConstructFormationEffect
+  name: Формирование конструкта
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 1
+  - type: Sprite
+    sprite: Imperial/cult/construct.rsi
+    drawdepth: Effects
+
+- type: entity
+  id: CultConstructFormationEffectArtificer
+  parent: BaseCultConstructFormationEffect
+  components:
+  - type: Sprite
+    state: make_artificer_cult
+
+- type: entity
+  id: CultConstructFormationEffectWraith
+  parent: BaseCultConstructFormationEffect
+  components:
+  - type: Sprite
+    state: make_wraith_cult
+
+- type: entity
+  id: CultConstructFormationEffectJuggernaut
+  parent: BaseCultConstructFormationEffect
+  components:
+  - type: Sprite
+    state: make_juggernaut_cult
+
+# ─── Протеон (Proteon) — редкий вид конструкта ───
+
+- type: entity
+  id: MobCultProteon
+  name: Протеон
+  description: Особый конструкт Нар'Си.
+  parent: BaseCultConstruct
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/construct.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: proteon
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: glow_proteon_cult
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: proteon
+        BaseUnshaded: glow_proteon_cult
+      Dead:
+        Base: proteon
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: MeleeWeapon
+    hidden: true
+    range: 1.5
+    damage:
+      types:
+        Slash: 15
+        Blunt: 10
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+
+
+#  �������� (Homunculus) 
+
+- type: startingGear
+  id: CultHomunculusGear
+  equipment:
+    outerClothing: ClothingOuterCultRobes
+    hands: CultHalberd
+
+- type: entity
+  id: MobCultHomunculus
+  name: Тёмный слуга
+  description: Тёмный слуга, сотканный из тени. Послушен воле Нар'Си.
+  parent: BaseMobHuman
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Cult
+  - type: Loadout
+    prototypes:
+    - CultHomunculusGear
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: MeleeWeapon
+    hidden: true
+    range: 1.5
+    damage:
+      types:
+        Slash: 10
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 3.5
+
+# Тёмный дух — временная форма культиста, вознесшегось через руну царства духов
+- type: entity
+  id: MobCultDarkSpirit
+  parent: MobObserverBase
+  name: Тёмный дух
+  description: Призрачная форма культиста, вознесшегось в царство теней.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Mobs/Ghosts/ghost_human.rsi
+    color: "#cc2200cc"
+    layers:
+    - state: animated
+      shader: unshaded
+  - type: Spectral
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Cult
+  - type: NpcFactionMember
+    factions:
+    - Cult
+  - type: CultBuiHolder
+  - type: UserInterface
+    interfaces:
+      enum.CultCommuneBuiKey.Key:
+        type: CultCommuneBui

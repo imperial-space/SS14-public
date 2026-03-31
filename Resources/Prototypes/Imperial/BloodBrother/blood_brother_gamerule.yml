@@ -1,0 +1,29 @@
+- type: entity
+  id: BloodBrother
+  parent: BaseGameRule
+  components:
+  - type: GameRule
+    minPlayers: 15
+    delay:
+      min: 240
+      max: 420
+  - type: BloodBrotherRule
+  - type: TraitorRule
+    giveUplink: false
+    giveCodewords: false
+    giveBriefing: false
+    greetSoundNotification: /Audio/Imperial/blood_brother/blood_brothers_intro.ogg
+  - type: AntagSelection
+    agentName: blood-brother-round-end-agent-name
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ BloodBrother ]
+      min: 2
+      max: 2
+      playerRatio: 15
+      lateJoinAdditional: false
+      blacklist:
+        components:
+        - AntagImmune
+      mindRoles:
+      - MindRoleBloodBrother

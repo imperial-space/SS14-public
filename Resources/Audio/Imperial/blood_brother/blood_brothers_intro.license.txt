@@ -1,0 +1,4 @@
+Asset: blood_brothers_intro.ogg
+Source: SS220 blood brother spawn sound
+Attribution: keep credit to SS220 when redistributing or reusing this asset
+Project note: this file documents the user-requested attribution for the Blood Brothers spawn sound

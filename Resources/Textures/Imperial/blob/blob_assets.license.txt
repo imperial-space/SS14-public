@@ -1,0 +1,6 @@
+Assets in this directory are based on SS220 Paradise Blob assets requested by the user.
+Source project: SS220 Paradise
+Repository: https://github.com/ss220-space/Paradise
+Branch: master220
+Primary upstream sprite sheet: https://github.com/ss220-space/Paradise/blob/master220/icons/mob/blob.dmi
+Keep upstream attribution when redistributing or reusing these assets.

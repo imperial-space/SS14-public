@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from ss220 paradise",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "rune1"
+    },
+    {
+      "name": "rune2"
+    },
+    {
+      "name": "rune3"
+    },
+    {
+      "name": "rune4"
+    },
+    {
+      "name": "rune5"
+    },
+    {
+      "name": "rune6"
+    },
+    {
+      "name": "rune7"
+    },
+    {
+      "name": "rune8"
+    }
+  ]
+}

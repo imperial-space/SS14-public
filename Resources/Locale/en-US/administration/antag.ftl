@@ -21,5 +21,14 @@ admin-verb-text-make-thief = Make Thief
 admin-verb-text-make-paradox-clone = Create Paradox Clone
 admin-verb-text-make-wizard = Make Wizard
 admin-verb-text-make-changeling = Make Changeling (WIP)
+admin-verb-text-make-blood-brother = Make Blood Brother
+
+admin-verb-make-blood-brother = Make the target one of the Blood Brothers and choose their teammate.
+
+blood-brother-select-title = Blood Brother Selection
+blood-brother-select-label = Choose a teammate for {$target}
+blood-brother-select-confirm = Confirm
+blood-brother-select-cancel = Cancel
+blood-brother-select-empty = No available candidates.
 
 admin-overlay-antag-classic = ANTAG

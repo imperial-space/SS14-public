@@ -207,6 +207,40 @@
   - BasicRoundstartVariation
 
 - type: gamePreset
+  id: BloodBrother
+  alias:
+    - bloodbrother
+    - brothers
+    - bb
+  name: blood-brother-title
+  description: blood-brother-description
+  showInVote: false
+  rules:
+  - DummyNonAntagChance
+  - BloodBrother
+  - SubGamemodesRuleNoWizard
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Blob
+  alias:
+    - blob
+  name: blob-title
+  description: blob-description
+  showInVote: false
+  rules:
+  - DummyNonAntagChance
+  - Blob
+  - SubGamemodesRuleNoWizard
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
   id: Wizard
   alias:
   - wizard

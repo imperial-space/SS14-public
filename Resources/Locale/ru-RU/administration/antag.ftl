@@ -15,4 +15,14 @@ admin-verb-text-make-head-rev = Сделать Главой Революции
 admin-verb-text-make-thief = Сделать Вором
 admin-verb-text-make-initial-infected = Сделать нулевым пациентом
 admin-verb-make-initial-infected = Сделать цель нулевым пациентом.
+admin-verb-text-make-cultist = Сделать культистом
+admin-verb-make-cultist = Превратить цель в последователя Нар'Си.
+admin-verb-text-make-blood-brother = Сделать братом по крови
+admin-verb-make-blood-brother = Превратить цель в одного из братьев по крови и выбрать ему напарника.
 admin-verb-text-make-paradox-clone = Создать парадоксального клона
+
+blood-brother-select-title = Выбор брата по крови
+blood-brother-select-label = Выберите напарника для {$target}
+blood-brother-select-confirm = Подтвердить
+blood-brother-select-cancel = Отмена
+blood-brother-select-empty = Нет доступных кандидатов.

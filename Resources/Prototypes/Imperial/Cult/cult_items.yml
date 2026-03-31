@@ -1,0 +1,521 @@
+﻿# ==============================================
+#  Культ Нар'Си — Предметы
+# ==============================================
+
+# ─── Пентаграмма при конвертации ───
+
+- type: entity
+  id: CultMarkEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/cult/effect.rsi
+    state: cult-mark
+    offset: "0, -0.5"
+  - type: TimedDespawn
+    lifetime: 1.2
+
+# ─── Ритуальный кинжал ───
+
+- type: entity
+  id: CultDagger
+  name: Ритуальный кинжал
+  description: Острый обсидиановый кинжал, покрытый засохшей кровью и рунами. Используется для рисования рун.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/cult_dagger.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Objects/Weapons/Melee/cult_dagger.rsi
+  - type: MeleeWeapon
+    attackRate: 1.5
+    range: 1.5
+    damage:
+      types:
+        Slash: 15
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: CultDagger
+  - type: UserInterface
+    interfaces:
+      enum.CultRuneDrawBuiKey.Key:
+        type: CultRuneSelectBui
+      enum.CultBloodMagicBuiKey.Key:
+        type: CultBloodMagicBui
+      enum.CultCommuneBuiKey.Key:
+        type: CultCommuneBui
+      enum.CultTeleportBuiKey.Key:
+        type: CultTeleportBui
+  - type: FlashImmunity
+
+# ─── Клинок культа ───
+
+- type: entity
+  id: CultBlade
+  name: Клинок культа
+  description: Смертоносный двуручный клинок из потустороннего металла.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/cult_blade.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Objects/Weapons/Melee/cult_blade.rsi
+  - type: MeleeWeapon
+    attackRate: 1.0
+    range: 1.5
+    damage:
+      types:
+        Slash: 30
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+
+# ─── Алебарда крови ───
+
+- type: entity
+  id: CultHalberd
+  name: Копьё крови
+  description: Алебарда, скованная из чистой крови. Режет с хрустом.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/cult_halberd.rsi
+    state: icon
+  - type: Item
+    size: Huge
+    sprite: Objects/Weapons/Melee/cult_halberd.rsi
+  - type: MeleeWeapon
+    attackRate: 0.8
+    range: 2.0
+    damage:
+      types:
+        Slash: 17
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Slash: 7
+
+# ─── Мантия культа ───
+
+- type: entity
+  id: ClothingOuterCultRobes
+  name: Мантия культиста
+  description: Плотная тканая мантия с алыми рунами.
+  parent: ClothingOuterStorageBase
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Misc/cultrobes.rsi
+    state: icon
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Misc/cultrobes.rsi
+    slots:
+    - outerClothing
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+
+# ─── Шлем культа ───
+
+- type: entity
+  id: ClothingHeadCultHelmet
+  name: Шлем культиста
+  description: Тёмный шлем, защищающий от света и позора.
+  parent: ClothingHeadBase
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Helmets/cult.rsi
+    state: icon
+  - type: Clothing
+    sprite: Clothing/Head/Helmets/cult.rsi
+    slots:
+    - head
+
+# ─── Капюшон культа ───
+
+- type: entity
+  id: ClothingHeadCultHood
+  name: Капюшон культиста
+  description: Скрывает лик последователя.
+  parent: ClothingHeadBase
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hoods/cult.rsi
+    state: icon
+  - type: Clothing
+    sprite: Clothing/Head/Hoods/cult.rsi
+    slots:
+    - head
+
+# ─── Сапоги культа ───
+# ClothingShoesCult уже определён в vanilla SS14 (Entities/Clothing/Shoes/specific/)
+
+# ─── Доспех культа (усиленная броня) ───
+
+- type: entity
+  id: ClothingOuterCultArmor
+  name: Усиленный доспех культа
+  description: Броня тёмного металла с рунами защиты.
+  parent: ClothingOuterStorageBase
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Armor/cult_armour.rsi
+    state: icon
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Armor/cult_armour.rsi
+    slots:
+    - outerClothing
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.7
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: CultArmor
+
+# ─── Щит культа (эффект) ───
+
+- type: entity
+  id: CultShieldEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Imperial/cult/effect.rsi
+    layers:
+    - state: shield-cult
+      shader: unshaded
+  - type: Transform
+    noRot: true
+
+# ─── Рунный металл ───
+
+- type: entity
+  id: CultRunedMetal
+  name: Рунный металл
+  description: Металл, пронизанный кровяными рунами. Используется для постройки культовых структур.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/runed.rsi
+    state: sheet-runed
+  - type: Item
+    size: Small
+    sprite: Imperial/cult/runed.rsi
+    heldPrefix: sheet-runed
+  - type: Stack
+    stackType: CultRunedMetal
+    count: 1
+  - type: CultRunedMetal
+  - type: UserInterface
+    interfaces:
+      enum.CultConstructionBuiKey.Key:
+        type: CultConstructionBui
+
+- type: stack
+  id: CultRunedMetal
+  name: Рунный металл
+  spawn: CultRunedMetal
+  maxCount: 30
+
+# ─── Камень души ───
+
+- type: entity
+  id: CultSoulStone
+  name: Камень души
+  description: В нём заперта чья-то душа. Можно использовать для создания конструкта.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/stone.rsi
+    state: soulstone2
+  - type: Item
+    size: Small
+  - type: CultSoulStoneMarker
+
+# ─── Теневые наручники ───
+
+- type: entity
+  id: ShadowShackles
+  name: Теневые оковы
+  description: Сотканные из мрака, они сковывают руки жертвы.
+  parent: Handcuffs
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/handcuffs.rsi
+    state: handcuff
+  - type: Handcuff
+    cuffedRSI: Imperial/cult/handcuffs.rsi
+    bodyIconState: body-overlay
+    breakoutTime: 45
+
+# ─── Рунное боло ───
+
+- type: entity
+  id: CultRunedBola
+  name: Рунное боло
+  description: Заклятое боло, замедляющее не-культистов.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/bola.rsi
+    state: bola_cult
+  - type: Item
+    size: Small
+  - type: EmitSoundOnThrow
+    sound: /Audio/Weapons/bolathrow.ogg
+  - type: EmitSoundOnLand
+    sound: /Audio/Effects/snap.ogg
+  - type: Ensnaring
+    freeTime: 2.0
+    breakoutTime: 5.0
+    walkSpeed: 0.4
+    sprintSpeed: 0.4
+    staminaDamage: 0
+    canThrowTrigger: true
+    canMoveBreakout: true
+    maxEnsnares: 1
+
+
+#  Эффекты телепортации 
+
+- type: entity
+  id: CultEffectTeleportOut
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/effect.rsi
+    state: cultout
+  - type: TimedDespawn
+    lifetime: 1.3
+
+- type: entity
+  id: CultEffectTeleportIn
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/effect.rsi
+    state: cultin
+  - type: TimedDespawn
+    lifetime: 1.3
+
+# Ореол культиста (дочерняя сущность, привязывается к культисту при 20% вербовки)
+- type: entity
+  id: CultHaloEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/halo.rsi
+    state: halo1
+    drawdepth: Effects
+    noRot: true
+    offset: "0, 0.5"
+  - type: Transform
+
+# ─── Предмет-заклинание: Стан ───
+
+- type: entity
+  id: CultSpellItemStun
+  name: Тёмная энергия
+  description: Сгусток культовой силы. Ударьте цель для оглушения.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/magic.rsi
+    state: disintegrate
+  - type: Item
+    size: Small
+    heldPrefix: disintegrate
+  - type: CultSpellItem
+    spellType: stun
+  - type: Unremoveable
+    deleteOnDrop: true
+  - type: TimedDespawn
+    lifetime: 30
+
+# ─── Предмет-заклинание: Теневые оковы ───
+
+- type: entity
+  id: CultSpellItemShackles
+  name: Тёмная энергия
+  description: Тёмная сила теневых оков. Используйте на оглушённой цели.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/magic.rsi
+    state: disintegrate
+    color: "#220011"
+  - type: Item
+    size: Small
+    heldPrefix: disintegrate
+  - type: CultSpellItem
+    spellType: shackles
+  - type: Unremoveable
+    deleteOnDrop: true
+  - type: TimedDespawn
+    lifetime: 30
+
+# ─── Предмет-заклинание: Телепортация ───
+
+- type: entity
+  id: CultSpellItemTeleport
+  name: Тёмная энергия
+  description: Вихрь телепортации. Используйте в руке для выбора руны.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/magic.rsi
+    state: disintegrate
+  - type: Item
+    size: Small
+    heldPrefix: disintegrate
+  - type: CultSpellItem
+    spellType: teleport
+  - type: Unremoveable
+    deleteOnDrop: true
+  - type: UserInterface
+    interfaces:
+      enum.CultTeleportBuiKey.Key:
+        type: CultTeleportBui
+  - type: TimedDespawn
+    lifetime: 30
+
+# ─── Предмет-заклинание: Искажённое строительство ───
+
+- type: entity
+  id: CultSpellItemConstruction
+  name: Тёмная энергия
+  description: Тёмное пламя Нар'Си. Используйте на металле или шлюзе.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/magic.rsi
+    state: disintegrate
+  - type: Item
+    size: Small
+    heldPrefix: disintegrate
+  - type: CultSpellItem
+    spellType: construction
+  - type: Unremoveable
+    deleteOnDrop: true
+  - type: TimedDespawn
+    lifetime: 30
+
+# ─── Предмет-заклинание: Кровавый обряд ───
+
+- type: entity
+  id: CultSpellItemBloodRites
+  name: Тёмная энергия
+  description: Тёмная энергия Кровавого обряда. Используйте в руке для выбора режима.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/magic.rsi
+    state: disintegrate
+    color: "#cc1100"
+  - type: Item
+    size: Small
+    heldPrefix: disintegrate
+  - type: CultSpellItem
+    spellType: bloodrites
+  - type: Unremoveable
+    deleteOnDrop: true
+  - type: UserInterface
+    interfaces:
+      enum.CultBloodRitesBuiKey.Key:
+        type: CultBloodRitesBui
+  - type: TimedDespawn
+    lifetime: 120
+
+# ─── Кровавая сфера (валюта зарядов) ───
+
+- type: entity
+  id: CultBloodOrb
+  parent: PonderingOrb
+  name: Кровавая сфера
+  description: Сконденсированные заряды Кровавого обряда. Можно передать союзнику.
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/pondering_orb.rsi
+    layers:
+    - state: icon
+      shader: unshaded
+      color: "#cc1100"
+  - type: PointLight
+    radius: 2
+    color: "#cc1100"
+  - type: CultBloodOrb
+
+# ─── Эффект крови (ЭМИ) ───
+
+- type: entity
+  id: CultEffectBloodSparkles
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/effect.rsi
+    state: bloodsparkles
+  - type: TimedDespawn
+    lifetime: 0.7
+
+# ─── Плитка пола культа ───
+
+- type: entity
+  name: cult floor tile
+  description: A dark runic tile used by the cult of Nar'Sie.
+  parent: FloorTileItemBase
+  id: FloorTileItemCult
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/floor/tiles.rsi
+    state: tile_cult
+  - type: Item
+    sprite: Imperial/cult/floor/tiles.rsi
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorCult
+  - type: Stack
+    stackType: FloorTileCult
+
+# ─── Повязка фанатика ───
+
+- type: entity
+  id: CultFanaticBandage
+  name: Повязка фанатика
+  description: Пропитанная тёмной кровью повязка. Надевший её видит сквозь тьму — даже скрытые руны и структуры культа.
+  parent: ClothingEyesBase
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Misc/blindfold.rsi
+    state: icon
+    color: "#8B0000"
+  - type: Clothing
+    sprite: Clothing/Eyes/Misc/blindfold.rsi
+    slots:
+    - eyes
+    equippedPrefix: equipped-EYES
+  - type: CultFanaticBandage
+
+# ─── Держатель BUI культиста (невидимая сущность для Blood Magic и Commune) ───
+
+- type: entity
+  id: CultBuiHolder
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: CultBuiHolder
+  - type: UserInterface
+    interfaces:
+      enum.CultBloodMagicBuiKey.Key:
+        type: CultBloodMagicBui
+      enum.CultCommuneBuiKey.Key:
+        type: CultCommuneBui
+
