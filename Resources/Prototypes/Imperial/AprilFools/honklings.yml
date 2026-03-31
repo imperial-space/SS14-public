@@ -19,7 +19,7 @@
       strippingWindowPos: 2,3
       displayName: ID
 
-- type: Tag 
+- type: Tag
   id: Honkling
 
 - type: localizedDataset
@@ -76,6 +76,7 @@
   parent: [ SimpleSpaceMobBase, StripableInventoryBase ]
   description: Oh god.
   components:
+  - type: FlashImmunity
   - type: RandomMetadata
     nameSegments:
     - NamesHonkling
@@ -149,7 +150,7 @@
   - type: Tag
     tags:
     - Honkling
-    - CanPilot 
+    - CanPilot
     - DoorBumpOpener
   - type: CrewSkills
     skills:
@@ -218,7 +219,7 @@
   - type: Inventory
     templateId: honkling
     speciesId: honkling
-  
+
 - type: entity
   name: honkling soldier
   id: MobHonklingSoldier
