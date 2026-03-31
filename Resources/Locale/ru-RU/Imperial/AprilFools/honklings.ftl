@@ -5,6 +5,10 @@ honkling-class-eng = Инженер Хонклингов
 honkling-class-fighter = Боец Хонклингов
 honkling-class-scout = Разведчик Хонклингов
 
+honkling-class-demo = Лидер Подрывник
+honkling-class-fencer = Лидер Фехтовальщик
+honkling-class-leader = Лидер Штурмовик
+
 # КАРТЫ
 
 ent-HonklingMedicID = ID карта хонклинга
