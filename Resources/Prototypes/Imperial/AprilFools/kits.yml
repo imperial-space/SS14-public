@@ -107,3 +107,80 @@
   - ChameleonProjectorNoBattery
   - HonklingScoutID
 
+- type: entity
+  id: HonklingLeaderSet
+  parent: HonklingSoldierSet
+  components:
+  - type: Unremoveable
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+  - type: Sprite
+    sprite: Clothing/Back/Backpacks/clown.rsi
+  - type: ThiefUndeterminedBackpack
+    spawnedStoragePrototype: HonklingLeaderBackpack
+    maxSelectedSets: 1
+    possibleSets:
+    - TagilaClownSet
+    - DemoClownSet
+    - FencerClownSet
+
+- type: thiefBackpackSet
+  id: TagilaClownSet
+  name: tagila-clow-set-name
+  description: tagila-clow-set-desc
+  sprite:
+    sprite: Imperial/AprilFools/class_icons.rsi
+    state: frontline
+  content:
+  - SledgehammerTagila
+  - WeaponLightMachineGunL6
+  - MagazineLightRifleBox
+  - MagazineLightRifleBox
+  - MagazineLightRifleBox
+  - MagazineLightRifleBox
+  - CombatMedipen
+  - HonklingLeaderID
+
+- type: thiefBackpackSet
+  id: DemoClownSet
+  name: demo-clow-set-name
+  description: demo-clow-set-desc
+  sprite:
+    sprite: Imperial/AprilFools/class_icons.rsi
+    state: demoman
+  content:
+  - WeaponLauncherChinaLake
+  - GrenadeFrag
+  - GrenadeFrag
+  - GrenadeFrag
+  - GrenadeFrag
+  - GrenadeFrag
+  - GrenadeFrag
+  - MacroBombImplanter
+  - MicroBombImplanter
+  - MicroBombImplanter
+  - MicroBombImplanter
+  - HonklingDemomanID
+  - SyndicateBomb
+
+- type: thiefBackpackSet
+  id: FencerClownSet
+  name: fencer-clow-set-name
+  description: fencer-clow-set-desc
+  sprite:
+    sprite: Imperial/AprilFools/class_icons.rsi
+    state: fencer
+  content:
+  - CaptainSabre
+  - Stimpack
+  - Stimpack
+  - StimpackMini
+  - StimpackMini
+  - StimpackMini
+  - StimpackMini
+  - TelescopicShield
+  - TelescopicShield
+  - TelescopicShield
+  - HonklingFencerID

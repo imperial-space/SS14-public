@@ -89,6 +89,40 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: IconHonklingDemo
+  icon:
+    sprite: /Textures/Imperial/AprilFools/honk_icons.rsi
+    state: demoman
+  jobName: honkling-class-demo
+
+- type: entity
+  parent: BaseHonklingID
+  id: HonklingDemomanID
+  name: honkling leader ID card
+  components:
+  - type: IdCard
+    jobTitle: honkling-class-demo
+    jobIcon: IconHonklingDemo
+
+- type: jobIcon
+  parent: JobIcon
+  id: IconHonklingFencer
+  icon:
+    sprite: /Textures/Imperial/AprilFools/honk_icons.rsi
+    state: fencer
+  jobName: honkling-class-fencer
+
+- type: entity
+  parent: BaseHonklingID
+  id: HonklingFencerID
+  name: honkling fencer ID card
+  components:
+  - type: IdCard
+    jobTitle: honkling-class-fencer
+    jobIcon: IconHonklingFencer
+
+- type: jobIcon
+  parent: JobIcon
   id: IconHonklingLeader
   icon:
     sprite: /Textures/Imperial/AprilFools/honk_icons.rsi

@@ -1,0 +1,33 @@
+- type: entity
+  parent: ComputerComms
+  id: HonklingComputerComms
+  name: honkling communications computer
+  description: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm_wizard
+    - map: ["computerLayerKeys"]
+      state: wizard_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AccessReader
+    access: [[ "Service" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-honklings
+    color: Pink
+    canShuttle: false
+    global: true #announce to everyone they're about to fuck shit up
+    announceSentBy: false
+    sound: /Audio/Announcements/war.ogg
+  - type: Computer
+    board: WizardCommsComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#F317F3"

@@ -18,6 +18,15 @@
         },
         {
             "name": "fighter"
+        },
+        {
+            "name": "frontline"
+        },
+        {
+            "name": "demoman"
+        },
+        {
+            "name": "fencer"
         }
     ]
 }

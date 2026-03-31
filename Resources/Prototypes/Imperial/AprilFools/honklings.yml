@@ -43,10 +43,29 @@
   longRange: true
 
 - type: entity
+  name: leader backpack
+  id: HonklingLeaderBackpack
+  parent: ClothingBackpackClown
+  components:
+  - type: Storage
+    grid:
+    - 0,0,8,4
+
+- type: entity
+  name: tagila hammer
+  id: SledgehammerTagila
+  parent: Sledgehammer
+  components:
+  - type: MeleeThrowOnHit
+    speed: 35.0
+  - type: Reflective
+  - type: Reflect
+    reflectProb: 0.4
+
+- type: entity
   name: scouting sawed off
   id: HonklingScoutSawedOff
   parent: WeaponShotgunSawn
-  description: 
   components:
   - type: HeldSpeedModifier
     sprintModifier: 1.2
