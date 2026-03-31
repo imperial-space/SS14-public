@@ -59,13 +59,13 @@
       mindRoles:
       - MindRoleHonkling
       briefing:
-        text: honkling-soldier-briefing
+        text: honkling-leader-briefing
         color: Pink
     - prefRoles: [ HonklingSoldier ]
       fallbackRoles: [ HonklingLeader ]
       spawnerPrototype: SpawnPointHonklingSoldier
       briefing:
-        text: honkling-leader-briefing
+        text: honkling-soldier-briefing
         color: Pink
       mindRoles:
       - MindRoleHonklingLeader
