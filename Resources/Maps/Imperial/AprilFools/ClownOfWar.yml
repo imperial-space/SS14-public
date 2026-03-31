@@ -4,7 +4,7 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/24/2026 10:20:42
+  time: 03/31/2026 13:26:47
   entityCount: 567
 maps: []
 grids:
@@ -1525,12 +1525,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,9.5
       parent: 1
-  - uid: 256
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 14.5,-4.5
-      parent: 1
 - proto: ComputerShuttle
   entities:
   - uid: 257
@@ -1754,6 +1748,17 @@ entities:
       rot: 3.141592653589793 rad
       pos: -11.5,-5.5
       parent: 1
+- proto: HonklingComputerComms
+  entities:
+  - uid: 256
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 14.5,-4.5
+      parent: 1
+    - type: AccessReader
+      accessListsOriginal:
+      - - Service
 - proto: MagazineGrenadeBlast
   entities:
   - uid: 285

@@ -249,11 +249,11 @@
   parent: MobHonklingSoldier
   description: Oh god. With premission to launch nuclear strikes.
   components:
+  - type: Loadout
+    prototypes: [HonklingLeader]
   - type: RandomMetadata
     nameSegments:
     - NamesHonklingLeader
-  - type: Loadout
-    prototypes: [HonklingSoldier]
   - type: Sprite
     drawdepth: Mobs
     layers:

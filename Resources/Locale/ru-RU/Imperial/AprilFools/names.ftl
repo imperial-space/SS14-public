@@ -37,3 +37,17 @@ names-honkling-leader-2 = Полководец Орих
 names-honkling-leader-3 = Военочальник Спут
 names-honkling-leader-4 = Мастер Казачков
 names-honkling-leader-5 = Хонкобатя
+
+names-shlack-1 = Саша Булыга
+names-shlack-2 = Митяй Бетон
+names-shlack-3 = Леха Конкрит
+names-shlack-4 = Глеб Камень
+names-shlack-5 = Айден Высморк
+names-shlack-6 = Райан ГОСТ 26633-3015
+names-shlack-7 = Ваня Бетономешалка
+names-shlack-8 = Лидия Песчаникова
+names-shlack-9 = Гречка Низкокачественная
+names-shlack-10 = Никитос Бетоновоз
+names-shlack-11 = Крутой Шлакоблок
+names-shlack-12 = Шлак'О'Блок
+names-shlack-13 = Мира Известка

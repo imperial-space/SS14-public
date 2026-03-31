@@ -44,7 +44,7 @@
   id: HonkLegion
   components:
   - type: GameRule
-    minPlayers: 0
+    minPlayers: 1
   - type: AntagMultipleRoleSpawner
     antagRoleToPrototypes:
       HonklingSoldier: [ MobHonklingSoldier ]

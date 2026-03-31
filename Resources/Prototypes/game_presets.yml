@@ -34,6 +34,9 @@
   description: all-at-once-description
   showInVote: false
   rules:
+    - HonkLegion # April Fools
+    - Chigur # April Fools
+    - ChigurPrey # April Fools
     - Nukeops
     - Traitor
     - Revolutionary
@@ -59,11 +62,15 @@
   description: aller-at-once-description
   showInVote: false #Please god dont do this
   rules:
+    - HonkLegion # April Fools
+    - Chigur # April Fools
+    - ChigurPrey # April Fools
     - Nukeops
     - Traitor
     - Revolutionary
     - Zombie
     - Wizard
+    - SyndieBorgroundstart  # Imperial Syndie Borg
     - Pirates # Imperial Space Pirates: New Horizon
     - Xenoborgs
     - Vampire # imperial space: Added a new vampire antagonist

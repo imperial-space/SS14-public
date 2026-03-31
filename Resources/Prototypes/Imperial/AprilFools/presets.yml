@@ -1,0 +1,85 @@
+- type: gamePreset
+  id: Razborki
+  alias:
+    - chigur_traitors
+  name: razborki-title
+  description: razborki-description
+  showInVote: true
+  rules:
+  - DummyNonAntagChance
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+  - ChigurPrey
+  - Chigur
+  - Traitor
+  - SyndieBorgroundstart
+
+- type: gamePreset
+  id: Honklings
+  alias:
+    - honklings
+    - honkling
+    - honk
+  name: honklings-title
+  description: honklings-description
+  showInVote: true
+  rules:
+  - DummyNonAntagChance
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+  - HonkLegion
+
+- type: gamePreset
+  id: DoubleTrouble
+  alias:
+    - double
+    - nukelings
+  name: dt-title
+  description: dt-description
+  showInVote: true
+  rules:
+  - DummyNonAntagChance
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+  - HonkLegion
+  - Nukeops
+
+- type: gamePreset
+  id: AprilFools
+  alias:
+    - fools
+  name: fools-title
+  description: fools-description
+  showInVote: true
+  rules:
+  - DummyNonAntagChance
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+  - HonkLegion
+  - ChigurPrey
+  - Chigur
+
+- type: gamePreset
+  id: SpaceBatallia
+  alias:
+    - spapce_battle
+  name: sb-title
+  description: sb-description
+  showInVote: true
+  rules:
+  - DummyNonAntagChance
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+  - HonkLegion
+  - Xenoborgs
+  - Nukeops

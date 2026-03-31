@@ -1,0 +1,56 @@
+- type: localizedDataset
+  id: NamesShlackoblock
+  values:
+    prefix: names-shlack-
+    count: 13
+
+- type: cargoProduct
+  id: CargoShlackoblock
+  icon:
+    sprite:  /Textures/Imperial/AprilFools/shlackoblock.rsi
+    state: block
+  product: ShlackoblockApril
+  cost: 1
+  category: cargoproduct-category-name-cargo
+  group: market
+
+- type: entity
+  id: ShlackoblockApril
+  parent: BaseStructureDynamic
+  name: Shlackoblock
+  description: Alexendre Camen
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesShlackoblock
+  - type: Sprite
+    sprite: Imperial/AprilFools/shlackoblock.rsi
+    state: block
+    noRot: true
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.5
+        density: 920
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

@@ -10,6 +10,11 @@
   equipment:
     back: HonklingSoldierSet
 
+- type: startingGear
+  id: HonklingLeader
+  equipment:
+    back: HonklingLeaderSet
+
 - type: entity
   id: HonklingSoldierSet
   name: clowning stuff backpack
