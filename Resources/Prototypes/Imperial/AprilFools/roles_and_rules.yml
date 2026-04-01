@@ -44,12 +44,12 @@
   id: HonkLegion
   components:
   - type: GameRule
-    minPlayers: 1
+    minPlayers: 25
   - type: AntagMultipleRoleSpawner
     antagRoleToPrototypes:
       HonklingSoldier: [ MobHonklingSoldier ]
       HonklingLeader: [ MobHonklingLeader ]
-    pickAndTake: true
+    pickAndTake: false
   - type: AntagSelection
     selectionTime: PrePlayerSpawn
     definitions:
@@ -69,7 +69,7 @@
         color: Pink
       mindRoles:
       - MindRoleHonklingLeader
-      playerRatio: 2
+      playerRatio: 2 
       max: 30
   - type: DynamicRuleCost
     cost: 0
