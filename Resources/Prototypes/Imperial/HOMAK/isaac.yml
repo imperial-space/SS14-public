@@ -59,9 +59,6 @@
       - id: HarmonicaInstrument
         prob: 0.15
         orGroup: Bonus
-      - id: ArmenianStuff
-        prob: 0.1
-        orGroup: Bonus
       - id: CombatKnife
         prob: 0.1
         orGroup: Bonus
