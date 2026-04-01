@@ -69,7 +69,7 @@
         color: Pink
       mindRoles:
       - MindRoleHonklingLeader
-      playerRatio: 2
+      # playerRatio: 2 не работает
       max: 30
   - type: DynamicRuleCost
     cost: 0
