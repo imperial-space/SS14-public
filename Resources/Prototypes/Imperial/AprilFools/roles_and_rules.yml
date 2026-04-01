@@ -49,7 +49,7 @@
     antagRoleToPrototypes:
       HonklingSoldier: [ MobHonklingSoldier ]
       HonklingLeader: [ MobHonklingLeader ]
-    pickAndTake: true
+    pickAndTake: false
   - type: AntagSelection
     selectionTime: PrePlayerSpawn
     definitions:
@@ -69,7 +69,7 @@
         color: Pink
       mindRoles:
       - MindRoleHonklingLeader
-      # playerRatio: 2 не работает
+      playerRatio: 2 
       max: 30
   - type: DynamicRuleCost
     cost: 0
