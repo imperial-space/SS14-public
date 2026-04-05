@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Askall",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "android",
+      "directions": 4
+    },
+    {
+      "name": "light r",
+      "directions": 4
+    },
+    {
+      "name": "light g",
+      "directions": 4
+    },
+    {
+      "name": "light e",
+      "directions": 4
+    },
+    {
+      "name": "android-transform",
+      "directions": 1,
+      "delays": [
+        [
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08
+        ]
+      ]
+    },
+    {
+      "name": "android-retransform",
+      "directions": 1,
+      "delays": [
+        [
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08
+        ]
+      ]
+    },
+    {
+      "name": "android-overlay"
+    }
+  ]
+}
