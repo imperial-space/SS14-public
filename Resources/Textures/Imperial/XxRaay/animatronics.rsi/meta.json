@@ -24,23 +24,23 @@
       "directions": 4
     },
     {
-      "name": "metal frame",
+      "name": "metal_frame",
       "directions": 4
     },
     {
-      "name": "icon bonnie"
+      "name": "icon_bonnie"
     },
     {
-      "name": "icon chica"
+      "name": "icon_chica"
     },
     {
-      "name": "icon foxy"
+      "name": "icon_foxy"
     },
     {
-      "name": "icon freddy"
+      "name": "icon_freddy"
     },
     {
-      "name": "icon metal frame"
+      "name": "icon_metal_frame"
     }
   ]
 }
