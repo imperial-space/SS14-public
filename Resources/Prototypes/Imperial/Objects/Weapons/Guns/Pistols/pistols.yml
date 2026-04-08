@@ -1,0 +1,45 @@
+- type: entity
+  name: Анаконда
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: WeaponPistolAnaconda
+  description: Тяжёлый пистолет, стреляющий патронами калибра .40 безгильзовый, которые создаются с помощью встроенного фабрикатора.
+  components:
+  - type: Gun
+    fireRate: 3
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/hpistol.ogg
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+  - type: Tag
+    tags:
+    - Sidearm
+  - type: Clothing
+    sprite: Imperial/Objects/Weapons/Guns/Pistols/anaconda.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: Sprite
+    sprite: Imperial/Objects/Weapons/Guns/Pistols/anaconda.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: BasicEntityAmmoProvider
+    proto: CartridgeAnaconda
+    capacity: 7
+    count: 7
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 4
+    rechargeSound:
+      path: /Audio/Weapons/Guns/Cock/shotgun_close.ogg
+  - type: AmmoCounter
