@@ -147,6 +147,8 @@
   - type: TriggerOnActivateImplant
   - type: UncuffOnTrigger
     targetUser: true
+  - type: FreedomImplantbolaTrigger # Imperial start
+    targetUser: true                # Imperial end
 
 - type: entity
   parent: BaseSubdermalImplant
