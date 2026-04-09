@@ -147,7 +147,7 @@
   - type: TriggerOnActivateImplant
   - type: UncuffOnTrigger
     targetUser: true
-  - type: FreedomImplantbolaTrigger # Imperial start
+  - type: FreedomImplantBolaTrigger # Imperial start
     targetUser: true                # Imperial end
 
 - type: entity

@@ -12,7 +12,7 @@ namespace Content.Shared.Imperial.Trigger.Systems;
 /// <summary>
 /// Обрабатывает эффект триггера импланта свободы: снимает наручники и освобождает цель от опутывающих сущностей (болы и т.д.)
 /// </summary>
-public sealed class FreedomImplantOnTriggerSystem : XOnTriggerSystem<FreedomImplantbolaTriggerComponent>
+public sealed class FreedomImplantOnTriggerSystem : XOnTriggerSystem<FreedomImplantBolaTriggerComponent>
 {
     /// <summary> Звук при снятии болы </summary>
     private static readonly SoundSpecifier BolaBreakSound = new SoundPathSpecifier("/Audio/Effects/snap.ogg");
@@ -25,7 +25,7 @@ public sealed class FreedomImplantOnTriggerSystem : XOnTriggerSystem<FreedomImpl
     /// <summary>
     /// при срабатывании импланта свободы, снимает наручники и удаляет все опутывающие сущности с цели.
     /// </summary>
-    protected override void OnTrigger(Entity<FreedomImplantbolaTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
+    protected override void OnTrigger(Entity<FreedomImplantBolaTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {
         // Снятие опутывания влияет на скорость движения и может вызвать рассинхрон на клиенте.
         if (_net.IsClient)

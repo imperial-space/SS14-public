@@ -7,4 +7,4 @@ namespace Content.Shared.Imperial.Trigger.Components.Effects;
 /// Помечает сущность как эффект триггера импланта свободы. при срабатывании снимает наручники и освобождает цель от всех опутывающих сущностей
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class FreedomImplantbolaTriggerComponent : BaseXOnTriggerComponent;
+public sealed partial class FreedomImplantBolaTriggerComponent : BaseXOnTriggerComponent;
