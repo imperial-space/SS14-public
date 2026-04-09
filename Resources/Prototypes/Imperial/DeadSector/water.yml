@@ -1,0 +1,72 @@
+# Реагент отравленной воды: 2 Poison за метаболический тик (~2 сек) ≈ 1 ед/сек
+- type: reagent
+  id: DeadSectorWaterToxin
+  name: reagent-name-deadsector-water-toxin
+  group: Toxins
+  desc: reagent-desc-deadsector-water-toxin
+  flavor: bitter
+  color: "#4a6b3a"
+  physicalDesc: reagent-physical-desc-opaque
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 2
+
+- type: entity
+  id: DeadSectorPoisonWater
+  name: отравленная вода
+  suffix: DeadSector, Structure
+  description: Мутная радиоактивная вода. Смертельно опасна.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      slipFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        mask:
+        - ItemMask
+        layer:
+        - SlipLayer
+        hard: false
+  - type: IconSmooth
+    key: deadsector_water
+    base: water
+  - type: Sprite
+    drawdepth: Puddles
+    sprite: Imperial/DeadSector/water/water.rsi
+    layers:
+    - sprite: Imperial/DeadSector/water/waterbuble.rsi
+      state: Water-buble-Sheet
+  - type: SolutionContainerManager
+    solutions:
+      puddle:
+        maxVol: 1000
+        reagents:
+        - ReagentId: DeadSectorWaterToxin
+          Quantity: 500
+  - type: SolutionRegeneration
+    solution: puddle
+    generated:
+      reagents:
+      - ReagentId: DeadSectorWaterToxin
+        Quantity: 5
+  - type: DrawableSolution
+    solution: puddle
+  - type: DamageContacts
+    damage:
+      types:
+        Poison: 1
+  - type: Appearance
+  - type: RadiationSource
+    intensity: 0.7

@@ -54,8 +54,6 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly OutfitSystem _outfitSystem = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
     [Dependency] private readonly HandsSystem _handsSystem = default!;
 
@@ -253,7 +251,7 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
             {
                 if (ent == default || EntityManager.Deleted(ent))
                     continue;
-                EntityManager.DeleteEntity(ent);
+                QueueDel(ent);
             }
         }
 

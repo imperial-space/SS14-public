@@ -20,6 +20,20 @@
   - /Audio/Imperial/Seriozha/SCP/StepMTF2.ogg
   - /Audio/Imperial/Seriozha/SCP/StepMTF3.ogg
 
+- type: soundCollection
+  id: SCP173NeckSnap
+  files:
+  - /Audio/Imperial/Seriozha/SCP/173/NeckSnap1.ogg
+  - /Audio/Imperial/Seriozha/SCP/173/NeckSnap2.ogg
+  - /Audio/Imperial/Seriozha/SCP/173/NeckSnap3.ogg
+
+- type: soundCollection
+  id: SCP173Rattle
+  files:
+  - /Audio/Imperial/Seriozha/SCP/173/Rattle1.ogg
+  - /Audio/Imperial/Seriozha/SCP/173/Rattle2.ogg
+  - /Audio/Imperial/Seriozha/SCP/173/Rattle3.ogg
+
 - type: entity
   parent: PosterBase
   id: Posterbrokengod
@@ -851,7 +865,7 @@
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 40
 
@@ -890,7 +904,7 @@
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 40
   - type: Item
@@ -1233,8 +1247,6 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: false
   - type: UseDelay
     delay: 20
   - type: SolutionRegeneration
@@ -1328,7 +1340,7 @@
   - type: Battery
     maxCharge: 300
     startingCharge: 300
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 25
   - type: AmmoCounter
@@ -1339,9 +1351,6 @@
     rules: You remember nothing from previous life.
     raffle:
       settings: short
-  - type: PredictedBattery
-    maxCharge: 30
-    startingCharge: 30
 
 - type: entity
   id: HandTeleporterSCPDeva
@@ -4085,6 +4094,9 @@
         state: alive
         sprite: Imperial/Seriozha/Fredik21/nda/nda4975.rsi
         scale: 1.5, 1.5
+      - map: ["enum.TriggerVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/Fredik21/nda/nda4975.rsi
     - type: DamageStateVisuals
       states:
         Alive:
@@ -5077,6 +5089,9 @@
         state: alive
         sprite: Imperial/Seriozha/Fredik21/nda/nda682.rsi
         scale: 2, 2
+      - map: ["enum.TriggerVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/Fredik21/nda/nda682.rsi
     - type: DamageStateVisuals
       states:
         Alive:
@@ -7250,6 +7265,9 @@
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: alive
         sprite: Imperial/Seriozha/Fredik21/nda/nda020.rsi
+      - map: ["enum.TriggerVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/Fredik21/nda/nda020.rsi
     - type: DamageStateVisuals
       states:
         Alive:
@@ -7326,6 +7344,293 @@
       rules: Rule
       raffle:
         settings: short
+
+- type: entity
+  name: SCP-008
+  suffix: Fredik21, Недра, Объект
+  parent: BaseStructure
+  id: ImperialSCP008
+  description: Вирусный источник. Длительное нахождение рядом приводит к заражению и превращению в зомби.
+  components:
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/objects/Zombie.rsi
+      state: alive
+    - type: Physics
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.45,-0.45,0.45,0.45"
+          hard: false
+          mask:
+          - None
+          layer:
+          - None
+    - type: Anchorable
+      fixed: true
+    - type: Damageable
+    - type: Destructible
+      thresholds: []
+    - type: SCP008InfectionAura
+      radius: 8
+      zombifyDelay: 12
+      updateInterval: 1
+      allowCritical: false
+      warningDelay: 3
+      warningPopup: "SCP-008: покиньте зону немедленно, иначе вы превратитесь в зомби!"
+
+- type: entity
+  name: SCP-173
+  suffix: Fredik21, Недра, Объект
+  parent: ImperialSCPBase
+  id: ImperialSCP173
+  description: Не разрывайте зрительный контакт.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: 173
+        sprite: Imperial/Seriozha/Fredik21/nda/nda173.rsi
+      - map: ["enum.TriggerVisualLayers.Base"]
+        state: 173
+        sprite: Imperial/Seriozha/Fredik21/nda/nda173.rsi
+        visible: false
+    - type: TimerTriggerVisuals
+      unprimedSprite: 173
+      primingSprite: 173
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: 173
+        Dead:
+          Base: 173
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        8000: Dead
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 4.2
+      baseSprintSpeed: 6.0
+    - type: MeleeWeapon
+      hidden: true
+      altDisarm: false
+      soundHit:
+        collection: SCP173NeckSnap
+      angle: 0
+      animation: WeaponArcBite
+      attackRate: 1.2
+      damage:
+        types:
+          Blunt: 200
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: SCP173Rattle
+    - type: SCP173WatchLock
+      observeRadius: 8
+      minLookDot: 0.35
+      requireLightToObserve: true
+      lightLookupRadius: 12
+    - type: SCPBlinkManualTrigger
+    - type: SCP173LightFlicker
+      action: ActionSCP173LightFlicker
+      radius: 9
+      duration: 8
+      toggleInterval: 0.25
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: Puller
+    - type: Pullable
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 350
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+
+- type: entity
+  name: SCP-096
+  suffix: Fredik21, Недра, Объект
+  parent: ImperialSCPBase
+  id: ImperialSCP096
+  description: Не смотри ему в лицо.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: scp
+        sprite: Imperial/Seriozha/Fredik21/nda/nda096.rsi
+      - map: ["enum.TriggerVisualLayers.Base"]
+        state: scp
+        sprite: Imperial/Seriozha/Fredik21/nda/nda096.rsi
+        visible: false
+    - type: TimerTriggerVisuals
+      unprimedSprite: scp
+      primingSprite: scp-screaming
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: scp
+        Dead:
+          Base: scp-dead
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.SCP096Visuals.State:
+          enum.DamageStateVisualLayers.Base:
+            Calm:
+              state: scp
+            Screaming:
+              state: scp-screaming
+            Chasing:
+              state: scp-chasing
+            Dead:
+              state: scp-dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        7000: Dead
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 1.25
+      baseSprintSpeed: 1.9
+    - type: MeleeWeapon
+      hidden: true
+      altDisarm: false
+      soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+      angle: 0
+      animation: WeaponArcClaw
+      attackRate: 1.0
+      damage:
+        types:
+          Blunt: 30
+          Structural: 500
+    - type: SCP096RageOnLook
+      observeRadius: 9
+      minLookDot: 0.42
+      enragedWalkModifier: 3.2
+      enragedSprintModifier: 3.2
+      rageWindup: 28
+      rageDuration: 120
+      rageWindupPopup: "SCP-096 в бешенстве..."
+      ragePopup: "SCP-096 впадает в ярость!"
+      rageCalmPopup: "SCP-096 успокаивается."
+      rageSound: /Audio/Imperial/Seriozha/SCP/096/nda096agr.ogg
+      cryingSound: /Audio/Imperial/Seriozha/SCP/096/nda096cry.ogg
+      rageLoopSound: /Audio/Imperial/Seriozha/SCP/096/nda096rage.ogg
+    - type: AmbientSound
+      enabled: true
+      sound: /Audio/Imperial/Seriozha/SCP/096/nda096cry.ogg
+      range: 12
+      volume: -4
+    - type: Strippable
+    - type: UserInterface
+      interfaces:
+        enum.StrippingUiKey.Key:
+          type: StrippableBoundUserInterface
+    - type: InventorySlots
+    - type: Inventory
+      templateId: scp096inv
+    - type: SCPBlinkManualTrigger
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: Puller
+    - type: Pullable
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 320
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+
+- type: entity
+  id: ImperialSCP173ContainmentCell
+  name: клетка сдерживания SCP-173
+  suffix: Fredik21, Недра, Объект
+  parent: ClosetSteelBase
+  description: Удерживающий ящик для SCP-173. Пока объект внутри, он не может двигаться и атаковать. Ящик можно таскать.
+  components:
+    - type: SCP173ContainmentCell
+    - type: EntityStorage
+      capacity: 1
+      isCollidableWhenOpen: false
+      openOnMove: false
+      enteringRange: 0.45
+      whitelist:
+        components:
+        - SCP173WatchLock
+    - type: Appearance
+    - type: EntityStorageVisuals
+      stateBaseClosed: generic
+      stateDoorOpen: generic_open
+      stateDoorClosed: generic_door
+
+- type: entity
+  id: ImperialSCP096HeadBag
+  name: мешок на голову SCP-096
+  suffix: Fredik21, Недра, Объект
+  parent: ClothingHeadPaperSack
+  description: Плотный мешок, закрывающий лицо SCP-096 и подавляющий вход в ярость.
+  components:
+    - type: SCP096RageSuppressor
+
+- type: entity
+  parent: BaseAction
+  id: ActionSCP173LightFlicker
+  name: Светопомеха
+  description: Заставляет свет вокруг вас мигать. В темноте на вас нельзя смотреть.
+  components:
+  - type: Action
+    useDelay: 25
+  - type: InstantAction
+    event: !type:SCP173LightFlickerActionEvent
+
+- type: entity
+  parent: MarkerBase
+  id: NedraNukeExplosionSpawner
+  name: Nedra nuke explosion spawner
+  suffix: Fredik21, Недра, Объект
+  description: Маркер точки детонации для команды nedranukeprotocol.
+  components:
+  - type: Sprite
+    sprite: Markers/cross.rsi
+
+- type: inventoryTemplate
+  id: scp096inv
+  slots:
+  - name: head
+    slotTexture: head
+    fullTextureName: template_small
+    slotFlags: HEAD
+    slotGroup: MainHotbar
+    stripTime: 3
+    uiWindowPos: 1,2
+    strippingWindowPos: 1,2
+    displayName: Head
+  - name: mask
+    slotTexture: mask
+    fullTextureName: template_small
+    slotFlags: MASK
+    slotGroup: MainHotbar
+    stripTime: 3
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,2
+    displayName: Mask
 
 - type: entity
   parent: AtmosDeviceFanTiny
@@ -8595,6 +8900,9 @@
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: alive
         sprite: Imperial/Seriozha/Fredik21/nda/nda131.rsi
+      - map: ["enum.TriggerVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/Fredik21/nda/nda131.rsi
     - type: DamageStateVisuals
       states:
         Alive:
@@ -8666,6 +8974,9 @@
       drawdepth: Mobs
       layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/Fredik21/nda/nda131A.rsi
+      - map: ["enum.TriggerVisualLayers.Base"]
         state: alive
         sprite: Imperial/Seriozha/Fredik21/nda/nda131A.rsi
     - type: DamageStateVisuals
@@ -8749,7 +9060,7 @@
   id: NDA013
   suffix: Fredik21, Недра, Объект
   parent: Cigarette
-  name: Cigarette «Blue Lady» 
+  name: Cigarette «Blue Lady»
   components:
   - type: SolutionContainerManager
     solutions:
@@ -9380,7 +9691,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - WallWhiteSCPTimedDespawn
@@ -9401,7 +9711,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - WallBlackSCPTimedDespawn
@@ -11805,7 +12114,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPinfectedNDA020
@@ -11826,7 +12134,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPZombie
@@ -11870,7 +12177,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPAvelGhost
@@ -11891,7 +12197,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialMem
@@ -12714,7 +13019,6 @@
     Brutepack: 5
     Ointment: 5
     Bloodpack: 5
-    StandardHypospray: 5
     Tourniquet: 2
     ChemistryBottleEpinephrine: 3
     ChemistryBottleBicaridine: 1
@@ -13196,7 +13500,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - tesla1
@@ -13217,7 +13520,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - tesla2
@@ -13321,7 +13623,7 @@
 - type: currency
   id: CreditNDA
   displayName: Кредиты Недр
-  cash: 
+  cash:
     1: CreditNDA1
   canWithdraw: true
 
@@ -14720,7 +15022,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPZombieShadow
@@ -14741,7 +15042,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPJellyShadow
@@ -14762,7 +15062,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPnda131AShadow
@@ -14783,7 +15082,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPDOCShadow
@@ -14804,7 +15102,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPFiremanShadow
@@ -14825,7 +15122,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPAvelShadow
@@ -14846,7 +15142,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPDedShadow
@@ -16359,7 +16654,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Seriozha/Fredik21/structure/decor/Sign/nda.rsi
-    state: icon2
+    state: icon3
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -16413,7 +16708,7 @@
       - id: TrashDecorativegauze
       - id: TrashDecorativeglasses
       - id: TrashDecorativewire
-  
+
 - type: entity
   name: Trash Spawner
   id: RandomSpawnerTrashDecorative

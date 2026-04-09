@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.Antag.Components;
 using Content.Server.Chat.Managers;
@@ -13,8 +13,6 @@ using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Preferences.Managers;
 using Content.Server.Roles;
 using Content.Server.Roles.Jobs;
-using Content.Server.Shuttles.Components;
-using Content.Server.Imperial.Subscriptions;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Antag;
@@ -60,7 +58,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
     // arbitrary random number to give late joining some mild interest.
     public const float LateJoinRandomChance = 0.5f;
-    [Dependency] private readonly SubscriptionManager _subscriptions = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -504,8 +501,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     /// </summary>
     public AntagSelectionPlayerPool GetPlayerPool(Entity<AntagSelectionComponent> ent, IList<ICommonSession> sessions, AntagSelectionDefinition def)
     {
-        var preferredList = new List<AntagSelectionPoolEntry>();
-        var fallbackList = new List<AntagSelectionPoolEntry>();
+        var preferredList = new List<ICommonSession>();
+        var fallbackList = new List<ICommonSession>();
         foreach (var session in sessions)
         {
             if (!IsSessionValid(ent, session, def) || !IsEntityValid(session.AttachedEntity, def))
@@ -514,16 +511,14 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (ent.Comp.PreSelectedSessions.TryGetValue(def, out var preSelected) && preSelected.Contains(session))
                 continue;
 
-            var antagWeight = _subscriptions.GetAntagSelectionWeight(session.UserId);
-
             // Add player to the appropriate antag pool
             if (ValidAntagPreference(session, def.PrefRoles))
             {
-                preferredList.Add(new AntagSelectionPoolEntry(session, antagWeight));
+                preferredList.Add(session);
             }
             else if (ValidAntagPreference(session, def.FallbackRoles))
             {
-                fallbackList.Add(new AntagSelectionPoolEntry(session, antagWeight));
+                fallbackList.Add(session);
             }
         }
 
@@ -657,4 +652,3 @@ public record struct AntagSelectLocationEvent(ICommonSession? Session, Entity<An
 /// </summary>
 [ByRefEvent]
 public readonly record struct AfterAntagEntitySelectedEvent(ICommonSession? Session, EntityUid EntityUid, Entity<AntagSelectionComponent> GameRule, AntagSelectionDefinition Def);
-
