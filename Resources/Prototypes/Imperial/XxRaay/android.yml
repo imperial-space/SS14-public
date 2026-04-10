@@ -3,7 +3,7 @@
   parent:
   - MobBloodstream
   - MobFlammable
-  - BaseMobSpecies
+  - BaseSpeciesMob
   id: BaseMobSpeciesDetroit
   abstract: true
   components:
