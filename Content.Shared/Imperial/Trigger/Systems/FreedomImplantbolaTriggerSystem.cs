@@ -3,7 +3,6 @@ using Content.Shared.Ensnaring;
 using Content.Shared.Ensnaring.Components;
 using Content.Shared.Imperial.Trigger.Components.Effects;
 using Content.Shared.Trigger;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 
@@ -14,9 +13,6 @@ namespace Content.Shared.Imperial.Trigger.Systems;
 /// </summary>
 public sealed class FreedomImplantOnTriggerSystem : XOnTriggerSystem<FreedomImplantBolaTriggerComponent>
 {
-    /// <summary> Звук при снятии болы </summary>
-    private static readonly SoundSpecifier BolaBreakSound = new SoundPathSpecifier("/Audio/Effects/snap.ogg");
-
     [Dependency] private readonly SharedEnsnareableSystem _ensnareable = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -27,10 +23,6 @@ public sealed class FreedomImplantOnTriggerSystem : XOnTriggerSystem<FreedomImpl
     /// </summary>
     protected override void OnTrigger(Entity<FreedomImplantBolaTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {
-        // Снятие опутывания влияет на скорость движения и может вызвать рассинхрон на клиенте.
-        if (_net.IsClient)
-            return;
-
         var playedBreakSound = false;
 
         // Освобождаем цель от всех опутывающих сущностей (болы и т.д.)
@@ -42,7 +34,12 @@ public sealed class FreedomImplantOnTriggerSystem : XOnTriggerSystem<FreedomImpl
                 if (!TryComp<EnsnaringComponent>(ensnareEntity, out var ensnaring))
                     continue;
 
+                var wasEnsnaredByTarget = ensnaring.Ensnared == target;
                 _ensnareable.ForceFree(ensnareEntity, ensnaring);
+
+                // Отправляем снятие штрафа скорости только если эта бола действительно держала текущую цель.
+                if (!wasEnsnaredByTarget)
+                    continue;
 
                 // ForceFree отправляет событие снятия на опутывающую сущность. импланту также нужно отправить событие на цель, чтобы корректно снять штрафы к скорости движения.
                 var ev = new EnsnareRemoveEvent(ensnaring.WalkSpeed, ensnaring.SprintSpeed);
@@ -61,8 +58,8 @@ public sealed class FreedomImplantOnTriggerSystem : XOnTriggerSystem<FreedomImpl
         }
 
         // Воспроизводим звук разрыва у позиции цели, если было снято хотя бы одно опутывание
-        if (playedBreakSound)
-            _audio.PlayPvs(BolaBreakSound, target);
+        if (playedBreakSound && _net.IsServer)
+            _audio.PlayPvs(ent.Comp.BolaBreakSound, target);
 
         args.Handled = true;
     }
