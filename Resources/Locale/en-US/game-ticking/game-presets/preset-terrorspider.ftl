@@ -1,0 +1,2 @@
+terror-spider-title = Terror Spiders
+terror-spider-description = One crew member becomes the terror spider queen and emerges from a selected vent. She must build a hive, raise her brood, and overrun the station.
