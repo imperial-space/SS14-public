@@ -1,0 +1,724 @@
+﻿# =============================================================================
+# Xenobiology: Xeno Slime Extracts
+# 22 ������� ��������� (SS13 Xenobiology)
+#
+# ��������:
+#   1. ����� ������ ����� / ������ / ���� ������� � ������� "slime" ���������.
+#   2. XenoSlimeExtractSystem ������������ ������� � ��������� ������ ������.
+#   3. ��� ProduceReagent � ������� �������� � ������� "food"; �����������
+#      ����� ������� (All-in-One Grinder) ��� �������.
+# =============================================================================
+
+# -- ������� �������� --------------------------------------------------------
+
+- type: entity
+  parent: MaterialSmileExtract
+  id: BaseXenoSlimeExtract
+  abstract: true
+  description: Базовый экстракт ксено-слайма, добываемый дробилкой.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      slime:
+        maxVol: 10
+      food:
+        maxVol: 80
+  - type: InjectableSolution
+    solution: slime
+
+# Примечание: механизм grinding (All-in-One Grinder) заполняет раствор "food".
+# Каждый экстракт получает заполненный food после помещения в дробилку.
+# Рецепт реакции: XenoRaw<Цвет> + Blood/Plasma/Water > нужный результат.
+
+# -- 22 цвета экстрактов (SS13 Xenobiology) ----------------------------------
+
+# 0 — серый (Grey) #808080
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractGrey
+  name: экстракт серого слайма
+  description: Экстракт серого ксено-слайма. Кровь → обезьяньи кубы; Плазма → фактор роста; Вода → адреналин.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#808080"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawGrey
+          Quantity: 25
+  - type: XenoSlimeExtract
+    bloodEffect:
+      type: SpawnItems
+      spawnEntities:
+      - MonkeyCube
+      - MonkeyCube
+      - MonkeyCube
+    plasmaEffect:
+      type: ProduceReagent
+      produceReagent: XenoSlimeGrowthFactor
+      produceAmount: 5
+    waterEffect:
+      type: ProduceReagent
+      produceReagent: Epinephrine
+      produceAmount: 5
+
+# 1 � ��������� (Orange) #FF8000
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractOrange
+  name: экстракт оранжевого слайма
+  description: Экстракт оранжевого ксено-слайма. Кровь → масло капсаицина; Плазма → резкий нагрев тайлов.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#FF8000"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawOrange
+          Quantity: 25
+  - type: XenoSlimeExtract
+    bloodEffect:
+      type: ProduceReagent
+      produceReagent: CapsaicinOil
+      produceAmount: 5
+      useMessage: Капсаицин обжигает инъецированную жертву!
+    plasmaEffect:
+      type: SnapHeat
+      snapHeatTemperature: 2500.0
+      snapHeatRange: 3.0
+      useMessage: Экстракт резко нагревает воздух!
+
+# 2 � ���������� (Purple) #8000FF
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractPurple
+  name: экстракт фиолетового слайма
+  description: Экстракт фиолетового ксено-слайма. Плазма → стероид слайма.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#8000FF"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawPurple
+          Quantity: 25
+  - type: XenoSlimeExtract
+    plasmaEffect:
+      type: ProduceReagent
+      produceReagent: SlimeSteroid
+      produceAmount: 5
+
+# 3 � ����� (Blue) #0080FF
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractBlue
+  name: экстракт синего слайма
+  description: Экстракт синего ксено-слайма. Кровь → стабилизатор слайма; Плазма → масло мороза.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#0080FF"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawBlue
+          Quantity: 25
+  - type: XenoSlimeExtract
+    bloodEffect:
+      type: ProduceReagent
+      produceReagent: SlimeStabilizer
+      produceAmount: 5
+    plasmaEffect:
+      type: ProduceReagent
+      produceReagent: FrostOil
+      produceAmount: 5
+
+# 4 � ������������� (Metal) #A0A0A0
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractMetal
+  name: экстракт металлического слайма
+  description: Экстракт металлического ксено-слайма. Плазма → сталь и плазосталь; Вода → листы стекла.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#A0A0A0"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawMetal
+          Quantity: 25
+  - type: XenoSlimeExtract
+    plasmaEffect:
+      type: SpawnItems
+      spawnEntities:
+      - SheetSteel
+      - SheetSteel
+      - SheetPlasteel
+    waterEffect:
+      type: SpawnItems
+      spawnEntities:
+      - SheetGlass
+      - SheetGlass
+      - SheetRGlass
+
+# 5 � Ƹ���� (Yellow) #FFFF00
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractYellow
+  name: экстракт жёлтого слайма
+  description: Экстракт жёлтого ксено-слайма. Кровь → ЭМИ-импульс; Плазма → заряженное ядро; Вода → лампочки.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#FFFF00"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawYellow
+          Quantity: 25
+  - type: XenoSlimeExtract
+    bloodEffect:
+      type: EmpPulse
+      empRange: 3.0
+      empEnergyConsumption: 400.0
+      empDuration: 20
+      useMessage: ЭМИ-удар!
+    plasmaEffect:
+      type: SpawnItems
+      spawnEntities:
+      - XenoChargedCoreYellow
+    waterEffect:
+      type: SpawnItems
+      spawnEntities:
+      - LightBulb
+      - LightBulb
+      - LightBulb
+
+# 6 � Ҹ���-���������� (DarkPurple) #400080
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractDarkPurple
+  name: экстракт тёмно-фиолетового слайма
+  description: Экстракт тёмно-фиолетового ксено-слайма. Плазма → листы плазмы; Вода → плазмостекло.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#400080"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawDarkPurple
+          Quantity: 25
+  - type: XenoSlimeExtract
+    plasmaEffect:
+      type: SpawnItems
+      spawnEntities:
+      - SheetPlasma
+      - SheetPlasma
+    waterEffect:
+      type: SpawnItems
+      spawnEntities:
+      - SheetPGlass
+      - SheetPGlass
+
+# 7 � Ҹ���-����� (DarkBlue) #003080
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractDarkBlue
+  name: экстракт тёмно-синего слайма
+  description: Экстракт тёмно-синего ксено-слайма. Плазма → заморозка тайлов; Вода → охлаждающее зелье.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#003080"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawDarkBlue
+          Quantity: 25
+  - type: XenoSlimeExtract
+    plasmaEffect:
+      type: SnapCool
+      snapCoolTemperature: 200.0
+      snapCoolRange: 2.5
+      useMessage: Резкий холод нахлынул на тайлы!
+    waterEffect:
+      type: ProduceReagent
+      produceReagent: CoolingPotion
+      produceAmount: 5
+
+# 8 � ���������� (Silver) #C0C0C0
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractSilver
+  name: экстракт серебристого слайма
+  description: Экстракт серебристого ксено-слайма. Плазма → случайная еда; Вода → случайный напиток.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#C0C0C0"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawSilver
+          Quantity: 25
+  - type: XenoSlimeExtract
+    plasmaEffect:
+      type: SpawnRandomFromPool
+      randomPool:
+      - FoodBanana
+      - MonkeyCube
+      - FoodDonutPlain
+      - FoodDonutHomer
+      - FoodDonutChaos
+    waterEffect:
+      type: SpawnRandomFromPool
+      randomPool:
+      - DrinkJuiceLimeCarton
+      - DrinkJuiceOrangeCarton
+      - DrinkJuiceTomatoCarton
+
+# 9 � �������� (Bluespace) #00CED1
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractBluespace
+  name: экстракт блюспейс-слайма
+  description: Экстракт блюспейс-слайма. Кровь → плитки блюспейс; Плазма → кристалл блюспейс; Вода → зелье телепорта.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#00CED1"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawBluespace
+          Quantity: 25
+  - type: XenoSlimeExtract
+    bloodEffect:
+      type: SpawnItems
+      spawnEntities:
+      - XenoBluespaceFloorTile
+      - XenoBluespaceFloorTile
+      - XenoBluespaceFloorTile
+    plasmaEffect:
+      type: SpawnItems
+      spawnEntities:
+      - XenoBluespaceCrystal
+    waterEffect:
+      type: ProduceReagent
+      produceReagent: TeleportPotion
+      produceAmount: 5
+
+# 10 � ����� (Sepia) #704214
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractSepia
+  name: экстракт сепиевого слайма
+  description: Экстракт сепиевого ксено-слайма. Кровь → мгновенная камера; Плазма → зелье сепии; Вода → защита от лазера.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#704214"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawSepia
+          Quantity: 25
+  - type: XenoSlimeExtract
+    bloodEffect:
+      type: SpawnItems
+      spawnEntities:
+      - XenoInstantCamera
+    plasmaEffect:
+      type: ProduceReagent
+      produceReagent: XenoSepiaPotion
+      produceAmount: 5
+    waterEffect:
+      type: ProduceReagent
+      produceReagent: LaserProtPotion
+      produceAmount: 5
+
+# 11 � �������� (Cerulean) #29ABE2
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractCerulean
+  name: экстракт лазурного слайма
+  description: Экстракт лазурного ксено-слайма. Плазма → зелье невидимости.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#29ABE2"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawCerulean
+          Quantity: 25
+  - type: XenoSlimeExtract
+    plasmaEffect:
+      type: ProduceReagent
+      produceReagent: XenoCeruleanPotion
+      produceAmount: 5
+
+# 12 � ��������� (Pyrite) #CCAA22
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractPyrite
+  name: экстракт пиритового слайма
+  description: Экстракт пиритового ксено-слайма. Плазма → мелки; Вода → защита от радиации.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#CCAA22"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawPyrite
+          Quantity: 25
+  - type: XenoSlimeExtract
+    plasmaEffect:
+      type: SpawnItems
+      spawnEntities:
+      - CrayonRed
+      - CrayonBlue
+      - CrayonGreen
+      - CrayonYellow
+    waterEffect:
+      type: ProduceReagent
+      produceReagent: RadProtPotion
+      produceAmount: 5
+
+# 13 � ������ (Green) #00CC00
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractGreen
+  name: экстракт зелёного слайма
+  description: Экстракт зелёного ксено-слайма. Плазма → нестабильный мутаген; Вода → биозащита.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#00CC00"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawGreen
+          Quantity: 25
+  - type: XenoSlimeExtract
+    plasmaEffect:
+      type: ProduceReagent
+      produceReagent: UnstableMutagen
+      produceAmount: 5
+    waterEffect:
+      type: ProduceReagent
+      produceReagent: BioProtPotion
+      produceAmount: 5
+
+# 14 � ������� (Red) #FF0000
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractRed
+  name: экстракт красного слайма
+  description: Экстракт красного ксено-слайма. Кровь → ярость слаймов; Плазма → зелье мутации; Вода → зелье скорости.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#FF0000"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawRed
+          Quantity: 25
+  - type: XenoSlimeExtract
+    bloodEffect:
+      type: MakeSlimesBerserk
+      berserkerRange: 6.0
+      useMessage: Слаймы поблизости приходят в ярость!
+    plasmaEffect:
+      type: ProduceReagent
+      produceReagent: SlimeMutationPotion
+      produceAmount: 5
+    waterEffect:
+      type: ProduceReagent
+      produceReagent: SpeedPotion
+      produceAmount: 5
+
+# 15 � ������� (Pink) #FF80CC
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractPink
+  name: экстракт розового слайма
+  description: Экстракт розового ксено-слайма. Плазма → зелье послушания.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#FF80CC"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawPink
+          Quantity: 25
+  - type: XenoSlimeExtract
+    plasmaEffect:
+      type: ProduceReagent
+      produceReagent: ObediencePotion
+      produceAmount: 5
+
+# 16 � ������� (Gold) #FFD700
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractGold
+  name: экстракт золотого слайма
+  description: Экстракт золотого ксено-слайма. Кровь → курица; Плазма → коза; Вода → корги.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#FFD700"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawGold
+          Quantity: 25
+  - type: XenoSlimeExtract
+    bloodEffect:
+      type: SpawnMob
+      mobPrototype: MobChicken
+    plasmaEffect:
+      type: SpawnMob
+      mobPrototype: MobGoat
+    waterEffect:
+      type: SpawnMob
+      mobPrototype: MobCorgi
+
+# 17 � �������� (Oil) #2A1A0A
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractOil
+  name: экстракт масляного слайма
+  description: Экстракт масляного ксено-слайма. Плазма → взрыв; Вода → защита от взрывов.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#2A1A0A"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawOil
+          Quantity: 25
+  - type: XenoSlimeExtract
+    plasmaEffect:
+      type: Explosion
+      explosionTypeId: Default
+      explosionTotalIntensity: 60.0
+      explosionSlope: 4.0
+      explosionMaxTileIntensity: 10.0
+      useMessage: Экстракт взрывается!
+    waterEffect:
+      type: ProduceReagent
+      produceReagent: ExplosionProtPotion
+      produceAmount: 5
+
+# 18 � ׸���� (Black) #111111
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractBlack
+  name: экстракт чёрного слайма
+  description: Экстракт чёрного ксено-слайма. Плазма → токсин мутации; Вода → защита от кислоты.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#111111"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawBlack
+          Quantity: 25
+  - type: XenoSlimeExtract
+    plasmaEffect:
+      type: ProduceReagent
+      produceReagent: AdvancedMutationToxin
+      produceAmount: 5
+    waterEffect:
+      type: ProduceReagent
+      produceReagent: AcidProtPotion
+      produceAmount: 5
+
+# 19 � ������-������� (LightPink) #FFD6ED
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractLightPink
+  name: экстракт светло-розового слайма
+  description: Экстракт светло-розового ксено-слайма. Плазма → зелье разума.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#FFD6ED"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawLightPink
+          Quantity: 25
+  - type: XenoSlimeExtract
+    plasmaEffect:
+      type: ProduceReagent
+      produceReagent: MindPotion
+      produceAmount: 5
+
+# 20 � ������������� (Adamantine) #C8EEFF
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractAdamantine
+  name: экстракт адамантинового слайма
+  description: Экстракт адамантинового ксено-слайма. Плазма → адамантиновый слиток.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#C8EEFF"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawAdamantine
+          Quantity: 25
+  - type: XenoSlimeExtract
+    plasmaEffect:
+      type: SpawnItems
+      spawnEntities:
+      - XenoAdamantineBar
+
+# 21 � �������� (Rainbow) #FF00FF
+- type: entity
+  parent: BaseXenoSlimeExtract
+  id: XenoSlimeExtractRainbow
+  name: экстракт радужного слайма
+  description: Экстракт радужного ксено-слайма. Кровь → зелье переноса сознания; Плазма → случайный слайм; Вода → случайный слайм.
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: rainbow_slime_extract
+      color: "#FF00FF"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: XenoRawRainbow
+          Quantity: 25
+  - type: XenoSlimeExtract
+    bloodEffect:
+      type: ProduceReagent
+      produceReagent: ConsciousnessTransferPotion
+      produceAmount: 5
+    plasmaEffect:
+      type: SpawnRandomSlime
+    waterEffect:
+      type: SpawnRandomSlime
+      useMessage: Вода активирует экстракт — появляется случайный слайм!
