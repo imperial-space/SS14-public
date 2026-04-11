@@ -1,0 +1,16 @@
+- type: entity
+  id: BSAImpactEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 1.1
+  - type: Sprite
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - shader: unshaded
+      sprite: Imperial/bsa/shot.rsi
+      state: bsa_impact_ex
+  - type: Tag
+    tags:
+    - HideContextMenu

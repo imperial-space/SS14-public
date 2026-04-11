@@ -1,0 +1,160 @@
+# =====================================================================
+# Bluespace Artillery — Construction Graphs
+# Шаблон: плата → якорь → кабель → отвёртка → готово
+# =====================================================================
+
+# ────────────── Control Box ──────────────
+
+- type: constructionGraph
+  id: BSAControlBox
+  start: start
+  graph:
+  - node: start
+    entity: BSAControlBoxUnfinished
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: wired
+      conditions:
+      - !type:EntityAnchored {}
+      steps:
+      - material: Cable
+        amount: 5
+        doAfter: 1.0
+
+  - node: wired
+    entity: BSAControlBoxUnfinished
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: completed
+      conditions:
+      - !type:EntityAnchored {}
+      completed:
+      - !type:SnapToGrid {}
+      steps:
+      - tool: Screwing
+        doAfter: 1.0
+    - to: start
+      conditions:
+      - !type:EntityAnchored {}
+      completed:
+      - !type:SpawnPrototype
+        prototype: CableApcStack5
+      steps:
+      - tool: Cutting
+        doAfter: 0.5
+
+  - node: completed
+    entity: BSAControlBox
+    edges:
+    - to: wired
+      conditions:
+      - !type:EntityAnchored {}
+      steps:
+      - tool: Prying
+        doAfter: 1.0
+
+# ────────────── Front Part ──────────────
+
+- type: constructionGraph
+  id: BSAFrontPart
+  start: start
+  graph:
+  - node: start
+    entity: BSAFrontPartUnfinished
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: wired
+      conditions:
+      - !type:EntityAnchored {}
+      steps:
+      - material: Cable
+        amount: 2
+        doAfter: 0.5
+
+  - node: wired
+    entity: BSAFrontPartUnfinished
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: completed
+      conditions:
+      - !type:EntityAnchored {}
+      completed:
+      - !type:SnapToGrid {}
+      steps:
+      - tool: Screwing
+        doAfter: 0.5
+    - to: start
+      conditions:
+      - !type:EntityAnchored {}
+      completed:
+      - !type:SpawnPrototype
+        prototype: CableApcStack2
+      steps:
+      - tool: Cutting
+        doAfter: 0.5
+
+  - node: completed
+    entity: BSAFrontPart
+    edges:
+    - to: wired
+      conditions:
+      - !type:EntityAnchored {}
+      steps:
+      - tool: Prying
+        doAfter: 0.5
+
+# ────────────── Back Part ──────────────
+
+- type: constructionGraph
+  id: BSABackPart
+  start: start
+  graph:
+  - node: start
+    entity: BSABackPartUnfinished
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: wired
+      conditions:
+      - !type:EntityAnchored {}
+      steps:
+      - material: Cable
+        amount: 2
+        doAfter: 0.5
+
+  - node: wired
+    entity: BSABackPartUnfinished
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: completed
+      conditions:
+      - !type:EntityAnchored {}
+      completed:
+      - !type:SnapToGrid {}
+      steps:
+      - tool: Screwing
+        doAfter: 0.5
+    - to: start
+      conditions:
+      - !type:EntityAnchored {}
+      completed:
+      - !type:SpawnPrototype
+        prototype: CableApcStack2
+      steps:
+      - tool: Cutting
+        doAfter: 0.5
+
+  - node: completed
+    entity: BSABackPart
+    edges:
+    - to: wired
+      conditions:
+      - !type:EntityAnchored {}
+      steps:
+      - tool: Prying
+        doAfter: 0.5

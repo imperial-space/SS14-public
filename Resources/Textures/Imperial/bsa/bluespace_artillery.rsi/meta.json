@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "https://github.com/ParadiseSS13/Paradise",
+  "size": {
+    "x": 355,
+    "y": 76
+  },
+  "states": [
+    {
+      "name": "cannon_east"
+    },
+    {
+      "name": "cannon_west"
+    },
+    {
+      "name": "top_east"
+    },
+    {
+      "name": "top_west"
+    }
+  ]
+}
