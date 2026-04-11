@@ -187,7 +187,7 @@ public abstract partial class GameTest
 
         await DoPreTestOverrides();
 
-        await Pair.RunUntilSynced();
+        await RunUntilSynced();
     }
 
     /// <summary>
@@ -240,7 +240,7 @@ public abstract partial class GameTest
             }
 
             // Roll forward til sync for teardown.
-            await Pair.RunUntilSynced();
+            await RunUntilSynced();
 
             await CleanUpEntities();
 
