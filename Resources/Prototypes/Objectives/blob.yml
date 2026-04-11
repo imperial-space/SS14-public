@@ -1,0 +1,16 @@
+- type: entity
+  parent: BaseObjective
+  id: BlobInfectStationObjective
+  components:
+  - type: Objective
+    difficulty: 1
+    issuer: objective-issuer-blob
+    icon:
+      sprite: Imperial/blob/blob.rsi
+      state: blob_core
+  - type: NumberObjective
+    min: 350
+    max: 351
+    title: objective-condition-blob-infect-title
+    description: objective-condition-blob-infect-description
+  - type: BlobInfectStationCondition
