@@ -1,0 +1,14 @@
+- type: entity
+  parent: [BaseTraitorObjective, BaseFreeObjective]
+  id: BloodBrotherPartnerObjective
+  name: Ваш напарник
+  description: Действуйте сообща с этим агентом. Все основные цели у вас общие.
+  components:
+  - type: Objective
+    difficulty: 0.1
+    unique: false
+    icon:
+      sprite: Interface/Misc/job_icons.rsi
+      state: Syndicate
+  - type: TargetObjective
+    title: blood-brother-partner-objective-title
