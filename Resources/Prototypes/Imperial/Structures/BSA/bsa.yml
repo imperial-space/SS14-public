@@ -1,0 +1,288 @@
+# =====================================================================
+# Bluespace Artillery (BSA) — Entities
+# =====================================================================
+
+# ────────────── Abstract Bases ──────────────
+
+- type: entity
+  id: BSABase
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Anchorable
+  - type: Rotatable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 400
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Pullable
+  - type: Appearance
+
+- type: entity
+  id: BSAFinishedBase
+  parent: BSABase
+  abstract: true
+  components:
+  - type: Construction
+    node: completed
+
+- type: entity
+  id: BSAUnfinishedBase
+  parent: BSABase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Structures/Power/Generation/PA/end_cap.rsi
+    layers:
+    - state: unwired
+      map: ["enum.ConstructionVisuals.Layer"]
+  - type: GenericVisualizer
+    visuals:
+      enum.ConstructionVisuals.Key:
+        enum.ConstructionVisuals.Layer:
+          start: {state: unwired}
+          wired: {state: wired}
+  - type: Construction
+    node: start
+    defaultTarget: completed
+
+# ────────────── Control Box (main part) ──────────────
+
+- type: entity
+  id: BSAControlBox
+  parent: BSAFinishedBase
+  name: Консоль блюспейс-артиллерии
+  description: Центральная часть и командный пост блюспейс-артиллерии. Управляет наведением и выстрелом.
+  suffix: BSA
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    noRot: true
+    sprite: Structures/Power/Generation/PA/control_box.rsi
+    layers:
+    - state: completed
+      map: ["base"]
+    - state: cannon_east
+      sprite: Imperial/bsa/bluespace_artillery.rsi
+      map: ["cannon"]
+      visible: false
+    - state: top_east
+      sprite: Imperial/bsa/bluespace_artillery.rsi
+      map: ["top"]
+      shader: unshaded
+      visible: false
+  - type: BSAControlBox
+  - type: ApcPowerReceiver
+    powerLoad: 5000
+  - type: ExtensionCableReceiver
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: Apc
+  - type: Construction
+    graph: BSAControlBox
+  - type: ActivatableUI
+    key: enum.BSAControlBoxUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.BSAControlBoxUiKey.Key:
+        type: BSABoundUserInterface
+  - type: MultipartMachine
+    parts:
+      enum.BSAParts.Front:
+        component: BSAFrontPart
+        offset: 1, 0
+        rotation: 0
+        ghostProto: BSAFrontPart
+        graph: BSAFrontPart
+        expectedNode: completed
+      enum.BSAParts.Back:
+        component: BSABackPart
+        offset: -1, 0
+        rotation: 0
+        ghostProto: BSABackPart
+        graph: BSABackPart
+        expectedNode: completed
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 5
+            max: 10
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
+  - type: AccessReader
+    access: [["Captain"], ["Command"]]
+
+# Unfinished Control Box
+- type: entity
+  id: BSAControlBoxUnfinished
+  parent: BSAUnfinishedBase
+  name: Консоль блюспейс-артиллерии
+  suffix: Unfinished
+  description: Недостроенная консоль BSA.
+  components:
+  - type: Sprite
+    sprite: Structures/Power/Generation/PA/control_box.rsi
+  - type: Construction
+    graph: BSAControlBox
+
+# ────────────── Front Part ──────────────
+
+- type: entity
+  id: BSAFrontPart
+  parent: BSAFinishedBase
+  name: Ствол блюспейс-артиллерии
+  description: Передний ствольный узел BSA. Устанавливается впереди консоли.
+  suffix: BSA
+  components:
+  - type: Sprite
+    sprite: Structures/Power/Generation/PA/end_cap.rsi
+    layers:
+    - state: completed
+  - type: BSAFrontPart
+  - type: MultipartMachinePart
+  - type: Construction
+    graph: BSAFrontPart
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+# Unfinished Front Part
+- type: entity
+  id: BSAFrontPartUnfinished
+  parent: BSAUnfinishedBase
+  name: Ствол блюспейс-артиллерии
+  suffix: Unfinished
+  description: Недостроенный ствольный узел BSA.
+  components:
+  - type: Sprite
+    sprite: Structures/Power/Generation/PA/end_cap.rsi
+  - type: BSAFrontPart
+  - type: MultipartMachinePart
+  - type: Construction
+    graph: BSAFrontPart
+
+# ────────────── Back Part ──────────────
+
+- type: entity
+  id: BSABackPart
+  parent: BSAFinishedBase
+  name: Казённик блюспейс-артиллерии
+  description: Задний блок BSA. Содержит конденсаторы и энергоблок.
+  suffix: BSA
+  components:
+  - type: Sprite
+    sprite: Structures/Power/Generation/PA/power_box.rsi
+    layers:
+    - state: completed
+  - type: BSABackPart
+  - type: MultipartMachinePart
+  - type: Construction
+    graph: BSABackPart
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+# Unfinished Back Part
+- type: entity
+  id: BSABackPartUnfinished
+  parent: BSAUnfinishedBase
+  name: Казённик блюспейс-артиллерии
+  suffix: Unfinished
+  description: Недостроенный задний блок BSA.
+  components:
+  - type: Sprite
+    sprite: Structures/Power/Generation/PA/power_box.rsi
+  - type: BSABackPart
+  - type: MultipartMachinePart
+  - type: Construction
+    graph: BSABackPart
+
+# ────────────── Impact Effect ──────────────
+
+- type: entity
+  id: BSAImpactEffect
+  name: Блюспейс-взрыв
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Imperial/bsa/shot.rsi
+    layers:
+    - state: bsa_impact_ex
+      map: ["effect"]
+  - type: AnimationPlayer
+  - type: TimedDespawn
+    lifetime: 1.0
+  - type: Appearance
+
+# ────────────── Shot Projectile ──────────────
+
+- type: entity
+  id: BSAShotProjectile
+  name: BSA вспышка выстрела
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    noRot: false
+    sprite: Imperial/bsa/shot.rsi
+    layers:
+    - state: bsa_impact_ex
+      map: ["effect"]
+      shader: unshaded
+  - type: AnimationPlayer
+  - type: Appearance
+  - type: TimedDespawn
+    lifetime: 1.0
