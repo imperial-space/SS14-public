@@ -20,6 +20,7 @@ public sealed partial class XenoConsciousnessTransferSystem
     [Dependency] private readonly MindSystem         _mind     = default!;
     [Dependency] private readonly MobStateSystem     _mobState = default!;
     [Dependency] private readonly PopupSystem        _popup    = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
 
     protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<XenoConsciousnessTransferEffect> args)
     {
