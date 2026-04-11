@@ -1,0 +1,62 @@
+- type: listing
+  id: UplinkContractorKit
+  name: uplink-contractor-kit-name
+  description: uplink-contractor-kit-desc
+  productEntity: BoxContractorKit
+  productEvent: !type:ContractorKitPurchasedEvent {}
+  raiseProductEventOnUser: true
+  cost:
+    Telecrystal: 20
+  conditions:
+  - !type:ContractorCandidateCondition {}
+  - !type:BuyerAntagCondition
+    whitelist:
+    - Traitor
+    blacklist:
+    - Contractor
+  categories:
+  - UplinkJob
+
+- type: listing
+  id: ContractorHubPinpointer
+  name: contractor-hub-pinpointer-name
+  description: contractor-hub-pinpointer-desc
+  icon: { sprite: /Textures/Imperial/contractor/pinpointer/pinpointer.rsi, state: pinpointer-syndicate }
+  productEntity: ContractorPinpointer
+  cost:
+    ContractorRep: 2
+  categories:
+  - ContractorHub
+
+- type: listing
+  id: ContractorHubZippo
+  name: contractor-hub-zippo-name
+  description: contractor-hub-zippo-desc
+  icon: { sprite: /Textures/Imperial/contractor/lighter/zippo.rsi, state: icon }
+  productEntity: ContractorFlippoLighter
+  cost:
+    ContractorRep: 1
+  categories:
+  - ContractorHub
+
+- type: listing
+  id: ContractorHubExtraction
+  name: contractor-hub-extraction-name
+  description: contractor-hub-extraction-desc
+  icon: { sprite: /Textures/Objects/Tools/fulton.rsi, state: extraction_pack }
+  productEntity: BoxContractorExtraction
+  cost:
+    ContractorRep: 4
+  categories:
+  - ContractorHub
+
+- type: listing
+  id: ContractorHubBalloon
+  name: contractor-hub-balloon-name
+  description: contractor-hub-balloon-desc
+  icon: { sprite: /Textures/Imperial/contractor/balloon/balloon.rsi, state: icon }
+  productEntity: ContractorBalloon
+  cost:
+    ContractorRep: 20
+  categories:
+  - ContractorHub
