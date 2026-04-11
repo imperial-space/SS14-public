@@ -117,3 +117,5 @@ spitter-evolve-unavalible = Сейчас нельзя эволюциониров
 praetorian-evolve-unavalible = Сейчас нельзя эволюционировать в преторианца!
 ravager-evolve-unavalible = Сейчас нельзя эволюционировать в разрушителя!
 lawra-spawn-unavalible = В улье слишком много активных ксеноморфов!
+
+xeno-extract-no-grid = Эффект не сработал: нужен тайл грида.
