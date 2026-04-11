@@ -1,0 +1,8 @@
+Assets in this directory are based on SS220 Paradise Blob assets requested by the user.
+Source project: SS220 Paradise
+Repository: https://github.com/ss220-space/Paradise
+Branch: master220
+Primary upstream sprite sheet: https://github.com/ss220-space/Paradise/blob/master220/icons/mob/blob.dmi
+License status: no explicit per-file license statement recorded in this note; use repository metadata and maintainer approval before redistribution.
+Copyright holder: SS220 Paradise contributors (repository-level attribution).
+Usage basis: attribution to upstream repository and exact source URL is required in derivative distributions.
