@@ -49,7 +49,7 @@ public abstract partial class GameTest
             await OverrideCVarByName(Side.Server, cvar, value, false);
         }
 
-        await Pair.RunUntilSynced();
+        await RunUntilSynced();
     }
 
     /// <summary>
@@ -78,6 +78,6 @@ public abstract partial class GameTest
         }
 
         if (sync)
-            await Pair.RunUntilSynced();
+            await RunUntilSynced();
     }
 }
