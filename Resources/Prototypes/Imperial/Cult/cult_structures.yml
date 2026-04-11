@@ -1,0 +1,332 @@
+﻿# ==============================================
+#  Культ Нар'Си — Структуры
+# ==============================================
+
+# === Базовая культовая структура ===
+
+- type: entity
+  id: BaseCultStructure
+  parent: BaseStructure
+  abstract: true
+  components:
+  - type: Anchorable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 60
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    snapCardinals: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: CultStructure
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 120
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CultRunedMetal:
+            min: 2
+            max: 3
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/cult/effects/pylon_shatter.ogg
+
+# === Алтарь ===
+
+- type: entity
+  id: CultAltar
+  name: Алтарь Нар'Си
+  description: Кровавый алтарь. Используется для создания предметов культа.
+  parent: BaseCultStructure
+  components:
+  - type: Sprite
+    sprite: Structures/Furniture/Altars/Cults/heaven.rsi
+    layers:
+    - state: full
+    - state: blood
+      shader: unshaded
+  - type: Icon
+    sprite: Structures/Furniture/Altars/Cults/heaven.rsi
+    state: full
+  - type: Construction
+    graph: CultAltarGraph
+    node: cultAltar
+  - type: CultStructure
+    structureType: Altar
+    cooldown: 240
+  - type: PlaceableSurface
+  - type: UserInterface
+    interfaces:
+      enum.CultStructureBuiKey.Key:
+        type: CultStructureBui
+
+# === Кузница ===
+
+- type: entity
+  id: CultForge
+  name: Кузница культа
+  description: Здесь куётся броня, щиты и оружие для армий Нар'Си.
+  parent: BaseCultStructure
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/forge.rsi
+    state: forge
+  - type: Icon
+    sprite: Imperial/cult/forge.rsi
+    state: forge
+  - type: Construction
+    graph: CultForgeGraph
+    node: cultForge
+  - type: CultStructure
+    structureType: Forge
+    cooldown: 240
+  - type: UserInterface
+    interfaces:
+      enum.CultStructureBuiKey.Key:
+        type: CultStructureBui
+
+# === Архив ===
+# Спрайт: нет Imperial спрайта — остаём vanilla
+
+- type: entity
+  id: CultArchives
+  name: Архив культа
+  description: Стол с гримуарами. Создаёт артефакты.
+  parent: BaseCultStructure
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/convertaltar.rsi
+    state: convertaltar-red
+  - type: Icon
+    sprite: Imperial/cult/convertaltar.rsi
+    state: convertaltar-red
+  - type: Construction
+    graph: CultArchivesGraph
+    node: cultArchives
+  - type: CultStructure
+    structureType: Archives
+    cooldown: 240
+  - type: UserInterface
+    interfaces:
+      enum.CultStructureBuiKey.Key:
+        type: CultStructureBui
+
+# === Пилон (лечит культистов) ===
+
+- type: entity
+  id: CultPylon
+  name: Пилон Нар'Си
+  description: Парящий кристалл, медленно исцеляющий культистов поблизости.
+  parent: BaseCultStructure
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/pylon.rsi
+    state: conduit-red
+  - type: Construction
+    graph: CultPylonGraph
+    node: cultPylon
+  - type: CultStructure
+    structureType: Pylon
+  - type: PylonHealCultists
+    conversionMap:
+      Girder: CultRunedGirder
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CultRunedMetal:
+            min: 1
+            max: 2
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+
+# === Рунная дверь ===
+
+- type: entity
+  id: CultRunedAirlock
+  name: Рунная дверь
+  description: Открывается только для последователей Нар'Си.
+  parent: AirlockGlass
+  suffix: CULT
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/air.rsi
+    snapCardinals: true
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+    - state: welded
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: welded
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseBolted"]
+      visible: false
+    - state: closed
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseEmergencyAccess"]
+      visible: false
+    - state: panel_closed
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - state: sparks_damaged
+      map: ["enum.DoorVisualLayers.BaseEmagging"]
+      shader: unshaded
+      visible: false
+  - type: Icon
+    sprite: Imperial/cult/air.rsi
+    state: closed
+  - type: Airlock
+    openingSpriteState: opening
+    closingSpriteState: closing
+    emergencyAccessLayer: false
+    openSound:
+      path: /Audio/Machines/airlock_open.ogg
+    closeSound:
+      path: /Audio/Machines/airlock_close.ogg
+  - type: Construction
+    graph: CultRunedAirlockGraph
+    node: cultRunedAirlock
+  - type: CultStructure
+    structureType: RunedAirlock
+  - type: AccessReader
+    access:
+    - - CultistAccess
+
+# === Руническая балка ===
+
+- type: entity
+  id: CultRunedGirder
+  name: Руническая балка
+  description: Балка с руническими надписями. Блокирует проход. Разбирается ритуальным кинжалом.
+  parent: BaseCultStructure
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/solid.rsi
+    state: wall_girder
+    color: "#AA0000"
+  - type: Icon
+    sprite: Structures/Walls/solid.rsi
+    state: wall_girder
+    color: "#AA0000"
+  - type: Construction
+    graph: CultRunedGirderGraph
+    node: cultRunedGirder
+  - type: CultStructure
+    structureType: RunedGirder
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CultRunedMetal:
+            min: 1
+            max: 1
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+
+
+- type: entity
+  id: CultWallForce
+  name: Силовой барьер
+  description: Непроницаемая силовая стена культа. Разрушима при достаточном натиске.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 10
+  - type: Tag
+    tags:
+    - Wall
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - SpecialWallLayer
+        layer:
+        - SpecialWallLayer
+  - type: Airtight
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+  - type: Sprite
+    sprite: Imperial/cult/effect.rsi
+    state: shield-cult
+    color: "#8B0000"
+
+- type: entity
+  id: CultNarSieRitualBarrier
+  parent: CultWallForce
+  name: Барьер ритуала Нар'Си
+  description: Силовой барьер, защищающий заклинателя во время разрыва мерности.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 80
+
+# Рунный баᖀьер — непробиваемый
+- type: entity
+  id: CultInvulnBarrier
+  name: Рунный барьер
+  description: Баᖀьер, сотканный из тёмной энеᖀгии. Его нельзя разрушить.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+    - Wall
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - SpecialWallLayer
+        layer:
+        - SpecialWallLayer
+  - type: Airtight
+  - type: Sprite
+    sprite: Imperial/cult/effect.rsi
+    state: shield-cult
+    color: "#CC3300"
