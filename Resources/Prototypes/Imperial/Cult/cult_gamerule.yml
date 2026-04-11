@@ -1,0 +1,33 @@
+# ─────────────────────────────────────────────
+#  Культ Нар'Си — Game Rule
+# ─────────────────────────────────────────────
+
+- type: entity
+  id: Cult
+  parent: BaseGameRule
+  components:
+  - type: GameRule
+    minPlayers: 25
+  - type: CultRule
+  - type: AntagSelection
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ Cultist ]
+      min: 2
+      max: 2
+      playerRatio: 25
+      briefing:
+        text: cult-role-greeting
+        color: DarkRed
+        sound: "/Audio/Imperial/cult/ambience/cult_start.ogg"
+      startingGear: CultistStartingGear
+      components:
+      - type: Cultist
+      mindRoles:
+      - MindRoleCultist
+  - type: DynamicRuleCost
+    cost: 250
+  - type: AntagObjectives
+    objectives:
+    - CultSacrificeTargetsObjective
+    - CultSummonNarSieObjective

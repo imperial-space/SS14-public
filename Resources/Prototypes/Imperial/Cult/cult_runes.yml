@@ -1,0 +1,172 @@
+﻿# ==============================================
+#  Культ Нар'Си — Руны
+#  Спрайты: Imperial/cult/rune.rsi
+#  Состояния: rune1..rune8
+# ==============================================
+
+- type: entity
+  abstract: true
+  id: BaseCultRune
+  name: Руна культа
+  description: Начертанная кровью руна тёмной магии.
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/cult/rune.rsi
+    state: rune1
+    noRot: false
+    color: "#8B0000"
+  - type: CultRune
+  - type: InteractionOutline
+  - type: Clickable
+
+# ─── Руна телепортации ───
+
+- type: entity
+  id: CultRuneTeleport
+  name: Руна телепортации
+  description: Позволяет перемещаться между рунами мгновенно.
+  parent: BaseCultRune
+  components:
+  - type: Sprite
+    state: rune1
+  - type: CultRune
+    runeType: Teleport
+    requiredInvokers: 1
+
+# ─── Руна усиления ───
+
+- type: entity
+  id: CultRuneEmpower
+  name: Руна усиления
+  description: Снижает стоимость заклинаний культиста на руне.
+  parent: BaseCultRune
+  components:
+  - type: Sprite
+    state: rune2
+  - type: CultRune
+    runeType: Empowering
+    requiredInvokers: 1
+
+# ─── Руна подношения (конвертация / жертвоприношение) ───
+
+- type: entity
+  id: CultRuneOffering
+  name: Руна жертвоприношения
+  description: Обращает жертву или приносит её в дар Нар'Си.
+  parent: BaseCultRune
+  components:
+  - type: Sprite
+    state: rune3
+  - type: CultRune
+    runeType: Offering
+    requiredInvokers: 2
+
+# ─── Руна воскрешения ───
+
+- type: entity
+  id: CultRuneRevive
+  name: Руна возрождения
+  description: Возвращает павшего культиста из мёртвых.
+  parent: BaseCultRune
+  components:
+  - type: Sprite
+    state: rune4
+  - type: CultRune
+    runeType: Revive
+    requiredInvokers: 1
+    reviveCharges: 1
+
+# ─── Руна барьера ───
+
+- type: entity
+  id: CultRuneBarrier
+  name: Руна барьера
+  description: Воздвигает силовые стены вокруг места ритуала.
+  parent: BaseCultRune
+  components:
+  - type: Sprite
+    state: rune5
+  - type: CultRune
+    runeType: Barrier
+    requiredInvokers: 1
+
+# ─── Руна суммонирования ───
+
+- type: entity
+  id: CultRuneSummoning
+  name: Руна призыва
+  description: Телепортирует другого культиста прямо к руне.
+  parent: BaseCultRune
+  components:
+  - type: Sprite
+    state: rune6
+  - type: CultRune
+    runeType: Summoning
+    requiredInvokers: 2
+
+# ─── Руна крови-кипения ───
+
+- type: entity
+  id: CultRuneBloodBoil
+  name: Руна кипящей крови
+  description: Сжигает всех не-культистов в широком радиусе.
+  parent: BaseCultRune
+  components:
+  - type: Sprite
+    state: rune7
+  - type: CultRune
+    runeType: BloodBoil
+    requiredInvokers: 2
+
+# ─── Руна царства духов ───
+
+- type: entity
+  id: CultRuneSpiritRealm
+  name: Руна царства духов
+  description: Призывает фантомов из загробного мира и скрывает призывателя в духовном облике.
+  parent: BaseCultRune
+  components:
+  - type: Sprite
+    state: rune8
+  - type: CultRune
+    runeType: SpiritRealm
+    requiredInvokers: 1
+  - type: UserInterface
+    interfaces:
+      enum.CultSpiritRealmBuiKey.Key:
+        type: CultSpiritRealmBui
+
+# ─── Руна Нар'Си (финальный ритуал) ───
+
+- type: entity
+  id: CultRuneNarSie
+  name: Руна Нар'Си
+  description: Финальный ритуал. Требует девяти культистов.
+  parent: BaseCultRune
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/cult/rune_large.rsi
+    state: rune_large
+    noRot: false
+    color: "#8B0000"
+  - type: CultRune
+    runeType: NarSie
+    requiredInvokers: 9
+    destructionState: rune_large_distorted
+
+# --- Эффект уничтожения руны Нар'Си (анимация rune_large.rsi distorted) ---
+
+- type: entity
+  id: CultRuneDestructionEffect
+  name: cult-rune-destruction-effect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/cult/rune_large.rsi
+    state: rune_large_distorted
+    noRot: false
+  - type: TimedDespawn
+    lifetime: 0.4

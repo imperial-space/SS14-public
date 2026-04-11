@@ -1,0 +1,11 @@
+- type: factionIcon
+  id: CultistFaction
+  isShaded: true
+  priority: 11
+  showTo:
+    components:
+      - ShowAntagIcons
+      - Cultist
+  icon:
+    sprite: /Textures/Imperial/cult/hud.rsi
+    state: hudcultist
