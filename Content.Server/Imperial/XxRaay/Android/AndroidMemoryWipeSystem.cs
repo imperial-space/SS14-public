@@ -66,7 +66,7 @@ public sealed class AndroidMemoryWipeSystem : EntitySystem
 
     public void StartMemoryWipe(EntityUid user, EntityUid target, AndroidRk800Component rk800)
     {
-        if (!EntityManager.EntityExists(user) || !EntityManager.EntityExists(target))
+        if (!Exists(user) || !Exists(target))
             return;
 
         if (!_mobState.IsAlive(user) || !_mobState.IsAlive(target))
@@ -125,7 +125,7 @@ public sealed class AndroidMemoryWipeSystem : EntitySystem
         if (!args.HasDirectionalMovement)
             return;
 
-        if (comp.Wiper is not { } wiper || !EntityManager.EntityExists(wiper))
+        if (comp.Wiper is not { } wiper || !Exists(wiper))
             return;
 
         if (comp.EscapeInProgress)
@@ -158,7 +158,7 @@ public sealed class AndroidMemoryWipeSystem : EntitySystem
             return;
         }
 
-        if (comp.Wiper is not { } wiper || !EntityManager.EntityExists(wiper))
+        if (comp.Wiper is not { } wiper || !Exists(wiper))
         {
             CleanupMemoryWipe(uid, ref comp);
             return;
