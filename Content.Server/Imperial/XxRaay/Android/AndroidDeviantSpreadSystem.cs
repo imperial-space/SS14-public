@@ -147,7 +147,7 @@ public sealed class AndroidDeviantSpreadSystem : EntitySystem
 
     private void RequestConsentConversion(EntityUid target, EntityUid converter)
     {
-        if (!EntityManager.EntityExists(target) || !EntityManager.EntityExists(converter))
+        if (!Exists(target) || !Exists(converter))
             return;
 
         if (!TryComp<AndroidStressComponent>(target, out var targetStress) || targetStress.IsDeviant || !targetStress.CanBeDeviant)
@@ -198,7 +198,7 @@ public sealed class AndroidDeviantSpreadSystem : EntitySystem
 
     public void HandleConsentAccepted(EntityUid target, EntityUid converter)
     {
-        if (!EntityManager.EntityExists(target) || !EntityManager.EntityExists(converter))
+        if (!Exists(target) || !Exists(converter))
             return;
 
         if (!TryGetActiveConversionPair(target, converter, out _, out _))
@@ -232,7 +232,7 @@ public sealed class AndroidDeviantSpreadSystem : EntitySystem
 
     public void HandleConsentDenied(EntityUid target, EntityUid converter)
     {
-        if (!EntityManager.EntityExists(target) || !EntityManager.EntityExists(converter))
+        if (!Exists(target) || !Exists(converter))
             return;
 
         var now = _timing.CurTime;
@@ -291,7 +291,7 @@ public sealed class AndroidDeviantSpreadSystem : EntitySystem
             return;
         }
 
-        if (!EntityManager.EntityExists(converter) || !EntityManager.EntityExists(target))
+        if (!Exists(converter) || !Exists(target))
         {
             RemCompDeferred<AndroidDeviantConsentConversionComponent>(uid);
             return;
