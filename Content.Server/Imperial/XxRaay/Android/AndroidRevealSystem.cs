@@ -86,7 +86,7 @@ public sealed class AndroidRevealSystem : EntitySystem
 
     private void StartReveal(EntityUid user, EntityUid target)
     {
-        if (!EntityManager.EntityExists(user) || !EntityManager.EntityExists(target))
+        if (!Exists(user) || !Exists(target))
             return;
 
         if (!_mobState.IsAlive(user) || !_mobState.IsAlive(target))
@@ -149,7 +149,7 @@ public sealed class AndroidRevealSystem : EntitySystem
         if (!args.HasDirectionalMovement)
             return;
 
-        if (comp.Revealer is not { } revealer || !EntityManager.EntityExists(revealer))
+        if (comp.Revealer is not { } revealer || !Exists(revealer))
             return;
 
         if (comp.EscapeInProgress)
@@ -182,7 +182,7 @@ public sealed class AndroidRevealSystem : EntitySystem
             return;
         }
 
-        if (comp.Revealer is not { } revealer || !EntityManager.EntityExists(revealer))
+        if (comp.Revealer is not { } revealer || !Exists(revealer))
         {
             CleanupReveal(uid, ref comp);
             return;
@@ -224,7 +224,7 @@ public sealed class AndroidRevealSystem : EntitySystem
             uid,
             PopupType.MediumCaution);
 
-        if (revealer is { } revealerUid && EntityManager.EntityExists(revealerUid))
+        if (revealer is { } revealerUid && Exists(revealerUid))
         {
             _popup.PopupEntity(
                 Loc.GetString("android-reveal-disguise-escape-failed-revealer",
