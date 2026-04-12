@@ -29,7 +29,6 @@ using Content.Shared.Radio.Components;
 using Content.Shared.Speech.Muting;
 using Content.Shared.StatusEffect;
 using Content.Shared.Stealth.Components;
-using Content.Shared.Gibbing;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;

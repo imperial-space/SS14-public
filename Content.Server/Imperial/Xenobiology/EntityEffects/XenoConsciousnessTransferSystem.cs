@@ -6,6 +6,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Robust.Server.GameObjects;
+using Robust.Shared.Map;
 
 namespace Content.Server.Imperial.Xenobiology.EntityEffects;
 
@@ -20,7 +21,6 @@ public sealed partial class XenoConsciousnessTransferSystem
     [Dependency] private readonly MindSystem         _mind     = default!;
     [Dependency] private readonly MobStateSystem     _mobState = default!;
     [Dependency] private readonly PopupSystem        _popup    = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
 
     protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<XenoConsciousnessTransferEffect> args)
     {
@@ -41,7 +41,7 @@ public sealed partial class XenoConsciousnessTransferSystem
         _lookup.GetEntitiesInRange(uid, range, candidates);
 
         EntityUid? target = null;
-        var origin = _xform.GetMapCoordinates(uid);
+        var origin = Transform(uid).Coordinates.ToMap(EntityManager);
         var bestDistance = float.MaxValue;
         foreach (var candidateUid in candidates)
         {
@@ -59,7 +59,7 @@ public sealed partial class XenoConsciousnessTransferSystem
             if (_mind.TryGetMind(candidateUid, out _, out _))
                 continue;
 
-            var candidateCoords = _xform.GetMapCoordinates(candidateUid);
+            var candidateCoords = Transform(candidateUid).Coordinates.ToMap(EntityManager);
             if (candidateCoords.MapId != origin.MapId)
                 continue;
 
