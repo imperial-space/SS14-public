@@ -148,7 +148,7 @@ namespace Content.Server.Imperial.XxRaay.Android;
 
     private void RequestConsentConversion(EntityUid target, EntityUid converter)
     {
-        if (!EntityManager.EntityExists(target) || !EntityManager.EntityExists(converter))
+        if (!Exists(target) || !Exists(converter))
             return;
 
         if (!TryComp<AndroidStressComponent>(target, out var targetStress) || targetStress.IsDeviant || !targetStress.CanBeDeviant)
@@ -199,7 +199,7 @@ namespace Content.Server.Imperial.XxRaay.Android;
 
     public void HandleConsentAccepted(EntityUid target, EntityUid converter)
     {
-        if (!EntityManager.EntityExists(target) || !EntityManager.EntityExists(converter))
+        if (!Exists(target) || !Exists(converter))
             return;
 
         if (!TryGetActiveConversionPair(target, converter, out _, out _))
@@ -233,7 +233,7 @@ namespace Content.Server.Imperial.XxRaay.Android;
 
     public void HandleConsentDenied(EntityUid target, EntityUid converter)
     {
-        if (!EntityManager.EntityExists(target) || !EntityManager.EntityExists(converter))
+        if (!Exists(target) || !Exists(converter))
             return;
 
         var now = _timing.CurTime;
@@ -292,7 +292,7 @@ namespace Content.Server.Imperial.XxRaay.Android;
             return;
         }
 
-        if (!EntityManager.EntityExists(converter) || !EntityManager.EntityExists(target))
+        if (!Exists(converter) || !Exists(target))
         {
             RemCompDeferred<AndroidDeviantConsentConversionComponent>(uid);
             return;
