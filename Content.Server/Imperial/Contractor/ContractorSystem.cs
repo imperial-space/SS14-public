@@ -881,7 +881,8 @@ public sealed class ContractorSystem : EntitySystem
         var query = EntityQueryEnumerator<NavMapBeaconComponent>();
         while (query.MoveNext(out var beaconUid, out var beacon))
         {
-            if (!_navMap.TryGetBeaconLabel(beaconUid, out var label, beacon))
+            var label = beacon.Text;
+            if (string.IsNullOrWhiteSpace(label))
                 continue;
 
             if (stationUid != null && _station.GetOwningStation(beaconUid) != stationUid)
