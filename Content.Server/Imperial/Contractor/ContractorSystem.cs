@@ -76,7 +76,6 @@ public sealed class ContractorSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly NewsSystem _news = default!;
-    [Dependency] private readonly NavMapSystem _navMap = default!;
     [Dependency] private readonly IPlayerManager _players = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly PinpointerSystem _pinpointer = default!;
