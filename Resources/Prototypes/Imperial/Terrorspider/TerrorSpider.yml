@@ -1238,7 +1238,6 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
-  - type: VentCrawler
   - type: Spider
     webPrototype: SpiderWebTerrorGuardian
     webAction: TerrorWeedsGuardianAction
@@ -1369,7 +1368,6 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
-  - type: VentCrawler
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bloodMaxVolume: 0
@@ -1581,6 +1579,24 @@
   - type: InstantAction
     event: !type:TerrorSpiderSpawnWebActionEvent
       webPrototype: SpiderWebPrincess
+
+- type: entity
+  id: ActionTerrorSpiderVentUnweld
+  name: Open welded vent
+  description: Rips open a welded ventilation unit.
+  noSpawn: true
+  components:
+  - type: TargetAction
+    canTargetSelf: false
+    range: 1.2
+  - type: EntityTargetAction
+    event: !type:TerrorSpiderVentUnweldActionEvent
+  - type: Action
+    useDelay: 2
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
+      state: lay_eggs
 
 - type: entity
   parent: LightImplantSpider 
@@ -1992,7 +2008,6 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
-  - type: VentCrawler
   - type: Spider
     webPrototype: SpiderWebPrincess
     webAction: TerrorWeedsQueenAction

@@ -7,4 +7,9 @@ namespace Content.Shared.Atmos.Piping
     public sealed partial class EnterVentCrawlerDoAfterEvent : SimpleDoAfterEvent
     {
     }
+
+    [Serializable, NetSerializable]
+    public sealed partial class ExitVentCrawlerDoAfterEvent : SimpleDoAfterEvent
+    {
+    }
 }

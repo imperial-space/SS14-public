@@ -1,4 +1,5 @@
 using Content.Server.Actions;
+using Content.Server.Atmos.Piping.Unary.Components;
 using Content.Server.Imperial.TerrorSpider.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -10,6 +11,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Tag;
+using Content.Shared.Tools.Systems;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -27,6 +29,7 @@ public sealed class TerrorSpiderMotherSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly MovementModStatusSystem _movementModStatus = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private readonly WeldableSystem _weldable = default!;
 
     public override void Initialize()
     {
@@ -39,6 +42,7 @@ public sealed class TerrorSpiderMotherSystem : EntitySystem
         SubscribeLocalEvent<TerrorSpiderMotherComponent, TerrorSpiderMotherRemoteViewPreviousActionEvent>(OnRemoteViewPreviousAction);
         SubscribeLocalEvent<TerrorSpiderMotherComponent, TerrorSpiderMotherRemoteViewExitActionEvent>(OnRemoteViewExitAction);
         SubscribeLocalEvent<TerrorSpiderMotherComponent, TerrorSpiderMotherLayJellyActionEvent>(OnLayJellyAction);
+        SubscribeLocalEvent<TerrorSpiderMotherComponent, TerrorSpiderVentUnweldActionEvent>(OnUnweldVentAction);
         SubscribeLocalEvent<TerrorSpiderMotherComponent, BeforeInteractHandEvent>(OnBeforeInteractHand);
         SubscribeLocalEvent<TerrorSpiderMotherComponent, MeleeHitEvent>(OnMeleeHit);
         SubscribeLocalEvent<TerrorSpiderWebBuffReceiverComponent, MeleeHitEvent>(OnAnyMeleeHit);
@@ -96,6 +100,7 @@ public sealed class TerrorSpiderMotherSystem : EntitySystem
         _actions.AddAction(uid, ref comp.RemoteViewPreviousActionEntity, comp.RemoteViewPreviousAction);
         _actions.AddAction(uid, ref comp.RemoteViewExitActionEntity, comp.RemoteViewExitAction);
         _actions.AddAction(uid, ref comp.LayJellyActionEntity, comp.LayJellyAction);
+        _actions.AddAction(uid, ref comp.UnweldVentActionEntity, comp.UnweldVentAction);
     }
 
     private void OnShutdown(EntityUid uid, TerrorSpiderMotherComponent comp, ComponentShutdown args)
@@ -105,6 +110,7 @@ public sealed class TerrorSpiderMotherSystem : EntitySystem
         _actions.RemoveAction(uid, comp.RemoteViewPreviousActionEntity);
         _actions.RemoveAction(uid, comp.RemoteViewExitActionEntity);
         _actions.RemoveAction(uid, comp.LayJellyActionEntity);
+        _actions.RemoveAction(uid, comp.UnweldVentActionEntity);
     }
 
     private void OnPulseAction(Entity<TerrorSpiderMotherComponent> ent, ref TerrorSpiderMotherPulseActionEvent args)
@@ -244,6 +250,28 @@ public sealed class TerrorSpiderMotherSystem : EntitySystem
 
             ApplyHealAllDamageTypes(target, ent.Comp.TouchHealAmount);
         }
+    }
+
+    private void OnUnweldVentAction(Entity<TerrorSpiderMotherComponent> ent, ref TerrorSpiderVentUnweldActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!IsWeldedVent(args.Target))
+            return;
+
+        _weldable.SetWeldedState(args.Target, false);
+        args.Handled = true;
+    }
+
+    private bool IsWeldedVent(EntityUid uid)
+    {
+        if (!HasComp<GasVentPumpComponent>(uid)
+            && !HasComp<GasVentScrubberComponent>(uid)
+            && !HasComp<GasPassiveVentComponent>(uid))
+            return false;
+
+        return _weldable.IsWelded(uid);
     }
 
     private void OnAnyMeleeHit(Entity<TerrorSpiderWebBuffReceiverComponent> ent, ref MeleeHitEvent args)

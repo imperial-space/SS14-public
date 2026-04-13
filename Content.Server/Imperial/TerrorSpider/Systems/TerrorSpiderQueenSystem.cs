@@ -1,4 +1,5 @@
 using Content.Server.Actions;
+using Content.Server.Atmos.Piping.Unary.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.Imperial.TerrorSpider.Components;
 using Content.Server.Light.EntitySystems;
@@ -16,6 +17,7 @@ using Content.Shared.Pinpointer;
 using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Tag;
 using Content.Shared.Imperial.TerrorSpider.Components;
+using Content.Shared.Tools.Systems;
 using Content.Shared.Weapons.Melee;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
@@ -40,6 +42,7 @@ public sealed class TerrorSpiderQueenSystem : EntitySystem
     [Dependency] private readonly SharedStaminaSystem _stamina = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly WeldableSystem _weldable = default!;
 
     public override void Initialize()
     {
@@ -55,6 +58,7 @@ public sealed class TerrorSpiderQueenSystem : EntitySystem
         SubscribeLocalEvent<TerrorSpiderQueenComponent, TerrorSpiderQueenScreamActionEvent>(OnScreamAction);
         SubscribeLocalEvent<TerrorSpiderQueenComponent, TerrorSpiderQueenHiveCountActionEvent>(OnHiveCountAction);
         SubscribeLocalEvent<TerrorSpiderQueenComponent, TerrorSpiderQueenLayEggActionEvent>(OnLayEggAction);
+        SubscribeLocalEvent<TerrorSpiderQueenComponent, TerrorSpiderVentUnweldActionEvent>(OnUnweldVentAction);
         SubscribeLocalEvent<TerrorSpiderQueenEggComponent, MapInitEvent>(OnEggMapInit);
     }
 
@@ -76,6 +80,7 @@ public sealed class TerrorSpiderQueenSystem : EntitySystem
         _actions.AddAction(uid, ref comp.RemoteViewNextActionEntity, comp.RemoteViewNextAction);
         _actions.AddAction(uid, ref comp.RemoteViewPreviousActionEntity, comp.RemoteViewPreviousAction);
         _actions.AddAction(uid, ref comp.RemoteViewExitActionEntity, comp.RemoteViewExitAction);
+        _actions.AddAction(uid, ref comp.UnweldVentActionEntity, comp.UnweldVentAction);
 
         if (comp.HiveCreated)
             AddHiveActions(uid, comp);
@@ -88,6 +93,7 @@ public sealed class TerrorSpiderQueenSystem : EntitySystem
         _actions.RemoveAction(uid, comp.RemoteViewNextActionEntity);
         _actions.RemoveAction(uid, comp.RemoteViewPreviousActionEntity);
         _actions.RemoveAction(uid, comp.RemoteViewExitActionEntity);
+        _actions.RemoveAction(uid, comp.UnweldVentActionEntity);
         RemoveHiveActions(uid, comp);
     }
 
@@ -107,6 +113,28 @@ public sealed class TerrorSpiderQueenSystem : EntitySystem
             orphan.TickInterval = ent.Comp.OrphanDamageInterval;
             orphan.NextTick = TimeSpan.Zero;
         }
+    }
+
+    private void OnUnweldVentAction(Entity<TerrorSpiderQueenComponent> ent, ref TerrorSpiderVentUnweldActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!IsWeldedVent(args.Target))
+            return;
+
+        _weldable.SetWeldedState(args.Target, false);
+        args.Handled = true;
+    }
+
+    private bool IsWeldedVent(EntityUid uid)
+    {
+        if (!HasComp<GasVentPumpComponent>(uid)
+            && !HasComp<GasVentScrubberComponent>(uid)
+            && !HasComp<GasPassiveVentComponent>(uid))
+            return false;
+
+        return _weldable.IsWelded(uid);
     }
 
     private void OnEggMapInit(Entity<TerrorSpiderQueenEggComponent> ent, ref MapInitEvent args)

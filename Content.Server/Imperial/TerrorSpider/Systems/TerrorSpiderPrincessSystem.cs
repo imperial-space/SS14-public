@@ -1,4 +1,5 @@
 using Content.Server.Actions;
+using Content.Server.Atmos.Piping.Unary.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.Imperial.TerrorSpider.Components;
 using Content.Shared.Damage;
@@ -17,6 +18,7 @@ using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Tag;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Imperial.TerrorSpider.Components;
+using Content.Shared.Tools.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -41,6 +43,7 @@ public sealed class TerrorSpiderPrincessSystem : EntitySystem
     [Dependency] private readonly SharedStaminaSystem _stamina = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly WeldableSystem _weldable = default!;
 
     public override void Initialize()
     {
@@ -55,6 +58,7 @@ public sealed class TerrorSpiderPrincessSystem : EntitySystem
         SubscribeLocalEvent<TerrorSpiderPrincessComponent, TerrorSpiderPrincessHiveSenseActionEvent>(OnHiveSenseAction);
         SubscribeLocalEvent<TerrorSpiderPrincessComponent, TerrorSpiderPrincessScreamActionEvent>(OnScreamAction);
         SubscribeLocalEvent<TerrorSpiderPrincessComponent, TerrorSpiderPrincessLayEggActionEvent>(OnLayEggAction);
+        SubscribeLocalEvent<TerrorSpiderPrincessComponent, TerrorSpiderVentUnweldActionEvent>(OnUnweldVentAction);
         SubscribeLocalEvent<TerrorSpiderPrincessEggComponent, MapInitEvent>(OnEggMapInit);
     }
 
@@ -75,6 +79,7 @@ public sealed class TerrorSpiderPrincessSystem : EntitySystem
         _actions.AddAction(uid, ref comp.RemoteViewExitActionEntity, comp.RemoteViewExitAction);
         _actions.AddAction(uid, ref comp.HiveSenseActionEntity, comp.HiveSenseAction);
         _actions.AddAction(uid, ref comp.ScreamActionEntity, comp.ScreamAction);
+        _actions.AddAction(uid, ref comp.UnweldVentActionEntity, comp.UnweldVentAction);
         _actions.AddAction(uid, ref comp.LayEggRusarActionEntity, comp.LayEggRusarAction);
         _actions.AddAction(uid, ref comp.LayEggDronActionEntity, comp.LayEggDronAction);
         _actions.AddAction(uid, ref comp.LayEggLurkerActionEntity, comp.LayEggLurkerAction);
@@ -92,6 +97,7 @@ public sealed class TerrorSpiderPrincessSystem : EntitySystem
         _actions.RemoveAction(uid, comp.RemoteViewExitActionEntity);
         _actions.RemoveAction(uid, comp.HiveSenseActionEntity);
         _actions.RemoveAction(uid, comp.ScreamActionEntity);
+        _actions.RemoveAction(uid, comp.UnweldVentActionEntity);
         _actions.RemoveAction(uid, comp.LayEggRusarActionEntity);
         _actions.RemoveAction(uid, comp.LayEggDronActionEntity);
         _actions.RemoveAction(uid, comp.LayEggLurkerActionEntity);
@@ -118,6 +124,28 @@ public sealed class TerrorSpiderPrincessSystem : EntitySystem
             orphan.TickInterval = ent.Comp.OrphanDamageInterval;
             orphan.NextTick = TimeSpan.Zero;
         }
+    }
+
+    private void OnUnweldVentAction(Entity<TerrorSpiderPrincessComponent> ent, ref TerrorSpiderVentUnweldActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!IsWeldedVent(args.Target))
+            return;
+
+        _weldable.SetWeldedState(args.Target, false);
+        args.Handled = true;
+    }
+
+    private bool IsWeldedVent(EntityUid uid)
+    {
+        if (!HasComp<GasVentPumpComponent>(uid)
+            && !HasComp<GasVentScrubberComponent>(uid)
+            && !HasComp<GasPassiveVentComponent>(uid))
+            return false;
+
+        return _weldable.IsWelded(uid);
     }
 
     private void OnEggMapInit(Entity<TerrorSpiderPrincessEggComponent> ent, ref MapInitEvent args)
