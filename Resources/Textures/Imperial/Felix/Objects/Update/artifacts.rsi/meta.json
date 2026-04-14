@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "@lune_felix",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "a-1"
+        },
+        {
+            "name": "a-2"
+        },
+        {
+            "name": "a-3"
+        },
+        {
+            "name": "a-4"
+        },
+        {
+            "name": "a-5"
+        }
+    ]
+}
