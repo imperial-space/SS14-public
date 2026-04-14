@@ -236,3 +236,200 @@
     balance:
       FederationCash: 0
       SpaceCredit: 0
+
+## Terra Credits
+
+- type: entity
+  parent: BaseItem
+  id: TerraCash1
+  name: terra cash
+  description: You gotta have money.
+  suffix: DeadSector, Other
+  components:
+  - type: Cash
+  - type: Item
+    shape:
+    - 0,0,1,0
+    storedOffset: 0,-2
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Credit: 5
+  - type: StaticPrice
+    price: 0
+  - type: Stack
+    stackType: TerraCredit
+    count: 1
+    baseLayer: base
+    layerStates:
+    - spacecash1
+    - spacecash10
+    - spacecash100
+    - spacecash1000
+    - spacecash2500
+    - spacecash5000
+    - spacecash10000
+    - spacecash20000
+    - spacecash30000
+    - spacecash100000
+    - spacecash1000000
+    layerFunction: Threshold
+  - type: StackLayerThreshold
+    thresholds: [10, 100, 100, 1000, 2500, 5000, 10000, 20000, 30000, 100000, 1000000]
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Update/cash.rsi
+    state: spacecash1
+    layers:
+    - state: spacecash1
+      map: ["base"]
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        density: 30
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.2,0.25,0.1"
+        mask:
+        - ItemMask
+  - type: Appearance
+  - type: Currency
+    price:
+      TerraCash: 1
+
+- type: stack
+  id: TerraCredit
+  name: terra credit
+  icon: { sprite: /Textures/Imperial/Felix/Objects/Update/cash.rsi, state: cash }
+  spawn: TerraCash1
+
+- type: entity
+  parent: TerraCash1
+  id: TerraCash10
+  suffix: DeadSector, Other, 10
+  components:
+  - type: Icon
+    sprite: Imperial/Felix/Objects/Update/cash.rsi
+    state: spacecash10
+  - type: Stack
+    count: 10
+
+- type: entity
+  parent: TerraCash1
+  id: TerraCash100
+  suffix: DeadSector, Other, 100
+  components:
+  - type: Icon
+    sprite: Imperial/Felix/Objects/Update/cash.rsi
+    state: spacecash100
+  - type: Stack
+    count: 100
+
+- type: entity
+  parent: TerraCash1
+  id: TerraCash500
+  suffix: DeadSector, Other, 500
+  components:
+  - type: Icon
+    sprite: Imperial/Felix/Objects/Update/cash.rsi
+    state: spacecash100
+  - type: Stack
+    count: 500
+
+- type: entity
+  parent: TerraCash1
+  id: TerraCash1000
+  suffix: DeadSector, Other, 1000
+  components:
+  - type: Icon
+    sprite: Imperial/Felix/Objects/Update/cash.rsi
+    state: spacecash1000
+  - type: Stack
+    count: 1000
+
+- type: entity
+  parent: TerraCash1
+  id: TerraCash2500
+  suffix: DeadSector, Other, 2500
+  components:
+  - type: Icon
+    sprite: Imperial/Felix/Objects/Update/cash.rsi
+    state: spacecash2500
+  - type: Stack
+    count: 2500
+
+- type: entity
+  parent: TerraCash1
+  id: TerraCash5000
+  suffix: DeadSector, Other, 5000
+  components:
+  - type: Icon
+    sprite: Imperial/Felix/Objects/Update/cash.rsi
+    state: spacecash5000
+  - type: Stack
+    count: 5000
+
+- type: entity
+  parent: TerraCash1
+  id: TerraCash10000
+  suffix: DeadSector, Other, 10000
+  components:
+  - type: Icon
+    sprite: Imperial/Felix/Objects/Update/cash.rsi
+    state: spacecash10000
+  - type: Stack
+    count: 10000
+
+- type: entity
+  parent: TerraCash1
+  id: TerraCash20000
+  suffix: DeadSector, Other, 20000
+  components:
+  - type: Icon
+    sprite: Imperial/Felix/Objects/Update/cash.rsi
+    state: spacecash20000
+  - type: Stack
+    count: 20000
+
+- type: entity
+  parent: TerraCash1
+  id: TerraCash30000
+  suffix: DeadSector, Other, 30000
+  components:
+  - type: Icon
+    sprite: Imperial/Felix/Objects/Update/cash.rsi
+    state: spacecash30000
+  - type: Stack
+    count: 30000
+
+- type: entity
+  parent: TerraCash1
+  id: TerraCash100000
+  suffix: DeadSector, Other, 100000
+  components:
+  - type: Icon
+    sprite: Imperial/Felix/Objects/Update/cash.rsi
+    state: spacecash100000
+  - type: Stack
+    count: 100000
+
+- type: entity
+  parent: TerraCash1
+  id: TerraCash1000000
+  suffix: DeadSector, Other, 1000000
+  components:
+  - type: Icon
+    sprite: Imperial/Felix/Objects/Update/cash.rsi
+    state: spacecash1000000
+  - type: Stack
+    count: 1000000
+
+# Currency
+
+- type: currency
+  id: TerraCash
+  displayName: terra-cash
+  cash:
+    1: TerraCash1
+  canWithdraw: true

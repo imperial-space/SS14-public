@@ -2517,3 +2517,389 @@
     layers:
     - map: ["computerLayerBody"]
       state: radio2
+
+
+## Artifacts
+
+- type: entity
+  parent: BaseItem
+  id: ImperialArtifactFelixOne
+  name: artifact
+  description: strange thing
+  suffix: DeadSector, Other
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Update/artifacts.rsi
+    state: a-1
+  - type: PointLight
+    radius: 1.8
+    energy: 0.4
+    color: "#c0ef8c"
+
+- type: entity
+  parent: BaseItem
+  id: ImperialArtifactFelixTwo
+  name: artifact
+  description: strange thing
+  suffix: DeadSector, Other
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Update/artifacts.rsi
+    state: a-2
+  - type: PointLight
+    radius: 1.8
+    energy: 0.4
+    color: "#93c1bf"
+
+- type: entity
+  parent: BaseItem
+  id: ImperialArtifactFelixThree
+  name: artifact
+  description: strange thing
+  suffix: DeadSector, Other
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Update/artifacts.rsi
+    state: a-3
+  - type: PointLight
+    radius: 1.8
+    energy: 0.4
+    color: "#c7f2eb"
+
+- type: entity
+  parent: BaseItem
+  id: ImperialArtifactFelixFour
+  name: artifact
+  description: strange thing
+  suffix: DeadSector, Other
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Update/artifacts.rsi
+    state: a-4
+  - type: PointLight
+    radius: 1.8
+    energy: 0.4
+    color: "#ff5500"
+
+- type: entity
+  parent: BaseItem
+  id: ImperialArtifactFelixFive
+  name: artifact
+  description: strange thing
+  suffix: DeadSector, Other
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Update/artifacts.rsi
+    state: a-5
+  - type: PointLight
+    radius: 1.8
+    energy: 0.4
+    color: "#468fff"
+
+## Artifacts
+## IRP
+
+- type: entity
+  name: M.R.E.
+  parent: BoxBase
+  id: ImperialBoxMREUSAFelix
+  description: A box of decades old military surplus rations. It is surprisingly not rotten.
+  suffix: DeadSector, Other
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DrinkWaterBottleFull
+        - id: DrinkWaterBottleFull
+        - id: TomatoCanDeadSector
+        - id: MeatCanDeadSector
+        - id: SardinesCanDeadSector
+        - id: FlareBlue
+        - id: FlareBlue
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Update/foodpacket.rsi
+    state: blue
+  - type: PhysicalComposition
+    materialComposition:
+      Cardboard: 100
+  - type: Tag
+    tags:
+    - BoxCardboard
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,2,4
+
+- type: entity
+  name: M.R.E.
+  parent: BoxBase
+  id: ImperialBoxMREUSSPFelix
+  description: A box of decades old military surplus rations. It is surprisingly not rotten.
+  suffix: DeadSector, Other
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DrinkWaterBottleFull
+        - id: DrinkWaterBottleFull
+        - id: TomatoCanDeadSector
+        - id: MeatCanDeadSector
+        - id: SardinesCanDeadSector
+        - id: FlareGreen
+        - id: FlareGreen
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Update/foodpacket.rsi
+    state: green
+  - type: PhysicalComposition
+    materialComposition:
+      Cardboard: 100
+  - type: Tag
+    tags:
+    - BoxCardboard
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,2,4
+
+- type: entity
+  parent: BaseItem
+  id: ImperialIronPlateFelix
+  name: plate
+  description: just a plate.
+  suffix: DeadSector, Other
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Update/foodpacket.rsi
+    state: plate
+
+## IRP
+## Geiger
+
+- type: entity
+  parent: BaseItem
+  id: ImperialGeigerCounterFelix
+  name: Geiger counter
+  description: A handheld device used for detecting and measuring radiation pulses.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Update/geiger.rsi
+    layers:
+      - state: geiger_base
+      - state: geiger_on_idle
+        map: ["enum.GeigerLayers.Screen"]
+        shader: unshaded
+        visible: false
+
+## Geiger
+## Gloves
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ImperialClothingHandsDefaultGlovesFelix
+  name: gloves
+  suffix: DeadSector, Other
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Update/Hands/default.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Objects/Update/Hands/default.rsi
+  - type: Appearance
+  - type: Fiber
+    fiberMaterial: fibers-white
+  - type: FingerprintMask
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.95
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ImperialClothingHandsGreenGlovesFelix
+  name: gloves
+  suffix: DeadSector, Other
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Update/Hands/green.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Objects/Update/Hands/green.rsi
+  - type: Appearance
+  - type: Fiber
+    fiberMaterial: fibers-green
+  - type: FingerprintMask
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.95
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ImperialClothingHandsHazardGlovesFelix
+  name: gloves
+  suffix: DeadSector, Other
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Update/Hands/hazard.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Objects/Update/Hands/hazard.rsi
+  - type: Appearance
+  - type: Fiber
+    fiberMaterial: fibers-yellow
+  - type: FingerprintMask
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.95
+
+## Gloves
+## Journals
+
+- type: entity
+  parent: BaseItem
+  id: ImperialBookJournalSurvival
+  name: book
+  description: book
+  suffix: DeadSector, Other
+  components:
+    - type: Sprite
+      sprite: Imperial/Felix/Objects/Update/journals.rsi
+      state: icon
+    - type: Paper
+      contentSize: 12000
+    - type: ActivatableUI
+      key: enum.PaperUiKey.Key
+      requiresComplex: false
+    - type: UserInterface
+      interfaces:
+        enum.PaperUiKey.Key:
+          type: PaperBoundUserInterface
+    - type: Tag
+      tags:
+      - Book
+    - type: PaperVisuals
+      backgroundImagePath: "/Textures/Interface/Paper/paper_background_book.svg.96dpi.png"
+      backgroundPatchMargin: 23.0, 16.0, 14.0, 15.0
+      contentMargin: 20.0, 20.0, 20.0, 20.0
+    - type: MeleeWeapon  # This was originally a feature exclusive to the law book but maintainers decided it should apply to all books for consistency. I frankly disagree but :P
+      soundHit:
+        collection: Punch
+      damage:
+        types:
+          Blunt: 1
+    - type: DamageOtherOnHit
+      damage:
+        types:
+          Blunt: 1
+
+## Journals
+## Kanistra
+
+- type: entity
+  parent: [ DrinkBaseMaterialStrongPlastic, DrinkBase ]
+  id: ImperialKanistraDarkGreenFelix
+  name: jug
+  suffix: DeadSector, Other
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Update/kanistra/darkgreen.rsi
+  - type: Item
+    size: Normal
+    sprite: Imperial/Felix/Objects/Update/kanistra/darkgreen.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Objects/Update/kanistra/darkgreen.rsi
+    slots: [back, suitstorage]
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 250
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    inHandsMaxFillLevels: 5
+  - type: ExaminableSolution
+    exactVolume: true # Chemistry item
+  - type: Tag
+    tags:
+    - ChemDispensable
+
+- type: entity
+  parent: ImperialKanistraDarkGreenFelix
+  id: ImperialKanistraRedFelix
+  name: jug
+  suffix: DeadSector, Other
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Update/kanistra/red.rsi
+  - type: Item
+    size: Normal
+    sprite: Imperial/Felix/Objects/Update/kanistra/red.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Objects/Update/kanistra/red.rsi
+
+## Kanistra
+## MoneyCard
+
+- type: entity
+  parent: BaseItem
+  id: ImperialMoneyCardFelix
+  name: moneycard
+  description: moneycard
+  suffix: DeadSector, Structure
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/Update/moneycard.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Felix/Objects/Update/moneycard.rsi
+  - type: StaticPrice
+    price: 1000
+
+## MoneyCard
+## Helicopter Shadow
+
+- type: entity
+  id: HelicopterShadowFlyingAnimation
+  name: helicopter
+  placement:
+    mode: SnapgridCenter
+  suffix: DeadSector, Events
+  components:
+    - type: Transform
+      noRot: true
+      anchored: true
+    - type: Sprite
+      sprite: Imperial/Felix/Objects/Update/helicopter_flying.rsi
+      state: icon
+      netsync: false
+      drawdepth: Effects
+    - type: EmitSoundOnSpawn
+      volume: 2
+      range: 10
+      sound:
+        path: /Audio/Imperial/Felix/Misc/Helicopter/Flying.ogg
+    - type: TimedDespawn
+      lifetime: 2.6
+
+- type: entity
+  id: HelicopterShadowAnimation
+  name: helicopter
+  placement:
+    mode: SnapgridCenter
+  suffix: DeadSector, Events
+  components:
+    - type: Transform
+      noRot: true
+      anchored: true
+    - type: Sprite
+      sprite: Imperial/Felix/Objects/Update/helicopter.rsi
+      state: icon2
+      netsync: false
+      drawdepth: Effects
+    - type: AmbientSound
+      volume: 1
+      range: 10
+      sound:
+        path: /Audio/Imperial/Felix/Misc/Helicopter/Flying.ogg
+
+## Helicopter Shadow

@@ -30,3 +30,34 @@ ent-ElysiumPrimeATM = Банкомат Федерации
     .desc = Банкомат для размена валют. Курс: 1 FCR к 5 CCR
 
 federation-cash = Кредиты Федерации
+
+ent-TerraCash = земные кредиты
+    .desc = Валюта, которую используют в ОПЗ.
+ent-TerraCredit = { ent-TerraCash }
+    .desc = { ent-TerraCash.desc }
+ent-TerraCash1 = { ent-TerraCash }
+    .desc = { ent-TerraCash.desc }
+ent-TerraCash10 = { ent-TerraCash }
+    .desc = { ent-TerraCash.desc }
+ent-TerraCash100 = { ent-TerraCash }
+    .desc = { ent-TerraCash.desc }
+ent-TerraCash500 = { ent-TerraCash }
+    .desc = { ent-TerraCash.desc }
+ent-TerraCash1000 = { ent-TerraCash }
+    .desc = { ent-TerraCash.desc }
+ent-TerraCash2500 = { ent-TerraCash }
+    .desc = { ent-TerraCash.desc }
+ent-TerraCash5000 = { ent-TerraCash }
+    .desc = { ent-TerraCash.desc }
+ent-TerraCash10000 = { ent-TerraCash }
+    .desc = { ent-TerraCash.desc }
+ent-TerraCash20000 = { ent-TerraCash }
+    .desc = { ent-TerraCash.desc }
+ent-TerraCash30000 = { ent-TerraCash }
+    .desc = { ent-TerraCash.desc }
+ent-TerraCash100000 = { ent-TerraCash }
+    .desc = { ent-TerraCash.desc }
+ent-TerraCash1000000 = { ent-TerraCash }
+    .desc = { ent-TerraCash.desc }
+
+terra-cash = Земные Кредиты
