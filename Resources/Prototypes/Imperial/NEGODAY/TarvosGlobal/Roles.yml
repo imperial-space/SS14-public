@@ -1,0 +1,433 @@
+- type: entity
+  parent: MobHuman
+  id: tarvosCMDUSSPEvent
+  name: tarvosCMDUSSP
+  suffix: Event, SideUSSP
+  components:
+  - type: AntagImmune
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
+  - type: GhostRole
+    name: tarvosCMDUSSP-ghost-name
+    description: tarvosCMDUSSP-ghost-desc
+    raffle:
+      settings: short
+    nameFormat: name-format-ert
+  - type: GhostTakeoverAvailable
+  - type: Sprite
+    netsync: false
+    sprite: Markers/jobs.rsi
+    state: coroner
+  - type: Loadout
+    prototypes: [ tarvosUSSPCMDGear ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: CrewSkills
+    skills:
+      - skillBotany
+      - skillBaseMed
+      - skillBaseConstraction
+      - skillHacking
+      - skillInstrumentation
+      - skillMaintenance
+      - skillMedicalEquipment
+      - skillPharmacology
+      - skillShooting
+      - skillSurgery
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTarvosCMDUSSPEvent
+  name: SpawnMobTarvosCMDUSSP
+  suffix: Event, SideUSSP
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Markers/jobs.rsi
+      state: coroner
+  - type: ConditionalSpawner
+    prototypes:
+    - tarvosCMDUSSP
+
+- type: entity
+  parent: MobHuman
+  id: tarvosOrdUSSPEvent
+  name: tarvosOrdUSSP
+  suffix: Event, SideUSSP
+  components:
+  - type: AntagImmune
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
+  - type: GhostRole
+    name: tarvosOrdUSSP-ghost-name
+    description: tarvosOrdUSSP-ghost-desc
+    raffle:
+      settings: short
+    nameFormat: name-format-ert
+  - type: GhostTakeoverAvailable
+  - type: Sprite
+    netsync: false
+    sprite: Markers/jobs.rsi
+    state: coroner
+  - type: Loadout
+    prototypes: [ tarvosUSSPOrdGear ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: CrewSkills
+    skills:
+      - skillBotany
+      - skillBaseMed
+      - skillBaseConstraction
+      - skillHacking
+      - skillInstrumentation
+      - skillMaintenance
+      - skillMedicalEquipment
+      - skillPharmacology
+      - skillShooting
+      - skillSurgery
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTarvosOrdUSSPEvent
+  name: SpawnMobTarvosOrdUSSP
+  suffix: Event, SideUSSP
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Markers/jobs.rsi
+      state: coroner
+  - type: ConditionalSpawner
+    prototypes:
+    - tarvosOrdUSSP
+
+- type: entity
+  parent: MobHuman
+  id: tarvosPilotUSSPEvent
+  name: tarvosPilotUSSP
+  suffix: Event, SideUSSP
+  components:
+  - type: AntagImmune
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
+  - type: GhostRole
+    name: tarvosPilotUSSP-ghost-name
+    description: tarvosPilotUSSP-ghost-desc
+    raffle:
+      settings: short
+    nameFormat: name-format-ert
+  - type: GhostTakeoverAvailable
+  - type: Sprite
+    netsync: false
+    sprite: Markers/jobs.rsi
+    state: coroner
+  - type: Loadout
+    prototypes: [ tarvosUSSPPilotGear ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: CrewSkills
+    skills:
+      - skillBotany
+      - skillBaseMed
+      - skillBaseConstraction
+      - skillHacking
+      - skillInstrumentation
+      - skillMaintenance
+      - skillMedicalEquipment
+      - skillPharmacology
+      - skillShooting
+      - skillSurgery
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTarvosPilotUSSPEvent
+  name: SpawnMobTarvosPilotUSSP
+  suffix: Event, SideUSSP
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Markers/jobs.rsi
+      state: coroner
+  - type: ConditionalSpawner
+    prototypes:
+    - tarvosPilotUSSP
+
+- type: entity
+  parent: MobHuman
+  id: tarvosHeavyUSSPEvent
+  name: tarvosHeavyUSSP
+  suffix: Event, SideUSSP
+  components:
+  - type: AntagImmune
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
+  - type: GhostRole
+    name: tarvosHeavyUSSP-ghost-name
+    description: tarvosHeavyUSSP-ghost-desc
+    raffle:
+      settings: short
+    nameFormat: name-format-ert
+  - type: GhostTakeoverAvailable
+  - type: Sprite
+    netsync: false
+    sprite: Markers/jobs.rsi
+    state: coroner
+  - type: Loadout
+    prototypes: [ tarvosUSSPHeavyGear ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: CrewSkills
+    skills:
+      - skillBotany
+      - skillBaseMed
+      - skillBaseConstraction
+      - skillHacking
+      - skillInstrumentation
+      - skillMaintenance
+      - skillMedicalEquipment
+      - skillPharmacology
+      - skillShooting
+      - skillSurgery
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTarvosHeavyUSSPEvent
+  name: SpawnMobTarvosHeavyUSSP
+  suffix: Event, SideUSSP
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Markers/jobs.rsi
+      state: coroner
+  - type: ConditionalSpawner
+    prototypes:
+    - tarvosHeavyUSSP
+
+
+
+- type: entity
+  parent: MobHuman
+  id: tarvosCMDTriviumEvent
+  name: tarvosCMDTrivium
+  suffix: Event, SideTrivium
+  components:
+  - type: AntagImmune
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
+  - type: GhostRole
+    name: tarvosCMDTrivium-ghost-name
+    description: tarvosCMDTrivium-ghost-desc
+    raffle:
+      settings: short
+    nameFormat: name-format-ert
+  - type: GhostTakeoverAvailable
+  - type: Sprite
+    netsync: false
+    sprite: Markers/jobs.rsi
+    state: coroner
+  - type: Loadout
+    prototypes: [ tarvosTriviumCMDGear ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: CrewSkills
+    skills:
+      - skillBotany
+      - skillBaseMed
+      - skillBaseConstraction
+      - skillHacking
+      - skillInstrumentation
+      - skillMaintenance
+      - skillMedicalEquipment
+      - skillPharmacology
+      - skillShooting
+      - skillSurgery
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTarvosCMDTriviumEvent
+  name: SpawnMobTarvosCMDTrivium
+  suffix: Event, SideTrivium
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Markers/jobs.rsi
+      state: coroner
+  - type: ConditionalSpawner
+    prototypes:
+    - tarvosCMDTrivium
+
+- type: entity
+  parent: MobHuman
+  id: tarvosOrdTriviumEvent
+  name: tarvosOrdTrivium
+  suffix: Event, SideTrivium
+  components:
+  - type: AntagImmune
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
+  - type: GhostRole
+    name: tarvosOrdTrivium-ghost-name
+    description: tarvosOrdTrivium-ghost-desc
+    raffle:
+      settings: short
+    nameFormat: name-format-ert
+  - type: GhostTakeoverAvailable
+  - type: Sprite
+    netsync: false
+    sprite: Markers/jobs.rsi
+    state: coroner
+  - type: Loadout
+    prototypes: [ tarvosTriviumOrdGear ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: CrewSkills
+    skills:
+      - skillBotany
+      - skillBaseMed
+      - skillBaseConstraction
+      - skillHacking
+      - skillInstrumentation
+      - skillMaintenance
+      - skillMedicalEquipment
+      - skillPharmacology
+      - skillShooting
+      - skillSurgery
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTarvosOrdTriviumEvent
+  name: SpawnMobTarvosOrdTrivium
+  suffix: Event, SideTrivium
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Markers/jobs.rsi
+      state: coroner
+  - type: ConditionalSpawner
+    prototypes:
+    - tarvosOrdTrivium
+
+- type: entity
+  parent: MobHuman
+  id: tarvosPilotTriviumEvent
+  name: tarvosPilotTrivium
+  suffix: Event, SideTrivium
+  components:
+  - type: AntagImmune
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
+  - type: GhostRole
+    name: tarvosPilotTrivium-ghost-name
+    description: tarvosPilotTrivium-ghost-desc
+    raffle:
+      settings: short
+    nameFormat: name-format-ert
+  - type: GhostTakeoverAvailable
+  - type: Sprite
+    netsync: false
+    sprite: Markers/jobs.rsi
+    state: coroner
+  - type: Loadout
+    prototypes: [ tarvosTriviumPilotGear ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: CrewSkills
+    skills:
+      - skillBotany
+      - skillBaseMed
+      - skillBaseConstraction
+      - skillHacking
+      - skillInstrumentation
+      - skillMaintenance
+      - skillMedicalEquipment
+      - skillPharmacology
+      - skillShooting
+      - skillSurgery
+    
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTarvosPilotTriviumEvent
+  name: SpawnMobTarvosPilotTrivium
+  suffix: Event, SideTrivium
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Markers/jobs.rsi
+      state: coroner
+  - type: ConditionalSpawner
+    prototypes:
+    - tarvosPilotTrivium
+
+- type: entity
+  parent: MobHuman
+  id: tarvosHeavyTriviumEvent
+  name: tarvosHeavyTrivium
+  suffix: Event, SideTrivium
+  components:
+  - type: AntagImmune
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryFirst
+    - NamesMilitaryLast
+  - type: GhostRole
+    name: tarvosHeavyTrivium-ghost-name
+    description: tarvosHeavyTrivium-ghost-desc
+    raffle:
+      settings: short
+    nameFormat: name-format-ert
+  - type: GhostTakeoverAvailable
+  - type: Sprite
+    netsync: false
+    sprite: Markers/jobs.rsi
+    state: coroner
+  - type: Loadout
+    prototypes: [ tarvosTriviumHeavyGear ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: CrewSkills
+    skills:
+      - skillBotany
+      - skillBaseMed
+      - skillBaseConstraction
+      - skillHacking
+      - skillInstrumentation
+      - skillMaintenance
+      - skillMedicalEquipment
+      - skillPharmacology
+      - skillShooting
+      - skillSurgery
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobTarvosHeavyTriviumEvent
+  name: SpawnMobTarvosHeavyTrivium
+  suffix: Event, SideTrivium
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Markers/jobs.rsi
+      state: coroner
+  - type: ConditionalSpawner
+    prototypes:
+    - tarvosHeavyTrivium

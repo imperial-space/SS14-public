@@ -1,0 +1,192 @@
+- type: startingGear
+  id: tarvosUSSPCMDGear
+  equipment:
+    mask: ClothingMaskGasSyndicate
+    outerClothing: ClothingOuterCMDHardsuitArmorUSSPEvent
+    suitstorage: JetpackMiniFilled
+    id: USSPIDCardMain
+    jumpsuit: USSPSoldierUniform
+    back: ClothingBackpackSatchelLeather
+    shoes: ClothingShoesBootsMag
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetUSSPMain
+    belt: ClothingBeltMilitaryWebbing
+    pocket1: DoubleEmergencyOxygenTankFilled
+    pocket2: CombatKnife
+    eyes: GlassesVisorRCU
+  storage:
+    back:
+    - HandHeldMassScanner
+    - HandheldGPSBasic
+    - WeaponGrapplingGun
+    - AdvancedFirstAidMedkitImperialFilled
+    - EmergencyMedipen
+
+- type: startingGear
+  id: tarvosUSSPOrdGear
+  equipment:
+    mask: ClothingMaskGasSyndicate
+    outerClothing: ClothingOuterHardsuitArmorUSSPEvent
+    suitstorage: JetpackMiniFilled
+    id: USSPIDCardMain
+    jumpsuit: USSPSoldierUniform
+    back: ClothingBackpackSatchelLeather
+    shoes: ClothingShoesBootsMag
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetUSSPMain
+    belt: ClothingBeltMilitaryWebbing
+    pocket1: DoubleEmergencyOxygenTankFilled
+    pocket2: CombatKnife
+    eyes: GlassesVisorRCU
+  storage:
+    back:
+    - HandHeldMassScanner
+    - HandheldGPSBasic
+    - WeaponGrapplingGun
+    - AdvancedFirstAidMedkitImperialFilled
+    - EmergencyMedipen
+
+- type: startingGear
+  id: tarvosUSSPPilotGear
+  equipment:
+    mask: ClothingMaskGasSyndicate
+    outerClothing: ClothingOuterPilotHardsuitArmorUSSPEvent
+    suitstorage: JetpackMiniFilled
+    id: USSPIDCardMain
+    jumpsuit: USSPSoldierUniform
+    back: ClothingBackpackSatchelLeather
+    shoes: ClothingShoesBootsMag
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetUSSPMain
+    belt: ClothingBeltMilitaryWebbing
+    pocket1: DoubleEmergencyOxygenTankFilled
+    pocket2: CombatKnife
+    eyes: GlassesVisorRCU
+  storage:
+    back:
+    - HandHeldMassScanner
+    - HandheldGPSBasic
+    - WeaponGrapplingGun
+    - AdvancedFirstAidMedkitImperialFilled
+    - EmergencyMedipen
+
+- type: startingGear
+  id: tarvosUSSPHeavyGear
+  equipment:
+    mask: ClothingMaskGasSyndicate
+    outerClothing: ClothingOuterHeavyHardsuitArmorUSSPEvent
+    suitstorage: JetpackMiniFilled
+    id: USSPIDCardMain
+    jumpsuit: USSPSoldierUniform
+    back: ClothingBackpackSatchelLeather
+    shoes: ClothingShoesBootsMag
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetUSSPMain
+    belt: ClothingBeltMilitaryWebbing
+    pocket1: DoubleEmergencyOxygenTankFilled
+    pocket2: CombatKnife
+    eyes: GlassesVisorRCU
+  storage:
+    back:
+    - HandHeldMassScanner
+    - HandheldGPSBasic
+    - WeaponGrapplingGun
+    - AdvancedFirstAidMedkitImperialFilled
+    - EmergencyMedipen
+
+
+- type: startingGear
+  id: tarvosTriviumCMDGear
+  equipment:
+    mask: ClothingMaskGasSyndicate
+    outerClothing: ClothingOuterCMDHardsuitArmorTriviumEvent
+    suitstorage: JetpackMiniFilled
+    id: TriviumIDCardMain
+    jumpsuit: BlackShieldJumpsuit
+    back: ClothingBackpackSatchelDSO
+    shoes: ClothingShoesBootsMag
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetTriviumMain
+    belt: ClothingBeltMilitaryWebbing
+    pocket1: DoubleEmergencyOxygenTankFilled
+    pocket2: CombatKnife
+    eyes: GlassesVisorRCU
+  storage:
+    back:
+    - HandHeldMassScanner
+    - HandheldGPSBasic
+    - WeaponGrapplingGun
+    - AdvancedFirstAidMedkitImperialFilled
+    - EmergencyMedipen
+
+- type: startingGear
+  id: tarvosTriviumOrdGear
+  equipment:
+    mask: ClothingMaskGasSyndicate
+    outerClothing: ClothingOuterHardsuitArmorTriviumEvent
+    suitstorage: JetpackMiniFilled
+    id: TriviumIDCardMain
+    jumpsuit: BlackShieldJumpsuit
+    back: ClothingBackpackSatchelDSO
+    shoes: ClothingShoesBootsMag
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetTriviumMain
+    belt: ClothingBeltMilitaryWebbing
+    pocket1: DoubleEmergencyOxygenTankFilled
+    pocket2: CombatKnife
+    eyes: GlassesVisorRCU
+  storage:
+    back:
+    - HandHeldMassScanner
+    - HandheldGPSBasic
+    - WeaponGrapplingGun
+    - AdvancedFirstAidMedkitImperialFilled
+    - EmergencyMedipen
+
+- type: startingGear
+  id: tarvosTriviumPilotGear
+  equipment:
+    mask: ClothingMaskGasSyndicate
+    outerClothing: ClothingOuterPilotHardsuitArmorTriviumEvent
+    suitstorage: JetpackMiniFilled
+    id: TriviumIDCardMain
+    jumpsuit: BlackShieldJumpsuit
+    back: ClothingBackpackSatchelDSO
+    shoes: ClothingShoesBootsMag
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetTriviumMain
+    belt: ClothingBeltMilitaryWebbing
+    pocket1: DoubleEmergencyOxygenTankFilled
+    pocket2: CombatKnife
+    eyes: GlassesVisorRCU
+  storage:
+    back:
+    - HandHeldMassScanner
+    - HandheldGPSBasic
+    - WeaponGrapplingGun
+    - AdvancedFirstAidMedkitImperialFilled
+    - EmergencyMedipen
+
+- type: startingGear
+  id: tarvosTriviumHeavyGear
+  equipment:
+    mask: ClothingMaskGasSyndicate
+    outerClothing: ClothingOuterHeavyHardsuitArmorTriviumEvent
+    suitstorage: JetpackMiniFilled
+    id: TriviumIDCardMain
+    jumpsuit: BlackShieldJumpsuit
+    back: ClothingBackpackSatchelDSO
+    shoes: ClothingShoesBootsMag
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetTriviumMain
+    belt: ClothingBeltMilitaryWebbing
+    pocket1: DoubleEmergencyOxygenTankFilled
+    pocket2: CombatKnife
+    eyes: GlassesVisorRCU
+  storage:
+    back:
+    - HandHeldMassScanner
+    - HandheldGPSBasic
+    - WeaponGrapplingGun
+    - AdvancedFirstAidMedkitImperialFilled
+    - EmergencyMedipen

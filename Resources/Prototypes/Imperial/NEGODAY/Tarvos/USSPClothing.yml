@@ -1,0 +1,293 @@
+# * CMD hardsuit
+
+- type: entity
+  parent: [ ClothingOuterHardsuitBase ]
+  id: ClothingOuterCMDHardsuitArmorUSSP
+  name: ussp-cmd-hardsuit-name
+  description: ussp-cmd-hardsuit-desc
+  suffix: SideUSSP
+  components:
+  - type: Sprite
+    sprite: Imperial/NEGODAY/Tarvos/USSP/usspCMDHardsuit.rsi
+  - type: Clothing
+    sprite: Imperial/NEGODAY/Tarvos/USSP/usspCMDHardsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.1
+    coolingCoefficient: 0.1
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 0.8
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHelmetCMDHardsuitUSSP
+  - type: Speech
+    speechSounds: Pai
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHelmetCMDHardsuitUSSP
+  name: ussp-cmd-hardsuit-helmet-name
+  description: ussp-cmd-hardsuit-helmet-desc
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: Imperial/NEGODAY/Tarvos/USSP/usspCMDHardsuitHelmet.rsi
+  - type: Clothing
+    sprite: Imperial/NEGODAY/Tarvos/USSP/usspCMDHardsuitHelmet.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+  - type: PointLight
+    color: orange
+    radius: 6
+    energy: 4
+  - type: ToggleableLightVisuals
+    clothingVisuals:
+      head:
+      - state: on-equipped-HELMET
+
+# * Ordinary hardsuit
+
+- type: entity
+  parent: [ ClothingOuterHardsuitBase ]
+  id: ClothingOuterHardsuitArmorUSSP
+  name: ussp-ord-hardsuit-name
+  description: ussp-ord-hardsuit-desc
+  suffix: SideUSSP
+  components:
+  - type: Sprite
+    sprite: Imperial/NEGODAY/Tarvos/USSP/usspOrdHardsuit.rsi
+  - type: Clothing
+    sprite: Imperial/NEGODAY/Tarvos/USSP/usspOrdHardsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.1
+    coolingCoefficient: 0.1
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.5
+        Heat: 0.4
+        Radiation: 0.3
+        Caustic: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 0.8
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHelmetHardsuitUSSP
+  - type: Speech
+    speechSounds: Pai
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHelmetHardsuitUSSP
+  name: ussp-ord-hardsuit-helmet-name
+  description: ussp-ord-hardsuit-helmet-desc
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: Imperial/NEGODAY/Tarvos/USSP/usspOrdHardsuitHelmet.rsi
+  - type: Clothing
+    sprite: Imperial/NEGODAY/Tarvos/USSP/usspOrdHardsuitHelmet.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+  - type: PointLight
+    color: orange
+    radius: 6
+    energy: 4
+  - type: ToggleableLightVisuals
+    clothingVisuals:
+      head:
+      - state: on-equipped-HELMET
+
+# * Heavy hardsuit
+
+- type: entity
+  parent: [ ClothingOuterHardsuitBase ]
+  id: ClothingOuterHeavyHardsuitArmorUSSP
+  name: ussp-heavy-hardsuit-name
+  description: ussp-heavy-hardsuit-desc
+  suffix: SideUSSP
+  components:
+  - type: Sprite
+    sprite: Imperial/NEGODAY/Tarvos/USSP/usspHeavyHardsuit.rsi
+  - type: Clothing
+    sprite: Imperial/NEGODAY/Tarvos/USSP/usspHeavyHardsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.1
+    coolingCoefficient: 0.1
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.4
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 0.6
+  - type: HeldSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 0.6
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHelmetHeavyHardsuitUSSP
+  - type: Speech
+    speechSounds: Pai
+  - type: StaminaResistance
+    damageCoefficient: 0.4
+
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHelmetHeavyHardsuitUSSP
+  name: ussp-heavy-hardsuit-helmet-name
+  description: ussp-heavy-hardsuit-helmet-desc
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: Imperial/NEGODAY/Tarvos/USSP/usspHeavyHardsuitHelmet.rsi
+  - type: Clothing
+    sprite: Imperial/NEGODAY/Tarvos/USSP/usspHeavyHardsuitHelmet.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+  - type: PointLight
+    color: orange
+    radius: 6
+    energy: 4
+  - type: ToggleableLightVisuals
+    clothingVisuals:
+      head:
+      - state: on-equipped-HELMET
+
+# * Pilot hardsuit
+
+- type: entity
+  parent: [ ClothingOuterHardsuitBase ]
+  id: ClothingOuterPilotHardsuitArmorUSSP
+  name: ussp-pilot-hardsuit-name
+  description: ussp-pilot-hardsuit-desc
+  suffix: SideUSSP
+  components:
+  - type: Sprite
+    sprite: Imperial/NEGODAY/Tarvos/USSP/usspPilotHardsuit.rsi
+  - type: Clothing
+    sprite: Imperial/NEGODAY/Tarvos/USSP/usspPilotHardsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.1
+    coolingCoefficient: 0.1
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.7
+        Radiation: 0.5
+        Caustic: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 0.9
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHelmetPilotHardsuitUSSP
+  - type: Speech
+    speechSounds: Pai
+  - type: StaminaResistance
+    damageCoefficient: 0.7
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHelmetPilotHardsuitUSSP
+  name: ussp-pilot-hardsuit-helmet-name
+  description: ussp-pilot-hardsuit-helmet-desc
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: Imperial/NEGODAY/Tarvos/USSP/usspPilotHardsuitHelmet.rsi
+  - type: Clothing
+    sprite: Imperial/NEGODAY/Tarvos/USSP/usspPilotHardsuitHelmet.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+  - type: PointLight
+    color: red
+    radius: 6
+    energy: 4
+  - type: ToggleableLightVisuals
+    clothingVisuals:
+      head:
+      - state: on-equipped-HELMET
+      
