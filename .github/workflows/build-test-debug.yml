@@ -39,10 +39,10 @@ jobs:
         dotnet-version: 10.0.x
 
     - name: Install dependencies
-      run: dotnet restore SS14Imperial-public.sln
+      run: dotnet restore
 
     - name: Build Project
-      run: dotnet build SS14Imperial-public.sln --configuration DebugOpt --no-restore /m
+      run: dotnet build --configuration DebugOpt --no-restore /m
 
     - name: Run Content.Tests
       shell: pwsh
