@@ -1,0 +1,24 @@
+- type: antag
+  id: BloodBrother
+  name: roles-antag-blood-brother-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-blood-brother-objective
+  guides: [ Traitors ]
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 1h
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleBloodBrother
+  name: roles-antag-blood-brother-name
+  components:
+  - type: MindRole
+    antagPrototype: BloodBrother
+    exclusiveAntag: true
+    roleType: TeamAntagonist
+    sortWeight: 60
+  - type: TraitorRole
+  - type: RoleBriefing
+    briefing: blood-brother-briefing
