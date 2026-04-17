@@ -1,9 +1,14 @@
 - type: entity
-  name: Rusar terror
+  name: Knight terror
   parent: MobRusarSpider
   id: MobRusarSpiderAngrys
   suffix: terror spider
   components:
+    - type: TerrorSpiderWebBuffReceiver
+    - type: TerrorSpiderKnightGuard
+      guardSpeedMultiplier: 0.8
+    - type: TerrorSpiderKnightRage
+      enragedSpeedMultiplier: 1
     - type: NpcFactionMember
       factions:
         - Xeno
@@ -27,6 +32,7 @@
   parent: LightImplantSpider
   id: LightImplantSpiderRusar
   name: Spawn web
+  noSpawn: true
   components:
     - type: SubdermalImplant
       implantAction: ActionSpawnSpiderRusar
@@ -35,6 +41,7 @@
   id: ActionSpawnSpiderRusar
   name: Spawn web
   description: it spans the web. A little stronger than usual.
+  noSpawn: true
   components:
   - type: Action
     useDelay: 2.5
@@ -42,21 +49,40 @@
     icon:
       sprite: Structures/floor_web.rsi
       state: full
-  - type: TargetAction
-    range: 1
-  - type: WorldTargetAction
-    event: !type:WorldSpawnSpellEvent
-      prototypes:
-      - id: SpiderWebTerrorRusar
-        amount: 1
-      offset: 0, 1
+  - type: InstantAction
+    event: !type:TerrorSpiderSpawnWebActionEvent
+      webPrototype: SpiderWebTerrorRusar
 
 - type: entity
-  name: Rusar terror
+  id: ActionTerrorSpiderCocoon
+  name: Cocoon
+  description: Wrap a living target in cocoon.
+  noSpawn: true
+  components:
+  - type: Action
+    useDelay: 4
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/effects.rsi
+      state: cocoon_large3
+  - type: TargetAction
+    canTargetSelf: false
+    range: 1
+  - type: EntityTargetAction
+    event: !type:TerrorSpiderCocoonActionEvent
+
+- type: entity
+  name: Knight terror
   parent: [ SimpleMobBases, MobCombat ]
   id: MobRusarSpider
-  description: Fights with the crew, protects other spiders. Due to its stability, it creates free space so that other spiders can expand the nest.
+  description: Fights the crew and protects other spiders. Thanks to its resilience, it creates space for the nest to expand.
   components:
+  - type: TerrorSpiderCocoon
+  - type: TerrorSpiderWebBuffReceiver
+  - type: TerrorSpiderKnightGuard
+    guardSpeedMultiplier: 0.8
+  - type: TerrorSpiderKnightRage
+    enragedSpeedMultiplier: 1
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -118,9 +144,11 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
+  - type: VentCrawler
   - type: Spider
-    webPrototype: SpiderWebTerrorUwU
-    webAction: TerrorWeedsAction
+    webPrototype: SpiderWebTerrorRusar
+    webAction: TerrorWeedsRusarAction
+    spawnsWebsAsNonPlayer: false
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bloodMaxVolume: 0
@@ -137,19 +165,16 @@
   - type: SlowOnDamage
     speedModifierThresholds:
       200: 0.7
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.6
+  - type: TerrorSpiderArmor
+    bruteModifier: 0.75
+    burnModifier: 1.25
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 174
+    damageCap: 220
     damage:
       types:
         Poison: -1
@@ -159,11 +184,14 @@
 
 
 - type: entity
-  name: Dron terror
+  name: Drone terror
   parent: MobDronSpider
   id: MobDronSpiderAngrys
   suffix: terror spider
   components:
+    - type: TerrorSpiderWebBuffReceiver
+      speedMultiplier: 1.4
+    - type: TerrorDronMeleeDebuff
     - type: NpcFactionMember
       factions:
         - Xeno
@@ -187,6 +215,7 @@
   parent: LightImplantSpider
   id: LightImplantSpiderDron
   name: Spawn eggs 2 tir
+  noSpawn: true
   components:
     - type: SubdermalImplant
       implantAction: ActionSpawnSpiderDron
@@ -195,28 +224,29 @@
   id: ActionSpawnSpiderDron
   name: Spawn web
   description: it spans the web. A little stronger than usual.
+  noSpawn: true
   components:
   - type: Action
-    useDelay: 2
+    useDelay: 1
     itemIconStyle: BigAction
     icon:
       sprite: Structures/floor_web.rsi
       state: full
-  - type: TargetAction
-    range: 1
-  - type: WorldTargetAction
-    event: !type:WorldSpawnSpellEvent
-      prototypes:
-      - id: SpiderWebTerrorDron
-        amount: 1
-      offset: 0, 1
+  - type: InstantAction
+    event: !type:TerrorSpiderSpawnWebActionEvent
+      webPrototype: SpiderWebTerrorDron
 
 - type: entity
-  name: Dron terror
+  name: Drone terror
   parent: [ SimpleMobBases, MobCombat ]
   id: MobDronSpider
-  description: It weaves a web around everything, drives away the crew with spit, protects the nest.
+  description: Covers everything in webs, repels the crew with spits, and protects the nest.
   components:
+  - type: TerrorSpiderWebBuffReceiver
+    speedMultiplier: 1.4
+  - type: TerrorDronMeleeDebuff
+    slowDuration: 4
+    slowMultiplier: 0.5
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -258,10 +288,17 @@
     damage:
       types:
         Piercing: 10
+        Structural: 50
   - type: SolutionContainerManager
     solutions:
       melee:
         maxVol: 30
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: FrostOilTerrorSpider
+        Quantity: 600
   - type: MeleeChemicalInjector
     transferAmount: 10
     solution: melee
@@ -271,9 +308,10 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
+  - type: VentCrawler
   - type: Spider
-    webPrototype: SpiderWebTerrorUwU
-    webAction: TerrorWeedsAction
+    webPrototype: SpiderWebTerrorDron
+    spawnsWebsAsNonPlayer: false
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bloodMaxVolume: 0
@@ -286,29 +324,29 @@
     - FootstepSound
   - type: MovementSpeedModifier
     baseWalkSpeed : 4
-    baseSprintSpeed : 6
+    baseSprintSpeed : 4
   - type: SlowOnDamage
     speedModifierThresholds:
       80: 0.7
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 0.75
+    rechargeCooldown: 3
   - type: BasicEntityAmmoProvider
     proto: TerrorDrontAcid
-    capacity: 1
-    count: 1
+    capacity: 2
+    count: 2
   - type: Gun
-    fireRate: 0.75
+    fireRate: 1
+    burstFireRate: 2
     useKey: false
-    selectedMode: FullAuto
+    selectedMode: Burst
     availableModes:
-      - FullAuto
+      - Burst
+    shotsPerBurst: 2
+    burstCooldown: 3
     soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.75
+  - type: TerrorSpiderArmor
+    bruteModifier: 0.75
+    burnModifier: 1.25
 
 
 - type: entity
@@ -317,10 +355,14 @@
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
+    - type: TerrorDronProjectileDebuff
+      slowDuration: 2
+      slowMultiplier: 0.5
+      staminaDamage: 15
     - type: Projectile
       damage:
         types:
-          Caustic: 20
+          Poison: 15
     - type: Sprite
       sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
       layers:
@@ -334,6 +376,12 @@
   id: MobsogladatelSpiderAngrys
   suffix: terror spider
   components:
+    - type: TerrorSpiderWebBuffReceiver
+    - type: TerrorSpiderLurker
+      stealthDuration: 8
+      baseMeleeDamage: 15
+      webBuffMeleeDamage: 45
+      webBuffStaminaDamage: 45
     - type: NpcFactionMember
       factions:
         - Xeno
@@ -354,8 +402,17 @@
   name: Lurker terror
   parent: [ SimpleMobBases, MobCombat ]
   id: MobsogladatelSpider
-  description: He waits in ambush, and then quickly deals with his target, acting either as a loner or in a nest.
+  description: Waits in ambush, then quickly dispatches the target. Acts alone or as part of the nest.
   components:
+  - type: TerrorSpiderCocoon
+  - type: TerrorSpiderWebBuffReceiver
+    regenPerTick: 2
+    regenInterval: 2
+  - type: TerrorSpiderLurker
+    stealthDuration: 8
+    baseMeleeDamage: 15
+    webBuffMeleeDamage: 45
+    webBuffStaminaDamage: 45
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -397,6 +454,7 @@
     damage:
       types:
         Piercing: 15
+        Structural: 40
   - type: SolutionContainerManager
     solutions:
       melee:
@@ -416,9 +474,11 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
+  - type: VentCrawler
   - type: Spider
-    webPrototype: SpiderWebTerrorUwU
-    webAction: TerrorWeedsAction
+    webPrototype: SpiderWebTerrorLurker
+    webAction: TerrorWeedsLurkerAction
+    spawnsWebsAsNonPlayer: false
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bloodMaxVolume: 0
@@ -430,17 +490,23 @@
     - DoorBumpOpener
     - FootstepSound
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
+    baseWalkSpeed : 5.2
+    baseSprintSpeed : 5.2
+    actionPsionicInvisibility: ActionToggleSuitInvisiblePower
+    stunSecond: 1
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 100
+    damage:
+      groups:
+        Brute: -2
   - type: SlowOnDamage
     speedModifierThresholds:
       80: 0.7
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.75
+  - type: TerrorSpiderArmor
+    bruteModifier: 0.75
+    burnModifier: 1.25
 
 
 - type: entity
@@ -449,6 +515,9 @@
   id: MobGiantreaperSpiderAngry
   suffix: terror spider
   components:
+    - type: TerrorSpiderWebBuffReceiver
+    - type: TerrorSpiderReaperLifesteal
+      healAmount: 5
     - type: NpcFactionMember
       factions:
         - Xeno
@@ -469,8 +538,12 @@
   name: Reaper terror
   parent: [ SimpleMobBases, MobCombat ]
   id: MobreaperSpider
-  description: A berserker must behave aggressively and bite someone regularly in order to survive. Absolutely deadly in close combat.
+  description: A berserker that must constantly bite someone to survive. Absolutely deadly in melee combat.
   components:
+  - type: TerrorSpiderCocoon
+  - type: TerrorSpiderWebBuffReceiver
+  - type: TerrorSpiderReaperLifesteal
+    healAmount: 5
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -511,7 +584,7 @@
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Piercing: 30
+        Piercing: 25
   - type: SolutionContainerManager
     solutions:
       melee:
@@ -531,9 +604,7 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
-  - type: Spider
-    webPrototype: SpiderWebTerrorUwU
-    webAction: TerrorWeedsAction
+  - type: VentCrawler
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bloodMaxVolume: 0
@@ -545,18 +616,18 @@
     - DoorBumpOpener
     - FootstepSound
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
+    baseWalkSpeed : 5.2
+    baseSprintSpeed : 5.2
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 130
+    damage:
+      groups:
+        Brute: 1
   - type: SlowOnDamage
     speedModifierThresholds:
       120: 0.7
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.75
-
 
 - type: entity
   name: Destroye terror
@@ -564,6 +635,8 @@
   id: MobGiantDestroyerSpiderAngry
   suffix: terror spider
   components:
+    - type: TerrorSpiderWebBuffReceiver
+    - type: TerrorSpiderDestroyer
     - type: NpcFactionMember
       factions:
         - Xeno
@@ -579,16 +652,18 @@
       raffle:
         settings: short
     - type: GhostTakeoverAvailable
-    - type: AutoImplant
-      implants:
-      - EmpImplant
 
 - type: entity
   name: Destroyer terror
   parent: [ SimpleMobBases, MobCombat ]
   id: MobDestroyerSpider
-  description: Breaks down walls and doors, sabotages the station, destroys departments. The main enemy of synthetics.
+  description: Breaks walls and doors, sabotages the station, and destroys departments. The main enemy of synthetics.
   components:
+  - type: TerrorSpiderWebBuffReceiver
+  - type: TerrorSpiderDestroyer
+    empScreamRange: 3.5
+    deathEmpRange: 6.5
+    fireBurstRadius: 3.5
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -621,7 +696,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Dead
+      120: Dead
   - type: MeleeWeapon
     angle: 0
     animation: WeaponArcBite
@@ -650,9 +725,7 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
-  - type: Spider
-    webPrototype: SpiderWebTerrorUwU
-    webAction: TerrorWeedsAction
+  - type: VentCrawler
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bloodMaxVolume: 0
@@ -664,8 +737,8 @@
     - DoorBumpOpener
     - FootstepSound
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
+    baseWalkSpeed : 4.4
+    baseSprintSpeed : 4.4
   - type: SlowOnDamage
     speedModifierThresholds:
       80: 0.7
@@ -685,19 +758,13 @@
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 99
+    damageCap: 120
     damage:
-      types:
-        Poison: -1
       groups:
-        Brute: -1
-        Burn: -1
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.75
+        Brute: -2
+  - type: TerrorSpiderArmor
+    bruteModifier: 0.75
+    burnModifier: 1.25
 
 - type: entity
   id: TerrorRavAcid
@@ -725,9 +792,9 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Imperial/TerrorSpider/Spider/bluexeno_toxin.rsi
+    sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
     layers:
-      - state: bluetox
+      - state: xeno_toxic
   - type: EmpOnTrigger
     range: 5
     energyConsumption: 50000
@@ -745,6 +812,11 @@
   id: MobGiantWidowSpiderAngry
   suffix: terror spider
   components:
+    - type: TerrorSpiderWebBuffReceiver
+    - type: TerrorSpiderWidowMeleeDebuff
+      muteDuration: 10
+      venomPerHit: 10
+      venomReagent: BlackTerrorVenom
     - type: NpcFactionMember
       factions:
         - Xeno
@@ -762,7 +834,8 @@
     - type: GhostTakeoverAvailable
     - type: AutoImplant
       implants:
-      - LightImplantSpiderRusar
+      - LightImplantSpiderWidowSmoke
+      - LightImplantSpiderWidowPoison
 
 - type: entity
   name: Widow terror
@@ -770,6 +843,12 @@
   id: MobWidowSpider
   description: One of the deadliest spiders, it kills any organic target in a few bites, has dangerous spits, but has little health. It hunts singletons, or attacks together with other spiders.
   components:
+  - type: TerrorSpiderCocoon
+  - type: TerrorSpiderWebBuffReceiver
+  - type: TerrorSpiderWidowMeleeDebuff
+    muteDuration: 10
+    venomPerHit: 10
+    venomReagent: BlackTerrorVenom
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -802,7 +881,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Dead
+      120: Dead
   - type: MeleeWeapon
     angle: 0
     animation: WeaponArcBite
@@ -810,7 +889,8 @@
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Piercing: 15
+        Piercing: 10
+        Structural: 40
   - type: SolutionContainerManager
     solutions:
       melee:
@@ -819,7 +899,7 @@
     solution: melee
     generated:
       reagents:
-      - ReagentId: Toxin
+      - ReagentId: BlackTerrorVenom
         Quantity: 1
   - type: MeleeChemicalInjector
     transferAmount: 0.75
@@ -830,9 +910,11 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
+  - type: VentCrawler
   - type: Spider
-    webPrototype: SpiderWebTerrorUwU
-    webAction: TerrorWeedsAction
+    webPrototype: SpiderWebTerrorWidow
+    webAction: TerrorWeedsWidowAction
+    spawnsWebsAsNonPlayer: false
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bloodMaxVolume: 0
@@ -844,41 +926,175 @@
     - DoorBumpOpener
     - FootstepSound
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
+    baseWalkSpeed : 4.4
+    baseSprintSpeed : 4.4
   - type: SlowOnDamage
     speedModifierThresholds:
       80: 0.7
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 20
+    rechargeCooldown: 3
   - type: BasicEntityAmmoProvider
-    proto: GasXenoSpitBullet
-    capacity: 1
-    count: 1
+    proto: TerrorWidowSpit
+    capacity: 2
+    count: 2
   - type: Gun
-    fireRate: 20
+    fireRate: 1
+    burstFireRate: 2
     useKey: false
-    selectedMode: FullAuto
+    selectedMode: Burst
     availableModes:
-      - FullAuto
+      - Burst
+    shotsPerBurst: 2
+    burstCooldown: 3
     soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 99
+    damageCap: 120
+    damage:
+      groups:
+        Brute: -2
+        Burn: -2
+  - type: TerrorSpiderArmor
+    bruteModifier: 0.75
+    burnModifier: 1.25
+
+  - type: AutoImplant
+    implants:
+    - LightImplantSpiderWidowSmoke
+    - LightImplantSpiderWidowPoison
+
+- type: entity
+  parent: LightImplantSpider
+  id: LightImplantSpiderWidowSmoke
+  name: Smoke spit
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionTerrorSpiderWidowSmokeSpit
+
+- type: entity
+  parent: LightImplantSpider
+  id: LightImplantSpiderWidowPoison
+  name: Poison spit
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionTerrorSpiderWidowPoisonSpit
+
+- type: entity
+  id: ActionTerrorSpiderWidowSmokeSpit
+  name: Smoke spit
+  description: Launch a harmless smoke spit.
+  noSpawn: true
+  components:
+  - type: Action
+    useDelay: 10
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: parasmoke
+  - type: TargetAction
+    checkCanAccess: false
+    range: 25
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: TerrorWidowSmokeSpitBullet
+
+- type: entity
+  id: ActionTerrorSpiderWidowPoisonSpit
+  name: Poison spit
+  description: Launch a spit that creates a venom cloud.
+  noSpawn: true
+  components:
+  - type: Action
+    useDelay: 25
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: smoke_old
+  - type: TargetAction
+    checkCanAccess: false
+    range: 25
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: TerrorWidowPoisonSpitBullet
+
+- type: entity
+  id: TerrorWidowSpit
+  name: Widow spit
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TerrorDronProjectileDebuff
+      slowDuration: 0
+      slowMultiplier: 1
+      staminaDamage: 10
+    - type: Projectile
+      damage:
+        types:
+          Poison: 15
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
+      layers:
+        - state: xeno_toxic
+    - type: Ammo
+      muzzleFlash: null
+
+- type: entity
+  id: TerrorWidowSmokeSpitBullet
+  name: Widow smoke spit
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    scale: 1.3, 2
+    layers:
+    - state: declone
+      shader: unshaded
+  - type: Projectile
+    deleteOnCollide: true
     damage:
       types:
-        Poison: -1
-      groups:
-        Brute: -1
-        Burn: -1
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.75
+        Blunt: 1
+    soundHit:
+      path: /Audio/Effects/gen_hit.ogg
+  - type: SmokeOnTrigger
+    duration: 10
+    spreadAmount: 30
+    solution:
+      reagents:
+      - ReagentId: Water
+        Quantity: 1
 
+- type: entity
+  id: TerrorWidowPoisonSpitBullet
+  name: Widow poison spit
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    scale: 1.3, 2
+    layers:
+    - state: declone
+      shader: unshaded
+  - type: Projectile
+    deleteOnCollide: true
+    damage:
+      types:
+        Blunt: 1
+    soundHit:
+      path: /Audio/Effects/gen_hit.ogg
+  - type: SmokeOnTrigger
+    duration: 10
+    spreadAmount: 30
+    solution:
+      reagents:
+      - ReagentId: BlackTerrorVenom
+        Quantity: 20
+ 
 
 - type: entity
   name: Guardian terror
@@ -886,6 +1102,8 @@
   id: MobGiantGuardianSpiderAngry
   suffix: terror spider
   components:
+    - type: TerrorSpiderWebBuffReceiver
+    - type: TerrorSpiderGuardianLeash
     - type: NpcFactionMember
       factions:
         - Xeno
@@ -909,6 +1127,7 @@
   parent: LightImplantSpider
   id: LightImplantSpiderGuardian
   name: Spawn web
+  noSpawn: true
   components:
     - type: SubdermalImplant
       implantAction: ActionSpawnSpiderGuardian
@@ -917,21 +1136,34 @@
   id: ActionSpawnSpiderGuardian
   name: Spawn web
   description: it spans the web. A little stronger than usual.
+  noSpawn: true
   components:
   - type: Action
-    useDelay: 3
+    useDelay: 8
     itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: terror_shield
+  - type: InstantAction
+    event: !type:TerrorSpiderSpawnWebActionEvent
+      webPrototype: SpiderWebTerrorGuardianBarrier
+
+- type: entity
+  id: TerrorWeedsGuardianAction
+  name: guardian web
+  description: terror web
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
     icon:
       sprite: Structures/floor_web.rsi
       state: full
-  - type: TargetAction
-    range: 1
-  - type: WorldTargetAction
-    event: !type:WorldSpawnSpellEvent
-      prototypes:
-      - id: SpiderWebTerrorGuardian
-        amount: 1
-      offset: 0, 1
+    itemIconStyle: BigAction
+    useDelay: 2
+  - type: InstantAction
+    event: !type:TerrorSpiderSpawnWebActionEvent
+      webPrototype: SpiderWebTerrorGuardian
 
 - type: entity
   name: Guardian terror
@@ -939,6 +1171,12 @@
   id: MobGuardianSpider
   description: Protects queens/princesses, safety, sacrificing his life if necessary. The most loyal servant and protector.
   components:
+  - type: TerrorSpiderGuardianShieldBarrier
+  - type: TerrorSpiderWebBuffReceiver
+  - type: TerrorSpiderGuardianLeash
+  - type: AutoImplant
+    implants:
+    - LightImplantSpiderGuardian
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -979,7 +1217,8 @@
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Piercing: 25
+        Piercing: 20
+        Structural: 70
   - type: SolutionContainerManager
     solutions:
       melee:
@@ -1000,8 +1239,9 @@
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
   - type: Spider
-    webPrototype: SpiderWebTerrorUwU
-    webAction: TerrorWeedsAction
+    webPrototype: SpiderWebTerrorGuardian
+    webAction: TerrorWeedsGuardianAction
+    spawnsWebsAsNonPlayer: false
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bloodMaxVolume: 0
@@ -1021,19 +1261,14 @@
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 379
+    damageCap: 250
     damage:
-      types:
-        Poison: -1
       groups:
-        Brute: -1
-        Burn: -1
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.6
+        Brute: -2
+        Burn: -2
+  - type: TerrorSpiderArmor
+    bruteModifier: 0.75
+    burnModifier: 1.25
 
 - type: entity
   name: Mother terror
@@ -1041,6 +1276,8 @@
   id: MobGiantMotherSpiderAngry
   suffix: terror spider
   components:
+    - type: TerrorSpiderWebBuffReceiver
+    - type: TerrorSpiderMother
     - type: NpcFactionMember
       factions:
         - Xeno
@@ -1056,9 +1293,6 @@
       raffle:
         settings: short
     - type: GhostTakeoverAvailable
-    - type: AutoImplant
-      implants:
-      - LightImplantSpiderRusar
 
 - type: entity
   name: Mother terror
@@ -1066,6 +1300,13 @@
   id: MobMotherSpider
   description: The massive one heals the spiders with his aura, and also massively destroys the crew with it. He fights with other spiders on the front line, supporting them.
   components:
+  - type: TerrorSpiderWebBuffReceiver
+  - type: TerrorSpiderMother
+    auraHalfRange: 7.5
+    auraHealAmount: 3
+    auraDamageAmount: 3
+    auraInterval: 2
+    touchHealAmount: 2
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1106,7 +1347,8 @@
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Piercing: 10
+        Piercing: 15
+        Structural: 40
   - type: SolutionContainerManager
     solutions:
       melee:
@@ -1126,9 +1368,6 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
-  - type: Spider
-    webPrototype: SpiderWebTerrorUwU
-    webAction: TerrorWeedsAction
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bloodMaxVolume: 0
@@ -1140,21 +1379,19 @@
     - DoorBumpOpener
     - FootstepSound
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
+    baseWalkSpeed : 4.4
+    baseSprintSpeed : 4.4
   - type: SlowOnDamage
     speedModifierThresholds:
       200: 0.7
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 219
+    damageCap: 220
     damage:
-      types:
-        Poison: -3
       groups:
-        Brute: -3
-        Burn: -3
+        Brute: -2
+        Burn: -2
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 4
   - type: BasicEntityAmmoProvider
@@ -1168,12 +1405,9 @@
     availableModes:
       - FullAuto
     soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.75
+  - type: TerrorSpiderArmor
+    bruteModifier: 0.75
+    burnModifier: 1.25
 
 
 - type: entity
@@ -1182,6 +1416,8 @@
   id: MobGiantPrinceSpiderAngry
   suffix: terror spider
   components:
+    - type: TerrorSpiderWebBuffReceiver
+    - type: TerrorSpiderRoyal
     - type: NpcFactionMember
       factions:
         - Xeno
@@ -1204,6 +1440,14 @@
   id: MobPrinceSpider
   description: Destroys all living and inanimate things that get in his way.
   components:
+  - type: TerrorSpiderWebBuffReceiver
+  - type: TerrorSpiderRoyal
+    stompRadius: 2.5
+    stompDamage: 20
+    stompDamageType: Blunt
+    stompSlowDuration: 10
+    stompSlowMultiplier: 0.5
+    stompSlowStatusEffect: TerrorSpiderRoyalStompSlowStatusEffect
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1236,7 +1480,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      400: Dead
+      600: Dead
   - type: MeleeWeapon
     angle: 0
     animation: WeaponArcBite
@@ -1244,7 +1488,8 @@
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Piercing: 25
+        Piercing: 40
+        Structural: 100
   - type: SolutionContainerManager
     solutions:
       melee:
@@ -1264,9 +1509,7 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
-  - type: Spider
-    webPrototype: SpiderWebTerrorUwU
-    webAction: TerrorWeedsAction
+  - type: VentCrawler
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bloodMaxVolume: 0
@@ -1278,17 +1521,14 @@
     - DoorBumpOpener
     - FootstepSound
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
+    baseWalkSpeed : 4.4
+    baseSprintSpeed : 4.4
   - type: SlowOnDamage
     speedModifierThresholds:
-      500: 0.7
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
+      450: 0.7
+  - type: TerrorSpiderArmor
+    bruteModifier: 0.3
+    burnModifier: 0.6
 
 - type: entity
   name: Princess terror
@@ -1296,6 +1536,9 @@
   id: MobGiantPrincessSpiderAngry
   suffix: terror spider
   components:
+    - type: TerrorSpiderWebBuffReceiver
+    - type: TerrorSpiderPrincess
+    - type: TerrorSpiderRoyal
     - type: NpcFactionMember
       factions:
         - Xeno
@@ -1311,16 +1554,12 @@
       raffle:
         settings: short
     - type: GhostTakeoverAvailable
-    - type: AutoImplant
-      implants:
-      - LightImplantSpiderTir1
-      - LightImplantSpiderTir2
-      - LightImplantSpiderPrincess
 
 - type: entity
   parent: LightImplantSpider
   id: LightImplantSpiderPrincess
   name: Spawnd web
+  noSpawn: true
   components:
     - type: SubdermalImplant
       implantAction: ActionSpawnSpiderPrincess
@@ -1329,26 +1568,41 @@
   id: ActionSpawnSpiderPrincess
   name: Spawn web
   description: it spans the web. A little stronger than usual.
+  noSpawn: true
   components:
   - type: Action
     useDelay: 2
     itemIconStyle: BigAction
     icon:
-      sprite: Structures/floor_web.rsi
-      state: full
-  - type: TargetAction
-    range: 1
-  - type: WorldTargetAction
-    event: !type:WorldSpawnSpellEvent
-      prototypes:
-      - id: SpiderWebPrincess
-        amount: 1
-      offset: 0, 1
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: terror_shield
+  - type: InstantAction
+    event: !type:TerrorSpiderSpawnWebActionEvent
+      webPrototype: SpiderWebPrincess
 
 - type: entity
-  parent: LightImplantSpider
+  id: ActionTerrorSpiderVentUnweld
+  name: Open welded vent
+  description: Rips open a welded ventilation unit.
+  noSpawn: true
+  components:
+  - type: TargetAction
+    canTargetSelf: false
+    range: 1.2
+  - type: EntityTargetAction
+    event: !type:TerrorSpiderVentUnweldActionEvent
+  - type: Action
+    useDelay: 2
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
+      state: lay_eggs
+
+- type: entity
+  parent: LightImplantSpider 
   id: LightImplantSpiderTir1
   name: Spawnd egg 1 tir
+  noSpawn: true
   components:
     - type: SubdermalImplant
       implantAction: ActionSpawnTerrorEgg1Tir
@@ -1357,26 +1611,27 @@
   id: ActionSpawnTerrorEgg1Tir
   name: Spawnd egg 1 tir
   description: Lays an egg
+  noSpawn: true
   components:
-  - type: Action
+  - type: WorldTargetAction
     useDelay: 160
+    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
       state: lay_eggs
-  - type: TargetAction
-    range: 1
-  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: TerrorEgg1Tir
         amount: 1
       offset: 0, 1
+      speech: action-speech-spell-spider
 
 - type: entity
-  parent: LightImplantSpider
+  parent: LightImplantSpider 
   id: LightImplantSpiderTir2
   name: Spawnd egg 2 tir
+  noSpawn: true
   components:
     - type: SubdermalImplant
       implantAction: ActionSpawnTerrorEgg2Tir
@@ -1385,21 +1640,21 @@
   id: ActionSpawnTerrorEgg2Tir
   name: Spawnd egg 2 tir
   description: Lays an egg
+  noSpawn: true
   components:
-  - type: Action
+  - type: WorldTargetAction
     useDelay: 300
+    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
       state: lay_eggs
-  - type: TargetAction
-    range: 1
-  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: TerrorEgg2Tir
         amount: 1
       offset: 0, 1
+      speech: action-speech-spell-spider
 
 - type: entity
   name: Princess terror
@@ -1407,6 +1662,20 @@
   id: MobPrincessSpider
   description: Creates a lair, lays eggs, and tries to keep out of sight of the crew.
   components:
+  - type: TerrorSpiderWebBuffReceiver
+  - type: TerrorSpiderPrincess
+    screamRange: 6.5
+    screamSlowDuration: 10
+    screamSlowMultiplier: 0.5
+    screamStaminaDamage: 30
+    screamRobotDisableSeconds: 12
+    maxBroodOnMap: 20
+    maxEliteBroodOnMap: 3
+    orphanDamagePerTick: 6
+    orphanDamageInterval: 2
+    remoteViewImmobileStatusEffect: TerrorSpiderPrincessRemoteViewImmobileStatusEffect
+  - type: TerrorSpiderRoyal
+    stompEnabled: false
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1468,9 +1737,11 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
+  - type: VentCrawler
   - type: Spider
-    webPrototype: SpiderWebTerrorUwU
-    webAction: TerrorWeedsAction
+    webPrototype: SpiderWebPrincess
+    webAction: TerrorWeedsPrincessAction
+    spawnsWebsAsNonPlayer: false
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bloodMaxVolume: 0
@@ -1488,13 +1759,13 @@
     speedModifierThresholds:
       180: 0.7
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 0.75
+    rechargeCooldown: 3
   - type: BasicEntityAmmoProvider
-    proto: TerrorDrontAcid
+    proto: TerrorPrincessSpit
     capacity: 1
     count: 1
   - type: Gun
-    fireRate: 0.75
+    fireRate: 1
     useKey: false
     selectedMode: FullAuto
     availableModes:
@@ -1503,31 +1774,42 @@
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 179
+    damageCap: 200
     damage:
-      types:
-        Poison: -1.5
       groups:
-        Brute: -1.5
-        Burn: -1.5
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.7
+        Brute: -3
+        Burn: -3
+  - type: TerrorSpiderArmor
+    bruteModifier: 0.7
+    burnModifier: 1.1
 
+- type: entity
+  id: TerrorPrincessSpit
+  name: Princess spit
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Heat: 25
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
+      layers:
+        - state: xeno_toxic
+    - type: Ammo
+      muzzleFlash: null
+ 
 
 - type: entity
   id: TerrorLayEgg
-  name: Spawnd egg terror
-  description: яички
+  name: Lay egg
+  description: Lay a terror spider egg.
   categories: [ HideSpawnMenu ]
   components:
-  - type: Action
+  - type: InstantAction
     icon: { sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi, state: lay_eggs }
     useDelay: 160
-  - type: InstantAction
     event: !type:EggLayInstantActionEvent
 
 - type: entity
@@ -1536,6 +1818,9 @@
   id: MobGiantQueenSpiderAngry
   suffix: terror spider
   components:
+    - type: TerrorSpiderWebBuffReceiver
+    - type: TerrorSpiderQueen
+    - type: TerrorSpiderRoyal
     - type: NpcFactionMember
       factions:
         - Xeno
@@ -1551,17 +1836,12 @@
       raffle:
         settings: short
     - type: GhostTakeoverAvailable
-    - type: AutoImplant
-      implants:
-      - LightImplantSpiderTir3
-      - LightImplantSpiderTir2Queen
-      - LightImplantSpiderTir1Queen
-      - LightImplantSpiderPrincess
 
 - type: entity
-  parent: LightImplantSpider
+  parent: LightImplantSpider 
   id: LightImplantSpiderTir2Queen
   name: Spawnd egg 2 tir
+  noSpawn: true
   components:
     - type: SubdermalImplant
       implantAction: ActionSpawnTerrorEgg2TirQueen
@@ -1570,26 +1850,27 @@
   id: ActionSpawnTerrorEgg2TirQueen
   name: Spawnd egg 2 tir
   description: Lays an egg
+  noSpawn: true
   components:
-  - type: Action
+  - type: WorldTargetAction
     useDelay: 400
+    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
       state: lay_eggs
-  - type: TargetAction
-    range: 1
-  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: TerrorEgg2Tir
         amount: 1
       offset: 0, 1
+      speech: action-speech-spell-spider
 
 - type: entity
-  parent: LightImplantSpider
+  parent: LightImplantSpider 
   id: LightImplantSpiderTir1Queen
   name: Spawnd egg 1 tir
+  noSpawn: true
   components:
     - type: SubdermalImplant
       implantAction: ActionSpawnTerrorEgg1TirQueen
@@ -1598,27 +1879,27 @@
   id: ActionSpawnTerrorEgg1TirQueen
   name: Spawnd egg 1 tir
   description: Lays an egg
+  noSpawn: true
   components:
-  - type: Action
+  - type: WorldTargetAction
     useDelay: 220
+    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
       state: lay_eggs
-  - type: TargetAction
-    range: 1
-  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: TerrorEgg1Tir
         amount: 1
       offset: 0, 1
-
+      speech: action-speech-spell-spider
 
 - type: entity
-  parent: LightImplantSpider
+  parent: LightImplantSpider 
   id: LightImplantSpiderTir3
   name: Spawnd egg 3 tir
+  noSpawn: true
   components:
     - type: SubdermalImplant
       implantAction: ActionSpawnTerrorEgg3Tir
@@ -1627,21 +1908,21 @@
   id: ActionSpawnTerrorEgg3Tir
   name: Spawnd egg 3 tir
   description: Lays an egg
+  noSpawn: true
   components:
-  - type: Action
+  - type: WorldTargetAction
     useDelay: 1600
+    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
       state: lay_eggs
-  - type: TargetAction
-    range: 1
-  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: TerrorEgg3Tir
         amount: 1
       offset: 0, 1
+      speech: action-speech-spell-spider
 
 - type: entity
   name: Queen terror
@@ -1649,6 +1930,23 @@
   id: MobQueenSpider
   description: Creates a lair, mass-produces spiders, and fights spiders on the front lines using his dangerous spitting and screaming.
   components:
+  - type: TerrorSpiderWebBuffReceiver
+  - type: TerrorSpiderQueen
+    hiveSpeedMultiplier: 0.5
+    hiveStructuralDamage: 400
+    hiveSlowStatusEffect: TerrorSpiderQueenHiveSlowStatusEffect
+    remoteViewImmobileStatusEffect: TerrorSpiderMotherRemoteViewImmobileStatusEffect
+    screamRange: 6.5
+    screamSlowDuration: 14
+    screamSlowMultiplier: 0.5
+    screamStaminaDamage: 50
+    screamRobotDisableSeconds: 16
+    lightBreakHalfRange: 8.5
+    royalEggCooldownSeconds: 1500
+    orphanDamagePerTick: 6
+    orphanDamageInterval: 2
+  - type: TerrorSpiderRoyal
+    stompEnabled: false
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1690,7 +1988,7 @@
     damage:
       types:
         Piercing: 25
-        Structural: 50
+        Structural: 100
   - type: SolutionContainerManager
     solutions:
       melee:
@@ -1711,8 +2009,9 @@
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
   - type: Spider
-    webPrototype: SpiderWebTerrorUwU
-    webAction: TerrorWeedsAction
+    webPrototype: SpiderWebPrincess
+    webAction: TerrorWeedsQueenAction
+    spawnsWebsAsNonPlayer: false
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bloodMaxVolume: 0
@@ -1730,13 +2029,13 @@
     speedModifierThresholds:
       320: 0.7
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 0.75
+    rechargeCooldown: 2
   - type: BasicEntityAmmoProvider
     proto: TerrorQueentAcid
     capacity: 1
     count: 1
   - type: Gun
-    fireRate: 0.75
+    fireRate: 1
     useKey: false
     selectedMode: FullAuto
     availableModes:
@@ -1745,19 +2044,14 @@
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 174
+    damageCap: 340
     damage:
-      types:
-        Poison: -1.5
       groups:
-        Brute: -1.5
-        Burn: -1.5
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.7
+        Brute: -3
+        Burn: -3
+  - type: TerrorSpiderArmor
+    bruteModifier: 0.7
+    burnModifier: 1.1
 
 
 - type: entity
@@ -1766,10 +2060,14 @@
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
+    - type: TerrorDronProjectileDebuff
+      slowDuration: 0
+      slowMultiplier: 1
+      staminaDamage: 20
     - type: Projectile
       damage:
         types:
-          Caustic: 40
+          Heat: 40
     - type: Sprite
       sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
       layers:
@@ -1793,8 +2091,8 @@
       Acidic: [Touch, Ingestion]
   - type: Internals
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
+    baseWalkSpeed : 16
+    baseSprintSpeed : 16
   - type: StatusEffects
     allowed:
     - SlowedDown
@@ -1880,16 +2178,12 @@
       301: 0.8
       295: 0.6
       285: 0.4
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.8
+  - type: TerrorSpiderArmor
+    bruteModifier: 0.8
   - type: UseDelay
     delay: 4
   - type: ShowHealthBars
-
+    
 
 - type: entity
   save: false
@@ -1904,6 +2198,9 @@
   id: MobGiantHealerSpiderAngry
   suffix: terror spider
   components:
+    - type: TerrorSpiderCocoon
+    - type: TerrorSpiderWebBuffReceiver
+    - type: TerrorSpiderHealer
     - type: NpcFactionMember
       factions:
         - Xeno
@@ -1919,9 +2216,6 @@
       raffle:
         settings: short
     - type: GhostTakeoverAvailable
-    - type: AutoImplant
-      implants:
-      - LightImplantSpiderDron
 
 - type: entity
   name: Healer terror
@@ -1929,6 +2223,16 @@
   id: MobHealerSpider
   description: It lays eggs and provides treatment support to other spiders, trying to stay away.
   components:
+  - type: TerrorSpiderCocoon
+  - type: TerrorSpiderWebBuffReceiver
+  - type: TerrorSpiderHealer
+    pulseHealAmount: 20
+    pulseRange: 13
+    eggRequiredSatiety: 3
+    cocoonSatietyGain: 1
+    touchHealLevel1: 2
+    touchHealLevel2: 4
+    touchHealLevel3: 8
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1969,7 +2273,8 @@
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Piercing: 15
+        Piercing: 10
+        Structural: 40
   - type: SolutionContainerManager
     solutions:
       melee:
@@ -1983,9 +2288,11 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
+  - type: VentCrawler
   - type: Spider
-    webPrototype: SpiderWebTerrorUwU
-    webAction: TerrorWeedsAction
+    webPrototype: SpiderWebTerrorHealer
+    webAction: TerrorWeedsHealerAction
+    spawnsWebsAsNonPlayer: false
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bloodMaxVolume: 0
@@ -2005,7 +2312,7 @@
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 79
+    damageCap: 100
     damage:
       types:
         Poison: -1
@@ -2025,12 +2332,9 @@
     availableModes:
       - FullAuto
     soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.75
+  - type: TerrorSpiderArmor
+    bruteModifier: 0.75
+    burnModifier: 1.25
 
 - type: entity
   id: ProjectileHealingBoltTerror
@@ -2054,10 +2358,49 @@
     ignoreResistances: true
 
 - type: entity
+  id: TerrorSpiderCocoon
+  name: cocoon
+  description: Wrapped victim of terror spiders.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/TerrorSpider/effects.rsi
+    layers:
+      - state: cocoon_large3
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 7
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        layer:
+        - MidImpassable
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 45
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ContainerContainer
+    containers:
+      cocoon-body: !type:Container
+  - type: TerrorSpiderCocoonPrison
+
+- type: entity
   id: SpiderWebTerrorRusar
-  parent: SpiderWebBase
   name: Web terror spider
   description: TERROR!
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
   components:
     - type: MeleeSound
       soundGroups:
@@ -2065,7 +2408,16 @@
           path:
             "/Audio/Weapons/slash.ogg"
     - type: Sprite
-      color: "#ffffffdd"
+      sprite: Structures/floor_web.rsi
+      layers:
+        - state: full
+          map: ["spiderWebLayer"]
+      drawdepth: WallMountedItems
+    - type: Appearance
+    - type: Clickable
+    - type: Transform
+      anchored: true
+    - type: Physics
     - type: Fixtures
       fixtures:
         fix1:
@@ -2076,11 +2428,13 @@
             bounds: "-0.5,-0.5,0.5,0.5"
           layer:
           - MidImpassable
+    - type: Damageable
+      damageModifierSet: Wood
     - type: Destructible
       thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 60
+          damage: 30
         behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
@@ -2100,6 +2454,8 @@
         Flammable: [Touch]
         Extinguish: [Touch]
     - type: SpiderWebObject
+    - type: TerrorSpiderWebBuffArea
+    - type: TerrorSpiderWidowWebArea
     - type: SpeedModifierContacts
       walkSpeedModifier: 0.5
       sprintSpeedModifier: 0.5
@@ -2113,7 +2469,6 @@
 - type: entity
   id: SpiderWebTerrorDron
   name: Web terror spider
-  parent: SpiderWebBase
   description: TERROR!
   placement:
     mode: SnapgridCenter
@@ -2126,7 +2481,16 @@
           path:
             "/Audio/Weapons/slash.ogg"
     - type: Sprite
-      color: "#ffffffdd"
+      sprite: Structures/floor_web.rsi
+      layers:
+        - state: full
+          map: ["spiderWebLayer"]
+      drawdepth: WallMountedItems
+    - type: Appearance
+    - type: Clickable
+    - type: Transform
+      anchored: true
+    - type: Physics
     - type: Fixtures
       fixtures:
         fix1:
@@ -2137,11 +2501,14 @@
             bounds: "-0.5,-0.5,0.5,0.5"
           layer:
           - MidImpassable
+    - type: Occluder
+    - type: Damageable
+      damageModifierSet: Wood
     - type: Destructible
       thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 70
+          damage: 35
         behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
@@ -2161,6 +2528,9 @@
         Flammable: [Touch]
         Extinguish: [Touch]
     - type: SpiderWebObject
+    - type: TerrorSpiderWebBuffArea
+    - type: TerrorSpiderHealerBlindWeb
+    - type: Airtight
     - type: SpeedModifierContacts
       walkSpeedModifier: 0.5
       sprintSpeedModifier: 0.5
@@ -2170,8 +2540,23 @@
     - type: Slippery
     - type: StepTrigger
       intersectRatio: 0.2
-    - type: Airtight
-      noAirWhenFullyAirBlocked: false
+
+- type: reagent
+  id: FrostOilTerrorSpider
+  name: Frost oil (terror spider)
+  group: Toxins
+  desc: Cools the victim's body.
+  physicalDesc: reagent-physical-desc-oily
+  flavor: cold
+  color: "#8ad8ff"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 160.15
+        amount: -10000
 
 - type: entity
   name: Spit terror
@@ -2184,8 +2569,8 @@
     capacity: 1
     count: 1
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 2
-    rechargeSound: /Audio/Animals/cat_hiss.ogg
+  rechargeCooldown: 2
+  rechargeSound: /Audio/Animals/cat_hiss.ogg
 
 - type: entity
   id: TerrorSpitBullet
@@ -2275,7 +2660,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-
+    
 - type: polymorph
   id: EggToMobDronSpiderAngrys
   configuration:
@@ -2443,17 +2828,1156 @@
   name: web
   description: terror web
   categories: [ HideSpawnMenu ]
+  parent: BaseAction
   components:
   - type: Action
+    icon:
+      sprite: Structures/floor_web.rsi
+      state: full
+    itemIconStyle: BigAction
     useDelay: 8
-    icon: Imperial/TerrorSpider/Spider/actions_animal.rsi/lay_web.png
   - type: InstantAction
-    event: !type:SpiderWebActionEvent
+    event: !type:TerrorSpiderSpawnWebActionEvent
+      webPrototype: SpiderWebTerrorUwU
 
 - type: entity
-  id: SpiderWebTerrorGuardian
+  id: TerrorWeedsQueenAction
+  name: queen web
+  description: terror web
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    icon:
+      sprite: Structures/floor_web.rsi
+      state: full
+    itemIconStyle: BigAction
+    useDelay: 1.5
+  - type: InstantAction
+    event: !type:TerrorSpiderSpawnWebActionEvent
+      webPrototype: SpiderWebPrincess
+
+- type: entity
+  id: ActionTerrorSpiderMotherRemoteViewNext
+  name: Remote next
+  description: Switch view to next spider.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: show
+    useDelay: 1
+  - type: InstantAction
+    event: !type:TerrorSpiderMotherRemoteViewNextActionEvent
+
+- type: entity
+  id: ActionTerrorSpiderMotherRemoteViewPrevious
+  name: Remote previous
+  description: Switch view to previous spider.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: show2
+    useDelay: 1
+  - type: InstantAction
+    event: !type:TerrorSpiderMotherRemoteViewPreviousActionEvent
+
+- type: entity
+  id: ActionTerrorSpiderMotherRemoteViewExit
+  name: Remote exit
+  description: Return your view.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: pause
+    useDelay: 1
+  - type: InstantAction
+    event: !type:TerrorSpiderMotherRemoteViewExitActionEvent
+
+- type: entity
+  id: ActionTerrorSpiderMotherPulse
+  name: Mother heal pulse
+  description: Heal nearby terror spiders.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: heal
+    useDelay: 30
+  - type: InstantAction
+    event: !type:TerrorSpiderMotherPulseActionEvent
+
+- type: entity
+  id: ActionTerrorSpiderMotherLayJelly
+  name: Lay jelly
+  description: Lay regeneration jelly.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: spiderjelly
+    useDelay: 15
+  - type: InstantAction
+    event: !type:TerrorSpiderMotherLayJellyActionEvent
+
+- type: entity
+  id: TerrorSpiderMotherJelly
+  name: spider jelly
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/TerrorSpider/act.rsi
+    layers:
+    - state: spiderjelly
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 1
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.3"
+        layer:
+        - MidImpassable
+  - type: TimedDespawn
+    lifetime: 6
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: TerrorSpiderMotherJelly
+
+- type: entity
+  id: ActionTerrorSpiderQueenCreateHive
+  name: Create hive
+  description: Create hive mode and unlock egg laying.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/queen.rsi
+      state: terror_queen
+    useDelay: 1
+  - type: InstantAction
+    event: !type:TerrorSpiderQueenCreateHiveActionEvent
+
+- type: entity
+  id: ActionTerrorSpiderQueenScream
+  name: Queen scream
+  description: Slow enemies and disable robots.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: terror_shriek
+    useDelay: 45
+  - type: InstantAction
+    event: !type:TerrorSpiderQueenScreamActionEvent
+
+- type: entity
+  id: ActionTerrorSpiderQueenHiveCount
+  name: Hive count
+  description: Show your brood status.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: mindswap
+    useDelay: 5
+  - type: InstantAction
+    event: !type:TerrorSpiderQueenHiveCountActionEvent
+
+- type: entity
+  id: ActionTerrorSpiderQueenLayEggRusar
+  name: Lay Rusar egg
+  description: Lay a tier-1 Rusar egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/rusar.rsi
+      state: terror_red
+    useDelay: 160
+  - type: InstantAction
+    event: !type:TerrorSpiderQueenLayEggActionEvent
+      eggPrototype: TerrorEggQueenRusar
+
+- type: entity
+  id: ActionTerrorSpiderQueenLayEggDron
+  name: Lay Dron egg
+  description: Lay a tier-1 Dron egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/dron.rsi
+      state: terror_widow
+    useDelay: 160
+  - type: InstantAction
+    event: !type:TerrorSpiderQueenLayEggActionEvent
+      eggPrototype: TerrorEggQueenDron
+
+- type: entity
+  id: ActionTerrorSpiderQueenLayEggLurker
+  name: Lay Lurker egg
+  description: Lay a tier-1 Lurker egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/sogladatel.rsi
+      state: terror_gray_cloaked
+    useDelay: 160
+  - type: InstantAction
+    event: !type:TerrorSpiderQueenLayEggActionEvent
+      eggPrototype: TerrorEggQueenLurker
+
+- type: entity
+  id: ActionTerrorSpiderQueenLayEggHealer
+  name: Lay Healer egg
+  description: Lay a tier-1 Healer egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/healer.rsi
+      state: terror_green
+    useDelay: 160
+  - type: InstantAction
+    event: !type:TerrorSpiderQueenLayEggActionEvent
+      eggPrototype: TerrorEggQueenHealer
+
+- type: entity
+  id: ActionTerrorSpiderQueenLayEggReaper
+  name: Lay Reaper egg
+  description: Lay a tier-2 Reaper egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/reaper.rsi
+      state: terror_white
+    useDelay: 160
+  - type: InstantAction
+    event: !type:TerrorSpiderQueenLayEggActionEvent
+      eggPrototype: TerrorEggQueenReaper
+
+- type: entity
+  id: ActionTerrorSpiderQueenLayEggWidow
+  name: Lay Widow egg
+  description: Lay a tier-2 Widow egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/widow.rsi
+      state: terror_widow
+    useDelay: 160
+  - type: InstantAction
+    event: !type:TerrorSpiderQueenLayEggActionEvent
+      eggPrototype: TerrorEggQueenWidow
+
+- type: entity
+  id: ActionTerrorSpiderQueenLayEggGuardian
+  name: Lay Guardian egg
+  description: Lay a tier-2 Guardian egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/guardian.rsi
+      state: terror_purple
+    useDelay: 160
+  - type: InstantAction
+    event: !type:TerrorSpiderQueenLayEggActionEvent
+      eggPrototype: TerrorEggQueenGuardian
+
+- type: entity
+  id: ActionTerrorSpiderQueenLayEggDestroyer
+  name: Lay Destroyer egg
+  description: Lay a tier-2 Destroyer egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/destroyer.rsi
+      state: terror_brown
+    useDelay: 160
+  - type: InstantAction
+    event: !type:TerrorSpiderQueenLayEggActionEvent
+      eggPrototype: TerrorEggQueenDestroyer
+
+- type: entity
+  id: ActionTerrorSpiderQueenLayEggPrince
+  name: Lay Prince egg
+  description: Lay a tier-3 Prince egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/prince.rsi
+      state: terror_allblack
+    useDelay: 160
+  - type: InstantAction
+    event: !type:TerrorSpiderQueenLayEggActionEvent
+      eggPrototype: TerrorEggQueenPrince
+      royalCooldownKey: Prince
+
+- type: entity
+  id: ActionTerrorSpiderQueenLayEggPrincess
+  name: Lay Princess egg
+  description: Lay a tier-3 Princess egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/princess.rsi
+      state: terror_princess1
+    useDelay: 160
+  - type: InstantAction
+    event: !type:TerrorSpiderQueenLayEggActionEvent
+      eggPrototype: TerrorEggQueenPrincess
+      royalCooldownKey: Princess
+
+- type: entity
+  id: ActionTerrorSpiderQueenLayEggMother
+  name: Lay Mother egg
+  description: Lay a tier-3 Mother egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/mother.rsi
+      state: terror_mother
+    useDelay: 160
+  - type: InstantAction
+    event: !type:TerrorSpiderQueenLayEggActionEvent
+      eggPrototype: TerrorEggQueenMother
+      royalCooldownKey: Mother
+
+- type: entity
+  id: ActionTerrorSpiderKnightGuard
+  name: Guard
+  description: Defensive stance.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: defence
+    itemIconStyle: BigAction
+    useDelay: 30
+  - type: InstantAction
+    event: !type:TerrorSpiderKnightGuardActionEvent
+
+- type: entity
+  id: ActionTerrorSpiderDestroyerEmpScream
+  name: EMP scream
+  description: Emit EMP wave around you.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: emp_new
+    itemIconStyle: BigAction
+    useDelay: 40
+  - type: InstantAction
+    event: !type:TerrorSpiderDestroyerEmpScreamActionEvent
+
+- type: entity
+  id: ActionTerrorSpiderDestroyerFireBurst
+  name: Fire burst
+  description: Ignite everyone around you.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: explosion_old
+    itemIconStyle: BigAction
+    useDelay: 25
+  - type: InstantAction
+    event: !type:TerrorSpiderDestroyerFireBurstActionEvent
+
+- type: entity
+  id: ActionTerrorSpiderPrincessRemoteViewNext
+  name: Princess remote next
+  description: Switch view to next brood spider.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: show
+    useDelay: 1
+  - type: InstantAction
+    event: !type:TerrorSpiderMotherRemoteViewNextActionEvent
+
+- type: entity
+  id: ActionTerrorSpiderPrincessRemoteViewPrevious
+  name: Princess remote previous
+  description: Switch view to previous brood spider.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: show2
+    useDelay: 1
+  - type: InstantAction
+    event: !type:TerrorSpiderMotherRemoteViewPreviousActionEvent
+
+- type: entity
+  id: ActionTerrorSpiderPrincessRemoteViewExit
+  name: Princess remote exit
+  description: Return your view.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: pause
+    useDelay: 1
+  - type: InstantAction
+    event: !type:TerrorSpiderMotherRemoteViewExitActionEvent
+
+- type: entity
+  id: ActionTerrorSpiderPrincessHiveSense
+  name: Hive sense
+  description: Show brood status in chat.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: mindswap
+    useDelay: 5
+  - type: InstantAction
+    event: !type:TerrorSpiderPrincessHiveSenseActionEvent
+
+- type: entity
+  id: ActionTerrorSpiderPrincessScream
+  name: Princess scream
+  description: Slow enemies and disable robots.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: terror_shriek
+    useDelay: 60
+  - type: InstantAction
+    event: !type:TerrorSpiderPrincessScreamActionEvent
+
+- type: entity
+  id: ActionTerrorSpiderPrincessLayEggRusar
+  name: Lay Rusar egg
+  description: Lay a tier-1 Rusar egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/rusar.rsi
+      state: terror_red
+    useDelay: 160
+  - type: InstantAction
+    event: !type:TerrorSpiderPrincessLayEggActionEvent
+      eggPrototype: TerrorEggPrincessRusar
+
+- type: entity
+  id: ActionTerrorSpiderPrincessLayEggDron
+  name: Lay Dron egg
+  description: Lay a tier-1 Dron egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/dron.rsi
+      state: terror_widow
+    useDelay: 160
+  - type: InstantAction
+    event: !type:TerrorSpiderPrincessLayEggActionEvent
+      eggPrototype: TerrorEggPrincessDron
+
+- type: entity
+  id: ActionTerrorSpiderPrincessLayEggLurker
+  name: Lay Lurker egg
+  description: Lay a tier-1 Lurker egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/sogladatel.rsi
+      state: terror_gray_cloaked
+    useDelay: 160
+  - type: InstantAction
+    event: !type:TerrorSpiderPrincessLayEggActionEvent
+      eggPrototype: TerrorEggPrincessLurker
+
+- type: entity
+  id: ActionTerrorSpiderPrincessLayEggHealer
+  name: Lay Healer egg
+  description: Lay a tier-1 Healer egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/healer.rsi
+      state: terror_green
+    useDelay: 160
+  - type: InstantAction
+    event: !type:TerrorSpiderPrincessLayEggActionEvent
+      eggPrototype: TerrorEggPrincessHealer
+
+- type: entity
+  id: ActionTerrorSpiderPrincessLayEggReaper
+  name: Lay Reaper egg
+  description: Lay a tier-2 Reaper egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/reaper.rsi
+      state: terror_white
+    useDelay: 160
+  - type: InstantAction
+    event: !type:TerrorSpiderPrincessLayEggActionEvent
+      eggPrototype: TerrorEggPrincessReaper
+
+- type: entity
+  id: ActionTerrorSpiderPrincessLayEggWidow
+  name: Lay Widow egg
+  description: Lay a tier-2 Widow egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/widow.rsi
+      state: terror_widow
+    useDelay: 160
+  - type: InstantAction
+    event: !type:TerrorSpiderPrincessLayEggActionEvent
+      eggPrototype: TerrorEggPrincessWidow
+
+- type: entity
+  id: ActionTerrorSpiderPrincessLayEggGuardian
+  name: Lay Guardian egg
+  description: Lay a tier-2 Guardian egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/guardian.rsi
+      state: terror_purple
+    useDelay: 160
+  - type: InstantAction
+    event: !type:TerrorSpiderPrincessLayEggActionEvent
+      eggPrototype: TerrorEggPrincessGuardian
+
+- type: entity
+  id: ActionTerrorSpiderPrincessLayEggDestroyer
+  name: Lay Destroyer egg
+  description: Lay a tier-2 Destroyer egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/destroyer.rsi
+      state: terror_brown
+    useDelay: 160
+  - type: InstantAction
+    event: !type:TerrorSpiderPrincessLayEggActionEvent
+      eggPrototype: TerrorEggPrincessDestroyer
+
+- type: entity
+  id: TerrorEggPrincessTier1
+  parent: TerrorEgg1Tir
+  name: egg terror spider
+  suffix: terror spider
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: TerrorSpiderPrincessEgg
+    hatchDelay: 240
+    tierTwo: false
+
+- type: entity
+  id: TerrorEggPrincessTier2
+  parent: TerrorEgg2Tir
+  name: egg terror spider
+  suffix: terror spider
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: TerrorSpiderPrincessEgg
+    hatchDelay: 240
+    tierTwo: true
+
+- type: entity
+  id: TerrorEggPrincessRusar
+  parent: TerrorEggPrincessTier1
+  components:
+  - type: TerrorSpiderPrincessEgg
+    tierTwo: false
+    tierOnePrototypes: [ MobRusarSpiderAngrys ]
+
+- type: entity
+  id: TerrorEggPrincessDron
+  parent: TerrorEggPrincessTier1
+  components:
+  - type: TerrorSpiderPrincessEgg
+    tierTwo: false
+    tierOnePrototypes: [ MobDronSpiderAngrys ]
+
+- type: entity
+  id: TerrorEggPrincessLurker
+  parent: TerrorEggPrincessTier1
+  components:
+  - type: TerrorSpiderPrincessEgg
+    tierTwo: false
+    tierOnePrototypes: [ MobsogladatelSpiderAngrys ]
+
+- type: entity
+  id: TerrorEggPrincessHealer
+  parent: TerrorEggPrincessTier1
+  components:
+  - type: TerrorSpiderPrincessEgg
+    tierTwo: false
+    tierOnePrototypes: [ MobGiantHealerSpiderAngry ]
+
+- type: entity
+  id: TerrorEggPrincessReaper
+  parent: TerrorEggPrincessTier2
+  components:
+  - type: TerrorSpiderPrincessEgg
+    tierTwo: true
+    tierTwoPrototypes: [ MobGiantreaperSpiderAngry ]
+    tierTwoElitePrototypes: [ ]
+    tierTwoUnlimitedPrototypes: [ MobGiantreaperSpiderAngry ]
+
+- type: entity
+  id: TerrorEggPrincessWidow
+  parent: TerrorEggPrincessTier2
+  components:
+  - type: TerrorSpiderPrincessEgg
+    tierTwo: true
+    tierTwoPrototypes: [ MobGiantWidowSpiderAngry ]
+    tierTwoElitePrototypes: [ MobGiantWidowSpiderAngry ]
+    tierTwoUnlimitedPrototypes: [ MobGiantWidowSpiderAngry ]
+
+- type: entity
+  id: TerrorEggPrincessGuardian
+  parent: TerrorEggPrincessTier2
+  components:
+  - type: TerrorSpiderPrincessEgg
+    tierTwo: true
+    tierTwoPrototypes: [ MobGiantGuardianSpiderAngry ]
+    tierTwoElitePrototypes: [ MobGiantGuardianSpiderAngry ]
+    tierTwoUnlimitedPrototypes: [ MobGiantGuardianSpiderAngry ]
+
+- type: entity
+  id: TerrorEggPrincessDestroyer
+  parent: TerrorEggPrincessTier2
+  components:
+  - type: TerrorSpiderPrincessEgg
+    tierTwo: true
+    tierTwoPrototypes: [ MobGiantDestroyerSpiderAngry ]
+    tierTwoElitePrototypes: [ MobGiantDestroyerSpiderAngry ]
+    tierTwoUnlimitedPrototypes: [ MobGiantDestroyerSpiderAngry ]
+
+- type: entity
+  id: TerrorEggQueenRusar
+  parent: TerrorEgg1Tir
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: TerrorSpiderQueenEgg
+    hatchDelay: 240
+    spawnPrototype: MobRusarSpiderAngrys
+
+- type: entity
+  id: TerrorEggQueenDron
+  parent: TerrorEgg1Tir
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: TerrorSpiderQueenEgg
+    hatchDelay: 240
+    spawnPrototype: MobDronSpiderAngrys
+
+- type: entity
+  id: TerrorEggQueenLurker
+  parent: TerrorEgg1Tir
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: TerrorSpiderQueenEgg
+    hatchDelay: 240
+    spawnPrototype: MobsogladatelSpiderAngrys
+
+- type: entity
+  id: TerrorEggQueenHealer
+  parent: TerrorEgg1Tir
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: TerrorSpiderQueenEgg
+    hatchDelay: 240
+    spawnPrototype: MobGiantHealerSpiderAngry
+
+- type: entity
+  id: TerrorEggQueenReaper
+  parent: TerrorEgg2Tir
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: TerrorSpiderQueenEgg
+    hatchDelay: 240
+    spawnPrototype: MobGiantreaperSpiderAngry
+
+- type: entity
+  id: TerrorEggQueenWidow
+  parent: TerrorEgg2Tir
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: TerrorSpiderQueenEgg
+    hatchDelay: 240
+    spawnPrototype: MobGiantWidowSpiderAngry
+
+- type: entity
+  id: TerrorEggQueenGuardian
+  parent: TerrorEgg2Tir
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: TerrorSpiderQueenEgg
+    hatchDelay: 240
+    spawnPrototype: MobGiantGuardianSpiderAngry
+
+- type: entity
+  id: TerrorEggQueenDestroyer
+  parent: TerrorEgg2Tir
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: TerrorSpiderQueenEgg
+    hatchDelay: 240
+    spawnPrototype: MobGiantDestroyerSpiderAngry
+
+- type: entity
+  id: TerrorEggQueenPrince
+  parent: TerrorEgg3Tir
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: TerrorSpiderQueenEgg
+    hatchDelay: 240
+    spawnPrototype: MobGiantPrinceSpiderAngry
+    royalCooldownKey: Prince
+
+- type: entity
+  id: TerrorEggQueenPrincess
+  parent: TerrorEgg3Tir
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: TerrorSpiderQueenEgg
+    hatchDelay: 240
+    spawnPrototype: MobGiantPrincessSpiderAngry
+    royalCooldownKey: Princess
+
+- type: entity
+  id: TerrorEggQueenMother
+  parent: TerrorEgg3Tir
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: TerrorSpiderQueenEgg
+    hatchDelay: 240
+    spawnPrototype: MobGiantMotherSpiderAngry
+    royalCooldownKey: Mother
+
+- type: entity
+  id: ActionTerrorSpiderRoyalStomp
+  name: Stomp
+  description: Slow and crush nearby enemies.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: slam
+    itemIconStyle: BigAction
+    useDelay: 35
+  - type: InstantAction
+    event: !type:TerrorSpiderRoyalStompActionEvent
+
+- type: entity
+  id: ActionTerrorSpiderKnightRage
+  name: Rage
+  description: Enraged stance.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: attack
+    itemIconStyle: BigAction
+    useDelay: 30
+  - type: InstantAction
+    event: !type:TerrorSpiderKnightRageActionEvent
+
+- type: entity
+  id: ActionTerrorSpiderHealerPulse
+  name: Healer pulse
+  description: Heal all terror spiders in range.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: heal
+    itemIconStyle: BigAction
+    useDelay: 30
+  - type: InstantAction
+    event: !type:TerrorSpiderHealerPulseActionEvent
+
+- type: entity
+  id: ActionTerrorSpiderHealerLayEggRusar
+  name: Lay Rusar egg
+  description: Lay a tier-1 Rusar egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/rusar.rsi
+      state: terror_red
+    itemIconStyle: BigAction
+  - type: InstantAction
+    event: !type:TerrorSpiderHealerLayEggActionEvent
+      eggPrototype: TerrorEggHealerRusar
+
+- type: entity
+  id: ActionTerrorSpiderHealerLayEggDron
+  name: Lay Dron egg
+  description: Lay a tier-1 Dron egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/dron.rsi
+      state: terror_widow
+    itemIconStyle: BigAction
+  - type: InstantAction
+    event: !type:TerrorSpiderHealerLayEggActionEvent
+      eggPrototype: TerrorEggHealerDron
+
+- type: entity
+  id: ActionTerrorSpiderHealerLayEggLurker
+  name: Lay Lurker egg
+  description: Lay a tier-1 Lurker egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/sogladatel.rsi
+      state: terror_gray_cloaked
+    itemIconStyle: BigAction
+  - type: InstantAction
+    event: !type:TerrorSpiderHealerLayEggActionEvent
+      eggPrototype: TerrorEggHealerLurker
+
+- type: entity
+  id: ActionTerrorSpiderHealerLayEggHealer
+  name: Lay Healer egg
+  description: Lay a tier-1 Healer egg.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/healer.rsi
+      state: terror_green
+    itemIconStyle: BigAction
+  - type: InstantAction
+    event: !type:TerrorSpiderHealerLayEggActionEvent
+      eggPrototype: TerrorEggHealerHealer
+
+- type: entity
+  id: TerrorWeedsHealerAction
+  name: healer web
+  description: terror web
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    icon:
+      sprite: Structures/floor_web.rsi
+      state: full
+    itemIconStyle: BigAction
+    useDelay: 2
+  - type: InstantAction
+    event: !type:TerrorSpiderSpawnWebActionEvent
+      webPrototype: SpiderWebTerrorHealer
+
+- type: entity
+  id: TerrorWeedsWidowAction
+  name: widow web
+  description: terror web
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    icon:
+      sprite: Structures/floor_web.rsi
+      state: full
+    itemIconStyle: BigAction
+    useDelay: 2.5
+  - type: InstantAction
+    event: !type:TerrorSpiderSpawnWebActionEvent
+      webPrototype: SpiderWebTerrorWidow
+
+- type: entity
+  id: ActionTerrorSpiderLurkerStealth
+  name: Stealth
+  description: Become invisible for a short duration.
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/TerrorSpider/act.rsi
+      state: stealth
+    itemIconStyle: BigAction
+    useDelay: 25
+  - type: InstantAction
+    event: !type:TerrorSpiderLurkerStealthActionEvent
+
+- type: entity
+  id: TerrorWeedsRusarAction
+  name: knight web
+  description: terror web
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    icon:
+      sprite: Structures/floor_web.rsi
+      state: full
+    itemIconStyle: BigAction
+    useDelay: 2.5
+  - type: InstantAction
+    event: !type:TerrorSpiderSpawnWebActionEvent
+      webPrototype: SpiderWebTerrorRusar
+
+- type: entity
+  id: TerrorWeedsLurkerAction
+  name: lurker web
+  description: terror web
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    icon:
+      sprite: Structures/floor_web.rsi
+      state: full
+    itemIconStyle: BigAction
+    useDelay: 3
+  - type: InstantAction
+    event: !type:TerrorSpiderSpawnWebActionEvent
+      webPrototype: SpiderWebTerrorLurker
+
+- type: entity
+  id: TerrorWeedsPrincessAction
+  name: princess web
+  description: terror web
+  categories: [ HideSpawnMenu ]
+  parent: BaseAction
+  components:
+  - type: Action
+    icon:
+      sprite: Structures/floor_web.rsi
+      state: full
+    itemIconStyle: BigAction
+    useDelay: 2
+  - type: InstantAction
+    event: !type:TerrorSpiderSpawnWebActionEvent
+      webPrototype: SpiderWebPrincess
+
+- type: entity
+  id: SpiderWebTerrorLurker
   name: web terror spider
-  parent: SpiderWebBase
   description: TERROR!
   placement:
     mode: SnapgridCenter
@@ -2466,83 +3990,17 @@
           path:
             "/Audio/Weapons/slash.ogg"
     - type: Sprite
-      color: "#ffffffdd"
-    - type: Fixtures
-      fixtures:
-        fix1:
-          hard: false
-          density: 7
-          shape:
-            !type:PhysShapeAabb
-            bounds: "-0.5,-0.5,0.5,0.5"
-          layer:
-          - MidImpassable
-    - type: Destructible
-      thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 60
-        behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-        - !type:SpawnEntitiesBehavior
-          spawn:
-            MaterialWebSilk:
-              min: 0
-              max: 1
-    - type: Temperature
-      heatDamage:
-        types:
-          Heat: 80
-      coldDamage: {}
-      coldDamageThreshold: 0
-    - type: Flammable
-      fireSpread: true
-      damage:
-        types:
-          Heat: 80
-    - type: Reactive
-      groups:
-        Flammable: [Touch]
-        Extinguish: [Touch]
-    - type: SpiderWebObject
-    - type: SpeedModifierContacts
-      walkSpeedModifier: 0.5
-      sprintSpeedModifier: 0.5
-      ignoreWhitelist:
-        components:
-            - IgnoreSpiderWeb
-    - type: DamageContacts
-      damage:
-        types:
-          Poison: 4
-          Piercing: 4
-      ignoreWhitelist:
-        components:
-          - IgnoreSpiderWeb
-    - type: TimedDespawn
-      lifetime: 15
-    - type: Slippery
-    - type: StepTrigger
-      intersectRatio: 0.2
-
-- type: entity
-  id: SpiderWebPrincess
-  name: web terror spider
-  parent: SpiderWebBase
-  description: TERROR!
-  placement:
-    mode: SnapgridCenter
-    snap:
-      - Wall
-  components:
-    - type: MeleeSound
-      soundGroups:
-        Brute:
-          path:
-            "/Audio/Weapons/slash.ogg"
-    - type: Sprite
-      color: "#ffffffdd"
+      sprite: Structures/floor_web.rsi
+      color: "#FFFFFF88"
+      layers:
+        - state: full
+          map: ["spiderWebLayer"]
+      drawdepth: WallMountedItems
+    - type: Appearance
+    - type: Clickable
+    - type: Transform
+      anchored: true
+    - type: Physics
     - type: Fixtures
       fixtures:
         fix1:
@@ -2559,7 +4017,7 @@
       thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 60
+          damage: 20
         behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
@@ -2579,6 +4037,397 @@
         Flammable: [Touch]
         Extinguish: [Touch]
     - type: SpiderWebObject
+    - type: TerrorSpiderWebBuffArea
+    - type: TerrorSpiderLurkerWebArea
+      staminaDamage: 100
+      muteDuration: 14
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      ignoreWhitelist:
+        components:
+            - IgnoreSpiderWeb
+    - type: Slippery
+    - type: StepTrigger
+      intersectRatio: 0.2
+
+- type: entity
+  id: SpiderWebTerrorWidow
+  name: web terror spider
+  description: TERROR!
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path:
+            "/Audio/Weapons/slash.ogg"
+    - type: Sprite
+      sprite: Structures/floor_web.rsi
+      layers:
+        - state: full
+          map: ["spiderWebLayer"]
+      drawdepth: WallMountedItems
+    - type: Appearance
+    - type: Clickable
+    - type: Transform
+      anchored: true
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: false
+          density: 7
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+          - MidImpassable
+    - type: Damageable
+      damageModifierSet: Wood
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 20
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 60
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 60
+    - type: Reactive
+      groups:
+        Flammable: [Touch]
+        Extinguish: [Touch]
+    - type: SpiderWebObject
+    - type: TerrorSpiderWebBuffArea
+    - type: TerrorSpiderWidowWebArea
+      venomOnTouch: 20
+      venomReagent: BlackTerrorVenom
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      ignoreWhitelist:
+        components:
+            - IgnoreSpiderWeb
+    - type: Slippery
+    - type: StepTrigger
+      intersectRatio: 0.2
+
+- type: entity
+  id: SpiderWebTerrorGuardian
+  name: web terror spider
+  description: TERROR!
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path:
+            "/Audio/Weapons/slash.ogg"
+    - type: Sprite
+      sprite: Structures/floor_web.rsi
+      layers:
+        - state: full
+          map: ["spiderWebLayer"]
+      drawdepth: WallMountedItems
+    - type: Appearance
+    - type: Clickable
+    - type: Transform
+      anchored: true
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: false
+          density: 7
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+          - MidImpassable
+    - type: Damageable
+      damageModifierSet: Wood
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 40
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: Occluder
+    - type: SpiderWebObject
+    - type: TerrorSpiderWebBuffArea
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      ignoreWhitelist:
+        components:
+            - IgnoreSpiderWeb
+    - type: Slippery
+    - type: StepTrigger
+      intersectRatio: 0.2
+
+- type: entity
+  id: SpiderWebTerrorGuardianBarrier
+  name: guardian barrier
+  description: TERROR!
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: Sprite
+      sprite: Imperial/TerrorSpider/effects.rsi
+      layers:
+        - state: terror_shield
+          map: ["spiderWebLayer"]
+      drawdepth: WallMountedItems
+    - type: Appearance
+    - type: Clickable
+    - type: Transform
+      anchored: true
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: true
+          density: 7
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+          - MidImpassable
+    - type: Occluder
+    - type: SpiderWebObject
+    - type: TerrorSpiderGuardianShieldBarrier
+    - type: TimedDespawn
+      lifetime: 16.5
+
+- type: entity
+  id: SpiderWebTerrorHealer
+  name: web terror spider
+  description: TERROR!
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path:
+            "/Audio/Weapons/slash.ogg"
+    - type: Sprite
+      sprite: Structures/floor_web.rsi
+      layers:
+        - state: full
+          map: ["spiderWebLayer"]
+      drawdepth: WallMountedItems
+    - type: Appearance
+    - type: Clickable
+    - type: Transform
+      anchored: true
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: false
+          density: 7
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+          - MidImpassable
+    - type: Damageable
+      damageModifierSet: Wood
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 20
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 60
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 60
+    - type: Reactive
+      groups:
+        Flammable: [Touch]
+        Extinguish: [Touch]
+    - type: SpiderWebObject
+    - type: TerrorSpiderWebBuffArea
+    - type: TerrorSpiderHealerBlindWeb
+      blindDuration: 30
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      ignoreWhitelist:
+        components:
+            - IgnoreSpiderWeb
+    - type: Slippery
+    - type: StepTrigger
+      intersectRatio: 0.2
+
+- type: entity
+  id: TerrorEggHealerRusar
+  parent: TerrorEgg1Tir
+  name: egg terror spider
+  suffix: terror spider
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: TerrorSpiderQueenEgg
+    hatchDelay: 240
+    spawnPrototype: MobRusarSpiderAngrys
+
+- type: entity
+  id: TerrorEggHealerDron
+  parent: TerrorEgg1Tir
+  name: egg terror spider
+  suffix: terror spider
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: TerrorSpiderQueenEgg
+    hatchDelay: 240
+    spawnPrototype: MobDronSpiderAngrys
+
+- type: entity
+  id: TerrorEggHealerLurker
+  parent: TerrorEgg1Tir
+  name: egg terror spider
+  suffix: terror spider
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: TerrorSpiderQueenEgg
+    hatchDelay: 240
+    spawnPrototype: MobsogladatelSpiderAngrys
+
+- type: entity
+  id: TerrorEggHealerHealer
+  parent: TerrorEgg1Tir
+  name: egg terror spider
+  suffix: terror spider
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: TerrorSpiderQueenEgg
+    hatchDelay: 240
+    spawnPrototype: MobGiantHealerSpiderAngry
+
+- type: entity
+  id: SpiderWebPrincess
+  name: web terror spider
+  description: TERROR!
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path:
+            "/Audio/Weapons/slash.ogg"
+    - type: Sprite
+      sprite: Structures/floor_web.rsi
+      layers:
+        - state: full
+          map: ["spiderWebLayer"]
+      drawdepth: WallMountedItems
+    - type: Appearance
+    - type: Clickable
+    - type: Transform
+      anchored: true
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: false
+          density: 7
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+          - MidImpassable
+    - type: Damageable
+      damageModifierSet: Wood
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 30
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 60
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 60
+    - type: Reactive
+      groups:
+        Flammable: [Touch]
+        Extinguish: [Touch]
+    - type: SpiderWebObject
+    - type: TerrorSpiderWebBuffArea
     - type: SpeedModifierContacts
       walkSpeedModifier: 0.5
       sprintSpeedModifier: 0.5
@@ -2597,6 +4446,7 @@
   id: KsenosXenoBase
   parent: MobXeno
   suffix: KsenosXeno
+  nospawn: true
   components:
   - type: LagCompensation
   - type: Input
@@ -2648,11 +4498,6 @@
   - type: Appearance
   - type: Bloodstream
     bloodMaxVolume: 0
-  - type: UnpoweredFlashlight
-  - type: PointLight
-    enabled: false
-    radius: 4
-    color: "purple"
   - type: Puller
     needsHands: false
   - type: NoSlip
@@ -2675,10 +4520,13 @@
       reagents:
       - ReagentId: Water
         Quantity: 10
+  - type: Access
+    tags:
+    - Xeno
 
 - type: radioChannel
   id: hiveconnection
-  name: Улей
+  name: Hive
   keycode: 'й'
   frequency: 8888
   color: "#800080"
@@ -2698,6 +4546,7 @@
   parent: BaseItem
   id: WeaponXenoSpit
   description: Concentrated toxicity
+  nospawn: true
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
@@ -2727,18 +4576,71 @@
   id: Terrorspider
   alias:
     - Terror
-  name: spider-terror-gamerule
-  description: spider-terror-gamerule-desc
+  name: Terror Spiders
+  description: Terror spiders have appeared on the station. These vile and bloodthirsty spiders want to capture the station and turn it into their hive.
   showInVote: false
   rules:
     - BasicStationEventScheduler
     - BasicRoundstartVariation
 
+- type: reagent
+  id: BlackTerrorVenom
+  name: Black Terror Venom
+  group: Toxins
+  desc: A venom used by terror widow spiders.
+  flavor: bitter
+  color: "#800080"
+  physicalDesc: reagent-physical-desc-opaque
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: BlackTerrorVenom
+          max: 30
+        damage:
+          types:
+            Poison: 1
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: BlackTerrorVenom
+          min: 30
+          max: 60
+        damage:
+          types:
+            Poison: 2
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: BlackTerrorVenom
+          min: 60
+          max: 90
+        damage:
+          types:
+            Poison: 4
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: BlackTerrorVenom
+          min: 90
+        damage:
+          types:
+            Poison: 8
+      - !type:GenericStatusEffect
+        key: TemporaryBlindness
+        component: TemporaryBlindness
+        conditions:
+        - !type:ReagentCondition
+          reagent: BlackTerrorVenom
+          min: 90
+
 - type: entity
   id: GasXenoSpitBullet
   name: Xeno's gas spit
-  description: Concentrated toxicity
   parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
@@ -2816,7 +4718,6 @@
 - type: entity
   id: SpiderWebTerrorUwU
   name: web terror spider
-  parent: SpiderWebBase
   description: TERROR!
   placement:
     mode: SnapgridCenter
@@ -2829,7 +4730,16 @@
           path:
             "/Audio/Weapons/slash.ogg"
     - type: Sprite
-      color: "#ffffffdd"
+      sprite: Structures/floor_web.rsi
+      layers:
+        - state: full
+          map: ["spiderWebLayer"]
+      drawdepth: WallMountedItems
+    - type: Appearance
+    - type: Clickable
+    - type: Transform
+      anchored: true
+    - type: Physics
     - type: Fixtures
       fixtures:
         fix1:
@@ -2871,6 +4781,7 @@
         Flammable: [Touch]
         Extinguish: [Touch]
     - type: SpiderWebObject
+    - type: TerrorSpiderWebBuffArea
     - type: SpeedModifierContacts
       walkSpeedModifier: 0.5
       sprintSpeedModifier: 0.5
@@ -2881,28 +4792,21 @@
       lifetime: 1
 
 - type: entity
-  id: XenoSpitBullet
-  name: Spit xeno
-  parent: BulletDisablerPractice
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
-    scale: 1.3, 2
-    layers:
-    - state: declone
-      shader: unshaded
-  - type: PointLight
-    radius: 3
-    energy: 3
-    enabled: true
-    color: Green
-  - type: Projectile
-    impactEffect: BulletImpactEffect
-    damage:
-      types:
-        Poison: 20
-        Structural: 25
-    soundHit:
-      path: "/Audio/Weapons/Guns/Hits/energy_meat1.ogg"
-  - type: TimedDespawn
-    lifetime: 2
+  parent: StatusEffectSlowdown
+  id: TerrorSpiderRoyalStompSlowStatusEffect
+  name: terror spider royal stomp slowdown
+
+- type: entity
+  parent: StatusEffectSlowdown
+  id: TerrorSpiderPrincessRemoteViewImmobileStatusEffect
+  name: terror spider princess remote view immobile
+
+- type: entity
+  parent: StatusEffectSlowdown
+  id: TerrorSpiderMotherRemoteViewImmobileStatusEffect
+  name: terror spider mother remote view immobile
+
+- type: entity
+  parent: StatusEffectSlowdown
+  id: TerrorSpiderQueenHiveSlowStatusEffect
+  name: terror spider queen hive slowdown
