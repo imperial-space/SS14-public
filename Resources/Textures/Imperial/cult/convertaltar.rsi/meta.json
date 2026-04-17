@@ -1,0 +1,20 @@
+﻿{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Source: SS220 Paradise (master220), https://github.com/ss220-space/Paradise (exact author not recorded)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "convertaltar-red",
+      "delays": [
+        [
+          0.2,
+          0.2
+        ]
+      ]
+    }
+  ]
+}

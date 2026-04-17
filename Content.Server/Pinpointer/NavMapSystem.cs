@@ -372,6 +372,21 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
         SetBeaconEnabled(uid, !comp.Enabled, comp);
     }
 
+    [PublicAPI]
+    public bool TryGetBeaconLabel(EntityUid uid, [NotNullWhen(true)] out string? text, NavMapBeaconComponent? comp = null)
+    {
+        text = null;
+
+        if (!Resolve(uid, ref comp))
+            return false;
+
+        if (!comp.Enabled || string.IsNullOrWhiteSpace(comp.Text))
+            return false;
+
+        text = comp.Text;
+        return true;
+    }
+
     /// <summary>
     /// For a given position, tries to find the nearest configurable beacon that is marked as visible.
     /// This is used for things like announcements where you want to find the closest "landmark" to something.

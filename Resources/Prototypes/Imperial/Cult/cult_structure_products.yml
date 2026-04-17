@@ -1,0 +1,290 @@
+# ==============================================
+#  Культ Нар'Си — Предметы структур
+#  Алтарь / Кузница / Архив
+# ==============================================
+
+# ─── Алтарь: точильный камень культа ───
+
+- type: entity
+  id: CultWhetstone
+  name: Точильный камень культа
+  description: Обрядовый камень, заряженный тёмной энергией. Используйте на оружии, чтобы напитать его кровожадностью. Одно использование.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/item.rsi
+    layers:
+    - state: cult_sharpener
+      map: ["base"]
+  - type: Item
+    size: Small
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.Content.Shared.Imperial.Cult.Components.CultWhetstoneVisuals.Used:
+        base:
+          True: { state: cult_sharpener_used }
+          False: { state: cult_sharpener }
+  - type: CultWhetstone
+
+# ─── Алтарь: оболочки конструктов ───
+
+- type: entity
+  id: BaseCultConstructShell
+  abstract: true
+  parent: BaseStructureDynamic
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.3"
+        hard: false
+        density: 20
+        mask:
+        - None
+
+- type: entity
+  id: CultJuggernautShell
+  name: Оболочка джаггернаута
+  description: Неподвижная тяжёлая оболочка. Вставьте камень души, чтобы пробудить джаггернаута.
+  parent: BaseCultConstructShell
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/construct.rsi
+    state: juggernaut
+  - type: CultConstructShell
+    constructProto: MobCultJuggernaut
+    formationEffectProto: CultConstructFormationEffectJuggernaut
+
+- type: entity
+  id: CultWraithShell
+  name: Оболочка фантома
+  description: Лёгкая оболочка, подрагивающая от тени. Вставьте камень души, чтобы пробудить фантома.
+  parent: BaseCultConstructShell
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/construct.rsi
+    state: wraith
+  - type: CultConstructShell
+    constructProto: MobCultWraith
+    formationEffectProto: CultConstructFormationEffectWraith
+
+- type: entity
+  id: CultArtificerShell
+  name: Оболочка созидателя
+  description: Ритуальная оболочка, предназначенная для созидателя. Вставьте камень души, чтобы пробудить конструкта.
+  parent: BaseCultConstructShell
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/construct.rsi
+    state: artificer
+  - type: CultConstructShell
+    constructProto: MobCultArtificer
+    formationEffectProto: CultConstructFormationEffectArtificer
+
+# ─── Алтарь: фляга нечистой воды ───
+
+- type: entity
+  id: CultUnholyFlask
+  name: Фляга нечистой воды
+  description: Нечистая вода, освящённая во имя Нар'Си. Исцеляет вставших на путь тьмы.
+  parent: FlaskBase
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/flask.rsi
+    state: icon
+    color: "#660022"
+  - type: Item
+    size: Small
+    sprite: Objects/Consumable/Drinks/flask.rsi
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: UnholyWater
+          Quantity: 40
+  - type: SolutionTransfer
+    canChangeTransferAmount: false
+    minTransferAmount: 10
+    maxTransferAmount: 10
+
+# ─── Кузница: усиленная роба культа ───
+
+- type: entity
+  id: CultHeavyRobe
+  name: Усиленная роба культа
+  description: Плотная роба, укреплённая рунной магией. Обеспечивает надёжную защиту, но сковывает движения.
+  parent: ClothingOuterStorageBase
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Armor/cult_armour.rsi
+    state: icon
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Armor/cult_armour.rsi
+    slots:
+    - outerClothing
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.6
+        Heat: 0.65
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: CultArmor
+
+# ─── Кузница: мантия флагелланта ───
+
+- type: entity
+  id: ClothingOuterCultFlagellantRobes
+  name: Мантия флагелланта
+  description: Мантия, пропитанная страданием. Её носитель черпает часть силы из боли.
+  parent: ClothingOuterStorageBase
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/suit.rsi
+    state: flagellantrobe
+  - type: Clothing
+    sprite: Imperial/cult/suit.rsi
+    equippedState: flagellantrobe_hood
+    slots:
+    - outerClothing
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 1.5
+    sprintModifier: 1.5
+  - type: FlagellantRobes
+
+# ─── Кузница: зеркальный щит ───
+
+- type: entity
+  id: CultMirrorShield
+  name: Зеркальный щит
+  description: Щит из потустороннего металла с зеркальной поверхностью. Может отражать снаряды.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/shields.rsi
+    state: mirror-icon
+  - type: Item
+    size: Normal
+    sprite: Objects/Weapons/Melee/shields.rsi
+    heldPrefix: mirror
+  - type: MeleeWeapon
+    attackRate: 1.0
+    range: 1.0
+    damage:
+      types:
+        Blunt: 8
+    soundHit:
+      path: /Audio/Weapons/smash.ogg
+  - type: Blocking
+    passiveBlockModifier:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+    activeBlockModifier:
+      coefficients:
+        Blunt: 0.1
+        Slash: 0.1
+        Piercing: 0.1
+        Heat: 0.1
+      flatReductions:
+        Blunt: 5
+        Slash: 5
+        Piercing: 5
+  - type: Damageable
+    damageContainer: Shield
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# ─── Архив: повязка зилота ───
+
+- type: entity
+  id: CultZealotBlindfold
+  name: Повязка зилота
+  description: Ритуальная повязка из тёмной ткани. Те, кто носит её, видят мир иначе.
+  parent: ClothingEyesBase
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Misc/blindfold.rsi
+    state: icon
+    color: "#660000"
+  - type: Item
+    size: Small
+  - type: Clothing
+    sprite: Clothing/Eyes/Misc/blindfold.rsi
+    slots:
+    - eyes
+  - type: FlashImmunity
+  - type: CultZealotBlindfold
+
+# ─── Архив: сдвигатель вуали ───
+
+- type: entity
+  id: CultVeilShifter
+  name: Сдвигатель вуали
+  description: Загадочный артефакт культа. Телепортирует культиста вперёд на несколько тайлов. 4 заряда.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/item.rsi
+    layers:
+    - state: shifter
+      map: ["base"]
+  - type: Item
+    size: Small
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.Content.Shared.Imperial.Cult.Components.CultVeilShifterVisuals.Depleted:
+        base:
+          True: { state: shifter_drained }
+          False: { state: shifter }
+  - type: CultVeilShifter
+
+# ─── Архив: проклятая сфера ───
+
+- type: entity
+  id: CultCursedOrb
+  name: Проклятая сфера
+  description: Пульсирующая сфера сгущённой тёмной энергии. Бросьте во врага, чтобы сбить его с ног.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/item.rsi
+    state: shuttlecurse
+  - type: Item
+    size: Small
+  - type: CultCursedOrb
+  - type: Appearance
+
+# ─── Кузница: капюшон флагелланта ───
+
+- type: entity
+  id: ClothingHeadCultFlagellantHood
+  name: Капюшон флагелланта
+  description: Ритуальный капюшон из плотной тёмной ткани. Закрывает лицо носителя.
+  parent: ClothingHeadBase
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/suithead.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/cult/suithead.rsi
+    equippedState: flagellanthood
+    slots:
+    - head
