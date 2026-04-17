@@ -1,0 +1,180 @@
+﻿# РЎС‹СЂС‹Рµ СЂРµР°РіРµРЅС‚С‹ РєСЃРµРЅРѕ-СЌРєСЃС‚СЂР°РєС‚РѕРІ
+# РџРѕР»СѓС‡Р°СЋС‚СЃСЏ РїСЂРё РёР·РјРµР»СЊС‡РµРЅРёРё (grinding) СЌРєСЃС‚СЂР°РєС‚Р° РІ Р±Р»РµРЅРґРµСЂРµ (All-in-One Grinder).
+# РЎР°РјРё РїРѕ СЃРµР±Рµ РЅРµ РёРјРµСЋС‚ СЌС„С„РµРєС‚Р° вЂ” Р°РєС‚РёРІРёСЂСѓСЋС‚СЃСЏ С‡РµСЂРµР· С…РёРјРёС‡РµСЃРєРёРµ СЂРµР°РєС†РёРё
+# РїСЂРё СЃРјРµС€РёРІР°РЅРёРё СЃ РїСЂР°РІРёР»СЊРЅС‹Рј РєР°С‚Р°Р»РёР·Р°С‚РѕСЂРѕРј (РљСЂРѕРІСЊ / РџР»Р°Р·РјР° / Р’РѕРґР°).
+
+- type: reagent
+  id: XenoRawGrey
+  name: reagent-name-xeno-raw-grey
+  desc: reagent-desc-xeno-raw-grey
+  physicalDesc: reagent-physical-desc-xeno-raw-grey
+  color: "#808080"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawOrange
+  name: reagent-name-xeno-raw-orange
+  desc: reagent-desc-xeno-raw-orange
+  physicalDesc: reagent-physical-desc-xeno-raw-orange
+  color: "#FF8000"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawPurple
+  name: reagent-name-xeno-raw-purple
+  desc: reagent-desc-xeno-raw-purple
+  physicalDesc: reagent-physical-desc-xeno-raw-purple
+  color: "#8000FF"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawBlue
+  name: reagent-name-xeno-raw-blue
+  desc: reagent-desc-xeno-raw-blue
+  physicalDesc: reagent-physical-desc-xeno-raw-blue
+  color: "#0040FF"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawMetal
+  name: reagent-name-xeno-raw-metal
+  desc: reagent-desc-xeno-raw-metal
+  physicalDesc: reagent-physical-desc-xeno-raw-metal
+  color: "#B0B0C8"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawYellow
+  name: reagent-name-xeno-raw-yellow
+  desc: reagent-desc-xeno-raw-yellow
+  physicalDesc: reagent-physical-desc-xeno-raw-yellow
+  color: "#FFE000"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawDarkPurple
+  name: reagent-name-xeno-raw-dark-purple
+  desc: reagent-desc-xeno-raw-dark-purple
+  physicalDesc: reagent-physical-desc-xeno-raw-dark-purple
+  color: "#400080"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawDarkBlue
+  name: reagent-name-xeno-raw-dark-blue
+  desc: reagent-desc-xeno-raw-dark-blue
+  physicalDesc: reagent-physical-desc-xeno-raw-dark-blue
+  color: "#003080"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawSilver
+  name: reagent-name-xeno-raw-silver
+  desc: reagent-desc-xeno-raw-silver
+  physicalDesc: reagent-physical-desc-xeno-raw-silver
+  color: "#C0C0C0"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawBluespace
+  name: reagent-name-xeno-raw-bluespace
+  desc: reagent-desc-xeno-raw-bluespace
+  physicalDesc: reagent-physical-desc-xeno-raw-bluespace
+  color: "#0080FF"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawSepia
+  name: reagent-name-xeno-raw-sepia
+  desc: reagent-desc-xeno-raw-sepia
+  physicalDesc: reagent-physical-desc-xeno-raw-sepia
+  color: "#7A5C3A"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawCerulean
+  name: reagent-name-xeno-raw-cerulean
+  desc: reagent-desc-xeno-raw-cerulean
+  physicalDesc: reagent-physical-desc-xeno-raw-cerulean
+  color: "#007BA7"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawPyrite
+  name: reagent-name-xeno-raw-pyrite
+  desc: reagent-desc-xeno-raw-pyrite
+  physicalDesc: reagent-physical-desc-xeno-raw-pyrite
+  color: "#C8A800"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawGreen
+  name: reagent-name-xeno-raw-green
+  desc: reagent-desc-xeno-raw-green
+  physicalDesc: reagent-physical-desc-xeno-raw-green
+  color: "#00A020"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawRed
+  name: reagent-name-xeno-raw-red
+  desc: reagent-desc-xeno-raw-red
+  physicalDesc: reagent-physical-desc-xeno-raw-red
+  color: "#C00000"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawPink
+  name: reagent-name-xeno-raw-pink
+  desc: reagent-desc-xeno-raw-pink
+  physicalDesc: reagent-physical-desc-xeno-raw-pink
+  color: "#FF80CC"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawGold
+  name: reagent-name-xeno-raw-gold
+  desc: reagent-desc-xeno-raw-gold
+  physicalDesc: reagent-physical-desc-xeno-raw-gold
+  color: "#FFD700"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawOil
+  name: reagent-name-xeno-raw-oil
+  desc: reagent-desc-xeno-raw-oil
+  physicalDesc: reagent-physical-desc-xeno-raw-oil
+  color: "#2A1A0A"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawBlack
+  name: reagent-name-xeno-raw-black
+  desc: reagent-desc-xeno-raw-black
+  physicalDesc: reagent-physical-desc-xeno-raw-black
+  color: "#1A1A1A"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawLightPink
+  name: reagent-name-xeno-raw-light-pink
+  desc: reagent-desc-xeno-raw-light-pink
+  physicalDesc: reagent-physical-desc-xeno-raw-light-pink
+  color: "#FFD6ED"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawAdamantine
+  name: reagent-name-xeno-raw-adamantine
+  desc: reagent-desc-xeno-raw-adamantine
+  physicalDesc: reagent-physical-desc-xeno-raw-adamantine
+  color: "#C8EEFF"
+  group: Reagents
+
+- type: reagent
+  id: XenoRawRainbow
+  name: reagent-name-xeno-raw-rainbow
+  desc: reagent-desc-xeno-raw-rainbow
+  physicalDesc: reagent-physical-desc-xeno-raw-rainbow
+  color: "#FF00FF"
+  group: Reagents

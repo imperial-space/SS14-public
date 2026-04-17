@@ -1,0 +1,464 @@
+# =============================================================================
+# Xenobiology: Custom Slime Items
+# Уникальные предметы, спавнящиеся из экстрактов ксено-слаймов.
+# =============================================================================
+
+# =============================================================================
+# ЗАРЯЖЕННЫЕ ЯДРА СЛАЙМОВ (Crossbreeding System)
+# Создаются когда взрослый слайм поглощает 10 экстрактов другого цвета.
+# Нужно вколоть 10u плазмы, затем активировать в руке.
+# =============================================================================
+
+- type: entity
+  parent: BaseItem
+  id: BaseXenoChargedCore
+  name: заряженное ядро слайма
+  description: Пульсирующий сгусток слаймовой материи. Вколите 10u плазмы и активируйте в руке.
+  abstract: true
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    state: rainbow_slime_extract
+  - type: StaticPrice
+    price: 1000
+  - type: SolutionContainerManager
+    solutions:
+      chemicals:
+        maxVol: 50
+  - type: InjectableSolution
+    solution: chemicals
+  - type: XenoChargedSlimeCore
+
+# ---------- Grey (Промышленный) --------------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorGrey
+  name: серое заряженное ядро
+  description: Ядро серого слайма. Тип «Промышленный» — штампует ресурсы.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#808080"
+  - type: XenoChargedSlimeCore
+    slimeColor: Grey
+
+# ---------- Orange (Жгучий) --------------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorOrange
+  name: оранжевое заряженное ядро
+  description: Ядро оранжевого слайма. Тип «Жгучий» — огонь и взрывы.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#FF8000"
+  - type: XenoChargedSlimeCore
+    slimeColor: Orange
+
+# ---------- Purple -----------------------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorPurple
+  name: фиолетовое заряженное ядро
+  description: Ядро фиолетового слайма.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#8000FF"
+  - type: XenoChargedSlimeCore
+    slimeColor: Purple
+
+# ---------- Blue (Регенеративный) --------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorBlue
+  name: синее заряженное ядро
+  description: Ядро синего слайма. Тип «Регенеративный» — лечение.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#0088FF"
+  - type: XenoChargedSlimeCore
+    slimeColor: Blue
+
+# ---------- Metal ------------------------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorMetal
+  name: металлическое заряженное ядро
+  description: Ядро металлического слайма.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#888888"
+  - type: XenoChargedSlimeCore
+    slimeColor: Metal
+
+# ---------- Yellow (Электрический) -------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCoreYellow
+  name: жёлтое заряженное ядро
+  description: Ядро жёлтого слайма. Тип «Электрический» — ЭМИ и разряды.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#FFFF00"
+  - type: XenoChargedSlimeCore
+    slimeColor: Yellow
+
+# ---------- DarkPurple -------------------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorDkPurple
+  name: тёмно-фиолетовое заряженное ядро
+  description: Ядро тёмно-фиолетового слайма.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#6600CC"
+  - type: XenoChargedSlimeCore
+    slimeColor: DarkPurple
+
+# ---------- DarkBlue ---------------------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorDkBlue
+  name: тёмно-синее заряженное ядро
+  description: Ядро тёмно-синего слайма.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#000080"
+  - type: XenoChargedSlimeCore
+    slimeColor: DarkBlue
+
+# ---------- Silver -----------------------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorSilver
+  name: серебряное заряженное ядро
+  description: Ядро серебряного слайма.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#C0C0C0"
+  - type: XenoChargedSlimeCore
+    slimeColor: Silver
+
+# ---------- Bluespace --------------------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorBluespace
+  name: заряженное ядро блюспейса
+  description: Ядро блюспейс-слайма.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#00CED1"
+  - type: XenoChargedSlimeCore
+    slimeColor: Bluespace
+
+# ---------- Sepia ------------------------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorSepia
+  name: сепиевое заряженное ядро
+  description: Ядро сепиевого слайма.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#704214"
+  - type: XenoChargedSlimeCore
+    slimeColor: Sepia
+
+# ---------- Cerulean ---------------------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorCerulean
+  name: лазурное заряженное ядро
+  description: Ядро лазурного слайма.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#007BA7"
+  - type: XenoChargedSlimeCore
+    slimeColor: Cerulean
+
+# ---------- Pyrite -----------------------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorPyrite
+  name: пиритовое заряженное ядро
+  description: Ядро пиритового слайма.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#E5AA70"
+  - type: XenoChargedSlimeCore
+    slimeColor: Pyrite
+
+# ---------- Green (Самопревращение) ------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorGreen
+  name: зелёное заряженное ядро
+  description: Ядро зелёного слайма. Тип «Самопревращение» — трансформация тела.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#00AA00"
+  - type: XenoChargedSlimeCore
+    slimeColor: Green
+
+# ---------- Red --------------------------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorRed
+  name: красное заряженное ядро
+  description: Ядро красного слайма.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#FF0000"
+  - type: XenoChargedSlimeCore
+    slimeColor: Red
+
+# ---------- Pink (Стабильный) ------------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorPink
+  name: розовое заряженное ядро
+  description: Ядро розового слайма. Тип «Стабильный» — создание постоянных предметов.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#FF69B4"
+  - type: XenoChargedSlimeCore
+    slimeColor: Pink
+
+# ---------- Gold (Разумный) --------------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorGold
+  name: золотое заряженное ядро
+  description: Ядро золотого слайма. Тип «Разумный» — контроль над существами.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#FFD700"
+  - type: XenoChargedSlimeCore
+    slimeColor: Gold
+
+# ---------- Oil --------------------------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorOil
+  name: масляное заряженное ядро
+  description: Ядро масляного слайма.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#2F4F4F"
+  - type: XenoChargedSlimeCore
+    slimeColor: Oil
+
+# ---------- Black ------------------------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorBlack
+  name: чёрное заряженное ядро
+  description: Ядро чёрного слайма.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#111111"
+  - type: XenoChargedSlimeCore
+    slimeColor: Black
+
+# ---------- LightPink --------------------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorLightPink
+  name: светло-розовое заряженное ядро
+  description: Ядро светло-розового слайма.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#FFB6C1"
+  - type: XenoChargedSlimeCore
+    slimeColor: LightPink
+
+# ---------- Adamantine -------------------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorAdamantine
+  name: адамантиновое заряженное ядро
+  description: Ядро адамантинового слайма.
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#4169E1"
+  - type: XenoChargedSlimeCore
+    slimeColor: Adamantine
+
+# ---------- Rainbow ----------------------------------------------------------
+- type: entity
+  parent: BaseXenoChargedCore
+  id: XenoChargedCorRainbow
+  name: радужное заряженное ядро
+  description: Ядро радужного слайма. Непредсказуемый эффект!
+  components:
+  - type: Sprite
+    state: rainbow_slime_extract
+    color: "#FF00FF"
+  - type: XenoChargedSlimeCore
+    slimeColor: Rainbow
+
+# =============================================================================
+# ПРОЧИЕ ПРЕДМЕТЫ КСЕНОБИОЛОГИИ
+# =============================================================================
+
+# ---------- Bluespace blood: напольная плитка блюспейса ----------------------
+
+- type: entity
+  parent: BaseItem
+  id: XenoBluespaceFloorTile
+  name: напольная плитка блюспейса
+  description: Мерцающая плитка из материала блюспейса. Исходит от неё нечто потустороннее.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    state: rainbow_slime_extract
+    color: "#00CED1"
+  - type: StaticPrice
+    price: 800
+
+# ---------- Bluespace plasma: кристалл блюспейса ----------------------------
+
+- type: entity
+  parent: BaseItem
+  id: XenoBluespaceCrystal
+  name: кристалл блюспейса
+  description: Мерцающий кристалл, образованный синим ксено-слаймом в состоянии блюспейса. Испускает слабое телекинетическое поле.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi
+    state: rainbow_slime_extract
+    color: "#0088FF"
+  - type: StaticPrice
+    price: 2000
+
+# ---------- Cerulean blood: blueprint слаймов --------------------------------
+
+- type: entity
+  parent: BaseItem
+  id: XenoSlimeBlueprint
+  name: схема ксено-слайма
+  description: Сложная схема, составленная голубым ксено-слаймом. Содержит подробные инструкции по созданию новых видов слаймов.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    state: nano_paper
+  - type: StaticPrice
+    price: 500
+
+# ---------- Adamantine plasma: слиток адамантина -----------------------------
+
+- type: entity
+  parent: IngotBase
+  id: XenoAdamantineBar
+  name: слиток адамантина
+  description: Исключительно редкий металл, образованный адамантиновым ксено-слаймом. Прочнее любого известного материала.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Objects/Materials/ingots.rsi
+    state: adamantine_3
+  - type: StaticPrice
+    price: 5000
+
+# ---------- Sepia blood: мгновенная камера -----------------------------------
+
+- type: entity
+  parent: BaseItem
+  id: XenoInstantCamera
+  name: мгновенная камера
+  description: Антикварная мгновенная камера, созданная сепиевым ксено-слаймом. Делает снимки с сепиевым фильтром.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Objects/Tools/spray_painter.rsi
+    state: spray_painter
+    color: "#704214"
+  - type: StaticPrice
+    price: 300
+# =============================================================================
+# ДРОБИЛКА КСЕНО-СЛАЙМОВ
+# Стационарная машина. Кликните, чтобы включить/выключить.
+# В активном состоянии автоматически дробит мёртвых и недееспособных
+# ксено-слаймов в радиусе, производя из них экстракты.
+# =============================================================================
+
+- type: entity
+  parent: [ BaseMachine, ConstructibleMachine ]
+  id: XenoSlimeGrinder
+  name: дробилка ксено-слаймов
+  description: Стационарная машина, перерабатывающая мёртвых и недееспособных ксено-слаймов в экстракты. Кликните, чтобы включить. При осмотре видно, сколько слаймов в обработке.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/xenobiology/processor.rsi
+    noRot: false
+    layers:
+    - state: processor
+      map: [ "base" ]
+    - state: processor_open
+      visible: false
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.XenoSlimeGrinderVisuals.State:
+        base:
+          Off: { state: processor }
+          On: { state: processor_on }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: true }
+          False: { visible: false }
+  - type: WiresPanel
+  - type: Machine
+    board: XenoSlimeGrinderMachineCircuitboard
+  - type: StaticPrice
+    price: 2500
+  - type: XenoSlimeCrusher
+    absorbRange: 2.0
+    scanInterval: 2.0
+    processTime: 8.0
+    crushSound:
+      path: /Audio/Machines/blender.ogg
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: XenoSlimeGrinderMachineCircuitboard
+  name: плата дробилки ксено-слаймов
+  description: Печатная плата для сборки дробилки ксено-слаймов.
+  components:
+  - type: MachineBoard
+    prototype: XenoSlimeGrinder
+    stackRequirements:
+      Manipulator: 2
+      Steel: 5
+      CableHV: 1
