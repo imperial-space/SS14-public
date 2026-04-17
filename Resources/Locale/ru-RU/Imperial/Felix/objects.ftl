@@ -279,3 +279,42 @@ ent-ImperialSimpleRadio1Felix = {ent-ImperialSimpleRadio}
     .desc = {ent-ImperialSimpleRadio.desc}
 ent-ImperialSimpleRadio2Felix = {ent-ImperialSimpleRadio}
     .desc = {ent-ImperialSimpleRadio.desc}
+
+ent-ImperialArtifactFelixOne = артефакт
+    .desc = Подозрительный камень.
+ent-ImperialArtifactFelixTwo = { ent-ImperialArtifactFelixOne }
+    .desc = { ent-ImperialArtifactFelixOne.desc }
+ent-ImperialArtifactFelixThree = { ent-ImperialArtifactFelixOne }
+    .desc = { ent-ImperialArtifactFelixOne.desc }
+ent-ImperialArtifactFelixFour = { ent-ImperialArtifactFelixOne }
+    .desc = { ent-ImperialArtifactFelixOne.desc }
+ent-ImperialArtifactFelixFive = { ent-ImperialArtifactFelixOne }
+    .desc = { ent-ImperialArtifactFelixOne.desc }
+
+ent-ImperialBoxMREUSAFelix = американский ИРП
+    .desc = Набор Индивидуального Рациона Питания, используемого солдатами КМП США.
+ent-ImperialBoxMREUSSPFelix = советский ИРП
+    .desc = Набор Индивидуального Рациона Питания, используемого солдатами СССП.
+ent-ImperialIronPlateFelix = железная тарелка
+    .desc = Большая металлическая тарелка, отлично подходит для праздничного торта.
+
+ent-ImperialGeigerCounterFelix = дозиметр "Nu-7"
+    .desc = Дешёвый советский дозиметр.
+
+ent-ImperialClothingHandsDefaultGlovesFelix = перчатки
+ent-ImperialClothingHandsGreenGlovesFelix = перчатки
+ent-ImperialClothingHandsHazardGlovesFelix = перчатки
+
+ent-ImperialBookJournalSurvival = журнал "Выживание"
+    .desc = Первая часть журнала.
+
+ent-ImperialKanistraDarkGreenFelix = канистра
+ent-ImperialKanistraRedFelix = канистра
+
+ent-ImperialMoneyCardFelix = банковская карта
+    .desc = Кажется, на ней ещё есть деньги...
+
+ent-HelicopterShadowFlyingAnimation = силуэт вертолёта
+    .desc = Похоже на Ми-24, он где-то высоко...
+ent-HelicopterShadowAnimation = силуэт вертолёта
+    .desc = Похоже на Ми-24, он где-то высоко...

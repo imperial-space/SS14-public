@@ -1,0 +1,76 @@
+# ==============================================
+#  Культ Нар'Си — Рецепты постройки
+#  Без категории — вызываются программно через BUI металла
+# ==============================================
+
+- type: construction
+  id: CultConstructionAltar
+  graph: CultAltarGraph
+  startNode: start
+  targetNode: cultAltar
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CultConstructionForge
+  graph: CultForgeGraph
+  startNode: start
+  targetNode: cultForge
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CultConstructionArchives
+  graph: CultArchivesGraph
+  startNode: start
+  targetNode: cultArchives
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CultConstructionPylon
+  graph: CultPylonGraph
+  startNode: start
+  targetNode: cultPylon
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CultConstructionAirlock
+  graph: CultRunedAirlockGraph
+  startNode: start
+  targetNode: cultRunedAirlock
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CultConstructionGirder
+  graph: CultRunedGirderGraph
+  startNode: start
+  targetNode: cultRunedGirder
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

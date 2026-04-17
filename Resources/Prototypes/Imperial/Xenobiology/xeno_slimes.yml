@@ -1,0 +1,1065 @@
+﻿# Фракции, обезьяна-жертва, базовые и цветные прототипы слаймов
+# =============================================================================
+
+# -- ФРАКЦИИ ------------------------------------------------------------------
+
+- type: npcFaction
+  id: XenoSlimeFaction
+  hostile:
+  - XenoMonkeyFaction
+
+- type: npcFaction
+  id: XenoMonkeyFaction
+
+# -- ОБЕЗЬЯНА-ЖЕРТВА ----------------------------------------------------------
+
+- type: entity
+  id: XenoMonkey
+  parent: MobMonkey
+  name: обезьяна
+  suffix: Xenobiology
+  description: Обезьяна для кормления слаймов в ксенобиологической лаборатории.
+  components:
+  - type: XenoSlimeFood
+  - type: NpcFactionMember
+    factions:
+    - XenoMonkeyFaction
+
+# -- БАЗОВЫЙ МАЛЕНЬКИЙ СЛАЙМ --------------------------------------------------
+
+- type: entity
+  id: BaseXenoSlimeSmall
+  parent: [ SimpleMobBase, MobCombat ]
+  name: ксено-слайм
+  abstract: true
+  description: Маленький слайм из ксенобиологической лаборатории. Покорми его обезьяной, чтобы он вырос.
+  components:
+  - type: XenoSlime
+    isAdult: false
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: blue_adult_slime
+      Dead:
+        Base: blue_adult_slime_dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.18
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3.5
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSlime
+  - type: Tag
+    tags:
+    - FootstepSound
+    - DoorBumpOpener
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: FoodMeatSlime
+      amount: 1
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 0.2
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+    maxSaturation: 15
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Slime
+  - type: Bloodstream
+    bloodReagents:
+      reagents:
+      - ReagentId: Slime
+        Quantity: 1
+    bloodlossDamage:
+      types:
+        Bloodloss: 0.5
+    bloodlossHealDamage:
+      types:
+        Bloodloss: -0.25
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.45
+  - type: Body
+    prototype: Slimes
+    requiredLegs: 1
+  - type: MeleeWeapon
+    altDisarm: false
+    soundHit:
+      path: /Audio/Weapons/punch3.ogg
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 4
+        Caustic: 2
+  - type: NpcFactionMember
+    factions:
+    - XenoSlimeFaction
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: petting-success-slimes
+    interactFailureString: petting-failure-generic
+  - type: Speech
+    speechVerb: Slime
+    speechSounds: Slime
+  - type: TypingIndicator
+    proto: slime
+  - type: SolutionContainerManager
+    solutions:
+      chemicals:
+        maxVol: 50
+  - type: InjectableSolution
+    solution: chemicals
+
+
+# -- БАЗОВЫЙ БОЛЬШОЙ СЛАЙМ ----------------------------------------------------
+
+- type: entity
+  id: BaseXenoSlimeLarge
+  parent: [ SimpleMobBase, MobCombat ]
+  name: ксено-слайм (взрослый)
+  abstract: true
+  description: Большой слайм из ксенобиологической лаборатории. Покорми его ещё одной обезьяной, и он разделится на 4.
+  components:
+  - type: XenoSlime
+    isAdult: true
+  - type: XenoSlimeCrossbreed
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: blue_adult_slime
+      Dead:
+        Base: blue_adult_slime_dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.30
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 4
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSlime
+  - type: Tag
+    tags:
+    - FootstepSound
+    - DoorBumpOpener
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: FoodMeatSlime
+      amount: 2
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 0.2
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+    maxSaturation: 15
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Slime
+  - type: Bloodstream
+    bloodReagents:
+      reagents:
+      - ReagentId: Slime
+        Quantity: 1
+    bloodlossDamage:
+      types:
+        Bloodloss: 0.5
+    bloodlossHealDamage:
+      types:
+        Bloodloss: -0.25
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.45
+  - type: Body
+    prototype: Slimes
+    requiredLegs: 1
+  - type: MeleeWeapon
+    altDisarm: false
+    soundHit:
+      path: /Audio/Weapons/punch3.ogg
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 8
+        Caustic: 4
+  - type: NpcFactionMember
+    factions:
+    - XenoSlimeFaction
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: petting-success-slimes
+    interactFailureString: petting-failure-generic
+  - type: Speech
+    speechVerb: Slime
+    speechSounds: Slime
+  - type: TypingIndicator
+    proto: slime
+  - type: SolutionContainerManager
+    solutions:
+      chemicals:
+        maxVol: 50
+  - type: InjectableSolution
+    solution: chemicals
+
+# =============================================================================
+# МАЛЕНЬКИЕ СЛАЙМЫ — 22 ЦВЕТА (SS13 Xenobiology)
+# Тир 0:  Grey
+# Тир 1:  Orange, Purple, Blue, Metal
+# Тир 2:  Yellow, DarkPurple, DarkBlue, Silver
+# Тир 3:  Bluespace, Sepia, Cerulean, Pyrite  (SS13 2.5)
+# Тир 4:  Green, Red, Pink, Gold               (SS13 3)
+# Тир 5:  Oil, Black, LightPink, Adamantine    (SS13 4)
+# Тир 6:  Rainbow                             (SS13 5)
+# =============================================================================
+
+- type: entity
+  id: XenoSlimeGreySmall
+  parent: BaseXenoSlimeSmall
+  name: серый ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: Grey
+    tier: 0
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#808080"
+
+- type: entity
+  id: XenoSlimeOrangeSmall
+  parent: BaseXenoSlimeSmall
+  name: оранжевый ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: Orange
+    tier: 1
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#FF8000"
+
+- type: entity
+  id: XenoSlimePurpleSmall
+  parent: BaseXenoSlimeSmall
+  name: фиолетовый ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: Purple
+    tier: 1
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#8000FF"
+
+- type: entity
+  id: XenoSlimeBlueSmall
+  parent: BaseXenoSlimeSmall
+  name: синий ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: Blue
+    tier: 1
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#0080FF"
+
+- type: entity
+  id: XenoSlimeMetalSmall
+  parent: BaseXenoSlimeSmall
+  name: металлический ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: Metal
+    tier: 1
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#A0A0A0"
+
+- type: entity
+  id: XenoSlimeYellowSmall
+  parent: BaseXenoSlimeSmall
+  name: жёлтый ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: Yellow
+    tier: 2
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#FFFF00"
+
+- type: entity
+  id: XenoSlimeDarkPurpleSmall
+  parent: BaseXenoSlimeSmall
+  name: тёмно-фиолетовый ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: DarkPurple
+    tier: 2
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#4B0082"
+
+- type: entity
+  id: XenoSlimeDarkBlueSmall
+  parent: BaseXenoSlimeSmall
+  name: тёмно-синий ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: DarkBlue
+    tier: 2
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#00008B"
+
+- type: entity
+  id: XenoSlimeSilverSmall
+  parent: BaseXenoSlimeSmall
+  name: серебряный ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: Silver
+    tier: 2
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#C0C0C0"
+
+- type: entity
+  id: XenoSlimeBluespaceSmall
+  parent: BaseXenoSlimeSmall
+  name: блюспейсный ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: Bluespace
+    tier: 3
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#00CED1"
+
+- type: entity
+  id: XenoSlimeSepiaSmall
+  parent: BaseXenoSlimeSmall
+  name: сепийный ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: Sepia
+    tier: 3
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#704214"
+
+- type: entity
+  id: XenoSlimeCeruleanSmall
+  parent: BaseXenoSlimeSmall
+  name: лазурный ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: Cerulean
+    tier: 3
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#29ABE2"
+
+- type: entity
+  id: XenoSlimePyriteSmall
+  parent: BaseXenoSlimeSmall
+  name: пиритовый ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: Pyrite
+    tier: 3
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#CFB53B"
+
+- type: entity
+  id: XenoSlimeGreenSmall
+  parent: BaseXenoSlimeSmall
+  name: зелёный ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: Green
+    tier: 4
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#00CC00"
+
+- type: entity
+  id: XenoSlimeRedSmall
+  parent: BaseXenoSlimeSmall
+  name: красный ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: Red
+    tier: 4
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#FF0000"
+
+- type: entity
+  id: XenoSlimePinkSmall
+  parent: BaseXenoSlimeSmall
+  name: розовый ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: Pink
+    tier: 4
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#FF69B4"
+
+- type: entity
+  id: XenoSlimeGoldSmall
+  parent: BaseXenoSlimeSmall
+  name: золотой ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: Gold
+    tier: 4
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#FFD700"
+
+- type: entity
+  id: XenoSlimeOilSmall
+  parent: BaseXenoSlimeSmall
+  name: нефтяной ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: Oil
+    tier: 5
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#2A1A0A"
+
+- type: entity
+  id: XenoSlimeBlackSmall
+  parent: BaseXenoSlimeSmall
+  name: чёрный ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: Black
+    tier: 5
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#111111"
+
+- type: entity
+  id: XenoSlimeLightPinkSmall
+  parent: BaseXenoSlimeSmall
+  name: светло-розовый ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: LightPink
+    tier: 5
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#FFB6C1"
+
+- type: entity
+  id: XenoSlimeAdamantineSmall
+  parent: BaseXenoSlimeSmall
+  name: адамантиевый ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: Adamantine
+    tier: 5
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#00827F"
+
+- type: entity
+  id: XenoSlimeRainbowSmall
+  parent: BaseXenoSlimeSmall
+  name: радужный ксено-слайм
+  suffix: Xenobiology, Small
+  components:
+  - type: XenoSlime
+    color: Rainbow
+    tier: 6
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    scale: 0.5, 0.5
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#FF80FF"
+
+# =============================================================================
+# БОЛЬШИЕ СЛАЙМЫ — 22 ЦВЕТА (SS13 Xenobiology)
+# =============================================================================
+
+- type: entity
+  id: XenoSlimeGreyLarge
+  parent: BaseXenoSlimeLarge
+  name: серый ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: Grey
+    isAdult: true
+    tier: 0
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#808080"
+
+- type: entity
+  id: XenoSlimeOrangeLarge
+  parent: BaseXenoSlimeLarge
+  name: оранжевый ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: Orange
+    isAdult: true
+    tier: 1
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#FF8000"
+
+- type: entity
+  id: XenoSlimePurpleLarge
+  parent: BaseXenoSlimeLarge
+  name: фиолетовый ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: Purple
+    isAdult: true
+    tier: 1
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#8000FF"
+
+- type: entity
+  id: XenoSlimeBlueLarge
+  parent: BaseXenoSlimeLarge
+  name: синий ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: Blue
+    isAdult: true
+    tier: 1
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#0080FF"
+
+- type: entity
+  id: XenoSlimeMetalLarge
+  parent: BaseXenoSlimeLarge
+  name: металлический ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: Metal
+    isAdult: true
+    tier: 1
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#A0A0A0"
+
+- type: entity
+  id: XenoSlimeYellowLarge
+  parent: BaseXenoSlimeLarge
+  name: жёлтый ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: Yellow
+    isAdult: true
+    tier: 2
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#FFFF00"
+
+- type: entity
+  id: XenoSlimeDarkPurpleLarge
+  parent: BaseXenoSlimeLarge
+  name: тёмно-фиолетовый ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: DarkPurple
+    isAdult: true
+    tier: 2
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#4B0082"
+
+- type: entity
+  id: XenoSlimeDarkBlueLarge
+  parent: BaseXenoSlimeLarge
+  name: тёмно-синий ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: DarkBlue
+    isAdult: true
+    tier: 2
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#00008B"
+
+- type: entity
+  id: XenoSlimeSilverLarge
+  parent: BaseXenoSlimeLarge
+  name: серебряный ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: Silver
+    isAdult: true
+    tier: 2
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#C0C0C0"
+
+- type: entity
+  id: XenoSlimeBluespaceLarge
+  parent: BaseXenoSlimeLarge
+  name: блюспейсный ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: Bluespace
+    isAdult: true
+    tier: 3
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#00CED1"
+
+- type: entity
+  id: XenoSlimeSepiaLarge
+  parent: BaseXenoSlimeLarge
+  name: сепийный ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: Sepia
+    isAdult: true
+    tier: 3
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#704214"
+
+- type: entity
+  id: XenoSlimeCeruleanLarge
+  parent: BaseXenoSlimeLarge
+  name: лазурный ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: Cerulean
+    isAdult: true
+    tier: 3
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#29ABE2"
+
+- type: entity
+  id: XenoSlimePyriteLarge
+  parent: BaseXenoSlimeLarge
+  name: пиритовый ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: Pyrite
+    isAdult: true
+    tier: 3
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#CFB53B"
+
+- type: entity
+  id: XenoSlimeGreenLarge
+  parent: BaseXenoSlimeLarge
+  name: зелёный ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: Green
+    isAdult: true
+    tier: 4
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#00CC00"
+
+- type: entity
+  id: XenoSlimeRedLarge
+  parent: BaseXenoSlimeLarge
+  name: красный ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: Red
+    isAdult: true
+    tier: 4
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#FF0000"
+
+- type: entity
+  id: XenoSlimePinkLarge
+  parent: BaseXenoSlimeLarge
+  name: розовый ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: Pink
+    isAdult: true
+    tier: 4
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#FF69B4"
+
+- type: entity
+  id: XenoSlimeGoldLarge
+  parent: BaseXenoSlimeLarge
+  name: золотой ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: Gold
+    isAdult: true
+    tier: 4
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#FFD700"
+
+- type: entity
+  id: XenoSlimeOilLarge
+  parent: BaseXenoSlimeLarge
+  name: нефтяной ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: Oil
+    isAdult: true
+    tier: 5
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#2A1A0A"
+
+- type: entity
+  id: XenoSlimeBlackLarge
+  parent: BaseXenoSlimeLarge
+  name: чёрный ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: Black
+    isAdult: true
+    tier: 5
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#111111"
+
+- type: entity
+  id: XenoSlimeLightPinkLarge
+  parent: BaseXenoSlimeLarge
+  name: светло-розовый ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: LightPink
+    isAdult: true
+    tier: 5
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#FFB6C1"
+
+- type: entity
+  id: XenoSlimeAdamantineLarge
+  parent: BaseXenoSlimeLarge
+  name: адамантиевый ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: Adamantine
+    isAdult: true
+    tier: 5
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#00827F"
+
+- type: entity
+  id: XenoSlimeRainbowLarge
+  parent: BaseXenoSlimeLarge
+  name: радужный ксено-слайм (взрослый)
+  suffix: Xenobiology, Large
+  components:
+  - type: XenoSlime
+    color: Rainbow
+    isAdult: true
+    tier: 6
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blue_adult_slime
+      color: "#FF80FF"
+

@@ -1,0 +1,178 @@
+# ==============================================
+#  Культ Нар'Си — Графы постройки
+#  Материал: CultRunedMetal
+# ==============================================
+
+# === Алтарь (3 металла) ===
+
+- type: constructionGraph
+  id: CultAltarGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: cultAltar
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: CultRunedMetal
+              amount: 3
+              doAfter: 3
+    - node: cultAltar
+      entity: CultAltar
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: CultRunedMetal
+              amount: 3
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Welding
+              doAfter: 3
+
+# === Кузница (3 металла) ===
+
+- type: constructionGraph
+  id: CultForgeGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: cultForge
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: CultRunedMetal
+              amount: 3
+              doAfter: 3
+    - node: cultForge
+      entity: CultForge
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: CultRunedMetal
+              amount: 3
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Welding
+              doAfter: 3
+
+# === Архив (3 металла) ===
+
+- type: constructionGraph
+  id: CultArchivesGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: cultArchives
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: CultRunedMetal
+              amount: 3
+              doAfter: 3
+    - node: cultArchives
+      entity: CultArchives
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: CultRunedMetal
+              amount: 3
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Welding
+              doAfter: 3
+
+# === Пилон (4 металла) ===
+
+- type: constructionGraph
+  id: CultPylonGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: cultPylon
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: CultRunedMetal
+              amount: 4
+              doAfter: 4
+    - node: cultPylon
+      entity: CultPylon
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: CultRunedMetal
+              amount: 4
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Welding
+              doAfter: 4
+
+# === Рунная дверь (1 металл) ===
+
+- type: constructionGraph
+  id: CultRunedAirlockGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: cultRunedAirlock
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: CultRunedMetal
+              amount: 1
+              doAfter: 2
+    - node: cultRunedAirlock
+      entity: CultRunedAirlock
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: CultRunedMetal
+              amount: 1
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Welding
+              doAfter: 2
+
+# === Руническая балка (1 металл) ===
+
+- type: constructionGraph
+  id: CultRunedGirderGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: cultRunedGirder
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: CultRunedMetal
+              amount: 1
+              doAfter: 2
+    - node: cultRunedGirder
+      entity: CultRunedGirder
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: CultRunedMetal
+              amount: 1
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Welding
+              doAfter: 2

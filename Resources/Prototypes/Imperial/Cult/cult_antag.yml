@@ -1,0 +1,43 @@
+# ─── Antag Roles ───
+
+- type: antag
+  id: Cultist
+  name: roles-antag-cultist-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-cultist-objective
+  guides: [ ]
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 1h
+
+# ─── Mind Role ───
+
+- type: entity
+  id: MindRoleCultist
+  name: roles-antag-cultist-name
+  parent: BaseMindRoleAntag
+  components:
+  - type: MindRole
+    antagPrototype: Cultist
+    roleType: TeamAntagonist
+    sortWeight: 60
+  - type: CultistRole
+
+# ─── Starting Gear ───
+
+- type: startingGear
+  id: CultistStartingGear
+  storage:
+    back:
+    - CultDagger
+    - CultRunedMetal
+    - CultRunedMetal
+    - CultRunedMetal
+    - CultRunedMetal
+    - CultRunedMetal
+    - CultRunedMetal
+    - CultRunedMetal
+    - CultRunedMetal
+    - CultRunedMetal
+    - CultRunedMetal

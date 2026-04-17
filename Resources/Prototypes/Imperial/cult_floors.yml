@@ -1,0 +1,11 @@
+- type: tile
+  id: FloorCult
+  name: tiles-cult-floor
+  sprite: /Textures/Imperial/cult/floor/floors.rsi/cult.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemCult
+  footstepSounds:
+    collection: FootstepTile
+  heatCapacity: 10000

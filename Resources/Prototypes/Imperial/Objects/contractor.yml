@@ -1,0 +1,399 @@
+- type: currency
+  id: ContractorRep
+  displayName: store-currency-display-contractor-reputation
+  canWithdraw: false
+
+- type: storeCategory
+  id: ContractorHub
+  name: store-category-contractor-hub
+  priority: 0
+
+- type: entity
+  id: StorePresetContractor
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-uplink
+    categories:
+    - ContractorHub
+    currencyWhitelist:
+    - ContractorRep
+    balance:
+      ContractorRep: 0
+
+- type: entity
+  parent: [BaseItem, StorePresetContractor, BaseSyndicateContraband]
+  id: ContractorUplink
+  name: contractor uplink
+  description: A dedicated receiver for contractor contracts, reputation requisitions, and falsefire deployment.
+  components:
+  - type: ContractorUplink
+  - type: Sprite
+    sprite: Imperial/contractor/uplink/uplink.rsi
+    state: icon
+  - type: Icon
+    sprite: Imperial/contractor/uplink/uplink.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/contractor/uplink/uplink.rsi
+  - type: UserInterface
+    interfaces:
+      enum.ContractorUplinkUiKey.Key:
+        type: ContractorUplinkBoundUserInterface
+  - type: ActivatableUI
+    key: enum.ContractorUplinkUiKey.Key
+
+- type: entity
+  id: ContractorFalsefirePortal
+  name: falsefire portal
+  description: A one-way syndicate falsefire aperture keyed to a single hostage.
+  placement:
+    mode: SnapgridCenter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ContractorPortal
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Sprite
+    sprite: Effects/portal.rsi
+    state: portal-red
+    drawdepth: Effects
+  - type: Clickable
+  - type: InteractionOutline
+
+- type: entity
+  parent: [Flare, BaseSyndicateContraband]
+  id: ContractorFalsefireFlare
+  name: contractor falsefire flare
+  description: A contractor-issued falsefire flare. Ignite it to open a one-way transfer aperture.
+  components:
+  - type: ExpendableLight
+    glowDuration: 30
+    fadeOutDuration: 5
+    iconStateLit: flare-contractor-on
+    iconStateSpent: flare-contractor
+    litSound:
+      path: /Audio/Items/Flare/flare_on.ogg
+    loopedSound:
+      path: /Audio/Items/Flare/flare_burn.ogg
+      params:
+        loop: true
+        volume: -10
+        maxDistance: 5
+  - type: Sprite
+    sprite: Imperial/contractor/fire.rsi
+    layers:
+    - map: [ enum.ExpendableLightVisualLayers.Base ]
+      state: flare-contractor
+    - map: [ enum.ExpendableLightVisualLayers.Glow ]
+      state: flare-contractor-on
+      visible: false
+      shader: unshaded
+    - map: [ enum.ExpendableLightVisualLayers.Overlay ]
+      state: flare-contractor
+  - type: Icon
+    sprite: Imperial/contractor/fire.rsi
+    state: flare-contractor
+  - type: Item
+    size: Tiny
+
+- type: entity
+  parent: [Stunbaton, BaseSyndicateContraband]
+  id: ContractorStunbaton
+  name: contractor baton
+  description: A compact stun baton issued to contractors for target control during extraction.
+  components:
+  - type: Sprite
+    sprite: Imperial/contractor/baton/stunbaton.rsi
+    layers:
+    - state: stunbaton_off
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Item
+    sprite: Imperial/contractor/baton/stunbaton.rsi
+    heldPrefix: off
+    size: Normal
+  - type: Clothing
+    sprite: Imperial/contractor/baton/stunbaton.rsi
+    quickEquip: false
+    slots:
+    - Belt
+
+- type: entity
+  parent: [ClothingOuterHardsuitSyndie, BaseSyndicateContraband]
+  id: ClothingOuterHardsuitContractor
+  name: contractor hardsuit
+  description: A discreet syndicate hardsuit tailored for snatch-and-extract work rather than open battle.
+  components:
+  - type: Sprite
+    sprite: Imperial/contractor/hardsuit/hardsuit.rsi
+  - type: Clothing
+    sprite: Imperial/contractor/hardsuit/hardsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitContractor
+
+- type: entity
+  parent: [ClothingHeadHelmetHardsuitSyndie, BaseSyndicateContraband]
+  id: ClothingHeadHelmetHardsuitContractor
+  name: contractor hardsuit helmet
+  description: A contractor helmet with full vacuum sealing and a low-profile silhouette.
+  components:
+  - type: Sprite
+    sprite: Imperial/contractor/hardsuit/helmet.rsi
+  - type: Clothing
+    sprite: Imperial/contractor/hardsuit/helmet.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: ContractorFlippoLighter
+  name: contractor flippo lighter
+  description: A rugged lighter stamped for field contractors.
+  components:
+  - type: Sprite
+    sprite: Imperial/contractor/lighter/zippo.rsi
+    layers:
+    - state: icon
+      map: [ "base" ]
+    - state: open
+      map: [ "open" ]
+      visible: false
+  - type: ItemToggle
+    predictable: false
+    soundActivate:
+      path: /Audio/Items/Lighters/zippo_open.ogg
+      params:
+        volume: -5
+    soundDeactivate:
+      path: /Audio/Items/Lighters/zippo_close.ogg
+      params:
+        volume: -5
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        open:
+          True: { visible: true }
+          False: { visible: false }
+        base:
+          True: { visible: false }
+          False: { visible: true }
+  - type: ToggleableVisuals
+    spriteLayer: open
+  - type: IgnitionSource
+    ignited: false
+  - type: ItemToggleHot
+  - type: ItemToggleSize
+    activatedSize: Small
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+      types:
+        Heat: 1
+  - type: Item
+    size: Tiny
+    sprite: Imperial/contractor/lighter/zippo.rsi
+  - type: PointLight
+    enabled: false
+    netsync: false
+    radius: 1.2
+    color: orange
+  - type: ItemTogglePointLight
+  - type: UseDelay
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    damage:
+      types:
+        Blunt: 1
+
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: ContractorPinpointer
+  name: contractor pinpointer
+  description: A contractor-grade universal pinpointer for tracking extraction equipment or selected targets.
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/contractor/pinpointer/pinpointer.rsi
+    layers:
+    - state: pinpointer-syndicate
+      map: [ "enum.PinpointerLayers.Base" ]
+    - state: pinonnull
+      map: [ "enum.PinpointerLayers.Screen" ]
+      shader: unshaded
+      visible: false
+  - type: Icon
+    sprite: Imperial/contractor/pinpointer/pinpointer.rsi
+    state: pinpointer-syndicate
+  - type: Item
+    size: Small
+    sprite: Imperial/contractor/pinpointer/pinpointer.rsi
+  - type: ContractorPinpointer
+  - type: Pinpointer
+    updateTargetName: false
+    canRetarget: false
+    reachedDistance: 1.5
+    closeDistance: 10
+    mediumDistance: 24
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PinpointerVisuals.IsActive:
+        enum.PinpointerLayers.Screen:
+          True: { visible: True }
+          False: { visible: False }
+      enum.PinpointerVisuals.TargetDistance:
+        enum.PinpointerLayers.Screen:
+          Unknown: { state: pinonnull }
+          Reached: { state: pinondirect }
+          Close: { state: pinonclose }
+          Medium: { state: pinonmedium }
+          Far: { state: pinonfar }
+  - type: AnimationPlayer
+
+- type: entity
+  id: ContractorPinpointerMarker
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+
+- type: entity
+  parent: [BaseBalloon, BaseSyndicateContraband]
+  id: ContractorBalloon
+  name: contractor balloon
+  description: A black-market balloon handed out to contractors who make it back with the cargo breathing.
+  components:
+  - type: Sprite
+    sprite: Imperial/contractor/balloon/balloon.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/contractor/balloon/balloon.rsi
+
+- type: entity
+  id: PaperContractorGuide
+  parent: Paper
+  name: contractor field guide
+  description: A single-page briefing for newly upgraded syndicate contractors.
+  components:
+  - type: Paper
+    content: contractor-guide-content
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: BoxContractorLoadout
+  name: contractor loadout box
+  description: A compact contractor issue box containing disguise and field utility gear.
+  components:
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,1
+  - type: Storage
+    grid:
+    - 0,0,7,6
+    maxItemSize: Huge
+  - type: StorageFill
+    contents:
+    - id: ClothingBackpackChameleon
+    - id: ChameleonPDA
+    - id: ClothingUniformJumpsuitChameleon
+    - id: ClothingOuterChameleon
+    - id: ClothingNeckChameleon
+    - id: ClothingMaskGasChameleon
+    - id: ClothingHeadHatChameleon
+    - id: ClothingHandsChameleon
+    - id: ClothingEyesChameleon
+    - id: ClothingHeadsetChameleon
+    - id: ClothingShoesChameleon
+    - id: ChameleonControllerImplanter
+    - id: AgentIDCard
+    - id: EncryptionKeySyndie
+    - id: CigPackSyndicate
+    - id: FlippoLighter
+    - id: ClothingHeadMirror
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxContractorExtras
+  name: contractor surplus box
+  description: A box with a few low-profile Syndicate tools for a fresh contractor.
+  components:
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,1
+  - type: Storage
+    grid:
+    - 0,0,6,3
+  - type: StorageFill
+    contents:
+    - id: EnergyDagger
+    - id: ThrowingKnivesKit
+    - id: SoapSyndie
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: BoxContractorExtraction
+  name: contractor extraction kit
+  description: A kit with a standard Fulton beacon and spare extraction packs for moving cargo or living targets.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,5,4
+    maxItemSize: Normal
+  - type: StorageFill
+    contents:
+    - id: FultonBeacon
+    - id: Fulton
+      amount: 4
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: BoxContractorKit
+  name: contractor kit
+  description: A contractor conversion package for selected syndicate agents, with uplink access to contracts, falsefire, and requisitions.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,12,8
+    maxItemSize: Huge
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,5,4
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterHardsuitContractor
+    - id: ContractorUplink
+    - id: ContractorStunbaton
+    - id: PaperContractorGuide
+    - id: ClothingBackpackChameleon
+    - id: ChameleonPDA
+    - id: ClothingUniformJumpsuitChameleon
+    - id: ClothingOuterChameleon
+    - id: ClothingNeckChameleon
+    - id: ClothingMaskGasChameleon
+    - id: ClothingHeadHatChameleon
+    - id: ClothingHandsChameleon
+    - id: ClothingEyesChameleon
+    - id: ClothingHeadsetChameleon
+    - id: ClothingShoesChameleon
+    - id: ChameleonControllerImplanter
+    - id: AgentIDCard
+    - id: EncryptionKeySyndie
+    - id: CigPackSyndicate
+    - id: FlippoLighter
+    - id: ClothingHeadMirror
+    - id: EnergyDagger
+    - id: ThrowingKnivesKit
+    - id: SoapSyndie

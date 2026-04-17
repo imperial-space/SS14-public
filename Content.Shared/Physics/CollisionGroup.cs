@@ -24,6 +24,7 @@ public enum CollisionGroup
     InteractImpassable = 1 << 7, // 128 Blocks interaction/InRangeUnobstructed
     // Y dis door passable when all the others impassable / collision.
     DoorPassable       = 1 << 8, // 256 Allows door to close over top, Like blast doors over conveyors for disposals rooms/cargo.
+    BlobImpassable     = 1 << 9, // 512 Blocks everyone except blob allies.
 
     MapGrid = MapGridHelpers.CollisionGroup, // Map grids, like shuttles. This is the actual grid itself, not the walls or other entities connected to the grid.
 
@@ -34,33 +35,33 @@ public enum CollisionGroup
     SingularityLayer = Opaque | Impassable | MidImpassable | HighImpassable | LowImpassable | BulletImpassable | InteractImpassable | DoorPassable,
 
     // Humanoids, etc.
-    MobMask = Impassable | HighImpassable | MidImpassable | LowImpassable,
+    MobMask = Impassable | BlobImpassable | HighImpassable | MidImpassable | LowImpassable,
     MobLayer = Opaque | BulletImpassable,
     // Mice, drones
-    SmallMobMask = Impassable | LowImpassable,
+    SmallMobMask = Impassable | BlobImpassable | LowImpassable,
     SmallMobLayer = Opaque | BulletImpassable,
     // Birds/other small flyers
-    FlyingMobMask = Impassable | HighImpassable,
+    FlyingMobMask = Impassable | BlobImpassable | HighImpassable,
     FlyingMobLayer = Opaque | BulletImpassable,
 
     // Mechs
-    LargeMobMask = Impassable | HighImpassable | MidImpassable | LowImpassable,
+    LargeMobMask = Impassable | BlobImpassable | HighImpassable | MidImpassable | LowImpassable,
     LargeMobLayer = Opaque | HighImpassable | MidImpassable | LowImpassable | BulletImpassable,
 
     // Machines, computers
-    MachineMask = Impassable | MidImpassable | LowImpassable,
+    MachineMask = Impassable | BlobImpassable | MidImpassable | LowImpassable,
     MachineLayer = Opaque | MidImpassable | LowImpassable | BulletImpassable,
-    ConveyorMask = Impassable | MidImpassable | LowImpassable | DoorPassable,
+    ConveyorMask = Impassable | BlobImpassable | MidImpassable | LowImpassable | DoorPassable,
 
     // Crates
-    CrateMask = Impassable | HighImpassable | LowImpassable,
+    CrateMask = Impassable | BlobImpassable | HighImpassable | LowImpassable,
 
     // Tables that SmallMobs can go under
-    TableMask = Impassable | MidImpassable,
+    TableMask = Impassable | BlobImpassable | MidImpassable,
     TableLayer = MidImpassable,
 
     // Tabletop machines, windoors, firelocks
-    TabletopMachineMask = Impassable | HighImpassable,
+    TabletopMachineMask = Impassable | BlobImpassable | HighImpassable,
     // Tabletop machines
     TabletopMachineLayer = Opaque | BulletImpassable,
 
@@ -73,8 +74,8 @@ public enum CollisionGroup
 
     // Soap, spills
     SlipLayer = MidImpassable | LowImpassable,
-    ItemMask = Impassable | HighImpassable,
-    ThrownItem = Impassable | HighImpassable | BulletImpassable,
+    ItemMask = Impassable | BlobImpassable | HighImpassable,
+    ThrownItem = Impassable | BlobImpassable | HighImpassable | BulletImpassable,
     WallLayer = Opaque | Impassable | HighImpassable | MidImpassable | LowImpassable | BulletImpassable | InteractImpassable,
     GlassLayer = Impassable | HighImpassable | MidImpassable | LowImpassable | BulletImpassable | InteractImpassable,
     HalfWallLayer = MidImpassable | LowImpassable,
@@ -84,9 +85,11 @@ public enum CollisionGroup
     SpecialWallLayer = Opaque | HighImpassable | MidImpassable | LowImpassable | BulletImpassable,
 
     // Statue, monument, airlock, window
-    FullTileMask = Impassable | HighImpassable | MidImpassable | LowImpassable | InteractImpassable,
+    FullTileMask = Impassable | BlobImpassable | HighImpassable | MidImpassable | LowImpassable | InteractImpassable,
     // FlyingMob can go past
     FullTileLayer = Opaque | HighImpassable | MidImpassable | LowImpassable | BulletImpassable | InteractImpassable,
 
-    SubfloorMask = Impassable | LowImpassable
+    SubfloorMask = Impassable | BlobImpassable | LowImpassable,
+
+    BlobTileLayer = Opaque | BlobImpassable | BulletImpassable | InteractImpassable
 }

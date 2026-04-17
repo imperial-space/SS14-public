@@ -1,0 +1,62 @@
+# =====================================================================
+# Bluespace Artillery Circuit Boards
+# Замены SS13 компонентов:
+#   Квадратичные конденсаторы  → CapacitorStockPart × 3
+#   Фемтоманипуляторы          → MicroManipulatorStockPart × 3
+#   Блюспейс-кристаллы         → SheetPGlass × 5 (плазменное стекло)
+# =====================================================================
+
+# ── Control Box Board ──
+
+- type: entity
+  id: BSAControlBoxCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Плата консоли BSA
+  description: Печатная плата для командного поста блюспейс-артиллерии.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: BSAControlBoxUnfinished
+    componentRequirements:
+      CapacitorStockPart:
+        amount: 3
+        defaultPrototype: CapacitorStockPart
+      MicroManipulatorStockPart:
+        amount: 3
+        defaultPrototype: MicroManipulatorStockPart
+    stackRequirements:
+      Plasteel: 20
+      Cable: 5
+
+# ── Front Part Board ──
+
+- type: entity
+  id: BSAFrontPartCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Плата ствола BSA
+  description: Инженерная плата для ствольного узла блюспейс-артиллерии.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: BSAFrontPartUnfinished
+    stackRequirements:
+      Plasteel: 15
+      Steel: 10
+
+# ── Back Part Board ──
+
+- type: entity
+  id: BSABackPartCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Плата казённика BSA
+  description: Инженерная плата для заднего блока блюспейс-артиллерии.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: BSABackPartUnfinished
+    stackRequirements:
+      Plasteel: 15
+      Steel: 10

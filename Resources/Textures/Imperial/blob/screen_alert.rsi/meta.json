@@ -1,0 +1,542 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "https://github.com/ParadiseSS13",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "alien_template"
+    },
+    {
+      "name": "alien_tox"
+    },
+    {
+      "name": "alien_fire"
+    },
+    {
+      "name": "alien_oxy"
+    },
+    {
+      "name": "default"
+    },
+    {
+      "name": "cold",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "fire"
+    },
+    {
+      "name": "hot1"
+    },
+    {
+      "name": "hot2"
+    },
+    {
+      "name": "hot3",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "cold1"
+    },
+    {
+      "name": "cold2"
+    },
+    {
+      "name": "cold3",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "lowpressure1"
+    },
+    {
+      "name": "lowpressure2",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "highpressure1"
+    },
+    {
+      "name": "highpressure2",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "emptycell"
+    },
+    {
+      "name": "lowcell3",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "lowcell2"
+    },
+    {
+      "name": "lowcell1"
+    },
+    {
+      "name": "nocell"
+    },
+    {
+      "name": "hacked"
+    },
+    {
+      "name": "locked"
+    },
+    {
+      "name": "newlaw"
+    },
+    {
+      "name": "too_much_oxy",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "too_much_nitro",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "too_much_co2",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "too_much_tox",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "not_enough_oxy",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "not_enough_nitro",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "not_enough_co2",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "not_enough_tox",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "blind"
+    },
+    {
+      "name": "drugged"
+    },
+    {
+      "name": "drunk"
+    },
+    {
+      "name": "drunk2"
+    },
+    {
+      "name": "embeddedobject"
+    },
+    {
+      "name": "high"
+    },
+    {
+      "name": "unbalanced"
+    },
+    {
+      "name": "weightless"
+    },
+    {
+      "name": "asleep"
+    },
+    {
+      "name": "paralysis"
+    },
+    {
+      "name": "direction_lock",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "stun"
+    },
+    {
+      "name": "weaken"
+    },
+    {
+      "name": "low_mech_integrity1"
+    },
+    {
+      "name": "low_mech_integrity2"
+    },
+    {
+      "name": "low_mech_integrity3"
+    },
+    {
+      "name": "mech_port"
+    },
+    {
+      "name": "mech_port_x"
+    },
+    {
+      "name": "template"
+    },
+    {
+      "name": "alien_noqueen"
+    },
+    {
+      "name": "guardian_charge"
+    },
+    {
+      "name": "guardian_instealth"
+    },
+    {
+      "name": "guardian_canstealth"
+    },
+    {
+      "name": "blobbernaut_nofactory"
+    },
+    {
+      "name": "hackingapc",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "lightexposure"
+    },
+    {
+      "name": "nolight"
+    },
+    {
+      "name": "shadow_mend"
+    },
+    {
+      "name": "nymph",
+      "directions": 4
+    },
+    {
+      "name": "blood"
+    },
+    {
+      "name": "blooddrunk"
+    },
+    {
+      "name": "frozen"
+    },
+    {
+      "name": "regenerative_core"
+    },
+    {
+      "name": "buckled"
+    },
+    {
+      "name": "map_vote",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "his_grace"
+    },
+    {
+      "name": "morph_ambush"
+    },
+    {
+      "name": "bluespace",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "chainsaw",
+      "delays": [
+        [
+          0.04,
+          0.04
+        ]
+      ]
+    },
+    {
+      "name": "hope",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "alert_flash",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "offering_item"
+    },
+    {
+      "name": "bubblegumjumpscare"
+    },
+    {
+      "name": "pd_nopower"
+    },
+    {
+      "name": "pd_noregen"
+    },
+    {
+      "name": "cursed_by_slots"
+    },
+    {
+      "name": "bearserker"
+    },
+    {
+      "name": "succumb"
+    },
+    {
+      "name": "breachcleaver"
+    },
+    {
+      "name": "gross"
+    },
+    {
+      "name": "gross2"
+    },
+    {
+      "name": "gross3"
+    },
+    {
+      "name": "mind_control"
+    },
+    {
+      "name": "HERETIC_TEMPLATE"
+    },
+    {
+      "name": "crucible",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "duskndawn"
+    },
+    {
+      "name": "wounded_soldier"
+    },
+    {
+      "name": "realignment"
+    },
+    {
+      "name": "star_mark"
+    },
+    {
+      "name": "moon_hide"
+    },
+    {
+      "name": "moon_insanity"
+    },
+    {
+      "name": "void_chill_minor",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "void_chill_oh_fuck",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "lastresort"
+    },
+    {
+      "name": "called"
+    },
+    {
+      "name": "silicon_generic_alert"
+    },
+    {
+      "name": "insanity_minor"
+    },
+    {
+      "name": "insanity_moderate",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "insanity_full",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    }
+  ]
+}

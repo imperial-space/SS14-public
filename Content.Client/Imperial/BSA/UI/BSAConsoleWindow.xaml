@@ -1,0 +1,82 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:bsa="clr-namespace:Content.Client.Imperial.BSA.UI"
+    Title="{Loc 'bsa-console-window-title'}"
+    MinSize="380 480">
+
+    <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="6">
+
+        <!-- Визуальная схема частей + питание -->
+        <PanelContainer StyleClasses="PanelDark">
+            <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="6">
+
+                <!-- Питание -->
+                <BoxContainer Orientation="Horizontal">
+                    <RichTextLabel Text="{Loc 'bsa-status-power'}"
+                        HorizontalExpand="True"/>
+                    <RichTextLabel Name="PowerStatus"/>
+                </BoxContainer>
+
+                <!-- Визуальные части в ряд: Казённик — Консоль — Ствол -->
+                <BoxContainer Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    SeparationOverride="8">
+
+                    <BoxContainer Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        SeparationOverride="2">
+                        <bsa:BSAPartControl Name="BackPartControl" PartRsi="power_box"/>
+                        <Label Text="{Loc 'bsa-part-back'}"
+                            HorizontalAlignment="Center"
+                            StyleClasses="LabelSubText"/>
+                    </BoxContainer>
+
+                    <BoxContainer Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        SeparationOverride="2">
+                        <bsa:BSAPartControl Name="ConsolePartControl" PartRsi="control_box" AlwaysExists="True"/>
+                        <Label Text="{Loc 'bsa-part-console'}"
+                            HorizontalAlignment="Center"
+                            StyleClasses="LabelSubText"/>
+                    </BoxContainer>
+
+                    <BoxContainer Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        SeparationOverride="2">
+                        <bsa:BSAPartControl Name="FrontPartControl" PartRsi="end_cap"/>
+                        <Label Text="{Loc 'bsa-part-front'}"
+                            HorizontalAlignment="Center"
+                            StyleClasses="LabelSubText"/>
+                    </BoxContainer>
+
+                </BoxContainer>
+
+                <!-- Кнопка сканирования -->
+                <Button Name="ScanButton"
+                    Text="{Loc 'bsa-scan-button'}"
+                    HorizontalAlignment="Center"/>
+
+            </BoxContainer>
+        </PanelContainer>
+
+        <!-- Выбор цели -->
+        <RichTextLabel Text="{Loc 'bsa-target-select-label'}"/>
+        <ItemList Name="BeaconList" VerticalExpand="True" MinHeight="160"/>
+
+        <!-- Статус перезарядки -->
+        <BoxContainer Orientation="Horizontal">
+            <RichTextLabel Text="{Loc 'bsa-cooldown-label'}"
+                HorizontalExpand="True"/>
+            <RichTextLabel Name="CooldownLabel"/>
+        </BoxContainer>
+
+        <!-- Кнопка выстрела -->
+        <Button Name="FireButton"
+            Text="{Loc 'bsa-fire-button'}"
+            StyleClasses="ButtonDanger"
+            Disabled="True"
+            HorizontalExpand="True"
+            MinHeight="40"/>
+
+    </BoxContainer>
+</controls:FancyWindow>
