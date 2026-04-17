@@ -1,0 +1,15 @@
+Assets: mutate.ogg, blobattack.ogg, attackblob.ogg, splat.ogg
+Source project: SS220 Paradise
+Repository: https://github.com/ss220-space/Paradise
+Branch: master220
+Source files:
+- https://github.com/ss220-space/Paradise/blob/master220/sound/magic/mutate.ogg
+- https://github.com/ss220-space/Paradise/blob/master220/sound/effects/blobattack.ogg
+- https://github.com/ss220-space/Paradise/blob/master220/sound/effects/attackblob.ogg
+- https://github.com/ss220-space/Paradise/blob/master220/sound/effects/splat.ogg
+Licensing status:
+- mutate.ogg: no explicit per-file license discovered at source path; copyright holder: SS220 Paradise contributors (repository-level attribution); usage terms: require project maintainer approval for redistribution.
+- blobattack.ogg: no explicit per-file license discovered at source path; copyright holder: SS220 Paradise contributors (repository-level attribution); usage terms: require project maintainer approval for redistribution.
+- attackblob.ogg: no explicit per-file license discovered at source path; copyright holder: SS220 Paradise contributors (repository-level attribution); usage terms: require project maintainer approval for redistribution.
+- splat.ogg: no explicit per-file license discovered at source path; copyright holder: SS220 Paradise contributors (repository-level attribution); usage terms: require project maintainer approval for redistribution.
+Note: audio download needs to be completed manually or from an opened workspace terminal; this file preserves attribution and exact upstream sources.
