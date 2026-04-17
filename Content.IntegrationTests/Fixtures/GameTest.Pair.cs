@@ -19,7 +19,7 @@ public abstract partial class GameTest
     /// </summary>
     public async Task RunUntilSynced()
     {
-        await Pair.RunUntilSynced();
+        await Pair.SyncTicks();
     }
 
     /// <summary>

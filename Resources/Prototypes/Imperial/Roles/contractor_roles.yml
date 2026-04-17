@@ -1,0 +1,25 @@
+- type: antag
+  id: Contractor
+  name: roles-antag-contractor-name
+  antagonist: true
+  objective: roles-antag-contractor-objective
+
+- type: entity
+  parent: BaseMindRole
+  id: MindRoleContractorCandidate
+  name: Contractor Candidate Role
+  components:
+  - type: ContractorCandidateRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleContractor
+  name: Contractor Role
+  components:
+  - type: MindRole
+    antagPrototype: Contractor
+    roleType: SoloAntagonist
+    subtype: role-subtype-contractor
+  - type: ContractorRole
+  - type: RoleBriefing
+    briefing: contractor-role-briefing
