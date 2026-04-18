@@ -1,0 +1,29 @@
+- type: gamePreset
+  id: AllAtOncePlus
+  alias:
+  - allplus
+  - all+
+  - aao+
+  name: all-at-once-plus-title
+  description: all-at-once-plus-description
+  showInVote: false
+  rules:
+    - Nukeops
+    - Traitor
+    - Revolutionary
+    - Zombie
+    - SyndieBorgroundstart
+    - Pirates
+    - Wizard
+    - Vampire
+    - Xenoborgs
+    - Blob
+    - Cult
+    - BloodBrother
+    - BasicStationEventScheduler
+    - KesslerSyndromeScheduler
+    - MeteorSwarmMildScheduler
+    - MeteorSwarmScheduler
+    - RampingStationEventScheduler
+    - SpaceTrafficControlEventScheduler
+    - BasicRoundstartVariation
