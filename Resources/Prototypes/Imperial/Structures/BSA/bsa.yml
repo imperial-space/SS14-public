@@ -249,24 +249,6 @@
   - type: Construction
     graph: BSABackPart
 
-# ────────────── Impact Effect ──────────────
-
-- type: entity
-  id: BSAImpactEffect
-  name: Блюспейс-взрыв
-  noSpawn: true
-  components:
-  - type: Sprite
-    drawdepth: Effects
-    sprite: Imperial/bsa/shot.rsi
-    layers:
-    - state: bsa_impact_ex
-      map: ["effect"]
-  - type: AnimationPlayer
-  - type: TimedDespawn
-    lifetime: 1.0
-  - type: Appearance
-
 # ────────────── Shot Projectile ──────────────
 
 - type: entity
