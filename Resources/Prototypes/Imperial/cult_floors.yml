@@ -1,11 +1,11 @@
 - type: tile
   id: FloorCult
-  name: tiles-cult-floor
-  sprite: /Textures/Imperial/cult/floor/floors.rsi/cult.png
+  name: tiles-mining-tile
+  sprite: /Textures/Tiles/mining_floor.png
   baseTurf: Plating
   isSubfloor: false
   deconstructTools: [ Prying ]
-  itemDrop: FloorTileItemCult
+  itemDrop: FloorTileItemMining
   footstepSounds:
     collection: FootstepTile
   heatCapacity: 10000
