@@ -27,6 +27,7 @@ public sealed class BlobRuleSystem : StationEventSystem<BlobRuleComponent>
 {
     private static readonly Color BlobBriefingColor = Color.FromHex("#5acb74");
     private static readonly Color BlobAlertColor = Color.FromHex("#d94b4b");
+    private static readonly Color BlobResolvedColor = Color.FromHex("#5acb74");
     private static readonly SoundPathSpecifier BlobAnnouncementAlarm = new("/Audio/Imperial/blob/sound_effects_siren-spooky.ogg");
     private static readonly SoundPathSpecifier BlobAnnouncementVoice = new("/Audio/Imperial/blob/sound_AI_outbreak_blob.ogg");
 
@@ -256,6 +257,8 @@ public sealed class BlobRuleSystem : StationEventSystem<BlobRuleComponent>
             if (!rule.BlobMinds.Remove(blobId))
                 continue;
 
+            var hasStation = TryGetBlobStation(blobId, out var station);
+
             if (rule.BlobMinds.Count == 0)
             {
                 rule.BiohazardAnnouncementAccumulator = 0f;
@@ -263,9 +266,19 @@ public sealed class BlobRuleSystem : StationEventSystem<BlobRuleComponent>
                 rule.GammaTriggered = false;
             }
 
-            DestroyOwnedStructures(blobId, uid);
-            DestroyOwnedBlobMobs(blobId);
-            TerminateOvermind(blobId);
+            _blobOvermind.NeutralizeBlob(blobId);
+
+            if (hasStation)
+            {
+                _alertLevel.SetLevel(station, "green", true, true, force: true);
+                _chat.DispatchStationAnnouncement(
+                    station,
+                    Loc.GetString("blob-centcom-neutralized-announcement"),
+                    Loc.GetString("comms-console-announcement-title-centcom"),
+                    playDefaultSound: false,
+                    colorOverride: BlobResolvedColor);
+            }
+
             Dirty(ruleUid, rule);
             break;
         }
@@ -290,33 +303,6 @@ public sealed class BlobRuleSystem : StationEventSystem<BlobRuleComponent>
         }
 
         return cores;
-    }
-
-    private void DestroyOwnedStructures(EntityUid mindId, EntityUid destroyedCore)
-    {
-        var structures = EntityQueryEnumerator<BlobStructureComponent>();
-        while (structures.MoveNext(out var structureUid, out var structure))
-        {
-            if (structureUid == destroyedCore)
-                continue;
-
-            if (structure.OwnerMind != mindId)
-                continue;
-
-            QueueDel(structureUid);
-        }
-    }
-
-    private void DestroyOwnedBlobMobs(EntityUid mindId)
-    {
-        var blobMobs = EntityQueryEnumerator<BlobMobComponent>();
-        while (blobMobs.MoveNext(out var mobUid, out var blobMob))
-        {
-            if (blobMob.OwnerMind != mindId)
-                continue;
-
-            QueueDel(mobUid);
-        }
     }
 
     public int GetOwnedStationTileCount(EntityUid mindId)
@@ -465,26 +451,6 @@ public sealed class BlobRuleSystem : StationEventSystem<BlobRuleComponent>
 
         station = EntityUid.Invalid;
         return false;
-    }
-
-    private void TerminateOvermind(EntityUid blobId)
-    {
-        var overminds = EntityQueryEnumerator<BlobOvermindComponent, MindContainerComponent>();
-        while (overminds.MoveNext(out var overmindUid, out var overmind, out var mindContainer))
-        {
-            if (overmind.BlobId != blobId)
-                continue;
-
-            if (mindContainer.Mind is { } overmindMind &&
-                _mind.TryGetMind(overmindMind, out _, out var mind) &&
-                mind.UserId != null &&
-                _players.TryGetSessionById(mind.UserId.Value, out var session))
-            {
-                _antag.SendBriefing(session, Loc.GetString("blob-core-destroyed"), Color.Red, null);
-            }
-
-            QueueDel(overmindUid);
-        }
     }
 
     private static bool IsBlobCorePrototype(string? prototype)

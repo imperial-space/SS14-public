@@ -82,29 +82,8 @@ public sealed class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComp
             return;
         }
 
-        if (ent.Comp.BloodBrotherMinds.Count != 1 || !ShouldAssignSoloObjectives(mind))
+        if (ent.Comp.BloodBrotherMinds.Count < 2)
             return;
-
-        AssignSoloObjectives((mindId, mind), ent.Comp);
-        ent.Comp.ObjectivesAssigned = true;
-        SendSoloBloodBrotherBriefing((mindId, mind), ent.Comp);
-    }
-
-    private bool ShouldAssignSoloObjectives(MindComponent mind)
-    {
-        if (mind.UserId == null || !_players.TryGetSessionById(mind.UserId.Value, out var session))
-            return false;
-
-        foreach (var other in _players.Sessions)
-        {
-            if (other == session || other.AttachedEntity == null)
-                continue;
-
-            if (HasComp<MindContainerComponent>(other.AttachedEntity.Value))
-                return false;
-        }
-
-        return true;
     }
 
     private void AssignSharedObjectives(Entity<MindComponent> first, Entity<MindComponent> second, BloodBrotherRuleComponent comp)
@@ -117,15 +96,6 @@ public sealed class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComp
 
         if (_objectives.GetRandomObjective(first.Owner, first.Comp, comp.SharedTargetObjectivePool, float.MaxValue) is { } targetObjective)
             AddSharedObjective(first, second, targetObjective);
-    }
-
-    private void AssignSoloObjectives(Entity<MindComponent> mind, BloodBrotherRuleComponent comp)
-    {
-        if (_objectives.TryCreateObjective(mind, comp.EscapeObjective, out var escapeObjective) && escapeObjective != null)
-            _mind.AddObjective(mind.Owner, mind.Comp, escapeObjective.Value);
-
-        if (_objectives.GetRandomObjective(mind.Owner, mind.Comp, comp.SharedTargetObjectivePool, float.MaxValue) is { } targetObjective)
-            _mind.AddObjective(mind.Owner, mind.Comp, targetObjective);
     }
 
     private void AddPartnerObjective(Entity<MindComponent> ownerMind, EntityUid partnerMind)
@@ -158,12 +128,4 @@ public sealed class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComp
         _antag.SendBriefing(session, briefing, BloodBrotherBriefingColor, comp.GreetSoundNotification);
     }
 
-    private void SendSoloBloodBrotherBriefing(Entity<MindComponent> mind, BloodBrotherRuleComponent comp)
-    {
-        if (mind.Comp.UserId == null || !_players.TryGetSessionById(mind.Comp.UserId.Value, out var session))
-            return;
-
-        var briefing = Loc.GetString("blood-brother-role-greeting-solo");
-        _antag.SendBriefing(session, briefing, BloodBrotherBriefingColor, comp.GreetSoundNotification);
-    }
 }

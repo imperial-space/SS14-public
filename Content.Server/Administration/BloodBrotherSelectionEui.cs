@@ -32,6 +32,12 @@ public sealed class BloodBrotherSelectionEui : BaseEui
         return new BloodBrotherSelectionEuiState(_targetName, _candidates);
     }
 
+    public override void Opened()
+    {
+        base.Opened();
+        StateDirty();
+    }
+
     public override void HandleMessage(EuiMessageBase msg)
     {
         base.HandleMessage(msg);

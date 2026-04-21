@@ -36,6 +36,8 @@ cult-blood-orb-not-cultist = The orb rejects the non-cultist.
 cult-blood-orb-absorbed = You absorb { $charges } rite charges from the orb.
 cult-blood-orb-transferred = You transfer { $charges } rite charges to an ally.
 cult-blood-orb-received = You receive { $charges } rite charges.
+cult-shackles-needs-stunned = The target must be stunned before shadow shackles can take hold.
+cult-twisted-construction-airlock = The airlock twists into a runed door!
 
 cult-action-recall-blood-spear-name = Recall Blood Spear
 cult-action-recall-blood-spear-desc = Returns your summoned blood spear to your hand.

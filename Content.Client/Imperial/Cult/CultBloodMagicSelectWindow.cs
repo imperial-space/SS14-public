@@ -59,7 +59,6 @@ public sealed class CultBloodMagicSelectWindow : DefaultWindow
             btn.OnPressed += _ =>
             {
                 OnSpellSelected?.Invoke(capturedId);
-                Close();
             };
             vbox.AddChild(btn);
         }

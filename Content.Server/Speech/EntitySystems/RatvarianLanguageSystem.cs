@@ -10,7 +10,9 @@ namespace Content.Server.Speech.EntitySystems;
 
 public sealed class RatvarianLanguageSystem : SharedRatvarianLanguageSystem
 {
+#pragma warning disable CS0618
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+#pragma warning restore CS0618
 
     private static readonly ProtoId<StatusEffectPrototype> RatvarianKey = "RatvarianLanguage";
 

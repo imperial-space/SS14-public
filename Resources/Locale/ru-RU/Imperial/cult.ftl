@@ -121,7 +121,7 @@ cult-commune-format = [ОБЩИНА] { $sender }: { $message }
 
 cult-blood-magic-select-title = Выберите заклинание:
 cult-blood-magic-swap-title = Заменить подготовленное заклинание
-cult-blood-magic-swap-choose = Заменить одно из подготовленных на: { $spell }
+cult-blood-magic-swap-choose = Удалите одно из подготовленных заклинаний.
 
 cult-spell-stun = Оглушение
 cult-spell-shackles = Теневые оковы
@@ -148,6 +148,7 @@ cult-narsie-no-beacon = Ритуал Разрыва Мерности можно 
 cult-narsie-centcomm-warning = ВНИМАНИЕ. Зафиксирована попытка разрыва мерности и призыва Нар'Си. Немедленно локализуйте и нейтрализуйте угрозу. Место ритуала: { $location }.
 cult-narsie-unknown-location = неизвестный маяк
 cult-stun-hit = Вы оглушили { $target }.
+cult-shackles-needs-stunned = Цель должна быть оглушена, чтобы наложить теневые оковы.
 cult-shackles-applied = Вы сковали { $target }.
 cult-teleport-no-rune = Нет доступной руны телепортации.
 cult-teleport-rune-active = Руна телепортации активирована.
@@ -170,6 +171,7 @@ cult-drawing-rune = Вы начинаете рисовать руну...
 cult-narsie-need-nine = Нужно 9 культистов/конструктов. Сейчас: { $have }.
 cult-spell-target-is-cultist = Нельзя применять это заклинание на братьев культа.
 cult-twisted-construction-metal = Пластальный лист превращён в рунный металл!
+cult-twisted-construction-airlock = Шлюз искажается и становится рунной дверью!
 cult-twisted-construction-fail = Невозможно трансформировать этот предмет.
 cult-equipment-summoned = Боевое снаряжение культа призвано.
 cult-blood-rites-heal = Обряд крови исцелил вас.
@@ -192,7 +194,7 @@ cult-spell-expended = Заклинание иссякло и исчезло.
 
 # Вуаль / ореол
 cult-veil-weakens-eyes = [ОБЩИНА] Вуаль ослабевает по мере роста культа, ваши глаза начинают светиться...
-cult-veil-broken-halo = [ОБЩИНА] Культ восходит — вас теперь не скрыть!
+cult-veil-broken-halo = [ОБЩИНА] Культ восходит, вас теперь не скрыть!
 
 # Осмотр культиста с красными глазами
 cult-examine-red-eyes = [bold]Его глаза излучают зловещий красный свет...[/bold]
@@ -230,6 +232,7 @@ cult-spell-already-prepared = Это заклинание уже подгото�
 cult-spell-invalid = Недопустимое заклинание.
 cult-preparing-spell = Вы готовите заклинание { $spell }...
 cult-spell-ready = Заклинание { $spell } готово!
+cult-spell-slot-freed = Заклинание { $spell } удалено. Слот освобождён.
 
 # Commune BUI
 cult-commune-window-title = Связь культа
@@ -373,8 +376,6 @@ ent-CultSpellItemConstruction = Тёмная энергия
     .desc = Тёмное пламя Нар'Си. Используйте на металле или шлюзе.
 
 cult-spell-cancelled = Заклинание отменено.
-cult-shackles-needs-stunned = Цель должна быть сначала оглушена!
-cult-twisted-construction-airlock = Шлюз искажён тёмной энергией!
 
 # ─── Повязка фанатика ───
 

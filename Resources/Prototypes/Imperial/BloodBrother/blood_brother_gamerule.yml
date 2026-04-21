@@ -18,7 +18,7 @@
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ BloodBrother ]
-      min: 1
+      min: 2
       max: 2
       playerRatio: 15
       lateJoinAdditional: false

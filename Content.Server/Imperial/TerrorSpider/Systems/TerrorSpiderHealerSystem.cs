@@ -36,6 +36,7 @@ public sealed class TerrorSpiderHealerSystem : EntitySystem
         SubscribeLocalEvent<TerrorSpiderHealerComponent, TerrorSpiderHealerLayEggActionEvent>(OnLayEggAction);
         SubscribeLocalEvent<TerrorSpiderHealerComponent, TerrorSpiderCocoonWrappedEvent>(OnCocoonWrapped);
         SubscribeLocalEvent<TerrorSpiderHealerComponent, BeforeInteractHandEvent>(OnBeforeInteractHand);
+        SubscribeLocalEvent<TerrorSpiderHealerComponent, UserInteractHandEvent>(OnUserInteractHand);
         SubscribeLocalEvent<TerrorSpiderWebBuffReceiverComponent, BeforeDamageChangedEvent>(OnBeforeSpiderDamageChanged);
         SubscribeLocalEvent<MeleeHitEvent>(OnMeleeHit);
 
@@ -123,6 +124,21 @@ public sealed class TerrorSpiderHealerSystem : EntitySystem
     }
 
     private void OnBeforeInteractHand(Entity<TerrorSpiderHealerComponent> ent, ref BeforeInteractHandEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (args.Target == ent.Owner)
+            return;
+
+        if (!TryComp<TerrorSpiderWebBuffReceiverComponent>(args.Target, out _))
+            return;
+
+        TryApplyTouchHeal(args.Target, ent.Comp);
+        args.Handled = true;
+    }
+
+    private void OnUserInteractHand(Entity<TerrorSpiderHealerComponent> ent, ref UserInteractHandEvent args)
     {
         if (args.Handled)
             return;

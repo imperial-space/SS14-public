@@ -10,6 +10,9 @@ spider-terror-gamerule-desc = На станции завёлся улей пау
 spider-terroregg-name = Яйцо паука ужаса
 spider-terroregg-desc = Готово к вылупрелнию нового защитника улья!
 spider-terroregg-rul = Превратитеть в полноценного защитника улья.
+terror-spider-hive-sense-empty = Улей молчит. Живой выводок не отвечает.
+terror-spider-hive-sense-entry = { $name } | Здоровье: { $hp }/{ $hpMax } | Маяк: { $beacon }
+terror-spider-hive-sense-unknown = неизвестное место
 
 ent-MobRusarSpider = рыцарь ужаса
     .desc = Сражается с экипажем, защищает других пауков. За счёт своей устойчивости Создаёт свободное пространство, чтобы другие пауки могли расширять гнездо.

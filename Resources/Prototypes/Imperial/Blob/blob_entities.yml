@@ -97,8 +97,8 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionBlobAttack
-  name: blob-action-attack-name
-  description: blob-action-attack-desc
+  name: Lash Out
+  description: "Orders nearby biomass to strike the selected tile. Cost: 1 biomass."
   components:
   - type: Action
     useDelay: 0.5
@@ -114,8 +114,8 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionBlobConsumeTile
-  name: blob-action-consume-name
-  description: blob-action-consume-desc
+  name: Consume Structure
+  description: Digests one of your Blob structures. Tiles do not refund biomass.
   components:
   - type: Action
     useDelay: 0.5
@@ -131,8 +131,8 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionBlobPlaceTile
-  name: blob-action-place-tile-name
-  description: blob-action-place-tile-desc
+  name: Grow Tile
+  description: "Spreads a blob tile near your core or existing biomass. Cost: 5 biomass, x2 in space."
   components:
   - type: Action
     useDelay: 0.5
@@ -148,8 +148,8 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionBlobPlaceShieldTile
-  name: blob-action-upgrade-tile-name
-  description: blob-action-upgrade-tile-desc
+  name: Upgrade Tile
+  description: "Upgrades your normal tile into a strong tile, and a strong tile into a reflective tile. Cost: 15 and 15 biomass."
   components:
   - type: Action
     useDelay: 1
@@ -165,8 +165,8 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionBlobPlaceNode
-  name: blob-action-place-node-name
-  description: blob-action-place-node-desc
+  name: Grow Node
+  description: "Creates a Blob node to extend your network. Cost: 60 biomass."
   components:
   - type: Action
     useDelay: 1
@@ -182,8 +182,8 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionBlobPlaceFactory
-  name: blob-action-place-factory-name
-  description: blob-action-place-factory-desc
+  name: Grow Factory
+  description: "Creates a Blob factory that periodically releases spores. Cost: 60 biomass."
   components:
   - type: Action
     useDelay: 1
@@ -199,8 +199,8 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionBlobPlaceResource
-  name: blob-action-place-resource-name
-  description: blob-action-place-resource-desc
+  name: Grow Resource
+  description: "Creates a resource node that increases biomass income. Cost: 40 biomass."
   components:
   - type: Action
     useDelay: 1
@@ -216,8 +216,8 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionBlobPlaceStorage
-  name: blob-action-place-storage-name
-  description: blob-action-place-storage-desc
+  name: Grow Storage
+  description: "Creates a Blob storage structure that increases your biomass cap. Cost: 40 biomass."
   components:
   - type: Action
     useDelay: 1
@@ -233,8 +233,8 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionBlobPlaceLauncher
-  name: blob-action-place-launcher-name
-  description: blob-action-place-launcher-desc
+  name: Grow Launcher
+  description: "Creates a Blob combat structure that automatically attacks nearby enemies. Cost: 7 biomass."
   components:
   - type: Action
     useDelay: 1
@@ -250,8 +250,8 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionBlobPlaceCooling
-  name: blob-action-place-cooling-name
-  description: blob-action-place-cooling-desc
+  name: Grow Cooling Organ
+  description: "Creates a defensive Blob structure that removes burn damage from nearby biomass. Cost: 5 biomass."
   components:
   - type: Action
     useDelay: 1
@@ -267,8 +267,8 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionBlobSpawnBlobbernaut
-  name: blob-action-spawn-blobbernaut-name
-  description: blob-action-spawn-blobbernaut-desc
+  name: Form Blobbernaut
+  description: "Creates a Blobbernaut directly on the targeted Blob factory without destroying it. Cost: 60 biomass."
   components:
   - type: Action
     useDelay: 2
@@ -284,8 +284,8 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionBlobRallyMinions
-  name: blob-action-rally-name
-  description: blob-action-rally-desc
+  name: Rally Minions
+  description: Orders your spores and unoccupied minions to move to a target point.
   components:
   - type: Action
     useDelay: 1
@@ -301,8 +301,8 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionBlobUpgradeGeneration
-  name: blob-action-upgrade-generation-name
-  description: blob-action-upgrade-generation-desc
+  name: Boost Metabolism
+  description: Spend an evolution point to increase base biomass generation.
   components:
   - type: Action
     useDelay: 1
@@ -315,8 +315,8 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionBlobUpgradeAttack
-  name: blob-action-upgrade-attack-name
-  description: blob-action-upgrade-attack-desc
+  name: Harden Assault
+  description: Spend an evolution point to strengthen the Blob's active attack.
   components:
   - type: Action
     useDelay: 1
@@ -329,8 +329,8 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionBlobUpgradeCapacity
-  name: blob-action-upgrade-capacity-name
-  description: blob-action-upgrade-capacity-desc
+  name: Expand Reservoir
+  description: Spend an evolution point to increase the Blob's base biomass cap.
   components:
   - type: Action
     useDelay: 1
@@ -343,8 +343,8 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionBlobSplitConsciousness
-  name: blob-action-split-name
-  description: blob-action-split-desc
+  name: Split Consciousness
+  description: "Creates a second core near one of your nodes so the Blob can survive losing a core. Cost: 100 biomass."
   components:
   - type: Action
     useDelay: 2
@@ -360,8 +360,8 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionBlobShowStatus
-  name: blob-action-show-status-name
-  description: blob-action-show-status-desc
+  name: Swarm Status
+  description: Shows the Blob's current biomass and growth pace.
   components:
   - type: Action
     useDelay: 1
@@ -374,8 +374,8 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionBlobChangeChemical
-  name: blob-action-change-chemical-name
-  description: blob-action-change-chemical-desc
+  name: Change Chemical
+  description: Opens the Blob reagent selection menu. Changing reagent costs 20 biomass.
   components:
   - type: Action
     useDelay: 1
@@ -401,8 +401,8 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionBlobMouseTransform
-  name: blob-mouse-action-name
-  description: blob-mouse-action-desc
+  name: Rupture
+  description: Tear open the carrier and reveal the Blob core immediately.
   components:
   - type: Action
     useDelay: 1
@@ -421,6 +421,26 @@
   description: Носитель спящей массы Блоба. Если его не остановить, он раскроется в ядро.
   components:
   - type: BlobMouse
+  - type: Speech
+    speechSounds: Squeak
+    speechVerb: SmallMob
+    allowedEmotes: [ 'Squeak' ]
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: Mobs/Animals/mouse.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base", "movement" ]
+      state: mouse-0
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-0
+    noMovementLayers:
+      movement:
+        state: mouse-0
+  - type: Icon
+    sprite: Mobs/Animals/mouse.rsi
+    state: mouse-0
   - type: PressureImmunity
   - type: NpcFactionMember
     factions:
@@ -790,6 +810,8 @@
   name: блоббернаут
   description: Огромная и подвижная масса боевой биомассы.
   components:
+  - type: CombatMode
+    isInCombatMode: true
   - type: BlobMob
   - type: Blobbernaut
   - type: PressureImmunity

@@ -31,6 +31,22 @@
   longRange: true
 
 - type: radioChannel
+  id: Blob
+  name: chat-radio-blob
+  keycode: 'б'
+  frequency: 1071
+  color: "#6bcf6b"
+  longRange: true
+
+- type: radioChannel
+  id: BlobHive
+  name: chat-radio-blob-hive
+  keycode: 'л'
+  frequency: 1076
+  color: "#4aa34a"
+  longRange: true
+
+- type: radioChannel
   id: Radio1
   name: chat-radio-1
   keycode: '1'

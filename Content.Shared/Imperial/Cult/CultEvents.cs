@@ -124,6 +124,9 @@ public sealed class CultSpellSelectedMessage : BoundUserInterfaceMessage
 }
 
 [Serializable, NetSerializable]
+public sealed class CultBloodMagicSelectState : BoundUserInterfaceState;
+
+[Serializable, NetSerializable]
 public sealed class CultBloodMagicSwapState : BoundUserInterfaceState
 {
     public string NewSpellId { get; }
