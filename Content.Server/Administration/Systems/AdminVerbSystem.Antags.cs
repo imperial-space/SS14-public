@@ -7,7 +7,6 @@ using Content.Shared.Administration;
 using Content.Server.Clothing.Systems;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
-using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
 using Content.Shared.Verbs;
@@ -15,14 +14,12 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Roles.Components;
-using System.Linq;
 
 namespace Content.Server.Administration.Systems;
 
 public sealed partial class AdminVerbSystem
 {
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly BloodBrotherRuleSystem _bloodBrother = default!;
     [Dependency] private readonly ZombieSystem _zombie = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly OutfitSystem _outfit = default!;
@@ -36,9 +33,6 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId ParadoxCloneRuleId = "ParadoxCloneSpawn";
     private static readonly EntProtoId DefaultWizardRule = "Wizard";
     private static readonly EntProtoId DefaultNinjaRule = "NinjaSpawn";
-    private static readonly EntProtoId DefaultBloodBrotherRule = "BloodBrother";
-    private static readonly EntProtoId DefaultCultRule = "Cult";
-    private static readonly EntProtoId DefaultBlobRule = "Blob";
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
 
     // All antag verbs have names so invokeverb works.
@@ -177,79 +171,6 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", changelingName, Loc.GetString("admin-verb-make-changeling")),
         };
         args.Verbs.Add(changeling);
-
-        var bloodBrotherName = Loc.GetString("admin-verb-text-make-blood-brother");
-        Verb bloodBrother = new()
-        {
-            Text = bloodBrotherName,
-            Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/Interface/Misc/job_icons.rsi"), "Syndicate"),
-            Act = () =>
-            {
-                var candidates = new List<BloodBrotherSelectablePlayer>();
-
-                foreach (var session in _playerManager.Sessions)
-                {
-                    if (session == targetPlayer)
-                        continue;
-
-                    var displayName = session.Name;
-                    if (session.AttachedEntity is { } attached && attached != args.Target)
-                    {
-                        displayName = Name(attached);
-                    }
-
-                    candidates.Add(new BloodBrotherSelectablePlayer(session.UserId, displayName));
-                }
-
-                candidates = candidates
-                    .DistinctBy(candidate => candidate.UserId)
-                    .OrderBy(candidate => candidate.Name)
-                    .ToList();
-
-                if (candidates.Count == 0)
-                {
-                    _popup.PopupEntity(Loc.GetString("admin-verb-make-blood-brother-no-candidates"), args.Target, args.User);
-                    return;
-                }
-
-                var eui = new BloodBrotherSelectionEui(targetPlayer, Name(args.Target), candidates, _bloodBrother);
-                _euiManager.OpenEui(eui, player);
-            },
-            Impact = LogImpact.High,
-            Message = string.Join(": ", bloodBrotherName, Loc.GetString("admin-verb-make-blood-brother")),
-        };
-        args.Verbs.Add(bloodBrother);
-
-        var cultName = Loc.GetString("admin-verb-text-make-cultist");
-        Verb cult = new()
-        {
-            Text = cultName,
-            Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Weapons/Melee/cult_dagger.rsi"), "icon"),
-            Act = () =>
-            {
-                _antag.ForceMakeAntag<CultRuleComponent>(targetPlayer, DefaultCultRule);
-            },
-            Impact = LogImpact.High,
-            Message = string.Join(": ", cultName, Loc.GetString("admin-verb-make-cultist")),
-        };
-        args.Verbs.Add(cult);
-
-        var blobName = Loc.GetString("admin-verb-text-make-blob");
-        Verb blob = new()
-        {
-            Text = blobName,
-            Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/Imperial/blob/blob.rsi"), "blob_core"),
-            Act = () =>
-            {
-                _antag.ForceMakeAntag<BlobRuleComponent>(targetPlayer, DefaultBlobRule);
-            },
-            Impact = LogImpact.High,
-            Message = string.Join(": ", blobName, Loc.GetString("admin-verb-make-blob")),
-        };
-        args.Verbs.Add(blob);
 
         var paradoxCloneName = Loc.GetString("admin-verb-text-make-paradox-clone");
         Verb paradox = new()

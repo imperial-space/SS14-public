@@ -418,43 +418,4 @@ public sealed class BlobRuleSystem : StationEventSystem<BlobRuleComponent>
         source.Chemical = component.StartingChemical;
         Dirty(spawner, source);
     }
-
-    private bool TryGetBlobStation(BlobRuleComponent component, out EntityUid station)
-    {
-        foreach (var mindId in component.BlobMinds)
-        {
-            if (!TryGetBlobStation(mindId, out var owningStation))
-                continue;
-
-            station = owningStation;
-            return true;
-        }
-
-        station = EntityUid.Invalid;
-        return false;
-    }
-
-    private bool TryGetBlobStation(EntityUid blobMind, out EntityUid station)
-    {
-        var structures = EntityQueryEnumerator<BlobStructureComponent>();
-        while (structures.MoveNext(out var uid, out var structure))
-        {
-            if (structure.OwnerMind != blobMind)
-                continue;
-
-            if (_station.GetOwningStation(uid) is not { } owningStation)
-                continue;
-
-            station = owningStation;
-            return true;
-        }
-
-        station = EntityUid.Invalid;
-        return false;
-    }
-
-    private static bool IsBlobCorePrototype(string? prototype)
-    {
-        return prototype == "BlobCore" || prototype == "BlobCoreGhostRole";
-    }
 }

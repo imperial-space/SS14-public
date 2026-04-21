@@ -10,10 +10,6 @@ admin-verb-make-vampire = Превратить цель в вампира.
 admin-verb-make-wizard = Превратить цель в мага
 admin-verb-make-space-ninja = Превратить цель в космического ниндзя
 admin-verb-make-changeling = Превратить цель в генокрада
-admin-verb-make-blood-brother = Превратить цель в брата по крови и выбрать ему напарника.
-admin-verb-make-cultist = Превратить цель в культиста.
-admin-verb-make-blob = Превратить цель в Блоба.
-admin-verb-make-blood-brother-no-candidates = Нет доступных кандидатов для напарника.
 
 
 admin-verb-text-make-traitor = Сделать предателем
@@ -29,6 +25,3 @@ admin-verb-text-make-vampire = Сделать вампиром
 admin-verb-text-make-wizard = Сделать магом
 admin-verb-text-make-space-ninja = Сделать ниндзя
 admin-verb-text-make-changeling = Сделать генокрадом (WIP)
-admin-verb-text-make-blood-brother = Сделать братом по крови
-admin-verb-text-make-cultist = Сделать культистом
-admin-verb-text-make-blob = Сделать Блобом
