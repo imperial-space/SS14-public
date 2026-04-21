@@ -38,6 +38,12 @@ public sealed partial class TerrorSpiderPrincessComponent : Component
     public EntityUid? ScreamActionEntity;
 
     [DataField]
+    public EntProtoId UnweldVentAction = "ActionTerrorSpiderVentUnweld";
+
+    [DataField]
+    public EntityUid? UnweldVentActionEntity;
+
+    [DataField]
     public EntProtoId LayEggRusarAction = "ActionTerrorSpiderPrincessLayEggRusar";
 
     [DataField]

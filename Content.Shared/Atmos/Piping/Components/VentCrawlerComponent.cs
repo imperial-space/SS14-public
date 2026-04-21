@@ -10,5 +10,11 @@ namespace Content.Shared.Atmos.Piping.Components
     {
         [DataField]
         public float EnterDelay = 4f;
+
+        [DataField]
+        public float ExitDelay = 2f;
+
+        [DataField]
+        public float VentSpeedMultiplier = 1.5f;
     }
 }

@@ -44,6 +44,12 @@ public sealed partial class TerrorSpiderQueenComponent : Component
     public EntityUid? HiveCountActionEntity;
 
     [DataField]
+    public EntProtoId UnweldVentAction = "ActionTerrorSpiderVentUnweld";
+
+    [DataField]
+    public EntityUid? UnweldVentActionEntity;
+
+    [DataField]
     public EntProtoId LayEggRusarAction = "ActionTerrorSpiderQueenLayEggRusar";
 
     [DataField]
