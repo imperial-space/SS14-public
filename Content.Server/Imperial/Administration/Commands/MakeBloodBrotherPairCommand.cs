@@ -3,13 +3,14 @@ using Content.Server.GameTicking.Rules;
 using Content.Shared.Administration;
 using Robust.Server.Player;
 using Robust.Shared.Console;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Imperial.Administration.Commands;
 
 [AdminCommand(AdminFlags.Fun)]
 public sealed class MakeBloodBrotherPairCommand : LocalizedCommands
 {
-    [Dependency] private readonly BloodBrotherRuleSystem _bloodBrother = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPlayerManager _players = default!;
 
     public override string Command => "makebloodbrotherpair";
@@ -30,6 +31,8 @@ public sealed class MakeBloodBrotherPairCommand : LocalizedCommands
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
+        var bloodBrother = _entityManager.System<BloodBrotherRuleSystem>();
+
         if (args.Length != 2)
         {
             shell.WriteError($"Usage: {Help}");
@@ -54,7 +57,7 @@ public sealed class MakeBloodBrotherPairCommand : LocalizedCommands
             return;
         }
 
-        if (!_bloodBrother.TryMakeBloodBrotherPair(firstPlayer, secondPlayer))
+        if (!bloodBrother.TryMakeBloodBrotherPair(firstPlayer, secondPlayer))
         {
             shell.WriteError("Unable to create a blood brother pair.");
             return;

@@ -4,6 +4,7 @@ using Content.Server.GameTicking.Rules.Components;
 using Content.Shared.Administration;
 using Robust.Server.Player;
 using Robust.Shared.Console;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Administration.Commands;
@@ -11,7 +12,7 @@ namespace Content.Server.Imperial.Administration.Commands;
 [AdminCommand(AdminFlags.Fun)]
 public sealed class MakeImperialAntagCommand : LocalizedCommands
 {
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPlayerManager _players = default!;
 
     private static readonly EntProtoId CultRule = "Cult";
@@ -45,6 +46,8 @@ public sealed class MakeImperialAntagCommand : LocalizedCommands
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
+        var antag = _entityManager.System<AntagSelectionSystem>();
+
         if (args.Length != 2)
         {
             shell.WriteError($"Usage: {Help}");
@@ -60,12 +63,12 @@ public sealed class MakeImperialAntagCommand : LocalizedCommands
         switch (args[1].ToLowerInvariant())
         {
             case "cult":
-                _antag.ForceMakeAntag<CultRuleComponent>(player, CultRule);
+                antag.ForceMakeAntag<CultRuleComponent>(player, CultRule);
                 shell.WriteLine($"Made {player.Name} a cultist.");
                 break;
 
             case "blob":
-                _antag.ForceMakeAntag<BlobRuleComponent>(player, BlobRule);
+                antag.ForceMakeAntag<BlobRuleComponent>(player, BlobRule);
                 shell.WriteLine($"Made {player.Name} a blob.");
                 break;
 
