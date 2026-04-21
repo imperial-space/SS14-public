@@ -181,10 +181,6 @@ binds:
 - function: Drop
   type: State
   key: Q
-- function: ImperialOdmLeftHook
-  type: State
-  key: Q
-  priority: 5
 - function: ActivateItemInHand
   type: State
   key: Z
@@ -214,10 +210,6 @@ binds:
 - function: ActivateItemInWorld
   type: State
   key: E
-- function: ImperialOdmRightHook
-  type: State
-  key: E
-  priority: 5
 - function: AltActivateItemInWorld
   type: State
   key: MouseLeft

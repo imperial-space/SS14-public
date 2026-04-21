@@ -139,8 +139,6 @@ namespace Content.Shared.Input
 
         public static readonly BoundKeyFunction ImperialTargetCapture = "ImperialTargetCapture";
         public static readonly BoundKeyFunction ImperialTargetRotate = "ImperialTargetRotate";
-        public static readonly BoundKeyFunction ImperialOdmLeftHook = "ImperialOdmLeftHook";
-        public static readonly BoundKeyFunction ImperialOdmRightHook = "ImperialOdmRightHook";
 
         #endregion
 
