@@ -53,7 +53,7 @@ public sealed class FishingSystem : EntitySystem
                 component.IsFishing = false;
                 component.IsDistanceNormal = false;
                 EndFishing(body, component);
-                break;
+                continue;
             }
             if (component.AccumulatorVisual >= component.VisualFishingTime && component.PopupCaution)
             {
@@ -160,13 +160,6 @@ public sealed class FishingSystem : EntitySystem
         var spawnEntitiesVoid = GetSpawns(component.VoidItems, _random);
         var spawnEntitiesDebug = GetSpawns(component.DebugItems, _random);
         EntityUid entityToPlaceInHands;
-        if (component.FishingWater && component.Place is PlaceID.FishingPortalID) // FishingPortal
-            foreach (var proto in spawnEntitiesWater)
-            {
-                entityToPlaceInHands = SpawnAttachedTo(proto, coords);
-                _adminLogger.Add(LogType.EntitySpawn, LogImpact.Low, $"{ToPrettyString(component.User)} used {ToPrettyString(fishingRod)} which spawned {ToPrettyString(entityToPlaceInHands)}");
-                _hands.PickupOrDrop(component.User, entityToPlaceInHands);
-            }
         if (component.FishingWater && component.Place is PlaceID.WaterID)
             foreach (var proto in spawnEntitiesWater)
             {
@@ -188,7 +181,7 @@ public sealed class FishingSystem : EntitySystem
                 _adminLogger.Add(LogType.EntitySpawn, LogImpact.Low, $"{ToPrettyString(component.User)} used {ToPrettyString(fishingRod)} which spawned {ToPrettyString(entityToPlaceInHands)}");
                 _hands.PickupOrDrop(component.User, entityToPlaceInHands);
             }
-        if (component.FishingDebug || component.FishingDebug && component.Place is PlaceID.DebugID)
+        if (component.FishingDebug)
             foreach (var proto in spawnEntitiesDebug)
             {
                 entityToPlaceInHands = SpawnAttachedTo(proto, coords);

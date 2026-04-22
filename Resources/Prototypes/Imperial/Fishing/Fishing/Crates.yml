@@ -122,7 +122,7 @@
   group: market
 
 - type: cargoProduct
-  id: FishCrateFishingHookssGambling
+  id: FishCrateFishingHooksGambling
   icon:
     sprite: Imperial/Fishing/Hooks.rsi
     state: shiny

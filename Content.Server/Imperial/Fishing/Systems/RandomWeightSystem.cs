@@ -1,5 +1,5 @@
 using Content.Shared.Examine;
-using Content.Shared.Imperial.Fishing.RandomWeightComponentComponents;
+using Content.Shared.Imperial.Fishing.RandomWeightComponents;
 using Robust.Shared.Random;
 using System.Numerics;
 using Content.Shared.Sprite;
@@ -23,8 +23,8 @@ public sealed class RandomWeightSystem : EntitySystem
         entity.Comp.Weight = _random.NextFloat(entity.Comp.MinWeight, entity.Comp.MaxWeight);
         Vector2 scale = new Vector2(entity.Comp.Weight, entity.Comp.Weight);
         _sprite.SetSpriteScale(entity, scale);
-        var priceComp = Comp<StaticPriceComponent>(entity);
-        priceComp.Price = (int)(entity.Comp.BasePrice * entity.Comp.Weight * entity.Comp.PriceCoefficent);
+        if (TryComp<StaticPriceComponent>(entity, out var priceComp))
+            priceComp.Price = (int)(entity.Comp.BasePrice * entity.Comp.Weight * entity.Comp.PriceCoefficent);
     }
     private void ItemExamined(EntityUid uid, RandomWeightComponent component, ExaminedEvent args)
     {

@@ -1,4 +1,4 @@
-namespace Content.Shared.Imperial.Fishing.RandomWeightComponentComponents;
+namespace Content.Shared.Imperial.Fishing.RandomWeightComponents;
 
 [RegisterComponent]
 public sealed partial class RandomWeightComponent : Component

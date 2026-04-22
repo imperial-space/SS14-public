@@ -62,7 +62,7 @@ public sealed partial class FishingRodComponent : Component
     public float VisualFishingTime;
     [ViewVariables]
     public float FishingTime;
-    [DataField]
+    [ViewVariables]
     public float AccumulatorVisual = 0f;
     /// <summary>
     /// Робастный рыбак
