@@ -1,0 +1,25 @@
+- type: entity
+  id: FloatBase
+  name: Float
+  description: Poplavok.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/FishingRods/FishingRodBase.rsi
+    state: float
+  - type: Icon
+    sprite: Imperial/Fishing/FishingRods/FishingRodBase.rsi
+    state: float
+  - type: Transform
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+  - type: RotationVisuals
+    defaultRotation: 0
+    horizontalRotation: 0
+  - type: Physics
+    bodyType: Static
+    canCollide: false

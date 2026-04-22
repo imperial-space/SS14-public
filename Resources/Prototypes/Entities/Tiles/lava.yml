@@ -56,3 +56,5 @@
   - type: Tag
     tags:
       - HideContextMenu
+  - type: AllowedFishing #Imperial Space Add fishing
+    fishingLava: true #Imperial Space Add fishing

@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseAction
+  id: ActionStartFishing
+  name: Start fishing
+  description: Start use Udochka.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Fishing/FishingRods/FishingRodBase.rsi, state: icon }
+    useDelay: 30
+  - type: TargetAction
+    range: 8
+  - type: WorldTargetAction
+    event: !type:FishingStartAction
+

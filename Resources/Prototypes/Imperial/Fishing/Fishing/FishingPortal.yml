@@ -1,0 +1,46 @@
+- type: entity
+  parent: BaseMachinePowered
+  id: FishingPortal
+  name: Fishing Portal
+  description: For udochka.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/FishingPortal.rsi
+    layers:
+    - state: icon
+    - state: portal
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+      shader: unshaded
+  - type: Appearance
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Transform
+    noRot: false
+  - type: AllowedFishing
+    fishingWater: true
+  - type: Anchorable
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ApcPowerReceiver
+    powerLoad: 800
+  - type: PointLight
+    radius: 1.2
+    energy: 2
+    color: "#fca3c0"

@@ -1,0 +1,132 @@
+- type: entity
+  id: FishingHook
+  parent: BaseItem
+  name: Fishing Hook
+  description: An unusual fishing hook.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Hooks.rsi
+    state: hook
+  - type: Item
+    size: Small
+  - type: FishingRodUpgrader
+    hookCoefficent: 1.1
+  - type: StaticPrice
+    price: 100
+  - type: Tag
+    tags:
+    - FishingReel
+
+- type: entity
+  id: FishingRodHookBone
+  parent: BaseItem
+  name: Fishing Hook Bone
+  description: An unusual fishing hook.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Hooks.rsi
+    state: hookBone
+  - type: Item
+    size: Small
+  - type: FishingRodUpgrader
+    hookCoefficent: 1.2
+  - type: StaticPrice
+    price: 100
+  - type: Tag
+    tags:
+    - FishingReel
+
+- type: entity
+  id: FishingHookWeighted
+  parent: BaseItem
+  name: Fishing Hook Weighted
+  description: An unusual fishing hook.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Hooks.rsi
+    state: weighted
+  - type: Item
+    size: Small
+  - type: FishingRodUpgrader
+    hookCoefficent: 1.5
+  - type: StaticPrice
+    price: 100
+  - type: Tag
+    tags:
+    - FishingReel
+
+- type: entity
+  id: FishingHookShiny
+  parent: BaseItem
+  name: Fishing Hook Shiny
+  description: An unusual fishing hook.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Hooks.rsi
+    state: shiny
+  - type: Item
+    size: Small
+  - type: FishingRodUpgrader
+    hookCoefficent: 1.6
+  - type: StaticPrice
+    price: 100
+  - type: Tag
+    tags:
+    - FishingReel
+
+- type: entity
+  id: FishingHookShinyGold
+  parent: BaseItem
+  name: Fishing Hook Shiny Gold
+  description: An unusual fishing hook.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Hooks.rsi
+    state: shinyGold
+  - type: Item
+    size: Small
+  - type: FishingRodUpgrader
+    hookCoefficent: 1.7
+  - type: StaticPrice
+    price: 100
+  - type: Tag
+    tags:
+    - FishingReel
+
+- type: entity
+  id: FishingHookTreasure
+  parent: BaseItem
+  name: Fishing Hook Treasure
+  description: An unusual fishing hook.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Hooks.rsi
+    state: treasure
+  - type: Item
+    size: Small
+  - type: FishingRodUpgrader
+    hookCoefficent: 1.85
+  - type: StaticPrice
+    price: 100
+  - type: Tag
+    tags:
+    - FishingReel
+
+- type: entity
+  id: FishingGyro
+  parent: BaseItem
+  name: Fishing Hook Gyro
+  description: An unusual fishing hook.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Hooks.rsi
+    state: gyro
+  - type: Item
+    size: Small
+  - type: FishingRodUpgrader
+    hookCoefficent: 2
+  - type: StaticPrice
+    price: 1100
+  - type: Tag
+    tags:
+    - FishingReel

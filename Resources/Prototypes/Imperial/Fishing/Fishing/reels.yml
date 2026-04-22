@@ -1,0 +1,132 @@
+- type: entity
+  id: BaseFishingRodUpgrade
+  parent: BaseItem
+  name: Fishing Upgrader Green
+  description: An unusual fishing reel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Reels.rsi
+    state: greenReel
+  - type: Item
+    size: Small
+  - type: FishingRodUpgrader
+    reelCoefficent: 1.1
+  - type: StaticPrice
+    price: 750
+  - type: Tag
+    tags:
+    - FishingHook
+
+- type: entity
+  id: WhiteFishingRodUpgrade
+  parent: BaseItem
+  name: Fishing Upgrader White
+  description: An unusual fishing reel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Reels.rsi
+    state: whiteReel
+  - type: Item
+    size: Small
+  - type: FishingRodUpgrader
+    reelCoefficent: 1.2
+  - type: StaticPrice
+    price: 750
+  - type: Tag
+    tags:
+    - FishingHook
+
+- type: entity
+  id: RedFishingRodUpgrade
+  parent: BaseItem
+  name: Fishing Upgrader Red
+  description: An unusual fishing reel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Reels.rsi
+    state: redReel
+  - type: Item
+    size: Small
+  - type: FishingRodUpgrader
+    reelCoefficent: 1.5
+  - type: StaticPrice
+    price: 750
+  - type: Tag
+    tags:
+    - FishingHook
+
+- type: entity
+  id: BlueFishingRodUpgrade
+  parent: BaseItem
+  name: Fishing Upgrader Blue
+  description: An unusual fishing reel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Reels.rsi
+    state: blueReel
+  - type: Item
+    size: Small
+  - type: FishingRodUpgrader
+    reelCoefficent: 1.6
+  - type: StaticPrice
+    price: 750
+  - type: Tag
+    tags:
+    - FishingHook
+
+- type: entity
+  id: OrangeFishingRodUpgrade
+  parent: BaseItem
+  name: Fishing Upgrader Orange
+  description: An unusual fishing reel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Reels.rsi
+    state: orangeReel
+  - type: Item
+    size: Small
+  - type: FishingRodUpgrader
+    reelCoefficent: 1.7
+  - type: StaticPrice
+    price: 750
+  - type: Tag
+    tags:
+    - FishingHook
+
+- type: entity
+  id: BrownFishingRodUpgrade
+  parent: BaseItem
+  name: Fishing Upgrader Brown
+  description: An unusual fishing reel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Reels.rsi
+    state: brownReel
+  - type: Item
+    size: Small
+  - type: FishingRodUpgrader
+    reelCoefficent: 1.85
+  - type: StaticPrice
+    price: 750
+  - type: Tag
+    tags:
+    - FishingHook
+
+- type: entity
+  id: BluespaceFishingRodUpgrade
+  parent: BaseItem
+  name: Fishing Upgrader Bluespace
+  description: An unusual fishing reel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Reels.rsi
+    state: bluespaceReel
+  - type: Item
+    size: Small
+  - type: FishingRodUpgrader
+    reelCoefficent: 2
+  - type: StaticPrice
+    price: 1750
+  - type: Tag
+    tags:
+    - FishingHook

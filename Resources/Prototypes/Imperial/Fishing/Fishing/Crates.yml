@@ -1,0 +1,142 @@
+- type: entity
+  parent: CrateSecure
+  id: CrateFishingRodBase
+  name: fishing rod crate base
+  description: Contains base fishing rod.
+  suffix: Fish
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BaseFishingRod
+
+- type: entity
+  parent: CrateSecure
+  id: CrateFishingRodExtended
+  name: fishing rod crate extended
+  description: Contains extended fishing rod.
+  suffix: Fish
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ExtendedFishingRod
+
+- type: entity
+  parent: CrateSecure
+  id: CrateFishingReelsGambling
+  name: crate with random fishing reel
+  description: crate with random fishing reel!
+  suffix: Fish
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: FishingReelsEntityTable
+
+- type: entity
+  parent: CrateSecure
+  id: CrateFishingHookssGambling
+  name: crate with random fishing hook
+  description: crate with random fishing hook!
+  suffix: Fish
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: FishingHooksEntityTable
+
+- type: entityTable
+  id: FishingReelsEntityTable
+  table: !type:GroupSelector
+    children:
+    - id: BluespaceFishingRodUpgrade
+      weight: 0.1
+    - id: BrownFishingRodUpgrade
+      weight: 2
+    - id: OrangeFishingRodUpgrade
+      weight: 3
+    - id: BlueFishingRodUpgrade
+      weight: 4
+    - id: RedFishingRodUpgrade
+      weight: 5
+    - id: WhiteFishingRodUpgrade
+      weight: 6
+    - id: BaseFishingRodUpgrade
+      weight: 7
+
+- type: entityTable
+  id: FishingHooksEntityTable
+  table: !type:GroupSelector
+    children:
+    - id: FishingGyro
+      weight: 0.1
+    - id: FishingHookTreasure
+      weight: 2
+    - id: FishingHookShinyGold
+      weight: 3
+    - id: FishingHookShiny
+      weight: 4
+    - id: FishingHookWeighted
+      weight: 5
+    - id: FishingRodHookBone
+      weight: 6
+    - id: FishingHook
+      weight: 7
+
+
+- type: cargoProduct
+  id: FishCrateFishingRodBase
+  icon:
+    sprite: Imperial/Fishing/FishingRods/FishingRodBase.rsi
+    state: icon
+  product: CrateFishingRodBase
+  cost: 5000
+  category: cargoproduct-category-name-cargo
+  group: market
+
+- type: cargoProduct
+  id: FishCrateFishingRodExtended
+  icon:
+    sprite: Imperial/Fishing/FishingRods/FishingRodExtended.rsi
+    state: icon
+  product: CrateFishingRodExtended
+  cost: 15000
+  category: cargoproduct-category-name-cargo
+  group: market
+
+- type: cargoProduct
+  id: FishCrateFishingReelsGambling
+  icon:
+    sprite: Imperial/Fishing/Reels.rsi
+    state: orangeReel
+  product: CrateFishingReelsGambling
+  cost: 1300
+  category: cargoproduct-category-name-cargo
+  group: market
+
+- type: cargoProduct
+  id: FishCrateFishingHookssGambling
+  icon:
+    sprite: Imperial/Fishing/Hooks.rsi
+    state: shiny
+  product: CrateFishingHookssGambling
+  cost: 1300
+  category: cargoproduct-category-name-cargo
+  group: market
+
+- type: cargoProduct
+  id: FishFishingPortal
+  icon:
+    sprite: Imperial/Fishing/FishingPortal.rsi
+    state: icon
+  product: FishingPortal
+  cost: 6000
+  category: cargoproduct-category-name-cargo
+  group: market

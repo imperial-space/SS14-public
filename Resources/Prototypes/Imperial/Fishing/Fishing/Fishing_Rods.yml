@@ -1,0 +1,170 @@
+- type: entity
+  parent: BaseItem
+  id: BaseFishingRod
+  name: Fishing Rod
+  description: Base Fishing Rod.
+  components:
+  - type: Transform
+  - type: Tag
+    tags:
+    - FishingRod
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 8
+  - type: ToolTileCompatible
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+  - type: StaticPrice
+    price: 150
+  - type: Sprite
+    sprite: Imperial/Fishing/FishingRods/FishingRodBase.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Fishing/FishingRods/FishingRodBase.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Item
+    sprite: Imperial/Fishing/FishingRods/FishingRodBase.rsi
+    size: Normal
+  - type: ContainerContainer
+    containers:
+      FishingUpgradeSlot1 : !type:ContainerSlot {}
+      FishingUpgradeSlot2: !type:ContainerSlot {}
+  - type: ItemSlots
+    slots:
+      FishingUpgradeSlot1:
+        whitelist:
+          tags:
+            - FishingReel
+        name: fishing-upgrade-slot
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+      FishingUpgradeSlot2:
+        name: fishing-upgrade-slot
+        whitelist:
+          tags:
+            - FishingHook
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+  - type: FishingRod
+    waterItems:
+      - id: angelfish
+        orGroup: GiftPool
+      - id: arctic_char
+        orGroup: GiftPool
+      - id: arctic_chrab
+        orGroup: GiftPool
+      - id: cardinalfish
+        orGroup: GiftPool
+      - id: catfish
+        orGroup: GiftPool
+      - id: clownfish
+        orGroup: GiftPool
+      - id: crab
+        orGroup: GiftPool
+      - id: emulsijack
+        orGroup: GiftPool
+      - id: firefish
+        orGroup: GiftPool
+      - id: goldfish
+        orGroup: GiftPool
+      - id: greytidefish
+        orGroup: GiftPool
+      - id: guppy
+        orGroup: GiftPool
+      - id: lubefish
+        orGroup: GiftPool
+      - id: perch
+        orGroup: GiftPool
+      - id: ratfish
+        orGroup: GiftPool
+      - id: sacabambaspis
+        orGroup: GiftPool
+      - id: sand_surfer
+        orGroup: GiftPool
+      - id: slimecarp
+        orGroup: GiftPool
+      - id: tizira_moonfish
+        orGroup: GiftPool
+      - id: zinpzap
+        orGroup: GiftPool
+
+- type: Tag
+  id: FishingRod
+
+- type: Tag
+  id: FishingReel
+
+- type: Tag
+  id: FishingHook
+
+
+- type: entity
+  parent: BaseFishingRod
+  id: DebugFishingRod
+  name: Fishing Rod Debug
+  description: Debug Fishing Rod.
+  suffix: DEBUG
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/FishingRods/FishingRodDebug.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Fishing/FishingRods/FishingRodDebug.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Item
+    sprite: Imperial/Fishing/FishingRods/FishingRodDebug.rsi
+    size: Normal
+  - type: FishingRod
+    fishingDistance: 8
+    fishingWater: False
+    fishingDebug: True
+    debugItems:
+      - id: debugfish
+        orGroup: GiftPool
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 60
+
+- type: entity
+  parent: BaseFishingRod
+  id: ExtendedFishingRod
+  name: Fishing Rod Extended
+  description: Extended Fishing Rod.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/FishingRods/FishingRodExtended.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Fishing/FishingRods/FishingRodExtended.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Item
+    sprite: Imperial/Fishing/FishingRods/FishingRodExtended.rsi
+    size: Normal
+  - type: FishingRod
+    fishingDistance: 3
+    fishingWater: False
+    fishingLava: True
+    fishingVoid: True
+    lavaItems:
+      - id: plasma_loop
+        orGroup: GiftPool
+      - id: lava_loop
+        orGroup: GiftPool
+      - id: jumpercable
+        orGroup: GiftPool
+    voidItems:
+      - id: greenchromis
+        orGroup: GiftPool
+      - id: plastetra
+        orGroup: GiftPool
+      - id: lanternfish
+        orGroup: GiftPool
+      - id: jumpercable
+        orGroup: GiftPool

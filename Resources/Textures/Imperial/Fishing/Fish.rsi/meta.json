@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation https://github.com/tgstation/tgstation",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "angelfish"
+    },
+    {
+      "name": "arctic_char"
+    },
+    {
+      "name": "arctic_chrab"
+    },
+    {
+      "name": "cardinalfish"
+    },
+    {
+      "name": "catfish"
+    },
+    {
+      "name": "clownfish"
+    },
+    {
+      "name": "crab"
+    },
+    {
+      "name": "debugfish"
+    },
+    {
+      "name": "emulsijack"
+    },
+    {
+      "name": "firefish"
+    },
+    {
+      "name": "goldfish"
+    },
+    {
+      "name": "greenchromis"
+    },
+    {
+      "name": "greytidefish"
+    },
+    {
+      "name": "guppy"
+    },
+    {
+      "name": "jumpercable"
+    },
+    {
+      "name": "lanternfish"
+    },
+    {
+      "name": "lava_loop"
+    },
+    {
+      "name": "lubefish"
+    },
+    {
+      "name": "perch"
+    },
+    {
+      "name": "plasma_loop"
+    },
+    {
+      "name": "plastetra"
+    },
+    {
+      "name": "ratfish"
+    },
+    {
+      "name": "sacabambaspis"
+    },
+    {
+      "name": "sand_surfer"
+    },
+    {
+      "name": "slimecarp"
+    },
+    {
+      "name": "tizira_moonfish"
+    },
+    {
+      "name": "zinpzap"
+    }
+  ]
+}

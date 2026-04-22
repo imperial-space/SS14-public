@@ -1,0 +1,303 @@
+- type: entity
+  abstract: true
+  parent: FoodInjectableBase
+  name: Unknown creature
+  description: An unknown creature from the depths of the seabed.
+  id: FoodFishBase
+  suffix: Fish
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: angelfish
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 1
+        - ReagentId: Fat
+          Quantity: 5
+  - type: Item
+    shape:
+    - 0,0,1,0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        # less mass so it can cook faster, a single strip of bacon isnt 5kg
+        density: 1
+        mask:
+        - ItemMask
+        restitution: 0.3  # fite me
+        friction: 0.2
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Meaterial: 300
+  - type: RandomWeight
+    priceCoefficent: 3
+    maxWeight: 2
+
+# FISH
+- type: entity
+  parent: FoodFishBase
+  id: angelfish
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: angelfish
+
+- type: entity
+  parent: FoodFishBase
+  id: arctic_char
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: arctic_char
+
+- type: entity
+  parent: FoodFishBase
+  id: arctic_chrab
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: arctic_chrab
+
+- type: entity
+  parent: FoodFishBase
+  id: cardinalfish
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: cardinalfish
+
+- type: entity
+  parent: FoodFishBase
+  id: catfish
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: catfish
+
+- type: entity
+  parent: FoodFishBase
+  id: clownfish
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: clownfish
+
+- type: entity
+  parent: FoodFishBase
+  id: crab
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: crab
+
+- type: entity
+  parent: FoodFishBase
+  id: debugfish
+  suffix: FISH, DEBUG
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: debugfish
+  - type: RandomWeight
+    priceCoefficent: 40
+
+- type: entity
+  parent: FoodFishBase
+  id: emulsijack
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: emulsijack
+
+- type: entity
+  parent: FoodFishBase
+  id: firefish
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: firefish
+
+- type: entity
+  parent: FoodFishBase
+  id: goldfish
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: goldfish
+
+- type: entity
+  parent: FoodFishBase
+  id: greenchromis
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: greenchromis
+  - type: RandomWeight
+    priceCoefficent: 10
+
+- type: entity
+  parent: FoodFishBase
+  id: greytidefish
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: greytidefish
+
+- type: entity
+  parent: FoodFishBase
+  id: guppy
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: guppy
+
+- type: entity
+  parent: FoodFishBase
+  id: jumpercable
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: jumpercable
+  - type: RandomWeight
+    priceCoefficent: 5
+
+- type: entity
+  parent: FoodFishBase
+  id: lanternfish
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: lanternfish
+  - type: RandomWeight
+    priceCoefficent: 10
+
+- type: entity
+  parent: FoodFishBase
+  id: lava_loop
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: lava_loop
+  - type: RandomWeight
+    priceCoefficent: 8
+
+- type: entity
+  parent: FoodFishBase
+  id: lubefish
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: lubefish
+
+- type: entity
+  parent: FoodFishBase
+  id: perch
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: perch
+
+- type: entity
+  parent: FoodFishBase
+  id: plasma_loop
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: plasma_loop
+  - type: RandomWeight
+    priceCoefficent: 8
+
+- type: entity
+  parent: FoodFishBase
+  id: plastetra
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: plastetra
+  - type: RandomWeight
+    priceCoefficent: 10
+
+- type: entity
+  parent: FoodFishBase
+  id: ratfish
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: ratfish
+
+- type: entity
+  parent: FoodFishBase
+  id: sacabambaspis
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: sacabambaspis
+
+- type: entity
+  parent: FoodFishBase
+  id: sand_surfer
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: sand_surfer
+
+- type: entity
+  parent: FoodFishBase
+  id: slimecarp
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: slimecarp
+
+- type: entity
+  parent: FoodFishBase
+  id: tizira_moonfish
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: tizira_moonfish
+
+- type: entity
+  parent: FoodFishBase
+  id: zinpzap
+  suffix: FISH
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/Fish.rsi
+    state: zinpzap
+

@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseAction
+  id: ActionEndFishing
+  name: End fishing
+  description: End use Udochka.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Fishing/FishingRods/FishingRodBase.rsi, state: icon }
+    useDelay: 1
+  - type: InstantAction
+    event: !type:FishingEndAction
+
+
+

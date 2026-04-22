@@ -63,3 +63,5 @@
   - type: TileEntityEffect
     effects:
     - !type:Extinguish
+  - type: AllowedFishing #Imperial Space Add fishing
+    fishingWater: true #Imperial Space Add fishing
