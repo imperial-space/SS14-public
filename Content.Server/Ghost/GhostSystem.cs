@@ -107,20 +107,6 @@ namespace Content.Server.Ghost
 
             SubscribeLocalEvent<RoundEndTextAppendEvent>(_ => MakeVisible(true));
             SubscribeLocalEvent<ToggleGhostVisibilityToAllEvent>(OnToggleGhostVisibilityToAll);
-
-            SubscribeLocalEvent<GhostComponent, GetVisMaskEvent>(OnGhostVis);
-        }
-
-        private void OnGhostVis(Entity<GhostComponent> ent, ref GetVisMaskEvent args)
-        {
-            // If component not deleting they can see ghosts.
-            if (ent.Comp.LifeStage <= ComponentLifeStage.Running)
-            {
-                args.VisibilityMask |= (int)VisibilityFlags.Ghost;
-
-                if (ent.Comp.CanSeeAdminVisibility)
-                    args.VisibilityMask |= (int) VisibilityFlags.Admin;
-            }
         }
 
         private void OnGhostHearingAction(EntityUid uid, GhostComponent component, ToggleGhostHearingActionEvent args)

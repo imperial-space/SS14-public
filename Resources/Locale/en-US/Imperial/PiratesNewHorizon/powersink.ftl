@@ -1,1 +1,0 @@
-powersink-immiment-explosion-announcement-pirate = System scans have detected a rogue power consuming device.  Staff are advised to locate and disconnect this device.

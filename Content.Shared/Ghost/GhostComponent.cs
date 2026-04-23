@@ -80,12 +80,6 @@ public sealed partial class GhostComponent : Component
     public bool CanGhostInteract;
 
     /// <summary>
-    /// Whether this ghost can see entities hidden on the admin visibility layer.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool CanSeeAdminVisibility;
-
-    /// <summary>
     /// Is this ghost player allowed to return to their original body?
     /// </summary>
     /// <remarks>

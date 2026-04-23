@@ -21,7 +21,6 @@
     context: "aghost"
   - type: Ghost
     canInteract: true
-    canSeeAdminVisibility: true
   - type: GhostHearing
   - type: Hands
     hands:
