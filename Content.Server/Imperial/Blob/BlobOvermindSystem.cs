@@ -933,6 +933,10 @@ public sealed class BlobOvermindSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("blob-action-too-far"), uid, uid, PopupType.SmallCaution);
             return;
         }
+        var tileRef = _map.GetTileRef(gridUid, grid, tile);
+        if (prototype == "BlobTile" && TryChewDenseObstacle(tileRef, uid, comp, blobId, actualCost, false))
+            return;
+
         EntityUid? replacedTile = null;
         if (HasBlobStructureOnTile(gridUid, grid, tile))
         {
@@ -955,7 +959,6 @@ public sealed class BlobOvermindSystem : EntitySystem
             return;
         }
 
-        var tileRef = _map.GetTileRef(gridUid, grid, tile);
         if (prototype != "BlobTile" && TryChewDenseObstacle(tileRef, uid, comp, blobId, actualCost))
             return;
 
@@ -985,16 +988,7 @@ public sealed class BlobOvermindSystem : EntitySystem
         if (prototype != "BlobTile")
             return baseCost;
 
-        var tileRef = _map.GetTileRef(gridUid, grid, target);
-        var tileDef = (ContentTileDefinition) _tileDefs[tileRef.Tile.TypeId];
-
-        if (HasDenseObstacle(tileRef))
-            return Math.Max(baseCost + 1, (int) MathF.Ceiling(baseCost * comp.DenseTileCostMultiplier));
-
-        if (tileDef.ID != ContentTileDefinition.SpaceID && tileDef.BaseTurf != ContentTileDefinition.SpaceID)
-            return baseCost;
-
-        return Math.Max(baseCost + 1, (int) MathF.Ceiling(baseCost * comp.SpaceTileCostMultiplier));
+        return baseCost;
     }
 
     private bool TryChewDenseObstacle(TileRef tileRef, EntityUid overmindUid, BlobOvermindComponent comp, EntityUid blobId, int cost, bool showPopup = true)
@@ -1314,9 +1308,13 @@ public sealed class BlobOvermindSystem : EntitySystem
         if (IsIgnoredInfrastructure(entity))
             return false;
 
-        return TryComp<MobStateComponent>(entity, out var mobState) &&
-               mobState.CurrentState != MobState.Dead &&
-               HasComp<DamageableComponent>(entity);
+        if (!HasComp<DamageableComponent>(entity))
+            return false;
+
+        if (!TryComp<MobStateComponent>(entity, out var mobState))
+            return true;
+
+        return mobState.CurrentState != MobState.Dead;
     }
 
     private bool IsIgnoredInfrastructure(EntityUid entity)

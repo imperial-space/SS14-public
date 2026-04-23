@@ -132,7 +132,7 @@
   parent: BaseMentalAction
   id: ActionBlobPlaceTile
   name: Grow Tile
-  description: "Spreads a blob tile near your core or existing biomass. Cost: 5 biomass, x2 in space."
+  description: "Spreads a blob tile near your core or existing biomass. Cost: 5 biomass."
   components:
   - type: Action
     useDelay: 0.5
@@ -149,7 +149,7 @@
   parent: BaseMentalAction
   id: ActionBlobPlaceShieldTile
   name: Upgrade Tile
-  description: "Upgrades your normal tile into a strong tile, and a strong tile into a reflective tile. Cost: 15 and 15 biomass."
+  description: "Upgrades your normal tile into a strong tile, and a strong tile into a reflective tile. Cost: 5 and 5 biomass."
   components:
   - type: Action
     useDelay: 1

@@ -35,6 +35,7 @@ using Robust.Server.Player;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -310,6 +311,48 @@ public sealed class ContractorSystem : EntitySystem
         EnsureProfile(mindId, ent.Owner);
 
         _antag.SendBriefing(ent.Owner, Loc.GetString("contractor-role-greeting"), ContractorBriefingColor, null);
+    }
+
+    public bool TryMakeContractor(ICommonSession player, out string error)
+    {
+        error = string.Empty;
+
+        if (player.AttachedEntity is not { } owner)
+        {
+            error = "Player has no attached entity.";
+            return false;
+        }
+
+        if (!_mind.TryGetMind(owner, out var mindId, out var mind))
+        {
+            error = "Player has no mind.";
+            return false;
+        }
+
+        if (!_roles.MindHasRole<TraitorRoleComponent>(mindId))
+        {
+            error = "Player must already be a traitor.";
+            return false;
+        }
+
+        if (_roles.MindHasRole<ContractorRoleComponent>(mindId))
+        {
+            error = "Player is already a contractor.";
+            return false;
+        }
+
+        if (!_roles.MindHasRole<ContractorCandidateRoleComponent>(mindId))
+        {
+            _roles.MindAddRole(mindId, ContractorCandidateRole, mind);
+            RefreshTraitorUplink(owner);
+        }
+
+        _roles.MindAddRole(mindId, ContractorRole, mind);
+        TryAssignNearbyContractorStore(owner, mindId);
+        EnsureProfile(mindId, owner);
+
+        _antag.SendBriefing(owner, Loc.GetString("contractor-role-greeting"), ContractorBriefingColor, null);
+        return true;
     }
 
     private void OnUplinkOpenAttempt(Entity<ContractorUplinkComponent> ent, ref ActivatableUIOpenAttemptEvent args)
