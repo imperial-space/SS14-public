@@ -117,9 +117,6 @@ namespace Content.Server.Ghost
             if (ent.Comp.LifeStage <= ComponentLifeStage.Running)
             {
                 args.VisibilityMask |= (int)VisibilityFlags.Ghost;
-
-                if (ent.Comp.CanSeeAdminVisibility)
-                    args.VisibilityMask |= (int) VisibilityFlags.Admin;
             }
         }
 
