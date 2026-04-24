@@ -348,6 +348,6 @@ public sealed class CultItemsSystem : EntitySystem
 
         var damage = new DamageSpecifier();
         damage.DamageDict.Add("Blunt", 40f);
-        _damage.TryChangeDamage(args.Target, damage, true, origin: args.Component.Thrower);
+        _damage.TryChangeDamage(args.Target, damage, false, origin: args.Component.Thrower);
     }
 }

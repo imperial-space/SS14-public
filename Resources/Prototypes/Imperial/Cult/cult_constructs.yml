@@ -331,8 +331,15 @@
   id: MobCultHomunculus
   name: Тёмный слуга
   description: Тёмный слуга, сотканный из тени. Послушен воле Нар'Си.
-  parent: BaseSpeciesMobOrganic
+  parent: MobHuman
   components:
+  - type: GhostRole
+    allowMovement: true
+    makeSentient: true
+    name: ghost-role-information-cult-construct-name
+    description: ghost-role-information-cult-construct-description
+    rules: ghost-role-information-cult-construct-rules
+  - type: GhostTakeoverAvailable
   - type: NpcFactionMember
     factions:
     - Cult

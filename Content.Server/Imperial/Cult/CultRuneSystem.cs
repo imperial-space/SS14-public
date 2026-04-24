@@ -37,6 +37,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
+using System.Collections.Generic;
 using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.Imperial.Cult;
@@ -68,6 +69,8 @@ public sealed class CultRuneSystem : EntitySystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
+    private readonly Dictionary<EntityUid, EntityUid> _spiritRealmInvokers = new();
+
     private bool IsCultAligned(EntityUid uid)
     {
         return HasComp<CultistComponent>(uid) || HasComp<CultConstructComponent>(uid);
@@ -91,8 +94,8 @@ public sealed class CultRuneSystem : EntitySystem
         var query = EntityQueryEnumerator<CultSpiritTetherComponent, TransformComponent>();
         while (query.MoveNext(out var cultistUid, out var tether, out var xform))
         {
-            // Чистим список от удалённых слуг.
-            tether.Homunculi.RemoveAll(h => !Exists(h) || TerminatingOrDeleted(h));
+            // Чистим список от удалённых и мёртвых слуг.
+            tether.Homunculi.RemoveAll(h => !Exists(h) || TerminatingOrDeleted(h) || _mobState.IsDead(h));
 
             // Если слуг не осталось, привязка больше не нужна.
             if (tether.Homunculi.Count == 0)
@@ -122,9 +125,19 @@ public sealed class CultRuneSystem : EntitySystem
             while (tether.DrainAccumulator >= CultSpiritTetherComponent.DrainInterval)
             {
                 tether.DrainAccumulator -= CultSpiritTetherComponent.DrainInterval;
-                _cult.DealSelfDamage(cultistUid, tether.Homunculi.Count * CultSpiritTetherComponent.BrutePerHomunculus);
+                ApplyHomunculusBruteDamage(cultistUid, tether.Homunculi.Count * CultSpiritTetherComponent.BrutePerHomunculus);
             }
         }
+    }
+
+    private void ApplyHomunculusBruteDamage(EntityUid uid, float amount)
+    {
+        if (!TryComp<DamageableComponent>(uid, out var damageable))
+            return;
+
+        var spec = _damage.GetAllDamage((uid, damageable));
+        spec.DamageDict["Blunt"] = spec.DamageDict.GetValueOrDefault("Blunt") + amount;
+        _damage.SetDamage((uid, damageable), spec);
     }
 
     // ──────────────────────── Rune Interaction ──────────────────────────
@@ -471,12 +484,15 @@ public sealed class CultRuneSystem : EntitySystem
     private void ActivateSpiritRealmRune(EntityUid uid, CultRuneComponent rune, EntityUid invoker)
     {
         // Открываем BUI выбора — руна не уничтожается немедленно
+        _spiritRealmInvokers[uid] = invoker;
         _ui.TryOpenUi(uid, CultSpiritRealmBuiKey.Key, invoker);
     }
 
     private void OnSpiritRealmChoice(EntityUid uid, CultRuneComponent rune, CultSpiritRealmChoiceMessage msg)
     {
-        var invoker = msg.Actor;
+        var invoker = _spiritRealmInvokers.GetValueOrDefault(uid, msg.Actor);
+
+        _spiritRealmInvokers.Remove(uid);
 
         if (!HasComp<CultistComponent>(invoker))
             return;
@@ -511,6 +527,8 @@ public sealed class CultRuneSystem : EntitySystem
             var extra = Spawn("MobCultHomunculus", Transform(runeUid).Coordinates);
             existingTether.Homunculi.Add(extra);
 
+            ApplyHomunculusBruteDamage(invoker, existingTether.Homunculi.Count * CultSpiritTetherComponent.BrutePerHomunculus);
+
             _popup.PopupEntity(Loc.GetString("cult-spirit-realm-homunculus-summoned"), invoker, invoker, PopupType.Medium);
             _audio.PlayPvs(CultMagicSound, runeUid);
             return;
@@ -522,6 +540,8 @@ public sealed class CultRuneSystem : EntitySystem
         var tether = EnsureComp<CultSpiritTetherComponent>(invoker);
         tether.RuneUid = runeUid;
         tether.Homunculi.Add(homunculus);
+
+        ApplyHomunculusBruteDamage(invoker, tether.Homunculi.Count * CultSpiritTetherComponent.BrutePerHomunculus);
 
         _audio.PlayPvs(CultMagicSound, runeUid);
         _popup.PopupEntity(Loc.GetString("cult-spirit-realm-homunculus-summoned"), invoker, invoker, PopupType.Large);

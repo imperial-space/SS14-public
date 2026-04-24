@@ -3,6 +3,7 @@ using Content.Server.Chat.Managers;
 using Content.Server.Imperial.Blob.Components;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared.Chat;
+using Content.Shared.CombatMode;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -45,6 +46,7 @@ public sealed class BlobMobSystem : EntitySystem
 
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly BlobChemistrySystem _chemistry = default!;
+    [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
     [Dependency] private readonly BlobInfectionSystem _infection = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
@@ -70,6 +72,7 @@ public sealed class BlobMobSystem : EntitySystem
         SubscribeLocalEvent<BlobInfectedComponent, ComponentShutdown>(OnBlobInfectedShutdown);
         SubscribeLocalEvent<BlobMobComponent, EntitySpokeEvent>(OnBlobMobSpoke);
         SubscribeLocalEvent<BlobMouseComponent, EntitySpokeEvent>(OnBlobMouseSpoke);
+        SubscribeLocalEvent<BlobInfectedComponent, EntitySpokeEvent>(OnBlobInfectedSpoke);
         SubscribeLocalEvent<NpcFactionMemberComponent, EntitySpokeEvent>(OnBlobFactionSpoke);
         SubscribeLocalEvent<BlobMobComponent, MeleeHitEvent>(OnBlobMobMeleeHit);
     }
@@ -78,6 +81,9 @@ public sealed class BlobMobSystem : EntitySystem
     {
         ConfigureMobForOwner(uid, component);
         ConfigureBlobFriendlyCollision(uid);
+
+        if (TryComp<CombatModeComponent>(uid, out var combatMode))
+            _combatMode.SetInCombatMode(uid, true, combatMode);
     }
 
     private void OnBlobMobShutdown(EntityUid uid, BlobMobComponent component, ComponentShutdown args)
@@ -97,16 +103,17 @@ public sealed class BlobMobSystem : EntitySystem
 
     public void ConfigureMobForOwner(EntityUid uid, BlobMobComponent component)
     {
-        if (component.OwnerMind is not { } ownerMind)
-            return;
-
-        component.Chemical = GetChemicalForOwner(ownerMind);
-
         if (!TryComp<MeleeWeaponComponent>(uid, out var melee))
             return;
 
+        if (component.OwnerMind is { } ownerMind)
+            component.Chemical = GetChemicalForOwner(ownerMind);
+
         melee.Damage = BuildDamage(uid, component.Chemical);
         Dirty(uid, melee);
+
+        if (TryComp<CombatModeComponent>(uid, out var combatMode))
+            _combatMode.SetInCombatMode(uid, true, combatMode);
     }
 
     public void ConfigureBlobFriendlyCollision(EntityUid uid)
@@ -120,7 +127,7 @@ public sealed class BlobMobSystem : EntitySystem
             if (!fixture.Hard || blobFriendly.DisabledFixtureMasks.ContainsKey(fixtureId))
                 continue;
 
-            var removedMask = fixture.CollisionMask & (int) CollisionGroup.Impassable;
+            var removedMask = fixture.CollisionMask & (int) CollisionGroup.BlobImpassable;
             if (removedMask == 0)
                 continue;
 
@@ -152,6 +159,11 @@ public sealed class BlobMobSystem : EntitySystem
     }
 
     private void OnBlobMouseSpoke(EntityUid uid, BlobMouseComponent component, ref EntitySpokeEvent args)
+    {
+        RelayToBlobRadio(uid, ref args);
+    }
+
+    private void OnBlobInfectedSpoke(EntityUid uid, BlobInfectedComponent component, ref EntitySpokeEvent args)
     {
         RelayToBlobRadio(uid, ref args);
     }

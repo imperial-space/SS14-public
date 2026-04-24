@@ -551,12 +551,6 @@ namespace Content.Server.Atmos.Piping.EntitySystems
             if (!TryComp(user, out VisibilityComponent? visibility))
                 return;
 
-            if (active.AddedVisibility)
-            {
-                RemComp<VisibilityComponent>(user);
-                return;
-            }
-
             _visibility.SetLayer((user, visibility), active.PreviousVisibilityLayer, false);
             _visibility.RefreshVisibility(user, visibilityComponent: visibility);
         }

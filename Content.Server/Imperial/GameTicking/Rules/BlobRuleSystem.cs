@@ -27,6 +27,7 @@ public sealed class BlobRuleSystem : StationEventSystem<BlobRuleComponent>
 {
     private static readonly Color BlobBriefingColor = Color.FromHex("#5acb74");
     private static readonly Color BlobAlertColor = Color.FromHex("#d94b4b");
+    private static readonly Color BlobResolvedColor = Color.FromHex("#5acb74");
     private static readonly SoundPathSpecifier BlobAnnouncementAlarm = new("/Audio/Imperial/blob/sound_effects_siren-spooky.ogg");
     private static readonly SoundPathSpecifier BlobAnnouncementVoice = new("/Audio/Imperial/blob/sound_AI_outbreak_blob.ogg");
 
@@ -256,6 +257,8 @@ public sealed class BlobRuleSystem : StationEventSystem<BlobRuleComponent>
             if (!rule.BlobMinds.Remove(blobId))
                 continue;
 
+            var hasStation = TryGetBlobStation(blobId, out var station);
+
             if (rule.BlobMinds.Count == 0)
             {
                 rule.BiohazardAnnouncementAccumulator = 0f;
@@ -263,9 +266,19 @@ public sealed class BlobRuleSystem : StationEventSystem<BlobRuleComponent>
                 rule.GammaTriggered = false;
             }
 
-            DestroyOwnedStructures(blobId, uid);
-            DestroyOwnedBlobMobs(blobId);
-            TerminateOvermind(blobId);
+            _blobOvermind.NeutralizeBlob(blobId);
+
+            if (hasStation)
+            {
+                _alertLevel.SetLevel(station, "green", true, true, force: true);
+                _chat.DispatchStationAnnouncement(
+                    station,
+                    Loc.GetString("blob-centcom-neutralized-announcement"),
+                    Loc.GetString("comms-console-announcement-title-centcom"),
+                    playDefaultSound: false,
+                    colorOverride: BlobResolvedColor);
+            }
+
             Dirty(ruleUid, rule);
             break;
         }
@@ -290,33 +303,6 @@ public sealed class BlobRuleSystem : StationEventSystem<BlobRuleComponent>
         }
 
         return cores;
-    }
-
-    private void DestroyOwnedStructures(EntityUid mindId, EntityUid destroyedCore)
-    {
-        var structures = EntityQueryEnumerator<BlobStructureComponent>();
-        while (structures.MoveNext(out var structureUid, out var structure))
-        {
-            if (structureUid == destroyedCore)
-                continue;
-
-            if (structure.OwnerMind != mindId)
-                continue;
-
-            QueueDel(structureUid);
-        }
-    }
-
-    private void DestroyOwnedBlobMobs(EntityUid mindId)
-    {
-        var blobMobs = EntityQueryEnumerator<BlobMobComponent>();
-        while (blobMobs.MoveNext(out var mobUid, out var blobMob))
-        {
-            if (blobMob.OwnerMind != mindId)
-                continue;
-
-            QueueDel(mobUid);
-        }
     }
 
     public int GetOwnedStationTileCount(EntityUid mindId)
@@ -408,29 +394,9 @@ public sealed class BlobRuleSystem : StationEventSystem<BlobRuleComponent>
         Dirty(uid, component);
     }
 
-    private void SpawnMouseGhostRoleAtRandomVent(EntityUid uid, BlobRuleComponent component)
+    private static bool IsBlobCorePrototype(string? prototype)
     {
-        if (!TryGetRandomStation(out var station))
-            return;
-
-        var locations = EntityQueryEnumerator<VentCritterSpawnLocationComponent, TransformComponent>();
-        var validLocations = new List<EntityCoordinates>();
-        while (locations.MoveNext(out _, out _, out var transform))
-        {
-            if (CompOrNull<StationMemberComponent>(transform.GridUid)?.Station != station)
-                continue;
-
-            validLocations.Add(transform.Coordinates);
-        }
-
-        if (validLocations.Count == 0)
-            return;
-
-        var spawner = Spawn(component.GhostRoleSpawnerPrototype, validLocations[RobustRandom.Next(validLocations.Count)]);
-        var source = EnsureComp<BlobRuleSourceComponent>(spawner);
-        source.Rule = uid;
-        source.Chemical = component.StartingChemical;
-        Dirty(spawner, source);
+        return prototype == "BlobCore" || prototype == "BlobCoreGhostRole";
     }
 
     private bool TryGetBlobStation(BlobRuleComponent component, out EntityUid station)
@@ -467,28 +433,28 @@ public sealed class BlobRuleSystem : StationEventSystem<BlobRuleComponent>
         return false;
     }
 
-    private void TerminateOvermind(EntityUid blobId)
+    private void SpawnMouseGhostRoleAtRandomVent(EntityUid uid, BlobRuleComponent component)
     {
-        var overminds = EntityQueryEnumerator<BlobOvermindComponent, MindContainerComponent>();
-        while (overminds.MoveNext(out var overmindUid, out var overmind, out var mindContainer))
+        if (!TryGetRandomStation(out var station))
+            return;
+
+        var locations = EntityQueryEnumerator<VentCritterSpawnLocationComponent, TransformComponent>();
+        var validLocations = new List<EntityCoordinates>();
+        while (locations.MoveNext(out _, out _, out var transform))
         {
-            if (overmind.BlobId != blobId)
+            if (CompOrNull<StationMemberComponent>(transform.GridUid)?.Station != station)
                 continue;
 
-            if (mindContainer.Mind is { } overmindMind &&
-                _mind.TryGetMind(overmindMind, out _, out var mind) &&
-                mind.UserId != null &&
-                _players.TryGetSessionById(mind.UserId.Value, out var session))
-            {
-                _antag.SendBriefing(session, Loc.GetString("blob-core-destroyed"), Color.Red, null);
-            }
-
-            QueueDel(overmindUid);
+            validLocations.Add(transform.Coordinates);
         }
-    }
 
-    private static bool IsBlobCorePrototype(string? prototype)
-    {
-        return prototype == "BlobCore" || prototype == "BlobCoreGhostRole";
+        if (validLocations.Count == 0)
+            return;
+
+        var spawner = Spawn(component.GhostRoleSpawnerPrototype, validLocations[RobustRandom.Next(validLocations.Count)]);
+        var source = EnsureComp<BlobRuleSourceComponent>(spawner);
+        source.Rule = uid;
+        source.Chemical = component.StartingChemical;
+        Dirty(spawner, source);
     }
 }

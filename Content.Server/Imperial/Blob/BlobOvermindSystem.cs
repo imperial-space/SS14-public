@@ -69,14 +69,6 @@ public sealed class BlobOvermindSystem : EntitySystem
         "DisposalPipe",
     };
 
-    private static readonly Vector2i[] CardinalOffsets =
-    {
-        new(1, 0),
-        new(-1, 0),
-        new(0, 1),
-        new(0, -1),
-    };
-
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
@@ -114,7 +106,6 @@ public sealed class BlobOvermindSystem : EntitySystem
         SubscribeLocalEvent<BlobOvermindComponent, BlobUpgradeGenerationActionEvent>(OnUpgradeGenerationAction);
         SubscribeLocalEvent<BlobOvermindComponent, BlobUpgradeAttackActionEvent>(OnUpgradeAttackAction);
         SubscribeLocalEvent<BlobOvermindComponent, BlobUpgradeCapacityActionEvent>(OnUpgradeCapacityAction);
-        SubscribeLocalEvent<BlobOvermindComponent, GetVisMaskEvent>(OnBlobOvermindGetVis);
         SubscribeLocalEvent<BlobOvermindComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<BlobOvermindComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<BlobOvermindComponent, BlobPlaceTileActionEvent>(OnPlaceTileAction);
@@ -133,6 +124,7 @@ public sealed class BlobOvermindSystem : EntitySystem
         SubscribeLocalEvent<BlobOvermindComponent, BlobSelectChemicalMessage>(OnSelectChemicalMessage);
         SubscribeLocalEvent<BlobOvermindControllerComponent, BlobSelectChemicalMessage>(OnSelectChemicalMessageOnController);
         SubscribeLocalEvent<BlobOvermindControllerComponent, EntitySpokeEvent>(OnBlobOvermindControllerSpoke);
+        SubscribeLocalEvent<BlobOvermindControllerComponent, AfterInteractEvent>(OnControllerAfterInteract);
         SubscribeLocalEvent<BlobOvermindControllerComponent, BeforeRangedInteractEvent>(OnControllerBeforeRangedInteract);
         SubscribeLocalEvent<BlobOvermindControllerComponent, UseInHandEvent>(OnControllerUseInHand);
         SubscribeLocalEvent<BlobStructureComponent, ComponentStartup>(OnBlobStructureStartup);
@@ -238,6 +230,9 @@ public sealed class BlobOvermindSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, BlobOvermindComponent comp, ComponentShutdown args)
     {
+        if (Terminating(uid) && comp.BlobId is { } blobId && !HasOtherActiveOvermind(blobId, uid))
+            CollapseBlob(blobId, uid);
+
         if (!Terminating(uid) && TryComp<VisibilityComponent>(uid, out var visibility))
         {
             _visibility.SetLayer(uid, (ushort) VisibilityFlags.Normal);
@@ -296,12 +291,22 @@ public sealed class BlobOvermindSystem : EntitySystem
         _blobMob.RelayToBlobRadio(overmindUid, ref args, overmindUid);
     }
 
-    private void OnBlobOvermindGetVis(Entity<BlobOvermindComponent> ent, ref GetVisMaskEvent args)
+    private void OnControllerBeforeRangedInteract(EntityUid uid, BlobOvermindControllerComponent controller, BeforeRangedInteractEvent args)
     {
-        args.VisibilityMask |= (int) VisibilityFlags.Admin;
+        HandleControllerInteract(uid, controller, args.User, args.Target, args.ClickLocation);
+        args.Handled = true;
     }
 
-    private void OnControllerBeforeRangedInteract(EntityUid uid, BlobOvermindControllerComponent controller, BeforeRangedInteractEvent args)
+    private void OnControllerAfterInteract(EntityUid uid, BlobOvermindControllerComponent controller, AfterInteractEvent args)
+    {
+        if (!args.CanReach)
+            return;
+
+        HandleControllerInteract(uid, controller, args.User, args.Target, args.ClickLocation);
+        args.Handled = true;
+    }
+
+    private void HandleControllerInteract(EntityUid uid, BlobOvermindControllerComponent controller, EntityUid user, EntityUid? targetEntity, EntityCoordinates clickLocation)
     {
         if (controller.Overmind is not { } overmindUid ||
             !TryComp<BlobOvermindComponent>(overmindUid, out var overmind))
@@ -309,46 +314,43 @@ public sealed class BlobOvermindSystem : EntitySystem
             return;
         }
 
-        var target = GetInteractionTileCoordinates(args);
-        if (args.Target is { } targetEntity && IsIgnoredInfrastructure(targetEntity))
+        var target = GetInteractionTileCoordinates(user, targetEntity, clickLocation);
+        if (targetEntity is { } ignoredTarget && IsIgnoredInfrastructure(ignoredTarget))
         {
             TryPlaceOwnedTile(overmindUid, overmind, target);
-            args.Handled = true;
             return;
         }
 
-        if (HasAttackableTargetOnTile(target))
-            TryPrimaryAttack(overmindUid, overmind, target);
+        if (targetEntity is { } exactTarget && IsDirectAttackTarget(exactTarget))
+            TryPrimaryAttackEntity(overmindUid, overmind, exactTarget);
         else
             TryPlaceOwnedTile(overmindUid, overmind, target);
-
-        args.Handled = true;
     }
 
-    private EntityCoordinates GetInteractionTileCoordinates(BeforeRangedInteractEvent args)
+    private EntityCoordinates GetInteractionTileCoordinates(EntityUid user, EntityUid? target, EntityCoordinates clickLocation)
     {
-        if (args.Target is not { } target ||
+        if (target is not { } targetUid ||
             !TryComp<PhysicsComponent>(target, out var physics) ||
             !physics.Hard)
         {
-            return args.ClickLocation;
+            return clickLocation;
         }
 
-        var userMap = _transform.ToMapCoordinates(Transform(args.User).Coordinates);
-        var targetMap = _transform.ToMapCoordinates(Transform(target).Coordinates);
+        var userMap = _transform.ToMapCoordinates(Transform(user).Coordinates);
+        var targetMap = _transform.ToMapCoordinates(Transform(targetUid).Coordinates);
 
         if (userMap.MapId == MapId.Nullspace || userMap.MapId != targetMap.MapId)
-            return args.ClickLocation;
+            return clickLocation;
 
         if (!_mapManager.TryFindGridAt(targetMap, out var gridUid, out var grid))
-            return args.ClickLocation;
+            return clickLocation;
 
         var targetTile = _map.CoordinatesToTile(gridUid, grid, targetMap);
         var userTile = _map.CoordinatesToTile(gridUid, grid, userMap);
         var delta = userTile - targetTile;
 
         if (delta == Vector2i.Zero)
-            return args.ClickLocation;
+            return clickLocation;
 
         var frontOffset = Math.Abs(delta.X) >= Math.Abs(delta.Y)
             ? new Vector2i(Math.Sign(delta.X), 0)
@@ -892,7 +894,7 @@ public sealed class BlobOvermindSystem : EntitySystem
             return;
         }
 
-        var targetCoords = _transform.ToMapCoordinates(target);
+        var targetCoords = _transform.ToMapCoordinates(snapped);
         var actualCost = GetPlacementCost(gridUid, grid, snapped, prototype, cost, comp);
 
         if (comp.Resources < actualCost)
@@ -925,6 +927,10 @@ public sealed class BlobOvermindSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("blob-action-too-far"), uid, uid, PopupType.SmallCaution);
             return;
         }
+        var tileRef = _map.GetTileRef(gridUid, grid, tile);
+        if (prototype == "BlobTile" && TryChewDenseObstacle(tileRef, uid, comp, blobId, actualCost, false))
+            return;
+
         EntityUid? replacedTile = null;
         if (HasBlobStructureOnTile(gridUid, grid, tile))
         {
@@ -947,8 +953,7 @@ public sealed class BlobOvermindSystem : EntitySystem
             return;
         }
 
-        var tileRef = _map.GetTileRef(gridUid, grid, tile);
-        if (TryChewDenseObstacle(tileRef, uid, comp, blobId, actualCost))
+        if (prototype != "BlobTile" && TryChewDenseObstacle(tileRef, uid, comp, blobId, actualCost))
             return;
 
         if (replacedTile is { } replaced && Exists(replaced))
@@ -977,16 +982,7 @@ public sealed class BlobOvermindSystem : EntitySystem
         if (prototype != "BlobTile")
             return baseCost;
 
-        var tileRef = _map.GetTileRef(gridUid, grid, target);
-        var tileDef = (ContentTileDefinition) _tileDefs[tileRef.Tile.TypeId];
-
-        if (HasDenseObstacle(tileRef))
-            return Math.Max(baseCost + 1, (int) MathF.Ceiling(baseCost * comp.DenseTileCostMultiplier));
-
-        if (tileDef.ID != ContentTileDefinition.SpaceID && tileDef.BaseTurf != ContentTileDefinition.SpaceID)
-            return baseCost;
-
-        return Math.Max(baseCost + 1, (int) MathF.Ceiling(baseCost * comp.SpaceTileCostMultiplier));
+        return baseCost;
     }
 
     private bool TryChewDenseObstacle(TileRef tileRef, EntityUid overmindUid, BlobOvermindComponent comp, EntityUid blobId, int cost, bool showPopup = true)
@@ -1220,6 +1216,49 @@ public sealed class BlobOvermindSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("blob-action-attack-hit", ("hits", hits), ("left", comp.Resources)), uid, uid, PopupType.Small);
     }
 
+    private void TryPrimaryAttackEntity(EntityUid uid, BlobOvermindComponent comp, EntityUid targetEntity)
+    {
+        if (!TryBeginAttack(comp))
+            return;
+
+        if (comp.BlobId is not { } blobId)
+            return;
+
+        if (comp.Resources < comp.AttackCost)
+        {
+            _popup.PopupEntity(Loc.GetString("blob-action-insufficient-resources", ("cost", comp.AttackCost), ("current", comp.Resources)), uid, uid, PopupType.SmallCaution);
+            return;
+        }
+
+        var target = Transform(targetEntity).Coordinates;
+        if (!TryGetTargetGrid(target, out var gridUid, out var grid))
+            return;
+
+        var snapped = target.SnapToGrid(EntityManager);
+        var tile = _map.CoordinatesToTile(gridUid, grid, snapped);
+        var sources = CountOwnedAttackSourcesOnTile(gridUid, grid, tile, blobId);
+        if (sources <= 0 && TryGetOwnedBlobStructureOnTile(gridUid, grid, tile, blobId, out _, out _))
+            sources = 1;
+
+        if (sources <= 0)
+        {
+            _popup.PopupEntity(Loc.GetString("blob-action-attack-no-source"), uid, uid, PopupType.SmallCaution);
+            return;
+        }
+
+        if (!TryApplyBlobAttackToEntity(targetEntity, comp, sources))
+        {
+            _popup.PopupEntity(Loc.GetString("blob-action-attack-no-target"), uid, uid, PopupType.SmallCaution);
+            return;
+        }
+
+        Spawn("BlobAttackEffect", snapped);
+
+        comp.Resources -= comp.AttackCost;
+        SyncNetworkState(blobId, uid, comp);
+        _popup.PopupEntity(Loc.GetString("blob-action-attack-hit", ("hits", 1), ("left", comp.Resources)), uid, uid, PopupType.Small);
+    }
+
     private void TryPlaceOwnedTile(EntityUid uid, BlobOvermindComponent comp, EntityCoordinates target)
     {
         if (!TryBeginTileAction(comp))
@@ -1255,33 +1294,21 @@ public sealed class BlobOvermindSystem : EntitySystem
         TryPlaceOwnedStructure(uid, comp, target, "BlobTile", comp.TileCost, "blob-action-tile-placed", requireNearbyStructure: false);
     }
 
-    private bool HasAttackableTargetOnTile(EntityCoordinates target)
+    private bool IsDirectAttackTarget(EntityUid entity)
     {
-        if (!TryGetTargetGrid(target, out var gridUid, out var grid))
+        if (HasComp<BlobStructureComponent>(entity) || HasComp<BlobMobComponent>(entity) || HasComp<BlobOvermindComponent>(entity))
             return false;
 
-        var snapped = target.SnapToGrid(EntityManager);
-        var tile = _map.CoordinatesToTile(gridUid, grid, snapped);
-        var query = EntityQueryEnumerator<TransformComponent>();
-        while (query.MoveNext(out var entity, out var xform))
-        {
-            if (xform.GridUid != gridUid)
-                continue;
+        if (IsIgnoredInfrastructure(entity))
+            return false;
 
-            if (_map.CoordinatesToTile(gridUid, grid, xform.Coordinates) != tile)
-                continue;
+        if (!HasComp<DamageableComponent>(entity))
+            return false;
 
-            if (HasComp<BlobStructureComponent>(entity) || HasComp<BlobMobComponent>(entity) || HasComp<BlobOvermindComponent>(entity))
-                continue;
+        if (!TryComp<MobStateComponent>(entity, out var mobState))
+            return true;
 
-            if (IsIgnoredInfrastructure(entity))
-                continue;
-
-            if (TryComp<DamageableComponent>(entity, out _))
-                return true;
-        }
-
-        return false;
+        return mobState.CurrentState != MobState.Dead;
     }
 
     private bool IsIgnoredInfrastructure(EntityUid entity)
@@ -1467,7 +1494,6 @@ public sealed class BlobOvermindSystem : EntitySystem
     private int AttackEntitiesOnTile(EntityUid gridUid, MapGridComponent grid, Vector2i targetTile, BlobOvermindComponent comp, int sources)
     {
         var hits = 0;
-        var chemicalDamage = GetAttackChemicalDamage(comp);
         var targets = new List<EntityUid>();
         var query = EntityQueryEnumerator<TransformComponent>();
         while (query.MoveNext(out var targetUid, out var xform))
@@ -1492,73 +1518,79 @@ public sealed class BlobOvermindSystem : EntitySystem
 
         foreach (var targetUid in targets)
         {
-            if (Deleted(targetUid) || !TryComp<DamageableComponent>(targetUid, out _))
-                continue;
-
-            var damage = new DamageSpecifier();
-            if (!HasComp<MobStateComponent>(targetUid))
-            {
-                damage.DamageDict.Add("Blunt", comp.StructureAttackDamage);
-            }
-            else
-            {
-                damage.DamageDict.Add("Blunt", GetActiveAttackDamage(comp, sources));
-
-                switch (comp.Chemical)
-                {
-                    case BlobChemicalType.Toxin:
-                        damage.DamageDict.Add("Poison", chemicalDamage);
-                        break;
-                    case BlobChemicalType.Incendiary:
-                        damage.DamageDict.Add("Heat", chemicalDamage);
-                        break;
-                    case BlobChemicalType.Electromagnetic:
-                        damage.DamageDict.Add("Heat", chemicalDamage + 2);
-                        break;
-                    case BlobChemicalType.DistributedNeurons:
-                        damage.DamageDict.Add("Poison", chemicalDamage + 1);
-                        break;
-                    case BlobChemicalType.KineticGelatin:
-                        damage.DamageDict.Add("Stamina", chemicalDamage + 6);
-                        break;
-                    case BlobChemicalType.RadioactiveGel:
-                        damage.DamageDict.Add("Poison", Math.Max(1, chemicalDamage - 1));
-                        damage.DamageDict.Add("Radiation", Math.Max(1, chemicalDamage - 1));
-                        break;
-                    case BlobChemicalType.LexorinJelly:
-                        damage.DamageDict.Add("Asphyxiation", chemicalDamage + 4);
-                        break;
-                    case BlobChemicalType.CryogenicLiquid:
-                        damage.DamageDict.Add("Cold", Math.Max(1, chemicalDamage));
-                        damage.DamageDict.Add("Stamina", Math.Max(1, chemicalDamage + 2));
-                        break;
-                    case BlobChemicalType.Sorium:
-                        damage.DamageDict.Add("Stamina", chemicalDamage + 4);
-                        break;
-                    case BlobChemicalType.EnvenomedFilaments:
-                        damage.DamageDict.Add("Poison", chemicalDamage + 2);
-                        damage.DamageDict.Add("Stamina", Math.Max(1, chemicalDamage));
-                        break;
-                    case BlobChemicalType.ParalyticToxins:
-                        damage.DamageDict.Add("Poison", chemicalDamage);
-                        damage.DamageDict.Add("Stamina", Math.Max(1, chemicalDamage - 1));
-                        break;
-                    case BlobChemicalType.Regenerative:
-                        damage.DamageDict.Add("Poison", Math.Max(1, chemicalDamage - 2));
-                        break;
-                }
-            }
-
-            if (!_damage.TryChangeDamage(targetUid, damage, true))
-                continue;
-
-            _audio.PlayPvs(BlobAttackSound, targetUid);
-            ApplyAttackSecondaryEffects(targetUid, comp);
-
-            hits++;
+            if (TryApplyBlobAttackToEntity(targetUid, comp, sources))
+                hits++;
         }
 
         return hits;
+    }
+
+    private bool TryApplyBlobAttackToEntity(EntityUid targetUid, BlobOvermindComponent comp, int sources)
+    {
+        if (Deleted(targetUid) || !TryComp<DamageableComponent>(targetUid, out _))
+            return false;
+
+        var chemicalDamage = GetAttackChemicalDamage(comp);
+        var damage = new DamageSpecifier();
+        if (!HasComp<MobStateComponent>(targetUid))
+        {
+            damage.DamageDict.Add("Blunt", comp.StructureAttackDamage);
+        }
+        else
+        {
+            damage.DamageDict.Add("Blunt", GetActiveAttackDamage(comp, sources));
+
+            switch (comp.Chemical)
+            {
+                case BlobChemicalType.Toxin:
+                    damage.DamageDict.Add("Poison", chemicalDamage);
+                    break;
+                case BlobChemicalType.Incendiary:
+                    damage.DamageDict.Add("Heat", chemicalDamage);
+                    break;
+                case BlobChemicalType.Electromagnetic:
+                    damage.DamageDict.Add("Heat", chemicalDamage + 2);
+                    break;
+                case BlobChemicalType.DistributedNeurons:
+                    damage.DamageDict.Add("Poison", chemicalDamage + 1);
+                    break;
+                case BlobChemicalType.KineticGelatin:
+                    damage.DamageDict.Add("Stamina", chemicalDamage + 6);
+                    break;
+                case BlobChemicalType.RadioactiveGel:
+                    damage.DamageDict.Add("Poison", Math.Max(1, chemicalDamage - 1));
+                    damage.DamageDict.Add("Radiation", Math.Max(1, chemicalDamage - 1));
+                    break;
+                case BlobChemicalType.LexorinJelly:
+                    damage.DamageDict.Add("Asphyxiation", chemicalDamage + 4);
+                    break;
+                case BlobChemicalType.CryogenicLiquid:
+                    damage.DamageDict.Add("Cold", Math.Max(1, chemicalDamage));
+                    damage.DamageDict.Add("Stamina", Math.Max(1, chemicalDamage + 2));
+                    break;
+                case BlobChemicalType.Sorium:
+                    damage.DamageDict.Add("Stamina", chemicalDamage + 4);
+                    break;
+                case BlobChemicalType.EnvenomedFilaments:
+                    damage.DamageDict.Add("Poison", chemicalDamage + 2);
+                    damage.DamageDict.Add("Stamina", Math.Max(1, chemicalDamage));
+                    break;
+                case BlobChemicalType.ParalyticToxins:
+                    damage.DamageDict.Add("Poison", chemicalDamage);
+                    damage.DamageDict.Add("Stamina", Math.Max(1, chemicalDamage - 1));
+                    break;
+                case BlobChemicalType.Regenerative:
+                    damage.DamageDict.Add("Poison", Math.Max(1, chemicalDamage - 2));
+                    break;
+            }
+        }
+
+        if (!_damage.TryChangeDamage(targetUid, damage, true))
+            return false;
+
+        _audio.PlayPvs(BlobAttackSound, targetUid);
+        ApplyAttackSecondaryEffects(targetUid, comp);
+        return true;
     }
 
     private void EnsureAttackInfection(EntityUid targetUid, BlobOvermindComponent comp, float transformDelay)
@@ -1925,9 +1957,18 @@ public sealed class BlobOvermindSystem : EntitySystem
                     if (!HasOwnedCardinalAdjacentBlobStructure(gridUid, grid, targetTile, blobId))
                         continue;
 
+                    if (HasDenseObstacle(tileRef))
+                    {
+                        if (TryChewDenseObstacle(tileRef, uid, comp, blobId, 0, showPopup: false))
+                            return true;
+
+                        continue;
+                    }
+
+                    if (HasBlockingOccupantOnTile(gridUid, grid, targetTile))
+                        continue;
+
                     var targetCoords = _map.GridTileToLocal(gridUid, grid, targetTile);
-                    if (TryChewDenseObstacle(tileRef, uid, comp, blobId, 0, showPopup: false))
-                        return true;
 
                     EnsureBlobTileFoundation("BlobTile", gridUid, grid, targetTile, tileRef);
 
@@ -1947,7 +1988,6 @@ public sealed class BlobOvermindSystem : EntitySystem
 
         return false;
     }
-
     private bool IsSpaceTile(TileRef tileRef)
     {
         var tileDef = (ContentTileDefinition) _tileDefs[tileRef.Tile.TypeId];
@@ -2009,7 +2049,12 @@ public sealed class BlobOvermindSystem : EntitySystem
         return count;
     }
 
-    private void CollapseBlob(EntityUid blobId)
+    public void NeutralizeBlob(EntityUid blobId, EntityUid? ignoredOvermind = null)
+    {
+        CollapseBlob(blobId, ignoredOvermind);
+    }
+
+    private void CollapseBlob(EntityUid blobId, EntityUid? ignoredOvermind = null)
     {
         var structures = EntityQueryEnumerator<BlobStructureComponent>();
         while (structures.MoveNext(out var uid, out var structure))
@@ -2034,12 +2079,32 @@ public sealed class BlobOvermindSystem : EntitySystem
         var overminds = EntityQueryEnumerator<BlobOvermindComponent>();
         while (overminds.MoveNext(out var uid, out var overmind))
         {
+            if (uid == ignoredOvermind)
+                continue;
+
             if (overmind.BlobId != blobId)
                 continue;
 
             _popup.PopupEntity(Loc.GetString("blob-core-destroyed"), uid, uid, PopupType.MediumCaution);
             QueueDel(uid);
         }
+    }
+
+    private bool HasOtherActiveOvermind(EntityUid blobId, EntityUid ignoredOvermind)
+    {
+        var overminds = EntityQueryEnumerator<BlobOvermindComponent>();
+        while (overminds.MoveNext(out var uid, out var overmind))
+        {
+            if (uid == ignoredOvermind)
+                continue;
+
+            if (overmind.BlobId != blobId || Terminating(uid))
+                continue;
+
+            return true;
+        }
+
+        return false;
     }
 
     private void PopupToBlobOverminds(EntityUid blobId, string locId)
@@ -2059,7 +2124,7 @@ public sealed class BlobOvermindSystem : EntitySystem
         if (!TryComp(uid, out AppearanceComponent? appearance))
             return;
 
-        _appearance.SetData(uid, Content.Shared.Imperial.Blob.BlobVisuals.Color, Color.White, appearance);
+        _appearance.SetData(uid, Content.Shared.Imperial.Blob.BlobVisuals.Color, Color.Gray, appearance);
     }
 
     private static bool IsBlobCorePrototype(string? prototype)
