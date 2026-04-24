@@ -89,6 +89,12 @@ public sealed partial class GhostComponent : Component
     public bool CanReturnToBody;
 
     /// <summary>
+    /// Backward-compatible alias for older server code paths that still gate admin-only visibility on ghosts.
+    /// </summary>
+    [DataField]
+    public bool CanSeeAdminVisibility;
+
+    /// <summary>
     /// Ghost color
     /// </summary>
     /// <remarks>Used to allow admins to change ghost colors. Should be removed if the capability to edit existing sprite colors is ever added back.</remarks>
