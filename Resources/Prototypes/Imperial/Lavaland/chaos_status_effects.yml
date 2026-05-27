@@ -1,0 +1,6 @@
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectChaosRage
+  name: rage
+  components:
+  - type: ChaosRageStatusEffect

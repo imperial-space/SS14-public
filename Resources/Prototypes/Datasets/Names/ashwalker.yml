@@ -1,0 +1,6 @@
+# Имена пеплоходцев — племенной язык Siik'Tajr (унатхи Лаваленда)
+- type: localizedDataset
+  id: NamesAshwalker
+  values:
+    prefix: names-ashwalker-dataset-
+    count: 20

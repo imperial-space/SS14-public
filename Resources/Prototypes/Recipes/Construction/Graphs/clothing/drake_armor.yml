@@ -1,0 +1,31 @@
+# ==================================================
+#  Drake Armor construction graphs
+# ==================================================
+
+- type: constructionGraph
+  id: DrakeArmor
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: armor
+      steps:
+      - material: DragonHide
+        amount: 5
+        doAfter: 5
+  - node: armor
+    entity: ClothingOuterDrakeArmor
+
+- type: constructionGraph
+  id: DrakeHelm
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: helm
+      steps:
+      - material: DragonHide
+        amount: 3
+        doAfter: 3
+  - node: helm
+    entity: ClothingHeadDrakeHelm

@@ -688,6 +688,9 @@
   id: HamsterWearable # Used by inventoryTemplate:hamster to whitelist clothes wearable by brown rats
 
 - type: Tag
+  id: LavalandMob # Used by PKAMiningUpgradeLifeSteal to heal only when hitting Lavaland creatures.
+
+- type: Tag
   id: HamtrCentralControlModule # ConstructionGraph: Hamtr
 
 - type: Tag

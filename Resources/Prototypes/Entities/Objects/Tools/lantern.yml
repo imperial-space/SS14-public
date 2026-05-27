@@ -108,3 +108,17 @@
           enum.FlashVisualLayers.LightLayer:
             True: {visible: true}
             False: {visible: false}
+
+- type: entity
+  parent: Lantern
+  id: LanternThermal
+  name: thermal lantern
+  description: A lantern that grants thermal sight to the one who switched it on.
+  components:
+  - type: PointLight
+    enabled: false
+    radius: 3
+    energy: 2.5
+    color: "#3da0ff"
+    netsync: false
+  - type: ThermalLantern

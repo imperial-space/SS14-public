@@ -1,0 +1,86 @@
+# Possessed Blade — a sword from SS13 Paradise that can be inhabited by a ghost.
+# The ghost speaks through it; the wielder activates the summon by pressing Z (use-in-hand).
+
+- type: entity
+  id: PossessedBlade
+  name: possessed blade
+  parent: BaseSword
+  description: >-
+    A sword capable of housing a spirit. Press it in your hand to attempt to summon a ghost
+    (this will notify all ghosts that you wish to call upon them).
+    If successful, you will be able to speak with the spirit inside.
+    Deals 15 brute damage.
+  components:
+
+  # ── Visuals ──────────────────────────────────────────────────────────────────
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/cult_blade.rsi
+    layers:
+    - state: icon
+
+  - type: Item
+    size: Normal
+
+  # Glows purple when a ghost inhabits the blade; disabled by default.
+  # PossessedBladeSystem toggles this on MindAdded / MindRemoved.
+  - type: PointLight
+    enabled: false
+    radius: 2.5
+    energy: 2.0
+    color: "#9b59b6"
+
+  - type: Appearance
+
+  # ── Combat ───────────────────────────────────────────────────────────────────
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.0
+    damage:
+      types:
+        Blunt: 15
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    soundNoDamage:
+      path: /Audio/Effects/gen_hit.ogg
+    soundSwing:
+      path: /Audio/Weapons/eblademiss.ogg
+      params:
+        volume: -4
+
+  - type: Sharp
+  - type: DisarmMalus
+
+  # ── Ghost-role mechanics ──────────────────────────────────────────────────────
+  # Prevent the inhabiting ghost from physically moving the blade on its own.
+  - type: BlockMovement
+
+  # Give the ghost access to keyboard input so it can chat.
+  - type: Input
+    context: "human"
+
+  # Allow ghost to speak through the blade.
+  - type: Speech
+
+  # Needed so the ghost-role system can properly re-register when the ghost leaves.
+  - type: MobState
+    allowedStates:
+      - Alive
+
+  # Custom marker component — drives PointLight toggling.
+  - type: PossessedBlade
+
+  # Toggleable ghost role: use-in-hand starts searching, verb wipes/stops.
+  - type: ToggleableGhostRole
+    examineTextMindPresent: possessed-blade-examine-mind-present
+    examineTextMindSearching: possessed-blade-examine-mind-searching
+    examineTextNoMind: possessed-blade-examine-no-mind
+    beginSearchingText: possessed-blade-begin-searching
+    roleName: possessed-blade-ghost-role-name
+    roleDescription: possessed-blade-ghost-role-description
+    roleRules: ghost-role-information-familiar-rules
+    mindRoles:
+    - MindRoleGhostRoleFamiliar
+    wipeVerbText: possessed-blade-wipe-verb-text
+    wipeVerbPopup: possessed-blade-wipe-verb-popup
+    stopSearchVerbText: possessed-blade-stop-search-verb-text
+    stopSearchVerbPopup: possessed-blade-stop-search-verb-popup

@@ -1,0 +1,20 @@
+uniform sampler2D SCREEN_TEXTURE;
+uniform highp float TintStrength;
+uniform highp float Pulse;
+
+const highp vec3 RageColor = vec3(0.95, 0.08, 0.08);
+
+void fragment()
+{
+    highp vec2 uv = FRAGCOORD.xy * SCREEN_PIXEL_SIZE.xy;
+    highp vec4 src = zTextureSpec(SCREEN_TEXTURE, uv);
+
+    highp vec2 centered = uv - vec2(0.5, 0.5);
+    highp float vignette = clamp(length(centered) * 1.7, 0.0, 1.0);
+
+    highp float pulse = 0.65 + Pulse * 0.35;
+    highp float effect = clamp(TintStrength * (0.45 + vignette * 0.9) * pulse, 0.0, 1.0);
+
+    highp vec3 tinted = mix(src.rgb, RageColor, effect);
+    COLOR = vec4(tinted, src.a);
+}

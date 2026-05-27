@@ -1,0 +1,38 @@
+# ==================================================
+#  Dragon Blood polymorph prototypes
+# ==================================================
+
+- type: polymorph
+  id: DragonBloodSkeleton
+  configuration:
+    entity: MobSkeletonPerson
+    forced: true
+    inventory: Drop
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: true
+    duration: 600
+
+- type: polymorph
+  id: DragonBloodLesserDragon
+  configuration:
+    entity: MobLesserDragonPlayer
+    forced: true
+    inventory: Drop
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: true
+    duration: 600
+
+- type: polymorph
+  id: DragonBloodDragonid
+  configuration:
+    entity: MobDragonidPlayer
+    forced: true
+    inventory: Transfer
+    transferName: true
+    transferDamage: false
+    revertOnCrit: false
+    revertOnDeath: false

@@ -72,6 +72,9 @@
     interactFailureString: petting-failure-generic
     interactSuccessSound:
       path: /Audio/Animals/lizard_happy.ogg
+  - type: Tag
+    tags:
+    - LavalandMob
 
 - type: entity
   id: MobWatcherLavaland

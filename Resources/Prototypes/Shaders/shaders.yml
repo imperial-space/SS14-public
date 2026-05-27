@@ -69,6 +69,11 @@
   path: "/Textures/Shaders/radial_blur.swsl"
 
 - type: shader
+  id: ChaosRage
+  kind: source
+  path: "/Textures/Shaders/chaos_rage.swsl"
+
+- type: shader
   id: Texture
   kind: source
   path: "/Textures/Shaders/texture.swsl"

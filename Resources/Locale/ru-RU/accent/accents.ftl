@@ -131,3 +131,53 @@ accent-words-tomato-2 = Тротект
 accent-words-tomato-3 = Мастет?
 accent-words-tomato-4 = Реати!
 accent-words-tomato-5 = Вода...
+
+# Ashwalker Tribe — племенной акцент унатхи Лаваленда (Imperial, Lavaland)
+# Заменяет слова в речи на религиозно-племенные эквиваленты.
+accent-ashwalkertribe-replaced-1 = враг
+accent-ashwalkertribe-replacement-1 = добыча
+
+accent-ashwalkertribe-replaced-2 = враги
+accent-ashwalkertribe-replacement-2 = добыча
+
+accent-ashwalkertribe-replaced-3 = убить
+accent-ashwalkertribe-replacement-3 = освятить
+
+accent-ashwalkertribe-replaced-4 = убивать
+accent-ashwalkertribe-replacement-4 = освящать
+
+accent-ashwalkertribe-replaced-5 = смерть
+accent-ashwalkertribe-replacement-5 = пепел
+
+accent-ashwalkertribe-replaced-6 = умереть
+accent-ashwalkertribe-replacement-6 = стать пеплом
+
+accent-ashwalkertribe-replaced-7 = нет
+accent-ashwalkertribe-replacement-7 = запрет Некрополя
+
+accent-ashwalkertribe-replaced-8 = да
+accent-ashwalkertribe-replacement-8 = воля Некрополя
+
+accent-ashwalkertribe-replaced-9 = привет
+accent-ashwalkertribe-replacement-9 = кшш
+
+accent-ashwalkertribe-replaced-10 = помощь
+accent-ashwalkertribe-replacement-10 = слабость
+
+accent-ashwalkertribe-replaced-11 = дом
+accent-ashwalkertribe-replacement-11 = гнездо
+
+accent-ashwalkertribe-replaced-12 = семья
+accent-ashwalkertribe-replacement-12 = стая
+
+accent-ashwalkertribe-replaced-13 = хорошо
+accent-ashwalkertribe-replacement-13 = угодно Некрополю
+
+accent-ashwalkertribe-replaced-14 = плохо
+accent-ashwalkertribe-replacement-14 = неугодно Некрополю
+
+accent-ashwalkertribe-replaced-15 = яйцо
+accent-ashwalkertribe-replacement-15 = дитя Некрополя
+
+accent-ashwalkertribe-replaced-16 = уходи
+accent-ashwalkertribe-replacement-16 = прочь с охотничьих угодий

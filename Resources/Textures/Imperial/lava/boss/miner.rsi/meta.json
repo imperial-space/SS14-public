@@ -1,0 +1,19 @@
+{
+    "version": 1,
+    "license": null,
+    "copyright": null,
+    "size": {
+        "x": 45,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "miner",
+            "directions": 4
+        },
+        {
+            "name": "miner_transformed",
+            "directions": 4
+        }
+    ]
+}

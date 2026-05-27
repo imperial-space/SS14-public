@@ -25,6 +25,8 @@
     thresholds:
       0: Alive
       250: Dead
+  - type: Destructible
+    thresholds: []
   - type: MeleeWeapon
     soundHit:
       path: "/Audio/Weapons/smash.ogg"
@@ -56,6 +58,7 @@
     - FootstepSound
     - Urs
   - type: NoSlip
+  - type: MegafaunaVanishOnDeath
   - type: Butcherable
     spawned:
     - id: Ash
@@ -64,6 +67,9 @@
       amount: 5
     - id: IngotSilver1
       amount: 2
+    - id: CrusherUpgradeTailSpike
+      amount: 1
+      prob: 0.40   # 40% шанс — мощный и редкий моб
   - type: UrsDash #To configure the dash
     damage:
       groups:

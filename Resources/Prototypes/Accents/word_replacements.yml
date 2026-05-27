@@ -408,3 +408,24 @@
     accent-skeleton-words-7: accent-skeleton-words-replace-7
     accent-skeleton-words-8: accent-skeleton-words-replace-8
     accent-skeleton-words-9: accent-skeleton-words-replace-9
+
+# Пеплоходцы — племенной акцент унатхи Лаваленда (Imperial, Lavaland)
+- type: accent
+  id: ashwalkerTribe
+  wordReplacements:
+    accent-ashwalkertribe-replaced-1: accent-ashwalkertribe-replacement-1
+    accent-ashwalkertribe-replaced-2: accent-ashwalkertribe-replacement-2
+    accent-ashwalkertribe-replaced-3: accent-ashwalkertribe-replacement-3
+    accent-ashwalkertribe-replaced-4: accent-ashwalkertribe-replacement-4
+    accent-ashwalkertribe-replaced-5: accent-ashwalkertribe-replacement-5
+    accent-ashwalkertribe-replaced-6: accent-ashwalkertribe-replacement-6
+    accent-ashwalkertribe-replaced-7: accent-ashwalkertribe-replacement-7
+    accent-ashwalkertribe-replaced-8: accent-ashwalkertribe-replacement-8
+    accent-ashwalkertribe-replaced-9: accent-ashwalkertribe-replacement-9
+    accent-ashwalkertribe-replaced-10: accent-ashwalkertribe-replacement-10
+    accent-ashwalkertribe-replaced-11: accent-ashwalkertribe-replacement-11
+    accent-ashwalkertribe-replaced-12: accent-ashwalkertribe-replacement-12
+    accent-ashwalkertribe-replaced-13: accent-ashwalkertribe-replacement-13
+    accent-ashwalkertribe-replaced-14: accent-ashwalkertribe-replacement-14
+    accent-ashwalkertribe-replaced-15: accent-ashwalkertribe-replacement-15
+    accent-ashwalkertribe-replaced-16: accent-ashwalkertribe-replacement-16

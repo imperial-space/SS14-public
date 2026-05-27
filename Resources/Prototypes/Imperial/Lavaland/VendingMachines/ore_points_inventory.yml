@@ -1,0 +1,15 @@
+- type: vendingMachineInventory
+  id: SalvageOrePointsInventory
+  startingInventory:
+    OrePointsDisplayCrowbar: 2
+    OrePointsDisplayPickaxe: 4
+    OrePointsDisplayOreBag: 4
+    OrePointsDisplayFlare: 4
+    OrePointsDisplayFlashlightLantern: 2
+    OrePointsDisplayHandheldGPSBasic: 2
+    OrePointsDisplayRadioHandheld: 2
+    OrePointsDisplayWeaponGrapplingGun: 4
+    OrePointsDisplayWeaponProtoKineticAccelerator: 4
+    OrePointsDisplayWeaponSmasher: 1
+  contrabandInventory: {}
+  emaggedInventory: {}

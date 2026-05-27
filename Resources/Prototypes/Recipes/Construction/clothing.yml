@@ -117,3 +117,19 @@
   targetNode: helmet
   category: construction-category-clothing
   objectType: Item
+
+- type: construction
+  id: DrakeArmor
+  graph: DrakeArmor
+  startNode: start
+  targetNode: armor
+  category: construction-category-clothing
+  objectType: Item
+
+- type: construction
+  id: DrakeHelm
+  graph: DrakeHelm
+  startNode: start
+  targetNode: helm
+  category: construction-category-clothing
+  objectType: Item

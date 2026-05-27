@@ -1,0 +1,8 @@
+# Снаряжение пеплоходцев Лаваленда
+- type: startingGear
+  id: AshwalkerGear
+  equipment:
+    head: ClothingHeadHelmetBone
+    outerClothing: ClothingOuterArmorBoneAshwalker
+    back: BowImprovised
+    pocket1: SpearBone

@@ -26,6 +26,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener
+    - LavalandMob
 
 - type: entity
   id: MobGoliath
