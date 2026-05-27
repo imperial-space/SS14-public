@@ -17,6 +17,8 @@ namespace Content.Server.Maps;
 [AdminCommand(AdminFlags.Mapping)]
 public sealed class WinterPlanetCommand : LocalizedEntityCommands
 {
+    private static readonly ProtoId<BiomeTemplatePrototype> SnowBiome = "Snow";
+
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
@@ -54,7 +56,7 @@ public sealed class WinterPlanetCommand : LocalizedEntityCommands
             return;
         }
 
-        if (!_protoManager.TryIndex<BiomeTemplatePrototype>("Snow", out var snowTemplate))
+        if (!_protoManager.TryIndex(SnowBiome, out var snowTemplate))
         {
             shell.WriteError("Биом Snow не найден");
             return;
