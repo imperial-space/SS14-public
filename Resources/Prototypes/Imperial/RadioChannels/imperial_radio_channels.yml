@@ -17,7 +17,7 @@
 - type: radioChannel
   id: Military
   name: chat-radio-military
-  keycode: 'в'
+  keycode: 'я'
   frequency: 1069
   color: "#0f4910"
   longRange: true
@@ -28,6 +28,22 @@
   keycode: 's'
   frequency: 1070
   color: "#292d28"
+  longRange: true
+
+- type: radioChannel
+  id: Blob
+  name: chat-radio-blob
+  keycode: 'б'
+  frequency: 1071
+  color: "#6bcf6b"
+  longRange: true
+
+- type: radioChannel
+  id: BlobHive
+  name: chat-radio-blob-hive
+  keycode: 'л'
+  frequency: 1076
+  color: "#4aa34a"
   longRange: true
 
 - type: radioChannel

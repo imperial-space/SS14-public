@@ -18,6 +18,7 @@ public sealed class CultConcealmentSystem : EntitySystem
 
     private static readonly Color CultAirlockBaseColor = Color.FromHex("#8B0000");
     private static readonly Color CultAirlockUnlitColor = Color.FromHex("#FF0000");
+    private EntityUid? _lastAttached;
 
     public override void Initialize()
     {
@@ -74,6 +75,18 @@ public sealed class CultConcealmentSystem : EntitySystem
     {
         if (uid == _player.LocalSession?.AttachedEntity)
             RefreshAll();
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var attached = _player.LocalSession?.AttachedEntity;
+        if (attached == _lastAttached)
+            return;
+
+        _lastAttached = attached;
+        RefreshAll();
     }
 
     /// <summary>

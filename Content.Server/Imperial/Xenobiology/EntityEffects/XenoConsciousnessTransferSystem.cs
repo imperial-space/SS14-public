@@ -20,7 +20,7 @@ public sealed partial class XenoConsciousnessTransferSystem
     [Dependency] private readonly MindSystem         _mind     = default!;
     [Dependency] private readonly MobStateSystem     _mobState = default!;
     [Dependency] private readonly PopupSystem        _popup    = default!;
-    [Dependency] private readonly TransformSystem    _xform    = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
 
     protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<XenoConsciousnessTransferEffect> args)
     {
@@ -41,6 +41,8 @@ public sealed partial class XenoConsciousnessTransferSystem
         _lookup.GetEntitiesInRange(uid, range, candidates);
 
         EntityUid? target = null;
+        var origin = _xform.GetMapCoordinates(uid);
+        var bestDistance = float.MaxValue;
         foreach (var candidateUid in candidates)
         {
             // Пропускаем себя и мёртвых
@@ -57,8 +59,16 @@ public sealed partial class XenoConsciousnessTransferSystem
             if (_mind.TryGetMind(candidateUid, out _, out _))
                 continue;
 
+            var candidateCoords = _xform.GetMapCoordinates(candidateUid);
+            if (candidateCoords.MapId != origin.MapId)
+                continue;
+
+            var distance = (candidateCoords.Position - origin.Position).LengthSquared();
+            if (distance >= bestDistance)
+                continue;
+
+            bestDistance = distance;
             target = candidateUid;
-            break;
         }
 
         if (target == null)

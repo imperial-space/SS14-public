@@ -180,7 +180,7 @@ public sealed class BlobLauncherSystem : EntitySystem
             if (!TryComp<MobStateComponent>(entity, out var mobState) || mobState.CurrentState == Shared.Mobs.MobState.Dead)
                 continue;
 
-            if (!TryComp<DamageableComponent>(entity, out _) || !TryComp<TransformComponent>(entity, out var xform))
+            if (!TryComp<DamageableComponent>(entity, out _) || !TryComp(entity, out TransformComponent? xform))
                 continue;
 
             var targetCoords = _transform.ToMapCoordinates(xform.Coordinates);

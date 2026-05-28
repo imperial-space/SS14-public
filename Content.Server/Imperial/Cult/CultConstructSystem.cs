@@ -26,6 +26,9 @@ namespace Content.Server.Imperial.Cult;
 /// </summary>
 public sealed class CultConstructSystem : EntitySystem
 {
+    private static readonly EntProtoId CommuneAction = "ActionCultCommune";
+    private static readonly EntProtoId CreateWallAction = "ActionCultConstructCreateWall";
+
     private static readonly string[] ForbiddenCultistActions =
     {
         "ActionCultBloodMagic",
@@ -95,7 +98,7 @@ public sealed class CultConstructSystem : EntitySystem
                 _actions.RemoveAction(uid, action.Owner);
         }
 
-        _actions.AddAction(uid, "ActionCultCommune");
+        _actions.AddAction(uid, CommuneAction);
 
         switch (comp.Kind)
         {
@@ -106,7 +109,7 @@ public sealed class CultConstructSystem : EntitySystem
                 }
                 break;
             case CultConstructKind.Juggernaut:
-                _actions.AddAction(uid, "ActionCultConstructCreateWall");
+                _actions.AddAction(uid, CreateWallAction);
                 break;
         }
 
@@ -146,8 +149,6 @@ public sealed class CultConstructSystem : EntitySystem
 
     private void OnSpawnStructureAction(EntityUid uid, CultConstructComponent comp, CultConstructSpawnStructureActionEvent args)
     {
-        args.Handled = true;
-
         var userCoords = _xform.GetMapCoordinates(uid);
         var targetCoords = _xform.ToMapCoordinates(args.Target);
         if (userCoords.MapId != targetCoords.MapId || (userCoords.Position - targetCoords.Position).Length() > 2.5f)
@@ -157,13 +158,12 @@ public sealed class CultConstructSystem : EntitySystem
         }
 
         var spawned = Spawn(args.Prototype, args.Target.SnapToGrid(EntityManager));
+        args.Handled = true;
         _popup.PopupEntity(Loc.GetString("cult-construct-created", ("name", MetaData(spawned).EntityName)), uid, uid, PopupType.Small);
     }
 
     private void OnHealTargetAction(EntityUid uid, CultConstructComponent comp, CultConstructHealTargetActionEvent args)
     {
-        args.Handled = true;
-
         if (!HasComp<Content.Shared.Imperial.Cult.Components.CultistComponent>(args.Target)
             && !HasComp<CultConstructComponent>(args.Target))
         {
@@ -174,6 +174,7 @@ public sealed class CultConstructSystem : EntitySystem
         if (!TryComp<DamageableComponent>(args.Target, out _))
             return;
 
+        args.Handled = true;
         var heal = new DamageSpecifier();
         heal.DamageDict["Blunt"] = -15;
         heal.DamageDict["Slash"] = -15;
@@ -189,8 +190,6 @@ public sealed class CultConstructSystem : EntitySystem
 
     private void OnCreateFloorAction(EntityUid uid, CultConstructComponent comp, CultConstructCreateFloorActionEvent args)
     {
-        args.Handled = true;
-
         var userCoords = _xform.GetMapCoordinates(uid);
         var targetCoords = _xform.ToMapCoordinates(args.Target);
         if (userCoords.MapId != targetCoords.MapId || (userCoords.Position - targetCoords.Position).Length() > 2.5f)
@@ -207,6 +206,7 @@ public sealed class CultConstructSystem : EntitySystem
 
         var indices = _map.CoordinatesToTile(gridUid, grid, args.Target);
         _map.SetTile(gridUid, grid, indices, new Tile(cultFloor.TileId));
+        args.Handled = true;
         _popup.PopupEntity(Loc.GetString("cult-construct-floor-success"), uid, uid, PopupType.Small);
     }
 

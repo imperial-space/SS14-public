@@ -1,6 +1,8 @@
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Imperial.Xenobiology;
 using Content.Shared.Imperial.Xenobiology.Components;
+using Content.Shared.FixedPoint;
 using Robust.Shared.GameObjects;
 
 namespace Content.Server.Imperial.Xenobiology.Systems;
@@ -17,7 +19,9 @@ namespace Content.Server.Imperial.Xenobiology.Systems;
 /// </summary>
 public sealed class XenoSlimeInjectionSystem : EntitySystem
 {
-    private static readonly string[] TrackedReagents =
+    [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
+
+    private static readonly string[] _trackedReagents =
     {
         "SlimeStabilizer",
         "SlimeSteroid",
@@ -36,20 +40,38 @@ public sealed class XenoSlimeInjectionSystem : EntitySystem
         if (args.SolutionId != "chemicals")
             return;
 
-        foreach (var reagentId in TrackedReagents)
-        {
-            var qty = args.Solution.GetReagentQuantity(
-                new Content.Shared.Chemistry.Reagent.ReagentId(reagentId, null));
+        if (!_solutions.TryGetSolution(uid, args.SolutionId, out var solutionEnt, out var solution))
+            return;
 
-            if (qty <= 0)
+        string? reagentToApply = null;
+        var dosesToApply = 0;
+
+        foreach (var reagentId in _trackedReagents)
+        {
+            var reagent = new ReagentId(reagentId, null);
+            var oneDose = FixedPoint2.New(1);
+            var qty = solution.GetReagentQuantity(reagent);
+            var doses = (int) (qty / oneDose);
+
+            if (doses <= 0)
                 continue;
 
-            // Поднимаем событие – XenoSlimeSystem обработает изменение состояния
-            var ev = new XenoSlimeInjectedEvent { ReagentId = reagentId };
-            RaiseLocalEvent(uid, ev);
-
-            // Потребляем реагент из раствора (1 единица = 1 доза)
-            args.Solution.RemoveReagent(reagentId, qty);
+            reagentToApply = reagentId;
+            dosesToApply = doses;
+            break;
         }
+
+        if (reagentToApply == null || dosesToApply <= 0)
+            return;
+
+        for (var i = 0; i < dosesToApply; i++)
+        {
+            // Поднимаем событие на каждую полную дозу.
+            var ev = new XenoSlimeInjectedEvent { ReagentId = reagentToApply };
+            RaiseLocalEvent(uid, ev);
+        }
+
+        // Расходуем из реального контейнера, а не из снапшота args.Solution.
+        _solutions.RemoveReagent(solutionEnt.Value, reagentToApply, FixedPoint2.New(dosesToApply));
     }
 }

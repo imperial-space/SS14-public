@@ -2,6 +2,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Robust.Shared.ViewVariables;
 
 namespace Content.Shared.Imperial.BSA;
 
@@ -51,21 +52,25 @@ public sealed partial class BSAControlBoxComponent : Component
     /// <summary>
     /// Выбранный маяк-цель (EntityUid WarpPoint).
     /// </summary>
+    [ViewVariables]
     public EntityUid? SelectedTarget;
 
     /// <summary>
     /// Есть ли питание от APC.
     /// </summary>
+    [ViewVariables]
     public bool Powered;
 
     /// <summary>
     /// Цель, по которой будет произведён выстрел после задержки (предупреждение ЦК).
     /// </summary>
+    [ViewVariables]
     public EntityUid? PendingFireTarget;
 
     /// <summary>
     /// Момент фактического выстрела (через 5 секунд после нажатия кнопки).
     /// </summary>
+    [ViewVariables]
     public TimeSpan? PendingFireTime;
 
     /// <summary>
@@ -118,18 +123,28 @@ public sealed partial class BSAControlBoxComponent : Component
     [DataField]
     public SoundSpecifier? GoalSound = new SoundPathSpecifier("/Audio/Imperial/bsa/goal.ogg");
 
+    /// <summary>
+    /// Звук глобального предупреждения перед выстрелом.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? AlertSound = new SoundPathSpecifier("/Audio/Corvax/Adminbuse/artillery.ogg");
+
     // ── Runtime-только поля (не сериализуются) ──
 
     /// <summary>EntityUid звуковой сущности накопления — для остановки петли.</summary>
+    [ViewVariables]
     public EntityUid? AccumulationSoundEntity;
 
     /// <summary>Время воспроизведения shot.ogg (t+5s, после artillery.ogg).</summary>
+    [ViewVariables]
     public TimeSpan? ShotAudioTime;
 
     /// <summary>Время появления вспышки у ствола (t+9.5s после нажатия).</summary>
-    public TimeSpan? ShotSoundTime;
+    [ViewVariables]
+    public TimeSpan? MuzzleFlashTime;
 
     /// <summary>Цель для вспышки выстрела (сохраняется до момента спавна флэша).</summary>
+    [ViewVariables]
     public EntityUid? FlashTarget;
 
     /// <summary>
@@ -144,4 +159,10 @@ public sealed partial class BSAControlBoxComponent : Component
     /// </summary>
     [DataField]
     public float MuzzleOffset = 6.5f;
+
+    /// <summary>
+    /// Прототип снаряда-вспышки, который спавнится у дула BSA.
+    /// </summary>
+    [DataField]
+    public EntProtoId BSAShotProjectile = "BSAShotProjectile";
 }

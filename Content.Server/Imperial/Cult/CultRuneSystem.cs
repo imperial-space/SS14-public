@@ -4,7 +4,6 @@ using Content.Server.GameTicking.Rules;
 using Content.Server.Imperial.Cult.Components;
 using Content.Shared.Imperial.Cult.Components;
 using Content.Shared.Imperial.Cult;
-using Content.Server.Body.Systems;
 using Content.Server.Damage.Systems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Mind;
@@ -30,6 +29,7 @@ using Content.Shared.Radio.Components;
 using Content.Shared.Speech.Muting;
 using Content.Shared.StatusEffect;
 using Content.Shared.Stealth.Components;
+using Content.Shared.Gibbing;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
@@ -37,6 +37,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
+using System.Collections.Generic;
 using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.Imperial.Cult;
@@ -55,23 +56,20 @@ public sealed class CultRuneSystem : EntitySystem
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly CultSystem _cult = default!;
     [Dependency] private readonly CultRuleSystem _cultRule = default!;
-    [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly ExplosionSystem _explosion = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly GibbingSystem _gibbing = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly RejuvenateSystem _rejuvenate = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
-    [Dependency] private readonly StealthSystem _stealth = default!;
     [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+
+    private readonly Dictionary<EntityUid, EntityUid> _spiritRealmInvokers = new();
 
     private bool IsCultAligned(EntityUid uid)
     {
@@ -96,8 +94,8 @@ public sealed class CultRuneSystem : EntitySystem
         var query = EntityQueryEnumerator<CultSpiritTetherComponent, TransformComponent>();
         while (query.MoveNext(out var cultistUid, out var tether, out var xform))
         {
-            // Чистим список от удалённых слуг.
-            tether.Homunculi.RemoveAll(h => !EntityManager.EntityExists(h) || TerminatingOrDeleted(h));
+            // Чистим список от удалённых и мёртвых слуг.
+            tether.Homunculi.RemoveAll(h => !Exists(h) || TerminatingOrDeleted(h) || _mobState.IsDead(h));
 
             // Если слуг не осталось, привязка больше не нужна.
             if (tether.Homunculi.Count == 0)
@@ -107,7 +105,7 @@ public sealed class CultRuneSystem : EntitySystem
             }
 
             // Разрыв связи: руна удалена или культист отошёл слишком далеко.
-            if (!EntityManager.EntityExists(tether.RuneUid) || TerminatingOrDeleted(tether.RuneUid))
+            if (!Exists(tether.RuneUid) || TerminatingOrDeleted(tether.RuneUid))
             {
                 BreakSpiritTether(cultistUid, tether);
                 continue;
@@ -127,9 +125,19 @@ public sealed class CultRuneSystem : EntitySystem
             while (tether.DrainAccumulator >= CultSpiritTetherComponent.DrainInterval)
             {
                 tether.DrainAccumulator -= CultSpiritTetherComponent.DrainInterval;
-                _cult.DealSelfDamage(cultistUid, tether.Homunculi.Count * CultSpiritTetherComponent.BrutePerHomunculus);
+                ApplyHomunculusBruteDamage(cultistUid, tether.Homunculi.Count * CultSpiritTetherComponent.BrutePerHomunculus);
             }
         }
+    }
+
+    private void ApplyHomunculusBruteDamage(EntityUid uid, float amount)
+    {
+        if (!TryComp<DamageableComponent>(uid, out var damageable))
+            return;
+
+        var spec = _damage.GetAllDamage((uid, damageable));
+        spec.DamageDict["Blunt"] = spec.DamageDict.GetValueOrDefault("Blunt") + amount;
+        _damage.SetDamage((uid, damageable), spec);
     }
 
     // ──────────────────────── Rune Interaction ──────────────────────────
@@ -292,9 +300,9 @@ public sealed class CultRuneSystem : EntitySystem
         // Создаём камень души до уничтожения жертвы
         var soulStone = Spawn("CultSoulStone", Transform(runeUid).Coordinates);
 
-        // Гибируем жертву (части тела, мозг, вещи остаются на полу)
+        // Превращаем жертву в giblets и оставляем остатки на полу.
         var victimName = MetaData(victim).EntityName;
-        _bodySystem.GibBody(victim, gibOrgans: true);
+        _gibbing.Gib(victim);
 
         _audio.PlayPvs("/Audio/Effects/gib.ogg", runeUid);
         _popup.PopupEntity(Loc.GetString("cult-sacrifice-complete", ("name", victimName)), invoker, invoker);
@@ -455,12 +463,12 @@ public sealed class CultRuneSystem : EntitySystem
         Spawn("FliptoniumWaveEffect", runeCoords);
         Timer.Spawn(200, () =>
         {
-            if (!EntityManager.EntityExists(uid) || TerminatingOrDeleted(uid)) return;
+            if (!Exists(uid) || TerminatingOrDeleted(uid)) return;
             Spawn("FliptoniumWaveEffect", Transform(uid).Coordinates);
         });
         Timer.Spawn(400, () =>
         {
-            if (!EntityManager.EntityExists(uid) || TerminatingOrDeleted(uid)) return;
+            if (!Exists(uid) || TerminatingOrDeleted(uid)) return;
             Spawn("FliptoniumWaveEffect", Transform(uid).Coordinates);
         });
 
@@ -476,12 +484,15 @@ public sealed class CultRuneSystem : EntitySystem
     private void ActivateSpiritRealmRune(EntityUid uid, CultRuneComponent rune, EntityUid invoker)
     {
         // Открываем BUI выбора — руна не уничтожается немедленно
+        _spiritRealmInvokers[uid] = invoker;
         _ui.TryOpenUi(uid, CultSpiritRealmBuiKey.Key, invoker);
     }
 
     private void OnSpiritRealmChoice(EntityUid uid, CultRuneComponent rune, CultSpiritRealmChoiceMessage msg)
     {
-        var invoker = msg.Actor;
+        var invoker = _spiritRealmInvokers.GetValueOrDefault(uid, msg.Actor);
+
+        _spiritRealmInvokers.Remove(uid);
 
         if (!HasComp<CultistComponent>(invoker))
             return;
@@ -516,6 +527,8 @@ public sealed class CultRuneSystem : EntitySystem
             var extra = Spawn("MobCultHomunculus", Transform(runeUid).Coordinates);
             existingTether.Homunculi.Add(extra);
 
+            ApplyHomunculusBruteDamage(invoker, existingTether.Homunculi.Count * CultSpiritTetherComponent.BrutePerHomunculus);
+
             _popup.PopupEntity(Loc.GetString("cult-spirit-realm-homunculus-summoned"), invoker, invoker, PopupType.Medium);
             _audio.PlayPvs(CultMagicSound, runeUid);
             return;
@@ -527,6 +540,8 @@ public sealed class CultRuneSystem : EntitySystem
         var tether = EnsureComp<CultSpiritTetherComponent>(invoker);
         tether.RuneUid = runeUid;
         tether.Homunculi.Add(homunculus);
+
+        ApplyHomunculusBruteDamage(invoker, tether.Homunculi.Count * CultSpiritTetherComponent.BrutePerHomunculus);
 
         _audio.PlayPvs(CultMagicSound, runeUid);
         _popup.PopupEntity(Loc.GetString("cult-spirit-realm-homunculus-summoned"), invoker, invoker, PopupType.Large);
@@ -569,7 +584,7 @@ public sealed class CultRuneSystem : EntitySystem
         // Автовозврат через 60 секунд
         Timer.Spawn(60_000, () =>
         {
-            if (!EntityManager.EntityExists(spirit) || TerminatingOrDeleted(spirit))
+            if (!Exists(spirit) || TerminatingOrDeleted(spirit))
                 return;
             ReturnFromSpirit(spirit);
         });
@@ -586,7 +601,7 @@ public sealed class CultRuneSystem : EntitySystem
         }
 
         var body = comp.OriginalBody;
-        if (EntityManager.EntityExists(body) && !TerminatingOrDeleted(body))
+        if (Exists(body) && !TerminatingOrDeleted(body))
         {
             _mind.TransferTo(mindId, body);
             _stamina.TakeStaminaDamage(body, 100f);
@@ -599,7 +614,7 @@ public sealed class CultRuneSystem : EntitySystem
     {
         foreach (var homunculus in tether.Homunculi)
         {
-            if (EntityManager.EntityExists(homunculus) && !TerminatingOrDeleted(homunculus))
+            if (Exists(homunculus) && !TerminatingOrDeleted(homunculus))
                 QueueDel(homunculus);
         }
 

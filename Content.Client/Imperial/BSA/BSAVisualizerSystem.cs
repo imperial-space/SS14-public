@@ -29,15 +29,15 @@ public sealed class BSAVisualizerSystem : EntitySystem
     }
 
     private void OnInit(Entity<BSAControlBoxComponent> ent, ref ComponentInit args)
-        => UpdateSprite(ent.Owner);
+        => UpdateSprite(ent.Owner, ent.Comp);
 
     private void OnMove(Entity<BSAControlBoxComponent> ent, ref MoveEvent args)
-        => UpdateSprite(ent.Owner);
+        => UpdateSprite(ent.Owner, ent.Comp);
 
     private void OnMachineState(Entity<BSAControlBoxComponent> ent, ref AfterAutoHandleStateEvent args)
-        => UpdateSprite(ent.Owner);
+        => UpdateSprite(ent.Owner, ent.Comp);
 
-    private void UpdateSprite(EntityUid uid)
+    private void UpdateSprite(EntityUid uid, BSAControlBoxComponent component)
     {
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
@@ -45,7 +45,7 @@ public sealed class BSAVisualizerSystem : EntitySystem
         if (!_xformQuery.TryGetComponent(uid, out var xform))
             return;
 
-        var assembled = TryComp<BSAControlBoxComponent>(uid, out var bsa) && bsa.Assembled;
+        var assembled = component.Assembled;
 
         if (assembled)
         {

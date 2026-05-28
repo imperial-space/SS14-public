@@ -1,6 +1,7 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Emp;
 using Content.Server.Explosion.EntitySystems;
+using Content.Server.Imperial.Xenobiology.EntityEffects;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Xenobiology.Components;
@@ -10,6 +11,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 using Robust.Shared.Map;
+using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.Xenobiology.Systems;
 
@@ -32,6 +34,8 @@ public sealed class XenoChargedSlimeCoreSystem : EntitySystem
     [Dependency] private readonly EmpSystem                     _emp       = default!;
     [Dependency] private readonly ExplosionSystem               _explosion = default!;
     [Dependency] private readonly EntityLookupSystem            _lookup    = default!;
+    [Dependency] private readonly XenoObediencePotionSystem     _obedience = default!;
+    [Dependency] private readonly IRobustRandom                 _random    = default!;
     [Dependency] private readonly TransformSystem               _xform     = default!;
 
     public override void Initialize()
@@ -110,7 +114,7 @@ public sealed class XenoChargedSlimeCoreSystem : EntitySystem
         EntityCoordinates tileCoords,
         EntityUid user)
     {
-        switch (slimeColor)
+        switch (GetEffectArchetype(slimeColor))
         {
             // ── Тип «Промышленный» (Grey) ────────────────────────────────────
             // Позволяет массово штамповать ресурсы
@@ -160,6 +164,39 @@ public sealed class XenoChargedSlimeCoreSystem : EntitySystem
                 _popup.PopupCoordinates("Ядро испускает мощный импульс!", tileCoords, PopupType.LargeCaution);
                 break;
         }
+    }
+
+    private XenoSlimeColor GetEffectArchetype(XenoSlimeColor slimeColor)
+    {
+        return slimeColor switch
+        {
+            XenoSlimeColor.Grey or XenoSlimeColor.Metal or XenoSlimeColor.Pyrite or XenoSlimeColor.Adamantine
+                => XenoSlimeColor.Grey,
+            XenoSlimeColor.Orange or XenoSlimeColor.Red or XenoSlimeColor.Oil or XenoSlimeColor.Black
+                => XenoSlimeColor.Orange,
+            XenoSlimeColor.Purple or XenoSlimeColor.Blue or XenoSlimeColor.DarkPurple or XenoSlimeColor.Cerulean or XenoSlimeColor.Silver
+                => XenoSlimeColor.Blue,
+            XenoSlimeColor.Yellow or XenoSlimeColor.DarkBlue or XenoSlimeColor.Bluespace
+                => XenoSlimeColor.Yellow,
+            XenoSlimeColor.Green or XenoSlimeColor.Sepia
+                => XenoSlimeColor.Green,
+            XenoSlimeColor.Pink or XenoSlimeColor.LightPink
+                => XenoSlimeColor.Pink,
+            XenoSlimeColor.Gold
+                => XenoSlimeColor.Gold,
+            XenoSlimeColor.Rainbow
+                => _random.Pick(new[]
+                {
+                    XenoSlimeColor.Grey,
+                    XenoSlimeColor.Orange,
+                    XenoSlimeColor.Blue,
+                    XenoSlimeColor.Yellow,
+                    XenoSlimeColor.Green,
+                    XenoSlimeColor.Pink,
+                    XenoSlimeColor.Gold,
+                }),
+            _ => XenoSlimeColor.Yellow,
+        };
     }
 
     // ══════════════════════════════════════════════════════════════════════════
@@ -275,7 +312,7 @@ public sealed class XenoChargedSlimeCoreSystem : EntitySystem
         _lookup.GetEntitiesInRange<XenoSlimeComponent>(coords, 8f, slimes);
 
         foreach (var (slimeUid, slimeComp) in slimes)
-            slimeComp.Friends.Add(user);
+            _obedience.MakeSlimeFriendlyToAll(slimeUid, slimeComp, user);
 
         var count = slimes.Count;
         _popup.PopupCoordinates(

@@ -865,7 +865,7 @@
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 40
 
@@ -904,7 +904,7 @@
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 40
   - type: Item
@@ -1247,8 +1247,6 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: false
   - type: UseDelay
     delay: 20
   - type: SolutionRegeneration
@@ -1342,7 +1340,7 @@
   - type: Battery
     maxCharge: 300
     startingCharge: 300
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 25
   - type: AmmoCounter
@@ -1353,9 +1351,6 @@
     rules: You remember nothing from previous life.
     raffle:
       settings: short
-  - type: PredictedBattery
-    maxCharge: 30
-    startingCharge: 30
 
 - type: entity
   id: HandTeleporterSCPDeva
@@ -9065,7 +9060,7 @@
   id: NDA013
   suffix: Fredik21, Недра, Объект
   parent: Cigarette
-  name: Cigarette «Blue Lady» 
+  name: Cigarette «Blue Lady»
   components:
   - type: SolutionContainerManager
     solutions:
@@ -9696,7 +9691,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - WallWhiteSCPTimedDespawn
@@ -9717,7 +9711,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - WallBlackSCPTimedDespawn
@@ -12121,7 +12114,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPinfectedNDA020
@@ -12142,7 +12134,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPZombie
@@ -12186,7 +12177,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPAvelGhost
@@ -12207,7 +12197,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialMem
@@ -13030,7 +13019,6 @@
     Brutepack: 5
     Ointment: 5
     Bloodpack: 5
-    StandardHypospray: 5
     Tourniquet: 2
     ChemistryBottleEpinephrine: 3
     ChemistryBottleBicaridine: 1
@@ -13512,7 +13500,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - tesla1
@@ -13533,7 +13520,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - tesla2
@@ -13637,7 +13623,7 @@
 - type: currency
   id: CreditNDA
   displayName: Кредиты Недр
-  cash: 
+  cash:
     1: CreditNDA1
   canWithdraw: true
 
@@ -15036,7 +15022,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPZombieShadow
@@ -15057,7 +15042,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPJellyShadow
@@ -15078,7 +15062,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPnda131AShadow
@@ -15099,7 +15082,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPDOCShadow
@@ -15120,7 +15102,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPFiremanShadow
@@ -15141,7 +15122,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPAvelShadow
@@ -15162,7 +15142,6 @@
         - sprite: Mobs/Animals/mouse.rsi
           state: icon-2
         - state: timed
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - ImperialSCPDedShadow
@@ -16729,7 +16708,7 @@
       - id: TrashDecorativegauze
       - id: TrashDecorativeglasses
       - id: TrashDecorativewire
-  
+
 - type: entity
   name: Trash Spawner
   id: RandomSpawnerTrashDecorative

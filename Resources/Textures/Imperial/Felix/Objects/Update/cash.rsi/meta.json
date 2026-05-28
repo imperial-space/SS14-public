@@ -1,0 +1,47 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "@lune_felix",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "spacecash1"
+        },
+        {
+            "name": "spacecash10"
+        },
+        {
+            "name": "spacecash100"
+        },
+        {
+            "name": "spacecash500"
+        },
+        {
+            "name": "spacecash1000"
+        },
+        {
+            "name": "spacecash2500"
+        },
+        {
+            "name": "spacecash5000"
+        },
+        {
+            "name": "spacecash10000"
+        },
+        {
+            "name": "spacecash20000"
+        },
+        {
+            "name": "spacecash30000"
+        },
+        {
+            "name": "spacecash100000"
+        },
+        {
+            "name": "spacecash1000000"
+        }
+    ]
+}

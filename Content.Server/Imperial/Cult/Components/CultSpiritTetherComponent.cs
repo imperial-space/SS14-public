@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using Robust.Shared.GameObjects;
+using Robust.Shared.ViewVariables;
+
 namespace Content.Server.Imperial.Cult.Components;
 
 /// <summary>
@@ -9,12 +13,15 @@ namespace Content.Server.Imperial.Cult.Components;
 public sealed partial class CultSpiritTetherComponent : Component
 {
     /// <summary>UID руны, к которой привязан культист.</summary>
+    [ViewVariables]
     public EntityUid RuneUid;
 
     /// <summary>Список активных гомункулов.</summary>
+    [ViewVariables]
     public List<EntityUid> Homunculi = new();
 
     /// <summary>Накопитель времени для дрейфа урона.</summary>
+    [ViewVariables]
     public float DrainAccumulator;
 
     /// <summary>Интервал (сек) между тиками урона.</summary>

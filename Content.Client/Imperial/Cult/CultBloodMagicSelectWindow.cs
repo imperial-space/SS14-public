@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.Imperial.Cult;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
@@ -12,21 +13,22 @@ public sealed class CultBloodMagicSelectWindow : DefaultWindow
 {
     public event Action<string>? OnSpellSelected;
 
-    private static readonly (string LocKey, string SpellId)[] Spells =
+    private static readonly string[] _spells =
     {
-        ("cult-spell-stun",               "ActionCultStun"),
-        ("cult-spell-shackles",           "ActionCultShackles"),
-        ("cult-spell-teleport",           "ActionCultTeleport"),
-        ("cult-spell-emp",                "ActionCultEmp"),
-        ("cult-spell-twisted-construction","ActionCultTwistedConstruction"),
-        ("cult-spell-summon-dagger",      "ActionCultSummonDagger"),
-        ("cult-spell-summon-equipment",   "ActionCultSummonEquipment"),
-        ("cult-spell-conceal-presence",   "ActionCultConcealPresence"),        ("cult-spell-blood-rites",        "ActionCultBloodRites"),
+        "ActionCultStun",
+        "ActionCultShackles",
+        "ActionCultTeleport",
+        "ActionCultEmp",
+        "ActionCultTwistedConstruction",
+        "ActionCultSummonDagger",
+        "ActionCultSummonEquipment",
+        "ActionCultConcealPresence",
+        "ActionCultBloodRites",
     };
 
     public CultBloodMagicSelectWindow()
     {
-        Title = "Выберите заклинание:";
+        Title = Loc.GetString("cult-blood-magic-select-title");
         MinSize = new Vector2(280, 400);
 
         var scroll = new ScrollContainer
@@ -42,9 +44,12 @@ public sealed class CultBloodMagicSelectWindow : DefaultWindow
             SeparationOverride = 4,
         };
 
-        foreach (var (locKey, spellId) in Spells)
+        foreach (var spellId in _spells)
         {
             var capturedId = spellId;
+            var locKey = CultSpellLocKeys.Mapping.TryGetValue(spellId, out var key)
+                ? key
+                : "cult-spell-unknown";
             var btn = new Button
             {
                 Text = Loc.GetString(locKey),
@@ -54,7 +59,6 @@ public sealed class CultBloodMagicSelectWindow : DefaultWindow
             btn.OnPressed += _ =>
             {
                 OnSpellSelected?.Invoke(capturedId);
-                Close();
             };
             vbox.AddChild(btn);
         }

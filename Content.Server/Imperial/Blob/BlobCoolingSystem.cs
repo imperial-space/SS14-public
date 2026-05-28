@@ -23,12 +23,16 @@ public sealed class BlobCoolingSystem : EntitySystem
                 continue;
 
             cooling.EffectAccumulator += frameTime;
-            if (cooling.EffectAccumulator < cooling.EffectInterval)
-                continue;
+            var applied = false;
+            while (cooling.EffectAccumulator >= cooling.EffectInterval)
+            {
+                cooling.EffectAccumulator -= cooling.EffectInterval;
+                ApplyCooling(uid, blobId, cooling, xform.Coordinates);
+                applied = true;
+            }
 
-            cooling.EffectAccumulator -= cooling.EffectInterval;
-            ApplyCooling(uid, blobId, cooling, xform.Coordinates);
-            Dirty(uid, cooling);
+            if (applied)
+                Dirty(uid, cooling);
         }
     }
 

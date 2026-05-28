@@ -75,14 +75,14 @@ public sealed class BlobChemicalWindow : DefaultWindow
         foreach (var chemical in state.Chemicals)
         {
             var selected = chemical == state.CurrentChemical;
-            var affordable = selected || state.Biomass >= state.ChangeCost;
+            var affordable = state.Biomass >= state.ChangeCost;
             var color = BlobChemicalVisuals.GetColor(chemical);
             var capturedChemical = chemical;
 
             var button = new Button
             {
                 HorizontalExpand = true,
-                Disabled = !affordable,
+                Disabled = selected || !affordable,
                 MinSize = new Vector2(0, 42),
             };
 
@@ -124,6 +124,9 @@ public sealed class BlobChemicalWindow : DefaultWindow
 
             button.OnPressed += _ =>
             {
+                if (selected)
+                    return;
+
                 OnChemicalSelected?.Invoke(capturedChemical);
                 Close();
             };

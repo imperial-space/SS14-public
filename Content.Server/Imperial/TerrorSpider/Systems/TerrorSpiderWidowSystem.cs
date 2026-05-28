@@ -96,7 +96,7 @@ public sealed class TerrorSpiderWidowSystem : EntitySystem
 
         var solution = new Solution();
         solution.AddReagent(reagentId, FixedPoint2.New(amount));
-        _bloodstream.TryAddToChemicals((target, bloodstream), solution);
+        _bloodstream.TryAddToBloodstream((target, bloodstream), solution);
     }
 
     private static float GetVenomDamageByVolume(float amount)

@@ -20,7 +20,6 @@ public sealed class TerrorSpiderGuardianLeashSystem : EntitySystem
     private static readonly ProtoId<TagPrototype> TerrorSpiderTag = "TerrorSpider";
 
     [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly IGameTiming _timing = default!;

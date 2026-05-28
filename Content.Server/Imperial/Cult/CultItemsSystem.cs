@@ -173,12 +173,12 @@ public sealed class CultItemsSystem : EntitySystem
         }
 
         // Добавляем бонус к первому типу урона (slash или любой другой)
+        if (melee.Damage.DamageDict.Count == 0)
+            return;
+
         var primaryKey = melee.Damage.DamageDict.Keys
             .OrderByDescending(k => melee.Damage.DamageDict[k])
-            .FirstOrDefault();
-
-        if (primaryKey == null)
-            return;
+            .First();
 
         melee.Damage.DamageDict[primaryKey] = melee.Damage.DamageDict[primaryKey] + (int)comp.DamageBonus;
 
@@ -267,16 +267,32 @@ public sealed class CultItemsSystem : EntitySystem
 
     private void OnBlindfoldEquipped(EntityUid uid, CultZealotBlindfoldComponent comp, GotEquippedEvent args)
     {
-        EnsureComp<ShowHealthBarsComponent>(args.Equipee);
+        comp.AddedHealthBars = !HasComp<ShowHealthBarsComponent>(args.Equipee);
+        if (comp.AddedHealthBars)
+            EnsureComp<ShowHealthBarsComponent>(args.Equipee);
+
         if (TryComp<EyeComponent>(args.Equipee, out var eye))
+        {
+            comp.HadEyeState = true;
+            comp.PreviousDrawLight = eye.DrawLight;
             _eye.SetDrawLight((args.Equipee, eye), false);
+        }
+        else
+        {
+            comp.HadEyeState = false;
+        }
     }
 
     private void OnBlindfoldUnequipped(EntityUid uid, CultZealotBlindfoldComponent comp, GotUnequippedEvent args)
     {
-        RemComp<ShowHealthBarsComponent>(args.Equipee);
-        if (TryComp<EyeComponent>(args.Equipee, out var eye))
-            _eye.SetDrawLight((args.Equipee, eye), true);
+        if (comp.AddedHealthBars)
+            RemComp<ShowHealthBarsComponent>(args.Equipee);
+
+        if (comp.HadEyeState && TryComp<EyeComponent>(args.Equipee, out var eye))
+            _eye.SetDrawLight((args.Equipee, eye), comp.PreviousDrawLight);
+
+        comp.AddedHealthBars = false;
+        comp.HadEyeState = false;
     }
 
     // ─── Кровавая сфера ─────────────────────────────────────────────────────
@@ -332,6 +348,6 @@ public sealed class CultItemsSystem : EntitySystem
 
         var damage = new DamageSpecifier();
         damage.DamageDict.Add("Blunt", 40f);
-        _damage.TryChangeDamage(args.Target, damage, true, origin: args.Component.Thrower);
+        _damage.TryChangeDamage(args.Target, damage, false, origin: args.Component.Thrower);
     }
 }

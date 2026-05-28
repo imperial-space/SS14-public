@@ -34,8 +34,7 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultChangelingRule = "Changeling";
     private static readonly EntProtoId ParadoxCloneRuleId = "ParadoxCloneSpawn";
     private static readonly EntProtoId DefaultWizardRule = "Wizard";
-    private static readonly EntProtoId DefaultCultRule = "Cult";
-    private static readonly EntProtoId DefaultBloodBrotherRule = "BloodBrother";
+    private static readonly EntProtoId DefaultNinjaRule = "NinjaSpawn";
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
 
     // All antag verbs have names so invokeverb works.
@@ -212,47 +211,22 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(wizard);
 
-        var cultistName = Loc.GetString("admin-verb-text-make-cultist");
-        Verb cultist = new()
+        var ninjaName = Loc.GetString("admin-verb-text-make-space-ninja");
+        Verb ninja = new()
         {
-            Text = cultistName,
+            Text = ninjaName,
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Objects/Weapons/Melee/cult_dagger.rsi"), "icon"),
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Weapons/Melee/energykatana.rsi"), "icon"),
             Act = () =>
             {
-                _antag.ForceMakeAntag<CultRuleComponent>(targetPlayer, DefaultCultRule);
+                _antag.ForceMakeAntag<NinjaRoleComponent>(targetPlayer, DefaultNinjaRule);
             },
             Impact = LogImpact.High,
-            Message = string.Join(": ", cultistName, Loc.GetString("admin-verb-make-cultist")),
+            Message = string.Join(": ", ninjaName, Loc.GetString("admin-verb-make-space-ninja")),
         };
-        args.Verbs.Add(cultist);
+        args.Verbs.Add(ninja);
 
-        var bloodBrotherName = Loc.GetString("admin-verb-text-make-blood-brother");
-        Verb bloodBrother = new()
-        {
-            Text = bloodBrotherName,
-            Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Misc/job_icons.rsi"), "Syndicate"),
-            Act = () =>
-            {
-                var candidates = GetBloodBrotherCandidates(targetPlayer);
-
-                if (candidates.Count == 0)
-                {
-                    _bloodBrother.TryMakeSoloBloodBrother(targetPlayer);
-                    return;
-                }
-
-                var targetName = _mindSystem.GetCharacterName(targetPlayer.UserId) ?? Name(args.Target);
-                var ui = new BloodBrotherSelectionEui(targetPlayer, targetName, candidates, _bloodBrother);
-                _euiManager.OpenEui(ui, player);
-            },
-            Impact = LogImpact.High,
-            Message = string.Join(": ", bloodBrotherName, Loc.GetString("admin-verb-make-blood-brother")),
-        };
-        args.Verbs.Add(bloodBrother);
-
-        if (HasComp<HumanoidAppearanceComponent>(args.Target)) // only humanoids can be cloned
+        if (HasComp<HumanoidProfileComponent>(args.Target)) // only humanoids can be cloned
             args.Verbs.Add(paradox);
     }
 

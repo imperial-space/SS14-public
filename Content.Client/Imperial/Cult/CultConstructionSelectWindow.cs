@@ -9,7 +9,7 @@ public sealed class CultConstructionSelectWindow : DefaultWindow
 {
     public event Action<string>? OnStructureSelected;
 
-    private static readonly (string LocKey, string ConstructionId)[] Structures =
+    private static readonly (string LocKey, string ConstructionId)[] _structures =
     {
         ("cult-construct-altar",    "CultConstructionAltar"),
         ("cult-construct-forge",    "CultConstructionForge"),
@@ -37,7 +37,7 @@ public sealed class CultConstructionSelectWindow : DefaultWindow
             SeparationOverride = 4,
         };
 
-        foreach (var (locKey, constructionId) in Structures)
+        foreach (var (locKey, constructionId) in _structures)
         {
             var capturedId = constructionId;
             var btn = new Button

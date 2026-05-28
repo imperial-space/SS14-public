@@ -1,3 +1,5 @@
+using Robust.Shared.ViewVariables;
+
 namespace Content.Server.Imperial.Cult.Components;
 
 /// <summary>
@@ -8,6 +10,6 @@ namespace Content.Server.Imperial.Cult.Components;
 public sealed partial class CultBarrierRuneComponent : Component
 {
     /// <summary>Барьерная сущность, созданная этой руной. Null если барьер не активен.</summary>
-    [DataField]
+    [ViewVariables]
     public EntityUid? BarrierEntity { get; set; }
 }

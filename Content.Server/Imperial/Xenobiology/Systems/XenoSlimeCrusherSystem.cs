@@ -133,7 +133,7 @@ public sealed class XenoSlimeCrusherSystem : EntitySystem
 
             foreach (var (slime, timeLeft) in crusher.Processing)
             {
-                if (!EntityManager.EntityExists(slime))
+                if (!Exists(slime))
                 {
                     toFinish.Add(slime);
                     continue;
@@ -147,7 +147,7 @@ public sealed class XenoSlimeCrusherSystem : EntitySystem
 
             foreach (var slime in toFinish)
             {
-                if (EntityManager.EntityExists(slime) &&
+                if (Exists(slime) &&
                     TryComp<XenoSlimeComponent>(slime, out var slimeComp))
                 {
                     SpawnExtract(slime, slimeComp, uid);
@@ -162,8 +162,7 @@ public sealed class XenoSlimeCrusherSystem : EntitySystem
 
     private void ScanForSlimes(EntityUid uid, XenoSlimeCrusherComponent crusher)
     {
-        if (!TryComp<TransformComponent>(uid, out var xform))
-            return;
+        var xform = Transform(uid);
 
         var found = new HashSet<Entity<XenoSlimeComponent>>();
         _lookup.GetEntitiesInRange(xform.Coordinates, crusher.AbsorbRange, found,

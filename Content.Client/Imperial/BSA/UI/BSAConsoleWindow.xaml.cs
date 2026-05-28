@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Client.Message;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Imperial.BSA;
@@ -9,6 +10,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Imperial.BSA.UI;
 
@@ -90,10 +92,23 @@ public sealed partial class BSAConsoleWindow : FancyWindow
             _selectedBeacon = null;
         _updating = false;
 
-        // Кнопка выстрела
-        FireButton.Disabled = !state.CanFire;
+        UpdateCooldownAndFireButton();
+    }
 
-        // Перезарядка
+    private void UpdateCooldownAndFireButton()
+    {
+        if (_lastState == null)
+            return;
+
+        var state = _lastState;
+
+        var ready = state.Assembled
+            && state.Powered
+            && state.SelectedTarget != null
+            && (state.NextFire == null || _timing.CurTime >= state.NextFire.Value);
+
+        FireButton.Disabled = !ready;
+
         if (state.NextFire != null)
         {
             var remaining = state.NextFire.Value - _timing.CurTime;
@@ -112,14 +127,24 @@ public sealed partial class BSAConsoleWindow : FancyWindow
             CooldownLabel.SetMarkup($"[color=lime]{Loc.GetString("bsa-ready")}[/color]");
         }
     }
+
+    protected override void FrameUpdate(FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+
+        UpdateCooldownAndFireButton();
+    }
 }
 
 /// <summary>
 /// Отображает иконку части BSA — серая/потухшая если отсутствует, цветная если на месте.
 /// Использует PA RSI файлы: control_box, end_cap, power_box.
 /// </summary>
-public sealed class BSAPartControl : Control
+public sealed partial class BSAPartControl : Control
 {
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IResourceCache _resourceCache = default!;
+
     private static readonly ProtoId<ShaderPrototype> GreyscaleShaderId = "Greyscale";
     private readonly ShaderInstance _greyShader;
     private readonly TextureRect _icon;
@@ -132,8 +157,8 @@ public sealed class BSAPartControl : Control
 
     public BSAPartControl()
     {
-        _greyShader = IoCManager.Resolve<IPrototypeManager>()
-            .Index(GreyscaleShaderId).Instance();
+        IoCManager.InjectDependencies(this);
+        _greyShader = _prototypeManager.Index(GreyscaleShaderId).Instance();
 
         AddChild(_icon = new TextureRect
         {
@@ -144,11 +169,19 @@ public sealed class BSAPartControl : Control
     protected override void EnteredTree()
     {
         base.EnteredTree();
-        var cache = IoCManager.Resolve<IResourceCache>();
-        var rsi = cache.GetResource<RSIResource>(
-            $"/Textures/Structures/Power/Generation/PA/{PartRsi}.rsi").RSI;
-        MinSize = (Vector2i) rsi.Size * 2; // ×2 чтобы было крупнее
-        _icon.Texture = rsi["completed"].Frame0;
+        var path = $"/Textures/Structures/Power/Generation/PA/{PartRsi}.rsi";
+        if (!_resourceCache.TryGetResource<RSIResource>(path, out var rsiResource))
+        {
+            MinSize = new Vector2(64f, 64f);
+            SetExists(AlwaysExists);
+            return;
+        }
+
+        var rsi = rsiResource.RSI;
+        MinSize = (Vector2i)rsi.Size * 2; // ×2 чтобы было крупнее
+        if (rsi.TryGetState("completed", out var state))
+            _icon.Texture = state.Frame0;
+
         SetExists(AlwaysExists);
     }
 

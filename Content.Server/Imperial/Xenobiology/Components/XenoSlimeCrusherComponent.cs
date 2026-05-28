@@ -1,6 +1,7 @@
 using Robust.Shared.Audio;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Serialization.Manager.Attributes;
+using Robust.Shared.ViewVariables;
 
 namespace Content.Server.Imperial.Xenobiology.Components;
 
@@ -35,13 +36,16 @@ public sealed partial class XenoSlimeCrusherComponent : Component
     // ── рантайм-состояние ────────────────────────────────────────────────
 
     /// <summary>Включена ли дробилка.</summary>
+    [ViewVariables]
     public bool Active = false;
 
     /// <summary>Таймер до следующего скана.</summary>
+    [ViewVariables]
     public float ScanTimer = 0f;
 
     /// <summary>
     /// Слаймы в процессе обработки: EntityUid → оставшееся время (сек).
     /// </summary>
+    [ViewVariables]
     public readonly Dictionary<EntityUid, float> Processing = new();
 }

@@ -27,7 +27,6 @@ public sealed class BSASystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly MultipartMachineSystem _multipartMachine = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
@@ -61,20 +60,12 @@ public sealed class BSASystem : EntitySystem
             }
 
             // t+9.5s: вспышка у ствола
-            if (comp.ShotSoundTime != null && now >= comp.ShotSoundTime.Value)
+            if (comp.MuzzleFlashTime != null && now >= comp.MuzzleFlashTime.Value)
             {
-                comp.ShotSoundTime = null;
+                comp.MuzzleFlashTime = null;
                 if (comp.FlashTarget is { } flashTarget && Exists(flashTarget))
                     SpawnShotProjectile(uid, comp, flashTarget);
                 comp.FlashTarget = null;
-            }
-
-            // Звук накопления останавливается когда перезарядка завершена
-            if (comp.AccumulationSoundEntity != null
-                && comp.NextFire != null
-                && now >= comp.NextFire.Value)
-            {
-                StopAccumulation(uid, comp);
             }
 
             // Фактический взрыв (t+9s)
@@ -87,6 +78,7 @@ public sealed class BSASystem : EntitySystem
             var target = comp.PendingFireTarget.Value;
             comp.PendingFireTarget = null;
             comp.PendingFireTime = null;
+            StopAccumulation(uid, comp);
 
             if (Exists(target))
                 DoExplosion(uid, comp, target);
@@ -126,7 +118,7 @@ public sealed class BSASystem : EntitySystem
         else
         {
             var target = GetEntity(args.Target.Value);
-            comp.SelectedTarget = Exists(target) ? target : null;
+            comp.SelectedTarget = IsValidTargetBeacon(uid, target) ? target : null;
 
             // Звук выбора маяка
             if (comp.SelectedTarget != null)
@@ -142,7 +134,7 @@ public sealed class BSASystem : EntitySystem
             return;
 
         var target = comp.SelectedTarget;
-        if (target == null || !Exists(target.Value))
+        if (target == null || !IsValidTargetBeacon(uid, target.Value))
         {
             comp.SelectedTarget = null;
             UpdateUI(uid, comp);
@@ -159,7 +151,7 @@ public sealed class BSASystem : EntitySystem
         const float explosionDelay = 9f;
 
         comp.FlashTarget = target.Value;
-        comp.ShotSoundTime = _timing.CurTime + TimeSpan.FromSeconds(explosionDelay + 0.5f);
+        comp.MuzzleFlashTime = _timing.CurTime + TimeSpan.FromSeconds(explosionDelay + 0.5f);
         comp.ShotAudioTime = _timing.CurTime + TimeSpan.FromSeconds(shotSoundDelay);
         comp.PendingFireTarget = target.Value;
         comp.PendingFireTime = _timing.CurTime + TimeSpan.FromSeconds(explosionDelay);
@@ -174,11 +166,8 @@ public sealed class BSASystem : EntitySystem
         _chatManager.DispatchServerAnnouncement(announcement, Color.Red);
 
         // Звук тревоги на весь сервер
-        _audio.PlayGlobal(
-            "/Audio/Corvax/Adminbuse/artillery.ogg",
-            Filter.Broadcast(),
-            true,
-            AudioParams.Default.WithVolume(5f));
+        if (comp.AlertSound != null)
+            _audio.PlayGlobal(comp.AlertSound, Filter.Broadcast(), true, AudioParams.Default.WithVolume(5f));
 
         // Звук нажатия кнопки (click у пушки)
         _audio.PlayPvs(comp.ButtonSound, uid);
@@ -194,7 +183,7 @@ public sealed class BSASystem : EntitySystem
             comp.AccumulationSoundEntity = accum.Value.Entity;
 
         // Немедленно спаунить снаряд из дула
-        // (вспышка спавнится в Update при ShotSoundTime t+5s)
+        // (вспышка спавнится в Update при MuzzleFlashTime)
 
         UpdateUI(uid, comp);
     }
@@ -205,6 +194,8 @@ public sealed class BSASystem : EntitySystem
 
         if (TryComp<MultipartMachineComponent>(uid, out var machine))
             _multipartMachine.Rescan((uid, machine));
+
+        UpdateUI(uid, comp);
     }
 
     // ─────────────────────────── Fire Logic ──────────────────────
@@ -228,6 +219,14 @@ public sealed class BSASystem : EntitySystem
             return false;
 
         return true;
+    }
+
+    private bool IsValidTargetBeacon(EntityUid uid, EntityUid target)
+    {
+        if (!Exists(target) || !HasComp<WarpPointComponent>(target))
+            return false;
+
+        return Transform(target).MapID == Transform(uid).MapID;
     }
 
     /// <summary>
@@ -273,7 +272,7 @@ public sealed class BSASystem : EntitySystem
 
         // Спавним у конца ствола по оси пушки, не по направлению к цели
         var spawnCoords = new EntityCoordinates(mapUid, muzzleCoords.Position + forwardDir * comp.MuzzleOffset);
-        var projectile = Spawn("BSAShotProjectile", spawnCoords);
+        var projectile = Spawn(comp.BSAShotProjectile, spawnCoords);
 
         // Поворот спрайта по оси ствола пушки
         _transform.SetWorldRotation(projectile, forwardDir.ToWorldAngle());
@@ -300,14 +299,16 @@ public sealed class BSASystem : EntitySystem
             addLog: true);
 
         // Визуальный эффект попадания
-        var onGridCoords = new EntityCoordinates(
-            targetXform.GridUid ?? targetXform.MapUid!.Value,
-            targetXform.LocalPosition);
-        Spawn(comp.ImpactEffect, onGridCoords);
+        var effectParent = targetXform.GridUid ?? targetXform.MapUid;
+        if (effectParent != null && !TerminatingOrDeleted(effectParent.Value))
+        {
+            var onGridCoords = new EntityCoordinates(effectParent.Value, targetXform.LocalPosition);
+            Spawn(comp.ImpactEffect, onGridCoords);
 
-        // Звук последствий: слышен в радиусе 25 тайлов (50×50) у цели (-5 dB)
-        _audio.PlayPvs(comp.ConsequencesSound, onGridCoords,
-            AudioParams.Default.WithVolume(-5f).WithMaxDistance(25f));
+            // Звук последствий: слышен в радиусе 25 тайлов (50×50) у цели (-5 dB)
+            _audio.PlayPvs(comp.ConsequencesSound, onGridCoords,
+                AudioParams.Default.WithVolume(-5f).WithMaxDistance(25f));
+        }
 
         UpdateUI(uid, comp);
     }

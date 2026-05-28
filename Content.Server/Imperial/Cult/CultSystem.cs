@@ -3,6 +3,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.Antag;
 using Content.Server.AlertLevel;
+using Content.Server.Body;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking.Rules;
@@ -27,7 +28,6 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Mind.Components;
-using Content.Server.Imperial.Cult.Components;
 using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Server.Roles;
@@ -93,13 +93,13 @@ public sealed class CultSystem : EntitySystem
     private const float NarSieDrawTime = 80f;
     private const string CultMagicSound = "/Audio/Effects/desecration-01.ogg";
     private const string NarSieRitualMusic = "/Audio/Imperial/cult/Tear-of-veil.ogg";
+    private static readonly ProtoId<TagPrototype> WallTag = "Wall";
     private static readonly TimeSpan CultReagentCheckInterval = TimeSpan.FromSeconds(1);
     private static readonly TimeSpan HolyWaterDeconversionDelay = TimeSpan.FromSeconds(150);
     private static readonly FixedPoint2 HolyWaterDeconversionThreshold = FixedPoint2.New(40);
 
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly CultRuleSystem _cultRule = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
@@ -108,10 +108,8 @@ public sealed class CultSystem : EntitySystem
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly EmpSystem _emp = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
@@ -131,7 +129,6 @@ public sealed class CultSystem : EntitySystem
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly SharedStackSystem _stack = default!;
     [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly CultShieldSystem _cultShield = default!;
@@ -141,6 +138,7 @@ public sealed class CultSystem : EntitySystem
     [Dependency] private readonly ITileDefinitionManager _tileDefManager = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private readonly VisualBodySystem _visualBodySystem = default!;
 
     private readonly Dictionary<EntityUid, List<EntityUid>> _activeNarSieBarriers = new();
 
@@ -341,7 +339,7 @@ public sealed class CultSystem : EntitySystem
 
             cultist.NextReagentCheck = now + CultReagentCheckInterval;
 
-            if (!_solutionContainer.ResolveSolution(uid, bloodstream.ChemicalSolutionName, ref bloodstream.ChemicalSolution, out var chemicalSolution))
+            if (!_solutionContainer.ResolveSolution(uid, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var chemicalSolution))
                 continue;
 
             var holyWaterAmount = chemicalSolution.GetTotalPrototypeQuantity("Holywater");
@@ -396,7 +394,7 @@ public sealed class CultSystem : EntitySystem
 
                 // Ищем ближайшую некультовую стену для конвертации
                 if (wallToConvert == null
-                    && _tagSystem.HasTag(entity, "Wall")
+                    && _tagSystem.HasTag(entity, WallTag)
                     && MetaData(entity).EntityPrototype?.ID != "WallCult")
                 {
                     wallToConvert = entity;
@@ -607,11 +605,8 @@ public sealed class CultSystem : EntitySystem
         }
 
         // Восстанавливаем оригинальный цвет глаз
-        if (cultist.OriginalEyeColor.HasValue && TryComp<HumanoidAppearanceComponent>(uid, out var humanoidRestore))
-        {
-            humanoidRestore.EyeColor = cultist.OriginalEyeColor.Value;
-            Dirty(uid, humanoidRestore);
-        }
+        if (cultist.OriginalEyeColor.HasValue)
+            TrySetEntityEyeColor(uid, cultist.OriginalEyeColor.Value);
 
         if (cultist.BuiHolder.HasValue && Exists(cultist.BuiHolder.Value))
             QueueDel(cultist.BuiHolder.Value);
@@ -635,7 +630,7 @@ public sealed class CultSystem : EntitySystem
         args.Handled = true;
 
         if (comp.BuiHolder.HasValue)
-            _ui.TryOpenUi(comp.BuiHolder.Value, CultBloodMagicBuiKey.Key, uid);
+            OpenBloodMagicSelectionUi(comp.BuiHolder.Value, uid);
     }
 
     private void OnSpellSelected(EntityUid uid, CultBuiHolderComponent comp, CultSpellSelectedMessage args)
@@ -653,21 +648,20 @@ public sealed class CultSystem : EntitySystem
             return;
         }
 
-        // Проверяем лимит слотов
-        var limit = cultistComp.OnEmpowerRune ? SpellLimitEmpowered : SpellLimitNormal;
-        if (cultistComp.ActiveSpellCount >= limit)
-        {
-            // Показываем окно замены заклинания
-            _ui.SetUiState(uid, CultBloodMagicBuiKey.Key,
-                new CultBloodMagicSwapState(spellId, new List<string>(cultistComp.PreparedSpells)));
-            _ui.TryOpenUi(uid, CultBloodMagicBuiKey.Key, cultist);
-            return;
-        }
-
         // Проверяем что заклинание ещё не подготовлено
         if (cultistComp.PreparedSpells.Contains(spellId))
         {
             _popup.PopupEntity(Loc.GetString("cult-spell-already-prepared"), cultist, cultist);
+            return;
+        }
+
+        // Проверяем лимит слотов
+        var limit = cultistComp.OnEmpowerRune ? SpellLimitEmpowered : SpellLimitNormal;
+        if (cultistComp.ActiveSpellCount >= limit)
+        {
+            _ui.SetUiState(uid, CultBloodMagicBuiKey.Key,
+                new CultBloodMagicSwapState(spellId, new List<string>(cultistComp.PreparedSpells)));
+            _ui.TryOpenUi(uid, CultBloodMagicBuiKey.Key, cultist);
             return;
         }
 
@@ -691,7 +685,7 @@ public sealed class CultSystem : EntitySystem
         if (args.Cancelled)
         {
             if (TryComp<CultistComponent>(uid, out var cComp) && cComp.BuiHolder.HasValue)
-                _ui.TryOpenUi(cComp.BuiHolder.Value, CultBloodMagicBuiKey.Key, uid);
+                OpenBloodMagicSelectionUi(cComp.BuiHolder.Value, uid);
             return;
         }
 
@@ -747,30 +741,21 @@ public sealed class CultSystem : EntitySystem
             return;
 
         RemovePreparedSpellAction(cultist, cultistComp, oldSpellId);
-
-        // Проверяем что новое заклинание можно добавить
-        if (!IsValidSpellId(newSpellId) || cultistComp.PreparedSpells.Contains(newSpellId))
-            return;
-
-        var limit = cultistComp.OnEmpowerRune ? SpellLimitEmpowered : SpellLimitNormal;
-        if (cultistComp.ActiveSpellCount >= limit)
-            return;
-
-        // Оплата кровью и мгновенная выдача нового заклинания (без DoAfter)
-        DealSelfDamage(cultist, SpellBloodCost);
-        _actions.AddAction(cultist, newSpellId);
-        cultistComp.ActiveSpellCount++;
-        cultistComp.PreparedSpells.Add(newSpellId);
-        if (ShouldTrackPreparedUses(newSpellId))
-            cultistComp.PreparedSpellUses[newSpellId] = GetInitialSpellUses(newSpellId);
-
         _popup.PopupEntity(
-            Loc.GetString("cult-spell-ready", ("spell", Loc.GetString(GetSpellLocKey(newSpellId)))),
-            cultist, cultist, PopupType.Medium);
-        _audio.PlayPvs(CultMagicSound, cultist);
+            Loc.GetString(
+                "cult-spell-slot-freed",
+                ("spell", Loc.GetString(GetSpellLocKey(oldSpellId)))),
+            cultist,
+            cultist,
+            PopupType.Medium);
 
-        // Закрываем BUI после успешной замены — следующее открытие покажет свежее окно выбора
         _ui.CloseUi(uid, CultBloodMagicBuiKey.Key, cultist);
+    }
+
+    private void OpenBloodMagicSelectionUi(EntityUid uiHolder, EntityUid cultist)
+    {
+        _ui.SetUiState(uiHolder, CultBloodMagicBuiKey.Key, new CultBloodMagicSelectState());
+        _ui.TryOpenUi(uiHolder, CultBloodMagicBuiKey.Key, cultist);
     }
 
     private static bool ShouldTrackPreparedUses(string actionId)
@@ -1302,7 +1287,7 @@ public sealed class CultSystem : EntitySystem
         var spent = 0;
         while (comp.BloodRitesCharges > 0)
         {
-            var before = Comp<DamageableComponent>(target).Damage.GetTotal().Float();
+            var before = _damage.GetTotalDamage(target).Float();
             if (before <= 0f)
                 break;
 
@@ -1313,7 +1298,7 @@ public sealed class CultSystem : EntitySystem
             healing.DamageDict.Add("Asphyxiation", -1f);
 
             _damage.TryChangeDamage(target, healing, true);
-            var after = Comp<DamageableComponent>(target).Damage.GetTotal().Float();
+            var after = _damage.GetTotalDamage(target).Float();
             if (after >= before)
                 break;
 
@@ -1726,9 +1711,9 @@ public sealed class CultSystem : EntitySystem
         args.Handled = true;
 
         var now = _timing.CurTime;
-        if (comp.NextUse.HasValue && now < comp.NextUse.Value)
+        if (now < comp.NextUse)
         {
-            var remaining = (int)(comp.NextUse.Value - now).TotalSeconds;
+            var remaining = (int)(comp.NextUse - now).TotalSeconds;
             _popup.PopupEntity(
                 Loc.GetString("cult-structure-cooldown", ("seconds", remaining)),
                 uid, args.User);
@@ -1753,7 +1738,7 @@ public sealed class CultSystem : EntitySystem
             return;
 
         var now = _timing.CurTime;
-        if (comp.NextUse.HasValue && now < comp.NextUse.Value)
+        if (now < comp.NextUse)
             return;
 
         comp.NextUse = now + comp.Cooldown;
@@ -1938,13 +1923,14 @@ public sealed class CultSystem : EntitySystem
 
         _activeNarSieBarriers[cultist] = barriers;
 
-        if (TryComp<CultistComponent>(cultist, out var cultistComp))
+        if (TryComp<CultistComponent>(cultist, out var cultistComp) &&
+            (cultistComp.ActiveNarSieRitualAudio is not { } activeAudio || !Exists(activeAudio)))
         {
             var ritualAudio = _audio.PlayGlobal(
                 NarSieRitualMusic,
                 Filter.Broadcast(),
                 true,
-                AudioParams.Default.WithLoop(true).WithVolume(-4f));
+                AudioParams.Default.WithVolume(-4f));
             cultistComp.ActiveNarSieRitualAudio = ritualAudio?.Entity;
         }
 
@@ -1967,12 +1953,9 @@ public sealed class CultSystem : EntitySystem
 
     private void EndNarSieRitual(EntityUid cultist)
     {
-        if (TryComp<CultistComponent>(cultist, out var cultistComp)
-            && cultistComp.ActiveNarSieRitualAudio.HasValue
-            && Exists(cultistComp.ActiveNarSieRitualAudio.Value))
+        if (TryComp<CultistComponent>(cultist, out var cultistComp) &&
+            cultistComp.ActiveNarSieRitualAudio is { } ritualAudio && !Exists(ritualAudio))
         {
-            _audio.SetState(cultistComp.ActiveNarSieRitualAudio.Value, AudioState.Stopped);
-            QueueDel(cultistComp.ActiveNarSieRitualAudio.Value);
             cultistComp.ActiveNarSieRitualAudio = null;
         }
 
@@ -2096,12 +2079,8 @@ public sealed class CultSystem : EntitySystem
                 if (!comp.RedEyes)
                 {
                     comp.RedEyes = true;
-                    if (TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
-                    {
-                        comp.OriginalEyeColor ??= humanoid.EyeColor;
-                        humanoid.EyeColor = Color.Red;
-                        Dirty(uid, humanoid);
-                    }
+                    comp.OriginalEyeColor ??= GetEntityEyeColor(uid);
+                    TrySetEntityEyeColor(uid, Color.Red);
                 }
 
                 if (!comp.BloodHalo)
@@ -2131,12 +2110,8 @@ public sealed class CultSystem : EntitySystem
                     Dirty(uid, comp);
 
                     // Меняем цвет глаз на красный
-                    if (TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
-                    {
-                        comp.OriginalEyeColor = humanoid.EyeColor;
-                        humanoid.EyeColor = Color.Red;
-                        Dirty(uid, humanoid);
-                    }
+                    comp.OriginalEyeColor = GetEntityEyeColor(uid);
+                    TrySetEntityEyeColor(uid, Color.Red);
 
                     anyNew = true;
                 }
@@ -2162,11 +2137,30 @@ public sealed class CultSystem : EntitySystem
         if (_inventory.TryGetSlotEntity(uid, "mask", out _))
             return false;
 
-        if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
-            return true;
+        return true;
+    }
 
-        return !humanoid.HiddenLayers.ContainsKey(HumanoidVisualLayers.Eyes)
-            && !humanoid.HiddenLayers.ContainsKey(HumanoidVisualLayers.Head);
+    private Color GetEntityEyeColor(EntityUid uid)
+    {
+        if (!_visualBodySystem.TryGatherMarkingsData(uid, null, out var profiles, out _, out _))
+            return Color.White;
+
+        foreach (var profile in profiles.Values)
+        {
+            return profile.EyeColor;
+        }
+
+        return Color.White;
+    }
+
+    private bool TrySetEntityEyeColor(EntityUid uid, Color eyeColor)
+    {
+        if (!_visualBodySystem.TryGatherMarkingsData(uid, null, out var profiles, out _, out _))
+            return false;
+
+        var coloredProfiles = profiles.ToDictionary(pair => pair.Key, pair => pair.Value with { EyeColor = eyeColor });
+        _visualBodySystem.ApplyProfiles(uid, coloredProfiles);
+        return true;
     }
 
     private void OnBuiHolderRangeCheck(EntityUid uid, CultBuiHolderComponent comp, ref BoundUserInterfaceCheckRangeEvent args)

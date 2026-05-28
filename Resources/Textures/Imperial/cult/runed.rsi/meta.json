@@ -1,73 +1,95 @@
 {
-  "version": 1,
-  "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from ss220 paradise",
-  "size": {
-    "x": 32,
-    "y": 32
-  },
-  "states": [
-    {
-      "name": "sheet-runed",
-      "directions": 4,
-      "delays": [
-        [5, 0.1, 0.1, 5],
-        [5, 0.1, 0.1, 5],
-        [5, 0.1, 0.1, 5],
-        [5, 0.1, 0.1, 5]
-      ]
-    },
-    {
-      "name": "sheet-runed_2",
-      "delays": [
-        [
-          5,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.4,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          5
-        ]
-      ]
-    },
-    {
-      "name": "sheet-runed_3",
-      "delays": [
-        [
-          5,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.4,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          5
-        ]
-      ]
-    },
-    {
-      "name": "sheet-runed-lefthand",
-      "directions": 4
-    },
-    {
-      "name": "sheet-runed-righthand",
-      "directions": 4
-    }
-  ]
+    "version":  1,
+    "license":  "CC-BY-SA-3.0",
+    "copyright":  "Taken from ss220 paradise",
+    "size":  {
+                 "x":  32,
+                 "y":  32
+             },
+    "states":  [
+                   {
+                       "name":  "sheet-runed",
+                       "directions":  4,
+                       "delays":  [
+                                      [
+                                          5,
+                                          0.1,
+                                          0.1,
+                                          5
+                                      ],
+                                      [
+                                          5,
+                                          0.1,
+                                          0.1,
+                                          5
+                                      ],
+                                      [
+                                          5,
+                                          0.1,
+                                          0.1,
+                                          5
+                                      ],
+                                      [
+                                          5,
+                                          0.1,
+                                          0.1,
+                                          5
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "sheet-runed_2",
+                       "delays":  [
+                                      [
+                                          5,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.4,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          5,
+                                          5
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "sheet-runed_3",
+                       "delays":  [
+                                      [
+                                          5,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.4,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          5,
+                                          5
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "sheet-runed-lefthand",
+                       "directions":  1
+                   },
+                   {
+                       "name":  "sheet-runed-righthand",
+                       "directions":  1
+                   }
+               ]
 }

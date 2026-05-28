@@ -1,3 +1,5 @@
+using Robust.Shared.ViewVariables;
+
 namespace Content.Server.Imperial.Cult.Components;
 
 /// <summary>
@@ -8,6 +10,6 @@ namespace Content.Server.Imperial.Cult.Components;
 public sealed partial class CultDarkSpiritComponent : Component
 {
     /// <summary>Тело культиста, из которого вознёсся дух.</summary>
-    [DataField]
+    [ViewVariables]
     public EntityUid OriginalBody { get; set; }
 }

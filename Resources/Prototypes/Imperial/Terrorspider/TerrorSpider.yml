@@ -144,6 +144,7 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
+  - type: VentCrawler
   - type: Spider
     webPrototype: SpiderWebTerrorRusar
     webAction: TerrorWeedsRusarAction
@@ -307,6 +308,7 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
+  - type: VentCrawler
   - type: Spider
     webPrototype: SpiderWebTerrorDron
     spawnsWebsAsNonPlayer: false
@@ -472,6 +474,7 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
+  - type: VentCrawler
   - type: Spider
     webPrototype: SpiderWebTerrorLurker
     webAction: TerrorWeedsLurkerAction
@@ -601,6 +604,7 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
+  - type: VentCrawler
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bloodMaxVolume: 0
@@ -619,8 +623,8 @@
     - Alive
     damageCap: 130
     damage:
-      groups:
-        Brute: 1
+      types:
+        Blunt: 1
   - type: SlowOnDamage
     speedModifierThresholds:
       120: 0.7
@@ -721,6 +725,7 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
+  - type: VentCrawler
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bloodMaxVolume: 0
@@ -905,6 +910,7 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
+  - type: VentCrawler
   - type: Spider
     webPrototype: SpiderWebTerrorWidow
     webAction: TerrorWeedsWidowAction
@@ -1503,6 +1509,7 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
+  - type: VentCrawler
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bloodMaxVolume: 0
@@ -1572,6 +1579,24 @@
   - type: InstantAction
     event: !type:TerrorSpiderSpawnWebActionEvent
       webPrototype: SpiderWebPrincess
+
+- type: entity
+  id: ActionTerrorSpiderVentUnweld
+  name: Open welded vent
+  description: Rips open a welded ventilation unit.
+  noSpawn: true
+  components:
+  - type: TargetAction
+    canTargetSelf: false
+    range: 1.2
+  - type: EntityTargetAction
+    event: !type:TerrorSpiderVentUnweldActionEvent
+  - type: Action
+    useDelay: 2
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
+      state: lay_eggs
 
 - type: entity
   parent: LightImplantSpider 
@@ -1712,6 +1737,7 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
+  - type: VentCrawler
   - type: Spider
     webPrototype: SpiderWebPrincess
     webAction: TerrorWeedsPrincessAction
@@ -2262,6 +2288,7 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: NoSlip
+  - type: VentCrawler
   - type: Spider
     webPrototype: SpiderWebTerrorHealer
     webAction: TerrorWeedsHealerAction
@@ -2282,16 +2309,6 @@
   - type: SlowOnDamage
     speedModifierThresholds:
       80: 0.7
-  - type: PassiveDamage
-    allowedStates:
-    - Alive
-    damageCap: 100
-    damage:
-      types:
-        Poison: -1
-      groups:
-        Brute: -1
-        Burn: -1
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 5
   - type: BasicEntityAmmoProvider
@@ -2611,18 +2628,6 @@
         - FullTileMask
         layer:
         - WallLayer
-  - type: GhostRole
-    allowMovement: false
-    allowSpeech: false
-    makeSentient: true
-    name: spider-terroregg-name
-    description: spider-terroregg-desc
-    rules: spider-terroregg-rul
-    raffle:
-      settings: short
-  - type: GhostTakeoverAvailable
-  - type: Polymorphable
-    innatePolymorphs: [ EggToMobGiantreaperSpiderAngry, EggToMobGiantWidowSpiderAngry, EggToMobGiantGuardianSpiderAngry, EggToMobGiantDestroyerSpiderAngry ]
 
 - type: polymorph
   id: EggToMobRusarSpiderAngrys
@@ -2750,18 +2755,6 @@
         - FullTileMask
         layer:
         - WallLayer
-  - type: GhostRole
-    allowMovement: false
-    allowSpeech: false
-    makeSentient: true
-    name: spider-terroregg-name
-    description: spider-terroregg-desc
-    rules: spider-terroregg-rul
-    raffle:
-      settings: short
-  - type: GhostTakeoverAvailable
-  - type: Polymorphable
-    innatePolymorphs: [ EggToMobGiantPrinceSpiderAngry, EggToMobGiantPrincessSpiderAngry, EggToMobGiantMotherSpiderAngry ]
 
 - type: polymorph
   id: EggToMobGiantPrinceSpiderAngry
@@ -4452,8 +4445,6 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Slime
-  - type: Body
-    prototype: Animal
   - type: Actions
   - type: DoAfter
   - type: Polymorphable
@@ -4677,18 +4668,6 @@
         - FullTileMask
         layer:
         - WallLayer
-  - type: GhostRole
-    allowMovement: false
-    allowSpeech: false
-    makeSentient: true
-    name: spider-terroregg-name
-    description: spider-terroregg-desc
-    rules: spider-terroregg-rul
-    raffle:
-      settings: short
-  - type: GhostTakeoverAvailable
-  - type: Polymorphable
-    innatePolymorphs: [ EggToMobRusarSpiderAngrys, EggToMobDronSpiderAngrys, EggToMobsogladatelSpiderAngrys, EggToMobGiantHealerSpiderAngry ]
 
 - type: entity
   id: SpiderWebTerrorUwU

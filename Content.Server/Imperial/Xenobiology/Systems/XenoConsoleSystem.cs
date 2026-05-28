@@ -3,6 +3,7 @@ using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Mind;
 using Content.Shared.Actions;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Xenobiology;
 using Content.Shared.Imperial.Xenobiology.Components;
@@ -43,6 +44,7 @@ public sealed class XenoConsoleSystem : EntitySystem
     [Dependency] private readonly MindSystem                    _mind       = default!;
     [Dependency] private readonly SharedPopupSystem             _popup      = default!;
     [Dependency] private readonly MetaDataSystem                _metaData   = default!;
+    [Dependency] private readonly DamageableSystem              _damageable = default!;
 
     private const float PickupRange = 1.5f;
 
@@ -316,7 +318,7 @@ public sealed class XenoConsoleSystem : EntitySystem
                     break;
                 }
             }
-            var hp = deadThreshold - damageable.TotalDamage;
+            var hp = deadThreshold - _damageable.GetTotalDamage((slimeEnt.Owner, damageable));
             hpStr = $"{hp} / {deadThreshold}";
         }
 

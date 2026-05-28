@@ -3,6 +3,7 @@ using Content.Server.Chat.Managers;
 using Content.Server.Imperial.Blob.Components;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared.Chat;
+using Content.Shared.CombatMode;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -37,6 +38,7 @@ namespace Content.Server.Imperial.Blob;
 
 public sealed class BlobMobSystem : EntitySystem
 {
+    private const string BlobFactionId = "Blob";
     private const string BlobRadioChannel = "Blob";
     private const string BlobHiveChannel = "BlobHive";
     private const float BlobTileAllyHealInterval = 1f;
@@ -44,6 +46,7 @@ public sealed class BlobMobSystem : EntitySystem
 
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly BlobChemistrySystem _chemistry = default!;
+    [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
     [Dependency] private readonly BlobInfectionSystem _infection = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
@@ -69,6 +72,7 @@ public sealed class BlobMobSystem : EntitySystem
         SubscribeLocalEvent<BlobInfectedComponent, ComponentShutdown>(OnBlobInfectedShutdown);
         SubscribeLocalEvent<BlobMobComponent, EntitySpokeEvent>(OnBlobMobSpoke);
         SubscribeLocalEvent<BlobMouseComponent, EntitySpokeEvent>(OnBlobMouseSpoke);
+        SubscribeLocalEvent<BlobInfectedComponent, EntitySpokeEvent>(OnBlobInfectedSpoke);
         SubscribeLocalEvent<NpcFactionMemberComponent, EntitySpokeEvent>(OnBlobFactionSpoke);
         SubscribeLocalEvent<BlobMobComponent, MeleeHitEvent>(OnBlobMobMeleeHit);
     }
@@ -77,6 +81,9 @@ public sealed class BlobMobSystem : EntitySystem
     {
         ConfigureMobForOwner(uid, component);
         ConfigureBlobFriendlyCollision(uid);
+
+        if (TryComp<CombatModeComponent>(uid, out var combatMode))
+            _combatMode.SetInCombatMode(uid, true, combatMode);
     }
 
     private void OnBlobMobShutdown(EntityUid uid, BlobMobComponent component, ComponentShutdown args)
@@ -96,16 +103,17 @@ public sealed class BlobMobSystem : EntitySystem
 
     public void ConfigureMobForOwner(EntityUid uid, BlobMobComponent component)
     {
-        if (component.OwnerMind is not { } ownerMind)
-            return;
-
-        component.Chemical = GetChemicalForOwner(ownerMind);
-
         if (!TryComp<MeleeWeaponComponent>(uid, out var melee))
             return;
 
+        if (component.OwnerMind is { } ownerMind)
+            component.Chemical = GetChemicalForOwner(ownerMind);
+
         melee.Damage = BuildDamage(uid, component.Chemical);
         Dirty(uid, melee);
+
+        if (TryComp<CombatModeComponent>(uid, out var combatMode))
+            _combatMode.SetInCombatMode(uid, true, combatMode);
     }
 
     public void ConfigureBlobFriendlyCollision(EntityUid uid)
@@ -155,9 +163,14 @@ public sealed class BlobMobSystem : EntitySystem
         RelayToBlobRadio(uid, ref args);
     }
 
+    private void OnBlobInfectedSpoke(EntityUid uid, BlobInfectedComponent component, ref EntitySpokeEvent args)
+    {
+        RelayToBlobRadio(uid, ref args);
+    }
+
     private void OnBlobFactionSpoke(EntityUid uid, NpcFactionMemberComponent component, ref EntitySpokeEvent args)
     {
-        if (!_npcFaction.IsMember((uid, component), "Blob"))
+        if (!_npcFaction.IsMember((uid, component), BlobFactionId))
             return;
 
         if (HasComp<BlobMobComponent>(uid) || HasComp<BlobOvermindComponent>(uid) || HasComp<BlobMouseComponent>(uid))
@@ -281,7 +294,7 @@ public sealed class BlobMobSystem : EntitySystem
             return;
 
         var allyQuery = EntityQueryEnumerator<TransformComponent, DamageableComponent>();
-        while (allyQuery.MoveNext(out var uid, out var xform, out _))
+        while (allyQuery.MoveNext(out var uid, out var xform, out var damageable))
         {
             if (HasComp<BlobOvermindComponent>(uid) || HasComp<BlobOvermindControllerComponent>(uid) || HasComp<BlobStructureComponent>(uid))
                 continue;
@@ -293,7 +306,7 @@ public sealed class BlobMobSystem : EntitySystem
             if (ownerMind is not { } owner || !IsStandingOnOwnedBlobTile(xform, owner))
                 continue;
 
-            var healing = BuildBlobTileHealing(damageable: Comp<DamageableComponent>(uid));
+            var healing = BuildBlobTileHealing((uid, damageable));
             if (healing.Empty)
                 continue;
 
@@ -301,11 +314,12 @@ public sealed class BlobMobSystem : EntitySystem
         }
     }
 
-    private DamageSpecifier BuildBlobTileHealing(DamageableComponent damageable)
+    private DamageSpecifier BuildBlobTileHealing(Entity<DamageableComponent> target)
     {
+        var currentDamage = _damage.GetPositiveDamage(target);
         var healing = new DamageSpecifier();
 
-        foreach (var (damageType, amount) in damageable.Damage.DamageDict)
+        foreach (var (damageType, amount) in currentDamage.DamageDict)
         {
             if (amount <= FixedPoint2.Zero)
                 continue;
@@ -536,7 +550,7 @@ public sealed class BlobMobSystem : EntitySystem
     {
         if (blobId is not { } owner)
         {
-            return _npcFaction.IsMember(entity, "Blob") ||
+                 return _npcFaction.IsMember(entity, BlobFactionId) ||
                    HasComp<BlobMouseComponent>(entity) ||
                    HasComp<BlobOvermindComponent>(entity) ||
                    HasComp<BlobOvermindControllerComponent>(entity) ||

@@ -36,6 +36,12 @@ public sealed partial class TerrorSpiderMotherComponent : Component
     public EntityUid? LayJellyActionEntity;
 
     [DataField]
+    public EntProtoId UnweldVentAction = "ActionTerrorSpiderVentUnweld";
+
+    [ViewVariables]
+    public EntityUid? UnweldVentActionEntity;
+
+    [DataField]
     public float AuraHalfRange = 7.5f;
 
     [DataField]

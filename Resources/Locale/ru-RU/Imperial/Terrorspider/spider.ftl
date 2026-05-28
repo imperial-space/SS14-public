@@ -1,34 +1,20 @@
-# ==========================================
-# Terror Spider Localization  Russian
-# ==========================================
-
-# Ghost role
-spider-terror-name = Паук ужаса
-spider-terror-desc = Паук ужаса. Защищайте королеву или принцессу, создайте логово и уничтожайте станцию!
+﻿spider-terror-name = Паук ужаса
+spider-terror-desc = Служите улью пауков ужаса: защищайте королеву и принцессу, расширяйте гнездо и уничтожайте экипаж.
+terror-spider-role-greeting = Вы стали королевой пауков ужаса. Прячьтесь в вентиляции, создайте улей, откладывайте яйца и уничтожьте экипаж.
+roles-antag-terror-spider-name = Королева пауков ужаса
+roles-antag-terror-spider-objective = Создайте улей, выведите потомство и захватите станцию.
 
 # Game rule
 spider-terror-gamerule = Пауки ужаса
-spider-terror-gamerule-desc = На станции появились пауки ужаса. Эти мерзкие и кровожадные пауки хотят захватить станцию, превратив её в свой улей.
+spider-terror-gamerule-desc = На станции завёлся улей пауков ужаса. Они будут расти, откладывать яйца и захватывать станцию, если экипаж не выжжет гнездо вовремя.
 
 # Egg ghost role
 spider-terroregg-name = Яйцо паука ужаса
-spider-terroregg-desc = Готово к вылуплению нового защитника улья!
-spider-terroregg-rul = Превратитесь в полноценного защитника улья.
-
-# Knight actions
-spider-terror-knight-rage-action-name = ярость
-spider-terror-knight-rage-action-desc = На 10 секунд увеличивает скорость и урон рыцаря ужаса, но делает его уязвимее и отключает регенерацию.
-
-spider-terror-knight-guard-action-name = защита
-spider-terror-knight-guard-action-desc = На 10 секунд замедляет рыцаря ужаса, снижает урон, усиливает регенерацию и повышает устойчивость к урону.
-
-# Cocoon action
-spider-terror-cocoon-action-name = кокон
-spider-terror-cocoon-action-desc = Оплетает цель коконом.
-
-# ==========================================
-# Mobs  Base
-# ==========================================
+spider-terroregg-desc = Готово к вылупрелнию нового защитника улья!
+spider-terroregg-rul = Превратитеть в полноценного защитника улья.
+terror-spider-hive-sense-empty = Улей молчит. Живой выводок не отвечает.
+terror-spider-hive-sense-entry = { $name } | Здоровье: { $hp }/{ $hpMax } | Маяк: { $beacon }
+terror-spider-hive-sense-unknown = неизвестное место
 
 ent-MobRusarSpider = рыцарь ужаса
     .desc = Сражается с экипажем, защищает других пауков. Благодаря своей стойкости создаёт пространство для расширения гнезда.
@@ -153,432 +139,193 @@ ent-TerrorEgg3Tir = яйцо паука ужаса
 ent-TerrorEggPrincessTier1 = яйцо паука ужаса
     .desc = На вид мерзкое.
 
-ent-TerrorEggPrincessTier2 = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-ActionTerrorSpiderCocoon = Кокон
+    .desc = Опутывает живую цель коконом.
 
-ent-TerrorEggHealerRusar = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-ActionSpawnSpiderDron = Спавн паутины
+    .desc = Создаёт паутину. Немного крепче обычной.
 
-ent-TerrorEggHealerDron = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-ActionTerrorSpiderWidowSmokeSpit = Дымный плевок
+    .desc = Выпускает безвредный дымный плевок.
 
-ent-TerrorEggHealerLurker = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-ActionTerrorSpiderWidowPoisonSpit = Ядовитый плевок
+    .desc = Выпускает плевок, создающий облако яда.
 
-ent-TerrorEggHealerHealer = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-ActionSpawnSpiderGuardian = Спавн паутины
+    .desc = Создаёт паутину. Немного крепче обычной.
 
-ent-TerrorEggQueenRusar = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-TerrorWeedsGuardianAction = Паутина стража
+    .desc = Паутина ужаса.
 
-ent-TerrorEggQueenDron = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-ActionSpawnSpiderPrincess = Спавн паутины
+    .desc = Создаёт паутину. Немного крепче обычной.
 
-ent-TerrorEggQueenLurker = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-ActionTerrorSpiderVentUnweld = Вскрыть сваренный вент
+    .desc = Раздирает заваренную вентиляцию.
 
-ent-TerrorEggQueenHealer = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-ActionSpawnTerrorEgg1Tir = Отложить яйцо 1 тира
+    .desc = Откладывает яйцо.
 
-ent-TerrorEggQueenReaper = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-ActionSpawnTerrorEgg2Tir = Отложить яйцо 2 тира
+    .desc = Откладывает яйцо.
 
-ent-TerrorEggQueenWidow = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-ActionSpawnTerrorEgg2TirQueen = Отложить яйцо 2 тира
+    .desc = Откладывает яйцо.
 
-ent-TerrorEggQueenGuardian = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-ActionSpawnTerrorEgg1TirQueen = Отложить яйцо 1 тира
+    .desc = Откладывает яйцо.
 
-ent-TerrorEggQueenDestroyer = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-ActionSpawnTerrorEgg3Tir = Отложить яйцо 3 тира
+    .desc = Откладывает яйцо.
 
-ent-TerrorEggQueenPrince = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-TerrorWeedsAction = Паутина
+    .desc = Паутина ужаса.
 
-ent-TerrorEggQueenPrincess = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-TerrorWeedsQueenAction = Паутина королевы
+    .desc = Паутина ужаса.
 
-ent-TerrorEggQueenMother = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-ActionTerrorSpiderMotherRemoteViewNext = Следующий обзор
+    .desc = Переключает обзор на следующего паука.
 
-ent-TerrorEggPrincessRusar = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-ActionTerrorSpiderMotherRemoteViewPrevious = Предыдущий обзор
+    .desc = Переключает обзор на предыдущего паука.
 
-ent-TerrorEggPrincessDron = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-ActionTerrorSpiderMotherRemoteViewExit = Завершить обзор
+    .desc = Возвращает ваш обычный обзор.
 
-ent-TerrorEggPrincessLurker = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-ActionTerrorSpiderMotherPulse = Импульс матери
+    .desc = Лечит ближайших пауков ужаса.
 
-ent-TerrorEggPrincessHealer = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-ActionTerrorSpiderMotherLayJelly = Отложить желе
+    .desc = Откладывает регенеративное желе.
 
-ent-TerrorEggPrincessReaper = яйцо паука ужаса
-    .desc = На вид мерзкое.
+ent-ActionTerrorSpiderQueenCreateHive = Создать улей
+    .desc = Активирует режим улья и открывает откладывание яиц.
 
-ent-TerrorEggPrincessWidow = яйцо паука ужаса
-    .desc = На вид мерзкое.
-
-ent-TerrorEggPrincessGuardian = яйцо паука ужаса
-    .desc = На вид мерзкое.
-
-ent-TerrorEggPrincessDestroyer = яйцо паука ужаса
-    .desc = На вид мерзкое.
-
-# ==========================================
-# Cocoon & Jelly
-# ==========================================
-
-ent-TerrorSpiderCocoon = кокон
-    .desc = Жертва, плотно опутанная паучьим шёлком.
-
-ent-TerrorSpiderMotherJelly = желе улья
-    .desc = Странное желе от матери улья.
-
-# ==========================================
-# Projectiles & Weapons
-# ==========================================
-
-ent-WeaponTerrorSpit = плевок ужаса
-    .desc = Ядовитый плевок паука ужаса.
-
-ent-TerrorSpitBullet = плевок ужаса
-    .desc = Ядовитый плевок паука ужаса.
-
-ent-TerrorDrontAcid = кислотный плевок ужаса
-    .desc = Разъедающая кислота паука-дрона.
-
-ent-TerrorRavAcid = ЭМИ-кислотный плевок ужаса
-    .desc = Кислотный плевок с ЭМИ-зарядом.
-
-ent-BulletGrenadeEMPToxin = ЭМИ-плевок ужаса
-    .desc = Плевок с мощным электромагнитным импульсом.
-
-ent-TerrorWidowSpit = плевок вдовы
-    .desc = Ядовитый плевок паука-вдовы.
-
-ent-TerrorWidowSmokeSpitBullet = дымный плевок вдовы
-    .desc = Плевок паука-вдовы, создающий облако дыма.
-
-ent-TerrorWidowPoisonSpitBullet = ядовитый плевок вдовы
-    .desc = Концентрированный яд паука-вдовы.
-
-ent-TerrorPrincessSpit = плевок принцессы
-    .desc = Плевок паука-принцессы.
-
-ent-TerrorQueentAcid = кислотный плевок королевы
-    .desc = Мощная кислота королевы пауков ужаса.
-
-ent-ProjectileHealingBoltTerror = лечащий сгусток
-    .desc = Я ПРИКАЗЫВАЮ ТЕБЕ ЖИТЬ!
-
-ent-WeaponXenoSpit = плевок ужаса
-    .desc = Концентрированная токсичность
-
-ent-GasXenoSpitBullet = газовый плевок ксено
-    .desc = Концентрированная токсичность
-
-# ==========================================
-# Implants
-# ==========================================
-
-ent-LightImplantSpiderRusar = создание паутины
-    .desc = Создаёт паутину.
-
-ent-LightImplantSpiderDron = создание паутины
-    .desc = Создаёт паутину.
-
-ent-LightImplantSpiderGuardian = создание паутины
-    .desc = Создаёт паутину.
-
-ent-LightImplantSpiderPrincess = создание паутины
-    .desc = Создаёт паутину.
-
-ent-LightImplantSpiderWidowSmoke = дымный плевок
-    .desc = Дымный плевок.
-
-ent-LightImplantSpiderWidowPoison = ядовитый плевок
-    .desc = Ядовитый плевок.
-
-ent-LightImplantSpiderTir1 = кладка яиц I тир
-    .desc = Откладывает яйцо I тира.
-
-ent-LightImplantSpiderTir2 = кладка яиц II тир
-    .desc = Откладывает яйцо II тира.
-
-ent-LightImplantSpiderTir1Queen = кладка яиц I тир
-    .desc = Откладывает королевское яйцо I тира.
-
-ent-LightImplantSpiderTir2Queen = кладка яиц II тир
-    .desc = Откладывает королевское яйцо II тира.
-
-ent-LightImplantSpiderTir3 = кладка яиц III тир
-    .desc = Откладывает яйцо III тира.
-
-# ==========================================
-# Spawn Web / Egg Actions
-# ==========================================
-
-ent-ActionSpawnSpiderRusar = создание паутины
-    .desc = Создаёт паутину. Немного прочнее обычной.
-
-ent-ActionSpawnSpiderDron = создание паутины
-    .desc = Создаёт паутину. Немного прочнее обычной.
-
-ent-ActionSpawnSpiderGuardian = создание паутины
-    .desc = Создаёт паутину. Немного прочнее обычной.
-
-ent-ActionSpawnSpiderPrincess = создание паутины
-    .desc = Создаёт паутину. Немного прочнее обычной.
-
-ent-ActionTerrorSpiderCocoon = кокон
-    .desc = Оплетает цель коконом.
-
-ent-ActionSpawnTerrorEgg1Tir = кладка яйца I тир
-    .desc = Откладывает яйцо I тира.
-
-ent-ActionSpawnTerrorEgg2Tir = кладка яйца II тир
-    .desc = Откладывает яйцо II тира.
-
-ent-ActionSpawnTerrorEgg1TirQueen = кладка яйца I тир
-    .desc = Откладывает королевское яйцо I тира.
-
-ent-ActionSpawnTerrorEgg2TirQueen = кладка яйца II тир
-    .desc = Откладывает королевское яйцо II тира.
-
-ent-ActionSpawnTerrorEgg3Tir = кладка яйца III тир
-    .desc = Откладывает яйцо III тира.
-
-ent-TerrorLayEgg = отложить яйцо
-    .desc = Откладывает яйцо паука ужаса.
-
-# ==========================================
-# Web Actions (Spider component)
-# ==========================================
-
-ent-TerrorWeedsAction = паутина
-    .desc = Создаёт паутину.
-
-ent-TerrorWeedsQueenAction = паутина королевы
-    .desc = Создаёт паутину.
-
-ent-TerrorWeedsGuardianAction = паутина стража
-    .desc = Создаёт паутину.
-
-ent-TerrorWeedsHealerAction = паутина целителя
-    .desc = Создаёт паутину.
-
-ent-TerrorWeedsWidowAction = паутина вдовы
-    .desc = Создаёт паутину.
-
-ent-TerrorWeedsLurkerAction = паутина соглядатая
-    .desc = Создаёт паутину.
-
-ent-TerrorWeedsPrincessAction = паутина принцессы
-    .desc = Создаёт паутину.
-
-# ==========================================
-# Widow combat actions
-# ==========================================
-
-ent-ActionTerrorSpiderWidowSmokeSpit = дымный плевок
-    .desc = Выпускает плевок, создающий дымовую завесу.
-
-ent-ActionTerrorSpiderWidowPoisonSpit = ядовитый плевок
-    .desc = Выпускает плевок, создающий ядовитое облако.
-
-# ==========================================
-# Mother actions
-# ==========================================
-
-ent-ActionTerrorSpiderMotherRemoteViewNext = следующий паук
-    .desc = Переключает наблюдение на следующего паука ужаса.
-
-ent-ActionTerrorSpiderMotherRemoteViewPrevious = предыдущий паук
-    .desc = Переключает наблюдение на предыдущего паука ужаса.
-
-ent-ActionTerrorSpiderMotherRemoteViewExit = выйти из наблюдения
-    .desc = Возвращает ваш обзор.
-
-ent-ActionTerrorSpiderMotherPulse = лечебный пульс матери
-    .desc = Лечит всех пауков ужаса в радиусе.
-
-ent-ActionTerrorSpiderMotherLayJelly = отложить желе
-    .desc = Откладывает желе, которое после разрушения даёт усиление регенерации.
-
-# ==========================================
-# Queen egg actions
-# ==========================================
-
-ent-ActionTerrorSpiderQueenCreateHive = создать улей
-    .desc = Формирует улей, замедляет королеву, усиливает урон по структурам и открывает кладку яиц.
-
-ent-ActionTerrorSpiderQueenScream = крик королевы
+ent-ActionTerrorSpiderQueenScream = Крик королевы
     .desc = Замедляет врагов и отключает роботов.
 
-ent-ActionTerrorSpiderQueenHiveCount = чувство улья
-    .desc = Показывает число пауков ужаса и вашего потомства.
+ent-ActionTerrorSpiderQueenHiveCount = Состояние улья
+    .desc = Показывает состояние вашего выводка.
 
-ent-ActionTerrorSpiderQueenLayEggRusar = яйцо: рыцарь
-    .desc = Откладывает королевское яйцо рыцаря (I тир).
+ent-ActionTerrorSpiderQueenLayEggRusar = Отложить яйцо рыцаря
+    .desc = Откладывает яйцо рыцаря 1 тира.
 
-ent-ActionTerrorSpiderQueenLayEggDron = яйцо: дрон
-    .desc = Откладывает королевское яйцо дрона (I тир).
+ent-ActionTerrorSpiderQueenLayEggDron = Отложить яйцо дрона
+    .desc = Откладывает яйцо дрона 1 тира.
 
-ent-ActionTerrorSpiderQueenLayEggLurker = яйцо: соглядатай
-    .desc = Откладывает королевское яйцо соглядатая (I тир).
+ent-ActionTerrorSpiderQueenLayEggLurker = Отложить яйцо скрытня
+    .desc = Откладывает яйцо скрытня 1 тира.
 
-ent-ActionTerrorSpiderQueenLayEggHealer = яйцо: целитель
-    .desc = Откладывает королевское яйцо целителя (I тир).
+ent-ActionTerrorSpiderQueenLayEggHealer = Отложить яйцо целителя
+    .desc = Откладывает яйцо целителя 1 тира.
 
-ent-ActionTerrorSpiderQueenLayEggReaper = яйцо: жнец
-    .desc = Откладывает королевское яйцо жнеца (II тир).
+ent-ActionTerrorSpiderQueenLayEggReaper = Отложить яйцо жнеца
+    .desc = Откладывает яйцо жнеца 2 тира.
 
-ent-ActionTerrorSpiderQueenLayEggWidow = яйцо: вдова
-    .desc = Откладывает королевское яйцо вдовы (II тир).
+ent-ActionTerrorSpiderQueenLayEggWidow = Отложить яйцо вдовы
+    .desc = Откладывает яйцо вдовы 2 тира.
 
-ent-ActionTerrorSpiderQueenLayEggGuardian = яйцо: страж
-    .desc = Откладывает королевское яйцо стража (II тир).
+ent-ActionTerrorSpiderQueenLayEggGuardian = Отложить яйцо стража
+    .desc = Откладывает яйцо стража 2 тира.
 
-ent-ActionTerrorSpiderQueenLayEggDestroyer = яйцо: разрушитель
-    .desc = Откладывает королевское яйцо разрушителя (II тир).
+ent-ActionTerrorSpiderQueenLayEggDestroyer = Отложить яйцо разрушителя
+    .desc = Откладывает яйцо разрушителя 2 тира.
 
-ent-ActionTerrorSpiderQueenLayEggPrince = яйцо: принц
-    .desc = Откладывает королевское яйцо принца (III тир).
+ent-ActionTerrorSpiderQueenLayEggPrince = Отложить яйцо принца
+    .desc = Откладывает яйцо принца 3 тира.
 
-ent-ActionTerrorSpiderQueenLayEggPrincess = яйцо: принцесса
-    .desc = Откладывает королевское яйцо принцессы (III тир).
+ent-ActionTerrorSpiderQueenLayEggPrincess = Отложить яйцо принцессы
+    .desc = Откладывает яйцо принцессы 3 тира.
 
-ent-ActionTerrorSpiderQueenLayEggMother = яйцо: мать
-    .desc = Откладывает королевское яйцо матери (III тир).
+ent-ActionTerrorSpiderQueenLayEggMother = Отложить яйцо матери
+    .desc = Откладывает яйцо матери 3 тира.
 
-# ==========================================
-# Knight actions
-# ==========================================
-
-ent-ActionTerrorSpiderKnightGuard = защита
-    .desc = Оборонительная стойка: замедление, снижение урона, усиление регенерации.
-
-ent-ActionTerrorSpiderKnightRage = ярость
-    .desc = Яростная стойка: ускорение, увеличение урона, отключение регенерации.
-
-# ==========================================
-# Destroyer actions
-# ==========================================
+ent-ActionTerrorSpiderKnightGuard = Стойка защиты
+    .desc = Защитная стойка.
 
 ent-ActionTerrorSpiderDestroyerEmpScream = ЭМИ-крик
-    .desc = Выпускает ЭМИ-импульс вокруг себя.
+    .desc = Выпускает вокруг себя ЭМИ-волну.
 
-ent-ActionTerrorSpiderDestroyerFireBurst = огненный выброс
+ent-ActionTerrorSpiderDestroyerFireBurst = Огненный всплеск
     .desc = Поджигает всех вокруг.
 
-# ==========================================
-# Princess actions
-# ==========================================
+ent-ActionTerrorSpiderPrincessRemoteViewNext = Следующий обзор принцессы
+    .desc = Переключает обзор на следующего паука выводка.
 
-ent-ActionTerrorSpiderPrincessRemoteViewNext = следующий паук
-    .desc = Переключает наблюдение на следующего паука потомства.
+ent-ActionTerrorSpiderPrincessRemoteViewPrevious = Предыдущий обзор принцессы
+    .desc = Переключает обзор на предыдущего паука выводка.
 
-ent-ActionTerrorSpiderPrincessRemoteViewPrevious = предыдущий паук
-    .desc = Переключает наблюдение на предыдущего паука потомства.
+ent-ActionTerrorSpiderPrincessRemoteViewExit = Завершить обзор принцессы
+    .desc = Возвращает ваш обычный обзор.
 
-ent-ActionTerrorSpiderPrincessRemoteViewExit = выйти из наблюдения
-    .desc = Возвращает ваш обзор.
+ent-ActionTerrorSpiderPrincessHiveSense = Чувство улья
+    .desc = Показывает состояние выводка в чате.
 
-ent-ActionTerrorSpiderPrincessHiveSense = чувство улья
-    .desc = Выводит сведения о вашем потомстве в чат.
-
-ent-ActionTerrorSpiderPrincessScream = крик принцессы
+ent-ActionTerrorSpiderPrincessScream = Крик принцессы
     .desc = Замедляет врагов и отключает роботов.
 
-ent-ActionTerrorSpiderPrincessLayEggRusar = яйцо: рыцарь
-    .desc = Откладывает яйцо рыцаря (I тир).
+ent-ActionTerrorSpiderPrincessLayEggRusar = Отложить яйцо рыцаря
+    .desc = Откладывает яйцо рыцаря 1 тира.
 
-ent-ActionTerrorSpiderPrincessLayEggDron = яйцо: дрон
-    .desc = Откладывает яйцо дрона (I тир).
+ent-ActionTerrorSpiderPrincessLayEggDron = Отложить яйцо дрона
+    .desc = Откладывает яйцо дрона 1 тира.
 
-ent-ActionTerrorSpiderPrincessLayEggLurker = яйцо: соглядатай
-    .desc = Откладывает яйцо соглядатая (I тир).
+ent-ActionTerrorSpiderPrincessLayEggLurker = Отложить яйцо скрытня
+    .desc = Откладывает яйцо скрытня 1 тира.
 
-ent-ActionTerrorSpiderPrincessLayEggHealer = яйцо: целитель
-    .desc = Откладывает яйцо целителя (I тир).
+ent-ActionTerrorSpiderPrincessLayEggHealer = Отложить яйцо целителя
+    .desc = Откладывает яйцо целителя 1 тира.
 
-ent-ActionTerrorSpiderPrincessLayEggReaper = яйцо: жнец
-    .desc = Откладывает яйцо жнеца (II тир).
+ent-ActionTerrorSpiderPrincessLayEggReaper = Отложить яйцо жнеца
+    .desc = Откладывает яйцо жнеца 2 тира.
 
-ent-ActionTerrorSpiderPrincessLayEggWidow = яйцо: вдова
-    .desc = Откладывает яйцо вдовы (II тир).
+ent-ActionTerrorSpiderPrincessLayEggWidow = Отложить яйцо вдовы
+    .desc = Откладывает яйцо вдовы 2 тира.
 
-ent-ActionTerrorSpiderPrincessLayEggGuardian = яйцо: страж
-    .desc = Откладывает яйцо стража (II тир).
+ent-ActionTerrorSpiderPrincessLayEggGuardian = Отложить яйцо стража
+    .desc = Откладывает яйцо стража 2 тира.
 
-ent-ActionTerrorSpiderPrincessLayEggDestroyer = яйцо: разрушитель
-    .desc = Откладывает яйцо разрушителя (II тир).
+ent-ActionTerrorSpiderPrincessLayEggDestroyer = Отложить яйцо разрушителя
+    .desc = Откладывает яйцо разрушителя 2 тира.
 
-# ==========================================
-# Royal stomp
-# ==========================================
+ent-ActionTerrorSpiderRoyalStomp = Королевский топот
+    .desc = Замедляет и сокрушает ближайших врагов.
 
-ent-ActionTerrorSpiderRoyalStomp = топот
-    .desc = Замедляет и давит ближайших врагов.
+ent-ActionTerrorSpiderKnightRage = Ярость
+    .desc = Яростная стойка.
 
-# ==========================================
-# Healer actions
-# ==========================================
-
-ent-ActionTerrorSpiderHealerPulse = пульс целителя
+ent-ActionTerrorSpiderHealerPulse = Импульс целителя
     .desc = Лечит всех пауков ужаса в радиусе.
 
-ent-ActionTerrorSpiderHealerLayEggRusar = яйцо: рыцарь
-    .desc = Откладывает яйцо рыцаря (I тир).
+ent-ActionTerrorSpiderHealerLayEggRusar = Отложить яйцо рыцаря
+    .desc = Откладывает яйцо рыцаря 1 тира.
 
-ent-ActionTerrorSpiderHealerLayEggDron = яйцо: дрон
-    .desc = Откладывает яйцо дрона (I тир).
+ent-ActionTerrorSpiderHealerLayEggDron = Отложить яйцо дрона
+    .desc = Откладывает яйцо дрона 1 тира.
 
-ent-ActionTerrorSpiderHealerLayEggLurker = яйцо: соглядатай
-    .desc = Откладывает яйцо соглядатая (I тир).
+ent-ActionTerrorSpiderHealerLayEggLurker = Отложить яйцо скрытня
+    .desc = Откладывает яйцо скрытня 1 тира.
 
-ent-ActionTerrorSpiderHealerLayEggHealer = яйцо: целитель
-    .desc = Откладывает яйцо целителя (I тир).
+ent-ActionTerrorSpiderHealerLayEggHealer = Отложить яйцо целителя
+    .desc = Откладывает яйцо целителя 1 тира.
 
-# ==========================================
-# Lurker stealth
-# ==========================================
+ent-TerrorWeedsHealerAction = Паутина целителя
+    .desc = Паутина ужаса.
 
-ent-ActionTerrorSpiderLurkerStealth = невидимость
-    .desc = Делает соглядатая невидимым на короткое время.
+ent-TerrorWeedsWidowAction = Паутина вдовы
+    .desc = Паутина ужаса.
 
-# ==========================================
-# Reagents
-# ==========================================
+ent-ActionTerrorSpiderLurkerStealth = Маскировка
+    .desc = Делает вас невидимым на короткое время.
 
-ent-FrostOilTerrorSpider = морозное масло
-    .desc = Охлаждает тело жертвы.
+ent-TerrorWeedsRusarAction = Паутина рыцаря
+    .desc = Паутина ужаса.
 
-ent-BlackTerrorVenom = чёрный яд ужаса
-    .desc = Смертоносный яд вдовы ужаса.
+ent-TerrorWeedsLurkerAction = Паутина скрытня
+    .desc = Паутина ужаса.
 
-# ==========================================
-# Status effects
-# ==========================================
+ent-TerrorWeedsPrincessAction = Паутина принцессы
+    .desc = Паутина ужаса.
 
-ent-TerrorSpiderRoyalStompSlowStatusEffect = замедление от топота паука ужаса
-
-ent-TerrorSpiderPrincessRemoteViewImmobileStatusEffect = обездвиживание принцессы при наблюдении
-
-ent-TerrorSpiderMotherRemoteViewImmobileStatusEffect = обездвиживание матери при наблюдении
-
-ent-TerrorSpiderQueenHiveSlowStatusEffect = замедление королевы в улье
-
-# ==========================================
-# Radio channel
-# ==========================================
-
-ent-hiveconnection = Улей
-
-# ==========================================
-# Game preset
-# ==========================================
-
-ent-Terrorspider = Пауки ужаса
-    .desc = На станции появились пауки ужаса. Эти мерзкие и кровожадные пауки хотят захватить станцию, превратив её в свой улей.
+ent-TerrorRavAcid = плевок ужаса ЭМИ

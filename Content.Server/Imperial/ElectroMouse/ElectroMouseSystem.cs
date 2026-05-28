@@ -42,25 +42,10 @@ using Content.Shared.Light.Components;
 using Content.Shared.Damage.Components;
 using Content.Shared.Power.Components;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Body;
 
 namespace Content.Server.Imperial.ElectroMouse.EntitySystems;
 
-/*
-　　　　　　　　　　_,.. -──- ､,
-　　　　　　　　,　'" 　 　　　 　　 `ヽ.
-　　　　　　 ／/¨7__　　/ 　 　 i　 _厂廴
-　　　　　 /￣( ノ__/　/{　　　　} ｢　（_冫}
-　　　　／￣l＿// 　/-|　 ,!　 ﾑ ￣|＿｢ ＼＿_
-　　. イ　 　 ,　 /!_∠_　|　/　/_⊥_,ﾉ ハ　 　イ
-　　　/ ／ / 　〃ん心 ﾚ'|／　ｆ,心 Y　i ＼_＿＞　
-　 ∠イ 　/　 　ﾄ弋_ツ　　 　 弋_ﾂ i　 |　 | ＼
-　 _／ _ノ|　,i　⊂⊃　　　'　　　⊂⊃ ./　 !､＿ン
-　　￣　　∨|　,小、　　` ‐ ' 　　 /|／|　/
-　 　 　 　 　 Y　|ﾍ＞ 、 ＿ ,.　イﾚ|　 ﾚ'
-　　　　　　 r'.| 　|;;;入ﾞ亠―亠' );;;;;! 　|､
-　　　　　 ,ノ:,:|.　!|く　__￣￣￣__У　ﾉ|:,:,ヽ
-　　　　　(:.:.:.:ﾑ人!ﾍ　 　` ´ 　　 厂|ノ:.:.:丿
-*/
 
 
 public sealed partial class ElectroMouseSystem : EntitySystem
@@ -185,7 +170,7 @@ public sealed partial class ElectroMouseSystem : EntitySystem
             if (TryComp<DamageableComponent>(uid, out var damageableComponent))
             {
                 var total = FixedPoint2.Zero;
-                foreach (var value in damageableComponent.Damage.DamageDict.Values)
+                foreach (var value in _damageable.GetAllDamage(uid).DamageDict.Values)
                 {
                     total += value;
                 }
@@ -560,13 +545,13 @@ public sealed partial class ElectroMouseSystem : EntitySystem
         if (!TryComp<BatteryComponent>(target, out var targetBattery) || !TryComp<PowerNetworkBatteryComponent>(target, out var pnb))
             return false;
 
-        if (targetBattery.CurrentCharge <= targetBattery.MaxCharge / 100 * 20)
+        if (targetBattery.LastCharge <= targetBattery.MaxCharge / 100 * 20)
         {
             _popup.PopupEntity(Loc.GetString("battery-drainer-empty", ("battery", target)), uid, uid, PopupType.Medium);
             return false;
         }
 
-        var available = targetBattery.CurrentCharge;
+        var available = targetBattery.LastCharge;
         int required;
 
         if (HasComp<ApcComponent>(target))
@@ -688,15 +673,15 @@ public sealed partial class ElectroMouseSystem : EntitySystem
         if (TryComp<DamageableComponent>(uid, out var damagecomp) && component.Energy >= 30)
         {
             args.Handled = true;
-            var result = damagecomp.Damage.DamageDict.OrderByDescending(z => z.Value).ToDictionary(a => a, s => s).First().Key.Key.ToString();
+            var result = _damageable.GetAllDamage(uid).DamageDict.OrderByDescending(z => z.Value).ToDictionary(a => a, s => s).First().Key.Key.ToString();
             if (component.HealingStrength == 10)
             {
-                if (result != null && damagecomp.Damage.DamageDict[result] != 0)
+                if (result != null && _damageable.GetAllDamage(uid).DamageDict[result] != 0)
                 {
                     AddEnergy(uid, component, -30);
                     var newdamage = component.HealingStrength;
-                    if (damagecomp.Damage.DamageDict[result] <= newdamage)
-                        newdamage = (int)damagecomp.Damage.DamageDict[result];
+                    if (_damageable.GetAllDamage(uid).DamageDict[result] <= newdamage)
+                        newdamage = (int)_damageable.GetAllDamage(uid).DamageDict[result];
                     DamageSpecifier damage = new()
                     {
                         DamageDict = new()
@@ -712,12 +697,12 @@ public sealed partial class ElectroMouseSystem : EntitySystem
             }
             else
             {
-                if (result != null && damagecomp.Damage.DamageDict[result] != 0)
+                if (result != null && _damageable.GetAllDamage(uid).DamageDict[result] != 0)
                 {
                     AddEnergy(uid, component, -30);
                     var newdamage = component.HealingStrength;
-                    if (damagecomp.Damage.DamageDict[result] <= newdamage)
-                        newdamage = (int)damagecomp.Damage.DamageDict[result];
+                    if (_damageable.GetAllDamage(uid).DamageDict[result] <= newdamage)
+                        newdamage = (int)_damageable.GetAllDamage(uid).DamageDict[result];
                     DamageSpecifier damage = new()
                     {
                         DamageDict = new()

@@ -43,11 +43,6 @@ public sealed partial class CultRuneComponent : Component
     public bool Concealed;
 
     /// <summary>
-    /// Сколько культистов сейчас стоит на руне (обновляется сервером).
-    /// </summary>
-    public int InvokersOnRune;
-
-    /// <summary>
     /// Минимум культистов для активации.
     /// </summary>
     [DataField]
@@ -58,6 +53,9 @@ public sealed partial class CultRuneComponent : Component
     /// </summary>
     [DataField]
     public int ReviveCharges = 1;
+
+    [DataField]
+    public int InvokersOnRune;
 
     /// <summary>
     /// Состояние спрайта при уничтожении руны (например, анимация rune_large_distorted).

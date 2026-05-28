@@ -21,13 +21,18 @@
         damage:
           types:
             Radiation: 2.66
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         ignoreResistances: true
         damage:
-           groups:
-            Brute: -1.33
-            Burn: -2
-            Toxin: -1.33
-            Airloss: -0.66
+          types:
+            Slash: -0.33
+            Blunt: -0.33
+            Heat: -0.33
+            Asphyxiation: -0.67
+            Radiation: -0.33
+            Poison: -0.33
+            Bloodloss: -0.33
+            Shock: -0.20
+            Caustic: -0.12

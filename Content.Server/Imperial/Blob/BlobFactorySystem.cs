@@ -31,32 +31,40 @@ public sealed class BlobFactorySystem : EntitySystem
             factory.ActiveSpores.RemoveWhere(spore => Deleted(spore));
 
             factory.SpawnAccumulator += frameTime;
-            if (factory.SpawnAccumulator < factory.SpawnInterval)
-                continue;
-
             if (factory.ActiveSpores.Count >= factory.MaxActiveSpores)
+            {
+                factory.SpawnAccumulator = Math.Min(factory.SpawnAccumulator, factory.SpawnInterval);
                 continue;
-
-            factory.SpawnAccumulator -= factory.SpawnInterval;
-
-            var spore = Spawn(factory.SporePrototype, xform.Coordinates);
-            factory.ActiveSpores.Add(spore);
-            _audio.PlayPvs(BlobGrowSound, spore);
-
-            if (TryComp<BlobSporeComponent>(spore, out var sporeComp))
-            {
-                sporeComp.SourceFactory = uid;
-                Dirty(spore, sporeComp);
             }
 
-            if (TryComp<BlobMobComponent>(spore, out var blobMob))
+            var spawned = false;
+            while (factory.SpawnAccumulator >= factory.SpawnInterval
+                && factory.ActiveSpores.Count < factory.MaxActiveSpores)
             {
-                blobMob.OwnerMind = mindId;
-                _blobMob.ConfigureMobForOwner(spore, blobMob);
-                Dirty(spore, blobMob);
+                factory.SpawnAccumulator -= factory.SpawnInterval;
+
+                var spore = Spawn(factory.SporePrototype, xform.Coordinates);
+                factory.ActiveSpores.Add(spore);
+                _audio.PlayPvs(BlobGrowSound, spore);
+
+                if (TryComp<BlobSporeComponent>(spore, out var sporeComp))
+                {
+                    sporeComp.SourceFactory = uid;
+                    Dirty(spore, sporeComp);
+                }
+
+                if (TryComp<BlobMobComponent>(spore, out var blobMob))
+                {
+                    blobMob.OwnerMind = mindId;
+                    _blobMob.ConfigureMobForOwner(spore, blobMob);
+                    Dirty(spore, blobMob);
+                }
+
+                spawned = true;
             }
 
-            Dirty(uid, factory);
+            if (spawned)
+                Dirty(uid, factory);
         }
     }
 

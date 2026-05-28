@@ -27,7 +27,9 @@
     state: ointment
   - type: Item
     heldPrefix: ointment
-    storedRotation: 45
+    storedSprite:
+      state: ointment-storage
+      sprite: Objects/Specific/Medical/medical.rsi
   - type: Healing
     damageContainers:
       - Biological
@@ -128,8 +130,10 @@
     damageContainers:
       - Biological
     damage:
-      groups:
-        Brute: -15 # 5 for each type in the group
+      types:
+        Blunt: -5
+        Piercing: -5
+        Slash: -5
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
       params:
@@ -174,8 +178,10 @@
     damageContainers:
       - Biological
     damage:
-      groups:
-        Brute: -30 # 10 for each type in the group
+      types:
+        Blunt: -10
+        Piercing: -10
+        Slash: -10
     bloodlossModifier: -10 # a suture should stop ongoing bleeding
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
@@ -266,9 +272,8 @@
       damageContainers:
         - Biological
       damage:
-        groups:
-          Brute: 5 # Tourniquets HURT!
         types:
+          Blunt: 5 # Tourniquets HURT
           Asphyxiation: 5 # Essentially Stopping all blood reaching a part of your body
       bloodlossModifier: -10 # Tourniquets stop bleeding
       delay: 0.5
@@ -345,6 +350,12 @@
   - type: Stack
     stackType: AloeCream
     count: 10
+  - type: Item
+    storedRotation: 90
+    storedOffset: 4, 0
+    storedSprite:
+      state: cream
+      sprite: Objects/Specific/Hydroponics/aloe.rsi
 
 - type: entity
   parent: BaseHealingItem
@@ -360,10 +371,14 @@
     damageContainers:
     - Biological
     damage:
-      groups: # these are all split across multiple types
-        Brute: -150
-        Burn: -150
-        Toxin: -150
+      types: # these are all split across multiple types
+        Blunt: -50
+        Piercing: -50
+        Slash: -50
+        Heat: -50
+        Cold: -50
+        Shock: -50
+        Poison: -150
     bloodlossModifier: -20
     delay: 1
     selfHealPenaltyMultiplier: 0
@@ -390,7 +405,7 @@
   - type: Sprite
     state: pill16
   - type: Label
-    currentLabel: dexalin 10u
+    currentLabel: label-dexalin # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -406,7 +421,7 @@
   suffix: Dexalin 10u, 7
   components:
   - type: Label
-    currentLabel: dexalin 10u
+    currentLabel: label-dexalin # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -424,7 +439,7 @@
   - type: Sprite
     state: pill10
   - type: Label
-    currentLabel: dylovene 10u
+    currentLabel: label-dylovene # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -440,7 +455,7 @@
   suffix: Dylovene 10u, 5
   components:
   - type: Label
-    currentLabel: dylovene 10u
+    currentLabel: label-dylovene # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -458,7 +473,7 @@
   - type: Sprite
     state: pill17
   - type: Label
-    currentLabel: hyronalin 10u
+    currentLabel: label-hyronalin # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -474,7 +489,7 @@
   suffix: Hyronalin 10u, 5
   components:
   - type: Label
-    currentLabel: hyronalin 10u
+    currentLabel: label-hyronalin # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -492,7 +507,7 @@
   - type: Sprite
     state: pill9
   - type: Label
-    currentLabel: potassium iodide 10u
+    currentLabel: label-potassium-iodide # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -508,7 +523,7 @@
   suffix: Potassium iodide 10u, 5
   components:
   - type: Label
-    currentLabel: potassium iodide 10u
+    currentLabel: label-potassium-iodide # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -526,7 +541,7 @@
   - type: Sprite
     state: pill14
   - type: Label
-    currentLabel: iron 10u
+    currentLabel: label-iron # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -546,7 +561,7 @@
   - type: Sprite
     state: pill13
   - type: Label
-    currentLabel: copper 10u
+    currentLabel: label-copper # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -562,7 +577,7 @@
   suffix: Iron 10u, 5
   components:
   - type: Label
-    currentLabel: iron 10u
+    currentLabel: label-iron # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -576,7 +591,7 @@
   suffix: Copper 10u, 5
   components:
   - type: Label
-    currentLabel: copper 10u
+    currentLabel: label-copper # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -594,7 +609,7 @@
   - type: Sprite
     state: pill4
   - type: Label
-    currentLabel: kelotane 10u
+    currentLabel: label-kelotane # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -610,7 +625,7 @@
   suffix: Kelotane 10u, 5
   components:
   - type: Label
-    currentLabel: kelotane 10u
+    currentLabel: label-kelotane # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -628,7 +643,7 @@
   - type: Sprite
     state: pill8
   - type: Label
-    currentLabel: dermaline 10u
+    currentLabel: label-dermaline # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -644,7 +659,7 @@
   suffix: Dermaline 10u, 5
   components:
   - type: Label
-    currentLabel: dermaline 10u
+    currentLabel: label-dermaline # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -675,7 +690,7 @@
   - type: Sprite
     state: pill3
   - type: Label
-    currentLabel: tricordrazine 10u
+    currentLabel: label-tricordrazine # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -691,7 +706,7 @@
   suffix: Tricordrazine 10u, 5
   components:
   - type: Label
-    currentLabel: tricordrazine 10u
+    currentLabel: label-tricordrazine # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -709,7 +724,7 @@
   - type: Sprite
     state: pill5
   - type: Label
-    currentLabel: bicaridine 10u
+    currentLabel: label-bicaridine # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -725,7 +740,7 @@
   suffix: Bicaridine 10u, 5
   components:
   - type: Label
-    currentLabel: bicaridine 10u
+    currentLabel: label-bicaridine # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -743,7 +758,7 @@
   - type: Sprite
     state: pill21
   - type: Label
-    currentLabel: charcoal 10u
+    currentLabel: label-charcoal # Imperial Space Localization
   - type: SolutionContainerManager
     solutions:
       food:
@@ -759,7 +774,7 @@
   suffix: Charcoal 10u, 3
   components:
   - type: Label
-    currentLabel: charcoal 10u
+    currentLabel: label-charcoal # Imperial Space Localization
   - type: EntityTableContainerFill
     containers:
       storagebase:

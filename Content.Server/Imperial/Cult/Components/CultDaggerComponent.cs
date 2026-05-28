@@ -1,3 +1,5 @@
+using Robust.Shared.Prototypes;
+
 namespace Content.Server.Imperial.Cult.Components;
 
 /// <summary>
@@ -24,5 +26,5 @@ public sealed partial class CultDaggerComponent : Component
     /// Рунный металл, который нужно иметь в рукоятке для постройки структуры.
     /// </summary>
     [DataField]
-    public string RunedMetalPrototype = "CultRunedMetal";
+    public EntProtoId RunedMetalPrototype = "CultRunedMetal";
 }

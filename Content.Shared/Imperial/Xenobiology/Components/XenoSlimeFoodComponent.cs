@@ -15,4 +15,10 @@ public sealed partial class XenoSlimeFoodComponent : Component
     /// именно тот слайм запскает DoAfter проглатывания.
     /// </summary>
     public EntityUid? LastAttackerSlime;
+
+    /// <summary>
+    /// Текущий слайм, который захватил цель для проглатывания.
+    /// Нужен, чтобы несколько слаймов не запускали DoAfter на одну и ту же сущность.
+    /// </summary>
+    public EntityUid? ClaimedBySlime;
 }

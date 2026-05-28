@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 using Content.Shared.Imperial.Cult;
 using Robust.Client.UserInterface;
@@ -61,6 +62,6 @@ public sealed class CultBloodRitesWindow : DefaultWindow
         CultBloodRitesMode.Recharge => "cult-blood-rites-mode-recharge",
         CultBloodRitesMode.Orb => "cult-blood-rites-mode-orb",
         CultBloodRitesMode.Spear => "cult-blood-rites-mode-spear",
-        _ => "cult-blood-rites-mode-gather",
+        _ => throw new ArgumentOutOfRangeException(nameof(mode), mode, "Unsupported blood rites mode"),
     };
 }

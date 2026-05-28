@@ -1,4 +1,5 @@
 using Content.Server.Objectives.Systems;
+using Robust.Shared.ViewVariables;
 
 namespace Content.Server.Imperial.Cult.Components;
 
@@ -18,6 +19,6 @@ public sealed partial class CultSacrificeConditionComponent : Component
     /// <summary>
     /// Сколько жертв уже принесено (отслеживается системой).
     /// </summary>
-    [DataField]
+    [ViewVariables]
     public int CurrentCount;
 }

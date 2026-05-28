@@ -17,7 +17,7 @@ public sealed partial class ContractorCandidateCondition : ListingCondition
         {
             var minds = args.EntityManager.System<SharedMindSystem>();
             if (!minds.TryGetMind(args.Buyer, out mindId, out _))
-                return false;
+                return true;
         }
 
         var roles = args.EntityManager.System<SharedRoleSystem>();

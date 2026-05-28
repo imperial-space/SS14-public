@@ -8,6 +8,7 @@ using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Shared.Body.Events;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Gibbing;
 using Content.Shared.Ghost;
 using Content.Shared.Imperial.Cult.Components;
 using Content.Shared.Mind;
@@ -63,7 +64,7 @@ public sealed class CultRuleSystem : GameRuleSystem<CultRuleComponent>
         SubscribeLocalEvent<CultNarSieSummonedEvent>(OnNarSieSummoned);
         SubscribeLocalEvent<CultRuleComponent, AfterAntagEntitySelectedEvent>(OnCultistSelected);
         SubscribeLocalEvent<MindContainerComponent, MobStateChangedEvent>(OnTargetMobStateChanged);
-        SubscribeLocalEvent<MindContainerComponent, BeingGibbedEvent>(OnTargetBeingGibbed);
+        SubscribeLocalEvent<MindContainerComponent, ComponentShutdown>(OnTargetMindShutdown);
     }
 
     private void OnCultistSelected(Entity<CultRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
@@ -188,8 +189,10 @@ public sealed class CultRuleSystem : GameRuleSystem<CultRuleComponent>
             if (!TryComp<NavMapBeaconComponent>(beaconUid, out var beacon))
                 continue;
 
-            if (!TryComp<TransformComponent>(beaconUid, out var xform))
+            if (!Exists(beaconUid))
                 continue;
+
+            var xform = Transform(beaconUid);
 
             if (!_navMap.TryGetBeaconLabel(beaconUid, out _, beacon))
                 continue;
@@ -222,8 +225,10 @@ public sealed class CultRuleSystem : GameRuleSystem<CultRuleComponent>
             if (!TryComp<NavMapBeaconComponent>(beaconUid, out var beacon))
                 continue;
 
-            if (!TryComp<TransformComponent>(beaconUid, out var xform))
+            if (!Exists(beaconUid))
                 continue;
+
+            var xform = Transform(beaconUid);
 
             if (!_navMap.TryGetBeaconLabel(beaconUid, out var candidate, beacon))
                 continue;
@@ -312,7 +317,7 @@ public sealed class CultRuleSystem : GameRuleSystem<CultRuleComponent>
         TryCompleteSacrificeTarget(uid);
     }
 
-    private void OnTargetBeingGibbed(EntityUid uid, MindContainerComponent comp, ref BeingGibbedEvent args)
+    private void OnTargetMindShutdown(EntityUid uid, MindContainerComponent comp, ref ComponentShutdown args)
     {
         TryCompleteSacrificeTarget(uid);
     }
@@ -361,7 +366,25 @@ public sealed class CultRuleSystem : GameRuleSystem<CultRuleComponent>
     private void EnsureNarSieBeacons(Entity<CultRuleComponent> ent, EntityUid? stationUid = null)
     {
         if (ent.Comp.NarSieBeaconTargets.Count > 0 && ent.Comp.NarSieBeaconLabels.Count > 0)
-            return;
+        {
+            if (stationUid == null)
+                return;
+
+            var allMatchStation = true;
+            foreach (var target in ent.Comp.NarSieBeaconTargets)
+            {
+                if (!Exists(target)
+                    || TerminatingOrDeleted(target)
+                    || _station.GetOwningStation(target) != stationUid)
+                {
+                    allMatchStation = false;
+                    break;
+                }
+            }
+
+            if (allMatchStation)
+                return;
+        }
 
         var candidates = new List<(EntityUid Uid, string Label)>();
         var query = EntityQueryEnumerator<NavMapBeaconComponent>();
@@ -420,7 +443,7 @@ public sealed class CultRuleSystem : GameRuleSystem<CultRuleComponent>
             if (mind.OwnedEntity is not { } owned)
                 continue;
 
-            if (!EntityManager.EntityExists(owned) || TerminatingOrDeleted(owned))
+            if (!Exists(owned) || TerminatingOrDeleted(owned))
                 continue;
 
             if (_mind.IsCharacterDeadIc(mind))

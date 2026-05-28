@@ -1,5 +1,6 @@
 using Robust.Shared.GameObjects;
 using Robust.Shared.Serialization.Manager.Attributes;
+using Robust.Shared.ViewVariables;
 
 namespace Content.Shared.Imperial.Cult.Components;
 
@@ -11,6 +12,6 @@ namespace Content.Shared.Imperial.Cult.Components;
 public sealed partial class FlagellantRobesEffectComponent : Component
 {
     /// <summary>Множитель урона, копируется из <see cref="FlagellantRobesComponent"/> при надевании.</summary>
-    [DataField]
+    [ViewVariables]
     public float DamageMultiplier = 2.0f;
 }

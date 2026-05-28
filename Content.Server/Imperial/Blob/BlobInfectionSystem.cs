@@ -25,6 +25,7 @@ namespace Content.Server.Imperial.Blob;
 
 public sealed class BlobInfectionSystem : EntitySystem
 {
+    private const string BlobFactionId = "Blob";
     private const string BlobGrowSound = "/Audio/Imperial/blob/sound_effects_splat.ogg";
 
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -65,7 +66,7 @@ public sealed class BlobInfectionSystem : EntitySystem
             if (infected.OwnerMind is not { })
                 continue;
 
-            if (_npcFaction.IsMember(infectedUid, "Blob"))
+            if (_npcFaction.IsMember(infectedUid, BlobFactionId))
                 continue;
 
             if (TryComp<MobStateComponent>(infectedUid, out var mobState) && mobState.CurrentState == MobState.Dead)
@@ -143,13 +144,18 @@ public sealed class BlobInfectionSystem : EntitySystem
 
     private void TryAttachBlobHelmet(EntityUid target)
     {
-        _inventory.TryUnequip(target, target, "head", silent: true, force: true);
+        EntityUid? oldHead = null;
+        if (_inventory.TryUnequip(target, target, "head", out var unequipped, silent: true, force: true))
+            oldHead = unequipped;
 
         var helmet = Spawn("ClothingHeadHelmetBlob", Transform(target).Coordinates);
         if (_inventory.TryEquip(target, target, helmet, "head", silent: true, force: true))
             return;
 
         QueueDel(helmet);
+
+        if (oldHead != null && Exists(oldHead.Value))
+            _inventory.TryEquip(target, target, oldHead.Value, "head", silent: true, force: true);
     }
 
     public bool TryLatchSporeOntoTarget(EntityUid sporeUid, EntityUid target, EntityUid ownerMind, BlobChemicalType chemical)
@@ -171,7 +177,7 @@ public sealed class BlobInfectionSystem : EntitySystem
         if (HasComp<BlobMobComponent>(target) ||
             HasComp<BlobOvermindComponent>(target) ||
             HasComp<BlobStructureComponent>(target) ||
-            _npcFaction.IsMember(target, "Blob"))
+            _npcFaction.IsMember(target, BlobFactionId))
         {
             return;
         }
@@ -246,7 +252,7 @@ public sealed class BlobInfectionSystem : EntitySystem
     private void ConfigureBlobAlly(EntityUid target, EntityUid ownerMind, BlobChemicalType chemical)
     {
         _npcFaction.ClearFactions(target);
-        _npcFaction.AddFaction(target, "Blob");
+        _npcFaction.AddFaction(target, BlobFactionId);
 
         var infected = EnsureComp<BlobInfectedComponent>(target);
         infected.OwnerMind = ownerMind;
@@ -349,7 +355,7 @@ public sealed class BlobInfectionSystem : EntitySystem
         if (!TryComp<MobStateComponent>(target, out var targetMobState) || targetMobState.CurrentState == MobState.Dead)
             return false;
 
-        if (_npcFaction.IsMember(target, "Blob"))
+        if (_npcFaction.IsMember(target, BlobFactionId))
             return false;
 
         return true;

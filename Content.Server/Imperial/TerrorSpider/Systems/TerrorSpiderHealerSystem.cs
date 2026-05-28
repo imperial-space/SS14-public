@@ -36,6 +36,7 @@ public sealed class TerrorSpiderHealerSystem : EntitySystem
         SubscribeLocalEvent<TerrorSpiderHealerComponent, TerrorSpiderHealerLayEggActionEvent>(OnLayEggAction);
         SubscribeLocalEvent<TerrorSpiderHealerComponent, TerrorSpiderCocoonWrappedEvent>(OnCocoonWrapped);
         SubscribeLocalEvent<TerrorSpiderHealerComponent, BeforeInteractHandEvent>(OnBeforeInteractHand);
+        SubscribeLocalEvent<TerrorSpiderHealerComponent, UserInteractHandEvent>(OnUserInteractHand);
         SubscribeLocalEvent<TerrorSpiderWebBuffReceiverComponent, BeforeDamageChangedEvent>(OnBeforeSpiderDamageChanged);
         SubscribeLocalEvent<MeleeHitEvent>(OnMeleeHit);
 
@@ -137,6 +138,21 @@ public sealed class TerrorSpiderHealerSystem : EntitySystem
         args.Handled = true;
     }
 
+    private void OnUserInteractHand(Entity<TerrorSpiderHealerComponent> ent, ref UserInteractHandEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (args.Target == ent.Owner)
+            return;
+
+        if (!TryComp<TerrorSpiderWebBuffReceiverComponent>(args.Target, out _))
+            return;
+
+        TryApplyTouchHeal(args.Target, ent.Comp);
+        args.Handled = true;
+    }
+
     private void OnBeforeSpiderDamageChanged(Entity<TerrorSpiderWebBuffReceiverComponent> ent, ref BeforeDamageChangedEvent args)
     {
         if (args.Origin is not { } origin)
@@ -187,13 +203,9 @@ public sealed class TerrorSpiderHealerSystem : EntitySystem
         if (!TryComp<DamageableComponent>(target, out var damageable))
             return;
 
+        var currentDamage = _damageable.GetPositiveDamage((target, damageable));
         var heal = new DamageSpecifier();
-        foreach (var group in damageable.DamagePerGroup.Keys)
-        {
-            heal.DamageDict[group] = -amount;
-        }
-
-        foreach (var damageType in damageable.Damage.DamageDict.Keys)
+        foreach (var damageType in currentDamage.DamageDict.Keys)
         {
             heal.DamageDict[damageType] = -amount;
         }

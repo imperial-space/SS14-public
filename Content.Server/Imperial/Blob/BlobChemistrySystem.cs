@@ -16,10 +16,11 @@ public sealed class BlobChemistrySystem : EntitySystem
         var query = EntityQueryEnumerator<BlobChemicalEffectComponent>();
         while (query.MoveNext(out var uid, out var effect))
         {
+            var activeTime = System.MathF.Min(frameTime, System.MathF.Max(effect.TimeRemaining, 0f));
             effect.TimeRemaining -= frameTime;
-            effect.TickAccumulator += frameTime;
+            effect.TickAccumulator += activeTime;
 
-            if (effect.TickAccumulator >= effect.TickInterval)
+            while (effect.TickAccumulator >= effect.TickInterval)
             {
                 effect.TickAccumulator -= effect.TickInterval;
                 var damage = new DamageSpecifier();
@@ -72,9 +73,13 @@ public sealed class BlobChemistrySystem : EntitySystem
     public void ApplyChemicalEffect(EntityUid uid, BlobChemicalType chemical, float duration)
     {
         var effect = EnsureComp<BlobChemicalEffectComponent>(uid);
+        var chemicalChanged = effect.Chemical != chemical;
+        effect.TimeRemaining = chemicalChanged
+            ? duration
+            : System.MathF.Max(effect.TimeRemaining, duration);
         effect.Chemical = chemical;
-        effect.TimeRemaining = Math.Max(effect.TimeRemaining, duration);
-        effect.TickAccumulator = 0f;
+        if (chemicalChanged)
+            effect.TickAccumulator = 0f;
         Dirty(uid, effect);
     }
 }

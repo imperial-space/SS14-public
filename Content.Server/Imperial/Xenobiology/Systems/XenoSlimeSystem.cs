@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.NPC.HTN;
@@ -45,11 +45,9 @@ public sealed class XenoSlimeSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem    _lookup     = default!;
     [Dependency] private readonly TransformSystem       _transform  = default!;
     [Dependency] private readonly IRobustRandom         _random     = default!;
-    [Dependency] private readonly NpcFactionSystem      _factionSys = default!;
     [Dependency] private readonly HTNSystem             _htn        = default!;
     [Dependency] private readonly SharedContainerSystem _containers = default!;
     [Dependency] private readonly SharedDoAfterSystem   _doAfter    = default!;
-    [Dependency] private readonly SolutionContainerSystem _solutionSys = default!;
 
     // ─── прототипы по цвету (индекс = (int)XenoSlimeColor) ─────────────────
     private static readonly string[] SmallProtos =
@@ -354,12 +352,15 @@ public sealed class XenoSlimeSystem : EntitySystem
         if (slime.SwallowTarget != null || slime.IsDigesting)
             return;
 
-        foreach (var (foodUid, _) in _lookup.GetEntitiesInRange<XenoSlimeFoodComponent>(slimeCoords, 5f))
+        foreach (var (foodUid, foodComp) in _lookup.GetEntitiesInRange<XenoSlimeFoodComponent>(slimeCoords, 5f))
         {
             if (Deleted(foodUid)) continue;
+            if (slime.Friends.Contains(foodUid)) continue;
+            if (foodComp.ClaimedBySlime is { } claimedBy && claimedBy != slimeUid) continue;
             if (!TryComp<MobStateComponent>(foodUid, out var foodMob)) continue;
             if (foodMob.CurrentState != MobState.Critical && foodMob.CurrentState != MobState.Dead) continue;
 
+            foodComp.ClaimedBySlime = slimeUid;
             slime.SwallowTarget = foodUid;
             var started = _doAfter.TryStartDoAfter(new DoAfterArgs(
                 EntityManager, slimeUid, slime.SwallowDuration,
@@ -370,7 +371,12 @@ public sealed class XenoSlimeSystem : EntitySystem
                 BlockDuplicate     = true,
                 DuplicateCondition = DuplicateConditions.SameTool,
             });
-            if (!started) slime.SwallowTarget = null;
+            if (!started)
+            {
+                slime.SwallowTarget = null;
+                if (foodComp.ClaimedBySlime == slimeUid)
+                    foodComp.ClaimedBySlime = null;
+            }
             return;
         }
     }
@@ -406,6 +412,15 @@ public sealed class XenoSlimeSystem : EntitySystem
         if (args.NewMobState != MobState.Critical && args.NewMobState != MobState.Dead)
             return;
 
+        // Очищаем устаревший claim.
+        if (food.ClaimedBySlime is { } claimedBy
+            && (Deleted(claimedBy)
+                || !TryComp<XenoSlimeComponent>(claimedBy, out var claimedComp)
+                || claimedComp.SwallowTarget != foodUid))
+        {
+            food.ClaimedBySlime = null;
+        }
+
         // Слайм-атакующий должен быть живым и свободным
         EntityUid? slimeUid = null;
         XenoSlimeComponent? slimeComp = null;
@@ -413,7 +428,10 @@ public sealed class XenoSlimeSystem : EntitySystem
         if (food.LastAttackerSlime is { } attacker
             && !IsDeadOrDeleted(attacker)
             && TryComp(attacker, out XenoSlimeComponent? sc)
-            && sc.SwallowTarget == null)
+            && sc.SwallowTarget == null
+            && !sc.IsDigesting
+            && (food.ClaimedBySlime == null || food.ClaimedBySlime == attacker)
+            && !sc.Friends.Contains(foodUid))
         {
             slimeUid = attacker;
             slimeComp = sc;
@@ -426,7 +444,11 @@ public sealed class XenoSlimeSystem : EntitySystem
 
             foreach (var (uid, comp) in _lookup.GetEntitiesInRange<XenoSlimeComponent>(foodCoords, 6f))
             {
-                if (IsDeadOrDeleted(uid) || comp.SwallowTarget != null)
+                if (IsDeadOrDeleted(uid) || comp.SwallowTarget != null || comp.IsDigesting)
+                    continue;
+                if (comp.Friends.Contains(foodUid))
+                    continue;
+                if (food.ClaimedBySlime is { } claimedOther && claimedOther != uid)
                     continue;
 
                 var d = (_transform.GetMapCoordinates(uid).Position - foodCoords.Position).Length();
@@ -441,6 +463,11 @@ public sealed class XenoSlimeSystem : EntitySystem
 
         if (slimeUid == null || slimeComp == null)
             return;
+
+        if (food.ClaimedBySlime is { } claimedByOther && claimedByOther != slimeUid.Value)
+            return;
+
+        food.ClaimedBySlime = slimeUid.Value;
 
         // Записываем цель и запускаем DoAfter процесса проглатывания (HTN выключится в Update пока SwallowTarget != null)
         slimeComp.SwallowTarget = foodUid;
@@ -458,7 +485,12 @@ public sealed class XenoSlimeSystem : EntitySystem
             BlockDuplicate     = true,
             DuplicateCondition = DuplicateConditions.SameTool,
         });
-        if (!started) slimeComp.SwallowTarget = null;
+        if (!started)
+        {
+            slimeComp.SwallowTarget = null;
+            if (food.ClaimedBySlime == slimeUid.Value)
+                food.ClaimedBySlime = null;
+        }
     }
 
     private void OnSwallowDoAfter(EntityUid slimeUid, XenoSlimeComponent slime, XenoSlimeSwallowDoAfterEvent args)
@@ -468,12 +500,25 @@ public sealed class XenoSlimeSystem : EntitySystem
 
         if (args.Cancelled)
         {
+            if (args.Args.Target is { } cancelledFood
+                && TryComp<XenoSlimeFoodComponent>(cancelledFood, out var cancelledFoodComp)
+                && cancelledFoodComp.ClaimedBySlime == slimeUid)
+            {
+                cancelledFoodComp.ClaimedBySlime = null;
+            }
+
             // Ретрай: если цель ещё крит/мертва — немедленно начинаем снова
             if (args.Args.Target is { } retryFood
                 && !Deleted(retryFood)
+                && TryComp<XenoSlimeFoodComponent>(retryFood, out var retryFoodComp)
                 && TryComp<MobStateComponent>(retryFood, out var retryMob)
                 && (retryMob.CurrentState == MobState.Critical || retryMob.CurrentState == MobState.Dead))
             {
+                if (retryFoodComp.ClaimedBySlime is { } claimedBy && claimedBy != slimeUid)
+                    return;
+
+                retryFoodComp.ClaimedBySlime = slimeUid;
+
                 // HTN выключится автоматически в Update пока SwallowTarget != null
                 slime.SwallowTarget = retryFood;
                 var retryStarted = _doAfter.TryStartDoAfter(new DoAfterArgs(
@@ -485,7 +530,12 @@ public sealed class XenoSlimeSystem : EntitySystem
                     BlockDuplicate     = true,
                     DuplicateCondition = DuplicateConditions.SameTool,
                 });
-                if (!retryStarted) slime.SwallowTarget = null;
+                if (!retryStarted)
+                {
+                    slime.SwallowTarget = null;
+                    if (retryFoodComp.ClaimedBySlime == slimeUid)
+                        retryFoodComp.ClaimedBySlime = null;
+                }
             }
             return;
         }
@@ -498,13 +548,27 @@ public sealed class XenoSlimeSystem : EntitySystem
         if (Deleted(foodUid))
             return;
 
-        // Запоминаем игроков, которые были рядом
+        if (!TryComp<XenoSlimeFoodComponent>(foodUid, out var foodComp)
+            || foodComp.ClaimedBySlime != slimeUid)
+            return;
+
         var foodCoords = _transform.GetMapCoordinates(foodUid);
-        TrackNearbyFeeders(slimeUid, slime, foodCoords);
 
         // Тело втягивается в желудок слайма (исчезает из мира)
         var stomach = _containers.EnsureContainer<Container>(slimeUid, XenoSlimeComponent.StomachContainerId);
-        _containers.Insert(foodUid, stomach);
+        if (!_containers.Insert(foodUid, stomach))
+        {
+            if (foodComp.ClaimedBySlime == slimeUid)
+                foodComp.ClaimedBySlime = null;
+            return;
+        }
+
+        // Цель успешно захвачена желудком.
+        if (foodComp.ClaimedBySlime == slimeUid)
+            foodComp.ClaimedBySlime = null;
+
+        // Запоминаем игроков только после успешного проглатывания.
+        TrackNearbyFeeders(slimeUid, slime, foodCoords);
 
         // Начинаем постепенное переваривание: +70 % за 60 секунд (в Update)
         // При достижении 100 % слайм вырастет/разделится автоматически
@@ -553,6 +617,7 @@ public sealed class XenoSlimeSystem : EntitySystem
                 childComp.StabilizationLevel = comp.StabilizationLevel;
                 childComp.SteroidCount       = comp.SteroidCount;
                 childComp.AgeSeconds         = comp.AgeSeconds; // передаём возраст
+                CopyFriendState(comp, childComp);
             }
         }
         else
@@ -602,7 +667,7 @@ public sealed class XenoSlimeSystem : EntitySystem
     private void SpawnOffspring(MapCoordinates coords, XenoSlimeColor color, byte tier, byte stabilizationLevel = 0, byte mutationBoost = 0)
     {
         // Гарантированный потомок того же цвета
-        Spawn(GetSmallProto(color), coords);
+        ApplyOffspringStabilization(Spawn(GetSmallProto(color), coords), stabilizationLevel);
 
         // 2 или 3 всего (50/50)
         var count = _random.Prob(0.5f) ? 3 : 2;
@@ -611,13 +676,13 @@ public sealed class XenoSlimeSystem : EntitySystem
         if (!OffspringMap.TryGetValue(color, out var allowed) || allowed.Length == 0)
         {
             for (var i = 1; i < count; i++)
-                Spawn(GetSmallProto(color), coords);
+                ApplyOffspringStabilization(Spawn(GetSmallProto(color), coords), stabilizationLevel);
             return;
         }
 
         // Базовый шанс мутации - снижаем стабилизатором (максимально до 0), повышаем MutationBoost
-        var effectiveTier = (byte) Math.Max(1, tier - mutationBoost);
-        var baseMutChance = MutationChance[Math.Clamp(effectiveTier, (byte)1, (byte)4)];
+        var effectiveTier = Math.Clamp(tier - mutationBoost, 0, MutationChance.Length - 1);
+        var baseMutChance = MutationChance[effectiveTier];
         var mutChance     = Math.Max(0f, baseMutChance - stabilizationLevel * 0.15f);
         for (var i = 1; i < count; i++)
         {
@@ -625,11 +690,16 @@ public sealed class XenoSlimeSystem : EntitySystem
             var spawnColor = _random.Prob(mutChance)
                 ? _random.Pick(allowed)
                 : color;
-            var child = Spawn(GetSmallProto(spawnColor), coords);
-            // Наследуем уровень стабилизации потомкам
-            if (stabilizationLevel > 0 && TryComp<XenoSlimeComponent>(child, out var childComp))
-                childComp.StabilizationLevel = stabilizationLevel;
+            ApplyOffspringStabilization(Spawn(GetSmallProto(spawnColor), coords), stabilizationLevel);
         }
+    }
+
+    private void ApplyOffspringStabilization(EntityUid child, byte stabilizationLevel)
+    {
+        if (stabilizationLevel <= 0 || !TryComp<XenoSlimeComponent>(child, out var childComp))
+            return;
+
+        childComp.StabilizationLevel = stabilizationLevel;
     }
 
     private bool IsDeadOrDeleted(EntityUid uid)
@@ -637,6 +707,13 @@ public sealed class XenoSlimeSystem : EntitySystem
         if (Deleted(uid)) return true;
         if (TryComp<MobStateComponent>(uid, out var mob) && mob.CurrentState == MobState.Dead) return true;
         return false;
+    }
+
+    private static void CopyFriendState(XenoSlimeComponent from, XenoSlimeComponent to)
+    {
+        to.Friends.UnionWith(from.Friends);
+        foreach (var (friendUid, count) in from.FeedCounts)
+            to.FeedCounts[friendUid] = count;
     }
 
     private static string GetSmallProto(XenoSlimeColor color)   => SmallProtos[(int) color];
@@ -698,27 +775,6 @@ public sealed class XenoSlimeSystem : EntitySystem
     // ─── возрастные переходы ─────────────────────────────────────────────
 
     /// <summary>
-    /// Проверяет, достиг ли взрослый слайм порога Old/Ancient, и трансформирует его если нужно.
-    /// Вызывается в Update() только для IsAdult=true сущностей.
-    /// </summary>
-    private void CheckAgeTransition(EntityUid uid, XenoSlimeComponent slime)
-    {
-        if (slime.AgeStage == XenoSlimeAge.Ancient)
-            return; // уже максимальная стадия
-
-        if (slime.AgeStage != XenoSlimeAge.Old && slime.AgeSeconds >= XenoSlimeComponent.AncientAgeThreshold)
-        {
-            TransformSlimeAgeStage(uid, slime, XenoSlimeAge.Ancient);
-            return;
-        }
-
-        if (slime.AgeStage < XenoSlimeAge.Old && slime.AgeSeconds >= XenoSlimeComponent.OldAgeThreshold)
-        {
-            TransformSlimeAgeStage(uid, slime, XenoSlimeAge.Old);
-        }
-    }
-
-    /// <summary>
     /// Удаляет текущую сущность и спавнит новую с нужным прото (Old/Ancient),
     /// передавая баффы, возраст и голод.
     /// </summary>
@@ -742,6 +798,7 @@ public sealed class XenoSlimeSystem : EntitySystem
         newComp.HungerPercent      = slime.HungerPercent;
         newComp.AgeSeconds         = slime.AgeSeconds;
         newComp.AgeStage           = newStage;
+        CopyFriendState(slime, newComp);
 
         // Синхронизируем настроение
         if (slime.Mood == XenoSlimeMood.Aggressive)
@@ -755,28 +812,26 @@ public sealed class XenoSlimeSystem : EntitySystem
         byte stabilizationLevel = 0, byte mutationBoost = 0, float ageSeconds = 0f)
     {
         // Гарантированный Large потомок
-        Spawn(GetLargeProto(color), coords);
+        ApplyOffspringStabilization(Spawn(GetLargeProto(color), coords), stabilizationLevel);
 
         // 2 или 3 всего (50/50)
         var count = _random.Prob(0.5f) ? 3 : 2;
 
         if (!OffspringMap.TryGetValue(color, out var allowed) || allowed.Length == 0)
         {
-            for (var i = 0; i < count; i++)
-                Spawn(GetSmallProto(color), coords);
+            for (var i = 1; i < count; i++)
+                ApplyOffspringStabilization(Spawn(GetSmallProto(color), coords), stabilizationLevel);
             return;
         }
 
-        var effectiveTier = (byte) Math.Max(1, tier - mutationBoost);
-        var baseMutChance = MutationChance[Math.Clamp(effectiveTier, (byte)1, (byte)4)];
+        var effectiveTier = Math.Clamp(tier - mutationBoost, 0, MutationChance.Length - 1);
+        var baseMutChance = MutationChance[effectiveTier];
         var mutChance     = Math.Max(0f, baseMutChance - stabilizationLevel * 0.15f);
 
-        for (var i = 0; i < count; i++)
+        for (var i = 1; i < count; i++)
         {
             var spawnColor = _random.Prob(mutChance) ? _random.Pick(allowed) : color;
-            var child = Spawn(GetSmallProto(spawnColor), coords);
-            if (stabilizationLevel > 0 && TryComp<XenoSlimeComponent>(child, out var childComp))
-                childComp.StabilizationLevel = stabilizationLevel;
+            ApplyOffspringStabilization(Spawn(GetSmallProto(spawnColor), coords), stabilizationLevel);
         }
     }
 
@@ -797,8 +852,7 @@ public sealed class XenoSlimeSystem : EntitySystem
 
         // Гарантированный Large
         var largeChild = Spawn(GetLargeProto(color), coords);
-        if (stabilizationLevel > 0 && TryComp<XenoSlimeComponent>(largeChild, out var largeComp))
-            largeComp.StabilizationLevel = stabilizationLevel;
+        ApplyOffspringStabilization(largeChild, stabilizationLevel);
 
         // 1 или 2 малых потомка с мутацией
         var count = _random.Prob(0.5f) ? 2 : 1;
@@ -806,20 +860,18 @@ public sealed class XenoSlimeSystem : EntitySystem
         if (!OffspringMap.TryGetValue(color, out var allowed) || allowed.Length == 0)
         {
             for (var i = 0; i < count; i++)
-                Spawn(GetSmallProto(color), coords);
+                ApplyOffspringStabilization(Spawn(GetSmallProto(color), coords), stabilizationLevel);
             return;
         }
 
-        var effectiveTier = (byte) Math.Max(1, tier - mutationBoost);
-        var baseMutChance = MutationChance[Math.Clamp(effectiveTier, (byte)1, (byte)4)];
+        var effectiveTier = Math.Clamp(tier - mutationBoost, 0, MutationChance.Length - 1);
+        var baseMutChance = MutationChance[effectiveTier];
         var mutChance     = Math.Max(0f, baseMutChance - stabilizationLevel * 0.15f);
 
         for (var i = 0; i < count; i++)
         {
             var spawnColor = _random.Prob(mutChance) ? _random.Pick(allowed) : color;
-            var child = Spawn(GetSmallProto(spawnColor), coords);
-            if (stabilizationLevel > 0 && TryComp<XenoSlimeComponent>(child, out var childComp))
-                childComp.StabilizationLevel = stabilizationLevel;
+            ApplyOffspringStabilization(Spawn(GetSmallProto(spawnColor), coords), stabilizationLevel);
         }
     }
 
@@ -861,6 +913,9 @@ public sealed class XenoSlimeSystem : EntitySystem
 
         if (!comp.IsAdult)
         {
+            // Защита от повторной обработки до фактического удаления сущности.
+            comp.IsAdult = true;
+
             // Маленький → мгновенно взрослый
             QueueDel(uid);
             var adult = Spawn(GetLargeProto(color), coords);
@@ -869,6 +924,7 @@ public sealed class XenoSlimeSystem : EntitySystem
                 adultComp.StabilizationLevel = comp.StabilizationLevel;
                 adultComp.SteroidCount       = comp.SteroidCount;
                 adultComp.AgeSeconds         = comp.AgeSeconds;
+                CopyFriendState(comp, adultComp);
             }
         }
         else

@@ -140,10 +140,10 @@ public sealed partial class BlobOvermindComponent : Component
     public float SoriumThrowDistance = 2.25f;
 
     [DataField]
-    public int ShieldTileCost = 15;
+    public int ShieldTileCost = 5;
 
     [DataField]
-    public int ReflectiveTileCost = 15;
+    public int ReflectiveTileCost = 5;
 
     [DataField]
     public int NodeCost = 60;
@@ -251,7 +251,7 @@ public sealed partial class BlobOvermindComponent : Component
     public int EvolutionPoints;
 
     [ViewVariables]
-    public int NextEvolutionThreshold = 25;
+    public int NextEvolutionThreshold;
 
     [ViewVariables]
     public int GenerationUpgradeLevel;

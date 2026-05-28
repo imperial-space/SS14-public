@@ -32,6 +32,10 @@ public sealed partial class XenoObediencePotionSystem
         if (TryComp<XenoSlimeComponent>(uid, out var slime))
         {
             MakeSlimeFriendlyToAll(uid, slime, args.User);
+            _popup.PopupEntity(
+                Loc.GetString("xeno-obedience-potion-success", ("count", 1)),
+                uid,
+                PopupType.Medium);
             return;
         }
 
@@ -45,7 +49,7 @@ public sealed partial class XenoObediencePotionSystem
             if (!TryComp<XenoSlimeComponent>(slimeUid, out var slimeComp))
                 continue;
 
-            MakeSlimeFriendlyToAll(slimeUid, slimeComp, uid);
+            MakeSlimeFriendlyToAll(slimeUid, slimeComp, args.User);
             friendCount++;
         }
 
@@ -60,7 +64,7 @@ public sealed partial class XenoObediencePotionSystem
     /// <summary>
     /// Делает слайм нейтральным и добавляет указанную сущность (и другие пустые слоты) в его список друзей.
     /// </summary>
-    private void MakeSlimeFriendlyToAll(EntityUid slimeUid, XenoSlimeComponent slimeComp, EntityUid? friend)
+    public void MakeSlimeFriendlyToAll(EntityUid slimeUid, XenoSlimeComponent slimeComp, EntityUid? friend)
     {
         // Переводим в нейтральный режим
         if (slimeComp.Mood != XenoSlimeMood.Neutral)

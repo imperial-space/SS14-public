@@ -1,4 +1,5 @@
 using Content.Shared.Imperial.Cult.Components;
+using System.Collections.Generic;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -31,18 +32,32 @@ public sealed partial class UnholyWaterBodyEffectSystem : EntityEffectSystem<Dam
 
     private void ApplyCultistEffects(Entity<DamageableComponent> entity, UnholyWaterBodyEffect effect)
     {
-        var heal = new DamageSpecifier();
-        foreach (var (dt, dmg) in entity.Comp.Damage.DamageDict)
+        var damage = _damage.GetPositiveDamage(entity);
+        var healableTypes = new List<string>();
+        foreach (var (dt, dmg) in damage.DamageDict)
         {
-            if (dmg <= FixedPoint2.Zero) continue;
+            if (dmg <= FixedPoint2.Zero)
+                continue;
+
             if (Array.IndexOf(BruteTypes, dt) >= 0
                 || Array.IndexOf(BurnTypes, dt) >= 0
                 || dt == "Asphyxiation"
                 || dt == "Poison")
             {
-                heal.DamageDict[dt] = -(FixedPoint2)effect.HealAmount;
+                healableTypes.Add(dt);
             }
         }
+
+        if (healableTypes.Count == 0)
+            return;
+
+        var heal = new DamageSpecifier();
+        var perTypeHeal = effect.HealAmount / healableTypes.Count;
+        foreach (var dt in healableTypes)
+        {
+            heal.DamageDict[dt] = -(FixedPoint2)perTypeHeal;
+        }
+
         if (!heal.Empty)
             _damage.TryChangeDamage(entity.Owner, heal, ignoreResistances: true, interruptsDoAfters: false);
 

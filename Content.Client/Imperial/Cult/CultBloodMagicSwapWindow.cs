@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.Imperial.Cult;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
@@ -13,19 +14,6 @@ public sealed class CultBloodMagicSwapWindow : DefaultWindow
 {
     public event Action<string>? OnSwapSelected;
 
-    private static readonly Dictionary<string, string> SpellLocKeys = new()
-    {
-        ["ActionCultStun"]                = "cult-spell-stun",
-        ["ActionCultShackles"]            = "cult-spell-shackles",
-        ["ActionCultTeleport"]            = "cult-spell-teleport",
-        ["ActionCultEmp"]                 = "cult-spell-emp",
-        ["ActionCultTwistedConstruction"] = "cult-spell-twisted-construction",
-        ["ActionCultSummonDagger"]        = "cult-spell-summon-dagger",
-        ["ActionCultSummonEquipment"]     = "cult-spell-summon-equipment",
-        ["ActionCultConcealPresence"]     = "cult-spell-conceal-presence",
-        ["ActionCultBloodRites"]          = "cult-spell-blood-rites",
-    };
-
     public CultBloodMagicSwapWindow()
     {
         Title = Loc.GetString("cult-blood-magic-swap-title");
@@ -37,10 +25,6 @@ public sealed class CultBloodMagicSwapWindow : DefaultWindow
     {
         Contents.RemoveAllChildren();
 
-        var newSpellName = SpellLocKeys.TryGetValue(newSpellId, out var lk)
-            ? Loc.GetString(lk)
-            : newSpellId;
-
         var vbox = new BoxContainer
         {
             Orientation = BoxContainer.LayoutOrientation.Vertical,
@@ -50,14 +34,14 @@ public sealed class CultBloodMagicSwapWindow : DefaultWindow
 
         var label = new Label
         {
-            Text = Loc.GetString("cult-blood-magic-swap-choose", ("spell", newSpellName)),
+            Text = Loc.GetString("cult-blood-magic-swap-choose"),
             HorizontalExpand = true,
         };
         vbox.AddChild(label);
 
         foreach (var spellId in preparedSpells)
         {
-            var displayName = SpellLocKeys.TryGetValue(spellId, out var key)
+            var displayName = CultSpellLocKeys.Mapping.TryGetValue(spellId, out var key)
                 ? Loc.GetString(key)
                 : spellId;
 

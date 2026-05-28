@@ -1,4 +1,5 @@
 using Robust.Shared.GameObjects;
+using Robust.Shared.ViewVariables;
 
 namespace Content.Server.Imperial.Cult.Components;
 
@@ -29,7 +30,7 @@ public sealed partial class PylonHealCultistsComponent : Component
     public TimeSpan HealInterval = TimeSpan.FromSeconds(3);
 
     /// <summary>Когда произойдёт следующий тик.</summary>
-    [DataField]
+    [ViewVariables]
     public TimeSpan NextHeal = TimeSpan.Zero;
 
     /// <summary>
@@ -47,6 +48,6 @@ public sealed partial class PylonHealCultistsComponent : Component
     public TimeSpan ConvertInterval = TimeSpan.FromSeconds(30);
 
     /// <summary>Когда произойдёт следующая конвертация.</summary>
-    [DataField]
+    [ViewVariables]
     public TimeSpan NextConvert = TimeSpan.Zero;
 }

@@ -35,6 +35,7 @@ using Robust.Server.Player;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -47,7 +48,7 @@ public sealed class ContractorSystem : EntitySystem
     private const string ContractorCurrency = "ContractorRep";
     private const string ContractorCandidateRole = "MindRoleContractorCandidate";
     private const string ContractorRole = "MindRoleContractor";
-    private const string PirateMapPath = "/Maps/Shuttles/pirate.yml";
+    private const string PirateMapPath = "/Maps/Shuttles/contractor_prison.yml";
     private const string PrisonLocker = "LockerPrisoner";
     private const string PrisonUniform = "ClothingUniformJumpsuitPrisoner";
     private const string PrisonShoes = "ClothingShoesColorOrange";
@@ -55,7 +56,7 @@ public sealed class ContractorSystem : EntitySystem
     private const string FalsefirePortalPrototype = "ContractorFalsefirePortal";
     private const string ContractorPinpointerMarkerPrototype = "ContractorPinpointerMarker";
 
-    private const float CandidateChance = 0.6f;
+    private const float CandidateChance = 1.0f;
     private const float DeliveryRange = 2f;
     private const int OfferCapacity = 6;
     private const float PinpointerMinOffset = 2.5f;
@@ -76,7 +77,6 @@ public sealed class ContractorSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly NewsSystem _news = default!;
-    [Dependency] private readonly NavMapSystem _navMap = default!;
     [Dependency] private readonly IPlayerManager _players = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly PinpointerSystem _pinpointer = default!;
@@ -94,6 +94,7 @@ public sealed class ContractorSystem : EntitySystem
 
     private readonly Dictionary<EntityUid, ContractorProfile> _profiles = new();
     private readonly Dictionary<EntityUid, DetainedTarget> _detainedTargets = new();
+    private readonly HashSet<EntityUid> _completedExtractedMinds = new();
     private float _accumulator;
     private EntityUid? _pirateGridUid;
     private bool _candidatesSelected;
@@ -208,6 +209,7 @@ public sealed class ContractorSystem : EntitySystem
     {
         _profiles.Clear();
         _detainedTargets.Clear();
+        _completedExtractedMinds.Clear();
         _pirateGridUid = null;
         _accumulator = 0f;
         _candidatesSelected = false;
@@ -248,30 +250,22 @@ public sealed class ContractorSystem : EntitySystem
 
     private void SelectContractorCandidates()
     {
-        var forceSingleTraitorCandidate = false;
-        var traitorRuleQuery = EntityQueryEnumerator<TraitorRuleComponent, GameRuleComponent>();
-        while (traitorRuleQuery.MoveNext(out var ruleUid, out var rule, out var gameRule))
-        {
-            if (!_gameTicker.IsGameRuleActive(ruleUid, gameRule))
-                continue;
-
-            if (rule.TraitorMinds.Distinct().Count() == 1)
-            {
-                forceSingleTraitorCandidate = true;
-                break;
-            }
-        }
-
-        if (!forceSingleTraitorCandidate && !_random.Prob(CandidateChance))
-            return;
-
+        var activeTraitorRules = new List<List<EntityUid>>();
         var query = EntityQueryEnumerator<TraitorRuleComponent, GameRuleComponent>();
         while (query.MoveNext(out var ruleUid, out var rule, out var gameRule))
         {
             if (!_gameTicker.IsGameRuleActive(ruleUid, gameRule))
                 continue;
 
-            var traitors = rule.TraitorMinds.Distinct().ToList();
+            activeTraitorRules.Add(rule.TraitorMinds.Distinct().ToList());
+        }
+
+        var forceSingleTraitorCandidate = activeTraitorRules.Any(traitors => traitors.Count == 1);
+        if (!forceSingleTraitorCandidate && !_random.Prob(CandidateChance))
+            return;
+
+        foreach (var traitors in activeTraitorRules)
+        {
             var count = traitors.Count == 1 ? 1 : traitors.Count / 4;
             if (count <= 0)
                 continue;
@@ -317,6 +311,48 @@ public sealed class ContractorSystem : EntitySystem
         EnsureProfile(mindId, ent.Owner);
 
         _antag.SendBriefing(ent.Owner, Loc.GetString("contractor-role-greeting"), ContractorBriefingColor, null);
+    }
+
+    public bool TryMakeContractor(ICommonSession player, out string error)
+    {
+        error = string.Empty;
+
+        if (player.AttachedEntity is not { } owner)
+        {
+            error = "Player has no attached entity.";
+            return false;
+        }
+
+        if (!_mind.TryGetMind(owner, out var mindId, out var mind))
+        {
+            error = "Player has no mind.";
+            return false;
+        }
+
+        if (!_roles.MindHasRole<TraitorRoleComponent>(mindId))
+        {
+            error = "Player must already be a traitor.";
+            return false;
+        }
+
+        if (_roles.MindHasRole<ContractorRoleComponent>(mindId))
+        {
+            error = "Player is already a contractor.";
+            return false;
+        }
+
+        if (!_roles.MindHasRole<ContractorCandidateRoleComponent>(mindId))
+        {
+            _roles.MindAddRole(mindId, ContractorCandidateRole, mind);
+            RefreshTraitorUplink(owner);
+        }
+
+        _roles.MindAddRole(mindId, ContractorRole, mind);
+        TryAssignNearbyContractorStore(owner, mindId);
+        EnsureProfile(mindId, owner);
+
+        _antag.SendBriefing(owner, Loc.GetString("contractor-role-greeting"), ContractorBriefingColor, null);
+        return true;
     }
 
     private void OnUplinkOpenAttempt(Entity<ContractorUplinkComponent> ent, ref ActivatableUIOpenAttemptEvent args)
@@ -681,7 +717,7 @@ public sealed class ContractorSystem : EntitySystem
         ent.Comp.TargetEntity = target;
         ent.Comp.NextRefreshAt = _timing.CurTime + PinpointerRefreshDelay;
 
-        _pinpointer.SetTarget(ent.Owner, marker.Value, pinpointer);
+        _pinpointer.SetTarget((ent.Owner, pinpointer), marker.Value);
     }
 
     private void ClearPinpointerTarget(Entity<ContractorPinpointerComponent> ent, PinpointerComponent pinpointer)
@@ -692,7 +728,7 @@ public sealed class ContractorSystem : EntitySystem
         ent.Comp.DecoyEntity = null;
         ent.Comp.TargetEntity = null;
         ent.Comp.NextRefreshAt = TimeSpan.Zero;
-        _pinpointer.SetTarget(ent.Owner, null, pinpointer);
+        _pinpointer.SetTarget((ent.Owner, pinpointer), null);
     }
 
     private EntityCoordinates? GetApproximateTargetCoordinates(EntityUid target)
@@ -746,6 +782,9 @@ public sealed class ContractorSystem : EntitySystem
         var returnCoords = Transform(target).Coordinates;
         var dead = IsTargetDead(offer.TargetEntity);
         var payout = dead ? offer.DeadPayout : offer.AlivePayout;
+
+        if (!dead && TryGetTargetMind(offer.TargetEntity, out var targetMind))
+            _completedExtractedMinds.Add(targetMind);
 
         var locker = Spawn(PrisonLocker, new EntityCoordinates(pirateGridUid, new Vector2(1f, 0f)));
         StripTargetIntoLocker(target, locker);
@@ -845,7 +884,7 @@ public sealed class ContractorSystem : EntitySystem
 
         var output = new List<EntityUid>();
         var stationUid = _station.GetOwningStation(contractorOwner);
-        var query = EntityQueryEnumerator<HumanoidAppearanceComponent, TransformComponent>();
+        var query = EntityQueryEnumerator<HumanoidProfileComponent, TransformComponent>();
         while (query.MoveNext(out var targetUid, out _, out var xform))
         {
             if (targetUid == contractorOwner || taken.Contains(targetUid) || blocked.Contains(targetUid))
@@ -884,7 +923,8 @@ public sealed class ContractorSystem : EntitySystem
         var query = EntityQueryEnumerator<NavMapBeaconComponent>();
         while (query.MoveNext(out var beaconUid, out var beacon))
         {
-            if (!_navMap.TryGetBeaconLabel(beaconUid, out var label, beacon))
+            var label = beacon.Text;
+            if (string.IsNullOrWhiteSpace(label))
                 continue;
 
             if (stationUid != null && _station.GetOwningStation(beaconUid) != stationUid)
@@ -1241,15 +1281,14 @@ public sealed class ContractorSystem : EntitySystem
         return true;
     }
 
-    private bool TryGetTargetEntity(EntityUid targetMindId, out EntityUid target)
+    public bool HasCompletedAliveExtraction(EntityUid targetMindId)
     {
-        target = targetMindId;
-        return Exists(targetMindId);
+        return _completedExtractedMinds.Contains(targetMindId);
     }
 
-    private bool IsTargetDead(EntityUid targetMindId)
+    private bool IsTargetDead(EntityUid targetEntity)
     {
-        return _mobState.IsDead(targetMindId);
+        return _mobState.IsDead(targetEntity);
     }
 
     private bool TryGetTargetMind(EntityUid targetEntity, out EntityUid targetMind)

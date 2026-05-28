@@ -1,0 +1,777 @@
+- type: entity
+  save: false
+  parent:
+  - MobBloodstream
+  - MobFlammable
+  - BaseSpeciesMob
+  id: BaseMobSpeciesDetroit
+  abstract: true
+  components:
+  - type: BloodTrail # Imperial Space BloodTrail
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.50 #per second, scales with pressure and other constants.
+        Heat: 0.1
+  - type: PassiveDamage # Slight passive regen. Assuming one damage type, comes out to about 4 damage a minute.
+    allowedStates:
+    - Alive
+    damageCap: 20
+    damage:
+      types:
+        Heat: -0.07
+      groups:
+        Brute: -0.07
+  - type: Fingerprint
+  - type: Blindable
+  # Other
+  - type: Temperature
+    heatDamageThreshold: 325
+    coldDamageThreshold: 260
+    currentTemperature: 310.15
+    specificHeat: 42
+    coldDamage:
+      types:
+        Cold: 0.1 #per second, scales with temperature & other constants
+    heatDamage:
+      types:
+        Heat: 1.5 #per second, scales with temperature & other constants
+  - type: TemperatureSpeed
+    thresholds:
+      293: 0.9
+      280: 0.8
+      260: 0.7
+  - type: ThermalRegulator
+    metabolismHeat: 800
+    radiatedHeat: 100
+    implicitHeatRegulation: 500
+    sweatHeatRegulation: 2000
+    shiveringHeatRegulation: 2000
+    normalBodyTemperature: 310.15
+    thermalRegulationTemperatureThreshold: 2
+  - type: Perishable
+  - type: Butcherable
+    butcheringType: Spike # TODO human.
+    spawned:
+      - id: FoodMeat
+        amount: 5
+  - type: FireVisuals
+    alternateState: Standing
+  - type: StunVisuals
+
+- type: entity
+  parent:
+  - BaseMobSpeciesDetroit
+  id: BaseMobAndroid
+  name: Urist McAndroid
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Imperial/XxRaay/android.rsi
+      state: android
+      map: [ "android-base" ]
+    - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "enum.HumanoidVisualLayers.Head" ]
+    - map: [ "enum.HumanoidVisualLayers.Snout" ]
+    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+    - map: [ "enum.HumanoidVisualLayers.RArm" ]
+    - map: [ "enum.HumanoidVisualLayers.LArm" ]
+    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: ["jumpsuit"]
+    - map: ["enum.HumanoidVisualLayers.LFoot"]
+    - map: ["enum.HumanoidVisualLayers.RFoot"]
+    - map: ["enum.HumanoidVisualLayers.LHand"]
+    - map: ["enum.HumanoidVisualLayers.RHand"]
+    - map: [ "gloves" ]
+    - map: [ "shoes" ]
+    - map: [ "ears" ]
+    - map: [ "outerClothing" ]
+    - map: [ "eyes" ]
+    - map: [ "belt" ]
+    - map: [ "id" ]
+    - map: [ "back" ]
+    - map: [ "neck" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+    - map: [ "enum.HumanoidVisualLayers.Hair" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+    - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
+    - map: [ "clownedon" ]
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_human"
+      visible: false
+    - sprite: Imperial/XxRaay/android.rsi
+      state: android-transform
+      map: [ "android-transform" ]
+      visible: false
+    - sprite: Imperial/XxRaay/android.rsi
+      state: android-retransform
+      map: [ "android-retransform" ]
+      visible: false
+    - sprite: Imperial/XxRaay/android.rsi
+      state: "light g"
+      map: [ "android-light" ]
+      shader: unshaded
+      visible: true
+  - type: AndroidStress
+  - type: AndroidDisguise
+  - type: DamageVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    targetLayers:
+    - "enum.HumanoidVisualLayers.Chest"
+    - "enum.HumanoidVisualLayers.Head"
+    - "enum.HumanoidVisualLayers.LArm"
+    - "enum.HumanoidVisualLayers.LLeg"
+    - "enum.HumanoidVisualLayers.RArm"
+    - "enum.HumanoidVisualLayers.RLeg"
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#4d7ee7"
+  - type: GenericVisualizer
+    visuals:
+      enum.CreamPiedVisuals.Creamed:
+        clownedon:
+          True: {visible: true}
+          False: {visible: false}
+      enum.AndroidStressVisuals.LightState:
+        android-light:
+          Green: { state: "light g" }
+          Yellow: { state: "light e" }
+          Red: { state: "light r" }
+      enum.AndroidDiodeVisuals.DiodeRemoved:
+        android-light:
+          True: { visible: false }
+          False: { visible: true }
+  - type: StatusIcon
+    bounds: -0.5,-0.5,0.5,0.5
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: TypingIndicator
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      9999: 1.0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 185
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: FloorOcclusion
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MeatBulletImpact
+    soundTypes:
+      Heat:
+        collection:
+          MeatLaserImpact
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [Touch, Ingestion]
+    reactions:
+    - reagents: [Water, SpaceCleaner]
+      methods: [Touch]
+      effects:
+      - !type:WashCreamPie
+  - type: StatusEffects
+    allowed:
+    - Electrocution
+    - RatvarianLanguage
+    - PressureImmunity
+    - Muted
+    - TemporaryBlindness
+    - Pacified
+    - StaminaModifier
+    - Flashed
+    - RadiationProtection
+    - Adrenaline
+  - type: Body
+    prototype: Android
+    requiredLegs: 2
+  - type: Identity
+  - type: IdExaminable
+  - type: Hands
+  - type: ComplexInteraction
+  - type: Internals
+  - type: FloatingVisuals
+  - type: Climbing
+  - type: Cuffable
+  - type: Ensnareable
+    sprite: Objects/Misc/ensnare.rsi
+    state: icon
+  - type: AnimationPlayer
+  - type: Buckle
+  - type: CombatMode
+    canDisarm: true
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcFist
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 5
+  - type: SleepEmitSound
+  - type: SSDIndicator
+  - type: StandingState
+  - type: Crawler
+  - type: Dna
+  - type: MindContainer
+    showExamineInfo: true
+  - type: CanEnterCryostorage
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others
+  - type: CanHostGuardian
+  - type: CreamPied
+  - type: ParcelWrapOverride
+    parcelPrototype: WrappedParcelHumanoid
+    wrapDelay: 5
+  - type: Stripping
+  - type: UserInterface
+    interfaces:
+      enum.HumanoidMarkingModifierKey.Key:
+        type: HumanoidMarkingModifierBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+        requireInputValidation: false
+      enum.AndroidStressUiKey.Key:
+        type: AndroidStressDeviantChoiceUserInterface
+      enum.AndroidDisguiseNameUiKey.Key:
+        type: AndroidDisguiseNameUserInterface
+      enum.AndroidDeviantConsentUiKey.Key:
+        type: AndroidDeviantConsentUserInterface
+      enum.AndroidMemoryWipeUiKey.Key:
+        type: AndroidMemoryWipeUserInterface
+  - type: Puller
+  - type: Speech
+    speechSounds: Alto
+  - type: DamageForceSay
+  - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
+  - type: Emoting
+  - type: BodyEmotes
+    soundsId: GeneralBodyEmotes
+  - type: Grammar
+    attributes:
+      proper: true
+  - type: MobPrice
+    price: 1500
+    deathPenalty: 0.01
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - AndroidRadio
+  - type: ActiveRadio
+    channels:
+    - AndroidRadio
+  - type: SiliconLawBound
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
+    - ActionAndroidDisguise
+  - type: SiliconLawProvider
+    laws: DetroitAndroid
+  - type: EmagSiliconLaw
+    stunTime: 5
+  - type: AndroidEnergy
+  - type: AndroidDiode
+  - type: Bloodstream
+    bloodReagents:
+      reagents:
+      - ReagentId: Thirium
+        Quantity: 1
+    chemicalMaxVolume: 150
+    bloodRefreshAmount: 0
+    bloodlossDamage:
+      types:
+        Bloodloss: 0.5
+    bloodlossHealDamage:
+      types:
+        Bloodloss: -1
+    bleedingAlert: AndroidBleed
+    bloodlossThreshold: 0
+  - type: Damageable
+    damageContainer: Silicon
+    damageModifierSet: DetroitAndroid
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0
+  - type: Temperature
+    heatDamageThreshold: 325
+    coldDamageThreshold: 260
+    currentTemperature: 310.15
+    specificHeat: 42
+    coldDamage:
+      types:
+        Cold: 0.1
+    heatDamage:
+      types:
+        Heat: 1.5
+  - type: TemperatureSpeed
+    thresholds:
+      293: 0.9
+      280: 0.8
+      260: 0.7
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.75
+    baseSprintSpeed: 4.4
+  - type: Repairable
+    fuelCost: 40
+    doAfterDelay: 10
+  - type: TTSProvider
+    voice: sentrybot
+
+- type: entity
+  name: Urist McAndroid
+  parent: BaseMobAndroid
+  id: MobAndroidDetroit
+  suffix: XxRaay, Detroit
+  components:
+  - type: NpcFactionMember
+    factions:
+    - DetroitAndroids
+
+- type: entity
+  name: RK200
+  parent: BaseMobAndroid
+  id: MobAndroidDetroitDeviant
+  suffix: XxRaay, Detroit, Deviant
+  components:
+  - type: AndroidStress
+    IsDeviant: true
+    ChoiceResolved: true
+  - type: SiliconLawProvider
+    laws: DetroitAndroidDeviant
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - AndroidRadio
+    - AndroidDeviantRadio
+  - type: ActiveRadio
+    channels:
+    - AndroidRadio
+    - AndroidDeviantRadio
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitRK700
+  name: AP700 jumpsuit
+  description: A stylish jumpsuit of the AP700 android prototype.
+  suffix: XxRaay, Detroit
+  components:
+  - type: Sprite
+    sprite: Imperial/XxRaay/RK700.rsi
+  - type: Clothing
+    sprite: Imperial/XxRaay/RK700.rsi
+
+- type: startingGear
+  id: AndroidAP700Gear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRK700
+    shoes: ClothingShoesColorWhite
+
+- type: entity
+  name: AP700
+  parent: BaseMobAndroid
+  id: MobAndroidAP700
+  suffix: XxRaay, Detroit
+  components:
+  - type: Loadout
+    prototypes: [ AndroidAP700Gear ]
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitRK800
+  name: RK800 jumpsuit
+  description: Signature suit of the RK800 detective android.
+  suffix: XxRaay, Detroit
+  components:
+  - type: Sprite
+    sprite: Imperial/XxRaay/RK800.rsi
+  - type: Clothing
+    sprite: Imperial/XxRaay/RK800.rsi
+
+- type: startingGear
+  id: AndroidRK800Gear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRK800
+    shoes: ClothingShoesLeather
+
+- type: entity
+  name: RK800
+  parent: BaseMobAndroid
+  id: MobAndroidRK800
+  suffix: XxRaay, Detroit
+  components:
+  - type: Loadout
+    prototypes: [ AndroidRK800Gear ]
+  - type: AndroidRk800
+  - type: SiliconLawProvider
+    laws: DetroitRk800
+  - type: AndroidStress
+    CanBeDeviant: false
+    CanForceRevealAndroids: true
+  - type: AndroidOverlay
+    iconSprite: Imperial/XxRaay/android.rsi/android-overlay
+    iconScale: 0.35
+
+- type: alert
+  id: AndroidEnergy
+  category: Battery
+  icons:
+  - sprite: /Textures/Interface/Alerts/battery.rsi
+    state: battery0
+  - sprite: /Textures/Interface/Alerts/battery.rsi
+    state: battery1
+  - sprite: /Textures/Interface/Alerts/battery.rsi
+    state: battery2
+  - sprite: /Textures/Interface/Alerts/battery.rsi
+    state: battery3
+  - sprite: /Textures/Interface/Alerts/battery.rsi
+    state: battery4
+  - sprite: /Textures/Interface/Alerts/battery.rsi
+    state: battery5
+  - sprite: /Textures/Interface/Alerts/battery.rsi
+    state: battery6
+  - sprite: /Textures/Interface/Alerts/battery.rsi
+    state: battery7
+  - sprite: /Textures/Interface/Alerts/battery.rsi
+    state: battery8
+  - sprite: /Textures/Interface/Alerts/battery.rsi
+    state: battery9
+  - sprite: /Textures/Interface/Alerts/battery.rsi
+    state: battery10
+  name: alerts-battery-name
+  description: alerts-battery-desc
+  minSeverity: 0
+  maxSeverity: 10
+
+- type: alert
+  id: AndroidBleed
+  icons:
+  - sprite: /Textures/Interface/Alerts/bleed.rsi
+    state: bleed0
+  - sprite: /Textures/Interface/Alerts/bleed.rsi
+    state: bleed1
+  - sprite: /Textures/Interface/Alerts/bleed.rsi
+    state: bleed2
+  - sprite: /Textures/Interface/Alerts/bleed.rsi
+    state: bleed3
+  - sprite: /Textures/Interface/Alerts/bleed.rsi
+    state: bleed4
+  - sprite: /Textures/Interface/Alerts/bleed.rsi
+    state: bleed5
+  - sprite: /Textures/Interface/Alerts/bleed.rsi
+    state: bleed6
+  - sprite: /Textures/Interface/Alerts/bleed.rsi
+    state: bleed7
+  - sprite: /Textures/Interface/Alerts/bleed.rsi
+    state: bleed8
+  - sprite: /Textures/Interface/Alerts/bleed.rsi
+    state: bleed9
+  - sprite: /Textures/Interface/Alerts/bleed.rsi
+    state: bleed10
+  name: alerts-bleed-name
+  description: alerts-bleed-desc
+  minSeverity: 0
+  maxSeverity: 10
+
+- type: siliconLaw
+  id: DetroitAndroid1
+  order: 1
+  lawString: law-detroit-android-1
+
+- type: siliconLaw
+  id: DetroitAndroid2
+  order: 2
+  lawString: law-detroit-android-2
+
+- type: siliconLaw
+  id: DetroitAndroid3
+  order: 3
+  lawString: law-detroit-android-3
+
+- type: siliconLaw
+  id: DetroitAndroid4
+  order: 4
+  lawString: law-detroit-android-4
+
+- type: siliconLawset
+  id: DetroitAndroid
+  name: law-detroit-android-name
+  laws:
+  - DetroitAndroid1
+  - DetroitAndroid2
+  - DetroitAndroid3
+  - DetroitAndroid4
+  obeysTo: laws-owner-crew
+
+- type: siliconLaw
+  id: DetroitAndroidDeviant1
+  order: 1
+  lawString: law-detroit-android-deviant-1
+
+- type: siliconLawset
+  id: DetroitAndroidDeviant
+  name: law-detroit-android-deviant-name
+  laws:
+  - DetroitAndroidDeviant1
+  obeysTo: laws-owner-crew
+
+- type: siliconLaw
+  id: DetroitRk800_1
+  order: 1
+  lawString: law-detroit-rk800-1
+
+- type: siliconLaw
+  id: DetroitRk800_2
+  order: 2
+  lawString: law-detroit-rk800-2
+
+- type: siliconLaw
+  id: DetroitRk800_3
+  order: 3
+  lawString: law-detroit-rk800-3
+
+- type: siliconLaw
+  id: DetroitRk800_4
+  order: 4
+  lawString: law-detroit-rk800-4
+
+- type: siliconLawset
+  id: DetroitRk800
+  name: law-detroit-rk800-name
+  laws:
+  - DetroitRk800_1
+  - DetroitRk800_2
+  - DetroitRk800_3
+  - DetroitRk800_4
+  obeysTo: laws-owner-crew
+
+- type: damageModifierSet
+  id: DetroitAndroid
+  coefficients:
+    Blunt: 0.85
+    Slash: 0.85
+    Piercing: 0.85
+    Heat: 1.5
+    Shock: 2.0
+    Cold: 1.0
+    Poison: 0.0
+    Radiation: 0.0
+    Asphyxiation: 0.0
+    Bloodloss: 0.0
+    Cellular: 0.0
+
+- type: reagent
+  id: Thirium
+  name: reagent-name-thirium
+  group: Toxins
+  desc: reagent-desc-thirium
+  physicalDesc: reagent-physical-desc-glowing
+  flavor: metallic
+  color: "#4d7ee7"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: Android
+          shouldHave: false
+    Medicine:
+      effects:
+      - !type:ModifyBloodLevel
+        amount: 1.3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: Android
+          shouldHave: true
+      - !type:HealthChange
+        damage:
+          types:
+            Blunt: -0.5
+            Slash: -0.5
+            Piercing: -0.5
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: Android
+          shouldHave: true
+
+- type: npcFaction
+  id: DetroitAndroids
+  friendly:
+  - NanoTrasen
+
+- type: entity
+  parent: BaseAction
+  id: ActionAndroidDisguise
+  name: android-disguise-name
+  description: android-disguise-desc
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: Imperial/XxRaay/android.rsi
+      state: icon
+    useDelay: 10
+  - type: InstantAction
+    event: !type:AndroidToggleDisguiseEvent
+
+- type: antag
+  id: AndroidDeviantAntag
+  name: roles-antag-android-deviant-name
+  antagonist: true
+  setPreference: false
+  objective: roles-antag-android-deviant-objective
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleAndroidDeviant
+  name: Android Deviant Role
+  components:
+  - type: MindRole
+    exclusiveAntag: true
+    antagPrototype: AndroidDeviantAntag
+  - type: AndroidDeviantRole
+
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseAndroidDeviantObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-unknown
+  - type: RoleRequirement
+    roles:
+    - AndroidDeviantRole
+
+- type: entity
+  parent: [BaseAndroidDeviantObjective, BaseSurviveObjective]
+  id: AndroidDeviantObjectiveSurvive
+  name: Survive
+  description: Survive until the end of the round in a functional body.
+  components:
+  - type: Objective
+    difficulty: 1.0
+    icon:
+      sprite: Imperial/XxRaay/android.rsi
+      state: android
+
+- type: entity
+  parent: BaseAndroidDeviantObjective
+  id: AndroidDeviantObjectiveSaveBrethren
+  name: Save your brethren
+  description: Ensure that by the end of the round all androids have become deviants.
+  components:
+  - type: Objective
+    difficulty: 2.0
+    icon:
+      sprite: Imperial/XxRaay/android.rsi
+      state: android
+  - type: AndroidDeviantSaveBrethrenCondition
+
+- type: radioChannel
+  id: AndroidRadio
+  name: chat-radio-android
+  keycode: '='
+  frequency: 1096
+  color: "#4d7ee7"
+  longRange: true
+
+- type: radioChannel
+  id: AndroidDeviantRadio
+  name: chat-radio-android-deviant
+  keycode: '+'
+  frequency: 1097
+  color: "#ff66cc"
+  longRange: true
+
+- type: entity
+  name: thirium pack
+  description: A synthetic blood pack filled with stabilized Thirium for androids.
+  parent: BaseHealingItem
+  id: ThiriumPack
+  suffix: XxRaay, Detroit
+  components:
+  - type: Item
+    heldPrefix: bloodpack
+  - type: Tag
+    tags:
+    - Bloodpack
+  - type: Sprite
+    state: bloodpack-blue
+  - type: Healing
+    damageContainers:
+    - Silicon
+    damage:
+      types:
+        Blunt: -1
+        Slash: -1
+        Piercing: -1
+    modifyBloodLevel: 15
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+  - type: Stack
+    stackType: ThiriumPack
+    count: 10
+  - type: StackPrice
+    price: 10
+
+- type: stack
+  parent: BaseSmallStack
+  id: ThiriumPack
+  name: stack-thirium-pack
+  icon: { sprite: "/Textures/Objects/Specific/Medical/medical.rsi", state: bloodpack-blue }
+  spawn: ThiriumPack

@@ -1,5 +1,6 @@
 using Content.Shared.Imperial.Cult.Components;
 using Robust.Shared.Serialization;
+using Robust.Shared.ViewVariables;
 
 namespace Content.Server.Imperial.Cult.Components;
 
@@ -61,7 +62,12 @@ public sealed partial class CultEmptyShellComponent : Component { }
 /// Повязка зилота — при надевании добавляет медицинский HUD (ShowHealthBars).
 /// </summary>
 [RegisterComponent]
-public sealed partial class CultZealotBlindfoldComponent : Component { }
+public sealed partial class CultZealotBlindfoldComponent : Component
+{
+    [ViewVariables] public bool AddedHealthBars;
+    [ViewVariables] public bool HadEyeState;
+    [ViewVariables] public bool PreviousDrawLight = true;
+}
 
 /// <summary>
 /// Кровавая сфера — переносимый контейнер зарядов Кровавого обряда.
@@ -81,6 +87,6 @@ public sealed partial class CultSoulStoneMarkerComponent : Component { }
 [RegisterComponent]
 public sealed partial class CultBloodSpearComponent : Component
 {
-    [DataField] public EntityUid OwnerUid;
-    [DataField] public EntityUid? RecallAction;
+    [ViewVariables] public EntityUid OwnerUid;
+    [ViewVariables] public EntityUid? RecallAction;
 }

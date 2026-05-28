@@ -13,11 +13,11 @@ public sealed partial class ContractorUplinkWindow : FancyWindow
     public event Action<string>? BuyRequisition;
     public event Action? OpenPortal;
 
-    private readonly Label RepLabel;
-    private readonly RichTextLabel StatusLabel;
-    private readonly BoxContainer ActiveContractContainer;
-    private readonly BoxContainer OffersContainer;
-    private readonly BoxContainer RequisitionContainer;
+    private readonly Label _repLabel;
+    private readonly RichTextLabel _statusLabel;
+    private readonly BoxContainer _activeContractContainer;
+    private readonly BoxContainer _offersContainer;
+    private readonly BoxContainer _requisitionContainer;
 
     public ContractorUplinkWindow()
     {
@@ -36,10 +36,10 @@ public sealed partial class ContractorUplinkWindow : FancyWindow
             SeparationOverride = 12,
         };
 
-        RepLabel = new Label();
-        StatusLabel = new RichTextLabel { HorizontalExpand = true };
-        top.AddChild(RepLabel);
-        top.AddChild(StatusLabel);
+        _repLabel = new Label();
+        _statusLabel = new RichTextLabel { HorizontalExpand = true };
+        top.AddChild(_repLabel);
+        top.AddChild(_statusLabel);
         root.AddChild(top);
 
         var content = new BoxContainer
@@ -58,7 +58,7 @@ public sealed partial class ContractorUplinkWindow : FancyWindow
         };
 
         left.AddChild(new Label { Text = Loc.GetString("contractor-uplink-active-title") });
-        ActiveContractContainer = new BoxContainer
+        _activeContractContainer = new BoxContainer
         {
             Orientation = BoxContainer.LayoutOrientation.Vertical,
             SeparationOverride = 6,
@@ -66,11 +66,11 @@ public sealed partial class ContractorUplinkWindow : FancyWindow
         left.AddChild(new ScrollContainer
         {
             VerticalExpand = true,
-            Children = { ActiveContractContainer },
+            Children = { _activeContractContainer },
         });
 
         left.AddChild(new Label { Text = Loc.GetString("contractor-uplink-offers-title") });
-        OffersContainer = new BoxContainer
+        _offersContainer = new BoxContainer
         {
             Orientation = BoxContainer.LayoutOrientation.Vertical,
             SeparationOverride = 6,
@@ -78,7 +78,7 @@ public sealed partial class ContractorUplinkWindow : FancyWindow
         left.AddChild(new ScrollContainer
         {
             VerticalExpand = true,
-            Children = { OffersContainer },
+            Children = { _offersContainer },
         });
 
         var right = new BoxContainer
@@ -90,12 +90,12 @@ public sealed partial class ContractorUplinkWindow : FancyWindow
         };
 
         right.AddChild(new Label { Text = Loc.GetString("contractor-uplink-requisitions-title") });
-        RequisitionContainer = new BoxContainer
+        _requisitionContainer = new BoxContainer
         {
             Orientation = BoxContainer.LayoutOrientation.Vertical,
             SeparationOverride = 6,
         };
-        right.AddChild(RequisitionContainer);
+        right.AddChild(_requisitionContainer);
 
         content.AddChild(left);
         content.AddChild(right);
@@ -106,8 +106,8 @@ public sealed partial class ContractorUplinkWindow : FancyWindow
 
     public void UpdateState(ContractorUplinkBoundUserInterfaceState state)
     {
-        RepLabel.Text = Loc.GetString("contractor-uplink-reputation", ("amount", state.Reputation));
-        StatusLabel.SetMessage(FormattedMessage.FromMarkup(state.StatusText));
+        _repLabel.Text = Loc.GetString("contractor-uplink-reputation", ("amount", state.Reputation));
+        _statusLabel.SetMessage(FormattedMessage.FromMarkup(state.StatusText));
 
         RebuildActive(state);
         RebuildOffers(state);
@@ -116,11 +116,11 @@ public sealed partial class ContractorUplinkWindow : FancyWindow
 
     private void RebuildActive(ContractorUplinkBoundUserInterfaceState state)
     {
-        ActiveContractContainer.RemoveAllChildren();
+        _activeContractContainer.RemoveAllChildren();
 
         if (!state.HasActiveContract)
         {
-            ActiveContractContainer.AddChild(new Label { Text = Loc.GetString("contractor-uplink-no-active") });
+            _activeContractContainer.AddChild(new Label { Text = Loc.GetString("contractor-uplink-no-active") });
             return;
         }
 
@@ -135,16 +135,16 @@ public sealed partial class ContractorUplinkWindow : FancyWindow
         portalButton.OnPressed += _ => OpenPortal?.Invoke();
         box.AddChild(portalButton);
 
-        ActiveContractContainer.AddChild(new PanelContainer { Children = { box } });
+        _activeContractContainer.AddChild(new PanelContainer { Children = { box } });
     }
 
     private void RebuildOffers(ContractorUplinkBoundUserInterfaceState state)
     {
-        OffersContainer.RemoveAllChildren();
+        _offersContainer.RemoveAllChildren();
 
         if (state.Offers.Length == 0)
         {
-            OffersContainer.AddChild(new Label { Text = Loc.GetString("contractor-uplink-no-offers") });
+            _offersContainer.AddChild(new Label { Text = Loc.GetString("contractor-uplink-no-offers") });
             return;
         }
 
@@ -164,13 +164,13 @@ public sealed partial class ContractorUplinkWindow : FancyWindow
             buttons.AddChild(decline);
             box.AddChild(buttons);
 
-            OffersContainer.AddChild(new PanelContainer { Children = { box } });
+            _offersContainer.AddChild(new PanelContainer { Children = { box } });
         }
     }
 
     private void RebuildRequisitions(ContractorUplinkBoundUserInterfaceState state)
     {
-        RequisitionContainer.RemoveAllChildren();
+        _requisitionContainer.RemoveAllChildren();
 
         foreach (var requisition in state.Requisitions)
         {
@@ -193,7 +193,7 @@ public sealed partial class ContractorUplinkWindow : FancyWindow
             button.OnPressed += _ => BuyRequisition?.Invoke(requisition.Id);
             panel.AddChild(button);
 
-            RequisitionContainer.AddChild(new PanelContainer { Children = { panel } });
+            _requisitionContainer.AddChild(new PanelContainer { Children = { panel } });
         }
     }
 

@@ -39,11 +39,11 @@ public sealed class BlobReflectiveTileSystem : EntitySystem
         args.Cancelled = true;
         var spread = _random.NextAngle(-Angle.FromDegrees(12), Angle.FromDegrees(12)).Opposite();
         var existingVelocity = _physics.GetMapLinearVelocity(args.ProjUid, component: physics);
-        var newVelocity = spread.RotateVec(-existingVelocity);
+        var newVelocity = spread.RotateVec(existingVelocity);
         _physics.SetLinearVelocity(args.ProjUid, newVelocity, body: physics);
 
         var locRot = Transform(args.ProjUid).LocalRotation;
-        var newRot = spread.RotateVec(-locRot.ToVec());
+        var newRot = spread.RotateVec(locRot.ToVec());
         _transform.SetLocalRotation(args.ProjUid, newRot.ToAngle());
 
         args.Component.Shooter = uid;

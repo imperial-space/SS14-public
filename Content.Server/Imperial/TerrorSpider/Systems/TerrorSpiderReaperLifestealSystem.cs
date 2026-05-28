@@ -52,13 +52,9 @@ public sealed class TerrorSpiderReaperLifestealSystem : EntitySystem
 
         var totalHeal = ent.Comp.HealAmount * validHits;
 
+        var currentDamage = _damageable.GetPositiveDamage((attacker, damageable));
         var heal = new DamageSpecifier();
-        foreach (var group in damageable.DamagePerGroup.Keys)
-        {
-            heal.DamageDict[group] = -totalHeal;
-        }
-
-        foreach (var damageType in damageable.Damage.DamageDict.Keys)
+        foreach (var damageType in currentDamage.DamageDict.Keys)
         {
             heal.DamageDict[damageType] = -totalHeal;
         }

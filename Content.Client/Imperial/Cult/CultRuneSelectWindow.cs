@@ -14,7 +14,7 @@ public sealed class CultRuneSelectWindow : DefaultWindow
     /// <summary>Вызывается при выборе руны. Первый аргумент — ключ руны, второй — метка (только для телепорта).</summary>
     public event Action<string, string?>? OnRuneSelected;
 
-    private static readonly (string LocKey, string RuneId)[] Runes =
+    private static readonly (string LocKey, string RuneId)[] _runes =
     {
         ("cult-rune-teleport",  "teleport"),
         ("cult-rune-empower",   "empower"),
@@ -45,7 +45,7 @@ public sealed class CultRuneSelectWindow : DefaultWindow
             SeparationOverride = 4,
         };
 
-        foreach (var (locKey, runeId) in Runes)
+        foreach (var (locKey, runeId) in _runes)
         {
             var capturedId = runeId;
 
@@ -87,14 +87,17 @@ public sealed class CultRuneSelectWindow : DefaultWindow
                     MinSize = new Vector2(0, 28),
                 };
 
-                confirmBtn.OnPressed += _ =>
+                void SubmitTeleport()
                 {
                     var label = nameEdit.Text.Trim();
                     if (string.IsNullOrEmpty(label))
                         label = Loc.GetString("cult-teleport-name-default");
                     OnRuneSelected?.Invoke(capturedId, label);
                     Close();
-                };
+                }
+
+                confirmBtn.OnPressed += _ => SubmitTeleport();
+                nameEdit.OnTextEntered += _ => SubmitTeleport();
 
                 namePanel.AddChild(nameLabel);
                 namePanel.AddChild(nameEdit);

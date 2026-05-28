@@ -33,6 +33,8 @@ namespace Content.Server.Imperial.Xenobiology.Systems;
 /// </summary>
 public sealed class XenoSlimeExtractSystem : EntitySystem
 {
+    private const string SimpleHostileFaction = "SimpleHostile";
+
     [Dependency] private readonly SharedSolutionContainerSystem _solutions  = default!;
     [Dependency] private readonly SharedPopupSystem             _popup      = default!;
     [Dependency] private readonly FirestarterSystem             _fire       = default!;
@@ -64,19 +66,17 @@ public sealed class XenoSlimeExtractSystem : EntitySystem
 
         // Проверяем зелье усилителя экстракторов (Cerulean plasma)
         const string amplifierReagentId = "XenoCeruleanPotion";
-        if (sol.GetTotalPrototypeQuantity(amplifierReagentId) >= FixedPoint2.New(1))
+        if (sol.GetTotalPrototypeQuantity(amplifierReagentId) >= FixedPoint2.New(1)
+            && !HasComp<XenoAmplifiedExtractComponent>(uid))
         {
-            if (!HasComp<XenoAmplifiedExtractComponent>(uid))
-            {
-                AddComp<XenoAmplifiedExtractComponent>(uid);
-                _popup.PopupCoordinates(
-                    Loc.GetString("xeno-extract-amplified"),
-                    Transform(uid).Coordinates);
-            }
+            AddComp<XenoAmplifiedExtractComponent>(uid);
+            _popup.PopupCoordinates(
+                Loc.GetString("xeno-extract-amplified"),
+                Transform(uid).Coordinates);
             // Удаляем использованный усилитель из раствора
             if (_solutions.TryGetSolution(uid, comp.SolutionName, out var solEnt, out _))
             {
-                _solutions.RemoveReagent(solEnt.Value, amplifierReagentId, sol.Volume);
+                _solutions.RemoveReagent(solEnt.Value, amplifierReagentId, FixedPoint2.New(1));
                 _solutions.UpdateChemicals(solEnt.Value);
             }
             return;
@@ -109,7 +109,7 @@ public sealed class XenoSlimeExtractSystem : EntitySystem
         // Удаляем триггерный реагент из раствора "slime"
         if (_solutions.TryGetSolution(uid, comp.SolutionName, out var slimeSolEnt, out _))
         {
-            _solutions.RemoveReagent(slimeSolEnt.Value, triggerId, sol.Volume);
+            _solutions.RemoveReagent(slimeSolEnt.Value, triggerId, minAmount);
             _solutions.UpdateChemicals(slimeSolEnt.Value);
         }
 
@@ -143,7 +143,7 @@ public sealed class XenoSlimeExtractSystem : EntitySystem
                 {
                     var toAdd = new Solution();
                     toAdd.AddReagent(effect.ProduceReagent, FixedPoint2.New(effect.ProduceAmount * amplifier));
-                    _solutions.TryAddSolution(foodEnt.Value, toAdd);
+                    var _ = _solutions.TryAddSolution(foodEnt.Value, toAdd);
                 }
                 // Экстракт остаётся — его можно выжать шприцом или перемолоть
                 break;
@@ -225,11 +225,11 @@ public sealed class XenoSlimeExtractSystem : EntitySystem
                 _lookup.GetEntitiesInRange(coords, effect.BerserkerRange, slimes);
                 foreach (var slime in slimes)
                 {
-                    slime.Comp.Mood         = XenoSlimeMood.Aggressive;
+                    slime.Comp.Mood          = XenoSlimeMood.Aggressive;
                     slime.Comp.HungerPercent = 0f;
                     // Добавляем агрессивную фракцию — слайм атакует игрока
                     // XenoSlimeFaction остаётся — слайм также атакует обезьян
-                    _factionSys.AddFaction(slime.Owner, "SimpleHostile", dirty: true);
+                    _factionSys.AddFaction(slime.Owner, SimpleHostileFaction, dirty: true);
                 }
                 QueueDel(uid);
                 break;
@@ -239,6 +239,12 @@ public sealed class XenoSlimeExtractSystem : EntitySystem
             case XenoExtractEffectType.SnapCool:
             {
                 var gridUid = xform.GridUid;
+                if (gridUid == null)
+                {
+                    _popup.PopupCoordinates(Loc.GetString("xeno-extract-no-grid"), coords);
+                    break;
+                }
+
                 var mapUid  = xform.MapUid;
                 var tile    = _xform.GetGridTilePositionOrDefault((uid, xform));
                 var range   = (int) Math.Ceiling(effect.SnapCoolRange);
@@ -246,6 +252,9 @@ public sealed class XenoSlimeExtractSystem : EntitySystem
                 for (var dx = -range; dx <= range; dx++)
                 for (var dy = -range; dy <= range; dy++)
                 {
+                    if (dx * dx + dy * dy > range * range)
+                        continue;
+
                     var tilePos = new Vector2i(tile.X + dx, tile.Y + dy);
                     var mix = _atmos.GetTileMixture(gridUid, mapUid, tilePos, excite: true);
                     if (mix != null)
@@ -258,6 +267,12 @@ public sealed class XenoSlimeExtractSystem : EntitySystem
             case XenoExtractEffectType.SnapHeat:
             {
                 var gridUidH = xform.GridUid;
+                if (gridUidH == null)
+                {
+                    _popup.PopupCoordinates(Loc.GetString("xeno-extract-no-grid"), coords);
+                    break;
+                }
+
                 var mapUidH  = xform.MapUid;
                 var tileH    = _xform.GetGridTilePositionOrDefault((uid, xform));
                 var rangeH   = (int) Math.Ceiling(effect.SnapHeatRange);
@@ -265,6 +280,9 @@ public sealed class XenoSlimeExtractSystem : EntitySystem
                 for (var dx = -rangeH; dx <= rangeH; dx++)
                 for (var dy = -rangeH; dy <= rangeH; dy++)
                 {
+                    if (dx * dx + dy * dy > rangeH * rangeH)
+                        continue;
+
                     var tilePos = new Vector2i(tileH.X + dx, tileH.Y + dy);
                     var mix = _atmos.GetTileMixture(gridUidH, mapUidH, tilePos, excite: true);
                     if (mix != null)
@@ -272,7 +290,8 @@ public sealed class XenoSlimeExtractSystem : EntitySystem
                 }
                 QueueDel(uid);
                 break;
-            }        }
+            }
+        }
     }
 
     // ── Вспомогательные ──────────────────────────────────────────────────────

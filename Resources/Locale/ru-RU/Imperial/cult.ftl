@@ -118,6 +118,24 @@ cult-action-construct-wall-desc = Воздвигает короткоживущ�
 
 # Системные сообщения культа
 cult-commune-format = [ОБЩИНА] { $sender }: { $message }
+
+cult-blood-magic-select-title = Выберите заклинание:
+cult-blood-magic-swap-title = Заменить подготовленное заклинание
+cult-blood-magic-swap-choose = Удалите одно из подготовленных заклинаний.
+
+cult-spell-stun = Оглушение
+cult-spell-shackles = Теневые оковы
+cult-spell-teleport = Телепорт
+cult-spell-emp = ЭМИ
+cult-spell-twisted-construction = Искажённое строительство
+cult-spell-summon-dagger = Призыв кинжала
+cult-spell-summon-equipment = Призыв снаряжения
+cult-spell-conceal-presence = Маскировка присутствия
+cult-spell-blood-rites = Обряды крови
+cult-spell-unknown = Неизвестное заклинание
+
+alerts-cultist-hud-name = Культист
+alerts-cultist-hud-desc = Вы отмечены как последователь Нар'Си.
 cult-commune-hint = Используйте Общение, чтобы передать сообщение всем культистам.
 cult-commune-converted = [ОБЩИНА] { $name } обращён в веру Нар'Си!
 cult-commune-sacrifice = [ОБЩИНА] { $name } принесён в жертву Нар'Си!
@@ -130,6 +148,7 @@ cult-narsie-no-beacon = Ритуал Разрыва Мерности можно 
 cult-narsie-centcomm-warning = ВНИМАНИЕ. Зафиксирована попытка разрыва мерности и призыва Нар'Си. Немедленно локализуйте и нейтрализуйте угрозу. Место ритуала: { $location }.
 cult-narsie-unknown-location = неизвестный маяк
 cult-stun-hit = Вы оглушили { $target }.
+cult-shackles-needs-stunned = Цель должна быть оглушена, чтобы наложить теневые оковы.
 cult-shackles-applied = Вы сковали { $target }.
 cult-teleport-no-rune = Нет доступной руны телепортации.
 cult-teleport-rune-active = Руна телепортации активирована.
@@ -152,6 +171,7 @@ cult-drawing-rune = Вы начинаете рисовать руну...
 cult-narsie-need-nine = Нужно 9 культистов/конструктов. Сейчас: { $have }.
 cult-spell-target-is-cultist = Нельзя применять это заклинание на братьев культа.
 cult-twisted-construction-metal = Пластальный лист превращён в рунный металл!
+cult-twisted-construction-airlock = Шлюз искажается и становится рунной дверью!
 cult-twisted-construction-fail = Невозможно трансформировать этот предмет.
 cult-equipment-summoned = Боевое снаряжение культа призвано.
 cult-blood-rites-heal = Обряд крови исцелил вас.
@@ -174,7 +194,7 @@ cult-spell-expended = Заклинание иссякло и исчезло.
 
 # Вуаль / ореол
 cult-veil-weakens-eyes = [ОБЩИНА] Вуаль ослабевает по мере роста культа, ваши глаза начинают светиться...
-cult-veil-broken-halo = [ОБЩИНА] Культ восходит — вас теперь не скрыть!
+cult-veil-broken-halo = [ОБЩИНА] Культ восходит, вас теперь не скрыть!
 
 # Осмотр культиста с красными глазами
 cult-examine-red-eyes = [bold]Его глаза излучают зловещий красный свет...[/bold]
@@ -204,20 +224,6 @@ cult-action-blood-magic-desc = Открывает окно выбора закл
 cult-rune-select-title = Выбор руны
 cult-blood-magic-title = Кровавая магия
 cult-blood-magic-info = Выберите заклинание для подготовки. Стоит 20 HP и занимает 10 секунд.
-cult-blood-magic-swap-title = Замена заклинания
-cult-blood-magic-swap-choose = Выберите заклинание для замены на «{ $spell }»:
-
-# Названия заклинаний в окне Blood Magic
-cult-spell-stun = Оглушение
-cult-spell-shackles = Теневые оковы
-cult-spell-teleport = Телепортация
-cult-spell-emp = ЭМИ
-cult-spell-twisted-construction = Искажённое строительство
-cult-spell-summon-dagger = Призыв кинжала
-cult-spell-summon-equipment = Призыв снаряжения
-cult-spell-conceal-presence = Маскировка присутствия
-cult-spell-blood-rites = Обряды крови
-cult-spell-unknown = Неизвестное заклинание
 
 # Системные сообщения Blood Magic
 cult-blood-magic-need-dagger = Вам нужен ритуальный кинжал в руке.
@@ -226,6 +232,7 @@ cult-spell-already-prepared = Это заклинание уже подгото�
 cult-spell-invalid = Недопустимое заклинание.
 cult-preparing-spell = Вы готовите заклинание { $spell }...
 cult-spell-ready = Заклинание { $spell } готово!
+cult-spell-slot-freed = Заклинание { $spell } удалено. Слот освобождён.
 
 # Commune BUI
 cult-commune-window-title = Связь культа
@@ -369,8 +376,6 @@ ent-CultSpellItemConstruction = Тёмная энергия
     .desc = Тёмное пламя Нар'Си. Используйте на металле или шлюзе.
 
 cult-spell-cancelled = Заклинание отменено.
-cult-shackles-needs-stunned = Цель должна быть сначала оглушена!
-cult-twisted-construction-airlock = Шлюз искажён тёмной энергией!
 
 # ─── Повязка фанатика ───
 
@@ -423,3 +428,49 @@ ent-CultSpellItemBloodRites = Тёмная энергия
 
 ent-CultBloodOrb = Кровавая сфера
     .desc = Сконденсированные заряды Кровавого обряда. Передайте союзнику или поглотите сами.
+
+# Явные локализации имён action-сущностей (для UI/спавн-меню, где показывается entity name)
+ent-ActionCultCommune = Общение
+    .desc = { cult-action-commune-desc }
+ent-ActionCultStun = Оглушение
+    .desc = { cult-action-stun-desc }
+ent-ActionCultShackles = Теневые оковы
+    .desc = { cult-action-shackles-desc }
+ent-ActionCultTeleport = Телепортация
+    .desc = { cult-action-teleport-desc }
+ent-ActionCultEmp = ЭМИ
+    .desc = { cult-action-emp-desc }
+ent-ActionCultTwistedConstruction = Искажённое строительство
+    .desc = { cult-action-twisted-construction-desc }
+ent-ActionCultSummonDagger = Призыв кинжала
+    .desc = { cult-action-summon-dagger-desc }
+ent-ActionCultSummonEquipment = Призыв снаряжения
+    .desc = { cult-action-summon-equipment-desc }
+ent-ActionCultConcealPresence = Маскировка присутствия
+    .desc = { cult-action-conceal-presence-desc }
+ent-ActionCultBloodRites = Обряды крови
+    .desc = { cult-action-blood-rites-desc }
+ent-ActionCultBloodMagic = Кровавая магия
+    .desc = { cult-action-blood-magic-desc }
+ent-ActionCultDarkSpiritReturn = Вернуться в тело
+    .desc = { cult-action-dark-spirit-return-desc }
+ent-ActionCultDarkSpiritCommune = Общение
+    .desc = { cult-action-commune-desc }
+ent-ActionCultRecallBloodSpear = Возврат копья крови
+    .desc = { cult-action-recall-blood-spear-desc }
+ent-ActionCultConstructCreateJuggernautShell = Слепить оболочку джаггернаута
+    .desc = { cult-action-construct-juggernaut-shell-desc }
+ent-ActionCultConstructCreateWraithShell = Слепить оболочку фантома
+    .desc = { cult-action-construct-wraith-shell-desc }
+ent-ActionCultConstructCreateArtificerShell = Слепить оболочку созидателя
+    .desc = { cult-action-construct-artificer-shell-desc }
+ent-ActionCultConstructCreateSoulStone = Сформировать камень души
+    .desc = { cult-action-construct-soulstone-desc }
+ent-ActionCultConstructCreatePylon = Воздвигнуть пилон
+    .desc = { cult-action-construct-pylon-desc }
+ent-ActionCultConstructCreateFloor = Запятнать пол
+    .desc = { cult-action-construct-floor-desc }
+ent-ActionCultConstructHealAlly = Починить союзника
+    .desc = { cult-action-construct-heal-desc }
+ent-ActionCultConstructCreateWall = Воздвигнуть барьер
+    .desc = { cult-action-construct-wall-desc }

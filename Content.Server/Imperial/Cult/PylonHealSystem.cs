@@ -54,8 +54,9 @@ public sealed class PylonHealSystem : EntitySystem
 
                     var bruteTypes = new HashSet<string> { "Blunt", "Slash", "Piercing" };
                     var burnTypes = new HashSet<string> { "Heat", "Shock", "Cold", "Caustic" };
+                    var currentDamage = _damage.GetPositiveDamage((target, damageable));
                     var heal = new DamageSpecifier();
-                    foreach (var (dt, dmg) in damageable.Damage.DamageDict)
+                    foreach (var (dt, dmg) in currentDamage.DamageDict)
                     {
                         if (dmg <= FixedPoint2.Zero) continue;
                         if (bruteTypes.Contains(dt))
