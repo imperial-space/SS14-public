@@ -15,7 +15,7 @@
       - !type:Flammable
         multiplier: 0.8
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -36,3 +36,4 @@
             Bloodloss: -0.33
             Shock: -0.20
             Caustic: -0.12
+            Piercing: -0.33

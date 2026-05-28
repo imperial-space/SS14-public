@@ -7,11 +7,12 @@
   flavor: shocking
   color: "#4d7ee7"
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:Jitter
         conditions:
-        - !type:TotalDamageCondition
+        - !type:ReagentCondition
+          reagent: AndroidBlood
           min: 5
         - !type:MetabolizerTypeCondition
           type: Android
@@ -24,8 +25,9 @@
           shouldHave: false
       - !type:HealthChange
         damage:
-          groups:
-            Airloss: 1
+          types:
+            Asphyxiation: 0.5
+            Bloodloss: 0.5
         conditions:
         - !type:MetabolizerTypeCondition
           type: Android
@@ -56,6 +58,7 @@
       FootLeft: OrganHumanFootLeft
       FootRight: OrganHumanFootRight
       Brain: AndroidCore
+      Eyes: OrganHumanEyes
   - type: HumanoidProfile
     species: Human
 
@@ -118,13 +121,21 @@
 
 - type: entity
   save: false
-  parent: [BaseSpeciesMob, MobBloodstream]
+  parent: [BaseSpeciesMob, AppearanceAndroid, MobBloodstream]
   id: BaseMobMechanic
   abstract: true
   components:
   - type: Bloodstream
-    bloodReagent: AndroidBlood
-    chemicalMaxVolume: 150
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: AndroidBlood
+        Quantity: 150
+    bloodlossDamage:
+      types:
+        Bloodloss: 0.2
+    bloodlossHealDamage:
+      types:
+        Bloodloss: -1.2
   - type: StatusEffects
     allowed:
     - Stun
@@ -217,7 +228,6 @@
     stunTime: 5
   - type: IonStormTarget
     chance: 1
-  - type: ShowJobIcons
   - type: ContainerFill
     containers:
       borg_brain:
@@ -239,8 +249,6 @@
       Female: UnisexSilicon
     wilhelmProbability: 0
   - type: UnblockableSpeech
-  - type: HumanoidProfile
-    species: Human
   - type: WiresPanel
     openingTool: Prying
   - type: ActivatableUIRequiresPanel
@@ -277,9 +285,6 @@
         - borg_brain
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: Icon
-    sprite: Mobs/Species/Human/parts.rsi
-    state: full
   - type: Repairable
     fuelCost: 50
     doAfterDelay: 30
@@ -305,6 +310,10 @@
   - type: Access
     groups:
     - AllAccess
+  - type: ShowHealthBars
+  - type: ShowHealthIcons
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
 
 - type: entity
   save: false

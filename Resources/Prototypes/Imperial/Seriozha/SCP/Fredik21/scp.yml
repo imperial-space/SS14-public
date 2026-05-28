@@ -4253,6 +4253,10 @@
   name: Invisibility in hand
   description: DO NOT PUT HER ON THE FLOOR!! Press Z to activate invisibility.
   components:
+  - type: Sprite
+    sprite: Clothing/Head/Soft/cargosoft.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Soft/cargosoft.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 0.02
@@ -8360,7 +8364,7 @@
   flavor: bitter
   color: "#63806e"
   metabolisms:
-    Narcotic:
+    Bloodstream:
       effects:
       - !type:ModifyStatusEffect
         effectProto: StatusEffectSeeingRainbow
@@ -8732,7 +8736,7 @@
   flavor: sweet
   color: "#4682B4"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:PopupMessage
         type: Local
@@ -17059,7 +17063,7 @@
   physicalDesc: Имеется подпись - "А"
   color: "#00FFFF"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:PopupMessage
         type: Local
@@ -17076,7 +17080,7 @@
   flavor: sweet
   color: "#87CEEB"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:PopupMessage
         type: Local
@@ -17093,7 +17097,7 @@
   flavor: sweet
   color: "#60008F"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:PopupMessage
         type: Local
