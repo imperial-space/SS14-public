@@ -5,3 +5,7 @@ gun-upgrade-popup-insert = {THE($upgrade)} вставлен в {THE($gun)}!
 gun-upgrade-examine-text-damage = Это улучшило [color=#ec9b2d][bold]урон.[/bold][/color]
 gun-upgrade-examine-text-range = Это улучшило [color=#2decec][bold]дальность.[/bold][/color]
 gun-upgrade-examine-text-reload = Это улучшило [color=#bbf134][bold]скорострельность.[/bold][/color]
+gun-upgrade-examine-text-lifesteal = Это добавило [color=#8B0000][bold]вампиризм.[/bold][/color] Попадания по тварям Лаваленда лечат вас.
+# ������ ��� � �����������
+mining-upgradeable-gun-examine-capacity = ����������� �������: [color=#aaaaaa]{ $used }/{ $max }%[/color]
+mining-upgradeable-gun-popup-capacity-full = ������������ ����� ��� ����� ������!

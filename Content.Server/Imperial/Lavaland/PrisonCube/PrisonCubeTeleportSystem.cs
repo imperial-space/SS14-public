@@ -27,7 +27,7 @@ public sealed class PrisonCubeTeleportSystem : EntitySystem
         }
 
         var sourceCoords = Transform(ent).Coordinates;
-        var destinationCoords = Transform(destination.Value).Coordinates;
+        var destinationCoords = Transform(destination!.Value).Coordinates;
 
         Spawn(ent.Comp.SmokePrototype, sourceCoords);
         Spawn(ent.Comp.SmokePrototype, destinationCoords);
