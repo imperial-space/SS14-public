@@ -13,6 +13,7 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
+using Robust.Shared.Prototypes;
 using Content.Shared.Physics;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
