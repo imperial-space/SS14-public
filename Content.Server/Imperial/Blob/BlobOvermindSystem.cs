@@ -106,6 +106,7 @@ public sealed class BlobOvermindSystem : EntitySystem
         SubscribeLocalEvent<BlobOvermindComponent, BlobUpgradeGenerationActionEvent>(OnUpgradeGenerationAction);
         SubscribeLocalEvent<BlobOvermindComponent, BlobUpgradeAttackActionEvent>(OnUpgradeAttackAction);
         SubscribeLocalEvent<BlobOvermindComponent, BlobUpgradeCapacityActionEvent>(OnUpgradeCapacityAction);
+        SubscribeLocalEvent<BlobOvermindComponent, GetVisMaskEvent>(OnBlobOvermindGetVis);
         SubscribeLocalEvent<BlobOvermindComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<BlobOvermindComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<BlobOvermindComponent, BlobPlaceTileActionEvent>(OnPlaceTileAction);
@@ -289,6 +290,11 @@ public sealed class BlobOvermindSystem : EntitySystem
         }
 
         _blobMob.RelayToBlobRadio(overmindUid, ref args, overmindUid);
+    }
+
+    private void OnBlobOvermindGetVis(Entity<BlobOvermindComponent> ent, ref GetVisMaskEvent args)
+    {
+        args.VisibilityMask |= (int) VisibilityFlags.Admin;
     }
 
     private void OnControllerBeforeRangedInteract(EntityUid uid, BlobOvermindControllerComponent controller, BeforeRangedInteractEvent args)
@@ -927,10 +933,6 @@ public sealed class BlobOvermindSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("blob-action-too-far"), uid, uid, PopupType.SmallCaution);
             return;
         }
-        var tileRef = _map.GetTileRef(gridUid, grid, tile);
-        if (prototype == "BlobTile" && TryChewDenseObstacle(tileRef, uid, comp, blobId, actualCost, false))
-            return;
-
         EntityUid? replacedTile = null;
         if (HasBlobStructureOnTile(gridUid, grid, tile))
         {
@@ -952,6 +954,8 @@ public sealed class BlobOvermindSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("blob-action-tile-blocked"), uid, uid, PopupType.SmallCaution);
             return;
         }
+
+        var tileRef = _map.GetTileRef(gridUid, grid, tile);
 
         if (prototype != "BlobTile" && TryChewDenseObstacle(tileRef, uid, comp, blobId, actualCost))
             return;
