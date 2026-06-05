@@ -258,9 +258,7 @@ public sealed class SanitySystem : EntitySystem
             if (!TryComp<MobStateComponent>(nearby, out var state) || state.CurrentState == MobState.Dead)
                 continue;
 
-            if (!TryComp<MetaDataComponent>(nearby, out var meta))
-                continue;
-
+            var meta = MetaData(nearby);
             var protoId = meta.EntityPrototype?.ID;
             if (string.IsNullOrWhiteSpace(protoId))
                 continue;
@@ -430,8 +428,8 @@ public sealed class SanitySystem : EntitySystem
             if (!_interaction.InRangeUnobstructed(uid, ent, radius + 0.1f))
                 continue;
 
-            if (TryComp<MetaDataComponent>(ent, out var meta) &&
-                meta.EntityPrototype?.ID.Contains("NDA", StringComparison.OrdinalIgnoreCase) == true)
+            var meta = MetaData(ent);
+            if (meta.EntityPrototype?.ID.Contains("NDA", StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }
@@ -461,9 +459,7 @@ public sealed class SanitySystem : EntitySystem
             if (!TryComp<MobStateComponent>(ent, out var state) || state.CurrentState == MobState.Dead)
                 continue;
 
-            if (!TryComp<MetaDataComponent>(ent, out var meta))
-                continue;
-
+            var meta = MetaData(ent);
             var protoId = meta.EntityPrototype?.ID;
             if (string.IsNullOrWhiteSpace(protoId))
                 continue;

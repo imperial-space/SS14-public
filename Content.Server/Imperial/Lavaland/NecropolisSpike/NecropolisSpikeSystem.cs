@@ -13,7 +13,6 @@ public sealed class NecropolisSpikeSystem : EntitySystem
 
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
 
     private readonly List<PendingAbyss> _pendingAbysses = new();
 

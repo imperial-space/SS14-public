@@ -177,7 +177,7 @@ public sealed class SCPFiremanSystem : EntitySystem
         if (args.Handled || !TryConsumePoints(ent, MeltCost))
             return;
 
-        if (!EntityManager.EntityExists(args.Target))
+        if (!Exists(args.Target))
             return;
 
         if (_prototypes.TryIndex(StructuralDamageId, out DamageTypePrototype? structuralDamage))
@@ -226,7 +226,7 @@ public sealed class SCPFiremanSystem : EntitySystem
         if (args.Handled || args.User != ent.Owner || !ent.Comp.SecondModeEnabled)
             return;
 
-        if (!EntityManager.EntityExists(args.Target) || !TryGetMapCoordinates(ent.Owner, out var start) || !TryGetMapCoordinates(args.Target, out var end))
+        if (!Exists(args.Target) || !TryGetMapCoordinates(ent.Owner, out var start) || !TryGetMapCoordinates(args.Target, out var end))
             return;
 
         if (start.MapId != end.MapId)

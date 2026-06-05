@@ -10,7 +10,6 @@ namespace Content.Server.Imperial.Lavaland.OrePoints.Mining.Systems;
 public sealed class MiningVoucherSystem : EntitySystem
 {
     [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     // Kit definitions: each kit is a list of prototype IDs to spawn

@@ -10,7 +10,6 @@ namespace Content.Server.Imperial.Lavaland.Artifact;
 /// </summary>
 public sealed class AnimalMindTransferSystem : EntitySystem
 {
-    [Dependency] private readonly ActionsSystem _actionsSystem = null!;
 
     public override void Initialize()
     {

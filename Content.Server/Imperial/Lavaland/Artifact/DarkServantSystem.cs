@@ -10,7 +10,6 @@ namespace Content.Server.Imperial.Lavaland.Artifact;
 /// </summary>
 public sealed class DarkServantSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damageableSystem = null!;
 
     private float _tickTimer = 0f;
     private const float TickRate = 1f; // проверяем каждую секунду
