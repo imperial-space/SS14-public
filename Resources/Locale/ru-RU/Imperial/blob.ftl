@@ -15,8 +15,6 @@ blob-core-destroyed = Ваше ядро уничтожено. Сознание �
 blob-core-destroyed-secondary = Одно из ваших ядер уничтожено, но часть сознания уцелела во втором ядре.
 blob-round-end-agent-name = блоб
 blob-round-end-victory = Блоб захватил станцию. Заражено уже { $count } станционных тайлов.
-chat-radio-blob = Блоб
-chat-radio-blob-hive = Улей Блоба
 
 ent-ActionBlobAttack = Атаковать клеткой
     .desc = Приказывает ближайшей биомассе ударить по выбранной клетке. Стоимость: 1 биомасса.

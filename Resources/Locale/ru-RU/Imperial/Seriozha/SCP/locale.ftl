@@ -212,8 +212,3 @@ alerts-scp-blink-name = Моргание
 alerts-scp-blink-desc = До следующего моргания.
 alerts-scp-fireman-points-name = Огненные очки
 alerts-scp-fireman-points-desc = Текущий запас огненной энергии.
-
-# Terror Spider
-terror-spider-hive-sense-empty = Чувство улья: потомства не обнаружено.
-terror-spider-hive-sense-entry = {$name}: {$hp}/{$hpMax} HP, маяк: {$beacon}
-terror-spider-hive-sense-unknown = неизвестно
