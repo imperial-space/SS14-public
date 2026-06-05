@@ -81,6 +81,9 @@
     delay: 30
   - type: LavalandMegafaunaSleep
   - type: LavalandMegafauna
+  - type: MegafaunaBossMusic
+    music:
+      path: /Audio/Imperial/boss/sound_misc_e1m1.ogg
 
 - type: entity
   id: MobLegionMediumLavaland
