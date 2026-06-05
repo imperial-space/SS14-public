@@ -199,7 +199,7 @@ public sealed class SanitySystem : EntitySystem
         if (!TryComp<BloodstreamComponent>(ent, out var bloodstream))
             return;
 
-        if (!_solutions.TryGetSolution(ent.Owner, bloodstream.ChemicalSolutionName, out _, out var solution))
+        if (!_solutions.TryGetSolution(ent.Owner, bloodstream.BloodSolutionName, out _, out var solution))
             return;
 
         foreach (var reagent in solution.Contents)
@@ -356,12 +356,9 @@ public sealed class SanitySystem : EntitySystem
             return;
 
         var healing = new DamageSpecifier();
-        foreach (var kv in damageable.Damage.DamageDict)
+        foreach (var damageType in _damageable.GetPositiveDamage((ent, damageable)).DamageDict.Keys)
         {
-            if (kv.Value == FixedPoint2.Zero)
-                continue;
-
-            healing.DamageDict[kv.Key] = FixedPoint2.New(-ent.Comp.HighRegenPerType);
+            healing.DamageDict[damageType] = FixedPoint2.New(-ent.Comp.HighRegenPerType);
         }
 
         if (!healing.Empty)
@@ -392,7 +389,7 @@ public sealed class SanitySystem : EntitySystem
             if (ent == uid)
                 continue;
 
-            if (!HasComp<HumanoidAppearanceComponent>(ent))
+            if (!HasComp<HumanoidProfileComponent>(ent))
                 continue;
 
             if (!TryComp<MobStateComponent>(ent, out var state) || state.CurrentState != MobState.Alive)

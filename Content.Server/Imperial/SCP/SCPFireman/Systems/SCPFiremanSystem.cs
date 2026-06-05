@@ -479,7 +479,7 @@ public sealed class SCPFiremanSystem : EntitySystem
             return;
 
         var healing = new DamageSpecifier();
-        foreach (var damageType in damageable.Damage.DamageDict.Keys)
+        foreach (var damageType in _damageable.GetPositiveDamage((owner, damageable)).DamageDict.Keys)
         {
             healing.DamageDict[damageType] = FixedPoint2.New(-perType);
         }
