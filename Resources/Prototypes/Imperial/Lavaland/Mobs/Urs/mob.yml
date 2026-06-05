@@ -16,8 +16,8 @@
       Dead:
         Base: Urs_dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.00
-    baseSprintSpeed: 2.00
+    baseWalkSpeed : 2.00
+    baseSprintSpeed : 2.00
   - type: Bloodstream
     bloodMaxVolume: 400
     chemicalMaxVolume: 0
@@ -25,8 +25,6 @@
     thresholds:
       0: Alive
       250: Dead
-  - type: Destructible
-    thresholds: []
   - type: MeleeWeapon
     soundHit:
       path: "/Audio/Weapons/smash.ogg"
@@ -57,9 +55,6 @@
     - CannotSuicide
     - FootstepSound
     - Urs
-  - type: Damageable
-    damageContainer: Biological
-    damageModifierSet: HellSpawn
   - type: NoSlip
   - type: Butcherable
     spawned:
@@ -69,13 +64,14 @@
       amount: 5
     - id: IngotSilver1
       amount: 2
-  - type: UrsDash
+  - type: UrsDash #To configure the dash
     damage:
       groups:
         Brute: 20
     updateInterval: 0.65
     updateIntervalToDash: 0.3
     pushStrength: 8
+
 
 - type: entity
   id: MobUrsLavaland
@@ -89,6 +85,11 @@
     - FootstepSound
     - LavalandMob
     - Urs
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: HellSpawn
+  - type: Destructible
+    thresholds: []
   - type: TemperatureDamage
     heatDamageThreshold: 1000000
   - type: LavalandStormImmune
@@ -109,3 +110,4 @@
 
 - type: Tag
   id: Urs
+

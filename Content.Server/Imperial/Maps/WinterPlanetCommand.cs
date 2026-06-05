@@ -9,7 +9,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Maps;
+namespace Content.Server.Imperial.Maps;
 
 /// <summary>
 /// Преобразует карту в зимнюю планету (снег) с горизонтальной дорогой.
@@ -78,7 +78,7 @@ public sealed class WinterPlanetCommand : LocalizedEntityCommands
             var changedTiles = PaintRoadOnMap(mapId, new Tile(roadDef.TileId), roadWidth);
 
             var removedEntities = ClearRoadObstacles(mapId, roadWidth);
-            
+
             shell.WriteLine($"✓ Карта преобразована в зимнюю планету!");
             shell.WriteLine($"Map ID: {mapId}");
             shell.WriteLine($"Биом: Snow (снег)");
