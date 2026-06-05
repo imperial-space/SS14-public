@@ -50,7 +50,7 @@
     - state: ai
   - type: ConditionalSpawner
     prototypes:
-    - MobMegaLegionLavaland
+    - MobLegionLoot
 
 - type: entity
   parent: MarkerBase
