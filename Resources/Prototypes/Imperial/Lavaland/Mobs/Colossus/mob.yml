@@ -1,5 +1,6 @@
 - type: entity
   id: BulletColossusHoly
+  suffix: Lavaland
   name: holy bolt
   parent: BulletKinetic
   categories: [ HideSpawnMenu ]
@@ -20,6 +21,7 @@
 
 - type: entity
   id: MobColossus
+  suffix: Lavaland
   name: colossus
   parent: [ SimpleSpaceMobBase, MobCombat, MobBloodstream, BaseMobAnimal ]
   description: A fallen angel wandering the wastes of Lavaland, punishing all it deems impure.
@@ -110,4 +112,15 @@
   - type: Tag
     tags:
     - LavalandMob
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: HellSpawn
+  - type: TemperatureDamage
+    heatDamageThreshold: 1000000
+  - type: LavalandStormImmune
   - type: MegafaunaVanishOnDeath
+  - type: LavalandMegafaunaSleep
+  - type: LavalandMegafauna
+  - type: MegafaunaBossMusic
+    music:
+      path: /Audio/Imperial/boss/blackmoor_Colossus.ogg

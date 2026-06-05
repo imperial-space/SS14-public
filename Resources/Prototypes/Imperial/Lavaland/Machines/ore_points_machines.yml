@@ -1,13 +1,17 @@
-﻿- type: entity
+- type: entity
   id: OreProcessorLavalandPoints
+  suffix: Lavaland
   parent: OreProcessor
   name: ore processor (points)
   description: Processes ore and stores ore points for transfer to an ID card.
   components:
     - type: OreProcessorPoints
+    - type: MaterialStorage
+      canEjectStoredMaterials: false
 
 - type: entity
   id: VendingMachineSalvageOrePoints
+  suffix: Lavaland
   parent: VendingMachineSalvage
   name: Salvage Vendor (Ore Points)
   description: Sells salvage gear for ore points stored on your ID card.
@@ -54,7 +58,8 @@
         PKAMiningUpgradeRange: 1500
         PKAMiningUpgradeFortification: 1200
         # ── Оружие ──
-        WeaponPlasmaCutter: 1500
+        WeaponPlasmaCutterLavaland: 1500
+        WeaponPlasmaCutterFanLavaland: 1500
         MiningDrillDiamond: 1500
         WeaponKineticCrusher: 1000
         MiningWormholeGenerator: 900
@@ -63,3 +68,4 @@
         Cigar: 300
         SpaceCash1000: 2500
         DrinkWhiskeyBottleFull: 500
+        ItemMegafaunaTracker: 1000

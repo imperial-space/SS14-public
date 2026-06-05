@@ -3,6 +3,7 @@
 # Каждые 2 трупа → 1 яйцо → 1 пеплоходец через 60 секунд.
 - type: entity
   id: OfferingSpikeImperial
+  suffix: Lavaland
   parent: BaseStructure
   name: шип подношения
   description: Мрачный шип, увенчанный костями и священными символами. Пеплоходцы приносят к нему трупы в дар Некрополю — и новые воины возрождаются из пепла.
@@ -17,7 +18,8 @@
     corpseRadius: 1.5
     corpsesPerEgg: 2
     checkInterval: 2.0
-    eggPrototype: FoodEggAshwalker
+    eggPrototypes:
+    - FoodEggAshwalker
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic

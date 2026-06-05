@@ -12,7 +12,6 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Enums;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
-using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Numerics;
 
@@ -26,7 +25,6 @@ public sealed class DeadMinerSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _xformSys = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()

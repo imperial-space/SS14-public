@@ -2,6 +2,7 @@
 
 - type: entity
   id: EffectDeadMinerSmoke
+  suffix: Lavaland
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -15,6 +16,7 @@
 
 - type: entity
   id: BulletDeadMinerKinetic
+  suffix: Lavaland
   name: kinetic bolt
   parent: BulletKinetic
   categories: [ HideSpawnMenu ]
@@ -31,6 +33,7 @@
 
 - type: entity
   id: MobDeadMiner
+  suffix: Lavaland
   name: ent-MobDeadMiner
   parent: [ SimpleSpaceMobBase, MobCombat, BaseMobAnimal ]
   description: A miner consumed by the madness of Lavaland. His tools still remember their purpose.
@@ -99,9 +102,14 @@
       Dead:
         Base: miner
   - type: DeadMiner
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: LavalandMegafaunaSleep
+  - type: LavalandMegafauna
   - type: Tag
     tags:
     - LavalandMob
+  - type: LavalandStormImmune
   - type: BossLoot
     loot:
     - prototype: MeleeWeaponCleavingSaw
@@ -112,3 +120,6 @@
       chance: 0.30
       minCount: 1
       maxCount: 1
+  - type: MegafaunaBossMusic
+    music:
+      path: /Audio/Imperial/boss/heavy_boss_battle_2_bpm110.ogg

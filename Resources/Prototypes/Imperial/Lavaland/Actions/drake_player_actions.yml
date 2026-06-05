@@ -1,6 +1,7 @@
 - type: entity
   parent: BaseActionPolymorph
   id: ActionPolymorphLesserDragon
+  suffix: Lavaland
   name: Облик дракона
   description: Снова превращает вас в малого дракона.
   components:
@@ -16,6 +17,7 @@
 - type: entity
   parent: BaseAction
   id: ActionDrakeFireCone
+  suffix: Lavaland
   name: Огненное дыхание
   description: Выпускает три огненные полосы в направлении курсора.
   components:
@@ -35,6 +37,7 @@
 - type: entity
   parent: BaseAction
   id: ActionDrakeFlight
+  suffix: Lavaland
   name: Взлёт
   description: Перелетает к выбранной точке.
   components:

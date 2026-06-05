@@ -1,0 +1,70 @@
+- type: entity
+  id: LavalandPlanetRule
+  parent: BaseGameRule
+  components:
+  - type: GameRule
+    minPlayers: 0
+  - type: LavalandPlanetRule
+    biomeTemplate: Lava
+    mapLight: "#80351A"
+    minStructureDistance: 30
+    maxStructureDistance: 200
+    borderRadius: 255
+    recyclingOutpostMap: /Imperial/Lavaland/recycling-outpost.yml
+    prisonMap: /Imperial/Lavaland/prison.yml
+    shuttleMap: /Imperial/Lavaland/shutte.yml
+    necroposisSpikePrototype: NecroposisSpikeImperial
+    necroposisSpikeCount: 20
+    oreLayers:
+    - OreIron
+    - OreQuartz
+    - OreCoal
+    - OreSalt
+    - OreGold
+    - OreSilver
+    - OrePlasma
+    - OreUranium
+    - OreDiamond
+    - OreArtifactFragment
+    - OreGibtoniteLavaland
+    - OreMagmiteLavaland
+    mobLayers:
+    - LegionsLavaland
+    - GoliathsLavaland
+    - WatchersLavalandLoot
+    - WatchersIcewingLoot
+    - WatchersMagmawingLoot
+    - ChasmsLavaland
+    megafaunaPrototypes: []
+    structureGridFiles:
+    - /Imperial/Lavaland/ashwalker.yml
+    - /Imperial/Lavaland/barak.yml
+    - /Imperial/Lavaland/beachbiome.yml
+    - /Imperial/Lavaland/butterfliesruin.yml
+    - /Imperial/Lavaland/clownruin.yml
+    - /Imperial/Lavaland/cultaltarruin.yml
+    - /Imperial/Lavaland/envyruin.yml
+    - /Imperial/Lavaland/gluttonyruin.yml
+    - /Imperial/Lavaland/gnezdo.yml
+    - /Imperial/Lavaland/greedruin.yml
+    - /Imperial/Lavaland/hermitebase.yml
+    - /Imperial/Lavaland/hierophant.yml
+    - /Imperial/Lavaland/hospital.yml
+    - /Imperial/Lavaland/len.yml
+    - /Imperial/Lavaland/logovo.yml
+    - /Imperial/Lavaland/mining.yml
+    - /Imperial/Lavaland/pizzaruin.yml
+    - /Imperial/Lavaland/portalruin.yml
+    - /Imperial/Lavaland/pribejishe.yml
+    - /Imperial/Lavaland/prideruin.yml
+    - /Imperial/Lavaland/ripley.yml
+    - /Imperial/Lavaland/terrarium.yml
+    - /Imperial/Lavaland/tombruin.yml
+    - /Imperial/Lavaland/winterbiodome.yml
+    - /Imperial/Lavaland/worldforge.yml
+    - /Imperial/Lavaland/miner.yml
+    - /Imperial/Lavaland/colos.yml
+    - /Imperial/Lavaland/Bubblegum.yml
+    - /Imperial/Lavaland/legiom.yml
+    structureMapFiles: []
+

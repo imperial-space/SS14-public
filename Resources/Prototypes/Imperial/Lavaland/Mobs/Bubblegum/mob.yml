@@ -1,5 +1,6 @@
 - type: entity
   id: MobLavalandBubblegum
+  suffix: Lavaland
   name: Bubblegum
   parent: [SimpleSpaceMobBase, MobCombat, MobBloodstream, BaseMobAnimal]
   description: A raging blood-red megafauna beast from Lavaland.
@@ -91,7 +92,14 @@
       chance: 0.30
       minCount: 1
       maxCount: 1
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: HellSpawn
+  - type: TemperatureDamage
+    heatDamageThreshold: 1000000
   - type: MegafaunaVanishOnDeath
+  - type: LavalandMegafaunaSleep
+  - type: LavalandMegafauna
   - type: Destructible
     thresholds: []
   - type: DamageStateVisuals
@@ -105,13 +113,18 @@
     - CannotSuicide
     - FootstepSound
     - LavalandMob
+  - type: LavalandStormImmune
   - type: NoSlip
+  - type: MegafaunaBossMusic
+    music:
+      path: /Audio/Imperial/boss/Juhani_Junkala_Epic_Boss_Battle.ogg
 
 # ── Visual marker for dash/hallu attacks ──────────────────────────────────────
 
 - type: entity
   id: BubblegumDashMarker
-  name: marker
+  suffix: Lavaland
+  name: маркер
   components:
   - type: Sprite
     drawdepth: Effects
@@ -126,7 +139,8 @@
 
 - type: entity
   id: BubblegumDashTrail
-  name: trail
+  suffix: Lavaland
+  name: след
   components:
   - type: Sprite
     drawdepth: Effects
@@ -142,7 +156,8 @@
 
 - type: entity
   id: BubblegumPhantom
-  name: phantom
+  suffix: Lavaland
+  name: призрак
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -157,7 +172,8 @@
 
 - type: entity
   id: MobBubblegumBloodHand
-  name: blood hand
+  suffix: Lavaland
+  name: кровавая рука
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -172,7 +188,8 @@
 
 - type: entity
   id: MobBubblegumClone
-  name: Bubblegum Clone
+  suffix: Lavaland
+  name: Клон Жвачки
   parent: [SimpleSpaceMobBase, MobCombat, BaseMobAnimal]
   description: A weakened blood copy of Bubblegum.
   components:
@@ -225,3 +242,4 @@
     tags:
     - CannotSuicide
     - LavalandMob
+  - type: LavalandStormImmune

@@ -6,6 +6,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Lavaland.DrakePlayerActions;
@@ -23,6 +24,7 @@ public sealed class DrakePlayerActionsSystem : EntitySystem
 
     private static readonly SoundSpecifier FireConeSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_magic_fireball.ogg");
     private static readonly SoundSpecifier LandingSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_misc_demon_attack1.ogg");
+    private static readonly EntProtoId RevertPolymorphAction = "ActionRevertPolymorph";
 
     // Pending fire tiles: casterUid → list of (tileCoords, triggerTime)
     private readonly Dictionary<EntityUid, List<(EntityCoordinates Tile, TimeSpan TriggerTime, float Damage)>>
@@ -104,7 +106,7 @@ public sealed class DrakePlayerActionsSystem : EntitySystem
     private void OnFlightInit(EntityUid uid, DrakeFlightComponent comp, MapInitEvent args)
     {
         _actions.AddAction(uid, ref comp.ActionEntity, comp.ActionId);
-        _actions.AddAction(uid, ref comp.RevertActionEntity, "ActionRevertPolymorph");
+        _actions.AddAction(uid, ref comp.RevertActionEntity, RevertPolymorphAction);
     }
 
     private void OnFlightShutdown(EntityUid uid, DrakeFlightComponent comp, ComponentShutdown args)

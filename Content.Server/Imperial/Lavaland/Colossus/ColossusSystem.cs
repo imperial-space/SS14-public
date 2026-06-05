@@ -1,4 +1,5 @@
 ﻿using Content.Server.Chat.Systems;
+using Content.Server.Imperial.Lavaland.MegafaunaSleep;
 using Content.Server.Popups;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
@@ -52,6 +53,9 @@ public sealed class ColossusSystem : EntitySystem
         while (query.MoveNext(out var uid, out var comp, out var damageable, out var mobState))
         {
             if (mobState.CurrentState != MobState.Alive)
+                continue;
+
+            if (HasComp<LavalandMegafaunaSleepComponent>(uid))
                 continue;
 
             var totalDamage = _damageable.GetPositiveDamage((uid, damageable)).GetTotal().Float();

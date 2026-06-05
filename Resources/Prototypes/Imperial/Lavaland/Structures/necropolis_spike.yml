@@ -3,6 +3,7 @@
 # После уничтожения через ~5 секунд создаёт бездну радиусом 2 тайла.
 - type: entity
   id: NecroposisSpikeImperial
+  suffix: Lavaland
   parent: BaseStructure
   name: шип некрополя
   description: Мрачный шип, торчащий из недр Лаваленда. Из него непрерывно выползают чудовища.
@@ -17,7 +18,6 @@
     spawnPrototypes:
     - MobLegionLoot
     - MobGoliathLoot
-    - MobGoliathAncient
     - MobWatcherLavalandLoot
     - MobWatcherIcewingLoot
     - MobWatcherMagmawingLoot

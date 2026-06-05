@@ -5,7 +5,7 @@
     Blunt: 1.5
     Slash: 1.5
     Piercing: 1.5
-    Heat: 0.7
+    Heat: 0.0
     Cold: 0.7
     Radiation: 0.5
     Caustic: 0.5
@@ -16,6 +16,7 @@
 # Уходит под землю при угрозе, отталкивает атакующих, роняет ценные руды при гибели.
 - type: entity
   id: MobZlatozhor
+  suffix: Lavaland
   parent: [SimpleSpaceMobBase, MobCombat]
   name: златожор
   description: Безвредное существо, питающееся ценными рудами. Не представляет угрозы, однако умеет отталкивать тех, кто мешает ему трапезничать. Гибель заставляет его отдать всё съеденное.
@@ -79,6 +80,9 @@
     - CannotSuicide
     - FootstepSound
     - LavalandMob
+  - type: TemperatureDamage
+    heatDamageThreshold: 1000000
+  - type: LavalandStormImmune
   - type: BossLoot
     loot:
     - prototype: CrusherUpgradeCreviceShard
@@ -86,3 +90,4 @@
       minCount: 1
       maxCount: 1
   - type: MegafaunaVanishOnDeath
+    delay: 30

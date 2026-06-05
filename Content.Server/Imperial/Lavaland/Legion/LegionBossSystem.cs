@@ -6,6 +6,7 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Systems;
+using Content.Server.Imperial.Lavaland.MegafaunaSleep;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Robust.Server.Player;
@@ -20,7 +21,6 @@ namespace Content.Server.Imperial.Lavaland.Legion;
 
 public sealed class LegionBossSystem : EntitySystem
 {
-    private const string SummonSound = "/Audio/Imperial/boss/sound_magic_narsie_attack.ogg";
     private const string ChargeSound = "/Audio/Imperial/boss/sound_weapons_sonic_jackhammer.ogg";
     private const float SpinDegreesPerSecond = 540f;
 
@@ -99,6 +99,9 @@ public sealed class LegionBossSystem : EntitySystem
 
     private void MakeDecision(EntityUid uid, LegionBossComponent comp)
     {
+        if (HasComp<LavalandMegafaunaSleepComponent>(uid))
+            return;
+
         if (!TryFindNearbyPlayer(uid, 20f, out _))
             return;
 
@@ -112,7 +115,18 @@ public sealed class LegionBossSystem : EntitySystem
 
     private void DoSummon(EntityUid uid, LegionBossComponent comp)
     {
-        _audio.PlayPvs(SummonSound, uid);
+        var skullCount = 0;
+        var query = EntityQueryEnumerator<MetaDataComponent>();
+        while (query.MoveNext(out var skullUid, out var meta))
+        {
+            if (meta.EntityPrototype?.ID == comp.SummonedPrototype.Id)
+                skullCount++;
+        }
+        if (skullCount >= comp.MaxConcurrentSkulls)
+            return;
+
+        if (comp.SummonSound != null)
+            _audio.PlayPvs(comp.SummonSound, uid);
         PopupToNearbyPlayers(uid, Loc.GetString("legion-ability-summon"));
 
         var worldPos = _transform.GetWorldPosition(uid);

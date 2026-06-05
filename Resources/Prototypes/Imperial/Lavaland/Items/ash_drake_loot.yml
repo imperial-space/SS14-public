@@ -9,7 +9,7 @@
   id: MaterialDragonHide
   name: шкура дракона
   description: Прочная огнестойкая шкура Пепельного дракона. Используется для крафта брони.
-  suffix: Full
+  suffix: Full, Lavaland
   components:
   - type: Material
   - type: Stack
@@ -40,7 +40,7 @@
 - type: entity
   parent: MaterialDragonHide
   id: MaterialDragonHide10
-  suffix: 10
+  suffix: 10, Lavaland
   components:
   - type: Sprite
     state: dragon_hide
@@ -50,7 +50,7 @@
 - type: entity
   parent: MaterialDragonHide
   id: MaterialDragonHide1
-  suffix: Single
+  suffix: Single, Lavaland
   components:
   - type: Sprite
     state: dragon_hide
@@ -61,6 +61,7 @@
 - type: entity
   parent: ClothingOuterBase
   id: ClothingOuterDrakeArmor
+  suffix: Lavaland
   name: броня дрейка
   description: Кованая броня из шкуры Пепельного дракона. Обеспечивает отличную защиту от огня и кислоты.
   components:
@@ -93,6 +94,7 @@
         Heat: 0
   - type: TemperatureProtection
     coefficient: 0.0
+  - type: LavalandStormImmune
   - type: StaticPrice
     price: 2000
 
@@ -100,6 +102,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadDrakeHelm
+  suffix: Lavaland
   name: шлем дрейка
   description: Шлем из чешуи Пепельного дракона. Защищает голову от огня и ударов.
   components:
@@ -123,6 +126,7 @@
 - type: entity
   parent: BaseBullet
   id: BulletLavaStaff
+  suffix: Lavaland
   name: lava bolt
   categories: [ HideSpawnMenu ]
   components:
@@ -146,6 +150,7 @@
 - type: entity
   parent: BaseItem
   id: WeaponSpectralBlade
+  suffix: Lavaland
   name: спектральный клинок
   description: Клинок, пропитанный духами. Наносит больше урона за каждого поглощённого призрака.
   categories: [ HideSpawnMenu ]
@@ -192,6 +197,7 @@
 
 - type: entity
   id: MobSpectralBladeSpirit
+  suffix: Lavaland
   name: дух клинка
   description: Один из духов, заключённых в спектральном клинке.
   categories: [ HideSpawnMenu ]
@@ -214,6 +220,7 @@
 - type: entity
   parent: WeaponWandBase
   id: WeaponLavaStaff
+  suffix: Lavaland
   name: лавовый посох
   description: Посох из окаменевшей лавы. Переключает лаву в базальт и обратно, а также стреляет огненными сгустками.
   categories: [ HideSpawnMenu ]
@@ -269,6 +276,7 @@
 - type: entity
   parent: BaseItem
   id: DragonBloodVial
+  suffix: Lavaland
   name: виала с кровью дракона
   description: Флакон с кровью Пепельного Дракона. При использовании — случайный полиморф в скелета или малого дракона.
   categories: [ HideSpawnMenu ]
@@ -288,6 +296,7 @@
 - type: entity
   parent: BaseItem
   id: DragonBloodVialTreated
+  suffix: Lavaland
   name: обработанная виала с кровью дракона
   description: Особым образом обработанная кровь Пепельного Дракона. Навсегда превращает выпившего в драконида.
   categories: [ HideSpawnMenu ]
@@ -307,6 +316,7 @@
 - type: entity
   parent: CrateGeneric
   id: LavalandDrakeChest
+  suffix: Lavaland
   name: сундук Пепельного Дракона
   description: Сундук с сокровищами Пепельного Дракона. Содержит редкие предметы.
   components:

@@ -26,7 +26,7 @@ public sealed class DarkServantSystem : EntitySystem
         _tickTimer -= TickRate;
 
         // Обрабатываем всех темных слуг
-        var query = EntityManager.AllEntityQueryEnumerator<DarkServantComponent>();
+        var query = AllEntityQuery<DarkServantComponent>();
         while (query.MoveNext(out var uid, out var servant))
         {
             UpdateDarkServant(uid, servant);

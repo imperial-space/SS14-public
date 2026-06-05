@@ -3,6 +3,7 @@
 
 - type: entity
   id: CowPortal
+  suffix: Lavaland
   name: коровий портал
   description: Мычащая дыра в пространстве.
   categories: [ HideSpawnMenu ]

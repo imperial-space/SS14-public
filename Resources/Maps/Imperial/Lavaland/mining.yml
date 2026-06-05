@@ -136,6 +136,7 @@ entities:
     - type: Transform
       rot: 1.5707963267948966
       pos: 6.5,1.5
+    - type: Docking
 - proto: Autolathe
   entities:
   - uid: 26

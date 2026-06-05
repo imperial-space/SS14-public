@@ -1,7 +1,7 @@
 {
     "version": 1,
-    "license": null,
-    "copyright": null,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "https://github.com/ParadiseSS13/Paradise",
     "size": {
         "x": 32,
         "y": 32
@@ -11,7 +11,7 @@
             "name": "icon"
         },
         {
-            "name": "equipped-HEAD",
+            "name": "equipped-HELMET",
             "directions": 4
         }
     ]

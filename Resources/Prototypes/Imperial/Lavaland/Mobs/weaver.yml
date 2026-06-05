@@ -1,0 +1,209 @@
+# ══════════════════════════════════════════════════════════════════════════════
+# Ткачи — лавалэнд
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Реагенты ──────────────────────────────────────────────────────────────────
+
+- type: reagent
+  id: WeaverSpore
+  name: reagent-name-weaver-spore
+  group: Toxins
+  desc: reagent-desc-weaver-spore
+  physicalDesc: reagent-physical-desc-viscous
+  flavor: bitter
+  color: "#8a2be2"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1.5
+      - !type:Drunk
+        boozePower: 5
+
+- type: reagent
+  id: WeaverVenom
+  name: reagent-name-weaver-venom
+  group: Toxins
+  desc: reagent-desc-weaver-venom
+  physicalDesc: reagent-physical-desc-viscous
+  flavor: bitter
+  color: "#4a0080"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Blunt: 1
+            Poison: 1
+      - !type:ModifyBloodLevel
+        amount: -0.3
+
+# ── Предметы лута ─────────────────────────────────────────────────────────────
+
+- type: entity
+  parent: BaseItem
+  id: WeaverVein
+  suffix: Lavaland
+  name: жила ткача
+  description: Упругая жила из тела ткача. Используется в крафте.
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    state: heart-on
+  - type: StaticPrice
+    price: 50
+
+- type: entity
+  parent: BaseItem
+  id: WeaverBone
+  suffix: Lavaland
+  name: кость ткача
+  description: Прочная хитиновая кость ткача. Используется в крафте.
+  components:
+  - type: Sprite
+    sprite: Objects/Materials/materials.rsi
+    state: bones
+  - type: StaticPrice
+    price: 40
+
+- type: entity
+  parent: BaseItem
+  id: WeaverChitin
+  suffix: Lavaland
+  name: кусочек хитина
+  description: Фрагмент хитинового панциря ткача. Используется в крафте.
+  components:
+  - type: Sprite
+    sprite: Objects/Materials/materials.rsi
+    state: bones_2
+  - type: StaticPrice
+    price: 30
+
+# ── Моб: Костномозговой Ткач ─────────────────────────────────────────────────
+
+- type: entity
+  id: MobMarrowWeaver
+  suffix: Lavaland
+  parent: [SimpleSpaceMobBase, MobCombat, BaseMobAnimal]
+  name: костномозговой ткач
+  description: Отвратительный гигантский паук с сочащимся из жвал ядом и хитином фиолетового цвета.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/mining/weaver.rsi
+    layers:
+    - state: weaver
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: weaver
+      Dead:
+        Base: weaver_dead
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: InputMover
+  - type: MobMover
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.49
+    baseSprintSpeed: 3.32
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      220: Dead
+  - type: Damageable
+    damageContainer: Biological
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 1.0
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Slash: 13
+        Piercing: 2
+  - type: Tag
+    tags:
+    - LavalandMob
+    - CannotSuicide
+    - FootstepSound
+  - type: LavalandStormImmune
+  - type: Eye
+    drawFov: false
+    visibilityMask: 6
+  - type: ContentEye
+    maxVisionRange: 8
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+      VisionRadius: !type:Single
+        9
+      AggroVisionRadius: !type:Single
+        9
+  - type: Weaver
+    normalReagent: WeaverSpore
+    rageReagent: WeaverVenom
+  - type: Butcherable
+    spawned:
+    - id: UraniumOre
+      amount: 2
+    - id: WeaverVein
+      amount: 2
+    - id: WeaverBone
+      amount: 3
+    - id: WeaverChitin
+      amount: 4
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: LavalandMegafaunaSleep
+
+# ── Моб: Морозный Костномозговой Ткач ────────────────────────────────────────
+
+- type: entity
+  id: MobFrostbiteWeaver
+  suffix: Lavaland
+  parent: MobMarrowWeaver
+  name: морозный костномозговой ткач
+  description: Отвратительный гигантский паук с сочащимся из жвал ядом и хитином голубого цвета.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/mining/weaver_ice.rsi
+    layers:
+    - state: weaver_ice
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: weaver_ice
+      Dead:
+        Base: weaver_ice_dead
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 1.0
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Slash: 10
+        Piercing: 2
+  - type: Weaver
+    normalReagent: FrostOil
+    rageReagent: WeaverVenom
+    normalDamageMin: 10
+    normalDamageMax: 13

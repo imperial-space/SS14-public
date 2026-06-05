@@ -1,13 +1,15 @@
 - type: entity
   parent: ClothingEyesBase
   id: ClothingEyesEyeOfGod
+  suffix: Lavaland
   name: Глаз Бога
   description: По легендам это часть древнего павшего божества. Носитель видит сущности в темноте и ощущает их присутствие сквозь преграды.
   components:
   - type: Sprite
-    sprite: Clothing/Eyes/Glasses/meson.rsi
+    sprite: Mobs/Species/Human/organs.rsi
+    state: eyeball-l
   - type: Clothing
-    sprite: Clothing/Eyes/Glasses/meson.rsi
+    sprite: Mobs/Species/Human/organs.rsi
   - type: EyeOfGod
   - type: ThermalEntityVision
   - type: PointLight
@@ -23,18 +25,21 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckVoiceOfGod
+  suffix: Lavaland
   name: Голосовые связки Бога
   description: Древний орган, позволяющий произносить волевые команды через :~ в чате. Ключевые слова работают только на русском.
   components:
   - type: Sprite
-    sprite: Clothing/Neck/Ties/redtie.rsi
+    sprite: Mobs/Species/Human/organs.rsi
+    state: tongue
   - type: Clothing
-    sprite: Clothing/Neck/Ties/redtie.rsi
+    sprite: Mobs/Species/Human/organs.rsi
   - type: VoiceOfGod
 
 - type: entity
   parent: BaseAction
   id: ActionVoiceOfGodPrepare
+  suffix: Lavaland
   name: Глас Бога
   description: Подготовить следующую реплику как команду Гласа Бога.
   components:

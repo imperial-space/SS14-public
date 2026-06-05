@@ -1,5 +1,6 @@
-﻿- type: entity
+- type: entity
   id: MobMegaLegionLavaland
+  suffix: Lavaland
   parent: [SimpleSpaceMobBase, MobCombat, BaseMobAnimal]
   components:
   - type: NpcFactionMember
@@ -64,6 +65,12 @@
   - type: Tag
     tags:
     - LavalandMob
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: HellSpawn
+  - type: TemperatureDamage
+    heatDamageThreshold: 1000000
+  - type: LavalandStormImmune
   - type: BossLoot
     loot:
     - prototype: CrusherUpgradeHunterEye
@@ -71,9 +78,13 @@
       minCount: 1
       maxCount: 1
   - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: LavalandMegafaunaSleep
+  - type: LavalandMegafauna
 
 - type: entity
   id: MobLegionMediumLavaland
+  suffix: Lavaland
   parent: [SimpleSpaceMobBase, MobCombat, BaseMobAnimal]
   components:
   - type: NpcFactionMember
@@ -133,6 +144,9 @@
     normalMeleeRange: 3.5
     splitPrototype: MobLegionSmallLavaland
     splitCount: 2
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
   - type: Tag
     tags:
     - LavalandMob
@@ -140,6 +154,7 @@
 
 - type: entity
   id: MobLegionSmallLavaland
+  suffix: Lavaland
   parent: [SimpleSpaceMobBase, MobCombat, BaseMobAnimal]
   components:
   - type: NpcFactionMember
@@ -199,6 +214,9 @@
     normalMeleeRange: 3.0
     splitPrototype: MobLegionTinyLavaland
     splitCount: 2
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
   - type: Tag
     tags:
     - LavalandMob
@@ -206,6 +224,7 @@
 
 - type: entity
   id: MobLegionTinyLavaland
+  suffix: Lavaland
   parent: [SimpleSpaceMobBase, MobCombat, BaseMobAnimal]
   components:
   - type: NpcFactionMember
@@ -265,6 +284,9 @@
     normalMeleeRange: 2.5
     splitPrototype: MobLegionSkullLavaland
     splitCount: 2
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
   - type: Tag
     tags:
     - LavalandMob
@@ -272,6 +294,7 @@
 
 - type: entity
   id: MobLegionSkullLavaland
+  suffix: Lavaland
   parent: [SimpleSpaceMobBase, MobCombat, BaseMobAnimal]
   components:
   - type: NpcFactionMember
@@ -320,6 +343,9 @@
         Base: mega_legion
       Dead:
         Base: mega_legion
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
   - type: Tag
     tags:
     - LavalandMob
@@ -327,6 +353,7 @@
 
 - type: entity
   id: MobLegionSummonSkullLavaland
+  suffix: Lavaland
   parent: [SimpleSpaceMobBase, MobCombat, BaseMobAnimal]
   components:
   - type: NpcFactionMember
@@ -377,6 +404,9 @@
         Base: mega_legion
   - type: TimedDespawn
     lifetime: 35
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
   - type: Tag
     tags:
     - LavalandMob

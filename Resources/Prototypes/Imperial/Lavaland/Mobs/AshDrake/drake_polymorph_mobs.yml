@@ -5,6 +5,7 @@
 # Малый дракон — упрощённая версия AshDrake для игроков (без боссовых способностей)
 - type: entity
   id: MobLesserDragonPlayer
+  suffix: Lavaland
   name: малый дракон
   description: Уменьшенная версия Пепельного Дракона. Огнедышащий и свирепый.
   parent: [ SimpleSpaceMobBase, MobCombat, MobBloodstream, BaseMobAnimal ]
@@ -73,6 +74,7 @@
 # Драконид — гуманоидный мутант с огнестойкостью
 - type: entity
   id: MobDragonidPlayer
+  suffix: Lavaland
   name: драконид
   description: Гуманоид, мутировавший под влиянием крови Пепельного Дракона. Устойчив к огню и наделён огненным дыханием.
   parent: MobHuman

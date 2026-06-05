@@ -1,6 +1,7 @@
 - type: entity
   parent: ClothingHeadHelmetArmoredBase
   id: ClothingHeadHelmetHECK
+  suffix: Lavaland
   name: шлем H.E.C.K.
   description: Защитный шлем из комплекта H.E.C.K. Не является EVA-шлемом, но хорошо прикрывает голову от обычных угроз.
   components:
@@ -15,6 +16,7 @@
 - type: entity
   parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing]
   id: ClothingOuterArmorHECK
+  suffix: Lavaland
   name: броня H.E.C.K.
   description: Комплект усиленной шахтерской брони H.E.C.K. Это не скафандр, но он отлично держит кинетику, взрывы и почти полностью изолирует от вредной среды.
   components:

@@ -2,6 +2,7 @@
 # Единственная атака — периодический призыв черепов (раз в ~2 секунды).
 - type: entity
   id: MobLegionNormal
+  suffix: Lavaland
   parent: [SimpleSpaceMobBase, MobCombat]
   name: легион
   description: Жуткое существо, поддерживающее безопасное расстояние и призывающее черепа-снаряды.
@@ -65,14 +66,17 @@
     chargeDuration: 0.01
     chargeSpeed: 2.1
     chargeAccelerationDuration: 0.01
+  - type: LavalandStormImmune
   - type: Tag
     tags:
     - CannotSuicide
     - FootstepSound
+    - LavalandMob
 
 # Череп — призыв Легиона. Быстро сближается с целью и наносит урон.
 - type: entity
   id: MobLegionNormalSkull
+  suffix: Lavaland
   parent: [SimpleSpaceMobBase, MobCombat]
   name: череп
   description: Призыв Легиона — быстрый и хрупкий.
@@ -129,7 +133,10 @@
       5: Dead
   - type: LegionSummonedSkull
   - type: TimedDespawn
-    lifetime: 60
+    lifetime: 30
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
   - type: Tag
     tags:
     - CannotSuicide
+    - LavalandMob

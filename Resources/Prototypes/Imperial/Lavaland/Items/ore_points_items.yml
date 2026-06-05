@@ -7,6 +7,7 @@
 - type: entity
   parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase]
   id: ClothingBeltMiningWebbing
+  suffix: Lavaland
   name: горнодобывающая разгрузка
   description: Прочная тактическая разгрузка для горняков. Вмещает всё необходимое снаряжение и защищает от взрывов. Не числится среди контрабанды.
   components:
@@ -23,6 +24,7 @@
 - type: entity
   parent: OreBag
   id: OreBagMining
+  suffix: Lavaland
   name: большая рудная сумка
   description: Увеличенная рудная сумка для опытных горняков — вмещает значительно больше руды.
   components:
@@ -48,6 +50,7 @@
 - type: entity
   parent: BaseItem
   id: MiningWhetstone
+  suffix: Lavaland
   name: точильный камень горняка
   description: Прочный оселок, заряженный энергией лавного поля. Используйте на оружии ближнего боя для усиления. Одно использование.
   components:
@@ -65,6 +68,7 @@
 - type: entity
   parent: ChemicalMedipen
   id: MiningMedipen
+  suffix: Lavaland
   name: горнодобывающий медипен
   description: Многокомпонентный инъектор для горняков. Содержит обезболивающее, жаропонижающее, адреналин и регенерационный компонент.
   components:
@@ -105,31 +109,35 @@
 # ─── Снаряд горного акселератора ───
 - type: entity
   id: BulletKineticMining
+  suffix: Lavaland
   name: кинетический болт
   parent: BulletKinetic
   categories: [ HideSpawnMenu ]
-  description: Кинетический снаряд, откалиброванный для добычи руды. Мощнее в вакууме.
+  description: Кинетический снаряд, откалиброванный для добычи руды. Наносит полный урон только лавалендовским существам.
   components:
   - type: Projectile
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 10
+        Blunt: 40
         Structural: 30
   - type: TimedDespawn
     lifetime: 0.16  # ~4 тайла при скорости 25
-  - type: AtmoBullet
-    bonusDamage:
+  - type: KineticMiningBullet
+    targetWhitelist:
+      tags:
+      - LavalandMob
+    fallbackDamage:
       types:
-        Blunt: 30  # итого 40 Blunt в вакууме
-    pressureThreshold: 30
+        Blunt: 1
 
 # ─── Горный кинетический акселератор ───
 - type: entity
   parent: WeaponProtoKineticAcceleratorBase
   id: WeaponMiningAccelerator
+  suffix: Lavaland
   name: горный кинетический акселератор
-  description: Усиленная версия кинетического акселератора для горняков. Перезаряжается медленнее обычного, но значительно мощнее в вакууме. Поддерживает установку модулей апгрейда — общая вместимость 100 единиц.
+  description: Усиленная версия кинетического акселератора для горняков. Перезаряжается медленнее обычного, но значительно мощнее. Поддерживает установку модулей апгрейда - общая вместимость 100 единиц.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
@@ -182,6 +190,7 @@
 - type: entity
   parent: BaseMiningPKAUpgrade
   id: PKAMiningUpgradeAoE
+  suffix: Lavaland
   name: модуль акселератора (взрыв)
   description: Снаряды взрываются при попадании, поражая цели в небольшом радиусе. Занимает 30% вместимости.
   components:
@@ -208,6 +217,7 @@
 - type: entity
   parent: BaseMiningPKAUpgrade
   id: PKAMiningUpgradeFireRate
+  suffix: Lavaland
   name: модуль акселератора (скорострельность)
   description: Снижает время перезарядки на 2 секунды. Занимает 30% вместимости.
   components:
@@ -231,6 +241,7 @@
 - type: entity
   parent: BaseMiningPKAUpgrade
   id: PKAMiningUpgradeRange
+  suffix: Lavaland
   name: модуль акселератора (дальность)
   description: Увеличивает дальность полёта снаряда на 1 тайл. Занимает 24% вместимости.
   components:
@@ -254,6 +265,7 @@
 - type: entity
   parent: BaseMiningPKAUpgrade
   id: PKAMiningUpgradeFortification
+  suffix: Lavaland
   name: модуль акселератора (укрепление)
   description: Добавляет +1 к урону снаряда. Занимает 12% вместимости.
   components:
@@ -279,6 +291,7 @@
 - type: entity
   parent: BaseMiningPKAUpgrade
   id: PKAMiningUpgradeLifeSteal
+  suffix: Lavaland
   name: модуль акселератора (кража жизни)
   description: Улучшение на КА, которое крадет жизнь у мобов. Лечит вас на 2.5 урона при попадании по тварям Лаваленда. Занимает 24% вместимости.
   components:
@@ -297,6 +310,7 @@
 - type: entity
   parent: BaseItem
   id: WeaponKineticCrusher
+  suffix: Lavaland
   name: кинетический дробитель
   description: Тяжёлый кинетический молот для горняков. Помечает цели при ударе — следующие удары по отмеченным целям или с тыла наносят значительно больше урона.
   components:
@@ -342,7 +356,7 @@
     range: 1.5
     damage:
       types:
-        Blunt: 20
+        Blunt: 15
     heavyDamageBaseModifier: 1.5
     heavyRateModifier: 0.5
     soundHit:
@@ -354,10 +368,10 @@
   - type: KineticCrusher
     markDamageBonus:
       types:
-        Blunt: 50
+        Blunt: 3
     backstabDamageBonus:
       types:
-        Blunt: 30
+        Blunt: 15
     markDuration: 8
     targetWhitelist:
       tags:
@@ -379,6 +393,7 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: MiningJumpImplant
+  suffix: Lavaland
   name: прыжковый имплант
   description: Субдермальный имплант, усиливающий ноги. Позволяет прыгать на расстояние 4 тайла. Требует нормальной гравитации для активации.
   categories: [ HideSpawnMenu ]
@@ -393,6 +408,7 @@
 - type: entity
   parent: BaseImplantOnlyImplanter
   id: MiningJumpImplanter
+  suffix: Lavaland
   name: имплантер прыжкового импланта
   description: Одноразовый имплантер с прыжковым имплантом для горняков.
   components:
@@ -403,6 +419,7 @@
 - type: entity
   parent: BaseItem
   id: MiningWormholeGenerator
+  suffix: Lavaland
   name: генератор червоточин
   description: Нестабильное устройство, открывающее микропорталы. Если вы провалитесь в яму — автоматически спасёт вас из любого кармана. Одноразовое.
   components:
@@ -420,6 +437,7 @@
 - type: entity
   parent: BaseItem
   id: MiningVoucher
+  suffix: Lavaland
   name: шахтёрский ваучер
   description: Одноразовый ваучер на набор снаряжения. Примените на шахтёрский автомат — откроется меню выбора комплекта.
   components:
@@ -441,6 +459,7 @@
 - type: entity
   parent: FlashlightLantern
   id: FlashlightSecliteMining
+  suffix: Lavaland
   name: фонарик горняка
   description: Надёжный фонарик без маркировки СБ — просто светит в темноте.
   components:
@@ -469,6 +488,7 @@
 - type: entity
   parent: BaseItem
   id: RescueCapsule
+  suffix: Lavaland
   name: спасательная капсула
   description: Экстренная капсула с мобильной базой горняка. После активации через 8 секунд развёртывает базу прямо под вами. Требует свободную площадку 7x7 тайлов без стен и пропастей.
   components:
@@ -486,6 +506,7 @@
 - type: entity
   parent: BaseItem
   id: MeleeWeaponCleavingSaw
+  suffix: Lavaland
   name: боевой секач
   description: Складной трофейный секач из Лаваленда. В сложенном виде быстрее, в разложенном — намного мощнее.
   components:
@@ -529,13 +550,69 @@
   - type: StaticPrice
     price: 1200
 
+# ─── Гибтонитовая руда ───
+- type: entity
+  parent: BaseItem
+  id: OreGibtonite
+  suffix: Lavaland
+  name: гибтонитовая руда
+  description: Нестабильный кристалл гибтонита, добытый из недр Лаваленда.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/magma/magma_icons.rsi
+    state: "Gibtonite ore 3"
+  - type: Item
+    size: Small
+    inhandVisuals:
+      left:
+      - state: gibtonite
+        sprite: Imperial/lava/mining/magma/twohanded_lefthand.rsi
+      right:
+      - state: gibtonite
+        sprite: Imperial/lava/mining/magma/twohanded_righthand.rsi
+  - type: Tag
+    tags:
+    - Ore
+  - type: StaticPrice
+    price: 50
+
+# ─── Магмитовая руда ───
+- type: entity
+  parent: BaseItem
+  id: OreMagmite
+  suffix: Lavaland
+  name: магмитовая руда
+  description: Мерцающий кристалл магмита, добытый из базальтовых недр Лаваленда.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/magma/magmite.rsi
+    state: "Magmite ore"
+  - type: Item
+    size: Small
+  - type: Tag
+    tags:
+    - Ore
+  - type: StaticPrice
+    price: 50
+
 - type: entity
   parent: BaseItem
   id: MeleeWeaponHierophantClub
+  suffix: Lavaland
   name: посох иерофанта
   description: Трофей с Иерофанта. Три вида атак в зависимости от цели клика. Восполняет заряды со временем.
   components:
   - type: HierophantClub
+    crossBlastDamage: 10
+    squareRingBaseDamage: 7
+    squareRingDamageStep: 2
+    chaserDamage: 8
+    lineAttackSound:
+      path: /Audio/Imperial/boss/sound_weapons_sonic_jackhammer.ogg
+    ringAttackSound:
+      path: /Audio/Imperial/boss/sound_magic_repulse.ogg
+    chaserAttackSound:
+      path: /Audio/Imperial/boss/sound_magic_blind.ogg
   - type: Appearance
   - type: GenericVisualizer
     visuals:

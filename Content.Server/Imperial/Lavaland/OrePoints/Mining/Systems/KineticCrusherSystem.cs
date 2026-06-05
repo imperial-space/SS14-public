@@ -42,6 +42,7 @@ public sealed class KineticCrusherSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<KineticCrusherComponent, MeleeHitEvent>(OnMeleeHit);
         SubscribeLocalEvent<ProjectileComponent, ProjectileHitEvent>(OnCrusherProjectileHit);
+        SubscribeLocalEvent<KineticMiningBulletComponent, ProjectileHitEvent>(OnMiningBulletHit);
     }
 
     private void OnMeleeHit(Entity<KineticCrusherComponent> ent, ref MeleeHitEvent args)
@@ -244,6 +245,19 @@ public sealed class KineticCrusherSystem : EntitySystem
             mark.ExpiresAt = _timing.CurTime + ent.Comp.MarkDuration;
             Dirty(target, mark);
         }
+    }
+
+    // ─── Mining bullet whitelist ──────────────────────────────────────────────
+
+    private void OnMiningBulletHit(Entity<KineticMiningBulletComponent> bullet, ref ProjectileHitEvent args)
+    {
+        if (bullet.Comp.TargetWhitelist == null)
+            return;
+
+        if (_whitelist.IsValid(bullet.Comp.TargetWhitelist, args.Target))
+            return;
+
+        args.Damage = bullet.Comp.FallbackDamage;
     }
 
     // ─── Projectile hit (mark shot) ──────────────────────────────────────────

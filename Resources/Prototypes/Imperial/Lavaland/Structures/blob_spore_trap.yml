@@ -4,6 +4,7 @@
 
 - type: entity
   id: BlobSporeTrap
+  suffix: Lavaland
   name: спора блоба
   description: Неподвижная спора. Что-то внутри реагирует на жизнь.
   components:

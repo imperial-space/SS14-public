@@ -1,0 +1,37 @@
+# Невидимый маркер радиационной зоны.
+# Без спрайта и коллизий — полностью невидим и некликабелен.
+# Можно расставлять через панель спавна администратора.
+
+- type: entity
+  id: LavalandSlowZone
+  suffix: Lavaland
+  name: зона замедления
+  components:
+  - type: Transform
+    anchored: true
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.5
+    sprintSpeedModifier: 0.5
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+          - SlipLayer
+        mask:
+          - ItemMask
+        density: 1000
+        hard: false
+
+- type: entity
+  id: LavalandRadiationZone
+  suffix: Lavaland
+  name: радиационная зона
+  components:
+  - type: RadiationSource
+    intensity: 6
+    slope: 0.5

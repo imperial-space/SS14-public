@@ -254,7 +254,7 @@ public sealed class HierophantClubSystem : EntitySystem
             {
                 Target = target,
                 Owner = owner,
-                CurrentPos = SnapToTile(Transform(ent).Coordinates),
+                CurrentPos = SnapToTile(Transform(owner).Coordinates),
                 NextStepTime = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.ChaserStepDelay * (i + 1)),
                 EndTime = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.ChaserDuration),
             });

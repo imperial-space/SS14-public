@@ -27,6 +27,7 @@ public sealed class ChaosSystem : EntitySystem
 {
     private const string ChaosRageStatusEffect = "StatusEffectChaosRage";
     private static readonly SoundSpecifier ChaosUseSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_misc_e1m1.ogg");
+    private static readonly ProtoId<ReagentPrototype> StimulantsId = "Stimulants";
 
     private sealed class ContractState
     {
@@ -101,7 +102,7 @@ public sealed class ChaosSystem : EntitySystem
         if (!IsAlive(target))
             return;
 
-        _audio.PlayPvs(ChaosUseSound, args.User);
+        _audio.PlayGlobal(ChaosUseSound, Filter.Broadcast(), true);
 
         ApplyBerserkEffect(target, comp.BerserkerWeaponPrototype, comp.BerserkerStimulantsAmount, comp.BerserkerRageDurationSeconds, comp.BerserkerObjective);
         AssignKillAllObjectives(target, comp.BerserkerObjective);
@@ -205,7 +206,7 @@ public sealed class ChaosSystem : EntitySystem
             return;
 
         var solution = new Solution();
-        solution.AddReagent("Stimulants", FixedPoint2.New(amount));
+        solution.AddReagent(StimulantsId, FixedPoint2.New(amount));
         _bloodstream.TryAddToBloodstream((target, bloodstream), solution);
     }
 

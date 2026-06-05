@@ -48,7 +48,7 @@ public sealed partial class ColossusComponent : Component
 
     /// <summary>Speed in tiles/s. Keep low for "very slow" feel.</summary>
     [DataField]
-    public float SpikeSpeed = 5f;
+    public float SpikeSpeed = 4f;
 
     // ── Attack 1: Cone (6 spikes, narrow cone toward player) ─────────────────
 

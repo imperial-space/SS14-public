@@ -11,7 +11,8 @@
 - type: entity
   id: MobWatcherLavalandLoot
   parent: MobWatcherLavaland
-  suffix: CrusherLoot
+  suffix: CrusherLoot, Lavaland
+  name: наблюдатель
   components:
   - type: Butcherable
     butcheringType: Knife
@@ -21,11 +22,16 @@
     - id: CrusherUpgradeWatcherWing
       amount: 1
       prob: 0.25   # 25% шанс
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: LavalandMegafaunaSleep
 
 - type: entity
   id: MobWatcherIcewingLoot
   parent: MobWatcherIcewing
-  suffix: CrusherLoot
+  suffix: CrusherLoot, Lavaland
+  name: ледокрылый наблюдатель
   components:
   - type: Butcherable
     butcheringType: Knife
@@ -35,11 +41,16 @@
     - id: CrusherUpgradeWatcherWing
       amount: 1
       prob: 0.25   # 25% шанс
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: LavalandMegafaunaSleep
 
 - type: entity
   id: MobWatcherMagmawingLoot
   parent: MobWatcherMagmawing
-  suffix: CrusherLoot
+  suffix: CrusherLoot, Lavaland
+  name: магмокрылый наблюдатель
   components:
   - type: Butcherable
     butcheringType: Knife
@@ -49,14 +60,25 @@
     - id: CrusherUpgradeWatcherWing
       amount: 1
       prob: 0.25   # 25% шанс
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: LavalandMegafaunaSleep
 
 # ── Голиаф с щупальцем ───────────────────────────────────────────────────────
 # Дроп: CrusherUpgradeGoliathTentacle (с шансом)
 - type: entity
   id: MobGoliathLoot
   parent: MobGoliath
-  suffix: CrusherLoot
+  suffix: CrusherLoot, Lavaland
+  name: голиаф
   components:
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - Goliath
+    - FootstepSound
+    - LavalandMob
   - type: Butcherable
     spawned:
     - id: FoodMeatGoliath
@@ -66,19 +88,29 @@
     - id: CrusherUpgradeGoliathTentacle
       amount: 1
       prob: 0.25   # 25% шанс
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: LavalandMegafaunaSleep
 
 # ── Легион с черепом ─────────────────────────────────────────────────────────
 # Дроп: CrusherUpgradeLegionSkull (с шансом)
 - type: entity
   id: MobLegionLoot
   parent: MobLegionNormal
-  suffix: CrusherLoot
+  suffix: CrusherLoot, Lavaland
   components:
+  - type: LegionBoss
+    maxConcurrentSkulls: 3
   - type: Butcherable
     spawned:
     - id: CrusherUpgradeLegionSkull
       amount: 1
       prob: 0.33   # 33% шанс — легионов много, урежем шанс
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: LavalandMegafaunaSleep
 
 # ── Древний Голиаф ───────────────────────────────────────────────────────────
 # Более мощная версия голиафа с большим щупальцем в качестве лута.
@@ -86,11 +118,12 @@
   id: MobGoliathAncient
   parent: MobGoliath
   name: древний голиаф
+  # Tag overrides MobGoliath's Tag component — must re-include all tags + add LavalandMob
   description: >
     Колоссальный голиаф, переживший тысячи циклов лавы.
     Его тело покрыто застывшей магмой, а взгляд — полон тёмной мудрости.
     Гораздо опаснее своих сородичей.
-  suffix: AncientGoliath
+  suffix: AncientGoliath, Lavaland
   components:
   - type: Sprite
     sprite: Mobs/Aliens/Asteroid/goliath.rsi
@@ -121,6 +154,12 @@
       types:
         Slash: 16    # немного сильнее (10+6)
         Piercing: 16
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - Goliath
+    - FootstepSound
+    - LavalandMob
   - type: Butcherable
     spawned:
     - id: FoodMeatGoliath
@@ -130,3 +169,7 @@
     - id: CrusherUpgradeAncientGoliathTentacle
       amount: 1
       prob: 0.40   # 40% шанс — редкий моб
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: LavalandMegafaunaSleep

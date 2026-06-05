@@ -1,5 +1,6 @@
 - type: entity
   id: LavalandMeatHookProjectile
+  suffix: Lavaland
   name: meat hook
   categories: [ HideSpawnMenu ]
   parent: BaseBullet
@@ -53,6 +54,7 @@
 
 - type: entity
   id: LavalandWeaponMeatHook
+  suffix: Lavaland
   name: острый мясной крюк
   description: Крюк на цепи. Рвёт плоть вблизи и подтягивает добычу к вам выстрелом.
   parent: BaseItem

@@ -1,0 +1,180 @@
+# ══════════════════════════════════════════════════════════════════════════════
+# Могильная катана — артефакт Лаваленда
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Структуры ────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: GraveKatanaTomb
+  name: могила воина
+  description: Кто-то здесь похоронен. Из земли торчит рукоять клинка.
+  suffix: Lavaland
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 200
+        mask: [ FullTileMask ]
+        layer: [ WallLayer ]
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/mining/katana.rsi
+    layers:
+    - state: grave_katana
+  - type: GraveKatana
+  - type: InteractionOutline
+
+- type: entity
+  id: GraveKatanaTombEmpty
+  name: пустая могила
+  description: Могила разграблена. Только камни и пепел.
+  suffix: Lavaland
+  categories: [ HideSpawnMenu ]
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 200
+        mask: [ FullTileMask ]
+        layer: [ WallLayer ]
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/mining/katana.rsi
+    layers:
+    - state: grave_empty
+
+# ── Спавнер скелета ──────────────────────────────────────────────────────────
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnSkeletonLavalandGrave
+  suffix: Lavaland
+  name: скелет воина (спавнер)
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Species/Skeleton/parts.rsi
+      state: full
+  - type: GraveSkeletonSpawner
+    skeletonPrototype: MobSkeletonLavalandGrave
+
+# ── Скелет воина (враждебный НПС) ────────────────────────────────────────────
+
+- type: entity
+  id: MobSkeletonLavalandGrave
+  name: скелет воина
+  description: Воин, погребённый в Лаваленде. Кто-то нарушил его покой.
+  suffix: Lavaland
+  parent: [ SimpleSpaceMobBase, MobCombat, BaseMobAnimal ]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      MeleeRange: !type:Single
+        1.5
+      VisionRadius: !type:Single
+        10
+      AggroVisionRadius: !type:Single
+        12
+      NavSmash: !type:Bool
+        true
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    layers:
+    - map: [ "l_foot" ]
+      state: l_foot
+    - map: [ "r_foot" ]
+      state: r_foot
+    - map: [ "l_leg" ]
+      state: l_leg
+    - map: [ "r_leg" ]
+      state: r_leg
+    - map: [ "l_hand" ]
+      state: l_hand
+    - map: [ "r_hand" ]
+      state: r_hand
+    - map: [ "l_arm" ]
+      state: l_arm
+    - map: [ "r_arm" ]
+      state: r_arm
+    - map: [ "torso" ]
+      state: torso_m
+    - map: [ "head" ]
+      state: head
+  - type: Appearance
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.0
+    baseSprintSpeed: 2.5
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 1.0
+    soundHit:
+      path: /Audio/Effects/bone_rattle.ogg
+    damage:
+      types:
+        Slash: 7
+        Blunt: 3
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Dead
+  - type: Destructible
+    thresholds: []
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - FootstepSound
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+
+# ── Клинок воина (оружие) ─────────────────────────────────────────────────────
+
+- type: entity
+  id: WeaponKatanaLavaland
+  parent: Katana
+  name: клинок воина
+  description: Катана древнего воина, покоившаяся в земле Лаваленда. Наносит увеличенный урон местной фауне.
+  suffix: Lavaland
+  components:
+  - type: LavalandTagBonusDamage
+    requiredTag: LavalandMob
+    bonusDamage:
+      types:
+        Slash: 15

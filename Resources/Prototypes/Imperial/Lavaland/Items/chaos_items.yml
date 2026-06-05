@@ -1,6 +1,7 @@
 - type: entity
   parent: BaseItem
   id: ChaosBottle
+  suffix: Lavaland
   name: Хаос в бутылке
   description: Выпив это, ты запускаешь двухминутное безумие вокруг себя.
   components:
@@ -16,6 +17,7 @@
 - type: entity
   parent: BaseItem
   id: BloodContract
+  suffix: Lavaland
   name: Кровавый контракт
   description: Выбери живую цель, чтобы начать кровавую охоту.
   components:
@@ -30,6 +32,7 @@
 - type: entity
   parent: BaseItem
   id: LibraryRecallSpellbook
+  suffix: Lavaland
   name: книга возврата
   description: Древняя книга, обучающая заклинанию возврата предмета. Заклинание сохраняется даже если убрать книгу.
   components:
@@ -44,6 +47,7 @@
 - type: entity
   parent: BaseItem
   id: RodOfAsclepiusLavaland
+  suffix: Lavaland
   name: Посох Асклепия
   description: Посох легендарного целителя. После клятвы дарует пацифизм и исцеляющую ауру всем существам вокруг. После клятвы его нельзя бросить.
   components:
@@ -63,18 +67,19 @@
     healIntervalSeconds: 1.0
     healPerTick:
       types:
-        Blunt: -0.45
-        Slash: -0.45
-        Piercing: -0.35
-        Heat: -0.30
-        Cold: -0.20
-        Shock: -0.20
-        Poison: -0.15
-        Bloodloss: -0.60
+        Blunt: -1.80
+        Slash: -1.80
+        Piercing: -1.40
+        Heat: -1.20
+        Cold: -0.80
+        Shock: -0.80
+        Poison: -0.60
+        Bloodloss: -2.40
 
 - type: entity
   parent: BaseItem
   id: WeaponSpellblade
+  suffix: Lavaland
   name: Волшебный меч
   description: Волшебный меч, выкованный в адской кузнице. Он прожигает плоть огнем и не режет конечности.
   components:
@@ -148,6 +153,7 @@
 - type: entity
   parent: BulletKinetic
   id: BulletSpellbladeFire
+  suffix: Lavaland
   name: spellblade fire bolt
   categories: [ HideSpawnMenu ]
   components:
@@ -165,6 +171,7 @@
 - type: entity
   parent: BaseItem
   id: TalismanImmortality
+  suffix: Lavaland
   name: Талисман бессмертия
   description: Талисман легендарного воина. При использовании дарует неуязвимость на 8 секунд. Перезарядка — 80 секунд.
   components:
@@ -181,6 +188,7 @@
 - type: entity
   parent: ClothingOuterBase
   id: ClothingOuterChampionArmor
+  suffix: Lavaland
   name: броня чемпиона
   description: Доспех легендарного чемпиона Лавалэнда. Обеспечивает превосходную защиту от большинства угроз.
   components:

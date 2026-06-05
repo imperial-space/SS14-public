@@ -32,9 +32,9 @@ public sealed partial class OfferingSpikeComponent : Component
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan NextCheckTime;
 
-    /// <summary>Прототип яйца для спавна.</summary>
+    /// <summary>Прототипы яиц для спавна (выбирается случайно).</summary>
     [DataField]
-    public EntProtoId EggPrototype = "FoodEggAshwalker";
+    public List<EntProtoId> EggPrototypes = new() { "FoodEggAshwalker" };
 
     /// <summary>Звук при поглощении трупа.</summary>
     [DataField]

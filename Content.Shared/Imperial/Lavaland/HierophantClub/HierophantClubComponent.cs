@@ -19,8 +19,8 @@ public sealed partial class HierophantClubComponent : Component
     // Line / cross attack
     [DataField] public int LineAttackLength = 5;
     [DataField] public float CrossBlastDamage = 30f;
-    [DataField] public EntProtoId BlastEffectPrototype = "EffectHierophantBlast";
-    [DataField] public SoundSpecifier LineAttackSound = new SoundPathSpecifier("/Audio/Imperial/lavaland/hierophant_hit.ogg");
+    [DataField] public EntProtoId BlastEffectPrototype = "ImperialHierophantBlast";
+    [DataField] public SoundSpecifier LineAttackSound = new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg");
     [DataField] public SoundSpecifier NoChargesSound = new SoundPathSpecifier("/Audio/Effects/pop.ogg");
 
     // Square ring attack
@@ -28,13 +28,13 @@ public sealed partial class HierophantClubComponent : Component
     [DataField] public float SquareRingBaseDamage = 20f;
     [DataField] public float SquareRingDamageStep = 5f;
     [DataField] public float SquareRingStepDelay = 0.3f;
-    [DataField] public EntProtoId SquareEffectPrototype = "EffectHierophantBlast";
-    [DataField] public SoundSpecifier RingAttackSound = new SoundPathSpecifier("/Audio/Imperial/lavaland/hierophant_hit.ogg");
+    [DataField] public EntProtoId SquareEffectPrototype = "ImperialHierophantSquare";
+    [DataField] public SoundSpecifier RingAttackSound = new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/laser_cannon.ogg");
 
     // Chaser attack
     [DataField] public int MaxChasers = 3;
     [DataField] public float ChaserDamage = 25f;
     [DataField] public float ChaserStepDelay = 0.15f;
     [DataField] public float ChaserDuration = 3f;
-    [DataField] public SoundSpecifier ChaserAttackSound = new SoundPathSpecifier("/Audio/Imperial/lavaland/hierophant_hit.ogg");
+    [DataField] public SoundSpecifier ChaserAttackSound = new SoundPathSpecifier("/Audio/Imperial/EnergyCore/core_emitter_laser.ogg");
 }

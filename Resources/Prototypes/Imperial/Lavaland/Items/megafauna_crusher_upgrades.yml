@@ -7,6 +7,7 @@
 # Идентичен BulletCharge, но при попадании поджигает цель.
 - type: entity
   id: BulletChargeAshen
+  suffix: Lavaland
   name: пепельный заряд
   parent: BulletCharge
   categories: [ HideSpawnMenu ]
@@ -20,6 +21,7 @@
 - type: entity
   parent: BaseItem
   id: CrusherUpgradeDemonClaws
+  suffix: Lavaland
   name: коготь демона
   description: >
     Острый алый коготь, вырванный из лапы Пузырящегося.
@@ -44,6 +46,7 @@
 - type: entity
   parent: BaseItem
   id: CrusherUpgradeBlasterTubes
+  suffix: Lavaland
   name: бластерные трубы
   description: >
     Обломки орудий павшего Колосса, излучающие остаточную радиацию.
@@ -69,6 +72,7 @@
 - type: entity
   parent: BaseItem
   id: CrusherUpgradeVortexTalisman
+  suffix: Lavaland
   name: вихревой талисман
   description: >
     Реликвия, пропитанная силой Иерофанта.
@@ -93,6 +97,7 @@
 - type: entity
   parent: BaseItem
   id: CrusherUpgradeTailSpike
+  suffix: Lavaland
   name: хвостовой шип
   description: >
     Массивный шип с хвоста Урса, всё ещё пахнущий кровью.
@@ -118,6 +123,7 @@
 - type: entity
   parent: BaseItem
   id: CrusherUpgradeAshenSkull
+  suffix: Lavaland
   name: пепельный череп
   description: >
     Тлеющий череп, сохранивший внутренний огонь Пепельного дракона.
@@ -141,6 +147,7 @@
 - type: entity
   parent: BaseItem
   id: CrusherUpgradeHunterEye
+  suffix: Lavaland
   name: глаз охотника
   description: >
     Зрячий орган мегалегиона, пронизывающий взглядом всё вокруг.
@@ -164,6 +171,7 @@
 - type: entity
   parent: BaseItem
   id: CrusherUpgradeCreviceShard
+  suffix: Lavaland
   name: осколок расщелины
   description: >
     Кристалл, поглощённый и изрыгнутый Златожором вместе со своими
@@ -189,6 +197,7 @@
 - type: entity
   parent: BaseItem
   id: CrusherUpgradeChain
+  suffix: Lavaland
   name: цепь шахтёра
   description: >
     Тяжёлая цепь, которой обмотан мёртвый шахтёр.

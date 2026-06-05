@@ -1,3 +1,4 @@
+using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
@@ -15,7 +16,13 @@ public sealed partial class LegionBossComponent : Component
 
     // ── Ability 1: Skull summon (75%) ────────────────────────────────────────
     [DataField]
+    public SoundSpecifier? SummonSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_magic_narsie_attack.ogg");
+
+    [DataField]
     public EntProtoId SummonedPrototype = "MobLegionSummonSkullLavaland";
+
+    [DataField]
+    public int MaxConcurrentSkulls = 10;
 
     [DataField]
     public float SummonChance = 0.75f;

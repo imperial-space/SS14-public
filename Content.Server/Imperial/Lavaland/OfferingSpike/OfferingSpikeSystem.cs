@@ -3,6 +3,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Lavaland.OfferingSpike;
@@ -18,6 +19,7 @@ public sealed class OfferingSpikeSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     private readonly List<EntityUid> _toAbsorb = new();
 
@@ -68,7 +70,8 @@ public sealed class OfferingSpikeSystem : EntitySystem
                 if (comp.AccumulatedCorpses >= comp.CorpsesPerEgg)
                 {
                     comp.AccumulatedCorpses -= comp.CorpsesPerEgg;
-                    Spawn(comp.EggPrototype, coords);
+                    var proto = _random.Pick(comp.EggPrototypes);
+                    Spawn(proto, coords);
                     _audio.PlayPvs(comp.EggSpawnSound, uid);
 
                     _popup.PopupCoordinates(

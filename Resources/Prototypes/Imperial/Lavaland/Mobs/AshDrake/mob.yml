@@ -1,5 +1,6 @@
 - type: entity
   id: BulletAshDrakeFire
+  suffix: Lavaland
   name: fire bolt
   parent: BulletKinetic
   categories: [ HideSpawnMenu ]
@@ -13,6 +14,7 @@
 
 - type: entity
   id: ImperialAshDrakeFireTile
+  suffix: Lavaland
   name: drake fire
   categories: [ HideSpawnMenu ]
   components:
@@ -33,6 +35,7 @@
 
 - type: entity
   id: ImperialAshDrakeSnakeFireTile
+  suffix: Lavaland
   name: drake snake fire
   categories: [ HideSpawnMenu ]
   components:
@@ -53,6 +56,7 @@
 
 - type: entity
   id: ImperialAshDrakeArenaFireTile
+  suffix: Lavaland
   name: drake arena fire
   categories: [ HideSpawnMenu ]
   components:
@@ -73,6 +77,7 @@
 
 - type: entity
   id: ImperialAshDrakeArenaMarker
+  suffix: Lavaland
   name: arena safe marker
   categories: [ HideSpawnMenu ]
   components:
@@ -92,6 +97,7 @@
 
 - type: entity
   id: ImperialAshDrakeArenaWall
+  suffix: Lavaland
   name: arena wall
   parent: BaseStructure
   categories: [ HideSpawnMenu ]
@@ -124,6 +130,7 @@
 
 - type: entity
   id: ImperialAshDrakeMeteorWarning
+  suffix: Lavaland
   name: meteor warning
   categories: [ HideSpawnMenu ]
   components:
@@ -142,6 +149,7 @@
 
 - type: entity
   id: ImperialAshDrakeMeteorFireball
+  suffix: Lavaland
   name: meteor fireball
   categories: [ HideSpawnMenu ]
   components:
@@ -159,6 +167,7 @@
 
 - type: entity
   id: ImperialAshDrakeShadow
+  suffix: Lavaland
   name: drake shadow
   categories: [ HideSpawnMenu ]
   components:
@@ -175,6 +184,7 @@
 
 - type: entity
   id: ImperialAshDrakeLandingWarning
+  suffix: Lavaland
   name: drake landing warning
   categories: [ HideSpawnMenu ]
   components:
@@ -192,10 +202,16 @@
 
 - type: entity
   id: MobAshDrake
+  suffix: Lavaland
   name: ash drake
   parent: [ SimpleSpaceMobBase, MobCombat, MobBloodstream, BaseMobAnimal ]
   description: A legendary Lavaland predator that fights in measured bursts.
   components:
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: HellSpawn
+  - type: TemperatureDamage
+    heatDamageThreshold: 1000000
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -279,8 +295,12 @@
     - CannotSuicide
     - FootstepSound
     - LavalandMob
+  - type: LavalandStormImmune
   - type: NoSlip
   - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: LavalandMegafaunaSleep
+  - type: LavalandMegafauna
   - type: AshDrake
     firstShotMeleeHits: 3
     minMeleeHitsBeforeShot: 4
@@ -349,3 +369,6 @@
       chance: 0.30
       minCount: 1
       maxCount: 1
+  - type: MegafaunaBossMusic
+    music:
+      path: /Audio/Imperial/boss/the_fire_dragon_full_version.ogg

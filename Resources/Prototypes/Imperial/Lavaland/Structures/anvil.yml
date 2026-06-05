@@ -1,0 +1,35 @@
+- type: entity
+  id: LavalandAnvil
+  suffix: Lavaland
+  name: наковальня
+  description: Массивная наковальня из лаваландского базальта. Положите оружие, 2 гибтонита и 2 магмита, затем нажмите пустой рукой — наковальня улучшит оружие.
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/lava/mining/magma/anvil.rsi
+    state: anvil
+  - type: Icon
+    sprite: Imperial/lava/mining/magma/anvil.rsi
+    state: anvil
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.3,0.4,0.3"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 100
+        hard: true
+  - type: ContainerContainer
+    containers:
+      lavaland_anvil: !type:Container
+  - type: LavalandAnvil
+  - type: StaticPrice
+    price: 1000

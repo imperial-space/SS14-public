@@ -54,7 +54,8 @@ public sealed class WinterPlanetCommand : LocalizedEntityCommands
             return;
         }
 
-        if (!_protoManager.TryIndex<BiomeTemplatePrototype>("Snow", out var snowTemplate))
+        ProtoId<BiomeTemplatePrototype> snowBiomeId = "Snow";
+        if (!_protoManager.TryIndex(snowBiomeId, out var snowTemplate))
         {
             shell.WriteError("Биом Snow не найден");
             return;

@@ -299,6 +299,12 @@ entity-effect-guidebook-cure-disease =
         *[other] излечивают
     } болезни
 
+entity-effect-guidebook-eye-blur =
+    { $chance ->
+        [1] Временно затуманивает зрение
+        *[other] временно затуманивают зрение
+    }
+
 entity-effect-guidebook-eye-damage =
     { $chance ->
         [1] { $deltasign ->

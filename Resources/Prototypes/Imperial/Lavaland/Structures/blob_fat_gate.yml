@@ -4,6 +4,7 @@
 
 - type: entity
   id: BlobFatGate
+  suffix: Lavaland
   name: клетка блоба
   description: Слизистая стена. Просочиться через неё могут лишь по-настоящему сытые.
   components:

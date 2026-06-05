@@ -105,8 +105,7 @@ public sealed class AsclepiusRodSystem : EntitySystem
 
     private void HealAround(EntityUid holder, AsclepiusRodComponent comp)
     {
-        if (!TryComp<TransformComponent>(holder, out var holderXform))
-            return;
+        var holderXform = Transform(holder);
 
         if (!TryComp<MobStateComponent>(holder, out var holderMob) || holderMob.CurrentState == MobState.Dead)
             return;

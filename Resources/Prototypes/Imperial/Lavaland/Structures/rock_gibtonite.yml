@@ -1,0 +1,63 @@
+- type: entity
+  id: RockGibtonite
+  suffix: Lavaland
+  parent: BaseWall
+  name: базальтовая скала с гибтонитом
+  description: Тёмная базальтовая скала с прожилками нестабильного гибтонита. Осторожно при добыче!
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/lava/mining/magma/smoothrocks.rsi
+    layers:
+    - sprite: Structures/Walls/rock.rsi
+      state: rock_wall
+      map: ["base"]
+    - state: rock_Gibtonite_inactive
+      visible: true
+      map: ["gib"]
+  - type: Icon
+    sprite: Structures/Walls/rock.rsi
+    state: rock_wall
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.Trigger.TriggerVisuals.VisualState:
+        "gib":
+          Primed:
+            state: rock_Gibtonite_active
+            shader: unshaded
+            visible: true
+          Unprimed:
+            state: rock_Gibtonite_inactive
+            visible: true
+  - type: GibtoniteRock
+    activationTime: 5.0
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Rock
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/break_stone.ogg
+          params:
+            volume: -6
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 2000
