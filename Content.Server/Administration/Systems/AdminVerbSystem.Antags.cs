@@ -1,8 +1,6 @@
 using Content.Server.Antag;
-using Content.Server.Administration;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules.Components;
-using Content.Server.GameTicking.Rules;
 using Content.Server.Zombies;
 using Content.Shared.Administration;
 using Content.Server.Clothing.Systems;
@@ -21,7 +19,6 @@ namespace Content.Server.Administration.Systems;
 public sealed partial class AdminVerbSystem
 {
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly BloodBrotherRuleSystem _bloodBrother = default!;
     [Dependency] private readonly ZombieSystem _zombie = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly OutfitSystem _outfit = default!;
@@ -228,25 +225,5 @@ public sealed partial class AdminVerbSystem
 
         if (HasComp<HumanoidProfileComponent>(args.Target)) // only humanoids can be cloned
             args.Verbs.Add(paradox);
-    }
-
-    private List<BloodBrotherSelectablePlayer> GetBloodBrotherCandidates(ICommonSession targetPlayer)
-    {
-        var candidates = new List<BloodBrotherSelectablePlayer>();
-
-        foreach (var session in _playerManager.Sessions)
-        {
-            if (session == targetPlayer || session.AttachedEntity == null)
-                continue;
-
-            if (!HasComp<MindContainerComponent>(session.AttachedEntity.Value))
-                continue;
-
-            var name = _mindSystem.GetCharacterName(session.UserId) ?? Name(session.AttachedEntity.Value);
-            candidates.Add(new BloodBrotherSelectablePlayer(session.UserId, $"{name} ({session.Name})"));
-        }
-
-        candidates.Sort((left, right) => string.Compare(left.Name, right.Name, StringComparison.OrdinalIgnoreCase));
-        return candidates;
     }
 }
