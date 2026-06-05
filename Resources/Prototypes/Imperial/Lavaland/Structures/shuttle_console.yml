@@ -1,0 +1,31 @@
+- type: entity
+  parent: BaseComputer
+  id: ComputerShuttleLavaland
+  name: консоль шаттла лаваленда
+  description: Управляет автоматическим шаттлом между Лаваландом и станцией.
+  components:
+  - type: LavalandShuttleConsole
+  - type: ActivatableUI
+    key: enum.LavalandShuttleConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.LavalandShuttleConsoleUiKey.Key:
+        type: LavalandShuttleConsoleBoundUserInterface
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shuttle
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: generic_panel_open
+  - type: Computer
+    board: ShuttleConsoleCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#43ccb5"

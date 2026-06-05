@@ -1,0 +1,33 @@
+# ── Портал коров ─────────────────────────────────────────────────────────────
+# Сущность-портал, которую спавнит клинок. Через 1.5 с выпускает 20 коров.
+
+- type: entity
+  id: CowPortal
+  suffix: Lavaland
+  name: коровий портал
+  description: Мычащая дыра в пространстве.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Imperial/blob/blob.rsi
+    layers:
+    - state: blob_core
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 4
+  - type: CowPortal
+  - type: Transform
+    anchored: false
+
+# ── Клинок Портала ────────────────────────────────────────────────────────────
+# Спрайт кинжала культа. Нажать Z (использовать в руке) → портал с 20 коровами.
+
+- type: entity
+  id: CowPortalBlade
+  parent: RitualDagger
+  name: клинок портала
+  description: Проклятый клинок, открывающий коровий портал. Кулдаун 30 секунд.
+  suffix: Lavaland
+  components:
+  - type: CowPortalBlade

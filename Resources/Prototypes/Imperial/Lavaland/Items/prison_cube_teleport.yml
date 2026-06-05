@@ -1,0 +1,54 @@
+- type: entity
+  id: PrisonCubeTeleportSmoke
+  suffix: Lavaland
+  name: teleport smoke
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Effects/chemsmoke.rsi
+    state: chemsmoke
+    color: "#B8B8B8DD"
+  - type: TimedDespawn
+    lifetime: 1.0
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  parent: BaseItem
+  id: PrisonCubeTeleportRed
+  suffix: Lavaland
+  name: красный куб портала
+  description: Один из пары артефактных кубов. Используй, чтобы телепортироваться к синему.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/artefact.rsi
+    layers:
+    - state: prison_cube
+      color: "#D84545"
+  - type: Item
+    sprite: Imperial/lava/mining/artefact.rsi
+  - type: PrisonCubeTeleport
+    linkChannel: red
+    targetChannel: blue
+
+- type: entity
+  parent: BaseItem
+  id: PrisonCubeTeleportBlue
+  suffix: Lavaland
+  name: синий куб портала
+  description: Один из пары артефактных кубов. Используй, чтобы телепортироваться к красному.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/artefact.rsi
+    layers:
+    - state: prison_cube
+      color: "#4A79E2"
+  - type: Item
+    sprite: Imperial/lava/mining/artefact.rsi
+  - type: PrisonCubeTeleport
+    linkChannel: blue
+    targetChannel: red

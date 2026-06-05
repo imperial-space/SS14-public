@@ -1,6 +1,7 @@
 - type: entity
   parent: BaseAction
   id: ActionUrsdash
+  suffix: Lavaland
   name: "[color=red] Dash [/color]"
   description: Use to knock down an enemy!
   components:

@@ -1,0 +1,125 @@
+# ── Smoke effect for teleport ────────────────────────────────────────────────
+
+- type: entity
+  id: EffectDeadMinerSmoke
+  suffix: Lavaland
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Effects/chemsmoke.rsi
+    state: chemsmoke
+  - type: TimedDespawn
+    lifetime: 1.0
+
+# ── Kinetic bullet ────────────────────────────────────────────────────────────
+
+- type: entity
+  id: BulletDeadMinerKinetic
+  suffix: Lavaland
+  name: kinetic bolt
+  parent: BulletKinetic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Blunt: 20
+  - type: TimedDespawn
+    lifetime: 4.0
+
+# ── Dead Miner mob ────────────────────────────────────────────────────────────
+
+- type: entity
+  id: MobDeadMiner
+  suffix: Lavaland
+  name: ent-MobDeadMiner
+  parent: [ SimpleSpaceMobBase, MobCombat, BaseMobAnimal ]
+  description: A miner consumed by the madness of Lavaland. His tools still remember their purpose.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      MeleeRange: !type:Single
+        1.5
+      VisionRadius: !type:Single
+        15
+      AggroVisionRadius: !type:Single
+        20
+      NavSmash: !type:Bool
+        true
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/boss/miner.rsi
+    layers:
+    - map: [ "base" ]
+      state: miner
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.DeadMinerVisuals.Transformed:
+        base:
+          True: { state: miner_transformed }
+          False: { state: miner }
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 2.5
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 3.33
+    soundHit:
+      path: /Audio/Imperial/boss/sound_misc_demon_attack1.ogg
+    damage:
+      types:
+        Slash: 6
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      900: Dead
+  - type: Destructible
+    thresholds: []
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: miner
+      Dead:
+        Base: miner
+  - type: DeadMiner
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: LavalandMegafaunaSleep
+  - type: LavalandMegafauna
+  - type: Tag
+    tags:
+    - LavalandMob
+  - type: LavalandStormImmune
+  - type: BossLoot
+    loot:
+    - prototype: MeleeWeaponCleavingSaw
+      chance: 1.0
+      minCount: 1
+      maxCount: 1
+    - prototype: CrusherUpgradeChain
+      chance: 0.30
+      minCount: 1
+      maxCount: 1
+  - type: MegafaunaBossMusic
+    music:
+      path: /Audio/Imperial/boss/heavy_boss_battle_2_bpm110.ogg

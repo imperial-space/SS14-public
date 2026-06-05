@@ -1,0 +1,142 @@
+# Обычный Легион — призыватель черепов, держится на расстоянии 3 клеток.
+# Единственная атака — периодический призыв черепов (раз в ~2 секунды).
+- type: entity
+  id: MobLegionNormal
+  suffix: Lavaland
+  parent: [SimpleSpaceMobBase, MobCombat]
+  name: легион
+  description: Жуткое существо, поддерживающее безопасное расстояние и призывающее черепа-снаряды.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: LegionPlayerHostileCompound
+    blackboard:
+      MeleeRange: !type:Single
+        3.0
+      VisionRadius: !type:Single
+        12.0
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/mining/legion.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: legion
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: legion
+      Dead:
+        Base: legion
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.1
+    baseSprintSpeed: 2.1
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 0.5
+    range: 1.0
+    damage:
+      types:
+        Blunt: 0
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: LegionBoss
+    summonedPrototype: MobLegionNormalSkull
+    summonChance: 1.0
+    summonRadius: 2.0
+    decisionCooldown: 2.0
+    normalSpeed: 2.1
+    normalMeleeRange: 3.0
+    chargeDuration: 0.01
+    chargeSpeed: 2.1
+    chargeAccelerationDuration: 0.01
+  - type: LavalandStormImmune
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - FootstepSound
+    - LavalandMob
+
+# Череп — призыв Легиона. Быстро сближается с целью и наносит урон.
+- type: entity
+  id: MobLegionNormalSkull
+  suffix: Lavaland
+  parent: [SimpleSpaceMobBase, MobCombat]
+  name: череп
+  description: Призыв Легиона — быстрый и хрупкий.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        10.0
+      MeleeRange: !type:Single
+        1.0
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/mining/legion.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: legion_head
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: legion_head
+      Dead:
+        Base: legion_head
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 40
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 2.5
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 1.0
+    range: 1.0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Blunt: 12
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      5: Dead
+  - type: LegionSummonedSkull
+  - type: TimedDespawn
+    lifetime: 30
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - LavalandMob

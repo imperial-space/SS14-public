@@ -1,0 +1,15 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      MinSize="420 380"
+                      SetSize="480 460">
+    <BoxContainer Orientation="Vertical" SeparationOverride="8" Margin="8 8 8 8">
+        <PanelContainer StyleClasses="PanelDark">
+            <BoxContainer Orientation="Horizontal" Margin="8 4 8 4">
+                <Label Text="◆ Выберите набор снаряжения" Margin="0 0 6 0"/>
+            </BoxContainer>
+        </PanelContainer>
+        <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
+            <BoxContainer Name="KitsContainer" Orientation="Vertical" SeparationOverride="2"/>
+        </ScrollContainer>
+    </BoxContainer>
+</controls:FancyWindow>

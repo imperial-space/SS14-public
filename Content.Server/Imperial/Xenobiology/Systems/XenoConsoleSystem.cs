@@ -13,6 +13,7 @@ using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
+using Content.Shared.Power;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
@@ -68,6 +69,11 @@ public sealed class XenoConsoleSystem : EntitySystem
         SubscribeLocalEvent<XenoConsoleGhostComponent, XenoGhostSlimeDownEvent>  (OnSlimeDown);
         SubscribeLocalEvent<XenoConsoleGhostComponent, XenoGhostSlimePotionEvent>(OnSlimePotion);
         SubscribeLocalEvent<XenoConsoleGhostComponent, XenoGhostSlimeScanEvent>  (OnSlimeScan);
+
+        // Состояние самой консоли
+        SubscribeLocalEvent<XenoConsoleComponent, PowerChangedEvent>(OnConsolePowerChanged);
+        SubscribeLocalEvent<XenoConsoleComponent, AnchorStateChangedEvent>(OnConsoleAnchorChanged);
+        SubscribeLocalEvent<XenoConsoleComponent, EntityTerminatingEvent>(OnConsoleTerminating);
 
         // Отсоединение / уничтожение
         SubscribeLocalEvent<XenoConsoleGhostComponent, PlayerDetachedEvent>      (OnGhostDetached);
@@ -419,6 +425,51 @@ public sealed class XenoConsoleSystem : EntitySystem
     private void OnGhostTerminating(EntityUid uid, XenoConsoleGhostComponent ghostComp, ref EntityTerminatingEvent args)
     {
         ClearConsoleGhost(ghostComp.ConsoleUid, uid);
+    }
+
+    private void OnConsolePowerChanged(EntityUid uid, XenoConsoleComponent comp, ref PowerChangedEvent args)
+    {
+        if (args.Powered)
+            return;
+
+        if (comp.GhostEntity is not { } ghost || Deleted(ghost))
+            return;
+
+        if (!TryComp<XenoConsoleGhostComponent>(ghost, out var ghostComp))
+        {
+            comp.GhostEntity = null;
+            return;
+        }
+
+        ReturnAndCleanup(ghost, ghostComp);
+    }
+
+    private void OnConsoleAnchorChanged(EntityUid uid, XenoConsoleComponent comp, ref AnchorStateChangedEvent args)
+    {
+        if (!args.Detaching)
+            return;
+
+        if (comp.GhostEntity is not { } ghost || Deleted(ghost))
+            return;
+
+        if (!TryComp<XenoConsoleGhostComponent>(ghost, out var ghostComp))
+        {
+            comp.GhostEntity = null;
+            return;
+        }
+
+        ReturnAndCleanup(ghost, ghostComp);
+    }
+
+    private void OnConsoleTerminating(EntityUid uid, XenoConsoleComponent comp, ref EntityTerminatingEvent args)
+    {
+        if (comp.GhostEntity is not { } ghost || Deleted(ghost))
+            return;
+
+        if (!TryComp<XenoConsoleGhostComponent>(ghost, out var ghostComp))
+            return;
+
+        ReturnAndCleanup(ghost, ghostComp);
     }
 
     // =========================================================================

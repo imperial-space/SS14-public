@@ -1,0 +1,121 @@
+# ==================================================
+#  Улучшения кинетического дробителя
+#  Спрайты: Imperial/lava/mining/artefact.rsi
+# ==================================================
+
+# ── Вспомогательный снаряд: крыло наблюдателя ───────────────────────────────
+# Идентичен BulletCharge, но при попадании кратковременно оглушает цель.
+- type: entity
+  id: BulletChargeWatcher
+  suffix: Lavaland
+  name: дестабилизирующий заряд
+  parent: BulletCharge
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StunOnCollide
+    stunAmount: 0
+    knockdownAmount: 0
+    slowdownAmount: 0.5
+    walkSpeedModifier: 0.5
+    sprintSpeedModifier: 0.5
+    refresh: true
+    autoStand: true
+
+# ── Череп Легиона ────────────────────────────────────────────────────────────
+- type: entity
+  parent: BaseItem
+  id: CrusherUpgradeLegionSkull
+  suffix: Lavaland
+  name: череп легиона
+  description: >
+    Магический череп, выкованный из останков легиона.
+    Встав в паз кинетического дробителя, сокращает время взятия дробителя в две руки на 0.3 сек.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/artefact.rsi
+    state: legion_skull
+  - type: Item
+    size: Small
+  - type: CrusherUpgrade
+    slotCost: 25
+    examineText: crusher-upgrade-legion-skull-examine
+  - type: CrusherLegionSkullUpgrade
+    rechargeReduction: 0.3
+  - type: StaticPrice
+    price: 1500
+
+# ── Щупальце Голиафа ─────────────────────────────────────────────────────────
+- type: entity
+  parent: BaseItem
+  id: CrusherUpgradeGoliathTentacle
+  suffix: Lavaland
+  name: щупальце голиафа
+  description: >
+    Вырванное щупальце голиафа, пропитанное ярью берсерка.
+    Встав в паз кинетического дробителя: чем ниже здоровье владельца,
+    тем больше урона наносит дробитель (до +40 при нулевом HP).
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/artefact.rsi
+    state: goliath_tentacle
+  - type: Item
+    size: Small
+  - type: CrusherUpgrade
+    slotCost: 25
+    examineText: crusher-upgrade-goliath-tentacle-examine
+  - type: CrusherGoliathTentacleUpgrade
+    maxBonusDamage:
+      types:
+        Blunt: 40
+  - type: StaticPrice
+    price: 2000
+
+# ── Большое глазастое щупальце ───────────────────────────────────────────────
+- type: entity
+  parent: BaseItem
+  id: CrusherUpgradeAncientGoliathTentacle
+  suffix: Lavaland
+  name: большое глазастое щупальце
+  description: >
+    Колоссальное щупальце древнего голиафа с жутким глазом на конце.
+    Встав в паз кинетического дробителя: наносит на 50% больше урона
+    существам лавалэнда с более чем 90% здоровья.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/artefact.rsi
+    state: ancient_goliath_tentacle
+  - type: Item
+    size: Small
+  - type: CrusherUpgrade
+    slotCost: 25
+    examineText: crusher-upgrade-ancient-goliath-tentacle-examine
+  - type: CrusherAncientGoliathTentacleUpgrade
+    healthThreshold: 0.9
+    bonusMultiplier: 0.5
+    requiredTag: LavalandMob
+  - type: StaticPrice
+    price: 2500
+
+# ── Крыло наблюдателя ────────────────────────────────────────────────────────
+- type: entity
+  parent: BaseItem
+  id: CrusherUpgradeWatcherWing
+  suffix: Lavaland
+  name: крыло наблюдателя
+  description: >
+    Полупрозрачное крыло лавалэндского наблюдателя, мерцающее красным.
+    Встав в паз кинетического дробителя: дестабилизирующий заряд
+    замедляет атакованного врага на 0.5 сек.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/artefact.rsi
+    state: watcher_wing
+  - type: Item
+    size: Small
+  - type: CrusherUpgrade
+    slotCost: 25
+    examineText: crusher-upgrade-watcher-wing-examine
+  - type: CrusherWatcherWingUpgrade
+    upgradedProjectile: BulletChargeWatcher
+  - type: StaticPrice
+    price: 2000

@@ -1,0 +1,162 @@
+# ── Пеплоходцы (Ashwalkers) ───────────────────────────────────────────────────
+# Племя унатхи, населяющее Лаваленд. Поклоняются Некрополю. Враждебны чужакам.
+# MobAshwalker — боевой НПС; при появлении через яйцо действует как обычный
+# враждебный моб. Также используется как тело для призраков (SpawnAshwalkerGhostRoleLavaland).
+
+# ── Орган: лёгкие пеплоходца (дышат азотом, как слаймолюды) ──────────────────
+
+- type: entity
+  id: OrganAshwalkerLungs
+  parent: OrganReptilianLungs
+  components:
+  - type: Lung
+    alert: LowNitrogen
+  - type: Metabolizer
+    metabolizerTypes:
+    - Slime
+
+# ── NPC-моб ───────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: MobAshwalker
+  suffix: Lavaland
+  parent: MobReptilian
+  name: пеплоходец
+  description: Воин племени пеплоходцев, хранитель охотничьих угодий Лаваленда. Не приветствует чужаков.
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesAshwalker
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: InputMover
+  - type: MobMover
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 6.0
+  - type: Loadout
+    prototypes:
+    - AshwalkerGear
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Dead
+  - type: Damageable
+    damageContainer: Biological
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 1.5
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
+    damage:
+      types:
+        Slash: 10
+        Piercing: 5
+  - type: Tag
+    tags:
+    - LavalandMob
+    - CannotSuicide
+    - FootstepSound
+  - type: LavalandStormImmune
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 0.2
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+    maxSaturation: 15
+  - type: InitialBody
+    organs:
+      Torso: OrganReptilianTorso
+      Head: OrganReptilianHead
+      ArmLeft: OrganReptilianArmLeft
+      ArmRight: OrganReptilianArmRight
+      HandRight: OrganReptilianHandRight
+      HandLeft: OrganReptilianHandLeft
+      LegLeft: OrganReptilianLegLeft
+      LegRight: OrganReptilianLegRight
+      FootLeft: OrganReptilianFootLeft
+      FootRight: OrganReptilianFootRight
+      Brain: OrganReptilianBrain
+      Eyes: OrganReptilianEyes
+      Tongue: OrganReptilianTongue
+      Appendix: OrganReptilianAppendix
+      Ears: OrganReptilianEars
+      Lungs: OrganAshwalkerLungs
+      Heart: OrganReptilianHeart
+      Stomach: OrganReptilianStomach
+      Liver: OrganReptilianLiver
+      Kidneys: OrganReptilianKidneys
+  - type: LavalandMegafaunaSleep
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: Speech
+    speechVerb: Reptilian
+    speechSounds: Lizard
+    allowedEmotes: [ Thump ]
+  - type: ReplacementAccent
+    accent: ashwalkerTribe
+  - type: GhostRole
+    name: ghost-role-information-ashwalker-lavaland-name
+    description: ghost-role-information-ashwalker-lavaland-desc
+    rules: ghost-role-information-rules-team-antagonist
+    raffle:
+      settings: short
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: GhostTakeoverAvailable
+
+# ── Яйцо пеплоходца ──────────────────────────────────────────────────────────
+
+- type: entity
+  id: FoodEggAshwalker
+  parent: FoodEgg
+  name: тёмное яйцо
+  suffix: Ashwalker, Lavaland
+  description: Чёрное яйцо в тёмных прожилках. Что-то шевелится внутри.
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobAshwalker
+    intervalSeconds: 60
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: TimedDespawn
+    lifetime: 61
+  - type: Sprite
+    sprite: Imperial/lava/mining/ashwalker_egg.rsi
+    layers:
+    - state: ashwalker_egg
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          ashwalker_egg: ""
+
+# ── Маркер-призраколь роль ────────────────────────────────────────────────────
+
+- type: entity
+  id: SpawnAshwalkerGhostRoleLavaland
+  name: пеплоходец (призраколь)
+  suffix: Lavaland, Ashwalker
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    name: ghost-role-information-ashwalker-lavaland-name
+    description: ghost-role-information-ashwalker-lavaland-desc
+    rules: ghost-role-information-rules-team-antagonist
+    raffle:
+      settings: short
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: GhostRoleMobSpawner
+    prototype: MobAshwalker
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Clothing/Head/Helmets/bone_helmet.rsi
+      state: icon

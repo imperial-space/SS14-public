@@ -1,0 +1,343 @@
+# ==================================================
+#  AshDrake loot items
+#  Dragon Hide material, Drake Armor, weapons and vials
+# ==================================================
+
+# ─── Шкура дракона (DragonHide) ───
+- type: entity
+  parent: MaterialBase
+  id: MaterialDragonHide
+  name: шкура дракона
+  description: Прочная огнестойкая шкура Пепельного дракона. Используется для крафта брони.
+  suffix: Full, Lavaland
+  components:
+  - type: Material
+  - type: Stack
+    stackType: DragonHide
+    baseLayer: base
+    layerStates:
+    - dragon_hide
+    - dragon_hide_2
+    - dragon_hide_3
+  - type: Sprite
+    sprite: Imperial/lava/mining/organic.rsi
+    state: dragon_hide_3
+    layers:
+    - state: dragon_hide_3
+      map: ["base"]
+  - type: Appearance
+  - type: Item
+    heldPrefix: dragon_hide
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+    sprite: Imperial/lava/mining/organic.rsi
+  - type: StaticPrice
+    price: 150
+
+- type: entity
+  parent: MaterialDragonHide
+  id: MaterialDragonHide10
+  suffix: 10, Lavaland
+  components:
+  - type: Sprite
+    state: dragon_hide
+  - type: Stack
+    count: 10
+
+- type: entity
+  parent: MaterialDragonHide
+  id: MaterialDragonHide1
+  suffix: Single, Lavaland
+  components:
+  - type: Sprite
+    state: dragon_hide
+  - type: Stack
+    count: 1
+
+# ─── Броня Дрейка ───
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterDrakeArmor
+  suffix: Lavaland
+  name: броня дрейка
+  description: Кованая броня из шкуры Пепельного дракона. Обеспечивает отличную защиту от огня и кислоты.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/dragon_suit.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/lava/mining/dragon_suit.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.70
+        Heat: 0.05
+        Caustic: 0.05
+  - type: ExplosionResistance
+    damageCoefficient: 0.30
+  - type: ThermalRegulator
+    normalBodyTemperature: 310.15
+    thermalRegulationTemperatureThreshold: 25
+    implicitHeatRegulation: 400
+    sweatHeatRegulation: 2000
+    shiveringHeatRegulation: 2000
+    coldDamage:
+      types:
+        Cold: 0
+    heatDamage:
+      types:
+        Heat: 0
+  - type: TemperatureProtection
+    coefficient: 0.0
+  - type: LavalandStormImmune
+  - type: StaticPrice
+    price: 2000
+
+# ─── Шлем Дрейка ───
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadDrakeHelm
+  suffix: Lavaland
+  name: шлем дрейка
+  description: Шлем из чешуи Пепельного дракона. Защищает голову от огня и ударов.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/dragon_head.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/lava/mining/dragon_head.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.85
+        Heat: 0.10
+        Caustic: 0.10
+  - type: StaticPrice
+    price: 1200
+
+# ─── Projectile LavaStaff ───
+- type: entity
+  parent: BaseBullet
+  id: BulletLavaStaff
+  suffix: Lavaland
+  name: lava bolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 30
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: fireball
+      shader: unshaded
+  - type: IgniteOnCollide
+    fireStacks: 0.5
+  - type: PointLight
+    color: "#FF6A00"
+    radius: 1.5
+    energy: 3.0
+
+# ─── Spectral Blade ───
+- type: entity
+  parent: BaseItem
+  id: WeaponSpectralBlade
+  suffix: Lavaland
+  name: спектральный клинок
+  description: Клинок, пропитанный духами. Наносит больше урона за каждого поглощённого призрака.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/spectral.rsi
+    layers:
+    - state: spectral
+      shader: unshaded
+  - type: Item
+    size: Normal
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+    sprite: Imperial/lava/mining/spectral.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 1
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: SpectralBlade
+  - type: GhostRole
+    name: дух спектрального клинка
+    description: Станьте одним из духов, питающих этот клинок. Каждое вселение усиливает его.
+    rules: ghost-role-component-default-rules
+    allowMovement: false
+    allowSpeech: true
+    reregister: false
+  - type: GhostRoleMobSpawner
+    prototype: MobSpectralBladeSpirit
+    availableTakeovers: 19
+    deleteOnSpawn: false
+  - type: Sharp
+  - type: Appearance
+  - type: StaticPrice
+    price: 5000
+
+- type: entity
+  id: MobSpectralBladeSpirit
+  suffix: Lavaland
+  name: дух клинка
+  description: Один из духов, заключённых в спектральном клинке.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpectralBladeSpirit
+  - type: Sprite
+    visible: false
+  - type: InputMover
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0
+    baseSprintSpeed: 0
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1: Dead
+  - type: Destructible
+    thresholds: []
+
+# ─── Lava Staff ───
+- type: entity
+  parent: WeaponWandBase
+  id: WeaponLavaStaff
+  suffix: Lavaland
+  name: лавовый посох
+  description: Посох из окаменевшей лавы. Переключает лаву в базальт и обратно, а также стреляет огненными сгустками.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/lavastaff.rsi
+    layers:
+    - state: lavastaff
+      shader: unshaded
+  - type: Item
+    size: Huge
+    heldPrefix: lavastaff
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+    sprite: Imperial/lava/mining/lavastaff.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    sprite: Imperial/lava/mining/lavastaff.rsi
+    equippedPrefix: back
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.0
+    damage:
+      types:
+        Blunt: 15
+        Heat: 15
+    soundHit:
+      path: /Audio/Effects/burn.ogg
+  - type: Gun
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Magic/fireball.ogg
+    projectileSpeed: 15
+  - type: BasicEntityAmmoProvider
+    proto: BulletLavaStaff
+    capacity: 0
+    count: 0
+  - type: LavaStaff
+  - type: StaticPrice
+    price: 4000
+
+# ─── Blood Vial ───
+- type: entity
+  parent: BaseItem
+  id: DragonBloodVial
+  suffix: Lavaland
+  name: виала с кровью дракона
+  description: Флакон с кровью Пепельного Дракона. При использовании — случайный полиморф в скелета или малого дракона.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/vial.rsi
+    layers:
+    - state: vial
+      color: "#CC2222"
+  - type: Item
+    size: Tiny
+  - type: BloodVial
+  - type: StaticPrice
+    price: 2500
+
+# ─── Treated Blood Vial ───
+- type: entity
+  parent: BaseItem
+  id: DragonBloodVialTreated
+  suffix: Lavaland
+  name: обработанная виала с кровью дракона
+  description: Особым образом обработанная кровь Пепельного Дракона. Навсегда превращает выпившего в драконида.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/vial.rsi
+    layers:
+    - state: vial
+      color: "#7B2FBE"
+  - type: Item
+    size: Tiny
+  - type: TreatedBloodVial
+  - type: StaticPrice
+    price: 3000
+
+# ─── Lavaland Drake Chest ───
+- type: entity
+  parent: CrateGeneric
+  id: LavalandDrakeChest
+  suffix: Lavaland
+  name: сундук Пепельного Дракона
+  description: Сундук с сокровищами Пепельного Дракона. Содержит редкие предметы.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:EntSelector
+          id: WeaponSpectralBlade
+          prob: 0.25
+        - !type:EntSelector
+          id: WeaponLavaStaff
+          prob: 0.25
+        - !type:EntSelector
+          id: DragonBloodVial
+          prob: 0.25
+        - !type:EntSelector
+          id: DragonBloodVialTreated
+          prob: 0.25
+        - !type:EntSelector
+          id: WeaponWandFireball
+          prob: 0.25
+  - type: StaticPrice
+    price: 0

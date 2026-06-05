@@ -1,0 +1,89 @@
+# ── Реагент ──────────────────────────────────────────────────────────────────
+
+- type: reagent
+  id: BloodOfGod
+  name: reagent-name-blood-of-god
+  group: Medicine
+  desc: reagent-desc-blood-of-god
+  physicalDesc: reagent-physical-desc-thick
+  flavor: medicine
+  color: "#7a0a2a"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:EvenHealthChange
+        damage:
+          Burn: -1
+          Toxin: -1
+          Airloss: -1
+          Brute: -1
+
+# ── Фонтан ────────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: FountainBloodOfGod
+  suffix: Lavaland
+  name: кровь Бога
+  description: Фонтан с мистической жидкостью лавалэнда. Разбавленный омнизин с привкусом вечности.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.25,0.45,0.45"
+        density: 200
+        mask: [ FullTileMask ]
+        layer: [ WallLayer ]
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/mining/fontrain.rsi
+    layers:
+    - state: fountain
+      map: [ "enum.BloodFountainVisuals.State" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.BloodFountainVisuals.State:
+        enum.BloodFountainVisuals.State:
+          True: { state: fountain-blue }
+          False: { state: fountain }
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 50
+        reagents:
+        - ReagentId: BloodOfGod
+          Quantity: 50
+  - type: SolutionRegeneration
+    solution: tank
+    generated:
+      reagents:
+      - ReagentId: BloodOfGod
+        Quantity: 1
+    duration: 5
+  - type: DrainableSolution
+    solution: tank
+  - type: ReagentTank
+  - type: BloodOfGodFountain
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: StaticPrice
+    price: 0

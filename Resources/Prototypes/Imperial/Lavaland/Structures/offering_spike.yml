@@ -1,0 +1,54 @@
+# Шип Подношения — алтарь культа пеплоходцев.
+# Поглощает мёртвые тела вблизи и создаёт яйца, из которых вылупляются новые пеплоходцы.
+# Каждые 2 трупа → 1 яйцо → 1 пеплоходец через 60 секунд.
+- type: entity
+  id: OfferingSpikeImperial
+  suffix: Lavaland
+  parent: BaseStructure
+  name: шип подношения
+  description: Мрачный шип, увенчанный костями и священными символами. Пеплоходцы приносят к нему трупы в дар Некрополю — и новые воины возрождаются из пепла.
+  components:
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+    sprite: Imperial/HamMaggotson/tendril.rsi
+    state: icon
+    offset: "0.0,0.5"
+  - type: OfferingSpike
+    corpseRadius: 1.5
+    corpsesPerEgg: 2
+    checkInterval: 2.0
+    eggPrototypes:
+    - FoodEggAshwalker
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Magic/disintegrate.ogg
+          params:
+            volume: -6
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: Anchorable
+  - type: InteractionPopup
+    successChance: 0
+    interactSuccessString: examine-default
+    interactFailureString: examine-default

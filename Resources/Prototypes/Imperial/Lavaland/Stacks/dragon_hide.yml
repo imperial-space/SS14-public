@@ -1,0 +1,6 @@
+- type: stack
+  parent: BaseMediumStack
+  id: DragonHide
+  name: stack-dragon-hide
+  icon: { sprite: /Textures/Imperial/lava/mining/organic.rsi, state: dragon_hide }
+  spawn: MaterialDragonHide1
