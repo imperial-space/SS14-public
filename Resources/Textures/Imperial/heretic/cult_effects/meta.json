@@ -1,0 +1,342 @@
+﻿{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from Paradise-SS220 (https://github.com/ss220club/Paradise-SS220), licensed under CC-BY-SA-3.0",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "wallglow",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "floorglow",
+            "delays": [
+                [
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05
+                ]
+            ]
+        },
+        {
+            "name": "doorglow",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "unruneddoorglow",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "cultshield",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    1
+                ]
+            ]
+        },
+        {
+            "name": "sacconsume",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "ghostalertsie"
+        },
+        {
+            "name": "shield-cult",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "bloodsparkles",
+            "directions": 4,
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "cultout",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "cultin",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "runeouter"
+        },
+        {
+            "name": "rune1inner"
+        },
+        {
+            "name": "rune1words"
+        },
+        {
+            "name": "rune1center"
+        },
+        {
+            "name": "rune2inner"
+        },
+        {
+            "name": "rune2words"
+        },
+        {
+            "name": "rune2center"
+        },
+        {
+            "name": "rune3inner"
+        },
+        {
+            "name": "rune3words"
+        },
+        {
+            "name": "rune3center"
+        },
+        {
+            "name": "rune4inner"
+        },
+        {
+            "name": "rune4words"
+        },
+        {
+            "name": "rune4center"
+        },
+        {
+            "name": "rune5inner"
+        },
+        {
+            "name": "rune5words"
+        },
+        {
+            "name": "rune5center"
+        },
+        {
+            "name": "rune6inner"
+        },
+        {
+            "name": "rune6words"
+        },
+        {
+            "name": "rune6center"
+        },
+        {
+            "name": "rune7inner"
+        },
+        {
+            "name": "rune7words"
+        },
+        {
+            "name": "rune7center"
+        },
+        {
+            "name": "pulse"
+        },
+        {
+            "name": "m_shield_cult",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    18.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "space",
+            "delays": [
+                [
+                    1.6,
+                    1.6,
+                    1.6,
+                    1.6
+                ]
+            ]
+        },
+        {
+            "name": "lava",
+            "delays": [
+                [
+                    1.6,
+                    1.6
+                ]
+            ]
+        },
+        {
+            "name": "cult-mark",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        }
+    ]
+}
