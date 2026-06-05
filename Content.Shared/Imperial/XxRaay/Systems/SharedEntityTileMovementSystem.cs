@@ -11,6 +11,7 @@ using Content.Shared.Maps;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
+using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Physics;
 using Robust.Shared.GameStates;
@@ -37,6 +38,8 @@ public sealed class SharedEntityTileMovementSystem : VirtualController
     [Dependency] private readonly SharedCombatModeSystem _combatModeSystem = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
+
+    private static readonly ProtoId<NpcFactionPrototype> BlobFaction = "Blob";
 
     public override void Initialize()
     {
@@ -396,7 +399,7 @@ public sealed class SharedEntityTileMovementSystem : VirtualController
         if (TryComp<BlobOvermindComponent>(mover, out var overmind) && overmind.BlobId == blobId)
             return true;
 
-        return _npcFaction.IsMember(mover, "Blob");
+        return _npcFaction.IsMember(mover, BlobFaction);
     }
 
     private Vector2 GetDirectionFromButtons(MoveButtons buttons)
