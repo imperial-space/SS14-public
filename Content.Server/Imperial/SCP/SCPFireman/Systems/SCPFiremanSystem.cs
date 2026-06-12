@@ -177,7 +177,7 @@ public sealed class SCPFiremanSystem : EntitySystem
         if (args.Handled || !TryConsumePoints(ent, MeltCost))
             return;
 
-        if (!Exists(args.Target))
+        if (!EntityManager.EntityExists(args.Target))
             return;
 
         if (_prototypes.TryIndex(StructuralDamageId, out DamageTypePrototype? structuralDamage))
@@ -226,7 +226,7 @@ public sealed class SCPFiremanSystem : EntitySystem
         if (args.Handled || args.User != ent.Owner || !ent.Comp.SecondModeEnabled)
             return;
 
-        if (!Exists(args.Target) || !TryGetMapCoordinates(ent.Owner, out var start) || !TryGetMapCoordinates(args.Target, out var end))
+        if (!EntityManager.EntityExists(args.Target) || !TryGetMapCoordinates(ent.Owner, out var start) || !TryGetMapCoordinates(args.Target, out var end))
             return;
 
         if (start.MapId != end.MapId)
@@ -479,7 +479,7 @@ public sealed class SCPFiremanSystem : EntitySystem
             return;
 
         var healing = new DamageSpecifier();
-        foreach (var damageType in _damageable.GetPositiveDamage((owner, damageable)).DamageDict.Keys)
+        foreach (var damageType in damageable.Damage.DamageDict.Keys)
         {
             healing.DamageDict[damageType] = FixedPoint2.New(-perType);
         }

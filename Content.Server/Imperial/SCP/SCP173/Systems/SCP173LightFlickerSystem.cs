@@ -93,8 +93,7 @@ public sealed class SCP173LightFlickerSystem : EntitySystem
             if (!TryComp<PointLightComponent>(lightUid, out var pointLight))
                 continue;
 
-            var lightXform = Transform(lightUid);
-            if (lightXform.MapID != map)
+            if (!TryComp<TransformComponent>(lightUid, out var lightXform) || lightXform.MapID != map)
                 continue;
 
             var distance = (_transform.GetWorldPosition(lightUid) - origin).Length();

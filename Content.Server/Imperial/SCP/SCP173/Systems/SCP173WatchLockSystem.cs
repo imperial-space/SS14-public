@@ -111,7 +111,8 @@ public sealed class SCP173WatchLockSystem : EntitySystem
             if (!TryComp<MobStateComponent>(observer, out var mobState) || mobState.CurrentState != MobState.Alive)
                 continue;
 
-            var observerTransform = Transform(observer);
+            if (!TryComp<TransformComponent>(observer, out var observerTransform))
+                continue;
 
             if (observerTransform.MapID != targetMap)
                 continue;
@@ -146,8 +147,7 @@ public sealed class SCP173WatchLockSystem : EntitySystem
             if (!TryComp<PointLightComponent>(ent, out var light) || !light.Enabled)
                 continue;
 
-            var lightTransform = Transform(ent);
-            if (lightTransform.MapID != targetMap)
+            if (!TryComp<TransformComponent>(ent, out var lightTransform) || lightTransform.MapID != targetMap)
                 continue;
 
             var distance = (_transform.GetWorldPosition(ent) - targetPosition).Length();

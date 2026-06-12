@@ -213,7 +213,8 @@ public sealed class SCP096RageOnLookSystem : EntitySystem
             if (!TryComp<MobStateComponent>(observer, out var mobState) || mobState.CurrentState != MobState.Alive)
                 continue;
 
-            var observerTransform = Transform(observer);
+            if (!TryComp<TransformComponent>(observer, out var observerTransform))
+                continue;
 
             if (observerTransform.MapID != targetMap)
                 continue;
