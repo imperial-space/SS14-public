@@ -1,0 +1,81 @@
+# Biome marker layers for Lavaland planet generation
+
+# ── Руды ─────────────────────────────────────────────────────────────────────
+
+- type: biomeMarkerLayer
+  id: OreGibtoniteLavaland
+  entityMask:
+    WallRockBasalt: RockGibtonite
+  maxCount: 15
+  minGroupSize: 1
+  maxGroupSize: 1
+  radius: 8
+
+- type: biomeMarkerLayer
+  id: OreMagmiteLavaland
+  entityMask:
+    WallRockBasalt: RockMagmite
+  maxCount: 5
+  minGroupSize: 1
+  maxGroupSize: 1
+  radius: 12
+
+# ── Фауна ─────────────────────────────────────────────────────────────────────
+
+- type: biomeMarkerLayer
+  id: GoliathsLavaland
+  prototype: MobGoliathLoot
+  maxCount: 2
+  minGroupSize: 1
+  maxGroupSize: 1
+  radius: 16
+
+- type: biomeMarkerLayer
+  id: GoliathsAncientLavaland
+  prototype: MobGoliathAncient
+  maxCount: 1
+  minGroupSize: 1
+  maxGroupSize: 1
+  radius: 20
+
+- type: biomeMarkerLayer
+  id: LegionsLavaland
+  prototype: MobLegionLoot
+  maxCount: 2
+  minGroupSize: 1
+  maxGroupSize: 1
+  radius: 12
+
+- type: biomeMarkerLayer
+  id: WatchersLavalandLoot
+  prototype: MobWatcherLavalandLoot
+  maxCount: 1
+  minGroupSize: 1
+  maxGroupSize: 1
+  radius: 14
+
+- type: biomeMarkerLayer
+  id: WatchersIcewingLoot
+  prototype: MobWatcherIcewingLoot
+  maxCount: 1
+  minGroupSize: 1
+  maxGroupSize: 1
+  radius: 16
+
+- type: biomeMarkerLayer
+  id: WatchersMagmawingLoot
+  prototype: MobWatcherMagmawingLoot
+  maxCount: 1
+  minGroupSize: 1
+  maxGroupSize: 1
+  radius: 16
+
+# ── Бездны ────────────────────────────────────────────────────────────────────
+
+- type: biomeMarkerLayer
+  id: ChasmsLavaland
+  prototype: FloorChasmEntity
+  maxCount: 4
+  minGroupSize: 8
+  maxGroupSize: 16
+  radius: 3

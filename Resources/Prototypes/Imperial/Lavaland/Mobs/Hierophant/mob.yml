@@ -1,0 +1,168 @@
+- type: entity
+  id: ImperialHierophantBlast
+  suffix: Lavaland
+  name: hierophant blast
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Imperial/lava/boss/Hierophant/effects.rsi
+    state: hierophant_blast
+    shader: unshaded
+  - type: TimedDespawn
+    lifetime: 0.7
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: ImperialHierophantSquare
+  suffix: Lavaland
+  name: hierophant square
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Imperial/lava/boss/Hierophant/effects.rsi
+    state: hierophant_squares
+    shader: unshaded
+  - type: TimedDespawn
+    lifetime: 0.7
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: ImperialHierophantSnakeTile
+  suffix: Lavaland
+  name: snake energy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Imperial/lava/boss/Hierophant/effects.rsi
+    state: hierophant_blast
+    shader: unshaded
+  - type: TimedDespawn
+    lifetime: 10.0
+  - type: Transform
+    anchored: false
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        isSensor: true
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: MobHierophant
+  suffix: Lavaland
+  name: hierophant
+  parent: [SimpleSpaceMobBase, MobCombat, BaseMobAnimal]
+  description: A massive sentient relic guarding the necropolis. Hovers slowly and casts devastating spells.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavSmash: !type:Bool
+        true
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/boss/Hierophant/hierophant_new.rsi
+    state: hierophant
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.6
+        density: 150
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  # Slow movement speed
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.2
+    baseSprintSpeed: 1.2
+  # No close melee combat - disabled
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 0.0
+    damage:
+      types:
+        Blunt: 0
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      2500: Dead
+  - type: Destructible
+    thresholds: []
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: hierophant
+      Dead:
+        Base: hierophant
+  - type: Hierophant
+    targetSearchRange: 16
+    crossBlastRadius: 1.0
+    crossBlastDamage: 20
+    crossOffset: 1.5
+    lineAttackLength: 6
+    snakeTileSpeed: 3
+    snakeTilePrototype: ImperialHierophantSnakeTile
+    snakeMinTiles: 5
+    snakeMaxTiles: 6
+    snakeStepDelay: 0.2
+    snakeTileDamage: 12
+    burstRadius: 0.9
+    burstDamage: 18
+    burstGridSize: 4
+    squareRingCount: 3
+    squareRingStepDelay: 0.5
+    squareRingBaseDamage: 10
+    squareRingDamageStep: 8
+    tileDamageDelay: 0.5
+    blastEffectPrototype: ImperialHierophantBlast
+    squareEffectPrototype: ImperialHierophantSquare
+    attackCooldown: 2.5
+    attackSound:
+      path: /Audio/Imperial/boss/sound_lavaland_hiero_boss.ogg
+  - type: BossLoot
+    loot:
+    - prototype: MeleeWeaponHierophantClub
+      chance: 1.0
+    - prototype: CrusherUpgradeVortexTalisman
+      chance: 0.30
+      minCount: 1
+      maxCount: 1
+  - type: Tag
+    tags:
+    - LavalandMob
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: HellSpawn
+  - type: TemperatureDamage
+    heatDamageThreshold: 1000000
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+  - type: LavalandMegafaunaSleep
+  - type: LavalandMegafauna
+  - type: MegafaunaBossMusic
+    music:
+      path: /Audio/Imperial/boss/sound_lavaland_hiero_boss.ogg

@@ -1,0 +1,7 @@
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectChaosRage
+  suffix: Lavaland
+  name: rage
+  components:
+  - type: ChaosRageStatusEffect

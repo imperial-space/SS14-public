@@ -1,0 +1,175 @@
+# ==================================================
+#  Моб-варианты, дропающие улучшения кинетического дробителя.
+#  Используются как замена стандартных спавнов в зонах интереса
+#  (пещеры, руины, точки интереса) — или спавнятся вручную.
+# ==================================================
+
+# ── Наблюдатели с крылом ─────────────────────────────────────────────────────
+# Дроп: CrusherUpgradeWatcherWing (с шансом)
+# Все три варианта: лавалэндский (красный), ледяной (синий), магмовый (оранжевый)
+
+- type: entity
+  id: MobWatcherLavalandLoot
+  parent: MobWatcherLavaland
+  suffix: CrusherLoot, Lavaland
+  name: наблюдатель
+  components:
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: DiamondOre1
+      amount: 1
+    - id: CrusherUpgradeWatcherWing
+      amount: 1
+      prob: 0.25   # 25% шанс
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: LavalandMegafaunaSleep
+
+- type: entity
+  id: MobWatcherIcewingLoot
+  parent: MobWatcherIcewing
+  suffix: CrusherLoot, Lavaland
+  name: ледокрылый наблюдатель
+  components:
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: DiamondOre1
+      amount: 1
+    - id: CrusherUpgradeWatcherWing
+      amount: 1
+      prob: 0.25   # 25% шанс
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: LavalandMegafaunaSleep
+
+- type: entity
+  id: MobWatcherMagmawingLoot
+  parent: MobWatcherMagmawing
+  suffix: CrusherLoot, Lavaland
+  name: магмокрылый наблюдатель
+  components:
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: DiamondOre1
+      amount: 1
+    - id: CrusherUpgradeWatcherWing
+      amount: 1
+      prob: 0.25   # 25% шанс
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: LavalandMegafaunaSleep
+
+# ── Голиаф с щупальцем ───────────────────────────────────────────────────────
+# Дроп: CrusherUpgradeGoliathTentacle (с шансом)
+- type: entity
+  id: MobGoliathLoot
+  parent: MobGoliath
+  suffix: CrusherLoot, Lavaland
+  name: голиаф
+  components:
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - Goliath
+    - FootstepSound
+    - LavalandMob
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatGoliath
+      amount: 3
+    - id: MaterialGoliathHide1
+      amount: 3
+    - id: CrusherUpgradeGoliathTentacle
+      amount: 1
+      prob: 0.25   # 25% шанс
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: LavalandMegafaunaSleep
+
+# ── Легион с черепом ─────────────────────────────────────────────────────────
+# Дроп: CrusherUpgradeLegionSkull (с шансом)
+- type: entity
+  id: MobLegionLoot
+  parent: MobLegionNormal
+  suffix: CrusherLoot, Lavaland
+  components:
+  - type: LegionBoss
+    maxConcurrentSkulls: 3
+  - type: Butcherable
+    spawned:
+    - id: CrusherUpgradeLegionSkull
+      amount: 1
+      prob: 0.33   # 33% шанс — легионов много, урежем шанс
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: LavalandMegafaunaSleep
+
+# ── Древний Голиаф ───────────────────────────────────────────────────────────
+# Более мощная версия голиафа с большим щупальцем в качестве лута.
+- type: entity
+  id: MobGoliathAncient
+  parent: MobGoliath
+  name: древний голиаф
+  # Tag overrides MobGoliath's Tag component — must re-include all tags + add LavalandMob
+  description: >
+    Колоссальный голиаф, переживший тысячи циклов лавы.
+    Его тело покрыто застывшей магмой, а взгляд — полон тёмной мудрости.
+    Гораздо опаснее своих сородичей.
+  suffix: AncientGoliath, Lavaland
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/Asteroid/goliath.rsi
+    color: "#b04800"   # тёмно-оранжевый оттенок — «закалённый лавой»
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: goliath
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: goliath
+      Dead:
+        Base: goliath_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead   # вдвое больше обычного (150 → 300)
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 2.5
+  - type: MeleeWeapon
+    soundHit:
+      path: "/Audio/Weapons/smash.ogg"
+    angle: 0
+    attackRate: 0.75
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Slash: 16    # немного сильнее (10+6)
+        Piercing: 16
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - Goliath
+    - FootstepSound
+    - LavalandMob
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatGoliath
+      amount: 5
+    - id: MaterialGoliathHide1
+      amount: 5
+    - id: CrusherUpgradeAncientGoliathTentacle
+      amount: 1
+      prob: 0.40   # 40% шанс — редкий моб
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: LavalandMegafaunaSleep

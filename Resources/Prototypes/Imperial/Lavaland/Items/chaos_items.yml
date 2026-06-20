@@ -1,0 +1,217 @@
+- type: entity
+  parent: BaseItem
+  id: ChaosBottle
+  suffix: Lavaland
+  name: Хаос в бутылке
+  description: Выпив это, ты запускаешь двухминутное безумие вокруг себя.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/vial.rsi
+    layers:
+    - state: vial
+      color: "#CC2222"
+  - type: Item
+    size: Tiny
+  - type: ChaosBottle
+
+- type: entity
+  parent: BaseItem
+  id: BloodContract
+  suffix: Lavaland
+  name: Кровавый контракт
+  description: Выбери живую цель, чтобы начать кровавую охоту.
+  components:
+  - type: Sprite
+    sprite: Objects/Magic/magicactions.rsi
+    layers:
+    - state: spell_default
+  - type: Item
+    size: Small
+  - type: BloodContract
+
+- type: entity
+  parent: BaseItem
+  id: LibraryRecallSpellbook
+  suffix: Lavaland
+  name: книга возврата
+  description: Древняя книга, обучающая заклинанию возврата предмета. Заклинание сохраняется даже если убрать книгу.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/library.rsi
+    state: booksummons
+  - type: Item
+    sprite: Imperial/lava/mining/library.rsi
+  - type: LibraryRecallSpellbook
+    actionProto: ActionItemRecall
+
+- type: entity
+  parent: BaseItem
+  id: RodOfAsclepiusLavaland
+  suffix: Lavaland
+  name: Посох Асклепия
+  description: Посох легендарного целителя. После клятвы дарует пацифизм и исцеляющую ауру всем существам вокруг. После клятвы его нельзя бросить.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/asclepius.rsi
+    state: asclepius_dormant
+  - type: Item
+    sprite: Imperial/lava/mining/asclepius.rsi
+    size: Normal
+    heldPrefix: asclepius_dormant
+  - type: AsclepiusRod
+    dormantState: asclepius_dormant
+    activeState: asclepius_active
+    dormantHeldPrefix: asclepius_dormant
+    activeHeldPrefix: asclepius_active
+    healRange: 5.5
+    healIntervalSeconds: 1.0
+    healPerTick:
+      types:
+        Blunt: -1.80
+        Slash: -1.80
+        Piercing: -1.40
+        Heat: -1.20
+        Cold: -0.80
+        Shock: -0.80
+        Poison: -0.60
+        Bloodloss: -2.40
+
+- type: entity
+  parent: BaseItem
+  id: WeaponSpellblade
+  suffix: Lavaland
+  name: Волшебный меч
+  description: Волшебный меч, выкованный в адской кузнице. Он прожигает плоть огнем и не режет конечности.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/spellblade.rsi
+    layers:
+    - state: icon
+      shader: unshaded
+  - type: Item
+    sprite: Imperial/lava/mining/spellblade.rsi
+    size: Normal
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+    storedSprite:
+      sprite: Imperial/lava/mining/spellblade.rsi
+      state: back
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.0
+    damage:
+      types:
+        Slash: 20
+    soundHit:
+      path: /Audio/Weapons/slash.ogg
+  - type: DisarmMalus
+    malus: 0.35
+  - type: Blocking
+    passiveBlockModifier:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+    activeBlockModifier:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+    passiveBlockFraction: 0.5
+    activeBlockFraction: 0.5
+  - type: UseDelay
+    delay: 1.0
+  - type: Gun
+    fireRate: 0.9
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    useKey: false
+    projectileSpeed: 14
+    soundGunshot:
+      path: /Audio/Magic/fireball.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.75
+  - type: BasicEntityAmmoProvider
+    proto: BulletSpellbladeFire
+    capacity: 1
+    count: 1
+  - type: Clothing
+    sprite: Imperial/lava/mining/spellblade.rsi
+    quickEquip: false
+    slots:
+    - Back
+    equippedPrefix: back
+
+- type: entity
+  parent: BulletKinetic
+  id: BulletSpellbladeFire
+  suffix: Lavaland
+  name: spellblade fire bolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Heat: 10
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+
+- type: entity
+  parent: BaseItem
+  id: TalismanImmortality
+  suffix: Lavaland
+  name: Талисман бессмертия
+  description: Талисман легендарного воина. При использовании дарует неуязвимость на 8 секунд. Перезарядка — 80 секунд.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/artefact.rsi
+    layers:
+    - state: talisman
+      shader: unshaded
+  - type: Item
+    size: Small
+  - type: ImmortalityTalisman
+
+# ─── Броня Чемпиона ───
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterChampionArmor
+  suffix: Lavaland
+  name: броня чемпиона
+  description: Доспех легендарного чемпиона Лавалэнда. Обеспечивает превосходную защиту от большинства угроз.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/hood.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/lava/mining/hood.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.35
+        Piercing: 0.50
+        Heat: 0.50
+        Shock: 0.50
+        Radiation: 0.0
+        Poison: 0.0
+        Caustic: 0.20
+  - type: ExplosionResistance
+    damageCoefficient: 0.50
+  - type: FireProtection
+    reduction: 0.80
+  - type: StaticPrice
+    price: 5000
+  - type: SpellbladeIgniteOnHit
+    fireTilePrototype: ImperialAshDrakeFireTile

@@ -73,6 +73,41 @@
     pushStrength: 8
 
 
+- type: entity
+  id: MobUrsLavaland
+  parent: MobUrs
+  suffix: Lavaland
+  name: Urs
+  components:
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - FootstepSound
+    - LavalandMob
+    - Urs
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: HellSpawn
+  - type: Destructible
+    thresholds: []
+  - type: TemperatureDamage
+    heatDamageThreshold: 1000000
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: Butcherable
+    spawned:
+    - id: Ash
+      amount: 3
+    - id: MaterialBones1
+      amount: 5
+    - id: IngotSilver1
+      amount: 2
+    - id: CrusherUpgradeTailSpike
+      amount: 1
+      prob: 0.40
+  - type: LavalandMegafaunaSleep
+
 - type: Tag
   id: Urs
 

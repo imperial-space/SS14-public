@@ -1,0 +1,374 @@
+- type: entity
+  id: BulletAshDrakeFire
+  suffix: Lavaland
+  name: fire bolt
+  parent: BulletKinetic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Heat: 24
+        Structural: 18
+
+- type: entity
+  id: ImperialAshDrakeFireTile
+  suffix: Lavaland
+  name: drake fire
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Effects/fire.rsi
+    state: fire
+  - type: TimedDespawn
+    lifetime: 0.7
+  - type: Transform
+    anchored: true
+  - type: IgnitionSource
+    ignited: true
+    temperature: 1000
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: ImperialAshDrakeSnakeFireTile
+  suffix: Lavaland
+  name: drake snake fire
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Effects/fire.rsi
+    state: fire
+  - type: TimedDespawn
+    lifetime: 0.32
+  - type: Transform
+    anchored: true
+  - type: IgnitionSource
+    ignited: true
+    temperature: 1000
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: ImperialAshDrakeArenaFireTile
+  suffix: Lavaland
+  name: drake arena fire
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Effects/fire.rsi
+    state: fire
+  - type: TimedDespawn
+    lifetime: 2
+  - type: Transform
+    anchored: true
+  - type: IgnitionSource
+    ignited: true
+    temperature: 1000
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: ImperialAshDrakeArenaMarker
+  suffix: Lavaland
+  name: arena safe marker
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Imperial/lava/boss/drake/hand_of_god_structures.rsi
+    layers:
+    - state: trap-earth
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 20
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: ImperialAshDrakeArenaWall
+  suffix: Lavaland
+  name: arena wall
+  parent: BaseStructure
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: Effects/fire.rsi
+    state: fire
+  - type: Icon
+    sprite: Effects/fire.rsi
+    state: fire
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb {}
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+  - type: Destructible
+    thresholds: []
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: ImperialAshDrakeMeteorWarning
+  suffix: Lavaland
+  name: meteor warning
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Imperial/lava/boss/drake/actions.rsi
+    state: sniper_zoom
+    shader: unshaded
+  - type: TimedDespawn
+    lifetime: 15
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: ImperialAshDrakeMeteorFireball
+  suffix: Lavaland
+  name: meteor fireball
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Effects/fire.rsi
+    state: fire
+  - type: TimedDespawn
+    lifetime: 15
+  - type: Transform
+    anchored: false
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: ImperialAshDrakeShadow
+  suffix: Lavaland
+  name: drake shadow
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Imperial/lava/boss/drake/64x64megafauna.rsi
+    state: swoop
+    color: "#000000CC"
+  - type: Transform
+    anchored: false
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: ImperialAshDrakeLandingWarning
+  suffix: Lavaland
+  name: drake landing warning
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Imperial/lava/boss/drake/96x96.rsi
+    state: landing
+  - type: TimedDespawn
+    lifetime: 1.2
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: MobAshDrake
+  suffix: Lavaland
+  name: ash drake
+  parent: [ SimpleSpaceMobBase, MobCombat, MobBloodstream, BaseMobAnimal ]
+  description: A legendary Lavaland predator that fights in measured bursts.
+  components:
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: HellSpawn
+  - type: TemperatureDamage
+    heatDamageThreshold: 1000000
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: AshDrakeCompound
+    blackboard:
+      RangedRange: !type:Single
+        7
+      MeleeRange: !type:Single
+        1.7
+      VisionRadius: !type:Single
+        12
+      AggroVisionRadius: !type:Single
+        15
+      NavSmash: !type:Bool
+        true
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/boss/drake/64x64megafauna.rsi
+    layers:
+    - map: [ "enum.AshDrakeVisualLayers.Base" ]
+      state: dragon
+  - type: Appearance
+  - type: AshDrakeAppearance
+    visuals:
+      enum.AshDrakeVisuals.Unfurled:
+        enum.AshDrakeVisualLayers.Base:
+          True: { state: swoop }
+          False: { state: dragon }
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.75
+        density: 170
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 1.5
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 0.55
+    damage:
+      types:
+        Slash: 30
+        Blunt: 10
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1.0
+  - type: BasicEntityAmmoProvider
+    proto: BulletAshDrakeFire
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 1.0
+    useKey: false
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      2500: Dead
+  - type: Destructible
+    thresholds: []
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: dragon
+      Dead:
+        Base: dragon_dead
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - FootstepSound
+    - LavalandMob
+  - type: LavalandStormImmune
+  - type: NoSlip
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: LavalandMegafaunaSleep
+  - type: LavalandMegafauna
+  - type: AshDrake
+    firstShotMeleeHits: 3
+    minMeleeHitsBeforeShot: 4
+    maxMeleeHitsBeforeShot: 10
+    fireEffectPrototype: ImperialAshDrakeFireTile
+    # Sounds
+    meleeAttackSound:
+      path: /Audio/Imperial/boss/sound_misc_demon_attack1.ogg
+    fireConeSound:
+      path: /Audio/Imperial/boss/sound_magic_fireball.ogg
+    meteorRainSound:
+      path: /Audio/Imperial/boss/sound_effects_meteorimpact.ogg
+    deathSound:
+      path: /Audio/Imperial/boss/sound_misc_demon_dies.ogg
+    # Fire cone parameters (Ability 1)
+    fireConeCooldown: 2
+    fireConeDamage: 5
+    fireConeRange: 15
+    fireConeRayCount: 3
+    fireConeSpreadDeg: 40
+    fireConeStepDelay: 0.08
+    # Meteor rain parameters (Ability 2)
+    meteorCooldown: 6
+    meteorRadius: 6.5
+    meteorDamage: 40
+    meteorSpawnChance: 0.11
+    # Swoop parameters (Ability 4, above 50% HP)
+    swoopCooldown: 8
+    swoopDamage: 75
+    swoopFlightDuration: 0.2
+    swoopLandingDelay: 0.3
+    swoopTrailInterval: 0.08
+    swoopKnockback: 7
+    swoopShadowPrototype: ImperialAshDrakeShadow
+    swoopLandingWarningPrototype: ImperialAshDrakeLandingWarning
+    # Circular fire breath parameters (Ability 3, below 50% HP)
+    circularFireBreathCooldown: 4
+    circularFireBreathRange: 8
+    circularFireBreathDamage: 5
+    circularFireBreathRepeats: 3
+    # Fire arena parameters (Ability 5, below 50% HP, replaces swoop)
+    fireArenaCooldown: 10
+    fireArenaRadius: 3
+    fireArenaDamage: 35
+    fireArenaEffectPrototype: ImperialAshDrakeArenaFireTile
+    fireArenaMarkerPrototype: ImperialAshDrakeArenaMarker
+    fireArenaWallPrototype: ImperialAshDrakeArenaWall
+    fireArenaMarkerDuration: 1.5
+    fireArenaFlameDuration: 2
+    fireArenaRounds: 3
+    fireArenaMarkerStepDistance: 3
+    fireArenaWaveDelay: 0.8
+    fireArenaWaves: 3
+    maxHp: 2500
+  - type: BossLoot
+    loot:
+    - prototype: MaterialDragonHide10
+      chance: 1.0
+      minCount: 1
+      maxCount: 1
+    - prototype: LavalandDrakeChest
+      chance: 1.0
+      minCount: 1
+      maxCount: 1
+    - prototype: CrusherUpgradeAshenSkull
+      chance: 0.30
+      minCount: 1
+      maxCount: 1
+  - type: MegafaunaBossMusic
+    music:
+      path: /Audio/Imperial/boss/the_fire_dragon_full_version.ogg

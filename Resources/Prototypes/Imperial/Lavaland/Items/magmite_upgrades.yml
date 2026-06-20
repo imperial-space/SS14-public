@@ -1,0 +1,163 @@
+# ─── Снаряды апгрейдов ───
+
+- type: entity
+  id: BulletMagmiteCharge
+  parent: BulletCharge
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 0
+        Structural: 100
+
+- type: entity
+  id: BulletPlasmaCutterMega
+  parent: BulletPlasmaCutter
+  noSpawn: true
+  components:
+  - type: Sprite
+    color: "#ff4444"
+  - type: PointLight
+    color: "#ff000092"
+  - type: GibtoniteDefuserProjectile
+
+- type: entity
+  id: BulletMiningShotgunMega
+  parent: AttackerBulletPlasmaCutter
+  noSpawn: true
+  components:
+  - type: Sprite
+    color: "#ff4444"
+  - type: PointLight
+    color: "#ff000092"
+  - type: GibtoniteDefuserProjectile
+
+# ─── Лаваленд-версии плазменных резаков (для раздатчика и наковальни) ───
+
+- type: entity
+  id: WeaponPlasmaCutterLavaland
+  parent: WeaponPlasmaCutter
+  suffix: Lavaland
+  name: плазменный резак
+  description: Стандартный плазменный резак шахтёра Лаваленда. Два режима огня — одиночный для добычи и широкий для боя. На наковальне можно улучшить до версии «Резак».
+
+- type: entity
+  id: WeaponPlasmaCutterFanLavaland
+  parent: WeaponPlasmaCutterBase
+  suffix: Lavaland
+  name: веерный плазменный резак
+  description: Плазменный резак, настроенный только на широкий веерный выстрел. Эффективен против групп врагов. На наковальне можно улучшить до «Веерного».
+  components:
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: AttackerBulletPlasmaCutter
+      fireCost: 100
+
+# ─── Результаты улучшений наковальни ───
+
+- type: entity
+  id: WeaponKineticAcceleratorMega
+  parent: WeaponMiningAccelerator
+  suffix: Lavaland
+  name: горный кинетический акселератор Мега
+  description: Максимально улучшенная версия горного акселератора с удвоенной вместимостью зарядов.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/magma/kineticgun_mega.rsi
+    layers:
+    - state: icon
+    - state: icon-empty
+      visible: false
+      map: [ "empty-icon" ]
+  - type: Item
+    size: Normal
+    sprite: Imperial/lava/mining/magma/kineticgun_mega.rsi
+  - type: Gun
+    minAngle: 1
+    maxAngle: 2
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+  - type: Wieldable
+    freeHandsRequired: 10
+  - type: MiningUpgradeableGun
+    maxCapacity: 200
+    baseRechargeCooldown: 3
+    whitelist:
+      tags:
+        - MiningPKAUpgrade
+    insertSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+
+- type: entity
+  id: WeaponMagmiteCrusher
+  parent: WeaponKineticCrusher
+  suffix: Lavaland
+  name: магмитовый дробитель
+  description: Улучшенный дробитель, насыщенный энергией магмита. Заряд наносит структурный урон 100 — пробивает даже магмитовые скалы.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/magma/magmite_crusher.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/lava/mining/magma/magmite_crusher.rsi
+  - type: BasicEntityAmmoProvider
+    proto: BulletMagmiteCharge
+    capacity: 1
+    count: 1
+  - type: KineticCrusherUpgradeable
+    maxCapacity: 100
+    baseUseDelay: 0.9
+    baseAmmoProto: BulletMagmiteCharge
+    insertSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+
+- type: entity
+  id: WeaponPlasmaCutterMega
+  parent: WeaponPlasmaCutterBase
+  suffix: Lavaland
+  name: резак «Мега»
+  description: Улучшенный плазменный резак дальностью 7 тайлов. Красный луч. Обезвреживает активированный гибтонит при попадании вместо взрыва.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/magma/plasmacutter_mega.rsi
+    layers:
+    - state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/lava/mining/magma/plasmacutter_mega.rsi
+  - type: Gun
+    projectileSpeed: 32
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BulletPlasmaCutterMega
+      fireCost: 50
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+
+- type: entity
+  id: WeaponMiningShotgunMega
+  parent: WeaponPlasmaCutterBase
+  suffix: Lavaland
+  name: веерный резак «Мега»
+  description: Улучшенный веерный резак дальностью 6 тайлов. Красный луч. Обезвреживает активированный гибтонит при попадании вместо взрыва.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/magma/miningshotgun_mega.rsi
+    layers:
+    - state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/lava/mining/magma/miningshotgun_mega.rsi
+  - type: Gun
+    projectileSpeed: 23
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BulletMiningShotgunMega
+      fireCost: 100
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000

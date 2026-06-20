@@ -1,0 +1,26 @@
+- type: entity
+  parent: BaseKillObjective
+  id: ChaosRipAndTearTargetObjective
+  suffix: Lavaland
+  name: Рвать и кромсать
+  description: Убей указанную цель.
+  components:
+  - type: Objective
+    unique: false
+    difficulty: 1.5
+    issuer: objective-issuer-syndicate
+    icon:
+      sprite: Objects/Weapons/Melee/chainsaw.rsi
+      state: icon
+  - type: TargetObjective
+    title: objective-condition-maroon-person-title
+  - type: PickSpecificPerson
+  - type: KillPersonCondition
+    requireMaroon: true
+
+- type: entity
+  parent: ChaosRipAndTearTargetObjective
+  id: ChaosRipAndTearObjective
+  suffix: Lavaland
+  name: Рвать и кромсать
+  description: Убей всех остальных.

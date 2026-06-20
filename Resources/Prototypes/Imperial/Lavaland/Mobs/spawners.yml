@@ -1,0 +1,205 @@
+# ══════════════════════════════════════════════════════════════════════════════
+# Спавнеры фауны и мегафауны Лаваленда
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Обычная фауна ─────────────────────────────────────────────────────────────
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobMarrowWeaver
+  suffix: Lavaland
+  name: Костномозговой ткач (спавнер)
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/lava/mining/weaver.rsi
+      state: weaver
+    - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+    - MobMarrowWeaver
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobFrostbiteWeaver
+  suffix: Lavaland
+  name: Морозный ткач (спавнер)
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/lava/mining/weaver_ice.rsi
+      state: weaver_ice
+    - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+    - MobFrostbiteWeaver
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobLegionNormal
+  suffix: Lavaland
+  name: Легион (спавнер)
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/lava/mining/legion.rsi
+      state: legion
+    - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+    - MobLegionLoot
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobUrsLavaland
+  suffix: Lavaland
+  name: Урс (спавнер)
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/Lavaland/Mobs/Urs.rsi
+      state: urs
+    - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+    - MobUrsLavaland
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobZlatozhor
+  suffix: Lavaland
+  name: Златожор (спавнер)
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/lava/mining/legion.rsi
+      state: Goldgrub
+    - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+    - MobZlatozhor
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobDeadMiner
+  suffix: Lavaland
+  name: Мёртвый шахтёр (спавнер)
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/lava/boss/miner.rsi
+      state: miner
+      scale: 0.6, 0.6
+    - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+    - MobDeadMiner
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobAshwalkerNPC
+  suffix: Lavaland
+  name: Пеплоходец НПС (спавнер)
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Clothing/Head/Helmets/bone_helmet.rsi
+      state: icon
+    - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+    - MobAshwalker
+
+# ── Мегафауна ─────────────────────────────────────────────────────────────────
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobLavalandBubblegum
+  suffix: Lavaland
+  name: Жвачка (спавнер)
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/lava/boss/96x96megafauna.rsi
+      state: bubblegum
+      scale: 0.33, 0.33
+    - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+    - MobLavalandBubblegum
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobColossus
+  suffix: Lavaland
+  name: Колосс (спавнер)
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/lava/boss/96x96megafauna.rsi
+      state: eva
+      scale: 0.33, 0.33
+    - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+    - MobColossus
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobHierophant
+  suffix: Lavaland
+  name: Иерофант (спавнер)
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/lava/boss/Hierophant/hierophant_new.rsi
+      state: hierophant
+      scale: 0.5, 0.5
+    - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+    - MobHierophant
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobAshDrake
+  suffix: Lavaland
+  name: Пепельный дракон (спавнер)
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/lava/boss/drake/64x64megafauna.rsi
+      state: dragon
+      scale: 0.5, 0.5
+    - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+    - MobAshDrake
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobMegaLegion
+  suffix: Lavaland
+  name: Мега Легион (спавнер)
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/lava/boss/96x96megafauna.rsi
+      state: mega_legion
+      scale: 0.33, 0.33
+    - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+    - MobMegaLegionLavaland

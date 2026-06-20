@@ -1,0 +1,242 @@
+﻿{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from Paradise-SS220 (https://github.com/ss220club/Paradise-SS220), licensed under CC-BY-SA-3.0",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "soul_bottle_empty"
+        },
+        {
+            "name": "soul_bottle_full"
+        },
+        {
+            "name": "eye_medalion"
+        },
+        {
+            "name": "ogbook"
+        },
+        {
+            "name": "rusty_medalion"
+        },
+        {
+            "name": "living_heart",
+            "delays": [
+                [
+                    0.6,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "eldritch_flask"
+        },
+        {
+            "name": "rune_carver"
+        },
+        {
+            "name": "crucible",
+            "delays": [
+                [
+                    0.5,
+                    0.5,
+                    0.5
+                ]
+            ]
+        },
+        {
+            "name": "crucible_soul"
+        },
+        {
+            "name": "clarity"
+        },
+        {
+            "name": "marshal"
+        },
+        {
+            "name": "crucible_empty"
+        },
+        {
+            "name": "spacehand_left"
+        },
+        {
+            "name": "spacehand_right"
+        },
+        {
+            "name": "moon_amulette",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "alert_rune"
+        },
+        {
+            "name": "tentacle_rune"
+        },
+        {
+            "name": "madness_rune"
+        },
+        {
+            "name": "cosmic_rune",
+            "delays": [
+                [
+                    1,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "cosmic_rune_fade",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "cosmic_rune_light",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "trap"
+        },
+        {
+            "name": "book"
+        },
+        {
+            "name": "book_opening",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "book_closing",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "book_open",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        }
+    ]
+}

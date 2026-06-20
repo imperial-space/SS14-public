@@ -763,7 +763,7 @@ public sealed class CultSystem : EntitySystem
 
     private static int GetInitialSpellUses(string actionId) => actionId switch
     {
-        "ActionCultStun" => 4,
+        "ActionCultStun" => 1,
         "ActionCultShackles" => 4,
         "ActionCultTeleport" => 1,
         "ActionCultEmp" => 4,
@@ -1481,6 +1481,12 @@ public sealed class CultSystem : EntitySystem
             return false;
         }
 
+        // Расходуем подготовленное применение до наложения эффекта.
+        // Если зарядов больше нет (например, использован настаканный старый предмет),
+        // возвращаем true, чтобы предмет удалился в OnSpellItemAfterInteract.
+        if (!TryConsumePreparedSpellUseFromItem(spellItem, caster, comp))
+            return true;
+
         _chat.TrySendInGameICMessage(caster, Loc.GetString("cult-incantation-stun"), InGameICChatType.Whisper, false, ignoreActionBlocker: true);
         DealSelfDamage(caster, 10f);
 
@@ -1495,7 +1501,7 @@ public sealed class CultSystem : EntitySystem
 
         _audio.PlayPvs("/Audio/Magic/magic_wand.ogg", caster);
         _popup.PopupEntity(Loc.GetString("cult-stun-hit", ("target", MetaData(target).EntityName)), caster, caster);
-        return TryConsumePreparedSpellUseFromItem(spellItem, caster, comp);
+        return true;
     }
 
     private bool CastShackles(EntityUid spellItem, EntityUid caster, CultistComponent comp, EntityUid target)

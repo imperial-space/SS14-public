@@ -1,0 +1,9 @@
+uniform sampler2D SCREEN_TEXTURE;
+uniform highp float TintStrength;
+uniform highp float Pulse;
+
+void fragment() {
+    highp vec4 screen = zTextureSpec(SCREEN_TEXTURE, FRAGCOORD.xy * SCREEN_PIXEL_SIZE);
+    highp vec3 tinted = mix(screen.rgb, vec3(0.85 + Pulse * 0.15, 0.02, 0.02), TintStrength);
+    COLOR = vec4(tinted, 1.0);
+}

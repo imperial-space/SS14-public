@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseItem
+  id: ItemMegafaunaTracker
+  suffix: Lavaland
+  name: сканер мегафауны
+  description: Портативное устройство для обнаружения мегафауны. Отображает имена и координаты всех живых мегафауны на карте.
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/handheld_mass_scanner.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: MegafaunaTracker
