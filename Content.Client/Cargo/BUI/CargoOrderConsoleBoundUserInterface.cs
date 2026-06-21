@@ -42,7 +42,8 @@ namespace Content.Client.Cargo.BUI
         /// Currently selected product
         /// </summary>
         [ViewVariables]
-        private CargoProductPrototype? _product;
+        // Imperial Weekly Mode
+        private string _productId = string.Empty;
 
         public CargoOrderConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
@@ -81,7 +82,7 @@ namespace Content.Client.Cargo.BUI
                     description.AddText(row.MainButton.ToolTip);
 
                 _orderMenu.Description.SetMessage(description);
-                _product = row.Product;
+                _productId = row.ProductId;
                 _orderMenu.ProductName.Text = row.ProductName.Text;
                 _orderMenu.PointCost.Text = row.PointCost.Text;
                 _orderMenu.Requester.Text = orderRequester;
@@ -118,10 +119,11 @@ namespace Content.Client.Cargo.BUI
             if (_menu == null)
                 return;
 
-            _menu.PopulateProducts();
             _menu.PopulateCategories();
+            _menu.PopulateProducts();
             _menu.PopulateOrders(orders);
             _menu.PopulateAccountActions();
+            RefreshSelectedProduct();
         }
 
         protected override void UpdateState(BoundUserInterfaceState state)
@@ -142,6 +144,8 @@ namespace Content.Client.Cargo.BUI
                 return;
 
             _menu.ProductCatalogue = cState.Products;
+            _menu.WeeklyProductCatalogue = cState.WeeklyProducts;
+            _menu.InvalidateProductCache();
 
             _menu?.UpdateStation(station);
             Populate(cState.Orders);
@@ -169,10 +173,36 @@ namespace Content.Client.Cargo.BUI
             SendMessage(new CargoConsoleAddOrderMessage(
                 _orderMenu?.Requester.Text ?? "",
                 _orderMenu?.Reason.Text ?? "",
-                _product?.ID ?? "",
+                _productId,
                 orderAmt));
 
             return true;
+        }
+
+        // Imperial Weekly Mode
+        private void RefreshSelectedProduct()
+        {
+            if (_menu == null ||
+                _orderMenu == null ||
+                string.IsNullOrEmpty(_productId))
+            {
+                return;
+            }
+
+            if (!_menu.TryGetProductDisplayData(_productId, out var name, out var descriptionText, out var cost))
+            {
+                _productId = string.Empty;
+                _orderMenu.Close();
+                return;
+            }
+
+            var description = new FormattedMessage();
+            description.PushColor(Color.White); // Rich text default color is grey
+            description.AddText(descriptionText);
+
+            _orderMenu.Description.SetMessage(description);
+            _orderMenu.ProductName.Text = name;
+            _orderMenu.PointCost.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", cost.ToString()));
         }
 
         private void RemoveOrder(CargoOrderData? order)

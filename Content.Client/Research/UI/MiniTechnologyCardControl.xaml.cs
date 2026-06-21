@@ -13,7 +13,10 @@ namespace Content.Client.Research.UI;
 public sealed partial class MiniTechnologyCardControl : Control
 {
     /// The technology that this control represents
-    public readonly TechnologyPrototype Technology;
+    // Imperial Weekly Mode Start
+    // Weekly mini-cards use the same XAML control but do not have a TechnologyPrototype.
+    public readonly TechnologyPrototype? Technology;
+    // Imperial Weekly Mode End
 
     public MiniTechnologyCardControl(TechnologyPrototype technology, IPrototypeManager prototypeManager, SpriteSystem spriteSys, FormattedMessage description)
     {

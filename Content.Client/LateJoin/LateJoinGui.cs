@@ -236,7 +236,8 @@ namespace Content.Client.LateJoin
                             Margin = new Thickness(5f, 0, 0, 0)
                         };
 
-                        var jobButton = new JobButton(jobLabel, prototype.ID, prototype.LocalizedName, value);
+                        // Imperial Weekly Mode
+                        var jobButton = new JobButton(jobLabel, prototype.ID, _gameTicker.GetJobDisplayName(prototype), value);
 
                         var jobSelector = new BoxContainer
                         {
@@ -312,11 +313,15 @@ namespace Content.Client.LateJoin
                             var updatedJobValue = jobsAvailable[existingJobEntry.Key];
                             foreach (var matchingJobButton in existingJobEntry.Value)
                             {
-                                if (matchingJobButton.Amount != updatedJobValue)
+                                // Imperial Weekly Mode Start
+                                var jobName = _gameTicker.GetJobDisplayName(existingJobEntry.Key, _prototypeManager);
+                                if (matchingJobButton.Amount != updatedJobValue ||
+                                    !string.Equals(matchingJobButton.JobLocalisedName, jobName, StringComparison.Ordinal))
                                 {
-                                    matchingJobButton.RefreshLabel(updatedJobValue);
+                                    matchingJobButton.RefreshLabel(updatedJobValue, jobName);
                                     matchingJobButton.Disabled |= matchingJobButton.Amount == 0;
                                 }
+                                // Imperial Weekly Mode End
                             }
                         }
                     }
@@ -342,7 +347,8 @@ namespace Content.Client.LateJoin
     {
         public Label JobLabel { get; }
         public string JobId { get; }
-        public string JobLocalisedName { get; }
+        // Imperial Weekly Mode
+        public string JobLocalisedName { get; private set; }
         public int? Amount { get; private set; }
         private bool _initialised = false;
 
@@ -356,13 +362,18 @@ namespace Content.Client.LateJoin
             _initialised = true;
         }
 
-        public void RefreshLabel(int? amount)
+        // Imperial Weekly Mode
+        public void RefreshLabel(int? amount, string? jobLocalisedName = null)
         {
-            if (Amount == amount && _initialised)
+            jobLocalisedName ??= JobLocalisedName;
+            if (Amount == amount &&
+                string.Equals(JobLocalisedName, jobLocalisedName, StringComparison.Ordinal) &&
+                _initialised)
             {
                 return;
             }
             Amount = amount;
+            JobLocalisedName = jobLocalisedName;
 
             JobLabel.Text = Amount != null ?
                 Loc.GetString("late-join-gui-job-slot-capped", ("jobName", JobLocalisedName), ("amount", Amount)) :

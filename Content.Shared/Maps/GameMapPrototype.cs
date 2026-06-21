@@ -59,12 +59,20 @@ public sealed partial class GameMapPrototype : IPrototype
     {
         //TODO(Kaylie): Refactor gamemaps for this.
 #pragma warning disable RA0039
+        // Imperial Weekly Mode
         return new()
         {
             ID = ID,
+            MaxRandomOffset = MaxRandomOffset,
+            IsGrid = IsGrid,
+            RandomRotation = RandomRotation,
             MapName = MapName,
             MapPath = mapPath,
-            _stations = _stations
+            _stations = _stations,
+            Fallback = Fallback,
+            MinPlayers = MinPlayers,
+            MaxPlayers = MaxPlayers,
+            _conditions = _conditions
         };
 #pragma warning restore RA0039
     }

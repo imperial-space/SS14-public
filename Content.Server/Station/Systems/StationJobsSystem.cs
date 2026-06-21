@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.Station.Components;
+using Content.Server.WeeklyMode.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;
@@ -27,6 +28,8 @@ public sealed partial class StationJobsSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    // Imperial Weekly Mode
+    [Dependency] private readonly WeeklyModeSystem _weeklyMode = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -477,7 +480,8 @@ public sealed partial class StationJobsSystem : EntitySystem
 
     private bool _availableJobsDirty;
 
-    private TickerJobsAvailableEvent _cachedAvailableJobs = new(new(), new());
+    // Imperial Weekly Mode
+    private TickerJobsAvailableEvent _cachedAvailableJobs = new(new(), new(), new());
 
     /// <summary>
     /// Assembles an event from the current available-to-play jobs.
@@ -487,8 +491,9 @@ public sealed partial class StationJobsSystem : EntitySystem
     private TickerJobsAvailableEvent GenerateJobsAvailableEvent()
     {
         // If late join is disallowed, return no available jobs.
+        // Imperial Weekly Mode
         if (_gameTicker.DisallowLateJoin)
-            return new TickerJobsAvailableEvent(new(), new());
+            return new TickerJobsAvailableEvent(new(), new(), _weeklyMode.GetActiveRoleAliases());
 
         var jobs = new Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>>();
         var stationNames = new Dictionary<NetEntity, string>();
@@ -502,7 +507,8 @@ public sealed partial class StationJobsSystem : EntitySystem
             jobs.Add(netStation, list);
             stationNames.Add(netStation, Name(station));
         }
-        return new TickerJobsAvailableEvent(stationNames, jobs);
+        // Imperial Weekly Mode
+        return new TickerJobsAvailableEvent(stationNames, jobs, _weeklyMode.GetActiveRoleAliases());
     }
 
     /// <summary>

@@ -31,7 +31,9 @@ public sealed partial class CharacterPickerButton : ContainerButton
         ISharedPlayerManager playerMan,
         ButtonGroup group,
         HumanoidCharacterProfile profile,
-        bool isSelected)
+        bool isSelected,
+        // Imperial Weekly Mode
+        Func<ProtoId<JobPrototype>, string>? getJobDisplayName = null)
     {
         RobustXamlLoader.Load(this);
         AddStyleClass(StyleClassButton);
@@ -44,7 +46,8 @@ public sealed partial class CharacterPickerButton : ContainerButton
         var highPriorityJob = profile.JobPriorities.SingleOrDefault(p => p.Value == JobPriority.High).Key;
         if (highPriorityJob != default)
         {
-            var jobName = prototypeManager.Index(highPriorityJob).LocalizedName;
+            // Imperial Weekly Mode
+            var jobName = getJobDisplayName?.Invoke(highPriorityJob) ?? prototypeManager.Index(highPriorityJob).LocalizedName;
             description = $"{description}\n{jobName}";
         }
 

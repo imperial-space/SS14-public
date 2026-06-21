@@ -13,8 +13,18 @@ public sealed class CargoConsoleInterfaceState : BoundUserInterfaceState
     public NetEntity Station;
     public List<CargoOrderData> Orders;
     public List<ProtoId<CargoProductPrototype>> Products;
+    // Imperial Weekly Mode
+    public List<WeeklyCargoProductData> WeeklyProducts;
 
-    public CargoConsoleInterfaceState(string name, int count, int capacity, NetEntity station, List<CargoOrderData> orders, List<ProtoId<CargoProductPrototype>> products)
+    // Imperial Weekly Mode
+    public CargoConsoleInterfaceState(
+        string name,
+        int count,
+        int capacity,
+        NetEntity station,
+        List<CargoOrderData> orders,
+        List<ProtoId<CargoProductPrototype>> products,
+        List<WeeklyCargoProductData>? weeklyProducts = null)
     {
         Name = name;
         Count = count;
@@ -22,5 +32,6 @@ public sealed class CargoConsoleInterfaceState : BoundUserInterfaceState
         Station = station;
         Orders = orders;
         Products = products;
+        WeeklyProducts = weeklyProducts ?? new List<WeeklyCargoProductData>();
     }
 }

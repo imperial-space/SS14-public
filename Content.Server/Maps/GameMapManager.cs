@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 using Content.Server.GameTicking;
 using Content.Shared.CCVar;
@@ -131,7 +132,8 @@ public sealed class GameMapManager : IGameMapManager
 
     public GameMapPrototype? GetSelectedMap()
     {
-        return _configSelectedMap ?? _selectedMap;
+        // Imperial Weekly Mode
+        return _selectedMap ?? _configSelectedMap;
     }
 
     public void ClearSelectedMap()
@@ -152,6 +154,36 @@ public sealed class GameMapManager : IGameMapManager
         if (!TryLookupMap(gameMap, out var map))
             throw new ArgumentException($"The map \"{gameMap}\" is invalid!");
         _selectedMap = map;
+    }
+
+    // Imperial Weekly Mode
+    public void SelectMapPath(string baseMapPrototype, ResPath mapPath)
+    {
+        if (!TryLookupMap(baseMapPrototype, out var map))
+            throw new ArgumentException($"The map \"{baseMapPrototype}\" is invalid!");
+
+        if (!_resMan.ContentFileExists(mapPath))
+            throw new FileNotFoundException($"The map file \"{mapPath}\" does not exist in content resources.");
+
+        _selectedMap = map.Persistence(mapPath);
+        _log.Info($"Using map prototype {baseMapPrototype} with weekly map path {mapPath}");
+    }
+
+    // Imperial Weekly Mode
+    public void SelectPersistentMap(string baseMapPrototype, ResPath mapPath)
+    {
+        if (!TryLookupMap(baseMapPrototype, out var map))
+            throw new ArgumentException($"The map \"{baseMapPrototype}\" is invalid!");
+
+        if (_resMan.UserData.Exists(mapPath))
+        {
+            _selectedMap = map.Persistence(mapPath);
+            _log.Info($"Using persistence map from {mapPath}");
+            return;
+        }
+
+        _selectedMap = map;
+        _log.Warning($"Using persistence start map {baseMapPrototype} as {mapPath} doesn't exist");
     }
 
     public void SelectMapRandom()

@@ -140,28 +140,30 @@ namespace Content.Client.Cargo.UI
         public void PopulateProducts()
         {
             Products.RemoveAllChildren();
-            var products = ProductPrototypes.ToList();
-            products.Sort((x, y) =>
-                string.Compare(x.Name, y.Name, StringComparison.CurrentCultureIgnoreCase));
+            // Imperial Weekly Mode Start
+            // Original cargo consoles built this list directly from ProductPrototypes.
+            var products = GetProductDisplayData();
 
             var search = SearchBar.Text.Trim().ToLowerInvariant();
-            foreach (var prototype in products)
+            foreach (var product in products)
             {
                 // if no search or category
                 // else if search
                 // else if category and not search
                 if (search.Length == 0 && _category == null ||
-                    search.Length != 0 && prototype.Name.ToLowerInvariant().Contains(search) ||
-                    search.Length != 0 && prototype.Description.ToLowerInvariant().Contains(search) ||
-                    search.Length == 0 && _category != null && Loc.GetString(prototype.Category).Equals(_category))
+                    search.Length != 0 && product.Name.ToLowerInvariant().Contains(search) ||
+                    search.Length != 0 && product.Description.ToLowerInvariant().Contains(search) ||
+                    search.Length == 0 && _category != null && product.Category.Equals(_category))
                 {
                     var button = new CargoProductRow
                     {
-                        Product = prototype,
-                        ProductName = { Text = prototype.Name },
-                        MainButton = { ToolTip = prototype.Description },
-                        PointCost = { Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", prototype.Cost.ToString())) },
-                        Icon = { Texture = _spriteSystem.Frame0(prototype.Icon) },
+                        Product = product.Product,
+                        WeeklyProduct = product.WeeklyProduct,
+                        ProductId = product.ProductId,
+                        ProductName = { Text = product.Name },
+                        MainButton = { ToolTip = product.Description },
+                        PointCost = { Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", product.Cost.ToString())) },
+                        Icon = { Texture = _spriteSystem.Frame0(product.Icon) },
                     };
                     button.MainButton.OnPressed += args =>
                     {
@@ -170,6 +172,7 @@ namespace Content.Client.Cargo.UI
                     Products.AddChild(button);
                 }
             }
+            // Imperial Weekly Mode End
         }
 
         /// <summary>
@@ -180,15 +183,20 @@ namespace Content.Client.Cargo.UI
             _categoryStrings.Clear();
             Categories.Clear();
 
-            foreach (var prototype in ProductPrototypes)
+            // Imperial Weekly Mode Start
+            // Original cargo consoles populated categories only from CargoProductPrototype.Category.
+            foreach (var product in GetProductDisplayData())
             {
-                if (!_categoryStrings.Contains(Loc.GetString(prototype.Category)))
+                if (!_categoryStrings.Contains(product.Category))
                 {
-                    _categoryStrings.Add(Loc.GetString(prototype.Category));
+                    _categoryStrings.Add(product.Category);
                 }
             }
 
             _categoryStrings.Sort();
+
+            if (_category != null && !_categoryStrings.Contains(_category))
+                _category = null;
 
             // Add "All" category at the top of the list
             _categoryStrings.Insert(0, Loc.GetString("cargo-console-menu-populate-categories-all-text"));
@@ -197,6 +205,10 @@ namespace Content.Client.Cargo.UI
             {
                 Categories.AddItem(str);
             }
+
+            var selected = _category == null ? 0 : _categoryStrings.IndexOf(_category);
+            Categories.SelectId(Math.Max(0, selected));
+            // Imperial Weekly Mode End
         }
 
         /// <summary>
@@ -211,11 +223,33 @@ namespace Content.Client.Cargo.UI
 
             foreach (var order in orders)
             {
-                if (order.Approved || !_protoManager.Resolve(order.Product, out var productProto))
+                // Imperial Weekly Mode Start
+                // Original cargo consoles resolved only CargoProductPrototype orders here.
+                if (order.Approved)
                     continue;
 
-                var product = _protoManager.Index<EntityPrototype>(productProto.Product);
-                var productName = productProto.Name;
+                string productName;
+                int productCost;
+                Texture? icon;
+
+                if (order.WeeklyProduct is { } weeklyProduct)
+                {
+                    productName = weeklyProduct.Name;
+                    productCost = weeklyProduct.Cost;
+                    icon = _spriteSystem.Frame0(weeklyProduct.Icon);
+                }
+                else
+                {
+                    if (!_protoManager.Resolve<CargoProductPrototype>(order.Product, out var productProto))
+                        continue;
+
+                    var product = _protoManager.Index<EntityPrototype>(productProto.Product);
+                    productName = productProto.Name;
+                    productCost = productProto.Cost;
+                    icon = _spriteSystem.Frame0(product);
+                }
+                // Imperial Weekly Mode End
+
                 var requester = !string.IsNullOrEmpty(order.Requester) ?
                     order.Requester : Loc.GetString("cargo-console-menu-order-row-alerts-requester-unknown");
                 var account = _protoManager.Index(order.Account);
@@ -230,7 +264,7 @@ namespace Content.Client.Cargo.UI
                             "cargo-console-menu-order-row-title",
                             ("productName", productName),
                             ("orderAmount", order.OrderQuantity),
-                            ("orderPrice", productProto.Cost)),
+                            ("orderPrice", productCost)),
                     },
 
                     Stride =
@@ -242,7 +276,7 @@ namespace Content.Client.Cargo.UI
                         },
                     },
 
-                    Icon = { Texture = _spriteSystem.Frame0(product) },
+                    Icon = { Texture = icon },
 
                     ProductName =
                     {

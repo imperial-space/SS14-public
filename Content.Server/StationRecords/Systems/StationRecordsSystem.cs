@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Access.Systems;
+using Content.Server.WeeklyMode.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Forensics.Components;
 using Content.Shared.GameTicking;
@@ -40,6 +41,8 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IdCardSystem _idCard = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    // Imperial Weekly Mode
+    [Dependency] private readonly WeeklyModeSystem _weeklyMode = default!;
 
     public override void Initialize()
     {
@@ -155,7 +158,8 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         {
             Name = name,
             Age = age,
-            JobTitle = jobPrototype.LocalizedName,
+            // Imperial Weekly Mode
+            JobTitle = _weeklyMode.GetJobDisplayName(jobPrototype.ID),
             JobIcon = jobPrototype.Icon,
             JobPrototype = jobId,
             Species = species,

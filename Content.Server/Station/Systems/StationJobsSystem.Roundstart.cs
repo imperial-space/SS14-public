@@ -85,6 +85,11 @@ public sealed partial class StationJobsSystem
             }
         }
 
+        // Imperial Weekly Mode
+        _weeklyMode.ApplyForcedRoundStartAssignments(profiles, stations, stationJobs, assigned);
+        if (profiles.Count == 0)
+            return assigned;
+
 
         // We reuse this collection. It tracks what jobs we're currently trying to select players for.
         var currentlySelectingJobs = new Dictionary<EntityUid, Dictionary<ProtoId<JobPrototype>, int?>>(stations.Count);
