@@ -1,6 +1,7 @@
 using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.MiningWeapons.Smasher.Components;
+using Robust.Shared.Input;
 
 namespace Content.Server.Imperial.MiningWeapons.Smasher;
 
@@ -22,6 +23,10 @@ public sealed partial class SmasherSystem
             _movementSpeed.RefreshMovementSpeedModifiers(user);
         }
 
+        var decay = EnsureComp<ShieldDecayComponent>(user);
+        decay.DecayEndTime = _timing.CurTime + smasher.TimeDecay;
+
+        smasher.StateUseKey = BoundKeyState.Up;
         _audio.PlayPvs(smasher.DeactivateSound, user);
         SetCooldown(smasherUid, smasher, smasher.TimeCooldownDownedDecay);
     }
@@ -31,27 +36,25 @@ public sealed partial class SmasherSystem
         if (!TryComp<SmasherComponent>(shield.SmasherUid, out var smasher))
             return;
 
-        if (shield.EffectDecay != null)
-        {
-            ShowShieldEffect(user, smasher.EffectDecay, false);
-        }
+        HideShieldEffect(user);
 
+        smasher.StateUseKey = BoundKeyState.Up;
         _audio.PlayPvs(smasher.DeactivateSound, user);
         RemComp<ShieldActiveComponent>(user);
     }
 
     private bool CheckDamageInterruption(EntityUid user, SmasherComponent smasher)
     {
-        if (!TryComp<DamageableComponent>(user, out var damageComp))
+        if (!HasComp<DamageableComponent>(user))
             return false;
 
         if (!smasher.LastTotalDamage.TryGetValue(user, out var lastDamage))
         {
-            smasher.LastTotalDamage[user] = damageComp.TotalDamage;
+            smasher.LastTotalDamage[user] = _damageableSystem.GetTotalDamage(user);
             return false;
         }
 
-        var damageReceived = damageComp.TotalDamage - lastDamage;
+        var damageReceived = _damageableSystem.GetTotalDamage(user) - lastDamage;
 
         if (damageReceived > FixedPoint2.New(1.0))
         {
@@ -70,7 +73,7 @@ public sealed partial class SmasherSystem
             return true;
         }
 
-        smasher.LastTotalDamage[user] = damageComp.TotalDamage;
+        smasher.LastTotalDamage[user] = _damageableSystem.GetTotalDamage(user);
         return false;
     }
     #endregion

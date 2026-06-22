@@ -6,8 +6,6 @@ namespace Content.Client.Paper.UI;
 
 public sealed class PaperVisualizerSystem : VisualizerSystem<PaperVisualsComponent>
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-
     protected override void OnAppearanceChange(EntityUid uid, PaperVisualsComponent component, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)
@@ -18,6 +16,14 @@ public sealed class PaperVisualizerSystem : VisualizerSystem<PaperVisualsCompone
 
         if (AppearanceSystem.TryGetData<string>(uid, PaperVisuals.Stamp, out var stampState, args.Component))
         {
+            // imperial space: fix bug. start
+            if (PaperVisualsComponent.BlackListRsi.Contains(args.Sprite.BaseRSI?.Path.ToString()!))
+            {
+                SpriteSystem.LayerSetVisible((uid, args.Sprite), PaperVisualLayers.Stamp, false);
+                return;
+            }
+            // imperial space: fix bug. end
+
             if (stampState != string.Empty)
             {
                 SpriteSystem.LayerSetRsiState((uid, args.Sprite), PaperVisualLayers.Stamp, stampState);

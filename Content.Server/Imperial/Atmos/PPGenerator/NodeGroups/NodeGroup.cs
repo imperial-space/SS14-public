@@ -4,6 +4,7 @@ using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.NodeContainer;
 using Content.Shared.NodeContainer.NodeGroups;
+using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
 
@@ -21,6 +22,7 @@ public sealed class PPGNodeGroup : BaseNodeGroup
     [ViewVariables(VVAccess.ReadWrite)]
     public PPGNodeCirculator? CirculatorB { get; set; }
     private IEntityManager? _entityManager;
+
     public override void Initialize(Node sourceNode, IEntityManager entMan)
     {
         base.Initialize(sourceNode, entMan);
@@ -84,18 +86,19 @@ public sealed class PPGNodeGroup : BaseNodeGroup
 public sealed partial class PPGNodeGenerator : Node
 {
     public override IEnumerable<Node> GetReachableNodes(
-        TransformComponent xform,
+        Entity<TransformComponent> xform,
         EntityQuery<NodeContainerComponent> nodeQuery,
         EntityQuery<TransformComponent> xformQuery,
-        MapGridComponent? grid,
+        Entity<MapGridComponent>? grid,
         IEntityManager entMan)
     {
-        if (!xform.Anchored || grid == null)
+        if (!xform.Comp.Anchored || grid == null)
             yield break;
 
-        var gridIndex = grid.TileIndicesFor(xform.Coordinates);
+        var mapSystm = entMan.System<MapSystem>();
+        var gridIndex = mapSystm.TileIndicesFor(grid.Value, xform.Comp.Coordinates);
 
-        var dir = xform.LocalRotation.GetDir();
+        var dir = xform.Comp.LocalRotation.GetDir();
         var a = FindCirculator(dir);
         var b = FindCirculator(dir.GetOpposite());
 
@@ -131,18 +134,19 @@ public sealed partial class PPGNodeGenerator : Node
 public sealed partial class PPGNodeCirculator : Node
 {
     public override IEnumerable<Node> GetReachableNodes(
-        TransformComponent xform,
+        Entity<TransformComponent> xform,
         EntityQuery<NodeContainerComponent> nodeQuery,
         EntityQuery<TransformComponent> xformQuery,
-        MapGridComponent? grid,
+        Entity<MapGridComponent>? grid,
         IEntityManager entMan)
     {
-        if (!xform.Anchored || grid == null)
+        if (!xform.Comp.Anchored || grid == null)
             yield break;
 
-        var gridIndex = grid.TileIndicesFor(xform.Coordinates);
+        var mapSystm = entMan.System<MapSystem>();
+        var gridIndex = mapSystm.TileIndicesFor(grid.Value, xform.Comp.Coordinates);
 
-        var dir = xform.LocalRotation.GetDir();
+        var dir = xform.Comp.LocalRotation.GetDir();
         var searchDir = dir.GetClockwise90Degrees();
         var targetIdx = gridIndex.Offset(searchDir);
 

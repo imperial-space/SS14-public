@@ -8,9 +8,15 @@
     - Document
     - Paper
   - type: Appearance
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+  - type: ExtinguishableSetCollisionWake
   - type: Flammable
     fireSpread: true
     alwaysCombustible: true
+    canExtinguish: true
     damage:
       types:
         Heat: 1
@@ -83,6 +89,7 @@
         type: PaperBoundUserInterface
   - type: FaxableObject
   - type: PaperVisuals
+  - type: StationAiWhitelist
 
 - type: entity
   name: paper scrap
@@ -299,6 +306,7 @@
     - Trash
     - Paper
   - type: PaperVisuals
+    headerImagePath: "/Textures/Imperial/ImprovedSalvage/paper_heading_miner_assotiation.png" # IMPERIAL IMPROVED SALVAGE
     backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
     contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
     backgroundModulate: "#f7e574"
@@ -461,3 +469,4 @@
       - !type:EmptyAllContainersBehaviour
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: StationAiWhitelist

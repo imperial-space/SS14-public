@@ -35,6 +35,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using Content.Shared.Zombies; // Imperial Space edit
 using PullableComponent = Content.Shared.Movement.Pulling.Components.PullableComponent;
 
 namespace Content.Shared.Cuffs
@@ -318,6 +319,14 @@ namespace Content.Shared.Cuffs
                 return;
             }
 
+            // Imperial Space edit start
+            if (HasComp<IncurableZombieComponent>(args.User))
+            {
+                _popup.PopupClient(Loc.GetString("handcuff-component-zombie-entity-error"), args.User, args.User);
+                return;
+            }
+            // Imperial Space edit end
+
             var result = TryCuffing(args.User, target, uid, component);
             args.Handled = result;
         }
@@ -326,6 +335,14 @@ namespace Content.Shared.Cuffs
         {
             if (!args.HitEntities.Any())
                 return;
+
+            // Imperial Space edit start
+            if (HasComp<IncurableZombieComponent>(args.User))
+            {
+                _popup.PopupClient(Loc.GetString("handcuff-component-zombie-entity-error"), args.User, args.User);
+                return;
+            }
+            // Imperial Space edit end
 
             TryCuffing(args.User, args.HitEntities.First(), uid, component);
             args.Handled = true;
@@ -795,14 +812,14 @@ namespace Content.Shared.Cuffs
         private void OnEquipAttempt(EntityUid uid, CuffableComponent component, IsEquippingAttemptEvent args)
         {
             // is this a self-equip, or are they being stripped?
-            if (args.Equipee == uid)
+            if (args.User == uid)
                 CheckAct(uid, component, args);
         }
 
         private void OnUnequipAttempt(EntityUid uid, CuffableComponent component, IsUnequippingAttemptEvent args)
         {
             // is this a self-equip, or are they being stripped?
-            if (args.Unequipee == uid)
+            if (args.User == uid)
                 CheckAct(uid, component, args);
         }
 

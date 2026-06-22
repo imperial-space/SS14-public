@@ -4,9 +4,11 @@ using Content.Server.Imperial.Power.Components;
 using Content.Server.Imperial.Power.EntitySystems.Events;
 using Content.Server.Lightning;
 using Content.Server.NukeOps;
+using Content.Server.Radiation.Systems;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared.Chat;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Imperial.Power.Components;
 using Content.Shared.NukeOps;
 using Content.Shared.Radiation.Components;
 using Robust.Server.GameObjects;
@@ -26,6 +28,7 @@ public sealed class SupermatterEventSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = null!;
     [Dependency] private readonly RadioSystem _radio = null!;
     [Dependency] private readonly TransformSystem _transformSystem = null!;
+    [Dependency] private readonly RadiationSystem _radiationSystem = null!;
 
     // Кеш ближайших консолей для кристаллов
     private readonly Dictionary<EntityUid, (EntityUid console, float time)> _nearestConsoleCache = new();
@@ -63,12 +66,14 @@ public sealed class SupermatterEventSystem : EntitySystem
 
     private void OnTouched(Entity<SupermatterEventComponent> entity, ref SupermatterTouchedEvent args)
     {
+        if (args.Cancelled)
+            return;
         TriggerEventNow(entity);
     }
 
     private void TriggerEventNow(EntityUid uid)
     {
-        if (!EntityManager.TryGetComponent<SupermatterEventComponent>(uid, out var comp))
+        if (!TryComp<SupermatterEventComponent>(uid, out var comp))
             return;
         comp.EventEndTime = TimeSpan.Zero;
         comp.NextEventTimer = TimeSpan.Zero;
@@ -101,7 +106,7 @@ public sealed class SupermatterEventSystem : EntitySystem
             return;
         }
 
-        UpdateNextEventTimer(entity.Comp1, currentTime);
+        UpdateNextEventTimer(entity.Owner, entity.Comp1, currentTime);
 
         TryStartNewEvent(entity);
         ProcessActiveEvent(entity, currentTime);
@@ -130,12 +135,15 @@ public sealed class SupermatterEventSystem : EntitySystem
         comp.LastEventEndTimeUpdate = currentTime;
     }
 
-    private static void UpdateNextEventTimer(SupermatterEventComponent comp, TimeSpan currentTime)
+    private void UpdateNextEventTimer(EntityUid uid, SupermatterEventComponent comp, TimeSpan currentTime)
     {
         if (comp.NextEventTimer <= TimeSpan.Zero)
             return;
 
         var elapsed = currentTime - comp.LastNextEventTimerUpdate;
+        if (TryComp<SupermatterGasComponent>(uid, out var gasComp) && gasComp.RuntimeEventSpeedMultiplier > 1f)
+            elapsed = TimeSpan.FromTicks((long) (elapsed.Ticks * gasComp.RuntimeEventSpeedMultiplier));
+
         comp.NextEventTimer -= elapsed;
         if (comp.NextEventTimer < TimeSpan.Zero)
             comp.NextEventTimer = TimeSpan.Zero;
@@ -158,10 +166,9 @@ public sealed class SupermatterEventSystem : EntitySystem
             || comp.IsWarOps)
             return;
 
-        if (comp.CurrentEvent == SupermatterEventComponent.SupermatterEventType.Radiation
-            && TryComp<RadiationSourceComponent>(entity.Owner, out var rad))
+        if (comp.CurrentEvent == SupermatterEventComponent.SupermatterEventType.Radiation)
         {
-            rad.Intensity = comp.DefaultRadiationIntensity;
+            _radiationSystem.SetIntensity(entity.Owner, comp.DefaultRadiationIntensity);
         }
 
         var randomEvtIndex = _random.Next(0, comp.AllowedEventTypes.Count);
@@ -229,7 +236,7 @@ public sealed class SupermatterEventSystem : EntitySystem
         var crystalPos = mapCoordinates.Position;
         var mapId = mapCoordinates.MapId;
 
-        if (!EntityManager.TryGetComponent<SupermatterEventComponent>(crystal, out var eventComp))
+        if (!TryComp<SupermatterEventComponent>(crystal, out var eventComp))
             return;
 
         if (_nearestConsoleCache.TryGetValue(crystal, out var cached) && TimeSpan.FromSeconds(timeNow - cached.time) < eventComp.ConsoleCacheLifetime)
@@ -239,7 +246,7 @@ public sealed class SupermatterEventSystem : EntitySystem
         else
         {
             var minDist = float.MaxValue;
-            var enumerator = EntityQueryEnumerator<SupermatterMonitorConsoleComponent, TransformComponent>();
+            var enumerator = EntityQueryEnumerator<SupermatterConsoleComponent, TransformComponent>();
             while (enumerator.MoveNext(out var consoleUid, out _, out var transformComp))
             {
                 if (transformComp.MapID != mapId)
@@ -266,17 +273,12 @@ public sealed class SupermatterEventSystem : EntitySystem
 
     public void SetRadiation(EntityUid uid, float intensity)
     {
-        if (EntityManager.TryGetComponent<RadiationSourceComponent>(uid, out var radComponent))
-            radComponent.Intensity = intensity;
-        else
-        {
-            var newRad = EntityManager.EnsureComponent<RadiationSourceComponent>(uid);
-            newRad.Intensity = intensity;
-        }
+        EnsureComp<RadiationSourceComponent>(uid);
+        _radiationSystem.SetIntensity(uid, intensity);
     }
 
     public bool TryGetComponent<T>(EntityUid uid, out T? component) where T : IComponent
     {
-        return EntityManager.TryGetComponent(uid, out component);
+        return TryComp(uid, out component);
     }
 }

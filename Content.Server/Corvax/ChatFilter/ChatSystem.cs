@@ -5,6 +5,7 @@ namespace Content.Server.Chat.Systems;
 
 public sealed partial class ChatSystem
 {
+    private static readonly Regex ReplaceRegex = new("\\b(\\w+)\\b");
     private static readonly Dictionary<string, string> SlangReplace = new()
     {
         // Game
@@ -222,20 +223,58 @@ public sealed partial class ChatSystem
         { "скуф", "старик" },
         { "щовел", "щавель" },
         { "щовель", "щавель" },
-        { "кринж", "стыд" }
+        { "кринж", "стыд" },
+        { "аок", "а, хорошо" },
+        { "сикссевен", "я идиот" },
+        { "сиксевен", "я идиот" },
+        { "сыксевен", "я идиот" },
+        { "сиксэвен", "я идиот" },
+        { "сиксэвэн", "я идиот" },
+        { "сыксэвен", "я идиот" },
+        { "сыксэвэн", "я идиот" },
+        { "сыксевэн", "я идиот" },
+        { "67", "я идиот" },
+        { "6767", "я идиот" },
+        { "676767", "я идиот" },
+        { "покойо", "?" },
+        { "пакойо", "?" },
+        { "друн", "друг" },
+        { "жинка", "жена" },
+        { "жынка", "жена" },
+        { "шуешь", "шутишь" },
+        { "шуеш", "шутишь" },
+        { "бурмалда", "ерунда" },
+        { "газан", "газон" },
+        { "воздухан", "лох" }
     };
+
+    private static readonly (Regex Pattern, string Replacement)[] SlangPhraseReplace =
+    [
+        (new(@"\bсикс севен\b", RegexOptions.IgnoreCase | RegexOptions.Compiled), "я идиот"),
+        (new(@"\bсыкс севен\b", RegexOptions.IgnoreCase | RegexOptions.Compiled), "я идиот"),
+        (new(@"\bсикс сэвен\b", RegexOptions.IgnoreCase | RegexOptions.Compiled), "я идиот"),
+        (new(@"\bсикс сэвэн\b", RegexOptions.IgnoreCase | RegexOptions.Compiled), "я идиот"),
+        (new(@"\bсикс севэн\b", RegexOptions.IgnoreCase | RegexOptions.Compiled), "я идиот"),
+        (new(@"\bсыкс сэвен\b", RegexOptions.IgnoreCase | RegexOptions.Compiled), "я идиот"),
+        (new(@"\bсыкс сэвэн\b", RegexOptions.IgnoreCase | RegexOptions.Compiled), "я идиот"),
+        (new(@"\bсыкс севэн\b", RegexOptions.IgnoreCase | RegexOptions.Compiled), "я идиот"),
+    ];
 
     private string ReplaceWords(string message)
     {
         if (string.IsNullOrEmpty(message))
             return message;
 
-        return Regex.Replace(message, "\\b(\\w+)\\b", match =>
+        foreach (var (pattern, replacement) in SlangPhraseReplace)
+            message = pattern.Replace(message, replacement);
+
+        return ReplaceRegex.Replace(message, match =>
         {
-            bool isUpperCase = match.Value.All(Char.IsUpper);
+            var isUpperCase = match.Value.All(Char.IsUpper);
 
             if (SlangReplace.TryGetValue(match.Value.ToLower(), out var replacement))
                 return isUpperCase ? replacement.ToUpper() : replacement;
+
             return match.Value;
         });
     }

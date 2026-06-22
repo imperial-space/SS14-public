@@ -5,6 +5,7 @@
   - MobDamageable
   - MobAtmosExposed
   - MobCombat
+  - BaseMobAnimal
   abstract: true
   components:
   - type: Reactive
@@ -12,8 +13,6 @@
       Flammable: [Touch]
       Extinguish: [Touch]
       Acidic: [Touch, Ingestion]
-  - type: Body
-    prototype: Animal
   - type: Climbing
   - type: NameIdentifier
     group: GenericNumber
@@ -21,7 +20,6 @@
     allowed:
     - Electrocution
     - TemporaryBlindness
-    - RadiationProtection
     - Adrenaline
   - type: StandingState
   - type: Tag
@@ -34,6 +32,15 @@
   name: goliath
   description: A massive beast that uses long tentacles to ensnare its prey, threatening them is not advised under any conditions.
   components:
+    ### Imperial genetics
+  - type: ContainerContainer
+    containers:
+      gene_entity_slot: !type:Container
+  - type: ContainerFill
+    containers:
+      gene_entity_slot:
+      - GeneSampleGoliath
+  ### Imperial genetics end
   - type: Sprite
     sprite: Mobs/Aliens/Asteroid/goliath.rsi
     layers:
@@ -49,8 +56,10 @@
     baseWalkSpeed : 2.00
     baseSprintSpeed : 2.00
   - type: Bloodstream
-    bloodMaxVolume: 350
-    chemicalMaxVolume: 0
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 350
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -404,8 +413,10 @@
     capacity: 1
     count: 1
   - type: Bloodstream
-    bloodMaxVolume: 200
-    chemicalMaxVolume: 0
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 200
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -436,6 +447,13 @@
   name: Phantomor
   description: A dangerous predator that uses teleportation to attack from the back.
   components:
+  - type: ContainerContainer
+    containers:
+      gene_entity_slot: !type:Container
+  - type: ContainerFill
+    containers:
+      gene_entity_slot:
+      - GeneSamplePhanthomor
   - type: Sprite
     sprite: Imperial/Stellark/phantomor.rsi
     layers:

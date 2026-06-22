@@ -36,8 +36,8 @@
     needsHands: false
   - type: CombatMode
   - type: Physics
+    bodyType: Kinematic # Admin ghosts should ignore the laws of physics.
     ignorePaused: true
-    bodyType: Kinematic
   - type: Access
     groups:
     - AllAccess
@@ -103,6 +103,10 @@
   - type: IgnoreUIRange
   - type: ShowAntagIcons
   - type: ShowContrabandDetails
+  - type: ShowHealthBars
+  - type: ShowHealthIcons
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
   - type: Inventory
     templateId: aghost
   - type: Loadout

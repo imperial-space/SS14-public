@@ -80,6 +80,10 @@ public abstract partial class SharedHandsSystem
         if (handId == null)
             return false;
 
+        // don't try to pick up the item if it's being deleted anyways
+        if (TerminatingOrDeleted(entity) || EntityManager.IsQueuedForDeletion(entity))
+            return false;
+
         if (!Resolve(entity, ref item, false))
             return false;
 
@@ -194,9 +198,6 @@ public abstract partial class SharedHandsSystem
             return false;
 
         if (checkActionBlocker && !_actionBlocker.CanPickup(uid, entity, showPopup))
-            return false;
-
-        if (!CheckWhitelists((uid, handsComp), handId, entity))
             return false;
 
         if (!CheckWhitelists((uid, handsComp), handId, entity))

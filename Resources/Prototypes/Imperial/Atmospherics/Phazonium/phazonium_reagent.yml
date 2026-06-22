@@ -20,29 +20,30 @@
       - !type:Flammable
         multiplier: 0.8
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
           types:
             Radiation: 12
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         ignoreResistances: true
         damage:
-           groups:
-            Airloss: 1
-            Brute: 2
-            Burn: 1.5
-            Toxin: 2
-      - !type:GenericStatusEffect
+          types:
+            Slash: 1
+            Blunt: 1
+            Heat: 1.5
+            Asphyxiation: 1
+            Poison: 2
+            Piercing: 1
+      - !type:ModifyStatusEffect
         conditions:
         - !type:ReagentCondition
           reagent: Phazonium
           min: 1
-        key: SeeingRainbows
-        component: SeeingRainbows
+        effectProto: StatusEffectSeeingRainbow
         type: Add
         time: 500
         refresh: true
