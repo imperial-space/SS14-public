@@ -89,7 +89,6 @@ public sealed class WinterPlanetCommand : LocalizedEntityCommands
         catch (Exception ex)
         {
             shell.WriteError($"Ошибка при создании зимней планеты: {ex.Message}");
-            Logger.Error($"WinterPlanetCommand error: {ex}");
         }
     }
 
