@@ -203,6 +203,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             return;
 
         _cardSystem.TryChangeFullName(cardId, characterName, card);
+        // Imperial Weekly Mode: Original code removed:
+        // _cardSystem.TryChangeJobTitle(cardId, jobPrototype.LocalizedName, card);
         // Imperial Weekly Mode
         _cardSystem.TryChangeJobTitle(cardId, _weeklyMode.GetJobDisplayName(jobPrototype.ID), card);
 

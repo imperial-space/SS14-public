@@ -53,18 +53,20 @@ public interface IGameMapManager
     /// <returns>success or failure</returns>
     void SelectMap(string gameMap);
 
-    // Imperial Weekly Mode
+    // Imperial Weekly Mode Start
     /// <summary>
     /// Selects a map prototype while replacing its content map path for this selection only.
     /// </summary>
     void SelectMapPath(string baseMapPrototype, ResPath mapPath);
+    // Imperial Weekly Mode End
 
-    // Imperial Weekly Mode
+    // Imperial Weekly Mode Start
     /// <summary>
     /// Selects a map prototype, replacing its map path with a saved user-data map if it exists.
     /// Falls back to the base map prototype if the saved map path is missing.
     /// </summary>
     void SelectPersistentMap(string baseMapPrototype, ResPath mapPath);
+    // Imperial Weekly Mode End
 
     /// <summary>
     /// Selects a random map eligible map

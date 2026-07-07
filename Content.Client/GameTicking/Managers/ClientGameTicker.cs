@@ -110,23 +110,25 @@ namespace Content.Client.GameTicking.Managers
                 _stationNames[weh.Key] = weh.Value;
             }
 
-            // Imperial Weekly Mode
+            // Imperial Weekly Mode Start
             _jobNameOverrides.Clear();
             foreach (var (jobId, alias) in message.JobNameOverrides)
             {
                 _jobNameOverrides[jobId] = alias;
             }
+            // Imperial Weekly Mode End
 
             LobbyJobsAvailableUpdated?.Invoke(JobsAvailable);
         }
 
-        // Imperial Weekly Mode
+        // Imperial Weekly Mode Start
         public string GetJobDisplayName(JobPrototype job)
         {
             return _jobNameOverrides.TryGetValue(job.ID, out var alias) ? alias : job.LocalizedName;
         }
+        // Imperial Weekly Mode End
 
-        // Imperial Weekly Mode
+        // Imperial Weekly Mode Start
         public string GetJobDisplayName(ProtoId<JobPrototype> jobId, IPrototypeManager prototypeManager)
         {
             if (_jobNameOverrides.TryGetValue(jobId, out var alias))
@@ -136,6 +138,7 @@ namespace Content.Client.GameTicking.Managers
                 ? job.LocalizedName
                 : jobId.Id;
         }
+        // Imperial Weekly Mode End
 
         private void JoinLobby(TickerJoinLobbyEvent message)
         {

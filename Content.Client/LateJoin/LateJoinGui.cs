@@ -350,6 +350,8 @@ namespace Content.Client.LateJoin
     {
         public Label JobLabel { get; }
         public string JobId { get; }
+        // Imperial Weekly Mode: Original code removed:
+        // public string JobLocalisedName { get; }
         // Imperial Weekly Mode
         public string JobLocalisedName { get; private set; }
         // Imperial Weekly Mode
@@ -367,7 +369,10 @@ namespace Content.Client.LateJoin
             _initialised = true;
         }
 
-        // Imperial Weekly Mode
+        // Imperial Weekly Mode: Original code removed:
+        // public void RefreshLabel(int? amount)
+        // if (Amount == amount && _initialised)
+        // Imperial Weekly Mode Start
         public void RefreshLabel(int? amount, string? jobLocalisedName = null)
         {
             jobLocalisedName ??= JobLocalisedName;
@@ -384,5 +389,6 @@ namespace Content.Client.LateJoin
                 Loc.GetString("late-join-gui-job-slot-capped", ("jobName", JobLocalisedName), ("amount", Amount)) :
                 Loc.GetString("late-join-gui-job-slot-uncapped", ("jobName", JobLocalisedName));
         }
+        // Imperial Weekly Mode End
     }
 }

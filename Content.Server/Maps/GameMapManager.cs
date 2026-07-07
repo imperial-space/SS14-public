@@ -156,7 +156,7 @@ public sealed class GameMapManager : IGameMapManager
         _selectedMap = map;
     }
 
-    // Imperial Weekly Mode
+    // Imperial Weekly Mode Start
     public void SelectMapPath(string baseMapPrototype, ResPath mapPath)
     {
         if (!TryLookupMap(baseMapPrototype, out var map))
@@ -168,8 +168,9 @@ public sealed class GameMapManager : IGameMapManager
         _selectedMap = map.Persistence(mapPath);
         _log.Info($"Using map prototype {baseMapPrototype} with weekly map path {mapPath}");
     }
+    // Imperial Weekly Mode End
 
-    // Imperial Weekly Mode
+    // Imperial Weekly Mode Start
     public void SelectPersistentMap(string baseMapPrototype, ResPath mapPath)
     {
         if (!TryLookupMap(baseMapPrototype, out var map))
@@ -185,6 +186,7 @@ public sealed class GameMapManager : IGameMapManager
         _selectedMap = map;
         _log.Warning($"Using persistence start map {baseMapPrototype} as {mapPath} doesn't exist");
     }
+    // Imperial Weekly Mode End
 
     public void SelectMapRandom()
     {

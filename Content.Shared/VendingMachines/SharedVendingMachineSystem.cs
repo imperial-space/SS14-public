@@ -150,13 +150,14 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
 
     protected virtual void OnMapInit(EntityUid uid, VendingMachineComponent component, MapInitEvent args)
     {
-        // Imperial Weekly Mode
+        // Imperial Weekly Mode Start
         if (component.SuppressInitialRestock)
         {
             component.SuppressInitialRestock = false;
             Dirty(uid, component);
             return;
         }
+        // Imperial Weekly Mode End
 
         RestockInventoryFromPrototype(uid, component, component.InitialStockQuality);
     }

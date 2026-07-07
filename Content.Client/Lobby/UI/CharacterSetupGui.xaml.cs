@@ -103,9 +103,10 @@ namespace Content.Client.Lobby.UI
                     character,
                     // Imperial Weekly Mode: Original code removed:
                     // slot == selectedSlot);
+                    // Imperial Weekly Mode Start
                     slot == selectedSlot,
-                    // Imperial Weekly Mode
                     jobId => gameTicker.GetJobDisplayName(jobId, _protomanager));
+                    // Imperial Weekly Mode End
 
                 Characters.AddChild(characterPickerButton);
 

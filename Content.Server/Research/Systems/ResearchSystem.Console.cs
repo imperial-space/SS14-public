@@ -33,7 +33,10 @@ public sealed partial class ResearchSystem
         if (!this.IsPowered(uid, EntityManager))
             return;
 
-        // Imperial Weekly Mode
+        // Imperial Weekly Mode: Original code removed:
+        // if (!PrototypeManager.TryIndex<TechnologyPrototype>(args.Id, out var technologyPrototype))
+        //     return;
+        // Imperial Weekly Mode Start
         TechnologyPrototype? technologyPrototype = null;
         WeeklyTechnologyData? weeklyTechnology = null;
         if (!PrototypeManager.TryIndex<TechnologyPrototype>(args.Id, out technologyPrototype))
@@ -47,6 +50,7 @@ public sealed partial class ResearchSystem
 
             weeklyTechnology = weeklyTechnologyData;
         }
+        // Imperial Weekly Mode End
 
         if (TryComp<AccessReaderComponent>(uid, out var access) && !_accessReader.IsAllowed(act, uid, access))
         {
@@ -62,14 +66,19 @@ public sealed partial class ResearchSystem
             var getIdentityEvent = new TryGetIdentityShortInfoEvent(uid, act);
             RaiseLocalEvent(getIdentityEvent);
 
-            // Imperial Weekly Mode
+            // Imperial Weekly Mode Start
             var technologyName = technologyPrototype != null
                 ? Loc.GetString(technologyPrototype.Name)
                 : weeklyTechnology?.Name ?? args.Id;
             var technologyCost = technologyPrototype?.Cost ?? weeklyTechnology?.Cost ?? 0;
+            // Imperial Weekly Mode End
             var message = Loc.GetString(
                 "research-console-unlock-technology-radio-broadcast",
+                // Imperial Weekly Mode: Original code removed:
+                // ("technology", Loc.GetString(technologyPrototype.Name)),
                 ("technology", technologyName),
+                // Imperial Weekly Mode: Original code removed:
+                // ("amount", technologyPrototype.Cost),
                 ("amount", technologyCost),
                 ("approver", getIdentityEvent.Title ?? string.Empty)
             );

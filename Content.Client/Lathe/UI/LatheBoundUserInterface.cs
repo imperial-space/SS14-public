@@ -60,6 +60,9 @@ namespace Content.Client.Lathe.UI
                 _menu.PopulateRecipes();
                 _menu.UpdateCategories();
                 _menu.PopulateQueueList(msg.Queue);
+                // Imperial Weekly Mode: Original code removed:
+                // _menu.SetQueueInfo(msg.CurrentlyProducing);
+                // Imperial Weekly Mode
                 _menu.SetQueueInfo(msg.CurrentlyProducing, msg.CurrentlyProducingIsWeekly);
                 _menu.SetUseCardId(msg.UseCardId);
             }

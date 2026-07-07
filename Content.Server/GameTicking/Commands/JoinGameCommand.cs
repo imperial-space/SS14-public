@@ -76,9 +76,12 @@ namespace Content.Server.GameTicking.Commands
                 var jobPrototype = _prototypeManager.Index<JobPrototype>(id);
                 if(stationJobs.TryGetJobSlot(station, jobPrototype, out var slots) == false || slots == 0)
                 {
-                    // Imperial Weekly Mode
+                    // Imperial Weekly Mode: Original code removed:
+                    // shell.WriteLine($"{jobPrototype.LocalizedName} has no available slots.");
+                    // Imperial Weekly Mode Start
                     var weeklyMode = _entManager.System<WeeklyModeSystem>();
                     shell.WriteLine($"{weeklyMode.GetJobDisplayName(jobPrototype.ID)} has no available slots.");
+                    // Imperial Weekly Mode End
                     return;
                 }
 

@@ -158,6 +158,8 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         {
             Name = name,
             Age = age,
+            // Imperial Weekly Mode: Original code removed:
+            // JobTitle = jobPrototype.LocalizedName,
             // Imperial Weekly Mode
             JobTitle = _weeklyMode.GetJobDisplayName(jobPrototype.ID),
             JobIcon = jobPrototype.Icon,

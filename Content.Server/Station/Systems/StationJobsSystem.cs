@@ -480,6 +480,8 @@ public sealed partial class StationJobsSystem : EntitySystem
 
     private bool _availableJobsDirty;
 
+    // Imperial Weekly Mode: Original code removed:
+    // private TickerJobsAvailableEvent _cachedAvailableJobs = new(new(), new());
     // Imperial Weekly Mode
     private TickerJobsAvailableEvent _cachedAvailableJobs = new(new(), new(), new());
 
@@ -491,9 +493,13 @@ public sealed partial class StationJobsSystem : EntitySystem
     private TickerJobsAvailableEvent GenerateJobsAvailableEvent()
     {
         // If late join is disallowed, return no available jobs.
-        // Imperial Weekly Mode
+        // Imperial Weekly Mode: Original code removed:
+        // if (_gameTicker.DisallowLateJoin)
+        //     return new TickerJobsAvailableEvent(new(), new());
+        // Imperial Weekly Mode Start
         if (_gameTicker.DisallowLateJoin)
             return new TickerJobsAvailableEvent(new(), new(), _weeklyMode.GetActiveRoleAliases());
+        // Imperial Weekly Mode End
 
         var jobs = new Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>>();
         var stationNames = new Dictionary<NetEntity, string>();
@@ -507,6 +513,8 @@ public sealed partial class StationJobsSystem : EntitySystem
             jobs.Add(netStation, list);
             stationNames.Add(netStation, Name(station));
         }
+        // Imperial Weekly Mode: Original code removed:
+        // return new TickerJobsAvailableEvent(stationNames, jobs);
         // Imperial Weekly Mode
         return new TickerJobsAvailableEvent(stationNames, jobs, _weeklyMode.GetActiveRoleAliases());
     }

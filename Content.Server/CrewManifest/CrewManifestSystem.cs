@@ -233,9 +233,12 @@ public sealed class CrewManifestSystem : EntitySystem
         {
             var record = recordObject.Item2;
             _prototypeManager.TryIndex(record.JobPrototype, out JobPrototype? job);
-            // Imperial Weekly Mode
+            // Imperial Weekly Mode: Original code removed:
+            // var entry = new CrewManifestEntry(record.Name, record.JobTitle, record.JobIcon, record.JobPrototype);
+            // Imperial Weekly Mode Start
             var jobTitle = job != null ? _weeklyMode.GetJobDisplayName(job.ID) : record.JobTitle;
             var entry = new CrewManifestEntry(record.Name, jobTitle, record.JobIcon, record.JobPrototype);
+            // Imperial Weekly Mode End
             entriesSort.Add((job, entry));
         }
 

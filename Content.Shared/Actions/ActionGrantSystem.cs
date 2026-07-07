@@ -44,7 +44,7 @@ public sealed class ActionGrantSystem : EntitySystem
         }
     }
 
-    // Imperial Weekly Mode
+    // Imperial Weekly Mode Start
     public int SuppressMapInitGrants(Entity<ActionGrantComponent> ent)
     {
         var suppressed = ent.Comp.Actions.Count;
@@ -55,6 +55,7 @@ public sealed class ActionGrantSystem : EntitySystem
         Dirty(ent.Owner, ent.Comp);
         return suppressed;
     }
+    // Imperial Weekly Mode End
 
     private void OnShutdown(Entity<ActionGrantComponent> ent, ref ComponentShutdown args)
     {

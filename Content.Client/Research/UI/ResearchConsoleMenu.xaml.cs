@@ -59,15 +59,16 @@ public sealed partial class ResearchConsoleMenu : FancyWindow
             return;
 
         // Imperial Weekly Mode: Original access check moved before normal panel rendering for weekly UI reuse.
+        // Imperial Weekly Mode Start
         var hasAccess = _player.LocalEntity is not { } local ||
                         !_entity.TryGetComponent<AccessReaderComponent>(Entity, out var access) ||
                         _accessReader.IsAllowed(local, Entity, access);
 
-        // Imperial Weekly Mode Start
         if (TryUpdateWeeklyPanels(state, database, hasAccess))
             return;
         // Imperial Weekly Mode End
 
+        // Imperial Weekly Mode: Original technology list refresh moved here after the weekly panel hook.
         var availableTech = _research.GetAvailableTechnologies(Entity);
         SyncTechnologyList(AvailableCardsContainer, availableTech);
 

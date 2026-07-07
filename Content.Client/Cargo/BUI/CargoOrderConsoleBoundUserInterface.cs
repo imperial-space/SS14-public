@@ -190,7 +190,7 @@ namespace Content.Client.Cargo.BUI
             return true;
         }
 
-        // Imperial Weekly Mode
+        // Imperial Weekly Mode Start
         private void RefreshSelectedProduct()
         {
             if (_menu == null ||
@@ -215,6 +215,7 @@ namespace Content.Client.Cargo.BUI
             _orderMenu.ProductName.Text = name;
             _orderMenu.PointCost.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", cost.ToString()));
         }
+        // Imperial Weekly Mode End
 
         private void RemoveOrder(CargoOrderData? order)
         {

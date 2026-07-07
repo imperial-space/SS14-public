@@ -173,7 +173,7 @@ namespace Content.Server.GameTicking
                 return;
             }
 
-            // Imperial Weekly Mode
+            // Imperial Weekly Mode Start
             if (ready && !_weeklyMode.IsWeeklyAccessAllowed(player, true))
             {
                 _playerGameStatuses[player.UserId] = PlayerGameStatus.NotReadyToPlay;
@@ -181,6 +181,7 @@ namespace Content.Server.GameTicking
                 UpdateInfoText();
                 return;
             }
+            // Imperial Weekly Mode End
 
             _playerGameStatuses[player.UserId] = ready ? PlayerGameStatus.ReadyToPlay : PlayerGameStatus.NotReadyToPlay;
             RaiseNetworkEvent(GetStatusMsg(player), player.Channel);

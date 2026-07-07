@@ -172,6 +172,9 @@ public sealed partial class LatheMenu : FancyWindow
         if (!int.TryParse(AmountLineEdit.Text, out var quantity) || quantity <= 0)
             quantity = 1;
 
+        // Imperial Weekly Mode: Original code removed:
+        // RecipeCount.Text = Loc.GetString("lathe-menu-recipe-count", ("count", recipesToShow.Count));
+        // Imperial Weekly Mode
         RecipeCount.Text = Loc.GetString("lathe-menu-recipe-count", ("count", recipesToShow.Count + weeklyRecipesToShow.Count));
 
         var sortedRecipesToShow = recipesToShow.OrderBy(_lathe.GetRecipeName);

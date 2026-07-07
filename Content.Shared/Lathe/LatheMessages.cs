@@ -10,20 +10,29 @@ public sealed class LatheUpdateState : BoundUserInterfaceState
 {
     public List<ProtoId<LatheRecipePrototype>> Recipes;
 
-    // Imperial Weekly Mode
+    // Imperial Weekly Mode Start
     public List<WeeklyLatheRecipeData> WeeklyRecipes;
+    // Imperial Weekly Mode End
 
     public LatheRecipeBatch[] Queue;
 
-    // Imperial Weekly Mode
+    // Imperial Weekly Mode: Original code removed:
+    // public ProtoId<LatheRecipePrototype>? CurrentlyProducing;
+    // Imperial Weekly Mode Start
     public string? CurrentlyProducing;
 
-    // Imperial Weekly Mode
     public bool CurrentlyProducingIsWeekly;
+    // Imperial Weekly Mode End
 
     public bool UseCardId; // Imperial PrinterDoc
 
-    // Imperial Weekly Mode
+    // Imperial Weekly Mode: Original code removed:
+    // public LatheUpdateState(
+    //     List<ProtoId<LatheRecipePrototype>> recipes,
+    //     LatheRecipeBatch[] queue,
+    //     ProtoId<LatheRecipePrototype>? currentlyProducing = null,
+    //     bool useCardId = false) // Imperial PrinterDoc
+    // Imperial Weekly Mode Start
     public LatheUpdateState(
         List<ProtoId<LatheRecipePrototype>> recipes,
         List<WeeklyLatheRecipeData> weeklyRecipes,
@@ -31,11 +40,13 @@ public sealed class LatheUpdateState : BoundUserInterfaceState
         string? currentlyProducing = null,
         bool currentlyProducingIsWeekly = false,
         bool useCardId = false) // Imperial PrinterDoc
+    // Imperial Weekly Mode End
     {
         Recipes = recipes;
         WeeklyRecipes = weeklyRecipes;
         Queue = queue;
         CurrentlyProducing = currentlyProducing;
+        // Imperial Weekly Mode
         CurrentlyProducingIsWeekly = currentlyProducingIsWeekly;
         UseCardId = useCardId;
     }

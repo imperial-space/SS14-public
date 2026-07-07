@@ -153,16 +153,17 @@ namespace Content.Server.Lathe
             {
                 if (!_proto.Resolve(id, out var proto))
                     continue;
-            foreach (var (mat, _) in proto.Materials)
-            {
-                if (!materialWhitelist.Contains(mat))
+
+                foreach (var (mat, _) in proto.Materials)
                 {
-                    materialWhitelist.Add(mat);
+                    if (!materialWhitelist.Contains(mat))
+                    {
+                        materialWhitelist.Add(mat);
+                    }
                 }
             }
-        }
 
-            // Imperial Weekly Mode
+            // Imperial Weekly Mode Start
             foreach (var recipe in _weeklyMode.GetAvailableWeeklyLatheRecipes(uid, component, true))
             {
                 foreach (var material in recipe.Materials)
@@ -172,6 +173,7 @@ namespace Content.Server.Lathe
                         materialWhitelist.Add(materialId);
                 }
             }
+            // Imperial Weekly Mode End
 
             var combined = args.Whitelist.Union(materialWhitelist).ToList();
             args.Whitelist = combined;
@@ -228,12 +230,12 @@ namespace Content.Server.Lathe
             if (component.CurrentRecipe != null || component.Queue.Count <= 0 || !this.IsPowered(uid, EntityManager))
                 return false;
 
-            // Imperial Weekly Mode
+            // Imperial Weekly Mode: Original normal production path moved into the non-weekly branch below.
+            // Imperial Weekly Mode Start
             TimeSpan time;
             var batch = component.Queue.First();
             if (batch.IsWeekly)
             {
-                // Imperial Weekly Mode Start
                 if (!TryGetWeeklyBatchData(batch, out var weeklyRecipe))
                     return false;
 
@@ -241,14 +243,18 @@ namespace Content.Server.Lathe
                 component.CurrentRecipe = weeklyRecipe.RecipeId;
                 component.CurrentRecipeIsWeekly = true;
                 SetCurrentWeeklyRecipeSnapshot(component, batch, weeklyRecipe);
-                // Imperial Weekly Mode End
             }
             else
+            // Imperial Weekly Mode End
             {
                 var recipe = _proto.Index<LatheRecipePrototype>(batch.Recipe);
 
                 time = _reagentSpeed.ApplySpeed(uid, recipe.CompleteTime) * component.TimeMultiplier;
+                // Imperial Weekly Mode: Original code removed:
+                // component.CurrentRecipe = recipe;
+                // Imperial Weekly Mode
                 component.CurrentRecipe = recipe.ID;
+                // Imperial Weekly Mode
                 component.CurrentRecipeIsWeekly = false;
 
                 var ev = new LatheStartPrintingEvent(recipe);
@@ -281,10 +287,10 @@ namespace Content.Server.Lathe
 
             if (comp.CurrentRecipe != null)
             {
-                // Imperial Weekly Mode
+                // Imperial Weekly Mode: Original production result path moved into the non-weekly branch below.
+                // Imperial Weekly Mode Start
                 if (comp.CurrentRecipeIsWeekly)
                 {
-                    // Imperial Weekly Mode Start
                     var resultPrototype = comp.CurrentWeeklyResultPrototype;
                     var resultAmount = comp.CurrentWeeklyResultAmount;
                     if (string.IsNullOrWhiteSpace(resultPrototype) &&
@@ -304,10 +310,11 @@ namespace Content.Server.Lathe
                             _stack.TryMergeToContacts(result);
                         }
                     }
-                    // Imperial Weekly Mode End
                 }
+                // Imperial Weekly Mode End
                 else
                 {
+                    // Imperial Weekly Mode: Original non-weekly production result path moved here unchanged.
                     var currentRecipe = _proto.Index<LatheRecipePrototype>(comp.CurrentRecipe);
                     if (currentRecipe.Result is { } resultProto)
                     {
@@ -341,10 +348,10 @@ namespace Content.Server.Lathe
             }
 
             comp.CurrentRecipe = null;
-            // Imperial Weekly Mode
+            // Imperial Weekly Mode Start
             comp.CurrentRecipeIsWeekly = false;
-            // Imperial Weekly Mode
             ClearCurrentWeeklyRecipeSnapshot(comp);
+            // Imperial Weekly Mode End
             prodComp.StartTime = _timing.CurTime;
 
             if (!TryStartProducing(uid, comp))
@@ -361,14 +368,18 @@ namespace Content.Server.Lathe
                 return;
 
             var producing = component.CurrentRecipe;
-            // Imperial Weekly Mode
+            // Imperial Weekly Mode Start
             var producingIsWeekly = component.CurrentRecipeIsWeekly;
             if (producing == null && component.Queue.First is { } node)
             {
                 producing = node.Value.Recipe;
                 producingIsWeekly = node.Value.IsWeekly;
             }
+            // Imperial Weekly Mode End
 
+            // Imperial Weekly Mode: Original code removed:
+            // var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue.ToArray(), producing, component.UseCardId); // Imperial
+            // Imperial Weekly Mode Start
             var state = new LatheUpdateState(
                 GetAvailableRecipes(uid, component),
                 _weeklyMode.GetAvailableWeeklyLatheRecipes(uid, component),
@@ -376,6 +387,7 @@ namespace Content.Server.Lathe
                 producing,
                 producingIsWeekly,
                 component.UseCardId); // Imperial
+            // Imperial Weekly Mode End
             _uiSys.SetUiState(uid, LatheUiKey.Key, state);
         }
 
@@ -547,13 +559,14 @@ namespace Content.Server.Lathe
         /// </summary>
         private void RefundCurrentRecipe(EntityUid uid, LatheComponent lathe)
         {
+            // Imperial Weekly Mode Start
             if (lathe.CurrentRecipe == null)
                 return;
+            // Imperial Weekly Mode End
 
-            // Imperial Weekly Mode
+            // Imperial Weekly Mode Start
             if (lathe.CurrentRecipeIsWeekly)
             {
-                // Imperial Weekly Mode Start
                 var fallbackRecipe = _weeklyMode.TryGetActiveWeeklyLatheRecipe(lathe.CurrentRecipe, out var weeklyRecipe)
                     ? weeklyRecipe
                     : (WeeklyLatheRecipeData?) null;
@@ -568,9 +581,12 @@ namespace Content.Server.Lathe
                     return;
 
                 return;
-                // Imperial Weekly Mode End
             }
+            // Imperial Weekly Mode End
 
+            // Imperial Weekly Mode: Original code removed:
+            // _proto.Resolve(lathe.CurrentRecipe, out var recipe);
+            // Imperial Weekly Mode
             _proto.Resolve(new ProtoId<LatheRecipePrototype>(lathe.CurrentRecipe), out var recipe);
 
             foreach (var (mat, amount) in GetAdjustedAmount(lathe, recipe!))
@@ -585,10 +601,9 @@ namespace Content.Server.Lathe
         {
             var delta = batch.ItemsRequested - batch.ItemsPrinted;
 
-            // Imperial Weekly Mode
+            // Imperial Weekly Mode Start
             if (batch.IsWeekly)
             {
-                // Imperial Weekly Mode Start
                 var fallbackRecipe = _weeklyMode.TryGetActiveWeeklyLatheRecipe(batch.Recipe, out var weeklyRecipe)
                     ? weeklyRecipe
                     : (WeeklyLatheRecipeData?) null;
@@ -603,9 +618,12 @@ namespace Content.Server.Lathe
                     return;
 
                 return;
-                // Imperial Weekly Mode End
             }
+            // Imperial Weekly Mode End
 
+            // Imperial Weekly Mode: Original code removed:
+            // _proto.Resolve(batch.Recipe, out var recipe);
+            // Imperial Weekly Mode
             _proto.Resolve(new ProtoId<LatheRecipePrototype>(batch.Recipe), out var recipe);
 
             foreach (var (mat, amount) in GetAdjustedAmount(lathe, recipe!))
@@ -666,7 +684,7 @@ namespace Content.Server.Lathe
                     component.LastUser = args.Actor; // Imperial PrinterDoc
                 }
             }
-            // Imperial Weekly Mode
+            // Imperial Weekly Mode Start
             else if (_weeklyMode.TryGetAvailableWeeklyLatheRecipe(uid, component, args.ID, out var weeklyRecipe))
             {
                 if (TryAddWeeklyToQueue(uid, weeklyRecipe, args.Quantity, component))
@@ -677,6 +695,7 @@ namespace Content.Server.Lathe
                     component.LastUser = args.Actor; // Imperial PrinterDoc
                 }
             }
+            // Imperial Weekly Mode End
             TryStartProducing(uid, component);
             UpdateUserInterfaceState(uid, component);
         }
@@ -777,10 +796,10 @@ namespace Content.Server.Lathe
 
             RefundCurrentRecipe(uid, component);
             component.CurrentRecipe = null;
-            // Imperial Weekly Mode
+            // Imperial Weekly Mode Start
             component.CurrentRecipeIsWeekly = false;
-            // Imperial Weekly Mode
             ClearCurrentWeeklyRecipeSnapshot(component);
+            // Imperial Weekly Mode End
             FinishProducing(uid, component);
         }
         #endregion

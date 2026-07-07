@@ -35,10 +35,16 @@ namespace Content.Client.Cargo.UI
 
             foreach (var order in orders)
             {
+                 // Imperial Weekly Mode: Original code removed:
+                 // if (!protoManager.Resolve(order.Product, out var productProto))
+                 //     continue;
+                 //
+                 // var product = protoManager.Index<EntityPrototype>(productProto.Product);
+                 // var productName = product.Name;
+                 // Imperial Weekly Mode Start
                  string productName;
                  Texture? icon;
 
-                 // Imperial Weekly Mode Start
                  if (order.WeeklyProduct is { } weeklyProduct)
                  {
                      productName = weeklyProduct.Name;

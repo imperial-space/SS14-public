@@ -570,7 +570,7 @@ namespace Content.Server.GameTicking
                 }
 
                 var roles = _roles.MindGetAllRoleInfo(mindId);
-                // Imperial Weekly Mode
+                // Imperial Weekly Mode Start
                 var firstRole = roles.FirstOrDefault();
                 var roleDisplay = firstRole.Name ?? Loc.GetString("game-ticker-unknown-role");
                 if (!antag &&
@@ -579,6 +579,7 @@ namespace Content.Server.GameTicking
                 {
                     roleDisplay = _weeklyMode.GetJobDisplayName(new ProtoId<JobPrototype>(firstRole.Prototype));
                 }
+                // Imperial Weekly Mode End
 
                 var playerEndRoundInfo = new RoundEndMessageEvent.RoundEndPlayerInfo()
                 {
