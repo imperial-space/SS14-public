@@ -1,6 +1,6 @@
 using Content.Client.Info;
 using Content.Client.Info.PlaytimeStats;
-using Content.Client.GameTicking.Managers;
+using Content.Client.GameTicking.Managers; // Imperial Weekly Mode
 using Content.Client.Resources;
 using Content.Shared.CCVar;
 using Content.Shared.Preferences;
@@ -101,7 +101,10 @@ namespace Content.Client.Lobby.UI
                     _playerManager,
                     characterButtonsGroup,
                     character,
+                    // Imperial Weekly Mode: Original code removed:
+                    // slot == selectedSlot);
                     slot == selectedSlot,
+                    // Imperial Weekly Mode
                     jobId => gameTicker.GetJobDisplayName(jobId, _protomanager));
 
                 Characters.AddChild(characterPickerButton);

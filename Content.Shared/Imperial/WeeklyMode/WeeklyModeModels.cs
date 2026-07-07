@@ -165,7 +165,7 @@ public sealed class WeeklySnapshotMetadata
     public string Notes { get; set; } = string.Empty;
     public string CreatedBy { get; set; } = string.Empty;
     public long BundleSizeBytes { get; set; }
-    public bool CompatibleWithBuild { get; set; }
+    public bool CompatibleWithBuild { get; set; } = true;
     public int? SavedMapId { get; set; }
     public string SavedMapName { get; set; } = string.Empty;
     public List<int> SavedGridIds { get; set; } = new();

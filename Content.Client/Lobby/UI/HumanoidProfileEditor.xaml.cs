@@ -1,5 +1,5 @@
 using Content.Client.Humanoid;
-using Content.Client.GameTicking.Managers;
+using Content.Client.GameTicking.Managers; // Imperial Weekly Mode
 using Content.Client.Message;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Sprite;

@@ -82,6 +82,9 @@ namespace Content.Client.Cargo.BUI
                     description.AddText(row.MainButton.ToolTip);
 
                 _orderMenu.Description.SetMessage(description);
+                // Imperial Weekly Mode: Original code removed:
+                // _product = row.Product;
+                // Imperial Weekly Mode
                 _productId = row.ProductId;
                 _orderMenu.ProductName.Text = row.ProductName.Text;
                 _orderMenu.PointCost.Text = row.PointCost.Text;
@@ -119,10 +122,14 @@ namespace Content.Client.Cargo.BUI
             if (_menu == null)
                 return;
 
+            // Imperial Weekly Mode: Original code moved below PopulateCategories:
+            // _menu.PopulateProducts();
             _menu.PopulateCategories();
+            // Imperial Weekly Mode
             _menu.PopulateProducts();
             _menu.PopulateOrders(orders);
             _menu.PopulateAccountActions();
+            // Imperial Weekly Mode
             RefreshSelectedProduct();
         }
 
@@ -144,8 +151,10 @@ namespace Content.Client.Cargo.BUI
                 return;
 
             _menu.ProductCatalogue = cState.Products;
+            // Imperial Weekly Mode Start
             _menu.WeeklyProductCatalogue = cState.WeeklyProducts;
             _menu.InvalidateProductCache();
+            // Imperial Weekly Mode End
 
             _menu?.UpdateStation(station);
             Populate(cState.Orders);
@@ -173,6 +182,8 @@ namespace Content.Client.Cargo.BUI
             SendMessage(new CargoConsoleAddOrderMessage(
                 _orderMenu?.Requester.Text ?? "",
                 _orderMenu?.Reason.Text ?? "",
+                // Imperial Weekly Mode: Original code removed:
+                // _product?.ID ?? "",
                 _productId,
                 orderAmt));
 

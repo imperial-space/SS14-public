@@ -326,6 +326,9 @@ public sealed partial class LatheMenu : FancyWindow
         var idx = 0;
         foreach (var batch in queue)
         {
+            // Imperial Weekly Mode: Original code removed:
+            // var recipe = _prototypeManager.Index(batch.Recipe);
+            // var itemName = _lathe.GetRecipeName(batch.Recipe);
             // Imperial Weekly Mode
             var itemName = GetQueuedRecipeName(batch);
             string displayText;
@@ -334,9 +337,13 @@ public sealed partial class LatheMenu : FancyWindow
             else
                 displayText = Loc.GetString("lathe-menu-item-single", ("index", idx + 1), ("name", itemName));
 
+            // Imperial Weekly Mode
             var displayControl = GetQueuedRecipeDisplayControl(batch);
             if (idx >= oldChildCount)
             {
+                // Imperial Weekly Mode: Original code removed:
+                // var queuedRecipeBox = new QueuedRecipeControl(displayText, idx, GetRecipeDisplayControl(recipe));
+                // Imperial Weekly Mode
                 var queuedRecipeBox = new QueuedRecipeControl(displayText, idx, displayControl);
                 queuedRecipeBox.OnDeletePressed += s => QueueDeleteAction?.Invoke(s);
                 queuedRecipeBox.OnMoveUpPressed += s => QueueMoveUpAction?.Invoke(s);
@@ -355,6 +362,9 @@ public sealed partial class LatheMenu : FancyWindow
 
                 child.SetDisplayText(displayText);
                 child.SetIndex(idx);
+                // Imperial Weekly Mode: Original code removed:
+                // child.SetDisplayControl(GetRecipeDisplayControl(recipe));
+                // Imperial Weekly Mode
                 child.SetDisplayControl(displayControl);
             }
             idx++;
@@ -367,9 +377,9 @@ public sealed partial class LatheMenu : FancyWindow
         }
     }
 
-    // Imperial Weekly Mode Start
-    // Original:
+    // Imperial Weekly Mode: Original code removed:
     // public void SetQueueInfo(ProtoId<LatheRecipePrototype>? recipeProto)
+    // Imperial Weekly Mode Start
     public void SetQueueInfo(string? recipeId, bool isWeekly)
     {
         FabricatingContainer.Visible = recipeId != null;

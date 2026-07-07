@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Access.Systems;
-using Content.Server.WeeklyMode.Systems;
+using Content.Server.WeeklyMode.Systems; // Imperial Weekly Mode
 using Content.Shared.Access.Components;
 using Content.Shared.Forensics.Components;
 using Content.Shared.GameTicking;

@@ -10,6 +10,7 @@ using Content.Shared.Roles;
 using Content.Shared.WeeklyMode;
 using Robust.Shared.Console;
 using Robust.Shared.ContentPack;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Administration.Commands.WeeklyMode;
@@ -346,7 +347,17 @@ public sealed class WmRolesForceCommand : LocalizedEntityCommands
             return;
         }
 
-        var target = await _weekly.ResolveForcedRoleTargetAsync(args[1]);
+        (bool Success, NetUserId UserId, string LastKnownCKey, string Message) target;
+        try
+        {
+            target = await _weekly.ResolveForcedRoleTargetAsync(args[1]);
+        }
+        catch (Exception e)
+        {
+            shell.WriteError($"Failed to resolve forced role target '{args[1]}': {e.Message}");
+            return;
+        }
+
         if (!target.Success)
         {
             shell.WriteError(target.Message);
@@ -407,7 +418,17 @@ public sealed class WmRolesForceUpdateCommand : LocalizedEntityCommands
             }
         }
 
-        var target = await _weekly.ResolveForcedRoleTargetAsync(args[1]);
+        (bool Success, NetUserId UserId, string LastKnownCKey, string Message) target;
+        try
+        {
+            target = await _weekly.ResolveForcedRoleTargetAsync(args[1]);
+        }
+        catch (Exception e)
+        {
+            shell.WriteError($"Failed to resolve forced role target '{args[1]}': {e.Message}");
+            return;
+        }
+
         if (!target.Success)
         {
             shell.WriteError(target.Message);
@@ -472,7 +493,17 @@ public sealed class WmRolesForceShowCommand : LocalizedEntityCommands
             return;
         }
 
-        var target = await _weekly.ResolveForcedRoleTargetAsync(args[1]);
+        (bool Success, NetUserId UserId, string LastKnownCKey, string Message) target;
+        try
+        {
+            target = await _weekly.ResolveForcedRoleTargetAsync(args[1]);
+        }
+        catch (Exception e)
+        {
+            shell.WriteError($"Failed to resolve forced role target '{args[1]}': {e.Message}");
+            return;
+        }
+
         if (!target.Success)
         {
             shell.WriteError(target.Message);
@@ -500,7 +531,17 @@ public sealed class WmRolesForceClearCommand : LocalizedEntityCommands
             return;
         }
 
-        var target = await _weekly.ResolveForcedRoleTargetAsync(args[1]);
+        (bool Success, NetUserId UserId, string LastKnownCKey, string Message) target;
+        try
+        {
+            target = await _weekly.ResolveForcedRoleTargetAsync(args[1]);
+        }
+        catch (Exception e)
+        {
+            shell.WriteError($"Failed to resolve forced role target '{args[1]}': {e.Message}");
+            return;
+        }
+
         if (!target.Success)
         {
             shell.WriteError(target.Message);

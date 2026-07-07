@@ -90,6 +90,22 @@ namespace Content.Shared.Lathe
         // Imperial Weekly Mode
         public bool CurrentRecipeIsWeekly;
 
+        [ViewVariables]
+        // Imperial Weekly Mode
+        public List<WeeklyLatheRecipeMaterialData> CurrentWeeklyMaterialSnapshot = new();
+
+        [ViewVariables]
+        // Imperial Weekly Mode
+        public string CurrentWeeklyResultPrototype = string.Empty;
+
+        [ViewVariables]
+        // Imperial Weekly Mode
+        public int CurrentWeeklyResultAmount = 1;
+
+        [ViewVariables]
+        // Imperial Weekly Mode
+        public string CurrentWeeklyRecipeName = string.Empty;
+
         #region MachineUpgrading
         /// <summary>
         /// A modifier that changes how long it takes to print a recipe
@@ -128,6 +144,16 @@ namespace Content.Shared.Lathe
         public string Recipe;
         // Imperial Weekly Mode
         public bool IsWeekly;
+        // Imperial Weekly Mode
+        public List<WeeklyLatheRecipeMaterialData> WeeklyMaterialSnapshot = new();
+        // Imperial Weekly Mode
+        public string WeeklyResultPrototype = string.Empty;
+        // Imperial Weekly Mode
+        public int WeeklyResultAmount = 1;
+        // Imperial Weekly Mode
+        public string WeeklyRecipeName = string.Empty;
+        // Imperial Weekly Mode
+        public double WeeklyProductionTimeSeconds;
         public int ItemsPrinted;
         public int ItemsRequested;
 
@@ -137,10 +163,26 @@ namespace Content.Shared.Lathe
         }
 
         // Imperial Weekly Mode
-        public LatheRecipeBatch(string recipe, bool isWeekly, int itemsPrinted, int itemsRequested)
+        public LatheRecipeBatch(
+            string recipe,
+            bool isWeekly,
+            int itemsPrinted,
+            int itemsRequested,
+            IReadOnlyList<WeeklyLatheRecipeMaterialData>? weeklyMaterialSnapshot = null,
+            string? weeklyResultPrototype = null,
+            int weeklyResultAmount = 1,
+            string? weeklyRecipeName = null,
+            double weeklyProductionTimeSeconds = 0)
         {
             Recipe = recipe;
             IsWeekly = isWeekly;
+            WeeklyMaterialSnapshot = weeklyMaterialSnapshot is null
+                ? new List<WeeklyLatheRecipeMaterialData>()
+                : new List<WeeklyLatheRecipeMaterialData>(weeklyMaterialSnapshot);
+            WeeklyResultPrototype = weeklyResultPrototype ?? string.Empty;
+            WeeklyResultAmount = weeklyResultAmount;
+            WeeklyRecipeName = weeklyRecipeName ?? string.Empty;
+            WeeklyProductionTimeSeconds = weeklyProductionTimeSeconds;
             ItemsPrinted = itemsPrinted;
             ItemsRequested = itemsRequested;
         }

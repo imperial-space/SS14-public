@@ -30,6 +30,7 @@ namespace Content.Server.Cargo.Systems
 
         private void InitializeConsole()
         {
+            // Imperial Weekly Mode
             SubscribeLocalEvent<WeeklyCargoCatalogChangedEvent>(OnWeeklyCargoCatalogChanged);
             SubscribeLocalEvent<CargoOrderConsoleComponent, CargoConsoleAddOrderMessage>(OnAddOrderMessage);
             SubscribeLocalEvent<CargoOrderConsoleComponent, CargoConsoleRemoveOrderMessage>(OnRemoveOrderMessage);
@@ -214,7 +215,8 @@ namespace Content.Server.Cargo.Systems
                 PlayDenySound(uid, component);
             }
 
-            var cost = productCost * order.OrderQuantity;
+            // Imperial Weekly Mode
+            var cost = (long) productCost * order.OrderQuantity;
             var accountBalance = GetBalanceFromAccount((station.Value, bank), order.Account);
 
             // Not enough balance
@@ -251,6 +253,8 @@ namespace Content.Server.Cargo.Systems
                 order.SetApproverData(tryGetIdentityShortInfoEvent.Title);
 
                 var message = Loc.GetString("cargo-console-unlock-approved-order-broadcast",
+                    // Imperial Weekly Mode: Original code removed:
+                    // ("productName", Loc.GetString(product.Name)),
                     ("productName", productName),
                     ("orderAmount", order.OrderQuantity),
                     ("approver", order.Approver ?? string.Empty),
@@ -268,7 +272,8 @@ namespace Content.Server.Cargo.Systems
                 $"{ToPrettyString(player):user} approved order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.Product}, requester:{order.Requester}, reason:{order.Reason}] on account {order.Account} with balance at {accountBalance}");
 
             orderDatabase.Orders[component.Account].Remove(order);
-            UpdateBankAccount((station.Value, bank), -cost, order.Account);
+            // Imperial Weekly Mode
+            UpdateBankAccount((station.Value, bank), -(int) cost, order.Account);
             UpdateOrders(station.Value);
         }
 
@@ -458,8 +463,10 @@ namespace Content.Server.Cargo.Systems
                     orderDatabase.Capacity,
                     GetNetEntity(station.Value),
                     RelevantOrders((station!.Value, orderDatabase), (consoleUid, console)),
+                    // Imperial Weekly Mode Start
                     GetAvailableProducts((consoleUid, console)),
                     GetAvailableWeeklyProducts((consoleUid, console))
+                    // Imperial Weekly Mode End
                 ));
             }
         }
@@ -672,6 +679,8 @@ namespace Content.Server.Cargo.Systems
                     !_container.Insert(item, container1, force: true))
                 {
                     DebugTools.Assert(
+                        // Imperial Weekly Mode: Original code removed:
+                        // $"Failed to insert cargo product into its specified container. This indicates an error in the cargo product definition's YAML as the product should be insertable into its container. {nameof(CargoProductPrototype)}: {(ProtoId<CargoProductPrototype>)order.Product.Id}");
                         $"Failed to insert cargo product into its specified container. This indicates an error in the cargo product definition's YAML as the product should be insertable into its container. {nameof(CargoProductPrototype)}: {order.Product}");
                     QueueDel(containerEntity);
                 }
@@ -681,6 +690,7 @@ namespace Content.Server.Cargo.Systems
                 }
             }
 
+            // Imperial Weekly Mode: Original cargo paper creation moved to PrintCargoOrderPaper.
             PrintCargoOrderPaper(item, order, account, spawn, paperProto, product.Name);
             return true;
         }

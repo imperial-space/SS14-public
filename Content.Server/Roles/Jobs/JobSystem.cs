@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using Content.Server.Chat.Managers;
-using Content.Server.WeeklyMode.Systems;
+using Content.Server.WeeklyMode.Systems; // Imperial Weekly Mode
 using Content.Shared.Mind;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;

@@ -1045,7 +1045,16 @@ public sealed class WeeklyModeStoreTest
 
         public void Rename(ResPath oldPath, ResPath newPath)
         {
-            File.Move(GetFullPath(oldPath), GetFullPath(newPath));
+            var oldFullPath = GetFullPath(oldPath);
+            var newFullPath = GetFullPath(newPath);
+
+            if (Directory.Exists(oldFullPath))
+            {
+                Directory.Move(oldFullPath, newFullPath);
+                return;
+            }
+
+            File.Move(oldFullPath, newFullPath);
         }
 
         public void OpenOsWindow(ResPath path)

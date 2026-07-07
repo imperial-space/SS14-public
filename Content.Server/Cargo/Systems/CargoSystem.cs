@@ -11,7 +11,7 @@ using Content.Shared.Cargo.Components;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Paper;
-using Content.Server.WeeklyMode.Systems;
+using Content.Server.WeeklyMode.Systems; // Imperial Weekly Mode
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;

@@ -9,7 +9,7 @@ using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Preferences.Managers;
 using Content.Server.ServerUpdates;
 using Content.Server.Station.Systems;
-using Content.Server.WeeklyMode.Systems;
+using Content.Server.WeeklyMode.Systems; // Imperial Weekly Mode
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.GameTicking;

@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
+using System.IO; // Imperial Weekly Mode
 using System.Linq;
 using Content.Server.GameTicking;
 using Content.Shared.CCVar;

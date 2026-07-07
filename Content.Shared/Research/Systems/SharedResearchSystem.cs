@@ -1,6 +1,6 @@
 using System.Linq;
 using Content.Shared.Lathe;
-using Content.Shared.Research;
+using Content.Shared.Research; // Imperial Weekly Mode
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
 using JetBrains.Annotations;

@@ -4,7 +4,7 @@ using Content.Server.EUI;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
-using Content.Server.WeeklyMode.Systems;
+using Content.Server.WeeklyMode.Systems; // Imperial Weekly Mode
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.CrewManifest;

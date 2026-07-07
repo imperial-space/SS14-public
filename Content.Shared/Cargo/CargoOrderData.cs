@@ -2,7 +2,6 @@ using Content.Shared.Cargo.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using System.Text;
-
 namespace Content.Shared.Cargo
 {
     [DataDefinition, NetSerializable, Serializable]
@@ -70,6 +69,7 @@ namespace Content.Shared.Cargo
         public CargoOrderData(int orderId, WeeklyCargoProductData product, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account)
         {
             OrderId = orderId;
+            Product = new ProtoId<CargoProductPrototype>(product.ProductId);
             WeeklyProduct = product;
             OrderQuantity = amount;
             Requester = requester;

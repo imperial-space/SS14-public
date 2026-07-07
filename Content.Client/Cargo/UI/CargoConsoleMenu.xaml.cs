@@ -140,8 +140,20 @@ namespace Content.Client.Cargo.UI
         public void PopulateProducts()
         {
             Products.RemoveAllChildren();
+            // Imperial Weekly Mode: Original code removed:
+            // var products = ProductPrototypes.ToList();
+            // products.Sort((x, y) =>
+            //     string.Compare(x.Name, y.Name, StringComparison.CurrentCultureIgnoreCase));
+            // foreach (var prototype in products)
+            // search.Length != 0 && prototype.Name.ToLowerInvariant().Contains(search) ||
+            // search.Length != 0 && prototype.Description.ToLowerInvariant().Contains(search) ||
+            // search.Length == 0 && _category != null && Loc.GetString(prototype.Category).Equals(_category)
+            // Product = prototype,
+            // ProductName = { Text = prototype.Name },
+            // MainButton = { ToolTip = prototype.Description },
+            // PointCost = { Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", prototype.Cost.ToString())) },
+            // Icon = { Texture = _spriteSystem.Frame0(prototype.Icon) },
             // Imperial Weekly Mode Start
-            // Original cargo consoles built this list directly from ProductPrototypes.
             var products = GetProductDisplayData();
 
             var search = SearchBar.Text.Trim().ToLowerInvariant();
@@ -151,12 +163,14 @@ namespace Content.Client.Cargo.UI
                 // else if search
                 // else if category and not search
                 if (search.Length == 0 && _category == null ||
+                    // Imperial Weekly Mode
                     search.Length != 0 && product.Name.ToLowerInvariant().Contains(search) ||
                     search.Length != 0 && product.Description.ToLowerInvariant().Contains(search) ||
                     search.Length == 0 && _category != null && product.Category.Equals(_category))
                 {
                     var button = new CargoProductRow
                     {
+                        // Imperial Weekly Mode
                         Product = product.Product,
                         WeeklyProduct = product.WeeklyProduct,
                         ProductId = product.ProductId,
@@ -183,8 +197,15 @@ namespace Content.Client.Cargo.UI
             _categoryStrings.Clear();
             Categories.Clear();
 
+            // Imperial Weekly Mode: Original code removed:
+            // foreach (var prototype in ProductPrototypes)
+            // {
+            //     if (!_categoryStrings.Contains(Loc.GetString(prototype.Category)))
+            //     {
+            //         _categoryStrings.Add(Loc.GetString(prototype.Category));
+            //     }
+            // }
             // Imperial Weekly Mode Start
-            // Original cargo consoles populated categories only from CargoProductPrototype.Category.
             foreach (var product in GetProductDisplayData())
             {
                 if (!_categoryStrings.Contains(product.Category))
@@ -195,6 +216,7 @@ namespace Content.Client.Cargo.UI
 
             _categoryStrings.Sort();
 
+            // Imperial Weekly Mode
             if (_category != null && !_categoryStrings.Contains(_category))
                 _category = null;
 
@@ -223,8 +245,13 @@ namespace Content.Client.Cargo.UI
 
             foreach (var order in orders)
             {
+                // Imperial Weekly Mode: Original code removed:
+                // if (order.Approved || !_protoManager.Resolve(order.Product, out var productProto))
+                //     continue;
+                //
+                // var product = _protoManager.Index<EntityPrototype>(productProto.Product);
+                // var productName = productProto.Name;
                 // Imperial Weekly Mode Start
-                // Original cargo consoles resolved only CargoProductPrototype orders here.
                 if (order.Approved)
                     continue;
 
@@ -264,6 +291,8 @@ namespace Content.Client.Cargo.UI
                             "cargo-console-menu-order-row-title",
                             ("productName", productName),
                             ("orderAmount", order.OrderQuantity),
+                            // Imperial Weekly Mode: Original code removed:
+                            // ("orderPrice", productProto.Cost)),
                             ("orderPrice", productCost)),
                     },
 
@@ -276,6 +305,9 @@ namespace Content.Client.Cargo.UI
                         },
                     },
 
+                    // Imperial Weekly Mode: Original code removed:
+                    // Icon = { Texture = _spriteSystem.Frame0(product) },
+                    // Imperial Weekly Mode
                     Icon = { Texture = icon },
 
                     ProductName =

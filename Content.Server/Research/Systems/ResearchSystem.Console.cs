@@ -7,7 +7,7 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
-using Content.Shared.Research;
+using Content.Shared.Research; // Imperial Weekly Mode
 
 namespace Content.Server.Research.Systems;
 

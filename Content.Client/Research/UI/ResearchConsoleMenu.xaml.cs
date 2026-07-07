@@ -52,14 +52,18 @@ public sealed partial class ResearchConsoleMenu : FancyWindow
     {
         TechnologyCardsContainer.Children.Clear();
 
+        // Imperial Weekly Mode: Original technology list refresh moved below the weekly panel hook:
+        // var availableTech = _research.GetAvailableTechnologies(Entity);
+        // SyncTechnologyList(AvailableCardsContainer, availableTech);
         if (!_entity.TryGetComponent(Entity, out TechnologyDatabaseComponent? database))
             return;
 
-        // Imperial Weekly Mode Start
+        // Imperial Weekly Mode: Original access check moved before normal panel rendering for weekly UI reuse.
         var hasAccess = _player.LocalEntity is not { } local ||
                         !_entity.TryGetComponent<AccessReaderComponent>(Entity, out var access) ||
                         _accessReader.IsAllowed(local, Entity, access);
 
+        // Imperial Weekly Mode Start
         if (TryUpdateWeeklyPanels(state, database, hasAccess))
             return;
         // Imperial Weekly Mode End
@@ -73,6 +77,7 @@ public sealed partial class ResearchConsoleMenu : FancyWindow
             MinHeight = 10
         });
 
+        // Imperial Weekly Mode: Original access check moved above the weekly panel hook.
         foreach (var techId in database.CurrentTechnologyCards)
         {
             var tech = _prototype.Index<TechnologyPrototype>(techId);
@@ -157,6 +162,12 @@ public sealed partial class ResearchConsoleMenu : FancyWindow
         var currentTechControls = new Dictionary<TechnologyPrototype, Control>();
         foreach (var child in container.Children)
         {
+            // Imperial Weekly Mode: Original code removed:
+            // if (child is MiniTechnologyCardControl)
+            // {
+            //     currentTechControls.Add((child as MiniTechnologyCardControl)!.Technology, child);
+            // }
+            // Imperial Weekly Mode
             if (child is MiniTechnologyCardControl { Technology: { } technology } control)
                 currentTechControls.Add(technology, control);
         }
@@ -178,6 +189,7 @@ public sealed partial class ResearchConsoleMenu : FancyWindow
 
         // Now, any items left in the dictionary are technologies which were previously
         // available, but now are not. Remove them.
+        // Imperial Weekly Mode
         foreach (var (_, techControl) in currentTechControls)
         {
             container.Children.Remove(techControl);

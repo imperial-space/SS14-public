@@ -263,6 +263,8 @@ namespace Content.Client.LateJoin
 
                         if (!_jobRequirements.IsAllowed(prototype, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason))
                         {
+                            // Imperial Weekly Mode
+                            jobButton.DisabledByRequirements = true;
                             jobButton.Disabled = true;
 
                             if (!reason.IsEmpty)
@@ -319,7 +321,8 @@ namespace Content.Client.LateJoin
                                     !string.Equals(matchingJobButton.JobLocalisedName, jobName, StringComparison.Ordinal))
                                 {
                                     matchingJobButton.RefreshLabel(updatedJobValue, jobName);
-                                    matchingJobButton.Disabled |= matchingJobButton.Amount == 0;
+                                    matchingJobButton.Disabled = matchingJobButton.DisabledByRequirements ||
+                                                                 matchingJobButton.Amount == 0;
                                 }
                                 // Imperial Weekly Mode End
                             }
@@ -349,6 +352,8 @@ namespace Content.Client.LateJoin
         public string JobId { get; }
         // Imperial Weekly Mode
         public string JobLocalisedName { get; private set; }
+        // Imperial Weekly Mode
+        public bool DisabledByRequirements { get; set; }
         public int? Amount { get; private set; }
         private bool _initialised = false;
 

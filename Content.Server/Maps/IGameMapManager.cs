@@ -1,5 +1,5 @@
 using Content.Shared.Maps;
-using Robust.Shared.Utility;
+using Robust.Shared.Utility; // Imperial Weekly Mode
 
 namespace Content.Server.Maps;
 

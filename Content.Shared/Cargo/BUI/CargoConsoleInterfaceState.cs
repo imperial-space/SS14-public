@@ -32,6 +32,7 @@ public sealed class CargoConsoleInterfaceState : BoundUserInterfaceState
         Station = station;
         Orders = orders;
         Products = products;
+        // Imperial Weekly Mode
         WeeklyProducts = weeklyProducts ?? new List<WeeklyCargoProductData>();
     }
 }
