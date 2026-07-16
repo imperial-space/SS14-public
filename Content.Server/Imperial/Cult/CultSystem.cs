@@ -1601,13 +1601,13 @@ public sealed class CultSystem : EntitySystem
         if (args.Slot != "eyes")
             return;
 
-        EnsureComp<ShowHealthBarsComponent>(args.Equipee);
-        EnsureComp<CanSeeConcealedComponent>(args.Equipee);
+        EnsureComp<ShowHealthBarsComponent>(args.EquipTarget);
+        EnsureComp<CanSeeConcealedComponent>(args.EquipTarget);
 
-        if (TryComp<EyeComponent>(args.Equipee, out var eye))
-            _eye.SetDrawLight((args.Equipee, eye), false);
+        if (TryComp<EyeComponent>(args.EquipTarget, out var eye))
+            _eye.SetDrawLight((args.EquipTarget, eye), false);
 
-        _eye.RefreshVisibilityMask(args.Equipee);
+        _eye.RefreshVisibilityMask(args.EquipTarget);
     }
 
     private void OnFanaticBandageUnequipped(EntityUid uid, CultFanaticBandageComponent comp, GotUnequippedEvent args)
@@ -1615,13 +1615,13 @@ public sealed class CultSystem : EntitySystem
         if (args.Slot != "eyes")
             return;
 
-        RemComp<ShowHealthBarsComponent>(args.Equipee);
-        RemComp<CanSeeConcealedComponent>(args.Equipee);
+        RemComp<ShowHealthBarsComponent>(args.EquipTarget);
+        RemComp<CanSeeConcealedComponent>(args.EquipTarget);
 
-        if (TryComp<EyeComponent>(args.Equipee, out var eye))
-            _eye.SetDrawLight((args.Equipee, eye), true);
+        if (TryComp<EyeComponent>(args.EquipTarget, out var eye))
+            _eye.SetDrawLight((args.EquipTarget, eye), true);
 
-        _eye.RefreshVisibilityMask(args.Equipee);
+        _eye.RefreshVisibilityMask(args.EquipTarget);
     }
 
     private void OnCanSeeConcealedGetVis(Entity<CanSeeConcealedComponent> ent, ref GetVisMaskEvent args)

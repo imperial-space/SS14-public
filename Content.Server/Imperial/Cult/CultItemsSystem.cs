@@ -267,15 +267,15 @@ public sealed class CultItemsSystem : EntitySystem
 
     private void OnBlindfoldEquipped(EntityUid uid, CultZealotBlindfoldComponent comp, GotEquippedEvent args)
     {
-        comp.AddedHealthBars = !HasComp<ShowHealthBarsComponent>(args.Equipee);
+        comp.AddedHealthBars = !HasComp<ShowHealthBarsComponent>(args.EquipTarget);
         if (comp.AddedHealthBars)
-            EnsureComp<ShowHealthBarsComponent>(args.Equipee);
+            EnsureComp<ShowHealthBarsComponent>(args.EquipTarget);
 
-        if (TryComp<EyeComponent>(args.Equipee, out var eye))
+        if (TryComp<EyeComponent>(args.EquipTarget, out var eye))
         {
             comp.HadEyeState = true;
             comp.PreviousDrawLight = eye.DrawLight;
-            _eye.SetDrawLight((args.Equipee, eye), false);
+            _eye.SetDrawLight((args.EquipTarget, eye), false);
         }
         else
         {
@@ -286,10 +286,10 @@ public sealed class CultItemsSystem : EntitySystem
     private void OnBlindfoldUnequipped(EntityUid uid, CultZealotBlindfoldComponent comp, GotUnequippedEvent args)
     {
         if (comp.AddedHealthBars)
-            RemComp<ShowHealthBarsComponent>(args.Equipee);
+            RemComp<ShowHealthBarsComponent>(args.EquipTarget);
 
-        if (comp.HadEyeState && TryComp<EyeComponent>(args.Equipee, out var eye))
-            _eye.SetDrawLight((args.Equipee, eye), comp.PreviousDrawLight);
+        if (comp.HadEyeState && TryComp<EyeComponent>(args.EquipTarget, out var eye))
+            _eye.SetDrawLight((args.EquipTarget, eye), comp.PreviousDrawLight);
 
         comp.AddedHealthBars = false;
         comp.HadEyeState = false;
