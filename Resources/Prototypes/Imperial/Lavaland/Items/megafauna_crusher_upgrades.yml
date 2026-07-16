@@ -1,0 +1,220 @@
+# ==================================================
+#  Улучшения кинетического дробителя — Мегафауна
+#  Спрайты: Imperial/lava/mining/artefact.rsi
+# ==================================================
+
+# ── Вспомогательный снаряд: пепельный заряд ──────────────────────────────────
+# Идентичен BulletCharge, но при попадании поджигает цель.
+- type: entity
+  id: BulletChargeAshen
+  suffix: Lavaland
+  name: пепельный заряд
+  parent: BulletCharge
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: IgniteOnCollide
+    count: 1
+    fireStacks: 2
+    fixtureId: projectile
+
+# ── Коготь демона (Пузырящийся) ──────────────────────────────────────────────
+- type: entity
+  parent: BaseItem
+  id: CrusherUpgradeDemonClaws
+  suffix: Lavaland
+  name: коготь демона
+  description: >
+    Острый алый коготь, вырванный из лапы Пузырящегося.
+    Встав в паз кинетического дробителя: каждый удар по существу
+    лавалэнда восстанавливает 5 HP владельца.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/artefact.rsi
+    state: demon_claws
+  - type: Item
+    size: Small
+  - type: CrusherUpgrade
+    slotCost: 25
+    examineText: crusher-upgrade-demon-claws-examine
+  - type: CrusherDemonClawsUpgrade
+    healAmount: 5
+    targetTag: LavalandMob
+  - type: StaticPrice
+    price: 3000
+
+# ── Бластерные трубы (Колосс) ────────────────────────────────────────────────
+- type: entity
+  parent: BaseItem
+  id: CrusherUpgradeBlasterTubes
+  suffix: Lavaland
+  name: бластерные трубы
+  description: >
+    Обломки орудий павшего Колосса, излучающие остаточную радиацию.
+    Встав в паз кинетического дробителя: по меченым целям наносит
+    дополнительно 15 урона радиацией.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/artefact.rsi
+    state: blaster_tubes
+  - type: Item
+    size: Small
+  - type: CrusherUpgrade
+    slotCost: 25
+    examineText: crusher-upgrade-blaster-tubes-examine
+  - type: CrusherBlasterTubesUpgrade
+    bonusDamage:
+      types:
+        Radiation: 15
+  - type: StaticPrice
+    price: 3000
+
+# ── Вихревой талисман (Иерофант) ─────────────────────────────────────────────
+- type: entity
+  parent: BaseItem
+  id: CrusherUpgradeVortexTalisman
+  suffix: Lavaland
+  name: вихревой талисман
+  description: >
+    Реликвия, пропитанная силой Иерофанта.
+    Встав в паз кинетического дробителя: каждый удар отбрасывает
+    цель на 3 клетки.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/artefact.rsi
+    state: vortex_talisman
+  - type: Item
+    size: Small
+  - type: CrusherUpgrade
+    slotCost: 25
+    examineText: crusher-upgrade-vortex-talisman-examine
+  - type: CrusherVortexTalismanUpgrade
+    knockbackStrength: 5
+    knockbackDistance: 3
+  - type: StaticPrice
+    price: 3000
+
+# ── Хвостовой шип (Урс) ──────────────────────────────────────────────────────
+- type: entity
+  parent: BaseItem
+  id: CrusherUpgradeTailSpike
+  suffix: Lavaland
+  name: хвостовой шип
+  description: >
+    Массивный шип с хвоста Урса, всё ещё пахнущий кровью.
+    Встав в паз кинетического дробителя: первый удар по немеченой
+    цели наносит дополнительно 30 дробящего урона.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/artefact.rsi
+    state: tail_spike
+  - type: Item
+    size: Small
+  - type: CrusherUpgrade
+    slotCost: 25
+    examineText: crusher-upgrade-tail-spike-examine
+  - type: CrusherTailSpikeUpgrade
+    bonusDamage:
+      types:
+        Blunt: 30
+  - type: StaticPrice
+    price: 2500
+
+# ── Пепельный череп (Пепельный дракон) ───────────────────────────────────────
+- type: entity
+  parent: BaseItem
+  id: CrusherUpgradeAshenSkull
+  suffix: Lavaland
+  name: пепельный череп
+  description: >
+    Тлеющий череп, сохранивший внутренний огонь Пепельного дракона.
+    Встав в паз кинетического дробителя: дестабилизирующий заряд
+    поджигает атакованного врага.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/artefact.rsi
+    state: ashen_skull
+  - type: Item
+    size: Small
+  - type: CrusherUpgrade
+    slotCost: 25
+    examineText: crusher-upgrade-ashen-skull-examine
+  - type: CrusherAshenSkullUpgrade
+    upgradedProjectile: BulletChargeAshen
+  - type: StaticPrice
+    price: 3500
+
+# ── Глаз охотника (Мега-легион) ──────────────────────────────────────────────
+- type: entity
+  parent: BaseItem
+  id: CrusherUpgradeHunterEye
+  suffix: Lavaland
+  name: глаз охотника
+  description: >
+    Зрячий орган мегалегиона, пронизывающий взглядом всё вокруг.
+    Встав в паз кинетического дробителя: каждый удар метит всех врагов
+    в радиусе 3 клеток вокруг цели.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/artefact.rsi
+    state: hunter_eye
+  - type: Item
+    size: Small
+  - type: CrusherUpgrade
+    slotCost: 25
+    examineText: crusher-upgrade-hunter-eye-examine
+  - type: CrusherHunterEyeUpgrade
+    markRadius: 3
+  - type: StaticPrice
+    price: 3000
+
+# ── Осколок расщелины (Златожор) ─────────────────────────────────────────────
+- type: entity
+  parent: BaseItem
+  id: CrusherUpgradeCreviceShard
+  suffix: Lavaland
+  name: осколок расщелины
+  description: >
+    Кристалл, поглощённый и изрыгнутый Златожором вместе со своими
+    внутренностями. Встав в паз кинетического дробителя: каждый удар
+    наносит дополнительно 10 пробивающего урона, игнорируя броню.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/artefact.rsi
+    state: crevice_shard
+  - type: Item
+    size: Small
+  - type: CrusherUpgrade
+    slotCost: 25
+    examineText: crusher-upgrade-crevice-shard-examine
+  - type: CrusherCreviceShardUpgrade
+    piercingBonus:
+      types:
+        Piercing: 10
+  - type: StaticPrice
+    price: 2000
+
+# ── Цепь (Мёртвый шахтёр) ────────────────────────────────────────────────────
+- type: entity
+  parent: BaseItem
+  id: CrusherUpgradeChain
+  suffix: Lavaland
+  name: цепь шахтёра
+  description: >
+    Тяжёлая цепь, которой обмотан мёртвый шахтёр.
+    Встав в паз кинетического дробителя: каждый удар замедляет
+    движение врага на 2 секунды.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/artefact.rsi
+    state: chain
+  - type: Item
+    size: Small
+  - type: CrusherUpgrade
+    slotCost: 25
+    examineText: crusher-upgrade-chain-examine
+  - type: CrusherChainUpgrade
+    slowDuration: 2
+    walkSpeedModifier: 0.5
+    sprintSpeedModifier: 0.5
+  - type: StaticPrice
+    price: 2500

@@ -1,0 +1,105 @@
+# ==================================================
+#  Drake polymorph target mobs
+# ==================================================
+
+# Малый дракон — упрощённая версия AshDrake для игроков (без боссовых способностей)
+- type: entity
+  id: MobLesserDragonPlayer
+  suffix: Lavaland
+  name: малый дракон
+  description: Уменьшенная версия Пепельного Дракона. Огнедышащий и свирепый.
+  parent: [ SimpleSpaceMobBase, MobCombat, MobBloodstream, BaseMobAnimal ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleNeutral
+  - type: HTN
+    rootTask:
+      task: IdleCompound
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/boss/drake/64x64megafauna.rsi
+    layers:
+    - map: [ "enum.AshDrakeVisualLayers.Base" ]
+      state: dragon
+  - type: Appearance
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.55
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4.0
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 1.0
+    damage:
+      types:
+        Slash: 15
+        Blunt: 5
+  - type: DrakeFireCone
+    range: 12
+    stepDelay: 0.08
+    tileDamage: 10
+  - type: DrakeFlight
+    maxRange: 10
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead
+  - type: Destructible
+    thresholds: []
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: dragon
+      Dead:
+        Base: dragon_dead
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - FootstepSound
+  - type: NoSlip
+  - type: TypingIndicator
+    proto: guardian
+
+# Драконид — гуманоидный мутант с огнестойкостью
+- type: entity
+  id: MobDragonidPlayer
+  suffix: Lavaland
+  name: драконид
+  description: Гуманоид, мутировавший под влиянием крови Пепельного Дракона. Устойчив к огню и наделён огненным дыханием.
+  parent: MobHuman
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 5.0
+  - type: DrakeFireCone
+    range: 10
+    stepDelay: 0.08
+    tileDamage: 8
+  - type: TemperatureProtection
+    coefficient: 0.05
+  - type: ThermalRegulator
+    normalBodyTemperature: 320.0
+    thermalRegulationTemperatureThreshold: 30
+    implicitHeatRegulation: 600
+    sweatHeatRegulation: 4000
+    shiveringHeatRegulation: 4000
+    coldDamage:
+      types:
+        Cold: 0
+    heatDamage:
+      types:
+        Heat: 0
+  - type: TypingIndicator
+    proto: guardian

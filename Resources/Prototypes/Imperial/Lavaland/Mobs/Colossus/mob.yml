@@ -1,0 +1,126 @@
+- type: entity
+  id: BulletColossusHoly
+  suffix: Lavaland
+  name: holy bolt
+  parent: BulletKinetic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: arcane_barrage
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Blunt: 15
+  - type: TimedDespawn
+    lifetime: 4.0
+
+- type: entity
+  id: MobColossus
+  suffix: Lavaland
+  name: colossus
+  parent: [ SimpleSpaceMobBase, MobCombat, MobBloodstream, BaseMobAnimal ]
+  description: A fallen angel wandering the wastes of Lavaland, punishing all it deems impure.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: ColossusCompound
+    blackboard:
+      RangedRange: !type:Single
+        6
+      MeleeRange: !type:Single
+        1.5
+      VisionRadius: !type:Single
+        15
+      AggroVisionRadius: !type:Single
+        20
+      NavSmash: !type:Bool
+        true
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/boss/96x96megafauna.rsi
+    layers:
+    - map: [ "base" ]
+      state: eva
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ColossusVisuals.Enraged:
+        base:
+          True: { state: eva_attack }
+          False: { state: eva }
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.7
+        density: 120
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 1.5
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 0.6
+    damage:
+      types:
+        Blunt: 30
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      2500: Dead
+  - type: Destructible
+    thresholds: []
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: eva
+      Dead:
+        Base: eva
+  - type: Colossus
+    normalMeleeDamage: 30
+    enragedMeleeDamage: 50
+    normalSpeed: 1.5
+    enragedSpeed: 2.5
+    enrageThreshold: 1250
+  - type: BossLoot
+    loot:
+    - prototype: ClothingEyesEyeOfGod
+      chance: 1.0
+      minCount: 1
+      maxCount: 1
+    - prototype: ClothingNeckVoiceOfGod
+      chance: 1.0
+      minCount: 1
+      maxCount: 1
+    - prototype: CrusherUpgradeBlasterTubes
+      chance: 0.30
+      minCount: 1
+      maxCount: 1
+  - type: Tag
+    tags:
+    - LavalandMob
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: HellSpawn
+  - type: TemperatureDamage
+    heatDamageThreshold: 1000000
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+  - type: LavalandMegafaunaSleep
+  - type: LavalandMegafauna
+  - type: MegafaunaBossMusic
+    music:
+      path: /Audio/Imperial/boss/blackmoor_Colossus.ogg

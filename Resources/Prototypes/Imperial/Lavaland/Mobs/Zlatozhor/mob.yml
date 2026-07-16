@@ -1,0 +1,93 @@
+# Модификатор урона Златожора: уязвим к холодному оружию (x1.5), остальное слабее (x0.7)
+- type: damageModifierSet
+  id: ZlatozhorDamageModifier
+  coefficients:
+    Blunt: 1.5
+    Slash: 1.5
+    Piercing: 1.5
+    Heat: 0.0
+    Cold: 0.7
+    Radiation: 0.5
+    Caustic: 0.5
+    Explosion: 0.5
+    Structural: 1.0
+
+# Златожор — пассивный рудоед Лаваленда.
+# Уходит под землю при угрозе, отталкивает атакующих, роняет ценные руды при гибели.
+- type: entity
+  id: MobZlatozhor
+  suffix: Lavaland
+  parent: [SimpleSpaceMobBase, MobCombat]
+  name: златожор
+  description: Безвредное существо, питающееся ценными рудами. Не представляет угрозы, однако умеет отталкивать тех, кто мешает ему трапезничать. Гибель заставляет его отдать всё съеденное.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Passive
+  - type: HTN
+    rootTask:
+      task: IdleCompound
+  - type: Zlatozhor
+    burrowDelay: 10.0
+    knockbackForce: 5.0
+    oreDropAmount: 2
+    dangerVisionRange: 2.0
+    panicBurrowDelay: 1.0
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/mining/legion.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: Goldgrub
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: Goldgrub
+      Dead:
+        Base: Goldgrub_dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        hard: true
+        density: 60
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 3.5
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 0.0
+    range: 0.5
+    damage:
+      types:
+        Blunt: 0
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      45: Dead
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: ZlatozhorDamageModifier
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - FootstepSound
+    - LavalandMob
+  - type: TemperatureDamage
+    heatDamageThreshold: 1000000
+  - type: LavalandStormImmune
+  - type: BossLoot
+    loot:
+    - prototype: CrusherUpgradeCreviceShard
+      chance: 0.40
+      minCount: 1
+      maxCount: 1
+  - type: MegafaunaVanishOnDeath
+    delay: 30

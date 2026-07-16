@@ -1,0 +1,68 @@
+- type: entity
+  id: WheelOfFate
+  suffix: Lavaland
+  name: колесо судьбы
+  description: Древний механизм лавалэнда. Говорят, тот кто его крутит — испытывает судьбу. Шанс получить кость удачи — 5%.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 200
+        mask: [ FullTileMask ]
+        layer: [ WallLayer ]
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - state: generic
+  - type: WheelOfFate
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: InteractionOutline
+  - type: StaticPrice
+    price: 5000
+
+- type: entity
+  id: D20FateDice
+  suffix: Lavaland
+  name: кость d20 судьбы
+  description: Одноразовая кость из лавалэнда. Брось её и узнай свою судьбу.
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/dice.rsi
+    state: d20_20
+  - type: Item
+    size: Tiny
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 5
+        mask:
+        - ItemMask
+  - type: D20FateDice
+  - type: StaticPrice
+    price: 1

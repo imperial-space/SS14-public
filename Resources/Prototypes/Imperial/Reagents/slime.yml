@@ -1,0 +1,304 @@
+# =============================================================================
+# Xenobiology: Slime Reagents
+# Реагенты, получаемые из экстрактов ксено-слаймов (SS13 xenobiology).
+# =============================================================================
+
+# ---------- Grey plasma: катализатор роста серого слайма --------------------
+
+- type: reagent
+  id: XenoSlimeGrowthFactor
+  name: reagent-name-xeno-slime-growth-factor
+  group: Medicine
+  desc: reagent-desc-xeno-slime-growth-factor
+  physicalDesc: reagent-physical-desc-slimy
+  flavor: sweet
+  color: "#808080"
+
+# ---------- Purple plasma: стероид слайма -----------------------------------
+
+- type: reagent
+  id: SlimeSteroid
+  name: reagent-name-slime-steroid
+  group: Medicine
+  desc: reagent-desc-slime-steroid
+  physicalDesc: reagent-physical-desc-slimy
+  flavor: bitter
+  color: "#8000FF"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.3
+        sprintSpeedModifier: 1.4
+
+# ---------- Blue blood: стабилизатор слаймов --------------------------------
+
+- type: reagent
+  id: SlimeStabilizer
+  name: reagent-name-slime-stabilizer
+  group: Medicine
+  desc: reagent-desc-slime-stabilizer
+  physicalDesc: reagent-physical-desc-slimy
+  flavor: odorless
+  color: "#0080FF"
+
+# ---------- DarkBlue water: зелье охлаждения --------------------------------
+
+- type: reagent
+  id: CoolingPotion
+  name: reagent-name-cooling-potion
+  group: Medicine
+  desc: reagent-desc-cooling-potion
+  physicalDesc: reagent-physical-desc-cold
+  flavor: bitter
+  color: "#5C85D6"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Heat: -2
+
+# ---------- Bluespace water: зелье телепортации ----------------------------
+
+- type: reagent
+  id: TeleportPotion
+  name: reagent-name-teleport-potion
+  group: Other
+  desc: reagent-desc-teleport-potion
+  physicalDesc: reagent-physical-desc-glowing
+  flavor: odorless
+  color: "#00CED1"
+  metabolisms:
+    Medicine:
+      metabolismRate: 100
+      effects:
+      - !type:XenoTeleportPotionEffect
+
+# ---------- Sepia plasma: зелье сепии (замедление времени) -----------------
+
+- type: reagent
+  id: XenoSepiaPotion
+  name: reagent-name-xeno-sepia-potion
+  group: Other
+  desc: reagent-desc-xeno-sepia-potion
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: bitter
+  color: "#704214"
+  metabolisms:
+    Medicine:
+      metabolismRate: 100
+      effects:
+      - !type:XenoSepiaZaWarudoEffect
+
+# ---------- Sepia water: зелье лазерной защиты ------------------------------
+
+- type: reagent
+  id: LaserProtPotion
+  name: reagent-name-laser-prot-potion
+  group: Medicine
+  desc: reagent-desc-laser-prot-potion
+  physicalDesc: reagent-physical-desc-translucent
+  flavor: odorless
+  color: "#FF2222"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectXenoLaserProt
+        time: 35.0
+        type: Update
+
+# ---------- Cerulean plasma: усилитель экстрактора --------------------------
+
+- type: reagent
+  id: XenoCeruleanPotion
+  name: reagent-name-xeno-cerulean-potion
+  group: Medicine
+  desc: reagent-desc-xeno-cerulean-potion
+  physicalDesc: reagent-physical-desc-vibrant
+  flavor: odorless
+  color: "#29ABE2"
+
+# ---------- Pyrite water: зелье защиты от радиации --------------------------
+
+- type: reagent
+  id: RadProtPotion
+  name: reagent-name-rad-prot-potion
+  group: Medicine
+  desc: reagent-desc-rad-prot-potion
+  physicalDesc: reagent-physical-desc-glowing
+  flavor: bitter
+  color: "#91E874"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: -3
+
+# ---------- Green water: зелье биологической защиты -------------------------
+
+- type: reagent
+  id: BioProtPotion
+  name: reagent-name-bio-prot-potion
+  group: Medicine
+  desc: reagent-desc-bio-prot-potion
+  physicalDesc: reagent-physical-desc-slimy
+  flavor: bitter
+  color: "#228B22"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -2
+
+# ---------- Red plasma: зелье мутации слаймов --------------------------------
+
+- type: reagent
+  id: SlimeMutationPotion
+  name: reagent-name-slime-mutation-potion
+  group: Toxins
+  desc: reagent-desc-slime-mutation-potion
+  physicalDesc: reagent-physical-desc-glowing
+  flavor: bitter
+  color: "#FF0000"
+  metabolisms:
+    Medicine:
+      metabolismRate: 100
+      effects:
+      - !type:XenoSlimeMutationBoost
+        tierReduction: 1
+
+# ---------- Red water: зелье скорости ----------------------------------------
+
+- type: reagent
+  id: SpeedPotion
+  name: reagent-name-speed-potion
+  group: Medicine
+  desc: reagent-desc-speed-potion
+  physicalDesc: reagent-physical-desc-energizing
+  flavor: spicy
+  color: "#FF4500"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.4
+        sprintSpeedModifier: 1.5
+
+# ---------- Pink plasma: зелье послушания ------------------------------------
+
+- type: reagent
+  id: ObediencePotion
+  name: reagent-name-obedience-potion
+  group: Medicine
+  desc: reagent-desc-obedience-potion
+  physicalDesc: reagent-physical-desc-sweet
+  flavor: sweet
+  color: "#FFB6C1"
+  metabolisms:
+    Medicine:
+      metabolismRate: 100
+      effects:
+      - !type:XenoObediencePotionEffect
+        range: 5.0
+
+# ---------- Oil water: зелье взрывозащиты ------------------------------------
+
+- type: reagent
+  id: ExplosionProtPotion
+  name: reagent-name-explosion-prot-potion
+  group: Medicine
+  desc: reagent-desc-explosion-prot-potion
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: bitter
+  color: "#888888"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectXenoExplosionProt
+        time: 40.0
+        type: Update
+
+# ---------- Black water: зелье кислотозащиты ---------------------------------
+
+- type: reagent
+  id: AcidProtPotion
+  name: reagent-name-acid-prot-potion
+  group: Medicine
+  desc: reagent-desc-acid-prot-potion
+  physicalDesc: reagent-physical-desc-acidic
+  flavor: bitter
+  color: "#CCFF00"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectXenoAcidProt
+        time: 40.0
+        type: Update
+
+# ---------- Black plasma: продвинутый мутагенный токсин ---------------------
+
+- type: reagent
+  id: AdvancedMutationToxin
+  name: reagent-name-advanced-mutation-toxin
+  group: Toxins
+  desc: reagent-desc-advanced-mutation-toxin
+  physicalDesc: reagent-physical-desc-glowing
+  flavor: bitter
+  color: "#003300"
+  plantMetabolism:
+  - !type:PlantAdjustMutationLevel
+    amount: 3
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: 6
+
+# ---------- LightPink plasma: зелье разума -----------------------------------
+
+- type: reagent
+  id: MindPotion
+  name: reagent-name-mind-potion
+  group: Medicine
+  desc: reagent-desc-mind-potion
+  physicalDesc: reagent-physical-desc-neural
+  flavor: sweet
+  color: "#FF99CC"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:SatiateHunger
+        factor: -5
+      - !type:SatiateThirst
+        factor: -5
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.15
+        sprintSpeedModifier: 1.2
+
+# ---------- Rainbow blood: зелье переноса сознания ---------------------------
+
+- type: reagent
+  id: ConsciousnessTransferPotion
+  name: reagent-name-consciousness-transfer-potion
+  group: Other
+  desc: reagent-desc-consciousness-transfer-potion
+  physicalDesc: reagent-physical-desc-enigmatic
+  flavor: odorless
+  color: "#FF00FF"
+  metabolisms:
+    Medicine:
+      metabolismRate: 100
+      effects:
+      - !type:XenoConsciousnessTransferEffect
+        range: 3.0

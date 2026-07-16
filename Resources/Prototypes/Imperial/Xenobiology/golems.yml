@@ -1,0 +1,414 @@
+# ══════════════════════════════════════════════════════════════════════════════
+# Големы
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Наборы модификаторов урона ────────────────────────────────────────────────
+
+- type: damageModifierSet
+  id: DamageModifierGolemBase
+  coefficients:
+    Blunt: 0.50
+    Slash: 0.50
+    Piercing: 0.50
+    Heat: 0.50
+    Cold: 0.50
+    Radiation: 0.50
+    Caustic: 0.50
+    Explosion: 0.50
+    Shock: 0.50
+    Structural: 0.50
+
+- type: damageModifierSet
+  id: DamageModifierGolemGold
+  coefficients:
+    Blunt: 0.75
+    Slash: 0.75
+    Piercing: 0.75
+    Heat: 0.75
+    Cold: 0.75
+    Radiation: 0.75
+    Caustic: 0.75
+    Explosion: 0.75
+    Shock: 0.75
+    Structural: 0.75
+
+- type: damageModifierSet
+  id: DamageModifierGolemSilver
+  coefficients:
+    Blunt: 0.50
+    Slash: 0.50
+    Piercing: 0.50
+    Heat: 0.50
+    Cold: 0.50
+    Radiation: 0.50
+    Caustic: 0.50
+    Explosion: 0.50
+    Shock: 0.50
+    Structural: 0.50
+
+- type: damageModifierSet
+  id: DamageModifierGolemPlasma
+  coefficients:
+    Blunt: 0.50
+    Slash: 0.50
+    Piercing: 0.50
+    Heat: 0.0
+    Cold: 0.50
+    Radiation: 0.50
+    Caustic: 0.50
+    Explosion: 0.50
+    Shock: 0.50
+    Structural: 0.50
+
+- type: damageModifierSet
+  id: DamageModifierGolemGlass
+  coefficients:
+    Blunt: 3.0
+    Slash: 3.0
+    Piercing: 3.0
+    Heat: 0.25
+    Cold: 0.50
+    Radiation: 0.50
+    Caustic: 0.50
+    Explosion: 2.0
+    Shock: 0.50
+    Structural: 2.0
+
+- type: damageModifierSet
+  id: DamageModifierGolemUranium
+  coefficients:
+    Blunt: 0.50
+    Slash: 0.50
+    Piercing: 0.50
+    Heat: 0.50
+    Cold: 0.50
+    Radiation: 0.0
+    Caustic: 0.50
+    Explosion: 0.50
+    Shock: 0.50
+    Structural: 0.50
+
+- type: damageModifierSet
+  id: DamageModifierGolemWood
+  coefficients:
+    Blunt: 0.70
+    Slash: 0.70
+    Piercing: 0.70
+    Heat: 1.50
+    Cold: 0.70
+    Radiation: 0.70
+    Caustic: 0.70
+    Explosion: 0.70
+    Shock: 0.70
+    Structural: 0.70
+
+# ── Оболочка голема ───────────────────────────────────────────────────────────
+
+- type: entity
+  id: GolemShellAdamantine
+  parent: IngotBase
+  name: оболочка голема
+  description: Пустая адамантитовая оболочка голема. Наполните её 30 единицами материала, чтобы создать голема соответствующего типа.
+  components:
+  - type: Sprite
+    sprite: Imperial/xenobiology/golem.rsi
+    layers:
+    - state: adamantine_m_s
+  - type: Item
+    size: Large
+  - type: GolemShell
+    requiredCount: 30
+    materialToGolem:
+      IngotGold: MobGolemGold
+      IngotSilver: MobGolemSilver
+      SheetPlasma: MobGolemPlasma
+      SheetGlass: MobGolemGlass
+      SheetUranium: MobGolemUranium
+      MaterialWoodPlank: MobGolemWood
+
+# ── Базовый голем (абстрактный) ───────────────────────────────────────────────
+
+- type: entity
+  id: BaseGolem
+  parent: BaseMobAsteroid
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/xenobiology/golem.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: golem_m_s
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: DamageModifierGolemBase
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.0
+    baseSprintSpeed: 2.5
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/gavel.ogg
+    angle: 0
+    attackRate: 1.0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 20
+        Structural: 5
+  - type: NpcFactionMember
+    factions: []
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+  - type: NoSlip
+  - type: Destructible
+    thresholds: []
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepBorg
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSilicon
+    wilhelmProbability: 0
+
+# ── Золотой голем ─────────────────────────────────────────────────────────────
+
+- type: entity
+  id: MobGolemGold
+  parent: BaseGolem
+  name: золотой голем
+  description: Голем из золота, заключённый в адамантитовую оболочку.
+  components:
+  - type: Sprite
+    sprite: Imperial/xenobiology/golem.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: golem_m_s
+      color: "#FFD700"
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: DamageModifierGolemGold
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.8
+    baseSprintSpeed: 3.5
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/gavel.ogg
+    angle: 0
+    attackRate: 1.5
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 20
+        Structural: 5
+  - type: GhostRole
+    name: ghost-role-information-golem-gold-name
+    description: ghost-role-information-golem-gold-desc
+    rules: ghost-role-information-rules-golem
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+
+# ── Серебряный голем ──────────────────────────────────────────────────────────
+
+- type: entity
+  id: MobGolemSilver
+  parent: BaseGolem
+  name: серебряный голем
+  description: Голем из серебра, заключённый в адамантитовую оболочку.
+  components:
+  - type: Sprite
+    sprite: Imperial/xenobiology/golem.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: golem_m_s
+      color: "#C0C0C0"
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: DamageModifierGolemSilver
+  - type: GhostRole
+    name: ghost-role-information-golem-silver-name
+    description: ghost-role-information-golem-silver-desc
+    rules: ghost-role-information-rules-golem
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+
+# ── Плазменный голем ──────────────────────────────────────────────────────────
+
+- type: entity
+  id: MobGolemPlasma
+  parent: BaseGolem
+  name: плазменный голем
+  description: Голем из плазмы, заключённый в адамантитовую оболочку.
+  components:
+  - type: Sprite
+    sprite: Imperial/xenobiology/golem.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: golem_m_s
+      color: "#9400D3"
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: DamageModifierGolemPlasma
+  - type: GhostRole
+    name: ghost-role-information-golem-plasma-name
+    description: ghost-role-information-golem-plasma-desc
+    rules: ghost-role-information-rules-golem
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+
+# ── Стеклянный голем ──────────────────────────────────────────────────────────
+
+- type: entity
+  id: MobGolemGlass
+  parent: BaseGolem
+  name: стеклянный голем
+  description: Голем из стекла, заключённый в адамантитовую оболочку.
+  components:
+  - type: Sprite
+    sprite: Imperial/xenobiology/golem.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: golem_m_s
+      color: "#88CCFF"
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: DamageModifierGolemGlass
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: Reflect
+    reflectProb: 0.5
+    spread: 45
+    reflects:
+    - Energy
+  - type: GhostRole
+    name: ghost-role-information-golem-glass-name
+    description: ghost-role-information-golem-glass-desc
+    rules: ghost-role-information-rules-golem
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+
+# ── Урановый голем ────────────────────────────────────────────────────────────
+
+- type: entity
+  id: MobGolemUranium
+  parent: BaseGolem
+  name: урановый голем
+  description: Голем из урана, заключённый в адамантитовую оболочку.
+  components:
+  - type: Sprite
+    sprite: Imperial/xenobiology/golem.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: golem_m_s
+      color: "#00CC00"
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: DamageModifierGolemUranium
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead
+  - type: RadiationSource
+    intensity: 2
+    slope: 0.5
+  - type: GhostRole
+    name: ghost-role-information-golem-uranium-name
+    description: ghost-role-information-golem-uranium-desc
+    rules: ghost-role-information-rules-golem
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+
+# ── Деревянный голем ──────────────────────────────────────────────────────────
+
+- type: entity
+  id: MobGolemWood
+  parent: BaseGolem
+  name: деревянный голем
+  description: Голем из дерева, заключённый в адамантитовую оболочку.
+  components:
+  - type: Sprite
+    sprite: Imperial/xenobiology/golem.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: golem_m_s
+      color: "#8B4513"
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: DamageModifierGolemWood
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead
+  - type: GhostRole
+    name: ghost-role-information-golem-wood-name
+    description: ghost-role-information-golem-wood-desc
+    rules: ghost-role-information-rules-golem
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+
+# ── Свободный голем ───────────────────────────────────────────────────────────
+
+- type: entity
+  id: MobGolemFree
+  parent: BaseGolem
+  name: свободный голем
+  description: Голем, обретший свободу по воле Освободителя.
+  components:
+  - type: Sprite
+    sprite: Imperial/xenobiology/golem.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: golem_m_s
+      color: "#AAAAAA"
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: DamageModifierGolemBase
+  - type: GhostRole
+    name: ghost-role-information-golem-free-name
+    description: ghost-role-information-golem-free-desc
+    rules: ghost-role-information-rules-free-golem
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+
+# ── Спавнер свободного голема ─────────────────────────────────────────────────
+
+- type: entity
+  id: SpawnGolemFree
+  parent: MarkerBase
+  name: свободный голем (призраколь)
+  components:
+  - type: GhostRole
+    name: ghost-role-information-golem-free-name
+    description: ghost-role-information-golem-free-desc
+    rules: ghost-role-information-rules-free-golem
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: MobGolemFree
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Imperial/xenobiology/golem.rsi
+      state: adamantine_m_s
+      scale: 0.5, 0.5

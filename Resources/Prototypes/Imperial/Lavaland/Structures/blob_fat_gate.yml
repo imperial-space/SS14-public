@@ -1,0 +1,39 @@
+# ── Клетка Блоба (жировой барьер) ────────────────────────────────────────────
+# Пропускает только существ с HungerThreshold.Overfed (переевших).
+# Спрайт: blob.rsi/blob (клетка блоба).
+
+- type: entity
+  id: BlobFatGate
+  suffix: Lavaland
+  name: клетка блоба
+  description: Слизистая стена. Просочиться через неё могут лишь по-настоящему сытые.
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: Imperial/blob/blob.rsi
+    layers:
+    - state: blob
+  - type: Icon
+    sprite: Imperial/blob/blob.rsi
+    state: blob
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      wall:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.47,-0.47,0.47,0.47"
+        density: 100
+        hard: true
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: Transform
+    anchored: true
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds: []
+  - type: BlobFatGate

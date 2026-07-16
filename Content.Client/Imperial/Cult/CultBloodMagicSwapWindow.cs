@@ -25,10 +25,6 @@ public sealed class CultBloodMagicSwapWindow : DefaultWindow
     {
         Contents.RemoveAllChildren();
 
-        var newSpellName = CultSpellLocKeys.Mapping.TryGetValue(newSpellId, out var lk)
-            ? Loc.GetString(lk)
-            : newSpellId;
-
         var vbox = new BoxContainer
         {
             Orientation = BoxContainer.LayoutOrientation.Vertical,
@@ -38,7 +34,7 @@ public sealed class CultBloodMagicSwapWindow : DefaultWindow
 
         var label = new Label
         {
-            Text = Loc.GetString("cult-blood-magic-swap-choose", ("spell", newSpellName)),
+            Text = Loc.GetString("cult-blood-magic-swap-choose"),
             HorizontalExpand = true,
         };
         vbox.AddChild(label);

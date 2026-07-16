@@ -19,5 +19,7 @@ chat-radio-freelance = Freelance
 # not headset but whatever
 chat-radio-handheld = Handheld
 chat-radio-binary = Binary
+chat-radio-blob = Blob
+chat-radio-blob-hive = Blob Hive
 chat-radio-xenoborg = Xenoborg
 chat-radio-mothership = Mothership

@@ -1,0 +1,10 @@
+# Нож Зависти — артефакт Лаваленда. Копирует внешность жертвы на владельца.
+
+- type: entity
+  id: EnvyKnife
+  parent: RitualDagger
+  name: нож зависти
+  description: Проклятый клинок, впитывающий личину поражённого. Тот, кто носит его — носит чужое лицо.
+  suffix: Lavaland
+  components:
+  - type: EnvyKnife

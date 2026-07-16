@@ -1,0 +1,631 @@
+# ==================================================
+#  Ore Points Vending Machine — Custom Items
+#  Lavaland Mining Gear
+# ==================================================
+
+# ─── Горнодобывающая разгрузка ───
+- type: entity
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase]
+  id: ClothingBeltMiningWebbing
+  suffix: Lavaland
+  name: горнодобывающая разгрузка
+  description: Прочная тактическая разгрузка для горняков. Вмещает всё необходимое снаряжение и защищает от взрывов. Не числится среди контрабанды.
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/militarywebbing.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/militarywebbing.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: StaticPrice
+    price: 300
+
+# ─── Горнодобывающая рудная сумка ───
+- type: entity
+  parent: OreBag
+  id: OreBagMining
+  suffix: Lavaland
+  name: большая рудная сумка
+  description: Увеличенная рудная сумка для опытных горняков — вмещает значительно больше руды.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mining/ore_bag.rsi
+    state: icon
+    color: "#888888"
+  - type: Item
+    sprite: Objects/Specific/Mining/ore_bag.rsi
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,9,3
+    - 0,4,5,4
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      tags:
+        - ArtifactFragment
+        - Ore
+
+# ─── Точильный камень горняка ───
+- type: entity
+  parent: BaseItem
+  id: MiningWhetstone
+  suffix: Lavaland
+  name: точильный камень горняка
+  description: Прочный оселок, заряженный энергией лавного поля. Используйте на оружии ближнего боя для усиления. Одно использование.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/whetstone.rsi
+    layers:
+    - state: whetstone
+      map: ["base"]
+  - type: Item
+    size: Small
+  - type: CultWhetstone
+    damageBonus: 4
+
+# ─── Горнодобывающий медипен ───
+- type: entity
+  parent: ChemicalMedipen
+  id: MiningMedipen
+  suffix: Lavaland
+  name: горнодобывающий медипен
+  description: Многокомпонентный инъектор для горняков. Содержит обезболивающее, жаропонижающее, адреналин и регенерационный компонент.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: firstaid
+      map: ["enum.SolutionContainerLayers.Fill"]
+    color: "#e06030"
+  - type: Item
+    sprite: Objects/Specific/Medical/medipen.rsi
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#e06030"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#e06030"
+      - state: base-colorB-inhand-right
+    size: Tiny
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 45
+        reagents:
+        - ReagentId: Barozine
+          Quantity: 20
+        - ReagentId: Leporazine
+          Quantity: 10
+        - ReagentId: Epinephrine
+          Quantity: 10
+        - ReagentId: Omnizine
+          Quantity: 5
+
+# ─── Снаряд горного акселератора ───
+- type: entity
+  id: BulletKineticMining
+  suffix: Lavaland
+  name: кинетический болт
+  parent: BulletKinetic
+  categories: [ HideSpawnMenu ]
+  description: Кинетический снаряд, откалиброванный для добычи руды. Наносит полный урон только лавалендовским существам.
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 40
+        Structural: 30
+  - type: TimedDespawn
+    lifetime: 0.16  # ~4 тайла при скорости 25
+  - type: KineticMiningBullet
+    targetWhitelist:
+      tags:
+      - LavalandMob
+    fallbackDamage:
+      types:
+        Blunt: 1
+
+# ─── Горный кинетический акселератор ───
+- type: entity
+  parent: WeaponProtoKineticAcceleratorBase
+  id: WeaponMiningAccelerator
+  suffix: Lavaland
+  name: горный кинетический акселератор
+  description: Усиленная версия кинетического акселератора для горняков. Перезаряжается медленнее обычного, но значительно мощнее. Поддерживает установку модулей апгрейда - общая вместимость 100 единиц.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+    layers:
+    - state: icon
+    - state: animation-icon
+      visible: false
+      map: [ "empty-icon" ]
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 3
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletKineticMining
+    capacity: 1
+    count: 1
+  - type: MiningUpgradeableGun
+    maxCapacity: 100
+    baseRechargeCooldown: 3
+    whitelist:
+      tags:
+        - MiningPKAUpgrade
+    insertSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: Tag
+    tags:
+    - PKAUpgrade
+
+# ─── Базовый модуль горного акселератора ───
+- type: entity
+  id: BaseMiningPKAUpgrade
+  parent: BaseItem
+  name: модуль горного акселератора
+  description: Модуль для горного кинетического акселератора.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/upgrade.rsi
+  - type: Item
+    size: Small
+  - type: GunUpgrade
+  - type: MiningGunUpgrade
+  - type: StaticPrice
+    price: 500
+  - type: Tag
+    tags:
+    - MiningPKAUpgrade
+
+# ─── Модуль урона по площади ───
+- type: entity
+  parent: BaseMiningPKAUpgrade
+  id: PKAMiningUpgradeAoE
+  suffix: Lavaland
+  name: модуль акселератора (взрыв)
+  description: Снаряды взрываются при попадании, поражая цели в небольшом радиусе. Занимает 30% вместимости.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay-1
+      color: "#ec4d2d"
+    - state: overlay-2
+      color: "#a71010"
+    - state: overlay-3
+      color: "#eb1313"
+  - type: GunUpgrade
+    examineText: gun-upgrade-examine-text-damage
+  - type: MiningGunUpgrade
+    slotCost: 30
+  - type: AoEGunUpgrade
+    explosionType: Default
+    totalIntensity: 4
+    slope: 5
+    maxIntensity: 4
+
+# ─── Модуль скорострельности ───
+- type: entity
+  parent: BaseMiningPKAUpgrade
+  id: PKAMiningUpgradeFireRate
+  suffix: Lavaland
+  name: модуль акселератора (скорострельность)
+  description: Снижает время перезарядки на 2 секунды. Занимает 30% вместимости.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay-1
+      color: "#bbf134"
+    - state: overlay-2
+      color: "#07901b"
+    - state: overlay-3
+      color: "#9bf134"
+  - type: GunUpgrade
+    examineText: gun-upgrade-examine-text-reload
+  - type: MiningGunUpgrade
+    slotCost: 30
+  - type: GunUpgradeRechargeReduction
+    reductionSeconds: 2
+
+# ─── Модуль дальности ───
+- type: entity
+  parent: BaseMiningPKAUpgrade
+  id: PKAMiningUpgradeRange
+  suffix: Lavaland
+  name: модуль акселератора (дальность)
+  description: Увеличивает дальность полёта снаряда на 1 тайл. Занимает 24% вместимости.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay-1
+      color: "#2decec"
+    - state: overlay-2
+      color: "#1012a7"
+    - state: overlay-3
+      color: "#1373eb"
+  - type: GunUpgrade
+    examineText: gun-upgrade-examine-text-range
+  - type: MiningGunUpgrade
+    slotCost: 24
+  - type: GunUpgradeSpeed
+    coefficient: 1.25
+
+# ─── Модуль укрепления ───
+- type: entity
+  parent: BaseMiningPKAUpgrade
+  id: PKAMiningUpgradeFortification
+  suffix: Lavaland
+  name: модуль акселератора (укрепление)
+  description: Добавляет +1 к урону снаряда. Занимает 12% вместимости.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay-1
+      color: "#acacac"
+    - state: overlay-2
+      color: "#606060"
+    - state: overlay-3
+      color: "#aaaaaa"
+  - type: GunUpgrade
+    examineText: gun-upgrade-examine-text-damage
+  - type: MiningGunUpgrade
+    slotCost: 12
+  - type: GunUpgradeDamage
+    damage:
+      types:
+        Blunt: 1
+
+# ─── Модуль кражи жизни ───
+- type: entity
+  parent: BaseMiningPKAUpgrade
+  id: PKAMiningUpgradeLifeSteal
+  suffix: Lavaland
+  name: модуль акселератора (кража жизни)
+  description: Улучшение на КА, которое крадет жизнь у мобов. Лечит вас на 2.5 урона при попадании по тварям Лаваленда. Занимает 24% вместимости.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cargo/crystal.rsi
+    state: icon3
+  - type: GunUpgrade
+    examineText: gun-upgrade-examine-text-lifesteal
+  - type: MiningGunUpgrade
+    slotCost: 24
+  - type: LifeStealGunUpgrade
+    healAmount: 2.5
+    targetTag: LavalandMob
+
+# ─── Кинетический дробитель ───
+- type: entity
+  parent: BaseItem
+  id: WeaponKineticCrusher
+  suffix: Lavaland
+  name: кинетический дробитель
+  description: Тяжёлый кинетический молот для горняков. Помечает цели при ударе — следующие удары по отмеченным целям или с тыла наносят значительно больше урона.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/crusher.rsi
+    layers:
+    - state: icon
+  - type: Item
+    size: Huge
+    sprite: Objects/Weapons/Melee/crusher-inhands.rsi
+    shape:
+    - 0,0,1,1
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/crusher.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: UseDelayOnShoot
+  - type: UseDelay
+    delay: 0.9
+  - type: Gun
+    soundGunshot: /Audio/Weapons/plasma_cutter.ogg
+    fireRate: 1
+    useKey: false
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.5
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletCharge
+    capacity: 1
+    count: 1
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 10
+  - type: MeleeWeapon
+    wideAnimationRotation: 135
+    attackRate: 0.8
+    range: 1.5
+    damage:
+      types:
+        Blunt: 15
+    heavyDamageBaseModifier: 1.5
+    heavyRateModifier: 0.5
+    soundHit:
+      path: /Audio/Weapons/smash.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 3
+  - type: KineticCrusher
+    markDamageBonus:
+      types:
+        Blunt: 3
+    backstabDamageBonus:
+      types:
+        Blunt: 15
+    markDuration: 8
+    targetWhitelist:
+      tags:
+        - LavalandMob
+  # ── Система улучшений (crusher_upgrades.yml) ──
+  - type: KineticCrusherUpgradeable
+    maxCapacity: 100
+    baseUseDelay: 0.9
+    baseAmmoProto: BulletCharge
+    insertSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: ContainerContainer
+    containers:
+      crusher_upgrades: !type:Container
+  - type: StaticPrice
+    price: 500
+
+# ─── Прыжковый имплант ───
+- type: entity
+  parent: BaseSubdermalImplant
+  id: MiningJumpImplant
+  suffix: Lavaland
+  name: прыжковый имплант
+  description: Субдермальный имплант, усиливающий ноги. Позволяет прыгать на расстояние 4 тайла. Требует нормальной гравитации для активации.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    implantAction: ActionGravityJump
+  - type: JumpAbility
+    jumpDistance: 4
+    jumpThrowSpeed: 10
+
+# ─── Имплантер прыжкового импланта ───
+- type: entity
+  parent: BaseImplantOnlyImplanter
+  id: MiningJumpImplanter
+  suffix: Lavaland
+  name: имплантер прыжкового импланта
+  description: Одноразовый имплантер с прыжковым имплантом для горняков.
+  components:
+  - type: Implanter
+    implant: MiningJumpImplant
+
+# ─── Генератор червоточин ───
+- type: entity
+  parent: BaseItem
+  id: MiningWormholeGenerator
+  suffix: Lavaland
+  name: генератор червоточин
+  description: Нестабильное устройство, открывающее микропорталы. Если вы провалитесь в яму — автоматически спасёт вас из любого кармана. Одноразовое.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/jaunter.rsi
+    layers:
+      - state: Jaunter
+  - type: Item
+    size: Small
+  - type: WormholeGenerator
+  - type: StaticPrice
+    price: 400
+
+# ─── Шахтёрский ваучер ───
+- type: entity
+  parent: BaseItem
+  id: MiningVoucher
+  suffix: Lavaland
+  name: шахтёрский ваучер
+  description: Одноразовый ваучер на набор снаряжения. Примените на шахтёрский автомат — откроется меню выбора комплекта.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/mining.rsi
+    layers:
+      - state: mining_voucher
+  - type: Item
+    size: Small
+  - type: MiningVoucher
+  - type: UserInterface
+    interfaces:
+      enum.MiningVoucherUiKey.Key:
+        type: MiningVoucherBoundUserInterface
+  - type: StaticPrice
+    price: 100
+
+# ─── Фонарик шахтёрский (без контрабанды) ───
+- type: entity
+  parent: FlashlightLantern
+  id: FlashlightSecliteMining
+  suffix: Lavaland
+  name: фонарик горняка
+  description: Надёжный фонарик без маркировки СБ — просто светит в темноте.
+  components:
+  - type: Tag
+    tags: []
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: HandheldLight
+    addPrefix: false
+    wattage: 0.5
+  - type: Sprite
+    sprite: Objects/Tools/seclite.rsi
+    layers:
+      - state: seclite
+      - state: seclite-overlay
+        shader: unshaded
+        visible: false
+        map: [ "light" ]
+  - type: StaticPrice
+    price: 100
+
+# ─── Спасательная капсула ───
+- type: entity
+  parent: BaseItem
+  id: RescueCapsule
+  suffix: Lavaland
+  name: спасательная капсула
+  description: Экстренная капсула с мобильной базой горняка. После активации через 8 секунд развёртывает базу прямо под вами. Требует свободную площадку 7x7 тайлов без стен и пропастей.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/capsule.rsi
+    layers:
+      - state: capsule
+  - type: Item
+    size: Normal
+  - type: RescueCapsule
+  - type: StaticPrice
+    price: 400
+
+# ─── Боевой секач (трофей мегафауны) ───
+- type: entity
+  parent: BaseItem
+  id: MeleeWeaponCleavingSaw
+  suffix: Lavaland
+  name: боевой секач
+  description: Складной трофейный секач из Лаваленда. В сложенном виде быстрее, в разложенном — намного мощнее.
+  components:
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Items/change_jaws.ogg
+    soundDeactivate:
+      path: /Audio/Items/change_jaws.ogg
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+      types:
+        Slash: 20
+    deactivatedDamage:
+      types:
+        Slash: 12
+  - type: CleavingSaw
+    deactivatedAttackRate: 2.5
+    activatedAttackRate: 1.0
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 2.5
+    damage:
+      types:
+        Slash: 12
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        base:
+          True: { state: cleaving_saw_open }
+          False: { state: cleaving_saw }
+  - type: Sprite
+    sprite: Imperial/lava/mining/artefact.rsi
+    layers:
+    - state: cleaving_saw
+      map: [ "base" ]
+  - type: Item
+    size: Large
+  - type: StaticPrice
+    price: 1200
+
+# ─── Гибтонитовая руда ───
+- type: entity
+  parent: BaseItem
+  id: OreGibtonite
+  suffix: Lavaland
+  name: гибтонитовая руда
+  description: Нестабильный кристалл гибтонита, добытый из недр Лаваленда.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/magma/magma_icons.rsi
+    state: "Gibtonite ore 3"
+  - type: Item
+    size: Small
+    inhandVisuals:
+      left:
+      - state: gibtonite
+        sprite: Imperial/lava/mining/magma/twohanded_lefthand.rsi
+      right:
+      - state: gibtonite
+        sprite: Imperial/lava/mining/magma/twohanded_righthand.rsi
+  - type: Tag
+    tags:
+    - Ore
+  - type: StaticPrice
+    price: 50
+
+# ─── Магмитовая руда ───
+- type: entity
+  parent: BaseItem
+  id: OreMagmite
+  suffix: Lavaland
+  name: магмитовая руда
+  description: Мерцающий кристалл магмита, добытый из базальтовых недр Лаваленда.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/magma/magmite.rsi
+    state: "Magmite ore"
+  - type: Item
+    size: Small
+  - type: Tag
+    tags:
+    - Ore
+  - type: StaticPrice
+    price: 50
+
+- type: entity
+  parent: BaseItem
+  id: MeleeWeaponHierophantClub
+  suffix: Lavaland
+  name: посох иерофанта
+  description: Трофей с Иерофанта. Три вида атак в зависимости от цели клика. Восполняет заряды со временем.
+  components:
+  - type: HierophantClub
+    crossBlastDamage: 10
+    squareRingBaseDamage: 7
+    squareRingDamageStep: 2
+    chaserDamage: 8
+    lineAttackSound:
+      path: /Audio/Imperial/boss/sound_weapons_sonic_jackhammer.ogg
+    ringAttackSound:
+      path: /Audio/Imperial/boss/sound_magic_repulse.ogg
+    chaserAttackSound:
+      path: /Audio/Imperial/boss/sound_magic_blind.ogg
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.HierophantClubVisuals.HasCharges:
+        base:
+          True: { state: hierophant_club_ready }
+          False: { state: hierophant_club }
+  - type: Sprite
+    sprite: Imperial/lava/mining/artefact.rsi
+    layers:
+    - state: hierophant_club
+      map: [ "base" ]
+  - type: Item
+    size: Large
+  - type: StaticPrice
+    price: 3000

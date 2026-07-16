@@ -22,17 +22,18 @@ public sealed class CultBloodMagicBui : BoundUserInterface
     {
         base.Open();
 
-        _selectWindow = this.CreateWindow<CultBloodMagicSelectWindow>();
-
-        _selectWindow.OnSpellSelected += spellId =>
-        {
-            SendMessage(new CultSpellSelectedMessage(spellId));
-        };
+        ShowSelectWindow();
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
+
+        if (state is CultBloodMagicSelectState)
+        {
+            ShowSelectWindow();
+            return;
+        }
 
         if (state is not CultBloodMagicSwapState swapState)
             return;
@@ -57,6 +58,24 @@ public sealed class CultBloodMagicBui : BoundUserInterface
         _swapWindow.OnSwapSelected += oldSpellId =>
         {
             SendMessage(new CultSpellSwapMessage(oldSpellId, swapState.NewSpellId));
+        };
+    }
+
+    private void ShowSelectWindow()
+    {
+        if (_swapWindow != null)
+        {
+            _swapWindow.Dispose();
+            _swapWindow = null;
+        }
+
+        if (_selectWindow != null)
+            return;
+
+        _selectWindow = this.CreateWindow<CultBloodMagicSelectWindow>();
+        _selectWindow.OnSpellSelected += spellId =>
+        {
+            SendMessage(new CultSpellSelectedMessage(spellId));
         };
     }
 }

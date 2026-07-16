@@ -1,0 +1,19 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "https://github.com/ParadiseSS13/Paradise",
+    "size": {
+        "x": 45,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "miner",
+            "directions": 4
+        },
+        {
+            "name": "miner_transformed",
+            "directions": 4
+        }
+    ]
+}

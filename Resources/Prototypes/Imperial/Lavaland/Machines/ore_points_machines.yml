@@ -1,0 +1,71 @@
+- type: entity
+  id: OreProcessorLavalandPoints
+  suffix: Lavaland
+  parent: OreProcessor
+  name: ore processor (points)
+  description: Processes ore and stores ore points for transfer to an ID card.
+  components:
+    - type: OreProcessorPoints
+    - type: MaterialStorage
+      canEjectStoredMaterials: false
+
+- type: entity
+  id: VendingMachineSalvageOrePoints
+  suffix: Lavaland
+  parent: VendingMachineSalvage
+  name: Salvage Vendor (Ore Points)
+  description: Sells salvage gear for ore points stored on your ID card.
+  components:
+    - type: ActivatableUI
+      key: enum.OrePointsShopUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.OrePointsShopUiKey.Key:
+          type: OrePointsShopBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+    - type: VendingMachine
+      pack: SalvageOrePointsInventory
+    - type: OrePointsVending
+      itemCosts:
+        # ── Снаряжение ──
+        AdvancedMineralScannerEmpty: 3000
+        ClothingBeltMiningWebbing: 700
+        OreBagMining: 500
+        FultonBeacon: 500
+        ClothingShoesBootsJump: 3000
+        MiningJumpImplanter: 7000
+        ClothingOuterHardsuitSalvage: 2500
+        ClothingEyesHudMedical: 1500
+        ClothingEyesGlassesGar: 800
+        ClothingEyesGlassesMeson: 800
+        # ── Медицина ──
+        FireExtinguisherMini: 400
+        BruteMedkitImperialFilled: 800
+        MedkitBurnImperialFilled: 800
+        MiningMedipen: 800
+        # ── Инструменты ──
+        MineralScanner: 800
+        Pickaxe: 800
+        OreBag: 500
+        Fulton: 1500
+        MiningWhetstone: 500
+        Soap: 400
+        # ── ПКА ──
+        WeaponMiningAccelerator: 1000
+        PKAMiningUpgradeAoE: 2500
+        PKAMiningUpgradeFireRate: 1500
+        PKAMiningUpgradeRange: 1500
+        PKAMiningUpgradeFortification: 1200
+        # ── Оружие ──
+        WeaponPlasmaCutterLavaland: 1500
+        WeaponPlasmaCutterFanLavaland: 1500
+        MiningDrillDiamond: 1500
+        WeaponKineticCrusher: 1000
+        MiningWormholeGenerator: 900
+        RescueCapsule: 700
+        # ── Разное ──
+        Cigar: 300
+        SpaceCash1000: 2500
+        DrinkWhiskeyBottleFull: 500
+        ItemMegafaunaTracker: 1000

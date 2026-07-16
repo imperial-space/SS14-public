@@ -333,3 +333,34 @@
   coefficients:
     Heat: 1.15
     Cold: 0.85
+
+# === Xenobiology potion damage modifiers ===
+
+- type: damageModifierSet
+  id: XenoLaserProtection
+  coefficients:
+    Heat: 0.3
+    Caustic: 0.5
+  flatReductions:
+    Heat: 15
+    Caustic: 5
+
+- type: damageModifierSet
+  id: XenoExplosionProtection
+  coefficients:
+    Blunt: 0.2
+    Slash: 0.3
+    Piercing: 0.3
+    Heat: 0.3
+  flatReductions:
+    Blunt: 20
+    Slash: 15
+    Piercing: 15
+    Heat: 15
+
+- type: damageModifierSet
+  id: XenoAcidProtection
+  coefficients:
+    Caustic: 0.1
+  flatReductions:
+    Caustic: 25

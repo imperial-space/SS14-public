@@ -1,0 +1,29 @@
+# ── Спора Блоба-ловушка ──────────────────────────────────────────────────────
+# Неподвижная, бессмертная (без Damageable). При приближении моба в ~3×3 клетки
+# гибает его и уничтожает себя. Спрайт: blob.rsi/blob_spore_temp (4 направления).
+
+- type: entity
+  id: BlobSporeTrap
+  suffix: Lavaland
+  name: спора блоба
+  description: Неподвижная спора. Что-то внутри реагирует на жизнь.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/blob/blob.rsi
+    layers:
+    - state: blob_spore_temp
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        hard: false
+        mask: []
+        layer: []
+  - type: Transform
+    anchored: true
+  - type: BlobSporeTrap

@@ -99,6 +99,7 @@
     graph: BSAControlBox
   - type: ActivatableUI
     key: enum.BSAControlBoxUiKey.Key
+  - type: ActivatableUIRequiresAccess
   - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:
@@ -146,7 +147,7 @@
       - !type:DoActsBehavior
         acts: ["Breakage"]
   - type: AccessReader
-    access: [["Captain"], ["Command"]]
+    access: [["HeadOfSecurity"]]
 
 # Unfinished Control Box
 - type: entity

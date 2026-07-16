@@ -1,0 +1,416 @@
+- type: entity
+  id: MobMegaLegionLavaland
+  suffix: Lavaland
+  parent: [SimpleSpaceMobBase, MobCombat, BaseMobAnimal]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: LegionPlayerHostileCompound
+    blackboard:
+      MeleeRange: !type:Single
+        2.5
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/boss/96x96megafauna.rsi
+    state: mega_legion
+    noRot: false
+  - type: NoRotateOnMove
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.6
+        density: 120
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 1.5
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 0.4
+    range: 2.5
+    damage:
+      types:
+        Blunt: 25
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      800: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mega_legion
+      Dead:
+        Base: mega_legion
+  - type: LegionBoss
+    summonedPrototype: MobLegionSummonSkullLavaland
+    summonChance: 0.75
+    summonRadius: 1.5
+    decisionCooldown: 2.0
+    chargeDuration: 10.0
+    chargeAccelerationDuration: 3.0
+    chargeSpeed: 4.5
+    normalSpeed: 1.5
+    normalMeleeRange: 2.5
+    splitPrototype: MobLegionMediumLavaland
+    splitCount: 2
+  - type: Tag
+    tags:
+    - LavalandMob
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: HellSpawn
+  - type: TemperatureDamage
+    heatDamageThreshold: 1000000
+  - type: LavalandStormImmune
+  - type: BossLoot
+    loot:
+    - prototype: CrusherUpgradeHunterEye
+      chance: 0.35
+      minCount: 1
+      maxCount: 1
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: LavalandMegafaunaSleep
+  - type: LavalandMegafauna
+  - type: MegafaunaBossMusic
+    music:
+      path: /Audio/Imperial/boss/sound_misc_e1m1.ogg
+
+- type: entity
+  id: MobLegionMediumLavaland
+  suffix: Lavaland
+  parent: [SimpleSpaceMobBase, MobCombat, BaseMobAnimal]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: LegionPlayerHostileCompound
+    blackboard:
+      MeleeRange: !type:Single
+        3.5
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/boss/96x96megafauna.rsi
+    state: mega_legion
+    scale: 0.65, 0.65
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.8
+    baseSprintSpeed: 1.8
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 0.5
+    range: 2.0
+    damage:
+      types:
+        Blunt: 18
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      480: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mega_legion
+      Dead:
+        Base: mega_legion
+  - type: LegionBoss
+    summonedPrototype: MobLegionSummonSkullLavaland
+    summonChance: 0.75
+    summonRadius: 1.5
+    decisionCooldown: 2.0
+    chargeDuration: 10.0
+    chargeSpeed: 4.5
+    normalSpeed: 1.8
+    normalMeleeRange: 3.5
+    splitPrototype: MobLegionSmallLavaland
+    splitCount: 2
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: Tag
+    tags:
+    - LavalandMob
+  - type: LegionSummonedSkull
+
+- type: entity
+  id: MobLegionSmallLavaland
+  suffix: Lavaland
+  parent: [SimpleSpaceMobBase, MobCombat, BaseMobAnimal]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: LegionPlayerHostileCompound
+    blackboard:
+      MeleeRange: !type:Single
+        3.0
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/boss/96x96megafauna.rsi
+    state: mega_legion
+    scale: 0.5, 0.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 60
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.2
+    baseSprintSpeed: 2.2
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 0.6
+    range: 1.8
+    damage:
+      types:
+        Blunt: 12
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      288: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mega_legion
+      Dead:
+        Base: mega_legion
+  - type: LegionBoss
+    summonedPrototype: MobLegionSummonSkullLavaland
+    summonChance: 0.75
+    summonRadius: 1.5
+    decisionCooldown: 2.0
+    chargeDuration: 10.0
+    chargeSpeed: 4.5
+    normalSpeed: 2.2
+    normalMeleeRange: 3.0
+    splitPrototype: MobLegionTinyLavaland
+    splitCount: 2
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: Tag
+    tags:
+    - LavalandMob
+  - type: LegionSummonedSkull
+
+- type: entity
+  id: MobLegionTinyLavaland
+  suffix: Lavaland
+  parent: [SimpleSpaceMobBase, MobCombat, BaseMobAnimal]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: LegionPlayerHostileCompound
+    blackboard:
+      MeleeRange: !type:Single
+        2.5
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/boss/96x96megafauna.rsi
+    state: mega_legion
+    scale: 0.4, 0.4
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.22
+        density: 40
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.8
+    baseSprintSpeed: 2.8
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 0.7
+    range: 1.5
+    damage:
+      types:
+        Blunt: 8
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      173: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mega_legion
+      Dead:
+        Base: mega_legion
+  - type: LegionBoss
+    summonedPrototype: MobLegionSummonSkullLavaland
+    summonChance: 0.75
+    summonRadius: 1.5
+    decisionCooldown: 2.0
+    chargeDuration: 10.0
+    chargeSpeed: 4.5
+    normalSpeed: 2.8
+    normalMeleeRange: 2.5
+    splitPrototype: MobLegionSkullLavaland
+    splitCount: 2
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: Tag
+    tags:
+    - LavalandMob
+  - type: LegionSummonedSkull
+
+- type: entity
+  id: MobLegionSkullLavaland
+  suffix: Lavaland
+  parent: [SimpleSpaceMobBase, MobCombat, BaseMobAnimal]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: LegionPlayerHostileCompound
+    blackboard:
+      MeleeRange: !type:Single
+        1.1
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/boss/96x96megafauna.rsi
+    state: mega_legion
+    scale: 0.32, 0.32
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.18
+        density: 25
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 3.5
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 1.1
+    range: 1.1
+    damage:
+      types:
+        Blunt: 4
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      104: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mega_legion
+      Dead:
+        Base: mega_legion
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: Tag
+    tags:
+    - LavalandMob
+  - type: LegionSummonedSkull
+
+- type: entity
+  id: MobLegionSummonSkullLavaland
+  suffix: Lavaland
+  parent: [SimpleSpaceMobBase, MobCombat, BaseMobAnimal]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: LegionPlayerHostileCompound
+    blackboard:
+      MeleeRange: !type:Single
+        1.0
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/boss/96x96megafauna.rsi
+    state: mega_legion
+    scale: 0.28, 0.28
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.15
+        density: 20
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.0
+    baseSprintSpeed: 4.0
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 1.5
+    range: 1.0
+    damage:
+      types:
+        Blunt: 3
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mega_legion
+      Dead:
+        Base: mega_legion
+  - type: TimedDespawn
+    lifetime: 35
+  - type: LavalandStormImmune
+  - type: MegafaunaVanishOnDeath
+    delay: 30
+  - type: Tag
+    tags:
+    - LavalandMob
+  - type: LegionSummonedSkull

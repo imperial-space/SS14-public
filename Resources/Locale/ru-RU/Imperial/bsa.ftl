@@ -18,13 +18,13 @@ bsa-fire-button = [ВЫСТРЕЛ]
 bsa-yes = ДА
 bsa-no = НЕТ
 
-bsa-part-ready = ✓ Установлен
-bsa-part-missing = ✗ Отсутствует
+bsa-part-ready = Установлен
+bsa-part-missing = Отсутствует
 
 bsa-part-console = Консоль
 
 bsa-scan-button = Сканировать
 
-bsa-alert-announcement = ⚠ ТРЕВОГА! Обнаружен запуск блюспейс-артиллерии! Приготовиться к удару. Место удара: { $beacon }.
+bsa-alert-announcement = ТРЕВОГА! Обнаружен запуск блюспейс-артиллерии! Приготовиться к удару. Место удара: { $beacon }.
 
 bsa-ready = Готово к выстрелу

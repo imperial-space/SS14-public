@@ -630,7 +630,7 @@ public sealed class CultSystem : EntitySystem
         args.Handled = true;
 
         if (comp.BuiHolder.HasValue)
-            _ui.TryOpenUi(comp.BuiHolder.Value, CultBloodMagicBuiKey.Key, uid);
+            OpenBloodMagicSelectionUi(comp.BuiHolder.Value, uid);
     }
 
     private void OnSpellSelected(EntityUid uid, CultBuiHolderComponent comp, CultSpellSelectedMessage args)
@@ -648,21 +648,20 @@ public sealed class CultSystem : EntitySystem
             return;
         }
 
-        // Проверяем лимит слотов
-        var limit = cultistComp.OnEmpowerRune ? SpellLimitEmpowered : SpellLimitNormal;
-        if (cultistComp.ActiveSpellCount >= limit)
-        {
-            // Показываем окно замены заклинания
-            _ui.SetUiState(uid, CultBloodMagicBuiKey.Key,
-                new CultBloodMagicSwapState(spellId, new List<string>(cultistComp.PreparedSpells)));
-            _ui.TryOpenUi(uid, CultBloodMagicBuiKey.Key, cultist);
-            return;
-        }
-
         // Проверяем что заклинание ещё не подготовлено
         if (cultistComp.PreparedSpells.Contains(spellId))
         {
             _popup.PopupEntity(Loc.GetString("cult-spell-already-prepared"), cultist, cultist);
+            return;
+        }
+
+        // Проверяем лимит слотов
+        var limit = cultistComp.OnEmpowerRune ? SpellLimitEmpowered : SpellLimitNormal;
+        if (cultistComp.ActiveSpellCount >= limit)
+        {
+            _ui.SetUiState(uid, CultBloodMagicBuiKey.Key,
+                new CultBloodMagicSwapState(spellId, new List<string>(cultistComp.PreparedSpells)));
+            _ui.TryOpenUi(uid, CultBloodMagicBuiKey.Key, cultist);
             return;
         }
 
@@ -686,7 +685,7 @@ public sealed class CultSystem : EntitySystem
         if (args.Cancelled)
         {
             if (TryComp<CultistComponent>(uid, out var cComp) && cComp.BuiHolder.HasValue)
-                _ui.TryOpenUi(cComp.BuiHolder.Value, CultBloodMagicBuiKey.Key, uid);
+                OpenBloodMagicSelectionUi(cComp.BuiHolder.Value, uid);
             return;
         }
 
@@ -742,30 +741,21 @@ public sealed class CultSystem : EntitySystem
             return;
 
         RemovePreparedSpellAction(cultist, cultistComp, oldSpellId);
-
-        // Проверяем что новое заклинание можно добавить
-        if (!IsValidSpellId(newSpellId) || cultistComp.PreparedSpells.Contains(newSpellId))
-            return;
-
-        var limit = cultistComp.OnEmpowerRune ? SpellLimitEmpowered : SpellLimitNormal;
-        if (cultistComp.ActiveSpellCount >= limit)
-            return;
-
-        // Оплата кровью и мгновенная выдача нового заклинания (без DoAfter)
-        DealSelfDamage(cultist, SpellBloodCost);
-        _actions.AddAction(cultist, newSpellId);
-        cultistComp.ActiveSpellCount++;
-        cultistComp.PreparedSpells.Add(newSpellId);
-        if (ShouldTrackPreparedUses(newSpellId))
-            cultistComp.PreparedSpellUses[newSpellId] = GetInitialSpellUses(newSpellId);
-
         _popup.PopupEntity(
-            Loc.GetString("cult-spell-ready", ("spell", Loc.GetString(GetSpellLocKey(newSpellId)))),
-            cultist, cultist, PopupType.Medium);
-        _audio.PlayPvs(CultMagicSound, cultist);
+            Loc.GetString(
+                "cult-spell-slot-freed",
+                ("spell", Loc.GetString(GetSpellLocKey(oldSpellId)))),
+            cultist,
+            cultist,
+            PopupType.Medium);
 
-        // Закрываем BUI после успешной замены — следующее открытие покажет свежее окно выбора
         _ui.CloseUi(uid, CultBloodMagicBuiKey.Key, cultist);
+    }
+
+    private void OpenBloodMagicSelectionUi(EntityUid uiHolder, EntityUid cultist)
+    {
+        _ui.SetUiState(uiHolder, CultBloodMagicBuiKey.Key, new CultBloodMagicSelectState());
+        _ui.TryOpenUi(uiHolder, CultBloodMagicBuiKey.Key, cultist);
     }
 
     private static bool ShouldTrackPreparedUses(string actionId)
@@ -773,7 +763,7 @@ public sealed class CultSystem : EntitySystem
 
     private static int GetInitialSpellUses(string actionId) => actionId switch
     {
-        "ActionCultStun" => 4,
+        "ActionCultStun" => 1,
         "ActionCultShackles" => 4,
         "ActionCultTeleport" => 1,
         "ActionCultEmp" => 4,
@@ -1491,6 +1481,12 @@ public sealed class CultSystem : EntitySystem
             return false;
         }
 
+        // Расходуем подготовленное применение до наложения эффекта.
+        // Если зарядов больше нет (например, использован настаканный старый предмет),
+        // возвращаем true, чтобы предмет удалился в OnSpellItemAfterInteract.
+        if (!TryConsumePreparedSpellUseFromItem(spellItem, caster, comp))
+            return true;
+
         _chat.TrySendInGameICMessage(caster, Loc.GetString("cult-incantation-stun"), InGameICChatType.Whisper, false, ignoreActionBlocker: true);
         DealSelfDamage(caster, 10f);
 
@@ -1505,7 +1501,7 @@ public sealed class CultSystem : EntitySystem
 
         _audio.PlayPvs("/Audio/Magic/magic_wand.ogg", caster);
         _popup.PopupEntity(Loc.GetString("cult-stun-hit", ("target", MetaData(target).EntityName)), caster, caster);
-        return TryConsumePreparedSpellUseFromItem(spellItem, caster, comp);
+        return true;
     }
 
     private bool CastShackles(EntityUid spellItem, EntityUid caster, CultistComponent comp, EntityUid target)
@@ -1933,13 +1929,14 @@ public sealed class CultSystem : EntitySystem
 
         _activeNarSieBarriers[cultist] = barriers;
 
-        if (TryComp<CultistComponent>(cultist, out var cultistComp))
+        if (TryComp<CultistComponent>(cultist, out var cultistComp) &&
+            (cultistComp.ActiveNarSieRitualAudio is not { } activeAudio || !Exists(activeAudio)))
         {
             var ritualAudio = _audio.PlayGlobal(
                 NarSieRitualMusic,
                 Filter.Broadcast(),
                 true,
-                AudioParams.Default.WithLoop(true).WithVolume(-4f));
+                AudioParams.Default.WithVolume(-4f));
             cultistComp.ActiveNarSieRitualAudio = ritualAudio?.Entity;
         }
 
@@ -1962,12 +1959,9 @@ public sealed class CultSystem : EntitySystem
 
     private void EndNarSieRitual(EntityUid cultist)
     {
-        if (TryComp<CultistComponent>(cultist, out var cultistComp)
-            && cultistComp.ActiveNarSieRitualAudio.HasValue
-            && Exists(cultistComp.ActiveNarSieRitualAudio.Value))
+        if (TryComp<CultistComponent>(cultist, out var cultistComp) &&
+            cultistComp.ActiveNarSieRitualAudio is { } ritualAudio && !Exists(ritualAudio))
         {
-            _audio.SetState(cultistComp.ActiveNarSieRitualAudio.Value, AudioState.Stopped);
-            QueueDel(cultistComp.ActiveNarSieRitualAudio.Value);
             cultistComp.ActiveNarSieRitualAudio = null;
         }
 

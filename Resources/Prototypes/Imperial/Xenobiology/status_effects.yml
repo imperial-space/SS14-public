@@ -1,0 +1,43 @@
+- type: entity
+  parent: StatusEffectDamageModifierBase
+  id: StatusEffectXenoLaserProt
+  name: laser protection
+  components:
+  - type: DamageModifierStatusEffect
+    modifiers:
+      coefficients:
+        Heat: 0.3
+        Caustic: 0.5
+      flatReductions:
+        Heat: 15
+        Caustic: 5
+
+- type: entity
+  parent: StatusEffectDamageModifierBase
+  id: StatusEffectXenoExplosionProt
+  name: explosion protection
+  components:
+  - type: DamageModifierStatusEffect
+    modifiers:
+      coefficients:
+        Blunt: 0.2
+        Slash: 0.3
+        Piercing: 0.3
+        Heat: 0.3
+      flatReductions:
+        Blunt: 20
+        Slash: 15
+        Piercing: 15
+        Heat: 15
+
+- type: entity
+  parent: StatusEffectDamageModifierBase
+  id: StatusEffectXenoAcidProt
+  name: acid protection
+  components:
+  - type: DamageModifierStatusEffect
+    modifiers:
+      coefficients:
+        Caustic: 0.1
+      flatReductions:
+        Caustic: 25

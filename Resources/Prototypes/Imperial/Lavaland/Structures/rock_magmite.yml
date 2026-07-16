@@ -1,0 +1,59 @@
+# Принимает только Structural урон (взрывы), иммунна к Brute (кирки, оружие)
+- type: damageContainer
+  id: ExplosionOnlyLavaland
+  supportedTypes:
+  - Structural
+
+- type: entity
+  id: RockMagmite
+  suffix: Lavaland
+  parent: BaseWall
+  name: базальтовая скала с магмитом
+  description: Монолитная базальтовая скала, пронизанная прожилками магмита. Не поддаётся обычным инструментам.
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/lava/mining/magma/magmite.rsi
+    layers:
+    - sprite: Structures/Walls/rock.rsi
+      state: rock_wall
+      map: ["base"]
+    - state: upgrade_parts
+      map: ["overlay"]
+  - type: Icon
+    sprite: Structures/Walls/rock.rsi
+    state: rock_wall
+  - type: Damageable
+    damageContainer: ExplosionOnlyLavaland
+    damageModifierSet: Rock
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          OreMagmite:
+            min: 1
+            max: 1
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/break_stone.ogg
+          params:
+            volume: -6
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 2000

@@ -23,3 +23,9 @@
   id: FloorTileStackGym
   name: stack-gym-floor-tile
   spawn: FloorTileItemGym
+
+- type: stack
+  parent: BaseTileStack
+  id: FloorTileCult
+  name: stack-cult-floor-tile
+  spawn: FloorTileItemCult

@@ -1,0 +1,252 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "https://github.com/ParadiseSS13/Paradise",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "chain"
+        },
+        {
+            "name": "hook"
+        },
+        {
+            "name": "talisman",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "ship_bottle"
+        },
+        {
+            "name": "potionflask"
+        },
+        {
+            "name": "potionflask_empty"
+        },
+        {
+            "name": "blackbox"
+        },
+        {
+            "name": "anomaly_crystal",
+            "directions": 4
+        },
+        {
+            "name": "hierophant_club"
+        },
+        {
+            "name": "hierophant_club_beacon"
+        },
+        {
+            "name": "hierophant_club_ready",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "hierophant_club_ready_beacon",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "hierophant_tele_off",
+            "delays": [
+                [
+                    0.1,
+                    0.08,
+                    0.060000002,
+                    0.04,
+                    0.02,
+                    0.04,
+                    0.060000002,
+                    0.08,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "hierophant_tele_on",
+            "delays": [
+                [
+                    0.1,
+                    0.08,
+                    0.060000002,
+                    0.04,
+                    0.02,
+                    0.3,
+                    0.15,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "goliath_tentacle"
+        },
+        {
+            "name": "watcher_wing"
+        },
+        {
+            "name": "ice_wing"
+        },
+        {
+            "name": "magma_wing"
+        },
+        {
+            "name": "legion_skull"
+        },
+        {
+            "name": "hunter_eye"
+        },
+        {
+            "name": "tail_spike"
+        },
+        {
+            "name": "blaster_tubes"
+        },
+        {
+            "name": "demon_claws"
+        },
+        {
+            "name": "vortex_talisman",
+            "delays": [
+                [
+                    2,
+                    0.25,
+                    0.225,
+                    0.2,
+                    0.175,
+                    0.15,
+                    0.125,
+                    0.1,
+                    0.075,
+                    0.05,
+                    0.25,
+                    0.089999996,
+                    0.08,
+                    0.07,
+                    0.060000002,
+                    0.05,
+                    0.04,
+                    0.030000001,
+                    0.02,
+                    0.01
+                ]
+            ]
+        },
+        {
+            "name": "adaptive_core",
+            "delays": [
+                [
+                    1.2,
+                    0.3,
+                    0.2,
+                    0.3,
+                    1.2,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    1.2,
+                    0.3,
+                    0.3,
+                    0.3
+                ]
+            ]
+        },
+        {
+            "name": "cleaving_saw"
+        },
+        {
+            "name": "cleaving_saw_open"
+        },
+        {
+            "name": "memento_mori_active"
+        },
+        {
+            "name": "memento_mori"
+        },
+        {
+            "name": "puzzle_pillar"
+        },
+        {
+            "name": "prison_cube"
+        },
+        {
+            "name": "asclepius_dormant"
+        },
+        {
+            "name": "asclepius_active",
+            "delays": [
+                [
+                    0.025,
+                    0.025,
+                    0.025,
+                    0.025,
+                    0.025,
+                    0.025,
+                    0.025,
+                    0.025,
+                    0.025,
+                    0.025,
+                    0.025,
+                    0.025,
+                    0.025,
+                    5
+                ]
+            ]
+        },
+        {
+            "name": "crevice_shard"
+        },
+        {
+            "name": "ashen_skull"
+        },
+        {
+            "name": "cursed_katana_organ",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "cursed_katana",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "ancient_goliath_tentacle"
+        }
+    ]
+}

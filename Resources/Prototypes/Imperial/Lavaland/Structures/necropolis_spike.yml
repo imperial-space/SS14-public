@@ -1,0 +1,60 @@
+# Шип Некрополя — неосознанная структура, порождающая фауну Лаваленда.
+# Не атакует, не двигается, не реагирует на раздражители.
+# После уничтожения через ~5 секунд создаёт бездну радиусом 2 тайла.
+- type: entity
+  id: NecroposisSpikeImperial
+  suffix: Lavaland
+  parent: BaseStructure
+  name: шип некрополя
+  description: Мрачный шип, торчащий из недр Лаваленда. Из него непрерывно выползают чудовища.
+  components:
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+    sprite: Imperial/HamMaggotson/tendril.rsi
+    state: icon
+    offset: "0.0,0.5"
+  - type: NecropolisSpike
+    spawnPrototypes:
+    - MobLegionLoot
+    - MobGoliathLoot
+    - MobWatcherLavalandLoot
+    - MobWatcherIcewingLoot
+    - MobWatcherMagmawingLoot
+    maxSpawns: 3
+    spawnInterval: 20.0
+    spawnRadius: 2.0
+    abyssRadius: 2.0
+    abyssDelay: 5.0
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Magic/disintegrate.ogg
+          params:
+            volume: -6
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: Anchorable
+  - type: InteractionPopup
+    successChance: 0
+    interactSuccessString: examine-default
+    interactFailureString: examine-default

@@ -1,0 +1,74 @@
+# Сундук Некрополя — выпадает из шипа некрополя после его уничтожения.
+# Содержит рандомный набор ценных предметов Лаваленда.
+- type: entity
+  parent: CrateGeneric
+  id: NecropolisCrate
+  suffix: Lavaland
+  name: сундук некрополя
+  description: Обитый тёмным металлом сундук, оставшийся от шипа некрополя. Внутри — сокровища тёмных сил.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/lava/mining/create.rsi
+    layers:
+    - state: necrocrate
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: EntityStorageVisuals
+    stateDoorOpen: necrocrate_open
+    stateDoorClosed: necrocrate
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        # ── Культовая одежда ─────────────────────────────────────────────
+        - !type:EntSelector
+          id: CultHeavyRobe
+          prob: 0.20
+        - !type:EntSelector
+          id: CultSoulStone
+          prob: 0.20
+        - !type:EntSelector
+          id: ClothingOuterCultFlagellantRobes
+          prob: 0.15
+        # ── Оружие ───────────────────────────────────────────────────────
+        - !type:EntSelector
+          id: MiningDrillDiamond
+          prob: 0.20
+        - !type:EntSelector
+          id: LavalandWeaponMeatHook
+          prob: 0.20
+        - !type:EntSelector
+          id: PossessedBlade
+          prob: 0.15
+        - !type:EntSelector
+          id: ClusterGrenade
+          prob: 0.25
+        # ── Артефакты и утилиты ──────────────────────────────────────────
+        - !type:EntSelector
+          id: LibraryRecallSpellbook
+          prob: 0.15
+        - !type:EntSelector
+          id: RodOfAsclepiusLavaland
+          prob: 0.10
+        - !type:EntSelector
+          id: TalismanImmortality
+          prob: 0.15
+        - !type:EntSelector
+          id: LanternThermal
+          prob: 0.20
+        - !type:EntSelector
+          id: ClothingOuterChampionArmor
+          prob: 0.10
+        # ── Кристалл вампиризма (модуль КА) ─────────────────────────────
+        - !type:EntSelector
+          id: PKAMiningUpgradeLifeSteal
+          prob: 0.15
+        # ── Кубики-телепорты (спавнятся вместе — одинаковый шанс) ───────
+        - !type:EntSelector
+          id: PrisonCubeTeleportBlue
+          prob: 0.20
+        - !type:EntSelector
+          id: PrisonCubeTeleportRed
+          prob: 0.20
+  - type: StaticPrice
+    price: 0

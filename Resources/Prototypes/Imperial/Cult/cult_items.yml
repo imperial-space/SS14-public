@@ -467,26 +467,6 @@
   - type: TimedDespawn
     lifetime: 0.7
 
-# ─── Плитка пола культа ───
-
-- type: entity
-  name: cult floor tile
-  description: A dark runic tile used by the cult of Nar'Sie.
-  parent: FloorTileItemBase
-  id: FloorTileItemCult
-  components:
-  - type: Sprite
-    sprite: Imperial/cult/floor/tiles.rsi
-    state: tile_cult
-  - type: Item
-    sprite: Imperial/cult/floor/tiles.rsi
-  - type: FloorTile
-    outputs:
-      - Plating
-      - FloorCult
-  - type: Stack
-    stackType: FloorTileCult
-
 # ─── Повязка фанатика ───
 
 - type: entity

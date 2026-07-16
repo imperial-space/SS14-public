@@ -1,0 +1,254 @@
+# ══════════════════════════════════════════════════════════════════════════════
+# Лавалэнд — призраколи выживших
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Снаряжение ────────────────────────────────────────────────────────────────
+
+- type: startingGear
+  id: LavalandVetGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMedicalDoctor
+    gloves: ClothingHandsGlovesLatex
+    neck: ClothingNeckStethoscope
+    shoes: ClothingShoesBootsJack
+  inhand:
+  - MedkitAdvanced
+
+- type: startingGear
+  id: LavalandBeachGear
+  equipment:
+    jumpsuit: UniformShortsRed
+    eyes: ClothingEyesGlassesSunglasses
+    shoes: ClothingShoesSlippers
+
+- type: startingGear
+  id: LavalandHermitGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitEngineering
+    outerClothing: ClothingOuterSuitEmergency
+    gloves: ClothingHandsGlovesColorYellow
+    shoes: ClothingShoesBootsWork
+  inhand:
+  - EmergencyOxygenTank
+
+- type: startingGear
+  id: LavalandClownGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitClown
+    shoes: ClothingShoesClown
+    mask: ClothingMaskClown
+
+# ── Мобы ─────────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: MobLavalandVet
+  suffix: Lavaland
+  parent: MobHuman
+  name: ветеринар
+  description: Перенесённый ветеринар. Явно не туда попал, но сдаваться не намерен.
+  components:
+  - type: Loadout
+    prototypes:
+    - LavalandVetGear
+  - type: GhostRole
+    name: ghost-role-lavaland-vet-name
+    description: ghost-role-lavaland-vet-desc
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+
+- type: entity
+  id: MobLavalandDiona
+  suffix: Lavaland
+  parent: MobDiona
+  name: диона
+  description: Диона, пробудившаяся ото сна в террариуме, посаженном кем-то очень-очень давно. Ей дана задача нести жизнь, куда только это только возможно.
+  components:
+  - type: GhostRole
+    name: ghost-role-lavaland-diona-name
+    description: ghost-role-lavaland-diona-desc
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+
+- type: entity
+  id: MobLavalandBeach
+  suffix: Lavaland
+  parent: MobHuman
+  name: обитатель пляжа
+  description: Как они сюда попали — загадка. Видимо, искали солнце.
+  components:
+  - type: Loadout
+    prototypes:
+    - LavalandBeachGear
+  - type: GhostRole
+    name: ghost-role-lavaland-beach-name
+    description: ghost-role-lavaland-beach-desc
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+
+- type: entity
+  id: MobLavalandHermit
+  suffix: Lavaland
+  parent: MobHuman
+  name: отшельник
+  description: Живёт тут давно. Очень давно. Никого не ждал, но и прогонять не торопится.
+  components:
+  - type: Loadout
+    prototypes:
+    - LavalandHermitGear
+  - type: GhostRole
+    name: ghost-role-lavaland-hermit-name
+    description: ghost-role-lavaland-hermit-desc
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+
+- type: entity
+  id: MobLavalandClown
+  suffix: Lavaland
+  parent: MobHuman
+  name: клоун
+  description: Находясь в биоцирке, эти клоуны верны своей пожизненной цели — нести счастье и веселье в дальние уголки галактики. Даже если это приводит их в... не очень приятные места.
+  components:
+  - type: Loadout
+    prototypes:
+    - LavalandClownGear
+  - type: GhostRole
+    name: ghost-role-lavaland-clown-name
+    description: ghost-role-lavaland-clown-desc
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+
+# ── Маркеры-спавнеры ──────────────────────────────────────────────────────────
+
+- type: entity
+  id: SpawnLavalandVet
+  suffix: Lavaland
+  name: перенесённый ветеринар (призраколь)
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    name: ghost-role-lavaland-vet-name
+    description: ghost-role-lavaland-vet-desc
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: MobLavalandVet
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Clothing/Uniforms/Jumpsuit/medical.rsi
+      state: icon
+
+- type: entity
+  id: SpawnLavalandTerrarium
+  suffix: Lavaland
+  name: сохранившийся террариум (призраколь)
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    name: ghost-role-lavaland-diona-name
+    description: ghost-role-lavaland-diona-desc
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: MobLavalandDiona
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Mobs/Customization/diona.rsi
+      state: flowers_body
+
+- type: entity
+  id: SpawnLavalandBeach
+  suffix: Lavaland
+  name: обитатель пляжа (призраколь)
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    name: ghost-role-lavaland-beach-name
+    description: ghost-role-lavaland-beach-desc
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: MobLavalandBeach
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Clothing/Eyes/Glasses/sunglasses.rsi
+      state: icon
+
+- type: entity
+  id: SpawnLavalandHermit
+  suffix: Lavaland
+  name: отшельник (призраколь)
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    name: ghost-role-lavaland-hermit-name
+    description: ghost-role-lavaland-hermit-desc
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: MobLavalandHermit
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Clothing/OuterClothing/Suits/eva_emergency.rsi
+      state: icon
+
+- type: entity
+  id: SpawnLavalandClown
+  suffix: Lavaland
+  name: клоун лавалэнда (призраколь)
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    name: ghost-role-lavaland-clown-name
+    description: ghost-role-lavaland-clown-desc
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: MobLavalandClown
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Clothing/Mask/clown.rsi
+      state: icon
+
+# ── Маркеры-спавнеры мегафауны ────────────────────────────────────────────────
+
+- type: entity
+  id: SpawnLavalandGoliath
+  suffix: Lavaland
+  name: голиаф (спавнер)
+  parent: MarkerBase
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - MobGoliathLoot
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Mobs/Aliens/Asteroid/goliath.rsi
+      state: goliath
+

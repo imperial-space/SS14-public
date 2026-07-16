@@ -1,0 +1,45 @@
+- type: entity
+  parent: ClothingHeadHelmetArmoredBase
+  id: ClothingHeadHelmetHECK
+  suffix: Lavaland
+  name: шлем H.E.C.K.
+  description: Защитный шлем из комплекта H.E.C.K. Не является EVA-шлемом, но хорошо прикрывает голову от обычных угроз.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/hostrile/hostrile_head.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/lava/mining/hostrile/hostrile_head.rsi
+  - type: StaticPrice
+    price: 1400
+
+- type: entity
+  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing]
+  id: ClothingOuterArmorHECK
+  suffix: Lavaland
+  name: броня H.E.C.K.
+  description: Комплект усиленной шахтерской брони H.E.C.K. Это не скафандр, но он отлично держит кинетику, взрывы и почти полностью изолирует от вредной среды.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/hostrile/hostrile_suit.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/lava/mining/hostrile/hostrile_suit.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.30
+        Piercing: 0.60
+        Heat: 0.90
+        Shock: 0.90
+        Radiation: 0.0
+        Caustic: 0.0
+        Poison: 0.0
+        Cold: 0.0
+        Bloodloss: 0.0
+  - type: StaminaResistance
+    damageCoefficient: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: StaticPrice
+    price: 2600

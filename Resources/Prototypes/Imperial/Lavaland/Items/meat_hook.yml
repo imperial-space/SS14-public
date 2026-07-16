@@ -1,0 +1,87 @@
+- type: entity
+  id: LavalandMeatHookProjectile
+  suffix: Lavaland
+  name: meat hook
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: EmbeddableProjectile
+    deleteOnRemove: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    noRot: false
+    sprite: Imperial/lava/mining/hook.rsi
+    layers:
+    - state: hook
+      shader: unshaded
+  - type: Physics
+    bodyType: Dynamic
+    linearDamping: 0
+    angularDamping: 0
+  - type: TileFrictionModifier
+    modifier: 0
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    deleteOnCollide: false
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 25
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.1,0.1,0.1"
+        hard: false
+        mask:
+          - Impassable
+          - BulletImpassable
+      fly-by:
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: false
+  - type: GrapplingProjectile
+  - type: MeatHookProjectile
+    pullImpulse: 22
+    stunSeconds: 3
+
+- type: entity
+  id: LavalandWeaponMeatHook
+  suffix: Lavaland
+  name: острый мясной крюк
+  description: Крюк на цепи. Рвёт плоть вблизи и подтягивает добычу к вам выстрелом.
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: MeleeWeapon
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 18
+  - type: AmmoCounter
+  - type: GrapplingGun
+    ropeSprite:
+      sprite: Imperial/lava/mining/hook.rsi
+      state: chain
+    reelForce: 7000
+    ropeMaxLength: 10
+  - type: Gun
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/harpoon.ogg
+    fireRate: 0.5
+    clumsyProof: true
+  - type: BasicEntityAmmoProvider
+    proto: LavalandMeatHookProjectile
+    capacity: 1
+  - type: Sprite
+    sprite: Imperial/lava/mining/hook.rsi
+    state: hook
+  - type: UseDelay
+    delay: 1.2

@@ -1,0 +1,4 @@
+- type: shader
+  id: ChaosRage
+  kind: source
+  path: "/Textures/Imperial/Shaders/chaos_rage.swsl"
