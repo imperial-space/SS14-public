@@ -66,3 +66,33 @@
       state: ability_gold_regeneration
   - type: InstantAction
     event: !type:ForgedRepairActionEvent
+
+- type: entity
+  id: InvisibileNimbusAction
+  name: InvisibileNimbusAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    useDelay: 15
+    sound: /Audio/Effects/card_drag.ogg
+    icon:
+      sprite: Imperial/Medieval/Forged/abilities.rsi #
+      state: ability_invisibility_off
+    iconOn:
+      sprite: Imperial/Medieval/Forged/abilities.rsi
+      state: ability_invisibility
+  - type: InstantAction
+    event: !type:ForgedInvisibilityNimbusActionEvent
+
+- type: entity
+  id: ExplosiveAction
+  name: ExplosiveAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    sound: /Audio/Effects/card_drag.ogg
+    icon:
+      sprite: Imperial/Medieval/Forged/abilities.rsi #
+      state: ability_self_explosive
+  - type: InstantAction
+    event: !type:ForgedExplosiveActionEvent

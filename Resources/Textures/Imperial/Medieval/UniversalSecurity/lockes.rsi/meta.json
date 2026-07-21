@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "Lavi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "MedievalLockT1"
+    },
+    {
+      "name": "MedievalLockT2"
+    },
+    {
+      "name": "MedievalLockT3"
+    }
+  ]
+}

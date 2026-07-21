@@ -2,8 +2,10 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.Popups;
 using Content.Server.Engineering.Components;
+using Content.Server.Imperial.Medieval.Achievements;
 using Content.Server.MedievalFactionFlag.Components;
 using Content.Server.Imperial.Medieval.Engineering;
+using Content.Shared.Imperial.Medieval.Achievements;
 using Content.Shared.Imperial.Medieval.CapturePoint;
 using Content.Shared.Imperial.Medieval.CapturePoint.Components;
 using Content.Shared.Imperial.Medieval.CapturePoint.Systems;
@@ -34,6 +36,7 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly AchievementSystem _achievement = default!;
 
     private float _updateTimer;
     private const float UpdateInterval = 0.5f;
@@ -366,6 +369,8 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
                 RaiseNetworkEvent(resultEv, session);
         }
 
+        RaiseLocalEvent(resultEv); // Для waystones
+
         var resultText = winner != null
             ? Loc.GetString("medieval-capture-point-captured",
                 ("pointName", comp.PointName),
@@ -373,6 +378,16 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
             : Loc.GetString("medieval-capture-point-ended-in-draw", ("pointName", comp.PointName));
 
         _popup.PopupEntity(resultText, ent, PopupType.LargeCaution);
+
+        if (winner != null)
+        {
+            var winnersInRadius = GetFactionEntitiesInRadius(ent, winner.Value);
+            foreach (var playerUid in winnersInRadius)
+            {
+                _achievement.TryUpdateProgressAndGrant(playerUid, new CapturePointUpdateContext(), 
+                    ach => ach.Conditions.Any(c => c is CapturePointCondition));
+            }
+        }
     }
 
     private void ApplyStatusEffectToEnemyFaction(Entity<CapturePointComponent> ent)

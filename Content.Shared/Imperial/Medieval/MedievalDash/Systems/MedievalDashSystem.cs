@@ -13,6 +13,12 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Shared.ActionBlocker;
 using System.Diagnostics.CodeAnalysis;
+using Robust.Shared.Physics;
+using Content.Shared.Physics;
+using Robust.Shared.Debugging;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Hands.Components;
+using Content.Shared.Standing;
 
 namespace Content.Shared.Imperial.Dash;
 
@@ -25,10 +31,8 @@ public sealed partial class MedievalDashSystem : EntitySystem
     [Dependency] private readonly SharedStaminaSystem _staminaSystem = default!;
     [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-
-
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -42,20 +46,30 @@ public sealed partial class MedievalDashSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var enumerator = EntityQueryEnumerator<MedievalDashComponent>();
+        var enumerator = EntityQueryEnumerator<MedievalDashComponent, PhysicsComponent>();
 
-        while (enumerator.MoveNext(out var uid, out var component))
+        while (enumerator.MoveNext(out var uid, out var dashComponent, out var physicsComponent))
         {
-            if (_timing.CurTime < component.DashEndTime) continue;
-            if (!component.IsDashing) continue;
+            if (HasComp<PhaseSpaceShadowComponent>(uid))
+            {
+                float curDisFromStart = Vector2.Distance(_transformSystem.GetWorldPosition(uid), dashComponent.StartDashPos);
+                if (dashComponent.LegalEndDashPos != null &&
+                    curDisFromStart > Vector2.Distance(dashComponent.LegalEndDashPos.Value, dashComponent.StartDashPos))
+                {
+                    _transformSystem.SetWorldPosition(uid, dashComponent.LegalEndDashPos.Value);
+                    _physicsSystem.SetLinearVelocity(uid, Vector2.Zero);
+                }
+            }
 
-            component.IsDashing = false;
-            var ev = new DashEndedEvent();
-            RaiseLocalEvent(uid, ref ev);
+            if (_timing.CurTime > dashComponent.DashEndTime && dashComponent.IsDashing ||
+                physicsComponent.LinearVelocity.LengthSquared() < 0.04f)
+            {
+                dashComponent.IsDashing = false;
+                var ev = new DashEndedEvent();
+                RaiseLocalEvent(uid, ref ev);
 
-            if (_net.IsClient) return;
-
-            RemComp<PhaseSpaceShadowComponent>(uid);
+                RemComp<PhaseSpaceShadowComponent>(uid); // Тут раньше стояло условие, что это обрабатывать может только сервер. Я не знаю зачем, так как это создавало эффект на клиенте, когда экран трясся 0.5 секунды, если ударится в стену.
+            }
         }
     }
 
@@ -90,6 +104,12 @@ public sealed partial class MedievalDashSystem : EntitySystem
                 return false;
             }
         }
+
+        if (TryComp<StandingStateComponent>(uid, out var standingComp) &&
+            standingComp.Standing == false &&
+            _handsSystem.GetEmptyHandCount(uid) == 0)
+            return false;
+
 
         var ev = new CanDashEvent();
         RaiseLocalEvent(uid, ref ev);
@@ -147,6 +167,34 @@ public sealed partial class MedievalDashSystem : EntitySystem
         var startEv = new DashStartedEvent();
         RaiseLocalEvent(player, ref startEv);
 
+        component.StartDashPos = _transformSystem.GetWorldPosition(player);
+        component.LegalEndDashPos = _transformSystem.GetWorldPosition(player) + impulse.Normalized() * GetDashDistanceCollision(player, impulse.Normalized(), 5);
+
         return false;
+    }
+
+    private float? GetDashDistanceCollision(EntityUid uid, Vector2 direction, float maxDistance)
+    {
+        var xform = Transform(uid);
+        var mask = (int)(CollisionGroup.Impassable | CollisionGroup.LowImpassable);
+
+
+        var ray = new CollisionRay(_transformSystem.GetWorldPosition(uid), direction, mask);
+
+        var results = _physicsSystem.IntersectRay(
+        xform.MapID,
+        ray,
+        maxDistance,
+        uid,
+        false);
+
+
+        foreach (var result in results)
+        {
+            if (result.HitEntity != EntityUid.Invalid)
+                return Math.Max(0, result.Distance - 0.4f);
+        }
+
+        return null;
     }
 }

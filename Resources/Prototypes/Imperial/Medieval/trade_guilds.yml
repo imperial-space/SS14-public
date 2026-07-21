@@ -162,6 +162,7 @@
 
 - type: guildType
   id: MagicGuild
+  displayName: магическая гильдия
   name: MagicGuild
   icons:
   - MagicGuild1
@@ -369,6 +370,7 @@
 
 - type: guildType
   id: WeaponGuild
+  displayName: оружейная гильдия
   name: WeaponGuild
   icons:
   - WeaponGuild1
@@ -640,6 +642,7 @@
 
 - type: guildType
   id: ArmorGuild
+  displayName: доспешная гильдия
   name: ArmorGuild
   icons:
   - ArmorGuild1
@@ -804,6 +807,7 @@
 
 - type: guildType
   id: FoodGuild
+  displayName: кулинарная гильдия
   name: FoodGuild
   icons:
   - FoodGuild1
@@ -1071,6 +1075,7 @@
 
 - type: guildType
   id: ClothGuild
+  displayName: кожевная гильдия
   name: ClothGuild
   icons:
   - ClothGuild1
@@ -1492,6 +1497,7 @@
 
 - type: guildType
   id: BuilderGuild
+  displayName: строительная гильдия
   name: BuilderGuild
   icons:
   - BuilderGuild1
@@ -1600,6 +1606,16 @@
   # - productEntity: PianoInstrument
     # cost: 100
     # reputationForBuying: 2.7
+  - productEntity: MedievalDoorLockT1
+    cost: 12
+    reputationForBuying: 0
+  - productEntity: MedievalDoorLockT2
+    cost: 45
+    minReputation: 10
+    reputationForBuying: 10
+  - productEntity: MedievalDoorKeyCheck
+    cost: 10
+    reputationForBuying: 0
   - productEntity: MedievalChest2
     cost: 35
     reputationForBuying: 1.15

@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
-    "copyright": "Made for the Imperial Space community, authors discord nickname: Zakvielian, Passajir, Ungabunga, Piter Panker",
+    "copyright": "Made for the Imperial Space community, authors discord nickname: Passajir, Ungabunga, Piter Panker",
     "size": {
         "x": 32,
         "y": 32
@@ -34,6 +34,86 @@
         },
         {
             "name": "blank"
+        },
+        {
+            "name": "invisibility_nimbus"
+        },
+        {
+            "name": "self_destruction",
+            "directions": 4
+        },
+        {
+            "name": "self_destruction_item"
+        },
+        {
+            "name": "magic_gun_1_leftArm",
+            "directions": 4
+        },
+        {
+            "name": "magic_gun_1_rightArm",
+            "directions": 4
+        },
+        {
+            "name": "magic_gun_2_leftArm",
+            "directions": 4
+        },
+        {
+            "name": "magic_gun_2_rightArm",
+            "directions": 4
+        },
+        {
+            "name": "magic_gun_3_leftArm",
+            "directions": 4
+        },
+        {
+            "name": "magic_gun_3_rightArm",
+            "directions": 4
+        },
+        {
+            "name": "magic_gun_4_leftArm",
+            "directions": 4
+        },
+        {
+            "name": "magic_gun_4_rightArm",
+            "directions": 4
+        },
+        {
+            "name": "magic_gun_5_leftArm",
+            "directions": 4
+        },
+        {
+            "name": "magic_gun_5_rightArm",
+            "directions": 4
+        },
+        {
+            "name": "magic_gun_1"
+        },
+        {
+            "name": "magic_gun_2"
+        },
+        {
+            "name": "magic_gun_3"
+        },
+        {
+            "name": "magic_gun_4"
+        },
+        {
+            "name": "magic_gun_5"
+        },
+        {
+            "name": "magic_gun_1_item"
+        },
+        {
+            "name": "magic_gun_2_item"
+        },
+        {
+            "name": "magic_gun_3_item"
+        },
+        {
+            "name": "magic_gun_4_item"
+        },
+        {
+            "name": "magic_gun_5_item"
         }
     ]
 }

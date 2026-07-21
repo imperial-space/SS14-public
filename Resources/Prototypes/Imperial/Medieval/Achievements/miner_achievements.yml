@@ -1,0 +1,573 @@
+
+# Шахтёры (вся ветка требует фракцию Miner)
+# Механика: "сделать/получить/добыть N" = иметь N в инвентаре (CollectAll/CollectAny), "за раунд" => roundOnly
+# УТОЧНИТЬ: сырое железо для входа, "зелёный доспех", "магические камни" (плейсхолдеры ниже)
+
+# Вход: за 1 раунд добыть 15 глины + 15 железа + 15 угля
+- type: achievement
+  id: AchievementMinerJoin
+  priority: 10
+  rarity: Common
+  name: achievement-miner-join-name
+  tab: AchievementTabMine
+  description: achievement-miner-join-desc
+  icon:
+    sprite: Objects/Weapons/Melee/pickaxe.rsi
+    state: pickaxe
+  visibility: Visible
+  roundOnly: true
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: minerJoinProgression
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+      MedievalGlina: 15 # глина
+      MedievalIronIngot: 15 # железо — УТОЧНИТЬ (сырое железо/руда?)
+      MedievalCoal: 15 # уголь
+
+# За 1 раунд сделать 30 железных слитков
+- type: achievement
+  id: AchievementMiner30Iron
+  priority: 11
+  rarity: Common
+  name: achievement-miner-30iron-name
+  description: achievement-miner-30iron-desc
+  icon:
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: iron_ingot
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementMinerJoin
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: miner30IronProgression
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+      MedievalIronIngot: 30
+
+# За 1 раунд сделать 15 стальных слитков
+- type: achievement
+  id: AchievementMiner15Steel
+  priority: 12
+  rarity: Uncommon
+  name: achievement-miner-15steel-name
+  description: achievement-miner-15steel-desc
+  icon:
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: steel_ingot
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementMiner30Iron
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: miner15SteelProgression
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+      MedievalSteelIngot: 15
+
+# За 1 раунд сделать 5 эбонитовых слитков
+- type: achievement
+  id: AchievementMiner5Ebonite
+  priority: 13
+  rarity: Rare
+  name: achievement-miner-5ebonite-name
+  description: achievement-miner-5ebonite-desc
+  icon:
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: ebonit_ingot
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementMiner15Steel
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: miner5EboniteProgression
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+      MedievalEbonitIngot: 5
+
+# Сделать любой эбонитовый доспех
+- type: achievement
+  id: AchievementMinerEboniteArmor
+  priority: 14
+  rarity: Rare
+  name: achievement-miner-ebonite-armor-name
+  description: achievement-miner-ebonite-armor-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/ebonit2.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementMiner5Ebonite
+  conditions:
+  - !type:CollectAnyItemsCondition
+    progressKey: minerEboniteArmorProgression
+    requiredCount: 1
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+    - MedievalClothingHeadHelmetEbonit
+    - MedievalClothingHeadHelmetEbonit2
+    - MedievalClothingOuterArmorEbonit
+    - MedievalClothingOuterArmorEbonit2
+    - MedievalEbonitGloves
+    - MedievalEbonitGloves2
+    - MedievalClothingFeetEbonit
+    - MedievalClothingFeetEbonit2
+
+# За 1 раунд сделать полный эбонитовый набор
+- type: achievement
+  id: AchievementMinerFullEbonite
+  priority: 15
+  rarity: Epic
+  name: achievement-miner-full-ebonite-name
+  description: achievement-miner-full-ebonite-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Armor/ebonit_armor2.rsi
+    state: icon
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementMinerEboniteArmor
+  conditions:
+  # шлем
+  - !type:CollectAnyItemsCondition
+    progressKey: minerFullEboniteHeadProgression
+    requiredCount: 1
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+    - MedievalClothingHeadHelmetEbonit
+    - MedievalClothingHeadHelmetEbonit2
+  # доспех
+  - !type:CollectAnyItemsCondition
+    progressKey: minerFullEboniteChestProgression
+    requiredCount: 1
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+    - MedievalClothingOuterArmorEbonit
+    - MedievalClothingOuterArmorEbonit2
+  # перчатки
+  - !type:CollectAnyItemsCondition
+    progressKey: minerFullEboniteGlovesProgression
+    requiredCount: 1
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+    - MedievalEbonitGloves
+    - MedievalEbonitGloves2
+  # сапоги
+  - !type:CollectAnyItemsCondition
+    progressKey: minerFullEboniteFeetProgression
+    requiredCount: 1
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+    - MedievalClothingFeetEbonit
+    - MedievalClothingFeetEbonit2
+
+# Сделать стальной цвайхендер
+- type: achievement
+  id: AchievementMinerSteelZweihander
+  priority: 16
+  rarity: Rare
+  name: achievement-miner-steel-zweihander-name
+  description: achievement-miner-steel-zweihander-desc
+  icon:
+    sprite: Imperial/Medieval/Melee/zweihander.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementMiner15Steel
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: minerSteelZweihanderProgression
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+      MedievalIronZweihanderSteel: 1
+
+# За 1 раунд сделать 10 золотых слитков
+- type: achievement
+  id: AchievementMiner10Gold
+  priority: 17
+  rarity: Uncommon
+  name: achievement-miner-10gold-name
+  description: achievement-miner-10gold-desc
+  icon:
+    sprite: Imperial/Medieval/Materials/ingots.rsi
+    state: gold
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementMiner30Iron
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: miner10GoldProgression
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+      MedievalIngotGold: 10
+
+# За 1 раунд сделать 5 форстоуновых слитков
+- type: achievement
+  id: AchievementMiner5Forstone
+  priority: 18
+  rarity: Rare
+  name: achievement-miner-5forstone-name
+  description: achievement-miner-5forstone-desc
+  icon:
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: forstone_ingot
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementMiner10Gold
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: miner5ForstoneProgression
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+      MedievalForstoneIngot: 5
+
+# Сделать любой форстоуновый доспех
+- type: achievement
+  id: AchievementMinerForstoneArmor
+  priority: 19
+  rarity: Rare
+  name: achievement-miner-forstone-armor-name
+  description: achievement-miner-forstone-armor-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/forstone.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementMiner10Gold
+  conditions:
+  - !type:CollectAnyItemsCondition
+    progressKey: minerForstoneArmorProgression
+    requiredCount: 1
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+    - MedievalClothingHeadHelmetForstone
+    - MedievalClothingOuterArmorForstone
+    - MedievalForstoneGloves
+    - MedievalClothingFeetForstone
+
+# За 1 раунд сделать полный форстоуновый набор
+- type: achievement
+  id: AchievementMinerFullForstone
+  priority: 20
+  rarity: Epic
+  name: achievement-miner-full-forstone-name
+  description: achievement-miner-full-forstone-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Armor/forstone_armor.rsi
+    state: icon
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementMinerForstoneArmor
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: minerFullForstoneProgression
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+      MedievalClothingHeadHelmetForstone: 1
+      MedievalClothingOuterArmorForstone: 1
+      MedievalForstoneGloves: 1
+      MedievalClothingFeetForstone: 1
+
+# Сделать форстоуновую или эбонитовую кирку
+- type: achievement
+  id: AchievementMinerPickaxe
+  priority: 21
+  rarity: Epic
+  name: achievement-miner-pickaxe-name
+  description: achievement-miner-pickaxe-desc
+  icon:
+    sprite: Imperial/Medieval/Melee/ebonit_pickaxe.rsi
+    state: pickaxe
+  visibility: Visible
+  prerequisites:
+  - AchievementMiner5Forstone
+  - AchievementMinerEboniteArmor
+  conditions:
+  - !type:CollectAnyItemsCondition
+    progressKey: minerPickaxeProgression
+    requiredCount: 1
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+    - MedievalPickaxeForStone
+    - MedievalPickaxeEbonit
+
+# Появиться за роль главы шахтёров
+- type: achievement
+  id: AchievementMinerBecomeLeader
+  priority: 22
+  rarity: Epic
+  name: achievement-miner-become-leader-name
+  description: achievement-miner-become-leader-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Cloaks/clan_mine.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementMinerPickaxe
+  conditions:
+  - !type:LocationCondition
+    progressKey: minerBecomeLeaderProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalMinerLeader
+    requiredFactions:
+    - Miner
+    locationId: AreaMarkerMine
+
+# Главой: получить письмо бандитов
+- type: achievement
+  id: AchievementMinerLeaderBanditLetter
+  priority: 23
+  rarity: Rare
+  name: achievement-miner-leader-bandit-letter-name
+  description: achievement-miner-leader-bandit-letter-desc
+  icon:
+    sprite: Imperial/Medieval/Objects/Envelope/bandit.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementMinerBecomeLeader
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: minerLeaderBanditLetterProgression
+    requiredJobs:
+    - MedievalMinerLeader
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+      MedievalPaperEnvelopeBandit: 1
+
+# Главой: за 1 раунд получить 60 слитков золота
+- type: achievement
+  id: AchievementMinerLeader60Gold
+  priority: 24
+  rarity: Legendary
+  name: achievement-miner-leader-60gold-name
+  description: achievement-miner-leader-60gold-desc
+  icon:
+    sprite: Imperial/Medieval/Materials/ingots.rsi
+    state: gold_3
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementMinerBecomeLeader
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: minerLeader60GoldProgression
+    requiredJobs:
+    - MedievalMinerLeader
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+      MedievalIngotGold: 60
+
+# За 1 раунд сделать из дерева 30 угля
+- type: achievement
+  id: AchievementMinerWoodCoal30
+  priority: 25
+  rarity: Common
+  name: achievement-miner-woodcoal30-name
+  description: achievement-miner-woodcoal30-desc
+  icon:
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: coal
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementMinerJoin
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: minerWoodCoal30Progression
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+      MedievalCoal: 30
+
+# Получить два топора
+- type: achievement
+  id: AchievementMinerTwoAxes
+  priority: 26
+  rarity: Common
+  name: achievement-miner-two-axes-name
+  description: achievement-miner-two-axes-desc
+  icon:
+    sprite: Imperial/Medieval/Melee/medieval_hatchet.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementMinerWoodCoal30
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: minerTwoAxesProgression
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+      MedievalHatchet: 2
+
+# За 1 раунд сделать 250 угля
+- type: achievement
+  id: AchievementMiner250Coal
+  priority: 27
+  rarity: Uncommon
+  name: achievement-miner-250coal-name
+  description: achievement-miner-250coal-desc
+  icon:
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: coal
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementMinerTwoAxes
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: miner250CoalProgression
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+      MedievalCoal: 250
+
+# За 1 раунд сделать 30 глиняных формочек
+- type: achievement
+  id: AchievementMiner30Molds
+  priority: 28
+  rarity: Common
+  name: achievement-miner-30molds-name
+  description: achievement-miner-30molds-desc
+  icon:
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: glina_forma
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementMinerJoin
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: miner30MoldsProgression
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+      MedievalGlinaForma: 30
+
+# За 1 раунд сделать 250 формочек
+- type: achievement
+  id: AchievementMiner250Molds
+  priority: 29
+  rarity: Uncommon
+  name: achievement-miner-250molds-name
+  description: achievement-miner-250molds-desc
+  icon:
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: glina_forma
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementMiner30Molds
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: miner250MoldsProgression
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+      MedievalGlinaForma: 250
+
+# Добыть 15 магических камней
+- type: achievement
+  id: AchievementMiner15MagicStones
+  priority: 30
+  rarity: Rare
+  name: achievement-miner-15magic-stones-name
+  description: achievement-miner-15magic-stones-desc
+  icon:
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: serdolick
+  visibility: Visible
+  prerequisites:
+  - AchievementMinerJoin
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: miner15MagicStonesProgression
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+      MedievalMagicStone: 15 # магические камни — УТОЧНИТЬ id
+
+# Сделать амулет защиты
+- type: achievement
+  id: AchievementMinerAmuletDef
+  priority: 31
+  rarity: Uncommon
+  name: achievement-miner-amulet-def-name
+  description: achievement-miner-amulet-def-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementMiner15MagicStones
+  - AchievementMiner10Gold
+  conditions:
+  - !type:CollectAnyItemsCondition
+    progressKey: minerAmuletDefProgression
+    requiredCount: 1
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+    - MedaljonDef # амулет (медальон) защиты
+    - MedaljonDefSkin
+
+# Сделать: стальные ботинки + стальные рукавицы + зелёный доспех + железный шлем
+- type: achievement
+  id: AchievementMinerBasicArmor
+  priority: 32
+  rarity: Uncommon
+  name: achievement-miner-basic-armor-name
+  description: achievement-miner-basic-armor-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Armor/iron_armor_cuirass.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementMiner30Iron
+  conditions:
+  - !type:CollectAllItemsCondition # стальные ботинки + рукавицы + зелёный доспех
+    progressKey: minerBasicArmorProgression
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+      MedievalClothingFeetSteel: 1 # стальные ботинки
+      MedievalIronGloves: 1 # стальные рукавицы
+      MedievalClothingOuterArmorLeatherHeavy: 1 # зелёный доспех — УТОЧНИТЬ id
+  - !type:CollectAnyItemsCondition # железный шлем (любой)
+    progressKey: minerBasicHelmetProgression
+    requiredCount: 1
+    requiredFactions:
+    - Miner
+    itemPrototypes:
+    - MedievalClothingHeadHelmetSalad
+    - MedievalClothingHeadHelmetSaladLight
+    - MedievalClothingHeadHelmetNormand
+    - MedievalClothingHeadHelmetNormandFree
+    - MedievalClothingHeadHelmetBacinet
+    - MedievalClothingHeadHelmetShapel
+    - MedievalClothingHeadHelmetCrusader

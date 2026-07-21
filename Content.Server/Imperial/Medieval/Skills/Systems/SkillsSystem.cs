@@ -1,18 +1,22 @@
 using Content.Server.Administration.Managers;
+using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Popups;
 using Content.Server.Stunnable;
 using Content.Shared.Administration;
+using Content.Shared.Chat;
+using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Preferences;
 using Content.Shared.Roles;
-using Robust.Server.GameObjects;
+using Content.Shared.Verbs;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.Skills;
 
@@ -23,6 +27,7 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     [Dependency] private readonly MobThresholdSystem _threshold = default!;
     [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly StunSystem _stun = default!;

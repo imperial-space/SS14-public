@@ -19,12 +19,12 @@
         {
             if (HasAct(ThresholdActs.Breakage))
             {
-                system.BreakEntity(owner);
+                system.BreakEntity(owner, cause); // Imperial Medieval Achievements
             }
 
             if (HasAct(ThresholdActs.Destruction))
             {
-                system.DestroyEntity(owner);
+                system.DestroyEntity(owner, cause); // Imperial Medieval Achievements
             }
         }
     }

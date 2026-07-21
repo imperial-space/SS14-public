@@ -97,6 +97,9 @@
 - type: Tag
   id: MedalIns
 
+- type: Tag
+  id: MedievalMedalIns
+
 - type: listing
   id: MdvInsMedievalMaceT3
   productEntity: MedievalMaceT3

@@ -145,7 +145,8 @@ public sealed partial class CP14WorkbenchSystem : SharedCP14WorkbenchSystem
             }
         }
 
-
+        var ev = new CP14WorkbenchCraftedEvent(args.Recipe, recipe.Result, resultEntity, ent);
+        RaiseLocalEvent(args.User, ev);
 
         UpdateUIRecipes(ent);
         args.Handled = true;

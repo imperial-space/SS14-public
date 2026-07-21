@@ -975,7 +975,7 @@ namespace Content.Server.Database
             }
             await db.DbContext.SaveChangesAsync(cancel);
         }
-        // Imperial Medieval Flavor Images Begin
+
         public async Task<FlavorImage?> GetFlavorImage(Guid userId, CancellationToken cancel, int? slot)
         {
             var log = "GetFlavorImage";
@@ -997,6 +997,7 @@ namespace Content.Server.Database
             _opsLog.Debug($"Getting image for {userId} image bytecount is {(image != null ? image.Image.Count() : 0)} slot is {slot}");
             return image;
         }
+
         public async Task AddOrUpdateFlavorImage(Guid userId, byte[] image, CancellationToken cancel, int? slot)
         {
             var log = "AddOrUpdateFlavorImage";
@@ -1032,6 +1033,7 @@ namespace Content.Server.Database
             _opsLog.Debug($"Updating image for {userId} new image bytecount is {image.Count()} slot is {slot}");
             await db.DbContext.SaveChangesAsync(cancel);
         }
+
         public async Task RemoveFlavorImage(Guid userId, int slot, CancellationToken cancel)
         {
             var log = "RemoveFlavorImage";
@@ -1056,7 +1058,145 @@ namespace Content.Server.Database
             _opsLog.Debug($"Removing image for {userId} old image bytecount is {image.Image.Count()} slot is {slot}");
             await db.DbContext.SaveChangesAsync(cancel);
         }
-        // Imperial Medieval Flavor Images End
+
+        public async Task<List<PlayerAchievement>> GetPlayerAchievements(Guid userId, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            return await db.DbContext.PlayerAchievements
+                .Where(a => a.PlayerUserId == userId)
+                .ToListAsync(cancel);
+        }
+
+        public async Task<(int TotalUniquePlayers, Dictionary<string, int> Stats)> GetAchievementStats(CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var totalUnique = await db.DbContext.PlayerAchievements
+                .Select(a => a.PlayerUserId)
+                .Distinct()
+                .CountAsync(cancel);
+
+            if (totalUnique == 0)
+                return (0, new Dictionary<string, int>());
+
+            var stats = await db.DbContext.PlayerAchievements
+                .GroupBy(a => a.AchievementId)
+                .Select(g => new { Id = g.Key, Count = g.Count() })
+                .ToDictionaryAsync(x => x.Id, x => x.Count, cancel);
+
+            return (totalUnique, stats);
+        }
+
+        public async Task<bool> GrantAchievement(Guid userId, string achievementId, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var exists = await db.DbContext.PlayerAchievements
+                .AnyAsync(a => a.PlayerUserId == userId && a.AchievementId == achievementId, cancel);
+
+            if (exists)
+                return false;
+
+            db.DbContext.PlayerAchievements.Add(new PlayerAchievement
+            {
+                PlayerUserId = userId,
+                AchievementId = achievementId,
+                GrantedAt = DateTime.UtcNow,
+            });
+
+            await db.DbContext.SaveChangesAsync(cancel);
+            return true;
+        }
+
+        public async Task<bool> RevokeAchievement(Guid userId, string achievementId, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var entry = await db.DbContext.PlayerAchievements
+                .SingleOrDefaultAsync(a => a.PlayerUserId == userId && a.AchievementId == achievementId, cancel);
+
+            if (entry is null)
+                return false;
+
+            db.DbContext.PlayerAchievements.Remove(entry);
+            await db.DbContext.SaveChangesAsync(cancel);
+            return true;
+        }
+
+        public async Task<Dictionary<string, Dictionary<string, int>>> GetPlayerAchievementProgress(
+            Guid userId, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var rows = await db.DbContext.PlayerAchievementsProgress
+                .Where(p => p.PlayerUserId == userId)
+                .ToListAsync(cancel);
+
+            var result = new Dictionary<string, Dictionary<string, int>>();
+            foreach (var row in rows)
+            {
+                if (!result.TryGetValue(row.AchievementId, out var achProg))
+                {
+                    achProg = new Dictionary<string, int>();
+                    result[row.AchievementId] = achProg;
+                }
+                achProg[row.ProgressKey] = row.Value;
+            }
+            return result;
+        }
+
+        public async Task SavePlayerAchievementProgress(Guid userId, Dictionary<string, Dictionary<string, int>> progress, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+            var existing = await db.DbContext.PlayerAchievementsProgress
+                .Where(p => p.PlayerUserId == userId)
+                .ToListAsync(cancel);
+
+            var existingMap = existing.ToDictionary(p => (p.AchievementId, p.ProgressKey));
+
+            foreach (var row in existing)
+            {
+                if (!progress.TryGetValue(row.AchievementId, out var keys) || !keys.ContainsKey(row.ProgressKey))
+                    db.DbContext.PlayerAchievementsProgress.Remove(row);
+            }
+
+            foreach (var (achId, keys) in progress)
+            {
+                foreach (var (key, value) in keys)
+                {
+                    if (existingMap.TryGetValue((achId, key), out var row))
+                    {
+                        row.Value = value;
+                    }
+                    else
+                    {
+                        db.DbContext.PlayerAchievementsProgress.Add(new PlayerAchievementProgress
+                        {
+                            PlayerUserId = userId,
+                            AchievementId = achId,
+                            ProgressKey = key,
+                            Value = value,
+                        });
+                    }
+                }
+            }
+
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task DeletePlayerAchievementProgress(Guid userId, string achievementId, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var rows = await db.DbContext.PlayerAchievementsProgress
+                .Where(p => p.PlayerUserId == userId && p.AchievementId == achievementId)
+                .ToListAsync(cancel);
+
+            db.DbContext.PlayerAchievementsProgress.RemoveRange(rows);
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
         #endregion
 
         #region Playtime

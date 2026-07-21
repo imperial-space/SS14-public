@@ -1,0 +1,26 @@
+<PanelContainer xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+               Name="RootPanel"
+               MouseFilter="Stop">
+    <PanelContainer Name="BorderPanel"
+                    HorizontalExpand="True"
+                    VerticalExpand="True"
+                    Access="Public">
+        <PanelContainer.PanelOverride>
+            <graphics:StyleBoxFlat
+                BackgroundColor="#110d09"
+                BorderColor="#3d2e1e"
+                BorderThickness="2"
+                ContentMarginLeftOverride="4"
+                ContentMarginRightOverride="4"
+                ContentMarginTopOverride="4"
+                ContentMarginBottomOverride="4"/>
+        </PanelContainer.PanelOverride>
+        <TextureRect Name="AchievementIcon"
+                     Stretch="KeepAspectCentered"
+                     CanShrink="True"
+                     HorizontalExpand="True"
+                     VerticalExpand="True"/>
+    </PanelContainer>
+</PanelContainer>

@@ -1,0 +1,188 @@
+# - type: decal
+  # id: SPRock1
+  # tags: ["rock"]
+  # snapCardinals: true
+  # defaultSnap: false
+  # sprite:
+    # sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    # state: rock_s1
+
+# - type: decal
+  # id: SPRock2
+  # tags: ["rock"]
+  # snapCardinals: true
+  # defaultSnap: false
+  # sprite:
+    # sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    # state: rock_s2
+
+# - type: decal
+  # id: SPRock3
+  # tags: ["rock"]
+  # snapCardinals: true
+  # defaultSnap: false
+  # sprite:
+    # sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    # state: rock_s3
+
+- type: decal
+  id: SPRock4
+  tags: ["rock"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rock_s4
+
+- type: decal
+  id: SPRock5
+  tags: ["rock"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rock_s5
+
+- type: decal
+  id: SPRock6
+  tags: ["rock"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rock_s6
+
+# - type: decal
+  # id: SPRock7
+  # tags: ["rock"]
+  # snapCardinals: true
+  # defaultSnap: false
+  # sprite:
+    # sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    # state: rock_s7
+
+# - type: decal
+  # id: SPRock8
+  # tags: ["rock"]
+  # snapCardinals: true
+  # defaultSnap: false
+  # sprite:
+    # sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    # state: rockmoss_s1
+
+# - type: decal
+  # id: SPRock9
+  # tags: ["rock"]
+  # snapCardinals: true
+  # defaultSnap: false
+  # sprite:
+    # sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    # state: rockmoss_s2
+
+# - type: decal
+  # id: SPRock10
+  # tags: ["rock"]
+  # snapCardinals: true
+  # defaultSnap: false
+  # sprite:
+    # sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    # state: rockmoss_s3
+
+- type: decal
+  id: SPRock11
+  tags: ["rock"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rockmoss_s4
+
+- type: decal
+  id: SPRock12
+  tags: ["rock"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rockmoss_s5
+
+- type: decal
+  id: SPRock13
+  tags: ["rock"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rockmoss_s6
+
+# - type: decal
+  # id: SPRock14
+  # tags: ["rock"]
+  # snapCardinals: true
+  # defaultSnap: false
+  # sprite:
+    # sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    # state: rockmoss_s7
+
+# - type: decal
+  # id: SPRock15
+  # tags: ["rock"]
+  # snapCardinals: true
+  # defaultSnap: false
+  # sprite:
+    # sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    # state: rocksand_s1
+
+# - type: decal
+  # id: SPRock16
+  # tags: ["rock"]
+  # snapCardinals: true
+  # defaultSnap: false
+  # sprite:
+    # sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    # state: rocksand_s2
+
+# - type: decal
+  # id: SPRock17
+  # tags: ["rock"]
+  # snapCardinals: true
+  # defaultSnap: false
+  # sprite:
+    # sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    # state: rocksand_s3
+
+- type: decal
+  id: SPRock18
+  tags: ["rock"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rocksand_s4
+
+- type: decal
+  id: SPRock19
+  tags: ["rock"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rocksand_s5
+
+- type: decal
+  id: SPRock20
+  tags: ["rock"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rocksand_s6
+
+# - type: decal
+  # id: SPRock21
+  # tags: ["rock"]
+  # snapCardinals: true
+  # defaultSnap: false
+  # sprite:
+    # sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    # state: rocksand_s7

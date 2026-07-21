@@ -1,0 +1,179 @@
+- type: shipGridOffer
+  id: VictoriaShip
+  displayName: victoria-Ship-Name
+  displayDescription: victoria-Ship-Desc
+  gridPath: /Maps/Imperial/Medieval/Ships/Victoria.yml
+  cost: 1000
+  localOffset: 5 # локальный оффсет спавна корабля от ямы
+  localOffsetAngle: 0 # локальная корректировка угла направления спавна
+  gridAngle: 0 # угол поворота грида корабля при спавне
+
+- type: shipGridOffer
+  id: DavidShip
+  displayName: david-Ship-Name
+  displayDescription: david-Ship-Desc
+  gridPath: /Maps/Imperial/Medieval/Ships/SmallShip0GRID.yml
+  cost: 250
+  localOffset: 5
+  localOffsetAngle: 0
+  gridAngle: 0
+
+- type: shipGridOffer
+  id: GalkaShip
+  displayName: galka-Ship-Name
+  displayDescription: galka-Ship-Desc
+  gridPath: /Maps/Imperial/Medieval/Ships/SmallShip1GRID.yml
+  cost: 315
+  localOffset: 5
+  localOffsetAngle: 0
+  gridAngle: 0
+
+- type: shipGridOffer
+  id: RosaShip
+  displayName: rosa-Ship-Name
+  displayDescription: rosa-Ship-Desc
+  gridPath: /Maps/Imperial/Medieval/Ships/SmallShip2GRID.yml
+  cost: 270
+  localOffset: 5
+  localOffsetAngle: 0
+  gridAngle: 0
+
+- type: shipGridOffer
+  id: GonecShip
+  displayName: gonec-Ship-Name
+  displayDescription: gonec-Ship-Desc
+  gridPath: /Maps/Imperial/Medieval/Ships/SmallShip3GRID.yml
+  cost: 295
+  localOffset: 5
+  localOffsetAngle: 0
+  gridAngle: 0
+
+- type: shipGridOffer
+  id: PikaShip
+  displayName: pika-Ship-Name
+  displayDescription: pika-Ship-Desc
+  gridPath: /Maps/Imperial/Medieval/Ships/SmallShip4GRID.yml
+  cost: 350
+  localOffset: 5
+  localOffsetAngle: 0
+  gridAngle: 0
+
+- type: shipGridOffer
+  id: DrakkarShip
+  displayName: drakkar-Ship-Name
+  displayDescription: drakkar-Ship-Desc
+  gridPath: /Maps/Imperial/Medieval/Ships/MediumShip5GRID.yml
+  cost: 435
+  localOffset: 10
+  localOffsetAngle: 0
+  gridAngle: 0
+
+- type: shipGridOffer
+  id: HorizonShip
+  displayName: horizon-Ship-Name
+  displayDescription: horizon-Ship-Desc
+  gridPath: /Maps/Imperial/Medieval/Ships/MediumShip6GRID.yml
+  cost: 500
+  localOffset: 15
+  localOffsetAngle: 0
+  gridAngle: 0
+
+- type: shipGridOffer
+  id: KarinaShip
+  displayName: karina-Ship-Name
+  displayDescription: karina-Ship-Desc
+  gridPath: /Maps/Imperial/Medieval/Ships/MediumShip7GRID.yml
+  cost: 685
+  localOffset: 20
+  localOffsetAngle: 0
+  gridAngle: 0
+
+- type: shipGridOffer
+  id: ZaurakShip
+  displayName: zaurak-Ship-Name
+  displayDescription: zaurak-Ship-Desc
+  gridPath: /Maps/Imperial/Medieval/Ships/MediumShip8GRID.yml
+  cost: 565
+  localOffset: 15
+  localOffsetAngle: 0
+  gridAngle: 0
+
+- type: shipGridOffer
+  id: LarisShip
+  displayName: laris-Ship-Name
+  displayDescription: laris-Ship-Desc
+  gridPath: /Maps/Imperial/Medieval/Ships/MediumShip9GRID.yml
+  cost: 520
+  localOffset: 15
+  localOffsetAngle: 0
+  gridAngle: 0
+
+- type: shipGridOffer
+  id: HammerShip
+  displayName: hammer-Ship-Name
+  displayDescription: hammer-Ship-Desc
+  gridPath: /Maps/Imperial/Medieval/Ships/MediumShip10GRID.yml
+  cost: 835
+  localOffset: 15
+  localOffsetAngle: 0
+  gridAngle: 0
+
+- type: shipGridOffer
+  id: BungulaShip
+  displayName: bungula-Ship-Name
+  displayDescription: bungula-Ship-Desc
+  gridPath: /Maps/Imperial/Medieval/Ships/MediumShip11GRID.yml
+  cost: 810
+  localOffset: 20
+  gridAngle: 0
+
+- type: shipGridOffer
+  id: DanteShip
+  displayName: dante-Ship-Name
+  displayDescription: dante-Ship-Desc
+  gridPath: /Maps/Imperial/Medieval/Ships/LargeShip12GRID.yml
+  cost: 1400
+  localOffset: 30
+  localOffsetAngle: 0
+  gridAngle: 0
+
+- type: shipGridOffer
+  id: GaleraShip
+  displayName: galera-Ship-Name
+  displayDescription: galera-Ship-Desc
+  gridPath: /Maps/Imperial/Medieval/Ships/LargeShip13GRID.yml
+  cost: 1580
+  localOffset: 30
+  localOffsetAngle: 0
+  gridAngle: 0
+
+- type: shipGridOffer
+  id: GoliathShip
+  displayName: goliath-Ship-Name
+  displayDescription: goliath-Ship-Desc
+  gridPath: /Maps/Imperial/Medieval/Ships/LargeShip14GRID.yml
+  cost: 4835
+  localOffset: 40
+  localOffsetAngle: 0
+  gridAngle: 0
+
+- type: shipGridOffer
+  id: CaesarShip
+  displayName: caesar-Ship-Name
+  displayDescription: caesar-Ship-Desc
+  gridPath: /Maps/Imperial/Medieval/Ships/LargeShip15GRID.yml
+  cost: 5185
+  localOffset: 40
+  localOffsetAngle: 0
+  gridAngle: 0
+
+- type: shipGridOffer
+  id: BrutShip
+  displayName: brut-Ship-Name
+  displayDescription: brut-Ship-Desc
+  gridPath: /Maps/Imperial/Medieval/Ships/LargeShip16GRID.yml
+  cost: 5180
+  localOffset: 40
+  localOffsetAngle: 0
+  gridAngle: 0
+

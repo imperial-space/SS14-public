@@ -2,10 +2,12 @@ using System.Numerics;
 using Content.Client.Damage.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
+using Content.Shared.Forged;
 using Content.Shared.Imperial.Medieval.Magic.Mana;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Nutrition.Components;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
@@ -34,6 +36,7 @@ public sealed class HotbarVitalsControl : BoxContainer
     private static readonly Color CriticalHealthColor = Color.FromHex("#B81232");
     private static readonly Color StaminaColor = Color.FromHex("#39D64B");
     private static readonly Color ManaColor = Color.FromHex("#2F84FF");
+    private static readonly Color HungerColor = Color.FromHex("#E67E22");
     private static readonly TimeSpan ManaHideDelay = TimeSpan.FromSeconds(3);
 
     [Dependency] private readonly IEntityManager _entityManager = default!;
@@ -45,6 +48,8 @@ public sealed class HotbarVitalsControl : BoxContainer
     private readonly FramedStatBar _healthBar;
     private readonly FramedStatBar _manaBar;
     private readonly FramedStatBar _staminaBar;
+    private readonly FramedStatBar _hungerBar;
+
     private MobStateSystem? _mobStateSystem;
     private MobThresholdSystem? _mobThresholdSystem;
     private StaminaSystem? _staminaSystem;
@@ -55,6 +60,7 @@ public sealed class HotbarVitalsControl : BoxContainer
     private float? _displayedHealthRatio;
     private float? _displayedManaRatio;
     private float? _displayedStaminaRatio;
+    private float? _displayedHungerRatio;
     private float? _appliedWidth;
     private Control? _widthReference;
 
@@ -101,6 +107,13 @@ public sealed class HotbarVitalsControl : BoxContainer
             FillColor = ManaColor,
         };
 
+        _hungerBar = new FramedStatBar(_resourceCache)
+        {
+            SetHeight = VitalBarHeight,
+            FillColor = HungerColor,
+            Visible = false
+        };
+
         var lowerRow = new BoxContainer
         {
             Orientation = LayoutOrientation.Horizontal,
@@ -124,6 +137,7 @@ public sealed class HotbarVitalsControl : BoxContainer
         lowerRow.AddChild(_healthBar);
         lowerRow.AddChild(_staminaBar);
 
+        _content.AddChild(_hungerBar);
         _content.AddChild(_manaBar);
         _content.AddChild(lowerRow);
         AddChild(_content);
@@ -161,9 +175,17 @@ public sealed class HotbarVitalsControl : BoxContainer
 
         var hasHealth = UpdateHealth(entity, frameTime);
         var hasStamina = UpdateStamina(entity, frameTime);
-        var hasMana = UpdateMana(entity, frameTime);
 
-        _content.Visible = hasHealth || hasStamina || hasMana;
+        var isForged = _entityManager.HasComponent<ForgedComponent>(entity);
+
+        // Мана скрыта для кованных, Голод скрыт для всех остальных
+        var hasMana = !isForged && UpdateMana(entity, frameTime);
+        var hasHunger = isForged && UpdateHunger(entity, frameTime);
+
+        _hungerBar.Visible = hasHunger;
+        if (isForged) _manaBar.Visible = false;
+
+        _content.Visible = hasHealth || hasStamina || hasMana || hasHunger;
     }
 
     private bool UpdateHealth(EntityUid entity, float frameTime)
@@ -301,6 +323,30 @@ public sealed class HotbarVitalsControl : BoxContainer
         return _manaBar.Visible;
     }
 
+    private bool UpdateHunger(EntityUid entity, float frameTime)
+    {
+        if (!_entityManager.TryGetComponent(entity, out HungerComponent? hunger))
+        {
+            _displayedHungerRatio = null;
+            return false;
+        }
+
+        float maxHunger = 200f;
+        float currentHunger = hunger.LastAuthoritativeHungerValue;
+        var ratio = Math.Clamp(currentHunger / maxHunger, 0f, 1f);
+
+        if (_displayedHungerRatio == null)
+            _displayedHungerRatio = ratio;
+        else
+        {
+            var smoothing = 1f - MathF.Exp(-BarSmoothingSpeed * frameTime);
+            _displayedHungerRatio = MathHelper.Lerp(_displayedHungerRatio.Value, ratio, smoothing);
+        }
+
+        _hungerBar.Value = _displayedHungerRatio.Value;
+        return true;
+    }
+
     private void UpdateWidth()
     {
         if (WidthReference == null)
@@ -331,6 +377,7 @@ public sealed class HotbarVitalsControl : BoxContainer
         _displayedHealthRatio = null;
         _displayedManaRatio = null;
         _displayedStaminaRatio = null;
+        _displayedHungerRatio = null;
         _manaBar.Visible = false;
     }
 

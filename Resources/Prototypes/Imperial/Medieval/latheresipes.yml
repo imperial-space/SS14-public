@@ -1,13 +1,53 @@
-
+- type: CP14Recipe
+  id: MedievalDoorLockT1
+  craftTime: 8
+  stacks:
+    MedievalIronPlateSmall: 1
+    #MedievalGear: 1
+  result: MedievalDoorLockT1
 
 - type: CP14Recipe
-  id: MedievalDoorLock
-  craftTime: 12
+  id: RecycleCrystalToEssenceVodka
+  result: MagicMedievalVodka
+  entities:
+    ShardCrystalRed: 1
+
+- type: CP14Recipe
+  id: RecycleCrystalToEssenceFire
+  result: MagicMedievalFire
+  entities:
+    ShardCrystalRed: 1
+
+- type: CP14Recipe
+  id: RecycleCrystalToEssenceLight
+  result: MagicMedievalLight
+  entities:
+    ShardCrystalRed: 1
+
+- type: CP14Recipe
+  id: RecycleCrystalToEssenceEarth
+  result: MagicMedievalEarth
+  entities:
+    ShardCrystalRed: 1
+
+- type: CP14Recipe
+  id: MedievalDoorLockT2
+  craftTime: 16
   stacks:
+    MedievalRivets: 1
+    MedievalIronPlateSmall: 1
+    #MedievalGear: 2
+  result: MedievalDoorLockT2
+
+- type: CP14Recipe
+  id: MedievalDoorLockT3
+  craftTime: 32
+  stacks:
+    #MedievalSteelIngot: 1
     MedievalRivets: 1
     MedievalIronPlateSmall: 2
     MedievalGear: 1
-  result: MedievalDoorLock
+  result: MedievalDoorLockT3
 
 - type: CP14Recipe
   id: MedievalCoinBag
@@ -1717,3 +1757,39 @@
   stacks:
     MedievalIronIngot: 2
   result: Fork
+
+- type: CP14Recipe
+  id: MedievalOarCraft
+  craftTime: 10s
+  stacks:
+    WoodPlank: 4
+  result: MedievalOar
+
+- type: CP14Recipe
+  id: CandleSmallCraft
+  craftTime: 3s
+  stacks:
+    MedievalBeeHoneyComb: 1
+  result: CandleSmall
+
+- type: CP14Recipe
+  id: CandleCraft
+  craftTime: 6s
+  stacks:
+    MedievalBeeHoneyComb: 2
+  result: Candle
+
+- type: CP14Recipe
+  id: SmokingPipeCraft
+  craftTime: 3s
+  stacks:
+    WoodPlank: 1
+  result: SmokingPipe
+
+- type: CP14Recipe
+  id: RollingPinCraft
+  craftTime: 3s
+  stacks:
+    WoodPlank: 2
+  result: RollingPin
+

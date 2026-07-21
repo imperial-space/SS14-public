@@ -148,7 +148,6 @@
 
 # Departmental
 - type: construction
-  hide: true # imperial medieval craft disable
   id: ShelfBar
   name: Барная полка # Imperial Recipes Locale
   description: Удобное место для всей вашей дополнительной выпивки, специально предназначенное для хранения большего количества бутылок! # Imperial Recipes Locale

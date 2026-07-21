@@ -5,7 +5,7 @@
   abstract: true
   components:
   - type: Sprite
-    noRot: false
+    noRot: true
     sprite: Imperial/Medieval/Ships/Wave/wave.rsi
   - type: Projectile
     damage: {}

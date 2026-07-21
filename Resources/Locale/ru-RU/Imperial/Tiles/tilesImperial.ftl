@@ -23,5 +23,5 @@ tiles-large-wood = брёвна
 tiles-large-wood-broken = сломанные брёвна
 tiles-long-wood = длинные деревянные доски
 tiles-long-wood-broken = сломанные длинные деревянные доски
-tiles-wooden-tile = деревянная плитка
+tiles-wooden-tile = деревянная плитка (мореплавание)
 tiles-wooden-tile-broken = сломанная деревянная плитка

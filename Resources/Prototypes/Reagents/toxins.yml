@@ -96,14 +96,29 @@
     Poison:
       effects:
         - !type:HealthChange
+          conditions:
+          - !type:OrganType
+            type: Ratling
+            shouldHave: false
           damage:
             types:
               Poison: 2
+        - !type:HealthChange
+          conditions:
+          - !type:OrganType
+            type: Ratling
+          damage:
+            types:
+              Poison: 0
         - !type:ChemVomit
           conditions:
           - !type:ReagentThreshold
             min: 2
+          - !type:OrganType
+            type: Ratling
+            shouldHave: false
           probability: 0.2
+
 
 - type: reagent
   id: Mold

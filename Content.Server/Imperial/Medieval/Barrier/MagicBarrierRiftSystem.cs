@@ -68,6 +68,7 @@ public sealed class MagicBarrierRiftSystem : EntitySystem
         {
             var coords = Transform(component.Rift).Coordinates;
             Spawn("MedievalSkeletDespawnEffect", coords);
+            riftComponent.DestroyedLegitimately = true;
             QueueDel(component.Rift);
         }
     }

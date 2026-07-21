@@ -184,13 +184,12 @@
 
 - type: trait
   id: MedievalMedievalBadFighter
-  name: trait-medieval-skills-bad-fighter
-  description: trait-medieval-skills-bad-fighter-desc
+  name: trait-medieval-skills-fencer
+  description: trait-medieval-skills-fencer-desc
   category: MedievalBody
-  cost: -1
+  cost: 1
   components:
-    - type: MeleeParryAble
-      parryModifier: 0.5
+    - type: StaminaParryBooster
 
 - type: trait
   id: MedievalCrafter

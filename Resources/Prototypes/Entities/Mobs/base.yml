@@ -57,6 +57,7 @@
   - type: MobMover
   - type: MovementSpeedModifier
   - type: LagCompensation
+  - type: AchievementTarget #Imperial medieval achievement
 
 - type: entity
   save: false

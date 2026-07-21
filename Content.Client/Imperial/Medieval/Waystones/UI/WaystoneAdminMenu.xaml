@@ -1,0 +1,25 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               Title="Настройка узла"
+               MinSize="300 220"
+               SetSize="300 220"
+               x:Class="Content.Client.Imperial.Medieval.Waystones.UI.WaystoneAdminMenu">
+
+    <BoxContainer Orientation="Vertical" Margin="10">
+
+        <BoxContainer Orientation="Horizontal" Margin="0 0 0 10">
+            <Label Text="Цена отправления:" Margin="0 0 10 0" MinWidth="100"/>
+            <LineEdit Name="DeparturePriceInput" HorizontalExpand="True" MinWidth="100"/>
+        </BoxContainer>
+
+        <BoxContainer Orientation="Horizontal" Margin="0 0 0 10">
+            <Label Text="Цена приема:" Margin="0 0 10 0" MinWidth="100"/>
+            <LineEdit Name="ArrivalPriceInput" HorizontalExpand="True" MinWidth="100"/>
+        </BoxContainer>
+
+        <CheckBox Name="StateToggle" MinWidth="100" Text="Включено" Pressed="True" Margin="0 0 0 15" />
+
+        <Button Name="ApplyButton" Text="Применить тарифы" HorizontalAlignment="Center" />
+
+    </BoxContainer>
+</DefaultWindow>

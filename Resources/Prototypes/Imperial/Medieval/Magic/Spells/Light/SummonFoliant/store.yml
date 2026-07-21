@@ -1,0 +1,18 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellSummonFoliantBeginner
+  name: medieval-store-spells-magic-light-summon-foliant-beginner-name
+  description: medieval-store-spells-light-summon-foliant-beginner-desc
+  productAction: MedievalActionSummonFoliantBeginner
+  priority: 9
+  icon:
+    sprite: Imperial/Medieval/Magic/Light/SummonFoliant/icon.rsi
+    state: beginner
+  cost:
+    MagicMedievalLight: 10
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1

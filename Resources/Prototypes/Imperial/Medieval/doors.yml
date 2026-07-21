@@ -470,12 +470,6 @@
   name: airlock
   description: It opens, it closes, and maybe crushes you.
   components:
-  - type: DoorBolt
-    #boltsDown: True
-    boltUpSound:
-      path: /Audio/Imperial/Medieval/door_lock1.ogg
-    boltDownSound:
-      path: /Audio/Imperial/Medieval/door_lock2.ogg
   - type: InteractionOutline
   - type: Sprite
     netsync: false
@@ -539,13 +533,221 @@
   - type: Construction
     graph: MedievalAirlock
     node: medievalairlock
-  - type: DoorHackable
-    minNumber: 0
-    maxNumber: 6
-    numberCount: 3
+  - type: UniversalLockable
+  - type: ItemSlots
+    slots:
+      lockSlot:
+        name: Lock
+        startingItem: MedievalDoorLockT3
+        insertSound: /Audio/Effects/buckle.ogg
+        ejectSound: /Audio/Effects/unbuckle.ogg
+        whitelist:
+          components:
+          - UniversalLock
+
+- type: entity
+  id: MedievalDoorUniversal
+  parent: BaseStructure
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: InteractionOutline
+    - type: Sprite
+      netsync: false
+      sprite: Imperial/Medieval/Walls/medieval_door.rsi
+      snapCardinals: true
+      layers:
+      - state: closed
+        map: ["enum.DoorVisualLayers.Base"]
+    - type: AnimationPlayer
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.49,-0.49,0.49,0.49"
+          density: 100
+          mask:
+          - FullTileMask
+          layer:
+          - AirlockLayer
+    - type: ExplosionResistance
+      damageCoefficient: 10
+    - type: DoorBolt
+      #boltsDown: True
+      boltUpSound:
+        path: /Audio/Imperial/Medieval/door_lock1.ogg
+      boltDownSound:
+        path: /Audio/Imperial/Medieval/door_lock2.ogg
+    - type: Door
+      performCollisionCheck: false
+      bumpOpen: false
+      clickOpen: true
+      canCrush: false
+      closeTimeOne: 0.2
+      closeTimeTwo: 0.6
+      openTimeOne: 0.6
+      openTimeTwo: 0.2
+      openingAnimationTime: 1.2
+      closingAnimationTime: 1.2
+      openSound:
+        path: /Audio/Imperial/Medieval/derevyannuyu-dver-zakryili.ogg
+      closeSound:
+        path: /Audio/Imperial/Medieval/otkryili-steklyannuyu-dver.ogg
+      denySound:
+        path: /Audio/Imperial/Medieval/lyazg-visyaschego-zamka-na-zakryitoy-dveri.ogg
+    - type: Appearance
+    - type: Damageable
+      damageContainer: StructuralInorganic
+      damageModifierSet: Metallic
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 500
+        behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound: /Audio/Imperial/Medieval/zvuk-vyibivaniya-dveri-24274.ogg
+    - type: IconSmooth
+      key: walls
+      mode: NoSprite
+    - type: Occluder
+    - type: Construction
+      graph: MedievalDoorUniversal
+      node: medievalDoorUniversal
+    - type: UniversalLockable
+    - type: ItemSlots
+      slots:
+        lockSlot:
+          name: Lock
+          insertSound: /Audio/Effects/buckle.ogg
+          ejectSound: /Audio/Effects/unbuckle.ogg
+          whitelist:
+            components:
+            - UniversalLock
+
+- type: construction
+  id: MedievalDoorUniversal
+  name: деревянная дверь
+  description: Простая деревянная дверь.
+  graph: MedievalDoorUniversal
+  startNode: start
+  targetNode: medievalDoorUniversal
+  category: construction-category-furniture
+  icon:
+    sprite: Imperial/Medieval/Walls/medieval_door.rsi
+    state: closed
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MedievalDoorUniversal
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: medievalDoorUniversal
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 24
+              doAfter: 25
+    - node: medievalDoorUniversal
+      entity: MedievalDoorUniversal
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank
+              amount: 10
+          steps:
+            - tool: MedievalBlacksmithing
+              doAfter: 90
+
+- type: entity
+  id: MedievalDoorReinforcedUniversal
+  parent: MedievalDoorUniversal
+  components:
+    - type: Sprite
+      netsync: false
+      sprite: Imperial/Medieval/Walls/medieval_reinforced_door.rsi
+      snapCardinals: true
+      layers:
+      - state: closed
+        map: ["enum.DoorVisualLayers.Base"]
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 1500
+        behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound: /Audio/Imperial/Medieval/zvuk-vyibivaniya-dveri-24274.ogg
+
+- type: constructionGraph
+  id: MedievalDoorReinforcedUniversal
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: medievalDoorReinforcedUniversal
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 30
+              doAfter: 25
+            - material: MedievalIronPlateSmall
+              amount: 4
+              doAfter: 25
+    - node: medievalDoorReinforcedUniversal
+      entity: MedievalDoorReinforcedUniversal
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank
+              amount: 30
+            - !type:SpawnPrototype
+              prototype: MedievalIronPlateSmall
+              amount: 4
+          steps:
+            - tool: MedievalBlacksmithing
+              doAfter: 120
+
+- type: construction
+  id: MedievalDoorReinforcedUniversal
+  name: деревянная дверь
+  description: Простая деревянная дверь.
+  graph: MedievalDoorReinforcedUniversal
+  startNode: start
+  targetNode: medievalDoorReinforcedUniversal
+  category: construction-category-furniture
+  icon:
+    sprite: Imperial/Medieval/Walls/medieval_reinforced_door.rsi
+    state: closed
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
 
 - type: construction
   id: MedievalAirlock
+  hide: true
   name: деревянная дверь
   description: Простая деревянная дверь.
   graph: MedievalAirlock
@@ -564,6 +766,7 @@
 - type: constructionGraph
   id: MedievalAirlock
   start: start
+  hide: true
   graph:
     - node: start
       actions:
@@ -594,12 +797,6 @@
   name: airlock
   description: It opens, it closes, and maybe crushes you.
   components:
-  - type: DoorBolt
-    #boltsDown: True
-    boltUpSound:
-      path: /Audio/Imperial/Medieval/metal_door_lock2.ogg
-    boltDownSound:
-      path: /Audio/Imperial/Medieval/metal_door_lock1.ogg
   - type: InteractionOutline
   - type: Sprite
     netsync: false
@@ -658,10 +855,17 @@
   - type: IconSmooth
     key: walls
     mode: NoSprite
-  - type: DoorHackable
-    minNumber: 0
-    maxNumber: 8
-    numberCount: 4
+  - type: UniversalLockable
+  - type: ItemSlots
+    slots:
+      lockSlot:
+        name: Lock
+        startingItem: MedievalDoorLockT3
+        insertSound: /Audio/Effects/buckle.ogg
+        ejectSound: /Audio/Effects/unbuckle.ogg
+        whitelist:
+          components:
+          - UniversalLock
   #- type: Occluder
   placement:
     mode: SnapgridCenter
@@ -914,12 +1118,19 @@
     key: walls
     mode: NoSprite
   - type: Occluder
-  - type: DoorHackable
-    minNumber: 0
-    maxNumber: 9
-    numberCount: 9
   - type: MedievalMeleeBadTarget
     breakMultiplier: 4
+  - type: UniversalLockable
+  - type: ItemSlots
+    slots:
+      lockSlot:
+        name: Lock
+        startingItem: MedievalDoorLockT3
+        insertSound: /Audio/Effects/buckle.ogg
+        ejectSound: /Audio/Effects/unbuckle.ogg
+        whitelist:
+          components:
+          - UniversalLock
   placement:
     mode: SnapgridCenter
 
@@ -1170,17 +1381,24 @@
   - type: Construction
     graph: MedievalAirlockKey
     node: medievalairlockKey
-  - type: CustomDoorKeyDoor
+  - type: UniversalLockable
+  - type: ItemSlots
+    slots:
+      lockSlot:
+        name: Lock
+        startingItem: MedievalDoorLockT3
+        insertSound: /Audio/Effects/buckle.ogg
+        ejectSound: /Audio/Effects/unbuckle.ogg
+        whitelist:
+          components:
+          - UniversalLock
   - type: AccessReader
     access: [["SyndicateAgent"]]
-  - type: DoorHackable
-    minNumber: 0
-    maxNumber: 6
-    numberCount: 3
 
 - type: construction
   id: MedievalAirlockKey
   name: деревянная дверь с замком
+  hide: true
   description: Для открытия изготовьте ключ. Кликните первый раз ключом по самодельной двери (если к двери не привязано другого ключа), чтобы привязать этот ключ к двери. Дальнейшие клики ключом по двери будут открывать/закрывать ее. Чтобы создать дубликат ключа - возьмите новый ключ и кликните им по тому, чей доступ хотите скопировать. Один ключ может быть привязан максимум к одной двери.
   graph: MedievalAirlockKey
   startNode: start
@@ -1198,6 +1416,7 @@
 - type: constructionGraph
   id: MedievalAirlockKey
   start: start
+  hide: true
   graph:
     - node: start
       actions:
@@ -1223,19 +1442,41 @@
               doAfter: 150
 
 - type: entity
-  name: gol
   parent: BaseItem
   id: MedievalDoorKeyCheck
-  description: gol
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Misc/respawn_key.rsi
-    state: gray
-  - type: CustomDoorKey
+    sprite: Imperial/Medieval/UniversalSecurity/keys.rsi
+    layers:
+    - state: key_unready
+      map: ["enum.MedievalDoorKeyCheckVisual.State"]
+  - type: UniversalKey
+  - type: Appearance
   - type: Tag
     tags:
     - MedievalKey
+  - type: GenericVisualizer
+    visuals:
+      enum.MedievalDoorKeyCheckVisual.State:
+        enum.MedievalDoorKeyCheckVisual.State:
+          key_ready: {state: key_ready}
+  - type: UserInterface
+    interfaces:
+      enum.UniversalSecurityUiKey.Key:
+        type: UniversalKeyBoundUserInterface
 
+- type: entity
+  parent: BaseItem
+  id: MedievalDoorKeySuperKey
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/UniversalSecurity/keys.rsi
+    layers:
+    - state: admin_key
+      map: ["enum.MedievalDoorKeyCheckVisual.State"]
+  - type: UniversalKey
+    isSuperKey: true
+    isSetuped: true
 # Rich house doors (reinforced)
 
 - type: entity

@@ -1,0 +1,38 @@
+- type: achievement
+  id: AchievementWarGeneralArcher
+  priority: 20
+  rarity: Common
+  name: bow-and-arrows-name
+  tab: AchievementTabLegionInsurgency
+  description: bow-and-arrows-desc
+  icon:
+    sprite: /Textures/Imperial/Medieval/Gun/bowwhois.rsi
+    state: unwielded
+  visibility: Visible
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: collectAllProgression
+    itemPrototypes:
+      MedievalArrow: 10
+      BowImprovised: 1
+
+- type: achievement
+  id: AchievementWarGeneralBallistica
+  priority: 1
+  rarity: Common
+  name: achive-ballistic-name
+  description: achive-ballistic-desc
+  icon:
+    sprite: Imperial/Medieval/Decor/catapult.rsi
+    state: ready
+  visibility: Visible
+  prerequisites:
+  - AchievementWarGeneralArcher
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: collectAllProgression
+    itemPrototypes:
+      MedievalCatapultCraft: 1
+      MedievalCatapultAmmoBarrelStone: 1
+      MedievalCatapultAmmoBarrelAp: 1
+      MedievalCatapultAmmoBarrelGunpowder: 1

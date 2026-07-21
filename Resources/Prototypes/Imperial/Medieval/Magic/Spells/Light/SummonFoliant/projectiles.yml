@@ -1,0 +1,22 @@
+# Beginner
+
+- type: entity
+  id: MedievalProjectileSummonFoliantBeginner
+  components:
+    - type: CargoSellBlacklist
+    - type: PointLight
+      color: white
+      energy: 5
+      radius: 3
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 15
+          mask:
+          - GhostImpassable
+    - type: TimedDespawn
+      lifetime: 0.5
+    - type: FoliantToHandTeleporter

@@ -1,10 +1,16 @@
+using System.Linq;
+
 using Content.Server.Chat.Systems;
 using Content.Server.Imperial.Medieval.Factions;
 using Content.Server.Imperial.Medieval.TempInvincibility;
+using Content.Server.Imperial.Medieval.Achievements;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Medieval.CommsCharger;
 using Content.Shared.Imperial.Medieval.ObeliskDestroyable;
+using Content.Shared.Imperial.Medieval.Factions.Components;
+using Content.Shared.Imperial.Medieval.Achievements;
+using Robust.Shared.Player;
 
 namespace Content.Server.Imperial.Medieval.ObeliskDestroyable;
 
@@ -15,6 +21,7 @@ public sealed class ObeliskDestroyableSystem : EntitySystem
     [Dependency] private readonly MedievalFactionLateJoinLockSystem _lateJoinLock = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly TempInvincibilitySystem _tempInvincibility = default!;
+    [Dependency] private readonly AchievementSystem _achievement = default!;
 
     public override void Initialize()
     {
@@ -44,6 +51,22 @@ public sealed class ObeliskDestroyableSystem : EntitySystem
 
         if (phase.DestroyOnReached)
         {
+            var trueOrigin = _achievement.GetPlayerFromOrigin(args.Origin); // xd
+            
+            if (trueOrigin != null && TryComp<MedievalFactionMemberComponent>(trueOrigin, out var trueOriginFaction))
+            {
+                var query = EntityQueryEnumerator<MedievalFactionMemberComponent, ActorComponent>();
+                while (query.MoveNext(out var playerUid, out var member, out var _))
+                {
+                    if (member.Faction != trueOriginFaction.Faction)
+                        continue;
+
+                    _achievement.TryUpdateProgressAndGrant(playerUid,
+                        new DestroyFactionObeliskContext(component.Faction),
+                        ach => ach.Conditions.Any(c => c is DestroyFactionObeliskCondition));
+                }
+            }
+
             DestroyObelisk(uid, component);
             return;
         }

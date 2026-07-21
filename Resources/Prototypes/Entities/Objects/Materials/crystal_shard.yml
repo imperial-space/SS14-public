@@ -193,5 +193,5 @@
       - ShardCrystalOrange
       - ShardCrystalBlue
       - ShardCrystalCyan
-      - ShardCrystalRed
+      #- ShardCrystalRed
     chance: 1

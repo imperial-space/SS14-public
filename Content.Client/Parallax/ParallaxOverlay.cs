@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Numerics;
 using Content.Client.Parallax.Managers;
 using Content.Shared.CCVar;
@@ -7,6 +8,7 @@ using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -21,6 +23,8 @@ public sealed class ParallaxOverlay : Overlay
     [Dependency] private readonly IParallaxManager _manager = default!;
     private readonly SharedMapSystem _mapSystem;
     private readonly ParallaxSystem _parallax;
+
+    private readonly Dictionary<string, ShaderInstance> _mutableShaders = new(); // Imperial Medieval Sea Tweak
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowWorld;
 
@@ -54,12 +58,18 @@ public sealed class ParallaxOverlay : Overlay
         var layers = _parallax.GetParallaxLayers(args.MapId);
         var realTime = (float) _timing.RealTime.TotalSeconds;
 
+        var nightFactor = GetNightFactor(args.MapId); // Imperial Medieval Sea Tweak
         foreach (var layer in layers)
         {
             ShaderInstance? shader;
 
+            // Imperial Medieval Sea Tweak Start
             if (!string.IsNullOrEmpty(layer.Config.Shader))
-                shader = _prototypeManager.Index<ShaderPrototype>(layer.Config.Shader).Instance();
+            {
+                shader = GetMutableShader(layer.Config.Shader);
+                shader?.SetParameter("nightFactor", nightFactor);
+            }
+            // Imperial Medieval Sea Tweak End
             else
                 shader = null;
 
@@ -116,5 +126,31 @@ public sealed class ParallaxOverlay : Overlay
 
         worldHandle.UseShader(null);
     }
+
+    // Imperial Medieval Sea Tweak Start
+    private float GetNightFactor(MapId mapId)
+    {
+        var mapUid = _mapSystem.GetMapOrInvalid(mapId);
+
+        if (!_entManager.TryGetComponent<MapLightComponent>(mapUid, out var mapLight))
+            return 0f;
+
+        var luminance = mapLight.AmbientLightColor.R * 0.299f
+            + mapLight.AmbientLightColor.G * 0.587f
+            + mapLight.AmbientLightColor.B * 0.114f;
+
+        return 1f - Math.Clamp(luminance, 0f, 1f);
+    }
+
+    private ShaderInstance GetMutableShader(string shaderId)
+    {
+        if (_mutableShaders.TryGetValue(shaderId, out var existing))
+            return existing;
+
+        var unique = _prototypeManager.Index<ShaderPrototype>(shaderId).InstanceUnique();
+        _mutableShaders[shaderId] = unique;
+        return unique;
+    }
+    // Imperial Medieval Sea Tweak End
 }
 

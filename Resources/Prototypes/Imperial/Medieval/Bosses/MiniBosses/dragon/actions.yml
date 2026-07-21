@@ -4,15 +4,15 @@
   description: medieval-store-spells-light-blink-dragon-desc
   components:
   - type: ManaDrainSpell
-    manaDrain: 10
-    canUseWithoutMana: true
+    manaDrain: 85
+    canUseWithoutMana: false # NO MORE BUGS
     manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
     damageOnUseWithoutMana:
       groups:
         Burn: 15
   - type: MedievalTargetSpell
   - type: Action
-    useDelay: 60
+    useDelay: 1
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
@@ -21,11 +21,11 @@
       state: beginner
   - type: TargetAction
     checkCanAccess: false
-    range: 3
+    range: 4
   - type: WorldTargetAction
     event: !type:MedievalTeleportSpellEvent
       spellCastDoAfter:
-        delay: 1
+        delay: 1.7
         breakOnDropItem: false
         breakOnWeightlessMove: false
         breakOnMove: false
@@ -43,7 +43,7 @@
         inRangeColor: "#000062"
         outOfRangeColor: "#4A5076"
         alwaysRender: true
-        range: 3
+        range: 4
     rotationPerClick: 0
   - type: MedievalSpellTeleportEffect
     fadeDistortion:

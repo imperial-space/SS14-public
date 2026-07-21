@@ -9,13 +9,17 @@
         <BoxContainer Orientation="Vertical" SeparationOverride="0">
             <BoxContainer Orientation="Horizontal" MinSize="0 40">
                 <Label Text="{Loc 'character-setup-gui-character-setup-label'}"
-                       Margin="8 0 0 0" VAlign="Center"
+                       Margin="8 0 0 0"
+                       VAlign="Center"
                        StyleClasses="LabelHeadingBigger" />
-
-                <Button Name="StatsButton" HorizontalExpand="True"
-                        Text="{Loc 'character-setup-gui-character-setup-stats-button'}"
+                <Control HorizontalExpand="True" />
+                <Button Name="AchievementsButton"
+                        Text="{Loc 'achievement-ui-title'}"
                         StyleClasses="ButtonBig"
-                        HorizontalAlignment="Right" />
+                        Margin="0 0 0 0" />
+                <Button Name="StatsButton"
+                        Text="{Loc 'character-setup-gui-character-setup-stats-button'}"
+                        StyleClasses="ButtonBig" />
                 <cc:CommandButton Name="AdminRemarksButton"
                                   Command="adminremarks"
                                   Text="{Loc 'character-setup-gui-character-setup-adminremarks-button'}"

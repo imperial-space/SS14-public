@@ -1,0 +1,47 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "Made for the Imperial Space community, authors discord nickname: Zakvielian, Passajir, Ungabunga, Piter Panker",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "blank"
+        },
+        {
+            "name": "ebonit_arm_icon"
+        },
+        {
+            "name": "ebonit_head",
+            "directions": 4
+        },
+        {
+            "name": "ebonit_head_icon"
+        },
+        {
+            "name": "ebonit_left_arm",
+            "directions": 4
+        },
+        {
+            "name": "ebonit_left_leg",
+            "directions": 4
+        },
+        {
+            "name": "ebonit_leg_icon"
+        },
+        {
+            "name": "ebonit_right_arm",
+            "directions": 4
+        },
+        {
+            "name": "ebonit_right_leg",
+            "directions": 4
+        },
+        {
+            "name": "ebonit_torso",
+            "directions": 4
+        }
+    ]
+}

@@ -1,4 +1,5 @@
-﻿using Content.Client.Gameplay;
+﻿using Content.Client.Imperial.Medieval.Achievements;
+using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Client.UserInterface.Systems.Info;
@@ -101,6 +102,12 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
         _escapeWindow.GuidebookButton.OnPressed += _ =>
         {
             _guidebook.ToggleGuidebook();
+        };
+
+        var achievementController = UIManager.GetUIController<AchievementUIController>();
+        _escapeWindow.AchievementsButton.OnPressed += _ =>
+        {
+            achievementController.ToggleMenu();
         };
 
         // Hide wiki button if we don't have a link for it.

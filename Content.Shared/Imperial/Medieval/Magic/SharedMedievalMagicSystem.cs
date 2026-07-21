@@ -1,11 +1,11 @@
 using System.Linq;
-using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.DoAfter;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.MouseInput.Events;
 using Content.Shared.Mind;
 using Content.Shared.Movement.Systems;
-using Prometheus;
+using Content.Shared.Popups;
 using Robust.Shared.Map;
 
 namespace Content.Shared.Imperial.Medieval.Magic;
@@ -17,6 +17,8 @@ public abstract partial class SharedMedievalMagicSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _speedModifierSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {
@@ -61,6 +63,12 @@ public abstract partial class SharedMedievalMagicSystem : EntitySystem
 
         _speedModifierSystem.RefreshMovementSpeedModifiers(uid);
 
+        if (_handsSystem.TryGetEmptyHand(args.User, out _) == false)
+        {
+            _popupSystem.PopupClient(Loc.GetString("medieval-magic-free-hand-required"), args.User);
+            return;
+        }
+
         if (args.Cancelled)
         {
             RaiseLocalEvent(GetEntity(spellData.Action), new MedievalFailCastSpellEvent()
@@ -99,6 +107,9 @@ public abstract partial class SharedMedievalMagicSystem : EntitySystem
     {
         var ev = new MedievalBeforeCastSpellEvent(performer, target);
         RaiseLocalEvent(spell, ref ev);
+
+        if (_handsSystem.TryGetEmptyHand(performer, out _) == false) // TODO: Если в игре появятся магические катализаторы (посохи, палочки), что дают баффы при сотворении чар, то нужно будет добавить их в исключение
+            return ev.Cancelled;
 
         return !ev.Cancelled;
     }

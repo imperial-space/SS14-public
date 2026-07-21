@@ -922,6 +922,11 @@ public abstract class SharedStorageSystem : EntitySystem
 
         UpdateAppearance((entity, entity.Comp, null));
         UpdateUI((entity, entity.Comp));
+
+        // Imperial Medieval Start
+        var insertedEv = new StorageItemInsertedEvent(args.Entity);
+        RaiseLocalEvent(entity.Owner, ref insertedEv);
+        // Imperial Medieval End
     }
 
     private void OnEntRemoved(Entity<StorageComponent> entity, ref EntRemovedFromContainerMessage args)
@@ -942,6 +947,11 @@ public abstract class SharedStorageSystem : EntitySystem
 
         UpdateAppearance((entity, entity.Comp, null));
         UpdateUI((entity, entity.Comp));
+
+        // Imperial Medieval Start
+        var removedEv = new StorageItemRemovedEvent(args.Entity);
+        RaiseLocalEvent(entity.Owner, ref removedEv);
+        // Imperial Medieval End
     }
 
     private void OnInsertAttempt(EntityUid uid, StorageComponent component, ContainerIsInsertingAttemptEvent args)

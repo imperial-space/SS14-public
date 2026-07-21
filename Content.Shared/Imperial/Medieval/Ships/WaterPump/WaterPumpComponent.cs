@@ -1,4 +1,6 @@
 using System.Runtime.Serialization;
+using Content.Shared.DoAfter;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.Medieval.Ships.WaterPump;
 
@@ -9,6 +11,15 @@ namespace Content.Shared.Imperial.Medieval.Ships.WaterPump;
 public sealed partial class WaterPumpComponent : Component
 {
     [DataField("waterCount")]
-    public int WaterCount = 50;
+    public float WaterCount = 250f;
+
+    [DataField("user")]
+    public EntityUid? User;
+
+    [DataField("usedTime")]
+    public TimeSpan? UsedTime;
+
+    [DataField("doAfter")]
+    public DoAfterId? DoAfter;
 
 }

@@ -79,6 +79,9 @@ public sealed partial class CapturePointComponent : Component
 
     [DataField]
     public EntProtoId CaptureStatusEffect = "MedievalFarmerBoost";
+
+    [DataField]
+    public string LinkId = string.Empty;
 }
 
 [Serializable, NetSerializable]

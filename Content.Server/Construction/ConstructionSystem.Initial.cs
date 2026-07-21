@@ -2,6 +2,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Content.Server.Construction.Components;
+using Content.Shared.Imperial.Medieval.Achievements;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Construction;
 using Content.Shared.Construction.Prototypes;
@@ -557,6 +558,12 @@ namespace Content.Server.Construction
 
             RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack, GetNetEntity(structure)));
             _adminLogger.Add(LogType.Construction, LogImpact.Low, $"{ToPrettyString(user):player} has turned a {ev.PrototypeName} construction ghost into {ToPrettyString(structure)} at {Transform(structure).Coordinates}");
+
+            // Imperial Medieval Achievements Start
+            Achievement.TryUpdateProgressAndGrant(user, structure,
+                ach => ach.Conditions.Any(c => c is BuildStructureCondition));
+            // Imperial Medieval Achievements End
+
             Cleanup();
         }
     }

@@ -1,0 +1,22 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               x:Class="Imperial.Medieval.UniversalLock.Lock.UniversalLockWindow"
+               Title="{Loc 'UniversalLock-ui-setup-title'}"
+               MinWidth="350"
+               MinHeight="250">
+
+    <BoxContainer Orientation="Vertical" Margin="5" SeparationOverride="10">
+
+        <Label Name="InfoLabel" Text="Допустимые значения: от 0 до X" HorizontalAlignment="Center"/>
+
+        <LineEdit Name="LockNameInput" PlaceHolder="{Loc 'UniversalLock-name-placeholder'}" HorizontalExpand="True"/>
+
+        <ScrollContainer VerticalExpand="True" MinHeight="150" HorizontalExpand="True">
+            <BoxContainer Name="InputsContainer" Orientation="Vertical" HorizontalExpand="True" SeparationOverride="8" Margin="5"/>
+        </ScrollContainer>
+
+        <Button Name="SetCodeButton" Text="{Loc 'UniversalLock-ui-setup-setcodebutton'}" HorizontalAlignment="Center"/>
+
+    </BoxContainer>
+
+</DefaultWindow>

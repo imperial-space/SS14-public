@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Shared.Imperial.EntityLayer;
 using Robust.Shared.GameStates;
 using Robust.Shared.Physics.Components;
@@ -54,4 +55,10 @@ public sealed partial class MedievalDashComponent : Component
 
     [ViewVariables]
     public HashSet<EntityLayerGroups> CachedLayers = new();
+
+    [DataField]
+    public Vector2 StartDashPos;
+
+    [DataField]
+    public Vector2? LegalEndDashPos;
 }

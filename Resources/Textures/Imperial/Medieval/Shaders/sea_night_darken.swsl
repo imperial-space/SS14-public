@@ -1,0 +1,20 @@
+light_mode unshaded;
+
+uniform highp float nightFactor;
+
+uniform highp float minBrightness;
+
+uniform highp vec3 nightTint;
+
+void fragment()
+{
+    highp vec4 tex = zTexture(UV);
+
+    highp float factor = clamp(nightFactor, 0.0, 1.0);
+    highp float brightness = mix(1.0, minBrightness, factor);
+
+    highp vec3 darkened = tex.rgb * brightness;
+    highp vec3 tinted = mix(darkened, darkened * nightTint, factor);
+
+    COLOR = vec4(tinted, tex.a);
+}

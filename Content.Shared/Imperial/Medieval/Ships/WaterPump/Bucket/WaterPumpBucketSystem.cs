@@ -38,7 +38,7 @@ public sealed class WaterPumpBucketSystem : EntitySystem
             return;
 
         _popup.PopupClient("Ты вычёрпываешь воду с корабля", playerEntity);
-        var time = 7 - _skills.GetSkillLevel(playerEntity, "Agility") * 0.15f - _skills.GetSkillLevel(playerEntity, "Strength") * 0.15f;
+        var time = 7 - _skills.GetSkillLevel(playerEntity, "Agility") * 0.3f;
         time = Math.Max(1.0f, time);
 
         var doAfter = new DoAfterArgs(EntityManager,

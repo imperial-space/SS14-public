@@ -11,10 +11,13 @@
   id: MedievalForgedMob
   components:
   - type: Sprite
+    sprite: Imperial/Medieval/Forged/wooden.rsi
+    state: blank
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
     - map: [ "core" ]
       offset: 0, -0.1
+    - map: [ "torso_upgrade" ]
     - map: [ "enum.HumanoidVisualLayers.Head" ]
     - map: [ "enum.HumanoidVisualLayers.Snout" ]
     - map: [ "enum.HumanoidVisualLayers.Eyes" ]
@@ -172,7 +175,7 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 10
+        Blunt: 17
   - type: SSDIndicator
   - type: StandingState
   - type: Crawler
@@ -222,7 +225,6 @@
   - type: MedievalIronHitSound
   - type: IgnitPocketFlames
   - type: MedievalSpikeTarget
-  - type: BadSmell
   - type: MeleeParryAble
   - type: RandomSteal
   - type: Customizer
@@ -242,7 +244,7 @@
     energy: 0.3
     radius: 1.18
   - type: RDWeight
-    value: 63
+    value: 80
   - type: RDWeightSpeedModifier
     curve: !type:RDWeightModifierLinearCurve
       min: 90
@@ -287,6 +289,11 @@
   - type: Damageable
     damageContainer: Forged
     damageModifierSet: Forged
+  - type: ExplosionResistance
+    damageCoefficient: 1
+  - type: MeleeParryStorage
+  - type: MedievalDash
+    force: 200
   - type: MobState
   - type: MobThresholds
     thresholds:
@@ -361,7 +368,8 @@
     requiredLegs: 2
   - type: Forged
   - type: Hunger
-    baseDecayRate: 0.005
+    hungerThresholdAlerts: {}
+    baseDecayRate: 0.0665
   - type: TakeName
 
 - type: entity

@@ -155,6 +155,11 @@ namespace Content.Shared.Input
 
         #endregion
 
+
+        #region EnhancedMeleeSystem
+        public static readonly BoundKeyFunction MedievalMeleeParry = "MeleeParry";
+
+        #endregion
         // Imperial Options End
     }
 }

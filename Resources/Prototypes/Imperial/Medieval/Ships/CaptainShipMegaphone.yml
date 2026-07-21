@@ -1,0 +1,22 @@
+- type: entity
+  id: CaptainShipMegaphone
+  name: CaptainShipMegaphone
+  parent: BaseItem
+  description: CaptainShipMegaphoneDesc
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Ships/CaptainShipMegaphone.rsi
+    state: megaphone_item
+  - type: CaptainShipMegaphone
+  - type: UseDelay
+    delay: 1
+
+- type: CP14Recipe
+  id: CaptainShipMegaphoneCraft
+  craftTime: 5
+  stacks:
+    MedievalLeather1: 1
+    MedievalRope: 1
+  entities:
+    MedievalLootHog: 1
+  result: CaptainShipMegaphone

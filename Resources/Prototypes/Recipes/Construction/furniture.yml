@@ -15,7 +15,7 @@
     - !type:TileNotBlocked
 
 - type: construction
-  hide: true # imperial medieval craft disable
+  hide: false # imperial medieval craft disable
   name: Табурет # Imperial Recipes Locale
   id: Stool
   graph: Seat

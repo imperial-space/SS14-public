@@ -10,8 +10,8 @@
     partSlot: head
     layerState: ebonit_head
     rsiPath: Imperial/Medieval/Forged/ebonit.rsi
-    resistanceModifier: 0.08
-    speedModifier: -0.15
+    resistanceModifier: 0.09
+    speedModifier: -0.125
 
 - type: entity
   id: ForgedEbonitTorso
@@ -48,20 +48,22 @@
     - state: blank
       map: ["left_foot"]
     - state: blank
-      map : ["upgrade1"]
+      map : ["crown"]
+    - state: blank
+      map : ["torso_upgrade"]
   - type: ForgedAssembly
     torso: ForgedEbonitTorso
   - type: ForgedModule
     partSlot: torso
     layerState: ebonit_torso
     rsiPath: Imperial/Medieval/Forged/ebonit.rsi
-    resistanceModifier: 0.32
-    speedModifier: -0.55
+    resistanceModifier: 0.33
+    speedModifier: -0.525
 
 - type: entity
   id: ForgedEbonitRArm
   name: ForgedEbonitRArm
-  parent: ForgedRLegBase
+  parent: ForgedRArmBase
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/ebonit.rsi
@@ -71,13 +73,13 @@
     partSlot: right_arm
     layerState: ebonit_right_arm
     rsiPath: Imperial/Medieval/Forged/ebonit.rsi
-    resistanceModifier: 0.08
-    speedModifier: -0.05
+    resistanceModifier: 0.09
+    speedModifier: -0.025
 
 - type: entity
   id: ForgedEbonitLArm
   name: ForgedEbonitLArm
-  parent: ForgedLLegBase
+  parent: ForgedLArmBase
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/ebonit.rsi
@@ -88,8 +90,8 @@
     partSlot: left_arm
     layerState: ebonit_left_arm
     rsiPath: Imperial/Medieval/Forged/ebonit.rsi
-    resistanceModifier: 0.08
-    speedModifier: -0.05
+    resistanceModifier: 0.09
+    speedModifier: -0.025
 
 - type: entity
   id: ForgedEbonitRLeg
@@ -104,8 +106,8 @@
     partSlot: right_leg
     layerState: ebonit_right_leg
     rsiPath: Imperial/Medieval/Forged/ebonit.rsi
-    resistanceModifier: 0.12
-    speedModifier: 0.10
+    resistanceModifier: 0.13
+    speedModifier: 0.075
 
 - type: entity
   id: ForgedEbonitLLeg
@@ -121,5 +123,5 @@
     partSlot: left_leg
     layerState: ebonit_left_leg
     rsiPath: Imperial/Medieval/Forged/ebonit.rsi
-    resistanceModifier: 0.12
-    speedModifier: 0.10
+    resistanceModifier: 0.13
+    speedModifier: 0.075

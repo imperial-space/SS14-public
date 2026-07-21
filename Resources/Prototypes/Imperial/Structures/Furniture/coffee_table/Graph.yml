@@ -21,8 +21,6 @@
         - to: start
           completed:
             - !type:SpawnPrototype
-                prototype: PartRodMetal
-                amount: 2
           steps:
             - tool: Anchoring
               doAfter: 1
@@ -30,8 +28,8 @@
         - to: CoffeeTableWood
           steps:
             - material: WoodPlank
-              amount: 1
-              doAfter: 1
+              amount: 2
+              doAfter: 4
 
         - to: CoffeeTableSteel
           steps:

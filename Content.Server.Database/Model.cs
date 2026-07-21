@@ -47,12 +47,15 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
-        public DbSet<NrpViolation> NrpViolations { get; set; } = null!; // Imperial medieval nrp
-        public DbSet<NrpResolves> NrpResolves { get; set; } = null!; // Imperial medieval nrp
+        // Imperial Medieval Start
+        public DbSet<NrpViolation> NrpViolations { get; set; } = null!;
+        public DbSet<NrpResolves> NrpResolves { get; set; } = null!;
         public DbSet<Painting> Paintings { get; set; } = null!;
         public DbSet<Book> Books { get; set; } = null!;
-        public DbSet<FlavorImage> FlavorImages { get; set; } = null!; // Imperial Medieval Flavor Images
-        // imperial medieval end
+        public DbSet<FlavorImage> FlavorImages { get; set; } = null!;
+        public DbSet<PlayerAchievement> PlayerAchievements { get; set; } = null!;
+        public DbSet<PlayerAchievementProgress> PlayerAchievementsProgress { get; set; } = null!;
+        // Imperial Medieval End
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -72,7 +75,7 @@ namespace Content.Server.Database
                 .HasIndex(p => new {HumanoidProfileId = p.ProfileId, p.TraitName})
                 .IsUnique();
 
-            // imperial medieval start
+            // Imperial Medieval Start
             modelBuilder.Entity<Skill>()
                 .HasIndex(p => new { HumanoidProfileId = p.ProfileId, p.SkillName })
                 .IsUnique();
@@ -88,7 +91,27 @@ namespace Content.Server.Database
 
             modelBuilder.Entity<Book>()
                 .HasIndex(p => p.AuthorUserId);
-            // imperial medieval end
+
+            modelBuilder.Entity<PlayerAchievement>()
+               .HasIndex(a => new { a.PlayerUserId, a.AchievementId })
+               .IsUnique();
+
+            modelBuilder.Entity<PlayerAchievement>()
+                .HasOne(a => a.Player)
+                .WithMany()
+                .HasForeignKey(a => a.PlayerUserId)
+                .HasPrincipalKey(p => p.UserId);
+
+            modelBuilder.Entity<PlayerAchievementProgress>()
+                .HasIndex(p => new { p.PlayerUserId, p.AchievementId, p.ProgressKey })
+                .IsUnique();
+
+            modelBuilder.Entity<PlayerAchievementProgress>()
+                .HasOne(p => p.Player)
+                .WithMany()
+                .HasForeignKey(p => p.PlayerUserId)
+                .HasPrincipalKey(p => p.UserId);
+            // Imperial Medieval End
 
             modelBuilder.Entity<ProfileRoleLoadout>()
                 .HasOne(e => e.Profile)
@@ -556,6 +579,45 @@ namespace Content.Server.Database
         [ForeignKey(nameof(Profile)), Required]
         public int ProfileId { get; set; }
         public byte[] Image { get; set; } = Array.Empty<byte>();
+    }
+
+    [Index(nameof(PlayerUserId))]
+    public sealed class PlayerAchievement
+    {
+        [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+        [Required]
+        public Guid PlayerUserId { get; set; }
+
+        public Player Player { get; set; } = default!;
+
+        [Required, MaxLength(256)]
+        public string AchievementId { get; set; } = default!;
+
+        [Required]
+        public DateTime GrantedAt { get; set; }
+    }
+
+    [Index(nameof(PlayerUserId))]
+    public sealed class PlayerAchievementProgress
+    {
+        [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+        [Required]
+        public Guid PlayerUserId { get; set; }
+
+        public Player Player { get; set; } = default!;
+
+        [Required, MaxLength(256)]
+        public string AchievementId { get; set; } = default!;
+
+        [Required, MaxLength(256)]
+        public string ProgressKey { get; set; } = default!;
+
+        [Required]
+        public int Value { get; set; }
     }
 
     #endregion

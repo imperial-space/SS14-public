@@ -251,10 +251,237 @@
     MedievalSteelIngot: 1
 
 - type: CP14Recipe
+  id: ForgedEbonitHeadCraft
+  result: ForgedEbonitHead
+  stacks:
+    MedievalEbonitIngot: 2
+    MedievalRivets: 1
+    MedievalIronPlateSmall: 2
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedEbonitTorsoCraft
+  result: ForgedEbonitTorso
+  stacks:
+    MedievalEbonitIngot: 5
+    MedievalIronPlate: 6
+    MedievalRivets: 2
+    MedievalIronPlateSmall: 12
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedEbonitRArmCraft
+  result: ForgedEbonitRArm
+  stacks:
+    MedievalEbonitIngot: 2
+    MedievalGear: 2
+    MedievalIronPlateSmall: 2
+    MedievalShoulder: 1
+    MedievalRivets: 2
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedEbonitLArmCraft
+  result: ForgedEbonitLArm
+  stacks:
+    MedievalEbonitIngot: 2
+    MedievalGear: 2
+    MedievalIronPlateSmall: 2
+    MedievalShoulder: 1
+    MedievalRivets: 2
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedEbonitRLegCraft
+  result: ForgedEbonitRLeg
+  stacks:
+    MedievalEbonitIngot: 2
+    MedievalGear: 2
+    MedievalIronPlateSmall: 2
+    MedievalRivets: 4
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedEbonitLLegCraft
+  result: ForgedEbonitLLeg
+  stacks:
+    MedievalEbonitIngot: 2
+    MedievalGear: 2
+    MedievalIronPlateSmall: 2
+    MedievalRivets: 4
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedForstoneHeadCraft
+  result: ForgedForstoneHead
+  stacks:
+    MedievalForstoneIngot: 2
+    MedievalRivets: 1
+    MedievalIronPlateSmall: 2
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedForstoneTorsoCraft
+  result: ForgedForstoneTorso
+  stacks:
+    MedievalForstoneIngot: 5
+    MedievalIronPlate: 6
+    MedievalRivets: 2
+    MedievalIronPlateSmall: 12
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedForstoneRArmCraft
+  result: ForgedForstoneRArm
+  stacks:
+    MedievalForstoneIngot: 2
+    MedievalGear: 2
+    MedievalIronPlateSmall: 2
+    MedievalShoulder: 1
+    MedievalRivets: 2
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedForstoneLArmCraft
+  result: ForgedForstoneLArm
+  stacks:
+    MedievalForstoneIngot: 2
+    MedievalGear: 2
+    MedievalIronPlateSmall: 2
+    MedievalShoulder: 1
+    MedievalRivets: 2
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedForstoneRLegCraft
+  result: ForgedForstoneRLeg
+  stacks:
+    MedievalForstoneIngot: 2
+    MedievalGear: 2
+    MedievalIronPlateSmall: 2
+    MedievalRivets: 4
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedForstoneLLegCraft
+  result: ForgedForstoneLLeg
+  stacks:
+    MedievalForstoneIngot: 2
+    MedievalGear: 2
+    MedievalIronPlateSmall: 2
+    MedievalRivets: 4
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
   id: ForgedCrossbowLHandCraft
   result: ForgedCrossbowLHand
   entities:
     MedievalWeaponCrossbow: 1
   stacks:
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedInvisibilityNimbusCraft
+  result: ForgedInvisibilityNimbus
+  stacks:
+    MedievalTopaz: 3
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedTorsoExplosiveCraft
+  result: ForgedTorsoExplosive
+  stacks:
+    Gunpowder: 1
+    MedievalFireSerdolick: 3
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedLHandCannon1Craft
+  result: ForgedLHandCannon1
+  stacks:
+    Gunpowder: 1
+    MedievalMagicGlina: 1
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedRHandCannon1Craft
+  result: ForgedRHandCannon1
+  stacks:
+    Gunpowder: 1
+    MedievalMagicGlina: 1
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedLHandCannon2Craft
+  result: ForgedLHandCannon2
+  stacks:
+    Gunpowder: 2
+    MedievalMagicGlina: 1
+    MedievalSteelIngot: 2
+
+- type: CP14Recipe
+  id: ForgedRHandCannon2Craft
+  result: ForgedRHandCannon2
+  stacks:
+    Gunpowder: 2
+    MedievalMagicGlina: 1
+    MedievalSteelIngot: 2
+
+- type: CP14Recipe
+  id: ForgedLHandCannon3Craft
+  result: ForgedLHandCannon3
+  stacks:
+    Gunpowder: 1
+    MedievalMagicGlina: 1
+    MedievalTopaz: 1
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedRHandCannon3Craft
+  result: ForgedRHandCannon3
+  stacks:
+    Gunpowder: 1
+    MedievalMagicGlina: 1
+    MedievalTopaz: 1
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedLHandCannon4Craft
+  result: ForgedLHandCannon4
+  stacks:
+    Gunpowder: 2
+    MedievalMagicGlina: 1
+    MedievalTopaz: 2
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedRHandCannon4Craft
+  result: ForgedRHandCannon4
+  stacks:
+    Gunpowder: 2
+    MedievalMagicGlina: 1
+    MedievalTopaz: 2
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedLHandCannon5Craft
+  result: ForgedLHandCannon5
+  stacks:
+    Gunpowder: 2
+    MedievalMagicGlina: 1
+    MedievalTopaz: 1
+    MedievalFireSerdolick: 1
+    MedievalAdam: 1
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedRHandCannon5Craft
+  result: ForgedRHandCannon5
+  stacks:
+    Gunpowder: 2
+    MedievalMagicGlina: 1
+    MedievalTopaz: 1
+    MedievalFireSerdolick: 1
+    MedievalAdam: 1
     MedievalSteelIngot: 1
 

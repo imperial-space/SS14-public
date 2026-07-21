@@ -8,6 +8,11 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
 using Robust.Shared.Timing;
+using Content.Shared._RD.Weight.Systems;
+using Content.Server.Imperial.Medieval.Ships.Sail;
+using Content.Shared.Imperial.Medieval.Ships.Sail;
+using Robust.Shared.Configuration;
+using Content.Shared.Imperial.Medieval.Administration.Ships;
 
 namespace Content.Server.Imperial.Medieval.Ships.ShipDrowning;
 
@@ -17,6 +22,9 @@ public sealed class ShipDrowningSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedShipHullSystem _shipHull = default!;
+    [Dependency] private readonly RDWeightSystem _rdWeight = default!;
+    [Dependency] private readonly SailSystem _sail = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private const float UpdateDelaySeconds = 1f;
 
@@ -26,7 +34,6 @@ public sealed class ShipDrowningSystem : EntitySystem
     public override void Initialize()
     {
         _nextCheckTime = _timing.CurTime + TimeSpan.FromSeconds(UpdateDelaySeconds);
-        SubscribeLocalEvent<MapGridComponent, EntityTerminatingEvent>(OnGridTerminating);
         SubscribeLocalEvent<ShipDrowningComponent, EntityTerminatingEvent>(OnShipTerminating);
     }
 
@@ -56,6 +63,12 @@ public sealed class ShipDrowningSystem : EntitySystem
             if (totalTiles == 0)
                 continue;
 
+            var weight = _rdWeight.GetTotalOnGrid(uid);
+            float maxWeight = ShipWeightHelper.GetMaxWeight(uid, mapGrid, _map, EntityManager, _cfg);
+
+            if (weight > maxWeight * 3)
+                drowning.DrownLevel += _cfg.GetCVar(ShipsCCVars.OverloadDrownRate) * frameTime;
+
             drowning.DrownMaxLevel = totalTiles * drowning.MaxFloodPerTile;
             drowning.DrownLevel += floodContribution * drowning.FloodPerDamageStage;
 
@@ -84,14 +97,6 @@ public sealed class ShipDrowningSystem : EntitySystem
 
     private void OnShipTerminating(EntityUid uid, ShipDrowningComponent component, ref EntityTerminatingEvent args)
     {
-        RescueGridChildrenToMap(uid);
-    }
-
-    private void OnGridTerminating(EntityUid uid, MapGridComponent component, ref EntityTerminatingEvent args)
-    {
-        if (HasComp<ShipDrowningComponent>(uid))
-            return;
-
         RescueGridChildrenToMap(uid);
     }
 

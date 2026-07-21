@@ -27,6 +27,15 @@
         },
         {
             "name": "ability_bloody_eyes_off"
+        },
+        {
+            "name": "ability_invisibility"
+        },
+        {
+            "name": "ability_invisibility_off"
+        },
+        {
+            "name": "ability_self_explosive"
         }
     ]
 }

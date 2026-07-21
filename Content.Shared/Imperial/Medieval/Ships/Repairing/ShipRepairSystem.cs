@@ -1,13 +1,16 @@
 using System;
 using Content.Shared.DoAfter;
+using Content.Shared.Imperial.Medieval.Ships;
 using Content.Shared.Imperial.Medieval.Ships.Hull;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Interaction;
 using Content.Shared.Maps;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Network;
 
 namespace Content.Shared.Imperial.Medieval.Ships.Repairing;
 
@@ -20,6 +23,8 @@ public sealed class ShipRepairSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly SharedShipHullSystem _shipHull = default!;
     [Dependency] private readonly SharedStackSystem _stack = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly INetManager _net = default!;
 
     public override void Initialize()
     {
@@ -87,8 +92,11 @@ public sealed class ShipRepairSystem : EntitySystem
         if (!_shipHull.TryGetPreviousDamageTile(currentTile.Tile.TypeId, out var repairedTile))
             return;
 
-        _map.SetTile(args.Target.Value, mapGrid, args.TileCoordinates, new Tile(repairedTile));
+        _map.SetTile(args.Target.Value, mapGrid, args.TileCoordinates, _shipHull.WithTileType(currentTile.Tile, repairedTile));
         _stack.Use(uid, 1);
         args.Handled = true;
+
+        if (_net.IsServer)
+            _audio.PlayPvs(MedievalShipSounds.HammerUse, uid);
     }
 }

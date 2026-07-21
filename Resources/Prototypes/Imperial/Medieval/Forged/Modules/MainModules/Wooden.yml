@@ -47,7 +47,9 @@
     - state: blank
       map: ["left_foot"]
     - state: blank
-      map : ["upgrade1"]
+      map : ["crown"]
+    - state: blank
+      map : ["torso_upgrade"]
   - type: ForgedAssembly
     torso: ForgedWoodenTorso
   - type: ForgedModule
@@ -76,7 +78,7 @@
 - type: entity
   id: ForgedWoodenLArm
   name: ForgedWoodenLArm
-  parent: ForgedLLegBase
+  parent: ForgedLArmBase
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/wooden.rsi

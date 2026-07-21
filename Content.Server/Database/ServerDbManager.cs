@@ -177,6 +177,16 @@ namespace Content.Server.Database
         Task AddNrpResolve(Guid player, bool isRp, CancellationToken cancel = default);
         Task RemoveNrpResolve(Guid player, bool isRp, CancellationToken cancel = default);
 
+        Task<List<PlayerAchievement>> GetPlayerAchievements(Guid userId, CancellationToken cancel = default);
+        Task<(int TotalUniquePlayers, Dictionary<string, int> Stats)> GetAchievementStats(CancellationToken cancel = default);
+
+        Task<bool> GrantAchievement(Guid userId, string achievementId, CancellationToken cancel = default);
+        Task<bool> RevokeAchievement(Guid userId, string achievementId, CancellationToken cancel = default);
+
+        Task<Dictionary<string, Dictionary<string, int>>> GetPlayerAchievementProgress(Guid userId, CancellationToken cancel = default);
+        Task SavePlayerAchievementProgress(Guid userId, Dictionary<string, Dictionary<string, int>> progress, CancellationToken cancel = default);
+        Task DeletePlayerAchievementProgress(Guid userId, string achievementId, CancellationToken cancel = default);
+
         public Task<Painting?> GetPainting(Color[] texture, CancellationToken cancel = default);
         public Task<List<Painting>> GetPaintings(bool accepted, CancellationToken cancel = default);
         public Task AddPainting(Color[] texture, string name, string description, string author, Guid authorUserId, DateTime creationTime, bool accepted, CancellationToken cancel = default);
@@ -190,11 +200,9 @@ namespace Content.Server.Database
         public Task RemoveBook(string text, CancellationToken cancel = default);
         public Task SetBookAccepted(string text, CancellationToken cancel = default);
         public Task EditBook(string text, string name, string author, string description, CancellationToken cancel = default);
-        // Imperial Medieval Flavor Images Begin
         public Task<FlavorImage?> GetFlavorImage(Guid uid, CancellationToken cancel, int? slot = null);
         public Task AddOrUpdateFlavorImage(Guid uid, byte[] image, CancellationToken cancel, int? slot = null);
         public Task RemoveFlavorImage(Guid uid, int slot, CancellationToken cancel);
-        // Imperial Medieval Flavor Images End
         public Dictionary<string, int> GetDbLogs();
 
         #endregion
@@ -756,7 +764,7 @@ namespace Content.Server.Database
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.RemoveNrpResolve(player, isRp, cancel));
         }
-        // Imperial Medieval Flavor Images Begin
+
         public Task<FlavorImage?> GetFlavorImage(Guid uid, CancellationToken cancel, int? slot = null)
         {
             DbReadOpsMetric.Inc();
@@ -772,10 +780,52 @@ namespace Content.Server.Database
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.RemoveFlavorImage(uid, slot, cancel));
         }
-        // Imperial Medieval Flavor Images End
+
         public Dictionary<string, int> GetDbLogs()
         {
             return _db.Logs;
+        }
+
+        public Task<List<PlayerAchievement>> GetPlayerAchievements(Guid userId, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetPlayerAchievements(userId, cancel));
+        }
+
+        public Task<(int TotalUniquePlayers, Dictionary<string, int> Stats)> GetAchievementStats(CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetAchievementStats(cancel));
+        }
+
+        public Task<bool> GrantAchievement(Guid userId, string achievementId, CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.GrantAchievement(userId, achievementId, cancel));
+        }
+
+        public Task<bool> RevokeAchievement(Guid userId, string achievementId, CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.RevokeAchievement(userId, achievementId, cancel));
+        }
+
+        public Task<Dictionary<string, Dictionary<string, int>>> GetPlayerAchievementProgress(Guid userId, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetPlayerAchievementProgress(userId, cancel));
+        }
+
+        public Task SavePlayerAchievementProgress(Guid userId, Dictionary<string, Dictionary<string, int>> progress, CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.SavePlayerAchievementProgress(userId, progress, cancel));
+        }
+
+        public Task DeletePlayerAchievementProgress(Guid userId, string achievementId, CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.DeletePlayerAchievementProgress(userId, achievementId, cancel));
         }
         #endregion
 

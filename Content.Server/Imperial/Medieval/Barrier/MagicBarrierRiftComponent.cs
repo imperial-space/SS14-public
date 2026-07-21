@@ -37,5 +37,7 @@ namespace Content.Server.MagicBarrier.Components
 
         [DataField]
         public EntityUid? Spawner;
+
+        public bool DestroyedLegitimately;
     }
 }

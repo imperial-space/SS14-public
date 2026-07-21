@@ -1,0 +1,84 @@
+- type: entity
+  id: Waystone
+  name: Waystone
+  description: WaystoneDesc
+  parent: BaseStructure
+  components:
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+    offset: 0 , 1
+    sprite: Imperial/Medieval/Waystones/waystones.rsi
+    state: teleportation_stone
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 999999999
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 190
+        mask:
+        - MobMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+  - type: Waystone
+  - type: UserInterface
+    interfaces:
+      enum.WaystoneUiKey.Key:
+        type: WaystoneBoundUserInterface
+      enum.WaystoneUiKey.AdminKey:
+        type: WaystoneBoundUserInterfaceAdmin
+  - type: InteractionOutline
+
+- type: entity
+  id: WaystoneRedCircle
+  name: WaystoneRedCircle
+  description: WaystoneRedCircleDesc
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/Medieval/Waystones/waystones.rsi
+    state: teleportation_stone_red
+  - type: Physics
+    bodyType: Static
+  - type: WaystoneCircle
+
+- type: entity
+  id: WaystoneYellowCircle
+  name: WaystoneYellowCircle
+  description: WaystoneYellowCircleDesc
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Waystones/waystones.rsi
+    state: teleportation_stone_yellow
+  - type: WaystoneCircle
+
+- type: entity
+  id: WaystoneBlueCircle
+  name: WaystoneBlueCircle
+  description: WaystoneBlueCircleDesc
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Waystones/waystones.rsi
+    state: teleportation_stone_blue
+  - type: WaystoneCircle

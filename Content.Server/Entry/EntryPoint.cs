@@ -1,3 +1,4 @@
+using Content.Server.Imperial.Medieval.Achievements.Jobs;
 using Content.Server.Acz;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
@@ -121,8 +122,11 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<JobWhitelistManager>().Initialize();
                 IoCManager.Resolve<PlayerRateLimitManager>().Initialize();
 
+                // Imperial EntryPoint Start
                 ImperialEntry.Init(); // Imperial Space
                 IoCManager.Resolve<Content.Server.Imperial.PVS.AlwaysPvsSystem>().Initialize(); // Imperial AlwaysPvs
+                IoCManager.Resolve<JobAchievementManager>().Initialize();
+                // Imperial EntryPoint End
             }
         }
 

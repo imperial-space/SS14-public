@@ -3018,6 +3018,7 @@
       prob: 0.16
   - type: Hands
   - type: ComplexInteraction
+  - type: AchievementTarget
 
 - type: entity
   name: legion skeleton
@@ -4417,3 +4418,405 @@
     excess: 150
   - type: StaminaDamageOnHit
     damage: 28
+
+- type: entity
+  id: MedievalElementalAir
+  parent: SimpleMobBaseNoFood
+  components:
+  - type: MedievalTimedDespawn
+    lifetime: 540
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/elemental_air.rsi
+    state: alive
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.45
+        density: 50
+        mask:
+          - MobMask
+        layer:
+          - MobLayer
+  - type: Appearance
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  - type: ExplosionResistance
+    damageCoefficient: 0
+  - type: Temperature
+    heatDamageThreshold: 10000
+    coldDamageThreshold: 0
+  - type: Damageable
+    damageModifierSet: MedievalAirElementResist
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1: Critical
+      2: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.7
+    baseSprintSpeed: 3.7
+  - type: PointLight
+    color: white
+    energy: 2
+    radius: 3
+  - type: NpcFactionMember
+    factions:
+      - Xeno
+  - type: MobMover
+  - type: IgnoreSpiderWeb
+  - type: Destructible
+    thresholds:
+      - trigger: !type:DamageTrigger
+          damage: 2
+        behaviors:
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              MagicMedievalLight1:
+                min: 3
+                max: 8
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 3
+  - type: BasicEntityAmmoProvider
+    proto: MedievalProjectileSunstrikeSpotSenior
+    capacity: 1
+    count: 1
+  - type: Gun
+    projectileSpeed: 3
+    fireRate: 1
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Magic/ethereal_exit.ogg
+  - type: AmbientSound
+    volume: -3
+    range: 6
+    sound:
+      path: /Audio/Effects/Weather/wind_5_1_mono.ogg
+  - type: FootstepModifier
+    footstepSoundCollection: null
+
+- type: damageModifierSet
+  id: MedievalAirElementResist
+  coefficients:
+    Blunt: 0.0
+    Slash: 1
+    Piercing: 0.0
+    Heat: 0.0
+    Shock: 0.0
+    Cold: 0.0
+    Poison: 0.0
+    Radiation: 0.0
+    Asphyxiation: 0.0
+    Bloodloss: 0.0
+    Cellular: 0.0
+
+- type: entity
+  id: MedievalElementalFire
+  parent: SimpleMobBaseNoFood
+  components:
+  - type: MedievalTimedDespawn
+    lifetime: 540
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/elemental_fire.rsi
+    state: alive
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.45
+        density: 50
+        mask:
+          - MobMask
+        layer:
+          - MobLayer
+  - type: Appearance
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  - type: ExplosionResistance
+    damageCoefficient: 0
+  - type: Temperature
+    heatDamageThreshold: 10000
+  - type: Damageable
+    damageModifierSet: MedievalFireElementResist
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Critical
+      151: Dead
+  - type: RepeatingTrigger
+    delay: 0.5
+  - type: SpawnOnTrigger
+    proto: MedievalFireWallBeginner
+  - type: MeleeWeapon
+    attackRate: 1.2
+    range: 1.5
+    damage:
+      types:
+        Heat: 5
+    soundHit:
+      path: /Audio/Effects/lightburn.ogg
+    animation: WeaponArcFist
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 3
+  - type: PointLight
+    color: orange
+    energy: 2
+    radius: 3
+  - type: NpcFactionMember
+    factions:
+      - Xeno
+  - type: MobMover
+  - type: IgnoreSpiderWeb
+  - type: Destructible
+    thresholds:
+      - trigger: !type:DamageTrigger
+          damage: 151
+        behaviors:
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              MagicMedievalFire1:
+                min: 3
+                max: 8
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: AmbientSound
+    volume: -3
+    range: 6
+    sound:
+      path: /Audio/Effects/sizzle.ogg
+  - type: FootstepModifier
+    footstepSoundCollection: null
+
+- type: damageModifierSet
+  id: MedievalFireElementResist
+  coefficients:
+    Blunt: 1
+    Slash: 1
+    Piercing: 1
+    Heat: 0.0
+    Shock: 1
+    Cold: 10
+    Poison: 0.0
+    Radiation: 1
+    Asphyxiation: 0.0
+    Bloodloss: 0.0
+    Cellular: 0.0
+
+- type: entity
+  id: MedievalElementalEarth
+  parent: SimpleMobBaseNoFood
+  components:
+  - type: MedievalTimedDespawn
+    lifetime: 540
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/elemental_earth.rsi
+    state: alive
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.45
+        density: 50
+        mask:
+          - MobMask
+        layer:
+          - MobLayer
+  - type: Appearance
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  - type: Damageable
+    damageModifierSet: MedievalEarthElementResist
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Critical
+      301: Dead
+  - type: MeleeWeapon
+    attackRate: 0.25
+    range: 2
+    damage:
+      types:
+        Blunt: 40
+    soundHit:
+      path: /Audio/Weapons/block_metal1.ogg
+    animation: WeaponArcFist
+  - type: RepeatingTrigger
+    delay: 15
+  - type: SpawnOnTrigger
+    proto: MedievalMobGolem
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 1.5
+  - type: PointLight
+    color: brown
+    energy: 2
+    radius: 3
+  - type: NpcFactionMember
+    factions:
+      - Xeno
+  - type: MobMover
+  - type: IgnoreSpiderWeb
+  - type: Destructible
+    thresholds:
+      - trigger: !type:DamageTrigger
+          damage: 301
+        behaviors:
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              MagicMedievalEarth1:
+                min: 12
+                max: 32
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: FootstepModifier
+    footstepSoundCollection: /Audio/Imperial/Medieval/footstep_golem.ogg
+
+- type: damageModifierSet
+  id: MedievalEarthElementResist
+  coefficients:
+    Blunt: 0
+    Slash: 0
+    Piercing: 0
+    Heat: 1
+    Shock: 1
+    Cold: 1
+    Poison: 0.0
+    Radiation: 1
+    Asphyxiation: 0.0
+    Bloodloss: 0.0
+    Cellular: 0.0
+
+- type: entity
+  id: MedievalElementalWater
+  parent: SimpleMobBaseNoFood
+  components:
+  - type: MedievalTimedDespawn
+    lifetime: 540
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/elemental_water.rsi
+    state: alive
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.45
+        density: 50
+        mask:
+          - MobMask
+        layer:
+          - MobLayer
+  - type: Appearance
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  - type: Temperature
+    heatDamageThreshold: 10000
+    coldDamageThreshold: 0
+  - type: Damageable
+    damageModifierSet: MedievalWaterElementResist
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      101: Dead
+  - type: RepeatingTrigger
+    delay: 30
+  - type: SpawnOnTrigger
+    proto: MedievalElementWaterSmoke
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 2.5
+  - type: PointLight
+    color: blue
+    energy: 2
+    radius: 3
+  - type: NpcFactionMember
+    factions:
+      - Xeno
+  - type: MobMover
+  - type: IgnoreSpiderWeb
+  - type: Destructible
+    thresholds:
+      - trigger: !type:DamageTrigger
+          damage: 101
+        behaviors:
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              MagicMedievalVodka1:
+                min: 3
+                max: 8
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: HitscanBatteryAmmoProvider
+    proto: MedievalProjectileWaterSphereSenior
+    fireCost: 1
+  - type: Battery
+    maxCharge: 10
+    startingCharge: 10
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 2
+  - type: Gun
+    fireRate: 0.2
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Imperial/Medieval/icebeam_shot.ogg
+  - type: AmbientSound
+    volume: -3
+    range: 6
+    sound:
+      path: /Audio/Effects/Weather/wind_5_1_mono.ogg
+  - type: FootstepModifier
+    footstepSoundCollection: null
+
+- type: damageModifierSet
+  id: MedievalWaterElementResist
+  coefficients:
+    Blunt: 1
+    Slash: 0
+    Piercing: 1
+    Heat: 10
+    Shock: 1
+    Cold: 0
+    Poison: 0.0
+    Radiation: 1
+    Asphyxiation: 0.0
+    Bloodloss: 0.0
+    Cellular: 0.0
+
+- type: entity
+  id: MedievalElementWaterSmoke
+  parent: Puddle
+  components:
+  - type: TriggerOnSpawn
+  - type: TimedDespawn
+    lifetime: 8
+  - type: SmokeOnTrigger
+    duration: 10
+    spreadAmount: 5

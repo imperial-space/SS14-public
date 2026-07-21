@@ -18,6 +18,9 @@ public sealed partial class ObeliskDestroyableComponent : Component
     public ProtoId<DepartmentPrototype> LockedDepartment = string.Empty;
 
     [DataField]
+    public ProtoId<MedievalFactionPrototype> Faction = "Legion";
+
+    [DataField]
     public TimeSpan InvincibilityDuration = TimeSpan.FromMinutes(5);
 
     [DataField]

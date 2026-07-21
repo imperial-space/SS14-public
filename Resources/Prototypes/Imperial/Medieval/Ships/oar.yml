@@ -9,24 +9,23 @@
   - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Ships/Oar.rsi
-    state: base
-  - type: MeleeParry
-    parryChanse: 0.2
+    state: icon
   - type: MeleeWeapon
     animation: CP14WeaponArcThrust
     wideAnimation: CP14WeaponArcSlash
     cPSwingBeverage: true
-    cPAnimationOffset: 2
-    clickDamageModifier: 1.32
-    wideAnimationRotation: -140
-    attackRate: 0.65
+    cPAnimationOffset: 0.5
+    clickDamageModifier: "1.1"
+    wideAnimationRotation: "-135"
+    attackRate: 0.5
     range: 2.75
-    angle: 0
+    angle: "60"
     damage:
       types:
-        Piercing: 0
-    soundHit:
-      path: /Audio/Weapons/bladeslice.ogg
-    soundSwing:
-      path: /Audio/Imperial/Medieval/spear_swing.ogg
+        Blunt: "7"
   - type: Oar
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: "7"

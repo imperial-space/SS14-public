@@ -76,6 +76,13 @@
       tags:
         - MindTransferTarget
         - Head
+    - type: ForgedModule
+      partSlot: head
+      layerState: head_m
+      rsiPath: Mobs/Species/Skeleton/parts.rsi
+      resistanceModifier: 0
+      speedModifier: 0
+      abilityId: TransferMind
 
 - type: entity
   id: LeftArmSkeleton

@@ -26,10 +26,11 @@ public sealed class ForgedVisualizerSystem : VisualizerSystem<ForgedComponent>
 
     private void SetLayer(EntityUid uid, ForgedVisuals partKey, ForgedVisualsPacket packet, SpriteComponent sprite)
     {
-        if (partKey != ForgedVisuals.core && partKey != ForgedVisuals.upgrade1)
+        if (partKey != ForgedVisuals.core && partKey != ForgedVisuals.torso_upgrade)
         {
             HumanoidVisualLayers? targetLayer = partKey switch
             {
+                ForgedVisuals.crown      => HumanoidVisualLayers.HeadTop,
                 ForgedVisuals.head       => HumanoidVisualLayers.Head,
                 ForgedVisuals.eyes       => HumanoidVisualLayers.Eyes,
                 ForgedVisuals.torso      => HumanoidVisualLayers.Chest,
@@ -45,8 +46,12 @@ public sealed class ForgedVisualizerSystem : VisualizerSystem<ForgedComponent>
                 _ => null
             };
 
-            if (targetLayer == null) return;
+            if (targetLayer == null)
+                return;
 
+            if (packet.State == "blank" || string.IsNullOrEmpty(packet.State))
+                return;
+    
             if (_sprite.LayerMapTryGet((uid, sprite), targetLayer.Value, out var index, false))
             {
                 _sprite.LayerSetRsi((uid, sprite), index, packet.RsiPath);

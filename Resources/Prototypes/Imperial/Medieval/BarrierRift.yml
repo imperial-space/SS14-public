@@ -53,13 +53,9 @@
   - type: MagicBarrierRift
     element: earth
     guardianEntities:
-    - MedievalMobWolf
-    - MedievalMobWolf
-    - MedievalMobWolf
+    - MedievalElementalEarth
     guardianOffsets:
-    - 1,1
-    - -1,1
-    - -1,0
+    - 0,3
 
 - type: entity
   id: MedievalBarrierRiftFire
@@ -78,9 +74,15 @@
   - type: MagicBarrierRift
     element: fire
     guardianEntities:
-    - MedievalMobSkeletHalberd
+    - MedievalElementalFire
+    - MedievalElementalFire
+    - MedievalElementalFire
+    - MedievalElementalFire
     guardianOffsets:
-    - 0,0
+    - 3,3
+    - -3,3
+    - 3,-3
+    - -3,-3
 
 - type: entity
   id: MedievalBarrierRiftWater
@@ -99,22 +101,14 @@
   - type: MagicBarrierRift
     element: water
     guardianEntities:
-    - MedievalMobCrab
-    - MedievalMobCrab
-    - MedievalMobCrab
-    - MedievalMobCrab
-    - MedievalMobCrab
-    - MedievalMobCrab
-    - MedievalMobCrab
-    - MedievalMobCrab
+    - MedievalElementalWater
+    - MedievalElementalWater
+    - MedievalElementalWater
+    - MedievalElementalWater
     guardianOffsets:
     - 1,1
-    - 1,0
-    - 1,-1
-    - 0,1
-    - 0,-1
     - -1,1
-    - -1,0
+    - 1,-1
     - -1,-1
 
 - type: entity
@@ -134,9 +128,15 @@
   - type: MagicBarrierRift
     element: light
     guardianEntities:
-    - MedievalMobBear
+    - MedievalElementalAir
+    - MedievalElementalAir
+    - MedievalElementalAir
+    - MedievalElementalAir
     guardianOffsets:
-    - -1,0
+    - 3,3
+    - -3,3
+    - 3,-3
+    - -3,-3
 
 - type: entity
   id: MedievalRiftKeyEarth

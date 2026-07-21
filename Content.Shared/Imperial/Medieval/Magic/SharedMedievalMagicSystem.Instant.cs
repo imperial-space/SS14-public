@@ -18,6 +18,12 @@ public abstract partial class SharedMedievalMagicSystem
     private void OnInstantSpellCast(MedievalInstantSpellEvent args)
     {
         if (args.Handled) return;
+        if (_handsSystem.TryGetEmptyHand(args.Performer, out _) == false)
+        {
+            _popupSystem.PopupClient(Loc.GetString("medieval-magic-free-hand-required"), args.Performer);
+            return;
+        }
+
         if (!PassesSpellPrerequisites(args.Action, args.Performer, Transform(args.Performer).Coordinates)) return;
 
         args.Handled = true;

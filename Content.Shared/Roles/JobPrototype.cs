@@ -1,3 +1,4 @@
+using Content.Shared.Imperial.Medieval.Achievements;
 using Content.Shared.Access;
 using Content.Shared.Guidebook;
 using Content.Shared.Players.PlayTimeTracking;
@@ -154,11 +155,16 @@ namespace Content.Shared.Roles
         [DataField]
         public List<ProtoId<GuideEntryPrototype>>? Guides;
 
+        // Imperial Start
         [DataField]
-        public bool SponsorsOnly { get; } = false; //Imperial sponsors
+        public bool SponsorsOnly { get; } = false;
 
         [DataField]
-        public bool ApplySkills { get; private set; } = true;   // Imperial skills
+        public bool ApplySkills { get; private set; } = true;
+
+        [DataField]
+        public List<ProtoId<AchievementPrototype>> RequiredAchievements { get; private set; } = new();
+        // Imperial End
     }
 
     /// <summary>

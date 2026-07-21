@@ -265,7 +265,7 @@ public abstract partial class SharedStunSystem : EntitySystem
             // Only drop items the first time we want to fall...
             if (drop)
             {
-                var ev = new DropHandItemsEvent();
+                var ev = new DropHandItemsExceptWeaponEvent(); // Imperial Было код был заменен, чтобы при введении в стамина крит оружие не выпадало
                 RaiseLocalEvent(uid, ref ev);
             }
 

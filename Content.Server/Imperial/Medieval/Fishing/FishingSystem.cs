@@ -21,10 +21,17 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared.Sprite;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Server.Imperial.Medieval.Farmer;
+using Content.Server.Construction;
+using Robust.Shared.Timing;
+using System.Numerics;
+using Content.Shared.Coordinates;
 
 namespace Content.Server.Imperial.Medieval.Fishing;
 
-public sealed class FishingSystem : EntitySystem
+public sealed partial class FishingSystem : EntitySystem
 {
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
@@ -40,6 +47,11 @@ public sealed class FishingSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
+    [Dependency] private readonly SharedScaleVisualsSystem _scaleVisuals = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private readonly ITimerManager _timer = default!;
+
     private readonly List<TaskCompletionSource<float>> _minigameUpdateWaiters = new();
 
     public override void Initialize()
@@ -54,6 +66,9 @@ public sealed class FishingSystem : EntitySystem
         SubscribeLocalEvent<FishingRodComponent, FishingMinigameResultMessage>(OnFishingMinigameResult);
         SubscribeLocalEvent<FishingRodComponent, BoundUIClosedEvent>(OnRodUiClosed);
         SubscribeLocalEvent<HandsComponent, DamageChangedEvent>(OnHandsDamageChanged);
+
+        SubscribeLocalEvent<FishSizeRarityComponent, ConstructionChangeEntityEvent>(OnFishTransformed);
+        SubscribeLocalEvent<FishSizeRarityComponent, ScaleEntityEvent>(OnScaleEntity);
     }
 
     public override void Update(float frameTime)
@@ -522,13 +537,15 @@ public sealed class FishingSystem : EntitySystem
             : Transform(rod.Owner).Coordinates;
 
         var fish = Spawn(currentFish, spawnCoordinates);
+        GetFishRandomSizeRarity(fish);
+
         _audio.PlayPvs(rod.Comp.MinigameFishOutSound, spawnCoordinates);
         if (minigameUser is { } userUid && Exists(userUid))
         {
             _popup.PopupEntity(Loc.GetString("fishing-minigame-caught-popup", ("fish", fishName)), userUid, userUid);
 
             var throwSpeed = GetFishThrowSpeed(fish);
-            _throwing.TryThrow(fish, Transform(userUid).Coordinates, throwSpeed, userUid, compensateFriction: true);
+            _throwing.TryThrow(fish, Transform(userUid).Coordinates, throwSpeed, userUid, compensateFriction: true, animated: false);
         }
 
         ResetMinigameState(rod, deleteBobber: true, consumeBait: true, clearCurrentFish: true);

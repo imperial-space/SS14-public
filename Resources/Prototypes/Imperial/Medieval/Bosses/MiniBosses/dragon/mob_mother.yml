@@ -1,0 +1,429 @@
+- type: entity
+  name: dragon
+  abstract: true
+  parent: SimpleMobBaseNoFood
+  id: MedievalMotherBossBaseDragon
+  description: big dragon
+  components:
+    - type: Hands
+      hands:
+        hand_left:
+          location: left
+      showInHands: false
+      emptyRepresentative: []
+    - type: Mana
+      maxMana: 10000
+      regen: 100
+    - type: MedievalSpellCaster
+    - type: Sprite
+      scale: 2.5, 2.5
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTypeTrigger
+          damageType: Blunt
+          damage: 100000
+        behaviors:
+        - !type:GoSSDBehavior { }
+        - !type:GibBehavior { }
+    - type: Flammable
+      firestackFade: -3
+      canResistFire: true
+    - type: ContentEye
+      targetZoom: 1.8, 1.8
+      maxZoom: 1.8, 1.8
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PhysShapeCircle
+            radius: 1.45
+          density: 60
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+    - type: LocalLight
+      energy: 2
+      radius: 12
+    - type: PointLight
+      netsync: false
+      enabled: false
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        15000: Dead
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        5500: 0.9
+        9000: 0.8
+        12500: 0.7
+    - type: Tag
+      tags:
+      - FootstepSound
+    - type: Bloodstream
+      bloodMaxVolume: 0
+    - type: Appearance
+    - type: NpcFactionMember
+      factions:
+      - Xeno
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: LanguageSpeaker
+      languages:
+        Common: Speak
+        Goblin: Speak
+        Ancient: Speak
+        Tribe: Speak
+        Orc: Speak
+        Cursed: Speak
+        Growling: Speak
+        Hissing: Speak
+        Elf: Speak
+    - type: MeleeWeapon
+      hidden: true
+      angle: 0
+      animation: WeaponArcPunch
+      soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+      damage:
+        groups:
+          Brute: 148
+        types:
+          Structural: 8600
+      range: 5.5
+      attackRate: 0.5
+    - type: StaminaDamageOnHit
+      damage: 570
+    - type: Stamina
+      critThreshold: 10000
+    - type: MedievalUnthrowable
+    - type: MeleeThrowOnHit
+      distance: 15
+      speed: 15
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Imperial/Witchers/FootstepWitchersVendigo.ogg
+        params:
+          volume: 30
+    - type: NoSlip
+    - type: Speech
+      speechVerb: LargeMob
+      speechSounds: MedievalDragon
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3.3
+      baseSprintSpeed: 2.1
+    - type: AnnounceOnSpawn
+      message: dragon-mother-spawn-announcement
+      color: "yellow"
+      sender: ancient-entity
+      sound:
+        path: /Audio/Imperial/Medieval/dragon_summon.ogg
+        volume: 8
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      makeSentient: true
+      name: ghost-role-information-dragon-name
+      description: ghost-role-information-dragon-description
+      rules: ghost-role-information-dragon-rules
+      mindRoles:
+      - MindRoleGhostRoleSoloAntagonist
+      raffle:
+        settings: short
+    - type: Devourer
+      foodPreferenceWhitelist:
+        components:
+        - HumanoidAppearance
+      stomachStorageWhitelist:
+        components:
+        - MobState
+      chemical: Ichor
+      healRate: 35
+      whitelist:
+        components:
+        - MobState
+        #- Door
+        #tags:
+        #- Wall
+
+- type: entity
+  name: dragon
+  parent: MedievalMotherBossBaseDragon
+  id: MedievalMotherBossIceDragon
+  description: big dragon
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+      sprite: Imperial/Medieval/Mobs/Bosses/Dragons/icedragon.rsi
+    - type: HitscanBatteryAmmoProvider
+      proto: MedievalProjectileWaterSphereBeginnerSS
+      fireCost: 1
+    - type: Battery
+      maxCharge: 10000
+      startingCharge: 10000
+    - type: Gun
+      projectileSpeed: 8
+      fireRate: 1
+      useKey: false
+      selectedMode: FullAuto
+      availableModes:
+      - FullAuto
+      soundGunshot: /Audio/Imperial/Medieval/icebeam_shot.ogg
+    - type: Butcherable
+      spawned:
+      - id: MedievalDragonLootIcescale
+        amount: 32
+      - id: MedievalDragonLootBones
+        amount: 20
+      - id: FoodMeat
+        amount: 20
+      - id: MedievalLeather1
+        amount: 40
+      - id: MedievalDragonQuantEssence
+        amount: 1
+
+- type: hitscan
+  id: MedievalProjectileWaterSphereBeginnerSS
+  damage:
+    types:
+      Cold: 28
+      Slash: 48
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_blue
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_blue
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_blue
+
+- type: entity
+  name: dragon
+  parent: MedievalMotherBossBaseDragon
+  id: MedievalMotherBossFireDragon
+  description: big dragon
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+      sprite: Imperial/Medieval/Mobs/Bosses/Dragons/firedragon.rsi
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 3
+      rechargeSound:
+        path: /Audio/Imperial/Medieval/fireball_blast.ogg
+    - type: BasicEntityAmmoProvider
+      proto: MedievalProjectileFireballSenior
+      capacity: 1
+      count: 1
+    - type: Gun
+      projectileSpeed: 15
+      fireRate: 1
+      useKey: false
+      selectedMode: FullAuto
+      availableModes:
+      - FullAuto
+      soundGunshot: /Audio/Imperial/Medieval/fireball_blast.ogg
+    - type: Damageable
+      damageModifierSet: FireDragon
+    - type: ExplosionResistance
+      damageCoefficient: 0.25
+    - type: Butcherable
+      spawned:
+      - id: MedievalDragonLootFirescale
+        amount: 32
+      - id: MedievalDragonLootBones
+        amount: 20
+      - id: FoodMeat
+        amount: 20
+      - id: MedievalLeather1
+        amount: 60
+      - id: MedievalDragonQuantEssence
+        amount: 1
+
+- type: entity
+  name: dragon
+  parent: MedievalMotherBossBaseDragon
+  id: MedievalMotherBossAcidDragon
+  description: big dragon
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+      sprite: Imperial/Medieval/Mobs/Bosses/Dragons/aciddragon.rsi
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 1
+      rechargeSound:
+        path: /Audio/Imperial/Medieval/fireball_blast.ogg
+    - type: BasicEntityAmmoProvider
+      proto: MedievalProjectileAcidDragon
+      capacity: 1
+      count: 1
+    - type: Gun
+      projectileSpeed: 18
+      fireRate: 1
+      useKey: false
+      selectedMode: FullAuto
+      availableModes:
+      - FullAuto
+      soundGunshot: /Audio/Imperial/Medieval/fireball_blast.ogg
+    - type: Tag
+      tags:
+      - FootstepSound
+      - MyrmexPoisonImmune
+    - type: Butcherable
+      spawned:
+      - id: MedievalDragonLootAcidscale
+        amount: 32
+      - id: MedievalDragonLootBones
+        amount: 20
+      - id: FoodMeat
+        amount: 20
+      - id: MedievalLeather1
+        amount: 60
+      - id: MedievalDragonQuantEssence
+        amount: 1
+
+- type: entity
+  name: dragon
+  parent: MedievalMotherBossBaseDragon
+  id: MedievalMotherBossThunderDragon
+  description: big dragon
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+      sprite: Imperial/Medieval/Mobs/Bosses/Dragons/thunderdragon.rsi
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 1
+      rechargeSound:
+        path: /Audio/Imperial/Medieval/fireball_blast.ogg
+    - type: BasicEntityAmmoProvider
+      proto: MedievalProjectileThunderDragonSS
+      capacity: 1
+      count: 1
+    - type: Gun
+      projectileSpeed: 22
+      fireRate: 1
+      useKey: false
+      selectedMode: FullAuto
+      availableModes:
+      - FullAuto
+      soundGunshot: /Audio/Imperial/Medieval/fireball_blast.ogg
+    - type: ExplosionResistance
+      damageCoefficient: 0.35
+    - type: Butcherable
+      spawned:
+      - id: MedievalDragonLootThunderscale
+        amount: 32
+      - id: MedievalDragonLootBones
+        amount: 20
+      - id: FoodMeat
+        amount: 20
+      - id: MedievalLeather1
+        amount: 60
+      - id: MedievalDragonQuantEssence
+        amount: 1
+
+
+- type: entity
+  id: MedievalProjectileThunderDragonSS
+  parent: BaseBulletTrigger
+  name: fireball
+  description: You better GITTAH WEIGH.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Shock: 75
+    - type: Sprite
+      sprite: /Textures/Imperial/Medieval/Myrmex/Structures/Turret/myrmex_acid.rsi
+      layers:
+        - state: myrmex_acid
+    - type: SingularityDistortion
+      falloffPower: 3
+      intensity: 100
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: LightningRune
+    - type: SpawnOnTrigger
+      proto: MedievalLightningEffect
+    - type: Ammo
+      muzzleFlash: null
+
+- type: entity
+  name: dragon
+  parent: MedievalMotherBossBaseDragon
+  id: MedievalMotherBossNecroDragon
+  description: big dragon
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+      sprite: Imperial/Medieval/Mobs/Bosses/Dragons/necrodragon.rsi
+    - type: Hands
+      hands:
+        hand_left:
+          location: left
+      showInHands: false
+      emptyRepresentative: []
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: HitscanBatteryAmmoProvider
+      proto: MedievalProjectileNecroDragon
+      fireCost: 1
+    - type: Battery
+      maxCharge: 10000
+      startingCharge: 10000
+    - type: Gun
+      projectileSpeed: 8
+      fireRate: 3
+      useKey: false
+      selectedMode: FullAuto
+      availableModes:
+      - FullAuto
+      soundGunshot: /Audio/Imperial/Medieval/icebeam_shot.ogg
+    - type: Mana
+      maxMana: 10000
+      regen: 100
+    - type: AddActionOnSpawn
+      actions:
+        - MedievalActionSpawnSkeletSenior
+        - MedievalActionBlinkDragon
+    - type: MedievalPlagueInfectOnHit
+      active: false
+      id: Skeleton
+      chance: 0.2
+    - type: AllergySpreader
+      id: Skeleton
+    - type: Butcherable
+      spawned:
+      - id: MedievalDragonLootBonescale
+        amount: 32
+      - id: MedievalDragonLootBones
+        amount: 32
+      - id: MedievalLeather1
+        amount: 60
+      - id: MedievalDragonQuantEssence
+        amount: 1

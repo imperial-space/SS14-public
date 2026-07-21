@@ -32,4 +32,6 @@ public sealed partial class GrabbableComponent : Component
 
     [AutoNetworkedField]
     public bool DoAfterRaised = false;
+
+    public int GrabMissStreak = 0;
 }

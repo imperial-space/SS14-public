@@ -1,3 +1,4 @@
+using Content.Server.Imperial.Medieval.Achievements.Jobs;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -87,8 +88,10 @@ namespace Content.Server.IoC
 
             IoCManager.Register<DiscordLink>();
             IoCManager.Register<DiscordChatLink>();
-
-            ImperialEntry.IoCRegister(); // Imperial Space
+            // Imperial ServerContentIoC Start
+            ImperialEntry.IoCRegister();
+            IoCManager.Register<JobAchievementManager>();
+            // Imperial ServerContentIoC End
         }
     }
 }

@@ -1,0 +1,50 @@
+# Base
+
+- type: entity
+  parent: Bed
+  id: MedievalEarthBed
+  name: Earth Bed
+  abstract: true
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Strap
+    buckleTime: 0.5
+    unbuckleTime: 0.5
+    buckleSound:
+      path: /Audio/Imperial/Medieval/Effects/lay_on_bed1.ogg
+    unbuckleSound:
+      path: /Audio/Imperial/Medieval/Effects/lay_on_bed2.ogg
+  - type: Buckle
+  - type: BloodRegenBed
+    bloodRegenMultiplier: 2.0
+  - type: HealOnBuckle
+    damage:
+      groups:
+        Brute: -0.02
+        Burn: -0.02
+        Airloss: -0.02
+      types:
+        Poison: -0.02
+        Caustic: -0.02
+        Radiation: -0.02
+  - type: MedievalPlagueHealStrapped
+
+# Beginner
+
+- type: entity
+  id: MedievalEarthBedBeginner
+  parent: MedievalEarthBed
+  name: Earth Bed
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Earth/EarthBed/projectiles.rsi
+    state: beginner
+  - type: TimedDespawn
+    lifetime: 60

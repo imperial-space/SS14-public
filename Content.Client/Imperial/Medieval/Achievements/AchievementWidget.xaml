@@ -1,0 +1,53 @@
+<BoxContainer xmlns="https://spacestation14.io"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+             SetWidth="400"
+             SetHeight="100"
+             MouseFilter="Ignore">
+    <PanelContainer Name="MainPanel" HorizontalExpand="True" VerticalExpand="True">
+        <PanelContainer.PanelOverride>
+            <graphics:StyleBoxFlat
+                BackgroundColor="#1e1611"
+                BorderColor="#d4af37" 
+                BorderThickness="2, 0, 0, 0"
+                ContentMarginLeftOverride="12"
+                ContentMarginRightOverride="16"
+                ContentMarginTopOverride="8"
+                ContentMarginBottomOverride="8"/>
+        </PanelContainer.PanelOverride>
+        <BoxContainer Orientation="Horizontal" SeparationOverride="14">
+            <PanelContainer VerticalAlignment="Center" 
+                            SetWidth="76" 
+                            SetHeight="76">
+                <PanelContainer.PanelOverride>
+                    <graphics:StyleBoxFlat 
+                        BackgroundColor="#2a1f18" 
+                        BorderColor="#5c4a3d" 
+                        BorderThickness="1"
+                        ContentMarginLeftOverride="2"
+                        ContentMarginRightOverride="2"
+                        ContentMarginTopOverride="2"
+                        ContentMarginBottomOverride="2"/>
+                </PanelContainer.PanelOverride>
+                <TextureRect Name="AchievementIcon"
+                             SetSize="72, 72"
+                             Stretch="KeepAspectCentered"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"/>
+            </PanelContainer>
+            <BoxContainer Orientation="Vertical"
+                          VerticalAlignment="Center"
+                          HorizontalExpand="True"
+                          SeparationOverride="2">
+                <Label Name="AchievementNameLabel"
+                       FontColorOverride="#d4af37"
+                       StyleClasses="LabelHeading"
+                       ClipText="True"
+                       MinHeight="18"/>
+                <RichTextLabel Name="DescriptionLabel" 
+                               MaxWidth="350"
+                               MinHeight="16"/>
+            </BoxContainer>
+        </BoxContainer>
+    </PanelContainer>
+</BoxContainer>

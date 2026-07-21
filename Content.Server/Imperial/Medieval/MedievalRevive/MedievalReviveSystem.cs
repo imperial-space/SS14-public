@@ -43,32 +43,20 @@ public sealed class MedievalReviveSystem : EntitySystem
         var userId = session.UserId;
 
         if (!EntityQuery<MagicBarrierComponent>().TryFirstOrDefault(out var barrier))
-        {
-            _adminLog.Add(LogType.Action, LogImpact.Low, $"Игрок {session.Name} попытался возродиться, но барьер не найден");
             return;
-        }
 
         if (!barrier.ReviveCount.TryGetValue(userId, out var reviveCount))
             reviveCount = 0;
 
         if (reviveCount >= MaxRevives)
-        {
-            _adminLog.Add(LogType.Action, LogImpact.High, $"Игрок {session.Name} превысил лимит возрождений ({MaxRevives})");
             return;
-        }
 
         if (!_minds.TryGetMind(userId, out _, out var oldMind))
-        {
-            _adminLog.Add(LogType.Action, LogImpact.High, $"Игрок {session.Name} не имеет разума");
             return;
-        }
 
         var currentEntity = oldMind.CurrentEntity;
         if (currentEntity == null || !HasComp<GhostComponent>(currentEntity))
-        {
-            _adminLog.Add(LogType.Action, LogImpact.High, $"Игрок {session.Name} попытался возродиться не находясь в состоянии призрака");
             return;
-        }
 
         var spawnerQuery = EntityQuery<MedievalReviveSpawnerComponent>();
         if (!spawnerQuery.Any())
@@ -98,10 +86,7 @@ public sealed class MedievalReviveSystem : EntitySystem
         var userId = session.UserId;
 
         if (!EntityQuery<MagicBarrierComponent>().TryFirstOrDefault(out var barrier))
-        {
-            _adminLog.Add(LogType.Action, LogImpact.High, $"Игрок {session.Name} запросил количество возрождений, но барьер не найден");
             return;
-        }
 
         if (!barrier.ReviveCount.TryGetValue(userId, out var reviveCount))
             reviveCount = 0;

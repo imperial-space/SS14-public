@@ -13,34 +13,27 @@ public enum HelmMenuAction : byte
 }
 
 [Serializable, NetSerializable]
-public sealed class OpenHelmMenuEvent : EntityEventArgs
+public enum HelmUiKey : byte { Key }
+
+[Serializable, NetSerializable]
+public sealed class HelmBoundUserInterfaceState : BoundUserInterfaceState
 {
-    public int Target;
+    public float HelmRotation;
 
-    public OpenHelmMenuEvent(int target)
+    public HelmBoundUserInterfaceState(float helmRotation)
     {
-        Target = target;
-    }
-
-    public OpenHelmMenuEvent()
-    {
+        HelmRotation = helmRotation;
     }
 }
 
 [Serializable, NetSerializable]
-public sealed class HelmMenuActionEvent : EntityEventArgs
+public sealed class HelmMenuActionMessage : BoundUserInterfaceMessage
 {
     public HelmMenuAction Action;
-    public int Target;
 
-    public HelmMenuActionEvent(HelmMenuAction action, int target)
+    public HelmMenuActionMessage(HelmMenuAction action)
     {
         Action = action;
-        Target = target;
-    }
-
-    public HelmMenuActionEvent()
-    {
     }
 }
 

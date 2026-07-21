@@ -5,7 +5,7 @@ namespace Content.Shared.Imperial.Medieval.Ships.WaterPump;
 
 public sealed class SharedWaterOnShipSystem : EntitySystem
 {
-    public void RemoveWater(EntityUid ship, int count)
+    public void RemoveWater(EntityUid ship, float count)
     {
         if (!TryComp<ShipDrowningComponent>(ship, out var shipDrowningcomp))
             return;

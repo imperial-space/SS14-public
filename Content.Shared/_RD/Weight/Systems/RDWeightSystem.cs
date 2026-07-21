@@ -12,12 +12,14 @@ using Content.Shared._RD.Weight.Components;
 using Content.Shared._RD.Weight.Events;
 using Content.Shared.Stacks;
 using Robust.Shared.Configuration;
+using Robust.Shared.Map.Components;
 
 namespace Content.Shared._RD.Weight.Systems;
 
 public sealed class RDWeightSystem : RDEntitySystem
 {
     [Dependency] private readonly IConfigurationManager _configuration = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private EntityQuery<RDWeightComponent> _weightQuery;
     private EntityQuery<StackComponent> _stackQuery;
@@ -113,5 +115,39 @@ public sealed class RDWeightSystem : RDEntitySystem
 
         var count = _stackQuery.CompOrNull(entity)?.Count ?? 1;
         return entity.Comp.Inside + entity.Comp.Value * count;
+    }
+
+    public float GetTotalOnGrid(EntityUid gridUid)
+    {
+        if (!HasComp<MapGridComponent>(gridUid))
+            return RDWeightComponent.DefaultWeight;
+
+        var total = 0f;
+        var enumerator = EntityQueryEnumerator<RDWeightComponent, TransformComponent>();
+        while (enumerator.MoveNext(out var uid, out var weight, out var xform))
+        {
+            if (uid == gridUid || IsMap(uid))
+                continue;
+
+            if (_transform.GetMoverCoordinates(uid, xform).EntityId != gridUid)
+                continue;
+
+            var count = _stackQuery.CompOrNull(uid)?.Count ?? 1;
+            total += weight.Value * count;
+        }
+
+        return total;
+    }
+
+
+    public void ChangeWeightWithMod(Entity<RDWeightComponent?> entity, float mod)
+    {
+        if (!_weightQuery.Resolve(entity, ref entity.Comp, logMissing: false))
+            return;
+
+        entity.Comp.Value *= mod;
+
+        Dirty(entity, entity.Comp);
+        Refresh(entity);
     }
 }

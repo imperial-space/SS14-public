@@ -16,4 +16,7 @@ public sealed partial class ChargeableAnnounceComponent : Component
 
     [DataField("rechargedelay")]
     public float RechargeDelay = 2f;
+
+    [AutoNetworkedField]
+    public EntityUid? OwnerUid = null;
 }

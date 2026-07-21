@@ -86,7 +86,6 @@
     containers:
       entity_storage: !type:Container
       paper_label: !type:ContainerSlot
-  - type: ItemSlots
   - type: StaticPrice
     price: 75
   - type: Construction
@@ -95,6 +94,26 @@
     containers:
       - entity_storage
   - type: RequireProjectileTarget
+  - type: UniversalLockable
+  - type: Lock
+    locked: false
+    showLockVerbs: false
+    showExamine: false
+    lockOnClick: false
+    unlockOnClick: false
+    useAccess: false
+    unlockingSound: null
+    lockingSound: null
+    breakOnAccessBreaker: false
+  - type: ItemSlots
+    slots:
+      lockSlot:
+        name: Lock
+        insertSound: /Audio/Effects/buckle.ogg
+        ejectSound: /Audio/Effects/unbuckle.ogg
+        whitelist:
+          components:
+          - UniversalLock
 
 - type: entity
   parent: CrateGeneric

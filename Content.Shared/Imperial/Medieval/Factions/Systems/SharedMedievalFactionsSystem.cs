@@ -83,6 +83,15 @@ public abstract partial class SharedMedievalFactionsSystem : EntitySystem
         return false;
     }
 
+    public bool IsRelationUnion(ProtoId<MedievalFactionPrototype> faction1, ProtoId<MedievalFactionPrototype> faction2)
+    {
+        if (TryGetRelation(faction1, faction2, out var relation))
+        {
+            return relation.Id == "Union";
+        }
+        return false;
+    }
+
     public virtual void OpenMenu(ProtoId<MedievalFactionPrototype> proto, Dictionary<int, FactionMemberData> data, FactionMenuAccess access)
     {
     }

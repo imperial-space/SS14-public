@@ -1,6 +1,5 @@
 - type: entity
-  id: MedievalAnchorBase
-  abstract: true
+  id: MedievalAnchorUp
   name: якорь
   description: Старое, но надежное железо для фиксации корабля.
   placement:
@@ -9,8 +8,55 @@
   - type: Transform
     anchored: true
   - type: Clickable
+  - type: InteractionOutline
   - type: Sprite
     sprite: Imperial/Medieval/Ships/Anchor.rsi
+    drawdepth: Mobs
+    layers:
+    - state: up
+      map: ["base"]
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.1,0.1,0.1"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.MedievalAnchorVisuals.Enabled:
+        base:
+          True: {state: down}
+          False: {state: up}
+  - type: MedievalAnchor
+    Enabled: false
+  - type: Lock
+    locked: false
+    showLockVerbs: false
+    showExamine: false
+    lockOnClick: false
+    unlockOnClick: false
+    useAccess: false
+    unlockingSound: null
+    lockingSound: null
+    breakOnAccessBreaker: false
+  - type: UniversalLockable
+  - type: ItemSlots
+    slots:
+      lockSlot:
+        name: Lock
+        insertSound: /Audio/Effects/buckle.ogg
+        ejectSound: /Audio/Effects/unbuckle.ogg
+        whitelist:
+          components:
+          - UniversalLock
 
 - type: entity
   id: WaterPump
@@ -20,8 +66,30 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Ships/WaterPump.rsi
-    state: icon
+    drawdepth: Mobs
+    layers:
+    - state: pump_idle
+      map: ["enum.WaterPumpVisuals.Layer"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.WaterPumpVisuals.State:
+        enum.WaterPumpVisuals.Layer:
+          Idle: { state: pump_idle }
+          Active: { state: pump_active }
   - type: WaterPump
+  - type: InteractionOutline
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0,-0.1,0.1,0.1"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
 
 - type: entity
   id: SteeringOar
@@ -35,24 +103,6 @@
   - type: SteeringOar
 
 - type: entity
-  id: MedievalAnchorUp
-  parent: MedievalAnchorBase
-  components:
-  - type: Sprite
-    state: up
-  - type: MedievalAnchor
-    Enabled: false
-
-- type: entity
-  id: MedievalAnchorDown
-  parent: MedievalAnchorUp
-  components:
-  - type: Sprite
-    state: down
-  - type: MedievalAnchor
-    Enabled: true
-
-- type: entity
   id: MedievalSteeringWheel
   name: Steering wheel
   parent: WoodenSupportWall
@@ -61,4 +111,58 @@
   - type: Sprite
     sprite: Imperial/Medieval/Ships/SteeringWheel.rsi
     state: wheel
+    drawdepth: Mobs
   - type: Helm
+  - type: InteractionOutline
+  - type: UserInterface
+    interfaces:
+      enum.HelmUiKey.Key:
+        type: HelmBoundUserInterface
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
+  - type: ActivatableUI
+    key: enum.HelmUiKey.Key
+
+- type: entity
+  id: MedievalCompass
+  name: compass
+  description: A compass whose needle always points north.
+  parent: BaseItem
+  components:
+  - type: Transform
+    noRot: True
+  - type: Sprite
+    noRot: True
+    sprite: Imperial/Medieval/Ships/Compass/medieval_compass.rsi
+    scale: 0.6, 0.6
+    layers:
+    - state: compass-n
+      map: ["enum.MedievalCompassLayers.Base"]
+  - type: Icon
+    sprite: Imperial/Medieval/Ships/Compass/medieval_compass.rsi
+    state: compass-n
+  - type: Item
+    sprite: Objects/Devices/pinpointer.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#606060"
+      - state: inhand-left-stripe
+        color: "#606060"
+      - state: inhand-left-top
+      right:
+      - state: inhand-right-base
+        color: "#606060"
+      - state: inhand-right-stripe
+        color: "#606060"
+      - state: inhand-right-top
+  - type: MedievalCompass

@@ -13,6 +13,8 @@ public abstract partial class SharedSkillsSystem
 {
     public const string IntelligenceId = "Intelligence";
 
+    [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
+
     private void InitializeIntelligence()
     {
         SubscribeLocalEvent<SkillsComponent, GetConstructionSpeedModifiersEvent>(OnGetConstructionSpeedModifiers);
@@ -44,6 +46,56 @@ public abstract partial class SharedSkillsSystem
 
     private void OnSkillsExamined(EntityUid uid, SkillsComponent component, GetVerbsEvent<ExamineVerb> args)
     {
+        var user = args.User;
+        var detailsRange = _examineSystem.IsInDetailsRange(args.User, uid);
+
+        if (uid != user)
+        {
+            var verbDiff = new ExamineVerb()
+            {
+                Text = Loc.GetString("examine-skills-differance"),
+                Category = VerbCategory.Examine,
+                Disabled = !detailsRange,
+
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/plus.svg.192dpi.png")),
+
+                Act = () =>
+                {
+                    var message = new FormattedMessage();
+
+                    foreach (var level in component.Levels)
+                    {
+                        message.AddText($"{Loc.GetString($"skill-{level.Key.ToLower()}-name")}: ");
+
+                        string hex = GetColorForDiff(0);
+
+                        Dictionary<string, int> levels = new()
+                        {
+                            ["Agility"] = 10,
+                            ["Strength"] = 10,
+                            ["Vitality"] = 10,
+                            ["Endurance"] = 10,
+                            ["Intelligence"] = 10
+                        };
+
+                        if (TryComp<SkillsComponent>(user, out var examinerComp))
+                            levels = examinerComp.Levels;
+
+                        var diff = component.Levels[level.Key] - levels[level.Key];
+
+                        hex = GetColorForDiff(diff);
+                        message.PushColor(Color.FromHex(hex));
+                        message.AddText(Loc.GetString(GetTextForDiff(diff)));
+                        message.Pop();
+                        message.AddText($"\n");
+                    }
+
+                    _examineSystem.SendExamineTooltip(user, uid, message, false, false);
+                }
+            };
+            args.Verbs.Add(verbDiff);
+        }
+
         if (!_player.TryGetSessionByEntity(uid, out var session))
             return;
 
@@ -100,5 +152,32 @@ public abstract partial class SharedSkillsSystem
             return true;
 
         return false;
+    }
+
+    private string GetColorForDiff(int diff)
+    {
+        return diff switch
+        {
+            <= -10 => "#0dff00",
+            <= -7 => "#42c0fe",
+            <= -3 => "#7afcd5",
+            <= 2 => "#d1d1d1",
+            >= 10 => "#ff0000",
+            >= 7 => "#ff9100",
+            >= 3 => "#ffea00"
+        };
+    }
+    private string GetTextForDiff(int diff)
+    {
+        return diff switch
+        {
+            <= -10 => "examine-skills-much-lower",
+            <= -7 => "examine-skills-lower",
+            <= -3 => "examine-skills-slightly-lower",
+            <= 2 => "examine-skills-similar",
+            >= 10 => "examine-skills-much-higher",
+            >= 7 => "examine-skills-higher",
+            >= 3 => "examine-skills-slightly-higher"
+        };
     }
 }

@@ -3754,3 +3754,27 @@
     Revent: 80
   categories:
   - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalDoorLockT1
+  productEntity: MedievalDoorLockT1
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalDoorLockT2
+  productEntity: MedievalDoorLockT2
+  cost:
+    Revent: 150
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalDoorKeyCheck
+  productEntity: MedievalDoorKeyCheck
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMisc

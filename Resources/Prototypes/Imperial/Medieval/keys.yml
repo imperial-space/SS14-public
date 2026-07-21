@@ -9,6 +9,7 @@
   - type: Item
     size: Tiny
   - type: Access
+  - type: UniversalKey
 
 - type: entity
   parent: MedievalKeyBase

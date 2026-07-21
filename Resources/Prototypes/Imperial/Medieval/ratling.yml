@@ -4,7 +4,7 @@
   name: Ratling heart
   components:
   - type: Metabolizer
-    metabolizerTypes: [Ratling]
+    metabolizerTypes: [Ratling, Human]
 
 - type: entity
   id: OrganRatlingLiver
@@ -12,7 +12,7 @@
   name: Ratling liver
   components:
   - type: Metabolizer
-    metabolizerTypes: [Ratling]
+    metabolizerTypes: [Ratling, Human]
 
 - type: entity
   id: OrganRatlingStomach
@@ -35,7 +35,7 @@
   - type: Metabolizer
     # mm very yummy
     maxReagents: 5
-    metabolizerTypes: [Ratling]
+    metabolizerTypes: [Ratling, Human, Animal]
 
 - type: body
   id: Ratling
@@ -59,7 +59,7 @@
       organs:
         heart: OrganRatlingHeart
         lungs: OrganHumanLungs
-        stomach: OrganReptilianStomach
+        stomach: OrganRatlingStomach
         liver: OrganRatlingLiver
         kidneys: OrganHumanKidneys
     right arm:
@@ -128,6 +128,8 @@
     spawned:
     - id: FoodMeatHuman
       amount: 5
+  - type: FootstepModifier
+    footstepSoundCollection: null
   - type: LanguageSpeaker
     languages:
       Common: Speak
@@ -165,6 +167,8 @@
         Slash: 5
   - type: NeedSleep
     sleepLevelPerUpdate: 0.36
+  - type: BadSmell
+    isDirtyVisible: false
   - type: BadSmellRaceModifier
     modifier: 100
   - type: Damageable
@@ -190,8 +194,9 @@
       Male: Mouse
       Female: Mouse
       Unsexed: Mouse
-  - type: ReplacementAccent
-    accent: ratling
+  - type: RatlingAccent
+  - type: StealRaceChanceIncreaser
+    bonus: 25
 
 - type: damageModifierSet
   id: Ratling
@@ -444,6 +449,12 @@
       uiWindowPos: 2,2
       strippingWindowPos: 2,0
       displayName: Ears
+    - name: head
+      slotTexture: head
+      slotFlags: HEAD
+      uiWindowPos: 1,2
+      strippingWindowPos: 1,0
+      displayName: Head
     - name: pocket1
       slotTexture: pocket
       fullTextureName: template_small

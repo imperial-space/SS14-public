@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "parry_window",
+      "delays": [
+        [
+          0.055,
+          0.055,
+          0.055,
+          0.055,
+          0.055,
+          0.055,
+          0.055,
+          0.055,
+          0.055
+        ]
+      ]
+    },
+    {
+      "name": "parry_success",
+      "delays": [
+        [
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.075,
+          0.075
+        ]
+      ]
+    }
+  ]
+}

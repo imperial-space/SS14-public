@@ -1,0 +1,42 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionSummonFoliantBeginner
+  name: medieval-store-spells-magic-light-summon-foliant-beginner-name
+  description: medieval-store-spells-light-summon-foliant-beginner-desc
+  components:
+  - type: MedievalInstantSpell
+  - type: Action
+    useDelay: 60
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Light/SummonFoliant/icon.rsi
+      state: beginner
+  - type: InstantAction
+    event: !type:MedievalInstantSpawnEvent
+      spawnedEntityPrototype: MedievalProjectileSummonFoliantBeginner
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-summon-foliant
+          color: "#FFE57E"
+          hideChat: true
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.0004
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalLight: 1
+        bonusEssences:
+          MagicMedievalLight: 1
+  - type: ManaDrainSpell
+    manaDrain: 25
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 10
+  - type: SpellCastEffect
+    effectProto: SummonFoliantSpellCastEffectBeginner

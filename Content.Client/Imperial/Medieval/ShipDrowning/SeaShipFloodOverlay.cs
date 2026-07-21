@@ -36,12 +36,15 @@ public sealed class SeaShipFloodOverlay : Overlay
     private const float TileQueryPadding = 3f;
     private const float SmallFloodMeshStep = 0.07f;
     private const float MediumFloodMeshStep = 0.085f;
-    private const float LargeFloodMeshStep = 0.1f;
-    private const float HugeFloodMeshStep = 0.12f;
+    private const float LargeFloodMeshStep = 0.12f;
+    private const float HugeFloodMeshStep = 0.16f;
+    private const float MassiveFloodMeshStep = 0.2f;
     private const int MaxFloodDrawVerticesPerBatch = 12288;
     private const float MinMeshRebuildInterval = 0.05f;
     private const float CoverageRebuildThreshold = 0.008f;
     private const float WaterDriftRebuildThresholdSquared = 0.0004f;
+    private const float FloodBlobReachScale = 1.55f;
+    private const float FloodBlobBucketPadding = 0.25f;
 
     private HashSet<Vector2i> _occupiedTiles = new();
     private Dictionary<Vector2i, int> _boundaryDistance = new();
@@ -50,6 +53,7 @@ public sealed class SeaShipFloodOverlay : Overlay
     private readonly HashSet<Vector2i> _vertexCandidates = new();
     private readonly Queue<Vector2i> _distanceQueue = new();
     private readonly List<FloodBlob> _floodBlobs = new();
+    private readonly Dictionary<Vector2i, List<int>> _floodBlobBuckets = new();
     private List<DrawVertexUV2D> _meshVertices = new();
     private readonly ShaderInstance _baseFloodShader;
     private readonly List<ShaderInstance> _floodShaders = new();
@@ -65,7 +69,7 @@ public sealed class SeaShipFloodOverlay : Overlay
         public readonly HashSet<Vector2i> OccupiedTiles = new();
         public readonly Dictionary<Vector2i, int> BoundaryDistance = new();
         public readonly List<DrawVertexUV2D> MeshVertices = new();
-        public GameTick LastTileModifiedTick;
+        public int ShapeVersion = -1;
         public Vector2i MinTile;
         public Vector2i MaxTile;
         public int MaxBoundaryDistance = -1;
@@ -360,15 +364,20 @@ public sealed class SeaShipFloodOverlay : Overlay
         var shiftedPosition = position - waterDrift * driftScale;
         var field = 0f;
 
-        foreach (var blob in _floodBlobs)
+        var blobBucket = new Vector2i((int) MathF.Floor(shiftedPosition.X), (int) MathF.Floor(shiftedPosition.Y));
+        if (_floodBlobBuckets.TryGetValue(blobBucket, out var blobIndices))
         {
-            var delta = shiftedPosition - blob.Center;
-            var reach = blob.Radius * 1.55f;
+            foreach (var blobIndex in blobIndices)
+            {
+                var blob = _floodBlobs[blobIndex];
+                var delta = shiftedPosition - blob.Center;
+                var reach = blob.Radius * FloodBlobReachScale;
 
-            if (MathF.Abs(delta.X) > reach.X || MathF.Abs(delta.Y) > reach.Y)
-                continue;
+                if (MathF.Abs(delta.X) > reach.X || MathF.Abs(delta.Y) > reach.Y)
+                    continue;
 
-            field += EvaluateFloodBlob(delta, blob.Radius, blob.Strength);
+                field += EvaluateFloodBlob(delta, blob.Radius, blob.Strength);
+            }
         }
 
         field = 1f - MathF.Exp(-field * 1.06f);
@@ -815,7 +824,31 @@ public sealed class SeaShipFloodOverlay : Overlay
         if (radius.X <= 0.01f || radius.Y <= 0.01f || strength <= 0.001f)
             return;
 
+        var blobIndex = _floodBlobs.Count;
         _floodBlobs.Add(new FloodBlob(center, radius, strength));
+
+        var reach = radius * FloodBlobReachScale + new Vector2(FloodBlobBucketPadding, FloodBlobBucketPadding);
+        var minTile = new Vector2i(
+            (int) MathF.Floor(center.X - reach.X),
+            (int) MathF.Floor(center.Y - reach.Y));
+        var maxTile = new Vector2i(
+            (int) MathF.Floor(center.X + reach.X),
+            (int) MathF.Floor(center.Y + reach.Y));
+
+        for (var x = minTile.X; x <= maxTile.X; x++)
+        {
+            for (var y = minTile.Y; y <= maxTile.Y; y++)
+            {
+                var tile = new Vector2i(x, y);
+                if (!_floodBlobBuckets.TryGetValue(tile, out var bucket))
+                {
+                    bucket = new List<int>();
+                    _floodBlobBuckets.Add(tile, bucket);
+                }
+
+                bucket.Add(blobIndex);
+            }
+        }
     }
 
     private static float EvaluateFloodBlob(Vector2 delta, Vector2 radius, float strength)
@@ -930,7 +963,8 @@ public sealed class SeaShipFloodOverlay : Overlay
             _gridCaches[gridUid] = cache;
         }
 
-        if (cache.LastTileModifiedTick == grid.LastTileModifiedTick && cache.MaxBoundaryDistance >= 0 && cache.OccupiedTiles.Count > 0)
+        var shapeVersion = _entityManager.System<ClientShipDrowningSystem>().GetGridShapeVersion(gridUid);
+        if (cache.ShapeVersion == shapeVersion && cache.MaxBoundaryDistance >= 0 && cache.OccupiedTiles.Count > 0)
             return true;
 
         _occupiedTiles = cache.OccupiedTiles;
@@ -952,7 +986,7 @@ public sealed class SeaShipFloodOverlay : Overlay
             maxTile.Y = Math.Max(maxTile.Y, indices.Y);
         }
 
-        cache.LastTileModifiedTick = grid.LastTileModifiedTick;
+        cache.ShapeVersion = shapeVersion;
         cache.MeshValid = false;
         cache.MeshVertices.Clear();
 
@@ -975,15 +1009,16 @@ public sealed class SeaShipFloodOverlay : Overlay
         if (!cache.MeshValid)
             return true;
 
+        var occupiedTileCount = cache.OccupiedTiles.Count;
         var elapsed = (_timing.CurTime - cache.LastMeshRebuildTime).TotalSeconds;
-        if (elapsed < MinMeshRebuildInterval)
+        if (elapsed < GetMinMeshRebuildInterval(occupiedTileCount))
             return false;
 
-        if (MathF.Abs(cache.CachedDrownRatio - drownRatio) >= CoverageRebuildThreshold)
+        if (MathF.Abs(cache.CachedDrownRatio - drownRatio) >= GetCoverageRebuildThreshold(occupiedTileCount))
             return true;
 
         var driftDelta = cache.CachedWaterDrift - waterDrift;
-        return driftDelta.LengthSquared() >= WaterDriftRebuildThresholdSquared;
+        return driftDelta.LengthSquared() >= GetWaterDriftRebuildThresholdSquared(occupiedTileCount);
     }
 
     private void RebuildFloodMesh(FloodGridCache cache, int shipSeed, float drownRatio, Vector2 waterDrift)
@@ -994,6 +1029,7 @@ public sealed class SeaShipFloodOverlay : Overlay
         _tileFill.Clear();
         _vertexFill.Clear();
         _floodBlobs.Clear();
+        _floodBlobBuckets.Clear();
         _meshVertices.Clear();
 
         var coverageRatio = Math.Clamp(drownRatio, 0f, 1f);
@@ -1066,6 +1102,9 @@ public sealed class SeaShipFloodOverlay : Overlay
 
     private static float GetFloodMeshStep(int occupiedTileCount)
     {
+        if (occupiedTileCount >= 1600)
+            return MassiveFloodMeshStep;
+
         if (occupiedTileCount >= 900)
             return HugeFloodMeshStep;
 
@@ -1076,6 +1115,48 @@ public sealed class SeaShipFloodOverlay : Overlay
             return MediumFloodMeshStep;
 
         return SmallFloodMeshStep;
+    }
+
+    private static float GetMinMeshRebuildInterval(int occupiedTileCount)
+    {
+        if (occupiedTileCount >= 900)
+            return 0.3f;
+
+        if (occupiedTileCount >= 400)
+            return 0.18f;
+
+        if (occupiedTileCount >= 180)
+            return 0.1f;
+
+        return MinMeshRebuildInterval;
+    }
+
+    private static float GetCoverageRebuildThreshold(int occupiedTileCount)
+    {
+        if (occupiedTileCount >= 900)
+            return 0.028f;
+
+        if (occupiedTileCount >= 400)
+            return 0.018f;
+
+        if (occupiedTileCount >= 180)
+            return 0.012f;
+
+        return CoverageRebuildThreshold;
+    }
+
+    private static float GetWaterDriftRebuildThresholdSquared(int occupiedTileCount)
+    {
+        if (occupiedTileCount >= 900)
+            return 0.0025f;
+
+        if (occupiedTileCount >= 400)
+            return 0.0016f;
+
+        if (occupiedTileCount >= 180)
+            return 0.0009f;
+
+        return WaterDriftRebuildThresholdSquared;
     }
 
     private float GetTileFill(Vector2i tile)

@@ -1,0 +1,23 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "by discord: id ungabunga0464_99904",
+    "size": {
+        "x": 181,
+        "y": 116
+    },
+  "states":[
+    {
+      "name": "teleportation_stone_blue"
+    },
+    {
+      "name": "teleportation_stone_red"
+    },
+    {
+      "name": "teleportation_stone_yellow"
+    },
+    {
+      "name": "teleportation_stone"
+    }
+  ]
+}

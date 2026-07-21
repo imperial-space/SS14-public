@@ -394,13 +394,13 @@
   - type: HealOnBuckle
     damage:
       groups:
-        Brute: -1.5
-        Burn: -1.5
-        Airloss: -4.8
+        Brute: -0.3
+        Burn: -0.3
+        Airloss: -1.1
       types:
-        Poison: -0.6
-        Caustic: -0.3
-        Radiation: -0.6
+        Poison: -0.12
+        Caustic: -0.1
+        Radiation: -0.12
   - type: Construction
     graph: MMyrmexBed
     node: medievalMyrmexBed

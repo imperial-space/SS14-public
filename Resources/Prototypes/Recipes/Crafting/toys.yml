@@ -23,6 +23,7 @@
 - type: construction
   id: MoproachShoes
   graph: MoproachShoes
+  hide: true
   startNode: start
   targetNode: shoes
   category: construction-category-misc

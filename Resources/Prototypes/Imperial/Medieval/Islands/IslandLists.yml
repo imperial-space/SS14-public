@@ -1,0 +1,12 @@
+- type: entity
+  id: IslandRadialGenerationBase
+  abstract: true
+  components:
+  - type: IslandRadialGeneration
+    lowIslands:
+    - /Maps/Imperial/Medieval/Islands/IslandLow52.yml
+    mediumIslands:
+    - /Maps/Imperial/Medieval/Islands/IslandMedium56.yml
+    highIslands:
+    - /Maps/Imperial/Medieval/Islands/IslandHard10.yml
+    - /Maps/Imperial/Medieval/Islands/IslandHard24.yml

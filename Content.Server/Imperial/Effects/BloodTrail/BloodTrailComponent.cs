@@ -11,7 +11,7 @@ namespace Content.Server.Imperial.BloodTrail
         [DataField] public int MaxDecals = 20;
         [DataField] public float SpreadDistance = 1.0f;
         [DataField] public TimeSpan SpawnCooldown = TimeSpan.FromSeconds(0.5f);
-        [DataField] public bool Enabled = true;
+        [DataField] public bool Enabled = false; // spellward disable
 
         [ViewVariables] public int CurrentDecalCount;
         [ViewVariables] public TimeSpan NextSpawnTime;

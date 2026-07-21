@@ -48,7 +48,9 @@
     - state: blank
       map: ["left_foot"]
     - state: blank
-      map : ["upgrade1"]
+      map : ["crown"]
+    - state: blank
+      map : ["torso_upgrade"]
   - type: Clickable
   - type: InteractionOutline
   - type: Physics
@@ -68,7 +70,7 @@
   - type: Appearance
   - type: ForgedAssembly
     torso: ForgedTorsoBase
-    avaibleSlots: [ "head", "eyes", "right_arm", "left_arm", "core", "right_leg", "left_leg", "right_hand", "left_hand", "right_foot", "left_foot" ]
+    avaibleSlots: [ "crown","head", "eyes", "right_arm", "left_arm", "core", "torso_upgrade", "right_leg", "left_leg", "right_hand", "left_hand", "right_foot", "left_foot" ]
     requireSlots: [ "head", "eyes", "right_arm", "left_arm", "core", "right_leg", "left_leg" ]
   - type: ForgedModule
     partSlot: torso

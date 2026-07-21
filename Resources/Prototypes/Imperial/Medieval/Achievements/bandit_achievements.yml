@@ -1,0 +1,357 @@
+
+# Банда
+
+- type: achievement
+  id: AchievementBanditCollect100Revents
+  priority: 10
+  tab: AchievementTabBanditos
+  rarity: Common
+  name: achievement-bandit-collect-100-revents-name
+  description: achievement-bandit-collect-100-revents-desc
+  icon:
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: revent_4
+  visibility: Visible
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: banditCollectReventsProgression
+    requiredFactions:
+    - Bandit
+    itemPrototypes:
+      MedievalRevent: 100
+
+- type: achievement
+  id: AchievementBanditGetLockpickPack
+  priority: 10
+  rarity: Common
+  name: achievement-bandit-get-lockpick-pack-name
+  tab: AchievementTabBanditos
+  description: achievement-bandit-get-lockpick-pack-desc
+  icon:
+    sprite: Imperial/Medieval/Misc/lockpick.rsi
+    state: lockpick-pack
+  visibility: Visible
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: banditGetLockpickPackProgression
+    requiredFactions:
+    - Bandit
+    itemPrototypes:
+      MedievalLockpickPack: 1
+
+- type: achievement
+  id: AchievementBanditBecomeRegular
+  priority: 11
+  rarity: Common
+  name: achievement-bandit-become-regular-name
+  description: achievement-bandit-become-regular-desc
+  icon:
+    sprite: Imperial/Medieval/Misc/job_icons.rsi
+    state: band_common
+  visibility: Visible
+  prerequisites:
+  - AchievementBanditCollect100Revents
+  - AchievementBanditGetLockpickPack
+  conditions:
+  - !type:LocationCondition
+    progressKey: banditBecomeRegularProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalBanditRegular
+    requiredFactions:
+    - Bandit
+    locationId: AreaMarkerBand
+
+- type: achievement
+  id: AchievementBanditDestroyStockades
+  priority: 12
+  rarity: Common
+  name: achievement-bandit-destroy-stockades-name
+  description: achievement-bandit-destroy-stockades-desc
+  icon:
+    sprite: Imperial/Medieval/Walls/wood_wall_light.rsi
+    state: wall0
+  visibility: Visible
+  prerequisites:
+  - AchievementBanditBecomeRegular
+  conditions:
+  - !type:DestroyStructureCondition
+    progressKey: banditDestroyStockadesProgression
+    requiredCount: 15
+    requiredFactions:
+    - Bandit
+    targetPrototypes:
+    - MedievalStockade
+
+- type: achievement
+  id: AchievementBanditCollect250Revents
+  priority: 13
+  rarity: Common
+  name: achievement-bandit-collect-250-revents-name
+  description: achievement-bandit-collect-250-revents-desc
+  icon:
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: revent_6
+  visibility: Visible
+  prerequisites:
+  - AchievementBanditBecomeRegular
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: banditCollect250ReventsProgression
+    requiredFactions:
+    - Bandit
+    itemPrototypes:
+      MedievalRevent: 250
+
+- type: achievement
+  id: AchievementBanditGetThievingMedaljon
+  priority: 14
+  rarity: Common
+  name: achievement-bandit-get-thieving-medaljon-name
+  description: achievement-bandit-get-thieving-medaljon-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_thieving.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementBanditBecomeRegular
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: banditGetThievingMedaljonProgression
+    requiredFactions:
+    - Bandit
+    itemPrototypes:
+      MedaljonThieving: 1
+
+- type: achievement
+  id: AchievementBanditBecomeVeteran
+  priority: 15
+  rarity: Common
+  name: achievement-bandit-become-veteran-name
+  description: achievement-bandit-become-veteran-desc
+  icon:
+    sprite: Imperial/Medieval/Misc/job_icons.rsi
+    state: band_veteran
+  visibility: Visible
+  prerequisites:
+  - AchievementBanditCollect250Revents
+  - AchievementBanditDestroyStockades
+  conditions:
+  - !type:LocationCondition
+    progressKey: banditBecomeVeteranProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalBanditVeteran
+    requiredFactions:
+    - Bandit
+    locationId: AreaMarkerBand
+
+- type: achievement
+  id: AchievementBanditDestroyGate
+  priority: 16
+  rarity: Common
+  name: achievement-bandit-destroy-gate-name
+  description: achievement-bandit-destroy-gate-desc
+  icon:
+    sprite: Imperial/Medieval/Walls/gates.rsi
+    state: closed
+  visibility: Visible
+  prerequisites:
+  - AchievementBanditBecomeVeteran
+  conditions:
+  - !type:DestroyStructureCondition
+    progressKey: banditDestroyGateProgression
+    requiredCount: 1
+    requiredFactions:
+    - Bandit
+    targetPrototypes:
+    - MedievalBlastDoor
+
+- type: achievement
+  id: AchievementBanditVisitEnemyBarracks
+  priority: 17
+  rarity: Uncommon
+  name: achievement-bandit-visit-enemy-barracks-name
+  description: achievement-bandit-visit-enemy-barracks-desc
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/factions.rsi
+    state: legion
+  visibility: Visible
+  prerequisites:
+  - AchievementBanditBecomeVeteran
+  conditions:
+  - !type:LocationCondition
+    progressKey: banditVisitEnemyBarracksProgression
+    requiredCount: 1
+    requiredFactions:
+    - Bandit
+    locationId: achievement-location-legion
+  - !type:LocationCondition
+    progressKey: banditVisitEnemyBarracksProgression
+    requiredCount: 1
+    requiredFactions:
+    - Bandit
+    locationId: achievement-location-insurgency
+
+- type: achievement
+  id: AchievementBanditRaidTreasury
+  priority: 18
+  rarity: Epic
+  name: achievement-bandit-raid-treasury-name
+  description: achievement-bandit-raid-treasury-desc
+  icon:
+    sprite: Imperial/Medieval/Decor/chest3.rsi
+    state: base
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementBanditBecomeVeteran
+  conditions:
+  - !type:LocationCondition
+    progressKey: banditRaidTreasuryLocationProgression
+    requiredCount: 1
+    requiredFactions:
+    - Bandit
+    locationId: achievement-location-treasury-legat
+  - !type:LocationCondition
+    progressKey: banditRaidTreasuryLocationProgression
+    requiredCount: 1
+    requiredFactions:
+    - Bandit
+    locationId: achievement-location-treasury-jarl
+  - !type:CollectAllItemsCondition
+    progressKey: banditRaidTreasuryReventsProgression
+    requiredFactions:
+    - Bandit
+    itemPrototypes:
+      MedievalRevent: 500
+
+- type: achievement
+  id: AchievementBanditGetSteelMaces
+  priority: 19
+  rarity: Rare
+  name: achievement-bandit-get-steel-maces-name
+  tab: AchievementTabBanditos
+  description: achievement-bandit-get-steel-maces-desc
+  icon:
+    sprite: Imperial/Medieval/Melee/iron_mace.rsi
+    state: icon
+  visibility: Hidden
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: banditGetSteelMacesProgression
+    requiredFactions:
+    - Bandit
+    itemPrototypes:
+      MedievalMaceT3Steel: 2
+
+- type: achievement
+  id: AchievementBanditBecomeLeader
+  priority: 20
+  rarity: Epic
+  name: achievement-bandit-become-leader-name
+  description: achievement-bandit-become-leader-desc
+  icon:
+    sprite: Imperial/Medieval/Misc/job_icons.rsi
+    state: band_leader
+  visibility: Visible
+  prerequisites:
+  - AchievementBanditDestroyGate
+  - AchievementBanditVisitEnemyBarracks
+  - AchievementBanditRaidTreasury
+  conditions:
+  - !type:LocationCondition
+    progressKey: banditBecomeLeaderProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalBanditLeader
+    requiredFactions:
+    - Bandit
+    locationId: AreaMarkerBand
+
+- type: achievement
+  id: AchievementBanditGetRebelLetter
+  priority: 21
+  rarity: Rare
+  name: achievement-bandit-get-rebel-letter-name
+  description: achievement-bandit-get-rebel-letter-desc
+  icon:
+    sprite: Imperial/Medieval/Objects/Envelope/rebel.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementBanditBecomeLeader
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: banditGetRebelLetterProgression
+    requiredJobs:
+    - MedievalBanditLeader
+    requiredFactions:
+    - Bandit
+    itemPrototypes:
+      MedievalPaperEnvelopeRebel: 1
+
+- type: achievement
+  id: AchievementBanditGetLegionLetter
+  priority: 22
+  rarity: Rare
+  name: achievement-bandit-get-legion-letter-name
+  description: achievement-bandit-get-legion-letter-desc
+  icon:
+    sprite: Imperial/Medieval/Objects/Envelope/legion.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementBanditBecomeLeader
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: banditGetLegionLetterProgression
+    requiredJobs:
+    - MedievalBanditLeader
+    requiredFactions:
+    - Bandit
+    itemPrototypes:
+      MedievalPaperEnvelopeLegion: 1
+
+- type: achievement
+  id: AchievementBanditGrandHeist
+  priority: 23
+  rarity: Legendary
+  name: achievement-bandit-grand-heist-name
+  description: achievement-bandit-grand-heist-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/leg4.rsi
+    state: icon
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementBanditBecomeLeader
+  conditions:
+  - !type:LocationCondition
+    progressKey: banditGrandHeistTreasuryLegatProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalBanditLeader
+    requiredFactions:
+    - Bandit
+    locationId: achievement-location-treasury-legat
+  - !type:LocationCondition
+    progressKey: banditGrandHeistTreasuryJarlProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalBanditLeader
+    requiredFactions:
+    - Bandit
+    locationId: achievement-location-treasury-jarl
+  - !type:CollectAllItemsCondition
+    progressKey: banditGrandHeistItemsProgression
+    requiredJobs:
+    - MedievalBanditLeader
+    requiredFactions:
+    - Bandit
+    itemPrototypes:
+      MedievalClothingHeadHelmetLegionLegat: 1
+      MedievalClothingHeadHelmetFox4: 1
+      MedievalRevent: 1000
+      MedievalMedalLegion: 1
+      MedievalMedalIns: 1

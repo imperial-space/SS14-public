@@ -10,8 +10,8 @@
     partSlot: head
     layerState: iron_head
     rsiPath: Imperial/Medieval/Forged/iron.rsi
-    resistanceModifier: 0.03
-    speedModifier: -0.04
+    resistanceModifier: 0.04
+    speedModifier: -0.05
 
 - type: entity
   id: ForgedIronTorso
@@ -48,20 +48,22 @@
     - state: blank
       map: ["left_foot"]
     - state: blank
-      map : ["upgrade1"]
+      map : ["crown"]
+    - state: blank
+      map : ["torso_upgrade"]
   - type: ForgedAssembly
     torso: ForgedIronTorso
   - type: ForgedModule
     partSlot: torso
     layerState: iron_torso
     rsiPath: Imperial/Medieval/Forged/iron.rsi
-    resistanceModifier: 0.12
-    speedModifier: -0.15
+    resistanceModifier: 0.16
+    speedModifier: -0.2
 
 - type: entity
   id: ForgedIronLArm
   name: ForgedIronLArm
-  parent: ForgedLLegBase
+  parent: ForgedLArmBase
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/iron.rsi
@@ -72,13 +74,13 @@
     partSlot: left_arm
     layerState: iron_left_arm
     rsiPath: Imperial/Medieval/Forged/iron.rsi
-    resistanceModifier: 0.03
+    resistanceModifier: 0.04
     speedModifier: -0.015
 
 - type: entity
   id: ForgedIronRArm
   name: ForgedIronRArm
-  parent: ForgedRLegBase
+  parent: ForgedRArmBase
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/iron.rsi
@@ -88,7 +90,7 @@
     partSlot: right_arm
     layerState: iron_right_arm
     rsiPath: Imperial/Medieval/Forged/iron.rsi
-    resistanceModifier: 0.03
+    resistanceModifier: 0.04
     speedModifier: -0.015
 
 - type: entity
@@ -104,8 +106,8 @@
     partSlot: right_leg
     layerState: iron_right_leg
     rsiPath: Imperial/Medieval/Forged/iron.rsi
-    resistanceModifier: 0.045
-    speedModifier: 0.035
+    resistanceModifier: 0.06
+    speedModifier: 0.04
 
 - type: entity
   id: ForgedIronLLeg
@@ -121,5 +123,5 @@
     partSlot: left_leg
     layerState: iron_left_leg
     rsiPath: Imperial/Medieval/Forged/iron.rsi
-    resistanceModifier: 0.045
-    speedModifier: 0.035
+    resistanceModifier: 0.06
+    speedModifier: 0.04

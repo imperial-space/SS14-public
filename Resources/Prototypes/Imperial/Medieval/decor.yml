@@ -477,6 +477,7 @@
     bodyType: Static
   - type: Sprite
     sprite: Imperial/Medieval/Decor/pit2.rsi
+    drawdepth: Mobs
     layers:
         - state: watertank
         - state: pit-content-4
@@ -506,7 +507,7 @@
       tank:
         reagents:
         - ReagentId: Water
-          Quantity: 100
+          Quantity: 900
   - type: Fixtures
     fixtures:
       fix1:
@@ -562,7 +563,7 @@
       tank:
         reagents:
         - ReagentId: Water
-          Quantity: 450
+          Quantity: 900
   - type: Destructible
     thresholds:
     - trigger:
@@ -581,6 +582,7 @@
             max: 5
   - type: Sprite
     sprite: Imperial/Medieval/Decor/pit.rsi
+    drawdepth: Mobs
     layers:
         - state: barrel
         - state: barrel-content-1
@@ -590,6 +592,17 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 5
     fillBaseName: barrel-content-
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.42
+        density: 135
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
 
 - type: entity
   parent: MedievalBarrelBase
@@ -600,7 +613,7 @@
       tank:
         reagents:
         - ReagentId: Wine
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -611,7 +624,7 @@
       tank:
         reagents:
         - ReagentId: Mead
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -622,7 +635,7 @@
       tank:
         reagents:
         - ReagentId: RedMead
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -633,7 +646,7 @@
       tank:
         reagents:
         - ReagentId: Beer
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -644,7 +657,7 @@
       tank:
         reagents:
         - ReagentId: Moonshine
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -655,7 +668,7 @@
       tank:
         reagents:
         - ReagentId: Rum
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -666,7 +679,7 @@
       tank:
         reagents:
         - ReagentId: Vodka
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   parent: MedievalBarrelBase
@@ -677,7 +690,7 @@
       tank:
         reagents:
         - ReagentId: Ale
-          Quantity: 450
+          Quantity: 900
 
 - type: entity
   id: MedievalDecorOhapka
@@ -1250,13 +1263,13 @@
   - type: HealOnBuckle
     damage:
       groups:
-        Brute: -0.5
-        Burn: -0.5
-        Airloss: -1.6
+        Brute: -0.1
+        Burn: -0.1
+        Airloss: -0.3
       types:
-        Poison: -0.2
-        Caustic: -0.1
-        Radiation: -0.2
+        Poison: -0.04
+        Caustic: -0.02
+        Radiation: -0.04
   - type: MedievalPlagueHealStrapped
 
 - type: entity
@@ -1281,13 +1294,13 @@
   - type: HealOnBuckle
     damage:
       groups:
-        Brute: -2.6
-        Burn: -2.8
-        Airloss: -3
+        Brute: -0.52
+        Burn: -0.56
+        Airloss: -0.5
       types:
-        Poison: -1.8
-        Caustic: -0.5
-        Radiation: -0.8
+        Poison: -0.36
+        Caustic: -0.1
+        Radiation: -0.16
   - type: MedievalPlagueHealStrapped
     level: 2
 
@@ -3348,7 +3361,7 @@
   - type: HealOnBuckle
     damage:
       groups:
-        Airloss: 5
+        Airloss: 4
   - type: Destructible
     thresholds:
     - trigger:
@@ -4768,6 +4781,8 @@
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
+  - type: AchievementLocation #Imperial medieval achievement
+    locationId: AreaMarkerCultAltar
   - type: Sprite
     sprite: Imperial/Medieval/Misc/cult.rsi
     state: cutlaltar2
@@ -5337,8 +5352,8 @@
   components:
   - type: Sprite
     noRot: true
-    drawdepth: Overdoors
-    offset: 0,1.95
+    drawdepth: Mobs
+    offset: 0, 1.95
     layers:
     - sprite: Imperial/Medieval/Decor/shipsailenclosed.rsi
       state: ready
@@ -5346,6 +5361,10 @@
     - sprite: Imperial/Medieval/Decor/shipsailshipup.rsi
       state: shipup
       map: ["enum.SailVisualLayers.Folded"]
+      visible: false
+    - sprite: Imperial/Medieval/Decor/shipsailunfasten.rsi
+      state: unfasten
+      map: ["enum.SailVisualLayers.Animation"]
       visible: false
   - type: MeleeSound
     soundGroups:
@@ -5377,14 +5396,20 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.35,-0.4,0.35,0.4"
+          bounds: "-0.1,-0.1,0.1,0.1"
         density: 1000
         layer:
         - WallLayer
   - type: InteractionOutline
   - type: Appearance
+  - type: UserInterface
+    interfaces:
+      enum.SailUiKey.Key:
+        type: SailMenuBoundUserInterface
+  - type: ActivatableUI
+    key: enum.SailUiKey.Key
   - type: Sail
-    SailSize: 5
+    SailSize: 10
 
 - type: entity
   name: small light
@@ -5485,6 +5510,17 @@
     - type: Sprite
       sprite: Imperial/Medieval/Decor/map.rsi
       state: map
+    - type: RadarConsole
+      maxRange: 256
+      followEntity: true
+    - type: ActivatableUI
+      key: enum.RadarConsoleUiKey.Key
+      singleUser: true
+    - type: MedievalCartographerTable
+    - type: UserInterface
+      interfaces:
+        enum.RadarConsoleUiKey.Key:
+          type: MedievalCartographerTableBoundUserInterface
 
 
 - type: entity
@@ -5634,3 +5670,222 @@
       sprite: Imperial/Medieval/Objects/Tools/lantern.rsi
       equippedPrefix: off
 
+- type: entity
+  id: MedievalDecorBigRock1
+  parent: MedievalDecorCastleBase
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/big_rock.rsi
+    state: rock_b1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/break_stone.ogg
+          params:
+            volume: -6
+
+- type: entity
+  id: MedievalDecorBigRock2
+  parent: MedievalDecorBigRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/big_rock.rsi
+    state: rock_b2
+
+- type: entity
+  id: MedievalDecorBigRock3
+  parent: MedievalDecorBigRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/big_rock.rsi
+    state: rockmoss_b1
+
+- type: entity
+  id: MedievalDecorBigRock4
+  parent: MedievalDecorBigRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/big_rock.rsi
+    state: rockmoss_b2
+
+- type: entity
+  id: MedievalDecorBigRock5
+  parent: MedievalDecorBigRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/big_rock.rsi
+    state: rocksand_b1
+
+- type: entity
+  id: MedievalDecorBigRock6
+  parent: MedievalDecorBigRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/big_rock.rsi
+    state: rocksand_b2
+
+- type: entity
+  id: MedievalDecorMediumRock1
+  parent: MedievalDecorCastleBase
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rock_s1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/break_stone.ogg
+          params:
+            volume: -6
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.15
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+
+- type: entity
+  id: MedievalDecorMediumRock2
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rock_s2
+
+- type: entity
+  id: MedievalDecorMediumRock3
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rock_s3
+
+- type: entity
+  id: MedievalDecorMediumRock4
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rock_s7
+
+- type: entity
+  id: MedievalDecorMediumRock5
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rockmoss_s1
+
+- type: entity
+  id: MedievalDecorMediumRock6
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rockmoss_s2
+
+- type: entity
+  id: MedievalDecorMediumRock7
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rockmoss_s3
+
+- type: entity
+  id: MedievalDecorMediumRock8
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rockmoss_s7
+
+- type: entity
+  id: MedievalDecorMediumRock9
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rocksand_s1
+
+- type: entity
+  id: MedievalDecorMediumRock10
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rocksand_s2
+
+- type: entity
+  id: MedievalDecorMediumRock11
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rocksand_s3
+
+- type: entity
+  id: MedievalDecorMediumRock12
+  parent: MedievalDecorMediumRock1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/rock/little_rock.rsi
+    state: rocksand_s7

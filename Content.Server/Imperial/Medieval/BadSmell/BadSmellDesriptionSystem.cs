@@ -174,7 +174,11 @@ namespace Content.Server.BadSmell
             // Звуки проигрываем с ограничением по времени
             if (_random.Prob(comp.SmellLevel / 120f) && comp.SmellLevel > 55 && curTime > _nextSoundPlayTime.GetValueOrDefault(uid, TimeSpan.Zero))
             {
-                _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSound), comp.Owner, AudioParams.Default.WithVolume(20f));
+                if (comp.IsDirtyVisible)
+                    _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSound), comp.Owner, AudioParams.Default.WithVolume(20f));
+                else
+                    _audio.PlayPredicted(new SoundPathSpecifier(comp.EffectSound), comp.Owner, uid, AudioParams.Default.WithVolume(20f));
+
                 _nextSoundPlayTime[uid] = curTime + TimeSpan.FromSeconds(5f); // Задержка между звуками
             }
             if (comp.SmellLevel > 60)
@@ -190,7 +194,9 @@ namespace Content.Server.BadSmell
                     }
                 }
             }
-            _appearance.SetData(uid, BadSmellVisuals.Dirt, Math.Min(Math.Floor(comp.SmellLevel / 20f), 4));
+
+            if (comp.IsDirtyVisible)
+                _appearance.SetData(uid, BadSmellVisuals.Dirt, Math.Min(Math.Floor(comp.SmellLevel / 20f), 4));
         }
 
         public float CheckWash(EntityCoordinates coords)

@@ -71,3 +71,12 @@ fishing-minigame-tension = натяжение: {$value}
 fishing-minigame-progress = прогресс: {$value}
 fishing-minigame-failed-popup = Рыба сорвалась с крючка!
 fishing-minigame-caught-popup = Вы поймали {$fish}!
+
+fish-size-tiny = крохотная
+fish-size-small = маленькая
+fish-size-medium = средняя
+fish-size-large = крупная
+fish-size-huge = большая
+fish-size-gigantic = огромная
+fish-size-colossal = исполинская
+fish-size-titanic = титаническая

@@ -108,7 +108,7 @@
                 collection: GlassBreak
             - !type:SpawnEntitiesBehavior
               spawn:
-                ShardCrystalRed:
+                ShardCrystalOrange:
                   min: 1
                   max: 2
 

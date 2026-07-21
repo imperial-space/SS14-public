@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Numerics;
 using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 using Robust.Shared.Maths;
@@ -11,6 +12,16 @@ public sealed class ClientShipDrowningSystem : EntitySystem
     private const float VisualDrownDecreaseSmoothing = 1.45f;
     private const float WaterDriftSmoothing = 1.25f;
     private const float MaxWaterDrift = 0.22f;
+
+    private readonly Dictionary<EntityUid, int> _gridShapeVersions = new();
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<TileChangedEvent>(OnTileChanged);
+        SubscribeLocalEvent<ShipDrowningComponent, ComponentShutdown>(OnDrowningShutdown);
+    }
 
     public override void Update(float frameTime)
     {
@@ -49,5 +60,30 @@ public sealed class ClientShipDrowningSystem : EntitySystem
 
             drowning.VisualWaterOffset = Vector2.Lerp(drowning.VisualWaterOffset, targetDrift, driftLerp);
         }
+    }
+
+    public int GetGridShapeVersion(EntityUid gridUid)
+    {
+        return _gridShapeVersions.GetValueOrDefault(gridUid, 0);
+    }
+
+    private void OnTileChanged(ref TileChangedEvent args)
+    {
+        if (!HasComp<ShipDrowningComponent>(args.Entity.Owner))
+            return;
+
+        foreach (var change in args.Changes)
+        {
+            if (!change.EmptyChanged)
+                continue;
+
+            _gridShapeVersions[args.Entity.Owner] = GetGridShapeVersion(args.Entity.Owner) + 1;
+            return;
+        }
+    }
+
+    private void OnDrowningShutdown(Entity<ShipDrowningComponent> ent, ref ComponentShutdown args)
+    {
+        _gridShapeVersions.Remove(ent.Owner);
     }
 }

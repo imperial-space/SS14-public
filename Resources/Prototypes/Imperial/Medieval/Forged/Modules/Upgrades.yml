@@ -72,3 +72,224 @@
     speedModifier: -0.02
     abilityId: Left_crossbow
     requiredModule: left_arm
+
+- type: entity
+  id: ForgedInvisibilityNimbus
+  name: ForgedInvisibilityNimbus
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: invisibility_nimbus
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: crown
+    layerState: invisibility_nimbus
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: 0.0
+    speedModifier: 0.0
+    abilityId: Invisibility_Nimbus
+    requiredModule: head
+
+- type: entity
+  id: ForgedTorsoExplosive
+  name: ForgedTorsoExplosive
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: self_destruction_item
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: torso_upgrade
+    layerState: self_destruction
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: -0.1
+    speedModifier: 0.1
+    abilityId: Torso_Explosion
+    requiredModule: torso
+
+- type: entity
+  id: ForgedRHandCannon1
+  name: ForgedRHandCannon1
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_gun_1_item
+    drawdepth: Items
+    scale: -1, 1
+  - type: ForgedModule
+    partSlot: right_hand
+    layerState: magic_gun_1_rightArm
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: 0.03
+    speedModifier: -0.04
+    abilityId: Right_magic_gun_1
+    requiredModule: right_arm
+
+- type: entity
+  id: ForgedLHandCannon1
+  name: ForgedLHandCannon1
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_gun_1_item
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: left_hand
+    layerState: magic_gun_1_leftArm
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: 0.03
+    speedModifier: -0.04
+    abilityId: Left_magic_gun_1
+    requiredModule: left_arm
+
+- type: entity
+  id: ForgedRHandCannon2
+  name: ForgedRHandCannon2
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_gun_2_item
+    drawdepth: Items
+    scale: -1, 1
+  - type: ForgedModule
+    partSlot: right_hand
+    layerState: magic_gun_2_rightArm
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: 0.03
+    speedModifier: -0.04
+    abilityId: Right_magic_gun_2
+    requiredModule: right_arm
+
+- type: entity
+  id: ForgedLHandCannon2
+  name: ForgedLHandCannon2
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_gun_2_item
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: left_hand
+    layerState: magic_gun_2_leftArm
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: 0.03
+    speedModifier: -0.04
+    abilityId: Left_magic_gun_2
+    requiredModule: left_arm
+
+- type: entity
+  id: ForgedRHandCannon3
+  name: ForgedRHandCannon3
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_gun_3_item
+    drawdepth: Items
+    scale: -1, 1
+  - type: ForgedModule
+    partSlot: right_hand
+    layerState: magic_gun_3_rightArm
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: 0.03
+    speedModifier: -0.04
+    abilityId: Right_magic_gun_3
+    requiredModule: right_arm
+
+- type: entity
+  id: ForgedLHandCannon3
+  name: ForgedLHandCannon3
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_gun_3_item
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: left_hand
+    layerState: magic_gun_3_leftArm
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: 0.03
+    speedModifier: -0.04
+    abilityId: Left_magic_gun_3
+    requiredModule: left_arm
+
+- type: entity
+  id: ForgedRHandCannon4
+  name: ForgedRHandCannon4
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_gun_4_item
+    drawdepth: Items
+    scale: -1, 1
+  - type: ForgedModule
+    partSlot: right_hand
+    layerState: magic_gun_4_rightArm
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: 0.03
+    speedModifier: -0.04
+    abilityId: Right_magic_gun_4
+    requiredModule: right_arm
+
+- type: entity
+  id: ForgedLHandCannon4
+  name: ForgedLHandCannon4
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_gun_4_item
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: left_hand
+    layerState: magic_gun_4_leftArm
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: 0.03
+    speedModifier: -0.04
+    abilityId: Left_magic_gun_4
+    requiredModule: left_arm
+
+- type: entity
+  id: ForgedRHandCannon5
+  name: ForgedRHandCannon5
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_gun_5_item
+    drawdepth: Items
+    scale: -1, 1
+  - type: ForgedModule
+    partSlot: right_hand
+    layerState: magic_gun_5_rightArm
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: 0.03
+    speedModifier: -0.04
+    abilityId: Right_magic_gun_5
+    requiredModule: right_arm
+
+- type: entity
+  id: ForgedLHandCannon5
+  name: ForgedLHandCannon5
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_gun_5_item
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: left_hand
+    layerState: magic_gun_5_leftArm
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: 0.03
+    speedModifier: -0.04
+    abilityId: Left_magic_gun_5
+    requiredModule: left_arm

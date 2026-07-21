@@ -27,8 +27,8 @@
   - type: Fish
     level: 1
     progressPerTick: 25
-    tensionAccelerationDelta: -18
-    tensionAccelerationDeltaPressed: 18
+    tensionAccelerationDelta: -25
+    tensionAccelerationDeltaPressed: 25
   - type: AtmosExposed
   - type: Temperature
     currentTemperature: 290
@@ -48,6 +48,7 @@
     thickness: 0.02
     area: 0.02
   - type: LastPickedUpContainer
+  - type: Appearance
 
 - type: entity
   abstract: true
@@ -75,8 +76,8 @@
   - type: Fish
     level: 2
     progressPerTick: 20
-    tensionAccelerationDelta: -22
-    tensionAccelerationDeltaPressed: 22
+    tensionAccelerationDelta: -35
+    tensionAccelerationDeltaPressed: 35
 
 - type: entity
   abstract: true
@@ -104,8 +105,8 @@
   - type: Fish
     level: 3
     progressPerTick: 15
-    tensionAccelerationDelta: -28
-    tensionAccelerationDeltaPressed: 24
+    tensionAccelerationDelta: -45
+    tensionAccelerationDeltaPressed: 45
 
 - type: entity
   abstract: true
@@ -135,6 +136,7 @@
       Revent: 15
   - type: RDWeight
     value: 0.5
+  - type: FishSizeRarity
 
 - type: entity
   abstract: true

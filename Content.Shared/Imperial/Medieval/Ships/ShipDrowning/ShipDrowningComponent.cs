@@ -8,13 +8,13 @@ namespace Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 public sealed partial class ShipDrowningComponent : Component
 {
     [DataField("DrownLevel"), AutoNetworkedField]
-    public int DrownLevel;
+    public float DrownLevel;
 
     [DataField("DrownMaxLevel"), AutoNetworkedField]
     public float DrownMaxLevel;
 
     [DataField("floodPerDamageStage")]
-    public int FloodPerDamageStage = 10;
+    public float FloodPerDamageStage = 0.1f;
 
     [DataField("passiveDrainPerTick")]
     public int PassiveDrainPerTick = 5;
@@ -28,4 +28,7 @@ public sealed partial class ShipDrowningComponent : Component
     public float VisualDrownLevel;
     public Vector2 VisualWaterOffset;
     public bool VisualDataInitialized;
+
+
+    public TimeSpan? DisableWavesTime = null;
 }

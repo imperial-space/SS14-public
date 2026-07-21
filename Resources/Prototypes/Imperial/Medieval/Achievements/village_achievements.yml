@@ -1,0 +1,453 @@
+
+# Деревня (вся ветка требует фракцию Village)
+
+# Вход: крестьянином или ополченцем за 1 раунд получить 1 хлеб
+- type: achievement
+  id: AchievementVillageJoin
+  priority: 10
+  rarity: Common
+  name: achievement-village-join-name
+  tab: AchievementTabVillage
+  description: achievement-village-join-desc
+  icon:
+    sprite: Objects/Consumable/Food/Baked/bread.rsi
+    state: plain-slice
+  visibility: Visible
+  roundOnly: true
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: villageJoinBreadProgression
+    requiredJobs:
+    - MedievalVillager
+    - MedievalVillagerDef
+    requiredFactions:
+    - Village
+    itemPrototypes:
+      FoodBreadPlain: 1 # хлеб
+
+# Крестьянином: получить копьё
+- type: achievement
+  id: AchievementVillagePeasantSpear
+  priority: 11
+  rarity: Common
+  name: achievement-village-peasant-spear-name
+  description: achievement-village-peasant-spear-desc
+  icon:
+    sprite: /Textures/Imperial/Medieval/Melee/iron_spear.rsi
+    state: spear
+  visibility: Visible
+  prerequisites:
+  - AchievementVillageJoin
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: villagePeasantSpearProgression
+    requiredJobs:
+    - MedievalVillager
+    requiredFactions:
+    - Village
+    itemPrototypes:
+      MedievalSpearT3: 1
+
+# Крестьянином или ополченцем: убить дракона
+- type: achievement
+  id: AchievementVillageKillDragon
+  priority: 12
+  rarity: Epic
+  name: achievement-village-kill-dragon-name
+  description: achievement-village-kill-dragon-desc
+  icon:
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/firedragon.rsi
+    state: alive
+  visibility: Visible
+  prerequisites:
+  - AchievementVillagePeasantSpear
+  conditions:
+  - !type:KillMobCondition
+    progressKey: villageKillDragonProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalVillager
+    - MedievalVillagerDef
+    requiredFactions:
+    - Village
+    targetMobPrototypes:
+    - MedievalBossIceDragon
+    - MedievalBossFireDragon
+    - MedievalBossAcidDragon
+    - MedievalBossThunderDragon
+
+# Крестьянином: собрать 10 пшена + 10 томатов + 10 яблок
+- type: achievement
+  id: AchievementVillagePeasantHarvest
+  priority: 13
+  rarity: Common
+  name: achievement-village-harvest-name
+  description: achievement-village-harvest-desc
+  icon: Imperial/Medieval/GuildsIcons/FoodGuild6.png
+  visibility: Visible
+  prerequisites:
+  - AchievementVillageJoin
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: villageHarvestProgression
+    requiredJobs:
+    - MedievalVillager
+    requiredFactions:
+    - Village
+    itemPrototypes:
+      WheatBushel: 10 # пшено (сноп пшеницы)
+      FoodTomato: 10 # томат
+      FoodApple: 10 # яблоко
+
+# Крестьянином: получить 15 хлеба
+- type: achievement
+  id: AchievementVillagePeasant15Bread
+  priority: 14
+  rarity: Uncommon
+  name: achievement-village-15bread-name
+  description: achievement-village-15bread-desc
+  icon:
+    sprite: Objects/Consumable/Food/Baked/bread.rsi
+    state: two-slice
+  visibility: Visible
+  prerequisites:
+  - AchievementVillagePeasantHarvest
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: village15BreadProgression
+    requiredJobs:
+    - MedievalVillager
+    requiredFactions:
+    - Village
+    itemPrototypes:
+      FoodBreadPlain: 15 # хлеб
+
+# Появиться за роль старейшины деревни
+- type: achievement
+  id: AchievementVillageBecomeElder
+  priority: 15
+  rarity: Epic
+  name: achievement-village-become-elder-name
+  description: achievement-village-become-elder-desc
+  icon:
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: sign_4
+  visibility: Visible
+  prerequisites:
+  - AchievementVillagePeasant15Bread
+  - AchievementVillageMilitiaKill3Skeletons
+  conditions:
+  - !type:LocationCondition
+    progressKey: villageBecomeElderProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalVillagerLeader
+    requiredFactions:
+    - Village
+    locationId: AreaMarkerVillage
+
+# Старейшиной: получить письмо легата или ярла
+- type: achievement
+  id: AchievementVillageElderLegatJarlLetter
+  priority: 16
+  rarity: Rare
+  name: achievement-village-elder-legatjarl-letter-name
+  description: achievement-village-elder-legatjarl-letter-desc
+  icon:
+    sprite: Imperial/Medieval/Objects/Envelope/legion.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementVillageBecomeElder
+  conditions:
+  - !type:CollectAnyItemsCondition
+    progressKey: villageElderLegatJarlLetterProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalVillagerLeader
+    requiredFactions:
+    - Village
+    itemPrototypes:
+    - MedievalPaperEnvelopeLegion # легат
+    - MedievalPaperEnvelopeRebel # ярл
+
+# Старейшиной: получить письмо бандитов
+- type: achievement
+  id: AchievementVillageElderBanditLetter
+  priority: 17
+  rarity: Rare
+  name: achievement-village-elder-bandit-letter-name
+  description: achievement-village-elder-bandit-letter-desc
+  icon:
+    sprite: Imperial/Medieval/Objects/Envelope/bandit.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementVillageBecomeElder
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: villageElderBanditLetterProgression
+    requiredJobs:
+    - MedievalVillagerLeader
+    requiredFactions:
+    - Village
+    itemPrototypes:
+      MedievalPaperEnvelopeBandit: 1
+
+# Старейшиной: получить 500 ревентов
+- type: achievement
+  id: AchievementVillageElder500Revents
+  priority: 18
+  rarity: Rare
+  name: achievement-village-elder-500revents-name
+  description: achievement-village-elder-500revents-desc
+  icon:
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: revent_8
+  visibility: Visible
+  prerequisites:
+  - AchievementVillageBecomeElder
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: villageElder500ReventsProgression
+    requiredJobs:
+    - MedievalVillagerLeader
+    requiredFactions:
+    - Village
+    itemPrototypes:
+      MedievalRevent: 500
+
+# Крестьянином: за 1 раунд получить 30 корешков
+- type: achievement
+  id: AchievementVillagePeasant30Roots
+  priority: 19
+  rarity: Uncommon
+  name: achievement-village-30roots-name
+  description: achievement-village-30roots-desc
+  icon:
+    sprite: Imperial/Medieval/Chem/Garden/root.rsi
+    state: icon
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementVillageJoin
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: village30RootsProgression
+    requiredJobs:
+    - MedievalVillager
+    requiredFactions:
+    - Village
+    itemPrototypes:
+      MedievalRootItem: 30 # корешки (корень)
+
+# Крестьянином: собрать 25 любых цветов
+- type: achievement
+  id: AchievementVillagePeasant25Flowers
+  priority: 20
+  rarity: Uncommon
+  name: achievement-village-25flowers-name
+  description: achievement-village-25flowers-desc
+  icon:
+    sprite: Imperial/Medieval/Chem/Garden/vetr.rsi
+    state: produce
+  visibility: Visible
+  prerequisites:
+  - AchievementVillagePeasant30Roots
+  conditions:
+  - !type:CollectAnyItemsCondition
+    progressKey: village25FlowersProgression
+    requiredCount: 25
+    requiredJobs:
+    - MedievalVillager
+    requiredFactions:
+    - Village
+    itemPrototypes:
+    - MedievalFlowerVetr
+    - MedievalFlowerLipad
+    - MedievalFlowerLava
+    - MedievalFlowerCryo
+    - MedievalFlowerLuna
+    - MedievalFlowerStar
+    - MedievalFlowerDark
+    - MedievalFlowerBlood
+    - MedievalFlowerWhite
+    - MedievalFlowerBlack
+
+# Ополченцем: получить стальное копьё
+- type: achievement
+  id: AchievementVillageMilitiaSteelSpear
+  priority: 21
+  rarity: Common
+  name: achievement-village-militia-steelspear-name
+  description: achievement-village-militia-steelspear-desc
+  icon:
+    sprite: /Textures/Imperial/Medieval/Melee/iron_spear.rsi
+    state: spear
+  visibility: Visible
+  prerequisites:
+  - AchievementVillageJoin
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: villageMilitiaSteelSpearProgression
+    requiredJobs:
+    - MedievalVillagerDef
+    requiredFactions:
+    - Village
+    itemPrototypes:
+      MedievalSpearT3Steel: 1
+
+# Ополченцем: железный нагрудник + стальные ботинки + стальные рукавицы
+- type: achievement
+  id: AchievementVillageMilitiaArmor
+  priority: 22
+  rarity: Uncommon
+  name: achievement-village-militia-armor-name
+  description: achievement-village-militia-armor-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Armor/iron_armor_cuirass.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementVillageMilitiaSteelSpear
+  conditions:
+  - !type:CollectAnyItemsCondition # железный нагрудник
+    progressKey: villageMilitiaChestProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalVillagerDef
+    requiredFactions:
+    - Village
+    itemPrototypes:
+    - MedievalClothingOuterArmorIron
+    - MedievalClothingOuterArmorIronCuirass
+  - !type:CollectAllItemsCondition # стальные ботинки + рукавицы
+    progressKey: villageMilitiaFeetHandsProgression
+    requiredJobs:
+    - MedievalVillagerDef
+    requiredFactions:
+    - Village
+    itemPrototypes:
+      MedievalClothingFeetSteel: 1
+      MedievalIronGloves: 1
+
+# Ополченцем: убить волка
+- type: achievement
+  id: AchievementVillageMilitiaKillWolf
+  priority: 23
+  rarity: Common
+  name: achievement-village-militia-wolf-name
+  description: achievement-village-militia-wolf-desc
+  icon:
+    sprite: Imperial/Medieval/Mobs/wolf.rsi
+    state: wolf
+  visibility: Visible
+  prerequisites:
+  - AchievementVillageJoin
+  conditions:
+  - !type:KillMobCondition
+    progressKey: villageMilitiaWolfProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalVillagerDef
+    requiredFactions:
+    - Village
+    targetMobPrototypes:
+    - MedievalMobWolf
+    - MedievalMobWolfGhost
+
+# Ополченцем: за 1 раунд убить 3 скелетов
+- type: achievement
+  id: AchievementVillageMilitiaKill3Skeletons
+  priority: 24
+  rarity: Uncommon
+  name: achievement-village-militia-3skeletons-name
+  description: achievement-village-militia-3skeletons-desc
+  icon:
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: full
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementVillageMilitiaKillWolf
+  conditions:
+  - !type:KillMobCondition
+    progressKey: villageMilitia3SkeletonsProgression
+    requiredCount: 3
+    requiredJobs:
+    - MedievalVillagerDef
+    requiredFactions:
+    - Village
+    targetMobPrototypes:
+    - MedievalMobSkeletWeak
+    - MedievalMobSkeletWeakGhost
+    - MedievalMobSkeletMeat
+    - MedievalMobSkeletMeatGhost
+    - MedievalMobSkeletFighter
+    - MedievalMobSkeletFighterGhost
+    - MedievalMobSkeletArcher
+    - MedievalMobSkeletCrossbow
+    - MedievalMobSkeletHalberd
+    - MedievalMobSkeletHalberdGhost
+    - MedievalMobSkeletMace
+    - MedievalMobSkeletMaceGhost
+    - MedievalMobSkeletDagger
+    - MedievalMobSkeletDaggerGhost
+    - MedievalMobSkeletSpear
+    - MedievalMobSkeletSpearGhost
+
+# Ополченцем: убить оборотня (в виде зверя)
+- type: achievement
+  id: AchievementVillageMilitiaKillWerewolf
+  priority: 25
+  rarity: Epic
+  name: achievement-village-militia-werewolf-name
+  description: achievement-village-militia-werewolf-desc
+  icon:
+    sprite: Imperial/Medieval/Mobs/werwolf.rsi
+    state: black
+  visibility: Visible
+  prerequisites:
+  - AchievementVillageMilitiaKillWolf
+  conditions:
+  - !type:KillMobCondition
+    progressKey: villageMilitiaWerewolfProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalVillagerDef
+    requiredFactions:
+    - Village
+    targetMobPrototypes:
+    - MedievalMobWerwolfBlack
+    - MedievalMobWerwolfBlueDark
+    - MedievalMobWerwolfBlueLight
+    - MedievalMobWerwolfBrown
+    - MedievalMobWerwolfLight
+    - MedievalMobWerwolfPurple
+    - MedievalMobWerwolfRed
+
+# Крестьянином или ополченцем: за 1 раунд построить 10 частоколов
+- type: achievement
+  id: AchievementVillageBuild10Stockades
+  priority: 26
+  rarity: Uncommon
+  name: achievement-village-build-stockades-name
+  description: achievement-village-build-stockades-desc
+  icon:
+    sprite: Imperial/Medieval/Walls/wood_wall_light.rsi
+    state: wall0
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementVillageJoin
+  conditions:
+  - !type:BuildStructureCondition
+    progressKey: villageBuild10StockadesProgression
+    requiredCount: 10
+    requiredJobs:
+    - MedievalVillager
+    - MedievalVillagerDef
+    requiredFactions:
+    - Village
+    targetPrototypes:
+    - MedievalStockade

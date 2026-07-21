@@ -1,14 +1,32 @@
+using Content.Shared.Damage;
+using Robust.Shared.Prototypes;
+
 namespace Content.Server.Imperial.Medieval.Ships.PlayerDrowning;
 
-/// <summary>
-/// This is used for...
-/// </summary>
 [RegisterComponent]
 public sealed partial class PlayerDrowningComponent : Component
 {
     [DataField("drownTime")]
-    public int DrownTime;
+    public float DrownTime;
 
-    [DataField("Undrowable")]
-    public bool Undrowable;
+    [DataField("maxDrownTime")]
+    public float MaxDrownTime = 25;
+
+    [DataField("damageDrownDelay")]
+    public float DamageDrownDelay = 7;
+
+    [DataField("speedModifier")]
+    public float SpeedModifier = 0.5f;
+
+    [DataField("drowningDamage")]
+    public DamageSpecifier DrowningDamage = new()
+    {
+        DamageDict = new()
+        {
+            { "Asphyxiation", 10 }
+        }
+    };
+
+    [DataField]
+    public EntProtoId SplashEffect = "MedievalShipSplashEffect";
 }

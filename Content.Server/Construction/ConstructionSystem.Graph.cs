@@ -1,5 +1,6 @@
 using Content.Server.Construction.Components;
 using Content.Server.Containers;
+using Content.Shared.Imperial.Medieval.Achievements;
 using Content.Shared.Construction;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Construction.Steps;
@@ -413,6 +414,15 @@ namespace Content.Server.Construction
             // new entity should be initialized by this point.
             var afterChangeEv = new AfterConstructionChangeEntityEvent(construction.Graph, construction.Node, previousNode);
             RaiseLocalEvent(newUid, ref afterChangeEv);
+
+            // Imperial Medieval Achievements Start
+            if (userUid != null)
+            {
+                Achievement.TryUpdateProgressAndGrant(userUid.Value, newUid, 
+                    ach => ach.Conditions.Any(c => c is BuildStructureCondition)
+                );
+            }
+            // Imperial Medieval Achievements End
 
             return newUid;
         }

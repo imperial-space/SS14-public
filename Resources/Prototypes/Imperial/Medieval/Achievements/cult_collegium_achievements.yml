@@ -1,0 +1,880 @@
+
+# Первая ачивка пока закомментирована до лучших времен
+
+# Культ / Коллегия
+
+# - type: achievement
+#   id: AchievementCultCollegiumJoin
+#   priority: 10
+#   rarity: Common
+#   name: achievement-cultcollegium-join-name
+#   tab: AchievementTabCollegiumCult
+#   description: achievement-cultcollegium-join-desc
+#   icon:
+#     sprite: Imperial/Medieval/Decor/barrier.rsi
+#     state: barrier
+#   visibility: Visible
+#   conditions:
+#   - !type:LocationCondition
+#     progressKey: cultCollegiumJoinProgression
+#     requiredCount: 1
+#     requiredJobs:
+#     - MedievalCollegiumRecruit
+#     requiredFactions:
+#     - Collegium
+#     locationId: AreaMarkerCollegium
+#   - !type:LocationCondition
+#     progressKey: cultCollegiumJoinProgression
+#     requiredCount: 1
+#     requiredJobs:
+#     - MedievalCult
+#     requiredFactions:
+#     - Cult
+#     locationId: AreaMarkerCult
+
+# ==========================================
+# Ветка Коллегии (вся ветка требует фракцию Collegium)
+# ==========================================
+
+# Центральная: быть послушником + за один раунд посетить 7 локаций коллегии
+- type: achievement
+  id: AchievementCollegiumInitiation
+  priority: 11
+  rarity: Epic
+  name: achievement-collegium-initiation-name
+  description: achievement-collegium-initiation-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/charmer_weak.rsi
+    state: icon
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementCultCollegiumJoin
+  conditions:
+  - !type:LocationCondition
+    progressKey: collegiumInitLibraryProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCollegiumRecruit
+    requiredFactions:
+    - Collegium
+    locationId: achievement-location-collegium-library
+  - !type:LocationCondition
+    progressKey: collegiumInitLectureProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCollegiumRecruit
+    requiredFactions:
+    - Collegium
+    locationId: achievement-location-collegium-lecture
+  - !type:LocationCondition
+    progressKey: collegiumInitSpellwardProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCollegiumRecruit
+    requiredFactions:
+    - Collegium
+    locationId: achievement-location-collegium-spellward
+  - !type:LocationCondition
+    progressKey: collegiumInitPolygonProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCollegiumRecruit
+    requiredFactions:
+    - Collegium
+    locationId: achievement-location-collegium-polygon
+  - !type:LocationCondition
+    progressKey: collegiumInitHallProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCollegiumRecruit
+    requiredFactions:
+    - Collegium
+    locationId: achievement-location-collegium-hall
+  - !type:LocationCondition
+    progressKey: collegiumInitAlchemyProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCollegiumRecruit
+    requiredFactions:
+    - Collegium
+    locationId: achievement-location-collegium-alchemy
+  - !type:LocationCondition
+    progressKey: collegiumInitPrisonProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCollegiumRecruit
+    requiredFactions:
+    - Collegium
+    locationId: achievement-location-collegium-prison
+  tab: AchievementTabCollegiumCult
+
+# Ветка: пополнить барьер 1 раз
+- type: achievement
+  id: AchievementCollegiumRefillBarrier
+  priority: 12
+  rarity: Common
+  name: achievement-collegium-refill-barrier-name
+  description: achievement-collegium-refill-barrier-desc
+  icon:
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: scroll1
+  visibility: Visible
+  prerequisites:
+  - AchievementCollegiumInitiation
+  conditions:
+  - !type:RefillBarrierCondition
+    progressKey: collegiumRefillBarrierProgression
+    requiredCount: 1
+    requiredFactions:
+    - Collegium
+
+# Ветка: получить все рунические камни (рунные камни для магического посоха, range.yml)
+- type: achievement
+  id: AchievementCollegiumAllRuneStones
+  priority: 13
+  rarity: Rare
+  name: achievement-collegium-rune-stones-name
+  description: achievement-collegium-rune-stones-desc
+  icon:
+    sprite: Imperial/Medieval/MagicStone/stone.rsi
+    state: vel
+  visibility: Visible
+  prerequisites:
+  - AchievementCollegiumInitiation
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: collegiumRuneStonesProgression
+    requiredFactions:
+    - Collegium
+    itemPrototypes:
+      MedievalRuneHealing: 1 # рунный камень исцеления
+      MedievalRuneFireBall: 1 # рунный камень огненного шара
+      MedievalRuneArrow: 1 # рунный камень магической стрелы
+      MedievalRuneLighting: 1 # рунный камень оглушающей молнии
+      MedievalRuneFlash: 1 # рунный камень яркой вспышки
+
+# Ветка: получить предметы от кастов (были в руках/инвентаре)
+# DivineTouchBeginner/BoostBeginner/HolyTouch — parent BaseItem (держатся в руке, ловятся). IceDagger — тоже Item.
+- type: achievement
+  id: AchievementCollegiumSpellItems
+  priority: 14
+  rarity: Rare
+  name: achievement-collegium-spell-items-name
+  description: achievement-collegium-spell-items-desc
+  icon:
+    sprite: Imperial/Medieval/Melee/ice_dagger_middle.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementCollegiumInitiation
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: collegiumSpellItemsProgression
+    requiredFactions:
+    - Collegium
+    itemPrototypes:
+      DivineTouchBeginner: 1 # исцеление (лечение)
+      BoostBeginner: 1 # усиление
+      HolyTouch: 1 # освящение
+  - !type:CollectAnyItemsCondition
+    progressKey: collegiumIceDaggerProgression
+    requiredCount: 1
+    requiredFactions:
+    - Collegium
+    itemPrototypes: # ледяной кинжал (любой тир)
+    - IceDaggerBeginner
+    - IceDaggerMiddle
+    - IceDaggerSenior
+
+# Ветка (СЕКРЕТНАЯ): надеть броню + иметь щит + амулет маны
+- type: achievement
+  id: AchievementCollegiumFullArmor
+  priority: 15
+  rarity: Epic
+  name: achievement-collegium-full-armor-name
+  description: achievement-collegium-full-armor-desc
+  icon:
+    sprite: Imperial/Medieval/CombatStance/point.rsi
+    state: green
+  visibility: Hidden
+  prerequisites:
+  - AchievementCollegiumInitiation
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: collegiumFullArmorProgression
+    requiredFactions:
+    - Collegium
+    itemPrototypes:
+      MedievalClothingOuterArmorIronCuirass: 1 # железная кираса
+      MedievalIronGloves: 1 # латные рукавицы (пальцевые латные перчатки)
+      MedievalClothingFeetSteel: 1 # латные сапоги
+      MedaljonMana: 1 # амулет маны (медальон восстановления маны)
+  - !type:CollectAnyItemsCondition
+    progressKey: collegiumFullArmorShieldProgression
+    requiredCount: 1
+    requiredFactions:
+    - Collegium
+    itemPrototypes:
+    # любой щит
+    - MedievalWoodenShield
+    - MedievalWoodenShieldKnight
+    - MedievalWoodenShieldBuckler
+    - MedievalIronShield
+    - MedievalIronShieldBuckler
+
+# Появиться за роль мага коллегии
+- type: achievement
+  id: AchievementCollegiumBecomeMage
+  priority: 16
+  rarity: Uncommon
+  name: achievement-collegium-become-mage-name
+  description: achievement-collegium-become-mage-desc
+  icon:
+    sprite: Imperial/Other/Witchers/PurpleHat.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementCollegiumSpellItems
+  - AchievementCollegiumRefillBarrier
+  conditions:
+  - !type:LocationCondition
+    progressKey: collegiumBecomeMageProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCollegiumCommon
+    requiredFactions:
+    - Collegium
+    locationId: AreaMarkerCollegium
+
+# За один раунд: посетить алтари культа + пополнить барьер 7 раз
+- type: achievement
+  id: AchievementCollegiumCultAltarsBarrier
+  priority: 17
+  rarity: Epic
+  name: achievement-collegium-cult-altars-barrier-name
+  description: achievement-collegium-cult-altars-barrier-desc
+  icon:
+    sprite: Imperial/Medieval/Misc/cult.rsi
+    state: cutlaltar2
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementCollegiumBecomeMage
+  conditions:
+  - !type:LocationCondition
+    progressKey: collegiumCultAltarsProgression
+    requiredCount: 7
+    requiredFactions:
+    - Collegium
+    locationId: AreaMarkerCultAltar
+  - !type:RefillBarrierCondition
+    progressKey: collegiumBarrier7Progression
+    requiredCount: 7
+    requiredFactions:
+    - Collegium
+
+# ==========================================
+#  Ветка архимага (дальше вся ветка требует роль архимага = MedievalCollegiumLeader)
+#  ==========================================
+#
+#  Появиться за роль архимага коллегии
+- type: achievement
+  id: AchievementCollegiumBecomeArchmage
+  priority: 18
+  rarity: Epic
+  name: achievement-collegium-become-archmage-name
+  description: achievement-collegium-become-archmage-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/charmer.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementCollegiumCultAltarsBarrier
+  conditions:
+  - !type:LocationCondition
+    progressKey: collegiumBecomeArchmageProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCollegiumLeader
+    requiredFactions:
+    - Collegium
+    locationId: AreaMarkerCollegium
+
+# Получить письмо легиона
+- type: achievement
+  id: AchievementCollegiumArchmageLegionLetter
+  priority: 19
+  rarity: Rare
+  name: achievement-collegium-legion-letter-name
+  description: achievement-collegium-legion-letter-desc
+  icon:
+    sprite: Imperial/Medieval/Objects/Envelope/legion.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementCollegiumBecomeArchmage
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: collegiumArchmageLegionLetterProgression
+    requiredJobs:
+    - MedievalCollegiumLeader
+    requiredFactions:
+    - Collegium
+    itemPrototypes:
+      MedievalPaperEnvelopeLegion: 1
+
+# Получить письмо мятежа
+- type: achievement
+  id: AchievementCollegiumArchmageRebelLetter
+  priority: 20
+  rarity: Rare
+  name: achievement-collegium-rebel-letter-name
+  description: achievement-collegium-rebel-letter-desc
+  icon:
+    sprite: Imperial/Medieval/Objects/Envelope/rebel.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementCollegiumBecomeArchmage
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: collegiumArchmageRebelLetterProgression
+    requiredJobs:
+    - MedievalCollegiumLeader
+    requiredFactions:
+    - Collegium
+    itemPrototypes:
+      MedievalPaperEnvelopeRebel: 1
+
+# За один раунд: получить письмо мятежа и легиона
+- type: achievement
+  id: AchievementCollegiumArchmageBothLetters
+  priority: 21
+  rarity: Epic
+  name: achievement-collegium-both-letters-name
+  description: achievement-collegium-both-letters-desc
+  icon:
+    sprite: Imperial/Medieval/Objects/Envelope/basic.rsi
+    state: icon
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementCollegiumArchmageLegionLetter
+  - AchievementCollegiumArchmageRebelLetter
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: collegiumArchmageBothLettersProgression
+    requiredJobs:
+    - MedievalCollegiumLeader
+    requiredFactions:
+    - Collegium
+    itemPrototypes:
+      MedievalPaperEnvelopeLegion: 1
+      MedievalPaperEnvelopeRebel: 1
+
+# ЛЮТАЯ СВАГА (СЕКРЕТНАЯ): за один раунд собрать полный сет архимага
+- type: achievement
+  id: AchievementCollegiumSwag
+  priority: 22
+  rarity: Legendary
+  name: achievement-collegium-swag-name
+  description: achievement-collegium-swag-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_armor.rsi
+    state: icon
+  visibility: Hidden
+  roundOnly: true
+  prerequisites:
+  - AchievementCollegiumBecomeArchmage
+  conditions:
+  # капюшон архимага + сапоги скороходы + 1000 ревентов
+  - !type:CollectAllItemsCondition
+    progressKey: collegiumSwagFixedProgression
+    requiredJobs:
+    - MedievalCollegiumLeader
+    requiredFactions:
+    - Collegium
+    itemPrototypes:
+      MedievalClothingHeadHelmetCharmer: 1 # капюшон архимага
+      MedievalShoesSpeed: 1 # сапоги скороходы
+      MedievalRevent: 1000
+  # роба архимага
+  - !type:CollectAnyItemsCondition
+    progressKey: collegiumSwagRobeProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCollegiumLeader
+    requiredFactions:
+    - Collegium
+    itemPrototypes:
+    - MedievalClothingOuterArmorCharmerPurple # роба архимага коллегии
+    - MedievalClothingOuterArmorCharmer # броня архимага
+  # любой из медальонов
+  - !type:CollectAnyItemsCondition
+    progressKey: collegiumSwagMedaljonProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCollegiumLeader
+    requiredFactions:
+    - Collegium
+    itemPrototypes:
+    - MedaljonSpeed
+    - MedaljonMana
+    - MedaljonDark
+    - MedaljonDef
+    - MedaljonFlashImmune
+    - MedaljonThieving
+    - MedaljonExpl
+    - MedaljonNoslip
+  # форстоуновые или эбонитовые перчатки
+  - !type:CollectAnyItemsCondition
+    progressKey: collegiumSwagGlovesProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCollegiumLeader
+    requiredFactions:
+    - Collegium
+    itemPrototypes:
+    - MedievalForstoneGloves
+    - MedievalEbonitGloves
+    - MedievalEbonitGloves2
+  # позолоченный фальшион
+  - !type:CollectAnyItemsCondition
+    progressKey: collegiumSwagFalshionProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCollegiumLeader
+    requiredFactions:
+    - Collegium
+    itemPrototypes:
+    - MedievalFalshionT3Gold
+    - MedievalFalshionT3SteelGold
+
+# ==========================================
+# Ветка Культа (вся ветка требует фракцию Cult)
+# ==========================================
+
+# Центральная: быть культистом + за один раунд посетить 4 локации культа + получить книгу культа
+- type: achievement
+  id: AchievementCultInitiation
+  priority: 30
+  rarity: Epic
+  name: achievement-cult-initiation-name
+  description: achievement-cult-initiation-desc
+  icon:
+    sprite: Imperial/Medieval/Misc/cult.rsi
+    state: book
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementCultCollegiumJoin
+  conditions:
+  - !type:LocationCondition
+    progressKey: cultInitArmoryProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCult
+    requiredFactions:
+    - Cult
+    locationId: achievement-location-cult-armory
+  - !type:LocationCondition
+    progressKey: cultInitRitualProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCult
+    requiredFactions:
+    - Cult
+    locationId: achievement-location-cult-ritual
+  - !type:LocationCondition
+    progressKey: cultInitAltarHubProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCult
+    requiredFactions:
+    - Cult
+    locationId: achievement-location-cult-altar-hub
+  - !type:LocationCondition
+    progressKey: cultInitPrisonProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCult
+    requiredFactions:
+    - Cult
+    locationId: achievement-location-cult-prison
+  - !type:CollectAnyItemsCondition
+    progressKey: cultInitBookProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCult
+    requiredFactions:
+    - Cult
+    itemPrototypes:
+    # книга культа истины
+    - MedievalBookCultGuide
+    - MedievalBookCultGuideUnlocked
+  tab: AchievementTabCollegiumCult
+
+# Получить любое оружие культа
+- type: achievement
+  id: AchievementCultAnyWeapon
+  priority: 31
+  rarity: Common
+  name: achievement-cult-any-weapon-name
+  description: achievement-cult-any-weapon-desc
+  icon:
+    sprite: Imperial/Medieval/Melee/sekir_cult.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementCultInitiation
+  conditions:
+  - !type:CollectAnyItemsCondition
+    progressKey: cultAnyWeaponProgression
+    requiredCount: 1
+    requiredFactions:
+    - Cult
+    itemPrototypes:
+    # любое оружие культа
+    - MedievalDaggerCult
+    - MedievalDaggerCultLeader
+    - MedievalSpearCult
+    - MedievalIronSekirCult
+    - MedievalCultYatagan
+
+# Получить броню культа
+- type: achievement
+  id: AchievementCultArmor
+  priority: 32
+  rarity: Common
+  name: achievement-cult-armor-name
+  description: achievement-cult-armor-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Armor/cult_armor_up.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementCultInitiation
+  conditions:
+  - !type:CollectAnyItemsCondition
+    progressKey: cultArmorProgression
+    requiredCount: 1
+    requiredFactions:
+    - Cult
+    itemPrototypes:
+    # любая броня культа
+    - MedievalClothingOuterArmorCultMana
+    - MedievalClothingOuterArmorCultUp
+
+# Получить проклятый свиток
+- type: achievement
+  id: AchievementCultCursedScroll
+  priority: 33
+  rarity: Rare
+  name: achievement-cult-cursed-scroll-name
+  description: achievement-cult-cursed-scroll-desc
+  icon:
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: scroll3
+  visibility: Visible
+  prerequisites:
+  - AchievementCultInitiation
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: cultCursedScrollProgression
+    requiredFactions:
+    - Cult
+    itemPrototypes:
+      MedievalScrollBarrierBad: 1 # магический свиток проклятый
+
+# За один раунд: получить исцеление/усиление + одеть маг робу культа + иметь гримуар
+- type: achievement
+  id: AchievementCultMageRound
+  priority: 34
+  rarity: Epic
+  name: achievement-cult-mage-round-name
+  description: achievement-cult-mage-round-desc
+  icon:
+    sprite: Imperial/Medieval/Misc/magic_book.rsi
+    state: icon
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementCultInitiation
+  conditions:
+  - !type:CollectAnyItemsCondition
+    progressKey: cultMageHealBoostProgression
+    requiredCount: 1
+    requiredFactions:
+    - Cult
+    itemPrototypes:
+    # исцеление или усиление
+    - DivineTouchBeginner
+    - BoostBeginner
+  - !type:CollectAnyItemsCondition
+    progressKey: cultMageRobeProgression
+    requiredCount: 1
+    requiredFactions:
+    - Cult
+    itemPrototypes:
+    # маг роба культа
+    - MedievalClothingOuterArmorCultMana
+    - MedievalClothingOuterAltArmorCultMana
+  - !type:CollectAnyItemsCondition
+    progressKey: cultMageGrimoireProgression
+    requiredCount: 1
+    requiredFactions:
+    - Cult
+    itemPrototypes:
+    # гримуар (фолиант)
+    - MedievalBookNecro1
+    - MedievalBookNecro2
+    - MedievalBookNecro3
+
+# Посетить коллегию
+- type: achievement
+  id: AchievementCultVisitCollegium
+  priority: 35
+  rarity: Uncommon
+  name: achievement-cult-visit-collegium-name
+  description: achievement-cult-visit-collegium-desc
+  icon:
+    sprite: /Textures/Imperial/Medieval/Decor/medieval_posters.rsi
+    state: wiz
+  visibility: Visible
+  prerequisites:
+  - AchievementCultInitiation
+  conditions:
+  - !type:LocationCondition
+    progressKey: cultVisitCollegiumProgression
+    requiredCount: 1
+    requiredFactions:
+    - Cult
+    locationId: AreaMarkerCollegium
+
+# ==========================================
+#   Ветка проповедника (дальше вся ветка требует роль проповедника = MedievalCultLeader)
+#   ==========================================
+#
+#   Появиться за роль проповедника культа
+- type: achievement
+  id: AchievementCultBecomePreacher
+  priority: 36
+  rarity: Epic
+  name: achievement-cult-become-preacher-name
+  description: achievement-cult-become-preacher-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Armor/cult_armor_leader.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementCultAnyWeapon
+  - AchievementCultArmor
+  - AchievementCultCursedScroll
+  - AchievementCultMageRound
+  - AchievementCultVisitCollegium
+  - AchievementCollegiumBecomeMage
+  conditions:
+  - !type:LocationCondition
+    progressKey: cultBecomePreacherProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCultLeader
+    requiredFactions:
+    - Cult
+    locationId: AreaMarkerCult
+
+# За один раунд: уничтожить обелиск магов + получить робу архимага + капюшон архимага
+- type: achievement
+  id: AchievementCultPreacherMageObelisk
+  priority: 37
+  rarity: Epic
+  name: achievement-cult-preacher-obelisk-name
+  description: achievement-cult-preacher-obelisk-desc
+  icon:
+    sprite: Imperial/Medieval/obelisks/layerobelisks.rsi
+    state: state-2
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementCultBecomePreacher
+  conditions:
+  - !type:DestroyFactionObeliskCondition
+    progressKey: cultPreacherObeliskProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCultLeader
+    requiredFactions:
+    - Cult
+    targetFaction: Collegium
+  - !type:CollectAnyItemsCondition
+    progressKey: cultPreacherArchmageRobeProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCultLeader
+    requiredFactions:
+    - Cult
+    itemPrototypes: # роба архимага
+    - MedievalClothingOuterArmorCharmerPurple
+    - MedievalClothingOuterArmorCharmer
+  - !type:CollectAllItemsCondition
+    progressKey: cultPreacherArchmageHoodProgression
+    requiredJobs:
+    - MedievalCultLeader
+    requiredFactions:
+    - Cult
+    itemPrototypes:
+      MedievalClothingHeadHelmetCharmer: 1 # капюшон архимага
+
+# Получить письмо легиона
+- type: achievement
+  id: AchievementCultPreacherLegionLetter
+  priority: 38
+  rarity: Rare
+  name: achievement-cult-preacher-legion-letter-name
+  description: achievement-cult-preacher-legion-letter-desc
+  icon:
+    sprite: Imperial/Medieval/Objects/Envelope/legion.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementCultBecomePreacher
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: cultPreacherLegionLetterProgression
+    requiredJobs:
+    - MedievalCultLeader
+    requiredFactions:
+    - Cult
+    itemPrototypes:
+      MedievalPaperEnvelopeLegion: 1
+
+# Получить письмо мятежа
+- type: achievement
+  id: AchievementCultPreacherRebelLetter
+  priority: 39
+  rarity: Rare
+  name: achievement-cult-preacher-rebel-letter-name
+  description: achievement-cult-preacher-rebel-letter-desc
+  icon:
+    sprite: Imperial/Medieval/Objects/Envelope/rebel.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementCultBecomePreacher
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: cultPreacherRebelLetterProgression
+    requiredJobs:
+    - MedievalCultLeader
+    requiredFactions:
+    - Cult
+    itemPrototypes:
+      MedievalPaperEnvelopeRebel: 1
+
+# За один раунд: получить письмо легиона и мятежа
+- type: achievement
+  id: AchievementCultPreacherBothLetters
+  priority: 40
+  rarity: Epic
+  name: achievement-cult-preacher-both-letters-name
+  description: achievement-cult-preacher-both-letters-desc
+  icon:
+    sprite: Imperial/Medieval/Objects/Envelope/basic.rsi
+    state: icon
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementCultPreacherLegionLetter
+  - AchievementCultPreacherRebelLetter
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: cultPreacherBothLettersProgression
+    requiredJobs:
+    - MedievalCultLeader
+    requiredFactions:
+    - Cult
+    itemPrototypes:
+      MedievalPaperEnvelopeLegion: 1
+      MedievalPaperEnvelopeRebel: 1
+
+# СЕКРЕТНАЯ: за один раунд собрать полный сет проповедника
+- type: achievement
+  id: AchievementCultPreacherSwag
+  priority: 41
+  rarity: Legendary
+  name: achievement-cult-preacher-swag-name
+  description: achievement-cult-preacher-swag-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Armor/cult_armor_leader.rsi
+    state: icon
+  visibility: Hidden
+  roundOnly: true
+  prerequisites:
+  - AchievementCultBecomePreacher
+  conditions:
+  # капюшон проповедника + ботинки скороходы + 1000 ревентов
+  - !type:CollectAllItemsCondition
+    progressKey: cultPreacherSwagFixedProgression
+    requiredJobs:
+    - MedievalCultLeader
+    requiredFactions:
+    - Cult
+    itemPrototypes:
+      MedievalClothingHeadAltHelmetCultLeader: 1 # капюшон проповедника
+      MedievalShoesSpeed: 1 # ботинки скороходы
+      MedievalRevent: 1000
+  # роба проповедника
+  - !type:CollectAnyItemsCondition
+    progressKey: cultPreacherSwagRobeProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCultLeader
+    requiredFactions:
+    - Cult
+    itemPrototypes:
+    - MedievalClothingOuterArmorCultLeader
+    - MedievalClothingOuterAltArmorCultLeader
+  # любой из медальонов
+  - !type:CollectAnyItemsCondition
+    progressKey: cultPreacherSwagMedaljonProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCultLeader
+    requiredFactions:
+    - Cult
+    itemPrototypes:
+    - MedaljonSpeed
+    - MedaljonMana
+    - MedaljonDark
+    - MedaljonDef
+    - MedaljonFlashImmune
+    - MedaljonThieving
+    - MedaljonExpl
+    - MedaljonNoslip
+  # любое оружие культа
+  - !type:CollectAnyItemsCondition
+    progressKey: cultPreacherSwagWeaponProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCultLeader
+    requiredFactions:
+    - Cult
+    itemPrototypes:
+    - MedievalDaggerCult
+    - MedievalDaggerCultLeader
+    - MedievalSpearCult
+    - MedievalIronSekirCult
+    - MedievalCultYatagan
+  # эбонитовые или форстоуновые перчатки
+  - !type:CollectAnyItemsCondition
+    progressKey: cultPreacherSwagGlovesProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalCultLeader
+    requiredFactions:
+    - Cult
+    itemPrototypes:
+    - MedievalEbonitGloves
+    - MedievalEbonitGloves2
+    - MedievalForstoneGloves

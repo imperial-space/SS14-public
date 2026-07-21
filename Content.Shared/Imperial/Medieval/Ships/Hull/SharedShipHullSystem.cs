@@ -86,6 +86,20 @@ public sealed class SharedShipHullSystem : EntitySystem
         return true;
     }
 
+    public Tile WithTileType(Tile source, ushort tileTypeId)
+    {
+        EnsureInitialized();
+
+        var variant = source.Variant;
+        if (_tileDefinitions.TryGetDefinition(tileTypeId, out var tileDefinition) &&
+            variant >= tileDefinition.Variants)
+        {
+            variant = 0;
+        }
+
+        return new Tile(tileTypeId, source.Flags, variant, source.RotationMirroring);
+    }
+
     public int GetFloodContribution(int tileTypeId)
     {
         return TryGetDamageStage(tileTypeId, out var stage) ? stage : 0;

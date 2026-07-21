@@ -5,14 +5,14 @@ public abstract class SharedDestructibleSystem : EntitySystem
     /// <summary>
     ///     Force entity to be destroyed and deleted.
     /// </summary>
-    public bool DestroyEntity(EntityUid owner)
+    public bool DestroyEntity(EntityUid owner, EntityUid? performer = null)
     {
         var ev = new DestructionAttemptEvent();
         RaiseLocalEvent(owner, ev);
         if (ev.Cancelled)
             return false;
 
-        var eventArgs = new DestructionEventArgs();
+        var eventArgs = new DestructionEventArgs(performer);
         RaiseLocalEvent(owner, eventArgs);
 
         QueueDel(owner);
@@ -22,9 +22,9 @@ public abstract class SharedDestructibleSystem : EntitySystem
     /// <summary>
     ///     Force entity to break.
     /// </summary>
-    public void BreakEntity(EntityUid owner)
+    public void BreakEntity(EntityUid owner, EntityUid? performer = null)
     {
-        var eventArgs = new BreakageEventArgs();
+        var eventArgs = new BreakageEventArgs(performer);
         RaiseLocalEvent(owner, eventArgs);
     }
 }
@@ -42,7 +42,12 @@ public sealed class DestructionAttemptEvent : CancellableEntityEventArgs
 /// </summary>
 public sealed class DestructionEventArgs : EntityEventArgs
 {
+    public readonly EntityUid? Performer;
 
+    public DestructionEventArgs(EntityUid? performer = null)
+    {
+        Performer = performer;
+    }
 }
 
 /// <summary>
@@ -50,5 +55,10 @@ public sealed class DestructionEventArgs : EntityEventArgs
 /// </summary>
 public sealed class BreakageEventArgs : EntityEventArgs
 {
+    public readonly EntityUid? Performer;
 
+    public BreakageEventArgs(EntityUid? performer = null)
+    {
+        Performer = performer;
+    }
 }

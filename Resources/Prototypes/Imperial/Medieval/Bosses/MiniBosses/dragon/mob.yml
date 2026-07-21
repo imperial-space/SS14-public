@@ -14,6 +14,19 @@
   id: MedievalBossBaseDragon
   description: big dragon
   components:
+    - type: Hands
+      hands:
+        hand_left:
+          location: left
+      showInHands: false
+      emptyRepresentative: []
+    - type: MedievalSpellCaster
+    - type: Mana
+      maxMana: 100
+      regen: 4
+    - type: AddActionOnSpawn
+      actions:
+        - MedievalActionBlinkDragon
     - type: Destructible
       thresholds:
       - trigger:
@@ -51,12 +64,12 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        1500: Dead
+        1250: Dead
     - type: SlowOnDamage
       speedModifierThresholds:
-        500: 0.9
-        1000: 0.8
-        1500: 0.7
+        400: 0.9
+        850: 0.8
+        1150: 0.7
     - type: Tag
       tags:
       - FootstepSound
@@ -90,19 +103,19 @@
         path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
       damage:
         groups:
-          Brute: 38
+          Brute: 48
         types:
           Structural: 600
       range: 2.5
       attackRate: 0.5
     - type: StaminaDamageOnHit
-      damage: 50
+      damage: 70
     - type: Stamina
-      critThreshold: 500
+      critThreshold: 1000
     - type: MedievalUnthrowable
     - type: MeleeThrowOnHit
       distance: 7
-      speed: 9
+      speed: 12
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Imperial/Witchers/FootstepWitchersVendigo.ogg
@@ -113,8 +126,8 @@
       speechVerb: LargeMob
       speechSounds: MedievalDragon
     - type: MovementSpeedModifier
-      baseWalkSpeed: 3.3
-      baseSprintSpeed: 2
+      baseWalkSpeed: 3.4
+      baseSprintSpeed: 2.2
     - type: GhostTakeoverAvailable
     - type: GhostRole
       makeSentient: true
@@ -140,6 +153,7 @@
         #- Door
         #tags:
         #- Wall
+    - type: AchievementTarget
 
 - type: entity
   name: dragon
@@ -271,7 +285,7 @@
         state: alive
       sprite: Imperial/Medieval/Mobs/Bosses/Dragons/aciddragon.rsi
     - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 10
+      rechargeCooldown: 6
       rechargeSound:
         path: /Audio/Imperial/Medieval/fireball_blast.ogg
     - type: BasicEntityAmmoProvider
@@ -279,7 +293,7 @@
       capacity: 1
       count: 1
     - type: Gun
-      projectileSpeed: 11
+      projectileSpeed: 14
       fireRate: 1
       useKey: false
       selectedMode: SemiAuto
@@ -386,12 +400,6 @@
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: alive
       sprite: Imperial/Medieval/Mobs/Bosses/Dragons/necrodragon.rsi
-    - type: Hands
-      hands:
-        hand_left:
-          location: left
-      showInHands: false
-      emptyRepresentative: []
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -403,18 +411,15 @@
       startingCharge: 10000
     - type: Gun
       projectileSpeed: 8
-      fireRate: 1.3
+      fireRate: 1.7
       useKey: false
       selectedMode: SemiAuto
       availableModes:
       - SemiAuto
       soundGunshot: /Audio/Imperial/Medieval/icebeam_shot.ogg
-    - type: Mana
-      maxMana: 10000
-      regen: 1
     - type: AddActionOnSpawn
       actions:
-        - MedievalActionSpawnSkeletMiddle
+        - MedievalActionSpawnSkeletSenior
         - MedievalActionBlinkDragon
     - type: MedievalPlagueInfectOnHit
       active: false

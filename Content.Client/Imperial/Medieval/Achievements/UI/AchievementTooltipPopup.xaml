@@ -1,0 +1,80 @@
+<PanelContainer xmlns="https://spacestation14.io"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                MinWidth="240"
+                HorizontalExpand="False"
+                VerticalExpand="False"
+                MouseFilter="Ignore">
+    <PanelContainer.PanelOverride>
+        <graphics:StyleBoxFlat BackgroundColor="#0b0704f2"
+                               BorderColor="#55402a"
+                               BorderThickness="1"
+                               ContentMarginLeftOverride="3"
+                               ContentMarginRightOverride="3"
+                               ContentMarginTopOverride="3"
+                               ContentMarginBottomOverride="3"/>
+    </PanelContainer.PanelOverride>
+    <PanelContainer MouseFilter="Ignore">
+        <PanelContainer.PanelOverride>
+            <graphics:StyleBoxFlat BackgroundColor="#171008f8"
+                                   BorderColor="#2a1f13"
+                                   BorderThickness="1"/>
+        </PanelContainer.PanelOverride>
+        <BoxContainer Orientation="Vertical" SeparationOverride="0" MouseFilter="Ignore">
+            <PanelContainer MouseFilter="Ignore">
+                <PanelContainer.PanelOverride>
+                    <graphics:StyleBoxFlat BackgroundColor="transparent"
+                                           ContentMarginLeftOverride="10"
+                                           ContentMarginRightOverride="14"
+                                           ContentMarginTopOverride="9"
+                                           ContentMarginBottomOverride="9"/>
+                </PanelContainer.PanelOverride>
+                <BoxContainer Orientation="Horizontal" SeparationOverride="10" MouseFilter="Ignore">
+                    <PanelContainer Name="IconPanel" SetSize="52, 52" MouseFilter="Ignore">
+                        <TextureRect Name="AchievementIcon"
+                                     Stretch="KeepAspectCentered"
+                                     HorizontalExpand="True"
+                                     VerticalExpand="True"
+                                     MouseFilter="Ignore"/>
+                        <Label Name="HiddenLabel"
+                               Text="?"
+                               StyleClasses="LabelHeading"
+                               FontColorOverride="#4a3828"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Visible="False"
+                               MouseFilter="Ignore"/>
+                    </PanelContainer>
+                    <BoxContainer Orientation="Vertical"
+                                  SeparationOverride="1"
+                                  VerticalAlignment="Center"
+                                  MouseFilter="Ignore">
+                        <Label Name="NameLabel"
+                               StyleClasses="LabelHeading"
+                               MouseFilter="Ignore"/>
+                        <Label Name="SubtitleLabel"
+                               Visible="False"
+                               MouseFilter="Ignore"/>
+                    </BoxContainer>
+                </BoxContainer>
+            </PanelContainer>
+            <PanelContainer Name="AccentDivider" SetHeight="2" MouseFilter="Ignore"/>
+            <PanelContainer Name="BodyPanel" MouseFilter="Ignore">
+                <PanelContainer.PanelOverride>
+                    <graphics:StyleBoxFlat BackgroundColor="transparent"
+                                           ContentMarginLeftOverride="12"
+                                           ContentMarginRightOverride="14"
+                                           ContentMarginTopOverride="9"
+                                           ContentMarginBottomOverride="10"/>
+                </PanelContainer.PanelOverride>
+                <RichTextLabel Name="DescriptionLabel"
+                               MaxWidth="330"
+                               HorizontalExpand="True"
+                               MouseFilter="Ignore"/>
+            </PanelContainer>
+            <PanelContainer Name="FooterPanel" MouseFilter="Ignore">
+                <Label Name="FooterLabel" MouseFilter="Ignore"/>
+            </PanelContainer>
+        </BoxContainer>
+    </PanelContainer>
+</PanelContainer>

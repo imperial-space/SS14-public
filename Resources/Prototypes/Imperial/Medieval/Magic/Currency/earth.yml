@@ -21,7 +21,7 @@
     state: essence
     noRot: true
   - type: Stack
-    count: 20
+    count: 12
     stackType: MagicMedievalEarth
   - type: ImperialCurrency
     price:

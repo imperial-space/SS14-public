@@ -48,7 +48,9 @@
     - state: blank
       map: ["left_foot"]
     - state: blank
-      map : ["upgrade1"]
+      map : ["crown"]
+    - state: blank
+      map : ["torso_upgrade"]
   - type: ForgedAssembly
     torso: ForgedForstoneTorso
   - type: ForgedModule
@@ -77,7 +79,7 @@
 - type: entity
   id: ForgedForstoneLArm
   name: ForgedForstoneLArm
-  parent: ForgedLLegBase
+  parent: ForgedLArmBase
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/forstone.rsi

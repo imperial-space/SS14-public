@@ -9,22 +9,15 @@
   id: BardAsianHat
   craftTime: 3
   stacks:
-    Cloth: 2
+    MedievalGrass: 2
   result: BardAsianHat
 
 - type: CP14Recipe
   id: BardCrown
   craftTime: 3
-  stacks:
-    Cloth: 2
+  entities:
+   MedievalPaper: 2
   result: BardCrown
-
-- type: CP14Recipe
-  id: BardArlekinoHead
-  craftTime: 3
-  stacks:
-    Cloth: 2
-  result: BardArlekinoHead
 
 - type: CP14Recipe
   id: BardHat
@@ -45,6 +38,7 @@
   craftTime: 3
   stacks:
     Cloth: 2
+    WoodPlank: 1
   result: BardHorse
 
 - type: CP14Recipe
@@ -65,49 +59,51 @@
   id: BardArlekino
   craftTime: 3
   stacks:
-    Cloth: 2
+    Cloth: 4
+    MedievalLeather1: 1
   result: BardArlekino
 
 - type: CP14Recipe
   id: BardBear
   craftTime: 3
   stacks:
-    Cloth: 2
+    Cloth: 3
+    MedievalLeather1: 2
   result: BardBear
 
 - type: CP14Recipe
   id: BardKimano
   craftTime: 3
   stacks:
-    Cloth: 2
+    Cloth: 4
   result: BardKimano
 
 - type: CP14Recipe
   id: BardMagicDress
   craftTime: 3
   stacks:
-    Cloth: 2
+    Cloth: 4
   result: BardMagicDress
 
 - type: CP14Recipe
   id: BardPierro
   craftTime: 3
   stacks:
-    Cloth: 2
+    Cloth: 4
   result: BardPierro
 
 - type: CP14Recipe
   id: BardGrinCoat
   craftTime: 3
   stacks:
-    Cloth: 2
+    Cloth: 4
   result: BardGrinCoat
 
 - type: CP14Recipe
   id: BardRedcoat
   craftTime: 3
   stacks:
-    Cloth: 2
+    Cloth: 4
   result: BardRedcoat
 
 - type: CP14Recipe
@@ -136,6 +132,8 @@
   craftTime: 3
   stacks:
     Cloth: 2
+  entities:
+    MedievalPaper: 4
   result: MedievalDecorBardDragon
 
 - type: CP14Recipe
@@ -143,6 +141,8 @@
   craftTime: 3
   stacks:
     Cloth: 2
+  entities:
+    MedievalPaper: 4
   result: MedievalDecorBardFire
 
 - type: CP14Recipe
@@ -150,6 +150,8 @@
   craftTime: 3
   stacks:
     Cloth: 2
+  entities:
+    MedievalPaper: 4
   result: MedievalDecorBardMoon
 
 - type: CP14Recipe
@@ -157,6 +159,8 @@
   craftTime: 3
   stacks:
     Cloth: 2
+  entities:
+    MedievalPaper: 4
   result: MedievalDecorBardSun
 
 - type: CP14Recipe
@@ -164,6 +168,8 @@
   craftTime: 3
   stacks:
     Cloth: 2
+  entities:
+    MedievalPaper: 4
   result: MedievalDecorBardThrone
 
 - type: CP14Recipe
@@ -171,6 +177,8 @@
   craftTime: 3
   stacks:
     Cloth: 2
+  entities:
+    MedievalPaper: 4
   result: MedievalDecorBardTower
 
 - type: CP14Recipe
@@ -178,4 +186,6 @@
   craftTime: 3
   stacks:
     Cloth: 2
+  entities:
+    MedievalPaper: 4
   result: MedievalDecorBardTree

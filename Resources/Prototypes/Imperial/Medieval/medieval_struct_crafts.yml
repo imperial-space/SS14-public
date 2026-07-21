@@ -1,0 +1,419 @@
+- type: constructionGraph
+  id: RailingScarlattoGraph
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DeleteEntity {}
+      edges:
+        - to: WoodRailingScarlatto
+          completed:
+            - !type:SpawnPrototype {}
+          steps:
+            - material: WoodPlank
+              amount: 4
+              doAfter: 2
+        - to: WoodRailingSideScarlatto
+          completed:
+            - !type:SpawnPrototype {}
+          steps:
+            - material: WoodPlank
+              amount: 4
+              doAfter: 2
+        - to: WoodRailingCornerScarlatto
+          completed:
+            - !type:SpawnPrototype {}
+          steps:
+            - material: WoodPlank
+              amount: 4
+              doAfter: 2
+        - to: WoodRailingCornerSmallScarlatto
+          completed:
+            - !type:SpawnPrototype {}
+          steps:
+            - material: WoodPlank
+              amount: 4
+              doAfter: 2
+        #Stone
+        - to: StoneRailingScarlatto
+          completed:
+            - !type:SpawnPrototype {}
+          steps:
+            - material: MedievalStoneBrick
+              amount: 2
+              doAfter: 2
+        - to: StoneRailingSideScarlatto
+          completed:
+            - !type:SpawnPrototype {}
+          steps:
+            - material: MedievalStoneBrick
+              amount: 2
+              doAfter: 2
+        - to: StoneRailingCornerScarlatto
+          completed:
+            - !type:SpawnPrototype {}
+          steps:
+            - material: MedievalStoneBrick
+              amount: 2
+              doAfter: 2
+        - to: StoneRailingCornerSmallScarlatto
+          completed:
+            - !type:SpawnPrototype {}
+          steps:
+            - material: MedievalStoneBrick
+              amount: 2
+              doAfter: 2
+
+
+
+
+
+
+
+    - node: WoodRailingScarlatto
+      entity: WoodRailingScarlatto
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+                prototype: WoodPlank
+                amount: 4
+          steps:
+            - tool: Screwing
+              doAfter: 2
+    - node: WoodRailingSideScarlatto
+      entity: WoodRailingSideScarlatto
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+                prototype: WoodPlank
+                amount: 4
+          steps:
+            - tool: Screwing
+              doAfter: 2
+    - node: WoodRailingCornerScarlatto
+      entity: WoodRailingCornerScarlatto
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+                prototype: WoodPlank
+                amount: 4
+          steps:
+            - tool: Screwing
+              doAfter: 2
+    - node: WoodRailingCornerSmallScarlatto
+      entity: WoodRailingCornerSmallScarlatto
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+                prototype: WoodPlank
+                amount: 4
+          steps:
+            - tool: Screwing
+              doAfter: 2
+    # Stone
+    - node: StoneRailingScarlatto
+      entity: StoneRailingScarlatto
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+                prototype: MedievalStoneBrick
+                amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 2
+    - node: StoneRailingSideScarlatto
+      entity: StoneRailingSideScarlatto
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+                prototype: MedievalStoneBrick
+                amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 2
+    - node: StoneRailingCornerScarlatto
+      entity: StoneRailingCornerScarlatto
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+                prototype: MedievalStoneBrick
+                amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 2
+    - node: StoneRailingCornerSmallScarlatto
+      entity: StoneRailingCornerSmallScarlatto
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+                prototype: MedievalStoneBrick
+                amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+
+
+
+
+
+
+- type: construction
+  id: WoodRailingScarlatto
+  name: деревянный забор
+  description: Деревянный забор
+  graph: RailingScarlattoGraph
+  startNode: start
+  targetNode: WoodRailingScarlatto
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: WoodRailingSideScarlatto
+  name: деревянный забор (низкий)
+  description: Деревянный забор (низкий)
+  graph: RailingScarlattoGraph
+  startNode: start
+  targetNode: WoodRailingSideScarlatto
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: WoodRailingCornerScarlatto
+  name: деревянный забор угол
+  description: Деревянный забор угол
+  graph: RailingScarlattoGraph
+  startNode: start
+  targetNode: WoodRailingCornerScarlatto
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: WoodRailingCornerSmallScarlatto
+  name: деревянный забор уголок
+  description: Деревянный забор уголок
+  graph: RailingScarlattoGraph
+  startNode: start
+  targetNode: WoodRailingCornerSmallScarlatto
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+
+
+  #Stone
+- type: construction
+  id: StoneRailingScarlatto
+  name: каменный забор
+  description: Каменный забор
+  graph: RailingScarlattoGraph
+  startNode: start
+  targetNode: StoneRailingScarlatto
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: StoneRailingSideScarlatto
+  name: каменный забор (низкий)
+  description: Каменный забор (низкий)
+  graph: RailingScarlattoGraph
+  startNode: start
+  targetNode: StoneRailingSideScarlatto
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: StoneRailingCornerScarlatto
+  name: каменный забор угол
+  description: Каменный забор угол
+  graph: RailingScarlattoGraph
+  startNode: start
+  targetNode: StoneRailingCornerScarlatto
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: StoneRailingCornerSmallScarlatto
+  name: каменный забор уголок
+  description: Каменный забор уголок
+  graph: RailingScarlattoGraph
+  startNode: start
+  targetNode: StoneRailingCornerSmallScarlatto
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+
+
+
+
+
+
+
+
+
+- type: constructionGraph
+  id: MedievalWindowGraph
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DeleteEntity {}
+      edges:
+        - to: MedievalShipWindow
+          completed:
+            - !type:SpawnPrototype {}
+          steps:
+            - material: WoodPlank
+              amount: 4
+              doAfter: 2
+            - material: MedievalGlina
+              amount: 4
+              doAfter: 2
+        - to: MedievalVintageWindow
+          completed:
+            - !type:SpawnPrototype {}
+          steps:
+            - material: WoodPlank
+              amount: 4
+              doAfter: 2
+            - material: MedievalGlina
+              amount: 8
+              doAfter: 2
+        - to: DiagonalVintageWindowWood
+          completed:
+            - !type:SpawnPrototype {}
+          steps:
+            - material: WoodPlank
+              amount: 4
+              doAfter: 2
+            - material: MedievalGlina
+              amount: 8
+              doAfter: 2
+        - to: MedievalVintageStoneWindow
+          completed:
+            - !type:SpawnPrototype {}
+          steps:
+            - material: MedievalStoneBrick
+              amount: 2
+              doAfter: 2
+            - material: MedievalGlina
+              amount: 8
+              doAfter: 2
+        - to: DiagonalVintageWindowStone
+          completed:
+            - !type:SpawnPrototype {}
+          steps:
+            - material: MedievalStoneBrick
+              amount: 2
+              doAfter: 2
+            - material: MedievalGlina
+              amount: 8
+              doAfter: 2
+
+
+    - node: MedievalShipWindow
+      entity: MedievalShipWindow
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 2
+    - node: MedievalVintageWindow
+      entity: MedievalVintageWindow
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 2
+    - node: DiagonalVintageWindowWood
+      entity: DiagonalVintageWindowWood
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 2
+    - node: MedievalVintageStoneWindow
+      entity: MedievalVintageStoneWindow
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 2
+    - node: DiagonalVintageWindowStone
+      entity: DiagonalVintageWindowStone
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+
+- type: construction
+  id: MedievalShipWindow
+  name: Окно
+  description: корабельное окно
+  graph: MedievalWindowGraph
+  startNode: start
+  targetNode: MedievalShipWindow
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: MedievalVintageWindow
+  name: деревянное винтажное окно
+  description: Деревянное винтажное окно
+  graph: MedievalWindowGraph
+  startNode: start
+  targetNode: MedievalVintageWindow
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: DiagonalVintageWindowWood
+  name: деревянное винтажное окно диагональное
+  description: деревянное винтажное окно диагональное
+  graph: MedievalWindowGraph
+  startNode: start
+  targetNode: DiagonalVintageWindowWood
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: MedievalVintageStoneWindow
+  name: каменное винтажное окно
+  description: каменное винтажное окно
+  graph: MedievalWindowGraph
+  startNode: start
+  targetNode: MedievalVintageStoneWindow
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: DiagonalVintageWindowStone
+  name: каменное винтажное окно диагональное
+  description: каменное винтажное окно диагональное
+  graph: MedievalWindowGraph
+  startNode: start
+  targetNode: DiagonalVintageWindowStone
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false

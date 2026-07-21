@@ -16,18 +16,22 @@ public enum SailVisuals : byte
 public enum SailVisualLayers : byte
 {
     Unfolded,
-    Folded
+    Folded,
+    Animation
 }
 
 [RegisterComponent, NetworkedComponent, Serializable]
 public sealed partial class SailComponent : Component
 {
     [DataField("SailSize")]
-    public int SailSize = 1;
+    public float SailSize = 1f;
 
     [DataField("Folded")]
     public bool Folded;
 
     [DataField("Push")]
     public bool Push = true;
+
+    [ViewVariables]
+    public float LastSailEfficencyMod;
 }

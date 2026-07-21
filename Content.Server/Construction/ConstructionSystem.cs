@@ -1,3 +1,4 @@
+using Content.Server.Imperial.Medieval.Achievements;
 using Content.Server.Construction.Components;
 using Content.Server.Stack;
 using Content.Shared.Construction;
@@ -20,6 +21,7 @@ namespace Content.Server.Construction
         [Dependency] private readonly ContainerSystem _container = default!;
         [Dependency] private readonly StackSystem _stackSystem = default!;
         [Dependency] private readonly SharedToolSystem _toolSystem = default!;
+        [Dependency] protected readonly AchievementSystem Achievement = default!; // Imperial Medieval Achievements
 
         public override void Initialize()
         {

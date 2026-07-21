@@ -1,0 +1,11 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      xmlns:cartographer="clr-namespace:Content.Client.Imperial.Medieval.CartographerTable"
+                      Title="Map"
+                      SetSize="648 648"
+                      MinSize="256 256">
+    <cartographer:MedievalCartographerTableNavControl Name="RadarScreen"
+                                                       Margin="4"
+                                                       HorizontalExpand="True"
+                                                       VerticalExpand="True"/>
+</controls:FancyWindow>

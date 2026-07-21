@@ -37,5 +37,8 @@ namespace Content.Server.BadSmell.Components
         [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSound = "/Audio/Imperial/Medieval/bad_smell_effect.ogg";
         public ProtoId<AlertPrototype> SmellAlert = "BadSmell";
+
+        [DataField]
+        public bool IsDirtyVisible = true;
     }
 }

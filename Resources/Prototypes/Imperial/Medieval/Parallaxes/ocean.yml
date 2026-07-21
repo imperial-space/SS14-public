@@ -4,28 +4,140 @@
     - texture:
         !type:ImageParallaxTextureSource
         path: "/Textures/Imperial/Medieval/Parallaxes/ocean_parallax.png"
-      slowness: 0.9985
+      slowness: 0.01
       scale: "1.45, 1.45"
       scrolling: "0.0016, -0.0008"
+      shader: SeaNightDarken
     - texture:
         !type:ImageParallaxTextureSource
         path: "/Textures/Imperial/Medieval/Parallaxes/ocean_parallax.png"
-      slowness: 0.9955
+      slowness: 0.01
       scale: "1.1, 1.1"
       scrolling: "-0.0012, 0.0009"
       worldHomePosition: "72.0, -48.0"
+      shader: SeaNightDarken
     - texture:
         !type:ImageParallaxTextureSource
         path: "/Textures/Imperial/Medieval/Parallaxes/ocean_parallax.png"
-      slowness: 0.992
+      slowness: 0.01
       scale: "0.82, 0.82"
       scrolling: "0.0024, 0.0011"
       worldHomePosition: "-94.0, 61.0"
+      shader: SeaNightDarken
   layersLQ:
     - texture:
         !type:ImageParallaxTextureSource
         path: "/Textures/Imperial/Medieval/Parallaxes/ocean_parallax.png"
-      slowness: 0.996
+      slowness: 0.01
       scale: "1.2, 1.2"
       scrolling: "0.0012, -0.0006"
+      shader: SeaNightDarken
+  layersLQUseHQ: false
+
+- type: parallax
+  id: OceanMedievalStorm1
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Imperial/Medieval/Parallaxes/ocean_parallax_storm1.png"
+      slowness: 0.01
+      scale: "1.45, 1.45"
+      scrolling: "0.0016, -0.0008"
+      shader: SeaNightDarken
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Imperial/Medieval/Parallaxes/ocean_parallax_storm1.png"
+      slowness: 0.01
+      scale: "1.1, 1.1"
+      scrolling: "-0.0012, 0.0009"
+      worldHomePosition: "72.0, -48.0"
+      shader: SeaNightDarken
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Imperial/Medieval/Parallaxes/ocean_parallax_storm1.png"
+      slowness: 0.01
+      scale: "0.82, 0.82"
+      scrolling: "0.0024, 0.0011"
+      worldHomePosition: "-94.0, 61.0"
+      shader: SeaNightDarken
+  layersLQ:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Imperial/Medieval/Parallaxes/ocean_parallax_storm1.png"
+      slowness: 0.01
+      scale: "1.2, 1.2"
+      scrolling: "0.0012, -0.0006"
+      shader: SeaNightDarken
+  layersLQUseHQ: false
+
+- type: parallax
+  id: OceanMedievalStorm2
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Imperial/Medieval/Parallaxes/ocean_parallax_storm2.png"
+      slowness: 0.01
+      scale: "1.45, 1.45"
+      scrolling: "0.0016, -0.0008"
+      shader: SeaNightDarken
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Imperial/Medieval/Parallaxes/ocean_parallax_storm2.png"
+      slowness: 0.01
+      scale: "1.1, 1.1"
+      scrolling: "-0.0012, 0.0009"
+      worldHomePosition: "72.0, -48.0"
+      shader: SeaNightDarken
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Imperial/Medieval/Parallaxes/ocean_parallax_storm2.png"
+      slowness: 0.01
+      scale: "0.82, 0.82"
+      scrolling: "0.0024, 0.0011"
+      worldHomePosition: "-94.0, 61.0"
+      shader: SeaNightDarken
+  layersLQ:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Imperial/Medieval/Parallaxes/ocean_parallax_storm2.png"
+      slowness: 0.01
+      scale: "1.2, 1.2"
+      scrolling: "0.0012, -0.0006"
+      shader: SeaNightDarken
+  layersLQUseHQ: false
+
+- type: parallax
+  id: OceanMedievalStorm3
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Imperial/Medieval/Parallaxes/ocean_parallax_storm3.png"
+      slowness: 0.01
+      scale: "1.45, 1.45"
+      scrolling: "0.0016, -0.0008"
+      shader: SeaNightDarken
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Imperial/Medieval/Parallaxes/ocean_parallax_storm3.png"
+      slowness: 0.01
+      scale: "1.1, 1.1"
+      scrolling: "-0.0012, 0.0009"
+      worldHomePosition: "72.0, -48.0"
+      shader: SeaNightDarken
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Imperial/Medieval/Parallaxes/ocean_parallax_storm3.png"
+      slowness: 0.01
+      scale: "0.82, 0.82"
+      scrolling: "0.0024, 0.0011"
+      worldHomePosition: "-94.0, 61.0"
+      shader: SeaNightDarken
+  layersLQ:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Imperial/Medieval/Parallaxes/ocean_parallax_storm3.png"
+      slowness: 0.01
+      scale: "1.2, 1.2"
+      scrolling: "0.0012, -0.0006"
+      shader: SeaNightDarken
   layersLQUseHQ: false

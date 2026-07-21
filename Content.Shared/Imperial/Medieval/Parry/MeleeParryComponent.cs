@@ -1,24 +1,38 @@
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.MeleeParry.Components
 {
-    [RegisterComponent, NetworkedComponent]
+    [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
     public sealed partial class MeleeParryComponent : Component
     {
-        [DataField]
-        public float ParryChanse = 0.6f;
+        [ViewVariables(VVAccess.ReadOnly)]
+        public EntityUid? LastSuccessParriedAttacker; //Нужно для парирования урона стамине, после этого оно обнулится
+
+        [ViewVariables(VVAccess.ReadOnly)]
+        public TimeSpan LastSuccessParriedTime;  //Нужно для парирования урона стамине, после этого оно обнулится
 
         [DataField]
-        public float ParriedAgo = 3.5f;
+        [ViewVariables(VVAccess.ReadOnly)]
+        public TimeSpan ParriedTime = TimeSpan.Zero;
 
         [DataField]
-        public float ParriedTime = 3.5f;
+        public string ParryEffectSuccess = "MedievalEffectSuccessParry";
+        [DataField]
+        public string ParryEffectWindow = "MedievalEffectWindowParry";
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        public float ParryWindow = 0.5f;
+
+        [DataField, AutoNetworkedField]
+        [ViewVariables(VVAccess.ReadWrite)]
+        public float ParryCooldown = 4f;
 
         [DataField]
-        public string ParryEffect = "MedievalEffectParry";
+        public float ParryUseDelay = 1.25f;
 
         [DataField]
-        public bool RealParry = true;
+        public float ParryStaminaDamage = 20f;
     }
 
     [RegisterComponent, NetworkedComponent]
@@ -28,9 +42,9 @@ namespace Content.Shared.MeleeParry.Components
         public float ParryChanse = 0.75f;
 
         [DataField]
-        public float ParriedAgo = 2.5f;
+        public float ParriedAgo = 0.5f;
 
         [DataField]
-        public float ParriedTime = 2.5f;
+        public float ParriedTime = 0.5f;
     }
 }

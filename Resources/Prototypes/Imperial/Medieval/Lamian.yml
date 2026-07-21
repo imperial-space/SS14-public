@@ -210,6 +210,8 @@
   - type: Wagging
   - type: Bloodstream
     bloodReagent: LamianBlood
+  - type: DrowningModifier
+    resistanceModifier: 1.5
 
 - type: damageModifierSet
   id: Lamian

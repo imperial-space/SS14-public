@@ -17,7 +17,7 @@ public sealed class ShipsCCVars : CVars
     /// как часто меняется ветер
     /// </summary>
     public static readonly CVarDef<float> WindChangeTime =
-        CVarDef.Create("ships.windchangetime", 1f, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("ships.windchangetime", 10f, CVar.REPLICATED | CVar.SERVER);
     /// <summary>
     /// как часто ветер дует
     /// </summary>
@@ -49,19 +49,23 @@ public sealed class ShipsCCVars : CVars
     public static readonly CVarDef<float> StormLevel =
         CVarDef.Create("ships.stormlevel", 1f, CVar.REPLICATED | CVar.SERVER);
     public static readonly CVarDef<float> StormChangeTime =
-        CVarDef.Create("ships.stormchangetime", 60f, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("ships.stormchangetime", 45f, CVar.REPLICATED | CVar.SERVER);
     public static readonly CVarDef<float> StormIncreaseChance =
-        CVarDef.Create("ships.stormincreasechance", 0.10f, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("ships.stormincreasechance", 0.12f, CVar.REPLICATED | CVar.SERVER);
     public static readonly CVarDef<float> StormDecreaseChance =
-        CVarDef.Create("ships.stormdecreasechance", 0.15f, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("ships.stormdecreasechance", 0.16f, CVar.REPLICATED | CVar.SERVER);
     public static readonly CVarDef<float> StormMinLevel =
         CVarDef.Create("ships.stormminlevel", 1f, CVar.REPLICATED | CVar.SERVER);
     public static readonly CVarDef<float> StormMaxLevel =
-        CVarDef.Create("ships.stormmaxlevel", 4f, CVar.REPLICATED | CVar.SERVER);
-    public static readonly CVarDef<float> StormRainLevel =
-        CVarDef.Create("ships.stormrainlevel", 3f, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("ships.stormmaxlevel", 8f, CVar.REPLICATED | CVar.SERVER);
+    public static readonly CVarDef<float> StormRainLevel =  // С какого уровня шторма начинается дождь
+        CVarDef.Create("ships.stormrainlevel", 4f, CVar.REPLICATED | CVar.SERVER);
     public static readonly CVarDef<string> StormRainWeather =
         CVarDef.Create("ships.stormrainweather", "Rain", CVar.REPLICATED | CVar.SERVER);
+    public static readonly CVarDef<float> StormStormLevel = // С какого уровня шторма начинается шторм
+        CVarDef.Create("ships.stormstormlevel", 5f, CVar.REPLICATED | CVar.SERVER);
+    public static readonly CVarDef<string> StormStormWeather =
+        CVarDef.Create("ships.stormstormweather", "Storm", CVar.REPLICATED | CVar.SERVER);
     /// <summary>
     /// скорость с которой волна спавнится
     /// </summary>
@@ -71,7 +75,9 @@ public sealed class ShipsCCVars : CVars
     /// радиус спавна волн
     /// </summary>
     public static readonly CVarDef<float> WaveSpawnRange =
-        CVarDef.Create("ships.wavespawnrange", 40f, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("ships.wavespawnrange", 35.5f, CVar.REPLICATED | CVar.SERVER);
+    public static readonly CVarDef<float> WaveMinSpawnDistance =
+        CVarDef.Create("ships.waveminspawndistance", 3f, CVar.REPLICATED | CVar.SERVER);
     /// <summary>
     /// угол разброса волн
     /// </summary>
@@ -103,5 +109,16 @@ public sealed class ShipsCCVars : CVars
     public static readonly CVarDef<int> TeleportRange =
         CVarDef.Create("ships.teleportrange", 50, CVar.REPLICATED | CVar.SERVER);
 
+    /// <summary>
+    ///  Default weight limit that a single ship tile can sustain before the ship suffers speed and flooding penalties.
+    /// </summary>
+    public static readonly CVarDef<float> OverloadCeilPerTile =
+        CVarDef.Create("ships.overloadCeilPerTile", 20f, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
+    ///  Amount of increase in the drowning level per second if the ship is overloaded.
+    /// </summary>
+    public static readonly CVarDef<float> OverloadDrownRate =
+        CVarDef.Create("ships.overloadDrownRate", 500f, CVar.SERVER | CVar.REPLICATED);
 }
 

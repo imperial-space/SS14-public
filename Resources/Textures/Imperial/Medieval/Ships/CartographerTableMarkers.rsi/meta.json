@@ -1,0 +1,20 @@
+{
+    "version": 1,
+    "license": null,
+    "copyright": "Zakvielian",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "circle32x32"
+        },
+        {
+            "name": "square32x32"
+        },
+        {
+            "name": "triangle32x32"
+        }
+    ]
+}

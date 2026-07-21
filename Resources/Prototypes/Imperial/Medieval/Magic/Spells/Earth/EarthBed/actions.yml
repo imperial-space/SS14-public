@@ -1,0 +1,56 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionEarthBedBeginner
+  name: medieval-store-spells-earth-bed-beginner-name
+  description: medieval-store-spells-earth-bed-beginner-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.0007
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalVodka: 1
+        bonusEssences:
+          MagicMedievalVodka: 1
+  - type: ManaDrainSpell
+    manaDrain: 45
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 20
+  - type: SpellCastEffect
+    effectProto: EarthBedSpellCastEffectBeginner
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 120
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Earth/EarthBed/icons.rsi
+      state: beginner
+  - type: TargetAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 5
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalEarthBedBeginner
+      spawnType: SpawnOnMousePosition
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-earth-bed
+          color: "#838275"
+          hideChat: true
+  - type: ShowSpawnedEntity
+    sprites:
+      - drawedSprite:
+          sprite:  Imperial/Medieval/Magic/Earth/EarthBed/projectiles.rsi
+          state: beginner
+        alwaysRender: true
+        spriteColor: "#574242"
+        outOfRangeColor: "#650000"
+        range: 5

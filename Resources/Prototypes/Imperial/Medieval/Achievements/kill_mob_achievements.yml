@@ -1,0 +1,1717 @@
+# ==========================================
+# КОРЕНЬ: ПЕРВАЯ КРОВЬ (Открывает все ветки)
+# ==========================================
+- type: achievement
+  id: AchievementKillFirstMob
+  priority: 100
+  rarity: Common
+  tab: AchievementTabKillMob
+  name: achievement-name-kill-first-mob
+  description: achievement-desc-kill-first-mob
+  icon:
+    sprite: /Textures/Imperial/Medieval/Melee/iron_sword.rsi
+    state: icon
+  visibility: Visible
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killFirstMobProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobSkeletWeak
+    - MedievalMobSkeletWeakGhost
+    - MedievalMobSkeletMeat
+    - MedievalMobSkeletMeatGhost
+    - MedievalMobSkeletFighter
+    - MedievalMobSkeletFighterGhost
+    - MedievalMobSkeletArcher
+    - MedievalMobSkeletCrossbow
+    - MedievalMobSkeletHalberd
+    - MedievalMobSkeletHalberdGhost
+    - MedievalMobSkeletMace
+    - MedievalMobSkeletMaceGhost
+    - MedievalMobSkeletDagger
+    - MedievalMobSkeletDaggerGhost
+    - MedievalMobSkeletSpear
+    - MedievalMobSkeletSpearGhost
+    - MedievalMobWolf
+    - MedievalMobWolfGhost
+    - MedievalMobHog
+    - MedievalMobBear
+    - MedievalBossIceDragon
+    - MedievalBossFireDragon
+    - MedievalBossAcidDragon
+    - MedievalBossThunderDragon
+    - MedievalMobCrab
+    - MedievalMobCrabDevil
+    - MedievalMobHunterGhost
+    - MedievalMobSpiderCave
+    - MedievalMobSpiderStrongCave
+    - MedievalMobGoblin
+    - MedievalMobPlagueSlime
+    - MedievalMobPlagueMouse
+
+# ==========================================
+# ВЕТКА 1: СЛАБЫЙ СКЕЛЕТ
+# ==========================================
+- type: achievement
+  id: AchievementKillSkeletWeak1
+  priority: 101
+  rarity: Common
+  name: achievement-name-kill-skelet-weak-1
+  description: achievement-desc-kill-skelet-weak-1
+  icon:
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: full
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletWeakProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobSkeletWeak
+    - MedievalMobSkeletWeakGhost
+
+- type: achievement
+  id: AchievementKillSkeletWeak25
+  priority: 101
+  rarity: Common
+  name: achievement-name-kill-skelet-weak-25
+  description: achievement-desc-kill-skelet-weak-25
+  icon:
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: full
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletWeak1
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletWeakProgression
+    requiredCount: 25
+    targetMobPrototypes:
+    - MedievalMobSkeletWeak
+    - MedievalMobSkeletWeakGhost
+
+- type: achievement
+  id: AchievementKillSkeletWeak75
+  priority: 101
+  rarity: Common
+  name: achievement-name-kill-skelet-weak-75
+  description: achievement-desc-kill-skelet-weak-75
+  icon:
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: full
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletWeak25
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletWeakProgression
+    requiredCount: 75
+    targetMobPrototypes:
+    - MedievalMobSkeletWeak
+    - MedievalMobSkeletWeakGhost
+
+- type: achievement
+  id: AchievementKillSkeletWeak150
+  priority: 101
+  rarity: Common
+  name: achievement-name-kill-skelet-weak-150
+  description: achievement-desc-kill-skelet-weak-150
+  icon:
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: full
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletWeak75
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletWeakProgression
+    requiredCount: 150
+    targetMobPrototypes:
+    - MedievalMobSkeletWeak
+    - MedievalMobSkeletWeakGhost
+
+- type: achievement
+  id: AchievementKillSkeletWeak500
+  priority: 101
+  rarity: Common
+  name: achievement-name-kill-skelet-weak-500
+  description: achievement-desc-kill-skelet-weak-500
+  icon:
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: full
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletWeak150
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletWeakProgression
+    requiredCount: 500
+    targetMobPrototypes:
+    - MedievalMobSkeletWeak
+    - MedievalMobSkeletWeakGhost
+
+# ==========================================
+# ВЕТКА 2: МЯСНОЙ СКЕЛЕТ
+# ==========================================
+- type: achievement
+  id: AchievementKillSkeletMeat1
+  priority: 102
+  rarity: Common
+  name: achievement-name-kill-skelet-meat-1
+  description: achievement-desc-kill-skelet-meat-1
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_meat.rsi
+    state: base
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletMeatProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobSkeletMeat
+    - MedievalMobSkeletMeatGhost
+
+- type: achievement
+  id: AchievementKillSkeletMeat25
+  priority: 102
+  rarity: Common
+  name: achievement-name-kill-skelet-meat-25
+  description: achievement-desc-kill-skelet-meat-25
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_meat.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletMeat1
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletMeatProgression
+    requiredCount: 25
+    targetMobPrototypes:
+    - MedievalMobSkeletMeat
+    - MedievalMobSkeletMeatGhost
+
+- type: achievement
+  id: AchievementKillSkeletMeat50
+  priority: 102
+  rarity: Common
+  name: achievement-name-kill-skelet-meat-50
+  description: achievement-desc-kill-skelet-meat-50
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_meat.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletMeat25
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletMeatProgression
+    requiredCount: 50
+    targetMobPrototypes:
+    - MedievalMobSkeletMeat
+    - MedievalMobSkeletMeatGhost
+
+- type: achievement
+  id: AchievementKillSkeletMeat150
+  priority: 102
+  rarity: Common
+  name: achievement-name-kill-skelet-meat-150
+  description: achievement-desc-kill-skelet-meat-150
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_meat.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletMeat50
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletMeatProgression
+    requiredCount: 150
+    targetMobPrototypes:
+    - MedievalMobSkeletMeat
+    - MedievalMobSkeletMeatGhost
+
+# ==========================================
+# ВЕТКА 3: ЛЕГИОНЕР (FIGHTER)
+# ==========================================
+- type: achievement
+  id: AchievementKillSkeletFighter1
+  priority: 103
+  rarity: Common
+  name: achievement-name-kill-skelet-fighter-1
+  description: achievement-desc-kill-skelet-fighter-1
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_fighter.rsi
+    state: base
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletFighterProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobSkeletFighter
+    - MedievalMobSkeletFighterGhost
+
+- type: achievement
+  id: AchievementKillSkeletFighter25
+  priority: 103
+  rarity: Common
+  name: achievement-name-kill-skelet-fighter-25
+  description: achievement-desc-kill-skelet-fighter-25
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_fighter.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletFighter1
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletFighterProgression
+    requiredCount: 25
+    targetMobPrototypes:
+    - MedievalMobSkeletFighter
+    - MedievalMobSkeletFighterGhost
+
+- type: achievement
+  id: AchievementKillSkeletFighter50
+  priority: 103
+  rarity: Common
+  name: achievement-name-kill-skelet-fighter-50
+  description: achievement-desc-kill-skelet-fighter-50
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_fighter.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletFighter25
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletFighterProgression
+    requiredCount: 50
+    targetMobPrototypes:
+    - MedievalMobSkeletFighter
+    - MedievalMobSkeletFighterGhost
+
+- type: achievement
+  id: AchievementKillSkeletFighter150
+  priority: 103
+  rarity: Common
+  name: achievement-name-kill-skelet-fighter-150
+  description: achievement-desc-kill-skelet-fighter-150
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_fighter.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletFighter50
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletFighterProgression
+    requiredCount: 150
+    targetMobPrototypes:
+    - MedievalMobSkeletFighter
+    - MedievalMobSkeletFighterGhost
+
+# ==========================================
+# ВЕТКА 4: ЛУЧНИК
+# ==========================================
+- type: achievement
+  id: AchievementKillSkeletArcher1
+  priority: 104
+  rarity: Common
+  name: achievement-name-kill-skelet-archer-1
+  description: achievement-desc-kill-skelet-archer-1
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_bow.rsi
+    state: base
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletArcherProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobSkeletArcher
+
+- type: achievement
+  id: AchievementKillSkeletArcher25
+  priority: 104
+  rarity: Common
+  name: achievement-name-kill-skelet-archer-25
+  description: achievement-desc-kill-skelet-archer-25
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_bow.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletArcher1
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletArcherProgression
+    requiredCount: 25
+    targetMobPrototypes:
+    - MedievalMobSkeletArcher
+
+- type: achievement
+  id: AchievementKillSkeletArcher50
+  priority: 104
+  rarity: Common
+  name: achievement-name-kill-skelet-archer-50
+  description: achievement-desc-kill-skelet-archer-50
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_bow.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletArcher25
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletArcherProgression
+    requiredCount: 50
+    targetMobPrototypes:
+    - MedievalMobSkeletArcher
+
+- type: achievement
+  id: AchievementKillSkeletArcher150
+  priority: 104
+  rarity: Common
+  name: achievement-name-kill-skelet-archer-150
+  description: achievement-desc-kill-skelet-archer-150
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_bow.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletArcher50
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletArcherProgression
+    requiredCount: 150
+    targetMobPrototypes:
+    - MedievalMobSkeletArcher
+
+# ==========================================
+# ВЕТКА 5: АРБАЛЕТЧИК
+# ==========================================
+- type: achievement
+  id: AchievementKillSkeletCrossbow1
+  priority: 105
+  rarity: Common
+  name: achievement-name-kill-skelet-crossbow-1
+  description: achievement-desc-kill-skelet-crossbow-1
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_crossbow.rsi
+    state: base
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletCrossbowProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobSkeletCrossbow
+
+- type: achievement
+  id: AchievementKillSkeletCrossbow25
+  priority: 105
+  rarity: Common
+  name: achievement-name-kill-skelet-crossbow-25
+  description: achievement-desc-kill-skelet-crossbow-25
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_crossbow.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletCrossbow1
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletCrossbowProgression
+    requiredCount: 25
+    targetMobPrototypes:
+    - MedievalMobSkeletCrossbow
+
+- type: achievement
+  id: AchievementKillSkeletCrossbow50
+  priority: 105
+  rarity: Common
+  name: achievement-name-kill-skelet-crossbow-50
+  description: achievement-desc-kill-skelet-crossbow-50
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_crossbow.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletCrossbow25
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletCrossbowProgression
+    requiredCount: 50
+    targetMobPrototypes:
+    - MedievalMobSkeletCrossbow
+
+- type: achievement
+  id: AchievementKillSkeletCrossbow100
+  priority: 105
+  rarity: Common
+  name: achievement-name-kill-skelet-crossbow-100
+  description: achievement-desc-kill-skelet-crossbow-100
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_crossbow.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletCrossbow50
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletCrossbowProgression
+    requiredCount: 100
+    targetMobPrototypes:
+    - MedievalMobSkeletCrossbow
+
+# ==========================================
+# ВЕТКА 6: СЕКИРА (HALBERD)
+# ==========================================
+- type: achievement
+  id: AchievementKillSkeletHalberd1
+  priority: 106
+  rarity: Common
+  name: achievement-name-kill-skelet-halberd-1
+  description: achievement-desc-kill-skelet-halberd-1
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_halberd.rsi
+    state: base
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletHalberdProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobSkeletHalberd
+    - MedievalMobSkeletHalberdGhost
+
+- type: achievement
+  id: AchievementKillSkeletHalberd25
+  priority: 106
+  rarity: Common
+  name: achievement-name-kill-skelet-halberd-25
+  description: achievement-desc-kill-skelet-halberd-25
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_halberd.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletHalberd1
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletHalberdProgression
+    requiredCount: 25
+    targetMobPrototypes:
+    - MedievalMobSkeletHalberd
+    - MedievalMobSkeletHalberdGhost
+
+- type: achievement
+  id: AchievementKillSkeletHalberd50
+  priority: 106
+  rarity: Common
+  name: achievement-name-kill-skelet-halberd-50
+  description: achievement-desc-kill-skelet-halberd-50
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_halberd.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletHalberd25
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletHalberdProgression
+    requiredCount: 50
+    targetMobPrototypes:
+    - MedievalMobSkeletHalberd
+    - MedievalMobSkeletHalberdGhost
+
+- type: achievement
+  id: AchievementKillSkeletHalberd100
+  priority: 106
+  rarity: Common
+  name: achievement-name-kill-skelet-halberd-100
+  description: achievement-desc-kill-skelet-halberd-100
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_halberd.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletHalberd50
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletHalberdProgression
+    requiredCount: 100
+    targetMobPrototypes:
+    - MedievalMobSkeletHalberd
+    - MedievalMobSkeletHalberdGhost
+
+# ==========================================
+# ВЕТКА 7: ЩИТ (MACE)
+# ==========================================
+- type: achievement
+  id: AchievementKillSkeletMace1
+  priority: 107
+  rarity: Common
+  name: achievement-name-kill-skelet-mace-1
+  description: achievement-desc-kill-skelet-mace-1
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_mace.rsi
+    state: base
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletMaceProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobSkeletMace
+    - MedievalMobSkeletMaceGhost
+
+- type: achievement
+  id: AchievementKillSkeletMace25
+  priority: 107
+  rarity: Common
+  name: achievement-name-kill-skelet-mace-25
+  description: achievement-desc-kill-skelet-mace-25
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_mace.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletMace1
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletMaceProgression
+    requiredCount: 25
+    targetMobPrototypes:
+    - MedievalMobSkeletMace
+    - MedievalMobSkeletMaceGhost
+
+- type: achievement
+  id: AchievementKillSkeletMace50
+  priority: 107
+  rarity: Common
+  name: achievement-name-kill-skelet-mace-50
+  description: achievement-desc-kill-skelet-mace-50
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_mace.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletMace25
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletMaceProgression
+    requiredCount: 50
+    targetMobPrototypes:
+    - MedievalMobSkeletMace
+    - MedievalMobSkeletMaceGhost
+
+- type: achievement
+  id: AchievementKillSkeletMace100
+  priority: 107
+  rarity: Common
+  name: achievement-name-kill-skelet-mace-100
+  description: achievement-desc-kill-skelet-mace-100
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_mace.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletMace50
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletMaceProgression
+    requiredCount: 100
+    targetMobPrototypes:
+    - MedievalMobSkeletMace
+    - MedievalMobSkeletMaceGhost
+
+# ==========================================
+# ВЕТКА 8: КИНЖАЛ (DAGGER)
+# ==========================================
+- type: achievement
+  id: AchievementKillSkeletDagger1
+  priority: 108
+  rarity: Common
+  name: achievement-name-kill-skelet-dagger-1
+  description: achievement-desc-kill-skelet-dagger-1
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_dagger.rsi
+    state: base
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletDaggerProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobSkeletDagger
+    - MedievalMobSkeletDaggerGhost
+
+- type: achievement
+  id: AchievementKillSkeletDagger25
+  priority: 108
+  rarity: Common
+  name: achievement-name-kill-skelet-dagger-25
+  description: achievement-desc-kill-skelet-dagger-25
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_dagger.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletDagger1
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletDaggerProgression
+    requiredCount: 25
+    targetMobPrototypes:
+    - MedievalMobSkeletDagger
+    - MedievalMobSkeletDaggerGhost
+
+- type: achievement
+  id: AchievementKillSkeletDagger50
+  priority: 108
+  rarity: Common
+  name: achievement-name-kill-skelet-dagger-50
+  description: achievement-desc-kill-skelet-dagger-50
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_dagger.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletDagger25
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletDaggerProgression
+    requiredCount: 50
+    targetMobPrototypes:
+    - MedievalMobSkeletDagger
+    - MedievalMobSkeletDaggerGhost
+
+- type: achievement
+  id: AchievementKillSkeletDagger100
+  priority: 108
+  rarity: Common
+  name: achievement-name-kill-skelet-dagger-100
+  description: achievement-desc-kill-skelet-dagger-100
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_dagger.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletDagger50
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletDaggerProgression
+    requiredCount: 100
+    targetMobPrototypes:
+    - MedievalMobSkeletDagger
+    - MedievalMobSkeletDaggerGhost
+
+# ==========================================
+# ВЕТКА 9: КОПЬЕ (SPEAR)
+# ==========================================
+- type: achievement
+  id: AchievementKillSkeletSpear1
+  priority: 109
+  rarity: Common
+  name: achievement-name-kill-skelet-spear-1
+  description: achievement-desc-kill-skelet-spear-1
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_spear.rsi
+    state: base
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletSpearProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobSkeletSpear
+    - MedievalMobSkeletSpearGhost
+
+- type: achievement
+  id: AchievementKillSkeletSpear25
+  priority: 109
+  rarity: Common
+  name: achievement-name-kill-skelet-spear-25
+  description: achievement-desc-kill-skelet-spear-25
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_spear.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletSpear1
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletSpearProgression
+    requiredCount: 25
+    targetMobPrototypes:
+    - MedievalMobSkeletSpear
+    - MedievalMobSkeletSpearGhost
+
+- type: achievement
+  id: AchievementKillSkeletSpear50
+  priority: 109
+  rarity: Common
+  name: achievement-name-kill-skelet-spear-50
+  description: achievement-desc-kill-skelet-spear-50
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_spear.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletSpear25
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletSpearProgression
+    requiredCount: 50
+    targetMobPrototypes:
+    - MedievalMobSkeletSpear
+    - MedievalMobSkeletSpearGhost
+
+- type: achievement
+  id: AchievementKillSkeletSpear100
+  priority: 109
+  rarity: Common
+  name: achievement-name-kill-skelet-spear-100
+  description: achievement-desc-kill-skelet-spear-100
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_spear.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSkeletSpear50
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSkeletSpearProgression
+    requiredCount: 100
+    targetMobPrototypes:
+    - MedievalMobSkeletSpear
+    - MedievalMobSkeletSpearGhost
+
+# ==========================================
+# ВЕТКА 10: ВОЛК
+# ==========================================
+- type: achievement
+  id: AchievementKillWolf1
+  priority: 1010
+  rarity: Common
+  name: achievement-name-kill-wolf-1
+  description: achievement-desc-kill-wolf-1
+  icon:
+    sprite: Imperial/Medieval/Mobs/wolf.rsi
+    state: wolf
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killWolfProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobWolf
+    - MedievalMobWolfGhost
+
+- type: achievement
+  id: AchievementKillWolf25
+  priority: 1010
+  rarity: Common
+  name: achievement-name-kill-wolf-25
+  description: achievement-desc-kill-wolf-25
+  icon:
+    sprite: Imperial/Medieval/Mobs/wolf.rsi
+    state: wolf
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillWolf1
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killWolfProgression
+    requiredCount: 25
+    targetMobPrototypes:
+    - MedievalMobWolf
+    - MedievalMobWolfGhost
+
+- type: achievement
+  id: AchievementKillWolf75
+  priority: 1010
+  rarity: Common
+  name: achievement-name-kill-wolf-75
+  description: achievement-desc-kill-wolf-75
+  icon:
+    sprite: Imperial/Medieval/Mobs/wolf.rsi
+    state: wolf
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillWolf25
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killWolfProgression
+    requiredCount: 75
+    targetMobPrototypes:
+    - MedievalMobWolf
+    - MedievalMobWolfGhost
+
+- type: achievement
+  id: AchievementKillWolf150
+  priority: 1010
+  rarity: Common
+  name: achievement-name-kill-wolf-150
+  description: achievement-desc-kill-wolf-150
+  icon:
+    sprite: Imperial/Medieval/Mobs/wolf.rsi
+    state: wolf
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillWolf75
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killWolfProgression
+    requiredCount: 150
+    targetMobPrototypes:
+    - MedievalMobWolf
+    - MedievalMobWolfGhost
+
+- type: achievement
+  id: AchievementKillWolf300
+  priority: 1010
+  rarity: Common
+  name: achievement-name-kill-wolf-300
+  description: achievement-desc-kill-wolf-300
+  icon:
+    sprite: Imperial/Medieval/Mobs/wolf.rsi
+    state: wolf
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillWolf150
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killWolfProgression
+    requiredCount: 300
+    targetMobPrototypes:
+    - MedievalMobWolf
+    - MedievalMobWolfGhost
+
+# ==========================================
+# ВЕТКА 11: КАБАН
+# ==========================================
+- type: achievement
+  id: AchievementKillHog1
+  priority: 1011
+  rarity: Common
+  name: achievement-name-kill-hog-1
+  description: achievement-desc-kill-hog-1
+  icon:
+    sprite: Imperial/Medieval/Mobs/hog.rsi
+    state: bear
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killHogProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobHog
+
+- type: achievement
+  id: AchievementKillHog15
+  priority: 1011
+  rarity: Common
+  name: achievement-name-kill-hog-15
+  description: achievement-desc-kill-hog-15
+  icon:
+    sprite: Imperial/Medieval/Mobs/hog.rsi
+    state: bear
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillHog1
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killHogProgression
+    requiredCount: 15
+    targetMobPrototypes:
+    - MedievalMobHog
+
+- type: achievement
+  id: AchievementKillHog25
+  priority: 1011
+  rarity: Common
+  name: achievement-name-kill-hog-25
+  description: achievement-desc-kill-hog-25
+  icon:
+    sprite: Imperial/Medieval/Mobs/hog.rsi
+    state: bear
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillHog15
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killHogProgression
+    requiredCount: 25
+    targetMobPrototypes:
+    - MedievalMobHog
+
+- type: achievement
+  id: AchievementKillHog50
+  priority: 1011
+  rarity: Common
+  name: achievement-name-kill-hog-50
+  description: achievement-desc-kill-hog-50
+  icon:
+    sprite: Imperial/Medieval/Mobs/hog.rsi
+    state: bear
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillHog25
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killHogProgression
+    requiredCount: 50
+    targetMobPrototypes:
+    - MedievalMobHog
+
+- type: achievement
+  id: AchievementKillHog75
+  priority: 1011
+  rarity: Common
+  name: achievement-name-kill-hog-75
+  description: achievement-desc-kill-hog-75
+  icon:
+    sprite: Imperial/Medieval/Mobs/hog.rsi
+    state: bear
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillHog50
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killHogProgression
+    requiredCount: 75
+    targetMobPrototypes:
+    - MedievalMobHog
+
+# ==========================================
+# ВЕТКА 12: МЕДВЕДЬ
+# ==========================================
+- type: achievement
+  id: AchievementKillBear1
+  priority: 1012
+  rarity: Common
+  name: achievement-name-kill-bear-1
+  description: achievement-desc-kill-bear-1
+  icon:
+    sprite: Imperial/Medieval/Mobs/brown_bear.rsi
+    state: bear
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killBearProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobBear
+
+- type: achievement
+  id: AchievementKillBear10
+  priority: 1012
+  rarity: Common
+  name: achievement-name-kill-bear-10
+  description: achievement-desc-kill-bear-10
+  icon:
+    sprite: Imperial/Medieval/Mobs/brown_bear.rsi
+    state: bear
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillBear1
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killBearProgression
+    requiredCount: 10
+    targetMobPrototypes:
+    - MedievalMobBear
+
+- type: achievement
+  id: AchievementKillBear25
+  priority: 1012
+  rarity: Common
+  name: achievement-name-kill-bear-25
+  description: achievement-desc-kill-bear-25
+  icon:
+    sprite: Imperial/Medieval/Mobs/brown_bear.rsi
+    state: bear
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillBear10
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killBearProgression
+    requiredCount: 25
+    targetMobPrototypes:
+    - MedievalMobBear
+
+- type: achievement
+  id: AchievementKillBear50
+  priority: 1012
+  rarity: Common
+  name: achievement-name-kill-bear-50
+  description: achievement-desc-kill-bear-50
+  icon:
+    sprite: Imperial/Medieval/Mobs/brown_bear.rsi
+    state: bear
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillBear25
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killBearProgression
+    requiredCount: 50
+    targetMobPrototypes:
+    - MedievalMobBear
+
+# ==========================================
+# ВЕТКА 13: ЛЕДЯНОЙ ДРАКОН
+# ==========================================
+- type: achievement
+  id: AchievementKillIceDragon
+  priority: 1013
+  rarity: Epic
+  name: achievement-name-kill-ice-dragon
+  description: achievement-desc-kill-ice-dragon
+  icon:
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/icedragon.rsi
+    state: alive
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killIceDragonProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalBossIceDragon
+
+# ==========================================
+# ВЕТКА 14: ОГНЕННЫЙ ДРАКОН
+# ==========================================
+- type: achievement
+  id: AchievementKillFireDragon
+  priority: 1014
+  rarity: Epic
+  name: achievement-name-kill-fire-dragon
+  description: achievement-desc-kill-fire-dragon
+  icon:
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/firedragon.rsi
+    state: alive
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killFireDragonProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalBossFireDragon
+
+# ==========================================
+# ВЕТКА 15: КИСЛОТНЫЙ ДРАКОН
+# ==========================================
+- type: achievement
+  id: AchievementKillAcidDragon
+  priority: 1015
+  rarity: Epic
+  name: achievement-name-kill-acid-dragon
+  description: achievement-desc-kill-acid-dragon
+  icon:
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/aciddragon.rsi
+    state: alive
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killAcidDragonProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalBossAcidDragon
+
+# ==========================================
+# ВЕТКА 16: ГРОЗОВОЙ ДРАКОН
+# ==========================================
+- type: achievement
+  id: AchievementKillThunderDragon
+  priority: 1016
+  rarity: Epic
+  name: achievement-name-kill-thunder-dragon
+  description: achievement-desc-kill-thunder-dragon
+  icon:
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/thunderdragon.rsi
+    state: alive
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killThunderDragonProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalBossThunderDragon
+
+# ==========================================
+# ВЕТКА 17: ДРАКОНОБОРЕЦ
+# ==========================================
+- type: achievement
+  id: AchievementKillAllDragonsSlayer
+  priority: 1017
+  rarity: Epic
+  name: achievement-name-dragon-slayer
+  description: achievement-desc-dragon-slayer
+  icon:
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/necrodragon.rsi
+    state: dead
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillIceDragon
+  - AchievementKillFireDragon
+  - AchievementKillAcidDragon
+  - AchievementKillThunderDragon
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killIceDragonProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalBossIceDragon
+  - !type:KillMobCondition
+    progressKey: killFireDragonProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalBossFireDragon
+  - !type:KillMobCondition
+    progressKey: killAcidDragonProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalBossAcidDragon
+  - !type:KillMobCondition
+    progressKey: killThunderDragonProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalBossThunderDragon
+
+# ==========================================
+# ВЕТКА 18: КРАБЫ
+# ==========================================
+- type: achievement
+  id: AchievementKillCrab1
+  priority: 1018
+  rarity: Common
+  name: achievement-name-kill-crab-1
+  description: achievement-desc-kill-crab-1
+  icon:
+    sprite: Imperial/Medieval/Mobs/crab_mdv.rsi
+    state: base
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killCrabProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobCrab
+
+- type: achievement
+  id: AchievementKillCrab15
+  priority: 1018
+  rarity: Common
+  name: achievement-name-kill-crab-15
+  description: achievement-desc-kill-crab-15
+  icon:
+    sprite: Imperial/Medieval/Mobs/crab_mdv.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillCrab1
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killCrabProgression
+    requiredCount: 15
+    targetMobPrototypes:
+    - MedievalMobCrab
+
+- type: achievement
+  id: AchievementKillCrab50
+  priority: 1018
+  rarity: Common
+  name: achievement-name-kill-crab-50
+  description: achievement-desc-kill-crab-50
+  icon:
+    sprite: Imperial/Medieval/Mobs/crab_mdv.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillCrab15
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killCrabProgression
+    requiredCount: 50
+    targetMobPrototypes:
+    - MedievalMobCrab
+
+- type: achievement
+  id: AchievementKillCrab100
+  priority: 1018
+  rarity: Common
+  name: achievement-name-kill-crab-100
+  description: achievement-desc-kill-crab-100
+  icon:
+    sprite: Imperial/Medieval/Mobs/crab_mdv.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillCrab50
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killCrabProgression
+    requiredCount: 100
+    targetMobPrototypes:
+    - MedievalMobCrab
+
+# ==========================================
+# ВЕТКА 19: ДЕМОНИЧЕСКИЙ КРАБ
+# ==========================================
+- type: achievement
+  id: AchievementKillCrabDevil1
+  priority: 1019
+  rarity: Common
+  name: achievement-name-kill-crab-devil-1
+  description: achievement-desc-kill-crab-devil-1
+  icon:
+    sprite: Imperial/Medieval/Mobs/crab_devil.rsi
+    state: base
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killCrabDevilProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobCrabDevil
+
+- type: achievement
+  id: AchievementKillCrabDevil3
+  priority: 1019
+  rarity: Common
+  name: achievement-name-kill-crab-devil-3
+  description: achievement-desc-kill-crab-devil-3
+  icon:
+    sprite: Imperial/Medieval/Mobs/crab_devil.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillCrabDevil1
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killCrabDevilProgression
+    requiredCount: 3
+    targetMobPrototypes:
+    - MedievalMobCrabDevil
+
+- type: achievement
+  id: AchievementKillCrabDevil7
+  priority: 1019
+  rarity: Common
+  name: achievement-name-kill-crab-devil-7
+  description: achievement-desc-kill-crab-devil-7
+  icon:
+    sprite: Imperial/Medieval/Mobs/crab_devil.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillCrabDevil3
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killCrabDevilProgression
+    requiredCount: 7
+    targetMobPrototypes:
+    - MedievalMobCrabDevil
+
+- type: achievement
+  id: AchievementKillCrabDevil15
+  priority: 1019
+  rarity: Common
+  name: achievement-name-kill-crab-devil-15
+  description: achievement-desc-kill-crab-devil-15
+  icon:
+    sprite: Imperial/Medieval/Mobs/crab_devil.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillCrabDevil7
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killCrabDevilProgression
+    requiredCount: 15
+    targetMobPrototypes:
+    - MedievalMobCrabDevil
+
+# ==========================================
+# ВЕТКА 20: ХАНТЕР
+# ==========================================
+- type: achievement
+  id: AchievementKillHunterGhost1
+  priority: 1020
+  rarity: Common
+  name: achievement-name-kill-hunter-ghost-1
+  description: achievement-desc-kill-hunter-ghost-1
+  icon:
+    sprite: Imperial/Medieval/Mobs/hunter.rsi
+    state: base
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killHunterGhostProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobHunterGhost
+
+- type: achievement
+  id: AchievementKillHunterGhost15
+  priority: 1020
+  rarity: Common
+  name: achievement-name-kill-hunter-ghost-15
+  description: achievement-desc-kill-hunter-ghost-15
+  icon:
+    sprite: Imperial/Medieval/Mobs/hunter.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillHunterGhost1
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killHunterGhostProgression
+    requiredCount: 15
+    targetMobPrototypes:
+    - MedievalMobHunterGhost
+
+- type: achievement
+  id: AchievementKillHunterGhost50
+  priority: 1020
+  rarity: Common
+  name: achievement-name-kill-hunter-ghost-50
+  description: achievement-desc-kill-hunter-ghost-50
+  icon:
+    sprite: Imperial/Medieval/Mobs/hunter.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillHunterGhost15
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killHunterGhostProgression
+    requiredCount: 50
+    targetMobPrototypes:
+    - MedievalMobHunterGhost
+
+# ==========================================
+# ВЕТКА 21: ПЕЩЕРНЫЙ ПАУК
+# ==========================================
+- type: achievement
+  id: AchievementKillSpiderCave1
+  priority: 1021
+  rarity: Common
+  name: achievement-name-kill-spider-cave-1
+  description: achievement-desc-kill-spider-cave-1
+  icon:
+    sprite: Imperial/Medieval/Mobs/cave_spider.rsi
+    state: base
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSpiderCaveProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobSpiderCave
+
+- type: achievement
+  id: AchievementKillSpiderCave15
+  priority: 1021
+  rarity: Common
+  name: achievement-name-kill-spider-cave-15
+  description: achievement-desc-kill-spider-cave-15
+  icon:
+    sprite: Imperial/Medieval/Mobs/cave_spider.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSpiderCave1
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSpiderCaveProgression
+    requiredCount: 15
+    targetMobPrototypes:
+    - MedievalMobSpiderCave
+
+- type: achievement
+  id: AchievementKillSpiderCave25
+  priority: 1021
+  rarity: Common
+  name: achievement-name-kill-spider-cave-25
+  description: achievement-desc-kill-spider-cave-25
+  icon:
+    sprite: Imperial/Medieval/Mobs/cave_spider.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSpiderCave15
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSpiderCaveProgression
+    requiredCount: 25
+    targetMobPrototypes:
+    - MedievalMobSpiderCave
+
+- type: achievement
+  id: AchievementKillSpiderCave50
+  priority: 1021
+  rarity: Common
+  name: achievement-name-kill-spider-cave-50
+  description: achievement-desc-kill-spider-cave-50
+  icon:
+    sprite: Imperial/Medieval/Mobs/cave_spider.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSpiderCave25
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSpiderCaveProgression
+    requiredCount: 50
+    targetMobPrototypes:
+    - MedievalMobSpiderCave
+
+- type: achievement
+  id: AchievementEquipSpiderBoots
+  priority: 1021
+  rarity: Common
+  name: achievement-name-equip-spider-boots
+  description: achievement-desc-equip-spider-boots
+  icon:
+    sprite: Imperial/Medieval/Clothing/Shoes/spider_shoes.rsi
+    state: icon
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSpiderCave50
+  conditions:
+  - !type:EquipSetCondition
+    progressKey: equipSpiderBootsProgression
+    sets:
+      SpiderSet:
+      - MedievalClothingShoesSpider
+
+# ==========================================
+# ВЕТКА 22: СИЛЬНЫЙ ПЕЩЕРНЫЙ ПАУК
+# ==========================================
+- type: achievement
+  id: AchievementKillSpiderStrongCave1
+  priority: 1022
+  rarity: Epic
+  name: achievement-name-kill-spider-strong-cave-1
+  description: achievement-desc-kill-spider-strong-cave-1
+  icon:
+    sprite: Imperial/Medieval/Mobs/cave_spider_strong.rsi
+    state: base
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSpiderStrongCaveProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobSpiderStrongCave
+
+- type: achievement
+  id: AchievementKillSpiderStrongCave5
+  priority: 1022
+  rarity: Epic
+  name: achievement-name-kill-spider-strong-cave-5
+  description: achievement-desc-kill-spider-strong-cave-5
+  icon:
+    sprite: Imperial/Medieval/Mobs/cave_spider_strong.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSpiderStrongCave1
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSpiderStrongCaveProgression
+    requiredCount: 5
+    targetMobPrototypes:
+    - MedievalMobSpiderStrongCave
+
+- type: achievement
+  id: AchievementKillSpiderStrongCave10
+  priority: 1022
+  rarity: Epic
+  name: achievement-name-kill-spider-strong-cave-10
+  description: achievement-desc-kill-spider-strong-cave-10
+  icon:
+    sprite: Imperial/Medieval/Mobs/cave_spider_strong.rsi
+    state: base
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillSpiderStrongCave5
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killSpiderStrongCaveProgression
+    requiredCount: 10
+    targetMobPrototypes:
+    - MedievalMobSpiderStrongCave
+
+# ==========================================
+# ВЕТКА 23: ГОБЛИНЫ
+# ==========================================
+- type: achievement
+  id: AchievementKillGoblin1
+  priority: 1023
+  rarity: Common
+  name: achievement-name-kill-goblin-1
+  description: achievement-desc-kill-goblin-1
+  icon:
+    sprite: Imperial/Medieval/Mobs/goblin.rsi
+    state: monkey
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killGoblinProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobGoblin
+
+- type: achievement
+  id: AchievementKillGoblin5
+  priority: 1023
+  rarity: Common
+  name: achievement-name-kill-goblin-5
+  description: achievement-desc-kill-goblin-5
+  icon:
+    sprite: Imperial/Medieval/Mobs/goblin.rsi
+    state: monkey
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillGoblin1
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killGoblinProgression
+    requiredCount: 5
+    targetMobPrototypes:
+    - MedievalMobGoblin
+
+- type: achievement
+  id: AchievementKillGoblin15
+  priority: 1023
+  rarity: Common
+  name: achievement-name-kill-goblin-15
+  description: achievement-desc-kill-goblin-15
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/goblin_slayer_helmet.rsi
+    state: icon
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillGoblin5
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killGoblinProgression
+    requiredCount: 15
+    targetMobPrototypes:
+    - MedievalMobGoblin
+
+- type: achievement
+  id: AchievementEquipGoblinNecklace
+  priority: 1023
+  rarity: Common
+  name: achievement-name-equip-goblin-necklace
+  description: achievement-desc-equip-goblin-necklace
+  icon:
+    sprite: Imperial/Medieval/Clothing/Cloaks/goblin.rsi
+    state: icon
+  visibility: Blocking
+  prerequisites:
+  - AchievementKillGoblin15
+  conditions:
+  - !type:EquipSetCondition
+    progressKey: equipGoblinNecklaceProgression
+    sets:
+      GoblinSet:
+      - MedievalClothingNeckCloakGoblin
+
+# ==========================================
+# ВЕТКА 24: ЧУМНОЙ СЛИЗЕНЬ
+# ==========================================
+- type: achievement
+  id: AchievementKillPlagueSlime1
+  priority: 1024
+  rarity: Common
+  name: achievement-name-kill-plague-slime-1
+  description: achievement-desc-kill-plague-slime-1
+  icon:
+    sprite: Imperial/Medieval/Mobs/plague_slime.rsi
+    state: slime
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killPlagueSlimeProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobPlagueSlime
+
+# ==========================================
+# ВЕТКА 25: ЧУМНАЯ КРЫСА
+# ==========================================
+- type: achievement
+  id: AchievementKillPlagueMouse1
+  priority: 1025
+  rarity: Common
+  name: achievement-name-kill-plague-mouse-1
+  description: achievement-desc-kill-plague-mouse-1
+  icon:
+    sprite: Imperial/Medieval/Mobs/plague_rat.rsi
+    state: mouse
+  visibility: Hidden
+  prerequisites:
+  - AchievementKillFirstMob
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killPlagueMouseProgression
+    requiredCount: 1
+    targetMobPrototypes:
+    - MedievalMobPlagueMouse

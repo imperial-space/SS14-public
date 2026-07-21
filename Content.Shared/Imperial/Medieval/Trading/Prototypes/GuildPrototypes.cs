@@ -16,6 +16,9 @@ public sealed partial class GuildTypePrototype : IPrototype
     public string ID { get; private set; } = null!;
 
     [DataField]
+    public string DisplayName { get; private set; } = string.Empty;
+
+    [DataField]
     public List<GuildTradingItem> Items = new();
 
     [DataField]

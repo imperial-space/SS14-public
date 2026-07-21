@@ -8,6 +8,8 @@ public enum ForgedVisuals : byte
     /// <summary>
     /// Ключ для передачи данных о деталях (руки, ноги, голова).
     /// </summary>
+
+    crown,
     head,
     eyes,
     right_arm,
@@ -20,5 +22,6 @@ public enum ForgedVisuals : byte
     left_foot,
     core,
     torso,
+    torso_upgrade,
     upgrade1
 }

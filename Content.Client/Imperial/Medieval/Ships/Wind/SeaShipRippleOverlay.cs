@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client.Imperial.Medieval.ShipDrowning;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
 using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 using Robust.Client.Graphics;
@@ -72,7 +73,7 @@ public sealed partial class SeaShipRippleOverlay : Overlay
         public MapGridComponent Grid = default!;
         public Box2 WorldBounds;
         public Matrix3x2 WorldMatrix = Matrix3x2.Identity;
-        public GameTick LastTileModifiedTick;
+        public int ShapeVersion = -1;
         public readonly HashSet<Vector2i> OccupiedTiles = new();
     }
 
@@ -197,10 +198,11 @@ public sealed partial class SeaShipRippleOverlay : Overlay
         shipMask.Grid = grid;
         shipMask.WorldBounds = worldBounds;
         shipMask.WorldMatrix = _entityManager.System<SharedTransformSystem>().GetWorldMatrix(gridUid);
-        if (shipMask.LastTileModifiedTick == grid.LastTileModifiedTick)
+        var shapeVersion = _entityManager.System<ClientShipDrowningSystem>().GetGridShapeVersion(gridUid);
+        if (shipMask.ShapeVersion == shapeVersion)
             return shipMask;
 
-        shipMask.LastTileModifiedTick = grid.LastTileModifiedTick;
+        shipMask.ShapeVersion = shapeVersion;
         shipMask.OccupiedTiles.Clear();
 
         var tileEnumerator = MapSystem.GetTilesEnumerator(gridUid, grid, worldBounds);

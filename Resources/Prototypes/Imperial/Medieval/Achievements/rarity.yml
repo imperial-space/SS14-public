@@ -1,0 +1,34 @@
+- type: achievementRarity
+  id: Common
+  name: achievement-rarity-common
+  accentColor: "#9e9e9e"
+  minPercent: 60
+  sortOrder: 1
+
+- type: achievementRarity
+  id: Uncommon
+  name: achievement-rarity-uncommon
+  accentColor: "#4caf50"
+  minPercent: 40
+  sortOrder: 2
+
+- type: achievementRarity
+  id: Rare
+  name: achievement-rarity-rare
+  accentColor: "#2196f3"
+  minPercent: 20
+  sortOrder: 3
+
+- type: achievementRarity
+  id: Epic
+  name: achievement-rarity-epic
+  accentColor: "#9c27b0"
+  minPercent: 10
+  sortOrder: 4
+
+- type: achievementRarity
+  id: Legendary
+  name: achievement-rarity-legendary
+  accentColor: "#ff9800"
+  minPercent: 3
+  sortOrder: 5

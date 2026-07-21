@@ -1,0 +1,19 @@
+#Beginner
+
+- type: entity
+  id: EarthBedSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
+    color: "#838275"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#838275"
+  - type: TimedDespawn
+    lifetime: 0.5
+

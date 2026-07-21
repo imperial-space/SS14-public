@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "by @Fichty bq",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "compass-n"
+        },
+        {
+            "name": "compass-ne"
+        },
+        {
+            "name": "compass-e"
+        },
+        {
+            "name": "compass-se"
+        },
+        {
+            "name": "compass-s"
+        },
+        {
+            "name": "compass-sw"
+        },
+        {
+            "name": "compass-w"
+        },
+        {
+            "name": "compass-nw"
+        }
+    ]
+}

@@ -216,6 +216,11 @@ public sealed class StandingStateSystem : EntitySystem
 [ByRefEvent]
 public record struct DropHandItemsEvent();
 
+// Imperial DropHandItemsEventExceptWeapon START
+[ByRefEvent]
+public record struct DropHandItemsExceptWeaponEvent();
+// Imperial DropHandItemsEventExceptWeapon END
+
 /// <summary>
 /// Subscribe if you can potentially block a down attempt.
 /// </summary>

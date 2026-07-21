@@ -1,0 +1,67 @@
+<medieval:MedievalWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:medieval="clr-namespace:Content.Client.Imperial.Medieval.CapturePoint.UI.MedievalWindow"
+               xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+               Title="{Loc 'achievement-menu-title'}"
+               SetWidth="960"
+               SetHeight="700"
+               Resizable="False">
+    <BoxContainer Orientation="Vertical" SeparationOverride="0">
+        <PanelContainer>
+            <PanelContainer.PanelOverride>
+                <graphics:StyleBoxFlat
+                    BackgroundColor="#1a130dee"
+                    BorderColor="#3d2e1e"
+                    BorderThickness="0,0,0,2"
+                    ContentMarginLeftOverride="12"
+                    ContentMarginRightOverride="12"
+                    ContentMarginTopOverride="10"
+                    ContentMarginBottomOverride="10"/>
+            </PanelContainer.PanelOverride>
+            <BoxContainer Orientation="Vertical" SeparationOverride="6">
+                <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                    <Label Name="ProgressLabel"
+                           Text="0 / 0"
+                           FontColorOverride="#d3bc8e"
+                           StyleClasses="LabelHeading"
+                           HorizontalExpand="True"
+                           VerticalAlignment="Center"/>
+                    <Label Name="ProgressPercentLabel"
+                           Text="0%"
+                           FontColorOverride="#8b6914"
+                           StyleClasses="LabelHeading"
+                           VerticalAlignment="Center"/>
+                    <medieval:MedievalButton Name="RecenterButton"
+                                             Text="{Loc 'achievement-tree-recenter'}"
+                                             MinWidth="130"
+                                             SetHeight="26"
+                                             VerticalAlignment="Center"/>
+                </BoxContainer>
+                <PanelContainer Name="ProgressBarBg" SetHeight="6" HorizontalExpand="True">
+                    <PanelContainer.PanelOverride>
+                        <graphics:StyleBoxFlat BackgroundColor="#1a1209"/>
+                    </PanelContainer.PanelOverride>
+                    <PanelContainer Name="ProgressBarFill" HorizontalAlignment="Left" MinHeight="6">
+                        <PanelContainer.PanelOverride>
+                            <graphics:StyleBoxFlat BackgroundColor="#8b6914"/>
+                        </PanelContainer.PanelOverride>
+                    </PanelContainer>
+                </PanelContainer>
+            </BoxContainer>
+        </PanelContainer>
+        <BoxContainer Name="TabBar"
+                      Orientation="Horizontal"
+                      SeparationOverride="6"
+                      Margin="12,6,12,6"/>
+        <PanelContainer
+            Name="TreePanel"
+            HorizontalExpand="True"
+            VerticalExpand="True"
+            RectClipContent="True"
+            MouseFilter="Pass">
+            <PanelContainer.PanelOverride>
+                <graphics:StyleBoxFlat BackgroundColor="#0d0905"/>
+            </PanelContainer.PanelOverride>
+        </PanelContainer>
+    </BoxContainer>
+</medieval:MedievalWindow>

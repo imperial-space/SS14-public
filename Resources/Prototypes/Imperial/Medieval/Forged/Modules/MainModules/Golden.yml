@@ -49,7 +49,9 @@
     - state: blank
       map: ["left_foot"]
     - state: blank
-      map : ["upgrade1"]
+      map : ["crown"]
+    - state: blank
+      map : ["torso_upgrade"]
   - type: ForgedAssembly
     torso: ForgedGoldenTorso
   - type: ForgedModule
@@ -63,7 +65,7 @@
 - type: entity
   id: ForgedGoldenRArm
   name: ForgedGoldenRArm
-  parent: ForgedRLegBase
+  parent: ForgedRArmBase
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/golden.rsi
@@ -80,7 +82,7 @@
 - type: entity
   id: ForgedGoldenLArm
   name: ForgedGoldenLArm
-  parent: ForgedLLegBase
+  parent: ForgedLArmBase
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/golden.rsi

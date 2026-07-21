@@ -100,6 +100,11 @@ public abstract partial class SharedDoorSystem
         var ev = new DoorBoltsChangedEvent(value);
         RaiseLocalEvent(ent.Owner, ev);
 
+        // Imperial Medieval Universable Security start
+        if (TryComp<UniversalLockableComponent>(ent, out _))
+            return true; //Need to fix client prediction
+        // Imperial Medieval Universable Security end
+
         var sound = value ? ent.Comp.BoltDownSound : ent.Comp.BoltUpSound;
         if (predicted)
             Audio.PlayPredicted(sound, ent, user: user);

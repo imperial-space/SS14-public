@@ -190,6 +190,12 @@ public abstract partial class SharedDoorSystem : EntitySystem
                 break;
         }
 
+        // Imperial Medieval Universable Security start
+        if (_net.IsClient)
+            if (TryComp<UniversalLockableComponent>(uid, out _))
+                return true; //Need to fix client prediction
+        // Imperial Medieval Universable Security end
+
         door.State = state;
         Dirty(uid, door);
         RaiseLocalEvent(uid, new DoorStateChangedEvent(state));
@@ -206,8 +212,19 @@ public abstract partial class SharedDoorSystem : EntitySystem
         if (args.Handled || !args.Complex || !door.ClickOpen)
             return;
 
-        if (!TryToggleDoor(uid, door, args.User, predicted: true))
-            _pryingSystem.TryPry(uid, args.User, out _);
+        // Imperial Medieval universal security start
+
+        if (TryComp<UniversalLockableComponent>(uid, out _))
+        {
+            if (!TryToggleDoor(uid, door, args.User, predicted: false))
+                _pryingSystem.TryPry(uid, args.User, out _);
+        }
+        else
+        {
+            if (!TryToggleDoor(uid, door, args.User, predicted: true))
+                _pryingSystem.TryPry(uid, args.User, out _);
+        }
+        // Imperial Medieval universal security end
 
         args.Handled = true;
     }

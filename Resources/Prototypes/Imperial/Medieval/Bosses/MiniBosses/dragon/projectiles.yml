@@ -17,12 +17,12 @@
       falloffPower: 3
       intensity: 100
     - type: SmokeOnTrigger
-      duration: 40
-      spreadAmount: 10
+      duration: 50
+      spreadAmount: 12
       solution:
         reagents:
         - ReagentId: MedievalMyrmexPoison
-          Quantity: 30
+          Quantity: 80
     - type: Ammo
       muzzleFlash: null
 
@@ -56,7 +56,8 @@
   id: MedievalProjectileNecroDragon
   damage:
     types:
-      Radiation: 18
+      Radiation: 8
+      Slash: 16
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_omni

@@ -1,0 +1,276 @@
+
+ - type: achievement
+   id: AchievementJoinSpellward
+   priority: 0 # Не удаляйте это пожалуйста. Оно нужно для корректной работы достижений.
+   name: "Первый шаг"
+   tab: AchievementTabDefault
+   description: "Добро пожаловать в Spellward."
+   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+
+# # AchievementStayInWorld — видно, но за ним скрыто AchievementVisitBarrier пока не открыто
+# - type: achievement
+#   id: AchievementStayInWorld
+#   priority: 10
+#   name: "Местный житель"
+#   description: "Провести время в этих землях."
+#   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+#   visibility: Blocking
+#   prerequisites:
+#   - AchievementJoinSpellward
+#   conditions:
+#   - !type:BecomeEntityCondition
+#     progressKey: becomeEntityProgression
+#     requiredCount: 1
+#     targetPrototypes:
+#     - MobOrc
+#   - !type:RefillBarrierCondition
+#     progressKey: refillBarrierProgression
+#     requiredCount: 3
+
+# # AchievementVisitBarrier — скрыто за Blocking-нодой выше, появится после её открытия
+# - type: achievement
+#   id: AchievementVisitBarrier
+#   priority: 11
+#   name: "Грань реальности"
+#   description: "Оказаться у великого барьера."
+#   icon: { sprite: Imperial/Medieval/Decor/barrier.rsi, state: barrier }
+#   # visibility: Visible (по умолчанию)
+#   prerequisites:
+#   - AchievementStayInWorld
+#   conditions:
+#   - !type:LocationCondition
+#     locationId: achievement-visit-barrier-location
+#     progressKey: visitedBarrierProgression
+#     requiredCount: 1
+
+# # AchievementCaptureVanguard — видно, само по себе без скрытия
+# - type: achievement
+#   id: AchievementCaptureVanguard
+#   priority: 20
+#   name: "Знамя на ветру"
+#   description: "Захватите контрольную точку для укрепления позиций."
+#   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+#   # visibility: Visible (по умолчанию)
+#   prerequisites:
+#   - AchievementJoinSpellward
+#   conditions:
+#   - !type:CapturePointCondition
+#     progressKey: capturePointProgression
+#     requiredCount: 1
+
+# # AchievementBuildFortress — видно, но за ним потомки показаны как вопросики
+# # Игрок видит что впереди есть 3 достижения, но не знает каких
+# - type: achievement
+#   id: AchievementBuildFortress
+#   priority: 21
+#   name: "Зодчий империи"
+#   description: "Возведите необходимые укрепления в этих землях."
+#   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+#   visibility: BlockingRevealed
+#   prerequisites:
+#   - AchievementJoinSpellward
+#   conditions:
+#   - !type:BuildStructureCondition
+#     progressKey: buildStructureProgression
+#     requiredCount: 5
+#     targetPrototypes:
+#     - TableCounterWood
+
+# # Три потомка AchievementBuildFortress — видны как ??? пока он не открыт
+# - type: achievement
+#   id: AchievementBreakSiege
+#   priority: 30
+#   name: "Сокрушитель преград"
+#   description: "Разрушьте вражеские строения, чтобы проложить путь."
+#   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+#   # visibility: Visible (по умолчанию)
+#   prerequisites:
+#   - AchievementBuildFortress
+#   conditions:
+#   - !type:DestroyStructureCondition
+#     progressKey: destroyStructureProgression
+#     requiredCount: 5
+#     targetPrototypes:
+#     - TableCounterWood
+
+# - type: achievement
+#   id: AchievementShatterCrystal
+#   priority: 31
+#   name: "Осколки веры"
+#   description: "Уничтожьте обелиск враждебной фракции."
+#   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+#   # visibility: Visible (по умолчанию)
+#   prerequisites:
+#   - AchievementBuildFortress
+#   conditions:
+#   - !type:DestroyFactionObeliskCondition
+#     targetFaction: Legion
+#     progressKey: destroyObeliskProgression
+#     requiredCount: 1
+
+# - type: achievement
+#   id: AchievementGuardianBarrier
+#   priority: 32
+#   name: "Хранитель Света"
+#   description: "Напитайте барьер энергией, чтобы сдержать тьму."
+#   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+#   # visibility: Visible (по умолчанию)
+#   prerequisites:
+#   - AchievementBuildFortress
+#   conditions:
+#   - !type:RefillBarrierCondition
+#     progressKey: refillBarrierProgression
+#     requiredCount: 3
+
+# # AchievementMasterCraft — скрыто полностью: это секретное крафт-достижение.
+# # Игрок откроет его случайно, скрафтив нужный предмет.
+# - type: achievement
+#   id: AchievementMasterCraft
+#   priority: 40
+#   name: "Шедевр кузнеца"
+#   description: "Создайте снаряжение на верстаке, достойное истинного мастера."
+#   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+#   visibility: Hidden
+#   prerequisites:
+#   - AchievementBuildFortress
+#   conditions:
+#   - !type:CraftItemCondition
+#     progressKey: craftItemProgression
+#     requiredCount: 1
+#     targetItems:
+#     - MedievalGoldCup
+#     requiredWorkbenches:
+#     - MedievalBlacksmithArmor
+
+# # AchievementGuildHero — видно всегда, простое репутационное
+# - type: achievement
+#   id: AchievementGuildHero
+#   priority: 50
+#   name: "Почтенный член гильдии"
+#   description: "Заслужите непоколебимый авторитет среди своих соратников."
+#   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+#   # visibility: Visible (по умолчанию)
+#   prerequisites:
+#   - AchievementJoinSpellward
+#   conditions:
+#   - !type:GuildReputationCondition
+#     progressKey: guildRepProgression
+#     requiredReputations:
+#       MagicGuild: 50
+
+# # AchievementLegionBane — видно, но за ним финальное достижение скрыто полностью (Hidden)
+# - type: achievement
+#   id: AchievementLegionBane
+#   priority: 60
+#   name: "Бич Легиона"
+#   description: "Одержите победу над воинами враждебной фракции в честном бою."
+#   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+#   visibility: Blocking
+#   prerequisites:
+#   - AchievementJoinSpellward
+#   conditions:
+#   - !type:KillFactionPlayerCondition
+#     progressKey: killFactionProgression
+#     requiredCount: 2
+#     targetFactions:
+#     - Legion
+
+# # AchievementGhostSpirit — полностью скрытое достижение.
+# # Нет пресетов — корневое, но Hidden: появится только когда игрок случайно перевоплотится.
+# - type: achievement
+#   id: AchievementGhostSpirit
+#   priority: 70
+#   name: "По ту сторону"
+#   description: "Измените свою сущность, познав тайны перевоплощения."
+#   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+#   visibility: Hidden
+#   conditions:
+#   - !type:BecomeEntityCondition
+#     progressKey: becomeEntityProgression
+#     requiredCount: 1
+#     targetPrototypes:
+#     - MedievalMyrmexWorker
+
+# # AchievementOmnipotence — скрыто за Blocking AchievementLegionBane.
+# # Само по себе Visible: когда откроется — показывает себя честно.
+# - type: achievement
+#   id: AchievementOmnipotence
+#   priority: 1
+#   name: "Абубебебе"
+#   description: "Достижение, требующее абсолютного мастерства во всех аспектах бытия."
+#   icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+#   # visibility: Visible (по умолчанию)
+#   prerequisites:
+#   - AchievementJoinSpellward
+#   - AchievementGhostSpirit
+#   - AchievementLegionBane
+#   - AchievementGuildHero
+#   conditions:
+#   - !type:BecomeEntityCondition
+#     progressKey: becomeEntityProgression
+#     requiredCount: 1
+#     targetPrototypes:
+#     - MobOrc
+#   - !type:BuildStructureCondition
+#     progressKey: buildStructureProgression
+#     requiredCount: 5
+#     targetPrototypes:
+#     - TableCounterWood
+#   - !type:DestroyStructureCondition
+#     progressKey: destroyStructureProgression
+#     requiredCount: 5
+#     targetPrototypes:
+#     - TableCounterWood
+#   - !type:CollectAllItemsCondition
+#     progressKey: collectAllProgression
+#     itemPrototypes:
+#       MedievalGoldCup: 1
+#   - !type:CollectAnyItemsCondition
+#     progressKey: collectAnyProgression
+#     RequiredCount: 1
+#     itemPrototypes:
+#     - Абубебебе?
+#   - !type:CraftItemCondition
+#     progressKey: craftItemProgression
+#     RequiredCount: 1
+#     targetItems:
+#     - MedievalGoldCup
+#     requiredWorkbenches:
+#     - MedievalBlacksmithArmor
+#   - !type:EquipSetCondition
+#     sets:
+#       PlateSet:
+#       - ClothingUniformJumpsuitBeerzavr
+#       PlateSet2:
+#       - ClothingUniformJumpsuitWomenOriental
+#   - !type:GuildReputationCondition
+#     progressKey: guildRepProgression
+#     requiredReputations:
+#       MagicGuild: 50
+#   - !type:KillFactionPlayerCondition
+#     progressKey: killFactionProgression
+#     requiredCount: 3
+#     targetFactions:
+#     - Legion
+#   - !type:KillMobCondition
+#     progressKey: killMobProgression
+#     requiredCount: 10
+#     targetMobPrototypes:
+#     - MobGiantSpider
+#   - !type:LocationCondition
+#     progressKey: locationProgression
+#     requiredCount: 1
+#     locationId: achievement-visit-barrier-location
+#   - !type:DestroyFactionObeliskCondition
+#     progressKey: destroyObeliskProgression
+#     requiredCount: 1
+#     targetFaction: Legion
+#   - !type:RefillBarrierCondition
+#     progressKey: refillBarrierProgression
+#     requiredCount: 3
+#   - !type:CapturePointCondition
+#     progressKey: capturePointProgression
+#     requiredCount: 1
+#   - !type:CompleteMercContractCondition
+#     progressKey: mercContractProgression
+#     requiredCount: 1

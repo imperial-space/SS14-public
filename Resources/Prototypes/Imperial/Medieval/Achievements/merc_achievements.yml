@@ -1,0 +1,284 @@
+
+# Наёмники (вся ветка требует фракцию Merc)
+
+# Появиться за роль наёмника
+- type: achievement
+  id: AchievementMercBecomeMerc
+  priority: 10
+  rarity: Common
+  tab: AchievementTabMerc
+  name: achievement-merc-become-merc-name
+  description: achievement-merc-become-merc-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Cloaks/clan_merc.rsi
+    state: icon
+  visibility: Visible
+  conditions:
+  - !type:LocationCondition
+    progressKey: mercBecomeMercProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalMerc
+    requiredFactions:
+    - Merc
+    locationId: AreaMarkerMerc
+
+# Экипировать кожаный или железный нагрудник + стальные сапоги + стальные рукавицы
+- type: achievement
+  id: AchievementMercArmor
+  priority: 11
+  rarity: Common
+  name: achievement-merc-armor-name
+  description: achievement-merc-armor-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Armor/iron_armor_cuirass.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementMercBecomeMerc
+  conditions:
+  - !type:CollectAnyItemsCondition # кожаный или железный нагрудник
+    progressKey: mercArmorChestProgression
+    requiredCount: 1
+    requiredFactions:
+    - Merc
+    itemPrototypes:
+    - MedievalClothingOuterArmorLeatherLight
+    - MedievalClothingOuterArmorLeatherHeavy
+    - MedievalClothingOuterArmorIron
+    - MedievalClothingOuterArmorIronCuirass
+  - !type:CollectAllItemsCondition # стальные сапоги + стальные рукавицы
+    progressKey: mercArmorFeetHandsProgression
+    requiredFactions:
+    - Merc
+    itemPrototypes:
+      MedievalClothingFeetSteel: 1 # стальные (латные) сапоги
+      MedievalIronGloves: 1 # стальные (латные) рукавицы
+
+# Выполнить 1 контракт
+- type: achievement
+  id: AchievementMercContract1
+  priority: 12
+  rarity: Common
+  name: achievement-merc-contract1-name
+  description: achievement-merc-contract1-desc
+  icon:
+    sprite: Imperial/Medieval/Objects/Envelope/merc.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementMercBecomeMerc
+  conditions:
+  - !type:CompleteMercContractCondition
+    progressKey: mercContract1Progression
+    requiredCount: 1
+    requiredFactions:
+    - Merc
+
+# Получить цвайхендер (СЕКРЕТНАЯ)
+- type: achievement
+  id: AchievementMercZweihander
+  priority: 13
+  rarity: Rare
+  name: achievement-merc-zweihander-name
+  description: achievement-merc-zweihander-desc
+  icon:
+    sprite: Imperial/Medieval/Melee/zweihander.rsi
+    state: icon
+  visibility: Hidden
+  prerequisites:
+  - AchievementMercBecomeMerc
+  conditions:
+  - !type:CollectAnyItemsCondition
+    progressKey: mercZweihanderProgression
+    requiredCount: 1
+    requiredFactions:
+    - Merc
+    itemPrototypes:
+    - MedievalIronZweihander
+    - MedievalIronZweihanderSteel
+
+# За один раунд: выполнить 2 контракта + заработать 300 ревентов
+- type: achievement
+  id: AchievementMercContract2Round
+  priority: 14
+  rarity: Uncommon
+  name: achievement-merc-contract2-round-name
+  description: achievement-merc-contract2-round-desc
+  icon:
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: revent_6
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementMercContract1
+  conditions:
+  - !type:CompleteMercContractCondition
+    progressKey: mercContract2Progression
+    requiredCount: 2
+    requiredFactions:
+    - Merc
+  - !type:CollectAllItemsCondition
+    progressKey: mercContract2ReventsProgression
+    requiredFactions:
+    - Merc
+    itemPrototypes:
+      MedievalRevent: 300
+
+# Появиться за роль главы наёмников
+- type: achievement
+  id: AchievementMercBecomeLeader
+  priority: 15
+  rarity: Epic
+  name: achievement-merc-become-leader-name
+  description: achievement-merc-become-leader-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/feather_hat.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementMercContract2Round
+  conditions:
+  - !type:LocationCondition
+    progressKey: mercBecomeLeaderProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalMercLeader
+    requiredFactions:
+    - Merc
+    locationId: AreaMarkerMerc
+
+# Будучи главой: попасть в кабинет одного из лидеров и получить его письмо
+- type: achievement
+  id: AchievementMercLeaderOfficeLetter
+  priority: 16
+  rarity: Epic
+  name: achievement-merc-office-letter-name
+  description: achievement-merc-office-letter-desc
+  icon:
+    sprite: Imperial/Medieval/Objects/Envelope/legion.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementMercBecomeLeader
+  conditions:
+  # посетить любой кабинет (OR через общий progressKey)
+  - !type:LocationCondition
+    progressKey: mercOfficeProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalMercLeader
+    requiredFactions:
+    - Merc
+    locationId: achievement-location-office-legat
+  - !type:LocationCondition
+    progressKey: mercOfficeProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalMercLeader
+    requiredFactions:
+    - Merc
+    locationId: achievement-location-office-jarl
+  - !type:LocationCondition
+    progressKey: mercOfficeProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalMercLeader
+    requiredFactions:
+    - Merc
+    locationId: achievement-location-office-archmage
+  - !type:LocationCondition
+    progressKey: mercOfficeProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalMercLeader
+    requiredFactions:
+    - Merc
+    locationId: achievement-location-office-preacher
+  - !type:LocationCondition
+    progressKey: mercOfficeProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalMercLeader
+    requiredFactions:
+    - Merc
+    locationId: achievement-location-office-miner
+  - !type:LocationCondition
+    progressKey: mercOfficeProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalMercLeader
+    requiredFactions:
+    - Merc
+    locationId: achievement-location-office-elder
+  - !type:LocationCondition
+    progressKey: mercOfficeProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalMercLeader
+    requiredFactions:
+    - Merc
+    locationId: achievement-location-office-chief
+  # получить любое из писем лидеров
+  - !type:CollectAnyItemsCondition
+    progressKey: mercLetterProgression
+    requiredCount: 1
+    requiredJobs:
+    - MedievalMercLeader
+    requiredFactions:
+    - Merc
+    itemPrototypes:
+    - MedievalPaperEnvelopeLegion # легат
+    - MedievalPaperEnvelopeRebel # ярл
+    - MedievalPaperEnvelopeCollegium # архимаг
+    - MedievalPaperEnvelopeCult # проповедник
+    - MedievalPaperEnvelopeMiner # глава шахты
+    - MedievalPaperEnvelopeVillage # старейшина
+    - MedievalPaperEnvelopeTribe # вождь
+
+# Выполнить 10 контрактов
+- type: achievement
+  id: AchievementMercLeader10Contracts
+  priority: 17
+  rarity: Epic
+  name: achievement-merc-contract10-name
+  description: achievement-merc-contract10-desc
+  icon:
+    sprite: Imperial/Medieval/Objects/Envelope/merc.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementMercBecomeLeader
+  conditions:
+  - !type:CompleteMercContractCondition
+    progressKey: mercContract10Progression
+    requiredCount: 10
+    requiredJobs:
+    - MedievalMercLeader
+    requiredFactions:
+    - Merc
+
+# Заработать за раунд 2000 ревентов
+- type: achievement
+  id: AchievementMercLeader2000Round
+  priority: 18
+  rarity: Legendary
+  name: achievement-merc-2000-round-name
+  description: achievement-merc-2000-round-desc
+  icon:
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: revent_8
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementMercLeaderOfficeLetter
+  - AchievementMercLeader10Contracts
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: merc2000ReventsProgression
+    requiredJobs:
+    - MedievalMercLeader
+    requiredFactions:
+    - Merc
+    itemPrototypes:
+      MedievalRevent: 2000

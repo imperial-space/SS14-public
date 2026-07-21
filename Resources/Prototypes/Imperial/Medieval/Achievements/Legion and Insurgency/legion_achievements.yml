@@ -1,0 +1,273 @@
+# ==========================================
+# Рекрут
+# ==========================================
+- type: achievement
+  id: AchievementLegionJoin
+  priority: 10
+  rarity: Common
+  name: "Команда синих"
+  tab: AchievementTabLegionInsurgency
+  description: "Начните свой славный (и, вероятно, короткий) путь."
+  icon:
+    sprite: Imperial/Medieval/Clothing/Cloaks/clan_eagle.rsi
+    state: icon
+  visibility: Visible
+  conditions:
+  - !type:LocationCondition
+    progressKey: locationRecruitVisitLegionProgression
+    requiredCount: 1
+    requiredJobs:
+    - "MedievalLegionRecruit"
+    locationId: achievement-location-legion
+
+- type: achievement
+  id: AchievementLegionRecruitCapturePoint
+  priority: 10
+  rarity: Common
+  name: "Пушечное мясо в деле"
+  description: "Захватите 3 контрольные точки, будучи простым рекрутом. Империя гордится тобой!"
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/leg1.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementLegionJoin
+  conditions:
+  - !type:CapturePointCondition
+    progressKey: legionRecruitCapturePoint
+    requiredJobs:
+    - "MedievalLegionRecruit"
+    requiredCount: 3
+
+
+# ==========================================
+# Легионер
+# ==========================================
+
+- type: achievement
+  id: AchievementLegionBecomeLegionLegioner
+  priority: 10
+  rarity: Common
+  name: "Теперь ты в армии"
+  description: "Получите звание легионера. Уже не срочник."
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/leg2.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementLegionRecruitCapturePoint
+  - AchievementWarGeneralArcher
+  conditions:
+  - !type:LocationCondition
+    progressKey: locationLegionLegionerVisitLegionProgression
+    requiredCount: 1
+    requiredJobs:
+    - "MedievalLegionRecruit"
+    locationId: achievement-location-legion
+
+- type: achievement
+  id: AchievementLegionLegionerCapturePoints
+  priority: 11
+  rarity: Common
+  name: "Имперский блицкриг"
+  description: "Внимание, марш-бросок! Захватите 4 контрольные точки за ОДИН раунд в роли легионера."
+  icon:
+    sprite: Imperial/Medieval/Decor/medieval_banner.rsi
+    state: banner_blul
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementLegionBecomeLegionLegioner
+  conditions:
+  - !type:CapturePointCondition
+    progressKey: legionLegionerCapturePointProgressiong
+    requiredJobs:
+    - "MedievalLegionLegioner"
+    requiredCount: 4
+
+- type: achievement
+  id: AchievementLegionLegionerVisiInsurgency
+  priority: 12
+  rarity: Common
+  name: "Сунуть нос в логово врага"
+  description: "Атакуйте базу мятежников, играя за легионера. Главное теперь — вернутся домой."
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/factions.rsi
+    state: legion
+  visibility: Visible
+  prerequisites:
+  - AchievementLegionBecomeLegionLegioner
+  conditions:
+  - !type:LocationCondition
+    progressKey: locationRecruitVisitInsurgencyProgression
+    requiredCount: 1
+    requiredJobs:
+    - "MedievalLegionLegioner"
+    locationId: achievement-location-insurgency
+
+# ==========================================
+# Опцион
+# ==========================================
+
+- type: achievement
+  id: AchievementLegionBecomeLegionOpcion
+  priority: 10
+  rarity: Common
+  name: "Шаг по карьерной лестнице"
+  description: "Получите звание опциона на базе легиона. Теперь вы можете кричать на легионеров на законных основаниях."
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/leg2_5.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementLegionLegionerCapturePoints
+  - AchievementLegionLegionerVisiInsurgency
+  conditions:
+  - !type:LocationCondition
+    progressKey: locationLegionOpcionVisitLegionProgression
+    requiredCount: 1
+    requiredJobs:
+    - "MedievalLegionOpcion"
+    locationId: achievement-location-legion
+
+- type: achievement
+  id: AchievementLegionOpcionGetMedal
+  priority: 11
+  rarity: Common
+  name: "Блестящая грудь"
+  description: "Соберите 10 медалей легиона. Главное не надорваться под их весом."
+  icon:
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: medal_legion
+  visibility: Visible
+  prerequisites:
+  - AchievementLegionBecomeLegionOpcion
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: collectAllProgression
+    requiredJobs:
+    - "MedievalLegionOpcion"
+    itemPrototypes:
+      MedievalMedalLegion: 10
+
+# ==========================================
+# Трибун
+# ==========================================
+
+- type: achievement
+  id: AchievementLegionBecomeLegionTribun
+  priority: 10
+  rarity: Common
+  name: "Высокое начальство"
+  description: "Получите звание трибуна, посетив базу легиона. Почти сенатор, но всё еще приходится пачкать руки."
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/leg3.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementWarGeneralBallistica
+  - AchievementLegionOpcionGetMedal
+  conditions:
+  - !type:LocationCondition
+    progressKey: locationLegionTribunVisitLegionProgression
+    requiredCount: 1
+    requiredJobs:
+    - "MedievalLegionTribun"
+    locationId: achievement-location-legion
+
+- type: achievement
+  id: AchievementLegionTribunDestroyObelisk
+  priority: 11
+  rarity: Common
+  name: "Смерть красным!"
+  description: "Найдите и уничтожьте обелиск мятежников в роли трибуна. Оставьте их без новых солдат."
+  icon:
+    sprite: Imperial/Medieval/obelisks/layerobelisks.rsi
+    state: state-2
+  visibility: Visible
+  prerequisites:
+  - AchievementLegionBecomeLegionTribun
+  conditions:
+  - !type:DestroyFactionObeliskCondition
+    progressKey: destroyObeliskInsurgencyProgression
+    requiredCount: 1
+    requiredJobs:
+    - "MedievalLegionTribun"
+    targetFaction: Insurgency
+
+- type: achievement
+  id: AchievementLegionTribunGetHelmet
+  priority: 12
+  rarity: Common
+  name: "Трофей с Севера"
+  description: "Добудьте шлем ярла, играя за трибуна. Отличный сувенир для вашей коллекции."
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/fox4.rsi
+    state: equipped-HELMET
+  visibility: Visible
+  prerequisites:
+  - AchievementLegionBecomeLegionTribun
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: legionTribunGetHelmetProgression
+    requiredCount: 1
+    requiredJobs:
+    - "MedievalLegionTribun"
+    itemPrototypes:
+      MedievalClothingHeadHelmetFox4: 1
+
+# ==========================================
+# Легат
+# ==========================================
+
+- type: achievement
+  id: AchievementLegionBecomeLegionLegat
+  priority: 10
+  rarity: Epic
+  name: "Аве мне!"
+  description: "Дослужитесь до звания легата, посетив базу легиона. Вы на самой вершине командования, Империя смотрит на вас."
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/leg4.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementLegionTribunDestroyObelisk
+  - AchievementLegionTribunGetHelmet
+  conditions:
+  - !type:LocationCondition
+    progressKey: locationLegionLegatVisitLegionProgression
+    requiredCount: 1
+    requiredJobs:
+    - "MedievalLegionLegat"
+    locationId: achievement-location-legion
+
+- type: achievement
+  id: AchievementLegionLegatWinner
+  priority: 11
+  rarity: Epic
+  name: "Пришел, увидел, победил"
+  description: "Триумф! За ОДИН раунд в роли легата выполните всё: захватите 5 точек, уничтожьте обелиск и раздобудьте шлем ярла."
+  icon: /Textures/Imperial/Medieval/Interface/faction-leader.png
+  visibility: Visible
+  roundOnly: true
+  prerequisites:
+  - AchievementLegionBecomeLegionLegat
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: legatWinnerHelmetProgression
+    requiredCount: 1
+    requiredJobs:
+    - "MedievalLegionLegat"
+    itemPrototypes:
+      MedievalClothingHeadHelmetFox4: 1
+  - !type:CapturePointCondition
+    progressKey: legatWinnerCapturePointsProgression
+    requiredCount: 5
+    requiredJobs:
+    - "MedievalLegionLegat"
+  - !type:DestroyFactionObeliskCondition
+    progressKey: legatWinnerDestroyObeliskProgression
+    requiredCount: 1
+    requiredJobs:
+    - "MedievalLegionLegat"
+    targetFaction: Insurgency

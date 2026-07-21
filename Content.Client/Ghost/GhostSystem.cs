@@ -1,4 +1,5 @@
 using Content.Client.Movement.Systems;
+using Content.Shared.Imperial.Medieval.MedievalReviveSpawner;
 using Content.Shared.Actions;
 using Content.Shared.Ghost;
 using Robust.Client.Console;
@@ -50,6 +51,7 @@ namespace Content.Client.Ghost
         public event Action? PlayerDetached;
         public event Action<GhostWarpsResponseEvent>? GhostWarpsResponse;
         public event Action<GhostUpdateGhostRoleCountEvent>? GhostRoleCountUpdated;
+        public event Action<ReviveCountResponseEvent>? ReviveCountResponse; // Imperial Medieval Tweak
 
         public override void Initialize()
         {
@@ -64,6 +66,7 @@ namespace Content.Client.Ghost
 
             SubscribeNetworkEvent<GhostWarpsResponseEvent>(OnGhostWarpsResponse);
             SubscribeNetworkEvent<GhostUpdateGhostRoleCountEvent>(OnUpdateGhostRoleCount);
+            SubscribeNetworkEvent<ReviveCountResponseEvent>(OnReviveCountResponse); // Imperial Medieval Tweak
 
             SubscribeLocalEvent<EyeComponent, ToggleLightingActionEvent>(OnToggleLighting);
             SubscribeLocalEvent<EyeComponent, ToggleFoVActionEvent>(OnToggleFoV);
@@ -176,6 +179,16 @@ namespace Content.Client.Ghost
 
             GhostWarpsResponse?.Invoke(msg);
         }
+
+        // Imperial Medieval Tweak Start
+        private void OnReviveCountResponse(ReviveCountResponseEvent msg)
+        {
+            if (!IsGhost)
+                return;
+
+            ReviveCountResponse?.Invoke(msg);
+        }
+        // Imperial Medieval Tweak End
 
         private void OnUpdateGhostRoleCount(GhostUpdateGhostRoleCountEvent msg)
         {

@@ -333,16 +333,18 @@
     sprite: Structures/Storage/Shelfs/Departments/Service/bar.rsi
     state: base
     layers:
-      - state: base
-      - state: bar-0
-      - map: ["enum.StorageFillLayers.Fill"]
+    - state: base
+    - state: bar-0
+    - map:
+      - "enum.StorageFillLayers.Fill"
   - type: Appearance
   - type: StorageFillVisualizer
     maxFillLevels: 13
     fillBaseName: bar
   - type: Destructible
     thresholds:
-    - trigger: # Excess damage, don't spawn entities
+    - trigger:
+        # Excess damage, don't spawn entities
         !type:DamageTrigger
         damage: 200
       behaviors:
@@ -350,9 +352,9 @@
         sound:
           collection: WoodDestroyHeavy
       - !type:DoActsBehavior
-        acts: ["Destruction"]
-    - trigger:
-        !type:DamageTrigger
+        acts:
+        - "Destruction"
+    - trigger: !type:DamageTrigger
         damage: 100
       behaviors:
       - !type:PlaySoundBehavior
@@ -364,7 +366,8 @@
             min: 1
             max: 4
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts:
+        - "Destruction"
   - type: Storage
     grid:
     - 0,0,5,1

@@ -50,6 +50,7 @@
   name: moon battlemap
   description: A battlemap for your epic moon exploring to begin, pieces not included!
   components:
+    - type: Clickable
     - type: RDWeight
       value: 1.5
     - type: Sprite
@@ -60,6 +61,30 @@
     - type: Item
       size: Normal
     - type: MultiHandedItem
+    - type: SolutionContainerManager
+      solutions:
+        bucket:
+          maxVol: 300
+    - type: SolutionTransfer
+      transferAmount: 100
+      maxTransferAmount: 100
+      minTransferAmount: 10
+      canChangeTransferAmount: true
+    - type: DrainableSolution
+      solution: bucket
+    - type: SolutionItemStatus
+      solution: bucket
+    - type: RefillableSolution
+      solution: bucket
+    - type: ExaminableSolution
+      solution: bucket
+    - type: Edible
+      edible: Drink
+      destroyOnEmpty: false
+      solution: bucket
+    - type: Tag
+      tags:
+      - Bucket
 
 - type: entity
   id: MedievalCatapultAmmoBarrelGunpowder

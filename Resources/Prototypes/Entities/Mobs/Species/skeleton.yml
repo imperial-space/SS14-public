@@ -147,6 +147,8 @@
     descEnabled: false
   - type: NeedSleep
     enabled: false
+  - type: DrowningModifier
+    resistanceModifier: 1.1
   # Imperial Medieval End
 
 - type: entity

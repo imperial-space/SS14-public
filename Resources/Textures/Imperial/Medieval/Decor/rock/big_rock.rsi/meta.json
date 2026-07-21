@@ -1,0 +1,30 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla", 
+    "copyright": "by discord: prazat911", 
+    "size": {
+        "x": 64,
+        "y": 64
+    },
+  "states":
+  [ 
+    {
+      "name": "rock_b1" 
+    },
+    {
+      "name": "rock_b2" 
+    },
+    {
+      "name": "rockmoss_b1" 
+    },
+    {
+      "name": "rockmoss_b2" 
+    },
+    {
+      "name": "rocksand_b1" 
+    },
+    {
+      "name": "rocksand_b2" 
+    }  
+  ]
+}

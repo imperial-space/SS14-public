@@ -1,0 +1,75 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla", 
+    "copyright": "by discord: prazat911", 
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+  "states":
+  [ 
+    {
+      "name": "rock_s1" 
+    },
+    {
+      "name": "rock_s2" 
+    },
+    {
+      "name": "rock_s3" 
+    },
+    {
+      "name": "rock_s4" 
+    },
+    {
+      "name": "rock_s5" 
+    },
+    {
+      "name": "rock_s6" 
+    },
+    {
+      "name": "rock_s7" 
+    },
+    {
+      "name": "rockmoss_s1" 
+    },
+    {
+      "name": "rockmoss_s2" 
+    },
+    {
+      "name": "rockmoss_s3" 
+    },
+    {
+      "name": "rockmoss_s4" 
+    },
+    {
+      "name": "rockmoss_s5" 
+    },
+    {
+      "name": "rockmoss_s6" 
+    },
+    {
+      "name": "rockmoss_s7" 
+    },
+    {
+      "name": "rocksand_s1" 
+    },
+    {
+      "name": "rocksand_s2" 
+    },
+    {
+      "name": "rocksand_s3" 
+    },
+    {
+      "name": "rocksand_s4" 
+    },
+    {
+      "name": "rocksand_s5" 
+    },
+    {
+      "name": "rocksand_s6" 
+    },
+    {
+      "name": "rocksand_s7" 
+    }  
+  ]
+}

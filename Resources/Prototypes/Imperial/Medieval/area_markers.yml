@@ -141,6 +141,8 @@
     areaName: area-map1-collegium
     audioPath:
       path: /Audio/Imperial/Medieval/area_markers/college.ogg
+  - type: AchievementLocation #Imperial medieval achievement
+    locationId: AreaMarkerCollegium
 
 - type: entity
   id: AreaMarkerSwamp
@@ -206,6 +208,8 @@
     areaName: area-map1-cult
     audioPath:
       path: /Audio/Imperial/Medieval/area_markers/cult.ogg
+  - type: AchievementLocation #Imperial medieval achievement
+    locationId: AreaMarkerCult
 
 - type: entity
   id: AreaMarkerMine
@@ -219,6 +223,8 @@
     areaName: area-map1-mine
     audioPath:
       path: /Audio/Imperial/Medieval/area_markers/mineshaft.ogg
+  - type: AchievementLocation #Imperial medieval achievement
+    locationId: AreaMarkerMine
 
 - type: entity
   id: AreaMarkerChapel
@@ -310,6 +316,8 @@
     areaName: area-map1-band
     audioPath:
       path: /Audio/Imperial/Medieval/area_markers/general2.ogg
+  - type: AchievementLocation #Imperial medieval achievement
+    locationId: AreaMarkerBand
 
 - type: entity
   id: AreaMarkerMerc
@@ -323,6 +331,8 @@
     areaName: area-map1-merc
     audioPath:
       path: /Audio/Imperial/Medieval/area_markers/general.ogg
+  - type: AchievementLocation #Imperial medieval achievement
+    locationId: AreaMarkerMerc
 
 - type: entity
   id: AreaMarkerVillage
@@ -336,6 +346,8 @@
     areaName: area-map1-village
     audioPath:
       path: /Audio/Imperial/Medieval/area_markers/general.ogg
+  - type: AchievementLocation #Imperial medieval achievement
+    locationId: AreaMarkerVillage
 
 - type: entity
   id: AreaMarkerTribe

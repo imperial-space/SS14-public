@@ -7,8 +7,8 @@ using Robust.Shared.Enums;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -16,12 +16,15 @@ namespace Content.Client.Imperial.Medieval.Ships.Wind;
 
 public sealed class SeaSwellOverlay : Overlay
 {
+    private static readonly ProtoId<ShaderPrototype> UnshadedShader = "unshaded";
+
     [Dependency] private readonly IConfigurationManager _configuration = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
     private const float TileQueryPadding = 4f;
-    private const float GridMaskPadding = 1.1f;
     private const float ParticleSpawnPadding = 1.2f;
     private const float CalmParticleDensity = 0.2f;
     private const float StormParticleDensity = 0.58f;
@@ -49,7 +52,7 @@ public sealed class SeaSwellOverlay : Overlay
 
     private readonly Dictionary<MapId, List<SwellParticle>> _particlesByMap = new();
     private readonly List<MapId> _staleMaps = new();
-    private readonly List<GridMask> _gridMasks = new();
+    private readonly ShaderInstance _unshadedShader;
     private float _stormStrength;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowEntities;
@@ -57,6 +60,7 @@ public sealed class SeaSwellOverlay : Overlay
     public SeaSwellOverlay()
     {
         IoCManager.InjectDependencies(this);
+        _unshadedShader = _prototypeManager.Index(UnshadedShader).Instance();
         ZIndex = 13;
     }
 
@@ -111,13 +115,14 @@ public sealed class SeaSwellOverlay : Overlay
     protected override void Draw(in OverlayDrawArgs args)
     {
         var visibleBounds = args.WorldAABB.Enlarged(TileQueryPadding);
-        BuildGridMasks(args.MapId, visibleBounds);
 
         var particles = AllParticles(args.MapId);
         if (_configuration.GetCVar(ShipsCCVars.WindEnabled))
-            SpawnParticles(particles, visibleBounds);
+            SpawnParticles(args.MapId, particles, visibleBounds);
         var eyeRotation = args.Viewport.Eye?.Rotation ?? Angle.Zero;
-        DrawParticles(args.WorldHandle, particles, args.WorldAABB.Enlarged(ParticleSpawnPadding + _stormStrength * 0.35f), eyeRotation);
+        args.WorldHandle.UseShader(_unshadedShader);
+        DrawParticles(args.WorldHandle, args.MapId, particles, args.WorldAABB.Enlarged(ParticleSpawnPadding + _stormStrength * 0.35f), eyeRotation);
+        args.WorldHandle.UseShader(null);
     }
 
     private List<SwellParticle> AllParticles(MapId mapId)
@@ -130,45 +135,7 @@ public sealed class SeaSwellOverlay : Overlay
         return particles;
     }
 
-    private void BuildGridMasks(MapId mapId, Box2 visibleBounds)
-    {
-        _gridMasks.Clear();
-        var xformSystem = _entityManager.System<SharedTransformSystem>();
-        var mapSystem = _entityManager.System<SharedMapSystem>();
-        var query = _entityManager.AllEntityQueryEnumerator<MapGridComponent, TransformComponent>();
-
-        while (query.MoveNext(out var uid, out var grid, out var xform))
-        {
-            if (xform.MapID != mapId)
-                continue;
-
-            var (_, _, worldMatrix, invWorldMatrix) = xformSystem.GetWorldPositionRotationMatrixWithInv(uid);
-            var worldBounds = worldMatrix.TransformBox(grid.LocalAABB);
-            if (!worldBounds.Intersects(visibleBounds))
-                continue;
-
-            var occupiedTiles = new HashSet<Vector2i>();
-            var tileEnumerator = mapSystem.GetTilesEnumerator(uid, grid, visibleBounds.Enlarged(GridMaskPadding));
-
-            while (tileEnumerator.MoveNext(out var tileRef))
-            {
-                occupiedTiles.Add(tileRef.GridIndices);
-            }
-
-            if (occupiedTiles.Count == 0)
-                continue;
-
-            _gridMasks.Add(new GridMask
-            {
-                InvWorldMatrix = invWorldMatrix,
-                LocalBounds = grid.LocalAABB.Enlarged(GridMaskPadding),
-                TileSize = grid.TileSize,
-                OccupiedTiles = occupiedTiles,
-            });
-        }
-    }
-
-    private void SpawnParticles(List<SwellParticle> particles, Box2 visibleBounds)
+    private void SpawnParticles(MapId mapId, List<SwellParticle> particles, Box2 visibleBounds)
     {
         var spawnBounds = GetSpawnFocusBounds(visibleBounds);
         var area = visibleBounds.Width * visibleBounds.Height;
@@ -178,10 +145,20 @@ public sealed class SeaSwellOverlay : Overlay
         var targetCount = Math.Clamp((int) MathF.Ceiling(area * density), minParticles, maxParticles);
         var slotCount = 0;
 
-        foreach (var particle in particles)
+        for (var i = particles.Count - 1; i >= 0; i--)
         {
-            if (visibleBounds.Contains(particle.Position))
-                slotCount++;
+            var particle = particles[i];
+            if (!visibleBounds.Contains(particle.Position))
+                continue;
+
+            var reach = EstimateParticleReach(particle.Shape, particle.Length, particle.Spread);
+            if (IsParticleBlocked(mapId, particle.Position, reach))
+            {
+                particles.RemoveAt(i);
+                continue;
+            }
+
+            slotCount++;
         }
 
         var missing = targetCount - slotCount;
@@ -189,12 +166,12 @@ public sealed class SeaSwellOverlay : Overlay
 
         for (var i = 0; i < missing; i++)
         {
-            if (TryCreateParticle(particles, spawnBounds, warmStart, out var particle))
+            if (TryCreateParticle(mapId, particles, spawnBounds, warmStart, out var particle))
                 particles.Add(particle);
         }
     }
 
-    private bool TryCreateParticle(List<SwellParticle> particles, Box2 spawnBounds, bool warmStart, out SwellParticle particle)
+    private bool TryCreateParticle(MapId mapId, List<SwellParticle> particles, Box2 spawnBounds, bool warmStart, out SwellParticle particle)
     {
         var sizeScale = MathHelper.Lerp(CalmSizeScale, StormSizeScale, _stormStrength);
         var spreadScale = MathHelper.Lerp(CalmSpreadScale, StormSpreadScale, _stormStrength);
@@ -243,7 +220,7 @@ public sealed class SeaSwellOverlay : Overlay
             alpha *= alphaScale;
             var reach = EstimateParticleReach(shape, length, spread);
 
-            if (IsParticleBlocked(position, reach))
+            if (IsParticleBlocked(mapId, position, reach))
                 continue;
 
             if (OverlapsExistingParticle(particles, position, reach))
@@ -302,16 +279,16 @@ public sealed class SeaSwellOverlay : Overlay
         return false;
     }
 
-    private bool IsParticleBlocked(Vector2 position, float radius)
+    private bool IsParticleBlocked(MapId mapId, Vector2 position, float radius)
     {
-        return IsBlockedByGrid(position) ||
-               IsBlockedByGrid(position + new Vector2(radius, 0f)) ||
-               IsBlockedByGrid(position - new Vector2(radius, 0f)) ||
-               IsBlockedByGrid(position + new Vector2(0f, radius)) ||
-               IsBlockedByGrid(position - new Vector2(0f, radius));
+        return IsBlockedByTile(mapId, position) ||
+               IsBlockedByTile(mapId, position + new Vector2(radius, 0f)) ||
+               IsBlockedByTile(mapId, position - new Vector2(radius, 0f)) ||
+               IsBlockedByTile(mapId, position + new Vector2(0f, radius)) ||
+               IsBlockedByTile(mapId, position - new Vector2(0f, radius));
     }
 
-    private void DrawParticles(DrawingHandleWorld handle, List<SwellParticle> particles, Box2 drawBounds, Angle eyeRotation)
+    private void DrawParticles(DrawingHandleWorld handle, MapId mapId, List<SwellParticle> particles, Box2 drawBounds, Angle eyeRotation)
     {
         var screenRight = (-eyeRotation).ToVec();
         var screenUp = new Vector2(-screenRight.Y, screenRight.X);
@@ -335,13 +312,13 @@ public sealed class SeaSwellOverlay : Overlay
             switch (particle.Shape)
             {
                 case SwellShapeType.Chevron:
-                    DrawChevron(handle, particle, life, screenRight, screenUp, color);
+                    DrawChevron(handle, mapId, particle, life, screenRight, screenUp, color);
                     break;
                 case SwellShapeType.Split:
-                    DrawSplit(handle, particle, life, screenRight, screenUp, color);
+                    DrawSplit(handle, mapId, particle, life, screenRight, screenUp, color);
                     break;
                 default:
-                    DrawLinePulse(handle, particle, life, screenRight, screenUp, color);
+                    DrawLinePulse(handle, mapId, particle, life, screenRight, screenUp, color);
                     break;
             }
         }
@@ -349,6 +326,7 @@ public sealed class SeaSwellOverlay : Overlay
 
     private void DrawLinePulse(
         DrawingHandleWorld handle,
+        MapId mapId,
         SwellParticle particle,
         float life,
         Vector2 screenRight,
@@ -364,11 +342,12 @@ public sealed class SeaSwellOverlay : Overlay
         var points = new Vector2[2];
         points[0] = center - direction * halfLength;
         points[1] = center + direction * halfLength;
-        DrawPolylineRibbon(handle, points, thickness, color);
+        DrawPolylineRibbon(handle, mapId, points, thickness, color);
     }
 
     private void DrawChevron(
         DrawingHandleWorld handle,
+        MapId mapId,
         SwellParticle particle,
         float life,
         Vector2 screenRight,
@@ -388,11 +367,12 @@ public sealed class SeaSwellOverlay : Overlay
         points[1] = center + screenUp * lift;
         points[2] = center + direction * halfLength;
 
-        DrawPolylineRibbon(handle, points, thickness, color);
+        DrawPolylineRibbon(handle, mapId, points, thickness, color);
     }
 
     private void DrawSplit(
         DrawingHandleWorld handle,
+        MapId mapId,
         SwellParticle particle,
         float life,
         Vector2 screenRight,
@@ -417,11 +397,11 @@ public sealed class SeaSwellOverlay : Overlay
         right[0] = rightCenter - direction * halfLength;
         right[1] = rightCenter + direction * halfLength;
 
-        DrawPolylineRibbon(handle, left, thickness, color);
-        DrawPolylineRibbon(handle, right, thickness, color);
+        DrawPolylineRibbon(handle, mapId, left, thickness, color);
+        DrawPolylineRibbon(handle, mapId, right, thickness, color);
     }
 
-    private void DrawPolylineRibbon(DrawingHandleWorld handle, ReadOnlySpan<Vector2> points, float thickness, Color color)
+    private void DrawPolylineRibbon(DrawingHandleWorld handle, MapId mapId, ReadOnlySpan<Vector2> points, float thickness, Color color)
     {
         if (points.Length < 2)
             return;
@@ -433,7 +413,7 @@ public sealed class SeaSwellOverlay : Overlay
         {
             var a = points[i];
             var b = points[i + 1];
-            if (IsBlockedSegment(a, b))
+            if (IsBlockedSegment(mapId, a, b))
                 continue;
 
             var startT = i / (float) (points.Length - 1);
@@ -467,32 +447,18 @@ public sealed class SeaSwellOverlay : Overlay
         handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, vertices, color);
     }
 
-    private bool IsBlockedSegment(Vector2 a, Vector2 b)
+    private bool IsBlockedSegment(MapId mapId, Vector2 a, Vector2 b)
     {
-        return IsBlockedByGrid(a) ||
-               IsBlockedByGrid(Vector2.Lerp(a, b, 0.25f)) ||
-               IsBlockedByGrid(Vector2.Lerp(a, b, 0.5f)) ||
-               IsBlockedByGrid(Vector2.Lerp(a, b, 0.75f)) ||
-               IsBlockedByGrid(b);
+        return IsBlockedByTile(mapId, a) ||
+               IsBlockedByTile(mapId, Vector2.Lerp(a, b, 0.25f)) ||
+               IsBlockedByTile(mapId, Vector2.Lerp(a, b, 0.5f)) ||
+               IsBlockedByTile(mapId, Vector2.Lerp(a, b, 0.75f)) ||
+               IsBlockedByTile(mapId, b);
     }
 
-    private bool IsBlockedByGrid(Vector2 worldPoint)
+    private bool IsBlockedByTile(MapId mapId, Vector2 worldPoint)
     {
-        foreach (var mask in _gridMasks)
-        {
-            var local = Vector2.Transform(worldPoint, mask.InvWorldMatrix);
-            if (!mask.LocalBounds.Contains(local))
-                continue;
-
-            var tile = new Vector2i(
-                (int) MathF.Floor(local.X / mask.TileSize),
-                (int) MathF.Floor(local.Y / mask.TileSize));
-
-            if (mask.OccupiedTiles.Contains(tile))
-                return true;
-        }
-
-        return false;
+        return _mapManager.TryFindGridAt(mapId, worldPoint, out _, out _);
     }
 
     private static float RibbonHalfWidth(float baseThickness, float pointT)
@@ -562,14 +528,6 @@ public sealed class SeaSwellOverlay : Overlay
         var expand = SmoothStep(0.02f, 0.42f, life);
         var settle = 1f - SmoothStep(0.9f, 1f, life);
         return MathF.Pow(expand * settle, 0.9f);
-    }
-
-    private sealed class GridMask
-    {
-        public Matrix3x2 InvWorldMatrix;
-        public Box2 LocalBounds;
-        public float TileSize;
-        public HashSet<Vector2i> OccupiedTiles = new();
     }
 
     private struct SwellParticle

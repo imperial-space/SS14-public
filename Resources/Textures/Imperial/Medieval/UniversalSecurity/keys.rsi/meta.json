@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "Ungabunga",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "key_ready"
+    },
+    {
+      "name": "key_unready"
+    },
+    {
+      "name": "admin_key"
+    }
+  ]
+}

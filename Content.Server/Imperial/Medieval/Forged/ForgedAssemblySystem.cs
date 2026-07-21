@@ -274,12 +274,12 @@ public sealed class ForgedAssemblySystem : EntitySystem
 
     private void OnExamined(EntityUid uid, ForgedModuleComponent component, ExaminedEvent args)
     {
-        // Добавляем информацию о сопротивлении
+        // информация о сопротивлении
         var resBonus = component.ResistanceModifier * 100;
-        args.PushMarkup(Loc.GetString("forged-module-examine-resistance", ("res", resBonus)));
+        args.PushMarkup(Loc.GetString("forged-module-examine-resistance", ("res", Math.Round(resBonus))));
 
-        // Добавляем информацию о скорости
+        // информация о скорости
         var speedBonus = component.SpeedModifier * 100;
-        args.PushMarkup(Loc.GetString("forged-module-examine-speed", ("speed", speedBonus)));
+        args.PushMarkup(Loc.GetString("forged-module-examine-speed", ("speed", Math.Round(speedBonus))));
     }
 }

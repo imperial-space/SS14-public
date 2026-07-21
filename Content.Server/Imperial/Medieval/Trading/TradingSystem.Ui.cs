@@ -1,10 +1,12 @@
 ﻿using System.Linq;
+using Content.Server.Imperial.Medieval.Achievements;
 using Content.Server.Actions;
 using Content.Server.Administration.Logs;
 using Content.Server.Quest.Components;
 using Content.Server.Stack;
 using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
+using Content.Shared.Imperial.Medieval.Achievements;
 using Content.Shared.Actions;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
@@ -34,6 +36,7 @@ public sealed partial class TradingSystem
     [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly AchievementSystem _achievements = default!;
 
     private void InitializeUi()
     {
@@ -125,6 +128,15 @@ public sealed partial class TradingSystem
             name = meta.EntityName;
 
         guild?.AddReputation(netBuyer, item.ReputationForBuying, name);
+
+        if (HasComp<AchievementOwnerComponent>(buyer))
+        {
+            _achievements.TryUpdateProgressAndGrant(
+                buyer,
+                new GuildReputationContext(guild!.TypePrototype, guild!.GetReputation(netBuyer)),
+                ach => ach.Conditions.Any(c => c is GuildReputationCondition)
+            );
+        }
 
         if (item.ProductEntity != null)
         {

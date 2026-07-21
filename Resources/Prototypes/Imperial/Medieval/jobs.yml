@@ -4892,7 +4892,7 @@
   - MedievalMotleyHat
   - MedievalWreath
   - MedievalGrayHat
-  - MedievalFeatherHat
+  #- MedievalFeatherHat
   - MedievalWanderHat
   - MedievalGreenHat
   - MedievalTraderLegionHat
@@ -4909,7 +4909,7 @@
   - MedievalMotleyHat
   - MedievalWreath
   - MedievalGrayHat
-  - MedievalFeatherHat
+  #- MedievalFeatherHat
   - MedievalWanderHat
   - MedievalGreenHat
   - MedievalTraderFoxHat

@@ -7,6 +7,7 @@ store-ui-discount-display = (скидка {$amount}!)
 store-ui-traitor-flavor = Авторское право (С) НТ-30643
 store-ui-traitor-warning = Оперативники должны блокировать свои аплинки после использования, чтобы избежать обнаружения.
 
+store-ui-buy-button = Купить
 store-withdraw-button-ui = Вывести {$currency}
 store-ui-button-out-of-stock = {""} (нет в наличии)
 store-not-account-owner = Этот {$store} не привязан к вам!

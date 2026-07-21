@@ -944,8 +944,14 @@
     - MedievalMopBucket
     - MedievalKnut
     - MedievalBeeHoneyBandage
+    - CandleSmallCraft
+    - CandleCraft
     - MedievalCustomBeeHive
     - MedievalBeeSmoke
+    - CaptainShipMegaphoneCraft
+    - MedievalOarCraft
+    - SmokingPipeCraft
+    - RollingPinCraft
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -1036,6 +1042,10 @@
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/craft_iron.ogg"
     recipes:
+    - RecycleCrystalToEssenceVodka
+    - RecycleCrystalToEssenceFire
+    - RecycleCrystalToEssenceLight
+    - RecycleCrystalToEssenceEarth
     - MedievalManaBurnGrenade
     - MedievalGlowStone
     - MedievalCompactDefibrillator
@@ -1098,6 +1108,30 @@
     - ForgedLHandBladeCraft
     - ForgedCrossbowRHandCraft
     - ForgedCrossbowLHandCraft
+    - ForgedEbonitHeadCraft
+    - ForgedEbonitTorsoCraft
+    - ForgedEbonitRArmCraft
+    - ForgedEbonitLArmCraft
+    - ForgedEbonitRLegCraft
+    - ForgedEbonitLLegCraft
+    - ForgedForstoneHeadCraft
+    - ForgedForstoneTorsoCraft
+    - ForgedForstoneRArmCraft
+    - ForgedForstoneLArmCraft
+    - ForgedForstoneRLegCraft
+    - ForgedForstoneLLegCraft
+    - ForgedInvisibilityNimbusCraft
+    - ForgedTorsoExplosiveCraft
+    - ForgedLHandCannon1Craft
+    - ForgedRHandCannon1Craft
+    - ForgedLHandCannon2Craft
+    - ForgedRHandCannon2Craft
+    - ForgedLHandCannon3Craft
+    - ForgedRHandCannon3Craft
+    - ForgedLHandCannon4Craft
+    - ForgedRHandCannon4Craft
+    - ForgedLHandCannon5Craft
+    - ForgedRHandCannon5Craft
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -1142,6 +1176,9 @@
     - MedievalRivets
     - MedievalShoulder
     - ClothingEyesGlasses
+    - MedievalDoorLockT1
+    - MedievalDoorLockT2
+    - MedievalDoorLockT3
     - MedievalCatapultCraft
     - MedievalCatapultAmmoBarrel
     - MedievalCatapultAmmoBarrelGunpowder
@@ -1245,6 +1282,8 @@
     - MedievalFireplaceCraft
     - MedievalStoneLoopHoleCraft
     - MedievalWeaponTurretNanoTrasenCraft
+    - MedievalDrinkJarCraft
+    - DrinkBottleAlcoClearCraft
     - MedievalChemistryEmptyBottleTempering01Craft
     - MedievalChemistryEmptyBottleTempering02Craft
     - MedievalChemistryEmptyBottleTempering03Craft
@@ -1285,6 +1324,10 @@
     - GoldenFork
     - GoldenSpoon
     - GoldenPlate
+    - FoodPlateTinCraft
+    - FoodPlateMuffinTinCraft
+    - FoodKebabSkewerCraft
+
 - type: entity
   parent: CP14BaseWorkbench
   id: MedievalClothWorkingPlace

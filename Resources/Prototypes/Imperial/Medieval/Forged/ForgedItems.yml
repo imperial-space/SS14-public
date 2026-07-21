@@ -180,5 +180,240 @@
     tags:
       - ForgedArmCrossbow
 
+- type: entity
+  name: ForgedArmCannon1
+  id: ForgedArmCannon1
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_gun_1
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 4
+    rechargeSound:
+      path: /Audio/Imperial/Medieval/arrow_cast.ogg
+  - type: BasicEntityAmmoProvider
+    proto: MedievalProjectileMagicArrowKunaiCannon12
+    capacity: 1
+    count: 1
+  - type: Gun
+    resetOnHandSelected: false
+    fireRate: 0.4
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/icebeam_shot.ogg
+  - type: Unremoveable
+  - type: ForgedGun
+    hungerCost: 2
+
+- type: entity
+  name: ForgedArmCannon2
+  id: ForgedArmCannon2
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_gun_2
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 4
+    rechargeSound:
+      path: /Audio/Imperial/Medieval/arrow_cast.ogg
+  - type: BasicEntityAmmoProvider
+    proto: MedievalProjectileMagicArrowKunaiCannon12
+    capacity: 2
+    count: 1
+  - type: Gun
+    resetOnHandSelected: false
+    fireRate: 0.4
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/icebeam_shot.ogg
+  - type: Unremoveable
+  - type: ForgedGun
+    hungerCost: 2
+
+- type: entity
+  name: ForgedArmCannon3
+  id: ForgedArmCannon3
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_gun_3
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
+    rechargeSound:
+      path: /Audio/Imperial/Medieval/arrow_cast.ogg
+  - type: BasicEntityAmmoProvider
+    proto: MedievalProjectileMagicArrowKunaiCannon3
+    capacity: 1
+    count: 1
+  - type: Gun
+    resetOnHandSelected: false
+    fireRate: 0.4
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/icebeam_shot.ogg
+  - type: Unremoveable
+  - type: ForgedGun
+    hungerCost: 3
+
+- type: entity
+  name: ForgedArmCannon4
+  id: ForgedArmCannon4
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_gun_4
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
+    rechargeSound:
+      path: /Audio/Imperial/Medieval/arrow_cast.ogg
+  - type: BasicEntityAmmoProvider
+    proto: MedievalProjectileMagicArrowKunaiCannon4
+    capacity: 1
+    count: 1
+  - type: Gun
+    resetOnHandSelected: false
+    fireRate: 0.4
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/icebeam_shot.ogg
+  - type: Unremoveable
+  - type: ForgedGun
+    hungerCost: 4
+
+- type: entity
+  name: ForgedArmCannon5
+  id: ForgedArmCannon5
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_gun_5
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 30
+    rechargeSound:
+      path: /Audio/Imperial/Medieval/arrow_cast.ogg
+  - type: BasicEntityAmmoProvider
+    proto: MedievalProjectileMagicArrowKunaiCannon5
+    capacity: 1
+    count: 1
+  - type: Gun
+    resetOnHandSelected: false
+    fireRate: 0.4
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/icebeam_shot.ogg
+  - type: Unremoveable
+  - type: ForgedGun
+    hungerCost: 5
+
+- type: entity
+  id: MedievalProjectileMagicArrowKunaiCannon12
+  parent: BulletRocket
+  name: fireball
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Fire/MagicArrow/projectiles.rsi
+    layers:
+    - state: kunai
+      shader: unshaded
+  - type: StaminaDamageOnCollide
+    damage: 3
+  - type: Explosive
+    explosionType: Cryo
+    maxIntensity: 1
+    intensitySlope: 1
+    totalIntensity: 0
+    maxTileBreak: 0
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 10
+
+- type: entity
+  id: MedievalProjectileMagicArrowKunaiCannon3
+  parent: BulletRocket
+  name: fireball
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/projectiles.rsi
+    layers:
+    - state: kunai
+      shader: unshaded
+  - type: StaminaDamageOnCollide
+    damage: 3
+  - type: Explosive
+    explosionType: Cryo
+    maxIntensity: 1
+    intensitySlope: 1
+    totalIntensity: 0
+    maxTileBreak: 0
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 12
+        Piercing: 12
+
+- type: entity
+  id: MedievalProjectileMagicArrowKunaiCannon4
+  parent: BulletRocket
+  name: fireball
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/projectiles.rsi
+    layers:
+    - state: aim
+      shader: unshaded
+  - type: StaminaDamageOnCollide
+    damage: 3
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 5
+    intensitySlope: 5
+    totalIntensity: 5
+    maxTileBreak: 0
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 12
+        Piercing: 12
+
+- type: entity
+  id: MedievalProjectileMagicArrowKunaiCannon5
+  parent: BulletRocket
+  name: fireball
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: fireball
+      shader: unshaded
+  - type: StaminaDamageOnCollide
+    damage: 3
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 12
+    intensitySlope: 6
+    totalIntensity: 12
+    maxTileBreak: 0
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 5
+        Structural: 250
+
 - type: Tag
   id: ForgedArmCrossbow

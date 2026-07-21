@@ -1,0 +1,76 @@
+- type: entity
+  id: ShipTradeHole
+  abstract: true
+  name: shipyard pit
+  description: A terminal for purchasing ships.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_shop.rsi
+    layers:
+    - state: shop
+    netsync: false
+  - type: UserInterface
+    interfaces:
+      enum.ShipBuyTerminalUiKey.Key:
+        type: ShipBuyTerminalBoundUserInterface
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.ShipBuyTerminalUiKey.Key
+  - type: ShipBuyTerminal
+    balance: 0
+    globalOffset: 1
+    globalOffsetAngle: 0
+    globalGridAngle: 0
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Tag
+    tags:
+      - Structure
+  - type: PointLight
+
+- type: entity
+  id: ShipTradeHoleNorth
+  parent: ShipTradeHole
+  components:
+  - type: ShipBuyTerminal
+    globalOffsetAngle: 90
+    globalGridAngle: 90
+
+- type: entity
+  id: ShipTradeHoleEast
+  parent: ShipTradeHole
+  components:
+  - type: ShipBuyTerminal
+    globalOffsetAngle: 0
+    globalGridAngle: 180
+
+- type: entity
+  id: ShipTradeHoleSouth
+  parent: ShipTradeHole
+  components:
+  - type: ShipBuyTerminal
+    globalOffsetAngle: 270
+    globalGridAngle: 270
+
+- type: entity
+  id: ShipTradeHoleWest
+  parent: ShipTradeHole
+  components:
+  - type: ShipBuyTerminal
+    globalOffsetAngle: 180
+    globalGridAngle: 0

@@ -1,0 +1,18 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellEarthBedBeginner
+  name: medieval-store-spells-earth-bed-beginner-name
+  description: medieval-store-spells-earth-bed-beginner-desc
+  productAction: MedievalActionEarthBedBeginner
+  priority: 7
+  icon:
+    sprite: Imperial/Medieval/Magic/Earth/EarthBed/icons.rsi
+    state: beginner
+  cost:
+    MagicMedievalEarth: 60
+  categories:
+  - MedievalEarthSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1

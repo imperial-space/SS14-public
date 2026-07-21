@@ -1,0 +1,30 @@
+<medieval:MedievalWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:medieval="clr-namespace:Content.Client.Imperial.Medieval.CapturePoint.UI.MedievalWindow"
+               xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+               Title="{Loc 'achievement-detail-window-title'}"
+               SetWidth="800"
+               SetHeight="450"
+               Resizable="False">
+    <BoxContainer Orientation="Horizontal" SeparationOverride="0">
+        <PanelContainer Name="SummaryPanel" SetWidth="300">
+            <PanelContainer.PanelOverride>
+                <graphics:StyleBoxFlat 
+                    BackgroundColor="#1a130dee" 
+                    BorderColor="#3d2e1e" 
+                    BorderThickness="0,0,2,0" 
+                    ContentMarginLeftOverride="16" 
+                    ContentMarginRightOverride="16" 
+                    ContentMarginTopOverride="20"/>
+            </PanelContainer.PanelOverride>
+            <BoxContainer Name="HeaderContainer" Orientation="Vertical" SeparationOverride="10"/>
+        </PanelContainer>
+
+        <ScrollContainer HScrollEnabled="False" VerticalExpand="True" HorizontalExpand="True">
+            <BoxContainer Name="ContentContainer"
+                          Orientation="Vertical"
+                          SeparationOverride="0"
+                          HorizontalExpand="True"/>
+        </ScrollContainer>
+    </BoxContainer>
+</medieval:MedievalWindow>

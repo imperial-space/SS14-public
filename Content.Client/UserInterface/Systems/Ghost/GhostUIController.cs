@@ -29,8 +29,6 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeNetworkEvent<ReviveCountResponseEvent>(OnReviveCountResponse);// Imperial Medieval edit
-
         var gameplayStateLoad = UIManager.GetUIController<GameplayStateLoadController>();
         gameplayStateLoad.OnScreenLoad += OnScreenLoad;
         gameplayStateLoad.OnScreenUnload += OnScreenUnload;
@@ -54,6 +52,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         system.PlayerDetached += OnPlayerDetached;
         system.GhostWarpsResponse += OnWarpsResponse;
         system.GhostRoleCountUpdated += OnRoleCountUpdated;
+        system.ReviveCountResponse += OnReviveCountResponse; // Imperial Medieval Tweak
     }
 
     public void OnSystemUnloaded(GhostSystem system)
@@ -64,6 +63,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         system.PlayerDetached -= OnPlayerDetached;
         system.GhostWarpsResponse -= OnWarpsResponse;
         system.GhostRoleCountUpdated -= OnRoleCountUpdated;
+        system.ReviveCountResponse -= OnReviveCountResponse; // Imperial Medieval Tweak
     }
 
     public void UpdateGui()
@@ -127,9 +127,9 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         _net.SendSystemNetworkMessage(msg);
     }
 
-    // Imperial Medieval Revive start
+    // Imperial Medieval Revive Start
     private int reviveCount = 3;
-    private void OnReviveCountResponse(ReviveCountResponseEvent ev, EntitySessionEventArgs args)
+    private void OnReviveCountResponse(ReviveCountResponseEvent ev)
     {
         reviveCount = ev.MaxCount - ev.CurrentCount;
 
@@ -146,13 +146,14 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         _windowRules.OpenCentered();
     }
 
-
     private void OnGhostReviveClicked()
     {
         var request = new ReviveCountRequestEvent();
         _net.SendSystemNetworkMessage(request);
     }
-    // Imperial Medieval Revive end
+
+    // Imperial Medieval Revive End
+
     public void LoadGui()
     {
         if (Gui == null)

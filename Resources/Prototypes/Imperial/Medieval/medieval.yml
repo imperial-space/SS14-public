@@ -30,6 +30,7 @@
   id: MedievalStockade
   name: MedievalStockade
   components:
+  - type: AchievementTarget #Imperial medieval achievement
   - type: Tag
     tags:
       - Wall
@@ -452,7 +453,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
+          bounds: "-0.5,-0.5,0.5,0.5"
         density: 55
         mask:
         - TableMask
@@ -1884,8 +1885,13 @@
   #    - Prying
   #  useSound:
   #    path: /Audio/Items/crowbar.ogg
-  - type: DoorHackLockpick
-    useCount: 52
+  - type: UniversalLockpick
+    breakChance: 0.04
+    hackTime: 0.5
+  - type: UserInterface
+    interfaces:
+      enum.UniversalSecurityUiKey.Lockpick:
+        type: UniversalLockpickBoundUserInterface
 
 - type: entity
   name: MedievalLockpick
@@ -1912,8 +1918,15 @@
   #    - Prying
   #  useSound:
   #    path: /Audio/Items/crowbar.ogg
-  - type: DoorHackLockpick
-    useCount: 8
+  # - type: DoorHackLockpick
+  #   useCount: 8
+  - type: UniversalLockpick
+    breakChance: 0.2
+    hackTime: 2
+  - type: UserInterface
+    interfaces:
+      enum.UniversalSecurityUiKey.Lockpick:
+        type: UniversalLockpickBoundUserInterface
 
 - type: inventoryTemplate
   id: goblin
@@ -7343,7 +7356,8 @@
 - type: entity
   name: lol
   parent: BaseItem
-  id: MedievalDoorLock
+  abstract: true
+  id: MedievalDoorLockBase
   description: MedievalLoot
   components:
   - type: Sprite
@@ -7351,7 +7365,49 @@
     state: lock
   - type: Item
     size: Tiny
-  - type: DoorNewLock
+  - type: UniversalLock
+    length: 4
+    maxValue: 9
+  - type: UserInterface
+    interfaces:
+      enum.UniversalSecurityUiKey.Lock:
+        type: UniversalLockBoundUserInterface
+
+- type: entity
+  parent: MedievalDoorLockBase
+  id: MedievalDoorLockT1
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/UniversalSecurity/lockes.rsi
+    state: MedievalLockT1
+  - type: UniversalLock
+    length: 4
+    maxValue: 8
+    timeToEject: 16
+
+- type: entity
+  parent: MedievalDoorLockBase
+  id: MedievalDoorLockT2
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/UniversalSecurity/lockes.rsi
+    state: MedievalLockT2
+  - type: UniversalLock
+    length: 8
+    maxValue: 16
+    timeToEject: 32
+
+- type: entity
+  parent: MedievalDoorLockBase
+  id: MedievalDoorLockT3
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/UniversalSecurity/lockes.rsi
+    state: MedievalLockT3
+  - type: UniversalLock
+    length: 16
+    maxValue: 32
+    timeToEject: 64
 
 - type: dungeonRoom
   id: MedievalSteroid9x9a
@@ -7574,6 +7630,7 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: AchievementTarget #Imperial medieval achievement
   - type: Sprite
     sprite: Imperial/Medieval/Walls/gates.rsi
     drawdepth: BlastDoors

@@ -1,4 +1,6 @@
-﻿using Content.Server.Chat.Managers;
+﻿using System.Linq;
+using Content.Server.Imperial.Medieval.Achievements;
+using Content.Server.Chat.Managers;
 using Content.Server.Mind;
 using Content.Server.Roles.Jobs;
 using Content.Server.SSDFree;
@@ -6,6 +8,7 @@ using Content.Server.SSDFree.Components;
 using Content.Shared.SSDFree.Components;
 using Content.Server.Stack;
 using Content.Server.Storage.EntitySystems;
+using Content.Shared.Imperial.Medieval.Achievements;
 using Content.Shared.Humanoid;
 using Content.Shared.Imperial.Medieval.BountyBoard;
 using Content.Shared.Interaction;
@@ -35,7 +38,7 @@ public sealed class BountyBoardSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-
+    [Dependency] private readonly AchievementSystem _achievement = default!;
 
     public override void Initialize()
     {
@@ -155,6 +158,12 @@ public sealed class BountyBoardSystem : EntitySystem
 
 
         _stackSystem.SpawnMultiple(contractComponent.CurrencyProtoId.Id, contractComponent.Payout, xform.Coordinates);
+
+        if (HasComp<AchievementOwnerComponent>(args.User))
+        {
+            _achievement.TryUpdateProgressAndGrant(args.User, new MercenaryContractCompletedContext(),
+                ach => ach.Conditions.Any(c => c is CompleteMercContractCondition));
+        }
 
         Del(args.Used);
     }

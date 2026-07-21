@@ -1,5 +1,7 @@
+using System.Linq;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.CCVar;
+using Content.Shared.Imperial.Medieval.Achievements;
 using Content.Shared.Players;
 using Content.Shared.Players.JobWhitelist;
 using Content.Shared.Players.PlayTimeTracking;
@@ -31,6 +33,8 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     private readonly List<string> _antagBans = new();
     private readonly List<string> _jobWhitelists = new();
 
+    private readonly HashSet<string> _jobAchievements = new(); // Imperial Medieval Achievements
+
     private ISawmill _sawmill = default!;
 
     public event Action? Updated;
@@ -44,6 +48,8 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         _net.RegisterNetMessage<MsgPlayTime>(RxPlayTime);
         _net.RegisterNetMessage<MsgJobWhitelist>(RxJobWhitelist);
 
+        _net.RegisterNetMessage<MsgJobAchievements>(RxJobAchievements); // Imperial Medieval Achievements
+
         _client.RunLevelChanged += ClientOnRunLevelChanged;
     }
 
@@ -56,6 +62,8 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
             _jobWhitelists.Clear();
             _jobBans.Clear();
             _antagBans.Clear();
+
+            _jobAchievements.Clear(); // Imperial Medieval Achievements
         }
     }
 
@@ -94,6 +102,15 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         _jobWhitelists.AddRange(message.Whitelist);
         Updated?.Invoke();
     }
+
+    // Imperial Medieval Achievements Start
+    private void RxJobAchievements(MsgJobAchievements message)
+    {
+        _jobAchievements.Clear();
+        _jobAchievements.UnionWith(message.Achievements);
+        Updated?.Invoke();
+    }
+    // Imperial Medieval Achievements End
 
     /// <summary>
     /// Check a list of job- and antag prototypes against the current player, for requirements and bans.
@@ -148,6 +165,12 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         // Check whitelist requirements
         if (!CheckWhitelist(job, out reason))
             return false;
+
+        // Imperial Medieval Achievements Start
+        // Check achievement unlock requirements
+        if (!CheckJobAchievements(job, out reason))
+            return false;
+        // Imperial Medieval Achievements End
 
         // Check other role requirements
         var reqs = _entManager.System<SharedRoleSystem>().GetRoleRequirements(job);
@@ -228,6 +251,33 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
         return true;
     }
+
+    // Imperial Medieval Achievements Start
+    public bool CheckJobAchievements(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)
+    {
+        reason = default;
+
+        if (job.RequiredAchievements.Count == 0)
+            return true;
+
+        if (_jobAchievements.Contains(job.ID))
+            return true;
+
+        var achievementNames = job.RequiredAchievements.Select(id =>
+        {
+            if (!_prototypes.TryIndex<AchievementPrototype>(id, out var proto) || proto.Name == null)
+                return id.Id;
+
+            return Loc.GetString(proto.Name);
+        });
+
+        var list = string.Join(", ", achievementNames);
+        var markup = Loc.GetString("job-requirement-achievement-locked", ("achievements", list));
+
+        reason = FormattedMessage.FromMarkupOrThrow(markup);
+        return false;
+    }
+    // Imperial Medieval Achievements End
 
     public TimeSpan FetchOverallPlaytime()
     {

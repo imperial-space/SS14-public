@@ -1,0 +1,47 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "Made for the Imperial Space community, authors discord nickname: Zakvielian, Passajir, Ungabunga, Piter Panker",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "blank"
+        },
+        {
+            "name": "forstone_arm_icon"
+        },
+        {
+            "name": "forstone_head",
+            "directions": 4
+        },
+        {
+            "name": "forstone_head_icon"
+        },
+        {
+            "name": "forstone_left_arm",
+            "directions": 4
+        },
+        {
+            "name": "forstone_left_leg",
+            "directions": 4
+        },
+        {
+            "name": "forstone_leg_icon"
+        },
+        {
+            "name": "forstone_right_arm",
+            "directions": 4
+        },
+        {
+            "name": "forstone_right_leg",
+            "directions": 4
+        },
+        {
+            "name": "forstone_torso",
+            "directions": 4
+        }
+    ]
+}

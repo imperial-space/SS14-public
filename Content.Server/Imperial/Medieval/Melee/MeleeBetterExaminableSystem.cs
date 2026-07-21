@@ -36,8 +36,6 @@ namespace Content.Server.MeleeBetterExaminable
                 else
                     args.PushMarkup("Это оружие [color=green]может[/color] быть использовано как парное");
             }
-            if (TryComp<MeleeParryComponent>(uid, out var parry) && !HasComp<ExaminerComponent>(uid) && !HasComp<MedievalPotionCheckAbleComponent>(uid))
-                args.PushMarkup("Шанс паррирования [color=white]" + Math.Round(parry.ParryChanse * 100, 2) + "%[/color]");
             if (!HasComp<MeleeParryComponent>(uid) && !HasComp<ExaminerComponent>(uid) && !HasComp<MedievalPotionCheckAbleComponent>(uid))
                 args.PushMarkup("Шанс паррирования [color=red]0%[/color]");
             if (TryComp<MedievalMeleeResourceComponent>(uid, out var resource) && !HasComp<ExaminerComponent>(uid) && !HasComp<MedievalPotionCheckAbleComponent>(uid))

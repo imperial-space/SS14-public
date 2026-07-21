@@ -1,6 +1,8 @@
 - type: entity
   name: bone spear
-  parent: [ BaseItem, BaseSpearCharged ]
+  parent:
+  - BaseItem
+  - BaseSpearCharged
   id: SpearBone
   description: A spear made of bones.
   components:
@@ -12,7 +14,8 @@
     layers:
     - state: spear
     - state: spear1
-      map: ["enum.SolutionContainerLayers.Fill"]
+      map:
+      - "enum.SolutionContainerLayers.Fill"
       visible: false
   - type: Construction
     node: spear
@@ -47,7 +50,7 @@
     damage:
       types:
         Piercing: 21
-  #- type: EmbeddableProjectile
+    #- type: EmbeddableProjectile
     #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
@@ -60,10 +63,10 @@
       fix1:
         shape: !type:PolygonShape
           vertices:
-            - -0.40,-0.30
-            - -0.30,-0.40
-            - 0.40,0.30
-            - 0.30,0.40
+          - -0.40,-0.30
+          - -0.30,-0.40
+          - 0.40,0.30
+          - 0.30,0.40
         density: 20
         mask:
         - ItemMask
@@ -355,9 +358,7 @@
     sprite: Imperial/Medieval/Melee/wooden_sword.rsi
     state: icon
   - type: MeleeParry
-    parryEffect: MedievalEffectParryWood
-    realParry: false
-    parryChanse: 0.75
+    parryEffectSuccess: MedievalEffectSuccessParryWooden
   - type: MeleeParryStamina
   - type: MeleeWeapon
     clickDamageModifier: 2
@@ -1429,6 +1430,7 @@
     cPSwingBeverage: true
     cPAnimationOffset: 1
     attackRate: 0.7
+    wideAnimationRotation: -135
   - type: MeleeThrowOnHit
     distance: 0.2
     speed: 5
@@ -4718,17 +4720,54 @@
     damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
 
 - type: entity
-  id: MedievalEffectParry
-  categories: [ HideSpawnMenu ]
+  id: MedievalEffectWindowParry
   components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Parry/parry.rsi
+    state: parry_window
+    drawdepth: Overlays
   - type: TimedDespawn
-    lifetime: 3
+    lifetime: 0.525
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: EmitSoundOnSpawn
+    sound:
+      collection: MeleeParryWindow
+  - type: MeleeParryEffect
+
+- type: entity
+  id: MedievalEffectSuccessParry
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Parry/parry.rsi
+    state: parry_success
+    drawdepth: Overlays
+  - type: TimedDespawn
+    lifetime: 0.525
   - type: Tag
     tags:
       - HideContextMenu
   - type: EmitSoundOnSpawn
     sound:
       collection: MeleeParry
+  - type: MeleeParryEffect
+
+- type: entity
+  id: MedievalEffectSuccessParryWooden
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Parry/parry.rsi
+    state: parry_success
+    drawdepth: Overlays
+  - type: TimedDespawn
+    lifetime: 0.525
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: EmitSoundOnSpawn
+    sound:
+      collection: MeleeParryWood
   - type: MeleeParryEffect
 
 - type: soundCollection
@@ -4740,6 +4779,11 @@
   - /Audio/Imperial/Medieval/iron_parry4.ogg
   - /Audio/Imperial/Medieval/iron_parry5.ogg
   - /Audio/Imperial/Medieval/iron_parry6.ogg
+
+- type: soundCollection
+  id: MeleeParryWindow
+  files:
+  - /Audio/Imperial/Medieval/sword_twice_swishes.ogg
 
 - type: entity
   id: MedievalEffectParryWood

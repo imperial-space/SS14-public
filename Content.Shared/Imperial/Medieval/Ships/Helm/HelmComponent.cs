@@ -7,7 +7,7 @@ public sealed partial class HelmComponent : Component
     public float HelmRotation;
 
     [DataField("rotationStep")]
-    public float RotationStep = 5f;
+    public float RotationStep = 50f;
 
     [DataField("steeringAngleForMaxTurn")]
     public float SteeringAngleForMaxTurn = 45f;
@@ -15,9 +15,15 @@ public sealed partial class HelmComponent : Component
     [DataField("turnImpulseScalar")]
     public float TurnImpulseScalar = 20f;
 
+    [DataField("stabilizingImpulseScalar")]
+    public float StabilizingImpulseScalar = 80f;
+
     [DataField("minMotionFactor")]
     public float MinMotionFactor = 0.25f;
 
     [DataField("minShipWeight")]
     public float MinShipWeight = 10f;
+
+    [DataField("OverloadCeilPerTile")]
+    public float OverloadCeilPerTile = 20f;
 }

@@ -1,0 +1,629 @@
+# Кузнечное дело / Кованные (для всех — без фильтра фракции)
+
+# Получить магический порошок (пыль)
+- type: achievement
+  id: AchievementForgedMagicDust
+  priority: 40
+  rarity: Common
+  tab: AchievementTabMagicForge
+  name: achievement-forged-magic-dust-name
+  description: achievement-forged-magic-dust-desc
+  icon:
+    sprite: Imperial/Medieval/Forged/items.rsi
+    state: magicDust
+  visibility: Visible
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedMagicDustProgression
+    requiredCount: 1
+    targetItems:
+    - MedievalMagicDust
+
+# Получить магическую глину
+- type: achievement
+  id: AchievementForgedMagicGlina
+  priority: 41
+  rarity: Common
+  name: achievement-forged-magic-glina-name
+  description: achievement-forged-magic-glina-desc
+  icon:
+    sprite: Imperial/Medieval/Forged/items.rsi
+    state: magicGlina
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedMagicDust
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedMagicGlinaProgression
+    requiredCount: 1
+    targetItems:
+    - MedievalMagicGlina
+
+# Создать все модули кованного деревянного
+- type: achievement
+  id: AchievementForgedWoodenModules
+  priority: 42
+  rarity: Uncommon
+  name: achievement-forged-wooden-modules-name
+  description: achievement-forged-wooden-modules-desc
+  icon:
+    sprite: Imperial/Medieval/Forged/wooden.rsi
+    state: wooden_head_icon
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedMagicGlina
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedWoodenHeadProgression
+    requiredCount: 1
+    targetItems: [ ForgedWoodenHead ]
+  - !type:CraftItemCondition
+    progressKey: forgedWoodenTorsoProgression
+    requiredCount: 1
+    targetItems: [ ForgedWoodenTorso ]
+  - !type:CraftItemCondition
+    progressKey: forgedWoodenRArmProgression
+    requiredCount: 1
+    targetItems: [ ForgedWoodenRArm ]
+  - !type:CraftItemCondition
+    progressKey: forgedWoodenLArmProgression
+    requiredCount: 1
+    targetItems: [ ForgedWoodenLArm ]
+  - !type:CraftItemCondition
+    progressKey: forgedWoodenRLegProgression
+    requiredCount: 1
+    targetItems: [ ForgedWoodenRLeg ]
+  - !type:CraftItemCondition
+    progressKey: forgedWoodenLLegProgression
+    requiredCount: 1
+    targetItems: [ ForgedWoodenLLeg ]
+
+# Создать все модули кованного железного
+- type: achievement
+  id: AchievementForgedIronModules
+  priority: 43
+  rarity: Uncommon
+  name: achievement-forged-iron-modules-name
+  description: achievement-forged-iron-modules-desc
+  icon:
+    sprite: Imperial/Medieval/Forged/iron.rsi
+    state: iron_head_icon
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedWoodenModules
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedIronHeadProgression
+    requiredCount: 1
+    targetItems: [ ForgedIronHead ]
+  - !type:CraftItemCondition
+    progressKey: forgedIronTorsoProgression
+    requiredCount: 1
+    targetItems: [ ForgedIronTorso ]
+  - !type:CraftItemCondition
+    progressKey: forgedIronRArmProgression
+    requiredCount: 1
+    targetItems: [ ForgedIronRArm ]
+  - !type:CraftItemCondition
+    progressKey: forgedIronLArmProgression
+    requiredCount: 1
+    targetItems: [ ForgedIronLArm ]
+  - !type:CraftItemCondition
+    progressKey: forgedIronRLegProgression
+    requiredCount: 1
+    targetItems: [ ForgedIronRLeg ]
+  - !type:CraftItemCondition
+    progressKey: forgedIronLLegProgression
+    requiredCount: 1
+    targetItems: [ ForgedIronLLeg ]
+
+# Создать все модули кованного золотого
+- type: achievement
+  id: AchievementForgedGoldenModules
+  priority: 44
+  rarity: Rare
+  name: achievement-forged-golden-modules-name
+  description: achievement-forged-golden-modules-desc
+  icon:
+    sprite: Imperial/Medieval/Forged/golden.rsi
+    state: golden_head_icon
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedIronModules
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedGoldenHeadProgression
+    requiredCount: 1
+    targetItems: [ ForgedGoldenHead ]
+  - !type:CraftItemCondition
+    progressKey: forgedGoldenTorsoProgression
+    requiredCount: 1
+    targetItems: [ ForgedGoldenTorso ]
+  - !type:CraftItemCondition
+    progressKey: forgedGoldenRArmProgression
+    requiredCount: 1
+    targetItems: [ ForgedGoldenRArm ]
+  - !type:CraftItemCondition
+    progressKey: forgedGoldenLArmProgression
+    requiredCount: 1
+    targetItems: [ ForgedGoldenLArm ]
+  - !type:CraftItemCondition
+    progressKey: forgedGoldenRLegProgression
+    requiredCount: 1
+    targetItems: [ ForgedGoldenRLeg ]
+  - !type:CraftItemCondition
+    progressKey: forgedGoldenLLegProgression
+    requiredCount: 1
+    targetItems: [ ForgedGoldenLLeg ]
+
+# Создать все модули кованного форстоуновые
+- type: achievement
+  id: AchievementForgedForstoneModules
+  priority: 45
+  rarity: Epic
+  name: achievement-forged-forstone-modules-name
+  description: achievement-forged-forstone-modules-desc
+  icon:
+    sprite: Imperial/Medieval/Forged/forstone.rsi
+    state: forstone_head_icon
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedGoldenModules
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedForstoneHeadProgression
+    requiredCount: 1
+    targetItems: [ ForgedForstoneHead ]
+  - !type:CraftItemCondition
+    progressKey: forgedForstoneTorsoProgression
+    requiredCount: 1
+    targetItems: [ ForgedForstoneTorso ]
+  - !type:CraftItemCondition
+    progressKey: forgedForstoneRArmProgression
+    requiredCount: 1
+    targetItems: [ ForgedForstoneRArm ]
+  - !type:CraftItemCondition
+    progressKey: forgedForstoneLArmProgression
+    requiredCount: 1
+    targetItems: [ ForgedForstoneLArm ]
+  - !type:CraftItemCondition
+    progressKey: forgedForstoneRLegProgression
+    requiredCount: 1
+    targetItems: [ ForgedForstoneRLeg ]
+  - !type:CraftItemCondition
+    progressKey: forgedForstoneLLegProgression
+    requiredCount: 1
+    targetItems: [ ForgedForstoneLLeg ]
+
+# Создать все модули кованного эбонитовые
+- type: achievement
+  id: AchievementForgedEboniteModules
+  priority: 46
+  rarity: Epic
+  name: achievement-forged-ebonite-modules-name
+  description: achievement-forged-ebonite-modules-desc
+  icon:
+    sprite: Imperial/Medieval/Forged/ebonit.rsi
+    state: ebonit_head_icon
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedGoldenModules
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedEbonitHeadProgression
+    requiredCount: 1
+    targetItems: [ ForgedEbonitHead ]
+  - !type:CraftItemCondition
+    progressKey: forgedEbonitTorsoProgression
+    requiredCount: 1
+    targetItems: [ ForgedEbonitTorso ]
+  - !type:CraftItemCondition
+    progressKey: forgedEbonitRArmProgression
+    requiredCount: 1
+    targetItems: [ ForgedEbonitRArm ]
+  - !type:CraftItemCondition
+    progressKey: forgedEbonitLArmProgression
+    requiredCount: 1
+    targetItems: [ ForgedEbonitLArm ]
+  - !type:CraftItemCondition
+    progressKey: forgedEbonitRLegProgression
+    requiredCount: 1
+    targetItems: [ ForgedEbonitRLeg ]
+  - !type:CraftItemCondition
+    progressKey: forgedEbonitLLegProgression
+    requiredCount: 1
+    targetItems: [ ForgedEbonitLLeg ]
+
+# Создать пушку кованного 1
+- type: achievement
+  id: AchievementForgedCannon1
+  priority: 47
+  rarity: Common
+  name: achievement-forged-cannon1-name
+  description: achievement-forged-cannon1-desc
+  icon:
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_gun_1_item
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedWoodenModules
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedCannon1Progression
+    requiredCount: 1
+    targetItems:
+    - ForgedArmCannon1
+    - ForgedRHandCannon1
+    - ForgedLHandCannon1
+
+# Создать пушку кованного 2
+- type: achievement
+  id: AchievementForgedCannon2
+  priority: 48
+  rarity: Uncommon
+  name: achievement-forged-cannon2-name
+  description: achievement-forged-cannon2-desc
+  icon:
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_gun_2_item
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedCannon1
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedCannon2Progression
+    requiredCount: 1
+    targetItems:
+    - ForgedArmCannon2
+    - ForgedRHandCannon2
+    - ForgedLHandCannon2
+
+# Создать пушку кованного 3
+- type: achievement
+  id: AchievementForgedCannon3
+  priority: 49
+  rarity: Rare
+  name: achievement-forged-cannon3-name
+  description: achievement-forged-cannon3-desc
+  icon:
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_gun_3_item
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedCannon2
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedCannon3Progression
+    requiredCount: 1
+    targetItems:
+    - ForgedArmCannon3
+    - ForgedRHandCannon3
+    - ForgedLHandCannon3
+
+# Создать пушку кованного 4
+- type: achievement
+  id: AchievementForgedCannon4
+  priority: 50
+  rarity: Epic
+  name: achievement-forged-cannon4-name
+  description: achievement-forged-cannon4-desc
+  icon:
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_gun_4_item
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedCannon3
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedCannon4Progression
+    requiredCount: 1
+    targetItems:
+    - ForgedArmCannon4
+    - ForgedRHandCannon4
+    - ForgedLHandCannon4
+
+# Создать пушку кованного 5
+- type: achievement
+  id: AchievementForgedCannon5
+  priority: 51
+  rarity: Legendary
+  name: achievement-forged-cannon5-name
+  description: achievement-forged-cannon5-desc
+  icon:
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_gun_5_item
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedCannon4
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedCannon5Progression
+    requiredCount: 1
+    targetItems:
+    - ForgedArmCannon5
+    - ForgedRHandCannon5
+    - ForgedLHandCannon5
+
+# Создать любое лезвие кованного
+- type: achievement
+  id: AchievementForgedBlade
+  priority: 52
+  rarity: Uncommon
+  name: achievement-forged-blade-name
+  description: achievement-forged-blade-desc
+  icon:
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: iron_arm_blade_item
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedWoodenModules
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedBladeProgression
+    requiredCount: 1
+    targetItems:
+    - ForgedArmBlade
+    - ForgedLHandBlade
+    - ForgedRHandBlade
+
+# Создать арбалет кованного
+- type: achievement
+  id: AchievementForgedCrossbow
+  priority: 53
+  rarity: Uncommon
+  name: achievement-forged-crossbow-name
+  description: achievement-forged-crossbow-desc
+  icon:
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: iron_arm_crossbow_item
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedWoodenModules
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedCrossbowProgression
+    requiredCount: 1
+    targetItems:
+    - ForgedArmCrossbow
+    - ForgedCrossbowRHand
+    - ForgedCrossbowLHand
+
+# Создать нимб невидимости кованного
+- type: achievement
+  id: AchievementForgedNimbus
+  priority: 54
+  rarity: Rare
+  name: achievement-forged-nimbus-name
+  description: achievement-forged-nimbus-desc
+  icon:
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: invisibility_nimbus
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedWoodenModules
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedNimbusProgression
+    requiredCount: 1
+    targetItems:
+    - ForgedInvisibilityNimbus
+
+# Создать самовзрыватель кованного
+- type: achievement
+  id: AchievementForgedExplosive
+  priority: 55
+  rarity: Rare
+  name: achievement-forged-explosive-name
+  description: achievement-forged-explosive-desc
+  icon:
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: self_destruction_item
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedWoodenModules
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedExplosiveProgression
+    requiredCount: 1
+    targetItems:
+    - ForgedTorsoExplosive
+
+# Создать любое ядро кованного
+- type: achievement
+  id: AchievementForgedCore
+  priority: 56
+  rarity: Uncommon
+  name: achievement-forged-core-name
+  description: achievement-forged-core-desc
+  icon:
+    sprite: Imperial/Medieval/Forged/cores.rsi
+    state: serdolic_core_icon
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedWoodenModules
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedCoreProgression
+    requiredCount: 1
+    targetItems:
+    - ForgedCoreSerdolic
+    - ForgedCoreAdam
+    - ForgedCoreTopaz
+    - ForgedCoreGold
+
+# Создать любые глаза кованного
+- type: achievement
+  id: AchievementForgedEyes
+  priority: 57
+  rarity: Uncommon
+  name: achievement-forged-eyes-name
+  description: achievement-forged-eyes-desc
+  icon:
+    sprite: Imperial/Medieval/Forged/eyes.rsi
+    state: serdolick_eyes_icon
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedWoodenModules
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedEyesProgression
+    requiredCount: 1
+    targetItems:
+    - ForgedTopazEyes
+    - ForgedAdamEyes
+    - ForgedSerdolickEyes
+    - ForgedBloodEyes
+
+# Скрафтить светящийся камень
+- type: achievement
+  id: AchievementForgedGlowStone
+  priority: 58
+  rarity: Uncommon
+  name: achievement-forged-glowstone-name
+  description: achievement-forged-glowstone-desc
+  icon:
+    sprite: Imperial/Medieval/Misc/glowstone.rsi
+    state: glowstick_glow
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedMagicGlina
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedGlowStoneProgression
+    requiredCount: 1
+    targetItems:
+    - MedievalGlowStone
+
+# Создать ошейник антимагии
+- type: achievement
+  id: AchievementForgedAntiManaCollar
+  priority: 59
+  rarity: Rare
+  name: achievement-forged-antimana-collar-name
+  description: achievement-forged-antimana-collar-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_antimag.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedGlowStone
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedAntiManaCollarProgression
+    requiredCount: 1
+    targetItems:
+    - MedaljonAntiMana
+
+# Создать свиток призыва оружия
+- type: achievement
+  id: AchievementForgedWeaponScroll
+  priority: 60
+  rarity: Uncommon
+  name: achievement-forged-weapon-scroll-name
+  description: achievement-forged-weapon-scroll-desc
+  icon:
+    sprite: Imperial/Medieval/scrolls.rsi
+    state: sword
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedGlowStone
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedWeaponScrollProgression
+    requiredCount: 1
+    targetItems:
+    - MedievalScrollsBow
+    - MedievalScrollsCrossbow
+    - MedievalScrollsFalshion
+    - MedievalScrollsHalberd
+    - MedievalScrollsDagger
+
+# Создать любой свиток призыва моба
+- type: achievement
+  id: AchievementForgedMobScroll
+  priority: 61
+  rarity: Uncommon
+  name: achievement-forged-mob-scroll-name
+  description: achievement-forged-mob-scroll-desc
+  icon:
+    sprite: Imperial/Medieval/scrolls.rsi
+    state: murlo
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedGlowStone
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedMobScrollProgression
+    requiredCount: 1
+    targetItems:
+    - MedievalScrollsPetSlime
+    - MedievalScrollsPnya
+    - MedievalScrollsFire
+    - MedievalScrollsKobold
+
+# Создать скороходы
+- type: achievement
+  id: AchievementForgedSpeedShoes
+  priority: 62
+  rarity: Uncommon
+  name: achievement-forged-speedshoes-name
+  description: achievement-forged-speedshoes-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Shoes/speedshoes.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedGlowStone
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedSpeedShoesProgression
+    requiredCount: 1
+    targetItems:
+    - MedievalShoesSpeed
+
+# Создать любой амулет
+- type: achievement
+  id: AchievementForgedAnyAmulet
+  priority: 63
+  rarity: Uncommon
+  name: achievement-forged-any-amulet-name
+  description: achievement-forged-any-amulet-desc
+  icon:
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_dark.rsi
+    state: icon
+  visibility: Visible
+  prerequisites:
+  - AchievementForgedGlowStone
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedAnyAmuletProgression
+    requiredCount: 1
+    targetItems:
+    - MedaljonSpeed
+    - MedaljonMana
+    - MedaljonDark
+    - MedaljonDef
+    - MedaljonFlashImmune
+    - MedaljonThieving
+    - MedaljonExpl
+    - MedaljonNoslip
+
+# Скрафтить квантэссенцию (СЕКРЕТНАЯ)
+- type: achievement
+  id: AchievementForgedQuantEssence
+  priority: 64
+  rarity: Legendary
+  name: achievement-forged-quantessence-name
+  description: achievement-forged-quantessence-desc
+  icon:
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/quantessence.rsi
+    state: icon
+  visibility: Hidden
+  prerequisites:
+  - AchievementForgedAnyAmulet
+  conditions:
+  - !type:CraftItemCondition
+    progressKey: forgedQuantEssenceProgression
+    requiredCount: 1
+    targetItems:
+    - MedievalDragonQuantEssence

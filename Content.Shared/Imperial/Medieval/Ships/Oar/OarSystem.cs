@@ -19,6 +19,7 @@ using Content.Shared.Interaction.Components;
 using Content.Shared.Movement.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Content.Shared.Wieldable.Components;
 
 
 namespace Content.Shared.Imperial.Medieval.Ships.Oar;
@@ -45,9 +46,12 @@ public sealed class OarSystem : EntitySystem
 
     private void OnOarAfterInteract(EntityUid uid, OarComponent component, AfterInteractEvent args)
     {
+        if (!TryComp<WieldableComponent>(uid, out var wieldableComponent) || wieldableComponent.Wielded == false)
+            return;
+
         var playerEntity = args.User;
 
-        if (args.Handled || !args.CanReach )
+        if (args.Handled || !args.CanReach)
             return;
 
         if (!_skills.HasSkill(playerEntity, SharedSkillsSystem.StrengthId))

@@ -1,17 +1,24 @@
 using System.Numerics;
+using System.Reflection;
+using Content.Server.Imperial.Medieval.Ships.Helm;
 using Content.Server.Imperial.Medieval.Ships.PlayerDrowning;
+using Content.Server.Imperial.Medieval.Ships.Sail;
 using Content.Server.Imperial.Medieval.Ships.Wave;
 using Content.Server.Shuttles.Components;
+using Content.Shared.Imperial.Medieval.Administration.Ships;
 using Content.Shared.DoAfter;
 using Content.Shared.Ghost;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Imperial.Medieval.Ships.Anchor;
+using Content.Shared.Imperial.Medieval.Ships.Helm;
 using Content.Shared.Imperial.Medieval.Ships.Hull;
 using Content.Shared.Imperial.Medieval.Ships.Repairing;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
 using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 using Content.Shared.Maps;
 using Content.Shared.Stacks;
+using Robust.Shared.Configuration;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -487,6 +494,9 @@ public sealed class ShipSystemsTest
             physics.SetAngularVelocity(gridUid, 3f, body: body);
 
             user = entMan.SpawnEntity(null, new EntityCoordinates(gridUid, new Vector2(0.5f, 0.5f)));
+            var skills = entMan.EnsureComponent<SkillsComponent>(user);
+            skills.Levels[SharedSkillsSystem.StrengthId] = 10;
+
             anchorUp = entMan.SpawnEntity("MedievalAnchorUp", new EntityCoordinates(gridUid, new Vector2(0.5f, 0.5f)));
 
             var lowerEvent = CreateCompletedDoAfter(
@@ -513,7 +523,8 @@ public sealed class ShipSystemsTest
 
             Assert.Multiple(() =>
             {
-                Assert.That(entMan.EntityExists(anchorUp), Is.False);
+                Assert.That(anchorDown, Is.EqualTo(anchorUp));
+                Assert.That(entMan.EntityExists(anchorUp), Is.True);
                 Assert.That(entMan.EntityExists(anchorDown), Is.True);
                 Assert.That(shuttle.Enabled, Is.False);
                 Assert.That(physics.GetMapLinearVelocity(gridUid), Is.EqualTo(Vector2.Zero));
@@ -543,7 +554,8 @@ public sealed class ShipSystemsTest
 
             Assert.Multiple(() =>
             {
-                Assert.That(entMan.EntityExists(anchorDown), Is.False);
+                Assert.That(newAnchorUp, Is.EqualTo(anchorDown));
+                Assert.That(entMan.EntityExists(anchorDown), Is.True);
                 Assert.That(entMan.EntityExists(newAnchorUp), Is.True);
                 Assert.That(shuttle.Enabled, Is.True);
             });
@@ -592,6 +604,134 @@ public sealed class ShipSystemsTest
         });
 
         await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task SpawnedWavesStartMovingWithRequestedVelocity()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var testMap = await pair.CreateTestMap();
+
+        var entMan = server.ResolveDependency<IEntityManager>();
+        var physics = entMan.System<SharedPhysicsSystem>();
+        var waveSystem = entMan.System<WaveSystem>();
+
+        EntityUid waveUid = default;
+        var requestedVelocity = new Vector2(-3f, 1.5f);
+
+        await server.WaitAssertion(() =>
+        {
+            waveUid = waveSystem.SpawnWave(new MapCoordinates(new Vector2(5f, 5f), testMap.MapId), requestedVelocity)!.Value;
+        });
+
+        await server.WaitAssertion(() =>
+        {
+            var velocity = physics.GetMapLinearVelocity(waveUid);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(velocity.X, Is.EqualTo(requestedVelocity.X).Within(0.001f));
+                Assert.That(velocity.Y, Is.EqualTo(requestedVelocity.Y).Within(0.001f));
+            });
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task WaveDeletesImmediatelyWhenInsideShipGrid()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var testMap = await pair.CreateTestMap();
+
+        var entMan = server.ResolveDependency<IEntityManager>();
+        var cfg = server.ResolveDependency<IConfigurationManager>();
+        var mapManager = server.ResolveDependency<IMapManager>();
+        var mapSystem = entMan.System<SharedMapSystem>();
+        var transform = entMan.System<SharedTransformSystem>();
+        var shipHull = entMan.System<SharedShipHullSystem>();
+        var waveSystem = entMan.System<WaveSystem>();
+
+        var previousStormLevel = cfg.GetCVar(ShipsCCVars.StormLevel);
+        var previousWaveMinToBreakLevel = cfg.GetCVar(ShipsCCVars.WaveMinToBreakLevel);
+
+        EntityUid waveUid = default;
+
+        try
+        {
+            await server.WaitAssertion(() =>
+            {
+                cfg.SetCVar(ShipsCCVars.StormLevel, 1f);
+                cfg.SetCVar(ShipsCCVars.WaveMinToBreakLevel, int.MaxValue);
+
+                var gridUid = SpawnSingleTileGrid(mapManager, mapSystem, testMap.MapId, shipHull.IntactHullTileId, out _);
+                entMan.EnsureComponent<ShipDrowningComponent>(gridUid);
+
+                var waveCoords = transform.ToMapCoordinates(new EntityCoordinates(gridUid, new Vector2(0.5f, 0.5f)));
+                waveUid = waveSystem.SpawnWave(waveCoords, Vector2.Zero)!.Value;
+            });
+
+            await pair.RunTicksSync(2);
+
+            await server.WaitAssertion(() =>
+            {
+                Assert.That(entMan.EntityExists(waveUid), Is.False);
+            });
+        }
+        finally
+        {
+            await server.WaitAssertion(() =>
+            {
+                cfg.SetCVar(ShipsCCVars.StormLevel, previousStormLevel);
+                cfg.SetCVar(ShipsCCVars.WaveMinToBreakLevel, previousWaveMinToBreakLevel);
+            });
+        }
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public void HelmLeftTurnsCounterClockwiseAndRightTurnsClockwise()
+    {
+        var method = typeof(HelmSystem).GetMethod("GetSteeringInput", BindingFlags.Static | BindingFlags.NonPublic);
+        Assert.That(method, Is.Not.Null);
+
+        var helm = new HelmComponent
+        {
+            SteeringAngleForMaxTurn = 45f,
+            HelmRotation = -45f,
+        };
+
+        var leftInput = (float) method!.Invoke(null, [helm])!;
+        helm.HelmRotation = 45f;
+        var rightInput = (float) method.Invoke(null, [helm])!;
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(leftInput, Is.EqualTo(1f).Within(0.001f));
+            Assert.That(rightInput, Is.EqualTo(-1f).Within(0.001f));
+        });
+    }
+
+    [Test]
+    public void SailPushUsesItsFacingDirection()
+    {
+        var method = typeof(SailSystem).GetMethod("GetImpulseDirection", BindingFlags.Static | BindingFlags.NonPublic);
+        Assert.That(method, Is.Not.Null);
+
+        var south = (Vector2) method!.Invoke(null, [Direction.South.ToAngle()])!;
+        var north = (Vector2) method.Invoke(null, [Direction.North.ToAngle()])!;
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(MathF.Abs(south.X), Is.LessThan(0.001f));
+            Assert.That(south.Y, Is.LessThan(0f));
+
+            Assert.That(MathF.Abs(north.X), Is.LessThan(0.001f));
+            Assert.That(north.Y, Is.GreaterThan(0f));
+        });
     }
 
     [Test]
