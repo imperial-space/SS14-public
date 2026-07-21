@@ -1,0 +1,115 @@
+- type: entity
+  parent: BaseStructureComputer
+  id: SingularTransportConsole
+  name: Singular transport console
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Animateable
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: GlassSmash
+  - type: Construction
+    graph: Computer
+    node: computer
+  - type: ApcPowerReceiver
+    powerLoad: 50
+  - type: PowerState
+    idlePowerDraw: 50
+    workingPowerDraw: 500
+  - type: UIPowerState
+  - type: ExtensionCableReceiver
+  - type: ActivatableUIRequiresPower
+  - type: Sprite
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: generic
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+  - type: LitOnPowered
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    offset: "0, 0.4"
+    castShadows: false
+  - type: EmitSoundOnUIOpen
+    sound:
+      collection: Keyboard
+      params:
+        volume: -1
+        variation: 0.10
+        pitch: 1.10
+    blacklist:
+      tags:
+      - NoConsoleSound
+  - type: ContainerContainer
+    containers:
+      TeleportDiskSlot: !type:ContainerSlot {}
+  - type: LightningTarget
+    priority: 1
+  - type: RequireProjectileTarget
+  - type: Electrified
+    enabled: false
+    usesApcPower: true
+  - type: GridConsole
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+    - Trigger
+  - type: DeviceLinkSource
+  - type: ItemSlots
+    slots:
+      TeleportDiskSlot:
+        whitelist:
+          tags:
+            - SingularDisk
+        name: singular-disk-slot
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+
+- type: entity
+  name: Singular transport disk
+  parent: BaseItem
+  id: SingularTransportDisk
+  description: A Singular transport disk
+  components:
+  - type: Sprite
+    sprite: Imperial/KAKTYC/SevenMinutes/singulardisk.rsi
+    state: icon
+  - type: StaticPrice
+    price: 2000
+  - type: TeleportDisk
+  - type: Tag
+    tags:
+    - SingularDisk
+
+- type: Tag
+  id: SingularDisk
