@@ -2090,6 +2090,8 @@
   id: ExGrenadeAT
   components:
   - type: ExplodeOnTrigger
+    keysIn:
+    - timer
   - type: Explosive
     explosionType: RPG8Explosion
     maxIntensity: 4
@@ -2097,7 +2099,7 @@
     totalIntensity: 30
     maxTileBreak: 1
     canCreateVacuum: false
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
     beepSound:
       path: "/Audio/Imperial/ShiftFront/grenade_init.ogg"
       params:

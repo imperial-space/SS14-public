@@ -748,6 +748,9 @@
 - type: Tag
   id: CartridgeAntiMaterielM
 
+- type: Tag
+  id: MagazineLightRifleShiftingFront
+
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: BaseBullet

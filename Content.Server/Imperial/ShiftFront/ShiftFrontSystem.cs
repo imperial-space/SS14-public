@@ -57,7 +57,6 @@ namespace Content.Server.ShiftFront
         private readonly TimeSpan _afkCheckInterval = TimeSpan.FromSeconds(30);
         [Dependency] internal readonly IEntityManager _entityManager = default!;
         [Dependency] internal readonly IMapManager _mapManager = default!;
-        [Dependency] protected readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
         [Dependency] private readonly ISharedPlayerManager _sharedPlayerManager = default!;
         [Dependency] private readonly PrayerSystem _prayerSystem = default!;
@@ -309,10 +308,10 @@ namespace Content.Server.ShiftFront
             if (args.DamageDelta == null) return;
             if (args.DamageDelta.GetTotal() <= 0f) return;
             if (args.DamageDelta.GetTotal() < 110)
-                _audio.PlayPvs(comp.SoundHit, comp.InsideEntryEntity.Value);
+                Audio.PlayPvs(comp.SoundHit, comp.InsideEntryEntity.Value);
             else
             {
-                _audio.PlayPvs(comp.SoundHitLarge, comp.InsideEntryEntity.Value);
+                Audio.PlayPvs(comp.SoundHitLarge, comp.InsideEntryEntity.Value);
                 Spawn("MedievalExplodeApNew", Transform(comp.InsideEntryEntity.Value).Coordinates);
             }
         }
@@ -322,7 +321,7 @@ namespace Content.Server.ShiftFront
             if (!TryComp<ShiftTankHullComponent>(comp.LinkedTank, out var hull)) return;
             if (hull.InsideGunnerEntity == null) return;
             if (!TryComp<GunComponent>(uid, out var gun)) return;
-            _audio.PlayPvs(gun.SoundGunshot, hull.InsideGunnerEntity.Value);
+            Audio.PlayPvs(gun.SoundGunshot, hull.InsideGunnerEntity.Value);
         }
         private void OnDamageMap(EntityUid uid, ShiftShowOnMapComponent comp, DamageChangedEvent args)
         {

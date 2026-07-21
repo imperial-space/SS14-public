@@ -41,7 +41,6 @@ namespace Content.Server.ShiftFront
     {
         [Dependency] internal readonly IEntityManager _entityManager = default!;
         [Dependency] internal readonly IMapManager _mapManager = default!;
-        [Dependency] protected readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
         [Dependency] private readonly ISharedPlayerManager _sharedPlayerManager = default!;
         [Dependency] private readonly PrayerSystem _prayerSystem = default!;
