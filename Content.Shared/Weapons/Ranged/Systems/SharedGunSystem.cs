@@ -239,7 +239,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (TryComp<MouseRotatorComponent>(user, out var rotator) && rotator.GoalRotation != null) // shiftfront tanks
         {
             PopupSystem.PopupCursor(Loc.GetString("gun-need-full-rotate"));
-            return;
+            return false;
         } // shiftfront tanks
 
         var toCoordinates = gun.ShootCoordinates;
