@@ -24,3 +24,16 @@ ent-ClothingHeadHelmetWoodGrouseGreen = исследовательский "Гл
 
 ent-ClothingHeadHelmetPSY = ПСИ-Шлем
     .desc = Шлем модели ПСИ, среднеразмерный шлем, имеет металлическую окраску и встроенную гарнитуру.
+
+ent-ClothingHeadHelmetK63Alternate = { ent-ClothingHeadHelmetK63 }
+    .desc = { ent-ClothingHeadHelmetK63.desc }
+
+ent-ClothingHeadHelmetK63AlternateLowered = { ent-ClothingHeadHelmetK63Alternate }
+    .desc = { ent-ClothingHeadHelmetK63Alternate.desc }
+
+
+ent-ClothingHeadHelmetK63Lowered = { ent-ClothingHeadHelmetK63 }
+    .desc = { ent-ClothingHeadHelmetK63.desc }
+
+ent-ToggleK63Helmet = Сдвинуть забрало
+    .desc = Сдвинуть забрало шлема.
