@@ -259,9 +259,8 @@ public sealed partial class DeathNoteSystem
                 DeathNoteFailureReason.TechnicalError,
                 error: "Could not move the entry to Scheduled.");
         }
-        else if (!_presetRegistry.TryGetHandler(preset!.Handler, out var scheduledHandler) ||
-                 scheduledHandler == null ||
-                 !TrySchedulePreset(entryId, preset, scheduledHandler, scheduledTime - now))
+        else if (!_presetRegistry.HasHandler(preset!.Handler) ||
+                 !TrySchedulePreset(entryId, preset, scheduledTime - now))
         {
             _journal.TryUpdateStatus(entryId, DeathNoteEntryStatus.Failed,
                 DeathNoteFailureReason.TechnicalError,

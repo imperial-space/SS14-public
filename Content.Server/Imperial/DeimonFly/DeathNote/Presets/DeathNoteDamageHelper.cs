@@ -29,16 +29,60 @@ public static class DeathNoteDamageHelper
         IRobustRandom random,
         out DamageSpecifier damage)
     {
-        damage = new DamageSpecifier(configuredDamage);
+        if (!TryCreateRange(configuredDamage, minimum, maximum, out var minimumDamage, out var maximumDamage))
+        {
+            damage = new DamageSpecifier();
+            return false;
+        }
+
+        return TryCreate(minimumDamage, maximumDamage, random, out damage);
+    }
+
+    public static bool TryCreate(
+        DamageSpecifier minimumDamage,
+        DamageSpecifier maximumDamage,
+        IRobustRandom random,
+        out DamageSpecifier damage)
+    {
+        damage = new DamageSpecifier(minimumDamage);
+        var minimum = minimumDamage.GetTotal().Float();
+        var maximum = maximumDamage.GetTotal().Float();
         if (damage.Empty || minimum <= 0f || maximum < minimum)
             return false;
 
         var amount = random.NextFloat(minimum, maximum);
-        var total = damage.GetTotal().Float();
-        if (total <= 0f)
+        damage *= amount / minimum;
+        return true;
+    }
+
+    public static bool TryCreateRange(
+        Content.Shared.Imperial.DeimonFly.DeathNote.Prototypes.DeathNotePresetParameters parameters,
+        out DamageSpecifier minimumDamage,
+        out DamageSpecifier maximumDamage)
+    {
+        return TryCreateRange(
+            parameters.Damage,
+            parameters.RandomDamageMin,
+            parameters.RandomDamageMax,
+            out minimumDamage,
+            out maximumDamage);
+    }
+
+    public static bool TryCreateRange(
+        DamageSpecifier configuredDamage,
+        float minimum,
+        float maximum,
+        out DamageSpecifier minimumDamage,
+        out DamageSpecifier maximumDamage)
+    {
+        minimumDamage = new DamageSpecifier(configuredDamage);
+        maximumDamage = new DamageSpecifier(configuredDamage);
+        var total = configuredDamage.GetTotal().Float();
+        if (configuredDamage.Empty || total <= 0f || minimum <= 0f || maximum < minimum)
             return false;
 
-        damage *= amount / total;
+        minimumDamage *= minimum / total;
+        maximumDamage *= maximum / total;
         return true;
     }
 
@@ -56,5 +100,4 @@ public static class DeathNoteDamageHelper
                parameters.Damage.GetTotal().Float() > 0f &&
                HasValidRandomRange(parameters);
     }
-
 }

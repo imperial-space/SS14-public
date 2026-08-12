@@ -147,7 +147,7 @@ public sealed class DeathNoteJournalSystem : EntitySystem
         if (query.MoveNext(out var uid, out var runtime))
             return (uid, runtime);
 
-        var runtimeUid = Spawn(DeathNoteRuntimePrototypes.RoundState);
+        var runtimeUid = Spawn(DeathNoteSchedulerRuntimeComponent.Prototype);
         return (runtimeUid, Comp<DeathNoteJournalRuntimeComponent>(runtimeUid));
     }
 

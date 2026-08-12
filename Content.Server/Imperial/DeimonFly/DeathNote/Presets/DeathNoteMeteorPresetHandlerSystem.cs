@@ -17,7 +17,7 @@ namespace Content.Server.Imperial.DeimonFly.DeathNote.Presets;
 /// <summary>
 /// Запускает штатный метеор через координаты цели на момент исполнения.
 /// </summary>
-public sealed class DeathNoteMeteorPresetHandlerSystem : EntitySystem, IDeathNotePresetHandler
+public sealed class DeathNoteMeteorPresetHandlerSystem : DeathNotePresetHandlerSystem, IDeathNotePresetHandler
 {
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;

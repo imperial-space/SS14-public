@@ -164,7 +164,6 @@ public sealed partial class DeathNoteGuidedScenarioSystem : EntitySystem
         }
 
         if (!DeathNoteDamageHelper.TryCreate(
-                ent.Comp.Damage,
                 ent.Comp.MinimumDamage,
                 ent.Comp.MaximumDamage,
                 _random,

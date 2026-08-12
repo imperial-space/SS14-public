@@ -10,7 +10,7 @@ namespace Content.Server.Imperial.DeimonFly.DeathNote.Presets;
 /// <summary>
 /// Поджигает цель через штатные fire stacks и FlammableSystem.
 /// </summary>
-public sealed class DeathNoteFirePresetHandlerSystem : EntitySystem, IDeathNotePresetHandler
+public sealed class DeathNoteFirePresetHandlerSystem : DeathNotePresetHandlerSystem, IDeathNotePresetHandler
 {
     [Dependency] private readonly FlammableSystem _flammable = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;

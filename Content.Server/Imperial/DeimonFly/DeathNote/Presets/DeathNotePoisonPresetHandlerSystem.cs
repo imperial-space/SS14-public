@@ -13,7 +13,7 @@ namespace Content.Server.Imperial.DeimonFly.DeathNote.Presets;
 /// <summary>
 /// Вводит настроенный штатный реагент в кровоток, оставляя эффект метаболизму.
 /// </summary>
-public sealed class DeathNotePoisonPresetHandlerSystem : EntitySystem, IDeathNotePresetHandler
+public sealed class DeathNotePoisonPresetHandlerSystem : DeathNotePresetHandlerSystem, IDeathNotePresetHandler
 {
     [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;

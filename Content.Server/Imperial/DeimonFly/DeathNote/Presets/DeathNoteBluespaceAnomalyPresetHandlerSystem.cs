@@ -20,7 +20,7 @@ namespace Content.Server.Imperial.DeimonFly.DeathNote.Presets;
 /// Запускает отдельную карманную последовательность для цели, оставляя созданную
 /// блюспейс-аномалию штатной для всех остальных игроков.
 /// </summary>
-public sealed class DeathNoteBluespaceAnomalyPresetHandlerSystem : EntitySystem, IDeathNotePresetHandler
+public sealed class DeathNoteBluespaceAnomalyPresetHandlerSystem : DeathNotePresetHandlerSystem, IDeathNotePresetHandler
 {
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;

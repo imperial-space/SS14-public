@@ -12,5 +12,22 @@ public interface IDeathNotePresetRegistry
 
     bool TryResolve(string cause, out DeathNotePresetPrototype? preset);
 
-    bool TryGetHandler(DeathNotePresetHandlerType type, out IDeathNotePresetHandler? handler);
+    bool HasHandler(DeathNotePresetHandlerType type);
+
+    bool TryExecute(
+        DeathNotePresetHandlerType type,
+        in DeathNotePresetExecutionContext context,
+        DeathNotePresetParameters parameters,
+        out DeathNotePresetExecutionResult result);
+
+    bool TryGetPreludeDuration(
+        DeathNotePresetHandlerType type,
+        DeathNotePresetParameters parameters,
+        out TimeSpan duration);
+
+    bool TryBeginPrelude(
+        DeathNotePresetHandlerType type,
+        in DeathNotePresetExecutionContext context,
+        DeathNotePresetParameters parameters,
+        out DeathNotePresetExecutionResult result);
 }

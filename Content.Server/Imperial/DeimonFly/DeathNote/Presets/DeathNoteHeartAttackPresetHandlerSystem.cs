@@ -12,7 +12,7 @@ namespace Content.Server.Imperial.DeimonFly.DeathNote.Presets;
 /// <summary>
 /// Минимальный обработчик сердечного приступа через штатный урон и MobState.
 /// </summary>
-public sealed class DeathNoteHeartAttackPresetHandlerSystem : EntitySystem,
+public sealed class DeathNoteHeartAttackPresetHandlerSystem : DeathNotePresetHandlerSystem,
     IDeathNotePresetHandler,
     IDeathNotePresetPreludeHandler
 {

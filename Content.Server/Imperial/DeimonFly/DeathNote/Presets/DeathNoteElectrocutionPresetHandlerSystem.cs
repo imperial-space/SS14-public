@@ -9,7 +9,7 @@ namespace Content.Server.Imperial.DeimonFly.DeathNote.Presets;
 /// <summary>
 /// Использует штатный урон и статус поражения электричеством.
 /// </summary>
-public sealed class DeathNoteElectrocutionPresetHandlerSystem : EntitySystem, IDeathNotePresetHandler
+public sealed class DeathNoteElectrocutionPresetHandlerSystem : DeathNotePresetHandlerSystem, IDeathNotePresetHandler
 {
     [Dependency] private readonly ElectrocutionSystem _electrocution = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;

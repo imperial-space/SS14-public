@@ -20,7 +20,7 @@ namespace Content.Server.Imperial.DeimonFly.DeathNote.Presets;
 /// Направляет штатный неостановимый стержень через координаты цели на момент исполнения.
 /// Движение, столкновения, разрушение и побочный ущерб остаются штатными.
 /// </summary>
-public sealed class DeathNoteImmovableRodPresetHandlerSystem : EntitySystem, IDeathNotePresetHandler
+public sealed class DeathNoteImmovableRodPresetHandlerSystem : DeathNotePresetHandlerSystem, IDeathNotePresetHandler
 {
     [Dependency] private readonly GunSystem _gun = default!;
     [Dependency] private readonly GibbingSystem _gibbing = default!;

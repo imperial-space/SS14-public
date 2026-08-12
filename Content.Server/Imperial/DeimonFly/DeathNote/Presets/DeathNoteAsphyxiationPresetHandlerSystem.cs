@@ -9,7 +9,7 @@ namespace Content.Server.Imperial.DeimonFly.DeathNote.Presets;
 /// <summary>
 /// Применяет настроенный урон удушьем через DamageableSystem.
 /// </summary>
-public sealed class DeathNoteAsphyxiationPresetHandlerSystem : EntitySystem, IDeathNotePresetHandler
+public sealed class DeathNoteAsphyxiationPresetHandlerSystem : DeathNotePresetHandlerSystem, IDeathNotePresetHandler
 {
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly IRobustRandom _random = default!;

@@ -14,7 +14,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.DeimonFly.DeathNote.Presets;
 
-public sealed class DeathNoteCeilingCollapsePresetHandlerSystem : EntitySystem, IDeathNotePresetHandler
+public sealed class DeathNoteCeilingCollapsePresetHandlerSystem : DeathNotePresetHandlerSystem, IDeathNotePresetHandler
 {
     private static readonly ProtoId<DamageTypePrototype> Structural = "Structural";
     [Dependency] private readonly DamageableSystem _damageable = default!;

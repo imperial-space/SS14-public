@@ -27,13 +27,10 @@ public sealed partial class DeathNoteGuidedScenarioComponent : Component
     public bool Triggered;
 
     [ViewVariables]
-    public float MinimumDamage;
+    public DamageSpecifier MinimumDamage = new();
 
     [ViewVariables]
-    public float MaximumDamage;
-
-    [ViewVariables]
-    public DamageSpecifier Damage = new();
+    public DamageSpecifier MaximumDamage = new();
 
     [ViewVariables]
     public int ImpactCount;

@@ -12,7 +12,7 @@ namespace Content.Server.Imperial.DeimonFly.DeathNote.Presets;
 /// <summary>
 /// Создаёт настоящую дугу молнии и наносит настроенный случайный электрический урон.
 /// </summary>
-public sealed class DeathNoteLightningPresetHandlerSystem : EntitySystem, IDeathNotePresetHandler
+public sealed class DeathNoteLightningPresetHandlerSystem : DeathNotePresetHandlerSystem, IDeathNotePresetHandler
 {
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly LightningSystem _lightning = default!;

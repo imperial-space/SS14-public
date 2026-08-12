@@ -1,20 +1,20 @@
 using System.Linq;
-using System.Threading;
 using Content.Server.GameTicking;
 using Content.Server.Imperial.DeimonFly.DeathNote.Components;
 using Content.Server.Imperial.DeimonFly.DeathNote.Events;
 using Content.Shared.GameTicking;
-using Timer = Robust.Shared.Timing.Timer;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.DeimonFly.DeathNote.Systems;
 
 /// <summary>
-/// Планирует одноразовые события без общего цикла обновления и отменяет их на границе раунда.
+/// Выполняет одноразовые события из общего цикла обновления и отменяет их на границе раунда.
 /// Изменяемое состояние расписания хранится на отдельной служебной сущности.
 /// </summary>
 public sealed class DeathNoteSchedulerSystem : EntitySystem
 {
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -23,15 +23,30 @@ public sealed class DeathNoteSchedulerSystem : EntitySystem
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
         SubscribeLocalEvent<GameRunLevelChangedEvent>(OnRunLevelChanged);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
-        SubscribeLocalEvent<DeathNoteSchedulerRuntimeComponent, ComponentShutdown>(OnRuntimeShutdown);
     }
 
-    public override void Shutdown()
+    public override void Update(float frameTime)
     {
-        if (TryGetRuntime(out var runtime))
-            DisposeRuntime(runtime);
+        base.Update(frameTime);
 
-        base.Shutdown();
+        if (_gameTicker.RunLevel != GameRunLevel.InRound ||
+            !TryGetRuntime(out var runtime) ||
+            runtime.Comp.RoundId != _gameTicker.RoundId)
+        {
+            return;
+        }
+
+        var now = _timing.CurTime;
+        foreach (var (scheduled, executionTime) in runtime.Comp.ScheduledPhases.ToArray())
+        {
+            if (executionTime > now || !runtime.Comp.ScheduledPhases.Remove(scheduled))
+                continue;
+
+            RaiseLocalEvent(new DeathNoteScheduledEntryEvent(
+                scheduled.EntryId,
+                scheduled.Phase,
+                runtime.Comp.RoundId));
+        }
     }
 
     public bool TrySchedule(uint entryId, DeathNoteScheduledPhase phase, TimeSpan delay)
@@ -40,51 +55,18 @@ public sealed class DeathNoteSchedulerSystem : EntitySystem
         if (_gameTicker.RunLevel != GameRunLevel.InRound ||
             delay < TimeSpan.Zero ||
             runtime.Comp.RoundId != _gameTicker.RoundId ||
-            runtime.Comp.CancellationDisposed ||
-            runtime.Comp.RoundCancellation.IsCancellationRequested ||
-            !runtime.Comp.ScheduledPhases.Add((entryId, phase)))
+            !runtime.Comp.ScheduledPhases.TryAdd((entryId, phase), _timing.CurTime + delay))
         {
             return false;
         }
 
-        var runtimeUid = runtime.Owner;
-        var capturedRoundId = runtime.Comp.RoundId;
-        var token = runtime.Comp.RoundCancellation.Token;
-        Timer.Spawn(
-            delay,
-            () => OnTimer(runtimeUid, entryId, phase, capturedRoundId, token),
-            token);
         return true;
-    }
-
-    private void OnTimer(
-        EntityUid runtimeUid,
-        uint entryId,
-        DeathNoteScheduledPhase phase,
-        int capturedRoundId,
-        CancellationToken token)
-    {
-        if (token.IsCancellationRequested ||
-            !TryComp(runtimeUid, out DeathNoteSchedulerRuntimeComponent? runtime))
-        {
-            return;
-        }
-
-        runtime.ScheduledPhases.Remove((entryId, phase));
-        if (_gameTicker.RunLevel != GameRunLevel.InRound ||
-            capturedRoundId != runtime.RoundId ||
-            capturedRoundId != _gameTicker.RoundId)
-        {
-            return;
-        }
-
-        RaiseLocalEvent(new DeathNoteScheduledEntryEvent(entryId, phase, capturedRoundId));
     }
 
     private void OnRoundStarted(RoundStartedEvent args)
     {
         var runtime = GetRuntime();
-        ResetCancellation(runtime.Comp);
+        CancelScheduledEntries(runtime.Comp, raiseEvent: false);
         runtime.Comp.RoundId = args.RoundId;
         runtime.Comp.RoundInitialized = true;
     }
@@ -92,27 +74,20 @@ public sealed class DeathNoteSchedulerSystem : EntitySystem
     private void OnRunLevelChanged(GameRunLevelChangedEvent args)
     {
         if (args.New == GameRunLevel.PostRound && TryGetRuntime(out var runtime))
-            CancelTimers(runtime.Comp, raiseEvent: true);
+            CancelScheduledEntries(runtime.Comp, raiseEvent: true);
     }
 
     private void OnRoundRestart(RoundRestartCleanupEvent args)
     {
         if (TryGetRuntime(out var runtime))
-            CancelTimers(runtime.Comp, raiseEvent: false);
-    }
-
-    private void OnRuntimeShutdown(
-        Entity<DeathNoteSchedulerRuntimeComponent> ent,
-        ref ComponentShutdown args)
-    {
-        DisposeRuntime(ent);
+            CancelScheduledEntries(runtime.Comp, raiseEvent: false);
     }
 
     private Entity<DeathNoteSchedulerRuntimeComponent> GetRuntime()
     {
         if (!TryGetRuntime(out var runtime))
         {
-            var runtimeUid = Spawn(DeathNoteRuntimePrototypes.RoundState);
+            var runtimeUid = Spawn(DeathNoteSchedulerRuntimeComponent.Prototype);
             runtime = (runtimeUid, Comp<DeathNoteSchedulerRuntimeComponent>(runtimeUid));
         }
 
@@ -138,39 +113,16 @@ public sealed class DeathNoteSchedulerSystem : EntitySystem
         return false;
     }
 
-    private void DisposeRuntime(Entity<DeathNoteSchedulerRuntimeComponent> runtime)
-    {
-        if (runtime.Comp.CancellationDisposed)
-            return;
-
-        CancelTimers(runtime.Comp, raiseEvent: false);
-        runtime.Comp.RoundCancellation.Dispose();
-        runtime.Comp.CancellationDisposed = true;
-    }
-
-    private void ResetCancellation(DeathNoteSchedulerRuntimeComponent runtime)
-    {
-        CancelTimers(runtime, raiseEvent: false);
-        if (!runtime.CancellationDisposed)
-            runtime.RoundCancellation.Dispose();
-
-        runtime.RoundCancellation = new CancellationTokenSource();
-        runtime.CancellationDisposed = false;
-    }
-
-    private void CancelTimers(DeathNoteSchedulerRuntimeComponent runtime, bool raiseEvent)
+    private void CancelScheduledEntries(DeathNoteSchedulerRuntimeComponent runtime, bool raiseEvent)
     {
         if (raiseEvent && runtime.ScheduledPhases.Count > 0)
         {
-            var cancelledEntryIds = runtime.ScheduledPhases
+            var cancelledEntryIds = runtime.ScheduledPhases.Keys
                 .Select(scheduled => scheduled.EntryId)
                 .Distinct()
                 .ToArray();
             RaiseLocalEvent(new DeathNoteTimersCancelledEvent(cancelledEntryIds));
         }
-
-        if (!runtime.CancellationDisposed)
-            runtime.RoundCancellation.Cancel();
 
         runtime.ScheduledPhases.Clear();
     }

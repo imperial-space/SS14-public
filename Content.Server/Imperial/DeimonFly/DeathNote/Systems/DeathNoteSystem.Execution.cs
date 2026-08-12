@@ -134,8 +134,7 @@ public sealed partial class DeathNoteSystem
 
         if (entry.PresetId is not { } presetId ||
             !_prototypeManager.TryIndex(presetId, out DeathNotePresetPrototype? preset) ||
-            !_presetRegistry.TryGetHandler(preset.Handler, out var handler) ||
-            handler == null)
+            !_presetRegistry.HasHandler(preset.Handler))
         {
             _journal.TryUpdateStatus(entry.EntryId, DeathNoteEntryStatus.Failed,
                 DeathNoteFailureReason.HandlerError,
@@ -163,7 +162,7 @@ public sealed partial class DeathNoteSystem
 
         if (args.Phase == DeathNoteScheduledPhase.Prelude)
         {
-            BeginPrelude(entry, preset, handler, context);
+            BeginPrelude(entry, preset, context);
             return;
         }
 
@@ -180,7 +179,15 @@ public sealed partial class DeathNoteSystem
         DeathNotePresetExecutionResult result;
         try
         {
-            result = handler.Execute(context, preset.Parameters);
+            if (!_presetRegistry.TryExecute(
+                    preset.Handler,
+                    context,
+                    preset.Parameters,
+                    out result))
+            {
+                result = DeathNotePresetExecutionResult.Failed(
+                    "Preset handler was unavailable at execution time.");
+            }
         }
         catch (Exception exception)
         {
@@ -228,16 +235,17 @@ public sealed partial class DeathNoteSystem
     private bool TrySchedulePreset(
         uint entryId,
         DeathNotePresetPrototype preset,
-        IDeathNotePresetHandler handler,
         TimeSpan executionDelay)
     {
         var effectiveExecutionDelay = DeathNoteScheduleMath.GetEffectiveExecutionDelay(
             executionDelay,
             preset.Parameters.ExecutionAdvance);
 
-        if (handler is IDeathNotePresetPreludeHandler preludeHandler)
+        if (_presetRegistry.TryGetPreludeDuration(
+                preset.Handler,
+                preset.Parameters,
+                out var duration))
         {
-            var duration = preludeHandler.GetPreludeDuration(preset.Parameters);
             if (duration > TimeSpan.Zero)
             {
                 var preludeDelay = DeathNoteScheduleMath.GetPreludeDelay(
@@ -254,16 +262,19 @@ public sealed partial class DeathNoteSystem
     private void BeginPrelude(
         DeathNoteEntry entry,
         DeathNotePresetPrototype preset,
-        IDeathNotePresetHandler handler,
         in DeathNotePresetExecutionContext context)
     {
-        if (handler is not IDeathNotePresetPreludeHandler preludeHandler)
-            return;
-
         DeathNotePresetExecutionResult result;
         try
         {
-            result = preludeHandler.BeginPrelude(context, preset.Parameters);
+            if (!_presetRegistry.TryBeginPrelude(
+                    preset.Handler,
+                    context,
+                    preset.Parameters,
+                    out result))
+            {
+                return;
+            }
         }
         catch (Exception exception)
         {

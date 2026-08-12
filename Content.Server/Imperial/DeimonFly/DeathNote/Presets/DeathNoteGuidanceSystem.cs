@@ -137,9 +137,10 @@ public sealed class DeathNoteGuidanceSystem : EntitySystem
         DeathNoteGuidedScenarioComponent guide,
         DeathNotePresetParameters parameters)
     {
-        guide.MinimumDamage = parameters.RandomDamageMin;
-        guide.MaximumDamage = parameters.RandomDamageMax;
-        guide.Damage = new Content.Shared.Damage.DamageSpecifier(parameters.Damage);
+        DeathNoteDamageHelper.TryCreateRange(
+            parameters,
+            out guide.MinimumDamage,
+            out guide.MaximumDamage);
         guide.ImpactCount = parameters.ImpactCount;
         guide.ImpactInterval = parameters.ImpactInterval;
         guide.AirlockForceCloseDelay = parameters.AirlockForceCloseDelay;

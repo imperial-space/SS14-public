@@ -12,38 +12,9 @@ namespace Content.Server.Imperial.DeimonFly.DeathNote.Presets;
 public sealed class DeathNotePresetRegistrySystem : EntitySystem, IDeathNotePresetRegistry
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IEntitySystemManager _systemManager = default!;
-
-    private readonly Dictionary<DeathNotePresetHandlerType, IDeathNotePresetHandler> _handlers = new();
 
     public IEnumerable<DeathNotePresetPrototype> Presets =>
         _prototypeManager.EnumeratePrototypes<DeathNotePresetPrototype>().Where(preset => preset.Enabled);
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        RegisterHandler(_systemManager.GetEntitySystem<DeathNoteHeartAttackPresetHandlerSystem>());
-        RegisterHandler(_systemManager.GetEntitySystem<DeathNoteImmovableRodPresetHandlerSystem>());
-        RegisterHandler(_systemManager.GetEntitySystem<DeathNoteExplosionPresetHandlerSystem>());
-        RegisterHandler(_systemManager.GetEntitySystem<DeathNoteFirePresetHandlerSystem>());
-        RegisterHandler(_systemManager.GetEntitySystem<DeathNoteAsphyxiationPresetHandlerSystem>());
-        RegisterHandler(_systemManager.GetEntitySystem<DeathNoteElectrocutionPresetHandlerSystem>());
-        RegisterHandler(_systemManager.GetEntitySystem<DeathNotePoisonPresetHandlerSystem>());
-        RegisterHandler(_systemManager.GetEntitySystem<DeathNoteMeteorPresetHandlerSystem>());
-        RegisterHandler(_systemManager.GetEntitySystem<DeathNoteFaunaPresetHandlerSystem>());
-        RegisterHandler(_systemManager.GetEntitySystem<DeathNoteDirectDamagePresetHandlerSystem>());
-        RegisterHandler(_systemManager.GetEntitySystem<DeathNoteLightningPresetHandlerSystem>());
-        RegisterHandler(_systemManager.GetEntitySystem<DeathNoteHostileFactionPresetHandlerSystem>());
-        RegisterHandler(_systemManager.GetEntitySystem<DeathNoteGuidedAirlockPresetHandlerSystem>());
-        RegisterHandler(_systemManager.GetEntitySystem<DeathNoteGuidedDisposalPresetHandlerSystem>());
-        RegisterHandler(_systemManager.GetEntitySystem<DeathNoteGuidedVendingPresetHandlerSystem>());
-        RegisterHandler(_systemManager.GetEntitySystem<DeathNoteGuidedFoodPoisoningPresetHandlerSystem>());
-        RegisterHandler(_systemManager.GetEntitySystem<DeathNoteGuidedDrinkPoisoningPresetHandlerSystem>());
-        RegisterHandler(_systemManager.GetEntitySystem<DeathNoteCeilingCollapsePresetHandlerSystem>());
-        RegisterHandler(_systemManager.GetEntitySystem<DeathNoteMimicPresetHandlerSystem>());
-        RegisterHandler(_systemManager.GetEntitySystem<DeathNoteBluespaceAnomalyPresetHandlerSystem>());
-    }
 
     public bool TryResolve(string cause, out DeathNotePresetPrototype? preset)
     {
@@ -76,14 +47,70 @@ public sealed class DeathNotePresetRegistrySystem : EntitySystem, IDeathNotePres
         return preset != null;
     }
 
-    public bool TryGetHandler(DeathNotePresetHandlerType type, out IDeathNotePresetHandler? handler)
+    public bool HasHandler(DeathNotePresetHandlerType type)
     {
-        return _handlers.TryGetValue(type, out handler);
+        var ev = new DeathNotePresetHandlerAvailabilityEvent(type);
+        RaiseLocalEvent(ref ev);
+
+        return ev.Available && !IsAmbiguous(type, ev.Ambiguous);
     }
 
-    private void RegisterHandler(IDeathNotePresetHandler handler)
+    public bool TryExecute(
+        DeathNotePresetHandlerType type,
+        in DeathNotePresetExecutionContext context,
+        DeathNotePresetParameters parameters,
+        out DeathNotePresetExecutionResult result)
     {
-        if (!_handlers.TryAdd(handler.HandlerType, handler))
-            Log.Error($"Death Note handler '{handler.HandlerType}' was registered more than once.");
+        var ev = new DeathNotePresetExecutionEvent(type, context, parameters);
+        RaiseLocalEvent(ref ev);
+
+        if (!ev.Handled || ev.Result == null || IsAmbiguous(type, ev.Ambiguous))
+        {
+            result = default;
+            return false;
+        }
+
+        result = ev.Result.Value;
+        return true;
+    }
+
+    public bool TryGetPreludeDuration(
+        DeathNotePresetHandlerType type,
+        DeathNotePresetParameters parameters,
+        out TimeSpan duration)
+    {
+        var ev = new DeathNotePresetPreludeDurationEvent(type, parameters);
+        RaiseLocalEvent(ref ev);
+
+        duration = ev.Duration;
+        return ev.Handled && !IsAmbiguous(type, ev.Ambiguous);
+    }
+
+    public bool TryBeginPrelude(
+        DeathNotePresetHandlerType type,
+        in DeathNotePresetExecutionContext context,
+        DeathNotePresetParameters parameters,
+        out DeathNotePresetExecutionResult result)
+    {
+        var ev = new DeathNotePresetPreludeExecutionEvent(type, context, parameters);
+        RaiseLocalEvent(ref ev);
+
+        if (!ev.Handled || ev.Result == null || IsAmbiguous(type, ev.Ambiguous))
+        {
+            result = default;
+            return false;
+        }
+
+        result = ev.Result.Value;
+        return true;
+    }
+
+    private bool IsAmbiguous(DeathNotePresetHandlerType type, bool ambiguous)
+    {
+        if (!ambiguous)
+            return false;
+
+        Log.Error($"Death Note handler '{type}' was registered more than once.");
+        return true;
     }
 }

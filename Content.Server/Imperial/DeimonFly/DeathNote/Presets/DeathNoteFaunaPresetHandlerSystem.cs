@@ -27,7 +27,7 @@ namespace Content.Server.Imperial.DeimonFly.DeathNote.Presets;
 /// <summary>
 /// Создаёт штатных враждебных существ рядом с целью и задаёт её как приоритет HTN.
 /// </summary>
-public sealed class DeathNoteFaunaPresetHandlerSystem : EntitySystem, IDeathNotePresetHandler
+public sealed class DeathNoteFaunaPresetHandlerSystem : DeathNotePresetHandlerSystem, IDeathNotePresetHandler
 {
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly HTNSystem _htn = default!;

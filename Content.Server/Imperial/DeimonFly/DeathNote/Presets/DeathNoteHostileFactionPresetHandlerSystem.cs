@@ -24,7 +24,7 @@ namespace Content.Server.Imperial.DeimonFly.DeathNote.Presets;
 /// <summary>
 /// Делает цель враждебной станционным NPC и турелям через штатную систему фракций.
 /// </summary>
-public sealed class DeathNoteHostileFactionPresetHandlerSystem : EntitySystem, IDeathNotePresetHandler
+public sealed class DeathNoteHostileFactionPresetHandlerSystem : DeathNotePresetHandlerSystem, IDeathNotePresetHandler
 {
     [Dependency] private readonly BatteryWeaponFireModesSystem _fireModes = default!;
     [Dependency] private readonly DeployableTurretSystem _deployableTurrets = default!;

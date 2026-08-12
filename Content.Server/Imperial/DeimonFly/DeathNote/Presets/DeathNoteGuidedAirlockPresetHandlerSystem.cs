@@ -3,7 +3,7 @@ using Content.Shared.Imperial.DeimonFly.DeathNote.Prototypes;
 
 namespace Content.Server.Imperial.DeimonFly.DeathNote.Presets;
 
-public sealed class DeathNoteGuidedAirlockPresetHandlerSystem : EntitySystem,
+public sealed class DeathNoteGuidedAirlockPresetHandlerSystem : DeathNotePresetHandlerSystem,
     IDeathNotePresetHandler
 {
     [Dependency] private readonly DeathNoteGuidanceSystem _guidance = default!;

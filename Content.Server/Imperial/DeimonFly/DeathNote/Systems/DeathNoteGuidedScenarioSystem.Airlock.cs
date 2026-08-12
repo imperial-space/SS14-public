@@ -52,7 +52,6 @@ public sealed partial class DeathNoteGuidedScenarioSystem
             return false;
 
         if (!DeathNoteDamageHelper.TryCreate(
-                target.Comp.Damage,
                 target.Comp.MinimumDamage,
                 target.Comp.MaximumDamage,
                 _random,

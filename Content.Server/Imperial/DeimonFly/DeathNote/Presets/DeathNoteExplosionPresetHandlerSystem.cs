@@ -10,7 +10,7 @@ namespace Content.Server.Imperial.DeimonFly.DeathNote.Presets;
 /// <summary>
 /// Ставит в штатную очередь взрывов локальный взрыв на текущих координатах цели.
 /// </summary>
-public sealed class DeathNoteExplosionPresetHandlerSystem : EntitySystem, IDeathNotePresetHandler
+public sealed class DeathNoteExplosionPresetHandlerSystem : DeathNotePresetHandlerSystem, IDeathNotePresetHandler
 {
     [Dependency] private readonly ExplosionSystem _explosion = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;

@@ -8,7 +8,7 @@ namespace Content.Server.Imperial.DeimonFly.DeathNote.Presets;
 /// <summary>
 /// Применяет один из штатных типов урона со случайным итогом из прототипа.
 /// </summary>
-public sealed class DeathNoteDirectDamagePresetHandlerSystem : EntitySystem, IDeathNotePresetHandler
+public sealed class DeathNoteDirectDamagePresetHandlerSystem : DeathNotePresetHandlerSystem, IDeathNotePresetHandler
 {
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly IRobustRandom _random = default!;

@@ -7,7 +7,7 @@ namespace Content.Server.Imperial.DeimonFly.DeathNote.Presets;
 /// Запускает личное для жертвы окно отравления едой.
 /// Первые подходящие блюда, которых она коснётся, получают настоящий сохраняющийся яд.
 /// </summary>
-public sealed class DeathNoteGuidedFoodPoisoningPresetHandlerSystem : EntitySystem,
+public sealed class DeathNoteGuidedFoodPoisoningPresetHandlerSystem : DeathNotePresetHandlerSystem,
     IDeathNotePresetHandler,
     IDeathNotePresetPreludeHandler
 {

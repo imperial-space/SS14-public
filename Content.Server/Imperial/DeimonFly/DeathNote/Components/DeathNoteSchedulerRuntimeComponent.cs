@@ -1,6 +1,6 @@
-using System.Threading;
 using Content.Server.Imperial.DeimonFly.DeathNote.Events;
 using Content.Server.Imperial.DeimonFly.DeathNote.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.DeimonFly.DeathNote.Components;
 
@@ -10,18 +10,14 @@ namespace Content.Server.Imperial.DeimonFly.DeathNote.Components;
 [RegisterComponent, Access(typeof(DeathNoteSchedulerSystem))]
 public sealed partial class DeathNoteSchedulerRuntimeComponent : Component
 {
-    [ViewVariables(VVAccess.ReadOnly)]
-    public HashSet<(uint EntryId, DeathNoteScheduledPhase Phase)> ScheduledPhases = new();
+    public static readonly EntProtoId Prototype = "DeathNoteRoundRuntime";
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public CancellationTokenSource RoundCancellation = new();
+    public Dictionary<(uint EntryId, DeathNoteScheduledPhase Phase), TimeSpan> ScheduledPhases = new();
 
     [ViewVariables(VVAccess.ReadOnly)]
     public int RoundId;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public bool RoundInitialized;
-
-    [ViewVariables(VVAccess.ReadOnly)]
-    public bool CancellationDisposed;
 }

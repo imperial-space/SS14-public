@@ -25,7 +25,7 @@ namespace Content.Server.Imperial.DeimonFly.DeathNote.Presets;
 /// <summary>
 /// Заменяет ближайший торговый автомат или шкаф-хранилище мимиком с назначенной целью.
 /// </summary>
-public sealed class DeathNoteMimicPresetHandlerSystem : EntitySystem, IDeathNotePresetHandler
+public sealed class DeathNoteMimicPresetHandlerSystem : DeathNotePresetHandlerSystem, IDeathNotePresetHandler
 {
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
@@ -84,7 +84,15 @@ public sealed class DeathNoteMimicPresetHandlerSystem : EntitySystem, IDeathNote
             parameters.SpawnRadius <= 0f ||
             parameters.MimicMinimumTargetHits <= 0 ||
             parameters.MimicMaximumTargetHits < parameters.MimicMinimumTargetHits ||
-            !DeathNoteDamageHelper.HasValidRandomRange(parameters))
+            !DeathNoteDamageHelper.TryCreateRange(
+                parameters,
+                out var minimumTargetDamage,
+                out var maximumTargetDamage) ||
+            !DeathNoteDamageHelper.TryCreate(
+                minimumTargetDamage,
+                maximumTargetDamage,
+                _random,
+                out var targetDamage))
         {
             return DeathNotePresetExecutionResult.Failed("Mimic target or prototype is unavailable.");
         }
@@ -106,14 +114,12 @@ public sealed class DeathNoteMimicPresetHandlerSystem : EntitySystem, IDeathNote
 
         var special = EnsureComp<DeathNoteMimicComponent>(mimic);
         special.Target = context.Target;
-        special.MinimumTargetDamage = parameters.RandomDamageMin;
-        special.MaximumTargetDamage = parameters.RandomDamageMax;
+        special.MinimumTargetDamage = minimumTargetDamage;
+        special.MaximumTargetDamage = maximumTargetDamage;
         var minimumHits = parameters.MimicMinimumTargetHits;
         var maximumHits = parameters.MimicMaximumTargetHits;
         special.TargetHitsRemaining = _random.Next(minimumHits, maximumHits + 1);
-        special.TargetDamageRemaining = _random.NextFloat(
-            Math.Min(special.MinimumTargetDamage, special.MaximumTargetDamage),
-            Math.Max(special.MinimumTargetDamage, special.MaximumTargetDamage));
+        special.TargetDamageRemaining = targetDamage;
         special.RetargetInterval = parameters.RetargetInterval;
         special.NextRetargetAt = _timing.CurTime + special.RetargetInterval;
         _npc.SetBlackboard(mimic, NPCBlackboard.CurrentOrderedTarget, context.Target);
@@ -175,15 +181,15 @@ public sealed class DeathNoteMimicPresetHandlerSystem : EntitySystem, IDeathNote
             if (hit != ent.Comp.Target)
                 continue;
 
-            var factor = args.BaseDamage.GetTotal().Float();
-            if (factor <= 0f || ent.Comp.TargetHitsRemaining <= 0 || ent.Comp.TargetDamageRemaining <= 0f)
+            if (ent.Comp.TargetHitsRemaining <= 0 ||
+                ent.Comp.TargetDamageRemaining.GetTotal() <= FixedPoint2.Zero)
                 continue;
 
-            var amount = ent.Comp.TargetDamageRemaining / ent.Comp.TargetHitsRemaining;
+            var damage = ent.Comp.TargetDamageRemaining / ent.Comp.TargetHitsRemaining;
 
             if (_damageable.TryChangeDamage(
                     hit,
-                    args.BaseDamage * (amount / factor),
+                    damage,
                     out var appliedDamage,
                     ignoreResistances: true,
                     interruptsDoAfters: true,
@@ -191,9 +197,9 @@ public sealed class DeathNoteMimicPresetHandlerSystem : EntitySystem, IDeathNote
                     ignoreGlobalModifiers: true) &&
                 appliedDamage.GetTotal() > FixedPoint2.Zero)
             {
-                ent.Comp.TargetDamageRemaining = Math.Max(
-                    0f,
-                    ent.Comp.TargetDamageRemaining - appliedDamage.GetTotal().Float());
+                ent.Comp.TargetDamageRemaining -= appliedDamage;
+                if (ent.Comp.TargetDamageRemaining.GetTotal() <= FixedPoint2.Zero)
+                    ent.Comp.TargetDamageRemaining = new();
                 ent.Comp.TargetHitsRemaining--;
                 _adminLog.Add(
                     LogType.MeleeHit,
