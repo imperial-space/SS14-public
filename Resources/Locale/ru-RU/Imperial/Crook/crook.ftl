@@ -25,6 +25,8 @@ ent-PlushieAtlas = Куипер
 ent-PlushieJohnson = Джонсон Пат
 ent-PlushieSanabi = плюшевый генерал
     .desc = "Машина может притвориться живой, но стать живой не может." У него в руках губная гормошка.
+ent-PlushieSeaguard = страж моря
+    .desc = Благородный дека, залатал немало дыр, получил благословение и теперь он здесь.
 
 plushie-sanabi-1 = Я боевой бот? . . .
 plushie-sanabi-2 = Неважно, дойдешь ли ты до конца
@@ -70,6 +72,13 @@ fumo-teto-2 = Я химера.
 plushie-atlas-1 = Мяу!
 plushie-atlas-2 = Мур-р-р.
 plushie-atlas-3 = Мявк!
+
+plushie-seaguard-1 = Дека бордится!!!
+plushie-seaguard-2 = ЧЕРПАЙ!!!
+plushie-seaguard-3 = О-о, эмисарочка, сюда.
+plushie-seaguard-4 = Как стрелять из пушки?
+plushie-seaguard-5 = Не буду я штурвал крутить.
+plushie-seaguard-6 = ВТОРОЙ ПОТЁК!!!
 
 ent-FumoBoxCrook = коробка c Фумо
     .desc = Хранит в себе плюшевую Фумо.
