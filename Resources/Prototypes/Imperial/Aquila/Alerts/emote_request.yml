@@ -1,0 +1,8 @@
+- type: alert
+  id: EmoteRequest
+  name: alert-emote-request-name
+  description: alert-emote-request-desc
+  icons:
+  - sprite: /Textures/Imperial/Aquila/Interface/Alerts/targetRequest.rsi
+    state: targetRequest
+  clickEvent: !type:AcceptEmoteRequestAlertEvent

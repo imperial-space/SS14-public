@@ -685,11 +685,11 @@
         effectProto: StatusEffectStunned
         time: 7.5
         type: Add
-      - !type:ModifyKnockdown # infarct >20u Knockdown
+      - !type:ModifyKnockdown # infarct >22u Knockdown
         conditions:
         - !type:ReagentCondition
           reagent: Luciferium
-          min: 20
+          min: 22
         time: 7.5
         type: Add
       - !type:PopupMessage # infarct >22u Popup LargeCaution

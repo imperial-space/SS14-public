@@ -12,6 +12,9 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Imperial.Aquila.TargetedEmote; // Imperial Aquila Targeted Emotes
+using Content.Client.Imperial.Aquila.TargetedEmote; // Imperial Aquila Targeted Emotes
+
 
 namespace Content.Client.UserInterface.Systems.Emotes;
 
@@ -33,6 +36,10 @@ public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayS
                 new SpriteSpecifier.Rsi(new ResPath("/Textures/Clothing/Hands/Gloves/latex.rsi"), "icon")),
             [EmoteCategory.Vocal] = ("emote-menu-category-vocal",
                 new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Emotes/vocal.png"))),
+            // Imperial Aquila Targeted Emotes Start
+            [EmoteCategory.Targeted] = ("emote-menu-category-targeted",
+                new SpriteSpecifier.Texture(new ResPath("/Textures/Imperial/Aquila/Interface/Emotes/targeted.png"))),
+            // Imperial Aquila Targeted Emotes End
         };
 
     public void OnStateEntered(GameplayState state)
@@ -53,8 +60,12 @@ public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayS
         if (_menu == null)
         {
             // setup window
-            var prototypes = _prototypeManager.EnumeratePrototypes<EmotePrototype>();
-            var models = ConvertToButtons(prototypes);
+
+            // Imperial Aquila Targeted Emotes Start
+            var emotePrototypes = _prototypeManager.EnumeratePrototypes<EmotePrototype>();
+            var targetedEmotePrototypes = _prototypeManager.EnumeratePrototypes<TargetedEmotePrototype>();
+            var models = ConvertToButtons(emotePrototypes, targetedEmotePrototypes);
+            // Imperial Aquila Targeted Emotes End
 
             _menu = new SimpleRadialMenu();
             _menu.SetButtons(models);
@@ -132,7 +143,9 @@ public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayS
         _menu = null;
     }
 
-    private IEnumerable<RadialMenuOptionBase> ConvertToButtons(IEnumerable<EmotePrototype> emotePrototypes)
+    // Imperial Aquila Targeted Emotes Start
+    private IEnumerable<RadialMenuOptionBase> ConvertToButtons(IEnumerable<EmotePrototype> emotePrototypes, IEnumerable<TargetedEmotePrototype> targetedPrototypes)
+    // Imperial Aquila Targeted Emotes End
     {
         var whitelistSystem = EntitySystemManager.GetEntitySystem<EntityWhitelistSystem>();
         var player = _playerManager.LocalSession?.AttachedEntity;
@@ -145,7 +158,9 @@ public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayS
 
             // only valid emotes that have ways to be triggered by chat and player have access / no restriction on
             if (emote.Category == EmoteCategory.Invalid
-                || emote.ChatTriggers.Count == 0
+                // Imperial Aquila Targeted Emotes Start
+                || (emote.Category != EmoteCategory.Targeted && emote.ChatTriggers.Count == 0)
+                // Imperial Aquila Targeted Emotes End
                 || !(player.HasValue && whitelistSystem.IsWhitelistPassOrNull(emote.Whitelist, player.Value))
                 || whitelistSystem.IsWhitelistPass(emote.Blacklist, player.Value))
                 continue;
@@ -169,6 +184,27 @@ public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayS
             list.Add(actionOption);
         }
 
+        // Imperial Aquila Targeted Emotes Start
+        foreach (var emote in targetedPrototypes)
+        {
+            if (!emotesByCategory.TryGetValue(EmoteCategory.Targeted, out var list))
+            {
+                list = new List<RadialMenuOptionBase>();
+                emotesByCategory.Add(EmoteCategory.Targeted, list);
+            }
+
+            var actionOption = new RadialMenuActionOption<TargetedEmotePrototype>(HandleTargetedRadialButtonClick, emote)
+            {
+                IconSpecifier = RadialMenuIconSpecifier.With(emote.Icon),
+                ToolTip = Loc.GetString(emote.Name)
+            };
+            list.Add(actionOption);
+        }
+
+        if (!emotesByCategory.ContainsKey(EmoteCategory.General))
+            emotesByCategory.Remove(EmoteCategory.Targeted);
+        // Imperial Aquila Targeted Emotes End
+
         var models = new RadialMenuOptionBase[emotesByCategory.Count];
         var i = 0;
         foreach (var (key, list) in emotesByCategory)
@@ -185,6 +221,14 @@ public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayS
 
         return models;
     }
+
+    // Imperial Aquila Targeted Emotes Start
+    private void HandleTargetedRadialButtonClick(TargetedEmotePrototype prototype)
+    {
+        OnWindowClosed();
+        EntitySystemManager.GetEntitySystem<TargetedEmoteSystem>().StartTargeting(prototype);
+    }
+    // Imperial Aquila Targeted Emotes End
 
     private void HandleRadialButtonClick(EmotePrototype prototype)
     {

@@ -1,0 +1,142 @@
+- type: targetedEmote
+  id: Handshake
+  name: emote-handshake-name
+  category: Targeted
+  sound:
+    collection: HandshakeSounds
+  icon: Imperial/Aquila/Interface/Emotes/handshake.png
+  range: 2
+  requiresConsent: true
+  requestMessage: emote-handshake-request
+  chatMessage: emote-handshake-performer
+  targetedChatMessage: emote-handshake-target
+
+- type: targetedEmote
+  id: KissEmote
+  name: emote-kiss-name
+  category: Targeted
+  sound:
+    collection: KissSounds
+  icon: Imperial/Aquila/Interface/Emotes/kiss.png
+  range: 2
+  requiresConsent: true
+  requestMessage: emote-kiss-request
+  chatMessage: emote-kiss-performer
+  targetedChatMessage: emote-kiss-target
+
+- type: targetedEmote
+  id: ClinkGlassesEmote
+  name: emote-clink-glasses-name
+  category: Targeted
+  icon: Imperial/Aquila/Interface/Emotes/clink.png
+  sound:
+    collection: ClinkingSounds
+  range: 2
+  requiresConsent: true
+  requestMessage: emote-clink-glasses-request
+  chatMessage: emote-clink-glasses-performer
+  targetedChatMessage: emote-clink-glasses-target
+
+- type: targetedEmote
+  id: EmoteHighFive
+  name: emote-high-five-name
+  category: Targeted
+  icon: Imperial/Aquila/Interface/Emotes/highfive.png
+  sound:
+    collection: HighFiveSounds
+  range: 2
+  requiresConsent: true
+  requestMessage: emote-high-five-request
+  chatMessage: emote-high-five-performer
+  targetedChatMessage: emote-high-five-target
+
+- type: targetedEmote
+  id: BlownKiss
+  name: emote-blows-a-kiss-name
+  category: Targeted
+  sound:
+    collection: BlownKissSounds
+  icon: Imperial/Aquila/Interface/Emotes/blownkiss.png
+  range: 12.5
+  chatMessage: emote-blows-a-kiss-performer
+
+- type: targetedEmote
+  id: EmoteHugs
+  name: emote-hugs-name
+  category: Targeted
+  icon: Imperial/Aquila/Interface/Emotes/hug.png
+  sound:
+    path: /Audio/Effects/thudswoosh.ogg
+  range: 2
+  chatMessage: emote-hugs-performer
+
+- type: targetedEmote
+  id: EmoteSpit
+  name: emote-spit-name
+  category: Targeted
+  sound:
+    collection: SpitSounds
+  icon: Imperial/Aquila/Interface/Emotes/spit.png
+  range: 5.0
+  chatMessage: emote-spit-performer
+
+- type: targetedEmote
+  id: EmoteGlaresMenacingly
+  name: emote-glares-menacingly-name
+  category: Targeted
+  icon: Imperial/Aquila/Interface/Emotes/angry.png
+  range: 12.5
+  chatMessage: emote-glares-menacingly-performer
+
+- type: targetedEmote
+  id: EmoteBite
+  name: emote-bite-name
+  category: Targeted
+  icon: Imperial/Aquila/Interface/Emotes/bite.png
+  sound:
+    collection: BiteSounds
+  range: 2
+  chatMessage: emote-bite-performer
+
+- type: targetedEmote
+  id: EmoteKick
+  name: emote-kick-name
+  category: Targeted
+  icon: Imperial/Aquila/Interface/Emotes/kick.png
+  sound:
+    collection: KickSounds
+  range: 2
+  chatMessage: emote-kick-performer
+
+- type: targetedEmote
+  id: EmoteBlinking
+  name: emote-blinking-name
+  category: Targeted
+  icon: Imperial/Aquila/Interface/Emotes/blinking.png
+  sound:
+    collection: BlinkingSounds
+  range: 12.5
+  chatMessage: emote-blinking-performer
+
+- type: emote
+  id: Jump
+  name: chat-emote-name-jump
+  icon: Imperial/Aquila/Interface/Emotes/jump.png
+  category: General
+  chatMessages: []
+  chatTriggers:
+  - прыгает
+  - совершает прыжок
+  - делает прыжок
+  - перепрыгивает
+
+- type: emote
+  id: Backflip
+  name: chat-emote-name-backflip
+  icon: Imperial/Aquila/Interface/Emotes/backflip.png
+  category: General
+  chatMessages: []
+  chatTriggers:
+  - делает сальто
+  - делает сальто назад
+  - делает обратное сальто

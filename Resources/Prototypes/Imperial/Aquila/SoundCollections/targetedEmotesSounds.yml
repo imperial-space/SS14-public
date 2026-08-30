@@ -1,0 +1,48 @@
+- type: soundCollection
+  id: SpitSounds
+  files:
+    - /Audio/Imperial/Aquila/TargetedEmotes/spit1.ogg
+    - /Audio/Imperial/Aquila/TargetedEmotes/spit2.ogg
+    - /Audio/Imperial/Aquila/TargetedEmotes/spit3.ogg
+
+- type: soundCollection
+  id: KissSounds
+  files:
+    - /Audio/Imperial/Aquila/TargetedEmotes/kiss1.ogg
+
+- type: soundCollection
+  id: BlownKissSounds
+  files:
+    - /Audio/Imperial/Aquila/TargetedEmotes/blown_kiss1.ogg
+
+- type: soundCollection
+  id: HandshakeSounds
+  files:
+    - /Audio/Imperial/Aquila/TargetedEmotes/handshake1.ogg
+
+- type: soundCollection
+  id: BlinkingSounds
+  files:
+    - /Audio/Imperial/Aquila/TargetedEmotes/blinking1.ogg
+
+- type: soundCollection
+  id: BiteSounds
+  files:
+    - /Audio/Imperial/Aquila/TargetedEmotes/bite1.ogg
+
+- type: soundCollection
+  id: KickSounds
+  files:
+    - /Audio/Imperial/Aquila/TargetedEmotes/kick1.ogg
+
+- type: soundCollection
+  id: ClinkingSounds
+  files:
+    - /Audio/Imperial/Aquila/TargetedEmotes/clinking1.ogg
+    - /Audio/Imperial/Aquila/TargetedEmotes/clinking2.ogg
+
+- type: soundCollection
+  id: HighFiveSounds
+  files:
+    - /Audio/Imperial/Aquila/TargetedEmotes/high_five1.ogg
+    - /Audio/Imperial/Aquila/TargetedEmotes/high_five2.ogg
