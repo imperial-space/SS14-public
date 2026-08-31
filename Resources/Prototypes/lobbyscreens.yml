@@ -52,5 +52,5 @@
 
 - type: lobbyBackground
   id: aquilaMenuSpring
-  background: /Textures/Imperial/LobbyScreens/aquilaMenuSummer.png
+  background: /Textures/Imperial/LobbyScreens/aquilaMenuSpring.png
 # imperial add-on end
