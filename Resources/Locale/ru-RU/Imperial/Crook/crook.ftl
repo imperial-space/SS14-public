@@ -73,7 +73,7 @@ plushie-atlas-1 = Мяу!
 plushie-atlas-2 = Мур-р-р.
 plushie-atlas-3 = Мявк!
 
-plushie-seaguard-1 = Дека бордится!!!
+plushie-seaguard-1 = Мне чугун в лицо прилетел...
 plushie-seaguard-2 = ЧЕРПАЙ!!!
 plushie-seaguard-3 = О-о, эмисарочка, сюда.
 plushie-seaguard-4 = Как стрелять из пушки?
