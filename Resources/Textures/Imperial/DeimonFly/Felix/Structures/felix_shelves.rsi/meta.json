@@ -4,14 +4,16 @@
   "copyright": "by discord: rubelaks",
   "size": {
     "x": 32,
-    "y": 64
+    "y": 32
   },
   "states": [
     {
-      "name": "shelf1"
+      "name": "shelf1",
+      "directions": 4
     },
     {
-      "name": "shelf2"
+      "name": "shelf2",
+      "directions": 4
     }
   ]
 }
