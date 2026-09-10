@@ -83,7 +83,26 @@ namespace Content.Shared.Lathe
         /// The recipe the lathe is currently producing
         /// </summary>
         [ViewVariables]
-        public ProtoId<LatheRecipePrototype>? CurrentRecipe;
+        // Imperial Weekly Mode: Original code removed:
+        // public ProtoId<LatheRecipePrototype>? CurrentRecipe;
+        // Imperial Weekly Mode Start
+        public string? CurrentRecipe;
+
+        [ViewVariables]
+        public bool CurrentRecipeIsWeekly;
+
+        [ViewVariables]
+        public List<WeeklyLatheRecipeMaterialData> CurrentWeeklyMaterialSnapshot = new();
+
+        [ViewVariables]
+        public string CurrentWeeklyResultPrototype = string.Empty;
+
+        [ViewVariables]
+        public int CurrentWeeklyResultAmount = 1;
+
+        [ViewVariables]
+        public string CurrentWeeklyRecipeName = string.Empty;
+        // Imperial Weekly Mode End
 
         #region MachineUpgrading
         /// <summary>
@@ -119,16 +138,55 @@ namespace Content.Shared.Lathe
     [Serializable]
     public sealed partial class LatheRecipeBatch
     {
-        public ProtoId<LatheRecipePrototype> Recipe;
+        // Imperial Weekly Mode Start
+        public string Recipe;
+        public bool IsWeekly;
+        public List<WeeklyLatheRecipeMaterialData> WeeklyMaterialSnapshot = new();
+        public string WeeklyResultPrototype = string.Empty;
+        public int WeeklyResultAmount = 1;
+        public string WeeklyRecipeName = string.Empty;
+        public double WeeklyProductionTimeSeconds;
+        // Imperial Weekly Mode End
         public int ItemsPrinted;
         public int ItemsRequested;
 
+        // Imperial Weekly Mode: Original code removed:
+        // public LatheRecipeBatch(ProtoId<LatheRecipePrototype> recipe, int itemsPrinted, int itemsRequested)
+        // {
+        //     Recipe = recipe;
+        //     ItemsPrinted = itemsPrinted;
+        //     ItemsRequested = itemsRequested;
+        // }
+        // Imperial Weekly Mode Start
         public LatheRecipeBatch(ProtoId<LatheRecipePrototype> recipe, int itemsPrinted, int itemsRequested)
+            : this(recipe.Id, false, itemsPrinted, itemsRequested)
+        {
+        }
+
+        public LatheRecipeBatch(
+            string recipe,
+            bool isWeekly,
+            int itemsPrinted,
+            int itemsRequested,
+            IReadOnlyList<WeeklyLatheRecipeMaterialData>? weeklyMaterialSnapshot = null,
+            string? weeklyResultPrototype = null,
+            int weeklyResultAmount = 1,
+            string? weeklyRecipeName = null,
+            double weeklyProductionTimeSeconds = 0)
         {
             Recipe = recipe;
+            IsWeekly = isWeekly;
+            WeeklyMaterialSnapshot = weeklyMaterialSnapshot is null
+                ? new List<WeeklyLatheRecipeMaterialData>()
+                : new List<WeeklyLatheRecipeMaterialData>(weeklyMaterialSnapshot);
+            WeeklyResultPrototype = weeklyResultPrototype ?? string.Empty;
+            WeeklyResultAmount = weeklyResultAmount;
+            WeeklyRecipeName = weeklyRecipeName ?? string.Empty;
+            WeeklyProductionTimeSeconds = weeklyProductionTimeSeconds;
             ItemsPrinted = itemsPrinted;
             ItemsRequested = itemsRequested;
         }
+        // Imperial Weekly Mode End
     }
 
     /// <summary>
