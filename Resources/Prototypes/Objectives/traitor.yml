@@ -378,7 +378,7 @@
     stealGroup: NukeDisk
     owner: objective-condition-steal-station
 
-# sabotage
+# sabotage #Imperial Space removed objective
 #- type: entity
 #  parent: BaseTraitorObjective
 #  id: SupercritAnomaliesObjective
