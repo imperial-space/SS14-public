@@ -2664,3 +2664,182 @@ heretic-void-conduit-need-vacuum = Кондуит можно разместит�
 heretic-void-conduit-cast-start = Вы погружаете клинок в пустоту...
 heretic-void-conduit-place = Узел пустоты проявляется в пространстве!
 heretic-void-conduit-pulse = Пустота пульсирует...
+
+## Аура
+heretic-aura-unlocked-chat = Вы чувствуете, как аура Мансуса окутывает вас. Ваша истинная природа сокрыта от чужих взглядов.
+
+## Знания
+heretic-knowledge-gained-chat = Вы изучили: { $name }.
+
+## Начало раунда
+heretic-start-round-message = Мансус призвал вас. Совершайте ритуалы, познавайте запретное, приближайтесь к Вознесению.
+
+## Пассивный шёпот
+heretic-passive-whisper = { $drain }
+
+## Именованные цели (чат)
+heretic-named-targets-chat = Вы чувствуете притяжение к { $names }. Их кровь ценна для Мансуса.
+
+## Разрыв (чат)
+heretic-rift-absorbed-chat = Разрыв поглощён. Сила Мансуса течёт сквозь вас.
+
+## Жертвоприношение (чат)
+heretic-sacrifice-chat = Жертва принята. Мансус доволен.
+
+## Клятва (чат)
+heretic-pact-ritual-complete-chat = Клятва скреплена. Знание Мансуса вливается в вашу душу.
+
+## Сердцебиение ритуала
+heretic-ritual-heartbeat-sacrifice = Жертвенный ритуал завершён успешно.
+heretic-ritual-heartbeat-already-has-targets = Цели уже назначены — повторный ритуал не нужен.
+
+## Требуется фокусировка
+heretic-focus-required = Для этого действия требуется Клинок Мансуса в руках.
+
+## Ограничения клинков
+heretic-blades-limit-reached = Достигнут предел призванных клинков.
+heretic-key-blade-limit = Достигнут предел клинков Замка.
+
+## Недостающие ингредиенты
+heretic-ritual-missing-ingredients-list = Недостаёт: { $items }.
+
+## Вспышка клинков (blade-shatter)
+heretic-blade-shatter = Клинок разбит на осколки!
+heretic-blade-shatter-blade = Клинки Пути Клинка разлетаются острыми осколками!
+heretic-blade-shatter-rust = Ржавая сталь рассыпается в прах!
+heretic-blade-shatter-ash = Пепельный клинок рассыпается пеплом!
+heretic-blade-shatter-flesh = Плотская сталь разрывается изнутри!
+heretic-blade-shatter-void = Клинок пустоты исчезает в небытии!
+heretic-blade-shatter-cosmos = Космический клинок рассыпается звёздной пылью!
+heretic-blade-shatter-lock = Клинок Замка рассыпается золотыми осколками!
+heretic-blade-shatter-moon = Лунный клинок растворяется в серебристом свете!
+
+## Вознесение (попапы)
+heretic-ascension-flesh = Плоть Мансуса поглощает вас. Боль — это лишь иллюзия.
+
+## Вознесение (сообщения еретику)
+heretic-ascension-message-general = Вы достигли Вознесения. Мансус принял вас в своё лоно.
+heretic-ascension-message-ash = Пламя Мансуса очистило вашу душу. Вы стали Владыкой пепла.
+heretic-ascension-message-flesh = Плоть Мансуса слилась с вашей. Вы стали Лордом плоти.
+heretic-ascension-message-void = Пустота открылась внутри вас. Вы стали Повелителем пустоты.
+heretic-ascension-message-lock = Все замки открыты перед вами. Вы стали Ключником Мансуса.
+heretic-ascension-message-blade = Сталь Мансуса течёт в ваших жилах. Вы стали Мастером клинков.
+heretic-ascension-message-rust = Ржавчина — ваша воля. Вы стали Разрушителем Мансуса.
+heretic-ascension-message-moon = Луна Мансуса освещает ваш путь. Вы стали Лунным Жрецом.
+heretic-ascension-message-cosmos = Космос склонился перед вами. Вы стали Звёздным Провидцем.
+
+## Вознесение (объявления Командному Центру)
+heretic-ascension-cc-announcement = { $name } прошёл через горнило Мансуса и обрёл запредельную мощь. Угроза уничтожения станции реальна.
+heretic-ascension-cc-ash = { $name } достиг Вознесения Пути пепла. Огонь Мансуса будет пожирать всё на своём пути.
+heretic-ascension-cc-flesh = { $name } достиг Вознесения Пути плоти. Тела его врагов — лишь сырой материал.
+heretic-ascension-cc-void = { $name } достиг Вознесения Пути пустоты. Вакуум — его союзник.
+heretic-ascension-cc-lock = { $name } достиг Вознесения Пути замка. Никакая дверь не защитит вас от него.
+heretic-ascension-cc-blade = { $name } достиг Вознесения Пути клинка. Его клинки несут смерть всему живому.
+heretic-ascension-cc-rust = { $name } достиг Вознесения Пути ржавчины. Сама станция начинает разрушаться.
+heretic-ascension-cc-moon = { $name } достиг Вознесения Пути луны. Лунное безумие распространяется по станции.
+heretic-ascension-cc-cosmos = { $name } достиг Вознесения Пути космоса. Законы физики больше не имеют значения.
+
+## Разлом реальности (breach)
+heretic-breach-heretic-examine-1 = Вы чувствуете, как через этот разлом сочится сила Мансуса.
+heretic-breach-heretic-examine-2 = Разлом пульсирует тёмной энергией. Мансус смотрит сквозь него.
+heretic-breach-heretic-examine-3 = Ткань реальности здесь истончена. Вы ощущаете зов Мансуса.
+heretic-breach-heretic-examine-4 = Этот разлом ведёт прямо в Мансус. Вы чувствуете его присутствие.
+heretic-breach-heretic-examine-5 = Разрыв в пространстве. За ним — бесконечность Мансуса.
+heretic-breach-heretic-examine-6 = Мансус сочится сквозь этот разлом. Его сила течёт к вам.
+heretic-breach-nonheretic-examine = Здесь что-то не так. Воздух ощущается неправильным, тяжёлым.
+heretic-breach-heretic-interact = Вы тянетесь к разлому, ощущая прилив силы Мансуса.
+heretic-breach-nonheretic-interact = Вы пытаетесь коснуться разлома. Что-то отталкивает вашу руку.
+heretic-breach-nonheretic-hand-ripped = Что-то схватило вашу руку! Боль пронзает ладонь.
+
+## Сны разрыва (dream-rift)
+heretic-dream-rift-1 = Мансус шепчет вам сквозь пелену снов...
+heretic-dream-rift-2 = Вы видите бесконечные коридоры Мансуса...
+heretic-dream-rift-3 = Тьма объемлет вас, и в ней — голос Мансуса...
+heretic-dream-rift-4 = Знание течёт сквозь вас, как кровь сквозь вены...
+heretic-dream-rift-5 = Вы видите тех, кого уже нет, и они смотрят на вас...
+heretic-dream-rift-6 = Реальность рассыпается вокруг вас, и остаётся лишь Мансус...
+heretic-dream-rift-loc-1 = Мансус шепчет вам о { $location }...
+heretic-dream-rift-loc-2 = Вы видите { $location } в своих снах...
+heretic-dream-rift-loc-3 = Что-то ждёт вас в { $location }...
+heretic-dream-rift-loc-4 = Сила Мансуса притягивает вас к { $location }...
+
+## Карманник (burglar finesse)
+heretic-burglar-finesse-no-bag = У цели нет сумки.
+heretic-burglar-finesse-empty-bag = В сумке цели ничего нет.
+heretic-burglar-finesse-victim-msg = Вы чувствуете лёгкое прикосновение к вашей сумке...
+heretic-burglar-finesse-caster-msg = Вы похищаете { $item } у { $target }.
+
+## Убежище смотрителя (caretaker refuge)
+heretic-caretaker-refuge-sentients-nearby = Поблизости есть разумные существа — убежище не может быть активировано.
+heretic-caretaker-refuge-activate = Вы создаёте защитное убежище вокруг себя.
+heretic-caretaker-refuge-deactivate = Убежище рассеивается.
+heretic-caretaker-refuge-broken-holy = Священная сила разрушила ваше убежище!
+
+## Космический маяк (cosmic beacon)
+heretic-cosmic-beacon-not-yours = Это не ваш маяк.
+heretic-cosmic-beacon-no-partner = Маяк ещё не связан с парным.
+heretic-cosmic-beacon-teleport = Вы телепортируетесь к парному маяку.
+
+## Космическая фаза (cosmic phase)
+heretic-cosmic-phase-invalid = Для входа в фазу требуется больше знаний.
+heretic-cosmic-phase = Вы входите в космическую фазу — вы невидимы и неосязаемы.
+heretic-cosmic-phase-exit-invalid = Здесь нельзя выйти из фазы.
+heretic-cosmic-phase-exit = Вы выходите из космической фазы.
+
+## Пир сов (feast of owls)
+heretic-feast-of-owls-already-used = Способность уже использована в этом раунде.
+
+## Лунный амулет (moon amulet)
+heretic-moon-amulet-nonheretic = Этот амулет предназначен только для еретиков.
+heretic-moon-amulet-slept = Вы погружаетесь в лунный сон...
+heretic-moon-converted-message = Лунный свет касается вашего разума. Мансус принял вас.
+heretic-moon-converted-balloon = Вы теперь служите луне.
+heretic-moon-converted-cleansed = Лунное проклятие снято с вас.
+
+## Лунное повреждение мозга (moon brain damage)
+heretic-moon-brain-low = Лунная энергия угнетает ваш разум...
+heretic-moon-brain-high = Лунное безумие охватывает вас!
+heretic-moon-brain-death = Лунное безумие убивает вас!
+
+## Лунные врата (moon gate)
+heretic-moon-gate = Вы открываете лунные врата...
+heretic-moon-gate-popup = Лунные врата затягивают вас!
+
+## Мистическая карта (mystic card)
+heretic-mystic-card-absorb = Карта поглотила { $card }.
+heretic-mystic-card-portal-first = Первый портал установлен. Установите второй.
+heretic-mystic-card-portal-linked = Порталы связаны!
+heretic-mystic-card-no-cards = В карте нет поглощённых личностей.
+heretic-mystic-card-job-title = Агент Мансуса
+heretic-mystic-card-appearance-changed = Вы принимаете облик { $card }.
+heretic-mystic-card-invert-on = Инвертировать направление
+heretic-mystic-card-invert-off = Отключить инверсию
+heretic-mystic-card-inverted = Портал инвертирован — направление изменено.
+heretic-mystic-card-normal = Портал возвращён в обычный режим.
+
+## Трансформация Замка (lock shapeshift)
+heretic-lock-shapeshift-activate = Вы преображаетесь, принимая облик Замка.
+
+## Захват — консоль и метки (grasp lock)
+heretic-grasp-lock-console = Вы чувствуете связь с консолью через Замок.
+heretic-grasp-mark-lock-removed = Метка Замка снята с вас. Вы свободны.
+
+## Пространственные руки (space hands)
+heretic-space-hands-obtained = Пространственные руки активированы — вы можете брать предметы из вакуума.
+
+## Пассивные способности (passive)
+heretic-passive-furious-steel = Неистовая сталь готова. Ваши клинки горят жаждой крови.
+heretic-passive-call-of-moon = Зов луны усилился. Лунный свет наполняет вас силой.
+
+## Броня ржавчины (rust armor)
+heretic-rust-armor-curse = Ржавая броня поглощает удар, но её сила иссякает!
+
+## Рывок ржавчины (rust dash)
+heretic-rust-dash-no-rust = Нет ржавых тайлов поблизости — рывок невозможен.
+
+## Сварщик ржавчины (rust weld)
+heretic-rust-weld-start = Вы начинаете снимать ржавчину...
+
+## Плащ пустоты (void cloak hood)
+heretic-void-cloak-hood-up = Вы надеваете капюшон, скрываясь во тьме.
+heretic-void-cloak-hood-down = Вы снимаете капюшон, выходя из тени.
