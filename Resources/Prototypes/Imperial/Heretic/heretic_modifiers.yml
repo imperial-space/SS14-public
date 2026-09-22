@@ -1,0 +1,21 @@
+# Heretic damage modifier sets
+
+# Applied to the heretic upon ascension — 50% brute and burn resistance.
+- type: damageModifierSet
+  id: HereticAscended
+  coefficients:
+    Blunt: 0.5
+    Slash: 0.5
+    Piercing: 0.5
+    Heat: 0.5
+    Shock: 0.5
+    Cold: 0.5
+
+# Applied at Flesh path level 3 (PactToken) — 25% brute and stamina resistance.
+- type: damageModifierSet
+  id: HereticFleshBrute
+  coefficients:
+    Blunt: 0.75
+    Slash: 0.75
+    Piercing: 0.75
+    Caustic: 0.5

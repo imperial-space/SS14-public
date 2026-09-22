@@ -1,0 +1,1406 @@
+# ==============================================
+#  Еретик — Действия (Экшены)
+# ==============================================
+
+# ─── Базовые действия ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticMansusGrasp
+  name: heretic-action-mansus-grasp-name
+  description: heretic-action-mansus-grasp-desc
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: mansus_grasp
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticMansusGraspActionEvent {}
+
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticKnowledgeMenu
+  name: heretic-action-knowledge-menu-name
+  description: heretic-action-knowledge-menu-desc
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: book
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticKnowledgeMenuActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticSacrifice
+  name: heretic-action-sacrifice-name
+  description: heretic-action-sacrifice-desc
+  components:
+  - type: Action
+    useDelay: 60
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: rune_break
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 1.5
+  - type: WorldTargetAction
+    event: !type:HereticSacrificeActionEvent {}
+
+# ─── Общие действия ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticCloakOfShadow
+  name: heretic-action-cloak-of-shadow-name
+  description: heretic-action-cloak-of-shadow-desc
+  components:
+  - type: Action
+    useDelay: 200
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/curse_effect.rsi
+      state: curse
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticCloakOfShadowActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticDisableCloak
+  name: heretic-action-disable-cloak-name
+  description: heretic-action-disable-cloak-desc
+  components:
+  - type: Action
+    useDelay: 0
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/curse_effect.rsi
+      state: curse
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticDisableCloakActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticHeartbeatMansus
+  name: heretic-action-heartbeat-mansus-name
+  description: heretic-action-heartbeat-mansus-desc
+  components:
+  - type: Action
+    useDelay: 0
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/eldritch.rsi
+      state: living_heart
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticHeartbeatMansusActionEvent {}
+
+# ─── Путь Пепла ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticAshSpiritFlameOath
+  name: heretic-action-ash-spirit-flame-oath-name
+  description: heretic-action-ash-spirit-flame-oath-desc
+  components:
+  - type: Action
+    useDelay: 70
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: fire_ring
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticAshSpiritFlameOathActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticGreatFireCascade
+  name: heretic-action-great-fire-cascade-name
+  description: heretic-action-great-fire-cascade-desc
+  components:
+  - type: Action
+    useDelay: 120
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: fire_ring
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticGreatFireCascadeActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticAshSpiritShift
+  name: heretic-action-ash-shift-name
+  description: heretic-action-ash-shift-desc
+  components:
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: ash_shift
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticAshSpiritShiftActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticAshShift
+  name: heretic-action-ash-shift-name
+  description: heretic-action-ash-shift-desc
+  components:
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: ash_shift
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticAshenPassageActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticVolcanoBlast
+  name: heretic-action-volcano-blast-name
+  description: heretic-action-volcano-blast-desc
+  components:
+  - type: Action
+    useDelay: 45
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_animal.rsi
+      state: flames
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticVolcanoBlastActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticAshlordsRebirth
+  name: heretic-action-ashlords-rebirth-name
+  description: heretic-action-ashlords-rebirth-desc
+  components:
+  - type: Action
+    useDelay: 60
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_animal.rsi
+      state: smoke
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticAshlordsRebirthActionEvent {}
+
+# ─── Путь Плоти ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticImperfectRitual
+  name: heretic-action-imperfect-ritual-name
+  description: heretic-action-imperfect-ritual-desc
+  components:
+  - type: Action
+    useDelay: 60
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: smoke
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 1.5
+  - type: WorldTargetAction
+    event: !type:HereticImperfectRitualActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticFleshWeave
+  name: heretic-action-flesh-weave-name
+  description: heretic-action-flesh-weave-desc
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: mad_touch
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 1.5
+  - type: EntityTargetAction
+    event: !type:HereticFleshWeaveActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticWrithingSense
+  name: heretic-action-writhing-sense-name
+  description: heretic-action-writhing-sense-desc
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: blood_siphon
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticWrithingSenseToggleActionEvent {}
+
+# ─── Путь Пустоты ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticVoidPull
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: voidpull
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticVoidPullActionEvent {}
+
+# ─── Путь Клинка ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticSanguineSurge
+  name: heretic-action-sanguine-surge-name
+  description: heretic-action-sanguine-surge-desc
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: blood_siphon
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticSanguineSurgeActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticCleave
+  name: heretic-action-cleave-name
+  description: heretic-action-cleave-desc
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: cleave
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 5
+  - type: WorldTargetAction
+    event: !type:HereticCleaveActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticSummonBlades
+  name: heretic-action-summon-blades-name
+  description: heretic-action-summon-blades-desc
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: furious_steel
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticSummonBladesActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticFuriousSteel
+  name: heretic-action-furious-steel-name
+  description: heretic-action-furious-steel-desc
+  components:
+  - type: Action
+    useDelay: 2
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: furious_steel
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 10
+  - type: WorldTargetAction
+    event: !type:HereticFuriousSteelActionEvent {}
+
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticWolvesAmongSheep
+  name: heretic-action-wolves-among-sheep-name
+  description: heretic-action-wolves-among-sheep-desc
+  components:
+  - type: Action
+    useDelay: 300
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: among_sheep
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 9
+  - type: WorldTargetAction
+    event: !type:HereticWolvesAmongSheepActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticRealignment
+  name: heretic-action-realignment-name
+  description: heretic-action-realignment-desc
+  components:
+  - type: Action
+    useDelay: 6
+    itemIconStyle: BigAction
+    checkCanInteract: false
+    checkConsciousness: false
+    icon:
+      sprite: Imperial/heretic/implants.rsi
+      state: adrenal
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    checkActionBlocker: false
+    event: !type:HereticRealignmentActionEvent {}
+
+# ─── Путь Ржавчины ───
+
+
+# ─── Путь Пепла — новые действия ─────────────────────────────────────────────
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticAshlordRite
+  name: heretic-action-ashlord-rite-name
+  description: heretic-action-ashlord-rite-desc
+  components:
+  - type: Action
+    useDelay: 90
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: adrenal
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticAshlordRiteActionEvent {}
+
+# ─── Путь Луны — действия ────────────────────────────────────────────────────
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticMoonGate
+  name: heretic-action-moon-gate-name
+  description: heretic-action-moon-gate-desc
+  components:
+  - type: Action
+    useDelay: 20
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: mind_gate
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 6
+  - type: EntityTargetAction
+    event: !type:HereticMoonGateActionEvent {}
+
+# ─── Путь Пустоты — новые действия ───────────────────────────────────────────
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticWaveOfDesperation
+  name: heretic-action-wave-of-desperation-name
+  description: heretic-action-wave-of-desperation-desc
+  components:
+  - type: Action
+    useDelay: 300
+    checkCanInteract: false
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: uncuff
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticWaveOfDesperationActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticVoidPhase
+  name: heretic-action-void-phase-name
+  description: heretic-action-void-phase-desc
+  components:
+  - type: Action
+    useDelay: 20
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: voidblink
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 9
+  - type: WorldTargetAction
+    event: !type:HereticVoidPhaseActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticVoidConduit
+  name: heretic-action-void-conduit-name
+  description: heretic-action-void-conduit-desc
+  components:
+  - type: Action
+    useDelay: 60
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: void_rift
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 7
+  - type: WorldTargetAction
+    event: !type:HereticVoidConduitActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticVoidSeekingBlade
+  name: ent-ActionHereticVoidSeekingBlade
+  description: ent-ActionHereticVoidSeekingBlade.desc
+  components:
+  - type: Action
+    useDelay: 10
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: voidblink
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 12
+  - type: EntityTargetAction
+    event: !type:HereticVoidSeekingBladeActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticVoidPrison
+  name: heretic-action-void-prison-name
+  description: heretic-action-void-prison-desc
+  components:
+  - type: Action
+    useDelay: 60
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: voidball
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 5
+  - type: EntityTargetAction
+    event: !type:HereticVoidPrisonActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticMaidInMirror
+  name: heretic-action-maid-in-mirror-name
+  description: heretic-action-maid-in-mirror-desc
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: voidblink
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticMaidInMirrorActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticMaidInMirrorPhase
+  name: heretic-action-maid-mirror-phase-name
+  description: heretic-action-maid-mirror-phase-desc
+  components:
+  - type: Action
+    useDelay: 8
+    itemIconStyle: BigAction
+    icon:
+      sprite: Mobs/Ghosts/ghost_human.rsi
+      state: icon
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticMaidInMirrorPhaseActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticMaidExitMirror
+  name: heretic-action-maid-exit-mirror-name
+  description: heretic-action-maid-exit-mirror-desc
+  components:
+  - type: Action
+    useDelay: 3
+    itemIconStyle: BigAction
+    icon:
+      sprite: Mobs/Ghosts/ghost_human.rsi
+      state: icon
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticMaidMirrorExitActionEvent {}
+
+# ─── Путь Клинка — новые действия ────────────────────────────────────────────
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticRawRitual
+  name: heretic-action-raw-ritual-name
+  description: heretic-action-raw-ritual-desc
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: rune_break
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticRawRitualActionEvent {}
+
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticStanceOfTornChampion
+  name: heretic-action-stance-of-torn-champion-name
+  description: heretic-action-stance-of-torn-champion-desc
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: blood_siphon
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticStanceOfTornChampionActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticLionhunterRifle
+  name: heretic-action-lionhunter-rifle-name
+  description: heretic-action-lionhunter-rifle-desc
+  components:
+  - type: Action
+    useDelay: 25
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: cursed_steel
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 9
+  - type: WorldTargetAction
+    event: !type:HereticLionhunterRifleActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticRustConstruction
+  name: heretic-action-rust-construction-name
+  description: heretic-action-rust-construction-desc
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Structures/Walls/solid_rust.rsi
+      state: full
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 7
+  - type: WorldTargetAction
+    event: !type:HereticRustConstructionActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticEntropicPlume
+  name: heretic-action-entropic-plume-name
+  description: heretic-action-entropic-plume-desc
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: entropic_plume
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 7
+  - type: WorldTargetAction
+    event: !type:HereticEntropicPlumeActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticRustDash
+  name: heretic-action-rust-dash-name
+  description: heretic-action-rust-dash-desc
+  components:
+  - type: Action
+    useDelay: 20
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: rust_wave
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 8
+  - type: WorldTargetAction
+    event: !type:HereticRustDashActionEvent {}
+
+# ─── Путь Плоти — действия Сырого Пророка ───────────────────────────────────
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticRawProphetJaunt
+  name: heretic-action-raw-prophet-jaunt-name
+  description: heretic-action-raw-prophet-jaunt-desc
+  components:
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: ash_shift
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticRawProphetJauntActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticRawProphetBlind
+  name: heretic-action-raw-prophet-blind-name
+  description: heretic-action-raw-prophet-blind-desc
+  components:
+  - type: Action
+    useDelay: 20
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: eye
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 7
+  - type: EntityTargetAction
+    event: !type:HereticRawProphetBlindActionEvent {}
+
+# ─── Сталкер (Ritual of Solitude) ───────────────────────────────────────────
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticStalkerJaunt
+  name: heretic-action-stalker-jaunt-name
+  description: heretic-action-stalker-jaunt-desc
+  components:
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: ash_shift
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticStalkerJauntActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticStalkerEmp
+  name: heretic-action-stalker-emp-name
+  description: heretic-action-stalker-emp-desc
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Effects/emp.rsi
+      state: emp_disable
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticStalkerEmpActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticStalkerPolymorph
+  name: heretic-action-stalker-polymorph-name
+  description: heretic-action-stalker-polymorph-desc
+  components:
+  - type: Action
+    useDelay: 45
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: worm_contract
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticStalkerPolymorphActionEvent {}
+
+# ─── Возвышение — активные способности ──────────────────────────────────────
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticAscensionRust
+  name: heretic-action-ascension-rust-name
+  description: heretic-action-ascension-rust-desc
+  components:
+  - type: Action
+    useDelay: 300
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: corrode
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_asc_heretic
+  - type: InstantAction
+    event: !type:HereticAscensionRustActionEvent {}
+
+
+# ─── Особые способности ──────────────────────────────────────────────────────
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticFireRingOath
+  name: heretic-action-fire-ring-oath-name
+  description: heretic-action-fire-ring-oath-desc
+  components:
+  - type: Action
+    useDelay: 70
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: fire_ring
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticFireRingOathActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticFireCascade
+  name: heretic-action-fire-cascade-name
+  description: heretic-action-fire-cascade-desc
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: flames
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 5
+  - type: WorldTargetAction
+    event: !type:HereticFireCascadeActionEvent {}
+
+# ─── Нераскрытые искусства ───────────────────────────────────────────────────
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticUnsealedArts
+  name: heretic-action-unsealed-arts-name
+  description: heretic-action-unsealed-arts-desc
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/knowledge.rsi
+      state: node_side
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 2
+  - type: WorldTargetAction
+    event: !type:HereticUnsealedArtsActionEvent {}
+
+# ─── Приспешники ─────────────────────────────────────────────────────────────
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticSummonFamiliar
+  name: heretic-action-summon-familiar-name
+  description: heretic-action-summon-familiar-desc
+  components:
+  - type: Action
+    useDelay: 120
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: eye
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticSummonFamiliarActionEvent {}
+
+# ─── Поножи Пророка ──────────────────────────────────────────────────────────
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticGravityToggle
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: voidblink
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticGravityToggleActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticCarvingAlertRune
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/eldritch.rsi
+      state: alert_rune
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 4.0
+  - type: WorldTargetAction
+    event: !type:HereticCarvingAlertRuneActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticCarvingStunRune
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/eldritch.rsi
+      state: tentacle_rune
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 4.0
+  - type: WorldTargetAction
+    event: !type:HereticCarvingStunRuneActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticCarvingMadnessRune
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/eldritch.rsi
+      state: madness_rune
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 4.0
+  - type: WorldTargetAction
+    event: !type:HereticCarvingMadnessRuneActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticCosmicRune
+  components:
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: cosmic_rune
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 4.0
+  - type: WorldTargetAction
+    event: !type:HereticCosmicRuneActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticStarBlast
+  components:
+  - type: Action
+    useDelay: 25
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: star_blast
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 15.0
+  - type: WorldTargetAction
+    event: !type:HereticStarBlastActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticStarTouch
+  components:
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: star_touch
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 8.0
+  - type: EntityTargetAction
+    event: !type:HereticStarTouchActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticCosmicExpansion
+  components:
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: cosmic_domain
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticCosmicExpansionActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticAscensionCosmos
+  name: heretic-action-ascension-cosmos-name
+  description: heretic-action-ascension-cosmos-desc
+  components:
+  - type: Action
+    useDelay: 300
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: stargazer_menu
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_asc_heretic
+  - type: InstantAction
+    event: !type:HereticAscensionCosmosActionEvent {}
+
+# ─── Ржавоход — способности ───────────────────────────────────────────────────
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticRustWalkerAggressiveSpread
+  name: heretic-action-rust-walker-aggressive-spread-name
+  description: heretic-action-rust-walker-aggressive-spread-desc
+  components:
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: corrode
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticRustWalkerAggressiveSpreadActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticRustWalkerLesserPatrinsReach
+  name: heretic-action-rust-walker-lesser-patrins-reach-name
+  description: heretic-action-rust-walker-lesser-patrins-reach-desc
+  components:
+  - type: Action
+    useDelay: 35
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: rust_wave
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 7
+  - type: WorldTargetAction
+    event: !type:HereticRustWalkerLesserPatrinsReachActionEvent {}
+
+# ─── Созерцатель Звёзд — способности ─────────────────────────────────────────
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticStarGazerCosmicExpansion
+  name: ent-ActionHereticStarGazerCosmicExpansion
+  components:
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: star_touch
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticStarGazerCosmicExpansionActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticStarGazerStarBlast
+  name: ent-ActionHereticStarGazerStarBlast
+  components:
+  - type: Action
+    useDelay: 25
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: star_blast1
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 15
+  - type: WorldTargetAction
+    event: !type:HereticStarGazerStarBlastActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticStarGazerDeathGaze
+  name: ent-ActionHereticStarGazerDeathGaze
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: cosmic_domain
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 20
+  - type: WorldTargetAction
+    event: !type:HereticStarGazerDeathGazeActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticStarGazerFindMaster
+  name: ent-ActionHereticStarGazerFindMaster
+  components:
+  - type: Action
+    useDelay: 5
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: space_crawl
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticStarGazerFindMasterActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticMoonParade
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: moon_parade
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 12.0
+  - type: WorldTargetAction
+    event: !type:HereticMoonParadeActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticMoonRingleader
+  components:
+  - type: Action
+    useDelay: 60
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: moon_ringleader
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticMoonRingleaderActionEvent {}
+
+# ─── Путь Замка — Последнее убежище Хранителя ────────────────────────────────
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticCaretakerRefuge
+  name: ent-ActionHereticCaretakerRefuge
+  description: ent-ActionHereticCaretakerRefuge.desc
+  components:
+  - type: Action
+    useDelay: 60
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: caretaker
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticCaretakerRefugeActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticCaretakerRefugeExit
+  name: ent-ActionHereticCaretakerRefugeExit
+  description: ent-ActionHereticCaretakerRefugeExit.desc
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    checkCanInteract: false
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: caretaker
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticCaretakerRefugeExitActionEvent {}
+
+# ─── Путь Замка — Ловкость воришки ───────────────────────────────────────────
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticBurglarFinesse
+  name: ent-ActionHereticBurglarFinesse
+  description: ent-ActionHereticBurglarFinesse.desc
+  components:
+  - type: Action
+    useDelay: 40
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: burglarsfinesse
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: TargetAction
+    checkCanAccess: false
+    range: 6
+  - type: EntityTargetAction
+    event: !type:HereticBurglarFinesseActionEvent {}
+
+# ─── Lock — Возвышение: Шейпшифт ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticLockShapeshift
+  name: ent-ActionHereticLockShapeshift
+  description: ent-ActionHereticLockShapeshift.desc
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: lock_ascension
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticLockShapeshiftActionEvent {}
+
+# ─── Накидка пустоты ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleVoidCloakHood
+  name: heretic-action-toggle-void-cloak-hood-name
+  description: heretic-action-toggle-void-cloak-hood-desc
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/heretic_hoods.rsi
+      state: void_armor
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticVoidCloakToggleHoodEvent {}
+
+# ─── Космическая фаза ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticCosmicPhase
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: cosmic_domain
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticCosmicPhaseActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticCosmicPhaseExit
+  components:
+  - type: Action
+    useDelay: 5
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: cosmic_domain
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticCosmicPhaseExitActionEvent {}

@@ -1366,6 +1366,7 @@
   metabolisms:
     Bloodstream:
       effects:
+      - !type:MannitolBrainHeal
       - !type:PopupMessage
         conditions:
         - !type:ReagentCondition

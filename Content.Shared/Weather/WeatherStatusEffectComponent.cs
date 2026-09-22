@@ -43,4 +43,10 @@ public sealed partial class WeatherStatusEffectComponent : Component
     /// </summary>
     [ViewVariables]
     public EntityUid? Stream;
+
+    /// <summary>
+    /// If true, this weather bypasses the roof check and renders on all tiles, including indoor areas.
+    /// </summary>
+    [DataField]
+    public bool IgnoreRoof;
 }

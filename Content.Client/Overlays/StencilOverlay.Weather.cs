@@ -23,12 +23,26 @@ public sealed partial class StencilOverlay
         var worldBounds = args.WorldBounds;
         var position = args.Viewport.Eye?.Position.Position ?? Vector2.Zero;
 
+        // If any weather ignores roof, skip the stencil so it renders on all tiles (including indoors).
+        var ignoreRoof = false;
+        foreach (var (_, weather, _) in weathers)
+        {
+            if (weather.IgnoreRoof)
+            {
+                ignoreRoof = true;
+                break;
+            }
+        }
+
         // Cut out the irrelevant bits via stencil
         // This is why we don't just use parallax; we might want specific tiles to get drawn over
         // particularly for planet maps or stations.
         worldHandle.RenderInRenderTarget(res.Blep!,
             () =>
             {
+                if (ignoreRoof)
+                    return;
+
                 var xformQuery = _entManager.GetEntityQuery<TransformComponent>();
                 _grids.Clear();
 

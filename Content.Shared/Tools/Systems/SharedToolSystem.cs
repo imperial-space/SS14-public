@@ -169,7 +169,9 @@ public abstract partial class SharedToolSystem : EntitySystem
             return false;
 
         var toolEvent = new ToolDoAfterEvent(fuel, doAfterEv, GetNetEntity(target));
-        var doAfterArgs = new DoAfterArgs(EntityManager, user, delay / toolComponent.SpeedModifier, toolEvent, tool, target: target, used: tool)
+        var delayModEv = new ToolGetDelayModifierEvent();
+        RaiseLocalEvent(user, ref delayModEv);
+        var doAfterArgs = new DoAfterArgs(EntityManager, user, delay / toolComponent.SpeedModifier * delayModEv.DelayMultiplier, toolEvent, tool, target: target, used: tool)
         {
             BreakOnDamage = true,
             BreakOnMove = true,
