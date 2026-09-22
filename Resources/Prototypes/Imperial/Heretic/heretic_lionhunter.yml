@@ -1,0 +1,110 @@
+# ─── Снаряд ───
+
+- type: entity
+  parent: BaseBullet
+  id: BulletLionhunter
+  categories: [ HideSpawnMenu ]
+  name: heretic-bullet-lionhunter-name
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 30
+  - type: LionhunterBullet
+
+# ─── Гильза ───
+
+- type: entity
+  parent: BaseCartridgeLightRifle
+  id: CartridgeLionhunter
+  suffix: "Еретик"
+  name: heretic-item-lionhunter-cartridge-name
+  description: heretic-item-lionhunter-cartridge-desc
+  components:
+  - type: Tag
+    tags:
+    - CartridgeLionhunter
+  - type: CartridgeAmmo
+    proto: BulletLionhunter
+
+# ─── Стрипперная обойма ───
+
+- type: entity
+  parent: [ BaseItem ]
+  id: SpeedLoaderLionhunter
+  suffix: "Еретик"
+  name: heretic-item-lionhunter-speedloader-name
+  description: heretic-item-lionhunter-speedloader-desc
+  components:
+  - type: SpeedLoader
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+      - CartridgeLionhunter
+    capacity: 3
+    proto: CartridgeLionhunter
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/heretic/lionhunter_strip.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+# ─── Винтовка ───
+
+- type: entity
+  parent: [BaseWeaponSniper, BaseGunWieldable]
+  id: WeaponLionhunterRifle
+  suffix: "Еретик"
+  name: heretic-item-lionhunter-rifle-name
+  description: heretic-item-lionhunter-rifle-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/lionhunter.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Clothing
+    sprite: Imperial/heretic/lionhunter_inhand.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+  - type: Gun
+    projectileSpeed: 40
+    fireRate: 0.75
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: MeleeWeapon
+    damage:
+      groups:
+        Brute: 30
+    animation: WeaponArcThrust
+  - type: BallisticAmmoProvider
+    capacity: 3
+    proto: CartridgeLionhunter
+    whitelist:
+      tags:
+      - CartridgeLionhunter
+  - type: GunRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
+  - type: LionhunterRifle
+  - type: StaticPrice
+    price: 0

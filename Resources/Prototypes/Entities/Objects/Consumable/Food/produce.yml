@@ -2264,6 +2264,7 @@
   - type: Tag
     tags:
     - Fruit
+  - type: FoodHolymelon
 
 - type: entity
   name: holymelon slice
@@ -2299,6 +2300,7 @@
     tags:
     - Fruit
     - Slice
+  - type: FoodHolymelon
   - type: FoodSequenceElement
     entries:
       Burger: HolymelonSliceBurger

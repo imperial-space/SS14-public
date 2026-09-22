@@ -1,0 +1,155 @@
+# ==============================================
+#  Еретик — Прототипы путей (выбор пути)
+# ==============================================
+
+- type: hereticPath
+  id: HereticPathAsh
+  path: Ash
+  name: heretic-path-ash
+  description: heretic-path-ash-description
+  complexity: heretic-path-complexity-high
+  passiveName: heretic-path-ash-passive-name
+  passiveDescription: heretic-path-ash-passive-desc
+  pros: heretic-path-ash-pros
+  cons: heretic-path-ash-cons
+  level1Description: heretic-path-ash-level1-desc
+  level2Description: heretic-path-ash-level2-desc
+  level3Description: heretic-path-ash-level3-desc
+  icon:
+    sprite: /Textures/Imperial/heretic/knowledge.rsi
+    state: node_ash
+  pathKnowledgeId: KnowledgeCallOfAsh
+  tips: heretic-path-ash-tips
+
+- type: hereticPath
+  id: HereticPathFlesh
+  path: Flesh
+  name: heretic-path-flesh
+  description: heretic-path-flesh-description
+  complexity: heretic-path-complexity-medium
+  passiveName: heretic-path-flesh-passive-name
+  passiveDescription: heretic-path-flesh-passive-desc
+  pros: heretic-path-flesh-pros
+  cons: heretic-path-flesh-cons
+  level1Description: heretic-path-flesh-level1-desc
+  level2Description: heretic-path-flesh-level2-desc
+  level3Description: heretic-path-flesh-level3-desc
+  icon:
+    sprite: /Textures/Imperial/heretic/knowledge.rsi
+    state: node_flesh
+  pathKnowledgeId: KnowledgeFleshArtisan
+  tips: heretic-path-flesh-tips
+
+- type: hereticPath
+  id: HereticPathVoid
+  path: Void
+  name: heretic-path-void
+  description: heretic-path-void-description
+  complexity: heretic-path-complexity-low
+  passiveName: heretic-path-void-passive-name
+  passiveDescription: heretic-path-void-passive-desc
+  pros: heretic-path-void-pros
+  cons: heretic-path-void-cons
+  level1Description: heretic-path-void-level1-desc
+  level2Description: heretic-path-void-level2-desc
+  level3Description: heretic-path-void-level3-desc
+  icon:
+    sprite: /Textures/Imperial/heretic/knowledge.rsi
+    state: node_void
+  pathKnowledgeId: KnowledgeVoidTraveler
+  tips: heretic-path-void-tips
+
+- type: hereticPath
+  id: HereticPathBlade
+  path: Blade
+  name: heretic-path-blade
+  description: heretic-path-blade-description
+  complexity: heretic-path-complexity-low
+  passiveName: heretic-path-blade-passive-name
+  passiveDescription: heretic-path-blade-passive-desc
+  pros: heretic-path-blade-pros
+  cons: heretic-path-blade-cons
+  level1Description: heretic-path-blade-level1-desc
+  level2Description: heretic-path-blade-level2-desc
+  level3Description: heretic-path-blade-level3-desc
+  icon:
+    sprite: /Textures/Imperial/heretic/knowledge.rsi
+    state: node_blade
+  pathKnowledgeId: KnowledgeBladeAdept
+  tips: heretic-path-blade-tips
+
+- type: hereticPath
+  id: HereticPathRust
+  path: Rust
+  name: heretic-path-rust
+  description: heretic-path-rust-description
+  complexity: heretic-path-complexity-medium
+  passiveName: heretic-path-rust-passive-name
+  passiveDescription: heretic-path-rust-passive-desc
+  pros: heretic-path-rust-pros
+  cons: heretic-path-rust-cons
+  level1Description: heretic-path-rust-level1-desc
+  level2Description: heretic-path-rust-level2-desc
+  level3Description: heretic-path-rust-level3-desc
+  icon:
+    sprite: /Textures/Imperial/heretic/knowledge.rsi
+    state: node_rust
+  pathKnowledgeId: KnowledgeRustReaper
+  tips: heretic-path-rust-tips
+
+- type: hereticPath
+  id: HereticPathMoon
+  path: Moon
+  name: heretic-path-moon
+  description: heretic-path-moon-description
+  complexity: heretic-path-complexity-high
+  passiveName: heretic-path-moon-passive-name
+  passiveDescription: heretic-path-moon-passive-desc
+  pros: heretic-path-moon-pros
+  cons: heretic-path-moon-cons
+  level1Description: heretic-path-moon-level1-desc
+  level2Description: heretic-path-moon-level2-desc
+  level3Description: heretic-path-moon-level3-desc
+  icon:
+    sprite: /Textures/Imperial/heretic/knowledge.rsi
+    state: node_moon
+  pathKnowledgeId: KnowledgeCallOfMoon
+  tips: heretic-path-moon-tips
+
+- type: hereticPath
+  id: HereticPathLock
+  path: Lock
+  name: heretic-path-lock
+  description: heretic-path-lock-description
+  complexity: heretic-path-complexity-medium
+  passiveName: heretic-path-lock-passive-name
+  passiveDescription: heretic-path-lock-passive-desc
+  pros: heretic-path-lock-pros
+  cons: heretic-path-lock-cons
+  level1Description: heretic-path-lock-level1-desc
+  level2Description: heretic-path-lock-level2-desc
+  level3Description: heretic-path-lock-level3-desc
+  icon:
+    sprite: /Textures/Imperial/heretic/knowledge.rsi
+    state: node_lock
+  pathKnowledgeId: KnowledgeLockwielder
+  tips: heretic-path-lock-tips
+
+- type: hereticPath
+  id: HereticPathCosmos
+  path: Cosmos
+  name: heretic-path-cosmos
+  description: heretic-path-cosmos-description
+  complexity: heretic-path-complexity-high
+  passiveName: heretic-path-cosmos-passive-name
+  passiveDescription: heretic-path-cosmos-passive-desc
+  pros: heretic-path-cosmos-pros
+  cons: heretic-path-cosmos-cons
+  level1Description: heretic-path-cosmos-level1-desc
+  level2Description: heretic-path-cosmos-level2-desc
+  level3Description: heretic-path-cosmos-level3-desc
+  icon:
+    sprite: /Textures/Imperial/heretic/knowledge.rsi
+    state: node_cosmos
+  pathKnowledgeId: KnowledgeCosmicMark
+  tips: heretic-path-cosmos-tips

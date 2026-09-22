@@ -17,10 +17,11 @@ public sealed class MakeImperialAntagCommand : LocalizedCommands
 
     private static readonly EntProtoId CultRule = "Cult";
     private static readonly EntProtoId BlobRule = "Blob";
+    private static readonly EntProtoId HereticRule = "HereticGameRule";
 
     public override string Command => "makeimperialantag";
-    public override string Description => "Make a player a cultist or blob.";
-    public override string Help => "makeimperialantag <ckey> <cult|blob>";
+    public override string Description => "Make a player a cultist, blob, or heretic.";
+    public override string Help => "makeimperialantag <ckey> <cult|blob|heretic>";
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
     {
@@ -36,9 +37,10 @@ public sealed class MakeImperialAntagCommand : LocalizedCommands
             return CompletionResult.FromHintOptions(
                 [
                     new CompletionOption("cult", "Make the player a cultist."),
-                    new CompletionOption("blob", "Make the player a blob.")
+                    new CompletionOption("blob", "Make the player a blob."),
+                    new CompletionOption("heretic", "Make the player a heretic.")
                 ],
-                "<cult|blob>");
+                "<cult|blob|heretic>");
         }
 
         return CompletionResult.Empty;
@@ -72,8 +74,13 @@ public sealed class MakeImperialAntagCommand : LocalizedCommands
                 shell.WriteLine($"Made {player.Name} a blob.");
                 break;
 
+            case "heretic":
+                antag.ForceMakeAntag<HereticRuleComponent>(player, HereticRule);
+                shell.WriteLine($"Made {player.Name} a heretic.");
+                break;
+
             default:
-                shell.WriteError("Role must be either 'cult' or 'blob'.");
+                shell.WriteError("Role must be either 'cult', 'blob' or 'heretic'.");
                 break;
         }
     }

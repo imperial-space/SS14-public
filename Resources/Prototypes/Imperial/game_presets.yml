@@ -1,4 +1,16 @@
 - type: gamePreset
+  id: HereticPreset
+  alias:
+  - heretic
+  name: heretic-preset-title
+  description: heretic-preset-description
+  showInVote: false
+  rules:
+  - HereticGameRuleScaled
+  - BasicStationEventScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
   id: AllAtOncePlus
   alias:
   - allplus

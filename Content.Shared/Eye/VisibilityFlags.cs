@@ -12,5 +12,7 @@ namespace Content.Shared.Eye
         Subfloor = 1 << 2, // Pipes, disposal chutes, cables etc. while hidden under tiles. Can be revealed with a t-ray.
         Admin = 1 << 3, // Reserved for admins in stealth mode and admin tools.
         SpiderVent = 1 << 4, // Pipe networks temporarily revealed to vent-crawling entities.
+        HereticRift = 1 << 5, // Reality rifts visible only to heretics.
+        HereticIllusion = 1 << 6, // Heretic illusions (moon path clones) visible only to hallucinating targets.
     }
 }
