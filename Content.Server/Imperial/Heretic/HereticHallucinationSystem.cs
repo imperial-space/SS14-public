@@ -6,6 +6,7 @@ using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Imperial.Heretic.Components;
+using Content.Shared.Imperial.Heretic.MoonParade;
 using Content.Shared.Mind.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.SSDIndicator;
