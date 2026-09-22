@@ -1739,6 +1739,18 @@ public sealed class HereticSystem : SharedHereticSystem
         _decal.TryAddDecal(RustDecalId, snapped, out _);
     }
 
+    public void UnrustTile(EntityCoordinates coordinates)
+    {
+        var gridUid = _xform.GetGrid(coordinates);
+        if (gridUid is not { } grid) return;
+        var snapped = coordinates.SnapToGrid(EntityManager);
+        foreach (var (decalId, decal) in _decal.GetDecalsInRange(grid, snapped.Position))
+        {
+            if (decal.Id == RustDecalId)
+                _decal.RemoveDecal(grid, decalId);
+        }
+    }
+
     /// <summary>
     /// Spreads rust to every tile in range, and destroys any HereticRustWall entities in range.
     /// </summary>
