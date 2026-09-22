@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Text;
 using System.Numerics;
 using Content.Shared.PDA;
 using CancellationTokenSource = System.Threading.CancellationTokenSource;
@@ -86,6 +87,12 @@ namespace Content.Server.Imperial.Heretic;
 public sealed class HereticSystem : SharedHereticSystem
 {
     private static readonly ProtoId<TagPrototype> HereticBladeTag = "HereticBlade";
+
+    private static readonly string[] HereticGradientHex =
+    {
+        "#3A00C0", "#6B14D4", "#9433E8", "#B85AF0", "#D080F8", "#E0AAFF",
+        "#D080F8", "#B85AF0", "#9433E8", "#6B14D4",
+    };
 
     [Dependency] private readonly ActionsSystem         _actions  = default!;
     [Dependency] private readonly IPrototypeManager     _proto    = default!;
@@ -276,8 +283,22 @@ public sealed class HereticSystem : SharedHereticSystem
     {
         if (!TryComp<ActorComponent>(uid, out var actor))
             return;
-        var wrapped = Loc.GetString("chat-manager-server-wrap-message", ("message", message));
+        var gradientMessage = ApplyHereticGradient(message);
+        var wrapped = $"[bold]{gradientMessage}[/bold]";
         _chatManager.ChatMessageToOne(ChatChannel.Server, message, wrapped, default, false, actor.PlayerSession.Channel);
+    }
+
+    private static string ApplyHereticGradient(string message)
+    {
+        var sb = new StringBuilder(message.Length * 20);
+        var i = 0;
+        foreach (var ch in message)
+        {
+            var hex = HereticGradientHex[i % HereticGradientHex.Length];
+            i++;
+            sb.Append($"[color={hex}]{ch}[/color]");
+        }
+        return sb.ToString();
     }
 
     public void ActivateHereticAura(EntityUid uid, HereticComponent comp)
