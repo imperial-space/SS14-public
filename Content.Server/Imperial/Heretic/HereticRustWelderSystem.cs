@@ -13,12 +13,14 @@ public sealed class HereticRustWelderSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<WelderComponent, AfterInteractEvent>(OnWelderAfterInteract);
+        SubscribeLocalEvent<WelderComponent, BeforeRangedInteractEvent>(OnWelderBeforeInteract);
     }
 
-    private void OnWelderAfterInteract(Entity<WelderComponent> ent, ref AfterInteractEvent args)
+    private void OnWelderBeforeInteract(Entity<WelderComponent> ent, ref BeforeRangedInteractEvent args)
     {
         if (args.Target != null)
+            return;
+        if (!args.CanReach)
             return;
         if (!_itemToggle.IsActivated(ent.Owner))
             return;
