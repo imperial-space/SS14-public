@@ -4,7 +4,7 @@ using Robust.Shared.GameStates;
 namespace Content.Shared.Follower.Components;
 
 [RegisterComponent]
-[NetworkedComponent]
+[NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class OrbitVisualsComponent : Component
 {
     /// <summary>
@@ -21,4 +21,10 @@ public sealed partial class OrbitVisualsComponent : Component
     ///     How long should the orbit stop animation last in seconds?
     /// </summary>
     public float OrbitStopLength = 1.0f;
+
+    /// <summary>
+    ///     Starting phase offset (0..1) so multiple orbiting entities are evenly spaced.
+    /// </summary>
+    [AutoNetworkedField]
+    public float PhaseOffset = 0f;
 }
