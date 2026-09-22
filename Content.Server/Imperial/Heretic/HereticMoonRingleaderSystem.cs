@@ -6,6 +6,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Imperial.Heretic;
 using Content.Shared.Imperial.Heretic.Components;
+using Content.Shared.Imperial.Heretic.MoonParade;
 using Content.Shared.Inventory;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Mind.Components;

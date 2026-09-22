@@ -22,6 +22,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Heretic;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Imperial.Heretic.Components;
+using Content.Shared.Imperial.Heretic.MoonParade;
 using Content.Shared.Item;
 using Content.Shared.Tag;
 using Content.Shared.Medical;
