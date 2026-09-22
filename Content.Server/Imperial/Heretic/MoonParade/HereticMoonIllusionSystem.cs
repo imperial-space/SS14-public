@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Shared.Imperial.Heretic.Components;
+using Content.Shared.Imperial.Heretic.MoonParade;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Maths;
 using Robust.Shared.Physics.Components;
