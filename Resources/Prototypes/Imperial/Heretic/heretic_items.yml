@@ -1,0 +1,1567 @@
+# ==============================================
+#  Еретик — Предметы
+# ==============================================
+
+# ─── Базовый клинок еретика ───
+
+- type: entity
+  abstract: true
+  id: BaseHereticBlade
+  suffix: "Еретик, клинок"
+  name: heretic-blade-base-name
+  description: heretic-blade-base-desc
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/khopesh.rsi
+    state: render
+  - type: Item
+    size: Normal
+    sprite: Imperial/heretic/khopesh.rsi
+  - type: MeleeWeapon
+    attackRate: 1.5
+    range: 1.5
+    damage:
+      types:
+        Slash: 18
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Tag
+    tags:
+    - HereticBlade
+    - HereticItem
+  - type: HereticBladeWeapon
+
+# ─── Расколотый клинок ───
+
+- type: entity
+  id: HereticBladeSundered
+  parent: BaseHereticBlade
+  name: heretic-blade-sundered-name
+  description: heretic-blade-sundered-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/blade_sundered.rsi
+    layers:
+    - state: dark_blade
+      map: [ "icon" ]
+  - type: Item
+    sprite: Imperial/heretic/blade_sundered_inhand.rsi
+    heldPrefix: sundered_blade
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.HereticBladeSunderedVisuals.Infused:
+        icon:
+          True: { state: dark_blade_infused }
+          False: { state: dark_blade }
+
+# ─── Начальный клинок (без пути) ───
+
+- type: entity
+  id: HereticBladeBase
+  parent: BaseHereticBlade
+  name: heretic-blade-base-name
+  description: heretic-blade-base-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/blade_eldritch.rsi
+    state: eldritch_blade
+  - type: Item
+    sprite: Imperial/heretic/blade_eldritch_inhand.rsi
+    heldPrefix: eldritch_blade
+  - type: Clothing
+    slots:
+    - belt
+    sprite: Imperial/heretic/blade_eldritch_belt.rsi
+
+# ─── Клинки путей ───
+
+- type: entity
+  id: HereticBladeAsh
+  parent: BaseHereticBlade
+  name: heretic-blade-ash-name
+  description: heretic-blade-ash-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/blade_ash.rsi
+    state: ash_blade
+  - type: Item
+    sprite: Imperial/heretic/blade_ash_inhand.rsi
+    heldPrefix: ash_blade
+  - type: Clothing
+    slots:
+    - belt
+    sprite: Imperial/heretic/blade_ash_belt.rsi
+  - type: HereticAshBlade
+
+- type: entity
+  id: HereticBladeBlade
+  parent: BaseHereticBlade
+  name: heretic-blade-blade-name
+  description: heretic-blade-blade-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/blade_eldritch.rsi
+    state: eldritch_blade
+  - type: Item
+    sprite: Imperial/heretic/blade_eldritch_inhand.rsi
+    heldPrefix: eldritch_blade
+  - type: Clothing
+    slots:
+    - belt
+    sprite: Imperial/heretic/blade_eldritch_belt.rsi
+  - type: HereticBladeBlade
+
+- type: entity
+  id: HereticBladeRust
+  parent: BaseHereticBlade
+  name: heretic-blade-rust-name
+  description: heretic-blade-rust-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/blade_rust.rsi
+    state: rust_blade
+  - type: Item
+    sprite: Imperial/heretic/blade_rust_inhand.rsi
+    heldPrefix: rust_blade
+  - type: Clothing
+    slots:
+    - belt
+    sprite: Imperial/heretic/blade_rust_belt.rsi
+  - type: HereticRustBlade
+
+- type: entity
+  id: HereticBladeVoid
+  parent: BaseHereticBlade
+  name: heretic-blade-void-name
+  description: heretic-blade-void-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/blade_void.rsi
+    state: void_blade
+  - type: Item
+    sprite: Imperial/heretic/blade_void_inhand.rsi
+    heldPrefix: void_blade
+  - type: Clothing
+    slots:
+    - belt
+    sprite: Imperial/heretic/blade_void_belt.rsi
+  - type: HereticVoidBlade
+
+- type: entity
+  id: HereticBladeMoon
+  parent: BaseHereticBlade
+  name: ent-HereticBladeMoon
+  description: ent-HereticBladeMoon
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/blade_moon.rsi
+    state: moon_blade
+  - type: Item
+    sprite: Imperial/heretic/blade_moon_inhand.rsi
+    heldPrefix: moon_blade
+  - type: Clothing
+    slots:
+    - belt
+    sprite: Imperial/heretic/blade_moon_belt.rsi
+  - type: HereticMoonBlade
+
+- type: entity
+  id: HereticMoonAmulet
+  suffix: "Еретик"
+  name: ent-HereticMoonAmulet
+  description: ent-HereticMoonAmulet
+  parent: ClothingNeckBase
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch.rsi
+    state: moon_amulette
+  - type: Clothing
+    sprite: Imperial/heretic/eldritch.rsi
+    slots:
+    - neck
+  - type: Item
+    size: Small
+  - type: MeleeWeapon
+    attackRate: 1
+    range: 1.5
+    damage:
+      types:
+        Slash: 0
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: HereticMoonAmulet
+  - type: Tag
+    tags:
+    - HereticItem
+
+# ─── Блистательное облачение ───
+
+- type: entity
+  id: HereticGlitteringArray
+  suffix: "Еретик, мантия"
+  name: ent-HereticGlitteringArray
+  description: ent-HereticGlitteringArray
+  parent: ClothingOuterStorageBase
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/heretic_robes.rsi
+    state: moon_armor
+  - type: Clothing
+    sprite: Imperial/heretic/heretic_robes.rsi
+    equippedState: moon_armor_worn
+  - type: HereticGlitteringArray
+  - type: HereticPathRobe
+    path: Moon
+  - type: ToggleableClothing
+    clothingPrototype: HereticGlitteringArrayHood
+    action: ActionToggleGlitteringArrayHood
+
+# ─── Капюшон Блистательного облачения ───
+
+- type: entity
+  id: HereticGlitteringArrayHood
+  name: ent-HereticGlitteringArrayHood
+  description: ent-HereticGlitteringArrayHood
+  parent: ClothingHeadBase
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/heretic_hoods.rsi
+    state: moon_armor
+  - type: Clothing
+    sprite: Imperial/heretic/heretic_hoods.rsi
+    equippedState: moon_armor_worn
+  - type: HereticAmberFocus
+  - type: Tag
+    tags:
+    - HideSpawnMenu
+
+- type: entity
+  id: HereticBladeCosmos
+  parent: BaseHereticBlade
+  name: heretic-blade-cosmos-name
+  description: heretic-blade-cosmos-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/blade_cosmos.rsi
+    state: cosmic_blade
+  - type: Item
+    sprite: Imperial/heretic/blade_cosmos_inhand.rsi
+    heldPrefix: cosmic_blade
+  - type: Clothing
+    slots:
+    - belt
+    sprite: Imperial/heretic/blade_cosmos_belt.rsi
+  - type: HereticCosmosBlade
+
+- type: entity
+  id: HereticBladeFlesh
+  parent: BaseHereticBlade
+  name: heretic-blade-flesh-name
+  description: heretic-blade-flesh-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/blade_flesh.rsi
+    state: flesh_blade
+  - type: Item
+    sprite: Imperial/heretic/blade_flesh_inhand.rsi
+    heldPrefix: flesh_blade
+  - type: Clothing
+    slots:
+    - belt
+    sprite: Imperial/heretic/blade_flesh_belt.rsi
+  - type: HereticFleshBlade
+
+- type: entity
+  id: HereticBladeLock
+  parent: BaseHereticBlade
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/blade_lock.rsi
+    state: key_blade
+  - type: Item
+    sprite: Imperial/heretic/blade_lock_inhand.rsi
+    heldPrefix: key_blade
+  - type: Clothing
+    slots:
+    - belt
+    sprite: Imperial/heretic/blade_lock_belt.rsi
+  - type: MeleeWeapon
+    attackRate: 1.5
+    range: 1.5
+    damage:
+      types:
+        Slash: 20
+  - type: Tool
+    qualities:
+    - Prying
+    speed: 1.3
+
+# ─── Меняющийся облик ───
+
+- type: entity
+  id: HereticShiftingGuise
+  suffix: "Еретик, мантия"
+  parent: ClothingOuterStorageBase
+  name: ent-HereticShiftingGuise
+  description: ent-HereticShiftingGuise
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/heretic_robes.rsi
+    state: lock_armor
+  - type: Clothing
+    sprite: Imperial/heretic/heretic_robes.rsi
+    equippedState: lock_armor_worn
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.6
+        Shock: 0.6
+        Caustic: 0.6
+  - type: IdentityBlocker
+    coverage: FULL
+  - type: VoiceMask
+    voiceMaskName: null
+    overrideIdentity: true
+    active: true
+    accentHide: true
+  - type: UserInterface
+    interfaces:
+      enum.VoiceMaskUIKey.Key:
+        type: VoiceMaskBoundUserInterface
+  - type: HereticShiftingGuise
+  - type: HereticPathRobe
+    path: Lock
+  - type: ToggleableClothing
+    clothingPrototype: HereticShiftingGuiseHood
+    action: ActionToggleShiftingGuiseHood
+
+# ─── Капюшон Меняющегося облика ───
+
+- type: entity
+  id: HereticShiftingGuiseHood
+  parent: ClothingHeadBase
+  name: ent-HereticShiftingGuiseHood
+  description: ent-HereticShiftingGuiseHood
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/heretic_hoods.rsi
+    state: lock_armor
+  - type: Clothing
+    sprite: Imperial/heretic/heretic_hoods.rsi
+    equippedState: lock_armor_worn
+  - type: HereticAmberFocus
+  - type: Tag
+    tags:
+    - HideSpawnMenu
+
+# ─── Книга Мансуса ───
+
+- type: entity
+  id: HereticMansusBook
+  name: heretic-item-mansus-book-name
+  description: heretic-item-mansus-book-desc
+  parent: BaseItem
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch.rsi
+    layers:
+    - state: book
+      map: [ "base" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.HereticMansusBookVisuals.State:
+        base:
+          Closed: { state: book }
+          Opening: { state: book_opening }
+          Open: { state: book_open }
+          Closing: { state: book_closing }
+  - type: Item
+    size: Small
+    sprite: Imperial/heretic/eldritch.rsi
+  - type: HereticMansusBook
+  - type: Tag
+    tags:
+    - HereticItem
+
+# ─── Кодекс Цикатрис ───
+
+- type: entity
+  id: HereticCodexCicatrix
+  suffix: "Еретик"
+  name: heretic-item-codex-cicatrix-name
+  description: heretic-item-codex-cicatrix-desc
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch.rsi
+    state: book
+  - type: Item
+    size: Small
+    sprite: Imperial/heretic/eldritch.rsi
+  - type: HereticCodex
+  - type: Tag
+    tags:
+    - HereticItem
+
+# ─── Кодекс Морбиус ───
+
+- type: entity
+  id: HereticCodexMorbus
+  suffix: "Еретик"
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch.rsi
+    state: book_morbus
+  - type: Item
+    size: Small
+    sprite: Imperial/heretic/eldritch.rsi
+  - type: HereticCodex
+    drawTimeFast: 5.08
+    drawEffectEntity: HereticEffectRuneDrawFastMorbus
+    canCurseRunes: true
+    causesHallucinations: true
+    spriteStateClosed: book_morbus
+    spriteStateOpening: book_morbus_opening
+    spriteStateOpen: book_morbus_open
+    spriteStateClosing: book_morbus_closing
+  - type: Tag
+    tags:
+    - HereticItem
+
+# ─── Янтарный фокус ───
+
+- type: entity
+  id: HereticAmberFocus
+  suffix: "Еретик"
+  name: heretic-item-amber-focus-name
+  description: heretic-item-amber-focus-desc
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/focus.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: Imperial/heretic/focus.rsi
+  - type: Clothing
+    sprite: Imperial/heretic/focus.rsi
+    slots:
+    - neck
+  - type: HereticAmberFocus
+  - type: Tag
+    tags:
+    - HereticItem
+
+# ─── Тигель Мансуса ───
+
+- type: entity
+  id: HereticMawedCrucible
+  suffix: "Еретик"
+  name: heretic-mawed-crucible-name
+  description: heretic-mawed-crucible-desc
+  parent: BaseStructure
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch.rsi
+    state: crucible
+    drawdepth: Objects
+  - type: InteractionOutline
+  - type: HereticMawedCrucible
+  - type: UserInterface
+    interfaces:
+      enum.HereticMawedCrucibleUiKey.Key:
+        type: HereticMawedCrucibleBui
+
+- type: entity
+  id: HereticCrucibleSoulPotion
+  suffix: "Еретик"
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch.rsi
+    state: crucible_soul
+  - type: HereticCruciblePotion
+    potionType: Soul
+  - type: Tag
+    tags:
+    - HereticItem
+
+- type: entity
+  id: HereticCrucibleClarityPotion
+  suffix: "Еретик"
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch.rsi
+    state: clarity
+  - type: HereticCruciblePotion
+    potionType: Clarity
+  - type: Tag
+    tags:
+    - HereticItem
+
+- type: entity
+  id: HereticCrucibleMarshalPotion
+  suffix: "Еретик"
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch.rsi
+    state: marshal
+  - type: HereticCruciblePotion
+    potionType: Marshal
+  - type: Tag
+    tags:
+    - HereticItem
+
+# ─── Зелья Мансуса ───
+
+
+# ─── Эльдрический Флакон ───
+
+- type: entity
+  id: HereticEldritchFlask
+  suffix: "Еретик"
+  name: heretic-item-eldritch-flask-name
+  description: heretic-item-eldritch-flask-desc
+  parent: DrinkBase
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch.rsi
+    state: eldritch_flask
+  - type: Item
+    size: Small
+    sprite: Imperial/heretic/eldritch.rsi
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: EldritchEssence
+          Quantity: 100
+  - type: Tag
+    tags:
+    - HereticItem
+
+# ─── Маска Безумия ───
+
+- type: entity
+  id: HereticMaskOfMadness
+  suffix: "Еретик"
+  name: heretic-item-mask-of-madness-name
+  description: heretic-item-mask-of-madness-desc
+  parent: ClothingMaskBase
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/masks.rsi
+    state: mad_mask
+  - type: Clothing
+    sprite: Imperial/heretic/masks.rsi
+    slots:
+    - mask
+  - type: HereticMaskOfMadness
+
+# ─── Живое Сердце ───
+
+- type: entity
+  id: HereticLivingHeart
+  suffix: "Еретик"
+  name: heretic-item-living-heart-name
+  description: heretic-item-living-heart-desc
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch.rsi
+    state: living_heart
+  - type: Item
+    size: Small
+    sprite: Imperial/heretic/eldritch.rsi
+  - type: HereticLivingHeart
+  - type: Tag
+    tags:
+    - HereticItem
+
+# ─── Мистический Медальон (Пепел — Ashen Eyes) ───
+
+- type: entity
+  id: HereticEldritchMedallion
+  suffix: "Еретик"
+  name: ent-HereticEldritchMedallion
+  parent: ClothingNeckBase
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch.rsi
+    state: eye_medalion
+  - type: Clothing
+    sprite: Imperial/heretic/eldritch.rsi
+    slots:
+    - neck
+  - type: ThermalEntityVision
+  - type: Tag
+    tags:
+    - HereticItem
+
+# ─── Медальон Ржавчины ───
+
+- type: entity
+  id: HereticRustedMedallion
+  suffix: "Еретик"
+  name: heretic-item-rusted-medallion-name
+  description: heretic-item-rusted-medallion-desc
+  parent: ClothingNeckBase
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch.rsi
+    state: rusty_medalion
+  - type: Clothing
+    sprite: Imperial/heretic/eldritch.rsi
+    slots:
+    - neck
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+        Blunt: 0.9
+  - type: Tag
+    tags:
+    - HereticItem
+
+# ─── Накидка пустоты ───
+
+- type: entity
+  id: HereticVoidCloak
+  suffix: "Еретик"
+  name: ent-HereticVoidCloak
+  description: ent-HereticVoidCloak.desc
+  parent: ClothingNeckBase
+  components:
+  - type: Sprite
+    sprite: Clothing/Neck/Cloaks/void.rsi
+    state: icon
+  - type: Clothing
+    sprite: Clothing/Neck/Cloaks/void.rsi
+    slots:
+    - neck
+  - type: HereticVoidCloak
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodVoidCloak
+    slot: head
+    action: ActionToggleVoidCloakHood
+    requiredSlot:
+    - neck
+  - type: Storage
+    grid:
+    - 0,0,4,1
+    maxItemSize: Normal
+    whitelist:
+      tags:
+      - HereticItem
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      toggleable-clothing: !type:ContainerSlot {}
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+
+# ─── Зловещий Капюшон ───
+
+- type: entity
+  id: HereticOminousHood
+  suffix: "Еретик"
+  parent: ClothingHeadBase
+  name: heretic-item-ominous-hood-name
+  description: heretic-item-ominous-hood-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/Heretic/Clothes/HereticHelmet.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Other/Heretic/Clothes/HereticHelmet.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+  - type: HideLayerClothing
+    slots:
+    - Hair
+
+# ─── Зловещая Броня ───
+
+- type: entity
+  id: HereticOminousArmor
+  suffix: "Еретик"
+  parent: ClothingOuterBaseLarge
+  name: heretic-item-ominous-armor-name
+  description: heretic-item-ominous-armor-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/Heretic/Clothes/HereticRobe.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Other/Heretic/Clothes/HereticRobe.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.6
+        Heat: 0.7
+        Shock: 0.9
+        Caustic: 0.8
+
+# ─── Выжженная мантия ───
+
+- type: entity
+  id: HereticScorchedMantle
+  suffix: "Еретик, мантия"
+  parent: ClothingOuterStorageBase
+  name: heretic-item-scorched-mantle-name
+  description: heretic-item-scorched-mantle-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/heretic_robes.rsi
+    state: ash_armor
+  - type: Clothing
+    sprite: Imperial/heretic/heretic_robes.rsi
+    equippedState: ash_armor_worn
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.6
+        Heat: 0.0
+        Cold: 0.0
+        Shock: 0.9
+        Caustic: 0.8
+  - type: HereticScorchedMantle
+  - type: HereticPathRobe
+    path: Ash
+  - type: ToggleableClothing
+    clothingPrototype: HereticScorchedMantleHood
+    action: ActionToggleScorchedMantleHood
+
+# ─── Капюшон Выжженной мантии (спавнится системой, не в меню) ───
+
+- type: entity
+  id: HereticScorchedMantleHood
+  parent: ClothingHeadBase
+  name: heretic-item-scorched-mantle-hood-name
+  description: heretic-item-scorched-mantle-hood-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/heretic_hoods.rsi
+    state: ash_armor
+  - type: Clothing
+    sprite: Imperial/heretic/heretic_hoods.rsi
+    equippedState: ash_armor_worn
+  - type: Tag
+    tags:
+    - HideSpawnMenu
+
+# ─── Плащ сотканный из звёзд ───
+
+- type: entity
+  id: HereticCosmosCloak
+  suffix: "Еретик, мантия"
+  parent: ClothingOuterStorageBase
+  name: heretic-item-cosmos-cloak-name
+  description: heretic-item-cosmos-cloak-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/heretic_robes.rsi
+    state: cosmic_armor
+  - type: Clothing
+    sprite: Imperial/heretic/heretic_robes.rsi
+    equippedState: cosmic_armor_worn
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.70
+        Heat: 0.40
+        Shock: 0.40
+        Caustic: 0.8
+  - type: FireProtection
+    reduction: 1.0
+  - type: HereticCosmosCloak
+  - type: HereticPathRobe
+    path: Cosmos
+  - type: ToggleableClothing
+    clothingPrototype: HereticCosmosHood
+    action: ActionToggleCosmosCloakHood
+
+# ─── Сплетение пустоты ───
+
+- type: entity
+  id: HereticVoidWeave
+  suffix: "Еретик, мантия"
+  parent: ClothingOuterStorageBase
+  name: heretic-item-void-weave-name
+  description: heretic-item-void-weave-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/heretic_robes.rsi
+    state: void_armor
+  - type: Clothing
+    sprite: Imperial/heretic/heretic_robes.rsi
+    equippedState: void_armor_worn
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Cold: 0.1
+        Heat: 0.9
+        Shock: 0.9
+        Caustic: 0.85
+  - type: HereticVoidWeave
+  - type: HereticPathRobe
+    path: Void
+  - type: ToggleableClothing
+    clothingPrototype: HereticVoidWeaveHood
+    action: ActionToggleVoidWeaveHood
+
+# ─── Капюшон мантии пути Космоса (спавнится системой, не в меню) ───
+
+- type: entity
+  id: HereticCosmosHood
+  parent: ClothingHeadBase
+  name: heretic-item-cosmos-hood-name
+  description: heretic-item-cosmos-hood-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/cosmic.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/heretic/cosmic.rsi
+    equippedState: equipped-HELMET
+  - type: Tag
+    tags:
+    - HideSpawnMenu
+
+# ─── Капюшон Сплетения пустоты (спавнится системой, не в меню) ───
+
+- type: entity
+  id: HereticVoidWeaveHood
+  parent: ClothingHeadBase
+  name: heretic-item-void-weave-hood-name
+  description: heretic-item-void-weave-hood-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/heretic_hoods.rsi
+    state: void_armor
+  - type: Clothing
+    sprite: Imperial/heretic/heretic_hoods.rsi
+    equippedState: void_armor_worn
+  - type: HereticAmberFocus
+  - type: Tag
+    tags:
+    - HideSpawnMenu
+
+# ─── Уцелевшие обломки: броня пути Ржавчины ───
+
+- type: entity
+  id: HereticRustArmor
+  suffix: "Еретик, мантия"
+  name: ent-HereticRustArmor
+  parent: ClothingOuterStorageBase
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/heretic_robes.rsi
+    state: rust_armor
+  - type: Clothing
+    sprite: Imperial/heretic/heretic_robes.rsi
+    equippedState: rust_armor_worn
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.75
+        Heat: 0.80
+        Shock: 0.90
+        Caustic: 0.80
+  - type: HereticRustArmor
+  - type: HereticPathRobe
+    path: Rust
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHereticRobe
+    action: ActionToggleRustArmorHood
+
+# ─── Мантия пути Плоти: Извивающиеся объятия ───
+
+- type: entity
+  id: HereticWrithingEmbrace
+  suffix: "Еретик, мантия"
+  parent: ClothingOuterStorageBase
+  name: heretic-item-writhing-embrace-name
+  description: heretic-item-writhing-embrace-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/heretic_robes.rsi
+    state: flesh_armor
+  - type: Clothing
+    sprite: Imperial/heretic/heretic_robes.rsi
+    equippedState: flesh_armor_worn
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.6
+        Piercing: 0.7
+        Heat: 0.9
+        Shock: 0.9
+        Caustic: 0.85
+  - type: HereticWrithingEmbrace
+  - type: HereticPathRobe
+    path: Flesh
+  - type: ToggleableClothing
+    clothingPrototype: HereticWrithingEmbraceHood
+    action: ActionToggleWrithingEmbraceHood
+
+# ─── Капюшон Извивающихся объятий (спавнится системой, не в меню) ───
+
+- type: entity
+  id: HereticWrithingEmbraceHood
+  parent: ClothingHeadBase
+  name: heretic-item-writhing-embrace-hood-name
+  description: heretic-item-writhing-embrace-hood-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/heretic_hoods.rsi
+    state: flesh_armor
+  - type: Clothing
+    sprite: Imperial/heretic/heretic_hoods.rsi
+    equippedState: flesh_armor_worn
+  - type: Tag
+    tags:
+    - HideSpawnMenu
+
+# ─── Звезда Маршала (Lock path) ───
+
+- type: entity
+  parent: IDCardStandard
+  id: HereticMarshalBadge
+  suffix: "Еретик"
+  name: heretic-item-marshal-badge-name
+  description: heretic-item-marshal-badge-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch.rsi
+    layers:
+    - state: marshal
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: Imperial/heretic/eldritch.rsi
+  - type: Item
+    size: Small
+  - type: IdCard
+    jobTitle: heretic-marshal-badge-job-title
+    jobIcon: JobIconWarden
+  - type: Access
+    groups:
+    - Security
+    - Command
+
+# ─── Сердце Мансуса (орган) ───
+
+- type: entity
+  parent: OrganHumanHeart
+  id: OrganHereticHeart
+  suffix: "Еретик"
+  name: heretic-item-heart-name
+  description: heretic-item-heart-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch.rsi
+    layers:
+    - state: living_heart
+  - type: HereticHeart
+
+# ─── Результат ритуала Приветствие Уоррена Кинга ───
+
+- type: entity
+  id: HereticWarrenKingGreetingResult
+  suffix: "Еретик"
+  name: heretic-warren-king-greeting-result
+  description: ""
+  components:
+  - type: HereticWarrenKingGreetingResult
+
+# ─── Результат ритуала Пир Сов ───
+
+- type: entity
+  id: HereticFeastOwlsResult
+  suffix: "Еретик"
+  name: heretic-feast-owls-result
+  description: ""
+  components:
+  - type: HereticFeastOwlsResult
+
+# ─── Мистическая монета (Lock path) ───
+
+- type: entity
+  id: HereticEldritchCoin
+  suffix: "Еретик"
+  name: heretic-item-eldritch-coin-name
+  description: heretic-item-eldritch-coin-desc
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/economy.rsi
+    layers:
+    - state: coin_heretic
+      map: [ "base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.HereticCoinVisuals.Flipping:
+        base:
+          True: { state: coin_heretic_flip }
+          False: { state: coin_heretic }
+  - type: Item
+    size: Tiny
+    sprite: Imperial/heretic/economy.rsi
+  - type: HereticEldritchCoin
+
+# ─── Филактерия проклятья ───
+
+- type: entity
+  id: HereticPhylactery
+  suffix: "Еретик"
+  name: heretic-item-phylactery-name
+  description: heretic-item-phylactery-desc
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch.rsi
+    layers:
+    - state: phylactery
+      map: [ "base" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.HereticPhylacteryVisuals.FillLevel:
+        base:
+          Empty: { state: phylactery }
+          Half: { state: phylactery_1 }
+          Full: { state: phylactery_2 }
+  - type: Appearance
+  - type: Item
+    size: Small
+    sprite: Imperial/heretic/eldritch.rsi
+  - type: SolutionContainerManager
+    solutions:
+      phylactery:
+        maxVol: 25
+  - type: RefillableSolution
+    solution: phylactery
+  - type: DrainableSolution
+    solution: phylactery
+  - type: ExaminableSolution
+    solution: phylactery
+    exactVolume: true
+  - type: SolutionTransfer
+    maxTransferAmount: 25
+    canChangeTransferAmount: true
+  - type: SolutionItemStatus
+    solution: phylactery
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+  - type: HereticPhylactery
+
+# ─── Поножи Пророка ───
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: HereticProphetGreaves
+  suffix: "Еретик"
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/prophet_greaves.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/heretic/prophet_greaves.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.75
+  - type: NoSlip
+  - type: HereticProphetGreaves
+
+- type: entity
+  parent: BaseKnife
+  id: HereticCarvingKnife
+  suffix: "Еретик"
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch.rsi
+    state: rune_carver
+  - type: Item
+    size: Small
+    sprite: Imperial/heretic/eldritch.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 15
+  - type: ThrowingAngle
+    angle: 225
+  - type: LandAtCursor
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 15
+  - type: HereticCarvingKnife
+
+- type: entity
+  id: HereticCarvingAlertRune
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/heretic/eldritch.rsi
+    state: alert_rune
+    noRot: true
+    color: "#ffffff33"
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.4
+        hard: false
+        layer:
+        - MidImpassable
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.1
+    stepOn: true
+  - type: PointLight
+    radius: 1.0
+    energy: 1.0
+    color: "#9944ff"
+  - type: LightBehaviour
+    behaviours:
+    - !type:FadeBehaviour
+      id: shimmer
+      interpolate: Linear
+      maxDuration: 2.0
+      startValue: 0.3
+      endValue: 1.8
+      isLooped: true
+      reverseWhenFinished: true
+      property: Energy
+  - type: HereticAlertRune
+
+- type: entity
+  id: HereticCarvingStunRune
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/heretic/eldritch.rsi
+    state: tentacle_rune
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.4
+        hard: false
+        layer:
+        - MidImpassable
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.1
+    stepOn: true
+  - type: HereticStunRune
+
+- type: entity
+  id: HereticCarvingMadnessRune
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/heretic/eldritch.rsi
+    state: madness_rune
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.4
+        hard: false
+        layer:
+        - MidImpassable
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.1
+    stepOn: true
+  - type: HereticMadnessRune
+
+- type: entity
+  id: HereticCosmicRune
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/heretic/cosmic_rune.rsi
+    state: cosmic_rune
+    noRot: true
+    color: "#ffffff99"
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.4
+        hard: false
+        layer:
+        - MidImpassable
+  - type: PointLight
+    radius: 1.2
+    energy: 1.5
+    color: "#4488ff"
+  - type: LightBehaviour
+    behaviours:
+    - !type:FadeBehaviour
+      id: shimmer
+      interpolate: Linear
+      maxDuration: 2.0
+      startValue: 0.5
+      endValue: 2.0
+      isLooped: true
+      reverseWhenFinished: true
+      property: Energy
+  - type: HereticCosmicRune
+
+# ─── Эфир новорождённого ───
+
+- type: entity
+  id: HereticEtherFlask
+  suffix: "Еретик"
+  name: heretic-item-ether-flask-name
+  description: heretic-item-ether-flask-desc
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch.rsi
+    state: poison_flask
+  - type: Item
+    size: Small
+    sprite: Imperial/heretic/eldritch.rsi
+  - type: HereticEtherFlask
+  - type: Tag
+    tags:
+    - HereticItem
+
+# ─── Жестокий кулак гуля ───
+
+- type: entity
+  id: HereticGhoulBrutalFist
+  parent: BaseItem
+  name: ent-HereticGhoulBrutalFist
+  description: ent-HereticGhoulBrutalFist.desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/blade_void.rsi
+    state: void_blade
+  - type: Item
+    size: Normal
+    sprite: Imperial/heretic/blade_void_inhand.rsi
+    heldPrefix: void_blade
+  - type: MeleeWeapon
+    attackRate: 1.2
+    range: 1.5
+    damage:
+      types:
+        Slash: 18
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+
+# ─── Непостижимая реликвия (General) ───
+
+- type: entity
+  id: HereticCurioShieldVisual
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Imperial/heretic/unfathomable_shield.rsi
+    layers:
+    - state: unfathomable_shield
+      shader: unshaded
+  - type: Transform
+    noRot: true
+
+- type: entity
+  id: HereticUnfathomableCurio
+  suffix: "Еретик"
+  parent: ClothingBeltStorageBase
+  name: heretic-item-unfathomable-curio-name
+  description: heretic-item-unfathomable-curio-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/unfathomable_curio.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/heretic/unfathomable_curio.rsi
+    slots:
+    - belt
+  - type: Storage
+    grid:
+    - 0,0,4,1
+    maxItemSize: Small
+    whitelist:
+      tags:
+      - HereticBlade
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+  - type: HereticUnfathomableCurio
+
+- type: entity
+  id: HereticRustSmoke
+  parent: BaseFoam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/chemsmoke.rsi
+    state: chemsmoke
+    color: "#8B4513"
+  - type: TimedDespawn
+    lifetime: 15
+  - type: HereticRustSmoke
+
+- type: entity
+  id: HereticRustSowerGrenade
+  suffix: "Еретик"
+  parent: [ VolatileGrenadeBase, TimerGrenadeBase ]
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/heretic_grenade.rsi
+    layers:
+    - state: rustgrenade
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: TimerTrigger
+    delay: 5
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound:
+      path: /Audio/Imperial/heretic/sound_effects_curse.ogg
+    positional: true
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
+  - type: SmokeOnTrigger
+    keysIn:
+    - timer
+    duration: 20
+    spreadAmount: 25
+    smokePrototype: HereticRustSmoke
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Imperial/heretic/runebreak.ogg
+    primingSprite: rustgrenade_active
+    unprimedSprite: rustgrenade
+
+# ─── Книга Хранителя Лабиринта ───
+
+- type: entity
+  id: HereticLabyrinthHandbook
+  suffix: "Еретик"
+  parent: BaseItem
+  name: ent-HereticLabyrinthHandbook
+  description: ent-HereticLabyrinthHandbook.desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/heretic_labyrinth_handbook.rsi
+    state: heretichandbook
+  - type: Item
+    size: Normal
+  - type: LimitedCharges
+    maxCharges: 5
+  - type: AutoRecharge
+    rechargeDuration: 15
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Imperial/heretic/sound_items_handling_book_drop.ogg
+      params:
+        volume: -5
+  - type: HereticLabyrinthHandbook
+
+# ─── Разбитые доспехи (Blade path) ───
+
+- type: entity
+  id: HereticShatteredPanoply
+  suffix: "Еретик, мантия"
+  parent: ClothingOuterBaseLarge
+  name: heretic-item-shattered-panoply-name
+  description: heretic-item-shattered-panoply-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/heretic_robes.rsi
+    state: blade_armor
+  - type: Clothing
+    sprite: Imperial/heretic/heretic_robes.rsi
+    equippedState: blade_armor_worn
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Shock: 0.5
+        Caustic: 0.5
+  - type: Insulated
+    coefficient: 0
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  - type: HereticShatteredPanop
+  - type: HereticPathRobe
+    path: Blade
+  - type: ToggleableClothing
+    clothingPrototype: HereticShatteredHood
+    action: ActionToggleShatteredHood
+
+# ─── Потусторонняя карта Хранителя Ключей ───
+
+- type: entity
+  id: HereticMysticCard
+  suffix: "Еретик"
+  name: ent-HereticMysticCard
+  description: ent-HereticMysticCard-desc
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/id_cards.rsi
+    layers:
+    - state: gold
+      color: "#5a0a0a"
+  - type: Item
+    size: Small
+    sprite: Objects/Misc/id_cards.rsi
+    heldPrefix: gold
+  - type: Access
+  - type: IdCard
+  - type: HereticMysticCard
+  - type: ActivatableUI
+    key: enum.HereticMysticCardUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.HereticMysticCardUiKey.Key:
+        type: HereticMysticCardBui
+
+# ─── Портал Хранителя Ключей ───
+
+- type: entity
+  id: HereticLockPortal
+  name: ent-HereticLockPortal
+  description: ent-HereticLockPortal-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    layers:
+    - state: realitycrack
+  - type: Fixtures
+    fixtures:
+      portalFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.48,0.25,0.48"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        hard: false
+  - type: PointLight
+    color: "#8B0000"
+    radius: 3
+    energy: 1.5
+    netsync: false
+  - type: HereticLockPortal
+
+# ─── Капюшон Разбитых доспехов (спавнится системой, не в меню) ───
+
+- type: entity
+  id: HereticShatteredHood
+  parent: ClothingHeadBase
+  name: heretic-item-shattered-hood-name
+  description: heretic-item-shattered-hood-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/heretic_hoods.rsi
+    state: blade_armor
+  - type: Clothing
+    sprite: Imperial/heretic/heretic_hoods.rsi
+    equippedState: blade_armor_worn
+  - type: HereticAmberFocus
+  - type: Tag
+    tags:
+    - HideSpawnMenu
+
+- type: entity
+  id: HereticShatteredHelmet
+  suffix: "Еретик, мантия"
+  parent: ClothingHeadBase
+  name: heretic-item-shattered-helmet-name
+  description: heretic-item-shattered-helmet-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/heretic_hoods.rsi
+    state: blade_armor
+  - type: Clothing
+    sprite: Imperial/heretic/heretic_hoods.rsi
+    equippedState: blade_armor_worn
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Shock: 0.5
+        Caustic: 0.5
+  - type: Insulated
+    coefficient: 0
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  - type: HereticShatteredPanop
+

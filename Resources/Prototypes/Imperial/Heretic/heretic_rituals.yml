@@ -1,0 +1,980 @@
+# ==============================================
+#  Еретик — Ритуалы
+# ==============================================
+
+- type: hereticRitual
+  id: RitualCodexCicatrix
+  name: heretic-ritual-codex-cicatrix-name
+  requiredKnowledge: KnowledgeCodexCicatrix
+  ingredients:
+  - tag: Book
+    amount: 1
+  - tag: Pen
+    amount: 1
+  - hasMobState: true
+    amount: 1
+  results:
+  - HereticCodexCicatrix
+
+- type: hereticRitual
+  id: RitualAmberFocus
+  name: heretic-ritual-amber-focus-name
+  requiredKnowledge: KnowledgeAmberFocus
+  ingredients:
+  - entityId: SheetGlass1
+    amount: 3
+  results:
+  - HereticAmberFocus
+
+- type: hereticRitual
+  id: FeastOfOwls
+  name: heretic-ritual-feast-of-owls-name
+  requiredKnowledge: KnowledgeFeastOfOwls
+  results:
+  - HereticFeastOwlsResult
+
+# ─── Тигель и зелья ───
+
+- type: hereticRitual
+  id: RitualMawedCrucible
+  name: heretic-ritual-mawed-crucible-name
+  requiredKnowledge: KnowledgeMawedCrucible
+  ingredients:
+  - entityId: WaterTankFull
+    amount: 1
+  - entityId: Table
+    amount: 1
+  results:
+  - HereticMawedCrucible
+
+# ─── Нераскрытые Искусства (картины) ───
+
+- type: hereticRitual
+  id: RitualPaintingWeeping
+  name: heretic-ritual-painting-weeping-name
+  requiredKnowledge: KnowledgeUnsealedArts
+  ingredients:
+  - entityId: Paper
+    amount: 2
+  - entityId: SheetSteel
+    amount: 1
+  results:
+  - HereticPaintingWeeping
+
+- type: hereticRitual
+  id: RitualPaintingBeauty
+  name: heretic-ritual-painting-beauty-name
+  requiredKnowledge: KnowledgeUnsealedArts
+  ingredients:
+  - entityId: Paper
+    amount: 2
+  - entityId: SheetGlass1
+    amount: 1
+  results:
+  - HereticPaintingBeauty
+
+- type: hereticRitual
+  id: RitualPaintingVines
+  name: heretic-ritual-painting-vines-name
+  requiredKnowledge: KnowledgeUnsealedArts
+  ingredients:
+  - entityId: Paper
+    amount: 2
+  - entityId: FoodMeat
+    amount: 1
+  results:
+  - HereticPaintingVines
+
+- type: hereticRitual
+  id: RitualPaintingRust
+  name: heretic-ritual-painting-rust-name
+  requiredKnowledge: KnowledgeUnsealedArts
+  ingredients:
+  - entityId: Paper
+    amount: 2
+  - entityId: SheetPlasma
+    amount: 1
+  results:
+  - HereticPaintingRust
+
+- type: hereticRitual
+  id: RitualPaintingDesire
+  name: heretic-ritual-painting-desire-name
+  requiredKnowledge: KnowledgeUnsealedArts
+  ingredients:
+  - entityId: Paper
+    amount: 2
+  - entityId: IngotGold
+    amount: 1
+  results:
+  - HereticPaintingDesire
+
+- type: hereticRitual
+  id: RitualOminousHood
+  name: heretic-ritual-ominous-hood-name
+  requiredKnowledge: KnowledgeUnsealedArts
+  ingredients:
+  - entityId: Paper
+    amount: 3
+  - entityId: SheetSteel
+    amount: 1
+  results:
+  - HereticOminousHood
+
+- type: hereticRitual
+  id: RitualOminousArmor
+  name: heretic-ritual-ominous-armor-name
+  requiredKnowledge: KnowledgeUnsealedArts
+  ingredients:
+  - entityId: SheetSteel
+    amount: 3
+  - entityId: Paper
+    amount: 2
+  results:
+  - HereticOminousArmor
+
+# ─── Космический маяк (Cosmic Runes) ───
+
+- type: hereticRitual
+  id: RitualCosmicBeacon
+  name: heretic-ritual-cosmic-beacon-name
+  requiredKnowledge: KnowledgeCosmicRunes
+  ingredients:
+  - entityId: Paper
+    amount: 2
+  - entityId: SheetGlass1
+    amount: 2
+  results:
+  - HereticCosmicBeacon
+
+# ─── Плащ сотканный из звёзд ───
+
+- type: hereticRitual
+  id: RitualCosmosCloak
+  name: heretic-ritual-cosmos-cloak-name
+  requiredKnowledge: KnowledgeCosmosCloak
+  ingredients:
+  - entityId: SheetPlasma
+    amount: 1
+  - tag: OuterClothing
+    amount: 1
+  - entityId: ClothingMaskGas
+    amount: 1
+  results:
+  - HereticCosmosCloak
+
+
+# ─── Винтовка Охотника за Львами ───
+
+- type: hereticRitual
+  id: RitualLionhunterRifle
+  name: heretic-ritual-lionhunter-rifle-name
+  requiredKnowledge: KnowledgeLionhunterRifle
+  ingredients:
+  - entityId: SurveillanceCameraAssembly
+    amount: 1
+  - entityId: MaterialWoodPlank
+    amount: 1
+  results:
+  - WeaponLionhunterRifle
+
+- type: hereticRitual
+  id: RitualSpeedLoaderLionhunter
+  name: heretic-ritual-lionhunter-speedloader-name
+  requiredKnowledge: KnowledgeLionhunterRifle
+  ingredients:
+  - entityId: SheetSteel
+    amount: 1
+  - entityId: Paper
+    amount: 2
+  results:
+  - SpeedLoaderLionhunter
+
+
+# ─── Ритуал Скрепления Пути ───
+
+- type: hereticRitual
+  id: RitualHereticPactAsh
+  name: heretic-ritual-pact-name
+  requiredKnowledge: KnowledgeNightwatchersSecret
+  ingredients:
+  - entityId: Scalpel
+    amount: 2
+  - entityId: Stunbaton
+    amount: 1
+  - entityId: Candle
+    amount: 4
+  - entityId: OrganHumanHeart
+    amount: 1
+  results:
+  - HereticPactToken
+
+- type: hereticRitual
+  id: RitualHereticPactVoid
+  name: heretic-ritual-pact-name
+  requiredKnowledge: KnowledgeVoidTraveler
+  ingredients:
+  - entityId: Scalpel
+    amount: 2
+  - entityId: Stunbaton
+    amount: 1
+  - entityId: Candle
+    amount: 4
+  - entityId: OrganHumanHeart
+    amount: 1
+  results:
+  - HereticPactToken
+
+- type: hereticRitual
+  id: RitualHereticPactBlade
+  name: heretic-ritual-pact-name
+  requiredKnowledge: KnowledgeBladeAdept
+  ingredients:
+  - entityId: Scalpel
+    amount: 2
+  - entityId: Stunbaton
+    amount: 1
+  - entityId: Candle
+    amount: 4
+  - entityId: OrganHumanHeart
+    amount: 1
+  results:
+  - HereticPactToken
+
+- type: hereticRitual
+  id: RitualHereticPactRust
+  name: heretic-ritual-pact-name
+  requiredKnowledge: KnowledgeRustReaper
+  ingredients:
+  - entityId: Scalpel
+    amount: 2
+  - entityId: Stunbaton
+    amount: 1
+  - entityId: Candle
+    amount: 4
+  - entityId: OrganHumanHeart
+    amount: 1
+  results:
+  - HereticPactToken
+
+# ─── Ритуалы возвышения ───
+
+- type: hereticRitual
+  id: RitualAscensionAsh
+  name: heretic-ritual-ascension-ash-name
+  requiredKnowledge: KnowledgeAscensionAsh
+  ingredients:
+  - isBurning: true
+    hasMobState: true
+    amount: 3
+  results:
+  - HereticAscensionResult
+
+- type: hereticRitual
+  id: RitualAscensionBlade
+  name: heretic-ritual-ascension-blade-name
+  requiredKnowledge: KnowledgeAscensionBlade
+  ingredients:
+  - hasMobState: true
+    amount: 3
+  - entityId: IngotSilver
+    amount: 3
+  results:
+  - HereticAscensionResult
+
+- type: hereticRitual
+  id: RitualAscensionRust
+  name: heretic-ritual-ascension-rust-name
+  requiredKnowledge: KnowledgeAscensionRust
+  ingredients:
+  - hasMobState: true
+    amount: 3
+  results:
+  - HereticAscensionResult
+
+- type: hereticRitual
+  id: RitualAscensionCosmos
+  name: heretic-ritual-ascension-cosmos-name
+  requiredKnowledge: KnowledgeAscensionCosmos
+  ingredients:
+  - hasMobState: true
+    amount: 3
+  results:
+  - HereticAscensionResult
+
+- type: hereticRitual
+  id: RitualAscensionFlesh
+  name: heretic-ritual-ascension-flesh-name
+  requiredKnowledge: KnowledgeAscensionFlesh
+  ingredients:
+  - hasMobState: true
+    amount: 4
+  results:
+  - HereticAscensionResult
+
+- type: hereticRitual
+  id: RitualAscensionVoid
+  name: heretic-ritual-ascension-void-name
+  requiredKnowledge: KnowledgeAscensionVoid
+  ingredients:
+  - hasMobState: true
+    amount: 3
+  results:
+  - HereticAscensionResult
+
+- type: hereticRitual
+  id: RitualAscensionMoon
+  name: heretic-ritual-ascension-moon-name
+  requiredKnowledge: KnowledgeAscensionMoon
+  ingredients:
+  - hasMobState: true
+    amount: 3
+  results:
+  - HereticAscensionResult
+
+- type: hereticRitual
+  id: RitualAscensionLock
+  name: heretic-ritual-ascension-lock-name
+  requiredKnowledge: KnowledgeAscensionLock
+  ingredients:
+  - hasMobState: true
+    amount: 3
+  results:
+  - HereticAscensionResult
+
+# ─── Эльдрический флакон ───
+
+- type: hereticRitual
+  id: RitualEldritchFlask
+  name: heretic-ritual-eldritch-flask-name
+  requiredKnowledge: KnowledgeShopEldritchFlask
+  ingredients:
+  - entityId: ShardGlass
+    amount: 1
+  - entityId: WaterTankFull
+    amount: 1
+  results:
+  - HereticEldritchFlask
+
+# ─── Мистический Медальон (Ashen Eyes) ───
+
+- type: hereticRitual
+  id: RitualEldritchMedallion
+  name: heretic-ritual-eldritch-medallion-name
+  requiredKnowledge: KnowledgeShopEldritchMedallion
+  ingredients:
+  - entityId: OrganHumanEyes
+    amount: 1
+  - entityId: Candle
+    amount: 1
+  - entityId: ShardGlass
+    amount: 1
+  results:
+  - HereticEldritchMedallion
+
+# ─── Расколотый клинок (The Cutting Edge) ───
+
+- type: hereticRitual
+  id: RitualBladeSundered
+  name: heretic-ritual-blade-sundered-name
+  requiredKnowledge: KnowledgeBladeAdept
+  ingredients:
+  - tag: Knife
+    amount: 1
+  - entityId: IngotSilver
+    amount: 1
+  results:
+  - HereticBladeSundered
+
+# ─── Ходячая ржавчина (Rusted Ritual) ───
+
+- type: hereticRitual
+  id: RitualRustWalker
+  name: heretic-ritual-rust-walker-name
+  requiredKnowledge: KnowledgeRustedRitual
+  ingredients:
+  - entityId: PuddleVomit
+    amount: 1
+  - entityId: CableApcStack1
+    amount: 15
+  - entityId: SheetSteel
+    amount: 10
+  results:
+  - HereticFamiliarRustWalker
+
+- type: hereticRitual
+  id: RitualAshenRitual
+  name: heretic-ritual-ashen-ritual-name
+  requiredKnowledge: KnowledgeAshenRitual
+  ingredients:
+  - entityId: Ash
+    amount: 1
+  - tag: Head
+    amount: 1
+  - tag: Book
+    amount: 1
+  results:
+  - HereticAshMan
+
+# Ингредиенты (труп с душой + любой костюм + латекс/нитрил) проверяются в HereticRuneSystem.OnRitualSelected
+- type: hereticRitual
+  id: RitualShatteredRitual
+  name: heretic-ritual-shattered-ritual-name
+  requiredKnowledge: KnowledgeShatteredRitual
+  ingredients: []
+  results: []
+
+# ─── Предметы путей ───
+
+- type: hereticRitual
+  id: RitualMaskOfMadness
+  name: heretic-ritual-mask-of-madness-name
+  requiredKnowledge: KnowledgeMaskOfMadness
+  ingredients:
+  - entityId: ClothingMaskGas
+    amount: 1
+  - entityId: Candle
+    amount: 4
+  - entityId: Stunbaton
+    amount: 1
+  - entityId: OrganHumanLiver
+    amount: 1
+  results:
+  - HereticMaskOfMadness
+
+- type: hereticRitual
+  id: RitualMaskOfMadnessAsh
+  name: heretic-ritual-mask-of-madness-name
+  requiredKnowledge: KnowledgeMaskOfMadnessAsh
+  ingredients:
+  - entityId: ClothingMaskGas
+    amount: 1
+  - entityId: Candle
+    amount: 4
+  - entityId: Stunbaton
+    amount: 1
+  - entityId: OrganHumanLiver
+    amount: 1
+  results:
+  - HereticMaskOfMadness
+
+- type: hereticRitual
+  id: RitualScorchedMantle
+  name: heretic-ritual-scorched-mantle-name
+  requiredKnowledge: KnowledgeScorchedMantle
+  ingredients:
+  - tag: OuterClothing
+    amount: 1
+  - tag: ClothingHead
+    amount: 1
+  - entityId: Matchstick
+    amount: 1
+  results:
+  - HereticScorchedMantle
+
+- type: hereticRitual
+  id: RitualVoidWeave
+  name: heretic-ritual-void-weave-name
+  requiredKnowledge: KnowledgeVoidWeave
+  ingredients:
+  - tag: OuterClothing
+    amount: 1
+  - entityId: ClothingMaskGas
+    amount: 1
+  results:
+  - HereticVoidWeave
+
+- type: hereticRitual
+  id: RitualRustArmor
+  name: heretic-ritual-rust-armor-name
+  requiredKnowledge: KnowledgeRustSalvageRemnants
+  ingredients:
+  - tag: OuterClothing
+    amount: 1
+  - tag: Trash
+    amount: 1
+  - entityId: ClothingMaskGas
+    amount: 1
+  results:
+  - HereticRustArmor
+
+- type: hereticRitual
+  id: RitualWrithingEmbrace
+  name: heretic-ritual-writhing-embrace-name
+  requiredKnowledge: KnowledgeWrithingEmbrace
+  ingredients:
+  - tag: OuterClothing
+    amount: 1
+  - entityId: ClothingMaskGas
+    amount: 1
+  - entityId: PuddleBlood
+    amount: 1
+  results:
+  - HereticWrithingEmbrace
+
+
+
+- type: hereticRitual
+  id: RitualRawProphet
+  name: heretic-ritual-raw-prophet-name
+  requiredKnowledge: KnowledgeRawProphet
+  ingredients:
+  - entityId: OrganHumanEyes
+    amount: 1
+  - entityId: OrganHumanArmLeft
+    amount: 1
+  - entityId: PuddleBlood
+    amount: 1
+  results:
+  - MobHereticRawProphet
+
+- type: hereticRitual
+  id: RitualSolitude
+  name: heretic-ritual-solitude-name
+  requiredKnowledge: KnowledgeRitualOfSolitude
+  ingredients:
+  - entityId: FoodMeat
+    amount: 1
+  - entityId: OrganHumanStomach
+    amount: 1
+  - entityId: OrganHumanTongue
+    amount: 1
+  - tag: Pen
+    amount: 1
+  - entityId: Paper
+    amount: 1
+  results:
+  - HereticFamiliarStalker
+
+- type: hereticRitual
+  id: RitualRustedMedallion
+  name: heretic-ritual-rusted-medallion-name
+  requiredKnowledge: KnowledgeLeechingWalk
+  ingredients:
+  - entityId: SheetSteel
+    amount: 2
+  - entityId: SheetPlasma
+    amount: 1
+  results:
+  - HereticRustedMedallion
+
+- type: hereticRitual
+  id: RitualSpaceHands
+  name: heretic-ritual-space-hands-name
+  requiredKnowledge: KnowledgeStarGazer
+  ingredients:
+  - entityId: SheetGlass1
+    amount: 2
+  - entityId: SheetPlasma
+    amount: 1
+  results:
+  - HereticSpaceHands
+
+- type: hereticRitual
+  id: RitualMarshalBadge
+  name: heretic-ritual-marshal-badge-name
+  requiredKnowledge: KnowledgeLonelyRitual
+  ingredients:
+  - entityId: IngotGold
+    amount: 2
+  - entityId: SheetSteel
+    amount: 1
+  results:
+  - HereticMarshalBadge
+
+- type: hereticRitual
+  id: RitualHeartbeatMansus
+  name: heretic-ritual-heartbeat-mansus-name
+  requiredKnowledge: KnowledgeHeartbeatMansus
+  results: []
+
+# ─── Приветствие Уоррена Кинга (General path) ───
+
+- type: hereticRitual
+  id: RitualWarrenKingGreeting
+  name: heretic-ritual-warren-king-greeting-name
+  requiredKnowledge: KnowledgeWarrenKingGreeting
+  ingredients:
+  - entityId: CableMVStack
+    amount: 1
+  - entityId: Paper
+    amount: 1
+  - entityId: Multitool
+    amount: 1
+  results:
+  - HereticWarrenKingGreetingResult
+
+# ─── Поножи Пророка ───
+
+- type: hereticRitual
+  id: RitualProphetGreavesPlasteel
+  name: heretic-ritual-prophet-greaves-name
+  requiredKnowledge: KnowledgeProphetGreaves
+  ingredients:
+  - tag: Shoes
+    amount: 1
+  - entityId: SheetPlasteel
+    amount: 2
+  results:
+  - HereticProphetGreaves
+
+- type: hereticRitual
+  id: RitualProphetGreavesSilver
+  name: heretic-ritual-prophet-greaves-name
+  requiredKnowledge: KnowledgeProphetGreaves
+  ingredients:
+  - tag: Shoes
+    amount: 1
+  - entityId: IngotSilver
+    amount: 2
+  results:
+  - HereticProphetGreaves
+
+- type: hereticRitual
+  id: RitualCarvingKnife
+  name: heretic-ritual-carving-knife-name
+  requiredKnowledge: KnowledgeCarvingKnife
+  ingredients:
+  - tag: Knife
+    amount: 1
+  - entityId: ShardGlass
+    amount: 1
+  - entityId: Paper
+    amount: 1
+  results:
+  - HereticCarvingKnife
+
+- type: hereticRitual
+  id: RitualEtherNewborn
+  name: heretic-ritual-ether-newborn-name
+  requiredKnowledge: KnowledgeEtherNewborn
+  ingredients:
+  - entityId: ShardGlass
+    amount: 1
+  - entityId: PuddleVomit
+    amount: 1
+  results:
+  - HereticEtherFlask
+
+# ─── Неустанное биение (General, уровень 2 магазина) ───
+
+- type: hereticRitual
+  id: RitualRelentlessHeartbeat
+  name: heretic-ritual-relentless-heartbeat-name
+  requiredKnowledge: KnowledgeShopHeartbeatRitual
+  ingredients:
+  - entityId: DeskBell
+    amount: 1
+  - tag: Book
+    amount: 1
+  - tag: Jumpsuit
+    amount: 1
+  results: []
+
+# ─── Непостижимая реликвия (General) ───
+
+- type: hereticRitual
+  id: RitualUnfathomableCurio
+  name: heretic-ritual-unfathomable-curio-name
+  requiredKnowledge: KnowledgeUnfathomableCurio
+  ingredients:
+  - entityId: RodMetal
+    amount: 3
+  - entityId: OrganHumanLungs
+    amount: 1
+  results:
+  - HereticUnfathomableCurio
+
+# ─── Книга Хранителя Лабиринта ───
+
+- type: hereticRitual
+  id: RitualLabyrinthHandbook
+  name: heretic-ritual-labyrinth-handbook-name
+  requiredKnowledge: KnowledgeShopLabyrinthHandbook
+  ingredients:
+  - entityId: Crayon
+    amount: 1
+  - entityId: MaterialWoodPlank
+    amount: 1
+  - entityId: Multitool
+    amount: 1
+  results:
+  - HereticLabyrinthHandbook
+
+- type: hereticRitual
+  id: RitualRustSower
+  name: heretic-ritual-rust-sower-name
+  requiredKnowledge: KnowledgeRustSower
+  ingredients:
+  - entityId: ModularGrenade
+    amount: 1
+  - entityId: SheetSteel
+    amount: 2
+  results:
+  - HereticRustSowerGrenade
+
+# ─── Магазин знаний: ритуалы (General) ───────────────────────────────────────
+
+- type: hereticRitual
+  id: RitualShopMawedCrucible
+  name: heretic-ritual-shop-mawed-crucible-name
+  requiredKnowledge: KnowledgeShopMawedCrucible
+  ingredients:
+  - entityId: WaterTankFull
+    amount: 1
+  - entityId: Table
+    amount: 1
+  results:
+  - HereticMawedCrucible
+
+- type: hereticRitual
+  id: RitualShopPhylactery
+  name: heretic-ritual-shop-phylactery-name
+  requiredKnowledge: KnowledgeShopPhylactery
+  ingredients:
+  - entityId: SheetGlass
+    amount: 1
+  - entityId: FoodPoppy
+    amount: 1
+  results:
+  - HereticPhylactery
+
+- type: hereticRitual
+  id: RitualShopEldritchCoin
+  name: heretic-ritual-shop-eldritch-coin-name
+  requiredKnowledge: KnowledgeShopEldritchCoin
+  ingredients:
+  - entityId: SheetPlasma
+    amount: 1
+  - entityId: MaterialDiamond1
+    amount: 1
+  results:
+  - HereticEldritchCoin
+
+- type: hereticRitual
+  id: RitualShopVoidCloak
+  name: heretic-ritual-shop-void-cloak-name
+  requiredKnowledge: KnowledgeShopVoidCloak
+  ingredients:
+  - entityId: ShardGlass
+    amount: 1
+  - tag: Bedsheet
+    amount: 1
+  - entityId: ClothingOuterArmorBasic
+    amount: 1
+  results:
+  - HereticVoidCloak
+
+- type: hereticRitual
+  id: RitualShopCodexMorbus
+  name: heretic-ritual-shop-codex-morbus-name
+  requiredKnowledge: KnowledgeShopCodexMorbus
+  ingredients:
+  - entityId: HereticCodexCicatrix
+    amount: 1
+  - hasMobState: true
+    amount: 1
+  results:
+  - HereticCodexMorbus
+
+- type: hereticRitual
+  id: RitualShopRustWalker
+  name: heretic-ritual-shop-rust-walker-name
+  requiredKnowledge: KnowledgeShopRustWalker
+  ingredients:
+  - entityId: PuddleVomit
+    amount: 1
+  - entityId: CableApcStack1
+    amount: 15
+  - entityId: SheetSteel
+    amount: 10
+  results:
+  - MobHereticRustWalker
+
+- type: hereticRitual
+  id: RitualShopFireShark
+  name: heretic-ritual-shop-fire-shark-name
+  requiredKnowledge: KnowledgeShopFireShark
+  ingredients:
+  - entityId: Ash
+    amount: 1
+  - entityId: OrganHumanLiver
+    amount: 1
+  - entityId: SheetPlasma
+    amount: 1
+  results:
+  - MobHereticFireShark
+
+- type: hereticRitual
+  id: RitualShopAshSpirit
+  name: heretic-ritual-shop-ash-spirit-name
+  requiredKnowledge: KnowledgeShopAshSpirit
+  ingredients:
+  - entityId: Ash
+    amount: 1
+  - tag: Book
+    amount: 1
+  - entityId: Bonfire
+    amount: 1
+  results:
+  - HereticAshSpirit
+
+- type: hereticRitual
+  id: RitualShopMaidInMirror
+  name: heretic-ritual-shop-maid-in-mirror-name
+  requiredKnowledge: KnowledgeMaidInMirror
+  ingredients:
+  - entityId: SheetGlass1
+    amount: 5
+  - tag: Jumpsuit
+    amount: 1
+  - entityId: OrganHumanLungs
+    amount: 1
+  results:
+  - MobHereticMaidInMirror
+
+- type: hereticRitual
+  id: RitualShopRustSowerGrenade
+  name: heretic-ritual-shop-rust-sower-grenade-name
+  requiredKnowledge: KnowledgeShopRustSowerGrenade
+  ingredients:
+  - entityId: ModularGrenade
+    amount: 1
+  - entityId: SheetSteel
+    amount: 2
+  results:
+  - HereticRustSowerGrenade
+
+# ─── Разбитые доспехи ───
+
+- type: hereticRitual
+  id: RitualShatteredPanoply
+  name: heretic-ritual-shattered-panoply-name
+  requiredKnowledge: KnowledgeBladeBrokenArmor
+  ingredients:
+  - tag: OuterClothing
+    amount: 1
+  - entityId: ClothingMaskGas
+    amount: 1
+  - entityId: SheetSteel
+    amount: 2
+  results:
+  - HereticShatteredPanoply
+  - HereticShatteredHelmet
+
+# ─── Лунный клинок (Moon — start) ───
+
+- type: hereticRitual
+  id: RitualBladeMoon
+  name: heretic-ritual-blade-moon-name
+  requiredKnowledge: KnowledgeCallOfMoon
+  ingredients:
+  - tag: Knife
+    amount: 1
+  - entityId: ShardGlass
+    amount: 2
+  results:
+  - HereticBladeMoon
+
+# ─── Лунный амулет (Moon — T2) ───
+
+- type: hereticRitual
+  id: RitualMoonAmulet
+  name: heretic-ritual-moon-amulet-name
+  requiredKnowledge: KnowledgeMoonAmulet
+  ingredients:
+  - entityId: OrganHumanHeart
+    amount: 1
+  - entityId: SheetGlass1
+    amount: 2
+  - entityId: ClothingNeckTieRed
+    amount: 1
+  results:
+  - HereticMoonAmulet
+
+# ─── Блистательное облачение (Moon — T3) ───
+
+- type: hereticRitual
+  id: RitualMoonGlitteringArray
+  name: heretic-ritual-moon-glittering-array-name
+  requiredKnowledge: KnowledgeMoonGlitteringArray
+  ingredients:
+  - tag: OuterClothing
+    amount: 1
+  - entityId: ClothingMaskGas
+    amount: 1
+  - entityId: SheetGlass1
+    amount: 2
+  results:
+  - HereticGlitteringArray
+
+# ─── Ключ-клинок (Секрет Хранителя Ключей) ───
+
+- type: hereticRitual
+  id: RitualKeyBlade
+  name: heretic-ritual-key-blade-name
+  requiredKnowledge: KnowledgeLockwielder
+  ingredients:
+  - tag: Knife
+    amount: 1
+  - entityId: Crowbar
+    amount: 1
+  results:
+  - HereticBladeLock
+
+# ─── Обряд Хранителя (путь Замка) ───
+
+- type: hereticRitual
+  id: RitualLockLabyrinthHandbook
+  name: heretic-ritual-labyrinth-handbook-name
+  requiredKnowledge: KnowledgeLockLabyrinthHandbook
+  ingredients:
+  - entityId: Crayon
+    amount: 1
+  - entityId: MaterialWoodPlank
+    amount: 1
+  - entityId: Multitool
+    amount: 1
+  results:
+  - HereticLabyrinthHandbook
+
+# ─── Меняющийся облик ───
+
+- type: hereticRitual
+  id: RitualShiftingGuise
+  name: heretic-ritual-shifting-guise-name
+  requiredKnowledge: KnowledgeShiftingGuise
+  ingredients:
+  - entityId: ClothingMaskGas
+    amount: 1
+  - entityId: Crowbar
+    amount: 1
+  - tag: ClothingOuter
+    amount: 1
+  results:
+  - HereticShiftingGuise
+
+# ─── Потусторонняя карта (Бремя Хранителя Ключей) ───
+
+- type: hereticRitual
+  id: RitualMysticCard
+  name: heretic-ritual-mystic-card-name
+  requiredKnowledge: KnowledgeKeyRing
+  ingredients:
+  - entityId: ClothingBeltStorageWaistbag
+    amount: 1
+  - entityId: PartRodMetal
+    amount: 1
+  - tag: IdCard
+    amount: 1
+  results:
+  - HereticMysticCard
+
+# ─── Несовершенный ритуал (Flesh) ───
+
+- type: hereticRitual
+  id: RitualVoicelessDead
+  name: heretic-ritual-voiceless-dead-name
+  requiredKnowledge: KnowledgeImperfectRitual
+  ingredients: []
+  results: []

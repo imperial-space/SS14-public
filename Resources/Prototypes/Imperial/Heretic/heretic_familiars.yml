@@ -1,0 +1,963 @@
+# ==============================================
+#  Еретик — Приспешники Мансуса
+# ==============================================
+
+- type: entity
+  id: HereticAshSpirit
+  suffix: "Еретик, существо"
+  name: heretic-familiar-ash-spirit-name
+  description: heretic-familiar-ash-spirit-desc
+  parent:
+  - BaseSimpleMob
+  - MobCombat
+  components:
+  - type: HereticAshSpirit
+  - type: GhostRole
+    allowMovement: true
+    makeSentient: true
+    name: ghost-role-information-heretic-ash-spirit-name
+    description: ghost-role-information-heretic-ash-spirit-description
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: ActionGrant
+    actions:
+    - ActionHereticAshSpiritShift
+    - ActionHereticAshSpiritFlameOath
+  - type: CombatMode
+    isInCombatMode: true
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: ash_walker
+      sprite: Imperial/heretic/eldritch_mobs.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: ash_walker
+      Dead:
+        Base: ash_walker
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Dead
+  - type: NpcFactionMember
+    factions:
+    - HereticFamiliar
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 15
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.0
+    baseSprintSpeed: 5.5
+  - type: MeleeWeapon
+    attackRate: 1.0
+    hidden: true
+    soundHit:
+      collection: GenericHit
+    damage:
+      types:
+        Slash: 17
+  - type: Tag
+    tags:
+    - FootstepSound
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepAsteroid
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.0
+  - type: ZombieImmune
+  - type: NoSlip
+  - type: PointLight
+    color: "#ff8800"
+    radius: 2.0
+    softness: 1.5
+    energy: 1.5
+
+- type: entity
+  id: MobHereticMaidInMirror
+  suffix: "Еретик, существо"
+  name: heretic-familiar-maid-in-mirror-name
+  description: heretic-familiar-maid-in-mirror-desc
+  parent:
+  - BaseSimpleMob
+  - MobCombat
+  components:
+  - type: HereticMaidInMirror
+  - type: GhostRole
+    allowMovement: true
+    makeSentient: true
+    name: ghost-role-information-maid-in-mirror-name
+    description: ghost-role-information-maid-in-mirror-description
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: ActionGrant
+    actions:
+    - ActionHereticMaidInMirrorPhase
+  - type: CombatMode
+    isInCombatMode: true
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: animated
+      sprite: Mobs/Ghosts/ghost_human.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: animated
+      Dead:
+        Base: animated
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Dead
+  - type: NpcFactionMember
+    factions:
+    - HereticFamiliar
+  - type: Physics
+    bodyStatus: InAir
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 15
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 5.5
+  - type: MeleeWeapon
+    attackRate: 1.0
+    hidden: true
+    soundHit:
+      path: /Audio/Effects/glass_break1.ogg
+    damage:
+      types:
+        Slash: 14
+  - type: Tag
+    tags:
+    - FootstepSound
+  - type: Armor
+    modifiers:
+      coefficients:
+        Radiation: 0.0
+        Laser: 0.0
+  - type: Reflect
+    reflectProb: 1
+    reflects:
+      - Energy
+    reflectingInHands: false
+  - type: ZombieImmune
+  - type: NoSlip
+  - type: PointLight
+    color: "#aaccff"
+    radius: 1.5
+    softness: 1.5
+    energy: 1.0
+
+- type: entity
+  id: MobHereticCosmicGhost
+  parent: BaseMob
+  suffix: "Еретик, космос"
+  components:
+  - type: HereticCosmicGhost
+  - type: ActionGrant
+    actions:
+    - ActionHereticCosmicPhaseExit
+  - type: Eye
+    drawFov: false
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: tesla_projectile
+      sprite: Structures/Power/Generation/Tesla/energy_miniball.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: tesla_projectile
+      Dead:
+        Base: tesla_projectile
+  - type: Physics
+    bodyStatus: InAir
+  - type: CanMoveInAir
+  - type: MovementIgnoreGravity
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 10
+        layer:
+        - GhostImpassable
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 5.0
+    baseSprintSpeed: 7.0
+  - type: PointLight
+    color: "#88ccff"
+    radius: 1.5
+    softness: 1.5
+    energy: 1.2
+  - type: NoSlip
+  - type: PressureImmunity
+
+- type: entity
+  id: MobHereticMaidMirrorBall
+  suffix: "Еретик, существо"
+  name: heretic-familiar-maid-mirror-ball-name
+  description: heretic-familiar-maid-mirror-ball-desc
+  parent: BaseSimpleMob
+  components:
+  - type: HereticMaidMirrorBall
+  - type: ActionGrant
+    actions:
+    - ActionHereticMaidExitMirror
+  - type: Eye
+    drawFov: false
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: animated
+      sprite: Mobs/Ghosts/ghost_human.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: animated
+      Dead:
+        Base: animated
+  - type: Physics
+    bodyStatus: InAir
+  - type: CanMoveInAir
+  - type: MovementIgnoreGravity
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 10
+        layer:
+        - GhostImpassable
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 5.0
+    baseSprintSpeed: 6.5
+  - type: PointLight
+    color: "#aaccff"
+    radius: 1.0
+    softness: 1.5
+    energy: 0.8
+  - type: NpcFactionMember
+    factions:
+    - HereticFamiliar
+
+- type: entity
+  id: MobHereticRustWalker
+  suffix: "Еретик, существо"
+  name: heretic-familiar-rust-walker-name
+  description: heretic-familiar-rust-walker-desc
+  parent:
+  - BaseSimpleMob
+  - MobCombat
+  components:
+  - type: HereticRustWalker
+  - type: GhostRole
+    allowMovement: true
+    makeSentient: true
+    name: ghost-role-information-heretic-rust-walker-name
+    description: ghost-role-information-heretic-rust-walker-description
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: ActionGrant
+    actions:
+    - ActionHereticRustWalkerAggressiveSpread
+    - ActionHereticRustWalkerLesserPatrinsReach
+  - type: CombatMode
+    isInCombatMode: true
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: rust_walker_s
+      sprite: Imperial/heretic/eldritch_mobs.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: rust_walker_s
+      Dead:
+        Base: rust_walker_s
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: NpcFactionMember
+    factions:
+    - HereticFamiliar
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 15
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.0
+    baseSprintSpeed: 5.0
+  - type: MeleeWeapon
+    attackRate: 1.0
+    hidden: true
+    soundHit:
+      collection: GenericHit
+    damage:
+      types:
+        Blunt: 17
+  - type: Tag
+    tags:
+    - FootstepSound
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepRustWalker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.9
+  - type: StaminaResistance
+    damageCoefficient: 0.0
+  - type: ZombieImmune
+  - type: NoSlip
+  - type: PointLight
+    color: "#b36400"
+    radius: 1.5
+    softness: 1.5
+    energy: 1.2
+
+- type: entity
+  id: MobHereticFireShark
+  suffix: "Еретик, существо"
+  name: heretic-familiar-fire-shark-name
+  description: heretic-familiar-fire-shark-desc
+  parent:
+  - BaseSimpleMob
+  - MobCombat
+  components:
+  - type: GhostRole
+    allowMovement: true
+    makeSentient: true
+    name: ghost-role-information-heretic-fire-shark-name
+    description: ghost-role-information-heretic-fire-shark-description
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: NpcFactionMember
+    factions:
+    - HereticFamiliar
+  - type: CombatMode
+    isInCombatMode: true
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: fire_shark
+      sprite: Imperial/heretic/eldritch_mobs_64x64.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: fire_shark
+      Dead:
+        Base: fire_shark
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      16: Dead
+  - type: Physics
+    bodyStatus: InAir
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.30
+        density: 20
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 5.5
+    baseSprintSpeed: 7.0
+  - type: MeleeWeapon
+    attackRate: 1.5
+    hidden: true
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Slash: 8
+  - type: IgniteOnMeleeHit
+    fireStacks: 2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.25
+  - type: StaminaResistance
+    damageCoefficient: 0.0
+  - type: ZombieImmune
+  - type: NoSlip
+  - type: PointLight
+    color: "#ff5500"
+    radius: 1.5
+    softness: 1.5
+    energy: 1.5
+
+- type: entity
+  id: HereticGhoulUpgraded
+  suffix: "Еретик, существо"
+  parent:
+  - BaseSimpleMob
+  - MobCombat
+  components:
+  - type: HereticGhoul
+  - type: GhostRole
+    allowMovement: true
+    makeSentient: true
+    name: ghost-role-information-heretic-ghoul-upgraded-name
+    description: ghost-role-information-heretic-ghoul-upgraded-description
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: CombatMode
+    isInCombatMode: true
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    color: "#00008b"
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: animated
+      sprite: Mobs/Ghosts/ghost_human.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: animated
+      Dead:
+        Base: animated
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      125: Dead
+  - type: NpcFactionMember
+    factions:
+    - HereticFamiliar
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 15
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.0
+    baseSprintSpeed: 5.0
+  - type: MeleeWeapon
+    attackRate: 1.0
+    hidden: true
+    soundHit:
+      path: /Audio/Effects/glass_break1.ogg
+    damage:
+      types:
+        Slash: 16
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.9
+  - type: StaminaResistance
+    damageCoefficient: 0.0
+  - type: ZombieImmune
+  - type: NoSlip
+
+- type: entity
+  id: HereticVoicelessDead
+  name: ent-HereticVoicelessDead
+  description: ent-HereticVoicelessDead.desc
+  suffix: "Еретик, существо"
+  parent:
+  - BaseSimpleMob
+  - MobCombat
+  components:
+  - type: HereticVoicelessDead
+  - type: GhostRole
+    allowMovement: true
+    makeSentient: true
+    name: ghost-role-information-heretic-voiceless-dead-name
+    description: ghost-role-information-heretic-voiceless-dead-description
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: CombatMode
+    isInCombatMode: true
+    canDisarm: true
+  - type: Inventory
+    templateId: human
+  - type: Hands
+    activeHandId: handRight
+    hands:
+      handRight:
+        location: Right
+      handLeft:
+        location: Left
+  - type: ComplexInteraction
+  - type: Stripping
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: husk
+      sprite: Imperial/heretic/human.rsi
+    - map: [ "jumpsuit" ]
+    - map: [ "outerClothing" ]
+    - map: [ "gloves" ]
+    - map: [ "shoes" ]
+    - map: [ "neck" ]
+    - map: [ "mask" ]
+    - map: [ "eyes" ]
+    - map: [ "head" ]
+    - map: [ "back" ]
+    - map: [ "belt" ]
+    - map: [ "id" ]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: husk
+      Dead:
+        Base: husk
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: NpcFactionMember
+    factions:
+    - HereticFamiliar
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 15
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 4.5
+  - type: MeleeWeapon
+    attackRate: 1.0
+    hidden: true
+    soundHit:
+      collection: GenericHit
+    damage:
+      types:
+        Slash: 10
+  - type: Muted
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  - type: ZombieImmune
+  - type: NoSlip
+
+- type: entity
+  id: MobHereticAshOrb
+  name: ent-MobHereticAshOrb
+  description: ent-MobHereticAshOrb.desc
+  parent: BaseSimpleMob
+  suffix: ""
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HereticAshOrb
+  - type: Eye
+    drawFov: false
+  - type: Sprite
+    drawdepth: Effects
+    noRot: true
+    color: "#ff3030"
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: emark1
+      sprite: Imperial/heretic/eldritch_fx.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: emark1
+      Dead:
+        Base: emark1
+  - type: Physics
+    bodyStatus: InAir
+  - type: CanMoveInAir
+  - type: MovementIgnoreGravity
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 10
+        layer:
+        - GhostImpassable
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.0
+    baseSprintSpeed: 2.5
+  - type: PointLight
+    color: "#ff3030"
+    radius: 1.5
+    softness: 1.5
+    energy: 1.0
+  - type: NpcFactionMember
+    factions:
+    - HereticFamiliar
+
+- type: entity
+  id: MobHereticStarGazer
+  name: ent-MobHereticStarGazer
+  description: ent-MobHereticStarGazer.desc
+  parent:
+  - BaseSimpleMob
+  - MobCombat
+  suffix: ""
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GhostRole
+    allowMovement: true
+    makeSentient: true
+    name: ghost-role-information-heretic-star-gazer-name
+    description: ghost-role-information-heretic-star-gazer-description
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: CombatMode
+    isInCombatMode: true
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: star_gazer
+      sprite: Imperial/heretic/96x96eldritch_mobs.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: star_gazer
+      Dead:
+        Base: star_gazer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      9999999: Dead
+  - type: NpcFactionMember
+    factions:
+    - HereticFamiliar
+  - type: CosmosMarkImmune
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.7
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 4.0
+  # Полёт
+  - type: Physics
+    bodyStatus: InAir
+  - type: CanMoveInAir
+  - type: MovementIgnoreGravity
+  - type: HereticStarGazer
+  # Способности
+  - type: ActionGrant
+    actions:
+    - ActionHereticStarGazerCosmicExpansion
+    - ActionHereticStarGazerStarBlast
+    - ActionHereticStarGazerDeathGaze
+    - ActionHereticStarGazerFindMaster
+  - type: MeleeWeapon
+    attackRate: 1.0
+    hidden: true
+    soundHit:
+      collection: GenericHit
+    damage:
+      types:
+        Blunt: 40
+        Heat: 5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.5
+        Radiation: 0.0
+        Poison: 0.0
+  - type: StaminaResistance
+    damageCoefficient: 0.0
+  - type: ZombieImmune
+  - type: NoSlip
+  - type: Eye
+    drawFov: false
+  - type: PointLight
+    color: "#aaeeff"
+    radius: 3.5
+    softness: 1.5
+    energy: 2.0
+
+- type: entity
+  id: MobHereticRawProphet
+  name: ent-MobHereticRawProphet
+  description: ent-MobHereticRawProphet.desc
+  suffix: "Еретик, существо"
+  parent:
+  - BaseSimpleMob
+  - MobCombat
+  components:
+  - type: HereticRawProphet
+  - type: GhostRole
+    allowMovement: true
+    makeSentient: true
+    name: ghost-role-information-heretic-raw-prophet-name
+    description: ghost-role-information-heretic-raw-prophet-description
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: GhostHearing
+  - type: CombatMode
+    isInCombatMode: true
+  - type: Eye
+    drawFov: false
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: raw_prophet
+      sprite: Imperial/heretic/eldritch_mobs.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: raw_prophet
+      Dead:
+        Base: raw_prophet
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      65: Dead
+  - type: NpcFactionMember
+    factions:
+    - HereticFamiliar
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 60
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.0
+    baseSprintSpeed: 4.0
+  - type: ActionGrant
+    actions:
+    - ActionHereticAshShift
+    - ActionHereticRawProphetBlind
+  - type: MeleeWeapon
+    attackRate: 1.0
+    hidden: true
+    soundHit:
+      collection: GenericHit
+    damage:
+      types:
+        Slash: 7
+  - type: StaminaResistance
+    damageCoefficient: 0.0
+  - type: ZombieImmune
+  - type: NoSlip
+  - type: PointLight
+    color: "#ff8040"
+    radius: 2.0
+    softness: 1.5
+    energy: 1.0
+
+- type: entity
+  id: HereticFamiliarStalker
+  name: ent-HereticFamiliarStalker
+  description: ent-HereticFamiliarStalker.desc
+  suffix: "Еретик, существо"
+  parent:
+  - BaseSimpleMob
+  - MobCombat
+  components:
+  - type: HereticStalker
+  - type: GhostRole
+    allowMovement: true
+    makeSentient: true
+    name: ghost-role-information-heretic-stalker-name
+    description: ghost-role-information-heretic-stalker-description
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: GhostHearing
+  - type: CombatMode
+    isInCombatMode: true
+  - type: Eye
+    drawFov: false
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: stalker
+      sprite: Imperial/heretic/eldritch_mobs.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: stalker
+      Dead:
+        Base: stalker
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      85: Dead
+  - type: NpcFactionMember
+    factions:
+    - HereticFamiliar
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 60
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 5.0
+  - type: ActionGrant
+    actions:
+    - ActionHereticAshShift
+    - ActionHereticStalkerEmp
+    - ActionHereticStalkerPolymorph
+  - type: MeleeWeapon
+    attackRate: 1.5
+    hidden: true
+    soundHit:
+      collection: GenericHit
+    damage:
+      types:
+        Slash: 10
+  - type: StaminaResistance
+    damageCoefficient: 0.0
+  - type: ZombieImmune
+  - type: NoSlip
+  - type: PointLight
+    color: "#8040ff"
+    radius: 2.0
+    softness: 1.5
+    energy: 1.0
+
+- type: entity
+  id: HereticMaidMirrorBeam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: /Textures/Effects/lightning.rsi
+    drawdepth: Effects
+    layers:
+    - state: "lightning_3"
+      color: "#aaccff"
+      shader: unshaded
+  - type: Physics
+    canCollide: false
+  - type: Beam
+  - type: PointLight
+    enabled: true
+    color: "#aaccff"
+    radius: 2.0
+    softness: 1
+    castShadows: false
+  - type: Tag
+    tags:
+    - HideContextMenu

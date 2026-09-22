@@ -1,0 +1,12 @@
+# ==============================================
+#  Еретик — фракции НПС
+# ==============================================
+
+- type: npcFaction
+  id: HereticFamiliar
+  hostile:
+  - NanoTrasen
+  - PetsNT
+  - Syndicate
+  - Revolutionary
+  - SyndicateAgent
