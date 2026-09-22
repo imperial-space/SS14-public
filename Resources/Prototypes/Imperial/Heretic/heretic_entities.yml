@@ -1,0 +1,1590 @@
+# ==============================================
+#  Еретик — Сущности
+# ==============================================
+
+# ─── Держатель BUI знаний (невидимый дочерний объект еретика) ───
+
+- type: entity
+  id: HereticKnowledgeHolder
+  name: heretic-knowledge-holder
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HereticKnowledgeHolder
+  - type: UserInterface
+    interfaces:
+      enum.HereticInfoBuiKey.Key:
+        type: HereticInfoBui
+      enum.HereticTargetBuiKey.Key:
+        type: HereticTargetBui
+      enum.HereticFleshWeaveOrganBuiKey.Key:
+        type: HereticFleshWeaveOrganBui
+      enum.HereticLockShapeshiftUiKey.Key:
+        type: HereticLockShapeshiftBui
+
+# ─── Кружащийся клинок (Метка клинка / Яростная сталь) ───
+
+- type: entity
+  id: HereticOrbitingBlade
+  name: heretic-orbiting-blade-name
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    state: dio_knife
+    noRot: true
+  - type: OrbitVisuals
+  - type: HereticOrbitingBlade
+
+# ─── Летящий клинок (Ярость клинков — бросок) ───
+
+- type: entity
+  parent: BaseBullet
+  id: HereticThrownBlade
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    noRot: false
+    layers:
+    - state: dio_knife
+      shader: unshaded
+      rotation: 180
+  - type: Projectile
+    damage:
+      types:
+        Slash: 25
+    armorPenetration: 100
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.15"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+
+# ─── Руна трансмутации ───
+
+- type: entity
+  id: HereticTransmutationRune
+  name: heretic-rune-name
+  description: heretic-rune-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/heretic/effects_96.rsi
+    state: transmutation_rune
+    noRot: false
+  - type: HereticRune
+  - type: InteractionOutline
+  - type: Clickable
+  - type: UserInterface
+    interfaces:
+      enum.HereticRitualBuiKey.Key:
+        type: HereticRitualBui
+
+# ─── Разлом реальности (видим только еретикам) ───
+
+- type: entity
+  id: HereticRealityRift
+  name: heretic-rift-name
+  description: heretic-rift-desc
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    state: reality_smash
+    noRot: true
+  - type: Visibility
+    layer: 32 # VisibilityFlags.HereticRift — only heretics can see this
+  - type: HereticRealityRift
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.4
+        hard: false
+        layer:
+        - MidImpassable
+
+# ─── Брешь реальности (видна всем, нельзя поглотить) ───
+
+- type: entity
+  id: HereticRealityBreach
+  name: heretic-breach-name
+  description: heretic-breach-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    state: pierced_illusion
+    noRot: true
+  - type: HereticRealityBreach
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.4
+        hard: false
+        layer:
+        - MidImpassable
+
+# ─── Печать Пакта ───
+
+- type: entity
+  id: HereticPactToken
+  name: heretic-pact-token-name
+  description: heretic-pact-token-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    state: emark1
+    noRot: true
+  - type: HereticPactToken
+  - type: TimedDespawn
+    lifetime: 5.0
+
+# ─── Маркер возвышения ───
+
+- type: entity
+  id: HereticAscensionResult
+  name: heretic-ascension-result-name
+  description: heretic-ascension-result-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    state: emark1
+    noRot: true
+  - type: HereticAscensionResult
+  - type: TimedDespawn
+    lifetime: 1.0
+
+# ─── Предмет-заклинание: Хватка Мансуса ───
+
+- type: entity
+  id: HereticMansusGraspItem
+  name: ent-HereticMansusGraspItem
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: mansus_grasp
+  - type: Item
+    size: Small
+    inhandVisuals:
+      left:
+      - sprite: Imperial/heretic/items_lefthand магнус
+        state: mansus
+      right:
+      - sprite: Imperial/heretic/items_righthand магнус
+        state: mansus
+  - type: HereticMansusGraspItem
+  - type: Unremoveable
+    deleteOnDrop: true
+
+# ─── Визуальные эффекты способностей ───
+
+- type: entity
+  id: HereticEffectCleave
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: cleave
+  - type: TimedDespawn
+    lifetime: 0.7
+
+- type: entity
+  id: HereticEffectSmoke
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: smoke
+  - type: TimedDespawn
+    lifetime: 1.1
+
+- type: entity
+  id: HereticAuraEffect
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/heretic_aura.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: heretic_aura
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: HereticEyeDrippingEffect
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/heretic_aura.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: heretic_eye_dripping
+  - type: TimedDespawn
+    lifetime: 3.0
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: HereticCloakEffect
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/curse_effect.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: curse
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: HereticCloakTrailEffect
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Imperial/heretic/curse_effect.rsi
+    color: "#00000088"
+    layers:
+    - state: curse
+      dir: South
+  - type: TimedDespawn
+    lifetime: 0.55
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# ─── Метка Мансуса (визуальный эффект Хватки Мансуса, цвет зависит от пути) ───
+
+- type: entity
+  id: HereticEffectMansusMark
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: emark_RING_TEMPLATE
+    - state: emark1
+  - type: TimedDespawn
+    lifetime: 1.4
+
+- type: entity
+  id: HereticEffectMansusMarkAsh
+  parent: HereticEffectMansusMark
+  components:
+  - type: Sprite
+    color: "#ff6a1a"
+    layers:
+    - state: emark_RING_TEMPLATE
+    - state: emark1
+
+- type: entity
+  id: HereticEffectMansusMarkLock
+  parent: HereticEffectMansusMark
+  components:
+  - type: Sprite
+    color: "#bdd7f0"
+    layers:
+    - state: emark_RING_TEMPLATE
+    - state: emark2
+
+- type: entity
+  id: HereticEffectMansusMarkFlesh
+  parent: HereticEffectMansusMark
+  components:
+  - type: Sprite
+    color: "#b3001f"
+    layers:
+    - state: emark_RING_TEMPLATE
+    - state: emark1
+
+- type: entity
+  id: HereticEffectMansusMarkVoid
+  parent: HereticEffectMansusMark
+  components:
+  - type: Sprite
+    color: "#7b3fb5"
+    layers:
+    - state: emark_RING_TEMPLATE
+    - state: emark5
+
+- type: entity
+  id: HereticEffectMansusMarkBlade
+  parent: HereticEffectMansusMark
+  components:
+  - type: Sprite
+    color: "#cfe8ff"
+    layers:
+    - state: emark_RING_TEMPLATE
+    - state: emark6
+
+- type: entity
+  id: HereticEffectMansusMarkRust
+  parent: HereticEffectMansusMark
+  components:
+  - type: Sprite
+    color: "#b5651d"
+    layers:
+    - state: emark_RING_TEMPLATE
+    - state: emark7
+
+- type: entity
+  id: HereticEffectMansusMarkCosmos
+  parent: HereticEffectMansusMark
+  components:
+  - type: Sprite
+    color: "#00d4ff"
+    layers:
+    - state: emark_RING_TEMPLATE
+    - state: emark4
+
+- type: entity
+  id: HereticEffectRingleader
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: ring_leader_effect
+  - type: TimedDespawn
+    lifetime: 0.7
+
+
+- type: entity
+  id: HereticEffectSpaceExplosion
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/64x64.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: space_explosion
+  - type: TimedDespawn
+    lifetime: 0.6
+
+- type: entity
+  id: HereticEffectVoidBlinkIn
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/heretic/effects_96.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: void_blink_in
+      color: "#FFFFFF96"
+  - type: PointLight
+    radius: 3
+    energy: 1.5
+    softness: 8
+    color: "#301934"
+  - type: TimedDespawn
+    lifetime: 0.6
+
+- type: entity
+  id: HereticEffectVoidBlinkOut
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/heretic/effects_96.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: void_blink_out
+      color: "#FFFFFF96"
+  - type: PointLight
+    radius: 3
+    energy: 1.5
+    softness: 8
+    color: "#301934"
+  - type: TimedDespawn
+    lifetime: 0.6
+
+- type: entity
+  id: HereticEffectAshBlink
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: smoke
+  - type: TimedDespawn
+    lifetime: 1.0
+
+- type: entity
+  id: HereticAshShiftMarker
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    noRot: true
+    color: "#ff3030"
+    layers:
+    - state: emark1
+
+- type: entity
+  id: HereticEffectFireExplosion
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/64x64.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: corpse_explosion
+  - type: TimedDespawn
+    lifetime: 0.6
+
+- type: entity
+  id: HereticFireBeam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: /Textures/Effects/lightning.rsi
+    drawdepth: Effects
+    layers:
+    - state: red_lightning
+      color: "#FF6020"
+      shader: unshaded
+  - type: Physics
+    canCollide: false
+  - type: Beam
+  - type: TimedDespawn
+    lifetime: 2
+  - type: Tag
+    tags:
+      - HideContextMenu
+
+- type: entity
+  id: HereticEffectEldritchSparks
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_sparks.rsi
+    drawdepth: Effects
+    noRot: false
+    layers:
+    - state: purplesparkles
+  - type: TimedDespawn
+    lifetime: 0.6
+
+- type: entity
+  id: HereticEffectEmarkRing
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: emark_RING_TEMPLATE
+  - type: TimedDespawn
+    lifetime: 1.5
+
+- type: entity
+  id: HereticEffectRuneDraw
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/effects_96.rsi
+    drawdepth: FloorObjects
+    noRot: false
+    layers:
+    - state: transmutation_rune_draw_colour
+  - type: TimedDespawn
+    lifetime: 22.0
+
+- type: entity
+  id: HereticEffectRuneDrawFast
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/effects_96.rsi
+    drawdepth: FloorObjects
+    noRot: false
+    layers:
+    - state: transmutation_rune_fast_colour
+  - type: TimedDespawn
+    lifetime: 8.2
+
+- type: entity
+  id: HereticEffectRuneDrawFastMorbus
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/effects_96.rsi
+    drawdepth: FloorObjects
+    noRot: false
+    layers:
+    - state: transmutation_rune_fast_colour-morbus
+  - type: TimedDespawn
+    lifetime: 5.08
+
+- type: entity
+  id: HereticEffectRuneActivate
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/effects_96.rsi
+    drawdepth: FloorObjects
+    noRot: false
+    layers:
+    - state: transmutation_rune_activate_colour
+  - type: TimedDespawn
+    lifetime: 2.0
+
+- type: entity
+  id: HereticEffectRuneFail
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/effects_96.rsi
+    drawdepth: FloorObjects
+    noRot: false
+    layers:
+    - state: transmutation_rune_fail_colour
+  - type: TimedDespawn
+    lifetime: 0.3
+
+- type: entity
+  id: HereticEffectRuneEraseCodex
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/effects_96.rsi
+    drawdepth: FloorObjects
+    noRot: false
+    layers:
+    - state: transmutation_rune_fail_white
+  - type: TimedDespawn
+    lifetime: 0.3
+
+- type: entity
+  id: HereticEffectEntropicPlume
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/160x160.rsi
+    drawdepth: Effects
+    layers:
+    - state: entropic_plume
+  - type: TimedDespawn
+    lifetime: 1.5
+
+- type: entity
+  id: HereticEffectCloudSwirl
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    state: cloud_swirl
+  - type: TimedDespawn
+    lifetime: 10
+
+- type: entity
+  id: HereticEffectDecoy
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: pierced_illusion
+  - type: TimedDespawn
+    lifetime: 30.0
+
+# ─── Пустотный кондуит ─────────────────────────────────────────────────────
+
+- type: entity
+  id: HereticVoidConduit
+  name: ent-HereticVoidConduit
+  description: ent-HereticVoidConduit.desc
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: HereticVoidConduit
+  - type: Sprite
+    sprite: Imperial/heretic/effects.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: void_conduit
+  - type: PointLight
+    radius: 4
+    energy: 2.0
+    softness: 6
+    color: "#301934"
+  - type: Transform
+    anchored: true
+
+- type: entity
+  id: HereticVoidConduitWaveRing1
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/heretic/64x64.rsi
+    drawdepth: Effects
+    noRot: true
+    scale: 0.3, 0.3
+    layers:
+    - state: circle_wave
+      color: "#000000FF"
+  - type: TimedDespawn
+    lifetime: 2.5
+
+- type: entity
+  id: HereticVoidConduitWaveRing3
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/heretic/64x64.rsi
+    drawdepth: Effects
+    noRot: true
+    scale: 3, 3
+    layers:
+    - state: circle_wave
+      color: "#000000FF"
+  - type: TimedDespawn
+    lifetime: 2.5
+
+- type: entity
+  id: HereticVoidConduitWaveRing6
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/heretic/64x64.rsi
+    drawdepth: Effects
+    noRot: true
+    scale: 6, 6
+    layers:
+    - state: circle_wave
+      color: "#000000FF"
+  - type: TimedDespawn
+    lifetime: 2.5
+
+- type: entity
+  id: HereticVoidConduitWaveRing9
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/heretic/64x64.rsi
+    drawdepth: Effects
+    noRot: true
+    scale: 9, 9
+    layers:
+    - state: circle_wave
+      color: "#000000FF"
+  - type: TimedDespawn
+    lifetime: 2.5
+
+- type: entity
+  id: HereticVoidConduitWaveRing12
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/heretic/64x64.rsi
+    drawdepth: Effects
+    noRot: true
+    scale: 12, 12
+    layers:
+    - state: circle_wave
+      color: "#000000FF"
+  - type: TimedDespawn
+    lifetime: 2.5
+
+- type: entity
+  id: HereticVoidConduitTileOverlay
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/heretic/overlays.rsi
+    drawdepth: Overlays
+    noRot: true
+    layers:
+    - state: voidtile
+      color: "#FFFFFFB4"
+  - type: TimedDespawn
+    lifetime: 61.0
+
+# ─── Стена ржавчины (Ржавая конструкция) ──────────────────────────────────
+
+- type: entity
+  parent: BaseStructureWall
+  id: HereticRustWall
+  name: ent-HereticRustWall
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/solid_rust.rsi
+  - type: Icon
+    sprite: Structures/Walls/solid_rust.rsi
+    state: rgeneric
+  - type: IconSmooth
+    key: walls
+    base: reinf_over
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+
+# ─── Действие: переключить пассивное горение Выжженной мантии ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleScorchedMantleFlames
+  name: heretic-action-toggle-scorched-mantle-flames-name
+  description: heretic-action-toggle-scorched-mantle-flames-desc
+  components:
+  - type: Action
+    icon: { sprite: Imperial/heretic/heretic_robes.rsi, state: ash_armor }
+  - type: InstantAction
+    event: !type:HereticScorchedMantleToggleFlamesEvent
+
+# ─── Действие: переключить левитацию Плаща сотканного из звёзд ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleCosmosCloakLevitation
+  name: ent-ActionToggleCosmosCloakLevitation
+  description: ent-ActionToggleCosmosCloakLevitation.desc
+  components:
+  - type: Action
+    icon: { sprite: Imperial/heretic/heretic_robes.rsi, state: cosmic_armor }
+  - type: InstantAction
+    event: !type:HereticCosmosCloakToggleLevitationEvent
+
+# ─── Действие: переключить капюшон Плаща сотканного из звёзд ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleCosmosCloakHood
+  name: ent-ActionToggleCosmosCloakHood
+  description: ent-ActionToggleCosmosCloakHood.desc
+  components:
+  - type: Action
+    icon: { sprite: Imperial/heretic/heretic_hoods.rsi, state: cosmic_armor }
+  - type: InstantAction
+    event: !type:ToggleClothingEvent
+
+# ─── Действие: переключить капюшон Выжженной мантии ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleScorchedMantleHood
+  name: heretic-action-toggle-scorched-mantle-hood-name
+  description: heretic-action-toggle-scorched-mantle-hood-desc
+  components:
+  - type: Action
+    icon: { sprite: Imperial/heretic/heretic_hoods.rsi, state: ash_armor }
+  - type: InstantAction
+    event: !type:ToggleClothingEvent
+
+# ─── Действие: переключить капюшон Извивающихся объятий ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleWrithingEmbraceHood
+  name: ent-ActionToggleWrithingEmbraceHood
+  description: ent-ActionToggleWrithingEmbraceHood.desc
+  components:
+  - type: Action
+    icon: { sprite: Imperial/heretic/heretic_hoods.rsi, state: flesh_armor }
+  - type: InstantAction
+    event: !type:ToggleClothingEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleShatteredHood
+  name: heretic-action-toggle-shattered-hood-name
+  description: heretic-action-toggle-shattered-hood-desc
+  components:
+  - type: Action
+    icon: { sprite: Imperial/heretic/heretic_hoods.rsi, state: blade_armor }
+  - type: InstantAction
+    event: !type:ToggleClothingEvent
+
+# ─── Действие: переключить капюшон Сплетения пустоты ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleVoidWeaveHood
+  name: heretic-action-toggle-void-weave-hood-name
+  description: heretic-action-toggle-void-weave-hood-desc
+  components:
+  - type: Action
+    icon: { sprite: Imperial/heretic/heretic_hoods.rsi, state: void_armor }
+  - type: InstantAction
+    event: !type:ToggleClothingEvent
+
+# ─── Действие: переключить капюшон Мантии ржавчины ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleRobeRustHood
+  name: heretic-action-toggle-robe-rust-hood-name
+  description: heretic-action-toggle-robe-rust-hood-desc
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Other/Heretic/Clothes/HereticHelmet.rsi, state: icon }
+  - type: InstantAction
+    event: !type:ToggleClothingEvent
+
+# ─── Действие: переключить шлем Уцелевших обломков ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleRustArmorHood
+  name: heretic-action-toggle-rust-armor-hood-name
+  description: heretic-action-toggle-rust-armor-hood-desc
+  components:
+  - type: Action
+    icon: { sprite: Imperial/heretic/heretic_hoods.rsi, state: rust_armor }
+  - type: InstantAction
+    event: !type:ToggleClothingEvent
+
+# ─── Действие: переключить капюшон Блистательного облачения ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleGlitteringArrayHood
+  name: heretic-action-toggle-glittering-array-hood-name
+  description: heretic-action-toggle-glittering-array-hood-desc
+  components:
+  - type: Action
+    icon: { sprite: Imperial/heretic/heretic_hoods.rsi, state: moon_armor }
+  - type: InstantAction
+    event: !type:ToggleClothingEvent
+
+# ─── Действие: переключить капюшон Меняющегося облика ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleShiftingGuiseHood
+  name: heretic-action-toggle-shifting-guise-hood-name
+  description: heretic-action-toggle-shifting-guise-hood-desc
+  components:
+  - type: Action
+    icon: { sprite: Imperial/heretic/heretic_hoods.rsi, state: lock_armor }
+  - type: InstantAction
+    event: !type:ToggleClothingEvent
+
+- type: entity
+  id: HereticAshSpiritFire
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Effects/fire.rsi
+    drawdepth: FloorObjects
+    noRot: true
+    layers:
+    - state: "1"
+  - type: TimedDespawn
+    lifetime: 0.5
+
+# ─── Ржавоход — снаряд «Достижение малых патринов» ────────────────────────
+
+- type: entity
+  id: HereticPatrinsReachProjectile
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: HereticPatrinsReach
+  - type: Sprite
+    sprite: Imperial/heretic/heretic_projectiles.rsi
+    drawdepth: Effects
+    noRot: false
+    layers:
+    - state: eldritch_projectile
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 10.0
+
+# ─── Ржавоход — эффекты малых патринов (руны) ────────────────────────────────
+
+- type: entity
+  id: HereticSmallRuneEffect1
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    layers:
+    - state: small_rune_1
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 2.5
+
+- type: entity
+  id: HereticSmallRuneEffect2
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    layers:
+    - state: small_rune_2
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 2.5
+
+- type: entity
+  id: HereticSmallRuneEffect3
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    layers:
+    - state: small_rune_3
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 2.5
+
+- type: entity
+  id: HereticSmallRuneEffect4
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    layers:
+    - state: small_rune_4
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 2.5
+
+- type: entity
+  id: HereticSmallRuneEffect5
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    layers:
+    - state: small_rune_5
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 2.5
+
+- type: entity
+  id: HereticSmallRuneEffect6
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    layers:
+    - state: small_rune_6
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 2.5
+
+- type: entity
+  id: HereticSmallRuneEffect7
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    layers:
+    - state: small_rune_7
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 2.5
+
+- type: entity
+  id: HereticSmallRuneEffect8
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    layers:
+    - state: small_rune_8
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 2.5
+
+- type: entity
+  id: HereticSmallRuneEffect9
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    layers:
+    - state: small_rune_9
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 2.5
+
+- type: entity
+  id: HereticSmallRuneEffect10
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    layers:
+    - state: small_rune_10
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 2.5
+
+- type: entity
+  id: HereticSmallRuneEffect11
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    layers:
+    - state: small_rune_11
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 2.5
+
+- type: entity
+  id: HereticSmallRuneEffect12
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    layers:
+    - state: small_rune_12
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 2.5
+
+# ─── Ржавый рывок — след ─────────────────────────────────────────────────────
+
+- type: entity
+  id: HereticRustDashTrail
+  categories: [ HideSpawnMenu ]
+  save: false
+  name: след
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Imperial/heretic/rust_overlay.rsi
+    color: "#C87137AA"
+    layers:
+    - state: rust_default
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 0.45
+
+# ─── Лабиринтный Барьер (Страницы лабиринта) ────────────────────────────────
+
+- type: entity
+  id: HereticLabyrinthBarrier
+  name: ent-HereticLabyrinthBarrier
+  description: ent-HereticLabyrinthBarrier.desc
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: Imperial/heretic/heretic_labyrinth_lintel.rsi
+    state: lintel
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - SpecialWallLayer
+        layer:
+        - SpecialWallLayer
+  - type: TimedDespawn
+    lifetime: 15.0
+  - type: HereticLabyrinthBarrier
+
+# ─── Арена «Волк среди овец» ─────────────────────────────────────────────────
+
+- type: entity
+  parent: BaseWall
+  id: HereticArenaWall
+  name: ent-HereticArenaWall
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/walls.rsi
+    state: eldritch_forcewall
+  - type: Icon
+    sprite: Imperial/heretic/walls.rsi
+    state: eldritch_forcewall
+  - type: Occluder
+    enabled: false
+  - type: HereticArenaWall
+
+- type: entity
+  id: HereticArenaMarker
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: HereticArena
+  - type: TimedDespawn
+    lifetime: 60.0
+
+# ─── Звёздный взрыв (Путь Космоса) ──────────────────────────────────────────
+
+- type: entity
+  id: ProjectileStarBlast
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/actions_ecult.rsi
+    drawdepth: Effects
+    noRot: false
+    layers:
+    - state: star_blast1
+      shader: unshaded
+  - type: Physics
+    bodyType: Dynamic
+    sleepingAllowed: false
+  - type: CanMoveInAir
+  - type: TileFrictionModifier
+    modifier: 0
+  - type: Fixtures
+    fixtures:
+      wall_stop:
+        shape: !type:PhysShapeCircle
+          radius: 0.2
+        hard: true
+        restitution: 0.0
+        friction: 0.0
+        density: 1
+        mask:
+        - Impassable
+      mob_sensor:
+        shape: !type:PhysShapeCircle
+          radius: 0.2
+        hard: false
+        mask:
+        - BulletImpassable
+  - type: TimedDespawn
+    lifetime: 30
+  - type: HereticStarBlastProjectile
+
+- type: entity
+  id: HereticCosmicCarpet
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: FloorTiles
+    noRot: true
+    layers:
+    - state: cosmic_carpet
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 30.0
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49"
+        layer:
+          - SlipLayer
+        mask:
+          - ItemMask
+        density: 1000
+        hard: false
+      blocker:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+          - SpecialWallLayer
+        mask:
+          - SpecialWallLayer
+        hard: true
+  - type: HereticCosmicField
+  - type: HereticCosmicFieldBlock
+
+- type: entity
+  id: HereticCosmicBeam
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/beam.rsi
+    drawdepth: Effects
+    layers:
+    - state: cosmic_beam
+      shader: unshaded
+  - type: Physics
+    canCollide: false
+  - type: Beam
+  - type: TimedDespawn
+    lifetime: 0.07
+
+# Заполняющий тайл луча «Звёздного взгляда» — lifetime чуть больше интервала тика (0.3 с)
+- type: entity
+  id: HereticStarGazerBeamTile
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/beam.rsi
+    drawdepth: Effects
+    layers:
+    - state: gazer_beam
+      scale: 2, 2
+      shader: unshaded
+  - type: Physics
+    canCollide: false
+  - type: TimedDespawn
+    lifetime: 0.35
+
+# Голова луча «Звёздного взгляда» (96×96)
+- type: entity
+  id: HereticStarGazerBeamHead
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/beam96x96.rsi
+    drawdepth: Effects
+    layers:
+    - state: gazer_beam_active
+      scale: 2, 2
+      shader: unshaded
+  - type: Physics
+    canCollide: false
+  - type: TimedDespawn
+    lifetime: 0.35
+
+# Хвост (конец) луча «Звёздного взгляда»
+- type: entity
+  id: HereticStarGazerBeamTail
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/beam.rsi
+    drawdepth: Effects
+    layers:
+    - state: gazer_beam_end
+      scale: 2, 2
+      shader: unshaded
+      rotation: 180
+  - type: Physics
+    canCollide: false
+  - type: TimedDespawn
+    lifetime: 0.35
+
+# Preview-версии луча (показываются при 0.8с до конца wind-up, lifetime 1.25с)
+- type: entity
+  id: HereticStarGazerBeamHeadPreview
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/beam96x96.rsi
+    drawdepth: Effects
+    layers:
+    - state: gazer_beam_start
+      scale: 2, 2
+      shader: unshaded
+  - type: Physics
+    canCollide: false
+  - type: TimedDespawn
+    lifetime: 1.25
+
+- type: entity
+  id: HereticStarGazerBeamTilePreview
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/beam.rsi
+    drawdepth: Effects
+    layers:
+    - state: gazer_beam_end_opening
+      scale: 2, 2
+      shader: unshaded
+  - type: Physics
+    canCollide: false
+  - type: TimedDespawn
+    lifetime: 1.25
+
+- type: entity
+  id: HereticStarGazerBeamTailPreview
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/beam.rsi
+    drawdepth: Effects
+    layers:
+    - state: gazer_beam_end_opening
+      scale: 2, 2
+      shader: unshaded
+  - type: Physics
+    canCollide: false
+  - type: TimedDespawn
+    lifetime: 1.25
+
+# Орб зарядки во время фазы раскрутки (wind-up)
+- type: entity
+  id: HereticStarGazerChargeOrb
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/160x160.rsi
+    drawdepth: Effects
+    layers:
+    - state: gazer_beam_charge
+      shader: unshaded
+  - type: Physics
+    canCollide: false
+  - type: TimedDespawn
+    lifetime: 3.0
+
+# Анимация закрытия хвоста луча (последние 0.8с канала)
+- type: entity
+  id: HereticStarGazerBeamTileClosing
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/beam.rsi
+    drawdepth: Effects
+    layers:
+    - state: gazer_beam_end_closing
+      scale: 2, 2
+      shader: unshaded
+  - type: Physics
+    canCollide: false
+  - type: TimedDespawn
+    lifetime: 0.35
+
+- type: entity
+  id: HereticCosmicDiamondAnchor
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: cosmic_diamond
+      shader: unshaded
+  - type: Physics
+    canCollide: false
+
+- type: entity
+  id: HereticEffectCosmicCloud
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/eldritch_fx.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: cosmic_cloud
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 0.8
+
+- type: entity
+  id: ProjectileMoonParade
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/actions_ecult.rsi
+    drawdepth: Effects
+    noRot: false
+    layers:
+    - state: moon_parade0
+      shader: unshaded
+      rotation: 90
+  - type: Physics
+    bodyType: Dynamic
+    sleepingAllowed: false
+  - type: CanMoveInAir
+  - type: TileFrictionModifier
+    modifier: 0
+  - type: Fixtures
+    fixtures:
+      wall_stop:
+        shape: !type:PhysShapeCircle
+          radius: 0.2
+        hard: true
+        restitution: 0.0
+        friction: 0.0
+        density: 1
+        mask:
+        - Impassable
+      mob_sensor:
+        shape: !type:PhysShapeCircle
+          radius: 0.2
+        hard: false
+        mask:
+        - BulletImpassable
+  - type: TimedDespawn
+    lifetime: 30
+  - type: HereticMoonParadeProjectile
+
+# ─── Лунная иллюзия (Восшествие Артистов) ───
+
+- type: entity
+  id: MobHereticMoonIllusion
+  name: ent-MobHereticMoonIllusion
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    visible: false
+  - type: Physics
+    bodyType: Dynamic
+    sleepingAllowed: false
+  - type: CanMoveInAir
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.35
+        density: 1
+        mask:
+        - Impassable
+        layer: []
+  - type: TimedDespawn
+    lifetime: 30
+  - type: HereticMoonIllusion
+  - type: HereticMoonIllusionMovement
+  - type: Visibility
+    layer: 64
+

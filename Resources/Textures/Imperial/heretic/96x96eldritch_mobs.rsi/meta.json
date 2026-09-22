@@ -1,0 +1,49 @@
+﻿{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from Paradise-SS220 (https://github.com/ss220club/Paradise-SS220), licensed under CC-BY-SA-3.0",
+    "size": {
+        "x": 96,
+        "y": 96
+    },
+    "states": [
+        {
+            "name": "star_gazer",
+            "directions": 4,
+            "delays": [
+                [
+                    0.4,
+                    0.4,
+                    0.4,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.4,
+                    0.4,
+                    0.4,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.4,
+                    0.4,
+                    0.4,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.4,
+                    0.4,
+                    0.4,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
+        }
+    ]
+}
