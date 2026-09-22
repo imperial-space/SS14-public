@@ -1,5 +1,4 @@
 using Content.Shared.Imperial.Heretic.Components;
-using Content.Shared.Imperial.Lavaland;
 using Robust.Shared.Physics.Events;
 
 namespace Content.Shared.Imperial.Heretic;
@@ -17,7 +16,7 @@ public sealed class SharedHereticLabyrinthBarrierSystem : EntitySystem
         if (args.Cancelled || !args.OurFixture.Hard || !args.OtherFixture.Hard)
             return;
 
-        if (HasComp<HereticComponent>(args.OtherEntity) || HasComp<HolymelonLabyrinthPassComponent>(args.OtherEntity))
+        if (HasComp<HereticComponent>(args.OtherEntity))
             args.Cancelled = true;
     }
 }
