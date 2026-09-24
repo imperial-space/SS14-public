@@ -25,6 +25,8 @@ ent-PlushieAtlas = Куипер
 ent-PlushieJohnson = Джонсон Пат
 ent-PlushieSanabi = плюшевый генерал
     .desc = "Машина может притвориться живой, но стать живой не может." У него в руках губная гормошка.
+ent-PlushieSeaguard = страж моря
+    .desc = Благородный дека, залатал немало дыр, получил благословение и теперь он здесь.
 
 plushie-sanabi-1 = Я боевой бот? . . .
 plushie-sanabi-2 = Неважно, дойдешь ли ты до конца
@@ -71,6 +73,13 @@ plushie-atlas-1 = Мяу!
 plushie-atlas-2 = Мур-р-р.
 plushie-atlas-3 = Мявк!
 
+plushie-seaguard-1 = Мне чугун в лицо прилетел...
+plushie-seaguard-2 = ЧЕРПАЙ!!!
+plushie-seaguard-3 = О-о, эмисарочка, сюда.
+plushie-seaguard-4 = Как стрелять из пушки?
+plushie-seaguard-5 = Не буду я штурвал крутить.
+plushie-seaguard-6 = ВТОРОЙ ПОТЁК!!!
+
 ent-FumoBoxCrook = коробка c Фумо
     .desc = Хранит в себе плюшевую Фумо.
 ent-FumoBoxCrookOpened = распакованная коробка Фумо
@@ -114,3 +123,12 @@ ent-LargeBox = большой ящик
 ent-AlwaysPoweredWallLightAmbient = странный светильник
     .desc = Издаёт ужасный звук, это сводит с ума.
     .suffix = Crook
+
+ent-PlushieMoishaElkin = Мойша Элькин
+ent-PlushieMoishaElkin-desc = Самый подлый адвокат из всех, возможно в себе он хранит тайны закона...
+plushie-moisha-1 = Я обжалую это решение!
+plushie-moisha-2 = У меня есть доказательства!
+plushie-moisha-3 = Это нарушение процессуальных норм!
+plushie-moisha-4 = Судья, я протестую!
+plushie-moisha-5 = Мой клиент невиновен!
+plushie-moisha-6 = Закон есть закон!
