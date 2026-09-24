@@ -1,0 +1,24 @@
+<deathNote:DeathNoteWritablePage xmlns="https://spacestation14.io"
+                                 xmlns:deathNote="clr-namespace:Content.Client.Imperial.DeimonFly.DeathNote.UI"
+                                 StyleIdentifier="PaperDefaultBorder"
+                                 HorizontalExpand="True"
+                                 VerticalExpand="True">
+    <BoxContainer Orientation="Vertical"
+                  Margin="10 8"
+                  SeparationOverride="2"
+                  HorizontalExpand="True"
+                  VerticalExpand="True">
+        <RichTextLabel Name="PageHeading"
+                       StyleClasses="PaperWrittenText"
+                       HorizontalAlignment="Center" />
+        <BoxContainer Name="EntryRows"
+                      Orientation="Vertical"
+                      SeparationOverride="0"
+                      HorizontalExpand="True"
+                      VerticalExpand="True" />
+        <Label Name="FeedbackLabel"
+               MinHeight="20"
+               FontColorOverride="#8b1717"
+               HorizontalAlignment="Center" />
+    </BoxContainer>
+</deathNote:DeathNoteWritablePage>
