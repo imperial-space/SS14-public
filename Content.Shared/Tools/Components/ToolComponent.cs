@@ -41,3 +41,14 @@ public struct ToolUserAttemptUseEvent(EntityUid? target)
     public EntityUid? Target = target;
     public bool Cancelled = false;
 }
+
+/// <summary>
+/// Raised by-ref on the tool user before the do-after starts to allow modifying the effective delay.
+/// </summary>
+[ByRefEvent]
+public struct ToolGetDelayModifierEvent
+{
+    public float DelayMultiplier = 1f;
+
+    public ToolGetDelayModifierEvent() { }
+}

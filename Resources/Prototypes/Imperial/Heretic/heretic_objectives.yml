@@ -1,0 +1,85 @@
+# ==============================================
+#  Еретик — Цели
+# ==============================================
+
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseHereticObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-heretic
+    difficulty: 2
+  - type: RoleRequirement
+    roles:
+    - HereticRole
+
+- type: entity
+  parent: BaseHereticObjective
+  id: HereticSacrificeObjective
+  name: heretic-objective-sacrifice-name
+  description: heretic-objective-sacrifice-desc
+  components:
+  - type: Objective
+    issuer: objective-issuer-heretic
+    difficulty: 2
+    icon:
+      sprite: Imperial/heretic/knowledge.rsi
+      state: node_side
+  - type: HereticSacrificeCondition
+
+- type: entity
+  parent: BaseHereticObjective
+  id: HereticAscensionObjective
+  name: heretic-objective-ascension-name
+  description: heretic-objective-ascension-desc
+  components:
+  - type: Objective
+    issuer: objective-issuer-heretic
+    difficulty: 4
+    icon:
+      sprite: Imperial/heretic/knowledge.rsi
+      state: node_finished
+  - type: HereticAscensionCondition
+
+- type: entity
+  parent: BaseHereticObjective
+  id: HereticMajorSacrificeObjective
+  name: heretic-objective-major-sacrifice-name
+  description: heretic-objective-major-sacrifice-desc
+  components:
+  - type: Objective
+    issuer: objective-issuer-heretic
+    difficulty: 3
+    icon:
+      sprite: Imperial/heretic/knowledge.rsi
+      state: node_side
+  - type: HereticMajorSacrificeCondition
+
+- type: entity
+  parent: BaseHereticObjective
+  id: HereticResearchObjective
+  name: heretic-objective-research-name
+  description: heretic-objective-research-desc
+  components:
+  - type: Objective
+    issuer: objective-issuer-heretic
+    difficulty: 2
+    icon:
+      sprite: Imperial/heretic/knowledge.rsi
+      state: node_side
+  - type: HereticResearchCondition
+
+- type: entity
+  parent: BaseHereticObjective
+  id: HereticSummonObjective
+  name: heretic-objective-summon-name
+  description: heretic-objective-summon-desc
+  components:
+  - type: Objective
+    issuer: objective-issuer-heretic
+    difficulty: 2
+    icon:
+      sprite: Imperial/heretic/knowledge.rsi
+      state: node_side
+  - type: HereticSummonCondition
