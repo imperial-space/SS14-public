@@ -1,5 +1,5 @@
 - type: centcomPaperMsg
-  id: ОтчетОЦели
+  id: GoalReportRequest
   desc: Указ о предоставлении отчёта о выполнении цели
   content: |
     [head=1]╔══════════════════╗[/head]
@@ -36,7 +36,7 @@
     ▶                                                                                                            ◀
 
 - type: centcomPaperMsg
-  id: СменаЭкипажаУспех
+  id: CrewShiftSuccess
   desc: Приказ о начале процедуры смены экипажа — цель выполнена
   content: |
     [head=1]╔══════════════════╗[/head]
@@ -75,7 +75,7 @@
     ▶                                                                                                            ◀
 
 - type: centcomPaperMsg
-  id: СменаЭкипажаПровал
+  id: CrewShiftFail
   desc: Приказ о начале процедуры смены экипажа — цель провалена
   content: |
     [head=1]╔══════════════════╗[/head]
@@ -114,7 +114,7 @@
     ▶                                                                                                            ◀
 
 - type: centcomPaperMsg
-  id: ОтветФронтирИнспектору
+  id: FrontierInspectorReply
   desc: Ответ на отчёт Регионального Фронтир Инспектора
   requiresDecision: true
   content: |
@@ -150,7 +150,7 @@
     ▶                                                                                                            ◀
 
 - type: centcomPaperMsg
-  id: ЗапросДокументации
+  id: DocumentationRequest
   desc: Запрос документации со станции
   content: |
     [head=1]╔══════════════════╗[/head]
@@ -185,7 +185,7 @@
     ▶                                                                                                            ◀
 
 - type: centcomPaperMsg
-  id: НазначениеВрИО
+  id: ActingCaptainAppointment
   desc: Приказ о назначении ВрИО капитана станции
   content: |
     [head=1]╔══════════════════╗[/head]
