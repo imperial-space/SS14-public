@@ -46,7 +46,7 @@ public sealed class NecropolisSpikeSystem : EntitySystem
         }
 
         // Сундук появляется сразу
-        Spawn("NecropolisCrate", xform.Coordinates);
+        Spawn("CratePirate", xform.Coordinates);
     }
 
     public override void Update(float frameTime)
