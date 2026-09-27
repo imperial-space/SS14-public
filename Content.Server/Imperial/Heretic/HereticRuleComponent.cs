@@ -1,7 +1,7 @@
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.GameTicking.Rules.Components;
+namespace Content.Server.Imperial.Heretic;
 
 [RegisterComponent, Access(typeof(HereticRuleSystem))]
 public sealed partial class HereticRuleComponent : Component

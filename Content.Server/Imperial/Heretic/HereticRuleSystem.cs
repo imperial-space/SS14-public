@@ -1,7 +1,5 @@
 using System.Linq;
 using Content.Server.Antag;
-using Content.Server.GameTicking.Rules.Components;
-using Content.Server.Imperial.Heretic;
 using Content.Server.Mind;
 using Content.Server.RoundEnd;
 using Content.Server.Revolutionary.Components;
@@ -14,7 +12,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server.GameTicking.Rules;
+namespace Content.Server.Imperial.Heretic;
 
 public sealed class HereticRuleSystem : GameRuleSystem<HereticRuleComponent>
 {
