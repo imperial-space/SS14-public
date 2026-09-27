@@ -250,6 +250,33 @@
   - type: SpeakOnTrigger
     pack: HornetWords
 
+- type: localizedDataset
+  id: SeaguardWords
+  values:
+    prefix: plushie-seaguard-
+    count: 6
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: PlushieSeaguard
+  name: sea guard
+  suffix: Crook, COMMUNITY, TOY
+  description: yarr
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/seaguard.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: UseDelay
+    delay: 5.0
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Speech
+    speechSounds: HornetSaid
+  - type: SpeakOnTrigger
+    pack: SeaguardWords
+
 # Фумо @buhoj_med
 
 # Datasets for Fumo
@@ -629,3 +656,51 @@
     speechSounds: SanabiSaid
   - type: SpeakOnTrigger
     pack: SanabiWords
+
+- type: localizedDataset
+  id: MoishaWords
+  values:
+    prefix: plushie-moisha-
+    count: 6
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieMoishaElkin
+  name: Moisha Elkin
+  description: The sneakiest lawyer of them all, perhaps he hides the secrets of the law within himself...
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/moysha.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+      params:
+        volume: -8
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+      params:
+        volume: -8
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+      params:
+        volume: -8
+  - type: MeleeWeapon
+    attackRate: 10
+    soundHit:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: StorageFill
+    contents:
+    - id: BookSpaceLaw
+      amount: 1
+  - type: SpeakOnTrigger
+    pack: MoishaWords
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+      params:
+        volume: -8
+  - type: UseDelay
+    delay: 0.05
