@@ -92,6 +92,19 @@ public sealed partial class AlertPrototype : IPrototype, IInheritingPrototype
     public bool ClientHandled = false;
 
     /// <summary>
+    /// If true, displays a numeric count label over the alert icon based on severity.
+    /// </summary>
+    [DataField]
+    public bool ShowCount = false;
+
+    /// <summary>
+    /// Multiplier applied to severity for display when ShowCount is true.
+    /// E.g. severity 5 with CountMultiplier 10 displays as "50/100".
+    /// </summary>
+    [DataField]
+    public int CountMultiplier = 1;
+
+    /// <summary>
     /// Event raised on the user when they click on this alert.
     /// Can be null.
     /// </summary>

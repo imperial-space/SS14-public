@@ -31,6 +31,7 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
+    - Jumpsuit
 
 - type: entity
   abstract: true

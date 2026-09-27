@@ -5,6 +5,7 @@ using Content.Shared.Alert;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Maths;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -40,6 +41,7 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
 
         private readonly SpriteView _icon;
         private readonly CooldownGraphic _cooldownGraphic;
+        private Label? _countLabel;
 
         private EntityUid _spriteViewEntity;
 
@@ -76,6 +78,18 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
                 MaxSize = new Vector2(64, 64)
             };
             Children.Add(_cooldownGraphic);
+
+            if (Alert.ShowCount && Alert.SupportsSeverity)
+            {
+                _countLabel = new Label
+                {
+                    HorizontalAlignment = HAlignment.Center,
+                    VerticalAlignment = VAlignment.Bottom,
+                    FontColorOverride = Color.White,
+                };
+                Children.Add(_countLabel);
+                UpdateCountLabel();
+            }
         }
 
         private Control SupplyTooltip(Control? sender)
@@ -99,6 +113,17 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
             var icon = Alert.GetIcon(_severity);
             if (_sprite.LayerMapTryGet((_spriteViewEntity, sprite), AlertVisualLayers.Base, out var layer, false))
                 _sprite.LayerSetSprite((_spriteViewEntity, sprite), layer, icon);
+
+            UpdateCountLabel();
+        }
+
+        private void UpdateCountLabel()
+        {
+            if (_countLabel == null)
+                return;
+            var val = (_severity ?? Alert.MinSeverity) * Alert.CountMultiplier;
+            var max = Alert.MaxSeverity * Alert.CountMultiplier;
+            _countLabel.Text = $"{val}/{max}";
         }
 
         protected override void FrameUpdate(FrameEventArgs args)

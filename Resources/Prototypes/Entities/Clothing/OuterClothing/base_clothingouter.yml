@@ -8,6 +8,9 @@
     - outerClothing
   - type: Sprite
     state: icon
+  - type: Tag
+    tags:
+    - OuterClothing
 
 - type: entity
   abstract: true

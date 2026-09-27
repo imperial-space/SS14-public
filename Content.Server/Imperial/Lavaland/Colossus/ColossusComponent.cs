@@ -1,4 +1,4 @@
-﻿using Robust.Shared.Audio;
+using Robust.Shared.Audio;
 
 namespace Content.Server.Imperial.Lavaland.Colossus;
 
@@ -46,11 +46,28 @@ public sealed partial class ColossusComponent : Component
     [DataField]
     public string SpikePrototype = "BulletColossusHoly";
 
-    /// <summary>Speed in tiles/s. Keep low for "very slow" feel.</summary>
     [DataField]
     public float SpikeSpeed = 4f;
 
-    // ── Attack 1: Cone (6 spikes, narrow cone toward player) ─────────────────
+    // ── Telegraph (pre-fire delay, like SS13's SLEEP_CHECK_DEATH 1.5s) ───────
+
+    [DataField]
+    public float TelegraphDelay = 1.5f;
+
+    [ViewVariables]
+    public bool IsTelegraphing;
+
+    [ViewVariables]
+    public TimeSpan TelegraphUntil;
+
+    [ViewVariables]
+    public ColossusPreFireAttack PendingAttack;
+
+    /// <summary>Saved cone target for use after telegraph delay.</summary>
+    [ViewVariables]
+    public EntityUid TelegraphConeTarget;
+
+    // ── Attack 1: Shotgun blast (6 spikes, tight cone toward player) ──────────
 
     [DataField]
     public float ConeCooldown = 8f;
@@ -58,19 +75,20 @@ public sealed partial class ColossusComponent : Component
     [DataField]
     public int ConeCount = 6;
 
+    /// <summary>Total spread in degrees (±12.5° = 25° total, matching SS13).</summary>
     [DataField]
-    public float ConeSpreadDeg = 20f;
+    public float ConeSpreadDeg = 25f;
 
     [ViewVariables]
     public TimeSpan NextConeTime;
 
-    // ── Attack 2: Cross/Diagonal (4 volleys, 1.5 s apart) ────────────────────
+    // ── Attack 2: Directional alternating (diag→card→diag→card, 1s apart) ────
 
     [DataField]
     public float CrossCooldown = 12f;
 
     [DataField]
-    public float CrossRepeatDelay = 1.5f;
+    public float CrossRepeatDelay = 1.0f;
 
     [DataField]
     public int CrossRepeatTotal = 4;
@@ -87,20 +105,17 @@ public sealed partial class ColossusComponent : Component
     [ViewVariables]
     public TimeSpan NextCrossRepeatTime;
 
-    /// <summary>true = cardinal axes, false = diagonals; alternates each volley.</summary>
+    /// <summary>false = diagonals first (SS13 order: diag→card→diag→card).</summary>
     [ViewVariables]
-    public bool CrossNextCardinal = true;
+    public bool CrossNextCardinal = false;
 
-    // ── Attack 3: Random scatter (12x12, 5% per tile) ────────────────────────
+    // ── Attack 3: Random AoE (32 shots, random 360°) ─────────────────────────
 
     [DataField]
     public float RandomCooldown = 14f;
 
     [DataField]
-    public int RandomAreaHalfSize = 6;
-
-    [DataField]
-    public float RandomChance = 0.05f;
+    public int RandomShotCount = 32;
 
     [ViewVariables]
     public TimeSpan NextRandomTime;
@@ -110,17 +125,15 @@ public sealed partial class ColossusComponent : Component
     [DataField]
     public float SpiralCooldown = 28f;
 
-    /// <summary>Total spikes per spiral arm (double spiral fires 2x this at < 50% HP).</summary>
     [DataField]
     public int SpiralSpikeCount = 80;
 
-    /// <summary>Seconds between consecutive spike launches.</summary>
     [DataField]
-    public float SpiralSpikeInterval = 0.08f;
+    public float SpiralSpikeInterval = 0.1f;
 
-    /// <summary>Angle increment per spike: 720 / 80 = 9 degrees gives 2 full rotations.</summary>
+    /// <summary>22.5 degrees per shot, matching SS13.</summary>
     [DataField]
-    public float SpiralAngleStepDeg = 9f;
+    public float SpiralAngleStepDeg = 22.5f;
 
     [ViewVariables]
     public TimeSpan NextSpiralTime;
@@ -139,4 +152,13 @@ public sealed partial class ColossusComponent : Component
 
     [ViewVariables]
     public bool LootDropped;
+}
+
+public enum ColossusPreFireAttack : byte
+{
+    None,
+    Cone,
+    Cross,
+    Random,
+    Spiral,
 }

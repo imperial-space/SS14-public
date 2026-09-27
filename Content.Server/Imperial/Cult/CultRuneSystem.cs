@@ -38,6 +38,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 using System.Collections.Generic;
+using Robust.Shared.Random;
 using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.Imperial.Cult;
@@ -68,6 +69,7 @@ public sealed class CultRuneSystem : EntitySystem
     [Dependency] private readonly StaminaSystem _stamina = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     private readonly Dictionary<EntityUid, EntityUid> _spiritRealmInvokers = new();
 
@@ -404,36 +406,37 @@ public sealed class CultRuneSystem : EntitySystem
 
     private void ActivateSummoningRune(EntityUid uid, CultRuneComponent rune, EntityUid invoker)
     {
-        // Телепортирует всех культистов, находящихся далеко от руны, к ней
-        // (не трогает тех, кто уже рядом — радиус 3 плитки)
         const float nearRadius = 3f;
         var pos = _xform.GetMapCoordinates(uid);
 
-        var teleported = new List<string>();
+        var candidates = new List<EntityUid>();
         var query = EntityQueryEnumerator<CultistComponent, TransformComponent>();
         while (query.MoveNext(out var cUid, out _, out var cXform))
         {
             if (cUid == invoker) continue;
             if (_mobState.IsDead(cUid)) continue;
             if (cXform.MapID != pos.MapId) continue;
+            if (HasComp<CultSpiritTetherComponent>(cUid)) continue;
 
             var dist = (cXform.WorldPosition - pos.Position).Length();
-            if (dist <= nearRadius) continue; // уже рядом — не трогаем
+            if (dist <= nearRadius) continue;
 
-            _xform.SetWorldPosition(cUid, pos.Position);
-            teleported.Add(MetaData(cUid).EntityName);
+            candidates.Add(cUid);
         }
 
-        if (teleported.Count == 0)
+        if (candidates.Count == 0)
         {
             _popup.PopupEntity(Loc.GetString("cult-summoning-no-target"), invoker, invoker);
             return;
         }
 
+        var target = _random.Pick(candidates);
+        _xform.SetWorldPosition(target, pos.Position);
+        var name = MetaData(target).EntityName;
+
         DestroyRune(uid, rune);
         _audio.PlayPvs("/Audio/Magic/teleport_arrival.ogg", uid);
-        var names = string.Join(", ", teleported);
-        _popup.PopupEntity(Loc.GetString("cult-summoning-success-multi", ("names", names)), invoker, invoker);
+        _popup.PopupEntity(Loc.GetString("cult-summoning-success", ("name", name)), invoker, invoker);
     }
 
     private void ActivateBloodBoilRune(EntityUid uid, CultRuneComponent rune, EntityUid invoker)

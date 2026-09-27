@@ -11,11 +11,13 @@
     layers:
     - state: arcane_barrage
       shader: unshaded
+      rotation: 90
   - type: Projectile
     impactEffect: BulletImpactEffect
     damage:
       types:
-        Blunt: 15
+        Blunt: 25
+    armorPenetration: 1.0
   - type: TimedDespawn
     lifetime: 4.0
 
