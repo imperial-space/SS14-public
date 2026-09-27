@@ -108,7 +108,7 @@
 
 # ─── Снаряд горного акселератора ───
 - type: entity
-  id: BulletKineticMining
+  id: BulletKineticMiningLavaland
   suffix: Lavaland
   name: кинетический болт
   parent: BulletKinetic
@@ -151,7 +151,7 @@
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
   - type: BasicEntityAmmoProvider
-    proto: BulletKineticMining
+    proto: BulletKineticMiningLavaland
     capacity: 1
     count: 1
   - type: MiningUpgradeableGun
