@@ -74,10 +74,6 @@ namespace Content.Server.Atmos.Piping.EntitySystems
             SubscribeLocalEvent<GasVentScrubberComponent, ExitVentCrawlerDoAfterEvent>(OnVentScrubberExitDoAfter);
             SubscribeLocalEvent<GasPassiveVentComponent, ExitVentCrawlerDoAfterEvent>(OnPassiveVentExitDoAfter);
 
-            SubscribeLocalEvent<VentCrawlingComponent, GetVisMaskEvent>(OnVentCrawlerGetVisMask);
-            SubscribeLocalEvent<VentCrawlingComponent, RefreshMovementSpeedModifiersEvent>(OnVentCrawlerRefreshMove);
-            SubscribeLocalEvent<VentCrawlingComponent, MoveEvent>(OnVentCrawlerMoved);
-            SubscribeLocalEvent<VentCrawlingComponent, ComponentShutdown>(OnVentCrawlingShutdown);
         }
 
         private void OnVentPumpGetVerbs(Entity<GasVentPumpComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
@@ -290,62 +286,6 @@ namespace Content.Server.Atmos.Piping.EntitySystems
 
             _transform.SetCoordinates(user, Transform(user), Transform(vent).Coordinates);
             RemComp<VentCrawlingComponent>(user);
-        }
-
-        private void OnVentCrawlerMoved(Entity<VentCrawlingComponent> ent, ref MoveEvent args)
-        {
-            if (ent.Comp.RevertingMove)
-            {
-                ent.Comp.RevertingMove = false;
-                return;
-            }
-
-            if (IsValidVentPosition(ent.Comp, args.NewPosition))
-            {
-                PlayVentCrawlSound(ent, ref args);
-                return;
-            }
-
-            ent.Comp.RevertingMove = true;
-            _transform.SetCoordinates(ent.Owner, args.Component, args.OldPosition);
-
-            if (TryComp(ent.Owner, out PhysicsComponent? physics))
-                _physics.ResetDynamics(ent.Owner, physics);
-        }
-
-        private void OnVentCrawlerGetVisMask(Entity<VentCrawlingComponent> ent, ref GetVisMaskEvent args)
-        {
-            args.VisibilityMask |= (int) VisibilityFlags.Subfloor;
-            args.VisibilityMask |= (int) VisibilityFlags.SpiderVent;
-        }
-
-        private void OnVentCrawlingShutdown(Entity<VentCrawlingComponent> ent, ref ComponentShutdown args)
-        {
-            if (TryComp(ent.Owner, out PhysicsComponent? physics))
-            {
-                ExitVentPhysics(ent.Owner, ent.Comp, physics);
-                _physics.SetCanCollide(ent.Owner, ent.Comp.WasCollidable, body: physics);
-                _physics.ResetDynamics(ent.Owner, physics);
-            }
-
-            HideConnectedNetwork(ent.Comp);
-            RemComp<ActiveVentCrawlingComponent>(ent.Owner);
-            ExitVentInteraction(ent.Owner, ent.Comp);
-            ExitVentVisibility(ent.Owner, ent.Comp);
-            ExitVentStealth(ent.Owner, ent.Comp);
-            SetActionAbilitiesEnabled(ent.Owner, true, ent.Comp);
-            _movement.RefreshMovementSpeedModifiers(ent.Owner);
-
-            if (TryComp(ent.Owner, out EyeComponent? eye))
-                _eye.RefreshVisibilityMask((ent.Owner, eye));
-        }
-
-        private void OnVentCrawlerRefreshMove(Entity<VentCrawlingComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
-        {
-            if (!TryComp(ent.Owner, out VentCrawlerComponent? crawler))
-                return;
-
-            args.ModifySpeed(crawler.VentSpeedMultiplier, crawler.VentSpeedMultiplier);
         }
 
         private bool IsValidVentPosition(VentCrawlingComponent active, EntityCoordinates coordinates)
@@ -619,7 +559,7 @@ namespace Content.Server.Atmos.Piping.EntitySystems
             _visibility.RefreshVisibility(uid);
         }
 
-        private void HideConnectedNetwork(VentCrawlingComponent active)
+        public void HideConnectedNetwork(VentCrawlingComponent active)
         {
             foreach (var uid in active.RevealedEntities)
             {

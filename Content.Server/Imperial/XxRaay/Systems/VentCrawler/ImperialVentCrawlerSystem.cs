@@ -35,6 +35,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Content.Shared.Atmos;
+using Content.Server.Atmos.Piping.EntitySystems;
 namespace Content.Server.Imperial.XxRaay.Systems;
 
 public sealed class ImperialVentCrawlerSystem : SharedImperialVentCrawlerSystem
@@ -55,6 +56,7 @@ public sealed class ImperialVentCrawlerSystem : SharedImperialVentCrawlerSystem
     [Dependency] private readonly WeldableSystem _weldable = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly ExplosionSystem _explosion = default!;
+    [Dependency] private readonly VentCrawlerSystem _legacyVentCrawler = default!;
 
     private EntityQuery<ActiveWormCorpsePossessionComponent> _corpsePossessionQuery;
     private EntityQuery<ActiveWormDoorHidingComponent> _doorHidingQuery;
@@ -423,6 +425,7 @@ public sealed class ImperialVentCrawlerSystem : SharedImperialVentCrawlerSystem
 
     private void OnShutdown(Entity<VentCrawlingComponent> ent, ref ComponentShutdown args)
     {
+        _legacyVentCrawler.HideConnectedNetwork(ent.Comp);
         DisableTileMovement(ent);
 
         if (TryComp(ent, out PhysicsComponent? physics))
