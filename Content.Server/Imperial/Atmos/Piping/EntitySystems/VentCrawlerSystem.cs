@@ -4,7 +4,6 @@ using Content.Server.NodeContainer.NodeGroups;
 using Content.Shared.Atmos.Piping;
 using Content.Shared.Atmos.Piping.Components;
 using ActiveVentCrawlingComponent = Content.Shared.Imperial.XxRaay.Components.ActiveVentCrawlingComponent;
-using VentCrawlingComponent = Content.Shared.Imperial.XxRaay.Components.VentCrawlingComponent;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
