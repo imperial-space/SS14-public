@@ -1,8 +1,8 @@
-using Content.Shared.Damage.Components;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Damage.Systems;
+namespace Content.Shared.Imperial.Heretic;
 
 public sealed class DamageProtectionBuffSystem : EntitySystem
 {

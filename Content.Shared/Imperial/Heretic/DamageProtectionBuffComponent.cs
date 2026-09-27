@@ -2,7 +2,7 @@ using Content.Shared.Damage.Prototypes;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Damage.Components;
+namespace Content.Shared.Imperial.Heretic;
 
 /// <summary>
 ///     Applies the specified DamageModifierSets when the entity takes damage.

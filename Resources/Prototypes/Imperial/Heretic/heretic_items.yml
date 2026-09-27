@@ -785,7 +785,6 @@
     state: cosmic_armor
   - type: Clothing
     sprite: Imperial/heretic/heretic_robes.rsi
-    equippedState: cosmic_armor_worn
   - type: Armor
     modifiers:
       coefficients:
@@ -887,7 +886,6 @@
     state: rust_armor
   - type: Clothing
     sprite: Imperial/heretic/heretic_robes.rsi
-    equippedState: rust_armor_worn
   - type: Armor
     modifiers:
       coefficients:
