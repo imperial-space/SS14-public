@@ -8,7 +8,7 @@ using Content.Shared.Imperial.XxRaay.DataDefinitions;
 namespace Content.Shared.Imperial.XxRaay.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-
+[ComponentProtoName("XxRaayVentCrawling")]
 public sealed partial class VentCrawlingComponent : Component
 {
     [DataField, AutoNetworkedField]
