@@ -2,7 +2,7 @@ using Content.Server.Atmos.Piping.Components;
 using Content.Server.Atmos.Piping.Unary.Components;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Shared.Atmos.Piping;
-using Content.Shared.Atmos.Piping.Components;
+using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
