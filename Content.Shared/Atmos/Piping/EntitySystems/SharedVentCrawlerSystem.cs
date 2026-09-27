@@ -1,4 +1,4 @@
-using Content.Shared.Atmos.Piping.Components;
+using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.Interaction.Events;
 
 namespace Content.Shared.Atmos.Piping.EntitySystems;
