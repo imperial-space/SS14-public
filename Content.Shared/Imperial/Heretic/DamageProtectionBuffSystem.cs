@@ -1,5 +1,6 @@
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Heretic;
