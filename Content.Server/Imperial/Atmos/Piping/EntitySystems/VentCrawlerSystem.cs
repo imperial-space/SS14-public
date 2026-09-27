@@ -3,7 +3,6 @@ using Content.Server.Atmos.Piping.Unary.Components;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Shared.Atmos.Piping;
 using Content.Shared.Atmos.Piping.Components;
-using Content.Shared.Imperial.XxRaay.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
@@ -245,7 +244,7 @@ namespace Content.Server.Atmos.Piping.EntitySystems
         private void EnterVent(EntityUid user, EntityUid vent)
         {
             var active = EnsureComp<VentCrawlingComponent>(user);
-            EnsureComp<ActiveVentCrawlingComponent>(user);
+            EnsureComp<Content.Shared.Imperial.XxRaay.Components.ActiveVentCrawlingComponent>(user);
             active.SourceVent = vent;
             active.RemovedComplexInteraction = false;
             active.WasCollidable = true;
@@ -329,7 +328,7 @@ namespace Content.Server.Atmos.Piping.EntitySystems
             }
 
             HideConnectedNetwork(ent.Comp);
-            RemComp<ActiveVentCrawlingComponent>(ent.Owner);
+            RemComp<Content.Shared.Imperial.XxRaay.Components.ActiveVentCrawlingComponent>(ent.Owner);
             ExitVentInteraction(ent.Owner, ent.Comp);
             ExitVentVisibility(ent.Owner, ent.Comp);
             ExitVentStealth(ent.Owner, ent.Comp);
