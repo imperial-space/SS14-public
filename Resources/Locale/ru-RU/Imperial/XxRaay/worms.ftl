@@ -16,9 +16,6 @@ station-event-worm-vent-spawn-start-announcement = Внимание. В вент
 worm-blood-alert-name = Запас крови
 worm-blood-alert-desc = Кровь, накопленная в теле червя. Максимум 1000 единиц.
 
-vent-crawler-verb-enter = Залезть в вентиляцию
-vent-crawler-verb-exit = Вылезти из вентиляции
-
 vent-crawler-fail-in-vent = Вы уже в вентиляции.
 vent-crawler-fail-corpse = Нельзя залезть в вентиляцию, пока вы вселены в труп.
 vent-crawler-fail-door = Нельзя залезть в вентиляцию, пока вы прячетесь в шлюзе.
