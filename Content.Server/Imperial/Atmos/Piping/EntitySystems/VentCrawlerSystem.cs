@@ -1,5 +1,6 @@
-using Content.Server.Atmos.Piping.Components;
 using Content.Server.Atmos.Piping.Unary.Components;
+using Content.Shared.Imperial.XxRaay.Components;
+using Content.Shared.Imperial.XxRaay.DataDefinitions;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Shared.Atmos.Piping;
 using Content.Shared.Atmos.Piping.Components;
@@ -244,7 +245,7 @@ namespace Content.Server.Atmos.Piping.EntitySystems
         private void EnterVent(EntityUid user, EntityUid vent)
         {
             var active = EnsureComp<VentCrawlingComponent>(user);
-            EnsureComp<Content.Shared.Imperial.XxRaay.Components.ActiveVentCrawlingComponent>(user);
+            EnsureComp<ActiveVentCrawlingComponent>(user);
             active.SourceVent = vent;
             active.RemovedComplexInteraction = false;
             active.WasCollidable = true;
@@ -328,7 +329,7 @@ namespace Content.Server.Atmos.Piping.EntitySystems
             }
 
             HideConnectedNetwork(ent.Comp);
-            RemComp<Content.Shared.Imperial.XxRaay.Components.ActiveVentCrawlingComponent>(ent.Owner);
+            RemComp<ActiveVentCrawlingComponent>(ent.Owner);
             ExitVentInteraction(ent.Owner, ent.Comp);
             ExitVentVisibility(ent.Owner, ent.Comp);
             ExitVentStealth(ent.Owner, ent.Comp);
@@ -514,12 +515,12 @@ namespace Content.Server.Atmos.Piping.EntitySystems
 
             foreach (var (id, fixture) in fixtures.Fixtures)
             {
-                active.FixtureStates.Add(new VentCrawlerFixtureState
+                active.FixtureStates.Add(new ImperialVentCrawlerFixtureState
                 {
                     Id = id,
                     Hard = fixture.Hard,
-                    CollisionLayer = fixture.CollisionLayer,
-                    CollisionMask = fixture.CollisionMask,
+                    CollisionLayer = (CollisionGroup) fixture.CollisionLayer,
+                    CollisionMask = (CollisionGroup) fixture.CollisionMask,
                 });
 
                 _physics.SetHard(user, fixture, false, fixtures);
@@ -539,8 +540,8 @@ namespace Content.Server.Atmos.Piping.EntitySystems
                     continue;
 
                 _physics.SetHard(user, fixture, state.Hard, fixtures);
-                _physics.SetCollisionLayer(user, state.Id, fixture, state.CollisionLayer, fixtures, physics);
-                _physics.SetCollisionMask(user, state.Id, fixture, state.CollisionMask, fixtures, physics);
+                _physics.SetCollisionLayer(user, state.Id, fixture, (int) state.CollisionLayer, fixtures, physics);
+                _physics.SetCollisionMask(user, state.Id, fixture, (int) state.CollisionMask, fixtures, physics);
             }
 
             active.FixtureStates.Clear();

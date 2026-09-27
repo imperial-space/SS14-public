@@ -19,5 +19,3 @@ public sealed partial class ImperialVentCrawlerFixtureState
     [DataField]
     public CollisionGroup CollisionMask;
 }
-
-

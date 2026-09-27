@@ -43,5 +43,9 @@ public sealed partial class VentCrawlingComponent : Component
 
     [ViewVariables, AutoNetworkedField]
     public HashSet<EntityUid> DisabledActions = [];
-}
 
+    [DataField]
+    public bool RevertingMove;
+
+    public HashSet<EntityUid> RevealedEntities = [];
+}
