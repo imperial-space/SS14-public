@@ -87,6 +87,14 @@ public sealed class HereticVoidAscensionSystem : EntitySystem
             _weather.TryAddWeather(mapUid.Value, VoidStormProto, out _);
         }
 
+        // Also apply storm to heretic's own map (covers station map if heretic is on it)
+        var herMapId = Transform(uid).MapID;
+        if (herMapId != MapId.Nullspace && _mapSystem.TryGetMap(herMapId, out var herMapUid) && !comp.StormMapUids.Contains(herMapUid.Value))
+        {
+            comp.StormMapUids.Add(herMapUid.Value);
+            _weather.TryAddWeather(herMapUid.Value, VoidStormProto, out _);
+        }
+
         // SS13: heretic_eyes.color_cutoffs = list(30, 30, 30) → void black eyes
         comp.OriginalEyeColor = GetEyeColor(uid);
         SetEyeColor(uid, VoidEyeColor);

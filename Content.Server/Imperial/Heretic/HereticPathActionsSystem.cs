@@ -75,6 +75,7 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Stacks;
 using Content.Shared.Imperial.Lavaland.ColossusLoot;
 using Content.Shared.Maps;
+using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Movement.Pulling.Components;
@@ -148,6 +149,7 @@ public sealed class HereticPathActionsSystem : EntitySystem
     [Dependency] private readonly GodmodeSystem               _godmode       = default!;
     [Dependency] private readonly SharedAccessSystem          _access        = default!;
     [Dependency] private readonly SharedBloodstreamSystem     _bloodstream   = default!;
+    [Dependency] private readonly IChatManager                _chatManager   = default!;
     [Dependency] private readonly ChatSystem                  _chat          = default!;
     [Dependency] private readonly MetaDataSystem              _metaData      = default!;
     [Dependency] private readonly MobThresholdSystem          _mobThreshold  = default!;
@@ -201,6 +203,7 @@ public sealed class HereticPathActionsSystem : EntitySystem
 
         // ── Flesh familiars ───────────────────────────────────────────────────
         SubscribeLocalEvent<HereticVoicelessDeadComponent, MobStateChangedEvent>(OnVoicelessDeadDied);
+        SubscribeLocalEvent<HereticVoicelessDeadComponent, PlayerAttachedEvent>(OnVoicelessDeadPlayerAttached);
 
         // ── General ───────────────────────────────────────────────────────────
         SubscribeLocalEvent<HereticComponent, HereticCloakOfShadowActionEvent>(OnCloakOfShadow);
@@ -845,6 +848,13 @@ public sealed class HereticPathActionsSystem : EntitySystem
         if (args.NewMobState != MobState.Dead) return;
 
         Spawn("HereticLivingHeart", Transform(uid).Coordinates);
+    }
+
+    private void OnVoicelessDeadPlayerAttached(EntityUid uid, HereticVoicelessDeadComponent comp, PlayerAttachedEvent args)
+    {
+        var rawMsg = Loc.GetString("heretic-voiceless-dead-chat");
+        var wrapped = Loc.GetString("chat-manager-server-wrap-message", ("message", rawMsg));
+        _chatManager.ChatMessageToOne(ChatChannel.Server, rawMsg, wrapped, default, false, args.Player.Channel);
     }
 
     // ─── Void ─────────────────────────────────────────────────────────────────

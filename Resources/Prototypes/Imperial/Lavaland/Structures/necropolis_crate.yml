@@ -54,21 +54,15 @@
           id: TalismanImmortality
           prob: 0.15
         - !type:EntSelector
-          id: LanternThermal
-          prob: 0.20
-        - !type:EntSelector
           id: ClothingOuterChampionArmor
           prob: 0.10
         # ── Кристалл вампиризма (модуль КА) ─────────────────────────────
         - !type:EntSelector
           id: PKAMiningUpgradeLifeSteal
           prob: 0.15
-        # ── Кубики-телепорты (спавнятся вместе — одинаковый шанс) ───────
+        # ── Кубики-телепорты (спавнятся парой — оба или ни одного) ─────
         - !type:EntSelector
-          id: PrisonCubeTeleportBlue
-          prob: 0.20
-        - !type:EntSelector
-          id: PrisonCubeTeleportRed
+          id: PrisonCubeTeleportPair
           prob: 0.20
   - type: StaticPrice
     price: 0

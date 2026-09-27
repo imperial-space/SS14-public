@@ -766,6 +766,7 @@
   - type: Clothing
     sprite: Imperial/heretic/heretic_hoods.rsi
     equippedState: ash_armor_worn
+  - type: HereticAmberFocus
   - type: Tag
     tags:
     - HideSpawnMenu
@@ -849,6 +850,7 @@
   - type: Clothing
     sprite: Imperial/heretic/cosmic.rsi
     equippedState: equipped-HELMET
+  - type: HereticAmberFocus
   - type: Tag
     tags:
     - HideSpawnMenu
@@ -947,6 +949,7 @@
   - type: Clothing
     sprite: Imperial/heretic/heretic_hoods.rsi
     equippedState: flesh_armor_worn
+  - type: HereticAmberFocus
   - type: Tag
     tags:
     - HideSpawnMenu

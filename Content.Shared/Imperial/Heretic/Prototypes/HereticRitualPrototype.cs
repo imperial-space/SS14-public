@@ -43,6 +43,14 @@ public sealed partial class HereticRitualIngredient
     [DataField]
     public bool IsBurning;
 
+    /// <summary>If true, matches only entities with MobStateComponent that are dead or in critical state.</summary>
+    [DataField]
+    public bool IsDeadOrCritical;
+
+    /// <summary>If true, additionally requires HumanoidAppearanceComponent (any playable race).</summary>
+    [DataField]
+    public bool RequireHumanoid;
+
     [DataField]
     public int Amount = 1;
 }

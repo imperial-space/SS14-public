@@ -335,11 +335,13 @@ public sealed class HereticRuneSystem : EntitySystem
                 Icon = _proto.TryIndex<HereticKnowledgePrototype>(p.RequiredKnowledge, out var kp) ? kp.Icon : null,
                 Ingredients = p.Ingredients.Select(i => new HereticRitualIngredientData
                 {
-                    EntityId    = i.EntityId,
-                    Tag         = i.Tag,
-                    HasMobState = i.HasMobState,
-                    IsBurning   = i.IsBurning,
-                    Amount      = i.Amount,
+                    EntityId         = i.EntityId,
+                    Tag              = i.Tag,
+                    HasMobState      = i.HasMobState,
+                    IsBurning        = i.IsBurning,
+                    IsDeadOrCritical = i.IsDeadOrCritical,
+                    RequireHumanoid  = i.RequireHumanoid,
+                    Amount           = i.Amount,
                 }).ToList(),
             }).ToList(),
             Offerings = new List<HereticOfferingNodeData>(),
@@ -454,13 +456,16 @@ public sealed class HereticRuneSystem : EntitySystem
             }
         }
 
-        // Ритуал Сплетения пустоты требует температуры ниже 0°C
-        if (ritual.ID == "RitualVoidWeave")
+        // Ритуал Сплетения пустоты и Клинок пустоты требуют температуры ниже 0°C
+        if (ritual.ID == "RitualVoidWeave" || ritual.ID == "RitualBladeVoid")
         {
             var tileMix = _atmosphere.GetTileMixture(runeUid);
             if (tileMix == null || tileMix.Temperature >= Atmospherics.T0C)
             {
-                _popup.PopupEntity(Loc.GetString("heretic-void-weave-too-warm"), args.Actor, args.Actor, PopupType.SmallCaution);
+                var msgKey = ritual.ID == "RitualBladeVoid"
+                    ? "heretic-void-blade-too-warm"
+                    : "heretic-void-weave-too-warm";
+                _popup.PopupEntity(Loc.GetString(msgKey), args.Actor, args.Actor, PopupType.SmallCaution);
                 return;
             }
         }
@@ -814,12 +819,20 @@ public sealed class HereticRuneSystem : EntitySystem
                 bool matches;
                 if (ing.Tag is { } tag)
                     matches = _tag.HasTag(nearEnt, tag);
+                else if (ing.IsDeadOrCritical)
+                    matches = TryComp<MobStateComponent>(nearEnt, out var ms) &&
+                              (_mobs.IsDead(nearEnt, ms) || _mobs.IsCritical(nearEnt, ms));
                 else if (ing.IsBurning)
                     matches = HasComp<MobStateComponent>(nearEnt) && TryComp<FlammableComponent>(nearEnt, out var fl) && fl.OnFire;
                 else if (ing.HasMobState)
                     matches = HasComp<MobStateComponent>(nearEnt);
                 else
                     matches = MetaData(nearEnt).EntityPrototype?.ID == (string)ing.EntityId;
+
+                if (matches && ing.RequireHumanoid)
+                    matches = HasComp<HumanoidProfileComponent>(nearEnt);
+                if (matches && ing.IsBurning && ing.IsDeadOrCritical)
+                    matches = TryComp<FlammableComponent>(nearEnt, out var flBurn) && flBurn.OnFire;
 
                 if (!matches)
                     continue;
@@ -832,7 +845,13 @@ public sealed class HereticRuneSystem : EntitySystem
             if (needed > 0)
             {
                 string name;
-                if (ing.HasMobState)
+                if (ing.IsBurning && ing.IsDeadOrCritical)
+                    name = Loc.GetString("heretic-ritual-ingredient-mob-humanoid-burning-dead");
+                else if (ing.IsDeadOrCritical && ing.RequireHumanoid)
+                    name = Loc.GetString("heretic-ritual-ingredient-mob-humanoid-dead");
+                else if (ing.IsDeadOrCritical)
+                    name = Loc.GetString("heretic-ritual-ingredient-mob-dead");
+                else if (ing.HasMobState || ing.IsBurning)
                     name = Loc.GetString("heretic-ritual-ingredient-mob");
                 else if (ing.Tag is { } tag)
                 {
@@ -855,7 +874,7 @@ public sealed class HereticRuneSystem : EntitySystem
         var nearby = _lookup.GetEntitiesInRange(center, radius);
 
         var claimed = new HashSet<EntityUid>();
-        var consumePlan = new List<(EntityUid Entity, int Amount)>();
+        var consumePlan = new List<(EntityUid Entity, int Amount, bool ShouldGib)>();
         foreach (var ing in ritual.Ingredients)
         {
             var needed = ing.Amount;
@@ -873,12 +892,20 @@ public sealed class HereticRuneSystem : EntitySystem
                 bool matches;
                 if (ing.Tag is { } tag)
                     matches = _tag.HasTag(nearEnt, tag);
+                else if (ing.IsDeadOrCritical)
+                    matches = TryComp<MobStateComponent>(nearEnt, out var ms) &&
+                              (_mobs.IsDead(nearEnt, ms) || _mobs.IsCritical(nearEnt, ms));
                 else if (ing.IsBurning)
                     matches = HasComp<MobStateComponent>(nearEnt) && TryComp<FlammableComponent>(nearEnt, out var fl) && fl.OnFire;
                 else if (ing.HasMobState)
                     matches = HasComp<MobStateComponent>(nearEnt);
                 else
                     matches = MetaData(nearEnt).EntityPrototype?.ID == (string)ing.EntityId;
+
+                if (matches && ing.RequireHumanoid)
+                    matches = HasComp<HumanoidProfileComponent>(nearEnt);
+                if (matches && ing.IsBurning && ing.IsDeadOrCritical)
+                    matches = TryComp<FlammableComponent>(nearEnt, out var flBurn) && flBurn.OnFire;
 
                 if (!matches)
                     continue;
@@ -887,7 +914,7 @@ public sealed class HereticRuneSystem : EntitySystem
                 var take = Math.Min(available, needed);
 
                 claimed.Add(nearEnt);
-                consumePlan.Add((nearEnt, take));
+                consumePlan.Add((nearEnt, take, ing.IsDeadOrCritical));
                 needed -= take;
             }
 
@@ -896,10 +923,12 @@ public sealed class HereticRuneSystem : EntitySystem
         }
 
         // All found — consume
-        foreach (var (ent, amount) in consumePlan)
+        foreach (var (ent, amount, shouldGib) in consumePlan)
         {
             if (TryComp<StackComponent>(ent, out var stackComp))
                 _stack.ReduceCount((ent, stackComp), amount);
+            else if (shouldGib && HasComp<MobStateComponent>(ent))
+                _gibbing.Gib(ent);
             else
                 QueueDel(ent);
         }

@@ -156,6 +156,8 @@ public sealed class HereticRitualIngredientData
     public string? Tag;
     public bool HasMobState;
     public bool IsBurning;
+    public bool IsDeadOrCritical;
+    public bool RequireHumanoid;
     public int Amount = 1;
 }
 

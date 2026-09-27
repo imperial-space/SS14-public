@@ -620,6 +620,12 @@
       types:
         Slash: 10
   - type: Muted
+  - type: Tag
+    tags:
+    - FootstepSound
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepFloor
   - type: StaminaResistance
     damageCoefficient: 0.5
   - type: ZombieImmune

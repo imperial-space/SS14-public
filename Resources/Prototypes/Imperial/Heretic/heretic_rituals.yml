@@ -11,7 +11,7 @@
     amount: 1
   - tag: Pen
     amount: 1
-  - hasMobState: true
+  - isDeadOrCritical: true
     amount: 1
   results:
   - HereticCodexCicatrix
@@ -21,7 +21,7 @@
   name: heretic-ritual-amber-focus-name
   requiredKnowledge: KnowledgeAmberFocus
   ingredients:
-  - entityId: SheetGlass1
+  - entityId: SheetGlass
     amount: 3
   results:
   - HereticAmberFocus
@@ -68,7 +68,7 @@
   ingredients:
   - entityId: Paper
     amount: 2
-  - entityId: SheetGlass1
+  - entityId: SheetGlass
     amount: 1
   results:
   - HereticPaintingBeauty
@@ -109,30 +109,6 @@
   results:
   - HereticPaintingDesire
 
-- type: hereticRitual
-  id: RitualOminousHood
-  name: heretic-ritual-ominous-hood-name
-  requiredKnowledge: KnowledgeUnsealedArts
-  ingredients:
-  - entityId: Paper
-    amount: 3
-  - entityId: SheetSteel
-    amount: 1
-  results:
-  - HereticOminousHood
-
-- type: hereticRitual
-  id: RitualOminousArmor
-  name: heretic-ritual-ominous-armor-name
-  requiredKnowledge: KnowledgeUnsealedArts
-  ingredients:
-  - entityId: SheetSteel
-    amount: 3
-  - entityId: Paper
-    amount: 2
-  results:
-  - HereticOminousArmor
-
 # ─── Космический маяк (Cosmic Runes) ───
 
 - type: hereticRitual
@@ -142,7 +118,7 @@
   ingredients:
   - entityId: Paper
     amount: 2
-  - entityId: SheetGlass1
+  - entityId: SheetGlass
     amount: 2
   results:
   - HereticCosmicBeacon
@@ -162,6 +138,20 @@
     amount: 1
   results:
   - HereticCosmosCloak
+
+# ─── Космический клинок (Cosmos — start) ───
+
+- type: hereticRitual
+  id: RitualBladeCosmos
+  name: heretic-ritual-blade-cosmos-name
+  requiredKnowledge: KnowledgeCosmicMark
+  ingredients:
+  - tag: Knife
+    amount: 1
+  - entityId: IngotGold
+    amount: 1
+  results:
+  - HereticBladeCosmos
 
 
 # ─── Винтовка Охотника за Львами ───
@@ -225,6 +215,18 @@
   results:
   - HereticPactToken
 
+# ─── Клинок Пустоты (Void — start) ───
+
+- type: hereticRitual
+  id: RitualBladeVoid
+  name: heretic-ritual-blade-void-name
+  requiredKnowledge: KnowledgeVoidTraveler
+  ingredients:
+  - tag: Knife
+    amount: 1
+  results:
+  - HereticBladeVoid
+
 - type: hereticRitual
   id: RitualHereticPactBlade
   name: heretic-ritual-pact-name
@@ -265,7 +267,8 @@
   requiredKnowledge: KnowledgeAscensionAsh
   ingredients:
   - isBurning: true
-    hasMobState: true
+    isDeadOrCritical: true
+    requireHumanoid: true
     amount: 3
   results:
   - HereticAscensionResult
@@ -275,7 +278,8 @@
   name: heretic-ritual-ascension-blade-name
   requiredKnowledge: KnowledgeAscensionBlade
   ingredients:
-  - hasMobState: true
+  - isDeadOrCritical: true
+    requireHumanoid: true
     amount: 3
   - entityId: IngotSilver
     amount: 3
@@ -287,7 +291,8 @@
   name: heretic-ritual-ascension-rust-name
   requiredKnowledge: KnowledgeAscensionRust
   ingredients:
-  - hasMobState: true
+  - isDeadOrCritical: true
+    requireHumanoid: true
     amount: 3
   results:
   - HereticAscensionResult
@@ -297,7 +302,8 @@
   name: heretic-ritual-ascension-cosmos-name
   requiredKnowledge: KnowledgeAscensionCosmos
   ingredients:
-  - hasMobState: true
+  - isDeadOrCritical: true
+    requireHumanoid: true
     amount: 3
   results:
   - HereticAscensionResult
@@ -307,8 +313,9 @@
   name: heretic-ritual-ascension-flesh-name
   requiredKnowledge: KnowledgeAscensionFlesh
   ingredients:
-  - hasMobState: true
-    amount: 4
+  - isDeadOrCritical: true
+    requireHumanoid: true
+    amount: 3
   results:
   - HereticAscensionResult
 
@@ -317,7 +324,8 @@
   name: heretic-ritual-ascension-void-name
   requiredKnowledge: KnowledgeAscensionVoid
   ingredients:
-  - hasMobState: true
+  - isDeadOrCritical: true
+    requireHumanoid: true
     amount: 3
   results:
   - HereticAscensionResult
@@ -327,7 +335,8 @@
   name: heretic-ritual-ascension-moon-name
   requiredKnowledge: KnowledgeAscensionMoon
   ingredients:
-  - hasMobState: true
+  - isDeadOrCritical: true
+    requireHumanoid: true
     amount: 3
   results:
   - HereticAscensionResult
@@ -337,7 +346,8 @@
   name: heretic-ritual-ascension-lock-name
   requiredKnowledge: KnowledgeAscensionLock
   ingredients:
-  - hasMobState: true
+  - isDeadOrCritical: true
+    requireHumanoid: true
     amount: 3
   results:
   - HereticAscensionResult
@@ -372,6 +382,20 @@
   results:
   - HereticEldritchMedallion
 
+# ─── Клинок пепла (Ash — start) ───
+
+- type: hereticRitual
+  id: RitualBladeAsh
+  name: heretic-ritual-blade-ash-name
+  requiredKnowledge: KnowledgeCallOfAsh
+  ingredients:
+  - tag: Knife
+    amount: 1
+  - entityId: Matchbox
+    amount: 1
+  results:
+  - HereticBladeAsh
+
 # ─── Расколотый клинок (The Cutting Edge) ───
 
 - type: hereticRitual
@@ -401,6 +425,20 @@
     amount: 10
   results:
   - HereticFamiliarRustWalker
+
+# ─── Ржавый клинок (Rust — start) ───
+
+- type: hereticRitual
+  id: RitualBladeRust
+  name: heretic-ritual-blade-rust-name
+  requiredKnowledge: KnowledgeRustReaper
+  ingredients:
+  - tag: Knife
+    amount: 1
+  - entityId: Wrench
+    amount: 1
+  results:
+  - HereticBladeRust
 
 - type: hereticRitual
   id: RitualAshenRitual
@@ -465,7 +503,7 @@
   ingredients:
   - tag: OuterClothing
     amount: 1
-  - tag: ClothingHead
+  - tag: OuterClothing
     amount: 1
   - entityId: Matchstick
     amount: 1
@@ -507,7 +545,7 @@
     amount: 1
   - entityId: ClothingMaskGas
     amount: 1
-  - entityId: PuddleBlood
+  - entityId: Puddle
     amount: 1
   results:
   - HereticWrithingEmbrace
@@ -523,7 +561,7 @@
     amount: 1
   - entityId: OrganHumanArmLeft
     amount: 1
-  - entityId: PuddleBlood
+  - entityId: Puddle
     amount: 1
   results:
   - MobHereticRawProphet
@@ -651,7 +689,7 @@
   ingredients:
   - entityId: ShardGlass
     amount: 1
-  - entityId: PuddleVomit
+  - entityId: Puddle
     amount: 1
   results:
   - HereticEtherFlask
@@ -678,7 +716,7 @@
   name: heretic-ritual-unfathomable-curio-name
   requiredKnowledge: KnowledgeUnfathomableCurio
   ingredients:
-  - entityId: RodMetal
+  - entityId: PartRodMetal
     amount: 3
   - entityId: OrganHumanLungs
     amount: 1
@@ -692,7 +730,7 @@
   name: heretic-ritual-labyrinth-handbook-name
   requiredKnowledge: KnowledgeShopLabyrinthHandbook
   ingredients:
-  - entityId: Crayon
+  - tag: Crayon
     amount: 1
   - entityId: MaterialWoodPlank
     amount: 1
@@ -746,7 +784,7 @@
   ingredients:
   - entityId: SheetPlasma
     amount: 1
-  - entityId: MaterialDiamond1
+  - entityId: MaterialDiamond
     amount: 1
   results:
   - HereticEldritchCoin
@@ -772,7 +810,7 @@
   ingredients:
   - entityId: HereticCodexCicatrix
     amount: 1
-  - hasMobState: true
+  - isDeadOrCritical: true
     amount: 1
   results:
   - HereticCodexMorbus
@@ -782,10 +820,10 @@
   name: heretic-ritual-shop-rust-walker-name
   requiredKnowledge: KnowledgeShopRustWalker
   ingredients:
-  - entityId: PuddleVomit
+  - entityId: Puddle
     amount: 1
-  - entityId: CableApcStack1
-    amount: 15
+  - entityId: CableApcStack
+    amount: 1
   - entityId: SheetSteel
     amount: 10
   results:
@@ -824,7 +862,7 @@
   name: heretic-ritual-shop-maid-in-mirror-name
   requiredKnowledge: KnowledgeMaidInMirror
   ingredients:
-  - entityId: SheetGlass1
+  - entityId: SheetGlass
     amount: 5
   - tag: Jumpsuit
     amount: 1
@@ -860,7 +898,6 @@
     amount: 2
   results:
   - HereticShatteredPanoply
-  - HereticShatteredHelmet
 
 # ─── Лунный клинок (Moon — start) ───
 
@@ -885,7 +922,7 @@
   ingredients:
   - entityId: OrganHumanHeart
     amount: 1
-  - entityId: SheetGlass1
+  - entityId: SheetGlass
     amount: 2
   - entityId: ClothingNeckTieRed
     amount: 1
@@ -903,7 +940,7 @@
     amount: 1
   - entityId: ClothingMaskGas
     amount: 1
-  - entityId: SheetGlass1
+  - entityId: SheetGlass
     amount: 2
   results:
   - HereticGlitteringArray
@@ -929,7 +966,7 @@
   name: heretic-ritual-labyrinth-handbook-name
   requiredKnowledge: KnowledgeLockLabyrinthHandbook
   ingredients:
-  - entityId: Crayon
+  - tag: Crayon
     amount: 1
   - entityId: MaterialWoodPlank
     amount: 1
@@ -949,7 +986,7 @@
     amount: 1
   - entityId: Crowbar
     amount: 1
-  - tag: ClothingOuter
+  - tag: OuterClothing
     amount: 1
   results:
   - HereticShiftingGuise
@@ -965,10 +1002,24 @@
     amount: 1
   - entityId: PartRodMetal
     amount: 1
-  - tag: IdCard
+  - tag: WhitelistChameleonIdCard
     amount: 1
   results:
   - HereticMysticCard
+
+# ─── Клинок плоти (Flesh — start) ───
+
+- type: hereticRitual
+  id: RitualBladeFlesh
+  name: heretic-ritual-blade-flesh-name
+  requiredKnowledge: KnowledgeFleshArtisan
+  ingredients:
+  - tag: Knife
+    amount: 1
+  - entityId: OrganHumanHeart
+    amount: 1
+  results:
+  - HereticBladeFlesh
 
 # ─── Несовершенный ритуал (Flesh) ───
 
