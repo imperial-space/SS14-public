@@ -241,7 +241,7 @@ namespace Content.Server.Atmos.Piping.EntitySystems
         private void EnterVent(EntityUid user, EntityUid vent)
         {
             var active = EnsureComp<VentCrawlingComponent>(user);
-            EnsureComp<ActiveVentCrawlingComponent>(user);
+            EnsureComp<Content.Shared.Atmos.Piping.Components.ActiveVentCrawlingComponent>(user);
             active.SourceVent = vent;
             active.RemovedComplexInteraction = false;
             active.WasCollidable = true;
