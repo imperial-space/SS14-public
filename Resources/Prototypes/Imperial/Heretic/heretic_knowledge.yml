@@ -1,0 +1,1496 @@
+# ==============================================
+#  Еретик — Узлы знаний
+# ==============================================
+
+# ─── Общие ───
+
+- type: hereticKnowledge
+  id: KnowledgeBreakOfDawn
+  name: heretic-knowledge-break-of-dawn-name
+  description: heretic-knowledge-break-of-dawn-desc
+  cost: 0
+  path: General
+  setsPath: false
+  prerequisites: []
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: node_side
+
+- type: hereticKnowledge
+  id: KnowledgeMansusGrasp
+  name: heretic-knowledge-mansus-grasp-name
+  description: heretic-knowledge-mansus-grasp-desc
+  cost: 0
+  path: General
+  setsPath: false
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions:
+  - ActionHereticMansusGrasp
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: mansus_grasp
+
+
+- type: hereticKnowledge
+  id: KnowledgeKnowledgeMenu
+  name: heretic-knowledge-knowledge-menu-name
+  description: heretic-knowledge-knowledge-menu-desc
+  cost: 0
+  path: General
+  setsPath: false
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions:
+  - ActionHereticKnowledgeMenu
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: node_side
+
+- type: hereticKnowledge
+  id: KnowledgeFamiliar
+  name: heretic-knowledge-familiar-name
+  description: heretic-knowledge-familiar-desc
+  cost: 1
+  path: General
+  setsPath: false
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions:
+  - ActionHereticSummonFamiliar
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: ghoul_voiceless
+
+- type: hereticKnowledge
+  id: KnowledgeMawedCrucible
+  name: heretic-knowledge-mawed-crucible-name
+  description: heretic-knowledge-mawed-crucible-desc
+  cost: 1
+  path: General
+  setsPath: false
+  prerequisites: [ KnowledgeImperfectRitual ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/eldritch.rsi
+    state: crucible_empty
+
+- type: hereticKnowledge
+  id: KnowledgeUnsealedArts
+  name: heretic-knowledge-unsealed-arts-name
+  description: heretic-knowledge-unsealed-arts-desc
+  cost: 2
+  path: General
+  setsPath: false
+  shopLevel: 2
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/unsealed_arts.rsi
+    state: weeping
+
+- type: hereticKnowledge
+  id: KnowledgeCloakOfShadow
+  name: heretic-knowledge-cloak-of-shadow-name
+  description: heretic-knowledge-cloak-of-shadow-desc
+  cost: 0
+  path: General
+  setsPath: false
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions:
+  - ActionHereticCloakOfShadow
+  icon:
+    sprite: Imperial/heretic/curse_effect.rsi
+    state: curse
+
+- type: hereticKnowledge
+  id: KnowledgeLivingHeart
+  name: heretic-knowledge-living-heart-name
+  description: heretic-knowledge-living-heart-desc
+  cost: 2
+  path: General
+  setsPath: false
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/eldritch.rsi
+    state: living_heart
+
+- type: hereticKnowledge
+  id: KnowledgeAmberFocus
+  name: heretic-knowledge-amber-focus-name
+  description: heretic-knowledge-amber-focus-desc
+  cost: 2
+  path: General
+  setsPath: false
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/focus.rsi
+    state: icon
+
+- type: hereticKnowledge
+  id: KnowledgeShopVoidCloak
+  name: heretic-knowledge-shop-void-cloak-name
+  description: heretic-knowledge-shop-void-cloak-desc
+  cost: 1
+  path: General
+  setsPath: false
+  shopLevel: 1
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Clothing/Neck/Cloaks/void.rsi
+    state: icon
+
+- type: hereticKnowledge
+  id: KnowledgeCodexCicatrix
+  name: heretic-knowledge-codex-cicatrix-name
+  description: heretic-knowledge-codex-cicatrix-desc
+  cost: 1
+  path: General
+  setsPath: false
+  shopLevel: 1
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/eldritch.rsi
+    state: book
+
+- type: hereticKnowledge
+  id: KnowledgeHeartbeatMansus
+  name: heretic-knowledge-heartbeat-mansus-name
+  description: heretic-knowledge-heartbeat-mansus-desc
+  cost: 0
+  path: General
+  setsPath: false
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions:
+  - ActionHereticHeartbeatMansus
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: mansus_link
+
+- type: hereticKnowledge
+  id: KnowledgeFeastOfOwls
+  name: heretic-knowledge-feast-of-owls-name
+  description: heretic-knowledge-feast-of-owls-desc
+  cost: 3
+  path: General
+  setsPath: false
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: eye
+
+# ─── Путь Пепла ───
+
+# Тир 0 — выбор пути (без способностей)
+- type: hereticKnowledge
+  id: KnowledgeCallOfAsh
+  name: heretic-knowledge-call-of-ash-name
+  description: heretic-knowledge-call-of-ash-desc
+  cost: 1
+  path: Ash
+  setsPath: true
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: node_ash
+
+# Тир 1 — первый узел из магазина
+- type: hereticKnowledge
+  id: KnowledgeAshenPassage
+  name: heretic-knowledge-ashen-passage-name
+  description: heretic-knowledge-ashen-passage-desc
+  cost: 2
+  path: Ash
+  setsPath: false
+  prerequisites: [ KnowledgeCallOfAsh ]
+  grantActions:
+  - ActionHereticAshShift
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: ash_shift
+
+# Тир 2
+- type: hereticKnowledge
+  id: KnowledgeVolcanoBlast
+  name: heretic-knowledge-volcano-blast-name
+  description: heretic-knowledge-volcano-blast-desc
+  cost: 2
+  path: Ash
+  setsPath: false
+  prerequisites: [ KnowledgeAshenPassage ]
+  grantActions:
+  - ActionHereticVolcanoBlast
+  icon:
+    sprite: Imperial/heretic/actions_animal.rsi
+    state: flames
+
+# Тир 3
+- type: hereticKnowledge
+  id: KnowledgeScorchedMantle
+  name: heretic-knowledge-scorched-mantle-name
+  description: heretic-knowledge-scorched-mantle-desc
+  cost: 1
+  path: Ash
+  setsPath: false
+  prerequisites: [ KnowledgeVolcanoBlast ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/heretic_robes.rsi
+    state: ash_armor
+
+- type: hereticKnowledge
+  id: KnowledgeMaskOfMadnessAsh
+  name: heretic-knowledge-mask-of-madness-name
+  description: heretic-knowledge-mask-of-madness-desc
+  cost: 2
+  path: Ash
+  setsPath: false
+  prerequisites: [ KnowledgeScorchedMantle ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/masks.rsi
+    state: mad_mask
+
+# Тир 4
+- type: hereticKnowledge
+  id: KnowledgeFieryBlade
+  name: heretic-knowledge-fiery-blade-name
+  description: heretic-knowledge-fiery-blade-desc
+  cost: 1
+  path: Ash
+  setsPath: false
+  advancesShopLevel: false
+  prerequisites: [ KnowledgeMaskOfMadnessAsh ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: blade_upgrade_ash
+
+# Тир 5
+- type: hereticKnowledge
+  id: KnowledgeAshlordsRebirth
+  name: heretic-knowledge-ashlords-rebirth-name
+  description: heretic-knowledge-ashlords-rebirth-desc
+  cost: 2
+  path: Ash
+  setsPath: false
+  prerequisites: [ KnowledgeFieryBlade ]
+  grantActions:
+  - ActionHereticAshlordsRebirth
+  icon:
+    sprite: Imperial/heretic/actions_animal.rsi
+    state: smoke
+
+# Тир 6 — вознесение
+- type: hereticKnowledge
+  id: KnowledgeAscensionAsh
+  name: heretic-knowledge-ascension-ash-name
+  description: heretic-knowledge-ascension-ash-desc
+  cost: 0
+  path: Ash
+  setsPath: false
+  prerequisites: [ KnowledgeAshlordsRebirth ]
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: adrenal
+
+# ─── Путь Плоти ───
+
+- type: hereticKnowledge
+  id: KnowledgeFleshArtisan
+  name: heretic-knowledge-flesh-artisan-name
+  description: heretic-knowledge-flesh-artisan-desc
+  cost: 1
+  path: Flesh
+  setsPath: true
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: node_flesh
+
+- type: hereticKnowledge
+  id: KnowledgeImperfectRitual
+  name: heretic-knowledge-imperfect-ritual-name
+  description: heretic-knowledge-imperfect-ritual-desc
+  cost: 2
+  path: Flesh
+  setsPath: false
+  prerequisites: [ KnowledgeFleshArtisan ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: ghoul_voiceless
+
+- type: hereticKnowledge
+  id: KnowledgeFleshWeave
+  name: heretic-knowledge-flesh-weave-name
+  description: heretic-knowledge-flesh-weave-desc
+  cost: 2
+  path: Flesh
+  setsPath: false
+  prerequisites: [ KnowledgeImperfectRitual ]
+  grantActions:
+  - ActionHereticFleshWeave
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: mad_touch
+
+- type: hereticKnowledge
+  id: KnowledgeWrithingEmbrace
+  name: heretic-knowledge-writhing-embrace-name
+  description: heretic-knowledge-writhing-embrace-desc
+  cost: 2
+  path: Flesh
+  setsPath: false
+  prerequisites: [ KnowledgeFleshWeave ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/heretic_robes.rsi
+    state: flesh_armor
+
+- type: hereticKnowledge
+  id: KnowledgeRawProphet
+  name: heretic-knowledge-raw-prophet-name
+  description: heretic-knowledge-raw-prophet-desc
+  cost: 2
+  path: Flesh
+  setsPath: false
+  prerequisites: [ KnowledgeWrithingEmbrace ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/eldritch_mobs.rsi
+    state: raw_prophet
+
+- type: hereticKnowledge
+  id: KnowledgeBleedingSteel
+  name: heretic-knowledge-bleeding-steel-name
+  description: heretic-knowledge-bleeding-steel-desc
+  cost: 2
+  path: Flesh
+  setsPath: false
+  advancesShopLevel: false
+  prerequisites: [ KnowledgeRawProphet ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: blade_upgrade_flesh
+
+- type: hereticKnowledge
+  id: KnowledgeRitualOfSolitude
+  name: heretic-knowledge-ritual-of-solitude-name
+  description: heretic-knowledge-ritual-of-solitude-desc
+  cost: 2
+  path: Flesh
+  setsPath: false
+  prerequisites: [ KnowledgeBleedingSteel ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/eldritch_mobs.rsi
+    state: stalker
+
+- type: hereticKnowledge
+  id: KnowledgeAscensionFlesh
+  name: heretic-knowledge-ascension-flesh-name
+  description: heretic-knowledge-ascension-flesh-desc
+  cost: 0
+  path: Flesh
+  setsPath: false
+  prerequisites: [ KnowledgeRitualOfSolitude ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: worm_ascend
+
+
+# ─── Путь Пустоты ───
+
+- type: hereticKnowledge
+  id: KnowledgeVoidTraveler
+  name: heretic-knowledge-void-traveler-name
+  description: heretic-knowledge-void-traveler-desc
+  cost: 1
+  path: Void
+  setsPath: true
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: node_void
+
+- type: hereticKnowledge
+  id: KnowledgeVoidPhase
+  name: heretic-knowledge-void-phase-name
+  description: heretic-knowledge-void-phase-desc
+  cost: 2
+  path: Void
+  setsPath: false
+  prerequisites: [ KnowledgeVoidTraveler ]
+  grantActions:
+  - ActionHereticVoidPhase
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: voidblink
+
+- type: hereticKnowledge
+  id: KnowledgeVoidPrison
+  name: heretic-knowledge-shop-void-prison-name
+  description: heretic-knowledge-shop-void-prison-desc
+  cost: 2
+  path: Void
+  setsPath: false
+  prerequisites: [ KnowledgeVoidPhase ]
+  grantActions: [ ActionHereticVoidPrison ]
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: voidball
+
+- type: hereticKnowledge
+  id: KnowledgeVoidWeave
+  name: heretic-knowledge-void-weave-name
+  description: heretic-knowledge-void-weave-desc
+  cost: 1
+  path: Void
+  setsPath: false
+  prerequisites: [ KnowledgeVoidPrison ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/heretic_robes.rsi
+    state: void_armor
+
+- type: hereticKnowledge
+  id: KnowledgeVoidPull
+  name: heretic-knowledge-void-pull-name
+  description: heretic-knowledge-void-pull-desc
+  cost: 2
+  path: Void
+  setsPath: false
+  prerequisites: [ KnowledgeVoidWeave ]
+  grantActions:
+  - ActionHereticVoidPull
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: voidpull
+
+- type: hereticKnowledge
+  id: KnowledgeVoidBladeUpgrade
+  name: heretic-knowledge-void-blade-upgrade-name
+  description: heretic-knowledge-void-blade-upgrade-desc
+  cost: 1
+  path: Void
+  setsPath: false
+  advancesShopLevel: false
+  prerequisites: [ KnowledgeVoidPull ]
+  grantActions:
+  - ActionHereticVoidSeekingBlade
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: blade_upgrade_void
+
+- type: hereticKnowledge
+  id: KnowledgeVoidConduit
+  name: heretic-knowledge-void-conduit-name
+  description: heretic-knowledge-void-conduit-desc
+  cost: 2
+  path: Void
+  setsPath: false
+  prerequisites: [ KnowledgeVoidBladeUpgrade ]
+  grantActions:
+  - ActionHereticVoidConduit
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: void_rift
+
+- type: hereticKnowledge
+  id: KnowledgeAscensionVoid
+  name: heretic-knowledge-ascension-void-name
+  description: heretic-knowledge-ascension-void-desc
+  cost: 0
+  path: Void
+  setsPath: false
+  prerequisites: [ KnowledgeVoidConduit ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: node_finished
+
+# ─── Путь Клинка ───
+
+- type: hereticKnowledge
+  id: KnowledgeBladeAdept
+  name: heretic-knowledge-blade-adept-name
+  description: heretic-knowledge-blade-adept-desc
+  cost: 1
+  path: Blade
+  setsPath: true
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: node_blade
+
+- type: hereticKnowledge
+  id: KnowledgeRealignment
+  name: heretic-knowledge-realignment-name
+  description: heretic-knowledge-realignment-desc
+  cost: 2
+  path: Blade
+  setsPath: false
+  prerequisites: [ KnowledgeBladeAdept ]
+  grantActions:
+  - ActionHereticRealignment
+  icon:
+    sprite: Imperial/heretic/implants.rsi
+    state: adrenal
+
+- type: hereticKnowledge
+  id: KnowledgeBladeStanceOfTornChampion
+  name: heretic-knowledge-shop-stance-of-torn-champion-name
+  description: heretic-knowledge-shop-stance-of-torn-champion-desc
+  cost: 2
+  path: Blade
+  setsPath: false
+  prerequisites: [ KnowledgeRealignment ]
+  conflictsWith: [ KnowledgeShopStanceOfTornChampion ]
+  grantActions: [ ActionHereticStanceOfTornChampion ]
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: blood_siphon
+
+- type: hereticKnowledge
+  id: KnowledgeBladeBrokenArmor
+  name: heretic-knowledge-blade-broken-armor-name
+  description: heretic-knowledge-blade-broken-armor-desc
+  cost: 1
+  path: Blade
+  setsPath: false
+  prerequisites: [ KnowledgeBladeStanceOfTornChampion ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/heretic_robes.rsi
+    state: blade_armor
+
+- type: hereticKnowledge
+  id: KnowledgeFuriousSteel
+  name: heretic-knowledge-furious-steel-name
+  description: heretic-knowledge-furious-steel-desc
+  cost: 1
+  path: Blade
+  setsPath: false
+  advancesShopLevel: false
+  prerequisites: [ KnowledgeBladeBrokenArmor ]
+  grantActions: [ ActionHereticSummonBlades, ActionHereticFuriousSteel ]
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: blade_upgrade_blade
+
+- type: hereticKnowledge
+  id: KnowledgeEmpoweredBlades
+  name: heretic-knowledge-empowered-blades-name
+  description: heretic-knowledge-empowered-blades-desc
+  cost: 2
+  path: Blade
+  setsPath: false
+  prerequisites: [ KnowledgeFuriousSteel ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: grasp_blade
+
+
+- type: hereticKnowledge
+  id: KnowledgeWolvesAmongSheep
+  name: heretic-knowledge-wolves-among-sheep-name
+  description: heretic-knowledge-wolves-among-sheep-desc
+  cost: 2
+  path: Blade
+  setsPath: false
+  prerequisites: [ KnowledgeEmpoweredBlades ]
+  grantActions: [ ActionHereticWolvesAmongSheep ]
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: among_sheep
+
+# Тир 6 — вознесение
+- type: hereticKnowledge
+  id: KnowledgeAscensionBlade
+  name: heretic-knowledge-ascension-blade-name
+  description: heretic-knowledge-ascension-blade-desc
+  cost: 0
+  path: Blade
+  setsPath: false
+  prerequisites: [ KnowledgeWolvesAmongSheep ]
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: blade_upgrade_blade
+
+- type: hereticKnowledge
+  id: KnowledgeLionhunterRifle
+  name: heretic-knowledge-lionhunter-rifle-name
+  description: heretic-knowledge-lionhunter-rifle-desc
+  cost: 2
+  path: General
+  setsPath: false
+  shopLevel: 2
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/lionhunter.rsi
+    state: base
+
+
+# ─── Путь Ржавчины ───
+
+- type: hereticKnowledge
+  id: KnowledgeRustReaper
+  name: heretic-knowledge-rust-reaper-name
+  description: heretic-knowledge-rust-reaper-desc
+  cost: 1
+  path: Rust
+  setsPath: true
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: node_rust
+
+- type: hereticKnowledge
+  id: KnowledgeRustConstruction
+  name: heretic-knowledge-rust-construction-name
+  description: heretic-knowledge-rust-construction-desc
+  cost: 2
+  path: Rust
+  setsPath: false
+  prerequisites: [ KnowledgeMarkOfRust ]
+  grantActions:
+  - ActionHereticRustConstruction
+  icon:
+    sprite: Structures/Walls/solid_rust.rsi
+    state: full
+
+- type: hereticKnowledge
+  id: KnowledgeRustSalvageRemnants
+  name: heretic-knowledge-rust-salvage-remnants-name
+  description: heretic-knowledge-rust-salvage-remnants-desc
+  cost: 1
+  path: Rust
+  setsPath: false
+  prerequisites: [ KnowledgeRustConstruction ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/heretic_robes.rsi
+    state: rust_armor
+
+- type: hereticKnowledge
+  id: KnowledgeRustEntropicPlume
+  name: heretic-knowledge-entropic-plume-name
+  description: heretic-knowledge-entropic-plume-desc
+  cost: 2
+  path: Rust
+  setsPath: false
+  prerequisites: [ KnowledgeRustSalvageRemnants ]
+  grantActions:
+  - ActionHereticEntropicPlume
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: entropic_plume
+
+- type: hereticKnowledge
+  id: KnowledgeMarkOfRust
+  name: heretic-knowledge-mark-of-rust-name
+  description: heretic-knowledge-mark-of-rust-desc
+  cost: 2
+  path: Rust
+  setsPath: false
+  prerequisites: [ KnowledgeRustReaper ]
+  grantActions:
+  - ActionHereticRustWalkerAggressiveSpread
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: corrode
+
+- type: hereticKnowledge
+  id: KnowledgeToxicBlade
+  name: heretic-knowledge-toxic-blade-name
+  description: heretic-knowledge-toxic-blade-desc
+  cost: 1
+  path: Rust
+  setsPath: false
+  advancesShopLevel: false
+  prerequisites: [ KnowledgeRustEntropicPlume ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: blade_upgrade_rust
+
+- type: hereticKnowledge
+  id: KnowledgeRustDash
+  name: heretic-knowledge-rust-dash-name
+  description: heretic-knowledge-rust-dash-desc
+  cost: 2
+  path: Rust
+  setsPath: false
+  prerequisites: [ KnowledgeToxicBlade ]
+  grantActions:
+  - ActionHereticRustDash
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: rust_wave
+
+# Тир 6 — вознесение
+- type: hereticKnowledge
+  id: KnowledgeAscensionRust
+  name: heretic-knowledge-ascension-rust-name
+  description: heretic-knowledge-ascension-rust-desc
+  cost: 0
+  path: Rust
+  setsPath: false
+  prerequisites: [ KnowledgeRustDash ]
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: node_finished
+
+# ─── Путь Луны ───
+
+# Тир 0 — выбор пути (без способностей)
+- type: hereticKnowledge
+  id: KnowledgeCallOfMoon
+  name: heretic-knowledge-call-of-moon-name
+  description: heretic-knowledge-call-of-moon-desc
+  cost: 1
+  path: Moon
+  setsPath: true
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: grasp_moon
+
+# Тир 1 — Врата Разума
+- type: hereticKnowledge
+  id: KnowledgeMoonGate
+  name: heretic-knowledge-moon-gate-name
+  description: heretic-knowledge-moon-gate-desc
+  cost: 2
+  path: Moon
+  setsPath: false
+  prerequisites: [ KnowledgeCallOfMoon ]
+  grantActions:
+  - ActionHereticMoonGate
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: mind_gate
+
+# Тир 2 — Лунный амулет
+- type: hereticKnowledge
+  id: KnowledgeMoonAmulet
+  name: heretic-knowledge-moon-amulet-name
+  description: heretic-knowledge-moon-amulet-desc
+  cost: 2
+  path: Moon
+  setsPath: false
+  prerequisites: [ KnowledgeMoonGate ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/eldritch.rsi
+    state: moon_amulette
+
+# Тир 3 — Блистательное облачение
+- type: hereticKnowledge
+  id: KnowledgeMoonGlitteringArray
+  name: heretic-knowledge-moon-glittering-array-name
+  description: heretic-knowledge-moon-glittering-array-desc
+  cost: 1
+  path: Moon
+  setsPath: false
+  prerequisites: [ KnowledgeMoonAmulet ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/heretic_robes.rsi
+    state: moon_armor
+
+# Тир 4 — Лунный парад
+- type: hereticKnowledge
+  id: KnowledgeMoonParade
+  name: heretic-knowledge-moon-parade-name
+  description: heretic-knowledge-moon-parade-desc
+  cost: 2
+  path: Moon
+  setsPath: false
+  prerequisites: [ KnowledgeMoonGlitteringArray ]
+  conflictsWith: [ KnowledgeShopMoonParade ]
+  grantActions:
+  - ActionHereticMoonParade
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: moon_parade
+
+# Тир 5 — Лунный клинок (апгрейд клинка)
+- type: hereticKnowledge
+  id: KnowledgeMoonBlade
+  name: heretic-knowledge-moon-blade-name
+  description: heretic-knowledge-moon-blade-desc
+  cost: 1
+  path: Moon
+  setsPath: false
+  advancesShopLevel: false
+  prerequisites: [ KnowledgeMoonParade ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: blade_upgrade_moon
+
+# Тир 6 — Восшествие Артистов (заклинание)
+- type: hereticKnowledge
+  id: KnowledgeMoonRingleader
+  name: heretic-knowledge-moon-ringleader-name
+  description: heretic-knowledge-moon-ringleader-desc
+  cost: 2
+  path: Moon
+  setsPath: false
+  prerequisites: [ KnowledgeMoonBlade ]
+  grantActions:
+  - ActionHereticMoonRingleader
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: moon_ringleader
+
+# Тир 7 — Вознесение Луны
+- type: hereticKnowledge
+  id: KnowledgeAscensionMoon
+  name: heretic-knowledge-ascension-moon-name
+  description: heretic-knowledge-ascension-moon-desc
+  cost: 0
+  path: Moon
+  setsPath: false
+  prerequisites: [ KnowledgeMoonRingleader ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: node_finished
+
+# ─── Путь Пустоты — расширение ───────────────────────────────────────────────
+
+- type: hereticKnowledge
+  id: KnowledgeWaveOfDesperation
+  name: heretic-knowledge-wave-of-desperation-name
+  description: heretic-knowledge-wave-of-desperation-desc
+  cost: 2
+  path: General
+  setsPath: false
+  shopLevel: 2
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions:
+  - ActionHereticWaveOfDesperation
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: uncuff
+
+- type: hereticKnowledge
+  id: KnowledgeMaidInMirror
+  name: heretic-knowledge-maid-in-mirror-name
+  description: heretic-knowledge-maid-in-mirror-desc
+  cost: 2
+  path: General
+  setsPath: false
+  shopLevel: 3
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: node_void
+
+
+# ─── Магазин знаний (Уровень 1, стоимость 1) ─────────────────────────────────
+
+- type: hereticKnowledge
+  id: KnowledgeWarrenKingGreeting
+  name: heretic-knowledge-warren-king-greeting-name
+  description: heretic-knowledge-warren-king-greeting-desc
+  cost: 1
+  path: General
+  setsPath: false
+  shopLevel: 1
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Objects/Misc/id_cards.rsi
+    state: default
+
+- type: hereticKnowledge
+  id: KnowledgeShopEldritchFlask
+  name: heretic-knowledge-shop-eldritch-flask-name
+  description: heretic-knowledge-shop-eldritch-flask-desc
+  cost: 1
+  path: General
+  setsPath: false
+  shopLevel: 1
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/eldritch.rsi
+    state: eldritch_flask
+
+- type: hereticKnowledge
+  id: KnowledgeShopEldritchMedallion
+  name: heretic-knowledge-shop-eldritch-medallion-name
+  description: heretic-knowledge-shop-eldritch-medallion-desc
+  cost: 1
+  path: General
+  setsPath: false
+  shopLevel: 1
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/eldritch.rsi
+    state: eye_medalion
+
+- type: hereticKnowledge
+  id: KnowledgeShopMawedCrucible
+  name: heretic-knowledge-shop-mawed-crucible-name
+  description: heretic-knowledge-shop-mawed-crucible-desc
+  cost: 1
+  path: General
+  setsPath: false
+  shopLevel: 1
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/eldritch.rsi
+    state: crucible_empty
+
+- type: hereticKnowledge
+  id: KnowledgeShopPhylactery
+  name: heretic-knowledge-shop-phylactery-name
+  description: heretic-knowledge-shop-phylactery-desc
+  cost: 1
+  path: General
+  setsPath: false
+  shopLevel: 1
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/eldritch.rsi
+    state: phylactery
+
+- type: hereticKnowledge
+  id: KnowledgeShopEldritchCoin
+  name: heretic-knowledge-shop-eldritch-coin-name
+  description: heretic-knowledge-shop-eldritch-coin-desc
+  cost: 1
+  path: General
+  setsPath: false
+  shopLevel: 1
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/economy.rsi
+    state: coin_heretic
+
+# ─── Магазин знаний (Уровень 2, стоимость 2) ─────────────────────────────────
+
+- type: hereticKnowledge
+  id: KnowledgeShopHeartbeatRitual
+  name: heretic-knowledge-shop-heartbeat-ritual-name
+  description: heretic-knowledge-shop-heartbeat-ritual-desc
+  cost: 2
+  path: General
+  setsPath: false
+  shopLevel: 2
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/actions_animal.rsi
+    state: gaze
+
+- type: hereticKnowledge
+  id: KnowledgeShopCodexMorbus
+  name: heretic-knowledge-shop-codex-morbus-name
+  description: heretic-knowledge-shop-codex-morbus-desc
+  cost: 2
+  path: General
+  setsPath: false
+  shopLevel: 2
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/eldritch.rsi
+    state: book_morbus
+
+# ─── Магазин знаний (Уровень 3, стоимость 2) ─────────────────────────────────
+
+- type: hereticKnowledge
+  id: KnowledgeShopRustWalker
+  name: heretic-knowledge-shop-rust-walker-name
+  description: heretic-knowledge-shop-rust-walker-desc
+  cost: 2
+  path: General
+  setsPath: false
+  shopLevel: 3
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/eldritch_mobs.rsi
+    state: rust_walker_s
+
+- type: hereticKnowledge
+  id: KnowledgeShopFireShark
+  name: heretic-knowledge-shop-fire-shark-name
+  description: heretic-knowledge-shop-fire-shark-desc
+  cost: 2
+  path: General
+  setsPath: false
+  shopLevel: 3
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/eldritch_mobs.rsi
+    state: fire_shark
+
+- type: hereticKnowledge
+  id: KnowledgeShopAshSpirit
+  name: heretic-knowledge-shop-ash-spirit-name
+  description: heretic-knowledge-shop-ash-spirit-desc
+  cost: 2
+  path: General
+  setsPath: false
+  shopLevel: 3
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/eldritch_mobs.rsi
+    state: ash_walker
+
+# ─── Магазин знаний (Уровень 4, стоимость 2) ─────────────────────────────────
+
+- type: hereticKnowledge
+  id: KnowledgeShopMoonParade
+  name: heretic-knowledge-shop-moon-parade-name
+  description: heretic-knowledge-shop-moon-parade-desc
+  cost: 3
+  path: General
+  setsPath: false
+  shopLevel: 5
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  conflictsWith: [ KnowledgeMoonParade ]
+  grantActions: [ ActionHereticMoonParade ]
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: moon_parade
+
+- type: hereticKnowledge
+  id: KnowledgeUnfathomableCurio
+  name: heretic-knowledge-unfathomable-curio-name
+  description: heretic-knowledge-unfathomable-curio-desc
+  cost: 2
+  path: General
+  setsPath: false
+  shopLevel: 4
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/unfathomable_curio.rsi
+    state: icon
+
+- type: hereticKnowledge
+  id: KnowledgeShopRustSowerGrenade
+  name: heretic-knowledge-shop-rust-sower-grenade-name
+  description: heretic-knowledge-shop-rust-sower-grenade-desc
+  cost: 2
+  path: General
+  setsPath: false
+  shopLevel: 4
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/heretic_grenade.rsi
+    state: rustgrenade
+
+- type: hereticKnowledge
+  id: KnowledgeShopCleave
+  name: heretic-knowledge-shop-cleave-name
+  description: heretic-knowledge-shop-cleave-desc
+  cost: 2
+  path: General
+  setsPath: false
+  shopLevel: 4
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: [ ActionHereticCleave ]
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: cleave
+
+- type: hereticKnowledge
+  id: KnowledgeShopCosmicPhase
+  name: heretic-knowledge-shop-cosmic-phase-name
+  description: heretic-knowledge-shop-cosmic-phase-desc
+  cost: 2
+  path: General
+  setsPath: false
+  shopLevel: 4
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: [ ActionHereticCosmicPhase ]
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: cosmic_domain
+
+# ─── Магазин знаний (Уровень 5, стоимость 3) ─────────────────────────────────
+
+- type: hereticKnowledge
+  id: KnowledgeShopLabyrinthHandbook
+  name: heretic-knowledge-shop-labyrinth-handbook-name
+  description: heretic-knowledge-shop-labyrinth-handbook-desc
+  cost: 3
+  path: General
+  setsPath: false
+  shopLevel: 5
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/heretic_labyrinth_handbook.rsi
+    state: heretichandbook
+
+- type: hereticKnowledge
+  id: KnowledgeShopVoidPrison
+  name: heretic-knowledge-shop-void-prison-name
+  description: heretic-knowledge-shop-void-prison-desc
+  cost: 3
+  path: General
+  setsPath: false
+  shopLevel: 5
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  conflictsWith: [ KnowledgeVoidPrison ]
+  grantActions: [ ActionHereticVoidPrison ]
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: voidball
+
+- type: hereticKnowledge
+  id: KnowledgeShopEntropicPlume
+  name: heretic-knowledge-shop-entropic-plume-name
+  description: heretic-knowledge-shop-entropic-plume-desc
+  cost: 3
+  path: General
+  setsPath: false
+  shopLevel: 5
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  conflictsWith: [ KnowledgeRustEntropicPlume ]
+  grantActions: [ ActionHereticEntropicPlume ]
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: entropic_plume
+
+- type: hereticKnowledge
+  id: KnowledgeShopStanceOfTornChampion
+  name: heretic-knowledge-shop-stance-of-torn-champion-name
+  description: heretic-knowledge-shop-stance-of-torn-champion-desc
+  cost: 3
+  path: General
+  setsPath: false
+  shopLevel: 5
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  conflictsWith: [ KnowledgeBladeStanceOfTornChampion ]
+  grantActions: [ ActionHereticStanceOfTornChampion ]
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: blood_siphon
+
+- type: hereticKnowledge
+  id: KnowledgeShopCosmicRune
+  name: heretic-knowledge-shop-cosmic-rune-name
+  description: heretic-knowledge-shop-cosmic-rune-desc
+  cost: 3
+  path: General
+  setsPath: false
+  shopLevel: 5
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  conflictsWith: [ KnowledgeCosmicRune ]
+  grantActions: [ ActionHereticCosmicRune ]
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: node_cosmos
+
+- type: hereticKnowledge
+  id: KnowledgeShopFleshWeave
+  name: heretic-knowledge-shop-flesh-weave-name
+  description: heretic-knowledge-shop-flesh-weave-desc
+  cost: 3
+  path: General
+  setsPath: false
+  shopLevel: 5
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  conflictsWith: [ KnowledgeFleshWeave ]
+  grantActions: [ ActionHereticFleshWeave ]
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: node_flesh
+
+- type: hereticKnowledge
+  id: KnowledgeShopAshenPassage
+  name: heretic-knowledge-ashen-passage-name
+  description: heretic-knowledge-ashen-passage-desc
+  cost: 3
+  path: General
+  setsPath: false
+  shopLevel: 5
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  conflictsWith: [ KnowledgeAshenPassage ]
+  grantActions: [ ActionHereticAshShift ]
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: ash_shift
+
+- type: hereticKnowledge
+  id: KnowledgeProphetGreaves
+  name: heretic-knowledge-prophet-greaves-name
+  description: heretic-knowledge-prophet-greaves-desc
+  cost: 2
+  path: General
+  setsPath: false
+  shopLevel: 2
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/prophet_greaves.rsi
+    state: icon
+
+- type: hereticKnowledge
+  id: KnowledgeCarvingKnife
+  name: heretic-knowledge-crafting-carving-knife-name
+  description: heretic-knowledge-crafting-carving-knife-desc
+  cost: 2
+  path: General
+  setsPath: false
+  shopLevel: 2
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/eldritch.rsi
+    state: rune_carver
+
+- type: hereticKnowledge
+  id: KnowledgeEtherNewborn
+  name: heretic-knowledge-ether-newborn-name
+  description: heretic-knowledge-ether-newborn-desc
+  cost: 2
+  path: General
+  setsPath: false
+  shopLevel: 2
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/eldritch.rsi
+    state: poison_flask
+
+# ─── Путь Космоса ───
+
+# ─── Путь замка ───
+
+- type: hereticKnowledge
+  id: KnowledgeLockwielder
+  name: heretic-knowledge-lockwielder-name
+  description: heretic-knowledge-lockwielder-desc
+  cost: 1
+  path: Lock
+  setsPath: true
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: node_lock
+
+- type: hereticKnowledge
+  id: KnowledgeKeyRing
+  name: heretic-knowledge-keyring-name
+  description: heretic-knowledge-keyring-desc
+  cost: 1
+  path: Lock
+  prerequisites: [ KnowledgeLockwielder ]
+  grantActions: []
+  icon:
+    sprite: Objects/Misc/id_cards.rsi
+    state: gold
+
+- type: hereticKnowledge
+  id: KnowledgeLockLabyrinthHandbook
+  name: heretic-knowledge-lock-labyrinth-handbook-name
+  description: heretic-knowledge-lock-labyrinth-handbook-desc
+  cost: 2
+  path: Lock
+  prerequisites: [ KnowledgeKeyRing ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/heretic_labyrinth_handbook.rsi
+    state: heretichandbook
+
+- type: hereticKnowledge
+  id: KnowledgeShiftingGuise
+  name: heretic-knowledge-shifting-guise-name
+  description: heretic-knowledge-shifting-guise-desc
+  cost: 1
+  path: Lock
+  prerequisites: [ KnowledgeLockLabyrinthHandbook ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/heretic_robes.rsi
+    state: lock_armor
+
+- type: hereticKnowledge
+  id: KnowledgeBurglarFinesse
+  name: ent-KnowledgeBurglarFinesse
+  description: ent-KnowledgeBurglarFinesse.desc
+  cost: 2
+  path: Lock
+  prerequisites: [ KnowledgeShiftingGuise ]
+  grantActions: [ ActionHereticBurglarFinesse ]
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: burglarsfinesse
+
+- type: hereticKnowledge
+  id: KnowledgeOpeningBlade
+  name: ent-KnowledgeOpeningBlade
+  description: ent-KnowledgeOpeningBlade.desc
+  cost: 1
+  path: Lock
+  advancesShopLevel: false
+  prerequisites: [ KnowledgeBurglarFinesse ]
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: blade_upgrade_lock
+
+- type: hereticKnowledge
+  id: KnowledgeCaretakerRefuge
+  name: ent-KnowledgeCaretakerRefuge
+  description: ent-KnowledgeCaretakerRefuge.desc
+  cost: 2
+  path: Lock
+  prerequisites: [ KnowledgeOpeningBlade ]
+  grantActions: [ ActionHereticCaretakerRefuge ]
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: caretaker
+
+- type: hereticKnowledge
+  id: KnowledgeAscensionLock
+  name: heretic-knowledge-ascension-lock-name
+  description: heretic-knowledge-ascension-lock-desc
+  cost: 0
+  path: Lock
+  setsPath: false
+  prerequisites: [ KnowledgeCaretakerRefuge ]
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: node_finished
+
+- type: hereticKnowledge
+  id: KnowledgeCosmicMark
+  name: heretic-knowledge-cosmic-mark-name
+  description: heretic-knowledge-cosmic-mark-desc
+  cost: 0
+  path: Cosmos
+  setsPath: true
+  prerequisites: [ KnowledgeBreakOfDawn ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: node_cosmos
+
+- type: hereticKnowledge
+  id: KnowledgeCosmicRune
+  name: heretic-knowledge-cosmic-rune-name
+  description: heretic-knowledge-cosmic-rune-desc
+  cost: 2
+  path: Cosmos
+  setsPath: false
+  prerequisites: [ KnowledgeCosmicMark ]
+  grantActions:
+  - ActionHereticCosmicRune
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: cosmic_rune
+
+- type: hereticKnowledge
+  id: KnowledgeStarBlast
+  name: heretic-knowledge-star-blast-name
+  description: heretic-knowledge-star-blast-desc
+  cost: 2
+  path: Cosmos
+  setsPath: false
+  prerequisites: [ KnowledgeCosmicRune ]
+  grantActions:
+  - ActionHereticStarBlast
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: star_blast
+
+- type: hereticKnowledge
+  id: KnowledgeCosmosCloak
+  name: heretic-knowledge-cosmos-cloak-name
+  description: heretic-knowledge-cosmos-cloak-desc
+  cost: 1
+  path: Cosmos
+  setsPath: false
+  prerequisites: [ KnowledgeStarBlast ]
+  icon:
+    sprite: Imperial/heretic/heretic_robes.rsi
+    state: cosmic_armor
+
+- type: hereticKnowledge
+  id: KnowledgeStarTouch
+  name: heretic-knowledge-star-touch-name
+  description: heretic-knowledge-star-touch-desc
+  cost: 2
+  path: Cosmos
+  setsPath: false
+  prerequisites: [ KnowledgeCosmosCloak ]
+  grantActions:
+  - ActionHereticStarTouch
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: star_touch
+
+- type: hereticKnowledge
+  id: KnowledgeCosmicBlade
+  name: heretic-knowledge-cosmic-blade-name
+  description: heretic-knowledge-cosmic-blade-desc
+  cost: 1
+  path: Cosmos
+  setsPath: false
+  advancesShopLevel: false
+  prerequisites: [ KnowledgeStarTouch ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: blade_upgrade_cosmos
+
+- type: hereticKnowledge
+  id: KnowledgeCosmicExpansion
+  name: heretic-knowledge-cosmic-expansion-name
+  description: heretic-knowledge-cosmic-expansion-desc
+  cost: 2
+  path: Cosmos
+  setsPath: false
+  prerequisites: [ KnowledgeCosmicBlade ]
+  grantActions:
+  - ActionHereticCosmicExpansion
+  icon:
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: cosmic_domain
+
+- type: hereticKnowledge
+  id: KnowledgeAscensionCosmos
+  name: heretic-knowledge-ascension-cosmos-name
+  description: heretic-knowledge-ascension-cosmos-desc
+  cost: 0
+  path: Cosmos
+  setsPath: false
+  prerequisites: [ KnowledgeCosmicExpansion ]
+  grantActions: []
+  icon:
+    sprite: Imperial/heretic/knowledge.rsi
+    state: node_cosmos

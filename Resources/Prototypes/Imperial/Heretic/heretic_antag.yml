@@ -1,0 +1,36 @@
+# ==============================================
+#  Еретик — Антаг, Роль, Снаряжение
+# ==============================================
+
+# ─── Антаг прототип ───
+
+- type: antag
+  id: Heretic
+  name: roles-antag-heretic-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-heretic-objective
+  guides: [ ]
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 2h
+
+# ─── Mind Role ───
+
+- type: entity
+  id: MindRoleHeretic
+  name: roles-antag-heretic-name
+  parent: BaseMindRoleAntag
+  components:
+  - type: MindRole
+    antagPrototype: Heretic
+    roleType: Antagonist
+    sortWeight: 65
+  - type: HereticRole
+
+# ─── Стартовое снаряжение ───
+
+- type: startingGear
+  id: HereticStartingGear
+  storage:
+    back: []

@@ -1,0 +1,23 @@
+# ==============================================
+#  Еретик — Категории для SpawnMenu
+# ==============================================
+
+- type: entityCategory
+  id: Heretic
+  name: entity-category-name-heretic
+
+- type: entityCategory
+  id: HereticBlade
+  name: entity-category-name-heretic-blade
+
+- type: entityCategory
+  id: HereticMantle
+  name: entity-category-name-heretic-mantle
+
+- type: entityCategory
+  id: HereticPainting
+  name: entity-category-name-heretic-painting
+
+- type: entityCategory
+  id: HereticCreature
+  name: entity-category-name-heretic-creature
