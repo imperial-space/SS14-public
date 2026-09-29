@@ -17,4 +17,8 @@ public sealed partial class HereticRealityRiftComponent : Component
     /// <summary>Seconds before the rift respawns as a visible breach after being absorbed.</summary>
     [DataField]
     public float RespawnDelay = 30f;
+
+    /// <summary>Серверное: когда разлом последний раз действовал на каждого еретика рядом.</summary>
+    [ViewVariables]
+    public Dictionary<EntityUid, TimeSpan> LastTriggerTimes = new();
 }

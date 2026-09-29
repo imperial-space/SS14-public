@@ -2,6 +2,7 @@ using System.Numerics;
 using System.Threading;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Systems;
+using Content.Server.Imperial.Heretic.Components;
 using Content.Server.Popups;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
@@ -21,6 +22,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Timing;
 using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.Imperial.Heretic;
@@ -36,9 +38,8 @@ public sealed class HereticAshSpiritSystem : EntitySystem
     [Dependency] private readonly MobStateSystem      _mobs      = default!;
     [Dependency] private readonly DamageableSystem    _damage    = default!;
     [Dependency] private readonly FlammableSystem     _flammable = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
-    private readonly Dictionary<EntityUid, CancellationTokenSource> _flameOathCancels = new();
-    private readonly Dictionary<EntityUid, EntityUid> _flameOathAudio = new();
 
     public override void Initialize()
     {
@@ -58,62 +59,70 @@ public sealed class HereticAshSpiritSystem : EntitySystem
         StartFlameOath(uid, 300);
     }
 
-    public void StartFlameOath(EntityUid uid, int ticksLeft)
+    public override void Update(float frameTime)
     {
-        if (_flameOathCancels.Remove(uid, out var oldCts))
-            oldCts.Cancel();
-        if (_flameOathAudio.Remove(uid, out var oldAudio))
-            _audio.Stop(oldAudio);
+        base.Update(frameTime);
 
-        var cts = new CancellationTokenSource();
-        _flameOathCancels[uid] = cts;
+        var now = _timing.CurTime;
+        var query = EntityQueryEnumerator<HereticFlameOathComponent, MobStateComponent>();
+        while (query.MoveNext(out var uid, out var oath, out var mobState))
+        {
+            if (now < oath.NextTick)
+                continue;
 
-        var audioEnt = _audio.PlayPvs(
+            if (oath.TicksLeft <= 0 || !_mobs.IsAlive(uid, mobState))
+            {
+                StopFlameOath((uid, oath));
+                continue;
+            }
+
+            oath.TicksLeft--;
+            oath.NextTick += oath.TickInterval;
+            BurnFlameOath((uid, oath));
+        }
+    }
+
+    public void StartFlameOath(EntityUid uid, int ticks)
+    {
+        var oath = EnsureComp<HereticFlameOathComponent>(uid);
+        _audio.Stop(oath.Audio);
+
+        oath.TicksLeft = ticks;
+        oath.NextTick = _timing.CurTime + oath.TickInterval;
+        oath.Audio = _audio.PlayPvs(
             new SoundPathSpecifier("/Audio/Imperial/Seriozha/SCP/fire.ogg"),
             uid,
             AudioParams.Default.WithLoop(true))?.Entity;
-        if (audioEnt.HasValue)
-            _flameOathAudio[uid] = audioEnt.Value;
-
-        FlameOathTick(uid, ticksLeft, cts.Token);
     }
 
-    private void FlameOathTick(EntityUid uid, int ticksLeft, CancellationToken token)
+    private void StopFlameOath(Entity<HereticFlameOathComponent> ent)
     {
-        if (ticksLeft <= 0)
+        _audio.Stop(ent.Comp.Audio);
+        RemCompDeferred<HereticFlameOathComponent>(ent);
+    }
+
+    private void BurnFlameOath(Entity<HereticFlameOathComponent> ent)
+    {
+        var origin = Transform(ent).Coordinates;
+
+        // Огонь на 9 тайлах 3x3. Сущности живут 0.5 сек — при движении
+        // старые тайлы гаснут, новые появляются, получается огненный след.
+        for (var dx = -1; dx <= 1; dx++)
         {
-            _flameOathCancels.Remove(uid);
-            if (_flameOathAudio.Remove(uid, out var audioEnt))
-                _audio.Stop(audioEnt);
-            return;
+            for (var dy = -1; dy <= 1; dy++)
+            {
+                Spawn(ent.Comp.FireEffect, origin.Offset(new Vector2(dx, dy)));
+            }
         }
 
-        Timer.Spawn(200, () =>
+        foreach (var target in _lookup.GetEntitiesInRange<MobStateComponent>(origin, ent.Comp.Radius))
         {
-            if (!Exists(uid)) return;
-            if (!TryComp<MobStateComponent>(uid, out var mobState) || !_mobs.IsAlive(uid, mobState)) return;
+            if (target.Owner == ent.Owner || !_mobs.IsAlive(target.Owner, target.Comp))
+                continue;
 
-            var origin = Transform(uid).Coordinates;
-
-            // Спавн огня на 9 тайлах 3x3. Сущности живут 0.5 сек — при движении духа
-            // старые тайлы гаснут, новые появляются → эффект огненного следа.
-            for (var dx = -1; dx <= 1; dx++)
-            for (var dy = -1; dy <= 1; dy++)
-                Spawn("HereticAshSpiritFire", origin.Offset(new Vector2(dx, dy)));
-
-            var dmg = new DamageSpecifier();
-            dmg.DamageDict["Heat"] = FixedPoint2.New(0.5f);
-
-            foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(origin, 1.5f))
-            {
-                if (ent.Owner == uid) continue;
-                if (!_mobs.IsAlive(ent.Owner, ent.Comp)) continue;
-                _damage.TryChangeDamage(ent.Owner, dmg, ignoreResistances: false);
-                _flammable.AdjustFireStacks(ent.Owner, 0.5f, ignite: true);
-            }
-
-            FlameOathTick(uid, ticksLeft - 1, token);
-        }, token);
+            _damage.TryChangeDamage(target.Owner, ent.Comp.Damage, ignoreResistances: false);
+            _flammable.AdjustFireStacks(target.Owner, ent.Comp.FireStacks, ignite: true);
+        }
     }
 
     private void OnShift(EntityUid uid, HereticAshSpiritComponent comp, HereticAshSpiritShiftActionEvent args)

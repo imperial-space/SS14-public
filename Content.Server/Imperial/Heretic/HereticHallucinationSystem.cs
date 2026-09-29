@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Server.Body;
+using Content.Server.Imperial.Heretic.Components;
 using Content.Shared.Damage.Components;
 using Content.Shared.Eye;
 using Content.Shared.Eye.Blinding.Systems;
@@ -49,9 +50,6 @@ public sealed class HereticHallucinationSystem : EntitySystem
     private const float GhostLifeMin     = 3f;
     private const float GhostLifeMax     = 6f;
 
-    private readonly Dictionary<EntityUid, TimeSpan>  _activeBlurs  = new();
-    private readonly Dictionary<EntityUid, EntityUid> _activeGhosts = new();
-
     public override void Initialize()
     {
         base.Initialize();
@@ -80,27 +78,22 @@ public sealed class HereticHallucinationSystem : EntitySystem
 
         var now = _timing.CurTime;
 
-        // Remove expired blurs
-        var expiredBlurs = new List<EntityUid>();
-        foreach (var (uid, restoreTime) in _activeBlurs)
+        var targets = EntityQueryEnumerator<HereticHallucinationTargetComponent>();
+        while (targets.MoveNext(out var uid, out var target))
         {
-            if (now < restoreTime) continue;
-            expiredBlurs.Add(uid);
-            if (Exists(uid))
+            if (target.BlurEndTime is { } blurEnd && now >= blurEnd)
+            {
+                target.BlurEndTime = null;
                 _blindable.AdjustEyeDamage((uid, null), -BlurAmount);
-        }
-        foreach (var uid in expiredBlurs)
-            _activeBlurs.Remove(uid);
+            }
 
-        // Clear ghost slots when the entity has despawned (TimedDespawnComponent handles deletion)
-        var expiredGhosts = new List<EntityUid>();
-        foreach (var (ownerUid, ghostUid) in _activeGhosts)
-        {
-            if (!Exists(ghostUid))
-                expiredGhosts.Add(ownerUid);
+            // Призрак удаляется сам через TimedDespawnComponent — просто освобождаем слот.
+            if (target.Ghost is { } ghost && !Exists(ghost))
+                target.Ghost = null;
+
+            if (target.BlurEndTime == null && target.Ghost == null)
+                RemCompDeferred<HereticHallucinationTargetComponent>(uid);
         }
-        foreach (var uid in expiredGhosts)
-            _activeGhosts.Remove(uid);
 
         // Trigger periodic hallucinations
         var query = EntityQueryEnumerator<HereticWeeepingHallucinationStatusEffectComponent, StatusEffectComponent>();
@@ -118,11 +111,12 @@ public sealed class HereticHallucinationSystem : EntitySystem
 
     private void TriggerHallucination(EntityUid target)
     {
-        if (!_activeBlurs.ContainsKey(target))
+        var state = EnsureComp<HereticHallucinationTargetComponent>(target);
+        if (state.BlurEndTime == null)
         {
             var duration = _random.NextFloat(3f, 5f);
             _blindable.AdjustEyeDamage((target, null), BlurAmount);
-            _activeBlurs[target] = _timing.CurTime + TimeSpan.FromSeconds(duration);
+            state.BlurEndTime = _timing.CurTime + TimeSpan.FromSeconds(duration);
         }
 
         var soundPath = _random.Pick(HallucinationSounds);
@@ -131,11 +125,11 @@ public sealed class HereticHallucinationSystem : EntitySystem
         else
             _audio.PlayPvs(new SoundPathSpecifier(soundPath), target);
 
-        if (!_activeGhosts.ContainsKey(target) && _random.Prob(GhostSpawnChance))
-            SpawnGhostIllusion(target);
+        if (state.Ghost == null && _random.Prob(GhostSpawnChance))
+            state.Ghost = SpawnGhostIllusion(target);
     }
 
-    private void SpawnGhostIllusion(EntityUid target)
+    private EntityUid? SpawnGhostIllusion(EntityUid target)
     {
         var angle  = _random.NextFloat(0f, MathF.PI * 2f);
         var dist   = _random.NextFloat(0.5f, GhostMaxDist);
@@ -143,9 +137,9 @@ public sealed class HereticHallucinationSystem : EntitySystem
         var coords = Transform(target).Coordinates.Offset(offset);
 
         if (!TryComp<HumanoidProfileComponent>(target, out var humanoid))
-            return;
+            return null;
         if (!_prototype.Resolve(humanoid.Species, out var speciesProto))
-            return;
+            return null;
 
         var ghost = Spawn(speciesProto.Prototype, coords);
 
@@ -168,6 +162,6 @@ public sealed class HereticHallucinationSystem : EntitySystem
         _metaData.SetEntityName(ghost, targetMeta.EntityName);
         _metaData.SetEntityDescription(ghost, targetMeta.EntityDescription);
 
-        _activeGhosts[target] = ghost;
+        return ghost;
     }
 }

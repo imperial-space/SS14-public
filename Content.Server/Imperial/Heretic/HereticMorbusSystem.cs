@@ -1,3 +1,4 @@
+using Content.Server.Imperial.Heretic.Components;
 using Content.Server.Popups;
 using Content.Server.Traits.Assorted;
 using Content.Shared.Damage;
@@ -25,8 +26,6 @@ public sealed class HereticMorbusSystem : EntitySystem
     [Dependency] private readonly PopupSystem          _popup         = default!;
     [Dependency] private readonly StatusEffectsSystem  _statusEffects = default!;
     [Dependency] private readonly SharedAudioSystem    _audio         = default!;
-
-    private readonly Dictionary<EntityUid, TimeSpan> _hallucinationCooldowns = new();
 
     public override void Initialize()
     {
@@ -89,10 +88,11 @@ public sealed class HereticMorbusSystem : EntitySystem
             return;
 
         var now = _timing.CurTime;
-        if (_hallucinationCooldowns.TryGetValue(examiner, out var next) && now < next)
+        var cooldown = EnsureComp<HereticMorbusHallucinationCooldownComponent>(examiner);
+        if (now < cooldown.NextHallucination)
             return;
 
-        _hallucinationCooldowns[examiner] = now + TimeSpan.FromSeconds(60);
+        cooldown.NextHallucination = now + TimeSpan.FromSeconds(60);
 
         _statusEffects.TryAddStatusEffectDuration(examiner, "HereticWeeepingHallucinationStatusEffect", TimeSpan.FromSeconds(30));
         if (!EnsureComp<ParacusiaComponent>(examiner, out var paracusia))

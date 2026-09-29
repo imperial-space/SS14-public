@@ -7,4 +7,9 @@ namespace Content.Shared.Imperial.Heretic.Components;
 /// Client reacts by enabling the greyscale screen overlay.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-public sealed partial class BreachGrayScaleComponent : Component { }
+public sealed partial class BreachGrayScaleComponent : Component
+{
+    /// <summary>Серверное: когда эффект снимется.</summary>
+    [ViewVariables]
+    public TimeSpan EndTime;
+}

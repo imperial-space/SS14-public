@@ -85,8 +85,6 @@ public sealed class HereticRuneSystem : EntitySystem
     private const float DrawTime     = 22.0f; // full cycle of transmutation_rune_draw_colour
     private const float DrawTimeFast =  8.2f; // full active portion of transmutation_rune_fast_colour (before 20s hold)
 
-    private readonly Dictionary<EntityUid, EntityUid> _drawEffects = new();
-
     public override void Initialize()
     {
         base.Initialize();
@@ -277,13 +275,18 @@ public sealed class HereticRuneSystem : EntitySystem
         });
 
         var drawEffect = drawEffectEntity ?? (drawTime < DrawTime ? "HereticEffectRuneDrawFast" : "HereticEffectRuneDraw");
-        _drawEffects[uid] = Spawn(drawEffect, Transform(uid).Coordinates);
+        EnsureComp<HereticRuneDrawingComponent>(uid).Effect = Spawn(drawEffect, Transform(uid).Coordinates);
     }
 
     private void OnDrawRuneDoAfter(EntityUid uid, HereticComponent comp, DrawHereticRuneDoAfterEvent args)
     {
-        if (_drawEffects.Remove(uid, out var effect) && Exists(effect))
-            Del(effect);
+        if (TryComp<HereticRuneDrawingComponent>(uid, out var drawing))
+        {
+            if (Exists(drawing.Effect))
+                Del(drawing.Effect);
+
+            RemCompDeferred<HereticRuneDrawingComponent>(uid);
+        }
 
         if (args.Cancelled || args.Handled)
             return;

@@ -1,4 +1,5 @@
 using Content.Server.DoAfter;
+using Content.Server.Imperial.Heretic.Components;
 using Content.Server.Popups;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.DoAfter;
@@ -54,11 +55,6 @@ public sealed class HereticRealityRiftSystem : EntitySystem
         "heretic-dream-rift-loc-4",
     };
 
-    // (rift uid, heretic uid) → last trigger time
-    private readonly Dictionary<(EntityUid, EntityUid), TimeSpan> _lastTrigger = new();
-    // heretic uid → count of active FOV effects (prevents double-toggle when 2 rifts in range)
-    private readonly Dictionary<EntityUid, int>  _fovEffectCount = new();
-    private readonly Dictionary<EntityUid, bool> _fovOriginalState = new();
     private float _updateTimer;
 
     public override void Initialize()
@@ -69,8 +65,6 @@ public sealed class HereticRealityRiftSystem : EntitySystem
         SubscribeLocalEvent<HereticComponent, ComponentShutdown>(OnHereticShutdown);
         SubscribeLocalEvent<HereticComponent, GetVisMaskEvent>(OnHereticVisMask);
         SubscribeLocalEvent<HereticComponent, SleepStateChangedEvent>(OnHereticSleep);
-
-        SubscribeLocalEvent<HereticRealityRiftComponent, ComponentRemove>(OnRiftRemoved);
         SubscribeLocalEvent<HereticRealityRiftComponent, InteractHandEvent>(OnRiftInteract);
         SubscribeLocalEvent<HereticComponent, AbsorbRealityRiftDoAfterEvent>(OnAbsorbDoAfter);
     }
@@ -79,24 +73,35 @@ public sealed class HereticRealityRiftSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        var now = _timing.CurTime;
+        var fovQuery = EntityQueryEnumerator<HereticRiftFovEffectComponent>();
+        while (fovQuery.MoveNext(out var fovUid, out var fov))
+        {
+            if (now < fov.EndTime)
+                continue;
+
+            if (TryComp<EyeComponent>(fovUid, out var eye))
+                _eye.SetDrawFov(fovUid, fov.OriginalDrawFov, eye);
+
+            RemCompDeferred<HereticRiftFovEffectComponent>(fovUid);
+        }
+
         _updateTimer += frameTime;
         if (_updateTimer < UpdateInterval)
             return;
         _updateTimer = 0f;
 
-        var now = _timing.CurTime;
         var riftQuery = EntityQueryEnumerator<HereticRealityRiftComponent, TransformComponent>();
-        while (riftQuery.MoveNext(out var riftUid, out _, out var riftXform))
+        while (riftQuery.MoveNext(out var riftUid, out var rift, out var riftXform))
         {
             var riftPos = _xform.GetMapCoordinates(riftUid, riftXform);
 
             foreach (var hEnt in _lookup.GetEntitiesInRange<HereticComponent>(riftPos, RiftRange))
             {
-                var key = (riftUid, hEnt.Owner);
-                if (_lastTrigger.TryGetValue(key, out var last) && now - last < TriggerCooldown)
+                if (rift.LastTriggerTimes.TryGetValue(hEnt.Owner, out var last) && now - last < TriggerCooldown)
                     continue;
 
-                _lastTrigger[key] = now;
+                rift.LastTriggerTimes[hEnt.Owner] = now;
                 TriggerRiftEffect(hEnt.Owner);
             }
         }
@@ -107,30 +112,14 @@ public sealed class HereticRealityRiftSystem : EntitySystem
         if (!TryComp<EyeComponent>(hUid, out var eye))
             return;
 
-        _fovEffectCount.TryGetValue(hUid, out var count);
-        if (count == 0)
+        if (!TryComp<HereticRiftFovEffectComponent>(hUid, out var fov))
         {
-            _fovOriginalState[hUid] = eye.DrawFov;
+            fov = AddComp<HereticRiftFovEffectComponent>(hUid);
+            fov.OriginalDrawFov = eye.DrawFov;
             _eye.SetDrawFov(hUid, !eye.DrawFov, eye);
         }
-        _fovEffectCount[hUid] = count + 1;
 
-        Timer.Spawn(ZoomDuration, () =>
-        {
-            if (!_fovEffectCount.TryGetValue(hUid, out var c))
-                return;
-            c--;
-            if (c <= 0)
-            {
-                _fovEffectCount.Remove(hUid);
-                if (_fovOriginalState.Remove(hUid, out var origFov) && TryComp<EyeComponent>(hUid, out var eyeNow))
-                    _eye.SetDrawFov(hUid, origFov, eyeNow);
-            }
-            else
-            {
-                _fovEffectCount[hUid] = c;
-            }
-        });
+        fov.EndTime = _timing.CurTime + ZoomDuration;
 
         _audio.PlayGlobal(
             new SoundPathSpecifier("/Audio/Imperial/heretic/i_see_you1.ogg"),
@@ -200,26 +189,13 @@ public sealed class HereticRealityRiftSystem : EntitySystem
         return string.IsNullOrWhiteSpace(bestText) ? null : bestText;
     }
 
-    private void OnRiftRemoved(EntityUid uid, HereticRealityRiftComponent _, ComponentRemove args)
-    {
-        var toRemove = new List<(EntityUid, EntityUid)>();
-        foreach (var key in _lastTrigger.Keys)
-        {
-            if (key.Item1 == uid)
-                toRemove.Add(key);
-        }
-        foreach (var key in toRemove)
-            _lastTrigger.Remove(key);
-    }
-
     private void OnHereticStartup(EntityUid uid, HereticComponent _, ComponentStartup args)
         => _eye.RefreshVisibilityMask(uid);
 
     private void OnHereticShutdown(EntityUid uid, HereticComponent _, ComponentShutdown args)
     {
         _eye.RefreshVisibilityMask(uid);
-        _fovEffectCount.Remove(uid);
-        _fovOriginalState.Remove(uid);
+        RemCompDeferred<HereticRiftFovEffectComponent>(uid);
     }
 
     private void OnHereticVisMask(EntityUid uid, HereticComponent _, ref GetVisMaskEvent args)

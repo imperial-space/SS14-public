@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Chat.Managers;
+using Content.Server.Imperial.Heretic.Components;
 using Content.Shared.Body;
 using Content.Shared.Chat;
 using Content.Shared.Examine;
@@ -39,11 +40,6 @@ public sealed class HereticRealityBreachSystem : EntitySystem
         "heretic-breach-heretic-examine-6",
     };
 
-    // playerUid → (examine count within window, window start)
-    private readonly Dictionary<EntityUid, (int count, TimeSpan start)> _examineData = new();
-
-    // playerUid → (touch count within window, window start)
-    private readonly Dictionary<EntityUid, (int count, TimeSpan start)> _touchData = new();
     private static readonly TimeSpan TouchWindow = TimeSpan.FromSeconds(60);
     private const int TouchTriggerCount = 4;
 
@@ -53,6 +49,19 @@ public sealed class HereticRealityBreachSystem : EntitySystem
         SubscribeLocalEvent<HereticRealityBreachComponent, ExaminedEvent>(OnBreachExamined);
         SubscribeLocalEvent<HereticRealityBreachComponent, InteractHandEvent>(OnBreachInteract);
         SubscribeLocalEvent<HereticRealityBreachComponent, ActivateInWorldEvent>(OnBreachActivate);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var now = _timing.CurTime;
+        var query = EntityQueryEnumerator<BreachGrayScaleComponent>();
+        while (query.MoveNext(out var uid, out var grayScale))
+        {
+            if (now >= grayScale.EndTime)
+                RemCompDeferred<BreachGrayScaleComponent>(uid);
+        }
     }
 
     private void OnBreachExamined(EntityUid uid, HereticRealityBreachComponent _, ExaminedEvent args)
@@ -97,19 +106,22 @@ public sealed class HereticRealityBreachSystem : EntitySystem
 
         var now = _timing.CurTime;
 
-        if (!_touchData.TryGetValue(player, out var data) || now - data.start > TouchWindow)
-            data = (0, now);
+        var interaction = EnsureComp<HereticBreachInteractionComponent>(player);
+        if (now - interaction.TouchWindowStart > TouchWindow)
+        {
+            interaction.TouchCount = 0;
+            interaction.TouchWindowStart = now;
+        }
 
-        data.count++;
-        _touchData[player] = data;
-
-        if (data.count < TouchTriggerCount)
+        interaction.TouchCount++;
+        if (interaction.TouchCount < TouchTriggerCount)
         {
             SendMessageToPlayer(player, Loc.GetString("heretic-breach-nonheretic-interact"));
             return;
         }
 
-        _touchData.Remove(player);
+        interaction.TouchCount = 0;
+        interaction.TouchWindowStart = now;
         TryAmputateActiveHand(player);
         SendMessageToPlayer(player, Loc.GetString("heretic-breach-nonheretic-hand-ripped"));
     }
@@ -140,26 +152,25 @@ public sealed class HereticRealityBreachSystem : EntitySystem
     {
         var now = _timing.CurTime;
 
-        if (!_examineData.TryGetValue(player, out var data) || now - data.start > ExamineWindow)
-            data = (0, now);
+        var interaction = EnsureComp<HereticBreachInteractionComponent>(player);
+        if (now - interaction.ExamineWindowStart > ExamineWindow)
+        {
+            interaction.ExamineCount = 0;
+            interaction.ExamineWindowStart = now;
+        }
 
-        data.count++;
-        _examineData[player] = data;
-
-        if (data.count < ExamineTriggerCount)
+        interaction.ExamineCount++;
+        if (interaction.ExamineCount < ExamineTriggerCount)
             return;
 
-        _examineData.Remove(player);
+        interaction.ExamineCount = 0;
+        interaction.ExamineWindowStart = now;
 
         if (HasComp<BreachGrayScaleComponent>(player))
             return;
 
-        AddComp<BreachGrayScaleComponent>(player);
-        Timer.Spawn(GrayScaleDuration, () =>
-        {
-            if (Exists(player))
-                RemCompDeferred<BreachGrayScaleComponent>(player);
-        });
+        var grayScale = AddComp<BreachGrayScaleComponent>(player);
+        grayScale.EndTime = now + GrayScaleDuration;
     }
 
     private void SendMessageToPlayer(EntityUid uid, string message)

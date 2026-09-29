@@ -23,8 +23,6 @@ public sealed class HereticCosmicFieldSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem       _xform    = default!;
     [Dependency] private readonly IGameTiming                 _timing   = default!;
 
-    private readonly Dictionary<EntityUid, TimeSpan> _pushImmunity  = new();
-    private readonly HashSet<EntityUid>               _slowedByField = new();
 
     private TimeSpan _nextProximityCheck;
     private static readonly TimeSpan ProximityCheckInterval = TimeSpan.FromSeconds(0.25);
@@ -42,19 +40,7 @@ public sealed class HereticCosmicFieldSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        // Чистим истёкшие записи иммунитета к отталкиванию
         var now = _timing.CurTime;
-        var expired = new List<EntityUid>();
-        foreach (var (ent, until) in _pushImmunity)
-        {
-            if (until <= now)
-                expired.Add(ent);
-        }
-        foreach (var key in expired)
-            _pushImmunity.Remove(key);
-
-        // Чистим удалённые снаряды из set'а замедленных
-        _slowedByField.RemoveWhere(e => TerminatingOrDeleted(e));
 
         var doProximityCheck = now >= _nextProximityCheck;
         if (doProximityCheck)
@@ -123,9 +109,10 @@ public sealed class HereticCosmicFieldSystem : EntitySystem
         // Уровень 3: замедлить снаряд, влетевший в поле (0.2× скорость)
         if (comp.PassiveLevel >= 3 && HasComp<ProjectileComponent>(other))
         {
-            if (!_slowedByField.Contains(other) && TryComp<PhysicsComponent>(other, out var projPhys))
+            var projAffected = EnsureComp<HereticCosmicFieldAffectedComponent>(other);
+            if (!projAffected.ProjectileSlowed && TryComp<PhysicsComponent>(other, out var projPhys))
             {
-                _slowedByField.Add(other);
+                projAffected.ProjectileSlowed = true;
                 _physics.SetLinearVelocity(other, projPhys.LinearVelocity * 0.2f, body: projPhys);
             }
             return;
@@ -137,10 +124,11 @@ public sealed class HereticCosmicFieldSystem : EntitySystem
         if (HasComp<StarMarkComponent>(other) && !HasComp<HereticComponent>(other))
         {
             // Блокировка входа: отталкиваем помеченного не-еретика за границу поля
-            if (!_pushImmunity.TryGetValue(other, out var immuneUntil) || immuneUntil <= _timing.CurTime)
+            var mobAffected = EnsureComp<HereticCosmicFieldAffectedComponent>(other);
+            if (mobAffected.PushImmuneUntil <= _timing.CurTime)
             {
                 PushMobOutside(uid, other);
-                _pushImmunity[other] = _timing.CurTime + TimeSpan.FromSeconds(0.5);
+                mobAffected.PushImmuneUntil = _timing.CurTime + TimeSpan.FromSeconds(0.5);
             }
             return;
         }

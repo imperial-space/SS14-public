@@ -22,23 +22,15 @@ public sealed class HereticBladePassiveSystem : EntitySystem
     private static readonly TimeSpan DefaultCooldown = TimeSpan.FromSeconds(20);
     private static readonly TimeSpan Level3Cooldown  = TimeSpan.FromSeconds(10);
 
-    private readonly Dictionary<EntityUid, TimeSpan> _counterCooldowns = new();
-
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<HereticBladePassiveComponent, AttackedEvent>(OnAttacked);
-        SubscribeLocalEvent<HereticBladePassiveComponent, ComponentShutdown>(OnShutdown);
     }
 
     public void ApplyPassiveLevel1(EntityUid uid)
     {
         EnsureComp<HereticBladePassiveComponent>(uid);
-    }
-
-    private void OnShutdown(EntityUid uid, HereticBladePassiveComponent comp, ComponentShutdown args)
-    {
-        _counterCooldowns.Remove(uid);
     }
 
     private void OnAttacked(EntityUid uid, HereticBladePassiveComponent comp, AttackedEvent args)
@@ -52,7 +44,7 @@ public sealed class HereticBladePassiveSystem : EntitySystem
         var now = _gameTiming.CurTime;
         var cooldown = heretic.PassiveLevel >= 3 ? Level3Cooldown : DefaultCooldown;
 
-        if (_counterCooldowns.TryGetValue(uid, out var lastUsed) && now < lastUsed + cooldown)
+        if (comp.LastCounterTime is { } lastUsed && now < lastUsed + cooldown)
             return;
 
         var holdsKnife = false;
@@ -67,7 +59,7 @@ public sealed class HereticBladePassiveSystem : EntitySystem
         if (!holdsKnife)
             return;
 
-        _counterCooldowns[uid] = now;
+        comp.LastCounterTime = now;
 
         var damage = new DamageSpecifier();
         damage.DamageDict["Slash"] = FixedPoint2.New(20);
