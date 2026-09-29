@@ -5,7 +5,6 @@ using Content.Shared.Alert;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared.Maths;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -41,7 +40,7 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
 
         private readonly SpriteView _icon;
         private readonly CooldownGraphic _cooldownGraphic;
-        private Label? _countLabel;
+        private Label? _countLabel; // Imperial Space - счётчик на иконке алерта
 
         private EntityUid _spriteViewEntity;
 
@@ -79,6 +78,7 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
             };
             Children.Add(_cooldownGraphic);
 
+            // Imperial Space start - счётчик на иконке алерта
             if (Alert.ShowCount && Alert.SupportsSeverity)
             {
                 _countLabel = new Label
@@ -90,6 +90,7 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
                 Children.Add(_countLabel);
                 UpdateCountLabel();
             }
+            // Imperial Space end
         }
 
         private Control SupplyTooltip(Control? sender)
@@ -114,9 +115,10 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
             if (_sprite.LayerMapTryGet((_spriteViewEntity, sprite), AlertVisualLayers.Base, out var layer, false))
                 _sprite.LayerSetSprite((_spriteViewEntity, sprite), layer, icon);
 
-            UpdateCountLabel();
+            UpdateCountLabel(); // Imperial Space
         }
 
+        // Imperial Space start - счётчик на иконке алерта
         private void UpdateCountLabel()
         {
             if (_countLabel == null)
@@ -125,6 +127,7 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
             var max = Alert.MaxSeverity * Alert.CountMultiplier;
             _countLabel.Text = $"{val}/{max}";
         }
+        // Imperial Space end
 
         protected override void FrameUpdate(FrameEventArgs args)
         {

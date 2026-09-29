@@ -24,7 +24,7 @@
     tags:
     - ClothMade
     - WhitelistChameleon
-    - ClothingHead
+    - ClothingHead # Imperial Space - ингредиент ритуалов еретика
 
 - type: entity
   abstract: true

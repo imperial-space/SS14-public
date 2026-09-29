@@ -831,9 +831,6 @@
 - type: Tag
   id: JawsOfLife # Storage whitelist: BaseClothingBeltEngineering. ItemMapper: BaseClothingBeltEngineering
 
-- type: Tag
-  id: Jumpsuit # HereticRitual: RitualShopMaidInMirror ingredient
-
 ## K ##
 
 - type: Tag
@@ -1288,15 +1285,6 @@
 
 - type: Tag
   id: Shiv # CargoBounty: BountyShiv
-
-- type: Tag
-  id: Shoes # HereticRitual: RitualProphetGreaves ingredient
-
-- type: Tag
-  id: OuterClothing # HereticRitual: RitualScorchedMantle и другие ингредиенты
-
-- type: Tag
-  id: ClothingHead # HereticRitual: RitualScorchedMantle ингредиент
 
 - type: Tag
   id: Sidearm # Storage whitelist: ClothingBeltSecurity, ClothingShoesMilitaryBase

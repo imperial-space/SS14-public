@@ -91,6 +91,7 @@ public sealed partial class AlertPrototype : IPrototype, IInheritingPrototype
     [DataField]
     public bool ClientHandled = false;
 
+    // Imperial Space start - счётчик на иконке алерта
     /// <summary>
     /// If true, displays a numeric count label over the alert icon based on severity.
     /// </summary>
@@ -103,6 +104,7 @@ public sealed partial class AlertPrototype : IPrototype, IInheritingPrototype
     /// </summary>
     [DataField]
     public int CountMultiplier = 1;
+    // Imperial Space end
 
     /// <summary>
     /// Event raised on the user when they click on this alert.

@@ -8,9 +8,11 @@
     - outerClothing
   - type: Sprite
     state: icon
+  # Imperial Space start - ингредиент ритуалов еретика
   - type: Tag
     tags:
     - OuterClothing
+  # Imperial Space end
 
 - type: entity
   abstract: true
