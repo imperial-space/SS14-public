@@ -1,3 +1,4 @@
+using Content.Shared.Imperial.Heretic.Core;
 using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
 
@@ -8,7 +9,7 @@ namespace Content.Shared.Imperial.Heretic.Paths.Blade;
 /// Mansus Grasp on them, which consumes the mark and grants the heretic an orbiting blade.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-public sealed partial class HereticBladeMarkComponent : Component
+public sealed partial class HereticBladeMarkComponent : Component, IHereticMarkComponent
 {
     [DataField]
     public EntityUid Heretic = EntityUid.Invalid;
@@ -18,4 +19,10 @@ public sealed partial class HereticBladeMarkComponent : Component
 
     [DataField]
     public SpriteSpecifier MarkSprite = new SpriteSpecifier.Rsi(new ResPath("Imperial/heretic/tag.rsi"), "blade");
+
+    [DataField]
+    public TimeSpan Lifetime { get; set; } = TimeSpan.FromSeconds(15);
+
+    [ViewVariables]
+    public TimeSpan ExpireTime { get; set; }
 }

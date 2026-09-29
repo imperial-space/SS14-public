@@ -35,6 +35,7 @@ using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Ash;
 using Content.Shared.Imperial.Heretic.Paths.Blade;
 using Content.Shared.Imperial.Heretic.Paths.Cosmos;
+using Content.Shared.Imperial.Heretic.Paths.Flesh;
 using Content.Shared.Imperial.Heretic.Paths.Lock;
 using Content.Shared.Imperial.Heretic.Paths.Moon;
 using Content.Shared.Imperial.Heretic.Paths.Rust;
@@ -358,7 +359,7 @@ public sealed partial class HereticSystem
     {
         var mark = EnsureComp<HereticBladeMarkComponent>(target);
         mark.Heretic = heretic;
-        mark.LockedDoors.Clear();
+        _marks.Refresh(mark);
 
         var coords = Transform(target).Coordinates;
         foreach (var door in _lookup.GetEntitiesInRange<DoorBoltComponent>(coords, BladeMarkLockRadius))
@@ -376,7 +377,7 @@ public sealed partial class HereticSystem
     {
         if (!TryComp<HereticBladeMarkComponent>(target, out var mark) || mark.Heretic != heretic)
             return false;
-        RemoveBladeMark(target, mark);
+        RemoveBladeMark(target);
         SpawnOrbitingBlade(heretic);
         _popup.PopupEntity(Loc.GetString("heretic-grasp-mark-blade-removed"), target, target, PopupType.MediumCaution);
         return true;
@@ -470,14 +471,9 @@ public sealed partial class HereticSystem
         });
     }
 
-    private void RemoveBladeMark(EntityUid target, HereticBladeMarkComponent mark)
+    private void RemoveBladeMark(EntityUid target)
     {
-        foreach (var door in mark.LockedDoors)
-        {
-            if (Exists(door) && TryComp<DoorBoltComponent>(door, out var boltComp))
-                _door.TrySetBoltDown((door, boltComp), false);
-        }
-
+        // Двери разблокирует HereticMarkSystem при снятии компонента.
         RemComp<HereticBladeMarkComponent>(target);
     }
 
@@ -491,7 +487,7 @@ public sealed partial class HereticSystem
                     _statusEffects.TryAddStatusEffect<TemporaryBlindnessComponent>(
                         target, TemporaryBlindnessSystem.BlindingStatusEffect, TimeSpan.FromSeconds(20), true);
                     _flammable.AdjustFireStacks(target, 3f, ignite: true);
-                    EnsureComp<AshMarkComponent>(target);
+                    _marks.Refresh(EnsureComp<AshMarkComponent>(target));
                     break;
                 }
             case HereticPath.Moon:
@@ -506,13 +502,14 @@ public sealed partial class HereticSystem
                     // Цель: галлюцинации 20 сек + -30 рассудка
                     _hereticEffects.ApplyHallucination(target, TimeSpan.FromSeconds(20));
                     _moonBrainDamage.AddBrainDamage(target, 30f);
-                    EnsureComp<MoonMarkComponent>(target);
+                    _marks.Refresh(EnsureComp<MoonMarkComponent>(target));
                     _popup.PopupEntity(Loc.GetString("heretic-grasp-mark-moon"), target, target, PopupType.SmallCaution);
                     break;
                 }
             case HereticPath.Lock:
                 {
                     var lockMark = EnsureComp<LockMarkComponent>(target);
+                    _marks.Refresh(lockMark);
                     if (_inventory.TryGetSlotEntity(target, "id", out var idSlotItem))
                     {
                         var cardId = idSlotItem.Value;
@@ -536,24 +533,27 @@ public sealed partial class HereticSystem
                 voidGraspDmg.DamageDict["Blunt"] = FixedPoint2.New(10);
                 _damageSystem.TryChangeDamage(target, voidGraspDmg, ignoreResistances: false);
                 _hereticEffects.ApplyVoidChill(target, 2);
-                EnsureComp<VoidMarkComponent>(target);
+                _marks.Refresh(EnsureComp<VoidMarkComponent>(target));
                 _popup.PopupEntity(Loc.GetString("heretic-grasp-mark-void"), target, target, PopupType.SmallCaution);
                 break;
             case HereticPath.Blade:
                 if (comp.ResearchedKnowledge.Contains("KnowledgeSanguineSurge"))
                     _bloodstream.TryModifyBleedAmount(target, 5f);
-                if (comp.ResearchedKnowledge.Contains("KnowledgeMarkOfBlade"))
-                    ApplyBladeMark(heretic, target);
+                ApplyBladeMark(heretic, target);
                 break;
-            case HereticPath.Rust when comp.ResearchedKnowledge.Contains("KnowledgeCorrode"):
+            case HereticPath.Flesh:
+                _marks.Refresh(EnsureComp<FleshMarkComponent>(target));
+                _popup.PopupEntity(Loc.GetString("heretic-grasp-mark-flesh"), target, target, PopupType.SmallCaution);
+                break;
+            case HereticPath.Rust:
                 {
                     var dmg = new DamageSpecifier();
                     dmg.DamageDict["Caustic"] = FixedPoint2.New(10);
                     _damageSystem.TryChangeDamage(target, dmg, ignoreResistances: false);
 
-                    if (comp.ResearchedKnowledge.Contains("KnowledgeMarkOfRust") && !HasComp<RustMarkComponent>(target))
+                    if (comp.ResearchedKnowledge.Contains("KnowledgeMarkOfRust"))
                     {
-                        EnsureComp<RustMarkComponent>(target);
+                        _marks.Refresh(EnsureComp<RustMarkComponent>(target));
                         _popup.PopupEntity(Loc.GetString("heretic-grasp-mark-rust"), target, target, PopupType.SmallCaution);
                     }
                     break;
@@ -566,19 +566,7 @@ public sealed partial class HereticSystem
                     if (mark.AnchorEntity.HasValue && !TerminatingOrDeleted(mark.AnchorEntity.Value))
                         QueueDel(mark.AnchorEntity.Value);
                     mark.AnchorEntity = Spawn("HereticCosmicDiamondAnchor", Transform(target).Coordinates);
-                    var capturedTarget = target;
-                    var capturedAnchor = mark.AnchorEntity.Value;
-                    Timer.Spawn(TimeSpan.FromSeconds(15), () =>
-                    {
-                        if (Deleted(capturedTarget) || !TryComp<CosmosMarkComponent>(capturedTarget, out var m))
-                            return;
-                        if (m.AnchorEntity == capturedAnchor)
-                        {
-                            if (!TerminatingOrDeleted(capturedAnchor))
-                                QueueDel(capturedAnchor);
-                            RemCompDeferred<CosmosMarkComponent>(capturedTarget);
-                        }
-                    });
+                    _marks.Refresh(mark);
                     _popup.PopupEntity(Loc.GetString("heretic-grasp-mark-cosmos"), target, target, PopupType.SmallCaution);
                     break;
                 }

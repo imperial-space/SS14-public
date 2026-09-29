@@ -117,6 +117,7 @@ public sealed partial class HereticSystem : SharedHereticSystem
     [Dependency] private readonly SharedAccessSystem _access = default!;
     [Dependency] private readonly SharedStealthSystem _stealth = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly HereticMarkSystem _marks = default!;
     [Dependency] private readonly HereticMoonBrainDamageSystem _moonBrainDamage = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly HereticAshPassiveSystem _ashPassive = default!;
