@@ -1,4 +1,4 @@
-using Content.Server.Chemistry.Containers.EntitySystems;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Server.Decals;
 using Content.Shared.Body.Components;
 using Content.Shared.Damage;
@@ -17,7 +17,7 @@ namespace Content.Server.Imperial.Heretic;
 public sealed class HereticRustPassiveSystem : EntitySystem
 {
     [Dependency] private readonly DamageableSystem           _damageable        = default!;
-    [Dependency] private readonly SolutionContainerSystem    _solutionContainer = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem    _solutionContainer = default!;
     [Dependency] private readonly SharedTransformSystem      _xform             = default!;
     [Dependency] private readonly EntityLookupSystem         _lookup            = default!;
     [Dependency] private readonly DecalSystem                _decal             = default!;

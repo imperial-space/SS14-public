@@ -44,7 +44,6 @@ public sealed class HereticVoidAscensionSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedWeatherSystem _weather = default!;
-    [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly TemperatureSystem _temperature = default!;
     [Dependency] private readonly VisualBodySystem _visualBody = default!;

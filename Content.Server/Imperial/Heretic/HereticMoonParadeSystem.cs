@@ -17,7 +17,6 @@ namespace Content.Server.Imperial.Heretic;
 
 public sealed class HereticMoonParadeSystem : EntitySystem
 {
-    [Dependency] private readonly ChatSystem                  _chat           = default!;
     [Dependency] private readonly SharedAudioSystem          _audio          = default!;
     [Dependency] private readonly SharedPhysicsSystem        _physics        = default!;
     [Dependency] private readonly SharedTransformSystem      _xform          = default!;

@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Text;
 using System.Numerics;
+using Content.Shared.Speech.EntitySystems;
 using Content.Shared.PDA;
 using CancellationTokenSource = System.Threading.CancellationTokenSource;
 using Content.Shared.Tag;
@@ -102,6 +103,7 @@ public sealed class HereticSystem : SharedHereticSystem
     [Dependency] private readonly RoleSystem            _role     = default!;
     [Dependency] private readonly SharedHandsSystem     _hands    = default!;
     [Dependency] private readonly SharedStunSystem      _stun     = default!;
+    [Dependency] private readonly SharedStutteringSystem _stuttering = default!;
     [Dependency] private readonly SharedTransformSystem _xform    = default!;
     [Dependency] private readonly UserInterfaceSystem   _ui           = default!;
     [Dependency] private readonly DamageableSystem        _damageSystem      = default!;
@@ -111,7 +113,6 @@ public sealed class HereticSystem : SharedHereticSystem
     [Dependency] private readonly SharedAudioSystem          _audio          = default!;
     [Dependency] private readonly BlindableSystem            _blindable      = default!;
     [Dependency] private readonly FlammableSystem            _flammable      = default!;
-    [Dependency] private readonly IdentitySystem             _identity       = default!;
     [Dependency] private readonly HereticPathActionsSystem   _pathActions    = default!;
     [Dependency] private readonly DoorSystem                 _door           = default!;
     [Dependency] private readonly SharedMechSystem           _mech           = default!;
@@ -133,12 +134,10 @@ public sealed class HereticSystem : SharedHereticSystem
     [Dependency] private readonly HereticAshPassiveSystem      _ashPassive      = default!;
     [Dependency] private readonly HereticMoonPassiveSystem     _moonPassive     = default!;
     [Dependency] private readonly HereticLockPassiveSystem     _lockPassive     = default!;
-    [Dependency] private readonly HereticFleshPassiveSystem    _fleshPassive    = default!;
     [Dependency] private readonly HereticBladePassiveSystem    _bladePassive    = default!;
     [Dependency] private readonly HereticVoidPassiveSystem     _voidPassive     = default!;
     [Dependency] private readonly HereticRustPassiveSystem     _rustPassive     = default!;
     [Dependency] private readonly HereticCosmosPassiveSystem   _cosmosPassive   = default!;
-    [Dependency] private readonly IGameTiming                  _timing          = default!;
 
     private const string RustDecalId = "Rust";
 
@@ -1230,7 +1229,7 @@ public sealed class HereticSystem : SharedHereticSystem
             if (_random.Prob(0.5f))
             {
                 _chat.TryEmoteWithChat(victim, "Scream", ChatTransmitRange.Normal, ignoreActionBlocker: true);
-                _statusEffects.TryAddStatusEffect(victim, "Stutter", TimeSpan.FromSeconds(26), true, "StutteringAccentComponent");
+                _stuttering.DoStutter(victim, TimeSpan.FromSeconds(26), true);
             }
         }
 

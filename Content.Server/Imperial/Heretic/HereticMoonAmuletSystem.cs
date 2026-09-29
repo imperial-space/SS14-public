@@ -25,9 +25,7 @@ public sealed class HereticMoonAmuletSystem : EntitySystem
     [Dependency] private readonly InventorySystem           _inventory     = default!;
     [Dependency] private readonly StatusEffectsSystem       _statusEffects = default!;
     [Dependency] private readonly SharedStunSystem          _stun          = default!;
-    [Dependency] private readonly HereticMoonBrainDamageSystem _brainDamage = default!;
     [Dependency] private readonly HereticStatusEffectsSystem   _hereticEffects = default!;
-    [Dependency] private readonly MobStateSystem            _mobs          = default!;
     [Dependency] private readonly SharedPopupSystem         _popup         = default!;
     [Dependency] private readonly IGameTiming               _gameTiming    = default!;
 

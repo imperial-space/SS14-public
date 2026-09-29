@@ -11,6 +11,7 @@ namespace Content.Server.Imperial.Heretic;
 public sealed class HereticAlertRuneSystem : EntitySystem
 {
     [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
 
     public override void Initialize()
     {
@@ -34,7 +35,7 @@ public sealed class HereticAlertRuneSystem : EntitySystem
             return;
 
         var targetName = Name(args.Tripper);
-        var beaconName = FindNearestBeacon(Transform(ent.Owner).MapPosition);
+        var beaconName = FindNearestBeacon(_xform.GetMapCoordinates(ent.Owner));
 
         var rawMsg = Loc.GetString("heretic-carving-alert-rune-triggered",
             ("name", targetName),
@@ -49,12 +50,12 @@ public sealed class HereticAlertRuneSystem : EntitySystem
         var minDist = float.MaxValue;
 
         var query = EntityQueryEnumerator<NavMapBeaconComponent, TransformComponent>();
-        while (query.MoveNext(out _, out var beacon, out var xform))
+        while (query.MoveNext(out var beaconUid, out var beacon, out var xform))
         {
             if (!beacon.Enabled)
                 continue;
 
-            var beaconPos = xform.MapPosition;
+            var beaconPos = _xform.GetMapCoordinates(beaconUid, xform);
             if (beaconPos.MapId != runePos.MapId)
                 continue;
 

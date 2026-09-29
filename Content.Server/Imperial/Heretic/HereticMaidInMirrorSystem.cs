@@ -228,7 +228,7 @@ public sealed class HereticMaidInMirrorSystem : EntitySystem
         maid.MirrorBallUid = ballUid;
         maid.IsInMirrorWorld = true;
 
-        _xform.DetachParentToNull(uid, Transform(uid));
+        _xform.DetachEntity(uid, Transform(uid));
 
         var ballVisibility = EnsureComp<VisibilityComponent>(ballUid);
         _visibility.AddLayer((ballUid, ballVisibility), (int)VisibilityFlags.Ghost, false);

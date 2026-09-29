@@ -16,7 +16,6 @@ public sealed class HereticMoonBrainDamageSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly MobStateSystem _mobs = default!;
 
     private static readonly EntProtoId HallucinationId = "HereticWeeepingHallucinationStatusEffect";
 

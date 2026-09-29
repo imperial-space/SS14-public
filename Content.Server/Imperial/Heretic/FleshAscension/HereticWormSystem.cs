@@ -166,7 +166,7 @@ public sealed class HereticWormSystem : EntitySystem
             wormComp.Segments.Add(seg);
         }
 
-        _transform.DetachParentToNull(heretic, Transform(heretic));
+        _transform.DetachEntity(heretic, Transform(heretic));
         _mind.TransferTo(mindId, wormUid, ghostCheckOverride: true);
 
         if (TryComp<HereticComponent>(heretic, out var hComp))

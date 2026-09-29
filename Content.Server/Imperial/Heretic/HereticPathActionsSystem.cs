@@ -105,6 +105,8 @@ using Robust.Shared.Collections;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 
+using NewStatusEffectsSystem = Content.Shared.StatusEffectNew.StatusEffectsSystem;
+
 namespace Content.Server.Imperial.Heretic;
 
 /// <summary>
@@ -118,7 +120,6 @@ public sealed class HereticPathActionsSystem : EntitySystem
 
     [Dependency] private readonly SharedCuffableSystem  _cuffs   = default!;
     [Dependency] private readonly DamageableSystem      _damage  = default!;
-    [Dependency] private readonly DoorSystem            _door    = default!;
     [Dependency] private readonly EntityLookupSystem    _lookup  = default!;
     [Dependency] private readonly MobStateSystem        _mobs    = default!;
     [Dependency] private readonly PopupSystem           _popup   = default!;
@@ -134,6 +135,7 @@ public sealed class HereticPathActionsSystem : EntitySystem
     [Dependency] private readonly InventorySystem        _inventory = default!;
     [Dependency] private readonly SharedContainerSystem  _container = default!;
     [Dependency] private readonly StatusEffectsSystem    _statusEffects = default!;
+    [Dependency] private readonly NewStatusEffectsSystem _status = default!;
     [Dependency] private readonly TagSystem              _tag          = default!;
     [Dependency] private readonly HereticStatusEffectsSystem _hereticEffects = default!;
     [Dependency] private readonly FlammableSystem        _flammable    = default!;
@@ -145,9 +147,7 @@ public sealed class HereticPathActionsSystem : EntitySystem
     [Dependency] private readonly HereticMoonAmuletSystem      _moonAmulet      = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private readonly MovementModStatusSystem     _movementMod   = default!;
-    [Dependency] private readonly SharedPhysicsSystem         _physics       = default!;
     [Dependency] private readonly GodmodeSystem               _godmode       = default!;
-    [Dependency] private readonly SharedAccessSystem          _access        = default!;
     [Dependency] private readonly SharedBloodstreamSystem     _bloodstream   = default!;
     [Dependency] private readonly IChatManager                _chatManager   = default!;
     [Dependency] private readonly ChatSystem                  _chat          = default!;
@@ -163,7 +163,6 @@ public sealed class HereticPathActionsSystem : EntitySystem
     [Dependency] private readonly HereticArenaSystem        _arena           = default!;
     [Dependency] private readonly SharedMeleeWeaponSystem   _melee           = default!;
     [Dependency] private readonly SharedCombatModeSystem    _combatMode      = default!;
-    [Dependency] private readonly DoAfterSystem              _doAfter         = default!;
     [Dependency] private readonly HereticMoonBrainDamageSystem _brainDamage   = default!;
     [Dependency] private readonly PolymorphSystem               _polymorph     = default!;
     [Dependency] private readonly HereticVoidPrisonSystem      _voidPrison    = default!;
@@ -171,13 +170,9 @@ public sealed class HereticPathActionsSystem : EntitySystem
     [Dependency] private readonly VisualBodySystem              _visualBody    = default!;
     [Dependency] private readonly IPrototypeManager             _prototype     = default!;
     [Dependency] private readonly SharedMapSystem               _map           = default!;
-    [Dependency] private readonly SharedInteractionSystem       _interaction   = default!;
 
     private static readonly ProtoId<TagPrototype> HereticBladeTag = "HereticBlade";
-    private static readonly ProtoId<TagPrototype> KnifeTag = "Knife";
 
-    private static readonly EntProtoId FireRingOathActionId        = "ActionHereticFireRingOath";
-    private static readonly EntProtoId FireCascadeActionId          = "ActionHereticFireCascade";
     private static readonly EntProtoId GreatFireCascadeActionId     = "ActionHereticGreatFireCascade";
     private static readonly EntProtoId AshSpiritFlameOathActionId   = "ActionHereticAshSpiritFlameOath";
 
@@ -533,7 +528,7 @@ public sealed class HereticPathActionsSystem : EntitySystem
         _visibility.RemoveLayer((orbUid, vis), (int)VisibilityFlags.Normal, false);
         _visibility.RefreshVisibility(orbUid, visibilityComponent: vis);
 
-        _xform.DetachParentToNull(uid, Transform(uid));
+        _xform.DetachEntity(uid, Transform(uid));
 
         _mind.TransferTo(mindId, orbUid, ghostCheckOverride: true);
         _eye.RefreshVisibilityMask(orbUid);
@@ -2594,9 +2589,9 @@ public sealed class HereticPathActionsSystem : EntitySystem
         if (comp.StunAbsorptionRechargeDoneAt.HasValue && _timing.CurTime < comp.StunAbsorptionRechargeDoneAt.Value)
             return; // absorption depleted, stun passes through
 
-        if (_statusEffects.TryGetTime(uid, "Stun", out var stunTime))
+        if (_status.TryGetTime(uid, SharedStunSystem.StunId, out var stunTime) && stunTime.EndEffectTime is { } stunEnd)
         {
-            var remaining = stunTime.Value.Item2 - _timing.CurTime;
+            var remaining = stunEnd - _timing.CurTime;
             if (remaining > TimeSpan.Zero)
             {
                 comp.StunAbsorbedSeconds += (float) remaining.TotalSeconds;
@@ -2614,8 +2609,7 @@ public sealed class HereticPathActionsSystem : EntitySystem
             }
         }
 
-        _statusEffects.TryRemoveStatusEffect(uid, "Stun");
-        _statusEffects.TryRemoveStatusEffect(uid, "KnockedDown");
+        _stun.TryUnstun(uid);
         _statusEffects.TryRemoveStatusEffect(uid, "SlowedDown");
     }
 
@@ -2720,7 +2714,7 @@ public sealed class HereticPathActionsSystem : EntitySystem
         {
             if (ent.Owner == uid) continue;
             if (HasComp<HereticComponent>(ent.Owner)) continue;
-            _statusEffects.TryAddStatusEffect<StarMarkStatusEffectComponent>(ent.Owner, "StarMarkStatusEffect", TimeSpan.FromSeconds(30), true);
+            _hereticEffects.AddStarMark(ent.Owner, TimeSpan.FromSeconds(30));
         }
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_magic_cosmic_expansion.ogg"), uid);
@@ -2748,8 +2742,7 @@ public sealed class HereticPathActionsSystem : EntitySystem
     {
         if (!_heretic.IsTileRusted(Transform(uid).Coordinates)) return;
 
-        _statusEffects.TryRemoveStatusEffect(uid, "Stun");
-        _statusEffects.TryRemoveStatusEffect(uid, "KnockedDown");
+        _stun.TryUnstun(uid);
         _statusEffects.TryRemoveStatusEffect(uid, "SlowedDown");
     }
 
@@ -2960,7 +2953,7 @@ public sealed class HereticPathActionsSystem : EntitySystem
                 _stun.TryKnockdown(target, TimeSpan.FromSeconds(2), true);
             }
 
-            _statusEffects.TryAddStatusEffect<StarMarkStatusEffectComponent>(target, "StarMarkStatusEffect", TimeSpan.FromSeconds(30), true);
+            _hereticEffects.AddStarMark(target, TimeSpan.FromSeconds(30));
 
             _damage.TryChangeDamage(target,
                 new DamageSpecifier { DamageDict = { ["Radiation"] = FixedPoint2.New(5) } },

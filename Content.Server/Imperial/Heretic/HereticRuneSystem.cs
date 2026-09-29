@@ -57,7 +57,6 @@ public sealed class HereticRuneSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem         _lookup       = default!;
     [Dependency] private readonly HereticSystem               _heretic      = default!;
     [Dependency] private readonly HereticAshPassiveSystem      _ashPassive    = default!;
-    [Dependency] private readonly HereticMoonPassiveSystem     _moonPassive   = default!;
     [Dependency] private readonly HereticFleshPassiveSystem    _fleshPassive  = default!;
     [Dependency] private readonly HereticVoidPassiveSystem     _voidPassive   = default!;
     [Dependency] private readonly HereticRustPassiveSystem     _rustPassive     = default!;

@@ -1,9 +1,9 @@
 using Content.Server.Damage.Systems;
+using Content.Shared.Speech.EntitySystems;
 using Content.Shared.Imperial.Heretic.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
-using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 
 namespace Content.Server.Imperial.Heretic;
@@ -14,7 +14,7 @@ public sealed class LionhunterRifleSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private readonly SharedStutteringSystem _stuttering = default!;
     [Dependency] private readonly HereticSystem _hereticSystem = default!;
 
     private const float MinAimedDistance = 4f;
@@ -42,8 +42,7 @@ public sealed class LionhunterRifleSystem : EntitySystem
         {
             _stamina.TakeStaminaDamage(args.Target, 60f, visual: true);
             _stun.TryKnockdown(args.Target, TimeSpan.FromSeconds(0.5), true);
-            _statusEffects.TryAddStatusEffect(args.Target, "Stutter",
-                TimeSpan.FromSeconds(6), true, "StutteringAccentComponent");
+            _stuttering.DoStutter(args.Target, TimeSpan.FromSeconds(6), true);
 
             if (TryComp<HereticComponent>(shooter, out var hereticComp))
                 _hereticSystem.ApplyGraspMark(shooter, hereticComp, args.Target);

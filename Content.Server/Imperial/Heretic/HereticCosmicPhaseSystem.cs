@@ -84,7 +84,7 @@ public sealed class HereticCosmicPhaseSystem : EntitySystem
         _visibility.RefreshVisibility(ghostUid, visibilityComponent: vis);
 
         EnsureComp<PressureImmunityComponent>(uid);
-        _xform.DetachParentToNull(uid, Transform(uid));
+        _xform.DetachEntity(uid, Transform(uid));
 
         _mind.TransferTo(mindId, ghostUid, ghostCheckOverride: true);
         _eye.RefreshVisibilityMask(ghostUid);
