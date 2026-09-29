@@ -9,42 +9,15 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.Imperial.Heretic;
 
+/// <summary>
+/// Пока на локальном игроке висит галлюцинация Плачущих, остальные гуманоиды выглядят еретиками.
+/// </summary>
 public sealed class HereticWeeepingHallucinationOverlaySystem : EntitySystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly SpriteSystem   _sprite = default!;
-    [Dependency] private readonly IRobustRandom  _random = default!;
-
-    private bool _active;
-
-    // Per-entity variant index: 0 = default heretic gear, 1 = moon path gear
-    private readonly Dictionary<EntityUid, int> _entityVariants = new();
-    private readonly HashSet<EntityUid>          _affected       = new();
-
-    // Variant 0: default heretic uniform
-    private static readonly SpriteSpecifier.Rsi DefaultArmorSpec = new(
-        new ResPath("Imperial/Other/Heretic/Clothes/HereticRobe.rsi"),
-        "equipped-OUTERCLOTHING");
-
-    private static readonly SpriteSpecifier.Rsi DefaultHoodSpec = new(
-        new ResPath("Imperial/Other/Heretic/Clothes/HereticHelmet.rsi"),
-        "equipped-HELMET");
-
-    // Variant 1: moon path armor
-    private static readonly SpriteSpecifier.Rsi MoonArmorSpec = new(
-        new ResPath("Imperial/heretic/heretic_robes.rsi"),
-        "moon_armor_worn");
-
-    private static readonly SpriteSpecifier.Rsi MoonHoodSpec = new(
-        new ResPath("Imperial/heretic/heretic_hoods.rsi"),
-        "moon_armor_worn");
-
-    // Moon blade overlay (right hand), shown with variant 1
-    private static readonly SpriteSpecifier.Rsi MoonBladeSpec = new(
-        new ResPath("Imperial/heretic/blade_moon_inhand.rsi"),
-        "moon_blade-inhand-right");
-
-    private enum HallucinationKey { Armor, Hood, Blade }
+    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
 
     public override void Initialize()
     {
@@ -61,19 +34,21 @@ public sealed class HereticWeeepingHallucinationOverlaySystem : EntitySystem
     {
         if (_player.LocalEntity != args.Target)
             return;
-        Activate();
+
+        Activate(ent.Comp);
     }
 
     private void OnRemoved(Entity<HereticWeeepingHallucinationStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
     {
         if (_player.LocalEntity != args.Target)
             return;
+
         Deactivate();
     }
 
     private void OnPlayerAttached(Entity<HereticWeeepingHallucinationStatusEffectComponent> ent, ref StatusEffectRelayedEvent<LocalPlayerAttachedEvent> args)
     {
-        Activate();
+        Activate(ent.Comp);
     }
 
     private void OnPlayerDetached(Entity<HereticWeeepingHallucinationStatusEffectComponent> ent, ref StatusEffectRelayedEvent<LocalPlayerDetachedEvent> args)
@@ -81,83 +56,79 @@ public sealed class HereticWeeepingHallucinationOverlaySystem : EntitySystem
         Deactivate();
     }
 
-    private void OnHumanoidAdded(EntityUid uid, HumanoidProfileComponent comp, ComponentStartup args)
+    private void OnHumanoidAdded(Entity<HumanoidProfileComponent> ent, ref ComponentStartup args)
     {
-        if (!_active || uid == _player.LocalEntity)
+        if (_player.LocalEntity is not { } player || ent.Owner == player)
             return;
-        AddLayers(uid);
+
+        if (!_statusEffects.TryEffectsWithComp<HereticWeeepingHallucinationStatusEffectComponent>(player, out var effects))
+            return;
+
+        foreach (var effect in effects)
+        {
+            AddLayers(ent, effect.Comp1);
+            return;
+        }
     }
 
-    private void Activate()
+    private void Activate(HereticWeeepingHallucinationStatusEffectComponent hallucination)
     {
-        _active = true;
         var query = EntityQueryEnumerator<HumanoidProfileComponent, SpriteComponent>();
         while (query.MoveNext(out var uid, out _, out _))
         {
             if (uid == _player.LocalEntity)
                 continue;
-            AddLayers(uid);
+
+            AddLayers(uid, hallucination);
         }
     }
 
     private void Deactivate()
     {
-        _active = false;
-        foreach (var uid in _affected)
+        var query = EntityQueryEnumerator<HereticWeepingHallucinationVisualsComponent, SpriteComponent>();
+        while (query.MoveNext(out var uid, out _, out var sprite))
         {
-            if (!TryComp<SpriteComponent>(uid, out var sprite))
-                continue;
-            Entity<SpriteComponent?> ent = new(uid, sprite);
-            RemoveLayerIfExists(ent, HallucinationKey.Armor);
-            RemoveLayerIfExists(ent, HallucinationKey.Hood);
-            RemoveLayerIfExists(ent, HallucinationKey.Blade);
+            Entity<SpriteComponent?> ent = (uid, sprite);
+            RemoveLayerIfExists(ent, HereticWeepingHallucinationLayers.Armor);
+            RemoveLayerIfExists(ent, HereticWeepingHallucinationLayers.Hood);
+            RemoveLayerIfExists(ent, HereticWeepingHallucinationLayers.Blade);
+            RemCompDeferred<HereticWeepingHallucinationVisualsComponent>(uid);
         }
-        _affected.Clear();
-        _entityVariants.Clear();
     }
 
-    private void RemoveLayerIfExists(Entity<SpriteComponent?> ent, HallucinationKey key)
+    private void RemoveLayerIfExists(Entity<SpriteComponent?> ent, HereticWeepingHallucinationLayers key)
     {
         if (_sprite.LayerMapTryGet(ent, key, out var layer, false))
             _sprite.RemoveLayer(ent, layer);
     }
 
-    private void AddLayers(EntityUid uid)
+    private void AddLayers(EntityUid uid, HereticWeeepingHallucinationStatusEffectComponent hallucination)
     {
-        if (_affected.Contains(uid))
-            return;
-        if (!TryComp<SpriteComponent>(uid, out var sprite))
+        if (HasComp<HereticWeepingHallucinationVisualsComponent>(uid) || !TryComp<SpriteComponent>(uid, out var sprite))
             return;
 
-        // Assign a random outfit variant for this entity (0 = default, 1 = moon)
-        var variant = _random.Next(0, 2);
-        _entityVariants[uid] = variant;
+        AddComp<HereticWeepingHallucinationVisualsComponent>(uid);
+        Entity<SpriteComponent?> ent = (uid, sprite);
 
-        Entity<SpriteComponent?> ent = new(uid, sprite);
-
-        if (variant == 0)
+        // Случайный вариант: обычная роба еретика или снаряжение пути Луны.
+        if (_random.Prob(0.5f))
         {
-            // Default heretic uniform
-            AddLayerIfMissing(ent, HallucinationKey.Armor, DefaultArmorSpec);
-            AddLayerIfMissing(ent, HallucinationKey.Hood, DefaultHoodSpec);
-        }
-        else
-        {
-            // Moon path gear
-            AddLayerIfMissing(ent, HallucinationKey.Armor, MoonArmorSpec);
-            AddLayerIfMissing(ent, HallucinationKey.Hood, MoonHoodSpec);
-            // 50% chance to also show the moon blade in right hand
-            if (_random.Prob(0.5f))
-                AddLayerIfMissing(ent, HallucinationKey.Blade, MoonBladeSpec);
+            AddLayerIfMissing(ent, HereticWeepingHallucinationLayers.Armor, hallucination.DefaultArmorSprite);
+            AddLayerIfMissing(ent, HereticWeepingHallucinationLayers.Hood, hallucination.DefaultHoodSprite);
+            return;
         }
 
-        _affected.Add(uid);
+        AddLayerIfMissing(ent, HereticWeepingHallucinationLayers.Armor, hallucination.MoonArmorSprite);
+        AddLayerIfMissing(ent, HereticWeepingHallucinationLayers.Hood, hallucination.MoonHoodSprite);
+        if (_random.Prob(hallucination.MoonBladeChance))
+            AddLayerIfMissing(ent, HereticWeepingHallucinationLayers.Blade, hallucination.MoonBladeSprite);
     }
 
-    private void AddLayerIfMissing(Entity<SpriteComponent?> ent, HallucinationKey key, SpriteSpecifier spec)
+    private void AddLayerIfMissing(Entity<SpriteComponent?> ent, HereticWeepingHallucinationLayers key, SpriteSpecifier spec)
     {
         if (_sprite.LayerMapTryGet(ent, key, out _, false))
             return;
+
         var layer = _sprite.AddLayer(ent, spec);
         _sprite.LayerMapSet(ent, key, layer);
     }

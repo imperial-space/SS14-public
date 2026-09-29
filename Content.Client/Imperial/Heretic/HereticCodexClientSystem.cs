@@ -6,59 +6,60 @@ namespace Content.Client.Imperial.Heretic;
 
 public sealed class HereticCodexClientSystem : EntitySystem
 {
-    private readonly Dictionary<EntityUid, bool> _lastOpen = new();
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<HereticCodexComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<HereticCodexComponent, ComponentRemove>(OnRemove);
+        SubscribeLocalEvent<HereticCodexComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<HereticCodexComponent, AfterAutoHandleStateEvent>(OnStateHandled);
     }
 
-    private void OnInit(EntityUid uid, HereticCodexComponent comp, ComponentInit args)
+    public override void FrameUpdate(float frameTime)
     {
-        _lastOpen[uid] = comp.IsOpen;
-        SetSprite(uid, comp.IsOpen ? comp.SpriteStateOpen : comp.SpriteStateClosed);
+        base.FrameUpdate(frameTime);
+
+        var query = EntityQueryEnumerator<HereticCodexComponent, SpriteComponent>();
+        while (query.MoveNext(out var uid, out var codex, out var sprite))
+        {
+            if (codex.TransitionEndTime is not { } end || _timing.CurTime < end)
+                continue;
+
+            codex.TransitionEndTime = null;
+            var finalState = codex.IsOpen ? codex.SpriteStateOpen : codex.SpriteStateClosed;
+            _sprite.LayerSetRsiState((uid, sprite), 0, finalState);
+        }
     }
 
-    private void OnRemove(EntityUid uid, HereticCodexComponent comp, ComponentRemove args)
+    private void OnStartup(Entity<HereticCodexComponent> ent, ref ComponentStartup args)
     {
-        _lastOpen.Remove(uid);
+        ent.Comp.VisualIsOpen = ent.Comp.IsOpen;
+        var state = ent.Comp.IsOpen ? ent.Comp.SpriteStateOpen : ent.Comp.SpriteStateClosed;
+        _sprite.LayerSetRsiState(ent.Owner, 0, state);
     }
 
-    private void OnStateHandled(EntityUid uid, HereticCodexComponent comp, ref AfterAutoHandleStateEvent args)
+    private void OnStateHandled(Entity<HereticCodexComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (!_lastOpen.TryGetValue(uid, out var was) || was == comp.IsOpen)
+        if (ent.Comp.VisualIsOpen == null || ent.Comp.VisualIsOpen == ent.Comp.IsOpen)
             return;
 
-        _lastOpen[uid] = comp.IsOpen;
+        ent.Comp.VisualIsOpen = ent.Comp.IsOpen;
 
-        var transitionState = comp.IsOpen ? comp.SpriteStateOpening : comp.SpriteStateClosing;
-        var finalState      = comp.IsOpen ? comp.SpriteStateOpen    : comp.SpriteStateClosed;
+        if (!TryComp<SpriteComponent>(ent, out var sprite))
+            return;
 
-        SetSprite(uid, transitionState);
+        var transitionState = ent.Comp.IsOpen ? ent.Comp.SpriteStateOpening : ent.Comp.SpriteStateClosing;
+        _sprite.LayerSetRsiState((ent, sprite), 0, transitionState);
 
-        var delayMs = 500;
-        if (TryComp<SpriteComponent>(uid, out var sprite) &&
-            sprite.BaseRSI != null &&
-            sprite.BaseRSI.TryGetState(transitionState, out var rsiState) &&
-            rsiState.AnimationLength > 0f)
+        var length = ent.Comp.DefaultTransitionLength;
+        if (sprite.BaseRSI != null
+            && sprite.BaseRSI.TryGetState(transitionState, out var rsiState)
+            && rsiState.AnimationLength > 0f)
         {
-            delayMs = (int)(rsiState.AnimationLength * 1000);
+            length = TimeSpan.FromSeconds(rsiState.AnimationLength);
         }
 
-        Timer.Spawn(delayMs, () =>
-        {
-            if (Deleted(uid) || !TryComp<SpriteComponent>(uid, out _))
-                return;
-            SetSprite(uid, finalState);
-        });
-    }
-
-    private void SetSprite(EntityUid uid, string state)
-    {
-        if (TryComp<SpriteComponent>(uid, out var sprite))
-            sprite.LayerSetState(0, state);
+        ent.Comp.TransitionEndTime = _timing.CurTime + length;
     }
 }

@@ -2,17 +2,15 @@ using Content.Client.Overlays;
 using Content.Shared.Imperial.Heretic.Components;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
-using Robust.Shared.GameObjects;
-using Robust.Shared.IoC;
 
 namespace Content.Client.Imperial.Heretic;
 
 public sealed class HereticBreachGrayScaleSystem : EntitySystem
 {
     [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly IPlayerManager  _player     = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
 
-    private BlackAndWhiteOverlay? _overlay;
+    private BlackAndWhiteOverlay _overlay = default!;
 
     public override void Initialize()
     {
@@ -22,17 +20,25 @@ public sealed class HereticBreachGrayScaleSystem : EntitySystem
         SubscribeLocalEvent<BreachGrayScaleComponent, ComponentShutdown>(OnShutdown);
     }
 
-    private void OnStartup(EntityUid uid, BreachGrayScaleComponent _, ComponentStartup args)
+    public override void Shutdown()
     {
-        if (_player.LocalEntity != uid)
-            return;
-        _overlayMan.AddOverlay(_overlay!);
+        base.Shutdown();
+        _overlayMan.RemoveOverlay(_overlay);
     }
 
-    private void OnShutdown(EntityUid uid, BreachGrayScaleComponent _, ComponentShutdown args)
+    private void OnStartup(Entity<BreachGrayScaleComponent> ent, ref ComponentStartup args)
     {
-        if (_player.LocalEntity != uid)
+        if (_player.LocalEntity != ent.Owner)
             return;
-        _overlayMan.RemoveOverlay(_overlay!);
+
+        _overlayMan.AddOverlay(_overlay);
+    }
+
+    private void OnShutdown(Entity<BreachGrayScaleComponent> ent, ref ComponentShutdown args)
+    {
+        if (_player.LocalEntity != ent.Owner)
+            return;
+
+        _overlayMan.RemoveOverlay(_overlay);
     }
 }

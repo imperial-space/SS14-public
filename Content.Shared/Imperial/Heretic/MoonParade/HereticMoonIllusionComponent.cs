@@ -1,4 +1,3 @@
-using Robust.Shared.GameObjects;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.Heretic.MoonParade;
@@ -8,4 +7,10 @@ public sealed partial class HereticMoonIllusionComponent : Component
 {
     [AutoNetworkedField]
     public List<PrototypeLayerData> ClothingLayers = new();
+
+    /// <summary>
+    /// Клиентский флаг: слои одежды уже добавлены в спрайт иллюзии.
+    /// </summary>
+    [ViewVariables]
+    public bool ClothingLayersApplied;
 }

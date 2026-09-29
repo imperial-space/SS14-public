@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Imperial.Heretic.Components;
 
@@ -14,4 +15,7 @@ public sealed partial class HereticBladeMarkComponent : Component
 
     [DataField]
     public List<EntityUid> LockedDoors = new();
+
+    [DataField]
+    public SpriteSpecifier MarkSprite = new SpriteSpecifier.Rsi(new ResPath("Imperial/heretic/tag.rsi"), "blade");
 }

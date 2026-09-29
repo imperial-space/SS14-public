@@ -23,13 +23,6 @@ public sealed class HereticMysticCardBui : BoundUserInterface
         _window?.Populate(cardState);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-        if (disposing)
-            _window?.Dispose();
-    }
-
     private void EnsureWindow()
     {
         if (_window != null) return;

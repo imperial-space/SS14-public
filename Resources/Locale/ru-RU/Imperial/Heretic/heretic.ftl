@@ -3008,3 +3008,6 @@ heretic-knowledge-shop-flesh-weave-desc = Вы научились извлека
 ghost-role-information-heretic-ash-spirit-name = Дух Пепла
 ghost-role-information-heretic-ash-spirit-description = Вы — неупокоенный дух из пепла и огня, призванный еретиком как верный приспешник. Скользите сквозь стены, телепортируйтесь и поджигайте врагов. Помогайте своему хозяину во имя Мансуса.
 
+
+# ─── Меню персонажа ─────────────────────────────────
+heretic-character-info-mansus = Ваши задачи ожидают вас в Книге Мансуса

@@ -37,4 +37,16 @@ public sealed partial class HereticCodexComponent : Component
 
     [DataField]
     public string SpriteStateClosing = "book_closing";
+
+    /// <summary>Длительность перехода, если у состояния спрайта нет анимации.</summary>
+    [DataField]
+    public TimeSpan DefaultTransitionLength = TimeSpan.FromSeconds(0.5);
+
+    /// <summary>Клиентское: состояние, которое сейчас отображает спрайт.</summary>
+    [ViewVariables]
+    public bool? VisualIsOpen;
+
+    /// <summary>Клиентское: когда закончится анимация открытия/закрытия.</summary>
+    [ViewVariables]
+    public TimeSpan? TransitionEndTime;
 }

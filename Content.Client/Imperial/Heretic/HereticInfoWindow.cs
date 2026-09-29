@@ -43,7 +43,6 @@ public sealed class HereticInfoWindow : DefaultWindow
     private readonly Label _complexityLabel;
     private readonly RichTextLabel _descLabel;
     private readonly Label _passiveHeaderLabel;
-    private readonly Label _passiveNameLabel;
     private readonly RichTextLabel _passiveDescLabel;
     private readonly RichTextLabel _prosLabel;
     private readonly RichTextLabel _consLabel;
@@ -159,7 +158,7 @@ public sealed class HereticInfoWindow : DefaultWindow
         _denyAscensionButton = new Button
         {
             Text = Loc.GetString("heretic-info-deny-ascension"),
-            StyleClasses = { StyleNano.ButtonCaution },
+            StyleClasses = { StyleClass.Negative },
         };
         _denyAscensionButton.OnPressed += _ => OnDenyAscension?.Invoke();
         var denyRow = new BoxContainer
@@ -312,7 +311,6 @@ public sealed class HereticInfoWindow : DefaultWindow
             FontColorOverride = Color.FromHex("#aaaaaa"),
         };
 
-        _passiveNameLabel = new Label { FontColorOverride = Color.FromHex("#cccccc") };
         _passiveDescLabel = new RichTextLabel { HorizontalExpand = true };
         var passiveBox = new PanelContainer { HorizontalExpand = true };
         var passiveBoxStyle = new StyleBoxFlat

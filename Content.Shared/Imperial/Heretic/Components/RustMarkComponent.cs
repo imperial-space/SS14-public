@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Imperial.Heretic.Components;
 
@@ -7,4 +8,8 @@ namespace Content.Shared.Imperial.Heretic.Components;
 /// the Rusty Blade on a marked target consumes the mark and staggers/stuns it.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-public sealed partial class RustMarkComponent : Component { }
+public sealed partial class RustMarkComponent : Component
+{
+    [DataField]
+    public SpriteSpecifier MarkSprite = new SpriteSpecifier.Rsi(new ResPath("Imperial/heretic/tag.rsi"), "rust");
+}

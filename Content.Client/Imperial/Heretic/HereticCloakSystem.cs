@@ -5,6 +5,8 @@ namespace Content.Client.Imperial.Heretic;
 
 public sealed class HereticCloakSystem : EntitySystem
 {
+    [Dependency] private readonly SpriteSystem _sprite = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -12,17 +14,16 @@ public sealed class HereticCloakSystem : EntitySystem
         SubscribeLocalEvent<HereticCloakActiveComponent, ComponentShutdown>(OnCloakRemoved);
     }
 
-    private void OnCloakAdded(EntityUid uid, HereticCloakActiveComponent _, ComponentStartup args)
+    private void OnCloakAdded(Entity<HereticCloakActiveComponent> ent, ref ComponentStartup args)
     {
-        if (TryComp<SpriteComponent>(uid, out var sprite))
-            sprite.Visible = false;
+        _sprite.SetVisible(ent.Owner, false);
     }
 
-    private void OnCloakRemoved(EntityUid uid, HereticCloakActiveComponent _, ComponentShutdown args)
+    private void OnCloakRemoved(Entity<HereticCloakActiveComponent> ent, ref ComponentShutdown args)
     {
-        if (TerminatingOrDeleted(uid))
+        if (TerminatingOrDeleted(ent))
             return;
-        if (TryComp<SpriteComponent>(uid, out var sprite))
-            sprite.Visible = true;
+
+        _sprite.SetVisible(ent.Owner, true);
     }
 }

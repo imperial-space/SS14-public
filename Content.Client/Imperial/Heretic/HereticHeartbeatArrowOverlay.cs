@@ -1,15 +1,9 @@
-using System;
 using System.Numerics;
-using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Enums;
 using Robust.Shared.Graphics.RSI;
-using Robust.Shared.Maths;
-using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -23,33 +17,42 @@ namespace Content.Client.Imperial.Heretic;
 public sealed class HereticHeartbeatArrowOverlay : Overlay
 {
     [Dependency] private readonly IEntityManager _entMan = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IEyeManager _eyeManager = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IResourceCache _resourceCache = default!;
 
-    private readonly SharedTransformSystem _xformSys;
-    private SharedAudioSystem _audioSys = default!;
-    private EntityLookupSystem _lookup = default!;
+    private static readonly ResPath RsiPath = new("/Textures/Imperial/heretic/navigate_arrow.rsi");
 
-    private const string HeartbeatSound = "/Audio/Imperial/heretic/sound_effects_singlebeat.ogg";
+    /// <summary>Половина размера стрелки на экране, в пикселях.</summary>
+    private const float HalfSizePx = 32f;
+
+    /// <summary>Сколько секунд стрелка следит за целью перед исчезновением.</summary>
+    private const float TrackDuration = 3f;
+
+    private readonly EntityLookupSystem _lookup;
+
     private float _trackTimeLeft;
 
     public override OverlaySpace Space => OverlaySpace.ScreenSpace;
 
-    private static readonly ResPath RsiPath = new("/Textures/Imperial/heretic/navigate_arrow.rsi");
-
     // Кешированные кадры для трёх состояний
     private Texture[]? _appearFrames;
-    private float[]?   _appearDelays;
+    private float[]? _appearDelays;
     private Texture[]? _trackFrames;
-    private float[]?   _trackDelays;
+    private float[]? _trackDelays;
     private Texture[]? _disappearFrames;
-    private float[]?   _disappearDelays;
+    private float[]? _disappearDelays;
 
     // Состояние анимации
-    private enum AnimState { Hidden, Appearing, Tracking, Disappearing }
+    private enum AnimState
+    {
+        Hidden,
+        Appearing,
+        Tracking,
+        Disappearing,
+    }
+
     private AnimState _anim = AnimState.Hidden;
-    private TimeSpan _stateStart;
     private float _stateTime;
 
     // Текущий индекс кадра при перемотке
@@ -61,12 +64,9 @@ public sealed class HereticHeartbeatArrowOverlay : Overlay
     public HereticHeartbeatArrowOverlay()
     {
         IoCManager.InjectDependencies(this);
-        _xformSys = _entMan.System<SharedTransformSystem>();
-        _audioSys = _entMan.System<SharedAudioSystem>();
-        _lookup   = _entMan.System<EntityLookupSystem>();
+        _lookup = _entMan.System<EntityLookupSystem>();
 
-        var cache = IoCManager.Resolve<IResourceCache>();
-        if (!cache.TryGetResource<RSIResource>(RsiPath, out var res))
+        if (!_resourceCache.TryGetResource<RSIResource>(RsiPath, out var res))
             return;
 
         var rsi = res.RSI;
@@ -79,8 +79,8 @@ public sealed class HereticHeartbeatArrowOverlay : Overlay
 
         if (rsi.TryGetState("multitool_arrow", out var track))
         {
-            _trackFrames  = track.GetFrames(RsiDirection.South);
-            _trackDelays  = track.GetDelays();
+            _trackFrames = track.GetFrames(RsiDirection.South);
+            _trackDelays = track.GetDelays();
         }
 
         if (rsi.TryGetState("navigate_arrow_disappear", out var disappear))
@@ -95,16 +95,17 @@ public sealed class HereticHeartbeatArrowOverlay : Overlay
     {
         if (_anim == AnimState.Tracking)
         {
-            _trackTimeLeft = 3f;
+            _trackTimeLeft = TrackDuration;
             return;
         }
+
         if (_anim == AnimState.Appearing)
             return;
-        _anim          = AnimState.Appearing;
-        _stateStart    = _timing.CurTime;
-        _stateTime     = 0f;
-        _frameIdx      = 0;
-        _trackTimeLeft = 3f;
+
+        _anim = AnimState.Appearing;
+        _stateTime = 0f;
+        _frameIdx = 0;
+        _trackTimeLeft = TrackDuration;
     }
 
     /// <summary>Запустить анимацию исчезновения (вызвать при закрытии BUI).</summary>
@@ -112,111 +113,109 @@ public sealed class HereticHeartbeatArrowOverlay : Overlay
     {
         if (_anim is AnimState.Hidden or AnimState.Disappearing)
             return;
-        _anim       = AnimState.Disappearing;
-        _stateStart = _timing.CurTime;
-        _stateTime  = 0f;
-        _frameIdx   = 0;
+
+        _anim = AnimState.Disappearing;
+        _stateTime = 0f;
+        _frameIdx = 0;
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
     {
         base.FrameUpdate(args);
 
-        var dt = (float)args.DeltaSeconds;
+        var dt = args.DeltaSeconds;
 
         switch (_anim)
         {
-            case AnimState.Appearing when _appearDelays != null:
-                _stateTime += dt;
-                while (_frameIdx < _appearFrames!.Length - 1
-                       && _stateTime >= _appearDelays[_frameIdx])
-                {
-                    _stateTime -= _appearDelays[_frameIdx];
-                    _frameIdx++;
-                }
-                if (_frameIdx >= _appearFrames!.Length - 1
-                    && _stateTime >= _appearDelays[_frameIdx])
-                {
-                    _anim      = AnimState.Tracking;
-                    _stateTime = 0f;
-                    _frameIdx  = 0;
-                }
+            case AnimState.Appearing when _appearFrames != null && _appearDelays != null:
+                if (AdvanceOneShot(_appearFrames, _appearDelays, dt))
+                    SetState(AnimState.Tracking);
                 break;
 
-            case AnimState.Tracking when _trackDelays != null:
-                _stateTime     += dt;
+            case AnimState.Tracking when _trackFrames != null && _trackDelays != null:
                 _trackTimeLeft -= dt;
                 if (_trackTimeLeft <= 0f)
                 {
-                    _anim      = AnimState.Disappearing;
-                    _stateTime = 0f;
-                    _frameIdx  = 0;
+                    SetState(AnimState.Disappearing);
                     break;
                 }
-                while (_trackDelays.Length > 0
-                       && _stateTime >= _trackDelays[_frameIdx])
+
+                _stateTime += dt;
+                while (_trackDelays.Length > 0 && _stateTime >= _trackDelays[_frameIdx])
                 {
                     _stateTime -= _trackDelays[_frameIdx];
-                    _frameIdx   = (_frameIdx + 1) % _trackFrames!.Length;
+                    _frameIdx = (_frameIdx + 1) % _trackFrames.Length;
                 }
+
                 break;
 
-            case AnimState.Disappearing when _disappearDelays != null:
-                _stateTime += dt;
-                while (_frameIdx < _disappearFrames!.Length - 1
-                       && _stateTime >= _disappearDelays[_frameIdx])
-                {
-                    _stateTime -= _disappearDelays[_frameIdx];
-                    _frameIdx++;
-                }
-                if (_frameIdx >= _disappearFrames!.Length - 1
-                    && _stateTime >= _disappearDelays[_frameIdx])
-                {
+            case AnimState.Disappearing when _disappearFrames != null && _disappearDelays != null:
+                // Остаётся в менеджере как «мёртвый» оверлей (Hidden = ничего не рисует).
+                if (AdvanceOneShot(_disappearFrames, _disappearDelays, dt))
                     _anim = AnimState.Hidden;
-                    // Остаётся в менеджере как «мёртвый» оверлей (Hidden = ничего не рисует).
-                    // При следующей активации способности новый экземпляр заменит его через AddOverlay.
-                }
                 break;
         }
     }
 
+    /// <summary>
+    /// Проигрывает неповторяющуюся анимацию. Возвращает true, когда показан последний кадр.
+    /// </summary>
+    private bool AdvanceOneShot(Texture[] frames, float[] delays, float dt)
+    {
+        _stateTime += dt;
+        while (_frameIdx < frames.Length - 1 && _stateTime >= delays[_frameIdx])
+        {
+            _stateTime -= delays[_frameIdx];
+            _frameIdx++;
+        }
+
+        return _frameIdx >= frames.Length - 1 && _stateTime >= delays[_frameIdx];
+    }
+
+    private void SetState(AnimState state)
+    {
+        _anim = state;
+        _stateTime = 0f;
+        _frameIdx = 0;
+    }
+
     protected override void Draw(in OverlayDrawArgs args)
     {
-        if (_anim == AnimState.Hidden) return;
-        if (Target == null || !_entMan.EntityExists(Target.Value)) return;
-        if (!_entMan.TryGetComponent(Target.Value, out TransformComponent? txform)) return;
-        if (txform.MapID != args.MapId) return;
+        if (_anim == AnimState.Hidden)
+            return;
 
-        var playerEnt = _player.LocalEntity;
-        if (playerEnt == null) return;
+        if (Target is not { } target || !_entMan.TryGetComponent(target, out TransformComponent? targetXform))
+            return;
 
-        Texture? frame = _anim switch
+        if (targetXform.MapID != args.MapId)
+            return;
+
+        if (_player.LocalEntity is not { } player)
+            return;
+
+        var frames = _anim switch
         {
-            AnimState.Appearing    => _appearFrames?   [Math.Clamp(_frameIdx, 0, (_appearFrames?.Length    ?? 1) - 1)],
-            AnimState.Tracking     => _trackFrames?    [Math.Clamp(_frameIdx, 0, (_trackFrames?.Length     ?? 1) - 1)],
-            AnimState.Disappearing => _disappearFrames?[Math.Clamp(_frameIdx, 0, (_disappearFrames?.Length ?? 1) - 1)],
-            _                      => null,
+            AnimState.Appearing => _appearFrames,
+            AnimState.Tracking => _trackFrames,
+            AnimState.Disappearing => _disappearFrames,
+            _ => null,
         };
-        if (frame == null) return;
 
-        // Экранная позиция центра спрайта еретика
-        var heroAabb   = _lookup.GetWorldAABB(playerEnt.Value);
-        var heroScreen = _eyeManager.WorldToScreen(heroAabb.Center);
+        if (frames == null || frames.Length == 0)
+            return;
 
-        // Стрелка — в центре спрайта еретика
-        var arrowPos = new Vector2(heroScreen.X, heroScreen.Y);
+        var frame = frames[Math.Clamp(_frameIdx, 0, frames.Length - 1)];
 
-        // Угол к цели от точки над головой
-        var targetAabb   = _lookup.GetWorldAABB(Target.Value);
-        var targetScreen = _eyeManager.WorldToScreen(targetAabb.Center);
-        var screenDelta  = new Vector2(targetScreen.X, targetScreen.Y) - arrowPos;
+        // Стрелка рисуется в центре спрайта еретика.
+        var arrowPos = _eyeManager.WorldToScreen(_lookup.GetWorldAABB(player).Center);
+        var targetPos = _eyeManager.WorldToScreen(_lookup.GetWorldAABB(target).Center);
+        var screenDelta = targetPos - arrowPos;
 
-        // atan2(dx, -dy): угол CW от «вверх» в Y-down пространстве
+        // atan2(dx, -dy): угол по часовой стрелке от «вверх» в экранных координатах (Y вниз).
         var angle = new Angle(MathF.Atan2(screenDelta.X, -screenDelta.Y));
 
-        const float HalfPx = 32f;
         args.ScreenHandle.SetTransform(arrowPos, angle);
-        args.ScreenHandle.DrawTextureRect(frame, new UIBox2(-HalfPx, -HalfPx, HalfPx, HalfPx));
+        args.ScreenHandle.DrawTextureRect(frame, new UIBox2(-HalfSizePx, -HalfSizePx, HalfSizePx, HalfSizePx));
         args.ScreenHandle.SetTransform(Vector2.Zero, Angle.Zero);
     }
 }
