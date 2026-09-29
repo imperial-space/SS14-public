@@ -36,6 +36,7 @@ public sealed class HereticMaidInMirrorSystem : EntitySystem
     [Dependency] private readonly SharedEyeSystem _eye = default!;
     [Dependency] private readonly BeamSystem _beam = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly HereticBodyStorageSystem _bodyStorage = default!;
 
     private static readonly EntProtoId MirrorBallProto = "MobHereticMaidMirrorBall";
     private static readonly ProtoId<TagPrototype> WindowTag = "Window";
@@ -225,7 +226,7 @@ public sealed class HereticMaidInMirrorSystem : EntitySystem
         maid.MirrorBallUid = ballUid;
         maid.IsInMirrorWorld = true;
 
-        _xform.DetachEntity(uid, Transform(uid));
+        _bodyStorage.StoreBody(uid);
 
         var ballVisibility = EnsureComp<VisibilityComponent>(ballUid);
         _visibility.AddLayer((ballUid, ballVisibility), (int)VisibilityFlags.Ghost, false);

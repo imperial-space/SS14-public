@@ -446,7 +446,8 @@ public sealed partial class HereticSystem : SharedHereticSystem
 
         UpdateGraspLunacy();
 
-        var query = EntityQueryEnumerator<HereticComponent>();
+        // AllEntityQuery: тело еретика в другой форме лежит на карте-хранилище на паузе, но знания копятся.
+        var query = AllEntityQuery<HereticComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
             comp.PassiveGainAccumulator += frameTime;

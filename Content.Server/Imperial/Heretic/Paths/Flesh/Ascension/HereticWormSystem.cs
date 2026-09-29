@@ -22,6 +22,7 @@ public sealed class HereticWormSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly HereticBodyStorageSystem _bodyStorage = default!;
 
     private const string WormProto = "MobHereticFleshWorm";
     private const string WormSegmentProto = "MobHereticWormSegment";
@@ -165,7 +166,7 @@ public sealed class HereticWormSystem : EntitySystem
             wormComp.Segments.Add(seg);
         }
 
-        _transform.DetachEntity(heretic, Transform(heretic));
+        _bodyStorage.StoreBody(heretic);
         _mind.TransferTo(mindId, wormUid, ghostCheckOverride: true);
 
         if (TryComp<HereticComponent>(heretic, out var hComp))

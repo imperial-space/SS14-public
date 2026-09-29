@@ -23,6 +23,7 @@ public sealed class HereticCosmicPhaseSystem : EntitySystem
     [Dependency] private readonly VisibilitySystem _visibility = default!;
     [Dependency] private readonly SharedEyeSystem _eye = default!;
     [Dependency] private readonly RespiratorSystem _respirator = default!;
+    [Dependency] private readonly HereticBodyStorageSystem _bodyStorage = default!;
 
     private static readonly SoundPathSpecifier PhaseSound =
         new("/Audio/Imperial/heretic/sound_magic_cosmic_energy.ogg");
@@ -85,7 +86,7 @@ public sealed class HereticCosmicPhaseSystem : EntitySystem
         _visibility.RefreshVisibility(ghostUid, visibilityComponent: vis);
 
         EnsureComp<PressureImmunityComponent>(uid);
-        _xform.DetachEntity(uid, Transform(uid));
+        _bodyStorage.StoreBody(uid);
 
         _mind.TransferTo(mindId, ghostUid, ghostCheckOverride: true);
         _eye.RefreshVisibilityMask(ghostUid);

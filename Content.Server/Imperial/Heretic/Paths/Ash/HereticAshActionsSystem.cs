@@ -108,6 +108,7 @@ public sealed class HereticAshActionsSystem : EntitySystem
     [Dependency] private readonly VisibilitySystem _visibility = default!;
     [Dependency] private readonly BeamSystem _beam = default!;
     [Dependency] private readonly HereticAshSpiritSystem _ashSpiritSystem = default!;
+    [Dependency] private readonly HereticBodyStorageSystem _bodyStorage = default!;
 
     private static readonly EntProtoId GreatFireCascadeActionId = "ActionHereticGreatFireCascade";
     private static readonly EntProtoId AshSpiritFlameOathActionId = "ActionHereticAshSpiritFlameOath";
@@ -139,7 +140,8 @@ public sealed class HereticAshActionsSystem : EntitySystem
 
         var now = _timing.CurTime;
 
-        var shiftQuery = EntityQueryEnumerator<HereticAshShiftComponent>();
+        // AllEntityQuery: пока идёт проход, тело еретика лежит на карте-хранилище на паузе.
+        var shiftQuery = AllEntityQuery<HereticAshShiftComponent>();
         while (shiftQuery.MoveNext(out var uid, out var shift))
         {
             if (shift.ExitTime is { } exitTime)
@@ -231,7 +233,7 @@ public sealed class HereticAshActionsSystem : EntitySystem
         _visibility.RemoveLayer((orbUid, vis), (int)VisibilityFlags.Normal, false);
         _visibility.RefreshVisibility(orbUid, visibilityComponent: vis);
 
-        _xform.DetachEntity(uid, Transform(uid));
+        _bodyStorage.StoreBody(uid);
 
         _mind.TransferTo(mindId, orbUid, ghostCheckOverride: true);
         _eye.RefreshVisibilityMask(orbUid);
