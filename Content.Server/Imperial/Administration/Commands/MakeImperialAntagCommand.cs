@@ -1,7 +1,7 @@
 using Content.Server.Administration;
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
-using Content.Server.Imperial.Heretic;
+using Content.Server.Imperial.Heretic.Rule;
 using Content.Shared.Administration;
 using Robust.Server.Player;
 using Robust.Shared.Console;

@@ -2,7 +2,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.EntityEffects;
-using Content.Shared.Imperial.Heretic.Components;
+using Content.Shared.Imperial.Heretic.Core;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Heretic.EntityEffects;

@@ -1,7 +1,7 @@
 using Content.Server.Administration;
 using Content.Server.Imperial.Heretic;
 using Content.Shared.Administration;
-using Content.Shared.Imperial.Heretic.Components;
+using Content.Shared.Imperial.Heretic.Core;
 using Robust.Server.Player;
 using Robust.Shared.Console;
 

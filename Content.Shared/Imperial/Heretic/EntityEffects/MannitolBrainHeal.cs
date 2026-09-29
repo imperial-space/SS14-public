@@ -1,5 +1,5 @@
 using Content.Shared.EntityEffects;
-using Content.Shared.Imperial.Heretic.Components;
+using Content.Shared.Imperial.Heretic.Paths.Moon;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Heretic.EntityEffects;

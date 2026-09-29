@@ -37,7 +37,7 @@ using Content.Shared.Follower.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.IdentityManagement.Components;
-using Content.Shared.Imperial.Heretic.Components;
+using Content.Shared.Imperial.Heretic.Paths.Rust;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;

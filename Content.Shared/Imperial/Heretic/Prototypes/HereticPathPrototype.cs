@@ -1,3 +1,4 @@
+using Content.Shared.Imperial.Heretic.Core;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager.Attributes;
 using Robust.Shared.Utility;

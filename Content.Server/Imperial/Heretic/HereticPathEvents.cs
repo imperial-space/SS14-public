@@ -1,4 +1,4 @@
-using Content.Shared.Imperial.Heretic.Components;
+using Content.Shared.Imperial.Heretic.Core;
 
 namespace Content.Server.Imperial.Heretic;
 
