@@ -2,7 +2,6 @@ using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
 using Content.Shared.Slippery;
 using Content.Shared.Temperature.Components;
-using Robust.Shared.GameObjects;
 
 namespace Content.Server.Imperial.Heretic.Paths.Void;
 

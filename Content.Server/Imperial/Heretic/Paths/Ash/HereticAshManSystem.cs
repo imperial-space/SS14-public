@@ -51,7 +51,8 @@ public sealed class HereticAshManSystem : EntitySystem
 
             // Find nearest enemy
             var target = FindNearestEnemy(uid, ash.CasterUid);
-            if (target == null) continue;
+            if (target == null)
+                continue;
 
             var myPos = _xform.GetWorldPosition(uid);
             var targetPos = _xform.GetWorldPosition(target.Value);
@@ -93,9 +94,12 @@ public sealed class HereticAshManSystem : EntitySystem
 
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(self).Coordinates, 15f))
         {
-            if (ent.Owner == self || ent.Owner == caster) continue;
-            if (!TryComp<MobStateComponent>(ent.Owner, out var mobState)) continue;
-            if (mobState.CurrentState == MobState.Dead) continue;
+            if (ent.Owner == self || ent.Owner == caster)
+                continue;
+            if (!TryComp<MobStateComponent>(ent.Owner, out var mobState))
+                continue;
+            if (mobState.CurrentState == MobState.Dead)
+                continue;
 
             var dist = (_xform.GetWorldPosition(ent.Owner) - _xform.GetWorldPosition(self)).Length();
             if (dist < nearestDist)

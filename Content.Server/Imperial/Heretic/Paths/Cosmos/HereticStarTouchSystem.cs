@@ -10,20 +10,19 @@ using Content.Shared.Stunnable;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
-using Robust.Shared.Maths;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
 public sealed class HereticStarTouchSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming             _timing        = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction   = default!;
-    [Dependency] private readonly SharedTransformSystem   _xform         = default!;
-    [Dependency] private readonly SharedStunSystem        _stun          = default!;
-    [Dependency] private readonly SharedPopupSystem       _popup         = default!;
-    [Dependency] private readonly SharedAudioSystem       _audio         = default!;
-    [Dependency] private readonly StatusEffectsSystem     _statusEffects = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
 
     private const float BeamRange = 8f;
 
@@ -71,7 +70,8 @@ public sealed class HereticStarTouchSystem : EntitySystem
 
     private void OnStarTouch(EntityUid uid, HereticComponent comp, HereticStarTouchActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         args.Handled = true;
 
         var target = args.Target;
@@ -83,7 +83,7 @@ public sealed class HereticStarTouchSystem : EntitySystem
         if (HasComp<StarMarkComponent>(target))
         {
             var beam = EnsureComp<HereticStarTouchBeamComponent>(uid);
-            beam.Target      = target;
+            beam.Target = target;
             beam.BeamEndTime = _timing.CurTime + beam.BeamDuration;
             Dirty(uid, beam);
 
@@ -99,12 +99,12 @@ public sealed class HereticStarTouchSystem : EntitySystem
 
     private void SpawnCarpets(EntityUid uid)
     {
-        var xform    = Transform(uid);
+        var xform = Transform(uid);
         var localPos = xform.LocalPosition;
-        var snapped  = new Vector2(MathF.Floor(localPos.X) + 0.5f, MathF.Floor(localPos.Y) + 0.5f);
+        var snapped = new Vector2(MathF.Floor(localPos.X) + 0.5f, MathF.Floor(localPos.Y) + 0.5f);
         var parentUid = xform.ParentUid;
 
-        var fwd  = xform.LocalRotation.ToVec();
+        var fwd = xform.LocalRotation.ToVec();
         var perp = new Vector2(-fwd.Y, fwd.X);
 
         var level = TryComp<HereticComponent>(uid, out var heretic) ? heretic.PassiveLevel : 0;

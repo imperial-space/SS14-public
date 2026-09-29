@@ -1,7 +1,6 @@
 using Content.Shared.Interaction;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Tools.Components;
-using Robust.Shared.GameObjects;
 
 namespace Content.Server.Imperial.Heretic.Paths.Rust;
 

@@ -11,11 +11,11 @@ namespace Content.Server.Imperial.Heretic.Paths.Moon;
 
 public sealed class HereticMoonBladeSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem            _audio          = default!;
-    [Dependency] private readonly HereticMoonBrainDamageSystem _brainDamage    = default!;
-    [Dependency] private readonly HereticStatusEffectsSystem   _hereticEffects = default!;
-    [Dependency] private readonly MobStateSystem               _mobs           = default!;
-    [Dependency] private readonly IRobustRandom                _random         = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly HereticMoonBrainDamageSystem _brainDamage = default!;
+    [Dependency] private readonly HereticStatusEffectsSystem _hereticEffects = default!;
+    [Dependency] private readonly MobStateSystem _mobs = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     private static readonly SoundPathSpecifier[] LaughSounds =
     [

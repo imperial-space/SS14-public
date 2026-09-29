@@ -28,14 +28,16 @@ public sealed class LionhunterRifleSystem : EntitySystem
 
     private void OnBulletHit(Entity<LionhunterBulletComponent> ent, ref ProjectileHitEvent args)
     {
-        if (args.Shooter is not { } shooter) return;
+        if (args.Shooter is not { } shooter)
+            return;
 
         var shooterPos = _transform.GetMapCoordinates(shooter).Position;
         var hitPos = _transform.GetMapCoordinates(ent.Owner).Position;
 
         _transform.SetCoordinates(shooter, Transform(ent.Owner).Coordinates);
 
-        if (!HasComp<MobStateComponent>(args.Target)) return;
+        if (!HasComp<MobStateComponent>(args.Target))
+            return;
 
         var dist = (hitPos - shooterPos).Length();
 

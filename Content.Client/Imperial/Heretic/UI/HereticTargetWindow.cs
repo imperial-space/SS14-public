@@ -1,15 +1,12 @@
-using System;
 using System.Numerics;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
-using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 using Robust.Shared.Maths;
 using Robust.Shared.Timing;
@@ -36,14 +33,14 @@ public sealed class HereticTargetWindow : DefaultWindow
 
     // Color palette
     private static readonly Color AliveColor = Color.FromHex("#55dd55");
-    private static readonly Color DeadColor  = Color.FromHex("#dd4444");
+    private static readonly Color DeadColor = Color.FromHex("#dd4444");
     private static readonly Color HeaderGold = Color.FromHex("#e0c070");
 
     public HereticTargetWindow()
     {
-        _entMan    = IoCManager.Resolve<IEntityManager>();
+        _entMan = IoCManager.Resolve<IEntityManager>();
         _playerMgr = IoCManager.Resolve<IPlayerManager>();
-        _xformSys  = _entMan.System<SharedTransformSystem>();
+        _xformSys = _entMan.System<SharedTransformSystem>();
 
         Title = "Цели Мансуса";
         MinSize = new Vector2(340, 280);
@@ -164,7 +161,7 @@ public sealed class HereticTargetWindow : DefaultWindow
         // Status symbol: ♥ alive / ☠ dead
         var statusLabel = new Label
         {
-            Text  = isDead ? "☠" : "♥",
+            Text = isDead ? "☠" : "♥",
             FontColorOverride = isDead ? DeadColor : AliveColor,
         };
 

@@ -6,7 +6,6 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
-using Content.Shared.Eye;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.Heretic.Core;
@@ -283,8 +282,8 @@ public sealed class HereticMawedCrucibleSystem : EntitySystem
         {
             eff.FixtureStates.Add((id, fixture.Hard, fixture.CollisionLayer, fixture.CollisionMask));
             _physics.SetHard(playerUid, fixture, false, fixtures);
-            _physics.SetCollisionLayer(playerUid, id, fixture, (int) CollisionGroup.None, fixtures, physics);
-            _physics.SetCollisionMask(playerUid, id, fixture, (int) CollisionGroup.None, fixtures, physics);
+            _physics.SetCollisionLayer(playerUid, id, fixture, (int)CollisionGroup.None, fixtures, physics);
+            _physics.SetCollisionMask(playerUid, id, fixture, (int)CollisionGroup.None, fixtures, physics);
         }
 
         _popup.PopupEntity(Loc.GetString("heretic-crucible-soul-start"), playerUid, playerUid, PopupType.Medium);

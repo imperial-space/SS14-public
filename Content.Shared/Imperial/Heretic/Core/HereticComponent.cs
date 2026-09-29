@@ -2,7 +2,6 @@ using Content.Shared.Imperial.Heretic.Prototypes;
 using Content.Shared.StatusIcon;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Imperial.Heretic.Core;
 
@@ -128,7 +127,6 @@ public sealed partial class HereticComponent : Component
 
     [AutoNetworkedField]
     public int RealignmentLevel = 0;
-
 
     // Knowledge shop level (0 = shop locked; 1-5 unlocked after researching each path node)
     public int ShopLevel = 0;

@@ -15,6 +15,6 @@ public sealed class HereticSacrificeConditionSystem : EntitySystem
     private void OnGetProgress(EntityUid uid, HereticSacrificeConditionComponent comp, ref ObjectiveGetProgressEvent args)
     {
         var count = _heretic.GetSacrificeCount(args.MindId);
-        args.Progress = Math.Clamp((float) count / comp.RequiredSacrifices, 0f, 1f);
+        args.Progress = Math.Clamp((float)count / comp.RequiredSacrifices, 0f, 1f);
     }
 }

@@ -1,6 +1,5 @@
 using Content.Server.Popups;
 using Content.Shared.Body;
-using Content.Shared.Body.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.Heretic.Core;
@@ -14,11 +13,11 @@ namespace Content.Server.Imperial.Heretic.Paths.Flesh;
 public sealed class HereticFleshWeaveSystem : EntitySystem
 {
     [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedDoAfterSystem   _doAfter   = default!;
-    [Dependency] private readonly UserInterfaceSystem   _ui        = default!;
-    [Dependency] private readonly PopupSystem           _popup     = default!;
-    [Dependency] private readonly MobStateSystem        _mobState  = default!;
-    [Dependency] private readonly SharedHandsSystem     _hands     = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
 
     public override void Initialize()
     {
@@ -31,7 +30,8 @@ public sealed class HereticFleshWeaveSystem : EntitySystem
 
     private void OnFleshWeave(EntityUid uid, HereticComponent comp, HereticFleshWeaveActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
 
         var target = args.Target;
 
@@ -47,11 +47,12 @@ public sealed class HereticFleshWeaveSystem : EntitySystem
         var organList = new List<HereticFleshWeaveOrganData>();
         foreach (var organ in organsContainer.ContainedEntities)
         {
-            if (!HasComp<OrganComponent>(organ)) continue;
+            if (!HasComp<OrganComponent>(organ))
+                continue;
             organList.Add(new HereticFleshWeaveOrganData
             {
                 Organ = GetNetEntity(organ),
-                Name  = MetaData(organ).EntityName,
+                Name = MetaData(organ).EntityName,
             });
         }
 
@@ -74,16 +75,19 @@ public sealed class HereticFleshWeaveSystem : EntitySystem
     private void OnSelectOrgan(EntityUid holderUid, HereticKnowledgeHolderComponent holderComp, HereticFleshWeaveSelectOrganMessage args)
     {
         var hereticUid = args.Actor;
-        if (!TryComp<HereticComponent>(hereticUid, out _)) return;
+        if (!TryComp<HereticComponent>(hereticUid, out _))
+            return;
 
-        var organ  = GetEntity(args.Organ);
+        var organ = GetEntity(args.Organ);
         var target = GetEntity(args.Target);
 
-        if (!HasComp<OrganComponent>(organ)) return;
-        if (!Exists(target)) return;
+        if (!HasComp<OrganComponent>(organ))
+            return;
+        if (!Exists(target))
+            return;
 
         var isDead = _mobState.IsDead(target);
-        var delay  = isDead ? 2f : 8f;
+        var delay = isDead ? 2f : 8f;
 
         var doAfterArgs = new DoAfterArgs(
             EntityManager,
@@ -92,9 +96,9 @@ public sealed class HereticFleshWeaveSystem : EntitySystem
             new HereticFleshWeaveDoAfterEvent { Organ = args.Organ, Target = args.Target },
             hereticUid)
         {
-            BreakOnMove   = true,
+            BreakOnMove = true,
             BreakOnDamage = true,
-            NeedHand      = true,
+            NeedHand = true,
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);
@@ -102,15 +106,19 @@ public sealed class HereticFleshWeaveSystem : EntitySystem
 
     private void OnDoAfter(EntityUid uid, HereticComponent comp, HereticFleshWeaveDoAfterEvent args)
     {
-        if (args.Cancelled) return;
+        if (args.Cancelled)
+            return;
 
-        var organ  = GetEntity(args.Organ);
+        var organ = GetEntity(args.Organ);
         var target = GetEntity(args.Target);
 
-        if (!HasComp<OrganComponent>(organ)) return;
-        if (!Exists(target)) return;
+        if (!HasComp<OrganComponent>(organ))
+            return;
+        if (!Exists(target))
+            return;
 
-        if (!_container.TryGetContainer(target, BodyComponent.ContainerID, out var organsContainer)) return;
+        if (!_container.TryGetContainer(target, BodyComponent.ContainerID, out var organsContainer))
+            return;
 
         _container.Remove(organ, organsContainer);
         _hands.TryPickupAnyHand(uid, organ);

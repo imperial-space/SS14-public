@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Numerics;
 using System.Threading;
 using Content.Server.Atmos.Components;
@@ -15,12 +14,10 @@ using Content.Server.Doors.Systems;
 using Content.Server.Mind;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
-using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
-using Content.Shared.Actions.Components;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
@@ -50,7 +47,6 @@ using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Lock;
-using Content.Shared.Imperial.Lavaland.ColossusLoot;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
@@ -69,7 +65,6 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Polymorph;
 using Content.Shared.Popups;
-using Content.Shared.Pulling.Events;
 using Content.Shared.SSDIndicator;
 using Content.Shared.Slippery;
 using Content.Shared.Speech.Muting;
@@ -87,7 +82,6 @@ using Content.Shared.Weapons.Reflect;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Collections;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
@@ -98,7 +92,6 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 using Timer = Robust.Shared.Timing.Timer;
@@ -111,12 +104,12 @@ namespace Content.Server.Imperial.Heretic.Paths.Lock;
 /// </summary>
 public sealed class HereticLockActionsSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem           _popup   = default!;
-    [Dependency] private readonly HereticSystem         _heretic = default!;
-    [Dependency] private readonly SharedAudioSystem     _audio   = default!;
-    [Dependency] private readonly SharedActionsSystem    _actions      = default!;
-    [Dependency] private readonly PolymorphSystem               _polymorph     = default!;
-    [Dependency] private readonly UserInterfaceSystem           _ui            = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly HereticSystem _heretic = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly PolymorphSystem _polymorph = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     private static readonly EntProtoId LockShapeshiftProto = "ActionHereticLockShapeshift";
 
@@ -141,13 +134,15 @@ public sealed class HereticLockActionsSystem : EntitySystem
 
     private void OnLockShapeshift(EntityUid uid, HereticComponent comp, HereticLockShapeshiftActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
             return;
         }
-        if (!HasComp<HereticLockAscendedComponent>(uid)) return;
+        if (!HasComp<HereticLockAscendedComponent>(uid))
+            return;
 
         args.Handled = true;
 
@@ -157,8 +152,10 @@ public sealed class HereticLockActionsSystem : EntitySystem
     private void OnLockShapeshiftSelect(EntityUid holderUid, HereticKnowledgeHolderComponent holderComp, HereticLockShapeshiftSelectMessage args)
     {
         var uid = args.Actor;
-        if (!TryComp<HereticComponent>(uid, out var comp)) return;
-        if (!HasComp<HereticLockAscendedComponent>(uid)) return;
+        if (!TryComp<HereticComponent>(uid, out var comp))
+            return;
+        if (!HasComp<HereticLockAscendedComponent>(uid))
+            return;
 
         if (!LockShapeshiftProtos.TryGetValue(args.Creature, out var proto))
             return;

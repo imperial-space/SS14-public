@@ -2,7 +2,6 @@ using System.Numerics;
 using Content.Server.Popups;
 using Content.Server.Traits.Assorted;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Imperial.Heretic.Core;

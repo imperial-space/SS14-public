@@ -41,7 +41,7 @@ public sealed class HereticShiftingGuiseSystem : EntitySystem
             return;
         if (!voiceMask.Active || !voiceMask.OverrideIdentity)
             return;
-        if (voiceMask.VoiceMaskName is not {} name)
+        if (voiceMask.VoiceMaskName is not { } name)
             return;
         args.Args.NameOverride = name;
     }

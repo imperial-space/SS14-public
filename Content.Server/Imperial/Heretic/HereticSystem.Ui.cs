@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using Content.Server.Actions;
 using Content.Server.Atmos.Components;
@@ -39,10 +38,8 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Prototypes;
-using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Inventory;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.EntitySystems;
 using Content.Shared.Mind;
@@ -205,19 +202,19 @@ public sealed partial class HereticSystem
             var prereqsMet = ArePrerequisitesMet(comp, proto);
             nodes.Add(new HereticKnowledgeNodeData
             {
-                Id              = proto.ID,
-                Name            = Loc.GetString(proto.Name),
-                Description     = Loc.GetString(proto.Description),
-                Cost            = proto.Cost,
-                Path            = proto.Path,
-                IsResearched    = comp.ResearchedKnowledge.Contains(proto.ID),
+                Id = proto.ID,
+                Name = Loc.GetString(proto.Name),
+                Description = Loc.GetString(proto.Description),
+                Cost = proto.Cost,
+                Path = proto.Path,
+                IsResearched = comp.ResearchedKnowledge.Contains(proto.ID),
                 PrerequisitesMet = prereqsMet,
-                Icon            = proto.Icon,
-                Prerequisites   = proto.Prerequisites.Select(p => p.Id).ToList(),
+                Icon = proto.Icon,
+                Prerequisites = proto.Prerequisites.Select(p => p.Id).ToList(),
                 PrerequisitesAny = proto.PrerequisitesAny.Select(set => set.Select(p => p.Id).ToList()).ToList(),
-                IsGift          = proto.IsGift,
-                ShopLevel       = proto.ShopLevel,
-                ConflictsWith   = proto.ConflictsWith.Select(p => p.Id).ToList(),
+                IsGift = proto.IsGift,
+                ShopLevel = proto.ShopLevel,
+                ConflictsWith = proto.ConflictsWith.Select(p => p.Id).ToList(),
             });
         }
 
@@ -226,37 +223,37 @@ public sealed partial class HereticSystem
         {
             paths.Add(new HereticPathData
             {
-                Id                 = proto.ID,
-                Path               = proto.Path,
-                Name               = Loc.GetString(proto.Name),
-                Description        = Loc.GetString(proto.Description),
-                Complexity         = Loc.GetString(proto.Complexity),
-                PassiveName        = Loc.GetString(proto.PassiveName),
+                Id = proto.ID,
+                Path = proto.Path,
+                Name = Loc.GetString(proto.Name),
+                Description = Loc.GetString(proto.Description),
+                Complexity = Loc.GetString(proto.Complexity),
+                PassiveName = Loc.GetString(proto.PassiveName),
                 PassiveDescription = Loc.GetString(proto.PassiveDescription),
-                Pros               = Loc.GetString(proto.Pros),
-                Cons               = string.IsNullOrEmpty(proto.Cons) ? string.Empty : Loc.GetString(proto.Cons),
-                Level1Description  = string.IsNullOrEmpty(proto.Level1Description) ? string.Empty : Loc.GetString(proto.Level1Description),
-                Level2Description  = string.IsNullOrEmpty(proto.Level2Description) ? string.Empty : Loc.GetString(proto.Level2Description),
-                Level3Description  = string.IsNullOrEmpty(proto.Level3Description) ? string.Empty : Loc.GetString(proto.Level3Description),
-                Icon               = proto.Icon,
-                PathKnowledgeId    = proto.PathKnowledgeId,
-                Tips               = string.IsNullOrEmpty(proto.Tips) ? string.Empty : Loc.GetString(proto.Tips),
+                Pros = Loc.GetString(proto.Pros),
+                Cons = string.IsNullOrEmpty(proto.Cons) ? string.Empty : Loc.GetString(proto.Cons),
+                Level1Description = string.IsNullOrEmpty(proto.Level1Description) ? string.Empty : Loc.GetString(proto.Level1Description),
+                Level2Description = string.IsNullOrEmpty(proto.Level2Description) ? string.Empty : Loc.GetString(proto.Level2Description),
+                Level3Description = string.IsNullOrEmpty(proto.Level3Description) ? string.Empty : Loc.GetString(proto.Level3Description),
+                Icon = proto.Icon,
+                PathKnowledgeId = proto.PathKnowledgeId,
+                Tips = string.IsNullOrEmpty(proto.Tips) ? string.Empty : Loc.GetString(proto.Tips),
             });
         }
-        paths.Sort((a, b) => (int) a.Path - (int) b.Path);
+        paths.Sort((a, b) => (int)a.Path - (int)b.Path);
 
         _ui.SetUiState(comp.BuiHolder, HereticInfoBuiKey.Key, new HereticInfoBuiState
         {
-            KnowledgePoints    = comp.KnowledgePoints,
-            CurrentPath        = comp.CurrentPath,
-            PassiveLevel       = comp.PassiveLevel,
-            SacrificeCount     = comp.SacrificeCount,
+            KnowledgePoints = comp.KnowledgePoints,
+            CurrentPath = comp.CurrentPath,
+            PassiveLevel = comp.PassiveLevel,
+            SacrificeCount = comp.SacrificeCount,
             RequiredSacrifices = comp.RequiredSacrifices,
-            RequiredKnowledge  = comp.RequiredKnowledge,
-            Paths              = paths,
-            Nodes              = nodes,
-            CurrentShopLevel   = comp.ShopLevel,
-            PendingGiftGroups  = comp.PendingGiftGroups.Select(g => new HereticGiftGroup { SourceNodeId = g.SourceNodeId, Candidates = new List<string>(g.Candidates) }).ToList(),
+            RequiredKnowledge = comp.RequiredKnowledge,
+            Paths = paths,
+            Nodes = nodes,
+            CurrentShopLevel = comp.ShopLevel,
+            PendingGiftGroups = comp.PendingGiftGroups.Select(g => new HereticGiftGroup { SourceNodeId = g.SourceNodeId, Candidates = new List<string>(g.Candidates) }).ToList(),
         });
     }
 

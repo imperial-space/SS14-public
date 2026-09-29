@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using Content.Server.Actions;
 using Content.Server.Atmos.Components;
@@ -10,7 +9,6 @@ using Content.Server.Chat.Systems;
 using Content.Server.Decals;
 using Content.Server.Doors.Systems;
 using Content.Server.Imperial.Heretic.Objectives;
-using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Server.Roles;
 using Content.Shared.Access.Components;
@@ -19,13 +17,11 @@ using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Antag;
 using Content.Shared.Atmos.Components;
-using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chat;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Decals;
@@ -34,14 +30,12 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.FixedPoint;
-using Content.Shared.Follower.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Moon;
 using Content.Shared.Imperial.Heretic.Prototypes;
-using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
@@ -55,7 +49,6 @@ using Content.Shared.Objectives.Systems;
 using Content.Shared.Overlays;
 using Content.Shared.PDA;
 using Content.Shared.Popups;
-using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Speech.EntitySystems;
 using Content.Shared.Speech.Muting;
@@ -246,7 +239,6 @@ public sealed partial class HereticSystem
         }
     }
 
-
     private void ApplyPassiveKnowledgeEffect(EntityUid uid, HereticComponent comp, string knowledgeId)
     {
         DamageSpecifier? heal = null;
@@ -258,67 +250,67 @@ public sealed partial class HereticSystem
                 break; // Items are spawned directly in MakeHeretic
 
             case "KnowledgeLockwielder":
-            {
-                heal = new DamageSpecifier();
-                heal.DamageDict["Blunt"]    = FixedPoint2.New(-20);
-                heal.DamageDict["Slash"]    = FixedPoint2.New(-10);
-                break;
-            }
+                {
+                    heal = new DamageSpecifier();
+                    heal.DamageDict["Blunt"] = FixedPoint2.New(-20);
+                    heal.DamageDict["Slash"] = FixedPoint2.New(-10);
+                    break;
+                }
 
             case "KnowledgeFleshArtisan":
                 heal = new DamageSpecifier();
-                heal.DamageDict["Slash"]    = FixedPoint2.New(-25);
+                heal.DamageDict["Slash"] = FixedPoint2.New(-25);
                 heal.DamageDict["Piercing"] = FixedPoint2.New(-15);
                 popupKey = "heretic-passive-flesh-artisan";
                 break;
 
             case "KnowledgeVoidTraveler":
                 heal = new DamageSpecifier();
-                heal.DamageDict["Cold"]     = FixedPoint2.New(-15);
+                heal.DamageDict["Cold"] = FixedPoint2.New(-15);
                 heal.DamageDict["Cellular"] = FixedPoint2.New(-10);
                 popupKey = "heretic-passive-void-traveler";
                 break;
 
             case "KnowledgeBladeAdept":
                 heal = new DamageSpecifier();
-                heal.DamageDict["Slash"]    = FixedPoint2.New(-20);
-                heal.DamageDict["Blunt"]    = FixedPoint2.New(-10);
+                heal.DamageDict["Slash"] = FixedPoint2.New(-20);
+                heal.DamageDict["Blunt"] = FixedPoint2.New(-10);
                 popupKey = "heretic-passive-blade-adept";
                 break;
 
             case "KnowledgeRustReaper":
-            {
-                heal = new DamageSpecifier();
-                heal.DamageDict["Caustic"]  = FixedPoint2.New(-15);
-                heal.DamageDict["Slash"]    = FixedPoint2.New(-10);
-                break;
-            }
+                {
+                    heal = new DamageSpecifier();
+                    heal.DamageDict["Caustic"] = FixedPoint2.New(-15);
+                    heal.DamageDict["Slash"] = FixedPoint2.New(-10);
+                    break;
+                }
 
             case "KnowledgeCosmicAcolyte":
-            {
-                heal = new DamageSpecifier();
-                heal.DamageDict["Radiation"] = FixedPoint2.New(-15);
-                heal.DamageDict["Heat"]      = FixedPoint2.New(-10);
-                var coords = Transform(uid).Coordinates;
-                var spaceHands = Spawn("HereticSpaceHands", coords);
-                _hands.TryPickupAnyHand(uid, spaceHands);
-                popupKey = "heretic-space-hands-obtained";
-                break;
-            }
+                {
+                    heal = new DamageSpecifier();
+                    heal.DamageDict["Radiation"] = FixedPoint2.New(-15);
+                    heal.DamageDict["Heat"] = FixedPoint2.New(-10);
+                    var coords = Transform(uid).Coordinates;
+                    var spaceHands = Spawn("HereticSpaceHands", coords);
+                    _hands.TryPickupAnyHand(uid, spaceHands);
+                    popupKey = "heretic-space-hands-obtained";
+                    break;
+                }
 
             case "KnowledgeGraspOfLunacy":
-            {
-                popupKey = "heretic-passive-grasp-of-lunacy";
-                break;
-            }
+                {
+                    popupKey = "heretic-passive-grasp-of-lunacy";
+                    break;
+                }
 
             case "KnowledgeVolcanoBlast":
-            {
-                if (TryComp<FlammableComponent>(uid, out var flammable))
-                    flammable.MaximumFireStacks = 0f;
-                popupKey = "heretic-passive-volcano-blast";
-                break;
-            }
+                {
+                    if (TryComp<FlammableComponent>(uid, out var flammable))
+                        flammable.MaximumFireStacks = 0f;
+                    popupKey = "heretic-passive-volcano-blast";
+                    break;
+                }
 
             // ── Blade upgrades ───────────────────────────────────────────────
             case "KnowledgeFieryBlade":

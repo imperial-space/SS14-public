@@ -1,11 +1,9 @@
 using System.Numerics;
-using Content.Client.Stylesheets;
 using Content.Shared.Imperial.Heretic.Core;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
-using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 using Robust.Shared.Maths;
 using Robust.Shared.Utility;
@@ -14,14 +12,14 @@ namespace Content.Client.Imperial.Heretic.UI;
 
 public sealed class HereticRitualWindow : DefaultWindow
 {
-    public event Action<string>?   OnRitualSelected;
+    public event Action<string>? OnRitualSelected;
     public event Action<NetEntity>? OnOfferingSelected;
 
     private readonly BoxContainer _list;
     private readonly SpriteSystem _spriteSystem;
 
     private static readonly Color TitlePurple = Color.FromHex("#d4a4ff");
-    private static readonly Color OfferingRed  = Color.FromHex("#cc5555");
+    private static readonly Color OfferingRed = Color.FromHex("#cc5555");
     private static readonly Color OfferingGold = Color.FromHex("#ddaa55");
 
     private static readonly SpriteSpecifier.Rsi RuneSpec = new(
@@ -32,7 +30,7 @@ public sealed class HereticRitualWindow : DefaultWindow
     {
         _spriteSystem = IoCManager.Resolve<IEntityManager>().System<SpriteSystem>();
 
-        Title   = Loc.GetString("heretic-ritual-window-title");
+        Title = Loc.GetString("heretic-ritual-window-title");
         MinSize = new Vector2(280, 180);
 
         // Style outer window panel
@@ -44,12 +42,12 @@ public sealed class HereticRitualWindow : DefaultWindow
                 break;
             }
         }
-        WindowHeader.PanelOverride   = new StyleBoxFlat { BackgroundColor = Color.FromHex("#1a0830") };
+        WindowHeader.PanelOverride = new StyleBoxFlat { BackgroundColor = Color.FromHex("#1a0830") };
         TitleLabel.FontColorOverride = Color.FromHex("#d4a4ff");
 
         _list = new BoxContainer
         {
-            Orientation        = BoxContainer.LayoutOrientation.Vertical,
+            Orientation = BoxContainer.LayoutOrientation.Vertical,
             SeparationOverride = 4,
         };
 
@@ -79,14 +77,14 @@ public sealed class HereticRitualWindow : DefaultWindow
 
             var row = new BoxContainer
             {
-                Orientation        = BoxContainer.LayoutOrientation.Horizontal,
+                Orientation = BoxContainer.LayoutOrientation.Horizontal,
                 SeparationOverride = 6,
-                HorizontalExpand   = true,
+                HorizontalExpand = true,
             };
             row.AddChild(MakeIcon(ritual.Icon, 24, 24));
 
             var btn = new Button { HorizontalExpand = true };
-            btn.Label.Text              = ritual.Name;
+            btn.Label.Text = ritual.Name;
             btn.Label.FontColorOverride = TitlePurple;
             btn.OnPressed += _ =>
             {
@@ -101,15 +99,15 @@ public sealed class HereticRitualWindow : DefaultWindow
         {
             _list.AddChild(new PanelContainer
             {
-                MinSize      = new Vector2(0, 1),
-                Margin       = new Thickness(0, 4),
+                MinSize = new Vector2(0, 1),
+                Margin = new Thickness(0, 4),
                 PanelOverride = new StyleBoxFlat { BackgroundColor = Color.FromHex("#5c2888") },
             });
             _list.AddChild(new Label
             {
-                Text              = Loc.GetString("heretic-offering-header"),
+                Text = Loc.GetString("heretic-offering-header"),
                 FontColorOverride = OfferingGold,
-                Margin            = new Thickness(0, 0, 0, 2),
+                Margin = new Thickness(0, 0, 0, 2),
             });
 
             foreach (var offering in state.Offerings)
@@ -117,7 +115,7 @@ public sealed class HereticRitualWindow : DefaultWindow
                 var capturedTarget = offering.Target;
 
                 var btn = new Button { HorizontalExpand = true };
-                btn.Label.Text              = Loc.GetString("heretic-offering-entry",
+                btn.Label.Text = Loc.GetString("heretic-offering-entry",
                     ("name", offering.Name), ("kp", offering.KnowledgeGain));
                 btn.Label.FontColorOverride = OfferingRed;
                 btn.OnPressed += _ =>
@@ -132,20 +130,20 @@ public sealed class HereticRitualWindow : DefaultWindow
 
     private sealed class GradientPanel : PanelContainer
     {
-        private static readonly Color GradTop    = Color.FromHex("#1e0d30");
+        private static readonly Color GradTop = Color.FromHex("#1e0d30");
         private static readonly Color GradBottom = Color.FromHex("#06020e");
-        private static readonly Color Border     = Color.FromHex("#5c2888");
+        private static readonly Color Border = Color.FromHex("#5c2888");
 
         public GradientPanel(int marginH = 8, int marginV = 6)
         {
             HorizontalExpand = true;
-            VerticalExpand   = true;
+            VerticalExpand = true;
             PanelOverride = new StyleBoxFlat
             {
-                BackgroundColor             = Color.Transparent,
-                ContentMarginLeftOverride   = marginH,
-                ContentMarginRightOverride  = marginH,
-                ContentMarginTopOverride    = marginV,
+                BackgroundColor = Color.Transparent,
+                ContentMarginLeftOverride = marginH,
+                ContentMarginRightOverride = marginH,
+                ContentMarginTopOverride = marginV,
                 ContentMarginBottomOverride = marginV,
             };
         }

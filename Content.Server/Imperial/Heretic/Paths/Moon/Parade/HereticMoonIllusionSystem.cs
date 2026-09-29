@@ -1,6 +1,4 @@
-using System.Numerics;
 using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Maths;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
@@ -10,9 +8,9 @@ namespace Content.Server.Imperial.Heretic.Paths.Moon.Parade;
 
 public sealed class HereticMoonIllusionSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom        _random  = default!;
-    [Dependency] private readonly SharedTransformSystem _xform   = default!;
-    [Dependency] private readonly SharedPhysicsSystem   _physics = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
 
     private const float MoveSpeed = 1.5f;
 
@@ -31,7 +29,8 @@ public sealed class HereticMoonIllusionSystem : EntitySystem
         var dir = _random.Pick(Directions);
         _xform.SetLocalRotation(uid, dir.ToAngle());
 
-        if (!TryComp<PhysicsComponent>(uid, out var physics)) return;
+        if (!TryComp<PhysicsComponent>(uid, out var physics))
+            return;
         var vec = dir.ToVec() * MoveSpeed;
         _physics.SetLinearVelocity(uid, vec, body: physics);
     }

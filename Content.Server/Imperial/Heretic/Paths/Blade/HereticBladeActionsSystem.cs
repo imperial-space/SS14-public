@@ -1,6 +1,4 @@
-using System.Linq;
 using System.Numerics;
-using System.Threading;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Beam;
@@ -10,19 +8,16 @@ using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Damage.Systems;
 using Content.Server.Decals;
-using Content.Server.DoAfter;
 using Content.Server.Doors.Systems;
 using Content.Server.Mind;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
 using Content.Server.Weapons.Ranged.Systems;
-using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Alert;
-using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body;
@@ -30,15 +25,12 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chat;
-using Content.Shared.CombatMode;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Coordinates.Helpers;
-using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.DoAfter;
 using Content.Shared.Doors.Components;
 using Content.Shared.Electrocution;
 using Content.Shared.Eye;
@@ -46,61 +38,48 @@ using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Blade;
 using Content.Shared.Imperial.Heretic.Paths.Lock;
 using Content.Shared.Imperial.Lavaland.ColossusLoot;
-using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Maps;
-using Content.Shared.Medical;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
-using Content.Shared.Polymorph;
 using Content.Shared.Popups;
-using Content.Shared.Pulling.Events;
 using Content.Shared.SSDIndicator;
 using Content.Shared.Slippery;
 using Content.Shared.Speech.Muting;
 using Content.Shared.Stacks;
 using Content.Shared.StatusEffect;
-using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
-using Content.Shared.Temperature.Components;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
-using Content.Shared.Weapons.Reflect;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
-using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Maths;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 using Timer = Robust.Shared.Timing.Timer;
 using NewStatusEffectsSystem = Content.Shared.StatusEffectNew.StatusEffectsSystem;
@@ -112,34 +91,33 @@ namespace Content.Server.Imperial.Heretic.Paths.Blade;
 /// </summary>
 public sealed class HereticBladeActionsSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem      _damage  = default!;
-    [Dependency] private readonly EntityLookupSystem    _lookup  = default!;
-    [Dependency] private readonly MobStateSystem        _mobs    = default!;
-    [Dependency] private readonly PopupSystem           _popup   = default!;
-    [Dependency] private readonly IRobustRandom         _random  = default!;
-    [Dependency] private readonly SharedStunSystem      _stun    = default!;
-    [Dependency] private readonly SharedTransformSystem _xform   = default!;
-    [Dependency] private readonly HereticSystem         _heretic = default!;
-    [Dependency] private readonly SharedAudioSystem     _audio   = default!;
-    [Dependency] private readonly SharedHandsSystem     _hands   = default!;
-    [Dependency] private readonly StatusEffectsSystem    _statusEffects = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly MobStateSystem _mobs = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly HereticSystem _heretic = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly NewStatusEffectsSystem _status = default!;
-    [Dependency] private readonly TagSystem              _tag          = default!;
-    [Dependency] private readonly SharedActionsSystem    _actions      = default!;
-    [Dependency] private readonly IGameTiming            _timing       = default!;
-    [Dependency] private readonly StaminaSystem          _stamina      = default!;
-    [Dependency] private readonly SharedBloodstreamSystem     _bloodstream   = default!;
-    [Dependency] private readonly ChatSystem                  _chat          = default!;
-    [Dependency] private readonly MobThresholdSystem          _mobThreshold  = default!;
-    [Dependency] private readonly TurfSystem                  _turf          = default!;
-    [Dependency] private readonly AlertsSystem                _alert           = default!;
-    [Dependency] private readonly GunSystem                  _gun             = default!;
-    [Dependency] private readonly DecalSystem                _decals          = default!;
-    [Dependency] private readonly HereticArenaSystem        _arena           = default!;
-    [Dependency] private readonly SharedMapSystem               _map           = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly StaminaSystem _stamina = default!;
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private readonly AlertsSystem _alert = default!;
+    [Dependency] private readonly GunSystem _gun = default!;
+    [Dependency] private readonly DecalSystem _decals = default!;
+    [Dependency] private readonly HereticArenaSystem _arena = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
 
     private static readonly ProtoId<TagPrototype> HereticBladeTag = "HereticBlade";
-
 
     public override void Initialize()
     {
@@ -174,8 +152,10 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
     private void OnBladeBladeMeleeHit(Entity<HereticBladeWeaponComponent> blade, ref MeleeHitEvent args)
     {
-        if (!args.IsHit) return;
-        if (!TryComp<HereticComponent>(args.User, out var comp)) return;
+        if (!args.IsHit)
+            return;
+        if (!TryComp<HereticComponent>(args.User, out var comp))
+            return;
 
         // Lock path: Opening Blade — bleed on hit (65% after ascension, 35% before)
         if (comp.CurrentPath == HereticPath.Lock && _heretic.HasKnowledge(comp, "KnowledgeOpeningBlade"))
@@ -183,8 +163,10 @@ public sealed class HereticBladeActionsSystem : EntitySystem
             var bleedChance = HasComp<HereticLockAscendedComponent>(args.User) ? 0.65f : 0.35f;
             foreach (var target in args.HitEntities)
             {
-                if (HasComp<HereticComponent>(target)) continue;
-                if (!_random.Prob(bleedChance)) continue;
+                if (HasComp<HereticComponent>(target))
+                    continue;
+                if (!_random.Prob(bleedChance))
+                    continue;
                 _bloodstream.TryModifyBleedAmount(target, 10f);
             }
         }
@@ -194,19 +176,23 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         {
             foreach (var target in args.HitEntities)
             {
-                if (HasComp<HereticComponent>(target)) continue;
+                if (HasComp<HereticComponent>(target))
+                    continue;
                 _heretic.TryTriggerLockMark(args.User, target);
             }
         }
 
-        if (comp.CurrentPath != HereticPath.Blade) return;
+        if (comp.CurrentPath != HereticPath.Blade)
+            return;
 
         if (HasComp<HereticMaelstromOfSilverComponent>(args.User))
         {
             foreach (var target in args.HitEntities)
             {
-                if (target == args.User) continue;
-                if (_mobs.IsDead(target)) continue;
+                if (target == args.User)
+                    continue;
+                if (_mobs.IsDead(target))
+                    continue;
 
                 // Blood steal
                 if (TryComp<BloodstreamComponent>(target, out var targetBlood))
@@ -223,12 +209,14 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         {
             foreach (var target in args.HitEntities)
             {
-                if (!_mobs.IsAlive(target) || target == args.User) continue;
+                if (!_mobs.IsAlive(target) || target == args.User)
+                    continue;
                 _heretic.TryTriggerBladeMark(args.User, target);
             }
         }
 
-        if (!_heretic.HasKnowledge(comp, "KnowledgeEmpoweredBlades")) return;
+        if (!_heretic.HasKnowledge(comp, "KnowledgeEmpoweredBlades"))
+            return;
 
         foreach (var target in args.HitEntities)
             _heretic.TryEmpoweredBladesOnHit(args.User, comp, target, blade.Owner);
@@ -236,11 +224,14 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
     private void OnBladeUseInHand(Entity<HereticBladeWeaponComponent> blade, ref UseInHandEvent args)
     {
-        if (args.Handled) return;
-        if (!TryComp<HereticComponent>(args.User, out var hComp)) return;
+        if (args.Handled)
+            return;
+        if (!TryComp<HereticComponent>(args.User, out var hComp))
+            return;
 
         // After gaining aura (UnlimitedBlades), breaking is disabled
-        if (hComp.UnlimitedBlades) return;
+        if (hComp.UnlimitedBlades)
+            return;
 
         args.Handled = true;
 
@@ -251,15 +242,15 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
         var afterMsg = hComp.CurrentPath switch
         {
-            HereticPath.Blade   => Loc.GetString("heretic-blade-shatter-blade"),
-            HereticPath.Rust    => Loc.GetString("heretic-blade-shatter-rust"),
-            HereticPath.Ash     => Loc.GetString("heretic-blade-shatter-ash"),
-            HereticPath.Flesh   => Loc.GetString("heretic-blade-shatter-flesh"),
-            HereticPath.Void    => Loc.GetString("heretic-blade-shatter-void"),
-            HereticPath.Cosmos  => Loc.GetString("heretic-blade-shatter-cosmos"),
-            HereticPath.Lock    => Loc.GetString("heretic-blade-shatter-lock"),
-            HereticPath.Moon    => Loc.GetString("heretic-blade-shatter-moon"),
-            _                   => Loc.GetString("heretic-blade-shatter"),
+            HereticPath.Blade => Loc.GetString("heretic-blade-shatter-blade"),
+            HereticPath.Rust => Loc.GetString("heretic-blade-shatter-rust"),
+            HereticPath.Ash => Loc.GetString("heretic-blade-shatter-ash"),
+            HereticPath.Flesh => Loc.GetString("heretic-blade-shatter-flesh"),
+            HereticPath.Void => Loc.GetString("heretic-blade-shatter-void"),
+            HereticPath.Cosmos => Loc.GetString("heretic-blade-shatter-cosmos"),
+            HereticPath.Lock => Loc.GetString("heretic-blade-shatter-lock"),
+            HereticPath.Moon => Loc.GetString("heretic-blade-shatter-moon"),
+            _ => Loc.GetString("heretic-blade-shatter"),
         };
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/runebreak.ogg"), args.User);
@@ -284,7 +275,8 @@ public sealed class HereticBladeActionsSystem : EntitySystem
             candidates.Add(tile.Value.GridIndices);
         }
 
-        if (candidates.Count == 0) return null;
+        if (candidates.Count == 0)
+            return null;
 
         var chosen = candidates[_random.Next(candidates.Count)];
         return new EntityCoordinates(gridUid.Value, _map.TileCenterToVector(gridEntity, chosen));
@@ -294,10 +286,14 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
     private void OnHereticDamaged(EntityUid uid, HereticComponent comp, DamageChangedEvent args)
     {
-        if (comp.CurrentPath != HereticPath.Blade) return;
-        if (!_heretic.HasKnowledge(comp, "KnowledgeDanceOfBrand")) return;
-        if (args.DamageDelta == null || args.DamageDelta.GetTotal() <= FixedPoint2.Zero) return;
-        if (args.Origin is not EntityUid attacker || attacker == uid || Deleted(attacker)) return;
+        if (comp.CurrentPath != HereticPath.Blade)
+            return;
+        if (!_heretic.HasKnowledge(comp, "KnowledgeDanceOfBrand"))
+            return;
+        if (args.DamageDelta == null || args.DamageDelta.GetTotal() <= FixedPoint2.Zero)
+            return;
+        if (args.Origin is not EntityUid attacker || attacker == uid || Deleted(attacker))
+            return;
 
         var now = _timing.CurTime;
         var dance = EnsureComp<HereticDanceOfBrandComponent>(uid);
@@ -314,7 +310,8 @@ public sealed class HereticBladeActionsSystem : EntitySystem
             break;
         }
 
-        if (!holdsHereticBlade) return;
+        if (!holdsHereticBlade)
+            return;
 
         dance.NextTrigger = now + dance.Cooldown;
 
@@ -329,7 +326,8 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
     private void OnRealignment(EntityUid uid, HereticComponent comp, HereticRealignmentActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -366,8 +364,10 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
         Timer.Spawn(TimeSpan.FromSeconds(90), () =>
         {
-            if (Deleted(captured)) return;
-            if (!TryComp<HereticComponent>(captured, out var h)) return;
+            if (Deleted(captured))
+                return;
+            if (!TryComp<HereticComponent>(captured, out var h))
+                return;
             if (h.RealignmentLevel > 0)
             {
                 h.RealignmentLevel--;
@@ -381,7 +381,8 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
     private void OnSanguineSurge(EntityUid uid, HereticComponent comp, HereticSanguineSurgeActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -392,7 +393,8 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         dmg.DamageDict["Slash"] = FixedPoint2.New(25);
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(uid).Coordinates, 2f))
         {
-            if (ent.Owner == uid) continue;
+            if (ent.Owner == uid)
+                continue;
             _damage.TryChangeDamage(ent.Owner, dmg, ignoreResistances: false);
         }
         Spawn("HereticEffectCleave", Transform(uid).Coordinates);
@@ -402,7 +404,8 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
     private void OnCleave(EntityUid uid, HereticComponent comp, HereticCleaveActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -419,8 +422,10 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         var targetCoords = args.Target;
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(targetCoords, 1.5f))
         {
-            if (ent.Owner == uid) continue;
-            if (HasComp<HereticComponent>(ent.Owner)) continue;
+            if (ent.Owner == uid)
+                continue;
+            if (HasComp<HereticComponent>(ent.Owner))
+                continue;
 
             var dmg = new DamageSpecifier();
             dmg.DamageDict["Slash"] = FixedPoint2.New(15);
@@ -435,7 +440,8 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
     private void OnSummonBlades(EntityUid uid, HereticComponent comp, HereticSummonBladesActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -452,10 +458,10 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
         var bladeLimit = comp.CurrentPath switch
         {
-            HereticPath.Blade  => 4,
-            HereticPath.Flesh  => 3,
-            HereticPath.Lock   => 2,
-            _                  => 1,
+            HereticPath.Blade => 4,
+            HereticPath.Flesh => 3,
+            HereticPath.Lock => 2,
+            _ => 1,
         };
         if (!comp.UnlimitedBlades && comp.BladesCreated >= bladeLimit)
         {
@@ -469,7 +475,8 @@ public sealed class HereticBladeActionsSystem : EntitySystem
             var delay = i * 660;
             Timer.Spawn(delay, () =>
             {
-                if (!TryComp<HereticComponent>(uid, out var hComp)) return;
+                if (!TryComp<HereticComponent>(uid, out var hComp))
+                    return;
                 _heretic.SpawnOrbitingBlade(uid, hComp);
                 _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_weapons_guillotine.ogg"), uid);
             });
@@ -480,7 +487,8 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
     private void OnFuriousSteel(EntityUid uid, HereticComponent comp, HereticFuriousSteelActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -521,7 +529,8 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         {
             Timer.Spawn(TimeSpan.FromSeconds(60), () =>
             {
-                if (Deleted(uid) || !HasComp<HereticMaelstromOfSilverComponent>(uid)) return;
+                if (Deleted(uid) || !HasComp<HereticMaelstromOfSilverComponent>(uid))
+                    return;
                 _heretic.SpawnOrbitingBlade(uid);
                 _popup.PopupEntity(Loc.GetString("heretic-maelstrom-blade-recharged"), uid, uid, PopupType.Small);
             });
@@ -530,10 +539,13 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
     private void OnHereticDamageModify(EntityUid uid, HereticComponent comp, DamageModifyEvent args)
     {
-        if (comp.OrbitingBlades.Count == 0) return;
-        if (args.Damage.GetTotal() <= FixedPoint2.Zero) return;
+        if (comp.OrbitingBlades.Count == 0)
+            return;
+        if (args.Damage.GetTotal() <= FixedPoint2.Zero)
+            return;
 
-        if (!_heretic.TryConsumeOrbitingBlade(uid, comp)) return;
+        if (!_heretic.TryConsumeOrbitingBlade(uid, comp))
+            return;
 
         args.Damage = new DamageSpecifier();
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/parry.ogg"), uid);
@@ -544,17 +556,18 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         {
             Timer.Spawn(TimeSpan.FromSeconds(60), () =>
             {
-                if (Deleted(uid) || !HasComp<HereticMaelstromOfSilverComponent>(uid)) return;
+                if (Deleted(uid) || !HasComp<HereticMaelstromOfSilverComponent>(uid))
+                    return;
                 _heretic.SpawnOrbitingBlade(uid);
                 _popup.PopupEntity(Loc.GetString("heretic-maelstrom-blade-recharged"), uid, uid, PopupType.Small);
             });
         }
     }
 
-
     private void OnWolvesAmongSheep(EntityUid uid, HereticComponent comp, HereticWolvesAmongSheepActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -614,8 +627,10 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         // Добавить всех не-еретиков в радиусе 9 как участников и выдать тренировочные клинки
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(targetCoords, 9f))
         {
-            if (ent.Owner == uid) continue;
-            if (HasComp<HereticComponent>(ent.Owner)) continue;
+            if (ent.Owner == uid)
+                continue;
+            if (HasComp<HereticComponent>(ent.Owner))
+                continue;
 
             _arena.AddParticipant(ent.Owner, marker, arena);
 
@@ -632,7 +647,8 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
     private void OnRawRitual(EntityUid uid, HereticComponent comp, HereticRawRitualActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -643,7 +659,8 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         dmg.DamageDict["Slash"] = FixedPoint2.New(15);
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(uid).Coordinates, 3f))
         {
-            if (ent.Owner == uid) continue;
+            if (ent.Owner == uid)
+                continue;
             _damage.TryChangeDamage(ent.Owner, dmg, ignoreResistances: false);
         }
         var selfDmg = new DamageSpecifier();
@@ -654,10 +671,10 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("heretic-raw-ritual"), uid, uid, PopupType.Medium);
     }
 
-
     private void OnStanceOfTornChampion(EntityUid uid, HereticComponent comp, HereticStanceOfTornChampionActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -687,32 +704,39 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
     private void OnTornChampionDamageModify(EntityUid uid, TornChampionStanceComponent comp, DamageModifyEvent args)
     {
-        if (args.Damage.GetTotal() <= FixedPoint2.Zero) return;
+        if (args.Damage.GetTotal() <= FixedPoint2.Zero)
+            return;
 
-        if (!_mobThreshold.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold)) return;
-        if (_damage.GetTotalDamage(uid) < critThreshold * 0.5f) return;
+        if (!_mobThreshold.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold))
+            return;
+        if (_damage.GetTotalDamage(uid) < critThreshold * 0.5f)
+            return;
 
         args.Damage *= 0.7f;
     }
 
     private void OnTornChampionKnockdownAttempt(Entity<TornChampionStanceComponent> ent, ref KnockDownAttemptEvent args)
     {
-        if (!_mobThreshold.TryGetThresholdForState(ent.Owner, MobState.Critical, out var critThreshold)) return;
-        if (_damage.GetTotalDamage(ent.Owner) < critThreshold * 0.5f) return;
+        if (!_mobThreshold.TryGetThresholdForState(ent.Owner, MobState.Critical, out var critThreshold))
+            return;
+        if (_damage.GetTotalDamage(ent.Owner) < critThreshold * 0.5f)
+            return;
 
         args.Cancelled = true;
     }
 
     private void OnLionhunterRifle(EntityUid uid, HereticComponent comp, HereticLionhunterRifleActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
             return;
         }
         args.Handled = true;
-        if (args.Entity is not {} target) return;
+        if (args.Entity is not { } target)
+            return;
         var dmg = new DamageSpecifier();
         dmg.DamageDict["Slash"] = FixedPoint2.New(40);
         _damage.TryChangeDamage(target, dmg, ignoreResistances: false);
@@ -740,7 +764,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
             var remaining = stunEnd - _timing.CurTime;
             if (remaining > TimeSpan.Zero)
             {
-                comp.StunAbsorbedSeconds += (float) remaining.TotalSeconds;
+                comp.StunAbsorbedSeconds += (float)remaining.TotalSeconds;
                 if (comp.StunAbsorbedSeconds >= 45f)
                 {
                     comp.StunAbsorbedSeconds = 0f;
@@ -782,15 +806,18 @@ public sealed class HereticBladeActionsSystem : EntitySystem
             var delayIndex = i;
             Timer.Spawn(TimeSpan.FromSeconds(delayIndex * 0.25), () =>
             {
-                if (Deleted(uid)) return;
+                if (Deleted(uid))
+                    return;
                 _heretic.SpawnOrbitingBlade(uid);
                 _audio.PlayPvs(new SoundPathSpecifier("/Audio/Items/unsheath.ogg"), uid, AudioParams.Default.WithVolume(-9.6f));
             });
         }
         foreach (var action in _actions.GetActions(uid))
         {
-            if (!TryComp<WorldTargetActionComponent>(action.Owner, out var wta)) continue;
-            if (wta.Event is not HereticFuriousSteelActionEvent) continue;
+            if (!TryComp<WorldTargetActionComponent>(action.Owner, out var wta))
+                continue;
+            if (wta.Event is not HereticFuriousSteelActionEvent)
+                continue;
             if (TryComp<ActionComponent>(action.Owner, out var ac) && ac.UseDelay.HasValue)
                 _actions.SetUseDelay(new Entity<ActionComponent?>(action.Owner, ac), TimeSpan.FromSeconds(ac.UseDelay.Value.TotalSeconds * 0.5));
             break;

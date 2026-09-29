@@ -5,7 +5,6 @@ using Content.Shared.Imperial.Heretic.Paths.Rust;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Silicons.Borgs.Components;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 
 namespace Content.Server.Imperial.Heretic.Paths.Rust;
@@ -32,8 +31,10 @@ public sealed class HereticRustSmokeSystem : EntitySystem
 
         foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(mapCoords, 0.6f))
         {
-            if (!HasComp<BorgChassisComponent>(mob.Owner)) continue;
-            if (!_mobs.IsAlive(mob.Owner, mob.Comp)) continue;
+            if (!HasComp<BorgChassisComponent>(mob.Owner))
+                continue;
+            if (!_mobs.IsAlive(mob.Owner, mob.Comp))
+                continue;
 
             var dmg = new DamageSpecifier();
             dmg.DamageDict["Blunt"] = FixedPoint2.New(ent.Comp.BorgDamage);

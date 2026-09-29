@@ -6,21 +6,20 @@ using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Blade;
 using Content.Shared.Tag;
 using Content.Shared.Weapons.Melee.Events;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Heretic.Paths.Blade;
 
 public sealed class HereticBladePassiveSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem  _damageable = default!;
-    [Dependency] private readonly SharedHandsSystem _hands      = default!;
-    [Dependency] private readonly IGameTiming       _gameTiming = default!;
-    [Dependency] private readonly TagSystem         _tag        = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     private const string KnifeTag = "HereticBlade";
     private static readonly TimeSpan DefaultCooldown = TimeSpan.FromSeconds(20);
-    private static readonly TimeSpan Level3Cooldown  = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan Level3Cooldown = TimeSpan.FromSeconds(10);
 
     public override void Initialize()
     {

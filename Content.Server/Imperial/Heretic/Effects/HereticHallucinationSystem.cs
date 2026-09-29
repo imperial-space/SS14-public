@@ -5,7 +5,6 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Eye;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Imperial.Heretic.Effects;
 using Content.Shared.Imperial.Heretic.Paths.Moon;
 using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
@@ -16,7 +15,6 @@ using Content.Shared.StatusEffectNew;
 using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -27,14 +25,14 @@ namespace Content.Server.Imperial.Heretic.Effects;
 
 public sealed class HereticHallucinationSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming           _timing     = default!;
-    [Dependency] private readonly IRobustRandom          _random     = default!;
-    [Dependency] private readonly SharedAudioSystem      _audio      = default!;
-    [Dependency] private readonly BlindableSystem        _blindable  = default!;
-    [Dependency] private readonly SharedEyeSystem        _eye        = default!;
-    [Dependency] private readonly MetaDataSystem         _metaData   = default!;
-    [Dependency] private readonly VisualBodySystem       _visualBody = default!;
-    [Dependency] private readonly IPrototypeManager      _prototype  = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly BlindableSystem _blindable = default!;
+    [Dependency] private readonly SharedEyeSystem _eye = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly VisualBodySystem _visualBody = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedVisibilitySystem _visibility = default!;
 
     private static readonly string[] HallucinationSounds =
@@ -45,11 +43,11 @@ public sealed class HereticHallucinationSystem : EntitySystem
         "/Audio/Imperial/heretic/sound_ambience_misc_ambiatm1.ogg",
     };
 
-    private const int   BlurAmount       = 5;
+    private const int BlurAmount = 5;
     private const float GhostSpawnChance = 0.35f;
-    private const float GhostMaxDist     = 5f;
-    private const float GhostLifeMin     = 3f;
-    private const float GhostLifeMax     = 6f;
+    private const float GhostMaxDist = 5f;
+    private const float GhostLifeMin = 3f;
+    private const float GhostLifeMax = 6f;
 
     public override void Initialize()
     {
@@ -100,8 +98,10 @@ public sealed class HereticHallucinationSystem : EntitySystem
         var query = EntityQueryEnumerator<HereticWeeepingHallucinationStatusEffectComponent, StatusEffectComponent>();
         while (query.MoveNext(out _, out var hallucination, out var statusEffect))
         {
-            if (now < hallucination.NextHallucinationTime) continue;
-            if (statusEffect.AppliedTo is not { } target) continue;
+            if (now < hallucination.NextHallucinationTime)
+                continue;
+            if (statusEffect.AppliedTo is not { } target)
+                continue;
 
             hallucination.NextHallucinationTime = now + TimeSpan.FromSeconds(
                 _random.NextFloat(hallucination.MinInterval, hallucination.MaxInterval));
@@ -132,8 +132,8 @@ public sealed class HereticHallucinationSystem : EntitySystem
 
     private EntityUid? SpawnGhostIllusion(EntityUid target)
     {
-        var angle  = _random.NextFloat(0f, MathF.PI * 2f);
-        var dist   = _random.NextFloat(0.5f, GhostMaxDist);
+        var angle = _random.NextFloat(0f, MathF.PI * 2f);
+        var dist = _random.NextFloat(0.5f, GhostMaxDist);
         var offset = new Vector2(MathF.Cos(angle) * dist, MathF.Sin(angle) * dist);
         var coords = Transform(target).Coordinates.Offset(offset);
 
@@ -151,7 +151,7 @@ public sealed class HereticHallucinationSystem : EntitySystem
         RemComp<SSDIndicatorComponent>(ghost);
         RemComp<InputMoverComponent>(ghost);
         RemComp<MobMoverComponent>(ghost);
-        _visibility.SetLayer(ghost, (ushort) VisibilityFlags.HereticIllusion);
+        _visibility.SetLayer(ghost, (ushort)VisibilityFlags.HereticIllusion);
 
         EnsureComp<TimedDespawnComponent>(ghost).Lifetime = _random.NextFloat(GhostLifeMin, GhostLifeMax);
         EnsureComp<HereticMoonIllusionComponent>(ghost);

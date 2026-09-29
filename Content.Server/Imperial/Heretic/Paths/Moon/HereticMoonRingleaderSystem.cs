@@ -4,7 +4,6 @@ using Content.Server.Imperial.Heretic.Effects;
 using Content.Shared.Damage.Components;
 using Content.Shared.Eye;
 using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Moon;
 using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
@@ -18,7 +17,6 @@ using Content.Shared.SSDIndicator;
 using Content.Shared.Stunnable;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Spawners;
@@ -27,26 +25,26 @@ namespace Content.Server.Imperial.Heretic.Paths.Moon;
 
 public sealed class HereticMoonRingleaderSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem            _audio          = default!;
-    [Dependency] private readonly EntityLookupSystem           _lookup         = default!;
-    [Dependency] private readonly HereticMoonBrainDamageSystem _brainDamage    = default!;
-    [Dependency] private readonly HereticMoonAmuletSystem      _moonAmulet     = default!;
-    [Dependency] private readonly HereticStatusEffectsSystem   _hereticEffects = default!;
-    [Dependency] private readonly IRobustRandom                _random         = default!;
-    [Dependency] private readonly MobStateSystem               _mobs           = default!;
-    [Dependency] private readonly SharedStunSystem             _stun           = default!;
-    [Dependency] private readonly MetaDataSystem               _metaData       = default!;
-    [Dependency] private readonly VisualBodySystem             _visualBody     = default!;
-    [Dependency] private readonly InventorySystem              _inventory      = default!;
-    [Dependency] private readonly IPrototypeManager            _prototype      = default!;
-    [Dependency] private readonly SharedVisibilitySystem       _visibility     = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly HereticMoonBrainDamageSystem _brainDamage = default!;
+    [Dependency] private readonly HereticMoonAmuletSystem _moonAmulet = default!;
+    [Dependency] private readonly HereticStatusEffectsSystem _hereticEffects = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly MobStateSystem _mobs = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly VisualBodySystem _visualBody = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly SharedVisibilitySystem _visibility = default!;
 
-    private const float AoeRadius     = 5f;
+    private const float AoeRadius = 5f;
     private const float CloneSpawnRad = 5f;
 
-    private const float CastBrainDmg    = 30f;
-    private const float CastSanityLoss  = 30f;
-    private const float LowSanityMult   = 1.5f;
+    private const float CastBrainDmg = 30f;
+    private const float CastSanityLoss = 30f;
+    private const float LowSanityMult = 1.5f;
     private const float LowSanityThresh = 20f;
 
     private static readonly SoundPathSpecifier CastSound = new("/Audio/Imperial/heretic/sound_effects_moon_parade.ogg");
@@ -59,12 +57,13 @@ public sealed class HereticMoonRingleaderSystem : EntitySystem
 
     private void OnRingleader(EntityUid uid, HereticComponent comp, HereticMoonRingleaderActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         args.Handled = true;
 
         _audio.PlayPvs(CastSound, uid);
 
-        var casterCoords    = Transform(uid).Coordinates;
+        var casterCoords = Transform(uid).Coordinates;
         var casterHasAmulet = HasComp<HereticMoonAmuletEquippedComponent>(uid);
 
         var victims = new HashSet<Entity<MobStateComponent>>();
@@ -72,13 +71,16 @@ public sealed class HereticMoonRingleaderSystem : EntitySystem
 
         foreach (var (victimUid, _) in victims)
         {
-            if (victimUid == uid) continue;
-            if (!_mobs.IsAlive(victimUid)) continue;
-            if (HasComp<HereticComponent>(victimUid)) continue;
+            if (victimUid == uid)
+                continue;
+            if (!_mobs.IsAlive(victimUid))
+                continue;
+            if (HasComp<HereticComponent>(victimUid))
+                continue;
 
             var brainComp = EnsureComp<HereticMoonBrainDamageComponent>(victimUid);
             var lowSanity = brainComp.Sanity < LowSanityThresh;
-            var mult      = lowSanity ? LowSanityMult : 1f;
+            var mult = lowSanity ? LowSanityMult : 1f;
 
             ApplyChannelAmulet(uid, victimUid, brainComp);
 
@@ -99,9 +101,9 @@ public sealed class HereticMoonRingleaderSystem : EntitySystem
 
     private void SpawnClone(EntityUid caster, EntityUid target)
     {
-        var angle       = _random.NextFloat(0f, MathF.PI * 2f);
-        var dist        = _random.NextFloat(0.5f, CloneSpawnRad);
-        var offset      = new Vector2(MathF.Cos(angle) * dist, MathF.Sin(angle) * dist);
+        var angle = _random.NextFloat(0f, MathF.PI * 2f);
+        var dist = _random.NextFloat(0.5f, CloneSpawnRad);
+        var offset = new Vector2(MathF.Cos(angle) * dist, MathF.Sin(angle) * dist);
         var spawnCoords = Transform(target).Coordinates.Offset(offset);
 
         if (!TryComp<HumanoidProfileComponent>(caster, out var humanoid))
@@ -119,7 +121,7 @@ public sealed class HereticMoonRingleaderSystem : EntitySystem
         RemComp<SSDIndicatorComponent>(clone);
         RemComp<InputMoverComponent>(clone);
         RemComp<MobMoverComponent>(clone);
-        _visibility.SetLayer(clone, (ushort) VisibilityFlags.HereticIllusion);
+        _visibility.SetLayer(clone, (ushort)VisibilityFlags.HereticIllusion);
 
         EnsureComp<TimedDespawnComponent>(clone).Lifetime = 30f;
         EnsureComp<HereticMoonIllusionComponent>(clone);
@@ -133,12 +135,13 @@ public sealed class HereticMoonRingleaderSystem : EntitySystem
 
     private void CopyEquipment(EntityUid source, EntityUid target)
     {
-        var coords     = Transform(target).Coordinates;
+        var coords = Transform(target).Coordinates;
         var enumerator = _inventory.GetSlotEnumerator(source);
         while (enumerator.NextItem(out var item, out var slot))
         {
             var protoId = MetaData(item).EntityPrototype?.ID;
-            if (protoId == null) continue;
+            if (protoId == null)
+                continue;
             var copy = Spawn(protoId, coords);
             _inventory.TryEquip(target, copy, slot.Name, silent: true);
         }

@@ -9,10 +9,8 @@ using Content.Shared.Imperial.Heretic.Items;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
 using Content.Shared.Popups;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Random;
 
@@ -42,9 +40,12 @@ public sealed class HereticEldritchCardSystem : EntitySystem
 
     private void OnCardInteract(Entity<HereticEldritchCardComponent> ent, ref AfterInteractEvent args)
     {
-        if (args.Handled) return;
-        if (!args.CanReach || args.Target == null) return;
-        if (!HasComp<HereticComponent>(args.User)) return;
+        if (args.Handled)
+            return;
+        if (!args.CanReach || args.Target == null)
+            return;
+        if (!HasComp<HereticComponent>(args.User))
+            return;
 
         // Copy identity, access and appearance from another ID card (except self)
         if (!HasComp<HereticEldritchCardComponent>(args.Target.Value)
@@ -80,7 +81,8 @@ public sealed class HereticEldritchCardSystem : EntitySystem
             return;
         }
 
-        if (!HasComp<AirlockComponent>(args.Target.Value)) return;
+        if (!HasComp<AirlockComponent>(args.Target.Value))
+            return;
 
         args.Handled = true;
 
@@ -111,13 +113,16 @@ public sealed class HereticEldritchCardSystem : EntitySystem
 
     private void OnPortalCollide(Entity<HereticEldritchPortalComponent> ent, ref StartCollideEvent args)
     {
-        if (args.OurFixtureId != PortalFixtureId) return;
-        if (!args.OtherFixture.Hard) return;
+        if (args.OurFixtureId != PortalFixtureId)
+            return;
+        if (!args.OtherFixture.Hard)
+            return;
 
         var subject = args.OtherEntity;
 
         // Don't teleport anchored entities
-        if (Transform(subject).Anchored) return;
+        if (Transform(subject).Anchored)
+            return;
 
         var hasLinkedPortal = ent.Comp.LinkedPortal != null && Exists(ent.Comp.LinkedPortal.Value);
 

@@ -19,13 +19,13 @@ namespace Content.Server.Imperial.Heretic.Paths.Void;
 
 public sealed class HereticVoidConduitSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem           _damage         = default!;
-    [Dependency] private readonly EntityLookupSystem         _lookup         = default!;
-    [Dependency] private readonly SharedAudioSystem          _audio          = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly HereticStatusEffectsSystem _hereticEffects = default!;
-    [Dependency] private readonly IRobustRandom              _random         = default!;
-    [Dependency] private readonly IGameTiming                _timing         = default!;
-    [Dependency] private readonly SharedTransformSystem      _xform          = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
 
     private static readonly SoundPathSpecifier AmbientSound =
         new("/Audio/Imperial/heretic/sound_ambience_misc_ambiatm1.ogg");
@@ -103,7 +103,8 @@ public sealed class HereticVoidConduitSystem : EntitySystem
             var capturedCoords = coords;
             Timer.Spawn(TimeSpan.FromSeconds(i * 2.5), () =>
             {
-                if (!Exists(uid)) return;
+                if (!Exists(uid))
+                    return;
                 Spawn(capturedProto, capturedCoords);
             });
         }
@@ -127,7 +128,8 @@ public sealed class HereticVoidConduitSystem : EntitySystem
         {
             for (var dy = -radius; dy <= radius; dy++)
             {
-                if (dx * dx + dy * dy > r2) continue;
+                if (dx * dx + dy * dy > r2)
+                    continue;
                 Spawn("HereticVoidConduitTileOverlay",
                     new EntityCoordinates(gridUid, snapped + new Vector2(dx, dy)));
             }
@@ -144,7 +146,8 @@ public sealed class HereticVoidConduitSystem : EntitySystem
         var byDistance = new Dictionary<int, List<EntityUid>>();
         foreach (var target in nearby)
         {
-            if (target == uid) continue;
+            if (target == uid)
+                continue;
 
             var targetPos = _xform.GetWorldPosition(target);
             var dist = (int)(targetPos - conduitPos).Length();
@@ -163,10 +166,12 @@ public sealed class HereticVoidConduitSystem : EntitySystem
             var capturedUid = uid;
             Timer.Spawn(TimeSpan.FromSeconds(dist), () =>
             {
-                if (!Exists(capturedUid)) return;
+                if (!Exists(capturedUid))
+                    return;
                 foreach (var target in capturedTargets)
                 {
-                    if (!Exists(target)) continue;
+                    if (!Exists(target))
+                        continue;
                     HandleWaveEffects(target);
                 }
             });

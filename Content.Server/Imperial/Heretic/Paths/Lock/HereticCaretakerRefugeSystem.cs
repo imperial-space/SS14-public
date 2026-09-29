@@ -1,7 +1,5 @@
-using Content.Server.Popups;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
@@ -15,7 +13,6 @@ using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
-using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics;
@@ -27,13 +24,13 @@ namespace Content.Server.Imperial.Heretic.Paths.Lock;
 
 public sealed class HereticCaretakerRefugeSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem      _actions    = default!;
-    [Dependency] private readonly SharedAudioSystem        _audio      = default!;
-    [Dependency] private readonly EntityLookupSystem       _lookup     = default!;
-    [Dependency] private readonly SharedPhysicsSystem      _physics    = default!;
-    [Dependency] private readonly SharedPopupSystem        _popup      = default!;
-    [Dependency] private readonly SharedStealthSystem      _stealth    = default!;
-    [Dependency] private readonly IGameTiming              _timing     = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedStealthSystem _stealth = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     private const string ExitActionProto = "ActionHereticCaretakerRefugeExit";
 
@@ -96,7 +93,8 @@ public sealed class HereticCaretakerRefugeSystem : EntitySystem
 
     private void OnRefuge(EntityUid uid, HereticComponent comp, HereticCaretakerRefugeActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
 
         // Если убежище уже активно — выход через основной ивент не работает (заклинания заблокированы).
         // Используется отдельное действие с checkCanInteract: false.
@@ -120,8 +118,10 @@ public sealed class HereticCaretakerRefugeSystem : EntitySystem
 
     private void OnRefugeExit(EntityUid uid, HereticComponent comp, HereticCaretakerRefugeExitActionEvent args)
     {
-        if (args.Handled) return;
-        if (!TryComp<HereticCaretakerRefugeActiveComponent>(uid, out var refugeComp)) return;
+        if (args.Handled)
+            return;
+        if (!TryComp<HereticCaretakerRefugeActiveComponent>(uid, out var refugeComp))
+            return;
         args.Handled = true;
         DeactivateRefuge(uid, refugeComp);
     }
@@ -143,8 +143,8 @@ public sealed class HereticCaretakerRefugeSystem : EntitySystem
         {
             refuge.FixtureStates.Add((id, fixture.Hard, fixture.CollisionLayer, fixture.CollisionMask));
             _physics.SetHard(uid, fixture, false, fixtures);
-            _physics.SetCollisionLayer(uid, id, fixture, (int) CollisionGroup.None, fixtures, physics);
-            _physics.SetCollisionMask(uid, id, fixture, (int) CollisionGroup.None, fixtures, physics);
+            _physics.SetCollisionLayer(uid, id, fixture, (int)CollisionGroup.None, fixtures, physics);
+            _physics.SetCollisionMask(uid, id, fixture, (int)CollisionGroup.None, fixtures, physics);
         }
 
         // Прозрачность
@@ -172,7 +172,8 @@ public sealed class HereticCaretakerRefugeSystem : EntitySystem
         {
             foreach (var (id, hard, layer, mask) in refuge.FixtureStates)
             {
-                if (!fixtures.Fixtures.TryGetValue(id, out var fixture)) continue;
+                if (!fixtures.Fixtures.TryGetValue(id, out var fixture))
+                    continue;
                 _physics.SetHard(uid, fixture, hard, fixtures);
                 _physics.SetCollisionLayer(uid, id, fixture, layer, fixtures, physics);
                 _physics.SetCollisionMask(uid, id, fixture, mask, fixtures, physics);

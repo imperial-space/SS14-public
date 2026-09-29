@@ -7,10 +7,8 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
-using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Flesh.Ascension;
@@ -19,22 +17,22 @@ public sealed class HereticWormSystem : EntitySystem
 {
     private static readonly EntProtoId ShedHumanFormProto = "ActionHereticShedHumanForm";
 
-    [Dependency] private readonly SharedActionsSystem   _actions   = default!;
-    [Dependency] private readonly MindSystem            _mind      = default!;
-    [Dependency] private readonly MobStateSystem        _mobState  = default!;
-    [Dependency] private readonly SharedPopupSystem     _popup     = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
-    private const string WormProto        = "MobHereticFleshWorm";
+    private const string WormProto = "MobHereticFleshWorm";
     private const string WormSegmentProto = "MobHereticWormSegment";
-    private const int    SegmentCount     = 20;
+    private const int SegmentCount = 20;
 
     public override void Initialize()
     {
         base.Initialize();
         // Запускаемся после SharedMoverController, чтобы перекрывать его SetLocalRotation.
         UpdatesAfter.Add(typeof(SharedMoverController));
-        SubscribeLocalEvent<HereticComponent,     HereticShedHumanFormActionEvent>(OnShedForm);
+        SubscribeLocalEvent<HereticComponent, HereticShedHumanFormActionEvent>(OnShedForm);
         SubscribeLocalEvent<HereticWormComponent, HereticShedHumanFormActionEvent>(OnRevertForm);
         SubscribeLocalEvent<HereticWormComponent, MobStateChangedEvent>(OnWormDied);
     }
@@ -83,7 +81,7 @@ public sealed class HereticWormSystem : EntitySystem
             // Расстояние голова→seg[0] постоянно = SegmentSpacing — нет «прыжков».
             for (var i = 0; i < worm.Segments.Count; i++)
             {
-                var idxBack  = i + 1; // дальше от головы
+                var idxBack = i + 1; // дальше от головы
                 var idxFront = i;     // ближе к голове
 
                 if (idxBack >= worm.PathPoints.Count)
@@ -93,7 +91,7 @@ public sealed class HereticWormSystem : EntitySystem
                 if (!Exists(seg))
                     continue;
 
-                var ptBack  = worm.PathPoints[idxBack];
+                var ptBack = worm.PathPoints[idxBack];
                 var ptFront = worm.PathPoints[idxFront];
 
                 EntityCoordinates segPos;
@@ -122,14 +120,16 @@ public sealed class HereticWormSystem : EntitySystem
 
     private void OnShedForm(EntityUid uid, HereticComponent _, HereticShedHumanFormActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         args.Handled = true;
         TransformToWorm(uid);
     }
 
     private void OnRevertForm(EntityUid uid, HereticWormComponent worm, HereticShedHumanFormActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         args.Handled = true;
         RevertToHuman(uid, worm);
     }
@@ -148,7 +148,7 @@ public sealed class HereticWormSystem : EntitySystem
 
         var coords = Transform(heretic).Coordinates;
 
-        var wormUid  = Spawn(WormProto, coords);
+        var wormUid = Spawn(WormProto, coords);
         var wormComp = EnsureComp<HereticWormComponent>(wormUid);
         wormComp.OriginalBody = heretic;
 

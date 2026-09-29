@@ -1,10 +1,8 @@
 using Content.Shared.Clothing;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Heretic.Items;
 using Content.Shared.Popups;
-using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 using Robust.Shared.Timing;
 
@@ -12,7 +10,7 @@ namespace Content.Server.Imperial.Heretic.Items;
 
 public sealed class HereticUnfathomableCurioSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup  = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 

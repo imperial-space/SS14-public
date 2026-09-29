@@ -13,11 +13,11 @@ namespace Content.Server.Imperial.Heretic.Rituals;
 
 public sealed class HereticFeastOfOwlsSystem : EntitySystem
 {
-    [Dependency] private readonly HereticSystem      _heretic     = default!;
-    [Dependency] private readonly PopupSystem        _popup       = default!;
-    [Dependency] private readonly SharedAudioSystem  _audio       = default!;
-    [Dependency] private readonly SharedStunSystem   _stun        = default!;
-    [Dependency] private readonly IChatManager       _chatManager = default!;
+    [Dependency] private readonly HereticSystem _heretic = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!;
 
     private static readonly SoundPathSpecifier FeastSound =
         new("/Audio/Imperial/heretic/sound_effects_curse.ogg");

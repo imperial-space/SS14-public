@@ -2,7 +2,6 @@ using Content.Client.UserInterface.Controls;
 using Content.Shared.Imperial.Heretic.Items;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
-using Robust.Shared.IoC;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 

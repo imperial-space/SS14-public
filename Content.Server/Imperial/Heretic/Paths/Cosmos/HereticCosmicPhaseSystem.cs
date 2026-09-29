@@ -15,14 +15,14 @@ namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
 public sealed class HereticCosmicPhaseSystem : EntitySystem
 {
-    [Dependency] private readonly AtmosphereSystem    _atmosphere  = default!;
-    [Dependency] private readonly MindSystem          _mind        = default!;
-    [Dependency] private readonly SharedPopupSystem   _popup       = default!;
-    [Dependency] private readonly SharedAudioSystem   _audio       = default!;
-    [Dependency] private readonly SharedTransformSystem _xform     = default!;
-    [Dependency] private readonly VisibilitySystem    _visibility  = default!;
-    [Dependency] private readonly SharedEyeSystem     _eye         = default!;
-    [Dependency] private readonly RespiratorSystem    _respirator  = default!;
+    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly VisibilitySystem _visibility = default!;
+    [Dependency] private readonly SharedEyeSystem _eye = default!;
+    [Dependency] private readonly RespiratorSystem _respirator = default!;
 
     private static readonly SoundPathSpecifier PhaseSound =
         new("/Audio/Imperial/heretic/sound_magic_cosmic_energy.ogg");
@@ -53,7 +53,8 @@ public sealed class HereticCosmicPhaseSystem : EntitySystem
 
     private void OnEnterPhase(EntityUid uid, HereticComponent comp, HereticCosmicPhaseActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         args.Handled = true;
 
         if (HasComp<HereticCosmicPhaseComponent>(uid))
@@ -79,8 +80,8 @@ public sealed class HereticCosmicPhaseSystem : EntitySystem
         ghostComp.HereticUid = uid;
 
         var vis = EnsureComp<VisibilityComponent>(ghostUid);
-        _visibility.AddLayer((ghostUid, vis), (int) VisibilityFlags.Ghost, false);
-        _visibility.RemoveLayer((ghostUid, vis), (int) VisibilityFlags.Normal, false);
+        _visibility.AddLayer((ghostUid, vis), (int)VisibilityFlags.Ghost, false);
+        _visibility.RemoveLayer((ghostUid, vis), (int)VisibilityFlags.Normal, false);
         _visibility.RefreshVisibility(ghostUid, visibilityComponent: vis);
 
         EnsureComp<PressureImmunityComponent>(uid);
@@ -98,7 +99,8 @@ public sealed class HereticCosmicPhaseSystem : EntitySystem
 
     private void OnExitPhase(EntityUid ghostUid, HereticCosmicGhostComponent comp, HereticCosmicPhaseExitActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         args.Handled = true;
 
         if (!IsInLowPressure(ghostUid))
@@ -117,7 +119,7 @@ public sealed class HereticCosmicPhaseSystem : EntitySystem
 
     private void OnGhostGetVisMask(EntityUid uid, HereticCosmicGhostComponent comp, ref GetVisMaskEvent args)
     {
-        args.VisibilityMask |= (int) VisibilityFlags.Ghost;
+        args.VisibilityMask |= (int)VisibilityFlags.Ghost;
     }
 
     private void OnPhaseShutdown(EntityUid uid, HereticCosmicPhaseComponent comp, ComponentShutdown args)

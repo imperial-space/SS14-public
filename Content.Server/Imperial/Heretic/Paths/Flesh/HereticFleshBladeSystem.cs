@@ -8,7 +8,7 @@ namespace Content.Server.Imperial.Heretic.Paths.Flesh;
 public sealed class HereticFleshBladeSystem : EntitySystem
 {
     [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
-    [Dependency] private readonly HereticSystem     _heretic     = default!;
+    [Dependency] private readonly HereticSystem _heretic = default!;
 
     public override void Initialize()
     {

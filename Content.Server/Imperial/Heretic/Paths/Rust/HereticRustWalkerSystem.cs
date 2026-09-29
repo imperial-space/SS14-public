@@ -11,21 +11,19 @@ using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Maths;
 using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.Heretic.Paths.Rust;
 
 public sealed class HereticRustWalkerSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem      _damage  = default!;
-    [Dependency] private readonly SharedTransformSystem _xform   = default!;
-    [Dependency] private readonly SharedAudioSystem     _audio   = default!;
-    [Dependency] private readonly PopupSystem           _popup   = default!;
-    [Dependency] private readonly EntityLookupSystem    _lookup  = default!;
-    [Dependency] private readonly IRobustRandom         _random  = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     private static readonly SoundPathSpecifier WelderSound =
         new SoundPathSpecifier("/Audio/Imperial/heretic/sound_items_tools_welder.ogg");
@@ -38,7 +36,7 @@ public sealed class HereticRustWalkerSystem : EntitySystem
         "HereticSmallRuneEffect7", "HereticSmallRuneEffect10"
     };
 
-    private readonly HashSet<EntityUid> _wallBuffer   = new();
+    private readonly HashSet<EntityUid> _wallBuffer = new();
     private readonly HashSet<EntityUid> _structBuffer = new();
 
     public override void Initialize()
@@ -99,7 +97,8 @@ public sealed class HereticRustWalkerSystem : EntitySystem
 
                 for (var i = -2; i <= 2; i++)
                 {
-                    if (!_random.Prob(proj.RustChance)) continue;
+                    if (!_random.Prob(proj.RustChance))
+                        continue;
                     var offset = perp * i;
                     var tileMapPos = new MapCoordinates(projMapCoords.Position + offset, projMapCoords.MapId);
                     SpawnRustOverlayAt(tileMapPos);
@@ -122,7 +121,8 @@ public sealed class HereticRustWalkerSystem : EntitySystem
         causticDamage.DamageDict["Caustic"] = FixedPoint2.New(25);
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(projMapCoords, 1.5f))
         {
-            if (ent.Owner == proj.CasterUid) continue;
+            if (ent.Owner == proj.CasterUid)
+                continue;
             _damage.TryChangeDamage(ent.Owner, causticDamage, ignoreResistances: false);
         }
 
@@ -143,14 +143,16 @@ public sealed class HereticRustWalkerSystem : EntitySystem
 
     private void OnAggressiveSpread(EntityUid uid, HereticRustWalkerComponent comp, HereticRustWalkerAggressiveSpreadActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         args.Handled = true;
 
         var mapCoords = _xform.GetMapCoordinates(uid);
         for (var dx = -2; dx <= 2; dx++)
             for (var dy = -2; dy <= 2; dy++)
             {
-                if (dx * dx + dy * dy > 4) continue;
+                if (dx * dx + dy * dy > 4)
+                    continue;
                 var pos = new MapCoordinates(mapCoords.Position + new Vector2(dx, dy), mapCoords.MapId);
                 SpawnRustOverlayAt(pos);
                 Spawn(_random.Pick(RuneEffects), pos);
@@ -164,12 +166,14 @@ public sealed class HereticRustWalkerSystem : EntitySystem
 
     private void OnLesserPatrinsReach(EntityUid uid, HereticRustWalkerComponent comp, HereticRustWalkerLesserPatrinsReachActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         args.Handled = true;
 
         var targetWorld = _xform.ToMapCoordinates(args.Target).Position;
         var projUid = Spawn("HereticPatrinsReachProjectile", Transform(uid).Coordinates);
-        if (!TryComp<HereticPatrinsReachComponent>(projUid, out var projComp)) return;
+        if (!TryComp<HereticPatrinsReachComponent>(projUid, out var projComp))
+            return;
 
         projComp.CasterUid = uid;
         projComp.TargetWorldPos = targetWorld;
@@ -180,7 +184,8 @@ public sealed class HereticRustWalkerSystem : EntitySystem
 
     private void OnMeleeHit(Entity<HereticRustWalkerComponent> ent, ref MeleeHitEvent args)
     {
-        if (!args.IsHit) return;
+        if (!args.IsHit)
+            return;
         foreach (var target in args.HitEntities)
         {
             var mapCoords = _xform.GetMapCoordinates(target);
@@ -197,7 +202,8 @@ public sealed class HereticRustWalkerSystem : EntitySystem
         foreach (var wallUid in _wallBuffer)
         {
             var protoId = MetaData(wallUid).EntityPrototype?.ID;
-            if (protoId is not ("WallSolid" or "WallReinforced")) continue;
+            if (protoId is not ("WallSolid" or "WallReinforced"))
+                continue;
             var wallCoords = Transform(wallUid).Coordinates;
             QueueDel(wallUid);
             Spawn(protoId == "WallSolid" ? "WallSolidRust" : "WallReinforcedRust", wallCoords);
@@ -219,7 +225,8 @@ public sealed class HereticRustWalkerSystem : EntitySystem
         dmg.DamageDict["Structural"] = FixedPoint2.New(amount);
         foreach (var uid in _structBuffer)
         {
-            if (HasComp<MobStateComponent>(uid)) continue;
+            if (HasComp<MobStateComponent>(uid))
+                continue;
             _damage.TryChangeDamage(uid, dmg, ignoreResistances: false);
         }
     }

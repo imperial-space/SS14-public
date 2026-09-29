@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Numerics;
 using System.Text;
 using Content.Server.Actions;
@@ -10,23 +9,18 @@ using Content.Server.Chat.Systems;
 using Content.Server.Decals;
 using Content.Server.Doors.Systems;
 using Content.Server.Imperial.Heretic.Paths.Moon;
-using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Server.Roles;
 using Content.Shared.Access.Components;
-using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
-using Content.Shared.Antag;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chat;
-using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Decals;
 using Content.Shared.Doors.Components;
@@ -34,7 +28,6 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.FixedPoint;
-using Content.Shared.Follower.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.IdentityManagement.Components;
@@ -50,42 +43,32 @@ using Content.Shared.Imperial.Heretic.Rituals;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Inventory;
 using Content.Shared.Mech.Components;
-using Content.Shared.Mech.EntitySystems;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Objectives.Systems;
 using Content.Shared.Overlays;
 using Content.Shared.PDA;
 using Content.Shared.Popups;
-using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Speech.EntitySystems;
 using Content.Shared.Speech.Muting;
-using Content.Shared.Standing;
 using Content.Shared.StatusEffect;
-using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Storage.Components;
-using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
 using Content.Shared.Temperature.Components;
 using Content.Shared.UserInterface;
 using Content.Shared.Weapons.Melee;
-using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 using CancellationTokenSource = System.Threading.CancellationTokenSource;
 using Timer = Robust.Shared.Timing.Timer;
 
@@ -98,7 +81,8 @@ public sealed partial class HereticSystem
 {
     private void OnMansusGrasp(EntityUid uid, HereticComponent comp, HereticMansusGraspActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         args.Handled = true;
 
         // SS13: on_grasp_cast — если в активной руке тёмный клинок и есть знание, вливаем силу вместо обычной Хватки
@@ -112,8 +96,10 @@ public sealed partial class HereticSystem
                 _appearance.SetData(activeItem.Value, HereticBladeSunderedVisuals.Infused, true);
                 foreach (var held in _hands.EnumerateHeld(uid))
                 {
-                    if (held == activeItem.Value) continue;
-                    if (!TryComp<HereticBladeBladeComponent>(held, out var offBladeComp) || offBladeComp.Infused) continue;
+                    if (held == activeItem.Value)
+                        continue;
+                    if (!TryComp<HereticBladeBladeComponent>(held, out var offBladeComp) || offBladeComp.Infused)
+                        continue;
                     offBladeComp.Infused = true;
                     Dirty(held, offBladeComp);
                     _appearance.SetData(held, HereticBladeSunderedVisuals.Infused, true);
@@ -203,7 +189,7 @@ public sealed partial class HereticSystem
         if (!TryComp<HereticComponent>(caster, out var comp))
             return;
 
-        if (args.Target is not {} target)
+        if (args.Target is not { } target)
         {
             if (args.CanReach && !args.Handled)
             {
@@ -331,14 +317,14 @@ public sealed partial class HereticSystem
     {
         return path switch
         {
-            HereticPath.Ash    => "HereticEffectMansusMarkAsh",
-            HereticPath.Lock   => "HereticEffectMansusMarkLock",
-            HereticPath.Flesh  => "HereticEffectMansusMarkFlesh",
-            HereticPath.Void   => "HereticEffectMansusMarkVoid",
-            HereticPath.Blade  => "HereticEffectMansusMarkBlade",
-            HereticPath.Rust   => "HereticEffectMansusMarkRust",
+            HereticPath.Ash => "HereticEffectMansusMarkAsh",
+            HereticPath.Lock => "HereticEffectMansusMarkLock",
+            HereticPath.Flesh => "HereticEffectMansusMarkFlesh",
+            HereticPath.Void => "HereticEffectMansusMarkVoid",
+            HereticPath.Blade => "HereticEffectMansusMarkBlade",
+            HereticPath.Rust => "HereticEffectMansusMarkRust",
             HereticPath.Cosmos => "HereticEffectMansusMarkCosmos",
-            _                  => "HereticEffectMansusMarkAsh",
+            _ => "HereticEffectMansusMarkAsh",
         };
     }
 
@@ -456,8 +442,10 @@ public sealed partial class HereticSystem
         EntityUid? offhandBlade = null;
         foreach (var held in _hands.EnumerateHeld(heretic))
         {
-            if (held == weapon) continue;
-            if (!_tag.HasTag(held, HereticBladeTag)) continue;
+            if (held == weapon)
+                continue;
+            if (!_tag.HasTag(held, HereticBladeTag))
+                continue;
             offhandBlade = held;
             break;
         }
@@ -470,8 +458,10 @@ public sealed partial class HereticSystem
         {
             if (TerminatingOrDeleted(heretic) || TerminatingOrDeleted(target) || TerminatingOrDeleted(offhand))
                 return;
-            if (!_mobs.IsAlive(target)) return;
-            if (!TryComp<MeleeWeaponComponent>(offhand, out var offMelee)) return;
+            if (!_mobs.IsAlive(target))
+                return;
+            if (!TryComp<MeleeWeaponComponent>(offhand, out var offMelee))
+                return;
 
             var dmg = offMelee.Damage * 0.8f;
             _damageSystem.TryChangeDamage(target, dmg, ignoreResistances: false);
@@ -496,48 +486,48 @@ public sealed partial class HereticSystem
         switch (comp.CurrentPath)
         {
             case HereticPath.Ash:
-            {
-                _blindable.AdjustEyeDamage((target, null), 9);
-                _statusEffects.TryAddStatusEffect<TemporaryBlindnessComponent>(
-                    target, TemporaryBlindnessSystem.BlindingStatusEffect, TimeSpan.FromSeconds(20), true);
-                _flammable.AdjustFireStacks(target, 3f, ignite: true);
-                EnsureComp<AshMarkComponent>(target);
-                break;
-            }
-            case HereticPath.Moon:
-            {
-                // Скрыть еретика на 5 секунд (moon_grasp_hide из SS13)
-                var moonStealth = EnsureComp<StealthComponent>(heretic);
-                _stealth.SetEnabled(heretic, true, moonStealth);
-                _stealth.SetVisibility(heretic, -1f, moonStealth);
-                var lunacy = EnsureComp<HereticGraspLunacyStealthComponent>(heretic);
-                lunacy.EndTime = _timing.CurTime + lunacy.Duration;
-
-                // Цель: галлюцинации 20 сек + -30 рассудка
-                _hereticEffects.ApplyHallucination(target, TimeSpan.FromSeconds(20));
-                _moonBrainDamage.AddBrainDamage(target, 30f);
-                EnsureComp<MoonMarkComponent>(target);
-                _popup.PopupEntity(Loc.GetString("heretic-grasp-mark-moon"), target, target, PopupType.SmallCaution);
-                break;
-            }
-            case HereticPath.Lock:
-            {
-                var lockMark = EnsureComp<LockMarkComponent>(target);
-                if (_inventory.TryGetSlotEntity(target, "id", out var idSlotItem))
                 {
-                    var cardId = idSlotItem.Value;
-                    if (TryComp<PdaComponent>(idSlotItem, out var pda) && pda.ContainedId.HasValue)
-                        cardId = pda.ContainedId.Value;
-
-                    if (TryComp<AccessComponent>(cardId, out var idAccess))
-                    {
-                        lockMark.IdCard = cardId;
-                        _access.SetAccessEnabled(cardId, false, idAccess);
-                    }
+                    _blindable.AdjustEyeDamage((target, null), 9);
+                    _statusEffects.TryAddStatusEffect<TemporaryBlindnessComponent>(
+                        target, TemporaryBlindnessSystem.BlindingStatusEffect, TimeSpan.FromSeconds(20), true);
+                    _flammable.AdjustFireStacks(target, 3f, ignite: true);
+                    EnsureComp<AshMarkComponent>(target);
+                    break;
                 }
-                _popup.PopupEntity(Loc.GetString("heretic-grasp-mark-lock"), target, target, PopupType.SmallCaution);
-                break;
-            }
+            case HereticPath.Moon:
+                {
+                    // Скрыть еретика на 5 секунд (moon_grasp_hide из SS13)
+                    var moonStealth = EnsureComp<StealthComponent>(heretic);
+                    _stealth.SetEnabled(heretic, true, moonStealth);
+                    _stealth.SetVisibility(heretic, -1f, moonStealth);
+                    var lunacy = EnsureComp<HereticGraspLunacyStealthComponent>(heretic);
+                    lunacy.EndTime = _timing.CurTime + lunacy.Duration;
+
+                    // Цель: галлюцинации 20 сек + -30 рассудка
+                    _hereticEffects.ApplyHallucination(target, TimeSpan.FromSeconds(20));
+                    _moonBrainDamage.AddBrainDamage(target, 30f);
+                    EnsureComp<MoonMarkComponent>(target);
+                    _popup.PopupEntity(Loc.GetString("heretic-grasp-mark-moon"), target, target, PopupType.SmallCaution);
+                    break;
+                }
+            case HereticPath.Lock:
+                {
+                    var lockMark = EnsureComp<LockMarkComponent>(target);
+                    if (_inventory.TryGetSlotEntity(target, "id", out var idSlotItem))
+                    {
+                        var cardId = idSlotItem.Value;
+                        if (TryComp<PdaComponent>(idSlotItem, out var pda) && pda.ContainedId.HasValue)
+                            cardId = pda.ContainedId.Value;
+
+                        if (TryComp<AccessComponent>(cardId, out var idAccess))
+                        {
+                            lockMark.IdCard = cardId;
+                            _access.SetAccessEnabled(cardId, false, idAccess);
+                        }
+                    }
+                    _popup.PopupEntity(Loc.GetString("heretic-grasp-mark-lock"), target, target, PopupType.SmallCaution);
+                    break;
+                }
             case HereticPath.Void:
                 if (TryComp<StatusEffectsComponent>(target, out var voidSe))
                     _statusEffects.TryAddStatusEffect<MutedComponent>(target, "Muted", TimeSpan.FromSeconds(10), true, voidSe);
@@ -556,41 +546,42 @@ public sealed partial class HereticSystem
                     ApplyBladeMark(heretic, target);
                 break;
             case HereticPath.Rust when comp.ResearchedKnowledge.Contains("KnowledgeCorrode"):
-            {
-                var dmg = new DamageSpecifier();
-                dmg.DamageDict["Caustic"] = FixedPoint2.New(10);
-                _damageSystem.TryChangeDamage(target, dmg, ignoreResistances: false);
+                {
+                    var dmg = new DamageSpecifier();
+                    dmg.DamageDict["Caustic"] = FixedPoint2.New(10);
+                    _damageSystem.TryChangeDamage(target, dmg, ignoreResistances: false);
 
-                if (comp.ResearchedKnowledge.Contains("KnowledgeMarkOfRust") && !HasComp<RustMarkComponent>(target))
-                {
-                    EnsureComp<RustMarkComponent>(target);
-                    _popup.PopupEntity(Loc.GetString("heretic-grasp-mark-rust"), target, target, PopupType.SmallCaution);
-                }
-                break;
-            }
-            case HereticPath.Cosmos:
-            {
-                if (HasComp<HereticComponent>(target) || HasComp<CosmosMarkImmuneComponent>(target))
-                    break;
-                var mark = EnsureComp<CosmosMarkComponent>(target);
-                if (mark.AnchorEntity.HasValue && !TerminatingOrDeleted(mark.AnchorEntity.Value))
-                    QueueDel(mark.AnchorEntity.Value);
-                mark.AnchorEntity = Spawn("HereticCosmicDiamondAnchor", Transform(target).Coordinates);
-                var capturedTarget = target;
-                var capturedAnchor = mark.AnchorEntity.Value;
-                Timer.Spawn(TimeSpan.FromSeconds(15), () =>
-                {
-                    if (Deleted(capturedTarget) || !TryComp<CosmosMarkComponent>(capturedTarget, out var m)) return;
-                    if (m.AnchorEntity == capturedAnchor)
+                    if (comp.ResearchedKnowledge.Contains("KnowledgeMarkOfRust") && !HasComp<RustMarkComponent>(target))
                     {
-                        if (!TerminatingOrDeleted(capturedAnchor))
-                            QueueDel(capturedAnchor);
-                        RemCompDeferred<CosmosMarkComponent>(capturedTarget);
+                        EnsureComp<RustMarkComponent>(target);
+                        _popup.PopupEntity(Loc.GetString("heretic-grasp-mark-rust"), target, target, PopupType.SmallCaution);
                     }
-                });
-                _popup.PopupEntity(Loc.GetString("heretic-grasp-mark-cosmos"), target, target, PopupType.SmallCaution);
-                break;
-            }
+                    break;
+                }
+            case HereticPath.Cosmos:
+                {
+                    if (HasComp<HereticComponent>(target) || HasComp<CosmosMarkImmuneComponent>(target))
+                        break;
+                    var mark = EnsureComp<CosmosMarkComponent>(target);
+                    if (mark.AnchorEntity.HasValue && !TerminatingOrDeleted(mark.AnchorEntity.Value))
+                        QueueDel(mark.AnchorEntity.Value);
+                    mark.AnchorEntity = Spawn("HereticCosmicDiamondAnchor", Transform(target).Coordinates);
+                    var capturedTarget = target;
+                    var capturedAnchor = mark.AnchorEntity.Value;
+                    Timer.Spawn(TimeSpan.FromSeconds(15), () =>
+                    {
+                        if (Deleted(capturedTarget) || !TryComp<CosmosMarkComponent>(capturedTarget, out var m))
+                            return;
+                        if (m.AnchorEntity == capturedAnchor)
+                        {
+                            if (!TerminatingOrDeleted(capturedAnchor))
+                                QueueDel(capturedAnchor);
+                            RemCompDeferred<CosmosMarkComponent>(capturedTarget);
+                        }
+                    });
+                    _popup.PopupEntity(Loc.GetString("heretic-grasp-mark-cosmos"), target, target, PopupType.SmallCaution);
+                    break;
+                }
         }
     }
 
@@ -598,14 +589,14 @@ public sealed partial class HereticSystem
     {
         return comp.CurrentPath switch
         {
-            HereticPath.Ash    => comp.ResearchedKnowledge.Contains("KnowledgeAshenPassage"),
-            HereticPath.Lock   => false,
-            HereticPath.Flesh  => false,
-            HereticPath.Void   => false,
-            HereticPath.Blade  => comp.ResearchedKnowledge.Contains("KnowledgeCleave"),
-            HereticPath.Rust   => comp.ResearchedKnowledge.Contains("KnowledgeRustWave"),
+            HereticPath.Ash => comp.ResearchedKnowledge.Contains("KnowledgeAshenPassage"),
+            HereticPath.Lock => false,
+            HereticPath.Flesh => false,
+            HereticPath.Void => false,
+            HereticPath.Blade => comp.ResearchedKnowledge.Contains("KnowledgeCleave"),
+            HereticPath.Rust => comp.ResearchedKnowledge.Contains("KnowledgeRustWave"),
             HereticPath.Cosmos => false,
-            _                   => false,
+            _ => false,
         };
     }
 
@@ -616,27 +607,27 @@ public sealed partial class HereticSystem
         switch (comp.CurrentPath)
         {
             case HereticPath.Ash:
-            {
-                var dmg = new DamageSpecifier();
-                dmg.DamageDict["Heat"] = FixedPoint2.New(15);
-                _damageSystem.TryChangeDamage(target, dmg, ignoreResistances: true);
-                break;
-            }
+                {
+                    var dmg = new DamageSpecifier();
+                    dmg.DamageDict["Heat"] = FixedPoint2.New(15);
+                    _damageSystem.TryChangeDamage(target, dmg, ignoreResistances: true);
+                    break;
+                }
             case HereticPath.Blade:
-            {
-                var dmg = new DamageSpecifier();
-                dmg.DamageDict["Slash"] = FixedPoint2.New(15);
-                _damageSystem.TryChangeDamage(target, dmg, ignoreResistances: false);
-                _bloodstream.TryModifyBleedAmount(target, 10f);
-                break;
-            }
+                {
+                    var dmg = new DamageSpecifier();
+                    dmg.DamageDict["Slash"] = FixedPoint2.New(15);
+                    _damageSystem.TryChangeDamage(target, dmg, ignoreResistances: false);
+                    _bloodstream.TryModifyBleedAmount(target, 10f);
+                    break;
+                }
             case HereticPath.Rust:
-            {
-                var dmg = new DamageSpecifier();
-                dmg.DamageDict["Caustic"] = FixedPoint2.New(15);
-                _damageSystem.TryChangeDamage(target, dmg, ignoreResistances: false);
-                break;
-            }
+                {
+                    var dmg = new DamageSpecifier();
+                    dmg.DamageDict["Caustic"] = FixedPoint2.New(15);
+                    _damageSystem.TryChangeDamage(target, dmg, ignoreResistances: false);
+                    break;
+                }
         }
     }
 

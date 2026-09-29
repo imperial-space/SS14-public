@@ -20,14 +20,14 @@ namespace Content.Server.Imperial.Heretic.Items;
 
 public sealed class HereticMaskOfMadnessSystem : EntitySystem
 {
-    [Dependency] private readonly EntityLookupSystem    _lookup    = default!;
-    [Dependency] private readonly StaminaSystem         _stamina   = default!;
-    [Dependency] private readonly ParacusiaSystem       _paracusia = default!;
-    [Dependency] private readonly PopupSystem           _popup     = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly StaminaSystem _stamina = default!;
+    [Dependency] private readonly ParacusiaSystem _paracusia = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly InventorySystem       _inventory = default!;
-    [Dependency] private readonly SharedJitteringSystem _jitter    = default!;
-    [Dependency] private readonly IRobustRandom         _random    = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly SharedJitteringSystem _jitter = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -40,10 +40,14 @@ public sealed class HereticMaskOfMadnessSystem : EntitySystem
 
     private void OnAfterInteract(EntityUid uid, HereticMaskOfMadnessComponent comp, AfterInteractEvent args)
     {
-        if (!args.CanReach || args.Target == null) return;
-        if (!HasComp<HereticComponent>(args.User)) return;
-        if (args.Target == args.User) return;
-        if (!HasComp<MobStateComponent>(args.Target.Value)) return;
+        if (!args.CanReach || args.Target == null)
+            return;
+        if (!HasComp<HereticComponent>(args.User))
+            return;
+        if (args.Target == args.User)
+            return;
+        if (!HasComp<MobStateComponent>(args.Target.Value))
+            return;
 
         _inventory.TryEquip(args.User, args.Target.Value, uid, "mask", force: true);
         args.Handled = true;
@@ -62,8 +66,10 @@ public sealed class HereticMaskOfMadnessSystem : EntitySystem
 
     private void OnUnequipAttempt(EntityUid uid, HereticMaskOfMadnessComponent comp, BeingUnequippedAttemptEvent args)
     {
-        if (!comp.Locked) return;
-        if (HasComp<HereticComponent>(args.UnEquipTarget)) return;
+        if (!comp.Locked)
+            return;
+        if (HasComp<HereticComponent>(args.UnEquipTarget))
+            return;
 
         args.Cancel();
         if (args.User == args.UnEquipTarget)
@@ -78,20 +84,26 @@ public sealed class HereticMaskOfMadnessSystem : EntitySystem
         while (query.MoveNext(out var uid, out var mask))
         {
             mask.TickAccumulator += frameTime;
-            if (mask.TickAccumulator < mask.TickInterval) continue;
+            if (mask.TickAccumulator < mask.TickInterval)
+                continue;
             mask.TickAccumulator = 0f;
 
-            if (!_container.TryGetContainingContainer(uid, out var container)) continue;
+            if (!_container.TryGetContainingContainer(uid, out var container))
+                continue;
             var wearer = container.Owner;
-            if (!HasComp<MobStateComponent>(wearer)) continue;
+            if (!HasComp<MobStateComponent>(wearer))
+                continue;
 
             foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(wearer).Coordinates, mask.AoeRadius))
             {
                 // Skip heretics — they are immune to the mask's aura
-                if (HasComp<HereticComponent>(ent.Owner)) continue;
+                if (HasComp<HereticComponent>(ent.Owner))
+                    continue;
 
-                if (!TryComp<MobStateComponent>(ent.Owner, out var ms)) continue;
-                if (ms.CurrentState == MobState.Dead) continue;
+                if (!TryComp<MobStateComponent>(ent.Owner, out var ms))
+                    continue;
+                if (ms.CurrentState == MobState.Dead)
+                    continue;
 
                 // 60%: auditory hallucinations
                 if (_random.Prob(0.6f))

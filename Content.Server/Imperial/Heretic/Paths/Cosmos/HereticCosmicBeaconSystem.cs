@@ -5,15 +5,14 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
 
 namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
 public sealed class HereticCosmicBeaconSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem           _popup   = default!;
-    [Dependency] private readonly SharedAudioSystem     _audio   = default!;
-    [Dependency] private readonly SharedTransformSystem _xform   = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
 
     public override void Initialize()
     {
@@ -24,14 +23,16 @@ public sealed class HereticCosmicBeaconSystem : EntitySystem
 
     private void OnBeaconActivate(EntityUid uid, HereticCosmicBeaconComponent comp, ActivateInWorldEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         TryTeleport(uid, comp, args.User);
         args.Handled = true;
     }
 
     private void OnBeaconUseInHand(EntityUid uid, HereticCosmicBeaconComponent comp, UseInHandEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         TryTeleport(uid, comp, args.User);
         args.Handled = true;
     }
@@ -48,7 +49,8 @@ public sealed class HereticCosmicBeaconSystem : EntitySystem
         var query = EntityQueryEnumerator<HereticCosmicBeaconComponent>();
         while (query.MoveNext(out var otherUid, out var otherComp))
         {
-            if (otherUid == beaconUid) continue;
+            if (otherUid == beaconUid)
+                continue;
             if (otherComp.Caster == user)
             {
                 partner = otherUid;

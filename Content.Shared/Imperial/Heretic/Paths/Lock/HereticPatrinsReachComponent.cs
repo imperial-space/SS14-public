@@ -1,5 +1,4 @@
 using System.Numerics;
-using Robust.Shared.Maths;
 
 namespace Content.Shared.Imperial.Heretic.Paths.Lock;
 

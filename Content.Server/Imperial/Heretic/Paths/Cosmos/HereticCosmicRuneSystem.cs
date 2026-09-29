@@ -11,9 +11,9 @@ namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
 public sealed class HereticCosmicRuneSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem           _popup  = default!;
-    [Dependency] private readonly SharedAudioSystem     _audio  = default!;
-    [Dependency] private readonly SharedTransformSystem _xform  = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
 
     public override void Initialize()
     {
@@ -24,7 +24,8 @@ public sealed class HereticCosmicRuneSystem : EntitySystem
 
     private void OnCosmicRuneAction(EntityUid uid, HereticComponent comp, HereticCosmicRuneActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         args.Handled = true;
 
         var existingRunes = new List<(EntityUid Uid, HereticCosmicRuneComponent Comp)>();

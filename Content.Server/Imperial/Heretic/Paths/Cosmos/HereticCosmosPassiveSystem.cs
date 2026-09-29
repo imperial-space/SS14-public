@@ -2,7 +2,6 @@ using Content.Shared.Imperial.Heretic.Paths.Cosmos;
 using Content.Shared.Trigger;
 using Content.Shared.Trigger.Components;
 using Content.Shared.Trigger.Systems;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
@@ -10,10 +9,10 @@ namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
 public sealed class HereticCosmosPassiveSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _xform      = default!;
-    [Dependency] private readonly EntityLookupSystem    _lookup     = default!;
-    [Dependency] private readonly TriggerSystem         _trigger    = default!;
-    [Dependency] private readonly IGameTiming           _gameTiming = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly TriggerSystem _trigger = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     private TimeSpan _nextGrenadeCheck;
     private static readonly TimeSpan GrenadeCheckInterval = TimeSpan.FromSeconds(0.5);

@@ -10,9 +10,9 @@ sealed class GiveHereticKnowledgeCommand : IConsoleCommand
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
 
-    public string Command     => "hereticknowledge";
+    public string Command => "hereticknowledge";
     public string Description => "Выдаёт очки знания еретику.";
-    public string Help        => $"Использование: {Command} <количество> [entityUid]";
+    public string Help => $"Использование: {Command} <количество> [entityUid]";
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
     {

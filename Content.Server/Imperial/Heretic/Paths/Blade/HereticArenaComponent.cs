@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Robust.Shared.GameObjects;
 
 namespace Content.Server.Imperial.Heretic.Paths.Blade;

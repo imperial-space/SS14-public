@@ -1,23 +1,18 @@
 using System.Linq;
 using System.Numerics;
-using System.Threading;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Beam;
 using Content.Server.Body;
 using Content.Server.Body.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
-using Content.Server.Damage.Systems;
 using Content.Server.Decals;
 using Content.Server.DoAfter;
 using Content.Server.Doors.Systems;
 using Content.Server.Imperial.Heretic.Effects;
 using Content.Server.Imperial.Heretic.Paths.Moon;
-using Content.Server.Mind;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
-using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -33,27 +28,22 @@ using Content.Shared.Body.Events;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chat;
 using Content.Shared.CombatMode;
-using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.DoAfter;
 using Content.Shared.Doors.Components;
 using Content.Shared.Electrocution;
 using Content.Shared.Eye;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.FixedPoint;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Rust;
 using Content.Shared.Imperial.Heretic.Paths.Void;
-using Content.Shared.Imperial.Lavaland.ColossusLoot;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
@@ -66,13 +56,10 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Physics;
 using Content.Shared.Polymorph;
 using Content.Shared.Popups;
-using Content.Shared.Pulling.Events;
 using Content.Shared.SSDIndicator;
 using Content.Shared.Slippery;
 using Content.Shared.Speech.Muting;
@@ -81,16 +68,13 @@ using Content.Shared.StatusEffect;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Stunnable;
-using Content.Shared.Tag;
 using Content.Shared.Temperature.Components;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Reflect;
-using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Collections;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
@@ -105,7 +89,6 @@ using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 using Timer = Robust.Shared.Timing.Timer;
-using NewStatusEffectsSystem = Content.Shared.StatusEffectNew.StatusEffectsSystem;
 
 namespace Content.Server.Imperial.Heretic.Paths.Void;
 
@@ -114,25 +97,25 @@ namespace Content.Server.Imperial.Heretic.Paths.Void;
 /// </summary>
 public sealed class HereticVoidActionsSystem : EntitySystem
 {
-    [Dependency] private readonly SharedCuffableSystem  _cuffs   = default!;
-    [Dependency] private readonly DamageableSystem      _damage  = default!;
-    [Dependency] private readonly EntityLookupSystem    _lookup  = default!;
-    [Dependency] private readonly MobStateSystem        _mobs    = default!;
-    [Dependency] private readonly PopupSystem           _popup   = default!;
-    [Dependency] private readonly SharedStunSystem      _stun    = default!;
-    [Dependency] private readonly SharedTransformSystem _xform   = default!;
-    [Dependency] private readonly ThrowingSystem        _throw   = default!;
-    [Dependency] private readonly HereticSystem         _heretic = default!;
-    [Dependency] private readonly SharedAudioSystem     _audio   = default!;
+    [Dependency] private readonly SharedCuffableSystem _cuffs = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly MobStateSystem _mobs = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly ThrowingSystem _throw = default!;
+    [Dependency] private readonly HereticSystem _heretic = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly HereticStatusEffectsSystem _hereticEffects = default!;
-    [Dependency] private readonly FlammableSystem        _flammable    = default!;
-    [Dependency] private readonly MovementModStatusSystem     _movementMod   = default!;
-    [Dependency] private readonly SharedBloodstreamSystem     _bloodstream   = default!;
-    [Dependency] private readonly ChatSystem                  _chat          = default!;
-    [Dependency] private readonly SharedMeleeWeaponSystem   _melee           = default!;
-    [Dependency] private readonly SharedCombatModeSystem    _combatMode      = default!;
-    [Dependency] private readonly HereticMoonBrainDamageSystem _brainDamage   = default!;
-    [Dependency] private readonly HereticVoidPrisonSystem      _voidPrison    = default!;
+    [Dependency] private readonly FlammableSystem _flammable = default!;
+    [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly SharedMeleeWeaponSystem _melee = default!;
+    [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
+    [Dependency] private readonly HereticMoonBrainDamageSystem _brainDamage = default!;
+    [Dependency] private readonly HereticVoidPrisonSystem _voidPrison = default!;
 
     public override void Initialize()
     {
@@ -153,7 +136,8 @@ public sealed class HereticVoidActionsSystem : EntitySystem
 
     private void OnVoidPull(EntityUid uid, HereticComponent comp, HereticVoidPullActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -169,10 +153,14 @@ public sealed class HereticVoidActionsSystem : EntitySystem
 
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 3f))
         {
-            if (ent.Owner == uid) continue;
-            if (HasComp<HereticComponent>(ent.Owner)) continue;
-            if (_mobs.IsDead(ent.Owner)) continue;
-            if (Transform(ent.Owner).ParentUid != Transform(uid).ParentUid) continue;
+            if (ent.Owner == uid)
+                continue;
+            if (HasComp<HereticComponent>(ent.Owner))
+                continue;
+            if (_mobs.IsDead(ent.Owner))
+                continue;
+            if (Transform(ent.Owner).ParentUid != Transform(uid).ParentUid)
+                continue;
 
             var targetLocalPos = Transform(ent.Owner).LocalPosition;
             var dir = myLocalPos - targetLocalPos;
@@ -198,7 +186,8 @@ public sealed class HereticVoidActionsSystem : EntitySystem
 
     private void OnVoidConduit(EntityUid uid, HereticComponent comp, HereticVoidConduitActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -218,21 +207,26 @@ public sealed class HereticVoidActionsSystem : EntitySystem
 
     private void OnVoidBladeMeleeHit(Entity<HereticVoidBladeComponent> blade, ref MeleeHitEvent args)
     {
-        if (!args.IsHit) return;
-        if (!TryComp<HereticComponent>(args.User, out var comp)) return;
-        if (comp.CurrentPath != HereticPath.Void) return;
+        if (!args.IsHit)
+            return;
+        if (!TryComp<HereticComponent>(args.User, out var comp))
+            return;
+        if (comp.CurrentPath != HereticPath.Void)
+            return;
 
         var hasUpgrade = _heretic.HasKnowledge(comp, "KnowledgeVoidBladeUpgrade");
         foreach (var target in args.HitEntities)
         {
-            if (HasComp<HereticComponent>(target)) continue;
+            if (HasComp<HereticComponent>(target))
+                continue;
             _hereticEffects.ApplyVoidChill(target, hasUpgrade ? 2 : 1);
         }
     }
 
     private void OnVoidSeekingBlade(EntityUid uid, HereticComponent comp, HereticVoidSeekingBladeActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -281,7 +275,8 @@ public sealed class HereticVoidActionsSystem : EntitySystem
 
     private void OnVoidPhase(EntityUid uid, HereticComponent comp, HereticVoidPhaseActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -307,8 +302,10 @@ public sealed class HereticVoidActionsSystem : EntitySystem
 
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(srcCoords, 1f))
         {
-            if (ent.Owner == uid) continue;
-            if (HasComp<HereticComponent>(ent.Owner)) continue;
+            if (ent.Owner == uid)
+                continue;
+            if (HasComp<HereticComponent>(ent.Owner))
+                continue;
             _damage.TryChangeDamage(ent.Owner, aoe, ignoreResistances: false);
             _hereticEffects.ApplyVoidChill(ent.Owner, 2);
         }
@@ -320,8 +317,10 @@ public sealed class HereticVoidActionsSystem : EntitySystem
 
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(dstCoords, 1f))
         {
-            if (ent.Owner == uid) continue;
-            if (HasComp<HereticComponent>(ent.Owner)) continue;
+            if (ent.Owner == uid)
+                continue;
+            if (HasComp<HereticComponent>(ent.Owner))
+                continue;
             _damage.TryChangeDamage(ent.Owner, aoe, ignoreResistances: false);
             _hereticEffects.ApplyVoidChill(ent.Owner, 2);
         }
@@ -331,7 +330,8 @@ public sealed class HereticVoidActionsSystem : EntitySystem
 
     private void OnVoidPrison(EntityUid uid, HereticComponent comp, HereticVoidPrisonActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -348,8 +348,10 @@ public sealed class HereticVoidActionsSystem : EntitySystem
         var victims = _lookup.GetEntitiesInRange<MobStateComponent>(targetCoords, 3f);
         foreach (var victim in victims)
         {
-            if (HasComp<HereticComponent>(victim)) continue;
-            if (_mobs.IsDead(victim)) continue;
+            if (HasComp<HereticComponent>(victim))
+                continue;
+            if (_mobs.IsDead(victim))
+                continue;
             _voidPrison.ApplyVoidPrison(victim);
         }
 
@@ -358,7 +360,8 @@ public sealed class HereticVoidActionsSystem : EntitySystem
 
     private void OnWaveOfDesperation(EntityUid uid, HereticComponent comp, HereticWaveOfDesperationActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -382,7 +385,8 @@ public sealed class HereticVoidActionsSystem : EntitySystem
         dmg.DamageDict["Blunt"] = FixedPoint2.New(15);
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 3f))
         {
-            if (ent.Owner == uid) continue;
+            if (ent.Owner == uid)
+                continue;
             _damage.TryChangeDamage(ent.Owner, dmg, ignoreResistances: false);
             _stun.TryKnockdown(ent.Owner, TimeSpan.FromSeconds(3), true);
             ApplyWaveMansusTouch(uid, comp, ent.Owner);
@@ -402,7 +406,8 @@ public sealed class HereticVoidActionsSystem : EntitySystem
         var capturedUid = uid;
         Timer.Spawn(TimeSpan.FromSeconds(12), () =>
         {
-            if (Deleted(capturedUid) || !_mobs.IsAlive(capturedUid)) return;
+            if (Deleted(capturedUid) || !_mobs.IsAlive(capturedUid))
+                return;
             _stun.TryKnockdown(capturedUid, TimeSpan.FromSeconds(5), true);
         });
     }
@@ -439,10 +444,10 @@ public sealed class HereticVoidActionsSystem : EntitySystem
         }
     }
 
-
     private void OnMaidInMirror(EntityUid uid, HereticComponent comp, HereticMaidInMirrorActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -453,7 +458,7 @@ public sealed class HereticVoidActionsSystem : EntitySystem
         for (var i = 0; i < 3; i++)
         {
             var angle = i * (Math.PI * 2 / 3);
-            var offset = new Vector2((float) Math.Cos(angle) * 1.5f, (float) Math.Sin(angle) * 1.5f);
+            var offset = new Vector2((float)Math.Cos(angle) * 1.5f, (float)Math.Sin(angle) * 1.5f);
             Spawn("EffectVoidBlink", coords.Offset(offset));
         }
         Spawn("MobHereticMaidInMirror", coords);

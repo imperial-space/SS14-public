@@ -70,7 +70,8 @@ public sealed class HereticStarBallSystem : EntitySystem
         hitDamage.DamageDict["Heat"] = FixedPoint2.New(20);
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 3f))
         {
-            if (ent.Owner == casterUid) continue;
+            if (ent.Owner == casterUid)
+                continue;
             _hereticEffects.AddStarMark(ent.Owner, TimeSpan.FromSeconds(30));
             if (first)
             {
@@ -93,7 +94,8 @@ public sealed class HereticStarBallSystem : EntitySystem
     /// </summary>
     public void RecastBall(EntityUid ballUid, EntityUid casterUid)
     {
-        if (!TryComp<HereticStarBallComponent>(ballUid, out _)) return;
+        if (!TryComp<HereticStarBallComponent>(ballUid, out _))
+            return;
 
         var ballCoords = Transform(ballUid).Coordinates;
         var ballWorldPos = _xform.GetWorldPosition(ballUid);
@@ -118,7 +120,8 @@ public sealed class HereticStarBallSystem : EntitySystem
     {
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(center, 2f))
         {
-            if (ent.Owner == casterUid) continue;
+            if (ent.Owner == casterUid)
+                continue;
             Spawn("HereticEffectCosmicBurst", center);
             var victimPos = _xform.GetWorldPosition(ent.Owner);
             var dist = (victimPos - centerWorldPos).Length();
@@ -139,7 +142,8 @@ public sealed class HereticStarBallSystem : EntitySystem
 
     private void RemoveActiveBall(EntityUid casterUid, EntityUid ballUid)
     {
-        if (!TryComp<HereticStarBallActiveComponent>(casterUid, out var active)) return;
+        if (!TryComp<HereticStarBallActiveComponent>(casterUid, out var active))
+            return;
         if (active.BallEntity == ballUid)
             RemComp<HereticStarBallActiveComponent>(casterUid);
     }

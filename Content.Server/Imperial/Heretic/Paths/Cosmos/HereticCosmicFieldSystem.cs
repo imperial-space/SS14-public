@@ -5,7 +5,6 @@ using Content.Shared.Imperial.Heretic.Paths.Cosmos;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Projectiles;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
@@ -16,12 +15,11 @@ namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
 public sealed class HereticCosmicFieldSystem : EntitySystem
 {
-    [Dependency] private readonly EntityLookupSystem           _lookup   = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movSpeed = default!;
-    [Dependency] private readonly SharedPhysicsSystem         _physics  = default!;
-    [Dependency] private readonly SharedTransformSystem       _xform    = default!;
-    [Dependency] private readonly IGameTiming                 _timing   = default!;
-
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     private TimeSpan _nextProximityCheck;
     private static readonly TimeSpan ProximityCheckInterval = TimeSpan.FromSeconds(0.25);
@@ -178,14 +176,14 @@ public sealed class HereticCosmicFieldSystem : EntitySystem
     private void PushMobOutside(EntityUid carpetUid, EntityUid mobUid)
     {
         var carpetXform = Transform(carpetUid);
-        var mobXform    = Transform(mobUid);
+        var mobXform = Transform(mobUid);
 
         if (carpetXform.ParentUid != mobXform.ParentUid)
             return;
 
         var carpetPos = carpetXform.LocalPosition;
-        var mobPos    = mobXform.LocalPosition;
-        var diff      = mobPos - carpetPos;
+        var mobPos = mobXform.LocalPosition;
+        var diff = mobPos - carpetPos;
 
         if (diff.LengthSquared() < 0.001f)
             diff = new Vector2(0.6f, 0f);

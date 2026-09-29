@@ -11,11 +11,11 @@ namespace Content.Server.Imperial.Heretic.Items;
 
 public sealed class HereticPathRobeSystem : EntitySystem
 {
-    [Dependency] private readonly HereticSystem             _heretic      = default!;
-    [Dependency] private readonly HereticLockPassiveSystem  _lockPassive  = default!;
+    [Dependency] private readonly HereticSystem _heretic = default!;
+    [Dependency] private readonly HereticLockPassiveSystem _lockPassive = default!;
     [Dependency] private readonly HereticFleshPassiveSystem _fleshPassive = default!;
-    [Dependency] private readonly HereticVoidPassiveSystem  _voidPassive  = default!;
-    [Dependency] private readonly HereticRustPassiveSystem    _rustPassive    = default!;
+    [Dependency] private readonly HereticVoidPassiveSystem _voidPassive = default!;
+    [Dependency] private readonly HereticRustPassiveSystem _rustPassive = default!;
     [Dependency] private readonly HereticCosmosPassiveSystem _cosmosPassive = default!;
 
     public override void Initialize()

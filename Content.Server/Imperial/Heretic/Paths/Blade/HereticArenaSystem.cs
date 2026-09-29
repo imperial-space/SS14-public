@@ -13,7 +13,6 @@ using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Physics.Events;
 using Timer = Robust.Shared.Timing.Timer;
 
@@ -48,7 +47,8 @@ public sealed class HereticArenaSystem : EntitySystem
 
     private void OnMeleeHit(Entity<MeleeWeaponComponent> weapon, ref MeleeHitEvent args)
     {
-        if (!args.IsHit) return;
+        if (!args.IsHit)
+            return;
         foreach (var hit in args.HitEntities)
         {
             if (TryComp<HereticArenaParticipantComponent>(hit, out var participant))
@@ -74,7 +74,8 @@ public sealed class HereticArenaSystem : EntitySystem
         var arenaQuery = EntityQueryEnumerator<HereticArenaComponent>();
         while (arenaQuery.MoveNext(out var arenaUid, out var arena))
         {
-            if (arena.Heretic != uid) continue;
+            if (arena.Heretic != uid)
+                continue;
             _popup.PopupEntity(Loc.GetString("heretic-wolves-heretic-fallen"), uid, uid, PopupType.LargeCaution);
             QueueDel(arenaUid);
             break;
@@ -170,7 +171,8 @@ public sealed class HereticArenaSystem : EntitySystem
 
         foreach (var participant in comp.Participants)
         {
-            if (!Exists(participant)) continue;
+            if (!Exists(participant))
+                continue;
             if (TryComp<HereticArenaParticipantComponent>(participant, out var partComp))
             {
                 if (partComp.TrainingBlade != default && Exists(partComp.TrainingBlade))

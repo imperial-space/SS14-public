@@ -9,7 +9,6 @@ using Content.Shared.Imperial.Lavaland.ColossusLoot;
 using Content.Shared.Inventory;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Speech.Muting;
 using Content.Shared.StatusEffect;
@@ -22,13 +21,13 @@ namespace Content.Server.Imperial.Heretic.Paths.Moon;
 
 public sealed class HereticMoonAmuletSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem          _damage        = default!;
-    [Dependency] private readonly InventorySystem           _inventory     = default!;
-    [Dependency] private readonly StatusEffectsSystem       _statusEffects = default!;
-    [Dependency] private readonly SharedStunSystem          _stun          = default!;
-    [Dependency] private readonly HereticStatusEffectsSystem   _hereticEffects = default!;
-    [Dependency] private readonly SharedPopupSystem         _popup         = default!;
-    [Dependency] private readonly IGameTiming               _gameTiming    = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly HereticStatusEffectsSystem _hereticEffects = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     public override void Initialize()
     {
@@ -77,14 +76,19 @@ public sealed class HereticMoonAmuletSystem : EntitySystem
 
     private void OnMeleeHit(Entity<HereticMoonAmuletComponent> ent, ref MeleeHitEvent args)
     {
-        if (!args.IsHit) return;
-        if (!TryComp<HereticComponent>(args.User, out var heretic)) return;
-        if (heretic.CurrentPath != HereticPath.Moon) return;
+        if (!args.IsHit)
+            return;
+        if (!TryComp<HereticComponent>(args.User, out var heretic))
+            return;
+        if (heretic.CurrentPath != HereticPath.Moon)
+            return;
 
         foreach (var target in args.HitEntities)
         {
-            if (!HasComp<MobStateComponent>(target)) continue;
-            if (HasComp<HereticComponent>(target)) continue;
+            if (!HasComp<MobStateComponent>(target))
+                continue;
+            if (HasComp<HereticComponent>(target))
+                continue;
 
             var brainComp = EnsureComp<HereticMoonBrainDamageComponent>(target);
 
@@ -114,13 +118,14 @@ public sealed class HereticMoonAmuletSystem : EntitySystem
     /// </summary>
     public void TryMoonConvert(EntityUid target, float sanity)
     {
-        if (HasComp<HereticMoonConvertedComponent>(target)) return;
+        if (HasComp<HereticMoonConvertedComponent>(target))
+            return;
 
         // SS13: heal_overall_damage(brute = 150-sanity, fire = 150-sanity)
         var healAmount = FixedPoint2.New((int)(150f - sanity));
         var heal = new DamageSpecifier();
-        heal.DamageDict["Blunt"]    = -healAmount;
-        heal.DamageDict["Heat"]     = -healAmount;
+        heal.DamageDict["Blunt"] = -healAmount;
+        heal.DamageDict["Heat"] = -healAmount;
         _damage.TryChangeDamage(target, heal, ignoreResistances: true);
 
         // SS13: Stun 60 сек + немота 1ч
@@ -139,14 +144,17 @@ public sealed class HereticMoonAmuletSystem : EntitySystem
 
     private void OnConvertedDamage(EntityUid uid, HereticMoonConvertedComponent comp, DamageChangedEvent args)
     {
-        if (!args.DamageIncreased || args.DamageDelta == null) return;
+        if (!args.DamageIncreased || args.DamageDelta == null)
+            return;
 
         foreach (var val in args.DamageDelta.DamageDict.Values)
         {
-            if (val > 0) comp.DamageAccumulated += val.Float();
+            if (val > 0)
+                comp.DamageAccumulated += val.Float();
         }
 
-        if (comp.DamageAccumulated < HereticMoonConvertedComponent.DamageBreakThreshold) return;
+        if (comp.DamageAccumulated < HereticMoonConvertedComponent.DamageBreakThreshold)
+            return;
 
         // SS13: при 75+ урона moon_converted снимается
         _popup.PopupEntity(Loc.GetString("heretic-moon-converted-cleansed"), uid, uid, PopupType.Large);
@@ -162,9 +170,12 @@ public sealed class HereticMoonAmuletSystem : EntitySystem
         var query = EntityQueryEnumerator<HereticComponent, HereticMoonBrainDamageComponent>();
         while (query.MoveNext(out var uid, out var heretic, out var brain))
         {
-            if (heretic.CurrentPath != HereticPath.Moon) continue;
-            if (brain.BrainDamage <= 0f) continue;
-            if (heretic.PassiveLevel < 1) continue;
+            if (heretic.CurrentPath != HereticPath.Moon)
+                continue;
+            if (brain.BrainDamage <= 0f)
+                continue;
+            if (heretic.PassiveLevel < 1)
+                continue;
 
             float baseRate = heretic.PassiveLevel switch
             {

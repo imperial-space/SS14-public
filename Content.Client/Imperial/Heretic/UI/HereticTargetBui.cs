@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Content.Client.Imperial.Heretic.Core;
 using Content.Client.Popups;
@@ -7,7 +6,6 @@ using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Robust.Client.UserInterface;
-using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
@@ -35,7 +33,8 @@ public sealed class HereticTargetBui : BoundUserInterface
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
-        if (state is not HereticTargetBuiState s) return;
+        if (state is not HereticTargetBuiState s)
+            return;
         _lastState = s;
         _menu?.SetButtons(BuildButtons(s));
     }
@@ -83,12 +82,16 @@ public sealed class HereticTargetBui : BoundUserInterface
     private void AnnounceDistance(EntityUid target)
     {
         var player = _playerMgr.LocalSession?.AttachedEntity;
-        if (player == null) return;
+        if (player == null)
+            return;
 
         var xformSys = EntMan.System<SharedTransformSystem>();
-        if (!EntMan.TryGetComponent(player.Value, out TransformComponent? px)) return;
-        if (!EntMan.TryGetComponent(target, out TransformComponent? tx)) return;
-        if (px.MapID != tx.MapID) return;
+        if (!EntMan.TryGetComponent(player.Value, out TransformComponent? px))
+            return;
+        if (!EntMan.TryGetComponent(target, out TransformComponent? tx))
+            return;
+        if (px.MapID != tx.MapID)
+            return;
 
         var dist = (xformSys.GetWorldPosition(tx) - xformSys.GetWorldPosition(px)).Length();
         var msg = dist < 5f

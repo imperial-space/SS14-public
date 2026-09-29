@@ -10,8 +10,8 @@ namespace Content.Client.Imperial.Heretic.Paths.Cosmos;
 public sealed class HereticStarGazerClientSystem : EntitySystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IEyeManager _eye      = default!;
-    [Dependency] private readonly IInputManager _input   = default!;
+    [Dependency] private readonly IEyeManager _eye = default!;
+    [Dependency] private readonly IInputManager _input = default!;
 
     private float _sendTimer;
     private const float SendInterval = 0.1f; // 10 обновлений в секунду

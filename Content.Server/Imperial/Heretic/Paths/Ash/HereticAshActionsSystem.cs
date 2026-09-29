@@ -1,76 +1,56 @@
-using System.Linq;
 using System.Numerics;
-using System.Threading;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Beam;
-using Content.Server.Body;
 using Content.Server.Body.Components;
-using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Damage.Systems;
-using Content.Server.Decals;
 using Content.Server.DoAfter;
 using Content.Server.Doors.Systems;
 using Content.Server.Mind;
-using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
-using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
-using Content.Shared.Alert;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
-using Content.Shared.Bed.Sleep;
 using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chat;
-using Content.Shared.CombatMode;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.DoAfter;
 using Content.Shared.Doors.Components;
 using Content.Shared.Electrocution;
 using Content.Shared.Eye;
-using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.FixedPoint;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Items;
 using Content.Shared.Imperial.Heretic.Paths.Ash;
-using Content.Shared.Imperial.Lavaland.ColossusLoot;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
-using Content.Shared.Item;
 using Content.Shared.Maps;
-using Content.Shared.Medical;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
-using Content.Shared.Polymorph;
 using Content.Shared.Popups;
-using Content.Shared.Pulling.Events;
 using Content.Shared.SSDIndicator;
 using Content.Shared.Slippery;
 using Content.Shared.Speech.Muting;
@@ -79,20 +59,15 @@ using Content.Shared.StatusEffect;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Stunnable;
-using Content.Shared.Tag;
 using Content.Shared.Temperature.Components;
-using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
-using Content.Shared.Weapons.Reflect;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Collections;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -100,10 +75,8 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 using Timer = Robust.Shared.Timing.Timer;
-using NewStatusEffectsSystem = Content.Shared.StatusEffectNew.StatusEffectsSystem;
 
 namespace Content.Server.Imperial.Heretic.Paths.Ash;
 
@@ -112,32 +85,32 @@ namespace Content.Server.Imperial.Heretic.Paths.Ash;
 /// </summary>
 public sealed class HereticAshActionsSystem : EntitySystem
 {
-    [Dependency] private readonly SharedCuffableSystem  _cuffs   = default!;
-    [Dependency] private readonly DamageableSystem      _damage  = default!;
-    [Dependency] private readonly EntityLookupSystem    _lookup  = default!;
-    [Dependency] private readonly MobStateSystem        _mobs    = default!;
-    [Dependency] private readonly PopupSystem           _popup   = default!;
-    [Dependency] private readonly IRobustRandom         _random  = default!;
-    [Dependency] private readonly SharedStunSystem      _stun    = default!;
-    [Dependency] private readonly SharedTransformSystem _xform   = default!;
-    [Dependency] private readonly HereticSystem         _heretic = default!;
-    [Dependency] private readonly MindSystem            _mind    = default!;
-    [Dependency] private readonly SharedAudioSystem     _audio   = default!;
-    [Dependency] private readonly InventorySystem        _inventory = default!;
-    [Dependency] private readonly FlammableSystem        _flammable    = default!;
-    [Dependency] private readonly SharedActionsSystem    _actions      = default!;
-    [Dependency] private readonly IGameTiming            _timing       = default!;
-    [Dependency] private readonly StaminaSystem          _stamina      = default!;
-    [Dependency] private readonly SharedEyeSystem        _eye          = default!;
-    [Dependency] private readonly GodmodeSystem               _godmode       = default!;
-    [Dependency] private readonly ChatSystem                  _chat          = default!;
-    [Dependency] private readonly TurfSystem                  _turf          = default!;
-    [Dependency] private readonly VisibilitySystem            _visibility    = default!;
-    [Dependency] private readonly BeamSystem                 _beam          = default!;
-    [Dependency] private readonly HereticAshSpiritSystem     _ashSpiritSystem = default!;
+    [Dependency] private readonly SharedCuffableSystem _cuffs = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly MobStateSystem _mobs = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly HereticSystem _heretic = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly FlammableSystem _flammable = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly StaminaSystem _stamina = default!;
+    [Dependency] private readonly SharedEyeSystem _eye = default!;
+    [Dependency] private readonly GodmodeSystem _godmode = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private readonly VisibilitySystem _visibility = default!;
+    [Dependency] private readonly BeamSystem _beam = default!;
+    [Dependency] private readonly HereticAshSpiritSystem _ashSpiritSystem = default!;
 
-    private static readonly EntProtoId GreatFireCascadeActionId     = "ActionHereticGreatFireCascade";
-    private static readonly EntProtoId AshSpiritFlameOathActionId   = "ActionHereticAshSpiritFlameOath";
+    private static readonly EntProtoId GreatFireCascadeActionId = "ActionHereticGreatFireCascade";
+    private static readonly EntProtoId AshSpiritFlameOathActionId = "ActionHereticAshSpiritFlameOath";
 
     public override void Initialize()
     {
@@ -208,7 +181,8 @@ public sealed class HereticAshActionsSystem : EntitySystem
 
     private void OnAshenPassage(EntityUid uid, HereticComponent comp, HereticAshenPassageActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -317,7 +291,8 @@ public sealed class HereticAshActionsSystem : EntitySystem
 
     private void OnVolcanoBlast(EntityUid uid, HereticComponent comp, HereticVolcanoBlastActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -356,7 +331,8 @@ public sealed class HereticAshActionsSystem : EntitySystem
     // beamSource — откуда вылетает луч (первый раз кастер, дальше — предыдущая жертва)
     private void SendVolcanoBeam(EntityUid caster, EntityUid beamSource, EntityUid target, int bounces, bool empowered, HashSet<EntityUid> hitSet)
     {
-        if (Deleted(caster) || Deleted(beamSource) || Deleted(target)) return;
+        if (Deleted(caster) || Deleted(beamSource) || Deleted(target))
+            return;
 
         const float chainRadius = 7f;
         const float hitDamage = 20f;
@@ -383,9 +359,12 @@ public sealed class HereticAshActionsSystem : EntitySystem
 
     private void ContinueVolcanoBeam(EntityUid caster, EntityUid lastTarget, int bounces, bool empowered, HashSet<EntityUid> hitSet, float chainRadius)
     {
-        if (Deleted(caster) || Deleted(lastTarget)) return;
-        if (!TryComp<MobStateComponent>(lastTarget, out var lastMobState) || !_mobs.IsAlive(lastTarget, lastMobState)) return;
-        if (!TryComp<FlammableComponent>(lastTarget, out var lastFlam) || !lastFlam.OnFire) return;
+        if (Deleted(caster) || Deleted(lastTarget))
+            return;
+        if (!TryComp<MobStateComponent>(lastTarget, out var lastMobState) || !_mobs.IsAlive(lastTarget, lastMobState))
+            return;
+        if (!TryComp<FlammableComponent>(lastTarget, out var lastFlam) || !lastFlam.OnFire)
+            return;
 
         var next = GetVolcanoNextTarget(caster, lastTarget, hitSet, chainRadius);
         if (next == null)
@@ -405,9 +384,12 @@ public sealed class HereticAshActionsSystem : EntitySystem
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 1.5f))
         {
             var aoeTarget = ent.Owner;
-            if (hitSet.Contains(aoeTarget)) continue;
-            if (!_mobs.IsAlive(aoeTarget, ent.Comp)) continue;
-            if (HasComp<HereticComponent>(aoeTarget)) continue;
+            if (hitSet.Contains(aoeTarget))
+                continue;
+            if (!_mobs.IsAlive(aoeTarget, ent.Comp))
+                continue;
+            if (HasComp<HereticComponent>(aoeTarget))
+                continue;
 
             var aoeDmg = new DamageSpecifier();
             aoeDmg.DamageDict["Heat"] = FixedPoint2.New(aoeDamage);
@@ -427,10 +409,14 @@ public sealed class HereticAshActionsSystem : EntitySystem
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(centerCoords, radius))
         {
             var target = ent.Owner;
-            if (target == caster) continue;
-            if (alreadyHit.Contains(target)) continue;
-            if (HasComp<HereticComponent>(target)) continue;
-            if (!_mobs.IsAlive(target, ent.Comp)) continue;
+            if (target == caster)
+                continue;
+            if (alreadyHit.Contains(target))
+                continue;
+            if (HasComp<HereticComponent>(target))
+                continue;
+            if (!_mobs.IsAlive(target, ent.Comp))
+                continue;
 
             if (TryComp<FlammableComponent>(target, out var flam) && flam.OnFire)
                 priorityTargets.Add(target);
@@ -448,7 +434,8 @@ public sealed class HereticAshActionsSystem : EntitySystem
 
     private void OnAshlordsRebirth(EntityUid uid, HereticComponent comp, HereticAshlordsRebirthActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -465,10 +452,14 @@ public sealed class HereticAshActionsSystem : EntitySystem
         var victimsHit = 0;
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 14f))
         {
-            if (ent.Owner == uid) continue;
-            if (HasComp<HereticComponent>(ent.Owner)) continue;
-            if (!TryComp<FlammableComponent>(ent.Owner, out var flam) || !flam.OnFire) continue;
-            if (ent.Comp.CurrentState == MobState.Dead) continue;
+            if (ent.Owner == uid)
+                continue;
+            if (HasComp<HereticComponent>(ent.Owner))
+                continue;
+            if (!TryComp<FlammableComponent>(ent.Owner, out var flam) || !flam.OnFire)
+                continue;
+            if (ent.Comp.CurrentState == MobState.Dead)
+                continue;
 
             // Instant kill mobs already in critical state (SS13: CAN_SUCCUMB check before damage)
             if (ent.Comp.CurrentState == MobState.Critical)
@@ -498,8 +489,10 @@ public sealed class HereticAshActionsSystem : EntitySystem
             var now = _timing.CurTime;
             foreach (var action in _actions.GetActions(uid))
             {
-                if (!TryComp<InstantActionComponent>(action.Owner, out var iac)) continue;
-                if (iac.Event is not HereticAshlordsRebirthActionEvent) continue;
+                if (!TryComp<InstantActionComponent>(action.Owner, out var iac))
+                    continue;
+                if (iac.Event is not HereticAshlordsRebirthActionEvent)
+                    continue;
                 _actions.SetCooldown((action.Owner, (ActionComponent?)action.Comp), now, now + TimeSpan.FromSeconds(reducedCd));
                 break;
             }
@@ -510,13 +503,17 @@ public sealed class HereticAshActionsSystem : EntitySystem
 
     private void OnAshBladeMeleeHit(Entity<HereticAshBladeComponent> blade, ref MeleeHitEvent args)
     {
-        if (!args.IsHit) return;
-        if (!TryComp<HereticComponent>(args.User, out var comp)) return;
-        if (comp.CurrentPath != HereticPath.Ash) return;
+        if (!args.IsHit)
+            return;
+        if (!TryComp<HereticComponent>(args.User, out var comp))
+            return;
+        if (comp.CurrentPath != HereticPath.Ash)
+            return;
 
         var hasFieryBlade = _heretic.HasKnowledge(comp, "KnowledgeFieryBlade");
         var hasMarkOfAsh = comp.CurrentPath == HereticPath.Ash;
-        if (!hasFieryBlade && !hasMarkOfAsh) return;
+        if (!hasFieryBlade && !hasMarkOfAsh)
+            return;
 
         foreach (var target in args.HitEntities)
         {
@@ -537,17 +534,22 @@ public sealed class HereticAshActionsSystem : EntitySystem
 
             foreach (var nearby in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(target).Coordinates, 5f))
             {
-                if (nearby.Owner == args.User || nearby.Owner == target) continue;
-                if (!_mobs.IsAlive(nearby.Owner, nearby.Comp)) continue;
+                if (nearby.Owner == args.User || nearby.Owner == target)
+                    continue;
+                if (!_mobs.IsAlive(nearby.Owner, nearby.Comp))
+                    continue;
                 EnsureComp<AshMarkComponent>(nearby.Owner);
                 break;
             }
 
             foreach (var action in _actions.GetActions(args.User))
             {
-                if (!TryComp<InstantActionComponent>(action.Owner, out var ia)) continue;
-                if (ia.Event is not HereticMansusGraspActionEvent) continue;
-                if (action.Comp.Cooldown is not {} cd) break;
+                if (!TryComp<InstantActionComponent>(action.Owner, out var ia))
+                    continue;
+                if (ia.Event is not HereticMansusGraspActionEvent)
+                    continue;
+                if (action.Comp.Cooldown is not { } cd)
+                    break;
 
                 var now = _timing.CurTime;
                 var remaining = cd.End - now;
@@ -623,7 +625,8 @@ public sealed class HereticAshActionsSystem : EntitySystem
 
     private void OnAshlordRite(EntityUid uid, HereticComponent comp, HereticAshlordRiteActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -635,12 +638,17 @@ public sealed class HereticAshActionsSystem : EntitySystem
         var corpses = new List<EntityUid>();
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(uid).Coordinates, 5f))
         {
-            if (ent.Owner == uid) continue;
-            if (!TryComp<MobStateComponent>(ent.Owner, out var mobState)) continue;
-            if (mobState.CurrentState != MobState.Dead) continue;
-            if (!TryComp<FlammableComponent>(ent.Owner, out var flamCorpse) || flamCorpse.FireStacks <= 0f) continue;
+            if (ent.Owner == uid)
+                continue;
+            if (!TryComp<MobStateComponent>(ent.Owner, out var mobState))
+                continue;
+            if (mobState.CurrentState != MobState.Dead)
+                continue;
+            if (!TryComp<FlammableComponent>(ent.Owner, out var flamCorpse) || flamCorpse.FireStacks <= 0f)
+                continue;
             corpses.Add(ent.Owner);
-            if (corpses.Count >= 3) break;
+            if (corpses.Count >= 3)
+                break;
         }
 
         if (corpses.Count < 3)
@@ -670,9 +678,12 @@ public sealed class HereticAshActionsSystem : EntitySystem
         fireDmg.DamageDict["Heat"] = FixedPoint2.New(30);
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(pos, 5f))
         {
-            if (ent.Owner == uid) continue;
-            if (!TryComp<MobStateComponent>(ent.Owner, out var ms)) continue;
-            if (ms.CurrentState == MobState.Dead) continue;
+            if (ent.Owner == uid)
+                continue;
+            if (!TryComp<MobStateComponent>(ent.Owner, out var ms))
+                continue;
+            if (ms.CurrentState == MobState.Dead)
+                continue;
             _damage.TryChangeDamage(ent.Owner, fireDmg, ignoreResistances: false);
             _flammable.AdjustFireStacks(ent.Owner, 5f, ignite: true);
         }
@@ -681,7 +692,7 @@ public sealed class HereticAshActionsSystem : EntitySystem
         var heal = new DamageSpecifier();
         heal.DamageDict["Blunt"] = FixedPoint2.New(-40);
         heal.DamageDict["Slash"] = FixedPoint2.New(-40);
-        heal.DamageDict["Heat"]  = FixedPoint2.New(-20);
+        heal.DamageDict["Heat"] = FixedPoint2.New(-20);
         _damage.TryChangeDamage(uid, heal, ignoreResistances: true);
 
         // SS13: fire shield — ring of fire around caster for 60s (same as FireRingOath)
@@ -695,7 +706,8 @@ public sealed class HereticAshActionsSystem : EntitySystem
 
     private void OnFireRingOath(EntityUid uid, HereticComponent comp, HereticFireRingOathActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -736,7 +748,8 @@ public sealed class HereticAshActionsSystem : EntitySystem
 
     private void OnFireCascade(EntityUid uid, HereticComponent comp, HereticFireCascadeActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -762,7 +775,8 @@ public sealed class HereticAshActionsSystem : EntitySystem
         // Wave 2 — t+250ms, radius 2.5
         Timer.Spawn(250, () =>
         {
-            if (!Exists(uid)) return;
+            if (!Exists(uid))
+                return;
             Spawn("HereticEffectFireExplosion", targetCoords);
             FireCascadeWave(targetCoords, 2.5f, innerDmg, 1.5f, alreadyHit);
         });
@@ -770,7 +784,8 @@ public sealed class HereticAshActionsSystem : EntitySystem
         // Wave 3 — t+500ms, radius 4 (outermost, hits harder)
         Timer.Spawn(500, () =>
         {
-            if (!Exists(uid)) return;
+            if (!Exists(uid))
+                return;
             Spawn("HereticEffectFireExplosion", targetCoords);
             FireCascadeWave(targetCoords, 4f, outerDmg, 2f, alreadyHit);
         });
@@ -780,8 +795,10 @@ public sealed class HereticAshActionsSystem : EntitySystem
     {
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(center, radius))
         {
-            if (alreadyHit.Contains(ent.Owner)) continue;
-            if (!_mobs.IsAlive(ent.Owner, ent.Comp)) continue;
+            if (alreadyHit.Contains(ent.Owner))
+                continue;
+            if (!_mobs.IsAlive(ent.Owner, ent.Comp))
+                continue;
             alreadyHit.Add(ent.Owner);
             _damage.TryChangeDamage(ent.Owner, dmg, ignoreResistances: false);
             _flammable.AdjustFireStacks(ent.Owner, fireStacks, ignite: true);
@@ -793,7 +810,8 @@ public sealed class HereticAshActionsSystem : EntitySystem
 
     private void OnHereticFlameOath(EntityUid uid, HereticComponent comp, HereticAshSpiritFlameOathActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -806,7 +824,8 @@ public sealed class HereticAshActionsSystem : EntitySystem
 
     private void OnGreatFireCascade(EntityUid uid, HereticComponent comp, HereticGreatFireCascadeActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         if (!_heretic.HasFocus(uid, comp))
         {
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
@@ -823,33 +842,38 @@ public sealed class HereticAshActionsSystem : EntitySystem
 
     private void FireCascadeRing(EntityUid uid, int radius, HashSet<EntityUid> alreadyHit)
     {
-        if (radius > 6) return;
+        if (radius > 6)
+            return;
 
         var origin = Transform(uid).Coordinates;
         var dmg = new DamageSpecifier();
         dmg.DamageDict["Heat"] = FixedPoint2.New(10);
 
         for (var dx = -radius; dx <= radius; dx++)
-        for (var dy = -radius; dy <= radius; dy++)
-        {
-            if ((int) Math.Round(Math.Sqrt(dx * dx + dy * dy)) != radius) continue;
-            var tileCoords = origin.Offset(new Vector2(dx, dy));
-            Spawn("HereticAshSpiritFire", tileCoords);
-
-            foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(tileCoords, 0.7f))
+            for (var dy = -radius; dy <= radius; dy++)
             {
-                if (alreadyHit.Contains(ent.Owner)) continue;
-                if (!_mobs.IsAlive(ent.Owner, ent.Comp)) continue;
-                alreadyHit.Add(ent.Owner);
-                _damage.TryChangeDamage(ent.Owner, dmg, ignoreResistances: false);
-                _flammable.AdjustFireStacks(ent.Owner, 3f, ignite: true);
-                Spawn("HereticEffectFireExplosion", Transform(ent.Owner).Coordinates);
+                if ((int)Math.Round(Math.Sqrt(dx * dx + dy * dy)) != radius)
+                    continue;
+                var tileCoords = origin.Offset(new Vector2(dx, dy));
+                Spawn("HereticAshSpiritFire", tileCoords);
+
+                foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(tileCoords, 0.7f))
+                {
+                    if (alreadyHit.Contains(ent.Owner))
+                        continue;
+                    if (!_mobs.IsAlive(ent.Owner, ent.Comp))
+                        continue;
+                    alreadyHit.Add(ent.Owner);
+                    _damage.TryChangeDamage(ent.Owner, dmg, ignoreResistances: false);
+                    _flammable.AdjustFireStacks(ent.Owner, 3f, ignite: true);
+                    Spawn("HereticEffectFireExplosion", Transform(ent.Owner).Coordinates);
+                }
             }
-        }
 
         Timer.Spawn(300, () =>
         {
-            if (!Exists(uid)) return;
+            if (!Exists(uid))
+                return;
             FireCascadeRing(uid, radius + 1, alreadyHit);
         });
     }
@@ -864,24 +888,30 @@ public sealed class HereticAshActionsSystem : EntitySystem
 
         EntityUid? ringAction = null;
         _actions.AddAction(uid, ref ringAction, AshSpiritFlameOathActionId);
-        if (ringAction.HasValue) _heretic.AddGrantedAction(uid, comp, ringAction.Value);
+        if (ringAction.HasValue)
+            _heretic.AddGrantedAction(uid, comp, ringAction.Value);
 
         EntityUid? cascadeAction = null;
         _actions.AddAction(uid, ref cascadeAction, GreatFireCascadeActionId);
-        if (cascadeAction.HasValue) _heretic.AddGrantedAction(uid, comp, cascadeAction.Value);
+        if (cascadeAction.HasValue)
+            _heretic.AddGrantedAction(uid, comp, cascadeAction.Value);
 
         foreach (var action in _actions.GetActions(uid))
         {
-            if (!TryComp<InstantActionComponent>(action.Owner, out var ia)) continue;
-            if (ia.Event is not HereticVolcanoBlastActionEvent) continue;
+            if (!TryComp<InstantActionComponent>(action.Owner, out var ia))
+                continue;
+            if (ia.Event is not HereticVolcanoBlastActionEvent)
+                continue;
             if (TryComp<ActionComponent>(action.Owner, out var ac) && ac.UseDelay.HasValue)
                 _actions.SetUseDelay(new Entity<ActionComponent?>(action.Owner, ac), TimeSpan.FromSeconds(ac.UseDelay.Value.TotalSeconds * 0.66));
             break;
         }
         foreach (var action in _actions.GetActions(uid))
         {
-            if (!TryComp<InstantActionComponent>(action.Owner, out var ia)) continue;
-            if (ia.Event is not HereticAshlordsRebirthActionEvent) continue;
+            if (!TryComp<InstantActionComponent>(action.Owner, out var ia))
+                continue;
+            if (ia.Event is not HereticAshlordsRebirthActionEvent)
+                continue;
             if (TryComp<ActionComponent>(action.Owner, out var ac) && ac.UseDelay.HasValue)
                 _actions.SetUseDelay(new Entity<ActionComponent?>(action.Owner, ac), TimeSpan.FromSeconds(ac.UseDelay.Value.TotalSeconds * 0.16));
             break;

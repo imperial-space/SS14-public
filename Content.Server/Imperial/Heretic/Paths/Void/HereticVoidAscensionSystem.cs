@@ -3,7 +3,6 @@ using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body;
 using Content.Server.Imperial.Heretic.Effects;
-using Content.Server.Station.Systems;
 using Content.Server.Temperature.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -23,7 +22,6 @@ using Content.Shared.Weather;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -81,9 +79,12 @@ public sealed class HereticVoidAscensionSystem : EntitySystem
         while (memberQuery.MoveNext(out var gridUid, out _))
         {
             var mapId = Transform(gridUid).MapID;
-            if (mapId == MapId.Nullspace) continue;
-            if (!_mapSystem.TryGetMap(mapId, out var mapUid)) continue;
-            if (comp.StormMapUids.Contains(mapUid.Value)) continue;
+            if (mapId == MapId.Nullspace)
+                continue;
+            if (!_mapSystem.TryGetMap(mapId, out var mapUid))
+                continue;
+            if (comp.StormMapUids.Contains(mapUid.Value))
+                continue;
             comp.StormMapUids.Add(mapUid.Value);
             _weather.TryAddWeather(mapUid.Value, VoidStormProto, out _);
         }
@@ -149,7 +150,8 @@ public sealed class HereticVoidAscensionSystem : EntitySystem
         while (query.MoveNext(out var uid, out var comp))
         {
             comp.WaveTimer += frameTime;
-            if (comp.WaveTimer < WaveInterval) continue;
+            if (comp.WaveTimer < WaveInterval)
+                continue;
             comp.WaveTimer = 0f;
             TriggerWave(uid);
         }
@@ -157,7 +159,8 @@ public sealed class HereticVoidAscensionSystem : EntitySystem
 
     private void TriggerWave(EntityUid uid)
     {
-        if (Deleted(uid)) return;
+        if (Deleted(uid))
+            return;
 
         var xform = Transform(uid);
         var coords = xform.Coordinates;
@@ -165,7 +168,8 @@ public sealed class HereticVoidAscensionSystem : EntitySystem
         // SS13 on_life: apply effects to ALL in range simultaneously (no wave delay)
         foreach (var target in _lookup.GetEntitiesInRange(coords, WaveRadius))
         {
-            if (target == uid) continue;
+            if (target == uid)
+                continue;
             ApplyEntityEffect(target);
         }
 
@@ -227,7 +231,8 @@ public sealed class HereticVoidAscensionSystem : EntitySystem
         {
             for (var dy = -radius; dy <= radius; dy++)
             {
-                if (dx * dx + dy * dy > r2) continue;
+                if (dx * dx + dy * dy > r2)
+                    continue;
                 var tile = herTile + new Vector2i(dx, dy);
                 // SS13: environment.temperature *= 0.9
                 var mix = _atmos.GetTileMixture(gridUid, mapUid, tile);

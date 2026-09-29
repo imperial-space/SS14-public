@@ -1,5 +1,4 @@
 using Content.Shared.Bed.Sleep;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Moon;
@@ -20,14 +19,17 @@ public sealed class HereticMoonPassiveSystem : EntitySystem
 
     private void OnTryingSleep(EntityUid uid, HereticMoonPassiveComponent comp, ref TryingToSleepEvent args)
     {
-        if (!TryComp<HereticComponent>(uid, out var heretic)) return;
-        if (heretic.CurrentPath != HereticPath.Moon || heretic.PassiveLevel < 2) return;
+        if (!TryComp<HereticComponent>(uid, out var heretic))
+            return;
+        if (heretic.CurrentPath != HereticPath.Moon || heretic.PassiveLevel < 2)
+            return;
         args.Cancelled = true;
     }
 
     private void OnDamageChanged(EntityUid uid, HereticMoonPassiveComponent comp, DamageChangedEvent args)
     {
-        if (!args.DamageIncreased) return;
+        if (!args.DamageIncreased)
+            return;
         comp.TimeOfLastDamage = _gameTiming.CurTime;
     }
 

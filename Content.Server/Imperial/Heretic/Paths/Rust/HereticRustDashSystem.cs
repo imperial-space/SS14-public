@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Server.Popups;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
@@ -8,7 +7,6 @@ using Content.Shared.Imperial.Heretic.Paths.Rust;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 
@@ -16,12 +14,12 @@ namespace Content.Server.Imperial.Heretic.Paths.Rust;
 
 public sealed class HereticRustDashSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _xform   = default!;
-    [Dependency] private readonly EntityLookupSystem    _lookup  = default!;
-    [Dependency] private readonly DamageableSystem      _damage  = default!;
-    [Dependency] private readonly PopupSystem           _popup   = default!;
-    [Dependency] private readonly SharedAudioSystem     _audio   = default!;
-    [Dependency] private readonly IRobustRandom         _random  = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     private static readonly string[] RuneEffects =
     {
@@ -54,14 +52,16 @@ public sealed class HereticRustDashSystem : EntitySystem
                 continue;
             }
 
-            if (!comp.IsActive) continue;
+            if (!comp.IsActive)
+                continue;
             ProcessDash(uid, comp, frameTime);
         }
     }
 
     private void OnRustDash(Entity<HereticComponent> ent, ref HereticRustDashActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
 
         var mapCoords = _xform.GetMapCoordinates(ent.Owner);
         if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(mapCoords, 0.6f).Count == 0)
@@ -70,17 +70,18 @@ public sealed class HereticRustDashSystem : EntitySystem
             return;
         }
 
-        if (HasComp<HereticRustDashComponent>(ent.Owner)) return;
+        if (HasComp<HereticRustDashComponent>(ent.Owner))
+            return;
 
         args.Handled = true;
 
         var comp = AddComp<HereticRustDashComponent>(ent.Owner);
         comp.Destination = args.Target;
-        comp.IsWaiting   = true;
-        comp.IsActive    = false;
-        comp.WaitAccum   = 0f;
-        comp.TrailAccum  = 0f;
-        comp.RustAccum   = 0f;
+        comp.IsWaiting = true;
+        comp.IsActive = false;
+        comp.WaitAccum = 0f;
+        comp.TrailAccum = 0f;
+        comp.RustAccum = 0f;
         comp.DamageAccum = 0f;
 
         Spawn(comp.DashMarkerPrototype, args.Target);
@@ -89,15 +90,15 @@ public sealed class HereticRustDashSystem : EntitySystem
 
     private void ProcessDash(EntityUid uid, HereticRustDashComponent comp, float frameTime)
     {
-        var myMap   = _xform.GetMapCoordinates(uid);
+        var myMap = _xform.GetMapCoordinates(uid);
         var destMap = _xform.ToMapCoordinates(comp.Destination);
-        var dir  = destMap.Position - myMap.Position;
+        var dir = destMap.Position - myMap.Position;
         var dist = dir.Length();
 
         if (dist < 0.3f) { FinishDash(uid); return; }
 
         var dirNorm = dir / dist;
-        var step    = MathF.Min(comp.DashSpeed * frameTime, dist);
+        var step = MathF.Min(comp.DashSpeed * frameTime, dist);
         _xform.SetWorldPosition(uid, myMap.Position + dirNorm * step);
 
         var nowMap = _xform.GetMapCoordinates(uid);
@@ -132,7 +133,8 @@ public sealed class HereticRustDashSystem : EntitySystem
 
         foreach (var ent in _hitBuffer)
         {
-            if (ent == caster) continue;
+            if (ent == caster)
+                continue;
 
             var protoId = MetaData(ent).EntityPrototype?.ID;
             if (protoId is "HereticRustWall" or "WallSolidRust" or "WallReinforcedRust")
@@ -141,7 +143,8 @@ public sealed class HereticRustDashSystem : EntitySystem
                 continue;
             }
 
-            if (!HasComp<MobStateComponent>(ent)) continue;
+            if (!HasComp<MobStateComponent>(ent))
+                continue;
 
             var dmg = new DamageSpecifier();
             dmg.DamageDict["Caustic"] = FixedPoint2.New(comp.DashDamage);
@@ -151,7 +154,8 @@ public sealed class HereticRustDashSystem : EntitySystem
 
     private void SpawnRustOverlayAt(MapCoordinates pos)
     {
-        if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(pos, 0.4f).Count > 0) return;
+        if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(pos, 0.4f).Count > 0)
+            return;
         Spawn("HereticRustOverlay", pos);
     }
 

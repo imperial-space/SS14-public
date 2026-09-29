@@ -11,8 +11,8 @@ namespace Content.Server.Imperial.Heretic.Paths.Lock;
 
 public sealed class HereticLabyrinthHandbookSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem   _audio   = default!;
-    [Dependency] private readonly PopupSystem         _popup   = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedChargesSystem _charges = default!;
 
     public override void Initialize()
@@ -29,8 +29,10 @@ public sealed class HereticLabyrinthHandbookSystem : EntitySystem
 
     private void OnInteract(Entity<HereticLabyrinthHandbookComponent> ent, ref AfterInteractEvent args)
     {
-        if (args.Handled) return;
-        if (args.Target != null) return;
+        if (args.Handled)
+            return;
+        if (args.Target != null)
+            return;
 
         if (!_charges.TryUseCharge(ent.Owner))
             return;

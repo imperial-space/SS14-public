@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using Content.Server.Actions;
 using Content.Server.Atmos.Components;
@@ -38,7 +37,6 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Imperial.Heretic.Core;
-using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
@@ -47,12 +45,10 @@ using Content.Shared.Mech.EntitySystems;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Objectives.Systems;
 using Content.Shared.Overlays;
 using Content.Shared.PDA;
 using Content.Shared.Popups;
-using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Speech.EntitySystems;
 using Content.Shared.Speech.Muting;
@@ -69,12 +65,10 @@ using Content.Shared.UserInterface;
 using Content.Shared.Weapons.Melee;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using CancellationTokenSource = System.Threading.CancellationTokenSource;
@@ -89,19 +83,22 @@ public sealed partial class HereticSystem
 {
     public bool IsNamedTarget(EntityUid bodyUid, EntityUid targetBodyUid)
     {
-        if (!TryComp<HereticComponent>(bodyUid, out var comp)) return false;
+        if (!TryComp<HereticComponent>(bodyUid, out var comp))
+            return false;
         return comp.NamedTargets.Contains(targetBodyUid);
     }
 
     public HereticPath GetCurrentPath(EntityUid bodyUid)
     {
-        if (!TryComp<HereticComponent>(bodyUid, out var comp)) return HereticPath.General;
+        if (!TryComp<HereticComponent>(bodyUid, out var comp))
+            return HereticPath.General;
         return comp.CurrentPath;
     }
 
     public void AssignNamedTargets(EntityUid bodyUid, EntityUid hereticMindId)
     {
-        if (!TryComp<HereticComponent>(bodyUid, out var comp)) return;
+        if (!TryComp<HereticComponent>(bodyUid, out var comp))
+            return;
 
         // Determine the heretic's own primary department so we can pick one colleague as a target.
         string? hereticDeptId = null;
@@ -112,16 +109,18 @@ public sealed partial class HereticSystem
         }
 
         // Bucket every other mind into job-based categories.
-        var commandPool  = new List<EntityUid>();
+        var commandPool = new List<EntityUid>();
         var securityPool = new List<EntityUid>();
         var sameDeptPool = new List<EntityUid>();
-        var otherPool    = new List<EntityUid>();
+        var otherPool = new List<EntityUid>();
 
         var mindQuery = EntityQueryEnumerator<MindComponent>();
         while (mindQuery.MoveNext(out var mindEnt, out var mindComp))
         {
-            if (mindEnt == hereticMindId) continue;
-            if (mindComp.CurrentEntity == null) continue;
+            if (mindEnt == hereticMindId)
+                continue;
+            if (mindComp.CurrentEntity == null)
+                continue;
             var bodyEnt = mindComp.CurrentEntity.Value;
 
             string? deptId = null;
@@ -243,7 +242,8 @@ public sealed partial class HereticSystem
     {
         foreach (var oldTarget in comp.NamedTargets)
         {
-            if (!TryComp<HereticNamedTargetComponent>(oldTarget, out var oldMarker)) continue;
+            if (!TryComp<HereticNamedTargetComponent>(oldTarget, out var oldMarker))
+                continue;
             oldMarker.OwningHeretics.Remove(bodyUid);
             if (oldMarker.OwningHeretics.Count == 0)
                 RemCompDeferred<HereticNamedTargetComponent>(oldTarget);
@@ -287,13 +287,14 @@ public sealed partial class HereticSystem
         var targets = new List<HereticTargetData>();
         foreach (var targetUid in comp.NamedTargets)
         {
-            if (!Exists(targetUid)) continue;
+            if (!Exists(targetUid))
+                continue;
             var isDead = TryComp<MobStateComponent>(targetUid, out var mobState) &&
                          mobState.CurrentState == MobState.Dead;
             targets.Add(new HereticTargetData
             {
                 Entity = GetNetEntity(targetUid),
-                Name   = MetaData(targetUid).EntityName,
+                Name = MetaData(targetUid).EntityName,
                 IsDead = isDead,
             });
         }

@@ -7,28 +7,25 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Reality;
 using Content.Shared.Interaction;
-using Content.Shared.Interaction.Events;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
-using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.Imperial.Heretic.Reality;
 
 public sealed class HereticRealityBreachSystem : EntitySystem
 {
-    [Dependency] private readonly HereticSystem          _heretic    = default!;
-    [Dependency] private readonly IChatManager           _chatManager = default!;
-    [Dependency] private readonly IRobustRandom          _random      = default!;
-    [Dependency] private readonly IGameTiming            _timing      = default!;
-    [Dependency] private readonly SharedContainerSystem  _container   = default!;
+    [Dependency] private readonly HereticSystem _heretic = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
 
     private static readonly TimeSpan GrayScaleDuration = TimeSpan.FromSeconds(15);
-    private static readonly TimeSpan ExamineWindow     = TimeSpan.FromSeconds(60);
+    private static readonly TimeSpan ExamineWindow = TimeSpan.FromSeconds(60);
     private const int ExamineTriggerCount = 4;
     private static readonly string[] HereticExamineMessages =
     {

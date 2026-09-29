@@ -19,11 +19,11 @@ namespace Content.Server.Imperial.Heretic.Paths.Flesh;
 
 public sealed class HereticRawProphetSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPhysicsSystem   _physics        = default!;
-    [Dependency] private readonly SharedAudioSystem     _audio          = default!;
-    [Dependency] private readonly PopupSystem           _popup          = default!;
-    [Dependency] private readonly ChatSystem            _chat           = default!;
-    [Dependency] private readonly StatusEffectsSystem   _statusEffects  = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
 
     public override void Initialize()
     {
@@ -35,14 +35,16 @@ public sealed class HereticRawProphetSystem : EntitySystem
 
     private void OnJaunt(EntityUid uid, HereticRawProphetComponent comp, HereticRawProphetJauntActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         args.Handled = true;
         ExecuteJaunt(uid);
     }
 
     private void OnAshJaunt(EntityUid uid, HereticRawProphetComponent comp, HereticAshenPassageActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         args.Handled = true;
         ExecuteJaunt(uid);
     }
@@ -61,27 +63,30 @@ public sealed class HereticRawProphetSystem : EntitySystem
         {
             fixtureStates.Add((id, fixture.Hard, fixture.CollisionLayer, fixture.CollisionMask));
             _physics.SetHard(uid, fixture, false, fixtures);
-            _physics.SetCollisionLayer(uid, id, fixture, (int) CollisionGroup.None, fixtures, physics);
-            _physics.SetCollisionMask(uid, id, fixture, (int) CollisionGroup.None, fixtures, physics);
+            _physics.SetCollisionLayer(uid, id, fixture, (int)CollisionGroup.None, fixtures, physics);
+            _physics.SetCollisionMask(uid, id, fixture, (int)CollisionGroup.None, fixtures, physics);
         }
 
         Spawn("HereticEffectAshBlink", Transform(uid).Coordinates);
 
         Timer.Spawn(TimeSpan.FromSeconds(2.5), () =>
         {
-            if (!Exists(uid)) return;
+            if (!Exists(uid))
+                return;
             if (!TryComp<PhysicsComponent>(uid, out var physics2) || !TryComp<FixturesComponent>(uid, out var fixtures2))
                 return;
 
             foreach (var (id, hard, layer, mask) in fixtureStates)
             {
-                if (!fixtures2.Fixtures.TryGetValue(id, out var fixture)) continue;
+                if (!fixtures2.Fixtures.TryGetValue(id, out var fixture))
+                    continue;
                 _physics.SetHard(uid, fixture, hard, fixtures2);
                 _physics.SetCollisionLayer(uid, id, fixture, layer, fixtures2, physics2);
                 _physics.SetCollisionMask(uid, id, fixture, mask, fixtures2, physics2);
             }
 
-            if (!Exists(uid)) return;
+            if (!Exists(uid))
+                return;
             Spawn("HereticEffectAshBlink", Transform(uid).Coordinates);
             _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_magic_ethereal_exit.ogg"), Transform(uid).Coordinates);
         });
@@ -89,7 +94,8 @@ public sealed class HereticRawProphetSystem : EntitySystem
 
     private void OnBlind(EntityUid uid, HereticRawProphetComponent comp, HereticRawProphetBlindActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         args.Handled = true;
 
         var target = args.Target;

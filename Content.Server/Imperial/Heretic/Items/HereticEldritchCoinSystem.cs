@@ -1,6 +1,5 @@
 using Content.Server.Doors.Systems;
 using Content.Server.Popups;
-using Content.Shared.Audio;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Doors.Components;

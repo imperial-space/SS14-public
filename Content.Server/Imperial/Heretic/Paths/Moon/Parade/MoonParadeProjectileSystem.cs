@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Server.Chat.Systems;
 using Content.Server.Imperial.Heretic.Effects;
 using Content.Server.Popups;
@@ -6,7 +5,6 @@ using Content.Shared.Chat;
 using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Maths;
 using Robust.Shared.Physics.Components;

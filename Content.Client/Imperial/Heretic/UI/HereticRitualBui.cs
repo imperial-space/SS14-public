@@ -31,7 +31,7 @@ public sealed class HereticRitualBui : BoundUserInterface
             return;
 
         _window = this.CreateWindow<HereticRitualWindow>();
-        _window.OnRitualSelected  += id     => SendMessage(new HereticSelectRitualMessage  { RitualId = id });
-        _window.OnOfferingSelected += target => SendMessage(new HereticSelectOfferingMessage { Target   = target });
+        _window.OnRitualSelected += id => SendMessage(new HereticSelectRitualMessage { RitualId = id });
+        _window.OnOfferingSelected += target => SendMessage(new HereticSelectOfferingMessage { Target = target });
     }
 }

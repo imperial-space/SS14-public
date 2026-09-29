@@ -4,11 +4,9 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Decals;
 using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Rust;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
@@ -16,12 +14,12 @@ namespace Content.Server.Imperial.Heretic.Paths.Rust;
 
 public sealed class HereticRustPassiveSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem           _damageable        = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem    _solutionContainer = default!;
-    [Dependency] private readonly SharedTransformSystem      _xform             = default!;
-    [Dependency] private readonly EntityLookupSystem         _lookup            = default!;
-    [Dependency] private readonly DecalSystem                _decal             = default!;
-    [Dependency] private readonly IGameTiming                _gameTiming        = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly DecalSystem _decal = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     private const string RustDecalId = "Rust";
 
@@ -55,8 +53,8 @@ public sealed class HereticRustPassiveSystem : EntitySystem
             };
 
             var heal = new DamageSpecifier();
-            heal.DamageDict["Blunt"]    = healAmount;
-            heal.DamageDict["Slash"]    = healAmount;
+            heal.DamageDict["Blunt"] = healAmount;
+            heal.DamageDict["Slash"] = healAmount;
             heal.DamageDict["Piercing"] = healAmount;
             _damageable.TryChangeDamage(uid, heal, true);
 
@@ -81,11 +79,13 @@ public sealed class HereticRustPassiveSystem : EntitySystem
     {
         var coords = Transform(uid).Coordinates;
         var gridUid = _xform.GetGrid(coords);
-        if (gridUid is not { } grid) return false;
+        if (gridUid is not { } grid)
+            return false;
         var snapped = coords.SnapToGrid(EntityManager);
         foreach (var (_, decal) in _decal.GetDecalsInRange(grid, snapped.Position))
         {
-            if (decal.Id == RustDecalId) return true;
+            if (decal.Id == RustDecalId)
+                return true;
         }
         var mapCoords = _xform.ToMapCoordinates(snapped);
         return _lookup.GetEntitiesInRange<HereticRustOverlayComponent>(mapCoords, 0.4f).Count > 0;

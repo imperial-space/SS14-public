@@ -8,7 +8,6 @@ using Content.Shared.Imperial.Heretic.Effects;
 using Content.Shared.Imperial.Heretic.Paths.Flesh;
 using Content.Shared.Nutrition;
 using Content.Shared.Tag;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Flesh;
@@ -18,7 +17,7 @@ public sealed class HereticFleshPassiveSystem : EntitySystem
     private static readonly ProtoId<TagPrototype> MeatTag = "Meat";
 
     [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly TagSystem        _tag        = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     public override void Initialize()
     {
@@ -47,8 +46,8 @@ public sealed class HereticFleshPassiveSystem : EntitySystem
             return;
 
         var heal = new DamageSpecifier();
-        heal.DamageDict["Blunt"]    = FixedPoint2.New(-15);
-        heal.DamageDict["Slash"]    = FixedPoint2.New(-10);
+        heal.DamageDict["Blunt"] = FixedPoint2.New(-15);
+        heal.DamageDict["Slash"] = FixedPoint2.New(-10);
         heal.DamageDict["Piercing"] = FixedPoint2.New(-5);
         _damageable.TryChangeDamage(ent.Owner, heal, true);
     }

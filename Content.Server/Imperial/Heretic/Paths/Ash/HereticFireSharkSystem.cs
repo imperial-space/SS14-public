@@ -63,7 +63,8 @@ public sealed class HereticFireSharkSystem : EntitySystem
             }
 
             var target = ResolveTarget(uid, shark);
-            if (target == null) continue;
+            if (target == null)
+                continue;
 
             var myPos = _xform.GetWorldPosition(uid);
             var targetPos = _xform.GetWorldPosition(target.Value);
@@ -120,9 +121,12 @@ public sealed class HereticFireSharkSystem : EntitySystem
 
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(self).Coordinates, 15f))
         {
-            if (ent.Owner == self) continue;
-            if (!TryComp<MobStateComponent>(ent.Owner, out var ms2)) continue;
-            if (ms2.CurrentState == MobState.Dead) continue;
+            if (ent.Owner == self)
+                continue;
+            if (!TryComp<MobStateComponent>(ent.Owner, out var ms2))
+                continue;
+            if (ms2.CurrentState == MobState.Dead)
+                continue;
 
             var dist = (_xform.GetWorldPosition(ent.Owner) - _xform.GetWorldPosition(self)).Length();
             if (dist < nearestDist)

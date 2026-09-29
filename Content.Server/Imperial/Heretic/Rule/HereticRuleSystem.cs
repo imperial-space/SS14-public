@@ -5,12 +5,10 @@ using Content.Server.GameTicking.Rules;
 using Content.Server.Imperial.Heretic.Objectives;
 using Content.Server.Imperial.Heretic.Reality;
 using Content.Server.Mind;
-using Content.Server.Revolutionary.Components;
 using Content.Server.RoundEnd;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Prototypes;
-using Content.Shared.Mind;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -19,13 +17,13 @@ namespace Content.Server.Imperial.Heretic.Rule;
 
 public sealed class HereticRuleSystem : GameRuleSystem<HereticRuleComponent>
 {
-    [Dependency] private readonly AntagSelectionSystem      _antag   = default!;
-    [Dependency] private readonly HereticSystem             _heretic = default!;
-    [Dependency] private readonly MindSystem                _mind    = default!;
-    [Dependency] private readonly RoundEndSystem            _roundEnd = default!;
-    [Dependency] private readonly HereticRealityRiftSystem  _rift    = default!;
-    [Dependency] private readonly IPrototypeManager         _proto   = default!;
-    [Dependency] private readonly IRobustRandom             _random  = default!;
+    [Dependency] private readonly AntagSelectionSystem _antag = default!;
+    [Dependency] private readonly HereticSystem _heretic = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
+    [Dependency] private readonly HereticRealityRiftSystem _rift = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -92,9 +90,9 @@ public sealed class HereticRuleSystem : GameRuleSystem<HereticRuleComponent>
             pathCounts[knowledge.Path] = count + 1;
         }
 
-        var mainPathCount = pathCounts.Count == 0 ? 0 : (int) Math.Round(pathCounts.Values.Average());
+        var mainPathCount = pathCounts.Count == 0 ? 0 : (int)Math.Round(pathCounts.Values.Average());
 
-        return 1 + mainPathCount + startingCount + (int) Math.Ceiling(freeCount / 3f) + _random.Next(2, 5);
+        return 1 + mainPathCount + startingCount + (int)Math.Ceiling(freeCount / 3f) + _random.Next(2, 5);
     }
 
     private void SpawnInitialRifts(EntityUid heretic)
@@ -180,15 +178,15 @@ public sealed class HereticRuleSystem : GameRuleSystem<HereticRuleComponent>
 
     private static string GetPathColor(HereticPath path) => path switch
     {
-        HereticPath.Ash    => "#FF6633",
-        HereticPath.Moon   => "#88AAFF",
-        HereticPath.Lock   => "#FFCC44",
-        HereticPath.Flesh  => "#CC3333",
-        HereticPath.Void   => "#4466CC",
-        HereticPath.Blade  => "#BBBBBB",
-        HereticPath.Rust   => "#BB6600",
+        HereticPath.Ash => "#FF6633",
+        HereticPath.Moon => "#88AAFF",
+        HereticPath.Lock => "#FFCC44",
+        HereticPath.Flesh => "#CC3333",
+        HereticPath.Void => "#4466CC",
+        HereticPath.Blade => "#BBBBBB",
+        HereticPath.Rust => "#BB6600",
         HereticPath.Cosmos => "#AA44CC",
-        _                  => "#AAAAAA"
+        _ => "#AAAAAA"
     };
 
     private void OnHereticAscended(HereticAscendedEvent ev)

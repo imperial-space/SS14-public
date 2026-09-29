@@ -12,10 +12,10 @@ namespace Content.Server.Imperial.Heretic.Paths.Rust;
 
 public sealed class HereticRustArmorSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem  _damageable = default!;
-    [Dependency] private readonly SharedPopupSystem _popup      = default!;
-    [Dependency] private readonly HereticSystem     _heretic    = default!;
-    [Dependency] private readonly IGameTiming       _timing     = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly HereticSystem _heretic = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     private static readonly DamageSpecifier CurseDamage;
 

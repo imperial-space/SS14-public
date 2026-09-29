@@ -19,14 +19,14 @@ namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
 public sealed class HereticStarBlastSystem : EntitySystem
 {
-    [Dependency] private readonly EntityLookupSystem    _lookup        = default!;
-    [Dependency] private readonly PopupSystem           _popup         = default!;
-    [Dependency] private readonly SharedAudioSystem     _audio         = default!;
-    [Dependency] private readonly SharedPhysicsSystem   _physics       = default!;
-    [Dependency] private readonly SharedStunSystem      _stun          = default!;
-    [Dependency] private readonly SharedTransformSystem _xform         = default!;
-    [Dependency] private readonly SharedActionsSystem   _actions       = default!;
-    [Dependency] private readonly StatusEffectsSystem   _statusEffects = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
 
     public override void Initialize()
     {
@@ -57,7 +57,8 @@ public sealed class HereticStarBlastSystem : EntitySystem
 
     private void OnStarBlast(EntityUid uid, HereticComponent comp, HereticStarBlastActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         args.Handled = true;
 
         var starBlast = EnsureComp<HereticStarBlastComponent>(uid);
@@ -131,11 +132,13 @@ public sealed class HereticStarBlastSystem : EntitySystem
 
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 2f))
         {
-            if (ent.Owner == hereticUid) continue;
+            if (ent.Owner == hereticUid)
+                continue;
 
             _statusEffects.TrySetStatusEffectDuration(ent.Owner, "StarMarkStatusEffect", TimeSpan.FromSeconds(30));
 
-            if (!TryComp<PhysicsComponent>(ent.Owner, out var mobPhysics)) continue;
+            if (!TryComp<PhysicsComponent>(ent.Owner, out var mobPhysics))
+                continue;
 
             var mobPos = _xform.GetWorldPosition(ent.Owner);
             var delta = hereticWorldPos - mobPos;
@@ -149,15 +152,18 @@ public sealed class HereticStarBlastSystem : EntitySystem
         switch (args.OurFixtureId)
         {
             case "mob_sensor":
-                if (args.OtherEntity == comp.Shooter) return;
-                if (!HasComp<MobStateComponent>(args.OtherEntity)) return;
+                if (args.OtherEntity == comp.Shooter)
+                    return;
+                if (!HasComp<MobStateComponent>(args.OtherEntity))
+                    return;
 
                 var coords = Transform(uid).Coordinates;
                 _stun.TryKnockdown(args.OtherEntity, TimeSpan.FromSeconds(4), true);
 
                 foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 3f))
                 {
-                    if (ent.Owner == comp.Shooter) continue;
+                    if (ent.Owner == comp.Shooter)
+                        continue;
                     _statusEffects.TrySetStatusEffectDuration(ent.Owner, "StarMarkStatusEffect", TimeSpan.FromSeconds(30));
                 }
 
@@ -179,7 +185,8 @@ public sealed class HereticStarBlastSystem : EntitySystem
 
     private void OnProjectileTerminating(EntityUid uid, HereticStarBlastProjectileComponent comp, ref EntityTerminatingEvent args)
     {
-        if (!TryComp<HereticStarBlastComponent>(comp.Shooter, out var starBlast)) return;
+        if (!TryComp<HereticStarBlastComponent>(comp.Shooter, out var starBlast))
+            return;
         if (starBlast.ActiveProjectile != uid)
             return;
 

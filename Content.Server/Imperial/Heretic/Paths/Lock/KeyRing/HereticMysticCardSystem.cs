@@ -1,9 +1,7 @@
 using System.Linq;
-using Content.Server.Access.Systems;
 using Content.Server.Popups;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
-using Content.Shared.Damage;
 using Content.Shared.Doors.Components;
 using Content.Shared.Imperial.Heretic.Paths.Lock.KeyRing;
 using Content.Shared.Interaction;
@@ -33,7 +31,8 @@ public sealed class HereticMysticCardSystem : EntitySystem
 
     private void OnAfterInteract(EntityUid uid, HereticMysticCardComponent comp, AfterInteractEvent args)
     {
-        if (args.Target == null || !args.CanReach || args.Handled) return;
+        if (args.Target == null || !args.CanReach || args.Handled)
+            return;
         var target = args.Target.Value;
 
         // Поглощение ID карты
@@ -133,7 +132,8 @@ public sealed class HereticMysticCardSystem : EntitySystem
 
     private void OnAlternativeVerb(EntityUid uid, HereticMysticCardComponent comp, GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract) return;
+        if (!args.CanAccess || !args.CanInteract)
+            return;
 
         var captured = comp;
         args.Verbs.Add(new AlternativeVerb
@@ -163,7 +163,8 @@ public sealed class HereticMysticCardSystem : EntitySystem
 
     private void OnSelectAppearance(EntityUid uid, HereticMysticCardComponent comp, HereticMysticCardSelectMessage args)
     {
-        if (!comp.AbsorbedCards.ContainsKey(args.CardName)) return;
+        if (!comp.AbsorbedCards.ContainsKey(args.CardName))
+            return;
 
         _idCard.TryChangeFullName(uid, args.CardName);
         _idCard.TryChangeJobTitle(uid, Loc.GetString("heretic-mystic-card-job-title"));

@@ -11,11 +11,11 @@ namespace Content.Server.Imperial.Heretic.Paths.Lock;
 
 public sealed class HereticBurglarFinesseSystem : EntitySystem
 {
-    [Dependency] private readonly InventorySystem       _inventory = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedHandsSystem     _hands     = default!;
-    [Dependency] private readonly SharedPopupSystem     _popup     = default!;
-    [Dependency] private readonly IRobustRandom         _random    = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -25,7 +25,8 @@ public sealed class HereticBurglarFinesseSystem : EntitySystem
 
     private void OnBurglarFinesse(EntityUid uid, HereticComponent comp, HereticBurglarFinesseActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         args.Handled = true;
 
         var target = args.Target;
@@ -49,8 +50,8 @@ public sealed class HereticBurglarFinesseSystem : EntitySystem
             return;
         }
 
-        var item       = _random.Pick(items);
-        var itemName   = MetaData(item).EntityName;
+        var item = _random.Pick(items);
+        var itemName = MetaData(item).EntityName;
         var targetName = MetaData(target).EntityName;
 
         _container.Remove(item, storageContainer);

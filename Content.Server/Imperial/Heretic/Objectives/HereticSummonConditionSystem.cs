@@ -15,6 +15,6 @@ public sealed class HereticSummonConditionSystem : EntitySystem
     private void OnGetProgress(EntityUid uid, HereticSummonConditionComponent comp, ref ObjectiveGetProgressEvent args)
     {
         var count = _heretic.GetSummonCount(args.MindId);
-        args.Progress = Math.Clamp((float) count / comp.RequiredSummons, 0f, 1f);
+        args.Progress = Math.Clamp((float)count / comp.RequiredSummons, 0f, 1f);
     }
 }

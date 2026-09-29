@@ -12,8 +12,8 @@ namespace Content.Server.Imperial.Heretic.Paths.Rust;
 /// </summary>
 public sealed class HereticRustingCrownMarkSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damage  = default!;
-    [Dependency] private readonly IGameTiming      _timing  = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Update(float frameTime)
     {
@@ -23,7 +23,8 @@ public sealed class HereticRustingCrownMarkSystem : EntitySystem
         var query = EntityQueryEnumerator<HereticRustingCrownMarkComponent, MobStateComponent>();
         while (query.MoveNext(out var uid, out var mark, out _))
         {
-            if (now < mark.NextTick) continue;
+            if (now < mark.NextTick)
+                continue;
 
             var dmg = new DamageSpecifier();
             dmg.DamageDict["Caustic"] = FixedPoint2.New(mark.DamagePerTick);

@@ -6,10 +6,8 @@ using Content.Shared.Eye;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Reality;
 using Content.Shared.Interaction;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Pinpointer;
 using Content.Shared.Popups;
-using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
@@ -21,19 +19,19 @@ namespace Content.Server.Imperial.Heretic.Reality;
 
 public sealed class HereticRealityRiftSystem : EntitySystem
 {
-    [Dependency] private readonly DoAfterSystem         _doAfter = default!;
-    [Dependency] private readonly HereticSystem         _heretic = default!;
-    [Dependency] private readonly IGameTiming           _timing  = default!;
-    [Dependency] private readonly IRobustRandom         _random  = default!;
-    [Dependency] private readonly PopupSystem           _popup   = default!;
-    [Dependency] private readonly SharedAudioSystem     _audio   = default!;
-    [Dependency] private readonly SharedEyeSystem       _eye     = default!;
-    [Dependency] private readonly SharedTransformSystem _xform   = default!;
-    [Dependency] private readonly EntityLookupSystem    _lookup  = default!;
+    [Dependency] private readonly DoAfterSystem _doAfter = default!;
+    [Dependency] private readonly HereticSystem _heretic = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedEyeSystem _eye = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     private static readonly TimeSpan TriggerCooldown = TimeSpan.FromMinutes(5);
-    private static readonly TimeSpan ZoomDuration    = TimeSpan.FromSeconds(10);
-    private const float RiftRange     = 10f;
+    private static readonly TimeSpan ZoomDuration = TimeSpan.FromSeconds(10);
+    private const float RiftRange = 10f;
     private const float UpdateInterval = 2f;
 
     private static readonly string[] DreamMessages =
@@ -198,7 +196,7 @@ public sealed class HereticRealityRiftSystem : EntitySystem
     }
 
     private void OnHereticVisMask(EntityUid uid, HereticComponent _, ref GetVisMaskEvent args)
-        => args.VisibilityMask |= (int) VisibilityFlags.HereticRift;
+        => args.VisibilityMask |= (int)VisibilityFlags.HereticRift;
 
     private void OnRiftInteract(EntityUid riftUid, HereticRealityRiftComponent rift, InteractHandEvent args)
     {
@@ -220,10 +218,10 @@ public sealed class HereticRealityRiftSystem : EntitySystem
             eventTarget: args.User,
             used: riftUid)
         {
-            BreakOnMove   = true,
+            BreakOnMove = true,
             BreakOnDamage = true,
-            NeedHand      = false,
-            Hidden        = true,
+            NeedHand = false,
+            Hidden = true,
         });
     }
 
@@ -241,7 +239,7 @@ public sealed class HereticRealityRiftSystem : EntitySystem
         _heretic.SendHereticMessage(uid, Loc.GetString("heretic-rift-absorbed-chat"));
 
         var coords = _xform.GetMapCoordinates(args.Used.Value);
-        var delay  = TimeSpan.FromSeconds(rift.RespawnDelay);
+        var delay = TimeSpan.FromSeconds(rift.RespawnDelay);
         QueueDel(args.Used.Value);
 
         Timer.Spawn(delay, () => SpawnBreach(coords));

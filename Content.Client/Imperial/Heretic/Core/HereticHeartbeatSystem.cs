@@ -1,5 +1,4 @@
 using Robust.Client.Graphics;
-using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 
 namespace Content.Client.Imperial.Heretic.Core;

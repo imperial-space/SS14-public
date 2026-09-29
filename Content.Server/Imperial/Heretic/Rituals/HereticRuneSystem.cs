@@ -41,15 +41,12 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
-using Content.Shared.Preferences;
 using Content.Shared.Stacks;
 using Content.Shared.Tag;
-using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
-using Robust.Shared.Maths;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Spawners;
@@ -59,39 +56,39 @@ namespace Content.Server.Imperial.Heretic.Rituals;
 
 public sealed class HereticRuneSystem : EntitySystem
 {
-    [Dependency] private readonly IChatManager               _chatManager  = default!;
-    [Dependency] private readonly DamageableSystem           _damageable   = default!;
-    [Dependency] private readonly DoAfterSystem              _doAfter      = default!;
-    [Dependency] private readonly EntityLookupSystem         _lookup       = default!;
-    [Dependency] private readonly HereticSystem               _heretic      = default!;
-    [Dependency] private readonly HereticAshPassiveSystem      _ashPassive    = default!;
-    [Dependency] private readonly HereticFleshPassiveSystem    _fleshPassive  = default!;
-    [Dependency] private readonly HereticVoidPassiveSystem     _voidPassive   = default!;
-    [Dependency] private readonly HereticRustPassiveSystem     _rustPassive     = default!;
-    [Dependency] private readonly HereticCosmosPassiveSystem   _cosmosPassive   = default!;
-    [Dependency] private readonly HereticFeastOfOwlsSystem   _feastOfOwls   = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly DoAfterSystem _doAfter = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly HereticSystem _heretic = default!;
+    [Dependency] private readonly HereticAshPassiveSystem _ashPassive = default!;
+    [Dependency] private readonly HereticFleshPassiveSystem _fleshPassive = default!;
+    [Dependency] private readonly HereticVoidPassiveSystem _voidPassive = default!;
+    [Dependency] private readonly HereticRustPassiveSystem _rustPassive = default!;
+    [Dependency] private readonly HereticCosmosPassiveSystem _cosmosPassive = default!;
+    [Dependency] private readonly HereticFeastOfOwlsSystem _feastOfOwls = default!;
     [Dependency] private readonly HereticWarrenKingGreetingSystem _warrenKing = default!;
-    [Dependency] private readonly MindSystem                       _mind       = default!;
-    [Dependency] private readonly IPrototypeManager          _proto        = default!;
-    [Dependency] private readonly MobStateSystem             _mobs         = default!;
-    [Dependency] private readonly MobThresholdSystem         _mobThresholds = default!;
-    [Dependency] private readonly NpcFactionSystem            _faction      = default!;
-    [Dependency] private readonly PopupSystem                _popup        = default!;
-    [Dependency] private readonly SharedAudioSystem          _audio        = default!;
-    [Dependency] private readonly SharedHandsSystem          _hands        = default!;
-    [Dependency] private readonly SharedItemSystem           _item         = default!;
-    [Dependency] private readonly SharedStackSystem          _stack        = default!;
-    [Dependency] private readonly SharedTransformSystem      _xform        = default!;
-    [Dependency] private readonly SharedVisualBodySystem      _visualBody   = default!;
-    [Dependency] private readonly AtmosphereSystem           _atmosphere   = default!;
-    [Dependency] private readonly GibbingSystem              _gibbing      = default!;
-    [Dependency] private readonly SharedJitteringSystem      _jitter       = default!;
-    [Dependency] private readonly TagSystem                  _tag          = default!;
-    [Dependency] private readonly UserInterfaceSystem        _ui           = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly MobStateSystem _mobs = default!;
+    [Dependency] private readonly MobThresholdSystem _mobThresholds = default!;
+    [Dependency] private readonly NpcFactionSystem _faction = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly SharedItemSystem _item = default!;
+    [Dependency] private readonly SharedStackSystem _stack = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
+    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
+    [Dependency] private readonly GibbingSystem _gibbing = default!;
+    [Dependency] private readonly SharedJitteringSystem _jitter = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     private const string FamiliarFaction = "HereticFamiliar";
-    private const float DrawTime     = 22.0f; // full cycle of transmutation_rune_draw_colour
-    private const float DrawTimeFast =  8.2f; // full active portion of transmutation_rune_fast_colour (before 20s hold)
+    private const float DrawTime = 22.0f; // full cycle of transmutation_rune_draw_colour
+    private const float DrawTimeFast = 8.2f; // full active portion of transmutation_rune_fast_colour (before 20s hold)
 
     public override void Initialize()
     {
@@ -202,9 +199,9 @@ public sealed class HereticRuneSystem : EntitySystem
                     eventTarget: user,
                     used: target)
                 {
-                    BreakOnMove   = true,
+                    BreakOnMove = true,
                     BreakOnDamage = true,
-                    NeedHand      = false,
+                    NeedHand = false,
                 });
 
                 return;
@@ -251,7 +248,7 @@ public sealed class HereticRuneSystem : EntitySystem
         _heretic.SendHereticMessage(uid, Loc.GetString("heretic-rift-absorbed-chat"));
 
         var coords = _xform.GetMapCoordinates(args.Used.Value);
-        var delay  = TimeSpan.FromSeconds(rift.RespawnDelay);
+        var delay = TimeSpan.FromSeconds(rift.RespawnDelay);
         QueueDel(args.Used.Value);
         Timer.Spawn(delay, () => Spawn("HereticRealityBreach", coords));
     }
@@ -278,7 +275,7 @@ public sealed class HereticRuneSystem : EntitySystem
             new DrawHereticRuneDoAfterEvent(),
             eventTarget: uid)
         {
-            BreakOnMove   = true,
+            BreakOnMove = true,
             BreakOnDamage = true,
         });
 
@@ -340,18 +337,18 @@ public sealed class HereticRuneSystem : EntitySystem
         {
             Rituals = available.Select(p => new HereticRitualNodeData
             {
-                Id   = p.ID,
+                Id = p.ID,
                 Name = Loc.GetString(p.Name),
                 Icon = _proto.TryIndex<HereticKnowledgePrototype>(p.RequiredKnowledge, out var kp) ? kp.Icon : null,
                 Ingredients = p.Ingredients.Select(i => new HereticRitualIngredientData
                 {
-                    EntityId         = i.EntityId,
-                    Tag              = i.Tag,
-                    HasMobState      = i.HasMobState,
-                    IsBurning        = i.IsBurning,
+                    EntityId = i.EntityId,
+                    Tag = i.Tag,
+                    HasMobState = i.HasMobState,
+                    IsBurning = i.IsBurning,
                     IsDeadOrCritical = i.IsDeadOrCritical,
-                    RequireHumanoid  = i.RequireHumanoid,
-                    Amount           = i.Amount,
+                    RequireHumanoid = i.RequireHumanoid,
+                    Amount = i.Amount,
                 }).ToList(),
             }).ToList(),
             Offerings = new List<HereticOfferingNodeData>(),
@@ -673,8 +670,10 @@ public sealed class HereticRuneSystem : EntitySystem
             {
                 var isNamed = _heretic.IsNamedTarget(heretic, nearEnt);
                 var isCultist = HasComp<CultistComponent>(nearEnt);
-                if (!isNamed && !isCultist) continue;
-                if (!toSacrificeUids.Add(nearEnt)) continue;
+                if (!isNamed && !isCultist)
+                    continue;
+                if (!toSacrificeUids.Add(nearEnt))
+                    continue;
                 if (_mobs.IsCritical(nearEnt) || _mobs.IsDead(nearEnt))
                     toSacrifice.Add((nearEnt, true, isNamed));
                 else if (HasComp<SleepingComponent>(nearEnt))
@@ -709,9 +708,11 @@ public sealed class HereticRuneSystem : EntitySystem
                         _jitter.AddJitter(target, 20f, 6f);
                         Timer.Spawn(5000, () =>
                         {
-                            if (!Exists(target)) return;
+                            if (!Exists(target))
+                                return;
                             _gibbing.Gib(target);
-                            if (!Exists(hereticUid) || !TryComp<HereticComponent>(hereticUid, out var h2)) return;
+                            if (!Exists(hereticUid) || !TryComp<HereticComponent>(hereticUid, out var h2))
+                                return;
                             if (isNamedTarget)
                                 _heretic.RemoveNamedTarget(hereticUid, h2, target);
                             _heretic.AddKnowledgePoints(hereticUid, h2, points);
@@ -744,7 +745,8 @@ public sealed class HereticRuneSystem : EntitySystem
                 var mobQuery = EntityQueryEnumerator<MobStateComponent, HumanoidProfileComponent>();
                 while (mobQuery.MoveNext(out var mobUid, out _, out _))
                 {
-                    if (mobUid == args.Actor) continue;
+                    if (mobUid == args.Actor)
+                        continue;
                     if (HasComp<CommandStaffComponent>(mobUid) && headTarget == null)
                         headTarget = mobUid;
                     else
@@ -756,7 +758,8 @@ public sealed class HereticRuneSystem : EntitySystem
                     targets.Add(headTarget.Value);
                 foreach (var t in regularTargets)
                 {
-                    if (targets.Count >= 5) break;
+                    if (targets.Count >= 5)
+                        break;
                     targets.Add(t);
                 }
 
@@ -812,7 +815,7 @@ public sealed class HereticRuneSystem : EntitySystem
 
     private List<string> GetMissingIngredientNames(EntityCoordinates center, float radius, HereticRitualPrototype ritual, EntityUid actor = default)
     {
-        var nearby  = _lookup.GetEntitiesInRange(center, radius);
+        var nearby = _lookup.GetEntitiesInRange(center, radius);
         var claimed = new HashSet<EntityUid>();
         var missing = new List<string>();
 

@@ -13,7 +13,6 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Robust.Server.Player;
-using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -23,15 +22,15 @@ public sealed class HereticWrithingEmbraceSystem : EntitySystem
 {
     private static readonly EntProtoId SenseToggleProto = "ActionHereticWrithingSense";
 
-    [Dependency] private readonly SharedActionsSystem  _actions    = default!;
-    [Dependency] private readonly IChatManager         _chatManager = default!;
-    [Dependency] private readonly DamageableSystem     _damageable = default!;
-    [Dependency] private readonly EntityLookupSystem   _lookup     = default!;
-    [Dependency] private readonly IGameTiming          _timing     = default!;
-    [Dependency] private readonly MobStateSystem       _mobState   = default!;
-    [Dependency] private readonly MobThresholdSystem   _mobThreshold = default!;
-    [Dependency] private readonly IPlayerManager       _playerManager = default!;
-    [Dependency] private readonly SharedPopupSystem    _popup      = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     private static readonly DamageSpecifier CurseDamage;
     private static readonly DamageSpecifier HealAmount;
@@ -42,8 +41,8 @@ public sealed class HereticWrithingEmbraceSystem : EntitySystem
         CurseDamage.DamageDict["Slash"] = FixedPoint2.New(40);
 
         HealAmount = new DamageSpecifier();
-        HealAmount.DamageDict["Blunt"]    = FixedPoint2.New(-5);
-        HealAmount.DamageDict["Slash"]    = FixedPoint2.New(-5);
+        HealAmount.DamageDict["Blunt"] = FixedPoint2.New(-5);
+        HealAmount.DamageDict["Slash"] = FixedPoint2.New(-5);
         HealAmount.DamageDict["Piercing"] = FixedPoint2.New(-5);
     }
 
@@ -81,13 +80,15 @@ public sealed class HereticWrithingEmbraceSystem : EntitySystem
 
     private void OnSenseToggle(EntityUid uid, HereticComponent hc, HereticWrithingSenseToggleActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         args.Handled = true;
 
         var query = EntityQueryEnumerator<HereticWrithingEmbraceComponent>();
         while (query.MoveNext(out _, out var comp))
         {
-            if (comp.Wearer != uid) continue;
+            if (comp.Wearer != uid)
+                continue;
             comp.SilenceNotifications = !comp.SilenceNotifications;
             var msgKey = comp.SilenceNotifications
                 ? "heretic-writhing-embrace-sense-disabled"
@@ -105,7 +106,8 @@ public sealed class HereticWrithingEmbraceSystem : EntitySystem
         var query = EntityQueryEnumerator<HereticWrithingEmbraceComponent>();
         while (query.MoveNext(out _, out var comp))
         {
-            if (comp.Wearer is not { } wearer) continue;
+            if (comp.Wearer is not { } wearer)
+                continue;
             var wearerXform = Transform(wearer);
 
             if (curTime >= comp.NextAuraTime)
@@ -149,7 +151,8 @@ public sealed class HereticWrithingEmbraceSystem : EntitySystem
         var coords = wearerXform.Coordinates;
         foreach (var target in _lookup.GetEntitiesInRange<MobStateComponent>(coords, comp.SenseRadius))
         {
-            if (target.Owner == wearer) continue;
+            if (target.Owner == wearer)
+                continue;
 
             var name = MetaData(target.Owner).EntityName;
 
@@ -167,8 +170,8 @@ public sealed class HereticWrithingEmbraceSystem : EntitySystem
 
             SendServerChat(wearer, Loc.GetString("heretic-writhing-embrace-sense-hp",
                 ("name", name),
-                ("current", (int) currentHp),
-                ("max", (int) maxDmg.Value)));
+                ("current", (int)currentHp),
+                ("max", (int)maxDmg.Value)));
         }
     }
 }

@@ -1,7 +1,5 @@
 using System.Numerics;
-using Content.Server.Chat.Systems;
 using Content.Server.Imperial.Heretic.Effects;
-using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Imperial.Heretic.Core;
@@ -18,11 +16,11 @@ namespace Content.Server.Imperial.Heretic.Paths.Moon;
 
 public sealed class HereticMoonParadeSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem          _audio          = default!;
-    [Dependency] private readonly SharedPhysicsSystem        _physics        = default!;
-    [Dependency] private readonly SharedTransformSystem      _xform          = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly HereticStatusEffectsSystem _hereticEffects = default!;
-    [Dependency] private readonly MobStateSystem             _mobs           = default!;
+    [Dependency] private readonly MobStateSystem _mobs = default!;
 
     public override void Initialize()
     {
@@ -34,7 +32,8 @@ public sealed class HereticMoonParadeSystem : EntitySystem
 
     private void OnMoonParade(EntityUid uid, HereticComponent comp, HereticMoonParadeActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         args.Handled = true;
 
         var originWorldPos = _xform.GetWorldPosition(uid);
@@ -61,10 +60,14 @@ public sealed class HereticMoonParadeSystem : EntitySystem
         switch (args.OurFixtureId)
         {
             case "mob_sensor":
-                if (args.OtherEntity == comp.Shooter) return;
-                if (!HasComp<MobStateComponent>(args.OtherEntity)) return;
-                if (HasComp<HereticComponent>(args.OtherEntity)) return;
-                if (!comp.MobsHit.Add(args.OtherEntity)) return;
+                if (args.OtherEntity == comp.Shooter)
+                    return;
+                if (!HasComp<MobStateComponent>(args.OtherEntity))
+                    return;
+                if (HasComp<HereticComponent>(args.OtherEntity))
+                    return;
+                if (!comp.MobsHit.Add(args.OtherEntity))
+                    return;
 
                 // Leash: жертва тянется за снарядом на 20 секунд
                 var leash = EnsureComp<HereticMoonParadeLeashComponent>(args.OtherEntity);
@@ -82,8 +85,8 @@ public sealed class HereticMoonParadeSystem : EntitySystem
             case "wall_stop":
                 if (!TryComp<PhysicsComponent>(uid, out var physics)) { QueueDel(uid); return; }
 
-                var velocity  = _physics.GetMapLinearVelocity(uid, component: physics);
-                var normal    = args.WorldNormal;
+                var velocity = _physics.GetMapLinearVelocity(uid, component: physics);
+                var normal = args.WorldNormal;
                 var reflected = velocity - 2f * Vector2.Dot(velocity, normal) * normal;
 
                 _physics.SetLinearVelocity(uid, reflected, body: physics);
@@ -98,12 +101,14 @@ public sealed class HereticMoonParadeSystem : EntitySystem
 
     private void OnLeashDamage(EntityUid uid, HereticMoonParadeLeashComponent comp, DamageChangedEvent args)
     {
-        if (!args.DamageIncreased || args.DamageDelta == null) return;
+        if (!args.DamageIncreased || args.DamageDelta == null)
+            return;
 
         // Снимаем leash при получении 50+ урона с момента захвата
         foreach (var val in args.DamageDelta.DamageDict.Values)
         {
-            if (val > 0) comp.DamageAccumulated += val.Float();
+            if (val > 0)
+                comp.DamageAccumulated += val.Float();
         }
         if (comp.DamageAccumulated >= HereticMoonParadeLeashComponent.DamageThreshold)
             RemComp<HereticMoonParadeLeashComponent>(uid);
@@ -139,8 +144,8 @@ public sealed class HereticMoonParadeSystem : EntitySystem
 
             // Тянем жертву к снаряду
             var victimPos = _xform.GetWorldPosition(uid);
-            var projPos   = _xform.GetWorldPosition(leash.Projectile);
-            var dir       = projPos - victimPos;
+            var projPos = _xform.GetWorldPosition(leash.Projectile);
+            var dir = projPos - victimPos;
 
             if (dir.LengthSquared() < 0.25f)
                 continue;

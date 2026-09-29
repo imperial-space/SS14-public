@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -11,7 +10,6 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Input;
-using Robust.Shared.IoC;
 using Robust.Shared.Maths;
 using Robust.Shared.Utility;
 
@@ -27,7 +25,6 @@ public sealed class HereticInfoWindow : DefaultWindow
     private static readonly Color DimGreen = Color.FromHex("#88aa88");
     private static readonly Color LockGray = Color.FromHex("#555555");
     private static readonly Color HeaderGold = Color.FromHex("#e0c070");
-
 
     private readonly SpriteSystem _spriteSystem;
 
@@ -283,7 +280,8 @@ public sealed class HereticInfoWindow : DefaultWindow
         iconCenterRow.MouseFilter = MouseFilterMode.Stop;
         iconCenterRow.OnKeyBindDown += args =>
         {
-            if (args.Function != EngineKeyFunctions.UIClick || _selectedKnowledgeId == null) return;
+            if (args.Function != EngineKeyFunctions.UIClick || _selectedKnowledgeId == null)
+                return;
             args.Handle();
             OnPathSelected?.Invoke(_selectedKnowledgeId);
         };
@@ -638,27 +636,27 @@ public sealed class HereticInfoWindow : DefaultWindow
 
     private static SpriteSpecifier.Rsi? BladeSpecForPath(HereticPath path) => path switch
     {
-        HereticPath.Ash    => new SpriteSpecifier.Rsi(new ResPath("/Textures/Imperial/heretic/blade_ash.rsi"),     "ash_blade"),
-        HereticPath.Moon   => new SpriteSpecifier.Rsi(new ResPath("/Textures/Imperial/heretic/blade_moon.rsi"),    "moon_blade"),
-        HereticPath.Lock   => new SpriteSpecifier.Rsi(new ResPath("/Textures/Imperial/heretic/blade_lock.rsi"),    "key_blade"),
-        HereticPath.Flesh  => new SpriteSpecifier.Rsi(new ResPath("/Textures/Imperial/heretic/blade_flesh.rsi"),   "flesh_blade"),
-        HereticPath.Void   => new SpriteSpecifier.Rsi(new ResPath("/Textures/Imperial/heretic/blade_void.rsi"),    "void_blade"),
-        HereticPath.Blade  => new SpriteSpecifier.Rsi(new ResPath("/Textures/Imperial/heretic/blade_sundered.rsi"),"dark_blade"),
-        HereticPath.Rust   => new SpriteSpecifier.Rsi(new ResPath("/Textures/Imperial/heretic/blade_rust.rsi"),    "rust_blade"),
-        HereticPath.Cosmos => new SpriteSpecifier.Rsi(new ResPath("/Textures/Imperial/heretic/blade_cosmos.rsi"),  "cosmic_blade"),
-        _                  => null,
+        HereticPath.Ash => new SpriteSpecifier.Rsi(new ResPath("/Textures/Imperial/heretic/blade_ash.rsi"), "ash_blade"),
+        HereticPath.Moon => new SpriteSpecifier.Rsi(new ResPath("/Textures/Imperial/heretic/blade_moon.rsi"), "moon_blade"),
+        HereticPath.Lock => new SpriteSpecifier.Rsi(new ResPath("/Textures/Imperial/heretic/blade_lock.rsi"), "key_blade"),
+        HereticPath.Flesh => new SpriteSpecifier.Rsi(new ResPath("/Textures/Imperial/heretic/blade_flesh.rsi"), "flesh_blade"),
+        HereticPath.Void => new SpriteSpecifier.Rsi(new ResPath("/Textures/Imperial/heretic/blade_void.rsi"), "void_blade"),
+        HereticPath.Blade => new SpriteSpecifier.Rsi(new ResPath("/Textures/Imperial/heretic/blade_sundered.rsi"), "dark_blade"),
+        HereticPath.Rust => new SpriteSpecifier.Rsi(new ResPath("/Textures/Imperial/heretic/blade_rust.rsi"), "rust_blade"),
+        HereticPath.Cosmos => new SpriteSpecifier.Rsi(new ResPath("/Textures/Imperial/heretic/blade_cosmos.rsi"), "cosmic_blade"),
+        _ => null,
     };
 
     private static string? BackgroundStateForPath(HereticPath path) => path switch
     {
-        HereticPath.Ash    => "node_ash",
-        HereticPath.Moon   => "node_moon",
-        HereticPath.Lock   => "node_lock",
-        HereticPath.Void   => "node_void",
-        HereticPath.Blade  => "node_blade",
-        HereticPath.Rust   => "node_rust",
+        HereticPath.Ash => "node_ash",
+        HereticPath.Moon => "node_moon",
+        HereticPath.Lock => "node_lock",
+        HereticPath.Void => "node_void",
+        HereticPath.Blade => "node_blade",
+        HereticPath.Rust => "node_rust",
         HereticPath.Cosmos => "node_cosmos",
-        _                  => null,
+        _ => null,
     };
 
     private readonly record struct GuaranteedEntry(string NodeId, SpriteSpecifier? Override = null);
@@ -1191,7 +1189,8 @@ public sealed class HereticInfoWindow : DefaultWindow
                         && !n.ConflictsWith.Any(c => researchedIds.Contains(c)))
                     .OrderBy(n => n.Name)
                     .ToList();
-                if (levelNodes.Count == 0) continue;
+                if (levelNodes.Count == 0)
+                    continue;
 
                 _shopPanel.AddChild(new PanelContainer
                 {
@@ -1384,9 +1383,9 @@ public sealed class HereticInfoWindow : DefaultWindow
 
     private sealed class GradientPanel : PanelContainer
     {
-        private static readonly Color GradTop    = Color.FromHex("#1e0d30");
+        private static readonly Color GradTop = Color.FromHex("#1e0d30");
         private static readonly Color GradBottom = Color.FromHex("#06020e");
-        private static readonly Color Border     = Color.FromHex("#5c2888");
+        private static readonly Color Border = Color.FromHex("#5c2888");
 
         public GradientPanel(int marginH = 8, int marginV = 6)
         {

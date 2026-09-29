@@ -33,12 +33,15 @@ public sealed class HereticLockPortalSystem : EntitySystem
 
     private void OnCollide(EntityUid uid, HereticLockPortalComponent comp, ref StartCollideEvent args)
     {
-        if (args.OurFixtureId != "portalFixture") return;
+        if (args.OurFixtureId != "portalFixture")
+            return;
 
         var subject = args.OtherEntity;
 
-        if (HasComp<PortalTimeoutComponent>(subject)) return;
-        if (Transform(subject).Anchored) return;
+        if (HasComp<PortalTimeoutComponent>(subject))
+            return;
+        if (Transform(subject).Anchored)
+            return;
 
         var isHeretic = HasComp<HereticComponent>(subject);
         // XOR: без инверсии — еретик → к партнёру; с инверсией — наоборот
@@ -67,7 +70,8 @@ public sealed class HereticLockPortalSystem : EntitySystem
 
     private void OnEndCollide(EntityUid uid, HereticLockPortalComponent comp, ref EndCollideEvent args)
     {
-        if (args.OurFixtureId != "portalFixture") return;
+        if (args.OurFixtureId != "portalFixture")
+            return;
 
         var subject = args.OtherEntity;
         if (TryComp<PortalTimeoutComponent>(subject, out var timeout) && timeout.EnteredPortal != uid)

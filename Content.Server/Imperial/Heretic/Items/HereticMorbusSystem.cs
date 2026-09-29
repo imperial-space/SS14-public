@@ -13,20 +13,19 @@ using Content.Shared.StatusEffectNew;
 using Content.Shared.Traits.Assorted;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Heretic.Items;
 
 public sealed class HereticMorbusSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming          _timing        = default!;
-    [Dependency] private readonly DamageableSystem     _damage        = default!;
-    [Dependency] private readonly EntityLookupSystem   _lookup        = default!;
-    [Dependency] private readonly ParacusiaSystem      _paracusia     = default!;
-    [Dependency] private readonly PopupSystem          _popup         = default!;
-    [Dependency] private readonly StatusEffectsSystem  _statusEffects = default!;
-    [Dependency] private readonly SharedAudioSystem    _audio         = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly ParacusiaSystem _paracusia = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     public override void Initialize()
     {
@@ -65,7 +64,7 @@ public sealed class HereticMorbusSystem : EntitySystem
             RemComp<HereticCursedRuneComponent>(rune);
 
             var dmg = new DamageSpecifier();
-            dmg.DamageDict["Slash"]     = FixedPoint2.New(20);
+            dmg.DamageDict["Slash"] = FixedPoint2.New(20);
             dmg.DamageDict["Bloodloss"] = FixedPoint2.New(15);
             _damage.TryChangeDamage(tripper, dmg, ignoreResistances: false);
 

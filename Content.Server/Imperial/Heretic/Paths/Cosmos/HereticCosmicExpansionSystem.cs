@@ -10,9 +10,9 @@ namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
 public sealed class HereticCosmicExpansionSystem : EntitySystem
 {
-    [Dependency] private readonly EntityLookupSystem  _lookup        = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly SharedAudioSystem   _audio         = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     public override void Initialize()
     {
@@ -22,7 +22,8 @@ public sealed class HereticCosmicExpansionSystem : EntitySystem
 
     private void OnCosmicExpansion(EntityUid uid, HereticComponent comp, HereticCosmicExpansionActionEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled)
+            return;
         args.Handled = true;
 
         var xform = Transform(uid);
@@ -41,8 +42,10 @@ public sealed class HereticCosmicExpansionSystem : EntitySystem
         var coords = xform.Coordinates;
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 7f))
         {
-            if (ent.Owner == uid) continue;
-            if (HasComp<HereticComponent>(ent.Owner)) continue;
+            if (ent.Owner == uid)
+                continue;
+            if (HasComp<HereticComponent>(ent.Owner))
+                continue;
             _statusEffects.TrySetStatusEffectDuration(ent.Owner, "StarMarkStatusEffect", TimeSpan.FromSeconds(30));
         }
 

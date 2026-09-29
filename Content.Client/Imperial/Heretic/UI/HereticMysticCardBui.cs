@@ -18,14 +18,16 @@ public sealed class HereticMysticCardBui : BoundUserInterface
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
-        if (state is not HereticMysticCardBuiState cardState) return;
+        if (state is not HereticMysticCardBuiState cardState)
+            return;
         EnsureWindow();
         _window?.Populate(cardState);
     }
 
     private void EnsureWindow()
     {
-        if (_window != null) return;
+        if (_window != null)
+            return;
         _window = this.CreateWindow<HereticMysticCardWindow>();
         _window.OnCardSelected += name => SendMessage(new HereticMysticCardSelectMessage(name));
     }

@@ -12,10 +12,8 @@ using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Medical;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Popups;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Tools.Components;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 
 namespace Content.Server.Imperial.Heretic.Paths.Rust;
@@ -28,15 +26,15 @@ namespace Content.Server.Imperial.Heretic.Paths.Rust;
 /// </summary>
 public sealed class HereticRustEffectsSystem : EntitySystem
 {
-    [Dependency] private readonly EntityLookupSystem    _lookup    = default!;
-    [Dependency] private readonly SharedTransformSystem _xform     = default!;
-    [Dependency] private readonly DamageableSystem      _damage    = default!;
-    [Dependency] private readonly MobStateSystem        _mobs      = default!;
-    [Dependency] private readonly VomitSystem           _vomit     = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private readonly MobStateSystem _mobs = default!;
+    [Dependency] private readonly VomitSystem _vomit = default!;
     [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
-    [Dependency] private readonly SharedStaminaSystem   _stamina   = default!;
-    [Dependency] private readonly SharedDoAfterSystem   _doAfter   = default!;
-    [Dependency] private readonly PopupSystem           _popup     = default!;
+    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
 
     // Corruption tick: every 2 seconds (matches SS13 rust_corruption)
     private const float CorruptionInterval = 2f;
@@ -138,9 +136,9 @@ public sealed class HereticRustEffectsSystem : EntitySystem
     private void ApplyRustHealing(EntityUid uid)
     {
         var heal = new DamageSpecifier();
-        heal.DamageDict["Blunt"]        = FixedPoint2.New(-3);
-        heal.DamageDict["Heat"]         = FixedPoint2.New(-3);
-        heal.DamageDict["Poison"]       = FixedPoint2.New(-3);
+        heal.DamageDict["Blunt"] = FixedPoint2.New(-3);
+        heal.DamageDict["Heat"] = FixedPoint2.New(-3);
+        heal.DamageDict["Poison"] = FixedPoint2.New(-3);
         heal.DamageDict["Asphyxiation"] = FixedPoint2.New(-3);
         _damage.TryChangeDamage(uid, heal, ignoreResistances: true);
 

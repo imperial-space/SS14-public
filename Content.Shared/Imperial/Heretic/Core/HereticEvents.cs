@@ -122,7 +122,7 @@ public sealed class HereticDenyAscensionMessage : BoundUserInterfaceMessage { }
 [Serializable, NetSerializable]
 public sealed class HereticRitualBuiState : BoundUserInterfaceState
 {
-    public List<HereticRitualNodeData>   Rituals  = new();
+    public List<HereticRitualNodeData> Rituals = new();
     public List<HereticOfferingNodeData> Offerings = new();
 }
 
@@ -212,16 +212,16 @@ public sealed partial class HereticAshSpiritFlameOathActionEvent : InstantAction
 public sealed partial class HereticScorchedMantleToggleFlamesEvent : InstantActionEvent { }
 
 // Flesh
-public sealed partial class HereticImperfectRitualActionEvent      : WorldTargetActionEvent { }
-public sealed partial class HereticFleshWeaveActionEvent            : EntityTargetActionEvent { }
-public sealed partial class HereticRawProphetJauntActionEvent       : InstantActionEvent { }
-public sealed partial class HereticRawProphetBlindActionEvent       : EntityTargetActionEvent { }
-public sealed partial class HereticWrithingSenseToggleActionEvent   : InstantActionEvent { }
-public sealed partial class HereticShedHumanFormActionEvent          : InstantActionEvent { }
+public sealed partial class HereticImperfectRitualActionEvent : WorldTargetActionEvent { }
+public sealed partial class HereticFleshWeaveActionEvent : EntityTargetActionEvent { }
+public sealed partial class HereticRawProphetJauntActionEvent : InstantActionEvent { }
+public sealed partial class HereticRawProphetBlindActionEvent : EntityTargetActionEvent { }
+public sealed partial class HereticWrithingSenseToggleActionEvent : InstantActionEvent { }
+public sealed partial class HereticShedHumanFormActionEvent : InstantActionEvent { }
 
 // Flesh — Stalker familiar
-public sealed partial class HereticStalkerJauntActionEvent     : InstantActionEvent { }
-public sealed partial class HereticStalkerEmpActionEvent       : InstantActionEvent { }
+public sealed partial class HereticStalkerJauntActionEvent : InstantActionEvent { }
+public sealed partial class HereticStalkerEmpActionEvent : InstantActionEvent { }
 public sealed partial class HereticStalkerPolymorphActionEvent : InstantActionEvent { }
 
 // Void
@@ -231,46 +231,46 @@ public sealed partial class HereticVoidCloakToggleHoodEvent : InstantActionEvent
 public sealed partial class HereticVoidConduitActionEvent : WorldTargetActionEvent { }
 
 // Blade
-public sealed partial class HereticRealignmentActionEvent   : InstantActionEvent { }
+public sealed partial class HereticRealignmentActionEvent : InstantActionEvent { }
 public sealed partial class HereticSanguineSurgeActionEvent : InstantActionEvent { }
-public sealed partial class HereticCleaveActionEvent     : WorldTargetActionEvent { }
+public sealed partial class HereticCleaveActionEvent : WorldTargetActionEvent { }
 public sealed partial class HereticSummonBladesActionEvent : InstantActionEvent { }
 public sealed partial class HereticFuriousSteelActionEvent : WorldTargetActionEvent { }
 public sealed partial class HereticWolvesAmongSheepActionEvent : WorldTargetActionEvent { }
 
 // Rust
-public sealed partial class HereticCorrodeActionEvent    : WorldTargetActionEvent { }
-public sealed partial class HereticRustCoatActionEvent   : WorldTargetActionEvent { }
-public sealed partial class HereticRustWaveActionEvent   : InstantActionEvent { }
+public sealed partial class HereticCorrodeActionEvent : WorldTargetActionEvent { }
+public sealed partial class HereticRustCoatActionEvent : WorldTargetActionEvent { }
+public sealed partial class HereticRustWaveActionEvent : InstantActionEvent { }
 public sealed partial class HereticEntropicPlagueActionEvent : WorldTargetActionEvent { }
 public sealed partial class HereticRustingCrownActionEvent : InstantActionEvent { }
 
 // Ash — expanded
-public sealed partial class HereticAshlordRiteActionEvent      : InstantActionEvent { }
-public sealed partial class HereticFireRingOathActionEvent     : InstantActionEvent { }
-public sealed partial class HereticFireCascadeActionEvent      : WorldTargetActionEvent { }
+public sealed partial class HereticAshlordRiteActionEvent : InstantActionEvent { }
+public sealed partial class HereticFireRingOathActionEvent : InstantActionEvent { }
+public sealed partial class HereticFireCascadeActionEvent : WorldTargetActionEvent { }
 
 // Moon — Врата Разума
-public sealed partial class HereticMoonGateActionEvent          : EntityTargetActionEvent { }
-public sealed partial class HereticMoonParadeActionEvent        : WorldTargetActionEvent { }
-public sealed partial class HereticMoonRingleaderActionEvent    : InstantActionEvent { }
+public sealed partial class HereticMoonGateActionEvent : EntityTargetActionEvent { }
+public sealed partial class HereticMoonParadeActionEvent : WorldTargetActionEvent { }
+public sealed partial class HereticMoonRingleaderActionEvent : InstantActionEvent { }
 
 // Void — expanded
-public sealed partial class HereticVoidPhaseActionEvent        : WorldTargetActionEvent { }
-public sealed partial class HereticVoidPrisonActionEvent       : EntityTargetActionEvent { }
+public sealed partial class HereticVoidPhaseActionEvent : WorldTargetActionEvent { }
+public sealed partial class HereticVoidPrisonActionEvent : EntityTargetActionEvent { }
 public sealed partial class HereticWaveOfDesperationActionEvent : InstantActionEvent { }
-public sealed partial class HereticMaidInMirrorActionEvent     : InstantActionEvent { }
+public sealed partial class HereticMaidInMirrorActionEvent : InstantActionEvent { }
 
 // Blade — expanded
-public sealed partial class HereticRawRitualActionEvent        : InstantActionEvent { }
+public sealed partial class HereticRawRitualActionEvent : InstantActionEvent { }
 public sealed partial class HereticStanceOfTornChampionActionEvent : InstantActionEvent { }
-public sealed partial class HereticLionhunterRifleActionEvent  : WorldTargetActionEvent { }
+public sealed partial class HereticLionhunterRifleActionEvent : WorldTargetActionEvent { }
 
 // Rust — expanded
 public sealed partial class HereticAggressiveSpreadActionEvent : InstantActionEvent { }
 public sealed partial class HereticRustConstructionActionEvent : WorldTargetActionEvent { }
-public sealed partial class HereticEntropicPlumeActionEvent    : WorldTargetActionEvent { }
-public sealed partial class HereticRustDashActionEvent         : WorldTargetActionEvent { }
+public sealed partial class HereticEntropicPlumeActionEvent : WorldTargetActionEvent { }
+public sealed partial class HereticRustDashActionEvent : WorldTargetActionEvent { }
 
 // Ржавоход — способности фамильяра
 public sealed partial class HereticRustWalkerAggressiveSpreadActionEvent : InstantActionEvent { }
@@ -280,7 +280,7 @@ public sealed partial class HereticRustWalkerLesserPatrinsReachActionEvent : Wor
 public sealed partial class HereticGreatFireCascadeActionEvent : InstantActionEvent { }
 
 // Ascension actions
-public sealed partial class HereticAscensionRustActionEvent   : InstantActionEvent { }
+public sealed partial class HereticAscensionRustActionEvent : InstantActionEvent { }
 
 // Unsealed Arts — placement of paintings
 public sealed partial class HereticUnsealedArtsActionEvent : WorldTargetActionEvent { }

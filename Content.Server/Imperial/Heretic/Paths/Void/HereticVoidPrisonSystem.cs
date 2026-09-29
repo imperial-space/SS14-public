@@ -39,7 +39,8 @@ public sealed class HereticVoidPrisonSystem : EntitySystem
 
     private void OnPolymorphed(Entity<VoidPrisonComponent> ent, ref PolymorphedEvent ev)
     {
-        if (!ev.IsRevert) return;
+        if (!ev.IsRevert)
+            return;
         if (!HasComp<HereticComponent>(ev.NewEntity))
             _hereticEffects.ApplyVoidChill(ev.NewEntity, 1);
     }

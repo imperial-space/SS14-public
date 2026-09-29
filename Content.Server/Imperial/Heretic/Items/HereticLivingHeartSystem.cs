@@ -12,10 +12,10 @@ namespace Content.Server.Imperial.Heretic.Items;
 
 public sealed class HereticLivingHeartSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem     _audio   = default!;
-    [Dependency] private readonly SharedTransformSystem _xform   = default!;
-    [Dependency] private readonly PopupSystem           _popup   = default!;
-    [Dependency] private readonly HereticSystem         _heretic = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly HereticSystem _heretic = default!;
 
     private static readonly SoundPathSpecifier HeartbeatSound =
         new("/Audio/Imperial/heretic/sound_effects_singlebeat.ogg");
@@ -28,7 +28,8 @@ public sealed class HereticLivingHeartSystem : EntitySystem
 
     private void OnAfterInteract(EntityUid uid, HereticLivingHeartComponent comp, AfterInteractEvent args)
     {
-        if (!args.CanReach || args.Target == null) return;
+        if (!args.CanReach || args.Target == null)
+            return;
 
         // Interaction with a rune: attempt sacrifice of tracked named target
         if (HasComp<HereticRuneComponent>(args.Target.Value))
@@ -38,8 +39,10 @@ public sealed class HereticLivingHeartSystem : EntitySystem
             return;
         }
 
-        if (!HasComp<MobStateComponent>(args.Target.Value)) return;
-        if (args.Target.Value == args.User) return;
+        if (!HasComp<MobStateComponent>(args.Target.Value))
+            return;
+        if (args.Target.Value == args.User)
+            return;
 
         comp.Target = args.Target.Value;
         comp.HeartbeatTimer = 0f;
@@ -96,13 +99,14 @@ public sealed class HereticLivingHeartSystem : EntitySystem
         var query = EntityQueryEnumerator<HereticLivingHeartComponent>();
         while (query.MoveNext(out var uid, out var heart))
         {
-            if (heart.Target == EntityUid.Invalid || !Exists(heart.Target)) continue;
+            if (heart.Target == EntityUid.Invalid || !Exists(heart.Target))
+                continue;
 
-            var myPos  = _xform.GetWorldPosition(uid);
+            var myPos = _xform.GetWorldPosition(uid);
             var tgtPos = _xform.GetWorldPosition(heart.Target);
-            var dist   = (tgtPos - myPos).Length();
+            var dist = (tgtPos - myPos).Length();
 
-            var t        = Math.Clamp(dist / heart.TrackRange, 0f, 1f);
+            var t = Math.Clamp(dist / heart.TrackRange, 0f, 1f);
             var interval = heart.MinInterval + (heart.MaxInterval - heart.MinInterval) * t;
 
             heart.HeartbeatTimer += frameTime;
