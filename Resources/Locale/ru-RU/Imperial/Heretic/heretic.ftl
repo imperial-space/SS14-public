@@ -3011,3 +3011,49 @@ ghost-role-information-heretic-ash-spirit-description = Вы — неупоко�
 
 # ─── Меню персонажа ─────────────────────────────────
 heretic-character-info-mansus = Ваши задачи ожидают вас в Книге Мансуса
+heretic-info-tasks-none = Все задачи выполнены. Путь к вознесению открыт!
+
+# ─── Категории SpawnMenu (подкатегории) ─────────────
+entity-category-name-heretic-blade = Еретик — клинки
+entity-category-name-heretic-mantle = Еретик — мантии
+entity-category-name-heretic-painting = Еретик — картины
+entity-category-name-heretic-creature = Еретик — существа
+
+# ─── Роли призраков ─────────────────────────────────
+ghost-role-information-heretic-ghoul-upgraded-name = Разбитый восставший
+ghost-role-information-heretic-ghoul-upgraded-description = Вы — разрушенное тело, поднятое силой Мансуса. Служите еретику, который вас поднял, и разрывайте его врагов костяными обломками.
+heretic-lock-tear-ghost-role-name = Порождение Разрыва
+heretic-lock-tear-ghost-role-desc = Вознёсшийся еретик Замка распахнул Разрыв. Войдите в мир в облике случайного еретического чудовища и служите своему мастеру.
+
+# ─── Знания магазина ────────────────────────────────
+heretic-knowledge-shop-void-cloak-name = Накидка пустоты
+heretic-knowledge-shop-void-cloak-desc = Вы научились ткать плащ из ткани пустоты. Он скрывает вас от взглядов тех, кто ищет вас во тьме.
+heretic-knowledge-shop-mawed-crucible-name = Тигель Мансуса
+heretic-knowledge-shop-mawed-crucible-desc = Вы научились создавать тёмный сосуд, покрытый рунами, в котором варятся зелья Мансуса.
+
+# ─── Ритуалы ────────────────────────────────────────
+heretic-ritual-cosmic-beacon-name = Космический маяк
+heretic-ritual-space-hands-name = Звёздные руки
+
+# ─── Перевоплощение Замка ───────────────────────────
+heretic-lock-shapeshift-rust-walker = Ржавоход
+heretic-lock-shapeshift-ash-orb = Пепельная сфера
+heretic-lock-shapeshift-stalker = Сталкер
+heretic-lock-shapeshift-raw-prophet = Сырой Пророк
+
+# ─── Итоги раунда ───────────────────────────────────
+heretic-roundend-path = Путь
+heretic-roundend-objectives = Задачи
+heretic-roundend-obj-sacrifice = Принести { $req } { $req ->
+        [one] жертву
+        [few] жертвы
+       *[other] жертв
+    }
+heretic-roundend-obj-major = Принести в жертву высокопоставленную цель
+heretic-roundend-obj-research = Изучить { $req } { $req ->
+        [one] знание
+        [few] знания
+       *[other] знаний
+    }
+heretic-roundend-obj-ascension = Вознестись
+heretic-roundend-knowledge = Изученные знания ({ $count })
