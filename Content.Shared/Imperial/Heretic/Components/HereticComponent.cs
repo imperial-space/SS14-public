@@ -1,8 +1,8 @@
+using Content.Shared.Imperial.Heretic.Prototypes;
 using Content.Shared.StatusIcon;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Content.Shared.Imperial.Heretic.Prototypes;
 
 namespace Content.Shared.Imperial.Heretic.Components;
 

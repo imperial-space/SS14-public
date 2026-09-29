@@ -1,5 +1,3 @@
-using Content.Shared.Imperial.Heretic.Components;
-
 namespace Content.Shared.Imperial.Heretic;
 
 /// <summary>

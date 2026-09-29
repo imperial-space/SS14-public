@@ -1,7 +1,6 @@
 using System.Linq;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
-using Content.Shared.Temperature.Components;
 using Content.Server.Body;
 using Content.Server.Station.Systems;
 using Content.Server.Temperature.Systems;
@@ -17,6 +16,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Speech.Muting;
 using Content.Shared.Station.Components;
 using Content.Shared.StatusEffect;
+using Content.Shared.Temperature.Components;
 using Content.Shared.Weather;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;

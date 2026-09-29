@@ -1,4 +1,3 @@
-using Content.Shared.Imperial.Heretic;
 using Content.Shared.Imperial.Heretic.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Weapons.Melee.Events;

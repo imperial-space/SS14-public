@@ -1,7 +1,7 @@
+using System.Numerics;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Maths;
-using System.Numerics;
 
 namespace Content.Shared.Imperial.Heretic.Components;
 

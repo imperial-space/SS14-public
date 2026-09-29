@@ -1,6 +1,5 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Actions;
-using Robust.Shared.Timing;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Clothing;
 using Content.Shared.Damage;
@@ -11,6 +10,7 @@ using Content.Shared.Imperial.Heretic.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Popups;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Heretic;
 

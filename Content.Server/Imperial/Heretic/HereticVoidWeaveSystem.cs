@@ -3,7 +3,6 @@ using Content.Shared.Clothing;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
-using Content.Shared.Imperial.Heretic;
 using Content.Shared.Imperial.Heretic.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;

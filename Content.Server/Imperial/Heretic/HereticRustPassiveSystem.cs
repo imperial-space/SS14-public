@@ -1,12 +1,11 @@
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Server.Decals;
 using Content.Shared.Body.Components;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Decals;
 using Content.Shared.FixedPoint;
-using Content.Shared.Imperial.Heretic;
 using Content.Shared.Imperial.Heretic.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;

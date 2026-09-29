@@ -1,13 +1,13 @@
 using System.Linq;
 using Content.Server.Access.Systems;
-using Content.Shared.Access.Systems;
 using Content.Server.Popups;
 using Content.Shared.Access.Components;
+using Content.Shared.Access.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Doors.Components;
+using Content.Shared.Imperial.Heretic.KeyRing;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Imperial.Heretic.KeyRing;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;

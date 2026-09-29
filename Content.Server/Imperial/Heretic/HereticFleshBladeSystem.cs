@@ -1,5 +1,4 @@
 using Content.Server.Body.Systems;
-using Content.Shared.Imperial.Heretic;
 using Content.Shared.Imperial.Heretic.Components;
 using Content.Shared.Weapons.Melee.Events;
 

@@ -1,13 +1,12 @@
 using Content.Server.Chat.Managers;
 using Content.Server.Popups;
 using Content.Shared.Chat;
-using Content.Shared.Imperial.Heretic;
 using Content.Shared.Imperial.Heretic.Components;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
-using Robust.Shared.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Player;
 
 namespace Content.Server.Imperial.Heretic;
 

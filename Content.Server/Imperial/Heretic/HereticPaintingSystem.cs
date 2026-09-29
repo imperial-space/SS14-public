@@ -1,7 +1,7 @@
+using System.Numerics;
 using Content.Server.Popups;
 using Content.Server.Traits.Assorted;
 using Content.Shared.Body.Components;
-using Content.Shared.Traits.Assorted;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage.Systems;
@@ -13,8 +13,8 @@ using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.StatusEffectNew;
+using Content.Shared.Traits.Assorted;
 using Content.Shared.Weapons.Melee;
-using System.Numerics;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Player;

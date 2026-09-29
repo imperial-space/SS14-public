@@ -1,5 +1,6 @@
 using Content.Server.Decals;
 using Content.Server.Popups;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
@@ -7,7 +8,6 @@ using Content.Shared.Imperial.Heretic.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Content.Shared.Slippery;
-using Content.Shared.Bed.Sleep;
 using Content.Shared.Stunnable;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;

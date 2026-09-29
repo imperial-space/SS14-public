@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Server.Chat.Systems;
-using Content.Server.Imperial.Heretic;
 using Content.Server.Popups;
 using Content.Shared.Chat;
 using Content.Shared.Imperial.Heretic.MoonParade;

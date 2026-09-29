@@ -1,7 +1,6 @@
 using Content.Server.Popups;
 using Content.Server.Traits.Assorted;
 using Content.Shared.Damage;
-using Content.Shared.Traits.Assorted;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
@@ -9,6 +8,7 @@ using Content.Shared.Imperial.Heretic.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.StatusEffectNew;
+using Content.Shared.Traits.Assorted;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;

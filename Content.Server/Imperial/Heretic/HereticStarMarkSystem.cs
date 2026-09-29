@@ -1,7 +1,7 @@
+using System.Numerics;
 using Content.Shared.Imperial.Heretic.Components;
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Map;
-using System.Numerics;
 
 namespace Content.Server.Imperial.Heretic;
 

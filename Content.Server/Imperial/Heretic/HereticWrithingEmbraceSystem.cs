@@ -1,7 +1,6 @@
 using Content.Server.Chat.Managers;
 using Content.Shared.Actions;
 using Content.Shared.Chat;
-using Robust.Shared.Prototypes;
 using Content.Shared.Clothing;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
@@ -14,6 +13,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Heretic;

@@ -2,7 +2,6 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
-using Robust.Shared.Prototypes;
 using Content.Shared.Imperial.Heretic.Components;
 using Content.Shared.Imperial.Heretic.KeyRing;
 using Content.Shared.Teleportation.Components;
@@ -10,6 +9,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.Heretic.KeyRing;

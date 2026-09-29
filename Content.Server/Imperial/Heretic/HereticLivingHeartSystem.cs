@@ -1,5 +1,4 @@
 using Content.Server.Popups;
-using Content.Shared.Imperial.Heretic;
 using Content.Shared.Imperial.Heretic.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;

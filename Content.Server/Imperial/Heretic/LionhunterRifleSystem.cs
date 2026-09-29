@@ -1,9 +1,9 @@
 using Content.Server.Damage.Systems;
-using Content.Shared.Speech.EntitySystems;
 using Content.Shared.Imperial.Heretic.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
+using Content.Shared.Speech.EntitySystems;
 using Content.Shared.Stunnable;
 
 namespace Content.Server.Imperial.Heretic;

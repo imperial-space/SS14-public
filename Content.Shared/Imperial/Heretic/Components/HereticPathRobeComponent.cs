@@ -1,5 +1,3 @@
-using Content.Shared.Imperial.Heretic;
-
 namespace Content.Shared.Imperial.Heretic.Components;
 
 [RegisterComponent]

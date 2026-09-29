@@ -1,5 +1,3 @@
-using Content.Shared.Imperial.Heretic;
-
 namespace Content.Shared.Imperial.Heretic.Components;
 
 /// <summary>Книга Мансуса — физический предмет. При использовании в руке открывает меню знаний еретика.</summary>

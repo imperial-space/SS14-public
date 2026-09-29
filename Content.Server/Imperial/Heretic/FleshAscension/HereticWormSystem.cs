@@ -1,6 +1,6 @@
+using System.Numerics;
 using Content.Server.Mind;
 using Content.Shared.Actions;
-using Robust.Shared.Prototypes;
 using Content.Shared.Actions.Components;
 using Content.Shared.Imperial.Heretic;
 using Content.Shared.Imperial.Heretic.Components;
@@ -12,7 +12,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Maths;
-using System.Numerics;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.FleshAscension;
 

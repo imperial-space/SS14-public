@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Server.Imperial.Heretic.Components;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Imperial.Heretic;
@@ -12,7 +13,6 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Maths;
 using Robust.Shared.Timing;
-using System.Numerics;
 
 namespace Content.Server.Imperial.Heretic;
 

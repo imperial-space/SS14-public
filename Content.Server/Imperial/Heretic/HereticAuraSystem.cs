@@ -1,3 +1,4 @@
+using Content.Server.Popups;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
 using Content.Shared.Damage.Systems;
@@ -7,7 +8,6 @@ using Content.Shared.Imperial.Heretic.Components;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Mobs.Components;
-using Content.Server.Popups;
 using Content.Shared.Popups;
 using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
