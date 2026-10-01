@@ -3059,3 +3059,6 @@ heretic-roundend-obj-research = Изучить { $req } { $req ->
     }
 heretic-roundend-obj-ascension = Вознестись
 heretic-roundend-knowledge = Изученные знания ({ $count })
+
+# Святая вода (SS13: remove_charges у заклинаний еретика)
+heretic-holy-water-blocked = Ваши ритуалы нарушены: святая вода выжигает тело!

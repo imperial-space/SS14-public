@@ -14,6 +14,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Timer = Robust.Shared.Timing.Timer;
+using Content.Server.Imperial.Antimagic;
 
 namespace Content.Server.Imperial.Heretic.Paths.Void;
 
@@ -26,6 +27,7 @@ public sealed class HereticVoidConduitSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly ImperialAntimagicSystem _antimagic = default!;
 
     private static readonly SoundPathSpecifier AmbientSound =
         new("/Audio/Imperial/heretic/sound_ambience_misc_ambiatm1.ogg");
@@ -147,6 +149,8 @@ public sealed class HereticVoidConduitSystem : EntitySystem
         foreach (var target in nearby)
         {
             if (target == uid)
+                continue;
+            if (HasComp<MobStateComponent>(target) && _antimagic.CanBlockMagic(target))
                 continue;
 
             var targetPos = _xform.GetWorldPosition(target);

@@ -12,6 +12,7 @@ using Content.Server.Doors.Systems;
 using Content.Server.Imperial.Heretic.Effects;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
+using Content.Server.Imperial.Antimagic;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -102,6 +103,7 @@ public sealed class HereticRustActionsSystem : EntitySystem
     [Dependency] private readonly VomitSystem _vomit = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
+    [Dependency] private readonly ImperialAntimagicSystem _antimagic = default!;
 
     public override void Initialize()
     {
@@ -241,6 +243,8 @@ public sealed class HereticRustActionsSystem : EntitySystem
         {
             if (ent.Owner == uid)
                 continue;
+            if (_antimagic.CanBlockMagic(ent.Owner))
+                continue;
             _damage.TryChangeDamage(ent.Owner, dmg, ignoreResistances: false);
         }
         Spawn("HereticEffectEntropicPlume", Transform(uid).Coordinates);
@@ -266,6 +270,8 @@ public sealed class HereticRustActionsSystem : EntitySystem
         {
             if (ent.Owner == uid)
                 continue;
+            if (_antimagic.CanBlockMagic(ent.Owner))
+                continue;
             _statusEffects.TryAddStatusEffect<TemporaryBlindnessComponent>(ent.Owner, TemporaryBlindnessSystem.BlindingStatusEffect, blindDuration, true);
             _hereticEffects.ApplyInsanity(ent.Owner, TimeSpan.FromSeconds(10));
         }
@@ -289,6 +295,8 @@ public sealed class HereticRustActionsSystem : EntitySystem
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(uid).Coordinates, 8f))
         {
             if (ent.Owner == uid)
+                continue;
+            if (_antimagic.CanBlockMagic(ent.Owner))
                 continue;
             var mark = EnsureComp<HereticRustingCrownMarkComponent>(ent.Owner);
             mark.TicksRemaining = 6;
@@ -460,6 +468,8 @@ public sealed class HereticRustActionsSystem : EntitySystem
                 foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(tileCoords, 0.5f))
                 {
                     if (mob.Owner == uid || HasComp<HereticComponent>(mob.Owner))
+                        continue;
+                    if (_antimagic.CanBlockMagic(mob.Owner))
                         continue;
 
                     EnsureComp<HereticAmokComponent>(mob.Owner);

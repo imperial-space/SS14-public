@@ -83,6 +83,7 @@
     state: transmutation_rune
     noRot: false
   - type: HereticRune
+  - type: ImperialNullRodErasable
   - type: InteractionOutline
   - type: Clickable
   - type: UserInterface

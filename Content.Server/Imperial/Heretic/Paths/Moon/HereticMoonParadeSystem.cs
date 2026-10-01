@@ -11,6 +11,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
+using Content.Server.Imperial.Antimagic;
 
 namespace Content.Server.Imperial.Heretic.Paths.Moon;
 
@@ -21,6 +22,7 @@ public sealed class HereticMoonParadeSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly HereticStatusEffectsSystem _hereticEffects = default!;
     [Dependency] private readonly MobStateSystem _mobs = default!;
+    [Dependency] private readonly ImperialAntimagicSystem _antimagic = default!;
 
     public override void Initialize()
     {
@@ -65,6 +67,8 @@ public sealed class HereticMoonParadeSystem : EntitySystem
                 if (!HasComp<MobStateComponent>(args.OtherEntity))
                     return;
                 if (HasComp<HereticComponent>(args.OtherEntity))
+                    return;
+                if (_antimagic.CanBlockMagic(args.OtherEntity))
                     return;
                 if (!comp.MobsHit.Add(args.OtherEntity))
                     return;

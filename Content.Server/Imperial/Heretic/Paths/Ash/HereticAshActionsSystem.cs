@@ -9,6 +9,7 @@ using Content.Server.DoAfter;
 using Content.Server.Doors.Systems;
 using Content.Server.Mind;
 using Content.Server.Popups;
+using Content.Server.Imperial.Antimagic;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -109,6 +110,7 @@ public sealed class HereticAshActionsSystem : EntitySystem
     [Dependency] private readonly BeamSystem _beam = default!;
     [Dependency] private readonly HereticAshSpiritSystem _ashSpiritSystem = default!;
     [Dependency] private readonly HereticBodyStorageSystem _bodyStorage = default!;
+    [Dependency] private readonly ImperialAntimagicSystem _antimagic = default!;
 
     private static readonly EntProtoId GreatFireCascadeActionId = "ActionHereticGreatFireCascade";
     private static readonly EntProtoId AshSpiritFlameOathActionId = "ActionHereticAshSpiritFlameOath";
@@ -388,6 +390,8 @@ public sealed class HereticAshActionsSystem : EntitySystem
             var aoeTarget = ent.Owner;
             if (hitSet.Contains(aoeTarget))
                 continue;
+            if (_antimagic.CanBlockMagic(ent.Owner))
+                continue;
             if (!_mobs.IsAlive(aoeTarget, ent.Comp))
                 continue;
             if (HasComp<HereticComponent>(aoeTarget))
@@ -412,6 +416,8 @@ public sealed class HereticAshActionsSystem : EntitySystem
         {
             var target = ent.Owner;
             if (target == caster)
+                continue;
+            if (_antimagic.CanBlockMagic(ent.Owner, effect: false))
                 continue;
             if (alreadyHit.Contains(target))
                 continue;
@@ -455,6 +461,8 @@ public sealed class HereticAshActionsSystem : EntitySystem
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 14f))
         {
             if (ent.Owner == uid)
+                continue;
+            if (_antimagic.CanBlockMagic(ent.Owner))
                 continue;
             if (HasComp<HereticComponent>(ent.Owner))
                 continue;
@@ -642,6 +650,8 @@ public sealed class HereticAshActionsSystem : EntitySystem
         {
             if (ent.Owner == uid)
                 continue;
+            if (_antimagic.CanBlockMagic(ent.Owner))
+                continue;
             if (!TryComp<MobStateComponent>(ent.Owner, out var mobState))
                 continue;
             if (mobState.CurrentState != MobState.Dead)
@@ -681,6 +691,8 @@ public sealed class HereticAshActionsSystem : EntitySystem
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(pos, 5f))
         {
             if (ent.Owner == uid)
+                continue;
+            if (_antimagic.CanBlockMagic(ent.Owner))
                 continue;
             if (!TryComp<MobStateComponent>(ent.Owner, out var ms))
                 continue;
@@ -742,6 +754,8 @@ public sealed class HereticAshActionsSystem : EntitySystem
         {
             if (ent.Owner == ring.Owner || !_mobs.IsAlive(ent.Owner, ent.Comp))
                 continue;
+            if (_antimagic.CanBlockMagic(ent.Owner))
+                continue;
 
             _damage.TryChangeDamage(ent.Owner, ring.Comp.Damage, ignoreResistances: false);
             _flammable.AdjustFireStacks(ent.Owner, ring.Comp.FireStacks, ignite: true);
@@ -798,6 +812,8 @@ public sealed class HereticAshActionsSystem : EntitySystem
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(center, radius))
         {
             if (alreadyHit.Contains(ent.Owner))
+                continue;
+            if (_antimagic.CanBlockMagic(ent.Owner))
                 continue;
             if (!_mobs.IsAlive(ent.Owner, ent.Comp))
                 continue;
@@ -862,6 +878,8 @@ public sealed class HereticAshActionsSystem : EntitySystem
                 foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(tileCoords, 0.7f))
                 {
                     if (alreadyHit.Contains(ent.Owner))
+                        continue;
+                    if (_antimagic.CanBlockMagic(ent.Owner))
                         continue;
                     if (!_mobs.IsAlive(ent.Owner, ent.Comp))
                         continue;

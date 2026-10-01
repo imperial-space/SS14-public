@@ -20,6 +20,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Spawners;
+using Content.Server.Imperial.Antimagic;
 
 namespace Content.Server.Imperial.Heretic.Paths.Moon;
 
@@ -38,6 +39,7 @@ public sealed class HereticMoonRingleaderSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedVisibilitySystem _visibility = default!;
+    [Dependency] private readonly ImperialAntimagicSystem _antimagic = default!;
 
     private const float AoeRadius = 5f;
     private const float CloneSpawnRad = 5f;
@@ -76,6 +78,8 @@ public sealed class HereticMoonRingleaderSystem : EntitySystem
             if (!_mobs.IsAlive(victimUid))
                 continue;
             if (HasComp<HereticComponent>(victimUid))
+                continue;
+            if (_antimagic.CanBlockMagic(victimUid))
                 continue;
 
             var brainComp = EnsureComp<HereticMoonBrainDamageComponent>(victimUid);

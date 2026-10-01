@@ -13,6 +13,7 @@ using Content.Server.Mind;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
 using Content.Server.Weapons.Ranged.Systems;
+using Content.Server.Imperial.Antimagic;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
@@ -116,6 +117,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
     [Dependency] private readonly DecalSystem _decals = default!;
     [Dependency] private readonly HereticArenaSystem _arena = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly ImperialAntimagicSystem _antimagic = default!;
 
     private static readonly ProtoId<TagPrototype> HereticBladeTag = "HereticBlade";
 
@@ -395,6 +397,8 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         {
             if (ent.Owner == uid)
                 continue;
+            if (_antimagic.CanBlockMagic(ent.Owner))
+                continue;
             _damage.TryChangeDamage(ent.Owner, dmg, ignoreResistances: false);
         }
         Spawn("HereticEffectCleave", Transform(uid).Coordinates);
@@ -423,6 +427,8 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(targetCoords, 1.5f))
         {
             if (ent.Owner == uid)
+                continue;
+            if (_antimagic.CanBlockMagic(ent.Owner))
                 continue;
             if (HasComp<HereticComponent>(ent.Owner))
                 continue;
@@ -660,6 +666,8 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(uid).Coordinates, 3f))
         {
             if (ent.Owner == uid)
+                continue;
+            if (_antimagic.CanBlockMagic(ent.Owner))
                 continue;
             _damage.TryChangeDamage(ent.Owner, dmg, ignoreResistances: false);
         }

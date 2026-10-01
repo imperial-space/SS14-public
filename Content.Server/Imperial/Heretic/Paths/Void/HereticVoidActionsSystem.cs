@@ -13,6 +13,7 @@ using Content.Server.Imperial.Heretic.Effects;
 using Content.Server.Imperial.Heretic.Paths.Moon;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
+using Content.Server.Imperial.Antimagic;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -116,6 +117,7 @@ public sealed class HereticVoidActionsSystem : EntitySystem
     [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
     [Dependency] private readonly HereticMoonBrainDamageSystem _brainDamage = default!;
     [Dependency] private readonly HereticVoidPrisonSystem _voidPrison = default!;
+    [Dependency] private readonly ImperialAntimagicSystem _antimagic = default!;
 
     public override void Initialize()
     {
@@ -154,6 +156,8 @@ public sealed class HereticVoidActionsSystem : EntitySystem
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 3f))
         {
             if (ent.Owner == uid)
+                continue;
+            if (_antimagic.CanBlockMagic(ent.Owner))
                 continue;
             if (HasComp<HereticComponent>(ent.Owner))
                 continue;
@@ -304,6 +308,8 @@ public sealed class HereticVoidActionsSystem : EntitySystem
         {
             if (ent.Owner == uid)
                 continue;
+            if (_antimagic.CanBlockMagic(ent.Owner))
+                continue;
             if (HasComp<HereticComponent>(ent.Owner))
                 continue;
             _damage.TryChangeDamage(ent.Owner, aoe, ignoreResistances: false);
@@ -318,6 +324,8 @@ public sealed class HereticVoidActionsSystem : EntitySystem
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(dstCoords, 1f))
         {
             if (ent.Owner == uid)
+                continue;
+            if (_antimagic.CanBlockMagic(ent.Owner))
                 continue;
             if (HasComp<HereticComponent>(ent.Owner))
                 continue;
@@ -349,6 +357,8 @@ public sealed class HereticVoidActionsSystem : EntitySystem
         foreach (var victim in victims)
         {
             if (HasComp<HereticComponent>(victim))
+                continue;
+            if (_antimagic.CanBlockMagic(victim))
                 continue;
             if (_mobs.IsDead(victim))
                 continue;
@@ -386,6 +396,8 @@ public sealed class HereticVoidActionsSystem : EntitySystem
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 3f))
         {
             if (ent.Owner == uid)
+                continue;
+            if (_antimagic.CanBlockMagic(ent.Owner))
                 continue;
             _damage.TryChangeDamage(ent.Owner, dmg, ignoreResistances: false);
             _stun.TryKnockdown(ent.Owner, TimeSpan.FromSeconds(3), true);

@@ -14,6 +14,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
+using Content.Server.Imperial.Antimagic;
 
 namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
@@ -27,6 +28,7 @@ public sealed class HereticStarBlastSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private readonly ImperialAntimagicSystem _antimagic = default!;
 
     public override void Initialize()
     {
@@ -134,6 +136,8 @@ public sealed class HereticStarBlastSystem : EntitySystem
         {
             if (ent.Owner == hereticUid)
                 continue;
+            if (_antimagic.CanBlockMagic(ent.Owner))
+                continue;
 
             _statusEffects.TrySetStatusEffectDuration(ent.Owner, "StarMarkStatusEffect", TimeSpan.FromSeconds(30));
 
@@ -158,11 +162,14 @@ public sealed class HereticStarBlastSystem : EntitySystem
                     return;
 
                 var coords = Transform(uid).Coordinates;
-                _stun.TryKnockdown(args.OtherEntity, TimeSpan.FromSeconds(4), true);
+                if (!_antimagic.CanBlockMagic(args.OtherEntity))
+                    _stun.TryKnockdown(args.OtherEntity, TimeSpan.FromSeconds(4), true);
 
                 foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 3f))
                 {
                     if (ent.Owner == comp.Shooter)
+                        continue;
+                    if (_antimagic.CanBlockMagic(ent.Owner))
                         continue;
                     _statusEffects.TrySetStatusEffectDuration(ent.Owner, "StarMarkStatusEffect", TimeSpan.FromSeconds(30));
                 }

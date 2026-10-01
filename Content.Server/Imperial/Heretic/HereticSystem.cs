@@ -6,6 +6,7 @@ using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Decals;
 using Content.Server.Doors.Systems;
+using Content.Server.Imperial.Antimagic;
 using Content.Server.Imperial.Heretic.Effects;
 using Content.Server.Imperial.Heretic.Paths.Ash;
 using Content.Server.Imperial.Heretic.Paths.Blade;
@@ -35,6 +36,7 @@ using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Follower.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement.Components;
+using Content.Shared.Imperial.Antimagic;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Items;
 using Content.Shared.Imperial.Heretic.Prototypes;
@@ -127,6 +129,7 @@ public sealed partial class HereticSystem : SharedHereticSystem
     [Dependency] private readonly HereticVoidPassiveSystem _voidPassive = default!;
     [Dependency] private readonly HereticRustPassiveSystem _rustPassive = default!;
     [Dependency] private readonly HereticCosmosPassiveSystem _cosmosPassive = default!;
+    [Dependency] private readonly ImperialAntimagicSystem _antimagic = default!;
 
     private const string RustDecalId = "Rust";
 
@@ -166,6 +169,7 @@ public sealed partial class HereticSystem : SharedHereticSystem
         SubscribeLocalEvent<HereticComponent, HereticMansusGraspActionEvent>(OnMansusGrasp);
         SubscribeLocalEvent<HereticMansusGraspItemComponent, AfterInteractEvent>(OnMansusGraspItemAfterInteract);
         SubscribeLocalEvent<HereticMansusGraspItemComponent, SuicideByEnvironmentEvent>(OnMansusGraspItemSuicide);
+        SubscribeLocalEvent<HereticComponent, ImperialMagicCastAttemptEvent>(OnMagicCastAttempt);
         SubscribeLocalEvent<HereticKnowledgeHolderComponent, HereticResearchKnowledgeMessage>(OnResearchMessage);
         SubscribeLocalEvent<HereticKnowledgeHolderComponent, HereticSelectPathMessage>(OnSelectPathMessage);
         SubscribeLocalEvent<HereticKnowledgeHolderComponent, HereticDenyAscensionMessage>(OnDenyAscensionMessage);

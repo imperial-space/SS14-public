@@ -31,6 +31,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.IdentityManagement.Components;
+using Content.Shared.Imperial.Antimagic;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Ash;
 using Content.Shared.Imperial.Heretic.Paths.Blade;
@@ -181,6 +182,16 @@ public sealed partial class HereticSystem
         Timer.Spawn(TimeSpan.FromSeconds(0.4), () => DoMansusGraspSuicideTick(victim, tick + 1));
     }
 
+    /// <summary>Святая вода в теле нарушает ритуалы еретика (remove_charges в SS13).</summary>
+    private void OnMagicCastAttempt(Entity<HereticComponent> ent, ref ImperialMagicCastAttemptEvent args)
+    {
+        if (args.Cancelled || !HasComp<ImperialHolyWaterComponent>(ent))
+            return;
+
+        args.Cancelled = true;
+        _popup.PopupEntity(Loc.GetString("heretic-holy-water-blocked"), ent, ent, PopupType.MediumCaution);
+    }
+
     private void OnMansusGraspItemAfterInteract(EntityUid uid, HereticMansusGraspItemComponent itemComp, AfterInteractEvent args)
     {
         if (TerminatingOrDeleted(uid))
@@ -224,6 +235,15 @@ public sealed partial class HereticSystem
             _popup.PopupEntity(Loc.GetString("heretic-grasp-rune-erased"), caster, caster, PopupType.Medium);
             Spawn("HereticEffectRuneFail", Transform(target).Coordinates);
             QueueDel(target);
+            RemComp<UnremoveableComponent>(uid);
+            QueueDel(uid);
+            return;
+        }
+
+        // SS13: антимагия цели гасит хватку, рука тратится (on_antimagic_triggered).
+        if (_antimagic.CanBlockMagic(target))
+        {
+            _popup.PopupEntity(Loc.GetString("imperial-antimagic-no-effect"), caster, caster);
             RemComp<UnremoveableComponent>(uid);
             QueueDel(uid);
             return;
