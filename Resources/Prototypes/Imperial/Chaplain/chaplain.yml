@@ -1,0 +1,755 @@
+# Роль и снаряжение капеллана — перенос из SS13 (BandaStation: chaplain.dm, chaplain_costumes.dm,
+# chaplain_divine_archer.dm, choice_beacon.dm). Выдаётся командой makechaplain.
+
+- type: npcFaction
+  id: ImperialHoly
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialPray
+  name: imperial-religion-pray-action-name
+  description: imperial-religion-pray-action-desc
+  components:
+  - type: Action
+    icon: /Textures/Interface/pray.svg.png
+  - type: InstantAction
+    event: !type:ImperialPrayActionEvent {}
+
+# ─── Снаряжение ──────────────────────────────────────────────────────────────
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackImperialCultpack
+  name: trophy rack
+  description: It's useful for both carrying extra gear and proudly declaring your insanity.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/Back/cultpack.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Chaplain/Back/cultpack.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/Back/cultpack.rsi
+
+- type: entity
+  parent: BaseItem
+  id: HolyArmamentsBeacon
+  name: armaments beacon
+  description: Summon a set of standard issue chaplain armaments, as dictated by I.C.R.A.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/Devices/armaments_beacon.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Chaplain/Devices/armaments_beacon.rsi
+  - type: HolyArmamentsBeacon
+  - type: UserInterface
+    interfaces:
+      enum.HolyArmamentsUiKey.Key:
+        type: HolyArmamentsBoundUserInterface
+  - type: ActivatableUI
+    key: enum.HolyArmamentsUiKey.Key
+    inHandsOnly: true
+    requireActiveHand: false
+
+# Облачения из шкафа капеллана SS13 (в SS14 ChapDrobe не трогаем — отдельная коробка).
+- type: entity
+  parent: BoxCardboard
+  id: BoxImperialChaplainVestments
+  name: chaplain's vestments box
+  description: A box with the chaplain's ceremonial vestments.
+  components:
+  - type: Item
+    size: Huge
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,19,9
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterImperialHolidayPriest
+    - id: ClothingOuterNunRobe
+    - id: ClothingHeadHatHoodNunHood
+    - id: ClothingOuterImperialHabit
+    - id: ClothingOuterImperialBishopRobe
+    - id: ClothingOuterImperialMonkHabit
+    - id: ClothingOuterImperialMonkRobeEast
+    - id: ClothingOuterImperialWhiteRobe
+    - id: ClothingOuterClownPriest
+    - id: ClothingOuterImperialShrinehand
+
+# ─── Базы ────────────────────────────────────────────────────────────────────
+
+# Броня капеллана (chaplainsuit_armor): melee 50, bullet 10, laser 10, acid 80.
+- type: entity
+  abstract: true
+  parent: ClothingOuterBase
+  id: ClothingOuterImperialChaplainArmorBase
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.9
+        Heat: 0.9
+        Caustic: 0.2
+
+- type: entity
+  abstract: true
+  parent: ClothingHeadBase
+  id: ClothingHeadImperialChaplainHelmetBase
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.9
+        Heat: 0.9
+        Caustic: 0.2
+
+# ─── Облачения ───────────────────────────────────────────────────────────────
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterImperialHolidayPriest
+  name: holiday priest
+  description: This is a nice holiday, my son.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/OuterClothing/holidaypriest.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/OuterClothing/holidaypriest.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterImperialHabit
+  name: religious tunic
+  description: No nunsene clothing.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/OuterClothing/habit.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/OuterClothing/habit.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterImperialBishopRobe
+  name: bishop's robes
+  description: Glad to see the tithes you collected were well spent.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/OuterClothing/bishoprobe.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/OuterClothing/bishoprobe.rsi
+
+- type: entity
+  parent: ClothingOuterBaseToggleable
+  id: ClothingOuterImperialMonkHabit
+  name: monk's habit
+  description: A few steps above rended sackcloth.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/OuterClothing/monkfrock.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/OuterClothing/monkfrock.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadImperialMonkHood
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadImperialMonkHood
+  categories: [ HideSpawnMenu ]
+  name: monk's hood
+  description: For when a man wants to cover up his tonsure.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/Head/monkhood.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/Head/monkhood.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterImperialMonkRobeEast
+  name: eastern monk's robes
+  description: Best combined with a shaved head.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/OuterClothing/monkrobeeast.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/OuterClothing/monkrobeeast.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterImperialWhiteRobe
+  name: white robe
+  description: Good for clerics and sleepy crewmembers.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/OuterClothing/whiterobe.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/OuterClothing/whiterobe.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterImperialShrinehand
+  name: shrinehand robe
+  description: Won't help you communicate with spirits, but you'll certainly look the part.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/OuterClothing/shrinehand.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/OuterClothing/shrinehand.rsi
+
+# ─── Наборы маяка вооружения ─────────────────────────────────────────────────
+
+- type: entity
+  abstract: true
+  parent: BoxCardboard
+  id: BoxImperialHolyArmamentsBase
+  components:
+  - type: Sprite
+    state: box
+  - type: Item
+    size: Huge
+  # Броня крупная — обычная коробка её не вмещает.
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,15,7
+
+# Храмовник
+- type: entity
+  parent: BoxImperialHolyArmamentsBase
+  id: BoxImperialHolyTemplar
+  name: Templar Kit
+  components:
+  - type: HolyArmamentsKit
+    preview: ClothingOuterImperialTemplar
+  - type: StorageFill
+    contents:
+    - id: ClothingHeadImperialTemplar
+    - id: ClothingOuterImperialTemplar
+
+- type: entity
+  parent: ClothingHeadImperialChaplainHelmetBase
+  id: ClothingHeadImperialTemplar
+  name: crusader helmet
+  description: Deus Vult.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/Head/templar.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/Head/templar.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+
+- type: entity
+  parent: ClothingOuterImperialChaplainArmorBase
+  id: ClothingOuterImperialTemplar
+  name: crusader armour
+  description: God wills it!
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/OuterClothing/templar.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/OuterClothing/templar.rsi
+
+# Забытый
+- type: entity
+  parent: BoxImperialHolyArmamentsBase
+  id: BoxImperialHolyForgotten
+  name: Forgotten kit
+  components:
+  - type: HolyArmamentsKit
+    preview: ClothingOuterImperialForgotten
+  - type: StorageFill
+    contents:
+    - id: ClothingHeadImperialForgotten
+    - id: ClothingOuterImperialForgotten
+
+- type: entity
+  parent: ClothingHeadImperialChaplainHelmetBase
+  id: ClothingHeadImperialForgotten
+  name: forgotten helmet
+  description: It has the unyielding gaze of a god eternally forgotten.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/Head/clockwork.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/Head/clockwork.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+
+- type: entity
+  parent: ClothingOuterImperialChaplainArmorBase
+  id: ClothingOuterImperialForgotten
+  name: forgotten armour
+  description: It sounds like hissing steam, ticking cogs, gone silent, It looks like a dead machine, trying to tick with life.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/OuterClothing/clockwork.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/OuterClothing/clockwork.rsi
+
+# Нечестивый учёный
+- type: entity
+  parent: BoxImperialHolyArmamentsBase
+  id: BoxImperialHolyStudent
+  name: Profane Scholar Kit
+  components:
+  - type: HolyArmamentsKit
+    preview: ClothingOuterImperialStudentRobe
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterImperialStudentRobe
+    - id: ClothingHeadImperialCage
+
+- type: entity
+  parent: ClothingOuterImperialChaplainArmorBase
+  id: ClothingOuterImperialStudentRobe
+  name: student robe
+  description: The uniform of a bygone institute of learning.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/OuterClothing/studentuni.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/OuterClothing/studentuni.rsi
+
+- type: entity
+  parent: ClothingHeadImperialChaplainHelmetBase
+  id: ClothingHeadImperialCage
+  name: cage
+  description: A cage that restrains the will of the self, allowing one to see the profane world for what it is.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/Head/cage.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/Head/cage.rsi
+
+# Каменный страж
+- type: entity
+  parent: BoxImperialHolyArmamentsBase
+  id: BoxImperialHolySentinel
+  name: Stone Sentinel Kit
+  components:
+  - type: HolyArmamentsKit
+    preview: ClothingOuterImperialAncient
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterImperialAncient
+    - id: ClothingHeadImperialAncient
+
+- type: entity
+  parent: ClothingOuterImperialChaplainArmorBase
+  id: ClothingOuterImperialAncient
+  name: ancient armour
+  description: Defend the treasure...
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/OuterClothing/ancient.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/OuterClothing/ancient.rsi
+
+- type: entity
+  parent: ClothingHeadImperialChaplainHelmetBase
+  id: ClothingHeadImperialAncient
+  name: ancient helmet
+  description: None may pass!
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/Head/ancient.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/Head/ancient.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+
+# Охотник на ведьм
+- type: entity
+  parent: BoxImperialHolyArmamentsBase
+  id: BoxImperialHolyWitchhunter
+  name: Witchhunter Kit
+  components:
+  - type: HolyArmamentsKit
+    preview: ClothingOuterImperialWitchhunter
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterImperialWitchhunter
+    - id: ClothingHeadImperialWitchhunterHat
+
+- type: entity
+  parent: ClothingOuterImperialChaplainArmorBase
+  id: ClothingOuterImperialWitchhunter
+  name: witchunter garb
+  description: This worn outfit saw much use back in the day.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/OuterClothing/witchhunter.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/OuterClothing/witchhunter.rsi
+
+- type: entity
+  parent: ClothingHeadImperialChaplainHelmetBase
+  id: ClothingHeadImperialWitchhunterHat
+  name: witchunter hat
+  description: This hat saw much use back in the day.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/Head/witchhunter.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/Head/witchhunter.rsi
+
+# Божественный адепт
+- type: entity
+  parent: BoxImperialHolyArmamentsBase
+  id: BoxImperialHolyAdept
+  name: Divine Adept Kit
+  components:
+  - type: HolyArmamentsKit
+    preview: ClothingOuterImperialAdept
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterImperialAdept
+    - id: ClothingHeadImperialAdept
+    - id: ClothingHandsImperialBracers
+
+- type: entity
+  parent: ClothingOuterImperialChaplainArmorBase
+  id: ClothingOuterImperialAdept
+  name: adept robes
+  description: The ideal outfit for burning the unfaithful.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/OuterClothing/adept.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/OuterClothing/adept.rsi
+
+- type: entity
+  parent: ClothingHeadImperialChaplainHelmetBase
+  id: ClothingHeadImperialAdept
+  name: adept hood
+  description: Its only heretical when others do it.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/Head/adept.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/Head/adept.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsImperialBracers
+  name: bracers
+  description: A pair of bracers.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/Gloves/bracers.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/Gloves/bracers.rsi
+
+# Последователи капеллана: четыре балахона и один для лидера.
+- type: entity
+  parent: BoxImperialHolyArmamentsBase
+  id: BoxImperialHolyFollower
+  name: Followers of the Chaplain Kit
+  components:
+  - type: HolyArmamentsKit
+    preview: ClothingOuterImperialFollowerLeader
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterImperialFollower
+      amount: 4
+    - id: ClothingOuterImperialFollowerLeader
+
+- type: entity
+  parent: ClothingOuterBaseToggleable
+  id: ClothingOuterImperialFollower
+  name: follower hoodie
+  description: Hoodie made for acolytes of the chaplain.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/OuterClothing/follower.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/OuterClothing/follower.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadImperialFollowerHood
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadImperialFollowerHood
+  categories: [ HideSpawnMenu ]
+  name: follower hood
+  description: Hood made for acolytes of the chaplain.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/Head/follower.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/Head/follower.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+
+- type: entity
+  parent: ClothingOuterImperialFollower
+  id: ClothingOuterImperialFollowerLeader
+  name: leader hoodie
+  description: Now you're ready for some 50 dollar bling water.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/OuterClothing/follower-leader.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/OuterClothing/follower-leader.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadImperialFollowerHoodLeader
+
+- type: entity
+  parent: ClothingHeadImperialFollowerHood
+  id: ClothingHeadImperialFollowerHoodLeader
+  categories: [ HideSpawnMenu ]
+  name: leader hood
+  description: I mean, you don't /have/ to seek bling water. I just think you should.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/Head/follower-leader.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/Head/follower-leader.rsi
+
+# Божественный лучник (броня слабее: melee 40, bullet 5, laser 5, acid 60).
+- type: entity
+  parent: BoxImperialHolyArmamentsBase
+  id: BoxImperialHolyDivineArcher
+  name: Divine Archer Kit
+  components:
+  - type: HolyArmamentsKit
+    preview: ClothingOuterImperialDivineArcher
+  - type: StorageFill
+    contents:
+    - id: ClothingUniformImperialDivineArcher
+    - id: ClothingOuterImperialDivineArcher
+    - id: ClothingHandsImperialDivineArcher
+    - id: ClothingShoesImperialDivineArcher
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformImperialDivineArcher
+  name: divine archer's garb
+  description: Divine garb of the archers of the faith.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/Uniforms/archer.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/Uniforms/archer.rsi
+
+- type: entity
+  parent: ClothingOuterBaseToggleable
+  id: ClothingOuterImperialDivineArcher
+  name: divine archer coat
+  description: A coat worn by the archers of the faith.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/OuterClothing/archer.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/OuterClothing/archer.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadImperialDivineArcherHood
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.95
+        Heat: 0.95
+        Caustic: 0.4
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadImperialDivineArcherHood
+  categories: [ HideSpawnMenu ]
+  name: divine archer hood
+  description: A hood worn by the archers of the faith.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/Head/archer.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/Head/archer.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.95
+        Heat: 0.95
+        Caustic: 0.4
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsImperialDivineArcher
+  name: divine archer bracers
+  description: Bracers worn by the archers of the faith.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/Gloves/archer.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/Gloves/archer.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.95
+        Heat: 0.95
+        Caustic: 0.4
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesImperialDivineArcher
+  name: divine archer boots
+  description: Boots worn by the archers of the faith.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/Shoes/archer.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/Shoes/archer.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.95
+        Heat: 0.95
+        Caustic: 0.4
+
+# Оккультист
+- type: entity
+  parent: BoxImperialHolyArmamentsBase
+  id: BoxImperialHolyOccultist
+  name: Occult Practitioner Kit
+  components:
+  - type: HolyArmamentsKit
+    preview: ClothingOuterImperialOccultist
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterImperialOccultist
+    - id: ClothingHeadImperialOccultist
+
+- type: entity
+  parent: ClothingOuterImperialChaplainArmorBase
+  id: ClothingOuterImperialOccultist
+  name: occultist's robes
+  description: Shields your body from the things others fail to notice.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/OuterClothing/occultist.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/OuterClothing/occultist.rsi
+
+- type: entity
+  parent: ClothingHeadImperialChaplainHelmetBase
+  id: ClothingHeadImperialOccultist
+  name: occultist's hood
+  description: Conceals your features from the things that look back at you.
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/Head/occultist.rsi
+  - type: Clothing
+    sprite: Imperial/Chaplain/Head/occultist.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+
+- type: dataset
+  id: ImperialReligionNames
+  values:
+  - Апизм
+  - Буддизм
+  - Хаос
+  - Христианство
+  - Клоунизм
+  - Комедия
+  - Ктулху
+  - Гориллизм
+  - Грейтайд
+  - Индуизм
+  - Хонк
+  - Хонкизм
+  - Хонкмать
+  - Империум
+  - Ислам
+  - Иудаизм
+  - Лампизм
+  - Манкиизм
+  - Мормонизм
+  - Вечеринки
+  - Пастафарианство
+  - Приматизм
+  - Раста
+  - Растафарианство
+  - Сатанизм
+  - Наука
+  - Саентология
+  - Сервицианизм
+  - Сикхизм
+  - СабГениус
+  - Тулбоксия
+
+- type: entity
+  parent: Bible
+  id: BibleImperialChaplain
+  name: bible
+  suffix: Капеллан
+  components:
+  - type: Sprite
+    sprite: Imperial/Chaplain/bible.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ImperialBibleSkinVisuals.Layer" ]
+  - type: Item
+    size: Small
+    sprite: Imperial/Chaplain/bible.rsi
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ImperialBibleSkinVisuals.Skin:
+        enum.ImperialBibleSkinVisuals.Layer:
+          bible: { state: bible }
+          koran: { state: koran }
+          scrapbook: { state: scrapbook }
+          burning: { state: burning }
+          honk1: { state: honk1 }
+          honk2: { state: honk2 }
+          creeper: { state: creeper }
+          white: { state: white }
+          holylight: { state: holylight }
+          atheist: { state: atheist }
+          tome: { state: tome }
+          kingyellow: { state: kingyellow }
+          ithaqua: { state: ithaqua }
+          scientology: { state: scientology }
+          melted: { state: melted }
+          necronomicon: { state: necronomicon }
+          insuls: { state: insuls }
+          gurugranthsahib: { state: gurugranthsahib }
+          kojiki: { state: kojiki }
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.ImperialBibleSkinUiKey.Key:
+        type: ImperialBibleSkinBoundUserInterface
+  - type: ImperialHolyBible

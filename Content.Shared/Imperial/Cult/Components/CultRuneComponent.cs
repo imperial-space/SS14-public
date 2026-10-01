@@ -43,6 +43,12 @@ public sealed partial class CultRuneComponent : Component
     public bool Concealed;
 
     /// <summary>
+    /// Раскрыто ударом библии по полу: сокрытие на него больше не действует (анти-невидимость в SS13).
+    /// </summary>
+    [ViewVariables]
+    public bool HolyRevealed;
+
+    /// <summary>
     /// Минимум культистов для активации.
     /// </summary>
     [DataField]

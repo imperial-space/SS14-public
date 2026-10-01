@@ -76,16 +76,6 @@ public sealed partial class CultistComponent : Component
     public EntityUid? BuiHolder;
 
     /// <summary>
-    /// Следующая серверная проверка holy/unholy water в bloodstream.
-    /// </summary>
-    public TimeSpan NextReagentCheck;
-
-    /// <summary>
-    /// Когда на культисте впервые накопилось достаточно святой воды для деконверта.
-    /// </summary>
-    public TimeSpan? HolyWaterThresholdReachedAt;
-
-    /// <summary>
     /// Зацикленная музыка ритуала Нар'Си, пока идёт начертание.
     /// </summary>
     public EntityUid? ActiveNarSieRitualAudio;

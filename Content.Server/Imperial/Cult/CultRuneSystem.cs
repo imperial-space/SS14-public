@@ -38,6 +38,9 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 using System.Collections.Generic;
+using Content.Server.Imperial.Antimagic;
+using Content.Shared.Imperial.Antimagic;
+using Content.Shared.Imperial.Chaplain.Components;
 using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.Imperial.Cult;
@@ -68,6 +71,7 @@ public sealed class CultRuneSystem : EntitySystem
     [Dependency] private readonly StaminaSystem _stamina = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly ImperialAntimagicSystem _antimagic = default!;
 
     private readonly Dictionary<EntityUid, EntityUid> _spiritRealmInvokers = new();
 
@@ -273,6 +277,14 @@ public sealed class CultRuneSystem : EntitySystem
             return;
         }
 
+        // SS13: «Что-то защищает разум» — святой или антимагия.
+        if (HasComp<ImperialHolyComponent>(victim)
+            || _antimagic.CanBlockMagic(victim, ImperialMagicResistance.All))
+        {
+            _popup.PopupEntity(Loc.GetString("imperial-antimagic-mind-shielded", ("target", victim)), invoker, invoker);
+            return;
+        }
+
         if (_cult.TryConvertToCultist(victim))
         {
             // Лечим конвертированного на 90% bruте/burn
@@ -453,6 +465,7 @@ public sealed class CultRuneSystem : EntitySystem
             if ((eXform.WorldPosition - pos.Position).Length() > 8f) continue;
             if (IsCultAligned(eUid)) continue;
             if (!HasComp<DamageableComponent>(eUid)) continue;
+            if (_antimagic.CanBlockMagic(eUid)) continue;
             targets.Add(eUid);
         }
         foreach (var target in targets)

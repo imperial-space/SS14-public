@@ -43,6 +43,12 @@ public sealed partial class CultStructureComponent : Component
     public bool Concealed;
 
     /// <summary>
+    /// Раскрыто ударом библии по полу: сокрытие на него больше не действует (анти-невидимость в SS13).
+    /// </summary>
+    [ViewVariables]
+    public bool HolyRevealed;
+
+    /// <summary>
     /// Прототип шлюза до преобразования в рунный. Используется для отката при Маскировке.
     /// </summary>
     [DataField]
