@@ -6,7 +6,7 @@ namespace Content.Shared.Imperial.Genetics.Prototypes;
 /// <summary>
 /// Срыв при распаде ДНК (instability_meltdown из SS13). Чем ниже ушла стабильность, тем вероятнее смертельный.
 /// </summary>
-[Prototype("geneticMeltdown")]
+[Prototype]
 public sealed partial class GeneticMeltdownPrototype : IPrototype
 {
     [IdDataField]

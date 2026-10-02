@@ -6,7 +6,7 @@ namespace Content.Shared.Imperial.Genetics.Prototypes;
 /// Набор ДНК-инфузера (infuser_entry из SS13): каждая инфузия существом-источником даёт следующую стадию,
 /// а набравший порог получает бонус набора.
 /// </summary>
-[Prototype("geneticInfusion")]
+[Prototype]
 public sealed partial class GeneticInfusionPrototype : IPrototype
 {
     [IdDataField]
