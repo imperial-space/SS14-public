@@ -1,0 +1,18 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation/BandaStation https://github.com/ss220club/BandaStation",
+    "size": {"x": 32, "y": 32},
+    "states": [
+        {"name": "wall0", "directions": 4},
+        {"name": "wall1", "directions": 4},
+        {"name": "wall2", "directions": 4},
+        {"name": "wall3", "directions": 4},
+        {"name": "wall4", "directions": 4},
+        {"name": "wall5", "directions": 4},
+        {"name": "wall6", "directions": 4},
+        {"name": "wall7", "directions": 4},
+        {"name": "wall"},
+        {"name": "wall_full"}
+    ]
+}

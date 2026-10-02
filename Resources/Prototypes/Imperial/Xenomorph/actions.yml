@@ -1,0 +1,268 @@
+# Способности ксеноморфов (alien_powers.dm, larva/powers.dm, castes). Цена в плазме — plasmaCost.
+
+- type: entity
+  id: ActionXenoBase
+  parent: BaseAction
+  abstract: true
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    useDelay: 1
+
+- type: entity
+  id: ActionXenoPlantWeeds
+  parent: ActionXenoBase
+  name: Plant Weeds (50P)
+  description: Plants some alien weeds.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Xenomorph/actions.rsi
+      state: alien_plant
+  - type: InstantAction
+    event: !type:XenoPlantWeedsActionEvent
+      plasmaCost: 50
+
+- type: entity
+  id: ActionXenoSecreteResin
+  parent: ActionXenoBase
+  name: Secrete Resin (55P)
+  description: Secrete tough malleable resin.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Xenomorph/actions.rsi
+      state: alien_resin
+  - type: InstantAction
+    event: !type:XenoSecreteResinActionEvent
+      plasmaCost: 55
+
+- type: entity
+  id: ActionXenoWhisper
+  parent: ActionXenoBase
+  name: Whisper (10P)
+  description: Whisper to someone.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Xenomorph/actions.rsi
+      state: alien_whisper
+  - type: TargetAction
+    range: 12
+    checkCanAccess: false
+  - type: EntityTargetAction
+    event: !type:XenoWhisperActionEvent
+      plasmaCost: 10
+
+- type: entity
+  id: ActionXenoTransferPlasma
+  parent: ActionXenoBase
+  name: Transfer Plasma
+  description: Transfer Plasma to another alien.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Xenomorph/actions.rsi
+      state: alien_transfer
+  - type: TargetAction
+    range: 1.5
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Xenomorph
+    event: !type:XenoTransferPlasmaActionEvent
+
+- type: entity
+  id: ActionXenoAcid
+  parent: ActionXenoBase
+  name: Corrosive Acid (200P)
+  description: Drench an object in acid, destroying it over time.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Xenomorph/actions.rsi
+      state: alien_acid
+  - type: TargetAction
+    range: 1.5
+  - type: EntityTargetAction
+    event: !type:XenoAcidActionEvent
+      plasmaCost: 200
+
+- type: entity
+  id: ActionXenoNeurotoxin
+  parent: ActionXenoBase
+  name: Spit Neurotoxin (50P)
+  description: Spits neurotoxin at someone, dealing large amounts of stamina damage.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Xenomorph/actions.rsi
+      state: alien_neurotoxin_0
+    iconOn:
+      sprite: Imperial/Xenomorph/actions.rsi
+      state: alien_neurotoxin_1
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+    repeat: true
+  - type: WorldTargetAction
+    event: !type:XenoNeurotoxinActionEvent
+      plasmaCost: 50
+
+- type: entity
+  id: ActionXenoSneak
+  parent: ActionXenoBase
+  name: Sneak
+  description: Blend into the shadows to stalk your prey.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Xenomorph/actions.rsi
+      state: alien_sneak
+    iconOn:
+      sprite: Imperial/Xenomorph/actions.rsi
+      state: alien_sneak_on
+  - type: InstantAction
+    event: !type:XenoSneakActionEvent
+
+- type: entity
+  id: ActionXenoLeap
+  parent: ActionXenoBase
+  name: Pounce
+  description: Leap at enemies, knocking them down.
+  components:
+  - type: Action
+    useDelay: 3
+    icon:
+      sprite: Imperial/Xenomorph/hud.rsi
+      state: leap_off
+    iconOn:
+      sprite: Imperial/Xenomorph/hud.rsi
+      state: leap_on
+  - type: TargetAction
+    range: 7
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:XenoLeapActionEvent
+
+- type: entity
+  id: ActionXenoTailSweep
+  parent: ActionXenoBase
+  name: Tail Sweep
+  description: Throw back attackers with a sweep of your tail.
+  components:
+  - type: Action
+    useDelay: 15
+    icon:
+      sprite: Imperial/Xenomorph/actions.rsi
+      state: tailsweep
+  - type: InstantAction
+    event: !type:XenoTailSweepActionEvent
+
+- type: entity
+  id: ActionXenoDevour
+  parent: ActionXenoBase
+  name: Devour
+  description: Devour the creature you are dragging.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Xenomorph/actions.rsi
+      state: alien_barf
+  - type: TargetAction
+    range: 1.5
+  - type: EntityTargetAction
+    event: !type:XenoDevourActionEvent
+
+- type: entity
+  id: ActionXenoRegurgitate
+  parent: ActionXenoBase
+  name: Regurgitate
+  description: Empties the contents of your stomach.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Xenomorph/actions.rsi
+      state: alien_barf
+  - type: InstantAction
+    event: !type:XenoRegurgitateActionEvent
+
+- type: entity
+  id: ActionXenoLayEgg
+  parent: ActionXenoBase
+  name: Lay Egg (75P)
+  description: Lay an egg to produce huggers to impregnate prey with.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Xenomorph/actions.rsi
+      state: alien_egg
+  - type: InstantAction
+    event: !type:XenoLayEggActionEvent
+      plasmaCost: 75
+
+- type: entity
+  id: ActionXenoRoyalParasite
+  parent: ActionXenoBase
+  name: Create Royal Parasite (500P)
+  description: Produce a royal parasite to grant one of your children the honor of being your Praetorian.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Xenomorph/actions.rsi
+      state: alien_queen_promote
+  - type: InstantAction
+    event: !type:XenoRoyalParasiteActionEvent
+      plasmaCost: 500
+
+- type: entity
+  id: ActionXenoEvolveLarva
+  parent: ActionXenoBase
+  name: Evolve
+  description: Evolve into a higher alien caste.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Xenomorph/actions.rsi
+      state: alien_evolve_larva
+  - type: InstantAction
+    event: !type:XenoEvolveActionEvent
+
+- type: entity
+  id: ActionXenoEvolvePraetorian
+  parent: ActionXenoBase
+  name: Evolve to Praetorian (500P)
+  description: Praetorian.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Xenomorph/actions.rsi
+      state: alien_evolve_drone
+  - type: InstantAction
+    event: !type:XenoEvolveActionEvent
+
+- type: entity
+  id: ActionXenoEvolveQueen
+  parent: ActionXenoBase
+  name: Evolve (500P)
+  description: Produce an internal egg sac capable of spawning children. Only one queen can exist at a time.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Xenomorph/actions.rsi
+      state: alien_evolve_praetorian
+  - type: InstantAction
+    event: !type:XenoEvolveActionEvent
+
+- type: entity
+  id: ActionXenoHide
+  parent: ActionXenoBase
+  name: Hide
+  description: Allows you to hide beneath tables and certain objects.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Xenomorph/actions.rsi
+      state: alien_hide
+  - type: InstantAction
+    event: !type:XenoHideActionEvent
