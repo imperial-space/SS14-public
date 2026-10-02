@@ -1,0 +1,4 @@
+- files: ["centrifuge_mid.ogg", "centrifuge_start.ogg", "meltdown.ogg", "reactor_loop.ogg", "reactor_shutoff.ogg", "reactor_startup.ogg", "reactor_startup_beginning.ogg", "reactor_startup_mid.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from SS220 Paradise (ss220-space/Paradise, sound/machines/fission)"
+  source: "https://github.com/ss220-space/Paradise/tree/master220/sound/machines/fission"
