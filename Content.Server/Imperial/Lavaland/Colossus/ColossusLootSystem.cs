@@ -11,6 +11,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands;
+using Content.Shared.Imperial.Chaplain.Components;
 using Content.Shared.Imperial.Lavaland.ColossusLoot;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs;
@@ -167,6 +168,9 @@ public sealed class ColossusLootSystem : EntitySystem
 
     private void ApplyCommand(EntityUid speaker, VoiceOfGodCommand command, float radius)
     {
+        // Капеллан говорит голосом бога вдвое сильнее (voice_of_god_power = 2 в SS13).
+        var power = TryComp<ImperialHolyComponent>(speaker, out var holy) && holy.Role >= HolyRole.Priest ? 2f : 1f;
+
         var nearby = new HashSet<EntityUid>();
         _lookup.GetEntitiesInRange(Transform(speaker).Coordinates, radius, nearby);
 
@@ -183,21 +187,21 @@ public sealed class ColossusLootSystem : EntitySystem
             switch (command)
             {
                 case VoiceOfGodCommand.Stop:
-                    _stun.TryUpdateStunDuration(target, TimeSpan.FromSeconds(4));
-                    _stun.TryKnockdown(target, TimeSpan.FromSeconds(4), force: true);
+                    _stun.TryUpdateStunDuration(target, TimeSpan.FromSeconds(4 * power));
+                    _stun.TryKnockdown(target, TimeSpan.FromSeconds(4 * power), force: true);
                     break;
                 case VoiceOfGodCommand.Weaken:
-                    _stamina.TakeStaminaDamage(target, 80f, source: speaker);
+                    _stamina.TakeStaminaDamage(target, 80f * power, source: speaker);
                     break;
                 case VoiceOfGodCommand.Sleep:
-                    _status.TryAddStatusEffectDuration(target, SleepingSystem.StatusEffectForcedSleeping, TimeSpan.FromSeconds(3));
+                    _status.TryAddStatusEffectDuration(target, SleepingSystem.StatusEffectForcedSleeping, TimeSpan.FromSeconds(3 * power));
                     break;
                 case VoiceOfGodCommand.Vomit:
                     _chat.TryEmoteWithChat(target, "Vomit");
                     break;
                 case VoiceOfGodCommand.Silence:
                     EnsureComp<MutedComponent>(target);
-                    _mutedUntil[target] = _timing.CurTime + TimeSpan.FromSeconds(20);
+                    _mutedUntil[target] = _timing.CurTime + TimeSpan.FromSeconds(20 * power);
                     break;
                 case VoiceOfGodCommand.Wake:
                     WakeAndStand(target);
@@ -205,14 +209,14 @@ public sealed class ColossusLootSystem : EntitySystem
                 case VoiceOfGodCommand.Heal:
                 {
                     var spec = new DamageSpecifier();
-                    spec.DamageDict["Blunt"] = FixedPoint2.New(-20);
+                    spec.DamageDict["Blunt"] = FixedPoint2.New(-20 * power);
                     _damageable.TryChangeDamage(target, spec, origin: speaker);
                     break;
                 }
                 case VoiceOfGodCommand.Pain:
                 {
                     var spec = new DamageSpecifier();
-                    spec.DamageDict["Blunt"] = FixedPoint2.New(15);
+                    spec.DamageDict["Blunt"] = FixedPoint2.New(15 * power);
                     _damageable.TryChangeDamage(target, spec, origin: speaker);
                     break;
                 }
@@ -229,7 +233,7 @@ public sealed class ColossusLootSystem : EntitySystem
                     WakeAndStand(target);
                     break;
                 case VoiceOfGodCommand.Rest:
-                    _status.TryAddStatusEffectDuration(target, SleepingSystem.StatusEffectForcedSleeping, TimeSpan.FromSeconds(2));
+                    _status.TryAddStatusEffectDuration(target, SleepingSystem.StatusEffectForcedSleeping, TimeSpan.FromSeconds(2 * power));
                     break;
             }
         }

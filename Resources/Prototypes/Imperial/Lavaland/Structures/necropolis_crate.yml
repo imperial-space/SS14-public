@@ -38,7 +38,7 @@
           id: LavalandWeaponMeatHook
           prob: 0.20
         - !type:EntSelector
-          id: PossessedBlade
+          id: WeaponSpectralBlade
           prob: 0.15
         - !type:EntSelector
           id: ClusterGrenade

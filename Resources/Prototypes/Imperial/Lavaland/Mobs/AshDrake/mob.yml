@@ -68,9 +68,6 @@
     lifetime: 2
   - type: Transform
     anchored: true
-  - type: IgnitionSource
-    ignited: true
-    temperature: 1000
   - type: Tag
     tags:
     - HideContextMenu
@@ -164,6 +161,15 @@
   - type: Tag
     tags:
     - HideContextMenu
+
+- type: entity
+  id: ImperialAshDrakeSwoopLava
+  suffix: Lavaland
+  parent: FloorLavaEntity
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 4
 
 - type: entity
   id: ImperialAshDrakeShadow

@@ -1,0 +1,123 @@
+# ══════════════════════════════════════════════════════════════════════════════
+# Резонатор — лавалэндовый горный инструмент
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Резонатор (обычный) ───────────────────────────────────────────────────────
+
+- type: entity
+  parent: BaseItem
+  id: WeaponResonator
+  name: ent-WeaponResonator
+  description: ent-WeaponResonator.desc
+  suffix: Lavaland
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/resonator/resonator.rsi
+    layers:
+    - state: resonator
+  - type: Item
+    size: Normal
+    inhandVisuals:
+      left:
+      - sprite: Imperial/lava/resonator/resonator_inhand_left.rsi
+        state: resonator
+      right:
+      - sprite: Imperial/lava/resonator/resonator_inhand_right.rsi
+        state: resonator
+  - type: MeleeWeapon
+    attackRate: 1
+    range: 1.5
+    damage:
+      types:
+        Blunt: 15
+    soundHit:
+      path: /Audio/Weapons/smash.ogg
+  - type: Resonator
+    fieldLimit: 4
+    quickBurstMod: 0.8
+    addingFailure: 50
+    canMatrix: false
+  - type: UseDelay
+    delay: 0.5
+  - type: StaticPrice
+    price: 710
+
+# ── Резонатор (улучшенный) ────────────────────────────────────────────────────
+
+- type: entity
+  parent: WeaponResonator
+  id: WeaponResonatorUpgraded
+  name: ent-WeaponResonatorUpgraded
+  description: ent-WeaponResonatorUpgraded.desc
+  suffix: Lavaland
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/resonator/resonator.rsi
+    layers:
+    - state: resonator_u
+  - type: Item
+    size: Normal
+    inhandVisuals:
+      left:
+      - sprite: Imperial/lava/resonator/resonator_inhand_left.rsi
+        state: resonator_u
+      right:
+      - sprite: Imperial/lava/resonator/resonator_inhand_right.rsi
+        state: resonator_u
+  - type: Resonator
+    fieldLimit: 6
+    quickBurstMod: 1.0
+    addingFailure: 30
+    canMatrix: true
+  - type: StaticPrice
+    price: 2000
+
+# ── Поле резонанса (Авто/Ручной режим) ───────────────────────────────────────
+
+- type: entity
+  id: ResonanceField
+  name: ent-ResonanceField
+  description: ent-ResonanceField.desc
+  suffix: Lavaland
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/effects/resonator_effects.rsi
+    layers:
+    - state: shield1
+  - type: ResonanceField
+
+# ── Поле резонанса матрицы ────────────────────────────────────────────────────
+
+- type: entity
+  parent: ResonanceField
+  id: ResonanceFieldMatrix
+  name: ent-ResonanceFieldMatrix
+  description: ent-ResonanceFieldMatrix.desc
+  suffix: Lavaland
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/effects/resonator_effects.rsi
+    layers:
+    - state: shield2
+  - type: ResonanceField
+    mode: Matrix
+    duration: 60
+
+# ── Эффект взрыва поля ────────────────────────────────────────────────────────
+
+- type: entity
+  id: ResonanceCrush
+  suffix: Lavaland
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/effects/resonator_effects.rsi
+    layers:
+    - state: shield1
+  - type: TimedDespawn
+    lifetime: 0.4

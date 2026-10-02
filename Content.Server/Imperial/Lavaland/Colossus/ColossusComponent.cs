@@ -21,6 +21,10 @@ public sealed partial class ColossusComponent : Component
     public SoundSpecifier AttackSound =
         new SoundPathSpecifier("/Audio/Imperial/boss/sound_magic_ratvar_attack.ogg");
 
+    [DataField]
+    public SoundSpecifier DeathSound =
+        new SoundPathSpecifier("/Audio/Imperial/boss/sound_misc_demon_dies.ogg");
+
     // ── Enrage ───────────────────────────────────────────────────────────────
 
     [DataField]
@@ -149,6 +153,9 @@ public sealed partial class ColossusComponent : Component
 
     [ViewVariables]
     public TimeSpan NextSpiralSpikeTime;
+
+    [ViewVariables]
+    public bool SpiralDieAnnounced;
 
     [ViewVariables]
     public bool LootDropped;
