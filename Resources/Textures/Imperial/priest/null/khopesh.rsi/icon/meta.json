@@ -1,9 +1,0 @@
-{
-    "version": 1,
-    "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from BandaStation at https://github.com/ss220club/BandaStation, under CC-BY-SA-3.0",
-    "size": {"x": 32, "y": 32},
-    "states": [
-        {"name": "icon"}
-    ]
-}
