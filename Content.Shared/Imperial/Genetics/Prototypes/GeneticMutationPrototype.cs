@@ -7,7 +7,7 @@ namespace Content.Shared.Imperial.Genetics.Prototypes;
 /// <summary>
 /// Генетическая мутация (datum/mutation из SS13). Пока мутация активна, носитель получает её компоненты и действия.
 /// </summary>
-[Prototype("geneticMutation")]
+[Prototype]
 public sealed partial class GeneticMutationPrototype : IPrototype
 {
     [IdDataField]
@@ -133,7 +133,7 @@ public enum ChromosomeKind : byte
 /// <summary>
 /// Рецепт комбинирования двух мутаций в третью (datum/generecipe из SS13).
 /// </summary>
-[Prototype("geneticRecipe")]
+[Prototype]
 public sealed partial class GeneticRecipePrototype : IPrototype
 {
     [IdDataField]
