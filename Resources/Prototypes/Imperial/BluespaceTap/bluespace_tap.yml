@@ -1,0 +1,406 @@
+# Блюспейс-сборщик (code/modules/station_goals/bluespace_tap.dm из Paradise).
+
+- type: stationGoal
+  id: StationGoalBluespaceTap
+  text: station-goal-bluespace-tap
+
+- type: entity
+  id: ImperialBluespaceTap
+  parent: [ BaseMachine, ConstructibleMachine ]
+  name: Bluespace harvester
+  description: An alien looking device that gathers all manner of objects from different dimensions.
+  components:
+  - type: Sprite
+    sprite: Imperial/BluespaceTap/tap.rsi
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - state: base
+      map: [ "base" ]
+    - state: screen
+      map: [ "screen" ]
+      shader: unshaded
+      visible: false
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.BluespaceTapVisuals.State:
+        base:
+          Off: { state: base }
+          Level0: { state: level0 }
+          Level1: { state: level1 }
+          Level2: { state: level2 }
+          Level3: { state: level3 }
+          Level4: { state: level4 }
+          Level5: { state: level5 }
+          Cascade: { state: cascade_tap }
+      enum.BluespaceTapVisuals.Screen:
+        screen:
+          None: { visible: false }
+          Screen: { visible: true, state: screen }
+          Dirty: { visible: true, state: screen_dirty }
+          Cascade: { visible: true, state: cascade }
+  - type: Fixtures
+    fixtures:
+      top:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.45,0.55,1.45,1.45"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+      middle:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.45,-0.45,1.45,0.45"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+      bottomLeft:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.45,-1.45,-0.55,-0.55"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+      bottomRight:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.55,-1.45,1.45,-0.55"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: PointLight
+    radius: 1.5
+    energy: 1
+    color: "#353535"
+    enabled: false
+  - type: PowerConsumer
+    voltage: High
+    drawRate: 0
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: Machine
+    board: ImperialBluespaceTapCircuitboard
+  - type: ActivatableUI
+    key: enum.BluespaceTapUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.BluespaceTapUiKey.Key:
+        type: BluespaceTapBoundUserInterface
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: BluespaceTap
+    products:
+    - name: bluespace-tap-product-clothes
+      common: ImperialBluespaceTapClothesCommon
+      uncommon: ImperialBluespaceTapClothesUncommon
+      rare: ImperialBluespaceTapClothesRare
+      cost: 5000
+      interval: 7500
+      producedMessage: bluespace-tap-produced-clothes
+    - name: bluespace-tap-product-food
+      common: ImperialBluespaceTapFoodCommon
+      uncommon: ImperialBluespaceTapFoodUncommon
+      rare: ImperialBluespaceTapFoodRare
+      cost: 6000
+      interval: 10000
+      producedMessage: bluespace-tap-produced-food
+    - name: bluespace-tap-product-cultural
+      common: ImperialBluespaceTapCulturalCommon
+      uncommon: ImperialBluespaceTapCulturalUncommon
+      rare: ImperialBluespaceTapCulturalRare
+      cost: 15000
+      interval: 15000
+      producedMessage: bluespace-tap-produced-cultural
+    - name: bluespace-tap-product-organic
+      common: ImperialBluespaceTapOrganicCommon
+      uncommon: ImperialBluespaceTapOrganicUncommon
+      rare: ImperialBluespaceTapOrganicRare
+      cost: 20000
+      interval: 20000
+      producedMessage: bluespace-tap-produced-organic
+
+- type: entity
+  id: ImperialBluespaceTapCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Bluespace Harvester machine board
+  components:
+  - type: Sprite
+    state: command
+  - type: MachineBoard
+    prototype: ImperialBluespaceTap
+    stackRequirements:
+      Manipulator: 5
+      Plasma: 5
+
+# ────────────── Эффекты ──────────────
+
+- type: entity
+  id: ImperialBluespaceTapPortalEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/portal.rsi
+    state: portal-blue
+    drawdepth: Effects
+    shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#3a8eff"
+  - type: TimedDespawn
+    lifetime: 1
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: ImperialBluespaceTapFlash
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/BluespaceTap/tap.rsi
+    state: flash
+    drawdepth: Effects
+    shader: unshaded
+  - type: TimedDespawn
+    lifetime: 0.3
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# ────────────── Связь с иным миром ──────────────
+
+- type: entity
+  id: ImperialNetherPortalTap
+  name: netherworld link
+  description: A direct link to another dimension full of creatures not very happy to see you. Entering the link would be a very bad idea.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 100
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: Imperial/BluespaceTap/portal.rsi
+    state: nether
+    offset: 0,0.5
+    drawdepth: Mobs
+    noRot: true
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#ff0000"
+  - type: NetherPortal
+  - type: ContainerContainer
+    containers:
+      nether: !type:Container
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          XenoBluespaceCrystal:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# ────────────── Твари иного мира ──────────────
+
+- type: entity
+  id: ImperialNetherMobBase
+  parent: SimpleSpaceMobBase
+  abstract: true
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavSmash: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/BluespaceTap/nether_mobs.rsi
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 4
+  - type: CombatMode
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    damage:
+      types:
+        Slash: 27
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+
+- type: entity
+  id: ImperialNetherCreature
+  parent: ImperialNetherMobBase
+  name: creature
+  description: A sanity-destroying otherthing from the netherworld.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: creature
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: creature
+      Dead:
+        Base: creature-dead
+
+- type: entity
+  id: ImperialNetherMigo
+  parent: ImperialNetherMobBase
+  name: mi-go
+  description: A pinkish, fungoid crustacean-like creature with numerous pairs of clawed appendages and a head covered with waving antennae.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: migo
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: migo
+      Dead:
+        Base: migo-dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 4.5
+
+- type: entity
+  id: ImperialNetherBlankBody
+  parent: ImperialNetherMobBase
+  name: blank body
+  description: This looks human enough, but its flesh has an ashy texture, and it's face is featureless save an eerie smile.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blank
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: blank
+      Dead:
+        Base: blank-dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcFist
+    soundHit:
+      collection: Punch
+    damage:
+      types:
+        Blunt: 7
+  - type: NetherBlankBody
+  - type: ContainerContainer
+    containers:
+      held_body: !type:ContainerSlot
+
+# ────────────── Снабжение ──────────────
+
+- type: entity
+  id: ImperialBluespaceTapPaper
+  parent: Paper
+  name: paper- 'The Experimental NT Bluespace Harvester - Mining other universes for science and profit!'
+  components:
+  - type: Paper
+    content: bluespace-tap-paper-content
+
+- type: entity
+  parent: CrateEngineeringSecure
+  id: ImperialCrateBluespaceTap
+  name: bluespace harvester parts crate
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialBluespaceTapCircuitboard
+        - id: ImperialBluespaceTapPaper
+
+- type: cargoProduct
+  id: ImperialBluespaceTapParts
+  icon:
+    sprite: Imperial/BluespaceTap/tap.rsi
+    state: base
+  product: ImperialCrateBluespaceTap
+  cost: 5000
+  category: cargoproduct-category-name-engineering
+  group: market
+
+# Всплеск радиации (component/radioactive на ~2 минуты).
+- type: entity
+  id: ImperialBluespaceTapRadiation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadiationSource
+    intensity: 10
+  - type: TimedDespawn
+    lifetime: 130
