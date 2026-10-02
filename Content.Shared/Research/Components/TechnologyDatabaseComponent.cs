@@ -1,4 +1,5 @@
 using Content.Shared.Lathe;
+using Content.Shared.Research; // Imperial Weekly Mode
 using Content.Shared.Research.Prototypes;
 using Content.Shared.Research.Systems;
 using Robust.Shared.GameStates;
@@ -28,12 +29,32 @@ public sealed partial class TechnologyDatabaseComponent : Component
     [DataField]
     public List<ProtoId<TechDisciplinePrototype>> SupportedDisciplines = new();
 
+    // Imperial Weekly Mode Start
+    [AutoNetworkedField]
+    [DataField]
+    public bool WeeklyModeOnly;
+
+    [AutoNetworkedField]
+    [DataField]
+    public List<ProtoId<TechnologyPrototype>> WeeklyAllowedTechnologies = new();
+
+    [AutoNetworkedField]
+    [DataField]
+    public List<WeeklyTechnologyData> WeeklyTechnologies = new();
+    // Imperial Weekly Mode End
+
     /// <summary>
     /// The ids of all the technologies which have been unlocked.
     /// </summary>
     [AutoNetworkedField]
     [DataField]
     public List<ProtoId<TechnologyPrototype>> UnlockedTechnologies = new();
+
+    // Imperial Weekly Mode Start
+    [AutoNetworkedField]
+    [DataField]
+    public List<string> WeeklyUnlockedTechnologies = new();
+    // Imperial Weekly Mode End
 
     /// <summary>
     /// The ids of all the lathe recipes which have been unlocked.

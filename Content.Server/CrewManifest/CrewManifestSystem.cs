@@ -4,6 +4,7 @@ using Content.Server.EUI;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
+using Content.Server.WeeklyMode.Systems; // Imperial Weekly Mode
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.CrewManifest;
@@ -25,6 +26,8 @@ public sealed class CrewManifestSystem : EntitySystem
     [Dependency] private readonly EuiManager _euiManager = default!;
     [Dependency] private readonly IConfigurationManager _configManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    // Imperial Weekly Mode
+    [Dependency] private readonly WeeklyModeSystem _weeklyMode = default!;
 
     /// <summary>
     ///     Cached crew manifest entries. The alternative is to outright
@@ -229,9 +232,13 @@ public sealed class CrewManifestSystem : EntitySystem
         foreach (var recordObject in iter)
         {
             var record = recordObject.Item2;
-            var entry = new CrewManifestEntry(record.Name, record.JobTitle, record.JobIcon, record.JobPrototype);
-
             _prototypeManager.TryIndex(record.JobPrototype, out JobPrototype? job);
+            // Imperial Weekly Mode: Original code removed:
+            // var entry = new CrewManifestEntry(record.Name, record.JobTitle, record.JobIcon, record.JobPrototype);
+            // Imperial Weekly Mode Start
+            var jobTitle = job != null ? _weeklyMode.GetJobDisplayName(job.ID) : record.JobTitle;
+            var entry = new CrewManifestEntry(record.Name, jobTitle, record.JobIcon, record.JobPrototype);
+            // Imperial Weekly Mode End
             entriesSort.Add((job, entry));
         }
 

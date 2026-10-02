@@ -1,5 +1,6 @@
 using Content.Client.Info;
 using Content.Client.Info.PlaytimeStats;
+using Content.Client.GameTicking.Managers; // Imperial Weekly Mode
 using Content.Client.Resources;
 using Content.Shared.CCVar;
 using Content.Shared.Preferences;
@@ -26,6 +27,8 @@ namespace Content.Client.Lobby.UI
         [Dependency] private readonly IResourceCache _resourceCache = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
+        // Imperial Weekly Mode
+        [Dependency] private readonly IEntityManager _entManager = default!;
 
         private readonly Button _createNewCharacterButton;
 
@@ -88,6 +91,8 @@ namespace Content.Client.Lobby.UI
                     ("maxCharacters", _preferencesManager.Settings!.MaxCharacterSlots));
 
             var selectedSlot = _preferencesManager.Preferences?.SelectedCharacterIndex;
+            // Imperial Weekly Mode
+            var gameTicker = _entManager.System<ClientGameTicker>();
 
             foreach (var (slot, character) in _preferencesManager.Preferences!.Characters)
             {
@@ -96,7 +101,12 @@ namespace Content.Client.Lobby.UI
                     _playerManager,
                     characterButtonsGroup,
                     character,
-                    slot == selectedSlot);
+                    // Imperial Weekly Mode: Original code removed:
+                    // slot == selectedSlot);
+                    // Imperial Weekly Mode Start
+                    slot == selectedSlot,
+                    jobId => gameTicker.GetJobDisplayName(jobId, _protomanager));
+                    // Imperial Weekly Mode End
 
                 Characters.AddChild(characterPickerButton);
 

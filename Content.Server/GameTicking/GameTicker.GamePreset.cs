@@ -200,6 +200,11 @@ public sealed partial class GameTicker
             return false;
 
         CurrentPreset = Preset;
+        // Imperial Weekly Mode Start
+        if (_weeklyMode.ShouldSuppressAutomaticGameRules())
+            return false;
+        // Imperial Weekly Mode End
+
         foreach (var rule in Preset.Rules)
         {
             AddGameRule(rule);
