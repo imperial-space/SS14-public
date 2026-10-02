@@ -40,6 +40,7 @@
         HyperNoblium: danger
         AntiNoblium: danger
         BZ: danger
+        Helium: danger #Imperial Hypertorus
     - type: Tag
       tags:
         - GasVent

@@ -1,0 +1,21 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/f8581a636acfc1517611a680b7711a74fc7ef335, helium recolor by Imperial Space",
+    "size": {"x": 32, "y": 32},
+    "states": [
+        {"name": "scrubber-connector"},
+        {"name": "scrubber-open"},
+        {"name": "can-connector"},
+        {"name": "locked"},
+        {"name": "unlocked"},
+        {"name": "can-o0", "delays": [[0.5, 0.5]]},
+        {"name": "can-o1"},
+        {"name": "can-o2"},
+        {"name": "can-o3"},
+        {"name": "can-oa1"},
+        {"name": "can-open"},
+        {"name": "helium"},
+        {"name": "helium-1"}
+    ]
+}

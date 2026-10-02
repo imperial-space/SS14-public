@@ -23,6 +23,7 @@
       HyperNoblium: danger
       AntiNoblium: danger
       BZ: danger #Imperial Atmos Update end
+      Helium: danger #Imperial Hypertorus
 
 - type: entity
   parent: [AirSensorVoxBase, AirSensor]
@@ -55,6 +56,7 @@
     - HyperNoblium
     - AntiNoblium
     - BZ #Imperial Atmos Update end
+    - Helium #Imperial Hypertorus
 
 # use this to prevent overriding filters with hardcoded defaults
 - type: entity

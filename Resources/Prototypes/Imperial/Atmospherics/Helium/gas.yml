@@ -1,0 +1,10 @@
+# Гелий (SS13 /datum/gas/helium): инертный продукт термоядерного синтеза в гиперторусе.
+- type: gas
+  id: Helium
+  name: gases-helium
+  abbreviation: gas-helium-abbreviation
+  molarHeatCapacity: 15
+  heatCapacityRatio: 1.66
+  molarMass: 4
+  color: '#f0f8ff'
+  pricePerMole: 3.5
