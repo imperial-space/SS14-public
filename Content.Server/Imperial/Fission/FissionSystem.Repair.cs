@@ -314,6 +314,7 @@ public sealed partial class FissionSystem
                 var coords = GetCoordinates(netCoords);
                 var terminal = Spawn(reactor.Terminal, coords);
                 _xform.AnchorEntity(terminal);
+                EnsureTerminalCable(terminal);
                 if (TryComp<FissionPowerTerminalComponent>(terminal, out var terminalComp))
                     terminalComp.Reactor = ent;
                 _popup.PopupEntity(Loc.GetString("fission-reactor-wired"), ent, user);

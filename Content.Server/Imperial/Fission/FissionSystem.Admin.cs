@@ -53,6 +53,7 @@ public sealed partial class FissionSystem
 
         var terminal = SpawnAnchored(TerminalProto, grid, center + new Vector2i(2, -1), Direction.South);
         Comp<FissionPowerTerminalComponent>(terminal).Reactor = reactor;
+        EnsureTerminalCable(terminal);
         SpawnAnchored(MonitorProto, grid, center + new Vector2i(-4, 0), Direction.East);
         Spawn(GuideProto, _map.GridTileToLocal(grid, grid, center + new Vector2i(-4, -1)));
 
@@ -137,6 +138,25 @@ public sealed partial class FissionSystem
         return total;
     }
 
+    /// <summary>Отладка терминалов: закреплён ли, сколько реально отдаёт в сеть и подключён ли к кабелю.</summary>
+    private string TerminalDebug(EntityUid reactor)
+    {
+        var parts = new List<string>();
+        var query = EntityQueryEnumerator<FissionPowerTerminalComponent, Content.Server.Power.Components.PowerSupplierComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var terminal, out var supplier, out var xform))
+        {
+            if (terminal.Reactor != reactor)
+                continue;
+
+            var nodes = _nodeContainer.TryGetNode(uid, "output", out Content.Shared.NodeContainer.Node? node) && node.NodeGroup != null
+                ? node.NodeGroup.Nodes.Count
+                : 0;
+            parts.Add($"{ToPrettyString(uid)} anchored={xform.Anchored} max={supplier.MaxSupply:0} current={supplier.CurrentSupply:0} netNodes={nodes}");
+        }
+
+        return string.Join("; ", parts);
+    }
+
     public string Status(EntityUid uid)
     {
         if (!TryComp<FissionReactorComponent>(uid, out var reactor))
@@ -156,6 +176,6 @@ public sealed partial class FissionSystem
                $"mol={reactor.Air.TotalMoles:0.##} moderatorMol={reactor.ModeratorGas.TotalMoles:0.##} " +
                $"reactivity={reactor.Reactivity:0.###} threshold={reactor.HeatDamageThreshold:0.#} " +
                $"integrity={GetIntegrity(reactor)}% venting={reactor.Venting} countdown={reactor.FinalCountdown} " +
-               $"override={reactor.SafetyOverride} lockout={reactor.ControlLockout} terminalSupply={TerminalSupply(uid) / 1000:0.##}kW";
+               $"override={reactor.SafetyOverride} lockout={reactor.ControlLockout} terminalSupply={TerminalSupply(uid) / 1000:0.##}kW terminals=[{TerminalDebug(uid)}]";
     }
 }

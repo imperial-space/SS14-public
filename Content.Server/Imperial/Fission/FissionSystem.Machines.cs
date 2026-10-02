@@ -35,6 +35,7 @@ public sealed partial class FissionSystem
     [Dependency] private readonly Content.Server.Atmos.EntitySystems.FlammableSystem _flammable = default!;
 
     private static readonly TimeSpan MachineInterval = TimeSpan.FromSeconds(1);
+    private static readonly EntProtoId TerminalCable = "CableHV";
     private TimeSpan _nextMachineUpdate;
     private TimeSpan _nextFalloutTick;
 
@@ -73,6 +74,9 @@ public sealed partial class FissionSystem
 
         SubscribeLocalEvent<FissionEjectedRodComponent, PreventCollideEvent>(OnEjectedPreventCollide);
         SubscribeLocalEvent<FissionEjectedRodComponent, TimedDespawnEvent>(OnEjectedDespawn);
+
+        SubscribeLocalEvent<FissionPowerTerminalComponent, MapInitEvent>((uid, _, _) => EnsureTerminalCable(uid));
+        SubscribeLocalEvent<FissionPowerTerminalComponent, ExaminedEvent>(OnTerminalExamined);
     }
 
     private void UpdateMachines(float frameTime, TimeSpan now)
@@ -320,6 +324,38 @@ public sealed partial class FissionSystem
 
             supplier.MaxSupply = reactor.CanCreatePower && !reactor.Broken ? MathF.Max(reactor.FinalPower, 0) : 0;
         }
+    }
+
+    /// <summary>
+    /// Терминал отдаёт энергию только в ВВ кабель на своей клетке (connect_to_network в SS13):
+    /// если кабеля нет, он прокладывается вместе с терминалом.
+    /// </summary>
+    public void EnsureTerminalCable(EntityUid terminal)
+    {
+        if (!TryGetTile(terminal, out var grid, out var tile))
+            return;
+
+        foreach (var anchored in _map.GetAnchoredEntities(grid.Value, tile))
+        {
+            if (TryComp<Content.Server.Power.Components.CableComponent>(anchored, out var cable) &&
+                cable.CableType == Content.Shared.Power.CableType.HighVoltage)
+            {
+                return;
+            }
+        }
+
+        Spawn(TerminalCable, _map.GridTileToLocal(grid.Value, grid.Value, tile));
+    }
+
+    private void OnTerminalExamined(Entity<FissionPowerTerminalComponent> ent, ref ExaminedEvent args)
+    {
+        if (!TryComp<PowerSupplierComponent>(ent, out var supplier))
+            return;
+
+        args.PushMarkup(Loc.GetString(ent.Comp.Reactor != null ? "fission-terminal-linked" : "fission-terminal-unlinked"));
+        args.PushMarkup(Loc.GetString("fission-terminal-supply",
+            ("current", (supplier.CurrentSupply / 1000).ToString("0.##")),
+            ("max", (supplier.MaxSupply / 1000).ToString("0.##"))));
     }
 
     private EntityUid? FindAdjacentReactor(EntityUid uid)
