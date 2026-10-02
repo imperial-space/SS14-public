@@ -430,13 +430,13 @@ public sealed class HypertorusWindow : DefaultWindow
                 active ? Tgui.Green : null, disabled: state.PowerLevel != 0, icon: active ? "times" : "power-off");
             table.AddChild(select);
 
-            table.AddChild(GasCell(fuel.Requirements.ElementAtOrDefault(0)));
-            table.AddChild(GasCell(fuel.Requirements.ElementAtOrDefault(1)));
-            table.AddChild(GasCell(fuel.PrimaryProducts.ElementAtOrDefault(0)));
-            table.AddChild(fuel.PrimaryProducts.Count > 1 ? GasCell(fuel.PrimaryProducts[1]) : new Control());
+            table.AddChild(GasCell(HypertorusFuelPrototype.ResolveGas(fuel.RequirementIds.ElementAtOrDefault(0) ?? string.Empty)));
+            table.AddChild(GasCell(HypertorusFuelPrototype.ResolveGas(fuel.RequirementIds.ElementAtOrDefault(1) ?? string.Empty)));
+            table.AddChild(GasCell(fuel.PrimaryProduct(0)));
+            table.AddChild(GasCell(fuel.PrimaryProduct(1)));
             for (var i = 0; i < 6; i++)
             {
-                table.AddChild(i < fuel.SecondaryProducts.Count ? GasCell(fuel.SecondaryProducts[i]) : new Control());
+                table.AddChild(GasCell(fuel.SecondaryProduct(i)));
             }
 
             var values = new[]
@@ -461,8 +461,11 @@ public sealed class HypertorusWindow : DefaultWindow
         _recipes.AddChild(new ScrollContainer { VScrollEnabled = false, HScrollEnabled = true, MinHeight = 210, Children = { table } });
     }
 
-    private Control GasCell(Gas gas)
+    private Control GasCell(Gas? maybeGas)
     {
+        if (maybeGas is not { } gas)
+            return new Control();
+
         var label = Tgui.Text(GasLabel(gas), GasColor(gas));
         label.ToolTip = GasName(gas);
         label.MouseFilter = MouseFilterMode.Stop;

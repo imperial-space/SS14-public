@@ -43,7 +43,7 @@ public sealed partial class HypertorusCoreComponent : Component
     [ViewVariables] public float CoolingVolume = 100;
 
     /// <summary>moderator_scrubbing: газы, которые фильтр забирает из модератора.</summary>
-    [ViewVariables] public HashSet<Gas> ModeratorScrubbing = new() { Gas.Helium };
+    [ViewVariables] public HashSet<Gas> ModeratorScrubbing = HypertorusFuelPrototype.ResolveGas("Helium") is { } helium ? new() { helium } : new();
 
     [ViewVariables] public float ModeratorFilteringRate = 100;
 

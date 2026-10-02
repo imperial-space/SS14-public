@@ -31,8 +31,7 @@ namespace Content.Shared.Atmos.Piping.Unary.Components
             Gas.Deuterium, /// Imperial Atmos Update start
             Gas.HyperNoblium,
             Gas.AntiNoblium,
-            Gas.BZ, /// Imperial Atmos Update end
-            Gas.Helium /// Imperial Hypertorus
+            Gas.BZ /// Imperial Atmos Update end
         };
 
         // Presets for 'dumb' air alarm modes

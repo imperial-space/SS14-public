@@ -223,7 +223,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 18; /// Imperial Added Thermonium, Imperial Hypertorus: Helium
+        public const int TotalNumberOfGases = 17; /// Imperial Added Thermonium
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
@@ -424,7 +424,6 @@ namespace Content.Shared.Atmos
         Deuterium = 13, // Imperial Imperial Atmos Update start
         HyperNoblium = 14,
         AntiNoblium = 15,
-        BZ = 16, // Imperial Imperial Atmos Update end
-        Helium = 17 // Imperial Hypertorus
+        BZ = 16 // Imperial Imperial Atmos Update end
     }
 }

@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Atmos;
 using Robust.Shared.Prototypes;
 
@@ -25,7 +26,7 @@ public enum HypertorusMeltdownFlags
 /// Газы SS13, которых нет в SS14, заменены близкими по смыслу: фреон — фрезон, плюоксий — озон,
 /// прото-нитрат — фазон, нитрий — термониум, заукер и миазмы — аммиак, хилиум — оксид азота, галон — CO₂.
 /// </summary>
-[Prototype("hypertorusFuel")]
+[Prototype]
 public sealed partial class HypertorusFuelPrototype : IPrototype
 {
     [IdDataField]
@@ -57,17 +58,43 @@ public sealed partial class HypertorusFuelPrototype : IPrototype
     [DataField]
     public float TemperatureChangeMultiplier = 1;
 
+    /// <summary>
+    /// Газы задаются id (имя в <see cref="Gas"/>): гелий есть только в закрытой сборке,
+    /// поэтому газ, которого нет в текущей сборке, просто пропускается.
+    /// </summary>
+    public static Gas? ResolveGas(string id)
+    {
+        return Enum.TryParse<Gas>(id, out var gas) && Enum.IsDefined(gas) && (int) gas < Atmospherics.TotalNumberOfGases
+            ? gas
+            : null;
+    }
+
     /// <summary>Два газа-топлива.</summary>
-    [DataField(required: true)]
-    public List<Gas> Requirements = new();
+    [DataField("requirements", required: true)]
+    public List<string> RequirementIds = new();
 
     /// <summary>Побочные продукты синтеза в смеси топлива.</summary>
-    [DataField(required: true)]
-    public List<Gas> PrimaryProducts = new();
+    [DataField("primaryProducts", required: true)]
+    public List<string> PrimaryProductIds = new();
 
     /// <summary>Шесть ступеней газов, которые выходят в модератор по уровням синтеза.</summary>
-    [DataField(required: true)]
-    public List<Gas> SecondaryProducts = new();
+    [DataField("secondaryProducts", required: true)]
+    public List<string> SecondaryProductIds = new();
+
+    private List<Gas>? _requirements;
+    private List<Gas>? _primaryProducts;
+
+    /// <summary>Газы-топливо, которые есть в сборке.</summary>
+    public List<Gas> Requirements => _requirements ??= RequirementIds.Select(ResolveGas).OfType<Gas>().ToList();
+
+    /// <summary>Побочные продукты, которые есть в сборке.</summary>
+    public List<Gas> PrimaryProducts => _primaryProducts ??= PrimaryProductIds.Select(ResolveGas).OfType<Gas>().ToList();
+
+    /// <summary>Побочный продукт по номеру из рецепта; null, если газа нет в сборке.</summary>
+    public Gas? PrimaryProduct(int index) => index < PrimaryProductIds.Count ? ResolveGas(PrimaryProductIds[index]) : null;
+
+    /// <summary>Газ ступени (0–5) по номеру из рецепта; null, если газа нет в сборке.</summary>
+    public Gas? SecondaryProduct(int index) => index < SecondaryProductIds.Count ? ResolveGas(SecondaryProductIds[index]) : null;
 
     [DataField]
     public HypertorusMeltdownFlags MeltdownFlags = HypertorusMeltdownFlags.BaseExplosion;

@@ -69,6 +69,10 @@ public sealed partial class HypertorusSystem
     /// </summary>
     private static float FusionPower(Gas gas)
     {
+        // Гелий есть только в закрытой сборке.
+        if (gas == HeliumGas)
+            return 7;
+
         return gas switch
         {
             Gas.WaterVapor => 8,
@@ -80,13 +84,15 @@ public sealed partial class HypertorusSystem
             Gas.Ozonium => -10, // плюоксий
             Gas.Frezon => -5, // фреон
             Gas.Hydrogen => 2,
-            Gas.Helium => 7,
             Gas.AntiNoblium => 20,
             _ => 0,
         };
     }
 
     private static readonly Gas[] AllGases = Enum.GetValues<Gas>();
+
+    /// <summary>Гелий по id: в публичной сборке его нет — тогда null.</summary>
+    private static readonly Gas? HeliumGas = HypertorusFuelPrototype.ResolveGas("Helium");
 
     /// <summary>process_atmos: шаги по 0.5 с, как обработка атмос-машин в SS13.</summary>
     private void OnCoreAtmosUpdate(Entity<HypertorusCoreComponent> ent, ref AtmosDeviceUpdateEvent args)
@@ -206,7 +212,7 @@ public sealed partial class HypertorusSystem
             scaledModerator[gas] = Math.Max((amount - FusionMoleThreshold) / scaleFactor, 0);
         }
 
-        double F(Gas gas) => scaledFuel.GetValueOrDefault(gas);
+        double F(Gas? gas) => gas is { } g ? scaledFuel.GetValueOrDefault(g) : 0;
         double M(Gas gas) => scaledModerator.GetValueOrDefault(gas);
         // Нестабильность: размер фазового тора и «мощность» газов.
         var toroidalSize = 2 * Math.PI + Math.Atan((volume - ToroidVolumeBreakeven) / ToroidVolumeBreakeven);
@@ -257,7 +263,7 @@ public sealed partial class HypertorusSystem
         {
             var req1 = fuel.Requirements[0];
             var req2 = fuel.Requirements[1];
-            var prod1 = fuel.PrimaryProducts[0];
+            var prod1 = fuel.PrimaryProduct(0);
 
             energyModifiers += F(req1) + F(req2);
             energyModifiers -= F(prod1);
@@ -280,7 +286,7 @@ public sealed partial class HypertorusSystem
             core.InternalPower = (s1 * powerModifier / 100) * (s2 * powerModifier / 100)
                                  * (Math.PI * Math.Pow(2 * (s1 * CalculatedH2Radius) * (s2 * CalculatedTritRadius), 2))
                                  * core.Energy;
-            core.Efficiency = VoidConduction * Math.Clamp(F(fuel.PrimaryProducts[0]), 1, 100);
+            core.Efficiency = VoidConduction * Math.Clamp(F(fuel.PrimaryProduct(0)), 1, 100);
         }
 
         core.Energy = energyModifiers * LightSpeed * LightSpeed * Math.Max(core.FusionTemp * heatModifier / 100, 1);
@@ -310,7 +316,7 @@ public sealed partial class HypertorusSystem
             : Math.Clamp(core.HeatOutput * 2 / Math.Pow(10, core.PowerLevel + 1), 0, fuelConsumptionRate) * secondsPerTick;
 
         // scaled_fuel_list[scaled_fuel_list[3]]: третий газ списка — первый побочный продукт.
-        var dirtyProductionRate = F(fuel.PrimaryProducts[0]) / core.FuelInjectionRate;
+        var dirtyProductionRate = F(fuel.PrimaryProduct(0)) / core.FuelInjectionRate;
 
         var internalOutput = new GasMixture(fusion.Volume);
         ModeratorFuelProcess(core, productionAmount, consumptionAmount, moderatorList, fuel, fuelList);
@@ -341,38 +347,43 @@ public sealed partial class HypertorusSystem
             fusion.AdjustMoles(gas, fuelConsumption * 0.5f);
         }
 
-        var tier = fuel.SecondaryProducts;
+        void Tier(int index, float amount)
+        {
+            if (fuel.SecondaryProduct(index) is { } gas)
+                moderator.AdjustMoles(gas, amount);
+        }
+
         var plasma = moderatorList.GetValueOrDefault(Gas.Plasma);
         switch (core.PowerLevel)
         {
             case 1:
-                moderator.AdjustMoles(tier[0], scaledProduction * 0.95f);
-                moderator.AdjustMoles(tier[1], scaledProduction * 0.75f);
+                Tier(0, scaledProduction * 0.95f);
+                Tier(1, scaledProduction * 0.75f);
                 break;
             case 2:
-                moderator.AdjustMoles(tier[0], scaledProduction * 1.65f);
-                moderator.AdjustMoles(tier[1], scaledProduction);
+                Tier(0, scaledProduction * 1.65f);
+                Tier(1, scaledProduction);
                 if (plasma > 50)
-                    moderator.AdjustMoles(tier[2], scaledProduction * 1.15f);
+                    Tier(2, scaledProduction * 1.15f);
                 break;
             case 3:
-                moderator.AdjustMoles(tier[1], scaledProduction * 0.5f);
-                moderator.AdjustMoles(tier[2], scaledProduction * 0.45f);
+                Tier(1, scaledProduction * 0.5f);
+                Tier(2, scaledProduction * 0.45f);
                 break;
             case 4:
-                moderator.AdjustMoles(tier[2], scaledProduction * 1.65f);
-                moderator.AdjustMoles(tier[3], scaledProduction * 1.25f);
+                Tier(2, scaledProduction * 1.65f);
+                Tier(3, scaledProduction * 1.25f);
                 if (plasma > 50)
-                    moderator.AdjustMoles(tier[4], scaledProduction * 1.15f);
+                    Tier(4, scaledProduction * 1.15f);
                 break;
             case 5:
-                moderator.AdjustMoles(tier[3], scaledProduction * 0.65f);
-                moderator.AdjustMoles(tier[4], scaledProduction);
-                moderator.AdjustMoles(tier[5], scaledProduction * 0.75f);
+                Tier(3, scaledProduction * 0.65f);
+                Tier(4, scaledProduction);
+                Tier(5, scaledProduction * 0.75f);
                 break;
             case 6:
-                moderator.AdjustMoles(tier[4], scaledProduction * 0.35f);
-                moderator.AdjustMoles(tier[5], scaledProduction);
+                Tier(4, scaledProduction * 0.35f);
+                Tier(5, scaledProduction);
                 break;
         }
     }

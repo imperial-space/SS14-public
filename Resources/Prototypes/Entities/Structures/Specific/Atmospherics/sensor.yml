@@ -33,7 +33,6 @@
       HyperNoblium: danger
       AntiNoblium: danger
       BZ: danger #Imperial Atmos Update end
-      Helium: danger #Imperial Hypertorus
   - type: Tag
     tags:
       - AirSensor
