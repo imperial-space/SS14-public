@@ -167,7 +167,8 @@ public sealed class ImperialHolyWaterSystem : EntitySystem
             }
         }
 
-        if (!_body.TryGetOrgansWithComponent<StomachComponent>(uid, out var stomachs))
+        // У мобов без тела (ксеноморфы, простые мобы) органов нет — без проверки BodySystem пишет ошибку каждый тик.
+        if (!HasComp<BodyComponent>(uid) || !_body.TryGetOrgansWithComponent<StomachComponent>(uid, out var stomachs))
             yield break;
 
         foreach (var stomach in stomachs)
