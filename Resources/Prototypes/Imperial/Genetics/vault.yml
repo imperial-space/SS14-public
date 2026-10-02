@@ -1,0 +1,258 @@
+# ДНК-хранилище (dna_vault.dm, dna_probe.dm, vault_mutation.dm из SS13).
+
+- type: stationGoal
+  id: StationGoalDnaVault
+  text: station-goal-dna-vault
+
+- type: entity
+  id: ImperialDnaVault
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: DNA vault
+  description: Break glass in case of apocalypse.
+  components:
+  - type: Sprite
+    sprite: Imperial/Genetics/dna_vault.rsi
+    state: vault
+    offset: 0,-1
+    drawdepth: Mobs
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      top:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.45,-0.45,1.45,0.45"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+      left:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.45,-2.45,-0.55,-0.5"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+      right:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.55,-2.45,1.45,-0.5"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: PointLight
+    radius: 3
+    energy: 1.5
+    color: "#7DE7FF"
+  - type: ApcPowerReceiver
+    powerLoad: 5000
+  - type: Machine
+    board: ImperialDnaVaultMachineCircuitboard
+  - type: DnaVault
+  - type: ActivatableUI
+    key: enum.DnaVaultUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.DnaVaultUiKey.Key:
+        type: DnaVaultBoundUserInterface
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+
+- type: entity
+  id: ImperialDnaVaultMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: DNA vault machine board
+  description: A machine printed circuit board for a DNA vault. Needs a 3x3 free space.
+  components:
+  - type: Sprite
+    state: command
+  - type: MachineBoard
+    prototype: ImperialDnaVault
+    stackRequirements:
+      Manipulator: 10
+      Cable: 2
+
+- type: entity
+  id: ImperialDnaProbe
+  parent: BaseItem
+  name: DNA sampler
+  description: Can be used to take chemical and genetic samples of pretty much anything. Needs to be linked with a DNA vault first.
+  components:
+  - type: Sprite
+    sprite: Imperial/Genetics/dna_probe.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Genetics/dna_probe.rsi
+  - type: DnaProbe
+  - type: StaticPrice
+    price: 50
+
+- type: entity
+  parent: CrateCommandSecure
+  id: ImperialCrateDnaVault
+  name: DNA vault parts crate
+  description: Contains a DNA vault board and five DNA samplers.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialDnaVaultMachineCircuitboard
+        - id: ImperialDnaProbe
+          amount: 5
+
+- type: entity
+  parent: CrateCommandSecure
+  id: ImperialCrateDnaProbes
+  name: DNA samplers crate
+  description: Contains five DNA samplers used to fill a DNA vault.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialDnaProbe
+          amount: 5
+
+- type: cargoProduct
+  id: ImperialDnaVaultParts
+  icon:
+    sprite: Imperial/Genetics/dna_probe.rsi
+    state: icon
+  product: ImperialCrateDnaVault
+  cost: 5000
+  category: cargoproduct-category-name-engineering
+  group: market
+
+- type: cargoProduct
+  id: ImperialDnaVaultProbes
+  icon:
+    sprite: Imperial/Genetics/dna_probe.rsi
+    state: icon
+  product: ImperialCrateDnaProbes
+  cost: 1200
+  category: cargoproduct-category-name-engineering
+  group: market
+
+# ─── Улучшения хранилища ───
+
+- type: geneticMutation
+  id: MutationBreathless
+  name: genetics-mutation-breathless-name
+  description: genetics-mutation-breathless-desc
+  gainText: genetics-mutation-breathless-gain
+  loseText: genetics-mutation-breathless-lose
+  quality: Positive
+  instability: 0
+  locked: true
+  natural: false
+  components:
+  - type: GeneticBreathless
+
+- type: geneticMutation
+  id: MutationQuick
+  name: genetics-mutation-quick-name
+  description: genetics-mutation-quick-desc
+  gainText: genetics-mutation-quick-gain
+  loseText: genetics-mutation-quick-lose
+  quality: Positive
+  instability: 0
+  locked: true
+  natural: false
+  components:
+  - type: GeneticQuick
+
+- type: geneticMutation
+  id: MutationTough
+  name: genetics-mutation-tough-name
+  description: genetics-mutation-tough-desc
+  gainText: genetics-mutation-tough-gain
+  loseText: genetics-mutation-tough-lose
+  quality: Positive
+  instability: 0
+  locked: true
+  natural: false
+  components:
+  - type: GeneticDamageResistance
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+
+- type: geneticMutation
+  id: MutationDextrous
+  name: genetics-mutation-dextrous-name
+  description: genetics-mutation-dextrous-desc
+  gainText: genetics-mutation-dextrous-gain
+  loseText: genetics-mutation-dextrous-lose
+  quality: Positive
+  instability: 0
+  locked: true
+  natural: false
+  components:
+  - type: GeneticDextrous
+
+- type: geneticMutation
+  id: MutationFireImmunity
+  name: genetics-mutation-fire-immunity-name
+  description: genetics-mutation-fire-immunity-desc
+  gainText: genetics-mutation-fire-immunity-gain
+  loseText: genetics-mutation-fire-immunity-lose
+  quality: Positive
+  instability: 0
+  locked: true
+  natural: false
+  components:
+  - type: GeneticFireproof
+  - type: GeneticAdaptation
+    heat: true
+  - type: GeneticDamageResistance
+    modifiers:
+      coefficients:
+        Heat: 0.5
+
+- type: geneticMutation
+  id: MutationQuickRecovery
+  name: genetics-mutation-quick-recovery-name
+  description: genetics-mutation-quick-recovery-desc
+  gainText: genetics-mutation-quick-recovery-gain
+  loseText: genetics-mutation-quick-recovery-lose
+  quality: Positive
+  instability: 0
+  locked: true
+  natural: false
+  components:
+  - type: GeneticQuickRecovery
+
+- type: geneticMutation
+  id: MutationPlasmocile
+  name: genetics-mutation-plasmocile-name
+  description: genetics-mutation-plasmocile-desc
+  gainText: genetics-mutation-plasmocile-gain
+  loseText: genetics-mutation-plasmocile-lose
+  quality: Positive
+  instability: 0
+  locked: true
+  natural: false
+  components:
+  - type: GeneticPlasmocile
