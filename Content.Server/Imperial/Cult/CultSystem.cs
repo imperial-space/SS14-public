@@ -59,6 +59,9 @@ using Content.Shared.Doors.Components;
 using Content.Shared.Maps;
 using Content.Shared.Overlays;
 using Content.Shared.Stacks;
+using Content.Server.Imperial.Antimagic;
+using Content.Shared.Imperial.Antimagic;
+using Content.Shared.Imperial.Chaplain.Components;
 using Content.Shared.Tag;
 using Content.Shared.Throwing;
 using Content.Shared.Pinpointer;
@@ -94,9 +97,6 @@ public sealed class CultSystem : EntitySystem
     private const string CultMagicSound = "/Audio/Effects/desecration-01.ogg";
     private const string NarSieRitualMusic = "/Audio/Imperial/cult/Tear-of-veil.ogg";
     private static readonly ProtoId<TagPrototype> WallTag = "Wall";
-    private static readonly TimeSpan CultReagentCheckInterval = TimeSpan.FromSeconds(1);
-    private static readonly TimeSpan HolyWaterDeconversionDelay = TimeSpan.FromSeconds(150);
-    private static readonly FixedPoint2 HolyWaterDeconversionThreshold = FixedPoint2.New(40);
 
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
@@ -139,6 +139,7 @@ public sealed class CultSystem : EntitySystem
     [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly VisualBodySystem _visualBodySystem = default!;
+    [Dependency] private readonly ImperialAntimagicSystem _antimagic = default!;
 
     private readonly Dictionary<EntityUid, List<EntityUid>> _activeNarSieBarriers = new();
 
@@ -326,38 +327,6 @@ public sealed class CultSystem : EntitySystem
         }
 
         UpdatePylons(now);
-        UpdateCultChemicals(now);
-    }
-
-    private void UpdateCultChemicals(TimeSpan now)
-    {
-        var query = EntityQueryEnumerator<CultistComponent, BloodstreamComponent>();
-        while (query.MoveNext(out var uid, out var cultist, out var bloodstream))
-        {
-            if (now < cultist.NextReagentCheck)
-                continue;
-
-            cultist.NextReagentCheck = now + CultReagentCheckInterval;
-
-            if (!_solutionContainer.ResolveSolution(uid, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var chemicalSolution))
-                continue;
-
-            var holyWaterAmount = chemicalSolution.GetTotalPrototypeQuantity("Holywater");
-            if (holyWaterAmount >= HolyWaterDeconversionThreshold)
-            {
-                cultist.HolyWaterThresholdReachedAt ??= now;
-                if (now - cultist.HolyWaterThresholdReachedAt.Value >= HolyWaterDeconversionDelay)
-                {
-                    RemoveCultist(uid);
-                    continue;
-                }
-            }
-            else
-            {
-                cultist.HolyWaterThresholdReachedAt = null;
-            }
-
-        }
     }
 
     private static readonly TimeSpan PylonTickInterval = TimeSpan.FromSeconds(5);
@@ -550,6 +519,13 @@ public sealed class CultSystem : EntitySystem
 
         if (_mobState.IsDead(target))
             return false;
+
+        // SS13: святых обратить нельзя, антимагия и святая вода защищают разум.
+        if (HasComp<ImperialHolyComponent>(target)
+            || _antimagic.CanBlockMagic(target, ImperialMagicResistance.All, effect: false))
+        {
+            return false;
+        }
 
         AddCultist(target);
         return true;
@@ -773,6 +749,20 @@ public sealed class CultSystem : EntitySystem
         "ActionCultConcealPresence" => 10,
         _ => 1,
     };
+
+    /// <summary>Стирает все подготовленные заклинания крови (святая вода в SS13). Возвращает true, если что-то стёрто.</summary>
+    public bool ClearPreparedSpells(EntityUid cultist)
+    {
+        if (!TryComp<CultistComponent>(cultist, out var comp) || comp.PreparedSpells.Count == 0)
+            return false;
+
+        foreach (var spell in comp.PreparedSpells.ToArray())
+        {
+            RemovePreparedSpellAction(cultist, comp, spell);
+        }
+
+        return true;
+    }
 
     private void RemovePreparedSpellAction(EntityUid cultist, CultistComponent comp, string actionId)
     {
@@ -1026,6 +1016,7 @@ public sealed class CultSystem : EntitySystem
         while (runeQuery.MoveNext(out var runeUid, out var rune, out var runeXform))
         {
             if ((_xform.GetWorldPosition(runeXform) - pos).Length() > range) continue;
+            if (rune.HolyRevealed) continue;
 
             rune.Concealed = !rune.Concealed;
             Dirty(runeUid, rune);
@@ -1037,6 +1028,7 @@ public sealed class CultSystem : EntitySystem
         while (structQuery.MoveNext(out var structUid, out var structure, out var structXform))
         {
             if ((_xform.GetWorldPosition(structXform) - pos).Length() > range) continue;
+            if (structure.HolyRevealed) continue;
 
             structure.Concealed = !structure.Concealed;
             Dirty(structUid, structure);
@@ -1490,6 +1482,13 @@ public sealed class CultSystem : EntitySystem
         _chat.TrySendInGameICMessage(caster, Loc.GetString("cult-incantation-stun"), InGameICChatType.Whisper, false, ignoreActionBlocker: true);
         DealSelfDamage(caster, 10f);
 
+        // SS13: антимагия цели гасит заклинание, оно всё равно потрачено.
+        if (_antimagic.CanBlockMagic(target))
+        {
+            _popup.PopupEntity(Loc.GetString("imperial-antimagic-no-effect"), caster, caster);
+            return true;
+        }
+
         // Нокдаун 3 сек + тишина (стан) 6 сек
         _stun.TryKnockdown(target, TimeSpan.FromSeconds(3), true);
         _stun.TryAddStunDuration(target, TimeSpan.FromSeconds(6));
@@ -1623,6 +1622,54 @@ public sealed class CultSystem : EntitySystem
     private void OnCanSeeConcealedGetVis(Entity<CanSeeConcealedComponent> ent, ref GetVisMaskEvent args)
     {
         args.VisibilityMask |= (int) VisibilityFlags.Admin;
+    }
+
+    /// <summary>
+    /// Раскрывает скрытые руны и строения культа рядом с точкой (удар библией по полу в SS13).
+    /// Раскрытое больше нельзя сокрыть. Возвращает, сколько объектов раскрыто.
+    /// </summary>
+    public int RevealConcealed(MapCoordinates center, float range)
+    {
+        var revealed = 0;
+        var runeQuery = EntityQueryEnumerator<CultRuneComponent, TransformComponent>();
+        while (runeQuery.MoveNext(out var runeUid, out var rune, out var runeXform))
+        {
+            if (runeXform.MapID != center.MapId
+                || (_xform.GetWorldPosition(runeXform) - center.Position).Length() > range)
+            {
+                continue;
+            }
+
+            rune.HolyRevealed = true;
+            if (!rune.Concealed)
+                continue;
+
+            rune.Concealed = false;
+            Dirty(runeUid, rune);
+            SetCultConcealed(runeUid, false);
+            revealed++;
+        }
+
+        var structQuery = EntityQueryEnumerator<CultStructureComponent, TransformComponent>();
+        while (structQuery.MoveNext(out var structUid, out var structure, out var structXform))
+        {
+            if (structXform.MapID != center.MapId
+                || (_xform.GetWorldPosition(structXform) - center.Position).Length() > range)
+            {
+                continue;
+            }
+
+            structure.HolyRevealed = true;
+            if (!structure.Concealed)
+                continue;
+
+            structure.Concealed = false;
+            Dirty(structUid, structure);
+            SetCultConcealed(structUid, false);
+            revealed++;
+        }
+
+        return revealed;
     }
 
     private void SetCultConcealed(EntityUid uid, bool concealed)
