@@ -120,6 +120,12 @@ public sealed partial class HypertorusSystem : EntitySystem
         }
     }
 
+    private void PlayToolSound(EntityUid used, EntityUid user)
+    {
+        if (TryComp<Content.Shared.Tools.Components.ToolComponent>(used, out var tool))
+            _tool.PlayToolSound(used, tool, user);
+    }
+
     #region Сборка из коробок
 
     /// <summary>hfr_box/core/multitool_act: коробки 3×3 вокруг ядра разворачиваются в реактор.</summary>
@@ -453,7 +459,7 @@ public sealed partial class HypertorusSystem : EntitySystem
 
             ent.Comp.PanelOpen = !ent.Comp.PanelOpen;
             _appearance.SetData(ent, HypertorusVisuals.Open, ent.Comp.PanelOpen);
-            _tool.PlayToolSound(used, null, user);
+            PlayToolSound(used, user);
             return;
         }
 
@@ -462,7 +468,7 @@ public sealed partial class HypertorusSystem : EntitySystem
         {
             args.Handled = true;
             _xform.SetLocalRotation(ent, Transform(ent).LocalRotation - Angle.FromDegrees(90));
-            _tool.PlayToolSound(used, null, user);
+            PlayToolSound(used, user);
             return;
         }
 
@@ -471,7 +477,7 @@ public sealed partial class HypertorusSystem : EntitySystem
         {
             args.Handled = true;
             Spawn(ent.Comp.Box, Transform(ent).Coordinates);
-            _tool.PlayToolSound(used, null, user);
+            PlayToolSound(used, user);
             QueueDel(ent);
         }
     }
@@ -506,7 +512,7 @@ public sealed partial class HypertorusSystem : EntitySystem
 
             panel.PanelOpen = !panel.PanelOpen;
             _appearance.SetData(ent, HypertorusVisuals.Open, panel.PanelOpen);
-            _tool.PlayToolSound(used, null, user);
+            PlayToolSound(used, user);
             return;
         }
 
@@ -524,7 +530,7 @@ public sealed partial class HypertorusSystem : EntitySystem
             }
 
             Spawn(panel.Box, Transform(ent).Coordinates);
-            _tool.PlayToolSound(used, null, user);
+            PlayToolSound(used, user);
             QueueDel(ent);
         }
     }
