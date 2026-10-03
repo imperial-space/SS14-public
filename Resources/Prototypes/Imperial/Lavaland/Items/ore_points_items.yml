@@ -108,7 +108,7 @@
 
 # ─── Снаряд горного акселератора ───
 - type: entity
-  id: BulletKineticMining
+  id: BulletKineticMiningLavaland
   suffix: Lavaland
   name: кинетический болт
   parent: BulletKinetic
@@ -151,7 +151,7 @@
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
   - type: BasicEntityAmmoProvider
-    proto: BulletKineticMining
+    proto: BulletKineticMiningLavaland
     capacity: 1
     count: 1
   - type: MiningUpgradeableGun
@@ -490,7 +490,7 @@
   id: RescueCapsule
   suffix: Lavaland
   name: спасательная капсула
-  description: Экстренная капсула с мобильной базой горняка. После активации через 8 секунд развёртывает базу прямо под вами. Требует свободную площадку 7x7 тайлов без стен и пропастей.
+  description: Экстренная капсула с мобильной базой горняка. После активации мгновенно развёртывает базу прямо под вами. Требует свободную площадку 7x7 тайлов без стен и пропастей.
   components:
   - type: Sprite
     sprite: Imperial/lava/mining/capsule.rsi

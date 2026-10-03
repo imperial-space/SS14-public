@@ -1,3 +1,4 @@
+using System.Numerics;
 using Robust.Shared.Audio;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
@@ -70,10 +71,10 @@ public sealed partial class AshDrakeComponent : Component
     public float FireConeDamage = 5f;
 
     [DataField]
-    public int FireConeRayCount = 3;
+    public int FireConeRayCount = 7;
 
     [DataField]
-    public float FireConeSpreadDeg = 40f;
+    public float FireConeSpreadDeg = 75f;
 
     [DataField]
     public float FireConeStepDelay = 0.08f;
@@ -146,13 +147,16 @@ public sealed partial class AshDrakeComponent : Component
     public float SwoopKnockback = 7f;
 
     [DataField]
-    public float SwoopCameraShakeIntensity = 0.8f;
+    public float SwoopCameraShakeIntensity = 120f;
 
     [DataField]
     public EntProtoId SwoopShadowPrototype = "ImperialAshDrakeShadow";
 
     [DataField]
     public EntProtoId SwoopLandingWarningPrototype = "ImperialAshDrakeLandingWarning";
+
+    [DataField]
+    public EntProtoId SwoopLavaPrototype = "ImperialAshDrakeSwoopLava";
 
     // ── Circular Fire Breath (unlocked below 50% HP) ──────────────────────────
 
@@ -212,6 +216,12 @@ public sealed partial class AshDrakeComponent : Component
     [DataField]
     public int FireArenaWaves = 3;
 
+    [DataField]
+    public SoundSpecifier FireArenaMarkerSound = new SoundPathSpecifier("/Audio/Imperial/Lavaland/sound_effects_magic_fleshtostone.ogg");
+
+    [DataField]
+    public SoundSpecifier FireArenaFlameSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_magic_fireball.ogg");
+
     [ViewVariables]
     public TimeSpan NextFireArenaTime;
 
@@ -229,6 +239,12 @@ public sealed partial class AshDrakeComponent : Component
 
     [ViewVariables]
     public int FireArenaCompletedRounds;
+
+    [DataField]
+    public float FireArenaLandDelay = 2.0f;
+
+    [ViewVariables]
+    public TimeSpan FireArenaLandTime;
 
     [ViewVariables]
     public TimeSpan FireArenaMarkerEndTime;
@@ -283,6 +299,22 @@ public sealed partial class AshDrakeComponent : Component
 
     [ViewVariables]
     public EntityUid SwoopWarningUid = EntityUid.Invalid;
+
+    // Pending camera-shake waves after swoop landing
+    [ViewVariables]
+    public int SwoopShakePendingWaves;
+
+    [ViewVariables]
+    public TimeSpan NextSwoopShakeWaveTime;
+
+    [ViewVariables]
+    public EntityCoordinates SwoopShakeLandPosition;
+
+    [DataField]
+    public float SwoopShakeWaveInterval = 0.18f;
+
+    [ViewVariables]
+    public Vector2 SwoopShakeLastDir;
 }
 
 public enum FireArenaPhase
@@ -290,6 +322,7 @@ public enum FireArenaPhase
     None,
     WaitingForMarker,
     FlamesActive,
+    Landing,
 }
 
 /// <summary>

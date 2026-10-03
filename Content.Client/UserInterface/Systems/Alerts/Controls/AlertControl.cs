@@ -40,6 +40,7 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
 
         private readonly SpriteView _icon;
         private readonly CooldownGraphic _cooldownGraphic;
+        private Label? _countLabel; // Imperial Space - счётчик на иконке алерта
 
         private EntityUid _spriteViewEntity;
 
@@ -76,6 +77,20 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
                 MaxSize = new Vector2(64, 64)
             };
             Children.Add(_cooldownGraphic);
+
+            // Imperial Space start - счётчик на иконке алерта
+            if (Alert.ShowCount && Alert.SupportsSeverity)
+            {
+                _countLabel = new Label
+                {
+                    HorizontalAlignment = HAlignment.Center,
+                    VerticalAlignment = VAlignment.Bottom,
+                    FontColorOverride = Color.White,
+                };
+                Children.Add(_countLabel);
+                UpdateCountLabel();
+            }
+            // Imperial Space end
         }
 
         private Control SupplyTooltip(Control? sender)
@@ -99,7 +114,20 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
             var icon = Alert.GetIcon(_severity);
             if (_sprite.LayerMapTryGet((_spriteViewEntity, sprite), AlertVisualLayers.Base, out var layer, false))
                 _sprite.LayerSetSprite((_spriteViewEntity, sprite), layer, icon);
+
+            UpdateCountLabel(); // Imperial Space
         }
+
+        // Imperial Space start - счётчик на иконке алерта
+        private void UpdateCountLabel()
+        {
+            if (_countLabel == null)
+                return;
+            var val = (_severity ?? Alert.MinSeverity) * Alert.CountMultiplier;
+            var max = Alert.MaxSeverity * Alert.CountMultiplier;
+            _countLabel.Text = $"{val}/{max}";
+        }
+        // Imperial Space end
 
         protected override void FrameUpdate(FrameEventArgs args)
         {

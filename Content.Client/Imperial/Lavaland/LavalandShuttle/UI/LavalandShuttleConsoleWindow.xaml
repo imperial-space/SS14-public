@@ -1,0 +1,13 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      MinSize="260 160"
+                      SetSize="300 180">
+    <BoxContainer Orientation="Vertical" SeparationOverride="8" Margin="8 8 8 8">
+        <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+            <Button Name="FlyToStationButton" HorizontalExpand="True"/>
+            <Button Name="FlyToLavalandButton" HorizontalExpand="True"/>
+        </BoxContainer>
+        <Label Name="DestinationLabel" HorizontalAlignment="Center"/>
+        <Button Name="DepartButton" HorizontalExpand="True"/>
+    </BoxContainer>
+</controls:FancyWindow>

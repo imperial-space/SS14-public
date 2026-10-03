@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Numerics;
 using Content.Server.Popups;
 using Content.Shared.DoAfter;
@@ -10,9 +9,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Maths;
 using Robust.Shared.Map;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Lavaland.OrePoints.Mining.Systems;
@@ -88,12 +85,6 @@ public sealed class RescueCapsuleSystem : EntitySystem
             return;
         }
 
-        if (!CanDeployAtUserPosition((userUid, xform, gridComp)))
-        {
-            _popup.PopupEntity(Loc.GetString("rescue-capsule-blocked"), uid, userUid, PopupType.MediumCaution);
-            return;
-        }
-
         var path = ResolveGridPath(comp.GridPath);
         var options = new DeserializationOptions { InitializeMaps = true };
 
@@ -113,29 +104,6 @@ public sealed class RescueCapsuleSystem : EntitySystem
 
         _popup.PopupEntity(Loc.GetString("rescue-capsule-deployed"), uid, userUid, PopupType.Large);
         QueueDel(uid);
-    }
-
-    private bool CanDeployAtUserPosition(Entity<TransformComponent, MapGridComponent> user)
-    {
-        var (uid, xform, gridComp) = user;
-        var worldPos = _transform.GetWorldPosition(uid);
-        var box = Box2.CenteredAround(worldPos.Rounded(), SpawnAreaSize);
-
-        // Не даем разворачивать рядом с другими отдельными гридами.
-        if (_lookup.GetEntitiesInRange<MapGridComponent>(xform.Coordinates, SpawnAreaRadius)
-            .Any(otherGrid => otherGrid != xform.GridUid))
-        {
-            return false;
-        }
-
-        // Площадка должна быть свободна только от реальных блокеров с коллизией.
-        foreach (var ent in _mapSystem.GetAnchoredEntities(xform.GridUid!.Value, gridComp, box))
-        {
-            if (TryComp<PhysicsComponent>(ent, out var body) && body.CanCollide)
-                return false;
-        }
-
-        return true;
     }
 
     private static ResPath ResolveGridPath(string configured)

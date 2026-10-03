@@ -73,11 +73,20 @@ public sealed class DeadMinerSystem : EntitySystem
 
     private void UpdateMode(EntityUid uid, DeadMinerComponent comp, float dist)
     {
-        var shouldTransform = dist > comp.ModeTransformRange;
+        bool shouldTransform;
+        if (comp.IsTransformed)
+            shouldTransform = dist > comp.ModeTransformRange - comp.ModeTransformHysteresis;
+        else
+            shouldTransform = dist > comp.ModeTransformRange + comp.ModeTransformHysteresis;
+
         if (shouldTransform == comp.IsTransformed)
             return;
 
+        if (_timing.CurTime < comp.NextModeTransformTime)
+            return;
+
         comp.IsTransformed = shouldTransform;
+        comp.NextModeTransformTime = _timing.CurTime + TimeSpan.FromSeconds(comp.ModeTransformCooldown);
         _appearance.SetData(uid, DeadMinerVisuals.Transformed, comp.IsTransformed);
         _audio.PlayPvs(comp.TransformSound, uid);
 

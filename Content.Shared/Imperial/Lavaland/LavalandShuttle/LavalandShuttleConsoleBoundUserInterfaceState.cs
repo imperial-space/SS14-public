@@ -5,6 +5,8 @@ namespace Content.Shared.Imperial.Lavaland.LavalandShuttle;
 [Serializable, NetSerializable]
 public sealed class LavalandShuttleConsoleBoundUserInterfaceState : BoundUserInterfaceState
 {
-    public bool CanFlyToStation;
-    public bool CanFlyToLavaland;
+    public LavalandShuttleDestination SelectedDestination;
+    public bool StationAvailable;
+    public bool LavalandAvailable;
+    public bool CanDepart;
 }

@@ -1,5 +1,7 @@
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
+using Robust.Shared.Containers;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Imperial.Lavaland.PrisonCube;
 
@@ -7,11 +9,33 @@ public sealed class PrisonCubeTeleportSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<PrisonCubeTeleportComponent, UseInHandEvent>(OnUseInHand);
+        SubscribeLocalEvent<PrisonCubePairSpawnerComponent, MapInitEvent>(OnSpawnerMapInit);
+    }
+
+    private void OnSpawnerMapInit(EntityUid uid, PrisonCubePairSpawnerComponent comp, MapInitEvent args)
+    {
+        var coords = Transform(uid).Coordinates;
+        var red = Spawn(comp.RedPrototype, coords);
+        var blue = Spawn(comp.BluePrototype, coords);
+
+        if (TryComp<PrisonCubeTeleportComponent>(red, out var redComp))
+            redComp.Partner = blue;
+        if (TryComp<PrisonCubeTeleportComponent>(blue, out var blueComp))
+            blueComp.Partner = red;
+
+        if (_container.TryGetContainingContainer(uid, out var container))
+        {
+            _container.Insert(red, container);
+            _container.Insert(blue, container);
+        }
+
+        QueueDel(uid);
     }
 
     private void OnUseInHand(Entity<PrisonCubeTeleportComponent> ent, ref UseInHandEvent args)
@@ -40,19 +64,12 @@ public sealed class PrisonCubeTeleportSystem : EntitySystem
     {
         destination = null;
 
-        var query = EntityQueryEnumerator<PrisonCubeTeleportComponent>();
-        while (query.MoveNext(out var uid, out var comp))
+        if (ent.Comp.Partner is { Valid: true } partner && Exists(partner))
         {
-            if (uid == ent.Owner)
-                continue;
-
-            if (comp.LinkChannel != ent.Comp.TargetChannel)
-                continue;
-
-            destination = uid;
-            break;
+            destination = partner;
+            return true;
         }
 
-        return destination != null;
+        return false;
     }
 }

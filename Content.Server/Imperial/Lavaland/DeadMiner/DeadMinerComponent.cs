@@ -15,7 +15,15 @@ public sealed partial class DeadMinerComponent : Component
     /// <summary>Дистанция в тайлах. Ниже — режим 1, выше — режим 2.</summary>
     [DataField] public float ModeTransformRange = 1.5f;
 
+    /// <summary>Дополнительный буфер гистерезиса чтобы избежать мерцания на границе.</summary>
+    [DataField] public float ModeTransformHysteresis = 0.4f;
+
+    /// <summary>Минимальное время между переключениями режима.</summary>
+    [DataField] public float ModeTransformCooldown = 3f;
+
     [ViewVariables] public bool IsTransformed;
+
+    [ViewVariables] public TimeSpan NextModeTransformTime;
 
     // ── Melee ─────────────────────────────────────────────────────────────────
 

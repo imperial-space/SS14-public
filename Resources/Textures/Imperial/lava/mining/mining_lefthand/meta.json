@@ -1,0 +1,19 @@
+{
+    "version": 1,
+    "license": null,
+    "copyright": null,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "resonator",
+            "directions": 4
+        },
+        {
+            "name": "resonator_u",
+            "directions": 4
+        }
+    ]
+}

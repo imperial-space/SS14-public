@@ -14,6 +14,9 @@
   suffix: CrusherLoot, Lavaland
   name: наблюдатель
   components:
+  - type: Tag
+    tags:
+    - LavalandMob
   - type: Butcherable
     butcheringType: Knife
     spawned:
@@ -22,6 +25,9 @@
     - id: CrusherUpgradeWatcherWing
       amount: 1
       prob: 0.25   # 25% шанс
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 3.5
   - type: LavalandStormImmune
   - type: MegafaunaVanishOnDeath
     delay: 30
@@ -33,6 +39,9 @@
   suffix: CrusherLoot, Lavaland
   name: ледокрылый наблюдатель
   components:
+  - type: Tag
+    tags:
+    - LavalandMob
   - type: Butcherable
     butcheringType: Knife
     spawned:
@@ -41,6 +50,9 @@
     - id: CrusherUpgradeWatcherWing
       amount: 1
       prob: 0.25   # 25% шанс
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 3.5
   - type: LavalandStormImmune
   - type: MegafaunaVanishOnDeath
     delay: 30
@@ -52,6 +64,9 @@
   suffix: CrusherLoot, Lavaland
   name: магмокрылый наблюдатель
   components:
+  - type: Tag
+    tags:
+    - LavalandMob
   - type: Butcherable
     butcheringType: Knife
     spawned:

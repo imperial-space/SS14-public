@@ -48,8 +48,12 @@ public sealed class LavalandPlanetRuleSystem : GameRuleSystem<LavalandPlanetRule
         var biomeTemplate = _proto.Index<BiomeTemplatePrototype>(comp.BiomeTemplate);
         _biome.EnsurePlanet(mapUid, biomeTemplate, _random.Next(), null, comp.MapLight);
 
+        // Атмосфера по мотивам SS13 (datum/atmosphere/lavaland): мало кислорода и много углекислого газа.
+        // Человеку без баллона не хватает кислорода, а CO2 отравляет; кислорода больше 1 моля, поэтому
+        // огонь от лавы не тухнет сам. Давление прежнее (~80 кПа), пеплоходцы дышат CO2.
         var moles = new float[Atmospherics.AdjustedNumberOfGases];
-        moles[(int)Gas.Nitrogen] = 82.10312f;
+        moles[(int)Gas.Oxygen] = 5f;
+        moles[(int)Gas.CarbonDioxide] = 77.10312f;
         _atmos.SetMapAtmosphere(mapUid, false, new GasMixture(moles, Atmospherics.T20C));
 
         var biome = Comp<BiomeComponent>(mapUid);
@@ -136,7 +140,18 @@ public sealed class LavalandPlanetRuleSystem : GameRuleSystem<LavalandPlanetRule
         var planetGrid = Comp<MapGridComponent>(mapUid);
         var basaltTile = new Tile(_tileDefManager["FloorBasalt"].TileId);
 
-        _maps.InitializeMap(mapId);
+        // Исключение в MapInit любой сущности (например, спавнер с несуществующим прототипом в руине)
+        // обрывает инициализацию: остаток карты не инициализируется, а сама карта остаётся на паузе —
+        // шаттл не летает, спавнеры молчат. Поэтому ошибка логируется, а инициализация доводится до конца.
+        try
+        {
+            _maps.InitializeMap(mapId);
+        }
+        catch (Exception e)
+        {
+            Log.Error($"Ошибка при инициализации карты лаваленда, доинициализируем вручную: {e}");
+            FinishMapInit(mapUid);
+        }
 
         // Remove day/night cycle: Lavaland has fixed lighting, no oscillation.
         // Must be done after InitializeMap so OnCycleShutdown restores the correct base color.
@@ -219,6 +234,41 @@ public sealed class LavalandPlanetRuleSystem : GameRuleSystem<LavalandPlanetRule
             foreach (var uid in done)
                 comp.PendingAtmosRebuild.Remove(uid);
         }
+    }
+
+    /// <summary>
+    /// Повторяет RecursiveMapInit, но не даёт одной сломанной сущности остановить остальные,
+    /// и в конце снимает карту с паузы.
+    /// </summary>
+    private void FinishMapInit(EntityUid mapUid)
+    {
+        var toInitialize = new List<EntityUid> { mapUid };
+        for (var i = 0; i < toInitialize.Count; i++)
+        {
+            var uid = toInitialize[i];
+            if (!TryComp(uid, out MetaDataComponent? meta) || TerminatingOrDeleted(uid))
+                continue;
+
+            if (meta.EntityLifeStage == EntityLifeStage.Initialized)
+            {
+                try
+                {
+                    EntityManager.RunMapInit(uid, meta);
+                }
+                catch (Exception e)
+                {
+                    Log.Error($"Ошибка MapInit у {ToPrettyString(uid)} на лаваленде: {e}");
+                }
+            }
+
+            var children = Transform(uid).ChildEnumerator;
+            while (children.MoveNext(out var child))
+            {
+                toInitialize.Add(child);
+            }
+        }
+
+        _maps.SetPaused(mapUid, false);
     }
 
     private Vector2 FindSafePosition(Box2 localBounds, List<Box2> placedBounds, LavalandPlanetRuleComponent comp)

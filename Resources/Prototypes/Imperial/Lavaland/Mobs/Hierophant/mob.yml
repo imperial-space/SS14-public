@@ -94,10 +94,9 @@
         - MobMask
         layer:
         - MobLayer
-  # Slow movement speed
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.2
-    baseSprintSpeed: 1.2
+    baseWalkSpeed: 0.0
+    baseSprintSpeed: 0.0
   # No close melee combat - disabled
   - type: MeleeWeapon
     hidden: true
@@ -141,6 +140,7 @@
     blastEffectPrototype: ImperialHierophantBlast
     squareEffectPrototype: ImperialHierophantSquare
     attackCooldown: 2.5
+    minAttackCooldown: 1.5
     attackSound:
       path: /Audio/Imperial/boss/sound_lavaland_hiero_boss.ogg
   - type: BossLoot
@@ -166,3 +166,5 @@
   - type: MegafaunaBossMusic
     music:
       path: /Audio/Imperial/boss/sound_lavaland_hiero_boss.ogg
+      params:
+        volume: 100

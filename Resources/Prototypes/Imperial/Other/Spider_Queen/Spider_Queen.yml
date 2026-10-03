@@ -623,18 +623,10 @@
   components:
     - type: SubdermalImplant
       implantAction: ActionSpawnMagicarpSpellSpider
-    - type: PointLight
-      enabled: false
-      radius: 2.5
-      softness: 5
-      mask: /Textures/Effects/LightMasks/cone.png
-      autoRot: true
     - type: Tag
       tags:
         - SubdermalImplant
         - HideContextMenu
-        - Flashlight
-    - type: UnpoweredFlashlight
 
 - type: entity
   parent: LightImplantSpider

@@ -24,6 +24,7 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
+    - Shoes # Imperial Space - ингредиент ритуалов еретика
   - type: ProtectedFromStepTriggers
 
 - type: entity

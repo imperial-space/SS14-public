@@ -1,3 +1,4 @@
+using Content.Server.Camera;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -5,12 +6,16 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Lavaland;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Physics;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -27,6 +32,9 @@ public sealed class AshDrakeSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly FixtureSystem _fixtures = default!;
+    [Dependency] private readonly CameraRecoilSystem _cameraRecoil = default!;
 
     private readonly Dictionary<EntityUid, List<PendingTileDamage>> _pendingDamage = new();
 
@@ -71,6 +79,7 @@ public sealed class AshDrakeSystem : EntitySystem
 
             ProcessPendingTileDamage(uid);
             ProcessActiveMeteors(uid, comp);
+            ProcessPendingShakeWaves(uid, comp);
 
             if (comp.IsFireArenaActive)
             {
@@ -308,6 +317,7 @@ public sealed class AshDrakeSystem : EntitySystem
         // Hide the real drake body — only the shadow will be visible during flight
         _appearance.SetData(uid, AshDrakeVisuals.Flying, true);
         _appearance.SetData(uid, AshDrakeVisuals.Unfurled, false);
+        SetDrakeCollidable(uid, false);
         // Play swoop sound
         _audio.PlayPvs(comp.MeleeAttackSound, uid);
     }
@@ -327,7 +337,9 @@ public sealed class AshDrakeSystem : EntitySystem
 
                 if (_timing.CurTime >= comp.NextSwoopTrailTime)
                 {
-                    Spawn(comp.FireEffectPrototype, shadowPos);
+                    var trailOffsets = new[] { Vector2.Zero, new Vector2(1, 0), new Vector2(-1, 0), new Vector2(0, 1), new Vector2(0, -1) };
+                    foreach (var off in trailOffsets)
+                        Spawn(comp.SwoopLavaPrototype, SnapToTile(shadowPos.Offset(off)));
                     comp.NextSwoopTrailTime = _timing.CurTime + TimeSpan.FromSeconds(comp.SwoopTrailInterval);
                 }
             }
@@ -360,12 +372,19 @@ public sealed class AshDrakeSystem : EntitySystem
 
         // Show the drake again, then teleport to landing spot
         _appearance.SetData(uid, AshDrakeVisuals.Flying, false);
+        SetDrakeCollidable(uid, true);
 
         var landPos = comp.SwoopDestinationCoordinates;
         _transform.SetCoordinates(uid, landPos);
 
         // Play landing sound
         _audio.PlayPvs(comp.MeleeAttackSound, uid);
+
+        // Schedule camera shake waves (processed in Update)
+        comp.SwoopShakePendingWaves = 10;
+        comp.SwoopShakeLandPosition = landPos;
+        comp.NextSwoopShakeWaveTime = _timing.CurTime;
+        comp.SwoopShakeLastDir = Vector2.Zero;
 
         // AoE fire tiles in radius around landing spot
         var r = (int)comp.SwoopAoeRadius;
@@ -383,6 +402,41 @@ public sealed class AshDrakeSystem : EntitySystem
         comp.SwoopTarget = EntityUid.Invalid;
         comp.NextSwoopTime = _timing.CurTime + TimeSpan.FromSeconds(comp.SwoopCooldown);
         UpdateVisual(uid, comp);
+    }
+
+    private void ProcessPendingShakeWaves(EntityUid uid, AshDrakeComponent comp)
+    {
+        if (comp.SwoopShakePendingWaves <= 0 || _timing.CurTime < comp.NextSwoopShakeWaveTime)
+            return;
+
+        // Even-numbered remaining waves pick a new random direction; odd-numbered waves flip it
+        // Large raw vector gets clamped to KickMagnitudeMax on the client — same pattern as GravityShake
+        Vector2 kickDir;
+        if (comp.SwoopShakePendingWaves % 2 == 0 || comp.SwoopShakeLastDir == Vector2.Zero)
+        {
+            kickDir = new Vector2(_random.NextFloat() * 2f - 1f, _random.NextFloat() * 2f - 1f);
+        }
+        else
+        {
+            kickDir = -comp.SwoopShakeLastDir;
+        }
+        comp.SwoopShakeLastDir = kickDir;
+
+        var landPos = comp.SwoopShakeLandPosition;
+        foreach (var session in _playerManager.Sessions)
+        {
+            if (session.Status != SessionStatus.InGame || session.AttachedEntity is not { Valid: true } player)
+                continue;
+            if (!TryComp<MobStateComponent>(player, out var ms) || ms.CurrentState != MobState.Alive)
+                continue;
+            if (!landPos.TryDistance(EntityManager, Transform(player).Coordinates, out var shakeDist) ||
+                shakeDist > comp.MeteorCameraShakeRadius * 1.5f)
+                continue;
+            _cameraRecoil.KickCamera(player, kickDir * comp.SwoopCameraShakeIntensity);
+        }
+
+        comp.SwoopShakePendingWaves--;
+        comp.NextSwoopShakeWaveTime = _timing.CurTime + TimeSpan.FromSeconds(comp.SwoopShakeWaveInterval);
     }
 
     // ── Circular Fire Breath (below 50% HP) ───────────────────────────────────
@@ -463,6 +517,7 @@ public sealed class AshDrakeSystem : EntitySystem
         // Keep drake in the air over the center while arena minigame is active.
         _appearance.SetData(uid, AshDrakeVisuals.Flying, true);
         _appearance.SetData(uid, AshDrakeVisuals.Unfurled, false);
+        SetDrakeCollidable(uid, false);
 
         SpawnFireArenaWalls(comp);
         _audio.PlayPvs(comp.FireConeSound, uid);
@@ -501,6 +556,17 @@ public sealed class AshDrakeSystem : EntitySystem
 
                 StartNextFireArenaRound(comp);
                 break;
+
+            case FireArenaPhase.Landing:
+                if (_timing.CurTime < comp.FireArenaLandTime)
+                    return;
+
+                comp.IsFireArenaActive = false;
+                comp.FireArenaPhase = FireArenaPhase.None;
+                comp.NextFireArenaTime = _timing.CurTime + TimeSpan.FromSeconds(comp.FireArenaCooldown);
+                comp.SwoopDestinationCoordinates = comp.FireArenaCenterCoordinates;
+                ExecuteSwoopLand(uid, comp);
+                break;
         }
     }
 
@@ -523,10 +589,12 @@ public sealed class AshDrakeSystem : EntitySystem
         comp.FireArenaMarkerUid = Spawn(comp.FireArenaMarkerPrototype, markerTile);
         comp.FireArenaMarkerEndTime = _timing.CurTime + TimeSpan.FromSeconds(comp.FireArenaMarkerDuration);
         comp.FireArenaPhase = FireArenaPhase.WaitingForMarker;
+        _audio.PlayPvs(comp.FireArenaMarkerSound, markerTile);
     }
 
     private void SpawnFireArenaFlames(EntityUid uid, AshDrakeComponent comp)
     {
+        _audio.PlayPvs(comp.FireArenaFlameSound, uid);
         var center = comp.FireArenaCenterCoordinates;
         var radius = comp.FireArenaRadius;
 
@@ -548,9 +616,6 @@ public sealed class AshDrakeSystem : EntitySystem
 
     private void EndFireArena(EntityUid uid, AshDrakeComponent comp)
     {
-        comp.IsFireArenaActive = false;
-        comp.FireArenaPhase = FireArenaPhase.None;
-
         if (comp.FireArenaMarkerUid.Valid && Exists(comp.FireArenaMarkerUid))
             Del(comp.FireArenaMarkerUid);
         comp.FireArenaMarkerUid = EntityUid.Invalid;
@@ -565,11 +630,9 @@ public sealed class AshDrakeSystem : EntitySystem
             comp.FireArenaWallUids.Clear();
         }
 
-        comp.NextFireArenaTime = _timing.CurTime + TimeSpan.FromSeconds(comp.FireArenaCooldown);
-
-        // Reuse standard swoop landing logic (shadow removal, visibility restore, impact AoE).
-        comp.SwoopDestinationCoordinates = comp.FireArenaCenterCoordinates;
-        ExecuteSwoopLand(uid, comp);
+        // Brief pause before landing so the player can step away from the marker.
+        comp.FireArenaPhase = FireArenaPhase.Landing;
+        comp.FireArenaLandTime = _timing.CurTime + TimeSpan.FromSeconds(comp.FireArenaLandDelay);
     }
 
     private void SpawnFireArenaWalls(AshDrakeComponent comp)
@@ -823,5 +886,29 @@ public sealed class AshDrakeSystem : EntitySystem
         var x = start.X + (end.X - start.X) * t;
         var y = start.Y + (end.Y - start.Y) * t;
         return new EntityCoordinates(start.EntityId, x, y);
+    }
+
+    private void SetDrakeCollidable(EntityUid uid, bool collidable)
+    {
+        if (!TryComp<PhysicsComponent>(uid, out var physics) ||
+            !TryComp<FixturesComponent>(uid, out var fixtures))
+            return;
+
+        foreach (var (id, fixture) in fixtures.Fixtures)
+        {
+            if (collidable)
+            {
+                _physics.SetCollisionLayer(uid, id, fixture, (int)CollisionGroup.MobLayer, fixtures, physics);
+                _physics.SetCollisionMask(uid, id, fixture, (int)CollisionGroup.MobMask, fixtures, physics);
+            }
+            else
+            {
+                _physics.SetCollisionLayer(uid, id, fixture, (int)CollisionGroup.None, fixtures, physics);
+                _physics.SetCollisionMask(uid, id, fixture, (int)CollisionGroup.None, fixtures, physics);
+            }
+        }
+
+        if (!collidable)
+            _physics.SetCanCollide(uid, false, body: physics);
     }
 }

@@ -1,4 +1,6 @@
-﻿using Content.Server.Chat.Systems;
+using Content.Server.Camera;
+using Content.Server.Chat.Managers;
+using Content.Server.Chat.Systems;
 using Content.Server.Imperial.Lavaland.MegafaunaSleep;
 using Content.Server.Popups;
 using Content.Shared.Chat;
@@ -20,6 +22,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
+using Robust.Shared.Maths;
 using Robust.Shared.Timing;
 using System.Numerics;
 
@@ -27,9 +30,11 @@ namespace Content.Server.Imperial.Lavaland.Colossus;
 
 public sealed class ColossusSystem : EntitySystem
 {
+    [Dependency] private readonly CameraRecoilSystem _cameraRecoil = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
@@ -43,6 +48,7 @@ public sealed class ColossusSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<ColossusComponent, DamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<ColossusComponent, MobStateChangedEvent>(OnMobStateChanged);
     }
 
     public override void Update(float frameTime)
@@ -61,39 +67,66 @@ public sealed class ColossusSystem : EntitySystem
             var totalDamage = _damageable.GetPositiveDamage((uid, damageable)).GetTotal().Float();
             var healthRatio = totalDamage / comp.MaxHp;
 
-            // Spiral blocks all other attacks
+            // Spiral blocks everything else
             if (comp.IsSpiralActive)
             {
                 ProcessSpiral(uid, comp, healthRatio);
                 continue;
             }
 
-            // Start spiral when cooldown passed (available at any HP; double spiral below 50%)
-            if (_timing.CurTime >= comp.NextSpiralTime)
+            // Telegraph: wait 1.5s before firing (SS13 SLEEP_CHECK_DEATH pattern)
+            if (comp.IsTelegraphing)
             {
-                StartSpiral(uid, comp, healthRatio);
+                if (_timing.CurTime >= comp.TelegraphUntil)
+                    ExecutePendingAttack(uid, comp, healthRatio);
                 continue;
             }
 
-            // Process ongoing cross/diagonal sequence
+            // Cross sequence runs to completion without interruption
             if (comp.CrossIsFiring)
+            {
                 ProcessCrossSequence(uid, comp);
+                continue;
+            }
 
-            // Start new cross sequence if not already firing and cooldown passed
-            if (!comp.CrossIsFiring && _timing.CurTime >= comp.NextCrossTime)
-                StartCrossSequence(uid, comp);
+            // Spiral: announce → telegraph 1.5s → start
+            if (_timing.CurTime >= comp.NextSpiralTime)
+            {
+                AnnounceSpiralAttack(uid, comp);
+                continue;
+            }
 
-            // Attack 1: Cone - requires a visible target
+            // Cross: announce → telegraph 1.5s → start sequence
+            if (_timing.CurTime >= comp.NextCrossTime)
+            {
+                AnnounceCrossAttack(uid, comp);
+                continue;
+            }
+
+            // Random AoE: announce → telegraph 1.5s → fire
+            if (_timing.CurTime >= comp.NextRandomTime)
+            {
+                AnnounceRandomAttack(uid, comp);
+                continue;
+            }
+
+            // Shotgun cone: announce → telegraph 1.5s → fire (requires nearby player)
             if (_timing.CurTime >= comp.NextConeTime &&
                 TryFindNearbyPlayer(uid, comp.TargetSearchRange, out var coneTarget))
             {
-                DoConeAttack(uid, coneTarget, comp);
+                AnnounceConeAttack(uid, coneTarget, comp);
             }
-
-            // Attack 3: Random scatter
-            if (_timing.CurTime >= comp.NextRandomTime)
-                DoRandomAttack(uid, comp);
         }
+    }
+
+    // ── Death ────────────────────────────────────────────────────────────────
+
+    private void OnMobStateChanged(EntityUid uid, ColossusComponent comp, MobStateChangedEvent args)
+    {
+        if (args.NewMobState != MobState.Dead)
+            return;
+
+        _audio.PlayPvs(comp.DeathSound, uid);
     }
 
     // ── Enrage ───────────────────────────────────────────────────────────────
@@ -136,15 +169,60 @@ public sealed class ColossusSystem : EntitySystem
         Dirty(uid, melee);
     }
 
-    // ── Attack 1: Cone ───────────────────────────────────────────────────────
+    // ── Telegraph helpers ─────────────────────────────────────────────────────
 
-    private void DoConeAttack(EntityUid uid, EntityUid target, ColossusComponent comp)
+    private void BeginTelegraph(EntityUid uid, ColossusComponent comp, ColossusPreFireAttack attack, EntityUid coneTarget = default)
+    {
+        comp.IsTelegraphing = true;
+        comp.TelegraphUntil = _timing.CurTime + TimeSpan.FromSeconds(comp.TelegraphDelay);
+        comp.PendingAttack = attack;
+        comp.TelegraphConeTarget = coneTarget;
+    }
+
+    private void ExecutePendingAttack(EntityUid uid, ColossusComponent comp, float healthRatio)
+    {
+        comp.IsTelegraphing = false;
+        var attack = comp.PendingAttack;
+        comp.PendingAttack = ColossusPreFireAttack.None;
+
+        switch (attack)
+        {
+            case ColossusPreFireAttack.Cone:
+                if (Exists(comp.TelegraphConeTarget))
+                    FireConeNow(uid, comp.TelegraphConeTarget, comp);
+                break;
+            case ColossusPreFireAttack.Cross:
+                comp.CrossIsFiring = true;
+                comp.CrossRepeatsDone = 0;
+                comp.NextCrossRepeatTime = _timing.CurTime;
+                break;
+            case ColossusPreFireAttack.Random:
+                FireRandomNow(uid, comp);
+                break;
+            case ColossusPreFireAttack.Spiral:
+                comp.IsSpiralActive = true;
+                comp.SpiralSpikeFired = 0;
+                comp.SpiralCurrentAngleDeg = 0f;
+                comp.NextSpiralSpikeTime = _timing.CurTime;
+                _audio.PlayPvs(comp.EnrageSound, uid);
+                SendSpiralPopups(uid, comp);
+                break;
+        }
+    }
+
+    // ── Attack 1: Shotgun cone ────────────────────────────────────────────────
+
+    private void AnnounceConeAttack(EntityUid uid, EntityUid target, ColossusComponent comp)
+    {
+        _chat.TrySendInGameICMessage(uid, "Retribution.", InGameICChatType.Speak, false, hideLog: true);
+        comp.NextConeTime = _timing.CurTime + TimeSpan.FromSeconds(comp.ConeCooldown);
+        BeginTelegraph(uid, comp, ColossusPreFireAttack.Cone, target);
+    }
+
+    private void FireConeNow(EntityUid uid, EntityUid target, ColossusComponent comp)
     {
         _audio.PlayPvs(comp.AttackSound, uid);
-
         var origin = Transform(uid).Coordinates;
-
-        // Use world positions so coordinates are in the same space
         var bossWorld = _xformSys.GetWorldPosition(uid);
         var targetWorld = _xformSys.GetWorldPosition(target);
         var delta = targetWorld - bossWorld;
@@ -155,20 +233,17 @@ public sealed class ColossusSystem : EntitySystem
         {
             var t = comp.ConeCount <= 1 ? 0f : (float)i / (comp.ConeCount - 1) - 0.5f;
             var angle = baseAngle + t * 2f * halfSpread;
-            var dir = new Vector2(MathF.Cos(angle), MathF.Sin(angle));
-            SpawnSpike(uid, origin, dir, comp);
+            SpawnSpike(uid, origin, new Vector2(MathF.Cos(angle), MathF.Sin(angle)), comp);
         }
-
-        comp.NextConeTime = _timing.CurTime + TimeSpan.FromSeconds(comp.ConeCooldown);
     }
 
-    // ── Attack 2: Cross/Diagonal sequence ────────────────────────────────────
+    // ── Attack 2: Directional alternating ────────────────────────────────────
 
-    private void StartCrossSequence(EntityUid uid, ColossusComponent comp)
+    private void AnnounceCrossAttack(EntityUid uid, ColossusComponent comp)
     {
-        comp.CrossIsFiring = true;
-        comp.CrossRepeatsDone = 0;
-        comp.NextCrossRepeatTime = _timing.CurTime; // fire first volley immediately
+        _chat.TrySendInGameICMessage(uid, "Lament.", InGameICChatType.Speak, false, hideLog: true);
+        comp.NextCrossTime = _timing.CurTime + TimeSpan.FromSeconds(comp.CrossCooldown);
+        BeginTelegraph(uid, comp, ColossusPreFireAttack.Cross);
     }
 
     private void ProcessCrossSequence(EntityUid uid, ColossusComponent comp)
@@ -179,7 +254,7 @@ public sealed class ColossusSystem : EntitySystem
         if (comp.CrossRepeatsDone >= comp.CrossRepeatTotal)
         {
             comp.CrossIsFiring = false;
-            comp.NextCrossTime = _timing.CurTime + TimeSpan.FromSeconds(comp.CrossCooldown);
+            comp.CrossNextCardinal = false; // reset to diagonals-first for next sequence
             return;
         }
 
@@ -205,49 +280,39 @@ public sealed class ColossusSystem : EntitySystem
         }
     }
 
-    // ── Attack 3: Random scatter ──────────────────────────────────────────────
+    // ── Attack 3: Random AoE ─────────────────────────────────────────────────
 
-    private void DoRandomAttack(EntityUid uid, ColossusComponent comp)
+    private void AnnounceRandomAttack(EntityUid uid, ColossusComponent comp)
+    {
+        _chat.TrySendInGameICMessage(uid, "Wrath.", InGameICChatType.Speak, false, hideLog: true);
+        comp.NextRandomTime = _timing.CurTime + TimeSpan.FromSeconds(comp.RandomCooldown);
+        BeginTelegraph(uid, comp, ColossusPreFireAttack.Random);
+    }
+
+    private void FireRandomNow(EntityUid uid, ColossusComponent comp)
     {
         _audio.PlayPvs(comp.AttackSound, uid);
         var origin = Transform(uid).Coordinates;
-        var half = comp.RandomAreaHalfSize;
-
-        for (var x = -half; x <= half; x++)
+        for (var i = 0; i < comp.RandomShotCount; i++)
         {
-            for (var y = -half; y <= half; y++)
-            {
-                if (!_random.Prob(comp.RandomChance))
-                    continue;
-
-                var offset = new Vector2(x, y);
-                if (offset.Length() < 0.5f)
-                    continue; // skip self-tile
-
-                SpawnSpike(uid, origin, Vector2.Normalize(offset), comp);
-            }
+            var angleDeg = _random.NextFloat(0f, 360f);
+            var rad = angleDeg * (MathF.PI / 180f);
+            SpawnSpike(uid, origin, new Vector2(MathF.Cos(rad), MathF.Sin(rad)), comp);
         }
-
-        comp.NextRandomTime = _timing.CurTime + TimeSpan.FromSeconds(comp.RandomCooldown);
     }
 
     // ── Attack 4: Spiral ──────────────────────────────────────────────────────
 
-    private void StartSpiral(EntityUid uid, ColossusComponent comp, float healthRatio)
+    private void AnnounceSpiralAttack(EntityUid uid, ColossusComponent comp)
     {
-        comp.IsSpiralActive = true;
-        comp.SpiralSpikeFired = 0;
-        comp.SpiralCurrentAngleDeg = 0f;
-        comp.NextSpiralSpikeTime = _timing.CurTime;
+        _chatManager.DispatchServerAnnouncement("Judgement.", Color.Red);
+        ShakeNearbyPlayers(uid, comp);
+        comp.NextSpiralTime = _timing.CurTime + TimeSpan.FromSeconds(comp.SpiralCooldown);
+        BeginTelegraph(uid, comp, ColossusPreFireAttack.Spiral);
+    }
 
-        // healthRatio >= 0.5 means damage >= 50% maxHp => HP <= 50%
-        var word = healthRatio >= 0.5f ? "DIE" : "JUDGMENT";
-
-        // Boss speaks the word in IC chat (audible to all nearby)
-        _chat.TrySendInGameICMessage(uid, word, InGameICChatType.Speak, false, hideLog: true);
-        _audio.PlayPvs(comp.EnrageSound, uid);
-
-        // Send a personal large red popup to every nearby alive player
+    private void SendSpiralPopups(EntityUid uid, ColossusComponent comp)
+    {
         foreach (var session in _playerManager.Sessions)
         {
             if (session.Status != SessionStatus.InGame ||
@@ -264,7 +329,7 @@ public sealed class ColossusSystem : EntitySystem
                     Transform(player).Coordinates, out var dist) || dist > comp.TargetSearchRange)
                 continue;
 
-            _popup.PopupEntity(word, uid, player, PopupType.LargeCaution);
+            _popup.PopupEntity("Judgement.", uid, player, PopupType.LargeCaution);
         }
     }
 
@@ -276,7 +341,7 @@ public sealed class ColossusSystem : EntitySystem
         if (comp.SpiralSpikeFired >= comp.SpiralSpikeCount)
         {
             comp.IsSpiralActive = false;
-            comp.NextSpiralTime = _timing.CurTime + TimeSpan.FromSeconds(comp.SpiralCooldown);
+            comp.SpiralDieAnnounced = false;
             return;
         }
 
@@ -284,9 +349,16 @@ public sealed class ColossusSystem : EntitySystem
         var cwRad = comp.SpiralCurrentAngleDeg * (MathF.PI / 180f);
         SpawnSpike(uid, origin, new Vector2(MathF.Cos(cwRad), MathF.Sin(cwRad)), comp);
 
-        // Below 50% HP: second arm goes counter-clockwise
-        if (healthRatio >= 0.5f)
+        // Below 1/3 HP: second arm counter-clockwise (matches SS13: health <= maxHp/3)
+        if (healthRatio >= 2f / 3f)
         {
+            if (!comp.SpiralDieAnnounced)
+            {
+                comp.SpiralDieAnnounced = true;
+                _chatManager.DispatchServerAnnouncement("die.", Color.Red);
+                ShakeNearbyPlayers(uid, comp);
+            }
+
             var ccwRad = -comp.SpiralCurrentAngleDeg * (MathF.PI / 180f);
             SpawnSpike(uid, origin, new Vector2(MathF.Cos(ccwRad), MathF.Sin(ccwRad)), comp);
         }
@@ -298,21 +370,40 @@ public sealed class ColossusSystem : EntitySystem
 
     // ── Helpers ───────────────────────────────────────────────────────────────
 
+    private void ShakeNearbyPlayers(EntityUid uid, ColossusComponent comp)
+    {
+        foreach (var session in _playerManager.Sessions)
+        {
+            if (session.Status != SessionStatus.InGame ||
+                session.AttachedEntity is not { Valid: true } player)
+                continue;
+
+            if (!Exists(player))
+                continue;
+
+            if (!TryComp<MobStateComponent>(player, out var ms) || ms.CurrentState != MobState.Alive)
+                continue;
+
+            if (!Transform(uid).Coordinates.TryDistance(EntityManager,
+                    Transform(player).Coordinates, out var dist) || dist > comp.TargetSearchRange)
+                continue;
+
+            _cameraRecoil.KickCamera(player, new Vector2(_random.NextFloat(-1f, 1f), _random.NextFloat(-1f, 1f)) * 5f);
+        }
+    }
+
     private void SpawnSpike(EntityUid bossUid, EntityCoordinates origin, Vector2 direction, ColossusComponent comp)
     {
         var spike = Spawn(comp.SpikePrototype, origin);
 
-        // Face direction of travel
         _xformSys.SetWorldRotation(spike, new Robust.Shared.Maths.Angle(Math.Atan2(direction.Y, direction.X)));
 
-        // Prevent boss from taking damage from own projectiles
         if (TryComp<ProjectileComponent>(spike, out var projComp))
         {
             projComp.Shooter = bossUid;
             Dirty(spike, projComp);
         }
 
-        // Apply velocity
         _physics.SetLinearVelocity(spike, direction * comp.SpikeSpeed);
     }
 

@@ -39,6 +39,7 @@
         ClothingEyesHudMedical: 1500
         ClothingEyesGlassesGar: 800
         ClothingEyesGlassesMeson: 800
+        ClothingEyesGlassesMesonLavaland: 800
         # ── Медицина ──
         FireExtinguisherMini: 400
         BruteMedkitImperialFilled: 800
@@ -50,6 +51,7 @@
         OreBag: 500
         Fulton: 1500
         MiningWhetstone: 500
+        MarkerBeacon30: 350
         Soap: 400
         # ── ПКА ──
         WeaponMiningAccelerator: 1000
@@ -62,6 +64,8 @@
         WeaponPlasmaCutterFanLavaland: 1500
         MiningDrillDiamond: 1500
         WeaponKineticCrusher: 1000
+        WeaponResonator: 710
+        WeaponResonatorUpgraded: 2000
         MiningWormholeGenerator: 900
         RescueCapsule: 700
         # ── Разное ──

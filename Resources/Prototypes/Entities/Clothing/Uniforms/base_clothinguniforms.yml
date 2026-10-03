@@ -31,6 +31,7 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
+    - Jumpsuit # Imperial Space - ингредиент ритуалов еретика
 
 - type: entity
   abstract: true
