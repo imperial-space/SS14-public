@@ -1,3 +1,4 @@
+using Robust.Shared.Utility;
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
@@ -92,7 +93,9 @@ public sealed class FissionFabricatorWindow : DefaultWindow
         }
 
         var designScroll = new ScrollContainer { HScrollEnabled = false, VerticalExpand = true, Children = { _designList } };
-        var designs = Tgui.MakeSection(Loc.GetString("fission-fabricator-ui-designs"), null, Tgui.VBox(6, categoryTabs, designScroll));
+        var designBox = Tgui.VBox(6, categoryTabs, designScroll);
+        designBox.VerticalExpand = true;
+        var designs = Tgui.MakeSection(Loc.GetString("fission-fabricator-ui-designs"), null, designBox);
         designs.HorizontalExpand = true;
         designs.VerticalExpand = true;
 
@@ -106,8 +109,8 @@ public sealed class FissionFabricatorWindow : DefaultWindow
         root.AddChild(_fabricateTab);
 
         // ── Materials ──
-        var storageSection = Tgui.MakeSection(Loc.GetString("fission-fabricator-ui-storage"), null,
-            new ScrollContainer { HScrollEnabled = false, VerticalExpand = true, Children = { _storage } });
+        var storageScroll = new ScrollContainer { HScrollEnabled = false, VerticalExpand = true, Children = { _storage } };
+        var storageSection = Tgui.MakeSection(Loc.GetString("fission-fabricator-ui-storage"), null, storageScroll);
         storageSection.VerticalExpand = true;
         _materialsTab = Tgui.VBox(0, storageSection);
         _materialsTab.VerticalExpand = true;
@@ -212,16 +215,21 @@ public sealed class FissionFabricatorWindow : DefaultWindow
             return;
         }
 
-        var table = new GridContainer { Columns = 2, HSeparationOverride = 12, VSeparationOverride = 2 };
+        // Table из tgui: строки «подпись — значение»; длинные значения переносятся, а не наезжают на соседей.
+        var table = Tgui.VBox(2);
         void Row(string label, string value)
         {
-            table.AddChild(Tgui.Text(Loc.GetString(label), Tgui.TextColor, 12, true));
-            table.AddChild(Tgui.Text(value));
+            var name = Tgui.Paragraph($"[bold]{Loc.GetString(label)}[/bold]");
+            name.HorizontalExpand = false;
+            name.MinWidth = 230;
+            name.MaxWidth = 230;
+            var text = Tgui.Paragraph(FormattedMessage.EscapeText(value));
+            text.HorizontalExpand = true;
+            table.AddChild(Tgui.HBox(12, name, text));
         }
 
         void Spacer()
         {
-            table.AddChild(new Control { MinHeight = 8 });
             table.AddChild(new Control { MinHeight = 8 });
         }
 

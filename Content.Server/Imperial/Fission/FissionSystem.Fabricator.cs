@@ -22,6 +22,7 @@ public sealed partial class FissionSystem
     [Dependency] private readonly IComponentFactory _factory = default!;
 
     private const int SheetUnits = 100;
+    private static readonly TimeSpan UnpoweredGrace = TimeSpan.FromSeconds(2);
 
     private void InitializeFabricator()
     {
@@ -175,6 +176,13 @@ public sealed partial class FissionSystem
             return;
         }
 
+        if (!_power.IsPowered(ent.Owner))
+        {
+            _popup.PopupEntity(Loc.GetString("fission-fabricator-no-power"), ent, user);
+            _audio.PlayPvs(ent.Comp.BuzzSound, ent);
+            return;
+        }
+
         if (rod.Materials.Count == 0)
         {
             _popup.PopupEntity(Loc.GetString("fission-fabricator-no-materials-defined"), ent, user);
@@ -229,14 +237,26 @@ public sealed partial class FissionSystem
                 continue;
 
             var ent = (uid, fabricator);
+            // Короткая просадка питания (ЛКП разгоняется под новую нагрузку) — пауза, а не отмена.
             if (!_power.IsPowered(uid))
             {
+                fabricator.UnpoweredSince ??= now;
+                if (now - fabricator.UnpoweredSince < UnpoweredGrace)
+                    continue;
+
+                fabricator.UnpoweredSince = null;
                 // abort_fabrication: материалы уже потрачены.
                 fabricator.Active = false;
                 SetFabricatorLoad(ent, false);
                 _audio.PlayPvs(fabricator.BuzzSound, uid);
                 UpdateFabricatorVisuals(ent);
                 continue;
+            }
+
+            if (fabricator.UnpoweredSince is { } since)
+            {
+                fabricator.EndTime += now - since;
+                fabricator.UnpoweredSince = null;
             }
 
             if (now < fabricator.EndTime)

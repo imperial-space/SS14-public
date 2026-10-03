@@ -265,6 +265,7 @@ public sealed partial class FissionCentrifugeComponent : Component
     [ViewVariables] public TimeSpan EndTime;
     [ViewVariables] public EntProtoId? Result;
     [ViewVariables] public EntityUid? PendingRod;
+    [ViewVariables] public TimeSpan? UnpoweredSince;
     [DataField] public float IdleLoad = 200;
     [DataField] public float ActiveLoad = 3000;
     [DataField] public SoundSpecifier StartSound = new SoundPathSpecifier("/Audio/Imperial/Fission/centrifuge_start.ogg");
@@ -285,6 +286,7 @@ public sealed partial class FissionFabricatorComponent : Component
     [ViewVariables] public bool Active;
     [ViewVariables] public TimeSpan EndTime;
     [ViewVariables] public EntProtoId? Schematic;
+    [ViewVariables] public TimeSpan? UnpoweredSince;
     [DataField] public SoundSpecifier PingSound = new SoundPathSpecifier("/Audio/Machines/ding.ogg");
     [DataField] public SoundSpecifier BuzzSound = new SoundPathSpecifier("/Audio/Machines/buzz-sigh.ogg");
 }

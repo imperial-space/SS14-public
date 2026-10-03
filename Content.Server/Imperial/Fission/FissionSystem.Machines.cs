@@ -621,14 +621,26 @@ public sealed partial class FissionSystem
                 continue;
 
             var ent = (uid, centrifuge);
+            // Короткая просадка питания (ЛКП разгоняется под новую нагрузку) — пауза, а не отмена.
             if (!_power.IsPowered(uid))
             {
+                centrifuge.UnpoweredSince ??= now;
+                if (now - centrifuge.UnpoweredSince < UnpoweredGrace)
+                    continue;
+
+                centrifuge.UnpoweredSince = null;
                 centrifuge.Active = false;
                 SetCentrifugeLoad(ent, false);
                 _audio.PlayPvs(centrifuge.BuzzSound, uid);
                 _ambient.SetAmbience(uid, false);
                 UpdateCentrifugeVisuals(ent);
                 continue;
+            }
+
+            if (centrifuge.UnpoweredSince is { } since)
+            {
+                centrifuge.EndTime += now - since;
+                centrifuge.UnpoweredSince = null;
             }
 
             if (now < centrifuge.EndTime)

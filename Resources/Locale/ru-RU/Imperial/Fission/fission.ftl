@@ -136,6 +136,7 @@ fission-centrifuge-examine-eject = [color=lightblue]Стержень можно 
 # Фабрикатор
 fission-fabricator-panel-open-access = Нельзя пользоваться фабрикатором с открытой панелью!
 fission-fabricator-busy = Стержень уже изготавливается!
+fission-fabricator-no-power = У фабрикатора нет питания!
 fission-fabricator-no-materials-defined = У этого чертежа не заданы материалы — сообщите разработчикам!
 fission-fabricator-not-enough = Недостаточно материалов! Нужно { $amount } единиц: { $material }!
 fission-fabricator-ejected = Фабрикатор выдаёт листов: { $sheets }.

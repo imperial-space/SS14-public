@@ -437,7 +437,6 @@
     board: ImperialFissionFabricatorBoard
   - type: WiresPanel
   - type: MaterialStorage
-    storageLimit: 7500
     whitelist:
       tags:
       - Sheet
@@ -459,7 +458,6 @@
   - type: FissionFabricator
   - type: ActivatableUI
     key: enum.FissionFabricatorUiKey.Key
-  - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:
       enum.FissionFabricatorUiKey.Key:

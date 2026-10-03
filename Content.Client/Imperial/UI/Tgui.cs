@@ -242,6 +242,9 @@ public static class Tgui
 
         content.Margin = new Thickness(6, 8, 6, 8);
         box.AddChild(content);
+        // Секция с fill (Section fill в tgui): растягивается вместе с содержимым.
+        if (content.VerticalExpand)
+            box.VerticalExpand = true;
 
         return new PanelContainer
         {
