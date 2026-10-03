@@ -1,271 +1,364 @@
 # =====================================================================
-# Bluespace Artillery (BSA) — Entities
+# Блюспейс-артиллерия 1 в 1 с SS13 (code/modules/station_goals/bsa.dm)
 # =====================================================================
 
-# ────────────── Abstract Bases ──────────────
+- type: stationGoal
+  id: StationGoalBSA
+  text: station-goal-bsa
+
+# ────────────── Части: генератор, фьюзор, ствол ──────────────
 
 - type: entity
-  id: BSABase
+  id: ImperialBSAPartBase
+  parent: [ BaseMachine, ConstructibleMachine ]
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/bsa/parts.rsi
+    noRot: true
+  - type: Rotatable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+
+- type: entity
+  id: ImperialBSABack
+  parent: ImperialBSAPartBase
+  name: Bluespace Artillery Generator
+  description: Generates cannon pulse. Needs to be linked with a fusor.
+  components:
+  - type: Sprite
+    state: back
+  - type: Machine
+    board: ImperialBSABackCircuitboard
+  - type: BSAPart
+    kind: Back
+
+- type: entity
+  id: ImperialBSAFront
+  parent: ImperialBSAPartBase
+  name: Bluespace Artillery Bore
+  description: Do not stand in front of cannon during operation. Needs to be linked with a fusor.
+  components:
+  - type: Sprite
+    state: front
+  - type: Machine
+    board: ImperialBSAFrontCircuitboard
+  - type: BSAPart
+    kind: Front
+
+- type: entity
+  id: ImperialBSAMiddle
+  parent: ImperialBSAPartBase
+  name: Bluespace Artillery Fusor
+  description: Contents classified by Nanotrasen Naval Command. Needs to be linked with the other BSA parts using a multitool.
+  components:
+  - type: Sprite
+    state: middle
+  - type: Machine
+    board: ImperialBSAMiddleCircuitboard
+  - type: BSAPart
+    kind: Middle
+
+# ────────────── Собранная пушка ──────────────
+
+- type: entity
+  id: ImperialBSACannonBase
   abstract: true
   placement:
     mode: SnapgridCenter
   components:
   - type: Clickable
   - type: InteractionOutline
-  - type: Anchorable
-  - type: Rotatable
+  - type: Transform
+    anchored: true
+    noRot: true
   - type: Physics
     bodyType: Static
+  - type: Sprite
+    sprite: Imperial/bsa/cannon.rsi
+    drawdepth: Objects
+    noRot: true
+  - type: ApcPowerReceiver
+    powerLoad: 2000
+  - type: ExtensionCableReceiver
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: ImperialBSACannonWest
+  parent: ImperialBSACannonBase
+  name: Bluespace Artillery
+  description: Long range bluespace artillery.
+  components:
+  - type: Sprite
+    state: cannon_west
+    offset: -0.953,-0.3125
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
-        density: 400
+          bounds: "-6.45,-0.45,4.45,0.45"
+        density: 1000
         mask:
         - MachineMask
         layer:
         - MachineLayer
+  - type: BSACannon
+    west: true
+    top: ImperialBSACannonTopWest
+    splash: ImperialBSASplashWest
+
+- type: entity
+  id: ImperialBSACannonEast
+  parent: ImperialBSACannonBase
+  name: Bluespace Artillery
+  description: Long range bluespace artillery.
+  components:
+  - type: Sprite
+    state: cannon_east
+    offset: 1.047,-0.3125
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-4.45,-0.45,6.45,0.45"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: BSACannon
+    west: false
+    top: ImperialBSACannonTopEast
+    splash: ImperialBSASplashEast
+
+# Верхний слой пушки поверх мобов (top_layer).
+- type: entity
+  id: ImperialBSACannonTopWest
+  categories: [ HideSpawnMenu ]
+  components:
   - type: Transform
-    anchored: true
-  - type: Pullable
-  - type: Appearance
-
-- type: entity
-  id: BSAFinishedBase
-  parent: BSABase
-  abstract: true
-  components:
-  - type: Construction
-    node: completed
-
-- type: entity
-  id: BSAUnfinishedBase
-  parent: BSABase
-  abstract: true
-  components:
-  - type: Sprite
-    sprite: Structures/Power/Generation/PA/end_cap.rsi
-    layers:
-    - state: unwired
-      map: ["enum.ConstructionVisuals.Layer"]
-  - type: GenericVisualizer
-    visuals:
-      enum.ConstructionVisuals.Key:
-        enum.ConstructionVisuals.Layer:
-          start: {state: unwired}
-          wired: {state: wired}
-  - type: Construction
-    node: start
-    defaultTarget: completed
-
-# ────────────── Control Box (main part) ──────────────
-
-- type: entity
-  id: BSAControlBox
-  parent: BSAFinishedBase
-  name: Консоль блюспейс-артиллерии
-  description: Центральная часть и командный пост блюспейс-артиллерии. Управляет наведением и выстрелом.
-  suffix: BSA
-  components:
-  - type: Sprite
-    drawdepth: Objects
     noRot: true
-    sprite: Structures/Power/Generation/PA/control_box.rsi
+  - type: Sprite
+    sprite: Imperial/bsa/cannon.rsi
+    state: top_west
+    offset: -0.953,-0.3125
+    drawdepth: OverMobs
+    noRot: true
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: ImperialBSACannonTopEast
+  parent: ImperialBSACannonTopWest
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: top_east
+    offset: 1.047,-0.3125
+
+# ────────────── Консоль ──────────────
+
+- type: entity
+  id: ImperialBSAConsole
+  parent: BaseComputer
+  name: bluespace artillery control
+  description: Controls the bluespace artillery.
+  components:
+  - type: Sprite
+    sprite: Imperial/bsa/parts.rsi
     layers:
-    - state: completed
-      map: ["base"]
-    - state: cannon_east
-      sprite: Imperial/bsa/bluespace_artillery.rsi
-      map: ["cannon"]
-      visible: false
-    - state: top_east
-      sprite: Imperial/bsa/bluespace_artillery.rsi
-      map: ["top"]
-      shader: unshaded
-      visible: false
-  - type: BSAControlBox
+    - map: [ "computerLayerBody" ]
+      state: control
+  - type: GenericVisualizer
+    visuals: {}
   - type: ApcPowerReceiver
-    powerLoad: 5000
-  - type: ExtensionCableReceiver
-  - type: NodeContainer
-    examinable: true
-    nodes:
-      input:
-        !type:CableDeviceNode
-        nodeGroupID: Apc
-  - type: Construction
-    graph: BSAControlBox
+    needsPower: false
+  - type: Computer
+    board: ImperialBSAConsoleCircuitboard
+  - type: BSAConsole
   - type: ActivatableUI
-    key: enum.BSAControlBoxUiKey.Key
-  - type: ActivatableUIRequiresAccess
-  - type: ActivatableUIRequiresPower
+    key: enum.BSAConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-      enum.BSAControlBoxUiKey.Key:
+      enum.BSAConsoleUiKey.Key:
         type: BSABoundUserInterface
-  - type: MultipartMachine
-    parts:
-      enum.BSAParts.Front:
-        component: BSAFrontPart
-        offset: 1, 0
-        rotation: 0
-        ghostProto: BSAFrontPart
-        graph: BSAFrontPart
-        expectedNode: completed
-      enum.BSAParts.Back:
-        component: BSABackPart
-        offset: -1, 0
-        rotation: 0
-        ghostProto: BSABackPart
-        graph: BSABackPart
-        expectedNode: completed
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 500
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-    - trigger:
-        !type:DamageTrigger
-        damage: 250
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          SheetSteel1:
-            min: 5
-            max: 10
-      - !type:DoActsBehavior
-        acts: ["Breakage"]
-  - type: AccessReader
-    access: [["HeadOfSecurity"]]
+  - type: PointLight
+    enabled: false
 
-# Unfinished Control Box
-- type: entity
-  id: BSAControlBoxUnfinished
-  parent: BSAUnfinishedBase
-  name: Консоль блюспейс-артиллерии
-  suffix: Unfinished
-  description: Недостроенная консоль BSA.
-  components:
-  - type: Sprite
-    sprite: Structures/Power/Generation/PA/control_box.rsi
-  - type: Construction
-    graph: BSAControlBox
-
-# ────────────── Front Part ──────────────
+# ────────────── Эффекты ──────────────
 
 - type: entity
-  id: BSAFrontPart
-  parent: BSAFinishedBase
-  name: Ствол блюспейс-артиллерии
-  description: Передний ствольный узел BSA. Устанавливается впереди консоли.
-  suffix: BSA
+  id: ImperialBSABeam
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Structures/Power/Generation/PA/end_cap.rsi
-    layers:
-    - state: completed
-  - type: BSAFrontPart
-  - type: MultipartMachinePart
-  - type: Construction
-    graph: BSAFrontPart
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-
-# Unfinished Front Part
-- type: entity
-  id: BSAFrontPartUnfinished
-  parent: BSAUnfinishedBase
-  name: Ствол блюспейс-артиллерии
-  suffix: Unfinished
-  description: Недостроенный ствольный узел BSA.
-  components:
-  - type: Sprite
-    sprite: Structures/Power/Generation/PA/end_cap.rsi
-  - type: BSAFrontPart
-  - type: MultipartMachinePart
-  - type: Construction
-    graph: BSAFrontPart
-
-# ────────────── Back Part ──────────────
-
-- type: entity
-  id: BSABackPart
-  parent: BSAFinishedBase
-  name: Казённик блюспейс-артиллерии
-  description: Задний блок BSA. Содержит конденсаторы и энергоблок.
-  suffix: BSA
-  components:
-  - type: Sprite
-    sprite: Structures/Power/Generation/PA/power_box.rsi
-    layers:
-    - state: completed
-  - type: BSABackPart
-  - type: MultipartMachinePart
-  - type: Construction
-    graph: BSABackPart
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-
-# Unfinished Back Part
-- type: entity
-  id: BSABackPartUnfinished
-  parent: BSAUnfinishedBase
-  name: Казённик блюспейс-артиллерии
-  suffix: Unfinished
-  description: Недостроенный задний блок BSA.
-  components:
-  - type: Sprite
-    sprite: Structures/Power/Generation/PA/power_box.rsi
-  - type: BSABackPart
-  - type: MultipartMachinePart
-  - type: Construction
-    graph: BSABackPart
-
-# ────────────── Shot Projectile ──────────────
-
-- type: entity
-  id: BSAShotProjectile
-  name: BSA вспышка выстрела
-  noSpawn: true
-  components:
-  - type: Sprite
+    sprite: Imperial/bsa/beam.rsi
+    state: bsa_beam
     drawdepth: Effects
     noRot: false
-    sprite: Imperial/bsa/shot.rsi
-    layers:
-    - state: bsa_impact_ex
-      map: ["effect"]
-      shader: unshaded
-  - type: AnimationPlayer
-  - type: Appearance
+    shader: unshaded
   - type: TimedDespawn
-    lifetime: 1.0
+    lifetime: 5
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: ImperialBSASplashWest
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/bsa/splash.rsi
+    state: beam_splash_w
+    drawdepth: Effects
+    shader: unshaded
+  - type: TimedDespawn
+    lifetime: 5
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: ImperialBSASplashEast
+  parent: ImperialBSASplashWest
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: beam_splash_e
+
+- type: entity
+  id: ImperialBSAImpact
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/bsa/shot.rsi
+    state: bsa_impact_ex
+    offset: 0,1
+    drawdepth: Effects
+    noRot: true
+    shader: unshaded
+  - type: TimedDespawn
+    lifetime: 1
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# temp_visual/point: подсвечивает клетки, мешающие развёртыванию.
+- type: entity
+  id: ImperialBSABlockedMarker
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Interface/Misc/pointing.rsi
+    state: pointing
+    drawdepth: Overlays
+    noRot: true
+  - type: TimedDespawn
+    lifetime: 2
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# ────────────── Платы ──────────────
+
+- type: entity
+  id: ImperialBSABackCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Bluespace Artillery Generator machine board
+  components:
+  - type: Sprite
+    state: command
+  - type: MachineBoard
+    prototype: ImperialBSABack
+    stackRequirements:
+      Manipulator: 5
+      Cable: 2
+
+- type: entity
+  id: ImperialBSAFrontCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Bluespace Artillery Bore machine board
+  components:
+  - type: Sprite
+    state: command
+  - type: MachineBoard
+    prototype: ImperialBSAFront
+    stackRequirements:
+      Manipulator: 5
+      Cable: 2
+
+- type: entity
+  id: ImperialBSAMiddleCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Bluespace Artillery Fusor machine board
+  components:
+  - type: Sprite
+    state: command
+  - type: MachineBoard
+    prototype: ImperialBSAMiddle
+    stackRequirements:
+      Plasma: 20
+      Cable: 2
+
+- type: entity
+  id: ImperialBSAConsoleCircuitboard
+  parent: BaseComputerCircuitboard
+  name: Bluespace Artillery Controls computer board
+  components:
+  - type: Sprite
+    state: cpu_command
+  - type: ComputerBoard
+    prototype: ImperialBSAConsole
+
+# ────────────── Снабжение ──────────────
+
+- type: entity
+  id: ImperialBSAGuidePaper
+  parent: Paper
+  name: Bluespace Artillery (BSA) Assembly Instructions
+  components:
+  - type: Paper
+    content: bsa-guide-paper-content
+
+- type: entity
+  parent: CrateEngineeringSecure
+  id: ImperialCrateBSA
+  name: bluespace artillery parts crate
+  description: The pride of Nanotrasen Naval Command.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialBSAGuidePaper
+        - id: ImperialBSAFrontCircuitboard
+        - id: ImperialBSAMiddleCircuitboard
+        - id: ImperialBSABackCircuitboard
+        - id: ImperialBSAConsoleCircuitboard
+
+- type: cargoProduct
+  id: ImperialBSAParts
+  icon:
+    sprite: Imperial/bsa/parts.rsi
+    state: middle
+  product: ImperialCrateBSA
+  cost: 6000
+  category: cargoproduct-category-name-engineering
+  group: market
