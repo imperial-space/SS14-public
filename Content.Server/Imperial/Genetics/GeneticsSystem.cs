@@ -359,7 +359,7 @@ public sealed class GeneticsSystem : EntitySystem
         var missing = new ComponentRegistry();
         foreach (var (name, entry) in proto.Components)
         {
-            if (EntityManager.HasComponent(uid, _compFactory.GetRegistration(name).Type))
+            if (HasComp(uid, _compFactory.GetRegistration(name).Type))
                 continue;
 
             missing[name] = entry;
@@ -425,7 +425,7 @@ public sealed class GeneticsSystem : EntitySystem
 
         foreach (var name in active.AddedComponents)
         {
-            EntityManager.RemoveComponent(uid, _compFactory.GetRegistration(name).Type);
+            RemComp(uid, _compFactory.GetRegistration(name).Type);
         }
 
         foreach (var action in active.ActionEntities)
