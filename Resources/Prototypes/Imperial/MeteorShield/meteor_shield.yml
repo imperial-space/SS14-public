@@ -1,0 +1,211 @@
+# Станционные щиты (code/modules/station_goals/meteor_shield.dm из SS13).
+
+- type: stationGoal
+  id: StationGoalMeteorShield
+  text: station-goal-meteor-shield
+
+- type: entity
+  id: ImperialMeteorShieldSatellite
+  parent: BaseStructure
+  name: Meteor Shield Satellite
+  description: Meteor shield satellite.
+  components:
+  - type: Transform
+    anchored: false
+    noRot: true
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Pullable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/MeteorShield/satellite.rsi
+    noRot: true
+    layers:
+    - state: inactive
+      map: [ "base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SatelliteVisuals.Active:
+        base:
+          True: { state: active }
+          False: { state: inactive }
+  - type: MeteorShieldSatellite
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: StaticPrice
+    price: 500
+
+# Сигнал взломанного спутника («Сигнал привлечения повреждённого метеоритного щита»).
+- type: entity
+  id: ImperialMeteorShieldSignal
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WarpPoint
+    location: Сигнал привлечения повреждённого метеоритного щита
+    follow: true
+
+- type: entity
+  id: ImperialMeteorShieldBeam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/MeteorShield/beam.rsi
+    state: sat_beam
+    drawdepth: Effects
+    noRot: false
+    shader: unshaded
+  - type: TimedDespawn
+    lifetime: 0.5
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# ────────────── Консоль ──────────────
+
+- type: entity
+  id: ImperialSatelliteControl
+  parent: BaseComputer
+  name: satellite control
+  description: Used to control the satellite network.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "computerLayerBody" ]
+      state: computer
+    - map: [ "computerLayerKeyboard" ]
+      state: generic_keyboard
+    - map: [ "computerLayerScreen" ]
+      state: comm_monitor
+    - map: [ "computerLayerKeys" ]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Computer
+    board: ImperialSatelliteControlCircuitboard
+  - type: SatelliteControl
+  - type: ActivatableUI
+    key: enum.SatelliteControlUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SatelliteControlUiKey.Key:
+        type: SatelliteControlBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+
+- type: entity
+  id: ImperialSatelliteControlCircuitboard
+  parent: BaseComputerCircuitboard
+  name: satellite control computer board
+  components:
+  - type: Sprite
+    state: cpu_engineering
+  - type: ComputerBoard
+    prototype: ImperialSatelliteControl
+
+# ────────────── Тёмно-материальный метеор ──────────────
+
+- type: entity
+  id: ImperialDarkMatteor
+  parent: BaseMeteor
+  name: dark matt-eor
+  description: The most widely accepted theory is that dark matter is made up of weakly interacting massive particles (WIMPs). But seeing this malevolent force of imminent death careening towards you, gotta admit, it doesn't look so WIMPy anymore...
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/MeteorShield/dark_matteor.rsi
+    state: dark_matter
+    shader: unshaded
+  - type: PointLight
+    radius: 4
+    energy: 3
+    color: "#6a00ff"
+  - type: AmbientSound
+    range: 15
+    volume: 0
+    sound:
+      path: /Audio/Effects/singularity.ogg
+  - type: Explosive
+    totalIntensity: 800
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 3000
+      behaviors:
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Singularity:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# ────────────── Снабжение ──────────────
+
+- type: entity
+  parent: CrateEngineeringSecure
+  id: ImperialCrateMeteorShieldSatellites
+  name: meteor shield satellites crate
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialMeteorShieldSatellite
+          amount: 3
+
+- type: entity
+  parent: CrateEngineeringSecure
+  id: ImperialCrateSatelliteControl
+  name: shield system control board crate
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialSatelliteControlCircuitboard
+
+- type: cargoProduct
+  id: ImperialMeteorShieldSatellites
+  icon:
+    sprite: Imperial/MeteorShield/satellite.rsi
+    state: inactive
+  product: ImperialCrateMeteorShieldSatellites
+  cost: 1500
+  category: cargoproduct-category-name-engineering
+  group: market
+
+- type: cargoProduct
+  id: ImperialSatelliteControlBoard
+  icon:
+    sprite: Objects/Misc/module.rsi
+    state: cpu_engineering
+  product: ImperialCrateSatelliteControl
+  cost: 2500
+  category: cargoproduct-category-name-engineering
+  group: market
