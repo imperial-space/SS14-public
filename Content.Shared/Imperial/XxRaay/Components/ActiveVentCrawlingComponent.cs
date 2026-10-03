@@ -2,5 +2,5 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.XxRaay.Components;
 
-[RegisterComponent, NetworkedComponent, ComponentProtoName("XxRaayActiveVentCrawling")]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class ActiveVentCrawlingComponent : Component;
