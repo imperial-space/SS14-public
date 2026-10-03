@@ -1,0 +1,9 @@
+- files: ["harvester.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from ParadiseSS13"
+  source: "https://github.com/ParadiseSS13/Paradise/blob/master/sound/AI/harvester.ogg"
+
+- files: ["eleczap.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from ParadiseSS13"
+  source: "https://github.com/ParadiseSS13/Paradise/blob/master/sound/effects/eleczap.ogg"
