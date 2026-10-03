@@ -1,0 +1,727 @@
+# Ядерный реактор газового охлаждения NGCR-5600 из SS220 Paradise (code/modules/power/engines/fission).
+# Ядро 3×3; камеры со стержнями ставятся вплотную к корпусу и друг к другу.
+# Газовые узлы ставятся трубой наружу, ядро — с противоположной стороны узла.
+# Терминал собирается из 10 отрезков ВВ кабеля, применённых к ядру.
+
+- type: entity
+  id: ImperialFissionReactor
+  parent: BaseStructure
+  name: nuclear fission reactor
+  description: An ancient yet reliable form of power generation utilizing fissile materials to generate heat.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.45,-1.45,1.45,1.45"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: Imperial/Fission/reactor.rsi
+    noRot: true
+    drawdepth: Objects
+    layers:
+    - state: reactor
+      map: [ "enum.FissionReactorLayers.Base" ]
+    - state: top_5
+      map: [ "enum.FissionReactorLayers.Rods" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.FissionReactorVisuals.State:
+        enum.FissionReactorLayers.Base:
+          Off: { state: reactor }
+          Starting: { state: reactor_startup }
+          On: { state: reactor_active }
+          Hot: { state: reactor_hot }
+          Overheat: { state: reactor_overheat }
+          Maintenance: { state: reactor_open }
+          Broken: { state: reactor_broken }
+          Meltdown: { state: reactor_meltdown }
+      enum.FissionReactorVisuals.Rods:
+        enum.FissionReactorLayers.Rods:
+          -1: { visible: false }
+          0: { visible: true, state: top_0 }
+          1: { visible: true, state: top_1 }
+          2: { visible: true, state: top_2 }
+          3: { visible: true, state: top_3 }
+          4: { visible: true, state: top_4 }
+          5: { visible: true, state: top_5 }
+  - type: PointLight
+    enabled: false
+    radius: 2
+    energy: 3
+    color: "#569fff"
+    castShadows: false
+  - type: AmbientSound
+    enabled: false
+    volume: -2
+    range: 10
+    sound:
+      path: /Audio/Imperial/Fission/reactor_loop.ogg
+  - type: RadiationSource
+    enabled: false
+    intensity: 1
+    slope: 0.3
+  - type: FissionReactor
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: WarpPoint
+    follow: true
+    location: fission reactor
+  - type: GuideHelp
+    guides:
+    - Power
+
+- type: entity
+  id: ImperialFissionRadiationPulse
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadiationSource
+    intensity: 5
+  - type: TimedDespawn
+    lifetime: 2
+  - type: EmitSoundOnSpawn
+    sound:
+      collection: RadiationPulse
+
+- type: entity
+  id: ImperialFissionSmoke
+  name: smoke
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Occluder
+  - type: Sprite
+    sprite: Effects/chemsmoke.rsi
+    state: chemsmoke
+    color: "#3a3a3a"
+    drawdepth: Effects
+  - type: TimedDespawn
+    lifetime: 8
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# ────────────── Камера стержня ──────────────
+
+- type: entity
+  id: ImperialFissionChamber
+  parent: [ BaseStructure, ConstructibleMachine ]
+  name: rod housing chamber
+  description: A chamber used to house nuclear rods of various types to facilitate a fission reaction.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        hard: false
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: Imperial/Fission/chamber.rsi
+    noRot: true
+    offset: 0,0.5
+    drawdepth: FloorObjects
+    layers:
+    - state: chamber_down
+      map: [ "enum.FissionChamberLayers.Base" ]
+    - state: welded
+      map: [ "enum.FissionChamberLayers.Welded" ]
+      visible: false
+    - state: red
+      map: [ "enum.FissionChamberLayers.Status" ]
+      shader: unshaded
+      visible: false
+    - state: display_fuel
+      map: [ "enum.FissionChamberLayers.Display" ]
+      shader: unshaded
+      visible: false
+    - state: dur_5
+      map: [ "enum.FissionChamberLayers.Durability" ]
+      shader: unshaded
+      visible: false
+    - state: fuel_overlay
+      map: [ "enum.FissionChamberLayers.RodOverlay" ]
+      visible: false
+    - state: door_open
+      map: [ "enum.FissionChamberLayers.Door" ]
+      visible: false
+  - type: Appearance
+  - type: AnimationPlayer
+  - type: FissionChamberVisuals
+  - type: FissionChamber
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      fission_rod: !type:ContainerSlot
+  - type: Machine
+    board: ImperialFissionChamberBoard
+  - type: WiresPanel
+  - type: ApcPowerReceiver
+    powerLoad: 100
+  - type: ExtensionCableReceiver
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: ImperialFissionChamberUranium
+  parent: ImperialFissionChamber
+  suffix: Uranium 238
+  components:
+  - type: FissionChamber
+    startingRod: ImperialFissionRodUranium238
+
+- type: entity
+  id: ImperialFissionChamberHeavyWater
+  parent: ImperialFissionChamber
+  suffix: Heavy water
+  components:
+  - type: FissionChamber
+    startingRod: ImperialFissionRodHeavyWater
+
+# ────────────── Газовые узлы ──────────────
+
+- type: entity
+  id: ImperialFissionGasNodeBase
+  parent: [ BaseMachine, ConstructibleMachine ]
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    noRot: false
+  - type: Sprite
+    sprite: Imperial/Fission/machines.rsi
+    noRot: true
+    state: gas_node
+    drawdepth: ThinPipe
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.3"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Rotatable
+  - type: AtmosDevice
+  - type: AtmosPipeColor
+  - type: PipeRestrictOverlap
+  - type: NodeContainer
+    nodes:
+      pipe:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+  - type: WiresPanel
+
+- type: entity
+  id: ImperialFissionGasIntake
+  parent: ImperialFissionGasNodeBase
+  name: reactor gas intake
+  description: A sturdy-looking gas inlet that injects gas into the reactor.
+  components:
+  - type: FissionGasNode
+    intake: true
+  - type: Machine
+    board: ImperialFissionGasNodeBoard
+
+- type: entity
+  id: ImperialFissionGasExtractor
+  parent: ImperialFissionGasNodeBase
+  name: reactor gas extractor
+  description: A sturdy-looking gas outlet that pulls gas out of the reactor.
+  components:
+  - type: FissionGasNode
+    intake: false
+  - type: Machine
+    board: ImperialFissionGasNodeBoard
+
+- type: entity
+  id: ImperialFissionGasModerator
+  parent: ImperialFissionGasNodeBase
+  name: reactor gas moderator
+  description: A sturdy-looking gas inlet that feeds moderator gas into the reactor core.
+  components:
+  - type: Sprite
+    color: "#c8a0ff"
+  - type: FissionGasNode
+    moderator: true
+  - type: Machine
+    board: ImperialFissionGasModeratorBoard
+
+# ────────────── Силовой терминал и консоль ──────────────
+
+- type: entity
+  id: ImperialFissionPowerTerminal
+  name: reactor output terminal
+  description: A bundle of heavy watt power cables for managing power output from the reactor.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Structures/Power/cable_terminal.rsi
+    state: term
+    drawdepth: FloorObjects
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      output:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: PowerSupplier
+    supplyRate: 0
+    supplyRampRate: 1000000
+    supplyRampTolerance: 1000000
+  - type: PowerMonitoringDevice
+    group: Generator
+    loadNode: output
+    sprite: Imperial/Fission/reactor.rsi
+    state: reactor_active
+  - type: FissionPowerTerminal
+
+- type: entity
+  id: ImperialFissionMonitor
+  parent: BaseComputerAiAccess
+  name: NGCR monitoring console
+  description: Used to monitor the Nanotrasen Gas Cooled Fission Reactor.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: engine
+    - map: ["computerLayerKeys"]
+      state: power_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#e6e227"
+  - type: Computer
+    board: ImperialFissionMonitorBoard
+  - type: FissionMonitor
+  - type: ActivatableUI
+    key: enum.FissionMonitorUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.FissionMonitorUiKey.Key:
+        type: FissionMonitorBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+
+# ────────────── Центрифуга и фабрикатор ──────────────
+
+- type: entity
+  id: ImperialFissionCentrifuge
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: fuel enrichment centrifuge
+  description: An advanced device capable of separating and collecting fissile materials from enriched fuel rods.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Fission/machines.rsi
+    snapCardinals: true
+    layers:
+    - state: centrifuge_empty
+      map: [ "enum.FissionMachineLayers.Base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.FissionMachineVisuals.State:
+        enum.FissionMachineLayers.Base:
+          centrifuge_empty: { state: centrifuge_empty }
+          centrifuge_full: { state: centrifuge_full }
+          centrifuge_on: { state: centrifuge_on }
+          centrifuge_maint: { state: centrifuge_maint }
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: AmbientSound
+    enabled: false
+    volume: -4
+    range: 5
+    sound:
+      path: /Audio/Imperial/Fission/centrifuge_mid.ogg
+  - type: FissionCentrifuge
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      fission_centrifuge: !type:ContainerSlot
+  - type: Machine
+    board: ImperialFissionCentrifugeBoard
+  - type: WiresPanel
+  - type: UserInterface
+    interfaces:
+      enum.FissionCentrifugeUiKey.Key:
+        type: FissionCentrifugeBoundUserInterface
+
+- type: entity
+  id: ImperialFissionFabricator
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: nuclear fuel rod fabricator
+  description: A highly specialized fabricator for crafting nuclear rods.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Fission/machines.rsi
+    snapCardinals: true
+    layers:
+    - state: rod_fab
+      map: [ "enum.FissionMachineLayers.Base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.FissionMachineVisuals.State:
+        enum.FissionMachineLayers.Base:
+          rod_fab: { state: rod_fab }
+          rod_fab_on: { state: rod_fab_on }
+          rod_fab_maint: { state: rod_fab_maint }
+  - type: Machine
+    board: ImperialFissionFabricatorBoard
+  - type: WiresPanel
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Sheet
+      - RawMaterial
+      - Ingot
+    materialWhiteList:
+    - Steel
+    - Glass
+    - Silver
+    - Gold
+    - Diamond
+    - Plasma
+    - Uranium
+    - Bananium
+    - Plasteel
+    - Plastic
+  - type: ApcPowerReceiver
+    powerLoad: 50
+  - type: FissionFabricator
+  - type: ActivatableUI
+    key: enum.FissionFabricatorUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.FissionFabricatorUiKey.Key:
+        type: FissionFabricatorBoundUserInterface
+
+# ────────────── Платы ──────────────
+
+- type: entity
+  id: ImperialFissionChamberBoard
+  parent: BaseMachineCircuitboard
+  name: reactor rod chamber machine board
+  description: A machine printed circuit board for a reactor rod housing chamber.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialFissionChamber
+    stackRequirements:
+      Manipulator: 1
+      Plasteel: 2
+      Steel: 2
+      Cable: 5
+
+- type: entity
+  id: ImperialFissionGasNodeBoard
+  parent: BaseMachineCircuitboard
+  name: reactor gas node machine board
+  description: A machine printed circuit board for a reactor gas intake.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialFissionGasIntake
+    stackRequirements:
+      Steel: 2
+      Cable: 2
+
+- type: entity
+  id: ImperialFissionGasModeratorBoard
+  parent: BaseMachineCircuitboard
+  name: reactor moderator node machine board
+  description: A machine printed circuit board for a reactor gas moderator.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialFissionGasModerator
+    stackRequirements:
+      Steel: 2
+      Cable: 2
+
+- type: entity
+  id: ImperialFissionCentrifugeBoard
+  parent: BaseMachineCircuitboard
+  name: fuel enrichment centrifuge machine board
+  description: A machine printed circuit board for a fuel enrichment centrifuge.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialFissionCentrifuge
+    stackRequirements:
+      Manipulator: 4
+
+- type: entity
+  id: ImperialFissionFabricatorBoard
+  parent: BaseMachineCircuitboard
+  name: nuclear rod fabricator machine board
+  description: A machine printed circuit board for a nuclear fuel rod fabricator.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialFissionFabricator
+    stackRequirements:
+      Manipulator: 2
+      Steel: 2
+      Glass: 2
+
+- type: entity
+  id: ImperialFissionMonitorBoard
+  parent: BaseComputerCircuitboard
+  name: NGCR monitoring console board
+  description: A computer printed circuit board for a NGCR monitoring console.
+  components:
+  - type: Sprite
+    state: cpu_engineering
+  - type: ComputerBoard
+    prototype: ImperialFissionMonitor
+
+# ────────────── Прочее ──────────────
+
+- type: entity
+  id: ImperialFissionFabricatorUpgrade
+  parent: BaseItem
+  name: nuclear fabricator upgrade
+  description: A design disk containing a dizzying amount of designs and improvements for nuclear rod fabrication.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: datadisk_base
+  - type: Item
+    size: Tiny
+  - type: FissionFabricatorUpgrade
+
+- type: entity
+  id: ImperialFissionStarter
+  parent: [ GrenadeBase, TimerGrenadeBase ]
+  name: neutronic agitator
+  description: A throwable device capable of inducing an artificial startup in rod chambers. Won't do anything for chambers not positioned correctly, or chambers without any rods inserted.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/empgrenade.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: FissionStarterGrenade
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound:
+      path: /Audio/Effects/Lightning/lightningbolt.ogg
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
+
+- type: entity
+  id: ImperialFissionSlag
+  parent: BaseItem
+  name: corium slag
+  description: A large clump of active nuclear fuel fused with structural reactor metals.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fission/slag.rsi
+    state: slag
+  - type: Item
+    size: Huge
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 15
+  - type: RadiationSource
+    intensity: 3
+    slope: 0.5
+  - type: PointLight
+    radius: 1.5
+    energy: 1
+    color: "#ff8a30"
+
+- type: entity
+  id: ImperialFissionWaste
+  name: plutonium sludge
+  description: A writhing pool of heavily irradiated, spent reactor fuel. You probably shouldn't step through this...
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Fission/waste.rsi
+    state: nuclearwaste
+    color: "#ff9effa0"
+    drawdepth: Puddles
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      slipFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        mask:
+        - ItemMask
+        layer:
+        - SlipLayer
+        hard: false
+  - type: PointLight
+    radius: 3
+    energy: 1
+    color: "#00ffff"
+  - type: RadiationSource
+    intensity: 1
+    slope: 0.5
+  - type: FissionWaste
+
+- type: entity
+  id: ImperialFissionWasteEpicenter
+  parent: ImperialFissionWaste
+  name: dense nuclear sludge
+  components:
+  - type: RadiationSource
+    intensity: 2
+    slope: 0.5
+
+- type: entity
+  id: ImperialFissionPool
+  name: holding pool
+  description: A pool of water for safely storing spent nuclear rods. Rods kept in it do not emit radiation.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Fission/pool.rsi
+    drawdepth: FloorTiles
+    layers:
+    - state: pool_round
+    - state: spentfuelpool
+  - type: Physics
+    bodyType: Static
+  - type: FissionPool
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepWater
+
+- type: entity
+  id: ImperialFissionEjectedRod
+  name: nuclear coolant rod
+  description: Getting hit by this might make you wish you got radiation sickness instead.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Fission/rods.rsi
+    state: coolant_water
+    noRot: false
+  - type: ImmovableRod
+    minSpeed: 15
+    maxSpeed: 15
+    shouldGib: false
+    damage:
+      types:
+        Blunt: 25
+  - type: MovementIgnoreGravity
+    weightless: true
+  - type: Physics
+    bodyType: Dynamic
+  - type: TileFrictionModifier
+    modifier: 0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 1
+        hard: false
+        layer:
+        - Impassable
+        - Opaque
+  - type: ContainerContainer
+    containers:
+      fission_ejected: !type:ContainerSlot
+  - type: FissionEjectedRod
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  id: ImperialFissionGuide
+  parent: Paper
+  name: paper- 'NGCR-5600 startup and meltdown'
+  components:
+  - type: Paper
+    content: fission-guide-content
