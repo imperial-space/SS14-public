@@ -1,0 +1,18 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation/BandaStation https://github.com/ss220club/BandaStation",
+    "size": {"x": 32, "y": 32},
+    "states": [
+        {"name": "nest0", "directions": 4},
+        {"name": "nest1", "directions": 4},
+        {"name": "nest2", "directions": 4},
+        {"name": "nest3", "directions": 4},
+        {"name": "nest4", "directions": 4},
+        {"name": "nest5", "directions": 4},
+        {"name": "nest6", "directions": 4},
+        {"name": "nest7", "directions": 4},
+        {"name": "nest"},
+        {"name": "nest_full"}
+    ]
+}

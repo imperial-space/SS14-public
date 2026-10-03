@@ -1,0 +1,78 @@
+# HUD ксеноморфа (code/_onclick/hud/alien.dm, screen_objects/alien.dm, screen_objects/alert.dm).
+# Иконки из icons/hud/screen_alien.dmi и screen_alert.dmi.
+
+# healths/alien: health0 — здоров, 1–5 — по 20 % здоровья, 6 — крит, 7 — мёртв.
+- type: alert
+  id: XenoHealth
+  category: Health
+  icons:
+  - sprite: /Textures/Imperial/Xenomorph/hud.rsi
+    state: health0
+  - sprite: /Textures/Imperial/Xenomorph/hud.rsi
+    state: health1
+  - sprite: /Textures/Imperial/Xenomorph/hud.rsi
+    state: health2
+  - sprite: /Textures/Imperial/Xenomorph/hud.rsi
+    state: health3
+  - sprite: /Textures/Imperial/Xenomorph/hud.rsi
+    state: health4
+  - sprite: /Textures/Imperial/Xenomorph/hud.rsi
+    state: health5
+  - sprite: /Textures/Imperial/Xenomorph/hud.rsi
+    state: health6
+  - sprite: /Textures/Imperial/Xenomorph/hud.rsi
+    state: health7
+  minSeverity: 0
+  maxSeverity: 7
+  name: alerts-xeno-health-name
+  description: alerts-xeno-health-desc
+
+# alien/plasma_display: «plasma stored», число плазмы пурпурным дорисовывает клиент.
+- type: alert
+  id: XenoPlasma
+  icons:
+  - sprite: /Textures/Imperial/Xenomorph/hud.rsi
+    state: power_display
+  name: alerts-xeno-plasma-name
+  description: alerts-xeno-plasma-desc
+
+# alien/alien_queen_finder: «queen sense», указатель направления дорисовывает клиент.
+- type: alert
+  id: XenoQueenFinder
+  icons:
+  - sprite: /Textures/Imperial/Xenomorph/hud.rsi
+    state: queen_finder
+  name: alerts-xeno-queen-finder-name
+  description: alerts-xeno-queen-finder-desc
+
+- type: alert
+  id: XenoFire
+  icons:
+  - sprite: /Textures/Imperial/Xenomorph/hud.rsi
+    state: alien_fire
+  name: alerts-xeno-fire-name
+  description: alerts-xeno-fire-desc
+
+- type: alert
+  id: XenoPlasmaAir
+  icons:
+  - sprite: /Textures/Imperial/Xenomorph/hud.rsi
+    state: alien_plas
+  name: alerts-xeno-plasma-air-name
+  description: alerts-xeno-plasma-air-desc
+
+- type: alert
+  id: XenoNoQueen
+  icons:
+  - sprite: /Textures/Imperial/Xenomorph/hud.rsi
+    state: alien_noqueen
+  name: alerts-xeno-noqueen-name
+  description: alerts-xeno-noqueen-desc
+
+- type: alert
+  id: XenoNestSustenance
+  icons:
+  - sprite: /Textures/Imperial/Xenomorph/hud.rsi
+    state: nest_life
+  name: alerts-xeno-nest-name
+  description: alerts-xeno-nest-desc
