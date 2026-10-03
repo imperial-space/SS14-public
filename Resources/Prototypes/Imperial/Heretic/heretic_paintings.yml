@@ -1,0 +1,92 @@
+# ==============================================
+#  Еретик — Картины Нераскрытых Искусств
+# ==============================================
+
+- type: entity
+  abstract: true
+  id: BaseHereticPainting
+  suffix: "Еретик, картина"
+  parent: BaseSign
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/unsealed_arts.rsi
+
+- type: entity
+  parent: BaseHereticPainting
+  id: HereticPaintingWeeping
+  name: heretic-painting-weeping-name
+  description: heretic-painting-weeping-desc
+  components:
+  - type: Sprite
+    state: weeping
+  - type: HereticPainting
+    paintingType: Weeping
+
+- type: entity
+  parent: BaseHereticPainting
+  id: HereticPaintingBeauty
+  name: heretic-painting-beauty-name
+  description: heretic-painting-beauty-desc
+  components:
+  - type: Sprite
+    state: beauty
+  - type: HereticPainting
+    paintingType: Beauty
+
+- type: entity
+  parent: BaseHereticPainting
+  id: HereticPaintingVines
+  name: heretic-painting-vines-name
+  description: heretic-painting-vines-desc
+  components:
+  - type: Sprite
+    state: vines
+  - type: HereticPainting
+    paintingType: Vines
+
+- type: entity
+  parent: BaseHereticPainting
+  id: HereticPaintingRust
+  name: heretic-painting-rust-name
+  description: heretic-painting-rust-desc
+  components:
+  - type: Sprite
+    state: rust
+  - type: HereticPainting
+    paintingType: Rust
+
+- type: entity
+  parent: BaseHereticPainting
+  id: HereticPaintingDesire
+  name: heretic-painting-desire-name
+  description: heretic-painting-desire-desc
+  components:
+  - type: Sprite
+    state: desire
+  - type: HereticPainting
+    paintingType: Desire
+
+- type: entity
+  id: HereticCoverage
+  suffix: "Еретик"
+  name: heretic-coverage-name
+  description: heretic-coverage-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/unsealed_arts.rsi
+    state: covered
+    drawdepth: FloorTiles
+  - type: Transform
+    anchored: true
+
+- type: entity
+  id: HereticRustOverlay
+  suffix: "Еретик"
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/rust_overlay.rsi
+    state: rust_default
+    drawdepth: FloorTiles
+  - type: Transform
+    anchored: true
+  - type: HereticRustOverlay

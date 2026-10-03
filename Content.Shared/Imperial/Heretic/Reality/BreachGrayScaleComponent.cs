@@ -1,0 +1,15 @@
+using Robust.Shared.GameStates;
+
+namespace Content.Shared.Imperial.Heretic.Reality;
+
+/// <summary>
+/// Temporarily added to a player when they over-examine a reality breach.
+/// Client reacts by enabling the greyscale screen overlay.
+/// </summary>
+[RegisterComponent, NetworkedComponent]
+public sealed partial class BreachGrayScaleComponent : Component
+{
+    /// <summary>Серверное: когда эффект снимется.</summary>
+    [ViewVariables]
+    public TimeSpan EndTime;
+}

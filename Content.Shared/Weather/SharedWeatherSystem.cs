@@ -28,7 +28,7 @@ public abstract class SharedWeatherSystem : EntitySystem
     public static readonly TimeSpan StartupTime = TimeSpan.FromSeconds(15);
     public static readonly TimeSpan ShutdownTime = TimeSpan.FromSeconds(15);
 
-    public bool CanWeatherAffect(Entity<MapGridComponent?, RoofComponent?> ent, TileRef tileRef)
+    public bool CanWeatherAffect(Entity<MapGridComponent?, RoofComponent?> ent, TileRef tileRef, bool ignoreRoof = false)
     {
         if (tileRef.Tile.IsEmpty)
             return true;
@@ -36,13 +36,16 @@ public abstract class SharedWeatherSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp1))
             return false;
 
-        if (Resolve(ent, ref ent.Comp2, false) && _roof.IsRooved((ent, ent.Comp1, ent.Comp2), tileRef.GridIndices))
-            return false;
+        if (!ignoreRoof)
+        {
+            if (Resolve(ent, ref ent.Comp2, false) && _roof.IsRooved((ent, ent.Comp1, ent.Comp2), tileRef.GridIndices))
+                return false;
 
-        var tileDef = (ContentTileDefinition)_tileDefManager[tileRef.Tile.TypeId];
+            var tileDef = (ContentTileDefinition)_tileDefManager[tileRef.Tile.TypeId];
 
-        if (!tileDef.Weather)
-            return false;
+            if (!tileDef.Weather)
+                return false;
+        }
 
         var anchoredEntities = _mapSystem.GetAnchoredEntitiesEnumerator(ent, ent.Comp1, tileRef.GridIndices);
 
