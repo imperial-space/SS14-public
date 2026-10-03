@@ -1,166 +1,16 @@
 - type: entity
   abstract: true
-  parent: BaseMobHumanNDA
-  id: ImperialSCPBasePreset
-  components:
-    - type: AntagImmune
-    - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: CrewSkills
-      groups: [All]
-    - type: Damageable
-      damageContainer: BiologicalMemetical
-      damageModifierSet: Infernal
-    - type: ShowJobIcons
-    - type: ShowMindShieldIcons
-
-- type: entity
-  parent: BaseMobSpeciesOrganicNDA
-  id: BaseMobHumanNDA
-  name: Urist McHands
-  abstract: true
-  components:
-  - type: Hunger
-  - type: Icon
-    sprite: Mobs/Species/Human/parts.rsi
-    state: full
-  - type: Thirst
-  - type: Butcherable
-    butcheringType: Spike
-    spawned:
-    - id: FoodMeatHuman
-      amount: 5
-  - type: HumanoidProfile
-    species: Human
-  - type: Inventory
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
-
-- type: entity
-  save: false
-  parent:
-  - MobBloodstream
-  - MobRespirator
-  - MobAtmosStandard
-  - MobFlammable
-  - BaseMobSpeciesNDA
-  id: BaseMobSpeciesOrganicNDA
-  abstract: true
-  components:
-  - type: BloodTrail # Imperial Space BloodTrail
-  - type: Barotrauma
-    damage:
-      types:
-        Blunt: 0.50 #per second, scales with pressure and other constants.
-        Heat: 0.1
-  - type: PassiveDamage # Slight passive regen. Assuming one damage type, comes out to about 4 damage a minute.
-    allowedStates:
-    - Alive
-    damageCap: 20
-    damage:
-      types:
-        Heat: -0.07
-      groups:
-        Brute: -0.07
-  - type: Fingerprint
-  - type: Blindable
-  - type: Temperature
-    heatDamageThreshold: 325
-    coldDamageThreshold: 260
-    currentTemperature: 310.15
-    specificHeat: 42
-    coldDamage:
-      types:
-        Cold: 0.1 #per second, scales with temperature & other constants
-    heatDamage:
-      types:
-        Heat: 1.5 #per second, scales with temperature & other constants
-  - type: TemperatureSpeed
-    thresholds:
-      293: 0.9
-      280: 0.8
-      260: 0.7
-  - type: ThermalRegulator
-    metabolismHeat: 800
-    radiatedHeat: 100
-    implicitHeatRegulation: 500
-    sweatHeatRegulation: 2000
-    shiveringHeatRegulation: 2000
-    normalBodyTemperature: 310.15
-    thermalRegulationTemperatureThreshold: 2
-  - type: Perishable
-  - type: Butcherable
-    butcheringType: Spike # TODO human.
-    spawned:
-      - id: FoodMeat
-        amount: 5
-  - type: Respirator
-    damage:
-      types:
-        Asphyxiation: 1.0
-    damageRecovery:
-      types:
-        Asphyxiation: -1.0
-  - type: FireVisuals
-    alternateState: Standing
-  - type: StunVisuals
-
-- type: entity
-  save: false
   parent:
   - BaseMob
+  - MobCombat
   - MobDamageable
   - MobPolymorphable
-  - MobCombat
   - StripableInventoryBase
-  id: BaseMobSpeciesNDA #Убран ССД компонент
-  abstract: true
+  - BaseSpeciesAppearance
+  id: ImperialBaseSpeciesMobNoSSD # Imperial: копия BaseSpeciesMob без SSDIndicator
+  save: false
   components:
-  - type: Sprite
-    layers:
-    - map: [ "enum.HumanoidVisualLayers.Chest" ]
-    - map: [ "enum.HumanoidVisualLayers.Head" ]
-    - map: [ "enum.HumanoidVisualLayers.Snout" ]
-    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
-    - map: [ "enum.HumanoidVisualLayers.RArm" ]
-    - map: [ "enum.HumanoidVisualLayers.LArm" ]
-    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
-    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
-    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
-    - map: ["jumpsuit"]
-    - map: ["enum.HumanoidVisualLayers.LFoot"]
-    - map: ["enum.HumanoidVisualLayers.RFoot"]
-    - map: ["enum.HumanoidVisualLayers.LHand"]
-    - map: ["enum.HumanoidVisualLayers.RHand"]
-    - map: [ "gloves" ]
-    - map: [ "shoes" ]
-    - map: [ "ears" ]
-    - map: [ "outerClothing" ]
-    - map: [ "eyes" ]
-    - map: [ "belt" ]
-    - map: [ "id" ]
-    - map: [ "back" ]
-    - map: [ "neck" ]
-    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
-    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
-    - map: [ "enum.HumanoidVisualLayers.Hair" ]
-    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
-    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
-    - map: [ "enum.HumanoidVisualLayers.Tail" ]
-    - map: [ "mask" ]
-    - map: [ "head" ]
-    - map: [ "pocket1" ]
-    - map: [ "pocket2" ]
-    - map: ["enum.HumanoidVisualLayers.Handcuffs"]
-      color: "#ffffff"
-      sprite: Objects/Misc/handcuffs.rsi
-      state: body-overlay-2
-      visible: false
+  - type: CrewSkills # Imperial Space Crew SKills
   - type: DamageVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     targetLayers:
@@ -178,11 +28,11 @@
         sprite: Mobs/Effects/burn_damage.rsi
   - type: StatusIcon
     bounds: -0.5,-0.5,0.5,0.5
+  - type: JobStatus
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
   - type: HumanoidProfile
-    species: Human
   - type: TypingIndicator
   - type: SlowOnDamage
     speedModifierThresholds:
@@ -228,15 +78,10 @@
     - Muted
     - TemporaryBlindness
     - Pacified
-    - StaminaModifier
     - Flashed
-    - RadiationProtection
     - Adrenaline
-    requiredLegs: 2
   - type: Identity
   - type: IdExaminable
-  - type: Hands
-  - type: ComplexInteraction
   - type: Internals
   - type: FloatingVisuals
   - type: Climbing
@@ -262,7 +107,7 @@
   - type: Crawler
   - type: Dna
   - type: MindContainer
-    showExamineInfo: true
+  - type: MindExaminable
   - type: CanEnterCryostorage
   - type: InteractionPopup
     successChance: 1
@@ -305,6 +150,8 @@
   - type: MobPrice
     price: 1500 # Kidnapping a living person and selling them for cred is a good move.
     deathPenalty: 0.01 # However they really ought to be living and intact, otherwise they're worth 100x less.
+  - type: RandomPrice
+    maxRandomPrice: 20000
   - type: Tag
     tags:
     - CanPilot
@@ -312,6 +159,107 @@
     - DoorBumpOpener
     - AnomalyHost
   - type: InjectNeed # imperial hardsuit injection
+
+- type: entity
+  abstract: true
+  parent:
+  - MobBloodstream
+  - MobRespirator
+  - MobAtmosStandard
+  - MobFlammable
+  - ImperialBaseSpeciesMobNoSSD
+  id: ImperialBaseSpeciesMobOrganicNoSSD # Imperial: копия BaseSpeciesMobOrganic без SSDIndicator
+  save: false
+  components:
+  - type: BloodTrail # Imperial Space BloodTrail
+  - type: Hunger
+  - type: Thirst
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.50
+        Heat: 0.1
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damage:
+      types:
+        Heat: -0.07
+        Blunt: -0.05
+        Piercing: -0.05
+        Slash: -0.05
+  - type: Fingerprint
+  - type: Blindable
+  - type: Temperature
+    currentTemperature: 310.15
+    specificHeat: 42
+  - type: TemperatureDamage
+    heatDamageThreshold: 325
+    coldDamageThreshold: 260
+    coldDamage:
+      types:
+        Cold: 0.1 #per second, scales with temperature & other constants
+    heatDamage:
+      types:
+        Heat: 1.5 #per second, scales with temperature & other constants
+  - type: TemperatureSpeed
+    thresholds:
+      293: 0.9
+      280: 0.8
+      260: 0.7
+  - type: ThermalRegulator
+    metabolismHeat: 800
+    radiatedHeat: 100
+    implicitHeatRegulation: 500
+    sweatHeatRegulation: 2000
+    shiveringHeatRegulation: 2000
+    normalBodyTemperature: 310.15
+    thermalRegulationTemperatureThreshold: 2
+  - type: Perishable
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeat
+      amount: 5
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 1.0
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+  - type: FireVisuals
+    alternateState: Standing
+  - type: StunVisuals
+
+- type: entity
+  abstract: true
+  parent:
+  - AppearanceHuman
+  - ImperialBaseSpeciesMobOrganicNoSSD
+  id: ImperialMobHumanNoSSD # Imperial: как MobHuman, но без SSDIndicator (для SCP-пресетов)
+  name: Urist McHands
+  components:
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatHuman
+      amount: 5
+
+- type: entity
+  abstract: true
+  parent: ImperialMobHumanNoSSD
+  id: ImperialSCPBasePreset
+  components:
+    - type: AntagImmune
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: CrewSkills
+      groups: [All]
+    - type: Damageable
+      damageContainer: BiologicalMemetical
+      damageModifierSet: Infernal
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
 
 - type: entity
   parent: ImperialSCPBasePreset
