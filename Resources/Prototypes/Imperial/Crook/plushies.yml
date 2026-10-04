@@ -704,3 +704,39 @@
         volume: -8
   - type: UseDelay
     delay: 0.05
+
+- type: localizedDataset
+  id: OlegWords
+  values:
+    prefix: plushie-oleg-
+    count: 5
+
+- type: speechSounds
+  id: PlushieSaid
+  saySound:
+    path: /Audio/Items/Toys/toysqueak1.ogg
+  askSound:
+    path: /Audio/Items/Toys/toysqueak2.ogg
+  exclaimSound:
+    path: /Audio/Items/Toys/toysqueak3.ogg
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: PlushieOleg
+  name: Oleg
+  suffix: Crook, COMMUNITY, TOY
+  description: plush
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/oleggvardii.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: UseDelay
+    delay: 5.0
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Speech
+    speechSounds: PlushieSaid
+  - type: SpeakOnTrigger
+    pack: OlegWords
