@@ -1,0 +1,16 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from SS220 Paradise (ss220-space/Paradise, icons/obj/fission) at commit master220",
+    "size": {"x": 32, "y": 32},
+    "states": [
+        {"name": "rod_fab_on", "delays": [[0.2, 0.2, 0.2, 0.2, 0.2, 0.2]]},
+        {"name": "rod_fab"},
+        {"name": "rod_fab_maint"},
+        {"name": "centrifuge_empty"},
+        {"name": "centrifuge_full", "delays": [[0.1, 0.1]]},
+        {"name": "centrifuge_maint"},
+        {"name": "centrifuge_on", "delays": [[0.1, 0.1, 0.1, 0.1]]},
+        {"name": "gas_node", "directions": 4}
+    ]
+}

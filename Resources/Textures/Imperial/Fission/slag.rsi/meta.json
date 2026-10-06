@@ -1,0 +1,9 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation (BandaStation icons/effects/effects.dmi, big_molten)",
+    "size": {"x": 32, "y": 32},
+    "states": [
+        {"name": "slag"}
+    ]
+}

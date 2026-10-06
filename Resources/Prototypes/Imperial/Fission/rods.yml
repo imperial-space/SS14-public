@@ -1,0 +1,558 @@
+# Ядерные стержни NGCR из SS220 Paradise (code/modules/power/engines/fission/nuclear_rods.dm).
+# Требования к соседям: Fuel / Moderator / Coolant — любой стержень категории, иначе id конкретного стержня.
+# maxDurability: -1 — бесконечная прочность (INFINITY).
+
+- type: entity
+  id: ImperialFissionRodBase
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Fission/rods.rsi
+  - type: Item
+    size: Huge
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 15
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 10
+
+- type: entity
+  id: ImperialFissionFuelRodBase
+  parent: ImperialFissionRodBase
+  abstract: true
+  components:
+  - type: RadiationSource
+    intensity: 1
+    slope: 0.5
+
+# ────────────── Топливо ──────────────
+
+- type: entity
+  id: ImperialFissionRodUranium238
+  parent: ImperialFissionFuelRodBase
+  name: uranium 238 fuel rod
+  description: A standard fuel rod for most NGCR reactors.
+  components:
+  - type: Sprite
+    state: fuel_238
+  - type: FissionRod
+    craftable: true
+    materials:
+      Steel: 100
+      Uranium: 50
+    category: Fuel
+    heatAmount: 5
+    powerAmount: 20000
+    heatAmpMod: 1.8
+    powerAmpMod: 1.1
+    radiationIntensity: 2
+    heatEnrichThreshold: 10
+    powerEnrichThreshold: 6.4
+    heatEnrichResult: ImperialFissionRodWeakThorium
+    powerEnrichResult: ImperialFissionRodWeakPlutonium
+    requirements: [ Moderator ]
+
+- type: entity
+  id: ImperialFissionRodWeakThorium
+  parent: ImperialFissionFuelRodBase
+  name: weak thorium fuel rod
+  description: A specialized fuel rod refined from uranium 238.
+  components:
+  - type: Sprite
+    state: fuel_weakthor
+  - type: FissionRod
+    category: Fuel
+    heatAmount: 5
+    powerAmount: 20000
+    heatAmpMod: 1.6
+    powerAmpMod: 1.1
+    maxDurability: 5000
+    radiationIntensity: 0.75
+    powerEnrichThreshold: 8
+    powerEnrichResult: ImperialFissionRodUranium235
+    requirements: [ Moderator, Coolant ]
+
+- type: entity
+  id: ImperialFissionRodWeakPlutonium
+  parent: ImperialFissionFuelRodBase
+  name: weak plutonium fuel rod
+  description: A specialized fuel rod refined from uranium 238.
+  components:
+  - type: Sprite
+    state: fuel_weakplut
+  - type: FissionRod
+    category: Fuel
+    heatAmount: 10
+    powerAmount: 40000
+    heatAmpMod: 1.6
+    powerAmpMod: 1.1
+    maxDurability: 3500
+    radiationIntensity: 1
+    heatEnrichThreshold: 14
+    heatEnrichResult: ImperialFissionRodUranium235
+    requirements: [ Fuel, Moderator, Coolant ]
+
+- type: entity
+  id: ImperialFissionRodUranium235
+  parent: ImperialFissionFuelRodBase
+  name: uranium 235 fuel rod
+  description: An advanced fuel rod for most NGCR reactors.
+  components:
+  - type: Sprite
+    state: fuel_235
+  - type: FissionRod
+    craftable: true
+    upgradeRequired: true
+    materials:
+      Steel: 200
+      Uranium: 200
+    category: Fuel
+    heatAmount: 20
+    powerAmount: 50000
+    heatAmpMod: 2.2
+    powerAmpMod: 1.3
+    maxDurability: 5000
+    radiationIntensity: 1.3
+    heatEnrichThreshold: 25
+    powerEnrichThreshold: 18
+    heatEnrichResult: ImperialFissionRodThoriumSalts
+    powerEnrichResult: ImperialFissionRodEnrichedPlutonium
+    requirements: [ ImperialFissionRodPlasmaInjector, Moderator, Moderator ]
+
+- type: entity
+  id: ImperialFissionRodThoriumSalts
+  parent: ImperialFissionFuelRodBase
+  name: thorium salts fuel rod
+  description: A specialized fuel rod refined from uranium 235.
+  components:
+  - type: Sprite
+    state: fuel_richthor
+  - type: FissionRod
+    category: Fuel
+    heatAmount: 40
+    powerAmount: 35000
+    heatAmpMod: 2.2
+    powerAmpMod: 1.3
+    maxDurability: 15000
+    radiationIntensity: 2
+    requirements: [ Moderator, ImperialFissionRodUranium235, Fuel ]
+
+- type: entity
+  id: ImperialFissionRodEnrichedPlutonium
+  parent: ImperialFissionFuelRodBase
+  name: enriched plutonium fuel rod
+  description: A specialized fuel rod refined from uranium 235.
+  components:
+  - type: Sprite
+    state: fuel_richplut
+  - type: FissionRod
+    category: Fuel
+    heatAmount: 60
+    powerAmount: 75000
+    heatAmpMod: 4
+    powerAmpMod: 1.6
+    maxDurability: 5000
+    radiationIntensity: 2
+    powerEnrichThreshold: 25
+    powerEnrichResult: ImperialFissionRodAmericium
+    requirements: [ ImperialFissionRodPlasmaAgitator, ImperialFissionRodThoriumSalts ]
+
+- type: entity
+  id: ImperialFissionRodSupermatter
+  parent: ImperialFissionFuelRodBase
+  name: supermatter fuel rod
+  description: A dangerous fuel rod made entirely of supermatter.
+  components:
+  - type: Sprite
+    state: fuel_sm
+  - type: FissionRod
+    category: Fuel
+    heatAmount: 1200
+    powerAmount: 800000
+    heatAmpMod: 8
+    powerAmpMod: 0.1
+    maxDurability: -1
+    radiationIntensity: 3
+    requirements: [ ImperialFissionRodSteamHammerjet, Fuel, Moderator ]
+
+- type: entity
+  id: ImperialFissionRodAmericium
+  parent: ImperialFissionFuelRodBase
+  name: americium fuel rod
+  description: A specialized fuel rod refined from enriched plutonium.
+  components:
+  - type: Sprite
+    state: fuel_americium
+  - type: FissionRod
+    category: Fuel
+    heatAmount: 100
+    powerAmount: 200000
+    heatAmpMod: 6
+    powerAmpMod: 3
+    maxDurability: 4000
+    radiationIntensity: 3
+    requirements: [ Fuel, Fuel ]
+
+- type: entity
+  id: ImperialFissionRodBananium
+  parent: ImperialFissionFuelRodBase
+  name: bananium fuel rod
+  description: The funniest of all fuel rods with no solidified properties.
+  components:
+  - type: Sprite
+    state: fuel_clown
+  - type: FissionRod
+    craftable: true
+    upgradeRequired: true
+    materials:
+      Plasteel: 100
+      Bananium: 100
+    category: Fuel
+    randomStats: true
+    radiationIntensity: 3
+
+- type: entity
+  id: ImperialFissionRodMeltdown
+  parent: [ ImperialFissionFuelRodBase, BaseSyndicateContraband ]
+  name: meltdown rod
+  description: A Syndicate-crafted rod capable of generating massive amounts of heat, leading to an eventual meltdown.
+  components:
+  - type: Sprite
+    state: fuel_syndie
+  - type: FissionRod
+    category: Fuel
+    heatAmount: 2000
+    maxDurability: -1
+    minimumTempModifier: 4000
+    reactorOverheatModifier: -400
+    radiationIntensity: 2.5
+
+# ────────────── Замедлители ──────────────
+
+- type: entity
+  id: ImperialFissionRodHeavyWater
+  parent: ImperialFissionRodBase
+  name: heavy water moderator
+  description: A basic moderation rod filled with a variant of water comprised of deuterium instead of hydrogen atoms.
+  components:
+  - type: Sprite
+    state: mod_water
+  - type: FissionRod
+    craftable: true
+    materials:
+      Steel: 100
+      Glass: 50
+    category: Moderator
+    heatAmpMod: 1.1
+    powerAmpMod: 1.4
+
+- type: entity
+  id: ImperialFissionRodGraphite
+  parent: ImperialFissionRodBase
+  name: graphite moderator
+  description: A nuclear moderation rod comprised primarily of layered graphite.
+  components:
+  - type: Sprite
+    state: mod_graphite
+  - type: FissionRod
+    craftable: true
+    materials:
+      Steel: 200
+      Plasma: 100
+    category: Moderator
+    heatAmpMod: 1.3
+    powerAmpMod: 1.6
+    requirements: [ Coolant ]
+
+- type: entity
+  id: ImperialFissionRodTitanium
+  parent: ImperialFissionRodBase
+  name: titanium moderator
+  description: A nuclear moderation rod comprised primarily of cast titanium.
+  components:
+  - type: Sprite
+    state: mod_titanium
+  - type: FissionRod
+    craftable: true
+    materials:
+      Steel: 100
+      Plasteel: 100
+    category: Moderator
+    maxDurability: 5500
+    heatAmpMod: 0.7
+    powerAmpMod: 1.5
+
+- type: entity
+  id: ImperialFissionRodPlasmaAgitator
+  parent: ImperialFissionRodBase
+  name: plasma agitator
+  description: A specialized moderator rod capable of inducing higher fission rates in fuel rods through a series of micro-burns.
+  components:
+  - type: Sprite
+    state: mod_plasma
+  - type: FissionRod
+    category: Moderator
+    maxDurability: 2250
+    heatAmount: 20
+    heatAmpMod: 5
+    powerAmpMod: 3
+    requirements: [ Fuel, Fuel, Moderator ]
+
+- type: entity
+  id: ImperialFissionRodAluminumReflector
+  parent: ImperialFissionRodBase
+  name: liquid aluminum plate reflector
+  description: A specialized moderator rod for amplifying the power output of nearby fuel rods.
+  components:
+  - type: Sprite
+    state: mod_aluminium
+  - type: FissionRod
+    category: Moderator
+    maxDurability: 6000
+    powerAmount: -15000
+    heatAmpMod: 5
+    powerAmpMod: 3
+    minimumTempModifier: 400
+    reactorOverheatModifier: 100
+    requirements: [ ImperialFissionRodNitrogenCirculator, Moderator ]
+
+- type: entity
+  id: ImperialFissionRodBluespaceAgitator
+  parent: ImperialFissionRodBase
+  name: bluespace crystal agitator
+  description: An advanced moderator rod that will pull extra neutrons out of bluespace to bombard local fuel rods.
+  components:
+  - type: Sprite
+    state: mod_bluespace
+  - type: FissionRod
+    craftable: true
+    upgradeRequired: true
+    materials:
+      Steel: 100
+      Plasteel: 50
+      Silver: 50
+    category: Moderator
+    maxDurability: 4000
+    powerAmount: -30000
+    heatAmpMod: 12
+    powerAmpMod: 5
+
+- type: entity
+  id: ImperialFissionRodDiamondPlate
+  parent: ImperialFissionRodBase
+  name: diamond reflector plates
+  description: An advanced moderator rod that can reflect nearly all neutrons back to their point of origin.
+  components:
+  - type: Sprite
+    state: mod_diamond
+  - type: FissionRod
+    craftable: true
+    upgradeRequired: true
+    materials:
+      Steel: 100
+      Plasteel: 50
+      Diamond: 50
+    category: Moderator
+    maxDurability: 6000
+    heatAmpMod: 6.5
+    powerAmpMod: 3.3
+    reactorOverheatModifier: 100
+    requirements: [ Fuel, Fuel, Fuel ]
+
+- type: entity
+  id: ImperialFissionRodPlatinumPlating
+  parent: ImperialFissionRodBase
+  name: platinum reflector plating
+  description: An advanced moderator similar to diamond plates, but improved with precious space metals.
+  components:
+  - type: Sprite
+    state: mod_platinum
+  - type: FissionRod
+    category: Moderator
+    maxDurability: 8000
+    heatAmpMod: 8
+    powerAmpMod: 3.9
+    reactorOverheatModifier: 300
+    requirements: [ ImperialFissionRodAmericium ]
+
+# ────────────── Охладители ──────────────
+
+- type: entity
+  id: ImperialFissionRodLightWater
+  parent: ImperialFissionRodBase
+  name: light water circulator
+  description: A basic coolant rod that circulates distilled water through critical reactor components.
+  components:
+  - type: Sprite
+    state: coolant_water
+  - type: FissionRod
+    craftable: true
+    materials:
+      Steel: 100
+      Glass: 50
+    category: Coolant
+    heatAmount: -10
+    powerAmount: -10000
+    reactorOverheatModifier: 25
+    requirements: [ Moderator ]
+
+- type: entity
+  id: ImperialFissionRodCO2Regulator
+  parent: ImperialFissionRodBase
+  name: carbon dioxide regulator
+  description: A specialized coolant rod filled with carbon dioxide gas.
+  components:
+  - type: Sprite
+    state: coolant_carbon
+  - type: FissionRod
+    craftable: true
+    materials:
+      Steel: 100
+      Plasma: 100
+      Glass: 50
+    category: Coolant
+    heatAmount: -4
+    heatAmpMod: 0.6
+    powerAmount: -15000
+    requirements: [ Moderator ]
+
+- type: entity
+  id: ImperialFissionRodPlasmaInjector
+  parent: ImperialFissionRodBase
+  name: plasma injector
+  description: A specialized coolant rod filled with gaseous plasma.
+  components:
+  - type: Sprite
+    state: coolant_plasma
+  - type: FissionRod
+    craftable: true
+    materials:
+      Steel: 100
+      Plasma: 100
+      Glass: 50
+    category: Coolant
+    maxDurability: 1900
+    heatAmpMod: 0.5
+    powerAmpMod: 1.5
+    requirements: [ Coolant ]
+
+- type: entity
+  id: ImperialFissionRodNitrogenCirculator
+  parent: ImperialFissionRodBase
+  name: nitrogen circulator
+  description: A specialized coolant rod filled with nitrogen gas.
+  components:
+  - type: Sprite
+    state: coolant_nitrogen
+  - type: FissionRod
+    craftable: true
+    materials:
+      Steel: 100
+      Plasma: 100
+      Glass: 50
+    category: Coolant
+    maxDurability: 3500
+    heatAmount: -10
+    powerAmpMod: 0.9
+    heatAmpMod: 0.7
+    reactorOverheatModifier: 50
+    powerAmount: -5000
+
+- type: entity
+  id: ImperialFissionRodMoltenSalt
+  parent: ImperialFissionRodBase
+  name: molten salt circulator
+  description: A specialized coolant rod that circulates molten salts through the core of the reactor.
+  components:
+  - type: Sprite
+    state: coolant_salt
+  - type: FissionRod
+    category: Coolant
+    powerAmount: -20000
+    heatAmount: -60
+    heatAmpMod: 0.8
+    maxDurability: 8000
+    minimumTempModifier: 750
+    reactorOverheatModifier: 100
+    requirements: [ ImperialFissionRodNitrogenCirculator, Moderator, Fuel, Fuel ]
+
+- type: entity
+  id: ImperialFissionRodSteamHammerjet
+  parent: ImperialFissionRodBase
+  name: steam hammerjet
+  description: A specialized coolant rod that injects distilled steam throughout the reactor's critical components.
+  components:
+  - type: Sprite
+    state: coolant_steam
+  - type: FissionRod
+    category: Coolant
+    powerAmount: -10000
+    heatAmount: -40
+    heatAmpMod: 0.4
+    maxDurability: 6000
+    minimumTempModifier: 450
+    reactorOverheatModifier: 100
+    requirements: [ ImperialFissionRodLightWater, ImperialFissionRodLightWater ]
+
+- type: entity
+  id: ImperialFissionRodBluespaceDisplacer
+  parent: ImperialFissionRodBase
+  name: bluespace heat displacer
+  description: An advanced coolant rod capable of pulling heat directly out of neighboring rods.
+  components:
+  - type: Sprite
+    state: coolant_bluespace
+  - type: FissionRod
+    craftable: true
+    upgradeRequired: true
+    materials:
+      Steel: 100
+      Plasma: 100
+      Silver: 50
+    category: Coolant
+    powerAmount: -40000
+    heatAmount: -100
+    heatAmpMod: 0.8
+    powerAmpMod: 1.3
+    maxDurability: -1
+    reactorOverheatModifier: 200
+    requirements: [ ImperialFissionRodBluespaceAgitator ]
+
+- type: entity
+  id: ImperialFissionRodIridiumConductor
+  parent: ImperialFissionRodBase
+  name: iridium conductor coolant rod
+  description: A dazzlingly beautiful rod with exceptionally powerful thermal conductivity.
+  components:
+  - type: Sprite
+    state: coolant_iridium
+  - type: FissionRod
+    category: Coolant
+    heatAmpMod: 0.1
+    maxDurability: 10000
+    reactorOverheatModifier: 300
+    requirements: [ ImperialFissionRodAluminumReflector, ImperialFissionRodUranium235 ]
+
+- type: entity
+  id: ImperialFissionRodSpacematter
+  parent: ImperialFissionRodBase
+  name: condensed spacematter coolant rod
+  description: While it's unknown quite what the rod is filled with, there's no questioning its heat-suppressing efficiency.
+  components:
+  - type: Sprite
+    state: coolant_spacematter
+  - type: FissionRod
+    craftable: true
+    upgradeRequired: true
+    materials:
+      Steel: 300
+      Plasma: 200
+      Plasteel: 100
+    category: Coolant
+    heatAmount: -1500
+    heatAmpMod: 0.2
+    requirements: [ ImperialFissionRodEnrichedPlutonium, ImperialFissionRodThoriumSalts ]

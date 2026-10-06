@@ -1,0 +1,10 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from SS220 Paradise (ss220-space/Paradise, icons/obj/fission) at commit master220",
+    "size": {"x": 32, "y": 32},
+    "states": [
+        {"name": "nuclearwaste", "delays": [[1, 1]]},
+        {"name": "nuclearwaste_green", "delays": [[1, 1]]}
+    ]
+}
