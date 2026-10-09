@@ -1,43 +1,38 @@
-using System;
-using System.Collections.Generic;
-using Robust.Shared.GameStates;
-using Robust.Shared.Maths;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.Blob;
 
 [Serializable, NetSerializable]
-public enum BlobChemicalMenuBuiKey : byte
+public enum BlobOvermindUiKey : byte
 {
-    Key,
+    /// <summary>Радиальное меню смены штамма (open_reroll_menu).</summary>
+    Reroll,
+
+    /// <summary>Выбор узла для прыжка (jump_to_node).</summary>
+    Nodes,
 }
 
 [Serializable, NetSerializable]
-public sealed class BlobChemicalMenuState : BoundUserInterfaceState
+public sealed class BlobRerollState(List<string> choices) : BoundUserInterfaceState
 {
-    public BlobChemicalType CurrentChemical { get; }
-    public List<BlobChemicalType> Chemicals { get; }
-    public int Biomass { get; }
-    public int ChangeCost { get; }
-    public Color CurrentColor { get; }
-
-    public BlobChemicalMenuState(BlobChemicalType currentChemical, List<BlobChemicalType> chemicals, int biomass, int changeCost, Color currentColor)
-    {
-        CurrentChemical = currentChemical;
-        Chemicals = chemicals;
-        Biomass = biomass;
-        ChangeCost = changeCost;
-        CurrentColor = currentColor;
-    }
+    public readonly List<string> Choices = choices;
 }
 
 [Serializable, NetSerializable]
-public sealed class BlobSelectChemicalMessage : BoundUserInterfaceMessage
+public sealed class BlobSelectStrainMessage(string strain) : BoundUserInterfaceMessage
 {
-    public BlobChemicalType Chemical { get; }
+    public readonly string Strain = strain;
+}
 
-    public BlobSelectChemicalMessage(BlobChemicalType chemical)
-    {
-        Chemical = chemical;
-    }
+[Serializable, NetSerializable]
+public sealed class BlobNodesState(List<NetEntity> nodes, List<string> names) : BoundUserInterfaceState
+{
+    public readonly List<NetEntity> Nodes = nodes;
+    public readonly List<string> Names = names;
+}
+
+[Serializable, NetSerializable]
+public sealed class BlobJumpToNodeMessage(NetEntity node) : BoundUserInterfaceMessage
+{
+    public readonly NetEntity Node = node;
 }

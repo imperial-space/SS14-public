@@ -1,13 +1,13 @@
+# midround/from_living/blob: член экипажа становится носителем (Pop, авто через 6 минут).
 - type: entity
   id: Blob
   parent: BaseGameRule
   components:
   - type: BlobRule
-    startingChemical: Sorium
     startAsCarrier: true
-    winningInfectedStationTiles: 350
-    gammaThreshold: 250
-    victoryCheckInterval: 5
+    greetSoundNotification:
+      path: /Audio/Imperial/blob/blobalert.ogg
+    winningInfectedStationTiles: 400
   - type: GameRule
     minPlayers: 20
     delay:
@@ -28,18 +28,16 @@
       mindRoles:
       - MindRoleBlob
 
+# midround/from_ghosts/blob: оверманд-призрак в случайной точке станции.
 - type: entity
   id: BlobVentSpawn
   parent: BaseGameRule
   components:
   - type: BlobRule
-    startingChemical: Sorium
     startAsCarrier: false
     spawnGhostRoleAtVentOnStart: true
-    ghostRoleSpawnerPrototype: SpawnPointGhostBlobMouse
-    winningInfectedStationTiles: 350
-    gammaThreshold: 250
-    victoryCheckInterval: 5
+    ghostRoleSpawnerPrototype: SpawnPointGhostBlobOvermind
+    winningInfectedStationTiles: 400
   - type: StationEvent
     weight: 4
     earliestStart: 55
@@ -47,25 +45,3 @@
     duration: null
     maxOccurrences: 1
     reoccurrenceDelay: 120
-
-- type: entity
-  categories: [ HideSpawnMenu, Spawner ]
-  parent: BaseAntagSpawner
-  id: SpawnPointGhostBlobMouse
-  components:
-  - type: GhostRole
-    name: blob-ghost-role-mouse-name
-    description: blob-ghost-role-mouse-desc
-    rules: ghost-role-information-antagonist-rules
-    mindRoles:
-    - MindRoleBlob
-    raffle:
-      settings: default
-  - type: GhostRoleMobSpawner
-    prototype: MobBlobMouse
-  - type: Sprite
-    sprite: Markers/jobs.rsi
-    layers:
-    - state: green
-    - sprite: Imperial/blob/blob.rsi
-      state: blobpod

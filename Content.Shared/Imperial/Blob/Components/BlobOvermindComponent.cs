@@ -1,336 +1,204 @@
-using System;
+using Robust.Shared.Audio;
+using Robust.Shared.GameStates;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Content.Shared.Maps;
 
 namespace Content.Shared.Imperial.Blob.Components;
 
-[RegisterComponent]
+/// <summary>
+/// Оверманд блоба (mob/eye/blob из SS13). Значения по умолчанию — из blob_defines.dm.
+/// </summary>
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class BlobOvermindComponent : Component
 {
-    [DataField]
-    public EntProtoId AttackActionPrototype = "ActionBlobAttack";
-
-    [DataField]
-    public EntProtoId ConsumeActionPrototype = "ActionBlobConsumeTile";
-
-    [DataField]
-    public EntProtoId PlaceTileActionPrototype = "ActionBlobPlaceTile";
-
-    [DataField]
-    public EntProtoId PlaceShieldTileActionPrototype = "ActionBlobPlaceShieldTile";
-
-    [DataField]
-    public EntProtoId PlaceNodeActionPrototype = "ActionBlobPlaceNode";
-
-    [DataField]
-    public EntProtoId PlaceFactoryActionPrototype = "ActionBlobPlaceFactory";
-
-    [DataField]
-    public EntProtoId PlaceResourceActionPrototype = "ActionBlobPlaceResource";
-
-    [DataField]
-    public EntProtoId PlaceStorageActionPrototype = "ActionBlobPlaceStorage";
-
-    [DataField]
-    public EntProtoId PlaceLauncherActionPrototype = "ActionBlobPlaceLauncher";
-
-    [DataField]
-    public EntProtoId PlaceCoolingActionPrototype = "ActionBlobPlaceCooling";
-
-    [DataField]
-    public EntProtoId SpawnBlobbernautActionPrototype = "ActionBlobSpawnBlobbernaut";
-
-    [DataField]
-    public EntProtoId RallyMinionsActionPrototype = "ActionBlobRallyMinions";
-
-    [DataField]
-    public EntProtoId UpgradeGenerationActionPrototype = "ActionBlobUpgradeGeneration";
-
-    [DataField]
-    public EntProtoId UpgradeAttackActionPrototype = "ActionBlobUpgradeAttack";
-
-    [DataField]
-    public EntProtoId UpgradeCapacityActionPrototype = "ActionBlobUpgradeCapacity";
-
-    [DataField]
-    public EntProtoId SplitConsciousnessActionPrototype = "ActionBlobSplitConsciousness";
-
-    [DataField]
-    public EntProtoId ShowStatusActionPrototype = "ActionBlobShowStatus";
-
-    [DataField]
-    public EntProtoId ChangeChemicalActionPrototype = "ActionBlobChangeChemical";
-
-    [DataField]
-    public int ChemicalChangeCost = 20;
-
-    [DataField]
-    public float BuildRange = 3f;
-
-    [DataField]
-    public float NodeBuildRange = 5f;
-
-    [DataField]
-    public float SpecialStructureRange = 3f;
-
-    [DataField]
-    public float NodeMinDistance = 5f;
-
-    [DataField]
-    public float FactoryMinDistance = 7f;
-
-    [DataField]
-    public float ResourceMinDistance = 4f;
-
-    [DataField]
-    public float StorageMinDistance = 4f;
-
-    [DataField]
-    public float LauncherMinDistance = 6f;
-
-    [DataField]
-    public float CoolingMinDistance = 5f;
-
-    [DataField]
-    public int StartingResources = 10;
-
-    [DataField]
-    public int MaxResources = 100;
-
-    [DataField]
-    public int TileCost = 5;
-
-    [DataField]
-    public float SpaceTileCostMultiplier = 2f;
-
-    [DataField]
-    public float DenseTileCostMultiplier = 3f;
-
-    [DataField]
-    public int DenseObstacleChewDamage = 60;
-
-    [DataField]
-    public int StructureAttackDamage = 60;
-
-    [DataField]
-    public int AttackCost = 1;
-
-    [DataField]
-    public float ActiveAttackDelay = 0.5f;
-
-    [DataField]
-    public float ActiveTileActionDelay = 0.5f;
-
-    [DataField]
-    public float ConsumeRefundRatio = 0.5f;
-
-    [DataField]
-    public int AttackBaseDamage = 12;
-
-    [DataField]
-    public int AttackBonusDamagePerSource = 2;
-
-    [DataField]
-    public int AttackChemicalDamage = 5;
-
-    [DataField]
-    public float AttackChemicalDuration = 4f;
-
-    [DataField]
-    public float SoriumThrowDistance = 2.25f;
-
-    [DataField]
-    public int ShieldTileCost = 5;
-
-    [DataField]
-    public int ReflectiveTileCost = 5;
-
-    [DataField]
-    public int NodeCost = 60;
-
-    [DataField]
-    public int FactoryCost = 60;
-
-    [DataField]
-    public int ResourceCost = 40;
+    #region Константы SS13
 
+    /// <summary>OVERMIND_STARTING_POINTS.</summary>
     [DataField]
-    public int StorageCost = 40;
+    public float StartingPoints = 60f;
 
-    [DataField]
-    public int LauncherCost = 7;
+    /// <summary>OVERMIND_MAX_POINTS_DEFAULT.</summary>
+    [DataField, AutoNetworkedField]
+    public float MaxPoints = 100f;
 
+    /// <summary>BLOB_BASE_POINT_RATE.</summary>
     [DataField]
-    public int CoolingCost = 5;
+    public float BasePointRate = 2f;
 
+    /// <summary>BLOB_CORE_HP_REGEN.</summary>
     [DataField]
-    public int BlobbernautCost = 60;
+    public float BaseCoreRegen = 2f;
 
+    /// <summary>BLOB_EXPAND_COST.</summary>
     [DataField]
-    public int SplitConsciousnessCost = 100;
+    public float ExpandCost = 4f;
 
+    /// <summary>BLOB_ATTACK_REFUND.</summary>
     [DataField]
-    public int MaxCoreCount = 2;
+    public float AttackRefund = 2f;
 
-    [DataField]
-    public float ResourceTickInterval = 1f;
+    [DataField] public float StrongCost = 15f;
+    [DataField] public float ReflectorCost = 15f;
+    [DataField] public float ResourceCost = 40f;
+    [DataField] public float FactoryCost = 60f;
+    [DataField] public float NodeCost = 50f;
+    [DataField] public float RelocateCost = 80f;
+    [DataField] public float RerollCost = 40f;
+    [DataField] public float BlobbernautCost = 40f;
 
-    [DataField]
-    public float AutoSpreadInterval = 8f;
+    [DataField] public int ResourceMinDistance = 4;
+    [DataField] public int FactoryMinDistance = 7;
+    [DataField] public int NodeMinDistance = 5;
 
-    [DataField]
-    public int PassiveIncome = 1;
+    /// <summary>BLOB_NODE_PULSE_RANGE / BLOB_CORE_PULSE_RANGE для nodes_required.</summary>
+    [DataField] public int NodePulseRange = 3;
+    [DataField] public int CorePulseRange = 4;
 
+    /// <summary>BLOB_POWER_REROLL_FREE_TIME.</summary>
     [DataField]
-    public int ResourceStructureIncome = 1;
+    public TimeSpan RerollFreeTime = TimeSpan.FromMinutes(4);
 
+    /// <summary>BLOB_POWER_REROLL_CHOICES.</summary>
     [DataField]
-    public float ResourceStructureTickInterval = 2.7f;
+    public int RerollChoices = 6;
 
+    /// <summary>OVERMIND_STARTING_MIN_PLACE_TIME.</summary>
     [DataField]
-    public int StorageMaxResourceBonus = 50;
+    public TimeSpan ManualPlaceDelay = TimeSpan.FromMinutes(1);
 
+    /// <summary>OVERMIND_STARTING_AUTO_PLACE_TIME.</summary>
     [DataField]
-    public int EvolutionThresholdStart = 25;
+    public TimeSpan AutoPlaceDelay = TimeSpan.FromMinutes(6);
 
-    [DataField]
-    public int EvolutionThresholdStep = 25;
+    /// <summary>OVERMIND_WIN_CONDITION_AMOUNT.</summary>
+    [DataField, AutoNetworkedField]
+    public int WinCount = 400;
 
+    /// <summary>OVERMIND_ANNOUNCEMENT_MIN_SIZE.</summary>
     [DataField]
-    public int MaxUpgradeLevel = 3;
+    public int AnnouncementSize = 75;
 
+    /// <summary>OVERMIND_ANNOUNCEMENT_MAX_TIME.</summary>
     [DataField]
-    public int StorageCapacityLevelRequirement = 1;
+    public TimeSpan AnnouncementDelay = TimeSpan.FromMinutes(10);
 
+    /// <summary>Задержка между «критической массой» и победой.</summary>
     [DataField]
-    public int LauncherAttackLevelRequirement = 1;
+    public TimeSpan VictoryDelay = TimeSpan.FromSeconds(45);
 
+    /// <summary>OVERMIND_MAX_CAMERA_STRAY: 3x3.</summary>
     [DataField]
-    public int CoolingGenerationLevelRequirement = 1;
+    public int MaxCameraStray = 1;
 
-    [DataField]
-    public int BlobbernautAttackLevelRequirement = 2;
+    /// <summary>CLICK_CD_MELEE / CLICK_CD_RAPID.</summary>
+    [DataField] public TimeSpan AttackCooldown = TimeSpan.FromSeconds(0.8);
+    [DataField] public TimeSpan ExpandCooldown = TimeSpan.FromSeconds(0.2);
 
+    /// <summary>end_round_on_victory.</summary>
     [DataField]
-    public int SplitCapacityLevelRequirement = 2;
+    public bool EndRoundOnVictory = true;
 
-    [DataField]
-    public int UpgradeBaseCost = 1;
+    #endregion
 
-    [DataField]
-    public int UpgradeCostStep = 1;
+    #region Прототипы
 
-    [DataField]
-    public int GenerationUpgradeBonus = 1;
+    [DataField] public EntProtoId CorePrototype = "BlobCore";
+    [DataField] public EntProtoId NodePrototype = "BlobNode";
+    [DataField] public EntProtoId FactoryPrototype = "BlobFactory";
+    [DataField] public EntProtoId ResourcePrototype = "BlobResource";
+    [DataField] public EntProtoId StrongPrototype = "BlobStrong";
+    [DataField] public EntProtoId ReflectivePrototype = "BlobReflective";
+    [DataField] public EntProtoId BlobbernautSpawnerPrototype = "SpawnPointGhostBlobbernaut";
 
     [DataField]
-    public float GenerationTickIntervalReduction = 0.5f;
+    public List<EntProtoId> ActionPrototypes = new()
+    {
+        "ActionBlobJumpToCore",
+        "ActionBlobJumpToNode",
+        "ActionBlobCreateResource",
+        "ActionBlobCreateNode",
+        "ActionBlobCreateFactory",
+        "ActionBlobCreateBlobbernaut",
+        "ActionBlobReadaptStrain",
+        "ActionBlobRelocateCore",
+    };
 
     [DataField]
-    public int AttackUpgradeBonus = 3;
+    public SoundSpecifier AlertSound = new SoundPathSpecifier("/Audio/Imperial/blob/blobalert.ogg");
 
     [DataField]
-    public int AttackChemicalUpgradeBonus = 1;
+    public SoundSpecifier OutbreakSound = new SoundPathSpecifier("/Audio/Imperial/blob/outbreak5.ogg");
 
     [DataField]
-    public int CapacityUpgradeBonus = 20;
+    public SoundSpecifier NukeAlarmSound = new SoundPathSpecifier("/Audio/Imperial/blob/nuke_alarm.ogg");
 
     [DataField]
-    public float CapacityConsumeRefundBonus = 0.1f;
-
-    [ViewVariables]
-    public int Resources;
-
-    [ViewVariables]
-    public float ResourceAccumulator;
-
-    [ViewVariables]
-    public float ResourceStructureAccumulator;
-
-    [ViewVariables]
-    public int EvolutionPoints;
-
-    [ViewVariables]
-    public int NextEvolutionThreshold;
-
-    [ViewVariables]
-    public int GenerationUpgradeLevel;
-
-    [ViewVariables]
-    public int AttackUpgradeLevel;
-
-    [ViewVariables]
-    public int CapacityUpgradeLevel;
-
-    [ViewVariables]
-    public BlobChemicalType Chemical = BlobChemicalType.Sorium;
-
-    [ViewVariables]
-    public EntityUid? BlobId;
-
-    [ViewVariables]
-    public EntityUid? AttackAction;
-
-    [ViewVariables]
-    public EntityUid? ConsumeAction;
-
-    [ViewVariables]
-    public EntityUid? PlaceTileAction;
-
-    [ViewVariables]
-    public EntityUid? PlaceShieldTileAction;
+    public SoundSpecifier SplatSound = new SoundPathSpecifier("/Audio/Imperial/blob/splat.ogg");
 
-    [ViewVariables]
-    public EntityUid? PlaceNodeAction;
+    #endregion
 
-    [ViewVariables]
-    public EntityUid? PlaceFactoryAction;
+    #region Состояние (передаётся клиенту для HUD)
 
-    [ViewVariables]
-    public EntityUid? PlaceResourceAction;
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    public float Points;
 
-    [ViewVariables]
-    public EntityUid? PlaceStorageAction;
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    public ProtoId<BlobStrainPrototype> Strain = "BlobReactiveSpines";
 
-    [ViewVariables]
-    public EntityUid? PlaceLauncherAction;
+    /// <summary>Здоровье ядра в процентах; -1 — ядра нет.</summary>
+    [ViewVariables, AutoNetworkedField]
+    public int CoreHealth = -1;
 
-    [ViewVariables]
-    public EntityUid? PlaceCoolingAction;
+    /// <summary>blobs_legit.len.</summary>
+    [ViewVariables, AutoNetworkedField]
+    public int BlobCount;
 
-    [ViewVariables]
-    public EntityUid? SpawnBlobbernautAction;
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    public int FreeRerolls = 1;
 
-    [ViewVariables]
-    public EntityUid? RallyMinionsAction;
+    [ViewVariables, AutoNetworkedField]
+    public bool Placed;
 
-    [ViewVariables]
-    public EntityUid? UpgradeGenerationAction;
+    /// <summary>manualplace_min_time; TimeSpan.Zero — уже можно.</summary>
+    [ViewVariables, AutoNetworkedField]
+    public TimeSpan ManualPlaceTime;
 
-    [ViewVariables]
-    public EntityUid? UpgradeAttackAction;
+    [ViewVariables, AutoNetworkedField]
+    public TimeSpan AutoPlaceTime;
 
-    [ViewVariables]
-    public EntityUid? UpgradeCapacityAction;
+    [ViewVariables, AutoNetworkedField]
+    public bool VictoryInProgress;
 
-    [ViewVariables]
-    public EntityUid? SplitConsciousnessAction;
+    #endregion
 
-    [ViewVariables]
-    public EntityUid? ShowStatusAction;
+    #region Серверное состояние
 
-    [ViewVariables]
-    public EntityUid? ChangeChemicalAction;
+    [ViewVariables] public EntityUid? Core;
+    [ViewVariables] public HashSet<EntityUid> AllBlobs = new();
+    [ViewVariables] public HashSet<EntityUid> BlobsLegit = new();
+    [ViewVariables] public HashSet<EntityUid> Nodes = new();
+    [ViewVariables] public HashSet<EntityUid> Factories = new();
+    [ViewVariables] public HashSet<EntityUid> Resources = new();
+    [ViewVariables] public HashSet<EntityUid> Mobs = new();
+    [ViewVariables] public List<EntityUid> Actions = new();
 
-    [ViewVariables]
-    public float AutoSpreadAccumulator;
+    /// <summary>max_count: наибольший размер за раунд.</summary>
+    [ViewVariables] public int MaxCount;
 
-    [ViewVariables]
-    public TimeSpan NextAttackTime;
+    [ViewVariables] public TimeSpan LastReroll;
+    [ViewVariables] public TimeSpan LastAttack;
+    [ViewVariables] public TimeSpan? AnnouncementTime;
+    [ViewVariables] public bool HasAnnounced;
+    [ViewVariables] public bool NodesRequired = true;
+    [ViewVariables] public List<string>? StrainChoices;
+    [ViewVariables] public TimeSpan? VictoryTime;
+    [ViewVariables] public bool Victorious;
+    [ViewVariables] public bool ManualPlaceNotified;
+    [ViewVariables] public EntityCoordinates? LastValidPosition;
+    [ViewVariables] public TimeSpan NextProcess;
 
-    [ViewVariables]
-    public TimeSpan NextTileActionTime;
+    /// <summary>Правило, создавшее блоба.</summary>
+    [ViewVariables] public EntityUid? Rule;
 
-    [ViewVariables]
-    public EntityUid? InteractionController;
+    #endregion
 }

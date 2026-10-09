@@ -1,604 +1,600 @@
-using System.Numerics;
-using Content.Server.Chat.Managers;
+using System.Linq;
+using Content.Server.Ghost.Roles.Components;
+using Content.Server.Ghost.Roles.Events;
 using Content.Server.Imperial.Blob.Components;
-using Content.Server.Radio.EntitySystems;
-using Content.Shared.Chat;
-using Content.Shared.CombatMode;
+using Content.Server.NPC.HTN;
+using Content.Shared.Administration.Systems;
+using Content.Shared.Alert;
+using Content.Shared.Armor;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
+using Content.Shared.Humanoid;
+using Content.Shared.Interaction;
+using Content.Shared.Interaction.Events;
+using Content.Shared.Item;
 using Content.Shared.Imperial.Blob;
 using Content.Shared.Imperial.Blob.Components;
+using Content.Shared.Inventory;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Mind.Components;
-using Content.Shared.NPC.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC.Systems;
-using Content.Shared.Radio;
-using Content.Shared.Radio.Components;
-using Content.Shared.Speech.Muting;
-using Content.Shared.StatusEffect;
-using Content.Shared.Stunnable;
-using Content.Shared.Throwing;
-using Content.Shared.Weapons.Melee;
+using Content.Shared.Popups;
+using Content.Shared.Rotation;
 using Content.Shared.Weapons.Melee.Events;
-using Robust.Server.Player;
+using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Containers;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
-using Content.Shared.Physics;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Events;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
+using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Blob;
 
+/// <summary>
+/// Миньоны блоба (basic/blob_minions/*.dm, datum/component/blob_minion).
+/// </summary>
 public sealed class BlobMobSystem : EntitySystem
 {
-    private const string BlobFactionId = "Blob";
-    private const string BlobRadioChannel = "Blob";
-    private const string BlobHiveChannel = "BlobHive";
-    private const float BlobTileAllyHealInterval = 1f;
-    private const float BlobTileAllyHealAmount = 1f;
-
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly BlobChemistrySystem _chemistry = default!;
-    [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly MobThresholdSystem _thresholds = default!;
+    [Dependency] private readonly RejuvenateSystem _rejuvenate = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly NpcFactionSystem _faction = default!;
+    [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private readonly BlobStructureSystem _structure = default!;
+    [Dependency] private readonly BlobOvermindSystem _overmind = default!;
+    [Dependency] private readonly BlobStrainSystem _strain = default!;
     [Dependency] private readonly BlobInfectionSystem _infection = default!;
-    [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
+    [Dependency] private readonly HTNSystem _htn = default!;
+    [Dependency] private readonly Content.Server.NPC.Systems.NPCSystem _npc = default!;
 
-    private float _blobTileAllyHealAccumulator;
+    private static readonly EntProtoId SporePrototype = "MobBlobSpore";
+    private static readonly EntProtoId WeakSporePrototype = "MobBlobSporeWeak";
+    private static readonly EntProtoId IndependentSporePrototype = "MobBlobSporeIndependent";
+    private static readonly EntProtoId HealEffect = "BlobHealEffect";
+    private static readonly EntProtoId ProduceEffect = "BlobbernautProduceEffect";
+    private static readonly EntProtoId DeathEffect = "BlobbernautDeathEffect";
+    private static readonly EntProtoId VeinsFlashEffect = "BlobbernautVeinsFlashEffect";
+    private static readonly SoundSpecifier EatSound = new SoundPathSpecifier("/Audio/Imperial/blob/eatfood.ogg");
+    private static readonly ProtoId<DamageGroupPrototype> Brute = "Brute";
+    private static readonly ProtoId<DamageTypePrototype> Poison = "Poison";
+    private static readonly ProtoId<AlertPrototype> NoFactoryAlert = "BlobbernautNoFactory";
+    private static readonly SoundSpecifier BlobbernautDeathSound = new SoundPathSpecifier("/Audio/Imperial/blob/blobbernaut_death.ogg");
+    private static readonly SoundSpecifier SearSound = new SoundPathSpecifier("/Audio/Imperial/blob/sear.ogg");
+    private static readonly SoundSpecifier BlobAttackSound = new SoundPathSpecifier("/Audio/Imperial/blob/blobattack.ogg");
+    private static readonly SoundSpecifier AttackBlobSound = new SoundPathSpecifier("/Audio/Imperial/blob/attackblob.ogg");
+
+    /// <summary>BLOBMOB_HEALING_MULTIPLIER.</summary>
+    private const float HealingMultiplier = 0.0125f;
+
+    /// <summary>BLOBMOB_BLOBBERNAUT_HEALING_CORE / NODE / HEALTH_DECAY (за секунду, Life — 2 с).</summary>
+    private const float HealingCore = 0.05f;
+    private const float HealingNode = 0.025f;
+    private const float HealthDecay = 0.0125f;
+    private static readonly TimeSpan LifeInterval = TimeSpan.FromSeconds(2);
+
+    private readonly List<(EntityUid, BlobMobComponent)> _mobBuffer = new();
 
     public override void Initialize()
     {
         base.Initialize();
-
-        SubscribeLocalEvent<BlobMobComponent, ComponentStartup>(OnBlobMobStartup);
-        SubscribeLocalEvent<BlobMobComponent, ComponentShutdown>(OnBlobMobShutdown);
-        SubscribeLocalEvent<BlobInfectedComponent, ComponentStartup>(OnBlobInfectedStartup);
-        SubscribeLocalEvent<BlobInfectedComponent, ComponentShutdown>(OnBlobInfectedShutdown);
-        SubscribeLocalEvent<BlobMobComponent, EntitySpokeEvent>(OnBlobMobSpoke);
-        SubscribeLocalEvent<BlobMouseComponent, EntitySpokeEvent>(OnBlobMouseSpoke);
-        SubscribeLocalEvent<BlobInfectedComponent, EntitySpokeEvent>(OnBlobInfectedSpoke);
-        SubscribeLocalEvent<NpcFactionMemberComponent, EntitySpokeEvent>(OnBlobFactionSpoke);
-        SubscribeLocalEvent<BlobMobComponent, MeleeHitEvent>(OnBlobMobMeleeHit);
+        SubscribeLocalEvent<BlobMobComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<BlobMobComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<BlobMobComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<BlobMobComponent, GetMeleeDamageEvent>(OnGetMeleeDamage);
+        SubscribeLocalEvent<BlobMobComponent, MeleeHitEvent>(OnMeleeHit);
+        SubscribeLocalEvent<BlobMobComponent, DamageModifyEvent>(OnDamageModify);
+        SubscribeLocalEvent<BlobMobComponent, GhostRoleSpawnerUsedEvent>(OnSpawnerUsed);
+        SubscribeLocalEvent<BlobMobComponent, MindAddedMessage>(OnMindAdded);
+        SubscribeLocalEvent<BlobMobComponent, BeforeInteractHandEvent>(OnBeforeInteractHand);
     }
 
-    private void OnBlobMobStartup(EntityUid uid, BlobMobComponent component, ComponentStartup args)
+    private void OnMapInit(Entity<BlobMobComponent> ent, ref MapInitEvent args)
     {
-        ConfigureMobForOwner(uid, component);
-        ConfigureBlobFriendlyCollision(uid);
-
-        if (TryComp<CombatModeComponent>(uid, out var combatMode))
-            _combatMode.SetInCombatMode(uid, true, combatMode);
+        _faction.AddFaction(ent.Owner, BlobOvermindSystem.BlobFaction);
+        ent.Comp.NextLife = _timing.CurTime + LifeInterval;
+        UpdateVisuals(ent);
     }
 
-    private void OnBlobMobShutdown(EntityUid uid, BlobMobComponent component, ComponentShutdown args)
+    #region Связь с овермандом
+
+    /// <summary>create_spore().</summary>
+    public EntityUid CreateSpore(EntityUid? overmind, EntityCoordinates coords, BlobMobType type)
     {
-        RestoreBlobFriendlyCollision(uid);
-    }
-
-    private void OnBlobInfectedStartup(EntityUid uid, BlobInfectedComponent component, ComponentStartup args)
-    {
-        ConfigureBlobFriendlyCollision(uid);
-    }
-
-    private void OnBlobInfectedShutdown(EntityUid uid, BlobInfectedComponent component, ComponentShutdown args)
-    {
-        RestoreBlobFriendlyCollision(uid);
-    }
-
-    public void ConfigureMobForOwner(EntityUid uid, BlobMobComponent component)
-    {
-        if (!TryComp<MeleeWeaponComponent>(uid, out var melee))
-            return;
-
-        if (component.OwnerMind is { } ownerMind)
-            component.Chemical = GetChemicalForOwner(ownerMind);
-
-        melee.Damage = BuildDamage(uid, component.Chemical);
-        Dirty(uid, melee);
-
-        if (TryComp<CombatModeComponent>(uid, out var combatMode))
-            _combatMode.SetInCombatMode(uid, true, combatMode);
-    }
-
-    public void ConfigureBlobFriendlyCollision(EntityUid uid)
-    {
-        if (!TryComp<FixturesComponent>(uid, out var fixtures))
-            return;
-
-        var blobFriendly = EnsureComp<BlobFriendlyCollisionComponent>(uid);
-        foreach (var (fixtureId, fixture) in fixtures.Fixtures)
+        var proto = type switch
         {
-            if (!fixture.Hard || blobFriendly.DisabledFixtureMasks.ContainsKey(fixtureId))
-                continue;
+            BlobMobType.WeakSpore => WeakSporePrototype,
+            BlobMobType.IndependentSpore => IndependentSporePrototype,
+            _ => SporePrototype,
+        };
 
-            var removedMask = fixture.CollisionMask & (int) CollisionGroup.BlobImpassable;
-            if (removedMask == 0)
-                continue;
-
-            blobFriendly.DisabledFixtureMasks.Add(fixtureId, removedMask);
-            _physics.SetCollisionMask(uid, fixtureId, fixture, fixture.CollisionMask & ~removedMask, fixtures);
-        }
+        var spore = Spawn(proto, coords);
+        if (overmind != null)
+            RegisterOvermind(spore, overmind.Value);
+        return spore;
     }
 
-    public void RestoreBlobFriendlyCollision(EntityUid uid)
+    /// <summary>register_overlord().</summary>
+    public void RegisterOvermind(EntityUid mob, EntityUid overmind)
     {
-        if (!TryComp<BlobFriendlyCollisionComponent>(uid, out var blobFriendly) ||
-            !TryComp<FixturesComponent>(uid, out var fixtures))
+        if (!TryComp<BlobMobComponent>(mob, out var comp) || !TryComp<BlobOvermindComponent>(overmind, out var om))
             return;
 
-        foreach (var (fixtureId, removedMask) in blobFriendly.DisabledFixtureMasks)
+        comp.Overmind = overmind;
+        comp.Strain = om.Strain;
+        om.Mobs.Add(mob);
+        comp.OvermindCoreHealth = om.CoreHealth;
+        Dirty(mob, comp);
+        OnStrainChanged(mob);
+    }
+
+    /// <summary>overmind_deleted().</summary>
+    public void OnOvermindDeleted(EntityUid mob, EntityUid overmind)
+    {
+        if (!TryComp<BlobMobComponent>(mob, out var comp) || comp.Overmind != overmind)
+            return;
+        comp.Overmind = null;
+        comp.Strain = null;
+        comp.OvermindCoreHealth = -1;
+        Dirty(mob, comp);
+        OnStrainChanged(mob);
+    }
+
+    /// <summary>strain_properties_changed() / on_strain_updated().</summary>
+    public void OnStrainChanged(EntityUid mob)
+    {
+        if (!TryComp<BlobMobComponent>(mob, out var comp))
+            return;
+
+        if (comp.Overmind is { } overmind && TryComp<BlobOvermindComponent>(overmind, out var om))
+            comp.Strain = om.Strain;
+
+        // spore/minion: при distributed neurons спорами фабрики управляют призраки.
+        if (comp.Type == BlobMobType.Spore && comp.FactoryBound)
         {
-            if (!fixtures.Fixtures.TryGetValue(fixtureId, out var fixture))
-                continue;
-
-            _physics.SetCollisionMask(uid, fixtureId, fixture, fixture.CollisionMask | removedMask, fixtures);
-        }
-
-        RemCompDeferred<BlobFriendlyCollisionComponent>(uid);
-    }
-
-    private void OnBlobMobSpoke(EntityUid uid, BlobMobComponent component, ref EntitySpokeEvent args)
-    {
-        RelayToBlobRadio(uid, ref args);
-    }
-
-    private void OnBlobMouseSpoke(EntityUid uid, BlobMouseComponent component, ref EntitySpokeEvent args)
-    {
-        RelayToBlobRadio(uid, ref args);
-    }
-
-    private void OnBlobInfectedSpoke(EntityUid uid, BlobInfectedComponent component, ref EntitySpokeEvent args)
-    {
-        RelayToBlobRadio(uid, ref args);
-    }
-
-    private void OnBlobFactionSpoke(EntityUid uid, NpcFactionMemberComponent component, ref EntitySpokeEvent args)
-    {
-        if (!_npcFaction.IsMember((uid, component), BlobFactionId))
-            return;
-
-        if (HasComp<BlobMobComponent>(uid) || HasComp<BlobOvermindComponent>(uid) || HasComp<BlobMouseComponent>(uid))
-            return;
-
-        if (GetBlobOwner(uid) == null)
-            return;
-
-        RelayToBlobRadio(uid, ref args);
-    }
-
-    private void OnBlobMobMeleeHit(EntityUid uid, BlobMobComponent component, MeleeHitEvent args)
-    {
-        if (!args.IsHit || component.OwnerMind == null)
-            return;
-
-        foreach (var target in args.HitEntities)
-        {
-            if (HasComp<BlobSporeComponent>(uid) &&
-                _infection.TryLatchSporeOntoTarget(uid, target, component.OwnerMind.Value, component.Chemical))
+            var neurons = GetStrain(comp)?.Kind == BlobStrainKind.DistributedNeurons;
+            if (neurons && !HasComp<ActorComponent>(mob))
             {
-                break;
+                var role = EnsureComp<GhostRoleComponent>(mob);
+                role.RoleName = Loc.GetString("blob-ghost-role-spore-name");
+                role.RoleDescription = Loc.GetString("blob-ghost-role-spore-desc");
+                role.RoleRules = Loc.GetString("ghost-role-information-antagonist-rules");
+                EnsureComp<GhostTakeoverAvailableComponent>(mob);
             }
-
-            if (HasComp<BlobMobComponent>(target) || HasComp<BlobStructureComponent>(target) || HasComp<BlobOvermindComponent>(target))
-                continue;
-
-            var canApplySecondaryEffects = TryComp<MobStateComponent>(target, out var mobState) && mobState.CurrentState != MobState.Dead;
-
-            switch (component.Chemical)
+            else if (!neurons)
             {
-                case BlobChemicalType.Toxin:
-                    if (canApplySecondaryEffects)
-                        _chemistry.ApplyChemicalEffect(target, component.Chemical, 5f);
-
-                    if (canApplySecondaryEffects && TryComp<StatusEffectsComponent>(target, out var targetStatusEffects))
-                    {
-                        _statusEffects.TryAddStatusEffect<MutedComponent>(
-                            target,
-                            "Muted",
-                            TimeSpan.FromSeconds(2),
-                            true,
-                            targetStatusEffects);
-                    }
-                    break;
-                case BlobChemicalType.Incendiary:
-                    if (canApplySecondaryEffects)
-                        _chemistry.ApplyChemicalEffect(target, component.Chemical, 4f);
-                    break;
-                case BlobChemicalType.Electromagnetic:
-                    if (canApplySecondaryEffects)
-                    {
-                        _chemistry.ApplyChemicalEffect(target, component.Chemical, 4f);
-                        if (TryComp<StatusEffectsComponent>(target, out var electromagneticStatusEffects))
-                        {
-                            _statusEffects.TryAddStatusEffect<MutedComponent>(
-                                target,
-                                "Muted",
-                                TimeSpan.FromSeconds(1),
-                                true,
-                                electromagneticStatusEffects);
-                        }
-                    }
-                    break;
-                case BlobChemicalType.DistributedNeurons:
-                    if (canApplySecondaryEffects)
-                        _chemistry.ApplyChemicalEffect(target, component.Chemical, 3f);
-                    break;
-                case BlobChemicalType.RadioactiveGel:
-                    if (canApplySecondaryEffects)
-                        _chemistry.ApplyChemicalEffect(target, component.Chemical, 5f);
-                    break;
-                case BlobChemicalType.LexorinJelly:
-                    if (canApplySecondaryEffects)
-                        _chemistry.ApplyChemicalEffect(target, component.Chemical, 5f);
-                    break;
-                case BlobChemicalType.CryogenicLiquid:
-                    if (canApplySecondaryEffects)
-                        _chemistry.ApplyChemicalEffect(target, component.Chemical, 4f);
-                    break;
-                case BlobChemicalType.Sorium:
-                    if (canApplySecondaryEffects)
-                        ApplySoriumKnockback(uid, target, 2.25f);
-                    break;
-                case BlobChemicalType.EnvenomedFilaments:
-                    if (canApplySecondaryEffects)
-                    {
-                        _chemistry.ApplyChemicalEffect(target, component.Chemical, 5f);
-                        _stun.TryAddStunDuration(target, TimeSpan.FromSeconds(1.5));
-                    }
-                    break;
-                case BlobChemicalType.ParalyticToxins:
-                    if (canApplySecondaryEffects)
-                    {
-                        _chemistry.ApplyChemicalEffect(target, component.Chemical, 4f);
-                        _stun.TryKnockdown(target, TimeSpan.FromSeconds(1.5), true);
-                    }
-                    break;
-                case BlobChemicalType.KineticGelatin:
-                    break;
-                case BlobChemicalType.Regenerative:
-                    var healing = new DamageSpecifier();
-                    healing.DamageDict.Add("Brute", -3);
-                    healing.DamageDict.Add("Burn", -3);
-                    _damage.TryChangeDamage(uid, healing, true);
-                    break;
+                RemComp<GhostTakeoverAvailableComponent>(mob);
+                RemComp<GhostRoleComponent>(mob);
             }
         }
+
+        if (GetStrain(comp) is { } strain && TryComp<ActorComponent>(mob, out _))
+        {
+            var desc = strain.ShortDesc is { } shortDesc ? Loc.GetString(shortDesc) : Loc.GetString(strain.Description);
+            _overmind.SendMessage(mob, Loc.GetString("blob-minion-strain-now", ("color", strain.Color.ToHex()), ("name", Loc.GetString(strain.Name))));
+            _overmind.SendMessage(mob, Loc.GetString("blob-strain-desc", ("color", strain.Color.ToHex()), ("name", Loc.GetString(strain.Name)), ("desc", desc)));
+        }
+
+        UpdateVisuals((mob, comp));
     }
+
+    private BlobStrainPrototype? GetStrain(BlobMobComponent comp) =>
+        comp.Strain is { } id && _proto.TryIndex(id, out var strain) ? strain : null;
+
+    private void UpdateVisuals(Entity<BlobMobComponent> ent)
+    {
+        var strain = GetStrain(ent.Comp);
+        var alive = !_mobState.IsDead(ent);
+        _appearance.SetData(ent, BlobVisuals.Color, strain?.Color ?? Color.White);
+        _appearance.SetData(ent, BlobVisuals.Alive, alive);
+
+        if (ent.Comp.Type == BlobMobType.Blobbernaut)
+        {
+            // Без штамма вены «траурно-аметистовые», глаза белые.
+            _appearance.SetData(ent, BlobVisuals.SecondaryColor, strain?.ComplementaryColor ?? Color.FromHex("#7d6eb4"));
+            _appearance.SetData(ent, BlobVisuals.EyesColor, strain?.ComplementaryColor ?? Color.White);
+        }
+    }
+
+    private void OnMindAdded(Entity<BlobMobComponent> ent, ref MindAddedMessage args)
+    {
+        // Становится миньоном блоба.
+        if (ent.Comp.Overmind == null)
+            return;
+        _overmind.SendMessage(ent, Loc.GetString("blob-minion-objective"));
+    }
+
+    #endregion
+
+    #region Фабрика
+
+    /// <summary>on_factory_destroyed().</summary>
+    public void OnFactoryDestroyed(EntityUid mob)
+    {
+        if (TerminatingOrDeleted(mob) || !TryComp<BlobMobComponent>(mob, out var comp))
+            return;
+
+        comp.Factory = null;
+        _popup.PopupEntity(Loc.GetString("blob-factory-destroyed-dying"), mob, mob, PopupType.LargeCaution);
+        if (comp.Type == BlobMobType.Blobbernaut)
+        {
+            comp.Orphaned = true;
+            _alerts.ShowAlert(mob, NoFactoryAlert);
+            return;
+        }
+
+        Kill(mob);
+    }
+
+    /// <summary>pick_blobbernaut_candidate(): 20 секунд опроса призраков.</summary>
+    public void StartBlobbernautPoll(EntityUid overmind, Entity<BlobStructureComponent> factory)
+    {
+        if (!TryComp<BlobOvermindComponent>(overmind, out var om))
+            return;
+
+        var spawner = Spawn(om.BlobbernautSpawnerPrototype, Transform(factory).Coordinates);
+        var comp = EnsureComp<BlobbernautSpawnerComponent>(spawner);
+        comp.Overmind = overmind;
+        comp.Factory = factory;
+        comp.Expire = _timing.CurTime + TimeSpan.FromSeconds(20);
+    }
+
+    private void OnSpawnerUsed(Entity<BlobMobComponent> ent, ref GhostRoleSpawnerUsedEvent args)
+    {
+        if (!TryComp<BlobbernautSpawnerComponent>(args.Spawner, out var spawner))
+            return;
+
+        if (spawner.Overmind is { } overmind && !TerminatingOrDeleted(overmind))
+            RegisterOvermind(ent, overmind);
+
+        if (spawner.Factory is { } factory && TryComp<BlobStructureComponent>(factory, out var factoryComp))
+        {
+            ent.Comp.Factory = factory;
+            _structure.AssignBlobbernaut((factory, factoryComp), ent);
+        }
+
+        // assign_key(): начинает раненым, чтобы не убегал от блоба.
+        if (_thresholds.TryGetDeadThreshold(ent, out var max) && max != null)
+            _structure.Damage(ent, "Blunt", (float) max.Value / 2, true);
+
+        // flick("blobbernaut_produce").
+        _structure.SpawnTinted(ProduceEffect, Transform(ent).Coordinates, GetStrain(ent.Comp)?.Color ?? Color.White);
+        spawner.Overmind = null;
+        spawner.Factory = null;
+        QueueDel(args.Spawner);
+
+        Timer.Spawn(TimeSpan.FromSeconds(0.5), () => GreetBlobbernaut(ent));
+    }
+
+    private void GreetBlobbernaut(EntityUid naut)
+    {
+        if (TerminatingOrDeleted(naut) || !TryComp<BlobMobComponent>(naut, out var comp))
+            return;
+
+        _audio.PlayEntity(BlobAttackSound, naut, naut);
+        _audio.PlayEntity(AttackBlobSound, naut, naut);
+        _overmind.SendMessage(naut, Loc.GetString("blob-blobbernaut-greet-1"));
+        _overmind.SendMessage(naut, Loc.GetString("blob-blobbernaut-greet-2"));
+        if (GetStrain(comp) is { } strain)
+        {
+            var desc = strain.ShortDesc is { } shortDesc ? Loc.GetString(shortDesc) : Loc.GetString(strain.Description);
+            _overmind.SendMessage(naut, Loc.GetString("blob-blobbernaut-greet-strain", ("color", strain.Color.ToHex()), ("name", Loc.GetString(strain.Name))));
+            _overmind.SendMessage(naut, Loc.GetString("blob-strain-desc", ("color", strain.Color.ToHex()), ("name", Loc.GetString(strain.Name)), ("desc", desc)));
+        }
+    }
+
+    #endregion
+
+    #region Жизнь
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+        var now = _timing.CurTime;
 
-        _blobTileAllyHealAccumulator += frameTime;
-        var shouldHealBlobTileAllies = _blobTileAllyHealAccumulator >= BlobTileAllyHealInterval;
-        if (shouldHealBlobTileAllies)
-            _blobTileAllyHealAccumulator -= BlobTileAllyHealInterval;
+        var spawners = EntityQueryEnumerator<BlobbernautSpawnerComponent>();
+        while (spawners.MoveNext(out var uid, out var spawner))
+        {
+            if (now < spawner.Expire)
+                continue;
 
-        if (!shouldHealBlobTileAllies)
+            // on_poll_concluded(null): очки возвращаются.
+            if (spawner.Overmind is { } overmind && TryComp<BlobOvermindComponent>(overmind, out var om))
+            {
+                _overmind.SendMessage(overmind, Loc.GetString("blob-blobbernaut-no-ghost"));
+                _overmind.AddPoints(overmind, om, om.BlobbernautCost);
+            }
+
+            if (spawner.Factory is { } factory && TryComp<BlobStructureComponent>(factory, out var factoryComp))
+                _structure.AssignBlobbernaut((factory, factoryComp), null);
+            QueueDel(uid);
+        }
+
+        // Снимок: заражение и смерть создают и удаляют миньонов прямо во время обхода.
+        _mobBuffer.Clear();
+        var mobs = EntityQueryEnumerator<BlobMobComponent>();
+        while (mobs.MoveNext(out var mobUid, out var mobComp))
+            _mobBuffer.Add((mobUid, mobComp));
+
+        foreach (var (uid, comp) in _mobBuffer)
+        {
+            if (TerminatingOrDeleted(uid))
+                continue;
+
+            if (now < comp.NextLife || _mobState.IsDead(uid))
+                continue;
+            comp.NextLife = now + LifeInterval;
+
+            switch (comp.Type)
+            {
+                case BlobMobType.Blobbernaut:
+                    if (comp.FactoryBound)
+                        BlobbernautLife((uid, comp));
+                    break;
+            }
+        }
+    }
+
+    /// <summary>blobbernaut/minion/Life(): лечится у ядра и узлов, умирает вдали от блоба или без фабрики.</summary>
+    private void BlobbernautLife(Entity<BlobMobComponent> ent)
+    {
+        if (!_thresholds.TryGetDeadThreshold(ent, out var maxHealth) || maxHealth == null)
             return;
+        var max = (float) maxHealth.Value;
+        var seconds = (float) LifeInterval.TotalSeconds;
 
-        var allyQuery = EntityQueryEnumerator<TransformComponent, DamageableComponent>();
-        while (allyQuery.MoveNext(out var uid, out var xform, out var damageable))
+        var damageSources = 0;
+        var nearCore = false;
+        var nearNode = false;
+        var nearBlob = false;
+        if (_structure.TryGetTile(ent, out var grid, out var tile))
         {
-            if (HasComp<BlobOvermindComponent>(uid) || HasComp<BlobOvermindControllerComponent>(uid) || HasComp<BlobStructureComponent>(uid))
-                continue;
-
-            if (TryComp<MobStateComponent>(uid, out var mobState) && mobState.CurrentState == MobState.Dead)
-                continue;
-
-            var ownerMind = GetBlobOwner(uid);
-            if (ownerMind is not { } owner || !IsStandingOnOwnedBlobTile(xform, owner))
-                continue;
-
-            var healing = BuildBlobTileHealing((uid, damageable));
-            if (healing.Empty)
-                continue;
-
-            _damage.TryChangeDamage(uid, healing, true);
-        }
-    }
-
-    private DamageSpecifier BuildBlobTileHealing(Entity<DamageableComponent> target)
-    {
-        var currentDamage = _damage.GetPositiveDamage(target);
-        var healing = new DamageSpecifier();
-
-        foreach (var (damageType, amount) in currentDamage.DamageDict)
-        {
-            if (amount <= FixedPoint2.Zero)
-                continue;
-
-            healing.DamageDict.Add(damageType, -BlobTileAllyHealAmount);
+            foreach (var blob in _structure.BlobsInRange(grid, tile, 2))
+            {
+                nearBlob = true;
+                var type = Comp<BlobStructureComponent>(blob).Type;
+                nearCore |= type == BlobStructureType.Core;
+                nearNode |= type == BlobStructureType.Node;
+            }
         }
 
-        return healing;
-    }
+        if (!nearBlob)
+            damageSources++;
 
-    private BlobChemicalType GetChemicalForOwner(EntityUid ownerMind)
-    {
-        var query = EntityQueryEnumerator<BlobOvermindComponent, MindContainerComponent>();
-        while (query.MoveNext(out _, out var overmind, out var mindContainer))
+        if (ent.Comp.Orphaned)
         {
-            if (overmind.BlobId == ownerMind || mindContainer.Mind == ownerMind)
-                return overmind.Chemical;
+            damageSources++;
         }
-
-        return BlobChemicalType.Toxin;
-    }
-
-    private DamageSpecifier BuildDamage(EntityUid uid, BlobChemicalType chemical)
-    {
-        var damage = new DamageSpecifier();
-        var prototype = MetaData(uid).EntityPrototype?.ID;
-
-        damage.DamageDict.Add("Blunt", GetBaseBluntDamage(prototype, chemical));
-
-        switch (chemical)
-        {
-            case BlobChemicalType.Toxin:
-                damage.DamageDict.Add("Poison", 6);
-                break;
-            case BlobChemicalType.Incendiary:
-                damage.DamageDict.Add("Heat", 6);
-                break;
-            case BlobChemicalType.Electromagnetic:
-                damage.DamageDict.Add("Heat", 8);
-                break;
-            case BlobChemicalType.DistributedNeurons:
-                damage.DamageDict.Add("Poison", 8);
-                break;
-            case BlobChemicalType.KineticGelatin:
-                damage.DamageDict.Add("Stamina", 12);
-                break;
-            case BlobChemicalType.RadioactiveGel:
-                damage.DamageDict.Add("Poison", 5);
-                damage.DamageDict.Add("Radiation", 4);
-                break;
-            case BlobChemicalType.LexorinJelly:
-                damage.DamageDict.Add("Asphyxiation", 18);
-                break;
-            case BlobChemicalType.CryogenicLiquid:
-                damage.DamageDict.Add("Cold", 6);
-                damage.DamageDict.Add("Stamina", 8);
-                break;
-            case BlobChemicalType.Sorium:
-                damage.DamageDict.Add("Stamina", 12);
-                break;
-            case BlobChemicalType.EnvenomedFilaments:
-                damage.DamageDict.Add("Poison", 9);
-                damage.DamageDict.Add("Stamina", 6);
-                break;
-            case BlobChemicalType.ParalyticToxins:
-                damage.DamageDict.Add("Poison", 6);
-                damage.DamageDict.Add("Stamina", 5);
-                break;
-            case BlobChemicalType.Regenerative:
-                damage.DamageDict.Add("Poison", 2);
-                break;
-        }
-
-        return damage;
-    }
-
-    private int GetBaseBluntDamage(string? prototype, BlobChemicalType chemical)
-    {
-        return prototype switch
-        {
-            "MobBlobbernaut" when chemical == BlobChemicalType.Regenerative => 22,
-            "MobBlobbernaut" when chemical == BlobChemicalType.Sorium => 17,
-            "MobBlobbernaut" when chemical == BlobChemicalType.KineticGelatin => 24,
-            "MobBlobbernaut" when chemical == BlobChemicalType.ParalyticToxins => 15,
-            "MobBlobbernaut" when chemical == BlobChemicalType.RadioactiveGel => 12,
-            "MobBlobbernaut" when chemical == BlobChemicalType.LexorinJelly => 10,
-            "MobBlobbernaut" when chemical == BlobChemicalType.CryogenicLiquid => 12,
-            "MobBlobbernaut" when chemical == BlobChemicalType.DistributedNeurons => 16,
-            "MobBlobbernaut" when chemical == BlobChemicalType.Electromagnetic => 15,
-            "MobBlobbernaut" => 18,
-            _ when chemical == BlobChemicalType.Regenerative => 6,
-            _ when chemical == BlobChemicalType.Sorium => 5,
-            _ when chemical == BlobChemicalType.KineticGelatin => 7,
-            _ when chemical == BlobChemicalType.ParalyticToxins => 3,
-            _ when chemical == BlobChemicalType.RadioactiveGel => 2,
-            _ when chemical == BlobChemicalType.LexorinJelly => 2,
-            _ when chemical == BlobChemicalType.CryogenicLiquid => 2,
-            _ when chemical == BlobChemicalType.DistributedNeurons => 3,
-            _ when chemical == BlobChemicalType.Electromagnetic => 3,
-            _ => 4,
-        };
-    }
-
-    private void ApplySoriumKnockback(EntityUid sourceUid, EntityUid targetUid, float distance)
-    {
-        var sourceCoords = _transform.ToMapCoordinates(Transform(sourceUid).Coordinates);
-        var targetCoords = _transform.ToMapCoordinates(Transform(targetUid).Coordinates);
-        if (sourceCoords.MapId != targetCoords.MapId)
-            return;
-
-        var pushDir = targetCoords.Position - sourceCoords.Position;
-        if (pushDir.LengthSquared() < 0.01f)
-            pushDir = new Vector2(1f, 0f);
         else
-            pushDir = pushDir.Normalized() * distance;
-
-        _throwing.TryThrow(targetUid, pushDir, 8f);
-    }
-
-    private bool IsStandingOnOwnedBlobTile(TransformComponent xform, EntityUid ownerMind)
-    {
-        if (xform.GridUid is not { } gridUid)
-            return false;
-
-        if (!TryComp<MapGridComponent>(gridUid, out var grid))
-            return false;
-
-        var tile = _map.CoordinatesToTile(gridUid, grid, xform.Coordinates);
-        var query = EntityQueryEnumerator<BlobStructureComponent, TransformComponent, MetaDataComponent>();
-        while (query.MoveNext(out _, out var structure, out var structureXform, out var metaData))
         {
-            if (structure.OwnerMind != ownerMind)
-                continue;
+            var color = GetStrain(ent.Comp)?.Color ?? Color.Black;
+            if (nearCore)
+            {
+                HealBrute(ent, max * HealingCore * seconds);
+                SpawnHeal(ent, color);
+            }
 
-            if (structureXform.GridUid != gridUid)
-                continue;
-
-            var prototype = metaData.EntityPrototype?.ID;
-            if (prototype != "BlobTile" && prototype != "BlobTileShield" && prototype != "BlobTileReflective")
-                continue;
-
-            var structureTile = _map.CoordinatesToTile(gridUid, grid, structureXform.Coordinates);
-            if (structureTile == tile)
-                return true;
+            if (nearNode)
+            {
+                HealBrute(ent, max * HealingNode * seconds);
+                SpawnHeal(ent, color);
+            }
         }
 
+        if (damageSources == 0)
+            return;
+
+        _structure.Damage(ent, Poison, max * HealthDecay * damageSources * seconds, true);
+
+        // Вены мигают цветом, сдвинутым по оттенку на 180°.
+        var veins = GetStrain(ent.Comp)?.ComplementaryColor ?? Color.FromHex("#7d6eb4");
+        var hsv = Color.ToHsv(veins);
+        hsv.X = (hsv.X + 0.5f) % 1f;
+        var flash = Spawn(VeinsFlashEffect, new EntityCoordinates(ent, 0, 0));
+        _appearance.SetData(flash, BlobVisuals.Color, Color.FromHsv(hsv));
+        if (_random.Prob(0.2f))
+            _audio.PlayPvs(SearSound, ent, AudioParams.Default.WithVolume(BlobStructureSystem.Db(5)).WithVariation(0.125f));
+    }
+
+    /// <summary>heal_overall_damage(brute).</summary>
+    private void HealBrute(EntityUid uid, float amount)
+    {
+        if (amount <= 0)
+            return;
+        _damageable.HealDistributed(uid, -FixedPoint2.New(amount), Brute);
+    }
+
+    private void SpawnHeal(EntityUid uid, Color color)
+    {
+        var offset = new System.Numerics.Vector2(_random.NextFloat(-0.375f, 0.375f), _random.NextFloat(-0.28f, 0f));
+        _structure.SpawnTinted(HealEffect, Transform(uid).Coordinates.Offset(offset), color);
+    }
+
+    /// <summary>on_blob_touched(): касание блоба лечит миньона.</summary>
+    public bool HealFromBlob(EntityUid mob)
+    {
+        if (_mobState.IsDead(mob) || !TryComp<DamageableComponent>(mob, out var damageable) ||
+            _damageable.GetTotalDamage((mob, damageable)) <= 0 ||
+            !_thresholds.TryGetDeadThreshold(mob, out var max) || max == null)
+            return false;
+
+        var color = TryComp<BlobMobComponent>(mob, out var comp) && comp.Overmind is { } overmind &&
+                    TryComp<BlobOvermindComponent>(overmind, out var om) && _overmind.GetStrain(om) is { } strain
+            ? strain.ComplementaryColor
+            : Color.Black;
+        SpawnHeal(mob, color);
+        SpawnHeal(mob, color);
+        HealBrute(mob, (float) max.Value * HealingMultiplier);
         return false;
     }
 
-    public void RelayToBlobRadio(EntityUid speakerUid, ref EntitySpokeEvent args, EntityUid? radioSource = null)
+    public void FullyHeal(EntityUid mob)
     {
-        if (string.IsNullOrWhiteSpace(args.Message))
-            return;
-
-        var channelId = args.Channel?.ID == BlobHiveChannel
-            ? BlobHiveChannel
-            : BlobRadioChannel;
-
-        SendToBlobRadio(speakerUid, args.Message, channelId, radioSource);
-        args.Channel = null;
+        _rejuvenate.PerformRejuvenate(mob);
     }
 
-    public void SendToBlobRadio(EntityUid speakerUid, string message, string channelId = BlobRadioChannel, EntityUid? radioSource = null)
+    private void Kill(EntityUid mob)
     {
-        if (string.IsNullOrWhiteSpace(message))
+        if (!_mobState.IsDead(mob))
+            _mobState.ChangeMobState(mob, MobState.Dead);
+    }
+
+    #endregion
+
+    #region Бой
+
+    /// <summary>melee_damage_lower/upper и obj_damage.</summary>
+    private void OnGetMeleeDamage(Entity<BlobMobComponent> ent, ref GetMeleeDamageEvent args)
+    {
+        if (args.Weapon != ent.Owner)
             return;
 
-        if (channelId == BlobRadioChannel || channelId == BlobHiveChannel)
+        var hasStrain = GetStrain(ent.Comp) != null;
+        var (lower, upper, obj) = ent.Comp.Type switch
         {
-            DispatchBlobRadioFallback(speakerUid, message, GetBlobOwner(speakerUid), channelId);
-            return;
-        }
+            BlobMobType.Spore or BlobMobType.IndependentSpore => (4, 8, 10),
+            BlobMobType.WeakSpore => (2, 4, 0),
+            BlobMobType.Blobbernaut => hasStrain ? (4, 4, 60) : (20, 20, 60),
+            _ => (4, 8, 10),
+        };
 
-        _radio.SendRadioMessage(speakerUid, message, channelId, radioSource ?? speakerUid);
+        var damage = new DamageSpecifier();
+        damage.DamageDict["Blunt"] = _random.Next(lower, upper + 1);
+        if (obj > 0)
+            damage.DamageDict["Structural"] = obj;
+        args.Damage = damage;
     }
 
-    public void DispatchBlobRadioFallback(EntityUid source, string message, EntityUid? blobId, string channelId)
+    private void OnMeleeHit(Entity<BlobMobComponent> ent, ref MeleeHitEvent args)
     {
-        if (string.IsNullOrWhiteSpace(message))
+        if (!args.IsHit || args.Weapon != ent.Owner)
             return;
 
-        var filter = Filter.Empty();
-        var hasRecipients = false;
-
-        foreach (var session in _players.Sessions)
+        foreach (var victim in args.HitEntities)
         {
-            if (session.AttachedEntity is not { Valid: true } attached)
-                continue;
+            if (TryEatDebris(ent, victim))
+                return;
 
-            if (!IsBlobRadioRecipient(attached, blobId))
-                continue;
+            // Спора под управлением игрока забирается на голову жертвы в крите ударом.
+            if (TryComp<BlobSporeLatchComponent>(ent, out var latch) && _infection.TryStartLatch((ent, latch), victim))
+                return;
 
-            filter.AddPlayer(session);
-            hasRecipients = true;
+            switch (ent.Comp.Type)
+            {
+                case BlobMobType.Blobbernaut:
+                    if (GetStrain(ent.Comp) is { } strain)
+                        _strain.BlobbernautAttack(ent, victim, strain, ent.Comp.Overmind);
+                    break;
+            }
         }
+    }
 
-        if (!hasRecipients)
+    /// <summary>Блоббернаут: brute 0.5 и порог урона 10 (damage_threshold).</summary>
+    private void OnDamageModify(Entity<BlobMobComponent> ent, ref DamageModifyEvent args)
+    {
+        if (ent.Comp.Type != BlobMobType.Blobbernaut || args.Damage.GetTotal() <= 0)
             return;
 
-        var channel = _prototypes.Index<RadioChannelPrototype>(channelId);
-        var wrappedMessage = $"[{channel.LocalizedName}] {FormattedMessage.EscapeText(Name(source))}: \"{FormattedMessage.EscapeText(message)}\"";
-        _chat.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source, false, true, null);
+        if (args.Damage.GetTotal() < 10)
+            args.Damage = new DamageSpecifier();
     }
 
-    public EntityUid? GetBlobOwner(EntityUid uid)
+    #endregion
+
+    /// <summary>debris_devourer on_blobmob_atom_interacted(): миньон глотает предметы.</summary>
+    private void OnBeforeInteractHand(Entity<BlobMobComponent> ent, ref BeforeInteractHandEvent args)
     {
-        if (TryComp<BlobOvermindComponent>(uid, out var overmind))
-            return overmind.BlobId;
-
-        if (TryComp<BlobInfectedComponent>(uid, out var infected))
-            return infected.OwnerMind;
-
-        if (TryComp<BlobMobComponent>(uid, out var blobMob))
-            return blobMob.OwnerMind;
-
-        if (TryComp<BlobStructureComponent>(uid, out var structure))
-            return structure.OwnerMind;
-
-        if (TryComp<BlobOvermindControllerComponent>(uid, out var controller) &&
-            controller.Overmind is { } overmindUid &&
-            TryComp<BlobOvermindComponent>(overmindUid, out var controllerOvermind))
-            return controllerOvermind.BlobId;
-
-        return null;
+        if (!args.Handled && TryEatDebris(ent, args.Target))
+            args.Handled = true;
     }
 
-    public bool IsBlobRadioRecipient(EntityUid entity, EntityUid? blobId)
+    private bool TryEatDebris(Entity<BlobMobComponent> ent, EntityUid target)
     {
-        if (blobId is not { } owner)
+        if (GetStrain(ent.Comp)?.Kind != BlobStrainKind.DebrisDevourer || !HasComp<ItemComponent>(target) ||
+            _container.IsEntityInContainer(target) ||
+            !_transform.InRange(Transform(ent).Coordinates, Transform(target).Coordinates, 1.5f))
+            return false;
+
+        // mob_size * 5: блоббернаут крупный (15), остальные — 10.
+        var own = _container.EnsureContainer<Container>(ent, BlobStrainSystem.DebrisContainer);
+        var limit = ent.Comp.Type == BlobMobType.Blobbernaut ? 15 : 10;
+        if (own.ContainedEntities.Count >= limit)
         {
-                 return _npcFaction.IsMember(entity, BlobFactionId) ||
-                   HasComp<BlobMouseComponent>(entity) ||
-                   HasComp<BlobOvermindComponent>(entity) ||
-                   HasComp<BlobOvermindControllerComponent>(entity) ||
-                   HasComp<BlobInfectedComponent>(entity);
-        }
-
-        return IsFriendlyBlobEntity(entity, owner);
-    }
-
-    public void EnsureBlobRadio(EntityUid uid)
-    {
-        var transmitter = EnsureComp<IntrinsicRadioTransmitterComponent>(uid);
-        transmitter.Channels.Add(BlobRadioChannel);
-        transmitter.Channels.Add(BlobHiveChannel);
-        Dirty(uid, transmitter);
-
-        EnsureComp<IntrinsicRadioReceiverComponent>(uid);
-
-        var activeRadio = EnsureComp<ActiveRadioComponent>(uid);
-        activeRadio.Channels.Add(BlobRadioChannel);
-        activeRadio.Channels.Add(BlobHiveChannel);
-        Dirty(uid, activeRadio);
-    }
-
-    private bool IsFriendlyBlobEntity(EntityUid entity, EntityUid blobId)
-    {
-        if (TryComp<BlobStructureComponent>(entity, out var structure))
-            return structure.OwnerMind == blobId;
-
-        if (TryComp<BlobMobComponent>(entity, out var mob))
-            return mob.OwnerMind == blobId;
-
-        if (TryComp<BlobInfectedComponent>(entity, out var infected))
-            return infected.OwnerMind == blobId;
-
-        if (HasComp<BlobMouseComponent>(entity))
+            _popup.PopupEntity(Loc.GetString("blob-minion-too-full"), ent, ent);
             return true;
-
-        if (TryComp<BlobOvermindControllerComponent>(entity, out var controller) &&
-            controller.Overmind is { } overmindUid &&
-            TryComp<BlobOvermindComponent>(overmindUid, out var controllerOvermind))
-        {
-            return controllerOvermind.BlobId == blobId;
         }
 
-        if (TryComp<BlobOvermindComponent>(entity, out var overmind))
-            return overmind.BlobId == blobId;
-
-        return false;
+        _audio.PlayPvs(EatSound, ent, AudioParams.Default.WithVolume(BlobStructureSystem.Db(60)).WithVariation(0.125f));
+        var container = own;
+        if (ent.Comp.Overmind is { } overmind && TryComp<BlobOvermindComponent>(overmind, out var om) && om.Core is { } core)
+            container = _container.EnsureContainer<Container>(core, BlobStrainSystem.DebrisContainer);
+        _container.Insert(target, container);
+        return true;
     }
+
+    #region Смерть
+
+    private void OnMobStateChanged(Entity<BlobMobComponent> ent, ref MobStateChangedEvent args)
+    {
+        UpdateVisuals(ent);
+        if (args.NewMobState != MobState.Dead)
+            return;
+
+        // on_death(): облако или реакция штамма.
+        if (ent.Comp.DeathCloudSize >= 0)
+            _strain.OnSporeDeath(ent, GetStrain(ent.Comp), ent.Comp.Overmind, ent.Comp.DeathCloudSize);
+
+        if (ent.Comp.Factory is { } factory)
+        {
+            _structure.OnFactoryMobDied(factory, ent);
+            if (ent.Comp.Type == BlobMobType.Blobbernaut)
+                _structure.OnBlobbernautDied(factory, ent);
+        }
+
+        switch (ent.Comp.Type)
+        {
+            case BlobMobType.Blobbernaut:
+                _structure.SpawnTinted(DeathEffect, Transform(ent).Coordinates, GetStrain(ent.Comp)?.Color ?? Color.White);
+                _audio.PlayPvs(BlobbernautDeathSound, ent, AudioParams.Default.WithVariation(0.125f));
+                break;
+            default:
+                // DEL_ON_DEATH: «explodes into a cloud of gas!»
+                _popup.PopupEntity(Loc.GetString("blob-spore-explodes", ("spore", ent.Owner)), ent, PopupType.Medium);
+                QueueDel(ent);
+                break;
+        }
+    }
+
+    private void OnShutdown(Entity<BlobMobComponent> ent, ref ComponentShutdown args)
+    {
+        if (ent.Comp.Factory is { } factory)
+        {
+            _structure.OnFactoryMobRemoved(factory, ent);
+            if (ent.Comp.Type == BlobMobType.Blobbernaut)
+                _structure.OnBlobbernautDied(factory, ent);
+        }
+
+        if (ent.Comp.Overmind is { } overmind && TryComp<BlobOvermindComponent>(overmind, out var om))
+            om.Mobs.Remove(ent);
+
+    }
+
+    #endregion
 }

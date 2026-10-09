@@ -2,78 +2,31 @@ using Content.Shared.Actions;
 
 namespace Content.Shared.Imperial.Blob;
 
-public sealed partial class BlobAttackActionEvent : WorldTargetActionEvent
-{
-}
+// Кнопки HUD оверманда SS13 (_onclick/hud/screen_objects/blob.dm) и клики (_onclick/overmind.dm).
 
-public sealed partial class BlobConsumeTileActionEvent : WorldTargetActionEvent
-{
-}
+/// <summary>jump_to_core: до размещения — «Place Blob Core».</summary>
+public sealed partial class BlobJumpToCoreActionEvent : InstantActionEvent;
 
-public sealed partial class BlobPlaceTileActionEvent : WorldTargetActionEvent
-{
-}
+/// <summary>jump_to_node.</summary>
+public sealed partial class BlobJumpToNodeActionEvent : InstantActionEvent;
 
-public sealed partial class BlobPlaceShieldTileActionEvent : WorldTargetActionEvent
-{
-}
+/// <summary>blobbernaut: из фабрики под камерой.</summary>
+public sealed partial class BlobCreateBlobbernautActionEvent : InstantActionEvent;
 
-public sealed partial class BlobPlaceNodeActionEvent : WorldTargetActionEvent
-{
-}
+/// <summary>resource_blob.</summary>
+public sealed partial class BlobCreateResourceActionEvent : InstantActionEvent;
 
-public sealed partial class BlobPlaceFactoryActionEvent : WorldTargetActionEvent
-{
-}
+/// <summary>node_blob.</summary>
+public sealed partial class BlobCreateNodeActionEvent : InstantActionEvent;
 
-public sealed partial class BlobPlaceResourceActionEvent : WorldTargetActionEvent
-{
-}
+/// <summary>factory_blob.</summary>
+public sealed partial class BlobCreateFactoryActionEvent : InstantActionEvent;
 
-public sealed partial class BlobPlaceStorageActionEvent : WorldTargetActionEvent
-{
-}
+/// <summary>readapt_strain.</summary>
+public sealed partial class BlobReadaptStrainActionEvent : InstantActionEvent;
 
-public sealed partial class BlobPlaceLauncherActionEvent : WorldTargetActionEvent
-{
-}
+/// <summary>relocate_core.</summary>
+public sealed partial class BlobRelocateCoreActionEvent : InstantActionEvent;
 
-public sealed partial class BlobPlaceCoolingActionEvent : WorldTargetActionEvent
-{
-}
-
-public sealed partial class BlobSpawnBlobbernautActionEvent : WorldTargetActionEvent
-{
-}
-
-public sealed partial class BlobRallyMinionsActionEvent : WorldTargetActionEvent
-{
-}
-
-public sealed partial class BlobUpgradeGenerationActionEvent : InstantActionEvent
-{
-}
-
-public sealed partial class BlobUpgradeAttackActionEvent : InstantActionEvent
-{
-}
-
-public sealed partial class BlobUpgradeCapacityActionEvent : InstantActionEvent
-{
-}
-
-public sealed partial class BlobSplitConsciousnessActionEvent : WorldTargetActionEvent
-{
-}
-
-public sealed partial class BlobShowStatusActionEvent : InstantActionEvent
-{
-}
-
-public sealed partial class BlobChangeChemicalActionEvent : InstantActionEvent
-{
-}
-
-public sealed partial class BlobMouseTransformActionEvent : InstantActionEvent
-{
-}
+/// <summary>blobpop: носитель выпускает блоба.</summary>
+public sealed partial class BlobPopActionEvent : InstantActionEvent;
