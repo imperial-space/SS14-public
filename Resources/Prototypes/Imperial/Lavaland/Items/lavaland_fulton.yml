@@ -1,0 +1,37 @@
+# Фултон Лаваленда: как extraction_pack из SS13 — вытаскивает не только грузы, но и тела и существ.
+# Код фултона SS14 не меняется: расширен только whitelist, своя стопка, чтобы не смешиваться с обычным фултоном.
+
+- type: stack
+  id: ImperialFultonLavaland
+  name: stack-fulton-lavaland
+  icon:
+    sprite: /Textures/Objects/Tools/fulton.rsi
+    state: extraction_pack
+  spawn: ImperialFultonLavaland1
+  maxCount: 10
+
+- type: entity
+  id: ImperialFultonLavaland
+  parent: Fulton
+  name: lavaland fulton
+  description: Extraction pack that can lift equipment, bodies and creatures to a fulton beacon.
+  suffix: Full
+  components:
+  - type: Fulton
+    duration: 15
+    whitelist:
+      components:
+      - Item
+      - Anchorable
+      - MobState
+  - type: Stack
+    stackType: ImperialFultonLavaland
+    count: 10
+
+- type: entity
+  id: ImperialFultonLavaland1
+  parent: ImperialFultonLavaland
+  suffix: One
+  components:
+  - type: Stack
+    count: 1

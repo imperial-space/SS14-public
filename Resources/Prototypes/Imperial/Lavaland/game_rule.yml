@@ -5,7 +5,7 @@
   - type: GameRule
     minPlayers: 0
   - type: LavalandPlanetRule
-    biomeTemplate: Lava
+    biomeTemplate: ImperialLavaland
     mapLight: "#80351A"
     minStructureDistance: 30
     maxStructureDistance: 200
@@ -29,11 +29,15 @@
     - OreGibtoniteLavaland
     - OreMagmiteLavaland
     mobLayers:
+    - ImperialGeysersLavaland
+    - ImperialOreVentsLavaland
+    - ImperialBossVentsLavaland
     - LegionsLavaland
     - GoliathsLavaland
     - WatchersLavalandLoot
     - WatchersIcewingLoot
     - WatchersMagmawingLoot
+    - ZlatozhorLavaland
     - ChasmsLavaland
     megafaunaPrototypes: []
     structureGridFiles:

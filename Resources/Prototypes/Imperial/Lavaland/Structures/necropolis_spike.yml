@@ -26,14 +26,16 @@
     spawnRadius: 2.0
     abyssRadius: 2.0
     abyssDelay: 5.0
+  - type: Tag
+    tags:
+    - LavalandMob
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 500
+        damage: 175
       behaviors:
       - !type:PlaySoundBehavior
         sound:

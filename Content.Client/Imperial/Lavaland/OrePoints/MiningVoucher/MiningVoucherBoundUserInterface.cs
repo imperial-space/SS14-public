@@ -1,12 +1,16 @@
-using Content.Client.Imperial.Lavaland.OrePoints.MiningVoucher.UI;
+using System.Linq;
+using Content.Client.UserInterface.Controls;
 using Content.Shared.Imperial.Lavaland.OrePoints.MiningVoucher;
+using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 
 namespace Content.Client.Imperial.Lavaland.OrePoints.MiningVoucher;
 
+/// <summary>show_radial_menu() voucher_redeemer: иконка набора и описание во всплывающей подсказке.</summary>
+[UsedImplicitly]
 public sealed class MiningVoucherBoundUserInterface : BoundUserInterface
 {
-    private MiningVoucherWindow? _window;
+    private SimpleRadialMenu? _menu;
 
     public MiningVoucherBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
@@ -16,27 +20,19 @@ public sealed class MiningVoucherBoundUserInterface : BoundUserInterface
     {
         base.Open();
 
-        _window = this.CreateWindowCenteredLeft<MiningVoucherWindow>();
-        _window.OnKitSelected += OnKitSelected;
+        _menu = this.CreateWindow<SimpleRadialMenu>();
+        _menu.Track(Owner);
+        var buttons = MiningVoucherKits.All.Select((kit, i) => (RadialMenuOptionBase) new RadialMenuActionOption<int>(Pick, i)
+        {
+            IconSpecifier = RadialMenuIconSpecifier.With(kit.Icon),
+            ToolTip = $"{Loc.GetString(kit.Name)}\n{Loc.GetString(kit.Description)}",
+        }).ToList();
+        _menu.SetButtons(buttons);
+        _menu.OpenOverMouseScreenPosition();
     }
 
-    private void OnKitSelected(int kitIndex)
+    private void Pick(int index)
     {
-        SendPredictedMessage(new MiningVoucherSelectKitMessage(kitIndex));
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-
-        if (!disposing)
-            return;
-
-        if (_window == null)
-            return;
-
-        _window.OnKitSelected -= OnKitSelected;
-        _window.OnClose -= Close;
-        _window.Dispose();
+        SendMessage(new MiningVoucherSelectKitMessage(index));
     }
 }

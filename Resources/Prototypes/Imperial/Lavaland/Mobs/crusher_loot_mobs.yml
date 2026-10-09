@@ -5,7 +5,7 @@
 # ==================================================
 
 # ── Наблюдатели с крылом ─────────────────────────────────────────────────────
-# Дроп: CrusherUpgradeWatcherWing (с шансом)
+# Дроп: трофей дробителя (element/crusher_loot)
 # Все три варианта: лавалэндский (красный), ледяной (синий), магмовый (оранжевый)
 
 - type: entity
@@ -14,14 +14,20 @@
   suffix: CrusherLoot, Lavaland
   name: наблюдатель
   components:
+  - type: Tag
+    tags:
+    - LavalandMob
   - type: Butcherable
     butcheringType: Knife
     spawned:
     - id: DiamondOre1
       amount: 1
-    - id: CrusherUpgradeWatcherWing
-      amount: 1
-      prob: 0.25   # 25% шанс
+  - type: CrusherLoot
+    trophies:
+    - CrusherTrophyWatcherWing
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 3.5
   - type: LavalandStormImmune
   - type: MegafaunaVanishOnDeath
     delay: 30
@@ -33,14 +39,20 @@
   suffix: CrusherLoot, Lavaland
   name: ледокрылый наблюдатель
   components:
+  - type: Tag
+    tags:
+    - LavalandMob
   - type: Butcherable
     butcheringType: Knife
     spawned:
     - id: DiamondOre1
       amount: 1
-    - id: CrusherUpgradeWatcherWing
-      amount: 1
-      prob: 0.25   # 25% шанс
+  - type: CrusherLoot
+    trophies:
+    - CrusherTrophyIceWing
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 3.5
   - type: LavalandStormImmune
   - type: MegafaunaVanishOnDeath
     delay: 30
@@ -52,21 +64,24 @@
   suffix: CrusherLoot, Lavaland
   name: магмокрылый наблюдатель
   components:
+  - type: Tag
+    tags:
+    - LavalandMob
   - type: Butcherable
     butcheringType: Knife
     spawned:
     - id: DiamondOre1
       amount: 1
-    - id: CrusherUpgradeWatcherWing
-      amount: 1
-      prob: 0.25   # 25% шанс
+  - type: CrusherLoot
+    trophies:
+    - CrusherTrophyMagmaWing
   - type: LavalandStormImmune
   - type: MegafaunaVanishOnDeath
     delay: 30
   - type: LavalandMegafaunaSleep
 
 # ── Голиаф с щупальцем ───────────────────────────────────────────────────────
-# Дроп: CrusherUpgradeGoliathTentacle (с шансом)
+# Дроп: трофей дробителя (element/crusher_loot)
 - type: entity
   id: MobGoliathLoot
   parent: MobGoliath
@@ -85,16 +100,16 @@
       amount: 3
     - id: MaterialGoliathHide1
       amount: 3
-    - id: CrusherUpgradeGoliathTentacle
-      amount: 1
-      prob: 0.25   # 25% шанс
+  - type: CrusherLoot
+    trophies:
+    - CrusherTrophyGoliathTentacle
   - type: LavalandStormImmune
   - type: MegafaunaVanishOnDeath
     delay: 30
   - type: LavalandMegafaunaSleep
 
 # ── Легион с черепом ─────────────────────────────────────────────────────────
-# Дроп: CrusherUpgradeLegionSkull (с шансом)
+# Дроп: трофей дробителя (element/crusher_loot)
 - type: entity
   id: MobLegionLoot
   parent: MobLegionNormal
@@ -102,11 +117,9 @@
   components:
   - type: LegionBoss
     maxConcurrentSkulls: 3
-  - type: Butcherable
-    spawned:
-    - id: CrusherUpgradeLegionSkull
-      amount: 1
-      prob: 0.33   # 33% шанс — легионов много, урежем шанс
+  - type: CrusherLoot
+    trophies:
+    - CrusherTrophyLegionSkull
   - type: LavalandStormImmune
   - type: MegafaunaVanishOnDeath
     delay: 30
@@ -166,9 +179,9 @@
       amount: 5
     - id: MaterialGoliathHide1
       amount: 5
-    - id: CrusherUpgradeAncientGoliathTentacle
-      amount: 1
-      prob: 0.40   # 40% шанс — редкий моб
+  - type: CrusherLoot
+    trophies:
+    - CrusherTrophyGoliathTentacle
   - type: LavalandStormImmune
   - type: MegafaunaVanishOnDeath
     delay: 30

@@ -1,73 +1,63 @@
 using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Lavaland.DeadMiner;
 
+/// <summary>
+/// Кровожадный шахтёр (basic/boss/blood_drunk_miner из SS13): серия ударов пилой,
+/// очередь из ПКА вблизи, рывок с атакой и очередью издалека, смена формы пилы.
+/// </summary>
 [RegisterComponent]
 public sealed partial class DeadMinerComponent : Component
 {
-    [DataField] public float MaxHp = 900f;
-    [DataField] public float TargetSearchRange = 20f;
+    /// <summary>pka_range: ближе — стреляет, дальше — делает рывок.</summary>
+    [DataField] public int PkaRange = 3;
 
-    // ── Mode switch ───────────────────────────────────────────────────────────
-    // false = miner (сложенное оружие, ближний бой)
-    // true  = miner_transformed (разложенное, активный режим)
+    /// <summary>BB_BDM_RANGED_ATTACK_COOLDOWN.</summary>
+    [DataField] public float RangedAttackCooldown = 1.6f;
 
-    /// <summary>Дистанция в тайлах. Ниже — режим 1, выше — режим 2.</summary>
-    [DataField] public float ModeTransformRange = 1.5f;
+    // miner_saw: force 8 / open_force 12
+    [DataField] public float ClosedDamage = 8f;
+    [DataField] public float OpenDamage = 12f;
+    [DataField] public int ClosedHits = 5;
+    [DataField] public int OpenHits = 3;
+    [DataField] public float ClosedHitDelay = 0.3f;
+    [DataField] public float OpenHitDelay = 0.5f;
+    /// <summary>CLICK_CD_MELEE.</summary>
+    [DataField] public float MeleeCooldown = 0.8f;
 
-    [ViewVariables] public bool IsTransformed;
+    // kinetic_accelerator
+    [DataField] public EntProtoId KineticProjectile = "ImperialDeadMinerKinetic";
+    [DataField] public float PkaCooldown = 1.5f;
+    [DataField] public int PkaShots = 3;
+    [DataField] public float PkaShotDelay = 0.15f;
+    [DataField] public float PkaSpread = 10f;
+    [DataField] public float PkaAlertDelay = 0.5f;
+    [DataField] public float PkaPrefireDelay = 0.2f;
+    [DataField] public float PkaReloadDelay = 0.1f;
+    [DataField] public float PkaSpeed = 20f;
 
-    // ── Melee ─────────────────────────────────────────────────────────────────
+    // dash_attack: charge/basic_charge/blood_drunk_miner + rapid_fire
+    [DataField] public float DashAttackCooldown = 3f;
+    [DataField] public float DashDelay = 0.1f;
+    [DataField] public int DashDistance = 6;
+    [DataField] public float DashStepDelay = 0.03f;
+    [DataField] public float DashFireDelay = 0.22f;
 
-    /// <summary>Урон в режиме 1 (miner). КД ≈ 0.3 с → attackRate = 1/0.3.</summary>
-    [DataField] public float MeleeMode1Damage = 6f;
+    // transform_weapon: откат 5-10 с
+    [DataField] public float TransformCooldownMin = 5f;
+    [DataField] public float TransformCooldownMax = 10f;
 
-    [DataField] public float MeleeMode1AttackRate = 1f / 0.3f;   // ~3.33/s
+    [DataField] public SoundSpecifier KineticSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_weapons_kenetic_accel.ogg");
+    [DataField] public SoundSpecifier SlashSound = new SoundPathSpecifier("/Audio/Weapons/bladeslice.ogg");
+    [DataField] public SoundSpecifier DashSound = new SoundPathSpecifier("/Audio/Weapons/punchmiss.ogg");
+    [DataField] public EntProtoId DeathEffect = "ImperialDeadMinerDeath";
 
-    /// <summary>Урон в режиме 2 (miner_transformed). КД ≈ 0.5 с.</summary>
-    [DataField] public float MeleeMode2Damage = 10f;
-
-    [DataField] public float MeleeMode2AttackRate = 2f;          // 2/s
-
-    // ── Kinetic shot ─────────────────────────────────────────────────────────
-
-    /// <summary>Минимальная дистанция до цели для выстрела.</summary>
-    [DataField] public float KineticMinRange = 1f;
-
-    /// <summary>Максимальная дистанция до цели для выстрела.</summary>
-    [DataField] public float KineticMaxRange = 4f;
-
-    [DataField] public float KineticCooldown = 1.5f;
-
-    [DataField] public float KineticProjectileSpeed = 15f;
-
-    [DataField] public string KineticBulletPrototype = "BulletDeadMinerKinetic";
-
-    [ViewVariables] public TimeSpan NextKineticTime;
-
-    // ── Jump (телепорт к игроку) ───────────────────────────────────────────────
-
-    /// <summary>Прыжок активируется если дистанция &gt; этого значения.</summary>
-    [DataField] public float JumpTriggerRange = 4f;
-
-    /// <summary>На сколько тайлов от игрока приземляется шахтер.</summary>
-    [DataField] public float JumpLandDistFromPlayer = 2f;
-
-    [DataField] public float JumpCooldown = 8f;
-
-    [DataField] public string SmokePrototype = "EffectDeadMinerSmoke";
-
-    [ViewVariables] public TimeSpan NextJumpTime;
-
-    // ── Sounds ────────────────────────────────────────────────────────────────
-
-    [DataField] public SoundSpecifier AttackSound =
-        new SoundPathSpecifier("/Audio/Imperial/boss/sound_weapons_kenetic_accel.ogg");
-
-    [DataField] public SoundSpecifier JumpSound =
-        new SoundPathSpecifier("/Audio/Imperial/boss/sound_magic_wand_teleport.ogg");
-
-    [DataField] public SoundSpecifier TransformSound =
-        new SoundPathSpecifier("/Audio/Imperial/boss/sound_effects_bin_close.ogg");
-
+    [ViewVariables] public bool SawOpen;
+    [ViewVariables] public bool Busy;
+    [ViewVariables] public TimeSpan RangedReady;
+    [ViewVariables] public TimeSpan NextPka;
+    [ViewVariables] public TimeSpan NextDash;
+    [ViewVariables] public TimeSpan NextTransform;
+    [ViewVariables] public TimeSpan NextMelee;
 }

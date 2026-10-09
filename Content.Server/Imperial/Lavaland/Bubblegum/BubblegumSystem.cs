@@ -1,834 +1,588 @@
-using Content.Server.Popups;
-using Content.Server.Fluids.EntitySystems;
-using Content.Shared.Chemistry.Components;
-using Content.Shared.Damage;
-using Content.Shared.Damage.Components;
+using System.Linq;
+using System.Numerics;
+using Content.Server.Imperial.Lavaland.Megafauna;
+using Content.Server.NPC.HTN;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Chemistry.Reagent;
-using Content.Shared.FixedPoint;
+using Content.Shared.Fluids.Components;
 using Content.Shared.Imperial.Lavaland;
 using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
-using Content.Shared.NPC.Components;
-using Content.Shared.NPC.Systems;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
-using Content.Shared.Weapons.Melee.Events;
-using Robust.Server.Player;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Enums;
+using Content.Shared.Projectiles;
+using Content.Shared.Stunnable;
+using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Map;
-using Robust.Shared.Player;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using System.Numerics;
 
 namespace Content.Server.Imperial.Lavaland.Bubblegum;
 
+/// <summary>
+/// Перенос megafauna/bubblegum из SS13: OpenFire, bloodattack (bloodsmack/bloodgrab), blood_warp + blood_enrage,
+/// triple_charge, hallucination_charge, hallucination_surround, blood_walk и отражение снарядов в ярости.
+/// </summary>
 public sealed class BubblegumSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly NpcFactionSystem _faction = default!;
-    [Dependency] private readonly PuddleSystem _puddle = default!;
+    [Dependency] private readonly MegafaunaAiSystem _ai = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly HTNSystem _htn = default!;
 
-    private readonly Dictionary<EntityUid, List<PendingTileDamage>> _pendingDamage = new();
-
-    private readonly record struct PendingTileDamage(EntityCoordinates Tile, TimeSpan TriggerTime, float Damage);
+    private const string AggressiveKey = "MegafaunaAggressive";
+    private static readonly Color BubblegumRed = Color.FromHex("#950A0A");
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<MeleeHitEvent>(OnMeleeHit);
+        SubscribeLocalEvent<BubblegumComponent, MegafaunaOpenFireEvent>(OnOpenFire);
+        SubscribeLocalEvent<BubblegumComponent, MoveEvent>(OnMove);
+        SubscribeLocalEvent<BubblegumComponent, DamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<BubblegumComponent, ProjectileReflectAttemptEvent>(OnProjectile);
+        SubscribeLocalEvent<BubblegumComponent, HitScanReflectAttemptEvent>(OnHitscan);
+        SubscribeLocalEvent<BubblegumComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<BubblegumComponent, EntityTerminatingEvent>(OnTerminating);
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<BubblegumComponent, DamageableComponent, NpcFactionMemberComponent, MobStateComponent>();
-        while (query.MoveNext(out var uid, out var comp, out var damageable, out var faction, out var state))
+        // update_approach: держится в 5 клетках, пока не в ярости и цель не обездвижена.
+        var query = EntityQueryEnumerator<BubblegumComponent, HTNComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var htn))
         {
-            if (state.CurrentState != MobState.Alive)
+            if (comp.IsHallucination)
                 continue;
 
-            var now = _timing.CurTime;
-
-            ProcessPendingTileDamage(uid);
-
-            var totalDamage = _damageable.GetPositiveDamage((uid, damageable)).GetTotal().Float();
-            var healthRatio = totalDamage / comp.MaxHp; // 0 = full HP, 1 = dead
-
-            // 1. Rage end
-            if (comp.IsRaging && now >= comp.RageEndTime)
-                EndRage(uid, comp);
-
-            // 2. Permanent enrage at 50% HP taken (one-time)
-            if (!comp.IsEnraged && healthRatio >= 0.5f)
-                TriggerEnrage(uid, comp);
-
-            // 3. Blood trail — spawn hazard tile and track it for Blood Dive
-            if (now >= comp.NextBloodTrailTime)
-            {
-                var tileCoords = SnapToTile(Transform(uid).Coordinates);
-                if (TrySpawnBloodPuddle(uid, comp, out var puddleUid))
-                    comp.BloodTileList.Add(puddleUid);
-                comp.BloodTileList.RemoveAll(t => !Exists(t));
-                QueueTileDamage(uid, tileCoords, comp.BloodTileDamage, comp.BloodTileDelay);
-                comp.NextBloodTrailTime = now + TimeSpan.FromSeconds(comp.BloodTrailCooldown);
-            }
-
-            // 4. Blood hands (passive, independent of other states)
-            ProcessBloodHands(uid, comp);
-
-            // 5. Active hallu state — highest priority movement lock
-            if (comp.IsHalluActive)
-            {
-                ProcessHallu(uid, comp, frameTime);
-                continue;
-            }
-
-            // 6. Active dash state
-            if (comp.IsDashWaiting || comp.IsDashMoving || comp.IsDashPausing)
-            {
-                ProcessDash(uid, comp, frameTime);
-                continue;
-            }
-
-            // --- Idle decisions ---
-
-            // 7. Rage trigger
-            if (!comp.IsRaging && now >= comp.NextRageTime && TryFindNearbyPlayer(uid, comp.TargetSearchRange, out _))
-                TriggerRage(uid, comp, healthRatio);
-
-            // 8. Blood Dive
-            if (now >= comp.NextDiveTime &&
-                comp.BloodTileList.Count > 0 &&
-                TryFindNearbyPlayer(uid, comp.TargetSearchRange, out var diveTarget))
-                TryDoBloodDive(uid, comp, diveTarget);
-
-            // 9. Triple Dash
-            if (now >= comp.NextDashTime &&
-                TryFindNearbyPlayer(uid, comp.TargetSearchRange, out var dashTarget))
-                StartDashSequence(uid, comp, dashTarget);
-
-            // 10. Hallucination attacks (< 50% HP)
-            if (healthRatio >= 0.5f)
-            {
-                if (now >= comp.NextHalluDashTime &&
-                    TryFindNearbyPlayer(uid, comp.TargetSearchRange, out var ht1))
-                    StartHalluDash(uid, comp, ht1, 0);
-                else if (now >= comp.NextCircleHalluTime &&
-                    TryFindNearbyPlayer(uid, comp.TargetSearchRange, out var ht2))
-                    StartHalluDash(uid, comp, ht2, 1);
-                else if (now >= comp.NextRandomHalluTime &&
-                    TryFindNearbyPlayer(uid, comp.TargetSearchRange, out var ht3))
-                    StartHalluDash(uid, comp, ht3, 2);
-            }
-
-            // 11. Blood blast (melee-counter)
-            if (comp.BlastReady && now >= comp.NextBlastTime &&
-                TryFindNearbyHostile((uid, faction), comp.TargetSearchRange, out var blastTarget))
-            {
-                if (Transform(uid).Coordinates.TryDistance(EntityManager,
-                    Transform(blastTarget).Coordinates, out var bd) && bd <= comp.BlastRange)
-                {
-                    DoBloodBlast(uid, Transform(blastTarget).Coordinates, comp);
-                    comp.MeleeHits = 0;
-                    comp.BlastReady = false;
-                    comp.NextBlastTime = now + TimeSpan.FromSeconds(comp.BlastCooldown);
-                }
-            }
-
-            // 12. Clone assault (< 50% HP)
-            if (healthRatio >= 0.5f && now >= comp.NextCloneTime &&
-                TryFindNearbyPlayer(uid, comp.TargetSearchRange, out var cloneTarget))
-                DoCloneAssault(uid, comp, cloneTarget);
-        }
-    }
-
-    // ── Melee hit handler ─────────────────────────────────────────────────────
-
-    private void OnMeleeHit(MeleeHitEvent args)
-    {
-        if (!args.IsHit || args.HitEntities.Count == 0 ||
-            !TryComp<BubblegumComponent>(args.User, out var comp))
-            return;
-
-        if (TryComp<MobStateComponent>(args.User, out var myState) &&
-            myState.CurrentState != MobState.Alive)
-            return;
-
-        comp.MeleeHits++;
-        if (comp.MeleeHits >= comp.MeleeHitsBeforeBlast)
-            comp.BlastReady = true;
-
-        foreach (var hit in args.HitEntities)
-        {
-            if (!TryComp<MobStateComponent>(hit, out var hitState) ||
-                hitState.CurrentState != MobState.Critical)
+            var aggressive = IsEnraged(comp) || _ai.GetTarget(uid) is { } target && IsIncapacitated(target);
+            var has = htn.Blackboard.ContainsKey(AggressiveKey);
+            if (aggressive == has)
                 continue;
 
-            if (!TryComp<DamageableComponent>(hit, out var hitDamageable))
-                continue;
-
-            var devourSpec = new DamageSpecifier();
-            devourSpec.DamageDict.Add("Blunt", FixedPoint2.New(comp.DevourDamage));
-            _damageable.TryChangeDamage((hit, hitDamageable), devourSpec, origin: args.User);
-        }
-    }
-
-    // ── Rage ──────────────────────────────────────────────────────────────────
-
-    private void TriggerRage(EntityUid uid, BubblegumComponent comp, float healthRatio)
-    {
-        comp.IsRaging = true;
-        var duration = comp.RageMinDuration + healthRatio * (comp.RageMaxDuration - comp.RageMinDuration);
-        comp.RageEndTime = _timing.CurTime + TimeSpan.FromSeconds(duration);
-        comp.NextRageTime = comp.RageEndTime + TimeSpan.FromSeconds(comp.RageCooldown);
-
-        EnsureComp<GodmodeComponent>(uid);
-        _appearance.SetData(uid, BubblegumVisuals.Raging, true);
-        _audio.PlayPvs(comp.RageSound, uid);
-
-        foreach (var session in _playerManager.Sessions)
-        {
-            if (session.Status != SessionStatus.InGame ||
-                session.AttachedEntity is not { Valid: true } player) continue;
-            if (!Transform(uid).Coordinates.TryDistance(EntityManager,
-                Transform(player).Coordinates, out var dist) || dist > 20f) continue;
-            _popup.PopupEntity(Loc.GetString("bubblegum-rage-message"), uid, player,
-                PopupType.LargeCaution);
-        }
-    }
-
-    private void EndRage(EntityUid uid, BubblegumComponent comp)
-    {
-        comp.IsRaging = false;
-        RemComp<GodmodeComponent>(uid);
-        _appearance.SetData(uid, BubblegumVisuals.Raging, false);
-    }
-
-    // ── Blood Dive ────────────────────────────────────────────────────────────
-
-    private void TryDoBloodDive(EntityUid uid, BubblegumComponent comp, EntityUid player)
-    {
-        comp.BloodTileList.RemoveAll(t => !Exists(t));
-
-        var playerCoords = Transform(player).Coordinates;
-        var validTiles = new List<EntityCoordinates>();
-
-        foreach (var tileUid in comp.BloodTileList)
-        {
-            if (!Exists(tileUid)) continue;
-            var tc = Transform(tileUid).Coordinates;
-            if (!playerCoords.TryDistance(EntityManager, tc, out var dist)) continue;
-            if (dist < comp.DiveMinDistFromPlayer || dist > comp.DiveMaxDistFromPlayer) continue;
-            validTiles.Add(tc);
-        }
-
-        if (validTiles.Count == 0)
-            return;
-
-        var target = _random.Pick(validTiles);
-        _transform.SetCoordinates(uid, target);
-        comp.NextDiveTime = _timing.CurTime + TimeSpan.FromSeconds(comp.DiveCooldown);
-        _audio.PlayPvs(comp.DiveSound, uid);
-
-        foreach (var session in _playerManager.Sessions)
-        {
-            if (session.Status != SessionStatus.InGame ||
-                session.AttachedEntity is not { Valid: true } p) continue;
-            if (!playerCoords.TryDistance(EntityManager, Transform(p).Coordinates, out var d) || d > 20f) continue;
-            _popup.PopupEntity(Loc.GetString("bubblegum-dive-message"), uid, p, PopupType.Medium);
-        }
-    }
-
-    // ── Blood Hands ───────────────────────────────────────────────────────────
-
-    private void ProcessBloodHands(EntityUid uid, BubblegumComponent comp)
-    {
-        var now = _timing.CurTime;
-
-        // Trigger damage for hands that are ready
-        for (var i = comp.ActiveBloodHands.Count - 1; i >= 0; i--)
-        {
-            var (handUid, triggerTime) = comp.ActiveBloodHands[i];
-            if (!Exists(handUid))
-            {
-                comp.ActiveBloodHands.RemoveAt(i);
-                continue;
-            }
-
-            if (now < triggerTime)
-                continue;
-
-            DamagePlayersNear(uid, Transform(handUid).Coordinates, comp.HandDamage, 1.5f);
-            comp.ActiveBloodHands.RemoveAt(i);
-        }
-
-        // Spawn new hand
-        if (now < comp.NextHandTime)
-            return;
-
-        comp.NextHandTime = now + TimeSpan.FromSeconds(comp.HandSpawnInterval);
-
-        if (!_random.Prob(comp.HandChance))
-            return;
-
-        if (!TryFindNearbyPlayer(uid, comp.TargetSearchRange, out var handTarget))
-            return;
-
-        var handCoords = Transform(handTarget).Coordinates;
-        var hand = Spawn(comp.HandPrototype, handCoords);
-        comp.ActiveBloodHands.Add((hand, now + TimeSpan.FromSeconds(comp.HandDelay)));
-    }
-
-    // ── Triple Dash ───────────────────────────────────────────────────────────
-
-    private void StartDashSequence(EntityUid uid, BubblegumComponent comp, EntityUid target)
-    {
-        comp.DashTargetPlayer = target;
-        comp.DashLegIndex = 0;
-        comp.IsDashWaiting = false;
-        comp.IsDashMoving = false;
-        comp.IsDashPausing = false;
-        StartDashLeg(uid, comp);
-    }
-
-    private void StartDashLeg(EntityUid uid, BubblegumComponent comp)
-    {
-        if (!Exists(comp.DashTargetPlayer) ||
-            !TryComp<MobStateComponent>(comp.DashTargetPlayer, out var ts) ||
-            ts.CurrentState != MobState.Alive)
-        {
-            FinishDash(comp);
-            return;
-        }
-
-        var bossCoords = Transform(uid).Coordinates;
-        var playerCoords = Transform(comp.DashTargetPlayer).Coordinates;
-
-        if (!bossCoords.TryDistance(EntityManager, playerCoords, out var d) || d < 0.1f)
-        {
-            FinishDash(comp);
-            return;
-        }
-
-        // Marker behind player (away from boss)
-        var dir = new Vector2(playerCoords.X - bossCoords.X, playerCoords.Y - bossCoords.Y) / d;
-        comp.DashMarkerPos = playerCoords.Offset(dir * comp.DashMarkerBackOffset);
-        Spawn(comp.DashMarkerPrototype, comp.DashMarkerPos);
-        _audio.PlayPvs(comp.DashSound, uid);
-
-        comp.IsDashWaiting = true;
-        comp.DashWaitEndTime = _timing.CurTime + TimeSpan.FromSeconds(comp.DashLegWaits[comp.DashLegIndex]);
-
-        foreach (var session in _playerManager.Sessions)
-        {
-            if (session.Status != SessionStatus.InGame ||
-                session.AttachedEntity is not { Valid: true } p) continue;
-            if (!bossCoords.TryDistance(EntityManager, Transform(p).Coordinates, out var pd) || pd > 22f) continue;
-            _popup.PopupEntity(Loc.GetString("bubblegum-dash-message"), uid, p, PopupType.LargeCaution);
-        }
-    }
-
-    private void ProcessDash(EntityUid uid, BubblegumComponent comp, float frameTime)
-    {
-        var now = _timing.CurTime;
-
-        if (comp.IsDashWaiting)
-        {
-            if (now >= comp.DashWaitEndTime)
-            {
-                comp.IsDashWaiting = false;
-                comp.IsDashMoving = true;
-                comp.DashMoveEndTime = now + TimeSpan.FromSeconds(comp.DashMoveDuration);
-                comp.LastTrailTime = now;
-            }
-            return;
-        }
-
-        if (comp.IsDashMoving)
-        {
-            // Spawn trail sprite
-            if (now >= comp.LastTrailTime + TimeSpan.FromSeconds(comp.DashTrailInterval))
-            {
-                Spawn(comp.DashTrailPrototype, Transform(uid).Coordinates);
-                comp.LastTrailTime = now;
-            }
-
-            var bossCoords = Transform(uid).Coordinates;
-            var dest = comp.DashMarkerPos;
-            var arrived = false;
-
-            if (bossCoords.TryDistance(EntityManager, dest, out var dist) && dist < 0.4f)
-                arrived = true;
-
-            if (!arrived && now < comp.DashMoveEndTime && dist > 0.1f)
-            {
-                var dir = new Vector2(dest.X - bossCoords.X, dest.Y - bossCoords.Y) / dist;
-                var step = MathF.Min(comp.DashSpeed * frameTime, dist - 0.2f);
-                _transform.SetCoordinates(uid, bossCoords.Offset(dir * step));
-            }
-            else if (arrived || now >= comp.DashMoveEndTime)
-            {
-                DamagePlayersNear(uid, Transform(uid).Coordinates, comp.DashDamage, comp.DashDamageRadius);
-                comp.IsDashMoving = false;
-
-                if (comp.DashLegIndex + 1 < comp.DashLegWaits.Count)
-                {
-                    comp.IsDashPausing = true;
-                    comp.DashPauseEndTime = now + TimeSpan.FromSeconds(comp.DashLegPause);
-                }
-                else
-                {
-                    FinishDash(comp);
-                }
-            }
-            return;
-        }
-
-        if (comp.IsDashPausing && now >= comp.DashPauseEndTime)
-        {
-            comp.IsDashPausing = false;
-            comp.DashLegIndex++;
-            StartDashLeg(uid, comp);
-        }
-    }
-
-    private void FinishDash(BubblegumComponent comp)
-    {
-        comp.IsDashWaiting = false;
-        comp.IsDashMoving = false;
-        comp.IsDashPausing = false;
-        comp.NextDashTime = _timing.CurTime + TimeSpan.FromSeconds(comp.DashCooldown);
-    }
-
-    // ── Hallucination Dash ────────────────────────────────────────────────────
-
-    private void StartHalluDash(EntityUid uid, BubblegumComponent comp, EntityUid target, int variant)
-    {
-        comp.IsHalluActive = true;
-        comp.HalluVariant = variant;
-        comp.HalluLegIndex = 0;
-        comp.HalluNeedsNormalDash = variant == 0;
-        comp.HalluCircleAngle = _random.NextFloat(0f, MathF.PI * 2f);
-        StartHalluLeg(uid, comp, target);
-    }
-
-    private void StartHalluLeg(EntityUid uid, BubblegumComponent comp, EntityUid target)
-    {
-        if (!Exists(target) ||
-            !TryComp<MobStateComponent>(target, out var ts) ||
-            ts.CurrentState != MobState.Alive)
-        {
-            CompleteHalluAttack(uid, comp);
-            return;
-        }
-
-        var playerCoords = Transform(target).Coordinates;
-        comp.HalluMarkerPos = playerCoords;
-
-        Spawn(comp.DashMarkerPrototype, playerCoords);
-        SpawnPhantoms(comp, playerCoords);
-
-        comp.IsHalluWaiting = true;
-        comp.IsHalluMoving = false;
-        comp.IsHalluPausing = false;
-        comp.HalluWaitEndTime = _timing.CurTime + TimeSpan.FromSeconds(comp.PhantomWaitDuration);
-
-        foreach (var session in _playerManager.Sessions)
-        {
-            if (session.Status != SessionStatus.InGame ||
-                session.AttachedEntity is not { Valid: true } p) continue;
-            if (!playerCoords.TryDistance(EntityManager, Transform(p).Coordinates, out var pd) || pd > 22f) continue;
-            _popup.PopupEntity(Loc.GetString("bubblegum-hallu-message"), uid, p, PopupType.LargeCaution);
-        }
-    }
-
-    private void SpawnPhantoms(BubblegumComponent comp, EntityCoordinates markerPos)
-    {
-        foreach (var (ph, _) in comp.ActivePhantoms)
-            if (Exists(ph)) QueueDel(ph);
-        comp.ActivePhantoms.Clear();
-
-        foreach (var offset in GetPhantomOffsets(comp))
-        {
-            var phantom = Spawn(comp.PhantomPrototype, markerPos.Offset(offset));
-            comp.ActivePhantoms.Add((phantom, markerPos));
-        }
-    }
-
-    private List<Vector2> GetPhantomOffsets(BubblegumComponent comp)
-    {
-        var r = comp.PhantomRadius;
-        return comp.HalluVariant switch
-        {
-            1 => GetCircleOffsets(5, r, comp.HalluCircleAngle),
-            2 => GetRandomOffsets(4, r),
-            _ => _random.Prob(0.5f)
-                    ? new List<Vector2>
-                    {
-                        new(r, 0), new(-r, 0), new(0, r), new(0, -r)
-                    }
-                    : new List<Vector2>
-                    {
-                        new( r * 0.707f,  r * 0.707f),
-                        new(-r * 0.707f,  r * 0.707f),
-                        new( r * 0.707f, -r * 0.707f),
-                        new(-r * 0.707f, -r * 0.707f)
-                    }
-        };
-    }
-
-    private static List<Vector2> GetCircleOffsets(int count, float radius, float startAngle)
-    {
-        var list = new List<Vector2>(count);
-        for (var i = 0; i < count; i++)
-        {
-            var angle = startAngle + MathF.PI * 2f / count * i;
-            list.Add(new Vector2(MathF.Cos(angle), MathF.Sin(angle)) * radius);
-        }
-        return list;
-    }
-
-    private List<Vector2> GetRandomOffsets(int count, float radius)
-    {
-        var list = new List<Vector2>(count);
-        for (var i = 0; i < count; i++)
-        {
-            var angle = _random.NextFloat(0f, MathF.PI * 2f);
-            var r = _random.NextFloat(radius * 0.6f, radius * 1.4f);
-            list.Add(new Vector2(MathF.Cos(angle), MathF.Sin(angle)) * r);
-        }
-        return list;
-    }
-
-    private void ProcessHallu(EntityUid uid, BubblegumComponent comp, float frameTime)
-    {
-        var now = _timing.CurTime;
-
-        if (comp.IsHalluWaiting)
-        {
-            if (now >= comp.HalluWaitEndTime)
-            {
-                comp.IsHalluWaiting = false;
-                comp.IsHalluMoving = true;
-                comp.HalluMoveEndTime = now + TimeSpan.FromSeconds(comp.PhantomDashDuration);
-            }
-            return;
-        }
-
-        if (comp.IsHalluMoving)
-        {
-            var allDone = true;
-            for (var i = comp.ActivePhantoms.Count - 1; i >= 0; i--)
-            {
-                var (phantom, target) = comp.ActivePhantoms[i];
-                if (!Exists(phantom))
-                {
-                    comp.ActivePhantoms.RemoveAt(i);
-                    continue;
-                }
-
-                var pCoords = Transform(phantom).Coordinates;
-                if (!pCoords.TryDistance(EntityManager, target, out var dist) || dist < 0.35f)
-                {
-                    DamagePlayersNear(uid, pCoords, comp.PhantomDamage, comp.PhantomDamageRadius);
-                    QueueDel(phantom);
-                    comp.ActivePhantoms.RemoveAt(i);
-                    continue;
-                }
-
-                allDone = false;
-                var direction = new Vector2(target.X - pCoords.X, target.Y - pCoords.Y) / dist;
-                var step = MathF.Min(comp.DashSpeed * frameTime, dist - 0.2f);
-                _transform.SetCoordinates(phantom, pCoords.Offset(direction * step));
-            }
-
-            if (allDone || now >= comp.HalluMoveEndTime)
-            {
-                foreach (var (ph, _) in comp.ActivePhantoms)
-                    if (Exists(ph)) QueueDel(ph);
-                comp.ActivePhantoms.Clear();
-
-                comp.IsHalluMoving = false;
-                comp.HalluLegIndex++;
-
-                if (comp.HalluLegIndex < comp.HalluLegCount)
-                {
-                    comp.IsHalluPausing = true;
-                    comp.HalluPauseEndTime = now + TimeSpan.FromSeconds(comp.HalluLegPause);
-                    comp.HalluCircleAngle += MathF.PI * 2f / (comp.HalluLegCount * 5);
-                }
-                else
-                {
-                    CompleteHalluAttack(uid, comp);
-                }
-            }
-            return;
-        }
-
-        if (comp.IsHalluPausing && now >= comp.HalluPauseEndTime)
-        {
-            comp.IsHalluPausing = false;
-            if (TryFindNearbyPlayer(uid, comp.TargetSearchRange, out var nextTarget))
-                StartHalluLeg(uid, comp, nextTarget);
+            if (aggressive)
+                htn.Blackboard.SetValue(AggressiveKey, true);
             else
-                CompleteHalluAttack(uid, comp);
+                htn.Blackboard.Remove<bool>(AggressiveKey);
+            _htn.Replan(htn);
         }
     }
 
-    private void CompleteHalluAttack(EntityUid uid, BubblegumComponent comp)
+    private bool IsEnraged(BubblegumComponent comp)
     {
-        comp.IsHalluActive = false;
-        comp.IsHalluWaiting = false;
-        comp.IsHalluMoving = false;
-        comp.IsHalluPausing = false;
+        return comp.EnrageTill > _timing.CurTime;
+    }
 
-        foreach (var (ph, _) in comp.ActivePhantoms)
-            if (Exists(ph)) QueueDel(ph);
-        comp.ActivePhantoms.Clear();
+    private bool IsIncapacitated(EntityUid target)
+    {
+        return !_mobState.IsAlive(target) || HasComp<StunnedComponent>(target) || HasComp<KnockedDownComponent>(target);
+    }
 
+    private bool Smash(EntityUid uid)
+    {
+        return _ai.GetHealth(uid) <= _ai.GetMaxHealth(uid) * 0.5f;
+    }
+
+    #region Events
+
+    private void OnOpenFire(Entity<BubblegumComponent> ent, ref MegafaunaOpenFireEvent args)
+    {
+        if (ent.Comp.IsHallucination)
+            return;
+
+        var target = args.Target;
+        var anger = _ai.Anger(ent, 60f, 20f);
+
+        void Charge()
+        {
+            if (!_ai.IsAliveBoss(ent))
+                return;
+            if (!Smash(ent))
+                TryTripleCharge(ent, target);
+            else if (_ai.Prob(50 + anger))
+                TryHallucinationCharge(ent, target);
+            else
+                TrySurround(ent, target);
+        }
+
+        if (!TryBloodAttack(ent) || _ai.Prob(25 + anger))
+            TryBloodWarp(ent, target, Charge);
+        else
+            Charge();
+    }
+
+    /// <summary>blood_walk: кровавый след и грохот шагов.</summary>
+    private void OnMove(Entity<BubblegumComponent> ent, ref MoveEvent args)
+    {
+        if (!_ai.TryGetTile(ent, out var grid, out var tile) || ent.Comp.LastTile == tile)
+            return;
+
+        ent.Comp.LastTile = tile;
+        _ai.PlaySound(ent.Comp.StepSound, _ai.TileCenter(grid, tile), 5f);
+        if (!GetBloodPools(grid, tile, 0).Any())
+            _ai.SpawnAt(ent.Comp.BloodDecal, grid, tile);
+    }
+
+    /// <summary>adjust_brute_loss: anger, enrage_time и 25% шанс брызг крови.</summary>
+    private void OnDamageChanged(Entity<BubblegumComponent> ent, ref DamageChangedEvent args)
+    {
+        if (ent.Comp.IsHallucination || args.DamageDelta == null || !args.DamageIncreased)
+            return;
+
+        var brute = args.DamageDelta.DamageDict
+            .Where(d => d.Key.Id is "Blunt" or "Slash" or "Piercing")
+            .Sum(d => d.Value.Float());
+        if (brute <= 0)
+            return;
+
+        var anger = _ai.Anger(ent, 60f, 20f);
+        ent.Comp.EnrageTime = 7f * Math.Clamp(anger / 20f, 0.5f, 1f);
+
+        if (!_random.Prob(0.25f) || !_ai.TryGetTile(ent, out var grid, out var tile))
+            return;
+
+        if (_random.Prob(0.4f))
+            tile += _random.Pick(new[] { Vector2i.Up, Vector2i.Down, Vector2i.Left, Vector2i.Right });
+        _ai.SpawnAt(ent.Comp.BloodGibs, grid, tile);
+    }
+
+    /// <summary>projectile_hit: в ярости отражает снаряды.</summary>
+    private void OnProjectile(Entity<BubblegumComponent> ent, ref ProjectileReflectAttemptEvent args)
+    {
+        if (!IsEnraged(ent.Comp))
+            return;
+
+        args.Cancelled = true;
+        QueueDel(args.ProjUid);
+        Deflect(ent);
+    }
+
+    private void OnHitscan(Entity<BubblegumComponent> ent, ref HitScanReflectAttemptEvent args)
+    {
+        if (!IsEnraged(ent.Comp))
+            return;
+
+        args.Reflected = true;
+        Deflect(ent);
+    }
+
+    private void Deflect(Entity<BubblegumComponent> ent)
+    {
+        _popup.PopupEntity(Loc.GetString("bubblegum-deflect", ("boss", ent.Owner)), ent, PopupType.MediumCaution);
+        _ai.PlaySound(ent.Comp.DeflectSound, Transform(ent).Coordinates, 5f);
+    }
+
+    private void OnMobStateChanged(Entity<BubblegumComponent> ent, ref MobStateChangedEvent args)
+    {
+        if (args.NewMobState != MobState.Dead || !ent.Comp.IsHallucination)
+            return;
+
+        // hallucination: "Explodes into a pool of blood!"
+        _popup.PopupEntity(Loc.GetString("bubblegum-hallucination-death"), ent, PopupType.Medium);
+        QueueDel(ent);
+    }
+
+    private void OnTerminating(Entity<BubblegumComponent> ent, ref EntityTerminatingEvent args)
+    {
+        if (ent.Comp.IsHallucination && _ai.TryGetTile(ent, out var grid, out var tile))
+            _ai.SpawnAt(ent.Comp.BloodDecal, grid, tile);
+    }
+
+    #endregion
+
+    #region Blood
+
+    /// <summary>get_bloodcrawlable_pools: кровь в радиусе range клеток.</summary>
+    private List<EntityUid> GetBloodPools(Entity<MapGridComponent> grid, Vector2i center, int range)
+    {
+        var result = new List<EntityUid>();
+        var coords = _ai.TileCenter(grid, center);
+        foreach (var ent in _lookup.GetEntitiesInRange(coords, range * 1.5f + 0.5f))
+        {
+            if (!HasComp<BubblegumBloodComponent>(ent) && !IsBloodPuddle(ent))
+                continue;
+            if (!_ai.TryGetTile(ent, out var entGrid, out var tile) || entGrid.Owner != grid.Owner)
+                continue;
+            if (MegafaunaAiSystem.Chebyshev(tile, center) <= range)
+                result.Add(ent);
+        }
+
+        return result;
+    }
+
+    private bool IsBloodPuddle(EntityUid uid)
+    {
+        if (!TryComp<PuddleComponent>(uid, out var puddle) || puddle.Solution is not { } solution)
+            return false;
+        return solution.Comp.Solution.Contents.Any(r => r.Reagent.Prototype.Contains("Blood"));
+    }
+
+    /// <summary>get_mobs_on_blood: цели в зоне видимости, стоящие в крови.</summary>
+    private List<EntityUid> GetMobsOnBlood(EntityUid uid)
+    {
+        var result = new List<EntityUid>();
+        if (!TryComp<MegafaunaAiComponent>(uid, out var ai))
+            return result;
+
+        foreach (var mob in _lookup.GetEntitiesInRange<Content.Shared.Mobs.Components.MobStateComponent>(Transform(uid).Coordinates, ai.AggroRange))
+        {
+            if (mob.Owner == uid || HasComp<BubblegumComponent>(mob) || HasComp<MegafaunaAiComponent>(mob))
+                continue;
+            if (!_ai.TryGetTile(mob, out var grid, out var tile))
+                continue;
+            if (GetBloodPools(grid, tile, 0).Count > 0)
+                result.Add(mob);
+        }
+
+        return result;
+    }
+
+    private bool TryBloodAttack(Entity<BubblegumComponent> ent)
+    {
+        var targets = GetMobsOnBlood(ent);
+        if (targets.Count == 0)
+            return false;
+
+        BloodAttack(ent, targets, _random.Prob(0.5f));
+        return true;
+    }
+
+    /// <summary>bloodattack: до двух рук из крови — шлепок или захват.</summary>
+    private void BloodAttack(Entity<BubblegumComponent> ent, List<EntityUid> targets, bool handedness)
+    {
+        var targetOne = _random.PickAndTake(targets);
+        EntityUid? targetTwo = targets.Count > 0 ? _random.PickAndTake(targets) : null;
+
+        void HitOne(bool hand, Action next)
+        {
+            if (TerminatingOrDeleted(targetOne) || !_ai.TryGetTile(targetOne, out var grid, out var tile) ||
+                GetBloodPools(grid, tile, 0).Count == 0)
+            {
+                next();
+                return;
+            }
+
+            if (!_mobState.IsAlive(targetOne) || _random.Prob(0.1f))
+                BloodGrab(ent, grid, tile, hand, next);
+            else
+                BloodSmack(ent, grid, tile, hand, next);
+        }
+
+        Action afterOne = () =>
+        {
+            if (targetTwo == null)
+                HitOne(handedness, () => { });
+        };
+
+        if (targetTwo is { } two && _ai.TryGetTile(two, out var g2, out var t2))
+        {
+            if (!_mobState.IsAlive(two) || _random.Prob(0.1f))
+                BloodGrab(ent, g2, t2, handedness, () => HitOne(!handedness, afterOne));
+            else
+                BloodSmack(ent, g2, t2, handedness, () => HitOne(!handedness, afterOne));
+            return;
+        }
+
+        HitOne(!handedness, afterOne);
+    }
+
+    /// <summary>bloodsmack: через 0.4 с 10 урона всем на клетке.</summary>
+    private void BloodSmack(Entity<BubblegumComponent> ent, Entity<MapGridComponent> grid, Vector2i tile, bool right, Action next)
+    {
+        _ai.SpawnAt(right ? ent.Comp.RightSmack : ent.Comp.LeftSmack, grid, tile);
+        _ai.Schedule(ent, 0.4f, () =>
+        {
+            foreach (var mob in _ai.MobsOnTile(grid, tile))
+            {
+                if (HasComp<BubblegumComponent>(mob))
+                    continue;
+                _popup.PopupEntity(Loc.GetString("bubblegum-rends-you", ("boss", ent.Owner)), mob, mob, PopupType.LargeCaution);
+                _ai.PlaySound(ent.Comp.AttackSound, _ai.TileCenter(grid, tile));
+                _ai.Damage(mob, "Slash", ent.Comp.SmackDamage, ent);
+            }
+
+            _ai.Schedule(ent, 0.3f, next);
+        });
+    }
+
+    /// <summary>bloodgrab: через 0.6 с утаскивает беспомощных к себе и пожирает.</summary>
+    private void BloodGrab(Entity<BubblegumComponent> ent, Entity<MapGridComponent> grid, Vector2i tile, bool right, Action next)
+    {
+        _ai.SpawnAt(right ? ent.Comp.RightGrab : ent.Comp.LeftGrab, grid, tile);
+        _ai.Schedule(ent, 0.6f, () =>
+        {
+            foreach (var mob in _ai.MobsOnTile(grid, tile))
+            {
+                if (HasComp<BubblegumComponent>(mob) || _mobState.IsAlive(mob))
+                    continue;
+
+                _popup.PopupEntity(Loc.GetString("bubblegum-drags-you", ("boss", ent.Owner)), mob, mob, PopupType.LargeCaution);
+                _ai.PlaySound(ent.Comp.EnterBloodSound, _ai.TileCenter(grid, tile));
+                if (_ai.TryGetTile(ent, out var ownGrid, out var ownTile))
+                {
+                    var front = ownTile + MegafaunaAiSystem.StepTowards(ownTile, tile);
+                    _transform.SetCoordinates(mob, _ai.TileCenter(ownGrid, front));
+                    _ai.PlaySound(ent.Comp.ExitBloodSound, _ai.TileCenter(ownGrid, front));
+                }
+
+                var victim = mob;
+                _ai.Schedule(ent, 0.2f, () => _ai.Devour(ent, victim));
+            }
+
+            _ai.Schedule(ent, 0.1f, next);
+        });
+    }
+
+    /// <summary>blood_warp: прыжок в лужу крови в 5 клетках от цели, затем ярость.</summary>
+    private void TryBloodWarp(Entity<BubblegumComponent> ent, EntityUid target, Action then)
+    {
+        if (!_ai.TryBeginAbility(ent))
+        {
+            then();
+            return;
+        }
+
+        void Finish()
+        {
+            _ai.EndAbility(ent, 0f);
+            then();
+        }
+
+        if (_ai.TileDistance(ent, target) <= 1 ||
+            !_ai.TryGetTile(ent, out var grid, out var ownTile) ||
+            !_ai.TryGetTile(target, out var targetGrid, out var targetTile) ||
+            grid.Owner != targetGrid.Owner ||
+            GetBloodPools(grid, ownTile, 1).Count == 0 ||
+            WarpPools(ent, grid, targetTile).Count == 0)
+        {
+            Finish();
+            return;
+        }
+
+        Spawn(ent.Comp.Decoy, Transform(ent).Coordinates);
+        _ai.Schedule(ent, 0.3f, () =>
+        {
+            var pools = WarpPools(ent, grid, targetTile);
+            if (pools.Count > 0)
+            {
+                var pool = _random.Pick(pools);
+                _popup.PopupEntity(Loc.GetString("bubblegum-sinks"), ent, PopupType.MediumCaution);
+                _ai.PlaySound(ent.Comp.EnterBloodSound, Transform(ent).Coordinates);
+                _transform.SetCoordinates(ent, Transform(pool).Coordinates);
+                _ai.PlaySound(ent.Comp.ExitBloodSound, Transform(ent).Coordinates);
+                _popup.PopupEntity(Loc.GetString("bubblegum-springs-out"), ent, PopupType.MediumCaution);
+                BloodEnrage(ent);
+            }
+
+            Finish();
+        });
+    }
+
+    private List<EntityUid> WarpPools(Entity<BubblegumComponent> ent, Entity<MapGridComponent> grid, Vector2i targetTile)
+    {
+        var range = ent.Comp.BloodWarpRange;
+        var inner = GetBloodPools(grid, targetTile, range - 1).ToHashSet();
+        return GetBloodPools(grid, targetTile, range).Where(p => !inner.Contains(p)).ToList();
+    }
+
+    /// <summary>blood_enrage: быстрее, неуязвим к снарядам, идёт вплотную.</summary>
+    private void BloodEnrage(Entity<BubblegumComponent> ent)
+    {
         var now = _timing.CurTime;
-        switch (comp.HalluVariant)
-        {
-            case 0:
-                comp.NextHalluDashTime = now + TimeSpan.FromSeconds(comp.HalluDashCooldown);
-                if (comp.HalluNeedsNormalDash &&
-                    TryFindNearbyPlayer(uid, comp.TargetSearchRange, out var dashTarget))
-                    StartDashSequence(uid, comp, dashTarget);
-                break;
-            case 1:
-                comp.NextCircleHalluTime = now + TimeSpan.FromSeconds(comp.CircleHalluCooldown);
-                break;
-            case 2:
-                comp.NextRandomHalluTime = now + TimeSpan.FromSeconds(comp.RandomHalluCooldown);
-                break;
-        }
-    }
-
-    // ── Enrage ────────────────────────────────────────────────────────────────
-
-    private void TriggerEnrage(EntityUid uid, BubblegumComponent comp)
-    {
-        comp.IsEnraged = true;
-        _audio.PlayPvs(comp.EnrageSound, uid);
-
-        if (!TryComp<MovementSpeedModifierComponent>(uid, out var moveComp))
+        var enrageTime = TimeSpan.FromSeconds(ent.Comp.EnrageTime);
+        if (ent.Comp.EnrageTill + enrageTime * 2 > now)
             return;
 
-        var newSpeed = MathF.Max(moveComp.BaseWalkSpeed, moveComp.BaseWalkSpeed * comp.EnrageSpeedMultiplier);
-        _movement.ChangeBaseSpeed(uid, newSpeed, newSpeed, 20f);
+        ent.Comp.EnrageTill = now + enrageTime;
+        _ai.SetSpeedMultiplier(ent, ent.Comp.EnrageSpeedMultiplier);
+        _appearance.SetData(ent, MegafaunaVisuals.Color, BubblegumRed);
+        _ai.Schedule(ent, ent.Comp.EnrageTime, () =>
+        {
+            _ai.SetSpeedMultiplier(ent, 1f);
+            _appearance.SetData(ent, MegafaunaVisuals.Color, Color.White);
+        });
     }
 
-    // ── Blood blast ───────────────────────────────────────────────────────────
+    #endregion
 
-    private bool TryFindNearbyHostile(Entity<NpcFactionMemberComponent?> self, float range, out EntityUid target)
+    #region Charges
+
+    private bool TryTripleCharge(Entity<BubblegumComponent> ent, EntityUid target)
     {
-        target = EntityUid.Invalid;
-        float? best = null;
-        var ourCoords = Transform(self).Coordinates;
+        if (!_ai.TryBeginAbility(ent))
+            return false;
 
-        foreach (var hostile in _faction.GetNearbyHostiles(self, range))
+        _ai.SetImmobile(ent, true);
+        // triple_charge: задержки 0.6, 0.4, 0.2 с.
+        DoCharge(ent, ent, target, 0.6f, ent.Comp.ChargePast, () =>
+            DoCharge(ent, ent, target, 0.4f, ent.Comp.ChargePast, () =>
+                DoCharge(ent, ent, target, 0.2f, ent.Comp.ChargePast, () => EndCharges(ent, ent.Comp.ChargeCooldown))));
+        return true;
+    }
+
+    private bool TryHallucinationCharge(Entity<BubblegumComponent> ent, EntityUid target)
+    {
+        if (!_ai.TryBeginAbility(ent))
+            return false;
+
+        _ai.SetImmobile(ent, true);
+        var cooldown = ent.Comp.HallucinationCooldown;
+        if (!Smash(ent) || _ai.Prob(33))
         {
-            if (!Exists(hostile) ||
-                !TryComp<MobStateComponent>(hostile, out var hs) ||
-                hs.CurrentState != MobState.Alive)
-                continue;
-
-            if (!ourCoords.TryDistance(EntityManager, Transform(hostile).Coordinates, out var dist))
-                continue;
-
-            if (best != null && dist >= best)
-                continue;
-
-            best = dist;
-            target = hostile;
+            HallucinationCharge(ent, target, 6, 0.8f, 0, 6, true, () => EndCharges(ent, cooldown));
+            return true;
         }
 
-        return target != EntityUid.Invalid;
+        HallucinationCharge(ent, target, 4, 0.9f, 0, 4, true, () =>
+            HallucinationCharge(ent, target, 4, 0.7f, 0, 4, true, () =>
+                HallucinationCharge(ent, target, 4, 0.5f, 0, 4, true, () =>
+                    DoCharge(ent, ent, target, 0.6f, ent.Comp.ChargePast, () =>
+                        DoCharge(ent, ent, target, 0.4f, ent.Comp.ChargePast, () =>
+                            DoCharge(ent, ent, target, 0.2f, ent.Comp.ChargePast, () => EndCharges(ent, cooldown)))))));
+        return true;
     }
 
-    private void DoBloodBlast(EntityUid uid, EntityCoordinates center, BubblegumComponent comp)
+    /// <summary>hallucination_surround: 5 раз два клона с боков и сам Пузырь.</summary>
+    private bool TrySurround(Entity<BubblegumComponent> ent, EntityUid target)
     {
-        _audio.PlayPvs(comp.BlastSound, uid);
+        if (!_ai.TryBeginAbility(ent))
+            return false;
 
-        if (!TryComp<NpcFactionMemberComponent>(uid, out var faction))
+        _ai.SetImmobile(ent, true);
+        SurroundStep(ent, target, 5);
+        return true;
+    }
+
+    private void SurroundStep(Entity<BubblegumComponent> ent, EntityUid target, int remaining)
+    {
+        if (remaining <= 0)
+        {
+            EndCharges(ent, ent.Comp.HallucinationCooldown);
             return;
-
-        var spec = new DamageSpecifier();
-        spec.DamageDict.Add("Slash", FixedPoint2.New(comp.BlastDamage));
-
-        foreach (var hostile in _faction.GetNearbyHostiles((uid, faction), comp.BlastRadius + 0.5f))
-        {
-            if (!Exists(hostile)) continue;
-
-            if (!center.TryDistance(EntityManager, Transform(hostile).Coordinates, out var dist) ||
-                dist > comp.BlastRadius)
-                continue;
-
-            if (!TryComp<DamageableComponent>(hostile, out var damageable))
-                continue;
-
-            _damageable.TryChangeDamage((hostile, damageable), spec, origin: uid);
-        }
-    }
-
-    // ── Clone assault ─────────────────────────────────────────────────────────
-
-    private void DoCloneAssault(EntityUid uid, BubblegumComponent comp, EntityUid target)
-    {
-        var center = Transform(target).Coordinates;
-        for (var i = 0; i < comp.CloneCount; i++)
-        {
-            var angle = MathF.PI * 2f / comp.CloneCount * i;
-            var offset = new Vector2(MathF.Cos(angle), MathF.Sin(angle)) * comp.CloneSpawnRadius;
-            Spawn(comp.ClonePrototype, center.Offset(offset));
-        }
-        comp.NextCloneTime = _timing.CurTime + TimeSpan.FromSeconds(comp.CloneCooldown);
-    }
-
-    // ── Player / damage helpers ───────────────────────────────────────────────
-
-    private bool TryFindNearbyPlayer(EntityUid uid, float range, out EntityUid result)
-    {
-        result = EntityUid.Invalid;
-        var myPos = Transform(uid).Coordinates;
-        var best = float.MaxValue;
-
-        foreach (var session in _playerManager.Sessions)
-        {
-            if (session.Status != SessionStatus.InGame ||
-                session.AttachedEntity is not { Valid: true } candidate)
-                continue;
-
-            if (!Exists(candidate)) continue;
-
-            if (!TryComp<MobStateComponent>(candidate, out var ms) ||
-                ms.CurrentState != MobState.Alive)
-                continue;
-
-            if (!myPos.TryDistance(EntityManager, Transform(candidate).Coordinates, out var dist))
-                continue;
-
-            if (dist > range || dist >= best)
-                continue;
-
-            best = dist;
-            result = candidate;
         }
 
-        return result.Valid;
+        HallucinationCharge(ent, target, 2, 0.8f, 2, 2, false, () => { });
+        DoCharge(ent, ent, target, 0.6f, ent.Comp.ChargePast, () => SurroundStep(ent, target, remaining - 1));
     }
 
-    private void DamagePlayersNear(EntityUid bossUid, EntityCoordinates center, float damage, float radius)
+    private void EndCharges(Entity<BubblegumComponent> ent, float cooldown)
     {
-        var spec = new DamageSpecifier();
-        spec.DamageDict.Add("Slash", FixedPoint2.New(damage));
+        _ai.SetImmobile(ent, false);
+        _ai.EndAbility(ent, cooldown);
+    }
 
-        foreach (var session in _playerManager.Sessions)
+    /// <summary>
+    /// hallucination_charge: клоны по кругу радиусом radius вокруг цели; при useSelf сам Пузырь
+    /// встаёт на первое место и бежит вместе с ними.
+    /// </summary>
+    private void HallucinationCharge(Entity<BubblegumComponent> ent, EntityUid target, int amount, float delay, int past, int radius, bool useSelf, Action onDone)
+    {
+        if (TerminatingOrDeleted(target) || !_ai.TryGetTile(target, out var grid, out var center))
         {
-            if (session.Status != SessionStatus.InGame ||
-                session.AttachedEntity is not { Valid: true } candidate)
-                continue;
-
-            if (!Exists(candidate)) continue;
-
-            if (!TryComp<MobStateComponent>(candidate, out var ms) ||
-                ms.CurrentState != MobState.Alive)
-                continue;
-
-            if (!TryComp<DamageableComponent>(candidate, out var damageable))
-                continue;
-
-            if (!center.TryDistance(EntityManager, Transform(candidate).Coordinates, out var dist) ||
-                dist > radius)
-                continue;
-
-            _damageable.TryChangeDamage((candidate, damageable), spec, origin: bossUid);
-        }
-    }
-
-    // ── Tile damage helpers ───────────────────────────────────────────────────
-
-    private void ProcessPendingTileDamage(EntityUid uid)
-    {
-        if (!_pendingDamage.TryGetValue(uid, out var pending) || pending.Count == 0)
+            onDone();
             return;
-
-        for (var i = pending.Count - 1; i >= 0; i--)
-        {
-            var hit = pending[i];
-            if (_timing.CurTime < hit.TriggerTime)
-                continue;
-
-            DamageEntitiesOnTile(uid, hit.Tile, hit.Damage);
-            pending.RemoveAt(i);
-        }
-    }
-
-    private bool TrySpawnBloodPuddle(EntityUid uid, BubblegumComponent comp, out EntityUid puddleUid)
-    {
-        Solution blood = new();
-        blood.AddReagent(comp.BloodReagent, FixedPoint2.New(comp.BloodPuddleVolume));
-
-        return _puddle.TrySpillAt(uid, blood, out puddleUid, sound: false);
-    }
-
-    private void QueueTileDamage(EntityUid uid, EntityCoordinates tile, float damage, float delay)
-    {
-
-        if (!_pendingDamage.TryGetValue(uid, out var pending))
-        {
-            pending = new List<PendingTileDamage>();
-            _pendingDamage[uid] = pending;
         }
 
-        pending.Add(new PendingTileDamage(tile, _timing.CurTime + TimeSpan.FromSeconds(delay), damage));
-    }
-
-    private void DamageEntitiesOnTile(EntityUid uid, EntityCoordinates tile, float damage)
-    {
-        var spec = new DamageSpecifier();
-        spec.DamageDict.Add("Slash", FixedPoint2.New(damage));
-
-        foreach (var session in _playerManager.Sessions)
+        var startAngle = _random.Next(1, 361);
+        var step = 360f / amount;
+        var selfPlaced = false;
+        for (var i = 1; i <= amount; i++)
         {
-            if (session.Status != SessionStatus.InGame ||
-                session.AttachedEntity is not { Valid: true } candidate)
+            var rad = (startAngle + step * i) * MathF.PI / 180f;
+            var place = center + new Vector2i((int) MathF.Round(MathF.Cos(rad) * radius), (int) MathF.Round(MathF.Sin(rad) * radius));
+            if (useSelf && !selfPlaced)
+            {
+                _transform.SetCoordinates(ent, _ai.TileCenter(grid, place));
+                selfPlaced = true;
                 continue;
+            }
 
-            if (!Exists(candidate)) continue;
-
-            if (!TryComp<MobStateComponent>(candidate, out var ms) ||
-                ms.CurrentState != MobState.Alive)
-                continue;
-
-            if (!TryComp<DamageableComponent>(candidate, out var damageable))
-                continue;
-
-            if (!IsSameTile(tile, SnapToTile(Transform(candidate).Coordinates)))
-                continue;
-
-            _damageable.TryChangeDamage((candidate, damageable), spec, origin: uid);
+            var clone = _ai.SpawnAt(ent.Comp.Hallucination, grid, place);
+            DoCharge(ent, clone, target, delay, past, () => QueueDel(clone));
         }
+
+        if (useSelf)
+            DoCharge(ent, ent, target, delay, past, onDone);
+        else
+            onDone();
     }
 
-    private static EntityCoordinates SnapToTile(EntityCoordinates coords)
-        => new(coords.EntityId, MathF.Round(coords.X), MathF.Round(coords.Y));
+    /// <summary>
+    /// do_charge: метка на клетке за целью, пауза delay, затем рывок по клетке за 0.05 с.
+    /// Сбивает всех на пути (30 урона, клоны — 15), прорывает породу.
+    /// </summary>
+    private void DoCharge(Entity<BubblegumComponent> owner, EntityUid charger, EntityUid target, float delay, int past, Action onDone)
+    {
+        if (TerminatingOrDeleted(target) || TerminatingOrDeleted(charger) ||
+            !_ai.TryGetTile(charger, out var grid, out var from) ||
+            !_ai.TryGetTile(target, out var targetGrid, out var targetTile) ||
+            grid.Owner != targetGrid.Owner)
+        {
+            onDone();
+            return;
+        }
 
-    private static bool IsSameTile(EntityCoordinates a, EntityCoordinates b)
-        => a.EntityId == b.EntityId
-           && MathF.Round(a.X) == MathF.Round(b.X)
-           && MathF.Round(a.Y) == MathF.Round(b.Y);
+        var dir = MegafaunaAiSystem.StepTowards(from, targetTile);
+        var end = targetTile + dir * past;
+        _ai.SpawnAt(owner.Comp.ChargeMarker, grid, end);
+        Spawn(owner.Comp.Decoy, Transform(charger).Coordinates);
+
+        var damage = charger == owner.Owner ? owner.Comp.ChargeDamage : owner.Comp.HallucinationDamage;
+        _ai.Schedule(owner, delay, () =>
+        {
+            if (TerminatingOrDeleted(charger) || !_ai.TryGetTile(charger, out _, out var start))
+            {
+                onDone();
+                return;
+            }
+
+            var steps = Math.Min(MegafaunaAiSystem.Chebyshev(start, end), 50);
+            ChargeStep(owner, charger, grid, end, steps, damage, new HashSet<EntityUid> { charger, owner }, onDone);
+        });
+    }
+
+    private void ChargeStep(Entity<BubblegumComponent> owner, EntityUid charger, Entity<MapGridComponent> grid, Vector2i end,
+        int remaining, float damage, HashSet<EntityUid> hit, Action onDone)
+    {
+        if (remaining <= 0 || TerminatingOrDeleted(charger) || !_ai.TryGetTile(charger, out _, out var current) || current == end)
+        {
+            // COMSIG_FINISHED_CHARGE -> after_charge -> try_bloodattack
+            if (_ai.IsAliveBoss(owner))
+                TryBloodAttack(owner);
+            _ai.Schedule(owner, owner.Comp.ChargeStepDelay, onDone);
+            return;
+        }
+
+        var next = current + MegafaunaAiSystem.StepTowards(current, end);
+        if (_ai.IsMineral(grid, next))
+            _ai.Drill(grid, next, owner);
+        else if (_ai.IsBlocked(grid, next))
+            remaining = 1;
+
+        foreach (var mob in _ai.MobsOnTile(grid, next))
+        {
+            if (HasComp<BubblegumComponent>(mob) || !hit.Add(mob))
+                continue;
+
+            _popup.PopupEntity(Loc.GetString("bubblegum-tramples", ("boss", owner.Owner)), mob, mob, PopupType.LargeCaution);
+            _ai.Damage(mob, "Blunt", damage, owner);
+            _ai.PlaySound(owner.Comp.StepSound, Transform(mob).Coordinates);
+            _ai.ShakeCamera(Transform(mob).Coordinates, 0.5f, 4f);
+        }
+
+        if (!_ai.IsBlocked(grid, next))
+        {
+            Spawn(owner.Comp.DecoyFading, Transform(charger).Coordinates);
+            _transform.SetCoordinates(charger, _ai.TileCenter(grid, next));
+        }
+
+        _ai.Schedule(owner, owner.Comp.ChargeStepDelay, () => ChargeStep(owner, charger, grid, end, remaining - 1, damage, hit, onDone));
+    }
+
+    #endregion
 }

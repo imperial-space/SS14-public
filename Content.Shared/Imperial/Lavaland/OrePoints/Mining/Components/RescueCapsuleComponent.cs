@@ -15,7 +15,7 @@ public sealed partial class RescueCapsuleComponent : Component
     /// Delay in seconds before the capsule deploys.
     /// </summary>
     [DataField]
-    public float DeployDelay = 8f;
+    public float DeployDelay = 0f;
 
     /// <summary>
     /// Grid path to load directly (e.g. /Imperial/Lavaland/mining.yml).

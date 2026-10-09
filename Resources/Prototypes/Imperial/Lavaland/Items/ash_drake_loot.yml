@@ -322,22 +322,16 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:AllSelector
+      # necropolis/dragon: rand(1, 4) — ровно один предмет.
+      entity_storage: !type:GroupSelector
         children:
         - !type:EntSelector
           id: WeaponSpectralBlade
-          prob: 0.25
         - !type:EntSelector
           id: WeaponLavaStaff
-          prob: 0.25
-        - !type:EntSelector
-          id: DragonBloodVial
-          prob: 0.25
-        - !type:EntSelector
-          id: DragonBloodVialTreated
-          prob: 0.25
         - !type:EntSelector
           id: WeaponWandFireball
-          prob: 0.25
+        - !type:EntSelector
+          id: DragonBloodVial
   - type: StaticPrice
     price: 0

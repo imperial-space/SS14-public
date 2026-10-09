@@ -1,0 +1,29 @@
+# retreat_distance / minimum_distance мегафауны SS13: держится на расстоянии KeepDistanceRange,
+# пока код босса не выставит MegafaunaAggressive (ярость, цель обездвижена).
+- type: htnCompound
+  id: ImperialMegafaunaKeepDistanceCompound
+  branches:
+    - preconditions:
+        - !type:KeyExistsPrecondition
+          key: MegafaunaAggressive
+      tasks:
+        - !type:HTNCompoundTask
+          task: MeleeCombatCompound
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyMeleeTargets
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            shutdownState: PlanFinished
+            pathfindInPlanning: true
+            removeKeyOnFinish: false
+            targetKey: TargetCoordinates
+            pathfindKey: TargetPathfind
+            rangeKey: KeepDistanceRange
+        - !type:HTNPrimitiveTask
+          operator: !type:JukeOperator
+            jukeType: Away
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound

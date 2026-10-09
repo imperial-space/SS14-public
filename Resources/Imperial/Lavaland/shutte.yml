@@ -5,7 +5,7 @@ meta:
   forkId: ""
   forkVersion: ""
   time: 05/30/2026 11:22:33
-  entityCount: 59
+  entityCount: 60
 maps: []
 grids:
 - 1
@@ -210,6 +210,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,1.5
+      parent: 1
+- proto: ComputerShuttleLavaland
+  entities:
+  - uid: 60
+    components:
+    - type: Transform
+      pos: 2.5,2.5
       parent: 1
 - proto: CrateGenericSteel
   entities:

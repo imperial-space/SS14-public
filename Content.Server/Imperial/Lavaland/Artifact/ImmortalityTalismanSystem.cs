@@ -1,4 +1,3 @@
-using Content.Server.Damage.Systems;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Interaction.Events;
@@ -11,7 +10,6 @@ namespace Content.Server.Imperial.Lavaland.Artifact;
 
 public sealed class ImmortalityTalismanSystem : EntitySystem
 {
-    [Dependency] private readonly GodmodeSystem _godmode = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -23,6 +21,7 @@ public sealed class ImmortalityTalismanSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<ImmortalityTalismanComponent, UseInHandEvent>(OnUseInHand);
+        SubscribeLocalEvent<ImmortalityTalismanShieldComponent, BeforeDamageChangedEvent>(OnBeforeDamage);
     }
 
     public override void Update(float frameTime)
@@ -42,7 +41,7 @@ public sealed class ImmortalityTalismanSystem : EntitySystem
             // снять неуязвимость
             comp.IsActive = false;
             if (comp.Holder != null && !TerminatingOrDeleted(comp.Holder.Value))
-                _godmode.DisableGodmode(comp.Holder.Value);
+                RemComp<ImmortalityTalismanShieldComponent>(comp.Holder.Value);
             comp.Holder = null;
         }
     }
@@ -57,14 +56,15 @@ public sealed class ImmortalityTalismanSystem : EntitySystem
         if (now < ent.Comp.CooldownEndTime)
         {
             var remaining = (ent.Comp.CooldownEndTime - now).TotalSeconds;
-            _popup.PopupClient($"Перезарядка: {remaining:F0} сек.", args.User, args.User, PopupType.SmallCaution);
+            _popup.PopupEntity($"Перезарядка: {remaining:F0} сек.", args.User, args.User, PopupType.SmallCaution);
             args.Handled = true;
             return;
         }
 
-        _godmode.EnableGodmode(args.User);
+        // Свой щит вместо режима бога: тот при включении полностью исцелял (Rejuvenate).
+        EnsureComp<ImmortalityTalismanShieldComponent>(args.User).EndTime = now + TimeSpan.FromSeconds(ent.Comp.GodmodeDurationSeconds);
         _audio.PlayPvs(ActivateSound, args.User);
-        _popup.PopupClient("Талисман активирован! Ты неуязвим на 8 секунд.", args.User, args.User, PopupType.Large);
+        _popup.PopupEntity($"Талисман активирован! Ты неуязвим на {ent.Comp.GodmodeDurationSeconds:F0} секунд.", args.User, args.User, PopupType.Large);
 
         ent.Comp.IsActive = true;
         ent.Comp.Holder = args.User;
@@ -74,4 +74,14 @@ public sealed class ImmortalityTalismanSystem : EntitySystem
         args.Handled = true;
     }
 
+
+    /// <summary>Пока действует щит, урон не проходит; лечение (отрицательный урон) не блокируется.</summary>
+    private void OnBeforeDamage(Entity<ImmortalityTalismanShieldComponent> ent, ref BeforeDamageChangedEvent args)
+    {
+        if (_timing.CurTime >= ent.Comp.EndTime)
+            return;
+
+        if (args.Damage.GetTotal() > 0)
+            args.Cancelled = true;
+    }
 }

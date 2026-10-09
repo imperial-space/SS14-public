@@ -1,0 +1,20 @@
+- type: Tag
+  id: ImperialDockLavaland
+
+# Шлюз, к которому шаттл утилизаторов (ComputerShuttleLavaland) стыкуется в первую очередь.
+# Ставится на аванпост лаваленда; можно поставить и на станцию — тогда шаттл будет приходить туда же.
+- type: entity
+  parent: AirlockShuttle
+  id: ImperialAirlockShuttleLavaland
+  suffix: Docking, Lavaland
+  components:
+  - type: PriorityDock
+    tag: ImperialDockLavaland
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: ImperialAirlockGlassShuttleLavaland
+  suffix: Glass, Docking, Lavaland
+  components:
+  - type: PriorityDock
+    tag: ImperialDockLavaland

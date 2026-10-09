@@ -1,827 +1,538 @@
-using Content.Shared.Damage;
-using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Systems;
-using Content.Shared.FixedPoint;
+using System.Linq;
+using System.Numerics;
+using Content.Server.Imperial.Lavaland.Megafauna;
 using Content.Shared.Imperial.Lavaland;
 using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
+using Content.Shared.Popups;
+using Content.Shared.Throwing;
+using Content.Server.Tiles;
 using Content.Shared.Weapons.Melee.Events;
-using Content.Shared.Weapons.Ranged.Events;
-using Robust.Server.Player;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Enums;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
-using System.Numerics;
+using Robust.Shared.Spawners;
 
 namespace Content.Server.Imperial.Lavaland.AshDrake;
 
+/// <summary>
+/// Перенос megafauna/dragon из SS13: OpenFire, fire_breath (cone/mass_fire), meteors,
+/// lava_swoop (lava_pools, lava_arena) и arena_escape_enrage.
+/// </summary>
 public sealed class AshDrakeSystem : EntitySystem
 {
+    [Dependency] private readonly MegafaunaAiSystem _ai = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly ThrowingSystem _throwing = default!;
+    [Dependency] private readonly SharedPointLightSystem _light = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
 
-    private readonly Dictionary<EntityUid, List<PendingTileDamage>> _pendingDamage = new();
-
-    private readonly record struct PendingTileDamage(
-        EntityCoordinates Tile,
-        TimeSpan TriggerTime,
-        float Damage,
-        string EffectProto,
-        bool SpawnEffectOnTrigger);
+    private static readonly Color EnrageColor = Color.FromHex("#FFFF00");
 
     public override void Initialize()
     {
         base.Initialize();
-
-        SubscribeLocalEvent<AshDrakeComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<AshDrakeComponent, MegafaunaOpenFireEvent>(OnOpenFire);
         SubscribeLocalEvent<AshDrakeComponent, AttemptMeleeEvent>(OnAttemptMelee);
-        SubscribeLocalEvent<AshDrakeComponent, MeleeHitEvent>(OnMeleeHit);
-        SubscribeLocalEvent<AshDrakeComponent, ShotAttemptedEvent>(OnShotAttempted);
-        SubscribeLocalEvent<AshDrakeComponent, AmmoShotEvent>(OnGunShot);
+        SubscribeLocalEvent<AshDrakeComponent, MobStateChangedEvent>(OnMobStateChanged);
     }
 
-    public override void Update(float frameTime)
+    private void OnAttemptMelee(Entity<AshDrakeComponent> ent, ref AttemptMeleeEvent args)
     {
-        base.Update(frameTime);
+        if (ent.Comp.Swooping)
+            args.Cancelled = true;
+    }
 
-        // Deal continuous damage to every active fire tile each 0.15 s
-        var fireQuery = EntityQueryEnumerator<AshDrakeFireTileComponent>();
-        while (fireQuery.MoveNext(out var tileUid, out var fireTile))
+    private void OnMobStateChanged(Entity<AshDrakeComponent> ent, ref MobStateChangedEvent args)
+    {
+        if (args.NewMobState != MobState.Dead)
+            return;
+
+        ent.Comp.Swooping = false;
+        _physics.SetCanCollide(ent, true);
+        _appearance.SetData(ent, MegafaunaVisuals.State, "dragon_dead");
+        _appearance.SetData(ent, MegafaunaVisuals.Color, Color.White);
+    }
+
+    private bool Enraged(EntityUid uid)
+    {
+        return _ai.GetHealth(uid) < _ai.GetMaxHealth(uid) * 0.5f;
+    }
+
+    private void OnOpenFire(Entity<AshDrakeComponent> ent, ref MegafaunaOpenFireEvent args)
+    {
+        if (ent.Comp.Swooping)
+            return;
+
+        var target = args.Target;
+        var anger = _ai.Anger(ent, 60f, 20f);
+
+        if (_ai.Prob(15 + anger))
         {
-            if (_timing.CurTime < fireTile.NextDamageTime)
-                continue;
-            if (Exists(fireTile.DrakeUid))
-                DamageEntitiesOnTile(fireTile.DrakeUid, Transform(tileUid).Coordinates, fireTile.Damage);
-            fireTile.NextDamageTime = _timing.CurTime + TimeSpan.FromSeconds(0.15);
+            if (Enraged(ent))
+            {
+                // Lava Arena
+                TryLavaSwoop(ent, target, null);
+                return;
+            }
+
+            // Lava Pools
+            if (TryLavaSwoop(ent, target, () =>
+                {
+                    _ai.ResetCooldown(ent);
+                    TryFireCone(ent, target);
+                    _ai.ResetCooldown(ent);
+                    TryMeteors(ent, target);
+                }))
+            {
+                return;
+            }
+        }
+        else if (_ai.Prob(10 + anger) && Enraged(ent))
+        {
+            TryMassFire(ent, target);
+            return;
         }
 
-        var query = EntityQueryEnumerator<AshDrakeComponent, DamageableComponent, MobStateComponent>();
-        while (query.MoveNext(out var uid, out var comp, out var damageable, out var mobState))
+        if (TryFireCone(ent, target) && _ai.Prob(50))
         {
-            if (mobState.CurrentState != MobState.Alive)
+            _ai.ResetCooldown(ent);
+            TryMeteors(ent, target);
+        }
+    }
+
+    #region Fire breath
+
+    private bool TryFireCone(Entity<AshDrakeComponent> ent, EntityUid target)
+    {
+        if (!_ai.TryBeginAbility(ent))
+            return false;
+
+        _ai.PlaySound(ent.Comp.FireSound, Transform(ent).Coordinates, 5f);
+        foreach (var offset in ent.Comp.FireConeAngles)
+            FireLine(ent, target, offset);
+
+        _ai.EndAbility(ent, ent.Comp.FireConeCooldown);
+        return true;
+    }
+
+    private bool TryMassFire(Entity<AshDrakeComponent> ent, EntityUid target)
+    {
+        if (!_ai.TryBeginAbility(ent))
+            return false;
+
+        MassFire(ent, target);
+        _ai.EndAbility(ent, ent.Comp.MassFireCooldown);
+        return true;
+    }
+
+    /// <summary>mass_fire: три круга по 12 линий с паузой 2.5 с.</summary>
+    private void MassFire(Entity<AshDrakeComponent> ent, EntityUid target)
+    {
+        for (var i = 1; i <= ent.Comp.MassFireSpins; i++)
+        {
+            var spin = i;
+            _ai.Schedule(ent, (spin - 1) * ent.Comp.MassFireBreathDelay, () =>
+            {
+                _ai.PlaySound(ent.Comp.FireSound, Transform(ent).Coordinates, 5f);
+                var increment = 360f / ent.Comp.MassFireSectors;
+                var additional = spin * increment / 2f;
+                for (var s = 1; s <= ent.Comp.MassFireSectors; s++)
+                    FireLine(ent, target, increment * s + additional);
+            });
+        }
+    }
+
+    /// <summary>fire_line: линия огня длиной 15 клеток к цели с отклонением offset (по часовой).</summary>
+    private void FireLine(Entity<AshDrakeComponent> ent, EntityUid target, float offset)
+    {
+        if (TerminatingOrDeleted(target) ||
+            !_ai.TryGetTile(ent, out var grid, out var origin) ||
+            !_ai.TryGetTile(target, out _, out var targetTile))
+            return;
+
+        var angle = MegafaunaAiSystem.AngleTo(origin, targetTile) - offset;
+        var end = MegafaunaAiSystem.TileAtAngle(origin, angle, ent.Comp.FireRange);
+        var turfs = MegafaunaAiSystem.Line(origin, end).Where(t => t != origin).ToList();
+        var hit = new HashSet<EntityUid> { ent };
+        ProgressiveFire(ent, grid, turfs, 0, hit);
+    }
+
+    private void ProgressiveFire(Entity<AshDrakeComponent> ent, Entity<MapGridComponent> grid, List<Vector2i> turfs, int index, HashSet<EntityUid> hit)
+    {
+        if (index >= turfs.Count || index == 0 && !_ai.IsAliveBoss(ent))
+            return;
+
+        var tile = turfs[index];
+        if (_ai.IsBlocked(grid, tile))
+            return;
+
+        BurnTurf(ent, grid, tile, hit);
+        _ai.Schedule(null, ent.Comp.FireDelay, () => ProgressiveFire(ent, grid, turfs, index + 1, hit));
+    }
+
+    /// <summary>burn_turf + on_burn_mob.</summary>
+    private void BurnTurf(Entity<AshDrakeComponent> ent, Entity<MapGridComponent> grid, Vector2i tile, HashSet<EntityUid> hit)
+    {
+        _ai.SpawnAt(ent.Comp.FireEffect, grid, tile);
+        foreach (var mob in _ai.MobsOnTile(grid, tile))
+        {
+            if (!hit.Add(mob))
                 continue;
 
-            ProcessPendingTileDamage(uid);
-            ProcessActiveMeteors(uid, comp);
+            _popup.PopupEntity(Loc.GetString("ash-drake-fire-breath-hit", ("drake", ent.Owner)), mob, mob, PopupType.LargeCaution);
+            _ai.Damage(mob, "Heat", ent.Comp.FireDamage, ent);
+            _ai.Ignite(mob);
+        }
+    }
 
-            if (comp.IsFireArenaActive)
+    #endregion
+
+    #region Meteors
+
+    private bool TryMeteors(Entity<AshDrakeComponent> ent, EntityUid target)
+    {
+        if (!_ai.TryBeginAbility(ent))
+            return false;
+
+        if (_ai.TryGetTile(target, out var grid, out var center))
+        {
+            _popup.PopupEntity(Loc.GetString("ash-drake-meteors"), target, PopupType.LargeCaution);
+            foreach (var tile in MegafaunaAiSystem.RangeTiles(center, ent.Comp.MeteorsRange))
             {
-                ProcessFireArena(uid, comp);
-                continue;
+                if (_ai.Prob(ent.Comp.MeteorsChance))
+                    MeteorTarget(ent, grid, tile);
             }
+        }
 
-            if (comp.IsSwooping)
+        _ai.EndAbility(ent, ent.Comp.MeteorsCooldown);
+        return true;
+    }
+
+    /// <summary>temp_visual/target: прицел, огненный шар падает 0.9 с, затем взрыв и огонь.</summary>
+    private void MeteorTarget(Entity<AshDrakeComponent> ent, Entity<MapGridComponent> grid, Vector2i tile)
+    {
+        var coords = _ai.TileCenter(grid, tile);
+        _ai.PlaySound(ent.Comp.WarnSound, coords);
+        _ai.SpawnAt(ent.Comp.MeteorTarget, grid, tile);
+        // pixel_z = 270 -> 0 за duration: шар падает сверху на клетку.
+        var fireball = Spawn(ent.Comp.MeteorFireball, coords.Offset(new Vector2(0f, 8.4f)));
+        FallStep(fireball, 9, 8.4f / 9f);
+
+        _ai.Schedule(null, ent.Comp.MeteorFallTime, () =>
+        {
+            _ai.Drill(grid, tile);
+            _ai.PlaySound(ent.Comp.ExplosionSound, coords);
+            _ai.SpawnAt(ent.Comp.FireEffect, grid, tile);
+            foreach (var mob in _ai.MobsOnTile(grid, tile))
             {
-                ProcessSwoop(uid, comp);
-                continue; // no other attacks during swoop
+                if (HasComp<AshDrakeComponent>(mob))
+                    continue;
+                _ai.Damage(mob, "Heat", ent.Comp.MeteorDamage, ent);
+                _ai.Ignite(mob);
             }
+        });
+    }
 
-            var totalDamage = _damageable.GetPositiveDamage((uid, damageable)).GetTotal().Float();
-            var healthRatio = totalDamage / comp.MaxHp;
-            var belowHalfHp = healthRatio >= 0.5f;
+    private void FallStep(EntityUid fireball, int steps, float stepSize)
+    {
+        if (steps <= 0 || TerminatingOrDeleted(fireball))
+            return;
+        _transform.SetCoordinates(fireball, Transform(fireball).Coordinates.Offset(new Vector2(0f, -stepSize)));
+        _ai.Schedule(null, 0.1f, () => FallStep(fireball, steps - 1, stepSize));
+    }
 
-            if (!belowHalfHp)
-                comp.LowHpSwoopsSinceLastArena = 0;
+    #endregion
 
-            // Fire cone
-            if (_timing.CurTime >= comp.NextFireConeTime &&
-                TryFindNearbyPlayer(uid, comp.TargetSearchRange, out var coneTarget))
-                DoFireCone(uid, coneTarget, comp, healthRatio);
+    #region Lava swoop
 
-            // Meteor rain
-            if (_timing.CurTime >= comp.NextMeteorTime &&
-                TryFindNearbyPlayer(uid, comp.TargetSearchRange, out var meteorTarget))
-                DoMeteorRain(uid, meteorTarget, comp, healthRatio);
+    /// <summary>
+    /// lava_swoop.Trigger: при ярости — пике с огненной ареной, иначе лужи лавы вокруг цели и пике.
+    /// onFinished вызывается после приземления (Trigger в SS13 возвращается только после всей атаки).
+    /// </summary>
+    private bool TryLavaSwoop(Entity<AshDrakeComponent> ent, EntityUid target, Action? onFinished)
+    {
+        if (!_ai.TryBeginAbility(ent))
+            return false;
 
-            // At or below 50% HP: circular fire breath
-            if (belowHalfHp && _timing.CurTime >= comp.NextCircularFireBreathTime &&
-                TryFindNearbyPlayer(uid, comp.TargetSearchRange, out var circularTarget))
-                DoCircularFireBreath(uid, circularTarget, comp, healthRatio);
+        var enraged = Enraged(ent);
+        if (!enraged)
+            LavaPools(ent, target, ent.Comp.LavaPoolsAmount);
 
-            // At or below 50% HP: two normal swoops, then arena on the third
-            if (belowHalfHp)
+        SwoopAttack(ent, target, enraged, () =>
+        {
+            _ai.EndAbility(ent, ent.Comp.SwoopCooldown);
+            onFinished?.Invoke();
+        });
+        return true;
+    }
+
+    private void SwoopAttack(Entity<AshDrakeComponent> ent, EntityUid target, bool lavaArena, Action onFinished)
+    {
+        var uid = ent.Owner;
+        ent.Comp.Swooping = true;
+        _ai.SetImmobile(uid, true);
+        if (TryComp<MegafaunaAiComponent>(uid, out var ai))
+            ai.Invulnerable = true;
+        _physics.SetCanCollide(uid, false);
+        _popup.PopupEntity(Loc.GetString("ash-drake-swoop-up", ("drake", uid)), uid, PopupType.LargeCaution);
+
+        // start_attack: тень на земле, сам дракон улетает вверх.
+        _appearance.SetData(uid, MegafaunaVisuals.State, "dragon_shadow");
+        _appearance.SetData(uid, MegafaunaVisuals.Color, Color.White.WithAlpha(204 / 255f));
+        var flight = Spawn(ent.Comp.Flight, Transform(uid).Coordinates);
+        var negative = TryComp(target, out TransformComponent? targetXform) &&
+                       _transform.GetWorldPosition(targetXform).X < _transform.GetWorldPosition(uid).X;
+        AnimateFlight(flight, negative ? -1 : 1, 10);
+
+        _ai.Schedule(uid, 0.3f, () =>
+        {
+            _appearance.SetData(uid, MegafaunaVisuals.Color, Color.White.WithAlpha(100 / 255f));
+            _ai.Schedule(uid, 0.7f, () => SwoopChase(ent, target, lavaArena, onFinished));
+        });
+    }
+
+    private void AnimateFlight(EntityUid flight, int dirX, int steps)
+    {
+        if (steps <= 0 || TerminatingOrDeleted(flight))
+            return;
+        var coords = Transform(flight).Coordinates.Offset(new Vector2(dirX, 1f));
+        _transform.SetCoordinates(flight, coords);
+        _ai.Schedule(null, 0.1f, () => AnimateFlight(flight, dirX, steps - 1));
+    }
+
+    /// <summary>Летит к клетке цели со скоростью клетка за 0.05 с, следуя за ней.</summary>
+    private void SwoopChase(Entity<AshDrakeComponent> ent, EntityUid target, bool lavaArena, Action onFinished)
+    {
+        var uid = ent.Owner;
+        if (!TerminatingOrDeleted(target) &&
+            _ai.TryGetTile(uid, out var grid, out var ours) &&
+            _ai.TryGetTile(target, out var targetGrid, out var theirs) &&
+            grid.Owner == targetGrid.Owner &&
+            ours != theirs)
+        {
+            var next = ours + MegafaunaAiSystem.StepTowards(ours, theirs);
+            _transform.SetCoordinates(uid, _ai.TileCenter(grid, next));
+            _ai.Schedule(uid, ent.Comp.SwoopStepDelay, () => SwoopChase(ent, target, lavaArena, onFinished));
+            return;
+        }
+
+        if (lavaArena)
+            LavaArena(ent, target, success => SwoopLand(ent, success, onFinished));
+        else
+            SwoopLand(ent, true, onFinished);
+    }
+
+    private void SwoopLand(Entity<AshDrakeComponent> ent, bool lavaSuccess, Action onFinished)
+    {
+        var uid = ent.Owner;
+        var coords = Transform(uid).Coordinates;
+        Spawn(ent.Comp.Landing, coords);
+        _appearance.SetData(uid, MegafaunaVisuals.State, "dragon_swoop");
+        _appearance.SetData(uid, MegafaunaVisuals.Color, Color.White);
+
+        _ai.Schedule(uid, ent.Comp.SwoopDescentTime, () =>
+        {
+            _ai.PlaySound(ent.Comp.ImpactSound, Transform(uid).Coordinates, 5f);
+            if (_ai.TryGetTile(uid, out var grid, out var center))
             {
-                if (_timing.CurTime >= comp.NextSwoopTime &&
-                    TryFindNearbyPlayer(uid, comp.TargetSearchRange, out var lowHpFlightTarget))
+                foreach (var tile in MegafaunaAiSystem.RangeTiles(center, 1))
                 {
-                    if (comp.LowHpSwoopsSinceLastArena >= 2 &&
-                        _timing.CurTime >= comp.NextFireArenaTime)
+                    foreach (var victim in _ai.MobsOnTile(grid, tile))
                     {
-                        DoFireArena(uid, lowHpFlightTarget, comp);
+                        if (victim == uid)
+                            continue;
+
+                        _ai.Damage(victim, "Blunt", ent.Comp.SwoopDamage, uid);
+                        if (TerminatingOrDeleted(victim))
+                            continue;
+
+                        var dir = tile == center
+                            ? new Vector2(_random.Next(-1, 2), _random.Next(-1, 2))
+                            : new Vector2(tile.X - center.X, tile.Y - center.Y);
+                        if (dir == Vector2.Zero)
+                            dir = Vector2.UnitY;
+                        _throwing.TryThrow(victim, Vector2.Normalize(dir) * 3f, 10f, uid);
+                        _popup.PopupEntity(Loc.GetString("ash-drake-thrown", ("victim", victim), ("drake", uid)), victim, PopupType.MediumCaution);
                     }
-                    else
-                    {
-                        StartSwoop(uid, lowHpFlightTarget, comp);
-                        comp.LowHpSwoopsSinceLastArena++;
-                    }
-                }
-            }
-            else if (_timing.CurTime >= comp.NextSwoopTime &&
-                TryFindNearbyPlayer(uid, comp.TargetSearchRange, out var swoopTarget))
-            {
-                StartSwoop(uid, swoopTarget, comp);
-            }
-        }
-    }
-
-    // ── Existing melee-counter shot system ───────────────────────────────────
-
-    private void OnMapInit(EntityUid uid, AshDrakeComponent component, MapInitEvent args)
-    {
-        component.MeleeHitsSinceLastShot = 0;
-        component.NextShotAtMeleeHits = component.FirstShotMeleeHits;
-        UpdateVisual(uid, component);
-    }
-
-    private void OnMeleeHit(EntityUid uid, AshDrakeComponent component, MeleeHitEvent args)
-    {
-        if (component.IsFireArenaActive)
-            return;
-
-        if (args.IsHit)
-        {
-            component.MeleeHitsSinceLastShot++;
-            // Play melee hit sound
-            _audio.PlayPvs(component.MeleeAttackSound, uid);
-        }
-
-        UpdateVisual(uid, component);
-    }
-
-    private void OnShotAttempted(EntityUid uid, AshDrakeComponent component, ref ShotAttemptedEvent args)
-    {
-        if (component.IsFireArenaActive)
-        {
-            args.Cancel();
-            return;
-        }
-
-        if (IsShotReady(component))
-            return;
-
-        args.Cancel();
-    }
-
-    private void OnAttemptMelee(EntityUid uid, AshDrakeComponent component, ref AttemptMeleeEvent args)
-    {
-        if (!component.IsFireArenaActive)
-            return;
-
-        args.Cancelled = true;
-    }
-
-    private void OnGunShot(EntityUid uid, AshDrakeComponent component, AmmoShotEvent args)
-    {
-        component.MeleeHitsSinceLastShot = 0;
-        component.RollNextThreshold(_random);
-        UpdateVisual(uid, component);
-    }
-
-    private static bool IsShotReady(AshDrakeComponent component)
-        => component.MeleeHitsSinceLastShot >= component.NextShotAtMeleeHits;
-
-    private void UpdateVisual(EntityUid uid, AshDrakeComponent component)
-    {
-        var unfurled = IsShotReady(component);
-        _appearance.SetData(uid, AshDrakeVisuals.Unfurled, unfurled);
-    }
-
-    // ── Fire cone ─────────────────────────────────────────────────────────────
-
-    private void DoFireCone(EntityUid uid, EntityUid target, AshDrakeComponent comp, float healthRatio)
-    {
-        var origin = SnapToTile(Transform(uid).Coordinates);
-        var targetPos = Transform(target).Coordinates;
-
-        var dx = targetPos.X - origin.X;
-        var dy = targetPos.Y - origin.Y;
-        var baseAngle = MathF.Atan2(dy, dx);
-
-        var half = comp.FireConeSpreadDeg * (MathF.PI / 180f) / 2f;
-        var range = (int)comp.FireConeRange;
-        var rayCount = comp.FireConeRayCount;
-
-        // Play sound
-        _audio.PlayPvs(comp.FireConeSound, uid);
-
-        for (var i = 0; i < rayCount; i++)
-        {
-            var t = rayCount <= 1 ? 0f : (float)i / (rayCount - 1) - 0.5f;
-            var rayAngle = baseAngle + t * 2f * half;
-            var dir = new Vector2(MathF.Cos(rayAngle), MathF.Sin(rayAngle));
-
-            SpawnSnakeRay(uid, origin, dir, range, comp, comp.FireConeDamage, 0f, healthRatio);
-        }
-
-        comp.NextFireConeTime = _timing.CurTime + TimeSpan.FromSeconds(comp.FireConeCooldown);
-    }
-
-    // ── Meteor rain ────────────────────────────────────────────────────────────
-
-    private void DoMeteorRain(EntityUid uid, EntityUid target, AshDrakeComponent comp, float healthRatio)
-    {
-        var drakePos = SnapToTile(Transform(uid).Coordinates);
-        var center = SnapToTile(Transform(target).Coordinates);
-        var r = (int)comp.MeteorRadius;
-
-        // Play sound
-        _audio.PlayPvs(comp.MeteorRainSound, uid);
-
-        for (var x = -r; x <= r; x++)
-        {
-            for (var y = -r; y <= r; y++)
-            {
-                if (!_random.Prob(comp.MeteorSpawnChance))
-                    continue;
-
-                var tile = SnapToTile(center.Offset(new Vector2(x, y)));
-
-                // Travel time based on distance from drake to tile
-                var travelTime = 0.5f;
-                if (drakePos.TryDistance(EntityManager, tile, out var dist))
-                    travelTime = Math.Max(0.3f, dist / comp.MeteorTravelSpeed);
-
-                // 1. Crosshair warning at destination
-                var warningUid = Spawn(comp.MeteorWarningPrototype, tile);
-
-                // 2. Fireball starts at drake position
-                var fireballUid = Spawn(comp.MeteorFireballPrototype, drakePos);
-
-                // 3. Track until impact
-                comp.ActiveMeteors.Add(new InFlightMeteor
-                {
-                    FireballUid = fireballUid,
-                    WarningUid = warningUid,
-                    StartPos = drakePos,
-                    EndPos = tile,
-                    StartTime = _timing.CurTime,
-                    TravelDuration = TimeSpan.FromSeconds(travelTime),
-                    Damage = comp.MeteorDamage,
-                });
-            }
-        }
-
-        comp.NextMeteorTime = _timing.CurTime + TimeSpan.FromSeconds(comp.MeteorCooldown);
-    }
-
-    // ── Swoop ────────────────────────────────────────────────────────────────
-
-    private void StartSwoop(EntityUid uid, EntityUid target, AshDrakeComponent comp)
-    {
-        comp.IsSwooping = true;
-        comp.SwoopTarget = target;
-        comp.SwoopStartTime = _timing.CurTime;
-
-        var origin = SnapToTile(Transform(uid).Coordinates);
-        var destination = Exists(target)
-            ? SnapToTile(Transform(target).Coordinates)
-            : origin;
-
-        comp.SwoopStartCoordinates = origin;
-        comp.SwoopDestinationCoordinates = destination;
-
-        comp.SwoopWarningTime = _timing.CurTime + TimeSpan.FromSeconds(comp.SwoopFlightDuration);
-        comp.SwoopLandTime = comp.SwoopWarningTime + TimeSpan.FromSeconds(comp.SwoopLandingDelay);
-        comp.NextSwoopTrailTime = _timing.CurTime;
-
-        if (comp.SwoopShadowUid.Valid && Exists(comp.SwoopShadowUid))
-            Del(comp.SwoopShadowUid);
-
-        // Spawn shadow at drake's current position — it will fly toward target
-        comp.SwoopShadowUid = Spawn(comp.SwoopShadowPrototype, origin);
-
-        if (comp.SwoopWarningUid.Valid && Exists(comp.SwoopWarningUid))
-            Del(comp.SwoopWarningUid);
-
-        // Spawn landing warning IMMEDIATELY so player has max time to react
-        comp.SwoopWarningSpawned = true;
-        comp.SwoopWarningUid = Spawn(comp.SwoopLandingWarningPrototype, destination);
-
-        // Hide the real drake body — only the shadow will be visible during flight
-        _appearance.SetData(uid, AshDrakeVisuals.Flying, true);
-        _appearance.SetData(uid, AshDrakeVisuals.Unfurled, false);
-        // Play swoop sound
-        _audio.PlayPvs(comp.MeleeAttackSound, uid);
-    }
-
-    private void ProcessSwoop(EntityUid uid, AshDrakeComponent comp)
-    {
-        if (_timing.CurTime < comp.SwoopWarningTime)
-        {
-            var elapsed = (_timing.CurTime - comp.SwoopStartTime).TotalSeconds;
-            var progress = Math.Clamp((float)(elapsed / comp.SwoopFlightDuration), 0f, 1f);
-
-            // Move only the shadow — use smooth float interpolation (no tile rounding)
-            if (comp.SwoopShadowUid.Valid && Exists(comp.SwoopShadowUid))
-            {
-                var shadowPos = LerpSmooth(comp.SwoopStartCoordinates, comp.SwoopDestinationCoordinates, progress);
-                _transform.SetCoordinates(comp.SwoopShadowUid, shadowPos);
-
-                if (_timing.CurTime >= comp.NextSwoopTrailTime)
-                {
-                    Spawn(comp.FireEffectPrototype, shadowPos);
-                    comp.NextSwoopTrailTime = _timing.CurTime + TimeSpan.FromSeconds(comp.SwoopTrailInterval);
                 }
             }
 
-            // Drake body stays hidden at its original position — NPC movement doesn't matter
+            _ai.ShakeCamera(Transform(uid).Coordinates, 7f, 15f);
+            if (TryComp<MegafaunaAiComponent>(uid, out var ai))
+                ai.Invulnerable = false;
+            _physics.SetCanCollide(uid, true);
+
+            _ai.Schedule(uid, 0.1f, () =>
+            {
+                ent.Comp.Swooping = false;
+                _ai.SetImmobile(uid, false);
+                _appearance.SetData(uid, MegafaunaVisuals.State, string.Empty);
+                onFinished();
+                if (!lavaSuccess)
+                    ArenaEscapeEnrage(ent);
+            });
+        });
+    }
+
+    /// <summary>lava_pools: 30 предупреждений о лаве вокруг цели, лава держится 6 с.</summary>
+    private void LavaPools(Entity<AshDrakeComponent> ent, EntityUid target, int amount)
+    {
+        if (amount == ent.Comp.LavaPoolsAmount)
+            _popup.PopupEntity(Loc.GetString("ash-drake-lava-pools"), target, target, PopupType.LargeCaution);
+
+        if (amount <= 0 || TerminatingOrDeleted(target) || !_ai.TryGetTile(target, out var grid, out var center))
+            return;
+
+        var tiles = MegafaunaAiSystem.RangeTiles(center, 1).ToList();
+        LavaWarning(ent, grid, _random.Pick(tiles), 6f);
+        _ai.Schedule(ent, ent.Comp.LavaPoolsDelay, () => LavaPools(ent, target, amount - 1));
+    }
+
+    /// <summary>temp_visual/lava_warning: через 1.3 с огонь, 10 урона и временная лава.</summary>
+    private void LavaWarning(Entity<AshDrakeComponent> ent, Entity<MapGridComponent> grid, Vector2i tile, float resetTime)
+    {
+        var coords = _ai.TileCenter(grid, tile);
+        _ai.SpawnAt(ent.Comp.LavaWarning, grid, tile);
+        _ai.PlaySound(ent.Comp.WarnSound, coords);
+
+        _ai.Schedule(null, ent.Comp.LavaWarningTime, () =>
+        {
+            _ai.PlaySound(ent.Comp.FireSound, coords, 5f);
+            var canTransform = !_ai.IsBlocked(grid, tile) && !HasLava(grid, tile);
+
+            foreach (var victim in _ai.MobsOnTile(grid, tile))
+            {
+                if (HasComp<AshDrakeComponent>(victim) || victim == ent.Owner)
+                    continue;
+                _ai.Damage(victim, "Heat", ent.Comp.LavaWarningDamage, ent);
+                _popup.PopupEntity(Loc.GetString(canTransform ? "ash-drake-lava-fall" : "ash-drake-fireball-hit"), victim, victim, PopupType.LargeCaution);
+            }
+
+            if (!canTransform)
+            {
+                _ai.SpawnAt(ent.Comp.FireEffect, grid, tile);
+                return;
+            }
+
+            var lava = _ai.SpawnAt(ent.Comp.Lava, grid, tile);
+            EnsureComp<TimedDespawnComponent>(lava).Lifetime = resetTime;
+        });
+    }
+
+    private bool HasLava(Entity<MapGridComponent> grid, Vector2i tile)
+    {
+        foreach (var e in _map.GetAnchoredEntities(grid, grid.Comp, tile))
+        {
+            if (HasComp<TileEntityEffectComponent>(e))
+                return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// lava_arena: огненная стена радиусом 3, трижды заливает арену лавой, оставляя каждому игроку
+    /// безопасную клетку на расстоянии 2. Если игрок сбежал — арена провалена.
+    /// </summary>
+    private void LavaArena(Entity<AshDrakeComponent> ent, EntityUid target, Action<bool> onDone)
+    {
+        var uid = ent.Owner;
+        if (TerminatingOrDeleted(target) || !_ai.TryGetTile(uid, out var grid, out var center))
+        {
+            onDone(true);
             return;
         }
 
-        if (!comp.SwoopWarningSpawned)
+        _popup.PopupEntity(Loc.GetString("ash-drake-arena", ("drake", uid)), target, target, PopupType.LargeCaution);
+
+        var walls = new List<EntityUid>();
+        foreach (var tile in MegafaunaAiSystem.RangeTiles(center, 3))
         {
-            comp.SwoopWarningSpawned = true;
-            comp.SwoopWarningUid = Spawn(comp.SwoopLandingWarningPrototype, comp.SwoopDestinationCoordinates);
+            if (MegafaunaAiSystem.Chebyshev(tile, center) == 3)
+                walls.Add(_ai.SpawnAt(ent.Comp.ArenaWall, grid, tile));
         }
 
-        if (_timing.CurTime >= comp.SwoopLandTime)
-            ExecuteSwoopLand(uid, comp);
+        var arena = MegafaunaAiSystem.RangeTiles(center, 2).ToList();
+        foreach (var tile in arena)
+            _ai.Drill(grid, tile, uid);
+
+        var withClients = new HashSet<EntityUid>();
+        _ai.Schedule(uid, 1f, () => ArenaRound(ent, grid, arena, walls, withClients, 3, onDone));
     }
 
-    private void ExecuteSwoopLand(EntityUid uid, AshDrakeComponent comp)
+    private void ArenaRound(Entity<AshDrakeComponent> ent, Entity<MapGridComponent> grid, List<Vector2i> arena,
+        List<EntityUid> walls, HashSet<EntityUid> withClients, int amount, Action<bool> onDone)
     {
-        comp.IsSwooping = false;
-
-        if (comp.SwoopShadowUid.Valid && Exists(comp.SwoopShadowUid))
-            Del(comp.SwoopShadowUid);
-        comp.SwoopShadowUid = EntityUid.Invalid;
-
-        if (comp.SwoopWarningUid.Valid && Exists(comp.SwoopWarningUid))
-            Del(comp.SwoopWarningUid);
-        comp.SwoopWarningUid = EntityUid.Invalid;
-
-        // Show the drake again, then teleport to landing spot
-        _appearance.SetData(uid, AshDrakeVisuals.Flying, false);
-
-        var landPos = comp.SwoopDestinationCoordinates;
-        _transform.SetCoordinates(uid, landPos);
-
-        // Play landing sound
-        _audio.PlayPvs(comp.MeleeAttackSound, uid);
-
-        // AoE fire tiles in radius around landing spot
-        var r = (int)comp.SwoopAoeRadius;
-        for (var x = -r; x <= r; x++)
+        if (amount <= 0)
         {
-            for (var y = -r; y <= r; y++)
+            onDone(true);
+            return;
+        }
+
+        var safe = new HashSet<Vector2i>();
+        var anyAttack = false;
+        foreach (var tile in arena)
+        {
+            foreach (var mob in _ai.MobsOnTile(grid, tile))
             {
-                if (x * x + y * y > r * r)
-                    continue; // circular
-                var tile = SnapToTile(landPos.Offset(new Vector2(x, y)));
-                SpawnDamageTile(uid, tile, comp.FireEffectPrototype, comp.SwoopDamage, comp.TileDamageDelay);
-            }
-        }
-
-        comp.SwoopTarget = EntityUid.Invalid;
-        comp.NextSwoopTime = _timing.CurTime + TimeSpan.FromSeconds(comp.SwoopCooldown);
-        UpdateVisual(uid, comp);
-    }
-
-    // ── Circular Fire Breath (below 50% HP) ───────────────────────────────────
-
-    private void DoCircularFireBreath(EntityUid uid, EntityUid target, AshDrakeComponent comp, float healthRatio)
-    {
-        var origin = SnapToTile(Transform(uid).Coordinates);
-        var range = (int)comp.CircularFireBreathRange;
-
-        // Play sound
-        _audio.PlayPvs(comp.FireConeSound, uid);
-
-        // 360° in 8 directions (cross + diagonals)
-        var directions = new[]
-        {
-            new Vector2(1, 0),   // East
-            new Vector2(-1, 0),  // West
-            new Vector2(0, 1),   // North
-            new Vector2(0, -1),  // South
-            new Vector2(1, 1),   // NE
-            new Vector2(-1, 1),  // NW
-            new Vector2(1, -1),  // SE
-            new Vector2(-1, -1)  // SW
-        };
-
-        for (var repeat = 0; repeat < comp.CircularFireBreathRepeats; repeat++)
-        {
-            foreach (var dir in directions)
-            {
-                SpawnSnakeRay(uid,
-                    origin,
-                    Vector2.Normalize(dir),
-                    range,
-                    comp,
-                    comp.CircularFireBreathDamage,
-                    repeat * comp.CircularFireBreathRepeatDelay,
-                    healthRatio);
-            }
-        }
-
-        comp.NextCircularFireBreathTime = _timing.CurTime + TimeSpan.FromSeconds(comp.CircularFireBreathCooldown);
-    }
-
-    // ── Fire Arena (below 50% HP, replaces swoop) ────────────────────────────
-
-    private void DoFireArena(EntityUid uid, EntityUid target, AshDrakeComponent comp)
-    {
-        var center = SnapToTile(Transform(target).Coordinates);
-
-        comp.IsFireArenaActive = true;
-        comp.FireArenaPhase = FireArenaPhase.None;
-        comp.FireArenaCenterCoordinates = center;
-        comp.FireArenaMarkerTile = center;
-        comp.FireArenaCompletedRounds = 0;
-        comp.LowHpSwoopsSinceLastArena = 0;
-
-        if (comp.FireArenaMarkerUid.Valid && Exists(comp.FireArenaMarkerUid))
-            Del(comp.FireArenaMarkerUid);
-        comp.FireArenaMarkerUid = EntityUid.Invalid;
-
-        if (comp.FireArenaWallUids.Count > 0)
-        {
-            foreach (var wallUid in comp.FireArenaWallUids)
-            {
-                if (wallUid.Valid && Exists(wallUid))
-                    Del(wallUid);
-            }
-            comp.FireArenaWallUids.Clear();
-        }
-
-        if (comp.SwoopShadowUid.Valid && Exists(comp.SwoopShadowUid))
-            Del(comp.SwoopShadowUid);
-        comp.SwoopShadowUid = Spawn(comp.SwoopShadowPrototype, center);
-
-        // Keep the real drake exactly at arena center while visually flying.
-        _transform.SetCoordinates(uid, center);
-
-        // Keep drake in the air over the center while arena minigame is active.
-        _appearance.SetData(uid, AshDrakeVisuals.Flying, true);
-        _appearance.SetData(uid, AshDrakeVisuals.Unfurled, false);
-
-        SpawnFireArenaWalls(comp);
-        _audio.PlayPvs(comp.FireConeSound, uid);
-        StartNextFireArenaRound(comp);
-    }
-
-    private void ProcessFireArena(EntityUid uid, AshDrakeComponent comp)
-    {
-        _transform.SetCoordinates(uid, comp.FireArenaCenterCoordinates);
-
-        switch (comp.FireArenaPhase)
-        {
-            case FireArenaPhase.WaitingForMarker:
-                if (_timing.CurTime < comp.FireArenaMarkerEndTime)
-                    return;
-
-                SpawnFireArenaFlames(uid, comp);
-                comp.FireArenaFlameEndTime = _timing.CurTime + TimeSpan.FromSeconds(comp.FireArenaFlameDuration);
-                comp.FireArenaPhase = FireArenaPhase.FlamesActive;
-                break;
-
-            case FireArenaPhase.FlamesActive:
-                if (_timing.CurTime < comp.FireArenaFlameEndTime)
-                    return;
-
-                if (comp.FireArenaMarkerUid.Valid && Exists(comp.FireArenaMarkerUid))
-                    Del(comp.FireArenaMarkerUid);
-                comp.FireArenaMarkerUid = EntityUid.Invalid;
-
-                comp.FireArenaCompletedRounds++;
-                if (comp.FireArenaCompletedRounds >= comp.FireArenaRounds)
-                {
-                    EndFireArena(uid, comp);
-                    return;
-                }
-
-                StartNextFireArenaRound(comp);
-                break;
-        }
-    }
-
-    private void StartNextFireArenaRound(AshDrakeComponent comp)
-    {
-        var playableRadius = Math.Max(1, comp.FireArenaRadius - 1);
-        var markerTile = comp.FireArenaCompletedRounds == 0
-            ? PickRandomArenaTile(comp.FireArenaCenterCoordinates, playableRadius)
-            : PickArenaMarkerTileAtDistance(
-                comp.FireArenaCenterCoordinates,
-                comp.FireArenaMarkerTile,
-                playableRadius,
-                comp.FireArenaMarkerStepDistance);
-
-        comp.FireArenaMarkerTile = markerTile;
-
-        if (comp.FireArenaMarkerUid.Valid && Exists(comp.FireArenaMarkerUid))
-            Del(comp.FireArenaMarkerUid);
-
-        comp.FireArenaMarkerUid = Spawn(comp.FireArenaMarkerPrototype, markerTile);
-        comp.FireArenaMarkerEndTime = _timing.CurTime + TimeSpan.FromSeconds(comp.FireArenaMarkerDuration);
-        comp.FireArenaPhase = FireArenaPhase.WaitingForMarker;
-    }
-
-    private void SpawnFireArenaFlames(EntityUid uid, AshDrakeComponent comp)
-    {
-        var center = comp.FireArenaCenterCoordinates;
-        var radius = comp.FireArenaRadius;
-
-        for (var x = -radius; x <= radius; x++)
-        {
-            for (var y = -radius; y <= radius; y++)
-            {
-                if (IsPerimeterOffset(x, y, radius))
+                if (!HasComp<ActorComponent>(mob) || !_ai.TryGetTile(mob, out _, out var mobTile))
                     continue;
 
-                var tile = SnapToTile(center.Offset(new Vector2(x, y)));
-                if (IsSameTile(tile, comp.FireArenaMarkerTile))
-                    continue;
-
-                SpawnDamageTile(uid, tile, comp.FireArenaEffectPrototype, comp.FireArenaDamage, 0f);
-            }
-        }
-    }
-
-    private void EndFireArena(EntityUid uid, AshDrakeComponent comp)
-    {
-        comp.IsFireArenaActive = false;
-        comp.FireArenaPhase = FireArenaPhase.None;
-
-        if (comp.FireArenaMarkerUid.Valid && Exists(comp.FireArenaMarkerUid))
-            Del(comp.FireArenaMarkerUid);
-        comp.FireArenaMarkerUid = EntityUid.Invalid;
-
-        if (comp.FireArenaWallUids.Count > 0)
-        {
-            foreach (var wallUid in comp.FireArenaWallUids)
-            {
-                if (wallUid.Valid && Exists(wallUid))
-                    Del(wallUid);
-            }
-            comp.FireArenaWallUids.Clear();
-        }
-
-        comp.NextFireArenaTime = _timing.CurTime + TimeSpan.FromSeconds(comp.FireArenaCooldown);
-
-        // Reuse standard swoop landing logic (shadow removal, visibility restore, impact AoE).
-        comp.SwoopDestinationCoordinates = comp.FireArenaCenterCoordinates;
-        ExecuteSwoopLand(uid, comp);
-    }
-
-    private void SpawnFireArenaWalls(AshDrakeComponent comp)
-    {
-        var center = comp.FireArenaCenterCoordinates;
-        var radius = comp.FireArenaRadius;
-
-        for (var x = -radius; x <= radius; x++)
-        {
-            for (var y = -radius; y <= radius; y++)
-            {
-                if (!IsPerimeterOffset(x, y, radius))
-                    continue;
-
-                var tile = SnapToTile(center.Offset(new Vector2(x, y)));
-                var wallUid = Spawn(comp.FireArenaWallPrototype, tile);
-                comp.FireArenaWallUids.Add(wallUid);
-            }
-        }
-    }
-
-    private EntityCoordinates PickRandomArenaTile(EntityCoordinates center, int radius)
-    {
-        var dx = _random.Next(-radius, radius + 1);
-        var dy = _random.Next(-radius, radius + 1);
-        return SnapToTile(center.Offset(new Vector2(dx, dy)));
-    }
-
-    private EntityCoordinates PickArenaMarkerTileAtDistance(
-        EntityCoordinates center,
-        EntityCoordinates previous,
-        int radius,
-        int distance)
-    {
-        var candidates = new List<EntityCoordinates>();
-
-        for (var dx = -distance; dx <= distance; dx++)
-        {
-            for (var dy = -distance; dy <= distance; dy++)
-            {
-                if (MathF.Abs(dx) + MathF.Abs(dy) != distance)
-                    continue;
-
-                var x = previous.X + dx;
-                var y = previous.Y + dy;
-
-                if (MathF.Abs(x - center.X) > radius || MathF.Abs(y - center.Y) > radius)
-                    continue;
-
-                candidates.Add(SnapToTile(new EntityCoordinates(center.EntityId, x, y)));
+                var options = arena.Where(t => MegafaunaAiSystem.Chebyshev(t, mobTile) == 2 && !safe.Contains(t)).ToList();
+                if (options.Count > 0)
+                    safe.Add(_random.Pick(options));
+                anyAttack = true;
+                withClients.Add(mob);
             }
         }
 
-        if (candidates.Count == 0)
-            return PickRandomArenaTile(center, radius);
-
-        return candidates[_random.Next(candidates.Count)];
-    }
-
-    private static bool IsPerimeterOffset(int x, int y, int radius)
-        => MathF.Abs(x) == radius || MathF.Abs(y) == radius;
-
-    // ── Helpers ───────────────────────────────────────────────────────────────
-
-    private bool TryFindNearbyPlayer(EntityUid uid, float range, out EntityUid result)
-    {
-        result = EntityUid.Invalid;
-        var myPos = Transform(uid).Coordinates;
-        var best = float.MaxValue;
-
-        foreach (var session in _playerManager.Sessions)
+        if (!anyAttack)
         {
-            if (session.Status != SessionStatus.InGame ||
-                session.AttachedEntity is not { Valid: true } candidate)
-                continue;
-
-            if (candidate == uid)
-                continue;
-
-            if (!Exists(candidate))
-                continue;
-
-            if (!TryComp<MobStateComponent>(candidate, out var ms) || ms.CurrentState != MobState.Alive)
-                continue;
-
-            if (!myPos.TryDistance(EntityManager, Transform(candidate).Coordinates, out var dist))
-                continue;
-
-            if (dist > range || dist >= best)
-                continue;
-
-            best = dist;
-            result = candidate;
+            foreach (var wall in walls)
+                QueueDel(wall);
+            onDone(!withClients.Any(m => !TerminatingOrDeleted(m) && HasComp<ActorComponent>(m)));
+            return;
         }
 
-        return result.Valid;
-    }
-
-    private void ProcessActiveMeteors(EntityUid uid, AshDrakeComponent comp)
-    {
-        for (var i = comp.ActiveMeteors.Count - 1; i >= 0; i--)
+        foreach (var tile in arena)
         {
-            var meteor = comp.ActiveMeteors[i];
-            var elapsed = (_timing.CurTime - meteor.StartTime).TotalSeconds;
-            var progress = Math.Clamp((float)(elapsed / meteor.TravelDuration.TotalSeconds), 0f, 1f);
-
-            if (progress < 1f)
-            {
-                // Animate fireball toward destination
-                if (meteor.FireballUid.Valid && Exists(meteor.FireballUid))
-                {
-                    var pos = LerpSmooth(meteor.StartPos, meteor.EndPos, progress);
-                    _transform.SetCoordinates(meteor.FireballUid, pos);
-                }
-            }
+            if (!safe.Contains(tile))
+                LavaWarning(ent, grid, tile, 1f);
             else
-            {
-                // Impact — delete projectile and warning, spawn fire + queue damage
-                if (meteor.FireballUid.Valid && Exists(meteor.FireballUid))
-                    Del(meteor.FireballUid);
-                if (meteor.WarningUid.Valid && Exists(meteor.WarningUid))
-                    Del(meteor.WarningUid);
-
-                SpawnDamageTile(uid, meteor.EndPos, comp.FireEffectPrototype, meteor.Damage, comp.TileDamageDelay);
-                _audio.PlayPvs(comp.MeteorRainSound, uid);
-
-                comp.ActiveMeteors.RemoveAt(i);
-            }
+                _ai.SpawnAt(ent.Comp.LavaSafe, grid, tile);
         }
+
+        _ai.Schedule(ent, 2.4f, () => ArenaRound(ent, grid, arena, walls, withClients, amount - 1, onDone));
     }
 
-    private void ProcessPendingTileDamage(EntityUid uid)
+    /// <summary>arena_escape_enrage: лечение 250, ускорение вдвое, через 5 с круговое пламя.</summary>
+    private void ArenaEscapeEnrage(Entity<AshDrakeComponent> ent)
     {
-        if (!_pendingDamage.TryGetValue(uid, out var pending) || pending.Count == 0)
-            return;
+        var uid = ent.Owner;
+        _popup.PopupEntity(Loc.GetString("ash-drake-arena-escape", ("drake", uid)), uid, PopupType.LargeCaution);
+        _ai.Heal(uid, ent.Comp.ArenaEscapeHeal);
+        _appearance.SetData(uid, MegafaunaVisuals.Color, EnrageColor);
+        _ai.SetSpeedMultiplier(uid, 2f);
+        if (_light.TryGetLight(uid, out var light))
+            _light.SetRadius(uid, 10f, light);
 
-        for (var i = pending.Count - 1; i >= 0; i--)
+        _ai.Schedule(uid, 5f, () =>
         {
-            var hit = pending[i];
-            if (_timing.CurTime < hit.TriggerTime)
-                continue;
-
-            if (hit.SpawnEffectOnTrigger)
-            {
-                var fireUid = Spawn(hit.EffectProto, hit.Tile);
-                var fc = EnsureComp<AshDrakeFireTileComponent>(fireUid);
-                fc.DrakeUid = uid;
-                fc.Damage = hit.Damage;
-                fc.NextDamageTime = _timing.CurTime; // first check immediately
-            }
-            else
-            {
-                DamageEntitiesOnTile(uid, hit.Tile, hit.Damage);
-            }
-            pending.RemoveAt(i);
-        }
+            if (_ai.GetTarget(uid) is { } target)
+                MassFire(ent, target);
+            _ai.EndAbility(uid, 8f);
+            _ai.SetSpeedMultiplier(uid, 1f);
+            _appearance.SetData(uid, MegafaunaVisuals.Color, Color.White);
+            if (_light.TryGetLight(uid, out var l))
+                _light.SetRadius(uid, 3f, l);
+        });
     }
 
-    private void SpawnDamageTile(EntityUid uid, EntityCoordinates tile, string effectProto, float damage, float delay)
-    {
-        var fireUid = Spawn(effectProto, tile);
-        var fc = EnsureComp<AshDrakeFireTileComponent>(fireUid);
-        fc.DrakeUid = uid;
-        fc.Damage = damage;
-        fc.NextDamageTime = _timing.CurTime + TimeSpan.FromSeconds(delay);
-    }
-
-    private void SpawnSnakeRay(
-        EntityUid uid,
-        EntityCoordinates origin,
-        Vector2 direction,
-        int range,
-        AshDrakeComponent comp,
-        float damage,
-        float baseDelay,
-        float healthRatio = 0f)
-    {
-        // At full HP (healthRatio=0): 2x slower than base; faster as HP decreases
-        var stepDelay = comp.FireConeStepDelay * 2f * (1f - healthRatio * 0.67f);
-        stepDelay = MathF.Max(stepDelay, 0.03f);
-
-        for (var step = 1; step <= range; step++)
-        {
-            var tile = SnapToTile(origin.Offset(direction * step));
-            var delay = baseDelay + step * stepDelay;
-            QueueDelayedDamageTile(uid, tile, comp.SnakeFirePrototype, damage, delay);
-        }
-    }
-
-    private void QueueDelayedDamageTile(EntityUid uid, EntityCoordinates tile, string effectProto, float damage, float delay)
-    {
-        if (!_pendingDamage.TryGetValue(uid, out var pending))
-        {
-            pending = new List<PendingTileDamage>();
-            _pendingDamage[uid] = pending;
-        }
-
-        pending.Add(new PendingTileDamage(
-            tile,
-            _timing.CurTime + TimeSpan.FromSeconds(delay),
-            damage,
-            effectProto,
-            true));
-    }
-
-    private void DamageEntitiesOnTile(EntityUid uid, EntityCoordinates tile, float damage)
-    {
-        var spec = new DamageSpecifier();
-        spec.DamageDict.Add("Heat", FixedPoint2.New(damage));
-
-        foreach (var session in _playerManager.Sessions)
-        {
-            if (session.Status != SessionStatus.InGame ||
-                session.AttachedEntity is not { Valid: true } candidate)
-                continue;
-
-            if (!Exists(candidate))
-                continue;
-
-            if (!TryComp<MobStateComponent>(candidate, out var state) || state.CurrentState != MobState.Alive)
-                continue;
-
-            if (!TryComp<DamageableComponent>(candidate, out var damageable))
-                continue;
-
-            if (!IsSameTile(tile, SnapToTile(Transform(candidate).Coordinates)))
-                continue;
-
-            _damageable.TryChangeDamage((candidate, damageable), spec, origin: uid);
-        }
-    }
-
-    private static EntityCoordinates SnapToTile(EntityCoordinates coords)
-        => new(coords.EntityId, MathF.Round(coords.X), MathF.Round(coords.Y));
-
-    private static bool IsSameTile(EntityCoordinates a, EntityCoordinates b)
-        => a.EntityId == b.EntityId
-           && MathF.Round(a.X) == MathF.Round(b.X)
-           && MathF.Round(a.Y) == MathF.Round(b.Y);
-
-    private static EntityCoordinates LerpTile(EntityCoordinates start, EntityCoordinates end, float t)
-    {
-        var x = start.X + (end.X - start.X) * t;
-        var y = start.Y + (end.Y - start.Y) * t;
-        return new EntityCoordinates(start.EntityId, MathF.Round(x), MathF.Round(y));
-    }
-
-    // Smooth lerp for visual-only entities (shadow) — no tile rounding
-    private static EntityCoordinates LerpSmooth(EntityCoordinates start, EntityCoordinates end, float t)
-    {
-        var x = start.X + (end.X - start.X) * t;
-        var y = start.Y + (end.Y - start.Y) * t;
-        return new EntityCoordinates(start.EntityId, x, y);
-    }
+    #endregion
 }

@@ -1,17 +1,6 @@
-- type: entity
-  id: BulletAshDrakeFire
-  suffix: Lavaland
-  name: fire bolt
-  parent: BulletKinetic
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    impactEffect: BulletImpactEffect
-    damage:
-      types:
-        Heat: 24
-        Structural: 18
+# ── Эффекты пепельного дракона (SS13 drake.dm / lava_swoop.dm / meteors.dm) ──
 
+# Огонь от способностей дракона-игрока (кровь дракона, хаос-предметы).
 - type: entity
   id: ImperialAshDrakeFireTile
   suffix: Lavaland
@@ -20,8 +9,9 @@
   components:
   - type: Sprite
     drawdepth: Effects
-    sprite: Effects/fire.rsi
-    state: fire
+    sprite: Imperial/lava/boss/megafauna/effects.rsi
+    state: fire_light
+    shader: unshaded
   - type: TimedDespawn
     lifetime: 0.7
   - type: Transform
@@ -41,8 +31,9 @@
   components:
   - type: Sprite
     drawdepth: Effects
-    sprite: Effects/fire.rsi
-    state: fire
+    sprite: Imperial/lava/boss/megafauna/effects.rsi
+    state: fire_light
+    shader: unshaded
   - type: TimedDespawn
     lifetime: 0.32
   - type: Transform
@@ -54,61 +45,81 @@
     tags:
     - HideContextMenu
 
+# temp_visual/lava_warning
 - type: entity
-  id: ImperialAshDrakeArenaFireTile
+  id: ImperialAshDrakeLavaWarning
   suffix: Lavaland
-  name: drake arena fire
+  name: lava warning
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    drawdepth: Effects
-    sprite: Effects/fire.rsi
-    state: fire
+    drawdepth: BelowFloor
+    sprite: Imperial/lava/boss/megafauna/effects.rsi
+    state: lavastaff_warn
+    shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#FF4500"
   - type: TimedDespawn
-    lifetime: 2
+    lifetime: 1.3
   - type: Transform
     anchored: true
-  - type: IgnitionSource
-    ignited: true
-    temperature: 1000
   - type: Tag
     tags:
     - HideContextMenu
 
+# temp_visual/lava_safe
 - type: entity
-  id: ImperialAshDrakeArenaMarker
+  id: ImperialAshDrakeLavaSafe
   suffix: Lavaland
-  name: arena safe marker
+  name: safe spot
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    drawdepth: Effects
+    drawdepth: BelowFloor
     sprite: Imperial/lava/boss/drake/hand_of_god_structures.rsi
-    layers:
-    - state: trap-earth
-      shader: unshaded
+    state: trap-earth
+    shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 1
   - type: TimedDespawn
-    lifetime: 20
+    lifetime: 1.3
   - type: Transform
     anchored: true
   - type: Tag
     tags:
     - HideContextMenu
 
+# Временная лава (TerraformTurf на reset_time).
+- type: entity
+  id: ImperialAshDrakeSwoopLava
+  suffix: Lavaland
+  parent: FloorLavaEntity
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 1
+
+# temp_visual/drakewall: огненный барьер арены.
 - type: entity
   id: ImperialAshDrakeArenaWall
   suffix: Lavaland
-  name: arena wall
-  parent: BaseStructure
+  name: Fire Barrier
+  description: An ash drakes true flame.
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    drawdepth: WallTops
-    sprite: Effects/fire.rsi
-    state: fire
-  - type: Icon
-    sprite: Effects/fire.rsi
-    state: fire
+    drawdepth: Mobs
+    sprite: Imperial/lava/boss/megafauna/effects.rsi
+    state: fire_light
+    color: "#FF8C00"
+    shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#FF8C00"
   - type: Transform
     anchored: true
   - type: Physics
@@ -121,50 +132,95 @@
         mask:
         - FullTileMask
         layer:
-        - GlassLayer
-  - type: Destructible
-    thresholds: []
+        - WallLayer
+  - type: TimedDespawn
+    lifetime: 8.2
   - type: Tag
     tags:
     - HideContextMenu
 
+# temp_visual/target: прицел метеора.
 - type: entity
   id: ImperialAshDrakeMeteorWarning
   suffix: Lavaland
-  name: meteor warning
+  name: target
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    drawdepth: Effects
+    drawdepth: BelowFloor
     sprite: Imperial/lava/boss/drake/actions.rsi
     state: sniper_zoom
     shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 1
   - type: TimedDespawn
-    lifetime: 15
+    lifetime: 0.9
   - type: Transform
     anchored: true
   - type: Tag
     tags:
     - HideContextMenu
 
+# temp_visual/fireball: падающий огненный шар.
 - type: entity
   id: ImperialAshDrakeMeteorFireball
   suffix: Lavaland
-  name: meteor fireball
+  name: fireball
+  description: Get out of the way!
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    drawdepth: Effects
-    sprite: Effects/fire.rsi
-    state: fire
+    drawdepth: Overlays
+    sprite: Imperial/lava/boss/megafauna/effects.rsi
+    state: fireball
+    shader: unshaded
   - type: TimedDespawn
-    lifetime: 15
-  - type: Transform
-    anchored: false
+    lifetime: 0.9
   - type: Tag
     tags:
     - HideContextMenu
 
+# temp_visual/dragon_swoop: место приземления.
+- type: entity
+  id: ImperialAshDrakeLandingWarning
+  suffix: Lavaland
+  name: certain death
+  description: Don't just stand there, move!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: BelowFloor
+    sprite: Imperial/lava/boss/megafauna/effects96.rsi
+    state: landing
+    color: "#FF0000"
+  - type: TimedDespawn
+    lifetime: 1
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# temp_visual/dragon_flight: дракон в небе.
+- type: entity
+  id: ImperialAshDrakeFlight
+  suffix: Lavaland
+  name: ash drake
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Overlays
+    sprite: Imperial/lava/boss/megafauna/megafauna96.rsi
+    state: dragon_swoop
+    offset: 0,1
+  - type: TimedDespawn
+    lifetime: 1
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# Тень полёта дракона-игрока.
 - type: entity
   id: ImperialAshDrakeShadow
   suffix: Lavaland
@@ -173,188 +229,79 @@
   components:
   - type: Sprite
     drawdepth: Effects
-    sprite: Imperial/lava/boss/drake/64x64megafauna.rsi
-    state: swoop
-    color: "#000000CC"
+    sprite: Imperial/lava/boss/megafauna/megafauna96.rsi
+    state: dragon_shadow
+    offset: 0,1
   - type: Transform
     anchored: false
   - type: Tag
     tags:
     - HideContextMenu
 
-- type: entity
-  id: ImperialAshDrakeLandingWarning
-  suffix: Lavaland
-  name: drake landing warning
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    drawdepth: Effects
-    sprite: Imperial/lava/boss/drake/96x96.rsi
-    state: landing
-  - type: TimedDespawn
-    lifetime: 1.2
-  - type: Transform
-    anchored: true
-  - type: Tag
-    tags:
-    - HideContextMenu
+# ── Пепельный дракон ─────────────────────────────────────────────────────────
 
 - type: entity
   id: MobAshDrake
   suffix: Lavaland
   name: ash drake
-  parent: [ SimpleSpaceMobBase, MobCombat, MobBloodstream, BaseMobAnimal ]
-  description: A legendary Lavaland predator that fights in measured bursts.
+  parent: ImperialMegafaunaBase
+  description: Guardians of the necropolis.
   components:
-  - type: Damageable
-    damageContainer: Biological
-    damageModifierSet: HellSpawn
-  - type: TemperatureDamage
-    heatDamageThreshold: 1000000
-  - type: NpcFactionMember
-    factions:
-    - SimpleHostile
-  - type: HTN
-    rootTask:
-      task: AshDrakeCompound
-    blackboard:
-      RangedRange: !type:Single
-        7
-      MeleeRange: !type:Single
-        1.7
-      VisionRadius: !type:Single
-        12
-      AggroVisionRadius: !type:Single
-        15
-      NavSmash: !type:Bool
-        true
+  # lava_swoop даёт TRAIT_LAVA_IMMUNE и TRAIT_NOFIRE.
+  - type: Flammable
+    damage:
+      types:
+        Heat: 0
   - type: Sprite
     drawdepth: Mobs
-    sprite: Imperial/lava/boss/drake/64x64megafauna.rsi
+    sprite: Imperial/lava/boss/megafauna/megafauna96.rsi
+    offset: 0,1
     layers:
-    - map: [ "enum.AshDrakeVisualLayers.Base" ]
-      state: dragon
-  - type: Appearance
-  - type: AshDrakeAppearance
-    visuals:
-      enum.AshDrakeVisuals.Unfurled:
-        enum.AshDrakeVisualLayers.Base:
-          True: { state: swoop }
-          False: { state: dragon }
+    - state: dragon
+  - type: MegafaunaAppearance
+    baseState: dragon
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.75
-        density: 170
+          radius: 0.45
+        density: 1000
         mask:
         - MobMask
         layer:
         - MobLayer
+  # move_to_delay = 5 — две клетки в секунду.
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.5
-    baseSprintSpeed: 1.5
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2
   - type: MeleeWeapon
     hidden: true
     altDisarm: false
-    attackRate: 0.55
+    attackRate: 0.5
+    range: 1.5
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Imperial/boss/sound_misc_demon_attack1.ogg
     damage:
       types:
-        Slash: 30
-        Blunt: 10
-  - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 1.0
-  - type: BasicEntityAmmoProvider
-    proto: BulletAshDrakeFire
-    capacity: 1
-    count: 1
-  - type: Gun
-    fireRate: 1.0
-    useKey: false
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+        Piercing: 40
   - type: MobThresholds
     thresholds:
       0: Alive
       2500: Dead
-  - type: Destructible
-    thresholds: []
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: dragon
-      Dead:
-        Base: dragon_dead
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - FootstepSound
-    - LavalandMob
-  - type: LavalandStormImmune
-  - type: NoSlip
-  - type: MegafaunaVanishOnDeath
-    delay: 30
   - type: LavalandMegafaunaSleep
-  - type: LavalandMegafauna
-  - type: AshDrake
-    firstShotMeleeHits: 3
-    minMeleeHitsBeforeShot: 4
-    maxMeleeHitsBeforeShot: 10
-    fireEffectPrototype: ImperialAshDrakeFireTile
-    # Sounds
-    meleeAttackSound:
-      path: /Audio/Imperial/boss/sound_misc_demon_attack1.ogg
-    fireConeSound:
-      path: /Audio/Imperial/boss/sound_magic_fireball.ogg
-    meteorRainSound:
-      path: /Audio/Imperial/boss/sound_effects_meteorimpact.ogg
+  - type: ImperialGps
+    tagLoc: imperial-gps-signal-fiery
+  - type: MegafaunaAi
     deathSound:
       path: /Audio/Imperial/boss/sound_misc_demon_dies.ogg
-    # Fire cone parameters (Ability 1)
-    fireConeCooldown: 2
-    fireConeDamage: 5
-    fireConeRange: 15
-    fireConeRayCount: 3
-    fireConeSpreadDeg: 40
-    fireConeStepDelay: 0.08
-    # Meteor rain parameters (Ability 2)
-    meteorCooldown: 6
-    meteorRadius: 6.5
-    meteorDamage: 40
-    meteorSpawnChance: 0.11
-    # Swoop parameters (Ability 4, above 50% HP)
-    swoopCooldown: 8
-    swoopDamage: 75
-    swoopFlightDuration: 0.2
-    swoopLandingDelay: 0.3
-    swoopTrailInterval: 0.08
-    swoopKnockback: 7
-    swoopShadowPrototype: ImperialAshDrakeShadow
-    swoopLandingWarningPrototype: ImperialAshDrakeLandingWarning
-    # Circular fire breath parameters (Ability 3, below 50% HP)
-    circularFireBreathCooldown: 4
-    circularFireBreathRange: 8
-    circularFireBreathDamage: 5
-    circularFireBreathRepeats: 3
-    # Fire arena parameters (Ability 5, below 50% HP, replaces swoop)
-    fireArenaCooldown: 10
-    fireArenaRadius: 3
-    fireArenaDamage: 35
-    fireArenaEffectPrototype: ImperialAshDrakeArenaFireTile
-    fireArenaMarkerPrototype: ImperialAshDrakeArenaMarker
-    fireArenaWallPrototype: ImperialAshDrakeArenaWall
-    fireArenaMarkerDuration: 1.5
-    fireArenaFlameDuration: 2
-    fireArenaRounds: 3
-    fireArenaMarkerStepDistance: 3
-    fireArenaWaveDelay: 0.8
-    fireArenaWaves: 3
-    maxHp: 2500
+    deathMessage: ash-drake-death
+  - type: AshDrake
+  - type: CrusherLoot
+    trophies:
+    - CrusherTrophyTailSpike
+    guaranteedDrop: 0.6
   - type: BossLoot
     loot:
     - prototype: MaterialDragonHide10
@@ -363,10 +310,6 @@
       maxCount: 1
     - prototype: LavalandDrakeChest
       chance: 1.0
-      minCount: 1
-      maxCount: 1
-    - prototype: CrusherUpgradeAshenSkull
-      chance: 0.30
       minCount: 1
       maxCount: 1
   - type: MegafaunaBossMusic

@@ -83,11 +83,5 @@
   - type: TemperatureDamage
     heatDamageThreshold: 1000000
   - type: LavalandStormImmune
-  - type: BossLoot
-    loot:
-    - prototype: CrusherUpgradeCreviceShard
-      chance: 0.40
-      minCount: 1
-      maxCount: 1
   - type: MegafaunaVanishOnDeath
     delay: 30
