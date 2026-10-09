@@ -1,0 +1,14 @@
+- files: ["growl1.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from BandaStation"
+  source: "https://github.com/ss220club/BandaStation/blob/master/sound/effects/hallucinations/growl1.ogg"
+
+- files: ["chainsawhit.ogg", "rapierhit.ogg", "blade1.ogg", "chainhit.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from BandaStation"
+  source: "https://github.com/ss220club/BandaStation/tree/master/sound/items/weapons"
+
+- files: ["unsheath.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from BandaStation"
+  source: "https://github.com/ss220club/BandaStation/blob/master/sound/items/unsheath.ogg"

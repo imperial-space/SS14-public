@@ -1,0 +1,1268 @@
+# Нулевой стержень капеллана и все формы святого оружия — перенос из SS13 (BandaStation, chaplain_nullrod.dm).
+# Использование стержня в руке открывает радиальное меню: в нём все прототипы с NullRodVariant (chaplainSpawnable).
+
+# ─── Базы ────────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: NullRodWeaponBase
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: ImperialAntimagic
+  - type: NullRodCultKillTracker
+  - type: NullRodCore
+    banes:
+    - whitelist:
+        components:
+        - Revenant
+        - CultConstruct
+      damage:
+        types:
+          Holy: 25
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 18
+    soundHit:
+      collection: GenericHit
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 10
+  - type: Item
+    size: Tiny
+
+# Острое оружие: режущий урон, можно разделывать туши.
+- type: entity
+  id: NullRodBladeBase
+  parent: NullRodWeaponBase
+  abstract: true
+  components:
+  - type: Sharp
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 18
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+
+# Клейморы: 30% шанс отбить удар ближнего боя, носятся на спине или поясе.
+- type: entity
+  id: NullRodClaymoreBase
+  parent: NullRodBladeBase
+  abstract: true
+  components:
+  - type: NullRodBlock
+    chance: 0.3
+  - type: Item
+    size: Large
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+    - Belt
+
+# ─── Нулевой стержень ────────────────────────────────────────────────────────
+
+- type: entity
+  id: NullRod
+  parent: NullRodWeaponBase
+  name: null rod
+  suffix: Chaplain
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/nullrod.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: Imperial/priest/null/nullrod.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  - type: NullRod
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-nullrod
+  - type: UserInterface
+    interfaces:
+      enum.NullRodUiKey.Key:
+        type: NullRodBoundUserInterface
+  - type: ActivatableUI
+    key: enum.NullRodUiKey.Key
+    inHandsOnly: true
+    requireActiveHand: false
+
+# ─── Клейморы ────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: NullRodClaymore
+  parent: NullRodClaymoreBase
+  name: holy claymore
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/claymore.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/priest/null/claymore.rsi
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-claymore
+
+- type: entity
+  id: NullRodDarkblade
+  parent: NullRodClaymoreBase
+  name: dark blade
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/darkblade.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/priest/null/darkblade.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 18
+    soundHit:
+      path: /Audio/Imperial/priest/null/growl1.ogg
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-darkblade
+
+- type: entity
+  id: NullRodChainsword
+  parent: NullRodClaymoreBase
+  name: sacred chainsaw sword
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/chainsword.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/priest/null/chainsword.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 18
+    soundHit:
+      path: /Audio/Imperial/priest/null/chainsawhit.ogg
+  # Пила, но медленнее настоящей (toolspeed 1.5).
+  - type: Tool
+    qualities:
+    - Sawing
+    speedModifier: 0.67
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-chainsword
+
+- type: entity
+  id: NullRodForceWeapon
+  parent: NullRodClaymoreBase
+  name: force weapon
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/force-weapon.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/priest/null/force-weapon.rsi
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-force-weapon
+
+# В SS13 выбрать нельзя (chaplain_spawnable = FALSE).
+- type: entity
+  id: NullRodKatana
+  parent: NullRodBladeBase
+  name: Hanzo steel
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/katana.rsi
+    state: icon
+  - type: Item
+    size: Large
+    sprite: Imperial/priest/null/katana.rsi
+  # Слотов нет (slot_flags = NONE в SS13), поэтому без Clothing.
+  - type: NullRodBlock
+    chance: 0.3
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/Imperial/priest/null/unsheath.ogg
+  - type: Tag
+    tags:
+    - NullRodKatana
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-claymore
+    chaplainSpawnable: false
+
+- type: entity
+  id: NullRodMultiverse
+  parent: NullRodClaymoreBase
+  name: extradimensional blade
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/multiverse.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/priest/null/multiverse.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 15
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  # Сила удара случайна: от 1 до 30.
+  - type: NullRodRandomDamage
+    minMultiplier: 0.0667
+    maxMultiplier: 2
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-multiverse
+
+- type: entity
+  id: NullRodSpellblade
+  parent: NullRodClaymoreBase
+  name: dormant spellblade
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/spellblade.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/priest/null/spellblade.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 18
+    soundHit:
+      path: /Audio/Imperial/priest/null/rapierhit.ogg
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-spellblade
+
+- type: entity
+  id: NullRodTalkingSword
+  parent: NullRodClaymoreBase
+  name: possessed blade
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/talking-sword.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/priest/null/talking-sword.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 18
+    soundHit:
+      path: /Audio/Imperial/priest/null/rapierhit.ogg
+  - type: NullRodSpiritHolding
+    awakenComponents:
+    - type: GhostRole
+      name: null-rod-spirit-role-name
+      description: null-rod-spirit-role-desc
+      rules: ghost-role-component-default-rules
+      makeSentient: true
+      allowMovement: false
+      allowSpeech: true
+    - type: GhostTakeoverAvailable
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-talking-sword
+
+# В SS13 выбрать нельзя (chaplain_spawnable = FALSE): 30 урона.
+- type: entity
+  id: NullRodTalkingChainsword
+  parent: NullRodClaymoreBase
+  name: possessed chainsaw sword
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/talking-chainsword.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/priest/null/talking-chainsword.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 30
+    soundHit:
+      path: /Audio/Imperial/priest/null/chainsawhit.ogg
+  - type: Tool
+    qualities:
+    - Sawing
+    speedModifier: 2
+  - type: NullRodSpiritHolding
+    awakenComponents:
+    - type: GhostRole
+      name: null-rod-spirit-role-name
+      description: null-rod-spirit-role-desc
+      rules: ghost-role-component-default-rules
+      makeSentient: true
+      allowMovement: false
+      allowSpeech: true
+    - type: GhostTakeoverAvailable
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-talking-sword
+    chaplainSpawnable: false
+
+- type: entity
+  id: NullRodKhopesh
+  parent: NullRodClaymoreBase
+  name: occultist's khopesh
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/khopesh.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/priest/null/khopesh.rsi
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-khopesh
+
+# ─── Прочие формы ────────────────────────────────────────────────────────────
+
+# Высокочастотный клинок: двуручный, отбивает только удары мехов.
+- type: entity
+  id: NullRodVibroblade
+  parent: NullRodBladeBase
+  name: high frequency blade
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/vibroblade.rsi
+    layers:
+    - state: icon-off
+      map: [ "base" ]
+  - type: Item
+    size: Large
+    sprite: Imperial/priest/null/vibroblade.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 10
+    soundHit:
+      path: /Audio/Imperial/priest/null/rapierhit.ogg
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Slash: 8
+  - type: NullRodBlock
+    chance: 0.4
+    mechsOnly: true
+    wieldedMultiplier: 2
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.WieldableVisuals.Wielded:
+        base:
+          True: { state: icon }
+          False: { state: icon-off }
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-vibroblade
+
+# Рука бога: жжёт, её нельзя выпустить из руки.
+- type: entity
+  id: NullRodGodhand
+  parent: NullRodWeaponBase
+  name: god hand
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/godhand.rsi
+    state: icon
+  - type: Item
+    size: Huge
+    sprite: Imperial/priest/null/godhand.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Heat: 18
+    soundHit:
+      path: /Audio/Imperial/boss/sound_weapons_sear.ogg
+  - type: Unremoveable
+    deleteOnDrop: true
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-godhand
+
+# Святые посохи: 50% отбить любую атаку, урона почти нет.
+- type: entity
+  id: NullRodStaffRed
+  parent: NullRodWeaponBase
+  name: red holy staff
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/staff-red.rsi
+    state: icon
+  - type: Item
+    size: Huge
+    sprite: Imperial/priest/null/staff-red.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+  - type: MeleeWeapon
+    wideAnimationRotation: -90
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      collection: GenericHit
+  - type: NullRodBlock
+    chance: 0.5
+    meleeOnly: false
+    blockSound:
+      path: /Audio/Items/genhit.ogg
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-staff-red
+
+- type: entity
+  id: NullRodStaffBlue
+  parent: NullRodStaffRed
+  name: blue holy staff
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/staff-blue.rsi
+    state: icon
+  - type: Item
+    size: Huge
+    sprite: Imperial/priest/null/staff-blue.rsi
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-staff-blue
+
+- type: entity
+  id: NullRodSord
+  parent: NullRodBladeBase
+  name: UNREAL SORD
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/sord.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/priest/null/sord.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 4
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 1
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-sord
+
+- type: entity
+  id: NullRodWarhammer
+  parent: NullRodWeaponBase
+  name: relic war hammer
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/warhammer.rsi
+    state: icon
+  - type: Item
+    size: Large
+    sprite: Imperial/priest/null/warhammer.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  # Двуручный хват: как копья и кувалды в SS14, сила удара растёт.
+  - type: Wieldable
+    wieldedInhandPrefix: null
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 6
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-warhammer
+
+# Рука-бензопила: прирастает к руке, медленная пила.
+- type: entity
+  id: NullRodChainsawHand
+  parent: NullRodBladeBase
+  name: chainsaw hand
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/chainsaw-hand.rsi
+    state: icon
+  - type: Item
+    size: Huge
+    sprite: Imperial/priest/null/chainsaw-hand.rsi
+    inhandVisuals:
+      left:
+      - state: mounted-left
+      right:
+      - state: mounted-right
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 18
+    soundHit:
+      path: /Audio/Imperial/priest/null/chainsawhit.ogg
+  - type: Tool
+    qualities:
+    - Sawing
+    speedModifier: 0.5
+  - type: Unremoveable
+    deleteOnDrop: false
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-chainsaw-hand
+
+- type: entity
+  id: NullRodClownDagger
+  parent: NullRodBladeBase
+  name: clown dagger
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/clown-dagger.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/priest/null/clown-dagger.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 18
+    soundHit:
+      path: /Audio/Items/bikehorn.ogg
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-clown-dagger
+
+# Молот гордыни: с шансом 30% переливает химикаты владельца в цель.
+- type: entity
+  id: NullRodPrideHammer
+  parent: NullRodWeaponBase
+  name: Pride-struck Hammer
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/pride-hammer.rsi
+    state: icon
+  - type: Item
+    size: Large
+    sprite: Imperial/priest/null/pride-hammer.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+  - type: MeleeWeapon
+    wideAnimationRotation: -90
+    damage:
+      types:
+        Blunt: 16
+    soundHit:
+      path: /Audio/Imperial/priest/null/blade1.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 15
+  - type: NullRodChemicalTransfer
+    chance: 0.3
+  # Двуручный хват: как копья и кувалды в SS14, сила удара растёт.
+  - type: Wieldable
+    wieldedInhandPrefix: null
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 6
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-pride-hammer
+
+# Святой хлыст: серебро, бьёт вампиров сильнее.
+- type: entity
+  id: NullRodWhipChain
+  parent: NullRodWeaponBase
+  name: holy whip
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/whip-chain.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/priest/null/whip-chain.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 18
+    soundHit:
+      path: /Audio/Imperial/priest/null/chainhit.ogg
+  - type: NullRodCore
+    banes:
+    - whitelist:
+        components:
+        - Revenant
+        - CultConstruct
+      damage:
+        types:
+          Holy: 25
+    - whitelist:
+        components:
+        - Vampire
+      damage:
+        types:
+          Holy: 15
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-whip
+
+# Федора атеиста: в ближнем бою не ранит, но при броске — 30 урона. Носится на голове.
+- type: entity
+  id: NullRodFedora
+  parent: NullRodWeaponBase
+  name: atheist's fedora
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/fedora.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/priest/null/fedora.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/brownfedora.rsi
+    quickEquip: true
+    slots:
+    - Head
+  - type: Sharp
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 0
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 30
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-fedora
+
+# Тёмное благословение: клинок вместо руки, не выпустить.
+- type: entity
+  id: NullRodArmblade
+  parent: NullRodBladeBase
+  name: dark blessing
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/armblade.rsi
+    state: icon
+  - type: Item
+    size: Huge
+    sprite: Imperial/priest/null/armblade.rsi
+  - type: Unremoveable
+    deleteOnDrop: false
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-armblade
+
+- type: entity
+  id: NullRodTentacle
+  parent: NullRodArmblade
+  name: unholy blessing
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/tentacle.rsi
+    state: icon
+  - type: Item
+    size: Huge
+    sprite: Imperial/priest/null/tentacle.rsi
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-tentacle
+
+# Плюшевый Карп-сие: капеллан становится другом космических карпов.
+- type: entity
+  id: NullRodCarpPlushie
+  parent: PlushieCarp
+  name: carp-sie plushie
+  components:
+  - type: NullRodCore
+    banes:
+    - whitelist:
+        components:
+        - Revenant
+        - CultConstruct
+      damage:
+        types:
+          Holy: 25
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    damage:
+      types:
+        Blunt: 15
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  - type: NullRodFactionGranter
+    faction: Dragon
+  - type: ImperialAntimagic
+  - type: NullRodCultKillTracker
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-carp-plushie
+
+# Посох монаха: двуручный, 40% отбить удар ближнего боя.
+- type: entity
+  id: NullRodBostaff
+  parent: NullRodWeaponBase
+  name: monk's staff
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/bostaff.rsi
+    layers:
+    - state: icon
+      map: [ "base" ]
+  - type: Item
+    size: Large
+    sprite: Imperial/priest/null/bostaff.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+  - type: MeleeWeapon
+    wideAnimationRotation: -90
+    damage:
+      types:
+        Blunt: 14
+    soundHit:
+      collection: GenericHit
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 4
+  - type: NullRodBlock
+    chance: 0.4
+    blockSound:
+      path: /Audio/Items/genhit.ogg
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.WieldableVisuals.Wielded:
+        base:
+          True: { state: icon-wield }
+          False: { state: icon }
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-bostaff
+
+# Аритмичный нож: случайно ускоряет и замедляет владельца, никуда не убирается.
+- type: entity
+  id: NullRodCrysknife
+  parent: NullRodBladeBase
+  name: arrhythmic knife
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/crysknife.rsi
+    state: icon
+  - type: Item
+    size: Huge
+    sprite: Imperial/priest/null/crysknife.rsi
+  - type: NullRodArrhythmic
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-crysknife
+
+- type: entity
+  id: NullRodPitchfork
+  parent: NullRodBladeBase
+  name: unholy pitchfork
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/pitchfork.rsi
+    state: icon
+  - type: Item
+    size: Large
+    sprite: Imperial/priest/null/pitchfork.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+  - type: MeleeWeapon
+    wideAnimationRotation: -90
+    damage:
+      types:
+        Slash: 18
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  # Двуручный хват: как копья и кувалды в SS14, сила удара растёт.
+  - type: Wieldable
+    wieldedInhandPrefix: null
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Slash: 6
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-pitchfork
+
+- type: entity
+  id: NullRodPharaohStaff
+  parent: NullRodWeaponBase
+  name: egyptian staff
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/pharaoh-staff.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/priest/null/pharaoh-staff.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+  - type: MeleeWeapon
+    wideAnimationRotation: -90
+    damage:
+      types:
+        Blunt: 18
+    soundHit:
+      collection: GenericHit
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-pharaoh-staff
+
+# Гиперинструмент: в SS13 бьёт по мозгу, в SS14 такого урона нет — клеточный.
+- type: entity
+  id: NullRodHypertool
+  parent: NullRodWeaponBase
+  name: hypertool
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/hypertool.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/priest/null/hypertool.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  - type: MeleeWeapon
+    wideAnimationRotation: -90
+    damage:
+      types:
+        Cellular: 18
+    soundHit:
+      path: /Audio/Effects/sparks4.ogg
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-hypertool
+
+- type: entity
+  id: NullRodAncientSpear
+  parent: NullRodWeaponBase
+  name: ancient spear
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/ancient-spear.rsi
+    state: icon
+  - type: Item
+    size: Huge
+    sprite: Imperial/priest/null/ancient-spear.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Sharp
+  - type: MeleeWeapon
+    wideAnimationRotation: -90
+    damage:
+      types:
+        Piercing: 18
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  # Двуручный хват: как копья и кувалды в SS14, сила удара растёт.
+  - type: Wieldable
+    wieldedInhandPrefix: null
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 6
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-ancient-spear
+
+# Нулевой клинок: урон 1d6 + сила, скрытая атака 3d6 по беззащитным.
+- type: entity
+  id: NullRodNullblade
+  parent: NullRodBladeBase
+  name: nullblade
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/nullblade.rsi
+    state: icon
+  - type: Item
+    size: Large
+    sprite: Imperial/priest/null/nullblade.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 12
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: NullRodNullblade
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-nullblade
+
+# ─── Формы не из подтипов стержня (special non-nullrod subtyped в SS13) ─────
+
+# Божественный лук: святые стрелы, при выборе появляется колчан на 10 стрел.
+- type: entity
+  id: NullRodDivineBow
+  parent: BaseBow
+  name: divine bow
+  description: Holy armament to pierce the souls of sinners.
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/divine-bow.rsi
+    layers:
+    - state: icon
+      map: [ "base" ]
+  - type: Item
+    size: Normal
+    sprite: Imperial/priest/null/divine-bow.rsi
+  - type: Clothing
+    quickEquip: false
+    sprite: Imperial/priest/null/divine-bow.rsi
+    slots:
+    - Back
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.WieldableVisuals.Wielded:
+        base:
+          True: { state: drawn }
+          False: { state: icon }
+  - type: ItemSlots
+    slots:
+      projectiles:
+        name: Projectiles
+        startingItem: null
+        insertSound: /Audio/Weapons/Guns/Misc/arrow_nock.ogg
+        whitelist:
+          tags:
+          - Arrow
+  - type: NullRodCore
+  - type: ImperialAntimagic
+  - type: NullRodCultKillTracker
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-divine-bow
+    spawnOnPick:
+    - NullRodHolyQuiver
+
+# Урон лука в SS13 умножается на 0.6.
+- type: entity
+  id: NullRodHolyArrow
+  parent: BaseArrow
+  name: holy arrow
+  description: A holy diver seeking its target.
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/holy-arrow.rsi
+    layers:
+    - state: icon
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 15
+
+- type: entity
+  id: NullRodHolyQuiver
+  parent: ClothingBeltStorageBase
+  name: holy quiver
+  description: Holy armament to pierce the souls of sinners.
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/holy-quiver.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/priest/null/holy-quiver.rsi
+    quickEquip: false
+    slots:
+    - belt
+    - back
+  - type: Storage
+    grid:
+    - 0,0,7,3
+    maxItemSize: Small
+    whitelist:
+      tags:
+      - Arrow
+  - type: StorageFill
+    contents:
+    - id: NullRodHolyArrow
+      amount: 10
+
+# Энергомечи: слабее обычных, без бронебойности, отбивают удары только включёнными.
+- type: entity
+  id: NullRodEnergySwordBase
+  parent: BaseMeleeWeaponEnergy
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/e_sword.rsi
+    layers:
+    - state: e_sword
+    - state: e_sword_blade
+      color: "#FFFFFF"
+      visible: false
+      shader: unshaded
+      map: [ "blade" ]
+  - type: Item
+    sprite: Objects/Weapons/Melee/e_sword-inhands.rsi
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+      types:
+        Slash: 0
+        Heat: 18
+        Structural: 0
+  - type: Reflect
+    reflectProb: 0
+  - type: NullRodCore
+    banes:
+    - whitelist:
+        components:
+        - Revenant
+        - CultConstruct
+      damage:
+        types:
+          Holy: 25
+  - type: ImperialAntimagic
+  - type: NullRodCultKillTracker
+  - type: NullRodBlock
+    chance: 0.3
+    requiresToggle: true
+
+- type: entity
+  id: NullRodEnergySwordLight
+  parent: NullRodEnergySwordBase
+  name: light energy sword
+  description: If you strike me down, I shall become more robust than you can possibly imagine.
+  components:
+  - type: EnergySword
+    colorOptions:
+    - "#7FE5FF"
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-energy-sword
+
+- type: entity
+  id: NullRodEnergySwordDark
+  parent: NullRodEnergySwordBase
+  name: dark energy sword
+  description: Woefully ineffective when used on steep terrain.
+  components:
+  - type: EnergySword
+    colorOptions:
+    - "#FF6B6B"
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-energy-sword
+
+- type: entity
+  id: NullRodEnergyCutlass
+  parent: NullRodEnergySwordBase
+  name: nautical energy cutlass
+  description: Convincing HR that your religion involved piracy was no mean feat.
+  components:
+  - type: EnergySword
+    colorOptions:
+    - "#E95151"
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/e_cutlass.rsi
+    layers:
+    - state: e_cutlass
+    - state: e_cutlass_blade
+      color: "#e95151"
+      visible: false
+      shader: unshaded
+      map: [ "blade" ]
+  - type: Item
+    sprite: Objects/Weapons/Melee/e_cutlass.rsi
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-energy-sword
+
+# Ножны катаны Ханзо: на поясе дают «Контратаку».
+- type: entity
+  id: NullRodHanzoSheath
+  parent: ClothingBeltBase
+  name: hanzo katana sheath
+  description: A normal black sheath meant to house the legendary hanzo steel.
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/hanzo-sheath.rsi
+    layers:
+    - state: icon
+      map: [ "base" ]
+  - type: Item
+    size: Huge
+    sprite: Imperial/priest/null/hanzo-sheath.rsi
+  - type: Clothing
+    sprite: Imperial/priest/null/hanzo-sheath.rsi
+    quickEquip: false
+    slots:
+    - belt
+    - back
+  - type: ItemSlots
+    slots:
+      item:
+        name: Katana
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        startingItem: NullRodKatana
+        whitelist:
+          tags:
+          - NullRodKatana
+  - type: ContainerContainer
+    containers:
+      item: !type:ContainerSlot
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.NullRodSheathVisuals.Full:
+        base:
+          True: { state: icon-full }
+          False: { state: icon }
+  - type: NullRodSheath
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-hanzo-sheath
+
+- type: entity
+  id: ActionNullRodCounterattack
+  name: Counterattack
+  description: Anticipate an enemy's attack and strike back with your sheathed blade.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/priest/null/katana.rsi
+      state: icon
+    useDelay: 45
+  - type: TargetAction
+    range: 7
+  - type: EntityTargetAction
+    event: !type:NullRodCounterattackActionEvent
+    canTargetSelf: false
+
+# Зловещий осколок: уходит в руку и призывает порочную косу.
+- type: entity
+  id: NullRodSinisterShard
+  parent: BaseItem
+  name: sinister shard
+  description: This shard seems to be directly linked to some sinister entity. It might be your god! It also gives you a really horrible rash when you hold onto it for too long.
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/sinister-shard.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: NullRodScytheShard
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-vorpal-scythe
+
+# В SS13 урон слабый (10), зато бронебойность 50 и удар через клетку.
+- type: entity
+  id: NullRodVorpalScythe
+  parent: NullRodBladeBase
+  name: vorpal scythe
+  description: Reap what you sow.
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/vorpal-scythe.rsi
+    state: icon
+  - type: Item
+    size: Ginormous
+    sprite: Imperial/priest/null/vorpal-scythe-inhand.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    range: 2
+    damage:
+      types:
+        Slash: 10
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: NullRodCore
+    runeRemoveLine: null-rod-rune-remove-line-scythe
+    banes:
+    - whitelist:
+        components:
+        - Revenant
+        - CultConstruct
+      damage:
+        types:
+          Holy: 25
+  - type: NullRodVorpalScythe
+
+- type: entity
+  id: ActionNullRodToggleScythe
+  name: Vorpal scythe
+  description: Conjure forth or dismiss the vorpal scythe. Dismissing it before it tastes blood harms you.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/priest/null/vorpal-scythe.rsi
+      state: icon
+    useDelay: 1
+  - type: InstantAction
+    event: !type:NullRodToggleScytheActionEvent
+
+# Святой скейтборд: бьёт как стержень, если встать на него (использовать в руке) — быстрее.
+- type: entity
+  id: NullRodHolySkateboard
+  parent: NullRodWeaponBase
+  name: holy skateboard
+  description: A board blessed by the gods with the power to grind for our sins. Has the initials J.C. on the underside.
+  components:
+  - type: Sprite
+    sprite: Imperial/priest/null/holy-skateboard.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/priest/null/holy-skateboard.rsi
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 6
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Items/Toys/skates.ogg
+    soundDeactivate: null
+  - type: ComponentToggler
+    components:
+    - type: HeldSpeedModifier
+      walkModifier: 1.4
+      sprintModifier: 1.4
+  - type: NullRodVariant
+    menuDescription: null-rod-menu-desc-holy-skateboard
+  - type: NullRodSkateboard
+
+- type: Tag
+  id: NullRodKatana

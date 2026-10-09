@@ -1,0 +1,22 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+            xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+            MinSize="420 220" Title="{Loc imperial-religion-setup-title}">
+    <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="8">
+        <Label Text="{Loc imperial-religion-setup-hint}" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="4">
+            <Label Text="{Loc imperial-religion-setup-religion}" MinWidth="150" />
+            <LineEdit Name="ReligionEdit" HorizontalExpand="True" />
+            <Button Name="RandomReligionButton" Text="🎲" ToolTip="{Loc imperial-religion-setup-random}" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" SeparationOverride="4">
+            <Label Text="{Loc imperial-religion-setup-deity}" MinWidth="150" />
+            <LineEdit Name="DeityEdit" HorizontalExpand="True" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" SeparationOverride="4">
+            <Label Text="{Loc imperial-religion-setup-bible}" MinWidth="150" />
+            <LineEdit Name="BibleEdit" HorizontalExpand="True" />
+        </BoxContainer>
+        <Control VerticalExpand="True" />
+        <Button Name="ConfirmButton" Text="{Loc imperial-religion-setup-confirm}" HorizontalAlignment="Right" />
+    </BoxContainer>
+</controls:FancyWindow>
