@@ -13,7 +13,6 @@ namespace Content.Shared.Imperial.TerrorSpider.Systems;
 public abstract class SharedTerrorSpiderWebBuffSystem : EntitySystem
 {
     [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly SharedEyeSystem _eye = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -59,12 +58,6 @@ public abstract class SharedTerrorSpiderWebBuffSystem : EntitySystem
     {
         comp.WebContacts = 0;
         comp.NextRegenTick = TimeSpan.Zero;
-
-        // Dark vision for all terror spiders
-        if (TryComp<EyeComponent>(uid, out var eye))
-        {
-            _eye.SetDrawLight((uid, eye), false);
-        }
     }
 
     private void OnRefreshMove(Entity<TerrorSpiderWebBuffReceiverComponent> ent, ref RefreshMovementSpeedModifiersEvent args)

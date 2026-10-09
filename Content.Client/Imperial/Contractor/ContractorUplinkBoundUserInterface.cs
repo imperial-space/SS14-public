@@ -17,6 +17,7 @@ public sealed class ContractorUplinkBoundUserInterface : BoundUserInterface
         base.Open();
 
         _window = this.CreateWindow<ContractorUplinkWindow>();
+        _window.SetOwner(Owner);
         _window.AcceptContract += (id, difficulty) => SendMessage(new ContractorAcceptContractMessage(id, difficulty));
         _window.DeclineContract += id => SendMessage(new ContractorDeclineContractMessage(id));
         _window.BuyRequisition += id => SendMessage(new ContractorBuyRequisitionMessage(id));

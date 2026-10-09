@@ -2183,7 +2183,7 @@
   - type: UseDelay
     delay: 4
   - type: ShowHealthBars
-    
+
 
 - type: entity
   save: false
@@ -4480,6 +4480,8 @@
     speechSounds: Xeno
   - type: Eye
     drawFov: false
+  - type: ThermalEntityVision
+  - type: TerrorSpiderAura
   - type: SolutionRegeneration
     solution: spray
     generated:
