@@ -1,66 +1,114 @@
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.Cult.Components;
 
 /// <summary>
-/// Тип руны культа.
+/// Руна культа (obj/effect/rune). Значения — из runes.dm.
 /// </summary>
-[Serializable, NetSerializable]
-public enum CultRuneType : byte
-{
-    Teleport,
-    Empowering,
-    Offering,
-    Revive,
-    Barrier,
-    Summoning,
-    BloodBoil,
-    SpiritRealm,
-    NarSie,
-}
-
-/// <summary>
-/// Базовый компонент любой руны культа.
-/// Размещается на полу при рисовании ритуальным кинжалом.
-/// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true)]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class CultRuneComponent : Component
 {
-    [DataField, AutoNetworkedField]
+    [DataField(required: true)]
     public CultRuneType RuneType;
 
-    /// <summary>
-    /// Тег телепортационной руны (для руны телепортации).
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public string? TeleportTag;
+    /// <summary>cultist_name.</summary>
+    [DataField(required: true)]
+    public LocId CultistName;
 
-    /// <summary>
-    /// Скрыта ли руна заклинанием Conceal Presence.
-    /// </summary>
-    [AutoNetworkedField]
-    public bool Concealed;
+    /// <summary>cultist_desc.</summary>
+    [DataField(required: true)]
+    public LocId CultistDesc;
 
-    /// <summary>
-    /// Минимум культистов для активации.
-    /// </summary>
+    /// <summary>invocation: произносится каждым призывающим.</summary>
     [DataField]
-    public int RequiredInvokers = 1;
+    public string Invocation = "Aiy ele-mayo!";
 
-    /// <summary>
-    /// Накопленные заряды (руна воскрешения).
-    /// </summary>
+    /// <summary>req_cultists.</summary>
     [DataField]
-    public int ReviveCharges = 1;
+    public int ReqCultists = 1;
+
+    /// <summary>req_cultists_text.</summary>
+    [DataField]
+    public LocId? ReqCultistsText;
+
+    /// <summary>invoke_damage (brute каждому призывающему).</summary>
+    [DataField]
+    public float InvokeDamage;
+
+    /// <summary>construct_invoke.</summary>
+    [DataField]
+    public bool ConstructInvoke = true;
+
+    /// <summary>req_keyword.</summary>
+    [DataField]
+    public bool ReqKeyword;
+
+    /// <summary>can_be_scribed.</summary>
+    [DataField]
+    public bool CanBeScribed = true;
+
+    /// <summary>scribe_delay.</summary>
+    [DataField]
+    public TimeSpan ScribeDelay = TimeSpan.FromSeconds(4);
+
+    /// <summary>scribe_damage.</summary>
+    [DataField]
+    public float ScribeDamage = 0.1f;
+
+    /// <summary>erase_time.</summary>
+    [DataField]
+    public TimeSpan EraseTime = TimeSpan.FromSeconds(1.5);
+
+    /// <summary>no_scribe_boost: не ускоряется на полу культа.</summary>
+    [DataField]
+    public bool NoScribeBoost;
+
+    /// <summary>log_when_erased: спросить подтверждение при стирании.</summary>
+    [DataField]
+    public bool LogWhenErased;
+
+    /// <summary>Подсказка призыва, показанная культистам при черчении.</summary>
+    [DataField]
+    public int ScribeOrder;
+
+    /// <summary>Glow/fade эффект при активации (do_invoke_glow).</summary>
+    [DataField]
+    public bool InvokeGlow = true;
 
     [DataField]
-    public int InvokersOnRune;
+    public SoundSpecifier? InvokeSound;
 
-    /// <summary>
-    /// Состояние спрайта при уничтожении руны (например, анимация rune_large_distorted).
-    /// Если задано, перед удалением спрайт переключается в это состояние.
-    /// </summary>
+    /// <summary>color руны (RUNE_COLOR_*).</summary>
     [DataField]
-    public string? DestructionState;
+    public Color RuneColor = Color.Red;
+
+    /// <summary>Номер узора rune_spawn (rune1..rune7) для создания конструктами.</summary>
+    [DataField]
+    public int SpawnPattern = 1;
+
+    /// <summary>Совместимость с нуль-жезлом: эффект разрушения руны.</summary>
+    [DataField]
+    public string? DestructionState = "destroyed";
+
+    [ViewVariables] public string? Keyword;
+    /// <summary>listkey руны телепортации: «ключ отсек».</summary>
+    [ViewVariables] public string? ListKey;
+    [ViewVariables] public bool InUse;
+    [ViewVariables] public bool Concealed;
+    [ViewVariables] public int GlowCounter;
+    [ViewVariables] public int FailCounter;
+
+    /// <summary>Барьер руны барьера.</summary>
+    [ViewVariables] public EntityUid? Barrier;
+
+    /// <summary>Сколько духов поддерживает руна Царства духов.</summary>
+    [ViewVariables] public int Ghosts;
+
+    /// <summary>Руна Нар'Си уже использована.</summary>
+    [ViewVariables] public bool Used;
+
+    /// <summary>Портал на руне телепортации после прибытия из космоса/лаваленда.</summary>
+    [ViewVariables] public EntityUid? Portal;
+    [ViewVariables] public string? PortalDescription;
 }

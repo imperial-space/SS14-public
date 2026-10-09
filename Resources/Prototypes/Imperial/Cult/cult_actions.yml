@@ -1,0 +1,636 @@
+# Действия культа (actions_cult.dmi).
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultCommunion
+  name: Общение
+  description: "Шепните кровавые слова, которые услышат все культисты."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: cult_comms
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultCommunionActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultPrepareBloodMagic
+  name: Подготовить магию крови
+  description: "Подготовьте магию крови, вырезая руны на своей плоти. С руной усиления это проще."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: carve
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultPrepareBloodMagicActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultFinalReckoning
+  name: Последний расчёт
+  description: "Мощный ритуал, призывающий всех культистов к мастеру. Можно использовать один раз."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: sintouch
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultFinalReckoningActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultMarkTarget
+  name: Отметить цель
+  description: "Отметьте цель для всего культа, чтобы все могли её выследить."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: cult_mark
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 120
+  - type: TargetAction
+    checkCanAccess: false
+    range: 7
+  - type: WorldTargetAction
+    event: !type:CultMarkTargetActionEvent
+  - type: EntityTargetAction
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultEldritchPulse
+  name: Древний импульс
+  description: "Захватите культиста или постройку культа и перенесите их в выбранное место."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: dominate
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 15
+  - type: TargetAction
+    checkCanAccess: false
+    range: 7
+  - type: WorldTargetAction
+    event: !type:CultEldritchPulseActionEvent
+  - type: EntityTargetAction
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultPassMantle
+  name: Передать мантию
+  description: "Передайте лидерство культа другому культисту. Можно использовать один раз."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: cultvote
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultPassMantleActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultSpiritCommunion
+  name: Духовное общение
+  description: "Обратитесь к культу из мира духов."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: cult_comms
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultSpiritCommunionActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultGhostMark
+  name: Метка крови
+  description: "Отметьте то, за чем вы следуете, для всего культа."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: cult_mark
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultGhostMarkActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultBloodBond
+  name: Кровавая связь
+  description: "Призовите кровавую алебарду обратно в руку!"
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: bloodspear
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 2
+  - type: InstantAction
+    event: !type:CultBloodBondActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultSpellStun
+  name: Оглушение
+  description: "Наполняет руку силой, оглушающей и лишающей речи жертву при касании. Слабеет по мере роста культа."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: hand
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultBloodSpellActionEvent
+  - type: CultBloodSpell
+    spell: Stun
+    charges: 1
+    healthCost: 10
+    aura: CultAuraStun
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultSpellTeleport
+  name: Телепорт
+  description: "Наполняет руку силой, переносящей вас или другого культиста к руне телепортации."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: tele
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultBloodSpellActionEvent
+  - type: CultBloodSpell
+    spell: Teleport
+    charges: 1
+    healthCost: 7
+    aura: CultAuraTeleport
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultSpellEmp
+  name: Электромагнитный импульс
+  description: "Испускает мощный электромагнитный импульс."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: emp
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultBloodSpellActionEvent
+  - type: CultBloodSpell
+    spell: Emp
+    charges: 1
+    healthCost: 10
+    invocation: "Ta'gh fara'qha fel d'amar det!"
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultSpellShackles
+  name: Теневые оковы
+  description: "Наполняет руку силой, сковывающей жертву при касании и лишающей её речи."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: cuff
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultBloodSpellActionEvent
+  - type: CultBloodSpell
+    spell: Shackles
+    charges: 4
+    healthCost: 0
+    aura: CultAuraShackles
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultSpellConstruction
+  name: Искажённое строительство
+  description: "Наполняет руку силой, оскверняющей металл: пласталь в рунный металл, 50 стали в оболочку, киборгов в конструктов, шлюзы в рунные шлюзы."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: transmute
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultBloodSpellActionEvent
+  - type: CultBloodSpell
+    spell: Construction
+    charges: 1
+    healthCost: 12
+    aura: CultAuraConstruction
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultSpellEquipment
+  name: Призыв боевого снаряжения
+  description: "Наполняет руку силой, облачающей культиста в боевое снаряжение."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: equip
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultBloodSpellActionEvent
+  - type: CultBloodSpell
+    spell: Equipment
+    charges: 1
+    healthCost: 0
+    aura: CultAuraEquipment
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultSpellDagger
+  name: Призыв ритуального кинжала
+  description: "Призывает ритуальный кинжал, если вы потеряли свой."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: equip
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultBloodSpellActionEvent
+  - type: CultBloodSpell
+    spell: Dagger
+    charges: 1
+    healthCost: 0
+    invocation: "Wur d'dai leev'mai k'sagan!"
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultSpellVeiling
+  name: Сокрытие присутствия
+  description: "Поочерёдно скрывает и раскрывает ближайшие постройки и руны культа."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: gone
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultBloodSpellActionEvent
+  - type: CultBloodSpell
+    spell: Veiling
+    charges: 10
+    healthCost: 0
+    invocation: "Kla'atu barada nikt'o!"
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultSpellBloodRites
+  name: Кровавые обряды
+  description: "Наполняет руку силой, впитывающей кровь для продвинутых обрядов или лечащей культистов."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: manip
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultBloodSpellActionEvent
+  - type: CultBloodSpell
+    spell: BloodRites
+    charges: 5
+    healthCost: 0
+    aura: CultAuraBloodRites
+    deletesOnEmpty: false
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultSpellHorror
+  name: Галлюцинации
+  description: "Насылает галлюцинации на цель на расстоянии. Тихое и невидимое заклинание."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: horror
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: TargetAction
+    checkCanAccess: false
+    range: 7
+  - type: EntityTargetAction
+    event: !type:CultHallucinationsActionEvent
+    canTargetSelf: false
+  - type: CultBloodSpell
+    spell: Horror
+    charges: 4
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultGauntletEcho
+  name: Эхо перчатки
+  description: "Направляет энергию в перчатку, выпуская медленный, но сокрушительный удар."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: cultfist
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 35
+  - type: TargetAction
+    checkCanAccess: false
+    range: 30
+  - type: WorldTargetAction
+    event: !type:CultGauntletEchoActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultForcewall
+  name: Щит
+  description: "Создаёт временное силовое поле, защищающее вас и союзников."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: cultforcewall
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 40
+  - type: InstantAction
+    event: !type:CultForcewallActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultPhaseShift
+  name: Фазовый сдвиг
+  description: "Позволяет проходить сквозь стены."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: phaseshift
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 25
+  - type: InstantAction
+    event: !type:CultPhaseShiftActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultMagicMissile
+  name: Малая магическая ракета
+  description: "Выпускает несколько медленных магических снарядов по ближайшим целям."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: hand
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 40
+  - type: InstantAction
+    event: !type:CultMagicMissileActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultCreateShell
+  name: Создать оболочку конструкта
+  description: "Создаёт оболочку, которой могут управлять тени."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: artificer
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 180
+  - type: InstantAction
+    event: !type:CultConjureActionEvent
+      prototype: CultConstructShell
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultCreateFloor
+  name: Призвать пол культа
+  description: "Создаёт пол культа."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: floorconstruct
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 2
+  - type: InstantAction
+    event: !type:CultConjureActionEvent
+      floor: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultCreateWall
+  name: Призвать стену культа
+  description: "Создаёт стену культа."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: lesserconstruct
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 10
+  - type: InstantAction
+    event: !type:CultConjureActionEvent
+      wall: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultCreateSoulstone
+  name: Призвать камень душ
+  description: "Тянется в царство Нар'Си, призывая один из легендарных осколков."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: summonsoulstone
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 240
+  - type: InstantAction
+    event: !type:CultConjureActionEvent
+      prototype: CultSoulStone
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultRuneTeleport
+  name: Призвать руну телепорта
+  description: "Призывает руну телепорта на ваше место, будто она всегда там была."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: telerune
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 180
+  - type: InstantAction
+    event: !type:CultCreateRuneActionEvent
+      rune: CultRuneTeleport
+      pattern: 2
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultRuneBarrier
+  name: Призвать руну барьера
+  description: "Призывает активную руну барьера на ваше место, будто она всегда там была."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: barrier
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 180
+  - type: InstantAction
+    event: !type:CultCreateRuneActionEvent
+      rune: CultRuneBarrier
+      pattern: 4
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultRuneRevive
+  name: Призвать руну воскрешения
+  description: "Призывает руну воскрешения на ваше место, будто она всегда там была."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: revive
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 180
+  - type: InstantAction
+    event: !type:CultCreateRuneActionEvent
+      rune: CultRuneRevive
+      pattern: 1
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultAreaConversion
+  name: Обращение области
+  description: "Мгновенно обращает небольшую область вокруг вас."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: areaconvert
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 5
+  - type: InstantAction
+    event: !type:CultAreaConversionActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultSeekMaster
+  name: Искать хозяина
+  description: "Вы и ваш хозяин связаны душой, и вы чувствуете, где он."
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: cult_mark
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultSeekMasterActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCultSeekPrey
+  name: Искать урожай
+  description: "Никто не скроется от Нар'Си: выследите выжившего, бегущего от красной жатвы!"
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/BloodCult/actions.rsi
+      state: cult_mark
+    background:
+      sprite: Imperial/cult/action.rsi
+      state: bg_cult
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CultSeekPreyActionEvent

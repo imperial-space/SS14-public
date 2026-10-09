@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (icons/obj/antags/cult, icons/effects/cult.dmi, icons/mob/actions/actions_cult.dmi, icons/mob/nonhuman-player/cult.dmi and others)",
+  "size": {
+    "x": 504,
+    "y": 532
+  },
+  "states": [
+    {
+      "name": "narsie",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "narsie_spawn_anim",
+      "delays": [
+        [
+          0.3,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.2
+        ]
+      ]
+    }
+  ]
+}

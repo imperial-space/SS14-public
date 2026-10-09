@@ -2,8 +2,6 @@ using Content.Shared.Roles.Components;
 
 namespace Content.Shared.Imperial.Cult.Components;
 
-/// <summary>
-/// Добавляется к Mind при вступлении в культ.
-/// </summary>
+/// <summary>Роль ума культиста.</summary>
 [RegisterComponent]
-public sealed partial class CultistRoleComponent : BaseMindRoleComponent { }
+public sealed partial class CultistRoleComponent : BaseMindRoleComponent;

@@ -804,7 +804,7 @@ entities:
     - type: Transform
       pos: -13.5,7.5
       parent: 1
-- proto: CultRunedBola
+- proto: CultBola
   entities:
   - uid: 257
     components:

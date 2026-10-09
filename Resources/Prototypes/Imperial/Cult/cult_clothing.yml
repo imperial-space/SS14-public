@@ -1,0 +1,253 @@
+# Одежда культа (cult_armor.dm).
+
+# ─── Капюшоны ───
+- type: entity
+  parent: ClothingHeadHatHoodWinterBase
+  id: ClothingHeadCultHood
+  name: древний капюшон культиста
+  description: Капюшон, пропитанный кровью тех, кто был принесён в жертву.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/Clothing/hood.rsi
+  - type: Clothing
+    sprite: Imperial/BloodCult/Clothing/hood.rsi
+    quickEquip: false
+    slots: [ HEAD ]
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.7
+        Heat: 0.6
+        Shock: 0.6
+  - type: HideLayerClothing
+    slots:
+    - Hair
+
+- type: entity
+  parent: ClothingHeadCultHood
+  id: ClothingHeadCultHoodAlt
+  name: капюшон культиста
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/Clothing/hoodalt.rsi
+  - type: Clothing
+    sprite: Imperial/BloodCult/Clothing/hoodalt.rsi
+    quickEquip: false
+    slots: [ HEAD ]
+
+- type: entity
+  parent: ClothingHeadCultHood
+  id: ClothingHeadCultHelmet
+  name: закалённый нарсийский шлем
+  description: Сильно укреплённый шлем, покрытый кровавыми рунами.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/Clothing/helmet.rsi
+  - type: Clothing
+    sprite: Imperial/BloodCult/Clothing/helmet.rsi
+    quickEquip: false
+    slots: [ HEAD ]
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.6
+        Heat: 0.5
+        Shock: 0.4
+        Caustic: 0.1
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.05
+    coolingCoefficient: 0.05
+  - type: BreathMask
+  - type: IngestionBlocker
+
+# ─── Робы ───
+- type: entity
+  parent: ClothingOuterBaseToggleable
+  id: ClothingOuterCultRobes
+  name: древние робы культиста
+  description: Набор бронированных роб, носимых последователями Нар'Си.
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/Clothing/robes.rsi
+  - type: Clothing
+    sprite: Imperial/BloodCult/Clothing/robes.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadCultHood
+    slot: head
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.7
+        Heat: 0.6
+        Shock: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+
+- type: entity
+  parent: ClothingOuterCultRobes
+  id: ClothingOuterCultRobesAlt
+  name: робы культиста
+  description: Набор бронированных роб, носимых последователями Нар'Си.
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/Clothing/robesalt.rsi
+  - type: Clothing
+    sprite: Imperial/BloodCult/Clothing/robesalt.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadCultHoodAlt
+    slot: head
+
+# Закалённая нарсийская броня (forge): защищает от космоса, жжёт неверных.
+- type: entity
+  parent: ClothingOuterBaseToggleable
+  id: CultHeavyRobe
+  name: закалённая нарсийская броня
+  description: Сильно укреплённая броня, покрытая кровавыми рунами. Защищает от космоса.
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/Clothing/hardened.rsi
+  - type: Clothing
+    sprite: Imperial/BloodCult/Clothing/hardened.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadCultHelmet
+    slot: head
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.6
+        Heat: 0.5
+        Shock: 0.4
+        Caustic: 0.1
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: PressureProtection
+    highPressureMultiplier: 0.04
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: CultHardenedArmor
+
+# Робы флагелланта: быстрее, но тело уязвимее.
+- type: entity
+  parent: ClothingOuterBaseToggleable
+  id: ClothingOuterCultFlagellantRobes
+  name: робы флагелланта
+  description: Кровавые робы, нашёптывающие о скорости ценой плоти.
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/Clothing/robesalt.rsi
+    color: "#B05050"
+  - type: Clothing
+    sprite: Imperial/BloodCult/Clothing/robesalt.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadCultFlagellantHood
+    slot: head
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 1.5
+        Slash: 1.5
+        Piercing: 1.5
+        Heat: 1.5
+
+- type: entity
+  parent: ClothingHeadCultHoodAlt
+  id: ClothingHeadCultFlagellantHood
+  name: капюшон флагелланта
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Armor
+    modifiers:
+      coefficients: { }
+
+# ─── Обувь ───
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesCultNarsie
+  name: нарсийские ботинки
+  description: Пара ботинок, которые носят последователи Нар'Си.
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/Clothing/shoes.rsi
+  - type: Clothing
+    sprite: Imperial/BloodCult/Clothing/shoes.rsi
+
+- type: entity
+  parent: ClothingShoesCultNarsie
+  id: ClothingShoesCultAlt
+  name: ботинки культиста
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/Clothing/shoesalt.rsi
+  - type: Clothing
+    sprite: Imperial/BloodCult/Clothing/shoesalt.rsi
+
+# ─── Рюкзак ───
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackCult
+  name: стойка для трофеев
+  description: Полезна и для переноски снаряжения, и для гордого заявления о своём безумии.
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/Clothing/cultpack.rsi
+  - type: Clothing
+    sprite: Imperial/BloodCult/Clothing/cultpack.rsi
+
+# ─── Снаряжение призрака культа (outfit/ghost_cultist) ───
+- type: entity
+  parent: ClothingUniformJumpsuitColorBlack
+  id: ClothingUniformCultGhost
+  suffix: Ghost
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Unremoveable
+  - type: CultGhostItem
+
+- type: entity
+  parent: ClothingOuterCultRobesAlt
+  id: ClothingOuterCultRobesGhost
+  suffix: Ghost
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Unremoveable
+  - type: CultGhostItem
+
+- type: entity
+  parent: ClothingShoesCultAlt
+  id: ClothingShoesCultGhost
+  suffix: Ghost
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Unremoveable
+  - type: CultGhostItem
+
+- type: startingGear
+  id: CultGhostGear
+  equipment:
+    jumpsuit: ClothingUniformCultGhost
+    outerClothing: ClothingOuterCultRobesGhost
+    shoes: ClothingShoesCultGhost
+  inhand:
+  - CultBladeGhost

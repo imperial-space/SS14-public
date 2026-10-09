@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (icons/obj/antags/cult, icons/effects/cult.dmi, icons/mob/actions/actions_cult.dmi, icons/mob/nonhuman-player/cult.dmi and others)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "1"
+    },
+    {
+      "name": "2"
+    },
+    {
+      "name": "3"
+    },
+    {
+      "name": "4"
+    },
+    {
+      "name": "5"
+    },
+    {
+      "name": "6"
+    },
+    {
+      "name": "7"
+    }
+  ]
+}
