@@ -2253,3 +2253,39 @@
   - type: SmokeOnTrigger
     duration: 8
     spreadAmount: 5
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatSBGU
+  name: SBGU greatcoat
+  suffix: Crook
+  description: You are hiding forbidden literature, aren't you?
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/arle/coat.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/arle/coat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatSBGU
+  name: SBGU peaked cap
+  suffix: Crook
+  description: It seems this person could ruin your whole life with a single stroke of a pen.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/arle/hat.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/arle/hat.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformShirtSBGU
+  name: SBGU shirt
+  suffix: Crook
+  description: A strange combination of colors, they say not everyone likes it...
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/arle/uniform.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/arle/uniform.rsi

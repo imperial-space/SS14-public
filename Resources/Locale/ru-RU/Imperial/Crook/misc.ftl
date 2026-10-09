@@ -192,3 +192,9 @@ ent-WeaponBigJohnRevolver = Big "John"
 
 ent-ImperialSteamvent = паровая вентиляция
     .desc = Пщщщщ! Кхе-кхе...
+ent-ClothingOuterCoatSBGU = шинель СБГУ
+    .desc = Вы укрываете у себя запрещенную литературу, не так ли?
+ent-ClothingHeadHatSBGU = фуражка СБГУ
+    .desc = Кажется, этот человек может испортить всю вашу жизнь одним росчерком ручки.
+ent-ClothingUniformShirtSBGU = рубашка СБГУ
+    .desc = Странное сочетание цветов, говорят, оно нравится далеко не всем...
