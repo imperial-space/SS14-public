@@ -1,0 +1,741 @@
+# ── Коробки и ящики с патронами DS ───────────────────────────────────────────
+
+# ── Абстрактные базы ──────────────────────────────────────────────────────────
+
+- type: entity
+  id: BaseAmmoBoxDSSmall
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,1
+  - type: Appearance
+  - type: StaticPrice
+    price: 20
+
+- type: entity
+  id: BaseAmmoBoxDSBig
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,2
+  - type: Appearance
+  - type: StaticPrice
+    price: 40
+
+# ── Ящики патрон (большие) ────────────────────────────────────────────────────
+
+- type: entity
+  id: AmmoBigBoxDS5x6
+  suffix: DeadSector
+  name: Ящик патрон 5x6
+  parent: BaseAmmoBoxDSBig
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS5x6
+    capacity: 60
+    proto: CartridgeDS5x6
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-Big-blue
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammo-Box-Big-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammo-Box-Big-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBigBoxDS9x18
+  suffix: DeadSector
+  name: Ящик патрон 9x18
+  parent: BaseAmmoBoxDSBig
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS9x18
+    capacity: 60
+    proto: CartridgeDS9x18
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-Big-blue
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammo-Box-Big-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammo-Box-Big-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBigBoxDS9x19
+  suffix: DeadSector
+  name: Ящик патрон 9x19
+  parent: BaseAmmoBoxDSBig
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS9x19
+    capacity: 60
+    proto: CartridgeDS9x19
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-Big-blue
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammo-Box-Big-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammo-Box-Big-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBigBoxDS40
+  suffix: DeadSector
+  name: Ящик патрон .40
+  parent: BaseAmmoBoxDSBig
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS40
+    capacity: 60
+    proto: CartridgeDS40
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-Big-blue
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammo-Box-Big-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammo-Box-Big-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBigBoxDS357
+  suffix: DeadSector
+  name: Ящик патрон .357
+  parent: BaseAmmoBoxDSBig
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS357
+    capacity: 60
+    proto: CartridgeDS357
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-Big-blue
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammo-Box-Big-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammo-Box-Big-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBigBoxDS5x45x39
+  suffix: DeadSector
+  name: Ящик патрон 5x45x39
+  parent: BaseAmmoBoxDSBig
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS5x45x39
+    capacity: 60
+    proto: CartridgeDS5x45x39
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-Big-red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammo-Box-Big-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammo-Box-Big-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBigBoxDS7x62x39
+  suffix: DeadSector
+  name: Ящик патрон 7x62x39
+  parent: BaseAmmoBoxDSBig
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS7x62x39
+    capacity: 60
+    proto: CartridgeDS7x62x39
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-Big-red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammo-Box-Big-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammo-Box-Big-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBigBoxDS5x56x45
+  suffix: DeadSector
+  name: Ящик патрон 5x56x45
+  parent: BaseAmmoBoxDSBig
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS5x56x45
+    capacity: 60
+    proto: CartridgeDS5x56x45
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-Big-red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammo-Box-Big-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammo-Box-Big-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBigBoxDS7x62x51
+  suffix: DeadSector
+  name: Ящик патрон 7x62x51
+  parent: BaseAmmoBoxDSBig
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS7x62x51
+    capacity: 60
+    proto: CartridgeDS7x62x51
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-Big-red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammo-Box-Big-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammo-Box-Big-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBigBoxDS7x62x54
+  suffix: DeadSector
+  name: Ящик патрон 7x62x54
+  parent: BaseAmmoBoxDSBig
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS7x62x54
+    capacity: 60
+    proto: CartridgeDS7x62x54
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-Big-yellow
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammo-Box-Big-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammo-Box-Big-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBigBoxDS308
+  suffix: DeadSector
+  name: Ящик патрон .308
+  parent: BaseAmmoBoxDSBig
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS308
+    capacity: 60
+    proto: CartridgeDS308
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-Big-yellow
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammo-Box-Big-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammo-Box-Big-mag
+    steps: 2
+    zeroVisible: false
+
+# ── Коробки патрон (малые) ────────────────────────────────────────────────────
+
+- type: entity
+  id: AmmoBoxDS5x6
+  suffix: DeadSector
+  name: Коробка патрон 5x6
+  parent: BaseAmmoBoxDSSmall
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS5x6
+    capacity: 30
+    proto: CartridgeDS5x6
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-blue
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammp-Box-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammp-Box-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBoxDS9x18
+  suffix: DeadSector
+  name: Коробка патрон 9x18
+  parent: BaseAmmoBoxDSSmall
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS9x18
+    capacity: 30
+    proto: CartridgeDS9x18
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-blue
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammp-Box-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammp-Box-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBoxDS9x19
+  suffix: DeadSector
+  name: Коробка патрон 9x19
+  parent: BaseAmmoBoxDSSmall
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS9x19
+    capacity: 30
+    proto: CartridgeDS9x19
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-blue
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammp-Box-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammp-Box-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBoxDS40
+  suffix: DeadSector
+  name: Коробка патрон .40
+  parent: BaseAmmoBoxDSSmall
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS40
+    capacity: 30
+    proto: CartridgeDS40
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-blue
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammp-Box-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammp-Box-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBoxDS357
+  suffix: DeadSector
+  name: Коробка патрон .357
+  parent: BaseAmmoBoxDSSmall
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS357
+    capacity: 30
+    proto: CartridgeDS357
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-blue
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammp-Box-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammp-Box-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBoxDS5x45x39
+  suffix: DeadSector
+  name: Коробка патрон 5x45x39
+  parent: BaseAmmoBoxDSSmall
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS5x45x39
+    capacity: 30
+    proto: CartridgeDS5x45x39
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammp-Box-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammp-Box-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBoxDS7x62x39
+  suffix: DeadSector
+  name: Коробка патрон 7x62x39
+  parent: BaseAmmoBoxDSSmall
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS7x62x39
+    capacity: 30
+    proto: CartridgeDS7x62x39
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammp-Box-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammp-Box-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBoxDS5x56x45
+  suffix: DeadSector
+  name: Коробка патрон 5x56x45
+  parent: BaseAmmoBoxDSSmall
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS5x56x45
+    capacity: 30
+    proto: CartridgeDS5x56x45
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammp-Box-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammp-Box-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBoxDS7x62x51
+  suffix: DeadSector
+  name: Коробка патрон 7x62x51
+  parent: BaseAmmoBoxDSSmall
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS7x62x51
+    capacity: 30
+    proto: CartridgeDS7x62x51
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammp-Box-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammp-Box-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBoxDS7x62x54
+  suffix: DeadSector
+  name: Коробка патрон 7x62x54
+  parent: BaseAmmoBoxDSSmall
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS7x62x54
+    capacity: 30
+    proto: CartridgeDS7x62x54
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-yellow
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammp-Box-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammp-Box-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBoxDS308
+  suffix: DeadSector
+  name: Коробка патрон .308
+  parent: BaseAmmoBoxDSSmall
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS308
+    capacity: 30
+    proto: CartridgeDS308
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammo-Box-yellow
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammp-Box-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammp-Box-mag
+    steps: 2
+    zeroVisible: false
+
+# ── Коробки патрон дробь ──────────────────────────────────────────────────────
+
+- type: entity
+  id: AmmoBoxDS12x70Slug
+  suffix: DeadSector
+  name: Коробка патрон 12x70 Жекан
+  parent: BaseAmmoBoxDSSmall
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS12x70
+    capacity: 20
+    proto: CartridgeDS12x70
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammp-Box-Shotgun
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammo-Box-Shotgun-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammo-Box-Shotgun-mag
+    steps: 2
+    zeroVisible: false
+
+- type: entity
+  id: AmmoBoxDS12x70Buck
+  suffix: DeadSector
+  name: Коробка патрон 12x70 Картечь
+  parent: BaseAmmoBoxDSSmall
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS12x70
+    capacity: 20
+    proto: CartridgeDS12x70AP
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/box.rsi
+    layers:
+    - state: Ammp-Box-Shotgun-red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: Ammo-Box-Shotgun-mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: Ammo-Box-Shotgun-mag
+    steps: 2
+    zeroVisible: false
+
+# ── Трофейный ящик боезапаса ──────────────────────────────────────────────────
+
+- type: entity
+  id: AmmoCrateDSTrophy
+  suffix: DeadSector
+  name: Трофейный ящик боезапаса
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/ammo-crate.rsi
+    state: Ammo-Crate-Default
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,5,5
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,19,7
+    whitelist:
+      tags:
+        - DSAmmoItem
+  - type: StaticPrice
+    price: 200

@@ -1,0 +1,867 @@
+- type: entity
+  id: WeaponDSSteyrAUG
+  suffix: DeadSector, Gun
+  name: Steyr AUG
+  description: .
+  parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/carabins/AUG-gun/AUG-gun.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      sprite: Imperial/DS/Guns/carabins/AUG-gun/AUG-gun-mag.rsi
+      map: [ "enum.GunVisualLayers.Mag" ]
+      visible: false
+  - type: Item
+    sprite: Imperial/DS/Guns/carabins/AUG-gun/AUG-gun-inhand.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
+  - type: Clothing
+    sprite: Imperial/DS/Guns/carabins/AUG-gun/AUG-gun-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/14.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDSSteyrAUG
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineDSSteyrAUG
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeDS5x56x45
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeDS5x56x45
+      gun_attachment_right:
+        name: gun-attachment-slot-right
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -2
+        whitelist:
+          tags:
+            - AttachmentRight
+  - type: ContainerContainer
+    containers:
+      gun_attachment_right: !type:ContainerSlot
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSFAMAS
+  suffix: DeadSector, Gun
+  name: FAMAS
+  description: .
+  parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/carabins/FAMAS-gun/FAMAS-gun.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      sprite: Imperial/DS/Guns/carabins/FAMAS-gun/FAMAS-gun-mag.rsi
+      map: [ "enum.GunVisualLayers.Mag" ]
+      visible: false
+  - type: Item
+    sprite: Imperial/DS/Guns/carabins/FAMAS-gun/FAMAS-gun-inhand.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
+  - type: Clothing
+    sprite: Imperial/DS/Guns/carabins/FAMAS-gun/FAMAS-gun-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/14.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDSFAMAS
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineDSFAMAS
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeDS5x56x45
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeDS5x56x45
+      gun_attachment_right:
+        name: gun-attachment-slot-right
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -2
+        whitelist:
+          tags:
+            - AttachmentRight
+  - type: ContainerContainer
+    containers:
+      gun_attachment_right: !type:ContainerSlot
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSHK416
+  suffix: DeadSector, Gun
+  name: HK 416
+  description: .
+  parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/carabins/HK416-gun/HK416-gun.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      sprite: Imperial/DS/Guns/carabins/HK416-gun/HK416-gun-mag.rsi
+      map: [ "enum.GunVisualLayers.Mag" ]
+      visible: false
+  - type: Item
+    sprite: Imperial/DS/Guns/carabins/HK416-gun/HK416-gun-inhand.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
+  - type: Clothing
+    sprite: Imperial/DS/Guns/carabins/HK416-gun/HK416-gun-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/15.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDSHK416
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineDSHK416
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeDS5x56x45
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeDS5x56x45
+      gun_attachment_right:
+        name: gun-attachment-slot-right
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -2
+        whitelist:
+          tags:
+            - AttachmentRight
+      gun_attachment_top:
+        name: gun-attachment-slot-top
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -3
+        whitelist:
+          tags:
+            - AttachmentTop
+      gun_attachment_muffler:
+        name: gun-attachment-slot-muffler
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -4
+        whitelist:
+          tags:
+            - AttachmentMuffler
+  - type: ContainerContainer
+    containers:
+      gun_attachment_right: !type:ContainerSlot
+      gun_attachment_top: !type:ContainerSlot
+      gun_attachment_muffler: !type:ContainerSlot
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSM4A1
+  suffix: DeadSector, Gun
+  name: M4A1
+  description: .
+  parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/carabins/M4A1-gun/M4A1-gun.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      sprite: Imperial/DS/Guns/carabins/M4A1-gun/M4A1-gun-mag.rsi
+      map: [ "enum.GunVisualLayers.Mag" ]
+      visible: false
+  - type: Item
+    sprite: Imperial/DS/Guns/carabins/M4A1-gun/M4A1-gun-inhand.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
+  - type: Clothing
+    sprite: Imperial/DS/Guns/carabins/M4A1-gun/M4A1-gun-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/15.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDSM4A1
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineDSM4A1
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeDS5x56x45
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeDS5x56x45
+      gun_attachment_right:
+        name: gun-attachment-slot-right
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -2
+        whitelist:
+          tags:
+            - AttachmentRight
+      gun_attachment_top:
+        name: gun-attachment-slot-top
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -3
+        whitelist:
+          tags:
+            - AttachmentTop
+      gun_attachment_muffler:
+        name: gun-attachment-slot-muffler
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -4
+        whitelist:
+          tags:
+            - AttachmentMuffler
+  - type: ContainerContainer
+    containers:
+      gun_attachment_right: !type:ContainerSlot
+      gun_attachment_top: !type:ContainerSlot
+      gun_attachment_muffler: !type:ContainerSlot
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSM16
+  suffix: DeadSector, Gun
+  name: M16
+  description: .
+  parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/carabins/M16-gun/M16-gun.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      sprite: Imperial/DS/Guns/carabins/M16-gun/M16-gun-mag.rsi
+      map: [ "enum.GunVisualLayers.Mag" ]
+      visible: false
+  - type: Item
+    sprite: Imperial/DS/Guns/carabins/M16-gun/M16-gun-inhand.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
+  - type: Clothing
+    sprite: Imperial/DS/Guns/carabins/M16-gun/M16-gun-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/14.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDSM16
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineDSM16
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeDS5x56x45
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeDS5x56x45
+      gun_attachment_right:
+        name: gun-attachment-slot-right
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -2
+        whitelist:
+          tags:
+            - AttachmentRight
+      gun_attachment_muffler:
+        name: gun-attachment-slot-muffler
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -4
+        whitelist:
+          tags:
+            - AttachmentMuffler
+  - type: ContainerContainer
+    containers:
+      gun_attachment_right: !type:ContainerSlot
+      gun_attachment_muffler: !type:ContainerSlot
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSSIGSauer
+  suffix: DeadSector, Gun
+  name: SIG Sauer
+  description: .
+  parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/carabins/SIG-Sauer-gun/SIG-Sauer-gun.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      sprite: Imperial/DS/Guns/carabins/SIG-Sauer-gun/SIG-Sauer-gun-mag.rsi
+      map: [ "enum.GunVisualLayers.Mag" ]
+      visible: false
+  - type: Item
+    sprite: Imperial/DS/Guns/carabins/SIG-Sauer-gun/SIG-Sauer-gun-inhand.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
+  - type: Clothing
+    sprite: Imperial/DS/Guns/carabins/SIG-Sauer-gun/SIG-Sauer-gun-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/14.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDSSIGSauer
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineDSSIGSauer
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeDS5x56x45
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeDS5x56x45
+      gun_attachment_right:
+        name: gun-attachment-slot-right
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -2
+        whitelist:
+          tags:
+            - AttachmentRight
+  - type: ContainerContainer
+    containers:
+      gun_attachment_right: !type:ContainerSlot
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSAK12
+  suffix: DeadSector, Gun
+  name: АК-12
+  description: .
+  parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/carabins/AK12-gun/AK12-gun.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      sprite: Imperial/DS/Guns/carabins/AK12-gun/AK12-gun-mag.rsi
+      map: [ "enum.GunVisualLayers.Mag" ]
+      visible: false
+  - type: Item
+    sprite: Imperial/DS/Guns/carabins/AK12-gun/AK12-gun-inhand.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
+  - type: Clothing
+    sprite: Imperial/DS/Guns/carabins/AK12-gun/AK12-gun-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/15.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDSAK12
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineDSAK12
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeDS5x45x39
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeDS5x45x39
+      gun_attachment_right:
+        name: gun-attachment-slot-right
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -2
+        whitelist:
+          tags:
+            - AttachmentRight
+      gun_attachment_top:
+        name: gun-attachment-slot-top
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -3
+        whitelist:
+          tags:
+            - AttachmentTop
+      gun_attachment_muffler:
+        name: gun-attachment-slot-muffler
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -4
+        whitelist:
+          tags:
+            - AttachmentMuffler
+  - type: ContainerContainer
+    containers:
+      gun_attachment_right: !type:ContainerSlot
+      gun_attachment_top: !type:ContainerSlot
+      gun_attachment_muffler: !type:ContainerSlot
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSAR57
+  suffix: DeadSector, Gun
+  name: AR-57
+  description: .
+  parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/carabins/AR-57-gun/AR-57.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      sprite: Imperial/DS/Guns/carabins/AR-57-gun/AR-57-mag.rsi
+      map: [ "enum.GunVisualLayers.Mag" ]
+      visible: false
+  - type: Item
+    sprite: Imperial/DS/Guns/carabins/AR-57-gun/AR-57-inhand.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
+  - type: Clothing
+    sprite: Imperial/DS/Guns/carabins/AR-57-gun/AR-57-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/14.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDSAR57
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineDSAR57
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeDS7x62x51
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeDS7x62x51
+      gun_attachment_right:
+        name: gun-attachment-slot-right
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -2
+        whitelist:
+          tags:
+            - AttachmentRight
+      gun_attachment_top:
+        name: gun-attachment-slot-top
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -3
+        whitelist:
+          tags:
+            - AttachmentTop
+      gun_attachment_muffler:
+        name: gun-attachment-slot-muffler
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -4
+        whitelist:
+          tags:
+            - AttachmentMuffler
+  - type: ContainerContainer
+    containers:
+      gun_attachment_right: !type:ContainerSlot
+      gun_attachment_top: !type:ContainerSlot
+      gun_attachment_muffler: !type:ContainerSlot
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSAR15
+  suffix: DeadSector, Gun
+  name: AR-15
+  description: .
+  parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/carabins/AR-15-gun/AR-15.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      sprite: Imperial/DS/Guns/carabins/AR-15-gun/AR-15-mag.rsi
+      map: [ "enum.GunVisualLayers.Mag" ]
+      visible: false
+  - type: Item
+    sprite: Imperial/DS/Guns/carabins/AR-15-gun/AR-15-inhand.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
+  - type: Clothing
+    sprite: Imperial/DS/Guns/carabins/AR-15-gun/AR-15-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/14.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDSAR15
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineDSAR15
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeDS5x56x45
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeDS5x56x45
+      gun_attachment_right:
+        name: gun-attachment-slot-right
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -2
+        whitelist:
+          tags:
+            - AttachmentRight
+      gun_attachment_muffler:
+        name: gun-attachment-slot-muffler
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -4
+        whitelist:
+          tags:
+            - AttachmentMuffler
+  - type: ContainerContainer
+    containers:
+      gun_attachment_right: !type:ContainerSlot
+      gun_attachment_muffler: !type:ContainerSlot
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSAK74
+  suffix: DeadSector, Gun
+  name: АК-74
+  description: .
+  parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/carabins/AK-74-gun/AK-74.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      sprite: Imperial/DS/Guns/carabins/AK-74-gun/AK-74-mag.rsi
+      map: [ "enum.GunVisualLayers.Mag" ]
+      visible: false
+  - type: Item
+    sprite: Imperial/DS/Guns/carabins/AK-74-gun/AK-74-inhand.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
+  - type: Clothing
+    sprite: Imperial/DS/Guns/carabins/AK-74-gun/AK-74-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/15.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDSAK74
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineDSAK74
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeDS5x45x39
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeDS5x45x39
+      gun_attachment_right:
+        name: gun-attachment-slot-right
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -2
+        whitelist:
+          tags:
+            - AttachmentRight
+      gun_attachment_top:
+        name: gun-attachment-slot-top
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -3
+        whitelist:
+          tags:
+            - AttachmentTop
+      gun_attachment_muffler:
+        name: gun-attachment-slot-muffler
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -4
+        whitelist:
+          tags:
+            - AttachmentMuffler
+  - type: ContainerContainer
+    containers:
+      gun_attachment_right: !type:ContainerSlot
+      gun_attachment_top: !type:ContainerSlot
+      gun_attachment_muffler: !type:ContainerSlot
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance

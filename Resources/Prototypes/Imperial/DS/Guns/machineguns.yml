@@ -1,0 +1,260 @@
+- type: entity
+  id: WeaponDSMk48
+  suffix: DeadSector, Gun
+  name: Mk48
+  description: .
+  parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/machingun/Mk48-gun/Mk48.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      sprite: Imperial/DS/Guns/machingun/Mk48-gun/Mk48-mag.rsi
+      map: [ "enum.GunVisualLayers.Mag" ]
+      visible: false
+  - type: Item
+    sprite: Imperial/DS/Guns/machingun/Mk48-gun/Mk48-inhand.rsi
+    size: Huge
+    shape:
+    - 0,0,3,2
+  - type: Clothing
+    sprite: Imperial/DS/Guns/machingun/Mk48-gun/Mk48-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: GunRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.65
+    sprintModifier: 0.65
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
+  - type: GunWieldBonus
+    minAngle: -20
+    maxAngle: -20
+  - type: Gun
+    fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/42.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDSMk48
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineDSMk48
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeDS7x62x51
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeDS7x62x51
+      gun_attachment_right:
+        name: gun-attachment-slot-right
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -2
+        whitelist:
+          tags:
+            - AttachmentRight
+  - type: ContainerContainer
+    containers:
+      gun_attachment_right: !type:ContainerSlot
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSPKM
+  suffix: DeadSector, Gun
+  name: Штурмовой ПКМ
+  description: .
+  parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/machingun/PKM-gun/PKM.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      sprite: Imperial/DS/Guns/machingun/PKM-gun/PKM-mag.rsi
+      map: [ "enum.GunVisualLayers.Mag" ]
+      visible: false
+  - type: Item
+    sprite: Imperial/DS/Guns/machingun/PKM-gun/PKM-inhand.rsi
+    size: Huge
+    shape:
+    - 0,0,3,2
+  - type: Clothing
+    sprite: Imperial/DS/Guns/machingun/PKM-gun/PKM-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: GunRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.65
+    sprintModifier: 0.65
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
+  - type: GunWieldBonus
+    minAngle: -20
+    maxAngle: -20
+  - type: Gun
+    fireRate: 8
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/42.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDSPKM
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineDSPKM
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeDS7x62x54
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeDS7x62x54
+      gun_attachment_right:
+        name: gun-attachment-slot-right
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -2
+        whitelist:
+          tags:
+            - AttachmentRight
+  - type: ContainerContainer
+    containers:
+      gun_attachment_right: !type:ContainerSlot
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSRPK
+  suffix: DeadSector, Gun
+  name: Штурмовой РПК
+  description: .
+  parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband, BaseAttachmentsGun ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/machingun/RPK-gun/RPK.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      sprite: Imperial/DS/Guns/machingun/RPK-gun/RPK-mag.rsi
+      map: [ "enum.GunVisualLayers.Mag" ]
+      visible: false
+  - type: Item
+    sprite: Imperial/DS/Guns/machingun/RPK-gun/RPK-inhand.rsi
+    size: Huge
+    shape:
+    - 0,0,3,2
+  - type: Clothing
+    sprite: Imperial/DS/Guns/machingun/RPK-gun/RPK-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: GunRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.65
+    sprintModifier: 0.65
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
+  - type: GunWieldBonus
+    minAngle: -20
+    maxAngle: -20
+  - type: Gun
+    fireRate: 8
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/42.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDSRPK
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineDSRPK
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeDS7x62x39
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeDS7x62x39
+      gun_attachment_right:
+        name: gun-attachment-slot-right
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: -2
+        whitelist:
+          tags:
+            - AttachmentRight
+  - type: ContainerContainer
+    containers:
+      gun_attachment_right: !type:ContainerSlot
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance

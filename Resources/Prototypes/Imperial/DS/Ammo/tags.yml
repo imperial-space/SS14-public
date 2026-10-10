@@ -1,0 +1,149 @@
+# ── Теги патронов DS ──────────────────────────────────────────────────────────
+# ── Теги магазинов DS ─────────────────────────────────────────────────────────
+
+- type: Tag
+  id: MagazineDSBizon
+
+- type: Tag
+  id: MagazineDSMac10
+
+- type: Tag
+  id: MagazineDSMineral
+
+- type: Tag
+  id: MagazineDSMP5
+
+- type: Tag
+  id: MagazineDSP90
+
+- type: Tag
+  id: MagazineDSNamaz
+
+- type: Tag
+  id: MagazineDSAgram
+
+- type: Tag
+  id: MagazineDSScorpion
+
+- type: Tag
+  id: MagazineDSTEC9
+
+- type: Tag
+  id: MagazineDSUzi
+
+- type: Tag
+  id: MagazineDSThompson
+
+- type: Tag
+  id: MagazineDSPPSh
+
+- type: Tag
+  id: MagazineDSKeparis
+
+- type: Tag
+  id: MagazineDSDesertEagle
+
+- type: Tag
+  id: MagazineDSPM
+
+- type: Tag
+  id: MagazineDSStok
+
+- type: Tag
+  id: MagazineDSMilton
+
+- type: Tag
+  id: MagazineDSAK74
+
+- type: Tag
+  id: MagazineDSAR15
+
+- type: Tag
+  id: MagazineDSAR57
+
+- type: Tag
+  id: MagazineDSSteyrAUG
+
+- type: Tag
+  id: MagazineDSM4A1
+
+- type: Tag
+  id: MagazineDSM16
+
+- type: Tag
+  id: MagazineDSSIGSauer
+
+- type: Tag
+  id: MagazineDSAK12
+
+- type: Tag
+  id: MagazineDSHK416
+
+- type: Tag
+  id: MagazineDSAWM
+
+- type: Tag
+  id: MagazineDSBarrettM82
+
+- type: Tag
+  id: MagazineDSM40
+
+- type: Tag
+  id: MagazineDSPSL
+
+- type: Tag
+  id: MagazineDSMk48
+
+- type: Tag
+  id: MagazineDSPKM
+
+- type: Tag
+  id: MagazineDSRPK
+
+- type: Tag
+  id: MagazineDSFAMAS
+
+- type: Tag
+  id: CartridgeDS9x19
+
+- type: Tag
+  id: CartridgeDS9x18
+
+- type: Tag
+  id: CartridgeDS7x62x39
+
+- type: Tag
+  id: CartridgeDS7x62x51
+
+- type: Tag
+  id: CartridgeDS7x62x54
+
+- type: Tag
+  id: CartridgeDS5x45x39
+
+- type: Tag
+  id: CartridgeDS5x56x45
+
+- type: Tag
+  id: CartridgeDS5x6
+
+- type: Tag
+  id: CartridgeDS12x70
+
+- type: Tag
+  id: CartridgeDS308
+
+- type: Tag
+  id: CartridgeDS357
+
+- type: Tag
+  id: CartridgeDS40
+
+- type: Tag
+  id: CartridgeM32A1
+
+- type: Tag
+  id: CartridgeRPG7
+
+- type: Tag
+  id: DSAmmoItem

@@ -1,0 +1,115 @@
+- type: entity
+  id: WeaponAttachmentFlashlight
+  parent: BaseItem
+  name: тактический фонарик
+  suffix: Felix, Weapons
+  description: Компактный фонарик для крепления на оружие.
+  components:
+  - type: Sprite
+    sprite: Imperial/Attachments/flash.rsi
+    layers:
+      - state: icon
+      - state: light
+        shader: unshaded
+        visible: false
+        map: [ "light" ]
+    state: icon
+  - type: Tag
+    tags:
+    - AttachmentRight
+  - type: AttachmentFlashlight
+  - type: Attachment
+  - type: HandheldLight
+    addPrefix: false
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+    #toggleOnInteract: false
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        startValue: 0.1
+        endValue: 2.0
+        isLooped: true
+  - type: ItemTogglePointLight
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 6
+    netsync: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleAttachmentFlashlight
+  name: Toggle Flashlight Attachment
+  description: Toggles the flashlight attachment off and on.
+  components:
+  - type: Action
+    itemIconStyle: BigItem
+  - type: InstantAction
+    event: !type:ToggleActionEvent
+
+- type: Tag
+  id: AttachmentRight
+
+
+- type: entity
+  id: WeaponAttachmentMuffler
+  parent: BaseItem
+  suffix: Felix, Weapons
+  name: глушитель
+  description: Глушитель для крепления на оружие.
+  components:
+  - type: Sprite
+    sprite: Imperial/Attachments/muffler.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - AttachmentMuffler
+  - type: AttachmentMuffler
+  - type: Attachment
+    slotId: gun_attachment_muffler
+
+- type: Tag
+  id: AttachmentMuffler
+
+- type: entity
+  id: WeaponAttachmentScope
+  suffix: Felix, Weapons
+  parent: BaseItem
+  name: прицел
+  description: Прицел для крепления на оружие.
+  components:
+  - type: Sprite
+    sprite: Imperial/Attachments/scope.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - AttachmentTop
+  - type: AttachmentScope
+  - type: Attachment
+    slotId: gun_attachment_top
+
+- type: Tag
+  id: AttachmentTop
+

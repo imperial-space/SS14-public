@@ -1,0 +1,481 @@
+# ── Патроны DS ────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: BaseCartridgeDS9x19
+  name: cartridge (9x19)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - DSAmmoItem
+      - CartridgeDS9x19
+  - type: CartridgeAmmo
+    proto: BulletDS9x19
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/cartrige.rsi
+    layers:
+      - state: 9x19
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: 9x19
+
+- type: entity
+  id: CartridgeDS9x19
+  suffix: DS
+  name: cartridge (9x19)
+  parent: BaseCartridgeDS9x19
+  components:
+  - type: CartridgeAmmo
+    proto: BulletDS9x19
+
+# ──────────────────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: BaseCartridgeDS9x18
+  name: cartridge (9x18)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - DSAmmoItem
+      - CartridgeDS9x18
+  - type: CartridgeAmmo
+    proto: BulletDS9x18
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/cartrige.rsi
+    layers:
+      - state: 9x18
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: 9x18
+
+- type: entity
+  id: CartridgeDS9x18
+  suffix: DS
+  name: cartridge (9x18)
+  parent: BaseCartridgeDS9x18
+  components:
+  - type: CartridgeAmmo
+    proto: BulletDS9x18
+
+# ──────────────────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: BaseCartridgeDS7x62x39
+  name: cartridge (7.62x39)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - DSAmmoItem
+      - CartridgeDS7x62x39
+  - type: CartridgeAmmo
+    proto: BulletDS7x62x39
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/cartrige.rsi
+    layers:
+      - state: 7x62x39
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: 7x62x39
+
+- type: entity
+  id: CartridgeDS7x62x39
+  suffix: DS
+  name: cartridge (7.62x39)
+  parent: BaseCartridgeDS7x62x39
+  components:
+  - type: CartridgeAmmo
+    proto: BulletDS7x62x39
+
+# ──────────────────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: BaseCartridgeDS7x62x51
+  name: cartridge (7.62x51)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - DSAmmoItem
+      - CartridgeDS7x62x51
+  - type: CartridgeAmmo
+    proto: BulletDS7x62x51
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/cartrige.rsi
+    layers:
+      - state: 7x62x51
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: 7x62x51
+
+- type: entity
+  id: CartridgeDS7x62x51
+  suffix: DS
+  name: cartridge (7.62x51)
+  parent: BaseCartridgeDS7x62x51
+  components:
+  - type: CartridgeAmmo
+    proto: BulletDS7x62x51
+
+# ──────────────────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: BaseCartridgeDS7x62x54
+  name: cartridge (7.62x54R)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - DSAmmoItem
+      - CartridgeDS7x62x54
+  - type: CartridgeAmmo
+    proto: BulletDS7x62x54
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/cartrige.rsi
+    layers:
+      - state: 7x62x54
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: 7x62x54
+
+- type: entity
+  id: CartridgeDS7x62x54
+  suffix: DS
+  name: cartridge (7.62x54R)
+  parent: BaseCartridgeDS7x62x54
+  components:
+  - type: CartridgeAmmo
+    proto: BulletDS7x62x54
+
+# ──────────────────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: BaseCartridgeDS5x45x39
+  name: cartridge (5.45x39)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - DSAmmoItem
+      - CartridgeDS5x45x39
+  - type: CartridgeAmmo
+    proto: BulletDS5x45x39
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/cartrige.rsi
+    layers:
+      - state: 5x45x39
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: 5x45x39
+
+- type: entity
+  id: CartridgeDS5x45x39
+  suffix: DS
+  name: cartridge (5.45x39)
+  parent: BaseCartridgeDS5x45x39
+  components:
+  - type: CartridgeAmmo
+    proto: BulletDS5x45x39
+
+# ──────────────────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: BaseCartridgeDS5x56x45
+  name: cartridge (5.56x45)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - DSAmmoItem
+      - CartridgeDS5x56x45
+  - type: CartridgeAmmo
+    proto: BulletDS5x56x45
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/cartrige.rsi
+    layers:
+      - state: 5x56x45
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: 5x56x45
+
+- type: entity
+  id: CartridgeDS5x56x45
+  suffix: DS
+  name: cartridge (5.56x45)
+  parent: BaseCartridgeDS5x56x45
+  components:
+  - type: CartridgeAmmo
+    proto: BulletDS5x56x45
+
+# ──────────────────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: BaseCartridgeDS5x6
+  name: cartridge (5.6mm)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - DSAmmoItem
+      - CartridgeDS5x6
+  - type: CartridgeAmmo
+    proto: BulletDS5x6
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/cartrige.rsi
+    layers:
+      - state: 5x6
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: 5x6
+
+- type: entity
+  id: CartridgeDS5x6
+  suffix: DS
+  name: cartridge (5.6mm)
+  parent: BaseCartridgeDS5x6
+  components:
+  - type: CartridgeAmmo
+    proto: BulletDS5x6
+
+# ──────────────────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: BaseCartridgeDS12x70
+  name: cartridge (12x70)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - DSAmmoItem
+      - CartridgeDS12x70
+  - type: CartridgeAmmo
+    proto: BulletDS12x70
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/cartrige.rsi
+    layers:
+      - state: 12x70
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: 12x70
+
+- type: entity
+  id: CartridgeDS12x70
+  suffix: DS
+  name: cartridge (12x70)
+  parent: BaseCartridgeDS12x70
+  components:
+  - type: CartridgeAmmo
+    proto: BulletDS12x70
+
+- type: entity
+  id: CartridgeDS12x70AP
+  suffix: DS
+  name: cartridge (12x70 AP)
+  parent: BaseCartridgeDS12x70
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/cartrige.rsi
+    layers:
+      - state: 12x70-AP
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: BulletDS12x70AP
+  - type: SpentAmmoVisuals
+    state: 12x70-AP
+
+# ──────────────────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: BaseCartridgeDS308
+  name: cartridge (.308)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - DSAmmoItem
+      - CartridgeDS308
+  - type: CartridgeAmmo
+    proto: BulletDS308
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/cartrige.rsi
+    layers:
+      - state: .308
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: .308
+
+- type: entity
+  id: CartridgeDS308
+  suffix: DS
+  name: cartridge (.308)
+  parent: BaseCartridgeDS308
+  components:
+  - type: CartridgeAmmo
+    proto: BulletDS308
+
+# ──────────────────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: BaseCartridgeDS357
+  name: cartridge (.357)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - DSAmmoItem
+      - CartridgeDS357
+  - type: CartridgeAmmo
+    proto: BulletDS357
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/cartrige.rsi
+    layers:
+      - state: .357
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: .357
+
+- type: entity
+  id: CartridgeDS357
+  suffix: DS
+  name: cartridge (.357)
+  parent: BaseCartridgeDS357
+  components:
+  - type: CartridgeAmmo
+    proto: BulletDS357
+
+# ──────────────────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: BaseCartridgeDS40
+  name: cartridge (.40)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - DSAmmoItem
+      - CartridgeDS40
+  - type: CartridgeAmmo
+    proto: BulletDS40
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/cartrige.rsi
+    layers:
+      - state: .40
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: .40
+
+- type: entity
+  id: CartridgeDS40
+  suffix: DS
+  name: cartridge (.40)
+  parent: BaseCartridgeDS40
+  components:
+  - type: CartridgeAmmo
+    proto: BulletDS40
+
+# ── Гранаты M32A1 ─────────────────────────────────────────────────────────────
+
+- type: entity
+  id: CartridgeDSM32A1Grenade
+  suffix: DS
+  name: граната M32A1
+  description: Осколочная граната для гранатомёта M32A1. При попадании вызывает взрыв.
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - CartridgeM32A1
+      - DSAmmoItem
+  - type: Item
+    size: Small
+  - type: CartridgeAmmo
+    proto: BulletDSM32A1Grenade
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/cartrige.rsi
+    state: Granade-M32A1
+  - type: StaticPrice
+    price: 20
+
+- type: entity
+  id: CartridgeDSSmokeM32A1
+  suffix: DS
+  name: дымовая граната M32A1
+  description: Дымовая граната для гранатомёта M32A1. Создаёт облако дыма на 30 секунд.
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - CartridgeM32A1
+      - DSAmmoItem
+  - type: Item
+    size: Small
+  - type: CartridgeAmmo
+    proto: BulletDSSmokeM32A1
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/cartrige.rsi
+    state: Smoke-M32A1
+  - type: StaticPrice
+    price: 15
+
+# ── Граната РПГ-7 ─────────────────────────────────────────────────────────────
+
+- type: entity
+  id: CartridgeDSRPG7
+  suffix: DS
+  name: граната РПГ-7
+  description: Стандартная кумулятивная граната для РПГ-7. Вызывает мощный взрыв при попадании.
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - CartridgeRPG7
+      - DSAmmoItem
+  - type: Item
+    size: Small
+  - type: CartridgeAmmo
+    proto: BulletDSRPG7
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/granade-rpg7.rsi
+    state: Granade-RPG7
+  - type: StaticPrice
+    price: 20

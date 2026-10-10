@@ -1,0 +1,105 @@
+- type: entity
+  id: WeaponDSM32A1
+  suffix: DeadSector, Gun
+  name: Гранатомёт М32А1
+  description: .
+  parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/granedlauncher/M32A1-gun/M32A1.rsi
+    layers:
+    - state: bolt-open
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    sprite: Imperial/DS/Guns/granedlauncher/M32A1-gun/M32A1-inhand.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
+  - type: Clothing
+    sprite: Imperial/DS/Guns/granedlauncher/M32A1-gun/M32A1-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: GunRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/47.ogg
+  - type: BallisticAmmoProvider
+    capacity: 5
+    proto: CartridgeDSM32A1Grenade
+    whitelist:
+      tags:
+      - CartridgeM32A1
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSRPG7
+  suffix: DeadSector, Gun
+  name: РПГ-7
+  description: .
+  parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/granedlauncher/RPG7-gun/RPG7.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      sprite: Imperial/DS/Guns/granedlauncher/RPG7-gun/RPG7-mag.rsi
+      map: [ "enum.GunVisualLayers.Mag" ]
+      visible: false
+  - type: Item
+    sprite: Imperial/DS/Guns/granedlauncher/RPG7-gun/RPG7-inhand.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
+  - type: Clothing
+    sprite: Imperial/DS/Guns/granedlauncher/RPG7-gun/RPG7-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: GunRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.70
+    sprintModifier: 0.70
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
+  - type: Gun
+    fireRate: 0.4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/47.ogg
+  - type: BallisticAmmoProvider
+    capacity: 1
+    proto: CartridgeDSRPG7
+    whitelist:
+      tags:
+      - CartridgeRPG7
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance

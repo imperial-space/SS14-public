@@ -1,0 +1,224 @@
+# ── Снаряды DS ────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: BulletDS9x19
+  suffix: DS
+  name: bullet (9x19)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 9.4
+
+- type: entity
+  id: BulletDS9x18
+  suffix: DS
+  name: bullet (9x18)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 8.5
+
+- type: entity
+  id: BulletDS7x62x39
+  suffix: DS
+  name: bullet (7.62x39)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 20.0
+
+- type: entity
+  id: BulletDS7x62x51
+  suffix: DS
+  name: bullet (7.62x51)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 15.0
+
+- type: entity
+  id: BulletDS7x62x54
+  suffix: DS
+  name: bullet (7.62x54R)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 25.0
+
+- type: entity
+  id: BulletDS5x45x39
+  suffix: DS
+  name: bullet (5.45x39)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 14.5
+
+- type: entity
+  id: BulletDS5x56x45
+  suffix: DS
+  name: bullet (5.56x45)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 14.5
+
+- type: entity
+  id: BulletDS5x6
+  suffix: DS
+  name: bullet (5.6mm)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 6.0
+
+- type: entity
+  id: BulletDS12x70
+  suffix: DS
+  name: bullet (12x70)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 12.0
+
+- type: entity
+  id: BulletDS12x70AP
+  suffix: DS
+  name: bullet (12x70 AP)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 8.0
+    ignoreResistances: true
+
+- type: entity
+  id: BulletDS308
+  suffix: DS
+  name: bullet (.308)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 16.0
+
+- type: entity
+  id: BulletDS357
+  suffix: DS
+  name: bullet (.357)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 26.0
+
+- type: entity
+  id: BulletDS40
+  suffix: DS
+  name: bullet (.40)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 13.0
+
+# ── Гранаты M32A1 ─────────────────────────────────────────────────────────────
+
+- type: entity
+  id: BulletDSM32A1Grenade
+  suffix: DS
+  name: grenade M32A1
+  parent: BaseBulletTrigger
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/cartrige.rsi
+    layers:
+      - state: Granade-M32A1
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 7
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 100
+    intensitySlope: 3
+    totalIntensity: 100
+  - type: PointLight
+    radius: 3.0
+    color: orange
+    energy: 0.5
+
+- type: entity
+  id: BulletDSSmokeM32A1
+  suffix: DS
+  name: smoke grenade M32A1
+  parent: BaseBulletTrigger
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/cartrige.rsi
+    layers:
+      - state: Smoke-M32A1
+  - type: SmokeOnTrigger
+    duration: 30
+    spreadAmount: 50
+  - type: DeleteOnTrigger
+
+# ── Граната РПГ-7 ─────────────────────────────────────────────────────────────
+
+- type: entity
+  id: BulletDSRPG7
+  suffix: DS
+  name: grenade RPG-7
+  parent: BaseBulletTrigger
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/granade-rpg7.rsi
+    layers:
+      - state: Granade-RPG7
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 25
+    intensitySlope: 4
+    totalIntensity: 130
+    maxTileBreak: 1
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
