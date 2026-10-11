@@ -1,23 +1,15 @@
+using Content.Shared.Radio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Imperial.NinjaHeadset.Components
+namespace Content.Shared.Imperial.NinjaHeadset.Components;
+
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+public sealed partial class NinjaHeadsetComponent : Component
 {
-    [RegisterComponent, NetworkedComponent]
-    [AutoGenerateComponentState]
-    public sealed partial class NinjaHeadsetComponent : Component
-    {
-        [DataField]
-        [AutoNetworkedField]
-        public TimeSpan CopyFrequenciesTime = TimeSpan.FromSeconds(5);
+    [DataField("copyFrequenciesTime"), AutoNetworkedField]
+    public TimeSpan CopyFrequenciesTime = TimeSpan.FromSeconds(5);
 
-        [DataField]
-        [AutoNetworkedField]
-        public List<string> CopiedFrequencies = new();
-
-        [ViewVariables]
-        public EntityUid? HackingTarget;
-
-        [ViewVariables]
-        public EntityUid? TargetHeadset;
-    }
+    [DataField("copiedFrequencies"), AutoNetworkedField]
+    public List<ProtoId<RadioChannelPrototype>> CopiedFrequencies = new();
 }
