@@ -65,6 +65,19 @@ public sealed class BinSystem : EntitySystem
         }
     }
 
+    // Imperial Weekly Mode Start
+    public int SuppressInitialContents(Entity<BinComponent> ent)
+    {
+        var suppressed = ent.Comp.InitialContents.Count;
+        if (suppressed == 0)
+            return 0;
+
+        ent.Comp.InitialContents.Clear();
+        Dirty(ent.Owner, ent.Comp);
+        return suppressed;
+    }
+    // Imperial Weekly Mode End
+
     private void OnEntInserted(Entity<BinComponent> ent, ref EntInsertedIntoContainerMessage args)
     {
         if (args.Container.ID != ent.Comp.ContainerId)

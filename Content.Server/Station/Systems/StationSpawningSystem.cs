@@ -3,6 +3,7 @@ using Content.Server.Humanoid;
 using Content.Server.Mind;
 using Content.Server.PDA;
 using Content.Server.Station.Components;
+using Content.Server.WeeklyMode.Systems; // Imperial Weekly Mode
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Body;
@@ -43,6 +44,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly PdaSystem _pdaSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    // Imperial Weekly Mode
+    [Dependency] private readonly WeeklyModeSystem _weeklyMode = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
 
     /// <summary>
@@ -200,7 +203,10 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             return;
 
         _cardSystem.TryChangeFullName(cardId, characterName, card);
-        _cardSystem.TryChangeJobTitle(cardId, jobPrototype.LocalizedName, card);
+        // Imperial Weekly Mode: Original code removed:
+        // _cardSystem.TryChangeJobTitle(cardId, jobPrototype.LocalizedName, card);
+        // Imperial Weekly Mode
+        _cardSystem.TryChangeJobTitle(cardId, _weeklyMode.GetJobDisplayName(jobPrototype.ID), card);
 
         if (_prototypeManager.Resolve(jobPrototype.Icon, out var jobIcon))
             _cardSystem.TryChangeJobIcon(cardId, jobIcon, card);

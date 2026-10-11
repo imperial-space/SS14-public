@@ -139,6 +139,14 @@ namespace Content.Shared.VendingMachines
         [DataField]
         public float InitialStockQuality = 1.0f;
 
+        // Imperial Weekly Mode Start
+        /// <summary>
+        /// Skips the spawn-time inventory fill for persistent snapshots that already carry authoritative stock.
+        /// </summary>
+        [DataField]
+        public bool SuppressInitialRestock;
+        // Imperial Weekly Mode End
+
         /// <summary>
         ///     While disabled by EMP it randomly ejects items
         /// </summary>

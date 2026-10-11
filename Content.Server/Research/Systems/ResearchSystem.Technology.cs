@@ -1,4 +1,6 @@
+using System.Linq; // Imperial Weekly Mode
 using Content.Shared.Database;
+using Content.Shared.Research; // Imperial Weekly Mode
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
 using JetBrains.Annotations;
@@ -19,7 +21,14 @@ public sealed partial class ResearchSystem
         primaryDb.MainDiscipline = otherDb.MainDiscipline;
         primaryDb.CurrentTechnologyCards = otherDb.CurrentTechnologyCards;
         primaryDb.SupportedDisciplines = otherDb.SupportedDisciplines;
+        // Imperial Weekly Mode Start
+        primaryDb.WeeklyModeOnly = otherDb.WeeklyModeOnly;
+        primaryDb.WeeklyAllowedTechnologies = otherDb.WeeklyAllowedTechnologies;
+        primaryDb.WeeklyTechnologies = otherDb.WeeklyTechnologies;
+        // Imperial Weekly Mode End
         primaryDb.UnlockedTechnologies = otherDb.UnlockedTechnologies;
+        // Imperial Weekly Mode
+        primaryDb.WeeklyUnlockedTechnologies = otherDb.WeeklyUnlockedTechnologies;
         primaryDb.UnlockedRecipes = otherDb.UnlockedRecipes;
 
         Dirty(primaryUid, primaryDb);
@@ -55,6 +64,11 @@ public sealed partial class ResearchSystem
         ResearchClientComponent? component = null,
         TechnologyDatabaseComponent? clientDatabase = null)
     {
+        // Imperial Weekly Mode Start
+        if (Resolve(client, ref component, ref clientDatabase, false) && clientDatabase.WeeklyModeOnly)
+            return UnlockWeeklyTechnology(client, prototypeid, user, component, clientDatabase);
+        // Imperial Weekly Mode End
+
         if (!PrototypeManager.TryIndex<TechnologyPrototype>(prototypeid, out var prototype))
             return false;
 
@@ -167,7 +181,14 @@ public sealed partial class ResearchSystem
         component.MainDiscipline = null;
         component.CurrentTechnologyCards = new List<string>();
         component.SupportedDisciplines = new List<ProtoId<TechDisciplinePrototype>>();
+        // Imperial Weekly Mode Start
+        component.WeeklyModeOnly = false;
+        component.WeeklyAllowedTechnologies = new List<ProtoId<TechnologyPrototype>>();
+        component.WeeklyTechnologies = new List<WeeklyTechnologyData>();
+        // Imperial Weekly Mode End
         component.UnlockedTechnologies = new List<ProtoId<TechnologyPrototype>>();
+        // Imperial Weekly Mode
+        component.WeeklyUnlockedTechnologies = new List<string>();
         component.UnlockedRecipes = new List<ProtoId<LatheRecipePrototype>>();
         Dirty(uid, component);
     }
