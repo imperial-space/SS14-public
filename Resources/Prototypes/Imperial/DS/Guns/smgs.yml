@@ -11,7 +11,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: Imperial/DS/Guns/PP/FNP90-gun/FNP90-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -87,7 +86,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: Imperial/DS/Guns/PP/Keparis-gun/Keparis-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -152,7 +150,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: Imperial/DS/Guns/PP/Mac10-gun/Mac10-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -216,7 +213,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: Imperial/DS/Guns/PP/Minerval-gun/Minerval-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -280,7 +276,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: Imperial/DS/Guns/PP/MP5-gun/MP5-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -356,7 +351,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: Imperial/DS/Guns/PP/Namaz-gun/Namaz-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -432,7 +426,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: Imperial/DS/Guns/PP/Bizon-gun/Bizon-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -508,7 +501,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: Imperial/DS/Guns/PP/Agram-gun/Agram-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -573,7 +565,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: Imperial/DS/Guns/PP/Scorpion-gun/Scorpion-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -649,7 +640,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: Imperial/DS/Guns/PP/PPSH-gun/PPSH-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -716,7 +706,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: Imperial/DS/Guns/PP/TEC9-gun/TEC9-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -780,7 +769,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: Imperial/DS/Guns/PP/Thompson-gun/Thompson-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item
@@ -847,7 +835,6 @@
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
-      sprite: Imperial/DS/Guns/PP/Uzi-gun/Uzi-mag.rsi
       map: [ "enum.GunVisualLayers.Mag" ]
       visible: false
   - type: Item

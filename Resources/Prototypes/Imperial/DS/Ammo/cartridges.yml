@@ -14,6 +14,7 @@
   - type: CartridgeAmmo
     proto: BulletDS9x19
   - type: Sprite
+    scale: 0.5, 0.5
     sprite: Imperial/DS/Ammo/cartrige.rsi
     layers:
       - state: 9x19
@@ -47,6 +48,7 @@
   - type: CartridgeAmmo
     proto: BulletDS9x18
   - type: Sprite
+    scale: 0.5, 0.5
     sprite: Imperial/DS/Ammo/cartrige.rsi
     layers:
       - state: 9x18
@@ -80,6 +82,7 @@
   - type: CartridgeAmmo
     proto: BulletDS7x62x39
   - type: Sprite
+    scale: 0.5, 0.5
     sprite: Imperial/DS/Ammo/cartrige.rsi
     layers:
       - state: 7x62x39
@@ -113,6 +116,7 @@
   - type: CartridgeAmmo
     proto: BulletDS7x62x51
   - type: Sprite
+    scale: 0.5, 0.5
     sprite: Imperial/DS/Ammo/cartrige.rsi
     layers:
       - state: 7x62x51
@@ -146,6 +150,7 @@
   - type: CartridgeAmmo
     proto: BulletDS7x62x54
   - type: Sprite
+    scale: 0.5, 0.5
     sprite: Imperial/DS/Ammo/cartrige.rsi
     layers:
       - state: 7x62x54
@@ -179,6 +184,7 @@
   - type: CartridgeAmmo
     proto: BulletDS5x45x39
   - type: Sprite
+    scale: 0.5, 0.5
     sprite: Imperial/DS/Ammo/cartrige.rsi
     layers:
       - state: 5x45x39
@@ -212,6 +218,7 @@
   - type: CartridgeAmmo
     proto: BulletDS5x56x45
   - type: Sprite
+    scale: 0.5, 0.5
     sprite: Imperial/DS/Ammo/cartrige.rsi
     layers:
       - state: 5x56x45
@@ -245,6 +252,7 @@
   - type: CartridgeAmmo
     proto: BulletDS5x6
   - type: Sprite
+    scale: 0.5, 0.5
     sprite: Imperial/DS/Ammo/cartrige.rsi
     layers:
       - state: 5x6
@@ -278,6 +286,7 @@
   - type: CartridgeAmmo
     proto: BulletDS12x70
   - type: Sprite
+    scale: 0.5, 0.5
     sprite: Imperial/DS/Ammo/cartrige.rsi
     layers:
       - state: 12x70
@@ -302,6 +311,7 @@
   parent: BaseCartridgeDS12x70
   components:
   - type: Sprite
+    scale: 0.5, 0.5
     sprite: Imperial/DS/Ammo/cartrige.rsi
     layers:
       - state: 12x70-AP
@@ -327,6 +337,7 @@
   - type: CartridgeAmmo
     proto: BulletDS308
   - type: Sprite
+    scale: 0.5, 0.5
     sprite: Imperial/DS/Ammo/cartrige.rsi
     layers:
       - state: .308
@@ -360,6 +371,7 @@
   - type: CartridgeAmmo
     proto: BulletDS357
   - type: Sprite
+    scale: 0.5, 0.5
     sprite: Imperial/DS/Ammo/cartrige.rsi
     layers:
       - state: .357
@@ -393,6 +405,7 @@
   - type: CartridgeAmmo
     proto: BulletDS40
   - type: Sprite
+    scale: 0.5, 0.5
     sprite: Imperial/DS/Ammo/cartrige.rsi
     layers:
       - state: .40
@@ -429,6 +442,7 @@
     proto: BulletDSM32A1Grenade
     deleteOnSpawn: true
   - type: Sprite
+    scale: 0.5, 0.5
     sprite: Imperial/DS/Ammo/cartrige.rsi
     state: Granade-M32A1
   - type: StaticPrice
@@ -451,6 +465,7 @@
     proto: BulletDSSmokeM32A1
     deleteOnSpawn: true
   - type: Sprite
+    scale: 0.5, 0.5
     sprite: Imperial/DS/Ammo/cartrige.rsi
     state: Smoke-M32A1
   - type: StaticPrice
@@ -475,6 +490,7 @@
     proto: BulletDSRPG7
     deleteOnSpawn: true
   - type: Sprite
+    scale: 0.5, 0.5
     sprite: Imperial/DS/Ammo/granade-rpg7.rsi
     state: Granade-RPG7
   - type: StaticPrice
