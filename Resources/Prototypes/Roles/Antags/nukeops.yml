@@ -140,3 +140,12 @@
   parent: SyndicateOperativeGearFull
   equipment:
     pocket2: BaseUplinkRadio60TC
+#Imperial Space EnergyCore start
+  storage:
+    back:
+    - WeaponPistolViper
+    - PinpointerSyndicateNuclear
+    - DeathAcidifierImplanter
+    - PinpointerNuclearStationFragment
+    - DeauthorizationFragmentCentCom
+#Imperial Space EnergyCore end
