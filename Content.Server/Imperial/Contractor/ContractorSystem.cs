@@ -1,1358 +1,1021 @@
 using System.Linq;
 using System.Numerics;
-using Content.Server.Antag;
+using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
-using Content.Server.GameTicking.Rules.Components;
-using Content.Server.Light.Components;
-using Content.Server.MassMedia.Systems;
-using Content.Server.Mind;
 using Content.Server.Pinpointer;
-using Content.Server.Popups;
 using Content.Server.Station.Systems;
 using Content.Server.Storage.EntitySystems;
-using Content.Server.Store.Systems;
-using Content.Server.Traitor.Uplink;
+using Content.Shared.Bed.Sleep;
+using Content.Shared.Chat;
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Drunk;
+using Content.Shared.Flash;
 using Content.Shared.FixedPoint;
-using Content.Shared.GameTicking;
-using Content.Shared.GameTicking.Components;
+using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Imperial.Contractor;
 using Content.Shared.Imperial.Contractor.Components;
 using Content.Shared.Inventory;
+using Content.Shared.Maps;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Physics;
 using Content.Shared.Pinpointer;
 using Content.Shared.Popups;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
-using Content.Shared.Store.Components;
-using Content.Shared.UserInterface;
+using Content.Shared.Roles.Jobs;
+using Content.Shared.Random.Helpers;
+using Content.Shared.Stacks;
+using Content.Shared.StatusEffectNew;
+using Content.Shared.Storage.Components;
+using Content.Shared.Body.Systems;
 using Robust.Server.GameObjects;
-using Robust.Server.Player;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Containers;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Contractor;
 
+/// <summary>
+/// Контрактник Синдиката 1 в 1 с SS13 (code/modules/antagonists/traitor/contractor,
+/// modular_computers/.../contractor_program.dm): хаб контрактов, капсула эвакуации, выкуп и возврат жертв.
+/// </summary>
 public sealed class ContractorSystem : EntitySystem
 {
-    private static readonly Color ContractorBriefingColor = Color.FromHex("#7fbbe6");
-    private const string ContractorCurrency = "ContractorRep";
-    private const string ContractorCandidateRole = "MindRoleContractorCandidate";
-    private const string ContractorRole = "MindRoleContractor";
-    private const string PirateMapPath = "/Maps/Shuttles/contractor_prison.yml";
-    private const string PrisonLocker = "LockerPrisoner";
-    private const string PrisonUniform = "ClothingUniformJumpsuitPrisoner";
-    private const string PrisonShoes = "ClothingShoesColorOrange";
-    private const string FalsefireFlarePrototype = "ContractorFalsefireFlare";
-    private const string FalsefirePortalPrototype = "ContractorFalsefirePortal";
-    private const string ContractorPinpointerMarkerPrototype = "ContractorPinpointerMarker";
-
-    private const float CandidateChance = 1.0f;
-    private const float DeliveryRange = 2f;
-    private const int OfferCapacity = 6;
-    private const float PinpointerMinOffset = 2.5f;
-    private const float PinpointerMaxOffset = 4.5f;
-    private const float PortalOffset = 0.8f;
-    private const float StoreLinkRange = 2f;
-    private const float UpdateInterval = 0.5f;
-    private const float DeadPayoutRatio = 0.2f;
-    private static readonly TimeSpan FalsefireIgnitionDelay = TimeSpan.FromSeconds(3);
-    private static readonly TimeSpan PinpointerRefreshDelay = TimeSpan.FromSeconds(2.5);
-
-    private static readonly TimeSpan DetentionDuration = TimeSpan.FromMinutes(4);
-    private static readonly TimeSpan PortalLifetime = TimeSpan.FromSeconds(45);
-
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly NewsSystem _news = default!;
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly PinpointerSystem _pinpointer = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
-    [Dependency] private readonly StoreSystem _store = default!;
+    [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly UplinkSystem _uplink = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
+    [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly PinpointerSystem _pinpointer = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly SharedDrunkSystem _drunk = default!;
+    [Dependency] private readonly SharedFlashSystem _flash = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly SharedJobSystem _jobs = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedRoleSystem _roles = default!;
+    [Dependency] private readonly SharedStackSystem _stack = default!;
+    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly StatusEffectsSystem _status = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
-    private readonly Dictionary<EntityUid, ContractorProfile> _profiles = new();
-    private readonly Dictionary<EntityUid, DetainedTarget> _detainedTargets = new();
-    private readonly HashSet<EntityUid> _completedExtractedMinds = new();
-    private float _accumulator;
-    private EntityUid? _pirateGridUid;
-    private bool _candidatesSelected;
+    private static readonly EntProtoId ContractorRole = "MindRoleContractor";
+    private static readonly EntProtoId ExtractionPod = "ContractorExtractionPod";
+    private static readonly EntProtoId PodLanding = "ContractorExtractionPodLanding";
+    private static readonly EntProtoId PinpointerMarker = "ContractorPinpointerMarker";
+    private static readonly EntProtoId Telecrystal = "Telecrystal1";
+    private static readonly EntProtoId Cash = "SpaceCash";
+    private static readonly ProtoId<Content.Shared.Dataset.DatasetPrototype> WantedBase = "ContractorWantedBase";
+    private static readonly ProtoId<Content.Shared.Dataset.DatasetPrototype> WantedVerb = "ContractorWantedVerb";
+    private static readonly ProtoId<Content.Shared.Random.WeightedRandomPrototype> WantedNoun = "ContractorWantedNoun";
+    private static readonly ProtoId<Content.Shared.Random.WeightedRandomPrototype> WantedLocation = "ContractorWantedLocation";
+    private static readonly ProtoId<Content.Shared.Chemistry.Reagent.ReagentPrototype> Omnizine = "Omnizine";
+    private const string HoldingMapPath = "/Maps/Shuttles/contractor_prison.yml";
+    private const string BelongingsContainer = "contractor_belongings";
 
-    private static readonly RequisitionDefinition[] Requisitions =
-    {
-        new("reroll", null, 2),
-        new("pinpointer", "ContractorPinpointer", 1),
-        new("extraction", "BoxContractorExtraction", 1),
-        new("zippo", "ContractorFlippoLighter", 12),
-        new("balloon", "ContractorBalloon", 12),
-    };
+    private static readonly SoundSpecifier StartupSound = new SoundPathSpecifier("/Audio/Imperial/Contractor/contractstartup.ogg");
+    private static readonly SoundSpecifier DropoffSound = new SoundPathSpecifier("/Audio/Imperial/Contractor/confirmdropoff.ogg");
+    private static readonly SoundSpecifier ErrorSound = new SoundPathSpecifier("/Audio/Imperial/Contractor/uplinkerror.ogg");
+    private static readonly SoundSpecifier PodWoosh = new SoundPathSpecifier("/Audio/Imperial/Contractor/podwoosh.ogg");
 
-    private static readonly string[] EasyKeywords =
-    {
-        "library", "botan", "hydro", "anomaly generator", "dam", "security checkpoint", "checkpoint", "cryonics",
-        "xenoarch", "xenoarchaeology", "kitchen", "workshop", "morgue", "operating", "arrivals shuttle", "departure",
-        "janitor closet", "janitor", "cargo", "arrivals", "escape pod", "court", "theater", "chapel", "evacuation",
-        "библиот", "ботан", "генератор аномал", "дам", "кпп сб", "крионик", "ксеноарх", "кухн", "мастерск",
-        "морг", "операцион", "отбыт", "подсобка убор", "поставк", "прибыт", "спасательн", "суд", "театр",
-        "церк", "эвакуац",
-    };
+    /// <summary>COME_BACK_FROM_CAPTURE_TIME.</summary>
+    private static readonly TimeSpan CaptureTime = TimeSpan.FromMinutes(6);
 
-    private static readonly string[] MediumKeywords =
-    {
-        "gateway", "atmos", "gravity generator", "engineering", "cryo sleep", "detective", "medical",
-        "medbay", "science", "robotics", "supply", "cargo reception", "rnd", "r&d", "teg", "disposals",
-        "eva storage", "power storage", "gatewat", "атмос", "генератор гравитац", "инженерн", "капсулы криосна",
-        "комната детектив", "медецис", "медицин", "медотдел", "научн", "робототех", "снабж", "приемная снабж",
-        "рнд", "тэг", "утилиз", "хранилище ева", "хранилище энергии",
-    };
+    /// <summary>delays POD_TRANSIT + POD_FALLING.</summary>
+    private static readonly TimeSpan PodArrival = TimeSpan.FromSeconds(2.9);
 
-    private static readonly string[] HardKeywords =
-    {
-        "bar", "security", "brig", "dorm", "ai sat", "ai core", "ai", "chief medical officer", "captain's quarters",
-        "captain", "command", "chief engineer", "research director", "head of personnel", "bridge", "armory",
-        "head of personnel office", "warden", "lawyer", "perma", "server", "singularity", "solar", "telecom",
-        "chemistry", "vault", "хранилище плат", "ядро ии", "бар", "безопас", "бриг", "дорм", "ии спутник",
-        "ии", "кабинет гв", "каюта капит", "комадн", "командн", "комната кма", "комната нра", "комната си",
-        "мостик", "оружейн", "офис гп", "офис гсб", "офис смотрит", "офис юрист", "перма", "серверн",
-        "сингуляр", "солнечн", "телеком", "хими", "хранилищ",
-    };
+    /// <summary>lowest_TC_threshold.</summary>
+    private const int LowestTcThreshold = 30;
 
-    private static readonly string[] EasyReasonTemplates =
-    {
-        "contractor-reason-easy-1",
-        "contractor-reason-easy-2",
-        "contractor-reason-easy-3",
-    };
+    /// <summary>Радиус «зоны» вокруг маяка: дальше — уже другая зона.</summary>
+    private const float AreaRadius = 14f;
 
-    private static readonly string[] MediumReasonTemplates =
-    {
-        "contractor-reason-medium-1",
-        "contractor-reason-medium-2",
-        "contractor-reason-medium-3",
-    };
+    private static readonly TimeSpan PinpointerRefreshDelay = TimeSpan.FromSeconds(2.5);
 
-    private static readonly string[] HardReasonTemplates =
-    {
-        "contractor-reason-hard-1",
-        "contractor-reason-hard-2",
-        "contractor-reason-hard-3",
-    };
+    private readonly HashSet<EntityUid> _kidnapped = new();
+    private readonly List<(TimeSpan At, Action Act)> _scheduled = new();
+    private EntityUid? _holdingGrid;
 
     public override void Initialize()
     {
         base.Initialize();
-
-        SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
-        SubscribeLocalEvent<AfterAntagEntitySelectedEvent>(OnTraitorSelected);
-        SubscribeLocalEvent<MindContainerComponent, ContractorKitPurchasedEvent>(OnContractorKitPurchased);
-        SubscribeLocalEvent<ContractorUplinkComponent, ActivatableUIOpenAttemptEvent>(OnUplinkOpenAttempt);
         SubscribeLocalEvent<ContractorUplinkComponent, BoundUIOpenedEvent>(OnUplinkOpened);
-
-        Subs.BuiEvents<ContractorUplinkComponent>(ContractorUplinkUiKey.Key, subs =>
+        SubscribeLocalEvent<ContractorUplinkComponent, ContractorLoginMessage>(OnLogin);
+        SubscribeLocalEvent<ContractorUplinkComponent, ContractorFirstLoadFinishedMessage>(OnFirstLoadFinished);
+        SubscribeLocalEvent<ContractorUplinkComponent, ContractorToggleInfoMessage>(OnToggleInfo);
+        SubscribeLocalEvent<ContractorUplinkComponent, ContractorClearErrorMessage>(OnClearError);
+        SubscribeLocalEvent<ContractorUplinkComponent, ContractorAcceptContractMessage>(OnAccept);
+        SubscribeLocalEvent<ContractorUplinkComponent, ContractorAbortContractMessage>(OnAbort);
+        SubscribeLocalEvent<ContractorUplinkComponent, ContractorCallExtractionMessage>(OnCallExtraction);
+        SubscribeLocalEvent<ContractorUplinkComponent, ContractorRedeemTcMessage>(OnRedeem);
+        SubscribeLocalEvent<ContractorExtractionPodComponent, EntInsertedIntoContainerMessage>(OnPodEntered);
+        SubscribeLocalEvent<ContractorPinpointerComponent, GotEquippedHandEvent>(OnPinpointerPickedUp);
+        SubscribeLocalEvent<MindContainerComponent, ContractorRerollEvent>(OnReroll);
+        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
+        SubscribeLocalEvent<Content.Shared.GameTicking.RoundRestartCleanupEvent>(_ =>
         {
-            subs.Event<ContractorAcceptContractMessage>(OnAcceptContract);
-            subs.Event<ContractorDeclineContractMessage>(OnDeclineContract);
-            subs.Event<ContractorBuyRequisitionMessage>(OnBuyRequisition);
-            subs.Event<ContractorOpenPortalMessage>(OnOpenPortal);
+            _kidnapped.Clear();
+            _scheduled.Clear();
+            _holdingGrid = null;
         });
     }
 
-    public override void Update(float frameTime)
+    #region Хаб
+
+    private ContractorHubComponent? Hub(EntityUid? mindId)
     {
-        base.Update(frameTime);
-
-        _accumulator += frameTime;
-        if (_accumulator < UpdateInterval)
-            return;
-
-        _accumulator -= UpdateInterval;
-
-        UpdateActiveContracts();
-        UpdateContractorPinpointers();
-        UpdateFalsefires();
-        UpdatePortals();
-        UpdateDetentions();
+        return mindId is { } id && TryComp<ContractorHubComponent>(id, out var hub) ? hub : null;
     }
 
-    private void OnRoundStarted(RoundStartedEvent args)
+    public bool HasHub(EntityUid mindId)
     {
-        if (_candidatesSelected)
-            return;
-
-        _candidatesSelected = true;
-        SelectContractorCandidates();
+        return HasComp<ContractorHubComponent>(mindId);
     }
 
-    private void OnRoundRestart(RoundRestartCleanupEvent args)
+    /// <summary>contractor_hub/create_contracts().</summary>
+    private void CreateContracts(EntityUid mindId, ContractorHubComponent hub)
     {
-        _profiles.Clear();
-        _detainedTargets.Clear();
-        _completedExtractedMinds.Clear();
-        _pirateGridUid = null;
-        _accumulator = 0f;
-        _candidatesSelected = false;
-    }
-
-    private void OnTraitorSelected(ref AfterAntagEntitySelectedEvent args)
-    {
-        if (!HasComp<TraitorRuleComponent>(args.GameRule.Owner))
-            return;
-
-        if (_players.PlayerCount != 1)
-            return;
-
-        if (!_mind.TryGetMind(args.EntityUid, out var mindId, out var mind) || mind.OwnedEntity is not { } owner)
-            return;
-
-        if (!_roles.MindHasRole<TraitorRoleComponent>(mindId))
-            return;
-
-        if (_roles.MindHasRole<ContractorRoleComponent>(mindId) || _roles.MindHasRole<ContractorCandidateRoleComponent>(mindId))
-            return;
-
-        var traitorCount = 0;
-        var query = EntityQueryEnumerator<MindComponent>();
-        while (query.MoveNext(out var otherMindId, out _))
+        var toGenerate = new List<ContractorPayoutType>
         {
-            if (_roles.MindHasRole<TraitorRoleComponent>(otherMindId))
-                traitorCount++;
-        }
+            ContractorPayoutType.Large, ContractorPayoutType.Medium,
+            ContractorPayoutType.Small, ContractorPayoutType.Small, ContractorPayoutType.Small, ContractorPayoutType.Small,
+        };
 
-        if (traitorCount != 1)
-            return;
+        var candidates = PossibleTargets(mindId, hub.AssignedTargets).Count;
+        if (toGenerate.Count > candidates)
+            toGenerate.RemoveRange(0, toGenerate.Count - candidates);
 
-        _roles.MindAddRole(mindId, ContractorCandidateRole, mind);
-        _antag.SendBriefing(owner, Loc.GetString("contractor-offer-available"), ContractorBriefingColor, null);
-        RefreshTraitorUplink(owner);
-    }
+        _random.Shuffle(toGenerate);
+        var startIndex = hub.Contracts.Count + 1;
+        var total = 0;
+        SyndicateContract? lowest = null;
+        var lowestSum = 0;
 
-    private void SelectContractorCandidates()
-    {
-        var activeTraitorRules = new List<List<EntityUid>>();
-        var query = EntityQueryEnumerator<TraitorRuleComponent, GameRuleComponent>();
-        while (query.MoveNext(out var ruleUid, out var rule, out var gameRule))
+        foreach (var type in toGenerate)
         {
-            if (!_gameTicker.IsGameRuleActive(ruleUid, gameRule))
-                continue;
+            var contract = new SyndicateContract { PayoutType = type, Id = startIndex++ };
+            Generate(mindId, contract, hub.AssignedTargets);
+            if (contract.TargetMind is { } target)
+                hub.AssignedTargets.Add(target);
 
-            activeTraitorRules.Add(rule.TraitorMinds.Distinct().ToList());
-        }
-
-        var forceSingleTraitorCandidate = activeTraitorRules.Any(traitors => traitors.Count == 1);
-        if (!forceSingleTraitorCandidate && !_random.Prob(CandidateChance))
-            return;
-
-        foreach (var traitors in activeTraitorRules)
-        {
-            var count = traitors.Count == 1 ? 1 : traitors.Count / 4;
-            if (count <= 0)
-                continue;
-
-            var pool = traitors
-                .Where(mindId => !_roles.MindHasRole<ContractorRoleComponent>(mindId))
-                .Where(mindId => !_roles.MindHasRole<ContractorCandidateRoleComponent>(mindId))
-                .ToList();
-
-            while (pool.Count > 0 && count > 0)
+            var sum = contract.Payout + contract.PayoutBonus;
+            if (lowest == null || sum < lowestSum)
             {
-                var index = _random.Next(pool.Count);
-                var candidateMindId = pool[index];
-                pool.RemoveAt(index);
-                count--;
+                lowestSum = sum;
+                lowest = contract;
+            }
 
-                if (!TryComp<MindComponent>(candidateMindId, out var mind) || mind.OwnedEntity is not { } owner)
-                    continue;
+            total += sum;
+            hub.Contracts.Add(contract);
+        }
 
-                _roles.MindAddRole(candidateMindId, ContractorCandidateRole, mind);
-                _antag.SendBriefing(owner, Loc.GetString("contractor-offer-available"), ContractorBriefingColor, null);
-                RefreshTraitorUplink(owner);
+        if (total < LowestTcThreshold && lowest != null)
+            lowest.PayoutBonus += LowestTcThreshold - total;
+    }
+
+    /// <summary>syndicate_contract/generate().</summary>
+    private void Generate(EntityUid ownerMind, SyndicateContract contract, HashSet<EntityUid> blacklist)
+    {
+        var targets = PossibleTargets(ownerMind, blacklist);
+        contract.TargetMind = targets.Count > 0 ? _random.Pick(targets) : null;
+
+        contract.TargetName = string.Empty;
+        contract.TargetRank = Loc.GetString("contractor-rank-unknown");
+        if (contract.TargetMind is { } targetMind && TryComp<MindComponent>(targetMind, out var mind))
+        {
+            contract.TargetName = mind.CharacterName ?? (mind.OwnedEntity is { } body ? Name(body) : string.Empty);
+            if (_jobs.MindTryGetJobName(targetMind, out var job))
+                contract.TargetRank = job;
+        }
+
+        contract.PayoutBonus = contract.PayoutType switch
+        {
+            ContractorPayoutType.Large => _random.Next(9, 14),
+            ContractorPayoutType.Medium => _random.Next(6, 9),
+            _ => _random.Next(2, 5),
+        };
+        contract.Payout = _random.Next(0, 3);
+
+        GenerateDropoff(ownerMind, contract);
+        contract.Ransom = 100 * _random.Next(18, 46);
+
+        var noun = _proto.Index(WantedNoun).Pick(_random);
+        var location = _proto.Index(WantedLocation).Pick(_random);
+        contract.WantedMessage = Loc.GetString("contractor-wanted-message",
+            ("base", Loc.GetString(_random.Pick(_proto.Index(WantedBase).Values))),
+            ("verb", Loc.GetString(_random.Pick(_proto.Index(WantedVerb).Values))),
+            ("noun", Loc.GetString(noun)),
+            ("location", Loc.GetString(location)));
+    }
+
+    /// <summary>objective/contract/is_valid_target(): живые члены экипажа станции, не похищенные ранее.</summary>
+    private List<EntityUid> PossibleTargets(EntityUid ownerMind, HashSet<EntityUid> blacklist)
+    {
+        var owner = CompOrNull<MindComponent>(ownerMind)?.OwnedEntity;
+        var station = owner != null ? _station.GetOwningStation(owner.Value) : null;
+        var result = new List<EntityUid>();
+        var query = EntityQueryEnumerator<HumanoidProfileComponent, MindContainerComponent>();
+        while (query.MoveNext(out var uid, out _, out var mindContainer))
+        {
+            if (mindContainer.Mind is not { } mindId || mindId == ownerMind || blacklist.Contains(mindId) || _kidnapped.Contains(mindId))
+                continue;
+            if (!HasComp<ActorComponent>(uid) || _mobState.IsDead(uid))
+                continue;
+            if (station != null && _station.GetOwningStation(uid) != station)
+                continue;
+            result.Add(mindId);
+        }
+
+        return result;
+    }
+
+    /// <summary>objective/contract/generate_dropoff(): случайная зона станции.</summary>
+    private void GenerateDropoff(EntityUid ownerMind, SyndicateContract contract)
+    {
+        var owner = CompOrNull<MindComponent>(ownerMind)?.OwnedEntity;
+        var station = owner != null ? _station.GetOwningStation(owner.Value) : null;
+        var beacons = new List<(EntityUid, string)>();
+        var query = EntityQueryEnumerator<NavMapBeaconComponent>();
+        while (query.MoveNext(out var uid, out var beacon))
+        {
+            if (string.IsNullOrWhiteSpace(beacon.Text))
+                continue;
+            if (station != null && _station.GetOwningStation(uid) != station)
+                continue;
+            beacons.Add((uid, beacon.Text));
+        }
+
+        if (beacons.Count == 0)
+        {
+            contract.Dropoff = null;
+            contract.DropoffName = Loc.GetString("contractor-rank-unknown");
+            return;
+        }
+
+        var (dropoff, name) = _random.Pick(beacons);
+        contract.Dropoff = dropoff;
+        contract.DropoffName = name;
+    }
+
+    /// <summary>Ближайший маяк станции к точке — «зона», в которой она находится.</summary>
+    private bool InArea(EntityUid entity, EntityUid? dropoff)
+    {
+        if (dropoff is not { } beacon || TerminatingOrDeleted(beacon) || TerminatingOrDeleted(entity))
+            return false;
+
+        var pos = _transform.GetMapCoordinates(entity);
+        var beaconPos = _transform.GetMapCoordinates(beacon);
+        if (pos.MapId != beaconPos.MapId || (pos.Position - beaconPos.Position).Length() > AreaRadius)
+            return false;
+
+        var best = beacon;
+        var bestDist = (pos.Position - beaconPos.Position).Length();
+        var query = EntityQueryEnumerator<NavMapBeaconComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var xform))
+        {
+            if (string.IsNullOrWhiteSpace(comp.Text) || xform.MapID != pos.MapId)
+                continue;
+            var dist = (_transform.GetWorldPosition(xform) - pos.Position).Length();
+            if (dist < bestDist)
+            {
+                bestDist = dist;
+                best = uid;
             }
         }
+
+        return best == beacon;
     }
 
-    private void OnContractorKitPurchased(Entity<MindContainerComponent> ent, ref ContractorKitPurchasedEvent args)
+    private EntityUid? TargetBody(SyndicateContract contract)
     {
-        if (!_mind.TryGetMind(ent.Owner, out var mindId, out var mind))
-            return;
-
-        if (!_roles.MindHasRole<TraitorRoleComponent>(mindId))
-            return;
-
-        if (!_roles.MindHasRole<ContractorCandidateRoleComponent>(mindId))
-            return;
-
-        if (_roles.MindHasRole<ContractorRoleComponent>(mindId))
-            return;
-
-        _roles.MindAddRole(mindId, ContractorRole, mind);
-        TryAssignNearbyContractorStore(ent.Owner, mindId);
-        EnsureProfile(mindId, ent.Owner);
-
-        _antag.SendBriefing(ent.Owner, Loc.GetString("contractor-role-greeting"), ContractorBriefingColor, null);
+        return contract.TargetMind is { } mind ? CompOrNull<MindComponent>(mind)?.OwnedEntity : null;
     }
 
-    public bool TryMakeContractor(ICommonSession player, out string error)
+    #endregion
+
+    #region Аплинк
+
+    private ContractorUplinkStateComponent UplinkState(EntityUid uplink)
     {
-        error = string.Empty;
-
-        if (player.AttachedEntity is not { } owner)
-        {
-            error = "Player has no attached entity.";
-            return false;
-        }
-
-        if (!_mind.TryGetMind(owner, out var mindId, out var mind))
-        {
-            error = "Player has no mind.";
-            return false;
-        }
-
-        if (!_roles.MindHasRole<TraitorRoleComponent>(mindId))
-        {
-            error = "Player must already be a traitor.";
-            return false;
-        }
-
-        if (_roles.MindHasRole<ContractorRoleComponent>(mindId))
-        {
-            error = "Player is already a contractor.";
-            return false;
-        }
-
-        if (!_roles.MindHasRole<ContractorCandidateRoleComponent>(mindId))
-        {
-            _roles.MindAddRole(mindId, ContractorCandidateRole, mind);
-            RefreshTraitorUplink(owner);
-        }
-
-        _roles.MindAddRole(mindId, ContractorRole, mind);
-        TryAssignNearbyContractorStore(owner, mindId);
-        EnsureProfile(mindId, owner);
-
-        _antag.SendBriefing(owner, Loc.GetString("contractor-role-greeting"), ContractorBriefingColor, null);
-        return true;
-    }
-
-    private void OnUplinkOpenAttempt(Entity<ContractorUplinkComponent> ent, ref ActivatableUIOpenAttemptEvent args)
-    {
-        if (!_mind.TryGetMind(args.User, out var mindId, out _)
-            || !_roles.MindHasRole<ContractorRoleComponent>(mindId))
-        {
-            args.Cancel();
-            _popup.PopupEntity(Loc.GetString("contractor-uplink-denied"), ent, args.User, PopupType.SmallCaution);
-            return;
-        }
-
-        TryBindStoreToMind(ent.Owner, mindId);
+        return EnsureComp<ContractorUplinkStateComponent>(uplink);
     }
 
     private void OnUplinkOpened(Entity<ContractorUplinkComponent> ent, ref BoundUIOpenedEvent args)
     {
-        if (!_mind.TryGetMind(args.Actor, out var mindId, out _))
-            return;
-
-        UpdateUplinkUi(ent.Owner, mindId);
+        UpdateUi(ent, args.Actor);
     }
 
-    private void OnAcceptContract(Entity<ContractorUplinkComponent> ent, ref ContractorAcceptContractMessage args)
+    /// <summary>PRG_login: только предатель; при первом входе создаётся хаб.</summary>
+    private void OnLogin(Entity<ContractorUplinkComponent> ent, ref ContractorLoginMessage args)
     {
-        if (!_mind.TryGetMind(args.Actor, out var mindId, out _))
-            return;
-
-        var profile = EnsureProfile(mindId, args.Actor);
-        if (profile.ActiveOffer != null)
+        var state = UplinkState(ent);
+        if (!_mind.TryGetMind(args.Actor, out var mindId, out _) || !_roles.MindHasRole<TraitorRoleComponent>(mindId))
         {
-            UpdateUplinkUi(ent.Owner, mindId);
+            state.Error = Loc.GetString("contractor-error-unauthorized");
+            UpdateUi(ent, args.Actor);
             return;
         }
 
+        state.LoggedInMind = mindId;
+        if (!HasComp<ContractorHubComponent>(mindId))
+        {
+            var hub = AddComp<ContractorHubComponent>(mindId);
+            CreateContracts(mindId, hub);
+            if (!_roles.MindHasRole<ContractorRoleComponent>(mindId))
+                _roles.MindAddRole(mindId, ContractorRole, silent: true);
+            _audio.PlayEntity(StartupSound, args.Actor, args.Actor);
+        }
+
+        UpdateUi(ent, args.Actor);
+    }
+
+    private void OnFirstLoadFinished(Entity<ContractorUplinkComponent> ent, ref ContractorFirstLoadFinishedMessage args)
+    {
+        UplinkState(ent).FirstLoad = false;
+        UpdateUi(ent, args.Actor);
+    }
+
+    private void OnToggleInfo(Entity<ContractorUplinkComponent> ent, ref ContractorToggleInfoMessage args)
+    {
+        var state = UplinkState(ent);
+        state.InfoScreen = !state.InfoScreen;
+        UpdateUi(ent, args.Actor);
+    }
+
+    private void OnClearError(Entity<ContractorUplinkComponent> ent, ref ContractorClearErrorMessage args)
+    {
+        UplinkState(ent).Error = string.Empty;
+        UpdateUi(ent, args.Actor);
+    }
+
+    /// <summary>PRG_contract-accept.</summary>
+    private void OnAccept(Entity<ContractorUplinkComponent> ent, ref ContractorAcceptContractMessage args)
+    {
+        if (Hub(UplinkState(ent).LoggedInMind) is not { } hub || hub.CurrentContract != null)
+            return;
         var contractId = args.ContractId;
-        var offer = profile.Offers.FirstOrDefault(x => x.Id == contractId);
-        if (offer == null)
-        {
-            UpdateUplinkUi(ent.Owner, mindId);
+        var contract = hub.Contracts.FirstOrDefault(c => c.Id == contractId);
+        if (contract == null || contract.Status != ContractorContractStatus.Inactive)
             return;
-        }
 
-        var difficulty = args.Difficulty;
-        var option = offer.Options.FirstOrDefault(x => x.Difficulty == difficulty);
-        if (option == null)
-        {
-            UpdateUplinkUi(ent.Owner, mindId);
-            return;
-        }
-
-        profile.Offers.Remove(offer);
-        profile.ActiveOffer = new ActiveContract(
-            offer.Id,
-            offer.TargetEntity,
-            offer.TargetName,
-            offer.Job,
-            option.BeaconUid,
-            option.BeaconLabel,
-            option.Difficulty,
-            option.Reason,
-            option.AlivePayout,
-            option.DeadPayout);
-        profile.Stage = ContractorContractStage.AwaitingBeacon;
-        profile.BeaconAnnounced = false;
-        profile.FalsefireFlare = null;
-        profile.FalsefireIgnitionAt = null;
-
-        _antag.SendBriefing(args.Actor,
-            Loc.GetString("contractor-contract-accepted",
-                ("target", offer.TargetName),
-                ("job", offer.Job),
-                ("location", option.BeaconLabel),
-                ("difficulty", Loc.GetString($"contractor-difficulty-{difficulty.ToString().ToLowerInvariant()}"))),
-            ContractorBriefingColor,
-            null);
-
-        UpdateUplinkUi(ent.Owner, mindId);
+        contract.Status = ContractorContractStatus.Active;
+        hub.CurrentContract = contract;
+        UpdateUi(ent, args.Actor);
     }
 
-    private void OnDeclineContract(Entity<ContractorUplinkComponent> ent, ref ContractorDeclineContractMessage args)
+    /// <summary>PRG_contract_abort.</summary>
+    private void OnAbort(Entity<ContractorUplinkComponent> ent, ref ContractorAbortContractMessage args)
     {
-        if (!_mind.TryGetMind(args.Actor, out var mindId, out _))
+        if (Hub(UplinkState(ent).LoggedInMind) is not { CurrentContract: { } contract } hub)
             return;
 
-        var profile = EnsureProfile(mindId, args.Actor);
-        var contractId = args.ContractId;
-        var offer = profile.Offers.FirstOrDefault(x => x.Id == contractId);
-        if (offer == null)
-        {
-            UpdateUplinkUi(ent.Owner, mindId);
-            return;
-        }
-
-        profile.Offers.Remove(offer);
-        profile.BlockedTargets.Add(offer.TargetEntity);
-        EnsureOfferCapacity(mindId, args.Actor, profile);
-
-        _antag.SendBriefing(args.Actor,
-            Loc.GetString("contractor-contract-declined", ("target", offer.TargetName)),
-            ContractorBriefingColor,
-            null);
-
-        UpdateUplinkUi(ent.Owner, mindId);
+        hub.CurrentContract = null;
+        contract.Status = ContractorContractStatus.Aborted;
+        UpdateUi(ent, args.Actor);
     }
 
-    private void OnBuyRequisition(Entity<ContractorUplinkComponent> ent, ref ContractorBuyRequisitionMessage args)
+    /// <summary>PRG_call_extraction.</summary>
+    private void OnCallExtraction(Entity<ContractorUplinkComponent> ent, ref ContractorCallExtractionMessage args)
     {
-        if (!_mind.TryGetMind(args.Actor, out var mindId, out _))
+        var state = UplinkState(ent);
+        if (state.LoggedInMind is not { } mindId || Hub(mindId) is not { CurrentContract: { } contract })
             return;
 
-        if (!TryComp<StoreComponent>(ent, out var store))
-            return;
-
-        TryBindStoreToMind(ent.Owner, mindId, store);
-
-        var requisitionId = args.RequisitionId;
-        var requisition = Requisitions.FirstOrDefault(x => x.Id == requisitionId);
-        if (requisition == null)
+        if (contract.Status == ContractorContractStatus.Extracting)
         {
-            UpdateUplinkUi(ent.Owner, mindId);
-            return;
+            _audio.PlayEntity(ErrorSound, args.Actor, args.Actor);
+            state.Error = Loc.GetString("contractor-error-already-extracting");
         }
-
-        if (!store.Balance.TryGetValue(ContractorCurrency, out var rep) || rep < requisition.Cost)
+        else if (HandleExtraction(mindId, contract, args.Actor))
         {
-            UpdateUplinkUi(ent.Owner, mindId);
-            return;
-        }
-
-        store.Balance[ContractorCurrency] -= requisition.Cost;
-        Dirty(ent.Owner, store);
-
-        if (requisition.Id == "reroll")
-        {
-            var profile = EnsureProfile(mindId, args.Actor);
-            profile.Offers.Clear();
-            EnsureOfferCapacity(mindId, args.Actor, profile);
-            UpdateUplinkUi(ent.Owner, mindId);
-            return;
-        }
-
-        if (requisition.Prototype != null)
-        {
-            var spawned = Spawn(requisition.Prototype, Transform(args.Actor).Coordinates);
-            BindContractorPinpointer(spawned, mindId);
-            _hands.TryPickupAnyHand(args.Actor, spawned, checkActionBlocker: false);
-        }
-
-        UpdateUplinkUi(ent.Owner, mindId);
-    }
-
-    private void OnOpenPortal(Entity<ContractorUplinkComponent> ent, ref ContractorOpenPortalMessage args)
-    {
-        if (!_mind.TryGetMind(args.Actor, out var mindId, out _))
-            return;
-
-        var profile = EnsureProfile(mindId, args.Actor);
-        if (profile.ActiveOffer == null || profile.Stage != ContractorContractStage.PortalReady)
-        {
-            UpdateUplinkUi(ent.Owner, mindId);
-            return;
-        }
-
-        if ((profile.Portal != null && Exists(profile.Portal.Value)) || (profile.FalsefireFlare != null && Exists(profile.FalsefireFlare.Value)))
-        {
-            UpdateUplinkUi(ent.Owner, mindId);
-            return;
-        }
-
-        var flare = Spawn(FalsefireFlarePrototype, Transform(args.Actor).Coordinates.Offset(new Vector2(PortalOffset, 0f)));
-        _hands.TryPickupAnyHand(args.Actor, flare, checkActionBlocker: false);
-        profile.FalsefireFlare = flare;
-        profile.FalsefireIgnitionAt = null;
-
-        _antag.SendBriefing(args.Actor, Loc.GetString("contractor-falsefire-issued"), ContractorBriefingColor, null);
-        UpdateUplinkUi(ent.Owner, mindId);
-    }
-
-    private void UpdateActiveContracts()
-    {
-        foreach (var (mindId, profile) in _profiles)
-        {
-            if (profile.ActiveOffer == null || profile.Stage != ContractorContractStage.AwaitingBeacon)
-                continue;
-
-            if (!Exists(profile.ActiveOffer.TargetEntity) || !Exists(profile.ActiveOffer.BeaconUid))
-                continue;
-
-            var target = profile.ActiveOffer.TargetEntity;
-            var targetXform = Transform(target);
-            var beaconXform = Transform(profile.ActiveOffer.BeaconUid);
-            if (targetXform.MapID != beaconXform.MapID)
-                continue;
-
-            var distance = (_transform.GetWorldPosition(targetXform) - _transform.GetWorldPosition(beaconXform)).Length();
-            if (distance > DeliveryRange)
-                continue;
-
-            profile.Stage = ContractorContractStage.PortalReady;
-
-            if (!profile.BeaconAnnounced && TryGetMindOwner(mindId, out var owner))
-            {
-                profile.BeaconAnnounced = true;
-                _antag.SendBriefing(owner,
-                    Loc.GetString("contractor-beacon-reached", ("location", profile.ActiveOffer.BeaconLabel)),
-                    ContractorBriefingColor,
-                    null);
-            }
-
-            if (TryFindContractorStoreFromMind(mindId, out var uplinkUid, out _))
-                UpdateUplinkUi(uplinkUid, mindId);
-        }
-    }
-
-    private void UpdatePortals()
-    {
-        var query = EntityQueryEnumerator<ContractorPortalComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var portal, out var xform))
-        {
-            if (_timing.CurTime >= portal.ExpireAt)
-            {
-                CleanupPortal(uid, portal.ContractorMind);
-                continue;
-            }
-
-            if (!_profiles.TryGetValue(portal.ContractorMind, out var profile) || profile.ActiveOffer == null)
-            {
-                CleanupPortal(uid, portal.ContractorMind);
-                continue;
-            }
-
-            if (!Exists(portal.TargetEntity))
-                continue;
-
-            var target = portal.TargetEntity;
-            if (Transform(target).MapID != xform.MapID)
-                continue;
-
-            var distance = (_transform.GetWorldPosition(target) - _transform.GetWorldPosition(xform)).Length();
-            if (distance > portal.ActivationRange)
-                continue;
-
-            CompleteTransfer(portal.ContractorMind, target, uid);
-        }
-    }
-
-    private void UpdateFalsefires()
-    {
-        foreach (var (mindId, profile) in _profiles)
-        {
-            if (profile.ActiveOffer == null || profile.FalsefireFlare == null)
-                continue;
-
-            var flareUid = profile.FalsefireFlare.Value;
-            if (!Exists(flareUid))
-            {
-                profile.FalsefireFlare = null;
-                profile.FalsefireIgnitionAt = null;
-
-                if (TryFindContractorStoreFromMind(mindId, out var uplinkUid, out _))
-                    UpdateUplinkUi(uplinkUid, mindId);
-
-                continue;
-            }
-
-            if (!TryComp<ExpendableLightComponent>(flareUid, out var flareLight) || !flareLight.Activated)
-                continue;
-
-            if (profile.FalsefireIgnitionAt == null)
-            {
-                profile.FalsefireIgnitionAt = _timing.CurTime + FalsefireIgnitionDelay;
-
-                if (TryGetMindOwner(mindId, out var owner))
-                    _antag.SendBriefing(owner, Loc.GetString("contractor-falsefire-ignited"), ContractorBriefingColor, null);
-
-                if (TryFindContractorStoreFromMind(mindId, out var uplinkUid, out _))
-                    UpdateUplinkUi(uplinkUid, mindId);
-
-                continue;
-            }
-
-            if (_timing.CurTime < profile.FalsefireIgnitionAt.Value)
-                continue;
-
-            var portal = Spawn(FalsefirePortalPrototype, Transform(flareUid).Coordinates);
-            var portalComp = EnsureComp<ContractorPortalComponent>(portal);
-            portalComp.ContractorMind = mindId;
-            portalComp.TargetEntity = profile.ActiveOffer.TargetEntity;
-            portalComp.ExpireAt = _timing.CurTime + PortalLifetime;
-            Dirty(portal, portalComp);
-
-            QueueDel(flareUid);
-            profile.FalsefireFlare = null;
-            profile.FalsefireIgnitionAt = null;
-            profile.Portal = portal;
-
-            if (TryGetMindOwner(mindId, out var owner2))
-                _antag.SendBriefing(owner2, Loc.GetString("contractor-falsefire-opened"), ContractorBriefingColor, null);
-
-            if (TryFindContractorStoreFromMind(mindId, out var uplinkUid2, out _))
-                UpdateUplinkUi(uplinkUid2, mindId);
-        }
-    }
-
-    private void UpdateContractorPinpointers()
-    {
-        var query = EntityQueryEnumerator<ContractorPinpointerComponent, PinpointerComponent>();
-        while (query.MoveNext(out var uid, out var contractorPinpointer, out var pinpointer))
-        {
-            if (contractorPinpointer.ContractorMind is not { } contractorMind)
-                continue;
-
-            if (!_profiles.TryGetValue(contractorMind, out var profile) || profile.ActiveOffer == null || !Exists(profile.ActiveOffer.TargetEntity))
-            {
-                ClearPinpointerTarget((uid, contractorPinpointer), pinpointer);
-                continue;
-            }
-
-            var target = profile.ActiveOffer.TargetEntity;
-            if (contractorPinpointer.TargetEntity != target
-                || contractorPinpointer.DecoyEntity == null
-                || !Exists(contractorPinpointer.DecoyEntity.Value)
-                || _timing.CurTime >= contractorPinpointer.NextRefreshAt)
-            {
-                RefreshPinpointerDecoy((uid, contractorPinpointer), pinpointer, target);
-            }
-        }
-    }
-
-    private void BindContractorPinpointer(EntityUid pinpointerUid, EntityUid mindId)
-    {
-        if (!TryComp<ContractorPinpointerComponent>(pinpointerUid, out var contractorPinpointer))
-            return;
-
-        contractorPinpointer.ContractorMind = mindId;
-        contractorPinpointer.NextRefreshAt = TimeSpan.Zero;
-        contractorPinpointer.TargetEntity = null;
-        contractorPinpointer.DecoyEntity = null;
-    }
-
-    private void RefreshPinpointerDecoy(Entity<ContractorPinpointerComponent> ent, PinpointerComponent pinpointer, EntityUid target)
-    {
-        var coords = GetApproximateTargetCoordinates(target);
-        if (coords == null)
-        {
-            ClearPinpointerTarget(ent, pinpointer);
-            return;
-        }
-
-        var marker = ent.Comp.DecoyEntity;
-        if (marker == null || !Exists(marker.Value))
-        {
-            marker = Spawn(ContractorPinpointerMarkerPrototype, coords.Value);
-            ent.Comp.DecoyEntity = marker;
+            _audio.PlayEntity(DropoffSound, args.Actor, args.Actor);
+            contract.Status = ContractorContractStatus.Extracting;
         }
         else
         {
-            _transform.SetCoordinates(marker.Value, coords.Value);
+            _audio.PlayEntity(ErrorSound, args.Actor, args.Actor);
+            state.Error = Loc.GetString("contractor-error-dropoff");
         }
 
-        ent.Comp.TargetEntity = target;
-        ent.Comp.NextRefreshAt = _timing.CurTime + PinpointerRefreshDelay;
-
-        _pinpointer.SetTarget((ent.Owner, pinpointer), marker.Value);
+        UpdateUi(ent, args.Actor);
     }
 
-    private void ClearPinpointerTarget(Entity<ContractorPinpointerComponent> ent, PinpointerComponent pinpointer)
+    /// <summary>PRG_redeem_TC: телекристаллы материализуются в руках.</summary>
+    private void OnRedeem(Entity<ContractorUplinkComponent> ent, ref ContractorRedeemTcMessage args)
     {
-        if (ent.Comp.DecoyEntity is { } decoy && Exists(decoy))
-            QueueDel(decoy);
-
-        ent.Comp.DecoyEntity = null;
-        ent.Comp.TargetEntity = null;
-        ent.Comp.NextRefreshAt = TimeSpan.Zero;
-        _pinpointer.SetTarget((ent.Owner, pinpointer), null);
-    }
-
-    private EntityCoordinates? GetApproximateTargetCoordinates(EntityUid target)
-    {
-        if (!Exists(target))
-            return null;
-
-        var xform = Transform(target);
-        if (xform.MapID == MapId.Nullspace)
-            return null;
-
-        var direction = _random.NextAngle().ToVec();
-        var distance = _random.NextFloat(PinpointerMinOffset, PinpointerMaxOffset);
-        return xform.Coordinates.Offset(direction * distance);
-    }
-
-    private void UpdateDetentions()
-    {
-        var due = _detainedTargets
-            .Where(x => _timing.CurTime >= x.Value.ReleaseAt)
-            .Select(x => x.Key)
-            .ToArray();
-
-        foreach (var targetEntity in due)
-        {
-            if (!_detainedTargets.Remove(targetEntity, out var detained))
-                continue;
-
-            if (!Exists(detained.Locker))
-                continue;
-
-            _transform.SetCoordinates(detained.Locker, detained.ReturnCoordinates);
-
-            if (Exists(targetEntity))
-                _entityStorage.Insert(targetEntity, detained.Locker);
-        }
-    }
-
-    private void CompleteTransfer(EntityUid contractorMind, EntityUid target, EntityUid portalUid)
-    {
-        if (!_profiles.TryGetValue(contractorMind, out var profile) || profile.ActiveOffer == null)
+        if (Hub(UplinkState(ent).LoggedInMind) is not { } hub)
             return;
 
-        if (!TryLoadPirateMap(out var pirateGridUid))
+        if (hub.TcToRedeem <= 0)
         {
-            CleanupPortal(portalUid, contractorMind);
+            _audio.PlayEntity(ErrorSound, args.Actor, args.Actor);
             return;
         }
 
-        var offer = profile.ActiveOffer;
-        var returnCoords = Transform(target).Coordinates;
-        var dead = IsTargetDead(offer.TargetEntity);
-        var payout = dead ? offer.DeadPayout : offer.AlivePayout;
+        var crystals = Spawn(Telecrystal, _transform.GetMoverCoordinates(args.Actor));
+        if (TryComp<StackComponent>(crystals, out var stack))
+            _stack.SetCount((crystals, stack), hub.TcToRedeem);
+        _popup.PopupEntity(Loc.GetString(_hands.TryPickupAnyHand(args.Actor, crystals)
+            ? "contractor-payment-hands"
+            : "contractor-payment-floor"), args.Actor, args.Actor);
 
-        if (!dead && TryGetTargetMind(offer.TargetEntity, out var targetMind))
-            _completedExtractedMinds.Add(targetMind);
+        hub.TcPayedOut += hub.TcToRedeem;
+        hub.TcToRedeem = 0;
+        UpdateUi(ent, args.Actor);
+    }
 
-        var locker = Spawn(PrisonLocker, new EntityCoordinates(pirateGridUid, new Vector2(1f, 0f)));
-        StripTargetIntoLocker(target, locker);
+    /// <summary>ui_data().</summary>
+    private void UpdateUi(EntityUid uplink, EntityUid user)
+    {
+        var state = UplinkState(uplink);
+        var hub = Hub(state.LoggedInMind);
+        var contracts = new List<ContractorContractData>();
+        var direction = string.Empty;
+        var enroute = false;
 
-        if (!dead)
-            EquipPrisonOutfit(target);
-
-        _transform.SetCoordinates(target, new EntityCoordinates(pirateGridUid, Vector2.Zero));
-        _detainedTargets[offer.TargetEntity] = new DetainedTarget(locker, returnCoords, _timing.CurTime + DetentionDuration);
-
-        if (TryGetMindOwner(contractorMind, out var contractor))
+        if (hub != null)
         {
-            TryPayTelecrystals(contractor, payout);
-            TryPayReputation(contractor, contractorMind, 2);
-            _antag.SendBriefing(contractor,
-                Loc.GetString("contractor-contract-complete", ("amount", payout), ("reputation", FixedPoint2.New(2))),
-                ContractorBriefingColor,
-                null);
-        }
-
-        PublishNews(target, offer);
-
-        profile.ActiveOffer = null;
-        profile.Stage = ContractorContractStage.None;
-        profile.Portal = null;
-        profile.FalsefireFlare = null;
-        profile.FalsefireIgnitionAt = null;
-        profile.BeaconAnnounced = false;
-        profile.BlockedTargets.Add(offer.TargetEntity);
-
-        if (TryGetMindOwner(contractorMind, out var owner))
-            EnsureOfferCapacity(contractorMind, owner, profile);
-
-        CleanupPortal(portalUid, contractorMind, true);
-    }
-
-    private void PublishNews(EntityUid target, ActiveContract offer)
-    {
-        _news.TryAddNews(
-            target,
-            Loc.GetString("contractor-news-title", ("target", offer.TargetName)),
-            Loc.GetString("contractor-news-content", ("target", offer.TargetName), ("job", offer.Job), ("reason", offer.Reason)),
-            out _,
-            Loc.GetString("contractor-news-author"));
-    }
-
-    private ContractorProfile EnsureProfile(EntityUid mindId, EntityUid owner)
-    {
-        if (_profiles.TryGetValue(mindId, out var existing))
-            return existing;
-
-        var profile = new ContractorProfile();
-        _profiles[mindId] = profile;
-        EnsureOfferCapacity(mindId, owner, profile);
-        return profile;
-    }
-
-    private void EnsureOfferCapacity(EntityUid mindId, EntityUid owner, ContractorProfile profile)
-    {
-        var beaconPools = GetBeaconPools(_station.GetOwningStation(owner));
-        var targets = GetAvailableTargets(mindId, owner);
-
-        while (profile.Offers.Count < OfferCapacity)
-        {
-            if (targets.Count == 0)
-                break;
-
-            var targetIndex = _random.Next(targets.Count);
-            var targetEntity = targets[targetIndex];
-            targets.RemoveAt(targetIndex);
-
-            var offer = BuildOffer(targetEntity, beaconPools);
-            if (offer == null)
-                continue;
-
-            profile.Offers.Add(offer);
-        }
-    }
-
-    private List<EntityUid> GetAvailableTargets(EntityUid contractorMind, EntityUid contractorOwner)
-    {
-        var taken = new HashSet<EntityUid>();
-        foreach (var profile in _profiles.Values)
-        {
-            foreach (var offer in profile.Offers)
+            if (hub.CurrentContract is { } current)
             {
-                taken.Add(offer.TargetEntity);
+                enroute = current.Status == ContractorContractStatus.Extracting;
+                direction = DropoffDirection(user, current);
             }
 
-            if (profile.ActiveOffer != null)
-                taken.Add(profile.ActiveOffer.TargetEntity);
+            foreach (var contract in hub.Contracts)
+            {
+                contracts.Add(new ContractorContractData(contract.Id,
+                    contract.TargetName, contract.TargetRank, contract.Payout, contract.PayoutBonus,
+                    contract.DropoffName, contract.Status, contract.WantedMessage));
+            }
         }
 
-        var blocked = _profiles.TryGetValue(contractorMind, out var current)
-            ? current.BlockedTargets
-            : new HashSet<EntityUid>();
+        _ui.SetUiState(uplink, ContractorUplinkUiKey.Key, new ContractorUplinkBoundUserInterfaceState(
+            state.FirstLoad,
+            hub != null,
+            state.InfoScreen,
+            state.Error,
+            hub?.CurrentContract != null,
+            enroute,
+            direction,
+            hub?.TcToRedeem ?? 0,
+            hub?.TcPayedOut ?? 0,
+            hub?.ContractsCompleted ?? 0,
+            contracts.ToArray()));
+    }
 
-        var output = new List<EntityUid>();
-        var stationUid = _station.GetOwningStation(contractorOwner);
-        var query = EntityQueryEnumerator<HumanoidProfileComponent, TransformComponent>();
-        while (query.MoveNext(out var targetUid, out _, out var xform))
+    /// <summary>dropoff_direction: стрелка к зоне или «LOCATION CONFIRMED».</summary>
+    private string DropoffDirection(EntityUid user, SyndicateContract contract)
+    {
+        if (contract.Dropoff is not { } beacon || TerminatingOrDeleted(beacon))
+            return "???";
+
+        var userPos = _transform.GetMapCoordinates(user);
+        var beaconPos = _transform.GetMapCoordinates(beacon);
+        if (userPos.MapId != beaconPos.MapId)
+            return "???";
+        if (InArea(user, beacon))
+            return Loc.GetString("contractor-location-confirmed");
+
+        var dir = (beaconPos.Position - userPos.Position).ToWorldAngle().GetDir();
+        return Loc.GetString($"contractor-direction-{dir.ToString().ToLowerInvariant()}");
+    }
+
+    private void RefreshUplinks(EntityUid mindId)
+    {
+        var query = EntityQueryEnumerator<ContractorUplinkComponent, ContractorUplinkStateComponent>();
+        while (query.MoveNext(out var uid, out _, out var state))
         {
-            if (targetUid == contractorOwner || taken.Contains(targetUid) || blocked.Contains(targetUid))
+            if (state.LoggedInMind != mindId)
                 continue;
-
-            if (xform.MapID == MapId.Nullspace || !HasComp<Content.Shared.Mobs.Components.MobStateComponent>(targetUid))
-                continue;
-
-            if (stationUid != null && _station.GetOwningStation(targetUid) != stationUid)
-                continue;
-
-            if (TryGetTargetMind(targetUid, out var targetMindId))
+            foreach (var actor in _ui.GetActors(uid, ContractorUplinkUiKey.Key))
             {
-                if (targetMindId == contractorMind)
-                    continue;
+                UpdateUi(uid, actor);
+            }
+        }
+    }
 
-                if (_roles.MindGetAllRoleInfo(targetMindId).Any(role => role.Antagonist))
+    #endregion
+
+    #region Эвакуация
+
+    /// <summary>syndicate_contract/handle_extraction(): оба в зоне — капсула садится рядом.</summary>
+    private bool HandleExtraction(EntityUid mindId, SyndicateContract contract, EntityUid user)
+    {
+        if (TargetBody(contract) is not { } target || !InArea(user, contract.Dropoff) || !InArea(target, contract.Dropoff))
+            return false;
+
+        if (FindFreeTile(user, 3, contract.Dropoff) is not { } tile)
+            return false;
+
+        LaunchExtractionPod(mindId, contract, tile);
+        return true;
+    }
+
+    /// <summary>find_obstruction_free_location(range, user, area).</summary>
+    private EntityCoordinates? FindFreeTile(EntityUid center, int range, EntityUid? area)
+    {
+        var xform = Transform(center);
+        if (xform.GridUid is not { } gridUid || !TryComp<MapGridComponent>(gridUid, out var grid))
+            return null;
+
+        var origin = _map.TileIndicesFor(gridUid, grid, xform.Coordinates);
+        var tiles = new List<Vector2i>();
+        for (var x = -range; x <= range; x++)
+        {
+            for (var y = -range; y <= range; y++)
+            {
+                if (x != 0 || y != 0)
+                    tiles.Add(origin + new Vector2i(x, y));
+            }
+        }
+
+        _random.Shuffle(tiles);
+        foreach (var tile in tiles)
+        {
+            if (!_map.TryGetTileRef(gridUid, grid, tile, out var tileRef) || _turf.IsSpace(tileRef)
+                || _turf.IsTileBlocked(tileRef, CollisionGroup.Impassable))
+                continue;
+
+            var coords = _map.GridTileToLocal(gridUid, grid, tile);
+            if (area != null)
+            {
+                var probe = Spawn(null, coords);
+                var inside = InArea(probe, area);
+                Del(probe);
+                if (!inside)
                     continue;
             }
 
-            output.Add(targetUid);
+            return coords;
         }
 
-        return output;
+        return null;
     }
 
-    private Dictionary<ContractorDifficulty, List<(EntityUid Uid, string Label)>> GetBeaconPools(EntityUid? stationUid)
+    /// <summary>launch_extraction_pod(): метка посадки, через пару секунд — капсула.</summary>
+    private void LaunchExtractionPod(EntityUid mindId, SyndicateContract contract, EntityCoordinates tile)
     {
-        var output = new Dictionary<ContractorDifficulty, List<(EntityUid, string)>>
+        var landing = Spawn(PodLanding, tile);
+        Schedule(PodArrival, () =>
         {
-            [ContractorDifficulty.Easy] = new(),
-            [ContractorDifficulty.Medium] = new(),
-            [ContractorDifficulty.Hard] = new(),
-        };
+            if (!TerminatingOrDeleted(landing))
+                QueueDel(landing);
 
-        var query = EntityQueryEnumerator<NavMapBeaconComponent>();
-        while (query.MoveNext(out var beaconUid, out var beacon))
-        {
-            var label = beacon.Text;
-            if (string.IsNullOrWhiteSpace(label))
-                continue;
-
-            if (stationUid != null && _station.GetOwningStation(beaconUid) != stationUid)
-                continue;
-
-            output[ClassifyBeacon(label)].Add((beaconUid, label));
-        }
-
-        if (output[ContractorDifficulty.Medium].Count == 0)
-        {
-            output[ContractorDifficulty.Medium].AddRange(output[ContractorDifficulty.Easy]);
-            output[ContractorDifficulty.Medium].AddRange(output[ContractorDifficulty.Hard]);
-        }
-
-        if (output[ContractorDifficulty.Easy].Count == 0)
-            output[ContractorDifficulty.Easy].AddRange(output[ContractorDifficulty.Medium]);
-
-        if (output[ContractorDifficulty.Hard].Count == 0)
-            output[ContractorDifficulty.Hard].AddRange(output[ContractorDifficulty.Medium]);
-
-        return output;
+            var pod = Spawn(ExtractionPod, tile);
+            var podComp = EnsureComp<ContractorExtractionPodComponent>(pod);
+            podComp.ContractorMind = mindId;
+            podComp.ContractId = contract.Id;
+            _entityStorage.OpenStorage(pod);
+            _audio.PlayPvs(new SoundCollectionSpecifier("Explosion"), tile, AudioParams.Default.WithVolume(-8f));
+        });
     }
 
-    private ContractorDifficulty ClassifyBeacon(string label)
+    /// <summary>syndicate_contract/enter_check(): кто попал в капсулу — улетает.</summary>
+    private void OnPodEntered(Entity<ContractorExtractionPodComponent> ent, ref EntInsertedIntoContainerMessage args)
     {
-        var lowered = label.ToLowerInvariant();
-        if (HardKeywords.Any(lowered.Contains))
-            return ContractorDifficulty.Hard;
-
-        if (EasyKeywords.Any(lowered.Contains))
-            return ContractorDifficulty.Easy;
-
-        if (MediumKeywords.Any(lowered.Contains))
-            return ContractorDifficulty.Medium;
-
-        return ContractorDifficulty.Medium;
-    }
-
-    private ContractOffer? BuildOffer(EntityUid targetEntity, Dictionary<ContractorDifficulty, List<(EntityUid Uid, string Label)>> beaconPools)
-    {
-        if (!Exists(targetEntity))
-            return null;
-
-        var targetName = Name(targetEntity);
-        var job = Loc.GetString("contractor-target-job-unknown");
-        if (TryGetTargetMind(targetEntity, out var targetMindId))
-        {
-            var jobRole = _roles.MindGetAllRoleInfo(targetMindId).FirstOrDefault(role => !role.Antagonist);
-            if (!string.IsNullOrEmpty(jobRole.Name))
-                job = Loc.GetString(jobRole.Name);
-        }
-
-        var options = new List<ContractOption>();
-        foreach (var difficulty in new[] { ContractorDifficulty.Easy, ContractorDifficulty.Medium, ContractorDifficulty.Hard })
-        {
-            if (beaconPools[difficulty].Count == 0)
-                continue;
-
-            var beacon = _random.Pick(beaconPools[difficulty]);
-            var alive = difficulty switch
-            {
-                ContractorDifficulty.Easy => FixedPoint2.New(_random.Next(2, 4)),
-                ContractorDifficulty.Medium => FixedPoint2.New(_random.Next(5, 7)),
-                ContractorDifficulty.Hard => FixedPoint2.New(_random.Next(6, 9)),
-                _ => FixedPoint2.Zero,
-            };
-
-            options.Add(new ContractOption(
-                difficulty,
-                beacon.Uid,
-                beacon.Label,
-                GenerateReason(targetName, beacon.Label, difficulty),
-                alive,
-                alive * DeadPayoutRatio));
-        }
-
-        if (options.Count == 0)
-            return null;
-
-        return new ContractOffer(
-            $"{targetEntity}",
-            targetEntity,
-            targetName,
-            job,
-            options);
-    }
-
-    private string GenerateReason(string targetName, string beaconLabel, ContractorDifficulty difficulty)
-    {
-        var key = difficulty switch
-        {
-            ContractorDifficulty.Easy => _random.Pick(EasyReasonTemplates),
-            ContractorDifficulty.Medium => _random.Pick(MediumReasonTemplates),
-            ContractorDifficulty.Hard => _random.Pick(HardReasonTemplates),
-            _ => EasyReasonTemplates[0],
-        };
-
-        return Loc.GetString(key, ("target", targetName), ("location", beaconLabel));
-    }
-
-    private void UpdateUplinkUi(EntityUid uplinkUid, EntityUid mindId)
-    {
-        if (!TryComp<StoreComponent>(uplinkUid, out var store) || !TryGetMindOwner(mindId, out var owner))
+        if (ent.Comp.Used || !HasComp<MobStateComponent>(args.Entity))
             return;
 
-        TryBindStoreToMind(uplinkUid, mindId, store);
-        var profile = EnsureProfile(mindId, owner);
-        var rep = store.Balance.TryGetValue(ContractorCurrency, out var balance) ? balance : FixedPoint2.Zero;
-        var offers = profile.Offers.Select(ToUiData).ToArray();
-        var active = profile.ActiveOffer == null ? EmptyActiveOffer() : ToUiData(profile.ActiveOffer);
+        ent.Comp.Used = true;
+        var victim = args.Entity;
+        var mindId = ent.Comp.ContractorMind;
+        var hub = Hub(mindId);
+        var contract = hub?.Contracts.FirstOrDefault(c => c.Id == ent.Comp.ContractId);
+        var dropoff = contract?.Dropoff;
 
-        var requisitions = Requisitions
-            .Select(requisition => new ContractorRequisitionData(
-                requisition.Id,
-                Loc.GetString($"contractor-requisition-{requisition.Id}-name"),
-                Loc.GetString($"contractor-requisition-{requisition.Id}-desc"),
-                requisition.Cost,
-                rep >= requisition.Cost))
-            .ToArray();
-
-        var status = profile.ActiveOffer == null
-            ? Loc.GetString("contractor-status-idle", ("count", offers.Length))
-            : BuildStatus(profile, offers.Length);
-
-        _ui.SetUiState(uplinkUid, ContractorUplinkUiKey.Key, new ContractorUplinkBoundUserInterfaceState(
-            rep,
-            status,
-            offers,
-            profile.ActiveOffer != null,
-            active,
-            profile.Stage,
-            requisitions,
-            profile.Stage == ContractorContractStage.PortalReady && profile.Portal == null && profile.FalsefireFlare == null));
-    }
-
-    private ContractorContractOfferData ToUiData(ContractOffer offer)
-    {
-        return new ContractorContractOfferData(
-            offer.Id,
-            offer.TargetName,
-            offer.Job,
-            offer.Options.Select(option => new ContractorContractOptionData(
-                option.Difficulty,
-                option.BeaconLabel,
-                option.Reason,
-                option.AlivePayout,
-                option.DeadPayout)).ToArray());
-    }
-
-    private ContractorActiveContractData ToUiData(ActiveContract offer)
-    {
-        return new ContractorActiveContractData(
-            offer.Id,
-            offer.TargetName,
-            offer.Job,
-            offer.BeaconLabel,
-            offer.Reason,
-            offer.Difficulty,
-            offer.AlivePayout,
-            offer.DeadPayout);
-    }
-
-    private static ContractorActiveContractData EmptyActiveOffer()
-    {
-        return new ContractorActiveContractData(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, ContractorDifficulty.Easy, FixedPoint2.Zero, FixedPoint2.Zero);
-    }
-
-    private string BuildStatus(ContractorProfile profile, int offerCount)
-    {
-        if (profile.ActiveOffer == null)
-            return Loc.GetString("contractor-status-idle", ("count", offerCount));
-
-        return profile.Stage switch
+        if (hub != null && contract != null)
         {
-            ContractorContractStage.AwaitingBeacon => Loc.GetString("contractor-status-awaiting-beacon", ("location", profile.ActiveOffer.BeaconLabel)),
-            ContractorContractStage.PortalReady when profile.Portal != null => Loc.GetString("contractor-status-portal-open"),
-            ContractorContractStage.PortalReady when profile.FalsefireFlare != null && profile.FalsefireIgnitionAt != null => Loc.GetString("contractor-status-falsefire-arming"),
-            ContractorContractStage.PortalReady when profile.FalsefireFlare != null => Loc.GetString("contractor-status-falsefire-issued"),
-            ContractorContractStage.PortalReady => Loc.GetString("contractor-status-portal-ready"),
-            _ => Loc.GetString("contractor-status-idle", ("count", offerCount)),
-        };
-    }
+            if (TargetBody(contract) == victim)
+            {
+                hub.TcToRedeem += contract.Payout;
+                hub.ContractsCompleted++;
+                if (!_mobState.IsDead(victim))
+                    hub.TcToRedeem += contract.PayoutBonus;
+                contract.Status = ContractorContractStatus.Complete;
+            }
+            else
+            {
+                // Отправить не ту цель — то же, что отменить контракт.
+                contract.Status = ContractorContractStatus.Aborted;
+            }
 
-    private bool TryPayTelecrystals(EntityUid contractor, FixedPoint2 amount)
-    {
-        var uplink = _uplink.FindUplinkTarget(contractor);
-        if (uplink == null || !TryComp<StoreComponent>(uplink, out var store))
-            return false;
+            if (hub.CurrentContract == contract)
+                hub.CurrentContract = null;
+        }
 
-        return _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
+        if (TryComp<MindContainerComponent>(victim, out var victimMind) && victimMind.Mind is { } victimMindId)
+            _kidnapped.Add(victimMindId);
+
+        var returnCoords = _transform.GetMoverCoordinates(ent);
+        var belongings = StripBelongings(victim);
+
+        // start_exit_sequence(): капсула закрывается и улетает.
+        Schedule(TimeSpan.FromSeconds(1), () =>
         {
-            [UplinkSystem.TelecrystalCurrencyPrototype] = amount,
-        }, uplink.Value, store);
-    }
+            if (TerminatingOrDeleted(ent))
+                return;
+            _audio.PlayPvs(PodWoosh, _transform.GetMoverCoordinates(ent));
+            if (!TerminatingOrDeleted(victim))
+            {
+                _container.TryRemoveFromContainer(victim, force: true);
+                SendToHolding(victim);
+                var comp = EnsureComp<ContractorVictimComponent>(victim);
+                comp.Level = 0;
+                comp.NextExperience = _timing.CurTime + TimeSpan.FromSeconds(3);
+                comp.ReturnAt = _timing.CurTime + TimeSpan.FromSeconds(3) + CaptureTime;
+                comp.Belongings = belongings;
+                comp.Dropoff = dropoff;
+                comp.FallbackReturn = returnCoords;
+            }
 
-    private bool TryPayReputation(EntityUid owner, EntityUid mindId, FixedPoint2 amount)
-    {
-        if (!TryFindContractorStore(owner, mindId, out var storeUid, out var store))
-            return false;
+            // Остальное содержимое высыпается, улетает только жертва.
+            _entityStorage.EmptyContents(ent);
+            QueueDel(ent);
+        });
 
-        return _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
+        // finish_enter(): доля выкупа — через 3 секунды.
+        if (contract is { Status: ContractorContractStatus.Complete })
         {
-            [ContractorCurrency] = amount,
-        }, storeUid, store);
+            var ransom = contract.Ransom * _random.Next(11, 14) / 10;
+            Schedule(TimeSpan.FromSeconds(3), () => PayRansom(mindId, ransom));
+        }
+
+        RefreshUplinks(mindId);
     }
 
-    private void StripTargetIntoLocker(EntityUid target, EntityUid locker)
+    /// <summary>Контрактник получает 35% выкупа (в SS14 — наличными).</summary>
+    private void PayRansom(EntityUid mindId, int ransom)
     {
-        var lockerCoords = Transform(locker).Coordinates;
+        if (CompOrNull<MindComponent>(mindId)?.OwnedEntity is not { } contractor || TerminatingOrDeleted(contractor))
+            return;
 
-        if (TryComp<InventoryComponent>(target, out var inventory) && _inventory.TryGetSlots(target, out var slots))
+        var share = (int) (ransom * 0.35f);
+        var cash = Spawn(Cash, _transform.GetMoverCoordinates(contractor));
+        if (TryComp<StackComponent>(cash, out var stack))
+            _stack.SetCount((cash, stack), share);
+        _hands.TryPickupAnyHand(contractor, cash);
+        SendChat(contractor, Loc.GetString("contractor-ransom-paid", ("amount", share)));
+    }
+
+    /// <summary>gather_belongings(): забрать всё, кроме комбинезона и обуви.</summary>
+    private EntityUid StripBelongings(EntityUid victim)
+    {
+        var holder = Spawn(null, MapCoordinates.Nullspace);
+        var container = _container.EnsureContainer<Container>(holder, BelongingsContainer);
+
+        if (TryComp<InventoryComponent>(victim, out var inventory) && _inventory.TryGetSlots(victim, out var slots))
         {
             foreach (var slot in slots)
             {
-                if (!_inventory.TryGetSlotEntity(target, slot.Name, out var item, inventory))
+                if (slot.Name is "jumpsuit" or "shoes")
                     continue;
-
-                if (!_inventory.TryUnequip(target, slot.Name, true, true, false, inventory))
+                if (!_inventory.TryGetSlotEntity(victim, slot.Name, out var item, inventory))
                     continue;
-
-                _transform.SetCoordinates(item.Value, lockerCoords);
-                _entityStorage.Insert(item.Value, locker);
+                if (_inventory.TryUnequip(victim, slot.Name, true, true, false, inventory))
+                    _container.Insert(item.Value, container);
             }
         }
 
-        if (TryComp<HandsComponent>(target, out var hands))
+        if (TryComp<HandsComponent>(victim, out var hands))
         {
-            foreach (var held in _hands.EnumerateHeld((target, hands)).ToArray())
+            foreach (var held in _hands.EnumerateHeld((victim, hands)).ToArray())
             {
-                if (!_hands.TryDrop((target, hands), held, lockerCoords, checkActionBlocker: false, doDropInteraction: false))
-                    continue;
-
-                _entityStorage.Insert(held, locker);
+                if (_hands.TryDrop((victim, hands), held, checkActionBlocker: false, doDropInteraction: false))
+                    _container.Insert(held, container);
             }
         }
+
+        return holder;
     }
 
-    private void EquipPrisonOutfit(EntityUid target)
+    /// <summary>Удерживающий объект Синдиката (holdingfacility).</summary>
+    private void SendToHolding(EntityUid victim)
     {
-        if (!TryComp<InventoryComponent>(target, out var inventory))
+        if (!TryLoadHolding(out var grid) || !TryComp<MapGridComponent>(grid, out var gridComp))
             return;
 
-        var coords = Transform(target).Coordinates;
-        var jumpsuit = Spawn(PrisonUniform, coords);
-        var shoes = Spawn(PrisonShoes, coords);
-        _inventory.TryEquip(target, jumpsuit, "jumpsuit", silent: true, force: true, inventory: inventory);
-        _inventory.TryEquip(target, shoes, "shoes", silent: true, force: true, inventory: inventory);
+        var tiles = _map.GetAllTiles(grid, gridComp)
+            .Where(t => !_turf.IsSpace(t) && !_turf.IsTileBlocked(t, CollisionGroup.Impassable))
+            .ToList();
+        if (tiles.Count == 0)
+            return;
+
+        var tile = _random.Pick(tiles);
+        _transform.SetCoordinates(victim, _map.GridTileToLocal(grid, gridComp, tile.GridIndices));
+        _transform.AttachToGridOrMap(victim);
     }
 
-    private bool TryLoadPirateMap(out EntityUid gridUid)
+    private bool TryLoadHolding(out EntityUid gridUid)
     {
-        if (_pirateGridUid != null && Exists(_pirateGridUid.Value))
+        if (_holdingGrid is { } existing && Exists(existing))
         {
-            gridUid = _pirateGridUid.Value;
+            gridUid = existing;
             return true;
         }
 
         var options = DeserializationOptions.Default with { InitializeMaps = true, PauseMaps = false };
-        if (!_mapLoader.TryLoadGrid(new ResPath(PirateMapPath), out _, out var grid, options))
+        if (!_mapLoader.TryLoadGrid(new ResPath(HoldingMapPath), out _, out var grid, options))
         {
             gridUid = EntityUid.Invalid;
             return false;
         }
 
-        _pirateGridUid = grid.Value.Owner;
+        _holdingGrid = grid.Value.Owner;
         gridUid = grid.Value.Owner;
         return true;
     }
 
-    private bool TryFindContractorStoreFromMind(EntityUid mindId, out EntityUid storeUid, out StoreComponent? store)
+    #endregion
+
+    #region Жертва
+
+    /// <summary>handle_victim_experience(): уровни воздействия на похищенного.</summary>
+    private void UpdateVictims(TimeSpan now)
     {
-        if (TryGetMindOwner(mindId, out var owner))
-            return TryFindContractorStore(owner, mindId, out storeUid, out store);
-
-        storeUid = EntityUid.Invalid;
-        store = null;
-        return false;
-    }
-
-    private bool TryFindContractorStore(EntityUid owner, EntityUid mindId, out EntityUid storeUid, out StoreComponent? store)
-    {
-        var ownerXform = Transform(owner);
-        var ownerPosition = _transform.GetWorldPosition(ownerXform);
-
-        var query = EntityQueryEnumerator<StoreComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var storeComp, out var xform))
+        var query = EntityQueryEnumerator<ContractorVictimComponent>();
+        while (query.MoveNext(out var uid, out var victim))
         {
-            if (!storeComp.CurrencyWhitelist.Contains(ContractorCurrency))
-                continue;
-
-            if (storeComp.AccountOwner == mindId)
+            if (now >= victim.ReturnAt)
             {
-                storeUid = uid;
-                store = storeComp;
-                return true;
+                ReturnVictim((uid, victim));
+                continue;
             }
 
-            if (storeComp.AccountOwner != null)
+            if (victim.Level > 4 || now < victim.NextExperience || _mobState.IsDead(uid))
                 continue;
 
-            if (xform.MapID != ownerXform.MapID)
-                continue;
+            TimeSpan? next = null;
+            switch (victim.Level)
+            {
+                case 0:
+                    // Лечим, чтобы вывести из крита.
+                    var omnizine = new Solution();
+                    omnizine.AddReagent(Omnizine, FixedPoint2.New(20));
+                    _bloodstream.TryAddToBloodstream(uid, omnizine);
+                    Flash(uid);
+                    _drunk.TryApplyDrunkenness(uid, TimeSpan.FromSeconds(6));
+                    SendChat(uid, Loc.GetString("contractor-victim-1"));
+                    next = TimeSpan.FromSeconds(6);
+                    break;
+                case 1:
+                    SendChat(uid, Loc.GetString("contractor-victim-2"));
+                    _drunk.TryApplyDrunkenness(uid, TimeSpan.FromSeconds(3.5));
+                    next = TimeSpan.FromSeconds(6.5);
+                    break;
+                case 2:
+                    SendChat(uid, Loc.GetString("contractor-victim-3"));
+                    Flash(uid);
+                    _drunk.TryApplyDrunkenness(uid, TimeSpan.FromSeconds(5));
+                    next = TimeSpan.FromSeconds(3);
+                    break;
+                case 3:
+                    SendChat(uid, Loc.GetString("contractor-victim-4"));
+                    next = TimeSpan.FromSeconds(10);
+                    break;
+                case 4:
+                    Flash(uid);
+                    _status.TryAddStatusEffectDuration(uid, SleepingSystem.StatusEffectForcedSleeping, TimeSpan.FromSeconds(20));
+                    SendChat(uid, Loc.GetString("contractor-victim-5"));
+                    _drunk.TryApplyDrunkenness(uid, TimeSpan.FromSeconds(12));
+                    break;
+            }
 
-            var distance = (_transform.GetWorldPosition(xform) - ownerPosition).Length();
-            if (distance > StoreLinkRange)
-                continue;
+            victim.Level++;
+            if (next is { } delay)
+                victim.NextExperience = now + delay;
+        }
+    }
 
-            storeComp.AccountOwner = mindId;
-            Dirty(uid, storeComp);
+    /// <summary>return_victim() + returnal_side_effects().</summary>
+    private void ReturnVictim(Entity<ContractorVictimComponent> ent)
+    {
+        EntityCoordinates? destination = null;
+        if (ent.Comp.Dropoff is { } dropoff && !TerminatingOrDeleted(dropoff))
+            destination = FindFreeTile(dropoff, 6, dropoff);
+        destination ??= ent.Comp.FallbackReturn;
 
-            storeUid = uid;
-            store = storeComp;
-            return true;
+        if (destination is { } coords)
+        {
+            _audio.PlayPvs(PodWoosh, coords);
+            _transform.SetCoordinates(ent, coords);
+            _transform.AttachToGridOrMap(ent);
+
+            if (ent.Comp.Belongings is { } holder && !TerminatingOrDeleted(holder)
+                && _container.TryGetContainer(holder, BelongingsContainer, out var container))
+            {
+                foreach (var item in container.ContainedEntities.ToArray())
+                {
+                    _container.Remove(item, container, destination: coords);
+                }
+            }
         }
 
-        storeUid = EntityUid.Invalid;
-        store = null;
-        return false;
+        if (ent.Comp.Belongings is { } belongings)
+            QueueDel(belongings);
+
+        Flash(ent);
+        _drunk.TryApplyDrunkenness(ent, TimeSpan.FromSeconds(5));
+        SendChat(ent, Loc.GetString("contractor-victim-returned"));
+        RemCompDeferred<ContractorVictimComponent>(ent);
     }
 
-    private void TryAssignNearbyContractorStore(EntityUid owner, EntityUid mindId)
+    private void Flash(EntityUid uid)
     {
-        TryFindContractorStore(owner, mindId, out _, out _);
+        _flash.Flash(uid, null, null, TimeSpan.FromSeconds(3), 0.8f, displayPopup: false);
     }
 
-    private void TryBindStoreToMind(EntityUid uplinkUid, EntityUid mindId, StoreComponent? store = null)
+    private void SendChat(EntityUid uid, string text)
     {
-        if (!Resolve(uplinkUid, ref store, false))
+        if (TryComp<ActorComponent>(uid, out var actor))
+            _chat.ChatMessageToOne(ChatChannel.Server, text, text, EntityUid.Invalid, false, actor.PlayerSession.Channel);
+    }
+
+    #endregion
+
+    #region Аплинк Синдиката
+
+    /// <summary>uplink_item/contractor/reroll: новые цели для неактивных контрактов.</summary>
+    private void OnReroll(Entity<MindContainerComponent> ent, ref ContractorRerollEvent args)
+    {
+        if (ent.Comp.Mind is not { } mindId || Hub(mindId) is not { } hub)
             return;
 
-        if (store.AccountOwner == mindId)
-            return;
+        var targets = new HashSet<EntityUid>();
+        foreach (var contract in hub.Contracts)
+        {
+            if (contract.Status is ContractorContractStatus.Active or ContractorContractStatus.Inactive)
+                continue;
+            if (contract.TargetMind is { } target)
+                targets.Add(target);
+        }
 
-        store.AccountOwner = mindId;
-        Dirty(uplinkUid, store);
+        foreach (var contract in hub.Contracts)
+        {
+            if (contract.Status is not (ContractorContractStatus.Active or ContractorContractStatus.Inactive))
+                continue;
+            Generate(mindId, contract, targets);
+            if (contract.TargetMind is { } target)
+                targets.Add(target);
+        }
+
+        hub.AssignedTargets = targets;
+        RefreshUplinks(mindId);
     }
 
-    private void RefreshTraitorUplink(EntityUid owner)
-    {
-        var uplink = _uplink.FindUplinkTarget(owner);
-        if (uplink == null || !TryComp<StoreComponent>(uplink.Value, out var store))
-            return;
+    #endregion
 
-        _store.UpdateUserInterface(owner, uplink.Value, store);
+    #region Пинпоинтер
+
+    /// <summary>Пинпоинтер навсегда привязывается к первому взявшему его контрактнику.</summary>
+    private void OnPinpointerPickedUp(Entity<ContractorPinpointerComponent> ent, ref GotEquippedHandEvent args)
+    {
+        if (ent.Comp.ContractorMind != null || !_mind.TryGetMind(args.User, out var mindId, out _))
+            return;
+        ent.Comp.ContractorMind = mindId;
     }
 
-    private bool TryGetMindOwner(EntityUid mindId, out EntityUid owner)
+    private void UpdatePinpointers(TimeSpan now)
     {
-        owner = EntityUid.Invalid;
-        if (!TryComp<MindComponent>(mindId, out var mind) || mind.OwnedEntity is not { } owned)
+        var query = EntityQueryEnumerator<ContractorPinpointerComponent, PinpointerComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var pinpointer))
+        {
+            if (Hub(comp.ContractorMind)?.CurrentContract is not { } contract || TargetBody(contract) is not { } target)
+            {
+                ClearPinpointer((uid, comp), pinpointer);
+                continue;
+            }
+
+            if (comp.TargetEntity == target && comp.DecoyEntity is { } decoy && Exists(decoy) && now < comp.NextRefreshAt)
+                continue;
+
+            // minimum_range = 25: точность низкая, указывает в окрестность цели.
+            var xform = Transform(target);
+            if (xform.MapID == MapId.Nullspace)
+            {
+                ClearPinpointer((uid, comp), pinpointer);
+                continue;
+            }
+
+            var coords = xform.Coordinates.Offset(_random.NextAngle().ToVec() * _random.NextFloat(2.5f, 4.5f));
+            if (comp.DecoyEntity is not { } marker || !Exists(marker))
+            {
+                marker = Spawn(PinpointerMarker, coords);
+                comp.DecoyEntity = marker;
+            }
+            else
+            {
+                _transform.SetCoordinates(marker, coords);
+            }
+
+            comp.TargetEntity = target;
+            comp.NextRefreshAt = now + PinpointerRefreshDelay;
+            _pinpointer.SetTarget((uid, pinpointer), marker);
+        }
+    }
+
+    private void ClearPinpointer(Entity<ContractorPinpointerComponent> ent, PinpointerComponent pinpointer)
+    {
+        if (ent.Comp.DecoyEntity is { } decoy && Exists(decoy))
+            QueueDel(decoy);
+        if (ent.Comp.TargetEntity == null && ent.Comp.DecoyEntity == null)
+            return;
+        ent.Comp.DecoyEntity = null;
+        ent.Comp.TargetEntity = null;
+        _pinpointer.SetTarget((ent.Owner, pinpointer), null);
+    }
+
+    #endregion
+
+    /// <summary>Итоги раунда предателя: выполненные контракты и заработанные ТК.</summary>
+    private void OnRoundEnd(RoundEndTextAppendEvent ev)
+    {
+        var lines = new List<string>();
+        var query = EntityQueryEnumerator<ContractorHubComponent, MindComponent>();
+        while (query.MoveNext(out _, out var hub, out var mind))
+        {
+            lines.Add(Loc.GetString("contractor-round-end-line",
+                ("name", mind.CharacterName ?? "?"),
+                ("completed", hub.ContractsCompleted),
+                ("tc", hub.TcPayedOut + hub.TcToRedeem)));
+        }
+
+        if (lines.Count == 0)
+            return;
+
+        ev.AddLine(Loc.GetString("contractor-round-end-header"));
+        foreach (var line in lines)
+        {
+            ev.AddLine(line);
+        }
+
+        ev.AddLine(string.Empty);
+    }
+
+    /// <summary>Админ-команда: выдать предателю набор контрактника.</summary>
+    public bool TryGiveKit(ICommonSession player, out string error)
+    {
+        error = string.Empty;
+        if (player.AttachedEntity is not { } body)
+        {
+            error = Loc.GetString("contractor-command-no-body");
             return false;
+        }
 
-        owner = owned;
+        if (!_mind.TryGetMind(body, out var mindId, out _) || !_roles.MindHasRole<TraitorRoleComponent>(mindId))
+        {
+            error = Loc.GetString("contractor-command-not-traitor");
+            return false;
+        }
+
+        var kit = Spawn("BoxContractorKit", _transform.GetMoverCoordinates(body));
+        _hands.TryPickupAnyHand(body, kit);
         return true;
     }
 
-    public bool HasCompletedAliveExtraction(EntityUid targetMindId)
+    private void Schedule(TimeSpan delay, Action act)
     {
-        return _completedExtractedMinds.Contains(targetMindId);
+        _scheduled.Add((_timing.CurTime + delay, act));
     }
 
-    private bool IsTargetDead(EntityUid targetEntity)
+    public override void Update(float frameTime)
     {
-        return _mobState.IsDead(targetEntity);
+        base.Update(frameTime);
+        var now = _timing.CurTime;
+
+        for (var i = _scheduled.Count - 1; i >= 0; i--)
+        {
+            if (now < _scheduled[i].At)
+                continue;
+            var act = _scheduled[i].Act;
+            _scheduled.RemoveAt(i);
+            act();
+        }
+
+        UpdateVictims(now);
+        UpdatePinpointers(now);
     }
-
-    private bool TryGetTargetMind(EntityUid targetEntity, out EntityUid targetMind)
-    {
-        targetMind = EntityUid.Invalid;
-        if (!TryComp<MindContainerComponent>(targetEntity, out var mindContainer) || mindContainer.Mind is not { } mindId)
-            return false;
-
-        targetMind = mindId;
-        return true;
-    }
-
-    private void CleanupPortal(EntityUid portalUid, EntityUid contractorMind, bool updateUi = false)
-    {
-        if (Exists(portalUid))
-            QueueDel(portalUid);
-
-        if (_profiles.TryGetValue(contractorMind, out var profile) && profile.Portal == portalUid)
-            profile.Portal = null;
-
-        if (updateUi && TryFindContractorStoreFromMind(contractorMind, out var uplinkUid, out _))
-            UpdateUplinkUi(uplinkUid, contractorMind);
-    }
-
-    private sealed class ContractorProfile
-    {
-        public readonly List<ContractOffer> Offers = new();
-        public readonly HashSet<EntityUid> BlockedTargets = new();
-        public ActiveContract? ActiveOffer;
-        public ContractorContractStage Stage = ContractorContractStage.None;
-        public EntityUid? FalsefireFlare;
-        public TimeSpan? FalsefireIgnitionAt;
-        public EntityUid? Portal;
-        public bool BeaconAnnounced;
-    }
-
-    private sealed record ContractOffer(
-        string Id,
-        EntityUid TargetEntity,
-        string TargetName,
-        string Job,
-        List<ContractOption> Options);
-
-    private sealed record ContractOption(
-        ContractorDifficulty Difficulty,
-        EntityUid BeaconUid,
-        string BeaconLabel,
-        string Reason,
-        FixedPoint2 AlivePayout,
-        FixedPoint2 DeadPayout);
-
-    private sealed record ActiveContract(
-        string Id,
-        EntityUid TargetEntity,
-        string TargetName,
-        string Job,
-        EntityUid BeaconUid,
-        string BeaconLabel,
-        ContractorDifficulty Difficulty,
-        string Reason,
-        FixedPoint2 AlivePayout,
-        FixedPoint2 DeadPayout);
-
-    private sealed record RequisitionDefinition(string Id, string? Prototype, FixedPoint2 Cost);
-
-    private sealed record DetainedTarget(EntityUid Locker, EntityCoordinates ReturnCoordinates, TimeSpan ReleaseAt);
 }

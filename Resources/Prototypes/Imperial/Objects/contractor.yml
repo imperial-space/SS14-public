@@ -1,31 +1,10 @@
-- type: currency
-  id: ContractorRep
-  displayName: store-currency-display-contractor-reputation
-  canWithdraw: false
-
-- type: storeCategory
-  id: ContractorHub
-  name: store-category-contractor-hub
-  priority: 0
+# Контрактник Синдиката 1 в 1 с SS13 (code/modules/antagonists/traitor/contractor).
 
 - type: entity
-  id: StorePresetContractor
-  abstract: true
-  components:
-  - type: Store
-    name: store-preset-name-uplink
-    categories:
-    - ContractorHub
-    currencyWhitelist:
-    - ContractorRep
-    balance:
-      ContractorRep: 0
-
-- type: entity
-  parent: [BaseItem, StorePresetContractor, BaseSyndicateContraband]
+  parent: [BaseItem, BaseSyndicateContraband]
   id: ContractorUplink
-  name: contractor uplink
-  description: A dedicated receiver for contractor contracts, reputation requisitions, and falsefire deployment.
+  name: contractor tablet
+  description: A syndicate tablet running the Syndicate Contract Uplink program.
   components:
   - type: ContractorUplink
   - type: Sprite
@@ -44,68 +23,80 @@
   - type: ActivatableUI
     key: enum.ContractorUplinkUiKey.Key
 
+# closet/supplypod/extractionpod
 - type: entity
-  id: ContractorFalsefirePortal
-  name: falsefire portal
-  description: A one-way syndicate falsefire aperture keyed to a single hostage.
-  placement:
-    mode: SnapgridCenter
+  parent: BaseStructureDynamic
+  id: ContractorExtractionPod
+  name: syndicate extraction pod
+  description: A specialised pod for transporting targets to the Syndicate holding facility.
   categories: [ HideSpawnMenu ]
   components:
-  - type: ContractorPortal
   - type: Transform
-    anchored: true
+    noRot: true
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/contractor/pod.rsi
+    drawdepth: Mobs
+    layers:
+    - state: darkpod
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: darkpod_door
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: darkpod
+    stateDoorClosed: darkpod_door
+  - type: InteractionOutline
   - type: Physics
     bodyType: Static
-    canCollide: false
-  - type: Sprite
-    sprite: Effects/portal.rsi
-    state: portal-red
-    drawdepth: Effects
-  - type: Clickable
-  - type: InteractionOutline
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: EntityStorage
+    capacity: 1
+    openOnMove: false
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+  - type: PointLight
+    radius: 2
+    energy: 1.5
+    color: "#ff3030"
+  - type: ContractorExtractionPod
 
+# Метка посадки капсулы.
 - type: entity
-  parent: [Flare, BaseSyndicateContraband]
-  id: ContractorFalsefireFlare
-  name: contractor falsefire flare
-  description: A contractor-issued falsefire flare. Ignite it to open a one-way transfer aperture.
+  id: ContractorExtractionPodLanding
+  name: extraction pod landing zone
+  categories: [ HideSpawnMenu ]
   components:
-  - type: ExpendableLight
-    glowDuration: 30
-    fadeOutDuration: 5
-    iconStateLit: flare-contractor-on
-    iconStateSpent: flare-contractor
-    litSound:
-      path: /Audio/Items/Flare/flare_on.ogg
-    loopedSound:
-      path: /Audio/Items/Flare/flare_burn.ogg
-      params:
-        loop: true
-        volume: -10
-        maxDistance: 5
+  - type: Transform
+    anchored: true
   - type: Sprite
-    sprite: Imperial/contractor/fire.rsi
-    layers:
-    - map: [ enum.ExpendableLightVisualLayers.Base ]
-      state: flare-contractor
-    - map: [ enum.ExpendableLightVisualLayers.Glow ]
-      state: flare-contractor-on
-      visible: false
-      shader: unshaded
-    - map: [ enum.ExpendableLightVisualLayers.Overlay ]
-      state: flare-contractor
-  - type: Icon
-    sprite: Imperial/contractor/fire.rsi
-    state: flare-contractor
-  - type: Item
-    size: Tiny
+    sprite: Imperial/contractor/pod.rsi
+    state: pod_glow_red
+    drawdepth: FloorObjects
+    shader: unshaded
+  - type: PointLight
+    radius: 2.5
+    energy: 2
+    color: "#ff3030"
+  - type: TimedDespawn
+    lifetime: 5
 
 - type: entity
   parent: [Stunbaton, BaseSyndicateContraband]
   id: ContractorStunbaton
   name: contractor baton
-  description: A compact stun baton issued to contractors for target control during extraction.
+  description: A compact, specialised baton assigned to Syndicate contractors. Applies light electrical shocks to targets.
   components:
   - type: Sprite
     sprite: Imperial/contractor/baton/stunbaton.rsi
@@ -121,25 +112,31 @@
     quickEquip: false
     slots:
     - Belt
+  - type: Stunbaton
+    energyPerUse: 50
+  - type: StaminaDamageOnHit
+    damage: 55
 
 - type: entity
   parent: [ClothingOuterHardsuitSyndie, BaseSyndicateContraband]
   id: ClothingOuterHardsuitContractor
-  name: contractor hardsuit
-  description: A discreet syndicate hardsuit tailored for snatch-and-extract work rather than open battle.
+  name: contractor space suit
+  description: A specialised black and gold space suit that's quicker, and more compact than its standard Syndicate counterpart.
   components:
   - type: Sprite
     sprite: Imperial/contractor/hardsuit/hardsuit.rsi
   - type: Clothing
     sprite: Imperial/contractor/hardsuit/hardsuit.rsi
+  - type: Item
+    size: Normal
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitContractor
 
 - type: entity
   parent: [ClothingHeadHelmetHardsuitSyndie, BaseSyndicateContraband]
   id: ClothingHeadHelmetHardsuitContractor
-  name: contractor hardsuit helmet
-  description: A contractor helmet with full vacuum sealing and a low-profile silhouette.
+  name: contractor helmet
+  description: A specialised black and gold helmet that's more compact than its standard Syndicate counterpart.
   components:
   - type: Sprite
     sprite: Imperial/contractor/hardsuit/helmet.rsi
@@ -210,11 +207,12 @@
       types:
         Blunt: 1
 
+# pinpointer/crew/contractor: навсегда привязывается к первому взявшему, точность minimum_range = 25.
 - type: entity
   parent: [BaseItem, BaseSyndicateContraband]
   id: ContractorPinpointer
   name: contractor pinpointer
-  description: A contractor-grade universal pinpointer for tracking extraction equipment or selected targets.
+  description: A handheld tracking device that points to crew without needing suit sensors at the cost of accuracy.
   components:
   - type: Transform
     noRot: true
@@ -266,87 +264,83 @@
     bodyType: Static
     canCollide: false
 
-- type: entity
-  parent: [BaseBalloon, BaseSyndicateContraband]
-  id: ContractorBalloon
-  name: contractor balloon
-  description: A black-market balloon handed out to contractors who make it back with the cargo breathing.
-  components:
-  - type: Sprite
-    sprite: Imperial/contractor/balloon/balloon.rsi
-    state: icon
-  - type: Item
-    size: Small
-    sprite: Imperial/contractor/balloon/balloon.rsi
-
+# paper/contractor_guide
 - type: entity
   id: PaperContractorGuide
   parent: Paper
-  name: contractor field guide
-  description: A single-page briefing for newly upgraded syndicate contractors.
+  name: contractor guide
   components:
   - type: Paper
     content: contractor-guide-content
 
+# box/syndicate/contractor_loadout
 - type: entity
   parent: [BoxCardboard, BaseSyndicateContraband]
   id: BoxContractorLoadout
-  name: contractor loadout box
-  description: A compact contractor issue box containing disguise and field utility gear.
+  name: standard loadout
+  description: Supplied to Syndicate contractors, providing their specialised space suit and chameleon uniform.
   components:
+  - type: Sprite
+    layers:
+    - state: box_of_doom
   - type: Item
-    size: Small
-    shape:
-    - 0,0,1,1
+    size: Large
   - type: Storage
     grid:
-    - 0,0,7,6
-    maxItemSize: Huge
+    - 0,0,9,7
+    maxItemSize: Normal
   - type: StorageFill
     contents:
-    - id: ClothingBackpackChameleon
-    - id: ChameleonPDA
+    - id: ClothingOuterHardsuitContractor
     - id: ClothingUniformJumpsuitChameleon
-    - id: ClothingOuterChameleon
-    - id: ClothingNeckChameleon
     - id: ClothingMaskGasChameleon
-    - id: ClothingHeadHatChameleon
-    - id: ClothingHandsChameleon
-    - id: ClothingEyesChameleon
-    - id: ClothingHeadsetChameleon
-    - id: ClothingShoesChameleon
-    - id: ChameleonControllerImplanter
     - id: AgentIDCard
-    - id: EncryptionKeySyndie
+    - id: ClothingEyesGlassesThermal
+    # Содержимое ящика Синдиката: сам ящик в SS14 не помещается в коробку.
+    - id: Crowbar
+    - id: Wrench
+    - id: Screwdriver
+    - id: Wirecutter
+    - id: Welder
+    - id: Multitool
+    - id: ClothingHandsGlovesCombat
+    - id: RadioJammer
     - id: CigPackSyndicate
-    - id: FlippoLighter
-    - id: ClothingHeadMirror
+    - id: ContractorFlippoLighter
 
+# box/syndicate/contract_kit
 - type: entity
-  parent: BoxCardboard
-  id: BoxContractorExtras
-  name: contractor surplus box
-  description: A box with a few low-profile Syndicate tools for a fresh contractor.
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: BoxContractorKit
+  name: contract kit
+  description: Supplied to Syndicate contractors.
   components:
+  - type: Sprite
+    layers:
+    - state: box_of_doom
   - type: Item
-    size: Small
-    shape:
-    - 0,0,1,1
+    size: Huge
   - type: Storage
     grid:
-    - 0,0,6,3
+    - 0,0,7,5
+    maxItemSize: Large
   - type: StorageFill
     contents:
-    - id: EnergyDagger
-    - id: ThrowingKnivesKit
-    - id: SoapSyndie
+    - id: ContractorUplink
+    - id: BoxContractorLoadout
+    - id: ContractorStunbaton
+    - id: PaperContractorGuide
 
+# box/contractor/fulton_extraction
 - type: entity
   parent: [BoxCardboard, BaseSyndicateContraband]
   id: BoxContractorExtraction
-  name: contractor extraction kit
-  description: A kit with a standard Fulton beacon and spare extraction packs for moving cargo or living targets.
+  name: fulton extraction kit
+  description: A box containing a beacon and a fulton extraction pack.
   components:
+  - type: Sprite
+    layers:
+    - state: box_of_doom
   - type: Storage
     grid:
     - 0,0,5,4
@@ -355,45 +349,49 @@
     contents:
     - id: FultonBeacon
     - id: Fulton
-      amount: 4
+
+# antag_spawner/loadout/contractor
+- type: entity
+  parent: ReinforcementRadio
+  id: ContractorReinforcementRadio
+  name: contractor support beacon
+  description: A beacon that calls in a Syndicate support agent to assist a contractor.
+  components:
+  - type: GhostRole
+    name: ghost-role-information-contractor-partner-name
+    description: ghost-role-information-contractor-partner-description
+    rules: ghost-role-information-syndicate-reinforcement-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: default
+  - type: GhostRoleMobSpawner
+    prototype: MobHumanContractorPartner
 
 - type: entity
-  parent: [BoxCardboard, BaseSyndicateContraband]
-  id: BoxContractorKit
-  name: contractor kit
-  description: A contractor conversion package for selected syndicate agents, with uplink access to contracts, falsefire, and requisitions.
+  parent: MobHumanSyndicateAgent
+  id: MobHumanContractorPartner
+  name: syndicate support unit
   components:
-  - type: Storage
-    grid:
-    - 0,0,12,8
-    maxItemSize: Huge
-  - type: Item
-    size: Huge
-    shape:
-    - 0,0,5,4
-  - type: StorageFill
-    contents:
-    - id: ClothingOuterHardsuitContractor
-    - id: ContractorUplink
-    - id: ContractorStunbaton
-    - id: PaperContractorGuide
-    - id: ClothingBackpackChameleon
-    - id: ChameleonPDA
-    - id: ClothingUniformJumpsuitChameleon
-    - id: ClothingOuterChameleon
-    - id: ClothingNeckChameleon
-    - id: ClothingMaskGasChameleon
-    - id: ClothingHeadHatChameleon
-    - id: ClothingHandsChameleon
-    - id: ClothingEyesChameleon
-    - id: ClothingHeadsetChameleon
-    - id: ClothingShoesChameleon
-    - id: ChameleonControllerImplanter
-    - id: AgentIDCard
-    - id: EncryptionKeySyndie
-    - id: CigPackSyndicate
-    - id: FlippoLighter
-    - id: ClothingHeadMirror
-    - id: EnergyDagger
-    - id: ThrowingKnivesKit
-    - id: SoapSyndie
+  - type: Loadout
+    prototypes: [ ContractorPartnerGear ]
+    roleLoadout: [ RoleSurvivalSyndicate ]
+
+# outfit/contractor_partner
+- type: startingGear
+  id: ContractorPartnerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChameleon
+    outerClothing: ClothingOuterChameleon
+    back: ClothingBackpackChameleon
+    id: ChameleonPDA
+    shoes: ClothingShoesChameleonNoSlips
+    ears: ClothingHeadsetChameleon
+    mask: ClothingMaskGasChameleon
+    pocket1: CigPackSyndicate
+    pocket2: ContractorFlippoLighter
+  inhand:
+  - ToolboxSyndicateFilled
+  storage:
+    back:
+    - UplinkImplanter

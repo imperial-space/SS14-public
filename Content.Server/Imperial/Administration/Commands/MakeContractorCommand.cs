@@ -14,7 +14,7 @@ public sealed class MakeContractorCommand : LocalizedCommands
     [Dependency] private readonly IPlayerManager _players = default!;
 
     public override string Command => "makecontractor";
-    public override string Description => "Make a connected traitor a contractor.";
+    public override string Description => "Give a connected traitor the contractor kit.";
     public override string Help => "makecontractor <ckey>";
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
@@ -45,12 +45,12 @@ public sealed class MakeContractorCommand : LocalizedCommands
             return;
         }
 
-        if (!contractor.TryMakeContractor(player, out var error))
+        if (!contractor.TryGiveKit(player, out var error))
         {
             shell.WriteError(error);
             return;
         }
 
-        shell.WriteLine($"Made {player.Name} a contractor.");
+        shell.WriteLine($"Gave {player.Name} the contractor kit.");
     }
 }
