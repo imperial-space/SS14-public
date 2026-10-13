@@ -1,0 +1,381 @@
+# Клеточные линии (vatgrowing/samples/cell_lines). Сгенерировано из кода SS13.
+
+- type: cellLine
+  id: CellLineMouse
+  desc: cell-line-mouse
+  required: [ Protein ]
+  supplementary:
+    Cornoil: 2
+    Egg: 1
+    Nutriment: 1
+    Rice: 1
+    RobustHarvest: 2
+    Sugar: 1
+    UncookedAnimalProteins: 2
+    Vitamin: 1
+  suppressive:
+    Astrotame: -4
+    Heparin: -6
+    Rubberneck: -3
+  virusSuspectibility: 2
+  results: [ MobMouse ]
+  resultCount: 2
+
+- type: cellLine
+  id: CellLineChicken
+  desc: cell-line-chicken
+  required: [ Protein ]
+  supplementary:
+    Egg: 1
+    Rice: 4
+    RobustHarvest: 3
+    Vitamin: 2
+  suppressive:
+    Oil: -4
+    Toxin: -2
+  virusSuspectibility: 1
+  results: [ MobChicken ]
+
+- type: cellLine
+  id: CellLineCow
+  desc: cell-line-cow
+  required: [ Protein, Nutriment, Cellulose ]
+  supplementary:
+    Flour: 1
+    Rice: 2
+    RobustHarvest: 4
+    Vitamin: 2
+  suppressive:
+    CarpoToxin: -5
+    Toxin: -2
+  virusSuspectibility: 1
+  results: [ MobCow ]
+
+- type: cellLine
+  id: CellLineGoat
+  desc: cell-line-goat
+  required: [ Protein, Cellulose ]
+  supplementary:
+    RobustHarvest: 4
+    Vitamin: 2
+  suppressive:
+    Sugar: -1
+    Toxin: -2
+  virusSuspectibility: 1
+  results: [ MobGoat ]
+
+- type: cellLine
+  id: CellLinePig
+  desc: cell-line-pig
+  required: [ Protein ]
+  supplementary:
+    BbqSauce: 4
+    RobustHarvest: 4
+    Vitamin: 2
+  suppressive:
+    Acetone: -1
+    CarpoToxin: -2
+    Toxin: -2
+  virusSuspectibility: 1
+  results: [ MobPig ]
+
+- type: cellLine
+  id: CellLineCat
+  desc: cell-line-cat
+  required: [ Protein, UncookedAnimalProteins ]
+  supplementary:
+    CocoaPowder: -4
+    HotCocoa: -2
+    Milk: 1
+    Oculine: 2
+    RobustHarvest: 3
+    Vitamin: 2
+  suppressive:
+    CocoaPowder: -4
+    HotCocoa: -2
+  virusSuspectibility: 1.5
+  results: [ MobCat ]
+
+- type: cellLine
+  id: CellLineCorgi
+  desc: cell-line-corgi
+  required: [ Protein, UncookedAnimalProteins ]
+  supplementary:
+    RobustHarvest: 3
+    Vitamin: 2
+  suppressive:
+    Allicin: -2
+    CocoaPowder: -2
+  virusSuspectibility: 1
+  results: [ MobCorgi ]
+
+- type: cellLine
+  id: CellLineBear
+  desc: cell-line-bear
+  required: [ Protein, UncookedAnimalProteins, Bicaridine, Sugar, RobustHarvest, Diphenhydramine, Vitamin ]
+  virusSuspectibility: 2
+  results: [ MobBearSpace ]
+
+- type: cellLine
+  id: CellLineCarp
+  desc: cell-line-carp
+  required: [ Protein, Nutriment ]
+  supplementary:
+    CarpoToxin: 3
+    Cornoil: 4
+    Vitamin: 2
+  suppressive:
+    Bungotoxin: -6
+    Mercury: -4
+    Oxygen: -3
+  virusSuspectibility: 2
+  results: [ MobCarp ]
+
+- type: cellLine
+  id: CellLineMegacarp
+  desc: cell-line-megacarp
+  required: [ Protein, Bicaridine, Nutriment ]
+  supplementary:
+    CarpoToxin: 2
+    Cornoil: 4
+    RobustHarvest: 3
+    Vitamin: 2
+  suppressive:
+    Bungotoxin: -6
+    Oxygen: -3
+  virusSuspectibility: 1
+  results: [ MobShark ]
+
+- type: cellLine
+  id: CellLineSnake
+  desc: cell-line-snake
+  required: [ Protein, UncookedAnimalProteins ]
+  supplementary:
+    Egg: 2
+    RobustHarvest: 3
+    Vitamin: 2
+  results: [ MobPurpleSnake ]
+
+- type: cellLine
+  id: CellLineSlime
+  desc: cell-line-slime
+  required: [ Protein ]
+  supplementary:
+    Enzyme: 1
+    SlimeJelly: 2
+    UncookedAnimalProteins: 2
+  virusSuspectibility: 0
+  results: [ MobXenoSlime ]
+
+- type: cellLine
+  id: CellLineBlobSpore
+  desc: cell-line-blobspore
+  required: [ Protein ]
+  supplementary:
+    Bicaridine: 1
+    Sulfur: 1
+    UncookedAnimalProteins: 1
+    Vitamin: 2
+  virusSuspectibility: 0
+  results: [ MobBlobSpore ]
+
+- type: cellLine
+  id: CellLineBlobbernaut
+  desc: cell-line-blobbernaut
+  required: [ Protein, Bicaridine, Sulfur, RobustHarvest, Vitamin, UncookedAnimalProteins, Egg, ShamblersJuice ]
+  suppressive:
+    TineaLuxor: -6
+  virusSuspectibility: 0
+  results: [ MobBlobbernaut ]
+
+- type: cellLine
+  id: CellLineCockroach
+  desc: cell-line-cockroach
+  required: [ Protein ]
+  supplementary:
+    RobustHarvest: 1
+    SlimeJelly: 2
+    Vitamin: 1
+    Vomit: 2
+  suppressive:
+    JuiceBerryPoison: -4
+    PestKiller: -2
+    TableSalt: -3
+  virusSuspectibility: 0
+  results: [ MobCockroach ]
+  resultCount: 5
+
+- type: cellLine
+  id: CellLineFrog
+  desc: cell-line-frog
+  required: [ Protein ]
+  supplementary:
+    Egg: 2
+    Sugar: 3
+    Vitamin: 1
+  suppressive:
+    Bungotoxin: -3
+    CarpoToxin: -3
+    Mold: -2
+    PlantBGone: -2
+    Toxin: -1
+  virusSuspectibility: 0.5
+  results: [ MobFrog ]
+
+- type: cellLine
+  id: CellLineQueenBee
+  desc: cell-line-queenbee
+  required: [ Protein, Syrup ]
+  supplementary:
+    Champagne: 2
+    Lemonade: 1
+    Sugar: 4
+    SugarRush: 2
+    Vitamin: 1
+  suppressive:
+    CarpoToxin: -3
+    Nicotine: -1
+    PestKiller: -2
+  virusSuspectibility: 0
+  results: [ MobBee ]
+  resultCount: 5
+
+- type: cellLine
+  id: CellLineButterfly
+  desc: cell-line-butterfly
+  required: [ Protein ]
+  supplementary:
+    JuiceApple: 2
+    Sugar: 4
+    Water: 1
+  suppressive:
+    CarpoToxin: -2
+    PestKiller: -3
+    Toxin: -2
+  virusSuspectibility: 0
+  results: [ MobButterfly ]
+  resultCount: 3
+
+- type: cellLine
+  id: CellLineMegaArachnid
+  desc: cell-line-megaarachnid
+  required: [ Protein, Sugar, Omnizine ]
+  supplementary:
+    Enzyme: 1
+    Plasma: 1
+    UncookedAnimalProteins: 1
+    Vitamin: 1
+  suppressive:
+    Nicotine: -1
+    PestKiller: -1
+  results: [ MobGiantSpider ]
+
+- type: cellLine
+  id: CellLineSnail
+  desc: cell-line-snail
+  required: [ Protein, Iron ]
+  supplementary:
+    Blood: 2
+    JuiceApple: 2
+    Mold: 1
+    Vomit: 2
+  suppressive:
+    PestKiller: -2
+    TableSalt: -3
+  virusSuspectibility: 0
+  results: [ MobSnail ]
+
+- type: cellLine
+  id: CellLineOrgansHeart
+  desc: cell-line-organsheart
+  required: [ UncookedAnimalProteins ]
+  supplementary:
+    Blood: 3
+    Nutriment: 1
+  suppressive:
+    UnstableMutagen: -2
+  results: [ OrganHumanHeart ]
+
+- type: cellLine
+  id: CellLineOrgansHeartEvolved
+  desc: cell-line-organsheartevolved
+  required: [ UncookedAnimalProteins ]
+  supplementary:
+    Blood: 3
+    Nutriment: 1
+    UnstableMutagen: 4
+  results: [ OrganHumanHeart ]
+
+- type: cellLine
+  id: CellLineOrgansLungs
+  desc: cell-line-organslungs
+  required: [ UncookedAnimalProteins ]
+  supplementary:
+    Blood: 3
+    Nutriment: 1
+  suppressive:
+    UnstableMutagen: -2
+  results: [ OrganHumanLungs ]
+
+- type: cellLine
+  id: CellLineOrgansLungsEvolved
+  desc: cell-line-organslungsevolved
+  required: [ UncookedAnimalProteins ]
+  supplementary:
+    Blood: 3
+    Nutriment: 1
+    UnstableMutagen: 4
+  results: [ OrganHumanLungs ]
+
+- type: cellLine
+  id: CellLineOrgansLiver
+  desc: cell-line-organsliver
+  required: [ UncookedAnimalProteins ]
+  supplementary:
+    Blood: 3
+    Iron: 6
+    Nutriment: 1
+  suppressive:
+    UnstableMutagen: -2
+  results: [ OrganHumanLiver ]
+
+- type: cellLine
+  id: CellLineOrgansLiverEvolved
+  desc: cell-line-organsliverevolved
+  required: [ UncookedAnimalProteins ]
+  supplementary:
+    Blood: 3
+    Iron: 6
+    Nutriment: 1
+    UnstableMutagen: 4
+  results: [ OrganHumanLiver ]
+
+- type: cellLine
+  id: CellLineOrgansLiverBloody
+  desc: cell-line-organsliverbloody
+  required: [ UncookedAnimalProteins, Blood ]
+  supplementary:
+    Iron: 6
+    Nutriment: 1
+  results: [ OrganHumanLiver ]
+
+- type: cellLine
+  id: CellLineOrgansStomach
+  desc: cell-line-organsstomach
+  required: [ UncookedAnimalProteins ]
+  supplementary:
+    Blood: 3
+    Nutriment: 1
+  suppressive:
+    UnstableMutagen: -2
+  results: [ OrganHumanStomach ]
+
+- type: cellLine
+  id: CellLineOrgansStomachEvolved
+  desc: cell-line-organsstomachevolved
+  required: [ UncookedAnimalProteins ]
+  supplementary:
+    Blood: 3
+    Nutriment: 3
+    UnstableMutagen: 4
+  results: [ OrganHumanStomach ]

@@ -1,0 +1,286 @@
+# Предметы кроссбридинга (_misc, _potions, _clothing, _weapons, _mobs, печенье).
+
+# obj/item/slime_cookie
+- type: entity
+  id: BaseSlimeCookie
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecookies.rsi
+  - type: Item
+    size: Tiny
+
+- type: entity
+  id: SlimeCookieGrey
+  parent: BaseSlimeCookie
+  name: слаймовое печенье
+  description: Сероватое прозрачное печенье. Наверное, питательное.
+  components:
+  - type: Sprite
+    state: grey
+  - type: SlimeCookie
+    effect: SlimeGrey
+    nutrition: 15
+    taste: slime-cookie-taste-grey
+
+- type: entity
+  id: SlimeCookieOrange
+  parent: BaseSlimeCookie
+  name: огненное печенье
+  description: Оранжевое печенье с огненным узором. Тёплое на ощупь.
+  components:
+  - type: Sprite
+    state: orange
+  - type: SlimeCookie
+    effect: SlimeOrange
+    nutrition: 5
+    taste: slime-cookie-taste-orange
+
+- type: entity
+  id: SlimeCookiePurple
+  parent: BaseSlimeCookie
+  name: целебное печенье
+  description: Фиолетовое печенье с крестом. Успокаивает.
+  components:
+  - type: Sprite
+    state: purple
+  - type: SlimeCookie
+    effect: SlimePurple
+    nutrition: 5
+    taste: slime-cookie-taste-purple
+
+- type: entity
+  id: SlimeCookieBlue
+  parent: BaseSlimeCookie
+  name: водяное печенье
+  description: Прозрачное синее печенье. С него постоянно капает.
+  components:
+  - type: Sprite
+    state: blue
+  - type: SlimeCookie
+    effect: SlimeBlue
+    nutrition: 5
+    taste: slime-cookie-taste-blue
+
+- type: entity
+  id: SlimeCookieMetal
+  parent: BaseSlimeCookie
+  name: металлическое печенье
+  description: Блестящее серое печенье. Твёрдое на ощупь.
+  components:
+  - type: Sprite
+    state: metal
+  - type: SlimeCookie
+    effect: SlimeMetal
+    nutrition: 5
+    taste: slime-cookie-taste-metal
+
+- type: entity
+  id: SlimeCookieYellow
+  parent: BaseSlimeCookie
+  name: искрящее печенье
+  description: Жёлтое печенье с узором молнии. Резиновое на вкус.
+  components:
+  - type: Sprite
+    state: yellow
+  - type: SlimeCookie
+    effect: SlimeYellow
+    nutrition: 5
+    taste: slime-cookie-taste-yellow
+
+- type: entity
+  id: SlimeCookieDarkPurple
+  parent: BaseSlimeCookie
+  name: токсичное печенье
+  description: Тёмно-фиолетовое печенье, воняющее плазмой.
+  components:
+  - type: Sprite
+    state: darkpurple
+  - type: SlimeCookie
+    effect: SlimeDarkPurple
+    nutrition: 5
+    taste: slime-cookie-taste-darkpurple
+
+- type: entity
+  id: SlimeCookieDarkBlue
+  parent: BaseSlimeCookie
+  name: морозное печенье
+  description: Тёмно-синее печенье со снежинкой. Холодное.
+  components:
+  - type: Sprite
+    state: darkblue
+  - type: SlimeCookie
+    effect: SlimeDarkBlue
+    nutrition: 5
+    taste: slime-cookie-taste-darkblue
+
+- type: entity
+  id: SlimeCookieSilver
+  parent: BaseSlimeCookie
+  name: путевое печенье
+  description: Тёплое хрустящее печенье, сверкающее серебром. Пахнет чудесно.
+  components:
+  - type: Sprite
+    state: silver
+  - type: SlimeCookie
+    effect: SlimeSilver
+    nutrition: 0
+    taste: slime-cookie-taste-silver
+
+- type: entity
+  id: SlimeCookieBluespace
+  parent: BaseSlimeCookie
+  name: космическое печенье
+  description: Белое печенье с зелёной глазурью. Его на удивление трудно удержать.
+  components:
+  - type: Sprite
+    state: bluespace
+  - type: SlimeCookie
+    effect: SlimeBluespace
+    nutrition: 5
+    taste: slime-cookie-taste-bluespace
+
+- type: entity
+  id: SlimeCookieSepia
+  parent: BaseSlimeCookie
+  name: временное печенье
+  description: Светло-коричневое печенье с часами. Его долго жевать.
+  components:
+  - type: Sprite
+    state: sepia
+  - type: SlimeCookie
+    effect: SlimeSepia
+    nutrition: 5
+    taste: slime-cookie-taste-sepia
+
+- type: entity
+  id: SlimeCookieCerulean
+  parent: BaseSlimeCookie
+  name: дублипеченье
+  description: Церулеановое печенье странных пропорций. Кажется, легко ломается.
+  components:
+  - type: Sprite
+    state: cerulean
+  - type: SlimeCookie
+    effect: SlimeCerulean
+    nutrition: 5
+    taste: slime-cookie-taste-cerulean
+
+- type: entity
+  id: SlimeCookiePyrite
+  parent: BaseSlimeCookie
+  name: цветное печенье
+  description: Жёлтое печенье с радужной глазурью. Странно отражает свет.
+  components:
+  - type: Sprite
+    state: pyrite
+  - type: SlimeCookie
+    effect: SlimePyrite
+    nutrition: 5
+    taste: slime-cookie-taste-pyrite
+
+- type: entity
+  id: SlimeCookieRed
+  parent: BaseSlimeCookie
+  name: кровавое печенье
+  description: Красное печенье, сочащееся густой красной жидкостью. Вампирам понравится.
+  components:
+  - type: Sprite
+    state: red
+  - type: SlimeCookie
+    effect: SlimeRed
+    nutrition: 5
+    taste: slime-cookie-taste-red
+
+- type: entity
+  id: SlimeCookieGreen
+  parent: BaseSlimeCookie
+  name: мерзкое печенье
+  description: Отвратительное зелёное печенье, сочащееся гноем. Тошнит от одного вида.
+  components:
+  - type: Sprite
+    state: green
+  - type: SlimeCookie
+    effect: SlimeGreen
+    nutrition: 5
+    taste: slime-cookie-taste-green
+
+- type: entity
+  id: SlimeCookiePink
+  parent: BaseSlimeCookie
+  name: любовное печенье
+  description: Розовое печенье с сердечком из глазури. Ми-ми-ми.
+  components:
+  - type: Sprite
+    state: pink
+  - type: SlimeCookie
+    effect: SlimePink
+    nutrition: 5
+    taste: slime-cookie-taste-pink
+
+- type: entity
+  id: SlimeCookieGold
+  parent: BaseSlimeCookie
+  name: позолоченное печенье
+  description: Маслянистое золотое печенье, больше похожее на хлеб. Да улыбнётся вам удача.
+  components:
+  - type: Sprite
+    state: gold
+  - type: SlimeCookie
+    effect: SlimeGold
+    nutrition: 5
+    taste: slime-cookie-taste-gold
+
+- type: entity
+  id: SlimeCookieOil
+  parent: BaseSlimeCookie
+  name: смоляное печенье
+  description: Маслянистое чёрное печенье, липнущее к рукам. Пахнет шоколадом.
+  components:
+  - type: Sprite
+    state: oil
+  - type: SlimeCookie
+    effect: SlimeOil
+    nutrition: 5
+    taste: slime-cookie-taste-oil
+
+- type: entity
+  id: SlimeCookieBlack
+  parent: BaseSlimeCookie
+  name: жуткое печенье
+  description: Угольно-чёрное печенье с призраком из глазури. Жуть!
+  components:
+  - type: Sprite
+    state: black
+  - type: SlimeCookie
+    effect: SlimeBlack
+    nutrition: 5
+    taste: slime-cookie-taste-black
+
+- type: entity
+  id: SlimeCookieLightPink
+  parent: BaseSlimeCookie
+  name: мирное печенье
+  description: Светло-розовое печенье с символом мира. Прелесть!
+  components:
+  - type: Sprite
+    state: lightpink
+  - type: SlimeCookie
+    effect: SlimeLightPink
+    nutrition: 5
+    taste: slime-cookie-taste-lightpink
+
+- type: entity
+  id: SlimeCookieAdamantine
+  parent: BaseSlimeCookie
+  name: кристальное печенье
+  description: Прозрачный леденец в форме печенья. Неожиданно жевательный.
+  components:
+  - type: Sprite
+    state: adamantine
+  - type: SlimeCookie
+    effect: SlimeAdamantine
+    nutrition: 5
+    taste: slime-cookie-taste-adamantine
+

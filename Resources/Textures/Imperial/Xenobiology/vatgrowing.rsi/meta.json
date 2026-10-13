@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (vatgrowing.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "swab"
+    },
+    {
+      "name": "swab_brown"
+    },
+    {
+      "name": "swab_purple"
+    },
+    {
+      "name": "swab_yellow"
+    },
+    {
+      "name": "swab_green"
+    },
+    {
+      "name": "swab_gray"
+    },
+    {
+      "name": "biopsy"
+    },
+    {
+      "name": "biopsy_full"
+    },
+    {
+      "name": "biopsy_organ"
+    },
+    {
+      "name": "biopsy_organ_full"
+    },
+    {
+      "name": "petri_dish"
+    },
+    {
+      "name": "petri_dish_overlay"
+    },
+    {
+      "name": "petri_dish_overlay2"
+    },
+    {
+      "name": "microscope"
+    },
+    {
+      "name": "growing_vat"
+    },
+    {
+      "name": "growing_vat_reagent"
+    },
+    {
+      "name": "growing_vat_bubbles",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "growing_vat_glow"
+    },
+    {
+      "name": "growing_vat_on"
+    },
+    {
+      "name": "growing_vat_off"
+    },
+    {
+      "name": "growing_vat_small"
+    },
+    {
+      "name": "growing_vat_small_reagent"
+    },
+    {
+      "name": "growing_vat_small_bubbles",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "growing_vat_small_on"
+    },
+    {
+      "name": "growing_vat_small_off"
+    }
+  ]
+}
