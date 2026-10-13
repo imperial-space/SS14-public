@@ -1,14 +1,12 @@
 using Content.Shared.Mind;
-using Content.Shared.Imperial.Contractor.Components;
-using Content.Shared.Roles;
 using Content.Shared.Store;
 
 namespace Content.Server.Imperial.Contractor;
 
 /// <summary>
-/// Restricts contractor conversion kit purchases to traitors that received the contractor offer.
+/// uplink_item/contractor/can_be_bought(): товары контрактника доступны только после входа в программу контрактов.
 /// </summary>
-public sealed partial class ContractorCandidateCondition : ListingCondition
+public sealed partial class ContractorHubCondition : ListingCondition
 {
     public override bool Condition(ListingConditionArgs args)
     {
@@ -17,10 +15,9 @@ public sealed partial class ContractorCandidateCondition : ListingCondition
         {
             var minds = args.EntityManager.System<SharedMindSystem>();
             if (!minds.TryGetMind(args.Buyer, out mindId, out _))
-                return true;
+                return false;
         }
 
-        var roles = args.EntityManager.System<SharedRoleSystem>();
-        return roles.MindHasRole<ContractorCandidateRoleComponent>(mindId);
+        return args.EntityManager.HasComponent<ContractorHubComponent>(mindId);
     }
 }

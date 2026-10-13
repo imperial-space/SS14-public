@@ -1,145 +1,185 @@
-store-category-contractor-hub = Хаб Контрактника
-store-currency-display-contractor-reputation = Реп
+## Аплинк Синдиката (code/modules/uplink/uplink_items/contractor.dm)
 
-contractor-item-uplink-name = аплинк контрактника
-contractor-item-uplink-desc = Отдельный приемник для контрактов контрактника, репутационных заявок и развертывания falsefire.
-contractor-item-falsefire-portal-name = falsefire-портал
-contractor-item-falsefire-portal-desc = Односторонняя falsefire-апертура Синдиката, настроенная на одного пленника.
-contractor-item-falsefire-flare-name = falsefire-фальваер контрактника
-contractor-item-falsefire-flare-desc = Выданный контрактнику falsefire-фальваер. Подожгите его, чтобы открыть одностороннюю апертуру передачи.
-contractor-item-stunbaton-name = дубинка контрактника
-contractor-item-stunbaton-desc = Компактная электродубинка, выданная контрактнику для контроля цели во время экстракции.
-contractor-item-hardsuit-name = скафандр контрактника
-contractor-item-hardsuit-desc = Неброский скафандр Синдиката, заточенный под похищение и вывоз, а не под открытый бой.
-contractor-item-hardsuit-helmet-name = шлем скафандра контрактника
-contractor-item-hardsuit-helmet-desc = Шлем контрактника с полной герметизацией и низкопрофильным силуэтом.
-contractor-item-lighter-name = зажигалка контрактника
-contractor-item-lighter-desc = Надежная зажигалка с маркировкой для полевых подрядчиков.
-contractor-item-pinpointer-name = пинпойтер контрактника
-contractor-item-pinpointer-desc = Пинпойтер уровня контрактника для поиска цели и снаряжения экстракции.
-contractor-item-balloon-name = шарик контрактника
-contractor-item-balloon-desc = Чернорыночный шарик для контрактников, которые вернулись с еще дышащим грузом.
-contractor-item-guide-name = полевой справочник контрактника
-contractor-item-guide-desc = Одностраничный брифинг для недавно повышенных агентов Синдиката.
-contractor-item-loadout-box-name = набор снаряжения контрактника
-contractor-item-loadout-box-desc = Компактный ящик снабжения контрактника с маскировкой и полевыми утилитами.
-contractor-item-extras-box-name = ящик припасов контрактника
-contractor-item-extras-box-desc = Ящик с несколькими малозаметными инструментами Синдиката для нового контрактника.
-contractor-item-extraction-box-name = набор экстракции контрактника
-contractor-item-extraction-box-desc = Набор с обычным маяком Фултона и запасными комплектами экстракции для вывоза груза или живой цели.
-contractor-item-kit-box-name = набор контрактника
-contractor-item-kit-box-desc = Пакет повышения для выбранных агентов Синдиката с доступом к контрактам, falsefire и репутационным заявкам.
+uplink-contractor-kit-name = Набор контрактника
+uplink-contractor-kit-desc = Набор Синдиката для работы контрактником: планшет с программой контрактов, специализированный скафандр, форма и маска-хамелеон, дубинка контрактника и руководство. Открывает в аплинке товары контрактника.
 
-uplink-contractor-kit-name = набор контрактника
-uplink-contractor-kit-desc = Доступен только приглашенному агенту. Переводит предателя в режим Контрактника, сохраняя старые цели предателя и открывая отдельный аплинк с контрактами, falsefire и репутационными заявками.
+uplink-contractor-reroll-name = Перевыбор контрактов
+uplink-contractor-reroll-desc = Запросите обновление вашего текущего списка контрактов. Создаст новую цель, оплату и места для транспортировки ваших текущих доступных контрактов.
 
-contractor-hub-pinpointer-name = пинпойтер контрактника
-contractor-hub-pinpointer-desc = Универсальный пинпойтер для отслеживания выбранного снаряжения или целей.
+uplink-contractor-pinpointer-name = Пинпоинтер контрактника
+uplink-contractor-pinpointer-desc = Пинпоинтер, который находит цели даже без активных датчиков костюма. Из-за использования эксплойта внутри системы он не может определять местоположение с той же точностью, что и традиционные модели. Становится навсегда заблокированным для пользователя, который первым его активировал.
 
-contractor-hub-zippo-name = зажигалка контрактника
-contractor-hub-zippo-desc = Надежная полевая зажигалка для черного рынка.
+uplink-contractor-extraction-name = Набор эвакуации Фултона
+uplink-contractor-extraction-desc = Для того, чтобы доставлять вашу цель через станцию к трудным зонам отправки. Установите маяк в безопасное место и соедините устройство. Активация устройства на вашей цели отправит её к маяку — убедитесь, что она не сможет просто убежать!
 
-contractor-hub-extraction-name = набор экстракции
-contractor-hub-extraction-desc = Fulton-маяк и запасные наборы экстракции для вывоза через маяк.
+uplink-contractor-partner-name = Подкрепление контрактника
+uplink-contractor-partner-desc = Подкрепление в виде оперативника будет отправлено для помощи в достижении ваших целей — оно оплачивается отдельно и не отнимает часть вашей прибыли.
 
-contractor-hub-balloon-name = шарик контрактника
-contractor-hub-balloon-desc = Вычурная награда для тех, кто вернулся с дышащим грузом.
+ghost-role-information-contractor-partner-name = Агент поддержки Синдиката
+ghost-role-information-contractor-partner-description = Следуйте приказам контрактника, который вас вызвал.
 
-contractor-guide-content = Поздравляем с повышением до статуса Контрактника.
-
-      Теперь вам доступна дополнительная линия работы Синдиката: платные похищения с передачей цели через falsefire.
-
-      Состав набора:
-      Аплинк Контрактника для заказов, falsefire и репутационных заявок.
-      Ящик снаряжения с маскировочным комплектом, агентской ID-картой, синдикатским ключом шифрования, сигаретами, зажигалкой и зеркалом.
-      Скафандр и дубинка Контрактника для тихой полевой работы.
-
-      Порядок выполнения:
-      1. Выберите один из шести контрактов в аплинке Контрактника.
-      2. Доставьте цель к указанному стационарному маяку на станции.
-      3. После подтверждения откройте falsefire через аплинк.
-      4. Протащите в портал только назначенную цель.
-
-      Оперативные пометки:
-      Старые цели предателя сохраняются.
-      За живую цель платят полную сумму ТК и 2 репутации.
-      За мертвую цель платят только 20% суммы ТК, но репутация все равно начисляется.
-      Используйте маскировку до захвата, а не после того как всё стало громко.
-      Отсеки для передачи бывают легкими, средними и тяжелыми: чем опаснее точка, тем выше оплата.
+## Роль
 
 roles-antag-contractor-name = Контрактник
-roles-antag-contractor-objective = Выполняйте платные контракты Синдиката на захват и доставляйте цель живой к своему маяку Фултона.
+roles-antag-contractor-objective = Выполняйте контракты Синдиката на похищение через программу контрактов на планшете.
 role-subtype-contractor = контрактник
-contractor-role-briefing = Вы Контрактник. Старые цели предателя остаются активными, а новые заказы выдаются через аплинк Контрактника: выберите контракт, доставьте цель к назначенному маяку и передайте её через falsefire.
-contractor-role-greeting = Покупка набора повысила вас до Контрактника. Старые цели предателя сохранены. Выберите контракт в аплинке, доставьте цель к указанному маяку, откройте falsefire и отправьте цель через портал.
-objective-issuer-contractor = Хаб Контрактников
-contractor-survive-objective-name = Выжить.
-contractor-survive-objective-desc = Мёртвому контрактнику не платят.
-contractor-extract-objective-title = Доставьте {$targetName}, {$job}, живым к вашему маяку Фултона.
-contractor-extract-objective-desc = Захватите цель живой, затем приведите её или отправьте фултоном на разложенный маяк Фултона.
-contractor-contract-complete = Контракт выполнен. Выплата: +{$amount} ТК и +{$reputation} репутации.
 
-contractor-offer-available = Центральный Синдикат отметил вас как потенциального Контрактника. В вашем аплинке доступен набор Контрактника за 20 ТК.
-contractor-uplink-denied = Аплинк Контрактника не отвечает на ваш отпечаток.
-contractor-contract-accepted = Контракт подтвержден: {$target}, {$job}. Сложность: {$difficulty}. Точка передачи: {$location}.
-contractor-contract-declined = Контракт на {$target} отклонен и больше не вернется в пул.
-contractor-beacon-reached = Цель доставлена к маяку {$location}. Falsefire разблокирован в аплинке Контрактника.
-contractor-falsefire-issued = Falsefire-фальваер выдан. Подожгите его, чтобы открыть портал.
-contractor-falsefire-ignited = Falsefire активирован. Портал откроется через несколько секунд.
-contractor-falsefire-opened = Falsefire открыт. Портал активен, войти может только назначенная цель.
+## Программа Syndicate Contract Uplink (contractor_program.dm)
 
-contractor-news-author = Информатор станции
-contractor-news-title = На станции пропал {$target}
-contractor-news-content = По данным редакции, {$target}, {$job}, был похищен. Причина, фигурирующая в утечке: {$reason}
+contractor-uplink-window-title = Syndicate Contract Uplink
+contractor-uplink-login = ЗАРЕГИСТРИРОВАННЫЙ ПОЛЬЗОВАТЕЛЬ
+contractor-uplink-continue = ПРОДОЛЖИТЬ
+contractor-uplink-view-info = Посмотреть информацию еще раз
+contractor-uplink-status-title = Статус контрактника
+contractor-uplink-status-redeemable = Доступные ТК
+contractor-uplink-status-earned = Заработанные ТК
+contractor-uplink-status-completed = Выполненные контракты
+contractor-uplink-status-current = Текущий статус
+contractor-uplink-status-active = АКТИВНЫЙ
+contractor-uplink-redeem = Забрать
+contractor-uplink-contracts-title = Доступные контракты
+contractor-uplink-call-extraction = Call Extraction
+contractor-uplink-accept = Accept
+contractor-uplink-abort = Abort
+contractor-uplink-payout = {$payout} (+{$bonus}) ТК
+contractor-uplink-dropoff = Dropoff Location:
+contractor-uplink-invalid-target = Неверная цель
+contractor-uplink-dropoff-locator = Локатор зоны отправки
+contractor-uplink-dismiss = Dismiss
 
-contractor-target-job-unknown = неизвестная должность
+contractor-error-unauthorized = UNAUTHORIZED USER
+contractor-error-dropoff = Either both you or your target aren't at the dropoff location, or the pod hasn't got a valid place to land. Clear space, or make sure you're both inside.
+contractor-error-already-extracting = Already extracting... Place the target into the pod. If the pod was destroyed, this contract is no longer possible.
 
-contractor-status-idle = Активного контракта нет. Доступно предложений: {$count}.
-contractor-status-awaiting-beacon = Активный контракт ожидает передачу на маяке: {$location}.
-contractor-status-portal-ready = Цель на маяке. Через аплинк можно выдать falsefire.
-contractor-status-falsefire-issued = Falsefire выдан. Подожгите фальваер.
-contractor-status-falsefire-arming = Falsefire разогревается. Портал откроется через несколько секунд.
-contractor-status-portal-open = Портал falsefire открыт и готов к передаче цели.
+contractor-payment-hands = Ваша оплата материализуется в ваших руках!
+contractor-payment-floor = Ваша оплата материализуется на полу.
 
-contractor-reason-easy-1 = {$target} слишком много слышал о серых поставках через {$location}.
-contractor-reason-easy-2 = {$target} нужен для допроса о служебных маршрутах вокруг {$location}.
-contractor-reason-easy-3 = У {$target} есть полезные привычки и связи в секторе {$location}.
-contractor-reason-medium-1 = Синдикату нужен {$target}: через {$location} проходит интересующая нас логистика.
-contractor-reason-medium-2 = {$target} рассматривается как источник технической информации по сектору {$location}.
-contractor-reason-medium-3 = Заказ на {$target} оформлен ради закрытых сведений, связанных с {$location}.
-contractor-reason-hard-1 = {$target} имеет доступ, который нельзя купить. Захватить через {$location}.
-contractor-reason-hard-2 = Синдикат считает, что {$target} знает слишком много о защищенном секторе {$location}.
-contractor-reason-hard-3 = {$target} нужен для давления на командную цепочку. Точка передачи: {$location}.
+contractor-rank-unknown = Неизвестно
+contractor-location-confirmed = LOCATION CONFIRMED
+contractor-direction-north = Север
+contractor-direction-south = Юг
+contractor-direction-east = Восток
+contractor-direction-west = Запад
+contractor-direction-northeast = Северо-восток
+contractor-direction-northwest = Северо-запад
+contractor-direction-southeast = Юго-восток
+contractor-direction-southwest = Юго-запад
+contractor-direction-invalid = ???
 
-contractor-uplink-window-title = Аплинк Контрактника
-contractor-uplink-active-title = Активный контракт
-contractor-uplink-offers-title = Предложения
-contractor-uplink-requisitions-title = Заявки
-contractor-uplink-reputation = Репутация: {$amount}
-contractor-uplink-no-active = Активный контракт не выбран.
-contractor-uplink-no-offers = Новых предложений пока нет.
-contractor-uplink-dispense-falsefire = Выдать falsefire
-contractor-uplink-accept = Принять
-contractor-uplink-decline = Отклонить
-contractor-uplink-buy = Купить за {$cost} реп.
-contractor-uplink-contract-header = {$target}, {$job}. Сложность: {$difficulty}
-contractor-uplink-contract-target-header = {$target}, {$job}
-contractor-uplink-difficulty-label = Сложность: {$difficulty}
-contractor-uplink-accept-difficulty = Принять: {$difficulty}
-contractor-uplink-location = Маяк: {$location}
-contractor-uplink-payout = Выплата: {$alive} ТК живым, {$dead} ТК мертвым.
+## Контракт (syndicate_contract.dm)
 
-contractor-difficulty-easy = легкая
-contractor-difficulty-medium = средняя
-contractor-difficulty-hard = тяжелая
+contractor-ransom-paid = Вот ваша доля выкупа, агент: { $amount } кредитов.
 
-contractor-requisition-pinpointer-name = пинпойтер контрактника
-contractor-requisition-pinpointer-desc = Универсальный пинпойтер для поиска цели и ориентирования по станции.
-contractor-requisition-reroll-name = Обновить контракты
-contractor-requisition-reroll-desc = Сбрасывает неактивные контракты и подбирает новый набор целей.
-contractor-requisition-extraction-name = Набор эвакуации Фултона
-contractor-requisition-extraction-desc = Маяк и фултон для безопасной отправки цели на точку выдачи.
-contractor-requisition-zippo-name = зажигалка контрактника
-contractor-requisition-zippo-desc = Надежная полевая зажигалка для черного рынка.
-contractor-requisition-balloon-name = шарик контрактника
-contractor-requisition-balloon-desc = Показная награда для подрядчика, который довел работу до конца.
+contractor-victim-1 = Вы чувствуете себя странно...
+contractor-victim-2 = Эта капсула что-то сделала с вами...
+contractor-victim-3 = Ваша голова раскалывается... Такое ощущение, что ваш череп сейчас лопнет!
+contractor-victim-4 = Ваша голова болит...
+contractor-victim-5 = Множество голосов отдаются эхом в вашей голове... «Вам разум хранил множество важных секретов — мы благодарим вас за предоставления их нам. Ваша ценность упала, и вы будете выкуплены обратно на свою станцию. Мы всегда получаем свое, поэтому это только дело времени когда вы вернетесь обратно на ваш корабль...»
+contractor-victim-returned = Капсула выбрасывает вас обратно на станцию. Голова кружится, а вещи разбросаны вокруг.
+
+contractor-round-end-header = [color=red]Контрактники Синдиката:[/color]
+contractor-round-end-line = [bold]{$name}[/bold] — выполнено контрактов: {$completed}, заработано ТК: {$tc}.
+
+contractor-command-no-body = У игрока нет тела.
+contractor-command-not-traitor = Игрок не является предателем.
+
+## Сообщение о розыске (strings/wanted_message.json)
+
+contractor-wanted-message = {$base} {$verb} {$noun} {$location}.
+
+contractor-wanted-base-1 = Скрывается от закона из-за того, что
+contractor-wanted-base-2 = Владеет ценной информацией о том, как
+contractor-wanted-base-3 = Должен быть допрошен о том, как
+contractor-wanted-base-4 = Может быть выкуплен Nanotrasen за то, что
+contractor-wanted-base-5 = Разыскивается Синдикатом за то, что
+
+contractor-wanted-verb-1 = случайно уничтожил
+contractor-wanted-verb-2 = убил по заказу
+contractor-wanted-verb-3 = подружился с
+contractor-wanted-verb-4 = близко дружил с
+contractor-wanted-verb-5 = взорвал
+contractor-wanted-verb-6 = клонировал
+contractor-wanted-verb-7 = сотрудничал с
+contractor-wanted-verb-8 = уничтожил
+contractor-wanted-verb-9 = проигнорировал
+contractor-wanted-verb-10 = похитил
+contractor-wanted-verb-11 = убил
+contractor-wanted-verb-12 = знает информацию о
+contractor-wanted-verb-13 = зверски убил
+contractor-wanted-verb-14 = выдавал себя за
+contractor-wanted-verb-15 = отробастил
+contractor-wanted-verb-16 = саботировал
+contractor-wanted-verb-17 = соблазнил
+contractor-wanted-verb-18 = подскользнул
+contractor-wanted-verb-19 = украл
+
+contractor-wanted-noun-soap = кусок мыла
+contractor-wanted-noun-cult = культ
+contractor-wanted-noun-gondola = гондолу
+contractor-wanted-noun-gold-gondola = гондолу из чистого золота
+contractor-wanted-noun-supermatter = осколок суперматерии
+contractor-wanted-noun-bus = подозрительный автобус
+contractor-wanted-noun-toolbox = ящик с инструментами
+contractor-wanted-noun-nothing = абсолютно ничего
+contractor-wanted-noun-admins = администрацию
+contractor-wanted-noun-centcom-uniform = форму Центкома NT
+contractor-wanted-noun-bluespace = блюспейс-кристаллы
+contractor-wanted-noun-clown-tears = слёзы клоуна
+contractor-wanted-noun-pete = Кубинского Пита
+contractor-wanted-noun-nt-tech = экспериментальную технологию Nanotrasen
+contractor-wanted-noun-syndicate-docs = внутренние документы Синдиката
+contractor-wanted-noun-jfk = Джона Ф. Кеннеди 2
+contractor-wanted-noun-lizards = унатхов
+contractor-wanted-noun-calendar = календарь Nanotrasen с купальниками
+contractor-wanted-noun-beepsky = офицера Бипски
+contractor-wanted-noun-billion = миллиард кредитов
+contractor-wanted-noun-floor-clowns = исследования напольных клоунов
+contractor-wanted-noun-plans = секретные планы
+contractor-wanted-noun-shapeshifters = существ-перевёртышей
+contractor-wanted-noun-anime = архив аниме
+contractor-wanted-noun-hand-tele = ручной телепорт
+contractor-wanted-noun-two-million = два миллиона кредитов
+contractor-wanted-noun-wgw = WGW
+contractor-wanted-noun-yalper = YALPER
+contractor-wanted-noun-mother = твою мамку
+
+contractor-wanted-location-necropolis = глубоко в некрополе
+contractor-wanted-location-bar-fight = во время пьяной драки в баре
+contractor-wanted-location-mars = в подворотне на Марсе
+contractor-wanted-location-nt-facility = на охраняемом объекте NT
+contractor-wanted-location-syndicate-base = на удалённой базе Синдиката
+contractor-wanted-location-station = на космической станции
+contractor-wanted-location-virgo = на орбитальной станции Вирго
+contractor-wanted-location-deep-space = где-то в глубоком космосе
+contractor-wanted-location-centcom = во время проникновения в штаб Центкома
+contractor-wanted-location-shuttle = на эвакуационном шаттле
+contractor-wanted-location-bathroom = застряв в туалете
+
+## Руководство контрактника (contractor_items.dm)
+
+contractor-guide-content = Приветствую вас, агент, поздравляю с новой должностью контрактника. Помимо уже поставленных целей, этот комплект предоставит вам возможность брать контракты с оплатой в виде телекристаллов.
+
+    В комплекте мы выдаем вам специализированный скафандр контрактника. Он намного компактнее, и в нем удобнее передвигаться, в отличие от обычного скафандра Синдиката, доступного в вашем аплинке. Мы также предоставляем вам костюм и маску хамелеон, которые оба могут быть изменены в любую форму, которая вам может быть необходима.
+
+    Выданная вам дубинка бьет сильнее, чем та, к которой вы привыкли, и, скорее всего, будет вашим лучшим оружием для похищения ваших целей.
+
+    В аплинке Синдиката после входа в программу контрактов откроются уникальные предметы и возможности контрактника.
+
+    {"["}head=3]Использование планшета[/head]
+    1. Откройте программу Syndicate Contract Uplink.
+    2. В этой программе вы можете принять контракт, а также получить оплату с выполненных контрактов.
+    3. Цифры в скобках — это ваша премия за то, что вы доставите вашу цель [bold]живой[/bold]. Вы получите определённую сумму независимо от того, будет ли ваша цель живой или нет.
+    4. Чтобы выполнить контракт, вам нужно принести цель до назначенного места высадки, вызвать под отправки и положить цель внутрь пода.
+
+    Будьте осторожны, принимая контракт. Хоть вы и сможете видеть местоположение точки высадки, отмена контракта сделает его более недоступным для выбора.
+
+    {"["}head=3]Отправление[/head]
+    1. Убедитесь, что и вы, и ваша цель находитесь на месте высадки.
+    2. Вызовите под отправки и отойдите от зоны приземления.
+    3. Если попытка вызвать под провалилась, проверьте, чтобы ваша цель была внутри зоны и было достаточно места для приземления пода.
+    4. Схватите свою цель и поместите её в под.
+
+    {"["}head=3]Выкупы[/head]
+    Нам нужна ваша цель по нашим собственным причинам, но мы вернём её за выкуп в район вашей миссии, как только она будет больше не нужна. Она вернётся обратно туда, откуда вы её отправили, через несколько минут. Не волнуйтесь, мы отдаём вам часть выкупа — наличными, помимо оплаты телекристаллами.
+
+    Удачи, агент. Вы можете сжечь этот документ с помощью прилагаемой зажигалки.

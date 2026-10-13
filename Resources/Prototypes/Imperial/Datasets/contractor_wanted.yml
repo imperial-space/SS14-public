@@ -1,0 +1,81 @@
+# strings/wanted_message.json
+
+- type: dataset
+  id: ContractorWantedBase
+  values:
+  - contractor-wanted-base-1
+  - contractor-wanted-base-2
+  - contractor-wanted-base-3
+  - contractor-wanted-base-4
+  - contractor-wanted-base-5
+
+- type: dataset
+  id: ContractorWantedVerb
+  values:
+  - contractor-wanted-verb-1
+  - contractor-wanted-verb-2
+  - contractor-wanted-verb-3
+  - contractor-wanted-verb-4
+  - contractor-wanted-verb-5
+  - contractor-wanted-verb-6
+  - contractor-wanted-verb-7
+  - contractor-wanted-verb-8
+  - contractor-wanted-verb-9
+  - contractor-wanted-verb-10
+  - contractor-wanted-verb-11
+  - contractor-wanted-verb-12
+  - contractor-wanted-verb-13
+  - contractor-wanted-verb-14
+  - contractor-wanted-verb-15
+  - contractor-wanted-verb-16
+  - contractor-wanted-verb-17
+  - contractor-wanted-verb-18
+  - contractor-wanted-verb-19
+
+- type: weightedRandom
+  id: ContractorWantedNoun
+  weights:
+    contractor-wanted-noun-soap: 10
+    contractor-wanted-noun-cult: 50
+    contractor-wanted-noun-gondola: 10
+    contractor-wanted-noun-gold-gondola: 5
+    contractor-wanted-noun-supermatter: 50
+    contractor-wanted-noun-bus: 5
+    contractor-wanted-noun-toolbox: 10
+    contractor-wanted-noun-nothing: 1
+    contractor-wanted-noun-admins: 5
+    contractor-wanted-noun-centcom-uniform: 50
+    contractor-wanted-noun-bluespace: 50
+    contractor-wanted-noun-clown-tears: 5
+    contractor-wanted-noun-pete: 1
+    contractor-wanted-noun-nt-tech: 50
+    contractor-wanted-noun-syndicate-docs: 50
+    contractor-wanted-noun-jfk: 5
+    contractor-wanted-noun-lizards: 10
+    contractor-wanted-noun-calendar: 5
+    contractor-wanted-noun-beepsky: 5
+    contractor-wanted-noun-billion: 5
+    contractor-wanted-noun-floor-clowns: 5
+    contractor-wanted-noun-plans: 50
+    contractor-wanted-noun-shapeshifters: 50
+    contractor-wanted-noun-anime: 5
+    contractor-wanted-noun-hand-tele: 50
+    contractor-wanted-noun-two-million: 10
+    contractor-wanted-noun-wgw: 1
+    contractor-wanted-noun-yalper: 1
+    contractor-wanted-noun-mother: 1
+
+- type: weightedRandom
+  id: ContractorWantedLocation
+  weights:
+    contractor-wanted-location-necropolis: 10
+    contractor-wanted-location-bar-fight: 5
+    contractor-wanted-location-mars: 5
+    contractor-wanted-location-nt-facility: 50
+    contractor-wanted-location-syndicate-base: 50
+    contractor-wanted-location-station: 50
+    contractor-wanted-location-virgo: 1
+    contractor-wanted-location-deep-space: 50
+    contractor-wanted-location-centcom: 10
+    contractor-wanted-location-shuttle: 10
+    contractor-wanted-location-bathroom: 5

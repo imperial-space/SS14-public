@@ -1,5 +1,3 @@
-using Content.Shared.FixedPoint;
-using Content.Shared.UserInterface;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.Contractor;
@@ -10,186 +8,114 @@ public enum ContractorUplinkUiKey
     Key,
 }
 
+/// <summary>CONTRACT_STATUS_* из SS13.</summary>
 [Serializable, NetSerializable]
-public enum ContractorDifficulty
+public enum ContractorContractStatus : byte
 {
-    Easy,
-    Medium,
-    Hard,
+    Inactive = 1,
+    Active = 2,
+    Extracting = 4,
+    Complete = 5,
+    Aborted = 6,
 }
 
+/// <summary>Контракт в ui_data программы SyndicateContractor.</summary>
 [Serializable, NetSerializable]
-public enum ContractorContractStage
+public sealed class ContractorContractData
 {
-    None,
-    AwaitingBeacon,
-    PortalReady,
-}
+    public int Id { get; }
+    public string Target { get; }
+    public string TargetRank { get; }
+    public int Payout { get; }
+    public int PayoutBonus { get; }
+    public string Dropoff { get; }
+    public ContractorContractStatus Status { get; }
+    public string Message { get; }
 
-[Serializable, NetSerializable]
-public sealed class ContractorContractOfferData
-{
-    public string Id { get; }
-    public string TargetName { get; }
-    public string Job { get; }
-    public ContractorContractOptionData[] Options { get; }
-
-    public ContractorContractOfferData(
-        string id,
-        string targetName,
-        string job,
-        ContractorContractOptionData[] options)
+    public ContractorContractData(int id, string target, string targetRank, int payout, int payoutBonus, string dropoff,
+        ContractorContractStatus status, string message)
     {
         Id = id;
-        TargetName = targetName;
-        Job = job;
-        Options = options;
+        Target = target;
+        TargetRank = targetRank;
+        Payout = payout;
+        PayoutBonus = payoutBonus;
+        Dropoff = dropoff;
+        Status = status;
+        Message = message;
     }
 }
 
-[Serializable, NetSerializable]
-public sealed class ContractorContractOptionData
-{
-    public ContractorDifficulty Difficulty { get; }
-    public string BeaconLabel { get; }
-    public string Reason { get; }
-    public FixedPoint2 AlivePayout { get; }
-    public FixedPoint2 DeadPayout { get; }
-
-    public ContractorContractOptionData(
-        ContractorDifficulty difficulty,
-        string beaconLabel,
-        string reason,
-        FixedPoint2 alivePayout,
-        FixedPoint2 deadPayout)
-    {
-        Difficulty = difficulty;
-        BeaconLabel = beaconLabel;
-        Reason = reason;
-        AlivePayout = alivePayout;
-        DeadPayout = deadPayout;
-    }
-}
-
-[Serializable, NetSerializable]
-public sealed class ContractorActiveContractData
-{
-    public string Id { get; }
-    public string TargetName { get; }
-    public string Job { get; }
-    public string BeaconLabel { get; }
-    public string Reason { get; }
-    public ContractorDifficulty Difficulty { get; }
-    public FixedPoint2 AlivePayout { get; }
-    public FixedPoint2 DeadPayout { get; }
-
-    public ContractorActiveContractData(
-        string id,
-        string targetName,
-        string job,
-        string beaconLabel,
-        string reason,
-        ContractorDifficulty difficulty,
-        FixedPoint2 alivePayout,
-        FixedPoint2 deadPayout)
-    {
-        Id = id;
-        TargetName = targetName;
-        Job = job;
-        BeaconLabel = beaconLabel;
-        Reason = reason;
-        Difficulty = difficulty;
-        AlivePayout = alivePayout;
-        DeadPayout = deadPayout;
-    }
-}
-
-[Serializable, NetSerializable]
-public sealed class ContractorRequisitionData
-{
-    public string Id { get; }
-    public string Name { get; }
-    public string Description { get; }
-    public FixedPoint2 Cost { get; }
-    public bool Affordable { get; }
-
-    public ContractorRequisitionData(string id, string name, string description, FixedPoint2 cost, bool affordable)
-    {
-        Id = id;
-        Name = name;
-        Description = description;
-        Cost = cost;
-        Affordable = affordable;
-    }
-}
-
+/// <summary>ui_data() программы contract_uplink.</summary>
 [Serializable, NetSerializable]
 public sealed class ContractorUplinkBoundUserInterfaceState : BoundUserInterfaceState
 {
-    public FixedPoint2 Reputation { get; }
-    public string StatusText { get; }
-    public ContractorContractOfferData[] Offers { get; }
-    public bool HasActiveContract { get; }
-    public ContractorActiveContractData ActiveContract { get; }
-    public ContractorContractStage ActiveStage { get; }
-    public ContractorRequisitionData[] Requisitions { get; }
-    public bool CanOpenPortal { get; }
+    public bool FirstLoad { get; }
+    public bool LoggedIn { get; }
+    public bool InfoScreen { get; }
+    public string Error { get; }
+    public bool OngoingContract { get; }
+    public bool ExtractionEnroute { get; }
+    public string DropoffDirection { get; }
+    public int RedeemableTc { get; }
+    public int EarnedTc { get; }
+    public int ContractsCompleted { get; }
+    public ContractorContractData[] Contracts { get; }
 
-    public ContractorUplinkBoundUserInterfaceState(
-        FixedPoint2 reputation,
-        string statusText,
-        ContractorContractOfferData[] offers,
-        bool hasActiveContract,
-        ContractorActiveContractData activeContract,
-        ContractorContractStage activeStage,
-        ContractorRequisitionData[] requisitions,
-        bool canOpenPortal)
+    public ContractorUplinkBoundUserInterfaceState(bool firstLoad, bool loggedIn, bool infoScreen, string error,
+        bool ongoingContract, bool extractionEnroute, string dropoffDirection, int redeemableTc, int earnedTc,
+        int contractsCompleted, ContractorContractData[] contracts)
     {
-        Reputation = reputation;
-        StatusText = statusText;
-        Offers = offers;
-        HasActiveContract = hasActiveContract;
-        ActiveContract = activeContract;
-        ActiveStage = activeStage;
-        Requisitions = requisitions;
-        CanOpenPortal = canOpenPortal;
+        FirstLoad = firstLoad;
+        LoggedIn = loggedIn;
+        InfoScreen = infoScreen;
+        Error = error;
+        OngoingContract = ongoingContract;
+        ExtractionEnroute = extractionEnroute;
+        DropoffDirection = dropoffDirection;
+        RedeemableTc = redeemableTc;
+        EarnedTc = earnedTc;
+        ContractsCompleted = contractsCompleted;
+        Contracts = contracts;
     }
 }
 
+/// <summary>PRG_login.</summary>
+[Serializable, NetSerializable]
+public sealed class ContractorLoginMessage : BoundUserInterfaceMessage;
+
+/// <summary>PRG_set_first_load_finished.</summary>
+[Serializable, NetSerializable]
+public sealed class ContractorFirstLoadFinishedMessage : BoundUserInterfaceMessage;
+
+/// <summary>PRG_toggle_info.</summary>
+[Serializable, NetSerializable]
+public sealed class ContractorToggleInfoMessage : BoundUserInterfaceMessage;
+
+/// <summary>PRG_clear_error.</summary>
+[Serializable, NetSerializable]
+public sealed class ContractorClearErrorMessage : BoundUserInterfaceMessage;
+
+/// <summary>PRG_contract-accept.</summary>
 [Serializable, NetSerializable]
 public sealed class ContractorAcceptContractMessage : BoundUserInterfaceMessage
 {
-    public string ContractId { get; }
-    public ContractorDifficulty Difficulty { get; }
+    public int ContractId { get; }
 
-    public ContractorAcceptContractMessage(string contractId, ContractorDifficulty difficulty)
-    {
-        ContractId = contractId;
-        Difficulty = difficulty;
-    }
-}
-
-[Serializable, NetSerializable]
-public sealed class ContractorDeclineContractMessage : BoundUserInterfaceMessage
-{
-    public string ContractId { get; }
-
-    public ContractorDeclineContractMessage(string contractId)
+    public ContractorAcceptContractMessage(int contractId)
     {
         ContractId = contractId;
     }
 }
 
+/// <summary>PRG_contract_abort.</summary>
 [Serializable, NetSerializable]
-public sealed class ContractorBuyRequisitionMessage : BoundUserInterfaceMessage
-{
-    public string RequisitionId { get; }
+public sealed class ContractorAbortContractMessage : BoundUserInterfaceMessage;
 
-    public ContractorBuyRequisitionMessage(string requisitionId)
-    {
-        RequisitionId = requisitionId;
-    }
-}
-
+/// <summary>PRG_call_extraction.</summary>
 [Serializable, NetSerializable]
-public sealed class ContractorOpenPortalMessage : BoundUserInterfaceMessage;
+public sealed class ContractorCallExtractionMessage : BoundUserInterfaceMessage;
+
+/// <summary>PRG_redeem_TC.</summary>
+[Serializable, NetSerializable]
+public sealed class ContractorRedeemTcMessage : BoundUserInterfaceMessage;

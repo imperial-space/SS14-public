@@ -1,0 +1,4 @@
+- files: ["podwoosh.ogg", "confirmdropoff.ogg", "contractstartup.ogg", "uplinkerror.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation"
+  source: "https://github.com/tgstation/tgstation"

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (supplypods.dmi)",
+  "size": {
+    "x": 64,
+    "y": 64
+  },
+  "states": [
+    {
+      "name": "darkpod"
+    },
+    {
+      "name": "darkpod_door"
+    },
+    {
+      "name": "syndicate"
+    },
+    {
+      "name": "pod_glow_red"
+    }
+  ]
+}

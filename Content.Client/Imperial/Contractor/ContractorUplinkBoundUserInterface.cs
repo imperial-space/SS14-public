@@ -1,5 +1,4 @@
 using Robust.Client.UserInterface;
-using Robust.Shared.Utility;
 using Content.Shared.Imperial.Contractor;
 
 namespace Content.Client.Imperial.Contractor;
@@ -17,10 +16,14 @@ public sealed class ContractorUplinkBoundUserInterface : BoundUserInterface
         base.Open();
 
         _window = this.CreateWindow<ContractorUplinkWindow>();
-        _window.AcceptContract += (id, difficulty) => SendMessage(new ContractorAcceptContractMessage(id, difficulty));
-        _window.DeclineContract += id => SendMessage(new ContractorDeclineContractMessage(id));
-        _window.BuyRequisition += id => SendMessage(new ContractorBuyRequisitionMessage(id));
-        _window.OpenPortal += () => SendMessage(new ContractorOpenPortalMessage());
+        _window.Login += () => SendMessage(new ContractorLoginMessage());
+        _window.FirstLoadFinished += () => SendMessage(new ContractorFirstLoadFinishedMessage());
+        _window.ToggleInfo += () => SendMessage(new ContractorToggleInfoMessage());
+        _window.ClearError += () => SendMessage(new ContractorClearErrorMessage());
+        _window.AcceptContract += id => SendMessage(new ContractorAcceptContractMessage(id));
+        _window.AbortContract += () => SendMessage(new ContractorAbortContractMessage());
+        _window.CallExtraction += () => SendMessage(new ContractorCallExtractionMessage());
+        _window.RedeemTc += () => SendMessage(new ContractorRedeemTcMessage());
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
