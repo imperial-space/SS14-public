@@ -1,0 +1,374 @@
+# chemical_reaction/slime (code/modules/reagents/chemistry/recipes/slime_extracts.dm)
+
+# Grey
+- type: slimeReaction
+  id: SlimeReactionGreySpawn
+  extract: SlimeGrey
+  reactants: { Plasma: 1 }
+  effect: SpawnSlime
+
+- type: slimeReaction
+  id: SlimeReactionGreyEpinephrine
+  extract: SlimeGrey
+  reactants: { Water: 5 }
+  products: { Epinephrine: 3 }
+
+- type: slimeReaction
+  id: SlimeReactionGreyMonkey
+  extract: SlimeGrey
+  reactants: { Blood: 1 }
+  spawn: { MonkeyCube: 3 }
+
+# Green
+- type: slimeReaction
+  id: SlimeReactionGreenJelly
+  extract: SlimeGreen
+  reactants: { Plasma: 1 }
+  products: { MutationToxinJelly: 1 }
+
+- type: slimeReaction
+  id: SlimeReactionGreenHuman
+  extract: SlimeGreen
+  reactants: { Blood: 1 }
+  products: { MutationToxinHuman: 1 }
+
+- type: slimeReaction
+  id: SlimeReactionGreenLizard
+  extract: SlimeGreen
+  reactants: { Radium: 1 }
+  products: { MutationToxinLizard: 1 }
+
+- type: slimeReaction
+  id: SlimeReactionGreenFelinid
+  extract: SlimeGreen
+  reactants: { Milk: 1 }
+  products: { MutationToxinFelinid: 1 }
+
+- type: slimeReaction
+  id: SlimeReactionGreenMoth
+  extract: SlimeGreen
+  reactants: { Cellulose: 1 }
+  products: { MutationToxinMoth: 1 }
+
+# Metal
+- type: slimeReaction
+  id: SlimeReactionMetal
+  extract: SlimeMetal
+  reactants: { Plasma: 1 }
+  stacks: { SheetPlasteel1: 5, SheetSteel1: 15 }
+
+- type: slimeReaction
+  id: SlimeReactionMetalGlass
+  extract: SlimeMetal
+  reactants: { Water: 1 }
+  stacks: { SheetRGlass1: 5, SheetGlass1: 15 }
+
+# Gold
+- type: slimeReaction
+  id: SlimeReactionGoldMobs
+  extract: SlimeGold
+  reactants: { Plasma: 15 }
+  effect: MobSpawn
+  delay: 5
+  deletesExtract: false
+  dangerous: true
+  mobCount: 4
+  message: slime-reaction-vibrate-violently
+
+- type: slimeReaction
+  id: SlimeReactionGoldLesser
+  extract: SlimeGold
+  reactants: { Blood: 1 }
+  effect: MobSpawn
+  delay: 5
+  deletesExtract: false
+  mobCount: 3
+  neutralMobs: true
+  message: slime-reaction-vibrate-violently
+
+- type: slimeReaction
+  id: SlimeReactionGoldFriendly
+  extract: SlimeGold
+  reactants: { Water: 1 }
+  effect: MobSpawn
+  delay: 5
+  deletesExtract: false
+  mobCount: 1
+  hostileMobs: false
+  neutralMobs: true
+  message: slime-reaction-vibrate-adorably
+
+# Silver
+- type: slimeReaction
+  id: SlimeReactionSilverFood
+  extract: SlimeSilver
+  reactants: { Plasma: 1 }
+  effect: RandomFood
+
+- type: slimeReaction
+  id: SlimeReactionSilverDrinks
+  extract: SlimeSilver
+  reactants: { Water: 1 }
+  effect: RandomDrinks
+
+# Blue
+- type: slimeReaction
+  id: SlimeReactionBlueFrost
+  extract: SlimeBlue
+  reactants: { Plasma: 1 }
+  products: { FrostOil: 10 }
+
+- type: slimeReaction
+  id: SlimeReactionBlueStabilizer
+  extract: SlimeBlue
+  reactants: { Blood: 1 }
+  spawn: { SlimePotionStabilizer: 1 }
+
+- type: slimeReaction
+  id: SlimeReactionBlueFoam
+  extract: SlimeBlue
+  reactants: { Water: 5 }
+  effect: Foam
+
+# Dark Blue
+- type: slimeReaction
+  id: SlimeReactionDarkBlueFreeze
+  extract: SlimeDarkBlue
+  reactants: { Plasma: 1 }
+  effect: Freeze
+  delay: 5
+  deletesExtract: false
+  message: slime-reaction-cold
+
+- type: slimeReaction
+  id: SlimeReactionDarkBlueFireproof
+  extract: SlimeDarkBlue
+  reactants: { Water: 1 }
+  spawn: { SlimePotionFireproof: 1 }
+
+# Orange
+- type: slimeReaction
+  id: SlimeReactionOrangeCapsaicin
+  extract: SlimeOrange
+  reactants: { Blood: 1 }
+  products: { CapsaicinOil: 10 }
+
+- type: slimeReaction
+  id: SlimeReactionOrangeFire
+  extract: SlimeOrange
+  reactants: { Plasma: 15 }
+  effect: Fire
+  delay: 5
+  deletesExtract: false
+  dangerous: true
+  message: slime-reaction-vibrate-adorably
+
+- type: slimeReaction
+  id: SlimeReactionOrangeSmoke
+  extract: SlimeOrange
+  reactants: { Water: 5 }
+  products: { Phosphorus: 10, Potassium: 10, Sugar: 10 }
+
+# Yellow
+- type: slimeReaction
+  id: SlimeReactionYellowOverload
+  extract: SlimeYellow
+  reactants: { Blood: 15 }
+  effect: Emp
+  dangerous: true
+
+- type: slimeReaction
+  id: SlimeReactionYellowCell
+  extract: SlimeYellow
+  reactants: { Plasma: 1 }
+  spawn: { SlimePowerCell: 1 }
+
+- type: slimeReaction
+  id: SlimeReactionYellowGlow
+  extract: SlimeYellow
+  reactants: { Water: 1 }
+  spawn: { SlimeFlashlight: 1 }
+  message: slime-reaction-glow
+
+# Purple
+- type: slimeReaction
+  id: SlimeReactionPurpleSteroid
+  extract: SlimePurple
+  reactants: { Plasma: 1 }
+  spawn: { SlimePotionSteroid: 1 }
+
+- type: slimeReaction
+  id: SlimeReactionPurpleRegen
+  extract: SlimePurple
+  reactants: { Blood: 1 }
+  products: { RegenJelly: 5 }
+
+# Dark Purple
+- type: slimeReaction
+  id: SlimeReactionDarkPurplePlasma
+  extract: SlimeDarkPurple
+  reactants: { Plasma: 1 }
+  stacks: { SheetPlasma1: 3 }
+
+# Red
+- type: slimeReaction
+  id: SlimeReactionRedMutator
+  extract: SlimeRed
+  reactants: { Plasma: 1 }
+  spawn: { SlimePotionMutator: 1 }
+
+- type: slimeReaction
+  id: SlimeReactionRedBloodlust
+  extract: SlimeRed
+  reactants: { Blood: 1 }
+  effect: Bloodlust
+  dangerous: true
+
+- type: slimeReaction
+  id: SlimeReactionRedSpeed
+  extract: SlimeRed
+  reactants: { Water: 1 }
+  spawn: { SlimePotionSpeed: 1 }
+
+# Pink
+- type: slimeReaction
+  id: SlimeReactionPinkDocility
+  extract: SlimePink
+  reactants: { Plasma: 1 }
+  spawn: { SlimePotionDocility: 1 }
+
+- type: slimeReaction
+  id: SlimeReactionPinkGender
+  extract: SlimePink
+  reactants: { Blood: 1 }
+  spawn: { SlimePotionGenderChange: 1 }
+
+# Black
+- type: slimeReaction
+  id: SlimeReactionBlackMutate
+  extract: SlimeBlack
+  reactants: { Plasma: 1 }
+  products: { AdvancedMutationToxin: 1 }
+
+# Oil
+- type: slimeReaction
+  id: SlimeReactionOilExplosion
+  extract: SlimeOil
+  reactants: { Plasma: 15 }
+  effect: Explosion
+  delay: 5
+  deletesExtract: false
+  dangerous: true
+  message: slime-reaction-vibrate-violently
+
+- type: slimeReaction
+  id: SlimeReactionOilCornoil
+  extract: SlimeOil
+  reactants: { Blood: 1 }
+  products: { Cornoil: 10 }
+
+# Light Pink
+- type: slimeReaction
+  id: SlimeReactionLightPinkSentience
+  extract: SlimeLightPink
+  reactants: { Plasma: 1 }
+  spawn: { SlimePotionSentience: 1 }
+
+- type: slimeReaction
+  id: SlimeReactionLightPinkRenaming
+  extract: SlimeLightPink
+  reactants: { Water: 1 }
+  spawn: { SlimePotionRenaming: 1 }
+
+# Adamantine
+- type: slimeReaction
+  id: SlimeReactionAdamantine
+  extract: SlimeAdamantine
+  reactants: { Plasma: 15 }
+  stacks: { SheetAdamantine: 1 }
+
+# Bluespace
+- type: slimeReaction
+  id: SlimeReactionBluespaceFloor
+  extract: SlimeBluespace
+  reactants: { Blood: 1 }
+  stacks: { FloorTileItemSlimeBluespace: 25 }
+
+- type: slimeReaction
+  id: SlimeReactionBluespaceCrystal
+  extract: SlimeBluespace
+  reactants: { Plasma: 1 }
+  stacks: { XenoBluespaceCrystal: 1 }
+  message: slime-reaction-crystal
+
+- type: slimeReaction
+  id: SlimeReactionBluespaceRadio
+  extract: SlimeBluespace
+  reactants: { Water: 1 }
+  spawn: { SlimePotionRadio: 1 }
+
+# Cerulean
+- type: slimeReaction
+  id: SlimeReactionCeruleanEnhancer
+  extract: SlimeCerulean
+  reactants: { Plasma: 1 }
+  spawn: { SlimePotionEnhancer: 1 }
+
+- type: slimeReaction
+  id: SlimeReactionCeruleanTerritory
+  extract: SlimeCerulean
+  reactants: { Blood: 1 }
+  spawn: { SlimeBlueprints: 1 }
+
+# Sepia
+- type: slimeReaction
+  id: SlimeReactionSepiaStop
+  extract: SlimeSepia
+  reactants: { Plasma: 1 }
+  effect: Timestop
+  delay: 5
+
+- type: slimeReaction
+  id: SlimeReactionSepiaCamera
+  extract: SlimeSepia
+  reactants: { Water: 1 }
+  spawn: { TravelCamera: 1 }
+
+- type: slimeReaction
+  id: SlimeReactionSepiaFloor
+  extract: SlimeSepia
+  reactants: { Blood: 1 }
+  stacks: { FloorTileItemSlimeSepia: 25 }
+
+# Pyrite (банок краски в SS14 нет — краскопульт)
+- type: slimeReaction
+  id: SlimeReactionPyritePaint
+  extract: SlimePyrite
+  reactants: { Plasma: 1 }
+  spawn: { SprayPainter: 1 }
+
+- type: slimeReaction
+  id: SlimeReactionPyriteCrayon
+  extract: SlimePyrite
+  reactants: { Blood: 1 }
+  effect: RandomCrayon
+
+# Rainbow
+- type: slimeReaction
+  id: SlimeReactionRainbowRng
+  extract: SlimeRainbow
+  reactants: { Plasma: 1 }
+  effect: RandomSlimeOrBomb
+
+- type: slimeReaction
+  id: SlimeReactionRainbowBomb
+  extract: SlimeRainbow
+  reactants: { SlimeJelly: 1 }
+  effect: VolatileBomb
+  dangerous: true
+
+- type: slimeReaction
+  id: SlimeReactionRainbowTransfer
+  extract: SlimeRainbow
+  reactants: { Blood: 1 }
+  spawn: { SlimePotionTransference: 1 }
