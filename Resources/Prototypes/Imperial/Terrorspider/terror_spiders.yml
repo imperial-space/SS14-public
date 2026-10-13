@@ -1,0 +1,1367 @@
+# Пауки Ужаса 1 в 1 с Paradise (code/modules/mob/living/simple_animal/hostile/terror_spiders).
+# Скорость игрока: speed 1 → 2.8 тайла/с, 2 → 2.2, 0.5 → 3.3, 0 → 4.
+
+- type: npcFaction
+  id: TerrorSpiders
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - Passive
+  - PetsNT
+  - Zombie
+  - Revolutionary
+  - AllHostile
+  - SyndicateAgent
+  - Wizard
+  - Pirate
+  - DeathSquad
+  - RiotControlUnit
+  - Dragon
+  - Xenoborg
+  - SimpleNeutral
+  - SimpleHostile
+  - Xeno
+
+- type: radioChannel
+  id: TerrorSpiderHive
+  name: chat-radio-terror-spider-hive
+  keycode: 'й'
+  frequency: 8888
+  color: "#a020f0"
+  longRange: true
+
+# --------------------------------------------------------------------------------
+# Базовый паук
+# --------------------------------------------------------------------------------
+
+- type: entity
+  abstract: true
+  parent: [ BaseSimpleMob, MobAtmosStandard, MobRespirator, MobCombat, MobBloodstream, MobFlammable, BaseMobAnimal ]
+  id: MobTerrorSpiderBase
+  name: terror spider
+  description: The generic parent of all other terror spider types. If you see this in-game, it is a bug.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/TerrorSpider/spiders.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: terror_red
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_red
+      Dead:
+        Base: terror_red_dead
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 1000 # move_resist = MOVE_FORCE_STRONG
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Dead
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 15
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.8
+    baseSprintSpeed: 2.8
+  - type: NpcFactionMember
+    factions:
+    - TerrorSpiders
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavPry: !type:Bool
+        true
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-terror-spider-name
+    description: terror-spider-summary-red
+    rules: ghost-role-information-terror-spider-rules
+    mindRoles:
+    - MindRoleTerrorSpider
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: TerrorSpider
+  - type: Prying
+    pryPowered: false
+    speedModifier: 1.5
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: Puller
+    needsHands: false
+  - type: NoSlip
+  - type: IgnoreSpiderWeb
+  - type: CombatMode
+  - type: Speech
+    speechVerb: Arachnid
+    speechSounds: Arachnid
+    allowedEmotes: [ 'Click', 'Chitter' ]
+  - type: TypingIndicator
+    proto: spider
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - TerrorSpiderHive
+  - type: ActiveRadio
+    channels:
+    - TerrorSpiderHive
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: CopperBlood
+        Quantity: 150
+  - type: TemperatureDamage # heat_damage_per_tick = 5: «убей его огнём»
+    heatDamageThreshold: 325
+    coldDamageThreshold: 260
+    coldDamage:
+      types:
+        Cold: 1
+    heatDamage:
+      types:
+        Heat: 3.75
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSpider
+      amount: 2
+  - type: UserInterface
+    interfaces:
+      enum.TerrorSpiderChoiceUiKey.Key:
+        type: TerrorSpiderChoiceBoundUserInterface
+  # sight = SEE_MOBS, lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+  - type: ThermalEntityVision
+  - type: ImperialNightVision
+  - type: Tag
+    tags:
+    - FootstepSound
+    - StunImmune
+
+# --------------------------------------------------------------------------------
+# T1
+# --------------------------------------------------------------------------------
+
+- type: entity
+  parent: MobTerrorSpiderBase
+  id: MobTerrorSpiderRed
+  name: Red Terror spider
+  description: An ominous-looking red spider, it has eight beady red eyes, and nasty, big, pointy fangs! It looks like it has a vicious streak a mile wide.
+  components:
+  - type: TerrorSpider
+    attack: Red
+    targetMethod: Brute
+    web: TerrorWebRed
+    roleSummary: terror-spider-summary-red
+    introText: terror-spider-intro-red
+  - type: TerrorSpiderRed
+  - type: GhostRole
+    description: terror-spider-summary-red
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.2
+    baseSprintSpeed: 2.2
+  - type: Prying
+    pryPowered: true
+  - type: VentCrawler
+
+- type: entity
+  parent: MobTerrorSpiderBase
+  id: MobTerrorSpiderGray
+  name: Gray Terror spider
+  description: An ominous-looking gray spider. It seems to blend into webs, making it hard to see.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.TerrorSpiderVisuals.Stage" ]
+      state: terror_gray
+  - type: TerrorSpiderVisuals
+    alive: [ terror_gray, terror_gray_cloaked ]
+    dead: [ terror_gray_dead, terror_gray_dead ]
+  - type: DamageStateVisuals
+    states: {}
+  - type: TerrorSpider
+    attack: Gray
+    targetMethod: Brute
+    meleeLower: 10
+    web: TerrorWebGray
+    webDelay: 2
+    aiSpinsWebs: false
+    roleSummary: terror-spider-summary-gray
+    introText: terror-spider-intro-gray
+  - type: TerrorSpiderGray
+  - type: GhostRole
+    description: terror-spider-summary-gray
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 10
+  - type: VentCrawler
+
+- type: entity
+  parent: MobTerrorSpiderBase
+  id: MobTerrorSpiderGreen
+  name: Green Terror spider
+  description: An ominous-looking green spider. It has a small egg-sac attached to it, and dried blood stains on its carapace.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: terror_green
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_green
+      Dead:
+        Base: terror_green_dead
+  - type: TerrorSpider
+    attack: Green
+    targetMethod: Brute
+    meleeLower: 10
+    web: TerrorWebGreen
+    roleSummary: terror-spider-summary-green
+    introText: terror-spider-intro-green
+    actions:
+    - ActionTerrorSpiderGreenEggs
+  - type: TerrorSpiderGreen
+  - type: GhostRole
+    description: terror-spider-summary-green
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 10
+  - type: VentCrawler
+
+# --------------------------------------------------------------------------------
+# T2
+# --------------------------------------------------------------------------------
+
+- type: entity
+  parent: MobTerrorSpiderBase
+  id: MobTerrorSpiderBlack
+  name: Black Terror spider
+  description: An ominous-looking spider, black as the darkest night. It has merciless eyes, and a blood-red hourglass pattern on its back.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: terror_widow
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_widow
+      Dead:
+        Base: terror_widow_dead
+  - type: TerrorSpider
+    tier: 2
+    attack: Black
+    targetMethod: Poison
+    meleeLower: 5
+    meleeUpper: 10
+    web: TerrorWebBlack
+    roleSummary: terror-spider-summary-black
+    introText: terror-spider-intro-black
+  - type: GhostRole
+    description: terror-spider-summary-black
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 5
+  - type: VentCrawler
+
+- type: entity
+  parent: MobTerrorSpiderBase
+  id: MobTerrorSpiderWhite
+  name: White Terror spider
+  description: An ominous-looking white spider, its ghostly eyes and vicious-looking fangs are the stuff of nightmares.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: terror_white
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_white
+      Dead:
+        Base: terror_white_dead
+  - type: TerrorSpider
+    tier: 2
+    attack: White
+    targetMethod: Poison
+    meleeLower: 5
+    meleeUpper: 15
+    loudspeaker: true
+    web: TerrorWebWhite
+    roleSummary: terror-spider-summary-white
+    introText: terror-spider-intro-white
+  - type: GhostRole
+    description: terror-spider-summary-white
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 5
+  - type: Prying
+    pryPowered: true
+  - type: VentCrawler
+
+- type: entity
+  parent: MobTerrorSpiderBase
+  id: MobTerrorSpiderPurple
+  name: Purple Terror spider
+  description: An ominous-looking purple spider. It looks about warily, as if waiting for something.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: terror_purple
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_purple
+      Dead:
+        Base: terror_purple_dead
+  - type: TerrorSpider
+    tier: 2
+    targetMethod: Brute
+    meleeUpper: 25
+    web: TerrorWebPurple
+    aiSpinsWebs: false
+    aiVentcrawls: false
+    idleVentcrawlChance: 0
+    smashWalls: true
+    roleSummary: terror-spider-summary-purple
+    introText: terror-spider-intro-purple
+  - type: TerrorSpiderPurple
+  - type: GhostRole
+    description: terror-spider-summary-purple
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 4
+  - type: Prying
+    pryPowered: true
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+
+- type: entity
+  parent: MobTerrorSpiderBase
+  id: MobTerrorSpiderBrown
+  name: Brown Terror spider
+  description: An ominous-looking spider, colored brown like the dirt it crawled out of. Its forearms have sharp digging claws.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: terror_brown
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_brown
+      Dead:
+        Base: terror_brown_dead
+  - type: TerrorSpider
+    tier: 2
+    targetMethod: Brute
+    meleeLower: 20
+    meleeUpper: 30
+    web: null
+    smashWalls: true
+    aiVentBreaker: true
+    ventcrawlCombatFrequency: 60
+    ventcrawlIdleFrequency: 180
+    roleSummary: terror-spider-summary-brown
+    introText: terror-spider-intro-brown
+    actions:
+    - ActionTerrorSpiderVentSmash
+  - type: GhostRole
+    description: terror-spider-summary-brown
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 20
+  - type: Prying
+    pryPowered: true
+  - type: VentCrawler
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+
+# --------------------------------------------------------------------------------
+# T3
+# --------------------------------------------------------------------------------
+
+- type: entity
+  parent: MobTerrorSpiderBase
+  id: MobTerrorSpiderPrince
+  name: Prince of Terror spider
+  description: An enormous, terrifying spider. It looks like it is judging everything it sees. Its hide seems armored, and it bears the scars of many battles.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: terror_allblack
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_allblack
+      Dead:
+        Base: terror_allblack_dead
+  - type: TerrorSpider
+    tier: 3
+    attack: Prince
+    targetMethod: Brute
+    meleeLower: 30
+    meleeUpper: 40
+    regenPointsPerHp: 6
+    loudspeaker: true
+    web: TerrorWebPurple
+    aiSpinsWebs: false
+    aiVentcrawls: false
+    idleVentcrawlChance: 0
+    smashWalls: true
+    roleSummary: terror-spider-summary-prince
+    introText: terror-spider-intro-prince
+    actions:
+    - ActionTerrorSpiderPrinceCharge
+  - type: TerrorSpiderPrince
+  - type: GhostRole
+    description: terror-spider-summary-prince
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      600: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 30
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.3
+    baseSprintSpeed: 3.3
+  - type: Prying
+    pryPowered: true
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+
+- type: entity
+  parent: MobTerrorSpiderBase
+  id: MobTerrorSpiderMother
+  name: Mother of Terror spider
+  description: An enormous spider. Tiny spiderlings are crawling all over it. Their beady little eyes all stare at you. The horror!
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: terror_mother
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_mother
+      Dead:
+        Base: terror_mother_dead
+  - type: TerrorSpider
+    tier: 3
+    meleeLower: 10
+    regenPointsPerTick: 2
+    regenPointsMax: 400
+    regenPointsPerKill: 200
+    idleVentcrawlChance: 5
+    loudspeaker: true
+    web: TerrorWebMother
+    roleSummary: terror-spider-summary-mother
+    introText: terror-spider-intro-mother
+    actions:
+    - ActionTerrorSpiderVentSmash
+    - ActionTerrorSpiderRemoteView
+    - ActionTerrorSpiderRoyalJelly
+    - ActionTerrorSpiderGatherSpiderlings
+    - ActionTerrorSpiderIncubateEggs
+  - type: TerrorSpiderMother
+  - type: GhostRole
+    description: terror-spider-summary-mother
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 10
+  - type: Prying
+    pryPowered: true
+  - type: VentCrawler
+  - type: ContainerContainer
+    containers:
+      terror_spiderlings: !type:Container
+
+# --------------------------------------------------------------------------------
+# T4: королева и её подтипы
+# --------------------------------------------------------------------------------
+
+- type: entity
+  abstract: true
+  parent: MobTerrorSpiderBase
+  id: MobTerrorSpiderQueenBase
+  name: Queen of Terror spider
+  description: An enormous, terrifying spider. Its egg sac is almost as big as its body, and teeming with spider eggs!
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: terror_queen
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_queen
+      Dead:
+        Base: terror_queen_dead
+  - type: TerrorSpider
+    tier: 4
+    meleeLower: 10
+    regenPointsPerTick: 3
+    loudspeaker: true
+    web: TerrorWebQueen
+    aiBreakLights: false
+    aiSpinsWebs: false
+    aiVentcrawls: false
+    idleVentcrawlChance: 0
+    roleSummary: terror-spider-summary-queen
+    introText: terror-spider-intro-queen
+    actions:
+    - ActionTerrorSpiderVentSmash
+    - ActionTerrorSpiderRemoteView
+  - type: TerrorSpiderQueen
+  - type: GhostRole
+    description: terror-spider-summary-queen
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 10
+  - type: Prying
+    pryPowered: true
+  - type: VentCrawler
+
+# Дальняя кислотная атака: ПКМ у игрока, ИИ держит дистанцию.
+- type: entity
+  parent: MobTerrorSpiderQueenBase
+  id: MobQueenSpider
+  name: Queen of Terror spider
+  description: An enormous, terrifying spider. Its egg sac is almost as big as its body, and teeming with spider eggs!
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+    blackboard:
+      NavPry: !type:Bool
+        true
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 3
+  - type: BasicEntityAmmoProvider
+    proto: TerrorQueenSpit
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 0.33
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/pierce.ogg
+
+- type: entity
+  parent: MobTerrorSpiderQueenBase
+  id: MobTerrorSpiderPrincess
+  name: Princess of Terror spider
+  description: An enormous spider. It looks strangely cute and fluffy.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.TerrorSpiderVisuals.Stage" ]
+      state: terror_princess1
+  - type: TerrorSpiderVisuals
+    alive: [ terror_princess1, terror_princess2, terror_princess3 ]
+    dead: [ terror_princess1_dead, terror_princess2_dead, terror_princess3_dead ]
+  - type: DamageStateVisuals
+    states: {}
+  - type: TerrorSpider
+    tier: 3
+    roleSummary: terror-spider-summary-princess
+    introText: terror-spider-intro-princess
+  - type: TerrorSpiderQueen
+    princess: true
+    canLay: 0
+    hasNested: true
+  - type: GhostRole
+    description: terror-spider-summary-princess
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+
+- type: entity
+  parent: MobQueenSpider
+  id: MobTerrorSpiderEmpress
+  name: Empress of Terror
+  description: The unholy offspring of spiders, nightmares, and lovecraft fiction.
+  components:
+  - type: Sprite
+    sprite: Imperial/TerrorSpider/empress.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: terror_empress
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: terror_empress
+      Dead:
+        Base: terror_empress_dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 2000
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: TerrorSpider
+    tier: 5
+    meleeLower: 30
+    meleeUpper: 60
+    playerControllable: false
+    roleSummary: terror-spider-summary-empress
+    introText: terror-spider-intro-empress
+    actions:
+    - ActionTerrorSpiderVentSmash
+    - ActionTerrorSpiderRemoteView
+    - ActionTerrorSpiderEmpressLings
+    - ActionTerrorSpiderEmpressErase
+  - type: TerrorSpiderQueen
+    empress: true
+    canLay: 1000
+    hasNested: true
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1000: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 30
+  - type: BasicEntityAmmoProvider
+    proto: TerrorEmpressSpit
+    capacity: 1
+    count: 1
+  # Императрице не нужен воздух.
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 0
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0
+
+# --------------------------------------------------------------------------------
+# Паучата
+# --------------------------------------------------------------------------------
+
+- type: entity
+  parent: [ BaseSimpleMob, MobCombat, MobFlammable, BaseMobAnimal ]
+  id: MobTerrorSpiderling
+  name: spiderling
+  description: A fast-moving tiny spider, prone to making aggressive hissing sounds. Hope it doesn't grow up.
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: Imperial/TerrorSpider/spiderling.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: spiderling
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 10
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      5: Dead
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 1
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 5
+    baseSprintSpeed: 5
+  - type: NpcFactionMember
+    factions:
+    - TerrorSpiders
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: IdleCompound
+  - type: TerrorSpiderling
+  - type: VentCrawler
+  - type: IgnoreSpiderWeb
+  - type: NoSlip
+  - type: Speech
+    speechVerb: Arachnid
+    speechSounds: Arachnid
+  - type: Tag
+    tags:
+    - StunImmune
+
+- type: entity
+  id: TerrorSpiderlingRemains
+  name: spiderling remains
+  description: Green squishy mess.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/TerrorSpider/structures.rsi
+    state: greenshatter
+    drawdepth: FloorObjects
+  - type: TimedDespawn
+    lifetime: 300
+
+# --------------------------------------------------------------------------------
+# Паутина
+# --------------------------------------------------------------------------------
+
+- type: entity
+  abstract: true
+  id: TerrorWebBase
+  name: terror web
+  description: It's stringy and sticky!
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/TerrorSpider/structures.rsi
+    drawdepth: WallMountedItems
+    layers:
+    - state: stickyweb1
+      map: [ "web" ]
+  - type: RandomSprite
+    available:
+    - web:
+        stickyweb1: ""
+        stickyweb2: ""
+  - type: Appearance
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Transform
+    anchored: true
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 7
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        layer:
+        - MidImpassable
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path: /Audio/Weapons/slash.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20 # две сварки или один выстрел лазера
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: TemperatureDamage
+    heatDamage:
+      types:
+        Heat: 5
+    coldDamage: {}
+    coldDamageThreshold: 0
+  - type: Temperature
+  - type: Flammable
+    fireSpread: true
+    damage:
+      types:
+        Heat: 5
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+  - type: TerrorWeb
+
+- type: entity
+  parent: TerrorWebBase
+  id: TerrorWeb
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: TerrorWebBase
+  id: TerrorWebRed
+  name: reinforced web
+  description: This web is reinforced with extra strands, for added strength.
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: TerrorWebBase
+  id: TerrorWebGray
+  name: transparent web
+  description: This web is partly transparent, making it harder to see, and easier to get caught by.
+  components:
+  - type: Sprite
+    color: "#ffffff96"
+
+- type: entity
+  parent: TerrorWebBase
+  id: TerrorWebGreen
+  name: slimy web
+  description: This web is partly composed of strands of green slime.
+  components:
+  - type: TerrorWeb
+    ability: Green
+
+- type: entity
+  parent: TerrorWebBase
+  id: TerrorWebBlack
+  name: sinister web
+  description: This web has beads of a dark fluid on its strands.
+  components:
+  - type: TerrorWeb
+    ability: Black
+
+- type: entity
+  parent: TerrorWebBase
+  id: TerrorWebWhite
+  name: infested web
+  description: This web is covered in hundreds of tiny, biting spiders - and their eggs.
+  components:
+  - type: TerrorWeb
+    ability: White
+
+- type: entity
+  parent: TerrorWebBase
+  id: TerrorWebPurple
+  name: thick web
+  description: This web is so thick, most cannot see beyond it.
+  components:
+  - type: Occluder
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: TerrorWebBase
+  id: TerrorWebQueen
+  name: airtight web
+  description: This multi-layered web seems to be able to resist air pressure.
+  components:
+  - type: Airtight
+
+- type: entity
+  parent: TerrorWebBase
+  id: TerrorWebMother
+  name: mother web
+  description: This web is coated in pheromones which prevent spiderlings from passing it.
+  components:
+  - type: TerrorWeb
+    blocksSpiderlings: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 7
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        layer:
+        - MidImpassable
+      # Паучата упираются в паутину матери.
+      spiderlings:
+        hard: true
+        density: 7
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        layer:
+        - SmallMobLayer
+
+# --------------------------------------------------------------------------------
+# Яйца, кокон, королевское желе
+# --------------------------------------------------------------------------------
+
+- type: entity
+  id: TerrorEggCluster
+  name: terror egg cluster
+  description: A cluster of tiny spider eggs. They pulse with a strong inner life, and appear to have sharp thorns on the sides.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/TerrorSpider/structures.rsi
+    state: eggs
+    drawdepth: FloorObjects
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Transform
+    anchored: true
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.3"
+        layer:
+        - SlipLayer
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path: /Audio/Effects/gib1.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: TerrorEggCluster
+
+- type: entity
+  id: TerrorCocoon
+  name: cocoon
+  description: Something wrapped in silky spider web.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/TerrorSpider/structures.rsi
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.TerrorSpiderVisuals.Stage" ]
+      state: cocoon1
+  - type: TerrorSpiderVisuals
+    alive: [ cocoon1, cocoon2, cocoon3, cocoon_large1, cocoon_large2, cocoon_large3 ]
+    dead: []
+  - type: Appearance
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Transform
+    anchored: true
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35"
+        layer:
+        - MidImpassable
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:EmptyAllContainersBehaviour
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ContainerContainer
+    containers:
+      cocoon: !type:Container
+  - type: TerrorCocoon
+
+- type: entity
+  id: TerrorRoyalJelly
+  name: royal jelly
+  description: A pulsating mass of slime, jelly, blood, and or liquified human organs considered delicious and highly nutritious by terror spiders.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/TerrorSpider/structures.rsi
+    state: spiderjelly
+    drawdepth: FloorObjects
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Transform
+    anchored: true
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.3"
+        layer:
+        - SlipLayer
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: TerrorRoyalJelly
+
+- type: entity
+  id: TerrorHealEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/TerrorSpider/structures.rsi
+    state: heal
+    drawdepth: Effects
+    shader: unshaded
+  - type: TimedDespawn
+    lifetime: 1.4
+
+# --------------------------------------------------------------------------------
+# Плевок королевы
+# --------------------------------------------------------------------------------
+
+- type: entity
+  id: TerrorQueenSpit
+  name: acid spit
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Caustic: 40
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
+    layers:
+    - state: xeno_toxic
+  - type: Ammo
+    muzzleFlash: null
+
+- type: entity
+  id: TerrorEmpressSpit
+  parent: TerrorQueenSpit
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Caustic: 90
+
+# --------------------------------------------------------------------------------
+# Яд чёрного паука
+# --------------------------------------------------------------------------------
+
+- type: reagent
+  id: TerrorBlackToxin
+  name: reagent-name-terror-black-toxin
+  group: Toxins
+  desc: reagent-desc-terror-black-toxin
+  physicalDesc: reagent-physical-desc-viscous
+  flavor: bitter
+  color: "#CF3600"
+  metabolisms:
+    Poison:
+      metabolismRate: 0.05 # 0.1 за тик Life в 2 секунды; урон наносит TerrorSpiderSystem
+
+# --------------------------------------------------------------------------------
+# Действия
+# --------------------------------------------------------------------------------
+
+- type: entity
+  abstract: true
+  parent: BaseAction
+  id: ActionTerrorSpiderBase
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    useDelay: 1
+
+- type: entity
+  parent: ActionTerrorSpiderBase
+  id: ActionTerrorSpiderWeb
+  name: Web
+  description: Spin a terror web under yourself.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/TerrorSpider/structures.rsi, state: stickyweb1 }
+  - type: InstantAction
+    event: !type:TerrorSpiderWebActionEvent
+
+- type: entity
+  parent: ActionTerrorSpiderBase
+  id: ActionTerrorSpiderWrap
+  name: Wrap
+  description: Wrap a corpse or object next to you in a cocoon.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/TerrorSpider/structures.rsi, state: cocoon_large1 }
+  - type: InstantAction
+    event: !type:TerrorSpiderWrapActionEvent
+
+- type: entity
+  parent: ActionTerrorSpiderBase
+  id: ActionTerrorSpiderGreenEggs
+  name: Lay Green Eggs
+  description: Lay a cluster of eggs. Requires two wrapped corpses.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/TerrorSpider/structures.rsi, state: eggs }
+  - type: InstantAction
+    event: !type:TerrorSpiderGreenEggsActionEvent
+
+- type: entity
+  parent: ActionTerrorSpiderBase
+  id: ActionTerrorSpiderVentSmash
+  name: Smash Welded Vent
+  description: Break the welded cover off a nearby vent or scrubber.
+  components:
+  - type: Action
+    icon: { sprite: Structures/Piping/Atmospherics/vent.rsi, state: vent_welded }
+  - type: InstantAction
+    event: !type:TerrorSpiderVentSmashActionEvent
+
+- type: entity
+  parent: ActionTerrorSpiderBase
+  id: ActionTerrorSpiderRemoteView
+  name: Remote View
+  description: Watch through the eyes of another terror spider. Requires full health.
+  components:
+  - type: Action
+    icon: { sprite: Interface/Actions/actions_ai.rsi, state: camera_light }
+  - type: InstantAction
+    event: !type:TerrorSpiderRemoteViewActionEvent
+
+- type: entity
+  parent: ActionTerrorSpiderBase
+  id: ActionTerrorSpiderRoyalJelly
+  name: Lay Royal Jelly
+  description: Secrete royal jelly for other spiders to eat. Costs 100 regeneration points.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/TerrorSpider/structures.rsi, state: spiderjelly }
+  - type: InstantAction
+    event: !type:TerrorSpiderRoyalJellyActionEvent
+
+- type: entity
+  parent: ActionTerrorSpiderBase
+  id: ActionTerrorSpiderGatherSpiderlings
+  name: Gather Spiderlings
+  description: Pick up nearby spiderlings and carry them on your back.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/TerrorSpider/spiderling.rsi, state: spiderling }
+  - type: InstantAction
+    event: !type:TerrorSpiderGatherSpiderlingsActionEvent
+
+- type: entity
+  parent: ActionTerrorSpiderBase
+  id: ActionTerrorSpiderIncubateEggs
+  name: Incubate Eggs
+  description: Warm the eggs under you, making them grow faster.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/TerrorSpider/structures.rsi, state: eggs }
+  - type: InstantAction
+    event: !type:TerrorSpiderIncubateEggsActionEvent
+
+- type: entity
+  parent: ActionTerrorSpiderBase
+  id: ActionTerrorSpiderQueenNest
+  name: Nest
+  description: Settle down to lay eggs and smash walls, losing the ability to ventcrawl.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/TerrorSpider/spiders.rsi, state: terror_queen }
+  - type: InstantAction
+    event: !type:TerrorSpiderQueenNestActionEvent
+
+- type: entity
+  parent: ActionTerrorSpiderBase
+  id: ActionTerrorSpiderHiveSense
+  name: Hive Sense
+  description: Sense the location and health of your whole brood.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/TerrorSpider/spiders.rsi, state: terror_purple }
+  - type: InstantAction
+    event: !type:TerrorSpiderHiveSenseActionEvent
+
+- type: entity
+  parent: ActionTerrorSpiderBase
+  id: ActionTerrorSpiderQueenEggs
+  name: Lay Queen Eggs
+  description: Lay a cluster of terror spider eggs.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/TerrorSpider/structures.rsi, state: eggs }
+  - type: InstantAction
+    event: !type:TerrorSpiderQueenEggsActionEvent
+
+- type: entity
+  parent: ActionTerrorSpiderBase
+  id: ActionTerrorSpiderEmpressLings
+  name: Empress Spiderlings
+  description: Spawn a swarm of spiderlings.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/TerrorSpider/spiderling.rsi, state: spiderling }
+  - type: InstantAction
+    event: !type:TerrorSpiderEmpressLingsActionEvent
+
+- type: entity
+  parent: ActionTerrorSpiderBase
+  id: ActionTerrorSpiderEmpressErase
+  name: Empress Erase Brood
+  description: Burn out every lesser terror spider, egg and spiderling.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/TerrorSpider/structures.rsi, state: greenshatter }
+  - type: InstantAction
+    event: !type:TerrorSpiderEmpressEraseActionEvent
+
+- type: entity
+  parent: ActionTerrorSpiderBase
+  id: ActionTerrorSpiderPrinceCharge
+  name: Princely Charge
+  description: You charge at wherever you click on screen, dealing large amounts of damage, stunning and destroying walls and other objects.
+  components:
+  - type: Action
+    useDelay: 30
+    icon: { sprite: Imperial/TerrorSpider/spiders.rsi, state: terror_allblack }
+  - type: TargetAction
+    range: 9
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:TerrorSpiderPrinceChargeActionEvent
+
+# --------------------------------------------------------------------------------
+# Событие
+# --------------------------------------------------------------------------------
+
+- type: entity
+  parent: BaseGameRule
+  id: ImperialTerrorSpiderInfestation
+  components:
+  - type: StationEvent
+    weight: 5
+    duration: null
+    earliestStart: 30
+    minimumPlayers: 30
+    maxOccurrences: 1
+  - type: TerrorSpiderInfestationRule
+
+- type: entity
+  parent: ImperialTerrorSpiderInfestation
+  id: ImperialTerrorSpiderInfestationPrince
+  components:
+  - type: TerrorSpiderInfestationRule
+    infestation: Prince
+
+- type: entity
+  parent: ImperialTerrorSpiderInfestation
+  id: ImperialTerrorSpiderInfestationWhite
+  components:
+  - type: TerrorSpiderInfestationRule
+    infestation: White
+
+- type: entity
+  parent: ImperialTerrorSpiderInfestation
+  id: ImperialTerrorSpiderInfestationPrincess
+  components:
+  - type: TerrorSpiderInfestationRule
+    infestation: Princess
+
+- type: entity
+  parent: ImperialTerrorSpiderInfestation
+  id: ImperialTerrorSpiderInfestationQueen
+  components:
+  - type: TerrorSpiderInfestationRule
+    infestation: Queen

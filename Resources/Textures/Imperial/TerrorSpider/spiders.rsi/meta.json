@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from ParadiseSS13/Paradise (terrorspider.dmi), sprites by FoS, IK3I and Travelling Merchant",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "terror_red",
+      "directions": 4
+    },
+    {
+      "name": "terror_red_dead"
+    },
+    {
+      "name": "terror_purple",
+      "directions": 4
+    },
+    {
+      "name": "terror_purple_dead"
+    },
+    {
+      "name": "terror_white",
+      "directions": 4
+    },
+    {
+      "name": "terror_white_dead"
+    },
+    {
+      "name": "terror_gray",
+      "directions": 4
+    },
+    {
+      "name": "terror_gray_dead"
+    },
+    {
+      "name": "terror_gray_cloaked",
+      "directions": 4
+    },
+    {
+      "name": "terror_green",
+      "directions": 4
+    },
+    {
+      "name": "terror_green_dead"
+    },
+    {
+      "name": "terror_widow",
+      "directions": 4
+    },
+    {
+      "name": "terror_widow_dead"
+    },
+    {
+      "name": "terror_allblack",
+      "directions": 4
+    },
+    {
+      "name": "terror_allblack_dead"
+    },
+    {
+      "name": "terror_queen",
+      "directions": 4
+    },
+    {
+      "name": "terror_queen_dead"
+    },
+    {
+      "name": "terror_princess1",
+      "directions": 4
+    },
+    {
+      "name": "terror_princess1_dead"
+    },
+    {
+      "name": "terror_princess2",
+      "directions": 4
+    },
+    {
+      "name": "terror_princess2_dead"
+    },
+    {
+      "name": "terror_princess3",
+      "directions": 4
+    },
+    {
+      "name": "terror_princess3_dead"
+    },
+    {
+      "name": "terror_mother",
+      "directions": 4
+    },
+    {
+      "name": "terror_mother_dead"
+    },
+    {
+      "name": "terror_brown",
+      "directions": 4
+    },
+    {
+      "name": "terror_brown_dead"
+    }
+  ]
+}
