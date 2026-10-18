@@ -259,7 +259,7 @@ public sealed class WantedPosterSystem : EntitySystem
     /// <summary>poster/attack_atom: повесить на стену.</summary>
     private void OnAfterInteract(Entity<WantedPosterComponent> ent, ref AfterInteractEvent args)
     {
-        if (args.Handled || !ent.Comp.Rolled || !args.CanReach || args.Target is not { } wall || !_tag.HasTag(wall, "Wall"))
+        if (args.Handled || !ent.Comp.Rolled || !args.CanReach || args.Target is not { } wall || !_tag.HasTag(wall, new Robust.Shared.Prototypes.ProtoId<Content.Shared.Tag.TagPrototype>("Wall")))
             return;
 
         args.Handled = true;
@@ -286,7 +286,7 @@ public sealed class WantedPosterSystem : EntitySystem
     /// <summary>wirecutter_act(): снять плакат целым.</summary>
     private void OnInteractUsing(Entity<WantedPosterComponent> ent, ref InteractUsingEvent args)
     {
-        if (args.Handled || ent.Comp.Rolled || !_tool.HasQuality(args.Used, "Cutting"))
+        if (args.Handled || ent.Comp.Rolled || !_tool.HasQuality(args.Used, new Robust.Shared.Prototypes.ProtoId<Content.Shared.Tools.ToolQualityPrototype>("Cutting")))
             return;
 
         args.Handled = true;

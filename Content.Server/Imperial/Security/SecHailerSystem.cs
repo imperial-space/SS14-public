@@ -166,7 +166,7 @@ public sealed class SecHailerSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (_tool.HasQuality(args.Used, "Screwing"))
+        if (_tool.HasQuality(args.Used, new Robust.Shared.Prototypes.ProtoId<Content.Shared.Tools.ToolQualityPrototype>("Screwing")))
         {
             args.Handled = true;
             if (ent.Comp.Aggression == HailerAggression.Broken)
@@ -186,7 +186,7 @@ public sealed class SecHailerSystem : EntitySystem
             return;
         }
 
-        if (_tool.HasQuality(args.Used, "Cutting"))
+        if (_tool.HasQuality(args.Used, new Robust.Shared.Prototypes.ProtoId<Content.Shared.Tools.ToolQualityPrototype>("Cutting")))
         {
             args.Handled = true;
             if (ent.Comp.Aggression == HailerAggression.Broken)

@@ -630,7 +630,7 @@ public sealed partial class UplinkRoleSystem : EntitySystem
                 continue;
 
             _faction.ClearFactions((bee.Owner, bee.Comp));
-            _faction.AddFaction((bee.Owner, bee.Comp), "Syndicate");
+            _faction.AddFaction((bee.Owner, bee.Comp), new Robust.Shared.Prototypes.ProtoId<Content.Shared.NPC.Prototypes.NpcFactionPrototype>("Syndicate"));
             count++;
         }
 

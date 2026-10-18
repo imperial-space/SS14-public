@@ -6,6 +6,7 @@ namespace Content.Server.Imperial.Fishing;
 /// <summary>
 /// Движение рыбы в мини-игре (/datum/fish_movement и наследники).
 /// </summary>
+[Virtual]
 public class ImperialFishMovement
 {
     private const float TargetMinDistance = 6;

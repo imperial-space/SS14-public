@@ -137,7 +137,7 @@ public sealed class SecwaySystem : EntitySystem
     /// <summary>item_interaction(): засунуть банан в трубу.</summary>
     private void OnInteractUsing(Entity<SecwayComponent> ent, ref InteractUsingEvent args)
     {
-        if (args.Handled || !_tag.HasTag(args.Used, "Banana") || HasBanana(ent))
+        if (args.Handled || !_tag.HasTag(args.Used, new Robust.Shared.Prototypes.ProtoId<Content.Shared.Tag.TagPrototype>("Banana")) || HasBanana(ent))
             return;
 
         args.Handled = true;

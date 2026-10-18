@@ -72,7 +72,7 @@ public sealed class ImperialTgResearchNodeMessage : BoundUserInterfaceMessage
 /// <summary>
 /// Данные узла techweb TG, которых нет у TechnologyPrototype: каналы объявления (announce_channels).
 /// </summary>
-[Robust.Shared.Prototypes.Prototype("imperialTgNode")]
+[Robust.Shared.Prototypes.Prototype]
 public sealed partial class ImperialTgNodePrototype : Robust.Shared.Prototypes.IPrototype
 {
     /// <summary>ID — как у технологии (ImperialTg...).</summary>
@@ -124,7 +124,7 @@ public static class ImperialTgTechweb
 }
 
 /// <summary>Технологии SS14, чьи рецепты перенесены в узлы TG (генерируется вместе с деревом).</summary>
-[Prototype("imperialTgHosted")]
+[Prototype]
 public sealed partial class ImperialTgHostedPrototype : IPrototype
 {
     [IdDataField]
@@ -141,11 +141,13 @@ public sealed partial class ImperialTgHostedPrototype : IPrototype
 /// </summary>
 public static class ImperialTgForeignTech
 {
+    private static readonly ProtoId<ImperialTgHostedPrototype> HostedId = "Default";
+
     public static bool IsForeign(IPrototypeManager proto, Content.Shared.Research.Prototypes.TechnologyPrototype tech)
     {
         if (tech.ID.StartsWith("ImperialTg") || tech.Hidden)
             return false;
 
-        return !proto.TryIndex<ImperialTgHostedPrototype>("Default", out var hosted) || !hosted.Technologies.ContainsKey(tech.ID);
+        return !proto.TryIndex(HostedId, out var hosted) || !hosted.Technologies.ContainsKey(tech.ID);
     }
 }

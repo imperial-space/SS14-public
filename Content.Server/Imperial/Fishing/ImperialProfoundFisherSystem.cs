@@ -137,7 +137,7 @@ public sealed class ImperialProfoundFisherSystem : EntitySystem
         if (damage == 0)
             return;
 
-        _damageable.TryChangeDamage(args.User, new DamageSpecifier(_proto.Index<DamageTypePrototype>("Blunt"), damage));
+        _damageable.TryChangeDamage(args.User, new DamageSpecifier(_proto.Index<DamageTypePrototype>(new Robust.Shared.Prototypes.ProtoId<DamageTypePrototype>("Blunt")), damage));
         _popup.PopupEntity(Loc.GetString("imperial-profound-fisher-hurt", ("fish", reward)), args.User, args.User, PopupType.MediumCaution);
     }
 

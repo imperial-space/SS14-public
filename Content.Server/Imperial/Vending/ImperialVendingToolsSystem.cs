@@ -267,7 +267,7 @@ public sealed class ImperialVendingToolsSystem : EntitySystem
             return;
 
         float total = 0, weighted = 0;
-        _proto.TryIndex<ImperialReagentPhPrototype>("Default", out var table);
+        _proto.TryIndex<ImperialReagentPhPrototype>(new Robust.Shared.Prototypes.ProtoId<ImperialReagentPhPrototype>("Default"), out var table);
         foreach (var (_, soln) in _solutions.EnumerateSolutions((target, manager)))
         {
             foreach (var reagent in soln.Comp.Solution.Contents)

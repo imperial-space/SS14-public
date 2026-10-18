@@ -225,7 +225,7 @@ public sealed partial class ImperialFishSourceSystem
         {
             args.Handled = true;
             // tilt(): автомат падает на рыбака.
-            var damage = new DamageSpecifier(_proto.Index<Content.Shared.Damage.Prototypes.DamageTypePrototype>("Blunt"), FixedPoint2.New(40));
+            var damage = new DamageSpecifier(_proto.Index<Content.Shared.Damage.Prototypes.DamageTypePrototype>(new Robust.Shared.Prototypes.ProtoId<Content.Shared.Damage.Prototypes.DamageTypePrototype>("Blunt")), FixedPoint2.New(40));
             _damageable.TryChangeDamage(user, damage, origin: ent);
             _stun.TryUpdateParalyzeDuration(user, TimeSpan.FromSeconds(4));
             _popup.PopupEntity(Loc.GetString("imperial-fishing-vending-chuck", ("machine", ent.Owner)), user, Content.Shared.Popups.PopupType.LargeCaution);

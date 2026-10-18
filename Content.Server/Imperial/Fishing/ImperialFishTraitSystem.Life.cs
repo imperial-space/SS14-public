@@ -396,7 +396,7 @@ public sealed partial class ImperialFishTraitSystem
     /// <summary>Разделка рыбы с чернилами даёт чернильный мешок.</summary>
     private void OnProcessed(Entity<ImperialFishComponent> ent, ref ImperialFishProcessedEvent args)
     {
-        if (Has(ent.Comp, "Ink") && _proto.HasIndex<EntityPrototype>("ImperialFoodInkSac"))
+        if (Has(ent.Comp, "Ink") && _proto.HasIndex<EntityPrototype>(new Robust.Shared.Prototypes.ProtoId<EntityPrototype>("ImperialFoodInkSac")))
             Spawn("ImperialFoodInkSac", Transform(ent).Coordinates);
     }
 }

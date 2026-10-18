@@ -315,7 +315,7 @@ public sealed class ImperialTgTechwebConsoleSystem : EntitySystem
     /// </summary>
     private void SyncHostedTechnologies()
     {
-        if (!_proto.TryIndex<ImperialTgHostedPrototype>("Default", out var hosted))
+        if (!_proto.TryIndex<ImperialTgHostedPrototype>(new Robust.Shared.Prototypes.ProtoId<ImperialTgHostedPrototype>("Default"), out var hosted))
             return;
 
         var tgRecipes = TgRecipes();

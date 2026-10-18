@@ -123,7 +123,7 @@ public sealed class PaintballSystem : EntitySystem
     /// <summary>multitool_act(): выбрать цвет краски (кроме перцовых шариков).</summary>
     private void OnInteractUsing(Entity<PaintballGunComponent> ent, ref InteractUsingEvent args)
     {
-        if (args.Handled || !_tool.HasQuality(args.Used, "Pulsing"))
+        if (args.Handled || !_tool.HasQuality(args.Used, new Robust.Shared.Prototypes.ProtoId<Content.Shared.Tools.ToolQualityPrototype>("Pulsing")))
             return;
 
         args.Handled = true;

@@ -136,7 +136,7 @@ public sealed class ElectricChairSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (!_tool.HasQuality(args.Used, "Anchoring") && !_tool.HasQuality(args.Used, "Screwing"))
+        if (!_tool.HasQuality(args.Used, new Robust.Shared.Prototypes.ProtoId<Content.Shared.Tools.ToolQualityPrototype>("Anchoring")) && !_tool.HasQuality(args.Used, new Robust.Shared.Prototypes.ProtoId<Content.Shared.Tools.ToolQualityPrototype>("Screwing")))
             return;
 
         args.Handled = true;

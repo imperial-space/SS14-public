@@ -257,7 +257,7 @@ public sealed class ImperialCustomVendorPriceMessage(NetEntity item, int price) 
 // ── Чёрный рынок (code/modules/cargo/markets) ──
 
 /// <summary>/datum/market_item: товар чёрного рынка.</summary>
-[Prototype("imperialMarketItem")]
+[Prototype]
 public sealed partial class ImperialMarketItemPrototype : IPrototype
 {
     [IdDataField]

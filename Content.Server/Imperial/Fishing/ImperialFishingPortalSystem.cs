@@ -168,7 +168,7 @@ public sealed class ImperialFishingPortalSystem : EntitySystem
         _ui.CloseUi(ent.Owner, ImperialFishingPortalUiKey.Key);
         if (args.Key.StartsWith("unlink:"))
         {
-            if (NetEntity.TryParse(args.Key["unlink:".Length..], out var net) && GetEntity(net) is { Valid: true } spot)
+            if (NetEntity.TryParse(args.Key.AsSpan("unlink:".Length), out var net) && GetEntity(net) is { Valid: true } spot)
             {
                 Unlink(ent, spot);
                 _popup.PopupEntity(Loc.GetString("imperial-fishing-portal-unlinked"), ent, args.Actor);
@@ -197,7 +197,7 @@ public sealed class ImperialFishingPortalSystem : EntitySystem
         EntityUid? linked = null;
         if (key.StartsWith("linked:"))
         {
-            if (!NetEntity.TryParse(key["linked:".Length..], out var net) || GetEntity(net) is not { Valid: true } spot
+            if (!NetEntity.TryParse(key.AsSpan("linked:".Length), out var net) || GetEntity(net) is not { Valid: true } spot
                 || !ent.Comp.Linked.TryGetValue(spot, out var linkedSource))
                 return;
 

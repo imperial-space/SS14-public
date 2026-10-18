@@ -42,7 +42,7 @@ public sealed class ImperialFishingLineSystem : EntitySystem
         var query = EntityQueryEnumerator<ImperialFishingFloatComponent, JointVisualsComponent>();
         while (query.MoveNext(out _, out _, out var visuals))
         {
-            if (visuals.Target is not { } user || !TryComp<TransformComponent>(user, out var xform))
+            if (visuals.Target is not { } user || !TryComp(user, out TransformComponent? xform))
                 continue;
 
             var left = false;

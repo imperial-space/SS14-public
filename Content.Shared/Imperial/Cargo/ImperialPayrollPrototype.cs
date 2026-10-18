@@ -9,7 +9,7 @@ namespace Content.Shared.Imperial.Cargo;
 /// Зарплатная ведомость TG: paycheck и paycheck_department каждой должности (/datum/job),
 /// payday_modifier рас (/datum/species).
 /// </summary>
-[Prototype("imperialPayroll")]
+[Prototype]
 public sealed partial class ImperialPayrollPrototype : IPrototype
 {
     [IdDataField]

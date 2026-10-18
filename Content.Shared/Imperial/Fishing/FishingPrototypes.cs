@@ -8,7 +8,7 @@ namespace Content.Shared.Imperial.Fishing;
 /// Источник рыбы (/datum/fish_source): таблица улова, сложность, фон мини-игры.
 /// Ключи таблицы — прототипы сущностей или особые значения ("dud", "randomSeed", ...).
 /// </summary>
-[Prototype("imperialFishSource")]
+[Prototype]
 public sealed partial class ImperialFishSourcePrototype : IPrototype
 {
     [IdDataField]
@@ -90,7 +90,7 @@ public sealed partial class ImperialFishSourcePrototype : IPrototype
 /// Какие существующие сущности сборки считаются местами ловли (вода, лава, пропасть, унитаз и т. п.),
 /// без изменения их прототипов.
 /// </summary>
-[Prototype("imperialFishingSpots")]
+[Prototype]
 public sealed partial class ImperialFishingSpotsPrototype : IPrototype
 {
     [IdDataField]
@@ -106,7 +106,7 @@ public sealed partial class ImperialFishingSpotsPrototype : IPrototype
 }
 
 /// <summary>Черта рыбы (/datum/fish_trait). Поведение — в ImperialFishTraitSystem по ID.</summary>
-[Prototype("imperialFishTrait")]
+[Prototype]
 public sealed partial class ImperialFishTraitPrototype : IPrototype
 {
     [IdDataField]
@@ -141,7 +141,7 @@ public sealed partial class ImperialFishTraitPrototype : IPrototype
 }
 
 /// <summary>Значки улова в мини-игре для мастеров рыбалки (GLOB.specific_fish_icons).</summary>
-[Prototype("imperialFishingIcons")]
+[Prototype]
 public sealed partial class ImperialFishingIconsPrototype : IPrototype
 {
     [IdDataField]
@@ -159,7 +159,7 @@ public sealed partial class ImperialFishingIconsPrototype : IPrototype
 /// <summary>
 /// Эволюция рыбы (/datum/fish_evolution): при размножении или росте вместо своего вида получается новый.
 /// </summary>
-[Prototype("imperialFishEvolution")]
+[Prototype]
 public sealed partial class ImperialFishEvolutionPrototype : IPrototype
 {
     [IdDataField]

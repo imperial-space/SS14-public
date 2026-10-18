@@ -66,7 +66,7 @@ public sealed class UplinkFalseBottomSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (_tool.HasQuality(args.Used, "Screwing"))
+        if (_tool.HasQuality(args.Used, new Robust.Shared.Prototypes.ProtoId<Content.Shared.Tools.ToolQualityPrototype>("Screwing")))
         {
             args.Handled = true;
             if (ent.Comp.Open)

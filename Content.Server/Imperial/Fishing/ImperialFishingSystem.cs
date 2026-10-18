@@ -749,7 +749,7 @@ public sealed partial class ImperialFishingSystem : EntitySystem
         if (_data.GetFish(reward) is { } fish)
             return fish.Icon;
 
-        if (_proto.TryIndex<ImperialFishingIconsPrototype>("Default", out var icons))
+        if (_proto.TryIndex<ImperialFishingIconsPrototype>(new Robust.Shared.Prototypes.ProtoId<ImperialFishingIconsPrototype>("Default"), out var icons))
         {
             foreach (var (proto, icon) in icons.Entities)
             {

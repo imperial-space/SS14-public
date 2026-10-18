@@ -649,7 +649,7 @@ public sealed partial class ImperialFishSystem : EntitySystem
         if (_traits.Has(ent.Comp, "Predator") && _random.Prob(0.5f))
         {
             _popup.PopupEntity(Loc.GetString(inAquarium ? "imperial-fish-pet-bite-aquarium" : "imperial-fish-pet-bite", ("fish", ent.Owner)), user, user, PopupType.SmallCaution);
-            var damage = new DamageSpecifier(_proto.Index<Content.Shared.Damage.Prototypes.DamageTypePrototype>("Piercing"),
+            var damage = new DamageSpecifier(_proto.Index<Content.Shared.Damage.Prototypes.DamageTypePrototype>(new Robust.Shared.Prototypes.ProtoId<Content.Shared.Damage.Prototypes.DamageTypePrototype>("Piercing")),
                 FixedPoint2.New(GetWeightClass(ent.Comp.Size) * 2 + 1.2f));
             _damageable.TryChangeDamage(user, damage, origin: ent);
             _audio.PlayPvs("/Audio/Effects/bite.ogg", user);
