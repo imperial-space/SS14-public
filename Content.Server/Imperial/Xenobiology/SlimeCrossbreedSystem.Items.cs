@@ -32,12 +32,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Xenobiology;
 
-/// <summary>Действие призматических очков.</summary>
-public sealed partial class SlimePrismColourActionEvent : InstantActionEvent;
-
-/// <summary>Действие призматических очков: призма света.</summary>
-public sealed partial class SlimePrismPlaceActionEvent : InstantActionEvent;
-
 public sealed partial class SlimeCrossbreedSystem
 {
 
@@ -327,7 +321,7 @@ public sealed partial class SlimeCrossbreedSystem
         PopupUser(target == user ? "slime-cross-rewind-selfie" : "slime-cross-rewind-photo", user, ("target", target));
         PopupUser("slime-cross-rewind-remember", target);
         StartDejavu(target, 2);
-        _audio.PlayPvs(new Robust.Shared.Audio.SoundPathSpecifier("/Audio/Items/flash.ogg"), At(user));
+        _audio.PlayPvs(new Robust.Shared.Audio.SoundPathSpecifier("/Audio/Weapons/flash.ogg"), At(user));
         QueueDel(ent);
     }
 

@@ -83,3 +83,9 @@ public enum SlimeIndustrialVisuals : byte
 /// <summary>do_after взятия пробы тампоном или биопсией (3 секунды).</summary>
 [Serializable, NetSerializable]
 public sealed partial class VatSwabDoAfterEvent : SimpleDoAfterEvent;
+
+/// <summary>Действие призматических очков.</summary>
+public sealed partial class SlimePrismColourActionEvent : InstantActionEvent;
+
+/// <summary>Действие призматических очков: призма света.</summary>
+public sealed partial class SlimePrismPlaceActionEvent : InstantActionEvent;

@@ -80,6 +80,8 @@
     stackType: XenoBluespaceCrystal
     count: 1
   - type: SlimeBluespaceCrystal
+  - type: UseDelay
+    delay: 5
   - type: StaticPrice
     price: 300
   - type: PointLight
