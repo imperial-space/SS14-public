@@ -14,7 +14,6 @@ using Content.Server.Imperial.Heretic.Paths.Void;
 using Content.Shared.Clothing;
 using Content.Shared.IdentityManagement;
 using Content.Shared.IdentityManagement.Components;
-using Content.Shared.Imperial.Heretic.Items;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Components;
 using Content.Shared.VoiceMask;
