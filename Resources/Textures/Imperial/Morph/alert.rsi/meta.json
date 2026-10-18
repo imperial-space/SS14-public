@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from ParadiseSS13 (https://github.com/ParadiseSS13/Paradise), screen_alert.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "morph_ambush"
+    }
+  ]
+}

@@ -1,0 +1,335 @@
+# Морф 1 в 1 с Paradise (code/game/gamemodes/miniantags/morph).
+
+- type: entity
+  parent: [ BaseSimpleMob, MobCombat, BaseMobAnimal ]
+  id: MobMorph
+  name: морф
+  description: Отвратительная пульсирующая куча плоти.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Morph/morph.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: morph
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: morph
+      Dead:
+        Base: morph_dead
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 1000 # move_resist = MOVE_FORCE_STRONG
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  # maxHealth = 150, у простых мобов нет крита
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  # melee_damage 15 (glomps), obj_damage = 50
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Imperial/Morph/blobattack.ogg
+    damage:
+      types:
+        Blunt: 15
+        Structural: 35
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 3.5
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: InputMover
+  - type: MobMover
+  # vision_range = 1, wander = FALSE: без игрока морф сидит в засаде и бьёт только вплотную
+  - type: HTN
+    rootTask:
+      task: MeleeCombatCompound
+    blackboard:
+      VisionRadius: !type:Single
+        1.5
+      AggroVisionRadius: !type:Single
+        1.5
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-morph-name
+    description: ghost-role-information-morph-description
+    rules: ghost-role-information-morph-rules
+    mindRoles:
+    - MindRoleMorph
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Morph
+  - type: CombatMode
+  - type: Puller
+    needsHands: false
+  # ventcrawler = VENTCRAWLER_ALWAYS
+  - type: VentCrawler
+  # atmos_requirements = 0, minbodytemp = 0
+  - type: PressureImmunity
+  - type: Temperature
+  - type: TemperatureDamage
+    heatDamageThreshold: 350
+    coldDamageThreshold: 0
+    heatDamage:
+      types:
+        Heat: 2
+  # see_in_dark = 8
+  - type: ImperialNightVision
+  - type: Speech
+    speechVerb: Slime
+    speechSounds: Slime
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 2
+  - type: ContainerContainer
+    containers:
+      morph_stomach: !type:Container
+  - type: UserInterface
+    interfaces:
+      enum.MorphFormUiKey.Key:
+        type: MorphFormBoundUserInterface
+  - type: Tag
+    tags:
+    - FootstepSound
+
+# mob/living/simple_animal/hostile/morph/wizard: ещё дым и силовая стена.
+- type: entity
+  parent: MobMorph
+  id: MobMorphMagical
+  name: магический морф
+  description: Отвратительная пульсирующая куча плоти. Этот выглядит каким-то... магическим.
+  components:
+  - type: Morph
+    extraActions:
+    - ActionSmoke
+    - ActionForceWall
+    reproduceProto: MobMorph
+
+# --- Способности ---
+
+- type: entity
+  abstract: true
+  parent: BaseAction
+  id: BaseActionMorph
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Morph/actions.rsi
+      state: morph_mimic
+    background:
+      sprite: Imperial/Morph/actions.rsi
+      state: bg_morph
+
+# spell/mimic/morph: base_cooldown = 3 SECONDS
+- type: entity
+  parent: BaseActionMorph
+  id: ActionMorphMimic
+  name: Мимикрия
+  description: Запомните новый облик или примите один из известных. Нажмите на цель, чтобы запомнить её облик, или на себя, чтобы сменить форму.
+  components:
+  - type: Action
+    useDelay: 3
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Morph/actions.rsi
+      state: morph_mimic
+    background:
+      sprite: Imperial/Morph/actions.rsi
+      state: bg_morph
+  - type: TargetAction
+    range: 7
+    checkCanAccess: false
+  - type: EntityTargetAction
+    canTargetSelf: true
+    event: !type:MorphMimicActionEvent {}
+
+# spell/morph_spell/ambush: base_cooldown = 8 SECONDS
+- type: entity
+  parent: BaseActionMorph
+  id: ActionMorphAmbush
+  name: Подготовить засаду
+  description: Подготовьте засаду. Первый удар нанесёт намного больше урона и собьёт цель с ног. Работает только в облике. Если цель тронет вас руками, урон будет ещё выше. Ещё 15 секунд неподвижности сделают маскировку безупречной.
+  components:
+  - type: Action
+    useDelay: 8
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Morph/actions.rsi
+      state: morph_ambush
+    background:
+      sprite: Imperial/Morph/actions.rsi
+      state: bg_morph
+  - type: InstantAction
+    event: !type:MorphAmbushActionEvent {}
+
+# spell/morph_spell/reproduce: hunger_cost = 150, base_cooldown = 30 SECONDS
+- type: entity
+  parent: BaseActionMorph
+  id: ActionMorphReproduce
+  name: Размножиться (150)
+  description: Разделитесь надвое, создав нового морфа. Работает только на полу.
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Morph/actions.rsi
+      state: morph_reproduce
+    background:
+      sprite: Imperial/Morph/actions.rsi
+      state: bg_morph
+  - type: MorphActionCost
+    hungerCost: 150
+  - type: InstantAction
+    event: !type:MorphReproduceActionEvent {}
+
+# spell/morph_spell/open_vent: hunger_cost = 10
+- type: entity
+  parent: BaseActionMorph
+  id: ActionMorphOpenVent
+  name: Открыть вентиляции (10)
+  description: Выплюньте кислотную рвоту на заваренные вентиляции и скрубберы рядом. Кислоте нужно немного времени. Нельзя использовать изнутри вентиляции.
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Morph/actions.rsi
+      state: acid_vent
+    background:
+      sprite: Imperial/Morph/actions.rsi
+      state: bg_morph
+  - type: MorphActionCost
+    hungerCost: 10
+  - type: InstantAction
+    event: !type:MorphOpenVentActionEvent {}
+
+# spell/morph_spell/pass_airlock
+- type: entity
+  parent: BaseActionMorph
+  id: ActionMorphPassAirlock
+  name: Пройти через шлюз
+  description: Измените форму, чтобы протиснуться через незаболтированный шлюз. Занимает время и работает только в истинном облике.
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Morph/actions.rsi
+      state: morph_airlock
+    background:
+      sprite: Imperial/Morph/actions.rsi
+      state: bg_morph
+  - type: TargetAction
+    range: 1.5
+    checkCanAccess: false
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Airlock
+    event: !type:MorphPassAirlockActionEvent {}
+
+# --- Алерты засады ---
+
+- type: alert
+  id: MorphAmbush
+  icons:
+  - sprite: Imperial/Morph/alert.rsi
+    state: morph_ambush
+  name: Засада!
+  description: Вы подготовили засаду!
+
+- type: alert
+  id: MorphAmbushPerfect
+  icons:
+  - sprite: Imperial/Morph/alert.rsi
+    state: morph_ambush
+  name: Идеальная засада!
+  description: Вы подготовили засаду! Ваша маскировка безупречна!
+
+# --- Роль и цели ---
+
+- type: antag
+  id: Morph
+  name: roles-antag-morph-name
+  antagonist: true
+  setPreference: false
+  objective: roles-antag-morph-objective
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleMorph
+  name: roles-antag-morph-name
+  components:
+  - type: MindRole
+    antagPrototype: Morph
+    roleType: SoloAntagonist
+    exclusiveAntag: true
+  - type: MorphRole
+
+# objective/morph_eat и morph_procreate: completed = TRUE
+- type: entity
+  parent: [ BaseObjective, BaseFreeObjective ]
+  id: MorphEatObjective
+  name: Утолить голод
+  description: Съешьте как можно больше живых существ, чтобы унять голод внутри.
+  components:
+  - type: Objective
+    issuer: objective-issuer-morph
+    difficulty: 1
+    unique: true
+    icon:
+      sprite: Imperial/Morph/morph.rsi
+      state: morph
+
+- type: entity
+  parent: [ BaseObjective, BaseFreeObjective ]
+  id: MorphProcreateObjective
+  name: Размножиться
+  description: Разделите себя на как можно большее число других морфов!
+  components:
+  - type: Objective
+    issuer: objective-issuer-morph
+    difficulty: 1
+    unique: true
+    icon:
+      sprite: Imperial/Morph/actions.rsi
+      state: morph_reproduce
+
+# --- Звуки ---
+
+- type: soundCollection
+  id: ImperialMorphBoneBreak
+  files:
+  - /Audio/Imperial/Morph/bone_break_1.ogg
+  - /Audio/Imperial/Morph/bone_break_2.ogg
+  - /Audio/Imperial/Morph/bone_break_3.ogg
+
+# --- Ивент (events/spawn_morph) ---
+
+- type: entity
+  parent: BaseGameRule
+  id: ImperialMorphSpawn
+  components:
+  - type: StationEvent
+    weight: 5
+    duration: null
+    earliestStart: 25
+    minimumPlayers: 35 # role_requirements: ASSIGNMENT_CREW = 35
+    maxOccurrences: 1
+  - type: MorphSpawnRule
