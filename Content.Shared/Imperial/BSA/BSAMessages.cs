@@ -3,73 +3,44 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Imperial.BSA;
 
 [NetSerializable, Serializable]
-public enum BSAControlBoxUiKey : byte
+public enum BSAConsoleUiKey : byte
 {
     Key,
 }
 
 /// <summary>
-/// Сообщение от клиента: выбрать маяк-цель.
+/// Состояние консоли управления блюспейс-артиллерией (tgui BluespaceArtillery из SS13).
 /// </summary>
 [NetSerializable, Serializable]
-public sealed class BSASelectTargetMessage : BoundUserInterfaceMessage
+public sealed class BSAConsoleUiState(
+    bool connected,
+    string? notice,
+    bool unlocked,
+    string? target,
+    bool ready,
+    List<(NetEntity Uid, string Name)> targets) : BoundUserInterfaceState
 {
-    public readonly NetEntity? Target;
+    public readonly bool Connected = connected;
+    public readonly string? Notice = notice;
+    public readonly bool Unlocked = unlocked;
+    public readonly string? Target = target;
+    public readonly bool Ready = ready;
 
-    public BSASelectTargetMessage(NetEntity? target)
-    {
-        Target = target;
-    }
+    /// <summary>Маяки (WarpPoint), на которые можно навести орудие.</summary>
+    public readonly List<(NetEntity Uid, string Name)> Targets = targets;
 }
 
-/// <summary>
-/// Сообщение от клиента: открыть огонь.
-/// </summary>
+/// <summary>«Complete Deployment»: собрать пушку из привязанных частей.</summary>
 [NetSerializable, Serializable]
-public sealed class BSAFireMessage : BoundUserInterfaceMessage
-{
-}
+public sealed class BSABuildMessage : BoundUserInterfaceMessage;
 
-/// <summary>
-/// Сообщение от клиента: сканировать и собрать части.
-/// </summary>
+/// <summary>«FIRE».</summary>
 [NetSerializable, Serializable]
-public sealed class BSAScanMessage : BoundUserInterfaceMessage
-{
-}
+public sealed class BSAFireMessage : BoundUserInterfaceMessage;
 
-/// <summary>
-/// Состояние UI артиллерии, отправляемое клиенту.
-/// </summary>
+/// <summary>«Recalibrate»: навести орудие на маяк.</summary>
 [NetSerializable, Serializable]
-public sealed class BSAUIState : BoundUserInterfaceState
+public sealed class BSASetTargetMessage(NetEntity target) : BoundUserInterfaceMessage
 {
-    public readonly bool Assembled;
-    public readonly bool Powered;
-    public readonly bool FrontPartExists;
-    public readonly bool BackPartExists;
-    public readonly bool CanFire;
-    public readonly TimeSpan? NextFire;
-    public readonly NetEntity? SelectedTarget;
-    public readonly List<(NetEntity Uid, string Name)> AvailableBeacons;
-
-    public BSAUIState(
-        bool assembled,
-        bool powered,
-        bool frontPartExists,
-        bool backPartExists,
-        bool canFire,
-        TimeSpan? nextFire,
-        NetEntity? selectedTarget,
-        List<(NetEntity, string)> availableBeacons)
-    {
-        Assembled = assembled;
-        Powered = powered;
-        FrontPartExists = frontPartExists;
-        BackPartExists = backPartExists;
-        CanFire = canFire;
-        NextFire = nextFire;
-        SelectedTarget = selectedTarget;
-        AvailableBeacons = availableBeacons;
-    }
+    public readonly NetEntity Target = target;
 }
