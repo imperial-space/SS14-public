@@ -1,0 +1,111 @@
+# Цели генокрада: forge_objectives() и /datum/objective/absorb* из objective.dm.
+
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseImperialChangelingObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-changeling
+  - type: RoleRequirement
+    roles:
+    - ImperialChangelingRole
+
+# /datum/objective/absorb: gen_amount_goal(6, 8)
+- type: entity
+  parent: BaseImperialChangelingObjective
+  id: ImperialChangelingAbsorbObjective
+  components:
+  - type: Objective
+    difficulty: 1.5
+    unique: true
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: absorb_dna
+  - type: ImperialChangelingAbsorbCondition
+    min: 6
+    max: 8
+
+# /datum/objective/absorb_most
+- type: entity
+  parent: BaseImperialChangelingObjective
+  id: ImperialChangelingAbsorbMostObjective
+  components:
+  - type: Objective
+    difficulty: 1.5
+    unique: true
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: hive_absorb
+  - type: ImperialChangelingAbsorbMostCondition
+
+# /datum/objective/absorb_changeling
+- type: entity
+  parent: BaseImperialChangelingObjective
+  id: ImperialChangelingAbsorbLingObjective
+  components:
+  - type: Objective
+    difficulty: 2
+    unique: true
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: hivemind_link
+  - type: ImperialChangelingAbsorbLingCondition
+
+# /datum/objective/assassinate
+- type: entity
+  parent: [BaseImperialChangelingObjective, BaseKillObjective]
+  id: ImperialChangelingKillObjective
+  components:
+  - type: Objective
+    difficulty: 1.75
+    unique: false
+  - type: TargetObjective
+    title: objective-condition-kill-person-title
+  - type: PickRandomPerson
+  - type: KillPersonCondition
+    requireDead: true
+
+# /datum/objective/maroon
+- type: entity
+  parent: [BaseImperialChangelingObjective, BaseKillObjective]
+  id: ImperialChangelingMaroonObjective
+  components:
+  - type: Objective
+    difficulty: 1.75
+    unique: false
+  - type: TargetObjective
+    title: objective-condition-maroon-person-title
+  - type: PickRandomPerson
+  - type: KillPersonCondition
+    requireMaroon: true
+
+# maroon_objective.target = identity_theft.target
+- type: entity
+  parent: [BaseImperialChangelingObjective, BaseKillObjective]
+  id: ImperialChangelingPairedMaroonObjective
+  components:
+  - type: Objective
+    difficulty: 1.75
+    unique: false
+  - type: TargetObjective
+    title: objective-condition-maroon-person-title
+  - type: ImperialChangelingPairedTarget
+  - type: KillPersonCondition
+    requireMaroon: true
+
+# /datum/objective/escape/escape_with_identity
+- type: entity
+  parent: [BaseImperialChangelingObjective, BaseLivingObjective, BaseTargetObjective]
+  id: ImperialChangelingEscapeIdentityObjective
+  components:
+  - type: Objective
+    difficulty: 1.5
+    unique: true
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: transform
+  - type: TargetObjective
+    title: imperial-changeling-objective-identity
+  - type: PickRandomPerson
+  - type: ImperialChangelingEscapeIdentityCondition

@@ -1,0 +1,149 @@
+# Способности генокрада: /datum/action/changeling/* (name, chemical_cost, dna_cost, req_*).
+
+# /datum/action/cellular_emporium
+- type: entity
+  parent: BaseAction
+  id: ActionImperialChangelingEmporium
+  components:
+  - type: Action
+    checkCanInteract: false
+    checkConsciousness: false
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: changelingsting
+    background:
+      sprite: Imperial/Changeling/actions.rsi
+      state: bg_changeling_full
+  - type: InstantAction
+    event: !type:ImperialChangelingEmporiumActionEvent {}
+
+- type: entity
+  abstract: true
+  parent: BaseAction
+  id: BaseActionImperialChangeling
+  components:
+  - type: Action
+    # check_flags = NONE: стадия и прочее проверяет сама способность (req_stat), наручники не мешают.
+    checkCanInteract: false
+    checkConsciousness: false
+    background:
+      sprite: Imperial/Changeling/actions.rsi
+      state: bg_changeling_full
+
+# ── Врождённые ──
+
+# absorb_dna
+- type: imperialChangelingPower
+  id: ImperialChangelingAbsorbDna
+  name: imperial-changeling-power-absorb-name
+  description: imperial-changeling-power-absorb-desc
+  icon: absorb_dna
+  innate: true
+  reqHuman: true
+  action: ActionImperialChangelingAbsorbDna
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingAbsorbDna
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: absorb_dna
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingAbsorbDna
+
+# transform
+- type: imperialChangelingPower
+  id: ImperialChangelingTransform
+  name: imperial-changeling-power-transform-name
+  description: imperial-changeling-power-transform-desc
+  icon: transform
+  innate: true
+  chemicalCost: 5
+  reqDna: 1
+  reqHuman: true
+  action: ActionImperialChangelingTransform
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingTransform
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: transform
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingTransform
+
+# regenerate
+- type: imperialChangelingPower
+  id: ImperialChangelingRegenerate
+  name: imperial-changeling-power-regenerate-name
+  description: imperial-changeling-power-regenerate-desc
+  helpText: imperial-changeling-power-regenerate-help
+  icon: regenerate
+  innate: true
+  chemicalCost: 10
+  reqStat: HardCrit
+  action: ActionImperialChangelingRegenerate
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingRegenerate
+  components:
+  - type: Action
+    checkConsciousness: false
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: regenerate
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingRegenerate
+
+# fakedeath
+- type: imperialChangelingPower
+  id: ImperialChangelingFakeDeath
+  name: imperial-changeling-power-fakedeath-name
+  description: imperial-changeling-power-fakedeath-desc
+  icon: fake_death
+  innate: true
+  chemicalCost: 15
+  reqDna: 1
+  reqStat: Dead
+  ignoresFakedeath: true
+  disabledByFire: false
+  action: ActionImperialChangelingFakeDeath
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingFakeDeath
+  components:
+  - type: Action
+    checkCanInteract: false
+    checkConsciousness: false
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: fake_death
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingFakeDeath
+
+# /datum/action/antag_info: «Открыть информацию о генокраде».
+- type: entity
+  parent: BaseAction
+  id: ActionImperialChangelingInfo
+  components:
+  - type: Action
+    checkCanInteract: false
+    checkConsciousness: false
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: round_end
+    background:
+      sprite: Imperial/Changeling/actions.rsi
+      state: bg_default_full
+  - type: InstantAction
+    event: !type:ImperialChangelingInfoActionEvent {}

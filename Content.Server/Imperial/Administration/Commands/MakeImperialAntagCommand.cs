@@ -62,6 +62,11 @@ public sealed class MakeImperialAntagCommand : LocalizedCommands
 
         switch (args[1].ToLowerInvariant())
         {
+            case "changeling":
+                antag.ForceMakeAntag<Content.Server.Imperial.Changeling.ImperialChangelingRuleComponent>(player, "ImperialChangelingRule");
+                shell.WriteLine($"Made {player.Name} a changeling.");
+                break;
+
             case "cult":
                 antag.ForceMakeAntag<CultRuleComponent>(player, CultRule);
                 shell.WriteLine($"Made {player.Name} a cultist.");
