@@ -8,11 +8,13 @@
       min: 240
       max: 420
   - type: BloodBrotherRule
-  - type: TraitorRule
-    giveUplink: false
-    giveCodewords: false
-    giveBriefing: false
     greetSoundNotification: /Audio/Imperial/blood_brother/blood_brothers_intro.ogg
+  # datum/team/brother_team: общий бюджет пробуждений и набор целей команды.
+  - type: BloodBrotherTeam
+    brothersLeft: 2
+    extraBrotherChance: 0.1
+    baseObjectiveAmount: 2
+    hijackChance: 0.1
   - type: AntagSelection
     agentName: blood-brother-round-end-agent-name
     selectionTime: IntraPlayerSpawn

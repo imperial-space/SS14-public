@@ -1,14 +1,71 @@
+# Цели братьев по крови: forge_brother_objectives() из brother.dm.
+
+# objective/convert_brother: пробудить ещё одного брата.
 - type: entity
-  parent: [BaseTraitorObjective, BaseFreeObjective]
-  id: BloodBrotherPartnerObjective
-  name: Ваш напарник
-  description: Действуйте сообща с этим агентом. Все основные цели у вас общие.
+  parent: BaseTraitorObjective
+  id: BloodBrotherConvertObjective
+  name: blood-brother-convert-objective-name
+  description: blood-brother-convert-objective-desc
   components:
   - type: Objective
-    difficulty: 0.1
-    unique: false
+    difficulty: 1.0
+    unique: true
     icon:
-      sprite: Interface/Misc/job_icons.rsi
-      state: Syndicate
+      sprite: Objects/Weapons/Melee/flash.rsi
+      state: flash
+  - type: BloodBrotherConvertCondition
+
+# objective/assassinate: цель должна погибнуть.
+- type: entity
+  parent: [BaseTraitorObjective, BaseKillObjective]
+  id: BloodBrotherAssassinateObjective
+  description: blood-brother-assassinate-objective-desc
+  components:
+  - type: Objective
+    difficulty: 2.0
+    unique: false
   - type: TargetObjective
-    title: blood-brother-partner-objective-title
+    title: objective-condition-kill-person-title
+  - type: PickRandomPerson
+    filters:
+    # Одну и ту же жертву дважды не заказывают.
+    - !type:TargetObjectiveMindFilter
+      blacklist:
+        components:
+        - KillPersonCondition
+  - type: KillPersonCondition
+    requireDead: true
+
+# objective/maroon: цель не должна улететь живой.
+- type: entity
+  parent: [BaseTraitorObjective, BaseKillObjective]
+  id: BloodBrotherMaroonObjective
+  description: blood-brother-maroon-objective-desc
+  components:
+  - type: Objective
+    difficulty: 1.75
+    unique: false
+  - type: TargetObjective
+    title: objective-condition-maroon-person-title
+  - type: PickRandomPerson
+    filters:
+    - !type:TargetObjectiveMindFilter
+      blacklist:
+        components:
+        - KillPersonCondition
+  - type: KillPersonCondition
+    requireMaroon: true
+
+# objective/hijack: улететь на шаттле без лояльного экипажа.
+- type: entity
+  parent: [BaseTraitorObjective, BaseLivingObjective]
+  id: BloodBrotherHijackObjective
+  name: blood-brother-hijack-objective-name
+  description: blood-brother-hijack-objective-desc
+  components:
+  - type: Objective
+    difficulty: 5
+    icon:
+      sprite: Objects/Tools/emag.rsi
+      state: icon
+  - type: HijackShuttleCondition

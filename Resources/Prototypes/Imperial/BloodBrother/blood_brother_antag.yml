@@ -19,6 +19,9 @@
     exclusiveAntag: true
     roleType: TeamAntagonist
     sortWeight: 60
+  # Братья получают заказы Синдиката, поэтому роль предателя остаётся:
+  # на ней держатся требования целей на кражу и побег.
   - type: TraitorRole
+  - type: BloodBrotherRole
   - type: RoleBriefing
     briefing: blood-brother-briefing
