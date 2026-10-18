@@ -5,6 +5,9 @@
   id: ImperialCircuitStatic
   recipes:
   - PrinterDocMachineCircuitboard # Imperial PrinterDoc
+  - ImperialDnaScannerMachineCircuitboard # Imperial Genetics
+  - ImperialDnaConsoleComputerCircuitboard # Imperial Genetics
+  - ImperialDnaInfuserMachineCircuitboard # Imperial Genetics
 
 - type: latheRecipePack
   id: ImperialSecurityStatic

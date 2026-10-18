@@ -1,0 +1,126 @@
+# Срывы при распаде ДНК (instability_meltdown.dm из SS13).
+
+- type: polymorph
+  id: ImperialGeneticMonkey
+  configuration:
+    entity: MobMonkey
+    forced: true
+    inventory: Drop
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: false
+
+- type: polymorph
+  id: ImperialGeneticCorgi
+  configuration:
+    entity: MobCorgi
+    forced: true
+    inventory: Drop
+    transferName: true
+    transferDamage: true
+
+- type: polymorph
+  id: ImperialGeneticCrab
+  configuration:
+    entity: MobCrab
+    forced: true
+    inventory: Drop
+    transferName: true
+    transferDamage: true
+
+- type: polymorph
+  id: ImperialGeneticSnail
+  configuration:
+    entity: MobSnail
+    forced: true
+    inventory: Drop
+    transferName: true
+    transferDamage: true
+
+- type: polymorph
+  id: ImperialGeneticSlime
+  configuration:
+    entity: MobAdultSlimesBlue
+    forced: true
+    inventory: Drop
+    transferName: true
+    transferDamage: true
+
+# ─── Несмертельные ──────────────────────────────────────────────────────────
+
+- type: geneticMeltdown
+  id: MeltdownMonkey
+  action: Monkey
+
+- type: geneticMeltdown
+  id: MeltdownParaplegic
+  popup: genetics-meltdown-paraplegic
+  action: Paraplegic
+
+- type: geneticMeltdown
+  id: MeltdownCorgi
+  effects:
+  - !type:Polymorph
+    prototype: ImperialGeneticCorgi
+
+- type: geneticMeltdown
+  id: MeltdownAlright
+  popup: genetics-meltdown-alright
+
+- type: geneticMeltdown
+  id: MeltdownNotAlright
+  popup: genetics-meltdown-alright
+  action: Fragile
+
+- type: geneticMeltdown
+  id: MeltdownSlime
+  popup: genetics-meltdown-alright
+  effects:
+  - !type:Polymorph
+    prototype: ImperialGeneticSlime
+
+- type: geneticMeltdown
+  id: MeltdownYeet
+  popup: genetics-meltdown-yeet
+  action: Yeet
+
+- type: geneticMeltdown
+  id: MeltdownDecloning
+  popup: genetics-meltdown-alright
+  action: Decloning
+
+- type: geneticMeltdown
+  id: MeltdownOrganVomit
+  popup: genetics-meltdown-vomit
+  effects:
+  - !type:Vomit
+
+- type: geneticMeltdown
+  id: MeltdownSnail
+  weight: 2
+  popup: genetics-meltdown-alright
+  effects:
+  - !type:Polymorph
+    prototype: ImperialGeneticSnail
+
+- type: geneticMeltdown
+  id: MeltdownCrab
+  popup: genetics-meltdown-crab
+  effects:
+  - !type:Polymorph
+    prototype: ImperialGeneticCrab
+
+# ─── Смертельные ────────────────────────────────────────────────────────────
+
+- type: geneticMeltdown
+  id: MeltdownGib
+  fatal: true
+  action: Gib
+
+- type: geneticMeltdown
+  id: MeltdownDust
+  fatal: true
+  popup: genetics-meltdown-dust
+  action: Dust

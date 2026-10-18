@@ -1,0 +1,74 @@
+# Речевые мутации SS13 (speech.dm): шведский акцент, гопник, Элвис, средневековье, дурашливость.
+
+- type: accent
+  id: ImperialGeneticSwedish
+  wordReplacements:
+    genetics-accent-swedish-words-1: genetics-accent-swedish-words-replace-1
+    genetics-accent-swedish-words-2: genetics-accent-swedish-words-replace-2
+    genetics-accent-swedish-words-3: genetics-accent-swedish-words-replace-3
+    genetics-accent-swedish-words-4: genetics-accent-swedish-words-replace-4
+    genetics-accent-swedish-words-5: genetics-accent-swedish-words-replace-5
+    genetics-accent-swedish-words-6: genetics-accent-swedish-words-replace-6
+
+- type: accent
+  id: ImperialGeneticChav
+  wordReplacements:
+    genetics-accent-chav-words-1: genetics-accent-chav-words-replace-1
+    genetics-accent-chav-words-2: genetics-accent-chav-words-replace-2
+    genetics-accent-chav-words-3: genetics-accent-chav-words-replace-3
+    genetics-accent-chav-words-4: genetics-accent-chav-words-replace-4
+    genetics-accent-chav-words-5: genetics-accent-chav-words-replace-5
+    genetics-accent-chav-words-6: genetics-accent-chav-words-replace-6
+    genetics-accent-chav-words-7: genetics-accent-chav-words-replace-7
+    genetics-accent-chav-words-8: genetics-accent-chav-words-replace-8
+    genetics-accent-chav-words-9: genetics-accent-chav-words-replace-9
+
+- type: accent
+  id: ImperialGeneticElvis
+  wordReplacements:
+    genetics-accent-elvis-words-1: genetics-accent-elvis-words-replace-1
+    genetics-accent-elvis-words-2: genetics-accent-elvis-words-replace-2
+    genetics-accent-elvis-words-3: genetics-accent-elvis-words-replace-3
+    genetics-accent-elvis-words-4: genetics-accent-elvis-words-replace-4
+    genetics-accent-elvis-words-5: genetics-accent-elvis-words-replace-5
+
+- type: accent
+  id: ImperialGeneticMedieval
+  wordReplacements:
+    genetics-accent-medieval-words-1: genetics-accent-medieval-words-replace-1
+    genetics-accent-medieval-words-2: genetics-accent-medieval-words-replace-2
+    genetics-accent-medieval-words-3: genetics-accent-medieval-words-replace-3
+    genetics-accent-medieval-words-4: genetics-accent-medieval-words-replace-4
+    genetics-accent-medieval-words-5: genetics-accent-medieval-words-replace-5
+    genetics-accent-medieval-words-6: genetics-accent-medieval-words-replace-6
+    genetics-accent-medieval-words-7: genetics-accent-medieval-words-replace-7
+    genetics-accent-medieval-words-8: genetics-accent-medieval-words-replace-8
+    genetics-accent-medieval-words-9: genetics-accent-medieval-words-replace-9
+    genetics-accent-medieval-words-10: genetics-accent-medieval-words-replace-10
+
+- type: accent
+  id: ImperialGeneticWacky
+  wordReplacements:
+    genetics-accent-wacky-words-1: genetics-accent-wacky-words-replace-1
+    genetics-accent-wacky-words-2: genetics-accent-wacky-words-replace-2
+    genetics-accent-wacky-words-3: genetics-accent-wacky-words-replace-3
+    genetics-accent-wacky-words-4: genetics-accent-wacky-words-replace-4
+    genetics-accent-wacky-words-5: genetics-accent-wacky-words-replace-5
+
+- type: accent
+  id: ImperialGeneticOrk
+  wordReplacements:
+    genetics-accent-ork-words-1: genetics-accent-ork-words-replace-1
+    genetics-accent-ork-words-2: genetics-accent-ork-words-replace-2
+    genetics-accent-ork-words-3: genetics-accent-ork-words-replace-3
+    genetics-accent-ork-words-4: genetics-accent-ork-words-replace-4
+    genetics-accent-ork-words-5: genetics-accent-ork-words-replace-5
+
+- type: accent
+  id: ImperialGeneticHeckacious
+  wordReplacements:
+    genetics-accent-heckacious-words-1: genetics-accent-heckacious-words-replace-1
+    genetics-accent-heckacious-words-2: genetics-accent-heckacious-words-replace-2
+    genetics-accent-heckacious-words-3: genetics-accent-heckacious-words-replace-3
+    genetics-accent-heckacious-words-4: genetics-accent-heckacious-words-replace-4
+    genetics-accent-heckacious-words-5: genetics-accent-heckacious-words-replace-5

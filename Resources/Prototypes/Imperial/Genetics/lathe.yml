@@ -1,0 +1,36 @@
+# Рецепты генетики: доступны сразу, без исследований.
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseMedicalMachineRecipeCategory ]
+  id: ImperialDnaScannerMachineCircuitboard
+  result: ImperialDnaScannerMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseMedicalComputerRecipeCategory ]
+  id: ImperialDnaConsoleComputerCircuitboard
+  result: ImperialDnaConsoleComputerCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseMedicalMachineRecipeCategory ]
+  id: ImperialDnaInfuserMachineCircuitboard
+  result: ImperialDnaInfuserMachineCircuitboard
+
+- type: latheRecipe
+  id: ImperialSequenceScanner
+  result: ImperialSequenceScanner
+  categories:
+  - Tools
+  completetime: 4
+  materials:
+    Steel: 200
+    Glass: 100
+
+- type: latheRecipe
+  id: ImperialGeneticDataDisk
+  result: ImperialGeneticDataDisk
+  categories:
+  - Tools
+  completetime: 2
+  materials:
+    Steel: 50
+    Plastic: 50
