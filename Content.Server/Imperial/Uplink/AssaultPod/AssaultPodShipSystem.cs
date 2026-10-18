@@ -92,18 +92,18 @@ public sealed class AssaultPodShipSystem : EntitySystem
     private readonly HashSet<EntityUid> _pendingAtmos = new();
 
     /// <summary>
-    /// Раскладка Steel Rain сверху вниз (y = 6..0): W — стена, F — пол, A — шлюз, T — угловая турель (у остальных стилей стена),
+    /// Раскладка Steel Rain сверху вниз (y = 6..0): W — стена, F — пол, A — шлюз, T — угловая турель на своей клетке (только у Синдиката, у остальных пусто),
     /// K — консоль, E/W/N/S после «C» — кресло, смотрящее в эту сторону, «.» — пусто.
     /// </summary>
     private static readonly string[][] Layout =
     {
-        new[] { ".", "T", "W", "A", "W", "T", "." },
-        new[] { "T", "W", "CE", "F", "CW", "W", "T" },
+        new[] { "T", "W", "W", "A", "W", "W", "T" },
+        new[] { "W", "W", "CE", "F", "CW", "W", "W" },
         new[] { "W", "CE", "F", "CN", "F", "CW", "W" },
         new[] { "A", "F", "CW", "K", "CE", "F", "A" },
         new[] { "W", "CE", "F", "CS", "F", "CW", "W" },
-        new[] { "T", "W", "CE", "F", "CW", "W", "T" },
-        new[] { ".", "T", "W", "A", "W", "T", "." },
+        new[] { "W", "W", "CE", "F", "CW", "W", "W" },
+        new[] { "T", "W", "W", "A", "W", "W", "T" },
     };
 
     public override void Initialize()
@@ -212,7 +212,7 @@ public sealed class AssaultPodShipSystem : EntitySystem
             for (var x = 0; x < Size; x++)
             {
                 var cell = Layout[row][x];
-                if (cell == ".")
+                if (cell == "." || cell == "T" && style != AssaultPodShipStyle.Syndicate)
                     continue;
 
                 var y = Size - 1 - row;
@@ -235,8 +235,7 @@ public sealed class AssaultPodShipSystem : EntitySystem
                         SpawnAt(grid, wall, x, y);
                         break;
                     case "T":
-                        // porta_turret/syndicate/pod: турели в угловых стенах — только у Синдиката.
-                        SpawnAt(grid, wall, x, y);
+                        // porta_turret/syndicate/pod: по турели в каждом внешнем углу — только у Синдиката.
                         if (style == AssaultPodShipStyle.Syndicate)
                             SpawnAt(grid, "ImperialAssaultPodTurret", x, y);
                         break;
@@ -264,6 +263,13 @@ public sealed class AssaultPodShipSystem : EntitySystem
 
         SpawnAt(grid, "AlwaysPoweredWallLight", 3, 5);
         SpawnAt(grid, "AlwaysPoweredWallLight", 3, 1, Angle.FromDegrees(180));
+
+        // Своя сеть, как у шаттлов: вспомогательный генератор LV в западной стене и кабель на каждой клетке.
+        SpawnAt(grid, "GeneratorWallmountAPULV", 0, 4, Direction.East.ToAngle());
+        foreach (var (indices, _) in tiles)
+        {
+            SpawnAt(grid, "CableApcExtension", indices.X, indices.Y);
+        }
 
         var gravity = EnsureComp<GravityComponent>(grid);
         gravity.Enabled = true;
