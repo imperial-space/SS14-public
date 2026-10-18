@@ -55,7 +55,7 @@ public sealed partial class GeneticHeadBonkComponent : Component
     public DamageSpecifier Damage = new() { DamageDict = new() { ["Blunt"] = 5 } };
 
     [DataField]
-    public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Effects/bang.ogg");
+    public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Effects/explosion_small1.ogg");
 
     [ViewVariables]
     public Vector2i? LastTile;
