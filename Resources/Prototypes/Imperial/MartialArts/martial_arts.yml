@@ -1,0 +1,333 @@
+# Боевые искусства 1 в 1 с tgstation/BandaStation (code/datums/martial).
+
+- type: martialArt
+  id: MartialArtCqc
+  name: martial-cqc-name
+  helpVerb: martial-help-verb-basics
+  help: martial-cqc-help
+  kind: Cqc
+  displayCombos: true
+
+# cqc/under_siege: CQC повара, только на кухне.
+- type: martialArt
+  id: MartialArtCloseQuartersCooking
+  name: martial-chef-cqc-name
+  helpVerb: martial-help-verb-basics
+  help: martial-cqc-help
+  kind: CloseQuartersCooking
+  displayCombos: true
+
+- type: martialArt
+  id: MartialArtSleepingCarp
+  name: martial-carp-name
+  helpVerb: martial-help-verb-teachings
+  help: martial-carp-help
+  kind: SleepingCarp
+  displayCombos: true
+  grabStateModifier: 1
+
+- type: martialArt
+  id: MartialArtBoxing
+  name: martial-boxing-name
+  helpVerb: martial-help-verb-form
+  help: martial-boxing-help
+  kind: Boxing
+  pacifistStyle: true
+
+- type: martialArt
+  id: MartialArtEvilBoxing
+  name: martial-evil-boxing-name
+  helpVerb: martial-help-verb-brawling
+  help: martial-evil-boxing-help
+  kind: EvilBoxing
+
+- type: martialArt
+  id: MartialArtHunterBoxing
+  name: martial-hunter-boxing-name
+  helpVerb: martial-help-verb-hunt
+  help: martial-hunter-boxing-help
+  kind: HunterBoxing
+
+- type: martialArt
+  id: MartialArtWrestling
+  name: martial-wrestling-name
+  helpVerb: martial-help-verb-teachings
+  help: martial-wrestling-help
+  kind: Wrestling
+  activateMessage: martial-wrestling-activate
+  deactivateMessage: martial-wrestling-deactivate
+  actions:
+  - ActionWrestlingSlam
+  - ActionWrestlingThrow
+  - ActionWrestlingKick
+  - ActionWrestlingStrike
+  - ActionWrestlingDrop
+
+- type: martialArt
+  id: MartialArtPlasmaFist
+  name: martial-plasma-name
+  helpVerb: martial-help-verb-teachings
+  help: martial-plasma-help
+  kind: PlasmaFist
+  displayCombos: true
+
+- type: martialArt
+  id: MartialArtPlasmaFistNovice
+  name: martial-plasma-novice-name
+  helpVerb: martial-help-verb-teachings
+  help: martial-plasma-novice-help
+  kind: PlasmaFistNoBomb
+  displayCombos: true
+
+# brain_trauma/special/psychotic_brawling: стиль заперт.
+- type: martialArt
+  id: MartialArtPsychoticBrawling
+  name: martial-psycho-name
+  kind: PsychoticBrawling
+  pacifistStyle: true
+  lockedToUse: true
+
+# species/mush: стиль заперт.
+- type: martialArt
+  id: MartialArtMushroomPunch
+  name: martial-mush-name
+  kind: MushroomPunch
+  lockedToUse: true
+
+# brain_trauma/special/primal_instincts (bath salts у обезьян).
+- type: martialArt
+  id: MartialArtJungleArts
+  name: martial-jungle-name
+  kind: JungleArts
+  pacifistStyle: true
+  lockedToUse: true
+
+- type: martialArt
+  id: MartialArtSpidersBite
+  name: martial-spider-name
+  helpVerb: martial-help-verb-teachings
+  help: martial-spider-help
+  kind: SpidersBite
+  grabDamageModifier: 10
+  grabEscapeChanceModifier: -20
+  actions:
+  - ActionSpiderTackle
+
+- type: martialArt
+  id: MartialArtKazaRuk
+  name: martial-kaza-name
+  helpVerb: martial-help-verb-basics
+  help: martial-kaza-help
+  kind: KazaRuk
+  grabDamageModifier: 5
+  grabEscapeChanceModifier: -10
+  activateMessage: martial-kaza-activate
+  deactivateMessage: martial-kaza-deactivate
+  actions:
+  - ActionKazaNeckChop
+  - ActionKazaLowSweep
+  - ActionKazaLungPunch
+
+- type: martialArt
+  id: MartialArtCorporateJudo
+  name: martial-judo-name
+  helpVerb: martial-help-verb-judo
+  help: martial-judo-help
+  kind: CorporateJudo
+  displayCombos: true
+  maxStreakLength: 12
+  comboTimer: 15
+  activateMessage: martial-judo-activate
+  deactivateMessage: martial-judo-deactivate
+  actions:
+  - ActionJudoDiscombobulate
+
+# ─── Общие кнопки ───
+
+- type: entity
+  abstract: true
+  parent: BaseAction
+  id: BaseActionMartialArts
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/MartialArts/actions.rsi
+      state: martial
+    background:
+      sprite: Imperial/MartialArts/actions.rsi
+      state: bg_martial_arts
+
+# datum/action/swap_arts
+- type: entity
+  parent: BaseActionMartialArts
+  id: ActionMartialArtsHelp
+  name: Вспомнить основы
+  description: Вспомнить приёмы активного боевого искусства.
+  components:
+  - type: InstantAction
+    event: !type:MartialArtsHelpActionEvent {}
+
+- type: entity
+  parent: BaseActionMartialArts
+  id: ActionMartialArtsSwap
+  name: Сменить стиль
+  description: Перестать практиковать текущее боевое искусство и перейти к следующему.
+  components:
+  - type: InstantAction
+    event: !type:MartialArtsSwapActionEvent {}
+
+# throw_mode: в SS14 нет режима броска, поэтому стойка включается отдельно.
+- type: entity
+  parent: BaseActionMartialArts
+  id: ActionMartialArtsBlock
+  name: Защитная стойка
+  description: В защитной стойке CQC, бокс и другие искусства блокируют удары противника.
+  components:
+  - type: InstantAction
+    event: !type:MartialArtsBlockActionEvent {}
+
+- type: entity
+  parent: BaseActionMartialArts
+  id: ActionMartialImplantToggle
+  name: Переключить имплант боевых искусств
+  description: Включить или выключить знания из импланта.
+  components:
+  - type: InstantAction
+    event: !type:MartialArtsImplantToggleEvent {}
+
+# ─── Борьба ───
+
+- type: entity
+  parent: BaseActionMartialArts
+  id: ActionWrestlingSlam
+  name: Бросок через себя (клинч)
+  description: Впечатать схваченного противника в пол.
+  components:
+  - type: InstantAction
+    event: !type:MartialArtsMoveActionEvent
+      move: slam
+
+- type: entity
+  parent: BaseActionMartialArts
+  id: ActionWrestlingThrow
+  name: Бросок (клинч)
+  description: Раскрутить схваченного противника и швырнуть его.
+  components:
+  - type: InstantAction
+    event: !type:MartialArtsMoveActionEvent
+      move: throw
+
+- type: entity
+  parent: BaseActionMartialArts
+  id: ActionWrestlingKick
+  name: Пинок
+  description: Мощный пинок, отправляющий противника в полёт. Помогает и выбраться из передряги.
+  components:
+  - type: InstantAction
+    event: !type:MartialArtsMoveActionEvent
+      move: kick
+
+- type: entity
+  parent: BaseActionMartialArts
+  id: ActionWrestlingStrike
+  name: Удар
+  description: Быстро ударить ближайшего противника.
+  components:
+  - type: InstantAction
+    event: !type:MartialArtsMoveActionEvent
+      move: strike
+
+- type: entity
+  parent: BaseActionMartialArts
+  id: ActionWrestlingDrop
+  name: Удар ногой с высоты
+  description: Обрушиться на противника сверху.
+  components:
+  - type: InstantAction
+    event: !type:MartialArtsMoveActionEvent
+      move: drop
+
+# ─── Каза Рук ───
+
+- type: entity
+  parent: BaseActionMartialArts
+  id: ActionKazaNeckChop
+  name: Удар по горлу
+  description: Травмирует горло, не давая жертве говорить какое-то время.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/MartialArts/actions.rsi
+      state: neckchop
+  - type: InstantAction
+    event: !type:MartialArtsMoveActionEvent
+      move: neck_chop
+
+- type: entity
+  parent: BaseActionMartialArts
+  id: ActionKazaLowSweep
+  name: Подсечка
+  description: Сбивает жертву с ног на короткое время.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/MartialArts/actions.rsi
+      state: legsweep
+  - type: InstantAction
+    event: !type:MartialArtsMoveActionEvent
+      move: low_sweep
+
+- type: entity
+  parent: BaseActionMartialArts
+  id: ActionKazaLungPunch
+  name: Удар под дых
+  description: Сильный удар чуть выше живота, сдавливающий лёгкие. Жертва какое-то время не может дышать.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/MartialArts/actions.rsi
+      state: lungpunch
+  - type: InstantAction
+    event: !type:MartialArtsMoveActionEvent
+      move: quick_choke
+
+# ─── Дзюдо ───
+
+- type: entity
+  parent: BaseActionMartialArts
+  id: ActionJudoDiscombobulate
+  name: Сбить с толку
+  description: Нанесите противнику удар по уху, ненадолго сбив его с толку.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/MartialArts/actions.rsi
+      state: discombobulate
+  - type: InstantAction
+    event: !type:MartialArtsMoveActionEvent
+      move: discombobulate
+
+# ─── Укус паука ───
+
+- type: entity
+  parent: BaseActionMartialArts
+  id: ActionSpiderTackle
+  name: Прыжок и захват
+  description: Прыгнуть на противника до пяти клеток и сбить его с ног. Стоит выносливости.
+  components:
+  - type: Action
+    useDelay: 2
+  - type: TargetAction
+    range: 5
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:MartialArtsTackleActionEvent {}
+
+# ─── Эффекты ───
+
+# status_effect/staggered
+- type: entity
+  parent: StatusEffectSlowdown
+  id: MartialStaggeredStatusEffect
+  name: ошеломлён
