@@ -1,0 +1,14 @@
+- type: cargoMarket
+  id: ImperialCargo
+
+- type: cargoMarket
+  id: ImperialCargoContraband
+
+- type: cargoMarket
+  id: ImperialCargoEmag
+
+- type: cargoMarket
+  id: ImperialCargoPod
+
+- type: cargoMarket
+  id: ImperialCargoGoody
