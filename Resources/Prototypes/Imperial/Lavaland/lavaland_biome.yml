@@ -1,0 +1,213 @@
+# Поверхность лаваленда по SS13 (datums/mapgen/biomes/lavaland.dm):
+# базальт, сланцевые (shale) и сидеритовые (red_rock) участки со своей флорой.
+
+- type: tile
+  id: FloorLavalandShale
+  parent: BaseFloorPlanet
+  name: tiles-imperial-shale-floor
+  sprite: /Textures/Imperial/lava/decor/shale.png
+  variants: 8
+  placementVariants:
+  - 0.125
+  - 0.125
+  - 0.125
+  - 0.125
+  - 0.125
+  - 0.125
+  - 0.125
+  - 0.125
+
+- type: tile
+  id: FloorLavalandSiderite
+  parent: BaseFloorPlanet
+  name: tiles-imperial-siderite-floor
+  sprite: /Textures/Imperial/lava/decor/siderite.png
+  variants: 8
+  placementVariants:
+  - 0.125
+  - 0.125
+  - 0.125
+  - 0.125
+  - 0.125
+  - 0.125
+  - 0.125
+  - 0.125
+
+# Слои проверяются с конца: тайлы — последний подходящий, сущности — последний подходящий.
+- type: biomeTemplate
+  id: ImperialLavaland
+  layers:
+    # Светящиеся трещины базальта
+    - !type:BiomeEntityLayer
+      threshold: 0.9
+      noise:
+        frequency: 1
+        seed: 2
+      allowedTiles:
+        - FloorBasalt
+      entities:
+        - BasaltOne
+        - BasaltTwo
+        - BasaltThree
+        - BasaltFour
+        - BasaltFive
+    - !type:BiomeDecalLayer
+      allowedTiles:
+        - FloorBasalt
+      threshold: 0.9
+      divisions: 1
+      noise:
+        seed: 1
+        frequency: 1
+      decals:
+        - Basalt1
+        - Basalt2
+        - Basalt3
+        - Basalt4
+        - Basalt5
+        - Basalt6
+        - Basalt7
+        - Basalt8
+        - Basalt9
+    # biome/lavaland/basalt: flora_density 2.5
+    - !type:BiomeEntityLayer
+      threshold: 0.9
+      noise:
+        seed: 11
+        frequency: 1
+      allowedTiles:
+        - FloorBasalt
+      entities:
+        - ImperialAshFloraCapShroom
+        - ImperialAshFloraCapShroom
+        - ImperialAshFloraCapShroom
+        - ImperialAshFloraFireblossom
+        - ImperialAshFloraStemShroom
+        - ImperialLavalandRock
+        - ImperialLavalandRockPile
+        - ImperialLavalandRockPile
+        - ImperialLavalandRockPile
+        - ImperialLavalandVolcano
+    # biome/lavaland/shale: flora_density 5
+    - !type:BiomeEntityLayer
+      threshold: 0.85
+      noise:
+        seed: 12
+        frequency: 1
+      allowedTiles:
+        - FloorLavalandShale
+      entities:
+        - ImperialAshFloraFireblossom
+        - ImperialAshFloraFireblossom
+        - ImperialAshFloraLeafShroom
+        - ImperialAshFloraLeafShroom
+        - ImperialAshFloraSeraka
+        - ImperialAshFloraSeraka
+        - ImperialAshFloraGlowgrowth
+        - ImperialAshFloraGlowgrowth
+        - ImperialLavalandRockPileShale
+        - ImperialLavalandRockPileShale
+        - ImperialLavalandRockPileShale
+        - ImperialLavalandRockPileShale
+        - ImperialLavalandRockPileShale
+    # biome/lavaland/red_rock: flora_density 4
+    - !type:BiomeEntityLayer
+      threshold: 0.87
+      noise:
+        seed: 13
+        frequency: 1
+      allowedTiles:
+        - FloorLavalandSiderite
+      entities:
+        - ImperialAshFloraCacti
+        - ImperialAshFloraCacti
+        - ImperialAshFloraCapShroom
+        - ImperialAshFloraTallShroom
+        - ImperialAshFloraTallShroom
+        - ImperialAshFloraStemShroom
+        - ImperialAshFloraStemShroom
+        - ImperialLavalandRockPileSiderite
+        - ImperialLavalandRockPileSiderite
+        - ImperialLavalandRockPileSiderite
+        - ImperialLavalandRockPileSiderite
+        - ImperialLavalandSideriteGrowth
+    # Озёра лавы (с гулом магмы)
+    - !type:BiomeEntityLayer
+      threshold: 0.2
+      noise:
+        seed: 0
+        frequency: 0.02
+        fractalType: FBm
+        octaves: 5
+        lacunarity: 2
+        gain: 0.4
+      allowedTiles:
+        - FloorBasalt
+        - FloorLavalandShale
+        - FloorLavalandSiderite
+      entities:
+        - ImperialLavalandLava
+    # Скалы
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - FloorBasalt
+        - FloorLavalandShale
+        - FloorLavalandSiderite
+      threshold: -0.30
+      noise:
+        seed: 0
+        noiseType: Cellular
+        frequency: 0.05
+        lacunarity: 2
+        fractalType: FBm
+        octaves: 5
+        cellularDistanceFunction: Euclidean
+        cellularReturnType: Distance2
+      entities:
+        - WallRockBasalt
+    - !type:BiomeDummyLayer
+      id: Loot
+    # Базальт везде
+    - !type:BiomeTileLayer
+      threshold: -1
+      tile: FloorBasalt
+    # Высокая влажность — сланец
+    - !type:BiomeTileLayer
+      threshold: 0.35
+      noise:
+        seed: 21
+        frequency: 0.012
+        fractalType: FBm
+        octaves: 3
+      tile: FloorLavalandShale
+    # Высокая температура — сидерит (red_rock)
+    - !type:BiomeTileLayer
+      threshold: 0.4
+      noise:
+        seed: 22
+        frequency: 0.012
+        fractalType: FBm
+        octaves: 3
+      tile: FloorLavalandSiderite
+
+# area/lavaland: ambience_index = AMBIENCE_MINING
+- type: rules
+  id: ImperialNearLavalandSurface
+  rules:
+    - !type:NearbyTilesPercentRule
+      ignoreAnchored: true
+      percent: 0.3
+      tiles:
+        - FloorBasalt
+        - FloorLavalandShale
+        - FloorLavalandSiderite
+      range: 3
+
+- type: ambientMusic
+  id: ImperialLavaland
+  sound:
+    params:
+      volume: -12
+    collection: AmbienceMining
+  rules: ImperialNearLavalandSurface
+  priority: 3

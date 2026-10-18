@@ -10,7 +10,7 @@ public sealed partial class ImmortalityTalismanComponent : Component
     public float GodmodeDurationSeconds = 8f;
 
     [DataField]
-    public float CooldownSeconds = 80f;
+    public float CooldownSeconds = 180f;
 
     [DataField]
     public bool IsActive;

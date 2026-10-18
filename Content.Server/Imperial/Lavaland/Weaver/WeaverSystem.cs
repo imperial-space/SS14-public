@@ -125,7 +125,7 @@ public sealed class WeaverSystem : EntitySystem
     {
         ent.Comp.IsEnraged = true;
         _speed.ChangeBaseSpeed(ent, 2.49f + ent.Comp.RageSpeedBonus, 3.32f + ent.Comp.RageSpeedBonus, 20f);
-        _audio.PlayPvs(new Robust.Shared.Audio.SoundPathSpecifier("/Audio/Effects/hiss.ogg"), ent);
+        _audio.PlayPvs(new Robust.Shared.Audio.SoundPathSpecifier("/Audio/Ambience/Objects/gas_hiss.ogg"), ent);
     }
 
     private void TryEatNearbyCorpse(EntityUid uid, WeaverComponent weaver, DamageableComponent damageable)

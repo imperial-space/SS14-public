@@ -19,6 +19,10 @@ public sealed partial class LavalandPlanetRuleComponent : Component
     [DataField]
     public string? PrisonMap;
 
+    // Смещение тюрьмы (трудового лагеря) от центра карты — правее аванпоста переработки.
+    [DataField]
+    public System.Numerics.Vector2 PrisonOffset = new(60f, 0f);
+
     [DataField]
     public string? ShuttleMap;
 

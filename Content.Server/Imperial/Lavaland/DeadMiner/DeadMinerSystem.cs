@@ -1,200 +1,239 @@
-using Content.Server.Popups;
-using Content.Shared.Damage;
-using Content.Shared.FixedPoint;
+using Content.Server.Imperial.Lavaland.Megafauna;
+using Content.Server.Imperial.Lavaland.MegafaunaSleep;
 using Content.Shared.Imperial.Lavaland;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
-using Content.Shared.Projectiles;
-using Content.Shared.Weapons.Melee;
-using Robust.Server.Player;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Enums;
-using Robust.Shared.Physics.Systems;
-using Robust.Shared.Player;
+using Content.Shared.Weapons.Melee.Events;
+using Robust.Shared.Audio;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using System.Numerics;
 
 namespace Content.Server.Imperial.Lavaland.DeadMiner;
 
+/// <summary>
+/// Перенос basic/boss/blood_drunk_miner из SS13: ИИ (shoot_pka, dash_attack, melee),
+/// do_chain_attack пилой, kinetic_accelerator, basic_charge и transform_weapon.
+/// </summary>
 public sealed class DeadMinerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedTransformSystem _xformSys = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly MegafaunaAiSystem _ai = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+
+    private static readonly Vector2i[] Dirs8 =
+    {
+        new(0, 1), new(1, 1), new(1, 0), new(1, -1), new(0, -1), new(-1, -1), new(-1, 0), new(-1, 1),
+    };
 
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<DeadMinerComponent, AttemptMeleeEvent>(OnAttemptMelee);
+        SubscribeLocalEvent<DeadMinerComponent, MobStateChangedEvent>(OnMobStateChanged);
+    }
+
+    /// <summary>Обычную атаку заменяет серия ударов пилой.</summary>
+    private void OnAttemptMelee(Entity<DeadMinerComponent> ent, ref AttemptMeleeEvent args)
+    {
+        args.Cancelled = true;
+    }
+
+    /// <summary>death_effect: «распадается на светящиеся частицы».</summary>
+    private void OnMobStateChanged(Entity<DeadMinerComponent> ent, ref MobStateChangedEvent args)
+    {
+        if (args.NewMobState != MobState.Dead)
+            return;
+        Spawn(ent.Comp.DeathEffect, Transform(ent).Coordinates);
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+        var now = _timing.CurTime;
 
         var query = EntityQueryEnumerator<DeadMinerComponent, MobStateComponent>();
         while (query.MoveNext(out var uid, out var comp, out var mobState))
         {
-            if (mobState.CurrentState != MobState.Alive)
+            if (mobState.CurrentState != MobState.Alive || comp.Busy || HasComp<LavalandMegafaunaSleepComponent>(uid))
+                continue;
+            if (_ai.GetTarget(uid) is not { } target || _mobState.IsDead(target))
                 continue;
 
-            if (!TryFindNearbyPlayer(uid, comp.TargetSearchRange, out var target))
-                continue;
+            var ent = (uid, comp);
+            var dist = _ai.TileDistance(uid, target);
 
-            var bossWorld = _xformSys.GetWorldPosition(uid);
-            var targetWorld = _xformSys.GetWorldPosition(target);
-            var dist = Vector2.Distance(bossWorld, targetWorld);
-
-            // ── 1. Переключение режима атаки ────────────────────────────────
-            UpdateMode(uid, comp, dist);
-
-            // ── 2. Кинетический выстрел (1–4 тайла, только в transformed) ──
-            if (comp.IsTransformed
-                && dist >= comp.KineticMinRange
-                && dist <= comp.KineticMaxRange
-                && _timing.CurTime >= comp.NextKineticTime)
+            if (now >= comp.RangedReady)
             {
-                FireKinetic(uid, comp, bossWorld, targetWorld);
+                // shoot_pka: ближе pka_range — очередь из ПКА.
+                if (dist < comp.PkaRange && now >= comp.NextPka)
+                {
+                    comp.RangedReady = now + TimeSpan.FromSeconds(comp.RangedAttackCooldown);
+                    TryTransform(ent);
+                    FirePka(ent, target, () => { });
+                    continue;
+                }
+
+                // dash_attack: дальше — рывок и очередь.
+                if (dist >= comp.PkaRange && now >= comp.NextDash && now >= comp.NextPka)
+                {
+                    comp.RangedReady = now + TimeSpan.FromSeconds(comp.RangedAttackCooldown);
+                    TryTransform(ent);
+                    DashAttack(ent, target);
+                    continue;
+                }
             }
 
-            // ── 3. Прыжок (> 4 тайла) ──────────────────────────────────────
-            if (dist > comp.JumpTriggerRange && _timing.CurTime >= comp.NextJumpTime)
+            if (dist <= 1 && now >= comp.NextMelee)
             {
-                DoJump(uid, comp, target, bossWorld, targetWorld, dist);
+                TryTransform(ent);
+                ChainAttack(ent, target, 1);
             }
         }
     }
 
-    // ── Режим атаки ───────────────────────────────────────────────────────────
-
-    private void UpdateMode(EntityUid uid, DeadMinerComponent comp, float dist)
+    /// <summary>transform_weapon: раскрыть/сложить пилу, откат 5-10 с.</summary>
+    private void TryTransform(Entity<DeadMinerComponent> ent)
     {
-        var shouldTransform = dist > comp.ModeTransformRange;
-        if (shouldTransform == comp.IsTransformed)
+        if (_timing.CurTime < ent.Comp.NextTransform)
             return;
 
-        comp.IsTransformed = shouldTransform;
-        _appearance.SetData(uid, DeadMinerVisuals.Transformed, comp.IsTransformed);
-        _audio.PlayPvs(comp.TransformSound, uid);
+        ent.Comp.NextTransform = _timing.CurTime +
+            TimeSpan.FromSeconds(_random.NextFloat(ent.Comp.TransformCooldownMin, ent.Comp.TransformCooldownMax));
+        ent.Comp.SawOpen = !ent.Comp.SawOpen;
+        _appearance.SetData(ent, MegafaunaVisuals.State, ent.Comp.SawOpen ? "miner_transformed" : string.Empty);
+    }
 
-        if (!TryComp<MeleeWeaponComponent>(uid, out var melee))
+    /// <summary>
+    /// do_chain_attack: 5 ударов по 8 через 0.3 с (закрытая пила) или 3 удара по 12 через 0.5 с
+    /// (раскрытая, задевает всех перед собой).
+    /// </summary>
+    private void ChainAttack(Entity<DeadMinerComponent> ent, EntityUid victim, int sequenceHit)
+    {
+        var hits = ent.Comp.SawOpen ? ent.Comp.OpenHits : ent.Comp.ClosedHits;
+        if (_ai.TileDistance(ent, victim) > 1 || TerminatingOrDeleted(victim))
+        {
+            ent.Comp.NextMelee = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.MeleeCooldown);
+            return;
+        }
+
+        ent.Comp.NextMelee = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.MeleeCooldown);
+        _popup.PopupEntity(Loc.GetString("dead-miner-slashes", ("boss", ent.Owner)), victim, victim, PopupType.MediumCaution);
+        _ai.PlaySound(ent.Comp.SlashSound, Transform(victim).Coordinates);
+
+        var damage = ent.Comp.SawOpen ? ent.Comp.OpenDamage : ent.Comp.ClosedDamage;
+        _ai.Damage(victim, "Slash", damage, ent);
+        if (ent.Comp.SawOpen && _ai.TryGetTile(ent, out var grid, out var ours) && _ai.TryGetTile(victim, out _, out var theirs))
+        {
+            // Раскрытая пила бьёт дугой по трём клеткам перед собой.
+            var dir = MegafaunaAiSystem.StepTowards(ours, theirs);
+            var index = Array.IndexOf(Dirs8, dir);
+            foreach (var tile in new[] { ours + dir, ours + Dirs8[(index + 1) % 8], ours + Dirs8[(index + 7) % 8] })
+            {
+                foreach (var mob in _ai.MobsOnTile(grid, tile))
+                {
+                    if (mob != victim && mob != ent.Owner && !_mobState.IsDead(mob) && !HasComp<MegafaunaAiComponent>(mob))
+                        _ai.Damage(mob, "Slash", damage, ent);
+                }
+            }
+        }
+
+        if (sequenceHit >= hits)
             return;
 
-        if (comp.IsTransformed)
+        var delay = ent.Comp.SawOpen ? ent.Comp.OpenHitDelay : ent.Comp.ClosedHitDelay;
+        _ai.SetSpeedMultiplier(ent, 0.5f);
+        _ai.Schedule(ent, delay, () =>
         {
-            melee.AttackRate = comp.MeleeMode2AttackRate;
-            var spec = new DamageSpecifier();
-            spec.DamageDict.Add("Slash", FixedPoint2.New(comp.MeleeMode2Damage));
-            melee.Damage = spec;
-        }
-        else
-        {
-            melee.AttackRate = comp.MeleeMode1AttackRate;
-            var spec = new DamageSpecifier();
-            spec.DamageDict.Add("Slash", FixedPoint2.New(comp.MeleeMode1Damage));
-            melee.Damage = spec;
-        }
-
-        Dirty(uid, melee);
+            _ai.SetSpeedMultiplier(ent, 1f);
+            ChainAttack(ent, victim, sequenceHit + 1);
+        });
     }
 
-    // ── Кинетический выстрел ─────────────────────────────────────────────────
-
-    private void FireKinetic(EntityUid uid, DeadMinerComponent comp, Vector2 bossWorld, Vector2 targetWorld)
+    /// <summary>kinetic_accelerator: тревога, стоит на месте, 3 выстрела через 0.15 с с разбросом 10°.</summary>
+    private void FirePka(Entity<DeadMinerComponent> ent, EntityUid target, Action onDone)
     {
-        var direction = Vector2.Normalize(targetWorld - bossWorld);
-        var origin = Transform(uid).Coordinates;
+        ent.Comp.Busy = true;
+        _ai.SetImmobile(ent, true);
+        _popup.PopupEntity(Loc.GetString("dead-miner-fires"), ent, PopupType.MediumCaution);
 
-        var bullet = Spawn(comp.KineticBulletPrototype, origin);
-        _xformSys.SetWorldRotation(bullet, new Robust.Shared.Maths.Angle(Math.Atan2(direction.Y, direction.X)));
-
-        if (TryComp<ProjectileComponent>(bullet, out var projComp))
+        var wait = MathF.Max(0f, ent.Comp.PkaAlertDelay - ent.Comp.PkaPrefireDelay) + ent.Comp.PkaPrefireDelay;
+        _ai.Schedule(ent, wait, () => PkaShot(ent, target, ent.Comp.PkaShots, () =>
         {
-            projComp.Shooter = uid;
-            Dirty(bullet, projComp);
-        }
-
-        _physics.SetLinearVelocity(bullet, direction * comp.KineticProjectileSpeed);
-        _audio.PlayPvs(comp.AttackSound, uid);
-
-        comp.NextKineticTime = _timing.CurTime + TimeSpan.FromSeconds(comp.KineticCooldown);
+            ent.Comp.NextPka = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.PkaCooldown);
+            _ai.Schedule(ent, ent.Comp.PkaReloadDelay, () =>
+            {
+                ent.Comp.Busy = false;
+                _ai.SetImmobile(ent, false);
+                onDone();
+            });
+        }));
     }
 
-    // ── Прыжок (телепорт) ─────────────────────────────────────────────────────
-
-    private void DoJump(EntityUid uid, DeadMinerComponent comp,
-        EntityUid target, Vector2 bossWorld, Vector2 targetWorld, float dist)
+    private void PkaShot(Entity<DeadMinerComponent> ent, EntityUid target, int remaining, Action onDone)
     {
-        var dir = Vector2.Normalize(targetWorld - bossWorld);
-
-        // Приземляемся перед игроком
-        var landDist = dist - MathF.Max(comp.JumpLandDistFromPlayer, 0.5f);
-        var landPos = bossWorld + dir * landDist;
-
-        // Дым на месте отправления
-        var departCoords = Transform(uid).Coordinates;
-        Spawn(comp.SmokePrototype, departCoords);
-
-        // Телепорт: вычисляем смещение в мировых координатах и прибавляем к локальным
-        var worldOffset = landPos - bossWorld;
-        var landCoords = departCoords.Offset(worldOffset);
-        _xformSys.SetCoordinates(uid, landCoords);
-
-        // Остановить движущий импульс HTN после телепорта
-        _physics.SetLinearVelocity(uid, Vector2.Zero);
-
-        // Дым на месте приземления
-        Spawn(comp.SmokePrototype, Transform(uid).Coordinates);
-
-        _audio.PlayPvs(comp.JumpSound, uid);
-
-        // Popup для ближайших игроков
-        foreach (var session in _playerManager.Sessions)
+        if (remaining <= 0 || TerminatingOrDeleted(target))
         {
-            if (session.Status != SessionStatus.InGame ||
-                session.AttachedEntity is not { Valid: true } p) continue;
-            if (!TryComp<MobStateComponent>(p, out var ms) || ms.CurrentState != MobState.Alive) continue;
-            if (!Transform(uid).Coordinates.TryDistance(EntityManager, Transform(p).Coordinates, out var d) || d > 20f) continue;
-            _popup.PopupEntity(Loc.GetString("dead-miner-jump-message"), uid, p, PopupType.Medium);
+            onDone();
+            return;
         }
 
-        comp.NextJumpTime = _timing.CurTime + TimeSpan.FromSeconds(comp.JumpCooldown);
+        var angle = _ai.ByondAngle(Transform(ent).Coordinates, Transform(target).Coordinates)
+                    + _random.NextFloat(-ent.Comp.PkaSpread, ent.Comp.PkaSpread);
+        _ai.ShootProjectile(ent, ent.Comp.KineticProjectile, angle, ent.Comp.PkaSpeed);
+        _ai.PlaySound(ent.Comp.KineticSound, Transform(ent).Coordinates);
+        _ai.Schedule(ent, ent.Comp.PkaShotDelay, () => PkaShot(ent, target, remaining - 1, onDone));
     }
 
-    // ── Вспомогательные ──────────────────────────────────────────────────────
-
-    private bool TryFindNearbyPlayer(EntityUid uid, float range, out EntityUid result)
+    /// <summary>
+    /// dash_attack: рывок к цели (до 6 клеток, при столкновении — серия ударов),
+    /// через 0.22 с — очередь из ПКА.
+    /// </summary>
+    private void DashAttack(Entity<DeadMinerComponent> ent, EntityUid target)
     {
-        result = EntityUid.Invalid;
-        var myPos = Transform(uid).Coordinates;
-        var best = float.MaxValue;
+        ent.Comp.NextDash = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.DashAttackCooldown);
+        if (!_ai.TryGetTile(ent, out var grid, out var from) || !_ai.TryGetTile(target, out var targetGrid, out var targetTile) ||
+            grid.Owner != targetGrid.Owner)
+            return;
 
-        foreach (var session in _playerManager.Sessions)
+        ent.Comp.Busy = true;
+        _ai.SetImmobile(ent, true);
+        var end = targetTile + MegafaunaAiSystem.StepTowards(from, targetTile) * 2;
+        _ai.Schedule(ent, ent.Comp.DashDelay, () => DashStep(ent, target, grid, end, ent.Comp.DashDistance));
+        _ai.Schedule(ent, ent.Comp.DashFireDelay, () =>
         {
-            if (session.Status != SessionStatus.InGame ||
-                session.AttachedEntity is not { Valid: true } candidate)
-                continue;
+            _ai.SetImmobile(ent, false);
+            ent.Comp.Busy = false;
+            if (!TerminatingOrDeleted(target))
+                FirePka(ent, target, () => { });
+        });
+    }
 
-            if (!Exists(candidate))
-                continue;
+    private void DashStep(Entity<DeadMinerComponent> ent, EntityUid target, Entity<MapGridComponent> grid, Vector2i end, int remaining)
+    {
+        if (remaining <= 0 || !_ai.TryGetTile(ent, out _, out var current) || current == end)
+            return;
 
-            if (!TryComp<MobStateComponent>(candidate, out var ms) || ms.CurrentState != MobState.Alive)
-                continue;
+        var next = current + MegafaunaAiSystem.StepTowards(current, end);
+        if (_ai.IsBlocked(grid, next))
+            return;
 
-            if (!myPos.TryDistance(EntityManager, Transform(candidate).Coordinates, out var dist))
-                continue;
-
-            if (dist > range || dist >= best)
-                continue;
-
-            best = dist;
-            result = candidate;
+        if (_ai.MobsOnTile(grid, next).Contains(target))
+        {
+            // hit_target: врезался — сразу атакует.
+            ent.Comp.NextMelee = _timing.CurTime;
+            ChainAttack(ent, target, 1);
+            return;
         }
 
-        return result.Valid;
+        _ai.PlaySound(ent.Comp.DashSound, Transform(ent).Coordinates, -5f);
+        _transform.SetCoordinates(ent, _ai.TileCenter(grid, next));
+        _ai.Schedule(ent, ent.Comp.DashStepDelay, () => DashStep(ent, target, grid, end, remaining - 1));
     }
 }

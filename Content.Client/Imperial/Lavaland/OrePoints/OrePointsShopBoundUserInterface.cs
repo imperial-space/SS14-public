@@ -20,6 +20,14 @@ public sealed class OrePointsShopBoundUserInterface : BoundUserInterface
         _window.OnBuyPressed += OnBuyPressed;
     }
 
+    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+    {
+        base.ReceiveMessage(message);
+
+        if (message is OrePointsShopDataMessage data)
+            _window?.Populate(data.Entries, data.PlayerBalance);
+    }
+
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);

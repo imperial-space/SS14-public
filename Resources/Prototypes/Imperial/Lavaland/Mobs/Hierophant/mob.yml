@@ -1,3 +1,6 @@
+# ── Иерофант (SS13 megafauna/hierophant) ────────────────────────────────────
+
+# Визуальные эффекты дубины иерофанта.
 - type: entity
   id: ImperialHierophantBlast
   suffix: Lavaland
@@ -6,11 +9,11 @@
   components:
   - type: Sprite
     drawdepth: Effects
-    sprite: Imperial/lava/boss/Hierophant/effects.rsi
+    sprite: Imperial/lava/boss/megafauna/effects.rsi
     state: hierophant_blast
     shader: unshaded
   - type: TimedDespawn
-    lifetime: 0.7
+    lifetime: 0.9
   - type: Transform
     anchored: true
   - type: Tag
@@ -25,11 +28,104 @@
   components:
   - type: Sprite
     drawdepth: Effects
-    sprite: Imperial/lava/boss/Hierophant/effects.rsi
+    sprite: Imperial/lava/boss/megafauna/effects.rsi
     state: hierophant_squares
     shader: unshaded
   - type: TimedDespawn
-    lifetime: 0.7
+    lifetime: 0.3
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# temp_visual/hierophant/blast/damaging (урон наносит система).
+- type: entity
+  id: ImperialHierophantBlastDamaging
+  parent: ImperialHierophantBlast
+  suffix: Lavaland
+  name: vortex blast
+  description: Get out of the way!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#9933FF"
+
+# temp_visual/hierophant/squares
+- type: entity
+  id: ImperialHierophantSquares
+  suffix: Lavaland
+  name: vortex energy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Imperial/lava/boss/megafauna/effects.rsi
+    state: hierophant_squares
+    shader: unshaded
+  - type: PointLight
+    radius: 1.4
+    energy: 1
+    color: "#9933FF"
+  - type: TimedDespawn
+    lifetime: 0.3
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# temp_visual/hierophant/wall: стена арены на 10 секунд.
+- type: entity
+  id: ImperialHierophantWall
+  suffix: Lavaland
+  name: vortex wall
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: Imperial/lava/boss/megafauna/effects.rsi
+    state: hierophant_wall_temp
+  - type: PointLight
+    radius: 1.4
+    energy: 1
+    color: "#9933FF"
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb {}
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: HierophantWall
+  - type: TimedDespawn
+    lifetime: 10
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# temp_visual/hierophant/telegraph
+- type: entity
+  id: ImperialHierophantTelegraph
+  suffix: Lavaland
+  name: vortex energy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: BelowFloor
+    sprite: Imperial/lava/boss/megafauna/effects96.rsi
+    state: hierophant_telegraph
+    shader: unshaded
+  - type: TimedDespawn
+    lifetime: 0.3
   - type: Transform
     anchored: true
   - type: Tag
@@ -37,132 +133,136 @@
     - HideContextMenu
 
 - type: entity
-  id: ImperialHierophantSnakeTile
+  id: ImperialHierophantTelegraphCardinal
+  parent: ImperialHierophantTelegraph
   suffix: Lavaland
-  name: snake energy
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    drawdepth: Effects
-    sprite: Imperial/lava/boss/Hierophant/effects.rsi
-    state: hierophant_blast
+    drawdepth: BelowFloor
+    sprite: Imperial/lava/boss/megafauna/effects96.rsi
+    state: hierophant_telegraph_cardinal
+    shader: unshaded
+
+- type: entity
+  id: ImperialHierophantTelegraphDiagonal
+  parent: ImperialHierophantTelegraph
+  suffix: Lavaland
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: BelowFloor
+    sprite: Imperial/lava/boss/megafauna/effects96.rsi
+    state: hierophant_telegraph_diagonal
+    shader: unshaded
+
+- type: entity
+  id: ImperialHierophantTelegraphTeleport
+  parent: ImperialHierophantTelegraph
+  suffix: Lavaland
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: BelowFloor
+    sprite: Imperial/lava/boss/megafauna/effects96.rsi
+    state: hierophant_telegraph_teleport
     shader: unshaded
   - type: TimedDespawn
-    lifetime: 10.0
+    lifetime: 0.9
+
+# obj/effect/hierophant: маяк, к которому иерофант возвращается.
+- type: entity
+  id: ImperialHierophantBeacon
+  suffix: Lavaland
+  name: hierophant beacon
+  description: A strange beacon, allowing mass teleportation for those able to use it.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/lava/boss/megafauna/effects.rsi
+    state: hierophant_tele_off
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#9933FF"
   - type: Transform
-    anchored: false
-  - type: Physics
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.3
-        isSensor: true
-  - type: Tag
-    tags:
-    - HideContextMenu
+    anchored: true
+  - type: Clickable
 
 - type: entity
   id: MobHierophant
   suffix: Lavaland
   name: hierophant
-  parent: [SimpleSpaceMobBase, MobCombat, BaseMobAnimal]
-  description: A massive sentient relic guarding the necropolis. Hovers slowly and casts devastating spells.
+  parent: ImperialMegafaunaBase
+  description: A massive metal club that hangs in the air as though waiting. It'll make you dance to its beat.
   components:
-  - type: NpcFactionMember
-    factions:
-    - SimpleHostile
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
     blackboard:
+      VisionRadius: !type:Single
+        21
+      AggroVisionRadius: !type:Single
+        21
       NavSmash: !type:Bool
         true
   - type: Sprite
     drawdepth: Mobs
-    sprite: Imperial/lava/boss/Hierophant/hierophant_new.rsi
-    state: hierophant
+    sprite: Imperial/lava/boss/megafauna/hierophant.rsi
+    offset: 0,0.5
+    layers:
+    - state: hierophant
+  - type: MegafaunaAppearance
+    baseState: hierophant
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.6
-        density: 150
+          radius: 0.4
+        density: 1000
         mask:
         - MobMask
         layer:
         - MobLayer
-  # Slow movement speed
+  # move_to_delay = 10 — клетка в секунду.
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.2
-    baseSprintSpeed: 1.2
-  # No close melee combat - disabled
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1
   - type: MeleeWeapon
     hidden: true
     altDisarm: false
-    attackRate: 0.0
+    attackRate: 0.5
+    range: 1.5
+    soundHit:
+      path: /Audio/Imperial/boss/sound_weapons_sonic_jackhammer.ogg
     damage:
       types:
-        Blunt: 0
+        Blunt: 15
   - type: MobThresholds
     thresholds:
       0: Alive
       2500: Dead
-  - type: Destructible
-    thresholds: []
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: hierophant
-      Dead:
-        Base: hierophant
+  - type: LavalandMegafaunaSleep
+  - type: ImperialGps
+    tagLoc: imperial-gps-signal-zealous
+  - type: MegafaunaAi
+    aggroRange: 21
+    devourMessage: hierophant-devour
+    deathSound:
+      path: /Audio/Imperial/boss/sound_magic_repulse.ogg
   - type: Hierophant
-    targetSearchRange: 16
-    crossBlastRadius: 1.0
-    crossBlastDamage: 20
-    crossOffset: 1.5
-    lineAttackLength: 6
-    snakeTileSpeed: 3
-    snakeTilePrototype: ImperialHierophantSnakeTile
-    snakeMinTiles: 5
-    snakeMaxTiles: 6
-    snakeStepDelay: 0.2
-    snakeTileDamage: 12
-    burstRadius: 0.9
-    burstDamage: 18
-    burstGridSize: 4
-    squareRingCount: 3
-    squareRingStepDelay: 0.5
-    squareRingBaseDamage: 10
-    squareRingDamageStep: 8
-    tileDamageDelay: 0.5
-    blastEffectPrototype: ImperialHierophantBlast
-    squareEffectPrototype: ImperialHierophantSquare
-    attackCooldown: 2.5
-    attackSound:
-      path: /Audio/Imperial/boss/sound_lavaland_hiero_boss.ogg
+  # del_on_death
+  - type: MegafaunaVanishOnDeath
+  - type: CrusherLoot
+    trophies:
+    - CrusherTrophyVortexTalisman
+    guaranteedDrop: 0.6
   - type: BossLoot
     loot:
     - prototype: MeleeWeaponHierophantClub
       chance: 1.0
-    - prototype: CrusherUpgradeVortexTalisman
-      chance: 0.30
-      minCount: 1
-      maxCount: 1
-  - type: Tag
-    tags:
-    - LavalandMob
-  - type: Damageable
-    damageContainer: Biological
-    damageModifierSet: HellSpawn
-  - type: TemperatureDamage
-    heatDamageThreshold: 1000000
-  - type: LavalandStormImmune
-  - type: MegafaunaVanishOnDeath
-  - type: LavalandMegafaunaSleep
-  - type: LavalandMegafauna
   - type: MegafaunaBossMusic
     music:
       path: /Audio/Imperial/boss/sound_lavaland_hiero_boss.ogg

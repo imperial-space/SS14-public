@@ -1,0 +1,15 @@
+# SFX_INDUSTRIAL_SCAN
+- type: soundCollection
+  id: ImperialIndustrialScan
+  files:
+  - /Audio/Imperial/Lavaland/industrial_scan1.ogg
+  - /Audio/Imperial/Lavaland/industrial_scan2.ogg
+  - /Audio/Imperial/Lavaland/industrial_scan3.ogg
+
+# usesound кирки
+- type: soundCollection
+  id: ImperialPickaxe
+  files:
+  - /Audio/Imperial/Lavaland/picaxe1.ogg
+  - /Audio/Imperial/Lavaland/picaxe2.ogg
+  - /Audio/Imperial/Lavaland/picaxe3.ogg

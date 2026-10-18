@@ -19,7 +19,7 @@ public sealed partial class LegionBossComponent : Component
     public SoundSpecifier? SummonSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_magic_narsie_attack.ogg");
 
     [DataField]
-    public EntProtoId SummonedPrototype = "MobLegionSummonSkullLavaland";
+    public EntProtoId SummonedPrototype = "MobLegionNormalSkull";
 
     [DataField]
     public int MaxConcurrentSkulls = 10;

@@ -225,8 +225,8 @@ public sealed class LavalandAnvilSystem : EntitySystem
 
     private void TransferUpgradesOut(EntityUid weapon, List<EntityUid> saved)
     {
-        if (TryComp<MiningUpgradeableGunComponent>(weapon, out var gunComp) &&
-            _container.TryGetContainer(weapon, gunComp.UpgradesContainerId, out var gunCont))
+        if (TryComp<KineticAcceleratorComponent>(weapon, out var gunComp) &&
+            _container.TryGetContainer(weapon, gunComp.ContainerId, out var gunCont))
         {
             foreach (var item in gunCont.ContainedEntities.ToArray())
             {
@@ -235,8 +235,8 @@ public sealed class LavalandAnvilSystem : EntitySystem
             }
         }
 
-        if (TryComp<KineticCrusherUpgradeableComponent>(weapon, out var crusherComp) &&
-            _container.TryGetContainer(weapon, crusherComp.UpgradesContainerId, out var crusherCont))
+        if (TryComp<KineticCrusherComponent>(weapon, out var crusherComp) &&
+            _container.TryGetContainer(weapon, crusherComp.ContainerId, out var crusherCont))
         {
             foreach (var item in crusherCont.ContainedEntities.ToArray())
             {
@@ -252,10 +252,10 @@ public sealed class LavalandAnvilSystem : EntitySystem
             return;
 
         string? containerId = null;
-        if (TryComp<MiningUpgradeableGunComponent>(weapon, out var gunComp))
-            containerId = gunComp.UpgradesContainerId;
-        else if (TryComp<KineticCrusherUpgradeableComponent>(weapon, out var crusherComp))
-            containerId = crusherComp.UpgradesContainerId;
+        if (TryComp<KineticAcceleratorComponent>(weapon, out var gunComp))
+            containerId = gunComp.ContainerId;
+        else if (TryComp<KineticCrusherComponent>(weapon, out var crusherComp))
+            containerId = crusherComp.ContainerId;
 
         if (containerId == null)
             return;

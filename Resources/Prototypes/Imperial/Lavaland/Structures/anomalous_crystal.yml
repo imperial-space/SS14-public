@@ -1,0 +1,266 @@
+# machinery/anomalous_crystal: лут колосса, активируется касанием.
+- type: entity
+  abstract: true
+  id: ImperialAnomalousCrystalBase
+  parent: BaseStructureDynamic
+  name: anomalous crystal
+  description: A strange chunk of crystal, being in the presence of it fills you with equal parts excitement and dread.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/boss/megafauna/crystal.rsi
+    noRot: false
+    layers:
+    - state: anomaly_crystal
+  - type: MegafaunaAppearance
+    baseState: anomaly_crystal
+  - type: Appearance
+  - type: PointLight
+    radius: 8
+    energy: 1.5
+    color: "#BBDDFF"
+  - type: Rotatable
+  - type: Pullable
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: false
+  - type: InteractionOutline
+  - type: StaticPrice
+    price: 5000
+
+- type: entity
+  id: ImperialAnomalousCrystalHonk
+  parent: ImperialAnomalousCrystalBase
+  suffix: Honk
+  components:
+  - type: AnomalousCrystal
+    kind: Honk
+    useTime: 3
+    observerDesc: anomalous-crystal-observer-honk
+    activationSound:
+      path: /Audio/Items/bikehorn.ogg
+
+- type: entity
+  id: ImperialAnomalousCrystalThemeWarp
+  parent: ImperialAnomalousCrystalBase
+  suffix: ThemeWarp
+  components:
+  - type: AnomalousCrystal
+    kind: ThemeWarp
+    cooldown: 20
+    useTime: 5
+
+- type: entity
+  id: ImperialAnomalousCrystalEmitter
+  parent: ImperialAnomalousCrystalBase
+  suffix: Emitter
+  components:
+  - type: AnomalousCrystal
+    kind: Emitter
+    cooldown: 5
+    observerDesc: anomalous-crystal-observer-emitter
+
+- type: entity
+  id: ImperialAnomalousCrystalDarkReprise
+  parent: ImperialAnomalousCrystalBase
+  suffix: DarkReprise
+  components:
+  - type: AnomalousCrystal
+    kind: DarkReprise
+    useTime: 3
+    observerDesc: anomalous-crystal-observer-dark-reprise
+    activationSound:
+      path: /Audio/Imperial/boss/sound_hallucinations_growl1.ogg
+
+- type: entity
+  id: ImperialAnomalousCrystalHelpers
+  parent: ImperialAnomalousCrystalBase
+  suffix: Helpers
+  components:
+  - type: AnomalousCrystal
+    kind: Helpers
+    useTime: 5
+    observerDesc: anomalous-crystal-observer-helpers
+    activationSound:
+      path: /Audio/Imperial/boss/sound_effects_ghost2.ogg
+
+- type: entity
+  id: ImperialAnomalousCrystalPossessor
+  parent: ImperialAnomalousCrystalBase
+  suffix: Possessor
+  components:
+  - type: AnomalousCrystal
+    kind: Possessor
+    useTime: 1
+    observerDesc: anomalous-crystal-observer-possessor
+
+# pick(subtypesof(/obj/machinery/anomalous_crystal))
+- type: entityTable
+  id: ImperialAnomalousCrystalTable
+  table: !type:GroupSelector
+    children:
+    - id: ImperialAnomalousCrystalHonk
+    - id: ImperialAnomalousCrystalThemeWarp
+    - id: ImperialAnomalousCrystalEmitter
+    - id: ImperialAnomalousCrystalDarkReprise
+    - id: ImperialAnomalousCrystalHelpers
+    - id: ImperialAnomalousCrystalPossessor
+
+# necropolis/colossus: кристалл, голосовые связки колосса и прочие трофеи.
+- type: entity
+  parent: CrateGeneric
+  id: ImperialColossusChest
+  suffix: Lavaland
+  name: colossus chest
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: ImperialAnomalousCrystalTable
+        - !type:EntSelector
+          id: ClothingNeckVoiceOfGod
+        - !type:EntSelector
+          id: ClothingEyesEyeOfGod
+  - type: StaticPrice
+    price: 0
+
+# decal/cleanable/confetti
+- type: entity
+  id: ImperialAnomalousCrystalConfetti
+  suffix: Lavaland
+  name: confetti
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/lava/boss/megafauna/effects.rsi
+    state: confetti
+  - type: TimedDespawn
+    lifetime: 300
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# temp_visual/cult/sparks
+- type: entity
+  id: ImperialAnomalousCrystalSparks
+  suffix: Lavaland
+  name: blood sparks
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Imperial/lava/boss/megafauna/effects.rsi
+    state: bloodsparkles
+    shader: unshaded
+  - type: TimedDespawn
+    lifetime: 1
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# action/exit_possession
+- type: entity
+  id: ImperialActionExitPossession
+  name: Exit Possession
+  description: Exits the body you are possessing. They will explode violently when this occurs.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/lava/boss/megafauna/crystal.rsi
+      state: anomaly_crystal
+  - type: InstantAction
+    event: !type:ExitPossessionActionEvent
+
+# basic/lightgeist: хрупкое летающее существо, лечит касанием.
+- type: damageModifierSet
+  id: ImperialLightgeist
+  coefficients:
+    Poison: 0
+    Radiation: 0
+    Asphyxiation: 0
+
+- type: entity
+  id: ImperialLightgeist
+  parent: [ SimpleSpaceMobBase, FlyingMobBase ]
+  name: lightgeist
+  description: This small floating creature is a completely unknown form of life... being near it fills you with a sense of tranquility.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Passive
+  - type: HTN
+    rootTask:
+      task: IdleCompound
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/boss/megafauna/lightgeist.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: lightgeist
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: lightgeist
+      Dead:
+        Base: butterfly_dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.15
+        density: 5
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 4
+  # healing_touch: 5 brute и 5 burn, раз в 5 секунд.
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 0.2
+    range: 1.2
+    angle: 0
+    animation: WeaponArcFist
+    damage:
+      groups:
+        Brute: -5
+        Burn: -5
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: ImperialLightgeist
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      2: Dead
+  - type: PointLight
+    radius: 4
+    energy: 1
+    color: "#FFFFDD"
+  - type: MegafaunaVanishOnDeath
+  - type: LavalandStormImmune
+  - type: Tag
+    tags:
+    - CannotSuicide

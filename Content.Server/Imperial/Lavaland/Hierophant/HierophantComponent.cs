@@ -1,197 +1,57 @@
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.Imperial.Lavaland.Hierophant;
 
+/// <summary>
+/// Иерофант (megafauna/hierophant из SS13): преследователи, кресты взрывов, телепорт к цели,
+/// расходящаяся вспышка, арена из стен и возврат к маяку.
+/// </summary>
 [RegisterComponent]
 public sealed partial class HierophantComponent : Component
 {
-    [DataField]
-    public float TargetSearchRange = 16f;
+    [DataField] public int BaseBurstRange = 3;
+    [DataField] public int BaseBeamRange = 5;
+    [DataField] public float RangedCooldownTime = 4f;
+    [DataField] public float MajorAttackCooldown = 6f;
+    [DataField] public float ChaserCooldownTime = 10.1f;
+    [DataField] public float ArenaCooldownTime = 20f;
+    [DataField] public float BlastDamage = 10f;
+    [DataField] public float BlinkBlastDamage = 30f;
 
-    // Cross Attack
-    [DataField]
-    public float CrossBlastRadius = 1.0f;
+    [DataField] public SoundSpecifier BlastSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_magic_blind.ogg");
+    [DataField] public SoundSpecifier HitSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_weapons_sear.ogg");
+    [DataField] public SoundSpecifier TelegraphSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_effects_bin_close.ogg");
+    [DataField] public SoundSpecifier TeleportSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_magic_wand_teleport.ogg");
+    [DataField] public SoundSpecifier BurstSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_machines_airlock_open.ogg");
+    [DataField] public SoundSpecifier MoveSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_mecha_mechmove04.ogg");
 
-    [DataField]
-    public float CrossBlastDamage = 20f;
+    [DataField] public EntProtoId Blast = "ImperialHierophantBlastDamaging";
+    [DataField] public EntProtoId Squares = "ImperialHierophantSquares";
+    [DataField] public EntProtoId Wall = "ImperialHierophantWall";
+    [DataField] public EntProtoId Telegraph = "ImperialHierophantTelegraph";
+    [DataField] public EntProtoId TelegraphCardinal = "ImperialHierophantTelegraphCardinal";
+    [DataField] public EntProtoId TelegraphDiagonal = "ImperialHierophantTelegraphDiagonal";
+    [DataField] public EntProtoId TelegraphTeleport = "ImperialHierophantTelegraphTeleport";
+    [DataField] public EntProtoId Beacon = "ImperialHierophantBeacon";
 
-    [DataField]
-    public float CrossOffset = 1.5f;
+    [ViewVariables] public int BurstRange = 3;
+    [ViewVariables] public int BeamRange = 5;
+    [ViewVariables] public float Anger;
+    [ViewVariables] public float ChaserSpeed = 3f;
+    [ViewVariables] public bool Blinking;
+    [ViewVariables] public bool SittingAtCenter = true;
+    [ViewVariables] public TimeSpan RangedCooldown;
+    [ViewVariables] public TimeSpan ChaserCooldown;
+    [ViewVariables] public TimeSpan ArenaCooldown;
+    [ViewVariables] public TimeSpan? GoHomeAt;
+    [ViewVariables] public EntityUid? SpawnedBeacon;
+    [ViewVariables] public Vector2i? LastTile;
+}
 
-    [DataField]
-    public int LineAttackLength = 6;
-
-    // Snake Attack
-    [DataField]
-    public float SnakeTileSpeed = 3f;
-
-    [DataField]
-    public EntProtoId SnakeTilePrototype = "ImperialHierophantSnakeTile";
-
-    // Area Burst Attack
-    [DataField]
-    public float BurstRadius = 0.9f;
-
-    [DataField]
-    public float BurstDamage = 18f;
-
-    [DataField]
-    public float BurstGridSize = 4f;
-
-    [DataField]
-    public int SquareRingCount = 3;
-
-    [DataField]
-    public float SquareRingStepDelay = 0.25f;
-
-    [DataField]
-    public float SquareRingBaseDamage = 10f;
-
-    [DataField]
-    public float SquareRingDamageStep = 8f;
-
-    [DataField]
-    public float MaxHp = 5000f;
-
-    [DataField]
-    public float TileDamageDelay = 0.5f;
-
-    [DataField]
-    public int SnakeMinTiles = 5;
-
-    [DataField]
-    public int SnakeMaxTiles = 6;
-
-    [DataField]
-    public float SnakeStepDelay = 0.2f;
-
-    [DataField]
-    public float SnakeTileDamage = 12f;
-
-    // Effects
-    [DataField]
-    public EntProtoId BlastEffectPrototype = "ImperialHierophantBlast";
-
-    [DataField]
-    public EntProtoId SquareEffectPrototype = "ImperialHierophantSquare";
-
-    // Sounds
-    [DataField]
-    public SoundSpecifier AttackSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_lavaland_hiero_boss.ogg");
-
-    [DataField]
-    public SoundSpecifier LineAttackSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_weapons_sonic_jackhammer.ogg");
-
-    [DataField]
-    public SoundSpecifier SnakeAttackSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_weapons_sear.ogg");
-
-    [DataField]
-    public SoundSpecifier RingAttackSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_magic_repulse.ogg");
-
-    [DataField]
-    public SoundSpecifier ChaserAttackSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_magic_blind.ogg");
-
-    [DataField]
-    public SoundSpecifier ArenaAttackSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_machines_airlock_open.ogg");
-
-    [DataField]
-    public SoundSpecifier LeapAttackSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_magic_wand_teleport.ogg");
-
-    [DataField]
-    public SoundSpecifier TeleportSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_effects_bin_close.ogg");
-
-    // Leap attack
-    [DataField]
-    public float LeapDistance = 4f;
-
-    [DataField]
-    public int LeapTileRadius = 1;
-
-    [DataField]
-    public int LeapMaxRepeats = 2;
-
-    [DataField]
-    public float LeapRepeatDelay = 0.8f;
-
-    // Teleport to player when too far
-    [DataField]
-    public float TeleportRange = 8f;
-
-    [DataField]
-    public float TeleportCooldown = 5f;
-
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    public TimeSpan NextTeleportTime;
-
-    // HP-scaled attack speed
-    [DataField]
-    public float MinAttackCooldown = 0.8f;
-
-    // Timing
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    public TimeSpan NextAttackTime;
-
-    [DataField]
-    public float AttackCooldown = 2.5f;
-
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    public TimeSpan NextRingStepTime;
-
-    [DataField]
-    public int CurrentRingStep;
-
-    [DataField]
-    public bool RingAttackActive;
-
-    [DataField]
-    public int AttackIndex;
-
-    [DataField]
-    public int LineAttackModeIndex;
-
-    // Leap runtime state
-    [DataField]
-    public int LeapRemainingRepeats;
-
-    [DataField]
-    public EntityUid LeapTarget = EntityUid.Invalid;
-
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    public TimeSpan NextLeapTime;
-
-    [DataField]
-    public bool LeapActive;
-
-    // ── Chaser attack ───────────────────────────────────────────────────────
-    /// <summary>Seconds between each chaser step.</summary>
-    [DataField]
-    public float ChaserStepDelay = 0.22f;
-
-    /// <summary>Max lifetime of a chaser in seconds.</summary>
-    [DataField]
-    public float ChaserDuration = 9f;
-
-    [DataField]
-    public float ChaserDamage = 10f;
-
-    [DataField]
-    public float ChaserCooldown = 12f;
-
-    [DataField]
-    public int MaxChasers = 2;
-
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    public TimeSpan NextChaserTime;
-
-    // ── Arena trap ─────────────────────────────────────────────────────────
-    [DataField]
-    public int ArenaRadius = 7;
-
-    [DataField]
-    public float ArenaCooldown = 20f;
-
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    public TimeSpan NextArenaTime;
+/// <summary>Временная стена арены: пропускает только своего иерофанта.</summary>
+[RegisterComponent]
+public sealed partial class HierophantWallComponent : Component
+{
+    [ViewVariables] public EntityUid? Caster;
 }

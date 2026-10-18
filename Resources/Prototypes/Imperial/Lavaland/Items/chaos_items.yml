@@ -173,7 +173,7 @@
   id: TalismanImmortality
   suffix: Lavaland
   name: Талисман бессмертия
-  description: Талисман легендарного воина. При использовании дарует неуязвимость на 8 секунд. Перезарядка — 80 секунд.
+  description: Талисман легендарного воина. При использовании дарует неуязвимость на 8 секунд. Перезарядка — 180 секунд.
   components:
   - type: Sprite
     sprite: Imperial/lava/mining/artefact.rsi

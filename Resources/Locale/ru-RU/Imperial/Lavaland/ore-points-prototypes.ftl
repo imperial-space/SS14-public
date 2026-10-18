@@ -41,3 +41,11 @@ ent-WeaponMiningShotgunMega = веерный резак «Мега»
 
 ent-LavalandAnvil = наковальня
     .desc = Массивная наковальня из лаваландского базальта. Положите оружие, 2 гибтонита и 2 магмита, затем нажмите пустой рукой — наковальня улучшит оружие.
+
+stack-fulton-lavaland = фултон Лаваленда
+ent-ImperialFultonLavaland = фултон Лаваленда
+    .desc = Эвакуационный пакет: поднимает к маяку фултона снаряжение, тела и существ.
+    .suffix = Полный
+ent-ImperialFultonLavaland1 = { ent-ImperialFultonLavaland }
+    .desc = { ent-ImperialFultonLavaland.desc }
+    .suffix = Один

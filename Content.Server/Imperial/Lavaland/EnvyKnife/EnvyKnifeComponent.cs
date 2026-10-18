@@ -11,5 +11,5 @@ public sealed partial class EnvyKnifeComponent : Component
 {
     /// <summary>Звук при копировании внешности.</summary>
     [DataField]
-    public SoundSpecifier TransformSound = new SoundPathSpecifier("/Audio/Magic/polymorph.ogg");
+    public SoundSpecifier TransformSound = new SoundPathSpecifier("/Audio/Magic/staff_change.ogg");
 }

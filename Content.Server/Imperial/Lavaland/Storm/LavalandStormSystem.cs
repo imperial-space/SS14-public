@@ -117,6 +117,24 @@ public sealed class LavalandStormSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// weather.wind_down: завершить надвигающуюся или идущую бурю (посох бурь).
+    /// Возвращает false, если бури нет или она уже стихает.
+    /// </summary>
+    public bool TryWindDown(EntityUid mapUid, LavalandMapComponent comp)
+    {
+        switch (comp.StormState)
+        {
+            case LavalandStormState.Warning:
+            case LavalandStormState.PassingBy:
+            case LavalandStormState.Active:
+                EndStorm(mapUid, comp);
+                return true;
+            default:
+                return false;
+        }
+    }
+
     public void ForceStartStorm(EntityUid mapUid, LavalandMapComponent comp)
     {
         ActivateStorm(mapUid, comp);

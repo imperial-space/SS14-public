@@ -1,7 +1,21 @@
-ent-MobHierophant = Иерофант
-    .desc = Архаичный и могущественный босс, управляющий магией. Медленно парит, готовясь к атаке.
+ent-MobHierophant = иерофант
+    .desc = Огромная металлическая дубина, зависшая в воздухе словно в ожидании. Она заставит вас плясать под свой ритм.
+ent-ImperialHierophantBlast = вихревой взрыв
+ent-ImperialHierophantSquare = вихревая энергия
+ent-ImperialHierophantBlastDamaging = вихревой взрыв
+    .desc = Уйди с дороги!
+ent-ImperialHierophantSquares = вихревая энергия
+ent-ImperialHierophantWall = вихревая стена
+ent-ImperialHierophantTelegraph = вихревая энергия
+ent-ImperialHierophantTelegraphCardinal = вихревая энергия
+ent-ImperialHierophantTelegraphDiagonal = вихревая энергия
+ent-ImperialHierophantTelegraphTeleport = вихревая энергия
+ent-ImperialHierophantBeacon = маяк иерофанта
+    .desc = Странный маяк, позволяющий массовую телепортацию тем, кто умеет им пользоваться.
 
-Hierophant-cross-attack = Иерофант создает крест энергии!
-Hierophant-snake-attack = Иерофант запускает волну энергии!
-Hierophant-burst-attack = Иерофант выпускает поле энергии!
-Hierophant-cross-merge-message = Кресты сливаются в одну мощную волну!
+hierophant-devour = { CAPITALIZE($boss) } поглощает жизненную силу { $victim }!
+hierophant-absorbs = { CAPITALIZE($boss) } поглощает жизненную силу { $victim }, восстанавливая здоровье!
+hierophant-shrinks = { CAPITALIZE($boss) } сжимается, высвобождая мощный поток энергии!
+hierophant-fades-out = { CAPITALIZE($boss) } растворяется!
+hierophant-fades-in = { CAPITALIZE($boss) } появляется!
+hierophant-blast-hit = Вас поражает вихревой взрыв!

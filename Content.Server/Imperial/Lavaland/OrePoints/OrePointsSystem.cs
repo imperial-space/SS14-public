@@ -225,6 +225,8 @@ public sealed class OrePointsSystem : EntitySystem
             balance = account.Points;
         }
 
-        _ui.SetUiState(uid, OrePointsShopUiKey.Key, new OrePointsShopUiState(entries, balance));
+        // Баланс у каждого свой: общее состояние окна показывало всем баланс последнего игрока.
+        if (actor is { } target)
+            _ui.ServerSendUiMessage(uid, OrePointsShopUiKey.Key, new OrePointsShopDataMessage(entries, balance), target);
     }
 }

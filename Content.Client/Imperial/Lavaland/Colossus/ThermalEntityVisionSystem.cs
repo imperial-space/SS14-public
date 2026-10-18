@@ -1,5 +1,6 @@
 using Content.Client.Overlays;
 using Content.Shared.Imperial.Lavaland.ColossusLoot;
+using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Robust.Client.Graphics;
 
@@ -8,6 +9,7 @@ namespace Content.Client.Imperial.Lavaland.Colossus;
 public sealed class ThermalEntityVisionSystem : EquipmentHudSystem<ThermalEntityVisionComponent>
 {
     [Dependency] private readonly IOverlayManager _overlay = default!;
+    [Dependency] private readonly InventorySystem _inventorySystem = default!;
 
     private ThermalEntityVisionOverlay? _thermalOverlay;
     private bool _overlayActive;
@@ -16,6 +18,12 @@ public sealed class ThermalEntityVisionSystem : EquipmentHudSystem<ThermalEntity
     {
         base.Initialize();
         _thermalOverlay = new ThermalEntityVisionOverlay();
+        SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<ThermalEntityVisionComponent>>(OnRelayInventory);
+    }
+
+    private void OnRelayInventory(EntityUid uid, InventoryComponent comp, ref RefreshEquipmentHudEvent<ThermalEntityVisionComponent> args)
+    {
+        _inventorySystem.RelayEvent((uid, comp), ref args);
     }
 
     protected override void UpdateInternal(RefreshEquipmentHudEvent<ThermalEntityVisionComponent> component)

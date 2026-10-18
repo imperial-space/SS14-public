@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (blood.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "floor1"
+    },
+    {
+      "name": "floor2"
+    },
+    {
+      "name": "floor3"
+    },
+    {
+      "name": "floor4"
+    },
+    {
+      "name": "floor5"
+    },
+    {
+      "name": "floor6"
+    },
+    {
+      "name": "floor7"
+    },
+    {
+      "name": "gib3",
+      "directions": 4
+    },
+    {
+      "name": "gib5",
+      "directions": 4
+    },
+    {
+      "name": "gib6",
+      "directions": 4
+    }
+  ]
+}

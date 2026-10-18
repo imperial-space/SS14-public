@@ -1,0 +1,199 @@
+# Товары шахтёрской консоли заказов SS13 (orderable_item/mining, consumables, accelerator),
+# которых не было в SS14.
+
+# item/lazarus_injector
+- type: entity
+  parent: BaseItem
+  id: ImperialLazarusInjector
+  name: lazarus injector
+  description: An injector with a cocktail of nanomachines and chemicals, this device can seemingly raise animals from the dead, making them become friendly to the user. Unfortunately, the process is useless on higher forms of life and incredibly costly, so these were hidden in storage until an executive thought they'd be great motivation for some of their employees.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/lazarus.rsi
+    layers:
+    - state: lazarus_hypo
+  - type: Appearance
+  - type: MegafaunaAppearance
+    baseState: lazarus_hypo
+  - type: Item
+    size: Small
+    sprite: Imperial/lava/mining/lazarus.rsi
+  - type: LazarusInjector
+
+# clothing/accessory/kheiral_cuffs
+- type: entity
+  parent: ClothingHandsBase
+  id: ImperialKheiralCuffs
+  name: Kheiral cuffs
+  description: A prototype wrist communicator powered by Kheiral Matter. When both ends are clamped to one wrist, acts as a signal range booster for your suit sensors. A small engraving on the inside reads, "NOT HANDCUFFS".
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/kheiral.rsi
+    layers:
+    - state: strand
+    - state: strand_light
+      shader: unshaded
+  - type: Clothing
+    sprite: Imperial/lava/mining/kheiral.rsi
+    slots: [gloves]
+  - type: Item
+    size: Small
+    sprite: Imperial/lava/mining/kheiral.rsi
+  - type: KheiralCuffs
+
+# radio/weather_monitor
+- type: entity
+  parent: BaseItem
+  id: ImperialMiningWeatherRadio
+  name: mining weather radio
+  description: A weather radio designed for use in inhospitable environments. Gives audible warnings when storms approach. Has access to cargo channel.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/weather_radio.rsi
+    layers:
+    - state: miningradio
+    - state: weatherwarning
+      shader: unshaded
+  - type: Appearance
+  - type: MegafaunaAppearance
+    baseState: miningradio
+  - type: Item
+    size: Small
+  - type: PointLight
+    radius: 1.6
+    energy: 1
+    color: "#64C864"
+  - type: WeatherRadio
+
+# pinpointer/vent: указывает на ближайшую неизученную рудную жилу.
+- type: entity
+  parent: PinpointerBase
+  id: ImperialVentPointer
+  name: ventpointer
+  description: A handheld tracking device. It will locate and point to nearby vents. A bit unreliable though.
+  components:
+  - type: Sprite
+    noRot: True
+    layers:
+    - sprite: Imperial/lava/mining/ventpointer.rsi
+      state: pinpointer_vent
+      map: ["enum.PinpointerLayers.Base"]
+    - sprite: Objects/Devices/pinpointer.rsi
+      state: pinonnull
+      map: ["enum.PinpointerLayers.Screen"]
+      shader: unshaded
+      visible: false
+  - type: Icon
+    sprite: Imperial/lava/mining/ventpointer.rsi
+    state: pinpointer_vent
+  - type: Pinpointer
+    component: LavalandUndiscoveredVent
+    targetName: ore vent
+    reachedDistance: 8
+    closeDistance: 12
+    mediumDistance: 20
+
+# pickaxe/silver: toolspeed 0.5 — копает вдвое быстрее.
+- type: entity
+  parent: Pickaxe
+  id: ImperialPickaxeSilver
+  name: silver-plated pickaxe
+  description: A silver-plated pickaxe that mines slightly faster than standard-issue.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/silver_pickaxe.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,0
+    - 1,1,1,2
+    sprite: Imperial/lava/mining/silver_pickaxe.rsi
+    storedRotation: -45
+  - type: MeleeWeapon
+    attackRate: 0.7
+    wideAnimationRotation: -135
+    soundHit:
+      path: "/Audio/Weapons/smash.ogg"
+      params:
+        volume: -3
+    damage:
+      types:
+        Piercing: 6
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 11
+        Structural: 60
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+      Silver: 100
+      Wood: 100
+
+# medipen/survival/luxury: 60 ед. редких препаратов.
+- type: entity
+  parent: MiningMedipen
+  id: ImperialLuxuryMedipen
+  name: luxury medipen
+  description: Cutting edge bluespace technology allowed Nanotrasen to compact 60u of volume into a single medipen. Contains rare and powerful chemicals used to aid in exploration of very hard environments.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: firstaid
+      map: ["enum.SolutionContainerLayers.Fill"]
+    color: "#E0C040"
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 60
+        reagents:
+        - ReagentId: DexalinPlus
+          Quantity: 10
+        - ReagentId: Epinephrine
+          Quantity: 10
+        - ReagentId: Dermaline
+          Quantity: 10
+        - ReagentId: Bicaridine
+          Quantity: 10
+        - ReagentId: Omnizine
+          Quantity: 10
+        - ReagentId: Leporazine
+          Quantity: 10
+
+# backpack/duffelbag/mining_conscript
+- type: entity
+  parent: ClothingBackpackDuffelSalvage
+  id: ImperialMiningConscriptionKit
+  name: mining conscription kit
+  description: A duffel bag containing everything a crewmember needs to support a shaft miner in the field.
+  components:
+  - type: Storage
+    maxItemSize: Ginormous
+    grid:
+    - 0,0,9,5
+  - type: StorageFill
+    contents:
+    - id: ClothingEyesGlassesMeson
+    - id: MineralScanner
+    - id: OreBag
+    - id: ClothingOuterExplorerSuit
+    - id: EncryptionKeyCargo
+    - id: ClothingMaskGasExplorer
+    - id: SalvageIDCard
+    - id: WeaponMiningAccelerator
+    - id: SurvivalKnife
+    - id: FlashlightSeclite
+
+# box/minertracker
+- type: entity
+  parent: BoxCardboard
+  id: ImperialBoxMinerTracker
+  name: boxed tracking implant kit
+  description: For finding those who have died on the accursed lavaworld.
+  components:
+  - type: StorageFill
+    contents:
+    - id: TrackingImplanter
+      amount: 4

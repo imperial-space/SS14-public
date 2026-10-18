@@ -1,349 +1,320 @@
-﻿using Content.Server.Chat.Systems;
-using Content.Server.Imperial.Lavaland.MegafaunaSleep;
-using Content.Server.Popups;
+using System.Linq;
+using Content.Server.Chat.Systems;
+using Content.Server.Gatherable.Components;
+using Content.Server.Imperial.Lavaland.Megafauna;
 using Content.Shared.Chat;
-using Content.Shared.Damage;
-using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Systems;
-using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Lavaland;
-using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Movement.Systems;
-using Content.Shared.Popups;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Projectiles;
-using Content.Shared.Weapons.Melee;
-using Robust.Server.Player;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Enums;
+using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Map;
-using Robust.Shared.Physics.Systems;
-using Robust.Shared.Player;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
-using System.Numerics;
 
 namespace Content.Server.Imperial.Lavaland.Colossus;
 
+/// <summary>
+/// Перенос megafauna/colossus из SS13: OpenFire, spiral_shots, random_aoe, shotgun_blast,
+/// dir_shots/alternating, colossus_final, telegraph и projectile_shield.
+/// </summary>
 public sealed class ColossusSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly MegafaunaAiSystem _ai = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedTransformSystem _xformSys = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+
+    private static readonly float[] Cardinals = { 0f, 90f, 180f, 270f };
+    private static readonly float[] Diagonals = { 45f, 135f, 225f, 315f };
+    private static readonly float[] AllDirs = { 0f, 45f, 90f, 135f, 180f, 225f, 270f, 315f };
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<ColossusComponent, DamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<ColossusComponent, MegafaunaOpenFireEvent>(OnOpenFire);
+        SubscribeLocalEvent<ColossusComponent, ProjectileReflectAttemptEvent>(OnProjectile);
+        SubscribeLocalEvent<ColossusComponent, HitScanReflectAttemptEvent>(OnHitscan);
+        SubscribeLocalEvent<ColossusBoltComponent, ProjectileHitEvent>(OnBoltHit);
     }
 
-    public override void Update(float frameTime)
+    private void OnOpenFire(Entity<ColossusComponent> ent, ref MegafaunaOpenFireEvent args)
     {
-        base.Update(frameTime);
+        var target = args.Target;
+        var anger = _ai.Anger(ent, 40f, 20f);
 
-        var query = EntityQueryEnumerator<ColossusComponent, DamageableComponent, MobStateComponent>();
-        while (query.MoveNext(out var uid, out var comp, out var damageable, out var mobState))
+        if (_ai.GetHealth(ent) <= _ai.GetMaxHealth(ent) / 10f && ent.Comp.FinalAvailable)
         {
-            if (mobState.CurrentState != MobState.Alive)
-                continue;
+            if (TryFinal(ent, target))
+                ent.Comp.FinalAvailable = false;
+        }
+        else if (_ai.Prob(20 + anger)) // Major attack
+            TrySpiral(ent, target);
+        else if (_ai.Prob(20))
+            TryRandom(ent, target);
+        else if (_ai.Prob(60 + anger))
+            TryShotgun(ent, target);
+        else
+            TryDirShots(ent, target);
+    }
 
-            if (HasComp<LavalandMegafaunaSleepComponent>(uid))
-                continue;
+    private void Say(EntityUid uid, string message)
+    {
+        _chat.TrySendInGameICMessage(uid, message, InGameICChatType.Speak, ChatTransmitRange.Normal, hideLog: true, ignoreActionBlocker: true);
+    }
 
-            var totalDamage = _damageable.GetPositiveDamage((uid, damageable)).GetTotal().Float();
-            var healthRatio = totalDamage / comp.MaxHp;
+    /// <summary>telegraph: красная вспышка и тряска у всех в 10 клетках, рёв Нар'Си.</summary>
+    private void Telegraph(Entity<ColossusComponent> ent)
+    {
+        var coords = Transform(ent).Coordinates;
+        _ai.ShakeCamera(coords, 10f, 4f);
+        _ai.PlaySound(ent.Comp.TelegraphSound, coords, 5f);
+    }
 
-            // Spiral blocks all other attacks
-            if (comp.IsSpiralActive)
+    /// <summary>Способность колосса: фраза, затем через 1.5 с залп.</summary>
+    private bool TryAbility(Entity<ColossusComponent> ent, string line, float windUp, Action<Action> sequence, float cooldown)
+    {
+        if (!_ai.TryBeginAbility(ent))
+            return false;
+
+        Say(ent, line);
+        _ai.Schedule(ent, windUp, () => sequence(() => _ai.EndAbility(ent, cooldown)));
+        return true;
+    }
+
+    private bool TrySpiral(Entity<ColossusComponent> ent, EntityUid target)
+    {
+        if (!_ai.CanUseAbility(ent))
+            return false;
+
+        var enraged = _ai.GetHealth(ent) <= _ai.GetMaxHealth(ent) / 3f;
+        Telegraph(ent);
+        _appearance.SetData(ent, MegafaunaVisuals.State, "eva_attack");
+        return TryAbility(ent, "Judgement.", ent.Comp.WindUp, done =>
+        {
+            void Finish()
             {
-                ProcessSpiral(uid, comp, healthRatio);
-                continue;
+                _appearance.SetData(ent, MegafaunaVisuals.State, string.Empty);
+                done();
             }
 
-            // Start spiral when cooldown passed (available at any HP; double spiral below 50%)
-            if (_timing.CurTime >= comp.NextSpiralTime)
+            if (enraged)
             {
-                StartSpiral(uid, comp, healthRatio);
-                continue;
+                _ai.Schedule(ent, 1f, () =>
+                {
+                    Spiral(ent, true, 80, 8, () => { });
+                    Spiral(ent, false, 80, 8, Finish);
+                });
+                return;
             }
 
-            // Process ongoing cross/diagonal sequence
-            if (comp.CrossIsFiring)
-                ProcessCrossSequence(uid, comp);
+            Spiral(ent, _random.Prob(0.5f), 80, 8, Finish);
+        }, ent.Comp.SpiralCooldown);
+    }
 
-            // Start new cross sequence if not already firing and cooldown passed
-            if (!comp.CrossIsFiring && _timing.CurTime >= comp.NextCrossTime)
-                StartCrossSequence(uid, comp);
+    /// <summary>create_spiral_attack: 80 болтов по кругу шагом 22.5°, раз в 0.1 с.</summary>
+    private void Spiral(Entity<ColossusComponent> ent, bool negative, int remaining, int counter, Action done)
+    {
+        if (remaining <= 0)
+        {
+            done();
+            return;
+        }
 
-            // Attack 1: Cone - requires a visible target
-            if (_timing.CurTime >= comp.NextConeTime &&
-                TryFindNearbyPlayer(uid, comp.TargetSearchRange, out var coneTarget))
+        counter += negative ? -1 : 1;
+        if (counter > 16)
+            counter = 1;
+        if (counter < 1)
+            counter = 16;
+
+        Shoot(ent, counter * 22.5f);
+        _ai.PlaySound(ent.Comp.ShotSound, Transform(ent).Coordinates, -10f);
+        _ai.Schedule(ent, 0.1f, () => Spiral(ent, negative, remaining - 1, counter, done));
+    }
+
+    private bool TryRandom(Entity<ColossusComponent> ent, EntityUid target)
+    {
+        return TryAbility(ent, "Wrath.", ent.Comp.WindUp, done =>
+        {
+            RandomShots(ent);
+            done();
+        }, ent.Comp.RandomCooldown);
+    }
+
+    /// <summary>random_aoe: 32 болта в случайные стороны.</summary>
+    private void RandomShots(Entity<ColossusComponent> ent)
+    {
+        _ai.PlaySound(ent.Comp.ShotSound, Transform(ent).Coordinates, 8f);
+        for (var i = 0; i < 32; i++)
+            Shoot(ent, _random.NextFloat(0f, 360f));
+    }
+
+    private bool TryShotgun(Entity<ColossusComponent> ent, EntityUid target)
+    {
+        return TryAbility(ent, "Retribution.", ent.Comp.WindUp, done =>
+        {
+            Shotgun(ent, target);
+            done();
+        }, ent.Comp.ShotgunCooldown);
+    }
+
+    /// <summary>shotgun_blast: 6 болтов веером ±12.5° в цель.</summary>
+    private void Shotgun(Entity<ColossusComponent> ent, EntityUid target)
+    {
+        if (TerminatingOrDeleted(target))
+            return;
+
+        _ai.PlaySound(ent.Comp.ShotSound, Transform(ent).Coordinates, 5f);
+        var angle = _ai.ByondAngle(Transform(ent).Coordinates, Transform(target).Coordinates);
+        foreach (var spread in ent.Comp.ShotgunAngles)
+            Shoot(ent, angle + spread);
+    }
+
+    private bool TryDirShots(Entity<ColossusComponent> ent, EntityUid target)
+    {
+        return TryAbility(ent, "Lament.", ent.Comp.WindUp, done => Alternating(ent, done), ent.Comp.DirShotsCooldown);
+    }
+
+    /// <summary>dir_shots/alternating: диагонали, кресты, диагонали, кресты с паузой 1 с.</summary>
+    private void Alternating(Entity<ColossusComponent> ent, Action done)
+    {
+        FireDirections(ent, Diagonals);
+        _ai.Schedule(ent, 1f, () =>
+        {
+            FireDirections(ent, Cardinals);
+            _ai.Schedule(ent, 1f, () =>
             {
-                DoConeAttack(uid, coneTarget, comp);
-            }
-
-            // Attack 3: Random scatter
-            if (_timing.CurTime >= comp.NextRandomTime)
-                DoRandomAttack(uid, comp);
-        }
+                FireDirections(ent, Diagonals);
+                _ai.Schedule(ent, 1f, () =>
+                {
+                    FireDirections(ent, Cardinals);
+                    done();
+                });
+            });
+        });
     }
 
-    // ── Enrage ───────────────────────────────────────────────────────────────
-
-    private void OnDamageChanged(EntityUid uid, ColossusComponent comp, DamageChangedEvent args)
+    private void FireDirections(Entity<ColossusComponent> ent, float[] dirs)
     {
-        if (comp.Enraged)
-            return;
-        if (TryComp<MobStateComponent>(uid, out var ms) && ms.CurrentState != MobState.Alive)
-            return;
-        if (!args.DamageIncreased)
-            return;
-
-        var total = _damageable.GetPositiveDamage((uid, args.Damageable)).GetTotal().Float();
-        if (total < comp.EnrageThreshold)
-            return;
-
-        SetEnraged(uid, comp, true);
+        _ai.PlaySound(ent.Comp.ShotSound, Transform(ent).Coordinates, 5f);
+        foreach (var dir in dirs)
+            Shoot(ent, dir);
     }
 
-    private void SetEnraged(EntityUid uid, ColossusComponent comp, bool enraged)
+    /// <summary>colossus_final: «Perish.» — 20 волн дробовика и болтов по округе, затем 3 случайных залпа и 3 креста.</summary>
+    private bool TryFinal(Entity<ColossusComponent> ent, EntityUid target)
     {
-        if (comp.Enraged == enraged)
-            return;
+        if (!_ai.TryBeginAbility(ent))
+            return false;
 
-        comp.Enraged = enraged;
-        _appearance.SetData(uid, ColossusVisuals.Enraged, enraged);
-        _audio.PlayPvs(comp.EnrageSound, uid);
-
-        var speed = enraged ? comp.EnragedSpeed : comp.NormalSpeed;
-        _movement.ChangeBaseSpeed(uid, speed, speed, 20f);
-
-        if (!TryComp<MeleeWeaponComponent>(uid, out var melee))
-            return;
-
-        var dmg = enraged ? comp.EnragedMeleeDamage : comp.NormalMeleeDamage;
-        var spec = new DamageSpecifier();
-        spec.DamageDict.Add("Blunt", FixedPoint2.New(dmg));
-        melee.Damage = spec;
-        Dirty(uid, melee);
+        Say(ent, "Perish.");
+        _ai.Schedule(ent, 1.5f, () => FinalWave(ent, target, 20, 10));
+        return true;
     }
 
-    // ── Attack 1: Cone ───────────────────────────────────────────────────────
-
-    private void DoConeAttack(EntityUid uid, EntityUid target, ColossusComponent comp)
+    private void FinalWave(Entity<ColossusComponent> ent, EntityUid target, int remaining, int counter)
     {
-        _audio.PlayPvs(comp.AttackSound, uid);
-
-        var origin = Transform(uid).Coordinates;
-
-        // Use world positions so coordinates are in the same space
-        var bossWorld = _xformSys.GetWorldPosition(uid);
-        var targetWorld = _xformSys.GetWorldPosition(target);
-        var delta = targetWorld - bossWorld;
-        var baseAngle = MathF.Atan2(delta.Y, delta.X);
-        var halfSpread = comp.ConeSpreadDeg * (MathF.PI / 180f) / 2f;
-
-        for (var i = 0; i < comp.ConeCount; i++)
+        if (remaining <= 0)
         {
-            var t = comp.ConeCount <= 1 ? 0f : (float)i / (comp.ConeCount - 1) - 0.5f;
-            var angle = baseAngle + t * 2f * halfSpread;
-            var dir = new Vector2(MathF.Cos(angle), MathF.Sin(angle));
-            SpawnSpike(uid, origin, dir, comp);
-        }
-
-        comp.NextConeTime = _timing.CurTime + TimeSpan.FromSeconds(comp.ConeCooldown);
-    }
-
-    // ── Attack 2: Cross/Diagonal sequence ────────────────────────────────────
-
-    private void StartCrossSequence(EntityUid uid, ColossusComponent comp)
-    {
-        comp.CrossIsFiring = true;
-        comp.CrossRepeatsDone = 0;
-        comp.NextCrossRepeatTime = _timing.CurTime; // fire first volley immediately
-    }
-
-    private void ProcessCrossSequence(EntityUid uid, ColossusComponent comp)
-    {
-        if (_timing.CurTime < comp.NextCrossRepeatTime)
-            return;
-
-        if (comp.CrossRepeatsDone >= comp.CrossRepeatTotal)
-        {
-            comp.CrossIsFiring = false;
-            comp.NextCrossTime = _timing.CurTime + TimeSpan.FromSeconds(comp.CrossCooldown);
+            FinalRandom(ent, target, 3, counter);
             return;
         }
 
-        FireCrossVolley(uid, comp);
-        comp.CrossRepeatsDone++;
-        comp.CrossNextCardinal = !comp.CrossNextCardinal;
-        comp.NextCrossRepeatTime = _timing.CurTime + TimeSpan.FromSeconds(comp.CrossRepeatDelay);
-    }
-
-    private void FireCrossVolley(EntityUid uid, ColossusComponent comp)
-    {
-        _audio.PlayPvs(comp.AttackSound, uid);
-        var origin = Transform(uid).Coordinates;
-
-        float[] angles = comp.CrossNextCardinal
-            ? new[] { 0f, 90f, 180f, 270f }   // cardinal
-            : new[] { 45f, 135f, 225f, 315f };  // diagonal
-
-        foreach (var deg in angles)
+        if (counter > 4)
         {
-            var rad = deg * (MathF.PI / 180f);
-            SpawnSpike(uid, origin, new Vector2(MathF.Cos(rad), MathF.Sin(rad)), comp);
+            Telegraph(ent);
+            Shotgun(ent, target);
         }
-    }
 
-    // ── Attack 3: Random scatter ──────────────────────────────────────────────
+        if (counter > 1)
+            counter--;
 
-    private void DoRandomAttack(EntityUid uid, ColossusComponent comp)
-    {
-        _audio.PlayPvs(comp.AttackSound, uid);
-        var origin = Transform(uid).Coordinates;
-        var half = comp.RandomAreaHalfSize;
-
-        for (var x = -half; x <= half; x++)
+        if (_ai.TryGetTile(ent, out var grid, out var origin))
         {
-            for (var y = -half; y <= half; y++)
+            var from = Transform(ent).Coordinates;
+            foreach (var tile in MegafaunaAiSystem.RangeTiles(origin, 12))
             {
-                if (!_random.Prob(comp.RandomChance))
+                if (tile == origin || !_ai.Prob(Math.Min(counter, 2)))
                     continue;
-
-                var offset = new Vector2(x, y);
-                if (offset.Length() < 0.5f)
-                    continue; // skip self-tile
-
-                SpawnSpike(uid, origin, Vector2.Normalize(offset), comp);
+                Shoot(ent, _ai.ByondAngle(from, _ai.TileCenter(grid, tile)));
             }
         }
 
-        comp.NextRandomTime = _timing.CurTime + TimeSpan.FromSeconds(comp.RandomCooldown);
+        var next = counter;
+        _ai.Schedule(ent, (next + 1) / 10f, () => FinalWave(ent, target, remaining - 1, next));
     }
 
-    // ── Attack 4: Spiral ──────────────────────────────────────────────────────
-
-    private void StartSpiral(EntityUid uid, ColossusComponent comp, float healthRatio)
+    private void FinalRandom(Entity<ColossusComponent> ent, EntityUid target, int remaining, int counter)
     {
-        comp.IsSpiralActive = true;
-        comp.SpiralSpikeFired = 0;
-        comp.SpiralCurrentAngleDeg = 0f;
-        comp.NextSpiralSpikeTime = _timing.CurTime;
-
-        // healthRatio >= 0.5 means damage >= 50% maxHp => HP <= 50%
-        var word = healthRatio >= 0.5f ? "DIE" : "JUDGMENT";
-
-        // Boss speaks the word in IC chat (audible to all nearby)
-        _chat.TrySendInGameICMessage(uid, word, InGameICChatType.Speak, false, hideLog: true);
-        _audio.PlayPvs(comp.EnrageSound, uid);
-
-        // Send a personal large red popup to every nearby alive player
-        foreach (var session in _playerManager.Sessions)
+        if (remaining <= 0)
         {
-            if (session.Status != SessionStatus.InGame ||
-                session.AttachedEntity is not { Valid: true } player)
-                continue;
-
-            if (!Exists(player))
-                continue;
-
-            if (!TryComp<MobStateComponent>(player, out var ms) || ms.CurrentState != MobState.Alive)
-                continue;
-
-            if (!Transform(uid).Coordinates.TryDistance(EntityManager,
-                    Transform(player).Coordinates, out var dist) || dist > comp.TargetSearchRange)
-                continue;
-
-            _popup.PopupEntity(word, uid, player, PopupType.LargeCaution);
-        }
-    }
-
-    private void ProcessSpiral(EntityUid uid, ColossusComponent comp, float healthRatio)
-    {
-        if (_timing.CurTime < comp.NextSpiralSpikeTime)
-            return;
-
-        if (comp.SpiralSpikeFired >= comp.SpiralSpikeCount)
-        {
-            comp.IsSpiralActive = false;
-            comp.NextSpiralTime = _timing.CurTime + TimeSpan.FromSeconds(comp.SpiralCooldown);
+            FinalDirs(ent, 3);
             return;
         }
 
-        var origin = Transform(uid).Coordinates;
-        var cwRad = comp.SpiralCurrentAngleDeg * (MathF.PI / 180f);
-        SpawnSpike(uid, origin, new Vector2(MathF.Cos(cwRad), MathF.Sin(cwRad)), comp);
-
-        // Below 50% HP: second arm goes counter-clockwise
-        if (healthRatio >= 0.5f)
-        {
-            var ccwRad = -comp.SpiralCurrentAngleDeg * (MathF.PI / 180f);
-            SpawnSpike(uid, origin, new Vector2(MathF.Cos(ccwRad), MathF.Sin(ccwRad)), comp);
-        }
-
-        comp.SpiralCurrentAngleDeg += comp.SpiralAngleStepDeg;
-        comp.SpiralSpikeFired++;
-        comp.NextSpiralSpikeTime = _timing.CurTime + TimeSpan.FromSeconds(comp.SpiralSpikeInterval);
+        Telegraph(ent);
+        RandomShots(ent);
+        counter += 6;
+        _ai.Schedule(ent, counter / 10f, () => FinalRandom(ent, target, remaining - 1, counter));
     }
 
-    // ── Helpers ───────────────────────────────────────────────────────────────
-
-    private void SpawnSpike(EntityUid bossUid, EntityCoordinates origin, Vector2 direction, ColossusComponent comp)
+    private void FinalDirs(Entity<ColossusComponent> ent, int remaining)
     {
-        var spike = Spawn(comp.SpikePrototype, origin);
-
-        // Face direction of travel
-        _xformSys.SetWorldRotation(spike, new Robust.Shared.Maths.Angle(Math.Atan2(direction.Y, direction.X)));
-
-        // Prevent boss from taking damage from own projectiles
-        if (TryComp<ProjectileComponent>(spike, out var projComp))
+        if (remaining <= 0)
         {
-            projComp.Shooter = bossUid;
-            Dirty(spike, projComp);
+            _ai.EndAbility(ent, ent.Comp.FinalCooldown);
+            return;
         }
 
-        // Apply velocity
-        _physics.SetLinearVelocity(spike, direction * comp.SpikeSpeed);
+        Telegraph(ent);
+        Alternating(ent, () => _ai.Schedule(ent, 1f, () => FinalDirs(ent, remaining - 1)));
     }
 
-    private bool TryFindNearbyPlayer(EntityUid uid, float range, out EntityUid result)
+    private void Shoot(Entity<ColossusComponent> ent, float byondAngle)
     {
-        result = EntityUid.Invalid;
-        var myPos = Transform(uid).Coordinates;
-        var best = float.MaxValue;
+        _ai.ShootProjectile(ent, ent.Comp.Bolt, byondAngle, ent.Comp.BoltSpeed);
+    }
 
-        foreach (var session in _playerManager.Sessions)
+    #region Projectile shield / bolts
+
+    /// <summary>projectile_shield: при попадании пули вокруг колосса вспыхивает щит.</summary>
+    private void OnProjectile(Entity<ColossusComponent> ent, ref ProjectileReflectAttemptEvent args)
+    {
+        if (!HasComp<ColossusBoltComponent>(args.ProjUid))
+            SpawnShield(ent);
+    }
+
+    private void OnHitscan(Entity<ColossusComponent> ent, ref HitScanReflectAttemptEvent args)
+    {
+        SpawnShield(ent);
+    }
+
+    private void SpawnShield(Entity<ColossusComponent> ent)
+    {
+        if (!_mobState.IsAlive(ent))
+            return;
+        var offset = new System.Numerics.Vector2(_random.NextFloat(-1f, 1f), _random.NextFloat(0f, 2.25f));
+        Spawn(ent.Comp.Shield, Transform(ent).Coordinates.Offset(offset));
+    }
+
+    /// <summary>projectile/colossus: мёртвых превращает в пепел, породу разрушает.</summary>
+    private void OnBoltHit(Entity<ColossusBoltComponent> ent, ref ProjectileHitEvent args)
+    {
+        var target = args.Target;
+        if (HasComp<MobStateComponent>(target))
         {
-            if (session.Status != SessionStatus.InGame ||
-                session.AttachedEntity is not { Valid: true } candidate)
-                continue;
+            if (_mobState.IsDead(target) && !HasComp<MegafaunaAiComponent>(target))
+            {
+                Spawn("Ash", Transform(target).Coordinates);
+                QueueDel(target);
+            }
 
-            if (!Exists(candidate))
-                continue;
-
-            if (!TryComp<MobStateComponent>(candidate, out var ms) || ms.CurrentState != MobState.Alive)
-                continue;
-
-            if (!myPos.TryDistance(EntityManager, Transform(candidate).Coordinates, out var dist))
-                continue;
-
-            if (dist > range || dist >= best)
-                continue;
-
-            best = dist;
-            result = candidate;
+            return;
         }
 
-        return result.Valid;
+        if (HasComp<GatherableComponent>(target) && _ai.TryGetTile(target, out var grid, out var tile))
+            _ai.Drill(grid, tile);
     }
+
+    #endregion
 }

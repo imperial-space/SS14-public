@@ -82,6 +82,20 @@ public sealed class ZlatozhorSystem : EntitySystem
             return;
         }
 
+        if (comp.BurrowMaxRange > 0f)
+        {
+            var currentIdx = _mapSystem.GetTileRef(gridUid, grid, xform.Coordinates).GridIndices;
+            var maxRangeSq = comp.BurrowMaxRange * comp.BurrowMaxRange;
+            var nearby = tiles.Where(t =>
+            {
+                var dx = t.GridIndices.X - currentIdx.X;
+                var dy = t.GridIndices.Y - currentIdx.Y;
+                return (float)(dx * dx + dy * dy) <= maxRangeSq;
+            }).ToList();
+            if (nearby.Count > 0)
+                tiles = nearby;
+        }
+
         var tile = _random.Pick(tiles);
         var newCoords = _mapSystem.GridTileToLocal(gridUid, grid, tile.GridIndices)
             .Offset(new Vector2(0.5f, 0.5f));

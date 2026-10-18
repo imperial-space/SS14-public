@@ -1,126 +1,337 @@
+# ── Пузырь (SS13 megafauna/bubblegum) ───────────────────────────────────────
+
 - type: entity
   id: MobLavalandBubblegum
   suffix: Lavaland
-  name: Bubblegum
-  parent: [SimpleSpaceMobBase, MobCombat, MobBloodstream, BaseMobAnimal]
-  description: A raging blood-red megafauna beast from Lavaland.
+  name: bubblegum
+  parent: ImperialMegafaunaBase
+  description: In what passes for a hierarchy among slaughter demons, this one is king.
   components:
-  - type: NpcFactionMember
-    factions:
-    - SimpleHostile
+  # retreat_distance = 5, minimum_distance = 5: держится на расстоянии, пока не в ярости.
   - type: HTN
     rootTask:
-      task: SimpleHostileCompound
+      task: ImperialMegafaunaKeepDistanceCompound
     blackboard:
-      MeleeRange: !type:Single
-        1.8
+      KeepDistanceRange: !type:Single
+        5
       VisionRadius: !type:Single
-        10
+        18
       AggroVisionRadius: !type:Single
-        13
+        18
       NavSmash: !type:Bool
         true
   - type: Sprite
     drawdepth: Mobs
-    noRot: true
-    sprite: Imperial/lava/boss/96x96megafauna.rsi
+    sprite: Imperial/lava/boss/megafauna/megafauna96.rsi
+    offset: 0,1
     layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: bubblegum
-  - type: Appearance
-  - type: BubblegumAppearance
+    - state: bubblegum
+  - type: MegafaunaAppearance
+    baseState: bubblegum
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.68
-        density: 180
+          radius: 0.45
+        density: 1000
         mask:
         - MobMask
         layer:
         - MobLayer
+  # move_to_delay = 5.
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.2
-    baseSprintSpeed: 2.2
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2
   - type: MeleeWeapon
     hidden: true
     altDisarm: false
-    attackRate: 0.65
+    attackRate: 0.5
+    range: 1.5
+    animation: WeaponArcClaw
     soundHit:
       path: /Audio/Imperial/boss/sound_misc_demon_attack1.ogg
     damage:
       types:
-        Blunt: 30
-        Slash: 15
-  - type: Bubblegum
-    meleeHitsBeforeBlast: 3
-    blastRange: 6
-    blastRadius: 1.35
-    blastDamage: 42
-    blastCooldown: 1.8
-    targetSearchRange: 14
-    blastSound:
-      path: /Audio/Imperial/boss/sound_effects_meteorimpact.ogg
+        Slash: 40
   - type: MobThresholds
     thresholds:
       0: Alive
-      2200: Dead
+      2500: Dead
+  - type: LavalandMegafaunaSleep
+  - type: ImperialGps
+    tagLoc: imperial-gps-signal-bloody
+  - type: MegafaunaAi
+    deathSound:
+      path: /Audio/Imperial/boss/sound_misc_enter_blood.ogg
+    deathMessage: bubblegum-death
+  - type: Bubblegum
+  # del_on_death
+  - type: MegafaunaVanishOnDeath
+  - type: CrusherLoot
+    trophies:
+    - CrusherTrophyDemonClaws
+    guaranteedDrop: 0.6
   - type: BossLoot
     loot:
-    - prototype: WeaponSpellblade
+    - prototype: ImperialBubblegumChest
       chance: 1.0
       minCount: 1
       maxCount: 1
-    - prototype: ClothingHeadHelmetHECK
-      chance: 1.0
-      minCount: 1
-      maxCount: 1
-    - prototype: ClothingOuterArmorHECK
-      chance: 1.0
-      minCount: 1
-      maxCount: 1
-    - prototype: ChaosBottle
-      chance: 1.0
-      minCount: 1
-      maxCount: 1
-    - prototype: BloodContract
-      chance: 1.0
-      minCount: 1
-      maxCount: 1
-    - prototype: CrusherUpgradeDemonClaws
-      chance: 0.30
-      minCount: 1
-      maxCount: 1
-  - type: Damageable
-    damageContainer: Biological
-    damageModifierSet: HellSpawn
-  - type: TemperatureDamage
-    heatDamageThreshold: 1000000
-  - type: MegafaunaVanishOnDeath
-  - type: LavalandMegafaunaSleep
-  - type: LavalandMegafauna
-  - type: Destructible
-    thresholds: []
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: bubblegum
-      Dead:
-        Base: bubblegum
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - FootstepSound
-    - LavalandMob
-  - type: LavalandStormImmune
-  - type: NoSlip
   - type: MegafaunaBossMusic
     music:
       path: /Audio/Imperial/boss/Juhani_Junkala_Epic_Boss_Battle.ogg
 
-# ── Visual marker for dash/hallu attacks ──────────────────────────────────────
+# bubblegum/hallucination: health 1, не получает грубый урон, только рывок.
+- type: damageModifierSet
+  id: ImperialBubblegumHallucination
+  coefficients:
+    Blunt: 0
+    Slash: 0
+    Piercing: 0
+    Heat: 0.5
+    Cold: 0.5
+    Shock: 0.5
+    Caustic: 0.5
 
+- type: entity
+  id: ImperialBubblegumHallucination
+  suffix: Lavaland
+  name: bubblegum's hallucination
+  description: Is that really just a hallucination?
+  parent: [ BaseMob, MobDamageable ]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/boss/megafauna/megafauna96.rsi
+    offset: 0,1
+    color: "#FFFFFF80"
+    layers:
+    - state: bubblegum
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 1000
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: ImperialBubblegumHallucination
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1: Dead
+  - type: Destructible
+    thresholds: []
+  - type: Bubblegum
+    isHallucination: true
+  - type: TimedDespawn
+    lifetime: 10
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# Ancient Sarcophagus: H.E.C.K. и один из трофеев.
+- type: entity
+  parent: CrateGeneric
+  id: ImperialBubblegumChest
+  suffix: Lavaland
+  name: Ancient Sarcophagus
+  description: Once guarded by the King of Demons, this sarcophagus contains the relics of an ancient soldier.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:EntSelector
+          id: ClothingOuterArmorHECK
+        - !type:EntSelector
+          id: ClothingHeadHelmetHECK
+        - !type:GroupSelector
+          children:
+          - !type:EntSelector
+            id: ChaosBottle
+          - !type:EntSelector
+            id: BloodContract
+          - !type:EntSelector
+            id: WeaponSpellblade
+  - type: StaticPrice
+    price: 0
+
+# ── Эффекты ─────────────────────────────────────────────────────────────────
+
+# obj/effect/decal/cleanable/blood/bubblegum
+- type: entity
+  id: ImperialBubblegumBlood
+  suffix: Lavaland
+  name: blood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/lava/boss/megafauna/blood.rsi
+    color: "#A10808"
+    layers:
+    - state: floor1
+      map: [ "random" ]
+  - type: RandomSprite
+    available:
+    - random:
+        floor1: ""
+        floor2: ""
+        floor3: ""
+        floor4: ""
+        floor5: ""
+        floor6: ""
+        floor7: ""
+  - type: BubblegumBlood
+  - type: TimedDespawn
+    lifetime: 300
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# obj/effect/decal/cleanable/blood/gibs/bubblegum
+- type: entity
+  id: ImperialBubblegumBloodGibs
+  parent: ImperialBubblegumBlood
+  suffix: Lavaland
+  name: thick blood
+  description: Thick, splattered blood.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/lava/boss/megafauna/blood.rsi
+    color: "#A10808"
+    layers:
+    - state: gib3
+      map: [ "random" ]
+  - type: RandomSprite
+    available:
+    - random:
+        gib3: ""
+        gib5: ""
+        gib6: ""
+
+# temp_visual/dragon_swoop/bubblegum: место конца рывка.
+- type: entity
+  id: ImperialBubblegumChargeMarker
+  parent: ImperialAshDrakeLandingWarning
+  suffix: Lavaland
+  categories: [ HideSpawnMenu ]
+
+# temp_visual/decoy: красная вспышка перед рывком.
+- type: entity
+  id: ImperialBubblegumDecoy
+  suffix: Lavaland
+  name: bubblegum
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/boss/megafauna/megafauna96.rsi
+    offset: 0,1
+    scale: 1.5,1.5
+    color: "#FF000099"
+    layers:
+    - state: bubblegum
+  - type: TimedDespawn
+    lifetime: 0.3
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# temp_visual/decoy/fading: след рывка.
+- type: entity
+  id: ImperialBubblegumDecoyFading
+  suffix: Lavaland
+  name: bubblegum
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/boss/megafauna/megafauna96.rsi
+    offset: 0,1
+    color: "#FFFFFF66"
+    layers:
+    - state: bubblegum
+  - type: TimedDespawn
+    lifetime: 0.5
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# temp_visual/bubblegum_hands
+- type: entity
+  abstract: true
+  id: ImperialBubblegumHandBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/boss/megafauna/bubblegum_hands.rsi
+  - type: TimedDespawn
+    lifetime: 0.9
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: ImperialBubblegumRightSmack
+  parent: ImperialBubblegumHandBase
+  suffix: Lavaland
+  name: bubblegum's hand
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/boss/megafauna/bubblegum_hands.rsi
+    state: rightsmack
+
+- type: entity
+  id: ImperialBubblegumLeftSmack
+  parent: ImperialBubblegumHandBase
+  suffix: Lavaland
+  name: bubblegum's hand
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/boss/megafauna/bubblegum_hands.rsi
+    state: leftsmack
+
+- type: entity
+  id: ImperialBubblegumRightGrab
+  parent: ImperialBubblegumHandBase
+  suffix: Lavaland
+  name: bubblegum's hand
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/boss/megafauna/bubblegum_hands.rsi
+    layers:
+    - state: rightpawgrab
+    - state: rightthumbgrab
+
+- type: entity
+  id: ImperialBubblegumLeftGrab
+  parent: ImperialBubblegumHandBase
+  suffix: Lavaland
+  name: bubblegum's hand
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/boss/megafauna/bubblegum_hands.rsi
+    layers:
+    - state: leftpawgrab
+    - state: leftthumbgrab
+
+# Маркер рывка еретика ржавчины.
 - type: entity
   id: BubblegumDashMarker
   suffix: Lavaland
@@ -134,112 +345,3 @@
     - state: landing
   - type: TimedDespawn
     lifetime: 1.8
-
-# ── Ghost sprite trail left during dash ───────────────────────────────────────
-
-- type: entity
-  id: BubblegumDashTrail
-  suffix: Lavaland
-  name: след
-  components:
-  - type: Sprite
-    drawdepth: Effects
-    sprite: Imperial/lava/boss/96x96megafauna.rsi
-    color: "#FF222255"
-    layers:
-    - state: bubblegum
-      dir: South
-  - type: TimedDespawn
-    lifetime: 0.55
-
-# ── Hallucination phantom clone ────────────────────────────────────────────────
-
-- type: entity
-  id: BubblegumPhantom
-  suffix: Lavaland
-  name: призрак
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: Imperial/lava/boss/96x96megafauna.rsi
-    color: "#CC002266"
-    layers:
-    - state: bubblegum
-  - type: TimedDespawn
-    lifetime: 3.0
-
-# ── Blood Hand ─────────────────────────────────────────────────────────────────
-
-- type: entity
-  id: MobBubblegumBloodHand
-  suffix: Lavaland
-  name: кровавая рука
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: Imperial/lava/boss/xeno_organs.rsi
-    scale: 2.5, 2.5
-    layers:
-    - state: bubblegum1
-  - type: TimedDespawn
-    lifetime: 2.5
-
-# ── Clone ──────────────────────────────────────────────────────────────────────
-
-- type: entity
-  id: MobBubblegumClone
-  suffix: Lavaland
-  name: Клон Жвачки
-  parent: [SimpleSpaceMobBase, MobCombat, BaseMobAnimal]
-  description: A weakened blood copy of Bubblegum.
-  components:
-  - type: NpcFactionMember
-    factions:
-    - SimpleHostile
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: Imperial/lava/boss/96x96megafauna.rsi
-    color: "#FF444444"
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: bubblegum
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.55
-        density: 100
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 0
-    baseSprintSpeed: 0
-  - type: MeleeWeapon
-    hidden: true
-    altDisarm: false
-    attackRate: 0.9
-    soundHit:
-      path: /Audio/Imperial/boss/sound_misc_demon_attack1.ogg
-    damage:
-      types:
-        Slash: 15
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      400: Dead
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: bubblegum
-      Dead:
-        Base: bubblegum
-  - type: TimedDespawn
-    lifetime: 30.0
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - LavalandMob
-  - type: LavalandStormImmune

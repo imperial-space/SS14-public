@@ -1,0 +1,89 @@
+# obj/item/storm_staff: посох бурь, лут последнего легиона.
+- type: entity
+  id: ImperialStormStaff
+  parent: BaseItem
+  suffix: Lavaland
+  name: staff of storms
+  description: An ancient staff retrieved from the remains of Legion. The wind stirs as you move it.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/boss/megafauna/storm_staff.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/lava/boss/megafauna/storm_staff.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Heat: 20
+    soundHit:
+      path: /Audio/Imperial/boss/sound_weapons_taserhit.ogg
+  - type: StormStaff
+  - type: LavalandStormImmune
+
+- type: entity
+  id: ImperialStormStaffTelegraph
+  suffix: Lavaland
+  name: target
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Imperial/lava/boss/megafauna/effects.rsi
+    state: target_circle
+    shader: unshaded
+  - type: TimedDespawn
+    lifetime: 1.5
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: ImperialStormStaffThunderbolt
+  suffix: Lavaland
+  name: thunderbolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Overlays
+    sprite: Imperial/lava/boss/megafauna/thunderbolt.rsi
+    state: thunderbolt
+    offset: 0,1
+    shader: unshaded
+  - type: PointLight
+    radius: 4
+    energy: 3
+    color: "#AACCFF"
+  - type: TimedDespawn
+    lifetime: 0.6
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: ImperialStormStaffElectricity
+  suffix: Lavaland
+  name: electricity
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Imperial/lava/boss/megafauna/effects.rsi
+    state: electricity3
+    shader: unshaded
+  - type: TimedDespawn
+    lifetime: 0.5
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - HideContextMenu
