@@ -1,0 +1,153 @@
+# Генокрад TG (code/modules/antagonists/changeling/changeling.dm): правило, роль, улей.
+
+- type: antag
+  id: ImperialChangeling
+  name: roles-antag-imperial-changeling-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-imperial-changeling-objective
+  guides: [ ]
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 2h
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleImperialChangeling
+  components:
+  - type: MindRole
+    antagPrototype: ImperialChangeling
+    exclusiveAntag: true
+    roleType: SoloAntagonist
+    sortWeight: 60
+  # forge_objectives() берёт кражу и побег из общих целей: на роли предателя держатся их требования.
+  - type: TraitorRole
+  - type: ImperialChangelingRole
+
+# Генокрады на старте раунда.
+- type: entity
+  id: ImperialChangelingRule
+  parent: BaseGameRule
+  components:
+  - type: GameRule
+    minPlayers: 15
+  - type: ImperialChangelingRule
+  - type: AntagSelection
+    agentName: imperial-changeling-round-end-agent-name
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ ImperialChangeling ]
+      min: 1
+      max: 3
+      playerRatio: 15
+      blacklist:
+        components:
+        - AntagImmune
+      briefing:
+        text: imperial-changeling-briefing
+        color: Purple
+        sound: /Audio/Imperial/Changeling/ling_alert.ogg
+      mindRoles:
+      - MindRoleImperialChangeling
+  - type: DynamicRuleCost
+    cost: 150
+
+# saymode/changeling: общий разум генокрадов (:е).
+- type: radioChannel
+  id: ImperialChangelingHive
+  name: chat-radio-imperial-changeling-hive
+  keycode: 'е'
+  frequency: 1236
+  color: "#05921F"
+  longRange: true
+
+# /datum/looping_sound/changeling_absorb
+- type: soundCollection
+  id: ImperialChangelingAbsorb
+  files:
+  - /Audio/Imperial/Changeling/changeling_absorb1.ogg
+  - /Audio/Imperial/Changeling/changeling_absorb2.ogg
+  - /Audio/Imperial/Changeling/changeling_absorb3.ogg
+  - /Audio/Imperial/Changeling/changeling_absorb4.ogg
+  - /Audio/Imperial/Changeling/changeling_absorb5.ogg
+  - /Audio/Imperial/Changeling/changeling_absorb6.ogg
+  - /Audio/Imperial/Changeling/changeling_absorb7.ogg
+
+# Режим «Генокрады»: forcepreset imperialchangeling.
+- type: gamePreset
+  id: ImperialChangeling
+  alias:
+  - imperialchangeling
+  - lings
+  name: imperial-changeling-preset-title
+  description: imperial-changeling-preset-description
+  showInVote: false
+  minPlayers: 15
+  rules:
+  - ImperialChangelingRule
+  - SubGamemodesRuleNoWizard
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+
+# /atom/movable/screen/alert/status_effect/agent_pinpointer/changeling: pinonnull, pinondirect, затем close/medium/far × S, N, E, W, SE, SW, NE, NW.
+- type: alert
+  id: ImperialChangelingPheromone
+  name: imperial-changeling-pheromone-alert-name
+  description: imperial-changeling-pheromone-alert-desc
+  minSeverity: 0
+  maxSeverity: 25
+  icons:
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonnull
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinondirect
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonclose-S
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonclose-N
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonclose-E
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonclose-W
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonclose-SE
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonclose-SW
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonclose-NE
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonclose-NW
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonmedium-S
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonmedium-N
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonmedium-E
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonmedium-W
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonmedium-SE
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonmedium-SW
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonmedium-NE
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonmedium-NW
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonfar-S
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonfar-N
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonfar-E
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonfar-W
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonfar-SE
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonfar-SW
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonfar-NE
+  - sprite: /Textures/Imperial/Changeling/pinpointer.rsi
+    state: pinonfar-NW

@@ -1,0 +1,171 @@
+# Жала генокрада: /datum/action/changeling/sting/* (tiny_prick.dm). Кнопка взводит жало, укол — Alt+Клик.
+
+- type: entity
+  abstract: true
+  parent: BaseActionImperialChangeling
+  id: BaseActionImperialChangelingSting
+  components:
+  - type: Action
+    checkCanInteract: false
+
+- type: imperialChangelingPower
+  id: ImperialChangelingStingTransformation
+  name: imperial-changeling-sting-transformation-name
+  description: imperial-changeling-sting-transformation-desc
+  helpText: imperial-changeling-sting-transformation-help
+  icon: transformation_sting
+  category: Stings
+  chemicalCost: 33
+  dnaCost: 2
+  action: ActionImperialChangelingStingTransformation
+
+- type: entity
+  parent: BaseActionImperialChangelingSting
+  id: ActionImperialChangelingStingTransformation
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: transformation_sting
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingStingTransformation
+
+- type: imperialChangelingPower
+  id: ImperialChangelingStingFalseArmblade
+  name: imperial-changeling-sting-false-armblade-name
+  description: imperial-changeling-sting-false-armblade-desc
+  helpText: imperial-changeling-sting-false-armblade-help
+  icon: false_armblade_sting
+  category: Stings
+  chemicalCost: 20
+  dnaCost: 1
+  action: ActionImperialChangelingStingFalseArmblade
+
+- type: entity
+  parent: BaseActionImperialChangelingSting
+  id: ActionImperialChangelingStingFalseArmblade
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: false_armblade_sting
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingStingFalseArmblade
+
+- type: imperialChangelingPower
+  id: ImperialChangelingStingExtractDna
+  name: imperial-changeling-sting-extract-dna-name
+  description: imperial-changeling-sting-extract-dna-desc
+  helpText: imperial-changeling-sting-extract-dna-help
+  icon: extract_dna_sting
+  category: Stings
+  chemicalCost: 25
+  dnaCost: 0
+  action: ActionImperialChangelingStingExtractDna
+
+- type: entity
+  parent: BaseActionImperialChangelingSting
+  id: ActionImperialChangelingStingExtractDna
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: extract_dna_sting
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingStingExtractDna
+
+- type: imperialChangelingPower
+  id: ImperialChangelingStingMute
+  name: imperial-changeling-sting-mute-name
+  description: imperial-changeling-sting-mute-desc
+  helpText: imperial-changeling-sting-mute-help
+  icon: mute_sting
+  category: Stings
+  chemicalCost: 20
+  dnaCost: 2
+  action: ActionImperialChangelingStingMute
+
+- type: entity
+  parent: BaseActionImperialChangelingSting
+  id: ActionImperialChangelingStingMute
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: mute_sting
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingStingMute
+
+- type: imperialChangelingPower
+  id: ImperialChangelingStingBlind
+  name: imperial-changeling-sting-blind-name
+  description: imperial-changeling-sting-blind-desc
+  helpText: imperial-changeling-sting-blind-help
+  icon: blind_sting
+  category: Stings
+  chemicalCost: 25
+  dnaCost: 1
+  action: ActionImperialChangelingStingBlind
+
+- type: entity
+  parent: BaseActionImperialChangelingSting
+  id: ActionImperialChangelingStingBlind
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: blind_sting
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingStingBlind
+
+- type: imperialChangelingPower
+  id: ImperialChangelingStingLsd
+  name: imperial-changeling-sting-lsd-name
+  description: imperial-changeling-sting-lsd-desc
+  helpText: imperial-changeling-sting-lsd-help
+  icon: hallucination_sting
+  category: Stings
+  chemicalCost: 10
+  dnaCost: 1
+  action: ActionImperialChangelingStingLsd
+
+- type: entity
+  parent: BaseActionImperialChangelingSting
+  id: ActionImperialChangelingStingLsd
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: hallucination_sting
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingStingLsd
+
+- type: imperialChangelingPower
+  id: ImperialChangelingStingCryo
+  name: imperial-changeling-sting-cryo-name
+  description: imperial-changeling-sting-cryo-desc
+  helpText: imperial-changeling-sting-cryo-help
+  icon: cryogenic_sting
+  category: Stings
+  chemicalCost: 15
+  dnaCost: 2
+  action: ActionImperialChangelingStingCryo
+
+- type: entity
+  parent: BaseActionImperialChangelingSting
+  id: ActionImperialChangelingStingCryo
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: cryogenic_sting
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingStingCryo
+
