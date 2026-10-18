@@ -1,0 +1,823 @@
+# Симптомы продвинутых болезней 1 в 1 с SS13 (advance/symptoms).
+
+- type: diseaseSymptom
+  id: SymptomCough
+  name: disease-symptom-cough-name
+  description: disease-symptom-cough-desc
+  illness: disease-symptom-cough-illness
+  stealth: -1
+  resistance: 3
+  stageSpeed: 1
+  transmittable: 2
+  level: 1
+  severity: 1
+  messageChance: 15
+  delayMin: 2
+  delayMax: 15
+  requiredOrgan: Lungs
+  cure: Spaceacillin
+  thresholds:
+  - property: Resistance
+    value: 11
+    description: disease-symptom-cough-threshold-resistance-11
+  - property: Resistance
+    value: 15
+    description: disease-symptom-cough-threshold-resistance-15
+  - property: StageSpeed
+    value: 6
+    description: disease-symptom-cough-threshold-stage-speed-6
+  - property: Transmittable
+    value: 7
+    description: disease-symptom-cough-threshold-transmittable-7
+  - property: Stealth
+    value: 4
+    description: disease-symptom-cough-threshold-stealth-4
+
+- type: diseaseSymptom
+  id: SymptomSneeze
+  name: disease-symptom-sneeze-name
+  description: disease-symptom-sneeze-desc
+  illness: disease-symptom-sneeze-illness
+  stealth: -2
+  resistance: 3
+  transmittable: 4
+  level: 1
+  severity: 1
+  messageChance: 10
+  delayMin: 5
+  delayMax: 35
+  requiredOrgan: Lungs
+  cure: Spaceacillin
+  thresholds:
+  - property: Transmittable
+    value: 9
+    description: disease-symptom-sneeze-threshold-transmittable-9
+  - property: Stealth
+    value: 4
+    description: disease-symptom-sneeze-threshold-stealth-4
+  - property: StageSpeed
+    value: 17
+    description: disease-symptom-sneeze-threshold-stage-speed-17
+
+- type: diseaseSymptom
+  id: SymptomItching
+  name: disease-symptom-itching-name
+  description: disease-symptom-itching-desc
+  illness: disease-symptom-itching-illness
+  resistance: 3
+  stageSpeed: 3
+  transmittable: 1
+  level: 1
+  severity: 1
+  messageChance: 10
+  delayMin: 5
+  delayMax: 25
+  requiredOrgan: Spaceacillin
+  cure: Transmittable:6,StageSpeed:7
+
+- type: diseaseSymptom
+  id: SymptomHeadache
+  name: disease-symptom-headache-name
+  description: disease-symptom-headache-desc
+  illness: disease-symptom-headache-illness
+  stealth: -1
+  resistance: 4
+  stageSpeed: 2
+  level: 1
+  severity: 1
+  messageChance: 100
+  delayMin: 15
+  delayMax: 30
+  requiredOrgan: SpaceDrugs
+  cure: StageSpeed:6,StageSpeed:9,Stealth:4
+
+- type: diseaseSymptom
+  id: SymptomFever
+  name: disease-symptom-fever-name
+  description: disease-symptom-fever-desc
+  illness: disease-symptom-fever-illness
+  resistance: 3
+  stageSpeed: 3
+  transmittable: 2
+  level: 2
+  severity: 2
+  messageChance: 20
+  delayMin: 10
+  delayMax: 30
+  requiredOrgan: Leporazine
+  cure: Resistance:5,Resistance:10
+
+- type: diseaseSymptom
+  id: SymptomChills
+  name: disease-symptom-chills-name
+  description: disease-symptom-chills-desc
+  illness: disease-symptom-chills-illness
+  stealth: 1
+  resistance: 2
+  stageSpeed: 3
+  transmittable: 2
+  level: 2
+  severity: 2
+  messageChance: 20
+  delayMin: 10
+  delayMax: 30
+  requiredOrgan: Leporazine
+  cure: StageSpeed:5,StageSpeed:10
+
+- type: diseaseSymptom
+  id: SymptomChoking
+  name: disease-symptom-choking-name
+  description: disease-symptom-choking-desc
+  illness: disease-symptom-choking-illness
+  stealth: -1
+  stageSpeed: -1
+  transmittable: -1
+  level: 3
+  severity: 3
+  messageChance: 15
+  delayMin: 10
+  delayMax: 30
+  requiredOrgan: Lungs
+  cure: Dexalin
+  thresholds:
+  - property: StageSpeed
+    value: 8
+    description: disease-symptom-choking-threshold-stage-speed-8
+  - property: Stealth
+    value: 4
+    description: disease-symptom-choking-threshold-stealth-4
+
+- type: diseaseSymptom
+  id: SymptomVomiting
+  name: disease-symptom-vomiting-name
+  description: disease-symptom-vomiting-desc
+  illness: disease-symptom-vomiting-illness
+  stealth: -3
+  resistance: 2
+  transmittable: 3
+  level: 3
+  severity: 3
+  messageChance: 20
+  delayMin: 25
+  delayMax: 80
+  requiredOrgan: Stomach
+  cure: Sigynate
+  thresholds:
+  - property: Resistance
+    value: 9
+    description: disease-symptom-vomiting-threshold-resistance-9
+  - property: Transmittable
+    value: 9
+    description: disease-symptom-vomiting-threshold-transmittable-9
+  - property: Stealth
+    value: 4
+    description: disease-symptom-vomiting-threshold-stealth-4
+
+- type: diseaseSymptom
+  id: SymptomWeightLoss
+  name: disease-symptom-weight-loss-name
+  description: disease-symptom-weight-loss-desc
+  illness: disease-symptom-weight-loss-illness
+  resistance: 2
+  stageSpeed: -2
+  transmittable: -2
+  level: 3
+  severity: 3
+  messageChance: 20
+  delayMin: 15
+  delayMax: 45
+  requiredOrgan: Stomach
+  cure: Diphenhydramine
+  thresholds:
+  - property: Stealth
+    value: 4
+    description: disease-symptom-weight-loss-threshold-stealth-4
+
+- type: diseaseSymptom
+  id: SymptomViralAdaptation
+  name: disease-symptom-viral-adaptation-name
+  description: disease-symptom-viral-adaptation-desc
+  illness: disease-symptom-viral-adaptation-illness
+  stealth: 3
+  resistance: 5
+  stageSpeed: -3
+  level: 3
+  messageChance: 10
+  delayMin: 60
+  delayMax: 60
+  cure: null
+
+- type: diseaseSymptom
+  id: SymptomViralEvolution
+  name: disease-symptom-viral-evolution-name
+  description: disease-symptom-viral-evolution-desc
+  illness: disease-symptom-viral-evolution-illness
+  stealth: -2
+  resistance: -3
+  stageSpeed: 5
+  transmittable: 3
+  level: 3
+  messageChance: 10
+  delayMin: 60
+  delayMax: 60
+  cure: null
+
+- type: diseaseSymptom
+  id: SymptomBeard
+  name: disease-symptom-beard-name
+  description: disease-symptom-beard-desc
+  illness: disease-symptom-beard-illness
+  resistance: 3
+  stageSpeed: 2
+  transmittable: 1
+  level: 4
+  severity: 1
+  messageChance: 20
+  delayMin: 18
+  delayMax: 36
+  requiredOrgan: Cognizine
+  cure: null
+
+- type: diseaseSymptom
+  id: SymptomConfusion
+  name: disease-symptom-confusion-name
+  description: disease-symptom-confusion-desc
+  illness: disease-symptom-confusion-illness
+  stealth: 2
+  resistance: 1
+  stageSpeed: 1
+  transmittable: 2
+  level: 4
+  severity: 2
+  messageChance: 25
+  delayMin: 10
+  delayMax: 30
+  requiredOrgan: Synaptizine
+  cure: Resistance:6,Transmittable:6,Stealth:4
+
+- type: diseaseSymptom
+  id: SymptomDeafness
+  name: disease-symptom-deafness-name
+  description: disease-symptom-deafness-desc
+  illness: disease-symptom-deafness-illness
+  resistance: 1
+  stageSpeed: 1
+  transmittable: -2
+  level: 4
+  severity: 4
+  messageChance: 100
+  delayMin: 25
+  delayMax: 80
+  requiredOrgan: Ears
+  cure: Psicodine
+  thresholds:
+  - property: Resistance
+    value: 9
+    description: disease-symptom-deafness-threshold-resistance-9
+  - property: Stealth
+    value: 4
+    description: disease-symptom-deafness-threshold-stealth-4
+
+- type: diseaseSymptom
+  id: SymptomDizziness
+  name: disease-symptom-dizziness-name
+  description: disease-symptom-dizziness-desc
+  illness: disease-symptom-dizziness-illness
+  stealth: 1
+  stageSpeed: -2
+  transmittable: -1
+  level: 4
+  severity: 2
+  messageChance: 50
+  delayMin: 15
+  delayMax: 30
+  requiredOrgan: Haloperidol
+  cure: Transmittable:6,Stealth:4
+
+- type: diseaseSymptom
+  id: SymptomShedding
+  name: disease-symptom-shedding-name
+  description: disease-symptom-shedding-desc
+  illness: disease-symptom-shedding-illness
+  resistance: 1
+  stageSpeed: 2
+  transmittable: 2
+  level: 4
+  severity: 1
+  messageChance: 20
+  delayMin: 45
+  delayMax: 90
+  requiredOrgan: Siderlac
+  cure: null
+
+- type: diseaseSymptom
+  id: SymptomSensoryRestoration
+  name: disease-symptom-sensory-restoration-name
+  description: disease-symptom-sensory-restoration-desc
+  illness: disease-symptom-sensory-restoration-illness
+  resistance: 1
+  stageSpeed: -2
+  transmittable: 2
+  level: 4
+  messageChance: 20
+  delayMin: 1
+  delayMax: 1
+  requiredOrgan: Spaceacillin
+  cure: null
+
+- type: diseaseSymptom
+  id: SymptomAggressiveHealing
+  name: disease-symptom-aggressive-healing-name
+  description: disease-symptom-aggressive-healing-desc
+  illness: disease-symptom-aggressive-healing-illness
+  stealth: -4
+  resistance: 3
+  stageSpeed: 3
+  transmittable: 2
+  level: 4
+  severity: 1
+  messageChance: 20
+  delayMin: 1
+  delayMax: 1
+  requiredOrgan: Severity:1
+  cure: null
+
+- type: diseaseSymptom
+  id: SymptomDisfiguration
+  name: disease-symptom-disfiguration-name
+  description: disease-symptom-disfiguration-desc
+  illness: disease-symptom-disfiguration-illness
+  stealth: 2
+  stageSpeed: 3
+  transmittable: 1
+  level: 5
+  severity: 1
+  messageChance: 20
+  delayMin: 25
+  delayMax: 75
+  requiredOrgan: Milk
+  cure: null
+
+- type: diseaseSymptom
+  id: SymptomHallucigen
+  name: disease-symptom-hallucigen-name
+  description: disease-symptom-hallucigen-desc
+  illness: disease-symptom-hallucigen-illness
+  stealth: 1
+  resistance: -2
+  stageSpeed: 2
+  transmittable: -1
+  level: 5
+  severity: 2
+  messageChance: 25
+  delayMin: 25
+  delayMax: 90
+  requiredOrgan: Psicodine
+  cure: StageSpeed:7,Stealth:4
+
+- type: diseaseSymptom
+  id: SymptomPolyvitiligo
+  name: disease-symptom-polyvitiligo-name
+  description: disease-symptom-polyvitiligo-desc
+  illness: disease-symptom-polyvitiligo-illness
+  stealth: -1
+  resistance: 3
+  stageSpeed: 1
+  transmittable: 2
+  level: 5
+  severity: 1
+  messageChance: 20
+  delayMin: 7
+  delayMax: 14
+  requiredOrgan: TableSalt
+  cure: null
+
+- type: diseaseSymptom
+  id: SymptomVisionLoss
+  name: disease-symptom-vision-loss-name
+  description: disease-symptom-vision-loss-desc
+  illness: disease-symptom-vision-loss-illness
+  resistance: -2
+  stageSpeed: -3
+  transmittable: -2
+  level: 5
+  severity: 5
+  messageChance: 20
+  delayMin: 25
+  delayMax: 80
+  requiredOrgan: Eyes
+  cure: Oculine
+  thresholds:
+  - property: Resistance
+    value: 12
+    description: disease-symptom-vision-loss-threshold-resistance-12
+  - property: Stealth
+    value: 4
+    description: disease-symptom-vision-loss-threshold-stealth-4
+
+- type: diseaseSymptom
+  id: SymptomUndeadAdaptation
+  name: disease-symptom-undead-adaptation-name
+  description: disease-symptom-undead-adaptation-desc
+  illness: disease-symptom-undead-adaptation-illness
+  stealth: 2
+  resistance: -2
+  stageSpeed: 1
+  level: 5
+  messageChance: 20
+  delayMin: 60
+  delayMax: 60
+  cure: null
+
+- type: diseaseSymptom
+  id: SymptomInorganicAdaptation
+  name: disease-symptom-inorganic-adaptation-name
+  description: disease-symptom-inorganic-adaptation-desc
+  illness: disease-symptom-inorganic-adaptation-illness
+  stealth: -1
+  resistance: 4
+  stageSpeed: -2
+  transmittable: 3
+  level: 5
+  messageChance: 20
+  delayMin: 60
+  delayMax: 60
+  cure: null
+
+- type: diseaseSymptom
+  id: SymptomThermoregulation
+  name: disease-symptom-thermoregulation-name
+  description: disease-symptom-thermoregulation-desc
+  illness: disease-symptom-thermoregulation-illness
+  resistance: 1
+  stageSpeed: -2
+  level: 5
+  messageChance: 20
+  delayMin: 10
+  delayMax: 30
+  requiredOrgan: Spaceacillin
+  cure: Resistance:8
+
+- type: diseaseSymptom
+  id: SymptomMindRestoration
+  name: disease-symptom-mind-restoration-name
+  description: disease-symptom-mind-restoration-desc
+  illness: disease-symptom-mind-restoration-illness
+  stealth: -1
+  resistance: -2
+  stageSpeed: 1
+  transmittable: -3
+  level: 5
+  messageChance: 20
+  delayMin: 5
+  delayMax: 10
+  requiredOrgan: Spaceacillin
+  cure: Resistance:6,Resistance:9,Transmittable:8
+
+- type: diseaseSymptom
+  id: SymptomYouth
+  name: disease-symptom-youth-name
+  description: disease-symptom-youth-desc
+  illness: disease-symptom-youth-illness
+  stealth: 3
+  resistance: 4
+  stageSpeed: 4
+  transmittable: -4
+  level: 5
+  messageChance: 20
+  delayMin: 25
+  delayMax: 50
+  cure: null
+
+- type: diseaseSymptom
+  id: SymptomFire
+  name: disease-symptom-fire-name
+  description: disease-symptom-fire-desc
+  illness: disease-symptom-fire-illness
+  stageSpeed: -1
+  transmittable: -2
+  level: 6
+  severity: 5
+  messageChance: 20
+  delayMin: 20
+  delayMax: 75
+  requiredOrgan: Leporazine
+  cure: StageSpeed:4,StageSpeed:8,Transmittable:8,Stealth:4
+
+- type: diseaseSymptom
+  id: SymptomFleshEating
+  name: disease-symptom-flesh-eating-name
+  description: disease-symptom-flesh-eating-desc
+  illness: disease-symptom-flesh-eating-illness
+  stealth: -2
+  resistance: -1
+  transmittable: -1
+  level: 6
+  severity: 5
+  messageChance: 50
+  delayMin: 15
+  delayMax: 60
+  requiredOrgan: Omnizine
+  cure: Resistance:7,Transmittable:8
+
+- type: diseaseSymptom
+  id: SymptomGeneticMutation
+  name: disease-symptom-genetic-mutation-name
+  description: disease-symptom-genetic-mutation-desc
+  illness: disease-symptom-genetic-mutation-illness
+  stealth: -2
+  resistance: -3
+  transmittable: -3
+  level: 6
+  severity: 4
+  messageChance: 50
+  delayMin: 30
+  delayMax: 60
+  requiredOrgan: Mutadone
+  cure: Resistance:8,Resistance:14,StageSpeed:10,Stealth:5
+
+- type: diseaseSymptom
+  id: SymptomNarcolepsy
+  name: disease-symptom-narcolepsy-name
+  description: disease-symptom-narcolepsy-desc
+  illness: disease-symptom-narcolepsy-illness
+  stealth: -1
+  resistance: -2
+  stageSpeed: -2
+  level: 6
+  severity: 4
+  messageChance: 50
+  delayMin: 30
+  delayMax: 85
+  requiredOrgan: Ethyloxyephedrine
+  cure: Transmittable:4,StageSpeed:10
+
+- type: diseaseSymptom
+  id: SymptomOxygen
+  name: disease-symptom-oxygen-name
+  description: disease-symptom-oxygen-desc
+  illness: disease-symptom-oxygen-illness
+  stealth: 1
+  resistance: -3
+  stageSpeed: -3
+  transmittable: -4
+  level: 6
+  messageChance: 20
+  delayMin: 1
+  delayMax: 1
+  requiredOrgan: Lungs
+  cure: Spaceacillin
+  thresholds:
+  - property: Resistance
+    value: 8
+    description: disease-symptom-oxygen-threshold-resistance-8
+
+- type: diseaseSymptom
+  id: SymptomVoiceChange
+  name: disease-symptom-voice-change-name
+  description: disease-symptom-voice-change-desc
+  illness: disease-symptom-voice-change-illness
+  stealth: 2
+  resistance: -1
+  stageSpeed: -2
+  transmittable: 2
+  level: 6
+  severity: 2
+  messageChance: 20
+  delayMin: 60
+  delayMax: 120
+  requiredOrgan: Tongue
+  cure: Dylovene
+  thresholds:
+  - property: Transmittable
+    value: 14
+    description: disease-symptom-voice-change-threshold-transmittable-14
+  - property: StageSpeed
+    value: 7
+    description: disease-symptom-voice-change-threshold-stage-speed-7
+  - property: Stealth
+    value: 3
+    description: disease-symptom-voice-change-threshold-stealth-3
+
+- type: diseaseSymptom
+  id: SymptomHealStarlight
+  name: disease-symptom-heal-starlight-name
+  description: disease-symptom-heal-starlight-desc
+  illness: disease-symptom-heal-starlight-illness
+  stealth: -1
+  resistance: -2
+  transmittable: 1
+  level: 6
+  messageChance: 20
+  delayMin: 1
+  delayMax: 1
+  requiredOrgan: Spaceacillin
+  cure: StageSpeed:6,Transmittable:6
+
+- type: diseaseSymptom
+  id: SymptomHealDarkness
+  name: disease-symptom-heal-darkness-name
+  description: disease-symptom-heal-darkness-desc
+  illness: disease-symptom-heal-darkness-illness
+  stealth: 2
+  resistance: -1
+  stageSpeed: -2
+  transmittable: -1
+  level: 6
+  messageChance: 20
+  delayMin: 1
+  delayMax: 1
+  requiredOrgan: Spaceacillin
+  cure: StageSpeed:8
+
+- type: diseaseSymptom
+  id: SymptomHealWater
+  name: disease-symptom-heal-water-name
+  description: disease-symptom-heal-water-desc
+  illness: disease-symptom-heal-water-illness
+  resistance: -1
+  transmittable: 1
+  level: 6
+  messageChance: 20
+  delayMin: 1
+  delayMax: 1
+  requiredOrgan: Liver
+  cure: Spaceacillin
+  thresholds:
+  - property: Resistance
+    value: 5
+    description: disease-symptom-heal-water-threshold-resistance-5
+  - property: StageSpeed
+    value: 7
+    description: disease-symptom-heal-water-threshold-stage-speed-7
+
+- type: diseaseSymptom
+  id: SymptomHealRadiation
+  name: disease-symptom-heal-radiation-name
+  description: disease-symptom-heal-radiation-desc
+  illness: disease-symptom-heal-radiation-illness
+  stealth: -1
+  resistance: -2
+  stageSpeed: 2
+  transmittable: -3
+  level: 6
+  messageChance: 20
+  delayMin: 1
+  delayMax: 1
+  requiredOrgan: Spaceacillin
+  cure: Resistance:7
+
+- type: diseaseSymptom
+  id: SymptomBleeding
+  name: disease-symptom-bleeding-name
+  description: disease-symptom-bleeding-desc
+  illness: disease-symptom-bleeding-illness
+  stealth: 1
+  resistance: -1
+  stageSpeed: -3
+  level: 7
+  severity: 3
+  messageChance: 20
+  delayMin: 10
+  delayMax: 30
+  requiredOrgan: TranexamicAcid
+  cure: StageSpeed:9,Stealth:3
+
+- type: diseaseSymptom
+  id: SymptomAsphyxiation
+  name: disease-symptom-asphyxiation-name
+  description: disease-symptom-asphyxiation-desc
+  illness: disease-symptom-asphyxiation-illness
+  stealth: -2
+  stageSpeed: -1
+  transmittable: -2
+  level: 7
+  severity: 6
+  messageChance: 15
+  delayMin: 14
+  delayMax: 30
+  requiredOrgan: Lungs
+  cure: DexalinPlus
+  thresholds:
+  - property: StageSpeed
+    value: 8
+    description: disease-symptom-asphyxiation-threshold-stage-speed-8
+  - property: Transmittable
+    value: 8
+    description: disease-symptom-asphyxiation-threshold-transmittable-8
+
+- type: diseaseSymptom
+  id: SymptomAlkali
+  name: disease-symptom-alkali-name
+  description: disease-symptom-alkali-desc
+  illness: disease-symptom-alkali-illness
+  stealth: 2
+  resistance: -2
+  stageSpeed: -2
+  transmittable: -2
+  level: 7
+  severity: 6
+  messageChance: 100
+  delayMin: 30
+  delayMax: 90
+  requiredOrgan: Cryoxadone
+  cure: Resistance:9,StageSpeed:8,Transmittable:8
+
+- type: diseaseSymptom
+  id: SymptomFleshDeath
+  name: disease-symptom-flesh-death-name
+  description: disease-symptom-flesh-death-desc
+  illness: disease-symptom-flesh-death-illness
+  stealth: -2
+  resistance: -2
+  stageSpeed: 1
+  transmittable: -2
+  level: 7
+  severity: 6
+  messageChance: 50
+  delayMin: 3
+  delayMax: 6
+  requiredOrgan: Omnizine
+  cure: StageSpeed:7,Stealth:5
+
+- type: diseaseSymptom
+  id: SymptomHealChem
+  name: disease-symptom-heal-chem-name
+  description: disease-symptom-heal-chem-desc
+  illness: disease-symptom-heal-chem-illness
+  resistance: -2
+  stageSpeed: 2
+  transmittable: -2
+  level: 7
+  messageChance: 20
+  delayMin: 1
+  delayMax: 1
+  requiredOrgan: Heart
+  cure: Spaceacillin
+  thresholds:
+  - property: Resistance
+    value: 7
+    description: disease-symptom-heal-chem-threshold-resistance-7
+  - property: StageSpeed
+    value: 6
+    description: disease-symptom-heal-chem-threshold-stage-speed-6
+
+- type: diseaseSymptom
+  id: SymptomHealMetabolism
+  name: disease-symptom-heal-metabolism-name
+  description: disease-symptom-heal-metabolism-desc
+  illness: disease-symptom-heal-metabolism-illness
+  stealth: -1
+  resistance: -2
+  stageSpeed: 2
+  transmittable: 1
+  level: 7
+  messageChance: 20
+  delayMin: 1
+  delayMax: 1
+  requiredOrgan: Stomach
+  cure: Spaceacillin
+  thresholds:
+  - property: Stealth
+    value: 3
+    description: disease-symptom-heal-metabolism-threshold-stealth-3
+  - property: StageSpeed
+    value: 10
+    description: disease-symptom-heal-metabolism-threshold-stage-speed-10
+
+- type: diseaseSymptom
+  id: SymptomHealComa
+  name: disease-symptom-heal-coma-name
+  description: disease-symptom-heal-coma-desc
+  illness: disease-symptom-heal-coma-illness
+  resistance: 2
+  stageSpeed: -3
+  transmittable: -2
+  level: 8
+  messageChance: 20
+  delayMin: 1
+  delayMax: 1
+  requiredOrgan: Spaceacillin
+  cure: Stealth:2,Resistance:4,StageSpeed:7
+
+- type: diseaseSymptom
+  id: SymptomHealPlasma
+  name: disease-symptom-heal-plasma-name
+  description: disease-symptom-heal-plasma-desc
+  illness: disease-symptom-heal-plasma-illness
+  resistance: 3
+  stageSpeed: -2
+  transmittable: -2
+  level: 8
+  messageChance: 20
+  delayMin: 1
+  delayMax: 1
+  requiredOrgan: Liver
+  cure: Spaceacillin
+  thresholds:
+  - property: Transmittable
+    value: 6
+    description: disease-symptom-heal-plasma-threshold-transmittable-6
+  - property: StageSpeed
+    value: 7
+    description: disease-symptom-heal-plasma-threshold-stage-speed-7

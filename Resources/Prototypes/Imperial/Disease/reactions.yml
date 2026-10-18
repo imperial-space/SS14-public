@@ -1,0 +1,244 @@
+# Вирусная еда и мутации культур 1 в 1 с SS13 (recipes/others.dm).
+
+- type: reaction
+  id: VirusFood
+  reactants:
+    Water:
+      amount: 1
+    Milk:
+      amount: 1
+    UnstableMutagen:
+      amount: 1
+  products:
+    VirusFood: 3
+
+- type: reaction
+  id: MutagenicAgar
+  reactants:
+    UnstableMutagen:
+      amount: 1
+    VirusFood:
+      amount: 1
+  products:
+    MutagenicAgar: 1
+
+- type: reaction
+  id: SucroseAgar
+  reactants:
+    Sugar:
+      amount: 1
+    MutagenicAgar:
+      amount: 1
+  products:
+    SucroseAgar: 2
+
+- type: reaction
+  id: VirusRations
+  reactants:
+    Synaptizine:
+      amount: 1
+    VirusFood:
+      amount: 1
+  products:
+    VirusRations: 1
+
+- type: reaction
+  id: VirusPlasma
+  reactants:
+    Plasma:
+      amount: 1
+    VirusFood:
+      amount: 1
+  products:
+    VirusPlasma: 1
+
+- type: reaction
+  id: WeakVirusPlasma
+  reactants:
+    Synaptizine:
+      amount: 1
+    VirusPlasma:
+      amount: 1
+  products:
+    WeakVirusPlasma: 2
+
+- type: reaction
+  id: DecayingUraniumGel
+  reactants:
+    Uranium:
+      amount: 1
+    VirusFood:
+      amount: 1
+  products:
+    DecayingUraniumGel: 1
+
+- type: reaction
+  id: UnstableUraniumGel
+  reactants:
+    Uranium:
+      amount: 5
+    VirusPlasma:
+      amount: 1
+  products:
+    UnstableUraniumGel: 1
+
+- type: reaction
+  id: StableUraniumGel
+  reactants:
+    Gold:
+      amount: 1
+    UnstableUraniumGel:
+      amount: 1
+  products:
+    StableUraniumGel: 1
+
+# Мутации культуры: каждая еда даёт симптомы своего диапазона уровней.
+- type: reaction
+  id: DiseaseMixVirusFood
+  impact: Medium
+  reactants:
+    VirusFood:
+      amount: 1
+      catalyst: true
+    Blood:
+      amount: 1
+      catalyst: true
+  effects:
+  - !type:DiseaseMutate
+    levelMin: 1
+    levelMax: 2
+
+- type: reaction
+  id: DiseaseMixVirusRations
+  impact: Medium
+  reactants:
+    VirusRations:
+      amount: 1
+      catalyst: true
+    Blood:
+      amount: 1
+      catalyst: true
+  effects:
+  - !type:DiseaseMutate
+    levelMin: 1
+    levelMax: 1
+
+- type: reaction
+  id: DiseaseMixMutagenicAgar
+  impact: Medium
+  reactants:
+    MutagenicAgar:
+      amount: 1
+      catalyst: true
+    Blood:
+      amount: 1
+      catalyst: true
+  effects:
+  - !type:DiseaseMutate
+    levelMin: 3
+    levelMax: 3
+
+- type: reaction
+  id: DiseaseMixSucroseAgar
+  impact: Medium
+  reactants:
+    SucroseAgar:
+      amount: 1
+      catalyst: true
+    Blood:
+      amount: 1
+      catalyst: true
+  effects:
+  - !type:DiseaseMutate
+    levelMin: 4
+    levelMax: 4
+
+- type: reaction
+  id: DiseaseMixWeakVirusPlasma
+  impact: Medium
+  reactants:
+    WeakVirusPlasma:
+      amount: 1
+      catalyst: true
+    Blood:
+      amount: 1
+      catalyst: true
+  effects:
+  - !type:DiseaseMutate
+    levelMin: 5
+    levelMax: 5
+
+- type: reaction
+  id: DiseaseMixVirusPlasma
+  impact: Medium
+  reactants:
+    VirusPlasma:
+      amount: 1
+      catalyst: true
+    Blood:
+      amount: 1
+      catalyst: true
+  effects:
+  - !type:DiseaseMutate
+    levelMin: 6
+    levelMax: 6
+
+- type: reaction
+  id: DiseaseMixDecayingUraniumGel
+  impact: Medium
+  reactants:
+    DecayingUraniumGel:
+      amount: 1
+      catalyst: true
+    Blood:
+      amount: 1
+      catalyst: true
+  effects:
+  - !type:DiseaseMutate
+    levelMin: 6
+    levelMax: 7
+
+- type: reaction
+  id: DiseaseMixUnstableUraniumGel
+  impact: Medium
+  reactants:
+    UnstableUraniumGel:
+      amount: 1
+      catalyst: true
+    Blood:
+      amount: 1
+      catalyst: true
+  effects:
+  - !type:DiseaseMutate
+    levelMin: 7
+    levelMax: 7
+
+- type: reaction
+  id: DiseaseMixStableUraniumGel
+  impact: Medium
+  reactants:
+    StableUraniumGel:
+      amount: 1
+      catalyst: true
+    Blood:
+      amount: 1
+      catalyst: true
+  effects:
+  - !type:DiseaseMutate
+    levelMin: 8
+    levelMax: 8
+
+# Удаление симптома: мутаген без вирусной еды.
+- type: reaction
+  id: DiseaseRemoveSymptom
+  impact: Medium
+  reactants:
+    UnstableMutagen:
+      amount: 1
+      catalyst: true
+    Blood:
+      amount: 1
+      catalyst: true
+  effects:
+  - !type:DiseaseMutate
+    mode: Devolve
