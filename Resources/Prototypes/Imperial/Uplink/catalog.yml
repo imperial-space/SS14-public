@@ -1,0 +1,4075 @@
+# Каталог аплинка TG/BandaStation (code/modules/uplink/uplink_items). Сгенерирован из таблицы соответствий.
+
+- type: listing
+  id: ImperialUplinkRandomItem
+  name: imperial-uplink-random-item-name
+  description: imperial-uplink-random-item-desc
+  icon: { sprite: /Textures/Objects/Specific/Syndicate/telecrystal.rsi, state: telecrystal }
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 0
+  categories:
+  - ImperialUplinkBundles
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSurplusCrate
+  name: imperial-uplink-surplus-crate-name
+  description: imperial-uplink-surplus-crate-desc
+  productEntity: ImperialUplinkSurplusCrate
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 20
+  categories:
+  - ImperialUplinkBundles
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ImperialUplinkSharedStockCondition
+    key: surplus
+
+- type: listing
+  id: ImperialUplinkContractKit
+  name: imperial-uplink-contract-kit-name
+  description: imperial-uplink-contract-kit-desc
+  productEntity: BoxContractorKit
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 20
+  categories:
+  - ImperialUplinkContractor
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ImperialUplinkPopulationCondition
+    players: 20
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ImperialUplinkContractReroll
+  name: imperial-uplink-contract-reroll-name
+  description: imperial-uplink-contract-reroll-desc
+  icon: { sprite: /Textures/Imperial/contractor/uplink/uplink.rsi, state: icon }
+  productEvent: !type:ContractorRerollEvent {}
+  raiseProductEventOnUser: true
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 0
+  categories:
+  - ImperialUplinkContractor
+  conditions:
+  - !type:ContractorHubCondition
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
+  id: ImperialUplinkContractorPinpointer
+  name: imperial-uplink-contractor-pinpointer-name
+  description: imperial-uplink-contractor-pinpointer-desc
+  productEntity: ContractorPinpointer
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkContractor
+  conditions:
+  - !type:ContractorHubCondition
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
+  id: ImperialUplinkContractorExtraction
+  name: imperial-uplink-contractor-extraction-name
+  description: imperial-uplink-contractor-extraction-desc
+  icon: { sprite: /Textures/Objects/Tools/fulton.rsi, state: extraction_pack }
+  productEntity: BoxContractorExtraction
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkContractor
+  conditions:
+  - !type:ContractorHubCondition
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ImperialUplinkContractorPartner
+  name: imperial-uplink-contractor-partner-name
+  description: imperial-uplink-contractor-partner-desc
+  productEntity: ContractorReinforcementRadio
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkContractor
+  conditions:
+  - !type:ContractorHubCondition
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ImperialUplinkThrowingWeapons
+  name: imperial-uplink-throwing-weapons-name
+  description: imperial-uplink-throwing-weapons-desc
+  productEntity: ImperialUplinkThrowingWeaponsBox
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkDangerous
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkEnergySword
+  name: imperial-uplink-energy-sword-name
+  description: imperial-uplink-energy-sword-desc
+  productEntity: EnergySword
+  cost:
+    Telecrystal: 8
+  categories:
+  - ImperialUplinkDangerous
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkNorthStar
+  name: imperial-uplink-north-star-name
+  description: imperial-uplink-north-star-desc
+  productEntity: ClothingHandsGlovesNorthStar
+  cost:
+    Telecrystal: 8
+  categories:
+  - ImperialUplinkDangerous
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkDoubleSword
+  name: imperial-uplink-double-sword-name
+  description: imperial-uplink-double-sword-desc
+  productEntity: EnergySwordDouble
+  cost:
+    Telecrystal: 13
+  categories:
+  - ImperialUplinkDangerous
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ImperialUplinkProgressionCondition
+    minutes: 30
+  - !type:ImperialUplinkPopulationCondition
+    players: 20
+
+- type: listing
+  id: ImperialUplinkHoloparasites
+  name: imperial-uplink-holoparasites-name
+  description: imperial-uplink-holoparasites-desc
+  productEntity: BoxHoloparasite
+  cost:
+    Telecrystal: 12
+  categories:
+  - ImperialUplinkDangerous
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkDehydratedCarp
+  name: imperial-uplink-dehydrated-carp-name
+  description: imperial-uplink-dehydrated-carp-desc
+  productEntity: DehydratedSpaceCarp
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkStealthy
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkEnergyDagger
+  name: imperial-uplink-energy-dagger-name
+  description: imperial-uplink-energy-dagger-desc
+  productEntity: EnergyDagger
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkStealthy
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkMartialArts
+  name: imperial-uplink-martial-arts-name
+  description: imperial-uplink-martial-arts-desc
+  productEntity: BoxSleepingCarpKit
+  cost:
+    Telecrystal: 15
+  categories:
+  - ImperialUplinkStealthy
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ImperialUplinkProgressionCondition
+    minutes: 30
+  - !type:ImperialUplinkPopulationCondition
+    players: 20
+
+- type: listing
+  id: ImperialUplinkCrossbow
+  name: imperial-uplink-crossbow-name
+  description: imperial-uplink-crossbow-desc
+  productEntity: WeaponEnergyCrossbow
+  cost:
+    Telecrystal: 5
+  categories:
+  - ImperialUplinkStealthy
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkContractorBaton
+  name: imperial-uplink-contractor-baton-name
+  description: imperial-uplink-contractor-baton-desc
+  productEntity: ContractorStunbaton
+  cost:
+    Telecrystal: 7
+  categories:
+  - ImperialUplinkStealthy
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ImperialUplinkAgentCard
+  name: imperial-uplink-agent-card-name
+  description: imperial-uplink-agent-card-desc
+  productEntity: AgentIDCard
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkStealthyTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkChameleon
+  name: imperial-uplink-chameleon-name
+  description: imperial-uplink-chameleon-desc
+  productEntity: ClothingBackpackChameleonFillAgent
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkStealthyTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkNoSlips
+  name: imperial-uplink-no-slips-name
+  description: imperial-uplink-no-slips-desc
+  productEntity: ClothingShoesChameleonNoSlips
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkStealthyTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkNoSlipsNuke
+  name: imperial-uplink-no-slips-nuke-name
+  description: imperial-uplink-no-slips-nuke-desc
+  productEntity: ClothingShoesChameleonNoSlips
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkStealthyTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkChameleonProjector
+  name: imperial-uplink-chameleon-projector-name
+  description: imperial-uplink-chameleon-projector-desc
+  productEntity: ChameleonProjector
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkStealthyTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkJammer
+  name: imperial-uplink-jammer-name
+  description: imperial-uplink-jammer-desc
+  productEntity: RadioJammer
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkStealthyTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSmugglerSatchel
+  name: imperial-uplink-smuggler-satchel-name
+  description: imperial-uplink-smuggler-satchel-desc
+  productEntity: ClothingBackpackSatchelSmugglerUnanchored
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkStealthyTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSoap
+  name: imperial-uplink-soap-name
+  description: imperial-uplink-soap-desc
+  productEntity: SoapSyndie
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkDuffelbag
+  name: imperial-uplink-duffelbag-name
+  description: imperial-uplink-duffelbag-desc
+  productEntity: ClothingBackpackDuffelSyndicate
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkTacticalMedkit
+  name: imperial-uplink-tactical-medkit-name
+  description: imperial-uplink-tactical-medkit-desc
+  productEntity: MedkitCombatFilled
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkSurgeryDuffel
+  name: imperial-uplink-surgery-duffel-name
+  description: imperial-uplink-surgery-duffel-desc
+  productEntity: ClothingBackpackDuffelSyndicateFilledMedical
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkEncryptionKey
+  name: imperial-uplink-encryption-key-name
+  description: imperial-uplink-encryption-key-desc
+  productEntity: EncryptionKeySyndie
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkThermal
+  name: imperial-uplink-thermal-name
+  description: imperial-uplink-thermal-desc
+  productEntity: ClothingEyesGlassesThermal
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkCameraApp
+  name: imperial-uplink-camera-app-name
+  description: imperial-uplink-camera-app-desc
+  productEntity: CameraBug
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkMilitaryBelt
+  name: imperial-uplink-military-belt-name
+  description: imperial-uplink-military-belt-desc
+  productEntity: ClothingBeltMilitaryWebbing
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkDoorjack
+  name: imperial-uplink-doorjack-name
+  description: imperial-uplink-doorjack-desc
+  productEntity: AccessBreaker
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkFakeDisk
+  name: imperial-uplink-fake-disk-name
+  description: imperial-uplink-fake-disk-desc
+  productEntity: NukeDiskFake
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkToolbox
+  name: imperial-uplink-toolbox-name
+  description: imperial-uplink-toolbox-desc
+  productEntity: ToolboxSyndicateFilled
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkBinaryKey
+  name: imperial-uplink-binary-key-name
+  description: imperial-uplink-binary-key-desc
+  productEntity: EncryptionKeyBinarySyndicate
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkEmag
+  name: imperial-uplink-emag-name
+  description: imperial-uplink-emag-desc
+  productEntity: Emag
+  cost:
+    Telecrystal: 5
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkStimpack
+  name: imperial-uplink-stimpack-name
+  description: imperial-uplink-stimpack-desc
+  productEntity: Stimpack
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSingularityBeacon
+  name: imperial-uplink-singularity-beacon-name
+  description: imperial-uplink-singularity-beacon-desc
+  productEntity: SingularityBeacon
+  cost:
+    Telecrystal: 12
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ImperialUplinkProgressionCondition
+    minutes: 20
+
+- type: listing
+  id: ImperialUplinkPowerSink
+  name: imperial-uplink-power-sink-name
+  description: imperial-uplink-power-sink-desc
+  productEntity: PowerSink
+  cost:
+    Telecrystal: 8
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+  - !type:ImperialUplinkProgressionCondition
+    minutes: 20
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ImperialUplinkMedbeam
+  name: imperial-uplink-medbeam-name
+  description: imperial-uplink-medbeam-desc
+  productEntity: WeaponMedbeam
+  cost:
+    Telecrystal: 15
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkJawsOfLife
+  name: imperial-uplink-jaws-of-life-name
+  description: imperial-uplink-jaws-of-life-desc
+  productEntity: SyndicateJawsOfLife
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkCombatMedkit
+  name: imperial-uplink-combat-medkit-name
+  description: imperial-uplink-combat-medkit-desc
+  productEntity: MedkitCombatFilled
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSentiencePotion
+  name: imperial-uplink-sentience-potion-name
+  description: imperial-uplink-sentience-potion-desc
+  productEntity: SlimePotionSentience
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSoapClusterbang
+  name: imperial-uplink-soap-clusterbang-name
+  description: imperial-uplink-soap-clusterbang-desc
+  productEntity: SlipocalypseClusterSoap
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkC4
+  name: imperial-uplink-c4-name
+  description: imperial-uplink-c4-desc
+  productEntity: C4
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkX4
+  name: imperial-uplink-x4-name
+  description: imperial-uplink-x4-desc
+  productEntity: X4
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ListingLimitedStockCondition
+    stock: 5
+
+- type: listing
+  id: ImperialUplinkC4Bag
+  name: imperial-uplink-c4-bag-name
+  description: imperial-uplink-c4-bag-desc
+  productEntity: ImperialUplinkC4Bag
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 15
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
+  id: ImperialUplinkFrag
+  name: imperial-uplink-frag-name
+  description: imperial-uplink-frag-desc
+  productEntity: GrenadeShrapnel
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ListingLimitedStockCondition
+    stock: 10
+
+- type: listing
+  id: ImperialUplinkEmpKit
+  name: imperial-uplink-emp-kit-name
+  description: imperial-uplink-emp-kit-desc
+  productEntity: ImperialUplinkEmpKit
+  cost:
+    Telecrystal: 8
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSmokeKit
+  name: imperial-uplink-smoke-kit-name
+  description: imperial-uplink-smoke-kit-desc
+  productEntity: ImperialUplinkSmokeKit
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkMinibomb
+  name: imperial-uplink-minibomb-name
+  description: imperial-uplink-minibomb-desc
+  productEntity: SyndieMiniBomb
+  cost:
+    Telecrystal: 6
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ImperialUplinkProgressionCondition
+    minutes: 30
+  - !type:ListingLimitedStockCondition
+    stock: 4
+
+- type: listing
+  id: ImperialUplinkSyndicateBomb
+  name: imperial-uplink-syndicate-bomb-name
+  description: imperial-uplink-syndicate-bomb-desc
+  productEntity: SyndicateBomb
+  cost:
+    Telecrystal: 11
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ImperialUplinkProgressionCondition
+    minutes: 30
+
+- type: listing
+  id: ImperialUplinkFragBox
+  name: imperial-uplink-frag-box-name
+  description: imperial-uplink-frag-box-desc
+  productEntity: ImperialUplinkFragGrenadeBox
+  cost:
+    Telecrystal: 15
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkX4Nuke
+  name: imperial-uplink-x4-nuke-name
+  description: imperial-uplink-x4-nuke-desc
+  productEntity: X4
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkMinibombNuke
+  name: imperial-uplink-minibomb-nuke-name
+  description: imperial-uplink-minibomb-nuke-desc
+  productEntity: SyndieMiniBomb
+  cost:
+    Telecrystal: 6
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkC4BagNuke
+  name: imperial-uplink-c4-bag-nuke-name
+  description: imperial-uplink-c4-bag-nuke-desc
+  productEntity: ImperialUplinkC4Bag
+  cost:
+    Telecrystal: 15
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkX4Bag
+  name: imperial-uplink-x4-bag-name
+  description: imperial-uplink-x4-bag-desc
+  productEntity: ImperialUplinkX4Bag
+  cost:
+    Telecrystal: 10
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSyndicateBombNuke
+  name: imperial-uplink-syndicate-bomb-nuke-name
+  description: imperial-uplink-syndicate-bomb-nuke-desc
+  productEntity: SyndicateBomb
+  cost:
+    Telecrystal: 11
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkFreedom
+  name: imperial-uplink-freedom-name
+  description: imperial-uplink-freedom-desc
+  productEntity: FreedomImplanter
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkImplants
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkRadio
+  name: imperial-uplink-radio-name
+  description: imperial-uplink-radio-desc
+  productEntity: RadioImplanter
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkImplants
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkStorage
+  name: imperial-uplink-storage-name
+  description: imperial-uplink-storage-desc
+  productEntity: StorageImplanter
+  cost:
+    Telecrystal: 8
+  categories:
+  - ImperialUplinkImplants
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkUplink
+  name: imperial-uplink-uplink-name
+  description: imperial-uplink-uplink-desc
+  productEntity: UplinkImplanter
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkImplants
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkDeathRattle
+  name: imperial-uplink-death-rattle-name
+  description: imperial-uplink-death-rattle-desc
+  productEntity: BoxDeathRattleImplants
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkImplants
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkMicrobomb
+  name: imperial-uplink-microbomb-name
+  description: imperial-uplink-microbomb-desc
+  productEntity: MicroBombImplanter
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkImplants
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkMacrobomb
+  name: imperial-uplink-macrobomb-name
+  description: imperial-uplink-macrobomb-desc
+  productEntity: MacroBombImplanter
+  cost:
+    Telecrystal: 13
+  categories:
+  - ImperialUplinkImplants
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSpaceSuit
+  name: imperial-uplink-space-suit-name
+  description: imperial-uplink-space-suit-desc
+  productEntity: ClothingBackpackDuffelSyndicateEVABundle
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkSuits
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkModsuit
+  name: imperial-uplink-modsuit-name
+  description: imperial-uplink-modsuit-desc
+  productEntity: ClothingBackpackDuffelSyndicateHardsuitBundle
+  cost:
+    Telecrystal: 7
+  categories:
+  - ImperialUplinkSuits
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkModsuitElite
+  name: imperial-uplink-modsuit-elite-name
+  description: imperial-uplink-modsuit-elite-desc
+  productEntity: ClothingBackpackDuffelSyndicateEliteHardsuitBundle
+  cost:
+    Telecrystal: 12
+  categories:
+  - ImperialUplinkSuits
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkAncientJumpsuit
+  name: imperial-uplink-ancient-jumpsuit-name
+  description: imperial-uplink-ancient-jumpsuit-desc
+  productEntity: ClothingUniformJumpStinky
+  cost:
+    Telecrystal: 20
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - Passenger
+
+- type: listing
+  id: ImperialUplinkAncientToolbox
+  name: imperial-uplink-ancient-toolbox-name
+  description: imperial-uplink-ancient-toolbox-desc
+  productEntity: AncientToolbox
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - Passenger
+
+- type: listing
+  id: ImperialUplinkHotPotato
+  name: imperial-uplink-hot-potato-name
+  description: imperial-uplink-hot-potato-desc
+  productEntity: HotPotato
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - Chef
+    - Botanist
+    - Clown
+    - Mime
+
+- type: listing
+  id: ImperialUplinkCombatBaking
+  name: imperial-uplink-combat-baking-name
+  description: imperial-uplink-combat-baking-desc
+  productEntity: CombatBakeryKit
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - Chef
+    - Mime
+
+- type: listing
+  id: ImperialUplinkTurretBox
+  name: imperial-uplink-turret-box-name
+  description: imperial-uplink-turret-box-desc
+  productEntity: ToolboxElectricalTurretFilled
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - StationEngineer
+    - ChiefEngineer
+
+- type: listing
+  id: ImperialUplinkPieCannon
+  name: imperial-uplink-pie-cannon-name
+  description: imperial-uplink-pie-cannon-desc
+  productEntity: WeaponPieCannonClown
+  cost:
+    Telecrystal: 10
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - Clown
+
+- type: listing
+  id: ImperialUplinkBalloon
+  name: imperial-uplink-balloon-name
+  description: imperial-uplink-balloon-desc
+  productEntity: BalloonSyn
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 20
+  categories:
+  - ImperialUplinkBadassery
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSyndieCigs
+  name: imperial-uplink-syndie-cigs-name
+  description: imperial-uplink-syndie-cigs-desc
+  productEntity: CigPackSyndicate
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkBadassery
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSyndieCash
+  name: imperial-uplink-syndie-cash-name
+  description: imperial-uplink-syndie-cash-desc
+  productEntity: ImperialUplinkCashBriefcase
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkBadassery
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkClownCostume
+  name: imperial-uplink-clown-costume-name
+  description: imperial-uplink-clown-costume-desc
+  productEntity: ClothingBackpackDuffelSyndicateCostumeClown
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkBadassery
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkPajamas
+  name: imperial-uplink-pajamas-name
+  description: imperial-uplink-pajamas-desc
+  productEntity: ClothingBackpackDuffelSyndicatePyjamaBundle
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkBadassery
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ImperialUplinkPinpointer
+  name: imperial-uplink-pinpointer-name
+  description: imperial-uplink-pinpointer-desc
+  productEntity: PinpointerNuclear
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkBadassery
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkBulldog
+  name: imperial-uplink-bulldog-name
+  description: imperial-uplink-bulldog-desc
+  productEntity: ImperialUplinkBulldogCase
+  cost:
+    Telecrystal: 14
+  categories:
+  - ImperialUplinkWeaponKits
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkC20r
+  name: imperial-uplink-c20r-name
+  description: imperial-uplink-c20r-desc
+  productEntity: ImperialUplinkC20rCase
+  cost:
+    Telecrystal: 14
+  categories:
+  - ImperialUplinkWeaponKits
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSwordAndBoard
+  name: imperial-uplink-sword-and-board-name
+  description: imperial-uplink-sword-and-board-desc
+  productEntity: ImperialUplinkSwordAndBoardCase
+  cost:
+    Telecrystal: 14
+  categories:
+  - ImperialUplinkWeaponKits
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkCqc
+  name: imperial-uplink-cqc-name
+  description: imperial-uplink-cqc-desc
+  productEntity: CaseCqcEquipment
+  cost:
+    Telecrystal: 12
+  categories:
+  - ImperialUplinkWeaponKits
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkRocketLauncher
+  name: imperial-uplink-rocket-launcher-name
+  description: imperial-uplink-rocket-launcher-desc
+  productEntity: ImperialUplinkRocketLauncherCase
+  cost:
+    Telecrystal: 18
+  categories:
+  - ImperialUplinkWeaponKits
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkL6
+  name: imperial-uplink-l6-name
+  description: imperial-uplink-l6-desc
+  productEntity: WeaponLightMachineGunL6
+  cost:
+    Telecrystal: 22
+  categories:
+  - ImperialUplinkWeaponKits
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkCarbine
+  name: imperial-uplink-carbine-name
+  description: imperial-uplink-carbine-desc
+  productEntity: ImperialUplinkCarbineCase
+  cost:
+    Telecrystal: 18
+  categories:
+  - ImperialUplinkWeaponKits
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSniper
+  name: imperial-uplink-sniper-name
+  description: imperial-uplink-sniper-desc
+  productEntity: ImperialUplinkSniperBriefcase
+  cost:
+    Telecrystal: 16
+  categories:
+  - ImperialUplinkWeaponKits
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkDoubleSwordCase
+  name: imperial-uplink-double-sword-case-name
+  description: imperial-uplink-double-sword-case-desc
+  productEntity: ImperialUplinkDoubleSwordCase
+  cost:
+    Telecrystal: 18
+  categories:
+  - ImperialUplinkWeaponKits
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkGrenadier
+  name: imperial-uplink-grenadier-name
+  description: imperial-uplink-grenadier-desc
+  productEntity: ClothingBeltMilitaryWebbingGrenadeFilled
+  cost:
+    Telecrystal: 12
+  categories:
+  - ImperialUplinkWeaponKits
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkChinaLake
+  name: imperial-uplink-china-lake-name
+  description: imperial-uplink-china-lake-desc
+  productEntity: ImperialUplinkChinaLakeCase
+  cost:
+    Telecrystal: 20
+  categories:
+  - ImperialUplinkWeaponKits
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkBuckshot
+  name: imperial-uplink-buckshot-name
+  description: imperial-uplink-buckshot-desc
+  productEntity: MagazineShotgun
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSlug
+  name: imperial-uplink-slug-name
+  description: imperial-uplink-slug-desc
+  productEntity: MagazineShotgunSlug
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkDragon
+  name: imperial-uplink-dragon-name
+  description: imperial-uplink-dragon-desc
+  productEntity: MagazineShotgunIncendiary
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSmgMag
+  name: imperial-uplink-smg-mag-name
+  description: imperial-uplink-smg-mag-desc
+  productEntity: MagazinePistolSubMachineGun
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSmgIncendiary
+  name: imperial-uplink-smg-incendiary-name
+  description: imperial-uplink-smg-incendiary-desc
+  productEntity: MagazinePistolSubMachineGunIncendiary
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkRocket
+  name: imperial-uplink-rocket-name
+  description: imperial-uplink-rocket-desc
+  productEntity: ImperialUplinkRocketBundle
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkMachineGunMag
+  name: imperial-uplink-machine-gun-mag-name
+  description: imperial-uplink-machine-gun-mag-desc
+  productEntity: MagazineLightRifleBox
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkCarbineMag
+  name: imperial-uplink-carbine-mag-name
+  description: imperial-uplink-carbine-mag-desc
+  productEntity: MagazineRifle
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSniperMag
+  name: imperial-uplink-sniper-mag-name
+  description: imperial-uplink-sniper-mag-desc
+  productEntity: MagazineBoxAntiMateriel
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkA40mmHE
+  name: imperial-uplink-a40mm-he-name
+  description: imperial-uplink-a40mm-he-desc
+  productEntity: ImperialUplinkBox40mmHE
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkA40mmRubber
+  name: imperial-uplink-a40mm-rubber-name
+  description: imperial-uplink-a40mm-rubber-desc
+  productEntity: ImperialUplinkBox40mmRubber
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkA40mmFlak
+  name: imperial-uplink-a40mm-flak-name
+  description: imperial-uplink-a40mm-flak-desc
+  productEntity: ImperialUplinkBox40mmFlak
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkOperativeReinforcement
+  name: imperial-uplink-operative-reinforcement-name
+  description: imperial-uplink-operative-reinforcement-desc
+  productEntity: ReinforcementRadioSyndicateNukeops
+  cost:
+    Telecrystal: 30
+  categories:
+  - ImperialUplinkReinforcements
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkAssaultBorg
+  name: imperial-uplink-assault-borg-name
+  description: imperial-uplink-assault-borg-desc
+  productEntity: ReinforcementRadioSyndicateCyborgAssault
+  cost:
+    Telecrystal: 30
+  categories:
+  - ImperialUplinkReinforcements
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkTurretBoxNuke
+  name: imperial-uplink-turret-box-nuke-name
+  description: imperial-uplink-turret-box-nuke-desc
+  productEntity: ToolboxElectricalTurretFilled
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkReinforcements
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkFoamPistol
+  name: imperial-uplink-foam-pistol-name
+  description: imperial-uplink-foam-pistol-desc
+  productEntity: ImperialUplinkDonksoftCase
+  cost:
+    Telecrystal: 6
+  categories:
+  - ImperialUplinkDangerous
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkPistol
+  name: imperial-uplink-pistol-name
+  description: imperial-uplink-pistol-desc
+  productEntity: ImperialUplinkMakarovCase
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkDangerous
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkPowerFist
+  name: imperial-uplink-power-fist-name
+  description: imperial-uplink-power-fist-desc
+  productEntity: ImperialPowerFist
+  cost:
+    Telecrystal: 6
+  categories:
+  - ImperialUplinkDangerous
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkRevolver
+  name: imperial-uplink-revolver-name
+  description: imperial-uplink-revolver-desc
+  productEntity: ImperialWeaponRevolverSyndicate
+  cost:
+    Telecrystal: 8
+  categories:
+  - ImperialUplinkDangerous
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkToyDarts
+  name: imperial-uplink-toy-darts-name
+  description: imperial-uplink-toy-darts-desc
+  productEntity: ImperialUplinkDonksoftAmmoCase
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkPistolAmmo
+  name: imperial-uplink-pistol-ammo-name
+  description: imperial-uplink-pistol-ammo-desc
+  productEntity: ImperialUplink9mmAmmoCase
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkPistolAP
+  name: imperial-uplink-pistol-ap-name
+  description: imperial-uplink-pistol-ap-desc
+  productEntity: ImperialMagazine9mmAP
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkPistolHP
+  name: imperial-uplink-pistol-hp-name
+  description: imperial-uplink-pistol-hp-desc
+  productEntity: ImperialMagazine9mmHP
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkPistolFire
+  name: imperial-uplink-pistol-fire-name
+  description: imperial-uplink-pistol-fire-desc
+  productEntity: ImperialMagazine9mmFire
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkRevolverAmmo
+  name: imperial-uplink-revolver-ammo-name
+  description: imperial-uplink-revolver-ammo-desc
+  productEntity: ImperialSpeedLoader357
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkAnsem
+  name: imperial-uplink-ansem-name
+  description: imperial-uplink-ansem-desc
+  productEntity: ImperialUplinkAnsemCase
+  cost:
+    Telecrystal: 6
+  categories:
+  - ImperialUplinkWeaponKits
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkRevolverCase
+  name: imperial-uplink-revolver-case-name
+  description: imperial-uplink-revolver-case-desc
+  productEntity: ImperialUplinkRevolverCase
+  cost:
+    Telecrystal: 10
+  categories:
+  - ImperialUplinkWeaponKits
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSmartSmg
+  name: imperial-uplink-smart-smg-name
+  description: imperial-uplink-smart-smg-desc
+  productEntity: ImperialWeaponSmartgun
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkWeaponKits
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSmartMag
+  name: imperial-uplink-smart-mag-name
+  description: imperial-uplink-smart-mag-desc
+  productEntity: ImperialMagazineSmart
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkFlechette
+  name: imperial-uplink-flechette-name
+  description: imperial-uplink-flechette-desc
+  productEntity: ImperialMagazineShotgunFlechette
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkDonkSpike
+  name: imperial-uplink-donk-spike-name
+  description: imperial-uplink-donk-spike-desc
+  productEntity: ImperialUplinkDonkSpikeBox
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkMeteor
+  name: imperial-uplink-meteor-name
+  description: imperial-uplink-meteor-desc
+  productEntity: ImperialMagazineShotgunMeteor
+  cost:
+    Telecrystal: 5
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkMag10mm
+  name: imperial-uplink-mag10mm-name
+  description: imperial-uplink-mag10mm-desc
+  productEntity: ImperialMagazine10mm
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkMag10mmAP
+  name: imperial-uplink-mag10mm-ap-name
+  description: imperial-uplink-mag10mm-ap-desc
+  productEntity: ImperialMagazine10mmAP
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkMag10mmHP
+  name: imperial-uplink-mag10mm-hp-name
+  description: imperial-uplink-mag10mm-hp-desc
+  productEntity: ImperialMagazine10mmHP
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkMag10mmFire
+  name: imperial-uplink-mag10mm-fire-name
+  description: imperial-uplink-mag10mm-fire-desc
+  productEntity: ImperialMagazine10mmFire
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSmgAP
+  name: imperial-uplink-smg-ap-name
+  description: imperial-uplink-smg-ap-desc
+  productEntity: ImperialMagazineSmgAP
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSmgHP
+  name: imperial-uplink-smg-hp-name
+  description: imperial-uplink-smg-hp-desc
+  productEntity: ImperialMagazineSmgHP
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkRevolverNukeAmmo
+  name: imperial-uplink-revolver-nuke-ammo-name
+  description: imperial-uplink-revolver-nuke-ammo-desc
+  productEntity: ImperialSpeedLoader357
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkRevolverPhasic
+  name: imperial-uplink-revolver-phasic-name
+  description: imperial-uplink-revolver-phasic-desc
+  productEntity: ImperialSpeedLoader357Phasic
+  cost:
+    Telecrystal: 5
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkRevolverHeartseeker
+  name: imperial-uplink-revolver-heartseeker-name
+  description: imperial-uplink-revolver-heartseeker-desc
+  productEntity: ImperialSpeedLoader357Heartseeker
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkRocketHEAP
+  name: imperial-uplink-rocket-heap-name
+  description: imperial-uplink-rocket-heap-desc
+  productEntity: ImperialCartridgeRocketHEAP
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkMachineGunAP
+  name: imperial-uplink-machine-gun-ap-name
+  description: imperial-uplink-machine-gun-ap-desc
+  productEntity: ImperialMagazineLightRifleBoxAP
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkMachineGunHP
+  name: imperial-uplink-machine-gun-hp-name
+  description: imperial-uplink-machine-gun-hp-desc
+  productEntity: ImperialMagazineLightRifleBoxHP
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkMachineGunIncendiary
+  name: imperial-uplink-machine-gun-incendiary-name
+  description: imperial-uplink-machine-gun-incendiary-desc
+  productEntity: ImperialMagazineLightRifleBoxIncendiary
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkMachineGunMatch
+  name: imperial-uplink-machine-gun-match-name
+  description: imperial-uplink-machine-gun-match-desc
+  productEntity: ImperialMagazineLightRifleBoxMatch
+  cost:
+    Telecrystal: 5
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkCarbinePhasic
+  name: imperial-uplink-carbine-phasic-name
+  description: imperial-uplink-carbine-phasic-desc
+  productEntity: ImperialMagazineRiflePhasic
+  cost:
+    Telecrystal: 5
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSniperSurplus
+  name: imperial-uplink-sniper-surplus-name
+  description: imperial-uplink-sniper-surplus-desc
+  productEntity: ImperialUplinkAntiMaterielSurplusBox
+  cost:
+    Telecrystal: 7
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSniperPenetrator
+  name: imperial-uplink-sniper-penetrator-name
+  description: imperial-uplink-sniper-penetrator-desc
+  productEntity: ImperialAntiMaterielBoxPenetrator
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSniperIncendiary
+  name: imperial-uplink-sniper-incendiary-name
+  description: imperial-uplink-sniper-incendiary-desc
+  productEntity: ImperialAntiMaterielBoxIncendiary
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSniperDisruptor
+  name: imperial-uplink-sniper-disruptor-name
+  description: imperial-uplink-sniper-disruptor-desc
+  productEntity: ImperialAntiMaterielBoxDisruptor
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSniperMarksman
+  name: imperial-uplink-sniper-marksman-name
+  description: imperial-uplink-sniper-marksman-desc
+  productEntity: ImperialAntiMaterielBoxMarksman
+  cost:
+    Telecrystal: 5
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkA40mmIncendiary
+  name: imperial-uplink-a40mm-incendiary-name
+  description: imperial-uplink-a40mm-incendiary-desc
+  productEntity: ImperialUplinkBox40mmIncendiary
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkDartPistol
+  name: imperial-uplink-dart-pistol-name
+  description: imperial-uplink-dart-pistol-desc
+  productEntity: ImperialDartPistol
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkStealthy
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkSlipstick
+  name: imperial-uplink-slipstick-name
+  description: imperial-uplink-slipstick-desc
+  productEntity: ImperialSyndieLipstick
+  cost:
+    Telecrystal: 6
+  categories:
+  - ImperialUplinkStealthy
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkPoisonKit
+  name: imperial-uplink-poison-kit-name
+  description: imperial-uplink-poison-kit-desc
+  productEntity: ImperialUplinkPoisonKit
+  cost:
+    Telecrystal: 6
+  categories:
+  - ImperialUplinkStealthy
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkCarnivorousBlood
+  name: imperial-uplink-carnivorous-blood-name
+  description: imperial-uplink-carnivorous-blood-desc
+  productEntity: ImperialUplinkCarnivorousBloodKit
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkStealthy
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSuppressor
+  name: imperial-uplink-suppressor-name
+  description: imperial-uplink-suppressor-desc
+  productEntity: ImperialSuppressor
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkStealthy
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSleepyPen
+  name: imperial-uplink-sleepy-pen-name
+  description: imperial-uplink-sleepy-pen-desc
+  productEntity: ImperialSleepyPen
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkStealthy
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkOrigamiKit
+  name: imperial-uplink-origami-kit-name
+  description: imperial-uplink-origami-kit-desc
+  productEntity: ImperialUplinkOrigamiKit
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkStealthy
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkHolsterUniform
+  name: imperial-uplink-holster-uniform-name
+  description: imperial-uplink-holster-uniform-desc
+  productEntity: ImperialHolsterChameleon
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkStealthy
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkAiDetector
+  name: imperial-uplink-ai-detector-name
+  description: imperial-uplink-ai-detector-desc
+  productEntity: ImperialAiDetector
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkStealthyTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkCodespeak
+  name: imperial-uplink-codespeak-name
+  description: imperial-uplink-codespeak-desc
+  productEntity: ImperialCodespeakManual
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkStealthyTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkEmpLight
+  name: imperial-uplink-emp-light-name
+  description: imperial-uplink-emp-light-desc
+  productEntity: ImperialEmpFlashlight
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkStealthyTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkMulligan
+  name: imperial-uplink-mulligan-name
+  description: imperial-uplink-mulligan-desc
+  productEntity: ImperialUplinkMulliganKit
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkStealthyTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkMailCounterfeit
+  name: imperial-uplink-mail-counterfeit-name
+  description: imperial-uplink-mail-counterfeit-desc
+  productEntity: ImperialMailCounterfeitDevice
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkStealthyTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkForensicsSpoofer
+  name: imperial-uplink-forensics-spoofer-name
+  description: imperial-uplink-forensics-spoofer-desc
+  productEntity: ImperialForensicsSpoofer
+  cost:
+    Telecrystal: 5
+  categories:
+  - ImperialUplinkStealthyTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkTelecommBlackout
+  name: imperial-uplink-telecomm-blackout-name
+  description: imperial-uplink-telecomm-blackout-desc
+  icon: { sprite: /Textures/Objects/Devices/communication.rsi, state: old-radio }
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkStealthyTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ImperialUplinkProgressionCondition
+    minutes: 15
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ImperialUplinkBlackout
+  name: imperial-uplink-blackout-name
+  description: imperial-uplink-blackout-desc
+  icon: { sprite: /Textures/Structures/Power/apc.rsi, state: base }
+  cost:
+    Telecrystal: 6
+  categories:
+  - ImperialUplinkStealthyTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ImperialUplinkProgressionCondition
+    minutes: 15
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ImperialUplinkSyndieTome
+  name: imperial-uplink-syndie-tome-name
+  description: imperial-uplink-syndie-tome-desc
+  productEntity: ImperialSyndieTome
+  cost:
+    Telecrystal: 5
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkCutouts
+  name: imperial-uplink-cutouts-name
+  description: imperial-uplink-cutouts-desc
+  productEntity: ImperialUplinkCutoutsKit
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkLaunchpad
+  name: imperial-uplink-launchpad-name
+  description: imperial-uplink-launchpad-desc
+  productEntity: ImperialUplinkLaunchpadKit
+  cost:
+    Telecrystal: 6
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkTeleporter
+  name: imperial-uplink-teleporter-name
+  description: imperial-uplink-teleporter-desc
+  productEntity: ImperialSyndicateTeleporter
+  cost:
+    Telecrystal: 8
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkFrame
+  name: imperial-uplink-frame-name
+  description: imperial-uplink-frame-desc
+  productEntity: ImperialFrameDisk
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkFailsafe
+  name: imperial-uplink-failsafe-name
+  description: imperial-uplink-failsafe-desc
+  icon: { sprite: /Textures/Objects/Devices/pda.rsi, state: pda }
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkRadLaser
+  name: imperial-uplink-rad-laser-name
+  description: imperial-uplink-rad-laser-desc
+  productEntity: ImperialRadLaser
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkSuspiciousPhone
+  name: imperial-uplink-suspicious-phone-name
+  description: imperial-uplink-suspicious-phone-desc
+  productEntity: ImperialCrab17Phone
+  cost:
+    Telecrystal: 7
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ImperialUplinkPointyTape
+  name: imperial-uplink-pointy-tape-name
+  description: imperial-uplink-pointy-tape-desc
+  productEntity: ImperialSuperPointyTape
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkHackedModule
+  name: imperial-uplink-hacked-module-name
+  description: imperial-uplink-hacked-module-desc
+  productEntity: ImperialHackedLawModule
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+  - !type:ImperialUplinkProgressionCondition
+    minutes: 30
+
+- type: listing
+  id: ImperialUplinkHypnoticFlash
+  name: imperial-uplink-hypnotic-flash-name
+  description: imperial-uplink-hypnotic-flash-desc
+  productEntity: ImperialHypnoticFlash
+  cost:
+    Telecrystal: 7
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkHypnoticGrenade
+  name: imperial-uplink-hypnotic-grenade-name
+  description: imperial-uplink-hypnotic-grenade-desc
+  productEntity: ImperialHypnoticGrenade
+  cost:
+    Telecrystal: 12
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkContacts
+  name: imperial-uplink-contacts-name
+  description: imperial-uplink-contacts-desc
+  productEntity: ImperialSyndicateContacts
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkHolsterTacticool
+  name: imperial-uplink-holster-tacticool-name
+  description: imperial-uplink-holster-tacticool-desc
+  productEntity: ImperialHolsterTacticool
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkMedkitPremium
+  name: imperial-uplink-medkit-premium-name
+  description: imperial-uplink-medkit-premium-desc
+  productEntity: ImperialMedkitTacticalPremium
+  cost:
+    Telecrystal: 15
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkFeralCats
+  name: imperial-uplink-feral-cats-name
+  description: imperial-uplink-feral-cats-desc
+  productEntity: ImperialUplinkCatGrenadeBox
+  cost:
+    Telecrystal: 5
+  categories:
+  - ImperialUplinkDangerous
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
+  id: ImperialUplinkPizzaBomb
+  name: imperial-uplink-pizza-bomb-name
+  description: imperial-uplink-pizza-bomb-desc
+  productEntity: ImperialPizzaBomb
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ListingLimitedStockCondition
+    stock: 4
+
+- type: listing
+  id: ImperialUplinkPizzaBombNuke
+  name: imperial-uplink-pizza-bomb-nuke-name
+  description: imperial-uplink-pizza-bomb-nuke-desc
+  productEntity: ImperialPizzaBomb
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkEmpBomb
+  name: imperial-uplink-emp-bomb-name
+  description: imperial-uplink-emp-bomb-desc
+  productEntity: ImperialEmpBomb
+  cost:
+    Telecrystal: 7
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ImperialUplinkProgressionCondition
+    minutes: 30
+
+- type: listing
+  id: ImperialUplinkEmpBombNuke
+  name: imperial-uplink-emp-bomb-nuke-name
+  description: imperial-uplink-emp-bomb-nuke-desc
+  productEntity: ImperialEmpBomb
+  cost:
+    Telecrystal: 6
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkEarthcracker
+  name: imperial-uplink-earthcracker-name
+  description: imperial-uplink-earthcracker-desc
+  productEntity: ImperialEarthcracker
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkDetomatix
+  name: imperial-uplink-detomatix-name
+  description: imperial-uplink-detomatix-desc
+  productEntity: ImperialDetomatixDisk
+  cost:
+    Telecrystal: 6
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkDetonator
+  name: imperial-uplink-detonator-name
+  description: imperial-uplink-detonator-desc
+  productEntity: ImperialSyndicateDetonator
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkBuzzkill
+  name: imperial-uplink-buzzkill-name
+  description: imperial-uplink-buzzkill-desc
+  productEntity: ImperialUplinkBuzzkillBox
+  cost:
+    Telecrystal: 15
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkTuberculosisGrenade
+  name: imperial-uplink-tuberculosis-grenade-name
+  description: imperial-uplink-tuberculosis-grenade-desc
+  productEntity: ImperialUplinkTuberculosisBox
+  cost:
+    Telecrystal: 15
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkViscerators
+  name: imperial-uplink-viscerators-name
+  description: imperial-uplink-viscerators-desc
+  productEntity: ImperialUplinkVisceratorBox
+  cost:
+    Telecrystal: 15
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkStealthImplant
+  name: imperial-uplink-stealth-implant-name
+  description: imperial-uplink-stealth-implant-desc
+  productEntity: ImperialStealthImplanter
+  cost:
+    Telecrystal: 8
+  categories:
+  - ImperialUplinkImplants
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkDeniability
+  name: imperial-uplink-deniability-name
+  description: imperial-uplink-deniability-desc
+  productEntity: ImperialDeniabilityImplanter
+  cost:
+    Telecrystal: 6
+  categories:
+  - ImperialUplinkImplants
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkReviver
+  name: imperial-uplink-reviver-name
+  description: imperial-uplink-reviver-desc
+  productEntity: ImperialAutosurgeonReviver
+  cost:
+    Telecrystal: 8
+  categories:
+  - ImperialUplinkImplants
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkThermalEyes
+  name: imperial-uplink-thermal-eyes-name
+  description: imperial-uplink-thermal-eyes-desc
+  productEntity: ImperialAutosurgeonThermalEyes
+  cost:
+    Telecrystal: 8
+  categories:
+  - ImperialUplinkImplants
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkXrayEyes
+  name: imperial-uplink-xray-eyes-name
+  description: imperial-uplink-xray-eyes-desc
+  productEntity: ImperialAutosurgeonXrayEyes
+  cost:
+    Telecrystal: 8
+  categories:
+  - ImperialUplinkImplants
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkAntistun
+  name: imperial-uplink-antistun-name
+  description: imperial-uplink-antistun-desc
+  productEntity: ImperialAutosurgeonCnsRebooter
+  cost:
+    Telecrystal: 8
+  categories:
+  - ImperialUplinkImplants
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkHauntedEightball
+  name: imperial-uplink-haunted-eightball-name
+  description: imperial-uplink-haunted-eightball-desc
+  productEntity: ImperialHauntedEightball
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - Librarian
+
+- type: listing
+  id: ImperialUplinkMailCounterfeitKit
+  name: imperial-uplink-mail-counterfeit-kit-name
+  description: imperial-uplink-mail-counterfeit-kit-desc
+  productEntity: ImperialUplinkMailCounterfeitKit
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - CargoTechnician
+    - Quartermaster
+
+- type: listing
+  id: ImperialUplinkBureaucraticError
+  name: imperial-uplink-bureaucratic-error-name
+  description: imperial-uplink-bureaucratic-error-desc
+  icon: { sprite: /Textures/Objects/Misc/bureaucracy.rsi, state: paper }
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfPersonnel
+    - Quartermaster
+
+- type: listing
+  id: ImperialUplinkClownPin
+  name: imperial-uplink-clown-pin-name
+  description: imperial-uplink-clown-pin-desc
+  productEntity: ImperialClownPin
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - Clown
+
+- type: listing
+  id: ImperialUplinkClownSuperPin
+  name: imperial-uplink-clown-super-pin-name
+  description: imperial-uplink-clown-super-pin-desc
+  productEntity: ImperialClownPinSelfDestruct
+  cost:
+    Telecrystal: 7
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - Clown
+
+- type: listing
+  id: ImperialUplinkSyndiMmi
+  name: imperial-uplink-syndi-mmi-name
+  description: imperial-uplink-syndi-mmi-desc
+  productEntity: ImperialSyndieMMI
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - Scientist
+    - ResearchDirector
+    - Coroner
+    - MedicalDoctor
+    - ChiefMedicalOfficer
+
+- type: listing
+  id: ImperialUplinkEzClean
+  name: imperial-uplink-ez-clean-name
+  description: imperial-uplink-ez-clean-desc
+  productEntity: ImperialUplinkEzCleanBox
+  cost:
+    Telecrystal: 6
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - Janitor
+
+- type: listing
+  id: ImperialUplinkReverseBearTrap
+  name: imperial-uplink-reverse-bear-trap-name
+  description: imperial-uplink-reverse-bear-trap-desc
+  productEntity: ImperialReverseBearTrap
+  cost:
+    Telecrystal: 5
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - Clown
+
+- type: listing
+  id: ImperialUplinkDnaSyringeGun
+  name: imperial-uplink-dna-syringe-gun-name
+  description: imperial-uplink-dna-syringe-gun-desc
+  productEntity: ImperialDnaSyringeGun
+  cost:
+    Telecrystal: 14
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - ResearchDirector
+    - Scientist
+
+- type: listing
+  id: ImperialUplinkMeatHook
+  name: imperial-uplink-meat-hook-name
+  description: imperial-uplink-meat-hook-desc
+  productEntity: ImperialMeatHook
+  cost:
+    Telecrystal: 11
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - Chef
+
+- type: listing
+  id: ImperialUplinkMoltobeso
+  name: imperial-uplink-moltobeso-name
+  description: imperial-uplink-moltobeso-desc
+  productEntity: ImperialMoltobesoBottle
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - Chef
+
+- type: listing
+  id: ImperialUplinkRebarXbow
+  name: imperial-uplink-rebar-xbow-name
+  description: imperial-uplink-rebar-xbow-desc
+  productEntity: ImperialUplinkRebarCrossbowKit
+  cost:
+    Telecrystal: 12
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - StationEngineer
+    - ChiefEngineer
+    - AtmosphericTechnician
+
+- type: listing
+  id: ImperialUplinkMagillitis
+  name: imperial-uplink-magillitis-name
+  description: imperial-uplink-magillitis-desc
+  productEntity: ImperialMagillitisInjector
+  cost:
+    Telecrystal: 15
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - ResearchDirector
+    - Scientist
+
+- type: listing
+  id: ImperialUplinkGorillaCube
+  name: imperial-uplink-gorilla-cube-name
+  description: imperial-uplink-gorilla-cube-desc
+  productEntity: ImperialGorillaCube
+  cost:
+    Telecrystal: 6
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - ResearchDirector
+    - Scientist
+
+- type: listing
+  id: ImperialUplinkBrainwashDisk
+  name: imperial-uplink-brainwash-disk-name
+  description: imperial-uplink-brainwash-disk-desc
+  productEntity: ImperialBrainwashDevice
+  cost:
+    Telecrystal: 5
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - MedicalDoctor
+    - ChiefMedicalOfficer
+    - Coroner
+
+- type: listing
+  id: ImperialUplinkPlasticSurgery
+  name: imperial-uplink-plastic-surgery-name
+  description: imperial-uplink-plastic-surgery-desc
+  productEntity: ImperialPlasticSurgeryDevice
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - MedicalDoctor
+    - ChiefMedicalOfficer
+
+- type: listing
+  id: ImperialUplinkReverseRevolver
+  name: imperial-uplink-reverse-revolver-name
+  description: imperial-uplink-reverse-revolver-desc
+  productEntity: ImperialUplinkReverseRevolverBox
+  cost:
+    Telecrystal: 14
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - Clown
+
+- type: listing
+  id: ImperialUplinkPressureMod
+  name: imperial-uplink-pressure-mod-name
+  description: imperial-uplink-pressure-mod-desc
+  productEntity: ImperialPKAPressureMod
+  cost:
+    Telecrystal: 5
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ListingLimitedStockCondition
+    stock: 2
+  - !type:BuyerJobCondition
+    whitelist:
+    - SalvageSpecialist
+
+- type: listing
+  id: ImperialUplinkMimery
+  name: imperial-uplink-mimery-name
+  description: imperial-uplink-mimery-desc
+  productEntity: ImperialUplinkMimeryBox
+  cost:
+    Telecrystal: 12
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - Mime
+
+- type: listing
+  id: ImperialUplinkLaserArm
+  name: imperial-uplink-laser-arm-name
+  description: imperial-uplink-laser-arm-desc
+  productEntity: ImperialAutosurgeonLaserArm
+  cost:
+    Telecrystal: 10
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - ResearchDirector
+    - Scientist
+
+- type: listing
+  id: ImperialUplinkChemicalGun
+  name: imperial-uplink-chemical-gun-name
+  description: imperial-uplink-chemical-gun-desc
+  productEntity: ImperialReagentDartgun
+  cost:
+    Telecrystal: 12
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - Chemist
+    - MedicalDoctor
+    - ChiefMedicalOfficer
+    - Botanist
+
+- type: listing
+  id: ImperialUplinkClownBomb
+  name: imperial-uplink-clown-bomb-name
+  description: imperial-uplink-clown-bomb-desc
+  productEntity: ImperialClownBomb
+  cost:
+    Telecrystal: 15
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ImperialUplinkProgressionCondition
+    minutes: 15
+  - !type:BuyerJobCondition
+    whitelist:
+    - Clown
+
+- type: listing
+  id: ImperialUplinkClownCar
+  name: imperial-uplink-clown-car-name
+  description: imperial-uplink-clown-car-desc
+  productEntity: ImperialClownCar
+  cost:
+    Telecrystal: 20
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - Clown
+
+- type: listing
+  id: ImperialUplinkHisGrace
+  name: imperial-uplink-his-grace-name
+  description: imperial-uplink-his-grace-desc
+  productEntity: ImperialHisGrace
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 20
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+  - !type:BuyerJobCondition
+    whitelist:
+    - Chaplain
+
+- type: listing
+  id: ImperialUplinkSpiderInjector
+  name: imperial-uplink-spider-injector-name
+  description: imperial-uplink-spider-injector-desc
+  productEntity: ImperialSpiderInjector
+  cost:
+    Telecrystal: 10
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ImperialUplinkProgressionCondition
+    minutes: 30
+  - !type:ImperialUplinkPopulationCondition
+    players: 20
+  - !type:BuyerJobCondition
+    whitelist:
+    - ResearchDirector
+    - Scientist
+
+- type: listing
+  id: ImperialUplinkEvilSeedling
+  name: imperial-uplink-evil-seedling-name
+  description: imperial-uplink-evil-seedling-desc
+  productEntity: ImperialEvilSeeds
+  cost:
+    Telecrystal: 8
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - Botanist
+
+- type: listing
+  id: ImperialUplinkBeeSmoker
+  name: imperial-uplink-bee-smoker-name
+  description: imperial-uplink-bee-smoker-desc
+  productEntity: ImperialBeeSmoker
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - Botanist
+
+- type: listing
+  id: ImperialUplinkMonkeyAgent
+  name: imperial-uplink-monkey-agent-name
+  description: imperial-uplink-monkey-agent-desc
+  productEntity: ReinforcementRadioSyndicateAncestor
+  cost:
+    Telecrystal: 6
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - ResearchDirector
+    - Scientist
+    - Passenger
+    - Mime
+    - Clown
+
+- type: listing
+  id: ImperialUplinkMonkeySupplies
+  name: imperial-uplink-monkey-supplies-name
+  description: imperial-uplink-monkey-supplies-desc
+  productEntity: ImperialUplinkMonkeySupplies
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ListingLimitedStockCondition
+    stock: 3
+  - !type:BuyerJobCondition
+    whitelist:
+    - Passenger
+    - Mime
+    - Clown
+
+- type: listing
+  id: ImperialUplinkConcussiveDisk
+  name: imperial-uplink-concussive-disk-name
+  description: imperial-uplink-concussive-disk-desc
+  productEntity: ImperialEmitterDiskBlast
+  cost:
+    Telecrystal: 5
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerJobCondition
+    whitelist:
+    - StationEngineer
+    - ChiefEngineer
+
+- type: listing
+  id: ImperialUplinkBriefcaseGun
+  name: imperial-uplink-briefcase-gun-name
+  description: imperial-uplink-briefcase-gun-desc
+  productEntity: ImperialBriefcaseGun
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ImperialUplinkSharedStockCondition
+    key: briefcase_gun
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfPersonnel
+    - Lawyer
+    - Quartermaster
+
+- type: listing
+  id: ImperialUplinkBriefcaseGunCombo
+  name: imperial-uplink-briefcase-gun-combo-name
+  description: imperial-uplink-briefcase-gun-combo-desc
+  productEntity: ImperialBriefcaseGunPreloaded
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 8
+  categories:
+  - ImperialUplinkRoleRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ImperialUplinkSharedStockCondition
+    key: briefcase_gun
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfPersonnel
+    - Lawyer
+    - Quartermaster
+
+- type: listing
+  id: ImperialUplinkMothLantern
+  name: imperial-uplink-moth-lantern-name
+  description: imperial-uplink-moth-lantern-desc
+  productEntity: ImperialMothLantern
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkSpeciesRestricted
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:BuyerSpeciesCondition
+    whitelist:
+    - Moth
+
+- type: listing
+  id: ImperialUplinkSyndieCards
+  name: imperial-uplink-syndie-cards-name
+  description: imperial-uplink-syndie-cards-desc
+  productEntity: ImperialSyndicateCardDeck
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkBadassery
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkStickers
+  name: imperial-uplink-stickers-name
+  description: imperial-uplink-stickers-desc
+  productEntity: ImperialUplinkStickerBox
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkBadassery
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkDemotivationalPosters
+  name: imperial-uplink-demotivational-posters-name
+  description: imperial-uplink-demotivational-posters-desc
+  productEntity: ImperialUplinkPosterBox
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkBadassery
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSyndieSpraycan
+  name: imperial-uplink-syndie-spraycan-name
+  description: imperial-uplink-syndie-spraycan-desc
+  productEntity: ImperialSyndicateSpraycan
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkBadassery
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkBrokenChameleon
+  name: imperial-uplink-broken-chameleon-name
+  description: imperial-uplink-broken-chameleon-desc
+  productEntity: ImperialUplinkBrokenChameleonKit
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkBadassery
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkCentcomCostume
+  name: imperial-uplink-centcom-costume-name
+  description: imperial-uplink-centcom-costume-desc
+  productEntity: ImperialUplinkCentcomCostume
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkBadassery
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSyndiKitTactical
+  name: imperial-uplink-syndi-kit-tactical-name
+  description: imperial-uplink-syndi-kit-tactical-desc
+  productEntity: ImperialUplinkSyndiKitTactical
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 20
+  categories:
+  - ImperialUplinkBundles
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ImperialUplinkSharedStockCondition
+    key: kits
+
+- type: listing
+  id: ImperialUplinkSyndiKitSpecial
+  name: imperial-uplink-syndi-kit-special-name
+  description: imperial-uplink-syndi-kit-special-desc
+  productEntity: ImperialUplinkSyndiKitSpecial
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 20
+  categories:
+  - ImperialUplinkBundles
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ImperialUplinkSharedStockCondition
+    key: kits
+
+- type: listing
+  id: ImperialUplinkUnitedSurplusCrate
+  name: imperial-uplink-united-surplus-crate-name
+  description: imperial-uplink-united-surplus-crate-desc
+  productEntity: ImperialUplinkUnitedSurplusCrate
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 20
+  categories:
+  - ImperialUplinkBundles
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ImperialUplinkSharedStockCondition
+    key: surplus
+
+- type: listing
+  id: ImperialUplinkSurplusCrateKey
+  name: imperial-uplink-surplus-crate-key-name
+  description: imperial-uplink-surplus-crate-key-desc
+  productEntity: ImperialSyndicrateKey
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 20
+  categories:
+  - ImperialUplinkBundles
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+  - !type:ImperialUplinkSharedStockCondition
+    key: surplus
+
+- type: listing
+  id: ImperialUplinkCyberImplants
+  name: imperial-uplink-cyber-implants-name
+  description: imperial-uplink-cyber-implants-desc
+  productEntity: ImperialUplinkCyberImplantsBox
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 20
+  categories:
+  - ImperialUplinkBundles
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkMedicalBundle
+  name: imperial-uplink-medical-bundle-name
+  description: imperial-uplink-medical-bundle-desc
+  productEntity: ImperialUplinkMedicalBundle
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 25
+  categories:
+  - ImperialUplinkBundles
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkFirestarter
+  name: imperial-uplink-firestarter-name
+  description: imperial-uplink-firestarter-desc
+  productEntity: ImperialUplinkFirestarterBundle
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 30
+  categories:
+  - ImperialUplinkBundles
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkInductionKit
+  name: imperial-uplink-induction-kit-name
+  description: imperial-uplink-induction-kit-desc
+  productEntity: ImperialUplinkInductionKit
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 10
+  categories:
+  - ImperialUplinkBundles
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkCowboyKit
+  name: imperial-uplink-cowboy-kit-name
+  description: imperial-uplink-cowboy-kit-desc
+  productEntity: ImperialUplinkCowboyKit
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 18
+  categories:
+  - ImperialUplinkBundles
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkCoreGear
+  name: imperial-uplink-core-gear-name
+  description: imperial-uplink-core-gear-desc
+  productEntity: ImperialUplinkCoreGearBox
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 22
+  categories:
+  - ImperialUplinkWeaponKits
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ImperialUplinkMedicalBorg
+  name: imperial-uplink-medical-borg-name
+  description: imperial-uplink-medical-borg-desc
+  productEntity: ImperialReinforcementRadioSyndicateCyborgMedical
+  cost:
+    Telecrystal: 30
+  categories:
+  - ImperialUplinkReinforcements
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkSaboteurBorg
+  name: imperial-uplink-saboteur-borg-name
+  description: imperial-uplink-saboteur-borg-desc
+  productEntity: ImperialReinforcementRadioSyndicateCyborgSaboteur
+  cost:
+    Telecrystal: 30
+  categories:
+  - ImperialUplinkReinforcements
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkEd209
+  name: imperial-uplink-ed209-name
+  description: imperial-uplink-ed209-desc
+  productEntity: ImperialEd209Beacon
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 20
+  categories:
+  - ImperialUplinkReinforcements
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaSnakesfang
+  name: imperial-uplink-para-snakesfang-name
+  description: imperial-uplink-para-snakesfang-desc
+  productEntity: ImperialSnakesfangSheath
+  cost:
+    Telecrystal: 5
+  categories:
+  - ImperialUplinkDangerous
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaChainsaw
+  name: imperial-uplink-para-chainsaw-name
+  description: imperial-uplink-para-chainsaw-desc
+  productEntity: ImperialChainsawSyndicate
+  cost:
+    Telecrystal: 13
+  categories:
+  - ImperialUplinkDangerous
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaMindBatterer
+  name: imperial-uplink-para-mind-batterer-name
+  description: imperial-uplink-para-mind-batterer-desc
+  productEntity: ImperialMindBatterer
+  cost:
+    Telecrystal: 5
+  categories:
+  - ImperialUplinkDangerous
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaPopupTurret
+  name: imperial-uplink-para-popup-turret-name
+  description: imperial-uplink-para-popup-turret-desc
+  productEntity: ImperialPopupTurretGrenade
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkDangerous
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaGarrote
+  name: imperial-uplink-para-garrote-name
+  description: imperial-uplink-para-garrote-desc
+  productEntity: ImperialGarrote
+  cost:
+    Telecrystal: 6
+  categories:
+  - ImperialUplinkStealthy
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaCameraFlash
+  name: imperial-uplink-para-camera-flash-name
+  description: imperial-uplink-para-camera-flash-desc
+  productEntity: TravelCamera
+  cost:
+    Telecrystal: 1
+  categories:
+  - ImperialUplinkStealthy
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaKnuckleduster
+  name: imperial-uplink-para-knuckleduster-name
+  description: imperial-uplink-para-knuckleduster-desc
+  productEntity: ClothingHandsKnuckleDustersSyndicate
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkStealthy
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaFalseBriefcase
+  name: imperial-uplink-para-false-briefcase-name
+  description: imperial-uplink-para-false-briefcase-desc
+  productEntity: ImperialFalseBottomBriefcase
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkStealthy
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaRapidSyringeGun
+  name: imperial-uplink-para-rapid-syringe-gun-name
+  description: imperial-uplink-para-rapid-syringe-gun-desc
+  productEntity: ImperialRapidSyringeGun
+  cost:
+    Telecrystal: 12
+  categories:
+  - ImperialUplinkStealthy
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaC4Pack
+  name: imperial-uplink-para-c4-pack-name
+  description: imperial-uplink-para-c4-pack-desc
+  productEntity: ImperialUplinkC4Pack
+  cost:
+    Telecrystal: 8
+  categories:
+  - ImperialUplinkExplosives
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaType230
+  name: imperial-uplink-para-type230-name
+  description: imperial-uplink-para-type230-desc
+  productEntity: ImperialWeaponPistolType230
+  cost:
+    Telecrystal: 6
+  categories:
+  - ImperialUplinkDangerous
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaType230Mag
+  name: imperial-uplink-para-type230-mag-name
+  description: imperial-uplink-para-type230-mag-desc
+  productEntity: ImperialMagazineType230
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaType230MagAP
+  name: imperial-uplink-para-type230-mag-ap-name
+  description: imperial-uplink-para-type230-mag-ap-desc
+  productEntity: ImperialMagazineType230AP
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaType230MagFire
+  name: imperial-uplink-para-type230-mag-fire-name
+  description: imperial-uplink-para-type230-mag-fire-desc
+  productEntity: ImperialMagazineType230Fire
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaType230MagHP
+  name: imperial-uplink-para-type230-mag-hp-name
+  description: imperial-uplink-para-type230-mag-hp-desc
+  productEntity: ImperialMagazineType230HP
+  cost:
+    Telecrystal: 4
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaFlamethrower
+  name: imperial-uplink-para-flamethrower-name
+  description: imperial-uplink-para-flamethrower-desc
+  productEntity: FlameThrower
+  cost:
+    Telecrystal: 8
+  categories:
+  - ImperialUplinkDangerous
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaFlamethrowerCanisters
+  name: imperial-uplink-para-flamethrower-canisters-name
+  description: imperial-uplink-para-flamethrower-canisters-desc
+  productEntity: ImperialUplinkFlamethrowerCanisters
+  cost:
+    Telecrystal: 6
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaToySmg
+  name: imperial-uplink-para-toy-smg-name
+  description: imperial-uplink-para-toy-smg-desc
+  productEntity: ImperialWeaponDonksoftSmg
+  cost:
+    Telecrystal: 5
+  categories:
+  - ImperialUplinkDangerous
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaToyLmg
+  name: imperial-uplink-para-toy-lmg-name
+  description: imperial-uplink-para-toy-lmg-desc
+  productEntity: ImperialWeaponDonksoftLmg
+  cost:
+    Telecrystal: 10
+  categories:
+  - ImperialUplinkDangerous
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaBulldogTraitor
+  name: imperial-uplink-para-bulldog-traitor-name
+  description: imperial-uplink-para-bulldog-traitor-desc
+  productEntity: WeaponShotgunBulldog
+  cost:
+    Telecrystal: 12
+  categories:
+  - ImperialUplinkDangerous
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkParaBulldogRubber
+  name: imperial-uplink-para-bulldog-rubber-name
+  description: imperial-uplink-para-bulldog-rubber-desc
+  productEntity: MagazineShotgunBeanbag
+  cost:
+    Telecrystal: 2
+  categories:
+  - ImperialUplinkAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: true
+    nukeOps: false
+
+- type: listing
+  id: ImperialUplinkParaSniperExplosive
+  name: imperial-uplink-para-sniper-explosive-name
+  description: imperial-uplink-para-sniper-explosive-desc
+  productEntity: ImperialAntiMaterielBoxExplosive
+  cost:
+    Telecrystal: 6
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaSniperSoporific
+  name: imperial-uplink-para-sniper-soporific-name
+  description: imperial-uplink-para-sniper-soporific-desc
+  productEntity: ImperialAntiMaterielBoxSoporific
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaSniperShredder
+  name: imperial-uplink-para-sniper-shredder-name
+  description: imperial-uplink-para-sniper-shredder-desc
+  productEntity: ImperialAntiMaterielBoxShredder
+  cost:
+    Telecrystal: 3
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaBioterrorSyringes
+  name: imperial-uplink-para-bioterror-syringes-name
+  description: imperial-uplink-para-bioterror-syringes-desc
+  productEntity: ImperialUplinkBioterrorSyringes
+  cost:
+    Telecrystal: 5
+  categories:
+  - ImperialUplinkNukeAmmo
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkParaAssaultPod
+  name: imperial-uplink-para-assault-pod-name
+  description: imperial-uplink-para-assault-pod-desc
+  productEntity: ImperialAssaultPodTargeterSyndicate
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 25
+  categories:
+  - ImperialUplinkDeviceTools
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true
+
+- type: listing
+  id: ImperialUplinkShieldedModsuit
+  name: imperial-uplink-shielded-modsuit-name
+  description: imperial-uplink-shielded-modsuit-desc
+  productEntity: ImperialModsuitOperativeShielded
+  discountCategory: ImperialUplinkNoDiscount
+  cost:
+    Telecrystal: 16
+  categories:
+  - ImperialUplinkSuits
+  conditions:
+  - !type:ImperialUplinkPurchasableCondition
+    traitor: false
+    nukeOps: true

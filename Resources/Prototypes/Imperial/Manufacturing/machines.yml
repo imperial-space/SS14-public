@@ -1,0 +1,537 @@
+# Производственные линии TG (code/modules/manufactorio).
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialManufacturingUnloader
+  name: производственный разгрузчик ящиков
+  description: Разгружает поданные в него ящики (и ящики для руды), выбрасывая пустой ящик вбок, а содержимое — вперёд. Мультитулом можно сменить сторону выдачи ящика.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Rotatable
+    rotateWhileAnchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: Imperial/Manufacturing/unloader.rsi
+    noRot: true
+    layers:
+    - state: unloader-corner
+      map: [ "base" ]
+  - type: Appearance
+  - type: Machine
+    board: ImperialManufacturingUnloaderBoard
+  - type: ApcPowerReceiver
+    powerLoad: 50
+  - type: ImperialManufacturing
+    kind: Unloader
+    powerCost: 2000
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialManufacturingCrusher
+  name: производственная дробилка
+  description: Дробит любой поданный предмет. Материалы меньше листа хранятся в машине.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Rotatable
+    rotateWhileAnchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: Imperial/Manufacturing/machines.rsi
+    noRot: true
+    layers:
+    - state: crusher
+      map: [ "base" ]
+  - type: Appearance
+  - type: Machine
+    board: ImperialManufacturingCrusherBoard
+  - type: ApcPowerReceiver
+    powerLoad: 50
+  - type: ImperialManufacturing
+    kind: Crusher
+    powerCost: 3000
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialManufacturingSmelter
+  name: производственная плавильня
+  description: Попросту сжигает всё, что в неё попадает. Переплавляет руду.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Rotatable
+    rotateWhileAnchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: Imperial/Manufacturing/machines.rsi
+    noRot: true
+    layers:
+    - state: smelter
+      map: [ "base" ]
+  - type: Appearance
+  - type: Machine
+    board: ImperialManufacturingSmelterBoard
+  - type: ApcPowerReceiver
+    powerLoad: 50
+  - type: ImperialManufacturing
+    kind: Smelter
+    powerCost: 4000
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialManufacturingLathe
+  name: производственный лат
+  description: Печатает заданный чертёж, пока не кончатся ресурсы. Принимает только листы и другие стопки материалов.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Rotatable
+    rotateWhileAnchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: Imperial/Manufacturing/machines.rsi
+    noRot: true
+    layers:
+    - state: lathe
+      map: [ "base" ]
+  - type: Appearance
+  - type: Machine
+    board: ImperialManufacturingLatheBoard
+  - type: ApcPowerReceiver
+    powerLoad: 50
+  - type: ImperialManufacturing
+    kind: Lathe
+    powerCost: 5000
+  - type: UserInterface
+    interfaces:
+      enum.ImperialManufacturingUiKey.Select:
+        type: ImperialManufacturingSelectBoundUserInterface
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialManufacturingCrafter
+  name: производственный сборочный автомат
+  description: Собирает заданный рецепт, пока не кончатся ресурсы. Используются только ресурсы, лежащие на нём.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Rotatable
+    rotateWhileAnchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        hard: false
+        mask:
+        - MachineMask
+  - type: Sprite
+    sprite: Imperial/Manufacturing/machines.rsi
+    noRot: true
+    drawdepth: FloorObjects
+    layers:
+    - state: crafter
+      map: [ "base" ]
+  - type: Appearance
+  - type: Machine
+    board: ImperialManufacturingCrafterBoard
+  - type: ApcPowerReceiver
+    powerLoad: 50
+  - type: ImperialManufacturing
+    kind: Crafter
+    powerCost: 5000
+  - type: UserInterface
+    interfaces:
+      enum.ImperialManufacturingUiKey.Select:
+        type: ImperialManufacturingSelectBoundUserInterface
+
+- type: entity
+  parent: ImperialManufacturingCrafter
+  id: ImperialManufacturingCooker
+  name: производственная кухонная машина
+  description: Готовит заданный рецепт, пока не кончатся ресурсы. Лишние ингредиенты игнорируются.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Rotatable
+    rotateWhileAnchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        hard: false
+        mask:
+        - MachineMask
+  - type: Sprite
+    sprite: Imperial/Manufacturing/machines.rsi
+    noRot: true
+    drawdepth: FloorObjects
+    layers:
+    - state: crafter
+      map: [ "base" ]
+  - type: Appearance
+  - type: ImperialManufacturing
+    kind: Crafter
+    powerCost: 5000
+    cooking: true
+
+- type: entity
+  parent: [ BaseMachine, ConstructibleMachine ]
+  id: ImperialManufacturingRouter
+  name: производственный маршрутизатор
+  description: Поровну распределяет поступающее по трём выходам. Стопки делятся, выходы переключаются мультитулом. Не принимает от других маршрутизаторов.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Rotatable
+    rotateWhileAnchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: Imperial/Manufacturing/machines.rsi
+    noRot: true
+    layers:
+    - state: splitter
+      map: [ "base" ]
+  - type: Appearance
+  - type: Machine
+    board: ImperialManufacturingRouterBoard
+  - type: ImperialManufacturing
+    kind: Router
+    allowMobBumpIntake: true
+
+- type: entity
+  parent: [ BaseMachine, ConstructibleMachine ]
+  id: ImperialManufacturingSorter
+  name: конвейерный сортировщик
+  description: Сталкивает лежащее на нём в стороны по заданным условиям. Настраивается мультитулом.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Rotatable
+    rotateWhileAnchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        hard: false
+        mask:
+        - MachineMask
+  - type: Sprite
+    sprite: Imperial/Manufacturing/machines.rsi
+    noRot: true
+    drawdepth: FloorObjects
+    layers:
+    - state: router
+      map: [ "base" ]
+  - type: Appearance
+  - type: Machine
+    board: ImperialManufacturingSorterBoard
+  - type: ImperialManufacturing
+    kind: Sorter
+  - type: UserInterface
+    interfaces:
+      enum.ImperialManufacturingUiKey.Sorter:
+        type: ImperialManufacturingSorterBoundUserInterface
+      enum.ImperialManufacturingUiKey.Select:
+        type: ImperialManufacturingSelectBoundUserInterface
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialManufacturingUnloaderBoard
+  name: плата (производственный разгрузчик ящиков)
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialManufacturingUnloader
+    stackRequirements:
+      Steel: 5
+    tagRequirements:
+      ImperialStockPartServo:
+        amount: 1
+        defaultPrototype: ImperialStockPartServo1
+        examineName: imperial-stock-part-type-servo
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialManufacturingCrusherBoard
+  name: плата (производственная дробилка)
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialManufacturingCrusher
+    stackRequirements:
+      Steel: 5
+    tagRequirements:
+      ImperialStockPartServo:
+        amount: 1
+        defaultPrototype: ImperialStockPartServo1
+        examineName: imperial-stock-part-type-servo
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialManufacturingSmelterBoard
+  name: плата (производственная плавильня)
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialManufacturingSmelter
+    stackRequirements:
+      Steel: 5
+    tagRequirements:
+      ImperialStockPartMicroLaser:
+        amount: 1
+        defaultPrototype: ImperialStockPartMicroLaser1
+        examineName: imperial-stock-part-type-microlaser
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialManufacturingLatheBoard
+  name: плата (производственный лат)
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialManufacturingLathe
+    stackRequirements:
+      Steel: 5
+    tagRequirements:
+      ImperialStockPartMatterBin:
+        amount: 1
+        defaultPrototype: ImperialStockPartMatterBin1
+        examineName: imperial-stock-part-type-matterbin
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialManufacturingCrafterBoard
+  name: плата (производственный сборочный автомат)
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialManufacturingCrafter
+    stackRequirements:
+      Steel: 5
+    tagRequirements:
+      ImperialStockPartServo:
+        amount: 1
+        defaultPrototype: ImperialStockPartServo1
+        examineName: imperial-stock-part-type-servo
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialManufacturingSorterBoard
+  name: плата (конвейерный сортировщик)
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialManufacturingSorter
+    stackRequirements:
+      Steel: 5
+    tagRequirements:
+      ImperialStockPartScanningModule:
+        amount: 1
+        defaultPrototype: ImperialStockPartScanningModule1
+        examineName: imperial-stock-part-type-scanningmodule
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialManufacturingRouterBoard
+  name: плата (производственный маршрутизатор)
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialManufacturingRouter
+    stackRequirements:
+      Steel: 5
+
+- type: entity
+  parent: BaseStructure
+  id: ImperialManufacturingStorageBox
+  name: производственный ящик хранения
+  description: По сути, просто ящик. Принимает ресурсы, если закреплён. Достать что-то по одному можно только машиной, иначе высыпется всё сразу.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Rotatable
+    rotateWhileAnchored: true
+  - type: InteractionOutline
+  - type: Anchorable
+    delay: 2
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: Imperial/Manufacturing/machines.rsi
+    noRot: true
+    layers:
+    - state: box
+      map: [ "base" ]
+  - type: Appearance
+  - type: ContainerContainer
+  - type: ImperialManufacturing
+    kind: StorageBox
+  - type: Construction
+    graph: ImperialManufacturingStorageBox
+    node: box
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 10
+            max: 10
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+
+- type: constructionGraph
+  id: ImperialManufacturingStorageBox
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: box
+      steps:
+      - material: Steel
+        amount: 10
+        doAfter: 2
+  - node: box
+    entity: ImperialManufacturingStorageBox
+
+- type: construction
+  id: ImperialManufacturingStorageBox
+  graph: ImperialManufacturingStorageBox
+  startNode: start
+  targetNode: box
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked

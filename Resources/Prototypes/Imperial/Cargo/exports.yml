@@ -1,0 +1,717 @@
+# Экспорт TG (code/modules/cargo/exports), сгенерирован scratchpad/cargo/gen_exports.pl.
+
+- type: imperialCargoExport
+  id: ImperialExportInertAnomaly
+  priority: 10
+  entities: [ AnomalyCoreIceInert, AnomalyCoreRockInert, AnomalyCoreTechInert, AnomalyCoreFleshInert, AnomalyCoreFloraInert, AnomalyCoreSantaInert ]
+  cost: 1600
+
+- type: imperialCargoExport
+  id: ImperialExportFood
+  priority: 50
+  kind: Food
+  cost: 10
+
+- type: imperialCargoExport
+  id: ImperialExportSecHelmet
+  priority: 60
+  entities: [ ClothingHeadHelmetBasic ]
+  cost: 100
+
+- type: imperialCargoExport
+  id: ImperialExportSecArmor
+  priority: 70
+  entities: [ ClothingOuterArmorBasic ]
+  cost: 100
+
+- type: imperialCargoExport
+  id: ImperialExportRiotShield
+  priority: 80
+  entities: [ RiotShield ]
+  cost: 100
+
+- type: imperialCargoExport
+  id: ImperialExportBreathMask
+  priority: 90
+  entities: [ ClothingMaskBreath ]
+  cost: 2
+
+- type: imperialCargoExport
+  id: ImperialExportGasMask
+  priority: 100
+  entities: [ ClothingMaskGas ]
+  includeChildren: false
+  cost: 10
+
+- type: imperialCargoExport
+  id: ImperialExportHelmetSpace
+  priority: 110
+  entities: [ ClothingHeadHelmetEVA, ClothingHeadHelmetAncient ]
+  includeChildren: false
+  cost: 30
+
+- type: imperialCargoExport
+  id: ImperialExportSuitSpace
+  priority: 120
+  entities: [ ClothingOuterHardsuitEVA, ClothingOuterHardsuitAncientEVA ]
+  includeChildren: false
+  cost: 60
+
+- type: imperialCargoExport
+  id: ImperialExportSyndiehelmetSpace
+  priority: 130
+  entities: [ ClothingHeadHelmetSyndicate ]
+  cost: 60
+
+- type: imperialCargoExport
+  id: ImperialExportSyndiesuitSpace
+  priority: 140
+  entities: [ ClothingOuterEVASuitSyndicate ]
+  cost: 120
+
+- type: imperialCargoExport
+  id: ImperialExportRadhelmet
+  priority: 150
+  entities: [ ClothingHeadHatHoodRad ]
+  cost: 20
+
+- type: imperialCargoExport
+  id: ImperialExportRadsuit
+  priority: 160
+  entities: [ ClothingOuterSuitRad ]
+  cost: 40
+
+- type: imperialCargoExport
+  id: ImperialExportBiohood
+  priority: 170
+  entities: [ ClothingHeadHatHoodBioGeneral, ClothingHeadHatHoodBioCmo, ClothingHeadHatHoodBioJanitor, ClothingHeadHatHoodBioScientist, ClothingHeadHatHoodBioSecurity, ClothingHeadHatHoodBioVirology ]
+  cost: 20
+
+- type: imperialCargoExport
+  id: ImperialExportBiosuit
+  priority: 180
+  entities: [ ClothingOuterBioGeneral, ClothingOuterBioCmo, ClothingOuterBioJanitor, ClothingOuterBioScientist, ClothingOuterBioSecurity, ClothingOuterBioVirology ]
+  cost: 40
+
+- type: imperialCargoExport
+  id: ImperialExportBombhelmet
+  priority: 190
+  entities: [ ClothingHeadHelmetBombSuit ]
+  cost: 20
+
+- type: imperialCargoExport
+  id: ImperialExportBombsuit
+  priority: 200
+  entities: [ ClothingOuterSuitBomb ]
+  cost: 40
+
+- type: imperialCargoExport
+  id: ImperialExportBilton
+  priority: 230
+  entities: [ ClothingShoesBootsCowboyFancy ]
+  cost: 1000
+
+- type: imperialCargoExport
+  id: ImperialExportCrate
+  priority: 260
+  entities: [ CrateGenericSteel, CrateBaseSecure ]
+  exclude: [ CrateCoffin ]
+  cost: 200
+  elasticity: 0
+
+- type: imperialCargoExport
+  id: ImperialExportCrateWoodenOre
+  priority: 280
+  entities: [ OreBox ]
+  cost: 40
+  elasticity: 0
+
+- type: imperialCargoExport
+  id: ImperialExportCrateCoffin
+  priority: 300
+  entities: [ CrateCoffin ]
+  exclude: [ CrateCoffin ]
+  cost: 100
+  elasticity: 0
+
+- type: imperialCargoExport
+  id: ImperialExportReagentDispenserWater
+  priority: 320
+  extraCost: 80
+  entities: [ WaterTankFull ]
+  kind: ReagentTank
+  cost: 100
+
+- type: imperialCargoExport
+  id: ImperialExportReagentDispenserFuel
+  priority: 330
+  extraCost: 160
+  entities: [ WeldingFuelTankFull ]
+  kind: ReagentTank
+  cost: 100
+
+- type: imperialCargoExport
+  id: ImperialExportEmitter
+  priority: 360
+  entities: [ Emitter, EmitterFlatpack ]
+  cost: 550
+
+- type: imperialCargoExport
+  id: ImperialExportFieldGenerator
+  priority: 370
+  entities: [ ContainmentFieldGenerator, ContainmentFieldGeneratorFlatpack ]
+  cost: 550
+
+- type: imperialCargoExport
+  id: ImperialExportTeslaCoil
+  priority: 380
+  entities: [ TeslaCoil, TeslaCoilFlatpack ]
+  cost: 450
+
+- type: imperialCargoExport
+  id: ImperialExportSupermatter
+  priority: 390
+  entities: [ Supermatter ]
+  cost: 3200
+
+- type: imperialCargoExport
+  id: ImperialExportGroundingRod
+  priority: 400
+  entities: [ TeslaGroundingRod, TeslaGroundingRodFlatpack ]
+  cost: 240
+
+- type: imperialCargoExport
+  id: ImperialExportGasCanister
+  priority: 430
+  kind: GasCanister
+  cost: 10
+
+- type: imperialCargoExport
+  id: ImperialExportLavalandMinor
+  priority: 440
+  entities: [ TalismanImmortality, ClothingEyesEyeOfGod, ClothingShoesClownBanana, EnvyKnife, ClothingHandsConcussiveGauntlets ]
+  cost: 4000
+
+- type: imperialCargoExport
+  id: ImperialExportLavalandMegafauna
+  priority: 450
+  entities: [ MeleeWeaponHierophantClub, MeleeWeaponCleavingSaw, ImperialAnomalousCrystalDarkReprise, ImperialAnomalousCrystalEmitter, ImperialAnomalousCrystalHelpers, ImperialStormStaff ]
+  cost: 16000
+
+- type: imperialCargoExport
+  id: ImperialExportMaterialPlasma
+  priority: 500
+  materials: [ Plasma, RawPlasma ]
+  kind: Material
+  cost: 80
+  elasticity: 0
+  hit: 0.004
+  recovery: 480
+
+- type: imperialCargoExport
+  id: ImperialExportMaterialBananium
+  priority: 510
+  materials: [ Bananium, RawBananium ]
+  kind: Material
+  cost: 400
+  hit: 0.004
+  recovery: 480
+
+- type: imperialCargoExport
+  id: ImperialExportMaterialPlastic
+  priority: 540
+  materials: [ Plastic ]
+  kind: Material
+  cost: 10
+  hit: 0.004
+  recovery: 480
+
+- type: imperialCargoExport
+  id: ImperialExportMaterialMetalHydrogen
+  priority: 570
+  materials: [ Hydrogen ]
+  kind: Material
+  cost: 210
+  hit: 0.004
+  recovery: 480
+
+- type: imperialCargoExport
+  id: ImperialExportMaterialMarketDiamond
+  priority: 580
+  materials: [ Diamond, RawDiamond ]
+  market: ImperialStockDiamond
+  kind: Material
+  cost: 1
+  hit: 0.004
+  recovery: 480
+
+- type: imperialCargoExport
+  id: ImperialExportMaterialMarketUranium
+  priority: 590
+  materials: [ Uranium, RawUranium ]
+  market: ImperialStockUranium
+  kind: Material
+  cost: 1
+  hit: 0.004
+  recovery: 480
+
+- type: imperialCargoExport
+  id: ImperialExportMaterialMarketGold
+  priority: 600
+  materials: [ Gold, RawGold ]
+  market: ImperialStockGold
+  kind: Material
+  cost: 1
+  hit: 0.004
+  recovery: 480
+
+- type: imperialCargoExport
+  id: ImperialExportMaterialMarketSilver
+  priority: 610
+  materials: [ Silver, RawSilver ]
+  market: ImperialStockSilver
+  kind: Material
+  cost: 1
+  hit: 0.004
+  recovery: 480
+
+- type: imperialCargoExport
+  id: ImperialExportMaterialMarketIron
+  priority: 640
+  materials: [ Steel, RawIron ]
+  market: ImperialStockIron
+  kind: Material
+  cost: 1
+  hit: 0.004
+  recovery: 480
+
+- type: imperialCargoExport
+  id: ImperialExportMaterialMarketGlass
+  priority: 650
+  materials: [ Glass, RawQuartz ]
+  market: ImperialStockGlass
+  kind: Material
+  cost: 1
+  hit: 0.004
+  recovery: 480
+
+- type: imperialCargoExport
+  id: ImperialExportRipley
+  priority: 660
+  entities: [ MechRipley ]
+  cost: 2600
+
+- type: imperialCargoExport
+  id: ImperialExportOrganHeart
+  priority: 710
+  entities: [ OrganHumanHeart ]
+  includeChildren: false
+  cost: 40
+
+- type: imperialCargoExport
+  id: ImperialExportOrganEyes
+  priority: 720
+  entities: [ OrganHumanEyes ]
+  includeChildren: false
+  cost: 20
+
+- type: imperialCargoExport
+  id: ImperialExportOrganEars
+  priority: 730
+  entities: [ OrganHumanEars ]
+  includeChildren: false
+  cost: 20
+
+- type: imperialCargoExport
+  id: ImperialExportOrganLiver
+  priority: 740
+  entities: [ OrganHumanLiver ]
+  includeChildren: false
+  cost: 20
+
+- type: imperialCargoExport
+  id: ImperialExportOrganLungs
+  priority: 750
+  entities: [ OrganHumanLungs ]
+  includeChildren: false
+  cost: 20
+
+- type: imperialCargoExport
+  id: ImperialExportOrganStomach
+  priority: 760
+  entities: [ OrganHumanStomach ]
+  includeChildren: false
+  cost: 20
+
+- type: imperialCargoExport
+  id: ImperialExportOrganTongue
+  priority: 770
+  entities: [ OrganHumanTongue ]
+  includeChildren: false
+  cost: 20
+
+- type: imperialCargoExport
+  id: ImperialExportSolarAssembly
+  priority: 810
+  entities: [ SolarAssemblyFlatpack ]
+  cost: 50
+
+- type: imperialCargoExport
+  id: ImperialExportTrackerBoard
+  priority: 820
+  entities: [ SolarTrackerElectronics ]
+  cost: 100
+
+- type: imperialCargoExport
+  id: ImperialExportControlBoard
+  priority: 830
+  entities: [ SolarControlComputerCircuitboard ]
+  cost: 150
+
+- type: imperialCargoExport
+  id: ImperialExportRefillCanister
+  priority: 870
+  entities: [ VendingMachineRestockVendomat ]
+  cost: 100
+
+- type: imperialCargoExport
+  id: ImperialExportSeed
+  priority: 880
+  extraCost: 2.5
+  kind: Seed
+  cost: 50
+  elasticity: 0
+
+- type: imperialCargoExport
+  id: ImperialExportStackGoliathHide
+  priority: 920
+  entities: [ MaterialGoliathHide ]
+  kind: Stack
+  cost: 200
+
+- type: imperialCargoExport
+  id: ImperialExportStackCorgi
+  priority: 940
+  entities: [ MaterialHideCorgi ]
+  kind: Stack
+  cost: 200
+
+- type: imperialCargoExport
+  id: ImperialExportStackPlasteel
+  priority: 1000
+  entities: [ SheetPlasteel ]
+  kind: Stack
+  cost: 82
+
+- type: imperialCargoExport
+  id: ImperialExportStackRglass
+  priority: 1010
+  entities: [ SheetRGlass ]
+  kind: Stack
+  cost: 4
+
+- type: imperialCargoExport
+  id: ImperialExportStackWood
+  priority: 1030
+  entities: [ MaterialWoodPlank1 ]
+  kind: Stack
+  cost: 10
+
+- type: imperialCargoExport
+  id: ImperialExportStackCloth
+  priority: 1040
+  entities: [ MaterialCloth ]
+  kind: Stack
+  cost: 5
+
+- type: imperialCargoExport
+  id: ImperialExportStackDurathread
+  priority: 1050
+  entities: [ MaterialDurathread ]
+  kind: Stack
+  cost: 70
+
+- type: imperialCargoExport
+  id: ImperialExportStackCardboard
+  priority: 1060
+  entities: [ MaterialCardboard ]
+  kind: Stack
+  cost: 2
+
+- type: imperialCargoExport
+  id: ImperialExportStackCable
+  priority: 1080
+  entities: [ CableHVStack, CableMVStack, CableApcStack ]
+  kind: Stack
+  cost: 0.2
+
+- type: imperialCargoExport
+  id: ImperialExportToolbox
+  priority: 1150
+  entities: [ ToolboxEmergencyFilled ]
+  cost: 4
+
+- type: imperialCargoExport
+  id: ImperialExportScrewdriver
+  priority: 1160
+  entities: [ Screwdriver ]
+  includeChildren: false
+  cost: 2
+
+- type: imperialCargoExport
+  id: ImperialExportWrench
+  priority: 1170
+  entities: [ Wrench ]
+  cost: 2
+
+- type: imperialCargoExport
+  id: ImperialExportCrowbar
+  priority: 1180
+  entities: [ Crowbar, CrowbarRed ]
+  cost: 2
+
+- type: imperialCargoExport
+  id: ImperialExportWirecutters
+  priority: 1190
+  entities: [ Wirecutter ]
+  cost: 2
+
+- type: imperialCargoExport
+  id: ImperialExportWeldingtool
+  priority: 1200
+  entities: [ Welder ]
+  includeChildren: false
+  cost: 5
+
+- type: imperialCargoExport
+  id: ImperialExportWeldingtoolEmergency
+  priority: 1210
+  entities: [ WelderMini ]
+  includeChildren: false
+  cost: 2
+
+- type: imperialCargoExport
+  id: ImperialExportWeldingtoolIndustrial
+  priority: 1220
+  entities: [ WelderIndustrial, WelderIndustrialAdvanced ]
+  includeChildren: false
+  cost: 10
+
+- type: imperialCargoExport
+  id: ImperialExportExtinguisher
+  priority: 1230
+  entities: [ FireExtinguisher ]
+  includeChildren: false
+  cost: 15
+
+- type: imperialCargoExport
+  id: ImperialExportExtinguisherMini
+  priority: 1240
+  entities: [ FireExtinguisherMini ]
+  includeChildren: false
+  cost: 2
+
+- type: imperialCargoExport
+  id: ImperialExportFlashlight
+  priority: 1250
+  entities: [ FlashlightLantern ]
+  includeChildren: false
+  cost: 5
+
+- type: imperialCargoExport
+  id: ImperialExportFlashlightFlare
+  priority: 1260
+  entities: [ Flare ]
+  includeChildren: false
+  cost: 2
+
+- type: imperialCargoExport
+  id: ImperialExportFlashlightSeclite
+  priority: 1270
+  entities: [ FlashlightSeclite ]
+  includeChildren: false
+  cost: 10
+
+- type: imperialCargoExport
+  id: ImperialExportAnalyzer
+  priority: 1280
+  entities: [ GasAnalyzer ]
+  cost: 5
+
+- type: imperialCargoExport
+  id: ImperialExportAnalyzerTScanner
+  priority: 1290
+  entities: [ trayScanner ]
+  cost: 5
+
+- type: imperialCargoExport
+  id: ImperialExportRadio
+  priority: 1300
+  entities: [ RadioHandheld ]
+  cost: 5
+
+- type: imperialCargoExport
+  id: ImperialExportWeldingtoolExperimental
+  priority: 1310
+  entities: [ WelderExperimental ]
+  includeChildren: false
+  cost: 90
+
+- type: imperialCargoExport
+  id: ImperialExportJawsoflife
+  priority: 1320
+  entities: [ JawsOfLife ]
+  cost: 100
+
+- type: imperialCargoExport
+  id: ImperialExportHanddrill
+  priority: 1330
+  entities: [ PowerDrill ]
+  cost: 100
+
+- type: imperialCargoExport
+  id: ImperialExportRldMini
+  priority: 1340
+  entities: [ ImperialRapidLightDeviceMini ]
+  cost: 150
+
+- type: imperialCargoExport
+  id: ImperialExportRcd
+  priority: 1360
+  entities: [ RCD ]
+  cost: 100
+
+- type: imperialCargoExport
+  id: ImperialExportRcdAmmo
+  priority: 1370
+  entities: [ RCDAmmo ]
+  cost: 60
+
+- type: imperialCargoExport
+  id: ImperialExportSoap
+  priority: 1390
+  entities: [ Soap, SoapNT, SoapDeluxe, SoapSyndie ]
+  cost: 75
+
+- type: imperialCargoExport
+  id: ImperialExportSoapHomemade
+  priority: 1400
+  entities: [ SoapHomemade ]
+  cost: 30
+
+- type: imperialCargoExport
+  id: ImperialExportSoapOmega
+  priority: 1410
+  entities: [ SoapOmega ]
+  cost: 2800
+
+- type: imperialCargoExport
+  id: ImperialExportCandle
+  priority: 1420
+  entities: [ Candle, CandleRed ]
+  cost: 12.25
+
+- type: imperialCargoExport
+  id: ImperialExportWeaponBaton
+  priority: 1430
+  entities: [ Stunbaton ]
+  exclude: [ Stunprod ]
+  cost: 100
+
+- type: imperialCargoExport
+  id: ImperialExportWeaponKnife
+  priority: 1440
+  entities: [ CombatKnife ]
+  includeChildren: false
+  cost: 100
+
+- type: imperialCargoExport
+  id: ImperialExportWeaponLaser
+  priority: 1460
+  entities: [ WeaponLaserGun ]
+  includeChildren: false
+  cost: 200
+
+- type: imperialCargoExport
+  id: ImperialExportWeaponDisabler
+  priority: 1490
+  entities: [ WeaponDisabler ]
+  includeChildren: false
+  cost: 100
+
+- type: imperialCargoExport
+  id: ImperialExportWeaponShotgun
+  priority: 1530
+  entities: [ WeaponShotgunEnforcer ]
+  includeChildren: false
+  cost: 300
+
+- type: imperialCargoExport
+  id: ImperialExportWeaponFlashbang
+  priority: 1540
+  entities: [ GrenadeFlashBang ]
+  includeChildren: false
+  cost: 5
+
+- type: imperialCargoExport
+  id: ImperialExportWeaponTeargas
+  priority: 1550
+  entities: [ TearGasGrenade ]
+  includeChildren: false
+  cost: 5
+
+- type: imperialCargoExport
+  id: ImperialExportWeaponFlash
+  priority: 1560
+  entities: [ Flash ]
+  cost: 5
+
+- type: imperialCargoExport
+  id: ImperialExportWeaponHandcuffs
+  priority: 1570
+  entities: [ Handcuffs ]
+  includeChildren: false
+  cost: 3
+
+- type: imperialCargoExport
+  id: ImperialExportWeaponWt550
+  priority: 1580
+  entities: [ WeaponSubMachineGunWt550 ]
+  includeChildren: false
+  cost: 300
+
+- type: imperialCargoExport
+  id: ImperialExportSlimeExtractGrey
+  priority: 1590
+  entities: [ SlimeExtractGrey ]
+  cost: 10
+
+- type: imperialCargoExport
+  id: ImperialExportSlimeExtractCommon
+  priority: 1600
+  entities: [ SlimeExtractMetal, SlimeExtractOrange, SlimeExtractPurple, SlimeExtractBlue ]
+  cost: 24
+
+- type: imperialCargoExport
+  id: ImperialExportSlimeExtractUncommon
+  priority: 1610
+  entities: [ SlimeExtractGold, SlimeExtractGreen, SlimeExtractRed, SlimeExtractPink ]
+  cost: 40
+
+- type: imperialCargoExport
+  id: ImperialExportSlimeExtractRare
+  priority: 1620
+  entities: [ SlimeExtractSilver, SlimeExtractDarkBlue, SlimeExtractDarkPurple, SlimeExtractYellow ]
+  cost: 56
+
+- type: imperialCargoExport
+  id: ImperialExportSlimeExtractHypercharged
+  priority: 1640
+  entities: [ SlimeHyperchargedCell ]
+  cost: 240
+
+- type: imperialCargoExport
+  id: ImperialExportSlimeExtractRainbow
+  priority: 1650
+  entities: [ SlimeExtractRainbow ]
+  cost: 200

@@ -1,0 +1,465 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (fishing.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "bait_can"
+    },
+    {
+      "name": "bait_can_open"
+    },
+    {
+      "name": "bait_can_empty"
+    },
+    {
+      "name": "worm"
+    },
+    {
+      "name": "doughball"
+    },
+    {
+      "name": "doughball_blue"
+    },
+    {
+      "name": "hook"
+    },
+    {
+      "name": "shiny"
+    },
+    {
+      "name": "treasure"
+    },
+    {
+      "name": "gold_shiny"
+    },
+    {
+      "name": "weighted"
+    },
+    {
+      "name": "rescue"
+    },
+    {
+      "name": "hook_bone"
+    },
+    {
+      "name": "gyro"
+    },
+    {
+      "name": "jaws"
+    },
+    {
+      "name": "fishing_rod_hook_shiny_overlay"
+    },
+    {
+      "name": "hook_weighted_overlay"
+    },
+    {
+      "name": "hook_rescue_overlay"
+    },
+    {
+      "name": "hook_treasure_overlay"
+    },
+    {
+      "name": "hook_overlay"
+    },
+    {
+      "name": "hook_gyro_overlay"
+    },
+    {
+      "name": "hook_jaws_overlay"
+    },
+    {
+      "name": "battery_overlay"
+    },
+    {
+      "name": "worm_overlay"
+    },
+    {
+      "name": "dough_overlay"
+    },
+    {
+      "name": "dough_blue_overlay"
+    },
+    {
+      "name": "fishing_rod"
+    },
+    {
+      "name": "fishing_rod_bone"
+    },
+    {
+      "name": "fishing_rod_science"
+    },
+    {
+      "name": "fishing_rod_telescopic"
+    },
+    {
+      "name": "fishing_rod_telescopic_collapsed"
+    },
+    {
+      "name": "fishing_rod_master"
+    },
+    {
+      "name": "fishing_rod_master_collapsed"
+    },
+    {
+      "name": "fishing_rod_material"
+    },
+    {
+      "name": "reel_overlay"
+    },
+    {
+      "name": "reel_bone"
+    },
+    {
+      "name": "reel_science"
+    },
+    {
+      "name": "reel_telescopic"
+    },
+    {
+      "name": "reel_master"
+    },
+    {
+      "name": "reel_material"
+    },
+    {
+      "name": "line_overlay"
+    },
+    {
+      "name": "reel_white"
+    },
+    {
+      "name": "reel_green"
+    },
+    {
+      "name": "reel_red"
+    },
+    {
+      "name": "reel_blue"
+    },
+    {
+      "name": "reel_sinew"
+    },
+    {
+      "name": "reel_auto"
+    },
+    {
+      "name": "reel_bluespace",
+      "delays": [
+        [
+          0.5,
+          0.15,
+          0.15,
+          0.1,
+          0.05,
+          0.05,
+          0.1,
+          0.15,
+          0.15,
+          0.5,
+          0.2,
+          0.1,
+          0.1,
+          0.05,
+          0.05,
+          0.1,
+          0.15,
+          0.15
+        ]
+      ]
+    },
+    {
+      "name": "float"
+    },
+    {
+      "name": "lure_light"
+    },
+    {
+      "name": "lure_light_emissive"
+    },
+    {
+      "name": "daisy_chain"
+    },
+    {
+      "name": "minnow"
+    },
+    {
+      "name": "plug"
+    },
+    {
+      "name": "dropping"
+    },
+    {
+      "name": "spoon"
+    },
+    {
+      "name": "artificial_fly"
+    },
+    {
+      "name": "led"
+    },
+    {
+      "name": "led_emissive"
+    },
+    {
+      "name": "lucky_coin"
+    },
+    {
+      "name": "algae"
+    },
+    {
+      "name": "grub"
+    },
+    {
+      "name": "buzzbait"
+    },
+    {
+      "name": "spinnerbait"
+    },
+    {
+      "name": "fishing_bag"
+    },
+    {
+      "name": "fishing_bag_carpskin"
+    },
+    {
+      "name": "portal"
+    },
+    {
+      "name": "portal_open"
+    },
+    {
+      "name": "portal_on"
+    },
+    {
+      "name": "portal_emissive",
+      "delays": [
+        [
+          5,
+          0.05,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "portal_aquarium",
+      "delays": [
+        [
+          0.17999999,
+          0.17999999,
+          0.17999999,
+          0.17999999,
+          0.17999999,
+          0.17999999,
+          0.17999999,
+          0.17999999,
+          0.17999999
+        ]
+      ]
+    },
+    {
+      "name": "portal_beach",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "portal_chasm"
+    },
+    {
+      "name": "portal_ocean",
+      "delays": [
+        [
+          0.6,
+          0.3,
+          0.3,
+          0.3,
+          0.6,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "portal_hyperspace",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "portal_randomizer",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "portal_syndicate",
+      "delays": [
+        [
+          0.1,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "portal_lava",
+      "delays": [
+        [
+          2,
+          2,
+          2,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "portal_river",
+      "delays": [
+        [
+          0.1,
+          0.2,
+          0.3,
+          0.2,
+          0.1,
+          0.2,
+          0.3,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "portal_plasma",
+      "delays": [
+        [
+          0.8,
+          0.8,
+          0.8,
+          0.8,
+          0.8,
+          0.8,
+          0.8,
+          0.8,
+          0.8,
+          0.8,
+          0.8,
+          0.8
+        ]
+      ]
+    },
+    {
+      "name": "portal_tray"
+    },
+    {
+      "name": "portal_rift",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "portal_fry",
+      "delays": [
+        [
+          1,
+          1,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "portal_mansus",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "fish_trait_injector",
+      "delays": [
+        [
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.25
+        ]
+      ]
+    },
+    {
+      "name": "fish_gun"
+    },
+    {
+      "name": "fish_gun_inject",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "fish_gun_extract"
+    }
+  ]
+}

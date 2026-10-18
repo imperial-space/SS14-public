@@ -1,0 +1,61 @@
+# Экспериментальная наука TG: сканер экспериментов (handheld_scanner.dm) и реагенты для экспериментов.
+
+- type: entity
+  parent: BaseItem
+  id: ImperialExperiScanner
+  name: сканер экспериментов
+  description: Ручной сканер для выполнения многочисленных экспериментов современной науки. Работает с сервером исследований своей станции.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/experiscanner.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Research/experiscanner.rsi
+  - type: TgExperiScanner
+  - type: StaticPrice
+    price: 40
+
+# /datum/design/experi_scanner: протолат, 500 стекла и 500 железа (SMALL_MATERIAL_AMOUNT × 5).
+- type: latheRecipe
+  id: ImperialExperiScannerRecipe
+  result: ImperialExperiScanner
+  categories:
+  - Tools
+  completetime: 2
+  materials:
+    Glass: 500
+    Steel: 500
+
+- type: latheRecipePack
+  id: ImperialTgStaticProtolathe
+  recipes:
+  - ImperialExperiScannerRecipe
+
+# /datum/reagent/cryostylane: охлаждает тело.
+- type: reagent
+  id: Cryostylane
+  name: reagent-name-cryostylane
+  group: Toxins
+  desc: reagent-desc-cryostylane
+  physicalDesc: reagent-physical-desc-icy
+  flavor: cold
+  color: "#0bc8f0"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:AdjustTemperature
+        amount: -15000
+
+# /datum/chemical_reaction/cryostylane: лёд + стабильная плазма + азот.
+- type: reaction
+  id: Cryostylane
+  reactants:
+    Ice:
+      amount: 1
+    Plasma:
+      amount: 1
+    Nitrogen:
+      amount: 1
+  products:
+    Cryostylane: 3

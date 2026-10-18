@@ -1,0 +1,296 @@
+# Экспресс-консоль, капсулы снабжения и маяк TG (expressconsole.dm, supplypod.dm, supplypod_beacon.dm).
+
+- type: entity
+  id: ImperialPodLandingZone
+  name: индикатор зоны посадки
+  description: Голографическая проекция, обозначающая место чьей-то посадки. Лучше отойти подальше.
+  categories: [ HideSpawnMenu ]
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Imperial/Cargo/landing.rsi
+    drawdepth: FloorObjects
+    noRot: true
+    layers:
+    - state: LZ
+      map: [ "lz" ]
+      shader: unshaded
+    - state: LZ_Slider
+      map: [ "slider" ]
+      shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#ff4040"
+  - type: ImperialPodLandingZone
+
+- type: entity
+  id: ImperialSupplyPod
+  name: капсула снабжения
+  description: Капсула снабжения Нанотрейзен.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 500
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: Imperial/Cargo/supplypod.rsi
+    noRot: true
+    drawdepth: Objects
+    offset: 0, 0.5
+    layers:
+    - state: rubble_bg
+      map: [ "rubble_bg" ]
+      visible: false
+    - state: closed
+      map: [ "base" ]
+    - state: pod_glow_yellow
+      map: [ "glow" ]
+      shader: unshaded
+    - state: rubble_fg
+      map: [ "rubble_fg" ]
+      visible: false
+  - type: Appearance
+  - type: EntityStorage
+    capacity: 100
+    isCollidableWhenOpen: false
+    openOnMove: false
+    airtight: false
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: ExplosionResistance
+    damageCoefficient: 0
+  - type: ImperialSupplyPod
+
+- type: entity
+  parent: ImperialSupplyPod
+  id: ImperialSupplyPodBluespace
+  name: блюспейс-капсула снабжения
+  description: Блюспейс-капсула снабжения Нанотрейзен. После доставки телепортируется обратно на ЦК.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cargo/supplypod.rsi
+    noRot: true
+    drawdepth: Objects
+    offset: 0, 0.5
+    layers:
+    - state: rubble_bg
+      map: [ "rubble_bg" ]
+      visible: false
+    - state: closed_bluespace
+      map: [ "base" ]
+    - state: pod_glow_blue
+      map: [ "glow" ]
+      shader: unshaded
+    - state: rubble_fg
+      map: [ "rubble_fg" ]
+      visible: false
+  - type: ImperialSupplyPod
+    bluespace: true
+    lightRange: 1
+    flashRange: 2
+
+- type: entity
+  parent: BaseItem
+  id: ImperialSupplyPodBeacon
+  name: маяк капсул снабжения
+  description: Устройство, которое можно привязать к экспресс-консоли снабжения для точной доставки капсул.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cargo/beacon.rsi
+    layers:
+    - state: supplypod_beacon
+    - state: sp_orange
+      map: [ "light" ]
+      shader: unshaded
+      visible: false
+  - type: Item
+    size: Small
+  - type: Appearance
+  - type: Anchorable
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: ImperialSupplyPodBeacon
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ImperialComputerCargoExpress
+  name: экспресс-консоль снабжения
+  description: Консоль позволяет купить посылку, которую доставят в 40 раз быстрее — благодаря новой «1500-мм орбитальной рельсовой пушке» Нанотрейзен. Все продажи почти мгновенные — выбирайте внимательно.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: request
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: ImperialExpressConsole
+  - type: ActivatableUI
+    key: enum.ImperialExpressConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ImperialExpressConsoleUiKey.Key:
+        type: ImperialExpressConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: ImperialComputerCargoExpressCircuitboard
+  - type: AccessReader
+    access: [["Cargo"]]
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#b89f25"
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ImperialComputerCargoExpressCircuitboard
+  name: плата экспресс-консоли снабжения
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ImperialComputerCargoExpress
+
+- type: entity
+  parent: BaseItem
+  id: ImperialBluespacePodDisk
+  name: диск улучшения до блюспейс-капсул
+  description: Обновление прошивки экспресс-консоли снабжения, дающее отделу снабжения блюспейс-капсулы Нанотрейзен.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Research/researchdisk.rsi
+    state: icon
+    color: "#7fb5ff"
+  - type: ImperialBluespacePodDisk
+
+# /datum/supply_pack/misc/empty: пустая блюспейс-капсула, только для экспресс-консоли.
+- type: cargoProduct
+  id: ImperialCargoMiscEmpty
+  name: imperial-cargo-ImperialCargoMiscEmpty-name
+  description: imperial-cargo-ImperialCargoMiscEmpty-desc
+  icon:
+    entity: ImperialSupplyPodBluespace
+  product: ImperialSupplyPodBluespace
+  cost: 120
+  category: imperial-cargo-category-misc
+  group: ImperialCargoPod
+
+# /obj/item/storage/lockbox/order: кейс личной покупки, открывается картой покупателя.
+- type: entity
+  parent: BriefcaseBrown
+  id: ImperialGoodyCase
+  name: кейс заказа
+  description: Запираемый кейс с личным заказом из отдела снабжения.
+  components:
+  - type: Lock
+    locked: false
+  - type: LockedStorage
+
+# NT Pay: приложение личного счёта, ставится в КПК при появлении.
+- type: entity
+  parent: BasePDACartridge
+  id: ImperialNtPayCartridge
+  name: картридж NT Pay
+  description: Программа для управления личным банковским счётом и переводов.
+  components:
+  - type: Sprite
+    state: cart-y
+  - type: UIFragment
+    ui: !type:ImperialNtPayUi
+  - type: Cartridge
+    programName: imperial-ntpay-program-name
+    icon:
+      sprite: Objects/Economy/cash.rsi
+      state: cash
+  - type: ImperialNtPayCartridge
+
+# Банкомат: снятие и внесение наличных на личный счёт.
+- type: entity
+  parent: BaseStructure
+  id: ImperialAtm
+  name: банкомат
+  description: Терминал Нанотрейзен для снятия и внесения наличных на личный счёт.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.3"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/cart.rsi
+    layers:
+    - state: off
+    - state: normal-unshaded
+      shader: unshaded
+  - type: InteractionOutline
+  - type: Anchorable
+  - type: ImperialAtm
+  - type: ActivatableUI
+    key: enum.ImperialAtmUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ImperialAtmUiKey.Key:
+        type: ImperialAtmBoundUserInterface
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: cargoProduct
+  id: ImperialCargoAtm
+  name: imperial-cargo-ImperialCargoAtm-name
+  description: imperial-cargo-ImperialCargoAtm-desc
+  icon:
+    entity: ImperialAtm
+  product: ImperialAtm
+  cost: 500
+  category: imperial-cargo-category-misc
+  group: ImperialCargo

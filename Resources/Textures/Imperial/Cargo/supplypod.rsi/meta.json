@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (supplypods.dmi), door and decal masks pre-composed",
+  "size": {
+    "x": 64,
+    "y": 64
+  },
+  "states": [
+    { "name": "closed" },
+    { "name": "open" },
+    { "name": "closed_bluespace" },
+    { "name": "open_bluespace" },
+    { "name": "rubble_fg" },
+    { "name": "rubble_bg" },
+    { "name": "pod_glow_yellow" },
+    { "name": "pod_glow_blue" }
+  ]
+}

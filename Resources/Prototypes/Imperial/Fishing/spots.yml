@@ -1,0 +1,46 @@
+# Существующие сущности сборки, в которых можно ловить рыбу (fishing_spot TG), без правки их прототипов.
+
+- type: imperialFishingSpots
+  id: Default
+  entities:
+    FloorWaterEntity: ImperialFishSourceRiver
+    FloorLavaEntity: ImperialFishSourceLavaland
+    FloorLiquidPlasmaEntity: ImperialFishSourceLavalandIcemoon
+    FloorChasmEntity: ImperialFishSourceChasm
+    FloorDrain: ImperialFishSourceMoistureTrap
+    CarpRift: ImperialFishSourceCarpRift
+    WaterfallOnsen: ImperialFishSourceHotSpring
+    ImperialDeepFryer: ImperialFishSourceDeepfryer
+  components:
+    Toilet: ImperialFishSourceToilet
+    PlantHolder: ImperialFishSourceHydroTray
+    VendingMachine: ImperialFishSourceVending
+    ImperialAquarium: ImperialFishSourceAquarium
+
+# Значки улова в мини-игре для мастеров рыбалки (GLOB.specific_fish_icons).
+- type: imperialFishingIcons
+  id: Default
+  entities:
+    MobFrog: Critter
+    MobCarp: Fish
+    MobShark: Fish
+    MobLegionNormal: Hostile
+    Remains: Bone
+    ImperialMessageInABottle: Bottle
+    TreasureCoinGold: Coin
+    TreasureCoinIron: Coin
+    ImperialFishingRod: Coin
+    SpaceCash100: Coin
+    MaterialBones1: Bone
+    SheetAdamantine: Gem
+    PlasmaOre1: Gem
+    XenoBluespaceCrystal: Gem
+    NecropolisCrate: Coin
+    ImperialFishingMysteryBox: Coin
+    PlushieCarp: Fish
+    DehydratedSpaceCarp: Fish
+  specials:
+    randomSeed: Seed
+    randomOrgan: Organ
+    vendingChuck: Coin
+    chasmDetritus: Bone

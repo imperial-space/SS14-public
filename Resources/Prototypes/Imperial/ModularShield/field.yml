@@ -1,0 +1,81 @@
+# /obj/structure/emergency_shield/modular и /obj/machinery/computer/modular_shield.
+
+- type: entity
+  id: ImperialModularShieldField
+  name: модульный энергетический щит
+  description: Энергетический щит с изменяемой конфигурацией.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: false
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/ModularShield/shield.rsi
+    state: shield-old
+    color: "#00ffff"
+    drawdepth: Objects
+  - type: Appearance
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: Airtight
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: ImperialModularShield
+
+- type: entity
+  parent: BaseComputer
+  id: ImperialModularShieldConsole
+  name: консоль управления модульными щитами
+  description: Позволяет удалённо следить за генераторами модульных щитов и включать их.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "computerLayerBody" ]
+      state: computer
+    - map: [ "computerLayerKeyboard" ]
+      state: generic_keyboard
+    - map: [ "computerLayerScreen" ]
+      state: power_monitor
+    - map: [ "computerLayerKeys" ]
+      state: power_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Computer
+    board: ImperialModularShieldConsoleBoard
+  - type: ImperialModularShieldConsole
+  - type: ActivatableUI
+    key: enum.ImperialModularShieldUiKey.Console
+  - type: UserInterface
+    interfaces:
+      enum.ImperialModularShieldUiKey.Console:
+        type: ImperialModularShieldConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ImperialModularShieldConsoleBoard
+  name: плата консоли модульных щитов
+  components:
+  - type: Sprite
+    state: cpu_engineering
+  - type: ComputerBoard
+    prototype: ImperialModularShieldConsole
+
+- type: wireLayout
+  id: ImperialModularShieldGenerator
+  wires:
+  - !type:PowerWireAction
+  - !type:ImperialModularShieldWireAction

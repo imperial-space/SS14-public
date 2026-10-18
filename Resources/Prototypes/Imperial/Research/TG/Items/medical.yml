@@ -1,0 +1,676 @@
+# Медицинские предметы из исследований TG (techweb: medbay_equip, chem_synthesis, surgery, ...).
+
+# === Сканеры ===
+
+- type: entity
+  parent: BaseItem
+  id: ImperialAutopsyScanner
+  name: сканер для вскрытия
+  description: Извлекает сведения из трупа и печатает отчёт о вскрытии.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/autopsy_scanner.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Research/TG/autopsy_scanner.rsi
+  - type: ImperialMedScanner
+    mode: Autopsy
+    delay: 5
+
+- type: entity
+  parent: BaseItem
+  id: ImperialChemicalAnalyzer
+  name: химический анализатор
+  description: Электрод с небольшой схемой, показывающий состав раствора в ёмкости.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/ph_meter.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: ImperialMedScanner
+    mode: Chemical
+    delay: 0.5
+
+- type: entity
+  parent: BaseItem
+  id: ImperialBloodScanner
+  name: гемоанализатор
+  description: Медицинский прибор Me-Lo Tech, определяющий уровень крови и распространённые лекарства в ней.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/blood_scanner.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Research/TG/blood_scanner.rsi
+  - type: ImperialMedScanner
+    mode: Blood
+    delay: 1
+
+- type: entity
+  parent: HandheldHealthAnalyzer
+  id: ImperialHealthAnalyzerAdvanced
+  name: продвинутый анализатор здоровья
+  description: Ручной сканер тела, способный с высокой точностью определять жизненно важные показатели субъекта. Работает быстрее обычного.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/health_analyzer_advanced.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: scan
+      shader: unshaded
+      visible: true
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: Item
+    sprite: Imperial/Research/TG/health_analyzer_advanced.rsi
+  - type: HealthAnalyzer
+    scanDelay: 0.5
+
+- type: entity
+  parent: FlashlightLantern
+  id: ImperialPenlight
+  name: фонарик-ручка
+  description: Фонарик размером с ручку для медперсонала. Проверьте им реакцию зрачков пациента.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/penlight.rsi
+    layers:
+    - state: icon
+    - state: on
+      map: [ "light" ]
+      visible: false
+  - type: Item
+    size: Tiny
+    heldPrefix: null
+  - type: PointLight
+    radius: 2
+    energy: 1
+  - type: ImperialMedScanner
+    mode: Pupils
+    delay: 0.5
+
+- type: entity
+  parent: ImperialPenlight
+  id: ImperialPenlightParamedic
+  name: фонарик-ручка парамедика
+  description: Мощный ультрафиолетовый фонарик-ручка. Лучше в него не смотреть.
+  components:
+  - type: Sprite
+    layers:
+    - state: surgical
+    - state: surgical-on
+      map: [ "light" ]
+      visible: false
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#b080ff"
+
+- type: entity
+  parent: BaseItem
+  id: ImperialReflexHammer
+  name: рефлекторный молоточек
+  description: Маленький молоточек с пластиковой головкой для проверки неврологических повреждений.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/reflex_hammer.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: ImperialMedScanner
+    mode: Reflex
+    delay: 0.5
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 1
+
+# === Инструменты ===
+
+- type: entity
+  parent: BaseItem
+  id: ImperialBloodFilter
+  name: фильтр крови
+  description: Для фильтрации крови пациента от посторонних реагентов.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/blood_filter.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Research/TG/blood_filter.rsi
+  - type: ImperialMedTool
+    delay: 5
+    filterAmount: 10
+
+- type: entity
+  parent: BaseItem
+  id: ImperialBonesetter
+  name: костоправ
+  description: Чтобы вправлять кости на место. Лечит тупые травмы.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/bonesetter.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Research/TG/bonesetter.rsi
+  - type: ImperialMedTool
+    delay: 3
+    healBlunt: 10
+
+- type: entity
+  parent: Cautery
+  id: ImperialSearingTool
+  name: прижигающий инструмент
+  description: Проецирует мощный лазер для медицинских целей. Работает как улучшенный прижигатель.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/searing_tool.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Research/TG/searing_tool.rsi
+
+- type: entity
+  parent: BaseHealingItem
+  id: ImperialSurgicalTape
+  name: хирургическая лента
+  description: Для скрепления сломанных костей и закрытия ран, а не для розыгрышей.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medical.rsi
+    state: gauze
+  - type: Item
+    heldPrefix: gauze
+  - type: Stack
+    stackType: ImperialSurgicalTape
+    count: 10
+  - type: Healing
+    damageContainers:
+    - Biological
+    damage:
+      types:
+        Blunt: -3
+        Slash: -3
+    bloodlossModifier: -5
+    delay: 3
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+
+- type: stack
+  id: ImperialSurgicalTape
+  name: хирургическая лента
+  icon: { sprite: Objects/Specific/Medical/medical.rsi, state: gauze }
+  spawn: ImperialSurgicalTape
+  maxCount: 10
+
+# === Растворы ===
+
+- type: entity
+  parent: BaseItem
+  id: ImperialChemPack
+  name: пакет для внутривенного введения
+  description: Пластиковый пакет для внутривенного введения лекарств. Нажмите им на пациента, чтобы подсоединить или отсоединить капельницу.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/chem_pack.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      pack:
+        maxVol: 100
+  - type: RefillableSolution
+    solution: pack
+  - type: DrainableSolution
+    solution: pack
+  - type: ExaminableSolution
+    solution: pack
+  - type: ImperialIvBag
+
+- type: entity
+  parent: LargeBeaker
+  id: ImperialMetamaterialBeaker
+  name: метаматериальный стакан
+  description: Большой стакан на 180 единиц.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/meta_beaker.rsi
+    layers:
+    - state: icon
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 180
+  - type: SolutionContainerVisuals
+    maxFillLevels: 0
+
+- type: entity
+  parent: LargeBeaker
+  id: ImperialOrganJar
+  name: банка для органов
+  description: Большая небьющаяся банка, неудобная для химии, зато в неё помещается орган. Не даёт ему гнить.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/organ_jar.rsi
+    layers:
+    - state: icon
+  - type: SolutionContainerVisuals
+    maxFillLevels: 0
+  - type: ItemSlots
+    slots:
+      organ:
+        name: орган
+        whitelist:
+          components:
+          - Organ
+  - type: AntiRottingContainer
+  - type: ContainerContainer
+    containers:
+      organ: !type:ContainerSlot
+
+- type: entity
+  parent: BaseHypospray
+  id: ImperialInhaler
+  name: ингалятор
+  description: Небольшое устройство для подачи коротких порций аэрозольных лекарств. Заправляется из канистры.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/inhaler.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 30
+  - type: RefillableSolution
+    solution: hypospray
+  - type: Injector
+    solutionName: hypospray
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
+  - type: UseDelay
+    delay: 1
+
+- type: entity
+  parent: BaseItem
+  id: ImperialInhalerCanister
+  name: канистра ингалятора
+  description: Небольшая канистра для аэрозольных реагентов. Перелейте её в ингалятор.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/inhaler.rsi
+    state: canister
+  - type: Item
+    size: Tiny
+  - type: SolutionContainerManager
+    solutions:
+      canister:
+        maxVol: 30
+  - type: RefillableSolution
+    solution: canister
+  - type: DrainableSolution
+    solution: canister
+  - type: ExaminableSolution
+    solution: canister
+  - type: SolutionTransfer
+    transferAmount: 30
+    maxTransferAmount: 30
+
+- type: entity
+  parent: BaseHypospray
+  id: ImperialMedigel
+  name: медицинский гель
+  description: Флакон-аппликатор медицинского геля для точного нанесения. Вливает по 10 единиц.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/medigel.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 60
+  - type: RefillableSolution
+    solution: hypospray
+  - type: Injector
+    solutionName: hypospray
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
+  - type: UseDelay
+    delay: 1
+
+- type: entity
+  parent: Syringe
+  id: ImperialPiercingSyringe
+  name: пробивающий шприц
+  description: Шприц с алмазным наконечником, пробивающий броню. Вмещает 10 единиц.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/piercing_syringe.rsi
+    layers:
+    - state: fill-1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+    - state: icon
+      map: [ "enum.SolutionContainerLayers.Base" ]
+  - type: Icon
+    sprite: Imperial/Research/TG/piercing_syringe.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Research/TG/piercing_syringe.rsi
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 10
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+    fillBaseName: fill-
+    inHandsMaxFillLevels: 0
+  - type: MeleeChemicalInjector
+    transferAmount: 10
+    solution: injector
+    pierceArmor: true
+
+# === Прочее ===
+
+- type: entity
+  parent: PinpointerBase
+  id: ImperialCrewPinpointer
+  name: пинпоинтер экипажа
+  description: Ручной трекер, указывающий на датчики костюмов экипажа в режиме координат. Цель выбирается в меню действий.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/crew_pinpointer.rsi
+    layers:
+    - state: icon
+      map: [ "enum.PinpointerLayers.Base" ]
+    - state: pinonnull
+      map: [ "enum.PinpointerLayers.Screen" ]
+      shader: unshaded
+      visible: false
+  - type: Pinpointer
+    component: null
+    updateTargetName: true
+  - type: ImperialCrewPinpointer
+
+- type: entity
+  parent: BodyBag
+  id: ImperialStasisBodyBag
+  name: стазисный мешок для тел
+  description: Мешок для тел, погружающий содержимое в стазис — метаболизм замедляется вдесятеро.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/stasis_bodybag.rsi
+    layers:
+    - state: bag
+      map: [ "unfoldedLayer", "enum.StorageVisualLayers.Base" ]
+    - state: folded
+      map: [ "foldedLayer" ]
+    - state: open
+      map: [ "enum.StorageVisualLayers.Door" ]
+  - type: Icon
+    sprite: Imperial/Research/TG/stasis_bodybag.rsi
+    state: bag
+  - type: EntityStorageVisuals
+    stateDoorOpen: open
+  - type: ImperialStasisBag
+
+- type: entity
+  parent: BaseItem
+  id: ImperialToyArmblade
+  name: поролоновая рука-клинок
+  description: «Фанат Стернсайдских Чангов №1».
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/toy_armblade.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/Research/TG/toy_armblade.rsi
+  - type: MeleeWeapon
+    attackRate: 1.5
+    damage:
+      types:
+        Blunt: 0
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh1.ogg
+
+- type: entity
+  parent: BaseItem
+  id: ImperialPortableChemMixer
+  name: портативный химический смеситель
+  description: Переносной раздатчик, смешивающий химикаты из вставленных кувшинов.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/portable_chem_mixer.rsi
+    state: icon
+  - type: Item
+    size: Large
+  - type: Clothing
+    sprite: Imperial/Research/TG/portable_chem_mixer.rsi
+    quickEquip: false
+    slots:
+    - belt
+  - type: ActivatableUI
+    key: enum.ReagentDispenserUiKey.Key
+    inHandsOnly: false
+  - type: UserInterface
+    interfaces:
+      enum.ReagentDispenserUiKey.Key:
+        type: ReagentDispenserBoundUserInterface
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: Storage
+    openOnActivate: false
+    maxItemSize: Normal
+    grid:
+    - 0,0,9,3
+    whitelist:
+      tags:
+      - ChemDispensable
+  - type: ReagentDispenser
+    beakerSlot:
+      whitelistFailPopup: reagent-dispenser-component-cannot-put-entity-message
+      whitelist:
+        components:
+        - FitsInDispenser
+      priority: 9
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      beakerSlot: !type:ContainerSlot
+      storagebase: !type:Container
+
+# === Машины ===
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ImperialOperatingComputerCircuitboard
+  name: плата операционного компьютера
+  description: Плата компьютера, показывающего состояние пациента на операционном столе.
+  components:
+  - type: Sprite
+    state: cpu_medical
+  - type: ComputerBoard
+    prototype: ImperialComputerOperating
+
+- type: entity
+  parent: BaseComputer
+  id: ImperialComputerOperating
+  name: операционный компьютер
+  description: Показывает подробное состояние пациента на соседнем операционном столе или кровати.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "computerLayerBody" ]
+      state: computer
+    - map: [ "computerLayerKeyboard" ]
+      state: generic_keyboard
+    - map: [ "computerLayerScreen" ]
+      state: medcomp
+    - map: [ "computerLayerKeys" ]
+      state: med_key
+  - type: Computer
+    board: ImperialOperatingComputerCircuitboard
+  - type: ImperialVitalsDisplay
+    range: 1.6
+    advanced: true
+
+- type: entity
+  parent: BaseItem
+  id: ImperialVitalsMonitor
+  name: дисплей жизненных показателей
+  description: Дисплей, показывающий состояние пациента на ближайшей кровати или столе. Осмотрите его.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/vitals_display.rsi
+    layers:
+    - state: frame
+    - state: screen
+      shader: unshaded
+  - type: Item
+    size: Normal
+  - type: ImperialVitalsDisplay
+    range: 2
+
+- type: entity
+  parent: ImperialVitalsMonitor
+  id: ImperialVitalsMonitorAdvanced
+  name: продвинутый дисплей жизненных показателей
+  description: Выполняет более подробное сканирование пациента, чем обычный дисплей.
+  components:
+  - type: ImperialVitalsDisplay
+    range: 2
+    advanced: true
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialMedipenRefillerBoard
+  name: плата рефиллера медипенов
+  components:
+  - type: Sprite
+    state: medical
+  - type: MachineBoard
+    prototype: ImperialMedipenRefiller
+    stackRequirements:
+      Manipulator: 1
+      Cable: 2
+      Glass: 1
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialMedipenRefiller
+  name: рефиллер медипенов
+  description: Заправляет использованные медипены их исходными реагентами из своего бака. Залейте реагенты в машину и нажмите медипеном.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/medipen_refiller.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 1000
+  - type: RefillableSolution
+    solution: tank
+  - type: DrainableSolution
+    solution: tank
+  - type: ExaminableSolution
+    solution: tank
+  - type: ImperialMedipenRefiller
+  - type: Machine
+    board: ImperialMedipenRefillerBoard
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialSmokeMachineBoard
+  name: плата дым-машины
+  components:
+  - type: Sprite
+    state: medical
+  - type: MachineBoard
+    prototype: ImperialSmokeMachine
+    stackRequirements:
+      Manipulator: 1
+      Cable: 2
+      Glass: 1
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialSmokeMachine
+  name: дым-машина
+  description: Выпускает облака дыма из залитых в неё реагентов. Включается альтернативным действием.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/smoke_machine.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 500
+  - type: RefillableSolution
+    solution: tank
+  - type: DrainableSolution
+    solution: tank
+  - type: ExaminableSolution
+    solution: tank
+  - type: ImperialSmokeMachine
+  - type: Machine
+    board: ImperialSmokeMachineBoard
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialChemMassSpecBoard
+  name: плата хроматографа ВЭЖХ
+  components:
+  - type: Sprite
+    state: medical
+  - type: MachineBoard
+    prototype: ImperialChemMassSpec
+    stackRequirements:
+      Manipulator: 2
+      Cable: 2
+      Glass: 2
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialChemMassSpec
+  name: хроматограф ВЭЖХ
+  description: Высокоэффективная жидкостная хроматография. Вставьте два стакана и выберите в меню действий реагент, который нужно перенести из левого в правый.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/hplc.rsi
+    state: icon
+  - type: ImperialChromatograph
+  - type: ItemSlots
+    slots:
+      beakerIn:
+        name: левый стакан
+        whitelist:
+          components:
+          - FitsInDispenser
+      beakerOut:
+        name: правый стакан
+        whitelist:
+          components:
+          - FitsInDispenser
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      beakerIn: !type:ContainerSlot
+      beakerOut: !type:ContainerSlot
+  - type: Machine
+    board: ImperialChemMassSpecBoard

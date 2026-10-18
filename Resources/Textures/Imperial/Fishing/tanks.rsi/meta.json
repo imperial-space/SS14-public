@@ -1,0 +1,197 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (tanks.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "aquarium_map"
+    },
+    {
+      "name": "aquarium_base"
+    },
+    {
+      "name": "aquarium_panel"
+    },
+    {
+      "name": "aquarium_glass_water"
+    },
+    {
+      "name": "aquarium_glass_water_broken"
+    },
+    {
+      "name": "aquarium_glass_air"
+    },
+    {
+      "name": "aquarium_glass_air_broken"
+    },
+    {
+      "name": "aquarium_borders"
+    },
+    {
+      "name": "aquarium_glass_cracks"
+    },
+    {
+      "name": "bioelec_map"
+    },
+    {
+      "name": "bioelec_base"
+    },
+    {
+      "name": "bioelec_panel"
+    },
+    {
+      "name": "bioelec_glass_water"
+    },
+    {
+      "name": "bioelec_glass_water_broken"
+    },
+    {
+      "name": "bioelec_glass_air"
+    },
+    {
+      "name": "bioelec_glass_air_broken"
+    },
+    {
+      "name": "bioelec_borders"
+    },
+    {
+      "name": "bioelec_glass_cracks"
+    },
+    {
+      "name": "rocks"
+    },
+    {
+      "name": "seaweeds_front",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "seaweeds_back"
+    },
+    {
+      "name": "treasure"
+    },
+    {
+      "name": "sand"
+    },
+    {
+      "name": "fish_tank_map"
+    },
+    {
+      "name": "fish_tank"
+    },
+    {
+      "name": "fish_tank_borders"
+    },
+    {
+      "name": "fish_tank_water"
+    },
+    {
+      "name": "fish_tank_air"
+    },
+    {
+      "name": "fish_tank_panel"
+    },
+    {
+      "name": "fish_tank_panel_open"
+    },
+    {
+      "name": "rocks_fish_tank"
+    },
+    {
+      "name": "seaweeds_front_fish_tank",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "seaweeds_back_fish_tank"
+    },
+    {
+      "name": "treasure_fish_tank"
+    },
+    {
+      "name": "sand_fish_tank"
+    },
+    {
+      "name": "fish_tank_bluespace_map"
+    },
+    {
+      "name": "fish_tank_bluespace",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "fish_tank_bluespace_borders"
+    },
+    {
+      "name": "fish_tank_bluespace_water"
+    },
+    {
+      "name": "fish_tank_bluespace_air"
+    },
+    {
+      "name": "fish_tank_bluespace_panel"
+    },
+    {
+      "name": "fish_tank_bluespace_panel_open"
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (manufactorio.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "router"
+    },
+    {
+      "name": "router_operate",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "smelter"
+    },
+    {
+      "name": "crafter",
+      "directions": 4
+    },
+    {
+      "name": "box"
+    },
+    {
+      "name": "splitter"
+    },
+    {
+      "name": "splitter_in",
+      "directions": 4,
+      "delays": [
+        [
+          0.07,
+          0.07,
+          0.07,
+          0.07
+        ],
+        [
+          0.07,
+          0.07,
+          0.07,
+          0.07
+        ],
+        [
+          0.07,
+          0.07,
+          0.07,
+          0.07
+        ],
+        [
+          0.07,
+          0.07,
+          0.07,
+          0.07
+        ]
+      ]
+    },
+    {
+      "name": "splitter_out",
+      "directions": 4,
+      "delays": [
+        [
+          0.07,
+          0.07,
+          0.07,
+          0.07
+        ],
+        [
+          0.07,
+          0.07,
+          0.07,
+          0.07
+        ],
+        [
+          0.07,
+          0.07,
+          0.07,
+          0.07
+        ],
+        [
+          0.07,
+          0.07,
+          0.07,
+          0.07
+        ]
+      ]
+    },
+    {
+      "name": "splitter_bl",
+      "directions": 4
+    },
+    {
+      "name": "crafter_printing",
+      "delays": [
+        [
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "lathe"
+    },
+    {
+      "name": "smelter_on",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "crusher",
+      "delays": [
+        [
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "lathe_printing",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    }
+  ]
+}

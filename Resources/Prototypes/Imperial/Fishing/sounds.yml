@@ -1,0 +1,8 @@
+- type: soundCollection
+  id: ImperialFishingReel
+  files:
+    - /Audio/Imperial/Fishing/reel1.ogg
+    - /Audio/Imperial/Fishing/reel2.ogg
+    - /Audio/Imperial/Fishing/reel3.ogg
+    - /Audio/Imperial/Fishing/reel4.ogg
+    - /Audio/Imperial/Fishing/reel5.ogg

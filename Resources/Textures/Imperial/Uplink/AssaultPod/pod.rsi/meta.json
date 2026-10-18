@@ -1,0 +1,38 @@
+{
+    "version":  1,
+    "license":  "CC-BY-SA-3.0",
+    "copyright":  "Taken from tgstation/BandaStation (icons/obj/supplypods.dmi)",
+    "size":  {
+                 "x":  64,
+                 "y":  64
+             },
+    "states":  [
+                   {
+                       "name":  "pod"
+                   },
+                   {
+                       "name":  "pod_door"
+                   },
+                   {
+                       "name":  "darkpod"
+                   },
+                   {
+                       "name":  "darkpod_door"
+                   },
+                   {
+                       "name":  "syndicate"
+                   },
+                   {
+                       "name":  "centcom"
+                   },
+                   {
+                       "name":  "deathsquad"
+                   },
+                   {
+                       "name":  "glow_red"
+                   },
+                   {
+                       "name":  "glow_blue"
+                   }
+               ]
+}

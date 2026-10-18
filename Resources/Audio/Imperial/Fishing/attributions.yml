@@ -1,0 +1,14 @@
+- files: ["arcade_jump.ogg","bigsplash.ogg","fish_splash.ogg","reel1.ogg","reel2.ogg","reel3.ogg","reel4.ogg","reel5.ogg","splash.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation (BandaStation), sound/effects and sound/items/reel"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["fish_psyblast.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation (BandaStation), sound/mobs/non-humanoids/fish"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["mbox_end.ogg", "mbox_full.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation (BandaStation), sound/effects/mysterybox"
+  source: "https://github.com/tgstation/tgstation"

@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (radial_fishing.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "fish_tank"
+    },
+    {
+      "name": "palm_beach"
+    },
+    {
+      "name": "ground_hole"
+    },
+    {
+      "name": "seaboat"
+    },
+    {
+      "name": "space_rocket"
+    },
+    {
+      "name": "syndi_snake"
+    },
+    {
+      "name": "misaligned_question_mark"
+    },
+    {
+      "name": "default"
+    },
+    {
+      "name": "minus_sign"
+    },
+    {
+      "name": "linked_source"
+    },
+    {
+      "name": "lava"
+    },
+    {
+      "name": "river"
+    },
+    {
+      "name": "hydro"
+    },
+    {
+      "name": "garbage"
+    },
+    {
+      "name": "oil"
+    },
+    {
+      "name": "toilet"
+    },
+    {
+      "name": "ice"
+    },
+    {
+      "name": "cursed"
+    },
+    {
+      "name": "carp"
+    },
+    {
+      "name": "fryer"
+    },
+    {
+      "name": "innards"
+    },
+    {
+      "name": "plasma"
+    },
+    {
+      "name": "planet"
+    },
+    {
+      "name": "onsen"
+    },
+    {
+      "name": "vending"
+    },
+    {
+      "name": "depths"
+    }
+  ]
+}

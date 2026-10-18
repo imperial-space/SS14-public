@@ -1,0 +1,583 @@
+# Предметы торгоматов TG с отдельной механикой (Content.Server/Imperial/Vending).
+
+- type: Tag
+  id: ImperialCustomVendorRefill
+
+# ── Медицина и химия ──
+
+- type: entity
+  parent: BaseItem
+  id: ImperialBoneGel
+  name: "костный гель"
+  description: "Гель для сращивания костей. Лечит тупые травмы."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Extras/bonegel.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Vending/Extras/bonegel.rsi
+  - type: ImperialMedTool
+    delay: 3
+    healBlunt: 15
+
+- type: entity
+  parent: BaseItem
+  id: ImperialPhBooklet
+  name: "книжка индикатора pH"
+  description: "Книжка с бумагой, пропитанной универсальным индикатором."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Extras/phbooklet.rsi
+    layers:
+    - state: icon
+      map: ["enum.ImperialPhBookletVisuals.State"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ImperialPhBookletVisuals.State:
+        enum.ImperialPhBookletVisuals.State:
+          open: { state: open }
+          empty: { state: empty }
+  - type: Item
+    size: Tiny
+  - type: ImperialPhBooklet
+
+- type: entity
+  parent: BaseItem
+  id: ImperialPhPaper
+  name: "полоска индикатора pH"
+  description: "Кусочек бумаги, меняющий цвет в зависимости от pH раствора."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Extras/phpaper.rsi
+    state: icon
+    color: "#f5c352"
+  - type: Appearance
+  - type: Item
+    size: Tiny
+  - type: ImperialPhPaper
+
+- type: entity
+  parent: OrganHumanTongue
+  id: ImperialOrganTongueRobot
+  name: "роботизированный голосовой модуль"
+  description: "Голосовой синтезатор, который можно поставить вместо языка. Говорит механическим голосом."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Extras/tonguerobot.rsi
+    layers:
+    - state: icon
+  - type: ImperialRobotTongue
+
+# ── Инструменты ──
+
+- type: entity
+  parent: BaseItem
+  id: ImperialGunMaintenanceKit
+  name: "набор ухода за оружием"
+  description: "Ящик с принадлежностями для обслуживания оружия и запчастями. Применяется к огнестрельному оружию."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Extras/gunkit.rsi
+    state: icon
+  - type: Item
+    size: Large
+    sprite: Imperial/Vending/Extras/gunkit.rsi
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 12
+  - type: ImperialGunMaintenance
+
+- type: entity
+  parent: BaseItem
+  id: ImperialHairDyeSpray
+  name: "спрей-краска для волос"
+  description: "Спрей, которым можно перекрасить волосы в любой цвет. В руке переключается между волосами и бородой."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Extras/dyespray.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: ImperialHairDye
+
+# ── Фото (code/modules/photography) ──
+
+- type: entity
+  parent: BaseItem
+  id: ImperialPhotograph
+  name: "фотография"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Extras/photo.rsi
+    layers:
+    - state: photo
+  - type: Item
+    size: Tiny
+  - type: ImperialPhoto
+  - type: UserInterface
+    interfaces:
+      enum.ImperialPhotoUiKey.Key:
+        type: ImperialPhotoBoundUserInterface
+  - type: Flammable
+    fireSpread: false
+    alwaysCombustible: true
+    canResistFire: false
+    damage:
+      types:
+        Heat: 1
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: BaseItem
+  id: ImperialCamera
+  name: "камера"
+  description: "Полароидная камера."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Extras/camera.rsi
+    layers:
+    - state: icon
+      map: ["enum.ImperialCameraVisuals.On"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ImperialCameraVisuals.On:
+        enum.ImperialCameraVisuals.On:
+          True: { state: icon }
+          False: { state: off }
+  - type: Item
+    size: Small
+    sprite: Imperial/Vending/Extras/camera.rsi
+  - type: Clothing
+    slots:
+    - NECK
+    sprite: Imperial/Vending/Extras/camera.rsi
+  - type: PointLight
+    enabled: false
+    radius: 6
+    energy: 3
+    color: "#FFFFFF"
+  - type: ImperialPhotoCamera
+
+- type: entity
+  parent: BaseItem
+  id: ImperialCameraFilm
+  name: "картридж для камеры"
+  description: "Картридж плёнки для камеры. Вставьте его в пустую камеру, чтобы перезарядить."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Extras/film.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: ImperialCameraFilm
+
+# ── Растения ──
+
+- type: entity
+  parent: SeedBase
+  id: ImperialStrangeSeeds
+  name: "странные семена"
+  description: "Экзотический сорт семян: вырасти может что угодно."
+  components:
+  - type: Seed
+    seedId: tomato
+  - type: Sprite
+    sprite: Imperial/Vending/Extras/strangeseed.rsi
+  - type: ImperialStrangeSeed
+    reagents:
+    - Nutriment
+    - Vitamin
+    - Sugar
+    - Water
+    - SpaceDrugs
+    - Bicaridine
+    - Kelotane
+    - Dylovene
+    - Ephedrine
+    - Phosphorus
+    - Radium
+    - SulfuricAcid
+    - Toxin
+    - Happiness
+    - Lipolicide
+    - Ethanol
+    - Nicotine
+    - Psicodine
+
+# ── Дисковод для посуды ──
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialDishDrive
+  name: "дисковод для посуды"
+  description: "Чудо кулинарии: хранит тарелки и осколки, преобразуя материю в энергию. Затягивает посуду поблизости и время от времени отправляет мусор в ближайший утилизатор."
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Extras/dishdrive.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: Machine
+    board: ImperialDishDriveCircuitboard
+  - type: ImperialDishDrive
+    collectable:
+    - BrokenBottle
+    - Fork
+    - Spoon
+    - FoodPlate
+    - FoodPlateSmall
+    - FoodPlateTrash
+    - FoodBowlBig
+    - DrinkGlass
+    - ShardGlass
+    - FoodPlateTin
+    disposable:
+    - BrokenBottle
+    - FoodPlateTrash
+    - ShardGlass
+    - FoodPlateTin
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      dish_drive: !type:Container
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialDishDriveCircuitboard
+  name: "плата дисковода для посуды"
+  description: "Плата дисковода. В руке включает и выключает всасывание, Alt — автоотправку в утилизатор."
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: ImperialDishDrive
+    stackRequirements:
+      Glass: 1
+      Manipulator: 3
+  - type: ImperialDishDriveBoard
+
+- type: entity
+  parent: BoxCardboard
+  id: ImperialBoxDishDrive
+  name: "набор «сделай сам»: дисковод для посуды"
+  description: "Всё, что нужно для сборки дисковода для посуды."
+  components:
+  - type: Storage
+    grid:
+    - 0,0,5,3
+  - type: StorageFill
+    contents:
+    - id: ImperialDishDriveCircuitboard
+    - id: CableApcStack10
+
+# ── Сортировщик почты ──
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialMailSorter
+  name: "сортировщик почты"
+  description: "Большая установка для сортировки почты. Сортирует письма с 1987 года! Положите посылки, затем Alt — высыпать или рассортировать по отделу."
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Extras/mailsorter.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+    - state: lights
+      shader: unshaded
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: ApcPowerReceiver
+    powerLoad: 300
+  - type: Machine
+    board: ImperialMailSorterCircuitboard
+  - type: ImperialMailSorter
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      mail_sorter: !type:Container
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialMailSorterCircuitboard
+  name: "плата сортировщика почты"
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: ImperialMailSorter
+    stackRequirements:
+      Manipulator: 1
+      Steel: 5
+
+- type: entity
+  parent: BaseFlatpack
+  id: ImperialMailSorterFlatpack
+  name: "плоская упаковка сортировщика почты"
+  description: "Плоская упаковка для сборки сортировщика почты."
+  components:
+  - type: Flatpack
+    entity: ImperialMailSorter
+
+# ── Свой торговый автомат ──
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialCustomVendor
+  name: "свой торговый автомат"
+  description: "Торговый автомат, который заполняет владелец. Проведите картой или КПК, чтобы привязать свой счёт, и кладите товары с ценой. Не разбирайте с привязанным счётом!"
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Extras/customvendor.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+    - state: lights
+      shader: unshaded
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.45,0.25,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: Machine
+    board: ImperialCustomVendorCircuitboard
+  - type: ImperialCustomVendor
+  - type: ActivatableUI
+    key: enum.ImperialCustomVendorUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.ImperialCustomVendorUiKey.Key:
+        type: ImperialCustomVendorBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      custom_vendor: !type:Container
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialCustomVendorCircuitboard
+  name: "плата своего торгового автомата"
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: ImperialCustomVendor
+    stackRequirements:
+      Glass: 1
+    tagRequirements:
+      ImperialCustomVendorRefill:
+        amount: 1
+        defaultPrototype: ImperialVendingRefillCustom
+
+- type: entity
+  parent: BaseStorageItem
+  id: ImperialVendingRefillCustom
+  name: "канистра пополнения своего автомата"
+  description: "Канистра для товаров своего торгового автомата. Нужна при сборке; владелец может переложить её содержимое в автомат."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Extras/refillcustom.rsi
+    state: icon
+  - type: Item
+    size: Large
+  - type: Storage
+    grid:
+    - 0,0,5,3
+  - type: Tag
+    tags:
+    - ImperialCustomVendorRefill
+  - type: ImperialCustomVendorRefill
+
+# ── Чёрный рынок ──
+
+- type: entity
+  parent: BaseItem
+  id: ImperialBlackMarketUplink
+  name: "аплинк Чёрного рынка"
+  description: "Аплинк к теневым торговцам. Оплата — с вашего счёта в банке."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Extras/blackmarket.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: ImperialMarketUplink
+  - type: ActivatableUI
+    key: enum.ImperialMarketUiKey.Key
+    inHandsOnly: true
+  - type: UserInterface
+    interfaces:
+      enum.ImperialMarketUiKey.Key:
+        type: ImperialMarketBoundUserInterface
+
+# ── Сервисный конструктор (construction/plumbing/service) ──
+
+- type: entity
+  parent: BaseItem
+  id: ImperialServiceConstructor
+  name: "сервисный конструктор"
+  description: "Строит сервисное оборудование бара и кухни прямо на месте: раздатчики напитков, раковины, баки с водой и измельчители."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Extras/plumbconstructor.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: RCD
+    availablePrototypes:
+    - ImperialServiceSodaDispenser
+    - ImperialServiceBoozeDispenser
+    - ImperialServiceSink
+    - ImperialServiceWaterTank
+    - ImperialServiceGrinder
+    - Deconstruct
+  - type: LimitedCharges
+    maxCharges: 30
+  - type: UserInterface
+    interfaces:
+      enum.RcdUiKey.Key:
+        type: RCDMenuBoundUserInterface
+  - type: ActivatableUI
+    key: enum.RcdUiKey.Key
+
+- type: rcd
+  id: ImperialServiceSodaDispenser
+  name: "imperial-service-constructor-soda"
+  category: Main
+  sprite:
+    sprite: Structures/smalldispensers.rsi
+    state: soda
+  mode: ConstructObject
+  prototype: SodaDispenserEmpty
+  cost: 10
+  delay: 3
+  collisionMask: TabletopMachineMask
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: ImperialServiceBoozeDispenser
+  name: "imperial-service-constructor-booze"
+  category: Main
+  sprite:
+    sprite: Structures/smalldispensers.rsi
+    state: booze
+  mode: ConstructObject
+  prototype: BoozeDispenserEmpty
+  cost: 10
+  delay: 3
+  collisionMask: TabletopMachineMask
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: ImperialServiceSink
+  name: "imperial-service-constructor-sink"
+  category: Main
+  sprite:
+    sprite: Structures/Furniture/sink.rsi
+    state: sink
+  mode: ConstructObject
+  prototype: SinkEmpty
+  cost: 5
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: ImperialServiceWaterTank
+  name: "imperial-service-constructor-tank"
+  category: Main
+  sprite:
+    sprite: Structures/Storage/tanks.rsi
+    state: watertank-2
+  mode: ConstructObject
+  prototype: WaterTankFull
+  cost: 8
+  delay: 3
+  collisionMask: Impassable
+  rotation: Fixed
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: ImperialServiceGrinder
+  name: "imperial-service-constructor-grinder"
+  category: Main
+  sprite:
+    sprite: Structures/Machines/grinder.rsi
+    state: grinder_empty
+  mode: ConstructObject
+  prototype: KitchenReagentGrinder
+  cost: 10
+  delay: 3
+  collisionMask: TabletopMachineMask
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: soundCollection
+  id: ImperialPolaroid
+  files:
+  - /Audio/Imperial/Vending/polaroid1.ogg
+  - /Audio/Imperial/Vending/polaroid2.ogg

@@ -1,0 +1,40 @@
+{
+    "version":  1,
+    "license":  "CC-BY-SA-3.0",
+    "copyright":  "Taken from tgstation (BandaStation) at commit master",
+    "size":  {
+                 "x":  32,
+                 "y":  32
+             },
+    "states":  [
+                   {
+                       "name":  "ion",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "tesla",
+                       "delays":  [
+                                      [
+                                          0.05,
+                                          0.08,
+                                          0.08,
+                                          0.08,
+                                          0.08,
+                                          0.08,
+                                          0.08,
+                                          0.08,
+                                          0.08,
+                                          0.08,
+                                          0.08,
+                                          0.08
+                                      ]
+                                  ]
+                   }
+               ]
+}

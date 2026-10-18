@@ -1,0 +1,218 @@
+# Стазисные кейсы для рыб (/obj/item/storage/fish_case) и их заказ в карго.
+
+- type: entity
+  parent: BaseItem
+  id: ImperialFishCase
+  name: стазисный кейс для рыбы
+  description: Раздвижной кейс, который держит рыбу внутри в стазисе.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/case.rsi
+    state: fishbox
+  - type: Item
+    size: Small
+  - type: Storage
+    maxItemSize: Ginormous
+    grid:
+    - 0,0,7,7
+    whitelist:
+      components:
+      - ImperialFish
+      - ImperialAquariumProp
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ImperialFishCase
+  - type: StaticPrice
+    price: 20
+
+- type: entity
+  parent: ImperialFishCase
+  id: ImperialFishCaseRandom
+  suffix: Случайная рыба
+  components:
+  - type: ImperialFishCase
+    randomFish: true
+
+- type: entity
+  parent: ImperialFishCase
+  id: ImperialFishCaseRandomFreshwater
+  suffix: Пресноводная
+  components:
+  - type: ImperialFishCase
+    randomFish: true
+    randomFluid: Freshwater
+
+- type: entity
+  parent: ImperialFishCase
+  id: ImperialFishCaseRandomSaltwater
+  suffix: Морская
+  components:
+  - type: ImperialFishCase
+    randomFish: true
+    randomFluid: Saltwater
+
+- type: entity
+  parent: ImperialFishCase
+  id: ImperialFishCaseSyndicate
+  name: зловещий кейс для рыбы
+  components:
+  - type: ImperialFishCase
+    sourceTable: ImperialFishSourcePortalSyndicate
+
+- type: entity
+  parent: ImperialFishCase
+  id: ImperialFishCaseTiziran
+  name: кейс с импортной рыбой
+  components:
+  - type: ImperialFishCase
+    table:
+      ImperialFishMoonfishDwarf: 2
+      ImperialFishGunnerJellyfish: 2
+      ImperialFishNeedlefish: 2
+      ImperialFishArmorfish: 2
+      ImperialFishMoonfish: 1
+
+- type: entity
+  parent: ImperialFishCase
+  id: ImperialFishCaseBlackmarket
+  name: зловещий кейс для рыбы
+  description: Раздвижной кейс, который держит рыбу внутри в стазисе. От него слегка пахнет трупным ядом.
+  components:
+  - type: ImperialFishCase
+    dead: true
+    table:
+      ImperialFishClownfishLube: 2
+      ImperialFishPufferfish: 2
+      ImperialFishEmulsijack: 2
+      ImperialFishSludgefishPurple: 2
+      ImperialFishSlimefish: 2
+      ImperialFishRatfish: 2
+      ImperialFishZipzap: 2
+      ImperialFishJumpercable: 2
+      ImperialFishChasmCrabIce: 1
+      ImperialFishChasmCrab: 1
+      ImperialFishBoned: 1
+      ImperialFishPike: 1
+      ImperialFishSwordfish: 1
+
+- type: entity
+  parent: ImperialFishCase
+  id: ImperialFishCaseBluespace
+  name: блюспейс-кейс для рыбы
+  description: Улучшенный кейс, хранящий крупную рыбу в стазисе в компактном пространстве.
+  components:
+  - type: Sprite
+    state: fishbox_bluespace
+  - type: Item
+    size: Normal
+  - type: ImperialFishCase
+    adjustSize: false
+    baseSize: Normal
+
+# Ящики карго (/datum/supply_pack/critter/fish)
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCrateFishAquarium
+  name: ящик аквариумных рыб
+  components:
+  - type: StorageFill
+    contents:
+    - id: ImperialFishCaseRandom
+      amount: 2
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCrateFishFreshwater
+  name: ящик пресноводных рыб
+  components:
+  - type: StorageFill
+    contents:
+    - id: ImperialFishCaseRandomFreshwater
+      amount: 2
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCrateFishSaltwater
+  name: ящик морских рыб
+  components:
+  - type: StorageFill
+    contents:
+    - id: ImperialFishCaseRandomSaltwater
+      amount: 2
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCrateFishTiziran
+  name: ящик тизиранских рыб
+  components:
+  - type: StorageFill
+    contents:
+    - id: ImperialFishCaseTiziran
+      amount: 2
+
+- type: cargoProduct
+  id: ImperialFishAquarium
+  icon:
+    sprite: Imperial/Fishing/case.rsi
+    state: fishbox
+  product: ImperialCrateFishAquarium
+  cost: 1200
+  category: cargoproduct-category-name-livestock
+  group: ImperialCargo
+
+- type: cargoProduct
+  id: ImperialFishFreshwater
+  icon:
+    sprite: Imperial/Fishing/case.rsi
+    state: fishbox
+  product: ImperialCrateFishFreshwater
+  cost: 1200
+  category: cargoproduct-category-name-livestock
+  group: ImperialCargo
+
+- type: cargoProduct
+  id: ImperialFishSaltwater
+  icon:
+    sprite: Imperial/Fishing/case.rsi
+    state: fishbox
+  product: ImperialCrateFishSaltwater
+  cost: 1200
+  category: cargoproduct-category-name-livestock
+  group: ImperialCargo
+
+- type: cargoProduct
+  id: ImperialFishTiziran
+  icon:
+    sprite: Imperial/Fishing/case.rsi
+    state: fishbox
+  product: ImperialCrateFishTiziran
+  cost: 1200
+  category: cargoproduct-category-name-livestock
+  group: ImperialCargo
+# /datum/supply_pack/goody/fish_feed, bait_can: корм и наживка одним ящиком.
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCrateFishingSupplies
+  name: ящик рыболовных припасов
+  components:
+  - type: StorageFill
+    contents:
+    - id: ImperialFishFeedCan
+      amount: 2
+    - id: ImperialBaitCanWorm
+    - id: ImperialBaitCanWormPremium
+
+- type: cargoProduct
+  id: ImperialFishingSupplies
+  icon:
+    sprite: Imperial/Fishing/supplies.rsi
+    state: fish_feed
+  product: ImperialCrateFishingSupplies
+  cost: 400
+  category: cargoproduct-category-name-service
+  group: ImperialCargo

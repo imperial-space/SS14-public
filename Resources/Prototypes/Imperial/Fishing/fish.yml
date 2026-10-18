@@ -1,0 +1,1851 @@
+# Сгенерировано gen_fish.pl из code/modules/fishing/fish/types/*.dm (TG/BandaStation). Не править руками.
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishSandSurfer
+  name: "песчаный сёрфер"
+  description: "Бронзовая инопланетная «рыба», которая живёт и плавает под песками далёких миров."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: sand_surfer
+  - type: ImperialFish
+    fishId: sand_surfer
+    spriteWidth: 6
+    spriteHeight: 6
+    requiredFluid: Air
+    temperatureMin: 298.15
+    temperatureMax: 333.15
+    randomCaseRarity: 400
+    stablePopulation: 5
+    initialTraits: [ ShinyLover ]
+    movement: Plunger
+    difficultyModifier: 5
+    averageSize: 65
+    averageWeight: 1100
+    weightSizeDeviation: 0.35
+    beauty: 450
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishSandCrab
+  name: "краб-землекоп"
+  description: "Ракообразное, живущее в песке. Выглядит как краб, на вкус как краб, но переваливается, как рыба."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: crab
+  - type: ImperialFish
+    fishId: sand_crab
+    spriteWidth: 10
+    spriteHeight: 6
+    aquariumState: fish/crab_small
+    requiredFluid: Saltwater
+    temperatureMin: 293.15
+    temperatureMax: 313.15
+    filletType: FoodMeatCrab
+    stablePopulation: 5
+    initialTraits: [ Amphibious, ShinyLover, Carnivore ]
+    movement: Slow
+    favoriteBait:
+        - foodTypes: Seafood
+    averageSize: 60
+    averageWeight: 1000
+    weightSizeDeviation: 0.1
+    icon: Crab
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishBumpy
+  name: "бугристая рыба"
+  description: "Уродливое рыбоподобное существо, сплошь покрытое короткими щупальцами."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: bumpy
+  - type: ImperialFish
+    fishId: bumpy
+    spriteWidth: 5
+    spriteHeight: 4
+    requiredFluid: AnyWater
+    temperatureMin: 288.15
+    temperatureMax: 313.15
+    stablePopulation: 4
+    initialTraits: [ Amphibious, Vegan ]
+    favoriteBait:
+        - foodTypes: Vegetables
+    beauty: -200
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishStarfish
+  name: "космическая морская звезда"
+  description: "Странное иглокожее из гиперпространства, которому нет дела до гравитации."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: starfish
+  - type: ImperialFish
+    fishId: cosmostarfish
+    spriteWidth: 4
+    spriteHeight: 3
+    requiredFluid: Air
+    temperatureMin: 0
+    temperatureMax: 100000
+    deadState: starfish_dead
+    randomCaseRarity: 0
+    filletType: null
+    stablePopulation: 3
+    compatibleTypes: [ ImperialFishStarfishChrystarfish ]
+    initialTraits: [ Antigrav, Mixotroph ]
+    averageSize: 30
+    averageWeight: 300
+    minPressure: 0
+    maxPressure: 100000
+    beauty: 600
+    icon: Star
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishBabyCarp
+  name: "детёныш космического карпа"
+  description: "Молодь грозного космического карпа. Не дайте невинному виду себя обмануть — это агрессивные маленькие гады."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: baby_carp
+  - type: ImperialFish
+    fishId: baby_carp
+    spriteWidth: 5
+    spriteHeight: 3
+    requiredFluid: AnyWater
+    temperatureMin: 0
+    temperatureMax: 473.15
+    randomCaseRarity: 200
+    filletType: FoodMeatFish
+    stablePopulation: 7
+    initialTraits: [ Carnivore, Territorial, Predator, Necrophage, NoMating, Carpotoxin ]
+    favoriteBait:
+        - foodTypes: Meat
+    dislikedBait:
+        - foodTypes: Grain, Dairy
+    averageSize: 35
+    averageWeight: 550
+    beauty: 600
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishSockeyeSalmon
+  name: "нерка"
+  description: "Довольно распространённый и узнаваемый лосось Тихого океана. Когда-то его завезли в космос, где мы с вами и находимся."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: sockeye
+  - type: ImperialFish
+    fishId: sockeye_salmon
+    spriteWidth: 6
+    spriteHeight: 4
+    requiredFluid: Anadromous
+    temperatureMin: 276.15
+    temperatureMax: 292.15
+    filletType: FoodMeatFish
+    stablePopulation: 6
+    beauty: 450
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishArcticChar
+  name: "арктический голец"
+  description: "Холодноводная проходная рыба, распространённая в Северном полушарии Земли. Каким-то образом добралась и сюда."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: arctic_char
+  - type: ImperialFish
+    fishId: arctic_char
+    spriteWidth: 7
+    spriteHeight: 4
+    requiredFluid: Anadromous
+    temperatureMin: 276.15
+    temperatureMax: 292.15
+    stablePopulation: 6
+    averageSize: 60
+    averageWeight: 1200
+    weightSizeDeviation: 0.5
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishPike
+  name: "щука"
+  description: "Длинный хищник с мордой, похожей на клюв. Определённо не оружие, чтобы им размахивать."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/wide.rsi
+    state: pike
+  - type: ImperialFish
+    fishId: pike
+    spriteWidth: 10
+    spriteHeight: 3
+    requiredFluid: Anadromous
+    temperatureMin: 285.15
+    temperatureMax: 300.15
+    randomCaseRarity: 400
+    stablePopulation: 4
+    breedingTimeout: 240
+    compatibleTypes: [ ImperialFishPikeArmored ]
+    evolutionTypes: [ ArmoredPike ]
+    initialTraits: [ Carnivore, Predator, Territorial ]
+    movement: Plunger
+    difficultyModifier: 10
+    favoriteBait:
+        - foodTypes: Seafood, Meat
+        - special: fish
+    averageSize: 100
+    averageWeight: 2000
+    beauty: 450
+    inhandState: pike
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishGoldfish
+  name: "золотая рыбка"
+  description: "Вопреки расхожему мнению, у золотых рыбок память не на три секунды. Они помнят то, что случилось до трёх месяцев назад."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: goldfish
+  - type: ImperialFish
+    fishId: goldfish
+    spriteWidth: 5
+    spriteHeight: 3
+    aquariumState: fish/fish_greyscale
+    aquariumColor: "#D8540D"
+    temperatureMin: 291.15
+    temperatureMax: 299.15
+    stablePopulation: 9
+    compatibleTypes: [ ImperialFishGoldfishGill, ImperialFishGoldfishThreeEyes, ImperialFishGoldfishThreeEyesGill ]
+    evolutionTypes: [ ThreeEyes, Chainsawfish ]
+    favoriteBait:
+        - proto: ImperialBaitWorm
+    averageSize: 20
+    averageWeight: 200
+    weightSizeDeviation: 0.35
+    baitQuality: Good
+
+- type: entity
+  parent: ImperialFishGoldfish
+  id: ImperialFishGoldfishGill
+  name: "МакГилл"
+  description: "Отличная «резиновая уточка» для адвокатов, которые не могут разобраться в своём деле."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: goldfish
+  - type: ImperialFish
+    fishId: goldfish
+    fishIdRedirect: ImperialFishGoldfish
+    showInCatalog: false
+    spriteWidth: 5
+    spriteHeight: 3
+    aquariumState: fish/fish_greyscale
+    aquariumColor: "#D8540D"
+    temperatureMin: 291.15
+    temperatureMax: 299.15
+    randomCaseRarity: 0
+    stablePopulation: 1
+    compatibleTypes: [ ImperialFishGoldfish, ImperialFishGoldfishThreeEyes ]
+    evolutionTypes: [ ThreeEyes, Chainsawfish ]
+    initialTraits: [ Recessive ]
+    favoriteBait:
+        - proto: ImperialBaitWorm
+    averageSize: 20
+    averageWeight: 200
+    weightSizeDeviation: 0.35
+    beauty: 450
+
+- type: entity
+  parent: ImperialFishGoldfish
+  id: ImperialFishGoldfishThreeEyes
+  name: "трёхглазая золотая рыбка"
+  description: "Золотая рыбка с лишней половиной пары глаз. Интересно, чем её кормили в последнее время…"
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: three_eyes
+  - type: ImperialFish
+    fishId: three_eyes
+    spriteWidth: 5
+    spriteHeight: 3
+    aquariumState: fish/fish_greyscale
+    aquariumColor: "#D8540D"
+    temperatureMin: 291.15
+    temperatureMax: 299.15
+    food: UnstableMutagen
+    randomCaseRarity: 200
+    stablePopulation: 4
+    compatibleTypes: [ ImperialFishGoldfish, ImperialFishGoldfishGill, ImperialFishGoldfishThreeEyesGill ]
+    evolutionTypes: [ ThreeEyes, Chainsawfish ]
+    initialTraits: [ Recessive, ShinyLover ]
+    difficultyModifier: 10
+    favoriteBait:
+        - reagent: UnstableMutagen
+          amount: 3
+    averageSize: 20
+    averageWeight: 200
+    weightSizeDeviation: 0.35
+    beauty: 450
+
+- type: entity
+  parent: ImperialFishGoldfishThreeEyes
+  id: ImperialFishGoldfishThreeEyesGill
+  name: "МакГилл"
+  description: "Отличная «резиновая уточка» для адвокатов, которые не могут разобраться в своём деле. Сегодня он выглядит как-то иначе…"
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: three_eyes
+  - type: ImperialFish
+    fishId: three_eyes
+    fishIdRedirect: ImperialFishGoldfishThreeEyes
+    showInCatalog: false
+    spriteWidth: 5
+    spriteHeight: 3
+    aquariumState: fish/fish_greyscale
+    aquariumColor: "#D8540D"
+    temperatureMin: 291.15
+    temperatureMax: 299.15
+    food: UnstableMutagen
+    randomCaseRarity: 0
+    stablePopulation: 1
+    compatibleTypes: [ ImperialFishGoldfish, ImperialFishGoldfishThreeEyes ]
+    evolutionTypes: [ ThreeEyes, Chainsawfish ]
+    initialTraits: [ Recessive, ShinyLover ]
+    difficultyModifier: 10
+    favoriteBait:
+        - reagent: UnstableMutagen
+          amount: 3
+    averageSize: 20
+    averageWeight: 200
+    weightSizeDeviation: 0.35
+    beauty: 600
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishAngelfish
+  name: "скалярия"
+  description: "Молодые скалярии часто живут стайками, а взрослые предпочитают одиночество. Повзрослев, они становятся территориальными и агрессивными к другим рыбам."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: angelfish
+  - type: ImperialFish
+    fishId: angelfish
+    spriteWidth: 4
+    spriteHeight: 7
+    temperatureMin: 295.15
+    temperatureMax: 303.15
+    stablePopulation: 3
+    initialTraits: [ Territorial ]
+    averageSize: 30
+    averageWeight: 500
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishGuppy
+  name: "гуппи"
+  description: "Гуппи ещё называют радужной рыбкой за ярко окрашенное тело и плавники."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: guppy
+  - type: ImperialFish
+    fishId: guppy
+    spriteWidth: 5
+    spriteHeight: 2
+    temperatureMin: 293.15
+    temperatureMax: 301.15
+    stablePopulation: 6
+    averageSize: 30
+    averageWeight: 500
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishPlasmatetra
+  name: "плазменная тетра"
+  description: "Из-за маленького размера тетры становятся добычей многих хищников водного мира — угрей, ракообразных и беспозвоночных."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: plastetra
+  - type: ImperialFish
+    fishId: plasmatetra
+    spriteWidth: 4
+    spriteHeight: 2
+    temperatureMin: 293.15
+    temperatureMax: 301.15
+    stablePopulation: 3
+    averageSize: 20
+    averageWeight: 180
+    baitQuality: Good
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishCatfish
+  name: "сом"
+  description: "У сома около ста тысяч вкусовых сосочков по всему телу: они помогают чувствовать химические вещества в воде и реагировать на прикосновения."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: catfish
+  - type: ImperialFish
+    fishId: catfish
+    spriteWidth: 8
+    spriteHeight: 4
+    temperatureMin: 285.15
+    temperatureMax: 303.15
+    stablePopulation: 3
+    favoriteBait:
+        - foodTypes: Junkfood
+    averageSize: 80
+    averageWeight: 1600
+    weightSizeDeviation: 0.35
+    beauty: 450
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishZipzap
+  name: "тревожный зипзап"
+  description: "Рыба, переполненная парализующей тревогой и электрическим потенциалом. Постоянно боится, что стенки аквариума сомкнутся — и буквально, и как метафора общей неуверенности в жизни."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: zipzap
+  - type: ImperialFish
+    fishId: zipzap
+    spriteWidth: 6
+    spriteHeight: 3
+    temperatureMin: 291.15
+    temperatureMax: 299.15
+    deadState: zipzap_dead
+    randomCaseRarity: 200
+    stablePopulation: 3
+    initialTraits: [ NoMating, Wary, Anxiety, Electrogenesis ]
+    favoriteBait:
+        - proto: PowerCellSmall
+    averageSize: 30
+    averageWeight: 500
+    beauty: 450
+    electrogenesisPower: 6700000
+    icon: Electric
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishTadpole
+  name: "головастик"
+  description: "Личинка земноводного. Крошечное круглое существо с длинным хвостом, которым оно плавает."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: tadpole
+  - type: ImperialFish
+    fishId: tadpole
+    spriteWidth: 3
+    spriteHeight: 1
+    temperatureMin: 288.15
+    temperatureMax: 293.15
+    feedingFrequency: 90
+    randomCaseRarity: 0
+    filletType: null
+    initialTraits: [ NoMating ]
+    averageSize: 3
+    averageWeight: 10
+    beauty: 0
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishPerch
+  name: "окунь"
+  description: "Всеми любимая рыба для сковородки, спортивной ловли и, к несчастью, добыча хищников покрупнее."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: perch
+  - type: ImperialFish
+    fishId: perch
+    spriteWidth: 5
+    spriteHeight: 3
+    aquariumState: fish/fish_greyscale
+    aquariumColor: "#9D8C64"
+    temperatureMin: 278.15
+    temperatureMax: 299.15
+    stablePopulation: 7
+    averageSize: 25
+    averageWeight: 400
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishSacabambaspis
+  name: "сакабамбаспис"
+  description: "Бесчелюстная рыба, которая должна была вымереть к концу ордовика. Говорят, без пришельцев её выживание и превращение в обитательницу горячих источников не обошлось."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: sacabambaspis
+  - type: ImperialFish
+    fishId: sacabambaspis
+    spriteWidth: 5
+    spriteHeight: 3
+    temperatureMin: 293.15
+    temperatureMax: 318.15
+    randomCaseRarity: 50
+    stablePopulation: 7
+    initialTraits: [ Necrophage, Wary ]
+    averageSize: 27
+    averageWeight: 500
+    beauty: 450
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishHolo
+  name: "голографическая золотая рыбка"
+  description: "Голограмма обычной золотой рыбки, медленно мерцающая вдали от своей голо-среды."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: goldfish
+  - type: ImperialFish
+    fishId: hologoldfish
+    showInCatalog: false
+    experimentScannable: false
+    spriteWidth: 5
+    spriteHeight: 3
+    aquariumState: fish/fish_greyscale
+    aquariumColor: "#D8540D"
+    requiredFluid: Anadromous
+    deathText: imperial-fish-death-holo
+    randomCaseRarity: 0
+    filletType: null
+    stablePopulation: 1
+    initialTraits: [ NoMating ]
+    averageSize: 20
+    averageWeight: 200
+
+- type: entity
+  parent: ImperialFishHolo
+  id: ImperialFishHoloCrab
+  name: "голографический краб"
+  description: "Голограмма душераздирающе бездушного краба — не чета милым крабикам, что иногда бегают вокруг. Смотрит на вас пустыми глазками-бусинками."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: crab
+  - type: ImperialFish
+    fishId: holocrab
+    showInCatalog: false
+    experimentScannable: false
+    spriteWidth: 10
+    spriteHeight: 6
+    requiredFluid: Anadromous
+    deathText: imperial-fish-death-holocrab
+    randomCaseRarity: 0
+    filletType: null
+    stablePopulation: 1
+    initialTraits: [ NoMating ]
+    averageSize: 30
+    averageWeight: 1000
+    beauty: 450
+    icon: Crab
+
+- type: entity
+  parent: ImperialFishHolo
+  id: ImperialFishHoloPuffer
+  name: "голографическая рыба-фугу"
+  description: "Голограмма абсолютно безопасной для еды фугу… если бы голографическую рыбу вообще можно было есть."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: pufferfish
+  - type: ImperialFish
+    fishId: holopufferfish
+    showInCatalog: false
+    experimentScannable: false
+    spriteWidth: 8
+    spriteHeight: 6
+    requiredFluid: Anadromous
+    deathText: imperial-fish-death-holopuffer
+    randomCaseRarity: 0
+    filletType: null
+    stablePopulation: 1
+    initialTraits: [ NoMating ]
+    averageSize: 60
+    averageWeight: 1000
+    beauty: 450
+    icon: Chunky
+
+- type: entity
+  parent: ImperialFishHolo
+  id: ImperialFishHoloAngel
+  name: "голографическая скалярия"
+  description: "Голограмма скалярии. Тут даже съязвить нечего."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: angelfish
+  - type: ImperialFish
+    fishId: holoangelfish
+    showInCatalog: false
+    experimentScannable: false
+    spriteWidth: 4
+    spriteHeight: 7
+    requiredFluid: Anadromous
+    deathText: imperial-fish-death-holoangel
+    randomCaseRarity: 0
+    filletType: null
+    stablePopulation: 1
+    initialTraits: [ NoMating ]
+    averageSize: 30
+    averageWeight: 500
+
+- type: entity
+  parent: ImperialFishHolo
+  id: ImperialFishHoloClown
+  name: "голографическая рыба-клоун"
+  description: "Голограмма рыбы-клоуна — по крайней мере, так они выглядели пять веков назад."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: holo_clownfish
+  - type: ImperialFish
+    fishId: holoclownfish
+    showInCatalog: false
+    experimentScannable: false
+    spriteWidth: 7
+    spriteHeight: 4
+    requiredFluid: Saltwater
+    deathText: imperial-fish-death-holoclown
+    randomCaseRarity: 0
+    filletType: null
+    stablePopulation: 1
+    initialTraits: [ NoMating ]
+    averageSize: 30
+    averageWeight: 500
+
+- type: entity
+  parent: ImperialFishHolo
+  id: ImperialFishHoloCheckered
+  name: "неотрисованная голографическая рыба"
+  description: "Перед глазами клетчатый силуэт жгучего пурпура и угольной черноты, будто прореха в ткани реальности. Смотреть больно."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: checkered
+  - type: ImperialFish
+    fishId: checkered
+    showInCatalog: false
+    experimentScannable: false
+    spriteWidth: 4
+    spriteHeight: 3
+    requiredFluid: Anadromous
+    deathText: imperial-fish-death-holocheckered
+    randomCaseRarity: 0
+    filletType: null
+    stablePopulation: 1
+    initialTraits: [ NoMating ]
+    averageSize: 30
+    averageWeight: 500
+    beauty: 0
+
+- type: entity
+  parent: ImperialFishHolo
+  id: ImperialFishHoloHalffish
+  name: "голографическая полурыба"
+  description: "Голограмма… рыбы, от которой остались только кости и голова. Разве она не должна быть мёртвой? Э-э, голомёртвой?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: half_fish
+  - type: ImperialFish
+    fishId: halffish
+    showInCatalog: false
+    experimentScannable: false
+    spriteWidth: 10
+    spriteHeight: 4
+    requiredFluid: Anadromous
+    deathText: imperial-fish-death-holohalffish
+    randomCaseRarity: 0
+    filletType: null
+    stablePopulation: 1
+    initialTraits: [ NoMating ]
+    averageSize: 50
+    averageWeight: 500
+    beauty: -300
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishChasmCrab
+  name: "пропастной краб"
+  description: "Молодь лобстросити растёт в водоёмах под землёй и ест всё, что туда падает, пока не станет достаточно большой, чтобы выбраться. Те, что водятся у станции, хорошо откормлены."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: chrab
+  - type: ImperialFish
+    fishId: chasm_crab
+    spriteWidth: 8
+    spriteHeight: 9
+    temperatureMin: 282.15
+    temperatureMax: 400
+    feedingFrequency: 600
+    randomCaseRarity: 400
+    filletType: FoodMeatCrab
+    stablePopulation: 4
+    compatibleTypes: [ ImperialFishChasmCrabIce ]
+    evolutionTypes: [ IceChrab ]
+    favoriteBait:
+        - proto: ImperialFishLavaloop
+    minPressure: 20
+    beauty: 450
+    icon: Crab
+
+- type: entity
+  parent: ImperialFishChasmCrab
+  id: ImperialFishChasmCrabIce
+  name: "арктический краб"
+  description: "Подвид пропастного краба, приспособившийся к холоду ледяной луны и отсутствию на ней бездонных пропастей."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: arctic_chrab
+  - type: ImperialFish
+    fishId: arctic_crab
+    spriteWidth: 8
+    spriteHeight: 9
+    temperatureMin: 160
+    temperatureMax: 288.15
+    feedingFrequency: 600
+    randomCaseRarity: 400
+    filletType: FoodMeatCrab
+    stablePopulation: 4
+    compatibleTypes: [ ImperialFishChasmCrab ]
+    evolutionTypes: [ ChasmChrab ]
+    favoriteBait:
+        - proto: ImperialFishLavaloop
+    minPressure: 20
+    beauty: 600
+    icon: Crab
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishBoned
+  name: "бесморская костемасса"
+  description: "То, что легко принять за останки рыбы, — на деле вид, давным-давно отказавшийся от слабой плоти. Живое ископаемое в самом буквальном смысле."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: bonemass
+  - type: ImperialFish
+    fishId: bonemass
+    spriteWidth: 10
+    spriteHeight: 7
+    requiredFluid: AnyWater
+    deathText: imperial-fish-death-boned
+    randomCaseRarity: 50
+    filletType: MaterialBones1
+    numFillets: 2
+    stablePopulation: 3
+    evolutionTypes: [ Mastodon ]
+    initialTraits: [ Revival, Carnivore ]
+    movement: Zippy
+    averageSize: 70
+    averageWeight: 2000
+    minPressure: 20
+    beauty: -300
+    icon: Bone
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishLavaloop
+  name: "лавовая петля"
+  description: "Благодаря изгибу её можно использовать как самодельный бумеранг."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: lava_loop
+  - type: ImperialFish
+    fishId: lavaloop
+    spriteWidth: 3
+    spriteHeight: 5
+    requiredFluid: AnyWater
+    temperatureMin: 313.15
+    temperatureMax: 1273.15
+    stablePopulation: 5
+    compatibleTypes: [ ImperialFishLavaloopPlasmaRiver ]
+    evolutionTypes: [ Plasmaloop ]
+    initialTraits: [ Carnivore, Heavy ]
+    movement: Zippy
+    averageSize: 30
+    averageWeight: 500
+    minPressure: 20
+    beauty: 450
+    icon: Weapon
+    baitQuality: Good
+
+- type: entity
+  parent: ImperialFishLavaloop
+  id: ImperialFishLavaloopPlasmaRiver
+  name: "плазменная петля"
+  description: "Лавовая петля, приспособившаяся к холодной жидкой плазме. Годится как самодельный бумеранг."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: plasma_loop
+  - type: ImperialFish
+    fishId: plasma_lavaloop
+    spriteWidth: 3
+    spriteHeight: 5
+    aquariumState: fish/lava_loop
+    requiredFluid: AnyWater
+    temperatureMin: 173.15
+    temperatureMax: 353.15
+    stablePopulation: 5
+    compatibleTypes: [ ImperialFishLavaloop ]
+    evolutionTypes: [ Lavaloop ]
+    initialTraits: [ Carnivore, Heavy ]
+    movement: Zippy
+    averageSize: 30
+    averageWeight: 500
+    minPressure: 20
+    beauty: 450
+    icon: Weapon
+
+- type: entity
+  parent: ImperialFishStarfish
+  id: ImperialFishStarfishChrystarfish
+  name: "кристальная морская звезда"
+  description: "Вот что бывает, когда космическая морская звезда пробирается в блюспейс-отсек гиперпространственного двигателя. Очень острая и опасная — главная причина взрывов космических кораблей в 2554 году."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/rift.rsi
+    state: chrystarfish
+  - type: ImperialFish
+    fishId: chrystarfish
+    spriteWidth: 7
+    spriteHeight: 9
+    requiredFluid: Air
+    temperatureMin: 0
+    temperatureMax: 100000
+    food: Bluespace
+    feedingFrequency: 600
+    deadState: starfish_dead
+    deathText: imperial-fish-death-starfishchrystarfish
+    randomCaseRarity: 50
+    filletType: XenoBluespaceCrystal
+    numFillets: 3
+    stablePopulation: 3
+    compatibleTypes: [ ImperialFishStarfish ]
+    initialTraits: [ Antigrav ]
+    movement: Accelerando
+    difficultyModifier: 15
+    favoriteBait:
+        - proto: XenoBluespaceCrystal
+    averageSize: 40
+    averageWeight: 1500
+    minPressure: 0
+    maxPressure: 100000
+    beauty: 700
+    electrogenesisPower: 9000000
+    icon: Star
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishDolphish
+  name: "моржедельфин"
+  description: "Странный кровожадный высший хищник из-за грани. Мощное оружие, но он ненавидит, когда его держат."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/wide.rsi
+    state: dolphish
+  - type: ImperialFish
+    fishId: walro-dolphish
+    spriteWidth: 13
+    spriteHeight: 9
+    requiredFluid: Air
+    temperatureMin: 260.15
+    temperatureMax: 360.15
+    food: Blood
+    randomCaseRarity: 50
+    filletType: FoodMeatFish
+    numFillets: 1
+    stablePopulation: 3
+    initialTraits: [ Wary, Carnivore, Necrophage, Predator, Territorial, Stinger ]
+    movement: Choppy
+    difficultyModifier: 30
+    averageSize: 150
+    averageWeight: 2750
+    weightSizeDeviation: 0.5
+    minPressure: 20
+    maxPressure: 750
+    beauty: 600
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishFlumpulus
+  name: "флюмпулус"
+  description: "Трудно даже представить, почему это считается рыбой. Почему-то кажется, что на неё отлично падать — смягчит любое падение."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/rift.rsi
+    state: flumpulus
+  - type: ImperialFish
+    fishId: flumpulus
+    spriteWidth: 10
+    spriteHeight: 9
+    requiredFluid: Air
+    temperatureMin: 0
+    temperatureMax: 100000
+    food: Fat
+    randomCaseRarity: 50
+    filletType: FoodMeatSlime
+    numFillets: 2
+    stablePopulation: 2
+    movement: Slow
+    difficultyModifier: 22
+    averageSize: 100
+    averageWeight: 500
+    weightSizeDeviation: 0.6
+    minPressure: 0
+    maxPressure: 750
+    beauty: -300
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishGullion
+  name: "галлион"
+  description: "Эта кристаллическая рыба — одна из двух известных форм жизни на основе кремния. Она избегает гибели от реакции кислорода с силикатами, органически экранируя свою поверхность: толстая чешуя кальцинируется в кварц и алмаз ценой полной слепоты. Как с этим справляются ксеноморфы — загадка на грани абсурда."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/rift.rsi
+    state: gullion
+  - type: ImperialFish
+    fishId: gullion
+    spriteWidth: 7
+    spriteHeight: 5
+    requiredFluid: Sulphwater
+    temperatureMin: 0
+    temperatureMax: 360.15
+    food: Silicon
+    feedingFrequency: 30
+    deathText: imperial-fish-death-gullion
+    randomCaseRarity: 50
+    filletType: MaterialDiamond1
+    numFillets: 2
+    stablePopulation: 3
+    initialTraits: [ Heavy, Parthenogenesis ]
+    movement: Slow
+    difficultyModifier: 22
+    favoriteBait:
+        - proto: MaterialDiamond
+    averageSize: 30
+    averageWeight: 2000
+    weightSizeDeviation: 0.3
+    minPressure: 20
+    maxPressure: 550
+    beauty: 700
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishMossglob
+  name: "моховой ком"
+  description: "Этот жуткий, злобный и почти неубиваемый ком мха, по слухам, — месть природы рыбакам."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/rift.rsi
+    state: mossglob
+  - type: ImperialFish
+    fishId: mossglob
+    spriteWidth: 12
+    spriteHeight: 13
+    requiredFluid: AnyWater
+    temperatureMin: 0
+    temperatureMax: 100000
+    deathText: imperial-fish-death-mossglob
+    randomCaseRarity: 0
+    filletType: FoodBadRecipe
+    stablePopulation: 2
+    initialTraits: [ Wary, Nocturnal, Emulsijack, Yucky, Lubed, Revival, ToxinImmunity, Hallucinogenic, Stinger, ToxicBarbs ]
+    movement: Slow
+    difficultyModifier: -35
+    favoriteBait:
+        - proto: FoodBadRecipe
+    averageSize: 150
+    averageWeight: 5000
+    minPressure: 0
+    maxPressure: 100000
+    beauty: -500
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishBabbelfish
+  name: "бабелрыба"
+  description: "Бабелрыбы тревожат и видом, и разумом: их психический вой калечит умы окружающих. На людей это почти не действует, но для рыб смертельно. Говорят, если разрезать одну пополам и вставить половинки в уши, откроется психический потенциал."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/rift.rsi
+    state: babbelfish
+  - type: ImperialFish
+    fishId: babbelfish
+    spriteWidth: 11
+    spriteHeight: 13
+    deathText: imperial-fish-death-babbelfish
+    randomCaseRarity: 0
+    filletType: FoodMeatFish
+    numFillets: 2
+    stablePopulation: 3
+    initialTraits: [ Wary, PickyEater, Heavy, PsychicAura, Necrophage ]
+    movement: Slow
+    difficultyModifier: 15
+    favoriteBait:
+        - proto: OrganHumanEars
+    averageSize: 30
+    averageWeight: 2000
+    beauty: 0
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishMastodon
+  name: "бесморской мастодонт"
+  description: "Чудовище из оголённых мышц и внутренностей в рыбоподобном скелете. Что-то не припомните его в каталоге."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/wide.rsi
+    state: mastodon
+  - type: ImperialFish
+    fishId: mastodon
+    showInCatalog: false
+    spriteWidth: 12
+    spriteHeight: 7
+    requiredFluid: AnyWater
+    feedingFrequency: 120
+    deathText: imperial-fish-death-mastodon
+    randomCaseRarity: 0
+    filletType: MaterialBones1
+    numFillets: 2
+    stablePopulation: 2
+    breedingTimeout: 300
+    initialTraits: [ Heavy, Amphibious, Revival, Carnivore, Predator, Territorial ]
+    difficultyModifier: 30
+    averageSize: 180
+    averageWeight: 5000
+    minPressure: 20
+    beauty: -200
+    icon: Bone
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishSoul
+  name: "рыба-душа"
+  description: "Далёкое и при этом смутно близкое существо, будто давно потерянный родственник. От одного взгляда на неё душа молодеет… И что это вообще такое?!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: soulfish
+  - type: ImperialFish
+    fishId: soulfish
+    showInCatalog: false
+    spriteWidth: 7
+    spriteHeight: 6
+    temperatureMin: 276.15
+    temperatureMax: 311.15
+    randomCaseRarity: 0
+    filletType: FoodMeatCutlet
+    stablePopulation: 4
+    movement: Choppy
+    favoriteBait:
+        - foodTypes: Junkfood, Fried
+    averageSize: 60
+    averageWeight: 1200
+    beauty: 700
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishSkinCrab
+  name: "кожаный краб"
+  description: "«И на восьмой день была сотворена безумная насмешка и над человечеством, и над крабьим родом». Восхитительно."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: skin_crab
+  - type: ImperialFish
+    fishId: skin_crab
+    showInCatalog: false
+    spriteWidth: 7
+    spriteHeight: 6
+    randomCaseRarity: 0
+    filletType: FoodMeatCrab
+    stablePopulation: 5
+    favoriteBait:
+        - foodTypes: Junkfood, Fried
+    averageSize: 40
+    averageWeight: 750
+    beauty: 600
+    icon: Crab
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishClownfish
+  name: "рыба-клоун"
+  description: "Рыба-клоун охотится, заплывая на риф, привлекает рыб покрупнее и заманивает их к актинии. Актиния жалит и съедает добычу, а остатки достаются рыбе-клоуну."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: clownfish
+  - type: ImperialFish
+    fishId: clownfish
+    spriteWidth: 7
+    spriteHeight: 4
+    requiredFluid: Saltwater
+    temperatureMin: 295.15
+    temperatureMax: 303.15
+    stablePopulation: 4
+    compatibleTypes: [ ImperialFishClownfishLube ]
+    evolutionTypes: [ Lubefish ]
+    initialTraits: [ PickyEater ]
+    averageSize: 30
+    averageWeight: 500
+
+- type: entity
+  parent: ImperialFishClownfish
+  id: ImperialFishClownfishLube
+  name: "смазочная рыба"
+  description: "Рыба-клоун, слишком долго пробывшая в вишнёвой смазке. Впервые её обнаружили после грузового инцидента в морях Европы, когда тысячи и тысячи…"
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: lubefish
+  - type: ImperialFish
+    fishId: lube
+    spriteWidth: 7
+    spriteHeight: 4
+    requiredFluid: Saltwater
+    temperatureMin: 295.15
+    temperatureMax: 303.15
+    food: SpaceLube
+    randomCaseRarity: 200
+    stablePopulation: 4
+    compatibleTypes: [ ImperialFishClownfish ]
+    initialTraits: [ PickyEater, Lubed ]
+    difficultyModifier: 5
+    averageSize: 30
+    averageWeight: 500
+    beauty: 600
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishCardinal
+  name: "кардинал"
+  description: "Кардиналов часто находят возле морских ежей: среди их игл рыбы прячутся от опасности."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: cardinalfish
+  - type: ImperialFish
+    fishId: cardinal
+    spriteWidth: 6
+    spriteHeight: 3
+    requiredFluid: Saltwater
+    temperatureMin: 295.15
+    temperatureMax: 303.15
+    stablePopulation: 4
+    initialTraits: [ Vegan ]
+    averageSize: 30
+    averageWeight: 500
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishGreenchromis
+  name: "зелёный хромис"
+  description: "Окраска хромиса меняется от синей до зелёной в зависимости от освещения и расстояния до источника света."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: greenchromis
+  - type: ImperialFish
+    fishId: greenchromis
+    spriteWidth: 5
+    spriteHeight: 3
+    requiredFluid: Saltwater
+    temperatureMin: 296.15
+    temperatureMax: 301.15
+    stablePopulation: 5
+    difficultyModifier: 5
+    averageSize: 30
+    averageWeight: 500
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishFirefish
+  name: "огненный бычок"
+  description: "В дикой природе огненный бычок предупреждает сородичей об опасности спинным плавником."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: firefish
+  - type: ImperialFish
+    fishId: firefish
+    spriteWidth: 5
+    spriteHeight: 3
+    requiredFluid: Saltwater
+    temperatureMin: 296.15
+    temperatureMax: 301.15
+    stablePopulation: 3
+    movement: Zippy
+    dislikedBait:
+        - proto: ImperialBaitWorm
+        - proto: ImperialBaitDoughball
+    averageSize: 30
+    averageWeight: 500
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishPufferfish
+  name: "рыба-фугу"
+  description: "Говорят, одной фугу хватит, чтобы убить тридцать человек, хотя за последние десятилетия её массово генетически сделали менее ядовитой."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: pufferfish
+  - type: ImperialFish
+    fishId: pufferfish
+    spriteWidth: 8
+    spriteHeight: 6
+    requiredFluid: Saltwater
+    temperatureMin: 296.15
+    temperatureMax: 301.15
+    filletType: FoodMeatFish
+    stablePopulation: 3
+    initialTraits: [ Heavy, Toxic ]
+    averageSize: 60
+    averageWeight: 1000
+    beauty: 450
+    icon: Chunky
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishLanternfish
+  name: "светящийся анчоус"
+  description: "Обычно живёт глубже двух километров под поверхностью океана, в полной темноте."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: lanternfish
+  - type: ImperialFish
+    fishId: lanternfish
+    spriteWidth: 6
+    spriteHeight: 5
+    requiredFluid: Saltwater
+    temperatureMin: 275.15
+    temperatureMax: 291.15
+    randomCaseRarity: 200
+    stablePopulation: 3
+    initialTraits: [ Nocturnal ]
+    averageSize: 50
+    averageWeight: 1000
+    beauty: 0
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishStingray
+  name: "хвостокол"
+  description: "Скат, известный ядовитым шипом. Несмотря на это, обычно спокоен, разве что немного пуглив."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: stingray
+  - type: ImperialFish
+    fishId: stingray
+    spriteWidth: 8
+    spriteHeight: 7
+    requiredFluid: Saltwater
+    randomCaseRarity: 400
+    stablePopulation: 4
+    initialTraits: [ Stinger, ToxicBarbs, Wary, Carnivore, Predator ]
+    averageSize: 60
+    averageWeight: 700
+    beauty: 600
+    icon: Weapon
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishSwordfish
+  name: "меч-рыба"
+  description: "Крупная парусниковая рыба, знаменитая вытянутым «мечом». Популярна у поваров и грозна в руках опытного косморыбака."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/wide.rsi
+    state: swordfish
+  - type: ImperialFish
+    fishId: swordfish
+    spriteWidth: 13
+    spriteHeight: 6
+    requiredFluid: Saltwater
+    feedingFrequency: 240
+    randomCaseRarity: 50
+    filletType: FoodMeatFish
+    stablePopulation: 3
+    breedingTimeout: 270
+    initialTraits: [ Carnivore, Predator, Stinger ]
+    movement: Plunger
+    difficultyModifier: 25
+    favoriteBait:
+        - foodTypes: Seafood
+        - special: fish
+    averageSize: 140
+    averageWeight: 4000
+    beauty: 700
+    icon: Weapon
+    inhandState: swordfish
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishSquid
+  name: "кальмар"
+  description: "Вытянутый моллюск с восемью щупальцами, природной маскировкой и чернильным облаком против хищников. Одно из самых умных и хорошо оснащённых беспозвоночных."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: squid
+  - type: ImperialFish
+    fishId: squid
+    spriteWidth: 4
+    spriteHeight: 5
+    requiredFluid: Saltwater
+    temperatureMin: 278.15
+    temperatureMax: 299.15
+    stablePopulation: 6
+    initialTraits: [ Heavy, Carnivore, Predator, Ink, Camouflage, Wary ]
+    averageWeight: 500
+    weightSizeDeviation: 0.5
+    beauty: 450
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishMonkfish
+  name: "морской чёрт"
+  description: "Удильщик из семейства лофиевых. Названий у него много, но ни одно не сделает его краше — и ни одно не сделает его менее вкусным."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: monkfish
+  - type: ImperialFish
+    fishId: monkfish
+    spriteWidth: 7
+    spriteHeight: 7
+    requiredFluid: Saltwater
+    temperatureMin: 275.15
+    temperatureMax: 296.15
+    filletType: FoodMeatFish
+    stablePopulation: 4
+    initialTraits: [ Heavy ]
+    favoriteBait:
+        - foodTypes: Seafood, Bugs
+    averageSize: 60
+    averageWeight: 1400
+    beauty: -300
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishPlaice
+  name: "камбала"
+  description: "Пожалуй, самая известная плоская рыба на космическом рынке. Природа здесь явно поработала скалкой."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: plaice
+  - type: ImperialFish
+    fishId: plaice
+    spriteWidth: 6
+    spriteHeight: 7
+    requiredFluid: Saltwater
+    temperatureMin: 275.15
+    temperatureMax: 291.15
+    stablePopulation: 5
+    initialTraits: [ Heavy ]
+    favoriteBait:
+        - foodTypes: Seafood, Bugs
+    averageSize: 40
+    averageWeight: 700
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishRatfish
+  name: "крысорыба"
+  description: "Крыса, слишком долго пробывшая в мутных водах техтоннелей. Любая высшая сила, явись она нам, заявила бы, что существование крысорыбы крайне нежелательно."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: ratfish
+  - type: ImperialFish
+    fishId: ratfish
+    spriteWidth: 7
+    spriteHeight: 5
+    requiredFluid: Freshwater
+    temperatureMin: 288.15
+    temperatureMax: 308.15
+    randomCaseRarity: 400
+    filletType: FoodMeatRotten
+    initialTraits: [ Necrophage ]
+    movement: Zippy
+    favoriteBait:
+        - foodTypes: Dairy
+    beauty: -500
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishSludgefish
+  name: "шламовая рыба"
+  description: "Уродливая, хрупкая, отдалённо рыбоподобная живая жижа — единственное, что способно процветать в едких и тесных полостях органических отходов станции."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: sludgefish
+  - type: ImperialFish
+    fishId: sludgefish
+    spriteWidth: 7
+    spriteHeight: 6
+    requiredFluid: Sulphwater
+    temperatureMin: 283.15
+    temperatureMax: 313.15
+    stablePopulation: 8
+    breedingTimeout: 150
+    evolutionTypes: [ PurpleSludgefish ]
+    initialTraits: [ Parthenogenesis, NoMating ]
+    averageSize: 20
+    averageWeight: 400
+    beauty: 0
+    icon: Slime
+
+- type: entity
+  parent: ImperialFishSludgefish
+  id: ImperialFishSludgefishPurple
+  name: "фиолетовая шламовая рыба"
+  description: "Уродливая, хрупкая, отдалённо рыбоподобная живая жижа. Эта научилась половому размножению, да ещё и приобрела фиолетовый оттенок."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: sludgefish_purple
+  - type: ImperialFish
+    fishId: purple_sludgefish
+    spriteWidth: 7
+    spriteHeight: 6
+    requiredFluid: Sulphwater
+    temperatureMin: 283.15
+    temperatureMax: 313.15
+    randomCaseRarity: 0
+    stablePopulation: 8
+    breedingTimeout: 150
+    evolutionTypes: [ PurpleSludgefish ]
+    initialTraits: [ Parthenogenesis ]
+    averageSize: 20
+    averageWeight: 400
+    beauty: 0
+    icon: Slime
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishSlimefish
+  name: "водный слайм"
+  description: "Дети, вот что бывает, когда слайм преодолевает свою водобоязнь. Буль-буль."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: slimefish
+  - type: ImperialFish
+    fishId: slimefish
+    flops: false
+    spriteWidth: 7
+    spriteHeight: 7
+    requiredFluid: Anadromous
+    temperatureMin: 293.15
+    deadState: slimefish_dead
+    randomCaseRarity: 200
+    filletType: SlimeExtractGrey
+    stablePopulation: 4
+    initialTraits: [ ToxinImmunity, Crossbreeder ]
+    favoriteBait:
+        - foodTypes: Toxic
+        - reagent: Toxin
+          amount: 5
+    beauty: 600
+    icon: Slime
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishFryish
+  name: "жаркрыбка"
+  description: "Малёк семейства жарешей — восхитительно вкусных рыбоподобных экстремофилов. Только не рассказывайте «Человечеству за этичное обращение с животными», что вы его съели."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: fryish
+  - type: ImperialFish
+    fishId: fryish
+    spriteWidth: 3
+    spriteHeight: 3
+    requiredFluid: AnyWater
+    temperatureMin: 323.15
+    temperatureMax: 493.15
+    randomCaseRarity: 200
+    filletType: FoodMeatFish
+    stablePopulation: 8
+    compatibleTypes: [ ImperialFishFryishFritterish, ImperialFishFryishNessie ]
+    spawnTypes: [ ImperialFishFryish ]
+    initialTraits: [ PickyEater, NoMating ]
+    movement: Zippy
+    difficultyModifier: -5
+    favoriteBait:
+        - foodTypes: Fried
+    dislikedBait:
+        - foodTypes: Gross, Raw
+    averageSize: 20
+    averageWeight: 400
+    beauty: 450
+    baitQuality: Great
+
+- type: entity
+  parent: ImperialFishFryish
+  id: ImperialFishFryishFritterish
+  name: "жарешь"
+  description: "Восхитительно вкусная инопланетная рыба-экстремофил. Эта похожа на тайяки."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: fritterish
+  - type: ImperialFish
+    fishId: fritterish
+    spriteWidth: 5
+    spriteHeight: 3
+    requiredFluid: AnyWater
+    temperatureMin: 323.15
+    temperatureMax: 493.15
+    randomCaseRarity: 200
+    filletType: FoodMeatFish
+    stablePopulation: 5
+    compatibleTypes: [ ImperialFishFryish, ImperialFishFryishNessie ]
+    spawnTypes: [ ImperialFishFryish ]
+    initialTraits: [ PickyEater ]
+    movement: Default
+    difficultyModifier: -5
+    favoriteBait:
+        - foodTypes: Fried
+    dislikedBait:
+        - foodTypes: Gross, Raw
+    averageSize: 50
+    averageWeight: 1000
+    beauty: 450
+
+- type: entity
+  parent: ImperialFishFryish
+  id: ImperialFishFryishNessie
+  name: "несси-рыба"
+  description: "Восхитительно вкусная инопланетная рыба-экстремофил. Эта такая огромная, что о ней впору слагать легенды."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/wide.rsi
+    state: nessiefish
+  - type: ImperialFish
+    fishId: nessie
+    showInCatalog: false
+    spriteWidth: 12
+    spriteHeight: 4
+    requiredFluid: AnyWater
+    temperatureMin: 323.15
+    temperatureMax: 493.15
+    feedingFrequency: 300
+    randomCaseRarity: 0
+    filletType: FoodMeatFish
+    numFillets: 2
+    stablePopulation: 3
+    breedingTimeout: 300
+    compatibleTypes: [ ImperialFishFryish, ImperialFishFryishFritterish ]
+    spawnTypes: [ ImperialFishFryishFritterish ]
+    initialTraits: [ PickyEater, Predator ]
+    movement: Default
+    difficultyModifier: 45
+    favoriteBait:
+        - foodTypes: Fried
+    dislikedBait:
+        - foodTypes: Gross, Raw
+    averageSize: 150
+    averageWeight: 6000
+    beauty: 700
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishEmulsijack
+  name: "токсичный эмульсиджек"
+  description: "А, ужасный эмульсиджек. Создан в лаборатории, и единственное реальное применение этой склизкой рыбы без чешуи — полностью испортить аквариум."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: emulsijack
+  - type: ImperialFish
+    fishId: emulsijack
+    spriteWidth: 7
+    spriteHeight: 3
+    requiredFluid: Anadromous
+    temperatureMin: 278.15
+    temperatureMax: 313.15
+    randomCaseRarity: 50
+    stablePopulation: 3
+    initialTraits: [ Emulsijack ]
+    beauty: -200
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishDonkfish
+  name: "запатентованная донкрыба «Донк Ко.»"
+  description: "Выращенная в лаборатории донкрыба. Её изобрели почти случайно — для начинки донк-покетов. К сожалению, на вкус она ужасна, поэтому стала чем-то вроде талисмана."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: donkfish
+  - type: ImperialFish
+    fishId: donkfish
+    spriteWidth: 5
+    spriteHeight: 4
+    temperatureMin: 288.15
+    temperatureMax: 301.15
+    randomCaseRarity: 200
+    filletType: FoodMeatFish
+    stablePopulation: 4
+    initialTraits: [ Yucky ]
+    beauty: 700
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishJumpercable
+  name: "моноклонирующий проводник"
+  description: "Удивительно полезное, хоть и мерзкое на вид создание рыбных лабораторий Синдиката. Бросьте в аквариум — и смотрите, как оно само кормится и размножается. Чем больше стая, тем больше энергии!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: jumpercable
+  - type: ImperialFish
+    fishId: jumpercable
+    spriteWidth: 16
+    spriteHeight: 5
+    temperatureMin: 283.15
+    temperatureMax: 303.15
+    randomCaseRarity: 50
+    stablePopulation: 12
+    initialTraits: [ Parthenogenesis, Mixotroph, Electrogenesis ]
+    favoriteBait:
+        - proto: PowerCellSmall
+    averageSize: 110
+    averageWeight: 6000
+    beauty: -300
+    electrogenesisPower: 900000
+    icon: Electric
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishChainsawfish
+  name: "рыба-бензопила"
+  description: "Очень, очень злое биологическое оружие, созданное только для того, чтобы рвать и терзать."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/wide.rsi
+    state: chainsawfish
+  - type: ImperialFish
+    fishId: chainsawfish
+    spriteWidth: 8
+    spriteHeight: 5
+    requiredFluid: Freshwater
+    temperatureMin: 291.15
+    temperatureMax: 299.15
+    feedingFrequency: 180
+    deadState: chainsawfish_dead
+    randomCaseRarity: 50
+    stablePopulation: 3
+    breedingTimeout: 255
+    initialTraits: [ Territorial, Carnivore, Predator, Stinger ]
+    movement: Accelerando
+    difficultyModifier: 30
+    favoriteBait:
+        - foodTypes: Gore
+    averageSize: 85
+    averageWeight: 2500
+    beauty: 600
+    icon: Weapon
+    inhandState: chainsawfish
+
+- type: entity
+  parent: ImperialFishPike
+  id: ImperialFishPikeArmored
+  name: "бронированная щука"
+  description: "Длинный хищник в металлической броне с мордой, похожей на алебарду. Определённо оружие, чтобы им размахивать."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/wide.rsi
+    state: armored_pike
+  - type: ImperialFish
+    fishId: armored_pike
+    spriteWidth: 10
+    spriteHeight: 3
+    requiredFluid: Anadromous
+    temperatureMin: 285.15
+    temperatureMax: 300.15
+    feedingFrequency: 240
+    randomCaseRarity: 50
+    stablePopulation: 3
+    breedingTimeout: 300
+    compatibleTypes: [ ImperialFishPike ]
+    initialTraits: [ Carnivore, Predator, Territorial, PickyEater, Stinger ]
+    movement: Plunger
+    difficultyModifier: 20
+    favoriteBait:
+        - foodTypes: Seafood
+        - special: fish
+    averageSize: 100
+    averageWeight: 3000
+    beauty: 600
+    icon: Weapon
+    inhandState: armored-pike
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishMoonfish
+  name: "загосская луна-рыба"
+  description: "Дискообразная рыба глубоководных районов океанов Тизиры размером с тунца. Ящеры высоко ценят её крупную икру."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: tizira_moonfish
+  - type: ImperialFish
+    fishId: moonfish
+    spriteWidth: 7
+    spriteHeight: 7
+    requiredFluid: Saltwater
+    temperatureMin: 293.15
+    temperatureMax: 303.15
+    randomCaseRarity: 400
+    filletType: FoodMeatFish
+    stablePopulation: 2
+    compatibleTypes: [ ImperialFishMoonfish, ImperialFishMoonfishDwarf ]
+    evolutionTypes: [ DwarfMoonfish ]
+    initialTraits: [ Predator ]
+    difficultyModifier: 10
+    favoriteBait:
+        - proto: ImperialFishArmorfish
+        - proto: ImperialFishNeedlefish
+        - proto: ImperialFishGunnerJellyfish
+    averageSize: 95
+    averageWeight: 2000
+    weightSizeDeviation: 0.1
+    beauty: 450
+
+- type: entity
+  parent: ImperialFishMoonfish
+  id: ImperialFishMoonfishDwarf
+  name: "карликовая луна-рыба"
+  description: "В дикой природе загосская луна-рыба размером с тунца, но селекцией вывели мелкую породу для аквариумов."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: dwarf_moonfish
+  - type: ImperialFish
+    fishId: dwarf_moonfish
+    spriteWidth: 6
+    spriteHeight: 6
+    requiredFluid: Saltwater
+    temperatureMin: 293.15
+    temperatureMax: 303.15
+    randomCaseRarity: 1000
+    filletType: FoodMeatFish
+    stablePopulation: 3
+    compatibleTypes: [ ImperialFishMoonfish, ImperialFishMoonfishDwarf ]
+    evolutionTypes: [ Moonfish ]
+    difficultyModifier: 0
+    favoriteBait:
+        - proto: ImperialFishArmorfish
+        - proto: ImperialFishNeedlefish
+        - proto: ImperialFishGunnerJellyfish
+    averageSize: 50
+    averageWeight: 950
+    weightSizeDeviation: 0.1
+    beauty: 450
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishGunnerJellyfish
+  name: "медуза-канонир"
+  description: "Названа так за сходство с артиллерийским снарядом. Родом с Тизиры, где её едят как деликатес. Выделяет слабый галлюциноген, который разрушается при готовке."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: gunner_jellyfish
+  - type: ImperialFish
+    fishId: gunner_jellyfish
+    spriteWidth: 5
+    spriteHeight: 4
+    requiredFluid: Saltwater
+    temperatureMin: 297.15
+    temperatureMax: 305.15
+    filletType: FoodMeatFish
+    stablePopulation: 4
+    initialTraits: [ Hallucinogenic ]
+    favoriteBait:
+        - proto: ImperialFishArmorfish
+        - proto: ImperialFishNeedlefish
+    beauty: 450
+    icon: Jellyfish
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishNeedlefish
+  name: "рыба-игла"
+  description: "Крошечная прозрачная рыбка, живущая большими стаями в океанах Тизиры. Обычный корм для рыб покрупнее."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: needlefish
+  - type: ImperialFish
+    fishId: needlefish
+    spriteWidth: 7
+    spriteHeight: 3
+    requiredFluid: Saltwater
+    temperatureMin: 283.15
+    temperatureMax: 305.15
+    filletType: null
+    stablePopulation: 12
+    breedingTimeout: 60
+    initialTraits: [ Carnivore ]
+    averageSize: 20
+    averageWeight: 300
+    baitQuality: Good
+
+- type: entity
+  parent: ImperialFishBase
+  id: ImperialFishArmorfish
+  name: "броненосная рыба"
+  description: "Маленький моллюск из океанов Тизиры с исключительно твёрдым панцирем. Едят его как креветок."
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: armorfish
+  - type: ImperialFish
+    fishId: armorfish
+    spriteWidth: 6
+    spriteHeight: 5
+    requiredFluid: Saltwater
+    temperatureMin: 283.15
+    temperatureMax: 305.15
+    filletType: FoodMeatCrab
+    stablePopulation: 10
+    breedingTimeout: 75
+    movement: Slow
+    averageSize: 25
+    averageWeight: 350
+    icon: Crab
+    baitQuality: Good

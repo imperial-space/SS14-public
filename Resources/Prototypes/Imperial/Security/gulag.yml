@@ -1,0 +1,444 @@
+# Трудовой лагерь 1 в 1 с tgstation/BandaStation (laborcamp, gulag_teleporter, prisoner management).
+
+# ─── Телепорт гулага (machinery/gulag_teleporter) ───
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: GulagTeleporter
+  name: телепорт трудового лагеря
+  description: Блюспейс-телепорт для отправки заключённых в трудовой лагерь.
+  components:
+  - type: GulagTeleporter
+  - type: Sprite
+    sprite: Imperial/Security/gulag_teleporter.rsi
+    snapCardinals: true
+    layers:
+    - state: open
+      map: [ "base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.GulagTeleporterVisuals.State:
+        base:
+          Open: { state: open }
+          Closed: { state: closed }
+          Occupied: { state: occupied }
+  - type: ContainerContainer
+    containers:
+      gulag-teleporter-occupant: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Machine
+    board: GulagTeleporterMachineCircuitboard
+  - type: EmptyOnMachineDeconstruct
+    containers:
+    - gulag-teleporter-occupant
+  - type: ApcPowerReceiver
+    powerLoad: 2000
+  - type: WiresPanel
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: GulagTeleporterMachineCircuitboard
+  name: плата телепорта трудового лагеря
+  description: Печатная плата машины — телепорта трудового лагеря.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: GulagTeleporter
+    stackRequirements:
+      Manipulator: 2
+      Glass: 5
+      Cable: 2
+
+# ─── Консоль телепорта (computer/prisoner/gulag_teleporter_computer) ───
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerGulagTeleporter
+  name: консоль телепорта трудового лагеря
+  description: Отправляет преступников в трудовой лагерь. Телепорт должен стоять вплотную к консоли.
+  components:
+  - type: GulagConsole
+  - type: Sprite
+    layers:
+    - map: [ "computerLayerBody" ]
+      state: computer
+    - map: [ "computerLayerKeyboard" ]
+      state: generic_keyboard
+    - map: [ "computerLayerScreen" ]
+      state: explosive
+    - map: [ "computerLayerKeys" ]
+      state: security_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#e05050"
+  - type: Computer
+    board: GulagConsoleComputerCircuitboard
+  - type: AccessReader
+    access: [ [ "Brig" ] ]
+  - type: ItemSlots
+    slots:
+      gulag_id:
+        name: Gulag-ID
+        whitelist:
+          components:
+          - IdCard
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      gulag_id: !type:ContainerSlot
+  - type: ActivatableUI
+    key: enum.GulagConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.GulagConsoleUiKey.Key:
+        type: GulagConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: GulagConsoleComputerCircuitboard
+  name: плата консоли телепорта трудового лагеря
+  description: Печатная плата компьютера — консоли телепорта трудового лагеря.
+  components:
+  - type: Sprite
+    state: cpu_security
+  - type: ComputerBoard
+    prototype: ComputerGulagTeleporter
+
+# ─── Консоль управления заключёнными (computer/prisoner/management) ───
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerPrisonerManagement
+  name: консоль управления заключёнными
+  description: Изменяет ID заключённых и управляет имплантами СБ у осуждённых и условно освобождённых.
+  components:
+  - type: PrisonerManagementConsole
+  - type: Sprite
+    layers:
+    - map: [ "computerLayerBody" ]
+      state: computer
+    - map: [ "computerLayerKeyboard" ]
+      state: generic_keyboard
+    - map: [ "computerLayerScreen" ]
+      state: explosive
+    - map: [ "computerLayerKeys" ]
+      state: security_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#e05050"
+  - type: Computer
+    board: PrisonerManagementComputerCircuitboard
+  - type: AccessReader
+    access: [ [ "Brig" ] ]
+  - type: ItemSlots
+    slots:
+      prisoner_id:
+        name: Prisoner-ID
+        whitelist:
+          components:
+          - IdCard
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      prisoner_id: !type:ContainerSlot
+  - type: ActivatableUI
+    key: enum.PrisonerManagementUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.PrisonerManagementUiKey.Key:
+        type: PrisonerManagementBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: PrisonerManagementComputerCircuitboard
+  name: плата консоли управления заключёнными
+  description: Печатная плата компьютера — консоли управления заключёнными.
+  components:
+  - type: Sprite
+    state: cpu_security
+  - type: ComputerBoard
+    prototype: ComputerPrisonerManagement
+
+# ─── Станция возврата снаряжения (gulag_item_reclaimer) ───
+
+- type: entity
+  parent: BaseStructure
+  id: GulagItemReclaimer
+  name: станция возврата снаряжения
+  description: Здесь выдают отобранные вещи тем, кто отбыл срок в трудовом лагере.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: GulagReclaimer
+  - type: Sprite
+    sprite: Imperial/Security/gulag_reclaimer.rsi
+    drawdepth: WallMountedItems
+    layers:
+    - state: base
+    - state: screen
+      shader: unshaded
+      map: [ "screen" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.GulagReclaimerVisuals.Emagged:
+        screen:
+          True: { state: emagged }
+          False: { state: screen }
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Transform
+    anchored: true
+  - type: Anchorable
+  - type: InteractionOutline
+  - type: Clickable
+  - type: AccessReader
+    access: [ [ "Brig" ] ]
+  - type: ContainerContainer
+    containers:
+      gulag-reclaimer-items: !type:Container
+  - type: ActivatableUI
+    key: enum.GulagReclaimerUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.GulagReclaimerUiKey.Key:
+        type: GulagReclaimerBoundUserInterface
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# ─── Лагерь ───
+
+# structure/gulag_beacon
+- type: entity
+  id: GulagBeacon
+  name: блюспейс-маяк трудового лагеря
+  description: Принимающий маяк для блюспейс-телепортации.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: GulagBeacon
+  - type: Sprite
+    sprite: Imperial/Security/gulag_beacon.rsi
+    drawdepth: FloorObjects
+    layers:
+    - state: beacon
+      shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#a0c8ff"
+  - type: Transform
+    anchored: true
+  - type: Clickable
+
+# stacking_machine/laborstacker
+- type: entity
+  parent: BaseStructure
+  id: LaborCampStacker
+  name: сборщик трудового лагеря
+  description: Принимает выплавленные листы ценных материалов и начисляет за них очки заключённым.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: LaborStacker
+    acceptedStacks:
+    - Diamond
+    - Uranium
+    - Plasma
+    - Gold
+    - Silver
+    - Bananium
+    - ReinforcedPlasmaGlass
+  - type: Sprite
+    sprite: Imperial/Security/labor_machines.rsi
+    layers:
+    - state: stacker
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: InteractionOutline
+  - type: Clickable
+
+# labor_claim_console
+- type: entity
+  parent: BaseStructure
+  id: LaborClaimConsole
+  name: консоль сбора очков
+  description: Консоль с электромагнитным записывающим устройством, учитывающая руду, добытую заключёнными.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: LaborClaimConsole
+  - type: Sprite
+    sprite: Imperial/Security/labor_machines.rsi
+    layers:
+    - state: console
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Transform
+    anchored: true
+  - type: InteractionOutline
+  - type: Clickable
+  - type: ActivatableUI
+    key: enum.LaborClaimUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.LaborClaimUiKey.Key:
+        type: LaborClaimBoundUserInterface
+
+# labor_points_checker
+- type: entity
+  parent: BaseStructure
+  id: LaborPointsChecker
+  name: консоль проверки очков
+  description: Консоль, по которой заключённые проверяют выполнение нормы. Просто проведите ID заключённого.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: LaborPointsChecker
+  - type: Sprite
+    sprite: Imperial/Security/labor_machines.rsi
+    layers:
+    - state: console
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Transform
+    anchored: true
+  - type: InteractionOutline
+  - type: Clickable
+
+# ─── Химимплант (implant/chem) ───
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ChemImplant
+  name: химический имплант
+  description: Позволяет удалённо выпускать реагенты прямо в кровь носителя. При смерти носителя выпускает всё.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ChemImplant
+  - type: SolutionContainerManager
+    solutions:
+      implant:
+        maxVol: 50
+
+- type: entity
+  parent: BaseImplantOnlyImplanter
+  id: ChemImplanter
+  name: имплантер (химический)
+  description: Перед вживлением наполните имплантер шприцем — до 50 единиц.
+  components:
+  - type: Implanter
+    implant: ChemImplant
+  - type: SolutionContainerManager
+    solutions:
+      implanter:
+        maxVol: 50
+  - type: InjectableSolution
+    solution: implanter
+  - type: ExaminableSolution
+    solution: implanter
+
+# ─── Флэтпаки и ящик ───
+
+- type: entity
+  parent: BaseFlatpack
+  id: GulagTeleporterFlatpack
+  name: флэтпак телепорта трудового лагеря
+  description: Флэтпак для сборки телепорта трудового лагеря.
+  components:
+  - type: Flatpack
+    entity: GulagTeleporter
+
+- type: entity
+  parent: BaseFlatpack
+  id: ComputerGulagTeleporterFlatpack
+  name: флэтпак консоли телепорта трудового лагеря
+  description: Флэтпак для сборки консоли телепорта трудового лагеря.
+  components:
+  - type: Flatpack
+    entity: ComputerGulagTeleporter
+
+- type: entity
+  parent: BaseFlatpack
+  id: ComputerPrisonerManagementFlatpack
+  name: флэтпак консоли управления заключёнными
+  description: Флэтпак для сборки консоли управления заключёнными.
+  components:
+  - type: Flatpack
+    entity: ComputerPrisonerManagement
+
+- type: entity
+  parent: BaseFlatpack
+  id: GulagItemReclaimerFlatpack
+  name: флэтпак станции возврата снаряжения
+  description: Флэтпак для сборки станции возврата снаряжения.
+  components:
+  - type: Flatpack
+    entity: GulagItemReclaimer
+
+- type: entity
+  parent: CrateSecgear
+  id: CrateSecurityLaborCamp
+  name: ящик оборудования трудового лагеря
+  description: Телепорт, консоли и станция возврата снаряжения для отправки заключённых в трудовой лагерь, а также химимпланты. Требуется доступ СБ.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: GulagTeleporterFlatpack
+        - id: ComputerGulagTeleporterFlatpack
+        - id: ComputerPrisonerManagementFlatpack
+        - id: GulagItemReclaimerFlatpack
+        - id: ChemImplanter
+          amount: 2
+        - id: PrisonerIDCard
+          amount: 2
+
+- type: cargoProduct
+  id: SecurityLaborCamp
+  icon:
+    sprite: Imperial/Security/gulag_teleporter.rsi
+    state: closed
+  product: CrateSecurityLaborCamp
+  cost: 4000
+  category: cargoproduct-category-name-security
+  group: ImperialCargo

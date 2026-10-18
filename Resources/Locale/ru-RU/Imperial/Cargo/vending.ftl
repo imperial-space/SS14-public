@@ -1,0 +1,21 @@
+imperial-vending-search = Поиск...
+imperial-vending-ui-products = Товары
+imperial-vending-ui-categories = Категории
+imperial-vending-ui-contraband = Контрабанда
+imperial-vending-ui-premium = Премиум
+imperial-vending-ui-no-id = ID-карта не обнаружена! Обратитесь к главе персонала.
+imperial-vending-ui-unknown = Неизвестный
+imperial-vending-ui-unemployed = Безработный
+imperial-vending-ui-cash = { $cash } кр.
+imperial-vending-ui-list = Список
+imperial-vending-ui-grid = Сетка
+imperial-vending-ui-left = { $amount } ост.
+imperial-vending-ui-price = { $price } кр.
+imperial-vending-ui-free-item = Бесплатно
+imperial-vending-reason = Торгомат: { $vendor }
+imperial-vending-charged = Списано { $price } кр.
+imperial-vending-cash = Оплачено наличными.
+imperial-vending-no-account = Нет ID-карты или КПК со счётом, а наличных не хватает на «{ $item }».
+imperial-vending-no-funds = Недостаточно средств для покупки «{ $item }».
+
+imperial-soil-sack-occupied = Здесь уже есть грядка!

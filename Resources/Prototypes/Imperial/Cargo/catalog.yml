@@ -1,0 +1,5809 @@
+# Каталог карго TG (code/modules/cargo/packs), сгенерирован scratchpad/cargo/gen_cargo.pl.
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoCostumesToysRandomisedCrate
+  name: "Ящик коллекционных шляп"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingHeadHatChef
+        - id: ClothingHeadHatPaper
+        - id: ClothingHeadHatTophat
+        - id: ClothingHeadHatCaptain
+        - id: ClothingHeadHatBeret
+        - id: ClothingHeadHatWelding
+        - id: ClothingHeadHatGreyFlatcap
+        - id: ClothingHeadHatPirate
+        - id: ClothingHeadHatCatEars
+        - id: ClothingHeadHatBunny
+        - id: ClothingHeadHatWizardFake
+        - id: ClothingHeadHatHardhatYellow
+        - id: ClothingHeadHatHoshat
+        - id: ClothingHeadHatHopcap
+        - id: ClothingHeadHelmetThunderdome
+        - id: ClothingHeadHelmetSwat
+        - id: ClothingHeadHatAnimalHeadslime
+        - id: ClothingHeadHatAnimalHeadslime
+
+- type: cargoProduct
+  id: ImperialCargoCostumesToysRandomised
+  name: imperial-cargo-ImperialCargoCostumesToysRandomised-name
+  description: imperial-cargo-ImperialCargoCostumesToysRandomised-desc
+  icon:
+    entity: ClothingHeadHatChef
+  product: ImperialCargoCostumesToysRandomisedCrate
+  cost: 8000
+  category: imperial-cargo-category-costumes
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoCostumesToysFormalwearCrate
+  name: "Ящик официальной одежды"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingUniformJumpsuitLawyerBlue
+        - id: ClothingUniformJumpsuitLawyerPurple
+        - id: ClothingOuterVest
+        - id: ClothingNeckTieRed
+        - id: ClothingHeadHatBowlerHat
+        - id: ClothingHeadHatFedoraBrown
+        - id: ClothingHeadHatGreyFlatcap
+        - id: ClothingHeadHatBeret
+        - id: ClothingHeadHatTophat
+        - id: ClothingShoesBootsLaceup
+          amount: 3
+
+- type: cargoProduct
+  id: ImperialCargoCostumesToysFormalwear
+  name: imperial-cargo-ImperialCargoCostumesToysFormalwear-name
+  description: imperial-cargo-ImperialCargoCostumesToysFormalwear-desc
+  icon:
+    entity: ClothingUniformJumpsuitLawyerBlue
+  product: ImperialCargoCostumesToysFormalwearCrate
+  cost: 800
+  category: imperial-cargo-category-costumes
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoCostumesToysClownpinCrate
+  name: "Ящик с уморительными бойками"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialClownPin
+
+- type: cargoProduct
+  id: ImperialCargoCostumesToysClownpin
+  name: imperial-cargo-ImperialCargoCostumesToysClownpin-name
+  description: imperial-cargo-ImperialCargoCostumesToysClownpin-desc
+  icon:
+    entity: ImperialClownPin
+  product: ImperialCargoCostumesToysClownpinCrate
+  cost: 2000
+  category: imperial-cargo-category-costumes
+  group: ImperialCargoContraband
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoCostumesToysKnucklebonesCrate
+  name: "Ящик с игрой в бабки"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: d6Dice
+          amount: 18
+        - id: CrayonWhite
+
+- type: cargoProduct
+  id: ImperialCargoCostumesToysKnucklebones
+  name: imperial-cargo-ImperialCargoCostumesToysKnucklebones-name
+  description: imperial-cargo-ImperialCargoCostumesToysKnucklebones-desc
+  icon:
+    entity: d6Dice
+  product: ImperialCargoCostumesToysKnucklebonesCrate
+  cost: 400
+  category: imperial-cargo-category-costumes
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoCostumesToysCostumeOriginalCrate
+  name: "Ящик классических костюмов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialClothingHeadCostumeSnowman
+        - id: ClothingHeadHatChickenhead
+        - id: ClothingOuterSuitChicken
+        - id: ClothingOuterSuitMonkey
+        - id: ClothingHeadHatCardborg
+        - id: ClothingOuterCardborg
+        - id: ClothingOuterSuitIan
+        - id: ClothingOuterSuitCarp
+
+- type: cargoProduct
+  id: ImperialCargoCostumesToysCostumeOriginal
+  name: imperial-cargo-ImperialCargoCostumesToysCostumeOriginal-name
+  description: imperial-cargo-ImperialCargoCostumesToysCostumeOriginal-desc
+  icon:
+    entity: ImperialClothingHeadCostumeSnowman
+  product: ImperialCargoCostumesToysCostumeOriginalCrate
+  cost: 400
+  category: imperial-cargo-category-costumes
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoCostumesToysCostumeCrate
+  name: "Ящик стандартных костюмов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingBackpackClown
+        - id: ClothingShoesClown
+        - id: ClothingMaskClown
+        - id: ClothingUniformJumpsuitClown
+        - id: BikeHorn
+        - id: ClothingUniformJumpsuitMime
+        - id: ClothingShoesColorBlack
+        - id: ClothingHandsGlovesColorWhite
+        - id: ClothingMaskMime
+        - id: ClothingHeadHatBeretFrench
+        - id: ClothingBeltSuspendersRed
+        - id: DrinkBottleOfNothingFull
+        - id: ClothingBackpackMime
+
+- type: cargoProduct
+  id: ImperialCargoCostumesToysCostume
+  name: imperial-cargo-ImperialCargoCostumesToysCostume-name
+  description: imperial-cargo-ImperialCargoCostumesToysCostume-desc
+  icon:
+    entity: ClothingBackpackClown
+  product: ImperialCargoCostumesToysCostumeCrate
+  cost: 400
+  category: imperial-cargo-category-costumes
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoCostumesToysRandomisedToysCrate
+  name: "Ящик игрушек"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:GroupSelector
+        rolls: !type:ConstantNumberSelector
+          value: 5
+        children:
+        - id: ToySpawner90
+        - id: PlushieSpawner50
+
+- type: cargoProduct
+  id: ImperialCargoCostumesToysRandomisedToys
+  name: imperial-cargo-ImperialCargoCostumesToysRandomisedToys-name
+  description: imperial-cargo-ImperialCargoCostumesToysRandomisedToys-desc
+  icon:
+    entity: CrateGenericSteel
+  product: ImperialCargoCostumesToysRandomisedToysCrate
+  cost: 1600
+  category: imperial-cargo-category-costumes
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoCostumesToysWizardCrate
+  name: "Ящик костюма волшебника"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterWizard
+        - id: ClothingShoesSlippers
+        - id: ClothingHeadHatWizardFake
+
+- type: cargoProduct
+  id: ImperialCargoCostumesToysWizard
+  name: imperial-cargo-ImperialCargoCostumesToysWizard-name
+  description: imperial-cargo-ImperialCargoCostumesToysWizard-desc
+  icon:
+    entity: ClothingOuterWizard
+  product: ImperialCargoCostumesToysWizardCrate
+  cost: 800
+  category: imperial-cargo-category-costumes
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoCostumesToysPinataCrate
+  name: "Набор пиньяты-корги"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BaseBallBat
+        - id: ClothingEyesBlindfold
+
+- type: cargoProduct
+  id: ImperialCargoCostumesToysPinata
+  name: imperial-cargo-ImperialCargoCostumesToysPinata-name
+  description: imperial-cargo-ImperialCargoCostumesToysPinata-desc
+  icon:
+    entity: BaseBallBat
+  product: ImperialCargoCostumesToysPinataCrate
+  cost: 800
+  category: imperial-cargo-category-costumes
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoEmergencyBioCrate
+  name: "Ящик биологической защиты"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingHeadHatHoodBioGeneral
+          amount: 2
+        - id: ClothingOuterBioGeneral
+          amount: 2
+        - id: ClothingHandsGlovesNitrile
+          amount: 2
+        - id: BoxSterileMask
+        - id: BoxLatexGloves
+
+- type: cargoProduct
+  id: ImperialCargoEmergencyBio
+  name: imperial-cargo-ImperialCargoEmergencyBio-name
+  description: imperial-cargo-ImperialCargoEmergencyBio-desc
+  icon:
+    entity: ClothingHeadHatHoodBioGeneral
+  product: ImperialCargoEmergencyBioCrate
+  cost: 400
+  category: imperial-cargo-category-emergency
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateInternals
+  id: ImperialCargoEmergencyEquipmentCrate
+  name: "Ящик аварийных ботов и дыхательного снаряжения"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MobMedibot
+          amount: 2
+        - id: EmergencyOxygenTankFilled
+          amount: 5
+        - id: ClothingMaskBreath
+          amount: 5
+
+- type: cargoProduct
+  id: ImperialCargoEmergencyEquipment
+  name: imperial-cargo-ImperialCargoEmergencyEquipment-name
+  description: imperial-cargo-ImperialCargoEmergencyEquipment-desc
+  icon:
+    entity: MobMedibot
+  product: ImperialCargoEmergencyEquipmentCrate
+  cost: 800
+  category: imperial-cargo-category-emergency
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoEmergencyBombCrate
+  name: "Ящик сапёрного снаряжения"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingHeadHelmetBombSuit
+        - id: ClothingOuterSuitBomb
+        - id: ClothingMaskGas
+        - id: Screwdriver
+        - id: Wirecutter
+        - id: Multitool
+
+- type: cargoProduct
+  id: ImperialCargoEmergencyBomb
+  name: imperial-cargo-ImperialCargoEmergencyBomb-name
+  description: imperial-cargo-ImperialCargoEmergencyBomb-desc
+  icon:
+    entity: ClothingHeadHelmetBombSuit
+  product: ImperialCargoEmergencyBombCrate
+  cost: 400
+  category: imperial-cargo-category-emergency
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoEmergencyFirefightingCrate
+  name: "Ящик пожарного снаряжения"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterSuitFire
+          amount: 2
+        - id: ClothingMaskGas
+          amount: 2
+        - id: FlashlightLantern
+          amount: 2
+        - id: OxygenTankFilled
+          amount: 2
+        - id: ImperialFireExtinguisherAdvanced
+          amount: 2
+        - id: ClothingHeadHatHardhatRed
+          amount: 2
+
+- type: cargoProduct
+  id: ImperialCargoEmergencyFirefighting
+  name: imperial-cargo-ImperialCargoEmergencyFirefighting-name
+  description: imperial-cargo-ImperialCargoEmergencyFirefighting-desc
+  icon:
+    entity: ClothingOuterSuitFire
+  product: ImperialCargoEmergencyFirefightingCrate
+  cost: 400
+  category: imperial-cargo-category-emergency
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateEngineeringSecure
+  id: ImperialCargoEmergencyAtmostankCrate
+  name: "Ранцевый пожарный бак"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingBackpackWaterTank
+  - type: AccessReader
+    access: [["Atmospherics"]]
+
+- type: cargoProduct
+  id: ImperialCargoEmergencyAtmostank
+  name: imperial-cargo-ImperialCargoEmergencyAtmostank-name
+  description: imperial-cargo-ImperialCargoEmergencyAtmostank-desc
+  icon:
+    entity: ClothingBackpackWaterTank
+  product: ImperialCargoEmergencyAtmostankCrate
+  cost: 360
+  category: imperial-cargo-category-emergency
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateInternals
+  id: ImperialCargoEmergencyInternalsCrate
+  name: "Ящик дыхательного снаряжения"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingMaskGas
+          amount: 3
+        - id: ClothingMaskBreath
+          amount: 3
+        - id: EmergencyOxygenTankFilled
+          amount: 3
+        - id: OxygenTankFilled
+          amount: 3
+
+- type: cargoProduct
+  id: ImperialCargoEmergencyInternals
+  name: imperial-cargo-ImperialCargoEmergencyInternals-name
+  description: imperial-cargo-ImperialCargoEmergencyInternals-desc
+  icon:
+    entity: ClothingMaskGas
+  product: ImperialCargoEmergencyInternalsCrate
+  cost: 400
+  category: imperial-cargo-category-emergency
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateRadiation
+  id: ImperialCargoEmergencyRadiationCrate
+  name: "Ящик радиационной защиты"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingHeadHatHoodRad
+          amount: 2
+        - id: ClothingOuterSuitRad
+          amount: 2
+        - id: GeigerCounter
+          amount: 2
+        - id: DrinkVodkaBottleFull
+        - id: DrinkShotGlass
+          amount: 2
+
+- type: cargoProduct
+  id: ImperialCargoEmergencyRadiation
+  name: imperial-cargo-ImperialCargoEmergencyRadiation-name
+  description: imperial-cargo-ImperialCargoEmergencyRadiation-desc
+  icon:
+    entity: ClothingHeadHatHoodRad
+  product: ImperialCargoEmergencyRadiationCrate
+  cost: 400
+  category: imperial-cargo-category-emergency
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateSecure
+  id: ImperialCargoEmergencySpacesuitCrate
+  name: "Ящик скафандра"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitEVA
+        - id: ClothingHeadHelmetEVA
+        - id: ClothingMaskBreath
+  - type: AccessReader
+    access: [["External"]]
+
+- type: cargoProduct
+  id: ImperialCargoEmergencySpacesuit
+  name: imperial-cargo-ImperialCargoEmergencySpacesuit-name
+  description: imperial-cargo-ImperialCargoEmergencySpacesuit-desc
+  icon:
+    entity: ClothingOuterHardsuitEVA
+  product: ImperialCargoEmergencySpacesuitCrate
+  cost: 600
+  category: imperial-cargo-category-emergency
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateHydroSecure
+  id: ImperialCargoEmergencyWeedcontrolCrate
+  name: "Ящик борьбы с сорняками"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: HydroponicsToolScythe
+        - id: ClothingHandsGlovesLeather
+        - id: ClothingMaskGas
+  - type: AccessReader
+    access: [["Hydroponics"]]
+
+- type: cargoProduct
+  id: ImperialCargoEmergencyWeedcontrol
+  name: imperial-cargo-ImperialCargoEmergencyWeedcontrol-name
+  description: imperial-cargo-ImperialCargoEmergencyWeedcontrol-desc
+  icon:
+    entity: HydroponicsToolScythe
+  product: ImperialCargoEmergencyWeedcontrolCrate
+  cost: 500
+  category: imperial-cargo-category-emergency
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateScience
+  id: ImperialCargoEngineeringRipleyCrate
+  name: "набор АПЛУ МОД-1"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: RipleyHarness
+        - id: RipleyRArm
+        - id: RipleyLArm
+        - id: RipleyRLeg
+        - id: RipleyLLeg
+        - id: ImperialStockPartCapacitor1
+        - id: ImperialStockPartScanningModule1
+        - id: ImperialStockPartServo1
+        - id: RipleyCentralElectronics
+        - id: RipleyPeripheralsElectronics
+        - id: MechEquipmentGrabber
+
+- type: cargoProduct
+  id: ImperialCargoEngineeringRipley
+  name: imperial-cargo-ImperialCargoEngineeringRipley-name
+  description: imperial-cargo-ImperialCargoEngineeringRipley-desc
+  icon:
+    entity: RipleyHarness
+  product: ImperialCargoEngineeringRipleyCrate
+  cost: 2000
+  category: imperial-cargo-category-engineering
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateEngineering
+  id: ImperialCargoEngineeringConveyorCrate
+  name: "ящик сборочных компонентов конвейера"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ConveyorBeltAssembly
+        - id: TwoWayLever
+
+- type: cargoProduct
+  id: ImperialCargoEngineeringConveyor
+  name: imperial-cargo-ImperialCargoEngineeringConveyor-name
+  description: imperial-cargo-ImperialCargoEngineeringConveyor-desc
+  icon:
+    entity: ConveyorBeltAssembly
+  product: ImperialCargoEngineeringConveyorCrate
+  cost: 700
+  category: imperial-cargo-category-engineering
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateEngineering
+  id: ImperialCargoEngineeringEngiequipmentCrate
+  name: "ящик инженерного снаряжения"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingBeltUtility
+          amount: 3
+        - id: ClothingOuterVestHazard
+          amount: 3
+        - id: ClothingHeadHatWelding
+          amount: 3
+        - id: ClothingHeadHatHardhatYellow
+          amount: 3
+        - id: ClothingEyesGlassesMeson
+          amount: 2
+
+- type: cargoProduct
+  id: ImperialCargoEngineeringEngiequipment
+  name: imperial-cargo-ImperialCargoEngineeringEngiequipment-name
+  description: imperial-cargo-ImperialCargoEngineeringEngiequipment-desc
+  icon:
+    entity: ClothingBeltUtility
+  product: ImperialCargoEngineeringEngiequipmentCrate
+  cost: 800
+  category: imperial-cargo-category-engineering
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateElectrical
+  id: ImperialCargoEngineeringPowergamermittsCrate
+  name: "ящик изолирующих перчаток"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingHandsGlovesColorYellow
+          amount: 3
+
+- type: cargoProduct
+  id: ImperialCargoEngineeringPowergamermitts
+  name: imperial-cargo-ImperialCargoEngineeringPowergamermitts-name
+  description: imperial-cargo-ImperialCargoEngineeringPowergamermitts-desc
+  icon:
+    entity: ClothingHandsGlovesColorYellow
+  product: ImperialCargoEngineeringPowergamermittsCrate
+  cost: 1600
+  category: imperial-cargo-category-engineering
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateEngineering
+  id: ImperialCargoEngineeringInducersCrate
+  name: "ящик электромагнитных силовых индукторов НТ-75"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialInducer
+          amount: 2
+
+- type: cargoProduct
+  id: ImperialCargoEngineeringInducers
+  name: imperial-cargo-ImperialCargoEngineeringInducers-name
+  description: imperial-cargo-ImperialCargoEngineeringInducers-desc
+  icon:
+    entity: ImperialInducer
+  product: ImperialCargoEngineeringInducersCrate
+  cost: 800
+  category: imperial-cargo-category-engineering
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateEngineering
+  id: ImperialCargoEngineeringPacmanCrate
+  name: "ящик с генератором P.A.C.M.A.N"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: PortableGeneratorPacman
+
+- type: cargoProduct
+  id: ImperialCargoEngineeringPacman
+  name: imperial-cargo-ImperialCargoEngineeringPacman-name
+  description: imperial-cargo-ImperialCargoEngineeringPacman-desc
+  icon:
+    entity: PortableGeneratorPacman
+  product: ImperialCargoEngineeringPacmanCrate
+  cost: 1000
+  category: imperial-cargo-category-engineering
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateElectrical
+  id: ImperialCargoEngineeringPowerCrate
+  name: "ящик батареек"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: PowerCellHigh
+          amount: 3
+
+- type: cargoProduct
+  id: ImperialCargoEngineeringPower
+  name: imperial-cargo-ImperialCargoEngineeringPower-name
+  description: imperial-cargo-ImperialCargoEngineeringPower-desc
+  icon:
+    entity: PowerCellHigh
+  product: ImperialCargoEngineeringPowerCrate
+  cost: 600
+  category: imperial-cargo-category-engineering
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateEngineering
+  id: ImperialCargoEngineeringToolsCrate
+  name: "ящик с ящиками для инструментов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ToolboxElectricalFilled
+          amount: 3
+        - id: ToolboxMechanicalFilled
+          amount: 3
+
+- type: cargoProduct
+  id: ImperialCargoEngineeringTools
+  name: imperial-cargo-ImperialCargoEngineeringTools-name
+  description: imperial-cargo-ImperialCargoEngineeringTools-desc
+  icon:
+    entity: ToolboxElectricalFilled
+  product: ImperialCargoEngineeringToolsCrate
+  cost: 1000
+  category: imperial-cargo-category-engineering
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateEngineeringSecure
+  id: ImperialCargoEngineeringPortapumpCrate
+  name: "ящик с портативными воздушными насосами"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: PortableScrubber
+          amount: 2
+
+- type: cargoProduct
+  id: ImperialCargoEngineeringPortapump
+  name: imperial-cargo-ImperialCargoEngineeringPortapump-name
+  description: imperial-cargo-ImperialCargoEngineeringPortapump-desc
+  icon:
+    entity: PortableScrubber
+  product: ImperialCargoEngineeringPortapumpCrate
+  cost: 900
+  category: imperial-cargo-category-engineering
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateEngineeringSecure
+  id: ImperialCargoEngineeringPortascrubberCrate
+  name: "ящик с портативными очистителями воздуха"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: PortableScrubber
+          amount: 2
+
+- type: cargoProduct
+  id: ImperialCargoEngineeringPortascrubber
+  name: imperial-cargo-ImperialCargoEngineeringPortascrubber-name
+  description: imperial-cargo-ImperialCargoEngineeringPortascrubber-desc
+  icon:
+    entity: PortableScrubber
+  product: ImperialCargoEngineeringPortascrubberCrate
+  cost: 900
+  category: imperial-cargo-category-engineering
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoEngineeringHugescrubberCrate
+  name: "ящик с крупным портативным очистителем воздуха"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: PortableScrubber
+
+- type: cargoProduct
+  id: ImperialCargoEngineeringHugescrubber
+  name: imperial-cargo-ImperialCargoEngineeringHugescrubber-name
+  description: imperial-cargo-ImperialCargoEngineeringHugescrubber-desc
+  icon:
+    entity: PortableScrubber
+  product: ImperialCargoEngineeringHugescrubberCrate
+  cost: 1500
+  category: imperial-cargo-category-engineering
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateEngineeringSecure
+  id: ImperialCargoEngineeringSpaceHeaterCrate
+  name: "ящик обогревателей"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SpaceHeaterFlatpack
+
+- type: cargoProduct
+  id: ImperialCargoEngineeringSpaceHeater
+  name: imperial-cargo-ImperialCargoEngineeringSpaceHeater-name
+  description: imperial-cargo-ImperialCargoEngineeringSpaceHeater-desc
+  icon:
+    entity: SpaceHeaterFlatpack
+  product: ImperialCargoEngineeringSpaceHeaterCrate
+  cost: 400
+  category: imperial-cargo-category-engineering
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateEngineering
+  id: ImperialCargoEngineeringShieldSatCrate
+  name: "ящик спутников метеоритного щита"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialMeteorShieldSatellite
+          amount: 3
+
+- type: cargoProduct
+  id: ImperialCargoEngineeringShieldSat
+  name: imperial-cargo-ImperialCargoEngineeringShieldSat-name
+  description: imperial-cargo-ImperialCargoEngineeringShieldSat-desc
+  icon:
+    entity: ImperialMeteorShieldSatellite
+  product: ImperialCargoEngineeringShieldSatCrate
+  cost: 1200
+  category: imperial-cargo-category-engineering
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateEngineering
+  id: ImperialCargoEngineeringShieldSatControlCrate
+  name: "ящик с платой управления системы противометеорной защиты"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialSatelliteControlCircuitboard
+
+- type: cargoProduct
+  id: ImperialCargoEngineeringShieldSatControl
+  name: imperial-cargo-ImperialCargoEngineeringShieldSatControl-name
+  description: imperial-cargo-ImperialCargoEngineeringShieldSatControl-desc
+  icon:
+    entity: ImperialSatelliteControlCircuitboard
+  product: ImperialCargoEngineeringShieldSatControlCrate
+  cost: 2000
+  category: imperial-cargo-category-engineering
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateEngineering
+  id: ImperialCargoEngineeringCeturtlenecksCrate
+  name: "ящик с водолазкой главного инженера"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingUniformJumpsuitChiefEngineerTurtle
+        - id: ClothingUniformJumpskirtChiefEngineerTurtle
+
+- type: cargoProduct
+  id: ImperialCargoEngineeringCeturtlenecks
+  name: imperial-cargo-ImperialCargoEngineeringCeturtlenecks-name
+  description: imperial-cargo-ImperialCargoEngineeringCeturtlenecks-desc
+  icon:
+    entity: ClothingUniformJumpsuitChiefEngineerTurtle
+  product: ImperialCargoEngineeringCeturtlenecksCrate
+  cost: 400
+  category: imperial-cargo-category-engineering
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateEngineeringSecure
+  id: ImperialCargoEngineEmitterCrate
+  name: "ящик эмиттеров"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: EmitterFlatpack
+          amount: 2
+  - type: AccessReader
+    access: [["ChiefEngineer"]]
+
+- type: cargoProduct
+  id: ImperialCargoEngineEmitter
+  name: imperial-cargo-ImperialCargoEngineEmitter-name
+  description: imperial-cargo-ImperialCargoEngineEmitter-desc
+  icon:
+    entity: EmitterFlatpack
+  product: ImperialCargoEngineEmitterCrate
+  cost: 1400
+  category: imperial-cargo-category-engine
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateEngineering
+  id: ImperialCargoEngineFieldGenCrate
+  name: "ящик генераторов поля"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ContainmentFieldGeneratorFlatpack
+          amount: 2
+
+- type: cargoProduct
+  id: ImperialCargoEngineFieldGen
+  name: imperial-cargo-ImperialCargoEngineFieldGen-name
+  description: imperial-cargo-ImperialCargoEngineFieldGen-desc
+  icon:
+    entity: ContainmentFieldGeneratorFlatpack
+  product: ImperialCargoEngineFieldGenCrate
+  cost: 1400
+  category: imperial-cargo-category-engine
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateElectrical
+  id: ImperialCargoEngineGroundingRodsCrate
+  name: "ящик заземлителей"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: TeslaGroundingRodFlatpack
+          amount: 4
+
+- type: cargoProduct
+  id: ImperialCargoEngineGroundingRods
+  name: imperial-cargo-ImperialCargoEngineGroundingRods-name
+  description: imperial-cargo-ImperialCargoEngineGroundingRods-desc
+  icon:
+    entity: TeslaGroundingRodFlatpack
+  product: ImperialCargoEngineGroundingRodsCrate
+  cost: 1600
+  category: imperial-cargo-category-engine
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateElectrical
+  id: ImperialCargoEngineSolarCrate
+  name: "ящик солнечных панелей"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SolarAssemblyFlatpack
+          amount: 21
+        - id: SolarControlComputerCircuitboard
+        - id: SolarTrackerElectronics
+
+- type: cargoProduct
+  id: ImperialCargoEngineSolar
+  name: imperial-cargo-ImperialCargoEngineSolar-name
+  description: imperial-cargo-ImperialCargoEngineSolar-desc
+  icon:
+    entity: SolarAssemblyFlatpack
+  product: ImperialCargoEngineSolarCrate
+  cost: 1600
+  category: imperial-cargo-category-engine
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateRadiation
+  id: ImperialCargoEngineSupermatterShardCrate
+  name: "ящик с осколком суперматерии"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: Supermatter
+
+- type: cargoProduct
+  id: ImperialCargoEngineSupermatterShard
+  name: imperial-cargo-ImperialCargoEngineSupermatterShard-name
+  description: imperial-cargo-ImperialCargoEngineSupermatterShard-desc
+  icon:
+    entity: Supermatter
+  product: ImperialCargoEngineSupermatterShardCrate
+  cost: 4000
+  category: imperial-cargo-category-engine
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateElectrical
+  id: ImperialCargoEngineTeslaCoilsCrate
+  name: "ящик с катушками Теслы"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: TeslaCoilFlatpack
+          amount: 4
+
+- type: cargoProduct
+  id: ImperialCargoEngineTeslaCoils
+  name: imperial-cargo-ImperialCargoEngineTeslaCoils-name
+  description: imperial-cargo-ImperialCargoEngineTeslaCoils-desc
+  icon:
+    entity: TeslaCoilFlatpack
+  product: ImperialCargoEngineTeslaCoilsCrate
+  cost: 2000
+  category: imperial-cargo-category-engine
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateEngineeringSecure
+  id: ImperialCargoEngineHypertorusFusionReactorCrate
+  name: "ящик с ТРГ"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialHypertorusBoxCorner
+          amount: 4
+        - id: ImperialHypertorusBoxFuel
+        - id: ImperialHypertorusBoxModerator
+        - id: ImperialHypertorusBoxWaste
+        - id: ImperialHypertorusBoxInterface
+        - id: ImperialHypertorusBoxCore
+  - type: AccessReader
+    access: [["ChiefEngineer"]]
+
+- type: cargoProduct
+  id: ImperialCargoEngineHypertorusFusionReactor
+  name: imperial-cargo-ImperialCargoEngineHypertorusFusionReactor-name
+  description: imperial-cargo-ImperialCargoEngineHypertorusFusionReactor-desc
+  icon:
+    entity: ImperialHypertorusBoxCorner
+  product: ImperialCargoEngineHypertorusFusionReactorCrate
+  cost: 4600
+  category: imperial-cargo-category-engine
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateEngineering
+  id: ImperialCargoEngineeringGolfcartCrate
+  name: "ящик с комплектом запчастей для гольф кара"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: PowerCellSmall
+
+- type: cargoProduct
+  id: ImperialCargoEngineeringGolfcart
+  name: imperial-cargo-ImperialCargoEngineeringGolfcart-name
+  description: imperial-cargo-ImperialCargoEngineeringGolfcart-desc
+  icon:
+    entity: PowerCellSmall
+  product: ImperialCargoEngineeringGolfcartCrate
+  cost: 2200
+  category: imperial-cargo-category-engineering
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoMiscArtsupplyCrate
+  name: "Ящик художественных принадлежностей"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ToolboxArtisticFilled
+        - id: CrayonBox
+        - id: CrayonWhite
+        - id: CrayonRainbow
+
+- type: cargoProduct
+  id: ImperialCargoMiscArtsupply
+  name: imperial-cargo-ImperialCargoMiscArtsupply-name
+  description: imperial-cargo-ImperialCargoMiscArtsupply-desc
+  icon:
+    entity: ToolboxArtisticFilled
+  product: ImperialCargoMiscArtsupplyCrate
+  cost: 360
+  category: imperial-cargo-category-misc
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoMiscBigbandCrate
+  name: "Набор инструментов биг-бэнда"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ViolinInstrument
+        - id: AcousticGuitarInstrument
+        - id: GlockenspielInstrument
+        - id: AccordionInstrument
+        - id: SaxophoneInstrument
+        - id: TromboneInstrument
+        - id: RecorderInstrument
+        - id: HarmonicaInstrument
+        - id: PianoInstrument
+
+- type: cargoProduct
+  id: ImperialCargoMiscBigband
+  name: imperial-cargo-ImperialCargoMiscBigband-name
+  description: imperial-cargo-ImperialCargoMiscBigband-desc
+  icon:
+    entity: ViolinInstrument
+  product: ImperialCargoMiscBigbandCrate
+  cost: 2000
+  category: imperial-cargo-category-misc
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoMiscBookCrateCrate
+  name: "Ящик книг"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BookRandom
+          amount: 3
+        - id: BookRandomStory
+          amount: 3
+
+- type: cargoProduct
+  id: ImperialCargoMiscBookCrate
+  name: imperial-cargo-ImperialCargoMiscBookCrate-name
+  description: imperial-cargo-ImperialCargoMiscBookCrate-desc
+  icon:
+    entity: CrateGenericSteel
+  product: ImperialCargoMiscBookCrateCrate
+  cost: 600
+  category: imperial-cargo-category-misc
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateCommandSecure
+  id: ImperialCargoMiscCommandkeysCrate
+  name: "Ящик ключей шифрования командования"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: EncryptionKeyCommand
+          amount: 3
+  - type: AccessReader
+    access: [["Command"]]
+
+- type: cargoProduct
+  id: ImperialCargoMiscCommandkeys
+  name: imperial-cargo-ImperialCargoMiscCommandkeys-name
+  description: imperial-cargo-ImperialCargoMiscCommandkeys-desc
+  icon:
+    entity: EncryptionKeyCommand
+  product: ImperialCargoMiscCommandkeysCrate
+  cost: 800
+  category: imperial-cargo-category-misc
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoMiscPaperCrate
+  name: "Ящик канцелярии"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: filingCabinetDrawer
+        - id: ImperialCameraFilm
+        - id: HandLabeler
+        - id: PaperBin10
+        - id: PaperBin10
+        - id: Pen
+          amount: 2
+        - id: Pen
+        - id: LuxuryPen
+        - id: Pen
+        - id: Pen
+        - id: BoxFolderBlue
+        - id: BoxFolderRed
+        - id: BoxFolderYellow
+        - id: BoxFolderClipboard
+          amount: 2
+        - id: BoxStamps
+
+- type: cargoProduct
+  id: ImperialCargoMiscPaper
+  name: imperial-cargo-ImperialCargoMiscPaper-name
+  description: imperial-cargo-ImperialCargoMiscPaper-desc
+  icon:
+    entity: filingCabinetDrawer
+  product: ImperialCargoMiscPaperCrate
+  cost: 640
+  category: imperial-cargo-category-misc
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoMiscReligiousSuppliesCrate
+  name: "Ящик религиозных принадлежностей"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: Bible
+          amount: 2
+        - id: ClothingOuterImperialFollower
+          amount: 2
+
+- type: cargoProduct
+  id: ImperialCargoMiscReligiousSupplies
+  name: imperial-cargo-ImperialCargoMiscReligiousSupplies-name
+  description: imperial-cargo-ImperialCargoMiscReligiousSupplies-desc
+  icon:
+    entity: Bible
+  product: ImperialCargoMiscReligiousSuppliesCrate
+  cost: 1200
+  category: imperial-cargo-category-misc
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoMiscCandlesBulkCrate
+  name: "Ящик со свечами"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BoxCandle
+          amount: 3
+
+- type: cargoProduct
+  id: ImperialCargoMiscCandlesBulk
+  name: imperial-cargo-ImperialCargoMiscCandlesBulk-name
+  description: imperial-cargo-ImperialCargoMiscCandlesBulk-desc
+  icon:
+    entity: BoxCandle
+  product: ImperialCargoMiscCandlesBulkCrate
+  cost: 400
+  category: imperial-cargo-category-misc
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoMiscWaterCoolerCrate
+  name: "Кулер — вода"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WaterCooler
+        - id: DrinkWaterJug
+
+- type: cargoProduct
+  id: ImperialCargoMiscWaterCooler
+  name: imperial-cargo-ImperialCargoMiscWaterCooler-name
+  description: imperial-cargo-ImperialCargoMiscWaterCooler-desc
+  icon:
+    entity: WaterCooler
+  product: ImperialCargoMiscWaterCoolerCrate
+  cost: 400
+  category: imperial-cargo-category-misc
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoMiscPunchCoolerCrate
+  name: "Кулер — фруктовый пунш"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WaterCooler
+
+- type: cargoProduct
+  id: ImperialCargoMiscPunchCooler
+  name: imperial-cargo-ImperialCargoMiscPunchCooler-name
+  description: imperial-cargo-ImperialCargoMiscPunchCooler-desc
+  icon:
+    entity: WaterCooler
+  product: ImperialCargoMiscPunchCoolerCrate
+  cost: 1200
+  category: imperial-cargo-category-misc
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateFreezer
+  id: ImperialCargoImportsFoamforceCrate
+  name: "Ящик «Фоам Форс»"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponRifleFoam
+          amount: 8
+
+- type: cargoProduct
+  id: ImperialCargoImportsFoamforce
+  name: imperial-cargo-ImperialCargoImportsFoamforce-name
+  description: imperial-cargo-ImperialCargoImportsFoamforce-desc
+  icon:
+    entity: WeaponRifleFoam
+  product: ImperialCargoImportsFoamforceCrate
+  cost: 400
+  category: imperial-cargo-category-imports
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateFreezer
+  id: ImperialCargoImportsFoamforceBonusCrate
+  name: "Ящик пистолетов «Фоам Форс»"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialWeaponPistolDonksoft
+          amount: 2
+
+- type: cargoProduct
+  id: ImperialCargoImportsFoamforceBonus
+  name: imperial-cargo-ImperialCargoImportsFoamforceBonus-name
+  description: imperial-cargo-ImperialCargoImportsFoamforceBonus-desc
+  icon:
+    entity: ImperialWeaponPistolDonksoft
+  product: ImperialCargoImportsFoamforceBonusCrate
+  cost: 600
+  category: imperial-cargo-category-imports
+  group: ImperialCargoContraband
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoImportsDuctSpiderDangerousCrate
+  name: "Ящик с вентиляционным пауком?"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MobGiantSpider
+
+- type: cargoProduct
+  id: ImperialCargoImportsDuctSpiderDangerous
+  name: imperial-cargo-ImperialCargoImportsDuctSpiderDangerous-name
+  description: imperial-cargo-ImperialCargoImportsDuctSpiderDangerous-desc
+  icon:
+    entity: MobGiantSpider
+  product: ImperialCargoImportsDuctSpiderDangerousCrate
+  cost: 800
+  category: imperial-cargo-category-imports
+  group: ImperialCargoContraband
+
+- type: entity
+  parent: CrateInternals
+  id: ImperialCargoImportsBananiumCrate
+  name: "Один лист бананиума"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MaterialBananium
+
+- type: cargoProduct
+  id: ImperialCargoImportsBananium
+  name: imperial-cargo-ImperialCargoImportsBananium-name
+  description: imperial-cargo-ImperialCargoImportsBananium-desc
+  icon:
+    entity: MaterialBananium
+  product: ImperialCargoImportsBananiumCrate
+  cost: 20000
+  category: imperial-cargo-category-imports
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateTrashCart
+  id: ImperialCargoImportsDumpsterlootCrate
+  name: "Э-э… мусорный контейнер"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MaintenanceToolSpawner
+        - id: RandomSpawner
+          amount: 5
+
+- type: cargoProduct
+  id: ImperialCargoImportsDumpsterloot
+  name: imperial-cargo-ImperialCargoImportsDumpsterloot-name
+  description: imperial-cargo-ImperialCargoImportsDumpsterloot-desc
+  icon:
+    entity: CrateTrashCart
+  product: ImperialCargoImportsDumpsterlootCrate
+  cost: 1000
+  category: imperial-cargo-category-imports
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateWeaponSecure
+  id: ImperialCargoImportsShellsCrate
+  name: "Ящик боевой картечи"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BoxLethalshot
+          amount: 3
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: cargoProduct
+  id: ImperialCargoImportsShells
+  name: imperial-cargo-ImperialCargoImportsShells-name
+  description: imperial-cargo-ImperialCargoImportsShells-desc
+  icon:
+    entity: BoxLethalshot
+  product: ImperialCargoImportsShellsCrate
+  cost: 2000
+  category: imperial-cargo-category-imports
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterParrotCrate
+  name: "Ящик с птицами"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MobParrot
+
+- type: cargoProduct
+  id: ImperialCargoCritterParrot
+  name: imperial-cargo-ImperialCargoCritterParrot-name
+  description: imperial-cargo-ImperialCargoCritterParrot-desc
+  icon:
+    entity: MobParrot
+  product: ImperialCargoCritterParrotCrate
+  cost: 800
+  category: imperial-cargo-category-livestock
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterButterflyCrate
+  name: "Ящик с бабочками"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MobButterfly
+
+- type: cargoProduct
+  id: ImperialCargoCritterButterfly
+  name: imperial-cargo-ImperialCargoCritterButterfly-name
+  description: imperial-cargo-ImperialCargoCritterButterfly-desc
+  icon:
+    entity: MobButterfly
+  product: ImperialCargoCritterButterflyCrate
+  cost: 1000
+  category: imperial-cargo-category-livestock
+  group: ImperialCargoContraband
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterCatCrate
+  name: "Ящик с кошкой"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MobCat
+        - id: ImperialClothingNeckPetcollar
+        - id: ToyMouse
+
+- type: cargoProduct
+  id: ImperialCargoCritterCat
+  name: imperial-cargo-ImperialCargoCritterCat-name
+  description: imperial-cargo-ImperialCargoCritterCat-desc
+  icon:
+    entity: MobCat
+  product: ImperialCargoCritterCatCrate
+  cost: 800
+  category: imperial-cargo-category-livestock
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterChickCrate
+  name: "Ящик с курицей"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MobChicken
+
+- type: cargoProduct
+  id: ImperialCargoCritterChick
+  name: imperial-cargo-ImperialCargoCritterChick-name
+  description: imperial-cargo-ImperialCargoCritterChick-desc
+  icon:
+    entity: MobChicken
+  product: ImperialCargoCritterChickCrate
+  cost: 400
+  category: imperial-cargo-category-livestock
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterCorgiCrate
+  name: "Ящик с корги"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MobCorgi
+        - id: ImperialClothingNeckPetcollar
+
+- type: cargoProduct
+  id: ImperialCargoCritterCorgi
+  name: imperial-cargo-ImperialCargoCritterCorgi-name
+  description: imperial-cargo-ImperialCargoCritterCorgi-desc
+  icon:
+    entity: MobCorgi
+  product: ImperialCargoCritterCorgiCrate
+  cost: 800
+  category: imperial-cargo-category-livestock
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterCowCrate
+  name: "Ящик с коровой"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MobCow
+
+- type: cargoProduct
+  id: ImperialCargoCritterCow
+  name: imperial-cargo-ImperialCargoCritterCow-name
+  description: imperial-cargo-ImperialCargoCritterCow-desc
+  icon:
+    entity: MobCow
+  product: ImperialCargoCritterCowCrate
+  cost: 600
+  category: imperial-cargo-category-livestock
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterPigCrate
+  name: "Ящик со свиньёй"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MobPig
+
+- type: cargoProduct
+  id: ImperialCargoCritterPig
+  name: imperial-cargo-ImperialCargoCritterPig-name
+  description: imperial-cargo-ImperialCargoCritterPig-desc
+  icon:
+    entity: MobPig
+  product: ImperialCargoCritterPigCrate
+  cost: 600
+  category: imperial-cargo-category-livestock
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterCrabCrate
+  name: "Крабовая ракета"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MobCrab
+
+- type: cargoProduct
+  id: ImperialCargoCritterCrab
+  name: imperial-cargo-ImperialCargoCritterCrab-name
+  description: imperial-cargo-ImperialCargoCritterCrab-desc
+  icon:
+    entity: MobCrab
+  product: ImperialCargoCritterCrabCrate
+  cost: 1600
+  category: imperial-cargo-category-livestock
+  group: ImperialCargoPod
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterCorgisExoticCrate
+  name: "Ящик с экзотическим корги"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MobCorgi
+        - id: ImperialClothingNeckPetcollar
+
+- type: cargoProduct
+  id: ImperialCargoCritterCorgisExotic
+  name: imperial-cargo-ImperialCargoCritterCorgisExotic-name
+  description: imperial-cargo-ImperialCargoCritterCorgisExotic-desc
+  icon:
+    entity: MobCorgi
+  product: ImperialCargoCritterCorgisExoticCrate
+  cost: 1400
+  category: imperial-cargo-category-livestock
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterFoxCrate
+  name: "Ящик с лисой"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MobFox
+        - id: ImperialClothingNeckPetcollar
+
+- type: cargoProduct
+  id: ImperialCargoCritterFox
+  name: imperial-cargo-ImperialCargoCritterFox-name
+  description: imperial-cargo-ImperialCargoCritterFox-desc
+  icon:
+    entity: MobFox
+  product: ImperialCargoCritterFoxCrate
+  cost: 800
+  category: imperial-cargo-category-livestock
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterGoatCrate
+  name: "Ящик с козой"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MobGoat
+
+- type: cargoProduct
+  id: ImperialCargoCritterGoat
+  name: imperial-cargo-ImperialCargoCritterGoat-name
+  description: imperial-cargo-ImperialCargoCritterGoat-desc
+  icon:
+    entity: MobGoat
+  product: ImperialCargoCritterGoatCrate
+  cost: 600
+  category: imperial-cargo-category-livestock
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterMothroachCrate
+  name: "Ящик с молетараканом"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MobMothroach
+
+- type: cargoProduct
+  id: ImperialCargoCritterMothroach
+  name: imperial-cargo-ImperialCargoCritterMothroach-name
+  description: imperial-cargo-ImperialCargoCritterMothroach-desc
+  icon:
+    entity: MobMothroach
+  product: ImperialCargoCritterMothroachCrate
+  cost: 400
+  category: imperial-cargo-category-livestock
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoCritterMonkeyCrate
+  name: "Ящик обезьяньих кубиков"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MonkeyCubeBox
+
+- type: cargoProduct
+  id: ImperialCargoCritterMonkey
+  name: imperial-cargo-ImperialCargoCritterMonkey-name
+  description: imperial-cargo-ImperialCargoCritterMonkey-desc
+  icon:
+    entity: MonkeyCubeBox
+  product: ImperialCargoCritterMonkeyCrate
+  cost: 800
+  category: imperial-cargo-category-livestock
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterPugCrate
+  name: "Ящик с мопсом"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialClothingNeckPetcollar
+
+- type: cargoProduct
+  id: ImperialCargoCritterPug
+  name: imperial-cargo-ImperialCargoCritterPug-name
+  description: imperial-cargo-ImperialCargoCritterPug-desc
+  icon:
+    entity: ImperialClothingNeckPetcollar
+  product: ImperialCargoCritterPugCrate
+  cost: 800
+  category: imperial-cargo-category-livestock
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterBullterrierCrate
+  name: "Ящик с бультерьером"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialClothingNeckPetcollar
+
+- type: cargoProduct
+  id: ImperialCargoCritterBullterrier
+  name: imperial-cargo-ImperialCargoCritterBullterrier-name
+  description: imperial-cargo-ImperialCargoCritterBullterrier-desc
+  icon:
+    entity: ImperialClothingNeckPetcollar
+  product: ImperialCargoCritterBullterrierCrate
+  cost: 800
+  category: imperial-cargo-category-livestock
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterSnakeCrate
+  name: "Ящик со змеями"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MobSnake
+          amount: 3
+
+- type: cargoProduct
+  id: ImperialCargoCritterSnake
+  name: imperial-cargo-ImperialCargoCritterSnake-name
+  description: imperial-cargo-ImperialCargoCritterSnake-desc
+  icon:
+    entity: MobSnake
+  product: ImperialCargoCritterSnakeCrate
+  cost: 600
+  category: imperial-cargo-category-livestock
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterAmphibiansCrate
+  name: "Ящик друзей-амфибий"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MobFrog
+
+- type: cargoProduct
+  id: ImperialCargoCritterAmphibians
+  name: imperial-cargo-ImperialCargoCritterAmphibians-name
+  description: imperial-cargo-ImperialCargoCritterAmphibians-desc
+  icon:
+    entity: MobFrog
+  product: ImperialCargoCritterAmphibiansCrate
+  cost: 400
+  category: imperial-cargo-category-livestock
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterLizardCrate
+  name: "Ящик с ящерицей"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MobLizard
+
+- type: cargoProduct
+  id: ImperialCargoCritterLizard
+  name: imperial-cargo-ImperialCargoCritterLizard-name
+  description: imperial-cargo-ImperialCargoCritterLizard-desc
+  icon:
+    entity: MobLizard
+  product: ImperialCargoCritterLizardCrate
+  cost: 400
+  category: imperial-cargo-category-livestock
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterGardenGnomeCrate
+  name: "Ящик садовых гномов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MobGnome
+
+- type: cargoProduct
+  id: ImperialCargoCritterGardenGnome
+  name: imperial-cargo-ImperialCargoCritterGardenGnome-name
+  description: imperial-cargo-ImperialCargoCritterGardenGnome-desc
+  icon:
+    entity: MobGnome
+  product: ImperialCargoCritterGardenGnomeCrate
+  cost: 3000
+  category: imperial-cargo-category-livestock
+  group: ImperialCargoEmag
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterFishAquariumFishCrate
+  name: "Кейс с аквариумными рыбками"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialFishCaseRandom
+          amount: 2
+
+- type: cargoProduct
+  id: ImperialCargoCritterFishAquariumFish
+  name: imperial-cargo-ImperialCargoCritterFishAquariumFish-name
+  description: imperial-cargo-ImperialCargoCritterFishAquariumFish-desc
+  icon:
+    entity: CrateLivestock
+  product: ImperialCargoCritterFishAquariumFishCrate
+  cost: 400
+  category: imperial-cargo-category-livestock
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterFishFreshwaterFishCrate
+  name: "Кейс с пресноводными рыбками"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialFishCaseRandomFreshwater
+          amount: 2
+
+- type: cargoProduct
+  id: ImperialCargoCritterFishFreshwaterFish
+  name: imperial-cargo-ImperialCargoCritterFishFreshwaterFish-name
+  description: imperial-cargo-ImperialCargoCritterFishFreshwaterFish-desc
+  icon:
+    entity: CrateLivestock
+  product: ImperialCargoCritterFishFreshwaterFishCrate
+  cost: 400
+  category: imperial-cargo-category-livestock
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterFishSaltwaterFishCrate
+  name: "Кейс с морскими рыбками"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialFishCaseRandomSaltwater
+          amount: 2
+
+- type: cargoProduct
+  id: ImperialCargoCritterFishSaltwaterFish
+  name: imperial-cargo-ImperialCargoCritterFishSaltwaterFish-name
+  description: imperial-cargo-ImperialCargoCritterFishSaltwaterFish-desc
+  icon:
+    entity: CrateLivestock
+  product: ImperialCargoCritterFishSaltwaterFishCrate
+  cost: 400
+  category: imperial-cargo-category-livestock
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateLivestock
+  id: ImperialCargoCritterFishTiziranFishCrate
+  name: "Кейс с тизиранскими рыбками"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialFishCaseTiziran
+          amount: 2
+
+- type: cargoProduct
+  id: ImperialCargoCritterFishTiziranFish
+  name: imperial-cargo-ImperialCargoCritterFishTiziranFish-name
+  description: imperial-cargo-ImperialCargoCritterFishTiziranFish-desc
+  icon:
+    entity: ImperialFishCaseTiziran
+  product: ImperialCargoCritterFishTiziranFishCrate
+  cost: 400
+  category: imperial-cargo-category-livestock
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoMaterialsCardboard50Crate
+  name: "ящик листов картона"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MaterialCardboard
+
+- type: cargoProduct
+  id: ImperialCargoMaterialsCardboard50
+  name: imperial-cargo-ImperialCargoMaterialsCardboard50-name
+  description: imperial-cargo-ImperialCargoMaterialsCardboard50-desc
+  icon:
+    entity: MaterialCardboard
+  product: ImperialCargoMaterialsCardboard50Crate
+  cost: 400
+  category: imperial-cargo-category-materials
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoMaterialsPlastic50Crate
+  name: "ящик листов пластика"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SheetPlastic
+
+- type: cargoProduct
+  id: ImperialCargoMaterialsPlastic50
+  name: imperial-cargo-ImperialCargoMaterialsPlastic50-name
+  description: imperial-cargo-ImperialCargoMaterialsPlastic50-desc
+  icon:
+    entity: SheetPlastic
+  product: ImperialCargoMaterialsPlastic50Crate
+  cost: 400
+  category: imperial-cargo-category-materials
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoMaterialsWood50Crate
+  name: "ящик досок"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MaterialWoodPlank
+
+- type: cargoProduct
+  id: ImperialCargoMaterialsWood50
+  name: imperial-cargo-ImperialCargoMaterialsWood50-name
+  description: imperial-cargo-ImperialCargoMaterialsWood50-desc
+  icon:
+    entity: MaterialWoodPlank
+  product: ImperialCargoMaterialsWood50Crate
+  cost: 800
+  category: imperial-cargo-category-materials
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoMaterialsFueltankCrate
+  name: "ящик с канистрой топлива"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeldingFuelTankFull
+
+- type: cargoProduct
+  id: ImperialCargoMaterialsFueltank
+  name: imperial-cargo-ImperialCargoMaterialsFueltank-name
+  description: imperial-cargo-ImperialCargoMaterialsFueltank-desc
+  icon:
+    entity: WeldingFuelTankFull
+  product: ImperialCargoMaterialsFueltankCrate
+  cost: 320
+  category: imperial-cargo-category-materials
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoMaterialsHightankfuelCrate
+  name: "ящик с большой канистрой топлива"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeldingFuelTankHighCapacity
+
+- type: cargoProduct
+  id: ImperialCargoMaterialsHightankfuel
+  name: imperial-cargo-ImperialCargoMaterialsHightankfuel-name
+  description: imperial-cargo-ImperialCargoMaterialsHightankfuel-desc
+  icon:
+    entity: WeldingFuelTankHighCapacity
+  product: ImperialCargoMaterialsHightankfuelCrate
+  cost: 800
+  category: imperial-cargo-category-materials
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoMaterialsWatertankCrate
+  name: "ящик с канистрой воды"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WaterTankFull
+
+- type: cargoProduct
+  id: ImperialCargoMaterialsWatertank
+  name: imperial-cargo-ImperialCargoMaterialsWatertank-name
+  description: imperial-cargo-ImperialCargoMaterialsWatertank-desc
+  icon:
+    entity: WaterTankFull
+  product: ImperialCargoMaterialsWatertankCrate
+  cost: 240
+  category: imperial-cargo-category-materials
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateFreezer
+  id: ImperialCargoMedicalBloodpacksCrate
+  name: "Ящик пакетов с кровью"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: Bloodpack
+          amount: 2
+        - id: Bloodpack
+        - id: Bloodpack
+        - id: Bloodpack
+        - id: Bloodpack
+        - id: Bloodpack
+        - id: Bloodpack
+        - id: Bloodpack
+        - id: Bloodpack
+
+- type: cargoProduct
+  id: ImperialCargoMedicalBloodpacks
+  name: imperial-cargo-ImperialCargoMedicalBloodpacks-name
+  description: imperial-cargo-ImperialCargoMedicalBloodpacks-desc
+  icon:
+    entity: Bloodpack
+  product: ImperialCargoMedicalBloodpacksCrate
+  cost: 1400
+  category: imperial-cargo-category-medical
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateMedical
+  id: ImperialCargoMedicalMedipenVarietyCrate
+  name: "Набор медипенов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: EmergencyMedipen
+          amount: 2
+        - id: EmergencyMedipen
+          amount: 3
+
+- type: cargoProduct
+  id: ImperialCargoMedicalMedipenVariety
+  name: imperial-cargo-ImperialCargoMedicalMedipenVariety-name
+  description: imperial-cargo-ImperialCargoMedicalMedipenVariety-desc
+  icon:
+    entity: EmergencyMedipen
+  product: ImperialCargoMedicalMedipenVarietyCrate
+  cost: 700
+  category: imperial-cargo-category-medical
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateMedical
+  id: ImperialCargoMedicalCoronerCrateCrate
+  name: "Набор для вскрытия"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialAutopsyScanner
+
+- type: cargoProduct
+  id: ImperialCargoMedicalCoronerCrate
+  name: imperial-cargo-ImperialCargoMedicalCoronerCrate-name
+  description: imperial-cargo-ImperialCargoMedicalCoronerCrate-desc
+  icon:
+    entity: ImperialAutopsyScanner
+  product: ImperialCargoMedicalCoronerCrateCrate
+  cost: 500
+  category: imperial-cargo-category-medical
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateMedical
+  id: ImperialCargoMedicalChemicalCrate
+  name: "Ящик химикатов для начинающих"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ChemistryBottleHydrogen
+        - id: ChemistryBottleCarbon
+        - id: ChemistryBottleNitrogen
+        - id: ChemistryBottleOxygen
+        - id: ChemistryBottleFluorine
+        - id: ChemistryBottlePhosphorus
+        - id: ChemistryBottleSilicon
+        - id: ChemistryBottleChlorine
+        - id: ChemistryBottleRadium
+        - id: ChemistryBottleEthanol
+        - id: ChemistryBottlePotassium
+        - id: ChemistryBottleSugar
+        - id: ClothingEyesGlassesChemical
+        - id: Dropper
+        - id: BoxBeaker
+
+- type: cargoProduct
+  id: ImperialCargoMedicalChemical
+  name: imperial-cargo-ImperialCargoMedicalChemical-name
+  description: imperial-cargo-ImperialCargoMedicalChemical-desc
+  icon:
+    entity: ChemistryBottleHydrogen
+  product: ImperialCargoMedicalChemicalCrate
+  cost: 520
+  category: imperial-cargo-category-medical
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateMedical
+  id: ImperialCargoMedicalDefibsCrate
+  name: "Ящик дефибрилляторов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: Defibrillator
+          amount: 2
+
+- type: cargoProduct
+  id: ImperialCargoMedicalDefibs
+  name: imperial-cargo-ImperialCargoMedicalDefibs-name
+  description: imperial-cargo-ImperialCargoMedicalDefibs-desc
+  icon:
+    entity: Defibrillator
+  product: ImperialCargoMedicalDefibsCrate
+  cost: 1000
+  category: imperial-cargo-category-medical
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateMedical
+  id: ImperialCargoMedicalSuppliesCrate
+  name: "Ящик медицинских припасов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:GroupSelector
+        rolls: !type:ConstantNumberSelector
+          value: 10
+        children:
+        - id: ChemistryBottleEpinephrine
+        - id: ChemistryBottleToxin
+        - id: LargeBeaker
+        - id: Gauze
+        - id: BoxBeaker
+        - id: BoxSyringe
+        - id: BoxBodyBag
+        - id: MedkitFilled
+        - id: MedkitOxygenFilled
+        - id: MedkitToxinFilled
+        - id: MedkitBruteFilled
+        - id: MedkitBurnFilled
+        - id: Defibrillator
+        - id: Bloodpack
+        - id: VendingMachineRestockMedical
+        - id: VendingMachineRestockChemVend
+
+- type: cargoProduct
+  id: ImperialCargoMedicalSupplies
+  name: imperial-cargo-ImperialCargoMedicalSupplies-name
+  description: imperial-cargo-ImperialCargoMedicalSupplies-desc
+  icon:
+    entity: ChemistryBottleEpinephrine
+  product: ImperialCargoMedicalSuppliesCrate
+  cost: 800
+  category: imperial-cargo-category-medical
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateMedical
+  id: ImperialCargoMedicalSurgeryCrate
+  name: "Ящик хирургических принадлежностей"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: EmergencyRollerBedSpawnFolded
+
+- type: cargoProduct
+  id: ImperialCargoMedicalSurgery
+  name: imperial-cargo-ImperialCargoMedicalSurgery-name
+  description: imperial-cargo-ImperialCargoMedicalSurgery-desc
+  icon:
+    entity: EmergencyRollerBedSpawnFolded
+  product: ImperialCargoMedicalSurgeryCrate
+  cost: 1200
+  category: imperial-cargo-category-medical
+  group: ImperialCargo
+
+- type: entity
+  parent: CratePlasma
+  id: ImperialCargoMedicalVirusCrate
+  name: "Ящик с вирусами"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialDiseaseBottle
+          amount: 4
+        - id: BoxSyringe
+        - id: BoxBeaker
+        - id: ChemistryBottleUnstableMutagen
+  - type: AccessReader
+    access: [["ChiefMedicalOfficer"]]
+
+- type: cargoProduct
+  id: ImperialCargoMedicalVirus
+  name: imperial-cargo-ImperialCargoMedicalVirus-name
+  description: imperial-cargo-ImperialCargoMedicalVirus-desc
+  icon:
+    entity: ImperialDiseaseBottle
+  product: ImperialCargoMedicalVirusCrate
+  cost: 1000
+  category: imperial-cargo-category-medical
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateMedical
+  id: ImperialCargoMedicalCmoturtlenecksCrate
+  name: "Водолазки главного врача"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingUniformJumpsuitCMOTurtle
+        - id: ClothingUniformJumpskirtCMOTurtle
+
+- type: cargoProduct
+  id: ImperialCargoMedicalCmoturtlenecks
+  name: imperial-cargo-ImperialCargoMedicalCmoturtlenecks-name
+  description: imperial-cargo-ImperialCargoMedicalCmoturtlenecks-desc
+  icon:
+    entity: ClothingUniformJumpsuitCMOTurtle
+  product: ImperialCargoMedicalCmoturtlenecksCrate
+  cost: 400
+  category: imperial-cargo-category-medical
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateMedical
+  id: ImperialCargoMedicalOrganGrowingCrate
+  name: "Набор для выращивания органов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VatGrowerSmall
+        - id: VatBiopsyToolOrgan
+        - id: VatMicroscope
+        - id: MortarAndPestle
+        - id: MortarAndPestle
+
+- type: cargoProduct
+  id: ImperialCargoMedicalOrganGrowing
+  name: imperial-cargo-ImperialCargoMedicalOrganGrowing-name
+  description: imperial-cargo-ImperialCargoMedicalOrganGrowing-desc
+  icon:
+    entity: VatGrowerSmall
+  product: ImperialCargoMedicalOrganGrowingCrate
+  cost: 1000
+  category: imperial-cargo-category-medical
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateFreezer
+  id: ImperialCargoOrganicRandomizedChefCrate
+  name: "Ящик отборного мяса"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:GroupSelector
+        rolls: !type:ConstantNumberSelector
+          value: 15
+        children:
+        - id: FoodMeatSlime
+        - id: FoodMeatTomato
+        - id: FoodMeatBear
+        - id: FoodMeatXeno
+        - id: FoodMeatSpider
+        - id: FoodMeatBacon
+        - id: FoodMeatPenguin
+        - id: FoodMeatSpiderLeg
+        - id: FoodMeatFish
+        - id: FoodMeatHuman
+        - id: FoodMeat
+
+- type: cargoProduct
+  id: ImperialCargoOrganicRandomizedChef
+  name: imperial-cargo-ImperialCargoOrganicRandomizedChef-name
+  description: imperial-cargo-ImperialCargoOrganicRandomizedChef-desc
+  icon:
+    entity: FoodMeatSlime
+  product: ImperialCargoOrganicRandomizedChefCrate
+  cost: 800
+  category: imperial-cargo-category-food
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateFreezer
+  id: ImperialCargoOrganicRandomizedFruitsCrate
+  name: "Ящик фруктов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:GroupSelector
+        rolls: !type:ConstantNumberSelector
+          value: 15
+        children:
+        - id: FoodLime
+        - id: FoodOrange
+        - id: FoodWatermelon
+        - id: FoodApple
+        - id: FoodBerries
+        - id: FoodLemon
+
+- type: cargoProduct
+  id: ImperialCargoOrganicRandomizedFruits
+  name: imperial-cargo-ImperialCargoOrganicRandomizedFruits-name
+  description: imperial-cargo-ImperialCargoOrganicRandomizedFruits-desc
+  icon:
+    entity: FoodLime
+  product: ImperialCargoOrganicRandomizedFruitsCrate
+  cost: 600
+  category: imperial-cargo-category-food
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateFreezer
+  id: ImperialCargoOrganicRandomizedVegetablesCrate
+  name: "Ящик овощей"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:GroupSelector
+        rolls: !type:ConstantNumberSelector
+          value: 15
+        children:
+        - id: FoodChiliPepper
+        - id: FoodCorn
+        - id: FoodTomato
+        - id: FoodPotato
+        - id: FoodCarrot
+        - id: FoodMushroom
+        - id: FoodOnion
+        - id: FoodPumpkin
+
+- type: cargoProduct
+  id: ImperialCargoOrganicRandomizedVegetables
+  name: imperial-cargo-ImperialCargoOrganicRandomizedVegetables-name
+  description: imperial-cargo-ImperialCargoOrganicRandomizedVegetables-desc
+  icon:
+    entity: FoodChiliPepper
+  product: ImperialCargoOrganicRandomizedVegetablesCrate
+  cost: 360
+  category: imperial-cargo-category-food
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateHydroponics
+  id: ImperialCargoOrganicExoticseedsCrate
+  name: "Ящик экзотических семян"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: FlyAmanitaSeeds
+        - id: EggySeeds
+        - id: NettleSeeds
+
+- type: cargoProduct
+  id: ImperialCargoOrganicExoticseeds
+  name: imperial-cargo-ImperialCargoOrganicExoticseeds-name
+  description: imperial-cargo-ImperialCargoOrganicExoticseeds-desc
+  icon:
+    entity: FlyAmanitaSeeds
+  product: ImperialCargoOrganicExoticseedsCrate
+  cost: 600
+  category: imperial-cargo-category-food
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateFreezer
+  id: ImperialCargoOrganicFoodCrate
+  name: "Ящик продуктов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ReagentContainerFlour
+        - id: ReagentContainerRice
+        - id: DrinkMilkCarton
+        - id: DrinkSoyMilkCarton
+        - id: FoodShakerSalt
+        - id: FoodShakerPepper
+        - id: FoodContainerEgg
+        - id: FoodCondimentBottleEnzyme
+        - id: ReagentContainerSugar
+        - id: FoodMeat
+        - id: FoodBanana
+          amount: 3
+
+- type: cargoProduct
+  id: ImperialCargoOrganicFood
+  name: imperial-cargo-ImperialCargoOrganicFood-name
+  description: imperial-cargo-ImperialCargoOrganicFood-desc
+  icon:
+    entity: ReagentContainerFlour
+  product: ImperialCargoOrganicFoodCrate
+  cost: 400
+  category: imperial-cargo-category-food
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateSecure
+  id: ImperialCargoOrganicCreamPieeCrate
+  name: "Ящик клоунских кремовых тортов повышенной мощности"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingBackpackDuffelClown
+  - type: AccessReader
+    access: [["Theatre"]]
+
+- type: cargoProduct
+  id: ImperialCargoOrganicCreamPiee
+  name: imperial-cargo-ImperialCargoOrganicCreamPiee-name
+  description: imperial-cargo-ImperialCargoOrganicCreamPiee-desc
+  icon:
+    entity: ClothingBackpackDuffelClown
+  product: ImperialCargoOrganicCreamPieeCrate
+  cost: 2400
+  category: imperial-cargo-category-food
+  group: ImperialCargoContraband
+
+- type: entity
+  parent: CrateHydroponics
+  id: ImperialCargoOrganicHydroponicsSuppliesCrate
+  name: "Ящик гидропоники"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: PlantBGoneSpray
+          amount: 2
+        - id: HydroponicsToolHatchet
+        - id: HydroponicsToolMiniHoe
+        - id: ClothingHandsGlovesLeather
+        - id: ClothingOuterApron
+
+- type: cargoProduct
+  id: ImperialCargoOrganicHydroponicsSupplies
+  name: imperial-cargo-ImperialCargoOrganicHydroponicsSupplies-name
+  description: imperial-cargo-ImperialCargoOrganicHydroponicsSupplies-desc
+  icon:
+    entity: PlantBGoneSpray
+  product: ImperialCargoOrganicHydroponicsSuppliesCrate
+  cost: 600
+  category: imperial-cargo-category-food
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateHydroSecure
+  id: ImperialCargoOrganicHydroponicsHydrotankCrate
+  name: "Ящик с ранцевым баком гидропоники"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingBackpackWaterTank
+  - type: AccessReader
+    access: [["Hydroponics"]]
+
+- type: cargoProduct
+  id: ImperialCargoOrganicHydroponicsHydrotank
+  name: imperial-cargo-ImperialCargoOrganicHydroponicsHydrotank-name
+  description: imperial-cargo-ImperialCargoOrganicHydroponicsHydrotank-desc
+  icon:
+    entity: ClothingBackpackWaterTank
+  product: ImperialCargoOrganicHydroponicsHydrotankCrate
+  cost: 400
+  category: imperial-cargo-category-food
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateFreezer
+  id: ImperialCargoOrganicPizzaCrate
+  name: "Ящик пиццы"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: FoodBoxPizzaFilled
+          amount: 5
+
+- type: cargoProduct
+  id: ImperialCargoOrganicPizza
+  name: imperial-cargo-ImperialCargoOrganicPizza-name
+  description: imperial-cargo-ImperialCargoOrganicPizza-desc
+  icon:
+    entity: CrateFreezer
+  product: ImperialCargoOrganicPizzaCrate
+  cost: 2000
+  category: imperial-cargo-category-food
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoOrganicPottedPlantsCrate
+  name: "Ящик комнатных растений"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: PottedPlantRandom
+          amount: 5
+
+- type: cargoProduct
+  id: ImperialCargoOrganicPottedPlants
+  name: imperial-cargo-ImperialCargoOrganicPottedPlants-name
+  description: imperial-cargo-ImperialCargoOrganicPottedPlants-desc
+  icon:
+    entity: CrateGenericSteel
+  product: ImperialCargoOrganicPottedPlantsCrate
+  cost: 300
+  category: imperial-cargo-category-food
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateHydroponics
+  id: ImperialCargoOrganicSeedsCrate
+  name: "Ящик семян"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ChiliSeeds
+        - id: CottonSeeds
+        - id: BerrySeeds
+        - id: CornSeeds
+        - id: EggplantSeeds
+        - id: TomatoSeeds
+        - id: SoybeanSeeds
+        - id: WheatSeeds
+        - id: RiceSeeds
+        - id: CarrotSeeds
+        - id: ChanterelleSeeds
+        - id: PotatoSeeds
+        - id: SugarcaneSeeds
+
+- type: cargoProduct
+  id: ImperialCargoOrganicSeeds
+  name: imperial-cargo-ImperialCargoOrganicSeeds-name
+  description: imperial-cargo-ImperialCargoOrganicSeeds-desc
+  icon:
+    entity: ChiliSeeds
+  product: ImperialCargoOrganicSeedsCrate
+  cost: 400
+  category: imperial-cargo-category-food
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoOrganicGrillCrate
+  name: "Набор для гриля"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: Coal5
+        - id: ImperialTongs
+
+- type: cargoProduct
+  id: ImperialCargoOrganicGrill
+  name: imperial-cargo-ImperialCargoOrganicGrill-name
+  description: imperial-cargo-ImperialCargoOrganicGrill-desc
+  icon:
+    entity: Coal5
+  product: ImperialCargoOrganicGrillCrate
+  cost: 800
+  category: imperial-cargo-category-food
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoOrganicGrillfuelCrate
+  name: "Набор топлива для гриля"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: Coal10
+
+- type: cargoProduct
+  id: ImperialCargoOrganicGrillfuel
+  name: imperial-cargo-ImperialCargoOrganicGrillfuel-name
+  description: imperial-cargo-ImperialCargoOrganicGrillfuel-desc
+  icon:
+    entity: Coal10
+  product: ImperialCargoOrganicGrillfuelCrate
+  cost: 800
+  category: imperial-cargo-category-food
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoOrganicSyrupCrate
+  name: "Коробка кофейных сиропов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: DrinkCoffeeLiqueurBottleFull
+
+- type: cargoProduct
+  id: ImperialCargoOrganicSyrup
+  name: imperial-cargo-ImperialCargoOrganicSyrup-name
+  description: imperial-cargo-ImperialCargoOrganicSyrup-desc
+  icon:
+    entity: DrinkCoffeeLiqueurBottleFull
+  product: ImperialCargoOrganicSyrupCrate
+  cost: 800
+  category: imperial-cargo-category-food
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateFreezer
+  id: ImperialCargoOrganicNutraslopCrate
+  name: "Блюдо нутрабурды"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialServingTray
+
+- type: cargoProduct
+  id: ImperialCargoOrganicNutraslop
+  name: imperial-cargo-ImperialCargoOrganicNutraslop-name
+  description: imperial-cargo-ImperialCargoOrganicNutraslop-desc
+  icon:
+    entity: ImperialServingTray
+  product: ImperialCargoOrganicNutraslopCrate
+  cost: 800
+  category: imperial-cargo-category-food
+  group: ImperialCargo
+
+- type: entity
+  parent: CratePlasma
+  id: ImperialCargoSciencePlasmaCrate
+  name: "Ящик плазменных сборок"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: PlasmaTankFilled
+          amount: 3
+        - id: Igniter
+          amount: 3
+        - id: ProximitySensor
+          amount: 3
+        - id: TimerTrigger
+          amount: 3
+  - type: AccessReader
+    access: [["Research"]]
+
+- type: cargoProduct
+  id: ImperialCargoSciencePlasma
+  name: imperial-cargo-ImperialCargoSciencePlasma-name
+  description: imperial-cargo-ImperialCargoSciencePlasma-desc
+  icon:
+    entity: PlasmaTankFilled
+  product: ImperialCargoSciencePlasmaCrate
+  cost: 400
+  category: imperial-cargo-category-science
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateScienceSecure
+  id: ImperialCargoScienceRoboticsCrate
+  name: "Ящик робототехники"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ProximitySensor
+          amount: 4
+        - id: HandheldHealthAnalyzer
+          amount: 2
+        - id: ClothingHeadHatHardhatRed
+          amount: 2
+        - id: Medkit
+          amount: 2
+        - id: ToolboxEmergencyFilled
+          amount: 2
+  - type: AccessReader
+    access: [["Research"]]
+
+- type: cargoProduct
+  id: ImperialCargoScienceRobotics
+  name: imperial-cargo-ImperialCargoScienceRobotics-name
+  description: imperial-cargo-ImperialCargoScienceRobotics-desc
+  icon:
+    entity: ProximitySensor
+  product: ImperialCargoScienceRoboticsCrate
+  cost: 600
+  category: imperial-cargo-category-science
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateScience
+  id: ImperialCargoScienceRpedCrate
+  name: "Ящик БЗД"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialRPED
+
+- type: cargoProduct
+  id: ImperialCargoScienceRped
+  name: imperial-cargo-ImperialCargoScienceRped-name
+  description: imperial-cargo-ImperialCargoScienceRped-desc
+  icon:
+    entity: ImperialRPED
+  product: ImperialCargoScienceRpedCrate
+  cost: 600
+  category: imperial-cargo-category-science
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateScienceSecure
+  id: ImperialCargoScienceShieldwallsCrate
+  name: "Ящик генераторов щита"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialAtmosShieldGenerator
+          amount: 4
+  - type: AccessReader
+    access: [["Command"]]
+
+- type: cargoProduct
+  id: ImperialCargoScienceShieldwalls
+  name: imperial-cargo-ImperialCargoScienceShieldwalls-name
+  description: imperial-cargo-ImperialCargoScienceShieldwalls-desc
+  icon:
+    entity: ImperialAtmosShieldGenerator
+  product: ImperialCargoScienceShieldwallsCrate
+  cost: 800
+  category: imperial-cargo-category-science
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateScience
+  id: ImperialCargoScienceCytologyCrate
+  name: "Ящик принадлежностей цитологии"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VatMicroscope
+        - id: VatBiopsyTool
+        - id: BoxMouthSwab
+        - id: VatGrower
+
+- type: cargoProduct
+  id: ImperialCargoScienceCytology
+  name: imperial-cargo-ImperialCargoScienceCytology-name
+  description: imperial-cargo-ImperialCargoScienceCytology-desc
+  icon:
+    entity: VatMicroscope
+  product: ImperialCargoScienceCytologyCrate
+  cost: 600
+  category: imperial-cargo-category-science
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateSecgear
+  id: ImperialCargoSecurityAmmoCrate
+  name: "Ящик боеприпасов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BoxBeanbag
+          amount: 3
+        - id: BoxShotgunPractice
+          amount: 3
+        - id: ImperialSpeedLoader38Trac
+        - id: ImperialSpeedLoader38Iceblox
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityAmmo
+  name: imperial-cargo-ImperialCargoSecurityAmmo-name
+  description: imperial-cargo-ImperialCargoSecurityAmmo-desc
+  icon:
+    entity: BoxBeanbag
+  product: ImperialCargoSecurityAmmoCrate
+  cost: 2400
+  category: imperial-cargo-category-security
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateSecgear
+  id: ImperialCargoSecurityArmorCrate
+  name: "Ящик бронежилетов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterArmorBasic
+          amount: 3
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityArmor
+  name: imperial-cargo-ImperialCargoSecurityArmor-name
+  description: imperial-cargo-ImperialCargoSecurityArmor-desc
+  icon:
+    entity: ClothingOuterArmorBasic
+  product: ImperialCargoSecurityArmorCrate
+  cost: 600
+  category: imperial-cargo-category-security
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateSecgear
+  id: ImperialCargoSecurityDisablerCrate
+  name: "Ящик станнеров"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponDisabler
+          amount: 3
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityDisabler
+  name: imperial-cargo-ImperialCargoSecurityDisabler-name
+  description: imperial-cargo-ImperialCargoSecurityDisabler-desc
+  icon:
+    entity: WeaponDisabler
+  product: ImperialCargoSecurityDisablerCrate
+  cost: 600
+  category: imperial-cargo-category-security
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateSecgear
+  id: ImperialCargoSecurityForensicsCrate
+  name: "Ящик криминалистики"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ForensicScanner
+        - id: BoxEvidenceBags
+        - id: ImperialCamera
+        - id: ImperialTapeRecorder
+        - id: CrayonWhite
+        - id: ClothingHeadHatFedoraBrown
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityForensics
+  name: imperial-cargo-ImperialCargoSecurityForensics-name
+  description: imperial-cargo-ImperialCargoSecurityForensics-desc
+  icon:
+    entity: ForensicScanner
+  product: ImperialCargoSecurityForensicsCrate
+  cost: 500
+  category: imperial-cargo-category-security
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateSecgear
+  id: ImperialCargoSecurityHelmetsCrate
+  name: "Ящик шлемов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingHeadHelmetBasic
+          amount: 3
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityHelmets
+  name: imperial-cargo-ImperialCargoSecurityHelmets-name
+  description: imperial-cargo-ImperialCargoSecurityHelmets-desc
+  icon:
+    entity: ClothingHeadHelmetBasic
+  product: ImperialCargoSecurityHelmetsCrate
+  cost: 600
+  category: imperial-cargo-category-security
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateSecgear
+  id: ImperialCargoSecuritySecurityclothesCrate
+  name: "Ящик формы службы безопасности"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingHeadHatBeretSecurity
+          amount: 2
+        - id: ClothingOuterCoatWarden
+        - id: ClothingHeadHatBeretWarden
+        - id: ClothingUniformJumpsuitHosFormal
+        - id: ClothingOuterCoatHoSTrench
+        - id: ClothingHeadHatBeretHoS
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecuritySecurityclothes
+  name: imperial-cargo-ImperialCargoSecuritySecurityclothes-name
+  description: imperial-cargo-ImperialCargoSecuritySecurityclothes-desc
+  icon:
+    entity: ClothingHeadHatBeretSecurity
+  product: ImperialCargoSecuritySecurityclothesCrate
+  cost: 600
+  category: imperial-cargo-category-security
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateSecgear
+  id: ImperialCargoSecurityStingpackCrate
+  name: "Набор гранат «Жалящий взрыв»"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BoxStinger
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityStingpack
+  name: imperial-cargo-ImperialCargoSecurityStingpack-name
+  description: imperial-cargo-ImperialCargoSecurityStingpack-desc
+  icon:
+    entity: BoxStinger
+  product: ImperialCargoSecurityStingpackCrate
+  cost: 1000
+  category: imperial-cargo-category-security
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateSecgear
+  id: ImperialCargoSecuritySuppliesCrate
+  name: "Ящик снаряжения охраны"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BoxFlashbang
+        - id: BoxTearGas
+        - id: BoxHandcuff
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecuritySupplies
+  name: imperial-cargo-ImperialCargoSecuritySupplies-name
+  description: imperial-cargo-ImperialCargoSecuritySupplies-desc
+  icon:
+    entity: BoxFlashbang
+  product: ImperialCargoSecuritySuppliesCrate
+  cost: 700
+  category: imperial-cargo-category-security
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateSecgear
+  id: ImperialCargoSecurityJusticeinboundCrate
+  name: "Ящик шлема блюстителя правосудия"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingHeadHelmetJustice
+        - id: ClothingMaskGasSecurity
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityJusticeinbound
+  name: imperial-cargo-ImperialCargoSecurityJusticeinbound-name
+  description: imperial-cargo-ImperialCargoSecurityJusticeinbound-desc
+  icon:
+    entity: ClothingHeadHelmetJustice
+  product: ImperialCargoSecurityJusticeinboundCrate
+  cost: 1200
+  category: imperial-cargo-category-security
+  group: ImperialCargoContraband
+
+- type: entity
+  parent: CrateSecgear
+  id: ImperialCargoSecurityBatonCrate
+  name: "Ящик шоковых дубинок"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: Stunbaton
+          amount: 3
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityBaton
+  name: imperial-cargo-ImperialCargoSecurityBaton-name
+  description: imperial-cargo-ImperialCargoSecurityBaton-desc
+  icon:
+    entity: Stunbaton
+  product: ImperialCargoSecurityBatonCrate
+  cost: 600
+  category: imperial-cargo-category-security
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateSecgear
+  id: ImperialCargoSecurityConstableCrate
+  name: "Ящик традиционного снаряжения"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingHandsGlovesColorWhite
+        - id: SecurityWhistle
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityConstable
+  name: imperial-cargo-ImperialCargoSecurityConstable-name
+  description: imperial-cargo-ImperialCargoSecurityConstable-desc
+  icon:
+    entity: ClothingHandsGlovesColorWhite
+  product: ImperialCargoSecurityConstableCrate
+  cost: 440
+  category: imperial-cargo-category-security
+  group: ImperialCargoContraband
+
+- type: entity
+  parent: CrateWeaponSecure
+  id: ImperialCargoSecurityArmoryBulletarmorCrate
+  name: "Ящик пуленепробиваемой брони"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterArmorBulletproof
+          amount: 3
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityArmoryBulletarmor
+  name: imperial-cargo-ImperialCargoSecurityArmoryBulletarmor-name
+  description: imperial-cargo-ImperialCargoSecurityArmoryBulletarmor-desc
+  icon:
+    entity: ClothingOuterArmorBulletproof
+  product: ImperialCargoSecurityArmoryBulletarmorCrate
+  cost: 600
+  category: imperial-cargo-category-armory
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateWeaponSecure
+  id: ImperialCargoSecurityArmoryBullethelmetsCrate
+  name: "Ящик пуленепробиваемых шлемов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingHeadHelmetBasic
+          amount: 3
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityArmoryBullethelmets
+  name: imperial-cargo-ImperialCargoSecurityArmoryBullethelmets-name
+  description: imperial-cargo-ImperialCargoSecurityArmoryBullethelmets-desc
+  icon:
+    entity: ClothingHeadHelmetBasic
+  product: ImperialCargoSecurityArmoryBullethelmetsCrate
+  cost: 600
+  category: imperial-cargo-category-armory
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateWeaponSecure
+  id: ImperialCargoSecurityArmoryBallisticCrate
+  name: "Ящик боевых дробовиков"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponShotgunEnforcer
+          amount: 3
+        - id: ClothingBeltBandolier
+          amount: 3
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityArmoryBallistic
+  name: imperial-cargo-ImperialCargoSecurityArmoryBallistic-name
+  description: imperial-cargo-ImperialCargoSecurityArmoryBallistic-desc
+  icon:
+    entity: WeaponShotgunEnforcer
+  product: ImperialCargoSecurityArmoryBallisticCrate
+  cost: 5200
+  category: imperial-cargo-category-armory
+  group: ImperialCargo
+
+- type: entity
+  parent: CratePlasma
+  id: ImperialCargoSecurityArmoryLaserCrate
+  name: "Ящик лазерных винтовок «Тип 5»"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponLaserGun
+          amount: 3
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityArmoryLaser
+  name: imperial-cargo-ImperialCargoSecurityArmoryLaser-name
+  description: imperial-cargo-ImperialCargoSecurityArmoryLaser-desc
+  icon:
+    entity: WeaponLaserGun
+  product: ImperialCargoSecurityArmoryLaserCrate
+  cost: 3600
+  category: imperial-cargo-category-armory
+  group: ImperialCargo
+
+- type: entity
+  parent: CratePlasma
+  id: ImperialCargoSecurityArmoryLaserCarbineCrate
+  name: "Ящик лазерных карабинов «Тип 5/R»"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponLaserCarbine
+          amount: 3
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityArmoryLaserCarbine
+  name: imperial-cargo-ImperialCargoSecurityArmoryLaserCarbine-name
+  description: imperial-cargo-ImperialCargoSecurityArmoryLaserCarbine-desc
+  icon:
+    entity: WeaponLaserCarbine
+  product: ImperialCargoSecurityArmoryLaserCarbineCrate
+  cost: 5400
+  category: imperial-cargo-category-armory
+  group: ImperialCargo
+
+- type: entity
+  parent: CratePlasma
+  id: ImperialCargoSecurityArmoryDisablerSmgCrate
+  name: "Ящик пистолетов-пулемётов станнеров"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponDisablerSMG
+          amount: 3
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityArmoryDisablerSmg
+  name: imperial-cargo-ImperialCargoSecurityArmoryDisablerSmg-name
+  description: imperial-cargo-ImperialCargoSecurityArmoryDisablerSmg-desc
+  icon:
+    entity: WeaponDisablerSMG
+  product: ImperialCargoSecurityArmoryDisablerSmgCrate
+  cost: 2800
+  category: imperial-cargo-category-armory
+  group: ImperialCargo
+
+- type: entity
+  parent: CratePlasma
+  id: ImperialCargoSecurityArmoryFireCrate
+  name: "Ящик зажигательного оружия"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: PlasmaTankFilled
+          amount: 3
+        - id: GrenadeIncendiary
+          amount: 3
+  - type: AccessReader
+    access: [["Command"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityArmoryFire
+  name: imperial-cargo-ImperialCargoSecurityArmoryFire-name
+  description: imperial-cargo-ImperialCargoSecurityArmoryFire-desc
+  icon:
+    entity: PlasmaTankFilled
+  product: ImperialCargoSecurityArmoryFireCrate
+  cost: 1400
+  category: imperial-cargo-category-armory
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateWeaponSecure
+  id: ImperialCargoSecurityArmoryTrackingimpCrate
+  name: "Ящик имплантов слежения"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialBoxMinerTracker
+        - id: ImperialSpeedLoader38Trac
+          amount: 3
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityArmoryTrackingimp
+  name: imperial-cargo-ImperialCargoSecurityArmoryTrackingimp-name
+  description: imperial-cargo-ImperialCargoSecurityArmoryTrackingimp-desc
+  icon:
+    entity: ImperialBoxMinerTracker
+  product: ImperialCargoSecurityArmoryTrackingimpCrate
+  cost: 900
+  category: imperial-cargo-category-armory
+  group: ImperialCargo
+
+- type: entity
+  parent: CratePlasma
+  id: ImperialCargoSecurityArmoryLaserarmorCrate
+  name: "Ящик отражающих бронежилетов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterArmorReflective
+          amount: 2
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityArmoryLaserarmor
+  name: imperial-cargo-ImperialCargoSecurityArmoryLaserarmor-name
+  description: imperial-cargo-ImperialCargoSecurityArmoryLaserarmor-desc
+  icon:
+    entity: ClothingOuterArmorReflective
+  product: ImperialCargoSecurityArmoryLaserarmorCrate
+  cost: 1000
+  category: imperial-cargo-category-armory
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateWeaponSecure
+  id: ImperialCargoSecurityArmoryRiotarmorCrate
+  name: "Ящик брони для разгона беспорядков"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterArmorRiot
+          amount: 3
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityArmoryRiotarmor
+  name: imperial-cargo-ImperialCargoSecurityArmoryRiotarmor-name
+  description: imperial-cargo-ImperialCargoSecurityArmoryRiotarmor-desc
+  icon:
+    entity: ClothingOuterArmorRiot
+  product: ImperialCargoSecurityArmoryRiotarmorCrate
+  cost: 1200
+  category: imperial-cargo-category-armory
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateWeaponSecure
+  id: ImperialCargoSecurityArmoryRiothelmetsCrate
+  name: "Ящик шлемов для разгона беспорядков"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingHeadHelmetRiot
+          amount: 3
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityArmoryRiothelmets
+  name: imperial-cargo-ImperialCargoSecurityArmoryRiothelmets-name
+  description: imperial-cargo-ImperialCargoSecurityArmoryRiothelmets-desc
+  icon:
+    entity: ClothingHeadHelmetRiot
+  product: ImperialCargoSecurityArmoryRiothelmetsCrate
+  cost: 800
+  category: imperial-cargo-category-armory
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateWeaponSecure
+  id: ImperialCargoSecurityArmoryRiotshieldsCrate
+  name: "Ящик щитов для разгона беспорядков"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: RiotShield
+          amount: 3
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityArmoryRiotshields
+  name: imperial-cargo-ImperialCargoSecurityArmoryRiotshields-name
+  description: imperial-cargo-ImperialCargoSecurityArmoryRiotshields-desc
+  icon:
+    entity: RiotShield
+  product: ImperialCargoSecurityArmoryRiotshieldsCrate
+  cost: 1000
+  category: imperial-cargo-category-armory
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateWeaponSecure
+  id: ImperialCargoSecurityArmorySwatCrate
+  name: "Ящик спецназа"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingHeadHelmetSwat
+          amount: 2
+        - id: ClothingOuterArmorFBISWAT
+          amount: 2
+        - id: ClothingMaskGasSwat
+          amount: 2
+        - id: USSPBeltAssault
+          amount: 2
+        - id: ClothingHandsGlovesCombat
+          amount: 2
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecurityArmorySwat
+  name: imperial-cargo-ImperialCargoSecurityArmorySwat-name
+  description: imperial-cargo-ImperialCargoSecurityArmorySwat-desc
+  icon:
+    entity: ClothingHeadHelmetSwat
+  product: ImperialCargoSecurityArmorySwatCrate
+  cost: 1400
+  category: imperial-cargo-category-armory
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateSecgear
+  id: ImperialCargoSecuritySunglassesCrate
+  name: "Ящик солнцезащитных очков"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingEyesGlassesSunglasses
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: cargoProduct
+  id: ImperialCargoSecuritySunglasses
+  name: imperial-cargo-ImperialCargoSecuritySunglasses-name
+  description: imperial-cargo-ImperialCargoSecuritySunglasses-desc
+  icon:
+    entity: ClothingEyesGlassesSunglasses
+  product: ImperialCargoSecuritySunglassesCrate
+  cost: 400
+  category: imperial-cargo-category-security
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoServiceCargoSupplesCrate
+  name: "Ящик принадлежностей снабжения"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: RubberStampApproved
+        - id: RubberStampDenied
+        - id: DisposalTagger
+        - id: HandLabeler
+        - id: ParcelWrap
+
+- type: cargoProduct
+  id: ImperialCargoServiceCargoSupples
+  name: imperial-cargo-ImperialCargoServiceCargoSupples-name
+  description: imperial-cargo-ImperialCargoServiceCargoSupples-desc
+  icon:
+    entity: RubberStampApproved
+  product: ImperialCargoServiceCargoSupplesCrate
+  cost: 350
+  category: imperial-cargo-category-service
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoServiceJanitorCrate
+  name: "Ящик уборочного инвентаря"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: Bucket
+          amount: 3
+        - id: MopItem
+        - id: ImperialPushBroom
+        - id: WetFloorSign
+          amount: 3
+        - id: TrashBag
+        - id: SprayBottleSpaceCleaner
+        - id: RagItem
+        - id: CleanerGrenade
+          amount: 3
+
+- type: cargoProduct
+  id: ImperialCargoServiceJanitor
+  name: imperial-cargo-ImperialCargoServiceJanitor-name
+  description: imperial-cargo-ImperialCargoServiceJanitor-desc
+  icon:
+    entity: Bucket
+  product: ImperialCargoServiceJanitorCrate
+  cost: 400
+  category: imperial-cargo-category-service
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoServiceJanitorJanicartCrate
+  name: "Ящик с тележкой уборщика и галошами"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: JanitorialTrolley
+        - id: ClothingShoesGaloshes
+
+- type: cargoProduct
+  id: ImperialCargoServiceJanitorJanicart
+  name: imperial-cargo-ImperialCargoServiceJanitorJanicart-name
+  description: imperial-cargo-ImperialCargoServiceJanitorJanicart-desc
+  icon:
+    entity: JanitorialTrolley
+  product: ImperialCargoServiceJanitorJanicartCrate
+  cost: 800
+  category: imperial-cargo-category-service
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoServicePartyCrate
+  name: "Праздничный набор"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: DrinkShaker
+        - id: DrinkPatronBottleFull
+        - id: DrinkAleBottleFull
+          amount: 2
+        - id: DrinkBeerCan
+          amount: 6
+        - id: DrinkColaCan
+          amount: 6
+        - id: GlowstickGreen
+        - id: GlowstickRed
+        - id: GlowstickBlue
+        - id: GlowstickBlue
+        - id: GlowstickYellow
+        - id: GlowstickYellow
+        - id: GlowstickPurple
+
+- type: cargoProduct
+  id: ImperialCargoServiceParty
+  name: imperial-cargo-ImperialCargoServiceParty-name
+  description: imperial-cargo-ImperialCargoServiceParty-desc
+  icon:
+    entity: DrinkShaker
+  product: ImperialCargoServicePartyCrate
+  cost: 1000
+  category: imperial-cargo-category-service
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoServiceCarpetCrate
+  name: "Ящик премиального ковра"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: FloorCarpetItemRed
+          amount: 2
+        - id: FloorCarpetItemBlack
+          amount: 2
+
+- type: cargoProduct
+  id: ImperialCargoServiceCarpet
+  name: imperial-cargo-ImperialCargoServiceCarpet-name
+  description: imperial-cargo-ImperialCargoServiceCarpet-desc
+  icon:
+    entity: FloorCarpetItemRed
+  product: ImperialCargoServiceCarpetCrate
+  cost: 400
+  category: imperial-cargo-category-service
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoServiceCarpetExoticCrate
+  name: "Ящик экзотических ковров"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: FloorCarpetItemBlue
+          amount: 2
+        - id: FloorCarpetItemCyan
+          amount: 2
+        - id: FloorCarpetItemGreen
+          amount: 2
+        - id: FloorCarpetItemOrange
+          amount: 2
+        - id: FloorCarpetItemPurple
+          amount: 2
+        - id: FloorCarpetItemRed
+          amount: 2
+        - id: FloorCarpetItemBlue
+          amount: 2
+        - id: FloorCarpetItemBlack
+          amount: 2
+
+- type: cargoProduct
+  id: ImperialCargoServiceCarpetExotic
+  name: imperial-cargo-ImperialCargoServiceCarpetExotic-name
+  description: imperial-cargo-ImperialCargoServiceCarpetExotic-desc
+  icon:
+    entity: FloorCarpetItemBlue
+  product: ImperialCargoServiceCarpetExoticCrate
+  cost: 1600
+  category: imperial-cargo-category-service
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoServiceCarpetNeonCrate
+  name: "Ящик простых неоновых ковров"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: FloorCarpetItemWhite
+          amount: 2
+        - id: FloorCarpetItemBlack
+          amount: 2
+        - id: FloorCarpetItemRed
+          amount: 2
+        - id: FloorCarpetItemOrange
+          amount: 2
+        - id: FloorCarpetItemOrange
+          amount: 2
+        - id: FloorCarpetItemGreen
+          amount: 2
+        - id: FloorCarpetItemGreen
+          amount: 2
+        - id: FloorCarpetItemCyan
+          amount: 2
+        - id: FloorCarpetItemCyan
+          amount: 2
+        - id: FloorCarpetItemBlue
+          amount: 2
+        - id: FloorCarpetItemPurple
+          amount: 2
+        - id: FloorCarpetItemPurple
+          amount: 2
+        - id: FloorCarpetItemPink
+          amount: 2
+
+- type: cargoProduct
+  id: ImperialCargoServiceCarpetNeon
+  name: imperial-cargo-ImperialCargoServiceCarpetNeon-name
+  description: imperial-cargo-ImperialCargoServiceCarpetNeon-desc
+  icon:
+    entity: FloorCarpetItemWhite
+  product: ImperialCargoServiceCarpetNeonCrate
+  cost: 3000
+  category: imperial-cargo-category-service
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoServiceLightbulbsCrate
+  name: "Запасные лампы"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BoxLightMixed
+          amount: 3
+
+- type: cargoProduct
+  id: ImperialCargoServiceLightbulbs
+  name: imperial-cargo-ImperialCargoServiceLightbulbs-name
+  description: imperial-cargo-ImperialCargoServiceLightbulbs-desc
+  icon:
+    entity: BoxLightMixed
+  product: ImperialCargoServiceLightbulbsCrate
+  cost: 400
+  category: imperial-cargo-category-service
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateSecure
+  id: ImperialCargoServiceMinerkitCrate
+  name: "Стартовый набор шахтёра"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialMiningConscriptionKit
+  - type: AccessReader
+    access: [["Quartermaster"]]
+
+- type: cargoProduct
+  id: ImperialCargoServiceMinerkit
+  name: imperial-cargo-ImperialCargoServiceMinerkit-name
+  description: imperial-cargo-ImperialCargoServiceMinerkit-desc
+  icon:
+    entity: ImperialMiningConscriptionKit
+  product: ImperialCargoServiceMinerkitCrate
+  cost: 800
+  category: imperial-cargo-category-service
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoServiceSurvivalknivesCrate
+  name: "Ящик ножей выживания"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SurvivalKnife
+          amount: 3
+
+- type: cargoProduct
+  id: ImperialCargoServiceSurvivalknives
+  name: imperial-cargo-ImperialCargoServiceSurvivalknives-name
+  description: imperial-cargo-ImperialCargoServiceSurvivalknives-desc
+  icon:
+    entity: SurvivalKnife
+  product: ImperialCargoServiceSurvivalknivesCrate
+  cost: 600
+  category: imperial-cargo-category-service
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoServiceWeddingCrate
+  name: "Свадебный ящик"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ImperialClothingHeadCostumeWeddingveil
+        - id: FoodPoppy
+        - id: DrinkChampagneBottleFull
+
+- type: cargoProduct
+  id: ImperialCargoServiceWedding
+  name: imperial-cargo-ImperialCargoServiceWedding-name
+  description: imperial-cargo-ImperialCargoServiceWedding-desc
+  icon:
+    entity: ImperialClothingHeadCostumeWeddingveil
+  product: ImperialCargoServiceWeddingCrate
+  cost: 600
+  category: imperial-cargo-category-service
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoServiceGreyidboxCrate
+  name: "Ящик простых ID-карт"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BoxID
+
+- type: cargoProduct
+  id: ImperialCargoServiceGreyidbox
+  name: imperial-cargo-ImperialCargoServiceGreyidbox-name
+  description: imperial-cargo-ImperialCargoServiceGreyidbox-desc
+  icon:
+    entity: BoxID
+  product: ImperialCargoServiceGreyidboxCrate
+  cost: 600
+  category: imperial-cargo-category-service
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoServiceEmptycrateCrate
+  name: "Пустой ящик"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NoneSelector
+
+- type: cargoProduct
+  id: ImperialCargoServiceEmptycrate
+  name: imperial-cargo-ImperialCargoServiceEmptycrate-name
+  description: imperial-cargo-ImperialCargoServiceEmptycrate-desc
+  icon:
+    entity: CrateGenericSteel
+  product: ImperialCargoServiceEmptycrateCrate
+  cost: 280
+  category: imperial-cargo-category-service
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateFreezer
+  id: ImperialCargoServiceRandomizedDonkpocketsCrate
+  name: "Ящик ассорти донк-покетов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:GroupSelector
+        rolls: !type:ConstantNumberSelector
+          value: 3
+        children:
+        - id: FoodBoxDonkpocketSpicy
+        - id: FoodBoxDonkpocketTeriyaki
+        - id: FoodBoxDonkpocketPizza
+        - id: FoodBoxDonkpocketBerry
+        - id: FoodBoxDonkpocketHonk
+
+- type: cargoProduct
+  id: ImperialCargoServiceRandomizedDonkpockets
+  name: imperial-cargo-ImperialCargoServiceRandomizedDonkpockets-name
+  description: imperial-cargo-ImperialCargoServiceRandomizedDonkpockets-desc
+  icon:
+    entity: FoodBoxDonkpocketSpicy
+  product: ImperialCargoServiceRandomizedDonkpocketsCrate
+  cost: 800
+  category: imperial-cargo-category-service
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateFreezer
+  id: ImperialCargoServiceRandomizedReadyDonkCrate
+  name: "Ящик ассорти «Реди-Донк»"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:GroupSelector
+        rolls: !type:ConstantNumberSelector
+          value: 3
+        children:
+        - id: FoodDonkpocketWarm
+        - id: FoodDonkpocketWarm
+        - id: FoodDonkpocketWarm
+        - id: FoodMealNachos
+        - id: FoodMeatChickenFried
+        - id: FoodMeatCooked
+        - id: FoodMeatChickenFried
+
+- type: cargoProduct
+  id: ImperialCargoServiceRandomizedReadyDonk
+  name: imperial-cargo-ImperialCargoServiceRandomizedReadyDonk-name
+  description: imperial-cargo-ImperialCargoServiceRandomizedReadyDonk-desc
+  icon:
+    entity: FoodDonkpocketWarm
+  product: ImperialCargoServiceRandomizedReadyDonkCrate
+  cost: 600
+  category: imperial-cargo-category-service
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoServiceCoffeekitCrate
+  name: "Ящик кофейного оборудования"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: DrinkCreamCarton
+        - id: DrinkMilkCarton
+        - id: DrinkSoyMilkCarton
+        - id: ReagentContainerSugar
+
+- type: cargoProduct
+  id: ImperialCargoServiceCoffeekit
+  name: imperial-cargo-ImperialCargoServiceCoffeekit-name
+  description: imperial-cargo-ImperialCargoServiceCoffeekit-desc
+  icon:
+    entity: DrinkCreamCarton
+  product: ImperialCargoServiceCoffeekitCrate
+  cost: 800
+  category: imperial-cargo-category-service
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoServiceBowmakingCrate
+  name: "Стартовый набор лучника и оперения"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MaterialWoodPlank1
+          amount: 10
+        - id: MaterialCloth
+          amount: 10
+
+- type: cargoProduct
+  id: ImperialCargoServiceBowmaking
+  name: imperial-cargo-ImperialCargoServiceBowmaking-name
+  description: imperial-cargo-ImperialCargoServiceBowmaking-desc
+  icon:
+    entity: MaterialWoodPlank1
+  product: ImperialCargoServiceBowmakingCrate
+  cost: 1000
+  category: imperial-cargo-category-service
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoServiceMousetrapsCrate
+  name: "Мышеловки «Вредители-прочь»"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BoxMousetrap
+          amount: 3
+
+- type: cargoProduct
+  id: ImperialCargoServiceMousetraps
+  name: imperial-cargo-ImperialCargoServiceMousetraps-name
+  description: imperial-cargo-ImperialCargoServiceMousetraps-desc
+  icon:
+    entity: BoxMousetrap
+  product: ImperialCargoServiceMousetrapsCrate
+  cost: 400
+  category: imperial-cargo-category-service
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingBartendingCrate
+  name: "Ящик пополнения Буз-о-мата и кофейного автомата"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockBooze
+        - id: VendingMachineRestockHotDrinks
+
+- type: cargoProduct
+  id: ImperialCargoVendingBartending
+  name: imperial-cargo-ImperialCargoVendingBartending-name
+  description: imperial-cargo-ImperialCargoVendingBartending-desc
+  icon:
+    entity: VendingMachineRestockBooze
+  product: ImperialCargoVendingBartendingCrate
+  cost: 400
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingCigaretteCrate
+  name: "Ящик пополнения сигаретного автомата"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockSmokes
+
+- type: cargoProduct
+  id: ImperialCargoVendingCigarette
+  name: imperial-cargo-ImperialCargoVendingCigarette-name
+  description: imperial-cargo-ImperialCargoVendingCigarette-desc
+  icon:
+    entity: VendingMachineRestockSmokes
+  product: ImperialCargoVendingCigaretteCrate
+  cost: 400
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingDinnerwareCrate
+  name: "Ящик пополнения автомата посуды"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockDinnerware
+
+- type: cargoProduct
+  id: ImperialCargoVendingDinnerware
+  name: imperial-cargo-ImperialCargoVendingDinnerware-name
+  description: imperial-cargo-ImperialCargoVendingDinnerware-desc
+  icon:
+    entity: VendingMachineRestockDinnerware
+  product: ImperialCargoVendingDinnerwareCrate
+  cost: 400
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingScienceModularpcCrate
+  name: "Пополнение «Делюкс Силикат Селекшнс»"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockPTech
+
+- type: cargoProduct
+  id: ImperialCargoVendingScienceModularpc
+  name: imperial-cargo-ImperialCargoVendingScienceModularpc-name
+  description: imperial-cargo-ImperialCargoVendingScienceModularpc-desc
+  icon:
+    entity: VendingMachineRestockPTech
+  product: ImperialCargoVendingScienceModularpcCrate
+  cost: 600
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingEngivendCrate
+  name: "Ящик пополнения ИнжеВенда"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockEngineering
+
+- type: cargoProduct
+  id: ImperialCargoVendingEngivend
+  name: imperial-cargo-ImperialCargoVendingEngivend-name
+  description: imperial-cargo-ImperialCargoVendingEngivend-desc
+  icon:
+    entity: VendingMachineRestockEngineering
+  product: ImperialCargoVendingEngivendCrate
+  cost: 600
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingGamesCrate
+  name: "Ящик пополнения автомата игр"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockGames
+
+- type: cargoProduct
+  id: ImperialCargoVendingGames
+  name: imperial-cargo-ImperialCargoVendingGames-name
+  description: imperial-cargo-ImperialCargoVendingGames-desc
+  icon:
+    entity: VendingMachineRestockGames
+  product: ImperialCargoVendingGamesCrate
+  cost: 400
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingHydroRefillsCrate
+  name: "Пополнения автоматов гидропоники"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockSeeds
+        - id: VendingMachineRestockNutriMax
+
+- type: cargoProduct
+  id: ImperialCargoVendingHydroRefills
+  name: imperial-cargo-ImperialCargoVendingHydroRefills-name
+  description: imperial-cargo-ImperialCargoVendingHydroRefills-desc
+  icon:
+    entity: VendingMachineRestockSeeds
+  product: ImperialCargoVendingHydroRefillsCrate
+  cost: 800
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingImportedCrate
+  name: "Импортные торговые автоматы"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockDiscountDans
+        - id: VendingMachineRestockRobotics
+        - id: VendingMachineRestockRobustSoftdrinks
+        - id: VendingMachineRestockEngineering
+
+- type: cargoProduct
+  id: ImperialCargoVendingImported
+  name: imperial-cargo-ImperialCargoVendingImported-name
+  description: imperial-cargo-ImperialCargoVendingImported-desc
+  icon:
+    entity: VendingMachineRestockDiscountDans
+  product: ImperialCargoVendingImportedCrate
+  cost: 1000
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingMedicalCrate
+  name: "Ящик медицинских автоматов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockMedical
+        - id: VendingMachineRestockChemVend
+        - id: VendingMachineRestockMedical
+
+- type: cargoProduct
+  id: ImperialCargoVendingMedical
+  name: imperial-cargo-ImperialCargoVendingMedical-name
+  description: imperial-cargo-ImperialCargoVendingMedical-desc
+  icon:
+    entity: VendingMachineRestockMedical
+  product: ImperialCargoVendingMedicalCrate
+  cost: 700
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateSecgear
+  id: ImperialCargoVendingSectechCrate
+  name: "Ящик пополнения СекТеха"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockSecTech
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: cargoProduct
+  id: ImperialCargoVendingSectech
+  name: imperial-cargo-ImperialCargoVendingSectech-name
+  description: imperial-cargo-ImperialCargoVendingSectech-desc
+  icon:
+    entity: VendingMachineRestockSecTech
+  product: ImperialCargoVendingSectechCrate
+  cost: 600
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingSnackCrate
+  name: "Ящик пополнения автомата закусок"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockGetmoreChocolateCorp
+
+- type: cargoProduct
+  id: ImperialCargoVendingSnack
+  name: imperial-cargo-ImperialCargoVendingSnack-name
+  description: imperial-cargo-ImperialCargoVendingSnack-desc
+  icon:
+    entity: VendingMachineRestockGetmoreChocolateCorp
+  product: ImperialCargoVendingSnackCrate
+  cost: 400
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingColaCrate
+  name: "Ящик пополнения автомата газировки"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockRobustSoftdrinks
+
+- type: cargoProduct
+  id: ImperialCargoVendingCola
+  name: imperial-cargo-ImperialCargoVendingCola-name
+  description: imperial-cargo-ImperialCargoVendingCola-desc
+  icon:
+    entity: VendingMachineRestockRobustSoftdrinks
+  product: ImperialCargoVendingColaCrate
+  cost: 400
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingVendomatCrate
+  name: "Ящик пополнения Парт-Март и ЮТул"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockVendomat
+        - id: VendingMachineRestockEngineering
+
+- type: cargoProduct
+  id: ImperialCargoVendingVendomat
+  name: imperial-cargo-ImperialCargoVendingVendomat-name
+  description: imperial-cargo-ImperialCargoVendingVendomat-desc
+  icon:
+    entity: VendingMachineRestockVendomat
+  product: ImperialCargoVendingVendomatCrate
+  cost: 600
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingClothesmateCrate
+  name: "Ящик пополнения ОдеждоМата"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockClothes
+
+- type: cargoProduct
+  id: ImperialCargoVendingClothesmate
+  name: imperial-cargo-ImperialCargoVendingClothesmate-name
+  description: imperial-cargo-ImperialCargoVendingClothesmate-desc
+  icon:
+    entity: VendingMachineRestockClothes
+  product: ImperialCargoVendingClothesmateCrate
+  cost: 400
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingWardrobesAutodrobeCrate
+  name: "Ящик пополнения Автодроба"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockCostumes
+
+- type: cargoProduct
+  id: ImperialCargoVendingWardrobesAutodrobe
+  name: imperial-cargo-ImperialCargoVendingWardrobesAutodrobe-name
+  description: imperial-cargo-ImperialCargoVendingWardrobesAutodrobe-desc
+  icon:
+    entity: VendingMachineRestockCostumes
+  product: ImperialCargoVendingWardrobesAutodrobeCrate
+  cost: 400
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingWardrobesCargoCrate
+  name: "Ящик пополнения гардероба снабжения"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockClothes
+
+- type: cargoProduct
+  id: ImperialCargoVendingWardrobesCargo
+  name: imperial-cargo-ImperialCargoVendingWardrobesCargo-name
+  description: imperial-cargo-ImperialCargoVendingWardrobesCargo-desc
+  icon:
+    entity: VendingMachineRestockClothes
+  product: ImperialCargoVendingWardrobesCargoCrate
+  cost: 300
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingWardrobesEngineeringCrate
+  name: "Ящик пополнения инженерных гардеробов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockClothes
+        - id: VendingMachineRestockClothes
+
+- type: cargoProduct
+  id: ImperialCargoVendingWardrobesEngineering
+  name: imperial-cargo-ImperialCargoVendingWardrobesEngineering-name
+  description: imperial-cargo-ImperialCargoVendingWardrobesEngineering-desc
+  icon:
+    entity: VendingMachineRestockClothes
+  product: ImperialCargoVendingWardrobesEngineeringCrate
+  cost: 600
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingWardrobesGeneralCrate
+  name: "Ящик пополнения общих гардеробов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockClothes
+        - id: VendingMachineRestockClothes
+        - id: VendingMachineRestockChefvend
+        - id: VendingMachineRestockClothes
+
+- type: cargoProduct
+  id: ImperialCargoVendingWardrobesGeneral
+  name: imperial-cargo-ImperialCargoVendingWardrobesGeneral-name
+  description: imperial-cargo-ImperialCargoVendingWardrobesGeneral-desc
+  icon:
+    entity: VendingMachineRestockClothes
+  product: ImperialCargoVendingWardrobesGeneralCrate
+  cost: 1200
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingWardrobesHydroponicsCrate
+  name: "Ящик пополнения ГидроДроба"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockClothes
+
+- type: cargoProduct
+  id: ImperialCargoVendingWardrobesHydroponics
+  name: imperial-cargo-ImperialCargoVendingWardrobesHydroponics-name
+  description: imperial-cargo-ImperialCargoVendingWardrobesHydroponics-desc
+  icon:
+    entity: VendingMachineRestockClothes
+  product: ImperialCargoVendingWardrobesHydroponicsCrate
+  cost: 300
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingWardrobesJanitorCrate
+  name: "Ящик пополнения ДжаниДроба"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockClothes
+
+- type: cargoProduct
+  id: ImperialCargoVendingWardrobesJanitor
+  name: imperial-cargo-ImperialCargoVendingWardrobesJanitor-name
+  description: imperial-cargo-ImperialCargoVendingWardrobesJanitor-desc
+  icon:
+    entity: VendingMachineRestockClothes
+  product: ImperialCargoVendingWardrobesJanitorCrate
+  cost: 300
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingWardrobesMedicalCrate
+  name: "Ящик пополнения медицинских гардеробов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockClothes
+        - id: VendingMachineRestockClothes
+        - id: VendingMachineRestockClothes
+        - id: VendingMachineRestockClothes
+
+- type: cargoProduct
+  id: ImperialCargoVendingWardrobesMedical
+  name: imperial-cargo-ImperialCargoVendingWardrobesMedical-name
+  description: imperial-cargo-ImperialCargoVendingWardrobesMedical-desc
+  icon:
+    entity: VendingMachineRestockClothes
+  product: ImperialCargoVendingWardrobesMedicalCrate
+  cost: 1200
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingWardrobesScienceCrate
+  name: "Ящик пополнения научных гардеробов"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockClothes
+        - id: VendingMachineRestockClothes
+        - id: VendingMachineRestockClothes
+
+- type: cargoProduct
+  id: ImperialCargoVendingWardrobesScience
+  name: imperial-cargo-ImperialCargoVendingWardrobesScience-name
+  description: imperial-cargo-ImperialCargoVendingWardrobesScience-desc
+  icon:
+    entity: VendingMachineRestockClothes
+  product: ImperialCargoVendingWardrobesScienceCrate
+  cost: 900
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateGenericSteel
+  id: ImperialCargoVendingWardrobesSecurityCrate
+  name: "Ящик пополнения гардеробов охраны"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockClothes
+        - id: VendingMachineRestockClothes
+        - id: VendingMachineRestockClothes
+
+- type: cargoProduct
+  id: ImperialCargoVendingWardrobesSecurity
+  name: imperial-cargo-ImperialCargoVendingWardrobesSecurity-name
+  description: imperial-cargo-ImperialCargoVendingWardrobesSecurity-desc
+  icon:
+    entity: VendingMachineRestockClothes
+  product: ImperialCargoVendingWardrobesSecurityCrate
+  cost: 800
+  category: imperial-cargo-category-vending
+  group: ImperialCargo
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyClearPdaCase
+  name: "Коллекционный прозрачный КПК Нанотрейзен"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClearPDA
+
+- type: cargoProduct
+  id: ImperialCargoGoodyClearPda
+  name: imperial-cargo-ImperialCargoGoodyClearPda-name
+  description: imperial-cargo-ImperialCargoGoodyClearPda-desc
+  icon:
+    entity: ClearPDA
+  product: ImperialCargoGoodyClearPdaCase
+  cost: 100000
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyMarsSingleCase
+  name: "Детективный кольт, одиночный"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRevolverInspector
+
+- type: cargoProduct
+  id: ImperialCargoGoodyMarsSingle
+  name: imperial-cargo-ImperialCargoGoodyMarsSingle-name
+  description: imperial-cargo-ImperialCargoGoodyMarsSingle-desc
+  icon:
+    entity: WeaponRevolverInspector
+  product: ImperialCargoGoodyMarsSingleCase
+  cost: 3000
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyStingbangCase
+  name: "Жалящая граната, одиночная"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: GrenadeStinger
+
+- type: cargoProduct
+  id: ImperialCargoGoodyStingbang
+  name: imperial-cargo-ImperialCargoGoodyStingbang-name
+  description: imperial-cargo-ImperialCargoGoodyStingbang-desc
+  icon:
+    entity: GrenadeStinger
+  product: ImperialCargoGoodyStingbangCase
+  cost: 250
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodySurvivalknivesSingleCase
+  name: "Нож выживания, одиночный"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SurvivalKnife
+
+- type: cargoProduct
+  id: ImperialCargoGoodySurvivalknivesSingle
+  name: imperial-cargo-ImperialCargoGoodySurvivalknivesSingle-name
+  description: imperial-cargo-ImperialCargoGoodySurvivalknivesSingle-desc
+  icon:
+    entity: SurvivalKnife
+  product: ImperialCargoGoodySurvivalknivesSingleCase
+  cost: 175
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyBallisticSingleCase
+  name: "Боевой дробовик, одиночный"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponShotgunEnforcer
+        - id: ClothingBeltBandolier
+
+- type: cargoProduct
+  id: ImperialCargoGoodyBallisticSingle
+  name: imperial-cargo-ImperialCargoGoodyBallisticSingle-name
+  description: imperial-cargo-ImperialCargoGoodyBallisticSingle-desc
+  icon:
+    entity: WeaponShotgunEnforcer
+  product: ImperialCargoGoodyBallisticSingleCase
+  cost: 2250
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyDisablerSingleCase
+  name: "Станнер, одиночный"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponDisabler
+
+- type: cargoProduct
+  id: ImperialCargoGoodyDisablerSingle
+  name: imperial-cargo-ImperialCargoGoodyDisablerSingle-name
+  description: imperial-cargo-ImperialCargoGoodyDisablerSingle-desc
+  icon:
+    entity: WeaponDisabler
+  product: ImperialCargoGoodyDisablerSingleCase
+  cost: 300
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyLaserSingleCase
+  name: "Лазерная винтовка Type 5, одиночная"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponLaserGun
+
+- type: cargoProduct
+  id: ImperialCargoGoodyLaserSingle
+  name: imperial-cargo-ImperialCargoGoodyLaserSingle-name
+  description: imperial-cargo-ImperialCargoGoodyLaserSingle-desc
+  icon:
+    entity: WeaponLaserGun
+  product: ImperialCargoGoodyLaserSingleCase
+  cost: 900
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyCarbineSingleCase
+  name: "Лазерный карабин Type 5/R, одиночный"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponLaserCarbine
+
+- type: cargoProduct
+  id: ImperialCargoGoodyCarbineSingle
+  name: imperial-cargo-ImperialCargoGoodyCarbineSingle-name
+  description: imperial-cargo-ImperialCargoGoodyCarbineSingle-desc
+  icon:
+    entity: WeaponLaserCarbine
+  product: ImperialCargoGoodyCarbineSingleCase
+  cost: 800
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodySmgSingleCase
+  name: "Станнер-ПП, одиночный"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponDisablerSMG
+
+- type: cargoProduct
+  id: ImperialCargoGoodySmgSingle
+  name: imperial-cargo-ImperialCargoGoodySmgSingle-name
+  description: imperial-cargo-ImperialCargoGoodySmgSingle-desc
+  icon:
+    entity: WeaponDisablerSMG
+  product: ImperialCargoGoodySmgSingleCase
+  cost: 600
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodySologamermittsCase
+  name: "Изолированные перчатки, одиночные"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingHandsGlovesColorYellow
+
+- type: cargoProduct
+  id: ImperialCargoGoodySologamermitts
+  name: imperial-cargo-ImperialCargoGoodySologamermitts-name
+  description: imperial-cargo-ImperialCargoGoodySologamermitts-desc
+  icon:
+    entity: ClothingHandsGlovesColorYellow
+  product: ImperialCargoGoodySologamermittsCase
+  cost: 400
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyGorillaSingleCase
+  name: "Перчатки «Горилла», одиночные"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingHandsGlovesCombat
+
+- type: cargoProduct
+  id: ImperialCargoGoodyGorillaSingle
+  name: imperial-cargo-ImperialCargoGoodyGorillaSingle-name
+  description: imperial-cargo-ImperialCargoGoodyGorillaSingle-desc
+  icon:
+    entity: ClothingHandsGlovesCombat
+  product: ImperialCargoGoodyGorillaSingleCase
+  cost: 600
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyFirstaidbruisesSingleCase
+  name: "Аптечка от ушибов, одиночная"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MedkitBruteFilled
+
+- type: cargoProduct
+  id: ImperialCargoGoodyFirstaidbruisesSingle
+  name: imperial-cargo-ImperialCargoGoodyFirstaidbruisesSingle-name
+  description: imperial-cargo-ImperialCargoGoodyFirstaidbruisesSingle-desc
+  icon:
+    entity: MedkitBruteFilled
+  product: ImperialCargoGoodyFirstaidbruisesSingleCase
+  cost: 200
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyFirstaidburnsSingleCase
+  name: "Аптечка от ожогов, одиночная"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MedkitBurnFilled
+
+- type: cargoProduct
+  id: ImperialCargoGoodyFirstaidburnsSingle
+  name: imperial-cargo-ImperialCargoGoodyFirstaidburnsSingle-name
+  description: imperial-cargo-ImperialCargoGoodyFirstaidburnsSingle-desc
+  icon:
+    entity: MedkitBurnFilled
+  product: ImperialCargoGoodyFirstaidburnsSingleCase
+  cost: 200
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyFirstaidSingleCase
+  name: "Аптечка первой помощи, одиночная"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MedkitFilled
+
+- type: cargoProduct
+  id: ImperialCargoGoodyFirstaidSingle
+  name: imperial-cargo-ImperialCargoGoodyFirstaidSingle-name
+  description: imperial-cargo-ImperialCargoGoodyFirstaidSingle-desc
+  icon:
+    entity: MedkitFilled
+  product: ImperialCargoGoodyFirstaidSingleCase
+  cost: 150
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyFirstaidoxygenSingleCase
+  name: "Аптечка от удушья, одиночная"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MedkitOxygenFilled
+
+- type: cargoProduct
+  id: ImperialCargoGoodyFirstaidoxygenSingle
+  name: imperial-cargo-ImperialCargoGoodyFirstaidoxygenSingle-name
+  description: imperial-cargo-ImperialCargoGoodyFirstaidoxygenSingle-desc
+  icon:
+    entity: MedkitOxygenFilled
+  product: ImperialCargoGoodyFirstaidoxygenSingleCase
+  cost: 200
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyFirstaidtoxinsSingleCase
+  name: "Аптечка от токсинов, одиночная"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MedkitToxinFilled
+
+- type: cargoProduct
+  id: ImperialCargoGoodyFirstaidtoxinsSingle
+  name: imperial-cargo-ImperialCargoGoodyFirstaidtoxinsSingle-name
+  description: imperial-cargo-ImperialCargoGoodyFirstaidtoxinsSingle-desc
+  icon:
+    entity: MedkitToxinFilled
+  product: ImperialCargoGoodyFirstaidtoxinsSingleCase
+  cost: 200
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyAutolatheboardCase
+  name: "Плата автолата"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: AutolatheMachineCircuitboard
+
+- type: cargoProduct
+  id: ImperialCargoGoodyAutolatheboard
+  name: imperial-cargo-ImperialCargoGoodyAutolatheboard-name
+  description: imperial-cargo-ImperialCargoGoodyAutolatheboard-desc
+  icon:
+    entity: AutolatheMachineCircuitboard
+  product: ImperialCargoGoodyAutolatheboardCase
+  cost: 100
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyBeeplushCase
+  name: "Плюшевая пчела"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: PlushieBee
+
+- type: cargoProduct
+  id: ImperialCargoGoodyBeeplush
+  name: imperial-cargo-ImperialCargoGoodyBeeplush-name
+  description: imperial-cargo-ImperialCargoGoodyBeeplush-desc
+  icon:
+    entity: PlushieBee
+  product: ImperialCargoGoodyBeeplushCase
+  cost: 200
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyBlahajCase
+  name: "Плюшевая акула"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: PlushieSharkBlue
+
+- type: cargoProduct
+  id: ImperialCargoGoodyBlahaj
+  name: imperial-cargo-ImperialCargoGoodyBlahaj-name
+  description: imperial-cargo-ImperialCargoGoodyBlahaj-desc
+  icon:
+    entity: PlushieSharkBlue
+  product: ImperialCargoGoodyBlahajCase
+  cost: 250
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyBeachBallCase
+  name: "Пляжный мяч, одиночный"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: BeachBall
+
+- type: cargoProduct
+  id: ImperialCargoGoodyBeachBall
+  name: imperial-cargo-ImperialCargoGoodyBeachBall-name
+  description: imperial-cargo-ImperialCargoGoodyBeachBall-desc
+  icon:
+    entity: BeachBall
+  product: ImperialCargoGoodyBeachBallCase
+  cost: 50
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyMedipenTwopakCase
+  name: "Два медипена"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyMedipen
+        - id: EmergencyMedipen
+
+- type: cargoProduct
+  id: ImperialCargoGoodyMedipenTwopak
+  name: imperial-cargo-ImperialCargoGoodyMedipenTwopak-name
+  description: imperial-cargo-ImperialCargoGoodyMedipenTwopak-desc
+  icon:
+    entity: EmergencyMedipen
+  product: ImperialCargoGoodyMedipenTwopakCase
+  cost: 100
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyReadyDonkCase
+  name: "Готовый обед «Ready-Donk»"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: FoodDonkpocketWarm
+
+- type: cargoProduct
+  id: ImperialCargoGoodyReadyDonk
+  name: imperial-cargo-ImperialCargoGoodyReadyDonk-name
+  description: imperial-cargo-ImperialCargoGoodyReadyDonk-desc
+  icon:
+    entity: FoodDonkpocketWarm
+  product: ImperialCargoGoodyReadyDonkCase
+  cost: 100
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyFishingToolboxCase
+  name: "Ящик рыбака"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialFishingToolbox
+
+- type: cargoProduct
+  id: ImperialCargoGoodyFishingToolbox
+  name: imperial-cargo-ImperialCargoGoodyFishingToolbox-name
+  description: imperial-cargo-ImperialCargoGoodyFishingToolbox-desc
+  icon:
+    entity: ImperialFishingToolbox
+  product: ImperialCargoGoodyFishingToolboxCase
+  cost: 100
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyFishingHookSetCase
+  name: "Набор крючков"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialFishingHookSet
+
+- type: cargoProduct
+  id: ImperialCargoGoodyFishingHookSet
+  name: imperial-cargo-ImperialCargoGoodyFishingHookSet-name
+  description: imperial-cargo-ImperialCargoGoodyFishingHookSet-desc
+  icon:
+    entity: ImperialFishingHookSet
+  product: ImperialCargoGoodyFishingHookSetCase
+  cost: 50
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyFishingLineSetCase
+  name: "Набор лесок"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialFishingLineSet
+
+- type: cargoProduct
+  id: ImperialCargoGoodyFishingLineSet
+  name: imperial-cargo-ImperialCargoGoodyFishingLineSet-name
+  description: imperial-cargo-ImperialCargoGoodyFishingLineSet-desc
+  icon:
+    entity: ImperialFishingLineSet
+  product: ImperialCargoGoodyFishingLineSetCase
+  cost: 50
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyFishingLureSetCase
+  name: "Набор приманок"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialFishingLureSet
+
+- type: cargoProduct
+  id: ImperialCargoGoodyFishingLureSet
+  name: imperial-cargo-ImperialCargoGoodyFishingLureSet-name
+  description: imperial-cargo-ImperialCargoGoodyFishingLureSet-desc
+  icon:
+    entity: ImperialFishingLureSet
+  product: ImperialCargoGoodyFishingLureSetCase
+  cost: 400
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyFishingHookRescueCase
+  name: "Спасательный крюк, одиночный"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialFishingHookRescue
+
+- type: cargoProduct
+  id: ImperialCargoGoodyFishingHookRescue
+  name: imperial-cargo-ImperialCargoGoodyFishingHookRescue-name
+  description: imperial-cargo-ImperialCargoGoodyFishingHookRescue-desc
+  icon:
+    entity: ImperialFishingHookRescue
+  product: ImperialCargoGoodyFishingHookRescueCase
+  cost: 600
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyPremiumBaitCase
+  name: "Отборная наживка, одиночная"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialBaitCanWormPremium
+
+- type: cargoProduct
+  id: ImperialCargoGoodyPremiumBait
+  name: imperial-cargo-ImperialCargoGoodyPremiumBait-name
+  description: imperial-cargo-ImperialCargoGoodyPremiumBait-desc
+  icon:
+    entity: ImperialBaitCanWormPremium
+  product: ImperialCargoGoodyPremiumBaitCase
+  cost: 50
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyFishFeedCase
+  name: "Банка корма для рыб, одиночная"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialFishFeedCan
+
+- type: cargoProduct
+  id: ImperialCargoGoodyFishFeed
+  name: imperial-cargo-ImperialCargoGoodyFishFeed-name
+  description: imperial-cargo-ImperialCargoGoodyFishFeed-desc
+  icon:
+    entity: ImperialFishFeedCan
+  product: ImperialCargoGoodyFishFeedCase
+  cost: 50
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyTelescopicFishingRodCase
+  name: "Телескопическая удочка, одиночная"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialFishingRodTelescopic
+
+- type: cargoProduct
+  id: ImperialCargoGoodyTelescopicFishingRod
+  name: imperial-cargo-ImperialCargoGoodyTelescopicFishingRod-name
+  description: imperial-cargo-ImperialCargoGoodyTelescopicFishingRod-desc
+  icon:
+    entity: ImperialFishingRodTelescopic
+  product: ImperialCargoGoodyTelescopicFishingRodCase
+  cost: 400
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyFishAnalyzerCase
+  name: "Анализатор рыбы, одиночный"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialFishAnalyzer
+
+- type: cargoProduct
+  id: ImperialCargoGoodyFishAnalyzer
+  name: imperial-cargo-ImperialCargoGoodyFishAnalyzer-name
+  description: imperial-cargo-ImperialCargoGoodyFishAnalyzer-desc
+  icon:
+    entity: ImperialFishAnalyzer
+  product: ImperialCargoGoodyFishAnalyzerCase
+  cost: 125
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyFishCatalogCase
+  name: "Рыболовный справочник, одиночный"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialFishCatalog
+
+- type: cargoProduct
+  id: ImperialCargoGoodyFishCatalog
+  name: imperial-cargo-ImperialCargoGoodyFishCatalog-name
+  description: imperial-cargo-ImperialCargoGoodyFishCatalog-desc
+  icon:
+    entity: ImperialFishCatalog
+  product: ImperialCargoGoodyFishCatalogCase
+  cost: 25
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyAquariumPropsCase
+  name: "Декор для аквариума, одиночный"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialAquariumPropRocks
+        - id: ImperialAquariumPropSand
+
+- type: cargoProduct
+  id: ImperialCargoGoodyAquariumProps
+  name: imperial-cargo-ImperialCargoGoodyAquariumProps-name
+  description: imperial-cargo-ImperialCargoGoodyAquariumProps-desc
+  icon:
+    entity: ImperialAquariumPropRocks
+  product: ImperialCargoGoodyAquariumPropsCase
+  cost: 25
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyCoffeeMugCase
+  name: "Кофейная кружка, одиночная"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DrinkMug
+
+- type: cargoProduct
+  id: ImperialCargoGoodyCoffeeMug
+  name: imperial-cargo-ImperialCargoGoodyCoffeeMug-name
+  description: imperial-cargo-ImperialCargoGoodyCoffeeMug-desc
+  icon:
+    entity: DrinkMug
+  product: ImperialCargoGoodyCoffeeMugCase
+  cost: 25
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyNtMugCase
+  name: "Кружка Нанотрейзен, одиночная"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DrinkMugBlue
+
+- type: cargoProduct
+  id: ImperialCargoGoodyNtMug
+  name: imperial-cargo-ImperialCargoGoodyNtMug-name
+  description: imperial-cargo-ImperialCargoGoodyNtMug-desc
+  icon:
+    entity: DrinkMugBlue
+  product: ImperialCargoGoodyNtMugCase
+  cost: 25
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyDoubleBarrelCase
+  name: "Двуствольный дробовик, одиночный"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponShotgunDoubleBarreled
+
+- type: cargoProduct
+  id: ImperialCargoGoodyDoubleBarrel
+  name: imperial-cargo-ImperialCargoGoodyDoubleBarrel-name
+  description: imperial-cargo-ImperialCargoGoodyDoubleBarrel-desc
+  icon:
+    entity: WeaponShotgunDoubleBarreled
+  product: ImperialCargoGoodyDoubleBarrelCase
+  cost: 2700
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody
+
+- type: entity
+  parent: ImperialGoodyCase
+  id: ImperialCargoGoodyPetMouseCase
+  name: "Домашняя мышь"
+  suffix: TG
+  components:
+  - type: ImperialCargoPack
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MobMouse
+
+- type: cargoProduct
+  id: ImperialCargoGoodyPetMouse
+  name: imperial-cargo-ImperialCargoGoodyPetMouse-name
+  description: imperial-cargo-ImperialCargoGoodyPetMouse-desc
+  icon:
+    entity: MobMouse
+  product: ImperialCargoGoodyPetMouseCase
+  cost: 75
+  category: imperial-cargo-category-goodies
+  group: ImperialCargoGoody

@@ -1,0 +1,331 @@
+# Предметы торгоматов TG, собранные вручную.
+
+- type: Tag
+  id: ImperialMagazineGyrojet
+
+- type: Tag
+  id: ImperialCartridgeGyrojet
+
+# ── Гироджет (.75): самоходная ракета, 50 урона и лёгкий взрыв ──
+
+- type: entity
+  parent: CartridgeMagnum
+  id: ImperialCartridgeGyrojet
+  name: гироджет-ракета (.75)
+  description: "Самоходная ракета калибра .75 для гироджет-пистолета."
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBulletGyrojet
+  - type: Tag
+    tags:
+    - ImperialCartridgeGyrojet
+
+- type: entity
+  parent: BulletWeakRocket
+  id: ImperialBulletGyrojet
+  name: гироджет-ракета
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 50
+
+# ── Химикаты гидропоники ──
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ImperialChemistryBottleAmmonia
+  suffix: ammonia
+  components:
+  - type: Label
+    currentLabel: reagent-name-ammonia
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Ammonia
+          Quantity: 30
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ImperialChemistryBottleDiethylamine
+  suffix: diethylamine
+  components:
+  - type: Label
+    currentLabel: reagent-name-diethylamine
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Diethylamine
+          Quantity: 30
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ImperialChemistryBottleSaltpetre
+  suffix: saltpetre
+  components:
+  - type: Label
+    currentLabel: reagent-name-imperial-saltpetre
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Saltpetre
+          Quantity: 30
+
+# Культура Волшебнитиса (reagent_containers/cup/bottle/wizarditis).
+- type: entity
+  parent: ImperialDiseaseBottle
+  id: ImperialDiseaseBottleWizarditis
+  name: пробирка с культурой Волшебнитиса
+  description: "Небольшая пробирка. Содержит культуру Rinsonticus magicae в синтетической крови."
+  components:
+  - type: ImperialDiseaseCulture
+    disease: DiseaseWizarditis
+
+# ── Игральные карты (toy/cards): колода тянется в руку, карта переворачивается ──
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: ImperialPlayingCardBase
+  name: карта
+  description: "Игральная карта."
+  components:
+  - type: Item
+    size: Tiny
+  - type: UplinkCard
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: ImperialPlayingCardDeckBase
+  components:
+  - type: Sprite
+    layers:
+    - state: full
+      map: ["deck"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.UplinkCardDeckVisuals.State:
+        deck:
+          full: { state: full }
+          half: { state: half }
+          low: { state: low }
+          empty: { state: empty }
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: ImperialPlayingCardBase
+  id: ImperialPlayingCardNanotrasen
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Cards/deck_nanotrasen.rsi
+    state: card
+
+- type: entity
+  parent: ImperialPlayingCardDeckBase
+  id: ImperialPlayingCardDeck
+  name: колода карт
+  description: "Колода игральных карт космического класса."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Cards/deck_nanotrasen.rsi
+  - type: UplinkCardDeck
+    card: ImperialPlayingCardNanotrasen
+    cards: 52
+    maxCards: 52
+
+- type: entity
+  parent: ImperialPlayingCardBase
+  id: ImperialPlayingCardWhite
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Cards/deck_white.rsi
+    state: card
+
+- type: entity
+  parent: ImperialPlayingCardBase
+  id: ImperialPlayingCardBlack
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Cards/deck_black.rsi
+    state: card
+
+- type: entity
+  parent: ImperialPlayingCardDeckBase
+  id: ImperialPlayingCardDeckBlank
+  name: колода чистых карт
+  description: "Колода игральных карт, на которых можно писать."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Cards/deck_white.rsi
+  - type: UplinkCardDeck
+    card: ImperialPlayingCardWhite
+    cards: 25
+    maxCards: 25
+
+- type: entity
+  parent: ImperialPlayingCardDeckBase
+  id: ImperialPlayingCardDeckBlankBlack
+  name: колода чистых карт
+  description: "Колода игральных карт, на которых можно писать."
+  suffix: чёрная
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Cards/deck_black.rsi
+  - type: UplinkCardDeck
+    card: ImperialPlayingCardBlack
+    cards: 25
+    maxCards: 25
+
+- type: entity
+  parent: ImperialPlayingCardDeckBase
+  id: ImperialPlayingCardDeckCasWhite
+  name: колода КАС (белая)
+  description: "Колода для игры «Карты против космоса», популярной до сих пор. Внимание: возможны следы сломанной четвёртой стены. Это белая колода."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Cards/deck_white.rsi
+  - type: UplinkCardDeck
+    card: ImperialPlayingCardWhite
+    cards: 50
+    maxCards: 50
+
+- type: entity
+  parent: ImperialPlayingCardDeckBase
+  id: ImperialPlayingCardDeckCasBlack
+  name: колода КАС (чёрная)
+  description: "Колода для игры «Карты против космоса», популярной до сих пор. Внимание: возможны следы сломанной четвёртой стены. Это чёрная колода."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Cards/deck_black.rsi
+  - type: UplinkCardDeck
+    card: ImperialPlayingCardBlack
+    cards: 50
+    maxCards: 50
+
+- type: entity
+  parent: ImperialPlayingCardBase
+  id: ImperialPlayingCardKotahi
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Cards/deck_kotahi.rsi
+    state: card
+
+- type: entity
+  parent: ImperialPlayingCardDeckBase
+  id: ImperialPlayingCardDeckKotahi
+  name: колода КОТАХИ
+  description: "Колода карт котахи. Домашние правила для споров в комплект не входят."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Cards/deck_kotahi.rsi
+  - type: UplinkCardDeck
+    card: ImperialPlayingCardKotahi
+    cards: 108
+    maxCards: 108
+
+- type: entity
+  parent: ImperialPlayingCardBase
+  id: ImperialPlayingCardTarot
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Cards/deck_tarot.rsi
+    state: card
+
+- type: entity
+  parent: ImperialPlayingCardDeckBase
+  id: ImperialPlayingCardDeckTarot
+  name: колода таро
+  description: "Полная колода из 78 карт таро: 4 масти по 14 карт и полный набор козырей."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Cards/deck_tarot.rsi
+  - type: UplinkCardDeck
+    card: ImperialPlayingCardTarot
+    cards: 78
+    maxCards: 78
+
+- type: entity
+  parent: ImperialPlayingCardBase
+  id: ImperialPlayingCardWizoff
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Cards/deck_wizoff.rsi
+    state: card
+
+- type: entity
+  parent: ImperialPlayingCardDeckBase
+  id: ImperialPlayingCardDeckWizoff
+  name: колода «Битва волшебников»
+  description: "Колода «Битвы волшебников». Сразитесь в магической битве за судьбу вселенной: тяни 5! Играй 5! До 3 побед из 5! Карта с правилами прилагается."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Cards/deck_wizoff.rsi
+  - type: UplinkCardDeck
+    card: ImperialPlayingCardWizoff
+    cards: 81
+    maxCards: 81
+
+- type: entity
+  parent: ImperialPlayingCardDeckBase
+  id: ImperialPlayingCardShoe
+  name: шуз для карт
+  description: "Прозрачный пластиковый раздатчик на шесть колод карт."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Cards/deckshoe.rsi
+  - type: UplinkCardDeck
+    card: ImperialPlayingCardNanotrasen
+    cards: 312
+    maxCards: 312
+
+# ── Коллекционные карты (cardpack): пакет вскрывается на 6 карт ──
+
+- type: entity
+  parent: BaseItem
+  id: ImperialTcgCard
+  name: коллекционная карта
+  description: "Карта из коллекционной карточной игры. Соберите их все!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Cards/tcg.rsi
+    state: card
+  - type: Item
+    size: Tiny
+  - type: UplinkCard
+
+- type: entity
+  parent: BaseItem
+  id: ImperialTcgCardPackSeries1
+  name: пакет коллекционных карт «Серия 1»
+  description: "Шесть карт разной редкости из базового набора 2560 года. Соберите их все!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Cards/tcg.rsi
+    state: pack_series1
+  - type: Item
+    size: Tiny
+  - type: SpawnItemsOnUse
+    items:
+    - id: ImperialTcgCard
+      amount: 6
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: ImperialTcgCardPackSeries1
+  id: ImperialTcgCardPackResin
+  name: пакет коллекционных карт «Смоляной рубеж»
+  description: "Шесть карт разной редкости из набора «Смоляной рубеж». Соберите их все!"
+  components:
+  - type: Sprite
+    state: pack_resin

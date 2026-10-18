@@ -1,0 +1,30 @@
+{
+    "version":  1,
+    "license":  "CC-BY-SA-3.0",
+    "copyright":  "Taken from tgstation (BandaStation) at commit master",
+    "size":  {
+                 "x":  64,
+                 "y":  32
+             },
+    "states":  [
+                   {
+                       "name":  "icon"
+                   },
+                   {
+                       "name":  "working",
+                       "delays":  [
+                                      [
+                                          0.2,
+                                          0.1,
+                                          0.1,
+                                          0.2,
+                                          0.1,
+                                          0.1,
+                                          0.2,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   }
+               ]
+}

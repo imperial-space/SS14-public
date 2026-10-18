@@ -503,7 +503,7 @@ public sealed class SanitySystem : EntitySystem
         return false;
     }
 
-    private void ModifySanity(Entity<SanityComponent> ent, float delta)
+    public void ModifySanity(Entity<SanityComponent> ent, float delta)
     {
         if (MathF.Abs(delta) <= 0.0001f)
             return;

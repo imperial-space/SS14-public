@@ -1,0 +1,409 @@
+# Реагенты напитков торгоматов TG (code/modules/reagents/chemistry/reagents/drinks).
+# Крепость: этанол = boozepwr × 0,0075 (абсент TG 80 → 0,6 как в SS14).
+
+- type: reagent
+  id: Amaretto
+  name: reagent-name-imperial-amaretto
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-amaretto
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: imperialamaretto
+  color: "#E17600"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.19
+
+- type: reagent
+  id: Aperitivo
+  name: reagent-name-imperial-aperitivo
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-aperitivo
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialaperitivo
+  color: "#bf1038"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.3
+
+- type: reagent
+  id: Applejack
+  name: reagent-name-imperial-applejack
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-applejack
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialapplejack
+  color: "#ff6633"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.15
+
+- type: reagent
+  id: Bitters
+  name: reagent-name-imperial-bitters
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-bitters
+  physicalDesc: reagent-physical-desc-pungent
+  flavor: imperialbitters
+  color: "#1c0000"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.53
+
+- type: reagent
+  id: Fernet
+  name: reagent-name-imperial-fernet
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-fernet
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialfernet
+  color: "#1B2E24"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.6
+
+- type: reagent
+  id: Grappa
+  name: reagent-name-imperial-grappa
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-grappa
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialgrappa
+  color: "#F8EBF1"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.45
+
+- type: reagent
+  id: HardCider
+  name: reagent-name-imperial-hard-cider
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-hard-cider
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: imperialhardcider
+  color: "#CD6839"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.19
+        Nutriment: 0.1
+
+- type: reagent
+  id: HerbalLiqueur
+  name: reagent-name-imperial-herbal-liqueur
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-herbal-liqueur
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: imperialherballiqueur
+  color: "#95be7d"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.56
+
+- type: reagent
+  id: MaltLiquor
+  name: reagent-name-imperial-malt-liquor
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-malt-liquor
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: imperialmaltliquor
+  color: "#CFA33D"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.26
+
+- type: reagent
+  id: Maraschino
+  name: reagent-name-imperial-maraschino
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-maraschino
+  physicalDesc: reagent-physical-desc-sweet
+  flavor: imperialmaraschino
+  color: "#DDDDDD"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38
+
+- type: reagent
+  id: MushiKombucha
+  name: reagent-name-imperial-mushi-kombucha
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-mushi-kombucha
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: imperialmushikombucha
+  color: "#C46400"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.08
+
+- type: reagent
+  id: Shochu
+  name: reagent-name-imperial-shochu
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-shochu
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialshochu
+  color: "#DDDDDD"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.34
+
+- type: reagent
+  id: TrappistBeer
+  name: reagent-name-imperial-trappist
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-trappist
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: imperialtrappist
+  color: "#390c00"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.3
+
+- type: reagent
+  id: Yuyake
+  name: reagent-name-imperial-yuyake
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-yuyake
+  physicalDesc: reagent-physical-desc-sweet
+  flavor: imperialyuyake
+  color: "#F54040"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.3
+
+- type: reagent
+  id: HakkaMate
+  name: reagent-name-imperial-hakka-mate
+  parent: BaseSoda
+  desc: reagent-desc-imperial-hakka-mate
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: imperialhakkamate
+  color: "#c4b000"
+
+- type: reagent
+  id: Menthol
+  name: reagent-name-imperial-menthol
+  parent: BaseDrink
+  desc: reagent-desc-imperial-menthol
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: minty
+  color: "#80AF9C"
+
+# grey_bull: бодрит, снимает сонливость, охлаждает.
+- type: reagent
+  id: GreyBull
+  name: reagent-name-imperial-grey-bull
+  parent: BaseSoda
+  desc: reagent-desc-imperial-grey-bull
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: imperialgreybull
+  color: "#EEFF00"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:Jitter
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 2
+        type: Remove
+      - !type:AdjustTemperature
+        amount: -2500
+
+# monkey_energy: как grey_bull, только сильнее трясёт.
+- type: reagent
+  id: MonkeyEnergy
+  name: reagent-name-imperial-monkey-energy
+  parent: BaseSoda
+  desc: reagent-desc-imperial-monkey-energy
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: imperialmonkeyenergy
+  color: "#f39b03"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:Jitter
+        amplitude: 20
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 2
+        type: Remove
+      - !type:AdjustTemperature
+        amount: -2500
+
+# wellcheers: клонит в сон и понемногу лечит ушибы.
+- type: reagent
+  id: Wellcheers
+  name: reagent-name-imperial-wellcheers
+  parent: BaseSoda
+  desc: reagent-desc-imperial-wellcheers
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: imperialwellcheers
+  color: "#762399"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 1.5
+      - !type:HealthChange
+        damage:
+          groups:
+            Brute: -0.75
+
+# saltpetre: удобрение, повышает силу растения и замедляет рост.
+- type: reagent
+  id: Saltpetre
+  name: reagent-name-imperial-saltpetre
+  group: Botanical
+  desc: reagent-desc-imperial-saltpetre
+  physicalDesc: reagent-physical-desc-powdery
+  flavor: salty
+  color: "#60A584"
+  plantMetabolism:
+  - !type:PlantAdjustPotency
+    amount: 0.5
+
+- type: flavor
+  id: imperialamaretto
+  flavorType: Complex
+  description: flavor-complex-imperial-amaretto
+
+- type: flavor
+  id: imperialaperitivo
+  flavorType: Complex
+  description: flavor-complex-imperial-aperitivo
+
+- type: flavor
+  id: imperialapplejack
+  flavorType: Complex
+  description: flavor-complex-imperial-applejack
+
+- type: flavor
+  id: imperialbitters
+  flavorType: Complex
+  description: flavor-complex-imperial-bitters
+
+- type: flavor
+  id: imperialfernet
+  flavorType: Complex
+  description: flavor-complex-imperial-fernet
+
+- type: flavor
+  id: imperialgrappa
+  flavorType: Complex
+  description: flavor-complex-imperial-grappa
+
+- type: flavor
+  id: imperialhardcider
+  flavorType: Complex
+  description: flavor-complex-imperial-hard-cider
+
+- type: flavor
+  id: imperialherballiqueur
+  flavorType: Complex
+  description: flavor-complex-imperial-herbal-liqueur
+
+- type: flavor
+  id: imperialmaltliquor
+  flavorType: Complex
+  description: flavor-complex-imperial-malt-liquor
+
+- type: flavor
+  id: imperialmaraschino
+  flavorType: Complex
+  description: flavor-complex-imperial-maraschino
+
+- type: flavor
+  id: imperialmushikombucha
+  flavorType: Complex
+  description: flavor-complex-imperial-mushi-kombucha
+
+- type: flavor
+  id: imperialshochu
+  flavorType: Complex
+  description: flavor-complex-imperial-shochu
+
+- type: flavor
+  id: imperialtrappist
+  flavorType: Complex
+  description: flavor-complex-imperial-trappist
+
+- type: flavor
+  id: imperialyuyake
+  flavorType: Complex
+  description: flavor-complex-imperial-yuyake
+
+- type: flavor
+  id: imperialhakkamate
+  flavorType: Complex
+  description: flavor-complex-imperial-hakka-mate
+
+- type: flavor
+  id: imperialgreybull
+  flavorType: Complex
+  description: flavor-complex-imperial-grey-bull
+
+- type: flavor
+  id: imperialmonkeyenergy
+  flavorType: Complex
+  description: flavor-complex-imperial-monkey-energy
+
+- type: flavor
+  id: imperialwellcheers
+  flavorType: Complex
+  description: flavor-complex-imperial-wellcheers
+
+# cocaine (Banda): стимулятор из листьев коки, снимает оглушение, передозировка (20) бьёт по здоровью.
+- type: reagent
+  id: Cocaine
+  name: reagent-name-imperial-cocaine
+  group: Narcotics
+  desc: reagent-desc-imperial-cocaine
+  physicalDesc: reagent-physical-desc-powdery
+  flavor: bitter
+  color: "#ffffff"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.15
+        sprintSpeedModifier: 1.15
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStunned
+        time: 1.5
+        type: Remove
+      - !type:ModifyKnockdown
+        time: 1.5
+        type: Remove
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Cocaine
+          min: 20
+        damage:
+          types:
+            Poison: 1
+      - !type:Jitter
+        conditions:
+        - !type:ReagentCondition
+          reagent: Cocaine
+          min: 20

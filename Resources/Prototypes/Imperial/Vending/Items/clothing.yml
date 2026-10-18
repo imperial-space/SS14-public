@@ -1,0 +1,1860 @@
+# Предметы торгоматов TG, сгенерировано scratchpad/cargo/vitems.pl.
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ImperialClothingNeckArmbandHydro
+  name: "нарукавная повязка гидропоники"
+  description: "Нарукавная повязка, по которой видно, к какому отделу приписан охранник. Эта — зелёно-синяя."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Neck/clothingneckarmbandhydro.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Neck/clothingneckarmbandhydro.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ImperialClothingNeckPocketprotector
+  name: "карманный протектор"
+  description: "Может защитить вашу одежду от чернильных пятен, но вы будете выглядеть как зануда, если будете им пользоваться."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Neck/clothingneckpocketprotector.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Neck/clothingneckpocketprotector.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ImperialClothingNeckPocketprotectorCosmetology
+  name: "карманный протектор косметолога"
+  description: "Может защитить вашу одежду от пятен помады, но вы будете выглядеть как зануда, если будете им пользоваться."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Neck/clothingneckpocketprotectorcosmetology.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Neck/clothingneckpocketprotectorcosmetology.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ImperialClothingNeckSweatervest
+  name: "свитер-жилет"
+  description: "Когда вы — это особенно вы."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Neck/clothingnecksweatervest.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Neck/clothingnecksweatervest.rsi
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ImperialClothingEyesCold
+  name: "очки от холода"
+  description: "Очки, рассчитанные на низкие температуры."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Eyes/clothingeyescold.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Eyes/clothingeyescold.rsi
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ImperialClothingEyesHeat
+  name: "очки от жары"
+  description: "Очки, рассчитанные на высокие температуры."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Eyes/clothingeyesheat.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Eyes/clothingeyesheat.rsi
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ImperialClothingEyesMonocle
+  name: "монокль"
+  description: "Какой щегольской окуляр!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Eyes/clothingeyesmonocle.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Eyes/clothingeyesmonocle.rsi
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ImperialClothingEyesPhantom
+  name: "маска Призрачного Вора"
+  description: "Выглядит круто."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Eyes/clothingeyesphantom.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Eyes/clothingeyesphantom.rsi
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ImperialClothingEyesRed
+  name: "красные очки"
+  description: "Эй, а ты неплохо выглядишь, семпай!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Eyes/clothingeyesred.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Eyes/clothingeyesred.rsi
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ImperialClothingHandsKim
+  name: "аэростатические перчатки"
+  description: "Дышащие красные перчатки для профессиональной работы с ручкой и блокнотом."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Hands/clothinghandskim.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Hands/clothinghandskim.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadChaplainBishopmitre
+  name: "митра епископа"
+  description: "Роскошная шапка, работающая как рация для связи с Богом. Или как громоотвод — смотря кого спросить."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadchaplainbishopmitre.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadchaplainbishopmitre.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadChaplainKippah
+  name: "киппа"
+  description: "Показывает, что вы следуете Галахе. Держит голову покрытой, а душу — особенно ортодоксальной."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadchaplainkippah.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadchaplainkippah.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadChaplainMedievaljewhat
+  name: "средневековая еврейская шляпа"
+  description: "Нелепая шляпа, которую надевают на угнетённые религиозные меньшинства станции."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadchaplainmedievaljewhat.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadchaplainmedievaljewhat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadChaplainTaqiyahWhite
+  name: "белая таккия"
+  description: "Особо благочестивый способ показать свою преданность Аллаху."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadchaplaintaqiyahwhite.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadchaplaintaqiyahwhite.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadCostumeAllies
+  name: "шлем союзников"
+  description: "Древний военный шлем, который носили храбрейшие из воинов."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadcostumeallies.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadcostumeallies.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadCostumeCueball
+  name: "бильярдный шлем"
+  description: "Большой гладкий белый шар, который надевают на голову. Как в нём вообще что-то видно?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadcostumecueball.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadcostumecueball.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadCostumeDelinquent
+  name: "шапка хулигана"
+  description: "Боже правый."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadcostumedelinquent.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadcostumedelinquent.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadCostumeDrfreezehat
+  name: "парик Доктора Фриза"
+  description: "Крутой парик для крутых людей."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadcostumedrfreezehat.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadcostumedrfreezehat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadCostumeFancy
+  name: "шикарная шляпа"
+  description: "Шикарная шляпа."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadcostumefancy.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadcostumefancy.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadCostumeFootballHelmet
+  name: "футбольный шлем"
+  description: "Шлем футбольной команды."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadcostumefootballhelmet.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadcostumefootballhelmet.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadCostumeGriffin
+  name: "голова гриффона"
+  description: "Почему не «голова орла»? Кто знает."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadcostumegriffin.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadcostumegriffin.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadCostumeHairpin
+  name: "шикарная заколка"
+  description: "Изящная заколка, которую обычно носят с традиционной одеждой."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadcostumehairpin.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadcostumehairpin.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadCostumeIrs
+  name: "кепка налоговой службы"
+  description: "Даже в космосе от сборщиков налогов не скрыться."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadcostumeirs.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadcostumeirs.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadCostumeJackbros
+  name: "шляпа морозца"
+  description: "Хи-хо!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadcostumejackbros.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadcostumejackbros.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadCostumeLobsterhat
+  name: "голова из пенопласта лобстера"
+  description: "Когда всё идёт ко дну, лучше всего защитить голову."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadcostumelobsterhat.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadcostumelobsterhat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadCostumeMailman
+  name: "шляпа почтальона"
+  description: "Головной убор почтовой службы «Точно в срок»."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadcostumemailman.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadcostumemailman.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadCostumeNightcapBlue
+  name: "синяя ночная шапка"
+  description: "Синяя ночная шапка для всех мечтателей и любителей поспать."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadcostumenightcapblue.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadcostumenightcapblue.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadCostumeNightcapRed
+  name: "красная ночная шапка"
+  description: "Красная ночная шапка для всех сонь и любителей вздремнуть."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadcostumenightcapred.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadcostumenightcapred.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadCostumePowderedWig
+  name: "пудреный парик"
+  description: "Напудренный парик."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadcostumepowderedwig.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadcostumepowderedwig.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadCostumeSnowman
+  name: "голова снеговика"
+  description: "Шар из белого пенопласта. Так празднично."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadcostumesnowman.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadcostumesnowman.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadCostumeSombreroGreen
+  name: "зелёное сомбреро"
+  description: "Элегантно, как танцующий кактус."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadcostumesombrerogreen.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadcostumesombrerogreen.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadCostumeTvHead
+  name: "шлем-телевизор"
+  description: "Таинственный головной убор из выпотрошенного дисплея статуса. Как ретро-ретро-футуристично."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadcostumetvhead.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadcostumetvhead.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadCostumeWeddingveil
+  name: "свадебная вуаль"
+  description: "Лёгкая белая вуаль."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadcostumeweddingveil.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadcostumeweddingveil.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadCostumeYuri
+  name: "шлем посвященного юри"
+  description: "Странный беловатый шлем с тремя прорезями для глаз."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadcostumeyuri.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadcostumeyuri.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadHelmetRomanFake
+  name: "римский шлем"
+  description: "Древний шлем из пластика и кожи."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadhelmetromanfake.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadhelmetromanfake.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadHelmetRomanLegionnaireFake
+  name: "шлем римского легионера"
+  description: "Древний шлем из пластика и кожи. Сверху красный гребень."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadhelmetromanlegionnairefake.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadhelmetromanlegionnairefake.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadMothcap
+  name: "мотылья кожаная шапка"
+  description: "Мягкая кожаная шапка с очками, стандартное снаряжение флота молей. Греет голову и защищает большие глаза от мусора."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Head/clothingheadmothcap.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Head/clothingheadmothcap.rsi
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ImperialClothingMaskAnimalCowmask
+  name: "маска коровы"
+  description: "Резиновая маска коровы."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Masks/clothingmaskanimalcowmask.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Masks/clothingmaskanimalcowmask.rsi
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ImperialClothingMaskAnimalFrog
+  name: "маска лягушки"
+  description: "Древняя маска, вырезанная в форме лягушки. Рассудок как гравитация: ему нужен лишь толчок."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Masks/clothingmaskanimalfrog.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Masks/clothingmaskanimalfrog.rsi
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ImperialClothingMaskAnimalHorsehead
+  name: "маска лошади"
+  description: "Маска из мягкого винила и латекса в виде лошадиной головы."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Masks/clothingmaskanimalhorsehead.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Masks/clothingmaskanimalhorsehead.rsi
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ImperialClothingMaskAnimalPig
+  name: "маска свиньи"
+  description: "Резиновая маска свиньи."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Masks/clothingmaskanimalpig.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Masks/clothingmaskanimalpig.rsi
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ImperialClothingMaskAnimalSmallTribal
+  name: "племенная маска"
+  description: "Маска, вырезанная из дерева и тщательно украшенная вручную."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Masks/clothingmaskanimalsmalltribal.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Masks/clothingmaskanimalsmalltribal.rsi
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ImperialClothingMaskBalaclava
+  name: "балаклава"
+  description: "Куча бабла!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Masks/clothingmaskbalaclava.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Masks/clothingmaskbalaclava.rsi
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ImperialClothingMaskFacescarf
+  name: "шарф для лица"
+  description: "Закройте лицо, как в ковбойских фильмах. Есть дыхательная трубка, так что носить можно где угодно!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Masks/clothingmaskfacescarf.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Masks/clothingmaskfacescarf.rsi
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ImperialClothingMaskGasCyborg
+  name: "визор киборга"
+  description: "Бип-буп."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Masks/clothingmaskgascyborg.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Masks/clothingmaskgascyborg.rsi
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ImperialClothingMaskGasDriscoll
+  name: "маска Дрисколла"
+  description: "Отлично подходит для ограбления поездов. Работает как обычный противогаз, но не скрывает личность."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Masks/clothingmaskgasdriscoll.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Masks/clothingmaskgasdriscoll.rsi
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ImperialClothingMaskGasOwlMask
+  name: "маска совы"
+  description: "Ууууу!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Masks/clothingmaskgasowlmask.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Masks/clothingmaskgasowlmask.rsi
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ImperialClothingMaskRebellion
+  name: "маска восстания"
+  description: "Маска, которую повстанцы носят во время восстаний. Закрывает всё лицо и делает вас неузнаваемым."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Masks/clothingmaskrebellion.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Masks/clothingmaskrebellion.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ImperialClothingNeckCloakColorableCloak
+  name: "плащ"
+  description: "Обычный тканевый плащ."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Neck/clothingneckcloakcolorablecloak.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Neck/clothingneckcloakcolorablecloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ImperialClothingNeckNecklaceDope
+  name: "золотая цепочка"
+  description: "Чёрт, как же хорошо быть гангстером."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Neck/clothingnecknecklacedope.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Neck/clothingnecknecklacedope.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ImperialClothingNeckPetcollar
+  name: "ошейник для питомца"
+  description: "Это для питомцев."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Neck/clothingneckpetcollar.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Neck/clothingneckpetcollar.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ImperialClothingNeckRobeCape
+  name: "накидка"
+  description: "Удобная накидка, спадающая по спине и закреплённая на шее брошью."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Neck/clothingneckrobecape.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Neck/clothingneckrobecape.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ImperialClothingNeckTieDisco
+  name: "кошмарный галстук"
+  description: "Галстук с кричащим узором. Он тревожно ярок. Почему-то кажется, что снимать его нельзя. Теперь это ваш друг. Вы предадите его, если смените на какой-то скучный шарф."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Neck/clothingnecktiedisco.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Neck/clothingnecktiedisco.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ImperialClothingShoesClownShoesMeownShoes
+  name: "мяукающая обувь"
+  description: "Милые звуки при ходьбе помогут завести друзей."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Shoes/clothingshoesclownshoesmeownshoes.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Shoes/clothingshoesclownshoesmeownshoes.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ImperialClothingShoesClownShoesMoffers
+  name: "мофферсы"
+  description: "При изготовлении этих тапочек ни одна моль не пострадала."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Shoes/clothingshoesclownshoesmoffers.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Shoes/clothingshoesclownshoesmoffers.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ImperialClothingShoesDuckyShoes
+  name: "крякающая обувь"
+  description: "У меня есть ботинки, что делают кря-кря-кря."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Shoes/clothingshoesduckyshoes.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Shoes/clothingshoesduckyshoes.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ImperialClothingShoesGlow
+  name: "светящиеся ботинки"
+  description: "С4МЫ3 КРУТ43 Б0ТИНКИ, К0Т0РЫ3 ТЫ К0ГД4-Л1Б0 Н4ЙД3ШЬ."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Shoes/clothingshoesglow.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Shoes/clothingshoesglow.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ImperialClothingShoesGriffin
+  name: "ботинки гриффона"
+  description: "Костюмные ботинки в виде птичьих когтей."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Shoes/clothingshoesgriffin.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Shoes/clothingshoesgriffin.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ImperialClothingShoesJackbros
+  name: "морозные ботинки"
+  description: "Для тех, кто готов выйти на поле."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Shoes/clothingshoesjackbros.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Shoes/clothingshoesjackbros.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ImperialClothingShoesSaints
+  name: "кроссовки святых"
+  description: "Фирменные кроссовки Saints. Невероятно ценные!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Shoes/clothingshoessaints.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Shoes/clothingshoessaints.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ImperialClothingShoesSwagshoes
+  name: "ботинки swag"
+  description: "Это всё ради моих кроссов!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Shoes/clothingshoesswagshoes.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Shoes/clothingshoesswagshoes.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterApronOveralls
+  name: "комбинезон"
+  description: "Комбинезон, защищающий тонкую одежду от непогоды."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingouterapronoveralls.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingouterapronoveralls.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterAtmosOveralls
+  name: "полукомбинезон атмосферного отдела"
+  description: "Огнестойкий комбинезон, защищающий тонкую одежду от утечек газа."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingouteratmosoveralls.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingouteratmosoveralls.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeChangshanBlue
+  name: "синий чаншань"
+  description: "Роскошно расшитая шёлковая рубашка."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumechangshanblue.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumechangshanblue.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeChangshanRed
+  name: "красный чаншань"
+  description: "Роскошно расшитая шёлковая рубашка."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumechangshanred.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumechangshanred.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeCheongsamBlue
+  name: "синий чонсам"
+  description: "Роскошно расшитое шёлковое платье."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumecheongsamblue.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumecheongsamblue.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeCheongsamRed
+  name: "красный чонсам"
+  description: "Роскошно расшитое шёлковое платье."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumecheongsamred.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumecheongsamred.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeDracula
+  name: "пальто Дракулы"
+  description: "Похоже на реквизит для очень старого фильма."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumedracula.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumedracula.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeFootballArmor
+  name: "футбольная защитная экипировка"
+  description: "Выдаётся членам футбольной команды!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumefootballarmor.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumefootballarmor.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeGothcoat
+  name: "готическое пальто"
+  description: "Идеально для тех, кто любит таиться в углу бара."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumegothcoat.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumegothcoat.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeHawaiian
+  name: "гавайская рубашка"
+  description: "Прикольная рубашка, чтобы отдыхать на пляже."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumehawaiian.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumehawaiian.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeImperiumMonk
+  name: "костюм монаха Империума"
+  description: "А ВЫ сегодня убили ксеноса?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumeimperiummonk.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumeimperiummonk.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeIrs
+  name: "куртка налоговой службы"
+  description: "Я достаточно безумен, чтобы бросить вызов Сове, но налоговой? Не-е-ет, спасибо!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumeirs.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumeirs.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeJoker
+  name: "пальто комика"
+  description: "Разве комику не положено быть смешным?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumejoker.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumejoker.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumePg
+  name: "куртка порошкового гангстера"
+  description: "Напоминает охране об их ошибке — выдать заключённым взрывчатку."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumepg.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumepg.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeSnowman
+  name: "костюм снеговика"
+  description: "Две белые сферы, покрытые белыми блёстками. Праздник к нам приходит."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumesnowman.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumesnowman.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeSoviet
+  name: "советское бронированное пальто"
+  description: "Призывник прибыл! Спонсор — DonkSoft Co., для исторической реконструкции Третьей мировой войны!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumesoviet.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumesoviet.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeTmc
+  name: "куртка Lost M.C."
+  description: "Пусть все знают, что вы в лучшей байкерской банде по эту сторону Олдерни."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumetmc.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumetmc.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeWellwornShirt
+  name: "потёртая рубашка"
+  description: "Поношенная, на удивление удобная футболка. Не то чтобы в ней вас будто обнимают, но почти. Хорошо в ней спать."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumewellwornshirt.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumewellwornshirt.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeWellwornShirtGraphic
+  name: "потёртая графическая рубашка"
+  description: "Поношенная, на удивление удобная футболка с персонажем «Фаника-ласки». Напоминает о временах, когда серия ещё была хорошей — году так в 2500-м."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumewellwornshirtgraphic.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumewellwornshirtgraphic.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeWellwornShirtGraphicIan
+  name: "потёртая рубашка с Ианом"
+  description: "Поношенная, на удивление удобная футболка с корги Ианом. Не то чтобы в ней вас будто обнимают, но почти. Хорошо в ней спать."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumewellwornshirtgraphician.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumewellwornshirtgraphician.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeWellwornShirtMessy
+  name: "грязная изношенная рубашка"
+  description: "Эта поношенная, но удобная футболка постигла грязь до самой глубины. Может, раз её до сих пор не постирали, она сойдёт за камуфляж?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumewellwornshirtmessy.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumewellwornshirtmessy.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeWellwornShirtMessyGraphic
+  name: "грязная графическая рубашка"
+  description: "Эта поношенная, но удобная футболка постигла грязь до самой глубины. Простые люди никогда не поймут, что это коллекционная вещь. Фаник навсегда."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumewellwornshirtmessygraphic.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumewellwornshirtmessygraphic.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeWellwornShirtMessyGraphicIan
+  name: "грязная рубашка с Ианом"
+  description: "Эта поношенная, но удобная футболка постигла грязь до самой глубины. Вы будто понимаете, каково быть бродячим псом, но мордочка Иана всё ещё утешает."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumewellwornshirtmessygraphician.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumewellwornshirtmessygraphician.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeWellwornShirtWornout
+  name: "изношенная рубашка"
+  description: "Довольно замызганная, но всё ещё удобная футболка. Вы спите в ней слишком долго."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumewellwornshirtwornout.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumewellwornshirtwornout.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeWellwornShirtWornoutGraphic
+  name: "изношенная графическая рубашка"
+  description: "Довольно замызганная, но всё ещё удобная футболка с персонажем «Фаника-ласки». Пора дать вам достижение за столько ночей подряд в ней."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumewellwornshirtwornoutgraphic.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumewellwornshirtwornoutgraphic.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeWellwornShirtWornoutGraphicIan
+  name: "изношенная рубашка с Ианом"
+  description: "Довольно замызганная, но всё ещё удобная футболка с корги Ианом. Из «слегка поношенной» она стала «любимой» — отличная пижама."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumewellwornshirtwornoutgraphician.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumewellwornshirtwornoutgraphician.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeWhitedress
+  name: "белое платье"
+  description: "Нарядное белое платье."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumewhitedress.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumewhitedress.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterCostumeYuri
+  name: "пальто посвященного юри"
+  description: "Юрий — хозяин! Спонсор — DonkSoft Co., для исторической реконструкции Третьей мировой войны!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumeyuri.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutercostumeyuri.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterHoodedBeeCostume
+  name: "костюм пчелы"
+  description: "Будь истинной королевой!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingouterhoodedbeecostume.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingouterhoodedbeecostume.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterHoodedEtherealRaincoat
+  name: "эфириальный дождевик"
+  description: "Дождевик, который обычно носят путешественники и туристы, не любящие дождливую погоду Спраута."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingouterhoodedetherealraincoat.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingouterhoodedetherealraincoat.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterHoodedMysticrobe
+  name: "роба мистика"
+  description: "В ней вы чувствуете себя ближе к природе вселенной… и немного безответственнее."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingouterhoodedmysticrobe.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingouterhoodedmysticrobe.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterHoodedTechpriest
+  name: "одеяния техножреца"
+  description: "Для тех, кто ПО-НАСТОЯЩЕМУ любит свои тостеры."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingouterhoodedtechpriest.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingouterhoodedtechpriest.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterHoodedWintercoatPullover
+  name: "толстовка"
+  description: "Толстовка, которую можно перекрасить."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingouterhoodedwintercoatpullover.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingouterhoodedwintercoatpullover.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterHoodedWintercoatZipup
+  name: "толстовка на молнии"
+  description: "Толстовка на молнии, которую можно перекрасить."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingouterhoodedwintercoatzipup.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingouterhoodedwintercoatzipup.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterJacketBlazer
+  name: "блейзер"
+  description: "Пиджак-блейзер."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketblazer.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketblazer.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterJacketDetSuitDisco
+  name: "стильный диско-блейзер"
+  description: "Похоже, этот блейзер сняли с какого-то давно вымершего диско-зверя. На спине и правом рукаве загадочный белый прямоугольник."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketdetsuitdisco.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketdetsuitdisco.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterJacketFancy
+  name: "шикарное меховое пальто"
+  description: "10 из 10 в рейтинге лучших пальто журнала «Космо»."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketfancy.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketfancy.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterJacketLetterman
+  name: "университетская куртка"
+  description: "Классическая коричневая университетская куртка. Выглядит жарко и тяжело."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketletterman.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketletterman.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterJacketLettermanNanotrasen
+  name: "синяя университетская куртка"
+  description: "Синяя университетская куртка с гордой буквой N «Нанотрейзен» на спине. На бирке написано, что сделана в Космическом Китае."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketlettermannanotrasen.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketlettermannanotrasen.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterJacketLettermanRed
+  name: "красная университетская куртка"
+  description: "Университетская куртка дерзкого красного цвета. Радикально."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketlettermanred.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketlettermanred.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterJacketLettermanSyndie
+  name: "кроваво-красная университетская куртка"
+  description: "Как ни странно, на спине этой куртки большая буква S…"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketlettermansyndie.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketlettermansyndie.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterJacketMiljacket
+  name: "военная куртка"
+  description: "Брезентовая куртка в стиле классической американской военной формы. Прочная, но удобная."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketmiljacket.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketmiljacket.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterJacketOfficerBlue
+  name: "куртка офицера охраны"
+  description: "Куртка для особых случаев, когда офицеру охраны не обязательно носить бронежилет."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketofficerblue.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketofficerblue.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterJacketOversized
+  name: "оверсайз куртка"
+  description: "Куртка большого размера."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketoversized.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketoversized.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterJacketPuffer
+  name: "пуховик"
+  description: "Толстая куртка с прорезиненной водоотталкивающей оболочкой."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketpuffer.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingouterjacketpuffer.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterMothcoat
+  name: "мотылий лётный костюм"
+  description: "Необычная подвесная система, привычная экипажам флота молей: крепит крылья к телу, не мешая двигаться в тесных отсеках. Выглядит грубовато, но удивительно удобна."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutermothcoat.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutermothcoat.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterMothcoatWinter
+  name: "мотылья мантилья"
+  description: "Плотная одежда, которая греет и защищает драгоценные крылья от непогоды; часто носится на праздниках. Тяжелее, чем кажется."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutermothcoatwinter.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutermothcoatwinter.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterToggleJacketSweater
+  name: "свитер-куртка"
+  description: "Куртка-свитер."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutertogglejacketsweater.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutertogglejacketsweater.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterToggleLawyer
+  name: "синий классический пиджак"
+  description: "Деловой пиджак."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutertogglelawyer.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutertogglelawyer.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterToggleLawyerBlack
+  name: "черный классический пиджак"
+  description: "Деловой пиджак."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutertogglelawyerblack.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutertogglelawyerblack.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterToggleLawyerGreyscale
+  name: "формальный пиджак"
+  description: "Деловой пиджак."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutertogglelawyergreyscale.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutertogglelawyergreyscale.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterToggleLawyerPurple
+  name: "пурпурный классический пиджак"
+  description: "Деловой пиджак."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutertogglelawyerpurple.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutertogglelawyerpurple.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterToggleOwlwings
+  name: "плащ совы"
+  description: "Мягкий коричневый плащ из синтетических перьев. Приятный на ощупь, стильный, с размахом крыльев в 2 метра."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutertoggleowlwings.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutertoggleowlwings.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterToggleOwlwingsGriffinwings
+  name: "плащ гриффона"
+  description: "Плюшевый белый плащ из синтетических перьев. Приятный на ощупь, стильный, с размахом крыльев в 2 метра, который сведёт ваших пленников с ума."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/OuterClothing/clothingoutertoggleowlwingsgriffinwings.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/OuterClothing/clothingoutertoggleowlwingsgriffinwings.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeDeckers
+  name: "костюм Декеров"
+  description: "Костюм банды Декеров."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumedeckers.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumedeckers.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeDraculass
+  name: "платье Дракулессы"
+  description: "Платье, вдохновлённое древней «викторианской» эпохой."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumedraculass.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumedraculass.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeDrfreeze
+  name: "комбинезон Доктора Фриза"
+  description: "Переделанный комбинезон учёного, чтобы выглядеть особенно круто."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumedrfreeze.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumedrfreeze.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeDutch
+  name: "голландский костюм"
+  description: "Чувствуется, что грядёт <b>чёртов план</b>."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumedutch.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumedutch.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeFootballSuit
+  name: "футбольная униформа"
+  description: "Форма футбольной команды."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumefootballsuit.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumefootballsuit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeGeisha
+  name: "костюм гейши"
+  description: "Милый космический ниндзя-семпай в комплект не входит."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumegeisha.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumegeisha.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeGriffin
+  name: "костюм гриффона"
+  description: "Мягкий коричневый комбинезон с белым воротником из синтетических перьев и жаждой хаоса."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumegriffin.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumegriffin.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeHenchmen
+  name: "комбинезон приспешника"
+  description: "Очень безвкусный комбинезон для настоящего приспешника. Требования гильдии, сами понимаете."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumehenchmen.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumehenchmen.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeJabroni
+  name: "наряд джаброни"
+  description: "Кожаный клуб — двумя секторами ниже."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumejabroni.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumejabroni.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeJackbros
+  name: "костюм братьев Джек"
+  description: "Когда пора повеселиться."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumejackbros.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumejackbros.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeJoker
+  name: "костюм комика"
+  description: "Хуже всего в психическом расстройстве то, что от тебя ждут нормального поведения."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumejoker.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumejoker.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeKilt
+  name: "килт"
+  description: "В комплекте ботинки и плед."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumekilt.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumekilt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeLobster
+  name: "костюм из пенопласта лобстера"
+  description: "Кто обезглавил талисман колледжа?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumelobster.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumelobster.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeMechSuit
+  name: "костюм пилота меха"
+  description: "Костюм пилота меха. Может визуально увеличить ваш зад."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumemechsuit.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumemechsuit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeOsi
+  name: "комбинезон O.S.I."
+  description: "Комбинезон агентов O.S.I."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumeosi.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumeosi.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeOwl
+  name: "костюм совы"
+  description: "Мягкий коричневый комбинезон из синтетических перьев и твёрдых убеждений."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumeowl.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumeowl.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeReferee
+  name: "униформа рефери"
+  description: "Стандартная чёрно-белая полосатая форма, символ власти."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumereferee.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumereferee.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeRoman
+  name: "римская броня"
+  description: "Древнеримская броня из металла и кожаных ремней."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumeroman.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumeroman.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeSailor
+  name: "костюм матроса"
+  description: "Шкипер в кают-компании пьёт джин."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumesailor.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumesailor.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeSeifuku
+  name: "школьная форма"
+  description: "Прямо как в моих японских аниме!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumeseifuku.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumeseifuku.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeSeifukuRed
+  name: "красная школьная форма"
+  description: "Прямо как в моих японских аниме!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumeseifukured.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumeseifukured.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeSeifukuTan
+  name: "бежевая школьная форма"
+  description: "Прямо как в моих японских аниме!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumeseifukutan.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumeseifukutan.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeSeifukuTeal
+  name: "бирюзовая школьная форма"
+  description: "Прямо как в моих японских аниме!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumeseifukuteal.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumeseifukuteal.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeSoviet
+  name: "советская униформа"
+  description: "За Родину!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumesoviet.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumesoviet.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeSwagoutfit
+  name: "наряд swag"
+  description: "Почему бы тебе не пойти поискать приключений?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumeswagoutfit.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumeswagoutfit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeTmc
+  name: "одежда Lost M.C."
+  description: "Одежда байкерской банды Lost M.C."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumetmc.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumetmc.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeVillain
+  name: "костюм злодея"
+  description: "Если хотите поймать настоящего супергероя, придётся сменить гардероб."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumevillain.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumevillain.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformCostumeYuri
+  name: "комбинезон посвященного юри"
+  description: "Комбинезон посвящённого Юрия."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumeyuri.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformcostumeyuri.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformDressEveninggown
+  name: "вечернее платье"
+  description: "Нарядное платье для певиц космических баров."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformdresseveninggown.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformdresseveninggown.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformDressSundress
+  name: "летнее платье"
+  description: "В нём хочется резвиться на ромашковом поле."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformdresssundress.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformdresssundress.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformDressTango
+  name: "платье танго"
+  description: "Полно латинского огня."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformdresstango.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformdresstango.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformDressWeddingDress
+  name: "свадебное платье"
+  description: "Роскошное платье для событий, которые случаются раз в жизни."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformdressweddingdress.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformdressweddingdress.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformEtherealTunic
+  name: "эфириальная туника"
+  description: "Простая туника без рукавов поверх нательного костюма. Светится в темноте!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformetherealtunic.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformetherealtunic.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformMiscPatriotsuit
+  name: "патриотический костюм"
+  description: "Мотоцикл в комплект не входит."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformmiscpatriotsuit.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformmiscpatriotsuit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformMiscPjBlue
+  name: "синяя пижама"
+  description: "Удобная одежда для сна — вздремнуть или полениться вместо работы."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformmiscpjblue.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformmiscpjblue.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformMiscPjRed
+  name: "красная пижама"
+  description: "Удобная одежда для сна — вздремнуть или полениться вместо работы."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformmiscpjred.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformmiscpjred.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformPantsJeans
+  name: "джинсы"
+  description: "Ничем не примечательные прочные джинсы."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformpantsjeans.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformpantsjeans.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformPantsSlacks
+  name: "широкие брюки"
+  description: "Удобные брюки."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformpantsslacks.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformpantsslacks.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformRankSecurityDetectiveDisco
+  name: "униформа копа-суперзвезды"
+  description: "Брюки клёш и грязная рубашка, которая, может, и была стильной, пока кто-то не помочился в подмышки. Наряд суперзвезды."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformranksecuritydetectivedisco.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformranksecuritydetectivedisco.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformRankSecurityDetectiveKim
+  name: "аэростатический комбинезон"
+  description: "Чёткий, хорошо отглаженный костюм: профессиональный, удобный и на удивление внушающий уважение."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformranksecuritydetectivekim.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformranksecuritydetectivekim.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformSuitBurgundy
+  name: "бордовый костюм"
+  description: "Бордовый костюм с чёрным галстуком. Довольно официально."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformsuitburgundy.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformsuitburgundy.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformSuitCharcoal
+  name: "угольный костюм"
+  description: "Угольный костюм с красным галстуком. Очень профессионально."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformsuitcharcoal.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformsuitcharcoal.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformSuitCheckered
+  name: "клетчатый костюм"
+  description: "Отличный у вас костюм. Будет жаль, если с ним что-нибудь случится, а?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformsuitcheckered.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformsuitcheckered.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformSuitNavy
+  name: "тёмно-синий костюм"
+  description: "Тёмно-синий костюм с красным галстуком для лучших сотрудников станции."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformsuitnavy.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformsuitnavy.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformSuitTuxedo
+  name: "смокинг"
+  description: "Официальный чёрный смокинг. Излучает класс."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformsuittuxedo.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformsuittuxedo.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformSuitWaiter
+  name: "костюм официанта"
+  description: "Очень элегантная форма со специальным кармашком для чаевых."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformsuitwaiter.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformsuitwaiter.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformSuitWhite
+  name: "белый костюм"
+  description: "Белый костюм и пиджак с синей рубашкой. Хотите по-жёсткому? ЛАДНО!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformsuitwhite.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformsuitwhite.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformSuitWhiteSkirt
+  name: "белый костюм с юбкой"
+  description: "Белый костюм с юбкой для превосходного хозяина вечера."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Uniforms/clothinguniformsuitwhiteskirt.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Uniforms/clothinguniformsuitwhiteskirt.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ImperialClothingBackHenchmen
+  name: "крылья"
+  description: "Выдаются достойным приспешникам. Вероятно, это не про вас."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Back/clothingbackhenchmen.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Back/clothingbackhenchmen.rsi
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ImperialClothingBeltFannypack
+  name: "поясная сумка"
+  description: "Нелепая поясная сумка для мелочей. Достаточно незаметная — или настолько уродливая, что другие отводят глаза, — чтобы никто не видел, что вы кладёте и достаёте."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Belt/clothingbeltfannypack.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Belt/clothingbeltfannypack.rsi
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ImperialClothingBeltFannypackBlack
+  name: "чёрная поясная сумка"
+  description: "Нелепая поясная сумка для мелочей. Достаточно незаметная — или настолько уродливая, что другие отводят глаза, — чтобы никто не видел, что вы кладёте и достаёте."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Belt/clothingbeltfannypackblack.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Belt/clothingbeltfannypackblack.rsi
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ImperialClothingBeltFannypackBlue
+  name: "синяя поясная сумка"
+  description: "Нелепая поясная сумка для мелочей. Достаточно незаметная — или настолько уродливая, что другие отводят глаза, — чтобы никто не видел, что вы кладёте и достаёте."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Belt/clothingbeltfannypackblue.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Belt/clothingbeltfannypackblue.rsi
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ImperialClothingBeltFannypackCummerbund
+  name: "камербанд"
+  description: "Плиссированный пояс, хорошо сочетающийся с пиджаком."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Belt/clothingbeltfannypackcummerbund.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Belt/clothingbeltfannypackcummerbund.rsi
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ImperialClothingBeltFannypackRed
+  name: "красная поясная сумка"
+  description: "Нелепая поясная сумка для мелочей. Достаточно незаметная — или настолько уродливая, что другие отводят глаза, — чтобы никто не видел, что вы кладёте и достаёте."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Belt/clothingbeltfannypackred.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Belt/clothingbeltfannypackred.rsi

@@ -1,0 +1,32 @@
+# Еда из рыбалки.
+
+# /obj/item/food/moonfish_eggs: икра луна-рыбы, откладывается в аквариуме.
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMoonfishEggs
+  name: икра луна-рыбы
+  description: Луна-рыба откладывает крупные полупрозрачные синие икринки, которые ценятся в кухне унатхов. Вкус похож на икру, но глубже и сложнее.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/eggs.rsi
+    state: moonfish_eggs
+  - type: Item
+    size: Small
+  - type: FlavorProfile
+    flavors:
+    - fishy
+  - type: Tag
+    tags:
+    - Meat
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 3
+  - type: ImperialAquariumProp
+    sprite: Imperial/Fishing/eggs.rsi
+    unique: false

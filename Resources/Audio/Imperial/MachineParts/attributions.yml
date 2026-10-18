@@ -1,0 +1,4 @@
+- files: ["rped.ogg", "pshoom.ogg", "pshoom_2.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation (BandaStation), sound/items/tools and sound/items/pshoom"
+  source: "https://github.com/tgstation/tgstation"

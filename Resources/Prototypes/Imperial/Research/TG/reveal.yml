@@ -1,0 +1,119 @@
+# Раскрытие скрытых узлов TG: технодиски BEPIS и деструктивный анализатор.
+
+# /obj/item/disk/design_disk/bepis
+- type: entity
+  parent: BaseItem
+  id: ImperialBepisDisk
+  name: диск старой экспериментальной технологии
+  description: Диск с давно забытой технологией из прошлой эпохи. Надеемся, он всё ещё работает. Загрузите его в консоль исследований, чтобы получить технологию.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/bepis_disk.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: TgBepisDisk
+    nodes:
+    - light_apps
+    - extreme_office
+    - spec_eng
+    - aus_security
+    - interrogation
+    - sticky_advanced
+    - tackle_advanced
+    - mod_experimental
+    - positronic_sphere
+    - donk_products
+  - type: StaticPrice
+    price: 2500
+
+# Награды за научные заказы в TG — здесь диск можно заказать в карго.
+- type: cargoProduct
+  id: ImperialBepisDiskProduct
+  icon:
+    sprite: Imperial/Research/bepis_disk.rsi
+    state: icon
+  product: ImperialBepisDisk
+  cost: 5000
+  category: cargoproduct-category-name-science
+  group: ImperialCargo
+# /obj/machinery/rnd/destructive_analyzer
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialDestructiveAnalyzer
+  name: деструктивный анализатор
+  description: Разбирает предметы на атомы, чтобы изучить их. Некоторые находки раскрывают скрытые узлы исследований.
+  components:
+  - type: TgDestructiveAnalyzer
+  - type: Sprite
+    sprite: Imperial/Research/destructive_analyzer.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: [ "analyzer" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.TgDestructiveAnalyzerVisuals.State:
+        analyzer:
+          icon: { state: icon }
+          loaded: { state: loaded }
+          process: { state: process }
+  - type: ItemSlots
+    slots:
+      analyzer_item:
+        name: Item
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Machine
+    board: ImperialDestructiveAnalyzerMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      analyzer_item: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+
+- type: entity
+  id: ImperialDestructiveAnalyzerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: плата деструктивного анализатора
+  description: Плата машины деструктивного анализатора.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: ImperialDestructiveAnalyzer
+    stackRequirements:
+      Manipulator: 1
+      Steel: 5
+
+# Узел fundimental_sci (стартовый): плата в принтере схем доступна сразу.
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: ImperialDestructiveAnalyzerMachineCircuitboard
+  result: ImperialDestructiveAnalyzerMachineCircuitboard
+
+- type: latheRecipePack
+  id: ImperialTgStaticCircuitImprinter
+  recipes:
+  - ImperialDestructiveAnalyzerMachineCircuitboard
+
+# required_items_to_unlock
+- type: imperialTgRevealRule
+  id: TgRevealSyndicateBasic
+  node: syndicate_basic
+  contrabandSeverity: Syndicate
+
+- type: Tag
+  id: ImperialAbductorTech

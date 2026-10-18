@@ -5,6 +5,7 @@
   name: CE modsuit helmet
   description: Special hardsuit helmet, made for the CE of the station.
   components:
+  - type: ImperialModSuit # Imperial ModModules
   - type: Sprite
     sprite: Clothing/Back/Modsuits/advanced.rsi
   - type: Clothing

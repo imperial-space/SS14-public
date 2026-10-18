@@ -1,0 +1,107 @@
+# Категории аплинка по code/modules/uplink/uplink_items/*.dm (TG/BandaStation).
+# Порядок: чем больше weight в TG, тем раньше категория (priority = -weight).
+
+- type: storeCategory
+  id: ImperialUplinkWeaponKits
+  name: imperial-uplink-category-weapon-kits
+  priority: -30
+
+- type: storeCategory
+  id: ImperialUplinkNukeAmmo
+  name: imperial-uplink-category-nuke-ammo
+  priority: -29
+
+- type: storeCategory
+  id: ImperialUplinkReinforcements
+  name: imperial-uplink-category-reinforcements
+  priority: -28
+
+- type: storeCategory
+  id: ImperialUplinkMech
+  name: imperial-uplink-category-mech
+  priority: -27
+
+- type: storeCategory
+  id: ImperialUplinkBundles
+  name: imperial-uplink-category-bundles
+  priority: -10
+
+- type: storeCategory
+  id: ImperialUplinkContractor
+  name: imperial-uplink-category-contractor
+  priority: -10
+
+- type: storeCategory
+  id: ImperialUplinkDangerous
+  name: imperial-uplink-category-dangerous
+  priority: -9
+
+- type: storeCategory
+  id: ImperialUplinkStealthy
+  name: imperial-uplink-category-stealthy
+  priority: -8
+
+- type: storeCategory
+  id: ImperialUplinkAmmo
+  name: imperial-uplink-category-ammo
+  priority: -7
+
+- type: storeCategory
+  id: ImperialUplinkExplosives
+  name: imperial-uplink-category-explosives
+  priority: -6
+
+- type: storeCategory
+  id: ImperialUplinkStealthyTools
+  name: imperial-uplink-category-stealthy-tools
+  priority: -4
+
+- type: storeCategory
+  id: ImperialUplinkDeviceTools
+  name: imperial-uplink-category-device-tools
+  priority: -3
+
+- type: storeCategory
+  id: ImperialUplinkSuits
+  name: imperial-uplink-category-suits
+  priority: -3
+
+- type: storeCategory
+  id: ImperialUplinkImplants
+  name: imperial-uplink-category-implants
+  priority: -2
+
+- type: storeCategory
+  id: ImperialUplinkRoleRestricted
+  name: imperial-uplink-category-role-restricted
+  priority: -1
+
+- type: storeCategory
+  id: ImperialUplinkSpeciesRestricted
+  name: imperial-uplink-category-species-restricted
+  priority: -1
+
+- type: storeCategory
+  id: ImperialUplinkBadassery
+  name: imperial-uplink-category-badassery
+  priority: 0
+
+- type: storeCategory
+  id: ImperialUplinkDiscounts
+  name: imperial-uplink-category-discounts
+  priority: 1
+
+- type: storeCategory
+  id: ImperialUplinkTeamDiscounts
+  name: imperial-uplink-category-team-discounts
+  priority: 1
+
+- type: storeCategory
+  id: ImperialUplinkTeamLimitedDiscounts
+  name: imperial-uplink-category-team-limited-discounts
+  priority: 2
+
+# cant_discount = TRUE. Вес 0 — ванильные скидки эту категорию не трогают.
+- type: discountCategory
+  id: ImperialUplinkNoDiscount
+  weight: 0
