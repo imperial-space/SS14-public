@@ -393,7 +393,7 @@
   product: ImperialCrateBluespaceTap
   cost: 5000
   category: cargoproduct-category-name-engineering
-  group: market
+  group: ImperialCargo
 
 # Всплеск радиации (component/radioactive на ~2 минуты).
 - type: entity
