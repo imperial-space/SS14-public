@@ -443,7 +443,7 @@ public sealed partial class ImperialChangelingSystem
         if (!CanUsePower(ent, power, cost))
             return;
 
-        TransformInto(ent, profile.Value);
+        TransformInto(ent, profile!.Value);
         AdjustChemicals(ent, -cost);
     }
 

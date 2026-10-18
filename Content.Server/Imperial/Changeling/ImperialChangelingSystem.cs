@@ -552,7 +552,7 @@ public sealed partial class ImperialChangelingSystem : EntitySystem
 
     private void OnSpoke(EntityUid uid, ImperialChangelingComponent comp, EntitySpokeEvent args)
     {
-        _hiveSpeaker = args.Channel?.ID == HiveChannel ? uid : null;
+        _hiveSpeaker = args.Channel is { } channel && channel.ID == HiveChannel.Id ? uid : null;
     }
 
     private void OnSpeakerName(EntityUid uid, ImperialChangelingComponent comp, TransformSpeakerNameEvent args)
