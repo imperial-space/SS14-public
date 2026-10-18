@@ -1,0 +1,16 @@
+guide-entry-imperial-mechanics = Механики Империала
+guide-entry-imperial-antagonists = Антагонисты
+guide-entry-imperial-heretic = Еретик
+guide-entry-imperial-blood-cult = Культ крови
+guide-entry-imperial-contractor = Контрактник
+guide-entry-imperial-terror-spiders = Пауки Ужаса
+guide-entry-imperial-chaplain = Священник
+guide-entry-imperial-xenobiology = Ксенобиология
+guide-entry-imperial-reactors = Реакторы
+guide-entry-imperial-fission = Ядерный реактор NGCR
+guide-entry-imperial-hypertorus = Термоядерный реактор «Гиперторус»
+guide-entry-imperial-station-goals = Цели станции
+guide-entry-imperial-dna-vault = ДНК-хранилище
+guide-entry-imperial-bsa = Блюспейс-артиллерия
+guide-entry-imperial-bluespace-tap = Блюспейс-сборщик
+guide-entry-imperial-meteor-shield = Метеоритный щит
