@@ -18,3 +18,16 @@
 
 - type: Tag
   id: PKA
+
+# Ингредиенты ритуалов еретика: базовые типы одежды
+- type: Tag
+  id: Jumpsuit # HereticRitual: RitualShopMaidInMirror
+
+- type: Tag
+  id: Shoes # HereticRitual: RitualProphetGreaves
+
+- type: Tag
+  id: OuterClothing # HereticRitual: RitualScorchedMantle и другие
+
+- type: Tag
+  id: ClothingHead # HereticRitual: RitualScorchedMantle
