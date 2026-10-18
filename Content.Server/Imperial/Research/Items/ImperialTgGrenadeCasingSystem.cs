@@ -36,7 +36,7 @@ public sealed class ImperialTgGrenadeCasingSystem : EntitySystem
             if (!Exists(beaker))
                 continue;
             if (TryGetSolution(beaker, out var soln, out _))
-                _solution.TryAddSolution(soln.Value, stash);
+                _solution.TryAddSolution(soln!.Value, stash);
         }
         comp.Stash.Clear();
 
@@ -57,7 +57,7 @@ public sealed class ImperialTgGrenadeCasingSystem : EntitySystem
                     continue;
 
                 var volume = sol.Volume;
-                var stash = _solution.SplitSolution(soln.Value, volume * (1f - keep));
+                var stash = _solution.SplitSolution(soln!.Value, volume * (1f - keep));
                 comp.Stash[beaker] = stash;
             }
 
@@ -77,7 +77,7 @@ public sealed class ImperialTgGrenadeCasingSystem : EntitySystem
             if (!TryGetSolution(beaker, out var soln, out var solution))
                 continue;
 
-            _solution.SetTemperature(soln.Value, MathF.Max(2.7f, solution.Temperature + comp.TemperatureDelta));
+            _solution.SetTemperature(soln!.Value, MathF.Max(2.7f, solution.Temperature + comp.TemperatureDelta));
         }
     }
 
