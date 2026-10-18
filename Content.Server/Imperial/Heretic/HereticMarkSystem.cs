@@ -33,7 +33,7 @@ public sealed class HereticMarkSystem : EntitySystem
         SubscribeMark<HereticBladeMarkComponent>();
         SubscribeMark<FleshMarkComponent>();
         SubscribeMark<LockMarkComponent>();
-        SubscribeMark<MoonMarkComponent>();
+        // MoonMarkComponent: ComponentStartup занят HereticMoonBladeSystem (пацификация), он сам вызывает Refresh.
         SubscribeMark<RustMarkComponent>();
         SubscribeMark<VoidMarkComponent>();
         SubscribeMark<CosmosMarkComponent>();

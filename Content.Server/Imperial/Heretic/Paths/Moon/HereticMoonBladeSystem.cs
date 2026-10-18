@@ -31,6 +31,7 @@ namespace Content.Server.Imperial.Heretic.Paths.Moon;
 public sealed class HereticMoonBladeSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem            _audio          = default!;
+    [Dependency] private readonly HereticMarkSystem _marks = default!;
     [Dependency] private readonly HereticMoonAmuletSystem      _amulet         = default!;
     [Dependency] private readonly HereticMoonBrainDamageSystem _brainDamage    = default!;
     [Dependency] private readonly HereticStatusEffectsSystem   _hereticEffects = default!;
@@ -73,6 +74,8 @@ public sealed class HereticMoonBladeSystem : EntitySystem
     /// <summary>eldritch/moon/on_apply(): цель «и мышке не навредит».</summary>
     private void OnMarkStartup(Entity<MoonMarkComponent> ent, ref ComponentStartup args)
     {
+        _marks.Refresh(ent.Comp);
+
         if (!HasComp<PacifiedComponent>(ent))
         {
             EnsureComp<PacifiedComponent>(ent);
