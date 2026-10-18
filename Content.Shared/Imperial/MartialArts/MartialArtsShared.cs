@@ -9,7 +9,7 @@ namespace Content.Shared.Imperial.MartialArts;
 /// datum/martial_art (tgstation/BandaStation, code/datums/martial/_martial.dm).
 /// В YAML лежат только характеристики, поведение каждого искусства — в MartialArtsSystem по <see cref="Kind"/>.
 /// </summary>
-[Prototype("martialArt")]
+[Prototype]
 public sealed partial class MartialArtPrototype : IPrototype
 {
     [IdDataField]
