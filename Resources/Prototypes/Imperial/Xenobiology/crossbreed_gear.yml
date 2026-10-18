@@ -1,0 +1,755 @@
+# Снаряжение, существа и эффекты кроссбридинга.
+
+# obj/item/autoslime
+- type: entity
+  id: SlimeAutoslime
+  parent: BaseItem
+  name: автослайм
+  description: Похож на обычный экстракт слайма, но наполнен странной разноцветной жидкостью. При использовании позволяет выбрать реакцию.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: selfsustaining
+  - type: Item
+    size: Tiny
+  - type: SlimeAutoslime
+
+# slimecrossbeaker/autoinjector/*
+- type: entity
+  id: BaseSlimeAutoinjector
+  parent: ChemicalMedipen
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    layers:
+    - state: base
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: base
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  id: SlimeAutoinjectorStimulant
+  parent: BaseSlimeAutoinjector
+  name: бодрящий гель
+  description: Бурлящая фиолетовая смесь, лечащая и ускоряющая движение.
+  components:
+  - type: Sprite
+    color: "#FF00FF"
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 39
+        reagents:
+        - ReagentId: RegenJelly
+          Quantity: 30
+        - ReagentId: Desoxyephedrine
+          Quantity: 9
+
+- type: entity
+  id: SlimeAutoinjectorRegen
+  parent: BaseSlimeAutoinjector
+  name: заживляющий раствор
+  description: Странная капля сладко пахнущей полужидкости, легко липнущая к коже.
+  components:
+  - type: Sprite
+    color: "#FF00FF"
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: RegenJelly
+          Quantity: 20
+
+- type: entity
+  id: SlimeAutoinjectorJelly
+  parent: BaseSlimeAutoinjector
+  name: пузырь слаймового желе
+  description: Сфера слаймового желе. Липнет к коже, но избегает других поверхностей.
+  components:
+  - type: Sprite
+    color: "#00FF00"
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 50
+        reagents:
+        - ReagentId: SlimeJelly
+          Quantity: 50
+
+- type: entity
+  id: SlimeAutoinjectorPeace
+  parent: BaseSlimeAutoinjector
+  name: мирный дистиллят
+  description: Светло-розовая липкая сфера. От одного прикосновения немного кружится голова.
+  components:
+  - type: Sprite
+    color: "#DDAAAA"
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 25
+        reagents:
+        - ReagentId: Pax
+          Quantity: 10
+        - ReagentId: SpaceDrugs
+          Quantity: 15
+
+# obj/item/slimecrossbeaker
+- type: entity
+  id: BaseSlimeCrossBeaker
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: base
+  - type: Item
+    size: Tiny
+  - type: InjectableSolution
+    solution: beaker
+  - type: DrawableSolution
+    solution: beaker
+  - type: ExaminableSolution
+    solution: beaker
+  - type: TrashOnSolutionEmpty
+    solution: beaker
+
+- type: entity
+  id: SlimeCrossBeakerBlood
+  parent: BaseSlimeCrossBeaker
+  name: кровавый экстракт
+  description: Сфера жидкой крови, которая каким-то образом держит форму.
+  components:
+  - type: Sprite
+    color: "#FF0000"
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 50
+        reagents:
+        - ReagentId: Blood
+          Quantity: 50
+
+- type: entity
+  id: SlimeCrossBeakerPax
+  parent: BaseSlimeCrossBeaker
+  name: умиротворяющий экстракт
+  description: Небольшая капля синтетического пакса.
+  components:
+  - type: Sprite
+    color: "#FFCCCC"
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 50
+        reagents:
+        - ReagentId: Pax
+          Quantity: 5
+
+- type: entity
+  id: SlimeCrossBeakerOmnizine
+  parent: BaseSlimeCrossBeaker
+  name: целебный экстракт
+  description: Желатиновый экстракт чистого омнизина.
+  components:
+  - type: Sprite
+    color: "#FF00FF"
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 50
+        reagents:
+        - ReagentId: Omnizine
+          Quantity: 15
+
+# Зелья кроссбридинга (_potions.dm)
+- type: entity
+  id: BaseSlimeCrossPotion
+  parent: BaseSlimePotion
+  abstract: true
+
+- type: entity
+  id: SlimePotionExtractCloner
+  parent: BaseSlimeCrossPotion
+  name: зелье клонирования экстрактов
+  description: Более мощная версия усилителя экстрактов, способная копировать обычные экстракты слаймов.
+  components:
+  - type: Sprite
+    state: potgold
+  - type: SlimeCrossPotion
+    kind: extractcloner
+
+- type: entity
+  id: SlimePotionPeace
+  parent: BaseSlimeCrossPotion
+  name: зелье умиротворения
+  description: Светло-розовый раствор, пахнущий жидким миром. И солями ртути.
+  components:
+  - type: Sprite
+    state: potlightpink
+  - type: SlimeCrossPotion
+    kind: peace
+
+- type: entity
+  id: SlimePotionLove
+  parent: BaseSlimeCrossPotion
+  name: любовное зелье
+  description: Розовая смесь, будто бы пробуждающая чувства любви.
+  components:
+  - type: Sprite
+    state: potpink
+  - type: SlimeCrossPotion
+    kind: love
+
+- type: entity
+  id: SlimePotionSpaceproof
+  parent: BaseSlimeCrossPotion
+  name: зелье герметизации
+  description: Мощный химический герметик, делающий любую одежду воздухонепроницаемой. Хватает на два раза.
+  components:
+  - type: Sprite
+    state: potblack
+  - type: SlimeCrossPotion
+    kind: spaceproof
+    uses: 2
+
+- type: entity
+  id: SlimePotionLavaproof
+  parent: BaseSlimeCrossPotion
+  name: зелье лавоустойчивости
+  description: Странная красноватая слизь, отталкивающая лаву, как воду. Хватает на два раза.
+  components:
+  - type: Sprite
+    state: potyellow
+  - type: SlimeCrossPotion
+    kind: lavaproof
+    uses: 2
+
+- type: entity
+  id: SlimePotionReviver
+  parent: BaseSlimeCrossPotion
+  name: зелье оживления слаймов
+  description: Наполненное плазмой и сжатым гелем, оно возвращает мёртвых слаймов к жизни.
+  components:
+  - type: Sprite
+    state: potgrey
+  - type: SlimeCrossPotion
+    kind: reviver
+
+- type: entity
+  id: SlimePotionChargedStabilizer
+  parent: BaseSlimeCrossPotion
+  name: омнистабилизатор слаймов
+  description: Чрезвычайно мощная смесь, полностью останавливающая мутации слайма.
+  components:
+  - type: Sprite
+    state: potcyan
+  - type: SlimeCrossPotion
+    kind: omnistabilizer
+
+# stock_parts/power_store/cell/high/slime_hypercharged
+- type: entity
+  id: SlimeHyperchargedCell
+  parent: SlimePowerCell
+  name: сверхзаряженное ядро слайма
+  description: Заряженный жёлтый экстракт, напитанный плазмой. К нему почти больно прикасаться.
+  components:
+  - type: Battery
+    maxCharge: 36000
+    startingCharge: 36000
+
+# lighter/slime
+- type: entity
+  id: SlimeLighter
+  parent: Lighter
+  name: слаймовая зажигалка
+  description: Зажигалка из оранжевой слизи.
+  components:
+  - type: Sprite
+    color: "#FFA500"
+
+# camera/rewind
+- type: entity
+  id: SlimeRewindCamera
+  parent: BaseItem
+  name: сепиевая камера
+  description: Говорят, фотография — это остановленный во времени момент.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: base
+    color: "#704214"
+  - type: Item
+    size: Small
+  - type: SlimeRewindCamera
+
+# arm_blade/slime
+- type: entity
+  id: SlimeArmBlade
+  parent: ArmBlade
+  name: склизкий костяной клинок
+  description: Всё, что осталось от костей вашей руки. Невероятно острый и болезненный и для вас, и для врагов.
+  components:
+  - type: Sprite
+    color: "#88FF88"
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 15
+  - type: Unremoveable
+
+# knife/rainbowknife
+- type: entity
+  id: SlimeRainbowKnife
+  parent: KitchenKnife
+  name: радужный нож
+  description: Странный прозрачный нож, постоянно меняющий цвет. Слегка гудит при движении.
+  components:
+  - type: Sprite
+    color: "#FF88FF"
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 15
+  - type: SlimeRainbowKnife
+
+# shield/adamantineshield
+- type: entity
+  id: SlimeAdamantineShield
+  parent: RiotShield
+  name: адамантиновый щит
+  description: Гигантский щит из цельного адамантина.
+  components:
+  - type: Sprite
+    color: "#008B8B"
+  - type: Item
+    size: Huge
+  - type: Blocking
+    passiveBlockModifier:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+    activeBlockModifier:
+      coefficients:
+        Blunt: 0.25
+        Slash: 0.25
+        Piercing: 0.25
+        Heat: 0.25
+  - type: HeldSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+
+# gun/magic/bloodchill
+- type: entity
+  id: SlimeBloodChiller
+  parent: WeaponStaffBase
+  name: кровавый охладитель
+  description: Жуткое оружие из ваших костей и сосудов. Стреляет замедляющими сгустками вашей крови.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    layers:
+    - state: bloodgun
+  - type: Item
+    size: Huge
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Xenobiology/attackblob.ogg
+    projectileSpeed: 20
+  - type: BasicEntityAmmoProvider
+    proto: ProjectileSlimeBloodChill
+    capacity: 1
+    count: 1
+  - type: SlimeBloodChiller
+  - type: Unremoveable
+
+- type: entity
+  id: ProjectileSlimeBloodChill
+  parent: BaseBullet
+  name: кровавый сгусток
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: declone
+      shader: unshaded
+    color: "#AA0000"
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 0
+  - type: SlimeBloodChillProjectile
+
+# barriercube / barricade/slime
+- type: entity
+  id: SlimeBarrierCube
+  parent: BaseItem
+  name: кубик-барьер
+  description: Сжатый кубик слизи. Если его сжать, он вырастет до огромных размеров!
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: barriercube
+  - type: Item
+    size: Tiny
+  - type: SlimeBarrierCube
+
+- type: entity
+  id: SlimeBarricade
+  name: студенистый барьер
+  description: Огромный кусок серой слизи. Пули могут в нём застрять.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: slimebarrier
+    drawdepth: Objects
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Xenobiology/attackblob.ogg
+
+# effect/forcefield/slimewall
+- type: entity
+  id: SlimeWall
+  name: затвердевший гель
+  description: Масса затвердевшего слаймового геля — совершенно непробиваемая, но она тает!
+  categories: [ HideSpawnMenu ]
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: slimebarrier_thick
+    drawdepth: Walls
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: Occluder
+  - type: Airtight
+  - type: TimedDespawn
+    lifetime: 10
+
+- type: entity
+  id: SlimeWallRainbow
+  parent: SlimeWall
+  name: радужный барьер
+  description: Несмотря на уговоры окружающих, это, пожалуй, лучше не пробовать на вкус.
+  components:
+  - type: Sprite
+    state: rainbowbarrier
+
+# structure/ice_stasis
+- type: entity
+  id: SlimeIceStasis
+  name: ледяная глыба
+  description: Огромная глыба льда. Внутри смутно виднеется что-то человекоподобное.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: frozen
+    drawdepth: Mobs
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: EntityStorage
+    capacity: 1
+    isCollidableWhenOpen: false
+    openOnMove: true
+    airtight: true
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Glass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:EmptyAllContainersBehaviour
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: SlimeIceStasis
+
+- type: entity
+  id: SlimeIceStasisIrresistable
+  parent: SlimeIceStasis
+  suffix: Нерушимая изнутри
+  components:
+  - type: EntityStorage
+    capacity: 1
+    isCollidableWhenOpen: false
+    openOnMove: false
+    airtight: true
+
+# clothing/mask/nobreath
+- type: entity
+  id: ClothingMaskSlimeRebreather
+  parent: ClothingMaskBreath
+  name: маска-ребризер
+  description: Прозрачная маска, похожая на обычную дыхательную, но из голубоватой слизи. У неё нет трубки подачи воздуха.
+  components:
+  - type: Sprite
+    color: "#7FB8FF"
+  - type: Clothing
+    slots: [ mask ]
+  - type: SlimeRebreather
+
+# clothing/glasses/prism_glasses
+- type: entity
+  id: ClothingEyesSlimePrismGlasses
+  parent: ClothingEyesGlassesSunglasses
+  name: призматические очки
+  description: Линзы слегка светятся и преломляют свет в ослепительные цвета.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: prismglasses
+  - type: SlimePrismGlasses
+
+- type: entity
+  id: ActionSlimePrismColour
+  name: Настроить призматические линзы
+  description: Сменить цвет линз и будущих призм света.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Xenobiology/slimecrossing.rsi, state: prismcolor }
+  - type: InstantAction
+    event: !type:SlimePrismColourActionEvent
+
+- type: entity
+  id: ActionSlimePrismPlace
+  name: Создать призму света
+  description: Собрать окружающий свет в сияющую призму.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Xenobiology/slimecrossing.rsi, state: lightprism }
+    useDelay: 1
+  - type: InstantAction
+    event: !type:SlimePrismPlaceActionEvent
+
+- type: entity
+  id: SlimeLightPrism
+  name: призма света
+  description: Сияющий кристалл из полутвёрдого света. Выглядит хрупким.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: lightprism
+    drawdepth: Objects
+  - type: PointLight
+    radius: 5
+    energy: 1.5
+  - type: Clickable
+  - type: InteractionOutline
+  - type: SlimeLightPrism
+
+# clothing/head/peaceflower
+- type: entity
+  id: ClothingHeadSlimePeaceFlower
+  parent: ClothingHeadHatFlowerWreath
+  name: бутон героини
+  description: Невероятно затягивающий цветок, полный магии мира.
+  components:
+  - type: Sprite
+    color: "#FFB6C1"
+  - type: SlimePeaceFlower
+
+# clothing/suit/armor/heavy/adamantine
+- type: entity
+  id: ClothingOuterArmorSlimeAdamantine
+  parent: ClothingOuterArmorHeavy
+  name: адамантиновая броня
+  description: Полный комплект адамантиновых лат. Впечатляюще прочный, но весит примерно как вы.
+  components:
+  - type: Sprite
+    color: "#008B8B"
+  - type: ClothingSpeedModifier
+    walkModifier: 0.5
+    sprintModifier: 0.5
+  - type: Reflect
+    reflectProb: 0.4
+    reflects:
+    - Energy
+    - NonEnergy
+
+# capturedevice
+- type: entity
+  id: SlimeCaptureDevice
+  parent: BaseItem
+  name: золотое устройство захвата
+  description: Блюспейс-технология в яйцевидном корпусе для хранения нечеловеческих существ. Всех не поймаешь — внутри только одно место.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: capturedevice
+  - type: Item
+    size: Small
+  - type: SlimeCaptureDevice
+  - type: ContainerContainer
+    containers:
+      capture: !type:ContainerSlot
+
+# pet/dog/corgi/puppy/slime
+- type: entity
+  id: MobSlimeCorgiPuppy
+  parent: MobCorgiPuppy
+  name: слаймовый щенок корги
+  description: Невыносимо милый розовый слаймовый щенок корги.
+  components:
+  - type: Sprite
+    color: "#FF9CD0"
+
+# mob_spawn/ghost_role/human/golem/servant
+- type: entity
+  id: SlimeGolemShellSpawner
+  parent: MarkerBase
+  name: адамантиновый каркас голема
+  components:
+  - type: GhostRole
+    name: slime-golem-role-name
+    description: slime-golem-role-description
+    rules: slime-golem-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: MobSlimeGolem
+  - type: Sprite
+    sprite: Imperial/Xenobiology/items.rsi
+    state: sheet-adamantine_3
+
+- type: entity
+  id: MobSlimeGolem
+  parent: MobHuman
+  name: адамантиновый голем
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SlimeGolem
+
+# Полиморфы кроссбридинга.
+- type: polymorph
+  id: SlimeCrossSlimeForm
+  configuration:
+    entity: MobXenoSlime
+    transferName: true
+    transferDamage: true
+    inventory: None
+    revertOnCrit: true
+    revertOnDeath: true
+    ignoreAllowRepeatedMorphs: true
+
+- type: polymorph
+  id: SlimeCrossSpeciesDwarf
+  configuration:
+    entity: MobDwarf
+    forced: true
+    transferName: true
+    transferHumanoidAppearance: true
+    inventory: Transfer
+    revertOnCrit: false
+    revertOnDeath: false
+    ignoreAllowRepeatedMorphs: true
+
+- type: polymorph
+  id: SlimeCrossSpeciesArachnid
+  configuration:
+    entity: MobArachnid
+    forced: true
+    transferName: true
+    transferHumanoidAppearance: true
+    inventory: Transfer
+    revertOnCrit: false
+    revertOnDeath: false
+    ignoreAllowRepeatedMorphs: true
+
+- type: polymorph
+  id: SlimeCrossSpeciesDiona
+  configuration:
+    entity: MobDiona
+    forced: true
+    transferName: true
+    transferHumanoidAppearance: true
+    inventory: Transfer
+    revertOnCrit: false
+    revertOnDeath: false
+    ignoreAllowRepeatedMorphs: true
+
+- type: polymorph
+  id: SlimeCrossSpeciesVox
+  configuration:
+    entity: MobVox
+    forced: true
+    transferName: true
+    transferHumanoidAppearance: true
+    inventory: Transfer
+    revertOnCrit: false
+    revertOnDeath: false
+    ignoreAllowRepeatedMorphs: true

@@ -1,0 +1,330 @@
+# Машины ксенобиологии SS13.
+
+# machinery/computer/camera_advanced/xenobio
+- type: entity
+  id: XenobioConsole
+  parent: BaseComputer
+  name: консоль управления слаймами
+  description: Компьютер для дистанционного обращения со слаймами.
+  components:
+  - type: XenobioConsole
+  - type: Computer
+    board: XenobioConsoleComputerCircuitboard
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: Imperial/Xenobiology/machines.rsi
+      state: slime_comp
+    - map: ["computerLayerKeys"]
+      state: rd_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#ff9be4"
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+        ents: []
+      xenobio_slimes: !type:Container
+      xenobio_potion: !type:ContainerSlot
+
+- type: entity
+  id: XenobioConsoleComputerCircuitboard
+  parent: BaseComputerCircuitboard
+  name: плата консоли управления слаймами
+  description: Плата компьютера консоли управления слаймами.
+  components:
+  - type: Sprite
+    state: cpu_science
+  - type: ComputerBoard
+    prototype: XenobioConsole
+
+# mob/eye/camera/remote/xenobio
+- type: entity
+  id: XenobioCameraEye
+  name: камера ксенобиологии
+  description: Камера консоли управления слаймами.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/station_ai.rsi
+    noRot: true
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    layers:
+    - state: ai_camera
+      shader: unshaded
+  - type: Eye
+    drawFov: false
+  - type: ContentEye
+    maxZoom: 1.44, 1.44
+  - type: MindContainer
+  - type: Actions
+  - type: ActionGrant
+    actions:
+    - ActionXenobioCameraOff
+    - ActionXenobioSlimePlace
+    - ActionXenobioSlimePickUp
+    - ActionXenobioFeedSlime
+    - ActionXenobioMonkeyRecycle
+    - ActionXenobioSlimeScan
+    - ActionXenobioFeedPotion
+    - ActionXenobioHotkeyHelp
+  - type: Input
+    context: "ghost"
+  - type: InputMover
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 6
+    baseSprintSpeed: 6
+  - type: MovementIgnoreGravity
+  - type: Physics
+    bodyType: KinematicController
+    bodyStatus: InAir
+  - type: CanMoveInAir
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 15
+        layer:
+        - GhostImpassable
+  - type: Examiner
+    skipChecks: true
+  - type: XenobioCameraEye
+
+- type: entity
+  id: ActionXenobioCameraOff
+  name: Выйти из камеры
+  description: Отключить камеру и вернуться в тело.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Xenobiology/console_actions.rsi, state: camera_off }
+  - type: InstantAction
+    event: !type:XenobioCameraOffEvent
+
+- type: entity
+  id: ActionXenobioSlimePlace
+  name: Выложить слаймов
+  description: Выплюнуть всех слаймов из хранилища под камеру.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Xenobiology/console_actions.rsi, state: slime_down }
+  - type: InstantAction
+    event: !type:XenobioSlimePlaceEvent
+
+- type: entity
+  id: ActionXenobioSlimePickUp
+  name: Забрать слайма
+  description: Всосать слаймов под камерой в хранилище консоли.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Xenobiology/console_actions.rsi, state: slime_up }
+  - type: InstantAction
+    event: !type:XenobioSlimePickUpEvent
+
+- type: entity
+  id: ActionXenobioFeedSlime
+  name: Покормить слаймов
+  description: Выложить под камеру обезьяну из сохранённых кубиков.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Xenobiology/console_actions.rsi, state: monkey_down }
+  - type: InstantAction
+    event: !type:XenobioFeedSlimeEvent
+
+- type: entity
+  id: ActionXenobioMonkeyRecycle
+  name: Переработать обезьян
+  description: Отправить мёртвых обезьян под камерой в переработчик.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Xenobiology/console_actions.rsi, state: monkey_up }
+  - type: InstantAction
+    event: !type:XenobioMonkeyRecycleEvent
+
+- type: entity
+  id: ActionXenobioSlimeScan
+  name: Сканировать слайма
+  description: Просканировать слаймов под камерой.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Xenobiology/console_actions.rsi, state: slime_scan }
+  - type: InstantAction
+    event: !type:XenobioSlimeScanEvent
+
+- type: entity
+  id: ActionXenobioFeedPotion
+  name: Применить зелье
+  description: Применить загруженное зелье к слайму под камерой.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Xenobiology/console_actions.rsi, state: slime_potion }
+  - type: InstantAction
+    event: !type:XenobioFeedPotionEvent
+
+- type: entity
+  id: ActionXenobioHotkeyHelp
+  name: Справка
+  description: Показать подсказку по управлению консолью.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Xenobiology/console_actions.rsi, state: hotkey_help }
+  - type: InstantAction
+    event: !type:XenobioHotkeyHelpEvent
+
+# obj/effect/abstract/xenosuction
+- type: entity
+  id: XenobioSuctionEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/effects.rsi
+    drawdepth: Effects
+    offset: 0,1
+    noRot: true
+    layers:
+    - state: xenotube_back
+    - state: xenotube_fore
+  - type: TimedDespawn
+    lifetime: 0.4
+
+# machinery/processor/slime (ID сохранён для карт).
+- type: entity
+  id: XenoSlimeGrinder
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: процессор слаймов
+  description: Промышленный измельчитель с наклейкой «для научного отдела». Во время работы держите руки подальше от приёмника.
+  components:
+  - type: SlimeProcessor
+  - type: XenobioDropTarget
+    slimes: true
+  - type: Sprite
+    sprite: Imperial/Xenobiology/machines.rsi
+    snapCardinals: true
+    layers:
+    - state: processor_slime
+      map: [ "enum.SlimeProcessorVisuals.Processing" ]
+  - type: Appearance
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Machine
+    board: XenoSlimeGrinderMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      slime_processor: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
+
+- type: entity
+  id: XenoSlimeGrinderMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: плата процессора слаймов
+  description: Плата машины процессора слаймов.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: XenoSlimeGrinder
+    stackRequirements:
+      Manipulator: 1
+      Steel: 5
+
+# machinery/monkey_recycler
+- type: entity
+  id: SlimeMonkeyRecycler
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: переработчик обезьян
+  description: Машина для переработки мёртвых обезьян в обезьяньи кубики.
+  components:
+  - type: SlimeMonkeyRecycler
+  - type: XenobioDropTarget
+    monkeys: true
+  - type: Sprite
+    sprite: Imperial/Xenobiology/machines.rsi
+    snapCardinals: true
+    layers:
+    - state: grinder
+    - state: grinder_monkey
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Machine
+    board: SlimeMonkeyRecyclerMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+
+- type: entity
+  id: SlimeMonkeyRecyclerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: плата переработчика обезьян
+  description: Плата машины переработчика обезьян.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: SlimeMonkeyRecycler
+    stackRequirements:
+      Manipulator: 1
+      Steel: 5
+
+# obj/item/slime_scanner
+- type: entity
+  id: SlimeScanner
+  parent: BaseItem
+  name: сканер слаймов
+  description: Устройство, анализирующее жизненные показатели и потенциал мутаций слайма.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/healthanalyzer.rsi
+    state: icon
+    color: "#ff9be4"
+  - type: Item
+    size: Small
+  - type: SlimeScanner
+
+# Платы в схемопринтере.
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchComputerRecipeCategory ]
+  id: XenobioConsoleComputerCircuitboard
+  result: XenobioConsoleComputerCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: XenoSlimeGrinderMachineCircuitboard
+  result: XenoSlimeGrinderMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: SlimeMonkeyRecyclerMachineCircuitboard
+  result: SlimeMonkeyRecyclerMachineCircuitboard

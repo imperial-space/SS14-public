@@ -1,0 +1,899 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (slimes.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "grey-core"
+    },
+    {
+      "name": "grey-cut"
+    },
+    {
+      "name": "grey-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "grey-baby-dead"
+    },
+    {
+      "name": "grey-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "grey-adult-dead"
+    },
+    {
+      "name": "orange-core"
+    },
+    {
+      "name": "orange-cut"
+    },
+    {
+      "name": "orange-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "orange-baby-dead"
+    },
+    {
+      "name": "orange-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "orange-adult-dead"
+    },
+    {
+      "name": "purple-core"
+    },
+    {
+      "name": "purple-cut"
+    },
+    {
+      "name": "purple-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "purple-baby-dead"
+    },
+    {
+      "name": "purple-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "purple-adult-dead"
+    },
+    {
+      "name": "blue-core"
+    },
+    {
+      "name": "blue-cut"
+    },
+    {
+      "name": "blue-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "blue-baby-dead"
+    },
+    {
+      "name": "blue-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "blue-adult-dead"
+    },
+    {
+      "name": "metal-core"
+    },
+    {
+      "name": "metal-cut"
+    },
+    {
+      "name": "metal-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "metal-baby-dead"
+    },
+    {
+      "name": "metal-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "metal-adult-dead"
+    },
+    {
+      "name": "yellow-core"
+    },
+    {
+      "name": "yellow-cut"
+    },
+    {
+      "name": "yellow-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "yellow-baby-dead"
+    },
+    {
+      "name": "yellow-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "yellow-adult-dead"
+    },
+    {
+      "name": "dark-purple-core"
+    },
+    {
+      "name": "dark-purple-cut"
+    },
+    {
+      "name": "dark-purple-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "dark-purple-baby-dead"
+    },
+    {
+      "name": "dark-purple-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "dark-purple-adult-dead"
+    },
+    {
+      "name": "dark-blue-core"
+    },
+    {
+      "name": "dark-blue-cut"
+    },
+    {
+      "name": "dark-blue-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "dark-blue-baby-dead"
+    },
+    {
+      "name": "dark-blue-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "dark-blue-adult-dead"
+    },
+    {
+      "name": "silver-core"
+    },
+    {
+      "name": "silver-cut"
+    },
+    {
+      "name": "silver-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "silver-baby-dead"
+    },
+    {
+      "name": "silver-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "silver-adult-dead"
+    },
+    {
+      "name": "bluespace-core"
+    },
+    {
+      "name": "bluespace-cut"
+    },
+    {
+      "name": "bluespace-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "bluespace-baby-dead"
+    },
+    {
+      "name": "bluespace-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "bluespace-adult-dead"
+    },
+    {
+      "name": "sepia-core"
+    },
+    {
+      "name": "sepia-cut"
+    },
+    {
+      "name": "sepia-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "sepia-baby-dead"
+    },
+    {
+      "name": "sepia-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "sepia-adult-dead"
+    },
+    {
+      "name": "cerulean-core"
+    },
+    {
+      "name": "cerulean-cut"
+    },
+    {
+      "name": "cerulean-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "cerulean-baby-dead"
+    },
+    {
+      "name": "cerulean-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "cerulean-adult-dead"
+    },
+    {
+      "name": "pyrite-core"
+    },
+    {
+      "name": "pyrite-cut"
+    },
+    {
+      "name": "pyrite-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "pyrite-baby-dead"
+    },
+    {
+      "name": "pyrite-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "pyrite-adult-dead"
+    },
+    {
+      "name": "red-core"
+    },
+    {
+      "name": "red-cut"
+    },
+    {
+      "name": "red-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "red-baby-dead"
+    },
+    {
+      "name": "red-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "red-adult-dead"
+    },
+    {
+      "name": "green-core"
+    },
+    {
+      "name": "green-cut"
+    },
+    {
+      "name": "green-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "green-baby-dead"
+    },
+    {
+      "name": "green-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "green-adult-dead"
+    },
+    {
+      "name": "pink-core"
+    },
+    {
+      "name": "pink-cut"
+    },
+    {
+      "name": "pink-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "pink-baby-dead"
+    },
+    {
+      "name": "pink-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "pink-adult-dead"
+    },
+    {
+      "name": "gold-core"
+    },
+    {
+      "name": "gold-cut"
+    },
+    {
+      "name": "gold-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "gold-baby-dead"
+    },
+    {
+      "name": "gold-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "gold-adult-dead"
+    },
+    {
+      "name": "oil-core"
+    },
+    {
+      "name": "oil-cut"
+    },
+    {
+      "name": "oil-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "oil-baby-dead"
+    },
+    {
+      "name": "oil-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "oil-adult-dead"
+    },
+    {
+      "name": "black-core"
+    },
+    {
+      "name": "black-cut"
+    },
+    {
+      "name": "black-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "black-baby-dead"
+    },
+    {
+      "name": "black-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "black-adult-dead"
+    },
+    {
+      "name": "light-pink-core"
+    },
+    {
+      "name": "light-pink-cut"
+    },
+    {
+      "name": "light-pink-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "light-pink-baby-dead"
+    },
+    {
+      "name": "light-pink-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "light-pink-adult-dead"
+    },
+    {
+      "name": "adamantine-core"
+    },
+    {
+      "name": "adamantine-cut"
+    },
+    {
+      "name": "adamantine-baby",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "adamantine-baby-dead"
+    },
+    {
+      "name": "adamantine-adult",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.4,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "adamantine-adult-dead"
+    },
+    {
+      "name": "rainbow-core",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "rainbow-cut",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "rainbow-baby",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "rainbow-baby-dead",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "rainbow-adult",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "rainbow-adult-dead",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "aslime-pout",
+      "directions": 4
+    },
+    {
+      "name": "aslime-sad",
+      "directions": 4
+    },
+    {
+      "name": "aslime-angry",
+      "directions": 4
+    },
+    {
+      "name": "aslime-mischievous",
+      "directions": 4
+    },
+    {
+      "name": "aslime-smile",
+      "directions": 4
+    },
+    {
+      "name": "aslime-cat",
+      "directions": 4
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (slimecookies.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "base"
+    },
+    {
+      "name": "grey"
+    },
+    {
+      "name": "orange"
+    },
+    {
+      "name": "purple"
+    },
+    {
+      "name": "blue",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "metal"
+    },
+    {
+      "name": "yellow"
+    },
+    {
+      "name": "darkpurple"
+    },
+    {
+      "name": "silver"
+    },
+    {
+      "name": "bluespace"
+    },
+    {
+      "name": "sepia"
+    },
+    {
+      "name": "cerulean"
+    },
+    {
+      "name": "pyrite"
+    },
+    {
+      "name": "red"
+    },
+    {
+      "name": "green"
+    },
+    {
+      "name": "pink"
+    },
+    {
+      "name": "gold"
+    },
+    {
+      "name": "oil"
+    },
+    {
+      "name": "black"
+    },
+    {
+      "name": "adamantine"
+    },
+    {
+      "name": "rainbow",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "darkblue"
+    },
+    {
+      "name": "lightpink"
+    }
+  ]
+}

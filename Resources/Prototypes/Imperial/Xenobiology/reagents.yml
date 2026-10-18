@@ -1,0 +1,212 @@
+# Реагенты ксенобиологии SS13.
+
+# reagent/toxin/slimejelly
+- type: reagent
+  id: SlimeJelly
+  name: reagent-name-slime-jelly
+  group: Toxins
+  desc: reagent-desc-slime-jelly
+  physicalDesc: reagent-physical-desc-slimy
+  flavor: slimy
+  color: "#801E28"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        probability: 0.05
+        damage:
+          types:
+            Poison: 40
+      - !type:PopupMessage
+        probability: 0.05
+        type: Local
+        messages: [ "slime-jelly-burning" ]
+      - !type:EvenHealthChange
+        probability: 0.23
+        damage:
+          Brute: -5
+
+# reagent/medicine/regen_jelly
+- type: reagent
+  id: RegenJelly
+  name: reagent-name-regen-jelly
+  group: Medicine
+  desc: reagent-desc-regen-jelly
+  physicalDesc: reagent-physical-desc-slimy
+  flavor: slimy
+  color: "#CC23FF"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:EvenHealthChange
+        damage:
+          Brute: -0.75
+          Burn: -0.75
+          Airloss: -0.75
+          Toxin: -0.75
+
+# reagent/mutationtoxin/*
+- type: reagent
+  id: MutationToxinJelly
+  name: reagent-name-mutation-toxin-jelly
+  group: Toxins
+  desc: reagent-desc-mutation-toxin
+  physicalDesc: reagent-physical-desc-slimy
+  flavor: slimy
+  color: "#5EFF3B"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.2
+      effects:
+      - !type:SlimeSpeciesMutation
+        polymorph: SlimeMutationJelly
+
+- type: reagent
+  id: MutationToxinHuman
+  name: reagent-name-mutation-toxin-human
+  group: Toxins
+  desc: reagent-desc-mutation-toxin
+  physicalDesc: reagent-physical-desc-slimy
+  flavor: slimy
+  color: "#5EFF3B"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.2
+      effects:
+      - !type:SlimeSpeciesMutation
+        polymorph: SlimeMutationHuman
+
+- type: reagent
+  id: MutationToxinLizard
+  name: reagent-name-mutation-toxin-lizard
+  group: Toxins
+  desc: reagent-desc-mutation-toxin
+  physicalDesc: reagent-physical-desc-slimy
+  flavor: slimy
+  color: "#5EFF3B"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.2
+      effects:
+      - !type:SlimeSpeciesMutation
+        polymorph: SlimeMutationLizard
+
+- type: reagent
+  id: MutationToxinFelinid
+  name: reagent-name-mutation-toxin-felinid
+  group: Toxins
+  desc: reagent-desc-mutation-toxin
+  physicalDesc: reagent-physical-desc-slimy
+  flavor: slimy
+  color: "#5EFF3B"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.2
+      effects:
+      - !type:SlimeSpeciesMutation
+        polymorph: SlimeMutationFelinid
+
+- type: reagent
+  id: MutationToxinMoth
+  name: reagent-name-mutation-toxin-moth
+  group: Toxins
+  desc: reagent-desc-mutation-toxin
+  physicalDesc: reagent-physical-desc-slimy
+  flavor: slimy
+  color: "#5EFF3B"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.2
+      effects:
+      - !type:SlimeSpeciesMutation
+        polymorph: SlimeMutationMoth
+
+# reagent/aslimetoxin
+- type: reagent
+  id: AdvancedMutationToxin
+  name: reagent-name-xeno-advanced-mutation-toxin
+  group: Toxins
+  desc: reagent-desc-xeno-advanced-mutation-toxin
+  physicalDesc: reagent-physical-desc-slimy
+  flavor: slimy
+  color: "#13BC5E"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:SlimeTransformationExposure
+
+# Полиморфы мутационных токсинов.
+- type: polymorph
+  id: SlimeMutationJelly
+  configuration:
+    entity: MobSlimePerson
+    forced: true
+    transferName: true
+    transferHumanoidAppearance: true
+    transferDamage: true
+    inventory: Transfer
+    revertOnCrit: false
+    revertOnDeath: false
+    ignoreAllowRepeatedMorphs: true
+
+- type: polymorph
+  id: SlimeMutationHuman
+  configuration:
+    entity: MobHuman
+    forced: true
+    transferName: true
+    transferHumanoidAppearance: true
+    transferDamage: true
+    inventory: Transfer
+    revertOnCrit: false
+    revertOnDeath: false
+    ignoreAllowRepeatedMorphs: true
+
+- type: polymorph
+  id: SlimeMutationLizard
+  configuration:
+    entity: MobReptilian
+    forced: true
+    transferName: true
+    transferHumanoidAppearance: true
+    transferDamage: true
+    inventory: Transfer
+    revertOnCrit: false
+    revertOnDeath: false
+    ignoreAllowRepeatedMorphs: true
+
+- type: polymorph
+  id: SlimeMutationFelinid
+  configuration:
+    entity: MobVulpkanin
+    forced: true
+    transferName: true
+    transferHumanoidAppearance: true
+    transferDamage: true
+    inventory: Transfer
+    revertOnCrit: false
+    revertOnDeath: false
+    ignoreAllowRepeatedMorphs: true
+
+- type: polymorph
+  id: SlimeMutationMoth
+  configuration:
+    entity: MobMoth
+    forced: true
+    transferName: true
+    transferHumanoidAppearance: true
+    transferDamage: true
+    inventory: Transfer
+    revertOnCrit: false
+    revertOnDeath: false
+    ignoreAllowRepeatedMorphs: true
+
+- type: polymorph
+  id: SlimeTransformationSlime
+  configuration:
+    entity: MobXenoSlime
+    forced: true
+    inventory: Drop
+    revertOnCrit: false
+    revertOnDeath: false
+    ignoreAllowRepeatedMorphs: true

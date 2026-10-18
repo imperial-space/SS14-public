@@ -1,0 +1,284 @@
+# Выращивание в чанах: инструменты, чашки Петри, чаны, микроскоп.
+
+# obj/item/swab
+- type: entity
+  id: VatSwab
+  parent: BaseItem
+  name: тампон
+  description: Кто-то использует их для других целей.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/vatgrowing.rsi
+    layers:
+    - state: swab
+    - state: swab_yellow
+      map: [ "sample" ]
+      visible: false
+  - type: Item
+    size: Tiny
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.VatGrowingVisuals.SampleColor:
+        sample:
+          none: { visible: false }
+          brown: { visible: true, state: swab_brown }
+          gray: { visible: true, state: swab_gray }
+          green: { visible: true, state: swab_green }
+          purple: { visible: true, state: swab_purple }
+          yellow: { visible: true, state: swab_yellow }
+  - type: VatSwab
+    canSwabObjects: true
+    canSwabMobs: false
+
+# obj/item/biopsy_tool
+- type: entity
+  id: VatBiopsyTool
+  parent: BaseItem
+  name: инструмент для биопсии
+  description: Используется для взятия клеточных линий у организмов. Не волнуйтесь, не больно.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/vatgrowing.rsi
+    layers:
+    - state: biopsy
+      map: [ "base" ]
+  - type: Item
+    size: Small
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.VatGrowingVisuals.SampleColor:
+        base:
+          none: { state: biopsy }
+          brown: { state: biopsy_full }
+          gray: { state: biopsy_full }
+          green: { state: biopsy_full }
+          purple: { state: biopsy_full }
+          yellow: { state: biopsy_full }
+  - type: VatSwab
+    canSwabObjects: false
+    canSwabMobs: true
+
+# obj/item/biopsy_tool/organ
+- type: entity
+  id: VatBiopsyToolOrgan
+  parent: VatBiopsyTool
+  name: инструмент для биопсии тканей
+  description: Используется для взятия клеточных линий у тканей органов и организмов. Не волнуйтесь, не больно.
+  components:
+  - type: Sprite
+    layers:
+    - state: biopsy_organ
+      map: [ "base" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.VatGrowingVisuals.SampleColor:
+        base:
+          none: { state: biopsy_organ }
+          brown: { state: biopsy_organ_full }
+          gray: { state: biopsy_organ_full }
+          green: { state: biopsy_organ_full }
+          purple: { state: biopsy_organ_full }
+          yellow: { state: biopsy_organ_full }
+  - type: VatSwab
+    canSwabObjects: true
+    canSwabMobs: true
+
+# obj/item/petri_dish
+- type: entity
+  id: VatPetriDish
+  parent: BaseItem
+  name: чашка Петри
+  description: От неё чувствуешь себя культурным.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/vatgrowing.rsi
+    layers:
+    - state: petri_dish
+    - state: petri_dish_overlay
+      map: [ "sample" ]
+      visible: false
+    - state: petri_dish_overlay2
+      map: [ "sample2" ]
+      visible: false
+  - type: Item
+    size: Tiny
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.VatGrowingVisuals.SampleColor:
+        sample:
+          none: { visible: false }
+          brown: { visible: true, color: "#91542d" }
+          gray: { visible: true, color: "#5e5856" }
+          green: { visible: true, color: "#98b944" }
+          purple: { visible: true, color: "#342941" }
+          yellow: { visible: true, color: "#c0b823" }
+        sample2:
+          none: { visible: false }
+          brown: { visible: true }
+          gray: { visible: true }
+          green: { visible: true }
+          purple: { visible: true }
+          yellow: { visible: true }
+  - type: VatPetriDish
+
+# obj/item/petri_dish/random
+- type: entity
+  id: VatPetriDishRandom
+  parent: VatPetriDish
+  name: чашка Петри с базовой пробой
+  components:
+  - type: VatPetriDish
+    randomSample: true
+
+# obj/machinery/vatgrower
+- type: entity
+  id: VatGrower
+  parent: [ BaseMachine, ConstructibleMachine ]
+  name: чан для выращивания
+  description: На вкус — как суп шеф-повара.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/vatgrowing.rsi
+    snapCardinals: true
+    layers:
+    - state: growing_vat
+    - state: growing_vat_reagent
+      map: [ "reagent" ]
+      visible: false
+    - state: growing_vat_bubbles
+      map: [ "bubbles" ]
+      visible: false
+    - state: growing_vat_off
+      map: [ "resampler" ]
+    - state: growing_vat_glow
+      shader: unshaded
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.VatGrowingVisuals.HasReagents:
+        reagent:
+          True: { visible: true }
+          False: { visible: false }
+      enum.VatGrowingVisuals.Growing:
+        bubbles:
+          True: { visible: true }
+          False: { visible: false }
+      enum.VatGrowingVisuals.Resampler:
+        resampler:
+          True: { state: growing_vat_on }
+          False: { state: growing_vat_off }
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: SolutionContainerManager
+    solutions:
+      vat:
+        maxVol: 300
+  - type: RefillableSolution
+    solution: vat
+  - type: DrainableSolution
+    solution: vat
+  - type: ExaminableSolution
+    solution: vat
+  - type: VatGrower
+  - type: Machine
+    board: VatGrowerMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+
+- type: entity
+  id: VatGrowerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: плата чана для выращивания
+  description: Плата машины чана для выращивания.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: VatGrower
+    stackRequirements:
+      Glass: 2
+      Steel: 2
+
+# obj/machinery/vatgrower/small
+- type: entity
+  id: VatGrowerSmall
+  parent: BaseItem
+  name: малый чан для выращивания
+  description: На вкус — как суп шеф-повара. Подходит для выращивания образцов тканей органов.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/vatgrowing.rsi
+    layers:
+    - state: growing_vat_small
+    - state: growing_vat_small_reagent
+      map: [ "reagent" ]
+      visible: false
+    - state: growing_vat_small_bubbles
+      map: [ "bubbles" ]
+      visible: false
+    - state: growing_vat_small_off
+      map: [ "resampler" ]
+  - type: Item
+    size: Normal
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.VatGrowingVisuals.HasReagents:
+        reagent:
+          True: { visible: true }
+          False: { visible: false }
+      enum.VatGrowingVisuals.Growing:
+        bubbles:
+          True: { visible: true }
+          False: { visible: false }
+      enum.VatGrowingVisuals.Resampler:
+        resampler:
+          True: { state: growing_vat_small_on }
+          False: { state: growing_vat_small_off }
+  - type: SolutionContainerManager
+    solutions:
+      vat:
+        maxVol: 50
+  - type: RefillableSolution
+    solution: vat
+  - type: DrainableSolution
+    solution: vat
+  - type: ExaminableSolution
+    solution: vat
+  - type: VatGrower
+    small: true
+
+# obj/structure/microscope
+- type: entity
+  id: VatMicroscope
+  parent: BaseItem
+  name: микроскоп
+  description: Хм, это смертельный вирус или просто пыль на линзе?
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/vatgrowing.rsi
+    state: microscope
+  - type: Item
+    size: Normal
+  - type: VatMicroscope
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: VatGrowerMachineCircuitboard
+  result: VatGrowerMachineCircuitboard
