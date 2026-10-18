@@ -1,7 +1,6 @@
 using Content.Server.Administration;
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
-using Content.Server.Imperial.Changeling;
 using Content.Shared.Administration;
 using Robust.Server.Player;
 using Robust.Shared.Console;
@@ -18,11 +17,10 @@ public sealed class MakeImperialAntagCommand : LocalizedCommands
 
     private static readonly EntProtoId CultRule = "Cult";
     private static readonly EntProtoId BlobRule = "Blob";
-    private static readonly EntProtoId ChangelingRule = "ImperialChangelingRule";
 
     public override string Command => "makeimperialantag";
-    public override string Description => "Make a player a cultist, blob, or changeling.";
-    public override string Help => "makeimperialantag <ckey> <cult|blob|changeling>";
+    public override string Description => "Make a player a cultist or blob.";
+    public override string Help => "makeimperialantag <ckey> <cult|blob>";
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
     {
@@ -38,10 +36,9 @@ public sealed class MakeImperialAntagCommand : LocalizedCommands
             return CompletionResult.FromHintOptions(
                 [
                     new CompletionOption("cult", "Make the player a cultist."),
-                    new CompletionOption("blob", "Make the player a blob."),
-                    new CompletionOption("changeling", "Make the player a changeling.")
+                    new CompletionOption("blob", "Make the player a blob.")
                 ],
-                "<cult|blob|changeling>");
+                "<cult|blob>");
         }
 
         return CompletionResult.Empty;
@@ -65,6 +62,11 @@ public sealed class MakeImperialAntagCommand : LocalizedCommands
 
         switch (args[1].ToLowerInvariant())
         {
+            case "changeling":
+                antag.ForceMakeAntag<Content.Server.Imperial.Changeling.ImperialChangelingRuleComponent>(player, "ImperialChangelingRule");
+                shell.WriteLine($"Made {player.Name} a changeling.");
+                break;
+
             case "cult":
                 antag.ForceMakeAntag<CultRuleComponent>(player, CultRule);
                 shell.WriteLine($"Made {player.Name} a cultist.");
@@ -73,11 +75,6 @@ public sealed class MakeImperialAntagCommand : LocalizedCommands
             case "blob":
                 antag.ForceMakeAntag<BlobRuleComponent>(player, BlobRule);
                 shell.WriteLine($"Made {player.Name} a blob.");
-                break;
-
-            case "changeling":
-                antag.ForceMakeAntag<ImperialChangelingRuleComponent>(player, ChangelingRule);
-                shell.WriteLine($"Made {player.Name} a changeling.");
                 break;
 
             default:
