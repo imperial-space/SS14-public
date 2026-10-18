@@ -34,6 +34,10 @@ public sealed partial class AssaultPodConsoleComponent : Component
     [DataField]
     public TimeSpan FlightTime = TimeSpan.FromSeconds(20);
 
+    /// <summary>false — экипаж выбирает только зону, а старт даёт сценарий (протокол «Эпсилон»).</summary>
+    [DataField]
+    public bool ManualLaunch = true;
+
     [ViewVariables]
     public EntityUid? Target;
 
@@ -53,6 +57,7 @@ public enum AssaultPodShipStyle : byte
     Syndicate,
     Ert,
     DeathSquad,
+    Epsilon,
 }
 
 /// <summary>
@@ -194,6 +199,7 @@ public sealed class AssaultPodShipSystem : EntitySystem
         {
             AssaultPodShipStyle.Ert => "assault-pod-ship-name-ert",
             AssaultPodShipStyle.DeathSquad => "assault-pod-ship-name-deathsquad",
+            AssaultPodShipStyle.Epsilon => "assault-pod-ship-name-epsilon",
             _ => "assault-pod-ship-name-syndicate",
         }));
 
@@ -201,6 +207,7 @@ public sealed class AssaultPodShipSystem : EntitySystem
         {
             AssaultPodShipStyle.Ert => ("WallShuttle", "FloorShuttleBlue", "AirlockCentralCommandLocked", "ImperialAssaultPodConsoleErt"),
             AssaultPodShipStyle.DeathSquad => ("WallPlastitanium", "FloorShuttleBlack", "AirlockCentralCommandLocked", "ImperialAssaultPodConsoleDeathSquad"),
+            AssaultPodShipStyle.Epsilon => ("WallPlastitanium", "FloorShuttleBlack", "AirlockCentralCommandLocked", "ImperialAssaultPodConsoleEpsilon"),
             _ => ("WallPlastitanium", "FloorShuttleRed", "AirlockShuttleSyndicate", "ImperialAssaultPodConsoleSyndicate"),
         };
 
@@ -297,6 +304,9 @@ public sealed class AssaultPodShipSystem : EntitySystem
 
     private void OnConsoleExamined(Entity<AssaultPodConsoleComponent> ent, ref ExaminedEvent args)
     {
+        if (!ent.Comp.ManualLaunch && ent.Comp.State == AssaultPodState.Ready)
+            args.PushMarkup(Loc.GetString("assault-pod-examine-scripted"));
+
         args.PushMarkup(ent.Comp.State == AssaultPodState.Landed
             ? Loc.GetString("assault-pod-examine-landed")
             : ent.Comp.TargetName == null
@@ -330,7 +340,7 @@ public sealed class AssaultPodShipSystem : EntitySystem
 
     private void OnConsoleAltVerbs(Entity<AssaultPodConsoleComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract || ent.Comp.State != AssaultPodState.Ready)
+        if (!args.CanAccess || !args.CanInteract || ent.Comp.State != AssaultPodState.Ready || !ent.Comp.ManualLaunch)
             return;
 
         var user = args.User;
@@ -389,6 +399,28 @@ public sealed class AssaultPodShipSystem : EntitySystem
         return launched > 0
             ? Loc.GetString("assault-pod-command-launched-all", ("count", launched))
             : Loc.GetString("assault-pod-command-no-console");
+    }
+
+    /// <summary>Старт по сценарию: зона — выбранная экипажем, иначе случайный маяк станции.</summary>
+    public bool ForceLaunch(Entity<AssaultPodConsoleComponent> ent)
+    {
+        if (ent.Comp.State != AssaultPodState.Ready)
+            return false;
+
+        if (ent.Comp.Target == null || TerminatingOrDeleted(ent.Comp.Target.Value))
+        {
+            var zones = _pods.GetLandingZones();
+            if (zones.Count == 0)
+                return false;
+
+            (ent.Comp.Target, ent.Comp.TargetName) = _random.Pick(zones);
+        }
+
+        ent.Comp.State = AssaultPodState.Launching;
+        ent.Comp.NextStage = _timing.CurTime + ent.Comp.Countdown;
+        _audio.PlayPvs(AlarmSound, ent);
+        _popup.PopupEntity(Loc.GetString("assault-pod-ship-countdown", ("seconds", (int) ent.Comp.Countdown.TotalSeconds)), ent, PopupType.LargeCaution);
+        return true;
     }
 
     private void StartLaunch(Entity<AssaultPodConsoleComponent> ent, EntityUid user)

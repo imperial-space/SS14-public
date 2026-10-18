@@ -435,7 +435,7 @@
   components:
   - type: SubdermalImplant
     implantComponents:
-    - type: ThermalSight
+    - type: ThermalEntityVision # термальное зрение TG: живые сквозь стены, а не температура воздуха
 
 - type: entity
   parent: ImperialAutosurgeonBase

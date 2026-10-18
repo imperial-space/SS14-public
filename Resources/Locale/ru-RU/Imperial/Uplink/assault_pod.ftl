@@ -17,6 +17,7 @@ assault-pod-command-dropped = Капсула летит к маяку «{ $zone 
 assault-pod-ship-name-syndicate = Штурмовой под «Стальной дождь»
 assault-pod-ship-name-ert = Десантный под ОБР
 assault-pod-ship-name-deathsquad = Десантный под эскадрона смерти
+assault-pod-ship-name-epsilon = Десантный под протокола «Эпсилон»
 assault-pod-ship-no-zone = Зона высадки не выбрана (ПКМ по консоли → «Зона высадки»).
 assault-pod-ship-launch-verb = Запустить под ({ $zone })
 assault-pod-ship-countdown = Штурмовой под стартует через { $seconds } с! Пристегнитесь!
@@ -24,3 +25,4 @@ assault-pod-command-ship = Штурмовой под создан: { $grid }.
 assault-pod-command-not-ready = Этот под уже запущен или приземлился.
 assault-pod-command-no-console = На этом гриде нет консоли штурмового пода.
 assault-pod-command-launched-all = Запущено подов: { $count }.
+assault-pod-examine-scripted = [color=darkviolet]Старт по сигналу Центрального командования. Выберите зону высадки.[/color]
