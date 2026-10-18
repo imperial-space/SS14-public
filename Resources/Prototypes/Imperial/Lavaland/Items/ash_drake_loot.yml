@@ -255,7 +255,7 @@
         Blunt: 15
         Heat: 15
     soundHit:
-      path: /Audio/Effects/burn.ogg
+      path: /Audio/Effects/sizzle.ogg
   - type: Gun
     fireRate: 0.5
     selectedMode: SemiAuto

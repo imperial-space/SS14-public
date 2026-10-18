@@ -80,10 +80,10 @@ public sealed class LavalandPlanetRuleSystem : GameRuleSystem<LavalandPlanetRule
         }
 
         if (comp.PrisonMap is { } prisonPath &&
-            _loader.TryLoadGrid(mapId, new ResPath(prisonPath), out var prisonGrid, opts, new Vector2(30f, 0f)) &&
+            _loader.TryLoadGrid(mapId, new ResPath(prisonPath), out var prisonGrid, opts, comp.PrisonOffset) &&
             prisonGrid.HasValue)
         {
-            placedBounds.Add(prisonGrid.Value.Comp.LocalAABB.Translated(new Vector2(30f, 0f)).Enlarged(5f));
+            placedBounds.Add(prisonGrid.Value.Comp.LocalAABB.Translated(comp.PrisonOffset).Enlarged(5f));
             structureGrids.Add(prisonGrid.Value.Owner);
         }
 

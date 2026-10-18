@@ -42,5 +42,5 @@ public sealed partial class OfferingSpikeComponent : Component
 
     /// <summary>Звук при появлении яйца.</summary>
     [DataField]
-    public SoundSpecifier EggSpawnSound = new SoundPathSpecifier("/Audio/Effects/biomass.ogg");
+    public SoundSpecifier EggSpawnSound = new SoundPathSpecifier("/Audio/Effects/gib1.ogg");
 }

@@ -11,7 +11,8 @@
     maxStructureDistance: 200
     borderRadius: 255
     recyclingOutpostMap: /Imperial/Lavaland/recycling-outpost.yml
-    prisonMap: /Imperial/Lavaland/prison.yml
+    prisonMap: /Maps/Imperial/Lavaland/labour_camp.yml
+    prisonOffset: 60,0
     shuttleMap: /Imperial/Lavaland/shutte.yml
     necroposisSpikePrototype: NecroposisSpikeImperial
     necroposisSpikeCount: 20
