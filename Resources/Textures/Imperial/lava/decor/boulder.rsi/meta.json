@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (ore.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "boulder_small"
+    },
+    {
+      "name": "boulder_medium"
+    },
+    {
+      "name": "boulder_large"
+    },
+    {
+      "name": "boulder_artifact"
+    },
+    {
+      "name": "stone_small"
+    },
+    {
+      "name": "stone_medium"
+    },
+    {
+      "name": "stone_large"
+    },
+    {
+      "name": "rock_small"
+    },
+    {
+      "name": "rock_medium"
+    },
+    {
+      "name": "rock_large"
+    },
+    {
+      "name": "boulder_platform",
+      "delays": [
+        [
+          1,
+          0.8
+        ]
+      ]
+    }
+  ]
+}
