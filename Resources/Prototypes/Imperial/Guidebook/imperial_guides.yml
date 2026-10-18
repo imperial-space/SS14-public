@@ -1,0 +1,101 @@
+# Руководство по механикам Империала. Корень оглавления: не входит в children ни одного раздела.
+
+- type: guideEntry
+  id: ImperialGuides
+  name: guide-entry-imperial-mechanics
+  text: "/ServerInfo/Imperial/Guidebook/Mechanics/ImperialGuides.xml"
+  priority: 1
+  children:
+  - ImperialGuideAntagonists
+  - ImperialGuideChaplain
+  - ImperialGuideXenobiology
+  - ImperialGuideReactors
+  - ImperialGuideStationGoals
+
+- type: guideEntry
+  id: ImperialGuideAntagonists
+  name: guide-entry-imperial-antagonists
+  text: "/ServerInfo/Imperial/Guidebook/Mechanics/Antagonists.xml"
+  children:
+  - ImperialGuideHeretic
+  - ImperialGuideBloodCult
+  - ImperialGuideContractor
+  - ImperialGuideTerrorSpiders
+
+- type: guideEntry
+  id: ImperialGuideHeretic
+  name: guide-entry-imperial-heretic
+  text: "/ServerInfo/Imperial/Guidebook/Mechanics/Heretic.xml"
+
+- type: guideEntry
+  id: ImperialGuideBloodCult
+  name: guide-entry-imperial-blood-cult
+  text: "/ServerInfo/Imperial/Guidebook/Mechanics/BloodCult.xml"
+
+- type: guideEntry
+  id: ImperialGuideContractor
+  name: guide-entry-imperial-contractor
+  text: "/ServerInfo/Imperial/Guidebook/Mechanics/Contractor.xml"
+
+- type: guideEntry
+  id: ImperialGuideTerrorSpiders
+  name: guide-entry-imperial-terror-spiders
+  text: "/ServerInfo/Imperial/Guidebook/Mechanics/TerrorSpiders.xml"
+
+- type: guideEntry
+  id: ImperialGuideChaplain
+  name: guide-entry-imperial-chaplain
+  text: "/ServerInfo/Imperial/Guidebook/Mechanics/Chaplain.xml"
+
+- type: guideEntry
+  id: ImperialGuideXenobiology
+  name: guide-entry-imperial-xenobiology
+  text: "/ServerInfo/Imperial/Guidebook/Mechanics/Xenobiology.xml"
+
+- type: guideEntry
+  id: ImperialGuideReactors
+  name: guide-entry-imperial-reactors
+  text: "/ServerInfo/Imperial/Guidebook/Mechanics/Reactors.xml"
+  children:
+  - ImperialGuideFission
+  - ImperialGuideHypertorus
+
+- type: guideEntry
+  id: ImperialGuideFission
+  name: guide-entry-imperial-fission
+  text: "/ServerInfo/Imperial/Guidebook/Mechanics/Fission.xml"
+
+- type: guideEntry
+  id: ImperialGuideHypertorus
+  name: guide-entry-imperial-hypertorus
+  text: "/ServerInfo/Imperial/Guidebook/Mechanics/Hypertorus.xml"
+
+- type: guideEntry
+  id: ImperialGuideStationGoals
+  name: guide-entry-imperial-station-goals
+  text: "/ServerInfo/Imperial/Guidebook/Mechanics/StationGoals.xml"
+  children:
+  - ImperialGuideDnaVault
+  - ImperialGuideBsa
+  - ImperialGuideBluespaceTap
+  - ImperialGuideMeteorShield
+
+- type: guideEntry
+  id: ImperialGuideDnaVault
+  name: guide-entry-imperial-dna-vault
+  text: "/ServerInfo/Imperial/Guidebook/Mechanics/DnaVault.xml"
+
+- type: guideEntry
+  id: ImperialGuideBsa
+  name: guide-entry-imperial-bsa
+  text: "/ServerInfo/Imperial/Guidebook/Mechanics/Bsa.xml"
+
+- type: guideEntry
+  id: ImperialGuideBluespaceTap
+  name: guide-entry-imperial-bluespace-tap
+  text: "/ServerInfo/Imperial/Guidebook/Mechanics/BluespaceTap.xml"
+
+- type: guideEntry
+  id: ImperialGuideMeteorShield
+  name: guide-entry-imperial-meteor-shield
+  text: "/ServerInfo/Imperial/Guidebook/Mechanics/MeteorShield.xml"
