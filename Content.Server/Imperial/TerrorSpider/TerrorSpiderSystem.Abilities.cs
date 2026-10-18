@@ -48,7 +48,7 @@ public sealed partial class TerrorSpiderSystem
     private const string CarriedContainer = "terror_spiderlings";
 
     private static readonly SoundSpecifier PrySound = new SoundPathSpecifier("/Audio/Machines/airlock_creaking.ogg");
-    private static readonly SoundSpecifier MeteorSound = new SoundPathSpecifier("/Audio/Effects/meteorimpact.ogg");
+    private static readonly SoundSpecifier MeteorSound = new SoundPathSpecifier("/Audio/Effects/explosion_small2.ogg");
 
     private void InitializeAbilities()
     {
