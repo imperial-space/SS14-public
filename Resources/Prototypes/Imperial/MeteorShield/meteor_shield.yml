@@ -198,7 +198,7 @@
   product: ImperialCrateMeteorShieldSatellites
   cost: 1500
   category: cargoproduct-category-name-engineering
-  group: market
+  group: ImperialCargo
 
 - type: cargoProduct
   id: ImperialSatelliteControlBoard
@@ -208,4 +208,4 @@
   product: ImperialCrateSatelliteControl
   cost: 2500
   category: cargoproduct-category-name-engineering
-  group: market
+  group: ImperialCargo
