@@ -1,0 +1,157 @@
+# Готовые болезни 1 в 1 с SS13 (code/datums/diseases).
+
+- type: disease
+  id: DiseaseCold
+  name: disease-cold-name
+  description: disease-cold-desc
+  agent: disease-agent-rhinovirus
+  maxStages: 3
+  severity: NonThreat
+  spread: Airborne, ContactFluids, ContactSkin, Blood
+  cures: [ Spaceacillin ]
+  requiredOrgan: Lungs
+  symptoms: [ SymptomSneeze ]
+
+- type: disease
+  id: DiseaseFlu
+  name: disease-flu-name
+  description: disease-flu-desc
+  agent: disease-agent-flu
+  maxStages: 3
+  severity: Minor
+  cureChance: 5
+  spread: Airborne, ContactFluids, ContactSkin, Blood
+  cures: [ Spaceacillin ]
+  requiredOrgan: Lungs
+  symptoms: [ SymptomCough ]
+
+- type: disease
+  id: DiseaseCold9
+  name: disease-cold9-name
+  description: disease-cold9-desc
+  agent: disease-agent-ice9
+  maxStages: 3
+  severity: Harmful
+  spread: ContactSkin, ContactFluids, Blood
+  cures: [ Spaceacillin ]
+  requiredOrgan: Lungs
+  symptoms: [ SymptomChills, SymptomSneeze ]
+
+- type: disease
+  id: DiseaseSpanishFlu
+  name: disease-spanish-flu-name
+  description: disease-spanish-flu-desc
+  agent: disease-agent-spanish-flu
+  maxStages: 3
+  severity: Dangerous
+  cureChance: 5
+  spread: Airborne, ContactFluids, ContactSkin, Blood
+  cures: [ Spaceacillin ]
+  requiredOrgan: Lungs
+  symptoms: [ SymptomCough, SymptomFever ]
+
+- type: disease
+  id: DiseaseBrainrot
+  name: disease-brainrot-name
+  description: disease-brainrot-desc
+  agent: disease-agent-cryptococcus
+  maxStages: 4
+  severity: Harmful
+  cureChance: 7.5
+  spread: ContactSkin, ContactFluids, Blood
+  cures: [ Cognizine ]
+  requiredOrgan: Brain
+  bypassesImmunity: true
+  symptoms: [ SymptomConfusion, SymptomHeadache ]
+
+- type: disease
+  id: DiseaseBeesease
+  name: disease-beesease-name
+  description: disease-beesease-desc
+  agent: disease-agent-apidae
+  maxStages: 4
+  severity: Medium
+  spread: ContactSkin, ContactFluids, Blood
+  cures: [ Sugar ]
+  symptoms: [ SymptomItching, SymptomVomiting ]
+
+- type: disease
+  id: DiseaseAnxiety
+  name: disease-anxiety-name
+  description: disease-anxiety-desc
+  agent: disease-agent-lepidopticides
+  maxStages: 4
+  severity: Minor
+  spread: ContactSkin, ContactFluids, Blood
+  cures: [ Ethanol ]
+  symptoms: [ SymptomHeadache ]
+
+- type: disease
+  id: DiseaseTuberculosis
+  name: disease-tuberculosis-name
+  description: disease-tuberculosis-desc
+  agent: disease-agent-tuberculosis
+  maxStages: 5
+  severity: Biohazard
+  stageProbability: 1
+  cureChance: 2
+  spread: Airborne, ContactFluids, ContactSkin, Blood
+  cures: [ Spaceacillin, Dylovene ]
+  requiredOrgan: Lungs
+  symptoms: [ SymptomCough, SymptomFever, SymptomWeightLoss, SymptomAsphyxiation ]
+
+- type: disease
+  id: DiseaseGbs
+  name: disease-gbs-name
+  description: disease-gbs-desc
+  agent: disease-agent-gbs
+  maxStages: 5
+  severity: Biohazard
+  spread: ContactSkin, ContactFluids, Blood
+  cures: [ Synaptizine, Sulfur ]
+  symptoms: [ SymptomVomiting, SymptomFleshEating, SymptomConfusion ]
+
+- type: disease
+  id: DiseaseRetrovirus
+  name: disease-retrovirus-name
+  description: disease-retrovirus-desc
+  agent: disease-agent-retrovirus
+  maxStages: 4
+  severity: Medium
+  spread: ContactSkin, ContactFluids, Blood
+  cures: [ Mutadone ]
+  bypassesImmunity: true
+  symptoms: [ SymptomGeneticMutation ]
+
+- type: disease
+  id: DiseasePierrotThroat
+  name: disease-pierrot-throat-name
+  description: disease-pierrot-throat-desc
+  agent: disease-agent-honk
+  maxStages: 3
+  severity: Minor
+  spread: Airborne, ContactFluids, ContactSkin, Blood
+  cures: [ Ethanol ]
+  symptoms: [ SymptomVoiceChange ]
+
+- type: disease
+  id: DiseaseMagnitis
+  name: disease-magnitis-name
+  description: disease-magnitis-desc
+  agent: disease-agent-magnitis
+  maxStages: 4
+  severity: Medium
+  spread: ContactSkin, ContactFluids, Blood
+  cures: [ Iron ]
+  symptoms: [ SymptomItching ]
+
+- type: disease
+  id: DiseaseWizarditis
+  name: disease-wizarditis-name
+  description: disease-wizarditis-desc
+  agent: disease-agent-wizarditis
+  maxStages: 4
+  severity: Minor
+  spread: ContactSkin, ContactFluids, Blood
+  cures: [ Holywater ]
+  symptoms: [ SymptomHallucigen ]
