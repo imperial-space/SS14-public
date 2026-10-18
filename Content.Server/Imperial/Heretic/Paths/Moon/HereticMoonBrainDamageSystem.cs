@@ -1,3 +1,14 @@
+using Content.Shared.Imperial.Heretic.Rituals;
+using Content.Shared.Imperial.Heretic.Paths.Void;
+using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
+using Content.Shared.Imperial.Heretic.Items;
+using Content.Shared.Imperial.Heretic.Effects;
+using Content.Server.Imperial.Heretic;
+using Content.Server.Imperial.Heretic.Effects;
+using Content.Server.Imperial.Heretic.Items;
+using Content.Server.Imperial.Heretic.Paths.Moon;
+using Content.Server.Imperial.Heretic.Paths.Moon.Parade;
+using Content.Server.Imperial.Heretic.Paths.Void;
 using Content.Server.Popups;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
@@ -21,14 +32,17 @@ public sealed class HereticMoonBrainDamageSystem : EntitySystem
     /// <summary>
     /// Наносит урон по мозгу еретика Пути Луны.
     /// isCasterCapped=true — кастер, урон ограничен CasterCap=140.
+    /// ignoreMoonProtection=true — пассивка Луны не спасает: так работает Блистательное облачение,
+    /// в котором смерть мозга обязана добивать носителя.
     /// </summary>
-    public void AddBrainDamage(EntityUid target, float amount, bool isCasterCapped = false)
+    public void AddBrainDamage(EntityUid target, float amount, bool isCasterCapped = false, bool ignoreMoonProtection = false)
     {
         if (!TryComp<HereticMoonBrainDamageComponent>(target, out var comp))
             comp = AddComp<HereticMoonBrainDamageComponent>(target);
 
         // Level 1: Moon-еретик защищён от смерти мозга и галлюцинаций
-        var isMoonProtected = TryComp<HereticComponent>(target, out var heretic) &&
+        var isMoonProtected = !ignoreMoonProtection &&
+                              TryComp<HereticComponent>(target, out var heretic) &&
                               heretic.CurrentPath == HereticPath.Moon &&
                               heretic.PassiveLevel >= 1;
         if (isMoonProtected)
@@ -52,9 +66,15 @@ public sealed class HereticMoonBrainDamageSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("heretic-moon-brain-high"), target, target, PopupType.LargeCaution);
         }
 
-        // Порог 200 — смерть мозга (только для цели, не кастера)
-        if (!isCasterCapped && comp.BrainDamage >= HereticMoonBrainDamageComponent.MaxBrainDamage)
+        // Порог 200 — смерть мозга (только для цели, не кастера).
+        // TRAIT_BRAIN_DAMAGE_NODEATH: в Блистательном облачении добивает сама роба,
+        // иначе её же конвертация урона загонит нас в рекурсию.
+        if (!isCasterCapped
+            && !comp.DeathTriggered
+            && !HasComp<HereticGlitteringArrayEquippedComponent>(target)
+            && comp.BrainDamage >= HereticMoonBrainDamageComponent.MaxBrainDamage)
         {
+            comp.DeathTriggered = true;
             _popup.PopupEntity(Loc.GetString("heretic-moon-brain-death"), target, target, PopupType.LargeCaution);
             var deathDmg = new DamageSpecifier();
             deathDmg.DamageDict["Cellular"] = FixedPoint2.New(200);

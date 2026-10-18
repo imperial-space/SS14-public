@@ -1,3 +1,16 @@
+using Content.Shared.Imperial.Heretic.Core;
+using Content.Shared.Imperial.Heretic.Effects;
+using Content.Shared.Imperial.Heretic.Items;
+using Content.Shared.Imperial.Heretic.Paths.Moon;
+using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
+using Content.Shared.Imperial.Heretic.Paths.Void;
+using Content.Shared.Imperial.Heretic.Rituals;
+using Content.Server.Imperial.Heretic;
+using Content.Server.Imperial.Heretic.Effects;
+using Content.Server.Imperial.Heretic.Items;
+using Content.Server.Imperial.Heretic.Paths.Moon;
+using Content.Server.Imperial.Heretic.Paths.Moon.Parade;
+using Content.Server.Imperial.Heretic.Paths.Void;
 using Content.Shared.Clothing;
 using Content.Shared.IdentityManagement;
 using Content.Shared.IdentityManagement.Components;
@@ -24,7 +37,7 @@ public sealed class HereticShiftingGuiseSystem : EntitySystem
     private void OnEquipped(Entity<HereticShiftingGuiseComponent> ent, ref ClothingGotEquippedEvent args)
     {
         var footstep = EnsureComp<FootstepModifierComponent>(args.Wearer);
-        footstep.FootstepSoundCollection = new SoundPathSpecifier("/Audio/Effects/thud.ogg", AudioParams.Default.WithVolume(-100f));
+        footstep.FootstepSoundCollection = new SoundPathSpecifier("/Audio/Effects/thudswoosh.ogg", AudioParams.Default.WithVolume(-100f));
         Dirty(args.Wearer, footstep);
         _identity.QueueIdentityUpdate(args.Wearer);
     }

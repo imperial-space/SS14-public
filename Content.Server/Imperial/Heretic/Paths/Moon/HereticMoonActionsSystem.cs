@@ -111,6 +111,9 @@ public sealed class HereticMoonActionsSystem : EntitySystem
     [Dependency] private readonly HereticMoonBrainDamageSystem _brainDamage = default!;
     [Dependency] private readonly VisualBodySystem _visualBody = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly HereticLunaticSystem _lunatic = default!;
+    [Dependency] private readonly Content.Server.Mind.MindSystem _mind = default!;
+    [Dependency] private readonly Content.Server.Imperial.Antimagic.ImperialAntimagicSystem _antimagic = default!;
 
     public override void Initialize()
     {
@@ -161,13 +164,16 @@ public sealed class HereticMoonActionsSystem : EntitySystem
         _brainDamage.AddBrainDamage(target, 30f, isCasterCapped: false);
 
         // SS13 duration formula: ((SANITY_MAXIMUM - sanity) / (SANITY_MAXIMUM - SANITY_INSANE)) * 15s + 1s
-        // SANITY_MAXIMUM=150, SANITY_INSANE=40 → divisor = 110
-        var durationSecs = Math.Clamp((150f - targetSanity) / 110f * 15f + 1f, 1f, 16f);
+        // SANITY_MAXIMUM=150, SANITY_INSANE=0 → divisor = 150
+        var durationSecs = Math.Clamp((150f - targetSanity) / 150f * 15f + 1f, 1f, 16f);
         var duration = TimeSpan.FromSeconds(durationSecs);
 
         // SS13: cast_on.adjust_temp_blindness(duration) + cast_on.adjust_silence(duration)
         _statusEffects.TryAddStatusEffect<TemporaryBlindnessComponent>(target, TemporaryBlindnessSystem.BlindingStatusEffect, duration, true);
         _statusEffects.TryAddStatusEffect<MutedComponent>(target, "Muted", duration, true);
+
+        // SS13: cast_on.sound_damage(0, mind_gate_duration) — цель ещё и глохнет.
+        _hereticEffects.ApplyDeafness(target, duration);
 
         // SS13: cast_on.adjust_confusion(10 SECONDS) — insanity is the closest SS14 analog
         _hereticEffects.ApplyInsanity(target, TimeSpan.FromSeconds(10));
@@ -178,9 +184,12 @@ public sealed class HereticMoonActionsSystem : EntitySystem
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_curse.ogg"), uid);
 
-        // Level 3: Gate усиливает амулет — canal_amulet на цель
-        if (TryComp<HereticComponent>(uid, out var gateHeretic) && gateHeretic.PassiveLevel >= 3)
-            _moonAmulet.ApplyChannelAmulet(uid, target, targetBrain);
+        // our_passive?.amulet: проводят либо надетый амулет, либо встроенный на 3 уровне пассивки.
+        if (TryComp<HereticComponent>(uid, out var gateHeretic)
+            && (gateHeretic.PassiveLevel >= 3 || HasComp<HereticMoonAmuletEquippedComponent>(uid)))
+        {
+            _moonAmulet.ChannelAmulet(uid, target);
+        }
     }
 
     private void OnPathAscended(ref HereticPathAscendedEvent args)
@@ -189,83 +198,42 @@ public sealed class HereticMoonActionsSystem : EntitySystem
             return;
 
         var uid = args.Heretic;
-        var coords = Transform(uid).Coordinates;
+        // ultimate/moon_final/on_finished_recipe(): еретик становится Постановщиком.
+        _lunatic.MakeMaster(uid);
 
-        // Взрыв разума в радиусе 8f
-        var headExplosionDmg = new DamageSpecifier();
-        headExplosionDmg.DamageDict["Cellular"] = FixedPoint2.New(30);
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 8f))
-        {
-            if (ent.Owner == uid)
-                continue;
-            _statusEffects.TryAddStatusEffect<TemporaryBlindnessComponent>(ent.Owner, TemporaryBlindnessSystem.BlindingStatusEffect, TimeSpan.FromSeconds(8), true);
-            if (HasComp<MindShieldComponent>(ent.Owner))
-                _damage.TryChangeDamage(ent.Owner, headExplosionDmg, ignoreResistances: false);
-            else
-                _hereticEffects.ApplyInsanity(ent.Owner, TimeSpan.FromSeconds(90));
-        }
-
-        // SS13 on_gain: немедленно конвертировать ~20% живого экипажа по всей станции
-        var eligibleCrew = new List<EntityUid>();
-        var crewQuery = EntityQueryEnumerator<MobStateComponent>();
-        while (crewQuery.MoveNext(out var mobUid, out var mobState))
+        // Примерно пятая часть станции встаёт лунатиками на сторону еретика.
+        var candidates = new List<EntityUid>();
+        var crewQuery = EntityQueryEnumerator<HumanoidProfileComponent, MobStateComponent>();
+        while (crewQuery.MoveNext(out var mobUid, out _, out var mobState))
         {
             if (mobUid == uid)
                 continue;
             if (!_mobs.IsAlive(mobUid, mobState))
                 continue;
-            if (HasComp<HereticComponent>(mobUid))
+            if (!_mind.TryGetMind(mobUid, out _, out var mobMind) || mobMind.UserId == null)
                 continue;
-            if (HasComp<HereticMoonConvertedComponent>(mobUid))
+            if (_antimagic.CanBlockMagic(mobUid))
                 continue;
-            if (HasComp<MindShieldComponent>(mobUid))
+            if (Transform(mobUid).MapID != Transform(uid).MapID)
                 continue;
-            eligibleCrew.Add(mobUid);
-        }
-        var convertCount = Math.Max(1, eligibleCrew.Count / 5);
-        _random.Shuffle(eligibleCrew);
-        for (var i = 0; i < Math.Min(convertCount, eligibleCrew.Count); i++)
-        {
-            var target = eligibleCrew[i];
-            _moonAmulet.TryMoonConvert(target, 0f);
-            Spawn("HereticMoonAmulet", Transform(target).Coordinates);
+            candidates.Add(mobUid);
         }
 
-        if (TryComp<HumanoidProfileComponent>(uid, out var ascHumanoid) &&
-            _prototype.Resolve(ascHumanoid.Species, out var ascSpeciesProto))
+        _random.Shuffle(candidates);
+        var maxLunatics = (int) Math.Ceiling(candidates.Count * 0.2);
+        var lunatics = 0;
+        foreach (var crewmate in candidates)
         {
-            var casterMeta = MetaData(uid);
-            for (var i = 0; i < 5; i++)
+            if (lunatics > maxLunatics)
             {
-                var illusionAngle = _random.NextFloat(0f, MathF.PI * 2f);
-                var illusionDist = _random.NextFloat(1f, 5f);
-                var illusionOffset = new Vector2(MathF.Cos(illusionAngle) * illusionDist, MathF.Sin(illusionAngle) * illusionDist);
-                var illusion = Spawn(ascSpeciesProto.Prototype, coords.Offset(illusionOffset));
-                _visualBody.CopyAppearanceFrom(uid, illusion);
-                var illusionCoords = Transform(illusion).Coordinates;
-                var slotEnum = _inventory.GetSlotEnumerator(uid);
-                while (slotEnum.NextItem(out var item, out var slot))
-                {
-                    var protoId = MetaData(item).EntityPrototype?.ID;
-                    if (protoId == null)
-                        continue;
-                    var copy = Spawn(protoId, illusionCoords);
-                    _inventory.TryEquip(illusion, copy, slot.Name, silent: true);
-                }
-                RemComp<DamageableComponent>(illusion);
-                RemComp<MindContainerComponent>(illusion);
-                RemComp<SSDIndicatorComponent>(illusion);
-                RemComp<InputMoverComponent>(illusion);
-                RemComp<MobMoverComponent>(illusion);
-                _visibility.SetLayer(illusion, (ushort)VisibilityFlags.HereticIllusion);
-                EnsureComp<TimedDespawnComponent>(illusion).Lifetime = 30f;
-                EnsureComp<HereticMoonIllusionComponent>(illusion);
-                EnsureComp<HereticMoonIllusionMovementComponent>(illusion);
-                EnsureComp<CanMoveInAirComponent>(illusion);
-                _metaData.SetEntityName(illusion, casterMeta.EntityName);
-                _metaData.SetEntityDescription(illusion, casterMeta.EntityDescription);
+                _popup.PopupEntity(Loc.GetString("lunatic-convert-uneasy"), crewmate, crewmate, PopupType.MediumCaution);
+                continue;
             }
+
+            if (_lunatic.TryConvertWithAmulet(crewmate, uid))
+                lunatics++;
         }
+
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Heretic/ascend_moon.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-ascension-moon"), uid, uid, PopupType.Large);
         EnsureComp<HereticMoonAscendedComponent>(uid);

@@ -519,9 +519,10 @@ public sealed partial class HereticSystem
                     var lunacy = EnsureComp<HereticGraspLunacyStealthComponent>(heretic);
                     lunacy.EndTime = _timing.CurTime + lunacy.Duration;
 
-                    // Цель: галлюцинации 20 сек + -30 рассудка
-                    _hereticEffects.ApplyHallucination(target, TimeSpan.FromSeconds(20));
-                    _moonBrainDamage.AddBrainDamage(target, 30f);
+                    // base_moon/on_mansus_grasp(): delusion/preset/moon (15с) и adjust_sanity(-30).
+                    _hereticEffects.ApplyMoonDelusion(target, TimeSpan.FromSeconds(15));
+                    var moonBrain = EnsureComp<HereticMoonBrainDamageComponent>(target);
+                    moonBrain.Sanity = Math.Max(0f, moonBrain.Sanity - 30f);
                     _marks.Refresh(EnsureComp<MoonMarkComponent>(target));
                     _popup.PopupEntity(Loc.GetString("heretic-grasp-mark-moon"), target, target, PopupType.SmallCaution);
                     break;

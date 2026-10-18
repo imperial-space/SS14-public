@@ -153,7 +153,8 @@ public sealed class HereticVoidActionsSystem : EntitySystem
         var dmg = new DamageSpecifier();
         dmg.DamageDict["Blunt"] = FixedPoint2.New(30);
 
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 3f))
+        // aoe_radius = 2
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 2f))
         {
             if (ent.Owner == uid)
                 continue;
@@ -188,21 +189,20 @@ public sealed class HereticVoidActionsSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("heretic-void-pull-activate"), uid, uid, PopupType.Medium);
     }
 
+    /// <summary>
+    /// conjure/void_conduit: spell_requirements = NONE — фокус не нужен,
+    /// summon_radius = 0 — врата открываются прямо на клетке еретика.
+    /// </summary>
     private void OnVoidConduit(EntityUid uid, HereticComponent comp, HereticVoidConduitActionEvent args)
     {
         if (args.Handled)
             return;
-        if (!_heretic.HasFocus(uid, comp))
-        {
-            _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
-            return;
-        }
-
         args.Handled = true;
 
-        _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_cloth_rip.ogg"), uid);
+        _chat.TrySendInGameICMessage(uid, Loc.GetString("heretic-incantation-void-conduit"), InGameICChatType.Speak, false, ignoreActionBlocker: true);
+        // conjure/void_conduit: sound = null — у самих врат свой гул.
 
-        var conduit = Spawn("HereticVoidConduit", _xform.ToMapCoordinates(args.Target));
+        var conduit = Spawn("HereticVoidConduit", _xform.GetMapCoordinates(uid));
         if (TryComp<HereticVoidConduitComponent>(conduit, out var conduitComp))
             conduitComp.Caster = uid;
 
@@ -218,12 +218,17 @@ public sealed class HereticVoidActionsSystem : EntitySystem
         if (comp.CurrentPath != HereticPath.Void)
             return;
 
-        var hasUpgrade = _heretic.HasKnowledge(comp, "KnowledgeVoidBladeUpgrade");
+        // Холод клинок накладывает только после улучшения «Ищущий клинок».
+        if (!_heretic.HasKnowledge(comp, "KnowledgeVoidBladeUpgrade"))
+            return;
+
         foreach (var target in args.HitEntities)
         {
+            if (target == args.User)
+                continue;
             if (HasComp<HereticComponent>(target))
                 continue;
-            _hereticEffects.ApplyVoidChill(target, hasUpgrade ? 2 : 1);
+            _hereticEffects.ApplyVoidChill(target, 2);
         }
     }
 
@@ -345,6 +350,21 @@ public sealed class HereticVoidActionsSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("heretic-focus-required"), uid, uid, PopupType.Medium);
             return;
         }
+        // Заклинание наводится на одну цель: pointed/void_prison.
+        var victim = args.Target;
+        if (!HasComp<MobStateComponent>(victim) || victim == uid)
+            return;
+
+        if (HasComp<HereticComponent>(victim) || _mobs.IsDead(victim))
+            return;
+
+        if (_antimagic.CanBlockMagic(victim))
+        {
+            _popup.PopupEntity(Loc.GetString("heretic-void-prison-blocked"), victim, PopupType.MediumCaution);
+            args.Handled = true;
+            return;
+        }
+
         args.Handled = true;
 
         var coords = Transform(uid).Coordinates;
@@ -352,18 +372,7 @@ public sealed class HereticVoidActionsSystem : EntitySystem
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/glass_break3.ogg"), coords);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Magic/Eldritch/voidblink.ogg"), coords);
 
-        var targetCoords = _xform.GetMapCoordinates(args.Target);
-        var victims = _lookup.GetEntitiesInRange<MobStateComponent>(targetCoords, 3f);
-        foreach (var victim in victims)
-        {
-            if (HasComp<HereticComponent>(victim))
-                continue;
-            if (_antimagic.CanBlockMagic(victim))
-                continue;
-            if (_mobs.IsDead(victim))
-                continue;
-            _voidPrison.ApplyVoidPrison(victim);
-        }
+        _voidPrison.ApplyVoidPrison(victim);
 
         _popup.PopupEntity(Loc.GetString("heretic-void-prison"), uid, uid, PopupType.Medium);
     }

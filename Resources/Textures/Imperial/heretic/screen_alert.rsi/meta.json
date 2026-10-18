@@ -1,7 +1,7 @@
-﻿{
+{
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from tgstation (https://github.com/tgstation/tgstation), licensed under CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation (https://github.com/tgstation/tgstation), licensed under CC-BY-SA-3.0; moon_insanity from BandaStation",
     "size": {
         "x": 32,
         "y": 32
@@ -9,6 +9,9 @@
     "states": [
         {
             "name": "realignment"
+        },
+        {
+            "name": "moon_insanity"
         }
     ]
 }

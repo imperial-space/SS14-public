@@ -555,10 +555,8 @@
     background:
       sprite: Imperial/heretic/actions_ecult.rsi
       state: bg_heretic
-  - type: TargetAction
-    checkCanAccess: false
-    range: 7
-  - type: WorldTargetAction
+  # conjure/void_conduit: врата встают прямо под еретиком, прицеливания нет.
+  - type: InstantAction
     event: !type:HereticVoidConduitActionEvent {}
 
 - type: entity
@@ -601,7 +599,7 @@
       state: bg_heretic
   - type: TargetAction
     checkCanAccess: false
-    range: 5
+    range: 3
   - type: EntityTargetAction
     event: !type:HereticVoidPrisonActionEvent {}
 

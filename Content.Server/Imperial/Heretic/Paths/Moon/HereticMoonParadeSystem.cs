@@ -1,9 +1,21 @@
-using System.Numerics;
+using Content.Server.Imperial.Heretic;
 using Content.Server.Imperial.Heretic.Effects;
+using Content.Server.Imperial.Heretic.Items;
+using Content.Server.Imperial.Heretic.Paths.Moon;
+using Content.Server.Imperial.Heretic.Paths.Moon.Parade;
+using Content.Server.Imperial.Heretic.Paths.Void;
+using System.Numerics;
+using Content.Server.Chat.Systems;
+using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Imperial.Heretic.Core;
+using Content.Shared.Imperial.Heretic.Effects;
+using Content.Shared.Imperial.Heretic.Items;
 using Content.Shared.Imperial.Heretic.Paths.Moon;
+using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
+using Content.Shared.Imperial.Heretic.Paths.Void;
+using Content.Shared.Imperial.Heretic.Rituals;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Audio;
@@ -17,11 +29,12 @@ namespace Content.Server.Imperial.Heretic.Paths.Moon;
 
 public sealed class HereticMoonParadeSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly ChatSystem                  _chat           = default!;
+    [Dependency] private readonly SharedAudioSystem          _audio          = default!;
+    [Dependency] private readonly SharedPhysicsSystem        _physics        = default!;
+    [Dependency] private readonly SharedTransformSystem      _xform          = default!;
     [Dependency] private readonly HereticStatusEffectsSystem _hereticEffects = default!;
-    [Dependency] private readonly MobStateSystem _mobs = default!;
+    [Dependency] private readonly MobStateSystem             _mobs           = default!;
     [Dependency] private readonly ImperialAntimagicSystem _antimagic = default!;
 
     public override void Initialize()
@@ -34,8 +47,7 @@ public sealed class HereticMoonParadeSystem : EntitySystem
 
     private void OnMoonParade(EntityUid uid, HereticComponent comp, HereticMoonParadeActionEvent args)
     {
-        if (args.Handled)
-            return;
+        if (args.Handled) return;
         args.Handled = true;
 
         var originWorldPos = _xform.GetWorldPosition(uid);
@@ -62,35 +74,35 @@ public sealed class HereticMoonParadeSystem : EntitySystem
         switch (args.OurFixtureId)
         {
             case "mob_sensor":
-                if (args.OtherEntity == comp.Shooter)
-                    return;
-                if (!HasComp<MobStateComponent>(args.OtherEntity))
-                    return;
-                if (HasComp<HereticComponent>(args.OtherEntity))
-                    return;
-                if (_antimagic.CanBlockMagic(args.OtherEntity))
-                    return;
-                if (!comp.MobsHit.Add(args.OtherEntity))
-                    return;
+                if (args.OtherEntity == comp.Shooter) return;
+                if (!HasComp<MobStateComponent>(args.OtherEntity)) return;
+                if (HasComp<HereticComponent>(args.OtherEntity)) return;
+                // Лунатики своего Постановщика парад пропускает насквозь.
+                if (TryComp<LunaticComponent>(args.OtherEntity, out var lunatic) && lunatic.Master == comp.Shooter) return;
+                if (_antimagic.CanBlockMagic(args.OtherEntity)) return;
 
-                // Leash: жертва тянется за снарядом на 20 секунд
-                var leash = EnsureComp<HereticMoonParadeLeashComponent>(args.OtherEntity);
-                leash.Projectile = uid;
-                leash.TimeRemaining = 20f;
-                leash.DamageAccumulated = 0f;
+                // was_hit_already(): в парад затягивают с первого попадания,
+                // но рассудок снаряд выедает каждым касанием.
+                if (comp.MobsHit.Add(args.OtherEntity))
+                {
+                    var leash = EnsureComp<HereticMoonParadeLeashComponent>(args.OtherEntity);
+                    leash.Projectile = uid;
+                    leash.TimeRemaining = 20f;
+                    leash.DamageAccumulated = 0f;
+                }
 
-                // Рассудок -20 + галлюцинации
                 if (!TryComp<HereticMoonBrainDamageComponent>(args.OtherEntity, out var brainComp))
                     brainComp = AddComp<HereticMoonBrainDamageComponent>(args.OtherEntity);
                 brainComp.Sanity = Math.Max(0f, brainComp.Sanity - 20f);
-                _hereticEffects.ApplyHallucination(args.OtherEntity, TimeSpan.FromSeconds(20));
+                // delusion/preset/moon на каждое касание.
+                _hereticEffects.ApplyMoonDelusion(args.OtherEntity, TimeSpan.FromSeconds(15));
                 break;
 
             case "wall_stop":
                 if (!TryComp<PhysicsComponent>(uid, out var physics)) { QueueDel(uid); return; }
 
-                var velocity = _physics.GetMapLinearVelocity(uid, component: physics);
-                var normal = args.WorldNormal;
+                var velocity  = _physics.GetMapLinearVelocity(uid, component: physics);
+                var normal    = args.WorldNormal;
                 var reflected = velocity - 2f * Vector2.Dot(velocity, normal) * normal;
 
                 _physics.SetLinearVelocity(uid, reflected, body: physics);
@@ -105,14 +117,12 @@ public sealed class HereticMoonParadeSystem : EntitySystem
 
     private void OnLeashDamage(EntityUid uid, HereticMoonParadeLeashComponent comp, DamageChangedEvent args)
     {
-        if (!args.DamageIncreased || args.DamageDelta == null)
-            return;
+        if (!args.DamageIncreased || args.DamageDelta == null) return;
 
         // Снимаем leash при получении 50+ урона с момента захвата
         foreach (var val in args.DamageDelta.DamageDict.Values)
         {
-            if (val > 0)
-                comp.DamageAccumulated += val.Float();
+            if (val > 0) comp.DamageAccumulated += val.Float();
         }
         if (comp.DamageAccumulated >= HereticMoonParadeLeashComponent.DamageThreshold)
             RemComp<HereticMoonParadeLeashComponent>(uid);
@@ -148,8 +158,8 @@ public sealed class HereticMoonParadeSystem : EntitySystem
 
             // Тянем жертву к снаряду
             var victimPos = _xform.GetWorldPosition(uid);
-            var projPos = _xform.GetWorldPosition(leash.Projectile);
-            var dir = projPos - victimPos;
+            var projPos   = _xform.GetWorldPosition(leash.Projectile);
+            var dir       = projPos - victimPos;
 
             if (dir.LengthSquared() < 0.25f)
                 continue;

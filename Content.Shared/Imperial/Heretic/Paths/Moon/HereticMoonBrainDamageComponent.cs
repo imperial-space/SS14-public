@@ -24,4 +24,8 @@ public sealed partial class HereticMoonBrainDamageComponent : Component
 
     [DataField]
     public bool HighThresholdMessageSent = false;
+
+    /// <summary>Смерть мозга уже срабатывала: добивать второй раз не нужно.</summary>
+    [DataField]
+    public bool DeathTriggered = false;
 }

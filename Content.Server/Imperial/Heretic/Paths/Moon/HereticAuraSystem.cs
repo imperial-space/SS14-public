@@ -1,16 +1,34 @@
+using Content.Server.Imperial.Heretic;
 using Content.Server.Imperial.Heretic.Effects;
-using Content.Server.Popups;
+using Content.Server.Imperial.Heretic.Items;
+using Content.Server.Imperial.Heretic.Paths.Moon;
+using Content.Server.Imperial.Heretic.Paths.Moon.Parade;
+using Content.Server.Imperial.Heretic.Paths.Void;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Eye.Blinding.Components;
+using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.FixedPoint;
+using Content.Shared.Gibbing;
+using Content.Shared.Humanoid;
+using Content.Shared.Imperial.Cult.Components;
+using Content.Shared.Mobs.Systems;
+using Robust.Shared.Random;
+using Robust.Shared.Timing;
 using Content.Shared.Imperial.Heretic.Core;
+using Content.Shared.Imperial.Heretic.Effects;
 using Content.Shared.Imperial.Heretic.Items;
 using Content.Shared.Imperial.Heretic.Paths.Moon;
+using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
+using Content.Shared.Imperial.Heretic.Paths.Void;
+using Content.Shared.Imperial.Heretic.Rituals;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Mobs.Components;
+using Content.Server.Popups;
 using Content.Shared.Popups;
+using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -19,18 +37,28 @@ namespace Content.Server.Imperial.Heretic.Paths.Moon;
 
 public sealed class HereticAuraSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly HereticSystem _heretic = default!;
-    [Dependency] private readonly HereticMoonAmuletSystem _moonAmulet = default!;
+    [Dependency] private readonly DamageableSystem          _damage        = default!;
+    [Dependency] private readonly EntityLookupSystem        _lookup        = default!;
+    [Dependency] private readonly HereticSystem             _heretic       = default!;
+    [Dependency] private readonly HereticMoonAmuletSystem    _moonAmulet     = default!;
     [Dependency] private readonly HereticStatusEffectsSystem _hereticEffects = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly PopupSystem                _popup          = default!;
+    [Dependency] private readonly SharedAudioSystem          _audio          = default!;
+    [Dependency] private readonly SharedStunSystem           _stun           = default!;
+    [Dependency] private readonly StatusEffectsSystem        _statusEffects  = default!;
+    [Dependency] private readonly GibbingSystem              _gibbing        = default!;
+    [Dependency] private readonly HereticLunaticSystem       _lunatic        = default!;
+    [Dependency] private readonly MobStateSystem             _mobs           = default!;
+    [Dependency] private readonly IRobustRandom              _random         = default!;
+    [Dependency] private readonly IGameTiming                _timing         = default!;
+    [Dependency] private readonly Content.Server.Imperial.Antimagic.ImperialAntimagicSystem _antimagic = default!;
 
     private const float AuraTickInterval = 5f;
-    private const float AuraRadius = 4f;
-    private const float MoonAuraRadius = 7f;
+    private const float AuraRadius       = 4f;
+    private const float MoonAuraRadius   = 7f;
+
+    /// <summary>on_life(): carbon_sanity < 10 — рассудок сломан окончательно.</summary>
+    private const float MoonInsaneSanity = 10f;
 
     public override void Initialize()
     {
@@ -42,12 +70,9 @@ public sealed class HereticAuraSystem : EntitySystem
 
     private void OnBeforeStaminaDamage(Entity<HereticComponent> ent, ref BeforeStaminaDamageEvent args)
     {
-        if (args.Cancelled)
-            return;
-        if (!_heretic.HasKnowledge(ent.Comp, "KnowledgeLeechingWalk"))
-            return;
-        if (!_heretic.IsTileRusted(Transform(ent).Coordinates))
-            return;
+        if (args.Cancelled) return;
+        if (!_heretic.HasKnowledge(ent.Comp, "KnowledgeLeechingWalk")) return;
+        if (!_heretic.IsTileRusted(Transform(ent).Coordinates)) return;
 
         args.Cancelled = true;
     }
@@ -59,39 +84,48 @@ public sealed class HereticAuraSystem : EntitySystem
         var query = EntityQueryEnumerator<HereticComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (!_heretic.TryTickAuraAccumulator(uid, comp, frameTime, AuraTickInterval))
-                continue;
+            if (!_heretic.TryTickAuraAccumulator(uid, comp, frameTime, AuraTickInterval)) continue;
             TickAura(uid, comp);
             TickLeechingWalk(uid, comp);
+        }
+
+        // У Луны аура на своём такте — раз в Life() вознёсшегося.
+        var now = _timing.CurTime;
+        var moonQuery = EntityQueryEnumerator<HereticMoonAscendedComponent>();
+        while (moonQuery.MoveNext(out var uid, out var moon))
+        {
+            if (now < moon.NextAuraTick)
+                continue;
+            moon.NextAuraTick = now + moon.AuraInterval;
+
+            if (_mobs.IsDead(uid))
+                continue;
+
+            TickMoonAscensionAura(uid);
         }
     }
 
     private void TickAura(EntityUid uid, HereticComponent comp)
     {
-        // Moon возвышение — особая аура: санити-дрейн + конвертация
+        // Аура Луны тикает отдельно, см. Update.
         if (comp.CurrentPath == HereticPath.Moon)
-        {
-            if (comp.AscensionTriggered)
-                TickMoonAscensionAura(uid);
             return;
-        }
 
         var dmg = GetAuraDamage(comp.CurrentPath);
-        if (dmg == null)
-            return;
+        if (dmg == null) return;
 
         var coords = Transform(uid).Coordinates;
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, AuraRadius))
         {
-            if (ent.Owner == uid)
-                continue;
+            if (ent.Owner == uid) continue;
             _damage.TryChangeDamage(ent.Owner, dmg, ignoreResistances: false);
         }
     }
 
     /// <summary>
-    /// SS13 Moon ascension on_life: radius 7, -20 sanity/tick, 2s confusion.
-    /// При sanity &lt; 10: MindShield → стан 30с, иначе → moon_converted.
+    /// ultimate/moon_final/on_life(): радиус 7, галлюцинации, +2с замешательства, −20 рассудка.
+    /// Сломанный рассудок (&lt; 10): слепота 5с, защищённым разумом и культистам сносит голову,
+    /// остальных обращает в лунатиков.
     /// </summary>
     private void TickMoonAscensionAura(EntityUid uid)
     {
@@ -99,31 +133,44 @@ public sealed class HereticAuraSystem : EntitySystem
 
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, MoonAuraRadius))
         {
-            if (ent.Owner == uid)
-                continue;
-            if (HasComp<HereticComponent>(ent.Owner))
-                continue;
+            if (ent.Owner == uid) continue;
 
-            // -20 санити каждый тик
+            // visible_hallucination_pulse(radius = 7, 60 SECONDS) задевает всех.
+            _hereticEffects.ApplyHallucination(ent.Owner, TimeSpan.FromSeconds(60));
+
+            if (!_mobs.IsAlive(ent.Owner)) continue;
+            if (!HasComp<HumanoidProfileComponent>(ent.Owner)) continue;
+            if (HasComp<HereticComponent>(ent.Owner)) continue;
+            if (_antimagic.CanBlockMagic(ent.Owner)) continue;
+
+            Spawn("HereticEffectRingleader", Transform(ent.Owner).Coordinates);
+
             var brainComp = EnsureComp<HereticMoonBrainDamageComponent>(ent.Owner);
+            var sanity = brainComp.Sanity;
+
+            _hereticEffects.ApplyInsanity(ent.Owner, TimeSpan.FromSeconds(2));
             brainComp.Sanity = Math.Max(0f, brainComp.Sanity - 20f);
 
-            // 2 секунды галлюцинаций/замешательства
-            _hereticEffects.ApplyHallucination(ent.Owner, TimeSpan.FromSeconds(2));
+            if (sanity >= MoonInsaneSanity) continue;
 
-            if (brainComp.Sanity >= 10f)
-                continue;
+            if (_random.Prob(0.2f))
+                _popup.PopupEntity(Loc.GetString("heretic-moon-ascension-echo"), ent.Owner, ent.Owner, PopupType.SmallCaution);
 
-            // Цель достигла безумия (INSANE)
-            if (HasComp<MindShieldComponent>(ent.Owner))
+            _statusEffects.TryAddStatusEffect<TemporaryBlindnessComponent>(
+                ent.Owner,
+                TemporaryBlindnessSystem.BlindingStatusEffect,
+                TimeSpan.FromSeconds(5),
+                true);
+
+            // should_mind_explode(): имплант защиты разума или кровавая магия — голова не выдерживает.
+            if (HasComp<MindShieldComponent>(ent.Owner) || HasComp<CultistComponent>(ent.Owner))
             {
-                // SS13: head explosion → SS14: сильный стан
-                _stun.TryKnockdown(ent.Owner, TimeSpan.FromSeconds(30), true);
+                _popup.PopupEntity(Loc.GetString("heretic-moon-ascension-mind-explode"), ent.Owner, ent.Owner, PopupType.LargeCaution);
+                _gibbing.Gib(ent.Owner);
             }
             else
             {
-                // SS13: moon_converted — последователь еретика
-                _moonAmulet.TryMoonConvert(ent.Owner, brainComp.Sanity);
+                _lunatic.TryConvertWithAmulet(ent.Owner, uid);
             }
         }
     }
@@ -134,7 +181,7 @@ public sealed class HereticAuraSystem : EntitySystem
         {
             HereticPath.Rust => MakeDmg("Poison", 2),
             HereticPath.Void => MakeDmg("Cold", 2),
-            _ => null,
+            _                => null,
         };
     }
 
@@ -147,10 +194,8 @@ public sealed class HereticAuraSystem : EntitySystem
 
     private void TickLeechingWalk(EntityUid uid, HereticComponent comp)
     {
-        if (!_heretic.HasKnowledge(comp, "KnowledgeLeechingWalk"))
-            return;
-        if (!_heretic.IsTileRusted(Transform(uid).Coordinates))
-            return;
+        if (!_heretic.HasKnowledge(comp, "KnowledgeLeechingWalk")) return;
+        if (!_heretic.IsTileRusted(Transform(uid).Coordinates)) return;
 
         var heal = new DamageSpecifier();
         heal.DamageDict["Blunt"] = FixedPoint2.New(-5);

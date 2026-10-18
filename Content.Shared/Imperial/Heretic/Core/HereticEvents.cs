@@ -228,7 +228,7 @@ public sealed partial class HereticStalkerPolymorphActionEvent : InstantActionEv
 public sealed partial class HereticVoidPullActionEvent : InstantActionEvent { }
 public sealed partial class HereticVoidSeekingBladeActionEvent : EntityTargetActionEvent { }
 public sealed partial class HereticVoidCloakToggleHoodEvent : InstantActionEvent { }
-public sealed partial class HereticVoidConduitActionEvent : WorldTargetActionEvent { }
+public sealed partial class HereticVoidConduitActionEvent : InstantActionEvent { }
 
 // Blade
 public sealed partial class HereticRealignmentActionEvent : InstantActionEvent { }

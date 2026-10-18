@@ -1,3 +1,14 @@
+using Content.Shared.Imperial.Heretic.Rituals;
+using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
+using Content.Shared.Imperial.Heretic.Paths.Moon;
+using Content.Shared.Imperial.Heretic.Items;
+using Content.Shared.Imperial.Heretic.Effects;
+using Content.Server.Imperial.Heretic;
+using Content.Server.Imperial.Heretic.Effects;
+using Content.Server.Imperial.Heretic.Items;
+using Content.Server.Imperial.Heretic.Paths.Moon;
+using Content.Server.Imperial.Heretic.Paths.Moon.Parade;
+using Content.Server.Imperial.Heretic.Paths.Void;
 using Content.Server.Popups;
 using Content.Server.Temperature.Systems;
 using Content.Shared.Imperial.Heretic.Core;
@@ -29,9 +40,29 @@ public sealed class HereticStatusEffectsSystem : EntitySystem
 
     public override void Initialize()
     {
+        SubscribeLocalEvent<Content.Server.Chat.Systems.ExpandICChatRecipientsEvent>(OnExpandRecipients);
         SubscribeLocalEvent<HereticInsanityStatusEffectComponent, StatusEffectAppliedEvent>(OnInsanityApplied);
         SubscribeLocalEvent<VoidChillStatusEffectComponent, StatusEffectAppliedEvent>(OnVoidChillApplied);
         SubscribeLocalEvent<VoidChillStatusEffectComponent, StatusEffectRemovedEvent>(OnVoidChillRemoved);
+    }
+
+    /// <summary>sound_damage(): оглохшая цель не слышит чужую речь.</summary>
+    private void OnExpandRecipients(Content.Server.Chat.Systems.ExpandICChatRecipientsEvent args)
+    {
+        var deaf = new List<Robust.Shared.Player.ICommonSession>();
+        foreach (var (session, data) in args.Recipients)
+        {
+            if (data.Observer || session.AttachedEntity is not { } listener || listener == args.Source)
+                continue;
+
+            if (HasComp<HereticDeafComponent>(listener))
+                deaf.Add(session);
+        }
+
+        foreach (var session in deaf)
+        {
+            args.Recipients.Remove(session);
+        }
     }
 
     private void OnInsanityApplied(Entity<HereticInsanityStatusEffectComponent> ent, ref StatusEffectAppliedEvent args)
@@ -67,6 +98,13 @@ public sealed class HereticStatusEffectsSystem : EntitySystem
 
             _stun.TryAddStunDuration(target, TimeSpan.FromSeconds(1));
             _popup.PopupEntity(Loc.GetString("heretic-insanity-jitter"), target, target, PopupType.SmallCaution);
+        }
+
+        var deafQuery = EntityQueryEnumerator<HereticDeafComponent>();
+        while (deafQuery.MoveNext(out var deafUid, out var deaf))
+        {
+            if (_timing.CurTime >= deaf.ExpiresAt)
+                RemCompDeferred<HereticDeafComponent>(deafUid);
         }
 
         var chillQuery = EntityQueryEnumerator<VoidChillStatusEffectComponent, StatusEffectComponent>();
@@ -145,5 +183,27 @@ public sealed class HereticStatusEffectsSystem : EntitySystem
     public void ApplyHallucination(EntityUid target, TimeSpan duration)
     {
         _statusEffects.TryAddStatusEffectDuration(target, HallucinationId, duration);
+    }
+
+    private static readonly EntProtoId MoonDelusionId = "HereticMoonDelusionStatusEffect";
+
+    /// <summary>delusion/preset/moon: носитель видит всех вокруг лунными массами.</summary>
+    public void ApplyMoonDelusion(EntityUid target, TimeSpan duration)
+    {
+        _statusEffects.TryAddStatusEffectDuration(target, MoonDelusionId, duration);
+    }
+
+    public void RemoveMoonDelusion(EntityUid target)
+    {
+        _statusEffects.TryRemoveStatusEffect(target, MoonDelusionId);
+    }
+
+    /// <summary>sound_damage(0, duration): цель глохнет на указанное время.</summary>
+    public void ApplyDeafness(EntityUid target, TimeSpan duration)
+    {
+        var comp = EnsureComp<HereticDeafComponent>(target);
+        var until = _timing.CurTime + duration;
+        if (until > comp.ExpiresAt)
+            comp.ExpiresAt = until;
     }
 }

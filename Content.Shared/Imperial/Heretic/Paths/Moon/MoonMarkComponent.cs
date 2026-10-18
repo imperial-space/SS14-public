@@ -4,6 +4,10 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Imperial.Heretic.Paths.Moon;
 
+/// <summary>
+/// status_effect/eldritch/moon: метка Хватки Луны. Пацифицирует, пока цель не получит 15 урона,
+/// и подрывается лунным клинком.
+/// </summary>
 [RegisterComponent, NetworkedComponent]
 public sealed partial class MoonMarkComponent : Component, IHereticMarkComponent
 {
@@ -15,4 +19,11 @@ public sealed partial class MoonMarkComponent : Component, IHereticMarkComponent
 
     [ViewVariables]
     public TimeSpan ExpireTime { get; set; }
+
+    /// <summary>Пацификацию повесила именно метка — её и снимать.</summary>
+    [ViewVariables]
+    public bool AddedPacified;
+
+    [ViewVariables]
+    public float DamageSustained;
 }

@@ -1,8 +1,15 @@
+using Content.Server.Imperial.Heretic;
+using Content.Server.Imperial.Heretic.Effects;
+using Content.Server.Imperial.Heretic.Items;
+using Content.Server.Imperial.Heretic.Paths.Moon;
+using Content.Server.Imperial.Heretic.Paths.Moon.Parade;
+using Content.Server.Imperial.Heretic.Paths.Void;
 using System.Linq;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
+using Content.Shared.Temperature.Components;
 using Content.Server.Body;
-using Content.Server.Imperial.Heretic.Effects;
+using Content.Server.Station.Systems;
 using Content.Server.Temperature.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -12,16 +19,23 @@ using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Heretic.Core;
+using Content.Shared.Imperial.Heretic.Effects;
+using Content.Shared.Imperial.Heretic.Items;
+using Content.Shared.Imperial.Heretic.Paths.Moon;
+using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
 using Content.Shared.Imperial.Heretic.Paths.Void;
+using Content.Shared.Imperial.Heretic.Rituals;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Speech.Muting;
 using Content.Shared.Station.Components;
 using Content.Shared.StatusEffect;
-using Content.Shared.Temperature.Components;
+using Content.Shared.Tag;
+using Content.Shared.Weapons.Reflect;
 using Content.Shared.Weather;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -44,14 +58,20 @@ public sealed class HereticVoidAscensionSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedWeatherSystem _weather = default!;
+    [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly TemperatureSystem _temperature = default!;
     [Dependency] private readonly VisualBodySystem _visualBody = default!;
+    [Dependency] private readonly HereticVoidConduitSystem _conduit = default!;
 
     private static readonly SoundPathSpecifier VoidAmbientSound =
         new("/Audio/Imperial/heretic/sound_ambience_antag_heretic_ascend_void.ogg");
 
     private static readonly EntProtoId VoidStormProto = "WeatherVoidStorm";
+
+    private static readonly SoundPathSpecifier DeflectSound =
+        new("/Audio/Magic/Eldritch/voidblink.ogg");
+
 
     // SS13: heretic_eyes.color_cutoffs = list(30, 30, 30) → #1e1e1e void eyes
     private static readonly Color VoidEyeColor = Color.FromHex("#1e1e1e");
@@ -73,18 +93,26 @@ public sealed class HereticVoidAscensionSystem : EntitySystem
     {
         comp.AmbientSoundEntity = _audio.PlayPvs(VoidAmbientSound, uid, AudioParams.Default.WithLoop(true))?.Entity;
 
+        // hit_by_projectile(): буря отбивает пули, чаще всего назад в стрелка.
+        var reflect = EnsureComp<ReflectComponent>(uid);
+        reflect.Reflects = ReflectType.Energy | ReflectType.NonEnergy;
+        reflect.ReflectProb = 1f;
+        reflect.ReflectingInHands = false;
+        reflect.SoundOnReflect = DeflectSound;
+        Dirty(uid, reflect);
+
+        // add_traits(TRAIT_RESISTLOWPRESSURE): вакуум ему теперь не помеха.
+        EnsureComp<PressureImmunityComponent>(uid);
+
         // SS13: storm spawns on all station levels (SSmapping.levels_by_trait(ZTRAIT_STATION))
         // Iterate all grids that are station members directly — more reliable than Grids hashset.
         var memberQuery = EntityQueryEnumerator<StationMemberComponent>();
         while (memberQuery.MoveNext(out var gridUid, out _))
         {
             var mapId = Transform(gridUid).MapID;
-            if (mapId == MapId.Nullspace)
-                continue;
-            if (!_mapSystem.TryGetMap(mapId, out var mapUid))
-                continue;
-            if (comp.StormMapUids.Contains(mapUid.Value))
-                continue;
+            if (mapId == MapId.Nullspace) continue;
+            if (!_mapSystem.TryGetMap(mapId, out var mapUid)) continue;
+            if (comp.StormMapUids.Contains(mapUid.Value)) continue;
             comp.StormMapUids.Add(mapUid.Value);
             _weather.TryAddWeather(mapUid.Value, VoidStormProto, out _);
         }
@@ -113,6 +141,8 @@ public sealed class HereticVoidAscensionSystem : EntitySystem
     {
         if (comp.AmbientSoundEntity.HasValue)
             _audio.Stop(comp.AmbientSoundEntity.Value);
+
+        RemComp<ReflectComponent>(uid);
 
         foreach (var mapUid in comp.StormMapUids)
             _weather.TryRemoveWeather(mapUid, VoidStormProto);
@@ -150,8 +180,7 @@ public sealed class HereticVoidAscensionSystem : EntitySystem
         while (query.MoveNext(out var uid, out var comp))
         {
             comp.WaveTimer += frameTime;
-            if (comp.WaveTimer < WaveInterval)
-                continue;
+            if (comp.WaveTimer < WaveInterval) continue;
             comp.WaveTimer = 0f;
             TriggerWave(uid);
         }
@@ -159,8 +188,7 @@ public sealed class HereticVoidAscensionSystem : EntitySystem
 
     private void TriggerWave(EntityUid uid)
     {
-        if (Deleted(uid))
-            return;
+        if (Deleted(uid)) return;
 
         var xform = Transform(uid);
         var coords = xform.Coordinates;
@@ -168,8 +196,7 @@ public sealed class HereticVoidAscensionSystem : EntitySystem
         // SS13 on_life: apply effects to ALL in range simultaneously (no wave delay)
         foreach (var target in _lookup.GetEntitiesInRange(coords, WaveRadius))
         {
-            if (target == uid)
-                continue;
+            if (target == uid) continue;
             ApplyEntityEffect(target);
         }
 
@@ -206,16 +233,11 @@ public sealed class HereticVoidAscensionSystem : EntitySystem
             // adjust_bodytemperature(-30 * TEMPERATURE_DAMAGE_COEFFICIENT)
             _temperature.ChangeHeat(target, -30f * TempCoeff);
         }
-        else if (HasComp<DamageableComponent>(target))
+        else
         {
-            var dmg = new DamageSpecifier();
             // istype(/obj/machinery/door) → take_damage(rand(60, 80))
             // istype(/obj/structure/window) or grille → take_damage(rand(20, 40))
-            var amount = HasComp<DoorComponent>(target)
-                ? _random.Next(60, 81)
-                : _random.Next(20, 41);
-            dmg.DamageDict["Structural"] = FixedPoint2.New(amount);
-            _damage.TryChangeDamage(target, dmg, ignoreResistances: true);
+            _conduit.DamageStructure(target, 60, 80, 20, 40);
         }
     }
 
@@ -231,8 +253,7 @@ public sealed class HereticVoidAscensionSystem : EntitySystem
         {
             for (var dy = -radius; dy <= radius; dy++)
             {
-                if (dx * dx + dy * dy > r2)
-                    continue;
+                if (dx * dx + dy * dy > r2) continue;
                 var tile = herTile + new Vector2i(dx, dy);
                 // SS13: environment.temperature *= 0.9
                 var mix = _atmos.GetTileMixture(gridUid, mapUid, tile);
