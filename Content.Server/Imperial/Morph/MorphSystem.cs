@@ -394,7 +394,7 @@ public sealed partial class MorphSystem : EntitySystem
             return;
         }
 
-        if (!_mobs.IsDead(ent) || !_tools.HasQuality(args.Used, "Prying"))
+        if (!_mobs.IsDead(ent) || !_tools.HasQuality(args.Used, new Robust.Shared.Prototypes.ProtoId<Content.Shared.Tools.ToolQualityPrototype>("Prying")))
             return;
 
         args.Handled = true;
