@@ -1,0 +1,437 @@
+# Действия активных мутаций.
+
+- type: entity
+  id: ActionGeneticBase
+  parent: BaseAction
+  abstract: true
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    useDelay: 10
+
+- type: entity
+  id: ActionGeneticTelekinesis
+  parent: ActionGeneticBase
+  name: Telekinesis
+  description: Pull an item into your hand or push a creature away with your mind.
+  components:
+  - type: Action
+    useDelay: 10
+    icon:
+      sprite: Imperial/Genetics/actions.rsi
+      state: telekinesis
+  - type: TargetAction
+    range: 8
+    checkCanAccess: false
+  - type: EntityTargetAction
+    event: !type:GeneticTelekinesisActionEvent
+
+- type: entity
+  id: ActionGeneticCryokinesis
+  parent: ActionGeneticBase
+  name: Cryokinesis
+  description: Fire a freezing bolt.
+  components:
+  - type: Action
+    useDelay: 12
+    icon:
+      sprite: Imperial/Genetics/actions.rsi
+      state: icebeam
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: BoltTempgunCold
+
+- type: entity
+  id: ActionGeneticPyrokinesis
+  parent: ActionGeneticBase
+  name: Pyrokinesis
+  description: Fire a scorching bolt.
+  components:
+  - type: Action
+    useDelay: 12
+    icon:
+      sprite: Imperial/Genetics/actions.rsi
+      state: fireball
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: BoltTempgunHot
+
+- type: entity
+  id: ActionGeneticFirebreath
+  parent: ActionGeneticBase
+  name: Fire Breath
+  description: Breathe a ball of fire.
+  components:
+  - type: Action
+    useDelay: 40
+    icon:
+      sprite: Imperial/Genetics/actions.rsi
+      state: firebeam
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: ProjectileFireball
+
+- type: entity
+  id: ActionGeneticLaserEyes
+  parent: ActionGeneticBase
+  name: Laser Eyes
+  description: Shoot a laser from your eyes.
+  components:
+  - type: Action
+    useDelay: 15
+    icon:
+      sprite: Imperial/Genetics/actions.rsi
+      state: eyesight
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: BulletLaser
+
+- type: entity
+  id: ActionGeneticTongueSpike
+  parent: ActionGeneticBase
+  name: Tongue Spike
+  description: Launch your tongue as a spike.
+  components:
+  - type: Action
+    useDelay: 10
+    icon:
+      sprite: Imperial/Genetics/actions.rsi
+      state: spike
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: ImperialGeneticTongueSpike
+
+- type: entity
+  id: ActionGeneticChemSpike
+  parent: ActionGeneticBase
+  name: Chem Spike
+  description: Launch a poisoned tongue spike.
+  components:
+  - type: Action
+    useDelay: 10
+    icon:
+      sprite: Imperial/Genetics/actions.rsi
+      state: spikechem
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: ImperialGeneticChemSpike
+
+- type: entity
+  id: ActionGeneticShockTouch
+  parent: ActionGeneticBase
+  name: Shock Touch
+  description: Shock a creature next to you.
+  components:
+  - type: Action
+    useDelay: 10
+    icon:
+      sprite: Imperial/Genetics/actions.rsi
+      state: zap
+  - type: TargetAction
+    range: 1.5
+  - type: EntityTargetAction
+    event: !type:GeneticShockTouchActionEvent
+
+- type: entity
+  id: ActionGeneticMendingTouch
+  parent: ActionGeneticBase
+  name: Mending Touch
+  description: Heal someone next to you, taking part of their wounds.
+  components:
+  - type: Action
+    useDelay: 10
+    icon:
+      sprite: Imperial/Genetics/actions.rsi
+      state: mending_touch
+  - type: TargetAction
+    range: 1.5
+  - type: EntityTargetAction
+    event: !type:GeneticMendingTouchActionEvent
+
+- type: entity
+  id: ActionGeneticTelepathy
+  parent: ActionGeneticBase
+  name: Telepathy
+  description: Send a thought to someone.
+  components:
+  - type: Action
+    useDelay: 5
+    icon:
+      sprite: Imperial/Genetics/actions.rsi
+      state: telepathy
+  - type: TargetAction
+    range: 10
+    checkCanAccess: false
+  - type: EntityTargetAction
+    event: !type:GeneticTelepathyActionEvent
+
+- type: entity
+  id: ActionGeneticMindRead
+  parent: ActionGeneticBase
+  name: Mind Read
+  description: Read someone's true name from their mind.
+  components:
+  - type: Action
+    useDelay: 15
+    icon:
+      sprite: Imperial/Genetics/actions.rsi
+      state: mindread
+  - type: TargetAction
+    range: 6
+    checkCanAccess: false
+  - type: EntityTargetAction
+    event: !type:GeneticMindReadActionEvent
+
+- type: entity
+  id: ActionGeneticOlfaction
+  parent: ActionGeneticBase
+  name: Remember the Scent
+  description: Sniff an item to track its owner.
+  components:
+  - type: Action
+    useDelay: 10
+    icon:
+      sprite: Imperial/Genetics/actions.rsi
+      state: nose
+  - type: TargetAction
+    range: 1.5
+  - type: EntityTargetAction
+    event: !type:GeneticOlfactionActionEvent
+
+- type: entity
+  id: ActionGeneticGeladikinesis
+  parent: ActionGeneticBase
+  name: Snow Draw
+  description: Conjure a snowball.
+  components:
+  - type: Action
+    useDelay: 5
+    icon:
+      sprite: Imperial/Genetics/actions.rsi
+      state: snow
+  - type: InstantAction
+    event: !type:GeneticSpawnInHandActionEvent
+      prototype: Snowball
+
+- type: entity
+  id: ActionGeneticCindikinesis
+  parent: ActionGeneticBase
+  name: Ash Draw
+  description: Conjure a pile of ash.
+  components:
+  - type: Action
+    useDelay: 5
+    icon:
+      sprite: Imperial/Genetics/actions.rsi
+      state: ash
+  - type: InstantAction
+    event: !type:GeneticSpawnInHandActionEvent
+      prototype: Ash
+
+- type: entity
+  id: ActionGeneticWebbing
+  parent: ActionGeneticBase
+  name: Lay Web
+  description: Lay a web under yourself.
+  components:
+  - type: Action
+    useDelay: 20
+    icon:
+      sprite: Imperial/Genetics/actions.rsi
+      state: web
+  - type: InstantAction
+    event: !type:InstantSpawnSpellEvent
+      prototype: SpiderWeb
+
+- type: entity
+  id: ActionGeneticAutotomy
+  parent: ActionGeneticBase
+  name: Autotomy
+  description: Shed a limb to slip out of restraints.
+  components:
+  - type: Action
+    useDelay: 60
+    icon:
+      sprite: Imperial/Genetics/actions.rsi
+      state: autotomy
+  - type: InstantAction
+    event: !type:GeneticAutotomyActionEvent
+
+- type: entity
+  id: ActionGeneticAdrenaline
+  parent: ActionGeneticBase
+  name: Adrenaline Rush
+  description: Shake off exhaustion in a burst of adrenaline.
+  components:
+  - type: Action
+    useDelay: 60
+    icon:
+      sprite: Imperial/Genetics/actions.rsi
+      state: adrenaline
+  - type: InstantAction
+    event: !type:GeneticAdrenalineActionEvent
+
+- type: entity
+  id: ActionGeneticFarsight
+  parent: ActionGeneticBase
+  name: Farsight
+  description: Toggle extended vision.
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: Imperial/Genetics/actions.rsi
+      state: eyesight
+  - type: InstantAction
+    event: !type:GeneticFarsightActionEvent
+
+# ─── Снаряды ────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: ImperialGeneticTongueSpike
+  parent: BaseBullet
+  name: tongue spike
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    layers:
+    - state: bolt
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 12
+
+- type: entity
+  id: ImperialGeneticChemSpike
+  parent: ImperialGeneticTongueSpike
+  name: chem spike
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 8
+        Poison: 8
+
+# ─── Рецепты комбинирования (generecipe) ────────────────────────────────────
+
+- type: geneticRecipe
+  id: RecipeHulk
+  first: MutationStrong
+  second: MutationRadioactive
+  result: MutationHulk
+
+- type: geneticRecipe
+  id: RecipeMindreader
+  first: MutationAntenna
+  second: MutationParanoia
+  result: MutationMindreader
+
+- type: geneticRecipe
+  id: RecipeShock
+  first: MutationInsulated
+  second: MutationRadioactive
+  result: MutationShock
+
+- type: geneticRecipe
+  id: RecipeCindikinesis
+  first: MutationGeladikinesis
+  second: MutationFire
+  result: MutationCindikinesis
+
+- type: geneticRecipe
+  id: RecipePyrokinesis
+  first: MutationCryokinesis
+  second: MutationFire
+  result: MutationPyrokinesis
+
+- type: geneticRecipe
+  id: RecipeAdaptationThermal
+  first: MutationAdaptationCold
+  second: MutationAdaptationHeat
+  result: MutationAdaptationThermal
+
+- type: geneticRecipe
+  id: RecipeChemSpike
+  first: MutationTongueSpike
+  second: MutationStimmed
+  result: MutationTongueSpikeChem
+
+- type: geneticRecipe
+  id: RecipeHeckacious
+  first: MutationWacky
+  second: MutationStoner
+  result: MutationHeckacious
+
+- type: geneticRecipe
+  id: RecipeOrk
+  first: MutationHulk
+  second: MutationClumsy
+  result: MutationHulkOrk
+
+- type: geneticRecipe
+  id: RecipeFirebreath
+  first: MutationFire
+  second: MutationInsulated
+  result: MutationFirebreath
+
+- type: geneticRecipe
+  id: RecipeLaserEyes
+  first: MutationThermal
+  second: MutationRadioactive
+  result: MutationLaserEyes
+
+- type: geneticRecipe
+  id: RecipeDwarfism
+  first: MutationGigantism
+  second: MutationClumsy
+  result: MutationDwarfism
+
+- type: entity
+  id: ActionGeneticVoid
+  parent: ActionGeneticBase
+  name: Convoke Void
+  description: Pull yourself into a pocket of the void for a while, becoming invulnerable.
+  components:
+  - type: Action
+    useDelay: 60
+    icon:
+      sprite: Imperial/Genetics/actions.rsi
+      state: void_magnet
+  - type: InstantAction
+    event: !type:GeneticVoidActionEvent
+
+- type: entity
+  id: ImperialVoidHole
+  name: hole in reality
+  description: It's shaped an awful lot like a person.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Imperial/Genetics/actions.rsi
+    state: void_magnet
+    color: "#00000088"
+  - type: ContainerContainer
+    containers:
+      void: !type:ContainerSlot

@@ -1,0 +1,459 @@
+# Позитивные и активные мутации из SS13 (active.dm, touch.dm, telekinesis, hulk.dm и др.).
+
+# ─── Способности ────────────────────────────────────────────────────────────
+
+- type: geneticMutation
+  id: MutationTelekinesis
+  name: genetics-mutation-telekinesis-name
+  description: genetics-mutation-telekinesis-desc
+  gainText: genetics-mutation-telekinesis-gain
+  loseText: genetics-mutation-telekinesis-lose
+  quality: Positive
+  instability: 35
+  chromosomes: Stabilizer, Power, Energy
+  actions:
+  - ActionGeneticTelekinesis
+
+- type: geneticMutation
+  id: MutationCryokinesis
+  name: genetics-mutation-cryokinesis-name
+  description: genetics-mutation-cryokinesis-desc
+  gainText: genetics-mutation-cryokinesis-gain
+  loseText: genetics-mutation-cryokinesis-lose
+  quality: Positive
+  instability: 25
+  chromosomes: Stabilizer, Energy
+  actions:
+  - ActionGeneticCryokinesis
+
+- type: geneticMutation
+  id: MutationPyrokinesis
+  name: genetics-mutation-pyrokinesis-name
+  description: genetics-mutation-pyrokinesis-desc
+  gainText: genetics-mutation-pyrokinesis-gain
+  loseText: genetics-mutation-pyrokinesis-lose
+  quality: Positive
+  instability: 25
+  locked: true
+  chromosomes: Stabilizer, Energy
+  actions:
+  - ActionGeneticPyrokinesis
+
+- type: geneticMutation
+  id: MutationGeladikinesis
+  name: genetics-mutation-geladikinesis-name
+  description: genetics-mutation-geladikinesis-desc
+  gainText: genetics-mutation-geladikinesis-gain
+  loseText: genetics-mutation-geladikinesis-lose
+  quality: Positive
+  instability: 10
+  chromosomes: Stabilizer, Energy
+  actions:
+  - ActionGeneticGeladikinesis
+
+- type: geneticMutation
+  id: MutationCindikinesis
+  name: genetics-mutation-cindikinesis-name
+  description: genetics-mutation-cindikinesis-desc
+  gainText: genetics-mutation-cindikinesis-gain
+  loseText: genetics-mutation-cindikinesis-lose
+  quality: Positive
+  instability: 10
+  locked: true
+  chromosomes: Stabilizer, Energy
+  actions:
+  - ActionGeneticCindikinesis
+
+- type: geneticMutation
+  id: MutationFirebreath
+  name: genetics-mutation-firebreath-name
+  description: genetics-mutation-firebreath-desc
+  gainText: genetics-mutation-firebreath-gain
+  loseText: genetics-mutation-firebreath-lose
+  quality: Positive
+  instability: 25
+  locked: true
+  chromosomes: Stabilizer, Energy
+  actions:
+  - ActionGeneticFirebreath
+
+- type: geneticMutation
+  id: MutationShock
+  name: genetics-mutation-shock-name
+  description: genetics-mutation-shock-desc
+  gainText: genetics-mutation-shock-gain
+  loseText: genetics-mutation-shock-lose
+  quality: Positive
+  instability: 25
+  locked: true
+  chromosomes: Stabilizer, Power, Energy
+  actions:
+  - ActionGeneticShockTouch
+
+- type: geneticMutation
+  id: MutationLayOnHands
+  name: genetics-mutation-lay-on-hands-name
+  description: genetics-mutation-lay-on-hands-desc
+  gainText: genetics-mutation-lay-on-hands-gain
+  loseText: genetics-mutation-lay-on-hands-lose
+  quality: Positive
+  instability: 35
+  chromosomes: Stabilizer, Power, Energy
+  actions:
+  - ActionGeneticMendingTouch
+
+- type: geneticMutation
+  id: MutationTongueSpike
+  name: genetics-mutation-tongue-spike-name
+  description: genetics-mutation-tongue-spike-desc
+  gainText: genetics-mutation-tongue-spike-gain
+  loseText: genetics-mutation-tongue-spike-lose
+  quality: Positive
+  instability: 5
+  chromosomes: Stabilizer, Energy
+  actions:
+  - ActionGeneticTongueSpike
+
+- type: geneticMutation
+  id: MutationTongueSpikeChem
+  name: genetics-mutation-tongue-spike-chem-name
+  description: genetics-mutation-tongue-spike-chem-desc
+  gainText: genetics-mutation-tongue-spike-chem-gain
+  loseText: genetics-mutation-tongue-spike-chem-lose
+  quality: Positive
+  instability: 10
+  locked: true
+  chromosomes: Stabilizer, Energy
+  actions:
+  - ActionGeneticChemSpike
+
+- type: geneticMutation
+  id: MutationTelepathy
+  name: genetics-mutation-telepathy-name
+  description: genetics-mutation-telepathy-desc
+  gainText: genetics-mutation-telepathy-gain
+  loseText: genetics-mutation-telepathy-lose
+  quality: Positive
+  instability: 10
+  chromosomes: Stabilizer, Energy
+  actions:
+  - ActionGeneticTelepathy
+
+- type: geneticMutation
+  id: MutationMindreader
+  name: genetics-mutation-mindreader-name
+  description: genetics-mutation-mindreader-desc
+  gainText: genetics-mutation-mindreader-gain
+  loseText: genetics-mutation-mindreader-lose
+  quality: Positive
+  instability: 10
+  locked: true
+  chromosomes: Stabilizer, Energy
+  actions:
+  - ActionGeneticMindRead
+
+- type: geneticMutation
+  id: MutationOlfaction
+  name: genetics-mutation-olfaction-name
+  description: genetics-mutation-olfaction-desc
+  gainText: genetics-mutation-olfaction-gain
+  loseText: genetics-mutation-olfaction-lose
+  quality: Positive
+  instability: 25
+  chromosomes: Stabilizer, Energy
+  actions:
+  - ActionGeneticOlfaction
+
+- type: geneticMutation
+  id: MutationWebbing
+  name: genetics-mutation-webbing-name
+  description: genetics-mutation-webbing-desc
+  gainText: genetics-mutation-webbing-gain
+  loseText: genetics-mutation-webbing-lose
+  quality: Positive
+  instability: 25
+  chromosomes: Stabilizer, Energy
+  actions:
+  - ActionGeneticWebbing
+
+- type: geneticMutation
+  id: MutationSelfAmputation
+  name: genetics-mutation-self-amputation-name
+  description: genetics-mutation-self-amputation-desc
+  gainText: genetics-mutation-self-amputation-gain
+  loseText: genetics-mutation-self-amputation-lose
+  quality: Positive
+  instability: 10
+  chromosomes: Stabilizer, Energy
+  actions:
+  - ActionGeneticAutotomy
+
+- type: geneticMutation
+  id: MutationAdrenalineRush
+  name: genetics-mutation-adrenaline-rush-name
+  description: genetics-mutation-adrenaline-rush-desc
+  gainText: genetics-mutation-adrenaline-rush-gain
+  loseText: genetics-mutation-adrenaline-rush-lose
+  quality: Positive
+  instability: 25
+  chromosomes: Stabilizer, Energy
+  actions:
+  - ActionGeneticAdrenaline
+
+- type: geneticMutation
+  id: MutationFarsight
+  name: genetics-mutation-farsight-name
+  description: genetics-mutation-farsight-desc
+  gainText: genetics-mutation-farsight-gain
+  loseText: genetics-mutation-farsight-lose
+  quality: Positive
+  instability: 10
+  actions:
+  - ActionGeneticFarsight
+
+- type: geneticMutation
+  id: MutationLaserEyes
+  name: genetics-mutation-laser-eyes-name
+  description: genetics-mutation-laser-eyes-desc
+  gainText: genetics-mutation-laser-eyes-gain
+  loseText: genetics-mutation-laser-eyes-lose
+  quality: Positive
+  instability: 35
+  locked: true
+  chromosomes: Stabilizer, Energy
+  actions:
+  - ActionGeneticLaserEyes
+
+# ─── Пассивные позитивные ───────────────────────────────────────────────────
+
+- type: geneticMutation
+  id: MutationChameleon
+  name: genetics-mutation-chameleon-name
+  description: genetics-mutation-chameleon-desc
+  gainText: genetics-mutation-chameleon-gain
+  loseText: genetics-mutation-chameleon-lose
+  quality: Positive
+  instability: 35
+  components:
+  - type: Stealth
+  - type: StealthOnMove
+    passiveVisibilityRate: -0.15
+    movementVisibilityRate: 0.2
+
+- type: geneticMutation
+  id: MutationThermal
+  name: genetics-mutation-thermal-name
+  description: genetics-mutation-thermal-desc
+  gainText: genetics-mutation-thermal-gain
+  loseText: genetics-mutation-thermal-lose
+  quality: Positive
+  instability: 35
+  components:
+  - type: ThermalSight
+
+- type: geneticMutation
+  id: MutationStrong
+  name: genetics-mutation-strong-name
+  description: genetics-mutation-strong-desc
+  gainText: genetics-mutation-strong-gain
+  loseText: genetics-mutation-strong-lose
+  quality: Positive
+  instability: 10
+  components:
+  - type: GeneticStrength
+    multiplier: 1.5
+
+- type: geneticMutation
+  id: MutationStimmed
+  name: genetics-mutation-stimmed-name
+  description: genetics-mutation-stimmed-desc
+  gainText: genetics-mutation-stimmed-gain
+  loseText: genetics-mutation-stimmed-lose
+  quality: Positive
+  instability: 5
+  ticks:
+  - chance: 0.05
+    effects:
+    - !type:ModifyStatusEffect
+      effectProto: StatusEffectStimulantsStamina
+      time: 5
+
+- type: geneticMutation
+  id: MutationVenomousStrikes
+  name: genetics-mutation-venomous-strikes-name
+  description: genetics-mutation-venomous-strikes-desc
+  gainText: genetics-mutation-venomous-strikes-gain
+  loseText: genetics-mutation-venomous-strikes-lose
+  quality: Positive
+  instability: 25
+  components:
+  - type: GeneticVenom
+
+- type: geneticMutation
+  id: MutationLimbRegeneration
+  name: genetics-mutation-limb-regeneration-name
+  description: genetics-mutation-limb-regeneration-desc
+  gainText: genetics-mutation-limb-regeneration-gain
+  loseText: genetics-mutation-limb-regeneration-lose
+  quality: Positive
+  instability: 25
+  chromosomes: Stabilizer, Synchronizer, Power
+  ticks:
+  - chance: 1
+    requiresConscious: false
+    effects:
+    - !type:HealthChange
+      damage:
+        types:
+          Blunt: -0.3
+          Slash: -0.3
+          Piercing: -0.3
+          Heat: -0.3
+
+- type: geneticMutation
+  id: MutationBloodier
+  name: genetics-mutation-bloodier-name
+  description: genetics-mutation-bloodier-desc
+  gainText: genetics-mutation-bloodier-gain
+  loseText: genetics-mutation-bloodier-lose
+  quality: Positive
+  instability: 10
+  ticks:
+  - chance: 1
+    requiresConscious: false
+    effects:
+    - !type:ModifyBloodLevel
+      amount: 0.5
+
+- type: geneticMutation
+  id: MutationInexorable
+  name: genetics-mutation-inexorable-name
+  description: genetics-mutation-inexorable-desc
+  gainText: genetics-mutation-inexorable-gain
+  loseText: genetics-mutation-inexorable-lose
+  quality: Positive
+  instability: 25
+  ticks:
+  - chance: 1
+    requiresConscious: false
+    effects:
+    - !type:ModifyStatusEffect
+      effectProto: StatusEffectPainNumbness
+      time: 2
+
+- type: geneticMutation
+  id: MutationAntenna
+  name: genetics-mutation-antenna-name
+  description: genetics-mutation-antenna-desc
+  gainText: genetics-mutation-antenna-gain
+  loseText: genetics-mutation-antenna-lose
+  quality: Positive
+  instability: 10
+  components:
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - Common
+
+- type: geneticMutation
+  id: MutationAdaptationCold
+  name: genetics-mutation-adaptation-cold-name
+  description: genetics-mutation-adaptation-cold-desc
+  gainText: genetics-mutation-adaptation-cold-gain
+  loseText: genetics-mutation-adaptation-cold-lose
+  quality: Positive
+  instability: 25
+  conflicts:
+  - MutationAdaptationHeat
+  - MutationAdaptationThermal
+  components:
+  - type: GeneticAdaptation
+    cold: true
+
+- type: geneticMutation
+  id: MutationAdaptationHeat
+  name: genetics-mutation-adaptation-heat-name
+  description: genetics-mutation-adaptation-heat-desc
+  gainText: genetics-mutation-adaptation-heat-gain
+  loseText: genetics-mutation-adaptation-heat-lose
+  quality: Positive
+  instability: 25
+  conflicts:
+  - MutationAdaptationCold
+  - MutationAdaptationThermal
+  - MutationFire
+  components:
+  - type: GeneticAdaptation
+    heat: true
+
+- type: geneticMutation
+  id: MutationAdaptationThermal
+  name: genetics-mutation-adaptation-thermal-name
+  description: genetics-mutation-adaptation-thermal-desc
+  gainText: genetics-mutation-adaptation-thermal-gain
+  loseText: genetics-mutation-adaptation-thermal-lose
+  quality: Positive
+  instability: 35
+  locked: true
+  conflicts:
+  - MutationAdaptationCold
+  - MutationAdaptationHeat
+  components:
+  - type: GeneticAdaptation
+    cold: true
+    heat: true
+
+# ─── Халк ───────────────────────────────────────────────────────────────────
+
+- type: geneticMutation
+  id: MutationHulk
+  name: genetics-mutation-hulk-name
+  description: genetics-mutation-hulk-desc
+  gainText: genetics-mutation-hulk-gain
+  loseText: genetics-mutation-hulk-lose
+  quality: Positive
+  instability: 35
+  locked: true
+  conflicts:
+  - MutationHulkOrk
+  components:
+  - type: GeneticStrength
+    multiplier: 3
+    bonus:
+      types:
+        Structural: 30
+  - type: HulkAccent
+
+- type: geneticMutation
+  id: MutationHulkOrk
+  name: genetics-mutation-hulk-ork-name
+  description: genetics-mutation-hulk-ork-desc
+  gainText: genetics-mutation-hulk-ork-gain
+  loseText: genetics-mutation-hulk-ork-lose
+  quality: Positive
+  instability: 35
+  locked: true
+  conflicts:
+  - MutationHulk
+  components:
+  - type: GeneticStrength
+    multiplier: 3
+    bonus:
+      types:
+        Structural: 30
+  - type: Clumsy
+  - type: ReplacementAccent
+    accent: ImperialGeneticOrk
+
+- type: geneticMutation
+  id: MutationHeckacious
+  name: genetics-mutation-heckacious-name
+  description: genetics-mutation-heckacious-desc
+  gainText: genetics-mutation-heckacious-gain
+  loseText: genetics-mutation-heckacious-lose
+  quality: MinorNegative
+  instability: 0
+  locked: true
+  components:
+  - type: ReplacementAccent
+    accent: ImperialGeneticHeckacious
