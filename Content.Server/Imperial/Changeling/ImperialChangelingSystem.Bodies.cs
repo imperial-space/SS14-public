@@ -86,7 +86,7 @@ public sealed partial class ImperialChangelingSystem
             {
                 slug.DieAt = null;
                 if (TryComp<DamageableComponent>(uid, out _))
-                    _damage.TryChangeDamage(uid, new Content.Shared.Damage.DamageSpecifier(_proto.Index<Content.Shared.Damage.Prototypes.DamageTypePrototype>("Bloodloss"), 200), true);
+                    _damage.TryChangeDamage(uid, new Content.Shared.Damage.DamageSpecifier(_proto.Index<Content.Shared.Damage.Prototypes.DamageTypePrototype>(new Robust.Shared.Prototypes.ProtoId<Content.Shared.Damage.Prototypes.DamageTypePrototype>("Bloodloss")), 200), true);
             }
         }
 

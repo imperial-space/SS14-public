@@ -171,9 +171,9 @@ public sealed partial class ImperialChangelingSystem
             }
             else if (!(TryComp<Content.Shared.Atmos.Components.FlammableComponent>(uid, out var flammable) && flammable.OnFire))
             {
-                var heal = new DamageSpecifier(_proto.Index<DamageGroupPrototype>("Brute"), -4);
-                heal += new DamageSpecifier(_proto.Index<DamageGroupPrototype>("Burn"), -2);
-                heal += new DamageSpecifier(_proto.Index<DamageGroupPrototype>("Airloss"), -4);
+                var heal = new DamageSpecifier(_proto.Index<DamageGroupPrototype>(new Robust.Shared.Prototypes.ProtoId<DamageGroupPrototype>("Brute")), -4);
+                heal += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(new Robust.Shared.Prototypes.ProtoId<DamageGroupPrototype>("Burn")), -2);
+                heal += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(new Robust.Shared.Prototypes.ProtoId<DamageGroupPrototype>("Airloss")), -4);
                 _damage.TryChangeDamage(uid, heal, true, false);
             }
 
@@ -260,10 +260,10 @@ public sealed partial class ImperialChangelingSystem
             _vomit.Vomit(uid, 0, 0, force: true);
 
         var chems = new Solution();
-        chems.AddReagent("Mutadone", 10);
-        chems.AddReagent("Arithrazine", 20);
-        chems.AddReagent("Antihol", 10);
-        chems.AddReagent("Mannitol", 25);
+        chems.AddReagent(new Robust.Shared.Prototypes.ProtoId<Content.Shared.Chemistry.Reagent.ReagentPrototype>("Mutadone"), 10);
+        chems.AddReagent(new Robust.Shared.Prototypes.ProtoId<Content.Shared.Chemistry.Reagent.ReagentPrototype>("Arithrazine"), 20);
+        chems.AddReagent(new Robust.Shared.Prototypes.ProtoId<Content.Shared.Chemistry.Reagent.ReagentPrototype>("Antihol"), 10);
+        chems.AddReagent(new Robust.Shared.Prototypes.ProtoId<Content.Shared.Chemistry.Reagent.ReagentPrototype>("Mannitol"), 25);
         _bloodstream.TryAddToBloodstream(uid, chems);
 
         if (TryComp<DiseasedComponent>(uid, out var diseased))
@@ -555,7 +555,7 @@ public sealed partial class ImperialChangelingSystem
 
         _popup.PopupEntity(Loc.GetString("imperial-changeling-biodegrade-acid", ("user", Identity.Entity(uid, EntityManager)), ("target", Identity.Entity(manhandler, EntityManager))),
             uid, PopupType.LargeCaution);
-        _damage.TryChangeDamage(manhandler, new DamageSpecifier(_proto.Index<DamageTypePrototype>("Caustic"), 18), origin: uid);
+        _damage.TryChangeDamage(manhandler, new DamageSpecifier(_proto.Index<DamageTypePrototype>(new Robust.Shared.Prototypes.ProtoId<DamageTypePrototype>("Caustic")), 18), origin: uid);
         _audio.PlayPvs(AcidSpit, uid);
         _stun.TryUpdateStunDuration(manhandler, TimeSpan.FromSeconds(2));
         _chatSystem.TryEmoteWithChat(manhandler, "Scream", ignoreActionBlocker: true, forceEmote: true);

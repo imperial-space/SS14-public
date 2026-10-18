@@ -25,7 +25,7 @@ public enum ImperialChangelingStat : byte
 }
 
 /// <summary>/datum/action/changeling: способность генокрада.</summary>
-[Prototype("imperialChangelingPower")]
+[Prototype]
 public sealed partial class ImperialChangelingPowerPrototype : IPrototype
 {
     [IdDataField]

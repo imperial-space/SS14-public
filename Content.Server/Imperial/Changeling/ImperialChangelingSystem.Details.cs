@@ -92,7 +92,7 @@ public sealed partial class ImperialChangelingSystem
             foreach (var wall in walls)
             {
                 if (!TerminatingOrDeleted(wall))
-                    _damage.TryChangeDamage(wall, new DamageSpecifier(_proto.Index<DamageTypePrototype>("Structural"), 10000), true, origin: ling);
+                    _damage.TryChangeDamage(wall, new DamageSpecifier(_proto.Index<DamageTypePrototype>(new Robust.Shared.Prototypes.ProtoId<DamageTypePrototype>("Structural")), 10000), true, origin: ling);
             }
         }
     }
@@ -319,14 +319,14 @@ public sealed partial class ImperialChangelingSystem
             if (HasComp<BonkableComponent>(target) && HasComp<PlaceableSurfaceComponent>(target))
             {
                 // smash.deconstruct(FALSE)
-                _damage.TryChangeDamage(target, new DamageSpecifier(_proto.Index<DamageTypePrototype>("Structural"), 10000), true, origin: args.User);
+                _damage.TryChangeDamage(target, new DamageSpecifier(_proto.Index<DamageTypePrototype>(new Robust.Shared.Prototypes.ProtoId<DamageTypePrototype>("Structural")), 10000), true, origin: args.User);
                 continue;
             }
 
             if (HasComp<ComputerComponent>(target))
             {
                 // attack_generic(user, 60, BRUTE, MELEE) + slash.ogg
-                _damage.TryChangeDamage(target, new DamageSpecifier(_proto.Index<DamageTypePrototype>("Slash"), 60), origin: args.User);
+                _damage.TryChangeDamage(target, new DamageSpecifier(_proto.Index<DamageTypePrototype>(new Robust.Shared.Prototypes.ProtoId<DamageTypePrototype>("Slash")), 60), origin: args.User);
                 _audio.PlayPvs(ComputerSlash, target);
             }
         }
@@ -414,7 +414,7 @@ public sealed partial class ImperialChangelingSystem
                 continue;
             }
 
-            _damage.TryChangeDamage(obstacle.Owner, new DamageSpecifier(_proto.Index<DamageTypePrototype>("Structural"), 300), true, origin: uid);
+            _damage.TryChangeDamage(obstacle.Owner, new DamageSpecifier(_proto.Index<DamageTypePrototype>(new Robust.Shared.Prototypes.ProtoId<DamageTypePrototype>("Structural")), 300), true, origin: uid);
         }
 
         _pendingWallBreak.Add((uid, Transform(uid).Coordinates, walls, _timing.CurTime + TimeSpan.FromSeconds(1)));
