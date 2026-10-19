@@ -1,0 +1,329 @@
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocAdminAppeal
+  name: administration appeal
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-admin-appeal
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocAdminAppealResponse
+  name: appeal response
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-admin-appeal-response
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocAdminOrder
+  name: administration order
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-admin-order
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocBankLoanApplication
+  name: loan application
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-bank-loan-application
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocBankAppeal
+  name: bank appeal
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-bank-appeal
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocBankAccountOpening
+  name: account opening form
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-bank-account-opening
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocBankTaxPayment
+  name: tax payment form
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-bank-tax-payment
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocBankFeePayment
+  name: state fee payment form
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-bank-fee-payment
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocRegistrationApplication
+  name: registration application
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-registration-application
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocPassport
+  name: passport
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-passport
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocEmploymentCertificate
+  name: employment certificate
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-employment-certificate
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocServiceId
+  name: service ID
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-service-id
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocContract
+  name: contract
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-contract
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocMarriage
+  name: marriage certificate
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-marriage
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocLotteryTicket
+  name: lottery ticket
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-lottery-ticket
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocTaxAppeal
+  name: tax appeal
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-tax-appeal
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocElectionStatement
+  name: election statement
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-election-statement
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocDivorce
+  name: divorce certificate
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-divorce
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocPartyRegistration
+  name: party registration
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-party-registration
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocFlightTicket
+  name: flight ticket
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-flight-ticket
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocPropertyCertificate
+  name: property certificate
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-property-certificate
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocLoyaltyCertificate
+  name: loyalty certificate
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-loyalty-certificate
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocShipWeaponLicense
+  name: advanced ship weapon license
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-ship-weapon-license
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocFirearmLicense
+  name: advanced firearm license
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-firearm-license
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocOffenseReport
+  name: offense report
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-offense-report
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocPersonalFile
+  name: personal file
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-personal-file
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocPoliceAppeal
+  name: police appeal
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-police-appeal
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocExplanatoryNote
+  name: explanatory note
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-explanatory-note
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocWarrant
+  name: warrant
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-warrant
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocWantedNotice
+  name: wanted notice
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-wanted-notice
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocInvestigationReport
+  name: investigation report
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-investigation-report
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocViolationProtocol
+  name: violation protocol
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-violation-protocol
+
+- type: entity
+  parent: ElysiumPrimeFelixPaper
+  id: ElysiumPrimeDocContrabandSummary
+  name: contraband summary
+  description: A printed Elysium Prime document.
+  suffix: ElysiumPrime, Doc
+  components:
+  - type: Paper
+    content: elysium-prime-doc-text-contraband-summary

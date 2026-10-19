@@ -61,6 +61,9 @@
   - type: Item
     size: Tiny
   - type: PhysicalComposition
+    materialComposition: # Imperial PrinterDoc
+      Paper: 100 # Imperial PrinterDoc
+  - type: Material # Imperial PrinterDoc
 
 - type: entity
   name: paper

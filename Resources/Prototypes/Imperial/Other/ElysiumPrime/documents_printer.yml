@@ -1,0 +1,370 @@
+- type: latheCategory
+  id: ElysiumPrimeAdministration
+  name: lathe-category-elysium-prime-administration
+
+- type: latheCategory
+  id: ElysiumPrimePolice
+  name: lathe-category-elysium-prime-police
+
+- type: latheRecipePack
+  id: ElysiumPrimeDocumentsStatic
+  recipes:
+  - ElysiumPrimeDocAdminAppealRecipe
+  - ElysiumPrimeDocAdminAppealResponseRecipe
+  - ElysiumPrimeDocAdminOrderRecipe
+  - ElysiumPrimeDocBankLoanApplicationRecipe
+  - ElysiumPrimeDocBankAppealRecipe
+  - ElysiumPrimeDocBankAccountOpeningRecipe
+  - ElysiumPrimeDocBankTaxPaymentRecipe
+  - ElysiumPrimeDocBankFeePaymentRecipe
+  - ElysiumPrimeDocRegistrationApplicationRecipe
+  - ElysiumPrimeDocPassportRecipe
+  - ElysiumPrimeDocEmploymentCertificateRecipe
+  - ElysiumPrimeDocServiceIdRecipe
+  - ElysiumPrimeDocContractRecipe
+  - ElysiumPrimeDocMarriageRecipe
+  - ElysiumPrimeDocLotteryTicketRecipe
+  - ElysiumPrimeDocTaxAppealRecipe
+  - ElysiumPrimeDocElectionStatementRecipe
+  - ElysiumPrimeDocDivorceRecipe
+  - ElysiumPrimeDocPartyRegistrationRecipe
+  - ElysiumPrimeDocFlightTicketRecipe
+  - ElysiumPrimeDocPropertyCertificateRecipe
+  - ElysiumPrimeDocLoyaltyCertificateRecipe
+  - ElysiumPrimeDocShipWeaponLicenseRecipe
+  - ElysiumPrimeDocFirearmLicenseRecipe
+  - ElysiumPrimeDocOffenseReportRecipe
+  - ElysiumPrimeDocPersonalFileRecipe
+  - ElysiumPrimeDocPoliceAppealRecipe
+  - ElysiumPrimeDocExplanatoryNoteRecipe
+  - ElysiumPrimeDocWarrantRecipe
+  - ElysiumPrimeDocWantedNoticeRecipe
+  - ElysiumPrimeDocInvestigationReportRecipe
+  - ElysiumPrimeDocViolationProtocolRecipe
+  - ElysiumPrimeDocContrabandSummaryRecipe
+
+- type: latheRecipe
+  id: ElysiumPrimeDocAdminAppealRecipe
+  result: ElysiumPrimeDocAdminAppeal
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocAdminAppealResponseRecipe
+  result: ElysiumPrimeDocAdminAppealResponse
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocAdminOrderRecipe
+  result: ElysiumPrimeDocAdminOrder
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocBankLoanApplicationRecipe
+  result: ElysiumPrimeDocBankLoanApplication
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocBankAppealRecipe
+  result: ElysiumPrimeDocBankAppeal
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocBankAccountOpeningRecipe
+  result: ElysiumPrimeDocBankAccountOpening
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocBankTaxPaymentRecipe
+  result: ElysiumPrimeDocBankTaxPayment
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocBankFeePaymentRecipe
+  result: ElysiumPrimeDocBankFeePayment
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocRegistrationApplicationRecipe
+  result: ElysiumPrimeDocRegistrationApplication
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocPassportRecipe
+  result: ElysiumPrimeDocPassport
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocEmploymentCertificateRecipe
+  result: ElysiumPrimeDocEmploymentCertificate
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocServiceIdRecipe
+  result: ElysiumPrimeDocServiceId
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocContractRecipe
+  result: ElysiumPrimeDocContract
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocMarriageRecipe
+  result: ElysiumPrimeDocMarriage
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocLotteryTicketRecipe
+  result: ElysiumPrimeDocLotteryTicket
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocTaxAppealRecipe
+  result: ElysiumPrimeDocTaxAppeal
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocElectionStatementRecipe
+  result: ElysiumPrimeDocElectionStatement
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocDivorceRecipe
+  result: ElysiumPrimeDocDivorce
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocPartyRegistrationRecipe
+  result: ElysiumPrimeDocPartyRegistration
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocFlightTicketRecipe
+  result: ElysiumPrimeDocFlightTicket
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocPropertyCertificateRecipe
+  result: ElysiumPrimeDocPropertyCertificate
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocLoyaltyCertificateRecipe
+  result: ElysiumPrimeDocLoyaltyCertificate
+  categories: [ ElysiumPrimeAdministration ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocShipWeaponLicenseRecipe
+  result: ElysiumPrimeDocShipWeaponLicense
+  categories: [ ElysiumPrimePolice ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocFirearmLicenseRecipe
+  result: ElysiumPrimeDocFirearmLicense
+  categories: [ ElysiumPrimePolice ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocOffenseReportRecipe
+  result: ElysiumPrimeDocOffenseReport
+  categories: [ ElysiumPrimePolice ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocPersonalFileRecipe
+  result: ElysiumPrimeDocPersonalFile
+  categories: [ ElysiumPrimePolice ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocPoliceAppealRecipe
+  result: ElysiumPrimeDocPoliceAppeal
+  categories: [ ElysiumPrimePolice ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocExplanatoryNoteRecipe
+  result: ElysiumPrimeDocExplanatoryNote
+  categories: [ ElysiumPrimePolice ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocWarrantRecipe
+  result: ElysiumPrimeDocWarrant
+  categories: [ ElysiumPrimePolice ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocWantedNoticeRecipe
+  result: ElysiumPrimeDocWantedNotice
+  categories: [ ElysiumPrimePolice ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocInvestigationReportRecipe
+  result: ElysiumPrimeDocInvestigationReport
+  categories: [ ElysiumPrimePolice ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocViolationProtocolRecipe
+  result: ElysiumPrimeDocViolationProtocol
+  categories: [ ElysiumPrimePolice ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: ElysiumPrimeDocContrabandSummaryRecipe
+  result: ElysiumPrimeDocContrabandSummary
+  categories: [ ElysiumPrimePolice ]
+  completetime: 4
+  applyMaterialDiscount: false
+  materials:
+    Paper: 100
+
+- type: entity
+  parent: PrinterDoc
+  id: ElysiumPrimePrinterDoc
+  name: document printer
+  description: Stores a database of Elysium Prime documents and lets you print them as long as you have paper.
+  suffix: ElysiumPrime, Structure
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/printer_doc.rsi
+  - type: Lathe
+    producingSound: /Audio/Machines/printer.ogg
+    idleState: icon
+    runningState: building
+    unlitIdleState: unlit
+    staticPacks:
+    - ElysiumPrimeDocumentsStatic
+  - type: Machine
+    board: ElysiumPrimePrinterDocMachineCircuitboard
+
+- type: entity
+  parent: PrinterDocMachineCircuitboard
+  id: ElysiumPrimePrinterDocMachineCircuitboard
+  name: document printer machine board
+  description: A machine printed circuit board for an Elysium Prime document printer.
+  suffix: ElysiumPrime, Other
+  components:
+  - type: MachineBoard
+    prototype: ElysiumPrimePrinterDoc
