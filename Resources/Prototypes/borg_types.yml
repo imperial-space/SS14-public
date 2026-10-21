@@ -206,10 +206,16 @@
         type: BorgSelectTypeUserInterface
       enum.CrewMonitoringUIKey.Key:
         type: CrewMonitoringBoundUserInterface
+      #Imerial Space: Preserve the built-in DAW when applying the medical type.
+      enum.InstrumentUiKey.Key:
+        type: InstrumentBoundUserInterface
   - type: IntrinsicUI
     uis:
       enum.CrewMonitoringUIKey.Key:
         toggleAction: ActionShowCrewMonitor
+      #Imerial Space: Preserve the built-in DAW action alongside crew monitoring.
+      enum.InstrumentUiKey.Key:
+        toggleAction: ActionBorgOpenDaw
   # Imperial Space: add action. end
   - type: SolutionScanner
   - type: Stripping # Imperial Space: add ability to search

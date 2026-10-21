@@ -55,12 +55,18 @@
         type: CriminalRecordsConsoleBoundUserInterface
       enum.SurveillanceCameraMonitorUiKey.Key:
         type: SurveillanceCameraMonitorBoundUserInterface
+      #Imerial Space: Preserve the built-in DAW when applying the security type.
+      enum.InstrumentUiKey.Key:
+        type: InstrumentBoundUserInterface
   - type: IntrinsicUI
     uis:
       enum.CriminalRecordsConsoleKey.Key:
         toggleAction: ActionShowStationRecords
       enum.SurveillanceCameraMonitorUiKey.Key:
         toggleAction: ActionShowCameraMonitor
+      #Imerial Space: Preserve the built-in DAW action alongside security interfaces.
+      enum.InstrumentUiKey.Key:
+        toggleAction: ActionBorgOpenDaw
   - type: MobThresholds
     thresholds:
       0: Alive

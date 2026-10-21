@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseAction
+  id: ActionBorgOpenDaw
+  name: Open built-in DAW
+  description: Open the built-in music workstation.
+  components:
+  - type: Action
+    icon:
+      sprite: Interface/Actions/actions_borg.rsi
+      state: musical-module
+    useDelay: 0.5
+  - type: InstantAction
+    event: !type:ToggleIntrinsicUIEvent
+      key: enum.InstrumentUiKey.Key

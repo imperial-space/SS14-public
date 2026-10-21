@@ -31,6 +31,29 @@
     inherentRadioChannels:
     - Common
     - Binary
+  - type: Instrument # Imperial Space: Add a music instrument to cyborgs
+    handheld: false
+    allowPercussion: true
+    allowProgramChange: true
+  #Imerial Space: Built-in DAW interface and action. Start
+  - type: UserInterface
+    interfaces:
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+        requireInputValidation: false
+      enum.BorgUiKey.Key:
+        type: BorgBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.BorgSwitchableTypeUiKey.SelectBorgType:
+        type: BorgSelectTypeUserInterface
+      enum.InstrumentUiKey.Key:
+        type: InstrumentBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.InstrumentUiKey.Key:
+        toggleAction: ActionBorgOpenDaw
+  #Imerial Space: Built-in DAW interface and action. End
 
 - type: entity
   id: BorgChassisGeneric
