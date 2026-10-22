@@ -17,12 +17,20 @@ using Content.Shared.Imperial.Heretic.Paths.Moon;
 using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
 using Content.Shared.Imperial.Heretic.Paths.Void;
 using Content.Shared.Imperial.Heretic.Rituals;
+using Content.Shared.Cuffs.Components;
+using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.Projectiles;
+using Content.Shared.Strip.Components;
+using Content.Shared.Tag;
+using Content.Shared.Throwing;
+using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.SSDIndicator;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Stunnable;
@@ -57,6 +65,9 @@ public sealed class HereticMoonRingleaderSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem          _physics        = default!;
     [Dependency] private readonly SharedTransformSystem        _xform          = default!;
     [Dependency] private readonly ImperialAntimagicSystem      _antimagic      = default!;
+    [Dependency] private readonly TagSystem                    _tags           = default!;
+
+    private static readonly ProtoId<TagPrototype> DoorBumpTag = "DoorBumpOpener";
 
     /// <summary>aoe_radius заклинания.</summary>
     private const float AoeRadius = 5f;
@@ -79,6 +90,10 @@ public sealed class HereticMoonRingleaderSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<HereticComponent, HereticMoonRingleaderActionEvent>(OnRingleader);
         SubscribeLocalEvent<HereticMoonRingleaderCloneComponent, AttackedEvent>(OnCloneAttacked);
+        // relay_attackers: отражение лопается и от пуль, лазеров и брошенных предметов.
+        SubscribeLocalEvent<HereticMoonRingleaderCloneComponent, ProjectileReflectAttemptEvent>(OnCloneShot);
+        SubscribeLocalEvent<HereticMoonRingleaderCloneComponent, HitScanReflectAttemptEvent>(OnCloneHitscan);
+        SubscribeLocalEvent<HereticMoonRingleaderCloneComponent, ThrowHitByEvent>(OnCloneThrowHit);
     }
 
     private void OnRingleader(EntityUid uid, HereticComponent comp, HereticMoonRingleaderActionEvent args)
@@ -115,8 +130,28 @@ public sealed class HereticMoonRingleaderSystem : EntitySystem
     /// <summary>on_attacked(): отражение лопается, выжигая рассудок всем рядом.</summary>
     private void OnCloneAttacked(Entity<HereticMoonRingleaderCloneComponent> ent, ref AttackedEvent args)
     {
+        Burst(ent, args.User);
+    }
+
+    private void OnCloneShot(Entity<HereticMoonRingleaderCloneComponent> ent, ref ProjectileReflectAttemptEvent args)
+    {
+        Burst(ent, args.Component.Shooter);
+    }
+
+    private void OnCloneHitscan(Entity<HereticMoonRingleaderCloneComponent> ent, ref HitScanReflectAttemptEvent args)
+    {
+        Burst(ent, args.Shooter);
+    }
+
+    private void OnCloneThrowHit(Entity<HereticMoonRingleaderCloneComponent> ent, ref ThrowHitByEvent args)
+    {
+        Burst(ent, args.Component.Thrower);
+    }
+
+    private void Burst(Entity<HereticMoonRingleaderCloneComponent> ent, EntityUid? attacker)
+    {
         // Еретики не могут подрывать свои же отражения.
-        if (HasComp<HereticComponent>(args.User))
+        if (attacker is { } user && HasComp<HereticComponent>(user) || TerminatingOrDeleted(ent))
             return;
 
         var comp = ent.Comp;
@@ -171,6 +206,12 @@ public sealed class HereticMoonRingleaderSystem : EntitySystem
         RemComp<InputMoverComponent>(clone);
         RemComp<MobMoverComponent>(clone);
 
+        // /mob/living/basic/illusion — только облик: не обыскать, не утащить, не заковать, двери перед ним не открываются.
+        RemComp<StrippableComponent>(clone);
+        RemComp<PullableComponent>(clone);
+        RemComp<CuffableComponent>(clone);
+        _tags.RemoveTag(clone, DoorBumpTag);
+
         EnsureComp<TimedDespawnComponent>(clone).Lifetime = CloneLifetime;
         EnsureComp<CanMoveInAirComponent>(clone);
 
@@ -192,7 +233,10 @@ public sealed class HereticMoonRingleaderSystem : EntitySystem
             var protoId = MetaData(item).EntityPrototype?.ID;
             if (protoId == null) continue;
             var copy = Spawn(protoId, coords);
-            _inventory.TryEquip(target, copy, slot.Name, silent: true);
+            if (_inventory.TryEquip(target, copy, slot.Name, silent: true, force: true))
+                EnsureComp<UnremoveableComponent>(copy);
+            else
+                QueueDel(copy);
         }
     }
 
