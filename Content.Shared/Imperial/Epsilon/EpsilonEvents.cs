@@ -28,8 +28,8 @@ public static class EpsilonTimeline
     public const float LightsOutEnd = 10f;
     public const float EmergencyLights = 13.5f;
 
-    /// <summary>1:28 — касание пода и смена кода.</summary>
-    public const float Landing = 88f;
+    /// <summary>1:27.8 — касание пода, смена кода и фиолетовый свет.</summary>
+    public const float Landing = 87.8f;
 }
 
 /// <summary>

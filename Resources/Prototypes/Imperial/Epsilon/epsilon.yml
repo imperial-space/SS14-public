@@ -28,6 +28,7 @@
   name: оперативник «Эпсилон»
   suffix: Эпсилон, гост-роль
   components:
+  - type: ImperialEpsilonOperative
   - type: RandomHumanoidAppearance
     randomizeName: false
   - type: Loadout
@@ -179,3 +180,20 @@
       path: /Audio/Effects/explosion_small1.ogg
     forceSound: true
   - type: ImperialPulseProjectile
+
+# --- Цель эскадрона ---
+
+- type: entity
+  parent: BaseObjective
+  id: ImperialEpsilonKillCrewObjective
+  name: Уничтожить весь экипаж
+  description: Станция под контролем ЦК. Свидетелей быть не должно.
+  components:
+  - type: Objective
+    issuer: objective-issuer-epsilon
+    unique: true
+    difficulty: 1
+    icon:
+      sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi
+      state: base
+  - type: ImperialEpsilonKillCrewCondition
