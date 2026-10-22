@@ -25,9 +25,9 @@ public sealed class EpsilonTextOverlay : Overlay
 
     private static readonly Line[] Lines =
     {
-        new(3.3f, 4f, 4.3f, "внимание", 0f, true),
-        new(4.3f, 4.9f, 5f, "Внимание", 0.5f, true),
-        new(5f, 5.7f, 7f, "ВНИМАНИЕ", 0.85f, true),
+        new(3.8f, 4.5f, 5.1f, "внимание", 0f, true),
+        new(5.1f, 5.8f, 6.1f, "Внимание", 0.5f, true),
+        new(6.1f, 6.8f, 7f, "ВНИМАНИЕ", 0.85f, true),
         new(EpsilonTimeline.LightsOutStart, EpsilonTimeline.LightsOutEnd, 16f, "Станция теперь под контролем центрального командования", 1f, false),
     };
 
