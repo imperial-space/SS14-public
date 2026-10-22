@@ -170,6 +170,19 @@
       icon:
         sprite: Objects/Weapons/Melee/cult_blade.rsi
         state: icon
+    # Старая кузня TG: робы флагелланта и зеркальный щит.
+    - name: cult-option-flagellant
+      description: cult-option-flagellant-desc
+      items: [ ClothingOuterCultFlagellantRobes ]
+      icon:
+        sprite: Imperial/BloodCult/Clothing/robesalt.rsi
+        state: icon
+    - name: cult-option-mirror-shield
+      description: cult-option-mirror-shield-desc
+      items: [ CultMirrorShield ]
+      icon:
+        sprite: Imperial/BloodCult/mirror_shield.rsi
+        state: icon
 
 - type: entity
   parent: BaseCultStructure
