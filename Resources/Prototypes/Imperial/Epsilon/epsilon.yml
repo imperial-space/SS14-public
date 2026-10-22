@@ -1,0 +1,199 @@
+# Протокол «Эпсилон»: ЦК берёт станцию под контроль. Команда: epsilon [минуты] / epsilon start.
+
+- type: entity
+  parent: BaseGameRule
+  id: ImperialEpsilon
+  components:
+  - type: ImperialEpsilonRule
+
+# --- Под ---
+
+- type: entity
+  parent: ImperialAssaultPodConsoleDeathSquad
+  id: ImperialAssaultPodConsoleEpsilon
+  name: консоль пода протокола «Эпсилон»
+  description: Зону высадки выбирает экипаж, момент старта — Центральное командование.
+  suffix: Эпсилон
+  components:
+  - type: AssaultPodConsole
+    manualLaunch: false
+  - type: PointLight
+    color: DarkViolet
+
+# --- Оперативник ---
+
+- type: entity
+  parent: MobHuman
+  id: ImperialEpsilonOperative
+  name: оперативник «Эпсилон»
+  suffix: Эпсилон, гост-роль
+  components:
+  - type: ImperialEpsilonOperative
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: Loadout
+    prototypes: [ ImperialEpsilonOperativeGear ]
+  - type: AutoImplant
+    implants:
+    - FreedomImplant
+    - EmpImplant
+    - MindShieldImplant
+    - ImperialThermalEyesImplant
+    - ImperialXrayEyesImplant
+    - ImperialCnsRebooterImplant
+    - ImperialReviverImplant
+  - type: NpcFactionMember
+    factions:
+    - DeathSquad
+  - type: RandomMetadata
+    nameSegments:
+    - DeathSquadFirst
+    - DeathSquadSecond
+    - DeathSquadNumber
+  - type: CrewSkills
+    skills:
+    - skillBotany
+    - skillBaseMed
+    - skillBaseConstraction
+    - skillCooking
+    - skillBartending
+    - skillHacking
+    - skillInstrumentation
+    - skillMaintenance
+    - skillMediumConstruction
+    - skillMediumBotany
+    - skillBasicAtmos
+    - skillMedicalEquipment
+    - skillPharmacology
+    - skillPiloting
+    - skillAtmos
+    - skillHardInstrumentation
+    - skillRobotics
+    - skillResearch
+    - skillPharmaceuticals
+    - skillShooting
+    - skillSurgery
+    - skillNeuroSurgery
+  - type: GhostRole
+    name: epsilon-operative-ghost-name
+    description: epsilon-operative-ghost-desc
+    rules: epsilon-operative-ghost-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+
+- type: startingGear
+  id: ImperialEpsilonOperativeGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDeathSquad
+    back: ClothingBackpackDeadSquadSecurityFilled
+    eyes: GlassesDeathSquad
+    mask: ClothingMaskDeathSquadAlt
+    ears: SODDeathSquadHeadset
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitDeathsquadAlt
+    shoes: BootsMagDeathSquad
+    id: DeadSquadPDA
+    pocket1: EnergySword
+    pocket2: WeaponRevolverMateba
+    suitstorage: OxygenTankFilled
+    belt: ClothingBeltDeadSquadFilled
+  inhand:
+  - ImperialEpsilonPulseRifle
+
+# --- Импульсная винтовка (/obj/item/gun/energy/pulse) ---
+
+- type: entity
+  parent: WeaponPulseRifle
+  id: ImperialEpsilonPulseRifle
+  name: импульсная винтовка
+  description: Тяжёлая многорежимная энергетическая винтовка. Режим «УНИЧТОЖИТЬ» сносит стены и бьёт сквозь них.
+  suffix: Эпсилон
+  components:
+  - type: Gun
+    fireRate: 1.8
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    projectileSpeed: 40
+    soundGunshot:
+      path: /Audio/Imperial/Epsilon/pulse.ogg
+  - type: BatteryAmmoProvider
+    proto: ImperialEpsilonPulseBolt
+    fireCost: 1000
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: ImperialEpsilonPulseBolt
+      fireCost: 1000
+    - proto: BulletTaser
+      fireCost: 400
+      pacifismAllowedMode: true
+    - proto: RedLaser
+      fireCost: 400
+  - type: BatterySelfRecharger
+    autoRechargeRate: 200
+
+# /obj/projectile/beam/pulse: 50 ожогом, стены и постройки сносит (ex_act heavy) и летит дальше.
+- type: entity
+  parent: BaseBullet
+  id: ImperialEpsilonPulseBolt
+  name: импульс «УНИЧТОЖИТЬ»
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Reflective
+    reflective:
+    - Energy
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    layers:
+    - state: u_laser
+      shader: unshaded
+  - type: PointLight
+    color: "#4a8cff"
+    radius: 2.5
+    energy: 3
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.3,0.15,0.3"
+        hard: false
+        mask:
+        - Opaque
+        - Impassable
+        - BulletImpassable
+  - type: Ammo
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    penetrationThreshold: 1000000
+    damage:
+      types:
+        Heat: 50
+    soundHit:
+      path: /Audio/Effects/explosion_small1.ogg
+    forceSound: true
+  - type: ImperialPulseProjectile
+
+# --- Цель эскадрона ---
+
+- type: entity
+  parent: BaseObjective
+  id: ImperialEpsilonKillCrewObjective
+  name: Уничтожить весь экипаж
+  description: Станция под контролем ЦК. Свидетелей быть не должно.
+  components:
+  - type: Objective
+    issuer: objective-issuer-epsilon
+    unique: true
+    difficulty: 1
+    icon:
+      sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi
+      state: base
+  - type: ImperialEpsilonKillCrewCondition
