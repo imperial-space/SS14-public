@@ -252,6 +252,13 @@ public sealed partial class CultConstructSystem : EntitySystem
         });
     }
 
+    private static readonly HashSet<CultConstructType> FormAnimated = new()
+    {
+        CultConstructType.Artificer,
+        CultConstructType.Wraith,
+        CultConstructType.Juggernaut,
+    };
+
     /// <summary>make_new_construct().</summary>
     public EntityUid? MakeConstruct(CultConstructType type, EntityUid target, EntityUid? creator, EntityCoordinates coords, EntityUid? fromMind = null, bool stoneCaptured = true)
     {
@@ -259,7 +266,8 @@ public sealed partial class CultConstructSystem : EntitySystem
             return null;
 
         var construct = Spawn(proto, coords);
-        if (ConstructStates.TryGetValue(type, out var state))
+        // Анимация сборки есть только у ремесленника, призрака и джаггернаута (состояния make_*_cult в constructs.rsi).
+        if (ConstructStates.TryGetValue(type, out var state) && FormAnimated.Contains(type))
             _cult.Effect("CultEffectConstructForm", coords, color: null).Also(e => _appearance.SetData(e, CultVisuals.State, $"make_{state}_cult"));
         _audio.PlayPvs(CultSounds.ConstructForm, construct, AudioParams.Default.WithVolume(CultSystem.Db(50)));
 

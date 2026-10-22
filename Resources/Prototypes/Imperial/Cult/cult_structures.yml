@@ -287,6 +287,11 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
+    # Слой подсветки ванильного шлюза: у рунной двери огней нет, слой прозрачный, но нужен анимациям AirlockSystem.
+    - state: closed
+      map: ["enum.DoorVisualLayers.BaseUnlit"]
+      color: "#ffffff00"
+      visible: false
     - state: welded
       map: ["enum.WeldableLayers.BaseWelded"]
     - state: welded
@@ -308,6 +313,12 @@
     state: closed
   - type: Airlock
     emergencyAccessLayer: false
+    openUnlitVisible: false
+    openSpriteState: open
+    closedSpriteState: closed
+    openingSpriteState: opening
+    closingSpriteState: closing
+    denySpriteState: closed
   - type: AccessReader
     access: []
   - type: CultRunedDoor

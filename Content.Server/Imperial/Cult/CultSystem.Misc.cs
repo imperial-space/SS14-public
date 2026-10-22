@@ -27,6 +27,15 @@ public sealed partial class CultSystem
 
     private int _narsieSummonCount;
 
+    /// <summary>Трек ритуала уже играл в этом раунде (сбрасывается на рестарте).</summary>
+    private bool _ritualMusicPlayed;
+
+    private void OnCultRoundRestart(Content.Shared.GameTicking.RoundRestartCleanupEvent ev)
+    {
+        _narsieSummonCount = 0;
+        _ritualMusicPlayed = false;
+    }
+
     private void InitializeMisc()
     {
         SubscribeLocalEvent<CultDarkSpiritComponent, CultSpiritCommunionActionEvent>(OnSpiritCommunion);
@@ -66,10 +75,11 @@ public sealed partial class CultSystem
     public void NarSieSummonStarted()
     {
         _narsieSummonCount++;
-        if (GetRule() is { } rule && !rule.Comp.RitualMusicPlayed)
+        // sound_to_playing_players: трек слышат все игроки, а не только участники правила культа.
+        if (!_ritualMusicPlayed)
         {
-            rule.Comp.RitualMusicPlayed = true;
-            RaiseNetworkEvent(new CultRitualMusicEvent());
+            _ritualMusicPlayed = true;
+            RaiseNetworkEvent(new CultRitualMusicEvent(), Robust.Shared.Player.Filter.Broadcast());
         }
         if (_narsieSummonCount == 1)
             RaiseNetworkEvent(new CultStarlightEvent(true));

@@ -86,6 +86,7 @@ public sealed partial class CultSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<Content.Shared.GameTicking.RoundRestartCleanupEvent>(OnCultRoundRestart);
         InitializeMenus();
         InitializeLeader();
         InitializeMisc();
