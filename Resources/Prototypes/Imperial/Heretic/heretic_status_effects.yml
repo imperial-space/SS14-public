@@ -1,0 +1,132 @@
+# Heretic path status effects
+
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: HereticInsanityStatusEffect
+  name: безумие
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MobState
+  - type: HereticInsanityStatusEffect
+
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: VoidChillStatusEffect
+  name: пустотный холод
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MobState
+      - MovementSpeedModifier
+      requireAll: true
+  - type: MovementModStatusEffect
+    sprintSpeedModifier: 1.0
+    walkSpeedModifier: 1.0
+  - type: VoidChillStatusEffect
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: HereticLastResortStatusEffect
+  name: последний рубеж
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MobState
+      - MovementSpeedModifier
+      requireAll: true
+  - type: MovementModStatusEffect
+    sprintSpeedModifier: 1.3
+    walkSpeedModifier: 1.3
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: HereticPaintingSpeedBoostStatusEffect
+  name: ускорение картины
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MobState
+      - MovementSpeedModifier
+      requireAll: true
+  - type: MovementModStatusEffect
+    sprintSpeedModifier: 1.1
+    walkSpeedModifier: 1.1
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: HereticWeeepingHallucinationStatusEffect
+  name: галлюцинация
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MobState
+  - type: HereticWeeepingHallucinationStatusEffect
+
+- type: entity
+  id: HereticStarMarkOverlay
+  save: false
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: StarMarkOverlay
+
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: VoidPrisonStatusEffect
+  name: пустотная тюрьма
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MobState
+  - type: VoidPrisonStatusEffect
+
+- type: entity
+  id: HereticVoidPrisonOverlay
+  save: false
+  categories:
+  - HideSpawnMenu
+
+- type: entity
+  id: HereticVoidBall
+  save: false
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: voidball_effect
+    scale: 2.5, 2.5
+
+- type: entity
+  id: HereticVoidPrisonEntity
+  save: false
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: voidball_effect
+    scale: 2.5, 2.5
+  - type: VoidPrison
+  - type: AdminFrozen
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StarMarkStatusEffect
+  name: звёздная метка
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MobState
+  - type: StarMarkStatusEffect
+  - type: StatusEffectAlert
+    alert: StarMark
+    showDuration: true

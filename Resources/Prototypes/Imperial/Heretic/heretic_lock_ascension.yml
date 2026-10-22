@@ -1,0 +1,336 @@
+# ==============================================
+#  Возвышение Замка — Шейпшифт и Разрыв
+# ==============================================
+
+# ─── Polymorph прототип ───
+
+- type: polymorph
+  id: HereticLockAscendedForm
+  configuration:
+    entity: MobHereticLockAscended
+    transferName: true
+    inventory: Drop
+    revertOnDeath: true
+    allowRepeatedMorphs: false
+    forced: false
+
+# ─── Форма возвышения (управляется игроком) ───
+
+- type: entity
+  parent: BaseControllable
+  id: MobHereticLockAscended
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 60
+        mask:
+        - Impassable
+        - BlobImpassable
+        - HighImpassable
+        - LowImpassable
+        layer:
+        - MobLayer
+        - MidImpassable
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 4.5
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/heretic/eldritch_mobs.rsi
+    layers:
+    - state: armsy_end
+  - type: InputMover
+  - type: Damageable
+    damageContainer: Biological
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSlime
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcClaw
+    attackRate: 1.5
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Slash: 22
+        Blunt: 5
+  - type: CombatMode
+  - type: CosmosMarkImmune
+
+# ─── Polymorph прототипы выбора формы ───
+
+- type: polymorph
+  id: HereticLockPolymorph_RustWalker
+  configuration:
+    entity: MobHereticLockRustWalker
+    transferName: true
+    transferDamage: false
+    inventory: Transfer
+    revertOnDeath: true
+    revertOnCrit: false
+    allowRepeatedMorphs: false
+    forced: false
+
+- type: polymorph
+  id: HereticLockPolymorph_AshOrb
+  configuration:
+    entity: MobHereticLockAshSpirit
+    transferName: true
+    transferDamage: false
+    inventory: Transfer
+    revertOnDeath: true
+    revertOnCrit: false
+    allowRepeatedMorphs: false
+    forced: false
+
+- type: polymorph
+  id: HereticLockPolymorph_FleshWorm
+  configuration:
+    entity: HereticFamiliarStalker
+    transferName: true
+    transferDamage: false
+    inventory: Transfer
+    revertOnDeath: true
+    revertOnCrit: false
+    allowRepeatedMorphs: false
+    forced: false
+
+- type: polymorph
+  id: HereticLockPolymorph_RawProphet
+  configuration:
+    entity: MobHereticLockRawProphet
+    transferName: true
+    transferDamage: false
+    inventory: Transfer
+    revertOnDeath: true
+    revertOnCrit: false
+    allowRepeatedMorphs: false
+    forced: false
+
+# ─── Controllable формы для полиморфа ───
+
+- type: entity
+  parent: BaseControllable
+  id: MobHereticLockRustWalker
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 15
+        mask:
+        - Impassable
+        - BlobImpassable
+        - HighImpassable
+        - LowImpassable
+        layer:
+        - MobLayer
+        - MidImpassable
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.0
+    baseSprintSpeed: 4.0
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - state: rust_walker_s
+      sprite: Imperial/heretic/eldritch_mobs.rsi
+  - type: InputMover
+  - type: Damageable
+    damageContainer: Biological
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: HereticRustWalker
+  - type: ActionGrant
+    actions:
+    - ActionHereticRustWalkerAggressiveSpread
+    - ActionHereticRustWalkerLesserPatrinsReach
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcClaw
+    attackRate: 1.5
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Slash: 20
+        Blunt: 5
+  - type: CombatMode
+
+- type: entity
+  parent: BaseControllable
+  id: MobHereticLockAshSpirit
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 15
+        mask:
+        - Impassable
+        - BlobImpassable
+        - HighImpassable
+        - LowImpassable
+        layer:
+        - MobLayer
+        - MidImpassable
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.0
+    baseSprintSpeed: 5.5
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - state: ash_walker
+      sprite: Imperial/heretic/eldritch_mobs.rsi
+  - type: InputMover
+  - type: Damageable
+    damageContainer: Biological
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Dead
+  - type: PointLight
+    color: "#ff8800"
+    radius: 2.0
+    softness: 1.5
+    energy: 1.5
+  - type: HereticAshSpirit
+  - type: ActionGrant
+    actions:
+    - ActionHereticAshSpiritShift
+    - ActionHereticAshSpiritFlameOath
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcClaw
+    attackRate: 1.0
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Slash: 17
+  - type: CombatMode
+
+- type: entity
+  parent: BaseControllable
+  id: MobHereticLockRawProphet
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 60
+        mask:
+        - Impassable
+        - BlobImpassable
+        - HighImpassable
+        - LowImpassable
+        layer:
+        - MobLayer
+        - MidImpassable
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.0
+    baseSprintSpeed: 3.0
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - state: raw_prophet
+      sprite: Imperial/heretic/eldritch_mobs.rsi
+  - type: InputMover
+  - type: Damageable
+    damageContainer: Biological
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: HereticRawProphet
+  - type: ActionGrant
+    actions:
+    - ActionHereticAshShift
+    - ActionHereticRawProphetBlind
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcClaw
+    attackRate: 1.0
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Slash: 18
+        Radiation: 8
+  - type: CombatMode
+
+# ─── Разрыв Замка ───
+
+- type: entity
+  id: HereticLockTear
+  name: ent-HereticLockTear
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Imperial/heretic/effects.rsi
+    color: "#7B2FBE"
+    layers:
+    - state: void_conduit
+      shader: unshaded
+  - type: HereticLockTear
+  - type: PointLight
+    radius: 2.5
+    energy: 2.0
+    color: "#7B2FBE"
+  - type: GhostRole
+    name: heretic-lock-tear-ghost-role-name
+    description: heretic-lock-tear-ghost-role-desc
+    rules: ghost-role-component-default-rules
+    makeSentient: true
+    allowMovement: true
+  - type: GhostRoleMobSpawner
+    deleteOnSpawn: false
+    availableTakeovers: 999
+    prototype: MobHereticRustWalker

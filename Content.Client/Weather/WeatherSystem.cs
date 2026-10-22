@@ -84,7 +84,7 @@ public sealed class WeatherSystem : SharedWeatherSystem
                     if (!visited.Add(node.GridIndices))
                         continue;
 
-                    if (!CanWeatherAffect((playerXform.GridUid.Value, grid, roofComp), node))
+                    if (!CanWeatherAffect((playerXform.GridUid.Value, grid, roofComp), node, weather.IgnoreRoof))
                     {
                         // Add neighbors
                         // TODO: Ideally we pick some deterministically random direction and use that

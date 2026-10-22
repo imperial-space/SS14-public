@@ -1,0 +1,55 @@
+- type: decal
+  id: HereticRoseStone1
+  tags: ["heretic"]
+  sprite:
+    sprite: Imperial/heretic/rose_stone_turf.rsi
+    state: rose_stone_1
+
+- type: decal
+  id: HereticRoseStone2
+  tags: ["heretic"]
+  sprite:
+    sprite: Imperial/heretic/rose_stone_turf.rsi
+    state: rose_stone_2
+
+- type: decal
+  id: HereticRoseStone3
+  tags: ["heretic"]
+  sprite:
+    sprite: Imperial/heretic/rose_stone_turf.rsi
+    state: rose_stone_3
+
+- type: decal
+  id: HereticRoseStone4
+  tags: ["heretic"]
+  sprite:
+    sprite: Imperial/heretic/rose_stone_turf.rsi
+    state: rose_stone_4
+
+- type: decal
+  id: HereticRoseStone5
+  tags: ["heretic"]
+  sprite:
+    sprite: Imperial/heretic/rose_stone_turf.rsi
+    state: rose_stone_5
+
+- type: decal
+  id: HereticRoseStone6
+  tags: ["heretic"]
+  sprite:
+    sprite: Imperial/heretic/rose_stone_turf.rsi
+    state: rose_stone_6
+
+- type: decal
+  id: HereticRoseStone7
+  tags: ["heretic"]
+  sprite:
+    sprite: Imperial/heretic/rose_stone_turf.rsi
+    state: rose_stone_7
+
+- type: decal
+  id: HereticRoseStone8
+  tags: ["heretic"]
+  sprite:
+    sprite: Imperial/heretic/rose_stone_turf.rsi
+    state: rose_stone_8

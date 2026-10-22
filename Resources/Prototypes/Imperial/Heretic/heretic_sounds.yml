@@ -1,0 +1,7 @@
+- type: soundCollection
+  id: HereticSparks
+  files:
+    - /Audio/Imperial/heretic/sparks1.ogg
+    - /Audio/Imperial/heretic/sparks2.ogg
+    - /Audio/Imperial/heretic/sparks3.ogg
+    - /Audio/Imperial/heretic/sparks4.ogg
