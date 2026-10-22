@@ -1,0 +1,413 @@
+# Фракция, иконки, алерты, звуки культа крови.
+
+- type: npcFaction
+  id: Cult
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - Passive
+  - PetsNT
+  - Revolutionary
+  - Dragon
+  - Xeno
+  - AllHostile
+  - SyndicateAgent
+  - Wizard
+  - Pirate
+  - DeathSquad
+  - RiotControlUnit
+  - Xenoborg
+  - Blob
+
+# antag_hud.dmi "cult" / "cultmaster".
+- type: factionIcon
+  id: CultistFaction
+  isShaded: true
+  priority: 11
+  showTo:
+    components:
+    - ShowAntagIcons
+    - Cultist
+  icon:
+    sprite: /Textures/Imperial/BloodCult/hud.rsi
+    state: cult
+
+- type: factionIcon
+  id: CultMasterFaction
+  isShaded: true
+  priority: 11
+  showTo:
+    components:
+    - ShowAntagIcons
+    - Cultist
+  icon:
+    sprite: /Textures/Imperial/BloodCult/hud.rsi
+    state: cultmaster
+
+# alert/bloodsense: 0 cult_sense, 1 runed_sense0, 2 runed_sense1, 3 runed_sense2, 4+ стрелки (дальность * 16 + направление).
+- type: alert
+  id: CultBloodSense
+  icons:
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: cult_sense
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: runed_sense0
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: runed_sense1_nar
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: runed_sense2
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow8_0
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow8_1
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow8_2
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow8_3
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow8_4
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow8_5
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow8_6
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow8_7
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow8_8
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow8_9
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow8_10
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow8_11
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow8_12
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow8_13
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow8_14
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow8_15
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow7_0
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow7_1
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow7_2
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow7_3
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow7_4
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow7_5
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow7_6
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow7_7
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow7_8
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow7_9
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow7_10
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow7_11
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow7_12
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow7_13
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow7_14
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow7_15
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow6_0
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow6_1
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow6_2
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow6_3
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow6_4
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow6_5
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow6_6
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow6_7
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow6_8
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow6_9
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow6_10
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow6_11
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow6_12
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow6_13
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow6_14
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow6_15
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow5_0
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow5_1
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow5_2
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow5_3
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow5_4
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow5_5
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow5_6
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow5_7
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow5_8
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow5_9
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow5_10
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow5_11
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow5_12
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow5_13
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow5_14
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow5_15
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow4_0
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow4_1
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow4_2
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow4_3
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow4_4
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow4_5
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow4_6
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow4_7
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow4_8
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow4_9
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow4_10
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow4_11
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow4_12
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow4_13
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow4_14
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow4_15
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow3_0
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow3_1
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow3_2
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow3_3
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow3_4
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow3_5
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow3_6
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow3_7
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow3_8
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow3_9
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow3_10
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow3_11
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow3_12
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow3_13
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow3_14
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow3_15
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow2_0
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow2_1
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow2_2
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow2_3
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow2_4
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow2_5
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow2_6
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow2_7
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow2_8
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow2_9
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow2_10
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow2_11
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow2_12
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow2_13
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow2_14
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow2_15
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow1_0
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow1_1
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow1_2
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow1_3
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow1_4
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow1_5
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow1_6
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow1_7
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow1_8
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow1_9
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow1_10
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow1_11
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow1_12
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow1_13
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow1_14
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow1_15
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow0_0
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow0_1
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow0_2
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow0_3
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow0_4
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow0_5
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow0_6
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow0_7
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow0_8
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow0_9
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow0_10
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow0_11
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow0_12
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow0_13
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow0_14
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow0_15
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow_0
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow_1
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow_2
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow_3
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow_4
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow_5
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow_6
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow_7
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow_8
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow_9
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow_10
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow_11
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow_12
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow_13
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow_14
+  - sprite: /Textures/Imperial/BloodCult/alerts.rsi
+    state: arrow_15
+  minSeverity: 0
+  maxSeverity: 163
+  name: alerts-cult-bloodsense-name
+  description: alerts-cult-bloodsense-desc
+
+- type: soundCollection
+  id: ImperialCultPortalOpen
+  files:
+  - /Audio/Imperial/BloodCult/portal_open_1.ogg
+  - /Audio/Imperial/BloodCult/portal_open_2.ogg
+  - /Audio/Imperial/BloodCult/portal_open_3.ogg
+
+- type: soundCollection
+  id: ImperialCultISeeYou
+  files:
+  - /Audio/Imperial/BloodCult/i_see_you1.ogg
+  - /Audio/Imperial/BloodCult/i_see_you2.ogg
+
+- type: soundCollection
+  id: ImperialCultImHere
+  files:
+  - /Audio/Imperial/BloodCult/im_here1.ogg
+  - /Audio/Imperial/BloodCult/im_here2.ogg
+
+- type: soundCollection
+  id: ImperialCultOverHere
+  files:
+  - /Audio/Imperial/BloodCult/over_here2.ogg
+  - /Audio/Imperial/BloodCult/over_here3.ogg
+
+- type: soundCollection
+  id: ImperialCultTurnAround
+  files:
+  - /Audio/Imperial/BloodCult/turn_around1.ogg
+  - /Audio/Imperial/BloodCult/turn_around2.ogg

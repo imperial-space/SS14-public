@@ -1,0 +1,485 @@
+# Временные визуальные эффекты культа (temporary_visuals/cult.dm).
+
+- type: entity
+  abstract: true
+  id: BaseCultEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/BloodCult/effects.rsi
+    drawdepth: Effects
+    layers:
+    - state: bloodsparkles
+      shader: unshaded
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: Appearance
+  - type: CultVisuals
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: entity
+  parent: BaseCultEffect
+  id: CultEffectSparks
+  name: кровавые искры
+
+- type: entity
+  parent: BaseCultEffect
+  id: CultEffectPhaseOut
+  name: фазовое свечение
+  components:
+  - type: Transform
+  - type: Sprite
+    sprite: Imperial/BloodCult/effects.rsi
+    drawdepth: Effects
+    layers:
+    - state: cultout
+      shader: unshaded
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: TimedDespawn
+    lifetime: 0.7
+
+- type: entity
+  parent: CultEffectPhaseOut
+  id: CultEffectPhaseIn
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/effects.rsi
+    drawdepth: Effects
+    layers:
+    - state: cultin
+      shader: unshaded
+      map: [ "enum.CultVisualLayers.Base" ]
+
+- type: entity
+  parent: BaseCultEffect
+  id: CultEffectBloodIn
+  name: кровавый прыжок
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/effects.rsi
+    drawdepth: Effects
+    layers:
+    - state: bloodin
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: TimedDespawn
+    lifetime: 1.2
+
+- type: entity
+  parent: CultEffectBloodIn
+  id: CultEffectBloodOut
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/effects.rsi
+    drawdepth: Effects
+    layers:
+    - state: bloodout
+      map: [ "enum.CultVisualLayers.Base" ]
+
+- type: entity
+  parent: BaseCultEffect
+  id: CultEffectSacrifice
+  name: пасть Нар'Си
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/effects.rsi
+    drawdepth: Effects
+    layers:
+    - state: sacconsume
+      map: [ "enum.CultVisualLayers.Base" ]
+
+- type: entity
+  parent: BaseCultEffect
+  id: CultEffectFloorGlow
+  name: нечестивое свечение
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/effects.rsi
+    drawdepth: FloorObjects
+    layers:
+    - state: floorglow
+      shader: unshaded
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: TimedDespawn
+    lifetime: 0.5
+
+- type: entity
+  parent: BaseCultEffect
+  id: CultEffectDoorGlow
+  name: нечестивое свечение
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/effects.rsi
+    drawdepth: Overdoors
+    layers:
+    - state: doorglow
+      shader: unshaded
+      map: [ "enum.CultVisualLayers.Base" ]
+
+- type: entity
+  parent: CultEffectDoorGlow
+  id: CultEffectDoorGlowUnruned
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/effects.rsi
+    drawdepth: Overdoors
+    layers:
+    - state: unruneddoorglow
+      shader: unshaded
+      map: [ "enum.CultVisualLayers.Base" ]
+
+- type: entity
+  parent: BaseCultEffect
+  id: CultEffectPortal
+  name: разрыв реальности
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/effects.rsi
+    drawdepth: Objects
+    layers:
+    - state: space
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: TimedDespawn
+    lifetime: 60
+
+- type: entity
+  parent: BaseCultEffect
+  id: CultEffectGraspPortal
+  name: портал
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/structures.rsi
+    drawdepth: Effects
+    layers:
+    - state: hole
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: TimedDespawn
+    lifetime: 0.6
+
+- type: entity
+  parent: BaseCultEffect
+  id: CultEffectWraithOut
+  name: тень
+  components:
+  - type: Transform
+  - type: Sprite
+    sprite: Imperial/BloodCult/constructs.rsi
+    drawdepth: Effects
+    layers:
+    - state: phase_shift_cult
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: TimedDespawn
+    lifetime: 0.6
+
+- type: entity
+  parent: CultEffectWraithOut
+  id: CultEffectWraithIn
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/constructs.rsi
+    drawdepth: Effects
+    layers:
+    - state: phase_shift2_cult
+      map: [ "enum.CultVisualLayers.Base" ]
+
+- type: entity
+  parent: BaseCultEffect
+  id: CultEffectConstructForm
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/constructs.rsi
+    drawdepth: Effects
+    layers:
+    - state: make_artificer_cult
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: TimedDespawn
+    lifetime: 0.975
+
+- type: entity
+  parent: BaseCultEffect
+  id: CultEffectHeal
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/effects.rsi
+    drawdepth: Effects
+    layers:
+    - state: bloodsparkles
+      shader: unshaded
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: TimedDespawn
+    lifetime: 0.5
+
+- type: entity
+  id: CultLightFlash
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: PointLight
+    radius: 1.1
+    energy: 2
+    color: "#A01010"
+
+- type: entity
+  id: CultBloodMarkMarker
+  name: кровавая метка
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/BloodCult/target.rsi
+    drawdepth: Effects
+    state: glow
+    visible: false
+
+# atom/Beam(): растягивается по длине CultBeam.
+- type: entity
+  abstract: true
+  id: BaseCultBeam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: Sprite
+    sprite: Imperial/BloodCult/beams.rsi
+    drawdepth: Effects
+    layers:
+    - state: sendbeam
+      shader: unshaded
+  - type: CultBeam
+  - type: TimedDespawn
+    lifetime: 0.4
+
+- type: entity
+  parent: BaseCultBeam
+  id: CultBeamSend
+
+- type: entity
+  parent: BaseCultBeam
+  id: CultBeamDrain
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/beams.rsi
+    drawdepth: Effects
+    layers:
+    - state: drainbeam
+      shader: unshaded
+
+- type: entity
+  parent: BaseCultBeam
+  id: CultBeamBlood
+  name: кровавый луч
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/beams.rsi
+    drawdepth: Effects
+    layers:
+    - state: blood_beam
+      shader: unshaded
+
+# emergency_shield/cult/* — щиты.
+- type: entity
+  abstract: true
+  id: BaseCultShield
+  name: барьер культа
+  description: Щит, призванный культистами, чтобы держать еретиков подальше.
+  categories: [ HideSpawnMenu ]
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/BloodCult/shields.rsi
+    drawdepth: Mobs
+    layers:
+    - state: shield-red
+      shader: unshaded
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: Appearance
+  - type: CultVisuals
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+  - type: Airtight
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: BaseCultShield
+  id: CultRuneBarrierShield
+
+- type: entity
+  parent: BaseCultShield
+  id: CultShieldNarSie
+  name: кровавый барьер
+  description: Мощный щит, призванный культистами для защиты своих обрядов.
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# Щит заклинателя: не мешает проходу, только бьётся.
+- type: entity
+  parent: BaseCultShield
+  id: CultShieldWeak
+  name: щит заклинателя
+  description: Слабый щит, защищающий культистов во время тонких ритуалов.
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/shields.rsi
+    drawdepth: Overdoors
+    layers:
+    - state: shield-red
+      color: "#FF0000"
+      shader: unshaded
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        hard: false
+        mask:
+        - BulletImpassable
+        layer:
+        - GlassLayer
+  - type: Airtight
+    airBlocked: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# forcefield/cult: светящаяся стена на 20 с.
+- type: entity
+  id: CultWallForce
+  name: светящаяся стена
+  description: Нечестивый щит, блокирующий все атаки.
+  categories: [ HideSpawnMenu ]
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/BloodCult/effects.rsi
+    drawdepth: Mobs
+    state: cultshield
+    shader: unshaded
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+  - type: Airtight
+  - type: TimedDespawn
+    lifetime: 20
+
+# obj/effect/blessing: видят капелланы, еретики и призраки-конструкты.
+- type: entity
+  id: CultBlessing
+  name: святое благословение
+  description: Святые энергии мешают эфирным путешествиям в этом месте.
+  categories: [ HideSpawnMenu ]
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/BloodCult/shields.rsi
+    drawdepth: FloorObjects
+    layers:
+    - state: blessed
+      color: "#FFFFFF40"
+      visible: false
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: CultBlessing
+
+# temp_visual/cult/rune_spawn: проявляется и сжимается с поворотом.
+- type: entity
+  id: CultRuneSpawnEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/BloodCult/effects.rsi
+    drawdepth: FloorObjects
+    layers:
+    - state: runeouter
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: Appearance
+  - type: CultVisuals
+  - type: CultRuneSpawnEffect
+
+# Портальный шторм: энергетический шар (energy_ball_fast, COLOR_VIBRANT_LIME).
+- type: entity
+  id: CultPortalStormEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/BloodCult/portalstorm.rsi
+    drawdepth: Overlays
+    state: energy_ball_fast
+    color: "#00FF00"
+    shader: unshaded
+  - type: TimedDespawn
+    lifetime: 1.5
+
+# temp_visual/heal с healing_color = COLOR_CULT_RED (aura_healing пилона).
+- type: entity
+  id: CultPylonHealEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/BloodCult/effects.rsi
+    state: pylon_heal
+    drawdepth: Effects
+    color: "#960000"
+  - type: TimedDespawn
+    lifetime: 1.5
