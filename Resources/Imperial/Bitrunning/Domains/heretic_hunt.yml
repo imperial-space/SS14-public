@@ -18,11 +18,11 @@ legend:
   "am": {t: FloorSteel, a: normal, e: ["TableReinforced", "ToolboxElectricalFilled"]}
   "an": {t: FloorSteel, a: normal, e: ["ClosetFireFilled"]}
   "ao": {t: FloorDark, a: normal, e: ["TableGlass", "BoxFolderYellow"]}
-  "ap": {t: FloorDark, a: normal, e: ["#DirtHeavy"]}
-  "aq": {t: FloorDark, a: normal}
-  "ar": {t: FloorSteel, a: normal, e: ["LockerSteel", "WeaponSniperMosin"]}
-  "as": {t: FloorDark, a: normal, e: ["BitrunningFakeCrewSec"]}
-  "at": {t: FloorDark, a: normal, e: ["ChairOfficeDark"]}
+  "ap": {t: FloorDark, a: normal}
+  "aq": {t: FloorSteel, a: normal, e: ["LockerSteel", "WeaponSniperMosin"]}
+  "ar": {t: FloorDark, a: normal, e: ["BitrunningFakeCrewSec"]}
+  "as": {t: FloorDark, a: normal, e: ["ChairOfficeDark"]}
+  "at": {t: FloorDark, a: normal, e: ["#DirtHeavy"]}
   "au": {t: FloorSteel, a: normal, e: ["TableReinforced", "BoxCardboard"]}
   "av": {t: FloorSteel, a: normal, e: ["TableReinforced", "PowerCellRecharger"]}
   "aw": {t: FloorSteel, a: normal, e: ["TableReinforced", "ClothingHandsGlovesColorYellow", "ClothingHandsGlovesColorYellow"]}
@@ -59,10 +59,10 @@ legend:
   "a1": {t: FloorSteel, a: normal, e: ["ChairOfficeDark"]}
   "a2": {t: Plating, a: normal, e: ["ReinforcedWindow", "Grille", "AlwaysPoweredWallLight"]}
   "a3": {t: Plating, a: normal, e: ["AirlockMaint", "Barricade"]}
-  "a4": {t: Plating, a: normal, e: ["#DirtLight"]}
-  "a5": {t: PlatingDamaged, a: normal, e: ["Flare"]}
-  "a6": {t: PlatingDamaged, a: normal, e: ["FlashlightLantern"]}
-  "a7": {t: PlatingDamaged, a: normal, e: ["AlwaysPoweredWallLight@180"]}
+  "a4": {t: PlatingDamaged, a: normal, e: ["Flare"]}
+  "a5": {t: PlatingDamaged, a: normal, e: ["FlashlightLantern"]}
+  "a6": {t: PlatingDamaged, a: normal, e: ["AlwaysPoweredWallLight@180"]}
+  "a7": {t: Plating, a: normal, e: ["#DirtLight"]}
   "a8": {t: FloorSteel, a: normal, e: ["TableGlass"]}
   "a9": {t: FloorDark, a: normal, e: ["TableGlass", "ClothingBeltSecurityWebbing", "Pen"]}
   "ba": {t: FloorDark, a: normal, e: ["TableGlass", "PaperBin10", "BoxFolderRed"]}
@@ -86,8 +86,8 @@ legend:
   "bs": {t: PlatingDamaged, a: normal, e: ["AlwaysPoweredSmallLight@-90"]}
   "bt": {t: PlatingDamaged, a: normal, e: ["ClosetEmergencyFilledRandom", "MedkitFilled", "AlwaysPoweredWallLight"]}
   "bu": {t: Plating, a: normal, e: ["ClosetFireFilled"]}
-  "bv": {t: Plating, a: normal, e: ["#DirtHeavy"]}
-  "bw": {t: PlatingDamaged, a: normal, e: ["BitrunningHereticRune", "BitrunningMarkerLootSignal"]}
+  "bv": {t: PlatingDamaged, a: normal, e: ["BitrunningHereticRune", "BitrunningMarkerLootSignal"]}
+  "bw": {t: PlatingDamaged, a: normal, e: ["#DirtHeavy"]}
   "bx": {t: PlatingDamaged, a: normal, e: ["AlwaysPoweredSmallLight@180"]}
   "by": {t: Plating, a: normal, e: ["OxygenTankFilled"]}
   "bz": {t: PlatingDamaged, a: normal, e: ["AlwaysPoweredSmallLight@90"]}
@@ -112,58 +112,59 @@ legend:
   "bS": {t: FloorDark, a: normal, e: ["BitrunningFakeCrewCmo", "ChairOfficeLight@90"]}
   "bT": {t: FloorPlastic, a: normal, e: ["ChairOfficeLight@-90"]}
   "bU": {t: FloorPlastic, a: normal, e: ["AirlockCommand"]}
-  "bV": {t: Plating, a: safe, e: ["AlwaysPoweredlightRed@90"]}
-  "bW": {t: Plating, a: safe, e: ["AlwaysPoweredlightRed@-90"]}
-  "bX": {t: FloorDark, a: normal, e: ["TableGlass"]}
-  "bY": {t: Space, e: ["TableGlass", "MobCat"]}
-  "bZ": {t: FloorDark, a: normal, e: ["TableGlass", "BoxFolderBlue"]}
-  "b0": {t: FloorPlastic, a: normal, e: ["TableGlass", "HandheldHealthAnalyzer"]}
-  "b1": {t: Plating, a: safe, e: ["RailingCorner"]}
-  "b2": {t: FloorPlastic, a: normal, e: ["AlwaysPoweredWallLight@-90"]}
-  "b3": {t: FloorPlastic, a: normal, e: ["DisposalUnit"]}
-  "b4": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder"]}
-  "b5": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder", "Railing@90"]}
-  "b6": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal"]}
-  "b7": {t: FloorPlastic, a: normal, e: ["TableGlass", "Hypospray"]}
-  "b8": {t: FloorPlastic, a: normal, e: ["TableGlass", "ChemistryEmptyBottle01"]}
-  "b9": {t: FloorPlastic, a: normal, e: ["filingCabinetRandom"]}
-  "ca": {t: FloorPlastic, a: normal, e: ["AirlockMedical"]}
-  "cb": {t: FloorPlastic, a: normal, e: ["TableGlass", "MedkitFilled"]}
-  "cc": {t: FloorPlastic, a: normal, e: ["#DirtHeavy"]}
-  "cd": {t: FloorPlastic, a: normal, e: ["TableGlass", "MedkitFilled", "MedkitFilled"]}
-  "ce": {t: FloorPlastic, a: normal, e: ["TableGlass", "MedkitBruteFilled", "ChemistryEmptyBottle01", "ChemistryEmptyBottle01"]}
-  "cf": {t: FloorPlastic, a: normal, e: ["AlwaysPoweredLightLED@180"]}
-  "cg": {t: FloorPlastic, a: normal, e: ["#DirtLight"]}
-  "ch": {t: FloorPlastic, a: normal, e: ["AirCanister"]}
+  "bV": {t: Plating, a: safe, e: ["AlwaysPoweredlightRed@90", "Flare", "Flare", "Rack"]}
+  "bW": {t: Plating, a: safe, e: ["Flare", "Flare", "Rack"]}
+  "bX": {t: Plating, a: safe, e: ["AlwaysPoweredlightRed@-90"]}
+  "bY": {t: FloorDark, a: normal, e: ["TableGlass"]}
+  "bZ": {t: Space, e: ["TableGlass", "MobCat"]}
+  "b0": {t: FloorDark, a: normal, e: ["TableGlass", "BoxFolderBlue"]}
+  "b1": {t: FloorPlastic, a: normal, e: ["TableGlass", "HandheldHealthAnalyzer"]}
+  "b2": {t: Plating, a: safe, e: ["RailingCorner"]}
+  "b3": {t: FloorPlastic, a: normal, e: ["AlwaysPoweredWallLight@-90"]}
+  "b4": {t: FloorPlastic, a: normal, e: ["DisposalUnit"]}
+  "b5": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "b6": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder", "Railing@90"]}
+  "b7": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal"]}
+  "b8": {t: FloorPlastic, a: normal, e: ["TableGlass", "Hypospray"]}
+  "b9": {t: FloorPlastic, a: normal, e: ["TableGlass", "ChemistryEmptyBottle01"]}
+  "ca": {t: FloorPlastic, a: normal, e: ["filingCabinetRandom"]}
+  "cb": {t: FloorPlastic, a: normal, e: ["AirlockMedical"]}
+  "cc": {t: FloorPlastic, a: normal, e: ["TableGlass", "MedkitFilled"]}
+  "cd": {t: FloorPlastic, a: normal, e: ["#DirtHeavy"]}
+  "ce": {t: FloorPlastic, a: normal, e: ["TableGlass", "MedkitFilled", "MedkitFilled"]}
+  "cf": {t: FloorPlastic, a: normal, e: ["TableGlass", "MedkitBruteFilled", "ChemistryEmptyBottle01", "ChemistryEmptyBottle01"]}
+  "cg": {t: FloorPlastic, a: normal, e: ["AlwaysPoweredLightLED@180"]}
+  "ch": {t: FloorPlastic, a: normal, e: ["#DirtLight"]}
+  "ci": {t: FloorPlastic, a: normal, e: ["AirCanister"]}
 rows:
 - "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 - "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 - "aaaaaaaaaaabababaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 - "aaaaaaaaaaadaaadaaaaaaaaaaaeaeaeaeaeaeaeaeaeaeaeaeaaaa"
 - "aaaaadabafababababafagaeaeaeahaiaeajababafabababaeaaaa"
-- "aaaaaaabakalamalababanadabaoapaqaearasatatataqabaeaaaa"
-- "aaaaaaababauavawakababaxayazaAaqaeaBaqaCaDaEaqabaFaaaa"
-- "aaaaadababababababababadabababaGaeaHaqaIaIaIasabaeaaaa"
-- "aaaaaeaeaFaeaJaeabababaeaKaLaMaeaeabababaNaOababadaaaa"
+- "aaaaaaabakalamalababanadabaoapapaeaqarasasasatabaeaaaa"
+- "aaaaaaababauavawakababaxayazaAapaeaBapaCaDaEapabaFaaaa"
+- "aaaaadababababababababadabababaGaeaHapaIaIaIarabaeaaaa"
+- "aaaaaeaeaFaeaJaeabababaeaKaLaMaeaeabababaNababaOadaaaa"
 - "aaaaaeaPaQaeaRaeaeaSaeaeaeaeaeaeaeadaxadaeabababaaaaaa"
 - "aaaaaeaTaTaUaVaeaWaXaYaYaZa0aeajaba1ababaeabababa2aaaa"
-- "aaaaaeaWaTaeaTa3a4a5aWa6a7aWaea8a9baaqaqadabababaaaaaa"
-- "aaaaaebbaWaebcaebdaeaebeaebeaeaeaqbfaqaqaebgababadaaaa"
+- "aaaaaeaWaTaeaTa3aWa4aWa5a6a7aea8a9baapapadabababaaaaaa"
+- "aaaaaebbaWaebcaebdaeaebeaebeaeaeapbfapapaebgababadaaaa"
 - "aaaaaeaeaeaeaJaeaeaebhaTaeaTaWaeahbibjbkaeaeaJaeaeaaaa"
 - "aaaaaaaeblaWaTaWaWaebmbnaebobpaeaeaeaeaeaeboaWaeaeaaaa"
-- "aaaaaaaebqa5aTbrbsaeaeaeaeaeaeaeaebtbuaeaeaWaTbraeaaaa"
-- "aaaaaaaebvaTbwaTaWaJaWaTaWaTaTa4aWaWaTbeaTaTbxbyaeaaaa"
-- "aaaaaaaebzbraWbrbAbBaWaWa5aTaTaWaeaeaeaeaJaeaeaeaeaaaa"
-- "aaaaaaaeaWaWaTa4aWaebCbDbEaWaWbFaeaebGbGbGbGbGaeaeaaaa"
+- "aaaaaaaebqa4aTbrbsaeaeaeaeaeaeaeaebtbuaeaeaWaTbraeaaaa"
+- "aaaaaaaeaWaTbvbwaWaJaWaTaWaTaTaWaWa7aTbeaTaTbxbyaeaaaa"
+- "aaaaaaaebzbraWbrbAbBaWaWa4aTaTaWaeaeaeaeaJaeaeaeaeaaaa"
+- "aaaaaaaeaWaWaTaWaWaebCbDbEa7aWbFaeaebGbGbGbGbGaeaeaaaa"
 - "aaaaaeaeaebHaWbHaeaeaeaeaeaeaeaebIbJbGbGbGbGbGbKadaaaa"
-- "aaaaaebLbLbLbMbLbLbLaeahaqaqbGbGadbNbGbObPbGbGbGaaaaaa"
+- "aaaaaebLbLbLbMbLbLbLaeahapapbGbGadbNbGbObPbGbGbGaaaaaa"
 - "aaaaaebLbQbQbQbQbQbLaebRbSazbTbGbUbGbGbGbGbObGbGadaaaa"
-- "aaaaaebLbVbQbQbQbWbLaebXbYbZbTbGadbNbGbGb0bGbGbGaaaaaa"
-- "aaaaaebLbQbQb1bQbQbLaeaebGbGbGb2bIbPbGbGbGbGbGb3adaaaa"
-- "aaaaaebLb4b4b5b6b6bLaeaeb3b7b8b9aeaeaecaadcaaeaFaeaaaa"
-- "aaaaaebLbLbLbLbLbLbLaeaeaeaeaeaeaecbbGbGbGbGccb8aeaaaa"
-- "aaaaaeaeaeaeaeaeaeaeaeaaaaaaaaaaaecdbGbGbGbGbGceaeaaaa"
-- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaecbbGbGcfcgchbPaeaaaa"
+- "aaaaaebLbVbWbWbQbXbLaebYbZb0bTbGadbNbGbGb1bGbGbGaaaaaa"
+- "aaaaaebLbQbQb2bQbQbLaeaebGbGbGb3bIbPbGbGbGbGbGb4adaaaa"
+- "aaaaaebLb5b5b6b7b7bLaeaeb4b8b9caaeaeaecbadcbaeaFaeaaaa"
+- "aaaaaebLbLbLbLbLbLbLaeaeaeaeaeaeaeccbGbGbGbGcdb9aeaaaa"
+- "aaaaaeaeaeaeaeaeaeaeaeaaaaaaaaaaaecebGbGbGbGbGcfaeaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeccbGbGcgchcibPaeaaaa"
 - "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeaeaeaeaeaaaa"
 - "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 - "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"

@@ -23,41 +23,44 @@ legend:
   "r": {t: FloorXeno, a: normal, e: ["ReinforcedPlasmaWindow", "Grille"]}
   "s": {t: FloorXeno, a: normal, e: ["AirlockShuttle"]}
   "t": {t: FloorXeno, a: normal, e: ["ClosetSteelBase"]}
-  "u": {t: FloorXeno, a: normal, e: ["TableReinforced", "Wrench", "Wirecutter"]}
-  "v": {t: FloorXeno, a: normal, e: ["#DirtLight"]}
+  "u": {t: FloorXeno, a: normal, e: ["#DirtLight"]}
+  "v": {t: FloorXeno, a: normal, e: ["TableReinforced", "Wrench", "Wirecutter"]}
   "w": {t: FloorXeno, a: normal, e: ["BitrunningMarkerMobSegment"]}
   "x": {t: FloorXeno, a: normal, e: ["TableReinforced"]}
   "y": {t: FloorXeno, a: normal, e: ["Bed", "AlwaysPoweredWallLight@180"]}
   "z": {t: FloorXeno, a: normal, e: ["Table", "ShardGlass"]}
   "A": {t: FloorXeno, a: normal, e: ["AlwaysPoweredWallLight@180"]}
   "B": {t: FloorXeno, a: normal, e: ["PottedPlantRandom", "AlwaysPoweredWallLight@-90"]}
-  "C": {t: FloorXeno, a: normal, e: ["#DirtMedium"]}
+  "C": {t: FloorXeno, a: normal, e: ["#DirtHeavy"]}
   "D": {t: FloorXeno, a: normal, e: ["SalvageHumanCorpse"]}
-  "E": {t: FloorXeno, a: normal, e: ["BorgCharger"]}
-  "F": {t: FloorXeno, a: safe, e: ["AlwaysPoweredWallLight@-90"]}
-  "G": {t: Plating, a: safe, e: ["WallPlastitanium"]}
-  "H": {t: FloorXeno, a: safe, e: ["AirlockShuttle"]}
-  "I": {t: FloorXeno, a: safe}
-  "J": {t: FloorXeno, a: normal, e: ["#DirtHeavy"]}
+  "E": {t: FloorXeno, a: normal, e: ["#DirtMedium"]}
+  "F": {t: FloorXeno, a: normal, e: ["BorgCharger"]}
+  "G": {t: FloorXeno, a: safe, e: ["AlwaysPoweredWallLight@-90"]}
+  "H": {t: Plating, a: safe, e: ["WallPlastitanium"]}
+  "I": {t: FloorXeno, a: safe, e: ["AirlockShuttle"]}
+  "J": {t: FloorXeno, a: safe}
   "K": {t: FloorXeno, a: normal, e: ["ChairOfficeDark@90"]}
   "L": {t: FloorXeno, a: normal, e: ["TableReinforced", "Crowbar", "AlwaysPoweredWallLight@-90"]}
   "M": {t: FloorXeno, a: safe, e: ["BitrunningMarkerHololadder"]}
-  "N": {t: FloorXeno, a: safe, e: ["BitrunningMarkerGoal"]}
-  "O": {t: FloorXeno, a: normal, e: ["AlwaysPoweredWallLight@90"]}
-  "P": {t: FloorXeno, a: normal, e: ["TableReinforced", "AlwaysPoweredWallLight@90"]}
-  "Q": {t: FloorXeno, a: safe, e: ["#DirtMedium"]}
-  "R": {t: FloorXeno, a: normal, e: ["PottedPlantRandom", "AlwaysPoweredWallLight@180"]}
-  "S": {t: FloorXeno, a: safe, e: ["BitrunningMarkerHololadder", "AlwaysPoweredWallLight@180"]}
-  "T": {t: FloorXeno, a: safe, e: ["AlwaysPoweredWallLight@180"]}
-  "U": {t: FloorXeno, a: normal, e: ["ComfyChair@-90", "AlwaysPoweredWallLight@-90"]}
-  "V": {t: FloorXeno, a: normal, e: ["SalvageHumanCorpse", "AlwaysPoweredWallLight@-90"]}
-  "W": {t: FloorXeno, a: normal, e: ["BitrunningMarkerCache", "AlwaysPoweredWallLight"]}
-  "X": {t: FloorXeno, a: normal, e: ["CrewMonitoringServer", "AlwaysPoweredWallLight"]}
-  "Y": {t: FloorXeno, a: normal, e: ["CrewMonitoringServer"]}
+  "N": {t: FloorXeno, a: safe, e: ["FlashlightSeclite"]}
+  "O": {t: FloorXeno, a: safe, e: ["TableReinforced", "WeaponSubMachineGunC20r"]}
+  "P": {t: FloorXeno, a: safe, e: ["BitrunningMarkerGoal"]}
+  "Q": {t: FloorXeno, a: normal, e: ["AlwaysPoweredWallLight@90"]}
+  "R": {t: FloorXeno, a: normal, e: ["TableReinforced", "AlwaysPoweredWallLight@90"]}
+  "S": {t: FloorXeno, a: safe, e: ["Lantern", "Lantern"]}
+  "T": {t: FloorXeno, a: safe, e: ["TableReinforced", "MagazinePistolSubMachineGun", "MagazinePistolSubMachineGun", "WeaponSubMachineGunC20r"]}
+  "U": {t: FloorXeno, a: safe, e: ["#DirtMedium"]}
+  "V": {t: FloorXeno, a: normal, e: ["PottedPlantRandom", "AlwaysPoweredWallLight@180"]}
+  "W": {t: FloorXeno, a: safe, e: ["MedkitFilled", "MedkitFilled"]}
+  "X": {t: FloorXeno, a: normal, e: ["ComfyChair@-90", "AlwaysPoweredWallLight@-90"]}
+  "Y": {t: FloorXeno, a: normal, e: ["SalvageHumanCorpse", "AlwaysPoweredWallLight@-90"]}
+  "Z": {t: FloorXeno, a: normal, e: ["BitrunningMarkerCache", "AlwaysPoweredWallLight"]}
+  "0": {t: FloorXeno, a: normal, e: ["CrewMonitoringServer", "AlwaysPoweredWallLight"]}
+  "1": {t: FloorXeno, a: normal, e: ["CrewMonitoringServer"]}
 rows:
 - "aaaaaaabbbbbbbbbbbbbbbbbbbbbaaaaaaa"
 - "aaaaaabbcccccccccccccccccccbbaaaaaa"
-- "aaaaaabcccccccdcccccccccccccbaaaaaa"
+- "aaaaaabcccccccccccdcccccccccbaaaaaa"
 - "aaaaaabcccccccceeeeeccccccccbaaaaaa"
 - "aaaaaabbbbbeeeeefgfeeeeebbbbbaaaaaa"
 - "aaaaaaaaaaehheeifffieehheaaaaaaaaaa"
@@ -65,28 +68,28 @@ rows:
 - "aaaaaaaaeelffmenfffkemlfoeeaaaaaaaa"
 - "aaaaaaaeefffffefffffepffffeeaaaaaaa"
 - "aaaaaaeeffqeeeersrsreeeefffeeaaaaaa"
-- "aaaaaeefffeetlemfffmefpeefffeeaaaaa"
-- "aaaaeefffeeuffeffffqefffeevwoeeaaaa"
+- "aaaaaeefffeetlemuffmefpeefffeeaaaaa"
+- "aaaaeefffeevffeffffqefffeefwoeeaaaa"
 - "aaaeefffeexffmefffffeyffzeefffeeaaa"
 - "aaeefffeetfwqemfffffmefAfpeefffeeaa"
 - "aeefffBehffesefffffffesefmeemfffeea"
-- "eefffCeehDfefffffCfffffepfeeefffEee"
-- "eeffffeheeefffFGGHGGIfJfeeeheffKLee"
-- "eepfffeeemffffGIIIIIGffffmeeefffEee"
-- "eexfffffffffffGMIIINGOfffffffffffee"
-- "eePfffffvfffffGMQIINGfffffffAffffee"
-- "eepfffeeeRffffGSIITIGfffffeeefffEee"
-- "eeffffeeeeefffIGGHGGIfffeeeheffKxee"
-- "eeffwfeeexxeffffoffffffexxeeefffEee"
+- "eeCfffeehDfeffEffffffEfepfeeefffFee"
+- "eeffffeheeefffGHHIHHJfffeeeheffKLee"
+- "eepfffeeemffffHJJJJJHffffmeeefffFee"
+- "eexfffffffffffHMNOJPHQfffffffffffee"
+- "eeRfffffufffffHMSTUPHfffffffAffffee"
+- "eepfffeeeVffffHMJJJWHfffffeeefffFee"
+- "eeffffeeeeefffJHHIHHJfffeeeheffKxee"
+- "eeffwfeeexxeffffoffffffexxeeefffFee"
 - "aeefffmeefqesefffffffeseffeemfffeea"
 - "aaeeffqeetfffemfffffmeffwmeeffqeeaa"
-- "aaaeefffeefffteffwffemffUeefffeeaaa"
-- "aaaaeefffeetfVeffffqelfxeeffweeaaaa"
-- "aaaaaeeffWeexxefffffexxeeffveeaaaaa"
+- "aaaeefffeefffteffwffemffXeefffeeaaa"
+- "aaaaeefffeetfYeffffqelfxeeffweeaaaa"
+- "aaaaaeeffZeexxefffffexxeeffueeaaaaa"
 - "aaaaaaeefffeeeeefffeeeeelfqeeaaaaaa"
 - "aaaaaaaeeffeeeeeeseehhheffeeaaaaaaa"
-- "aaaaaaaaeemeeXYeoffeXYhemeeaaaaaaaa"
-- "aaaaaaaaaeeeYffefwfeffYeeeaaaaaaaaa"
-- "aaaaaaaaaaeeeYYefffeYYeeeaaaaaaaaaa"
+- "aaaaaaaaeemee01eoffe01hemeeaaaaaaaa"
+- "aaaaaaaaaeee1ffefwfeff1eeeaaaaaaaaa"
+- "aaaaaaaaaaeee11efffe11eeeaaaaaaaaaa"
 - "aaaaaaaaaaaeeeeeeeeeeeeeaaaaaaaaaaa"
 - "aaaaaaaaaaaaeeeeeeeeeeeaaaaaaaaaaaa"

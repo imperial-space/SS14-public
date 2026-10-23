@@ -72,16 +72,19 @@ legend:
   "be": {t: Plating, a: safe, e: ["WallWood"]}
   "bf": {t: Plating, a: safe, e: ["Window", "Grille"]}
   "bg": {t: Plating, a: safe, e: ["WoodDoor"]}
-  "bh": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@90"]}
+  "bh": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@90", "TableWood", "WeaponSniperMosin", "WeaponSniperMosin", "WeaponSniperMosin"]}
   "bi": {t: FloorSteel, a: safe, e: ["PottedPlantRandom"]}
   "bj": {t: FloorSteel, a: safe}
   "bk": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@-90", "BitrunningMarkerGoal"]}
-  "bl": {t: FloorWood, a: safe, e: ["CarpetGreen"]}
-  "bm": {t: FloorWood, a: safe, e: ["RailingCorner@90", "CarpetGreen"]}
-  "bn": {t: FloorSteel, a: safe, e: ["Railing", "BitrunningMarkerGoal"]}
-  "bo": {t: Plating, a: safe, e: ["WallWood", "RandomPosterLegit"]}
-  "bp": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder"]}
-  "bq": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@-90", "TableWood"]}
+  "bl": {t: FloorSteel, a: safe, e: ["TableWood", "DrinkBeerCan"]}
+  "bm": {t: FloorWood, a: safe, e: ["CarpetGreen"]}
+  "bn": {t: FloorWood, a: safe, e: ["RailingCorner@90", "CarpetGreen"]}
+  "bo": {t: FloorSteel, a: safe, e: ["Railing", "BitrunningMarkerGoal"]}
+  "bp": {t: FloorSteel, a: safe, e: ["SurvivalKnife", "TableWood"]}
+  "bq": {t: Plating, a: safe, e: ["WallWood", "RandomPosterLegit"]}
+  "br": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@90"]}
+  "bs": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "bt": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@-90", "TableWood"]}
 rows:
 - "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 - "aaabababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababaa"
@@ -142,15 +145,15 @@ rows:
 - "aaababababalaeadaeadadasalaeadadadaeaeaWaeadaXaeaeaeaeaeaeaealaea9adazadadadada8aeadaeadadaeaeaOadakaeaeaeadaWaZaZa5aWaZaZacacacaWaZaWaTababababababaa"
 - "aaababababaeaeadadaeaeaeaea9adadaeadadaWaeadadadaeaeakamadaNaeadadadamaeadaqaeakaeaeadadaeaeaeadaeaeaeaeazaeaeaeaeaZaZaWaWaxaxacacacaWaWababababababaa"
 - "aaababababadahadaeaeaeaeadadadadadadaeaWaWaeadadaeaeamaeaoaeadaeaeaeaeaeaeadaeaeaeaeaqadaeaeakaeahadamaeaHaeadaeaeasadaZaWaWaZacacacapaTababababababaa"
-- "aaababababahahaeaeaeaea8aeadamalaeadadadaWaeadadaXa0aeadadadadakaeamakaeaeadaXaeaeaeaeadadaeaeaeadaeaeaeadaeaeaeaeadaeaeabaTaWafacaxapapapapababababaa"
-- "aaababababahahamakaeaeaeada3adaeaeadadaWaWaeadaealaeadadaladaeaeaeaeamaeadadadadadadadadaeaeaeaeadaeaqaeaVadaeaNadadahajabaTapacacaxapapawapababababaa"
-- "aaabababababahaeamaeaeaeadaqaeaMadadaeaZaWadadaeaeaeaMadaFadaeaeaeajaeaeakaeadaeadadaeaqaeaeaeaeaeaeaeadaeaeaeaeaeaeahajabapapacacacapapapapababababaa"
-- "aaabababababababaeaeakaeadaeadadaiaeadaWbdaeadadaIadadayadaeaeaeaeaeaeaeaeadbaaeaeadaeaeaeaeaeaeaeaeadadadbcaIadaeaeahabababawacacacaBapapapababababaa"
-- "aaabababababababa7aeadaeaIadadadbebfbebgbebfbeadaeadadadaeaeaeaeaeaeaeaeaeaeaeaqaeaeajaeakaeaeaeaeaeaqadadaeadadaeaeaPabababapacaxacacapapapawabababaa"
-- "aaababababababababaeadadadaeaeadbebhbibjbjbkbeadadadaeaeadadaeaeaeaeaeakaeaeaeaeanaeaeaeajaeaeaeadaeadaeadaeaqaeadadaeabababapapapacacaxapapapabababaa"
-- "aaababababababababada7a9adaeadaebfbjblblbmbnbfaeaeaeaealaeadaeaeakamaeaeaeaeadadaeadaeaeaeaeaeakaeadadaeadadaeajababababababapapapacacacacapapabababaa"
-- "aaababababababababababaealaeadaebebjblblblbjboaeaeaqaeaeaeadavamamaeaeaeadadadadadadahahahayaeaeaeadadaeakaeahahababababababapapawapaxacacapapabababaa"
-- "aaababababababababababadaeadadadbebhbpbpbpbqbeaeaeaeaeada3adaeaeaeaeaeadaeaeadadadababababababababadadaeaeaeajahababababababapapapapaxacacapapabababaa"
+- "aaababababahahaeaeaeaeanaeadamalaeadadadaWaea9adaXa0aeadadadadakaeamakaeaeadaXaeaeaeaeadadaeaeaeadaeaeaeadaeaeaeaeadaeaeabaTaWafacaxapapapapababababaa"
+- "aaababababahahamakaeaeaeadada3aeaeadadaWaWaeadaealaeadadaladaeaeaeaeamaeadadadadadadadadaeaeaeaeadaeaqaeadaVaeadaNadahajabaTapacacaxapapawapababababaa"
+- "aaabababababahaeamaeaeaeadaqaeadaMadaeaZaWadadaeaeaeadaMadaFaeaeaeajaeaeakaeadaeadadaeaqaeaeaeaeaeadaeaeaeaeaeaeaeaeahajabapapacacacapapapapababababaa"
+- "aaabababababababaeaeakaeasaeadadadaeaiaWbdaeadadadaIadadayaeaeaeaeaeaeaeaeadadaeaebaaeaeaeaeaeaeaeaeadadadadbcaIaeaeahabababawacacacaBapapapababababaa"
+- "aaabababababababadaeasaebaaIadadbebfbebgbebfbeadaeadadadaeaeaeaeaeaeaeaeaeaeaeaqaeaeajaeakaeaeaeaeaeaqadadaeadadaeaeadabababapacaxacacapapapawabababaa"
+- "aaababababababababaeadadadaeaeadbebhbibjbjbkbeadadadaeaeadadaeaeaeaeaeakaeaeaeaeadaeaeaeajaeaeaeadaeanaeadaeaqaeadadaeabababapapapacacaxapapapabababaa"
+- "aaababababababababadada7a9aeadaebfblbmbmbnbobfaeaeaeaealaeadaeaeakamaeaeaeaeadadaeadaeaeaeaeaeakaeadadaeadadaeajababababababapapapacacacacapapabababaa"
+- "aaababababababababababaealaeadaebebjbmbmbmbpbqaeaeaqaeaeaeadadamamaeaeaeavadadadadadahahahadaeaeaeayadaeakaeahahababababababapapawapaxacacapapabababaa"
+- "aaababababababababababadaeadadadbebrbsbsbsbtbeaeaeaeaeada3adaeaeaeaeaeadaeaeadadadababababababababadadaeaeaeajahababababababapapapapaxacacapapabababaa"
 - "aaababababababababababadaeadaeaebebfbebebebfbeada0asaeadabadaealaeadbbadaeaqaeadabababababababababababaeaeaeaeabababababababababapapacacacabababababaa"
 - "aaabababababababababababababaeaeadauadadaeaeaeaeadababababadaeaeadaeabababababababababababababababababababaeaeabababababababababapawacacacacababababaa"
 - "aaabababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababapapacacaBacababababaa"

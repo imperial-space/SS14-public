@@ -50,7 +50,7 @@ legend:
   "S": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@180", "BitrunningMarkerGoal"]}
   "T": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal"]}
   "U": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder"]}
-  "V": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@180", "BitrunningMarkerHololadder"]}
+  "V": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@180", "BitrunningMarkerHololadder", "EmergencyOxygenTankFilled", "EmergencyOxygenTankFilled", "EmergencyOxygenTankFilled"]}
 rows:
 - "aaaaaaaaaaaaaaaaaaaaaaaaa"
 - "abbbbbbbbbbbbbbbbbbbbbbba"

@@ -289,7 +289,7 @@ legend:
   "eJ": {t: FloorWoodLarge, a: normal, e: ["TableWood", "SodaDispenser"]}
   "eK": {t: FloorWoodLarge, a: normal, e: ["TableWood", "Lighter"]}
   "eL": {t: FloorWoodLarge, a: normal, e: ["TableWood", "BookRandom"]}
-  "eM": {t: FloorWoodLarge, a: normal, e: ["TableWood", "ClothingHeadHatChef"]}
+  "eM": {t: FloorWoodLarge, a: normal, e: ["TableWood", "KitchenKnife", "ClothingHeadHatChef"]}
   "eN": {t: FloorWoodLarge, a: normal, e: ["KitchenReagentGrinder"]}
   "eO": {t: FloorWoodLarge, a: normal, e: ["TableBrass", "FoodShakerPepper", "FoodShakerSalt"]}
   "eP": {t: FloorWoodLarge, a: normal, e: ["TableBrass", "ReagentContainerMayo", "AlwaysPoweredWallLight@-90"]}
