@@ -145,8 +145,8 @@
     priority: 1
     itemIconStyle: BigAction
     icon:
-      sprite: Imperial/StationAi/actions.rsi
-      state: botcall
+      sprite: Mobs/Silicon/chassis.rsi
+      state: robot
   - type: InstantAction
     event: !type:ImperialAiBorgsActionEvent
 
@@ -164,3 +164,33 @@
       state: ai_core
   - type: InstantAction
     event: !type:ImperialAiShellReturnActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialAiBots
+  name: Боты
+  description: Управление ботами станции — слежение и вызов к вашему взгляду.
+  components:
+  - type: Action
+    priority: 2
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/StationAi/actions.rsi
+      state: botcall
+  - type: InstantAction
+    event: !type:ImperialAiBotsActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialAiCoreBolts
+  name: Болты ядра
+  description: Поднять или опустить болты, крепящие ядро к полу.
+  components:
+  - type: Action
+    priority: 3
+    itemIconStyle: BigAction
+    icon:
+      sprite: Interface/Actions/actions_ai.rsi
+      state: bolt_door
+  - type: InstantAction
+    event: !type:ImperialAiCoreBoltsActionEvent

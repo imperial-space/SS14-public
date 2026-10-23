@@ -21,6 +21,7 @@ public sealed class ImperialStationAiUiSystem : EntitySystem
         SubscribeNetworkEvent<ImperialAiAlertsEvent>(OnAlerts);
         SubscribeNetworkEvent<ImperialAiLawsEvent>(OnLaws);
         SubscribeNetworkEvent<ImperialAiBorgListEvent>(OnBorgs);
+        SubscribeNetworkEvent<ImperialAiBotListEvent>(OnBots);
     }
 
     public override void Shutdown()
@@ -57,6 +58,17 @@ public sealed class ImperialStationAiUiSystem : EntitySystem
     {
         var window = new ImperialAiAlertsWindow(ev.Alarms);
         window.OnJump += entity => RaiseNetworkEvent(new ImperialAiJumpEvent(entity));
+        Show(window);
+    }
+
+    private void OnBots(ImperialAiBotListEvent ev)
+    {
+        var window = new ImperialAiBotsWindow(ev.Bots);
+        window.OnCommand += (bot, command) =>
+        {
+            RaiseNetworkEvent(new ImperialAiBotCommandEvent(bot, command));
+            window.Close();
+        };
         Show(window);
     }
 
@@ -341,6 +353,49 @@ public sealed class ImperialAiBorgsWindow : DefaultWindow
             root.AddChild(Tgui.MakeSection(title, buttons, info));
         }
 
+        Contents.AddChild(Tgui.Window(root));
+    }
+}
+
+/// <summary>RemoteRobotControl: боты станции, слежение и вызов к взгляду ИИ.</summary>
+public sealed class ImperialAiBotsWindow : DefaultWindow
+{
+    public event Action<NetEntity, ImperialAiBotCommand>? OnCommand;
+
+    public ImperialAiBotsWindow(List<ImperialAiBotEntry> bots)
+    {
+        Title = Loc.GetString("imperial-ai-bots-title");
+        MinSize = SetSize = new Vector2(420, 460);
+
+        var list = Tgui.VBox(2);
+        if (bots.Count == 0)
+            list.AddChild(Tgui.NoticeBox(Loc.GetString("imperial-ai-bots-none")));
+
+        var index = 0;
+        foreach (var bot in bots)
+        {
+            var entity = bot.Entity;
+            var name = Tgui.Text(bot.Name);
+            var where = Tgui.Text(bot.Location, Tgui.Label, 10);
+            var info = Tgui.VBox(0, name, where);
+            info.HorizontalExpand = true;
+
+            var track = Tgui.Button(Loc.GetString("imperial-ai-borgs-track"), () => OnCommand?.Invoke(entity, ImperialAiBotCommand.Track));
+            var summon = Tgui.Button(Loc.GetString(bot.Summoned ? "imperial-ai-bots-summoned" : "imperial-ai-bots-summon"),
+                () => OnCommand?.Invoke(entity, ImperialAiBotCommand.Summon), Tgui.Green);
+            track.VerticalAlignment = summon.VerticalAlignment = VAlignment.Center;
+
+            var row = Tgui.HBox(6, info, track, summon);
+            row.Margin = new Thickness(4, 2);
+            list.AddChild(new PanelContainer
+            {
+                PanelOverride = new StyleBoxFlat { BackgroundColor = index++ % 2 == 1 ? Color.Black.WithAlpha(0.25f) : Color.Transparent },
+                Children = { row },
+            });
+        }
+
+        var root = Tgui.VBox(0, Tgui.MakeSection(Loc.GetString("imperial-ai-bots-title"), null, list));
+        root.Margin = new Thickness(6);
         Contents.AddChild(Tgui.Window(root));
     }
 }

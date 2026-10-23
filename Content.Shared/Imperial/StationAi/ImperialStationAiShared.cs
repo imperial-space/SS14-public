@@ -283,3 +283,39 @@ public sealed class ImperialAiBorgCommandEvent(NetEntity borg, ImperialAiBorgCom
     public NetEntity Borg = borg;
     public ImperialAiBorgCommand Command = command;
 }
+
+/// <summary>toggle_anchor(): болты ядра.</summary>
+public sealed partial class ImperialAiCoreBoltsActionEvent : InstantActionEvent;
+
+/// <summary>botcall(): управление ботами станции.</summary>
+public sealed partial class ImperialAiBotsActionEvent : InstantActionEvent;
+
+[Serializable, NetSerializable]
+public sealed class ImperialAiBotEntry(NetEntity entity, string name, string location, bool summoned)
+{
+    public NetEntity Entity = entity;
+    public string Name = name;
+    public string Location = location;
+    public bool Summoned = summoned;
+}
+
+[Serializable, NetSerializable]
+public sealed class ImperialAiBotListEvent(List<ImperialAiBotEntry> bots) : EntityEventArgs
+{
+    public List<ImperialAiBotEntry> Bots = bots;
+}
+
+[Serializable, NetSerializable]
+public enum ImperialAiBotCommand : byte
+{
+    Track,
+    Summon,
+}
+
+/// <summary>Клиент → сервер: следить за ботом или вызвать его к «глазу».</summary>
+[Serializable, NetSerializable]
+public sealed class ImperialAiBotCommandEvent(NetEntity bot, ImperialAiBotCommand command) : EntityEventArgs
+{
+    public NetEntity Bot = bot;
+    public ImperialAiBotCommand Command = command;
+}

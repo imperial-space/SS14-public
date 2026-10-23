@@ -124,6 +124,8 @@ public sealed partial class ImperialStationAiSystem : EntitySystem
         "ActionImperialAiAnnouncement",
         "ActionImperialAiStatusDisplay",
         "ActionImperialAiBorgs",
+        "ActionImperialAiBots",
+        "ActionImperialAiCoreBolts",
     };
 
     /// <summary>CAMERA_TICK_LIMIT.</summary>
@@ -159,6 +161,7 @@ public sealed partial class ImperialStationAiSystem : EntitySystem
         SubscribeNetworkEvent<ImperialAiStateLawsEvent>(OnStateLawsRequest);
         InitializeVox();
         InitializeBorgs();
+        InitializeBots();
     }
 
     #region Действия
@@ -699,5 +702,6 @@ public sealed partial class ImperialStationAiSystem : EntitySystem
 
         UpdateBorgs(now);
         UpdateShells();
+        UpdateBotsAndPower(now);
     }
 }

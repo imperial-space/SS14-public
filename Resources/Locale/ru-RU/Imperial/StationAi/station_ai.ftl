@@ -70,3 +70,13 @@ imperial-ai-borgs-health = Целостность
 imperial-ai-borgs-charge = Заряд
 imperial-ai-borgs-shell = Оболочка ИИ
 imperial-ai-borgs-location = Местоположение
+
+# Боты, болты, питание
+imperial-ai-bot-summoned = { $bot } направлен к точке вашего взгляда.
+imperial-ai-bots-title = Боты станции
+imperial-ai-bots-none = На станции нет ботов.
+imperial-ai-bots-summon = Вызвать
+imperial-ai-bots-summoned = Идёт
+imperial-ai-bolts-up = Болты ядра подняты.
+imperial-ai-bolts-down = Болты ядра опущены.
+imperial-ai-power-lost-shell = Потеряно внешнее питание ядра: связь с оболочкой разорвана.
