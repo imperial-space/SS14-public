@@ -128,6 +128,12 @@
         layer:
         - MachineLayer
   - type: InteractionOutline
+  - type: ActivatableUI
+    key: enum.NetpodUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.NetpodUiKey.Key:
+        type: NetpodOutfitsBoundUserInterface
   - type: Machine
     board: BitrunningNetpodCircuitboard
   - type: ContainerContainer

@@ -11,26 +11,42 @@ legend:
   "f": {t: FloorXeno, a: normal, e: ["TableReinforced", "Stunbaton"]}
   "g": {t: Plating, a: normal, e: ["WallPlastitanium"]}
   "h": {t: FloorXeno, a: normal, e: ["ComputerBroken"]}
-  "i": {t: FloorXeno, a: normal, e: ["ComfyChair@90"]}
+  "i": {t: FloorXeno, a: normal, e: ["ComfyChair@90", "AlwaysPoweredWallLight@90"]}
   "j": {t: FloorXeno, a: normal, e: ["ComfyChair@-90"]}
   "k": {t: FloorXeno, a: normal, e: ["BitrunningMarkerCache"]}
   "l": {t: FloorXeno, a: normal, e: ["PottedPlantRandom"]}
-  "m": {t: FloorXeno, a: normal, e: ["Bed"]}
-  "n": {t: FloorXeno, a: normal, e: ["ReinforcedPlasmaWindow", "Grille"]}
-  "o": {t: FloorXeno, a: normal, e: ["AirlockShuttle"]}
-  "p": {t: FloorXeno, a: normal, e: ["ClosetSteelBase"]}
-  "q": {t: FloorXeno, a: normal, e: ["TableReinforced", "Wrench"]}
-  "r": {t: FloorXeno, a: normal, e: ["BitrunningMarkerMobSegment"]}
-  "s": {t: FloorXeno, a: normal, e: ["TableReinforced"]}
-  "t": {t: FloorXeno, a: normal, e: ["Table", "ShardGlass"]}
-  "u": {t: FloorXeno, a: normal, e: ["SalvageHumanCorpse"]}
-  "v": {t: FloorXeno, a: safe}
-  "w": {t: Plating, a: safe, e: ["WallPlastitanium"]}
-  "x": {t: FloorXeno, a: safe, e: ["AirlockShuttle"]}
-  "y": {t: FloorXeno, a: normal, e: ["ChairOfficeDark@90"]}
-  "z": {t: FloorXeno, a: normal, e: ["TableReinforced", "Crowbar"]}
-  "A": {t: FloorXeno, a: safe, e: ["BitrunningMarkerHololadder"]}
-  "B": {t: FloorXeno, a: safe, e: ["BitrunningMarkerGoal"]}
+  "m": {t: FloorXeno, a: normal, e: ["ComfyChair@90"]}
+  "n": {t: FloorXeno, a: normal, e: ["AlwaysPoweredWallLight"]}
+  "o": {t: FloorXeno, a: normal, e: ["Bed"]}
+  "p": {t: FloorXeno, a: normal, e: ["AlwaysPoweredWallLight@-90"]}
+  "q": {t: FloorXeno, a: normal, e: ["ReinforcedPlasmaWindow", "Grille"]}
+  "r": {t: FloorXeno, a: normal, e: ["AirlockShuttle"]}
+  "s": {t: FloorXeno, a: normal, e: ["ClosetSteelBase"]}
+  "t": {t: FloorXeno, a: normal, e: ["TableReinforced", "Wrench"]}
+  "u": {t: FloorXeno, a: normal, e: ["BitrunningMarkerMobSegment"]}
+  "v": {t: FloorXeno, a: normal, e: ["TableReinforced"]}
+  "w": {t: FloorXeno, a: normal, e: ["Bed", "AlwaysPoweredWallLight@180"]}
+  "x": {t: FloorXeno, a: normal, e: ["Table", "ShardGlass"]}
+  "y": {t: FloorXeno, a: normal, e: ["AlwaysPoweredWallLight@180"]}
+  "z": {t: FloorXeno, a: normal, e: ["PottedPlantRandom", "AlwaysPoweredWallLight@-90"]}
+  "A": {t: FloorXeno, a: normal, e: ["SalvageHumanCorpse"]}
+  "B": {t: FloorXeno, a: normal, e: ["BorgCharger"]}
+  "C": {t: FloorXeno, a: safe, e: ["AlwaysPoweredWallLight@-90"]}
+  "D": {t: Plating, a: safe, e: ["WallPlastitanium"]}
+  "E": {t: FloorXeno, a: safe, e: ["AirlockShuttle"]}
+  "F": {t: FloorXeno, a: safe}
+  "G": {t: FloorXeno, a: normal, e: ["ChairOfficeDark@90"]}
+  "H": {t: FloorXeno, a: normal, e: ["TableReinforced", "Crowbar", "AlwaysPoweredWallLight@-90"]}
+  "I": {t: FloorXeno, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "J": {t: FloorXeno, a: safe, e: ["BitrunningMarkerGoal"]}
+  "K": {t: FloorXeno, a: normal, e: ["AlwaysPoweredWallLight@90"]}
+  "L": {t: FloorXeno, a: normal, e: ["TableReinforced", "AlwaysPoweredWallLight@90"]}
+  "M": {t: FloorXeno, a: normal, e: ["PottedPlantRandom", "AlwaysPoweredWallLight@180"]}
+  "N": {t: FloorXeno, a: safe, e: ["BitrunningMarkerHololadder", "AlwaysPoweredWallLight@180"]}
+  "O": {t: FloorXeno, a: safe, e: ["AlwaysPoweredWallLight@180"]}
+  "P": {t: FloorXeno, a: normal, e: ["ComfyChair@-90", "AlwaysPoweredWallLight@-90"]}
+  "Q": {t: FloorXeno, a: normal, e: ["SalvageHumanCorpse", "AlwaysPoweredWallLight@-90"]}
+  "R": {t: FloorXeno, a: normal, e: ["BitrunningMarkerCache", "AlwaysPoweredWallLight"]}
 rows:
 - "aaaaaaabbbbbbbbbbbbbbbbbbbbbaaaaaaa"
 - "aaaaaabbcccccccccccccccccccbbaaaaaa"
@@ -39,31 +55,31 @@ rows:
 - "aaaaaabbbbbdddddefedddddbbbbbaaaaaa"
 - "aaaaaaaaaadggddheeehddggdaaaaaaaaaa"
 - "aaaaaaaaaddddddieeejddddddaaaaaaaaa"
-- "aaaaaaaaddkeeldieeejdlkeeddaaaaaaaa"
-- "aaaaaaaddeeeeedeeeeedmeeeeddaaaaaaa"
-- "aaaaaaddeeeddddnononddddeeeddaaaaaa"
-- "aaaaaddeeeddpkdleeeldemddeeeddaaaaa"
-- "aaaaddeeeddqeedeeeeedeeeddereddaaaa"
-- "aaaddeeeddseeldeeeeedmeetddeeeddaaa"
-- "aaddeeeddperedleeeeeldeeemddeeeddaa"
-- "addeeeldgeedodeeeeeeedodelddleeedda"
-- "ddeeeeddguedeeeeeeeeeeedmedddeeeedd"
-- "ddeeeedgdddeeevwwxwwveeedddgdeeyzdd"
-- "ddmeeedddleeeewvvvvvweeeeldddeeeedd"
-- "ddseeeeeeeeeeewAvvvBweeeeeeeeeeeedd"
-- "ddseeeeeeeeeeewAvvvBweeeeeeeeeeeedd"
-- "ddmeeedddleeeewAvvvvweeeeedddeeeedd"
-- "ddeeeedddddeeevwwxwwveeedddgdeeysdd"
-- "ddeeredddssdeeeeeeeeeeedssdddeeeedd"
-- "addeeelddeedodeeeeeeedodeeddleeedda"
-- "aaddeeeddpeeedleeeeeldeerlddeeeddaa"
-- "aaaddeeeddeeepdeereedleejddeeeddaaa"
-- "aaaaddeeeddpeudeeeeedkesddeerddaaaa"
-- "aaaaaddeekddssdeeeeedssddeeeddaaaaa"
-- "aaaaaaddeeedddddeeedddddkeeddaaaaaa"
-- "aaaaaaaddeeddddddoddgggdeeddaaaaaaa"
-- "aaaaaaaaddlddeedeeedeegdlddaaaaaaaa"
-- "aaaaaaaaadddeeederedeeedddaaaaaaaaa"
+- "aaaaaaaaddkeeldmeeejdlkenddaaaaaaaa"
+- "aaaaaaaddeeeeedeeeeedoeeeeddaaaaaaa"
+- "aaaaaaddeepddddqrqrqddddeeeddaaaaaa"
+- "aaaaaddeeeddskdleeeldeoddeeeddaaaaa"
+- "aaaaddeeeddteedeeeepdeeeddeunddaaaa"
+- "aaaddeeeddveeldeeeeedweexddeeeddaaa"
+- "aaddeeeddseupdleeeeeldeyeoddeeeddaa"
+- "addeeezdgeedrdeeeeeeedrdelddleeedda"
+- "ddeeeeddgAedeeeeeeeeeeedoedddeeeBdd"
+- "ddeeeedgdddeeeCDDEDDFeeedddgdeeGHdd"
+- "ddoeeedddleeeeDFFFFFDeeeeldddeeeBdd"
+- "ddveeeeeeeeeeeDIFFFJDKeeeeeeeeeeedd"
+- "ddLeeeeeeeeeeeDIFFFJDeeeeeeeyeeeedd"
+- "ddoeeedddMeeeeDNFFOFDeeeeedddeeeBdd"
+- "ddeeeedddddeeeFDDEDDFeeedddgdeeGvdd"
+- "ddeeuedddvvdeeeeneeeeeedvvdddeeeBdd"
+- "addeeelddepdrdeeeeeeedrdeeddleeedda"
+- "aaddeepddseeedleeeeeldeeulddeepddaa"
+- "aaaddeeeddeeesdeeueedleePddeeeddaaa"
+- "aaaaddeeeddseQdeeeepdkevddeeuddaaaa"
+- "aaaaaddeeRddvvdeeeeedvvddeeeddaaaaa"
+- "aaaaaaddeeedddddeeedddddkepddaaaaaa"
+- "aaaaaaaddeeddddddrddgggdeeddaaaaaaa"
+- "aaaaaaaaddlddnedneednegdlddaaaaaaaa"
+- "aaaaaaaaadddeeedeuedeeedddaaaaaaaaa"
 - "aaaaaaaaaadddeedeeedeedddaaaaaaaaaa"
 - "aaaaaaaaaaadddddddddddddaaaaaaaaaaa"
 - "aaaaaaaaaaaadddddddddddaaaaaaaaaaaa"

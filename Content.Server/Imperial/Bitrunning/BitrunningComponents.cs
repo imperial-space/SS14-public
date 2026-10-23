@@ -131,6 +131,35 @@ public sealed partial class QuantumServerComponent : Component
 
     [ViewVariables]
     public TimeSpan NextDeathScan;
+
+    /// <summary>Тайник появляется по очкам (метка loot_signal).</summary>
+    [ViewVariables]
+    public bool CacheByPoints;
+
+    /// <summary>Тайник выпадает из мегафауны.</summary>
+    [ViewVariables]
+    public bool CacheByBoss;
+
+    [ViewVariables]
+    public bool CacheSpawned;
+
+    /// <summary>Аватар подходил к тайнику.</summary>
+    [ViewVariables]
+    public bool CacheFound;
+
+    [ViewVariables]
+    public int CuriositiesTotal;
+
+    [ViewVariables]
+    public int CuriositiesDelivered;
+
+    /// <summary>broadcasting: аватары транслируются на развлекательные экраны.</summary>
+    [ViewVariables]
+    public bool Broadcasting;
+
+    /// <summary>broadcast_toggle_cd.</summary>
+    [ViewVariables]
+    public TimeSpan BroadcastCooldownEnd;
 }
 
 /// <summary>/obj/machinery/computer/quantum_console.</summary>
@@ -320,3 +349,7 @@ public sealed partial class BitrunningSacrificeComponent : Component
 /// <summary>heretic_hunt: большая руна — сюда приносят тела.</summary>
 [RegisterComponent]
 public sealed partial class BitrunningSacrificeRuneComponent : Component;
+
+/// <summary>simple_bodycam аватара: камера развлекательной сети, пока сервер транслирует.</summary>
+[RegisterComponent]
+public sealed partial class BitrunningBodycamComponent : Component;

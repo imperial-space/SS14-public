@@ -18,7 +18,7 @@ legend:
   "m": {t: FloorWood, a: bright, e: ["CarpetBlue"]}
   "n": {t: FloorWood, a: bright, e: ["Carpet"]}
   "o": {t: FloorWood, a: bright, e: ["CarpetGreen"]}
-  "p": {t: FloorAsteroidSand, a: bright, e: ["CrateFreezer", "DrinkBeerBottleFull", "DrinkBeerBottleFull", "DrinkBeerBottleFull", "DrinkBeerBottleFull", "DrinkBeerBottleFull", "DrinkBeerBottleFull"]}
+  "p": {t: FloorAsteroidSand, a: bright, e: ["CrateFreezer", "DrinkGlass", "DrinkGlass", "DrinkBeerBottleFull", "DrinkBeerBottleFull", "DrinkBeerBottleFull", "DrinkBeerBottleFull", "DrinkBeerBottleFull", "DrinkBeerBottleFull"]}
   "q": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@90"]}
   "r": {t: FloorSteel, a: safe, e: ["PottedPlantRandom"]}
   "s": {t: FloorSteel, a: safe}

@@ -577,3 +577,25 @@
     options:
     - name: bitrunning-option-mini-uzi
       items: [ WeaponSubMachineGunDrozd ]
+
+# /datum/supply_pack/bitrunning: заказы NexaCache рейсом. Рынок не подключён ни к одной консоли — товар только из торгомата.
+- type: cargoMarket
+  id: BitrunningOrders
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateBitrunningDelivery
+  name: ящик доставки битраннинга
+  description: Заказ из торгомата NexaCache.
+  components:
+  - type: BitrunningDeliveryCrate
+
+- type: cargoProduct
+  id: CargoBitrunningDelivery
+  icon:
+    sprite: Imperial/Bitrunning/machines.rsi
+    state: vendor
+  product: CrateBitrunningDelivery
+  cost: 0
+  category: cargoproduct-category-name-cargo
+  group: BitrunningOrders

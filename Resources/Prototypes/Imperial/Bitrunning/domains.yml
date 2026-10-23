@@ -4,6 +4,7 @@
 - type: bitrunningDomain
   id: BreezeBay
   name: bitrunning-domain-breeze-bay-name
+  objective: bitrunning-domain-breeze-bay-objective
   description: bitrunning-domain-breeze-bay-desc
   help: bitrunning-domain-breeze-bay-help
   reward: 3
@@ -15,28 +16,33 @@
 - type: bitrunningDomain
   id: AshDrake
   name: bitrunning-domain-ash-drake-name
+  objective: bitrunning-domain-ash-drake-objective
   description: bitrunning-domain-ash-drake-desc
   cost: 2
   difficulty: Medium
   reward: 4
   forcedOutfit: BitrunningMinerGear
   layout: /Imperial/Bitrunning/Domains/ash_drake.yml
+  roofLight: "#1c1410"
   ambientLight: "#D8C0B0"
 
 - type: bitrunningDomain
   id: BloodDrunkMiner
   name: bitrunning-domain-blood-drunk-miner-name
+  objective: bitrunning-domain-blood-drunk-miner-objective
   description: bitrunning-domain-blood-drunk-miner-desc
   cost: 2
   difficulty: Medium
   reward: 4
   forcedOutfit: BitrunningMinerGear
   layout: /Imperial/Bitrunning/Domains/blood_drunk_miner.yml
+  roofLight: "#1c1410"
   ambientLight: "#D8C0B0"
 
 - type: bitrunningDomain
   id: Bubblegum
   name: bitrunning-domain-bubblegum-name
+  objective: bitrunning-domain-bubblegum-objective
   description: bitrunning-domain-bubblegum-desc
   cost: 3
   difficulty: High
@@ -45,33 +51,39 @@
   completionLoot:
     PlushieSlime: 1
   layout: /Imperial/Bitrunning/Domains/bubblegum.yml
+  roofLight: "#1c1010"
   ambientLight: "#D8C0B0"
 
 - type: bitrunningDomain
   id: Colossus
   name: bitrunning-domain-colossus-name
+  objective: bitrunning-domain-colossus-objective
   description: bitrunning-domain-colossus-desc
   cost: 3
   difficulty: High
   reward: 5
   forcedOutfit: BitrunningMinerGear
   layout: /Imperial/Bitrunning/Domains/colossus.yml
+  roofLight: "#1c1410"
   ambientLight: "#D8C0B0"
 
 - type: bitrunningDomain
   id: Hierophant
   name: bitrunning-domain-hierophant-name
+  objective: bitrunning-domain-hierophant-objective
   description: bitrunning-domain-hierophant-desc
   cost: 3
   difficulty: High
   reward: 5
   forcedOutfit: BitrunningMinerGear
   layout: /Imperial/Bitrunning/Domains/hierophant.yml
+  roofLight: "#16121c"
   ambientLight: "#D8C0B0"
 
 - type: bitrunningDomain
   id: XenoNest
   name: bitrunning-domain-xeno-nest-name
+  objective: bitrunning-domain-xeno-nest-objective
   description: bitrunning-domain-xeno-nest-desc
   help: bitrunning-domain-xeno-nest-help
   cost: 1
@@ -82,11 +94,13 @@
   completionLoot:
     PlushieRouny: 1
   layout: /Imperial/Bitrunning/Domains/xeno_nest.yml
+  roofLight: "#2a2634"
   ambientLight: "#404050"
 
 - type: bitrunningDomain
   id: ClownPlanet
   name: bitrunning-domain-clown-planet-name
+  objective: bitrunning-domain-clown-planet-objective
   description: bitrunning-domain-clown-planet-desc
   help: bitrunning-domain-clown-planet-help
   cost: 1
@@ -101,6 +115,7 @@
 - type: bitrunningDomain
   id: Vaporwave
   name: bitrunning-domain-vaporwave-name
+  objective: bitrunning-domain-vaporwave-objective
   description: bitrunning-domain-vaporwave-desc
   cost: 20
   reward: 6
@@ -108,6 +123,7 @@
   completionLoot:
     SpaceCash500: 4
   layout: /Imperial/Bitrunning/Domains/vaporwave.yml
+  roofLight: "#2a1838"
   ambientLight: "#303048"
 
 # /datum/modular_mob_segment/xenos
@@ -124,6 +140,7 @@
 - type: bitrunningDomain
   id: AbductorShip
   name: bitrunning-domain-abductor-ship-name
+  objective: bitrunning-domain-abductor-ship-objective
   description: bitrunning-domain-abductor-ship-desc
   help: bitrunning-domain-abductor-ship-help
   cost: 2
@@ -135,11 +152,13 @@
   completionLoot:
     PlushieXeno: 1
   layout: /Imperial/Bitrunning/Domains/abductor_ship.yml
+  roofLight: "#141420"
   ambientLight: "#202028"
 
 - type: bitrunningDomain
   id: BeachBar
   name: bitrunning-domain-beach-bar-name
+  objective: bitrunning-domain-beach-bar-objective
   description: bitrunning-domain-beach-bar-desc
   help: bitrunning-domain-beach-bar-help
   flags: NoNohitBonus
@@ -152,6 +171,7 @@
 - type: bitrunningDomain
   id: FredingtonFastingBear
   name: bitrunning-domain-pizza-party-name
+  objective: bitrunning-domain-pizza-party-objective
   description: bitrunning-domain-pizza-party-desc
   help: bitrunning-domain-pizza-party-help
   cost: 2
@@ -160,11 +180,13 @@
   completionLoot:
     FoodPizzaMeatSlice: 1
   layout: /Imperial/Bitrunning/Domains/fredingtonfastingbear.yml
+  roofLight: "#050508"
   ambientLight: "#101014"
 
 - type: bitrunningDomain
   id: GrasslandsHunt
   name: bitrunning-domain-grasslands-hunt-name
+  objective: bitrunning-domain-grasslands-hunt-objective
   description: bitrunning-domain-grasslands-hunt-desc
   help: bitrunning-domain-grasslands-hunt-help
   flags: NoNohitBonus
@@ -178,6 +200,7 @@
 - type: bitrunningDomain
   id: HereticHunt
   name: bitrunning-domain-heretic-hunt-name
+  objective: bitrunning-domain-heretic-hunt-objective
   description: bitrunning-domain-heretic-hunt-desc
   help: bitrunning-domain-heretic-hunt-help
   cost: 1
@@ -185,11 +208,14 @@
   reward: 3
   forcedOutfit: BitrunningHereticGear
   layout: /Imperial/Bitrunning/Domains/heretic_hunt.yml
+  roofLight: "#141418"
   ambientLight: "#303038"
 
 - type: bitrunningDomain
   id: IslandBrawl
+  announceGhosts: true
   name: bitrunning-domain-island-brawl-name
+  objective: bitrunning-domain-island-brawl-objective
   description: bitrunning-domain-island-brawl-desc
   help: bitrunning-domain-island-brawl-help
   cost: 3
@@ -209,7 +235,9 @@
 
 - type: bitrunningDomain
   id: MetaCentral
+  announceGhosts: true
   name: bitrunning-domain-meta-central-name
+  objective: bitrunning-domain-meta-central-objective
   description: bitrunning-domain-meta-central-desc
   help: bitrunning-domain-meta-central-help
   cost: 1
@@ -219,11 +247,13 @@
   mobModules: [ BitrunningSegmentRevolutionary ]
   forcedOutfit: SecurityOfficerGear
   layout: /Imperial/Bitrunning/Domains/meta_central.yml
+  roofLight: "#141418"
   ambientLight: "#303038"
 
 - type: bitrunningDomain
   id: Pipedream
   name: bitrunning-domain-pipedream-name
+  objective: bitrunning-domain-pipedream-objective
   description: bitrunning-domain-pipedream-desc
   help: bitrunning-domain-pipedream-help
   cost: 1
@@ -234,23 +264,28 @@
   completionLoot:
     CableApcStack10: 1
   layout: /Imperial/Bitrunning/Domains/pipedream.yml
+  roofLight: "#121218"
   ambientLight: "#202028"
 
 - type: bitrunningDomain
   id: Pirates
+  announceGhosts: true
   name: bitrunning-domain-pirates-name
+  objective: bitrunning-domain-pirates-objective
   description: bitrunning-domain-pirates-desc
   help: bitrunning-domain-pirates-help
   cost: 2
   difficulty: Medium
   reward: 4
   layout: /Imperial/Bitrunning/Domains/pirates.yml
+  roofLight: "#141418"
   ambientLight: "#C8C8D8"
 
 # Эхолокации в SS14 нет: домен тёмный, у аватара — фонарь из рюкзака.
 - type: bitrunningDomain
   id: PsykerShuffle
   name: bitrunning-domain-psyker-shuffle-name
+  objective: bitrunning-domain-psyker-shuffle-objective
   description: bitrunning-domain-psyker-shuffle-desc
   help: bitrunning-domain-psyker-shuffle-help
   cost: 1
@@ -258,10 +293,12 @@
   reward: 5
   forcedOutfit: BitrunningEcholocatorGear
   layout: /Imperial/Bitrunning/Domains/psyker_shuffle.yml
+  roofLight: "#050508"
 
 - type: bitrunningDomain
   id: PsykerZombies
   name: bitrunning-domain-psyker-zombies-name
+  objective: bitrunning-domain-psyker-zombies-objective
   description: bitrunning-domain-psyker-zombies-desc
   help: bitrunning-domain-psyker-zombies-help
   cost: 2
@@ -271,10 +308,12 @@
   completionLoot:
     ClothingHeadsetGrey: 1
   layout: /Imperial/Bitrunning/Domains/psyker_zombies.yml
+  roofLight: "#101014"
 
 - type: bitrunningDomain
   id: StairsAndCliffs
   name: bitrunning-domain-stairs-name
+  objective: bitrunning-domain-stairs-objective
   description: bitrunning-domain-stairs-desc
   help: bitrunning-domain-stairs-help
   cost: 1
@@ -292,7 +331,9 @@
 
 - type: bitrunningDomain
   id: SyndicateAssault
+  announceGhosts: true
   name: bitrunning-domain-syndicate-assault-name
+  objective: bitrunning-domain-syndicate-assault-objective
   description: bitrunning-domain-syndicate-assault-desc
   help: bitrunning-domain-syndicate-assault-help
   cost: 2
@@ -303,16 +344,19 @@
   completionLoot:
     PlushieNuke: 1
   layout: /Imperial/Bitrunning/Domains/syndicate_assault.yml
+  roofLight: "#121218"
   ambientLight: "#202028"
 
 # Вендиго в SS14 нет — древний голиаф.
 - type: bitrunningDomain
   id: Wendigo
   name: bitrunning-domain-wendigo-name
+  objective: bitrunning-domain-wendigo-objective
   description: bitrunning-domain-wendigo-desc
   cost: 3
   difficulty: High
   reward: 5
   forcedOutfit: BitrunningMinerGear
   layout: /Imperial/Bitrunning/Domains/wendigo.yml
+  roofLight: "#161a22"
   ambientLight: "#C8D0E8"

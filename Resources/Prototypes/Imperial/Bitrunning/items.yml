@@ -366,3 +366,68 @@
     state: redshift
   name: alerts-bitrunning-threat-name
   description: alerts-bitrunning-threat-desc
+
+# simple_bodycam аватара (BITRUNNER_CAMERA_NET): видна на развлекательных экранах, пока сервер транслирует.
+# Без WirelessNetworkConnection: беспроводная сеть не режет пакеты между картами.
+- type: entity
+  id: BitrunningAvatarBodycam
+  name: нательная камера битраннера
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Eye
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: SurveillanceCameraEntertainment
+    transmitFrequencyId: SurveillanceCamera
+  - type: SurveillanceCamera
+    networkSet: true
+    nameSet: true
+    useEntityNameAsCameraId: true
+  - type: BitrunningBodycam
+
+# ─── Цели аватара в домене (меню персонажа, пока подключён) ───
+- type: entity
+  abstract: true
+  id: BitrunningObjectiveBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Objective
+    issuer: bitrunning-objective-issuer
+    difficulty: 0
+    unique: false
+
+- type: entity
+  parent: BitrunningObjectiveBase
+  id: BitrunningObjectiveCache
+  name: Найдите зашифрованный тайник
+  components:
+  - type: Objective
+    icon:
+      sprite: Imperial/Bitrunning/crate.rsi
+      state: bitrunning
+  - type: BitrunningObjectiveCondition
+    kind: Cache
+
+- type: entity
+  parent: BitrunningObjectiveBase
+  id: BitrunningObjectiveDeliver
+  name: Доставьте тайник в убежище
+  components:
+  - type: Objective
+    icon:
+      sprite: Imperial/Bitrunning/hololadder.rsi
+      state: hololadder
+  - type: BitrunningObjectiveCondition
+    kind: Deliver
+
+- type: entity
+  parent: BitrunningObjectiveBase
+  id: BitrunningObjectiveCuriosity
+  name: Соберите диковинки (по желанию)
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Storage/boxes.rsi
+      state: box_of_doom
+  - type: BitrunningObjectiveCondition
+    kind: Curiosity

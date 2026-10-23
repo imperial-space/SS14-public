@@ -1,12 +1,16 @@
+using System.Linq;
 using System.Numerics;
+using Content.Client.Imperial.UI;
 using Content.Shared.Imperial.Bitrunning;
+using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Timing;
 using Robust.Client.UserInterface.CustomControls;
 
 namespace Content.Client.Imperial.Bitrunning;
 
-/// <summary>Окно квантовой консоли (tgui QuantumConsole): выбор домена, статус сервера и аватаров.</summary>
+[UsedImplicitly]
 public sealed class QuantumConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     private QuantumConsoleWindow? _window;
@@ -15,10 +19,7 @@ public sealed class QuantumConsoleBoundUserInterface(EntityUid owner, Enum uiKey
     {
         base.Open();
         _window = this.CreateWindow<QuantumConsoleWindow>();
-        _window.OnSetDomain += id => SendMessage(new QuantumConsoleSetDomainMessage(id));
-        _window.OnRandom += () => SendMessage(new QuantumConsoleRandomDomainMessage());
-        _window.OnStop += () => SendMessage(new QuantumConsoleStopDomainMessage());
-        _window.OnRefresh += () => SendMessage(new QuantumConsoleRefreshMessage());
+        _window.OnMessage += SendMessage;
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -29,123 +30,350 @@ public sealed class QuantumConsoleBoundUserInterface(EntityUid owner, Enum uiKey
     }
 }
 
+/// <summary>Окно квантовой консоли 1 в 1 с tgui QuantumConsole (500×500).</summary>
 public sealed class QuantumConsoleWindow : DefaultWindow
 {
-    public event Action<string>? OnSetDomain;
-    public event Action? OnRandom;
-    public event Action? OnStop;
-    public event Action? OnRefresh;
+    public event Action<BoundUserInterfaceMessage>? OnMessage;
 
-    private readonly Label _status = new();
-    private readonly Label _points = new();
-    private readonly Label _loaded = new();
-    private readonly Label _retries = new();
-    private readonly Button _random = new() { Text = Loc.GetString("bitrunning-console-random") };
-    private readonly Button _stop = new() { Text = Loc.GetString("bitrunning-console-stop") };
-    private readonly BoxContainer _avatars = new() { Orientation = BoxContainer.LayoutOrientation.Vertical };
-    private readonly BoxContainer _domains = new() { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 6 };
+    private static readonly Color Pink = Color.FromHex("#e03997");
+    private static readonly Color Gold = Color.FromHex("#e9b934");
+
+    private readonly BoxContainer _root = Tgui.VBox(6);
+
+    /// <summary>useSharedState('tab').</summary>
+    private BitrunningDifficulty _tab = BitrunningDifficulty.None;
+    private readonly HashSet<string> _expanded = new();
+    private QuantumConsoleState? _state;
+    private ScrollContainer? _scroll;
+    private Vector2? _pendingScroll;
 
     public QuantumConsoleWindow()
     {
         Title = Loc.GetString("bitrunning-console-title");
-        MinSize = new Vector2(560, 600);
-        SetSize = new Vector2(620, 680);
+        MinSize = SetSize = new Vector2(500, 500);
+        _root.Margin = new Thickness(6);
+        _root.VerticalExpand = true;
+        Contents.AddChild(Tgui.Window(_root, scrollable: false));
+    }
 
-        var refresh = new Button { Text = Loc.GetString("bitrunning-console-refresh") };
-        _random.OnPressed += _ => OnRandom?.Invoke();
-        _stop.OnPressed += _ => OnStop?.Invoke();
-        refresh.OnPressed += _ => OnRefresh?.Invoke();
+    protected override void FrameUpdate(FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+        if (_pendingScroll is not { } value || _scroll == null)
+            return;
 
-        var buttons = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, SeparationOverride = 6 };
-        buttons.AddChild(_random);
-        buttons.AddChild(_stop);
-        buttons.AddChild(refresh);
+        _pendingScroll = null;
+        _scroll.SetScrollValue(value);
+    }
 
-        var root = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 4 };
-        root.AddChild(_status);
-        root.AddChild(_points);
-        root.AddChild(_loaded);
-        root.AddChild(_retries);
-        root.AddChild(buttons);
-        root.AddChild(new Label { Text = Loc.GetString("bitrunning-console-avatars"), StyleClasses = { "LabelHeading" } });
-        root.AddChild(_avatars);
-        root.AddChild(new Label { Text = Loc.GetString("bitrunning-console-domains"), StyleClasses = { "LabelHeading" } });
-
-        var scroll = new ScrollContainer { VerticalExpand = true, HScrollEnabled = false };
-        scroll.AddChild(_domains);
-        root.AddChild(scroll);
-        Contents.AddChild(root);
+    private static Color DifficultyColor(BitrunningDifficulty difficulty)
+    {
+        return difficulty switch
+        {
+            BitrunningDifficulty.Low => Tgui.Yellow,
+            BitrunningDifficulty.Medium => Tgui.Average,
+            BitrunningDifficulty.High => Tgui.Bad,
+            _ => Tgui.Green,
+        };
     }
 
     public void Update(QuantumConsoleState state)
     {
-        _domains.RemoveAllChildren();
-        _avatars.RemoveAllChildren();
+        _state = state;
+        Rebuild();
+    }
+
+    private void Rebuild()
+    {
+        if (_state is not { } state)
+            return;
+
+        // Окно пересобирается целиком — прокрутку списка доменов возвращаем после раскладки.
+        if (_scroll != null)
+            _pendingScroll = _scroll.GetScrollValue();
+        _scroll = null;
+        _root.RemoveAllChildren();
 
         if (!state.Connected)
         {
-            _status.Text = Loc.GetString("bitrunning-console-not-connected");
-            _points.Text = _loaded.Text = _retries.Text = string.Empty;
-            _random.Disabled = _stop.Disabled = true;
+            _root.AddChild(Tgui.NoticeBox(Loc.GetString("bitrunning-console-not-connected"), Tgui.Bad));
             return;
         }
 
-        _status.Text = Loc.GetString("bitrunning-console-ready", ("ready", state.Ready));
-        _points.Text = Loc.GetString("bitrunning-console-points", ("points", state.Points));
-        _loaded.Text = state.GeneratedDomain == null
-            ? Loc.GetString("bitrunning-console-none-loaded")
-            : Loc.GetString("bitrunning-console-loaded", ("domain", state.Domains.Find(d => d.Id == state.GeneratedDomain)?.Name ?? state.GeneratedDomain));
-        _retries.Text = state.GeneratedDomain == null
-            ? string.Empty
-            : $"{Loc.GetString("bitrunning-console-retries", ("retries", state.RetriesLeft))}   {Loc.GetString("bitrunning-console-occupants", ("count", state.Occupants))}";
+        if (!state.Ready)
+        {
+            _root.AddChild(LoadingScreen());
+            return;
+        }
 
-        var canLoad = state.Ready && state.GeneratedDomain == null && state.Occupants == 0;
-        _random.Disabled = !canLoad || state.Points < 1;
-        _stop.Disabled = state.GeneratedDomain == null;
+        _root.AddChild(DomainsSection(state));
+        _root.AddChild(AvatarDisplay(state));
+        _root.AddChild(Footer(state));
+    }
 
+    /// <summary>LoadingScreen: вращающийся ящик с инструментами и «Please wait...».</summary>
+    private static Control LoadingScreen()
+    {
+        var box = Tgui.VBox(8,
+            new BitrunningSpinner("toolbox", Tgui.Blue, 48) { HorizontalAlignment = HAlignment.Center },
+            Tgui.Text(Loc.GetString("bitrunning-console-wait"), align: HAlignment.Center));
+        box.VerticalAlignment = VAlignment.Center;
+        box.HorizontalAlignment = HAlignment.Center;
+        box.VerticalExpand = true;
+        return box;
+    }
+
+    private Control DomainsSection(QuantumConsoleState state)
+    {
+        var buttons = Tgui.HBox(6);
+        var broadcast = TguiLayout.Checkbox(Loc.GetString("bitrunning-console-broadcast"), state.Broadcasting,
+            () => OnMessage?.Invoke(new QuantumConsoleBroadcastMessage()));
+        broadcast.Disabled = state.BroadcastOnCooldown;
+        broadcast.ToolTip = Loc.GetString("bitrunning-console-broadcast-tooltip");
+        buttons.AddChild(broadcast);
+
+        buttons.AddChild(BitrunningTgui.Button(Loc.GetString("bitrunning-console-random"), "random",
+            onPressed: () => OnMessage?.Invoke(new QuantumConsoleRandomDomainMessage()),
+            disabled: !state.Ready || state.Occupants > 0 || state.Points < 1 || state.GeneratedDomain != null,
+            tooltip: Loc.GetString("bitrunning-console-random-tooltip")));
+
+        var points = Tgui.HBox(4, BitrunningTgui.Icon("star", Pink), Tgui.Text(state.Points.ToString()));
+        points.ToolTip = Loc.GetString("bitrunning-console-points-tooltip");
+        points.MouseFilter = MouseFilterMode.Stop;
+        buttons.AddChild(points);
+
+        var content = Tgui.VBox(4);
+        content.AddChild(Tabs());
+
+        foreach (var domain in state.Domains.OrderBy(d => d.Cost).Where(d => d.Difficulty == _tab))
+        {
+            content.AddChild(DomainEntry(state, domain));
+        }
+
+        _scroll = new ScrollContainer { HScrollEnabled = false, VerticalExpand = true };
+        _scroll.AddChild(content);
+        var section = Tgui.MakeSection(Loc.GetString("bitrunning-console-domains"), buttons, _scroll);
+        section.VerticalExpand = true;
+        return section;
+    }
+
+    private Control Tabs()
+    {
+        var tabs = Tgui.HBox(2);
+        (BitrunningDifficulty Difficulty, string Name, Color Text, string? Trailing)[] list =
+        {
+            (BitrunningDifficulty.None, "bitrunning-console-tab-peaceful", Color.White, null),
+            (BitrunningDifficulty.Low, "bitrunning-console-tab-easy", Color.Black, null),
+            (BitrunningDifficulty.Medium, "bitrunning-console-tab-medium", Color.White, null),
+            (BitrunningDifficulty.High, "bitrunning-console-tab-hard", Color.White, "skull"),
+        };
+
+        foreach (var (difficulty, name, text, trailing) in list)
+        {
+            var tab = new BitrunningColoredTab(Loc.GetString(name), "chevron-down", DifficultyColor(difficulty), text,
+                _tab == difficulty, trailing);
+            tab.OnPressed += _ =>
+            {
+                _tab = difficulty;
+                Rebuild();
+            };
+            tabs.AddChild(tab);
+        }
+
+        return tabs;
+    }
+
+    /// <summary>DomainEntry: Collapsible цвета сложности, кнопка загрузки справа.</summary>
+    private Control DomainEntry(QuantumConsoleState state, QuantumConsoleDomainEntry domain)
+    {
+        var current = state.GeneratedDomain == domain.Id;
+        var occupied = state.Occupants > 0;
+        var canView = domain.Name != Loc.GetString("bitrunning-console-redacted");
+        var open = _expanded.Contains(domain.Id);
+
+        string? loadIcon;
+        string loadName;
+        if (state.Randomized)
+        {
+            loadIcon = null;
+            loadName = "???";
+        }
+        else if (current)
+        {
+            loadIcon = "download";
+            loadName = Loc.GetString("bitrunning-console-loaded-button");
+        }
+        else
+        {
+            loadIcon = "coins";
+            loadName = Loc.GetString("bitrunning-console-load");
+        }
+
+        var header = BitrunningTgui.Button(domain.Name, open ? "chevron-down" : "chevron-right", DifficultyColor(domain.Difficulty),
+            () =>
+            {
+                if (!_expanded.Remove(domain.Id))
+                    _expanded.Add(domain.Id);
+                Rebuild();
+            }, fluid: true);
+        header.TextLabel.HorizontalAlignment = HAlignment.Left;
+        if (domain.Difficulty == BitrunningDifficulty.Low)
+            header.TextLabel.FontColorOverride = Color.Black;
+
+        if (canView && header.TextLabel.Parent is { } title)
+        {
+            if (domain.Modular)
+                title.AddChild(TitleIcon("cubes", domain.Difficulty));
+            if (domain.Secondary)
+                title.AddChild(TitleIcon("gem", domain.Difficulty));
+            if (domain.Ghosts)
+                title.AddChild(TitleIcon("ghost", domain.Difficulty));
+        }
+
+        var id = domain.Id;
+        var load = BitrunningTgui.Button(loadName, loadIcon,
+            onPressed: () => OnMessage?.Invoke(new QuantumConsoleSetDomainMessage(id)),
+            disabled: state.GeneratedDomain != null || !state.Ready || occupied || state.Points < domain.Cost,
+            tooltip: state.GeneratedDomain != null ? Loc.GetString("bitrunning-console-stop-first") : null);
+
+        var row = Tgui.HBox(4, header, load);
+        var box = Tgui.VBox(4, row);
+        if (!open)
+            return box;
+
+        var desc = domain.Description;
+        if (domain.Modular)
+            desc += Loc.GetString("bitrunning-console-modular-suffix");
+        if (domain.Secondary)
+            desc += Loc.GetString("bitrunning-console-secondary-suffix");
+        if (domain.Ghosts)
+            desc += Loc.GetString("bitrunning-console-ghosts-suffix");
+
+        var descLabel = Tgui.Paragraph(desc, Tgui.Label);
+        descLabel.HorizontalExpand = true;
+        descLabel.SizeFlagsStretchRatio = 4;
+
+        var details = Tgui.VBox(4,
+            WithTooltip(DisplayDetails(domain.Cost.ToString(), Pink, "star"), "bitrunning-console-cost-tooltip"),
+            WithTooltip(DisplayDetails(domain.Reward, Gold, "coins"), "bitrunning-console-reward-tooltip"));
+        details.HorizontalExpand = true;
+        details.SizeFlagsStretchRatio = 1;
+
+        var body = Tgui.HBox(0, descLabel, BitrunningTgui.VDivider(), details);
+        body.MinHeight = 60;
+        body.Margin = new Thickness(4, 2, 4, 6);
+        box.AddChild(body);
+        return box;
+    }
+
+    private static Control TitleIcon(string icon, BitrunningDifficulty difficulty)
+    {
+        var label = BitrunningTgui.Icon(icon, difficulty == BitrunningDifficulty.Low ? Color.Black : Tgui.TextColor);
+        label.Margin = new Thickness(6, 0, 0, 0);
+        return label;
+    }
+
+    private static Control WithTooltip(Control control, string tooltip)
+    {
+        control.ToolTip = Loc.GetString(tooltip);
+        control.MouseFilter = MouseFilterMode.Stop;
+        return control;
+    }
+
+    /// <summary>DisplayDetails: «Никакие», текст, либо до четырёх иконок, либо «число + иконка».</summary>
+    private static Control DisplayDetails(string amount, Color color, string icon)
+    {
+        if (!int.TryParse(amount, out var count))
+            return Tgui.Text(amount, Tgui.Label);
+
+        if (count == 0)
+            return Tgui.Text(Loc.GetString("bitrunning-console-none"), Tgui.Label);
+
+        if (count > 4)
+            return Tgui.HBox(4, Tgui.Text(count.ToString()), BitrunningTgui.Icon(icon, color));
+
+        var box = Tgui.HBox(4);
+        for (var i = 0; i < count; i++)
+        {
+            box.AddChild(BitrunningTgui.Icon(icon, color));
+        }
+
+        return box;
+    }
+
+    /// <summary>AvatarDisplay: «пилот как "аватар"», значки урона и здоровье от -100 до 100.</summary>
+    private Control AvatarDisplay(QuantumConsoleState state)
+    {
+        var buttons = Tgui.HBox(6);
+        if (state.GeneratedDomain != null)
+        {
+            var retries = Tgui.HBox(4, BitrunningTgui.Icon("broadcast-tower", Tgui.Green), Tgui.Text(state.RetriesLeft.ToString()));
+            retries.ToolTip = Loc.GetString("bitrunning-console-retries-tooltip");
+            retries.MouseFilter = MouseFilterMode.Stop;
+            retries.VerticalAlignment = VAlignment.Center;
+            buttons.AddChild(retries);
+        }
+
+        buttons.AddChild(BitrunningTgui.Button(Loc.GetString("bitrunning-console-refresh"), "sync",
+            onPressed: () => OnMessage?.Invoke(new QuantumConsoleRefreshMessage()),
+            tooltip: Loc.GetString("bitrunning-console-refresh-tooltip")));
+
+        var table = Tgui.VBox(4);
         foreach (var avatar in state.Avatars)
         {
-            _avatars.AddChild(new Label
-            {
-                Text = Loc.GetString("bitrunning-console-avatar",
-                    ("name", avatar.Name), ("pilot", avatar.Pilot), ("health", (int) avatar.Health),
-                    ("brute", (int) avatar.Brute), ("burn", (int) avatar.Burn), ("tox", (int) avatar.Toxin), ("oxy", (int) avatar.Airloss)),
-            });
+            var who = new RichTextLabel { HorizontalExpand = true, VerticalAlignment = VAlignment.Center };
+            var message = new Robust.Shared.Utility.FormattedMessage();
+            message.PushColor(Tgui.Label);
+            message.AddText(Loc.GetString("bitrunning-console-avatar-as", ("pilot", avatar.Pilot)) + " ");
+            message.Pop();
+            message.PushColor(Color.White);
+            message.AddText($"\"{avatar.Name}\"");
+            message.Pop();
+            who.SetMessage(message);
+
+            var icons = Tgui.HBox(4);
+            if (avatar.Brute == 0 && avatar.Burn == 0 && avatar.Toxin == 0 && avatar.Airloss == 0)
+                icons.AddChild(BitrunningTgui.Icon("check", Tgui.Green));
+            icons.AddChild(BitrunningTgui.Icon("tint", avatar.Brute > 50 ? Tgui.Bad : Tgui.Grey));
+            icons.AddChild(BitrunningTgui.Icon("fire", avatar.Burn > 50 ? Tgui.Average : Tgui.Grey));
+            icons.AddChild(BitrunningTgui.Icon("skull-crossbones", avatar.Toxin > 50 ? Tgui.Green : Tgui.Grey));
+            icons.AddChild(BitrunningTgui.Icon("lungs", avatar.Airloss > 50 ? Tgui.Blue : Tgui.Grey));
+            icons.Margin = new Thickness(6, 0);
+
+            var health = avatar.Health;
+            var color = health >= 90 ? Tgui.Good : health >= 50 ? Tgui.Average : Tgui.Bad;
+            var ratio = (health + 100f) / 200f;
+            var bar = Tgui.ProgressBar(ratio, color, $"{MathF.Round(ratio * 100)}%");
+            bar.HorizontalExpand = true;
+
+            table.AddChild(Tgui.HBox(4, who, icons, bar));
         }
 
-        foreach (var domain in state.Domains)
+        return Tgui.MakeSection(Loc.GetString("bitrunning-console-avatars"), buttons, table);
+    }
+
+    private Control Footer(QuantumConsoleState state)
+    {
+        string selected;
+        if (state.GeneratedDomain is { } generated)
         {
-            var panel = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical };
-            var header = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, SeparationOverride = 8 };
-            var name = new Label { Text = domain.Name, StyleClasses = { "LabelSubText" }, HorizontalExpand = true };
-            name.FontColorOverride = domain.Id == state.GeneratedDomain ? Color.LightGreen : Color.White;
-            header.AddChild(name);
-
-            var load = new Button
-            {
-                Text = Loc.GetString("bitrunning-console-load"),
-                Disabled = !canLoad || state.Points < domain.Cost,
-            };
-            var id = domain.Id;
-            load.OnPressed += _ => OnSetDomain?.Invoke(id);
-            header.AddChild(load);
-            panel.AddChild(header);
-
-            var tags = new List<string>
-            {
-                Loc.GetString("bitrunning-console-cost", ("cost", domain.Cost)),
-                Loc.GetString("bitrunning-console-reward", ("reward", domain.Reward)),
-                Loc.GetString("bitrunning-console-difficulty", ("difficulty", (int) domain.Difficulty)),
-            };
-            if (domain.Modular)
-                tags.Add(Loc.GetString("bitrunning-console-modular"));
-            if (domain.Secondary)
-                tags.Add(Loc.GetString("bitrunning-console-secondary"));
-
-            panel.AddChild(new Label { Text = string.Join(" · ", tags), FontColorOverride = Color.Gray });
-            panel.AddChild(new RichTextLabel { Text = domain.Description });
-            panel.AddChild(new Content.Client.UserInterface.Controls.HLine());
-            _domains.AddChild(panel);
+            selected = state.Randomized
+                ? "???"
+                : state.Domains.Find(d => d.Id == generated)?.Name ?? generated;
         }
+        else
+        {
+            selected = Loc.GetString("bitrunning-console-none-loaded");
+        }
+
+        var notice = Tgui.NoticeBox(selected, state.GeneratedDomain != null ? Tgui.Blue : null);
+        notice.HorizontalExpand = true;
+
+        var stop = BitrunningTgui.Confirm(Loc.GetString("bitrunning-console-stop"),
+            () => OnMessage?.Invoke(new QuantumConsoleStopDomainMessage()),
+            disabled: !state.Ready || state.GeneratedDomain == null,
+            tooltip: Loc.GetString("bitrunning-console-stop-tooltip"));
+
+        return Tgui.MakeSection(null, null, Tgui.HBox(6, notice, stop));
     }
 }

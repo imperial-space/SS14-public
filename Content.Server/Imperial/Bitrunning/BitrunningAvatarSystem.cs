@@ -8,6 +8,7 @@ using Content.Shared.Alert;
 using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Chat;
+using Content.Shared.Clothing;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -26,9 +27,12 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
 using Content.Shared.Power;
+using Content.Shared.Preferences.Loadouts;
+using Content.Shared.Roles;
 using Content.Shared.Station;
 using Content.Shared.Stunnable;
 using Content.Shared.Tools.Systems;
+using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -69,6 +73,8 @@ public sealed class BitrunningAvatarSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedStationSpawningSystem _gear = default!;
+    [Dependency] private readonly LoadoutSystem _loadout = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly SharedToolSystem _tools = default!;
     [Dependency] private readonly Content.Shared.Inventory.InventorySystem _inventory = default!;
@@ -113,7 +119,9 @@ public sealed class BitrunningAvatarSystem : EntitySystem
         SubscribeLocalEvent<NetpodComponent, EntityTerminatingEvent>(OnNetpodTerminating);
         SubscribeLocalEvent<NetpodComponent, DamageChangedEvent>(OnNetpodDamaged);
         SubscribeLocalEvent<NetpodComponent, GetVerbsEvent<AlternativeVerb>>(OnNetpodAltVerbs);
-        SubscribeLocalEvent<NetpodComponent, GetVerbsEvent<Verb>>(OnNetpodVerbs);
+        SubscribeLocalEvent<NetpodComponent, ActivatableUIOpenAttemptEvent>(OnNetpodUiAttempt);
+        SubscribeLocalEvent<NetpodComponent, BoundUIOpenedEvent>(OnNetpodUiOpened);
+        SubscribeLocalEvent<NetpodComponent, NetpodSelectOutfitMessage>(OnNetpodSelectOutfit);
         SubscribeLocalEvent<BitrunningAvatarComponent, Content.Shared.Polymorph.PolymorphedEvent>(OnAvatarPolymorphed);
         SubscribeLocalEvent<NetpodComponent, ExaminedEvent>(OnNetpodExamined);
         SubscribeLocalEvent<NetpodComponent, EntRemovedFromContainerMessage>(OnOccupantRemoved);
@@ -284,7 +292,7 @@ public sealed class BitrunningAvatarSystem : EntitySystem
         if (pod.Comp.CopyBody && HasComp<BodyComponent>(neo))
             _visualBody.CopyAppearanceFrom(neo, avatar);
 
-        _gear.EquipStartingGear(avatar, domain.ForcedOutfit ?? pod.Comp.Outfit);
+        EquipAvatarOutfit(avatar, pod, domain);
         StripAvatarGear(avatar);
         _shop.StockGear(neo, avatar, domain);
 
@@ -314,7 +322,9 @@ public sealed class BitrunningAvatarSystem : EntitySystem
         if (!_actions.GetActions(c.Avatar).Any(a => MetaData(a.Owner).EntityPrototype?.ID == DomainInfoAction.Id))
             _actions.AddAction(c.Avatar, DomainInfoAction.Id);
 
+        _servers.SetBodycam(c.Avatar, c.Server.Comp.Broadcasting);
         _mind.Visit(c.Mind, c.Avatar);
+        _servers.AssignObjectives(c.Mind, c.Server);
         _audio.PlayEntity(BlinkSound, c.Avatar, c.Avatar);
         _stun.TryUpdateParalyzeDuration(c.Avatar, TimeSpan.FromSeconds(1));
         UpdateNetpodAppearance(c.Pod);
@@ -358,6 +368,7 @@ public sealed class BitrunningAvatarSystem : EntitySystem
         avatar.Disconnecting = true;
         if (TryComp<MindComponent>(avatar.Mind, out var mind) && mind.VisitingEntity == avatarUid)
             _mind.UnVisit(avatar.Mind, mind);
+        _servers.RemoveObjectives(avatar.Mind);
 
         if (TryComp<QuantumServerComponent>(avatar.Server, out var server))
             server.Avatars.Remove(avatarUid);
@@ -551,34 +562,63 @@ public sealed class BitrunningAvatarSystem : EntitySystem
             Alert(pilot.Avatar, "BitrunningIntegrity");
     }
 
-    private VerbCategory? _outfitCategory;
-
-    /// <summary>Клик по нетподу — выбор одежды аватара из снаряжения профессий (cached_outfits).</summary>
-    private void OnNetpodVerbs(Entity<NetpodComponent> ent, ref GetVerbsEvent<Verb> args)
+    /// <summary>ui_interact(): окно образов открывается только у пустой работающей капсулы.</summary>
+    private void OnNetpodUiAttempt(Entity<NetpodComponent> ent, ref ActivatableUIOpenAttemptEvent args)
     {
-        if (!args.CanAccess || !args.CanInteract)
+        if (Occupant(ent) != null || !_power.IsPowered(ent.Owner))
+            args.Cancel();
+    }
+
+    private void OnNetpodUiOpened(Entity<NetpodComponent> ent, ref BoundUIOpenedEvent args)
+    {
+        UpdateNetpodUi(ent);
+    }
+
+    /// <summary>ui_static_data(): make_outfit_collection("Jobs", subtypesof(/datum/outfit/job)).</summary>
+    private void UpdateNetpodUi(Entity<NetpodComponent> ent)
+    {
+        var jobs = _proto.EnumeratePrototypes<JobPrototype>()
+            .Where(j => j.SetPreference && j.StartingGear != null)
+            .OrderBy(j => j.LocalizedName)
+            .Select(j => new NetpodOutfitEntry(j.ID, j.LocalizedName))
+            .ToList();
+
+        _ui.SetUiState(ent.Owner, NetpodUiKey.Key, new NetpodOutfitState(ent.Comp.Job?.Id, jobs));
+    }
+
+    /// <summary>ui_act("select_outfit"): resolve_outfit() принимает только образ из списка.</summary>
+    private void OnNetpodSelectOutfit(Entity<NetpodComponent> ent, ref NetpodSelectOutfitMessage args)
+    {
+        if (!_proto.TryIndex<JobPrototype>(args.Id, out var job) || !job.SetPreference || job.StartingGear == null)
             return;
 
-        _outfitCategory ??= new VerbCategory("bitrunning-netpod-outfit-category", null);
-        var user = args.User;
-        var seen = new HashSet<string>();
-        foreach (var job in _proto.EnumeratePrototypes<Content.Shared.Roles.JobPrototype>().OrderBy(j => j.LocalizedName))
-        {
-            if (!job.SetPreference || job.StartingGear is not { } gear || !seen.Add(gear.Id))
-                continue;
+        ent.Comp.Job = job.ID;
+        Dirty(ent);
+        UpdateNetpodUi(ent);
+    }
 
-            args.Verbs.Add(new Verb
-            {
-                Text = job.LocalizedName,
-                Category = _outfitCategory,
-                Act = () =>
-                {
-                    ent.Comp.Outfit = gear;
-                    Dirty(ent);
-                    _popup.PopupEntity(Loc.GetString("bitrunning-netpod-outfit-chosen", ("job", job.LocalizedName)), ent, user);
-                },
-            });
+    /// <summary>
+    /// equipOutfit(netsuit): снаряжение профессии и её лоадаут по умолчанию — в SS14 комбинезон, обувь и рюкзак
+    /// выдаёт именно лоадаут.
+    /// </summary>
+    private void EquipAvatarOutfit(EntityUid avatar, Entity<NetpodComponent> pod, BitrunningDomainPrototype domain)
+    {
+        if (domain.ForcedOutfit is { } forced)
+        {
+            _gear.EquipStartingGear(avatar, forced);
+            return;
         }
+
+        if (pod.Comp.Job is not { } jobId || !_proto.TryIndex(jobId, out var job))
+        {
+            _gear.EquipStartingGear(avatar, pod.Comp.Outfit);
+            return;
+        }
+
+        var roleLoadout = LoadoutSystem.GetJobPrototype(job.ID);
+        _loadout.Equip(avatar,
+            job.StartingGear is { } gear ? new List<ProtoId<StartingGearPrototype>> { gear } : null,
+            _proto.HasIndex<RoleLoadoutPrototype>(roleLoadout) ? new List<ProtoId<RoleLoadoutPrototype>> { roleLoadout } : null);
     }
 
     /// <summary>
@@ -607,6 +647,7 @@ public sealed class BitrunningAvatarSystem : EntitySystem
         {
             server.Avatars.Remove(args.OldEntity);
             server.Avatars.Add(next);
+            _servers.SetBodycam(next, server.Broadcasting);
         }
 
         if (TryComp<NetpodComponent>(old.Netpod, out var pod))
@@ -716,7 +757,7 @@ public sealed class BitrunningAvatarSystem : EntitySystem
             return;
 
         args.Handled = true;
-        _chat.DispatchServerMessage(actor.PlayerSession, ent.Comp.HelpText ?? Loc.GetString("bitrunning-domain-info-none"));
+        RaiseNetworkEvent(new BitrunningAvatarHelpEvent(ent.Comp.HelpText ?? Loc.GetString("bitrunning-domain-info-none")), actor.PlayerSession);
     }
 
     /// <summary>on_domain_completed(): звук и тревога с безопасным выходом.</summary>

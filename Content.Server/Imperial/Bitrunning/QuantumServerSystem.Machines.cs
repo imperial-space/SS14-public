@@ -7,6 +7,7 @@ using Content.Shared.StepTrigger.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.Bitrunning;
@@ -20,6 +21,8 @@ public sealed partial class QuantumServerSystem
     private static readonly TimeSpan ShutdownTime = TimeSpan.FromSeconds(20);
     private static readonly TimeSpan ForgeDelay = TimeSpan.FromSeconds(1);
     private static readonly TimeSpan ConsoleRefresh = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan BroadcastCooldown = TimeSpan.FromSeconds(5);
+    private static readonly EntProtoId BodycamProto = "BitrunningAvatarBodycam";
     private TimeSpan _nextConsoleRefresh;
 
     private void InitializeConsole()
@@ -29,6 +32,7 @@ public sealed partial class QuantumServerSystem
         SubscribeLocalEvent<QuantumConsoleComponent, QuantumConsoleRandomDomainMessage>(OnRandomDomain);
         SubscribeLocalEvent<QuantumConsoleComponent, QuantumConsoleStopDomainMessage>(OnStopDomain);
         SubscribeLocalEvent<QuantumConsoleComponent, QuantumConsoleRefreshMessage>((uid, comp, _) => UpdateConsoleUi((uid, comp)));
+        SubscribeLocalEvent<QuantumConsoleComponent, QuantumConsoleBroadcastMessage>(OnBroadcast);
         SubscribeLocalEvent<QuantumServerComponent, QuantumServerShutdownDoAfterEvent>(OnShutdownDoAfter);
     }
 
@@ -68,6 +72,50 @@ public sealed partial class QuantumServerSystem
         if (ConsoleServer(ent) is { } server)
             BeginShutdown(server, args.Actor);
         UpdateConsoleUi(ent);
+    }
+
+    /// <summary>toggle_broadcast(): раз в 5 секунд, камеры аватаров включаются и выключаются вместе с сетью.</summary>
+    private void OnBroadcast(Entity<QuantumConsoleComponent> ent, ref QuantumConsoleBroadcastMessage args)
+    {
+        if (ConsoleServer(ent) is not { } server || _timing.CurTime < server.Comp.BroadcastCooldownEnd)
+            return;
+
+        server.Comp.Broadcasting = !server.Comp.Broadcasting;
+        server.Comp.BroadcastCooldownEnd = _timing.CurTime + BroadcastCooldown;
+        foreach (var avatar in server.Comp.Avatars)
+        {
+            SetBodycam(avatar, server.Comp.Broadcasting);
+        }
+
+        UpdateConsoleUi(ent);
+    }
+
+    /// <summary>
+    /// simple_bodycam(c_tag = "Avatar [real_name]"): камера развлекательной сети на аватаре.
+    /// Без беспроводного модуля пакеты проходят между картами, поэтому экраны станции видят домен.
+    /// </summary>
+    public void SetBodycam(EntityUid avatar, bool enabled)
+    {
+        EntityUid? camera = null;
+        var children = Transform(avatar).ChildEnumerator;
+        while (children.MoveNext(out var child))
+        {
+            if (HasComp<BitrunningBodycamComponent>(child))
+                camera = child;
+        }
+
+        if (!enabled)
+        {
+            if (camera != null)
+                QueueDel(camera.Value);
+            return;
+        }
+
+        if (camera != null || TerminatingOrDeleted(avatar))
+            return;
+
+        var spawned = SpawnAttachedTo(BodycamProto, new EntityCoordinates(avatar, 0, 0));
+        _meta.SetEntityName(spawned, Loc.GetString("bitrunning-bodycam-name", ("name", Name(avatar))));
     }
 
     /// <summary>get_random_domain_id(): платные домены по карману, дешевле EXTREME.</summary>
@@ -115,7 +163,8 @@ public sealed partial class QuantumServerSystem
                 domain.Difficulty,
                 canViewReward ? domain.Reward.ToString() : Loc.GetString("bitrunning-console-redacted"),
                 domain.Modular,
-                domain.SecondaryLoot.Count > 0));
+                domain.SecondaryLoot.Count > 0,
+                domain.AnnounceGhosts));
         }
 
         var avatars = new List<QuantumConsoleAvatarEntry>();
@@ -135,7 +184,9 @@ public sealed partial class QuantumServerSystem
             comp.ScannerTier,
             comp.ExitSpots.Count - comp.RetriesSpent,
             domains,
-            avatars);
+            avatars,
+            comp.Broadcasting,
+            _timing.CurTime < comp.BroadcastCooldownEnd);
         _ui.SetUiState(ent.Owner, QuantumConsoleUiKey.Key, state);
     }
 

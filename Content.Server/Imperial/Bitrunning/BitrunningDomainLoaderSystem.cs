@@ -5,6 +5,8 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Gravity;
 using Content.Shared.Imperial.Bitrunning;
+using Content.Shared.Light.Components;
+using Content.Shared.Light.EntitySystems;
 using Content.Shared.Maps;
 using Robust.Server.GameObjects;
 using Robust.Shared.ContentPack;
@@ -30,6 +32,7 @@ public sealed class BitrunningDomainLoaderSystem : EntitySystem
     [Dependency] private readonly Content.Server.Decals.DecalSystem _decals = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
+    [Dependency] private readonly SharedRoofSystem _roof = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
     private readonly Dictionary<ResPath, DomainLayout> _cache = new();
@@ -117,6 +120,9 @@ public sealed class BitrunningDomainLoaderSystem : EntitySystem
     }
 
     /// <summary>Строит домен на новой карте. Неизвестные прототипы пропускаются с предупреждением.</summary>
+    /// <summary>Области без крыши: /area/virtual_domain/fullbright и поверхность Лаваленда/Ледяной луны.</summary>
+    private static readonly HashSet<string> OpenAreas = new() { "bright", "protectedbright", "outdoors", "space" };
+
     public BuiltDomain? Build(BitrunningDomainPrototype domain)
     {
         var layout = GetLayout(domain.Layout);
@@ -145,6 +151,7 @@ public sealed class BitrunningDomainLoaderSystem : EntitySystem
         var tileCache = new Dictionary<string, Tile?>();
         var spawns = new List<(Vector2i Pos, string Proto, float Deg)>();
         var missing = new HashSet<string>();
+        var roofed = new List<Vector2i>();
 
         for (var row = 0; row < layout.Rows.Count; row++)
         {
@@ -168,6 +175,10 @@ public sealed class BitrunningDomainLoaderSystem : EntitySystem
                 if (tile is { } t)
                     tiles.Add((pos, t));
 
+                // fullbright и открытая поверхность планет — под светом карты, остальное — под крышей (свет только от ламп).
+                if (tile != null && !OpenAreas.Contains(cell.Area))
+                    roofed.Add(pos);
+
                 switch (cell.Area)
                 {
                     case "safe":
@@ -188,6 +199,14 @@ public sealed class BitrunningDomainLoaderSystem : EntitySystem
         }
 
         _map.SetTiles(grid, gridEnt.Comp, tiles);
+
+        var roof = EnsureComp<RoofComponent>(grid);
+        roof.Color = domain.RoofLight;
+        foreach (var pos in roofed)
+        {
+            _roof.SetRoof((grid, gridEnt.Comp, roof), pos, true);
+        }
+        Dirty(grid, roof);
 
         // Новый грид сам получает свою атмосферу с вакуумом на всех клетках — домену она не нужна,
         // тогда действует воздух карты.

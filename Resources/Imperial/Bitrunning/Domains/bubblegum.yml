@@ -4,81 +4,85 @@ height: 56
 keyLength: 1
 legend:
   "a": {t: FloorGreenCircuit, a: normal}
-  "b": {t: Plating, a: outdoors, e: ["WallRockBasalt"]}
-  "c": {t: FloorBasalt, a: outdoors}
-  "d": {t: FloorBasalt, a: outdoors, e: ["SalvageHumanCorpse"]}
-  "e": {t: FloorBasalt, a: outdoors, e: ["FloorLavaEntity"]}
-  "f": {t: FloorBasalt, a: outdoors, e: ["MarkerBeaconStructure"]}
-  "g": {t: FloorBasalt, a: outdoors, e: ["MobLavalandBubblegum"]}
-  "h": {t: FloorBasalt, a: normal, e: ["AlwaysPoweredSmallLight@180"]}
-  "i": {t: Plating, a: safe, e: ["WallSolid"]}
-  "j": {t: Plating, a: safe, e: ["ReinforcedWindow", "Grille"]}
-  "k": {t: Plating, a: safe, e: ["WallSolid", "ExtinguisherCabinetFilled"]}
-  "l": {t: FloorDarkMono, a: safe, e: ["AirlockExternal"]}
-  "m": {t: FloorDark, a: safe}
-  "n": {t: FloorDarkMono, a: safe}
-  "o": {t: FloorDarkMono, a: safe, e: ["AlwaysPoweredWallLight@90"]}
-  "p": {t: FloorDarkMono, a: safe, e: ["WeaponProtoKineticAccelerator", "WeaponProtoKineticAccelerator", "WeaponProtoKineticAccelerator", "ClosetSteelBase", "WeaponCrusher", "WeaponCrusher"]}
-  "q": {t: FloorSteel, a: safe, e: ["AlwaysPoweredWallLight@-90", "Railing", "BitrunningMarkerGoal"]}
-  "r": {t: FloorDarkMono, a: safe, e: ["Table", "PKAUpgradeDamage", "PKAUpgradeDamage", "PKAUpgradeDamage", "PKAUpgradeRange", "PKAUpgradeRange", "PKAUpgradeRange", "PKAUpgradeFireRate", "PKAUpgradeFireRate", "PKAUpgradeFireRate", "ImperialLuxuryMedipen", "ImperialLuxuryMedipen"]}
-  "s": {t: FloorDarkMono, a: safe, e: ["ClosetSteelBase", "WeaponLauncherRocket", "EnergyKatana", "MagazineLightRifleBox"]}
-  "t": {t: FloorDark, a: safe, e: ["Table", "Lantern", "Lantern", "Lantern", "ClothingEyesGlassesMeson", "ClothingEyesGlassesMeson", "ClothingEyesGlassesMeson"]}
-  "u": {t: FloorDarkMono, a: safe, e: ["BitrunningMarkerHololadder"]}
-  "v": {t: FloorDark, a: safe, e: ["ClosetSteelBase", "WeaponLightMachineGunL6", "MagazineBoxAntiMateriel", "WeaponSniperHristov"]}
+  "b": {t: FloorGreenCircuit, a: normal, e: ["AlwaysPoweredWallLight@180"]}
+  "c": {t: Plating, a: outdoors, e: ["WallRockBasalt"]}
+  "d": {t: FloorGreenCircuit, a: normal, e: ["AlwaysPoweredWallLight@90"]}
+  "e": {t: FloorGreenCircuit, a: normal, e: ["AlwaysPoweredWallLight"]}
+  "f": {t: FloorBasalt, a: outdoors}
+  "g": {t: FloorGreenCircuit, a: normal, e: ["AlwaysPoweredWallLight@-90"]}
+  "h": {t: FloorBasalt, a: outdoors, e: ["SalvageHumanCorpse"]}
+  "i": {t: FloorBasalt, a: outdoors, e: ["FloorLavaEntity"]}
+  "j": {t: FloorBasalt, a: outdoors, e: ["MarkerBeaconStructure"]}
+  "k": {t: FloorBasalt, a: outdoors, e: ["MobLavalandBubblegum"]}
+  "l": {t: FloorBasalt, a: normal, e: ["AlwaysPoweredSmallLight@180"]}
+  "m": {t: Plating, a: safe, e: ["WallSolid"]}
+  "n": {t: Plating, a: safe, e: ["ReinforcedWindow", "Grille"]}
+  "o": {t: Plating, a: safe, e: ["WallSolid", "ExtinguisherCabinetFilled"]}
+  "p": {t: FloorDarkMono, a: safe, e: ["AirlockExternal"]}
+  "q": {t: FloorDark, a: safe}
+  "r": {t: FloorDarkMono, a: safe}
+  "s": {t: FloorDarkMono, a: safe, e: ["AlwaysPoweredWallLight@90"]}
+  "t": {t: FloorDarkMono, a: safe, e: ["WeaponProtoKineticAccelerator", "WeaponProtoKineticAccelerator", "WeaponProtoKineticAccelerator", "ClosetSteelBase", "WeaponCrusher", "WeaponCrusher"]}
+  "u": {t: FloorSteel, a: safe, e: ["AlwaysPoweredWallLight@-90", "Railing", "BitrunningMarkerGoal"]}
+  "v": {t: FloorDarkMono, a: safe, e: ["Table", "PKAUpgradeDamage", "PKAUpgradeDamage", "PKAUpgradeDamage", "PKAUpgradeRange", "PKAUpgradeRange", "PKAUpgradeRange", "PKAUpgradeFireRate", "PKAUpgradeFireRate", "PKAUpgradeFireRate", "ImperialLuxuryMedipen", "ImperialLuxuryMedipen"]}
+  "w": {t: FloorDarkMono, a: safe, e: ["ClosetSteelBase", "WeaponLauncherRocket", "EnergyKatana", "MagazineLightRifleBox"]}
+  "x": {t: FloorDark, a: safe, e: ["Table", "Lantern", "Lantern", "Lantern", "ClothingEyesGlassesMeson", "ClothingEyesGlassesMeson", "ClothingEyesGlassesMeson"]}
+  "y": {t: FloorDarkMono, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "z": {t: FloorDark, a: safe, e: ["ClosetSteelBase", "WeaponLightMachineGunL6", "MagazineBoxAntiMateriel", "WeaponSniperHristov"]}
 rows:
-- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-- "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbba"
-- "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbba"
-- "abbbbbaaabbbbbbbbbbbbbbbabbbbbbbbbbbbbbbbabbbbbbbbbbbba"
-- "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbba"
-- "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbba"
-- "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbba"
-- "abbbbbbcccccccbbbbccccccccccccccccccccbbbbccccccbbbabba"
-- "abbbbbbcccccccccccccccccccccccccccccccccccccdccbbbbabba"
-- "abbbbbbbcccccccccccccccccccccccccccccccccccccccbbbbbbba"
-- "abbbbbbbcccccccccccccccccccccccccccccccccceecccbbbbbbba"
-- "abbbbbbbcccccccccccccccccccccccccccccccccceecccbbbbbbba"
-- "abbbbbbcccccccccccccccccfccccccccccccbbcccccccccbbbbbba"
-- "abbbbbbccccccebbeccccccccccccccccbbbccccccccccccbbbbbba"
-- "abbbbbbccccccebbbcccccccccccccccccbbbcccccccccccbbbbbba"
-- "abbbbbbccccccebbecccccccccccccccccbbccccccccccccbbbbbba"
-- "abbbbbbcccccceeeecccccccccccccccccccccccccccccccbbbbbba"
-- "abbbbbbcccccccccccccccccccccccccccccccccccfccccbbbbbbba"
-- "abbbbbbccccccccccccccfcccccccccccccccccccccccccbbbbbbba"
-- "abbbbbbcccccccccccccccccccccccccfccccccccccccccbbbbbbba"
-- "abbbbbbccccccccccccccccccccccccccccccccccccccccbbbbbbba"
-- "abbbbbbccccfcccccccccccccccccccccccccccccccbccccbbbabba"
-- "abbabbbcccccccccccccccccccccccccccccccccccbbccccbbbbbba"
-- "abbbbbbccccccccccccccccccccccccccccccccccccbccccbbbbbba"
-- "abbbbbbccccccccccccccccccccccccccccccccccccccccbbbbbbba"
-- "abbbbbbccccccccccccccccccccccccccccccccfcccccccbbbbbbba"
-- "abbbbbbccccccccccccccccccccgcccccccccccccccccccbbbbbbba"
-- "abbbbbbccccccccccccccccccccccccccccccccccccccccbbbbbbba"
-- "abbbbbbbccccccccccccfccccccccccccccccccccccccccbbbbbbba"
-- "abbbbbbbcccccccccccccccccccccccccfcccccccceeccccbbbbbba"
-- "abbbbbbbccccccccccccccccccccccccccccccccccceccccbbbbbba"
-- "abbbbbbcccccccccccccccccccccccccccccccccccccccccbbbbbba"
-- "abbbbbbccccccccbccccccccccccccccccccccccccccccccbbbbbba"
-- "abbbbbbccccccccbcbbcccccccccccccccccccccccccccccbbbbbba"
-- "abbbbbbcccfcccccbbbccccccccccccccccccccbbcccccccbbbbbba"
-- "abbbbbbcccccccccbbbcccccccccccccccccccbbbccccccbbbbbbba"
-- "abbbbbbccccccccccccccccccccccccccccccccbbccccccbbbbbaba"
-- "abbbbbbccccccccccccccccccccccccccccccccccccccccbbbbbbba"
-- "abbabbbccccccccccccccccccccccccccccccccccccccccbbbbbbaa"
-- "abbbbbbbccccccccccccccccccccfcccccccccccccccccccbbbbbba"
-- "abbbbbbbccccccccccccccccccccccccccccccccccccccccbbbbbba"
-- "abbbbbbccccccccccfccccccchccccchcccccfcccccccfccbbbbbba"
-- "abbbbbbccccccccecccdcccccijklkjiccccccccccccccccbbbbbba"
-- "abbbbbbccccbbcceeccccccccimnnnmiccccccccccccccccbbbbbba"
-- "abbbbbbcccccbccccccccccccionpnqiccccccccccccccccbbbabba"
-- "abbbbbbccccccccccccccccccjnnrnsjcccccccccccccccbbbbbbba"
-- "abbbbbbccccccccccccccccccjtuuuvjcccccccccccccccbbbbbbba"
-- "abbbbbbbccecccccccccccccciijjjiiccccccccccccccccbbbbbba"
-- "abbbbbbbceeebbbccccccccccccccccccccccccccbbcccccbbbbbba"
-- "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbba"
-- "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbabbbbaa"
-- "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbba"
-- "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbba"
-- "abbbbbbbbaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbba"
-- "abbbbbbbbbbbbbbbbbbbbbbbbabbbbbbbbbbbbbbbbbbbbbbbbbbbba"
-- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "abaaaaaaaabaaaaaaaabaaaaaaaabaaaaaaaabaaaaaaaabaaaaaaaa"
+- "acccccccccccccccccccccccccccccccccccccccccccccccccccccd"
+- "accccccccccccccccccccccccccccccccccccccccccccccccccccca"
+- "accccceaaccccccccccccccceccccccccccccccccecccccccccccca"
+- "accccccccccccccccccccccccccccccccccccccccccccccccccccca"
+- "accccccccccccccccccccccccccccccccccccccccccccccccccccca"
+- "accccccccccccccccccccccccccccccccccccccccccccccccccccca"
+- "accccccfffffffccccffffffffffffffffffffccccffffffcccecca"
+- "gccccccfffffffffffffffffffffffffffffffffffffhffccccacca"
+- "acccccccfffffffffffffffffffffffffffffffffffffffccccccca"
+- "acccccccffffffffffffffffffffffffffffffffffiifffcccccccd"
+- "acccccccffffffffffffffffffffffffffffffffffiifffccccccca"
+- "accccccfffffffffffffffffjffffffffffffccfffffffffcccccca"
+- "accccccfffffficciffffffffffffffffcccffffffffffffcccccca"
+- "accccccfffffficccfffffffffffffffffcccfffffffffffcccccca"
+- "accccccfffffficcifffffffffffffffffccffffffffffffcccccca"
+- "accccccffffffiiiifffffffffffffffffffffffffffffffcccccca"
+- "gccccccfffffffffffffffffffffffffffffffffffjffffccccccca"
+- "accccccffffffffffffffjfffffffffffffffffffffffffccccccca"
+- "accccccfffffffffffffffffffffffffjffffffffffffffcccccccd"
+- "accccccffffffffffffffffffffffffffffffffffffffffccccccca"
+- "accccccffffjfffffffffffffffffffffffffffffffcffffcccecca"
+- "accecccfffffffffffffffffffffffffffffffffffccffffcccccca"
+- "accccccffffffffffffffffffffffffffffffffffffcffffcccccca"
+- "accccccffffffffffffffffffffffffffffffffffffffffccccccca"
+- "accccccffffffffffffffffffffffffffffffffjfffffffccccccca"
+- "gccccccffffffffffffffffffffkfffffffffffffffffffccccccca"
+- "accccccffffffffffffffffffffffffffffffffffffffffccccccca"
+- "acccccccffffffffffffjffffffffffffffffffffffffffcccccccd"
+- "acccccccfffffffffffffffffffffffffjffffffffiiffffcccccca"
+- "acccccccfffffffffffffffffffffffffffffffffffiffffcccccca"
+- "accccccfffffffffffffffffffffffffffffffffffffffffcccccca"
+- "accccccffffffffcffffffffffffffffffffffffffffffffcccccca"
+- "accccccffffffffcfccfffffffffffffffffffffffffffffcccccca"
+- "accccccfffjfffffcccffffffffffffffffffffccfffffffcccccca"
+- "gccccccfffffffffcccfffffffffffffffffffcccffffffccccccca"
+- "accccccffffffffffffffffffffffffffffffffccffffffccccceca"
+- "accccccffffffffffffffffffffffffffffffffffffffffcccccccd"
+- "accecccffffffffffffffffffffffffffffffffffffffffccccccaa"
+- "acccccccffffffffffffffffffffjfffffffffffffffffffcccccca"
+- "acccccccffffffffffffffffffffffffffffffffffffffffcccccca"
+- "accccccffffffffffjffffffflffffflfffffjfffffffjffcccccca"
+- "accccccffffffffifffhfffffmnoponmffffffffffffffffcccccca"
+- "accccccffffccffiiffffffffmqrrrqmffffffffffffffffcccccca"
+- "gccccccfffffcffffffffffffmsrtrumffffffffffffffffcccecca"
+- "accccccffffffffffffffffffnrrvrwnfffffffffffffffccccccca"
+- "accccccffffffffffffffffffnxyyyznfffffffffffffffcccccccd"
+- "acccccccffiffffffffffffffmmnnnmmffffffffffffffffcccccca"
+- "acccccccfiiicccffffffffffffffffffffffffffccfffffcccccca"
+- "accccccccccccccccccccccccccccccccccccccccccccccccccccca"
+- "accccccccccccccccccccccccccccccccccccccccccccccceccccaa"
+- "accccccccccccccccccccccccccccccccccccccccccccccccccccca"
+- "accccccccccccccccccccccccccccccccccccccccccccccccccccca"
+- "gcccccccceaccccccccccccccccccccccccccccccccccccccccccca"
+- "accccccccccccccccccccccccaccccccccccccccccccccccccccccd"
+- "aaaaaaaeaaaaaaaeaaaaaaaaaaeaaaaaaaaeaaaaaaaaeaaaaaaaaaa"

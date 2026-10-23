@@ -81,6 +81,7 @@
   components:
   - type: Loadout
     prototypes: [ BitrunningFakeAssistantGear ]
+    roleLoadout: [ JobPassenger ]
 
 - type: startingGear
   id: BitrunningFakeDoctorGear
@@ -95,6 +96,7 @@
   components:
   - type: Loadout
     prototypes: [ BitrunningFakeDoctorGear ]
+    roleLoadout: [ JobMedicalDoctor ]
 
 - type: startingGear
   id: BitrunningFakeSecGear
@@ -110,6 +112,7 @@
   components:
   - type: Loadout
     prototypes: [ BitrunningFakeSecGear ]
+    roleLoadout: [ JobSecurityOfficer ]
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -129,6 +132,7 @@
   components:
   - type: Loadout
     prototypes: [ BitrunningFakeEngiGear ]
+    roleLoadout: [ JobStationEngineer ]
 
 - type: startingGear
   id: BitrunningFakeCeGear
@@ -143,6 +147,7 @@
   components:
   - type: Loadout
     prototypes: [ BitrunningFakeCeGear ]
+    roleLoadout: [ JobChiefEngineer ]
   - type: BitrunningSacrifice
     points: 3
 
@@ -159,6 +164,7 @@
   components:
   - type: Loadout
     prototypes: [ BitrunningFakeHosGear ]
+    roleLoadout: [ JobHeadOfSecurity ]
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -178,6 +184,7 @@
   components:
   - type: Loadout
     prototypes: [ BitrunningFakeCmoGear ]
+    roleLoadout: [ JobChiefMedicalOfficer ]
   - type: BitrunningSacrifice
     points: 3
 
@@ -282,6 +289,7 @@
   components:
   - type: Loadout
     prototypes: [ BartenderGear ]
+    roleLoadout: [ JobBartender ]
 
 - type: entity
   parent: BitrunningGhostRoleBase
@@ -392,6 +400,7 @@
       task: SimpleHumanoidHostileCompound
   - type: Loadout
     prototypes: [ BitrunningFakeAssistantGear ]
+    roleLoadout: [ JobPassenger ]
 
 - type: entity
   parent: MobHuman

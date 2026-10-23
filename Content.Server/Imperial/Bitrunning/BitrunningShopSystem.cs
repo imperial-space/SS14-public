@@ -1,7 +1,14 @@
 using System.Linq;
+using Content.Server.Cargo.Components;
+using Content.Server.Cargo.Systems;
+using Content.Server.Chat.Systems;
 using Content.Server.Imperial.Cargo;
+using Content.Server.Radio.EntitySystems;
+using Content.Server.Station.Systems;
 using Content.Server.Lightning;
 using Content.Shared.Actions;
+using Content.Shared.Cargo.Prototypes;
+using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.GameTicking;
@@ -10,6 +17,8 @@ using Content.Shared.Imperial.Bitrunning;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
+using Content.Shared.Station.Components;
+using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -20,7 +29,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Bitrunning;
 
-/// <summary>Торгомат NexaCache (objects/vendor.dm, orders/*.dm).</summary>
+/// <summary>/obj/machinery/computer/order_console/bitrunning (objects/vendor.dm, order_computer.dm).</summary>
 [RegisterComponent]
 public sealed partial class BitrunningVendorComponent : Component
 {
@@ -28,16 +37,35 @@ public sealed partial class BitrunningVendorComponent : Component
     [DataField]
     public float CargoMultiplier = 0.65f;
 
-    /// <summary>Сколько ждать заказ «грузовым рейсом».</summary>
+    /// <summary>express_cost_multiplier.</summary>
     [DataField]
-    public TimeSpan CargoDelay = TimeSpan.FromMinutes(2);
+    public float ExpressMultiplier = 1f;
+
+    /// <summary>cooldown_time.</summary>
+    [DataField]
+    public TimeSpan CooldownTime = TimeSpan.FromSeconds(10);
+
+    /// <summary>CARGO_CRATE_VALUE: заказ рейсом не дешевле ящика.</summary>
+    [DataField]
+    public int CargoValue = 200;
+
+    /// <summary>grocery_list: заказ → количество.</summary>
+    [ViewVariables]
+    public Dictionary<string, int> Cart = new();
 
     [ViewVariables]
-    public List<(EntProtoId Item, TimeSpan At)> Pending = new();
+    public TimeSpan NextOrder;
 
     [ViewVariables]
-    public string? LastMessage;
+    public bool CooldownShown;
+
+    [ViewVariables]
+    public EntityUid? LastUser;
 }
+
+/// <summary>/datum/supply_pack/bitrunning: ящик доставки, наполняется содержимым корзины при появлении.</summary>
+[RegisterComponent]
+public sealed partial class BitrunningDeliveryCrateComponent : Component;
 
 /// <summary>
 /// Очки битраннинга (bank_account.bitrunning_points), торгомат, программы-диски и их загрузка в аватара (stock_gear),
@@ -58,6 +86,11 @@ public sealed class BitrunningShopSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly CargoSystem _cargo = default!;
+    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly RadioSystem _radio = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly SharedEntityStorageSystem _storage = default!;
 
     private static readonly SoundSpecifier BuySound = new SoundPathSpecifier("/Audio/Machines/machine_vend.ogg");
     private static readonly SoundSpecifier DenySound = new SoundPathSpecifier("/Audio/Machines/custom_deny.ogg");
@@ -79,7 +112,9 @@ public sealed class BitrunningShopSystem : EntitySystem
         SubscribeLocalEvent<BitrunningPilotComponent, BitrunningDomainCompletedEvent>(OnDomainCompleted);
 
         SubscribeLocalEvent<BitrunningVendorComponent, BoundUIOpenedEvent>(OnVendorOpened);
-        SubscribeLocalEvent<BitrunningVendorComponent, BitrunningVendorBuyMessage>(OnVendorBuy);
+        SubscribeLocalEvent<BitrunningVendorComponent, BitrunningVendorCartMessage>(OnVendorCart);
+        SubscribeLocalEvent<BitrunningVendorComponent, BitrunningVendorPurchaseMessage>(OnVendorPurchase);
+        SubscribeLocalEvent<BitrunningDeliveryCrateComponent, MapInitEvent>(OnDeliveryCrateInit);
 
         SubscribeLocalEvent<BitrunningDiskComponent, GetVerbsEvent<AlternativeVerb>>(OnDiskVerbs);
         SubscribeLocalEvent<BitrunningDiskComponent, Content.Shared.Examine.ExaminedEvent>(OnDiskExamined);
@@ -93,20 +128,15 @@ public sealed class BitrunningShopSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        // Откат заказа закончился — окно снимает «Order sent!» (у tgui это autoupdate).
         var now = _timing.CurTime;
-        var query = EntityQueryEnumerator<BitrunningVendorComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var vendor, out var xform))
+        var query = EntityQueryEnumerator<BitrunningVendorComponent>();
+        while (query.MoveNext(out var uid, out var vendor))
         {
-            for (var i = vendor.Pending.Count - 1; i >= 0; i--)
+            if (vendor.CooldownShown && now >= vendor.NextOrder)
             {
-                if (now < vendor.Pending[i].At)
-                    continue;
-
-                var item = vendor.Pending[i].Item;
-                vendor.Pending.RemoveAt(i);
-                Spawn(item, xform.Coordinates);
-                _audio.PlayPvs(BlinkSound, uid);
-                Spawn("EffectSparks", xform.Coordinates);
+                vendor.CooldownShown = false;
+                UpdateVendorUi((uid, vendor), vendor.LastUser);
             }
         }
     }
@@ -131,75 +161,204 @@ public sealed class BitrunningShopSystem : EntitySystem
 
     #region Торгомат
 
+    /// <summary>order_categories: CATEGORY_BITRUNNING_FLAIR, CATEGORY_BITRUNNING_TECH.</summary>
+    private static readonly string[] Categories = { "flair", "tech" };
+
+    private const int MaxCartAmount = 20;
+
     private void OnVendorOpened(Entity<BitrunningVendorComponent> ent, ref BoundUIOpenedEvent args)
     {
         UpdateVendorUi(ent, args.Actor);
     }
 
-    private void UpdateVendorUi(Entity<BitrunningVendorComponent> ent, EntityUid user)
+    private IEnumerable<BitrunningOrderPrototype> Orders()
     {
-        var account = _bank.AccountOf(user);
-        var entries = _proto.EnumeratePrototypes<BitrunningOrderPrototype>()
-            .Where(o => _proto.HasIndex<EntityPrototype>(o.Item))
-            .OrderBy(o => o.Category)
-            .ThenBy(o => o.Cost)
+        return _proto.EnumeratePrototypes<BitrunningOrderPrototype>()
+            .Where(o => Categories.Contains(o.Category) && _proto.HasIndex<EntityPrototype>(o.Item));
+    }
+
+    private int TotalCost(BitrunningVendorComponent vendor)
+    {
+        var total = 0;
+        foreach (var (id, amount) in vendor.Cart)
+        {
+            if (_proto.TryIndex<BitrunningOrderPrototype>(id, out var order))
+                total += order.Cost * amount;
+        }
+
+        return total;
+    }
+
+    private void UpdateVendorUi(Entity<BitrunningVendorComponent> ent, EntityUid? user)
+    {
+        ent.Comp.LastUser = user;
+        var points = user is { } u ? GetPoints(u) : 0;
+        var entries = Orders()
+            .OrderBy(o => o.Cost)
             .Select(o =>
             {
                 var proto = _proto.Index<EntityPrototype>(o.Item);
                 return new BitrunningVendorEntry(
                     o.ID,
+                    o.Item,
                     proto.Name,
                     o.Description is { } desc ? Loc.GetString(desc) : proto.Description,
                     o.Category,
-                    o.Cost,
-                    (int) MathF.Ceiling(o.Cost * ent.Comp.CargoMultiplier));
+                    (int) MathF.Round(o.Cost * ent.Comp.CargoMultiplier));
             })
             .ToList();
 
-        _ui.SetUiState(ent.Owner, BitrunningVendorUiKey.Key,
-            new BitrunningVendorState(account?.Holder, account != null ? _points.GetValueOrDefault(account.Id) : 0, entries, ent.Comp.LastMessage));
+        var categories = Categories.Select(c => Loc.GetString($"bitrunning-vendor-category-{c}")).ToList();
+        foreach (var entry in entries)
+        {
+            entry.Category = Loc.GetString($"bitrunning-vendor-category-{entry.Category}");
+        }
+
+        _ui.SetUiState(ent.Owner, BitrunningVendorUiKey.Key, new BitrunningVendorState(
+            points,
+            categories,
+            entries,
+            new Dictionary<string, int>(ent.Comp.Cart),
+            TotalCost(ent.Comp),
+            _timing.CurTime >= ent.Comp.NextOrder,
+            ent.Comp.CargoMultiplier,
+            ent.Comp.ExpressMultiplier,
+            ent.Comp.CargoValue));
     }
 
-    /// <summary>order_groceries(): экспресс сразу на торгомат, грузовой рейс — дешевле и через время.</summary>
-    private void OnVendorBuy(Entity<BitrunningVendorComponent> ent, ref BitrunningVendorBuyMessage args)
+    /// <summary>add_one / remove_one / cart_set.</summary>
+    private void OnVendorCart(Entity<BitrunningVendorComponent> ent, ref BitrunningVendorCartMessage args)
+    {
+        var id = args.Id;
+        if (!Orders().Any(o => o.ID == id))
+            return;
+
+        var amount = Math.Clamp(args.Amount, 0, MaxCartAmount);
+        if (amount == 0)
+            ent.Comp.Cart.Remove(args.Id);
+        else
+            ent.Comp.Cart[args.Id] = amount;
+
+        UpdateVendorUi(ent, args.Actor);
+    }
+
+    /// <summary>ui_act("purchase") / ui_act("express").</summary>
+    private void OnVendorPurchase(Entity<BitrunningVendorComponent> ent, ref BitrunningVendorPurchaseMessage args)
     {
         var user = args.Actor;
-        if (!_proto.TryIndex<BitrunningOrderPrototype>(args.Id, out var order) || !_proto.HasIndex<EntityPrototype>(order.Item))
+        if (ent.Comp.Cart.Count == 0 || _timing.CurTime < ent.Comp.NextOrder)
+            return;
+
+        var total = TotalCost(ent.Comp);
+        var cost = (int) MathF.Floor(total * (args.Express ? ent.Comp.ExpressMultiplier : ent.Comp.CargoMultiplier));
+
+        // «Чтобы шахтёры не скупали ящики за бесценок».
+        if (!args.Express && cost < ent.Comp.CargoValue)
             return;
 
         if (_bank.AccountOf(user) is not { } account)
         {
-            ent.Comp.LastMessage = Loc.GetString("bitrunning-vendor-no-account");
+            Say(ent, Loc.GetString("bitrunning-vendor-no-account"));
             _audio.PlayPvs(DenySound, ent);
-            UpdateVendorUi(ent, user);
             return;
         }
 
-        var cost = args.Express ? order.Cost : (int) MathF.Ceiling(order.Cost * ent.Comp.CargoMultiplier);
+        // subtract_points(): не хватает — ничего не происходит.
         var points = _points.GetValueOrDefault(account.Id);
         if (points < cost)
         {
-            ent.Comp.LastMessage = Loc.GetString("bitrunning-vendor-not-enough");
             _audio.PlayPvs(DenySound, ent);
-            UpdateVendorUi(ent, user);
             return;
         }
 
         _points[account.Id] = points - cost;
+
+        var items = new List<EntProtoId>();
+        foreach (var (id, amount) in ent.Comp.Cart)
+        {
+            if (!_proto.TryIndex<BitrunningOrderPrototype>(id, out var order))
+                continue;
+
+            for (var i = 0; i < amount; i++)
+            {
+                items.Add(order.Item);
+            }
+        }
+
+        ent.Comp.Cart.Clear();
         _audio.PlayPvs(BuySound, ent);
+
         if (args.Express)
         {
-            Spawn(order.Item, Transform(ent).Coordinates);
-            _audio.PlayPvs(BlinkSound, ent);
-            ent.Comp.LastMessage = Loc.GetString("bitrunning-vendor-express-done");
+            // podspawn(): телепорт-капсула прямо к покупателю.
+            var coords = Transform(user).Coordinates;
+            foreach (var item in items)
+            {
+                Spawn(item, coords);
+            }
+
+            Spawn("EffectSparks", coords);
+            _audio.PlayPvs(BlinkSound, user);
+            Say(ent, Loc.GetString("bitrunning-vendor-express-done"));
+            ent.Comp.NextOrder = _timing.CurTime + ent.Comp.CooldownTime * ent.Comp.ExpressMultiplier;
         }
         else
         {
-            ent.Comp.Pending.Add((order.Item, _timing.CurTime + ent.Comp.CargoDelay));
-            ent.Comp.LastMessage = Loc.GetString("bitrunning-vendor-cargo-done");
+            OrderDelivery(ent, user, items);
+            ent.Comp.NextOrder = _timing.CurTime + ent.Comp.CooldownTime;
         }
 
+        ent.Comp.CooldownShown = true;
         UpdateVendorUi(ent, user);
+    }
+
+    private readonly Queue<List<EntProtoId>> _deliveries = new();
+    private static readonly ProtoId<CargoProductPrototype> DeliveryProduct = "CargoBitrunningDelivery";
+    private static readonly ProtoId<CargoAccountPrototype> CargoAccount = "Cargo";
+    private static readonly ProtoId<Content.Shared.Radio.RadioChannelPrototype> SupplyChannel = "Supply";
+
+    /// <summary>order_groceries(): заказ без оплаты отдела, ящик прибудет грузовым рейсом.</summary>
+    private void OrderDelivery(Entity<BitrunningVendorComponent> ent, EntityUid user, List<EntProtoId> items)
+    {
+        if (_station.GetOwningStation(ent) is not { } station
+            || !TryComp<StationCargoOrderDatabaseComponent>(station, out var db)
+            || !TryComp<StationDataComponent>(station, out var stationData)
+            || !_proto.TryIndex(DeliveryProduct, out var product))
+        {
+            // Станции нет (тесты, шаттл) — заказ прилетает сразу.
+            foreach (var item in items)
+            {
+                Spawn(item, Transform(ent).Coordinates);
+            }
+
+            return;
+        }
+
+        _deliveries.Enqueue(items);
+        var name = Name(user);
+        _cargo.AddAndApproveOrder(station, product, 1, name,
+            Loc.GetString("bitrunning-vendor-order-reason"), Loc.GetString("bitrunning-vendor-orderer-rank"), db, CargoAccount, (station, stationData));
+
+        Say(ent, Loc.GetString("bitrunning-vendor-cargo-done"));
+        _radio.SendRadioMessage(ent, Loc.GetString("bitrunning-vendor-announce"), SupplyChannel, ent);
+    }
+
+    private void OnDeliveryCrateInit(Entity<BitrunningDeliveryCrateComponent> ent, ref MapInitEvent args)
+    {
+        if (!_deliveries.TryDequeue(out var items))
+            return;
+
+        var coords = Transform(ent).Coordinates;
+        foreach (var item in items)
+        {
+            var spawned = Spawn(item, coords);
+            _storage.Insert(spawned, ent);
+        }
+    }
+
+    private void Say(EntityUid source, string message)
+    {
+        _chat.TrySendInGameICMessage(source, message, InGameICChatType.Speak, hideChat: false);
     }
 
     #endregion

@@ -58,6 +58,10 @@ public sealed partial class BitrunningDomainPrototype : IPrototype
     [DataField]
     public LocId? Help;
 
+    /// <summary>Что делать на локации: текст цели «добыть тайник».</summary>
+    [DataField]
+    public LocId? Objective;
+
     [DataField]
     public int Cost;
 
@@ -107,6 +111,10 @@ public sealed partial class BitrunningDomainPrototype : IPrototype
     [DataField]
     public Color? AmbientLight;
 
+    /// <summary>Свет под крышей (тёмные области TG): почти чёрный, чтобы силуэты угадывались без ламп.</summary>
+    [DataField]
+    public Color RoofLight = Color.FromHex("#0b0b10");
+
     /// <summary>grasslands_hunt / island_brawl: очки к ящику за каждую смерть в домене (фильтр — только эти прототипы).</summary>
     [DataField]
     public float DeathPoints;
@@ -129,6 +137,10 @@ public sealed partial class BitrunningDomainPrototype : IPrototype
     /// <summary>keep_custom_spawns.</summary>
     [DataField]
     public bool KeepCustomSpawns;
+
+    /// <summary>announce_to_ghosts: в домене есть роли призраков.</summary>
+    [DataField]
+    public bool AnnounceGhosts;
 }
 
 /// <summary>/datum/modular_mob_segment: набор мобов, из которого выбираются существа для метки.</summary>
@@ -163,8 +175,9 @@ public enum QuantumConsoleUiKey : byte
 }
 
 [Serializable, NetSerializable]
-public sealed class QuantumConsoleDomainEntry(string id, string name, string description, int cost, BitrunningDifficulty difficulty, string reward, bool modular, bool secondary)
+public sealed class QuantumConsoleDomainEntry(string id, string name, string description, int cost, BitrunningDifficulty difficulty, string reward, bool modular, bool secondary, bool ghosts = false)
 {
+    public bool Ghosts = ghosts;
     public string Id = id;
     public string Name = name;
     public string Description = description;
@@ -198,8 +211,12 @@ public sealed class QuantumConsoleState(
     int scannerTier,
     int retriesLeft,
     List<QuantumConsoleDomainEntry> domains,
-    List<QuantumConsoleAvatarEntry> avatars) : BoundUserInterfaceState
+    List<QuantumConsoleAvatarEntry> avatars,
+    bool broadcasting = false,
+    bool broadcastOnCooldown = false) : BoundUserInterfaceState
 {
+    public bool Broadcasting = broadcasting;
+    public bool BroadcastOnCooldown = broadcastOnCooldown;
     public bool Connected = connected;
     public string? GeneratedDomain = generatedDomain;
     public int Occupants = occupants;
@@ -226,6 +243,10 @@ public sealed class QuantumConsoleStopDomainMessage : BoundUserInterfaceMessage;
 
 [Serializable, NetSerializable]
 public sealed class QuantumConsoleRefreshMessage : BoundUserInterfaceMessage;
+
+/// <summary>toggle_broadcast(): трансляция аватаров на развлекательные экраны.</summary>
+[Serializable, NetSerializable]
+public sealed class QuantumConsoleBroadcastMessage : BoundUserInterfaceMessage;
 
 #endregion
 
@@ -280,6 +301,10 @@ public sealed partial class NetpodComponent : Component
     /// <summary>netsuit: снаряжение аватара, выбранное кликом по нетподу.</summary>
     [DataField, AutoNetworkedField]
     public ProtoId<Content.Shared.Roles.StartingGearPrototype> Outfit = "BitrunnerGear";
+
+    /// <summary>netsuit: выбранная в окне профессия — её снаряжение и лоадаут по умолчанию. Пусто — Outfit.</summary>
+    [DataField, AutoNetworkedField]
+    public ProtoId<Content.Shared.Roles.JobPrototype>? Job;
 
     /// <summary>copy_body: аватар похож на битраннера.</summary>
     [DataField, AutoNetworkedField]
@@ -362,31 +387,93 @@ public enum BitrunningVendorUiKey : byte
     Key,
 }
 
+/// <summary>orderable_item в ui_static_data: цена уже умножена на cargo_cost_multiplier, как в TG.</summary>
 [Serializable, NetSerializable]
-public sealed class BitrunningVendorEntry(string id, string name, string description, string category, int cost, int cargoCost)
+public sealed class BitrunningVendorEntry(string id, string proto, string name, string description, string category, int cost)
 {
     public string Id = id;
+    public string Proto = proto;
     public string Name = name;
     public string Description = description;
     public string Category = category;
     public int Cost = cost;
-    public int CargoCost = cargoCost;
 }
 
+/// <summary>ProduceConsole: каталог, корзина (grocery_list), очки владельца карты и откат заказа.</summary>
 [Serializable, NetSerializable]
-public sealed class BitrunningVendorState(string? holder, int points, List<BitrunningVendorEntry> entries, string? message) : BoundUserInterfaceState
+public sealed class BitrunningVendorState(
+    int points,
+    List<string> categories,
+    List<BitrunningVendorEntry> entries,
+    Dictionary<string, int> cart,
+    int totalCost,
+    bool offCooldown,
+    float cargoCostMultiplier,
+    float expressCostMultiplier,
+    int cargoValue) : BoundUserInterfaceState
 {
-    public string? Holder = holder;
     public int Points = points;
+    public List<string> Categories = categories;
     public List<BitrunningVendorEntry> Entries = entries;
-    public string? Message = message;
+    public Dictionary<string, int> Cart = cart;
+    public int TotalCost = totalCost;
+    public bool OffCooldown = offCooldown;
+    public float CargoCostMultiplier = cargoCostMultiplier;
+    public float ExpressCostMultiplier = expressCostMultiplier;
+    public int CargoValue = cargoValue;
 }
 
+/// <summary>add_one / remove_one / cart_set: новое количество товара в корзине (0–20).</summary>
 [Serializable, NetSerializable]
-public sealed class BitrunningVendorBuyMessage(string id, bool express) : BoundUserInterfaceMessage
+public sealed class BitrunningVendorCartMessage(string id, int amount) : BoundUserInterfaceMessage
 {
     public string Id = id;
+    public int Amount = amount;
+}
+
+/// <summary>purchase (рейсом карго) или express (сразу к покупателю).</summary>
+[Serializable, NetSerializable]
+public sealed class BitrunningVendorPurchaseMessage(bool express) : BoundUserInterfaceMessage
+{
     public bool Express = express;
+}
+
+#region Нетпод
+
+[Serializable, NetSerializable]
+public enum NetpodUiKey : byte
+{
+    Key,
+}
+
+[Serializable, NetSerializable]
+public sealed class NetpodOutfitEntry(string id, string name)
+{
+    public string Id = id;
+    public string Name = name;
+}
+
+/// <summary>NetpodOutfits: коллекция «Профессии» и выбранный netsuit.</summary>
+[Serializable, NetSerializable]
+public sealed class NetpodOutfitState(string? selected, List<NetpodOutfitEntry> jobs) : BoundUserInterfaceState
+{
+    public string? Selected = selected;
+    public List<NetpodOutfitEntry> Jobs = jobs;
+}
+
+[Serializable, NetSerializable]
+public sealed class NetpodSelectOutfitMessage(string id) : BoundUserInterfaceMessage
+{
+    public string Id = id;
+}
+
+#endregion
+
+/// <summary>avatar_domain_info: окно AvatarHelp с подсказкой домена.</summary>
+[Serializable, NetSerializable]
+public sealed class BitrunningAvatarHelpEvent(string help) : EntityEventArgs
+{
+    public string Help = help;
 }
 
 /// <summary>/obj/item/disk/bitrunning: вариант программы — предметы и/или способности аватара.</summary>

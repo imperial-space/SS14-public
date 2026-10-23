@@ -2,7 +2,7 @@
 
 bitrunning-domain-no-desc = Описание отсутствует.
 bitrunning-domain-map-name = Виртуальный домен: { $domain }
-bitrunning-domain-info-none = У этого домена нет подсказки.
+bitrunning-domain-info-none = Информация отсутствует! Обратитесь за помощью при нужде.
 
 ## Сервер
 bitrunning-server-ready-announcement = Отчёт квантового сервера: тепловые системы в рабочем состоянии. Переходим к настройке домена.
@@ -22,33 +22,36 @@ bitrunning-crate-is-target = Похоже, это тот самый ящик, к
 bitrunning-console-redacted = ███████
 bitrunning-console-scan-limited = Возможности сканирования ограничены. Не удаётся определить данные о домене.
 bitrunning-console-title = Квантовая консоль
-bitrunning-console-not-connected = Квантовый сервер не найден. Поставьте сервер вплотную к консоли.
-bitrunning-console-points = Очки: { $points }
-bitrunning-console-ready = Статус: { $ready ->
-    [true] готов
-   *[false] остывает
-}
-bitrunning-console-loaded = Загружен: { $domain }
-bitrunning-console-none-loaded = Домен не загружен
-bitrunning-console-retries = Осталось подключений: { $retries }
-bitrunning-console-occupants = Подключено: { $count }
-bitrunning-console-random = Случайный домен
-bitrunning-console-stop = Остановить домен
-bitrunning-console-refresh = Обновить
+bitrunning-console-not-connected = Нет подключения к серверу!
+bitrunning-console-wait = Подождите...
+bitrunning-console-broadcast = Прямой эфир
+bitrunning-console-broadcast-tooltip = Включить/отключить трансляцию вашего битрана на станционные развлекательные экраны.
+bitrunning-console-random = Случайно
+bitrunning-console-random-tooltip = Получите случайный домен для дополнительных наград. Взвешено по вашим текущим очкам. Минимум - 1 очко.
+bitrunning-console-points-tooltip = Полученные очки для покупки доменов.
+bitrunning-console-domains = Виртуальные домены
+bitrunning-console-tab-peaceful = Мирные
+bitrunning-console-tab-easy = Легкие
+bitrunning-console-tab-medium = Средние
+bitrunning-console-tab-hard = Сложные
 bitrunning-console-load = Загрузить
-bitrunning-console-cost = Стоимость: { $cost }
-bitrunning-console-reward = Награда: { $reward }
-bitrunning-console-difficulty = Сложность: { $difficulty ->
-    [0] нет
-    [1] низкая
-    [2] средняя
-   *[3] высокая
-}
-bitrunning-console-modular = модульный
-bitrunning-console-secondary = есть побочные цели
-bitrunning-console-avatars = Аватары
-bitrunning-console-avatar = { $name } (пилот { $pilot }): здоровье { $health }, грубый { $brute }, ожоги { $burn }, токсины { $tox }, удушье { $oxy }
-bitrunning-console-domains = Домены
+bitrunning-console-loaded-button = Загружен
+bitrunning-console-stop-first = Остановите текущий домен.
+bitrunning-console-modular-suffix = {" "}(Модульное)
+bitrunning-console-secondary-suffix = {" "}(Доступны дополнительные задачи)
+bitrunning-console-ghosts-suffix = {" "}(Взаимодействие с призраками)
+bitrunning-console-cost-tooltip = Требуемые очки для покупки домена.
+bitrunning-console-reward-tooltip = Награда за выполнение домена.
+bitrunning-console-none = Никакие
+bitrunning-console-avatars = Подключенные клиенты
+bitrunning-console-retries-tooltip = Пропускная способность позволяет создать новое соединение.
+bitrunning-console-refresh = Обновить
+bitrunning-console-refresh-tooltip = Обновить информацию аватаров.
+bitrunning-console-avatar-as = { $pilot } как
+bitrunning-console-none-loaded = Ничего не загружено
+bitrunning-console-stop = Остановить домен
+bitrunning-console-stop-tooltip = Начинает отключение. Уведомит всех подключенных.
+bitrunning-tgui-confirm = Подтвердить?
 
 ## Нетпод
 bitrunning-netpod-invalid-user = неверный пользователь.
@@ -134,21 +137,38 @@ bitrunning-domain-vaporwave-name = Космический пережиток
 bitrunning-domain-vaporwave-desc = Зависшая в безмолвной пустоте космоса Неоновая реликвия — призрачное эхо ретрофутуристической эпохи. Отдохните и насладитесь видом.
 
 ## Нетпод: снаряжение аватара
-bitrunning-netpod-outfit-category = Снаряжение аватара
-bitrunning-netpod-outfit-chosen = Аватар будет одет как: { $job }
+bitrunning-netpod-ui-title = Нетпод
+bitrunning-netpod-ui-select = Выберите образ
+bitrunning-netpod-ui-search = Поиск
+bitrunning-netpod-ui-jobs = Профессии
+bitrunning-netpod-ui-none = Нет
 
 ## Торгомат NexaCache
-bitrunning-vendor-title = NexaCache
-bitrunning-vendor-no-account = Счёт не найден: держите ID-карту или КПК с NT Pay.
-bitrunning-vendor-holder = Счёт: { $holder }
-bitrunning-vendor-points = Очки битраннинга: { $points }
-bitrunning-vendor-not-enough = Недостаточно очков битраннинга.
-bitrunning-vendor-express-done = Благодарим за покупку! Товар материализован.
-bitrunning-vendor-cargo-done = Благодарим за покупку! Товар прибудет следующим грузовым рейсом.
-bitrunning-vendor-express = Экспресс ({ $cost })
-bitrunning-vendor-cargo = Рейсом ({ $cost })
-bitrunning-vendor-category-flair = Атрибутика
-bitrunning-vendor-category-tech = Программы
+bitrunning-vendor-no-account = Банковский счёт не обнаружен!
+bitrunning-vendor-express-done = Благодарим вас за покупку!
+bitrunning-vendor-cargo-done = Благодарим вас за покупку! Товар прибудет следующим грузовым рейсом!
+bitrunning-vendor-announce = Битраннер заказал оборудование, которое прибудет на грузовом шаттле! Пожалуйста, убедитесь, что оно будет доставлено как можно скорее!
+bitrunning-vendor-order-reason = Заказ NexaCache
+bitrunning-vendor-orderer-rank = Поставщик битрана
+bitrunning-vendor-category-flair = Разное
+bitrunning-vendor-category-tech = Технологии
+bitrunning-vendor-credit = np
+bitrunning-vendor-shopping = Покупки
+bitrunning-vendor-checkout = Оплата
+bitrunning-vendor-condense = Сжать
+bitrunning-vendor-expand = Расширить
+bitrunning-vendor-search = Поиск предмета...
+bitrunning-vendor-cost-tooltip = Стоимость { $cost } { $credit } заказа
+bitrunning-vendor-list = Список покупок:
+bitrunning-vendor-nothing = Ничего!
+bitrunning-vendor-nothing-hint = (Закажем чего, а?)
+bitrunning-vendor-purchase = Покупки: { $cost }
+bitrunning-vendor-express = Экспресс: { $cost }
+bitrunning-vendor-min-total = Общая сумма должна быть больше или равна { $value }
+bitrunning-vendor-need-item = Закажите хотя бы 1 предмет
+bitrunning-vendor-purchase-tooltip = Ваши покупки прибудут в отдел снабжения, можете понадеятся, что ваши коллеги доставят их вам. На 35% дешевле, чем экспресс-доставка.
+bitrunning-vendor-express-tooltip = Отправляет ваши покупки мгновенно.
+bitrunning-vendor-order-sent = Заказ отправлен! Машина перезаряжается...
 
 bitrunning-order-medkit-brute = Не корите себя, это всего лишь игра!
 bitrunning-order-medkit-burn = Отлично подходит после жарких игровых сессий.
@@ -299,3 +319,60 @@ bitrunning-ghost-pirate-name = Виртуальный пират
 bitrunning-ghost-pirate-desc = Какая-то сухопутная крыса охотится за вашими сокровищами. Остановите их! Яррр!
 bitrunning-ghost-syndie-name = Виртуальный оперативник Синдиката
 bitrunning-ghost-syndie-desc = Ревут сигналы тревоги! Нас берут на абордаж!
+
+bitrunning-bodycam-name = Аватар { $name }
+
+# AvatarHelp
+bitrunning-help-title = Информация о домене
+bitrunning-help-welcome = Добро пожаловать в виртуальный домен.
+bitrunning-help-search-title = Поиск
+bitrunning-help-search = Изучите местность и принесите в убежище ящик. Обращайте пристальное внимание на информацию о домене и на контекстные подсказки.
+bitrunning-help-cache-title = Ящик
+bitrunning-help-cache = Принесите ящик к обозначенной зоне в вашем убежище. Место отправки будет выглядеть необычно для окружения. Осмотрите убежище, чтобы найти его.
+bitrunning-help-disconnect-title = Отключение
+bitrunning-help-disconnect = Лестница предоставляет самый безопасный способ выхода из домена, если ящик еще не вытащили. При разрыве соединения, ваш нетпод предоставляет ограниченную возможность к реанимации.
+bitrunning-help-safety-title = Безопасность
+bitrunning-help-safety = Пока вы подключены, вы в какой-то мере защищены от опасностей окружающей среды и опасности извне, но не полностью. Обращайте внимания на оповещения и тревоги.
+bitrunning-help-retries-title = Ограниченные попытки
+bitrunning-help-retries = Создание аватаров требует огромной пропускной способности. Не тратьте их впустую.
+bitrunning-help-danger-title = Реальная опасность
+bitrunning-help-danger = Помните, что вы физически связаны с вашим аватаром. Вы - чужой во враждебном окружении. Оно попытается силой изгнать вас.
+
+# Цели домена
+bitrunning-objective-issuer = Виртуальный домен
+bitrunning-objective-cache-find = Найдите зашифрованный тайник
+bitrunning-objective-cache-boss = Победите стража домена
+bitrunning-objective-cache-points = Наберите очки для тайника
+bitrunning-objective-cache-generic = Исследуйте домен и найдите зашифрованный тайник.
+bitrunning-objective-cache-points-count = Очки тайника: { $points } из { $goal }.
+bitrunning-objective-cache-found = Тайник найден — несите его в убежище.
+bitrunning-objective-cache-spawned = Тайник появился — найдите его и несите в убежище.
+bitrunning-objective-cache-delivered = Тайник доставлен.
+bitrunning-objective-deliver-desc = Принесите зашифрованный тайник на точку отправки в убежище — клетки, необычные для окружения. Тайник нельзя открыть, его расшифрует байтфорж. После доставки можно безопасно выйти через голо-лестницу или тревогу «Домен завершён».
+bitrunning-objective-deliver-done = Тайник доставлен, награда ждёт на байтфорже. Выходите через голо-лестницу или тревогу «Домен завершён».
+bitrunning-objective-curiosity-desc = В домене спрятаны диковинки. Доставьте их на ту же точку отправки — за каждую байтфорж выдаст дополнительную награду. Доставлено: { $count } из { $total }.
+
+# Что делать на локации (цель «добыть тайник»)
+bitrunning-domain-breeze-bay-objective = Возьмите удочку в убежище и рыбачьте с пирса. Каждая пойманная рыба приносит очки — когда их наберётся достаточно, на пляже появится тайник. Остерегайтесь крабов.
+bitrunning-domain-ash-drake-objective = Пройдите через лавовые поля и убейте пепельного дракона. После его смерти на месте боя выпадет зашифрованный тайник.
+bitrunning-domain-blood-drunk-miner-objective = Найдите и убейте кровожадного шахтёра — он быстро бегает и бьёт крушителем. Тайник выпадет из его останков.
+bitrunning-domain-bubblegum-objective = Найдите в кровавом логове Баблгама и убейте его. Он прыгает сквозь лужи крови — не стойте в них. Тайник выпадет на месте боя.
+bitrunning-domain-colossus-objective = Поднимитесь к Колоссу и уничтожьте его, уворачиваясь от залпов. Тайник выпадет из его останков.
+bitrunning-domain-hierophant-objective = Войдите на арену Иерофанта и победите его. Держитесь подальше от светящихся клеток — по ним бьёт магия. Тайник выпадет на арене.
+bitrunning-domain-wendigo-objective = Найдите древнего хищника ледяной пещеры и убейте его. Тайник выпадет из его останков.
+bitrunning-domain-xeno-nest-objective = Тайник не спрятан, но охраняется: пробейтесь через гнездо ксеноморфов вглубь улья и заберите его.
+bitrunning-domain-clown-planet-objective = Пройдите испытания планеты клоунов: головоломки, ловушки и хонк. Тайник ждёт в конце пути.
+bitrunning-domain-vaporwave-objective = Мирный домен — опасности нет. Прогуляйтесь по пережитку прошлого и найдите тайник.
+bitrunning-domain-abductor-ship-objective = Проникните на корабль абдукторов, справьтесь с экипажем и найдите тайник среди их добычи на борту.
+bitrunning-domain-beach-bar-objective = Пейте напитки в баре: каждый глоток приносит очки. Когда их наберётся достаточно, бармены раскроют тайник.
+bitrunning-domain-pizza-party-objective = Возьмите фонарик и обыщите тёмную пиццерию. Тайник лежит в одном из помещений — не попадитесь медведю.
+bitrunning-domain-grasslands-hunt-objective = Выслеживайте и убивайте дичь на лугах: каждая добыча приносит очки. Когда их наберётся достаточно, появится тайник.
+bitrunning-domain-heretic-hunt-objective = Убивайте членов экипажа и приносите тела на большую руну. Командиры ценнее. Когда очков жертв хватит, у руны появится тайник.
+bitrunning-domain-island-brawl-objective = Выживите на острове: каждая смерть на нём приносит очки. Когда их наберётся достаточно, появится тайник. Диковинки разбросаны по острову.
+bitrunning-domain-meta-central-objective = Пройдите по станции, разберитесь с враждебными работниками и найдите тайник в одном из отделов.
+bitrunning-domain-pipedream-objective = Обыщите брошенный завод труб отправки и найдите тайник. Выясните, что здесь всё разгромило, — и не дайте ему разгромить вас.
+bitrunning-domain-pirates-objective = Переоденьтесь в выданную одежду, разберитесь с пиратами и заберите их сокровище — тайник спрятан в бухте или на корабле.
+bitrunning-domain-psyker-shuffle-objective = В темноте осматривайте каждый ящик: тайник прячется среди обычных ящиков.
+bitrunning-domain-psyker-zombies-objective = Найдите оружие, пробейтесь через зомби и отыщите тайник в разрушенном домене.
+bitrunning-domain-stairs-objective = Поднимайтесь по ледяным склонам и не падайте с обрывов — тайник ждёт на вершине. По пути можно найти диковинку.
+bitrunning-domain-syndicate-assault-objective = Проберитесь на корабль Синдиката, разберитесь с оперативниками и верните украденный груз — тайник на борту.

@@ -30,6 +30,7 @@ public sealed partial class QuantumServerSystem
             return;
 
         ent.Comp.NextDeathScan = now + ScriptInterval;
+        UpdateObjectives(ent);
 
         if (domain.DeathPoints > 0)
             ScanDeaths(ent, domain, map);

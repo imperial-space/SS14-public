@@ -54,7 +54,7 @@ legend:
   "W": {t: FloorSteel, a: safe, e: ["CrateInternals", "OxygenTankFilled", "OxygenTankFilled", "OxygenTankFilled", "ClothingMaskBreath", "ClothingMaskBreath", "ClothingMaskBreath", "ClothingOuterWinterCoat", "ClothingOuterWinterCoat", "ClothingOuterWinterCoat"]}
   "X": {t: FloorSteel, a: safe}
   "Y": {t: Plating, a: safe, e: ["TableWood", "DrinkCoffee", "DrinkCoffee"]}
-  "Z": {t: FloorSteel, a: safe, e: ["TableWood"]}
+  "Z": {t: FloorSteel, a: safe, e: ["TableWood", "FoodPacketChipsTrash"]}
   "0": {t: FloorShuttleGrey, a: safe, e: ["BitrunningMarkerHololadder"]}
   "1": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@-90", "ChairWood@180"]}
 rows:

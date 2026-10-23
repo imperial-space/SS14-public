@@ -97,6 +97,7 @@ public sealed partial class QuantumServerSystem : EntitySystem
         InitializeHololadder();
         InitializeThreats();
         InitializeDomainScripts();
+        InitializeObjectives();
     }
 
     public override void Update(float frameTime)
@@ -253,6 +254,12 @@ public sealed partial class QuantumServerSystem : EntitySystem
         server.SecondaryLootGenerated = 0;
         server.MainCratePoints = 0;
         server.MainCrateSpot = null;
+        server.CacheByPoints = false;
+        server.CacheByBoss = false;
+        server.CacheSpawned = false;
+        server.CacheFound = false;
+        server.CuriositiesTotal = 0;
+        server.CuriositiesDelivered = 0;
 
         var cacheSpots = new List<EntityCoordinates>();
         var curiositySpots = new List<EntityCoordinates>();
@@ -335,6 +342,7 @@ public sealed partial class QuantumServerSystem : EntitySystem
 
         if (cacheSpots.Count > 0)
             Spawn(EncryptedCacheProto, _random.Pick(cacheSpots));
+        server.CacheByPoints = server.MainCrateSpot != null && cacheSpots.Count == 0;
 
         _random.Shuffle(curiositySpots);
         foreach (var spot in curiositySpots)
@@ -345,6 +353,7 @@ public sealed partial class QuantumServerSystem : EntitySystem
             Spawn(EncryptedCuriosityProto, spot);
             server.SecondaryLootGenerated++;
         }
+        server.CuriositiesTotal = server.SecondaryLootGenerated;
 
         LoadMobSegments(ent, domain, segmentSpots);
 
@@ -362,6 +371,8 @@ public sealed partial class QuantumServerSystem : EntitySystem
         var comp = EnsureComp<BitrunningVirtualEntityComponent>(mob);
         comp.Server = server;
         comp.Megafauna = HasMegafaunaAi(mob);
+        if (comp.Megafauna)
+            server.Comp.CacheByBoss = true;
         if (!comp.Megafauna)
             server.Comp.MutationCandidates.Add(mob);
     }
@@ -379,6 +390,8 @@ public sealed partial class QuantumServerSystem : EntitySystem
 
         ent.Comp.Megafauna = false;
         Spawn(EncryptedCacheProto, _transform.GetMoverCoordinates(ent));
+        if (TryComp<QuantumServerComponent>(ent.Comp.Server, out var server))
+            server.CacheSpawned = true;
     }
 
     /// <summary>load_mob_segments(): метки получают группы мобов домена.</summary>
@@ -709,6 +722,7 @@ public sealed partial class QuantumServerSystem : EntitySystem
     /// <summary>generate_secondary_loot().</summary>
     private void GenerateSecondaryLoot(Entity<QuantumServerComponent> ent, EntityUid curiosity, EntityUid forge)
     {
+        ent.Comp.CuriositiesDelivered++;
         SparkAt(Transform(curiosity).Coordinates);
         QueueDel(curiosity);
 
@@ -873,6 +887,7 @@ public sealed partial class QuantumServerSystem : EntitySystem
 
         _audio.PlayPvs(BlinkSound, spot);
         Spawn(EncryptedCacheProto, spot);
+        ent.Comp.CacheSpawned = true;
         SparkAt(spot);
         ent.Comp.MainCrateSpot = null;
     }
