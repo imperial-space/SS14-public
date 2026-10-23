@@ -322,6 +322,6 @@ public sealed class BitrunningVendorWindow : DefaultWindow
 
     private static string Capitalize(string text)
     {
-        return text.Length == 0 ? text : char.ToUpper(text[0]) + text[1..];
+        return text.Length == 0 ? text : text.Substring(0, 1).ToUpper() + text.Substring(1);
     }
 }
