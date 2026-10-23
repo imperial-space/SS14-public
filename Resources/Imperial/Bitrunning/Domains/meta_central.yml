@@ -1,0 +1,369 @@
+# Сконвертировано из meta_central.dmm (tgstation/BandaStation, _maps/virtual_domains) утилитой dmm2domain.
+width: 46
+height: 46
+keyLength: 2
+legend:
+  "aa": {t: Space}
+  "ab": {t: Plating, a: normal, e: ["WallPlastitaniumIndestructible"]}
+  "ac": {t: Plating, a: normal, e: ["WallReinforced"]}
+  "ad": {t: Plating, a: normal, e: ["ReinforcedWindow", "Grille"]}
+  "ae": {t: Plating, a: normal, e: ["WallSolid"]}
+  "af": {t: Plating, a: normal, e: ["WallSolid", "IntercomCommon"]}
+  "ag": {t: Plating, a: normal, e: ["WallRock"]}
+  "ah": {t: Plating, a: normal, e: ["WallReinforced", "FireAlarm"]}
+  "ai": {t: FloorDark, a: normal, e: ["ClosetFireFilled"]}
+  "aj": {t: FloorDark, a: normal, e: ["ClosetEmergencyFilledRandom"]}
+  "ak": {t: FloorDark, a: normal, e: ["Firelock", "Airlock", "Barricade"]}
+  "al": {t: Plating, a: normal, e: ["WallReinforced", "IntercomCommon"]}
+  "am": {t: Plating, a: normal, e: ["WallSolid", "RandomPosterLegit"]}
+  "an": {t: FloorSteel, a: normal, e: ["PottedPlantRandom"]}
+  "ao": {t: FloorSteel, a: normal}
+  "ap": {t: FloorSteel, a: normal, e: ["AlwaysPoweredWallLight"]}
+  "aq": {t: FloorSteel, a: normal, e: ["Barricade"]}
+  "ar": {t: Plating, a: normal, e: ["Barricade"]}
+  "as": {t: Plating, a: normal, e: ["WallSolid", "ExtinguisherCabinetFilled"]}
+  "at": {t: Plating, a: normal, e: ["WallSolid", "FireAlarm"]}
+  "au": {t: FloorSteel, a: normal, e: ["FireAlarm"]}
+  "av": {t: FloorSteel, a: normal, e: ["Firelock"]}
+  "aw": {t: FloorSteel, a: normal, e: ["Railing@-90", "AlwaysPoweredSmallLight"]}
+  "ax": {t: FloorSteel, a: normal, e: ["TableReinforced"]}
+  "ay": {t: FloorSteel, a: normal, e: ["TableReinforced", "ComputerBroken"]}
+  "az": {t: FloorSteel, a: normal, e: ["Railing@90", "CrateSecure"]}
+  "aA": {t: FloorSteel, a: normal, e: ["AlwaysPoweredSmallLight"]}
+  "aB": {t: Plating, a: normal}
+  "aC": {t: FloorSteel, a: normal, e: ["BitrunningMarkerMobSegment"]}
+  "aD": {t: FloorSteel, a: normal, e: ["AlwaysPoweredWallLight@-90"]}
+  "aE": {t: FloorSteel, a: normal, e: ["BitrunningMarkerCache"]}
+  "aF": {t: FloorSteel, a: normal, e: ["AlwaysPoweredWallLight@180"]}
+  "aG": {t: FloorSteel, a: normal, e: ["MobCleanBot"]}
+  "aH": {t: FloorSteel, a: normal, e: ["Firelock", "ClosetSteelBase"]}
+  "aI": {t: FloorSteel, a: normal, e: ["Railing@-90"]}
+  "aJ": {t: FloorSteel, a: normal, e: ["Railing@90", "TableReinforced"]}
+  "aK": {t: Plating, a: normal, e: ["Catwalk"]}
+  "aL": {t: FloorSteel, a: normal, e: ["Crowbar"]}
+  "aM": {t: FloorSteel, a: normal, e: ["ChairPilotSeat@180"]}
+  "aN": {t: Plating, a: normal, e: ["MarkerBeaconStructure"]}
+  "aO": {t: Plating, a: normal, e: ["Railing@180"]}
+  "aP": {t: Plating, a: normal, e: ["Airlock"]}
+  "aQ": {t: Plating, a: normal, e: ["ReinforcedWindow", "Grille", "Barricade"]}
+  "aR": {t: Plating, a: normal, e: ["ClothingHeadHatCone"]}
+  "aS": {t: Plating, a: normal, e: ["Railing@180", "Barricade"]}
+  "aT": {t: Plating, a: normal, e: ["ClothingHeadHatCone", "Crowbar"]}
+  "aU": {t: Plating, a: normal, e: ["ClothingHeadHatCone", "ToolboxElectricalFilled"]}
+  "aV": {t: FloorSteel, a: normal, e: ["CrateGenericSteel"]}
+  "aW": {t: FloorSteel, a: normal, e: ["VendingMachineCigs"]}
+  "aX": {t: FloorSteel, a: normal, e: ["LockerSteel"]}
+  "aY": {t: FloorSteel, a: normal, e: ["Table", "PaperBin10", "Pen"]}
+  "aZ": {t: Plating, a: normal, e: ["BitrunningMarkerCache"]}
+  "a0": {t: Plating, a: normal, e: ["ClosetFireFilled"]}
+  "a1": {t: Space, a: normal}
+  "a2": {t: Space, a: normal, e: ["WeaponSniperMosin"]}
+  "a3": {t: FloorWood, a: normal, e: ["ComputerBroken@180", "Table", "Carpet"]}
+  "a4": {t: FloorWood, a: normal, e: ["TableWood", "Carpet"]}
+  "a5": {t: FloorWood, a: normal, e: ["Carpet"]}
+  "a6": {t: Plating, a: normal, e: ["Railing@90"]}
+  "a7": {t: FloorSteel, a: normal, e: ["TableReinforced", "Firelock", "ShuttersNormal"]}
+  "a8": {t: FloorSteel, a: normal, e: ["Flare"]}
+  "a9": {t: Plating, a: normal, e: ["ReinforcedWindow", "Grille", "BlastDoorOpen", "Barricade"]}
+  "ba": {t: Plating, a: normal, e: ["Grille"]}
+  "bb": {t: Plating, a: normal, e: ["ClothingHeadHatCone", "Grille"]}
+  "bc": {t: Plating, a: normal, e: ["ReinforcedWindow", "Grille", "BlastDoorOpen"]}
+  "bd": {t: FloorWood, a: normal, e: ["Table", "SalvageHumanCorpse", "Carpet"]}
+  "be": {t: FloorWood, a: normal, e: ["ComfyChair@-90", "Carpet"]}
+  "bf": {t: FloorWood, a: normal, e: ["ShardGlass", "Carpet"]}
+  "bg": {t: FloorSteel, a: normal, e: ["Stool"]}
+  "bh": {t: Plating, a: normal, e: ["Flare"]}
+  "bi": {t: Plating, a: normal, e: ["MarkerBeaconStructure", "Catwalk"]}
+  "bj": {t: FloorDark, a: normal, e: ["BoxFolderYellow", "TableGlass", "AlwaysPoweredSmallLight"]}
+  "bk": {t: FloorDark, a: normal, e: ["ComputerBroken"]}
+  "bl": {t: FloorDark, a: normal, e: ["ComputerFrame", "ShardGlass"]}
+  "bm": {t: FloorDark, a: normal, e: ["ToolboxMechanicalFilled", "TableGlass"]}
+  "bn": {t: Space, a: normal, e: ["SalvageHumanCorpse"]}
+  "bo": {t: Space, a: normal, e: ["BitrunningMarkerCache"]}
+  "bp": {t: FloorWood, a: normal, e: ["BitrunningMarkerCache", "Carpet"]}
+  "bq": {t: Plating, a: normal, e: ["ShardGlass"]}
+  "br": {t: FloorSteel, a: normal, e: ["Rack", "Wrench", "Flare"]}
+  "bs": {t: Plating, a: normal, e: ["ClothingMaskGas"]}
+  "bt": {t: FloorDark, a: normal, e: ["BoxFolderBlue", "TableGlass"]}
+  "bu": {t: FloorDark, a: normal, e: ["ChairOfficeDark@180"]}
+  "bv": {t: FloorDark, a: normal}
+  "bw": {t: FloorDark, a: normal, e: ["ChairOfficeDark@90"]}
+  "bx": {t: FloorDark, a: normal, e: ["TableGlass"]}
+  "by": {t: Plating, a: normal, e: ["WallSolid", "Mirror"]}
+  "bz": {t: FloorWood, a: normal, e: ["TableWood", "WindowReinforcedDirectional@180"]}
+  "bA": {t: FloorWood, a: normal, e: ["Windoor@180"]}
+  "bB": {t: Plating, a: normal, e: ["Railing@90", "Barricade"]}
+  "bC": {t: Plating, a: normal, e: ["WallReinforced", "SignalButton"]}
+  "bD": {t: Plating, a: normal, e: ["OxygenTankFilled"]}
+  "bE": {t: FloorDark, a: normal, e: ["ComputerFrame"]}
+  "bF": {t: FloorDark, a: normal, e: ["MedkitFilled", "TableGlass"]}
+  "bG": {t: FloorDark, a: normal, e: ["ImperialBearTrap"]}
+  "bH": {t: FloorDark, a: normal, e: ["BitrunningMarkerMobSegment"]}
+  "bI": {t: FloorDark, a: normal, e: ["Barricade"]}
+  "bJ": {t: FloorDark, a: normal, e: ["Lantern"]}
+  "bK": {t: FloorDark, a: normal, e: ["WeaponCapacitorRecharger", "TableGlass"]}
+  "bL": {t: FloorWhite, a: normal, e: ["HospitalCurtainsOpen", "BitrunningMarkerCache"]}
+  "bM": {t: FloorWhite, a: normal, e: ["SinkWide"]}
+  "bN": {t: FloorWhite, a: normal, e: ["ToiletEmpty", "AlwaysPoweredWallLight@180"]}
+  "bO": {t: FloorWhite, a: normal, e: ["Airlock"]}
+  "bP": {t: FloorWood, a: normal}
+  "bQ": {t: FloorWood, a: normal, e: ["Rack", "Wrench", "Crowbar"]}
+  "bR": {t: FloorSteel, a: normal, e: ["Barricade", "Railing"]}
+  "bS": {t: FloorSteel, a: normal, e: ["Barricade", "RailingCorner@-90"]}
+  "bT": {t: FloorWood, a: normal, e: ["ComputerBroken"]}
+  "bU": {t: FloorWood, a: normal, e: ["WeaponCapacitorRecharger", "TableWood"]}
+  "bV": {t: Plating, a: normal, e: ["WaterTankFull"]}
+  "bW": {t: Plating, a: normal, e: ["AirCanister"]}
+  "bX": {t: FloorSteel, a: normal, e: ["BlastDoorOpen"]}
+  "bY": {t: FloorDark, a: normal, e: ["WindowReinforcedDirectional", "Barricade"]}
+  "bZ": {t: FloorDark, a: normal, e: ["WindowReinforcedDirectional", "ChairOfficeDark@90"]}
+  "b0": {t: FloorDark, a: normal, e: ["WindowReinforcedDirectional"]}
+  "b1": {t: FloorDark, a: normal, e: ["ChairOfficeDark@180", "BitrunningMarkerCache"]}
+  "b2": {t: Plating, a: normal, e: ["WallReinforced", "ExtinguisherCabinetFilled"]}
+  "b3": {t: FloorWood, a: normal, e: ["AirlockCommand", "Carpet"]}
+  "b4": {t: FloorWood, a: normal, e: ["ComputerBroken@-90"]}
+  "b5": {t: FloorDark, a: normal, e: ["TableGlass", "WindowReinforcedDirectional@90", "ComputerBroken"]}
+  "b6": {t: FloorDark, a: normal, e: ["Stool"]}
+  "b7": {t: FloorDark, a: normal, e: ["Railing", "Bonfire"]}
+  "b8": {t: Plating, a: normal, e: ["WallReinforced", "FireAlarm", "IntercomCommon"]}
+  "b9": {t: FloorWood, a: normal, e: ["LandMineKick"]}
+  "ca": {t: Plating, a: normal, e: ["Rack", "WeaponRevolverPython"]}
+  "cb": {t: Plating, a: normal, e: ["WallSolidRust"]}
+  "cc": {t: FloorSteel, a: normal, e: ["Firelock", "Pickaxe"]}
+  "cd": {t: FloorSteel, a: normal, e: ["Barricade", "RailingCorner@90"]}
+  "ce": {t: FloorWood, a: normal, e: ["TableWood", "WindowReinforcedDirectional", "PaperBin10", "Pen"]}
+  "cf": {t: FloorWood, a: normal, e: ["Windoor"]}
+  "cg": {t: FloorWood, a: normal, e: ["WindowReinforcedDirectional", "ComputerBroken@-90"]}
+  "ch": {t: Space, e: ["VendingMachineCola"]}
+  "ci": {t: FloorWood, a: normal, e: ["Bed", "BitrunningMarkerCache"]}
+  "cj": {t: FloorWood, a: normal, e: ["ComputerBroken@180"]}
+  "ck": {t: FloorDark, a: normal, e: ["CrateGenericSteel"]}
+  "cl": {t: FloorDark, a: normal, e: ["AlwaysPoweredWallLight@180", "Rack"]}
+  "cm": {t: FloorDark, a: normal, e: ["Rack"]}
+  "cn": {t: FloorDark, a: normal, e: ["TableGlass", "WindowReinforcedDirectional@-90"]}
+  "co": {t: FloorWood, a: normal, e: ["ComfyChair@180", "Carpet"]}
+  "cp": {t: FloorDark, a: normal, e: ["PaperBin10", "TableGlass", "WindowReinforcedDirectional@90"]}
+  "cq": {t: FloorDark, a: normal, e: ["Rack", "ToolboxEmergencyFilled", "ToolboxEmergencyFilled", "Wrench"]}
+  "cr": {t: FloorDark, a: normal, e: ["SalvageHumanCorpse"]}
+  "cs": {t: FloorWood, a: normal, e: ["TableWood", "AlwaysPoweredSmallLight@90"]}
+  "ct": {t: FloorWood, a: normal, e: ["Table"]}
+  "cu": {t: FloorWood, a: normal, e: ["ComfyChair"]}
+  "cv": {t: FloorWood, a: normal, e: ["AlwaysPoweredSmallLight@-90", "ComputerFrame", "ShardGlass"]}
+  "cw": {t: FloorWood, a: normal, e: ["ChairOfficeDark@90", "Carpet"]}
+  "cx": {t: FloorWood, a: normal, e: ["Bed", "BedsheetSpawner", "AlwaysPoweredSmallLight", "Carpet"]}
+  "cy": {t: FloorWood, a: normal, e: ["Bed", "BedsheetSpawner", "Carpet"]}
+  "cz": {t: FloorWood, a: normal, e: ["ChairOfficeDark@-90", "Carpet"]}
+  "cA": {t: FloorDark, a: normal, e: ["Firelock", "AirlockCommand", "Barricade"]}
+  "cB": {t: FloorDark, a: normal, e: ["WindowReinforcedDirectional@-90"]}
+  "cC": {t: FloorDark, a: normal, e: ["WindowReinforcedDirectional@90"]}
+  "cD": {t: FloorWood, a: normal, e: ["TableWood", "WindowReinforcedDirectional"]}
+  "cE": {t: FloorWood, a: normal, e: ["TableWood", "WeaponCapacitorRecharger"]}
+  "cF": {t: FloorWood, a: normal, e: ["WindowReinforcedDirectional", "Table"]}
+  "cG": {t: Plating, a: normal, e: ["AirlockMaint"]}
+  "cH": {t: FloorSteel, a: normal, e: ["VendingMachineBooze"]}
+  "cI": {t: FloorWood, a: normal, e: ["Firelock", "AirlockCommand", "Barricade"]}
+  "cJ": {t: FloorWood, a: normal, e: ["filingCabinetRandom", "Carpet"]}
+  "cK": {t: FloorDark, a: normal, e: ["Firelock", "AirlockCommand"]}
+  "cL": {t: FloorWood, a: normal, e: ["BookshelfFilled"]}
+  "cM": {t: Plating, a: normal, e: ["WallSolid", "SignalButton", "SignalButton"]}
+  "cN": {t: FloorDark, a: normal, e: ["AirlockCommand"]}
+  "cO": {t: FloorWood, a: normal, e: ["VendingMachineBooze", "AlwaysPoweredSmallLight@90"]}
+  "cP": {t: FloorWood, a: normal, e: ["BitrunningMarkerMobSegment", "Carpet"]}
+  "cQ": {t: Plating, a: normal, e: ["TableWood", "SodaDispenser"]}
+  "cR": {t: FloorWood, a: normal, e: ["TableWood", "AlwaysPoweredWallLight@180"]}
+  "cS": {t: FloorWood, a: normal, e: ["ComputerFrame", "ShardGlass"]}
+  "cT": {t: FloorWood, a: normal, e: ["ComputerBroken@90"]}
+  "cU": {t: FloorWood, a: normal, e: ["SignalButton", "Bed", "BedsheetSpawner"]}
+  "cV": {t: FloorWood, a: normal, e: ["TableWood", "SignalButton", "PaperBin10", "Pen", "SignalButton"]}
+  "cW": {t: FloorDark, a: normal, e: ["FloraRockSolid"]}
+  "cX": {t: FloorDark, a: normal, e: ["TableWood"]}
+  "cY": {t: FloorDark, a: normal, e: ["AlwaysPoweredWallLight"]}
+  "cZ": {t: FloorDark, a: normal, e: ["ChairPilotSeat"]}
+  "c0": {t: FloorDark, a: normal, e: ["BitrunningMarkerCache", "AlwaysPoweredWallLight"]}
+  "c1": {t: FloorDark, a: normal, e: ["Table"]}
+  "c2": {t: FloorDark, a: normal, e: ["TableWood", "PaperBin10", "Pen"]}
+  "c3": {t: FloorDark, a: normal, e: ["AlwaysPoweredWallLight@-90"]}
+  "c4": {t: FloorWood, a: normal, e: ["VendingMachineCigs", "WeaponShotgunKammerer"]}
+  "c5": {t: FloorWood, a: normal, e: ["ComfyChair@90", "Carpet"]}
+  "c6": {t: FloorWood, a: normal, e: ["Table", "Carpet"]}
+  "c7": {t: Plating, a: normal, e: ["LandMineExplosive"]}
+  "c8": {t: Plating, a: normal, e: ["Chair@-90"]}
+  "c9": {t: FloorSteel, a: normal, e: ["Jukebox"]}
+  "da": {t: Plating, a: normal, e: ["Grille", "LandMineExplosive"]}
+  "db": {t: Space, e: ["TableReinforced", "Windoor@180"]}
+  "dc": {t: Plating, a: normal, e: ["WallReinforced", "SignalButton", "SignalButton"]}
+  "dd": {t: FloorDark, a: normal, e: ["AlwaysPoweredWallLight@90"]}
+  "de": {t: FloorWood, a: normal, e: ["ComfyChair", "Carpet"]}
+  "df": {t: FloorWood, a: normal, e: ["LandMineExplosive", "Carpet"]}
+  "dg": {t: Plating, a: normal, e: ["BitrunningGhostRolePirate"]}
+  "dh": {t: Plating, a: normal, e: ["AlwaysPoweredSmallLight@-90"]}
+  "di": {t: FloorSteel, a: normal, e: ["TableWood", "BoozeDispenser"]}
+  "dj": {t: FloorSteel, a: normal, e: ["BookshelfFilled", "AlwaysPoweredWallLight@90"]}
+  "dk": {t: FloorSteel, a: normal, e: ["ShardGlass"]}
+  "dl": {t: FloorDark, a: normal, e: ["VendingMachineCigs"]}
+  "dm": {t: Plating, a: normal, e: ["WallSolid", "SignalButton"]}
+  "dn": {t: FloorWood, a: normal, e: ["AlwaysPoweredSmallLight@180", "Carpet"]}
+  "do": {t: FloorWood, a: normal, e: ["Bed", "MobFox", "Carpet"]}
+  "dp": {t: Plating, a: normal, e: ["CrateGenericSteel"]}
+  "dq": {t: FloorSteel, a: normal, e: ["BookshelfFilled"]}
+  "dr": {t: FloorSteel, a: normal, e: ["ShuttersNormalOpen"]}
+  "ds": {t: Plating, a: normal, e: ["Grille", "ShardGlass"]}
+  "dt": {t: Plating, a: normal, e: ["Flare", "Grille"]}
+  "du": {t: FloorDark, a: normal, e: ["BlastDoorOpen", "Firelock", "AirlockCommand"]}
+  "dv": {t: Plating, a: normal, e: ["WallReinforced", "IntercomCommon", "IntercomCommon"]}
+  "dw": {t: FloorSteel, a: normal, e: ["Firelock", "AirlockGlass"]}
+  "dx": {t: FloorSteel, a: normal, e: ["ShardGlass", "BitrunningMarkerMobSegment"]}
+  "dy": {t: FloorSteel, a: normal, e: ["ChairWood"]}
+  "dz": {t: FloorSteel, a: normal, e: ["ChairWood", "DrinkCoffee"]}
+  "dA": {t: FloorSteel, a: normal, e: ["MarkerBeaconStructure"]}
+  "dB": {t: FloorSteel, a: normal, e: ["Firelock", "AirlockCommand", "Barricade"]}
+  "dC": {t: FloorSteel, a: normal, e: ["Firelock", "AirlockCommand"]}
+  "dD": {t: FloorSteel, a: normal, e: ["Chair@180"]}
+  "dE": {t: FloorDark, a: normal, e: ["VendingMachineCoffee"]}
+  "dF": {t: FloorSteel, a: normal, e: ["Barricade", "RailingCorner@90", "MarkerBeaconStructure"]}
+  "dG": {t: FloorSteel, a: normal, e: ["SalvageHumanCorpse"]}
+  "dH": {t: FloorDark, a: normal, e: ["CrateGenericSteel", "Crowbar"]}
+  "dI": {t: FloorSteel, a: normal, e: ["Chair@180", "AlwaysPoweredLightLED"]}
+  "dJ": {t: FloorSteel, a: normal, e: ["AlwaysPoweredLightLED"]}
+  "dK": {t: Plating, a: normal, e: ["TableGlass"]}
+  "dL": {t: Plating, a: normal, e: ["WeaponCapacitorRecharger"]}
+  "dM": {t: FloorSteel, a: normal, e: ["CrateGenericSteel", "ToolboxEmergencyFilled"]}
+  "dN": {t: FloorSteel, a: normal, e: ["Table"]}
+  "dO": {t: FloorDark, a: normal, e: ["Table", "WindowDirectional", "AlwaysPoweredLightLED@90"]}
+  "dP": {t: FloorDark, a: normal, e: ["CrateGenericSteel", "ToolboxEmergencyFilled", "WindowDirectional"]}
+  "dQ": {t: Plating, a: normal, e: ["OperatingTable", "SalvageHumanCorpse"]}
+  "dR": {t: FloorSteel, a: normal, e: ["Table", "BoxFolderYellow", "MedkitFilled"]}
+  "dS": {t: Plating, a: normal, e: ["ReinforcedWindow", "Grille", "ShuttersNormal"]}
+  "dT": {t: FloorSteel, a: normal, e: ["SpiderWeb"]}
+  "dU": {t: FloorDark, a: normal, e: ["Table", "ToolboxMechanicalFilled"]}
+  "dV": {t: FloorDark, a: normal, e: ["Rack", "WindowDirectional@180"]}
+  "dW": {t: Plating, a: normal, e: ["SalvageHumanCorpse"]}
+  "dX": {t: Plating, a: normal, e: ["ReinforcedWindow", "Grille", "ShuttersNormalOpen"]}
+  "dY": {t: FloorWood, a: normal, e: ["Firelock", "AirlockCommand"]}
+  "dZ": {t: Plating, a: normal, e: ["ReinforcedWindow", "Grille", "ShuttersNormalOpen", "Barricade"]}
+  "d0": {t: FloorSteel, a: normal, e: ["ComputerBroken@-90"]}
+  "d1": {t: FloorDark, a: normal, e: ["MarkerBeaconStructure"]}
+  "d2": {t: FloorDark, a: normal, e: ["AlwaysPoweredWallLight@90", "Table"]}
+  "d3": {t: FloorSteel, a: normal, e: ["ToolboxMechanicalFilled"]}
+  "d4": {t: Plating, a: normal, e: ["Bed"]}
+  "d5": {t: FloorWood, a: normal, e: ["TableWood", "WindowReinforcedDirectional", "Carpet"]}
+  "d6": {t: FloorWood, a: normal, e: ["WindowReinforcedDirectional@90", "WindowReinforcedDirectional", "Carpet"]}
+  "d7": {t: FloorWood, a: normal, e: ["TableWood"]}
+  "d8": {t: FloorWood, a: normal, e: ["TableWood", "AlwaysPoweredSmallLight"]}
+  "d9": {t: FloorWood, a: normal, e: ["AlwaysPoweredSmallLight", "TableWood", "ClothingEyesGlassesSunglasses"]}
+  "ea": {t: FloorWood, a: normal, e: ["WindowReinforcedDirectional", "WindowReinforcedDirectional@-90", "Carpet"]}
+  "eb": {t: FloorWood, a: normal, e: ["WindowReinforcedDirectional", "Carpet"]}
+  "ec": {t: FloorSteel, a: normal, e: ["Bed", "SalvageHumanCorpse"]}
+  "ed": {t: FloorDarkMono, a: normal, e: ["Rack", "AlwaysPoweredWallLight@-90"]}
+  "ee": {t: FloorDark, a: normal, e: ["AlwaysPoweredWallLight@90", "ClothingHeadHatCone"]}
+  "ef": {t: FloorDark, a: normal, e: ["ClothingHeadHatCone"]}
+  "eg": {t: FloorSteel, a: normal, e: ["Firelock", "SpiderWeb"]}
+  "eh": {t: FloorDark, a: normal, e: ["Table", "Crowbar", "Wrench"]}
+  "ei": {t: FloorDark, a: normal, e: ["Rack", "WindowDirectional"]}
+  "ej": {t: FloorDark, a: normal, e: ["Rack", "OxygenTankFilled", "OxygenTankFilled", "IntercomCommon"]}
+  "ek": {t: FloorSteel, a: normal, e: ["ClosetSteelBase"]}
+  "el": {t: FloorDark, a: normal, e: ["ToolboxElectricalFilled"]}
+  "em": {t: FloorDark, a: normal, e: ["WindowDirectional@180"]}
+  "en": {t: FloorDark, a: normal, e: ["AlwaysPoweredLightLED@-90", "WindowDirectional@180"]}
+  "eo": {t: Plating, a: normal, e: ["MagazinePistolSubMachineGunTopMounted"]}
+  "ep": {t: FloorWood, a: normal, e: ["Barricade"]}
+  "eq": {t: FloorWood, a: normal, e: ["TableWood", "AlwaysPoweredSmallLight@-90", "Carpet"]}
+  "er": {t: FloorDirt, a: normal, e: ["#Grassa1"]}
+  "es": {t: FloorDark, a: normal, e: ["BitrunningMarkerCache"]}
+  "et": {t: FloorWood, a: normal, e: ["TableWood", "BoxFolderBlue", "Carpet"]}
+  "eu": {t: FloorWood, a: normal, e: ["TableWood", "AlwaysPoweredSmallLight@180", "Carpet"]}
+  "ev": {t: FloorDark, a: normal, e: ["Railing@180"]}
+  "ew": {t: FloorDark, a: normal, e: ["Railing", "ClosetSteelBase"]}
+  "ex": {t: FloorSteel, a: normal, e: ["Rack"]}
+  "ey": {t: FloorSteel, a: normal, e: ["Firelock", "ShuttersNormal"]}
+  "ez": {t: FloorSteel, a: normal, e: ["Firelock", "ShuttersNormalOpen"]}
+  "eA": {t: Plating, a: normal, e: ["WallReinforced", "SignalButton", "IntercomCommon"]}
+  "eB": {t: FloorDirt, a: normal}
+  "eC": {t: FloorDirt, a: normal, e: ["HydroponicsTrayEmpty"]}
+  "eD": {t: FloorSteel, a: normal, e: ["AlwaysPoweredWallLight", "Barricade"]}
+  "eE": {t: FloorDirt, a: normal, e: ["PottedPlantRandom"]}
+  "eF": {t: FloorSteel, a: normal, e: ["ImperialBearTrap"]}
+  "eG": {t: FloorDirt, a: normal, e: ["SalvageHumanCorpse"]}
+  "eH": {t: FloorDirt, a: normal, e: ["FloraRockSolid"]}
+  "eI": {t: FloorGrass, a: normal, e: ["#Bushb1", "#Bushb1", "SalvageHumanCorpse"]}
+  "eJ": {t: FloorGrass, a: normal, e: ["#Bushb1", "#Bushb1"]}
+  "eK": {t: FloorSteel, a: normal, e: ["WaterTankFull"]}
+  "eL": {t: FloorGrass, a: normal, e: ["#Grassa1", "#Bushb1", "#Bushb1"]}
+  "eM": {t: FloorGrass, a: normal, e: ["#Bushb1"]}
+  "eN": {t: FloorGrass, a: normal, e: ["#Bushb1", "#Bushb1", "Flare"]}
+  "eO": {t: FloorGrass, a: normal, e: ["FloraRockSolid"]}
+  "eP": {t: FloorDirt, a: normal, e: ["#Grassa1", "BitrunningMarkerMobSegment"]}
+  "eQ": {t: FloorSteel, a: normal, e: ["AlwaysPoweredSmallLight@180"]}
+  "eR": {t: FloorDirt, a: normal, e: ["FloraRockSolid", "Barricade"]}
+  "eS": {t: FloorGrass, a: normal, e: ["FloraRockSolid", "SalvageHumanCorpse"]}
+  "eT": {t: FloorGrass, a: normal}
+  "eU": {t: Plating, a: normal, e: ["Window", "Grille"]}
+  "eV": {t: Plating, a: normal, e: ["PottedPlantRandom"]}
+  "eW": {t: FloorGrass, a: normal, e: ["#Grassa1", "FloraRockSolid", "#Bushb1", "FloraTreeLarge"]}
+  "eX": {t: FloorGrass, a: normal, e: ["#Bushb1", "FloraTreeLarge"]}
+  "eY": {t: FloorGrass, a: normal, e: ["#Grassa1", "#Bushb1", "FloraTreeLarge"]}
+  "eZ": {t: FloorGrass, a: normal, e: ["FloraRockSolid", "FloraTreeLarge"]}
+  "e0": {t: FloorGrass, a: normal, e: ["#Bushb1", "#Bushb1", "#Bushb1"]}
+  "e1": {t: FloorGrass, a: normal, e: ["#Bushb1", "#Bushb1", "FloraTreeLarge"]}
+  "e2": {t: Space, a: normal, e: ["MarkerBeaconStructure"]}
+  "e3": {t: Space, a: space}
+  "e4": {t: Plating, a: safe, e: ["WallShuttle"]}
+  "e5": {t: Plating, a: safe, e: ["ReinforcedWindow", "Grille"]}
+  "e6": {t: FloorWhite, a: safe, e: ["AirlockShuttle"]}
+  "e7": {t: Plating, a: safe, e: ["WindowReinforcedDirectional@90"]}
+  "e8": {t: FloorSteel, a: safe}
+  "e9": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight"]}
+  "fa": {t: FloorSteel, a: safe, e: ["TableReinforced", "ToolboxEmergencyFilled"]}
+  "fb": {t: FloorSteel, a: safe, e: ["ComfyChair@90"]}
+  "fc": {t: FloorSteel, a: safe, e: ["TableReinforced", "EmergencyOxygenTankFilled", "ClothingMaskGas"]}
+  "fd": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@180", "BitrunningMarkerGoal"]}
+  "fe": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal"]}
+  "ff": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "fg": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@180", "BitrunningMarkerHololadder"]}
+rows:
+- "aaaaaaaaaaabababababababaaaaaaaaabababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaabababababacacadacacababababababaeacadacacabababaeaeaeafaeabababababababababababababababab"
+- "aaabagagaeabahaiajajacacakacalamaeaeanaoapaqarararaqaoapanasaeadabaeaeaeadababadaeataeaeaeab"
+- "aaabagagagaoaoauaoavawaxaoaoaoayazaAaoaoaoaqaqarararaoaoaoaBaoaqaqaqaoavaoaoaBaBaoaoaoaoaeab"
+- "aaabagagaoaoaoaoaoavaoaoaoaoaCaoaoaoaBaoaoaoaoaoaoaoaoaoaCaoaoaoaoaoaoavaoaoaoaoaoaCaoaDaeab"
+- "aaabagaEaoaoaoaFaGaHaIaoaoaoaoaoaJaoaKaKaoaoaoaoaoaLaMaMaoaoaoaoaoaoaFavaoaNaOaOaNaoaoaoaeab"
+- "aaabadavavavasaeaeaeaeaeasaPatadaQaNaBaKaRadaQadaQadaQaQadadaQadahacacacaSaTaBaBaUaNaoaoaeab"
+- "aaabadaVaoaoaWaeaXaYaZaea0aBaca1aBaBaBaKaBaBa1a1a1a2a1a1a1a1a1a1ala3a4a5aBaBa1a1aBa6avavaeab"
+- "aaabadagaoaoaoa7aBaoaoa8aBaBaQa1a1a9baaKbbacbcbcbcacbcbcbcbca1a1acbdbebfaBaBaBa1aBa6aoaoaeab"
+- "aaabagagaVaoaoa7bgaCbhaBbhaBaca1a1bcaBaKbibjbkblbkbmbkblbkbcbnboala4a4bpa5bqaRaBaBa6aBaBabab"
+- "aaabagagaoaoaoaeaoaBbraBbhbsacacbcacbtaBbubvbvbvbvbvbubwbxalbcacacbyaeaebzbAaBaBbBaNaoaBabab"
+- "aaabagaVaoaoahbCaBacacaebDaBaeacbEbkbFaBbGbvbHbIbubJbHbvbKbkbkacbLbMbNbObPbPbPbQacaoaBaoabab"
+- "aaabaebRbSaDacbTaBbUacbVbWaBaobXbvbvbvbvbvbvbvbYbZb0bvbvbvbvb1b2acaeaeaeb3aeaeaeb2aoaoaoaeab"
+- "aaabaeaoaoaobcaBbPb4acacacacacacbvbvbvbvbvbvbvbEbxb5bvbvb6b7bvbxb8bPbPbPb9b4aecacbccavavaeab"
+- "aaabaeaBcdbRaccecfcgacchbPcicjaebvbvckclcmcna5cobpcpcmcqbvb6crbxaccsbPctcucvacacalaoaoaoadab"
+- "aaabaeaCaoaobCcwa5a5cxa5a5cyczaecAcAaeataecBa5a5a5cCaeaeaecAcAacaccDbPcEctcFalaBcGaoaocHadab"
+- "aaabaebRbSaocIa5a5a5a5cya5a5cJcKbvbvaecLafaecMcNcMaeatcLafckckaccOa5a5cPaBaBaBaBaeaocQagagab"
+- "aaabaeaoaoaoacaBaBbPcRcScTcUcVaecWbvatcXcXcYcZbvbvc0c1c2aebvc3ahc4a5c5c6beaBc7c8aeaBc9agagab"
+- "ababaeavavavb2acdaacacaldadbdcalddbvcKbva5a5dea5dfa5a5bvcKbvbvcKa5a5c5a4bedgaBdhataoaBdiagab"
+- "abagatdjaoaoaebvaodkaoaoaoaCaoacbvcWcMbva5c5c6c6aBbea5dldmbvbvaha5a5dndoa5a5b2dpamaoaBaoadab"
+- "abagadagdqaoaeaedrbadsdtdsdracacdudualacaca9a9baaBdaacacacduduacdvcKacacacacaccGaeaoaoaoaeab"
+- "abagagagaoaodwaodxaodkaBaodkdydzaoaBaoaoaoaodAaRaRaodAaoaoaoaoaoaoaBapaoaoaoaoaodwaoaoaoaeab"
+- "abagagdqaoaodwaoaoaoaoaFaoaoaoaBaoaoaoaoaoaoc7aodAaBaoaoaoaoaLaBaoaoaoaBaoaoaoaodwaoaCaoaeab"
+- "abagadaoaoaoacacdBacdCacb2ahacdBacacadacdDdDaoaoaodDaob2aQacarararb2ahbvdldEaccGaeaodFbRaeab"
+- "abaeafaoaodGb2bvaoaoaobvaec1c1bvdHaca1aQaodIaoaoaodJdDada1b2dKdKdLdMacacacacacaBaeavavavaeab"
+- "abaeaiaoaoaoahbvaodNaobvatdOaBaBdPada1aQaoaodDaodDdDaoada1addQaBaodRdSbvbvaBacaBaebRbSaoasab"
+- "abasajaoaodTacdUaoaoaodVaeaBaBaBdWaBdXacdXacaldYacacdZacdXacaBaobgd0dSaBd1bvacaBaeaoaoaoaeab"
+- "abaeajdTdTaDacd2d3aoaDaeatdWaBaBd4aBaBd5d6d7d8bPd9bPeaebebaeecaoaoedaleeaBefacaBafaodFbRaeab"
+- "abaeaeegavegacehaoaoaoeiaeaBd4aBejaBaBbPaBaraBaBbPaBbPbPbPaeaEaoaCekaQbvbvcracaBaeaoaoaoaeab"
+- "ababaeaodTaoaceldGdNaobvasemaoaBenaearbPbPaBeoaBaBepbPbPeqdmecaoaoaodwaoaoaocGaBataoeragaeab"
+- "aaabasdTaodTalbvaoaoaobvaebvaoaoesaseta4bPeuc6aBeoeubPa4a4atevbvewexaQaoaoaoacaBaeaoeragagab"
+- "ababatdTaoaoacaheyezeydcacahaoaoeAacdZacdYacdXaBaBacdYacdXacahacaceAbCeyeyeyaccGaeeBeBeCagab"
+- "abaeaeaoaoaoaBaoaoaoaoaoavaoaoaoaoeDdGaVaoaoaVaoaBaraoaoaoapaoaoaoaoaoaoaoaoapaoaoerereEaeab"
+- "abaebvaoaoaoaCaoaoaoaodGaoaoaoaoaoaqaoaoaBaoaBaoaoaraoaoaCeFaoaoeGeBeHeIeJeHeBaoaoaoeBeradab"
+- "ababbvaoaoaodGaoaFaoeKaoeKaodGaoaoaoaoaoaoaoaoaBaoaBaoaoaoaqeBeHeLeJeMeNeOeLeMeGaoaoePeBagab"
+- "abaeaeaeaeanaoecaeabaeabaeaoaoaoaoaoaoaoaoeQaoaoaoeQaoaoeFeReMeJeLeSeJeMeMeLeTasaeaoeBeragab"
+- "ababababaeadabadabababababadababadaeeUaeaeaeeVaBeVaeaeaeeUaeadeWeXadaeaeeYeZe0e1aeagagagagab"
+- "aaaaaaabababababababaaababababababaee2e3e4e5e4e6e4e5e4e3e2aeagagagagagagagagagagagagabababab"
+- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaea1e3e7e8e9e8e9fae4e3a1aeabababababababababababababaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaee2e3e5e8e8e8fbe8e5e3e2aeabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaea1e3e5e8e8e8e8fce5e3a1aeabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaee2e3e7fdfefffffge4e3e2aeabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaea1e3e4e4e5e4e5e4e4e3a1aeabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaee2e3e3e3e3e3e3e3e3e3e2aeabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaeaeaeaeaeaeaeaeaeaeaeaeaeabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"

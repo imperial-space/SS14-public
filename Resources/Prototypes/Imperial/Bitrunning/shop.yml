@@ -1,0 +1,579 @@
+# Битраннинг: торгомат NexaCache, товары за очки, диски-программы и заклинания (objects/vendor.dm, orders/*.dm, objects/disks.dm).
+
+# /obj/machinery/computer/order_console/bitrunning
+- type: entity
+  id: BitrunningVendor
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: торгомат NexaCache
+  description: НексаКэш(ТМ)! Сомнительно аутентичное снаряжение для цифрового сорвиголовы. Оплата очками битраннинга со счёта ID-карты.
+  components:
+  - type: BitrunningVendor
+  - type: Sprite
+    sprite: Imperial/Bitrunning/machines.rsi
+    layers:
+    - state: vendor
+  - type: ApcPowerReceiver
+    powerLoad: 100
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: ActivatableUI
+    key: enum.BitrunningVendorUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.BitrunningVendorUiKey.Key:
+        type: BitrunningVendorBoundUserInterface
+  - type: Machine
+    board: BitrunningVendorCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+
+- type: entity
+  id: BitrunningVendorCircuitboard
+  parent: BaseMachineCircuitboard
+  name: плата торгомата NexaCache
+  description: Плата торгомата снаряжения битраннеров.
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: BitrunningVendor
+    stackRequirements:
+      Glass: 1
+      Steel: 3
+      Cable: 2
+
+# ─── Товары: bitrunning_flair ───
+- type: bitrunningOrder
+  id: BitrunningOrderChips
+  item: FoodSnackChips
+  cost: 100
+  category: flair
+
+- type: bitrunningOrder
+  id: BitrunningOrderMountainWind
+  item: DrinkSpaceMountainWindCan
+  cost: 100
+  category: flair
+
+- type: bitrunningOrder
+  id: BitrunningOrderPwrGame
+  item: DrinkPwrGameCan
+  cost: 200
+  category: flair
+
+- type: bitrunningOrder
+  id: BitrunningOrderGreyBull
+  item: DrinkEnergyDrinkCan
+  cost: 200
+  category: flair
+
+- type: bitrunningOrder
+  id: BitrunningOrderMedkitBrute
+  item: MedkitBruteFilled
+  cost: 500
+  category: flair
+  description: bitrunning-order-medkit-brute
+
+- type: bitrunningOrder
+  id: BitrunningOrderMedkitBurn
+  item: MedkitBurnFilled
+  cost: 500
+  category: flair
+  description: bitrunning-order-medkit-burn
+
+- type: bitrunningOrder
+  id: BitrunningOrderSunglasses
+  item: ClothingEyesGlassesSunglasses
+  cost: 1000
+  category: flair
+
+- type: bitrunningOrder
+  id: BitrunningOrderTrenchcoat
+  item: ClothingOuterCoatTrench
+  cost: 1000
+  category: flair
+
+- type: bitrunningOrder
+  id: BitrunningOrderJackboots
+  item: ClothingShoesBootsJack
+  cost: 1000
+  category: flair
+
+# ─── Товары: bitrunning_tech ───
+- type: bitrunningOrder
+  id: BitrunningOrderItemTier1
+  item: BitrunningDiskItemTier1
+  cost: 750
+  description: bitrunning-order-item-tier1
+
+- type: bitrunningOrder
+  id: BitrunningOrderItemTier2
+  item: BitrunningDiskItemTier2
+  cost: 1250
+  description: bitrunning-order-item-tier2
+
+- type: bitrunningOrder
+  id: BitrunningOrderItemTier3
+  item: BitrunningDiskItemTier3
+  cost: 2000
+  description: bitrunning-order-item-tier3
+
+- type: bitrunningOrder
+  id: BitrunningOrderAbilityTier1
+  item: BitrunningDiskAbilityTier1
+  cost: 750
+  description: bitrunning-order-ability-tier1
+
+- type: bitrunningOrder
+  id: BitrunningOrderAbilityTier2
+  item: BitrunningDiskAbilityTier2
+  cost: 1500
+  description: bitrunning-order-ability-tier2
+
+- type: bitrunningOrder
+  id: BitrunningOrderAbilityTier3
+  item: BitrunningDiskAbilityTier3
+  cost: 2500
+  description: bitrunning-order-ability-tier3
+
+- type: bitrunningOrder
+  id: BitrunningOrderGimmickSports
+  item: BitrunningDiskGimmickSports
+  cost: 750
+  description: bitrunning-order-gimmick-sports
+
+- type: bitrunningOrder
+  id: BitrunningOrderGimmickDungeon
+  item: BitrunningDiskGimmickDungeon
+  cost: 1250
+  description: bitrunning-order-gimmick-dungeon
+
+- type: bitrunningOrder
+  id: BitrunningOrderPkaMods
+  item: BitrunningDiskPkaMods
+  cost: 750
+  description: bitrunning-order-pka
+
+- type: bitrunningOrder
+  id: BitrunningOrderPkaModsPremium
+  item: BitrunningDiskPkaModsPremium
+  cost: 1600
+  description: bitrunning-order-pka-premium
+
+- type: bitrunningOrder
+  id: BitrunningOrderPkcMods
+  item: BitrunningDiskPkcMods
+  cost: 750
+  description: bitrunning-order-pkc
+
+- type: bitrunningOrder
+  id: BitrunningOrderPkcModsPremium
+  item: BitrunningDiskPkcModsPremium
+  cost: 1600
+  description: bitrunning-order-pkc-premium
+
+# ─── Диски ───
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BitrunningDiskBase
+  name: программа битраннинга
+  description: Диск с исходным кодом. Должен быть у вас при себе, когда вы входите в нетпод.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: datadisk_base
+  - type: Item
+    size: Tiny
+
+- type: entity
+  parent: BitrunningDiskBase
+  id: BitrunningDiskItemTier1
+  name: снаряжение битраннинга — простое
+  components:
+  - type: BitrunningDisk
+    options:
+    - name: bitrunning-option-medbeam
+      items: [ WeaponMedbeam ]
+    - name: bitrunning-option-c4
+      items: [ C4 ]
+    - name: bitrunning-option-pizza
+      items: [ FoodBoxPizzaFilled ]
+
+- type: entity
+  parent: BitrunningDiskBase
+  id: BitrunningDiskItemTier2
+  name: снаряжение битраннинга — комплексное
+  components:
+  - type: BitrunningDisk
+    options:
+    - name: bitrunning-option-luxury-medipen
+      items: [ ImperialLuxuryMedipen ]
+    - name: bitrunning-option-pistol
+      items: [ WeaponPistolMk58 ]
+    - name: bitrunning-option-vest
+      items: [ ClothingOuterArmorBasic ]
+
+- type: entity
+  parent: BitrunningDiskBase
+  id: BitrunningDiskItemTier3
+  name: снаряжение битраннинга — продвинутое
+  components:
+  - type: BitrunningDisk
+    options:
+    - name: bitrunning-option-advanced-laser
+      items: [ WeaponAdvancedLaser ]
+    - name: bitrunning-option-dualsaber
+      items: [ EnergySwordDouble ]
+    - name: bitrunning-option-minibomb
+      items: [ SyndieMiniBomb ]
+
+- type: entity
+  parent: BitrunningDiskBase
+  id: BitrunningDiskAbilityTier1
+  name: программа битраннинга — базовая
+  components:
+  - type: BitrunningDisk
+    options:
+    - name: bitrunning-option-cheese
+      actions: [ ActionBitrunningSummonCheese ]
+    - name: bitrunning-option-lesser-heal
+      actions: [ ActionBitrunningLesserHeal ]
+
+- type: entity
+  parent: BitrunningDiskBase
+  id: BitrunningDiskAbilityTier2
+  name: программа битраннинга — комплексная
+  components:
+  - type: BitrunningDisk
+    options:
+    - name: bitrunning-option-fireball
+      actions: [ ActionFireball ]
+    - name: bitrunning-option-lightning
+      actions: [ ActionBitrunningLightningBolt ]
+    - name: bitrunning-option-forcewall
+      actions: [ ActionForceWall ]
+
+- type: entity
+  parent: BitrunningDiskBase
+  id: BitrunningDiskAbilityTier3
+  name: программа битраннинга — элитная
+  components:
+  - type: BitrunningDisk
+    options:
+    - name: bitrunning-option-dragon
+      actions: [ ActionPolymorphLesserDragon ]
+    - name: bitrunning-option-bear
+      actions: [ ActionBitrunningPolymorphBear ]
+
+- type: entity
+  parent: BitrunningDiskBase
+  id: BitrunningDiskPkaMods
+  name: снаряжение битраннинга — модули ПКА
+  components:
+  - type: BitrunningDisk
+    options:
+    - name: bitrunning-option-pka-range
+      items: [ PKAUpgradeRange ]
+    - name: bitrunning-option-pka-damage
+      items: [ PKAUpgradeDamage ]
+    - name: bitrunning-option-pka-cooldown
+      items: [ PKAUpgradeFireRate ]
+    - name: bitrunning-option-pka-aoe
+      items: [ PKAMiningUpgradeAoE ]
+    - name: bitrunning-option-pka-passthrough
+      items: [ PKAMiningUpgradeHumanPassthrough ]
+
+- type: entity
+  parent: BitrunningDiskBase
+  id: BitrunningDiskPkaModsPremium
+  name: снаряжение битраннинга — премиум-модули ПКА
+  components:
+  - type: BitrunningDisk
+    options:
+    - name: bitrunning-option-pka-repeater
+      items: [ PKAMiningUpgradeRepeater ]
+    - name: bitrunning-option-pka-lifesteal
+      items: [ PKAMiningUpgradeLifeSteal ]
+    - name: bitrunning-option-pka-resonator
+      items: [ PKAMiningUpgradeResonator ]
+    - name: bitrunning-option-pka-bounty
+      items: [ PKAMiningUpgradeBounty ]
+    - name: bitrunning-option-pka-indoors
+      items: [ PKAMiningUpgradeIndoors ]
+
+- type: entity
+  parent: BitrunningDiskBase
+  id: BitrunningDiskPkcMods
+  name: снаряжение битраннинга — трофеи крушителя
+  components:
+  - type: BitrunningDisk
+    options:
+    - name: bitrunning-option-trophy-watcher
+      items: [ CrusherTrophyWatcherWing ]
+    - name: bitrunning-option-trophy-magma
+      items: [ CrusherTrophyMagmaWing ]
+    - name: bitrunning-option-trophy-legion
+      items: [ CrusherTrophyLegionSkull ]
+    - name: bitrunning-option-trophy-wolf
+      items: [ CrusherTrophyWolfEar ]
+
+- type: entity
+  parent: BitrunningDiskBase
+  id: BitrunningDiskPkcModsPremium
+  name: снаряжение битраннинга — премиум-трофеи крушителя
+  components:
+  - type: BitrunningDisk
+    options:
+    - name: bitrunning-option-trophy-icewing
+      items: [ CrusherTrophyIceWing ]
+    - name: bitrunning-option-trophy-tubes
+      items: [ CrusherTrophyBlasterTubes ]
+    - name: bitrunning-option-trophy-eye
+      items: [ CrusherTrophyMinerEye ]
+    - name: bitrunning-option-trophy-spike
+      items: [ CrusherTrophyTailSpike ]
+    - name: bitrunning-option-trophy-claws
+      items: [ CrusherTrophyDemonClaws ]
+    - name: bitrunning-option-trophy-vortex
+      items: [ CrusherTrophyVortexTalisman ]
+    - name: bitrunning-option-trophy-icecube
+      items: [ CrusherTrophyIceDemonCube ]
+
+# /obj/item/disk/bitrunning/gimmick/sports
+- type: entity
+  parent: BitrunningDiskBase
+  id: BitrunningDiskGimmickSports
+  name: тематическая программа — спорт
+  components:
+  - type: BitrunningDisk
+    options:
+    - name: bitrunning-option-boxer
+      items: [ ClothingHandsGlovesBoxingRed, UniformShortsRed, DrinkGlass ]
+    - name: bitrunning-option-skater
+      items: [ ClothingShoesSkates, ClothingHeadHatBlacksoft, DrinkEnergyDrinkCan ]
+    - name: bitrunning-option-archer
+      items: [ ClothingUniformJumpsuitKimono, BowImprovised, ClothingBeltQuiver ]
+    - name: bitrunning-option-fisher
+      items: [ ClothingUniformOveralls, ImperialClothingOuterJacketMiljacket, ImperialFishingToolboxSmall ]
+    - name: bitrunning-option-gamer
+      items: [ ClothingHandsGlovesColorBlack, ClothingEyesGlassesSunglasses, DrinkPwrGameCan ]
+
+# /obj/item/disk/bitrunning/gimmick/dungeon
+- type: entity
+  parent: BitrunningDiskBase
+  id: BitrunningDiskGimmickDungeon
+  name: тематическая программа — подземелья
+  components:
+  - type: BitrunningDisk
+    options:
+    - name: bitrunning-option-alchemist
+      items: [ ClothingOuterPlagueSuit, ClothingMaskPlague, ClothingHeadHatPlaguedoctor, BoxBeaker, PillCanisterRandom ]
+    - name: bitrunning-option-rogue
+      items: [ ClothingUniformJumpsuitColorBlack, ClothingMaskBandBlack, ClothingEyesEyepatch, ClothingNeckCloakVoid, ClothingBeltStorageWaistbag, CombatKnife ]
+    - name: bitrunning-option-healer
+      items: [ RodOfAsclepiusLavaland, MedkitAdvancedFilled, RollerBedSpawnFolded, Dropper ]
+    - name: bitrunning-option-wizard
+      items: [ ClothingHeadHatWizardFake, ClothingOuterWizard, BoStaff, CigPackGreen, Matchbox ]
+
+# ─── Заклинания дисков ───
+- type: entity
+  parent: BaseAction
+  id: ActionBitrunningSummonCheese
+  name: Призыв сыра
+  description: Это заклинание создаёт кучу головок сыра. Что за чертовщина?
+  components:
+  - type: Action
+    useDelay: 60
+    icon:
+      sprite: Objects/Consumable/Food/ingredients.rsi
+      state: cheesewheel
+  - type: InstantAction
+    event: !type:BitrunningSummonCheeseActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionBitrunningLesserHeal
+  name: Малое исцеление
+  description: Лечит небольшое количество грубого урона и ожогов.
+  components:
+  - type: Action
+    useDelay: 10
+    icon:
+      sprite: Objects/Specific/Medical/firstaidkits.rsi
+      state: firstaid
+  - type: InstantAction
+    event: !type:BitrunningLesserHealActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionBitrunningLightningBolt
+  name: Удар молнии
+  description: Пускает молнию в выбранную цель.
+  components:
+  - type: Action
+    useDelay: 15
+    icon:
+      sprite: Effects/lightning.rsi
+      state: lightning_1
+  - type: TargetAction
+    range: 8
+  - type: EntityTargetAction
+    event: !type:BitrunningLightningBoltActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionBitrunningPolymorphBear
+  name: Облик белого медведя
+  description: Превращает вас в огромного медведя.
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: Mobs/Animals/bear.rsi
+      state: bear
+  - type: InstantAction
+    event: !type:PolymorphActionEvent
+      protoId: BitrunningPolarBear
+
+- type: polymorph
+  id: BitrunningPolarBear
+  configuration:
+    entity: MobBearSpace
+    forced: true
+    inventory: Drop
+    transferName: true
+    transferDamage: true
+    revertOnCrit: true
+    revertOnDeath: true
+
+# ─── Оборудование отдела через карго (на картах SS14 логова битраннеров нет) ───
+- type: entity
+  parent: BaseFlatpack
+  id: BitrunningQuantumServerFlatpack
+  name: флэтпак квантового сервера
+  description: Флэтпак для сборки квантового сервера.
+  components:
+  - type: Flatpack
+    entity: BitrunningQuantumServer
+
+- type: entity
+  parent: BaseFlatpack
+  id: BitrunningQuantumConsoleFlatpack
+  name: флэтпак квантовой консоли
+  description: Флэтпак для сборки квантовой консоли. Ставится вплотную к серверу.
+  components:
+  - type: Flatpack
+    entity: BitrunningQuantumConsole
+
+- type: entity
+  parent: BaseFlatpack
+  id: BitrunningNetpodFlatpack
+  name: флэтпак нетпода
+  description: Флэтпак для сборки нетпода. Ставится не дальше 4 клеток от сервера.
+  components:
+  - type: Flatpack
+    entity: BitrunningNetpod
+
+- type: entity
+  parent: BaseFlatpack
+  id: BitrunningByteforgeFlatpack
+  name: флэтпак байтфоржа
+  description: Флэтпак для сборки байтфоржа. Ставится не дальше 4 клеток от сервера.
+  components:
+  - type: Flatpack
+    entity: BitrunningByteforge
+
+- type: entity
+  parent: BaseFlatpack
+  id: BitrunningVendorFlatpack
+  name: флэтпак торгомата NexaCache
+  description: Флэтпак для сборки торгомата снаряжения битраннеров.
+  components:
+  - type: Flatpack
+    entity: BitrunningVendor
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateCargoBitrunningDen
+  name: ящик оборудования битраннинга
+  description: Квантовый сервер, консоль, четыре нетпода, байтфорж и торгомат NexaCache для логова битраннеров.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BitrunningQuantumServerFlatpack
+        - id: BitrunningQuantumConsoleFlatpack
+        - id: BitrunningNetpodFlatpack
+          amount: 4
+        - id: BitrunningByteforgeFlatpack
+        - id: BitrunningVendorFlatpack
+
+- type: cargoProduct
+  id: CargoBitrunningDen
+  icon:
+    sprite: Imperial/Bitrunning/machines.rsi
+    state: qserver
+  product: CrateCargoBitrunningDen
+  cost: 3000
+  category: cargoproduct-category-name-cargo
+  group: ImperialCargo
+
+# /datum/techweb_node/bitrunning: платы открываются исследованием «Технологии битрана».
+- type: technology
+  id: ImperialTgBitrunning
+  name: imperial-tg-tech-bitrunning
+  icon:
+    sprite: Imperial/Bitrunning/machines.rsi
+    state: netpod
+  discipline: ImperialTgSupply
+  tier: 3
+  cost: 9000
+  recipeUnlocks:
+  - BitrunningRecipeByteforge
+  - BitrunningRecipeQuantumConsole
+  - BitrunningRecipeNetpod
+  technologyPrerequisites:
+  - ImperialTgGaming
+  - ImperialTgAppliedBluespace
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: BitrunningRecipeByteforge
+  result: BitrunningByteforgeCircuitboard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: BitrunningRecipeQuantumConsole
+  result: BitrunningQuantumConsoleCircuitboard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: BitrunningRecipeNetpod
+  result: BitrunningNetpodCircuitboard
+
+# /obj/item/disk/bitrunning/item/mini_uzi (побочная награда островной потасовки)
+- type: entity
+  parent: BitrunningDiskBase
+  id: BitrunningDiskMiniUzi
+  name: снаряжение битраннинга — мини-узи
+  components:
+  - type: BitrunningDisk
+    options:
+    - name: bitrunning-option-mini-uzi
+      items: [ WeaponSubMachineGunDrozd ]

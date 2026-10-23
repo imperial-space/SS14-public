@@ -1,0 +1,63 @@
+# Сконвертировано из psyker_shuffle.dmm (tgstation/BandaStation, _maps/virtual_domains) утилитой dmm2domain.
+width: 29
+height: 26
+keyLength: 1
+legend:
+  "a": {t: Space}
+  "b": {t: Plating, a: bright, e: ["WallPlastitaniumIndestructible"]}
+  "c": {t: FloorDark, a: normal, e: ["CrateSecure"]}
+  "d": {t: FloorDark, a: normal}
+  "e": {t: FloorDark, a: normal, e: ["BitrunningMarkerCrateReplacer"]}
+  "f": {t: FloorDark, a: normal, e: ["WeaponShotgunKammerer", "CrateGenericSteel"]}
+  "g": {t: FloorDark, a: normal, e: ["ImperialBearTrap"]}
+  "h": {t: FloorDark, a: normal, e: ["MobMimic"]}
+  "i": {t: FloorDark, a: normal, e: ["CrateGenericSteel"]}
+  "j": {t: FloorDark, a: normal, e: ["AirlockShuttle"]}
+  "k": {t: FloorDark, a: normal, e: ["CrateFreezer"]}
+  "l": {t: FloorDark, a: normal, e: ["CrateGenericSteel", "WeaponRevolverMateba"]}
+  "m": {t: FloorDark, a: normal, e: ["CrateHydroponics"]}
+  "n": {t: FloorDark, a: normal, e: ["CrateInternals", "WeaponRevolverMateba"]}
+  "o": {t: FloorDark, a: normal, e: ["BitrunningEncryptedCache"]}
+  "p": {t: FloorDark, a: normal, e: ["WeaponShotgunKammerer", "WeaponRevolverMateba", "CrateGenericSteel"]}
+  "q": {t: Plating, a: safe, e: ["WallSilver"]}
+  "r": {t: Plating, a: safe, e: ["WallSilver", "ExtinguisherCabinetFilled"]}
+  "s": {t: FloorFreezer, a: safe, e: ["AirlockFreezer"]}
+  "t": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@90"]}
+  "u": {t: FloorFreezer, a: safe}
+  "v": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal", "AlwaysPoweredSmallLight@-90"]}
+  "w": {t: FloorFreezer, a: safe, e: ["ToiletEmpty@90"]}
+  "x": {t: FloorFreezer, a: safe, e: ["RailingCorner@90"]}
+  "y": {t: FloorSteel, a: safe, e: ["Railing", "BitrunningMarkerGoal"]}
+  "z": {t: Plating, a: safe, e: ["WallSilver", "RandomPosterLegit"]}
+  "A": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@90", "MedkitFilled", "MedkitFilled"]}
+  "B": {t: FloorFreezer, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "C": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@-90"]}
+  "D": {t: FloorFreezer, a: safe, e: ["Window", "Grille"]}
+  "E": {t: Space, a: space}
+rows:
+- "aaaaaaaaaaaaaaaaaaaabbbbbbbbb"
+- "aaaaaaaaaaaaaaaaaaaabcdbbecdb"
+- "aaabbbbbbbbbbbbbbbabbddddddbb"
+- "bbbbfgdcgcbhddddcbbbcfddddhba"
+- "bdbbbdddddbdbbbdddbbbdhcddbba"
+- "bdiibbdgbbbddddddddbbbjbbdbaa"
+- "bddddbdddddddbddbbddbcddbdbba"
+- "bdcddddkdddddbldddddbddcbdhbb"
+- "bdddddddddddkbbdddddddddbdddb"
+- "bddbddbbddbbbbbdbmddddddbdddb"
+- "bdbbidddddbbbbddbdddddbdbddbb"
+- "bddbbdddddbbbbdddddbbbbnbddba"
+- "bddddddodddccdddddddddddbdbba"
+- "bdddhbddddddddddcdddbbbbbcbba"
+- "bcddbbddbbddddbddddddbddddpba"
+- "bbddddddbdddddbbdddddcddidbba"
+- "abbbbdddddddddddddddbbdddddba"
+- "aaaabbbbbdddddddbbbbbbbddibba"
+- "aaaaaaaabqqrsrqqbaaaaabbbbbaa"
+- "aaaaaaaabqtuuuvqbaaaaaaaaaaaa"
+- "aaaaaaaabqwuuxyqbaaaaaaaaaaaa"
+- "aaaaaaaabquuuuuzbaaaaaaaaaaaa"
+- "aaaaaaaabqABBBCqbaaaaaaaaaaaa"
+- "aaaaaaaabqqqqqDqbbbaaaaaaaaaa"
+- "aaaaaaaabbEEEEEEEEbaaaaaaaaaa"
+- "aaaaaaaaabbbbbbbbbbaaaaaaaaaa"

@@ -1,0 +1,336 @@
+# Сконвертировано из island_brawl.dmm (tgstation/BandaStation, _maps/virtual_domains) утилитой dmm2domain.
+width: 98
+height: 80
+keyLength: 2
+legend:
+  "aa": {t: Plating, a: bright, e: ["WallPlastitaniumIndestructible"]}
+  "ab": {t: Space}
+  "ac": {t: FloorAsteroidSand, a: bright, e: ["FloorWaterEntity"]}
+  "ad": {t: Plating, a: bright, e: ["WallWood"]}
+  "ae": {t: FloorWoodLarge, a: bright}
+  "af": {t: FloorWoodLarge, a: bright, e: ["BitrunningGhostRoleIslander"]}
+  "ag": {t: FloorWood, a: bright, e: ["Railing"]}
+  "ah": {t: FloorWood, a: bright, e: ["Railing@180"]}
+  "ai": {t: FloorWood, a: bright, e: ["Railing", "PottedPlantRandom"]}
+  "aj": {t: FloorWood, a: bright, e: ["Railing@180", "BitrunningMarkerCuriosity"]}
+  "ak": {t: FloorWoodLarge, a: bright, e: ["CrateGenericSteel"]}
+  "al": {t: FloorWood, a: normal, e: ["WoodDoor", "RailingCorner@180"]}
+  "am": {t: Plating, a: bright, e: ["Window", "Grille"]}
+  "an": {t: FloorWood, a: normal, e: ["RailingCorner@180", "WoodDoor"]}
+  "ao": {t: Plating, a: normal, e: ["WallWood"]}
+  "ap": {t: FloorWood, a: normal, e: ["WoodDoor"]}
+  "aq": {t: FloorWood, a: normal, e: ["AlwaysPoweredWallLight"]}
+  "ar": {t: FloorWood, a: normal, e: ["LockerSteel"]}
+  "as": {t: FloorWood, a: normal, e: ["Dresser"]}
+  "at": {t: FloorWood, a: normal}
+  "au": {t: FloorWoodLarge, a: normal, e: ["Table"]}
+  "av": {t: FloorWoodLarge, a: normal, e: ["PottedPlantRandom"]}
+  "aw": {t: FloorWoodLarge, a: normal, e: ["WaterTankFull"]}
+  "ax": {t: FloorWoodLarge, a: normal, e: ["WoodDoor"]}
+  "ay": {t: FloorDarkDiagonal, a: normal, e: ["TableGlass"]}
+  "az": {t: FloorDarkDiagonal, a: normal, e: ["TableGlass", "KitchenMicrowave"]}
+  "aA": {t: FloorDarkDiagonal, a: normal, e: ["DisposalUnit", "AlwaysPoweredWallLight"]}
+  "aB": {t: Plating, a: bright, e: ["ReinforcedWindow", "Grille"]}
+  "aC": {t: FloorWood, a: bright, e: ["Railing@-90"]}
+  "aD": {t: FloorWood, a: normal, e: ["Carpet"]}
+  "aE": {t: FloorWood, a: normal, e: ["BitrunningGhostRoleIslander", "Carpet"]}
+  "aF": {t: FloorWood, a: normal, e: ["Bed", "BedsheetSpawner", "Carpet"]}
+  "aG": {t: FloorWood, a: normal, e: ["AlwaysPoweredWallLight@90", "CarpetCyan"]}
+  "aH": {t: FloorWood, a: normal, e: ["BitrunningGhostRoleIslander", "CarpetCyan"]}
+  "aI": {t: FloorWood, a: normal, e: ["Bed", "BedsheetSpawner", "CarpetCyan"]}
+  "aJ": {t: FloorWood, a: normal, e: ["AlwaysPoweredWallLight@90", "Carpet"]}
+  "aK": {t: FloorWoodLarge, a: normal}
+  "aL": {t: FloorWoodLarge, a: normal, e: ["BitrunningGhostRoleIslander"]}
+  "aM": {t: FloorDarkDiagonal, a: normal, e: ["PottedPlantRandom"]}
+  "aN": {t: FloorDarkDiagonal, a: normal}
+  "aO": {t: FloorDarkMono, a: normal, e: ["AirlockSecurity"]}
+  "aP": {t: FloorDarkMono, a: normal}
+  "aQ": {t: FloorDarkMono, a: normal, e: ["Bed"]}
+  "aR": {t: FloorWood, a: normal, e: ["SpaceHeaterAnchored"]}
+  "aS": {t: FloorWood, a: normal, e: ["TableBrass", "ImperialFishingToolboxSmall"]}
+  "aT": {t: FloorWood, a: normal, e: ["TableBrass"]}
+  "aU": {t: Plating, a: normal, e: ["WallWood", "RandomPosterLegit"]}
+  "aV": {t: FloorWood, a: normal, e: ["DisposalUnit"]}
+  "aW": {t: FloorWoodLarge, a: normal, e: ["Rack"]}
+  "aX": {t: FloorWoodLarge, a: normal, e: ["AlwaysPoweredWallLight@180"]}
+  "aY": {t: Plating, a: normal, e: ["ReinforcedWindow", "Grille"]}
+  "aZ": {t: FloorDarkDiagonal, a: normal, e: ["ChairOfficeDark@90"]}
+  "a0": {t: FloorDarkDiagonal, a: normal, e: ["TableWood"]}
+  "a1": {t: FloorDarkDiagonal, a: normal, e: ["ChairOfficeDark@-90"]}
+  "a2": {t: FloorDarkDiagonal, a: normal, e: ["Chair@-90"]}
+  "a3": {t: FloorDarkMono, a: normal, e: ["BitrunningMarkerCuriosity"]}
+  "a4": {t: FloorDarkMono, a: normal, e: ["Chair@-90"]}
+  "a5": {t: Plating, a: normal, e: ["WallWood", "SignalButton"]}
+  "a6": {t: FloorDarkDiagonal, a: normal, e: ["TableWood", "DrinkCoffee"]}
+  "a7": {t: FloorDarkDiagonal, a: normal, e: ["TableWood", "WeaponCapacitorRecharger"]}
+  "a8": {t: FloorDarkDiagonal, a: normal, e: ["BitrunningGhostRoleIslander"]}
+  "a9": {t: FloorDarkDiagonal, a: normal, e: ["ClosetSteelBase"]}
+  "ba": {t: FloorDarkMono, a: normal, e: ["Chair@180"]}
+  "bb": {t: FloorWoodLarge, a: normal, e: ["AlwaysPoweredWallLight"]}
+  "bc": {t: FloorDarkDiagonal, a: normal, e: ["ToolboxMechanicalFilled", "TableGlass"]}
+  "bd": {t: FloorDarkDiagonal, a: normal, e: ["AirlockCommand"]}
+  "be": {t: FloorWoodLarge, a: normal, e: ["AlwaysPoweredWallLight@-90"]}
+  "bf": {t: FloorDarkDiagonal, a: normal, e: ["TableGlass", "PaperBin10"]}
+  "bg": {t: FloorDarkDiagonal, a: normal, e: ["AlwaysPoweredWallLight@180"]}
+  "bh": {t: FloorWoodLarge, a: bright, e: ["TableGlass"]}
+  "bi": {t: FloorWoodLarge, a: bright, e: ["ClothingMaskBreath", "ClothingMaskBreath", "TableGlass"]}
+  "bj": {t: FloorWood, a: normal, e: ["CarpetCyan"]}
+  "bk": {t: FloorWood, a: normal, e: ["AlwaysPoweredWallLight@-90", "CarpetCyan"]}
+  "bl": {t: FloorWoodLarge, a: bright, e: ["ComputerBroken@-90"]}
+  "bm": {t: FloorWood, a: normal, e: ["AlwaysPoweredWallLight@180"]}
+  "bn": {t: FloorWhiteMono, a: normal, e: ["TableReinforced", "MedkitFilled", "MedkitBruteFilled"]}
+  "bo": {t: FloorWhiteMono, a: normal, e: ["TableReinforced"]}
+  "bp": {t: FloorWhiteMono, a: normal, e: ["TableReinforced", "AlwaysPoweredWallLight"]}
+  "bq": {t: FloorWoodLarge, a: bright, e: ["OperatingTable"]}
+  "br": {t: FloorAsteroidSand, a: normal}
+  "bs": {t: FloorWoodLarge, a: normal, e: ["AlwaysPoweredWallLight@90"]}
+  "bt": {t: FloorWhiteMono, a: normal, e: ["Bed"]}
+  "bu": {t: FloorWhiteMono, a: normal, e: ["BitrunningMarkerCuriosity"]}
+  "bv": {t: FloorWhiteMono, a: normal}
+  "bw": {t: FloorWoodLarge, a: bright, e: ["ClothingMaskBreath", "TableBrass"]}
+  "bx": {t: FloorWood, a: normal, e: ["Dresser", "AlwaysPoweredWallLight"]}
+  "by": {t: FloorWood, a: normal, e: ["SpaceHeaterAnchored", "AlwaysPoweredWallLight"]}
+  "bz": {t: FloorWhiteMono, a: normal, e: ["BitrunningGhostRoleIslander"]}
+  "bA": {t: FloorWhiteMono, a: normal, e: ["AirlockMedical"]}
+  "bB": {t: Plating, a: normal, e: ["Window", "Grille"]}
+  "bC": {t: FloorWhiteMono, a: normal, e: ["TableGlass"]}
+  "bD": {t: FloorWhiteMono, a: normal, e: ["MedkitFilled", "TableGlass"]}
+  "bE": {t: FloorWhiteMono, a: normal, e: ["VendingMachineMedical"]}
+  "bF": {t: FloorWhiteMono, a: normal, e: ["DisposalUnit"]}
+  "bG": {t: FloorWhiteMono, a: normal, e: ["TableReinforced", "MedkitBruteFilled", "MedkitFilled"]}
+  "bH": {t: FloorPlastic, a: normal}
+  "bI": {t: FloorPlastic, a: normal, e: ["WoodDoor"]}
+  "bJ": {t: FloorPlastic, a: normal, e: ["SinkWide@90"]}
+  "bK": {t: FloorPlastic, a: normal, e: ["BitrunningGhostRoleIslander"]}
+  "bL": {t: FloorPlastic, a: normal, e: ["ClosetSteelBase"]}
+  "bM": {t: Plating, a: normal}
+  "bN": {t: FloorPlastic, a: normal, e: ["CrateGenericSteel"]}
+  "bO": {t: FloorPlastic, a: normal, e: ["AlwaysPoweredWallLight"]}
+  "bP": {t: FloorPlastic, a: normal, e: ["BitrunningMarkerCuriosity"]}
+  "bQ": {t: Plating, a: normal, e: ["ToolboxMechanicalFilled"]}
+  "bR": {t: Plating, a: normal, e: ["WeldingFuelTankFull"]}
+  "bS": {t: FloorWood, a: bright, e: ["PottedPlantRandom", "Railing"]}
+  "bT": {t: Plating, a: normal, e: ["AlwaysPoweredSmallLight@90", "BitrunningMarkerCuriosity"]}
+  "bU": {t: Plating, a: normal, e: ["WaterTankFull"]}
+  "bV": {t: FloorAsteroidSand, a: bright}
+  "bW": {t: FloorWoodLarge, a: normal, e: ["TableBrass"]}
+  "bX": {t: Plating, a: normal, e: ["Rack"]}
+  "bY": {t: Plating, a: normal, e: ["ImperialFishingToolboxSmall"]}
+  "bZ": {t: FloorAsteroidSand, a: bright, e: ["FloraTree"]}
+  "b0": {t: FloorAsteroidSand, a: bright, e: ["#Busha1"]}
+  "b1": {t: FloorWoodLarge, a: normal, e: ["TableBrass", "PaperBin10"]}
+  "b2": {t: FloorWood, a: normal, e: ["TableBrass", "Pen", "Carpet"]}
+  "b3": {t: FloorWood, a: normal, e: ["TableBrass", "Carpet"]}
+  "b4": {t: Plating, a: normal, e: ["AirlockMaint"]}
+  "b5": {t: FloorAsteroidSand, a: bright, e: ["MarkerBeaconStructure", "FloorWaterEntity"]}
+  "b6": {t: FloorAsteroidSand, a: bright, e: ["ChairFolding@-90", "ImperialFishingRod"]}
+  "b7": {t: FloorGrass, a: normal, e: ["StatueVenusRed", "#Flowersy1"]}
+  "b8": {t: FloorAsteroidSand, a: bright, e: ["BitrunningGhostRoleIslander"]}
+  "b9": {t: FloorWoodLarge, a: normal, e: ["TableCarpet"]}
+  "ca": {t: FloorWoodLarge, a: normal, e: ["StoolBar"]}
+  "cb": {t: FloorWoodLarge, a: normal, e: ["VendingMachineCigs"]}
+  "cc": {t: FloorAsteroidSand, a: bright, e: ["ImperialFishingToolboxSmall"]}
+  "cd": {t: FloorWoodLarge, a: normal, e: ["StoolBar", "AlwaysPoweredWallLight@90"]}
+  "ce": {t: FloorWoodLarge, a: normal, e: ["VendingMachineCoffee"]}
+  "cf": {t: Plating, a: bright, e: ["WallSandstone"]}
+  "cg": {t: FloorAsteroidSand, a: bright, e: ["ChairFolding@90"]}
+  "ch": {t: FloorWood, a: normal, e: ["AlwaysPoweredWallLight@180", "Carpet"]}
+  "ci": {t: FloorAsteroidSand, a: bright, e: ["FloraTree", "ChairFolding@90"]}
+  "cj": {t: FloorDarkHerringbone, a: normal, e: ["WoodDoor"]}
+  "ck": {t: FloorDarkHerringbone, a: normal}
+  "cl": {t: FloorDarkHerringbone, a: normal, e: ["AlwaysPoweredSmallLight"]}
+  "cm": {t: FloorDarkHerringbone, a: normal, e: ["ClosetSteelBase", "ClothingEyesGlassesSunglasses"]}
+  "cn": {t: FloorWoodLarge, a: normal, e: ["PottedPlantRandom", "Table"]}
+  "co": {t: FloorWood, a: normal, e: ["WoodDoor", "Carpet"]}
+  "cp": {t: FloorAsteroidSand, a: bright, e: ["DrinkBeerBottleFull"]}
+  "cq": {t: FloorAsteroidSand, a: bright, e: ["MobCrab"]}
+  "cr": {t: FloorDarkHerringbone, a: normal, e: ["Table", "Wrench", "ToolboxEmergencyFilled"]}
+  "cs": {t: FloorDarkHerringbone, a: normal, e: ["BitrunningMarkerCuriosity"]}
+  "ct": {t: Plating, a: bright, e: ["ShuttersNormal"]}
+  "cu": {t: FloorWoodLarge, a: normal, e: ["PottedPlantRandom", "PottedPlantRandom"]}
+  "cv": {t: FloorWood, a: bright, e: ["Carpet"]}
+  "cw": {t: FloorAsteroidSand, a: bright, e: ["Rack", "ClothingShoesMartialSandals", "ClothingShoesMartialSandals", "ClothingShoesMartialSandals", "ClothingShoesMartialSandals"]}
+  "cx": {t: FloorAsteroidSand, a: bright, e: ["Bed", "Table"]}
+  "cy": {t: FloorAsteroidSand, a: bright, e: ["Rack"]}
+  "cz": {t: FloorWoodTile, a: normal, e: ["LockerSteel"]}
+  "cA": {t: FloorFreezer, a: normal, e: ["ClosetSteelBase"]}
+  "cB": {t: FloorWoodTile, a: normal}
+  "cC": {t: FloorFreezer, a: normal, e: ["WoodDoor"]}
+  "cD": {t: FloorFreezer, a: normal}
+  "cE": {t: FloorWood, a: bright, e: ["BitrunningGhostRoleIslander", "CarpetBlue"]}
+  "cF": {t: FloorWoodTile, a: normal, e: ["AlwaysPoweredWallLight@90"]}
+  "cG": {t: FloorFreezer, a: normal, e: ["Stool", "AlwaysPoweredWallLight"]}
+  "cH": {t: FloorFreezer, a: normal, e: ["Stool"]}
+  "cI": {t: FloorWhite, a: normal, e: ["ToiletEmpty", "SinkWide@-90", "AlwaysPoweredSmallLight@90", "BitrunningGhostRoleIslander"]}
+  "cJ": {t: Plating, a: bright, e: ["WallWood", "SignalButton"]}
+  "cK": {t: FloorWood, a: bright, e: ["CarpetBlue"]}
+  "cL": {t: FloorWood, a: bright, e: ["CarpetGreen"]}
+  "cM": {t: FloorFreezer, a: normal, e: ["BitrunningGhostRoleIslander"]}
+  "cN": {t: FloorWhite, a: normal, e: ["WoodDoor"]}
+  "cO": {t: FloorAsteroidSand, a: bright, e: ["FloraTree", "#Busha1"]}
+  "cP": {t: FloorWood, a: bright}
+  "cQ": {t: FloorWhite, a: normal, e: ["ToiletEmpty", "SinkWide@-90", "AlwaysPoweredSmallLight@90"]}
+  "cR": {t: FloorAsteroidSand, a: bright, e: ["VendingMachineCigs"]}
+  "cS": {t: FloorWoodTile, a: bright}
+  "cT": {t: FloorAsteroidSand, a: bright, e: ["TableWood"]}
+  "cU": {t: FloorWood, a: bright, e: ["BitrunningGhostRoleIslander", "Carpet"]}
+  "cV": {t: FloorAsteroidSand, a: bright, e: ["VendingMachineClothing"]}
+  "cW": {t: FloorWoodTile, a: normal, e: ["AirlockGlass"]}
+  "cX": {t: FloorWoodTile, a: bright, e: ["TableBrass", "AlwaysPoweredWallLight@90"]}
+  "cY": {t: FloorWoodTile, a: bright, e: ["TableBrass"]}
+  "cZ": {t: FloorWoodTile, a: bright, e: ["SinkWide@90"]}
+  "c0": {t: FloorWood, a: bright, e: ["DrinkColaCan", "CarpetBlue"]}
+  "c1": {t: FloorAsteroidSand, a: bright, e: ["TableBrass"]}
+  "c2": {t: FloorAsteroidSand, a: bright, e: ["TableWood", "BaseBallBat"]}
+  "c3": {t: FloorSteelMono, a: bright, e: ["VendingMachineCola"]}
+  "c4": {t: FloorSteelMono, a: bright, e: ["TableFancyBlack", "DrinkColaCan", "DrinkColaCan", "DrinkColaCan", "DrinkColaCan"]}
+  "c5": {t: FloorSteelMono, a: bright, e: ["TableFancyBlack", "DrinkColaCan", "DrinkColaCan"]}
+  "c6": {t: FloorSteelMono, a: bright}
+  "c7": {t: FloorEighties, a: normal, e: ["VendingMachineCola"]}
+  "c8": {t: FloorAsteroidSand, a: bright, e: ["TableBrass", "Pen"]}
+  "c9": {t: FloorWoodTile, a: normal, e: ["WoodDoor"]}
+  "da": {t: FloorEighties, a: normal}
+  "db": {t: FloorEighties, a: normal, e: ["VendingMachineGames"]}
+  "dc": {t: FloorAsteroidSand, a: bright, e: ["FloraTree", "HydroponicsTrayEmpty"]}
+  "dd": {t: FloorShuttleGrey, a: protectedbright}
+  "de": {t: FloorGreenCircuit, a: protectedbright}
+  "df": {t: FloorWoodTile, a: normal, e: ["Table", "ToolboxMechanicalFilled"]}
+  "dg": {t: FloorEighties, a: normal, e: ["BitrunningMarkerCuriosity"]}
+  "dh": {t: FloorAsteroidSand, a: bright, e: ["DisposalUnit"]}
+  "di": {t: FloorAsteroidSand, a: bright, e: ["CrateHydroponics"]}
+  "dj": {t: FloorWoodLarge, a: normal, e: ["VendingMachineDinnerware"]}
+  "dk": {t: FloorWoodLarge, a: normal, e: ["KitchenElectricGrill"]}
+  "dl": {t: FloorWoodLarge, a: normal, e: ["ComputerBroken"]}
+  "dm": {t: FloorShuttleBlack, a: protectedbright, e: ["BitrunningMarkerPermanentExit"]}
+  "dn": {t: FloorWood, a: bright, e: ["Stool"]}
+  "do": {t: FloorWoodTile, a: normal, e: ["Table", "Pen"]}
+  "dp": {t: FloorWoodTile, a: normal, e: ["RailingCorner@90"]}
+  "dq": {t: FloorAsteroidSand, a: normal, e: ["Railing@180", "FloorWaterEntity"]}
+  "dr": {t: FloorAsteroidSand, a: normal, e: ["RailingCorner@-90", "FloorWaterEntity"]}
+  "ds": {t: FloorAsteroidSand, a: normal, e: ["FloorWaterEntity"]}
+  "dt": {t: FloorWoodLarge, a: normal, e: ["StatueVenusRed"]}
+  "du": {t: FloorWoodLarge, a: normal, e: ["BitrunningMarkerCuriosity"]}
+  "dv": {t: FloorSteel, a: protectedbright, e: ["BitrunningMarkerGoal", "BitrunningMarkerLootSignal"]}
+  "dw": {t: FloorWoodTile, a: normal, e: ["BitrunningGhostRoleIslander"]}
+  "dx": {t: FloorAsteroidSand, a: bright, e: ["ShuttersNormal", "FloorWaterEntity"]}
+  "dy": {t: FloorWoodLarge, a: normal, e: ["VendingMachineBooze"]}
+  "dz": {t: FloorWoodLarge, a: normal, e: ["SinkWide"]}
+  "dA": {t: FloorWoodLarge, a: normal, e: ["TableWood"]}
+  "dB": {t: FloorWoodLarge, a: normal, e: ["LockerFreezer"]}
+  "dC": {t: FloorAsteroidSand, a: bright, e: ["ChairFolding"]}
+  "dD": {t: FloorEighties, a: normal, e: ["BitrunningGhostRoleIslander"]}
+  "dE": {t: FloorEighties, a: normal, e: ["PottedPlantRandom", "AlwaysPoweredWallLight@-90"]}
+  "dF": {t: FloorWoodLarge, a: normal, e: ["TableWood", "SodaDispenser"]}
+  "dG": {t: FloorWoodLarge, a: normal, e: ["KitchenReagentGrinder"]}
+  "dH": {t: FloorWoodLarge, a: normal, e: ["TableBrass", "AlwaysPoweredWallLight@-90"]}
+  "dI": {t: FloorAsteroidSand, a: bright, e: ["Chair"]}
+  "dJ": {t: FloorAsteroidSand, a: bright, e: ["DrinkColaCan"]}
+  "dK": {t: FloorWoodTile, a: normal, e: ["Table"]}
+  "dL": {t: FloorEighties, a: normal, e: ["DisposalUnit"]}
+  "dM": {t: FloorWoodLarge, a: normal, e: ["BoozeDispenser", "TableWood"]}
+  "dN": {t: FloorWoodLarge, a: bright, e: ["Stool"]}
+  "dO": {t: FloorWoodLarge, a: bright, e: ["VendingMachineCigs"]}
+  "dP": {t: FloorEighties, a: normal, e: ["CrateGenericSteel"]}
+  "dQ": {t: FloorWoodLarge, a: normal, e: ["TableWood", "Pen"]}
+  "dR": {t: FloorWoodLarge, a: normal, e: ["TableWood", "PaperBin10"]}
+  "dS": {t: FloorWoodLarge, a: normal, e: ["DisposalUnit"]}
+  "dT": {t: FloorAsteroidSand, a: bright, e: ["ChairFolding@-90"]}
+  "dU": {t: FloorWoodTile, a: normal, e: ["RailingCorner@90", "Wrench", "ImperialFishingToolboxSmall", "RailingCorner@90"]}
+  "dV": {t: FloorWoodTile, a: normal, e: ["Railing@180"]}
+  "dW": {t: FloorWood, a: bright, e: ["WindowReinforcedDirectional@180", "WindowReinforcedDirectional@-90", "TableWood", "MedkitFilled"]}
+  "dX": {t: FloorWood, a: bright, e: ["WindowReinforcedDirectional@90", "WindowReinforcedDirectional@180", "Stool", "ClothingEyesGlassesSunglasses"]}
+  "dY": {t: FloorAsteroidSand, a: bright, e: ["VendingMachineCola"]}
+  "dZ": {t: FloorWoodTile, a: normal, e: ["BitrunningMarkerCuriosity"]}
+  "d0": {t: FloorWoodTile, a: normal, e: ["WeldingFuelTankFull"]}
+  "d1": {t: FloorAsteroidSand, a: bright, e: ["VendingMachineSnack"]}
+  "d2": {t: FloorWoodLarge, a: bright, e: ["VendingMachineCola"]}
+  "d3": {t: FloorWood, a: bright, e: ["WindowReinforcedDirectional@-90", "WindowReinforcedDirectional", "TableWood"]}
+  "d4": {t: FloorWood, a: bright, e: ["WindowReinforcedDirectional@90", "BitrunningGhostRoleIslander"]}
+  "d5": {t: FloorAsteroidSand, a: bright, e: ["Flare"]}
+  "d6": {t: FloorShuttleGrey, a: bright}
+  "d7": {t: FloorAsteroidSand, a: bright, e: ["Bonfire"]}
+  "d8": {t: FloorAsteroidSand, a: bright, e: ["ChairFolding@180"]}
+  "d9": {t: FloorAsteroidSand, a: bright, e: ["KitchenElectricGrill"]}
+  "ea": {t: FloorAsteroidSand, a: bright, e: ["CrateFreezer"]}
+  "eb": {t: FloorAsteroidSand, a: bright, e: ["ChairFolding", "ImperialFishingRod"]}
+rows:
+- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacacacacacacacacacacacacacacacadacacacacacaeafaeacacacacacacacacacacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacacacacacacacagahaiacagajaiacadacacacacaeaeaeakakacacacacacacacacacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacacadadadadadalamamadanamamadaoadadadadaeadadadadadadacacacacacacacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacagapaqarasaoatarasaoatarasaoauauavawaoaxaoayayazaAaoadadadaBadacacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacaCamaDaEaFaoaGaHaIaoaJaEaFaoaKaLaKaoaoaKaoaMaNaNaNaNaNaOaPaQaoadacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacaiamaRataSaoaRataTaUaVataTaUaWaXaKaxaKaKaYaNaZa0a1aNa2aYaPa3a4adacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacacadaoapa5aoaoapa5aoaoapa5aoaoaoaoaoaKaKaYaNa6a0a7a8a9aYbabaaoadacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacacacadaKaKbbaKaKaKaKaKaKaKaKaKbbaxaKaKaKaoaNaZa6a1aNbcaoadaBadacacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacacada5apaoaoaKaoa5apaoaoaKaoaoaoaoaoaKaKbdaNaNaNaNaMaoadacacacacacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacagapatatasaobeaoaratasaobea5aratasaoaKaKaoaNbfaybgaoadbhbiacacacacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacaCambjaHbkaoaKaoaDaEaFaoaKapbjaHaIaoaKaKaoaoaoaoaoadbhaeafblacacacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacaiamaRaraTaUaKaoaVbmaSaoaoaoaRbmaTaoaKaKaobnbobpboambhaeaebqacacacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacacadaoaoaoaoaKaoaoaoaoaobraoaoaoaoaobsaKaobtbubvbtaoadaeaebwacacacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacagapataRbxaoaKaoarbyasaoaoa5araRasaoaKaKaobzbvbvbvbvbAaeaeacacacacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacaCamaDaEaFaobeaobjaHaIaoaKapaDaEaFaoaKaKbBbtbvbCbDbvaoadacacacacacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacaiamarataSaoaKaoatataTaUaKaoatbmaSaoaKaKbAbvbvbvbvbvboamacacacacacacacacacacacacaaababababababababababababababababababababababababababababababababababababababababababababababababab"
+- "aaacacacacacacacacadaoapa5aoaKaoa5apaoaoaKaoaoaoaoaoaKaKbBbvbvbvbvaoaoaoadacacacacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaacacacacacacacacacadaKaKaKaKaKbbaKaKaKaKaKaKaKaxaKaKaKaobEbvbFbGaobHbHaoadadadadadacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaa"
+- "aaacacacacacacacacada5apaoaoaKaoa5apaUaobeaoapaoaoaoaKaKaoaobIaoaoaobJbKbLaobMbMbMadacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaa"
+- "aaacacacacacacacagapatataTaUbeaoaRatasaoaKa5ataVasaobsaKaobNbHbHbHbObPbHbLaobQbMbMaoadacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaa"
+- "aaacacacacacacacaCambjaHaIaoaKaoaDaEaFaoaKaobjaHaIaoaKaKaobNbHbHbHbHbHbHbLaobMbMbMbRadacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaa"
+- "aaacacacacacacacbSamarbmasaoaoaoarbmaSaoaxaoarbmaTaoaxaxaoaoaUaoaUaoaobHaoaobTbMbMbUadacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaa"
+- "aaacacacacacacacacadadadadadacadadadadadbVadadadaoaoaKaKaobWaDaDaDbWaobIaobXbMbMbYaoadacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaa"
+- "aaacacacacacacacacacacacacacacacacbVbVbZbVbVbVbZadaKaKaKbbaKaDaEaDaKaKaKaoaobMbMaoadbVacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaa"
+- "aaacacacacacacacacacacacacacacacbVbVbVbVbVb0bVadaoaKaKaKaKb1b2b3b3bWaKaKaKb4bMbMadbZbVbVacacacacacacacacacacacacacacacacacb5acacb5acacb5acacacacacacacbVbVbVbVbVbVacacacacacacacacacacacacacacacacaa"
+- "aaacacacacacacacacacacacacacacacbVbVbVb6bVbVadaoaKaKaKb7aKaKaDaDaDaKaKb7beaoaoaoadbVbVbVbVbVbVbVbVbVbVacacacacacacacacb5acacacacacacacacacb5acacacbVbVbVbVbVbZbVbVbVbVacacacacacacacacacacacacacacaa"
+- "aaacacacacacacacacacacacacacacacbVbVb8bVbVbVaxaKb9caaKaKaKaKaDaDaDaKaKaKaKaKcbadb0bVbVbVbVbVbVbVbVbVbVbVbVbVbVbVacacacacacacacacacacacacacacacacbVbVbVbVbVbVbVbVbVbVbVbVacacacacacacacacacacacacacaa"
+- "aaacacacacacacacacacacacacacacacbVbVccb6bVbVadcdb9caaKaKaKaKaDaDaDaKaKaKaKaKceadbVbVcfcfcfcfcfbVbVbVbZbVbVcgbZbVbVbVbVacacacacacacacacacacacbVbVbVbVbVbVadadadadadbVbVbVbVacacacacacacacacacacacacaa"
+- "aaacacacacacacacacacacacacacacacbVbVbVbVbVbZadaKb9caaKaKaKaKaDchaDadamamavaKaoadbVcfcfbVbVbVcfcfbVb0bVbVbVbVbVbVcibVbVacacacacacacacacacacbVbVbVbVbVbVbVcjckclcmadadbVbVbVbVbVacacacacacacacacacacaa"
+- "aaacacacacacacacacacacacacacacacacbVbVbVb0bVadaoaKaKaKcnamadcoadcoadbZamamamadbVbVcfbVbVb8bVbVcfbVbVbVbVbVbVbVbVbVcpbVbVacacacacacacacacacbVbZcqadadadadaocrckcsckctbVbVcqbZbVbVacacacacacacacacacaa"
+- "aaacacacacacacacacacacacacacacacacacbVbVbVbVbZadaoavcuamambZcvcvcvbZcwcwcwcxbVbVbVcfcfbVbVbVcfcfbVbVbVbVbVbZbVbVbVcgbVbVacacacacacacacacbVcybVadaoczaocAaoaoa5ckckctbVbVbVbVbVbVbVacacacacacacacacaa"
+- "aaaaaaaaaaaaaaaaacacacacacacacacacacacacacbVbVbZadamamambVbVbVcvcvcvbVbVbVbVbVbZbVbVcfcfbVcfcfbVbZbVbVbVbVbVb0bVbVbVbVbVbVbVbVacacacacbVbVbVbVadczcBcCcDcDcAaoaoaoadbVbVbVadadadbVbVbVacacacacacacaa"
+- "abababababababaaacacacacacacacacacacacacacacbVbVbZbVbVbVbVcqbVbVcvcvcvbVbVb0bVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVcEbVbVbVbVbVbVbVbVbVbVbVadaocFcBaocAcDcDcGcHcHaoadbVbVadcIcJbVbVbVbVacacacacacaa"
+- "abababababababaaacacacacacacacacacacacacacacbVbVbVbVbVbVbVbVbVbVbVcvcvcvbVbVbVbVbVbVbVbVbVbVbVbVadbVbVbVbZbVbVbVbVbVcKbVbVcLbVbVb0bVbZbVbVbVadczcBcBaoaoaocMcDcDcDcAadbVbVadcNadbVbVcObVacacacacacaa"
+- "abababababababaaacacacacacacacacacacacacacacbVbVbVbVbVbVbVbVbVbVbVbVcvcvcvbVbVbVbVbVbVcPaoaoaoaoaoaoaoadbVbVbVbVbVbVbVbVbVcLbVbVbVbVbVbVbVbVadczcBcBczczaoaoaocAcAaoadbZbVbVbVbVbVcqbVbVacacacacacaa"
+- "abababababababaaaaaaaaaaaaaaacacacacacacacacbVbVbVbVbVbVbVbVbVbVbVbVbVcvcvcvbVbVbZbVbVcPaocQa5cIa5cQa5cRbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVb0bVbVadaocBcBcBcBcBcBaoaoadadcSbVbVbVbVcTcTbVbVbVacacacacacaa"
+- "abababababababababababababaaacacacacacacacacacbVbVcUcvbVbVbVbZbVbVbVbVbVcvcvcvbVbVb0bVcPaocNaocNaocNaobVbVbVbVbVbZbVbVbVbVbVbVbVbVbVbVbVbVbVcVadcWcWadcXcYcYcYadcZcSbVbVcgbVbVbVbVbVbVbVacacacacacaa"
+- "abababababababababababababaaacacacacacacacacacbVbVbVbVbVbVb0bVbVbVb0bVbVbVcvcvcvbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVcScScScScScScSbVbVbVcqbVcgbVbVbVbVbVbVbVacacacacacaa"
+- "abababababababababababababaaacacacacacacacacacacbVbVbVbVbVbVbVbVbVbVbVbVbVbVcvcvbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVcScScScScSbVbVbVbVbVbVbVbVbVbVbVbVbVacacacacacacaa"
+- "abababababababababababababaaacacacacacacacacacacbVbVbVcKc0bVbVbVbVbVbVbVbVbVbVbVbVbVbZbVbVb0bVbVbVbVbVbVbVbVbVbVbVbVbVbVbZbVbVbZbVbVbVc1bVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVcgbVbVbVbVc2bVacacacacacacaa"
+- "abababababababababababababaaacacacacacacacacacacbVbVb0bVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbZbVbVbVbVbVbVc3c4c5bVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVcgbVcqbVbVbVbVacacacacacacaa"
+- "abababababababababababababaaacacacacacacacacacacbVbVbVbVbVbVadadadbVbZbVbVb0bVbVbVbVbVbVbVbVbVbVbVbVb0bVbVbVbVbVc6c6c6bVbVbVbVbVbVbVbVbVbVbVbVc1c1bVbVbVbVbVbVbVbZbVbVbVbVbVbVbVbVbVacacacacacacacaa"
+- "abababababababababababababaaacacacacacacacacacacbVbVbVbZbVadaoc7aoadbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbZbVbVbVbVbVbVbVbVbVbVb0bVbVbVbVbVbVc1c8bVbVbZbVbVb0bVbVbVbVbVadc9adadbVbVacacacacacacacaa"
+- "abababababababababababababaaaaaaaaaaacacacacacacacbVbVbVbVamdadadbambVbVbVbVbVbVbVbVbVbVdcadadamamamadadbVbVbVbVbVbVbVbVbVbVbVbVbVdddddebVbVbVbVbVb0bVbVcgcgbVbVbVbVbZadaocBdfaoadadadacacacacacacaa"
+- "abababababababababababababababababaaacacacacacacacbVbVbVbVamdadadgaoadbVbVbVbVbVdhdiadaxadaddjdkdldkdkadbZbZbVbVbVbVb0bVbVbVcObVbVdddmddbVbVbVbVbVbVbVbVcgcgbVbVbVcPdnaddodpdqdrdsdtadacacacacacacaa"
+- "abababababababababababababababababaaacacacacacacacacbVbVbVadaUdadadaambVbVbVbVbVadadaoaKaKbbaKaKaKaKduambVbVbVbVbVbVbVbVbVbVbVbVbVdedvdebZb0bVbVbVbVbVbVcgcgbVbVcPcPcPaddwdpdqdrdsdsdxacacacacacacaa"
+- "abababababababababababababababababaaacacacacacacacacacbVbVbVamdadadaambVbVbVbVbVaddydzaLdAdAdAaKaKaKdBambVbVbVb0bVbVbVbVbVdCdCdCbVbVbVbVbVdCdCdCbVbVbVbVbVbVbVbVcPcPcPadcFdpdqdrdsdsdxacacacacacacaa"
+- "abababababababababababababababababaaacacacacacacacacacbVbVadaUdDdadEaoadbVbVbVbVamdFaKdAdAdAdGaKaKbWdHadbVbZbVbVbVbVbZbVbVdCdCdCbVdIdJdIbVdCdCdCbVbVbVbVcgcgbVbVcPcPcPaddKdpdqdrdsdsdxacacacacacacaa"
+- "abababababababababababababababababaaacacacacacacacacacbVbVamdLdadaaKaKaxbVbVbVbVamdMaKaKdAaKaKaKbWbWdNdOb0bVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbZb0bVcgcgbVbVbVcPcPaddKdpdqdrdsdsdxacacacacacacaa"
+- "abababababababababababababababababaaacacacacacacacbVbVbVbVamdPdadQdAdRambVbVbVbVaddAaKaKaKaKdSbWbWdNaebVbVbVbVbVbVbVbVcgcgbVbVbVbVbVbVbVbVbVbVbVdTdTbVbVbVbVbVbVbVbVc6adaodUdVdrdsdsadacacacacacacaa"
+- "abababababababababababababababababaaacacacacacacacbVbVbVbVadaoaKaKaKaoadbVbVbVbVadadbWbWbWbWdHadaeaebVbVbVbVdWdXbVbVbZcgcgbVbVbVbVbVbVbVbVbVbVbVdTdTbVbVbVbVbVbVcqbVbVdYadaocBdZd0aoadacacacacacacaa"
+- "abababababababababababababababababaaacacacacacacacbVbZbVbVbZadadamadadbVbVbVbVbVd1d2dNdNdNdNdNaebVbVbVbVbVbVd3d4bVbVbVcgcgbVbVbVbVbVbVbVbVbVbVbVdTdTbVbVbVbVbVdCd5bVbVbVbVadadcJadadacacacacacacacaa"
+- "abababababababababababababababababaaacacacacacacacbVbVbVbVbVb0bVbVbVbZbVbVbVbVbVbVbVaeaeaeaeaebVbVbZbVbVbVbVd6c6bVbVbVcgcgbVbVbVbVbVbVbVbVbVbVbVdTdTbVbZbVbVcgd7dTbVbVbVbVbVacacacacacacacacacacacaa"
+- "abababababababababababababababababaaacacacacacacacbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVcqbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVd8bVbVbVbVbVbVacacacacacacacacacacacaa"
+- "abababababababababababababababababaaacacacacacacacbVbVbVcqbVcKbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVd9eabVbVbZbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVb0bVbVbZbVbVbVbZbVbVbVacacacacacacacacacacacacaa"
+- "abababababababababababababababababaaacacacacacacacbVbVbVbVbVcEbZb0bVbVbVbVbVbVbVbVbVdCbVdCdJbVbZbVbVbVbVbVbVbVbVbVb0bVbVbVbVbVbZbVcqbVbVbVb0bVbVbVbVbVbVbVbVbVbVbVb0bVbVbVacacacacacacacacacacacacaa"
+- "abababababababababababababababababaaacacacacacacacacbVbVbVbVbVbVbVbVbVcqbVbVdCbVdCbVbVbVbVbVdCbVdCbVbVbVbVbVbVbVbVbVccebdJdCbVbVbVbVbVbVbVbVbVbVdCbVdCdJdCb8cqbVbVbVbVbVacacacacacacacacacacacacacaa"
+- "abababababababababababababababababaaacacacacacacacacacbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVbVacacbVbVbVbVbVbVbVbVbVacacacacacacbVbVbVbVbVbVbVbVbVbVbVbVacacacacacacacacacacacacacacacaa"
+- "abababababababababababababababababaaacacacacacacacacacacacbVbVbVacacbVbVbVbVbVbVbVbVbVacacbVbVbVbVbVbVacacacacacacacbVbVbVbVbVacacacacacacacacbVbVbVbVbVbVbVbVbVbVacacacacacacacacacacacacacaaaaaaaa"
+- "abababababababababababababababababaaacacacacacacacacacacacacacb5acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaababab"
+- "abababababababababababababababababaaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacb5acacacacacacacacacacacacacacacacacacacacaaaaaaaaababab"
+- "abababababababababababababababababaaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaabababababab"
+- "abababababababababababababababababaaacacacacacacacacacacacacacacb5acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaaaaaaaabababababab"
+- "abababababababababababababababababaaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacb5acacacacacacacacacacacacacacacacacacacaaababababababababab"
+- "abababababababababababababababababaaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaaaaaaaababababababababab"
+- "abababababababababababababababababaaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacb5acacacacacacacacacacacacacacacacacacaaabababababababababababab"
+- "abababababababababababababababababaaacacacacacacacacacacacacacacacacb5acacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaaaaaaaaaaaabababababababababababab"
+- "abababababababababababababababababaaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacb5acacacacacacacacacacacacacacacacaaababababababababababababababababab"
+- "abababababababababababababababababaaacacacacacacacacacacacacacacacacacacb5acacacacacacacacacacacacacacacacacacacacacacacb5acacacacacacacacacacacacacacacacacacacaaababababababababababababababababab"
+- "abababababababababababababababababaaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaababababababababababababababababab"
+- "abababababababababababababababababaaacacacacacacacacacacacacacacacacacacacacb5acacacacacacacacacacacacacacacacacacb5acacacacacacacacacacacacacacacacacacacacacacaaababababababababababababababababab"
+- "abababababababababababababababababaaacacacacacacacacacacacacacacacacacacacacacacacb5acacb5acacacacb5acacacb5acacacacacacacacacacacacacacacacacacacacacacacacacacaaababababababababababababababababab"
+- "abababababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababababababababababababababab"

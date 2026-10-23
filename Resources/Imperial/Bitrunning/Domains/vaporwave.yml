@@ -1,0 +1,76 @@
+# Сконвертировано из vaporwave.dmm (tgstation/BandaStation, _maps/virtual_domains) утилитой dmm2domain.
+width: 25
+height: 28
+keyLength: 1
+legend:
+  "a": {t: Plating, e: ["WallPlastitaniumIndestructible"]}
+  "b": {t: Space, a: space}
+  "c": {t: FloorAsteroidSand, a: normal}
+  "d": {t: FloorAsteroidSand, a: normal, e: ["DisposalUnit"]}
+  "e": {t: Plating, a: normal}
+  "f": {t: Plating, a: normal, e: ["WallSolid"]}
+  "g": {t: Plating, a: normal, e: ["WallSolidRust"]}
+  "h": {t: Plating, a: normal, e: ["WallSolid", "RandomPosterLegit"]}
+  "i": {t: FloorAstroGrass, a: normal, e: ["FloraTree"]}
+  "j": {t: FloorSteel, a: normal, e: ["WindowDirectional@-90"]}
+  "k": {t: FloorSteel, a: normal, e: ["Stool"]}
+  "l": {t: FloorSteel, a: normal}
+  "m": {t: FloorSteel, a: normal, e: ["ComfyChair@90", "AlwaysPoweredSmallLight"]}
+  "n": {t: FloorSteel, a: normal, e: ["TableReinforced"]}
+  "o": {t: FloorSteel, a: normal, e: ["ComfyChair@-90"]}
+  "p": {t: FloorSteel, a: normal, e: ["WindowDirectional@90", "BitrunningEncryptedCache"]}
+  "q": {t: FloorAstroGrass, a: normal}
+  "r": {t: FloorSteel, a: normal, e: ["ComfyChair@90"]}
+  "s": {t: FloorSteel, a: normal, e: ["TableReinforced", "ClothingEyesGlassesSunglasses"]}
+  "t": {t: FloorSteel, a: normal, e: ["WindowDirectional@90"]}
+  "u": {t: FloorAstroGrass, a: normal, e: ["FloraTree", "AlwaysPoweredWallLight@90"]}
+  "v": {t: FloorAstroGrass, a: normal, e: ["FloraTree", "AlwaysPoweredWallLight@-90"]}
+  "w": {t: FloorSteel, a: normal, e: ["MobButterfly"]}
+  "x": {t: FloorSteel, a: normal, e: ["TableReinforced", "BoozeDispenser"]}
+  "y": {t: FloorSteel, a: normal, e: ["WindowDirectional@90", "TableReinforced"]}
+  "z": {t: FloorShuttleBlack, a: normal, e: ["AirlockHatch"]}
+  "A": {t: Plating, a: normal, e: ["AlwaysPoweredSmallLight"]}
+  "B": {t: Plating, a: normal, e: ["StatueVenusRed"]}
+  "C": {t: FloorAsteroidSand, a: normal, e: ["FloraTree"]}
+  "D": {t: Plating, a: safe, e: ["WallShuttle"]}
+  "E": {t: Plating, a: safe, e: ["ReinforcedWindow", "Grille"]}
+  "F": {t: FloorWhite, a: safe, e: ["AirlockShuttle"]}
+  "G": {t: Plating, a: safe, e: ["WindowReinforcedDirectional@90"]}
+  "H": {t: FloorSteel, a: safe}
+  "I": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight"]}
+  "J": {t: FloorSteel, a: safe, e: ["TableReinforced", "ToolboxEmergencyFilled"]}
+  "K": {t: FloorSteel, a: safe, e: ["ComfyChair@90"]}
+  "L": {t: FloorSteel, a: safe, e: ["TableReinforced", "EmergencyOxygenTankFilled", "ClothingMaskGas"]}
+  "M": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@180", "BitrunningMarkerGoal"]}
+  "N": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal"]}
+  "O": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "P": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@180", "BitrunningMarkerHololadder"]}
+rows:
+- "aaaaaaaaaaaaaaaaaaaaaaaaa"
+- "abbbbbbbbbbbbbbbbbbbbbbba"
+- "abbbbbbbbbbbbbbbbbbbbbbba"
+- "abbbbbbbbbbbbbbbbbbbbbbba"
+- "abbbbbbbccccccccccbbbbbba"
+- "abbbbbccdecccccecccbbbbba"
+- "abbbbccffgfhfggfgfcbbbbba"
+- "abbbcccfijklmnopifccbbbba"
+- "abbbccegqjllrsotqgeccbbba"
+- "abbbcccgujllllltvfcccbbba"
+- "abbbbccgqjllllwtqgdccbbba"
+- "abbbbcefqjlllnxyqgeccbbba"
+- "abbbbccgffffzfgfggcccbbba"
+- "abbbbcceAeBlllBeAeccbbbba"
+- "abbbbbcccClllllCccccbbbba"
+- "abbbbbbcccelllecccbbbbbba"
+- "abbbbbbbbcccllecbbbbbbbba"
+- "abbbbbbbbbbbbbbbbbbbbbbba"
+- "abbbbbbbbbbbbbbbbbbbbbbba"
+- "abbbbbbbbbbbbbbbbbbbbbbba"
+- "abbbbbbbbDEDFDEDbbbbbbbba"
+- "abbbbbbbbGHIHIJDbbbbbbbba"
+- "abbbbbbbbEHHHKHEbbbbbbbba"
+- "abbbbbbbbEHHHHLEbbbbbbbba"
+- "abbbbbbbbGMNOOPDbbbbbbbba"
+- "abbbbbbbbDDEDEDDbbbbbbbba"
+- "abbbbbbbbbbbbbbbbbbbbbbba"
+- "aaaaaaaaaaaaaaaaaaaaaaaaa"

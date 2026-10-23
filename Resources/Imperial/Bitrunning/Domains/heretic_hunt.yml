@@ -1,0 +1,134 @@
+# Сконвертировано из heretic_hunt.dmm (tgstation/BandaStation, _maps/virtual_domains) утилитой dmm2domain.
+width: 27
+height: 31
+keyLength: 2
+legend:
+  "aa": {t: Plating, a: normal, e: ["WallPlastitaniumIndestructible"]}
+  "ab": {t: FloorSteel, a: normal}
+  "ac": {t: Plating, a: normal, e: ["ReinforcedWindow", "Grille"]}
+  "ad": {t: Plating, a: normal, e: ["WallSolid"]}
+  "ae": {t: FloorSteel, a: normal, e: ["AlwaysPoweredWallLight"]}
+  "af": {t: FloorSteel, a: normal, e: ["ClosetEmergencyFilledRandom"]}
+  "ag": {t: FloorDark, a: normal, e: ["ComputerFrame"]}
+  "ah": {t: FloorSteel, a: normal, e: ["DisposalUnit"]}
+  "ai": {t: FloorSteel, a: normal, e: ["BitrunningFakeCrewEngi"]}
+  "aj": {t: FloorSteel, a: normal, e: ["TableReinforced"]}
+  "ak": {t: FloorSteel, a: normal, e: ["TableReinforced", "ToolboxElectricalFilled"]}
+  "al": {t: FloorSteel, a: normal, e: ["ClosetFireFilled"]}
+  "am": {t: FloorDark, a: normal, e: ["TableGlass", "BoxFolderYellow"]}
+  "an": {t: FloorDark, a: normal}
+  "ao": {t: FloorSteel, a: normal, e: ["LockerSteel", "WeaponSniperMosin"]}
+  "ap": {t: FloorDark, a: normal, e: ["BitrunningFakeCrewSec"]}
+  "aq": {t: FloorDark, a: normal, e: ["ChairOfficeDark"]}
+  "ar": {t: FloorSteel, a: normal, e: ["AirlockCommand"]}
+  "as": {t: FloorSteel, a: normal, e: ["ChairOfficeLight@90"]}
+  "at": {t: FloorDark, a: normal, e: ["TableGlass", "PaperBin10"]}
+  "au": {t: FloorDark, a: normal, e: ["BitrunningFakeCrewCe", "ChairOfficeLight@-90"]}
+  "av": {t: FloorSteel, a: normal, e: ["LockerSteel"]}
+  "aw": {t: FloorDark, a: normal, e: ["Table", "WeaponCapacitorRecharger", "Stunbaton"]}
+  "ax": {t: FloorDark, a: normal, e: ["Table", "MedkitFilled"]}
+  "ay": {t: FloorDark, a: normal, e: ["Table"]}
+  "az": {t: Plating, a: normal, e: ["WallSolid", "ExtinguisherCabinetFilled"]}
+  "aA": {t: FloorSteel, a: normal, e: ["filingCabinetRandom"]}
+  "aB": {t: FloorDark, a: normal, e: ["ChairOfficeDark@180"]}
+  "aC": {t: Plating, a: normal, e: ["AirlockMaint"]}
+  "aD": {t: FloorSteel, a: normal, e: ["TableGlass"]}
+  "aE": {t: FloorSteel, a: normal, e: ["TableGlass", "MedkitBurnFilled", "AlwaysPoweredWallLight@180"]}
+  "aF": {t: FloorSteel, a: normal, e: ["DisposalUnit", "ShardGlass"]}
+  "aG": {t: FloorSteel, a: normal, e: ["AlwaysPoweredWallLight@180"]}
+  "aH": {t: Plating, a: normal}
+  "aI": {t: Plating, a: normal, e: ["Rack"]}
+  "aJ": {t: PlatingDamaged, a: normal}
+  "aK": {t: Plating, a: normal, e: ["AirlockMaint", "Girder", "Grille"]}
+  "aL": {t: Plating, a: normal, e: ["Table"]}
+  "aM": {t: Plating, a: normal, e: ["BitrunningFakeCrewAssistant"]}
+  "aN": {t: FloorSteel, a: normal, e: ["ChairOfficeDark"]}
+  "aO": {t: Plating, a: normal, e: ["AirlockMaint", "Barricade"]}
+  "aP": {t: PlatingDamaged, a: normal, e: ["Flare"]}
+  "aQ": {t: FloorDark, a: normal, e: ["TableGlass", "Pen"]}
+  "aR": {t: FloorDark, a: normal, e: ["TableGlass", "PaperBin10", "BoxFolderRed"]}
+  "aS": {t: Plating, a: normal, e: ["ShardGlass"]}
+  "aT": {t: PlatingDamaged, a: normal, e: ["Grille"]}
+  "aU": {t: Plating, a: normal, e: ["Grille"]}
+  "aV": {t: FloorDark, a: normal, e: ["BitrunningFakeCrewHos", "ChairOfficeDark@180"]}
+  "aW": {t: FloorSteel, a: normal, e: ["VendingMachineCigs"]}
+  "aX": {t: FloorDark, a: normal, e: ["ComputerFrame", "AlwaysPoweredWallLight@180"]}
+  "aY": {t: FloorDark, a: normal, e: ["Rack", "WeaponRevolverPython"]}
+  "aZ": {t: FloorDark, a: normal, e: ["filingCabinetRandom"]}
+  "a0": {t: PlatingDamaged, a: normal, e: ["Pickaxe"]}
+  "a1": {t: Plating, a: normal, e: ["WeldingFuelTankFull"]}
+  "a2": {t: Plating, a: normal, e: ["AlwaysPoweredSmallLight@90", "MobHereticRawProphet"]}
+  "a3": {t: Plating, a: normal, e: ["Flare"]}
+  "a4": {t: PlatingDamaged, a: normal, e: ["AlwaysPoweredSmallLight@-90"]}
+  "a5": {t: PlatingDamaged, a: normal, e: ["ClosetEmergencyFilledRandom", "MedkitFilled"]}
+  "a6": {t: Plating, a: normal, e: ["ClosetFireFilled"]}
+  "a7": {t: PlatingDamaged, a: normal, e: ["BitrunningHereticRune", "BitrunningMarkerLootSignal"]}
+  "a8": {t: PlatingDamaged, a: normal, e: ["AlwaysPoweredSmallLight@180"]}
+  "a9": {t: PlatingDamaged, a: normal, e: ["AlwaysPoweredSmallLight@90"]}
+  "ba": {t: PlatingDamaged, a: normal, e: ["AlwaysPoweredSmallLight@-90", "MobHereticRawProphet"]}
+  "bb": {t: Plating, a: normal, e: ["Window", "Grille"]}
+  "bc": {t: Plating, a: normal, e: ["WaterTankFull"]}
+  "bd": {t: PlatingDamaged, a: normal, e: ["Table", "ToolboxEmergencyFilled", "ClothingMaskGas"]}
+  "be": {t: PlatingDamaged, a: normal, e: ["Table"]}
+  "bf": {t: FloorPlastic, a: normal}
+  "bg": {t: Plating, a: normal, e: ["Girder", "Grille"]}
+  "bh": {t: FloorPlastic, a: normal, e: ["TableGlass", "AlwaysPoweredLightLED"]}
+  "bi": {t: FloorPlastic, a: normal, e: ["AlwaysPoweredLightLED"]}
+  "bj": {t: Plating, a: safe, e: ["WallSolid"]}
+  "bk": {t: Plating, a: safe, e: ["AirlockMaint"]}
+  "bl": {t: FloorPlastic, a: normal, e: ["MedicalBed"]}
+  "bm": {t: FloorPlastic, a: normal, e: ["BitrunningFakeCrewMd"]}
+  "bn": {t: FloorPlastic, a: normal, e: ["TableGlass"]}
+  "bo": {t: Plating, a: safe}
+  "bp": {t: FloorDark, a: normal, e: ["ComputerFrame", "AlwaysPoweredLightLED@90"]}
+  "bq": {t: FloorDark, a: normal, e: ["BitrunningFakeCrewCmo", "ChairOfficeLight@90"]}
+  "br": {t: FloorPlastic, a: normal, e: ["ChairOfficeLight@-90"]}
+  "bs": {t: FloorPlastic, a: normal, e: ["AirlockCommand"]}
+  "bt": {t: Plating, a: safe, e: ["AlwaysPoweredlightRed@90"]}
+  "bu": {t: Plating, a: safe, e: ["AlwaysPoweredlightRed@-90"]}
+  "bv": {t: FloorDark, a: normal, e: ["TableGlass"]}
+  "bw": {t: Space, e: ["TableGlass", "MobCat"]}
+  "bx": {t: FloorDark, a: normal, e: ["TableGlass", "BoxFolderBlue"]}
+  "by": {t: Plating, a: safe, e: ["RailingCorner"]}
+  "bz": {t: FloorPlastic, a: normal, e: ["DisposalUnit"]}
+  "bA": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "bB": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder", "Railing@90"]}
+  "bC": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal"]}
+  "bD": {t: FloorPlastic, a: normal, e: ["filingCabinetRandom"]}
+  "bE": {t: FloorPlastic, a: normal, e: ["AirlockMedical"]}
+  "bF": {t: FloorPlastic, a: normal, e: ["TableGlass", "MedkitFilled"]}
+  "bG": {t: FloorPlastic, a: normal, e: ["TableGlass", "MedkitBruteFilled"]}
+  "bH": {t: FloorPlastic, a: normal, e: ["AlwaysPoweredLightLED@180"]}
+  "bI": {t: FloorPlastic, a: normal, e: ["AirCanister"]}
+rows:
+- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaabababaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaacaaacaaaaaaaaaaadadadadadadadadadadadadaaaa"
+- "aaaaacabaeababababaeafadadadagagadahababaeabababadaaaa"
+- "aaaaaaabaiajakajababalacabamananadaoapaqaqaqanabadaaaa"
+- "aaaaaaababajajajaiababarasatauanadavanawaxayanabazaaaa"
+- "aaaaacababababababababacabababaAadavanaBaBaBapabadaaaa"
+- "aaaaadadazadaCadabababadaDaEaFadadabababaGabababacaaaa"
+- "aaaaadaHaIadaHadadadadadadadadadadacaracadabababaaaaaa"
+- "aaaaadaJaJaKaHadaHaJaLaLaMaHadahabaNababadabababacaaaa"
+- "aaaaadaHaJadaJaOaHaPaHaJaJaHadaDaQaRananacabababaaaaaa"
+- "aaaaadaSaHadaTadaLadadaUadaUadadanaVananadaWababacaaaa"
+- "aaaaadadadadaCadadadaJaJadaJaHadagaXaYaZadadaCadadaaaa"
+- "aaaaaaada0aHaJaHaHadaMaJada1aHadadadadadada1aHadadaaaa"
+- "aaaaaaada2aPaJa3a4adadadadadadadada5a6adadaHaJa3adaaaa"
+- "aaaaaaadaHaJa7aJaHaCaHaJaHaJaJaHaHaHaJaUaJaJa8aHadaaaa"
+- "aaaaaaada9a3aHa3babbaHaHaPaJaJaHadadadadaCadadadadaaaa"
+- "aaaaaaadaHaHaJaHaHadbcbdbeaHaHaHadadbfbfbfbfbfadadaaaa"
+- "aaaaadadadbgaHbgadadadadadadadadadbhbfbfbfbfbfbiacaaaa"
+- "aaaaadbjbjbjbkbjbjbjadagananbfbfacblbfbmbnbfbfbfaaaaaa"
+- "aaaaadbjbobobobobobjadbpbqatbrbfbsbfbfbfbfbmbfbfacaaaa"
+- "aaaaadbjbtbobobobubjadbvbwbxbrbfacblbfbfbnbfbfbfaaaaaa"
+- "aaaaadbjbobobybobobjadadbfbfbfbfadbnbfbfbfbfbfbzacaaaa"
+- "aaaaadbjbAbAbBbCbCbjadadbzbnbnbDadadadbEacbEadazadaaaa"
+- "aaaaadbjbjbjbjbjbjbjadadadadadadadbFbfbfbfbfbfbnadaaaa"
+- "aaaaadadadadadadadadadaaaaaaaaaaadbFbfbfbfbfbfbGadaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadbFbfbfbHbfbIbnadaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadadadadadaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"

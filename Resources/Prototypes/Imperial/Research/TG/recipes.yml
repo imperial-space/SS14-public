@@ -2928,6 +2928,9 @@
 - type: latheRecipePack
   id: ImperialTgDynamicCircuitImprinter
   recipes:
+  - BitrunningRecipeByteforge
+  - BitrunningRecipeQuantumConsole
+  - BitrunningRecipeNetpod
   - ImperialTgRecipeAtmosControl
   - ImperialTgRecipeAtmosalerts
   - ImperialTgRecipeThermomachine

@@ -1,0 +1,67 @@
+# Сконвертировано из breeze_bay.dmm (tgstation/BandaStation, _maps/virtual_domains) утилитой dmm2domain.
+width: 25
+height: 25
+keyLength: 1
+legend:
+  "a": {t: Plating, a: bright, e: ["WallPlastitaniumIndestructible"]}
+  "b": {t: FloorAsteroidSand, a: bright, e: ["FloraTreeLarge"]}
+  "c": {t: FloorAsteroidSand, a: bright}
+  "d": {t: FloorAsteroidSand, a: bright, e: ["#Bushb1"]}
+  "e": {t: FloorAsteroidSand, a: bright, e: ["FloraRockSolid"]}
+  "f": {t: FloorAsteroidSand, a: bright, e: ["AlwaysPoweredSmallLight@180"]}
+  "g": {t: FloorAsteroidSand, a: bright, e: ["MobCrab"]}
+  "h": {t: FloorAsteroidSand, a: bright, e: ["AlwaysPoweredSmallLight@-90"]}
+  "i": {t: Plating, a: safe, e: ["WallWood"]}
+  "j": {t: Plating, a: safe, e: ["Window", "Grille"]}
+  "k": {t: Plating, a: safe, e: ["WoodDoor"]}
+  "l": {t: FloorAsteroidSand, a: bright, e: ["AlwaysPoweredSmallLight@90"]}
+  "m": {t: FloorWood, a: bright, e: ["CarpetBlue"]}
+  "n": {t: FloorWood, a: bright, e: ["Carpet"]}
+  "o": {t: FloorWood, a: bright, e: ["CarpetGreen"]}
+  "p": {t: FloorAsteroidSand, a: bright, e: ["CrateFreezer", "DrinkBeerBottleFull", "DrinkBeerBottleFull", "DrinkBeerBottleFull", "DrinkBeerBottleFull", "DrinkBeerBottleFull", "DrinkBeerBottleFull"]}
+  "q": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@90"]}
+  "r": {t: FloorSteel, a: safe, e: ["PottedPlantRandom"]}
+  "s": {t: FloorSteel, a: safe}
+  "t": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@-90", "BitrunningMarkerGoal"]}
+  "u": {t: FloorWood, a: safe, e: ["CarpetGreen"]}
+  "v": {t: FloorWood, a: safe, e: ["RailingCorner@90", "CarpetGreen"]}
+  "w": {t: FloorSteel, a: safe, e: ["Railing", "BitrunningMarkerGoal"]}
+  "x": {t: FloorAsteroidSand, a: bright, e: ["FloraTree"]}
+  "y": {t: Plating, a: safe, e: ["WallWood", "RandomPosterLegit"]}
+  "z": {t: FloorAsteroidSand, a: bright, e: ["#Busha1"]}
+  "A": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "B": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@-90", "TableWood"]}
+  "C": {t: FloorAsteroidSand, a: bright, e: ["BitrunningMarkerLootSignal"]}
+  "D": {t: FloorAsteroidSand, a: bright, e: ["ImperialFishingRod", "ImperialFishingRod", "ImperialFishingRod", "TableWood"]}
+  "E": {t: FloorAsteroidSand, a: bright, e: ["CrateGenericSteel"]}
+  "F": {t: FloorAsteroidSand, a: bright, e: ["AlwaysPoweredSmallLight"]}
+  "G": {t: FloorWoodLarge, a: bright}
+  "H": {t: FloorAsteroidSand, a: bright, e: ["FloorWaterEntity"]}
+  "I": {t: FloorAsteroidSand, a: bright, e: ["#Bushb1", "FloorWaterEntity"]}
+  "J": {t: FloorWoodLarge, a: bright, e: ["ChairWood"]}
+rows:
+- "aaaaaaaaaaaaaaaaaaaaaaaaa"
+- "abcccbdcdbcccbccdbcccbcca"
+- "adebdcdbdccbcdcbcdcbecdba"
+- "adcccccccccdcccccccccdcca"
+- "acfcccccfccccccccccccccga"
+- "ahijikijilcccmcncopccccca"
+- "aciqrssticcccmcncocccccda"
+- "acjsuuvwjccxcccccccccccca"
+- "acisuuusycczcccccccccccca"
+- "aciqAAABiccccccccccczxdca"
+- "ahijiiijilccCDEccccccccca"
+- "agFccdccFccccccccccccccca"
+- "accccccccccccccccGGccccca"
+- "aHIHHHHHHHHHHHHHHGGHHHHHa"
+- "aHHHHHHHHHHHHHHHHGGHHHHIa"
+- "aHHHHHHHHHHHHHHHHGGHHHHHa"
+- "aHHHHHHHHHHHHHHHHGGHHHHHa"
+- "aHHHHHHHHHHHHHHGGGGHHHHHa"
+- "aHHHHHHHHHHHHHHGGGGHHHHHa"
+- "aHHHHHHHHHHHHHHHHGGHHHHHa"
+- "aIHHHHHHHHHHHHHHHGJHHHHHa"
+- "aHHHHHHHHHHHHHHHHGGHHHHHa"
+- "aHHHHHHHHHHHHHHHHHHHHHIHa"
+- "aHHHHHHHHHHHHHHHHHHHHHHHa"
+- "aaaaaaaaaaaaaaaaaaaaaaaaa"

@@ -1,0 +1,368 @@
+# Битраннинг: ящики домена, голо-лестница, метки карт, предметы аватара.
+
+# /obj/structure/closet/crate/secure/bitrunning/encrypted
+- type: entity
+  parent: CrateGeneric
+  id: BitrunningEncryptedCache
+  name: зашифрованный ящик
+  description: Для открытия требуется расшифровать данные в убежище — доставьте его на пульсирующую клетку.
+  components:
+  - type: Icon
+    sprite: Imperial/Bitrunning/crate.rsi
+    state: bitrunning
+  - type: Sprite
+    sprite: Imperial/Bitrunning/crate.rsi
+    layers:
+    - state: bitrunning
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: bitrunning
+      sprite: Imperial/Bitrunning/effects.rsi
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: EntityStorageVisuals
+    stateDoorOpen: bitrunningopen
+    stateDoorClosed: bitrunning
+  - type: Lock
+    locked: true
+  - type: BitrunningEncryptedCache
+  - type: Destructible
+    thresholds: []
+
+# /obj/structure/closet/crate/secure/bitrunning/decrypted
+- type: entity
+  parent: CrateGeneric
+  id: BitrunningDecryptedCache
+  name: расшифрованный ящик
+  description: Скомпилирован из виртуального домена. Награда за успешное прохождение битрана.
+  components:
+  - type: Icon
+    sprite: Imperial/Bitrunning/crate.rsi
+    state: bitrunning
+  - type: Sprite
+    sprite: Imperial/Bitrunning/crate.rsi
+    layers:
+    - state: bitrunning
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: bitrunning
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: EntityStorageVisuals
+    stateDoorOpen: bitrunningopen
+    stateDoorClosed: bitrunning
+  - type: BitrunningDecryptedCache
+
+# /obj/item/storage/lockbox/bitrunning/encrypted
+- type: entity
+  parent: BaseItem
+  id: BitrunningEncryptedCuriosity
+  name: зашифрованная диковинка
+  description: Небольшой контейнер с зашифрованными данными. Доставьте его на клетку расшифровки, чтобы получить побочную награду.
+  components:
+  - type: Sprite
+    sprite: Objects/Storage/boxes.rsi
+    state: box_of_doom
+  - type: Item
+    size: Normal
+  - type: BitrunningEncryptedCache
+    main: false
+
+# /obj/item/storage/lockbox/bitrunning/decrypted
+- type: entity
+  parent: BoxCardboard
+  id: BitrunningDecryptedCuriosity
+  name: расшифрованная диковинка
+  description: Побочная награда виртуального домена.
+  components:
+  - type: Sprite
+    sprite: Objects/Storage/boxes.rsi
+    state: box_of_doom
+
+# Сертификат о прохождении домена.
+- type: entity
+  parent: Paper
+  id: BitrunningCertificate
+  name: сертификат о прохождении домена
+  categories: [ HideSpawnMenu ]
+
+# /obj/structure/hololadder
+- type: entity
+  id: BitrunningHololadder
+  name: голо-лестница
+  description: Абстрактное представление средства отключения от виртуального пространства. Нажмите на неё или встаньте на неё, чтобы отключиться.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Bitrunning/hololadder.rsi
+    state: hololadder
+    drawdepth: FloorObjects
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.3"
+        hard: false
+        mask:
+        - ItemMask
+        layer:
+        - SlipLayer
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.2
+  - type: InteractionOutline
+  - type: BitrunningHololadder
+  - type: PointLight
+    radius: 1.5
+    energy: 1
+    color: "#6496FA"
+
+# ─── Метки карт доменов (obj/effect/landmark/bitrunning/*) ───
+- type: entity
+  abstract: true
+  parent: MarkerBase
+  id: BitrunningMarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Bitrunning/effects.rsi
+
+- type: entity
+  parent: BitrunningMarkerBase
+  id: BitrunningMarkerHololadder
+  name: точка голо-лестницы
+  components:
+  - type: Sprite
+    state: hololadder
+  - type: BitrunningLandmark
+    kind: Hololadder
+
+- type: entity
+  parent: BitrunningMarkerBase
+  id: BitrunningMarkerPermanentExit
+  name: постоянный выход
+  components:
+  - type: Sprite
+    state: perm_exit
+  - type: BitrunningLandmark
+    kind: PermanentExit
+
+# Клетка-цель остаётся видимой: сюда несут ящик.
+- type: entity
+  id: BitrunningMarkerGoal
+  name: клетка расшифровки
+  description: Под вашим взглядом пол едва заметно пульсирует потоками закодированных данных. Эта часть локации предназначена для получения зашифрованных данных.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Imperial/Bitrunning/effects.rsi
+    state: goal
+    drawdepth: FloorTiles
+  - type: Clickable
+  - type: BitrunningLandmark
+    kind: Goal
+
+- type: entity
+  parent: BitrunningMarkerBase
+  id: BitrunningMarkerCache
+  name: место зашифрованного ящика
+  components:
+  - type: Sprite
+    state: crate
+  - type: BitrunningLandmark
+    kind: Cache
+
+- type: entity
+  parent: BitrunningMarkerBase
+  id: BitrunningMarkerCuriosity
+  name: место диковинки
+  components:
+  - type: Sprite
+    state: crate
+  - type: BitrunningLandmark
+    kind: Curiosity
+
+- type: entity
+  parent: BitrunningMarkerBase
+  id: BitrunningMarkerLootSignal
+  name: таинственная аура
+  components:
+  - type: Sprite
+    state: crate
+  - type: BitrunningLandmark
+    kind: LootSignal
+
+- type: entity
+  parent: BitrunningMarkerBase
+  id: BitrunningMarkerMobSegment
+  name: модульный сегмент мобов
+  components:
+  - type: Sprite
+    state: mob_segment
+  - type: BitrunningLandmark
+    kind: MobSegment
+
+- type: entity
+  parent: BitrunningMarkerBase
+  id: BitrunningMarkerCrateReplacer
+  name: перемешиватель ящиков
+  components:
+  - type: Sprite
+    state: crate
+  - type: BitrunningLandmark
+    kind: CrateReplacer
+
+# /obj/item/bitrunning_host_monitor
+- type: entity
+  parent: BaseItem
+  id: BitrunningHostMonitor
+  name: монитор хоста
+  description: Сложная электронная система, которая анализирует работоспособность соединения между хостом и аватаром. Используйте в руке.
+  components:
+  - type: Sprite
+    sprite: Imperial/Bitrunning/host_monitor.rsi
+    state: host_monitor
+  - type: Item
+    size: Tiny
+  - type: Clothing
+    slots: [ belt ]
+  - type: BitrunningHostMonitor
+
+# Свет без сети для доменов (маленькая лампа).
+- type: entity
+  parent: PoweredSmallLight
+  id: AlwaysPoweredSmallLight
+  suffix: Always Powered
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+
+# ─── Аватар ───
+- type: entity
+  parent: BaseAction
+  id: ActionBitrunningDomainInfo
+  name: Информация о домене
+  description: Показывает подсказку текущего виртуального домена.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Bitrunning/effects.rsi
+      state: safehouse
+  - type: InstantAction
+    event: !type:BitrunningDomainInfoActionEvent
+
+- type: dataset
+  id: BitrunningHackerAliases
+  values:
+  - Ne0Phyte
+  - CipherX
+  - Gh0stWire
+  - L33tByt3
+  - Vortex9
+  - Syn4pse
+  - DarkMatt3r
+  - QuantumDr1ft
+  - Crash0verr1de
+  - Z3r0C00l
+  - NyxShad0w
+  - Gl1tchR3aper
+  - CryptoWra1th
+  - Raz0rEdge
+  - VoidWalk3r
+  - Neur0mancer
+  - EchoH3xx
+  - DataSt0rm
+  - CyberS1ren
+  - Rogu3Protocol
+  - Nexu5Prim3
+  - CircuitBr3aker
+  - EnigmaPulse
+  - PhantomBit
+  - FluxC4pac1tor
+  - OmegaC0dec
+  - Ne0nRon1n
+  - Senpa1Sw1pe
+  - MechaM0chii
+  - SakuraSn1per
+  - WaifuWarri0r
+  - KatanaKid99
+  - xXDarkL0rd69Xx
+  - H4xx0rNinja
+  - CyberNinja1337
+  - Ub3r1337Sk1llz
+  - PhrEaK420
+  - IRCWizard69
+  - EliteWar3zKing
+  - Y2KPwn3r
+  - BBSPh34r
+  - BlackWill0w69
+  - 2038Pr0blem
+  - Sp4ceW1nd
+  - B0bbyT4bles
+  - C0deInjector
+
+# /datum/outfit/job/bitrunner для аватара (слоты ушей, очков, перчаток, карманов и костюма снимаются кодом).
+- type: startingGear
+  id: BitrunnerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCargo
+    shoes: ClothingShoesColorBlack
+    back: ClothingBackpack
+
+# /datum/outfit/job/miner
+- type: startingGear
+  id: BitrunningMinerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
+    shoes: ClothingShoesBootsWork
+    back: ClothingBackpackSalvage
+
+# ─── Тревоги аватара ───
+- type: alert
+  id: BitrunningDomainComplete
+  clickEvent: !type:BitrunningSafeDisconnectAlertEvent
+  icons:
+  - sprite: Imperial/Bitrunning/effects.rsi
+    state: goal
+  name: alerts-bitrunning-complete-name
+  description: alerts-bitrunning-complete-desc
+
+- type: alert
+  id: BitrunningShutdown
+  icons:
+  - sprite: Imperial/Bitrunning/effects.rsi
+    state: glitch
+  name: alerts-bitrunning-shutdown-name
+  description: alerts-bitrunning-shutdown-desc
+
+- type: alert
+  id: BitrunningCrowbar
+  icons:
+  - sprite: Imperial/Bitrunning/effects.rsi
+    state: glitch
+  name: alerts-bitrunning-crowbar-name
+  description: alerts-bitrunning-crowbar-desc
+
+- type: alert
+  id: BitrunningIntegrity
+  icons:
+  - sprite: Imperial/Bitrunning/effects.rsi
+    state: glitch
+  name: alerts-bitrunning-integrity-name
+  description: alerts-bitrunning-integrity-desc
+
+- type: alert
+  id: BitrunningThreat
+  icons:
+  - sprite: Imperial/Bitrunning/effects.rsi
+    state: redshift
+  name: alerts-bitrunning-threat-name
+  description: alerts-bitrunning-threat-desc

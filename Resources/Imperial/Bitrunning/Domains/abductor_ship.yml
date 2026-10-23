@@ -1,0 +1,69 @@
+# Сконвертировано из abductor_ship.dmm (tgstation/BandaStation, _maps/virtual_domains) утилитой dmm2domain.
+width: 35
+height: 35
+keyLength: 1
+legend:
+  "a": {t: Space}
+  "b": {t: Plating, a: bright, e: ["WallPlastitaniumIndestructible"]}
+  "c": {t: FloorAstroGrass, a: space}
+  "d": {t: Plating, a: normal, e: ["WallPlastitaniumIndestructible"]}
+  "e": {t: FloorXeno, a: normal}
+  "f": {t: FloorXeno, a: normal, e: ["TableReinforced", "Stunbaton"]}
+  "g": {t: Plating, a: normal, e: ["WallPlastitanium"]}
+  "h": {t: FloorXeno, a: normal, e: ["ComputerBroken"]}
+  "i": {t: FloorXeno, a: normal, e: ["ComfyChair@90"]}
+  "j": {t: FloorXeno, a: normal, e: ["ComfyChair@-90"]}
+  "k": {t: FloorXeno, a: normal, e: ["BitrunningMarkerCache"]}
+  "l": {t: FloorXeno, a: normal, e: ["PottedPlantRandom"]}
+  "m": {t: FloorXeno, a: normal, e: ["Bed"]}
+  "n": {t: FloorXeno, a: normal, e: ["ReinforcedPlasmaWindow", "Grille"]}
+  "o": {t: FloorXeno, a: normal, e: ["AirlockShuttle"]}
+  "p": {t: FloorXeno, a: normal, e: ["ClosetSteelBase"]}
+  "q": {t: FloorXeno, a: normal, e: ["TableReinforced", "Wrench"]}
+  "r": {t: FloorXeno, a: normal, e: ["BitrunningMarkerMobSegment"]}
+  "s": {t: FloorXeno, a: normal, e: ["TableReinforced"]}
+  "t": {t: FloorXeno, a: normal, e: ["Table", "ShardGlass"]}
+  "u": {t: FloorXeno, a: normal, e: ["SalvageHumanCorpse"]}
+  "v": {t: FloorXeno, a: safe}
+  "w": {t: Plating, a: safe, e: ["WallPlastitanium"]}
+  "x": {t: FloorXeno, a: safe, e: ["AirlockShuttle"]}
+  "y": {t: FloorXeno, a: normal, e: ["ChairOfficeDark@90"]}
+  "z": {t: FloorXeno, a: normal, e: ["TableReinforced", "Crowbar"]}
+  "A": {t: FloorXeno, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "B": {t: FloorXeno, a: safe, e: ["BitrunningMarkerGoal"]}
+rows:
+- "aaaaaaabbbbbbbbbbbbbbbbbbbbbaaaaaaa"
+- "aaaaaabbcccccccccccccccccccbbaaaaaa"
+- "aaaaaabcccccccccccccccccccccbaaaaaa"
+- "aaaaaabccccccccdddddccccccccbaaaaaa"
+- "aaaaaabbbbbdddddefedddddbbbbbaaaaaa"
+- "aaaaaaaaaadggddheeehddggdaaaaaaaaaa"
+- "aaaaaaaaaddddddieeejddddddaaaaaaaaa"
+- "aaaaaaaaddkeeldieeejdlkeeddaaaaaaaa"
+- "aaaaaaaddeeeeedeeeeedmeeeeddaaaaaaa"
+- "aaaaaaddeeeddddnononddddeeeddaaaaaa"
+- "aaaaaddeeeddpkdleeeldemddeeeddaaaaa"
+- "aaaaddeeeddqeedeeeeedeeeddereddaaaa"
+- "aaaddeeeddseeldeeeeedmeetddeeeddaaa"
+- "aaddeeeddperedleeeeeldeeemddeeeddaa"
+- "addeeeldgeedodeeeeeeedodelddleeedda"
+- "ddeeeeddguedeeeeeeeeeeedmedddeeeedd"
+- "ddeeeedgdddeeevwwxwwveeedddgdeeyzdd"
+- "ddmeeedddleeeewvvvvvweeeeldddeeeedd"
+- "ddseeeeeeeeeeewAvvvBweeeeeeeeeeeedd"
+- "ddseeeeeeeeeeewAvvvBweeeeeeeeeeeedd"
+- "ddmeeedddleeeewAvvvvweeeeedddeeeedd"
+- "ddeeeedddddeeevwwxwwveeedddgdeeysdd"
+- "ddeeredddssdeeeeeeeeeeedssdddeeeedd"
+- "addeeelddeedodeeeeeeedodeeddleeedda"
+- "aaddeeeddpeeedleeeeeldeerlddeeeddaa"
+- "aaaddeeeddeeepdeereedleejddeeeddaaa"
+- "aaaaddeeeddpeudeeeeedkesddeerddaaaa"
+- "aaaaaddeekddssdeeeeedssddeeeddaaaaa"
+- "aaaaaaddeeedddddeeedddddkeeddaaaaaa"
+- "aaaaaaaddeeddddddoddgggdeeddaaaaaaa"
+- "aaaaaaaaddlddeedeeedeegdlddaaaaaaaa"
+- "aaaaaaaaadddeeederedeeedddaaaaaaaaa"
+- "aaaaaaaaaadddeedeeedeedddaaaaaaaaaa"
+- "aaaaaaaaaaadddddddddddddaaaaaaaaaaa"
+- "aaaaaaaaaaaadddddddddddaaaaaaaaaaaa"

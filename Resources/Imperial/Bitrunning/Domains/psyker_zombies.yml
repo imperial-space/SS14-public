@@ -1,0 +1,59 @@
+# Сконвертировано из psyker_zombies.dmm (tgstation/BandaStation, _maps/virtual_domains) утилитой dmm2domain.
+width: 36
+height: 25
+keyLength: 1
+legend:
+  "a": {t: Space}
+  "b": {t: Plating, a: bright, e: ["WallPlastitaniumIndestructible"]}
+  "c": {t: FloorDark, a: normal, e: ["SalvageHumanCorpse", "BitrunningMarkerCache"]}
+  "d": {t: FloorDark, a: normal, e: ["Rack"]}
+  "e": {t: FloorDark, a: normal}
+  "f": {t: FloorDark, a: normal, e: ["BitrunningMarkerCache"]}
+  "g": {t: FloorBasalt, a: normal, e: ["FloorChasmEntity"]}
+  "h": {t: FloorDark, a: normal, e: ["ImperialSCPZombie"]}
+  "i": {t: FloorDark, a: normal, e: ["SalvageHumanCorpse"]}
+  "j": {t: FloorDark, a: normal, e: ["LandMineExplosive"]}
+  "k": {t: FloorDark, a: normal, e: ["AirlockShuttle"]}
+  "l": {t: FloorDark, a: protected, e: ["AirlockShuttle"]}
+  "m": {t: FloorDark, a: protected, e: ["Rack"]}
+  "n": {t: FloorDark, a: protected}
+  "o": {t: Plating, a: safe, e: ["WallSilver"]}
+  "p": {t: Plating, a: safe, e: ["WallSilver", "ExtinguisherCabinetFilled"]}
+  "q": {t: FloorFreezer, a: safe, e: ["AirlockFreezer"]}
+  "r": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@90"]}
+  "s": {t: FloorFreezer, a: safe}
+  "t": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal", "AlwaysPoweredSmallLight@-90"]}
+  "u": {t: FloorFreezer, a: safe, e: ["ToiletEmpty@90"]}
+  "v": {t: FloorFreezer, a: safe, e: ["RailingCorner@90"]}
+  "w": {t: FloorSteel, a: safe, e: ["Railing", "BitrunningMarkerGoal"]}
+  "x": {t: Plating, a: safe, e: ["WallSilver", "RandomPosterLegit"]}
+  "y": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@90", "MedkitFilled", "MedkitFilled"]}
+  "z": {t: FloorFreezer, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "A": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@-90"]}
+  "B": {t: FloorFreezer, a: safe, e: ["Window", "Grille"]}
+rows:
+- "aabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbaaa"
+- "aabcdbbbbbeeeeeeefggbbbbggeeeeeebbbb"
+- "aabhdbbhieeeeejeebggggggggehbeeejefb"
+- "aabedbbeeggeeeeeeggggbbbbbkbbjeeeeeb"
+- "aabkbbbeeggebebhbbbbbbbbbbefbbbbbeeb"
+- "aabejebeeggebbbbbbhfbbbbbiehbbeeeeeb"
+- "abbeeeeeeggeeeeeeeeeeeeekeehbjejbehb"
+- "abeeeeeeeeeeeeeeeeeeeeeebibbbeebbebb"
+- "bbeeebbbbbeeebbhebbbbbbbbbbheebbeeba"
+- "beejbbeehbbbbbbbkbbebbbbbbbbeebbebba"
+- "beebbeeeeeeeeeeeehbeeebbbbeeeeebjbba"
+- "beebbeeeeggebbbeeeeejebbbeeeeeeeebba"
+- "beehbbbeeggeeebbeeeeeeebbejebeeeeeba"
+- "beeehbbeeggeeeeeeeeeeeeeeeeebeieeiba"
+- "bfeeebbeeggeeeebbbblbbbbeeejbhbbefba"
+- "bbeeebeeeggeeeebmnnnnnmbjebbbbbbeiba"
+- "abbeeeejeeeeeehbnnnnnnnbbbbaaaabggba"
+- "aabbeeebbbbbbbbbnnnnnnnbbaaaaaabggba"
+- "aabbbbbbaaaaaaaboopqpoobaaaaaaabbbba"
+- "aaaaaaaaaaaaaaaborssstobaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaboussvwobaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaabosssssxbaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaboyzzzAobaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaboooooBobaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaabbbbbbbbbaaaaaaaaaaaa"

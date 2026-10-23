@@ -1,0 +1,75 @@
+# Сконвертировано из xeno_nest.dmm (tgstation/BandaStation, _maps/virtual_domains) утилитой dmm2domain.
+width: 44
+height: 39
+keyLength: 1
+legend:
+  "a": {t: Space}
+  "b": {t: Plating, a: bright, e: ["WallPlastitaniumIndestructible"]}
+  "c": {t: FloorBasalt, a: normal, e: ["ImperialXenoResinWall"]}
+  "d": {t: FloorBasalt, a: normal}
+  "e": {t: FloorBasalt, a: normal, e: ["BitrunningMarkerCache"]}
+  "f": {t: FloorBasalt, a: normal, e: ["Bed"]}
+  "g": {t: FloorBasalt, a: normal, e: ["BitrunningMarkerMobSegment"]}
+  "h": {t: FloorBasalt, a: normal, e: ["Bed", "WeaponPistolMk58"]}
+  "i": {t: FloorBasalt, a: normal, e: ["ImperialXenoResinWall", "ImperialXenoResinWall"]}
+  "j": {t: FloorBasalt, a: normal, e: ["Bed", "ImperialXenoResinWall"]}
+  "k": {t: FloorBasalt, a: normal, e: ["Bed", "Stunbaton"]}
+  "l": {t: FloorBasalt, a: normal, e: ["Bed", "BitrunningMarkerCache"]}
+  "m": {t: FloorBasalt, a: normal, e: ["ImperialXenoDrone"]}
+  "n": {t: FloorBasalt, a: normal, e: ["ImperialXenoQueen"]}
+  "o": {t: FloorBasalt, a: normal, e: ["ImperialXenoHunter"]}
+  "p": {t: Plating, a: bright, e: ["ImperialXenoResinWall", "WallPlastitaniumIndestructible"]}
+  "q": {t: FloorBasalt, a: normal, e: ["Bed", "OxygenTankFilled", "ClothingMaskGas"]}
+  "r": {t: Plating, a: safe, e: ["WallShuttle"]}
+  "s": {t: Plating, a: safe, e: ["ReinforcedWindow", "Grille"]}
+  "t": {t: FloorWhite, a: safe, e: ["AirlockShuttle"]}
+  "u": {t: Plating, a: safe, e: ["WindowReinforcedDirectional@90"]}
+  "v": {t: FloorSteel, a: safe}
+  "w": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight"]}
+  "x": {t: FloorSteel, a: safe, e: ["TableReinforced", "ToolboxEmergencyFilled"]}
+  "y": {t: FloorSteel, a: safe, e: ["ComfyChair@90"]}
+  "z": {t: FloorSteel, a: safe, e: ["TableReinforced", "EmergencyOxygenTankFilled", "ClothingMaskGas"]}
+  "A": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@180", "BitrunningMarkerGoal"]}
+  "B": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal"]}
+  "C": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "D": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@180", "BitrunningMarkerHololadder"]}
+rows:
+- "aaaaaaaaaaaaaaaaaabbbbbbbaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaabcccccbbaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaabcddeccbaaaaaaaaaaaaaaaaaa"
+- "aabbbbbbbbbbaaaaaabcfgdfcbaaaaaaaaaaaaaaaaaa"
+- "bbbccccccccbbbaaaabccddfcbaaaaaaaaaaaaabbbbb"
+- "bcccdddfhdcccbbaaabbccdccbbbbbbbaaaaabbbccib"
+- "bcdddgddddddccbbbbbbccdcbbbccccbaaaabbcccdcb"
+- "bcddcjdcdcdddccccccbcddcbbccklcbbbbbbccfdecb"
+- "bcddceddcdddddcdmdcccdccbbcdddccccccccddddcb"
+- "bccdcnddddddddcddddccdcccccddddddddddddgdfcb"
+- "bcdmcdddddddddcccddddddddddgdfccccccccdddfcb"
+- "bcddcfdddcgddccbccddddcccddddfcbbbbbbccddccb"
+- "bccdccedcdddccbbbccdddcbcccdfccbbbbbbccdccbb"
+- "bbcccccccccccbbbccdddccbbbccccbbaaabbcddcbba"
+- "abbbbbbbbbbbbbabcdddccbbbbbbbbbbaaabbcdccbaa"
+- "aaaaaaaaaaaaaaabcddccbbbbbbbbbbbaaabbcocbbaa"
+- "aaaaaaaaaaaaaaabcddcbbbbbbbbbbbbbbbbccdcbaaa"
+- "aaaaaaaaaaaaaaabcddcbbbbbbbcccccpbbccddcbaaa"
+- "aaaaaaaaaaaaaaabcddcccccccccddddccccddccbaaa"
+- "aaaaaaaaaaaaaaabcdddcdddddcddccddddddccbbaaa"
+- "aaaaaaaaaaaaaabbccddddddmdddccccccccccbbaaaa"
+- "aaaaaaaaaaaaabbcccddddcccddccbbbbbbbbbbaaaaa"
+- "aaaaaaaaaaaaabccdddccccbcddccbbaaaaaaaaaaaaa"
+- "aaaaaaaaaaabbbcddcccbbbbccddccbaaaaaaaaaaaaa"
+- "aaaaaaaaaabbcccoccbbbaabbcdddcbaaaaaaaaaaaaa"
+- "aaaaaaaaabbccfddcbbaaaaabccddcbaaaaaaaaaaaaa"
+- "aaaaaaaaabccddddcbaaaaaabbccccbbbbbaaaaaaaaa"
+- "aaaaaaaaabcqdgdccbaaaaaabbcddcbbccbaaaaaaaaa"
+- "aaaaaaaaabcfddfcbbaaaaaabbcddccccbbbbbbbaaaa"
+- "aaaaaaaaabccedccbbbbbbbbbccdddddccccccibaaaa"
+- "aaaaaaaaabbccccbbbicccccccddddddcccccccbaaaa"
+- "aaaaaaaaaabbbbbbabcddddddrsrtrsrddddddcbaaaa"
+- "aaaaaaaaaaaaaaaaabcdddddduvwvwxrddddddcbaaaa"
+- "aaaaaaaaaaaaaaaaabcddddddsvvvyvsddddddcbaaaa"
+- "aaaaaaaaaaaaaaaaabcddddddsvvvvzsddddddcbaaaa"
+- "aaaaaaaaaaaaaaaaabcdddddduABCCDrddddddcbaaaa"
+- "aaaaaaaaaaaaaaaaabcddddddrrsrsrrddddddcbaaaa"
+- "aaaaaaaaaaaaaaaaabcdddddddddddddddddddcbaaaa"
+- "aaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbaaaa"

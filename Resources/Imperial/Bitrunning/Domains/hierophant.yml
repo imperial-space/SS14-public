@@ -1,0 +1,67 @@
+# Сконвертировано из hierophant.dmm (tgstation/BandaStation, _maps/virtual_domains) утилитой dmm2domain.
+width: 25
+height: 38
+keyLength: 1
+legend:
+  "a": {t: Plating, a: bright, e: ["WallPlastitaniumIndestructible"]}
+  "b": {t: Plating, a: outdoors, e: ["WallPlastitaniumIndestructible"]}
+  "c": {t: FloorDark, a: outdoors}
+  "d": {t: FloorDark, a: outdoors, e: ["SalvageHumanCorpse"]}
+  "e": {t: FloorDark, a: outdoors, e: ["MarkerBeaconStructure"]}
+  "f": {t: FloorDark, a: outdoors, e: ["MobHierophant"]}
+  "g": {t: Space}
+  "h": {t: FloorBasalt, a: outdoors}
+  "i": {t: FloorDark, a: outdoors, e: ["AlwaysPoweredSmallLight@180"]}
+  "j": {t: Plating, a: safe, e: ["WallSolid"]}
+  "k": {t: Plating, a: safe, e: ["ReinforcedWindow", "Grille"]}
+  "l": {t: Plating, a: safe, e: ["WallSolid", "ExtinguisherCabinetFilled"]}
+  "m": {t: FloorDarkMono, a: safe, e: ["AirlockExternal"]}
+  "n": {t: FloorDark, a: safe}
+  "o": {t: FloorDarkMono, a: safe}
+  "p": {t: FloorDarkMono, a: safe, e: ["AlwaysPoweredWallLight@90"]}
+  "q": {t: FloorDarkMono, a: safe, e: ["WeaponProtoKineticAccelerator", "WeaponProtoKineticAccelerator", "WeaponProtoKineticAccelerator", "ClosetSteelBase", "WeaponCrusher", "WeaponCrusher"]}
+  "r": {t: FloorSteel, a: safe, e: ["AlwaysPoweredWallLight@-90", "Railing", "BitrunningMarkerGoal"]}
+  "s": {t: FloorDarkMono, a: safe, e: ["Table", "PKAUpgradeDamage", "PKAUpgradeDamage", "PKAUpgradeDamage", "PKAUpgradeRange", "PKAUpgradeRange", "PKAUpgradeRange", "PKAUpgradeFireRate", "PKAUpgradeFireRate", "PKAUpgradeFireRate", "ImperialLuxuryMedipen", "ImperialLuxuryMedipen"]}
+  "t": {t: FloorDarkMono, a: safe, e: ["ClosetSteelBase", "WeaponLauncherRocket", "EnergyKatana", "MagazineLightRifleBox"]}
+  "u": {t: FloorDark, a: safe, e: ["Table", "Lantern", "Lantern", "Lantern", "ClothingEyesGlassesMeson", "ClothingEyesGlassesMeson", "ClothingEyesGlassesMeson"]}
+  "v": {t: FloorDarkMono, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "w": {t: FloorDark, a: safe, e: ["ClosetSteelBase", "WeaponLightMachineGunL6", "MagazineBoxAntiMateriel", "WeaponSniperHristov"]}
+rows:
+- "aaaaaaaaaaaaaaaaaaaaaaaaa"
+- "abbbbbbbbbbbbbbbbbbbbbbba"
+- "abcccccccccccccccccccccba"
+- "abccccccccbcccbccccccccba"
+- "abcccccccccccccccccccccba"
+- "abcccbbcccccccccccbbcccba"
+- "abcccbbcccccccccccbbcccba"
+- "abcccccccccccccccccdcccba"
+- "abccccccccbcccbccccccccba"
+- "abcccecccccccccccccccccba"
+- "abcbccccbcccccccbccccbcba"
+- "abcccccccccccccccccccccba"
+- "abccccccccccfccccccccccba"
+- "abcccccccccccccccccccccba"
+- "abcbccccbcccccccbccecbcba"
+- "abcccccccccccccccccccccba"
+- "abccccccccbcccbccccccccba"
+- "abcccccccccccccccccccccba"
+- "abcccbbcccccccccccbbcccba"
+- "abcccbbcccccccccccbbcccba"
+- "abcccccccccccccccccccccba"
+- "abccccceccbcccbccccccccba"
+- "abcccccccccccccccccccccba"
+- "abbbbccbbbbbbbbbbbccbbbba"
+- "aaaabccbaaaaaaaaabccbaaaa"
+- "gggabccbbbbbabbbbbccbaggg"
+- "gggabcccdccbabccccccbaggg"
+- "aaaabccccccbbbccccccbaaaa"
+- "ahhhbbbbbcccccccbbbbbhhha"
+- "ahhhhhhhbicccccibhhhhhhha"
+- "ahhhhhhhhjklmlkjhhhhhhhha"
+- "ahhhhhhhhjnooonjhhhhhhhha"
+- "ahhhhhhhhjpoqorjhhhhhhhha"
+- "ahhhhhhhhkoosotkhhhhhhhha"
+- "ahhhhhhhhkuvvvwkhhhhhhhha"
+- "ahhhhhhhhjjkkkjjhhhhhhhha"
+- "ahhhhhhhhhhhhhhhhhhhhhhha"
+- "aaaaaaaaaaaaaaaaaaaaaaaaa"
