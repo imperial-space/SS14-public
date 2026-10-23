@@ -148,6 +148,16 @@ public sealed class BitrunningShopSystem : EntitySystem
         return _bank.AccountOf(user) is { } account ? _points.GetValueOrDefault(account.Id) : 0;
     }
 
+    /// <summary>Админское начисление: очки на счёт того, чья карта у сущности. false — счёта нет.</summary>
+    public bool AddPoints(EntityUid user, int amount)
+    {
+        if (_bank.AccountOf(user) is not { } account)
+            return false;
+
+        _points[account.Id] = Math.Max(0, _points.GetValueOrDefault(account.Id) + amount);
+        return true;
+    }
+
     /// <summary>netpod/on_domain_complete(): reward_points * 100 на счёт подключённого.</summary>
     private void OnDomainCompleted(Entity<BitrunningPilotComponent> ent, ref BitrunningDomainCompletedEvent args)
     {

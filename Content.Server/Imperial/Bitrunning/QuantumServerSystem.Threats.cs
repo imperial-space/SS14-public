@@ -63,6 +63,8 @@ public sealed partial class QuantumServerSystem
             return false;
 
         var target = _random.Pick(ent.Comp.MutationCandidates);
+        // Выбранное существо уже мутирует — второй раз его не берём.
+        ent.Comp.MutationCandidates.Remove(target);
         var spawner = forcedSpawner ?? GetGlitchRole(ent);
         EnsureComp<BitrunningDigitalAuraComponent>(target);
 
