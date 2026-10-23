@@ -32,122 +32,142 @@ legend:
   "aA": {t: FloorAsteroidSand, a: bright, e: ["FloraTree"]}
   "aB": {t: FloorWhite, a: bright, e: ["HospitalCurtainsOpen"]}
   "aC": {t: FloorWood, a: bright, e: ["AlwaysPoweredWallLight@-90", "StoolBar"]}
-  "aD": {t: FloorWood, a: bright, e: ["CarpetOrange"]}
-  "aE": {t: FloorWhite, a: bright}
-  "aF": {t: FloorWood, a: bright, e: ["TableCarpet"]}
-  "aG": {t: FloorWood, a: bright, e: ["TableCarpet", "ImperialPlayingCardDeck"]}
-  "aH": {t: FloorWood, a: bright, e: ["TableCarpet", "DiceBag", "SpaceCash1000"]}
-  "aI": {t: FloorAsteroidSand, a: bright, e: ["#Busha1"]}
-  "aJ": {t: Plating, a: bright, e: ["WallSandstone", "ExtinguisherCabinetFilled"]}
-  "aK": {t: FloorAsteroidSand, a: bright, e: ["AlwaysPoweredWallLight@-90"]}
-  "aL": {t: Plating, a: bright, e: ["WallWood"]}
-  "aM": {t: FloorAsteroidSand, a: bright, e: ["AlwaysPoweredWallLight@90"]}
-  "aN": {t: FloorBasalt, a: outdoors, e: ["MarkerBeaconStructure"]}
-  "aO": {t: Plating, a: bright, e: ["AirlockExternal"]}
-  "aP": {t: Plating, a: bright}
-  "aQ": {t: FloorWood, a: bright, e: ["Table", "KitchenMicrowave"]}
-  "aR": {t: FloorWood, a: bright, e: ["ImperialDeepFryer"]}
-  "aS": {t: FloorWood, a: bright, e: ["Table"]}
-  "aT": {t: FloorWood, a: bright, e: ["KitchenReagentGrinder"]}
-  "aU": {t: FloorWood, a: bright, e: ["BookshelfFilled"]}
-  "aV": {t: FloorWood, a: bright, e: ["Dresser"]}
-  "aW": {t: FloorSteel, a: bright, e: ["DisposalUnit", "EmergencyOxygenTankFilled", "AlwaysPoweredWallLight@90"]}
-  "aX": {t: FloorWood, a: bright, e: ["AlwaysPoweredWallLight@90"]}
-  "aY": {t: FloorWood, a: bright, e: ["AlwaysPoweredWallLight@-90"]}
-  "aZ": {t: Plating, a: bright, e: ["Window", "Grille", "HospitalCurtainsOpen"]}
-  "a0": {t: FloorWood, a: bright, e: ["BitrunningGhostRoleBeach"]}
-  "a1": {t: FloorBasalt, a: bright, e: ["AlwaysPoweredSmallLight@-90"]}
-  "a2": {t: FloorSteel, a: bright, e: ["VendingMachineCigs"]}
-  "a3": {t: FloorWood, a: bright, e: ["TableWood", "BookRandom", "ClothingOuterApronChef", "ClothingHeadHatChef"]}
-  "a4": {t: FloorWood, a: bright, e: ["LockerFreezer", "ReagentContainerFlour", "ReagentContainerFlour"]}
-  "a5": {t: FloorWood, a: bright, e: ["LockerFreezer"]}
-  "a6": {t: FloorWood, a: bright, e: ["TableWood", "KitchenReagentGrinder"]}
-  "a7": {t: FloorWood, a: bright, e: ["SinkWide@-90"]}
-  "a8": {t: FloorWood, a: bright, e: ["Bed"]}
-  "a9": {t: FloorWood, a: bright, e: ["ClosetSteelBase", "ClothingBackpackDuffel", "ClothingShoesMartialSandals", "ClothingEyesGlassesSunglasses"]}
-  "ba": {t: Plating, a: bright, e: ["AlwaysPoweredSmallLight@-90"]}
-  "bb": {t: FloorSteel, a: bright, e: ["VendingMachineCola"]}
-  "bc": {t: FloorAsteroidSand, a: bright, e: ["MobCrab"]}
-  "bd": {t: FloorWood, a: bright, e: ["TableWood", "FoodBoxDonut"]}
-  "be": {t: Plating, a: bright, e: ["RandomPosterLegit", "WallWood"]}
-  "bf": {t: FloorSteel, a: bright, e: ["VendingMachineSnack"]}
-  "bg": {t: FloorWood, a: bright, e: ["TableWood", "FoodShakerSalt"]}
-  "bh": {t: FloorWood, a: bright, e: ["KitchenElectricGrill"]}
-  "bi": {t: FloorWood, a: bright, e: ["TableWood", "FoodShakerPepper"]}
-  "bj": {t: FloorWood, a: bright, e: ["LockerFreezer", "FoodMeatBacon", "FoodMeatBacon", "FoodMeatCrab", "FoodMeatCrab"]}
-  "bk": {t: FloorWood, a: bright, e: ["VendingMachineDinnerware", "AlwaysPoweredWallLight@-90"]}
-  "bl": {t: FloorWood, a: bright, e: ["ClosetSteelBase", "ClothingBackpackDuffel", "ClothingEyesGlassesSunglasses"]}
-  "bm": {t: FloorAsteroidSand, a: bright, e: ["BeachBall"]}
-  "bn": {t: FloorWood, a: bright, e: ["TableWood"]}
-  "bo": {t: Plating, a: bright, e: ["NoticeBoard", "WallWood"]}
-  "bp": {t: FloorAsteroidSand, a: bright, e: ["#Bushb1", "#Bushb1"]}
-  "bq": {t: FloorWood, a: bright, e: ["CarpetBlue"]}
-  "br": {t: FloorWood, a: bright, e: ["WindowReinforcedDirectional@180", "WindowReinforcedDirectional@-90", "BikeHorn", "TableWood", "MedkitFilled", "MedkitBruteFilled"]}
-  "bs": {t: FloorWood, a: bright, e: ["WindowReinforcedDirectional@90", "WindowReinforcedDirectional@180", "Stool", "ClothingBackpackDuffel", "ClothingEyesGlassesSunglasses"]}
-  "bt": {t: FloorAsteroidSand, a: bright, e: ["ChairWood", "AlwaysPoweredWallLight@90"]}
-  "bu": {t: FloorAsteroidSand, a: bright, e: ["CrateGenericSteel"]}
-  "bv": {t: FloorWood, a: bright, e: ["DrinkGlass", "DrinkGlass", "DrinkRumBottleFull", "Carpet"]}
-  "bw": {t: FloorWood, a: bright, e: ["CarpetPurple"]}
-  "bx": {t: FloorWood, a: bright, e: ["WindowReinforcedDirectional@-90", "WindowReinforcedDirectional", "Megaphone"]}
-  "by": {t: FloorWood, a: bright, e: ["WindowReinforcedDirectional@90", "BitrunningGhostRoleLifeguard"]}
-  "bz": {t: FloorAsteroidSand, a: bright, e: ["Stool"]}
-  "bA": {t: FloorAsteroidSand, a: bright, e: ["CrateFreezer", "DrinkGlass", "DrinkGlass", "DrinkBeerBottleFull", "DrinkBeerBottleFull", "DrinkBeerBottleFull", "DrinkBeerBottleFull", "DrinkBeerBottleFull", "DrinkBeerBottleFull"]}
-  "bB": {t: FloorWood, a: bright, e: ["AcousticGuitarInstrument", "CarpetBlue"]}
-  "bC": {t: FloorShuttleGrey, a: bright}
-  "bD": {t: FloorSteelMono, a: bright}
-  "bE": {t: FloorAsteroidSand, a: bright, e: ["Chair"]}
-  "bF": {t: Plating, a: bright, e: ["AirlockMaint"]}
-  "bG": {t: Plating, a: bright, e: ["BeachBall", "BeachBall", "BeachBall", "BeachBall"]}
-  "bH": {t: Plating, a: bright, e: ["AirCanister"]}
-  "bI": {t: FloorAsteroidSand, a: bright, e: ["AlwaysPoweredWallLight@180"]}
-  "bJ": {t: FloorAsteroidSand, a: bright, e: ["DrinkBeerBottleFull"]}
-  "bK": {t: Plating, a: bright, e: ["SheetSteel1"]}
-  "bL": {t: Plating, a: bright, e: ["AlwaysPoweredSmallLight@-90", "CrateGenericSteel", "Coal1", "Coal1"]}
-  "bM": {t: FloorAsteroidSand, a: bright, e: ["MobChicken"]}
-  "bN": {t: FloorShuttleBlack, a: bright}
-  "bO": {t: FloorWood, a: bright, e: ["LockerSteel"]}
-  "bP": {t: FloorWood, a: bright, e: ["AlwaysPoweredSmallLight@-90", "LockerSteel"]}
-  "bQ": {t: FloorSteelMono, a: bright, e: ["AlwaysPoweredWallLight@90"]}
-  "bR": {t: FloorAsteroidSand, a: bright, e: ["Railing@-90"]}
-  "bS": {t: FloorWood, a: bright, e: ["BitrunningGhostRoleBartender"]}
-  "bT": {t: FloorBrassFilled, a: bright}
-  "bU": {t: FloorAsteroidSand, a: bright, e: ["#Bushb1", "FloorWaterEntity"]}
-  "bV": {t: FloorAsteroidSand, a: bright, e: ["FloorWaterEntity"]}
-  "bW": {t: FloorSteelDirty, a: bright}
-  "bX": {t: FloorSteelDirty, a: bright, e: ["HydroponicsTrayEmpty"]}
-  "bY": {t: FloorWood, a: bright, e: ["Table", "BookRandom", "DrinkShaker", "AlwaysPoweredSmallLight@90"]}
-  "bZ": {t: FloorWood, a: bright, e: ["TableWood", "DrinkPinaColadaGlass", "DrinkPinaColadaGlass"]}
-  "b0": {t: FloorBrassFilled, a: bright, e: ["StoolBar"]}
-  "b1": {t: FloorSteel, a: bright}
-  "b2": {t: FloorWood, a: bright, e: ["Table", "KitchenReagentGrinder"]}
-  "b3": {t: FloorSteel, a: bright, e: ["BitrunningMarkerLootSignal"]}
-  "b4": {t: FloorShuttleGrey, a: bright, e: ["AlwaysPoweredWallLight@90"]}
-  "b5": {t: FloorShuttleGrey, a: bright, e: ["TableReinforced"]}
-  "b6": {t: FloorShuttleGrey, a: bright, e: ["TableReinforced", "KitchenReagentGrinder"]}
-  "b7": {t: FloorSteelDirty, a: bright, e: ["HydroponicsTrayEmpty", "AlwaysPoweredWallLight@-90"]}
-  "b8": {t: FloorWood, a: bright, e: ["VendingMachineBooze"]}
-  "b9": {t: FloorAsteroidSand, a: bright, e: ["#Bushb1", "#Bushb1", "FloorWaterEntity"]}
-  "ca": {t: FloorShuttleGrey, a: bright, e: ["WaterTankFull"]}
-  "cb": {t: FloorWood, a: bright, e: ["BoozeDispenser", "TableWood"]}
-  "cc": {t: FloorWood, a: bright, e: ["SodaDispenser", "TableWood", "AlwaysPoweredSmallLight@-90"]}
-  "cd": {t: FloorBrassFilled, a: bright, e: ["AlwaysPoweredWallLight@90"]}
-  "ce": {t: FloorBrassFilled, a: bright, e: ["Jukebox"]}
-  "cf": {t: FloorShuttleGrey, a: bright, e: ["SinkWide@90"]}
-  "cg": {t: FloorAsteroidSand, a: bright, e: ["RailingCorner@180", "AlwaysPoweredWallLight@180"]}
-  "ch": {t: FloorSteelDirty, a: bright, e: ["VendingMachineCola"]}
-  "ci": {t: FloorSteelDirty, a: bright, e: ["CrateHydroponics", "FoodAmbrosiaVulgaris", "FoodAmbrosiaVulgaris", "FoodAmbrosiaVulgaris", "FoodAmbrosiaVulgaris", "FoodAmbrosiaVulgaris", "FoodAmbrosiaVulgaris", "FoodAmbrosiaVulgaris", "FoodAmbrosiaVulgaris", "FoodAmbrosiaVulgaris", "FoodAmbrosiaVulgaris"]}
-  "cj": {t: FloorSteelDirty, a: bright, e: ["CrateHydroponics", "Bucket"]}
-  "ck": {t: Plating, a: safe, e: ["WallSolid"]}
-  "cl": {t: Plating, a: safe, e: ["ReinforcedWindow", "Grille"]}
-  "cm": {t: FloorDarkMono, a: safe, e: ["AirlockExternal"]}
-  "cn": {t: FloorDark, a: safe}
-  "co": {t: FloorDarkMono, a: safe}
-  "cp": {t: FloorDarkMono, a: safe, e: ["AlwaysPoweredWallLight@90"]}
-  "cq": {t: FloorSteel, a: safe, e: ["AlwaysPoweredWallLight@-90", "BitrunningMarkerGoal"]}
-  "cr": {t: FloorSteel, a: safe, e: ["Railing", "BitrunningMarkerGoal"]}
-  "cs": {t: FloorDark, a: safe, e: ["Table", "Lantern", "Lantern", "Lantern"]}
-  "ct": {t: FloorDarkMono, a: safe, e: ["BitrunningMarkerHololadder"]}
-  "cu": {t: FloorDark, a: safe, e: ["PottedPlantRandom"]}
+  "aD": {t: FloorWood, a: bright, e: ["PlushieLizard", "CarpetOrange"]}
+  "aE": {t: FloorWood, a: bright, e: ["DrinkBeerCan", "CarpetOrange"]}
+  "aF": {t: FloorWhite, a: bright}
+  "aG": {t: FloorWood, a: bright, e: ["TableCarpet", "ImperialPlayingCardDeck", "ImperialPlayingCardDeck"]}
+  "aH": {t: FloorWood, a: bright, e: ["TableCarpet", "ImperialPlayingCardDeck"]}
+  "aI": {t: FloorWood, a: bright, e: ["TableCarpet", "DiceBag", "SpaceCash1000"]}
+  "aJ": {t: FloorAsteroidSand, a: bright, e: ["#Busha1"]}
+  "aK": {t: Plating, a: bright, e: ["WallSandstone", "ExtinguisherCabinetFilled"]}
+  "aL": {t: FloorBasalt, a: outdoors, e: ["#Basalt3"]}
+  "aM": {t: FloorAsteroidSand, a: bright, e: ["AlwaysPoweredWallLight@-90"]}
+  "aN": {t: Plating, a: bright, e: ["WallWood"]}
+  "aO": {t: FloorAsteroidSand, a: bright, e: ["AlwaysPoweredWallLight@90"]}
+  "aP": {t: FloorBasalt, a: outdoors, e: ["#Basalt9"]}
+  "aQ": {t: FloorBasalt, a: outdoors, e: ["MarkerBeaconStructure"]}
+  "aR": {t: Plating, a: bright, e: ["AirlockExternal"]}
+  "aS": {t: Plating, a: bright}
+  "aT": {t: FloorWood, a: bright, e: ["Table", "KitchenMicrowave"]}
+  "aU": {t: FloorWood, a: bright, e: ["ImperialDeepFryer"]}
+  "aV": {t: FloorWood, a: bright, e: ["FoodCondimentBottleEnzyme", "Beaker", "Table"]}
+  "aW": {t: FloorWood, a: bright, e: ["ChemMaster"]}
+  "aX": {t: FloorWood, a: bright, e: ["KitchenReagentGrinder"]}
+  "aY": {t: FloorWood, a: bright, e: ["BookshelfFilled"]}
+  "aZ": {t: FloorWood, a: bright, e: ["Dresser"]}
+  "a0": {t: FloorSteel, a: bright, e: ["DisposalUnit", "EmergencyOxygenTankFilled", "AlwaysPoweredWallLight@90"]}
+  "a1": {t: FloorWood, a: bright, e: ["AlwaysPoweredWallLight@90"]}
+  "a2": {t: FloorWood, a: bright, e: ["AlwaysPoweredWallLight@-90"]}
+  "a3": {t: Plating, a: bright, e: ["Window", "Grille", "HospitalCurtainsOpen"]}
+  "a4": {t: FloorWood, a: bright, e: ["BitrunningGhostRoleBeach"]}
+  "a5": {t: FloorBasalt, a: bright, e: ["AlwaysPoweredSmallLight@-90"]}
+  "a6": {t: FloorSteel, a: bright, e: ["VendingMachineCigs"]}
+  "a7": {t: FloorWood, a: bright, e: ["TableWood", "BookRandom", "ClothingOuterApronChef", "ClothingHeadHatChef"]}
+  "a8": {t: FloorWood, a: bright, e: ["LockerFreezer", "DrinkMilkCarton", "ReagentContainerMayo", "ReagentContainerFlour", "ReagentContainerFlour"]}
+  "a9": {t: FloorWood, a: bright, e: ["LockerFreezer"]}
+  "ba": {t: FloorWood, a: bright, e: ["TableWood", "KitchenReagentGrinder"]}
+  "bb": {t: FloorWood, a: bright, e: ["SinkWide@-90"]}
+  "bc": {t: FloorAsteroidSand, a: bright, e: ["FoodCartHot"]}
+  "bd": {t: FloorWood, a: bright, e: ["BedsheetSpawner", "Bed"]}
+  "be": {t: FloorWood, a: bright, e: ["ClosetSteelBase", "ClothingBackpackDuffel", "UniformShortsRed", "ClothingShoesMartialSandals", "ClothingEyesGlassesSunglasses", "ClothingHeadHatFlowerWreath"]}
+  "bf": {t: Plating, a: bright, e: ["AlwaysPoweredSmallLight@-90"]}
+  "bg": {t: FloorSteel, a: bright, e: ["VendingMachineCola"]}
+  "bh": {t: FloorAsteroidSand, a: bright, e: ["MobCrab"]}
+  "bi": {t: FloorWood, a: bright, e: ["TableWood", "FoodBoxDonut"]}
+  "bj": {t: Plating, a: bright, e: ["RandomPosterLegit", "WallWood"]}
+  "bk": {t: FloorAsteroidSand, a: bright, e: ["#Rock03"]}
+  "bl": {t: FloorSteel, a: bright, e: ["VendingMachineSnack"]}
+  "bm": {t: FloorWood, a: bright, e: ["TableWood", "FoodShakerSalt"]}
+  "bn": {t: FloorWood, a: bright, e: ["KitchenElectricGrill"]}
+  "bo": {t: FloorWood, a: bright, e: ["TableWood", "FoodShakerPepper"]}
+  "bp": {t: FloorAsteroidSand, a: bright, e: ["#Rock01"]}
+  "bq": {t: FloorBasalt, a: outdoors, e: ["#Basalt7"]}
+  "br": {t: FloorWood, a: bright, e: ["LockerFreezer", "FoodMeatBacon", "FoodMeatBacon", "FoodMeatCutlet", "FoodMeatCutlet", "FoodMeatCrab", "FoodMeatCrab"]}
+  "bs": {t: FloorWood, a: bright, e: ["VendingMachineDinnerware", "AlwaysPoweredWallLight@-90"]}
+  "bt": {t: FloorWood, a: bright, e: ["ClosetSteelBase", "ClothingBackpackDuffel", "UniformShortsRed", "ClothingShoesSlippers", "ClothingEyesGlassesSunglasses", "ClothingHeadHatFlowerWreath"]}
+  "bu": {t: FloorBasalt, a: outdoors, e: ["#Basalt6"]}
+  "bv": {t: FloorAsteroidSand, a: bright, e: ["#Rock04"]}
+  "bw": {t: FloorAsteroidSand, a: bright, e: ["BeachBall"]}
+  "bx": {t: Plating, a: bright, e: ["BarSign", "WallWood"]}
+  "by": {t: FloorWood, a: bright, e: ["TableWood"]}
+  "bz": {t: Plating, a: bright, e: ["NoticeBoard", "WallWood"]}
+  "bA": {t: FloorAsteroidSand, a: bright, e: ["#Bushb1", "#Bushb1"]}
+  "bB": {t: FloorAsteroidSand, a: bright, e: ["#Rock02"]}
+  "bC": {t: FloorWood, a: bright, e: ["CarpetBlue"]}
+  "bD": {t: FloorWood, a: bright, e: ["WindowReinforcedDirectional@180", "WindowReinforcedDirectional@-90", "BikeHorn", "TableWood", "MedkitFilled", "MedkitBruteFilled"]}
+  "bE": {t: FloorWood, a: bright, e: ["WindowReinforcedDirectional@90", "WindowReinforcedDirectional@180", "Stool", "ClothingBackpackDuffel", "UniformShortsRed", "ClothingEyesGlassesSunglasses"]}
+  "bF": {t: FloorAsteroidSand, a: bright, e: ["ChairWood", "AlwaysPoweredWallLight@90"]}
+  "bG": {t: FloorAsteroidSand, a: bright, e: ["CrayonBox", "CrateGenericSteel"]}
+  "bH": {t: FloorWood, a: bright, e: ["DrinkGlass", "DrinkGlass", "DrinkRumBottleFull", "Carpet"]}
+  "bI": {t: FloorWood, a: bright, e: ["CarpetPurple"]}
+  "bJ": {t: FloorWood, a: bright, e: ["WindowReinforcedDirectional@-90", "WindowReinforcedDirectional", "Megaphone"]}
+  "bK": {t: FloorWood, a: bright, e: ["WindowReinforcedDirectional@90", "BitrunningGhostRoleLifeguard"]}
+  "bL": {t: FloorBasalt, a: outdoors, e: ["#Basalt4"]}
+  "bM": {t: FloorAsteroidSand, a: bright, e: ["Stool"]}
+  "bN": {t: FloorAsteroidSand, a: bright, e: ["CrateFreezer", "DrinkIceGlass", "DrinkGlass", "DrinkGlass", "DrinkBeerBottleFull", "DrinkBeerBottleFull", "DrinkBeerBottleFull", "DrinkBeerBottleFull", "DrinkBeerBottleFull", "DrinkBeerBottleFull"]}
+  "bO": {t: FloorWood, a: bright, e: ["AcousticGuitarInstrument", "CarpetBlue"]}
+  "bP": {t: FloorShuttleGrey, a: bright}
+  "bQ": {t: FloorSteelMono, a: bright}
+  "bR": {t: FloorAsteroidSand, a: bright, e: ["Chair"]}
+  "bS": {t: Plating, a: bright, e: ["AirlockMaint"]}
+  "bT": {t: Plating, a: bright, e: ["BeachBall", "BeachBall", "BeachBall", "BeachBall"]}
+  "bU": {t: Plating, a: bright, e: ["AirCanister"]}
+  "bV": {t: FloorAsteroidSand, a: bright, e: ["AlwaysPoweredWallLight@180"]}
+  "bW": {t: FloorAsteroidSand, a: bright, e: ["DrinkBeerBottleFull"]}
+  "bX": {t: Plating, a: bright, e: ["SheetSteel1"]}
+  "bY": {t: Plating, a: bright, e: ["AlwaysPoweredSmallLight@-90", "CrateGenericSteel", "Coal1", "Coal1"]}
+  "bZ": {t: FloorAsteroidSand, a: bright, e: ["MobChicken"]}
+  "b0": {t: FloorShuttleBlack, a: bright}
+  "b1": {t: FloorWood, a: bright, e: ["LockerSteel"]}
+  "b2": {t: FloorWood, a: bright, e: ["AlwaysPoweredSmallLight@-90", "LockerSteel"]}
+  "b3": {t: FloorSteelMono, a: bright, e: ["AlwaysPoweredWallLight@90"]}
+  "b4": {t: FloorAsteroidSand, a: bright, e: ["Railing@-90"]}
+  "b5": {t: FloorAsteroidSand, a: bright, e: ["#Rock06"]}
+  "b6": {t: FloorWood, a: bright, e: ["BitrunningGhostRoleBartender"]}
+  "b7": {t: FloorBrassFilled, a: bright}
+  "b8": {t: FloorAsteroidSand, a: bright, e: ["#Bushb1", "FloorWaterEntity"]}
+  "b9": {t: FloorAsteroidSand, a: bright, e: ["FloorWaterEntity"]}
+  "ca": {t: FloorSteelDirty, a: bright}
+  "cb": {t: FloorSteelDirty, a: bright, e: ["HydroponicsTrayEmpty"]}
+  "cc": {t: FloorBasalt, a: outdoors, e: ["#Basalt2"]}
+  "cd": {t: FloorWood, a: bright, e: ["Table", "BookRandom", "DrinkShaker", "RagItem", "AlwaysPoweredSmallLight@90"]}
+  "ce": {t: FloorWood, a: bright, e: ["TableWood", "DrinkPinaColadaGlass", "DrinkPinaColadaGlass"]}
+  "cf": {t: FloorBrassFilled, a: bright, e: ["StoolBar"]}
+  "cg": {t: FloorSteel, a: bright}
+  "ch": {t: FloorAsteroidSand, a: bright, e: ["FloorWaterEntity", "BitrunningAmbienceWater"]}
+  "ci": {t: FloorWood, a: bright, e: ["Table", "KitchenReagentGrinder"]}
+  "cj": {t: FloorSteel, a: bright, e: ["BitrunningMarkerLootSignal"]}
+  "ck": {t: FloorShuttleGrey, a: bright, e: ["AlwaysPoweredWallLight@90"]}
+  "cl": {t: FloorShuttleGrey, a: bright, e: ["TableReinforced", "ClothingHandsGlovesLeather", "ChemistryEmptyBottle01"]}
+  "cm": {t: FloorShuttleGrey, a: bright, e: ["TableReinforced", "KitchenReagentGrinder"]}
+  "cn": {t: FloorSteelDirty, a: bright, e: ["HydroponicsTrayEmpty", "AlwaysPoweredWallLight@-90"]}
+  "co": {t: FloorBasalt, a: outdoors, e: ["#Basalt1"]}
+  "cp": {t: FloorWood, a: bright, e: ["VendingMachineBooze"]}
+  "cq": {t: FloorAsteroidSand, a: bright, e: ["#Bushb1", "#Bushb1", "FloorWaterEntity"]}
+  "cr": {t: FloorShuttleGrey, a: bright, e: ["WaterTankFull"]}
+  "cs": {t: FloorShuttleGrey, a: bright, e: ["SeedExtractor"]}
+  "ct": {t: FloorWood, a: bright, e: ["BoozeDispenser", "TableWood"]}
+  "cu": {t: FloorWood, a: bright, e: ["SodaDispenser", "TableWood", "AlwaysPoweredSmallLight@-90"]}
+  "cv": {t: FloorBrassFilled, a: bright, e: ["AlwaysPoweredWallLight@90"]}
+  "cw": {t: FloorBrassFilled, a: bright, e: ["Jukebox", "TreasureCoinGold"]}
+  "cx": {t: FloorShuttleGrey, a: bright, e: ["SinkWide@90"]}
+  "cy": {t: FloorAsteroidSand, a: bright, e: ["RailingCorner@180", "AlwaysPoweredWallLight@180"]}
+  "cz": {t: FloorSteelDirty, a: bright, e: ["VendingMachineCola"]}
+  "cA": {t: FloorSteelDirty, a: bright, e: ["CrateHydroponics", "FoodAmbrosiaVulgaris", "FoodAmbrosiaVulgaris", "FoodAmbrosiaVulgaris", "FoodAmbrosiaVulgaris", "FoodAmbrosiaVulgaris", "FoodAmbrosiaVulgaris", "FoodAmbrosiaVulgaris", "FoodAmbrosiaVulgaris", "FoodAmbrosiaVulgaris", "FoodAmbrosiaVulgaris"]}
+  "cB": {t: FloorSteelDirty, a: bright, e: ["CrateHydroponics", "HydroponicsToolSpade", "Bucket", "HydroponicsToolMiniHoe"]}
+  "cC": {t: FloorBasalt, a: outdoors, e: ["#Basalt8"]}
+  "cD": {t: Plating, a: safe, e: ["WallSolid"]}
+  "cE": {t: Plating, a: safe, e: ["ReinforcedWindow", "Grille"]}
+  "cF": {t: FloorDarkMono, a: safe, e: ["AirlockExternal"]}
+  "cG": {t: FloorDark, a: safe}
+  "cH": {t: FloorDarkMono, a: safe}
+  "cI": {t: FloorDarkMono, a: safe, e: ["AlwaysPoweredWallLight@90"]}
+  "cJ": {t: FloorSteel, a: safe, e: ["AlwaysPoweredWallLight@-90", "BitrunningMarkerGoal"]}
+  "cK": {t: FloorSteel, a: safe, e: ["Railing", "BitrunningMarkerGoal"]}
+  "cL": {t: FloorBasalt, a: outdoors, e: ["#Basalt5"]}
+  "cM": {t: FloorDark, a: safe, e: ["Table", "Lantern", "Lantern", "Lantern"]}
+  "cN": {t: FloorDarkMono, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "cO": {t: FloorDark, a: safe, e: ["PottedPlantRandom"]}
 rows:
 - "aaaaaaaaaaaaaaaaaaaaababababababababababababababababababababababababababababababab"
 - "aaaaaaaaaaaaaaaaaaaaabacacacacacacacacacacacacacacacacacacacacacacacacacacacacacab"
@@ -155,38 +175,38 @@ rows:
 - "aaaaaaaaaaaaaaaaaaaaabacadafafagahahadaiajadadadadadadakajalafafamanaoapafaqadacab"
 - "abababababababababababacadarasasatafalajajajauajajavawajajalafafafafaxafayafadacab"
 - "abacacacacacacacacacacacazafatatatafalajawajajaAaAajajajajadadafafafadadadaBadacab"
-- "abacaeaeaeaeaeaeaeacacacadafararaCadadajajajajaDaDajajawajawadadafafamafadaEadacab"
-- "abacaeaeaeaeaeaeaeacacacadadaFaGaHadaIajajajajajajajajajajajaiadafafafafaJadadacab"
-- "abacaeaeaeaeaeaeaeacadadadadafarafaxajaKaLaLaLaLaLaLaLaMajajadadaxadadafafadacacab"
-- "abacaeaeaeaeaNaeaeaeaOaPaPadadadadazajajaLaQaRaSafaTaLajajajadaUafaVadafafadadacab"
-- "abacaeaeaeaeaeaeaeaeaOaPaPaPadaWajajajajaLaXafafafaYaLajajajaZa0afaYazafafafadacab"
-- "abacacaeaeaeaeaeaea1adaPaPaPaza2ajajajaja3afa4a5a6a7aLajajajada8afa9adafafaYadacab"
-- "abacacaeaeaeaeaeaeacadadaPbaadbbbcajajajbdafaLbeaLafaxajajaKadadadadadadafafadacab"
-- "abacaeaeaeaeaeaeaeacacadaPaPadbfajawajajbgafbhbhbhafaLajajajawadaUafaVadafafadacab"
-- "abacaeaeaeaeaeaeaeaeacadaPaPadaMajajajajbiafafafafafaLajajajajaZa0afafaxafafadacab"
-- "abacaeaeaNaeaeaeaeaeacadaOaOadaIajawajajaLbjafafafbkaLajajajawada8aybladafafaJacab"
-- "abacaeaeaeaeaeaeaeaeadadajajaAajbmajajaKaLaLbnbnbnaLboaMajajajadadadazadafaYadacab"
-- "abacaeaeaeaeaeaeacacadajajajajajajbpajajakajajajajajajajajajajajaAajajalafafadacab"
-- "abacacaeaeaeaeaeacadadbqbqajawajajajajajajajajajajawbrbsajajajajaIajajalafafadacab"
-- "abacacaeaeaeaeaeacadbtajajajbuajawajajajbvajbwajbqaKbxbyajajajajajawajadadadadacab"
-- "abacaeaeaeaeaNaeacadbcawajajajbzajajajbAatajbwajbBajbCbDajajbcbEajajajbFbGbHadacab"
-- "abacaeaeaeaeaeaeacadawaibIajajawajajajajajajajajajajajajbJajajajajajaKadbKbLadacab"
-- "abacaeaeaeaeaeaeacadadadadaJajajajajajajajajajajajajajbMajadbCbNbNbNbCadaPadadacab"
-- "abacacaeaeaeaeaeacadafbObPadbQbDbDbDbDbRajajajajajajajajajadbCbNbNbNbCazadadacacab"
-- "abacaeaeaeaeaeaeacazbSafafaxbTbTbTbTbTbRbUbVbVbVbUbVbVbVaKadbCbNbNbNbCbWbXadacacab"
-- "abacaeaeaeaeaeaeacadbYafafbZb0b1b1b1bTbRbVbVbVbVbVbVbUbVajadbCbCbCbCbCbCbXadacacab"
-- "abacaeaeaeaeaeaeacadb2afafbZb0b1b3b1bTbRbVbVbVbUbUbVbVbVajadb4bCbCb5b6bCb7adacacab"
-- "abacaeaeaeaeaeaeacadb8afafbnb0b1b1b1bTbRbVbVbVbUb9bVbVbVajadcabCbCbCbCbCbXadacacab"
-- "abacacaeaeaNaeaeacadadcbccadcdbTcebTbTbRbUbVbVbVbVbVbUbVajadadadcfbCbCbCbXadacacab"
-- "abacacaeaeaeaeaeacacadadadadadadadadadcgajajajbIajajajbIajadacadadchcicjadadacacab"
-- "abacaeaeaeaeaeaeaeaeacacacacacacacacadadadadadadadadadadadadacacadadadadadacacacab"
-- "abacaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeacacacacacacacacacacacacacacacacacacacacab"
-- "abacaeaeaeaeckclckcmckclckaeaeaeaeaeaeaeacabababababababababababababababababababab"
-- "abacacaeaeaeckcncocococnckaeaeaeaeaeaeacacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-- "abacacaeaeaeckcpcocococqckaeaeaeaeaeaeacacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-- "abacaeaeaeaeclcococococrclaeaeaeaeaeaeaeacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-- "abacaeaeaeaeclcsctctctcuclaeaeaeaeaeaeaeacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-- "abacaeaeaeaeckckclclclckckaeaeaeaeaeaeacacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-- "abacaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "abacaeaeaeaeaeaeaeacacacadafararaCadadajajajajaDaEajajawajawadadafafamafadaFadacab"
+- "abacaeaeaeaeaeaeaeacacacadadaGaHaIadaJajajajajajajajajajajajaiadafafafafaKadadacab"
+- "abacaeaeaeaeaeaeaLacadadadadafarafaxajaMaNaNaNaNaNaNaNaOajajadadaxadadafafadacacab"
+- "abacaeaPaeaeaQaeaeaeaRaSaSadadadadazajajaNaTaUaVaWaXaNajajajadaYafaZadafafadadacab"
+- "abacaeaeaeaeaeaeaeaeaRaSaSaSada0ajajajajaNa1afafafa2aNajajaja3a4afa2azafafafadacab"
+- "abacacaeaeaeaeaeaea5adaSaSaSaza6ajajajaja7afa8a9babbaNbcajajadbdafbeadafafa2adacab"
+- "abacacaeaeaeaeaeaeacadadaSbfadbgbhajajajbiafaNbjaNafaxbkajaMadadadadadadafafadacab"
+- "abacaeaeaeaeaeaeaeacacadaSaSadblajawajajbmafbnbnbnafaNajajajawadaYafaZadafafadacab"
+- "abacaeaPaeaeaeaeaeaeacadaSaSadaOajajajajboafafafafafaNbpajajaja3a4afafaxafafadacab"
+- "abacaeaeaQaebqaeaeaeacadaRaRadaJajawajajaNbrafafafbsaNajajajawadbdaybtadafafaKacab"
+- "abacaebuaeaeaeaeaeaeadadajbvaAajbwajajaMbxaNbybybyaNbzaOajajajadadadazadafa2adacab"
+- "abacaeaeaeaeaeaeacacadajajajajajajbAajajakajajajbBajajajajajajajaAajajalafafadacab"
+- "abacacaeaeaeaeaeacadadbCbCajawajajajajajajajajajajawbDbEajajajajaJajajalafafadacab"
+- "abacacaeaeaeaeaeacadbFajajajbGajawajajajbHajbIajbCaMbJbKajajajajajawajadadadadacab"
+- "abacaebLaeaeaQaeacadbhawajajajbMajajajbNatajbIajbOajbPbQajajbhbRajajajbSbTbUadacab"
+- "abacaeaeaeaeaeaeacadawaibVajajawajajajajajajajajajajajajbWajajajajajaMadbXbYadacab"
+- "abacaeaeaeaeaeaeacadadadadaKajajajajajajajajajajajajajbZajadbPb0b0b0bPadaSadadacab"
+- "abacacaeaeaeaeaeacadafb1b2adb3bQbQbQbQb4ajajajajajb5ajajajadbPb0b0b0bPazadadacacab"
+- "abacaeaeaeaeaeaeacazb6afafaxb7b7b7b7b7b4b8b9b9b9b8b9b9b9aMadbPb0b0b0bPcacbadacacab"
+- "abacaeaeaeaeaeccacadcdafafcecfcgcgcgb7b4b9b9b9chb9b9b8b9ajadbPbPbPbPbPbPcbadacacab"
+- "abacaeaeaeaeaeaeacadciafafcecfcgcjcgb7b4b9b9b9b8b8b9b9b9ajadckbPbPclcmbPcnadacacab"
+- "abaccoaeaebLaeaeacadcpafafbycfcgcgcgb7b4b9b9b9b8cqb9b9b9ajadcrbPbPbPcsbPcbadacacab"
+- "abacacaeaeaQaeaeacadadctcuadcvb7cwb7b7b4b8b9b9b9b9b9b8b9ajadadadcxbPbPbPcbadacacab"
+- "abacacaeaeaeaeaeacacadadadadadadadadadcyajajajbVajajajbVajadacadadczcAcBadadacacab"
+- "abacaeaLbuaeaeaeaeaeacacacacacacacacadadadadadadadadadadadadacacadadadadadacacacab"
+- "abacaeaeaPaeaeaeaeaecCaeaeaeaeaeaeaeaeaeacacacacacacacacacacacacacacacacacacacacab"
+- "abacaeaeaeaecDcEcDcFcDcEcDaeaecCaeaeaeaeacabababababababababababababababababababab"
+- "abacacaeaeaecDcGcHcHcHcGcDaeaeaeaeaeaeacacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "abacacaeaeaecDcIcHcHcHcJcDaeaeaeaeaeaeacacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "abacbuaeaeaecEcHcHcHcHcKcEaeaeaeaeaeaeaPacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "abacaecLaeaecEcMcNcNcNcOcEaeaeaeaeaeaeaeacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "abacaeccaeaecDcDcEcEcEcDcDaeaeaeaeaeaeacacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "abacaeaeaeaeaeaeaeaecLaeaeaeaeaeaeaeaeaeacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 - "abacacacacacacacacacacacacacacacacacacacacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 - "ababababababababababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"

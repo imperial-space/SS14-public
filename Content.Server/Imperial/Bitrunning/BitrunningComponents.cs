@@ -239,6 +239,13 @@ public sealed partial class BitrunningVirtualEntityComponent : Component
 [RegisterComponent]
 public sealed partial class BitrunningAvatarComponent : Component
 {
+    /// <summary>Зацикленный ambient_buzz домена, слышит только этот битраннер.</summary>
+    [ViewVariables]
+    public EntityUid? BuzzStream;
+
+    [ViewVariables]
+    public TimeSpan NextAmbience;
+
     [ViewVariables]
     public EntityUid Body;
 

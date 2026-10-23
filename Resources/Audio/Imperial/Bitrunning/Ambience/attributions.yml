@@ -1,0 +1,14 @@
+- files: ["seag1.ogg", "seag2.ogg", "seag3.ogg", "shore.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/ambience/beach)"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["ambiicemelody1.ogg", "ambiicemelody2.ogg", "ambiicemelody3.ogg", "ambiicemelody4.ogg", "ambiicesting1.ogg", "ambiicesting2.ogg", "ambiicesting3.ogg", "ambiicesting4.ogg", "ambiicesting5.ogg", "ambiicetheme.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/ambience/icemoon)"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["magma.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Hot spring. Seething and bubbles by newlocknew (freesound.org/s/581417), spliced with wind 5 by ZIP.Creates (freesound.org/s/726316, CC0); taken from tgstation/BandaStation (sound/ambience/lavaland)"
+  source: "https://freesound.org/s/581417/"

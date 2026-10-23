@@ -8,74 +8,75 @@ legend:
   "c": {t: FloorAsteroidSand, a: normal}
   "d": {t: FloorAsteroidSand, a: normal, e: ["DisposalUnit"]}
   "e": {t: Plating, a: normal, e: ["AlwaysPoweredWallLight@180"]}
-  "f": {t: Plating, a: normal, e: ["WallSolid"]}
-  "g": {t: Plating, a: normal, e: ["WallSolidRust"]}
-  "h": {t: Plating, a: normal, e: ["WallSolid", "RandomPosterLegit"]}
-  "i": {t: FloorAstroGrass, a: normal, e: ["FloraTree"]}
-  "j": {t: FloorSteel, a: normal, e: ["WindowDirectional@-90"]}
-  "k": {t: FloorSteel, a: normal, e: ["Stool"]}
-  "l": {t: FloorSteel, a: normal}
-  "m": {t: FloorSteel, a: normal, e: ["ComfyChair@90", "AlwaysPoweredSmallLight"]}
-  "n": {t: FloorSteel, a: normal, e: ["TableReinforced"]}
-  "o": {t: FloorSteel, a: normal, e: ["ComfyChair@-90"]}
-  "p": {t: FloorSteel, a: normal, e: ["WindowDirectional@90", "BitrunningEncryptedCache"]}
-  "q": {t: Plating, a: normal, e: ["AlwaysPoweredWallLight@-90"]}
-  "r": {t: FloorAstroGrass, a: normal}
-  "s": {t: FloorSteel, a: normal, e: ["ComfyChair@90"]}
-  "t": {t: FloorSteel, a: normal, e: ["TableReinforced", "ClothingEyesGlassesSunglasses"]}
-  "u": {t: FloorSteel, a: normal, e: ["WindowDirectional@90"]}
-  "v": {t: Plating, a: normal, e: ["AlwaysPoweredWallLight@90"]}
-  "w": {t: FloorAstroGrass, a: normal, e: ["FloraTree", "AlwaysPoweredWallLight@90"]}
-  "x": {t: FloorAstroGrass, a: normal, e: ["FloraTree", "AlwaysPoweredWallLight@-90"]}
-  "y": {t: FloorSteel, a: normal, e: ["MobButterfly"]}
-  "z": {t: Plating, a: normal}
-  "A": {t: FloorSteel, a: normal, e: ["TableReinforced", "DrinkGlass", "DrinkGlass", "DrinkGlass"]}
-  "B": {t: FloorSteel, a: normal, e: ["TableReinforced", "BoozeDispenser"]}
-  "C": {t: FloorSteel, a: normal, e: ["WindowDirectional@90", "TableReinforced", "Lighter"]}
-  "D": {t: FloorShuttleBlack, a: normal, e: ["AirlockHatch", "AlwaysPoweredWallLight@-90"]}
-  "E": {t: Plating, a: normal, e: ["AlwaysPoweredSmallLight"]}
-  "F": {t: Plating, a: normal, e: ["StatueVenusRed"]}
-  "G": {t: FloorAsteroidSand, a: normal, e: ["FloraTree"]}
-  "H": {t: Plating, a: safe, e: ["WallShuttle"]}
-  "I": {t: Plating, a: safe, e: ["ReinforcedWindow", "Grille"]}
-  "J": {t: FloorWhite, a: safe, e: ["AirlockShuttle"]}
-  "K": {t: Plating, a: safe, e: ["WindowReinforcedDirectional@90"]}
-  "L": {t: FloorSteel, a: safe}
-  "M": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight"]}
-  "N": {t: FloorSteel, a: safe, e: ["TableReinforced", "ToolboxEmergencyFilled"]}
-  "O": {t: FloorSteel, a: safe, e: ["ComfyChair@90"]}
-  "P": {t: FloorSteel, a: safe, e: ["ComputerBroken@-90"]}
-  "Q": {t: FloorSteel, a: safe, e: ["TableReinforced", "EmergencyOxygenTankFilled", "ClothingMaskGas"]}
-  "R": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@180", "BitrunningMarkerGoal"]}
-  "S": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal"]}
-  "T": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder"]}
-  "U": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@180", "BitrunningMarkerHololadder"]}
+  "f": {t: FloorAsteroidSand, a: normal, e: ["#Rock05"]}
+  "g": {t: Plating, a: normal, e: ["WallSolid"]}
+  "h": {t: Plating, a: normal, e: ["WallSolidRust"]}
+  "i": {t: Plating, a: normal, e: ["WallSolid", "RandomPosterLegit"]}
+  "j": {t: FloorAstroGrass, a: normal, e: ["FloraTree"]}
+  "k": {t: FloorSteel, a: normal, e: ["WindowDirectional@-90"]}
+  "l": {t: FloorSteel, a: normal, e: ["Stool"]}
+  "m": {t: FloorSteel, a: normal}
+  "n": {t: FloorSteel, a: normal, e: ["ComfyChair@90", "AlwaysPoweredSmallLight"]}
+  "o": {t: FloorSteel, a: normal, e: ["TableReinforced"]}
+  "p": {t: FloorSteel, a: normal, e: ["ComfyChair@-90"]}
+  "q": {t: FloorSteel, a: normal, e: ["WindowDirectional@90", "BitrunningEncryptedCache"]}
+  "r": {t: Plating, a: normal, e: ["AlwaysPoweredWallLight@-90"]}
+  "s": {t: FloorAstroGrass, a: normal}
+  "t": {t: FloorSteel, a: normal, e: ["ComfyChair@90"]}
+  "u": {t: FloorSteel, a: normal, e: ["TableReinforced", "ClothingEyesGlassesSunglasses"]}
+  "v": {t: FloorSteel, a: normal, e: ["WindowDirectional@90"]}
+  "w": {t: Plating, a: normal, e: ["AlwaysPoweredWallLight@90"]}
+  "x": {t: FloorAstroGrass, a: normal, e: ["FloraTree", "AlwaysPoweredWallLight@90"]}
+  "y": {t: FloorAstroGrass, a: normal, e: ["FloraTree", "AlwaysPoweredWallLight@-90"]}
+  "z": {t: FloorSteel, a: normal, e: ["MobButterfly"]}
+  "A": {t: Plating, a: normal}
+  "B": {t: FloorSteel, a: normal, e: ["TableReinforced", "DrinkGlass", "DrinkGlass", "DrinkGlass"]}
+  "C": {t: FloorSteel, a: normal, e: ["TableReinforced", "BoozeDispenser"]}
+  "D": {t: FloorSteel, a: normal, e: ["WindowDirectional@90", "TableReinforced", "Lighter"]}
+  "E": {t: FloorShuttleBlack, a: normal, e: ["AirlockHatch", "AlwaysPoweredWallLight@-90"]}
+  "F": {t: Plating, a: normal, e: ["AlwaysPoweredSmallLight"]}
+  "G": {t: Plating, a: normal, e: ["StatueVenusRed"]}
+  "H": {t: FloorAsteroidSand, a: normal, e: ["FloraTree"]}
+  "I": {t: Plating, a: safe, e: ["WallShuttle"]}
+  "J": {t: Plating, a: safe, e: ["ReinforcedWindow", "Grille"]}
+  "K": {t: FloorWhite, a: safe, e: ["AirlockShuttle"]}
+  "L": {t: Plating, a: safe, e: ["WindowReinforcedDirectional@90"]}
+  "M": {t: FloorSteel, a: safe}
+  "N": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight"]}
+  "O": {t: FloorSteel, a: safe, e: ["TableReinforced", "ToolboxEmergencyFilled"]}
+  "P": {t: FloorSteel, a: safe, e: ["ComfyChair@90"]}
+  "Q": {t: FloorSteel, a: safe, e: ["ComputerBroken@-90"]}
+  "R": {t: FloorSteel, a: safe, e: ["TableReinforced", "EmergencyOxygenTankFilled", "ClothingMaskGas"]}
+  "S": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@180", "BitrunningMarkerGoal"]}
+  "T": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal"]}
+  "U": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "V": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@180", "BitrunningMarkerHololadder"]}
 rows:
 - "aaaaaaaaaaaaaaaaaaaaaaaaa"
 - "abbbbbbbbbbbbbbbbbbbbbbba"
 - "abbbbbbbbbbbbbbbbbbbbbbba"
 - "abbbbbbbbbbbbbbbbbbbbbbba"
 - "abbbbbbbccccccccccbbbbbba"
-- "abbbbbccdecccccecccbbbbba"
-- "abbbbccffgfhfggfgfcbbbbba"
-- "abbbcccfijklmnopifccbbbba"
-- "abbbccqgrjllstourgvccbbba"
-- "abbbcccgwjllllluxfcccbbba"
-- "abbbbccgrjllllyurgdccbbba"
-- "abbbbczfrjlllABCrgzccbbba"
-- "abbbbccgffffDfgfggcccbbba"
-- "abbbbcczEzFlllFzEzccbbbba"
-- "abbbbbcccGlllllGccccbbbba"
-- "abbbbbbccczlllzcccbbbbbba"
-- "abbbbbbbbcccllzcbbbbbbbba"
+- "abbbbbccdeccccceccfbbbbba"
+- "abbbbccgghgighhghgcbbbbba"
+- "abbbcccgjklmnopqjgccbbbba"
+- "abbbccrhskmmtupvshwccbbba"
+- "abbbccchxkmmmmmvygcccbbba"
+- "abbbbcchskmmmmzvshdccbbba"
+- "abbbbcAgskmmmBCDshAccbbba"
+- "abbbbcchggggEghghhcccbbba"
+- "abbbbccAFAGmmmGAFAccbbbba"
+- "abbbbbcccHmmmmmHccccbbbba"
+- "abbbbbbcccAmmmAcccbbbbbba"
+- "abbbbbbbbcccmmAcbbbbbbbba"
 - "abbbbbbbbbbbbbbbbbbbbbbba"
 - "abbbbbbbbbbbbbbbbbbbbbbba"
 - "abbbbbbbbbbbbbbbbbbbbbbba"
-- "abbbbbbbbHIHJHIHbbbbbbbba"
-- "abbbbbbbbKLMLMNHbbbbbbbba"
-- "abbbbbbbbILLLOPIbbbbbbbba"
-- "abbbbbbbbILLLLQIbbbbbbbba"
-- "abbbbbbbbKRSTTUHbbbbbbbba"
-- "abbbbbbbbHHIHIHHbbbbbbbba"
+- "abbbbbbbbIJIKIJIbbbbbbbba"
+- "abbbbbbbbLMNMNOIbbbbbbbba"
+- "abbbbbbbbJMMMPQJbbbbbbbba"
+- "abbbbbbbbJMMMMRJbbbbbbbba"
+- "abbbbbbbbLSTUUVIbbbbbbbba"
+- "abbbbbbbbIIJIJIIbbbbbbbba"
 - "abbbbbbbbbbbbbbbbbbbbbbba"
 - "aaaaaaaaaaaaaaaaaaaaaaaaa"

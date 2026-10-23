@@ -14,122 +14,129 @@ legend:
   "i": {t: FloorSnow, a: outdoors, e: ["#Grassb1"]}
   "j": {t: FloorIce, a: outdoors}
   "k": {t: PlatingSnow, a: outdoors, e: ["#Grassb1"]}
-  "l": {t: FloorSnow, a: outdoors, e: ["FloraRockSolid", "#Grassb1"]}
-  "m": {t: FloorWood, a: outdoors}
-  "n": {t: PlatingSnow, a: outdoors, e: ["BitrunningEncryptedCache"]}
-  "o": {t: FloorSnow, a: outdoors, e: ["FloraTreeConifer", "#Grassb1"]}
-  "p": {t: FloorSteelMono, a: outdoors}
-  "q": {t: FloorSteelMono, a: outdoors, e: ["Barricade"]}
-  "r": {t: FloorBasalt, a: outdoors, e: ["FloorLiquidPlasmaEntity"]}
-  "s": {t: FloorSnow, a: outdoors, e: ["MobBearSpace"]}
-  "t": {t: FloorSteel, a: outdoors, e: ["RailingCorner@-90"]}
-  "u": {t: FloorSteel, a: outdoors, e: ["RailingCorner"]}
-  "v": {t: FloorSnow, a: outdoors, e: ["RailingCorner@90", "RailingCorner@90"]}
-  "w": {t: FloorWood, a: outdoors, e: ["Railing", "RailingCorner@180"]}
-  "x": {t: FloorWood, a: outdoors, e: ["RailingCorner@-90"]}
-  "y": {t: FloorWood, a: outdoors, e: ["RailingCorner@90"]}
-  "z": {t: FloorWood, a: outdoors, e: ["Railing@180", "RailingCorner"]}
-  "A": {t: FloorSnow, a: outdoors, e: ["RailingCorner@-90", "RailingCorner@-90"]}
-  "B": {t: FloorWood, a: outdoors, e: ["Railing@180", "Railing"]}
-  "C": {t: FloorSteel, a: outdoors, e: ["RailingCorner@180"]}
-  "D": {t: FloorSteel, a: outdoors, e: ["RailingCorner@90"]}
-  "E": {t: FloorSnow, a: outdoors, e: ["BitrunningMarkerCuriosity"]}
-  "F": {t: FloorWood, a: outdoors, e: ["Railing", "Railing@180"]}
-  "G": {t: FloorSnow, a: outdoors, e: ["Pickaxe"]}
-  "H": {t: FloorSnow, a: outdoors, e: ["FloraRockSolid", "FloraRockSolid"]}
-  "I": {t: PlatingSnow, a: outdoors, e: ["ChairPilotSeat"]}
-  "J": {t: FloorSnow, a: outdoors, e: ["StatueVenusRed", "Pickaxe"]}
-  "K": {t: Plating, a: safe, e: ["WallIce"]}
-  "L": {t: PlatingSnow, a: safe, e: ["Window", "Grille"]}
-  "M": {t: PlatingSnow, a: safe, e: ["AirlockFreezer"]}
-  "N": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@90", "SmartFridge"]}
-  "O": {t: PlatingSnow, a: safe, e: ["VendingMachineCoffee"]}
-  "P": {t: PlatingSnow, a: safe}
-  "Q": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal"]}
-  "R": {t: PlatingSnow, a: safe, e: ["Window", "Grille", "Barricade"]}
-  "S": {t: FloorSteel, a: safe, e: ["Rack", "MaterialWoodPlank", "MaterialWoodPlank", "MaterialWoodPlank"]}
-  "T": {t: Plating, a: safe}
-  "U": {t: PlatingSnow, a: safe, e: ["RailingCorner@90"]}
-  "V": {t: FloorSteel, a: safe, e: ["Railing", "BitrunningMarkerGoal"]}
-  "W": {t: FloorSteel, a: safe, e: ["CrateInternals", "OxygenTankFilled", "OxygenTankFilled", "OxygenTankFilled", "ClothingMaskBreath", "ClothingMaskBreath", "ClothingMaskBreath", "ClothingOuterWinterCoat", "ClothingOuterWinterCoat", "ClothingOuterWinterCoat"]}
-  "X": {t: FloorSteel, a: safe}
-  "Y": {t: Plating, a: safe, e: ["TableWood", "DrinkCoffee", "DrinkCoffee"]}
-  "Z": {t: FloorSteel, a: safe, e: ["TableWood", "FoodPacketChipsTrash"]}
-  "0": {t: FloorShuttleGrey, a: safe, e: ["BitrunningMarkerHololadder"]}
-  "1": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@-90", "ChairWood@180"]}
+  "l": {t: FloorSnow, a: outdoors, e: ["#Rock04"]}
+  "m": {t: FloorSnow, a: outdoors, e: ["FloraRockSolid", "#Grassb1"]}
+  "n": {t: FloorWood, a: outdoors}
+  "o": {t: PlatingSnow, a: outdoors, e: ["BitrunningEncryptedCache"]}
+  "p": {t: FloorSnow, a: outdoors, e: ["FloraTreeConifer", "#Grassb1"]}
+  "q": {t: FloorSnow, a: outdoors, e: ["#Rock02"]}
+  "r": {t: FloorSteelMono, a: outdoors}
+  "s": {t: FloorSteelMono, a: outdoors, e: ["Barricade"]}
+  "t": {t: FloorBasalt, a: outdoors, e: ["FloorLiquidPlasmaEntity"]}
+  "u": {t: FloorSnow, a: outdoors, e: ["MobBearSpace"]}
+  "v": {t: FloorSnow, a: outdoors, e: ["#Rock06"]}
+  "w": {t: FloorSnow, a: outdoors, e: ["#Rock03"]}
+  "x": {t: FloorSteel, a: outdoors, e: ["RailingCorner@-90"]}
+  "y": {t: FloorSteel, a: outdoors, e: ["RailingCorner"]}
+  "z": {t: FloorSnow, a: outdoors, e: ["RailingCorner@90", "RailingCorner@90"]}
+  "A": {t: FloorWood, a: outdoors, e: ["Railing", "RailingCorner@180"]}
+  "B": {t: FloorWood, a: outdoors, e: ["RailingCorner@-90"]}
+  "C": {t: FloorWood, a: outdoors, e: ["RailingCorner@90"]}
+  "D": {t: FloorWood, a: outdoors, e: ["Railing@180", "RailingCorner"]}
+  "E": {t: FloorSnow, a: outdoors, e: ["RailingCorner@-90", "RailingCorner@-90"]}
+  "F": {t: FloorWood, a: outdoors, e: ["Railing@180", "Railing"]}
+  "G": {t: FloorSteel, a: outdoors, e: ["RailingCorner@180"]}
+  "H": {t: FloorSteel, a: outdoors, e: ["RailingCorner@90"]}
+  "I": {t: FloorSnow, a: outdoors, e: ["BitrunningMarkerCuriosity"]}
+  "J": {t: FloorSnow, a: outdoors, e: ["#Rock07"]}
+  "K": {t: FloorWood, a: outdoors, e: ["Railing", "Railing@180"]}
+  "L": {t: FloorSnow, a: outdoors, e: ["#Rock05"]}
+  "M": {t: FloorSnow, a: outdoors, e: ["Pickaxe"]}
+  "N": {t: FloorSnow, a: outdoors, e: ["FloraRockSolid", "FloraRockSolid"]}
+  "O": {t: PlatingSnow, a: outdoors, e: ["ChairPilotSeat"]}
+  "P": {t: FloorSnow, a: outdoors, e: ["StatueVenusRed", "Pickaxe"]}
+  "Q": {t: FloorSnow, a: outdoors, e: ["#Rock01"]}
+  "R": {t: Plating, a: safe, e: ["WallIce"]}
+  "S": {t: PlatingSnow, a: safe, e: ["Window", "Grille"]}
+  "T": {t: PlatingSnow, a: safe, e: ["AirlockFreezer"]}
+  "U": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@90", "SmartFridge"]}
+  "V": {t: PlatingSnow, a: safe, e: ["VendingMachineCoffee"]}
+  "W": {t: PlatingSnow, a: safe}
+  "X": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal"]}
+  "Y": {t: PlatingSnow, a: safe, e: ["Window", "Grille", "Barricade"]}
+  "Z": {t: FloorSteel, a: safe, e: ["Rack", "MaterialWoodPlank", "MaterialWoodPlank", "MaterialWoodPlank"]}
+  "0": {t: Plating, a: safe}
+  "1": {t: PlatingSnow, a: safe, e: ["RailingCorner@90"]}
+  "2": {t: FloorSteel, a: safe, e: ["Railing", "BitrunningMarkerGoal"]}
+  "3": {t: FloorSteel, a: safe, e: ["CrateInternals", "OxygenTankFilled", "OxygenTankFilled", "OxygenTankFilled", "ClothingMaskBreath", "ClothingMaskBreath", "ClothingMaskBreath", "ClothingOuterWinterCoat", "ClothingOuterWinterCoat", "ClothingOuterWinterCoat"]}
+  "4": {t: FloorSteel, a: safe}
+  "5": {t: Plating, a: safe, e: ["TableWood", "DrinkCoffee", "DrinkCoffee"]}
+  "6": {t: FloorSteel, a: safe, e: ["TableWood", "FoodPacketChipsTrash"]}
+  "7": {t: FloorShuttleGrey, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "8": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@-90", "ChairWood@180"]}
 rows:
 - "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 - "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbba"
 - "abbbbbbbbcccccdccbbbbbbbbbbbbbeffffcbbbbccgccbbbbbbbbbbbbbbbccccccccbbbbbba"
-- "abbbchcdcddciciiichcccbdccciijjfffffccccikggcicccibbbbccccichilichcccbcibba"
-- "abbccdcddddddcciicicfiidcggggccmmmmmcgcgggnggcchcccccccdliocdllihioldciicba"
-- "abcccciccdiicccicgggffjjicicgjgfffffcccccgggccoiociioccdiiidddcdciliddildba"
-- "abccccccccccchccggccffjjjjccjffffffccchcicgcciioichcccccioihddihcccccdcccba"
-- "abffpfffcccfffffpfffffffffffffffffffcffffffffffffffffffchccccccccffffffffba"
-- "abffpfffffffffffpffffffffffffffffffffffffffffffffffffffffffffffffffffffffba"
-- "abffpfffffffffffpffffffffffffffffffffffffffffffffffffffffffffffffffffffffba"
-- "abffccifffffffffppfffffffffffffffffffffffffffffffffffffffffffffffffffffffba"
-- "abfffqffffrrrffffpfffffffffffffffffffffffffffffffffffffffffffffffffffffffba"
-- "abfffpfffffrrrfffpfffffffffffffffffffffffffffffffffffffffffffffffffffffffba"
-- "abfffpcchffffrrfppffffffffffffccfffffffffffffffffffffffffffffffffffffffffba"
-- "abfffcciccdffrrfpfffffffffffffccccfffffffffffffffffffffffffffffffffffffffba"
-- "abfffcccsiccfrffpfffffffffffffpccifffffffffffffffffffffffffffffffffffffffba"
-- "abfffdicccccfrffciffffffffffffpfcccjcffffffffffffffffffffffffcddccfffffffba"
-- "abffffccccidffffcjccffffffffffpfffffcjjjcccccjffffffffffffccccccciicchfffba"
-- "abffffffqfffffffffdcccjjjciicfpffffffffffffjccccciicdtfufccccffffccccffffba"
-- "abffffffpfffffffffffffffffccccjfffffffffffffffffjjjcvwxyzAjfffffffffpffffba"
-- "abfffjvBAfffffffffffffffffffffffffffffffffffffffffffffCfDfffffffffffpffffba"
-- "abfffEcfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffpffffba"
+- "abbbchcdcddciciiichcccbdccciijjfffffccccikggciclcibbbbccccichimichcccbcibba"
+- "abbccdcddddddcciicicfiidcggggccnnnnncgcgggoggcchcccccccdmipcdmmihipmdciicba"
+- "abcccciccdiicccicgggffjjicicgjgfffffcccccgggccpipciipccdiiidddcdcimiddimdba"
+- "abcqccccccccchccggccffjjjjccjffffffccchcicgcciipichcccccipihddihcccccdcccba"
+- "abffrfffcccfffffrfffffffffffffffffffcffffffffffffffffffchcccqccccffffffffba"
+- "abffrfffffffffffrffffffffffffffffffffffffffffffffffffffffffffffffffffffffba"
+- "abffrfffffffffffrffffffffffffffffffffffffffffffffffffffffffffffffffffffffba"
+- "abffccifffffffffrrfffffffffffffffffffffffffffffffffffffffffffffffffffffffba"
+- "abfffsfffftttffffrfffffffffffffffffffffffffffffffffffffffffffffffffffffffba"
+- "abfffrffffftttfffrfffffffffffffffffffffffffffffffffffffffffffffffffffffffba"
+- "abfffrcchffffttfrrffffffffffffccfffffffffffffffffffffffffffffffffffffffffba"
+- "abfffcciccdffttfrfffffffffffffccccfffffffffffffffffffffffffffffffffffffffba"
+- "abfffcccuiccftffrfffffffffffffrccifffffffffffffffffffffffffffffffffffffffba"
+- "abfffdicccccftffciffffffffffffrfcccjcffffffffffffffffffffffffcddclfffffffba"
+- "abffffccccidffffcjcvffffffffffrfffffcjjjcccccjffffffffffffcwccccciicchfffba"
+- "abffffffsfffffffffdcccjjjciicfrffffffffffffjccclciicdxfyfccccffffccccffffba"
+- "abffffffrfffffffffffffffffccccjfffffffffffffffffjjjczABCDEjfffffffffrffffba"
+- "abfffjzFEfffffffffffffffffffffffffffffffffffffffffffffGfHfffffffffffrffffba"
+- "abfffIcfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffrffffba"
 - "abfffffffffffffffffffffffffffffffffffffffffffffffffffffffffcciffffcccffffba"
 - "abffffffffedddccccffffffffffffffffffffffffffffffffffffffffccfccjjjcccffffba"
-- "abffffffffccccjjjccjfffffjcccccdfffffffffffffffffffffffffffpfffffffffffffba"
-- "abffffffffdpcffffccccjjjccffffcccjjcffccffffffccdffrrffffffpfffffffffffffba"
-- "abfffffffffpfffffffffffffffffffffffjccjccffccfcccfffrrffffppfffffffffffffba"
-- "abfffffffffppfffffffffffffffffffffffffffjcccccjccfffrrffffpffffffffffffffba"
-- "abffffffffffpfffffffffffffffffffffffffffffffffpdfffffrrfffpfccccjifffffffba"
-- "abffffffffffpfffffffffffffdcvFFFAcjdffffffffffpffffffrrfffcciffffcccccfffba"
-- "abfffffffffppfffffffffffffcjfffffjicccefffffffppffffffrffffffffffffffpfffba"
-- "abfffffffffpfffffffffffccccfffffffffccccjffffffpffffffrrfffffffffffffcfffba"
-- "abfffffffffpffffffffffffppffffffffffffccGffffffpfffffcrrfffffffffffffccffba"
-- "abfffffffffpffffrfffffffppfffffffffffffppffffffpffffccrrfffffffffffffcjffba"
-- "abfffffffffpfffrrrcfffffppfffffffffffffppffffffpfffffcrrfffffffffffffccffba"
-- "abfffffffffppffcdcchcfffppfffffffffffffppfffffppfffffrrrrchffffffdcicceffba"
-- "abffffffffffpfffcidcrfffppffffffffffdcccjfffffpfffffffrrrdcfffffccjjjffffba"
-- "abffffffffffpffffrcrrfffpfffffffjjjjccchcfffffpffffffccccdfffffffpfffffffba"
-- "abffffffffffpffffrrrffffpfffffffcgccijffffffffppffffffhcdcfffffffpfffffffba"
-- "abffffffffffpfffffffffffpfffffffppfffffffffffffpffffffffccfffffffpfffffffba"
-- "abfffffffffppfffffffffffpfffffffppfffffffffffffpfffffffffffffffffpfffffffba"
-- "abfffffffffppfffffffffffppffffffppfffffffffffffpffffffffffffffffppfffffffba"
-- "abfffffffffppfffffffffffppffffffppffffffffffffppffffffffffffffffpffffffffba"
-- "abfffffffffppfffffffffffppffffffppffffffffffffpfffffffffffffffffpffffffffba"
-- "abfffffffffcccfffffffffffpffffffcgdhffffffffffppffffffffffffffffpffffffffba"
-- "abfffffffffjcicccddfffffppfffffccccciffffffffffpffffffffffffffffppfffffffba"
-- "abfffffffffffffeccccffffppffffffdfcjgggdfffffffpffffffffffffffffppffffcffba"
-- "abfffffffffffffffffjcccicjffffffffffckkcfffffffjccfffffffffhciicccffffrffba"
-- "abfffffffffffffffffccfjccjfffffffffffpppfffffffffeiicfcciccccccfffffffrrrba"
-- "abfffffffffffffffffffffffffffffffffffpppffffffffffffccjjddcjfffffffrrrrrrba"
-- "abfffffffffffffffffffffffffffffffffffpppfffffffffffffffffffffffffffrrrrrrba"
-- "abfffffffffffffffffffffffffffffffffffpppffffffffffffffffffffffffffrrrrrrrba"
-- "abfffffffffffffffffffffffffffffffffffpppffffffffffffffffffffffrrrrrrrrrrrba"
-- "abfffffffffffffffffffffffffffffffffffpppffffffffffffffffffffffrrrrrrrrrrrba"
-- "abrrrrrrrrrrfffffffffffffffffffffffffpppffffffffffffffffffffffrrrrrrrrrrrba"
-- "abrrrrrrrrrrrrrrrrrrcdHdddcccIIIgcceggggceccchrrrcccciccrrrrrrrrrrrrrrrrrba"
-- "abbbrrrrrrrrrrrrrccccccdddchccgggggccgggcJiicccrrrrrccddccccrrrrrrrrrrrrrba"
-- "abbbrbbbrrrrrrrcccdcccccccciccccccgggggcccccccrrrrcccddddccrrrrrrrrrrrrrrba"
-- "abbbbbbbrrrrrrrrcccrrrccccccjcchcccccggcdccicccrcccciicddrrrrrrrrrrrrrrrrba"
-- "abbbbbbbrrrrrrrrrccrrrrccchjjhcciicccgcccchccccrcchccccdcccrrrrrrrrrrrrrrba"
-- "abbbbbbrrrrrrrrrrrrrrrrrcicjjccccccccgggciiccccccicrrrrrccrrrrrrrrrrrrrrrba"
-- "abbbbbbbbbrrrrrrrrrrrrrrccciicccdcjcccgcciichccccccrrrrrrrrrrrrrrrrrrrrrrba"
-- "abbbbbbbbbbbrbbbbbrrrrrrrcciichhccjcdcggcccccccccrrrrrrrrrrrrrrddcrrrrrrrba"
-- "abbbbbbbbbbbbbbbbbrrrrrrrcdccciiccjjjgggcjchccccrrrrrrrrrrrrrbcciirrrrrrrba"
-- "abbbbbbbbbbbbbbbbbbrrrrrrrchcciichjjjcggcjjjccbbrrrrrrrrrrrrrbbciirrrrrrrba"
-- "abbbbbbbbbbbbrrrrrrrrrrrrrcccccccjjjcggccjjjccbbbrrrrrrrrbrbbbbcccicbrrrrba"
-- "abbbbbbbbbbbbbbbrrrrrrrrrrrrrccciccccgggccjjbbbbbbbrrrrrrbbbbbcidcccbbbbbba"
-- "abbbbbbbbbbbbbbbbbbrrrrrrrrrrcccicKKLMLKKccccbbbbbbbbrrrbbbbccccdccbbbbbbba"
-- "abbbbbbbbbbbbbbbbbbbbrrrrrrrrrccccKNOPPQKciibbbcbbbbbbbbbbcccccddbcbbbbbbba"
-- "abbbbbbbbbbbbbbbbbbbbbbbbrrrrrchccRSTPUVRciicccdcdbbbbbbbccccbcbbbbbbbbbbba"
-- "abbbbbbbbbbbbbbbbbbbbbbbbrrrrrccccLWXXYZRccchcccddccbbccciccbbbbbbbbbbbbbba"
-- "abbbbbbbbbbbbbbbbbbbbbbbbbbrbbccccKX0001Kcccccccccccccccccbbbbbbbbbbbbbbbba"
-- "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbcbbcKKKKKKKcccbbbccciccbccccbbbbbbbbbbbbbbbba"
+- "abffffffffcJccjjjccjfffffjcccccdfffffffffffffffffffffffffffrfffffffffffffba"
+- "abffffffffdrcffffccccjjjccffffcccjjcffccffffffccdffttffffffrfffffffffffffba"
+- "abfffffffffrfffffffffffffffffffffffjccjccffccfcccfffttffffrrfffffffffffffba"
+- "abfffffffffrrfffffffffffffffffffffffffffjcccccjccfffttffffrffffffffffffffba"
+- "abffffffffffrfffffffffffffffffffffffffffffffffrdfffffttfffrfccccjifffffffba"
+- "abffffffffffrfffffffffffffdczKKKEcjdffffffffffrffffffttfffcciffffcccccfffba"
+- "abfffffffffrrfffffffffffffcjfffffjicLcefffffffrrfffffftffffffffffffffrfffba"
+- "abfffffffffrfffffffffffccccfffffffffccccjffffffrffffffttfffffffffffffcfffba"
+- "abfffffffffrffffffffffffrrffffffffffffccMffffffrfffffcttfffffffffffffccffba"
+- "abfffffffffrfffftfffffffrrfffffffffffffrrffffffrffffccttfffffffffffffcjffba"
+- "abfffffffffrffftttcfffffrrfffffffffffffrrffffffrfffffcttfffffffffffffccffba"
+- "abfffffffffrrffcdcchcfffrrfffffffffffffrrfffffrrfffffttttchffffffdcicceffba"
+- "abffffffffffrfffcidctfffrrffffffffffdcccjfffffrffffffftttdcfffffccjjjffffba"
+- "abffffffffffrfffftcttfffrfffffffjjjjccchcfffffrffffffccccdfffffffrfffffffba"
+- "abffffffffffrfffftttffffrfffffffcgccijffffffffrrffffffhcdcfffffffrfffffffba"
+- "abffffffffffrfffffffffffrfffffffrrfffffffffffffrffffffffccfffffffrfffffffba"
+- "abfffffffffrrfffffffffffrfffffffrrfffffffffffffrfffffffffffffffffrfffffffba"
+- "abfffffffffrrfffffffffffrrffffffrrfffffffffffffrffffffffffffffffrrfffffffba"
+- "abfffffffffrrfffffffffffrrffffffrrffffffffffffrrffffffffffffffffrffffffffba"
+- "abfffffffffrrfffffffffffrrffffffrrffffffffffffrfffffffffffffffffrffffffffba"
+- "abfffffffffcccfffffffffffrffffffcgdhffffffffffrrffffffffffffffffrffffffffba"
+- "abfffffffffjcicccddfffffrrfffffccccciffffffffffrffffffffffffffffrrfffffffba"
+- "abfffffffffffffeccccffffrrffffffdfcjgggdfffffffrffffffffffffffffrrffffcffba"
+- "abfffffffffffffffffjcccicjffffffffffckkcfffffffjccfffffffffhciicccfffftffba"
+- "abfffffffffffffffffccfjccjfffffffffffrrrfffffffffeiicfvciccccccffffffftttba"
+- "abfffffffffffffffffffffffffffffffffffrrrffffffffffffccjjddcjfffffffttttttba"
+- "abfffffffffffffffffffffffffffffffffffrrrfffffffffffffffffffffffffffttttttba"
+- "abfffffffffffffffffffffffffffffffffffrrrfffffffffffffffffffffffffftttttttba"
+- "abfffffffffffffffffffffffffffffffffffrrrfffffffffffffffffffffftttttttttttba"
+- "abfffffffffffffffffffffffffffffffffffrrrfffffffffffffffffffffftttttttttttba"
+- "abttttttttttfffffffffffffffffffffffffrrrfffffffffffffffffffffftttttttttttba"
+- "abttttttttttttttttttcdNdddcccOOOgcceggggceclchtttccccicctttttttttttttttttba"
+- "abbbtttttttttttttLccccldddchccgggggccgggcPiiccctttttccddQccctttttttttttttba"
+- "abbbtbbbtttttttcccdcccccccciccccccgggggcccccccttttcccddddccttttttttttttttba"
+- "abbbbbbbttttttttccctttccccccjcchcccccggcdcciccctcqcciicddttttttttttttttttba"
+- "abbbbbbbtttttttttccttttccchjjhcciicvcgcccchccQQtcchccccdcccttttttttttttttba"
+- "abbbbbbtttttttttttttttttcicjjccccccccgggciivcccccictttttcctttttttttttttttba"
+- "abbbbbbbbbttttttttttttttccciicccdcjcQcgcciichccccccttttttttttttttttttttttba"
+- "abbbbbbbbbbbtbbbbbtttttttcciichhccjcdcggcccccccccttttttttttttttddLtttttttba"
+- "abbbbbbbbbbbbbbbbbtttttttcdccciiccjjjgggcjchcccctttttttttttttbcciitttttttba"
+- "abbbbbbbbbbbbbbbbbbtttttttchcciichjjjcggcjjjccbbtttttttttttttbbciitttttttba"
+- "abbbbbbbbbbbbtttttttttttttcccccccjjjcggccjjjccbbbttttttttbtbbbbcqcicbttttba"
+- "abbbbbbbbbbbbbbbtttttttttttttccciccccgggccjjbbbbbbbttttttbbbbbcidcccbbbbbba"
+- "abbbbbbbbbbbbbbbbbbttttttttttcccicRRSTSRRccccbbbbbbbbtttbbbbccccdccbbbbbbba"
+- "abbbbbbbbbbbbbbbbbbbbtttttttttccccRUVWWXRciibbbcbbbbbbbbbbcccccddbcbbbbbbba"
+- "abbbbbbbbbbbbbbbbbbbbbbbbtttttchccYZ0W12Yciicccdcdbbbbbbbccccbcbbbbbbbbbbba"
+- "abbbbbbbbbbbbbbbbbbbbbbbbtttttccccS34456Yccchcccddccbbccciccbbbbbbbbbbbbbba"
+- "abbbbbbbbbbbbbbbbbbbbbbbbbbtbbccccR47778Rcccccccccccccccccbbbbbbbbbbbbbbbba"
+- "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbcbbcRRRRRRRcccbbblcciccbccccbbbbbbbbbbbbbbbba"
 - "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbba"
 - "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"

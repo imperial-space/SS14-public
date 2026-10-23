@@ -4,6 +4,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Nutrition;
 using Content.Shared.Nutrition.EntitySystems;
 using Robust.Shared.Audio;
+using Robust.Shared.Player;
 
 namespace Content.Server.Imperial.Bitrunning;
 
@@ -18,6 +19,10 @@ public sealed partial class QuantumServerSystem
     private static readonly TimeSpan ScriptInterval = TimeSpan.FromSeconds(1);
     private static readonly SoundSpecifier SacrificeSound = new SoundPathSpecifier("/Audio/Magic/staff_animation.ogg");
     private const string DrinkType = "Drink";
+    private const int AmbienceMinDelay = 30;
+    private const int AmbienceMaxDelay = 60;
+    private static readonly AudioParams AmbienceParams = AudioParams.Default.WithVolume(-4f);
+    private static readonly AudioParams BuzzParams = AudioParams.Default.WithVolume(-8f).WithLoop(true);
 
     private void InitializeDomainScripts()
     {
@@ -31,6 +36,7 @@ public sealed partial class QuantumServerSystem
 
         ent.Comp.NextDeathScan = now + ScriptInterval;
         UpdateObjectives(ent);
+        UpdateAmbience(ent, domain, now);
 
         if (domain.DeathPoints > 0)
             ScanDeaths(ent, domain, map);
@@ -111,5 +117,44 @@ public sealed partial class QuantumServerSystem
             return;
 
         AddCratePoints((ent.Comp.Server, server), domain.DrinkPoints);
+    }
+
+    /// <summary>SSambience: случайный звук области раз в 30–60 секунд, слышит только сам битраннер.</summary>
+    private void UpdateAmbience(Entity<QuantumServerComponent> ent, BitrunningDomainPrototype domain, TimeSpan now)
+    {
+        if (domain.Ambience is not { } ambience)
+            return;
+
+        foreach (var avatar in ent.Comp.Avatars)
+        {
+            if (!TryComp<BitrunningAvatarComponent>(avatar, out var comp) || now < comp.NextAmbience
+                || !TryComp<ActorComponent>(avatar, out var actor))
+                continue;
+
+            comp.NextAmbience = now + TimeSpan.FromSeconds(_random.Next(AmbienceMinDelay, AmbienceMaxDelay));
+            _audio.PlayGlobal(new SoundCollectionSpecifier(ambience), actor.PlayerSession, AmbienceParams);
+        }
+    }
+
+    /// <summary>Подключение: включается ambient_buzz, первый случайный звук — через 10–30 секунд.</summary>
+    public void StartAmbience(EntityUid avatar)
+    {
+        if (!TryComp<BitrunningAvatarComponent>(avatar, out var comp) || !TryComp<ActorComponent>(avatar, out var actor)
+            || !TryComp<QuantumServerComponent>(comp.Server, out var server) || !_proto.TryIndex(server.Domain, out var domain))
+            return;
+
+        StopAmbience(avatar);
+        comp.NextAmbience = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(10, 30));
+        if (domain.AmbientBuzz is { } buzz)
+            comp.BuzzStream = _audio.PlayGlobal(buzz, actor.PlayerSession, BuzzParams)?.Entity;
+    }
+
+    public void StopAmbience(EntityUid avatar)
+    {
+        if (!TryComp<BitrunningAvatarComponent>(avatar, out var comp) || comp.BuzzStream is not { } stream)
+            return;
+
+        _audio.Stop(stream);
+        comp.BuzzStream = null;
     }
 }

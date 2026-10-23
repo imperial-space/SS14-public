@@ -11,6 +11,9 @@
   flags: NoNohitBonus
   fishingPoints: 2
   layout: /Imperial/Bitrunning/Domains/breeze_bay.yml
+  ambience: BitrunningAmbienceBeach
+  ambientBuzz:
+    path: /Audio/Imperial/Bitrunning/Ambience/shore.ogg
   ambientLight: "#FFFFFF"
 
 - type: bitrunningDomain
@@ -23,6 +26,9 @@
   reward: 4
   forcedOutfit: BitrunningMinerGear
   layout: /Imperial/Bitrunning/Domains/ash_drake.yml
+  ambience: AmbienceMining
+  ambientBuzz:
+    path: /Audio/Imperial/Bitrunning/Ambience/magma.ogg
   roofLight: "#1c1410"
   ambientLight: "#D8C0B0"
 
@@ -36,6 +42,9 @@
   reward: 4
   forcedOutfit: BitrunningMinerGear
   layout: /Imperial/Bitrunning/Domains/blood_drunk_miner.yml
+  ambience: AmbienceMining
+  ambientBuzz:
+    path: /Audio/Imperial/Bitrunning/Ambience/magma.ogg
   roofLight: "#1c1410"
   ambientLight: "#D8C0B0"
 
@@ -51,6 +60,9 @@
   completionLoot:
     PlushieSlime: 1
   layout: /Imperial/Bitrunning/Domains/bubblegum.yml
+  ambience: AmbienceMining
+  ambientBuzz:
+    path: /Audio/Imperial/Bitrunning/Ambience/magma.ogg
   roofLight: "#1c1010"
   ambientLight: "#D8C0B0"
 
@@ -64,6 +76,9 @@
   reward: 5
   forcedOutfit: BitrunningMinerGear
   layout: /Imperial/Bitrunning/Domains/colossus.yml
+  ambience: AmbienceMining
+  ambientBuzz:
+    path: /Audio/Imperial/Bitrunning/Ambience/magma.ogg
   roofLight: "#1c1410"
   ambientLight: "#D8C0B0"
 
@@ -77,6 +92,9 @@
   reward: 5
   forcedOutfit: BitrunningMinerGear
   layout: /Imperial/Bitrunning/Domains/hierophant.yml
+  ambience: AmbienceMining
+  ambientBuzz:
+    path: /Audio/Imperial/Bitrunning/Ambience/magma.ogg
   roofLight: "#16121c"
   ambientLight: "#D8C0B0"
 
@@ -94,6 +112,9 @@
   completionLoot:
     PlushieRouny: 1
   layout: /Imperial/Bitrunning/Domains/xeno_nest.yml
+  ambience: AmbienceMining
+  ambientBuzz:
+    path: /Audio/Imperial/Bitrunning/Ambience/magma.ogg
   roofLight: "#2a2634"
   ambientLight: "#404050"
 
@@ -110,6 +131,7 @@
   completionLoot:
     BikeHorn: 1
   layout: /Imperial/Bitrunning/Domains/clown_planet.yml
+  ambience: AmbienceGeneral
   ambientLight: "#FFFFFF"
 
 - type: bitrunningDomain
@@ -123,6 +145,9 @@
   completionLoot:
     SpaceCash500: 4
   layout: /Imperial/Bitrunning/Domains/vaporwave.yml
+  ambience: AmbienceSpace
+  ambientBuzz:
+    path: /Audio/Ambience/shipambience.ogg
   roofLight: "#2a1838"
   ambientLight: "#303048"
 
@@ -152,6 +177,9 @@
   completionLoot:
     PlushieXeno: 1
   layout: /Imperial/Bitrunning/Domains/abductor_ship.yml
+  ambience: AmbienceSpace
+  ambientBuzz:
+    path: /Audio/Ambience/shipambience.ogg
   roofLight: "#141420"
   ambientLight: "#202028"
 
@@ -166,6 +194,9 @@
   completionLoot:
     BeachBall: 1
   layout: /Imperial/Bitrunning/Domains/beach_bar.yml
+  ambience: BitrunningAmbienceBeach
+  ambientBuzz:
+    path: /Audio/Imperial/Bitrunning/Ambience/shore.ogg
   ambientLight: "#FFFFFF"
 
 - type: bitrunningDomain
@@ -180,6 +211,9 @@
   completionLoot:
     FoodPizzaMeatSlice: 1
   layout: /Imperial/Bitrunning/Domains/fredingtonfastingbear.yml
+  ambience: AmbienceSpooky
+  ambientBuzz:
+    path: /Audio/Ambience/maintambience.ogg
   roofLight: "#050508"
   ambientLight: "#101014"
 
@@ -195,6 +229,7 @@
   deathPoints: 3.5
   deathFilter: [ MobGoat ]
   layout: /Imperial/Bitrunning/Domains/grasslands_hunt.yml
+  ambience: AmbienceGeneral
   ambientLight: "#FFFFFF"
 
 - type: bitrunningDomain
@@ -208,6 +243,9 @@
   reward: 3
   forcedOutfit: BitrunningHereticGear
   layout: /Imperial/Bitrunning/Domains/heretic_hunt.yml
+  ambience: AmbienceSpooky
+  ambientBuzz:
+    path: /Audio/Ambience/shipambience.ogg
   roofLight: "#141418"
   ambientLight: "#303038"
 
@@ -231,6 +269,9 @@
     WeaponLaserGun: 1
     BitrunningDiskMiniUzi: 1
   layout: /Imperial/Bitrunning/Domains/island_brawl.yml
+  ambience: BitrunningAmbienceBeach
+  ambientBuzz:
+    path: /Audio/Imperial/Bitrunning/Ambience/shore.ogg
   ambientLight: "#FFFFFF"
 
 - type: bitrunningDomain
@@ -247,6 +288,9 @@
   mobModules: [ BitrunningSegmentRevolutionary ]
   forcedOutfit: SecurityOfficerGear
   layout: /Imperial/Bitrunning/Domains/meta_central.yml
+  ambience: AmbienceStation
+  ambientBuzz:
+    path: /Audio/Ambience/shipambience.ogg
   roofLight: "#141418"
   ambientLight: "#303038"
 
@@ -264,6 +308,9 @@
   completionLoot:
     CableApcStack10: 1
   layout: /Imperial/Bitrunning/Domains/pipedream.yml
+  ambience: AmbienceMaintenance
+  ambientBuzz:
+    path: /Audio/Ambience/maintambience.ogg
   roofLight: "#121218"
   ambientLight: "#202028"
 
@@ -278,6 +325,9 @@
   difficulty: Medium
   reward: 4
   layout: /Imperial/Bitrunning/Domains/pirates.yml
+  ambience: BitrunningAmbienceBeach
+  ambientBuzz:
+    path: /Audio/Imperial/Bitrunning/Ambience/shore.ogg
   roofLight: "#141418"
   ambientLight: "#C8C8D8"
 
@@ -293,6 +343,9 @@
   reward: 5
   forcedOutfit: BitrunningEcholocatorGear
   layout: /Imperial/Bitrunning/Domains/psyker_shuffle.yml
+  ambience: AmbienceSpooky
+  ambientBuzz:
+    path: /Audio/Ambience/shipambience.ogg
   roofLight: "#050508"
 
 - type: bitrunningDomain
@@ -308,6 +361,9 @@
   completionLoot:
     ClothingHeadsetGrey: 1
   layout: /Imperial/Bitrunning/Domains/psyker_zombies.yml
+  ambience: AmbienceSpooky
+  ambientBuzz:
+    path: /Audio/Ambience/shipambience.ogg
   roofLight: "#101014"
 
 - type: bitrunningDomain
@@ -327,6 +383,9 @@
     ClothingShoesSkates: 2
     ClothingHeadHatUshanka: 1
   layout: /Imperial/Bitrunning/Domains/stairs_and_cliffs.yml
+  ambience: BitrunningAmbienceIcemoon
+  ambientBuzz:
+    path: /Audio/Effects/Weather/wind_2_1.ogg
   ambientLight: "#E0E8FF"
 
 - type: bitrunningDomain
@@ -344,6 +403,9 @@
   completionLoot:
     PlushieNuke: 1
   layout: /Imperial/Bitrunning/Domains/syndicate_assault.yml
+  ambience: AmbienceSpace
+  ambientBuzz:
+    path: /Audio/Ambience/shipambience.ogg
   roofLight: "#121218"
   ambientLight: "#202028"
 
@@ -358,5 +420,8 @@
   reward: 5
   forcedOutfit: BitrunningMinerGear
   layout: /Imperial/Bitrunning/Domains/wendigo.yml
+  ambience: BitrunningAmbienceIcemoon
+  ambientBuzz:
+    path: /Audio/Effects/Weather/wind_2_1.ogg
   roofLight: "#161a22"
   ambientLight: "#C8D0E8"

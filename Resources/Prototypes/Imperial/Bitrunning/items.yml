@@ -430,3 +430,38 @@
       state: box_of_doom
   - type: BitrunningObjectiveCondition
     kind: Curiosity
+
+# ─── Окружение доменов: фоновые звуки областей TG (ambientsounds / ambient_buzz) ───
+- type: soundCollection
+  id: BitrunningAmbienceBeach
+  files:
+  - /Audio/Imperial/Bitrunning/Ambience/shore.ogg
+  - /Audio/Imperial/Bitrunning/Ambience/seag1.ogg
+  - /Audio/Imperial/Bitrunning/Ambience/seag2.ogg
+  - /Audio/Imperial/Bitrunning/Ambience/seag3.ogg
+  - /Audio/Ambience/ambinice.ogg
+
+- type: soundCollection
+  id: BitrunningAmbienceIcemoon
+  files:
+  - /Audio/Imperial/Bitrunning/Ambience/ambiicemelody1.ogg
+  - /Audio/Imperial/Bitrunning/Ambience/ambiicemelody2.ogg
+  - /Audio/Imperial/Bitrunning/Ambience/ambiicemelody3.ogg
+  - /Audio/Imperial/Bitrunning/Ambience/ambiicemelody4.ogg
+  - /Audio/Imperial/Bitrunning/Ambience/ambiicesting1.ogg
+  - /Audio/Imperial/Bitrunning/Ambience/ambiicesting2.ogg
+  - /Audio/Imperial/Bitrunning/Ambience/ambiicesting3.ogg
+  - /Audio/Imperial/Bitrunning/Ambience/ambiicesting4.ogg
+  - /Audio/Imperial/Bitrunning/Ambience/ambiicesting5.ogg
+
+# Плеск у водоёмов: звук моно, слышен только рядом.
+- type: entity
+  id: BitrunningAmbienceWater
+  name: плеск воды
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: AmbientSound
+    volume: -6
+    range: 7
+    sound:
+      path: /Audio/Ambience/Objects/flowing_water_open.ogg

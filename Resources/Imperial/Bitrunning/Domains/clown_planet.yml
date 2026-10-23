@@ -35,29 +35,35 @@ legend:
   "D": {t: FloorWood, a: outdoors, e: ["DisposalUnit", "Carpet"]}
   "E": {t: FloorWood, a: outdoors, e: ["Carpet"]}
   "F": {t: FloorWood, a: outdoors, e: ["StatueVenusRed", "Carpet"]}
-  "G": {t: FloorWood, a: outdoors, e: ["AlwaysPoweredSmallLight@90", "Carpet"]}
-  "H": {t: FloorWood, a: outdoors, e: ["BikeHorn", "Carpet"]}
-  "I": {t: FloorWood, a: outdoors, e: ["AlwaysPoweredSmallLight@-90", "Carpet"]}
-  "J": {t: FloorSteel, a: outdoors, e: ["BikeHorn"]}
-  "K": {t: FloorSteel, a: outdoors, e: ["SalvageHumanCorpse"]}
-  "L": {t: FloorWood, a: outdoors, e: ["BitrunningEncryptedCache", "Carpet"]}
-  "M": {t: FloorSteel, a: outdoors, e: ["AlwaysPoweredWallLight"]}
-  "N": {t: FloorWood, a: outdoors, e: ["Airlock", "Carpet"]}
-  "O": {t: FloorSteel, a: outdoors, e: ["AlwaysPoweredWallLight@180"]}
-  "P": {t: FloorBasalt, a: outdoors}
-  "Q": {t: FloorBasalt, a: outdoors, e: ["DisposalUnit"]}
-  "R": {t: FloorBasalt, a: outdoors, e: ["MarkerBeaconStructure"]}
-  "S": {t: Plating, a: safe, e: ["WallSolid"]}
-  "T": {t: Plating, a: safe, e: ["ReinforcedWindow", "Grille"]}
-  "U": {t: FloorDarkMono, a: safe, e: ["AirlockExternal"]}
-  "V": {t: FloorDark, a: safe}
-  "W": {t: FloorDarkMono, a: safe}
-  "X": {t: FloorDarkMono, a: safe, e: ["AlwaysPoweredWallLight@90"]}
-  "Y": {t: FloorSteel, a: safe, e: ["AlwaysPoweredWallLight@-90", "BitrunningMarkerGoal"]}
-  "Z": {t: FloorSteel, a: safe, e: ["Railing", "BitrunningMarkerGoal"]}
-  "0": {t: FloorDark, a: safe, e: ["Table", "Lantern", "Lantern", "Lantern"]}
-  "1": {t: FloorDarkMono, a: safe, e: ["BitrunningMarkerHololadder"]}
-  "2": {t: FloorDark, a: safe, e: ["PottedPlantRandom"]}
+  "G": {t: FloorWood, a: outdoors, e: ["TableGlass", "TrashBananaPeel", "Carpet"]}
+  "H": {t: FloorWood, a: outdoors, e: ["TableGlass", "ClothingShoesClown", "Carpet"]}
+  "I": {t: FloorWood, a: outdoors, e: ["AlwaysPoweredSmallLight@90", "Carpet"]}
+  "J": {t: FloorWood, a: outdoors, e: ["BikeHorn", "Carpet"]}
+  "K": {t: FloorWood, a: outdoors, e: ["AlwaysPoweredSmallLight@-90", "Carpet"]}
+  "L": {t: FloorSteel, a: outdoors, e: ["BikeHorn"]}
+  "M": {t: FloorSteel, a: outdoors, e: ["SalvageHumanCorpse"]}
+  "N": {t: FloorWood, a: outdoors, e: ["BitrunningEncryptedCache", "Carpet"]}
+  "O": {t: FloorSteel, a: outdoors, e: ["AlwaysPoweredWallLight"]}
+  "P": {t: FloorWood, a: outdoors, e: ["Airlock", "Carpet"]}
+  "Q": {t: FloorSteel, a: outdoors, e: ["AlwaysPoweredWallLight@180"]}
+  "R": {t: FloorBasalt, a: outdoors}
+  "S": {t: FloorBasalt, a: outdoors, e: ["DisposalUnit"]}
+  "T": {t: FloorBasalt, a: outdoors, e: ["#Basalt5"]}
+  "U": {t: FloorBasalt, a: outdoors, e: ["MarkerBeaconStructure"]}
+  "V": {t: FloorBasalt, a: outdoors, e: ["#Basalt7"]}
+  "W": {t: Plating, a: safe, e: ["WallSolid"]}
+  "X": {t: Plating, a: safe, e: ["ReinforcedWindow", "Grille"]}
+  "Y": {t: FloorDarkMono, a: safe, e: ["AirlockExternal"]}
+  "Z": {t: FloorDark, a: safe}
+  "0": {t: FloorDarkMono, a: safe}
+  "1": {t: FloorDarkMono, a: safe, e: ["AlwaysPoweredWallLight@90"]}
+  "2": {t: FloorSteel, a: safe, e: ["AlwaysPoweredWallLight@-90", "BitrunningMarkerGoal"]}
+  "3": {t: FloorSteel, a: safe, e: ["Railing", "BitrunningMarkerGoal"]}
+  "4": {t: FloorBasalt, a: outdoors, e: ["#Basalt4"]}
+  "5": {t: FloorDark, a: safe, e: ["Table", "Lantern", "Lantern", "Lantern"]}
+  "6": {t: FloorDarkMono, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "7": {t: FloorDark, a: safe, e: ["PottedPlantRandom"]}
+  "8": {t: FloorBasalt, a: outdoors, e: ["#Basalt3"]}
 rows:
 - "aaaaaaaaaaaabbbbbbbbbaaaaaaaaaaaa"
 - "bbbbbbbbbbbbbcccccccbbbbbbbbbbbbb"
@@ -80,26 +86,26 @@ rows:
 - "bbbabcsskckkkcckkklcckkkksscbabbb"
 - "bbbbbcssskkksccccccsskckssscbbbbb"
 - "bbbbcccscsssscBCDEBcsssssscccbbbb"
-- "bbbccssscscscFEBEBEFcsssssssccbbb"
-- "bbcchssssssccGEBHBEIccsssJsshccbb"
-- "bbchhqKscsssscEEEELcKssssscshhcbb"
-- "bbchqhsssssssMccNccMsssscsshjhcbb"
-- "bbchjhqssJsscsscssssssssssshqhcbb"
-- "bbcchhhcssssssssssssssJcschhhccbb"
-- "bbbchhqhqOsssJssssssssOchhjhhcbbb"
+- "bbbccssscscscFEGEHEFcsssssssccbbb"
+- "bbcchssssssccIEBJBEKccsssLsshccbb"
+- "bbchhqMscsssscEEEENcMssssscshhcbb"
+- "bbchqhsssssssOccPccOsssscsshjhcbb"
+- "bbchjhqssLsscsscssssssssssshqhcbb"
+- "bbcchhhcssssssssssssssLcschhhccbb"
+- "bbbchhqhqQsssLssssssssQchhjhhcbbb"
 - "bbbcchhjhchhhssscssshhchjqhhccbbb"
 - "bbbbcchhhhqqjhhhhhhhqqqjhhhccbbbb"
 - "bbbbbccchhhhqqqqqqqqjhhhhcccbbbbb"
 - "bbbabbbcccchhhhhhhhhhhccccbbbabbb"
 - "bbbbbbbbbcccccccccccccccbbbbbbbbb"
-- "bbbbbbbbbcPPPPPPPPQPPPPcbbbbbbbbb"
-- "bbbbbbbbbcPRPPPPPPPPPPPcbbbbbbbbb"
-- "aaaaaaaabcPPPSTSUSTSPPPcbaaaaaaaa"
-- "aaaaaaaabcPPPSVWWWVSPRPcbaaaaaaaa"
-- "aaaaaaaabcPPPSXWWWYSPPPcbaaaaaaaa"
-- "aaaaaaaabcPPPTWWWWZTPPPcbaaaaaaaa"
-- "aaaaaaaabcPPPT01112TPPPcbaaaaaaaa"
-- "aaaaaaaabcPRPSSTTTSSPPPcbaaaaaaaa"
-- "aaaaaaaabcPPPPPPPPPPPPPcbaaaaaaaa"
+- "bbbbbbbbbcRRRRRRRRSRRRRcbbbbbbbbb"
+- "bbbbbbbbbcTURRRRRRRVRRRcbbbbbbbbb"
+- "aaaaaaaabcRRRWXWYWXWRRRcbaaaaaaaa"
+- "aaaaaaaabcRRRWZ000ZWRURcbaaaaaaaa"
+- "aaaaaaaabcRRRW10002WRRRcbaaaaaaaa"
+- "aaaaaaaabcRRRX00003XRR4cbaaaaaaaa"
+- "aaaaaaaabcRRRX56667XRRRcbaaaaaaaa"
+- "aaaaaaaabcRURWWXXXWWRRRcbaaaaaaaa"
+- "aaaaaaaabcRRRTRRRRRRR8Rcbaaaaaaaa"
 - "aaaaaaaabcccccccccccccccbaaaaaaaa"
 - "aaaaaaaabbbbbbbbbbbbbbbbbaaaaaaaa"

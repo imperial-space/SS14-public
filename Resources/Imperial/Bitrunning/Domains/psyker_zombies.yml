@@ -7,62 +7,69 @@ legend:
   "b": {t: Plating, a: bright, e: ["WallPlastitaniumIndestructible"]}
   "c": {t: FloorDark, a: normal, e: ["SalvageHumanCorpse", "BitrunningMarkerCache"]}
   "d": {t: FloorDark, a: normal, e: ["Rack"]}
-  "e": {t: FloorDark, a: normal}
-  "f": {t: FloorDark, a: normal, e: ["BitrunningMarkerCache", "AlwaysPoweredWallLight"]}
-  "g": {t: FloorBasalt, a: normal, e: ["FloorChasmEntity"]}
-  "h": {t: FloorDark, a: normal, e: ["AlwaysPoweredWallLight"]}
-  "i": {t: FloorDark, a: normal, e: ["ImperialSCPZombie"]}
-  "j": {t: FloorDark, a: normal, e: ["SalvageHumanCorpse"]}
-  "k": {t: FloorDark, a: normal, e: ["LandMineExplosive"]}
-  "l": {t: FloorDark, a: normal, e: ["BitrunningMarkerCache"]}
-  "m": {t: FloorDark, a: normal, e: ["AlwaysPoweredWallLight@180"]}
-  "n": {t: FloorDark, a: normal, e: ["AirlockShuttle"]}
-  "o": {t: FloorDark, a: normal, e: ["AirlockShuttle", "AlwaysPoweredWallLight@-90"]}
-  "p": {t: FloorDark, a: normal, e: ["AlwaysPoweredWallLight@90"]}
-  "q": {t: FloorDark, a: normal, e: ["ImperialSCPZombie", "AlwaysPoweredWallLight"]}
-  "r": {t: FloorDark, a: normal, e: ["AlwaysPoweredWallLight@-90"]}
-  "s": {t: FloorDark, a: protected, e: ["AirlockShuttle"]}
-  "t": {t: FloorDark, a: protected, e: ["Rack"]}
-  "u": {t: FloorDark, a: protected}
-  "v": {t: FloorDark, a: protected, e: ["AlwaysPoweredWallLight"]}
-  "w": {t: FloorDark, a: protected, e: ["AlwaysPoweredWallLight@-90"]}
-  "x": {t: Plating, a: safe, e: ["WallSilver"]}
-  "y": {t: Plating, a: safe, e: ["WallSilver", "ExtinguisherCabinetFilled"]}
-  "z": {t: FloorFreezer, a: safe, e: ["AirlockFreezer"]}
-  "A": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@90"]}
-  "B": {t: FloorFreezer, a: safe}
-  "C": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal", "AlwaysPoweredSmallLight@-90"]}
-  "D": {t: FloorFreezer, a: safe, e: ["ToiletEmpty@90"]}
-  "E": {t: FloorFreezer, a: safe, e: ["RailingCorner@90"]}
-  "F": {t: FloorSteel, a: safe, e: ["Railing", "BitrunningMarkerGoal"]}
-  "G": {t: Plating, a: safe, e: ["WallSilver", "RandomPosterLegit"]}
-  "H": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@90", "MedkitFilled", "MedkitFilled"]}
-  "I": {t: FloorFreezer, a: safe, e: ["BitrunningMarkerHololadder"]}
-  "J": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@-90", "ImperialVehicleWheelchair"]}
-  "K": {t: FloorFreezer, a: safe, e: ["Window", "Grille"]}
+  "e": {t: FloorDark, a: normal, e: ["#DirtMedium"]}
+  "f": {t: FloorDark, a: normal}
+  "g": {t: FloorDark, a: normal, e: ["BitrunningMarkerCache", "AlwaysPoweredWallLight"]}
+  "h": {t: FloorBasalt, a: normal, e: ["FloorChasmEntity"]}
+  "i": {t: FloorDark, a: normal, e: ["AlwaysPoweredWallLight"]}
+  "j": {t: FloorDark, a: normal, e: ["#DirtLight"]}
+  "k": {t: FloorDark, a: normal, e: ["ImperialSCPZombie"]}
+  "l": {t: FloorDark, a: normal, e: ["SalvageHumanCorpse"]}
+  "m": {t: FloorDark, a: normal, e: ["LandMineExplosive"]}
+  "n": {t: FloorDark, a: normal, e: ["BitrunningMarkerCache"]}
+  "o": {t: FloorDark, a: normal, e: ["Rack", "DrinkRootBeerGlass", "DrinkRootBeerGlass", "DrinkRootBeerGlass"]}
+  "p": {t: FloorDark, a: normal, e: ["AlwaysPoweredWallLight@180"]}
+  "q": {t: FloorDark, a: normal, e: ["AirlockShuttle"]}
+  "r": {t: FloorDark, a: normal, e: ["AirlockShuttle", "AlwaysPoweredWallLight@-90"]}
+  "s": {t: FloorDark, a: normal, e: ["#DirtHeavy"]}
+  "t": {t: FloorDark, a: normal, e: ["AlwaysPoweredWallLight@90"]}
+  "u": {t: FloorDark, a: normal, e: ["ImperialSCPZombie", "AlwaysPoweredWallLight"]}
+  "v": {t: FloorDark, a: normal, e: ["AlwaysPoweredWallLight@-90"]}
+  "w": {t: FloorDark, a: protected, e: ["AirlockShuttle"]}
+  "x": {t: FloorDark, a: protected, e: ["Rack"]}
+  "y": {t: FloorDark, a: protected}
+  "z": {t: FloorDark, a: protected, e: ["AlwaysPoweredWallLight"]}
+  "A": {t: FloorDark, a: protected, e: ["#DirtHeavy"]}
+  "B": {t: FloorDark, a: protected, e: ["#DirtMedium"]}
+  "C": {t: FloorDark, a: protected, e: ["AlwaysPoweredWallLight@-90"]}
+  "D": {t: Plating, a: safe, e: ["WallSilver"]}
+  "E": {t: Plating, a: safe, e: ["WallSilver", "ExtinguisherCabinetFilled"]}
+  "F": {t: FloorFreezer, a: safe, e: ["AirlockFreezer"]}
+  "G": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@90"]}
+  "H": {t: FloorFreezer, a: safe}
+  "I": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal", "AlwaysPoweredSmallLight@-90"]}
+  "J": {t: FloorFreezer, a: safe, e: ["ToiletEmpty@90"]}
+  "K": {t: FloorFreezer, a: safe, e: ["RailingCorner@90"]}
+  "L": {t: FloorSteel, a: safe, e: ["Railing", "BitrunningMarkerGoal"]}
+  "M": {t: FloorFreezer, a: safe, e: ["#DirtHeavy"]}
+  "N": {t: Plating, a: safe, e: ["WallSilver", "RandomPosterLegit"]}
+  "O": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@90", "MedkitFilled", "MedkitFilled", "Brutepack1"]}
+  "P": {t: FloorFreezer, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "Q": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@-90", "ImperialVehicleWheelchair", "EmergencyMedipen"]}
+  "R": {t: FloorFreezer, a: safe, e: ["Window", "Grille"]}
 rows:
 - "aabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbaaa"
-- "aabcdbbbbbeeeeeeefggbbbbggheeeeebbbb"
-- "aabidbbijheeeekeebggggggggeibeeekhlb"
-- "aabedbbeeggemeeeeggggbbbbbnbbkeeeeeb"
-- "aabobbbeeggebebibbbbbbbbbbelbbbbbeeb"
-- "aabekebeeggebbbbbbilbbbbbjeibbeeeeeb"
-- "abbeeeeeeggeeeeeeeeeeeheneeibkekbeib"
-- "abeeeeeemeeeeeeeemeeeeeebjbbbpebbebb"
-- "bbeeebbbbbeeebbiebbbbbbbbbbieebbeeba"
-- "beekbbeeqbbbbbbbnbbebbbbbbbbeebbebba"
-- "beebbeeeeeeeeeeeeibeeebbbbeeeeebkbba"
-- "berbbeeeeggrbbbeeehekebbbheeeeeerbba"
-- "beeibbbeeggeeebbeeeeeeebbekebeeeeeba"
-- "beeeibbeeggeeeeeeeeeeeeeeeeebejmejba"
-- "bleeebbeeggeeerbbbbsbbbbeeekbibbelba"
-- "bbeeebeeeggeeeebtuvuuutbkebbbbbbejba"
-- "abbeeeekmeeeeeibuuuuuuubbbbaaaabggba"
-- "aabbeeebbbbbbbbbuuuuuuwbbaaaaaabggba"
-- "aabbbbbbaaaaaaabxxyzyxxbaaaaaaabbbba"
-- "aaaaaaaaaaaaaaabxABBBCxbaaaaaaaaaaaa"
-- "aaaaaaaaaaaaaaabxDBBEFxbaaaaaaaaaaaa"
-- "aaaaaaaaaaaaaaabxBBBBBGbaaaaaaaaaaaa"
-- "aaaaaaaaaaaaaaabxHIIIJxbaaaaaaaaaaaa"
-- "aaaaaaaaaaaaaaabxxxxxKxbaaaaaaaaaaaa"
+- "aabcdbbbbbeffffffghhbbbbhhifffejbbbb"
+- "aabkdbbkliffffmffbhhhhhhhhfkbfffminb"
+- "aabfobbffhhfpffffhhhhbbbbbqbbmfffffb"
+- "aabrbbbsfhhfbfbkbbbbbbbbbbfnbbbbbffb"
+- "aabfmfbffhhfbbbbbbknbbbbblfkbbfffjfb"
+- "abbffffffhhfffffjsffffifqffkbmfmbjkb"
+- "abffffffpfjffffffpffffsfblbbbtfbbfbb"
+- "bbfffbbbbbjffbbkfbbbbbbbbbbkffbbffba"
+- "bffmbbjfubbbbbbbqbbfbbbbbbbbffbbfbba"
+- "bffbbffffffffffjfkbeffbbbbfffffbmbba"
+- "bfvbbffsfhhvbbbfffifmfbbbiffffffvbba"
+- "bsjkbbbffhhfffbbffffffsbbfmfbfffffba"
+- "bjfjkbbffhhfffffffffsejfffffbjlpelba"
+- "bnjjfbbffhhffsvbbbbwbbbbjffmbkbbfnba"
+- "bbfffbfffhhfjefbxyzyyyxbmfbbbbbbflba"
+- "abbfjfsmpffffskbyyyAyBybbbbaaaabhhba"
+- "aabbfffbbbbbbbbbyyyByyCbbaaaaaabhhba"
+- "aabbbbbbaaaaaaabDDEFEDDbaaaaaaabbbba"
+- "aaaaaaaaaaaaaaabDGHHHIDbaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaabDJHHKLDbaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaabDHHHHMNbaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaabDOPPPQDbaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaabDDDDDRDbaaaaaaaaaaaa"
 - "aaaaaaaaaaaaaaabbbbbbbbbaaaaaaaaaaaa"

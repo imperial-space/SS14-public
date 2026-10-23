@@ -11,54 +11,58 @@ legend:
   "f": {t: FloorDark, a: normal, e: ["WeaponShotgunKammerer", "CrateGenericSteel"]}
   "g": {t: FloorDark, a: normal, e: ["ImperialBearTrap"]}
   "h": {t: FloorDark, a: normal, e: ["MobMimic"]}
-  "i": {t: FloorDark, a: normal, e: ["CrateGenericSteel"]}
-  "j": {t: FloorDark, a: normal, e: ["RevolverCapGun", "CrateGenericSteel"]}
-  "k": {t: FloorDark, a: normal, e: ["AirlockShuttle"]}
-  "l": {t: FloorDark, a: normal, e: ["CrateFreezer"]}
-  "m": {t: FloorDark, a: normal, e: ["CrateGenericSteel", "WeaponRevolverMateba"]}
-  "n": {t: FloorDark, a: normal, e: ["CrateHydroponics"]}
-  "o": {t: FloorDark, a: normal, e: ["CrateInternals", "WeaponRevolverMateba"]}
-  "p": {t: FloorDark, a: normal, e: ["BitrunningEncryptedCache"]}
-  "q": {t: FloorDark, a: normal, e: ["WeaponShotgunKammerer", "WeaponRevolverMateba", "CrateGenericSteel"]}
-  "r": {t: Plating, a: safe, e: ["WallSilver"]}
-  "s": {t: Plating, a: safe, e: ["WallSilver", "ExtinguisherCabinetFilled"]}
-  "t": {t: FloorFreezer, a: safe, e: ["AirlockFreezer"]}
-  "u": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@90"]}
-  "v": {t: FloorFreezer, a: safe}
-  "w": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal", "AlwaysPoweredSmallLight@-90"]}
-  "x": {t: FloorFreezer, a: safe, e: ["ToiletEmpty@90"]}
-  "y": {t: FloorFreezer, a: safe, e: ["RailingCorner@90"]}
-  "z": {t: FloorSteel, a: safe, e: ["Railing", "BitrunningMarkerGoal"]}
-  "A": {t: Plating, a: safe, e: ["WallSilver", "RandomPosterLegit"]}
-  "B": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@90", "MedkitFilled", "MedkitFilled"]}
-  "C": {t: FloorFreezer, a: safe, e: ["BitrunningMarkerHololadder"]}
-  "D": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@-90", "ImperialVehicleWheelchair"]}
-  "E": {t: FloorFreezer, a: safe, e: ["Window", "Grille"]}
-  "F": {t: Space, a: space}
+  "i": {t: FloorDark, a: normal, e: ["#DirtHeavy"]}
+  "j": {t: FloorDark, a: normal, e: ["#DirtMedium"]}
+  "k": {t: FloorDark, a: normal, e: ["CrateGenericSteel"]}
+  "l": {t: FloorDark, a: normal, e: ["RevolverCapGun", "CrateGenericSteel"]}
+  "m": {t: FloorDark, a: normal, e: ["AirlockShuttle"]}
+  "n": {t: FloorDark, a: normal, e: ["#DirtLight"]}
+  "o": {t: FloorDark, a: normal, e: ["CrateFreezer"]}
+  "p": {t: FloorDark, a: normal, e: ["CrateGenericSteel", "WeaponRevolverMateba"]}
+  "q": {t: FloorDark, a: normal, e: ["CrateHydroponics"]}
+  "r": {t: FloorDark, a: normal, e: ["CrateInternals", "WeaponRevolverMateba"]}
+  "s": {t: FloorDark, a: normal, e: ["BitrunningEncryptedCache"]}
+  "t": {t: FloorDark, a: normal, e: ["WeaponShotgunKammerer", "WeaponRevolverMateba", "CrateGenericSteel"]}
+  "u": {t: Plating, a: safe, e: ["WallSilver"]}
+  "v": {t: Plating, a: safe, e: ["WallSilver", "ExtinguisherCabinetFilled"]}
+  "w": {t: FloorFreezer, a: safe, e: ["AirlockFreezer"]}
+  "x": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@90"]}
+  "y": {t: FloorFreezer, a: safe}
+  "z": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal", "AlwaysPoweredSmallLight@-90"]}
+  "A": {t: FloorFreezer, a: safe, e: ["ToiletEmpty@90"]}
+  "B": {t: FloorFreezer, a: safe, e: ["RailingCorner@90"]}
+  "C": {t: FloorSteel, a: safe, e: ["Railing", "BitrunningMarkerGoal"]}
+  "D": {t: FloorFreezer, a: safe, e: ["#DirtLight"]}
+  "E": {t: Plating, a: safe, e: ["WallSilver", "RandomPosterLegit"]}
+  "F": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@90", "MedkitFilled", "MedkitFilled", "Brutepack1"]}
+  "G": {t: FloorFreezer, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "H": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@-90", "ImperialVehicleWheelchair", "EmergencyMedipen"]}
+  "I": {t: FloorFreezer, a: safe, e: ["Window", "Grille"]}
+  "J": {t: Space, a: space}
 rows:
 - "aaaaaaaaaaaaaaaaaaaabbbbbbbbb"
 - "aaaaaaaaaaaaaaaaaaaabcdbbecdb"
 - "aaabbbbbbbbbbbbbbbabbddddddbb"
-- "bbbbfgdcgcbhddddcbbbcfddddhba"
+- "bbbbfgdcgcbhddddcbbbcfddijhba"
 - "bdbbbdddddbdbbbdddbbbdhcddbba"
-- "bdijbbdgbbbddddddddbbbkbbdbaa"
-- "bddddbdddddddbddbbddbcddbdbba"
-- "bdcddddldddddbmdddddbddcbdhbb"
-- "bdddddddddddlbbdddddddddbdddb"
-- "bddbddbbddbbbbbdbnddddddbdddb"
-- "bdbbidddddbbbbddbdddddbdbddbb"
-- "bddbbdddddbbbbdddddbbbbobddba"
-- "bddddddpdddccdddddddddddbdbba"
-- "bdddhbddddddddddcdddbbbbbcbba"
-- "bcddbbddbbddddbddddddbddddqba"
-- "bbddddddbdddddbbdddddcddidbba"
-- "abbbbdddddddddddddddbbdddddba"
-- "aaaabbbbbdddddddbbbbbbbddibba"
-- "aaaaaaaabrrstsrrbaaaaabbbbbaa"
-- "aaaaaaaabruvvvwrbaaaaaaaaaaaa"
-- "aaaaaaaabrxvvyzrbaaaaaaaaaaaa"
-- "aaaaaaaabrvvvvvAbaaaaaaaaaaaa"
-- "aaaaaaaabrBCCCDrbaaaaaaaaaaaa"
-- "aaaaaaaabrrrrrErbbbaaaaaaaaaa"
-- "aaaaaaaabbFFFFFFFFbaaaaaaaaaa"
+- "bjklbbdgbbbddddddddbbbmbbdbaa"
+- "bddddbddddnddbddbbddbcddbdbba"
+- "bdcddddodddddbpdddddbddcbnhbb"
+- "bnddddddidjdobbdddddddddbdndb"
+- "bddbddbbddbbbbbdbqddndjdbdddb"
+- "bdbbkddddnbbbbddbdddddbdbddbb"
+- "bddbbdddddbbbbdddddbbbbrbddba"
+- "bddddidsdddccddddddddnidbdbba"
+- "bdddhbndddddddddcdddbbbbbcbba"
+- "bcddbbjdbbddddbddddddbddddtba"
+- "bbdddindbdddddbbdddddcddkdbba"
+- "abbbbddddddddddnddddbbdddddba"
+- "aaaabbbbbddiddddbbbbbbbddkbba"
+- "aaaaaaaabuuvwvuubaaaaabbbbbaa"
+- "aaaaaaaabuxyyyzubaaaaaaaaaaaa"
+- "aaaaaaaabuAyyBCubaaaaaaaaaaaa"
+- "aaaaaaaabuyDyyyEbaaaaaaaaaaaa"
+- "aaaaaaaabuFGGGHubaaaaaaaaaaaa"
+- "aaaaaaaabuuuuuIubbbaaaaaaaaaa"
+- "aaaaaaaabbJJJJJJJJbaaaaaaaaaa"
 - "aaaaaaaaabbbbbbbbbbaaaaaaaaaa"

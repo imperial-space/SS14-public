@@ -33,6 +33,7 @@ public sealed class BitrunningDomainLoaderSystem : EntitySystem
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly SharedRoofSystem _roof = default!;
+    [Dependency] private readonly Content.Server.Power.EntitySystems.PowerReceiverSystem _power = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
     private readonly Dictionary<ResPath, DomainLayout> _cache = new();
@@ -231,6 +232,13 @@ public sealed class BitrunningDomainLoaderSystem : EntitySystem
             if (deg != 0f)
                 _transform.SetLocalRotation(ent, Angle.FromDegrees(deg));
             built.Created.Add(ent);
+        }
+
+        // requires_power = FALSE у областей домена: шлюзы, автоматы и компьютеры работают без сети.
+        foreach (var ent in built.Created)
+        {
+            if (TryComp<Content.Server.Power.Components.ApcPowerReceiverComponent>(ent, out var receiver))
+                _power.SetNeedsPower(ent, false, receiver);
         }
 
         if (missing.Count > 0)

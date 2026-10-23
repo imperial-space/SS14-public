@@ -69,57 +69,58 @@ legend:
   "bb": {t: FloorShuttleBlack, a: normal, e: ["PlasmaReinforcedWindowDirectional", "BlastDoor", "LightPostSmall"]}
   "bc": {t: FloorShuttleRed, a: normal, e: ["PortableGeneratorPacman"]}
   "bd": {t: FloorDark, a: normal, e: ["Airlock"]}
-  "be": {t: FloorShuttleBlack, a: normal, e: ["LockerSyndicatePersonal", "Crowbar", "MagazinePistol", "MagazinePistol", "WeaponPistolMk58"]}
-  "bf": {t: FloorShuttleBlack, a: normal, e: ["LockerSyndicatePersonal", "Crowbar", "MagazinePistol", "MagazinePistol", "AlwaysPoweredSmallLight", "WeaponPistolMk58"]}
-  "bg": {t: Plating, a: normal, e: ["WallReinforced", "Mirror"]}
-  "bh": {t: FloorDark, a: normal, e: ["SinkWide"]}
-  "bi": {t: FloorDark, a: normal}
-  "bj": {t: FloorShuttleBlack, a: normal, e: ["ComfyChair@180"]}
-  "bk": {t: FloorShuttleRed, a: normal, e: ["LockerSyndicatePersonal", "WeaponPistolMk58"]}
-  "bl": {t: FloorDark, a: normal, e: ["AlwaysPoweredSmallLight@180", "BitrunningMarkerCache"]}
-  "bm": {t: FloorShuttleBlack, a: normal, e: ["AlwaysPoweredWallLight@180"]}
-  "bn": {t: FloorShuttleRed, a: normal, e: ["LockerSyndicatePersonal", "MagazineBoxPistol", "WeaponPistolMk58"]}
-  "bo": {t: FloorShuttleRed, a: normal, e: ["AlwaysPoweredWallLight@180"]}
-  "bp": {t: Space, e: ["Windoor@180"]}
-  "bq": {t: FloorSteel, a: normal, e: ["ToiletEmpty@180", "AlwaysPoweredWallLight@180"]}
-  "br": {t: FloorSteel, a: normal, e: ["AlwaysPoweredWallLight@180"]}
-  "bs": {t: FloorShuttleBlack, a: normal, e: ["MobSyndicateFootsoldier"]}
-  "bt": {t: FloorShuttleRed, a: normal, e: ["LockerSyndicatePersonal", "ClothingUniformJumpsuitOperative", "ClothingHandsGlovesCombat", "ClothingShoesBootsCombat", "ClothingMaskGas", "ClothingUniformJumpskirtOperative"]}
-  "bu": {t: FloorShuttleRed, a: normal, e: ["LockerSyndicatePersonal", "ClothingMaskGas", "ClothingUniformJumpsuitOperative", "ClothingUniformJumpskirtOperative", "ClothingHandsGlovesCombat", "ClothingShoesBootsCombat"]}
-  "bv": {t: FloorShuttleBlack, a: normal, e: ["AlwaysPoweredSmallLight@180", "BitrunningGhostRoleSyndie"]}
-  "bw": {t: FloorShuttleBlack, a: normal, e: ["TableReinforced", "MagazineBoxPistol"]}
-  "bx": {t: FloorShuttleBlack, a: normal, e: ["BitrunningGhostRoleSyndie"]}
-  "by": {t: Space, a: space, e: ["Catwalk"]}
-  "bz": {t: Plating, a: normal, e: ["WallRock"]}
-  "bA": {t: Plating, a: protected, e: ["WallPlastitaniumIndestructible"]}
-  "bB": {t: Plating, a: protected, e: ["WallReinforced"]}
-  "bC": {t: Plating, a: protected, e: ["RandomPosterLegit", "WallReinforced"]}
-  "bD": {t: Plating, a: protected, e: ["AirlockExternal"]}
-  "bE": {t: FloorShuttleBlack, a: protected}
-  "bF": {t: FloorShuttleBlack, a: protected, e: ["ClosetSteelBase", "ClothingUniformJumpsuitTacticool", "ClothingUniformJumpsuitTacticool", "ClothingUniformJumpsuitTacticool"]}
-  "bG": {t: FloorShuttleBlack, a: protected, e: ["TableReinforced", "MedkitFilled", "AlwaysPoweredSmallLight"]}
-  "bH": {t: FloorShuttleBlack, a: protected, e: ["TableReinforced", "ToolboxSyndicateFilled", "ToolboxSyndicateFilled"]}
-  "bI": {t: FloorShuttleBlack, a: protected, e: ["TableReinforced", "WeaponLightMachineGunL6", "MagazineLightRifleBox"]}
-  "bJ": {t: FloorShuttleBlack, a: protected, e: ["BlastDoor", "Airlock", "AlwaysPoweredWallLight"]}
-  "bK": {t: FloorShuttleBlack, a: protected, e: ["TableReinforced", "MagazinePistolSubMachineGun", "MagazinePistolSubMachineGun", "MagazinePistolSubMachineGun", "WeaponSubMachineGunC20r"]}
-  "bL": {t: FloorShuttleBlack, a: protected, e: ["TableReinforced", "AlwaysPoweredSmallLight@-90"]}
-  "bM": {t: FloorShuttleBlack, a: protected, e: ["AlwaysPoweredSmallLight@180"]}
-  "bN": {t: Plating, a: protected, e: ["WallRock"]}
-  "bO": {t: Space, a: protected}
-  "bP": {t: Plating, a: safe, e: ["WallShuttle"]}
-  "bQ": {t: Plating, a: safe, e: ["ReinforcedWindow", "Grille"]}
-  "bR": {t: FloorWhite, a: safe, e: ["AirlockShuttle"]}
-  "bS": {t: Plating, a: safe, e: ["WindowReinforcedDirectional@90"]}
-  "bT": {t: FloorSteel, a: safe}
-  "bU": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight"]}
-  "bV": {t: FloorSteel, a: safe, e: ["TableReinforced", "ToolboxEmergencyFilled"]}
-  "bW": {t: FloorSteel, a: safe, e: ["ComfyChair@90"]}
-  "bX": {t: FloorSteel, a: safe, e: ["ComputerBroken@-90"]}
-  "bY": {t: FloorSteel, a: safe, e: ["TableReinforced", "EmergencyOxygenTankFilled", "ClothingMaskGas"]}
-  "bZ": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@180", "BitrunningMarkerGoal"]}
-  "b0": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal"]}
-  "b1": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder"]}
-  "b2": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@180", "BitrunningMarkerHololadder"]}
+  "be": {t: FloorShuttleBlack, a: normal, e: ["TableReinforced", "ProximitySensor", "ProximitySensor"]}
+  "bf": {t: FloorShuttleBlack, a: normal, e: ["LockerSyndicatePersonal", "Crowbar", "MagazinePistol", "MagazinePistol", "WeaponPistolMk58"]}
+  "bg": {t: FloorShuttleBlack, a: normal, e: ["LockerSyndicatePersonal", "Crowbar", "MagazinePistol", "MagazinePistol", "AlwaysPoweredSmallLight", "WeaponPistolMk58"]}
+  "bh": {t: Plating, a: normal, e: ["WallReinforced", "Mirror"]}
+  "bi": {t: FloorDark, a: normal, e: ["SinkWide"]}
+  "bj": {t: FloorDark, a: normal}
+  "bk": {t: FloorShuttleBlack, a: normal, e: ["ComfyChair@180"]}
+  "bl": {t: FloorShuttleRed, a: normal, e: ["LockerSyndicatePersonal", "WeaponPistolMk58"]}
+  "bm": {t: FloorDark, a: normal, e: ["AlwaysPoweredSmallLight@180", "BitrunningMarkerCache"]}
+  "bn": {t: FloorShuttleBlack, a: normal, e: ["AlwaysPoweredWallLight@180"]}
+  "bo": {t: FloorShuttleRed, a: normal, e: ["LockerSyndicatePersonal", "MagazineBoxPistol", "WeaponPistolMk58"]}
+  "bp": {t: FloorShuttleRed, a: normal, e: ["AlwaysPoweredWallLight@180"]}
+  "bq": {t: Space, e: ["Windoor@180"]}
+  "br": {t: FloorSteel, a: normal, e: ["ToiletEmpty@180", "AlwaysPoweredWallLight@180"]}
+  "bs": {t: FloorSteel, a: normal, e: ["AlwaysPoweredWallLight@180"]}
+  "bt": {t: FloorShuttleBlack, a: normal, e: ["MobSyndicateFootsoldier"]}
+  "bu": {t: FloorShuttleRed, a: normal, e: ["LockerSyndicatePersonal", "ClothingUniformJumpsuitOperative", "ClothingHandsGlovesCombat", "ClothingShoesBootsCombat", "ClothingMaskGas", "ClothingUniformJumpskirtOperative"]}
+  "bv": {t: FloorShuttleRed, a: normal, e: ["LockerSyndicatePersonal", "ClothingMaskGas", "ClothingUniformJumpsuitOperative", "ClothingUniformJumpskirtOperative", "ClothingHandsGlovesCombat", "ClothingShoesBootsCombat"]}
+  "bw": {t: FloorShuttleBlack, a: normal, e: ["AlwaysPoweredSmallLight@180", "BitrunningGhostRoleSyndie"]}
+  "bx": {t: FloorShuttleBlack, a: normal, e: ["TableReinforced", "MagazineBoxPistol"]}
+  "by": {t: FloorShuttleBlack, a: normal, e: ["BitrunningGhostRoleSyndie"]}
+  "bz": {t: Space, a: space, e: ["Catwalk"]}
+  "bA": {t: Plating, a: normal, e: ["WallRock"]}
+  "bB": {t: Plating, a: protected, e: ["WallPlastitaniumIndestructible"]}
+  "bC": {t: Plating, a: protected, e: ["WallReinforced"]}
+  "bD": {t: Plating, a: protected, e: ["RandomPosterLegit", "WallReinforced"]}
+  "bE": {t: Plating, a: protected, e: ["AirlockExternal"]}
+  "bF": {t: FloorShuttleBlack, a: protected}
+  "bG": {t: FloorShuttleBlack, a: protected, e: ["ClosetSteelBase", "ClothingUniformJumpsuitTacticool", "ClothingUniformJumpsuitTacticool", "ClothingUniformJumpsuitTacticool"]}
+  "bH": {t: FloorShuttleBlack, a: protected, e: ["TableReinforced", "MedkitFilled", "AlwaysPoweredSmallLight"]}
+  "bI": {t: FloorShuttleBlack, a: protected, e: ["TableReinforced", "ToolboxSyndicateFilled", "ToolboxSyndicateFilled"]}
+  "bJ": {t: FloorShuttleBlack, a: protected, e: ["TableReinforced", "WeaponLightMachineGunL6", "MagazineLightRifleBox"]}
+  "bK": {t: FloorShuttleBlack, a: protected, e: ["BlastDoor", "Airlock", "AlwaysPoweredWallLight"]}
+  "bL": {t: FloorShuttleBlack, a: protected, e: ["TableReinforced", "MagazinePistolSubMachineGun", "MagazinePistolSubMachineGun", "MagazinePistolSubMachineGun", "WeaponSubMachineGunC20r"]}
+  "bM": {t: FloorShuttleBlack, a: protected, e: ["TableReinforced", "AlwaysPoweredSmallLight@-90"]}
+  "bN": {t: FloorShuttleBlack, a: protected, e: ["AlwaysPoweredSmallLight@180"]}
+  "bO": {t: Plating, a: protected, e: ["WallRock"]}
+  "bP": {t: Space, a: protected}
+  "bQ": {t: Plating, a: safe, e: ["WallShuttle"]}
+  "bR": {t: Plating, a: safe, e: ["ReinforcedWindow", "Grille"]}
+  "bS": {t: FloorWhite, a: safe, e: ["AirlockShuttle"]}
+  "bT": {t: Plating, a: safe, e: ["WindowReinforcedDirectional@90"]}
+  "bU": {t: FloorSteel, a: safe}
+  "bV": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight"]}
+  "bW": {t: FloorSteel, a: safe, e: ["TableReinforced", "ToolboxEmergencyFilled"]}
+  "bX": {t: FloorSteel, a: safe, e: ["ComfyChair@90"]}
+  "bY": {t: FloorSteel, a: safe, e: ["ComputerBroken@-90"]}
+  "bZ": {t: FloorSteel, a: safe, e: ["TableReinforced", "EmergencyOxygenTankFilled", "ClothingMaskGas"]}
+  "b0": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@180", "BitrunningMarkerGoal"]}
+  "b1": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal"]}
+  "b2": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "b3": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@180", "BitrunningMarkerHololadder"]}
 rows:
 - "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 - "aaababababababababababababababababababababababababababababababababababababababababababababababababababaa"
@@ -141,39 +142,39 @@ rows:
 - "aaababababababababafafafadakaka7aiaiaiaiaiaia8akakaka8akaZawaEakaka9aiaibaaiaiaiaIbbabababababababababaa"
 - "aaababababababababafafafadaoakadbcaiaiaiapaiadakakakadakaZawakakakadaiaiaia5a6aiahaMabababababababababaa"
 - "aaababababababababababafadaoakadadada8a8adadadadadbdadakaZawakakakadaiaiaiaiaiaiahaMabababababababababaa"
-- "aaababababababababababafadagaNadawbeakakbfawbgbhbhbiadakakbjakakakadbkaiaiaVaiaiahaMabababababababababaa"
-- "aaababababababababafafafadakaka7bjakakakakbjadbiblbiadakakakakbmakadbnaiboaiaiaxahaMabababababababababaa"
-- "aaababababababababafafafadayaEadakakagaEakakadbdadbdadadadaeadadadadadadadbpadadadacabababababababababaa"
-- "aaababababababababafafafadaoakadbeakaTaTakbeadbqadbradaka4bsakakawadabadbtaibuadadababababababababababaa"
-- "aaababababababababababafadadagadakbvawbwbxadadadadadadakakakakakadadabadbtapadadabababababababababababaa"
+- "aaababababababababababafadagaNadbebfakakbgawbhbibibjadakakbkakakakadblaiaiaVaiaiahaMabababababababababaa"
+- "aaababababababababafafafadakaka7bkakakakakbkadbjbmbjadakakakakbnakadboaibpaiaiaxahaMabababababababababaa"
+- "aaababababababababafafafadayaEadakakagaEakakadbdadbdadadadaeadadadadadadadbqadadadacabababababababababaa"
+- "aaababababababababafafafadaoakadbfakaTaTakbfadbradbsadaka4btakakawadabadbuaibvadadababababababababababaa"
+- "aaababababababababababafadadagadakbwawbxbyadadadadadadakakakakakadadabadbuapadadabababababababababababaa"
 - "aaababababababababababababacadadadadadadadacababababadadadaeadadadababadadadacababababababababababababaa"
-- "aaababababababababababababababababababababababababababababbyabababababababababababababababababababababaa"
-- "aaababababababababababababababababababababababababababababbyabababababababababababababababababababababaa"
-- "aaababababababababababababababababababababababababababababbyababababababababababababababbzbzabababababaa"
-- "aaababababababababababababababababababababababababababababbyabababababababababababababbzbzbzbzababababaa"
-- "aaabababababababababababababababababababbzbzabbzbzababababbyababababababababababababababbzbzabababababaa"
-- "aaababababababababababababababababababbzbzbzbzbzbzbzbzababbyababbzababababababababababababbzabababababaa"
-- "aaabababababababababababababababababbzbzbzbzbzbzbzbzbzbzabbyabbzbzbzabababababababababababababababababaa"
-- "aaabababababbzbzabababababababababbzbzbAbAbAbAbAbBbCbBbBbCbDbBbBbzbzbzababababababababababababababababaa"
-- "aaabababababbzbzbzababababababababbzbAbAaoaoaobAbBbEbFbGbHbEbIbBbBbzbzababababababababababababababababaa"
-- "aaababababababbzbzabababababababbzbzbAaobEbEbEbJbEbEbEbEbEbEbEbKbBbzbzababababababababababababababababaa"
-- "aaabababababababababababababababbzbzbAaobEbEbEbAbEbEbEbEbEbEbEbLbBbzbzababababababababababababababababaa"
-- "aaabababababababababababababababbzbzbAbAaoaoaobAbBbEbEbMbEbEbEbBbBbzbzababababababababababababababababaa"
-- "aaababababababababababababababababbzbzbAbAbAbAbAbBbBbBbBbBbBbBbBbzbzbzababababababbzbzababababababababaa"
-- "aaabababababababababababababababababbzbzbzbzbzbzbNbNbNbzbzbzbzbzbzbzabababababababbzbzababababababababaa"
-- "aaababababababababababababababababababababbzbzbzbNbNbObzbzbzbzbzbzabababababababbzbzbzababababababababaa"
-- "aaababababababababababababababababababababababbzbNbObObzbzababababababababababababbzabababababababababaa"
-- "aaabababababababababababababababababababababababbNbObObzabababababababababababababababababababababababaa"
-- "aaababababababababababbzababababababababababababbObObOababababababababababababababababababababababababaa"
-- "aaababababababababababbzbzabababababababababababbObObOababababababababababababababababababababababababaa"
-- "aaababababababababababbzbzabababababababababababbObObOababababababababababababababababababababababababaa"
-- "aaabababababababababababbzabababababababababababbObObOababababababababababababababababababababababababaa"
-- "aaabababababababababababababababababababababababbObObOababababababababababababababababababababababababaa"
-- "aaabababababababababababababababababababababbPbQbPbRbPbQbPababababababababababababababababababababababaa"
-- "aaabababababababababababababababababababababbSbTbUbTbUbVbPababababababababababababababababababababababaa"
-- "aaabababababababababababababababababababababbQbTbTbTbWbXbQababababababababababababababababababababababaa"
-- "aaabababababababababababababababababababababbQbTbTbTbTbYbQababababababababababababababababababababababaa"
-- "aaabababababababababababababababababababababbSbZb0b1b1b2bPababababababababababababababababababababababaa"
-- "aaabababababababababababababababababababababbPbPbQbPbQbPbPababababababababababababababababababababababaa"
+- "aaababababababababababababababababababababababababababababbzabababababababababababababababababababababaa"
+- "aaababababababababababababababababababababababababababababbzabababababababababababababababababababababaa"
+- "aaababababababababababababababababababababababababababababbzababababababababababababababbAbAabababababaa"
+- "aaababababababababababababababababababababababababababababbzabababababababababababababbAbAbAbAababababaa"
+- "aaabababababababababababababababababababbAbAabbAbAababababbzababababababababababababababbAbAabababababaa"
+- "aaababababababababababababababababababbAbAbAbAbAbAbAbAababbzababbAababababababababababababbAabababababaa"
+- "aaabababababababababababababababababbAbAbAbAbAbAbAbAbAbAabbzabbAbAbAabababababababababababababababababaa"
+- "aaabababababbAbAabababababababababbAbAbBbBbBbBbBbCbDbCbCbDbEbCbCbAbAbAababababababababababababababababaa"
+- "aaabababababbAbAbAababababababababbAbBbBaoaoaobBbCbFbGbHbIbFbJbCbCbAbAababababababababababababababababaa"
+- "aaababababababbAbAabababababababbAbAbBaobFbFbFbKbFbFbFbFbFbFbFbLbCbAbAababababababababababababababababaa"
+- "aaabababababababababababababababbAbAbBaobFbFbFbBbFbFbFbFbFbFbFbMbCbAbAababababababababababababababababaa"
+- "aaabababababababababababababababbAbAbBbBaoaoaobBbCbFbFbNbFbFbFbCbCbAbAababababababababababababababababaa"
+- "aaababababababababababababababababbAbAbBbBbBbBbBbCbCbCbCbCbCbCbCbAbAbAababababababbAbAababababababababaa"
+- "aaabababababababababababababababababbAbAbAbAbAbAbObObObAbAbAbAbAbAbAabababababababbAbAababababababababaa"
+- "aaababababababababababababababababababababbAbAbAbObObPbAbAbAbAbAbAabababababababbAbAbAababababababababaa"
+- "aaababababababababababababababababababababababbAbObPbPbAbAababababababababababababbAabababababababababaa"
+- "aaabababababababababababababababababababababababbObPbPbAabababababababababababababababababababababababaa"
+- "aaababababababababababbAababababababababababababbPbPbPababababababababababababababababababababababababaa"
+- "aaababababababababababbAbAabababababababababababbPbPbPababababababababababababababababababababababababaa"
+- "aaababababababababababbAbAabababababababababababbPbPbPababababababababababababababababababababababababaa"
+- "aaabababababababababababbAabababababababababababbPbPbPababababababababababababababababababababababababaa"
+- "aaabababababababababababababababababababababababbPbPbPababababababababababababababababababababababababaa"
+- "aaabababababababababababababababababababababbQbRbQbSbQbRbQababababababababababababababababababababababaa"
+- "aaabababababababababababababababababababababbTbUbVbUbVbWbQababababababababababababababababababababababaa"
+- "aaabababababababababababababababababababababbRbUbUbUbXbYbRababababababababababababababababababababababaa"
+- "aaabababababababababababababababababababababbRbUbUbUbUbZbRababababababababababababababababababababababaa"
+- "aaabababababababababababababababababababababbTb0b1b2b2b3bQababababababababababababababababababababababaa"
+- "aaabababababababababababababababababababababbQbQbRbQbRbQbQababababababababababababababababababababababaa"
 - "aaababababababababababababababababababababababababababababababababababababababababababababababababababaa"
 - "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"

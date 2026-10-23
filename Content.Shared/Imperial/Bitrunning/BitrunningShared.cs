@@ -111,6 +111,14 @@ public sealed partial class BitrunningDomainPrototype : IPrototype
     [DataField]
     public Color? AmbientLight;
 
+    /// <summary>ambientsounds области: случайный звук из набора раз в 30–60 секунд.</summary>
+    [DataField]
+    public ProtoId<Robust.Shared.Audio.SoundCollectionPrototype>? Ambience;
+
+    /// <summary>ambient_buzz области: зацикленный фон, пока аватар в домене.</summary>
+    [DataField]
+    public Robust.Shared.Audio.SoundSpecifier? AmbientBuzz;
+
     /// <summary>Свет под крышей (тёмные области TG): почти чёрный, чтобы силуэты угадывались без ламп.</summary>
     [DataField]
     public Color RoofLight = Color.FromHex("#0b0b10");

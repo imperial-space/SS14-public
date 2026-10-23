@@ -5,145 +5,165 @@ keyLength: 2
 legend:
   "aa": {t: Plating, a: normal, e: ["WallPlastitaniumIndestructible"]}
   "ab": {t: FloorSteel, a: normal}
-  "ac": {t: FloorSteel, a: normal, e: ["AlwaysPoweredWallLight"]}
+  "ac": {t: FloorSteel, a: normal, e: ["GeneratorRTG", "AlwaysPoweredWallLight"]}
   "ad": {t: Plating, a: normal, e: ["ReinforcedWindow", "Grille"]}
   "ae": {t: Plating, a: normal, e: ["WallSolid"]}
-  "af": {t: FloorSteel, a: normal, e: ["ClosetEmergencyFilledRandom"]}
-  "ag": {t: FloorDark, a: normal, e: ["ComputerFrame"]}
-  "ah": {t: FloorDark, a: normal, e: ["ComputerFrame", "AlwaysPoweredWallLight"]}
-  "ai": {t: FloorSteel, a: normal, e: ["DisposalUnit"]}
-  "aj": {t: FloorSteel, a: normal, e: ["BitrunningFakeCrewEngi"]}
-  "ak": {t: FloorSteel, a: normal, e: ["TableReinforced"]}
-  "al": {t: FloorSteel, a: normal, e: ["TableReinforced", "ToolboxElectricalFilled"]}
-  "am": {t: FloorSteel, a: normal, e: ["ClosetFireFilled"]}
-  "an": {t: FloorDark, a: normal, e: ["TableGlass", "BoxFolderYellow"]}
-  "ao": {t: FloorDark, a: normal}
-  "ap": {t: FloorSteel, a: normal, e: ["LockerSteel", "WeaponSniperMosin"]}
-  "aq": {t: FloorDark, a: normal, e: ["BitrunningFakeCrewSec"]}
-  "ar": {t: FloorDark, a: normal, e: ["ChairOfficeDark"]}
-  "as": {t: FloorSteel, a: normal, e: ["TableReinforced", "PowerCellRecharger"]}
-  "at": {t: FloorSteel, a: normal, e: ["TableReinforced", "ClothingHandsGlovesColorYellow", "ClothingHandsGlovesColorYellow"]}
-  "au": {t: FloorSteel, a: normal, e: ["AirlockCommand"]}
-  "av": {t: FloorSteel, a: normal, e: ["ChairOfficeLight@90"]}
-  "aw": {t: FloorDark, a: normal, e: ["TableGlass", "PaperBin10"]}
-  "ax": {t: FloorDark, a: normal, e: ["BitrunningFakeCrewCe", "ChairOfficeLight@-90"]}
-  "ay": {t: FloorSteel, a: normal, e: ["LockerSteel"]}
-  "az": {t: FloorDark, a: normal, e: ["Table", "WeaponCapacitorRecharger", "Stunbaton"]}
-  "aA": {t: FloorDark, a: normal, e: ["Table", "MedkitFilled"]}
-  "aB": {t: FloorDark, a: normal, e: ["Table", "Handcuffs", "Handcuffs"]}
-  "aC": {t: Plating, a: normal, e: ["WallSolid", "ExtinguisherCabinetFilled"]}
-  "aD": {t: FloorSteel, a: normal, e: ["filingCabinetRandom"]}
-  "aE": {t: FloorDark, a: normal, e: ["ChairOfficeDark@180"]}
-  "aF": {t: Plating, a: normal, e: ["AirlockMaint"]}
-  "aG": {t: FloorSteel, a: normal, e: ["TableGlass", "Multitool"]}
-  "aH": {t: FloorSteel, a: normal, e: ["TableGlass", "MedkitBurnFilled", "AlwaysPoweredWallLight@180"]}
-  "aI": {t: FloorSteel, a: normal, e: ["DisposalUnit", "ShardGlass"]}
-  "aJ": {t: FloorSteel, a: normal, e: ["AlwaysPoweredWallLight@180"]}
-  "aK": {t: Plating, a: normal}
-  "aL": {t: Plating, a: normal, e: ["Rack"]}
-  "aM": {t: PlatingDamaged, a: normal}
-  "aN": {t: Plating, a: normal, e: ["AirlockMaint", "Girder", "Grille"]}
-  "aO": {t: Plating, a: normal, e: ["AlwaysPoweredWallLight@-90"]}
-  "aP": {t: Plating, a: normal, e: ["Table"]}
-  "aQ": {t: Plating, a: normal, e: ["BitrunningFakeCrewAssistant"]}
-  "aR": {t: Plating, a: normal, e: ["BriefcaseBrown"]}
-  "aS": {t: FloorSteel, a: normal, e: ["ChairOfficeDark"]}
-  "aT": {t: Plating, a: normal, e: ["ReinforcedWindow", "Grille", "AlwaysPoweredWallLight"]}
-  "aU": {t: Plating, a: normal, e: ["AirlockMaint", "Barricade"]}
-  "aV": {t: PlatingDamaged, a: normal, e: ["Flare"]}
-  "aW": {t: PlatingDamaged, a: normal, e: ["FlashlightLantern"]}
-  "aX": {t: PlatingDamaged, a: normal, e: ["AlwaysPoweredWallLight@180"]}
-  "aY": {t: FloorSteel, a: normal, e: ["TableGlass"]}
-  "aZ": {t: FloorDark, a: normal, e: ["TableGlass", "Pen"]}
-  "a0": {t: FloorDark, a: normal, e: ["TableGlass", "PaperBin10", "BoxFolderRed"]}
-  "a1": {t: Plating, a: normal, e: ["ShardGlass"]}
-  "a2": {t: PlatingDamaged, a: normal, e: ["Grille"]}
-  "a3": {t: Plating, a: normal, e: ["Grille"]}
-  "a4": {t: FloorDark, a: normal, e: ["BitrunningFakeCrewHos", "ChairOfficeDark@180"]}
-  "a5": {t: FloorSteel, a: normal, e: ["VendingMachineCigs"]}
-  "a6": {t: PlatingDamaged, a: normal, e: ["Syringe", "Syringe"]}
-  "a7": {t: FloorDark, a: normal, e: ["ComputerFrame", "AlwaysPoweredWallLight@180"]}
-  "a8": {t: FloorDark, a: normal, e: ["Rack", "WeaponRevolverPython"]}
-  "a9": {t: FloorDark, a: normal, e: ["filingCabinetRandom"]}
-  "ba": {t: PlatingDamaged, a: normal, e: ["Pickaxe"]}
-  "bb": {t: Plating, a: normal, e: ["BitrunningFakeCrewAssistant", "Gauze1"]}
-  "bc": {t: PlatingDamaged, a: normal, e: ["Syringe", "Syringe", "Syringe"]}
-  "bd": {t: Plating, a: normal, e: ["WeldingFuelTankFull"]}
-  "be": {t: Plating, a: normal, e: ["AlwaysPoweredSmallLight@90", "MobHereticRawProphet"]}
-  "bf": {t: Plating, a: normal, e: ["Flare"]}
-  "bg": {t: PlatingDamaged, a: normal, e: ["AlwaysPoweredSmallLight@-90"]}
-  "bh": {t: PlatingDamaged, a: normal, e: ["ClosetEmergencyFilledRandom", "MedkitFilled", "AlwaysPoweredWallLight"]}
-  "bi": {t: Plating, a: normal, e: ["ClosetFireFilled"]}
-  "bj": {t: PlatingDamaged, a: normal, e: ["BitrunningHereticRune", "BitrunningMarkerLootSignal"]}
-  "bk": {t: PlatingDamaged, a: normal, e: ["AlwaysPoweredSmallLight@180"]}
-  "bl": {t: PlatingDamaged, a: normal, e: ["AlwaysPoweredSmallLight@90"]}
-  "bm": {t: PlatingDamaged, a: normal, e: ["AlwaysPoweredSmallLight@-90", "MobHereticRawProphet"]}
-  "bn": {t: Plating, a: normal, e: ["Window", "Grille"]}
-  "bo": {t: Plating, a: normal, e: ["WaterTankFull"]}
-  "bp": {t: PlatingDamaged, a: normal, e: ["Table", "ToolboxEmergencyFilled", "ClothingMaskGas"]}
-  "bq": {t: PlatingDamaged, a: normal, e: ["Table"]}
-  "br": {t: FloorPlastic, a: normal}
-  "bs": {t: Plating, a: normal, e: ["Girder", "Grille"]}
-  "bt": {t: Plating, a: normal, e: ["WallSolid", "DefibrillatorCabinetFilled"]}
-  "bu": {t: FloorPlastic, a: normal, e: ["TableGlass", "Brutepack1", "Ointment1", "AlwaysPoweredLightLED"]}
-  "bv": {t: FloorPlastic, a: normal, e: ["AlwaysPoweredLightLED"]}
-  "bw": {t: Plating, a: safe, e: ["WallSolid"]}
-  "bx": {t: Plating, a: safe, e: ["AirlockMaint"]}
-  "by": {t: FloorPlastic, a: normal, e: ["MedicalBed"]}
-  "bz": {t: FloorPlastic, a: normal, e: ["BitrunningFakeCrewMd"]}
-  "bA": {t: FloorPlastic, a: normal, e: ["TableGlass", "Gauze1"]}
-  "bB": {t: Plating, a: safe}
-  "bC": {t: FloorDark, a: normal, e: ["ComputerFrame", "AlwaysPoweredLightLED@90"]}
-  "bD": {t: FloorDark, a: normal, e: ["BitrunningFakeCrewCmo", "ChairOfficeLight@90"]}
-  "bE": {t: FloorPlastic, a: normal, e: ["ChairOfficeLight@-90"]}
-  "bF": {t: FloorPlastic, a: normal, e: ["AirlockCommand"]}
-  "bG": {t: Plating, a: safe, e: ["AlwaysPoweredlightRed@90"]}
-  "bH": {t: Plating, a: safe, e: ["AlwaysPoweredlightRed@-90"]}
-  "bI": {t: FloorDark, a: normal, e: ["TableGlass"]}
-  "bJ": {t: Space, e: ["TableGlass", "MobCat"]}
-  "bK": {t: FloorDark, a: normal, e: ["TableGlass", "BoxFolderBlue"]}
-  "bL": {t: FloorPlastic, a: normal, e: ["TableGlass"]}
-  "bM": {t: Plating, a: safe, e: ["RailingCorner"]}
-  "bN": {t: FloorPlastic, a: normal, e: ["AlwaysPoweredWallLight@-90"]}
-  "bO": {t: FloorPlastic, a: normal, e: ["DisposalUnit"]}
-  "bP": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder"]}
-  "bQ": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder", "Railing@90"]}
-  "bR": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal"]}
-  "bS": {t: FloorPlastic, a: normal, e: ["filingCabinetRandom"]}
-  "bT": {t: FloorPlastic, a: normal, e: ["AirlockMedical"]}
-  "bU": {t: FloorPlastic, a: normal, e: ["TableGlass", "MedkitFilled"]}
-  "bV": {t: FloorPlastic, a: normal, e: ["TableGlass", "MedkitBruteFilled"]}
-  "bW": {t: FloorPlastic, a: normal, e: ["AlwaysPoweredLightLED@180"]}
-  "bX": {t: FloorPlastic, a: normal, e: ["AirCanister"]}
+  "af": {t: FloorSteel, a: normal, e: ["AlwaysPoweredWallLight"]}
+  "ag": {t: FloorSteel, a: normal, e: ["ClosetEmergencyFilledRandom"]}
+  "ah": {t: FloorDark, a: normal, e: ["ComputerFrame"]}
+  "ai": {t: FloorDark, a: normal, e: ["ComputerFrame", "AlwaysPoweredWallLight"]}
+  "aj": {t: FloorSteel, a: normal, e: ["DisposalUnit"]}
+  "ak": {t: FloorSteel, a: normal, e: ["BitrunningFakeCrewEngi"]}
+  "al": {t: FloorSteel, a: normal, e: ["TableReinforced"]}
+  "am": {t: FloorSteel, a: normal, e: ["TableReinforced", "ToolboxElectricalFilled"]}
+  "an": {t: FloorSteel, a: normal, e: ["ClosetFireFilled"]}
+  "ao": {t: FloorDark, a: normal, e: ["TableGlass", "BoxFolderYellow"]}
+  "ap": {t: FloorDark, a: normal, e: ["#DirtHeavy"]}
+  "aq": {t: FloorDark, a: normal}
+  "ar": {t: FloorSteel, a: normal, e: ["LockerSteel", "WeaponSniperMosin"]}
+  "as": {t: FloorDark, a: normal, e: ["BitrunningFakeCrewSec"]}
+  "at": {t: FloorDark, a: normal, e: ["ChairOfficeDark"]}
+  "au": {t: FloorSteel, a: normal, e: ["TableReinforced", "BoxCardboard"]}
+  "av": {t: FloorSteel, a: normal, e: ["TableReinforced", "PowerCellRecharger"]}
+  "aw": {t: FloorSteel, a: normal, e: ["TableReinforced", "ClothingHandsGlovesColorYellow", "ClothingHandsGlovesColorYellow"]}
+  "ax": {t: FloorSteel, a: normal, e: ["AirlockCommand"]}
+  "ay": {t: FloorSteel, a: normal, e: ["ChairOfficeLight@90"]}
+  "az": {t: FloorDark, a: normal, e: ["TableGlass", "PaperBin10"]}
+  "aA": {t: FloorDark, a: normal, e: ["BitrunningFakeCrewCe", "ChairOfficeLight@-90"]}
+  "aB": {t: FloorSteel, a: normal, e: ["LockerSteel"]}
+  "aC": {t: FloorDark, a: normal, e: ["Table", "WeaponCapacitorRecharger", "Stunbaton"]}
+  "aD": {t: FloorDark, a: normal, e: ["Table", "MedkitFilled"]}
+  "aE": {t: FloorDark, a: normal, e: ["Table", "Handcuffs", "Handcuffs"]}
+  "aF": {t: Plating, a: normal, e: ["WallSolid", "ExtinguisherCabinetFilled"]}
+  "aG": {t: FloorSteel, a: normal, e: ["filingCabinetRandom"]}
+  "aH": {t: FloorSteel, a: normal, e: ["LockerSteel", "ClothingBackpack"]}
+  "aI": {t: FloorDark, a: normal, e: ["ChairOfficeDark@180"]}
+  "aJ": {t: Plating, a: normal, e: ["AirlockMaint"]}
+  "aK": {t: FloorSteel, a: normal, e: ["TableGlass", "Multitool"]}
+  "aL": {t: FloorSteel, a: normal, e: ["TableGlass", "MedkitBurnFilled", "AlwaysPoweredWallLight@180"]}
+  "aM": {t: FloorSteel, a: normal, e: ["DisposalUnit", "ShardGlass"]}
+  "aN": {t: FloorSteel, a: normal, e: ["AlwaysPoweredWallLight@180"]}
+  "aO": {t: FloorSteel, a: normal, e: ["#DirtMedium"]}
+  "aP": {t: Plating, a: normal, e: ["AirCanister"]}
+  "aQ": {t: Plating, a: normal, e: ["ClothingUniformJumpsuitPirate", "Rack"]}
+  "aR": {t: Plating, a: normal, e: ["GasVentPump"]}
+  "aS": {t: Plating, a: normal, e: ["WallSolid", "FireAxeCabinetFilled"]}
+  "aT": {t: PlatingDamaged, a: normal}
+  "aU": {t: Plating, a: normal, e: ["AirlockMaint", "Girder", "Grille"]}
+  "aV": {t: Plating, a: normal, e: ["AlwaysPoweredWallLight@-90"]}
+  "aW": {t: Plating, a: normal}
+  "aX": {t: PlatingDamaged, a: normal, e: ["ClothingHandsGlovesColorBlack"]}
+  "aY": {t: Plating, a: normal, e: ["Table"]}
+  "aZ": {t: Plating, a: normal, e: ["BitrunningFakeCrewAssistant"]}
+  "a0": {t: Plating, a: normal, e: ["BriefcaseBrown"]}
+  "a1": {t: FloorSteel, a: normal, e: ["ChairOfficeDark"]}
+  "a2": {t: Plating, a: normal, e: ["ReinforcedWindow", "Grille", "AlwaysPoweredWallLight"]}
+  "a3": {t: Plating, a: normal, e: ["AirlockMaint", "Barricade"]}
+  "a4": {t: Plating, a: normal, e: ["#DirtLight"]}
+  "a5": {t: PlatingDamaged, a: normal, e: ["Flare"]}
+  "a6": {t: PlatingDamaged, a: normal, e: ["FlashlightLantern"]}
+  "a7": {t: PlatingDamaged, a: normal, e: ["AlwaysPoweredWallLight@180"]}
+  "a8": {t: FloorSteel, a: normal, e: ["TableGlass"]}
+  "a9": {t: FloorDark, a: normal, e: ["TableGlass", "ClothingBeltSecurityWebbing", "Pen"]}
+  "ba": {t: FloorDark, a: normal, e: ["TableGlass", "PaperBin10", "BoxFolderRed"]}
+  "bb": {t: Plating, a: normal, e: ["ShardGlass"]}
+  "bc": {t: PlatingDamaged, a: normal, e: ["Grille"]}
+  "bd": {t: Plating, a: normal, e: ["Table", "FoodBowlBig"]}
+  "be": {t: Plating, a: normal, e: ["Grille"]}
+  "bf": {t: FloorDark, a: normal, e: ["BitrunningFakeCrewHos", "ChairOfficeDark@180"]}
+  "bg": {t: FloorSteel, a: normal, e: ["VendingMachineCigs"]}
+  "bh": {t: PlatingDamaged, a: normal, e: ["Syringe", "Syringe"]}
+  "bi": {t: FloorDark, a: normal, e: ["ComputerFrame", "AlwaysPoweredWallLight@180"]}
+  "bj": {t: FloorDark, a: normal, e: ["Rack", "WeaponRevolverPython"]}
+  "bk": {t: FloorDark, a: normal, e: ["filingCabinetRandom"]}
+  "bl": {t: PlatingDamaged, a: normal, e: ["Pickaxe"]}
+  "bm": {t: Plating, a: normal, e: ["BitrunningFakeCrewAssistant", "Cablecuffs", "Gauze1"]}
+  "bn": {t: PlatingDamaged, a: normal, e: ["Syringe", "Syringe", "Syringe"]}
+  "bo": {t: Plating, a: normal, e: ["WeldingFuelTankFull"]}
+  "bp": {t: Plating, a: normal, e: ["OxygenTankFilled", "Beaker"]}
+  "bq": {t: Plating, a: normal, e: ["AlwaysPoweredSmallLight@90", "MobHereticRawProphet"]}
+  "br": {t: Plating, a: normal, e: ["Flare"]}
+  "bs": {t: PlatingDamaged, a: normal, e: ["AlwaysPoweredSmallLight@-90"]}
+  "bt": {t: PlatingDamaged, a: normal, e: ["ClosetEmergencyFilledRandom", "MedkitFilled", "AlwaysPoweredWallLight"]}
+  "bu": {t: Plating, a: normal, e: ["ClosetFireFilled"]}
+  "bv": {t: Plating, a: normal, e: ["#DirtHeavy"]}
+  "bw": {t: PlatingDamaged, a: normal, e: ["BitrunningHereticRune", "BitrunningMarkerLootSignal"]}
+  "bx": {t: PlatingDamaged, a: normal, e: ["AlwaysPoweredSmallLight@180"]}
+  "by": {t: Plating, a: normal, e: ["OxygenTankFilled"]}
+  "bz": {t: PlatingDamaged, a: normal, e: ["AlwaysPoweredSmallLight@90"]}
+  "bA": {t: PlatingDamaged, a: normal, e: ["AlwaysPoweredSmallLight@-90", "MobHereticRawProphet"]}
+  "bB": {t: Plating, a: normal, e: ["Window", "Grille"]}
+  "bC": {t: Plating, a: normal, e: ["WaterTankFull"]}
+  "bD": {t: PlatingDamaged, a: normal, e: ["Table", "ToolboxEmergencyFilled", "ClothingMaskGas"]}
+  "bE": {t: PlatingDamaged, a: normal, e: ["Table", "ClothingHandsGlovesColorBlack"]}
+  "bF": {t: Plating, a: normal, e: ["PortableScrubber"]}
+  "bG": {t: FloorPlastic, a: normal}
+  "bH": {t: Plating, a: normal, e: ["Girder", "Grille"]}
+  "bI": {t: Plating, a: normal, e: ["WallSolid", "DefibrillatorCabinetFilled"]}
+  "bJ": {t: FloorPlastic, a: normal, e: ["TableGlass", "Brutepack1", "Ointment1", "AlwaysPoweredLightLED"]}
+  "bK": {t: FloorPlastic, a: normal, e: ["AlwaysPoweredLightLED", "RollerBedSpawnFolded"]}
+  "bL": {t: Plating, a: safe, e: ["WallSolid"]}
+  "bM": {t: Plating, a: safe, e: ["AirlockMaint"]}
+  "bN": {t: FloorPlastic, a: normal, e: ["MedicalBed"]}
+  "bO": {t: FloorPlastic, a: normal, e: ["BitrunningFakeCrewMd"]}
+  "bP": {t: FloorPlastic, a: normal, e: ["TableGlass", "Gauze1"]}
+  "bQ": {t: Plating, a: safe}
+  "bR": {t: FloorDark, a: normal, e: ["ComputerFrame", "AlwaysPoweredLightLED@90"]}
+  "bS": {t: FloorDark, a: normal, e: ["BitrunningFakeCrewCmo", "ChairOfficeLight@90"]}
+  "bT": {t: FloorPlastic, a: normal, e: ["ChairOfficeLight@-90"]}
+  "bU": {t: FloorPlastic, a: normal, e: ["AirlockCommand"]}
+  "bV": {t: Plating, a: safe, e: ["AlwaysPoweredlightRed@90"]}
+  "bW": {t: Plating, a: safe, e: ["AlwaysPoweredlightRed@-90"]}
+  "bX": {t: FloorDark, a: normal, e: ["TableGlass"]}
+  "bY": {t: Space, e: ["TableGlass", "MobCat"]}
+  "bZ": {t: FloorDark, a: normal, e: ["TableGlass", "BoxFolderBlue"]}
+  "b0": {t: FloorPlastic, a: normal, e: ["TableGlass", "HandheldHealthAnalyzer"]}
+  "b1": {t: Plating, a: safe, e: ["RailingCorner"]}
+  "b2": {t: FloorPlastic, a: normal, e: ["AlwaysPoweredWallLight@-90"]}
+  "b3": {t: FloorPlastic, a: normal, e: ["DisposalUnit"]}
+  "b4": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "b5": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder", "Railing@90"]}
+  "b6": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal"]}
+  "b7": {t: FloorPlastic, a: normal, e: ["TableGlass", "Hypospray"]}
+  "b8": {t: FloorPlastic, a: normal, e: ["TableGlass", "ChemistryEmptyBottle01"]}
+  "b9": {t: FloorPlastic, a: normal, e: ["filingCabinetRandom"]}
+  "ca": {t: FloorPlastic, a: normal, e: ["AirlockMedical"]}
+  "cb": {t: FloorPlastic, a: normal, e: ["TableGlass", "MedkitFilled"]}
+  "cc": {t: FloorPlastic, a: normal, e: ["#DirtHeavy"]}
+  "cd": {t: FloorPlastic, a: normal, e: ["TableGlass", "MedkitFilled", "MedkitFilled"]}
+  "ce": {t: FloorPlastic, a: normal, e: ["TableGlass", "MedkitBruteFilled", "ChemistryEmptyBottle01", "ChemistryEmptyBottle01"]}
+  "cf": {t: FloorPlastic, a: normal, e: ["AlwaysPoweredLightLED@180"]}
+  "cg": {t: FloorPlastic, a: normal, e: ["#DirtLight"]}
+  "ch": {t: FloorPlastic, a: normal, e: ["AirCanister"]}
 rows:
 - "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 - "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 - "aaaaaaaaaaabababaaacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 - "aaaaaaaaaaadaaadaaaaaaaaaaaeaeaeaeaeaeaeaeaeaeaeaeaaaa"
-- "aaaaadabacababababacafaeaeaeagahaeaiababacabababaeaaaa"
-- "aaaaaaabajakalakababamadabanaoaoaeapaqarararaoabaeaaaa"
-- "aaaaaaababakasatajababauavawaxaoaeayaoazaAaBaoabaCaaaa"
-- "aaaaadababababababababadabababaDaeayaoaEaEaEaqabaeaaaa"
-- "aaaaaeaeaCaeaFaeabababaeaGaHaIaeaeabababaJabababadaaaa"
-- "aaaaaeaKaLaeaKaeaeaeaeaeaeaeaeaeaeadauadaeabababaaaaaa"
-- "aaaaaeaMaMaNaOaeaKaMaPaPaQaRaeaiabaSababaeabababaTaaaa"
-- "aaaaaeaKaMaeaMaUaKaVaKaWaXaKaeaYaZa0aoaoadabababaaaaaa"
-- "aaaaaea1aKaea2aeaPaeaea3aea3aeaeaoa4aoaoaea5ababadaaaa"
-- "aaaaaeaeaeaeaFaeaeaea6aMaeaMaKaeaga7a8a9aeaeaFaeaeaaaa"
-- "aaaaaaaebaaKaMaKaKaebbbcaebdaKaeaeaeaeaeaebdaKaeaeaaaa"
-- "aaaaaaaebeaVaMbfbgaeaeaeaeaeaeaeaebhbiaeaeaKaMbfaeaaaa"
-- "aaaaaaaeaKaMbjaMaKaFaKaMaKaMaMaKaKaKaMa3aMaMbkaKaeaaaa"
-- "aaaaaaaeblbfaKbfbmbnaKaKaVaMaMaKaeaeaeaeaFaeaeaeaeaaaa"
-- "aaaaaaaeaKaKaMaKaKaebobpbqaKaKaKaeaebrbrbrbrbraeaeaaaa"
-- "aaaaaeaeaebsaKbsaeaeaeaeaeaeaeaebtbubrbrbrbrbrbvadaaaa"
-- "aaaaaebwbwbwbxbwbwbwaeagaoaobrbradbybrbzbAbrbrbraaaaaa"
-- "aaaaaebwbBbBbBbBbBbwaebCbDawbEbrbFbrbrbrbrbzbrbradaaaa"
-- "aaaaaebwbGbBbBbBbHbwaebIbJbKbEbradbybrbrbLbrbrbraaaaaa"
-- "aaaaaebwbBbBbMbBbBbwaeaebrbrbrbNbtbAbrbrbrbrbrbOadaaaa"
-- "aaaaaebwbPbPbQbRbRbwaeaebObLbLbSaeaeaebTadbTaeaCaeaaaa"
-- "aaaaaebwbwbwbwbwbwbwaeaeaeaeaeaeaebUbrbrbrbrbrbLaeaaaa"
-- "aaaaaeaeaeaeaeaeaeaeaeaaaaaaaaaaaebUbrbrbrbrbrbVaeaaaa"
-- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaebUbrbrbWbrbXbAaeaaaa"
+- "aaaaadabafababababafagaeaeaeahaiaeajababafabababaeaaaa"
+- "aaaaaaabakalamalababanadabaoapaqaearasatatataqabaeaaaa"
+- "aaaaaaababauavawakababaxayazaAaqaeaBaqaCaDaEaqabaFaaaa"
+- "aaaaadababababababababadabababaGaeaHaqaIaIaIasabaeaaaa"
+- "aaaaaeaeaFaeaJaeabababaeaKaLaMaeaeabababaNaOababadaaaa"
+- "aaaaaeaPaQaeaRaeaeaSaeaeaeaeaeaeaeadaxadaeabababaaaaaa"
+- "aaaaaeaTaTaUaVaeaWaXaYaYaZa0aeajaba1ababaeabababa2aaaa"
+- "aaaaaeaWaTaeaTa3a4a5aWa6a7aWaea8a9baaqaqadabababaaaaaa"
+- "aaaaaebbaWaebcaebdaeaebeaebeaeaeaqbfaqaqaebgababadaaaa"
+- "aaaaaeaeaeaeaJaeaeaebhaTaeaTaWaeahbibjbkaeaeaJaeaeaaaa"
+- "aaaaaaaeblaWaTaWaWaebmbnaebobpaeaeaeaeaeaeboaWaeaeaaaa"
+- "aaaaaaaebqa5aTbrbsaeaeaeaeaeaeaeaebtbuaeaeaWaTbraeaaaa"
+- "aaaaaaaebvaTbwaTaWaJaWaTaWaTaTa4aWaWaTbeaTaTbxbyaeaaaa"
+- "aaaaaaaebzbraWbrbAbBaWaWa5aTaTaWaeaeaeaeaJaeaeaeaeaaaa"
+- "aaaaaaaeaWaWaTa4aWaebCbDbEaWaWbFaeaebGbGbGbGbGaeaeaaaa"
+- "aaaaaeaeaebHaWbHaeaeaeaeaeaeaeaebIbJbGbGbGbGbGbKadaaaa"
+- "aaaaaebLbLbLbMbLbLbLaeahaqaqbGbGadbNbGbObPbGbGbGaaaaaa"
+- "aaaaaebLbQbQbQbQbQbLaebRbSazbTbGbUbGbGbGbGbObGbGadaaaa"
+- "aaaaaebLbVbQbQbQbWbLaebXbYbZbTbGadbNbGbGb0bGbGbGaaaaaa"
+- "aaaaaebLbQbQb1bQbQbLaeaebGbGbGb2bIbPbGbGbGbGbGb3adaaaa"
+- "aaaaaebLb4b4b5b6b6bLaeaeb3b7b8b9aeaeaecaadcaaeaFaeaaaa"
+- "aaaaaebLbLbLbLbLbLbLaeaeaeaeaeaeaecbbGbGbGbGccb8aeaaaa"
+- "aaaaaeaeaeaeaeaeaeaeaeaaaaaaaaaaaecdbGbGbGbGbGceaeaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaecbbGbGcfcgchbPaeaaaa"
 - "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeaeaeaeaeaaaa"
 - "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 - "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"

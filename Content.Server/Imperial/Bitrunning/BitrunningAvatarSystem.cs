@@ -325,6 +325,7 @@ public sealed class BitrunningAvatarSystem : EntitySystem
         _servers.SetBodycam(c.Avatar, c.Server.Comp.Broadcasting);
         _mind.Visit(c.Mind, c.Avatar);
         _servers.AssignObjectives(c.Mind, c.Server);
+        _servers.StartAmbience(c.Avatar);
         _audio.PlayEntity(BlinkSound, c.Avatar, c.Avatar);
         _stun.TryUpdateParalyzeDuration(c.Avatar, TimeSpan.FromSeconds(1));
         UpdateNetpodAppearance(c.Pod);
@@ -369,6 +370,7 @@ public sealed class BitrunningAvatarSystem : EntitySystem
         if (TryComp<MindComponent>(avatar.Mind, out var mind) && mind.VisitingEntity == avatarUid)
             _mind.UnVisit(avatar.Mind, mind);
         _servers.RemoveObjectives(avatar.Mind);
+        _servers.StopAmbience(avatarUid);
 
         if (TryComp<QuantumServerComponent>(avatar.Server, out var server))
             server.Avatars.Remove(avatarUid);
@@ -641,6 +643,9 @@ public sealed class BitrunningAvatarSystem : EntitySystem
         comp.Netpod = old.Netpod;
         comp.Nohit = old.Nohit;
         comp.HelpText = old.HelpText;
+        comp.BuzzStream = old.BuzzStream;
+        comp.NextAmbience = old.NextAmbience;
+        old.BuzzStream = null;
         EnsureComp<BitrunningAvatarMarkerComponent>(next);
 
         if (TryComp<QuantumServerComponent>(old.Server, out var server))

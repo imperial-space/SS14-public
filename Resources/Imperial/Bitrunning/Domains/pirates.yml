@@ -29,77 +29,85 @@ legend:
   "ax": {t: FloorAsteroidSand, a: bright, e: ["BitrunningMarkerCache"]}
   "ay": {t: FloorAsteroidSand, a: bright, e: ["Barricade"]}
   "az": {t: FloorWoodTile, a: normal, e: ["AirlockShuttle"]}
-  "aA": {t: FloorWood, a: bright}
-  "aB": {t: FloorAsteroidSand, a: bright, e: ["SmartFridge"]}
-  "aC": {t: FloorAsteroidSand, a: bright, e: ["MobSpirate"]}
-  "aD": {t: Plating, a: bright, e: ["Barricade", "WallWood"]}
-  "aE": {t: FloorWood, a: bright, e: ["MobSpirate"]}
-  "aF": {t: FloorWood, a: bright, e: ["BitrunningGhostRolePirate"]}
-  "aG": {t: FloorWood, a: bright, e: ["TableWood", "Flare", "Flare"]}
-  "aH": {t: FloorWood, a: bright, e: ["Cutlass", "TableWood", "WeaponLaserGun"]}
-  "aI": {t: FloorAsteroidSand, a: bright, e: ["Bonfire"]}
-  "aJ": {t: FloorWood, a: bright, e: ["Jukebox"]}
-  "aK": {t: FloorAsteroidSand, a: bright, e: ["#Busha1", "FloraTree"]}
-  "aL": {t: FloorAsteroidSand, a: bright, e: ["Bucket"]}
-  "aM": {t: FloorWood, a: bright, e: ["MobSpirate", "ChairWood"]}
-  "aN": {t: FloorWood, a: bright, e: ["Barricade"]}
-  "aO": {t: FloorGrass, a: bright, e: ["#Bushb1"]}
-  "aP": {t: FloorWood, a: bright, e: ["Barricade", "Binoculars"]}
-  "aQ": {t: FloorGrass, a: bright, e: ["#Flowersy1"]}
-  "aR": {t: FloorWood, a: bright, e: ["Railing"]}
-  "aS": {t: FloorGrass, a: bright, e: ["#Bushb1", "#Bushb1"]}
-  "aT": {t: FloorGrass, a: bright, e: ["FloraTreeLarge", "#Bushb1"]}
-  "aU": {t: FloorGrass, a: bright, e: ["MobSpirate"]}
-  "aV": {t: FloorAsteroidSand, a: bright, e: ["SalvageHumanCorpse"]}
-  "aW": {t: FloorAsteroidSand, a: bright, e: ["#Bushb1"]}
-  "aX": {t: FloorAsteroidSand, a: bright, e: ["FloorWaterEntity"]}
-  "aY": {t: Plating, a: protected, e: ["WallRock"]}
-  "aZ": {t: FloorAsteroidSand, a: bright, e: ["#Bushb1", "FloorWaterEntity"]}
-  "a0": {t: FloorAsteroidSand, a: bright, e: ["Flare"]}
-  "a1": {t: FloorGrass, a: bright, e: ["#Flowersy1", "#Bushb1"]}
-  "a2": {t: FloorGrass, a: bright}
-  "a3": {t: FloorAsteroidSand, a: bright, e: ["LandMineExplosive"]}
-  "a4": {t: FloorAsteroidSand, a: protected}
-  "a5": {t: FloorDirt, a: protected, e: ["#Grassa1"]}
-  "a6": {t: FloorDirt, a: protected, e: ["FloraRockSolid"]}
-  "a7": {t: FloorDirt, a: protected}
-  "a8": {t: FloorAsteroidSand, a: protected, e: ["FloorWaterEntity"]}
-  "a9": {t: FloorDirt, a: protected, e: ["AlwaysPoweredWallLight"]}
-  "ba": {t: FloorAsteroidSand, a: bright, e: ["FloraTree"]}
-  "bb": {t: FloorAsteroidSand, a: bright, e: ["FloraRockSolid", "FloorWaterEntity"]}
-  "bc": {t: FloorDirt, a: protected, e: ["SalvageHumanCorpse"]}
-  "bd": {t: FloorAsteroidSand, a: bright, e: ["SalvageHumanCorpse", "FloorWaterEntity"]}
-  "be": {t: FloorDirt, a: protected, e: ["#Grassa1", "FloraRockSolid"]}
-  "bf": {t: FloorDirt, a: protected, e: ["#Grassa1", "AlwaysPoweredWallLight@-90"]}
-  "bg": {t: FloorAsteroidSand, a: protected, e: ["FloraRockSolid", "FloorWaterEntity"]}
-  "bh": {t: FloorDirt, a: protected, e: ["#Bushb1"]}
-  "bi": {t: FloorDirt, a: protected, e: ["CrateGenericSteel", "#Grassa1"]}
-  "bj": {t: FloorDirt, a: protected, e: ["CrateGenericSteel"]}
-  "bk": {t: FloorDirt, a: protected, e: ["WeaponLaserCarbine"]}
-  "bl": {t: Plating, a: protectedbright, e: ["WallPlastitaniumIndestructible"]}
-  "bm": {t: Plating, a: protectedbright, e: ["WallRock"]}
-  "bn": {t: FloorAsteroidSand, a: protectedbright, e: ["FloorWaterEntity"]}
-  "bo": {t: FloorDirt, a: protected, e: ["BitrunningMarkerCache"]}
-  "bp": {t: FloorAsteroidSand, a: protectedbright, e: ["FloraRockSolid", "FloorWaterEntity"]}
-  "bq": {t: Plating, a: protectedbright, e: ["WallWood"]}
-  "br": {t: FloorWood, a: protectedbright, e: ["TableWood", "WeaponLaserGun", "WeaponLaserGun", "WeaponLaserGun"]}
-  "bs": {t: FloorWood, a: protectedbright, e: ["TableWood", "Flare", "Bucket", "WeaponCapacitorRecharger"]}
-  "bt": {t: FloorWood, a: protectedbright, e: ["ClosetSteelBase"]}
-  "bu": {t: FloorWood, a: protectedbright}
-  "bv": {t: FloorWood, a: protectedbright, e: ["ClothingBeltSheathFilled", "WeaponLaserGun"]}
-  "bw": {t: Plating, a: safe, e: ["WallWood"]}
-  "bx": {t: Plating, a: safe, e: ["Window", "Grille"]}
-  "by": {t: Plating, a: safe, e: ["WoodDoor"]}
-  "bz": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@90"]}
-  "bA": {t: FloorSteel, a: safe, e: ["PottedPlantRandom"]}
-  "bB": {t: FloorSteel, a: safe}
-  "bC": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@-90", "BitrunningMarkerGoal"]}
-  "bD": {t: FloorWood, a: safe, e: ["CarpetGreen"]}
-  "bE": {t: FloorWood, a: safe, e: ["RailingCorner@90", "CarpetGreen"]}
-  "bF": {t: FloorSteel, a: safe, e: ["Railing", "BitrunningMarkerGoal"]}
-  "bG": {t: Plating, a: safe, e: ["WallWood", "RandomPosterLegit"]}
-  "bH": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder"]}
-  "bI": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@-90", "TableWood"]}
+  "aA": {t: FloorAsteroidSand, a: bright, e: ["#Rock04"]}
+  "aB": {t: FloorWood, a: bright}
+  "aC": {t: FloorAsteroidSand, a: bright, e: ["SmartFridge"]}
+  "aD": {t: FloorAsteroidSand, a: bright, e: ["MobSpirate"]}
+  "aE": {t: Plating, a: bright, e: ["Barricade", "WallWood"]}
+  "aF": {t: FloorWood, a: bright, e: ["MobSpirate"]}
+  "aG": {t: FloorWood, a: bright, e: ["BitrunningGhostRolePirate"]}
+  "aH": {t: FloorWood, a: bright, e: ["TableWood", "Flare", "Flare"]}
+  "aI": {t: FloorWood, a: bright, e: ["Cutlass", "TableWood", "WeaponLaserGun"]}
+  "aJ": {t: FloorAsteroidSand, a: bright, e: ["Bonfire"]}
+  "aK": {t: FloorWood, a: bright, e: ["Jukebox"]}
+  "aL": {t: FloorAsteroidSand, a: bright, e: ["#Busha1", "FloraTree"]}
+  "aM": {t: FloorAsteroidSand, a: bright, e: ["Bucket"]}
+  "aN": {t: FloorWood, a: bright, e: ["MobSpirate", "ChairWood"]}
+  "aO": {t: FloorWood, a: bright, e: ["Barricade"]}
+  "aP": {t: FloorAsteroidSand, a: bright, e: ["#Rock03"]}
+  "aQ": {t: FloorGrass, a: bright, e: ["#Bushb1"]}
+  "aR": {t: FloorWood, a: bright, e: ["Barricade", "Binoculars"]}
+  "aS": {t: FloorGrass, a: bright, e: ["#Flowersy1"]}
+  "aT": {t: FloorWood, a: bright, e: ["Railing"]}
+  "aU": {t: FloorAsteroidSand, a: bright, e: ["#Rock01"]}
+  "aV": {t: FloorGrass, a: bright, e: ["#Bushb1", "#Bushb1"]}
+  "aW": {t: FloorGrass, a: bright, e: ["FloraTreeLarge", "#Bushb1"]}
+  "aX": {t: FloorGrass, a: bright, e: ["MobSpirate"]}
+  "aY": {t: FloorAsteroidSand, a: bright, e: ["SalvageHumanCorpse"]}
+  "aZ": {t: FloorAsteroidSand, a: bright, e: ["Spear"]}
+  "a0": {t: FloorAsteroidSand, a: bright, e: ["#Rock05"]}
+  "a1": {t: FloorAsteroidSand, a: bright, e: ["#Bushb1"]}
+  "a2": {t: FloorAsteroidSand, a: bright, e: ["FloorWaterEntity"]}
+  "a3": {t: Plating, a: protected, e: ["WallRock"]}
+  "a4": {t: FloorAsteroidSand, a: bright, e: ["#Bushb1", "FloorWaterEntity"]}
+  "a5": {t: FloorAsteroidSand, a: bright, e: ["Flare"]}
+  "a6": {t: FloorGrass, a: bright, e: ["#Flowersy1", "#Bushb1"]}
+  "a7": {t: FloorGrass, a: bright}
+  "a8": {t: FloorAsteroidSand, a: bright, e: ["LandMineExplosive"]}
+  "a9": {t: FloorAsteroidSand, a: protected}
+  "ba": {t: FloorDirt, a: protected, e: ["#Grassa1"]}
+  "bb": {t: FloorDirt, a: protected, e: ["FloraRockSolid"]}
+  "bc": {t: FloorDirt, a: protected}
+  "bd": {t: FloorAsteroidSand, a: bright, e: ["FloorWaterEntity", "BitrunningAmbienceWater"]}
+  "be": {t: FloorAsteroidSand, a: protected, e: ["FloorWaterEntity"]}
+  "bf": {t: FloorDirt, a: protected, e: ["AlwaysPoweredWallLight"]}
+  "bg": {t: FloorAsteroidSand, a: bright, e: ["FloraTree"]}
+  "bh": {t: FloorAsteroidSand, a: bright, e: ["FloraRockSolid", "FloorWaterEntity"]}
+  "bi": {t: FloorDirt, a: protected, e: ["SalvageHumanCorpse"]}
+  "bj": {t: FloorAsteroidSand, a: bright, e: ["#Rock02"]}
+  "bk": {t: FloorAsteroidSand, a: bright, e: ["SalvageHumanCorpse", "FloorWaterEntity"]}
+  "bl": {t: FloorDirt, a: protected, e: ["#Grassa1", "FloraRockSolid"]}
+  "bm": {t: FloorDirt, a: protected, e: ["#Grassa1", "AlwaysPoweredWallLight@-90"]}
+  "bn": {t: FloorAsteroidSand, a: protected, e: ["FloraRockSolid", "FloorWaterEntity"]}
+  "bo": {t: FloorDirt, a: protected, e: ["#Bushb1"]}
+  "bp": {t: FloorDirt, a: protected, e: ["CrateGenericSteel", "#Grassa1"]}
+  "bq": {t: FloorDirt, a: protected, e: ["CrateGenericSteel"]}
+  "br": {t: FloorDirt, a: protected, e: ["WeaponLaserCarbine"]}
+  "bs": {t: Plating, a: protectedbright, e: ["WallPlastitaniumIndestructible"]}
+  "bt": {t: Plating, a: protectedbright, e: ["WallRock"]}
+  "bu": {t: FloorAsteroidSand, a: protectedbright, e: ["FloorWaterEntity"]}
+  "bv": {t: FloorAsteroidSand, a: protectedbright, e: ["FloorWaterEntity", "BitrunningAmbienceWater"]}
+  "bw": {t: FloorDirt, a: protected, e: ["BitrunningMarkerCache"]}
+  "bx": {t: FloorAsteroidSand, a: protectedbright, e: ["FloraRockSolid", "FloorWaterEntity"]}
+  "by": {t: Plating, a: protectedbright, e: ["WallWood"]}
+  "bz": {t: FloorWood, a: protectedbright, e: ["TableWood", "WeaponLaserGun", "WeaponLaserGun", "WeaponLaserGun"]}
+  "bA": {t: FloorWood, a: protectedbright, e: ["TableWood", "Flare", "Bucket", "WeaponCapacitorRecharger"]}
+  "bB": {t: FloorWood, a: protectedbright, e: ["ClothingOuterArmorBasic", "ClothingOuterArmorBasic", "ClothingOuterArmorBasic", "ClothingHeadHatTophat", "ClothingHeadHatTophat", "ClosetSteelBase"]}
+  "bC": {t: FloorWood, a: protectedbright}
+  "bD": {t: FloorWood, a: protectedbright, e: ["ClothingBeltSheathFilled", "WeaponLaserGun"]}
+  "bE": {t: Plating, a: safe, e: ["WallWood"]}
+  "bF": {t: Plating, a: safe, e: ["Window", "Grille"]}
+  "bG": {t: Plating, a: safe, e: ["WoodDoor"]}
+  "bH": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@90"]}
+  "bI": {t: FloorSteel, a: safe, e: ["PottedPlantRandom"]}
+  "bJ": {t: FloorSteel, a: safe}
+  "bK": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@-90", "BitrunningMarkerGoal"]}
+  "bL": {t: FloorWood, a: safe, e: ["CarpetGreen"]}
+  "bM": {t: FloorWood, a: safe, e: ["RailingCorner@90", "CarpetGreen"]}
+  "bN": {t: FloorSteel, a: safe, e: ["Railing", "BitrunningMarkerGoal"]}
+  "bO": {t: Plating, a: safe, e: ["WallWood", "RandomPosterLegit"]}
+  "bP": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "bQ": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@-90", "TableWood"]}
 rows:
 - "aaaaaaaaaaaaaaaaaaaaaaaaabababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 - "aaaaaaaaaaaaaaaaaaaaaaaaabacacacacacacacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
@@ -107,39 +115,39 @@ rows:
 - "aaaaaaaaaaaaaaaaabababaiaiacadajakalamacaiaiaiaiababaaaaaaaaaaaaaaaaaaaaaa"
 - "aaaaaaaaaaaaaaababaiaiaiaiacanaoapapapacaiaiaiaiaiabaaaaaaaaaaaaaaaaaaaaaa"
 - "aaaaaaaaaaaaababaiaqaqaqaiacarajasatauacavavaiaiaiabababaaaaaaaaaaaaaaaaaa"
-- "aaaaaaaaaaaaabaiaqaqawaxayacacazacacacacavavavaiaiaiaiababaaaaaaaaaaaaaaaa"
-- "aaaaaaaaaaaaabaiaqawawaAavaBaCavavaqaqaDaqavavaqaiaiaiaiabaaaaaaaaaaaaaaaa"
-- "aaaaaaaaaaababaiaqaEawaAavavavavavaFaGaHaqaqavavavaiaiaiabaaaaaaaaaaaaaaaa"
-- "aaaaaaaaaaabaiaiaqaAaAawavavaIavaAaAaAaAaJaqavaKavaiaiaiabaaaaaaaaaaaaaaaa"
-- "aaaaaaabababaiaiaLaAaAayavavavavaAaAaAaMaNavavavavaiaiaiababaaaaaaaaaaaaaa"
-- "aaaaababaiaiaiaOayavavavavavavavavaNaNaNaPavavavavaiaiaiabababaaaaaaaaaaaa"
-- "aaaaabaiaiaiaiaQayayavaRaAaRaAavavavavavavavavavavaiaiaiaiaiababaaaaaaaaaa"
-- "aaababaiaiaiaSaOavavaAaDaAaqaEaqavaKavavavavavavavaiaiaiaiaiaiababaaaaaaaa"
-- "ababaiaiaiaTaQaUavaVavavavavavavavavavavavavavavaCaiaiaiaiaiaiaiababaaaaaa"
-- "abaiaiaiaiaOaOavavaWavavaXaXaXaXaXaXaXaXaXaXavavavaYaiaiaiaiaiaiaiababaaaa"
-- "abaiaiaiaiaSavavavaZaXaXaXaXaXaXaXaXaXaXaXaXaXaVa0aYaYaYaYaYaYaiaiaiabaaaa"
-- "abaiaiaia1a2ava3avaXaXaXaXaXaXaXaXaXaXaXaXaXaXavava4a5a6a7a6aYaYaiaiababab"
-- "abaiaiaiaOavavavavaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXa8a8a8a8a7a9aYaYaYaiaiab"
-- "abaiaiaia3avbaavavaXaXaXaXaXaXbbbbaXaXaXaXaXaXaXaXaYaYaYa8a8a7a7a5aYaYaiab"
-- "abaiaiaiaiavavavavaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXaYaiaYaYa8bca6a7a7aYaiab"
-- "ababaiaiaiaiaVavavaXaXaXbdaXaXaXaXaXaXaXaXbbaXaXaXabaiaiaYa8a8a8bea7aYaiab"
-- "aaabaiaiaiaiaia3avaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXababaiaYaYa8a8a8bfaYaiab"
-- "aaabababababababavaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXababaiaYbga8a8a8aYaiab"
-- "aaaaaaaaaaabababaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaiaYa6a7bhbiaYaiab"
-- "aaaaaaaaaaabaiaiaXbdbbaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXaXabaiaYaYbja7bkaYaiab"
-- "aaaaaaaaaablbmbmbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnblblaiaYaYbjboaYaiab"
-- "aaaaaaaaaablbmbmbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnblabaiaYaYaYaYaiab"
-- "aaaaaaaaaablbmbmbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnblababaiaiaiaiaiab"
-- "aaaaaaaaaablblblblbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnblaaababababababab"
-- "aaaaaaaaaaaaaaaablbnbnbpbpbnbnbnbnbnbnbnbnbnbnbnbnbnbnbnblaaaaaaaaaaaaaaaa"
-- "aaaaaaaaaaaaaaaablbqbqbqbqbqbnbnbnbnbnbnbpbnbnbnbnbnbnbnblaaaaaaaaaaaaaaaa"
-- "aaaaaaaaaaaaaaaablblbrbsbtbqbnbnbnbnbqbubqbubnbnbnbnbnbnblaaaaaaaaaaaaaaaa"
-- "aaaaaaaaaaaaaaaaaablbububububnbnbnbubububububnbnbnbnbnblblaaaaaaaaaaaaaaaa"
-- "aaaaaaaaaaaaaaaaaablblbubvbububnbnbnbnbububpbnbnbnbnblblaaaaaaaaaaaaaaaaaa"
-- "aaaaaaaaaaaaaaaaaaaablbwbxbwbybwbxbwbnbnbnbnbnbnbnblblblaaaaaaaaaaaaaaaaaa"
-- "aaaaaaaaaaaaaaaaaaaablbwbzbAbBbBbCbwbnbnbnbnbnbnbnbmbmblaaaaaaaaaaaaaaaaaa"
-- "aaaaaaaaaaaaaaaaaaaablbxbBbDbDbEbFbxbnbnbnbnbnbnbmbmbmblaaaaaaaaaaaaaaaaaa"
-- "aaaaaaaaaaaaaaaaaaaablbwbBbDbDbDbBbGbnbnbnbnbmbmbmbmbmblaaaaaaaaaaaaaaaaaa"
-- "aaaaaaaaaaaaaaaaaaaablbwbzbHbHbHbIbwbnbnbnbnbmbmbmbmblblaaaaaaaaaaaaaaaaaa"
-- "aaaaaaaaaaaaaaaaaaaablbwbxbwbwbwbxbwblblblblblblblblblaaaaaaaaaaaaaaaaaaaa"
-- "aaaaaaaaaaaaaaaaaaaablblblblblblblblblaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaabaiaqaqawaxayacacazacacacacaAavavaiaiaiaiababaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaabaiaqawawaBavaCaDavavaqaqaEaqavavaqaiaiaiaiabaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaababaiaqaFawaBavavavavavaGaHaIaqaqavavavaiaiaiabaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaabaiaiaqaBaBawavavaJavaBaBaBaBaKaqavaLavaiaiaiabaaaaaaaaaaaaaaaa"
+- "aaaaaaabababaiaiaMaBaBayavavavavaBaBaBaNaOavaPavavaiaiaiababaaaaaaaaaaaaaa"
+- "aaaaababaiaiaiaQayavavavavavavavavaOaOaOaRavavavavaiaiaiabababaaaaaaaaaaaa"
+- "aaaaabaiaiaiaiaSayayavaTaBaTaBavavaUavavavavavavavaiaiaiaiaiababaaaaaaaaaa"
+- "aaababaiaiaiaVaQavavaBaEaBaqaFaqavaLavavavavavavavaiaiaiaiaiaiababaaaaaaaa"
+- "ababaiaiaiaWaSaXavaYavavavaZavaZavavavavavavava0aDaiaiaiaiaiaiaiababaaaaaa"
+- "abaiaiaiaiaQaQavava1aZava2a2a2a2a2a2a2a2a2a2avavava3aiaiaiaiaiaiaiababaaaa"
+- "abaiaiaiaiaVavavava4a2a2a2a2a2a2a2a2a2a2a2a2a2aYa5a3a3a3a3a3a3aiaiaiabaaaa"
+- "abaiaiaia6a7ava8ava2a2a2a2a2a2a2a2a2a2a2a2a2a2avava9babbbcbba3a3aiaiababab"
+- "abaiaiaiaQavavavava2a2a2a2a2a2bda2a2a2a2a2a2a2bda2bebebebebcbfa3a3a3aiaiab"
+- "abaiaiaia8avbgavava2a2a2a2a2a2bhbha2a2a2a2a2a2a2a2a3a3a3bebebcbcbaa3a3aiab"
+- "abaiaiaiaiavavavava2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a3aia3a3bebibbbcbca3aiab"
+- "ababaiaiaiaiaYavbja2a2a2bka2a2a2a2a2a2a2a2bha2a2a2abaiaia3bebebeblbca3aiab"
+- "aaabaiaiaiaiaia8ava2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2ababaia3a3bebebebma3aiab"
+- "aaabababababababava2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2ababaia3bnbebebea3aiab"
+- "aaaaaaaaaaabababa2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2abaia3bbbcbobpa3aiab"
+- "aaaaaaaaaaabaiaia2bkbha2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2abaia3a3bqbcbra3aiab"
+- "aaaaaaaaaabsbtbtbubububububububvbubububububububvbubububsbsaia3a3bqbwa3aiab"
+- "aaaaaaaaaabsbtbtbububububububububububububububububububububsabaia3a3a3a3aiab"
+- "aaaaaaaaaabsbtbtbububububububububububububububububububububsababaiaiaiaiaiab"
+- "aaaaaaaaaabsbsbsbsbubububububububububububububububububububsaaababababababab"
+- "aaaaaaaaaaaaaaaabsbububxbxbubububububububububububububububsaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaabsbybybybybybububububububxbubububububububsaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaabsbsbzbAbBbybububububybCbybCbububububububsaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaabsbCbCbCbCbubububCbCbCbCbCbubububububsbsaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaabsbsbCbDbCbCbvbubububCbCbxbubvbububsbsaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaabsbEbFbEbGbEbFbEbubububububububsbsbsaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaabsbEbHbIbJbJbKbEbubububububububtbtbsaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaabsbFbJbLbLbMbNbFbububububububtbtbtbsaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaabsbEbJbLbLbLbJbObububububtbtbtbtbtbsaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaabsbEbHbPbPbPbQbEbububububtbtbtbtbsbsaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaabsbEbFbEbEbEbFbEbsbsbsbsbsbsbsbsbsaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaabsbsbsbsbsbsbsbsbsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"

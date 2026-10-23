@@ -11,21 +11,27 @@ legend:
   "f": {t: FloorDark, a: outdoors, e: ["MobHierophant"]}
   "g": {t: Space}
   "h": {t: FloorBasalt, a: outdoors}
-  "i": {t: FloorDark, a: outdoors, e: ["AlwaysPoweredSmallLight@180"]}
-  "j": {t: Plating, a: safe, e: ["WallSolid"]}
-  "k": {t: Plating, a: safe, e: ["ReinforcedWindow", "Grille"]}
-  "l": {t: Plating, a: safe, e: ["WallSolid", "ExtinguisherCabinetFilled"]}
-  "m": {t: FloorDarkMono, a: safe, e: ["AirlockExternal"]}
-  "n": {t: FloorDark, a: safe}
-  "o": {t: FloorDarkMono, a: safe}
-  "p": {t: FloorDarkMono, a: safe, e: ["AlwaysPoweredWallLight@90"]}
-  "q": {t: FloorDarkMono, a: safe, e: ["WeaponProtoKineticAccelerator", "WeaponProtoKineticAccelerator", "WeaponProtoKineticAccelerator", "ClosetSteelBase", "WeaponCrusher", "WeaponCrusher"]}
-  "r": {t: FloorSteel, a: safe, e: ["AlwaysPoweredWallLight@-90", "Railing", "BitrunningMarkerGoal"]}
-  "s": {t: FloorDarkMono, a: safe, e: ["Table", "PKAUpgradeDamage", "PKAUpgradeDamage", "PKAUpgradeDamage", "PKAUpgradeRange", "PKAUpgradeRange", "PKAUpgradeRange", "PKAUpgradeFireRate", "PKAUpgradeFireRate", "PKAUpgradeFireRate", "ImperialLuxuryMedipen", "ImperialLuxuryMedipen"]}
-  "t": {t: FloorDarkMono, a: safe, e: ["ClosetSteelBase", "WeaponLauncherRocket", "EnergyKatana", "MagazineLightRifleBox"]}
-  "u": {t: FloorDark, a: safe, e: ["Table", "Lantern", "Lantern", "Lantern", "ClothingEyesGlassesMeson", "ClothingEyesGlassesMeson", "ClothingEyesGlassesMeson"]}
-  "v": {t: FloorDarkMono, a: safe, e: ["BitrunningMarkerHololadder"]}
-  "w": {t: FloorDark, a: safe, e: ["ClosetSteelBase", "WeaponLightMachineGunL6", "MagazineBoxAntiMateriel", "WeaponSniperHristov"]}
+  "i": {t: FloorBasalt, a: outdoors, e: ["#Basalt6"]}
+  "j": {t: FloorBasalt, a: outdoors, e: ["#Basalt3"]}
+  "k": {t: FloorDark, a: outdoors, e: ["AlwaysPoweredSmallLight@180"]}
+  "l": {t: Plating, a: safe, e: ["WallSolid"]}
+  "m": {t: Plating, a: safe, e: ["ReinforcedWindow", "Grille"]}
+  "n": {t: Plating, a: safe, e: ["WallSolid", "ExtinguisherCabinetFilled"]}
+  "o": {t: FloorDarkMono, a: safe, e: ["AirlockExternal"]}
+  "p": {t: FloorDark, a: safe}
+  "q": {t: FloorDarkMono, a: safe}
+  "r": {t: FloorBasalt, a: outdoors, e: ["#Basalt8"]}
+  "s": {t: FloorDarkMono, a: safe, e: ["AlwaysPoweredWallLight@90"]}
+  "t": {t: FloorDarkMono, a: safe, e: ["WeaponProtoKineticAccelerator", "WeaponProtoKineticAccelerator", "WeaponProtoKineticAccelerator", "ClosetSteelBase", "WeaponCrusher", "WeaponCrusher"]}
+  "u": {t: FloorSteel, a: safe, e: ["AlwaysPoweredWallLight@-90", "Railing", "BitrunningMarkerGoal"]}
+  "v": {t: FloorBasalt, a: outdoors, e: ["#Basalt1"]}
+  "w": {t: FloorBasalt, a: outdoors, e: ["#Basalt5"]}
+  "x": {t: FloorDarkMono, a: safe, e: ["Table", "PKAUpgradeDamage", "PKAUpgradeDamage", "PKAUpgradeDamage", "PKAUpgradeRange", "PKAUpgradeRange", "PKAUpgradeRange", "PKAUpgradeFireRate", "PKAUpgradeFireRate", "PKAUpgradeFireRate", "ImperialLuxuryMedipen", "ImperialLuxuryMedipen"]}
+  "y": {t: FloorDarkMono, a: safe, e: ["ClosetSteelBase", "WeaponLauncherRocket", "EnergyKatana", "MagazineLightRifleBox"]}
+  "z": {t: FloorDark, a: safe, e: ["Table", "Lantern", "Lantern", "Lantern", "ClothingEyesGlassesMeson", "ClothingEyesGlassesMeson", "ClothingEyesGlassesMeson"]}
+  "A": {t: FloorDarkMono, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "B": {t: FloorDark, a: safe, e: ["ClosetSteelBase", "WeaponLightMachineGunL6", "MagazineBoxAntiMateriel", "WeaponSniperHristov"]}
+  "C": {t: FloorBasalt, a: outdoors, e: ["#Basalt7"]}
 rows:
 - "aaaaaaaaaaaaaaaaaaaaaaaaa"
 - "abbbbbbbbbbbbbbbbbbbbbbba"
@@ -55,13 +61,13 @@ rows:
 - "gggabccbbbbbabbbbbccbaggg"
 - "gggabcccdccbabccccccbaggg"
 - "aaaabccccccbbbccccccbaaaa"
-- "ahhhbbbbbcccccccbbbbbhhha"
-- "ahhhhhhhbicccccibhhhhhhha"
-- "ahhhhhhhhjklmlkjhhhhhhhha"
-- "ahhhhhhhhjnooonjhhhhhhhha"
-- "ahhhhhhhhjpoqorjhhhhhhhha"
-- "ahhhhhhhhkoosotkhhhhhhhha"
-- "ahhhhhhhhkuvvvwkhhhhhhhha"
-- "ahhhhhhhhjjkkkjjhhhhhhhha"
+- "ahhibbbbbcccccccbbbbbhhha"
+- "ajhhhhhhbkccccckbhhhhhhha"
+- "ahhhhhhhhlmnonmlhhhhhhhha"
+- "ahhhhhhhhlpqqqplhhhhhhhha"
+- "ahrhhhhhhlsqtqulvhhhhwhha"
+- "ahhhhhhhhmqqxqymhhhhhhhha"
+- "ahhhhhhhhmzAAABmhhhhhhhha"
+- "ahhhhChhhllmmmllhhhhhhhha"
 - "ahhhhhhhhhhhhhhhhhhhhhhha"
 - "aaaaaaaaaaaaaaaaaaaaaaaaa"
