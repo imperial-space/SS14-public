@@ -104,3 +104,33 @@
       state: ai_sensor
   - type: InstantAction
     event: !type:ImperialAiSensorsActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialAiAnnouncement
+  name: Объявление
+  description: Объявить голосом VOX на всю станцию.
+  components:
+  - type: Action
+    priority: -3
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/StationAi/actions.rsi
+      state: announcement
+  - type: InstantAction
+    event: !type:ImperialAiAnnouncementActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialAiStatusDisplay
+  name: Статус-дисплеи
+  description: Выбрать картинку на экранах станции.
+  components:
+  - type: Action
+    priority: 0
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/StationAi/actions.rsi
+      state: view_images
+  - type: InstantAction
+    event: !type:ImperialAiStatusDisplayActionEvent

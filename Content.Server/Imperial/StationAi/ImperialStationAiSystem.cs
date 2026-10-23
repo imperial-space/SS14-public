@@ -40,6 +40,10 @@ namespace Content.Server.Imperial.StationAi;
 [RegisterComponent]
 public sealed partial class ImperialStationAiComponent : Component
 {
+    /// <summary>last_announcement.</summary>
+    [ViewVariables]
+    public string LastAnnouncement = string.Empty;
+
     [ViewVariables]
     public List<EntityUid> Actions = new();
 
@@ -88,7 +92,7 @@ public sealed partial class ImperialStationAiComponent : Component
 /// Возможности ИИ из TG, которых нет в SS14: список камер, слежение, шлюз у цели, подсветка камер,
 /// тревоги станции, оглашение законов и сенсоры. Действия выдаются мозгу, пока он в ядре (StationAiHeld).
 /// </summary>
-public sealed class ImperialStationAiSystem : EntitySystem
+public sealed partial class ImperialStationAiSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -117,6 +121,8 @@ public sealed class ImperialStationAiSystem : EntitySystem
         "ActionImperialAiAlerts",
         "ActionImperialAiStateLaws",
         "ActionImperialAiSensors",
+        "ActionImperialAiAnnouncement",
+        "ActionImperialAiStatusDisplay",
     };
 
     /// <summary>CAMERA_TICK_LIMIT.</summary>
@@ -150,6 +156,7 @@ public sealed class ImperialStationAiSystem : EntitySystem
         SubscribeNetworkEvent<ImperialAiListChoiceEvent>(OnListChoice);
         SubscribeNetworkEvent<ImperialAiJumpEvent>(OnJump);
         SubscribeNetworkEvent<ImperialAiStateLawsEvent>(OnStateLawsRequest);
+        InitializeVox();
     }
 
     #region Действия

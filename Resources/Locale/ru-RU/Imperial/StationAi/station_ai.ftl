@@ -37,3 +37,19 @@ imperial-ai-laws-state = Огласить законы
 imperial-ai-alerts-section = Тревоги: { $category }
 imperial-ai-alerts-sources = { $name } (источников: { $count })
 imperial-ai-list-search-tooltip = Режим поиска. Печатайте для поиска или выбирайте стрелками.
+
+# VOX
+imperial-ai-vox-title = Объявление
+imperial-ai-vox-sender = { $name } объявляет
+imperial-ai-vox-placeholder = Слова через пробел, паузы — отдельными «.» и «,»
+imperial-ai-vox-send = Объявить
+imperial-ai-vox-warning = ВНИМАНИЕ: злоупотребление объявлениями может стоить вам роли ИИ.
+imperial-ai-vox-wait = Подождите { $seconds } с.
+imperial-ai-vox-unknown = Этих слов нет в системе объявлений: { $words }.
+imperial-ai-vox-help-title = Словарь объявлений
+imperial-ai-vox-help = Нажмите на слово, чтобы прослушать его. Не больше 30 слов за раз. Для паузы ставьте точку или запятую отдельным словом: «alpha . test , bravo». Числа — словами (eight, sixty). Звуковые эффекты начинаются с «s» (scensor). Слова английские.
+imperial-ai-vox-preview = Прослушать
+
+# Статус-дисплеи
+imperial-ai-display-title = Статус-дисплеи
+imperial-ai-display-none = Нет
