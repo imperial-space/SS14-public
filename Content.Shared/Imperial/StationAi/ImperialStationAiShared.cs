@@ -241,3 +241,45 @@ public static class ImperialAiVox
         ("Triumvirate", "ai_status_triumvirate"),
     };
 }
+
+/// <summary>Панель подключённых киборгов и оболочек ИИ.</summary>
+public sealed partial class ImperialAiBorgsActionEvent : InstantActionEvent;
+
+/// <summary>Действие оболочки: вернуться в ядро (undeploy).</summary>
+public sealed partial class ImperialAiShellReturnActionEvent : InstantActionEvent;
+
+[Serializable, NetSerializable]
+public sealed class ImperialAiBorgEntry(NetEntity entity, string name, string location, int health, int charge,
+    bool shell, bool deployed, bool linked)
+{
+    public NetEntity Entity = entity;
+    public string Name = name;
+    public string Location = location;
+    public int Health = health;
+    public int Charge = charge;
+    public bool Shell = shell;
+    public bool Deployed = deployed;
+    public bool Linked = linked;
+}
+
+/// <summary>Сервер → клиент: киборги станции ИИ.</summary>
+[Serializable, NetSerializable]
+public sealed class ImperialAiBorgListEvent(List<ImperialAiBorgEntry> borgs) : EntityEventArgs
+{
+    public List<ImperialAiBorgEntry> Borgs = borgs;
+}
+
+[Serializable, NetSerializable]
+public enum ImperialAiBorgCommand : byte
+{
+    Track,
+    Deploy,
+}
+
+/// <summary>Клиент → сервер: следить за киборгом или войти в оболочку.</summary>
+[Serializable, NetSerializable]
+public sealed class ImperialAiBorgCommandEvent(NetEntity borg, ImperialAiBorgCommand command) : EntityEventArgs
+{
+    public NetEntity Borg = borg;
+    public ImperialAiBorgCommand Command = command;
+}

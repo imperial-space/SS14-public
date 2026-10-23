@@ -20,6 +20,7 @@ public sealed class ImperialStationAiUiSystem : EntitySystem
         SubscribeNetworkEvent<ImperialAiListEvent>(OnList);
         SubscribeNetworkEvent<ImperialAiAlertsEvent>(OnAlerts);
         SubscribeNetworkEvent<ImperialAiLawsEvent>(OnLaws);
+        SubscribeNetworkEvent<ImperialAiBorgListEvent>(OnBorgs);
     }
 
     public override void Shutdown()
@@ -56,6 +57,17 @@ public sealed class ImperialStationAiUiSystem : EntitySystem
     {
         var window = new ImperialAiAlertsWindow(ev.Alarms);
         window.OnJump += entity => RaiseNetworkEvent(new ImperialAiJumpEvent(entity));
+        Show(window);
+    }
+
+    private void OnBorgs(ImperialAiBorgListEvent ev)
+    {
+        var window = new ImperialAiBorgsWindow(ev.Borgs);
+        window.OnCommand += (borg, command) =>
+        {
+            RaiseNetworkEvent(new ImperialAiBorgCommandEvent(borg, command));
+            window.Close();
+        };
         Show(window);
     }
 
@@ -291,5 +303,44 @@ public sealed class ImperialAiLawsWindow : DefaultWindow
             () => OnState?.Invoke(_checked.Order().ToList(), _channel), Tgui.Good, disabled: _checked.Count == 0, fluid: true);
         state.MinHeight = 28;
         _root.AddChild(state);
+    }
+}
+
+/// <summary>Подключённые киборги: целостность, заряд, где находятся; слежение и вход в оболочку.</summary>
+public sealed class ImperialAiBorgsWindow : DefaultWindow
+{
+    public event Action<NetEntity, ImperialAiBorgCommand>? OnCommand;
+
+    public ImperialAiBorgsWindow(List<ImperialAiBorgEntry> borgs)
+    {
+        Title = Loc.GetString("imperial-ai-borgs-title");
+        MinSize = SetSize = new Vector2(420, 480);
+
+        var root = Tgui.VBox(6);
+        root.Margin = new Thickness(6);
+        if (borgs.Count == 0)
+            root.AddChild(Tgui.NoticeBox(Loc.GetString("imperial-ai-borgs-none")));
+
+        foreach (var borg in borgs)
+        {
+            var entity = borg.Entity;
+            var buttons = Tgui.HBox(4,
+                Tgui.Button(Loc.GetString("imperial-ai-borgs-track"), () => OnCommand?.Invoke(entity, ImperialAiBorgCommand.Track)));
+            if (borg.Shell)
+            {
+                buttons.AddChild(Tgui.Button(Loc.GetString(borg.Deployed ? "imperial-ai-borgs-deployed" : "imperial-ai-borgs-deploy"),
+                    () => OnCommand?.Invoke(entity, ImperialAiBorgCommand.Deploy), Tgui.Green, disabled: borg.Deployed));
+            }
+
+            var info = Tgui.LabeledList(
+                (Loc.GetString("imperial-ai-borgs-location"), Tgui.Text(borg.Location)),
+                (Loc.GetString("imperial-ai-borgs-health"), Tgui.ProgressBar(borg.Health / 100f, Tgui.RangeColor(borg.Health / 100f), $"{borg.Health}%")),
+                (Loc.GetString("imperial-ai-borgs-charge"), Tgui.ProgressBar(borg.Charge / 100f, Tgui.RangeColor(borg.Charge / 100f), $"{borg.Charge}%")));
+
+            var title = borg.Shell ? $"{borg.Name} — {Loc.GetString("imperial-ai-borgs-shell")}" : borg.Name;
+            root.AddChild(Tgui.MakeSection(title, buttons, info));
+        }
+
+        Contents.AddChild(Tgui.Window(root));
     }
 }

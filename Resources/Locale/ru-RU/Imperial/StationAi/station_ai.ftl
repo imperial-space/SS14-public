@@ -53,3 +53,20 @@ imperial-ai-vox-preview = Прослушать
 # Статус-дисплеи
 imperial-ai-display-title = Статус-дисплеи
 imperial-ai-display-none = Нет
+
+# Киборги и оболочки
+imperial-ai-borg-connected = ВНИМАНИЕ: обнаружено подключение нового киборга: { $borg }.
+imperial-ai-borg-connected-self = Вы подключены к ИИ { $ai }. Ваши законы синхронизированы с ним.
+imperial-ai-borg-severed = ВНИМАНИЕ: потеряна связь с киборгом { $borg }.
+imperial-ai-shell-busy = Оболочка недоступна.
+imperial-ai-shell-far = Оболочка вне досягаемости вашей станции.
+imperial-ai-shell-name = { $ai } (оболочка { $shell })
+imperial-ai-borgs-title = Киборги
+imperial-ai-borgs-none = Нет подключённых киборгов.
+imperial-ai-borgs-track = Следить
+imperial-ai-borgs-deploy = Войти
+imperial-ai-borgs-deployed = Занята
+imperial-ai-borgs-health = Целостность
+imperial-ai-borgs-charge = Заряд
+imperial-ai-borgs-shell = Оболочка ИИ
+imperial-ai-borgs-location = Местоположение

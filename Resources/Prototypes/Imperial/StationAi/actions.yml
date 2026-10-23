@@ -134,3 +134,33 @@
       state: view_images
   - type: InstantAction
     event: !type:ImperialAiStatusDisplayActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialAiBorgs
+  name: Киборги
+  description: Подключённые киборги и оболочки ИИ.
+  components:
+  - type: Action
+    priority: 1
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/StationAi/actions.rsi
+      state: botcall
+  - type: InstantAction
+    event: !type:ImperialAiBorgsActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialAiShellReturn
+  name: Вернуться в ядро
+  description: Покинуть оболочку и вернуться в ядро ИИ.
+  components:
+  - type: Action
+    priority: -10
+    itemIconStyle: BigAction
+    icon:
+      sprite: Interface/Actions/actions_ai.rsi
+      state: ai_core
+  - type: InstantAction
+    event: !type:ImperialAiShellReturnActionEvent
