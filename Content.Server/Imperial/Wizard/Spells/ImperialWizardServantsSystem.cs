@@ -88,6 +88,8 @@ public sealed partial class ImperialFrogStatueComponent : Component
 /// <summary>Ученики, прислужники, стражи мага.</summary>
 public sealed class ImperialWizardServantsSystem : EntitySystem
 {
+    private static readonly ProtoId<Content.Shared.NPC.Prototypes.NpcFactionPrototype> WizardFactionId = "Wizard";
+
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -252,7 +254,7 @@ public sealed class ImperialWizardServantsSystem : EntitySystem
         var statueComp = EnsureComp<ImperialFrogStatueComponent>(statue);
         var frog = Spawn(ent.Comp.Frog, Transform(args.User).Coordinates);
         _faction.ClearFactions(frog);
-        _faction.AddFaction(frog, "Wizard");
+        _faction.AddFaction(frog, WizardFactionId);
         statueComp.Frog = frog;
         var container = _containers.EnsureContainer<ContainerSlot>(statue, statueComp.Container);
         _npc.SleepNPC(frog);

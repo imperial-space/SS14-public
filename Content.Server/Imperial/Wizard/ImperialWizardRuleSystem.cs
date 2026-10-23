@@ -3,6 +3,7 @@ using Content.Server.Administration;
 using Content.Server.Antag;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
+using Content.Server.Imperial.Wizard.GrandRitual;
 using Content.Server.Mind;
 using Content.Server.Objectives;
 using Content.Server.Roles;
@@ -54,6 +55,10 @@ public sealed partial class ImperialWizardMindComponent : Component
 
     [ViewVariables]
     public EntityUid? Master;
+
+    /// <summary>Выживальщик после «Призыва оружия/магии» — не маг и не прислужник.</summary>
+    [ViewVariables]
+    public bool Survivalist;
 }
 
 /// <summary>Цель прислужника: хозяин должен дожить до конца раунда.</summary>
@@ -77,6 +82,8 @@ public sealed class ImperialWizardRuleSystem : GameRuleSystem<ImperialWizardRule
     [Dependency] private readonly NpcFactionSystem _faction = default!;
     [Dependency] private readonly QuickDialogSystem _dialog = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
+    [Dependency] private readonly Content.Server.Chat.Managers.IChatManager _chat = default!;
+    [Dependency] private readonly ISharedPlayerManager _players = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedContainerSystem _containers = default!;
     [Dependency] private readonly ImperialSpellbookSystem _spellbook = default!;
@@ -94,6 +101,7 @@ public sealed class ImperialWizardRuleSystem : GameRuleSystem<ImperialWizardRule
     private const string EscapeObjective = "ImperialWizardEscapeObjective";
     private const string SurviveObjective = "ImperialWizardSurviveObjective";
     private const string HijackObjective = "ImperialWizardHijackObjective";
+    private const string SurvivalistObjective = "ImperialSurvivalistObjective";
     private const string StealGroup = "ImperialWizardObjectiveGroupSteal";
 
     public override void Initialize()
@@ -146,6 +154,7 @@ public sealed class ImperialWizardRuleSystem : GameRuleSystem<ImperialWizardRule
 
         BindSpellbooks(body, mindId, mind);
         CreateObjectives(mindId, mind);
+        EntityManager.System<ImperialGrandRitualSystem>().AssignRitual(body, mindId);
         RenameWizard(body, mindId);
         return true;
     }
@@ -276,6 +285,26 @@ public sealed class ImperialWizardRuleSystem : GameRuleSystem<ImperialWizardRule
         }
     }
 
+    /// <summary>
+    /// /datum/antagonist/survivalist (guns/magic): выжить и удержать призванное оружие.
+    /// </summary>
+    public void MakeSurvivalist(EntityUid body)
+    {
+        if (!_mind.TryGetMind(body, out var mindId, out var mind))
+            return;
+
+        var survivalist = EnsureComp<ImperialWizardMindComponent>(mindId);
+        if (survivalist.Survivalist)
+            return;
+
+        survivalist.Survivalist = true;
+        if (_objectives.TryCreateObjective(mindId, mind, SurvivalistObjective) is { } objective)
+            _mind.AddObjective(mindId, mind, objective);
+
+        if (mind.UserId is { } userId && _players.TryGetSessionById(userId, out var session))
+            _chat.DispatchServerMessage(session, Loc.GetString("imperial-ritual-survivalist-greeting"), true);
+    }
+
     #region Для книги и заклинаний
 
     public bool IsApprentice(EntityUid mindId)
@@ -341,14 +370,6 @@ public sealed class ImperialWizardRuleSystem : GameRuleSystem<ImperialWizardRule
             args.AddLine(Loc.GetString("imperial-wizard-roundend-used", ("name", name), ("spells", string.Join(", ", purchases))));
         }
     }
-}
-
-/// <summary>Число завершённых Великих ритуалов (заполняется на этапе ритуала).</summary>
-[RegisterComponent]
-public sealed partial class ImperialGrandRitualMindComponent : Component
-{
-    [ViewVariables]
-    public int TimesCompleted;
 }
 
 /// <summary>makewizard [entityUid]: сделать персонажа магом Федерации (снаряжение, книга, цели).</summary>

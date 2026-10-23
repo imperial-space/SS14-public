@@ -80,3 +80,40 @@ public enum ImperialSoulstoneVisuals : byte
 {
     Full,
 }
+
+/// <summary>Перк «Прозрачность»: маг полупрозрачен.</summary>
+[RegisterComponent, NetworkedComponent]
+public sealed partial class ImperialTransparentVisualsComponent : Component;
+
+/// <summary>Призыв, отталкивание или подрыв рунического торгомата скипетром.</summary>
+[Serializable, NetSerializable]
+public sealed partial class ImperialArtefactDoAfterEvent : Content.Shared.DoAfter.SimpleDoAfterEvent;
+
+/// <summary>Произнесение заклинания с поддержанием (каналом).</summary>
+[Serializable, NetSerializable]
+public sealed partial class ImperialSpellChannelDoAfterEvent : Content.Shared.DoAfter.SimpleDoAfterEvent;
+
+/// <summary>/datum/action/cooldown/grand_ritual: указать узел силы или нарисовать руну.</summary>
+public sealed partial class ImperialGrandRitualActionEvent : InstantActionEvent;
+
+/// <summary>Рисование руны Великого ритуала (4 секунды).</summary>
+[Serializable, NetSerializable]
+public sealed partial class ImperialGrandRuneDrawDoAfterEvent : Content.Shared.DoAfter.SimpleDoAfterEvent;
+
+/// <summary>Одно из трёх произнесений руны.</summary>
+[Serializable, NetSerializable]
+public sealed partial class ImperialGrandRuneInvokeDoAfterEvent : Content.Shared.DoAfter.SimpleDoAfterEvent;
+
+/// <summary>jaunt/bloodcrawl: войти в лужу крови или выйти из неё.</summary>
+public sealed partial class ImperialBloodCrawlActionEvent : InstantActionEvent;
+
+/// <summary>Удар-бросок демона резни (alt-атака TG).</summary>
+public sealed partial class ImperialDemonSlamActionEvent : EntityTargetActionEvent;
+
+/// <summary>Выход из кровавой лужи (2 секунды).</summary>
+[Serializable, NetSerializable]
+public sealed partial class ImperialBloodCrawlExitDoAfterEvent : Content.Shared.DoAfter.SimpleDoAfterEvent;
+
+/// <summary>Одна из трёх стадий пожирания жертвы в крови.</summary>
+[Serializable, NetSerializable]
+public sealed partial class ImperialDemonConsumeDoAfterEvent : Content.Shared.DoAfter.SimpleDoAfterEvent;

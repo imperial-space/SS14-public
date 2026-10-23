@@ -142,8 +142,9 @@ public sealed partial class ImperialDecayLockerComponent : Component
 
 public sealed partial class ImperialWizardSpellsSystem
 {
+    private static readonly ProtoId<Content.Shared.Tag.TagPrototype> WallTagId = "Wall";
+
     [Dependency] private readonly RejuvenateSystem _rejuvenate = default!;
-    [Dependency] private readonly SharedGunSystem _gunsShared = default!;
     [Dependency] private readonly ImperialWizardRuleSystem _wizardRule = default!;
     [Dependency] private readonly Content.Shared.Mobs.Systems.MobThresholdSystem _thresholds = default!;
     [Dependency] private readonly Content.Server.Chemistry.Containers.EntitySystems.SolutionContainerSystem _solutions = default!;
@@ -241,7 +242,7 @@ public sealed partial class ImperialWizardSpellsSystem
             _ => (int) Math.Ceiling(capacity / 2f),
         };
         ammo.Capacity = max;
-        _gunsShared.UpdateBasicEntityAmmoCount((ent, ammo), max);
+        _guns.UpdateBasicEntityAmmoCount((ent, ammo), max);
     }
 
     private void OnWandExamined(Entity<ImperialWandComponent> ent, ref ExaminedEvent args)
@@ -263,7 +264,7 @@ public sealed partial class ImperialWizardSpellsSystem
             return;
         }
 
-        _gunsShared.UpdateBasicEntityAmmoCount((ent, ammo), (ammo.Count ?? 1) - 1);
+        _guns.UpdateBasicEntityAmmoCount((ent, ammo), (ammo.Count ?? 1) - 1);
         if (ent.Comp.Sound != null)
             _audio.PlayPvs(ent.Comp.Sound, args.User);
         _popup.PopupEntity(Loc.GetString("imperial-wand-zap-self", ("wand", ent.Owner)), args.User, args.User, PopupType.MediumCaution);
@@ -287,7 +288,7 @@ public sealed partial class ImperialWizardSpellsSystem
         }
 
         ent.Comp.Capacity = capacity;
-        _gunsShared.UpdateBasicEntityAmmoCount((ent, ent.Comp), capacity);
+        _guns.UpdateBasicEntityAmmoCount((ent, ent.Comp), capacity);
     }
 
     private void OnSpellbookCharged(Entity<ImperialSpellbookComponent> ent, ref ImperialMagicChargeEvent args)
@@ -468,7 +469,7 @@ public sealed partial class ImperialWizardSpellsSystem
             return;
         }
 
-        if (!Transform(target).Anchored || !EntityManager.System<TagSystem>().HasTag(target, "Wall"))
+        if (!Transform(target).Anchored || !EntityManager.System<TagSystem>().HasTag(target, WallTagId))
             return;
 
         var coords = Transform(target).Coordinates;

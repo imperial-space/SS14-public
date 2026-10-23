@@ -129,9 +129,6 @@ public sealed partial class ImperialTeleportFluxComponent : Component
     public TimeSpan End;
 }
 
-[Serializable, NetSerializable]
-public sealed partial class ImperialArtefactDoAfterEvent : SimpleDoAfterEvent;
-
 #endregion
 
 /// <summary>Артефакты мага TG (equipment/artefact.dm, wizard_hammer.dm, teleport_rod.dm).</summary>

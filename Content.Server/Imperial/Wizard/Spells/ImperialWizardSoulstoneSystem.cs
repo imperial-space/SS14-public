@@ -50,6 +50,8 @@ public sealed partial class ImperialConstructShellComponent : Component;
 /// </summary>
 public sealed class ImperialWizardSoulstoneSystem : EntitySystem
 {
+    private static readonly ProtoId<Content.Shared.NPC.Prototypes.NpcFactionPrototype> WizardFactionId = "Wizard";
+
     [Dependency] private readonly SharedContainerSystem _containers = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
@@ -194,7 +196,7 @@ public sealed class ImperialWizardSoulstoneSystem : EntitySystem
     {
         EnsureComp<ImperialWizardShadeComponent>(shade).Master = master;
         _faction.ClearFactions(shade);
-        _faction.AddFaction(shade, "Wizard");
+        _faction.AddFaction(shade, WizardFactionId);
         if (_mind.TryGetMind(shade, out _, out _))
             _wizard.MakeMinion(shade, master, Loc.GetString("imperial-soulstone-objective", ("master", Name(master))));
     }
@@ -236,7 +238,7 @@ public sealed class ImperialWizardSoulstoneSystem : EntitySystem
 
                 var construct = Spawn(proto, Transform(shell).Coordinates);
                 _faction.ClearFactions(construct);
-                _faction.AddFaction(construct, "Wizard");
+                _faction.AddFaction(construct, WizardFactionId);
                 if (_mind.TryGetMind(shade, out var mindId, out var mind))
                     _mind.TransferTo(mindId, construct, mind: mind);
                 else if (TryComp<GhostRoleComponent>(shade, out var role))

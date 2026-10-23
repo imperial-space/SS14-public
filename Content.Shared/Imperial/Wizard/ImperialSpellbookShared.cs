@@ -24,6 +24,7 @@ public enum ImperialSpellbookBuyWord : byte
     Learn,
     Summon,
     Cast,
+    Accept,
 }
 
 /// <summary>/datum/spellbook_entry: запись книги заклинаний.</summary>

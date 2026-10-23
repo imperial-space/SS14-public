@@ -97,7 +97,6 @@ public sealed partial class ImperialShoeLacesComponent : Component
     public TimeSpan NextTrip;
 }
 
-[Serializable, NetSerializable]
 public enum ImperialLaceState : byte
 {
     Tied,
@@ -275,9 +274,6 @@ public sealed partial class ImperialSanguineEnchantedComponent : Component
     [ViewVariables]
     public EntityUid Spell;
 }
-
-[Serializable, NetSerializable]
-public sealed partial class ImperialSpellChannelDoAfterEvent : SimpleDoAfterEvent;
 
 #endregion
 

@@ -824,15 +824,26 @@ public sealed partial class ImperialWizardSpellsSystem
         args.Handled = true;
         ent.Comp.Ready = false;
         ent.Comp.ReadyAt = _timing.CurTime + ent.Comp.Duration;
+        LinkDistortions(tiles, ent.Comp.Effect, ent.Comp.Duration);
+    }
+
+    /// <summary>spacetime_dist/cast(): искажения вокруг точки (и для Великого ритуала).</summary>
+    public void CreateSpacetime(EntityCoordinates center, float radius, TimeSpan duration)
+    {
+        LinkDistortions(FreeTilesAround(center, radius, true), "ImperialSpacetimeDistortion", duration);
+    }
+
+    private void LinkDistortions(List<EntityCoordinates> tiles, EntProtoId effect, TimeSpan duration)
+    {
         var pairs = tiles.Count / 2;
         for (var i = 0; i < pairs && tiles.Count >= 2; i++)
         {
-            var a = Spawn(ent.Comp.Effect, _random.PickAndTake(tiles));
-            var b = Spawn(ent.Comp.Effect, _random.PickAndTake(tiles));
+            var a = Spawn(effect, _random.PickAndTake(tiles));
+            var b = Spawn(effect, _random.PickAndTake(tiles));
             EnsureComp<ImperialSpacetimeDistortionComponent>(a).Linked = b;
             EnsureComp<ImperialSpacetimeDistortionComponent>(b).Linked = a;
-            EnsureComp<Robust.Shared.Spawners.TimedDespawnComponent>(a).Lifetime = (float) ent.Comp.Duration.TotalSeconds;
-            EnsureComp<Robust.Shared.Spawners.TimedDespawnComponent>(b).Lifetime = (float) ent.Comp.Duration.TotalSeconds;
+            EnsureComp<Robust.Shared.Spawners.TimedDespawnComponent>(a).Lifetime = (float) duration.TotalSeconds;
+            EnsureComp<Robust.Shared.Spawners.TimedDespawnComponent>(b).Lifetime = (float) duration.TotalSeconds;
         }
     }
 

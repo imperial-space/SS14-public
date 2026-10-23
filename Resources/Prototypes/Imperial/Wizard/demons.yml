@@ -1,0 +1,287 @@
+# Демоны резни и смеха TG (mob/living/basic/space_fauna/demon, spells/jaunt/bloodcrawl.dm, antag_spawner.dm).
+
+# /datum/action/cooldown/spell/jaunt/bloodcrawl
+- type: entity
+  id: ImperialActionBloodCrawl
+  name: Кровавый прыжок
+  description: Позволяет погружаться в лужи крови и выходить из них.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Wizard/demons.rsi
+      state: bloodcrawl
+    useDelay: 1
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:ImperialBloodCrawlActionEvent
+
+- type: entity
+  parent: ImperialActionBloodCrawl
+  id: ImperialActionBloodCrawlSlaughter
+  name: Ненасытный кровавый прыжок
+  description: Позволяет погружаться в лужи крови и выходить из них. Если вы тащите кого-то в критическом состоянии или мёртвого, вы сожрёте его и полностью исцелитесь.
+
+- type: entity
+  parent: ImperialActionBloodCrawl
+  id: ImperialActionBloodCrawlFunny
+  name: Дружеский кровавый прыжок
+  description: Позволяет погружаться в лужи крови и выходить из них. Если вы тащите кого-то «спящего», он будет приглашён на вечеринку и полностью исцелит вас!
+
+# Удар-бросок (alt-атака)
+- type: entity
+  id: ImperialActionDemonSlam
+  name: Удар-бросок
+  description: Врезаться в жертву с чудовищной силой и отбросить её, как тряпичную куклу.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Wizard/demons.rsi
+      state: slaughter
+    useDelay: 45
+  - type: TargetAction
+    range: 1.6
+  - type: EntityTargetAction
+    event: !type:ImperialDemonSlamActionEvent
+    canTargetSelf: false
+    whitelist:
+      components:
+      - MobState
+
+# /mob/living/basic/demon/slaughter
+- type: entity
+  parent: [ SimpleSpaceMobBase, MobCombat ]
+  id: ImperialMobSlaughterDemon
+  name: демон резни
+  description: Огромное устрашающее существо, покрытое бронированной чёрной чешуёй.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Wizard/demons.rsi
+    layers:
+    - state: slaughter
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: slaughter
+      Dead:
+        Base: slaughter
+  - type: InputMover
+  - type: MobMover
+  - type: Eye
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcClaw
+    soundHit:
+      path: /Audio/Imperial/Wizard/demon_attack1.ogg
+    damage:
+      types:
+        Slash: 15
+        Structural: 50
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 200
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Puller
+    needsHands: false
+  - type: Speech
+    speechVerb: LargeMob
+  - type: GhostRole
+    name: демон резни
+    description: Вы — Демон Гнева, которого маги часто затаскивают в реальность, чтобы терроризировать своих врагов.
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: ImperialBloodCrawl
+    voracious: true
+    action: ImperialActionBloodCrawlSlaughter
+  - type: ImperialSlaughterDemon
+    loot:
+    - ImperialDemonInnards
+    - ImperialDemonHeart
+  - type: ActionGrant
+    actions:
+    - ImperialActionDemonSlam
+
+# /mob/living/basic/demon/slaughter/laughter
+- type: entity
+  parent: ImperialMobSlaughterDemon
+  id: ImperialMobLaughterDemon
+  name: демон смеха
+  description: Огромное очаровательное существо, покрытое бронёй с розовыми бантиками.
+  components:
+  - type: Sprite
+    layers:
+    - state: laughter
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: laughter
+      Dead:
+        Base: laughter
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcClaw
+    soundHit:
+      path: /Audio/Items/bikehorn.ogg
+    damage:
+      types:
+        Slash: 15
+        Structural: 50
+  - type: GhostRole
+    name: демон смеха
+    description: Вы — Демон Зависти, которого маги иногда затаскивают в реальность ради беспорядочного хаоса.
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: short
+  - type: ImperialBloodCrawl
+    voracious: true
+    funny: true
+    action: ImperialActionBloodCrawlFunny
+    consumeSound:
+      path: /Audio/Imperial/Wizard/scary_horn.ogg
+  - type: ImperialSlaughterDemon
+    laughter: true
+    objectiveVerb: imperial-demon-verb-hug
+    greeting: imperial-demon-greeting-laughter
+    deathSound:
+      path: /Audio/Effects/sadtrombone.ogg
+    loot:
+    - MobCatKitten
+
+# /obj/item/organ/heart/demon
+- type: entity
+  parent: BaseItem
+  id: ImperialDemonHeart
+  name: сердце демона
+  description: Всё ещё яростно бьётся, излучая ауру абсолютной ненависти.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/demons.rsi
+    state: heart
+  - type: Item
+    size: Small
+  - type: ImperialDemonHeart
+
+# /obj/effect/decal/cleanable/blood/innards
+- type: entity
+  id: ImperialDemonInnards
+  name: куча внутренностей
+  description: Отвратительная куча кишок и крови.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/demons.rsi
+    state: innards
+    drawdepth: FloorObjects
+  - type: Clickable
+
+# /obj/item/antag_spawner/slaughter_demon
+- type: entity
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: ImperialBloodBottle
+  name: флакон крови
+  description: Магически заряженная бутылка крови, перегнанной из бесчисленных жертв убийств. Используется в нечестивых ритуалах для привлечения ужасающих существ.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/demons.rsi
+    state: vial
+  - type: Item
+    size: Tiny
+  - type: ImperialDemonBottle
+    demon: ImperialMobSlaughterDemon
+  - type: ImperialSpellbookRefundableItem
+    entry: ImperialSpellbookBloodBottle
+
+# /obj/item/antag_spawner/slaughter_demon/laughter
+- type: entity
+  parent: ImperialBloodBottle
+  id: ImperialHugBottle
+  name: флакон щекотки
+  description: Магически заряженная бутылка клоунской любви, перегнанной из бесчисленных объятий. Используется в забавных ритуалах для привлечения очаровательных существ.
+  components:
+  - type: Sprite
+    color: "#FF69B4"
+  - type: ImperialDemonBottle
+    demon: ImperialMobLaughterDemon
+    veilMessage: imperial-demon-bottle-veil-laughter
+  - type: ImperialSpellbookRefundableItem
+    entry: ImperialSpellbookHugBottle
+
+# Цели демона (/datum/antagonist/slaughter/forge_objectives).
+- type: entity
+  parent: BaseObjective
+  id: ImperialDemonKillSummonerObjective
+  name: Убейте призвавшего
+  description: Тот, кто призвал вас, должен умереть.
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-demon
+    difficulty: 1
+    unique: false
+    icon:
+      sprite: Imperial/Wizard/demons.rsi
+      state: slaughter
+  - type: TargetObjective
+    title: objective-condition-kill-person-title
+  - type: KillPersonCondition
+    requireDead: true
+
+- type: entity
+  parent: BaseObjective
+  id: ImperialDemonKillEveryoneObjective
+  name: Убейте всех
+  description: Сейте хаос.
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-demon
+    difficulty: 1
+    unique: false
+    icon:
+      sprite: Imperial/Wizard/demons.rsi
+      state: innards
+  - type: ImperialDemonFreeCondition
+
+# Записи книги (spellbook_entries/assistance.dm).
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookBloodBottle
+  name: imperial-spellbook-blood-bottle-name
+  desc: imperial-spellbook-blood-bottle-desc
+  category: Assistance
+  buyWord: Summon
+  limit: 3
+  requiresGarb: false
+  items: [ ImperialBloodBottle ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookHugBottle
+  name: imperial-spellbook-hug-bottle-name
+  desc: imperial-spellbook-hug-bottle-desc
+  category: Assistance
+  cost: 1
+  buyWord: Summon
+  limit: 3
+  requiresGarb: false
+  items: [ ImperialHugBottle ]

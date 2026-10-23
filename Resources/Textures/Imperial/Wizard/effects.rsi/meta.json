@@ -74,6 +74,9 @@
                    },
                    {
                        "name":  "snappop"
+                   },
+                   {
+                       "name":  "rift"
                    }
                ]
 }

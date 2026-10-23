@@ -1,0 +1,50 @@
+{
+    "version":  1,
+    "license":  "CC-BY-SA-3.0",
+    "copyright":  "Taken from tgstation/BandaStation (demon.dmi)",
+    "size":  {
+                 "x":  32,
+                 "y":  32
+             },
+    "states":  [
+                   {
+                       "name":  "slaughter",
+                       "directions":  4
+                   },
+                   {
+                       "name":  "laughter",
+                       "directions":  4
+                   },
+                   {
+                       "name":  "honk",
+                       "directions":  4
+                   },
+                   {
+                       "name":  "vial",
+                       "delays":  [
+                                      [
+                                          0.8,
+                                          0.1,
+                                          0.3,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "heart",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "innards"
+                   },
+                   {
+                       "name":  "bloodcrawl"
+                   }
+               ]
+}
