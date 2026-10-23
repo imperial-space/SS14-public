@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (actions_AI.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "modules_menu"
+    },
+    {
+      "name": "lockdown"
+    },
+    {
+      "name": "detonate_rcds",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "break_fire_alarms"
+    },
+    {
+      "name": "overload_machine"
+    },
+    {
+      "name": "override_machine",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "robotic_factory",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "blackout"
+    },
+    {
+      "name": "reactivate_cameras"
+    },
+    {
+      "name": "ai_last_shell"
+    },
+    {
+      "name": "ai_core"
+    },
+    {
+      "name": "ai_shell"
+    },
+    {
+      "name": "ai_malf_core"
+    },
+    {
+      "name": "voice_changer",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "vendor_tilt"
+    },
+    {
+      "name": "roll_over"
+    }
+  ]
+}

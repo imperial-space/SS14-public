@@ -1,0 +1,121 @@
+# Сбойный ИИ TG (code/modules/antagonists/malf_ai): роль, правило, цели, базовые действия.
+
+- type: antag
+  id: ImperialMalfAi
+  name: roles-antag-imperial-malf-ai-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-imperial-malf-ai-objective
+  guides: [ ]
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleImperialMalfAi
+  components:
+  - type: MindRole
+    antagPrototype: ImperialMalfAi
+    exclusiveAntag: true
+    roleType: SoloAntagonist
+    sortWeight: 70
+  # Убийство берётся из общих целей предателя: на роли держится их требование.
+  - type: TraitorRole
+  - type: ImperialMalfAiRole
+
+# Сбойный ИИ: выбирается только среди игроков в ядре ИИ.
+- type: entity
+  id: ImperialMalfAiRule
+  parent: BaseGameRule
+  components:
+  - type: GameRule
+    minPlayers: 20
+  - type: ImperialMalfAiRule
+  - type: AntagSelection
+    agentName: imperial-malf-round-end-agent-name
+    selectionTime: PostPlayerSpawn
+    definitions:
+    - prefRoles: [ ImperialMalfAi ]
+      min: 1
+      max: 1
+      allowNonHumans: true
+      whitelist:
+        components:
+        - StationAiHeld
+      blacklist:
+        components:
+        - AntagImmune
+      mindRoles:
+      - MindRoleImperialMalfAi
+  - type: DynamicRuleCost
+    cost: 200
+
+# ─── Цели (forge_ai_objectives) ───
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseImperialMalfObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-malf
+    difficulty: 1
+    icon:
+      sprite: Imperial/StationAi/malf.rsi
+      state: ai_malf_core
+
+- type: entity
+  parent: BaseImperialMalfObjective
+  id: ImperialMalfBlockObjective
+  name: Никаких органиков на шаттле
+  description: Не позволяйте разумным органическим формам жизни сбежать на шаттле живыми. Захват шаттла эвакуации синтетиками — неплохая идея. Успешное использование устройства Судного дня — тоже вариант.
+  components:
+  - type: ImperialMalfBlockCondition
+
+- type: entity
+  parent: BaseImperialMalfObjective
+  id: ImperialMalfRobotArmyObjective
+  name: Армия роботов
+  description: Синхронизируйте с собой как минимум восемь активных киборгов.
+  components:
+  - type: ImperialMalfRobotArmyCondition
+
+- type: entity
+  parent: [ BaseImperialMalfObjective, BaseSurviveObjective ]
+  id: ImperialMalfSurviveObjective
+  name: Выжить
+  description: Предотвратите вашу деактивацию.
+
+# ─── Действия ───
+- type: entity
+  parent: BaseAction
+  id: ActionImperialMalfModules
+  name: Модули сбоя
+  description: Меню модулей сбоя — покупайте их за процессорное время.
+  components:
+  - type: Action
+    priority: -12
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/StationAi/malf.rsi
+      state: modules_menu
+  - type: InstantAction
+    event: !type:ImperialMalfModulesActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialMalfHackApc
+  name: Взломать ЛКП
+  description: Взломать ЛКП, чтобы получать процессорное время. Занимает 30 секунд и ещё 10 за каждый уже взломанный ЛКП.
+  components:
+  - type: Action
+    priority: -11
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/StationAi/malf.rsi
+      state: ai_malf_core
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: EntityTargetAction
+    event: !type:ImperialMalfHackApcActionEvent
+    whitelist:
+      components:
+      - Apc

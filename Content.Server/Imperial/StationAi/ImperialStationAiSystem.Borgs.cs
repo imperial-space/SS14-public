@@ -88,6 +88,9 @@ public sealed partial class ImperialStationAiSystem
     private static readonly HashSet<string> ShellLathes = new() { "ExosuitFabricator" };
     private const string SyndicateFaction = "Syndicate";
 
+    private const string MalfLawPrefix = "imperial-malf-employer-";
+    private const string MalfBorgLaw = "imperial-malf-law-zero-borg";
+
     private TimeSpan _nextBorgUpdate;
 
     private void InitializeBorgs()
@@ -221,7 +224,15 @@ public sealed partial class ImperialStationAiSystem
         if (Signature(_laws.GetLaws(borg)) == signature)
             return;
 
-        _laws.SetLaws(laws.Laws.Select(l => l.ShallowClone()).ToList(), borg);
+        // Закон 0 сбойного ИИ борги получают в своём варианте (law_borg в add_law_zero()).
+        var copy = laws.Laws.Select(l => l.ShallowClone()).ToList();
+        foreach (var law in copy)
+        {
+            if (law.LawIdentifierOverride == "0" && law.LawString.StartsWith(MalfLawPrefix))
+                law.LawString = MalfBorgLaw;
+        }
+
+        _laws.SetLaws(copy, borg);
     }
 
     private void Notify(EntityUid target, string message)
