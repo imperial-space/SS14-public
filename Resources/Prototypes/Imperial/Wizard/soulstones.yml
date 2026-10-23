@@ -55,7 +55,7 @@
   - type: Clickable
   - type: InteractionOutline
   - type: Sprite
-    sprite: Imperial/Wizard/soulstone.rsi
+    sprite: Imperial/Wizard/construct_shell.rsi
     state: shell
   - type: Physics
     bodyType: Dynamic
@@ -238,7 +238,7 @@
   description: Создаёт оболочку конструкта, которой могут управлять тени.
   components:
   - type: Action
-    icon: { sprite: Imperial/Wizard/soulstone.rsi, state: shell }
+    icon: { sprite: Imperial/Wizard/construct_shell.rsi, state: shell }
   - type: ImperialSpell
     school: conjuration
     cooldown: 60
