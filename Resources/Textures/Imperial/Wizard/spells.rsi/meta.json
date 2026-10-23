@@ -1,0 +1,261 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (actions_spells.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "spell_default"
+    },
+    {
+      "name": "jaunt"
+    },
+    {
+      "name": "emp"
+    },
+    {
+      "name": "mindswap"
+    },
+    {
+      "name": "gib"
+    },
+    {
+      "name": "statue"
+    },
+    {
+      "name": "mutate"
+    },
+    {
+      "name": "blink"
+    },
+    {
+      "name": "knock"
+    },
+    {
+      "name": "barn"
+    },
+    {
+      "name": "summons"
+    },
+    {
+      "name": "repulse"
+    },
+    {
+      "name": "magicm"
+    },
+    {
+      "name": "the_traps",
+      "delays": [
+        [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "fireball"
+    },
+    {
+      "name": "fireball0"
+    },
+    {
+      "name": "bolt_action"
+    },
+    {
+      "name": "arcane_barrage"
+    },
+    {
+      "name": "time"
+    },
+    {
+      "name": "immrod",
+      "directions": 4
+    },
+    {
+      "name": "shapeshift"
+    },
+    {
+      "name": "sacredflame"
+    },
+    {
+      "name": "exit_possession"
+    },
+    {
+      "name": "skeleton"
+    },
+    {
+      "name": "projectile"
+    },
+    {
+      "name": "transformslime"
+    },
+    {
+      "name": "telepathy"
+    },
+    {
+      "name": "void_magnet"
+    },
+    {
+      "name": "soultap"
+    },
+    {
+      "name": "bonechill"
+    },
+    {
+      "name": "zap"
+    },
+    {
+      "name": "snow"
+    },
+    {
+      "name": "bee"
+    },
+    {
+      "name": "icebeam"
+    },
+    {
+      "name": "nose"
+    },
+    {
+      "name": "mindread"
+    },
+    {
+      "name": "charge"
+    },
+    {
+      "name": "thrownlightning"
+    },
+    {
+      "name": "spellcard"
+    },
+    {
+      "name": "spacetime"
+    },
+    {
+      "name": "teleport"
+    },
+    {
+      "name": "autotomy"
+    },
+    {
+      "name": "duffelbag_curse"
+    },
+    {
+      "name": "declaration"
+    },
+    {
+      "name": "blind",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          1.5,
+          0.1,
+          0.1,
+          0.1,
+          1.5
+        ]
+      ]
+    },
+    {
+      "name": "shield",
+      "delays": [
+        [
+          1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "lightning",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.2,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "smoke",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "swap"
+    },
+    {
+      "name": "icebeam_active"
+    },
+    {
+      "name": "splattercasting"
+    },
+    {
+      "name": "terrify"
+    },
+    {
+      "name": "scream_for_me"
+    },
+    {
+      "name": "exsanguinating_strike"
+    },
+    {
+      "name": "chuuni"
+    },
+    {
+      "name": "cheese"
+    },
+    {
+      "name": "return_to_monkey"
+    },
+    {
+      "name": "simian"
+    },
+    {
+      "name": "firebeam"
+    },
+    {
+      "name": "ash"
+    },
+    {
+      "name": "lace"
+    }
+  ]
+}

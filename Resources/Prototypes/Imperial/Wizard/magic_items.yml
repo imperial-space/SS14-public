@@ -1,0 +1,1177 @@
+# Посохи и палочки мага TG (code/modules/projectiles/guns/magic).
+
+- type: entity
+  abstract: true
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: BaseImperialMagicStaff
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/staffs.rsi
+  - type: Item
+    size: Huge
+    sprite: Imperial/Wizard/staffs.rsi
+  - type: Gun
+    fireRate: 1.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/emitter.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltNothing
+    capacity: 6
+    count: 6
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 8
+  - type: ImperialMagicStaff
+
+- type: entity
+  abstract: true
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: BaseImperialWand
+  components:
+  - type: Tag
+    tags:
+    - WizardWand
+  - type: Sprite
+    sprite: Imperial/Wizard/wands.rsi
+  - type: Item
+    size: Small
+    sprite: Imperial/Wizard/wands.rsi
+    heldPrefix: wand
+  - type: Gun
+    fireRate: 1.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltNothing
+    capacity: 100
+    count: 100
+  - type: ImperialWand
+
+- type: entity
+  abstract: true
+  parent: BaseBullet
+  id: BaseImperialBolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/projectiles.rsi
+    layers:
+    - state: energy
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 0
+  - type: ImperialMagicBolt
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltNothing
+  name: заряд ничего
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: nothing
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Nothing
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltDeath
+  name: заряд смерти
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: pulse1_bl
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Death
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltResurrection
+  name: заряд воскрешения
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: ion
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Resurrection
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltTeleport
+  name: заряд телепортации
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: bluespace
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Teleport
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltSafety
+  name: заряд безопасности
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: bluespace
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Safety
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltDoor
+  name: заряд создания дверей
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: energy
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Door
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltChange
+  name: заряд изменения
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: ice_1
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Change
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltAnimate
+  name: заряд оживления
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red_1
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Animate
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltLocker
+  name: заряд шкафчика
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: locker
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Locker
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltFlying
+  name: заряд полёта
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: flight
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Flying
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltNecropotence
+  name: заряд некропотенции
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: necropotence
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Necropotence
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltBabel
+  name: заряд вавилона
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: babel
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Babel
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltWipe
+  name: заряд одержимости
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: wipe
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Wipe
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltChaos
+  name: заряд хаоса
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: spell
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Chaos
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltFireball
+  name: огненный заряд
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: fireball
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Fireball
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltShrink
+  name: луч уменьшения
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: blue_laser
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Shrink
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltFreeze
+  name: ледяной заряд
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: ice_2
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Freeze
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltSwap
+  name: заряд обмена
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: bluespace
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Swap
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltTentacle
+  name: связывающий заряд
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: spell
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Tentacle
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltBooze
+  name: заряд опьянения
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: spell
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Booze
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltHallucination
+  name: заряд галлюцинаций
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: spell
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Hallucination
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltPax
+  name: заряд сострадания
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: spell
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Pax
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltPizza
+  name: заряд перекуса
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: spell
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Pizza
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltPrank
+  name: заряд падений
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: spell
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Prank
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltRepulse
+  name: заряд отталкивания
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: spell
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Repulse
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltZap
+  name: искра
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: tesla_projectile
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Zap
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltPlague
+  name: чумной заряд
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: spell
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Plague
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltBald
+  name: заряд облысения
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: spell
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Bald
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltLevitate
+  name: заряд левитации
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: spell
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Levitate
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltRebellion
+  name: заряд бунта
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: spell
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Rebellion
+
+- type: entity
+  parent: BaseImperialBolt
+  id: ImperialBoltSpellblade
+  name: энергия клинка
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: lavastaff
+      shader: unshaded
+  - type: ImperialMagicBolt
+    effect: Nothing
+  - type: Projectile
+    damage:
+      types:
+        Heat: 15
+
+- type: entity
+  parent: BaseImperialMagicStaff
+  id: ImperialStaffChange
+  name: посох изменения
+  description: "Артефакт, извергающий потоки сотрясающей энергии, которая меняет саму форму цели."
+  components:
+  - type: Sprite
+    state: staffofchange
+  - type: Item
+    heldPrefix: staffofchange
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltChange
+    capacity: 6
+    count: 6
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 8
+  - type: ImperialMagicStaff
+    intruder: Change
+
+- type: entity
+  parent: BaseImperialMagicStaff
+  id: ImperialStaffAnimation
+  name: посох оживления
+  description: "Арканный посох, стреляющий зарядами, которые оживляют неодушевлённые предметы."
+  components:
+  - type: Sprite
+    state: staffofanimation
+  - type: Item
+    heldPrefix: staffofanimation
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_animation.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltAnimate
+    capacity: 6
+    count: 6
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 8
+
+- type: entity
+  parent: BaseImperialMagicStaff
+  id: ImperialStaffHealing
+  name: посох исцеления
+  description: "Альтруистический посох, способный исцелять хромых и воскрешать мёртвых."
+  components:
+  - type: Sprite
+    state: staffofhealing
+  - type: Item
+    heldPrefix: staffofhealing
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_healing.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltResurrection
+    capacity: 6
+    count: 6
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 8
+
+- type: entity
+  parent: BaseImperialMagicStaff
+  id: ImperialStaffChaos
+  name: посох хаоса
+  description: "Капризный инструмент, стреляющий всеми видами магии без всякой причины."
+  components:
+  - type: Sprite
+    state: staffofchaos
+  - type: Item
+    heldPrefix: staffofchaos
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_chaos.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltChaos
+    capacity: 10
+    count: 10
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2
+  - type: ImperialMagicStaff
+    intruder: Chaos
+    noDenUsage: true
+
+- type: entity
+  parent: BaseImperialMagicStaff
+  id: ImperialStaffDoor
+  name: посох создания дверей
+  description: "Особый посох, превращающий твёрдые стены в украшенные двери."
+  components:
+  - type: Sprite
+    state: staffofdoor
+  - type: Item
+    heldPrefix: staffofdoor
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_door.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltDoor
+    capacity: 10
+    count: 10
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2
+  - type: ImperialMagicStaff
+    noDenUsage: true
+
+- type: entity
+  parent: BaseImperialMagicStaff
+  id: ImperialStaffLocker
+  name: посох шкафчика
+  description: "Посох, стреляющий шкафчиками. Он съедает всех на своём пути, оставляя заваренный шкаф с жертвами."
+  components:
+  - type: Sprite
+    state: locker
+  - type: Item
+    heldPrefix: locker
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltLocker
+    capacity: 6
+    count: 6
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 4
+
+- type: entity
+  parent: BaseImperialMagicStaff
+  id: ImperialStaffShrink
+  name: посох уменьшения
+  description: "Артефакт, выплёвывающий крошечные заряды магии, которые всё уменьшают."
+  components:
+  - type: Sprite
+    state: shrinkstaff
+  - type: Item
+    heldPrefix: staffofchange
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_shrink.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltShrink
+    capacity: 10
+    count: 10
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
+  - type: ImperialMagicStaff
+    noDenUsage: true
+
+- type: entity
+  parent: BaseImperialMagicStaff
+  id: ImperialSpellblade
+  name: клинок заклинаний
+  description: "Смертоносное сочетание лени и кровожадности: клинок отрывает конечности, не утруждая владельца взмахами."
+  components:
+  - type: Sprite
+    state: spellblade
+  - type: Item
+    heldPrefix: spellblade
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/fireball.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltSpellblade
+    capacity: 4
+    count: 4
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 8
+  - type: MeleeWeapon
+    attackRate: 1
+    damage:
+      types:
+        Slash: 20
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Reflect
+    reflectProb: 0.5
+    reflects:
+    - NonEnergy
+
+- type: entity
+  parent: BaseImperialMagicStaff
+  id: ImperialWabbajack
+  name: Ваббаджек
+  description: "Посох хаоса для всех — абсолютно злой."
+  components:
+  - type: Sprite
+    state: the_wabbajack
+  - type: Item
+    heldPrefix: the_wabbajack
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_chaos.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltChaos
+    capacity: 999999
+    count: 999999
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+  - type: ImperialMagicStaff
+    allowIntruder: true
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandDeath
+  name: палочка смерти
+  description: "Эта смертельная палочка переполняет жертву некротической энергией."
+  components:
+  - type: Sprite
+    state: deathwand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/wandodeath.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltDeath
+    capacity: 3
+    count: 3
+  - type: ImperialWand
+    selfEffect: Death
+    sound:
+      path: /Audio/Imperial/Wizard/wandodeath.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandResurrection
+  name: палочка исцеления
+  description: "Эта палочка использует исцеляющую магию для лечения и воскрешения."
+  components:
+  - type: Sprite
+    state: revivewand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_healing.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltResurrection
+    capacity: 10
+    count: 10
+  - type: ImperialWand
+    selfEffect: Resurrection
+    sound:
+      path: /Audio/Imperial/Wizard/staff_healing.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandPolymorph
+  name: палочка превращения
+  description: "Эта палочка заряжена хаотичной магией, меняющей облик цели."
+  components:
+  - type: Sprite
+    state: polywand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltChange
+    capacity: 10
+    count: 10
+  - type: ImperialWand
+    selfEffect: Change
+    sound:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandTeleport
+  name: палочка телепортации
+  description: "Эта палочка переносит цель в случайное место поблизости."
+  components:
+  - type: Sprite
+    state: telewand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/wand_teleport.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltTeleport
+    capacity: 10
+    count: 10
+  - type: ImperialWand
+    selfEffect: Teleport
+    sound:
+      path: /Audio/Imperial/Wizard/wand_teleport.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandSafety
+  name: палочка безопасности
+  description: "Эта палочка переносит цель в безопасное место на станции."
+  components:
+  - type: Sprite
+    state: telewand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/wand_teleport.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltSafety
+    capacity: 10
+    count: 10
+  - type: ImperialWand
+    selfEffect: Safety
+    sound:
+      path: /Audio/Imperial/Wizard/wand_teleport.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandDoor
+  name: палочка создания дверей
+  description: "Эта палочка превращает стены в двери и открывает двери."
+  components:
+  - type: Sprite
+    state: doorwand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_door.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltDoor
+    capacity: 20
+    count: 20
+  - type: ImperialWand
+    selfEffect: Door
+    sound:
+      path: /Audio/Imperial/Wizard/staff_door.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandFireball
+  name: палочка огненного шара
+  description: "Эта палочка стреляет огненными шарами."
+  components:
+  - type: Sprite
+    state: firewand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/fireball.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltFireball
+    capacity: 8
+    count: 8
+  - type: ImperialWand
+    selfEffect: Fireball
+    sound:
+      path: /Audio/Imperial/Wizard/fireball.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandOfNothing
+  name: палочка ничего
+  description: "Это не палочка, это палка."
+  components:
+  - type: Sprite
+    state: nothingwand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/emitter.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltNothing
+    capacity: 100
+    count: 100
+  - type: ImperialWand
+    selfEffect: Nothing
+    sound:
+      path: /Audio/Imperial/Wizard/emitter.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandShrink
+  name: палочка уменьшения
+  description: "Палочка, делающая всё маленьким."
+  components:
+  - type: Sprite
+    state: shrinkwand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_shrink.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltShrink
+    capacity: 10
+    count: 10
+  - type: ImperialWand
+    selfEffect: Shrink
+    sound:
+      path: /Audio/Imperial/Wizard/staff_shrink.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandAnimate
+  name: палочка оживления
+  description: "Оживляет неодушевлённые предметы."
+  components:
+  - type: Sprite
+    state: animatewand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_animation.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltAnimate
+    capacity: 10
+    count: 10
+  - type: ImperialWand
+    selfEffect: Nothing
+    sound:
+      path: /Audio/Imperial/Wizard/staff_animation.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandBabel
+  name: жезл вавилона
+  description: "Смешивает языки цели."
+  components:
+  - type: Sprite
+    state: babelwand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltBabel
+    capacity: 6
+    count: 6
+  - type: ImperialWand
+    selfEffect: Babel
+    sound:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandBald
+  name: стригущий жезл
+  description: "Лишает цель волос."
+  components:
+  - type: Sprite
+    state: shavingwand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltBald
+    capacity: 12
+    count: 12
+  - type: ImperialWand
+    selfEffect: Bald
+    sound:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandBooze
+  name: праздничная палочка
+  description: "Опьяняет цель."
+  components:
+  - type: Sprite
+    state: beerwand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltBooze
+    capacity: 8
+    count: 8
+  - type: ImperialWand
+    selfEffect: Booze
+    sound:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandFreeze
+  name: палочка льда
+  description: "Замораживает цель."
+  components:
+  - type: Sprite
+    state: icewand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltFreeze
+    capacity: 8
+    count: 8
+  - type: ImperialWand
+    selfEffect: Freeze
+    sound:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandHallucination
+  name: палочка хаоса
+  description: "Насылает видения."
+  components:
+  - type: Sprite
+    state: chaoswand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_chaos.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltHallucination
+    capacity: 20
+    count: 20
+  - type: ImperialWand
+    selfEffect: Hallucination
+    sound:
+      path: /Audio/Imperial/Wizard/staff_chaos.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandLevitate
+  name: поднимающий жезл
+  description: "Лишает цель опоры."
+  components:
+  - type: Sprite
+    state: gravwand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltLevitate
+    capacity: 12
+    count: 12
+  - type: ImperialWand
+    selfEffect: Levitate
+    sound:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandPax
+  name: жезл сострадания
+  description: "Делает цель миролюбивой."
+  components:
+  - type: Sprite
+    state: peacewand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_healing.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltPax
+    capacity: 12
+    count: 12
+  - type: ImperialWand
+    selfEffect: Pax
+    sound:
+      path: /Audio/Imperial/Wizard/staff_healing.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandPizza
+  name: палочка перекуса
+  description: "Создаёт пиццу."
+  components:
+  - type: Sprite
+    state: pizzawand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltPizza
+    capacity: 20
+    count: 20
+  - type: ImperialWand
+    selfEffect: Pizza
+    sound:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandPlague
+  name: чумная палочка
+  description: "Заражает цель."
+  components:
+  - type: Sprite
+    state: plaguewand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltPlague
+    capacity: 6
+    count: 6
+  - type: ImperialWand
+    selfEffect: Plague
+    sound:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandPrank
+  name: палочка падений
+  description: "Роняет цель на банановую кожуру."
+  components:
+  - type: Sprite
+    state: bananawand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltPrank
+    capacity: 10
+    count: 10
+  - type: ImperialWand
+    selfEffect: Prank
+    sound:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandRebel
+  name: палочка бунта
+  description: "Сбивает цель с ног."
+  components:
+  - type: Sprite
+    state: necrowand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltRebellion
+    capacity: 6
+    count: 6
+  - type: ImperialWand
+    selfEffect: Rebellion
+    sound:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandRepulse
+  name: жезл отталкивания
+  description: "Отбрасывает цель."
+  components:
+  - type: Sprite
+    state: repulsionwand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/repulse.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltRepulse
+    capacity: 12
+    count: 12
+  - type: ImperialWand
+    selfEffect: Repulse
+    sound:
+      path: /Audio/Imperial/Wizard/repulse.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandSwap
+  name: переключающий жезл
+  description: "Меняет вас местами с целью."
+  components:
+  - type: Sprite
+    state: swapwand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/swap.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltSwap
+    capacity: 20
+    count: 20
+  - type: ImperialWand
+    selfEffect: Swap
+    sound:
+      path: /Audio/Imperial/Wizard/swap.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandTentacle
+  name: связывающий жезл
+  description: "Связывает цель."
+  components:
+  - type: Sprite
+    state: tentawand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltTentacle
+    capacity: 10
+    count: 10
+  - type: ImperialWand
+    selfEffect: Tentacle
+    sound:
+      path: /Audio/Imperial/Wizard/staff_change.ogg
+
+- type: entity
+  parent: BaseImperialWand
+  id: ImperialWandZap
+  name: палочка молний
+  description: "Бьёт цель током."
+  components:
+  - type: Sprite
+    state: teslawand
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/lightningshock.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltZap
+    capacity: 8
+    count: 8
+  - type: ImperialWand
+    selfEffect: Zap
+    sound:
+      path: /Audio/Imperial/Wizard/lightningshock.ogg

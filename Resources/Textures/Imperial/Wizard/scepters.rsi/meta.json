@@ -1,0 +1,49 @@
+{
+    "version":  1,
+    "license":  "CC-BY-SA-3.0",
+    "copyright":  "Taken from tgstation/BandaStation (magic.dmi)",
+    "size":  {
+                 "x":  32,
+                 "y":  32
+             },
+    "states":  [
+                   {
+                       "name":  "vendor_staff"
+                   },
+                   {
+                       "name":  "tele_wand_er",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "vendor_staff-inhand-left",
+                       "directions":  4
+                   },
+                   {
+                       "name":  "vendor_staff-inhand-right",
+                       "directions":  4
+                   },
+                   {
+                       "name":  "tele_wand_er-inhand-left",
+                       "directions":  4
+                   },
+                   {
+                       "name":  "tele_wand_er-inhand-right",
+                       "directions":  4
+                   }
+               ]
+}

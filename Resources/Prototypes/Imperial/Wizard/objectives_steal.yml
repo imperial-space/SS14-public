@@ -1,0 +1,159 @@
+# Кража для мага (/datum/objective/steal): те же предметы, что у предателя, но от Федерации волшебников.
+
+- type: weightedRandom
+  id: ImperialWizardObjectiveGroupSteal
+  weights:
+    ImperialWizardCaptainIDStealObjective: 1
+    ImperialWizardCMOHyposprayStealObjective: 1
+    ImperialWizardCMOCrewMonitorStealObjective: 1
+    ImperialWizardRDHardsuitStealObjective: 1
+    ImperialWizardNukeDiskStealObjective: 1
+    ImperialWizardMagbootsStealObjective: 1
+    ImperialWizardCorgiMeatStealObjective: 1
+    ImperialWizardClipboardStealObjective: 1
+    ImperialWizardKnuckleDustersStealObjective: 1
+    ImperialWizardCaptainGunStealObjective: 0.5
+    ImperialWizardCaptainJetpackStealObjective: 0.5
+    ImperialWizardHandTeleporterStealObjective: 0.5
+    ImperialWizardWardenAnswarpistolStealObjective: 0.5
+    ImperialWizardEnergyMagnumStealObjective: 0.5
+
+- type: entity
+  parent: CaptainIDStealObjective
+  id: ImperialWizardCaptainIDStealObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-wizard
+  - type: RoleRequirement
+    roles:
+    - ImperialWizardRole
+
+- type: entity
+  parent: CMOHyposprayStealObjective
+  id: ImperialWizardCMOHyposprayStealObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-wizard
+  - type: RoleRequirement
+    roles:
+    - ImperialWizardRole
+
+- type: entity
+  parent: CMOCrewMonitorStealObjective
+  id: ImperialWizardCMOCrewMonitorStealObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-wizard
+  - type: RoleRequirement
+    roles:
+    - ImperialWizardRole
+
+- type: entity
+  parent: RDHardsuitStealObjective
+  id: ImperialWizardRDHardsuitStealObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-wizard
+  - type: RoleRequirement
+    roles:
+    - ImperialWizardRole
+
+- type: entity
+  parent: NukeDiskStealObjective
+  id: ImperialWizardNukeDiskStealObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-wizard
+  - type: RoleRequirement
+    roles:
+    - ImperialWizardRole
+
+- type: entity
+  parent: MagbootsStealObjective
+  id: ImperialWizardMagbootsStealObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-wizard
+  - type: RoleRequirement
+    roles:
+    - ImperialWizardRole
+
+- type: entity
+  parent: CorgiMeatStealObjective
+  id: ImperialWizardCorgiMeatStealObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-wizard
+  - type: RoleRequirement
+    roles:
+    - ImperialWizardRole
+
+- type: entity
+  parent: ClipboardStealObjective
+  id: ImperialWizardClipboardStealObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-wizard
+  - type: RoleRequirement
+    roles:
+    - ImperialWizardRole
+
+- type: entity
+  parent: KnuckleDustersStealObjective
+  id: ImperialWizardKnuckleDustersStealObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-wizard
+  - type: RoleRequirement
+    roles:
+    - ImperialWizardRole
+
+- type: entity
+  parent: CaptainGunStealObjective
+  id: ImperialWizardCaptainGunStealObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-wizard
+  - type: RoleRequirement
+    roles:
+    - ImperialWizardRole
+
+- type: entity
+  parent: CaptainJetpackStealObjective
+  id: ImperialWizardCaptainJetpackStealObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-wizard
+  - type: RoleRequirement
+    roles:
+    - ImperialWizardRole
+
+- type: entity
+  parent: HandTeleporterStealObjective
+  id: ImperialWizardHandTeleporterStealObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-wizard
+  - type: RoleRequirement
+    roles:
+    - ImperialWizardRole
+
+- type: entity
+  parent: WardenAnswarpistolStealObjective
+  id: ImperialWizardWardenAnswarpistolStealObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-wizard
+  - type: RoleRequirement
+    roles:
+    - ImperialWizardRole
+
+- type: entity
+  parent: EnergyMagnumStealObjective
+  id: ImperialWizardEnergyMagnumStealObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-wizard
+  - type: RoleRequirement
+    roles:
+    - ImperialWizardRole

@@ -1,0 +1,135 @@
+{
+    "version":  1,
+    "license":  "CC-BY-SA-3.0",
+    "copyright":  "Taken from tgstation/BandaStation (hand.dmi)",
+    "size":  {
+                 "x":  32,
+                 "y":  32
+             },
+    "states":  [
+                   {
+                       "name":  "disintegrate"
+                   },
+                   {
+                       "name":  "fleshtostone"
+                   },
+                   {
+                       "name":  "duffelcurse"
+                   },
+                   {
+                       "name":  "scream_for_me"
+                   },
+                   {
+                       "name":  "disintegrate-inhand-left",
+                       "directions":  4,
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ],
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ],
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ],
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "disintegrate-inhand-right",
+                       "directions":  4,
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ],
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ],
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ],
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "fleshtostone-inhand-left",
+                       "directions":  4
+                   },
+                   {
+                       "name":  "fleshtostone-inhand-right",
+                       "directions":  4
+                   },
+                   {
+                       "name":  "duffelcurse-inhand-left",
+                       "directions":  4,
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ],
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ],
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ],
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "duffelcurse-inhand-right",
+                       "directions":  4,
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ],
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ],
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ],
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   }
+               ]
+}

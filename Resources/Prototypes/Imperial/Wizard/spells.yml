@@ -1,0 +1,49 @@
+# Заклинания мага TG (code/modules/spells). Откат задаётся в ImperialSpell.cooldown, а не в useDelay.
+
+- type: entity
+  abstract: true
+  parent: BaseAction
+  id: BaseImperialSpell
+  components:
+  - type: Action
+    raiseOnAction: true
+    itemIconStyle: NoItem
+    icon:
+      sprite: Imperial/Wizard/spells.rsi
+      state: spell_default
+  - type: ImperialSpell
+  - type: ImperialMagicAction
+
+- type: entity
+  abstract: true
+  parent: BaseImperialSpell
+  id: BaseImperialSpellTarget
+  components:
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+
+# ─── Мобильность ───
+
+# /datum/action/cooldown/spell/teleport/area_teleport/wizard.
+- type: entity
+  parent: BaseImperialSpell
+  id: ImperialSpellTeleport
+  name: Телепорт
+  description: Это заклинание телепортирует вас в выбранную вами зону.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Wizard/spells.rsi
+      state: teleport
+  - type: InstantAction
+    event: !type:ImperialAreaTeleportActionEvent
+  - type: ImperialSpell
+    school: translocation
+    cooldown: 60
+    cooldownReductionPerRank: 20
+    maxLevel: 3
+    invocation: imperial-spell-teleport-invocation
+    invocationType: Shout
+    castSound: /Audio/Imperial/Wizard/teleport_diss.ogg
+    smoke: 2
