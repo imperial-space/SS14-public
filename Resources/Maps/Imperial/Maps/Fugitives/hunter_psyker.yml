@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/24/2026 09:34:18
+  time: 10/24/2026 10:22:51
   entityCount: 381
 maps: []
 grids:
@@ -1644,7 +1644,6 @@ entities:
   - uid: 72
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 22.5,19.5
       parent: 1
     - type: ApcPowerReceiver
@@ -1652,7 +1651,7 @@ entities:
   - uid: 114
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
+      rot: 3.141592653589793 rad
       pos: 22.5,18.5
       parent: 1
     - type: ApcPowerReceiver
@@ -1660,7 +1659,6 @@ entities:
   - uid: 292
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 22.5,9.5
       parent: 1
     - type: ApcPowerReceiver
@@ -1668,7 +1666,7 @@ entities:
   - uid: 318
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
+      rot: -1.5707963267948966 rad
       pos: 22.5,8.5
       parent: 1
     - type: ApcPowerReceiver
@@ -1676,7 +1674,7 @@ entities:
   - uid: 336
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
+      rot: 3.141592653589793 rad
       pos: 22.5,7.5
       parent: 1
     - type: ApcPowerReceiver
