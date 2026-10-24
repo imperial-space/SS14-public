@@ -1,0 +1,93 @@
+# Зарплаты TG (code/modules/jobs/job_types/*.dm, modular_bandastation/jobs): paycheck и paycheck_department.
+# PAYCHECK_LOWER = 25, PAYCHECK_CREW = 50, PAYCHECK_COMMAND = 100.
+# На старте смены начисляется STARTING_PAYCHECKS = 5 зарплат, дальше раз в 5 минут — одна (не больше 50).
+# ACCOUNT_CIV (гражданский бюджет) в SS14 — бюджет обслуживания (Service).
+# Должность без department не получает счёт.
+
+- type: imperialPayroll
+  id: Default
+  jobs:
+    # Командование
+    Captain: { paycheck: 100, department: Security }
+    HeadOfPersonnel: { paycheck: 100, department: Service }
+    HeadOfSecurity: { paycheck: 100, department: Security }
+    ChiefEngineer: { paycheck: 100, department: Engineering }
+    ChiefMedicalOfficer: { paycheck: 100, department: Medical }
+    ResearchDirector: { paycheck: 100, department: Science }
+    Quartermaster: { paycheck: 100, department: Cargo }
+    # Региональный инспектор — как представитель НТ и магистрат BandaStation.
+    RFI: { paycheck: 100, department: Security }
+    # Адъютант — как ассистент мостика (bridge_assistant).
+    Adjutant: { paycheck: 50, department: Service }
+
+    # Служба безопасности
+    Warden: { paycheck: 50, department: Security }
+    Detective: { paycheck: 50, department: Security }
+    SecurityOfficer: { paycheck: 50, department: Security }
+    SeniorOfficer: { paycheck: 50, department: Security }
+    SecurityCadet: { paycheck: 50, department: Security }
+    Brigmedic: { paycheck: 50, department: Security }
+
+    # Инженерия
+    StationEngineer: { paycheck: 50, department: Engineering }
+    AtmosphericTechnician: { paycheck: 50, department: Engineering }
+    SeniorEngineer: { paycheck: 50, department: Engineering }
+
+    # Медицина
+    MedicalDoctor: { paycheck: 50, department: Medical }
+    Chemist: { paycheck: 50, department: Medical }
+    Paramedic: { paycheck: 50, department: Medical }
+    Coroner: { paycheck: 50, department: Medical }
+    SeniorPhysician: { paycheck: 50, department: Medical }
+
+    # Наука
+    Scientist: { paycheck: 50, department: Science }
+    SeniorResearcher: { paycheck: 50, department: Science }
+
+    # Снабжение
+    CargoTechnician: { paycheck: 50, department: Cargo }
+    SalvageSpecialist: { paycheck: 50, department: Cargo }
+
+    # Обслуживание
+    Bartender: { paycheck: 50, department: Service }
+    Botanist: { paycheck: 50, department: Service }
+    Chef: { paycheck: 50, department: Service }
+    Janitor: { paycheck: 50, department: Service }
+    StationMaid: { paycheck: 50, department: Service }
+    Clown: { paycheck: 50, department: Service }
+    Mime: { paycheck: 50, department: Service }
+    Musician: { paycheck: 50, department: Service }
+    Lawyer: { paycheck: 50, department: Service }
+    Librarian: { paycheck: 50, department: Service }
+    Chaplain: { paycheck: 50, department: Service }
+    Psychologist: { paycheck: 50, department: Service }
+    Reporter: { paycheck: 50, department: Service }
+    ServiceWorker: { paycheck: 50, department: Service }
+
+    # Ассистенты и гости: PAYCHECK_LOWER из гражданского бюджета.
+    Passenger: { paycheck: 25, department: Service }
+    Visitor: { paycheck: 25, department: Service }
+
+    # Без счёта: ЦК, ОБР, эскадроны смерти и силиконы.
+    CentralCommandOfficial: { paycheck: 0 }
+    ERTLeader: { paycheck: 0 }
+    ERTChaplain: { paycheck: 0 }
+    ERTEngineer: { paycheck: 0 }
+    ERTSecurity: { paycheck: 0 }
+    ERTMedical: { paycheck: 0 }
+    ERTJanitor: { paycheck: 0 }
+    CBURN: { paycheck: 0 }
+    DeathSquad: { paycheck: 0 }
+    ImperialDeathSquad: { paycheck: 0 }
+    SpecialOfficer: { paycheck: 0 }
+    JobRCUOperator: { paycheck: 0 }
+    JobRCUOfficer: { paycheck: 0 }
+    StationAi: { paycheck: 0 }
+    Borg: { paycheck: 0 }
+
+  # payday_modifier: люди 1.1, вульпканины 0.8, остальные TG-расы 1.0.
+  # Дварфы — подвид людей.
+  species:
+    Human: 1.1
+    Dwarf: 1.1
+    Vulpkanin: 0.8

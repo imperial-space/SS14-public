@@ -1,0 +1,529 @@
+# Модульные щиты TG (code/game/machinery/modular_shield.dm).
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialModularShieldGenerator
+  name: генератор модульного щита
+  description: Генератор силового поля, куда менее подвижный, чем его собратья. Не переносит перегрузок и на подвижных судах требует частых перезапусков.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Anchorable
+  - type: Sprite
+    sprite: Imperial/ModularShield/machines.rsi
+    offset: 0, 0.125
+    layers:
+    - state: gen_recovering_closed
+      map: [ "base" ]
+  - type: Appearance
+  - type: WiresPanel
+  - type: Machine
+    board: ImperialModularShieldGeneratorBoard
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ImperialModularShieldGenerator
+    displayName: Генератор щита
+  - type: Wires
+    boardName: imperial-modular-shield-wires-board
+    layoutId: ImperialModularShieldGenerator
+  - type: UserInterface
+    interfaces:
+      enum.ImperialModularShieldUiKey.Generator:
+        type: ImperialModularShieldGeneratorBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialModularShieldGate
+  name: модульный щитовой шлюз
+  description: Генератор силового поля, ставящий плоскую стену. Не переносит перегрузок и на подвижных судах требует частых перезапусков.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        hard: false
+        mask:
+        - MachineMask
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Anchorable
+  - type: Sprite
+    sprite: Imperial/ModularShield/machines.rsi
+    offset: 0, 0.125
+    layers:
+    - state: gate_recovering_closed
+      map: [ "base" ]
+  - type: Appearance
+  - type: WiresPanel
+  - type: Machine
+    board: ImperialModularShieldGateBoard
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ImperialModularShieldGenerator
+    gate: true
+    internalPenalty: false
+    iconType: gate
+    displayName: Щитовой шлюз
+  - type: Rotatable
+    rotateWhileAnchored: true
+  - type: Wires
+    boardName: imperial-modular-shield-wires-board
+    layoutId: ImperialModularShieldGenerator
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialModularShieldNode
+  name: узел модульного щита
+  description: Гудящий клубок труб и проводов по пояс, расширяющий сеть модульного щита.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Anchorable
+  - type: Sprite
+    sprite: Imperial/ModularShield/machines.rsi
+    offset: 0, 0.125
+    layers:
+    - state: node_off_closed
+      map: [ "base" ]
+  - type: Appearance
+  - type: WiresPanel
+  - type: Machine
+    board: ImperialModularShieldNodeBoard
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ImperialModularShieldModule
+    kind: Node
+  - type: Rotatable
+    rotateWhileAnchored: true
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialModularShieldCable
+  name: кабель модульного щита
+  description: Клубок кабелей по щиколотку, уложенный как можно ниже ценой отсутствия разъёмов для чего-либо, кроме узлов и самого генератора.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        hard: false
+        mask:
+        - MachineMask
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Anchorable
+  - type: Sprite
+    sprite: Imperial/ModularShield/machines.rsi
+    offset: 0, 0.125
+    layers:
+    - state: cable_node_closed_nr_nb_nl
+      map: [ "base" ]
+  - type: Appearance
+  - type: WiresPanel
+  - type: Machine
+    board: ImperialModularShieldCableBoard
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ImperialModularShieldModule
+    kind: Cable
+  - type: Rotatable
+    rotateWhileAnchored: true
+    allowBoosters: false
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialModularShieldCharger
+  name: зарядник модульного щита
+  description: Машина, каким-то образом производящая жёсткий свет из электронов.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Anchorable
+  - type: Sprite
+    sprite: Imperial/ModularShield/machines.rsi
+    offset: 0, 0.125
+    layers:
+    - state: charger_off_closed
+      map: [ "base" ]
+  - type: Appearance
+  - type: WiresPanel
+  - type: Machine
+    board: ImperialModularShieldChargerBoard
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ImperialModularShieldModule
+    kind: Charger
+  - type: Rotatable
+    rotateWhileAnchored: true
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialModularShieldRelay
+  name: ретранслятор модульного щита
+  description: Помогает генератору щита проецировать поле дальше.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Anchorable
+  - type: Sprite
+    sprite: Imperial/ModularShield/machines.rsi
+    offset: 0, 0.125
+    layers:
+    - state: relay_off_closed
+      map: [ "base" ]
+  - type: Appearance
+  - type: WiresPanel
+  - type: Machine
+    board: ImperialModularShieldRelayBoard
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ImperialModularShieldModule
+    kind: Relay
+  - type: Rotatable
+    rotateWhileAnchored: true
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialModularShieldWell
+  name: колодец модульного щита
+  description: Устройство для хранения дополнительного жёсткого света для генератора модульного щита.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Anchorable
+  - type: Sprite
+    sprite: Imperial/ModularShield/machines.rsi
+    offset: 0, 0.125
+    layers:
+    - state: well_off_closed
+      map: [ "base" ]
+  - type: Appearance
+  - type: WiresPanel
+  - type: Machine
+    board: ImperialModularShieldWellBoard
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ImperialModularShieldModule
+    kind: Well
+  - type: Rotatable
+    rotateWhileAnchored: true
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialModularShieldGeneratorBoard
+  name: плата генератора модульного щита
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialModularShieldGenerator
+    stackRequirements:
+      Plasteel: 3
+    tagRequirements:
+      ImperialStockPartServo:
+        amount: 1
+        defaultPrototype: ImperialStockPartServo1
+        examineName: imperial-stock-part-type-servo
+      ImperialStockPartMicroLaser:
+        amount: 1
+        defaultPrototype: ImperialStockPartMicroLaser1
+        examineName: imperial-stock-part-type-microlaser
+      ImperialStockPartCapacitor:
+        amount: 1
+        defaultPrototype: ImperialStockPartCapacitor1
+        examineName: imperial-stock-part-type-capacitor
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialModularShieldGateBoard
+  name: плата модульного щитового шлюза
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialModularShieldGate
+    stackRequirements:
+      Plasteel: 2
+    tagRequirements:
+      ImperialStockPartServo:
+        amount: 1
+        defaultPrototype: ImperialStockPartServo1
+        examineName: imperial-stock-part-type-servo
+      ImperialStockPartMicroLaser:
+        amount: 1
+        defaultPrototype: ImperialStockPartMicroLaser1
+        examineName: imperial-stock-part-type-microlaser
+      ImperialStockPartCapacitor:
+        amount: 1
+        defaultPrototype: ImperialStockPartCapacitor1
+        examineName: imperial-stock-part-type-capacitor
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialModularShieldNodeBoard
+  name: плата узла модульного щита
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialModularShieldNode
+    stackRequirements:
+      Cable: 15
+      Plasteel: 2
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialModularShieldCableBoard
+  name: плата кабеля модульного щита
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialModularShieldCable
+    stackRequirements:
+      Plasteel: 1
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialModularShieldChargerBoard
+  name: плата зарядника модульного щита
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialModularShieldCharger
+    stackRequirements:
+      Plasteel: 2
+    tagRequirements:
+      ImperialStockPartServo:
+        amount: 3
+        defaultPrototype: ImperialStockPartServo1
+        examineName: imperial-stock-part-type-servo
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialModularShieldRelayBoard
+  name: плата ретранслятора модульного щита
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialModularShieldRelay
+    stackRequirements:
+      Plasteel: 2
+    tagRequirements:
+      ImperialStockPartMicroLaser:
+        amount: 3
+        defaultPrototype: ImperialStockPartMicroLaser1
+        examineName: imperial-stock-part-type-microlaser
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialModularShieldWellBoard
+  name: плата колодца модульного щита
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialModularShieldWell
+    stackRequirements:
+      Plasteel: 2
+    tagRequirements:
+      ImperialStockPartCapacitor:
+        amount: 3
+        defaultPrototype: ImperialStockPartCapacitor1
+        examineName: imperial-stock-part-type-capacitor
+

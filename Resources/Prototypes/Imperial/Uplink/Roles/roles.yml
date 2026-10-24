@@ -1,0 +1,836 @@
+# Позиции аплинка TG для профессий (code/modules/uplink/uplink_items/job.dm).
+
+# /obj/item/toy/eightball/haunted
+- type: entity
+  parent: BaseItem
+  id: ImperialHauntedEightball
+  name: шар-восьмёрка
+  description: Шар судьбы. Задайте вопрос вслух и встряхните — духи ответят.
+  suffix: Проклятый
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Roles/items.rsi
+    state: eightball
+  - type: Item
+    size: Small
+  - type: UplinkHauntedEightball
+
+# /obj/item/storage/box/syndie_kit/mail_counterfeit
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkMailCounterfeitKit
+  name: набор подделки почты GLA
+  description: Пять устройств для подделки почты NT.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,5,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: ImperialMailCounterfeitDevice
+        amount: 5
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+
+# /obj/item/firing_pin/clown/ultra
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialClownPin
+  name: ультрасмешной боёк
+  description: Вставьте в оружие (кликните им по оружию) — стрелять смогут только клоуны и неуклюжие, а каждый выстрел гудит.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Roles/items.rsi
+    state: pin
+  - type: Item
+    size: Tiny
+  - type: UplinkClownPin
+
+- type: entity
+  parent: ImperialClownPin
+  id: ImperialClownPinSelfDestruct
+  name: суперультрасмешной боёк
+  description: Как ультрасмешной боёк, только оружие взрывается в руках не-клоуна.
+  components:
+  - type: UplinkClownPin
+    selfDestruct: true
+
+# /obj/item/mmi/syndie
+- type: entity
+  parent: [ MMI, BaseSyndicateContraband ]
+  id: ImperialSyndieMMI
+  name: ИИМ Синдиката
+  description: ИИМ, модифицированный так, чтобы киборг с ним служил Синдикату без повреждения интерфейса криптографическим секвенсором.
+  components:
+  - type: UplinkSyndieMmi
+
+# /obj/item/storage/box/syndie_kit/ez_clean
+- type: entity
+  parent: [ CleanerGrenade, BaseSyndicateContraband ]
+  id: ImperialEzCleanGrenade
+  name: граната EZ Clean
+  description: Граната с фирменной формулой Waffle Corp. Отмывает всё вокруг и разъедает кислотой всех, кто рядом.
+  components:
+  - type: SmokeOnTrigger
+    keysIn:
+    - timer
+    duration: 15
+    spreadAmount: 50
+    smokePrototype: Foam
+    solution:
+      reagents:
+      - ReagentId: SpaceCleaner
+        Quantity: 20
+      - ReagentId: FluorosulfuricAcid
+        Quantity: 10
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkEzCleanBox
+  name: набор гранат EZ Clean
+  description: Три гранаты EZ Clean.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: ImperialEzCleanGrenade
+        amount: 3
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+    - state: flashbang
+
+# /obj/item/reverse_bear_trap
+- type: entity
+  parent: [ ClothingHeadBase, BaseSyndicateContraband ]
+  id: ImperialReverseBearTrap
+  name: обратный медвежий капкан
+  description: Гениальное устройство для казни, надеваемое (или насильно надеваемое) на голову. Ударьте им человека без головного убора — через 3 секунды капкан защёлкнется, и через минуту челюсти раскроются.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Roles/beartrap.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/Uplink/Roles/beartrap.rsi
+  - type: Clothing
+    sprite: Imperial/Uplink/Roles/beartrap.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+  - type: UplinkReverseBearTrap
+
+# /obj/item/gun/syringe/dna
+- type: entity
+  parent: [ LauncherSyringe, BaseSyndicateContraband ]
+  id: ImperialDnaSyringeGun
+  name: модифицированный шприцемёт
+  description: Шприцемёт, стреляющий ДНК-инжекторами вместо обычных шприцев.
+  components:
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,2,0
+    whitelist:
+      components:
+      - DnaInjector
+  - type: UplinkDnaSyringeGun
+
+# /obj/item/gun/magic/hook
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialMeatHook
+  name: мясной крюк
+  description: Жестокий тесак на длинной цепи. Притягивает людей к вам.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Roles/hook.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/Uplink/Roles/hook.rsi
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 18
+  - type: Gun
+    fireRate: 0.25
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Uplink/batonextend.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBulletMeatHook
+    capacity: 1
+    count: 1
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 4
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBulletMeatHook
+  name: крюк
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Roles/hook.rsi
+    layers:
+    - state: projectile
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 20
+    soundHit:
+      path: /Audio/Effects/gib1.ogg
+  - type: StaminaDamageOnCollide
+    damage: 20
+  - type: UplinkProjectile
+    armorPenetration: 0.6
+  - type: UplinkHookProjectile
+
+# /obj/item/storage/box/syndie_kit/moltobeso
+- type: reagent
+  id: Moltobeso
+  name: reagent-name-moltobeso
+  group: Foods
+  desc: reagent-desc-moltobeso
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: savory
+  color: "#BB2A2A"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: -2
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ImperialMoltobesoBottle
+  name: соус Molt'Obeso
+  description: Фирменный соус Molt'Obeso. Пробуждает голод, заставляя есть больше, и усиливает усвоение калорий.
+  components:
+  - type: Label
+    currentLabel: reagent-name-moltobeso
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Moltobeso
+          Quantity: 30
+
+# /obj/item/storage/box/syndie_kit/rebarxbowsyndie
+- type: Tag
+  id: ImperialCartridgeRebar
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBulletRebar
+  name: арматура
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Roles/rebarxbow.rsi
+    layers:
+    - state: rebar
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 45
+  - type: UplinkProjectile
+    armorPenetration: 0.2
+
+- type: entity
+  parent: [ BaseCartridge, BaseSyndicateContraband ]
+  id: ImperialCartridgeRebar
+  name: заточенная арматура
+  description: Заточенный арматурный стержень для арбалета.
+  components:
+  - type: Tag
+    tags:
+    - ImperialCartridgeRebar
+  - type: CartridgeAmmo
+    proto: ImperialBulletRebar
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Imperial/Uplink/Roles/rebarxbow.rsi
+    layers:
+    - state: rebar
+      map: [ "enum.AmmoVisualLayers.Base" ]
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialRebarCrossbowSyndie
+  name: арматурный арбалет Синдиката
+  description: Куда более профессиональная версия самодельного инженерного арбалета. Магазин на 3 выстрела, быстрая зарядка и лучшие боеприпасы.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Roles/rebarxbow.rsi
+    state: base
+  - type: Item
+    size: Large
+    sprite: Imperial/Uplink/Roles/rebarxbow.rsi
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/energycrossbow_shoot.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - ImperialCartridgeRebar
+    proto: ImperialCartridgeRebar
+    capacity: 3
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkRebarCrossbowKit
+  name: набор арматурного арбалета Синдиката
+  description: Арбалет и запас заточенной арматуры.
+  components:
+  - type: Storage
+    maxItemSize: Large
+    grid:
+    - 0,0,5,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialRebarCrossbowSyndie
+        - id: ImperialCartridgeRebar
+          amount: 6
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+
+# /obj/item/reagent_containers/hypospray/medipen/magillitis
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialMagillitisInjector
+  name: автоинъектор сыворотки магиллитиса
+  description: Одноразовый автоинъектор с экспериментальной сывороткой, вызывающей стремительный рост мышц у Hominidae.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi
+    state: medipen
+    color: "#7FFF00"
+  - type: Item
+    size: Tiny
+  - type: UplinkPolymorphInjector
+    polymorph: ImperialMagillitisGorilla
+
+- type: polymorph
+  id: ImperialMagillitisGorilla
+  configuration:
+    entity: MobGorilla
+    forced: true
+    transferName: true
+    transferDamage: false
+    inventory: Drop
+    revertOnCrit: false
+    revertOnDeath: true
+
+# /obj/item/food/monkeycube/gorilla
+- type: entity
+  parent: MonkeyCube
+  id: ImperialGorillaCube
+  name: кубик гориллы
+  description: Кубик гориллы от Waffle Corp. Ешь много — стань большим. Внимание — может регидратироваться от воды.
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobGorilla
+
+# /obj/item/disk/surgery/brainwashing
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialBrainwashDevice
+  name: программа «промывки мозгов»
+  description: Диск с процедурой промывки мозгов. Используйте на спящем или бессознательном человеке, чтобы внушить ему задачу.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/cd.rsi
+    state: icon
+    color: "#E04CE0"
+  - type: Item
+    size: Tiny
+  - type: UplinkBrainwashDevice
+
+# /obj/item/disk/surgery/advanced_plastic_surgery
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialPlasticSurgeryDevice
+  name: программа продвинутой пластической хирургии
+  description: Пиратская копия коллекционной программы. Кликните по образцу, чтобы запомнить облик, затем — по спящему человеку, чтобы придать ему этот облик и имя.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/cd.rsi
+    state: icon
+    color: "#E0C04C"
+  - type: Item
+    size: Tiny
+  - type: UplinkPlasticSurgery
+
+# /obj/item/storage/box/hug/reverse_revolver
+- type: entity
+  parent: ImperialWeaponRevolverSyndicate
+  id: ImperialReverseRevolver
+  suffix: Обратный
+  components:
+  - type: UplinkReverseGun
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkReverseRevolverBox
+  name: коробка обнимашек
+  description: Особая коробка для сентиментальных людей. Хонк.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: ImperialReverseRevolver
+  - type: Sprite
+    layers:
+    - state: box
+    - state: heart
+
+# /obj/item/borg/upgrade/modkit/indoors
+- type: entity
+  parent: BaseMiningPKAUpgrade
+  id: ImperialPKAPressureMod
+  name: модуль акселератора (снижение штрафа давления)
+  description: Модификация, сильно повышающая урон кинетического акселератора в помещениях. Занимает 35% вместимости.
+  components:
+  - type: KineticModkit
+    cost: 35
+    group: indoors
+    maxOfGroup: 2
+    pressureMultiplier: 2
+
+# /obj/item/storage/box/syndie_kit/mimery
+- type: entity
+  parent: BaseItem
+  id: ImperialMimeryBookWall
+  name: руководство по продвинутой мимике, том 1
+  description: Учит возводить невидимые стены 3×1. Работает только для мимов.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Roles/items.rsi
+    state: mimebook
+  - type: Item
+    size: Small
+  - type: UplinkMimeryBook
+    action: ActionImperialMimeWall
+
+- type: entity
+  parent: BaseItem
+  id: ImperialMimeryBookGun
+  name: руководство по продвинутой мимике, том 2
+  description: Учит стрелять пулями из пальцев. Работает только для мимов.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Roles/items.rsi
+    state: mimebook
+  - type: Item
+    size: Small
+  - type: UplinkMimeryBook
+    action: ActionImperialFingerGun
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkMimeryBox
+  name: набор «Продвинутая мимика»
+  description: Классическая двухтомная серия о том, как отточить мастерство мима.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialMimeryBookWall
+        - id: ImperialMimeryBookGun
+  - type: Sprite
+    layers:
+    - state: box_mime
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialMimeWall
+  name: Невидимая блокада
+  description: Возвести невидимую стену 3×1.
+  components:
+  - type: Action
+    useDelay: 30
+    icon: { sprite: Imperial/Uplink/Roles/items.rsi, state: mimebook }
+  - type: InstantAction
+    event: !type:UplinkMimeWallEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialFingerGun
+  name: Пистолет из пальцев
+  description: Достать незримый пистолет на три выстрела.
+  components:
+  - type: Action
+    useDelay: 30
+    icon: { sprite: Imperial/Uplink/Roles/items.rsi, state: mimebook }
+  - type: InstantAction
+    event: !type:UplinkFingerGunEvent
+
+- type: entity
+  parent: BaseItem
+  id: ImperialMimeFingerGun
+  name: пистолет из пальцев
+  description: Его не видно, но он стреляет.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Roles/items.rsi
+    state: mimebook
+    visible: false
+  - type: Item
+    size: Tiny
+  - type: Unremoveable
+    deleteOnDrop: true
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: null
+  - type: BasicEntityAmmoProvider
+    proto: BulletPistol
+    capacity: 3
+    count: 3
+  - type: TimedDespawn
+    lifetime: 30
+
+# /obj/item/autosurgeon/syndicate/laser_arm
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ImperialLaserArmImplant
+  name: имплант лазерной руки
+  description: Встроенный в руку перезаряжающийся лазерный пистолет.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    implantAction: ActionImperialToggleLaserArm
+  - type: UplinkArmGunImplant
+    gun: ImperialLaserArmGun
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialToggleLaserArm
+  name: Лазерная рука
+  description: Выдвинуть или убрать лазер из руки.
+  components:
+  - type: Action
+    useDelay: 1
+    icon: { sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi, state: icon }
+  - type: InstantAction
+    event: !type:UplinkToggleArmGunEvent
+
+- type: entity
+  parent: WeaponAntiqueLaser
+  id: ImperialLaserArmGun
+  name: лазерная рука
+  description: Лазер, встроенный прямо в руку.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Unremoveable
+    deleteOnDrop: true
+
+- type: entity
+  parent: ImperialAutosurgeonBase
+  id: ImperialAutosurgeonLaserArm
+  suffix: Лазерная рука
+  components:
+  - type: Implanter
+    implant: ImperialLaserArmImplant
+
+# /obj/item/gun/chem
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialReagentDartgun
+  name: реагентный дротикомёт
+  description: Сильно модифицированный шприцемёт, синтезирующий собственные химические дротики из залитых реагентов. Вмещает 90 единиц.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/dartpistol.rsi
+    state: icon
+    color: "#A0C0FF"
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      chemicals:
+        maxVol: 90
+  - type: RefillableSolution
+    solution: chemicals
+  - type: ExaminableSolution
+    solution: chemicals
+  - type: SolutionAmmoProvider
+    solutionId: chemicals
+    proto: ImperialReagentDart
+    fireCost: 15
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Uplink/shot_suppressed.ogg
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialReagentDart
+  name: химический дротик
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: bullet
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 1
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 15
+  - type: SolutionInjectOnProjectileHit
+    transferAmount: 15
+    solution: ammo
+  - type: InjectableSolution
+    solution: ammo
+
+# /obj/item/sbeacondrop/clownbomb
+- type: entity
+  parent: SyndicateBomb
+  id: ImperialClownBomb
+  name: бомба клоуна
+  description: Уморительное устройство, способное на масштабные розыгрыши.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/bomb.rsi
+    color: "#FFE0FF"
+    layers:
+    - state: syndicate-bomb
+    - state: syndicate-bomb-active
+      visible: false
+      map: [ "primed" ]
+    - state: syndicate-bomb-wires
+      visible: false
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 0
+    intensitySlope: 1
+    maxIntensity: 1
+    canCreateVacuum: false
+  - type: SpawnEntityTableOnTrigger
+    keysIn:
+    - timer
+    table: !type:AllSelector
+      children:
+      - id: ClusterBananaPeel
+        amount: 4
+      - id: FoodPieBananaCream
+        amount: 10
+  - type: EmitSoundOnTrigger
+    keysIn:
+    - timer
+    sound:
+      path: /Audio/Items/bikehorn.ogg
+
+# /obj/item/his_grace
+- type: entity
+  parent: BaseItem
+  id: ImperialHisGrace
+  name: художественный ящик для инструментов
+  description: Ящик для инструментов, выкрашенный в ярко-зелёный. От взгляда на него становится не по себе.
+  suffix: Его Милость
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Roles/hisgrace.rsi
+    layers:
+    - state: icon
+    - state: latch
+  - type: Item
+    size: Ginormous
+    sprite: Imperial/Uplink/Roles/hisgrace.rsi
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 12
+    soundHit:
+      path: /Audio/Weapons/smash.ogg
+  - type: UplinkHisGrace
+  - type: ContainerContainer
+    containers:
+      his_grace_meals: !type:Container
+
+# /obj/item/reagent_containers/syringe/spider_extract
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialSpiderInjector
+  name: мутатор слизней «Австраликус»
+  description: Экстракт гигантских пауков из сектора Австраликус. Впрысните в золотой экстракт слизня, чтобы призвать пауков.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Chemistry/syringe.rsi
+    state: syringe_base0
+    color: "#40C040"
+  - type: Item
+    size: Tiny
+  - type: UplinkSpiderInjector
+
+- type: entity
+  parent: MobGiantSpiderAngry
+  id: ImperialAustralicusSpider
+  name: паук Австраликус
+  description: Ручной гигантский паук. Пока не обрёл разум — довольно смирный.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+
+# /obj/item/seeds/seedling/evil
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialEvilSeeds
+  name: семена злого ростка
+  description: Редкие семена опасного вида, который поможет вам в ваших делах! Используйте в руке, чтобы посадить.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/tomato.rsi
+    state: seed
+    color: "#802020"
+  - type: Item
+    size: Tiny
+  - type: UplinkEvilSeed
+
+- type: entity
+  parent: MobTomatoKiller
+  id: ImperialEvilSeedling
+  name: злой росток
+  description: Злое растение, верное Синдикату.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+
+# /obj/item/bee_smoker
+- type: entity
+  parent: BaseItem
+  id: ImperialBeeSmoker
+  name: пчелиный дымарь
+  description: Устройство, превращающее дым в газ, гипнотизирующий пчёл исполнять наши команды.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Roles/items.rsi
+    state: beesmoker
+  - type: Item
+    size: Normal
+  - type: UplinkBeeSmoker
+
+# /obj/item/storage/toolbox/guncase/monkeycase
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkMonkeySupplies
+  name: припасы агента-обезьяны
+  description: Иногда нужно чуть больше огневой мощи, чем у бешеной обезьяны. Например, у вооружённой бешеной обезьяны!
+  components:
+  - type: Storage
+    grid:
+    - 0,0,5,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponPistolViper
+        - id: MagazinePistol
+          amount: 2
+        - id: CombatKnife
+        - id: ClusterBananaPeel
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+
+# /obj/item/emitter_disk/blast
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialEmitterDiskBlast
+  name: диск гиперконтузионного диода
+  description: "Диск конфигурации диода: эмиттер стреляет мощными взрывными лазерами, но вдвое реже."
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/cd.rsi
+    state: icon
+    color: "#FF8040"
+  - type: Item
+    size: Tiny
+  - type: UplinkEmitterDisk
+
+- type: entity
+  parent: EmitterBolt
+  id: ImperialEmitterBoltBlast
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ExplodeOnTrigger
+  - type: TriggerOnCollide
+    fixtureID: projectile
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 20
+    intensitySlope: 5
+    maxIntensity: 4
+    canCreateVacuum: false
+
+# /obj/item/storage/briefcase/gun
+- type: entity
+  parent: [ BriefcaseSyndie, BaseSyndicateContraband ]
+  id: ImperialBriefcaseGun
+  name: кейс
+  description: Кейс со спусковым механизмом в ручке, связанным с первым оружием внутри. «Выстрел» кейсом стреляет этим оружием через незаметное отверстие.
+  suffix: Встроенный спуск
+  components:
+  - type: Gun
+    fireRate: 4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: BasicEntityAmmoProvider
+    proto: BulletPistol
+    capacity: 1
+    count: 1
+  - type: UplinkBriefcaseGun
+
+- type: entity
+  parent: ImperialBriefcaseGun
+  id: ImperialBriefcaseGunPreloaded
+  suffix: Встроенный спуск, с Макаровым
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: ImperialWeaponPistolMakarov
+
+# /obj/item/flashlight/lantern/syndicate
+- type: entity
+  parent: [ FlashlightLantern, BaseSyndicateContraband ]
+  id: ImperialMothLantern
+  name: сверхъяркий фонарь
+  description: Мы слышали, что моли вроде вас очень любят лампы. Наслаждайтесь ранним доступом к прототипу «Сверхъяркого фонаря™».
+  components:
+  - type: PointLight
+    radius: 9
+    energy: 4

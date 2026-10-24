@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from ParadiseSS13 (toy.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "paint-1"
+    },
+    {
+      "name": "paint-0"
+    },
+    {
+      "name": "pepper-1"
+    },
+    {
+      "name": "pepper-0"
+    }
+  ]
+}

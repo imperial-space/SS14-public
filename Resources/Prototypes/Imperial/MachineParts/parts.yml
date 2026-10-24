@@ -1,0 +1,392 @@
+# Стандартные детали машин с уровнями (/obj/item/stock_parts, code/modules/research/stock_parts.dm).
+
+- type: entity
+  parent: BaseItem
+  id: ImperialStockPartBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/MachineParts/stock_parts.rsi
+  - type: Item
+    size: Tiny
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 10
+  - type: StaticPrice
+    price: 15
+
+- type: Tag
+  id: ImperialStockPartMatterBin
+
+- type: entity
+  parent: ImperialStockPartBase
+  id: ImperialStockPartMatterBin1
+  name: контейнер материи
+  description: Контейнер для хранения сжатой материи в ожидании переработки.
+  suffix: Уровень 1
+  components:
+  - type: Sprite
+    state: matter_bin
+  - type: ImperialStockPart
+    partType: MatterBin
+    tier: 1
+  - type: Tag
+    tags:
+    - ImperialStockPartMatterBin
+  - type: StaticPrice
+    price: 15
+
+- type: entity
+  parent: ImperialStockPartBase
+  id: ImperialStockPartMatterBin2
+  name: продвинутый контейнер материи
+  description: Контейнер для хранения сжатой материи в ожидании переработки.
+  suffix: Уровень 2
+  components:
+  - type: Sprite
+    state: advanced_matter_bin
+  - type: ImperialStockPart
+    partType: MatterBin
+    tier: 2
+  - type: Tag
+    tags:
+    - ImperialStockPartMatterBin
+  - type: StaticPrice
+    price: 60
+
+- type: entity
+  parent: ImperialStockPartBase
+  id: ImperialStockPartMatterBin3
+  name: супер-контейнер материи
+  description: Контейнер для хранения сжатой материи в ожидании переработки.
+  suffix: Уровень 3
+  components:
+  - type: Sprite
+    state: super_matter_bin
+  - type: ImperialStockPart
+    partType: MatterBin
+    tier: 3
+  - type: Tag
+    tags:
+    - ImperialStockPartMatterBin
+  - type: StaticPrice
+    price: 135
+
+- type: entity
+  parent: ImperialStockPartBase
+  id: ImperialStockPartMatterBin4
+  name: блюспейс-контейнер материи
+  description: Контейнер для хранения сжатой материи в ожидании переработки.
+  suffix: Уровень 4
+  components:
+  - type: Sprite
+    state: bluespace_matter_bin
+  - type: ImperialStockPart
+    partType: MatterBin
+    tier: 4
+  - type: Tag
+    tags:
+    - ImperialStockPartMatterBin
+  - type: StaticPrice
+    price: 240
+
+- type: Tag
+  id: ImperialStockPartCapacitor
+
+- type: entity
+  parent: ImperialStockPartBase
+  id: ImperialStockPartCapacitor1
+  name: конденсатор
+  description: Конденсатор, используемый в сборке самых разных устройств.
+  suffix: Уровень 1
+  components:
+  - type: Sprite
+    state: capacitor
+  - type: ImperialStockPart
+    partType: Capacitor
+    tier: 1
+  - type: Tag
+    tags:
+    - ImperialStockPartCapacitor
+  - type: StaticPrice
+    price: 15
+
+- type: entity
+  parent: ImperialStockPartBase
+  id: ImperialStockPartCapacitor2
+  name: продвинутый конденсатор
+  description: Конденсатор, используемый в сборке самых разных устройств.
+  suffix: Уровень 2
+  components:
+  - type: Sprite
+    state: adv_capacitor
+  - type: ImperialStockPart
+    partType: Capacitor
+    tier: 2
+  - type: Tag
+    tags:
+    - ImperialStockPartCapacitor
+  - type: StaticPrice
+    price: 60
+
+- type: entity
+  parent: ImperialStockPartBase
+  id: ImperialStockPartCapacitor3
+  name: супер-конденсатор
+  description: Конденсатор, используемый в сборке самых разных устройств.
+  suffix: Уровень 3
+  components:
+  - type: Sprite
+    state: super_capacitor
+  - type: ImperialStockPart
+    partType: Capacitor
+    tier: 3
+  - type: Tag
+    tags:
+    - ImperialStockPartCapacitor
+  - type: StaticPrice
+    price: 135
+
+- type: entity
+  parent: ImperialStockPartBase
+  id: ImperialStockPartCapacitor4
+  name: квадратичный конденсатор
+  description: Конденсатор, используемый в сборке самых разных устройств.
+  suffix: Уровень 4
+  components:
+  - type: Sprite
+    state: quadratic_capacitor
+  - type: ImperialStockPart
+    partType: Capacitor
+    tier: 4
+  - type: Tag
+    tags:
+    - ImperialStockPartCapacitor
+  - type: StaticPrice
+    price: 240
+
+- type: Tag
+  id: ImperialStockPartServo
+
+- type: entity
+  parent: ImperialStockPartBase
+  id: ImperialStockPartServo1
+  name: микросервопривод
+  description: Крошечный мотор, используемый в сборке самых разных устройств.
+  suffix: Уровень 1
+  components:
+  - type: Sprite
+    state: micro_servo
+  - type: ImperialStockPart
+    partType: Servo
+    tier: 1
+  - type: Tag
+    tags:
+    - ImperialStockPartServo
+  - type: StaticPrice
+    price: 15
+
+- type: entity
+  parent: ImperialStockPartBase
+  id: ImperialStockPartServo2
+  name: наносервопривод
+  description: Крошечный мотор, используемый в сборке самых разных устройств.
+  suffix: Уровень 2
+  components:
+  - type: Sprite
+    state: nano_servo
+  - type: ImperialStockPart
+    partType: Servo
+    tier: 2
+  - type: Tag
+    tags:
+    - ImperialStockPartServo
+  - type: StaticPrice
+    price: 60
+
+- type: entity
+  parent: ImperialStockPartBase
+  id: ImperialStockPartServo3
+  name: пикосервопривод
+  description: Крошечный мотор, используемый в сборке самых разных устройств.
+  suffix: Уровень 3
+  components:
+  - type: Sprite
+    state: pico_servo
+  - type: ImperialStockPart
+    partType: Servo
+    tier: 3
+  - type: Tag
+    tags:
+    - ImperialStockPartServo
+  - type: StaticPrice
+    price: 135
+
+- type: entity
+  parent: ImperialStockPartBase
+  id: ImperialStockPartServo4
+  name: фемтосервопривод
+  description: Крошечный мотор, используемый в сборке самых разных устройств.
+  suffix: Уровень 4
+  components:
+  - type: Sprite
+    state: femto_servo
+  - type: ImperialStockPart
+    partType: Servo
+    tier: 4
+  - type: Tag
+    tags:
+    - ImperialStockPartServo
+  - type: StaticPrice
+    price: 240
+
+- type: Tag
+  id: ImperialStockPartMicroLaser
+
+- type: entity
+  parent: ImperialStockPartBase
+  id: ImperialStockPartMicroLaser1
+  name: микролазер
+  description: Крошечный лазер, используемый в некоторых устройствах.
+  suffix: Уровень 1
+  components:
+  - type: Sprite
+    state: micro_laser
+  - type: ImperialStockPart
+    partType: MicroLaser
+    tier: 1
+  - type: Tag
+    tags:
+    - ImperialStockPartMicroLaser
+  - type: StaticPrice
+    price: 15
+
+- type: entity
+  parent: ImperialStockPartBase
+  id: ImperialStockPartMicroLaser2
+  name: мощный микролазер
+  description: Крошечный лазер, используемый в некоторых устройствах.
+  suffix: Уровень 2
+  components:
+  - type: Sprite
+    state: high_micro_laser
+  - type: ImperialStockPart
+    partType: MicroLaser
+    tier: 2
+  - type: Tag
+    tags:
+    - ImperialStockPartMicroLaser
+  - type: StaticPrice
+    price: 60
+
+- type: entity
+  parent: ImperialStockPartBase
+  id: ImperialStockPartMicroLaser3
+  name: сверхмощный микролазер
+  description: Крошечный лазер, используемый в некоторых устройствах.
+  suffix: Уровень 3
+  components:
+  - type: Sprite
+    state: ultra_high_micro_laser
+  - type: ImperialStockPart
+    partType: MicroLaser
+    tier: 3
+  - type: Tag
+    tags:
+    - ImperialStockPartMicroLaser
+  - type: StaticPrice
+    price: 135
+
+- type: entity
+  parent: ImperialStockPartBase
+  id: ImperialStockPartMicroLaser4
+  name: квад-ультра микролазер
+  description: Крошечный лазер, используемый в некоторых устройствах.
+  suffix: Уровень 4
+  components:
+  - type: Sprite
+    state: quadultra_micro_laser
+  - type: ImperialStockPart
+    partType: MicroLaser
+    tier: 4
+  - type: Tag
+    tags:
+    - ImperialStockPartMicroLaser
+  - type: StaticPrice
+    price: 240
+
+- type: Tag
+  id: ImperialStockPartScanningModule
+
+- type: entity
+  parent: ImperialStockPartBase
+  id: ImperialStockPartScanningModule1
+  name: модуль сканирования
+  description: Компактный сканирующий модуль высокого разрешения для некоторых устройств.
+  suffix: Уровень 1
+  components:
+  - type: Sprite
+    state: scan_module
+  - type: ImperialStockPart
+    partType: ScanningModule
+    tier: 1
+  - type: Tag
+    tags:
+    - ImperialStockPartScanningModule
+  - type: StaticPrice
+    price: 15
+
+- type: entity
+  parent: ImperialStockPartBase
+  id: ImperialStockPartScanningModule2
+  name: продвинутый модуль сканирования
+  description: Компактный сканирующий модуль высокого разрешения для некоторых устройств.
+  suffix: Уровень 2
+  components:
+  - type: Sprite
+    state: adv_scan_module
+  - type: ImperialStockPart
+    partType: ScanningModule
+    tier: 2
+  - type: Tag
+    tags:
+    - ImperialStockPartScanningModule
+  - type: StaticPrice
+    price: 60
+
+- type: entity
+  parent: ImperialStockPartBase
+  id: ImperialStockPartScanningModule3
+  name: фазовый модуль сканирования
+  description: Компактный сканирующий модуль высокого разрешения для некоторых устройств.
+  suffix: Уровень 3
+  components:
+  - type: Sprite
+    state: super_scan_module
+  - type: ImperialStockPart
+    partType: ScanningModule
+    tier: 3
+  - type: Tag
+    tags:
+    - ImperialStockPartScanningModule
+  - type: StaticPrice
+    price: 135
+
+- type: entity
+  parent: ImperialStockPartBase
+  id: ImperialStockPartScanningModule4
+  name: трифазный модуль сканирования
+  description: Компактный сканирующий модуль высокого разрешения для некоторых устройств.
+  suffix: Уровень 4
+  components:
+  - type: Sprite
+    state: triphasic_scan_module
+  - type: ImperialStockPart
+    partType: ScanningModule
+    tier: 4
+  - type: Tag
+    tags:
+    - ImperialStockPartScanningModule
+  - type: StaticPrice
+    price: 240
+

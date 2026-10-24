@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (fishing_hud.dmi)",
+  "size": {
+    "x": 32,
+    "y": 96
+  },
+  "states": [
+    {
+      "name": "background_default"
+    },
+    {
+      "name": "background_lavaland"
+    },
+    {
+      "name": "background_chasm"
+    },
+    {
+      "name": "background_ice"
+    },
+    {
+      "name": "background_plasma"
+    },
+    {
+      "name": "background_dank"
+    },
+    {
+      "name": "background_tray"
+    },
+    {
+      "name": "background_oil_well"
+    },
+    {
+      "name": "background_space"
+    },
+    {
+      "name": "background_carp_rift"
+    },
+    {
+      "name": "background_mansus"
+    },
+    {
+      "name": "background_flip"
+    },
+    {
+      "name": "background_antigrav"
+    },
+    {
+      "name": "background_camo"
+    },
+    {
+      "name": "frame_wood"
+    },
+    {
+      "name": "frame_bone"
+    },
+    {
+      "name": "frame_science"
+    },
+    {
+      "name": "frame_telescopic"
+    },
+    {
+      "name": "frame_master"
+    },
+    {
+      "name": "frame_material"
+    },
+    {
+      "name": "frame_athletic"
+    },
+    {
+      "name": "bait_bottom"
+    },
+    {
+      "name": "bait_top"
+    },
+    {
+      "name": "bait_bar"
+    },
+    {
+      "name": "completion_overlay"
+    },
+    {
+      "name": "fish"
+    },
+    {
+      "name": "crab"
+    },
+    {
+      "name": "bone"
+    },
+    {
+      "name": "hostile"
+    },
+    {
+      "name": "coin"
+    },
+    {
+      "name": "slime",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "gem"
+    },
+    {
+      "name": "chunky"
+    },
+    {
+      "name": "jellyfish"
+    },
+    {
+      "name": "star"
+    },
+    {
+      "name": "electric"
+    },
+    {
+      "name": "critter"
+    },
+    {
+      "name": "seed"
+    },
+    {
+      "name": "weapon"
+    },
+    {
+      "name": "bottle"
+    },
+    {
+      "name": "organ"
+    }
+  ]
+}

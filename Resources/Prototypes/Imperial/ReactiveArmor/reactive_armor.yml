@@ -1,0 +1,64 @@
+# Реактивная броня 1 в 1 с tgstation/BandaStation (code/modules/clothing/suits/reactive_armour.dm).
+
+# obj/item/reactive_armor_shell
+- type: entity
+  parent: BaseItem
+  id: ReactiveArmorShell
+  name: оболочка реактивной брони
+  description: Экспериментальный бронекостюм, ожидающий установки ядра аномалии.
+  components:
+  - type: Sprite
+    sprite: Imperial/ReactiveArmor/reactive_teleport.rsi
+    state: icon
+  - type: Item
+    size: Huge # WEIGHT_CLASS_BULKY
+  - type: ReactiveArmorShell
+    armors:
+      AnomalyCoreBluespace: ClothingOuterReactiveTeleport
+
+# obj/item/clothing/suit/armor/reactive/teleport
+- type: entity
+  parent: ClothingOuterBaseMedium
+  id: ClothingOuterReactiveTeleport
+  name: реактивная телепортационная броня
+  description: Кто-то отделил нашего научного руководителя от его собственной головы!
+  components:
+  - type: Sprite
+    sprite: Imperial/ReactiveArmor/reactive_teleport.rsi
+    layers:
+    - state: icon
+      map: [ "base" ]
+  - type: Clothing
+    sprite: Imperial/ReactiveArmor/reactive_teleport.rsi
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ReactiveArmorVisuals.Active:
+        base:
+          True: { state: icon-on }
+          False: { state: icon }
+  # armor_reactive: fire = 100, acid = 100 — от ударов и пуль броня сама по себе не защищает.
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0
+  - type: FireProtection
+    reduction: 1
+  - type: ReactiveTeleportArmor
+
+- type: entity
+  parent: BaseToggleAction
+  id: ActionToggleReactiveArmor
+  name: Переключить реактивную броню
+  description: Включить или выключить реакцию брони на удары.
+  components:
+  - type: Action
+    itemIconStyle: BigItem
+    icon:
+      sprite: Imperial/ReactiveArmor/reactive_teleport.rsi
+      state: icon
+    iconOn:
+      sprite: Imperial/ReactiveArmor/reactive_teleport.rsi
+      state: icon-on
+  - type: InstantAction
+    event: !type:ToggleReactiveArmorEvent {}

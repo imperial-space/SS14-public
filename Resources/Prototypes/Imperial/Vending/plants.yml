@@ -1,0 +1,1135 @@
+# Растения торгомата семян TG (code/modules/hydroponics/grown), сгенерировано scratchpad/cargo/gen_plants.pl.
+
+- type: seed
+  id: imperialBellPepper
+  name: seeds-imperialBellPepper-name
+  noun: seeds-noun-seeds
+  displayName: seeds-imperialBellPepper-display-name
+  plantRsi: Imperial/Vending/Plants/bellpepper.rsi
+  packetPrototype: ImperialBellPepperSeeds
+  productPrototypes:
+  - ImperialFoodBellPepper
+  harvestRepeat: Repeat
+  lifespan: 20
+  maturation: 10
+  production: 10
+  yield: 3
+  potency: 20
+  growthStages: 6
+  idealLight: 8
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+    Vitamin:
+      Min: 1
+      Max: 8
+      PotencyDivisor: 13
+
+- type: entity
+  parent: SeedBase
+  id: ImperialBellPepperSeeds
+  name: пакет семян (болгарский перец)
+  components:
+  - type: Seed
+    seedId: imperialBellPepper
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/bellpepper.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: ImperialFoodBellPepper
+  name: болгарский перец
+  description: "Большой и сладкий перец, отлично подходит для салатов и фаршировки."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/bellpepper.rsi
+  - type: Produce
+    seedId: imperialBellPepper
+  - type: FlavorProfile
+    flavors:
+    - peppery
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+
+- type: seed
+  id: imperialCoffeeArabica
+  name: seeds-imperialCoffeeArabica-name
+  noun: seeds-noun-seeds
+  displayName: seeds-imperialCoffeeArabica-display-name
+  plantRsi: Imperial/Vending/Plants/coffeearabica.rsi
+  packetPrototype: ImperialCoffeeArabicaSeeds
+  productPrototypes:
+  - ImperialFoodCoffeeArabica
+  harvestRepeat: Repeat
+  lifespan: 30
+  maturation: 5
+  production: 5
+  yield: 5
+  potency: 10
+  growthStages: 5
+  idealLight: 8
+  idealHeat: 298
+  chemicals:
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+    Nitrogen:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+    Coffee:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+
+- type: entity
+  parent: SeedBase
+  id: ImperialCoffeeArabicaSeeds
+  name: пакет семян (кофе арабика)
+  components:
+  - type: Seed
+    seedId: imperialCoffeeArabica
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/coffeearabica.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: ImperialFoodCoffeeArabica
+  name: кофейные зёрна арабики
+  description: "Пахнут не хуже свежесваренного кофе."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/coffeearabica.rsi
+  - type: Produce
+    seedId: imperialCoffeeArabica
+  - type: FlavorProfile
+    flavors:
+    - bitter
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Nitrogen
+          Quantity: 1
+        - ReagentId: Coffee
+          Quantity: 1
+
+- type: seed
+  id: imperialCucumber
+  name: seeds-imperialCucumber-name
+  noun: seeds-noun-seeds
+  displayName: seeds-imperialCucumber-display-name
+  plantRsi: Imperial/Vending/Plants/cucumber.rsi
+  packetPrototype: ImperialCucumberSeeds
+  productPrototypes:
+  - ImperialFoodCucumber
+  harvestRepeat: Repeat
+  lifespan: 25
+  maturation: 10
+  production: 1
+  yield: 5
+  potency: 10
+  growthStages: 6
+  idealLight: 8
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: entity
+  parent: SeedBase
+  id: ImperialCucumberSeeds
+  name: пакет семян (огурец)
+  components:
+  - type: Seed
+    seedId: imperialCucumber
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/cucumber.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: ImperialFoodCucumber
+  name: огурец
+  description: "Продолговатый, зелёный, в пупырышках — эталон салата."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/cucumber.rsi
+  - type: Produce
+    seedId: imperialCucumber
+  - type: FlavorProfile
+    flavors:
+    - vegetables
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+
+- type: seed
+  id: imperialGlowshroom
+  name: seeds-imperialGlowshroom-name
+  noun: seeds-noun-seeds
+  displayName: seeds-imperialGlowshroom-display-name
+  plantRsi: Imperial/Vending/Plants/glowshroom.rsi
+  packetPrototype: ImperialGlowshroomSeeds
+  productPrototypes:
+  - ImperialFoodGlowshroom
+  lifespan: 100
+  maturation: 15
+  production: 1
+  yield: 3
+  potency: 30
+  growthStages: 4
+  idealLight: 0
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+    Phosphorus:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Radium:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+
+- type: entity
+  parent: SeedBase
+  id: ImperialGlowshroomSeeds
+  name: пакет семян (светогриб)
+  components:
+  - type: Seed
+    seedId: imperialGlowshroom
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/glowshroom.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: ImperialFoodGlowshroom
+  name: светогриб
+  description: "Светится в темноте. Без шуток."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/glowshroom.rsi
+  - type: Produce
+    seedId: imperialGlowshroom
+  - type: FlavorProfile
+    flavors:
+    - mushroom
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Phosphorus
+          Quantity: 1
+        - ReagentId: Radium
+          Quantity: 1
+  - type: PointLight
+    radius: 1.5
+    energy: 1
+    color: "#c0ff9a"
+
+- type: seed
+  id: imperialGrass
+  name: seeds-imperialGrass-name
+  noun: seeds-noun-seeds
+  displayName: seeds-imperialGrass-display-name
+  plantRsi: Imperial/Vending/Plants/grass.rsi
+  packetPrototype: ImperialGrassSeeds
+  productPrototypes:
+  - ImperialFoodGrass
+  harvestRepeat: Repeat
+  lifespan: 40
+  maturation: 2
+  production: 5
+  yield: 5
+  potency: 10
+  growthStages: 2
+  idealLight: 8
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 50
+    Hydrogen:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+
+- type: entity
+  parent: SeedBase
+  id: ImperialGrassSeeds
+  name: пакет семян (трава)
+  components:
+  - type: Seed
+    seedId: imperialGrass
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/grass.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: ImperialFoodGrass
+  name: пучок травы
+  description: "Зелёный и пышный. Можно посадить где угодно."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/grass.rsi
+  - type: Produce
+    seedId: imperialGrass
+  - type: FlavorProfile
+    flavors:
+    - grass
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Hydrogen
+          Quantity: 1
+
+- type: seed
+  id: imperialGreenBean
+  name: seeds-imperialGreenBean-name
+  noun: seeds-noun-seeds
+  displayName: seeds-imperialGreenBean-display-name
+  plantRsi: Imperial/Vending/Plants/greenbean.rsi
+  packetPrototype: ImperialGreenBeanSeeds
+  productPrototypes:
+  - ImperialFoodGreenBean
+  harvestRepeat: Repeat
+  lifespan: 25
+  maturation: 4
+  production: 3
+  yield: 3
+  potency: 10
+  growthStages: 4
+  idealLight: 8
+  idealHeat: 298
+  chemicals:
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+    Dylovene:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: entity
+  parent: SeedBase
+  id: ImperialGreenBeanSeeds
+  name: пакет семян (зелёная фасоль)
+  components:
+  - type: Seed
+    seedId: imperialGreenBean
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/greenbean.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: ImperialFoodGreenBean
+  name: стручок зелёной фасоли
+  description: "Хрустящий стручок зелёной фасоли."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/greenbean.rsi
+  - type: Produce
+    seedId: imperialGreenBean
+  - type: FlavorProfile
+    flavors:
+    - vegetables
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Dylovene
+          Quantity: 1
+
+- type: seed
+  id: imperialHerbs
+  name: seeds-imperialHerbs-name
+  noun: seeds-noun-seeds
+  displayName: seeds-imperialHerbs-display-name
+  plantRsi: Imperial/Vending/Plants/herbs.rsi
+  packetPrototype: ImperialHerbsSeeds
+  productPrototypes:
+  - ImperialFoodHerbs
+  harvestRepeat: Repeat
+  lifespan: 25
+  maturation: 6
+  production: 6
+  yield: 5
+  potency: 20
+  growthStages: 2
+  idealLight: 8
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: entity
+  parent: SeedBase
+  id: ImperialHerbsSeeds
+  name: пакет семян (зелень)
+  components:
+  - type: Seed
+    seedId: imperialHerbs
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/herbs.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: ImperialFoodHerbs
+  name: пучок зелени
+  description: "Ароматная зелень для готовки."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/herbs.rsi
+  - type: Produce
+    seedId: imperialHerbs
+  - type: FlavorProfile
+    flavors:
+    - leafy
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+
+- type: seed
+  id: imperialKortaNut
+  name: seeds-imperialKortaNut-name
+  noun: seeds-noun-seeds
+  displayName: seeds-imperialKortaNut-display-name
+  plantRsi: Imperial/Vending/Plants/kortanut.rsi
+  packetPrototype: ImperialKortaNutSeeds
+  productPrototypes:
+  - ImperialFoodKortaNut
+  harvestRepeat: Repeat
+  lifespan: 55
+  maturation: 6
+  production: 6
+  yield: 5
+  potency: 10
+  growthStages: 6
+  idealLight: 8
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: entity
+  parent: SeedBase
+  id: ImperialKortaNutSeeds
+  name: пакет семян (орех корта)
+  components:
+  - type: Seed
+    seedId: imperialKortaNut
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/kortanut.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: ImperialFoodKortaNut
+  name: орех корта
+  description: "Твёрдый орех, из которого делают муку и молоко корта."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/kortanut.rsi
+  - type: Produce
+    seedId: imperialKortaNut
+  - type: FlavorProfile
+    flavors:
+    - nutty
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+
+- type: seed
+  id: imperialLanternfruit
+  name: seeds-imperialLanternfruit-name
+  noun: seeds-noun-seeds
+  displayName: seeds-imperialLanternfruit-display-name
+  plantRsi: Imperial/Vending/Plants/lanternfruit.rsi
+  packetPrototype: ImperialLanternfruitSeeds
+  productPrototypes:
+  - ImperialFoodLanternfruit
+  lifespan: 35
+  maturation: 5
+  production: 5
+  yield: 3
+  potency: 10
+  growthStages: 3
+  idealLight: 8
+  idealHeat: 298
+  chemicals:
+    Licoxide:
+      Min: 1
+      Max: 7
+      PotencyDivisor: 14
+    Nutriment:
+      Min: 1
+      Max: 7
+      PotencyDivisor: 14
+    Sugar:
+      Min: 1
+      Max: 7
+      PotencyDivisor: 14
+    Sulfur:
+      Min: 1
+      Max: 7
+      PotencyDivisor: 14
+
+- type: entity
+  parent: SeedBase
+  id: ImperialLanternfruitSeeds
+  name: пакет семян (лампофрукт)
+  components:
+  - type: Seed
+    seedId: imperialLanternfruit
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/lanternfruit.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: ImperialFoodLanternfruit
+  name: лампофрукт
+  description: "Светящийся кисло-сладкий фрукт."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/lanternfruit.rsi
+  - type: Produce
+    seedId: imperialLanternfruit
+  - type: FlavorProfile
+    flavors:
+    - sour
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Licoxide
+          Quantity: 1
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Sugar
+          Quantity: 1
+        - ReagentId: Sulfur
+          Quantity: 1
+  - type: PointLight
+    radius: 1.5
+    energy: 1
+    color: "#c0ff9a"
+
+- type: seed
+  id: imperialLibertyCap
+  name: seeds-imperialLibertyCap-name
+  noun: seeds-noun-seeds
+  displayName: seeds-imperialLibertyCap-display-name
+  plantRsi: Imperial/Vending/Plants/libertycap.rsi
+  packetPrototype: ImperialLibertyCapSeeds
+  productPrototypes:
+  - ImperialFoodLibertyCap
+  lifespan: 25
+  maturation: 7
+  production: 1
+  yield: 5
+  potency: 15
+  growthStages: 3
+  idealLight: 0
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 50
+    SpaceDrugs:
+      Min: 1
+      Max: 25
+      PotencyDivisor: 4
+
+- type: entity
+  parent: SeedBase
+  id: ImperialLibertyCapSeeds
+  name: пакет семян (гриб «свобода»)
+  components:
+  - type: Seed
+    seedId: imperialLibertyCap
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/libertycap.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: ImperialFoodLibertyCap
+  name: гриб «свобода»
+  description: "Освободите свой разум!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/libertycap.rsi
+  - type: Produce
+    seedId: imperialLibertyCap
+  - type: FlavorProfile
+    flavors:
+    - mushroom
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: SpaceDrugs
+          Quantity: 3
+
+- type: seed
+  id: imperialOlive
+  name: seeds-imperialOlive-name
+  noun: seeds-noun-seeds
+  displayName: seeds-imperialOlive-display-name
+  plantRsi: Imperial/Vending/Plants/olive.rsi
+  packetPrototype: ImperialOliveSeeds
+  productPrototypes:
+  - ImperialFoodOlive
+  harvestRepeat: Repeat
+  lifespan: 150
+  maturation: 10
+  production: 6
+  yield: 5
+  potency: 10
+  growthStages: 6
+  idealLight: 8
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: entity
+  parent: SeedBase
+  id: ImperialOliveSeeds
+  name: пакет семян (оливка)
+  components:
+  - type: Seed
+    seedId: imperialOlive
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/olive.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: ImperialFoodOlive
+  name: оливка
+  description: "Маленькая зелёная оливка, из которой давят масло."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/olive.rsi
+  - type: Produce
+    seedId: imperialOlive
+  - type: FlavorProfile
+    flavors:
+    - oily
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+
+- type: seed
+  id: imperialPeanut
+  name: seeds-imperialPeanut-name
+  noun: seeds-noun-seeds
+  displayName: seeds-imperialPeanut-display-name
+  plantRsi: Imperial/Vending/Plants/peanut.rsi
+  packetPrototype: ImperialPeanutSeeds
+  productPrototypes:
+  - ImperialFoodPeanut
+  lifespan: 55
+  maturation: 6
+  production: 6
+  yield: 5
+  potency: 10
+  growthStages: 6
+  idealLight: 8
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: entity
+  parent: SeedBase
+  id: ImperialPeanutSeeds
+  name: пакет семян (арахис)
+  components:
+  - type: Seed
+    seedId: imperialPeanut
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/peanut.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: ImperialFoodPeanut
+  name: арахис
+  description: "Горсть орешков арахиса в скорлупе."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/peanut.rsi
+  - type: Produce
+    seedId: imperialPeanut
+  - type: FlavorProfile
+    flavors:
+    - nutty
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+
+- type: seed
+  id: imperialPlum
+  name: seeds-imperialPlum-name
+  noun: seeds-noun-seeds
+  displayName: seeds-imperialPlum-display-name
+  plantRsi: Imperial/Vending/Plants/plum.rsi
+  packetPrototype: ImperialPlumSeeds
+  productPrototypes:
+  - ImperialFoodPlum
+  harvestRepeat: Repeat
+  lifespan: 55
+  maturation: 6
+  production: 6
+  yield: 5
+  potency: 10
+  growthStages: 6
+  idealLight: 8
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: entity
+  parent: SeedBase
+  id: ImperialPlumSeeds
+  name: пакет семян (слива)
+  components:
+  - type: Seed
+    seedId: imperialPlum
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/plum.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: ImperialFoodPlum
+  name: слива
+  description: "Сочная фиолетовая слива."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/plum.rsi
+  - type: Produce
+    seedId: imperialPlum
+  - type: FlavorProfile
+    flavors:
+    - sweet
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+
+- type: seed
+  id: imperialPlumpHelmet
+  name: seeds-imperialPlumpHelmet-name
+  noun: seeds-noun-seeds
+  displayName: seeds-imperialPlumpHelmet-display-name
+  plantRsi: Imperial/Vending/Plants/plumphelmet.rsi
+  packetPrototype: ImperialPlumpHelmetSeeds
+  productPrototypes:
+  - ImperialFoodPlumpHelmet
+  lifespan: 25
+  maturation: 8
+  production: 1
+  yield: 4
+  potency: 15
+  growthStages: 3
+  idealLight: 0
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: entity
+  parent: SeedBase
+  id: ImperialPlumpHelmetSeeds
+  name: пакет семян (толстошлемник)
+  components:
+  - type: Seed
+    seedId: imperialPlumpHelmet
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/plumphelmet.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: ImperialFoodPlumpHelmet
+  name: толстошлемник
+  description: "Мясистый гриб, любимое блюдо дворфов."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/plumphelmet.rsi
+  - type: Produce
+    seedId: imperialPlumpHelmet
+  - type: FlavorProfile
+    flavors:
+    - mushroom
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+
+- type: seed
+  id: imperialRose
+  name: seeds-imperialRose-name
+  noun: seeds-noun-seeds
+  displayName: seeds-imperialRose-display-name
+  plantRsi: Imperial/Vending/Plants/rose.rsi
+  packetPrototype: ImperialRoseSeeds
+  productPrototypes:
+  - ImperialFoodRose
+  harvestRepeat: Repeat
+  lifespan: 25
+  maturation: 6
+  production: 6
+  yield: 6
+  potency: 15
+  growthStages: 3
+  idealLight: 8
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+    Oil:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+    Bicaridine:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+
+- type: entity
+  parent: SeedBase
+  id: ImperialRoseSeeds
+  name: пакет семян (роза)
+  components:
+  - type: Seed
+    seedId: imperialRose
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/rose.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: ImperialFoodRose
+  name: роза
+  description: "Красивая красная роза. Осторожно, шипы!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/rose.rsi
+  - type: Produce
+    seedId: imperialRose
+  - type: FlavorProfile
+    flavors:
+    - violets
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Oil
+          Quantity: 1
+        - ReagentId: Bicaridine
+          Quantity: 1
+
+- type: seed
+  id: imperialSunflower
+  name: seeds-imperialSunflower-name
+  noun: seeds-noun-seeds
+  displayName: seeds-imperialSunflower-display-name
+  plantRsi: Imperial/Vending/Plants/sunflower.rsi
+  packetPrototype: ImperialSunflowerSeeds
+  productPrototypes:
+  - ImperialFoodSunflower
+  lifespan: 25
+  maturation: 6
+  production: 2
+  yield: 2
+  potency: 10
+  growthStages: 3
+  idealLight: 8
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+    Cornoil:
+      Min: 1
+      Max: 8
+      PotencyDivisor: 13
+
+- type: entity
+  parent: SeedBase
+  id: ImperialSunflowerSeeds
+  name: пакет семян (подсолнух)
+  components:
+  - type: Seed
+    seedId: imperialSunflower
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/sunflower.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: ImperialFoodSunflower
+  name: подсолнух
+  description: "Яркий жёлтый цветок, полный семечек."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/sunflower.rsi
+  - type: Produce
+    seedId: imperialSunflower
+  - type: FlavorProfile
+    flavors:
+    - nutty
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Cornoil
+          Quantity: 1
+
+- type: seed
+  id: imperialWhiteBeet
+  name: seeds-imperialWhiteBeet-name
+  noun: seeds-noun-seeds
+  displayName: seeds-imperialWhiteBeet-display-name
+  plantRsi: Imperial/Vending/Plants/whitebeet.rsi
+  packetPrototype: ImperialWhiteBeetSeeds
+  productPrototypes:
+  - ImperialFoodWhiteBeet
+  lifespan: 60
+  maturation: 6
+  production: 6
+  yield: 6
+  potency: 10
+  growthStages: 6
+  idealLight: 8
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+    Sugar:
+      Min: 1
+      Max: 20
+      PotencyDivisor: 5
+
+- type: entity
+  parent: SeedBase
+  id: ImperialWhiteBeetSeeds
+  name: пакет семян (белая свёкла)
+  components:
+  - type: Seed
+    seedId: imperialWhiteBeet
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/whitebeet.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: ImperialFoodWhiteBeet
+  name: белая свёкла
+  description: "Сахарная свёкла с белым корнем."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/whitebeet.rsi
+  - type: Produce
+    seedId: imperialWhiteBeet
+  - type: FlavorProfile
+    flavors:
+    - sweet
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Sugar
+          Quantity: 2
+
+- type: seed
+  id: imperialCocaLeaf
+  name: seeds-imperialCocaLeaf-name
+  noun: seeds-noun-seeds
+  displayName: seeds-imperialCocaLeaf-display-name
+  plantRsi: Imperial/Vending/Plants/cocaleaf.rsi
+  packetPrototype: ImperialCocaLeafSeeds
+  productPrototypes:
+  - ImperialFoodCocaLeaf
+  lifespan: 25
+  maturation: 8
+  production: 6
+  yield: 3
+  potency: 20
+  growthStages: 1
+  idealLight: 8
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 15
+      PotencyDivisor: 7
+    Cocaine:
+      Min: 1
+      Max: 30
+      PotencyDivisor: 3
+
+- type: entity
+  parent: SeedBase
+  id: ImperialCocaLeafSeeds
+  name: пакет семян (кока)
+  components:
+  - type: Seed
+    seedId: imperialCocaLeaf
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/cocaleaf.rsi
+
+- type: entity
+  parent: FoodProduceBase
+  id: ImperialFoodCocaLeaf
+  name: лист коки
+  description: "Лист куста коки, содержащий мощный психоактивный алкалоид — кокаин."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Plants/cocaleaf.rsi
+  - type: Produce
+    seedId: imperialCocaLeaf
+  - type: FlavorProfile
+    flavors:
+    - bitter
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Cocaine
+          Quantity: 3

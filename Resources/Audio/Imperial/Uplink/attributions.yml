@@ -1,0 +1,44 @@
+- files: ["armbomb.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/items/weapons/armbomb.ogg)"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["shot_suppressed.ogg", "screech.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/items/weapons/gun/pistol/shot_suppressed.ogg, sound/effects/screech.ogg)"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["phasein.ogg", "emitter2.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/effects/phasein.ogg, sound/items/weapons/emitter2.ogg)"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["kiss.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/effects/emotes/kiss.ogg)"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["box_deploy.ogg", "click.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/misc/box_deploy.ogg, sound/machines/click.ogg)"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["batonextend.ogg", "eatfood.ogg", "pope_entry.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/items/weapons/batonextend.ogg, sound/items/eatfood.ogg, sound/effects/pope_entry.ogg)"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["sear.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/items/weapons/sear.ogg)"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["cardflip.ogg", "cardshuffle.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation (BandaStation), sound/items/cards"
+  source: "https://github.com/ss220club/BandaStation"
+
+- files: ["podwoosh.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/effects/podwoosh.ogg)"
+  source: "https://github.com/ss220club/BandaStation"

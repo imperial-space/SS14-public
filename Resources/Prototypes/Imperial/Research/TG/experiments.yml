@@ -1,0 +1,252 @@
+# Эксперименты techweb TG (code/modules/experisci/experiment). Node — узел TG, required — обязательный,
+# discount — очки TG, которые вернутся серверу (× 75). Выполняются сканером экспериментов, взрывом или победой в аркаде.
+
+# ── Обязательные (required_experiments) ──
+
+- type: imperialTgExperiment
+  id: TgExpPlantsWild
+  name: tg-exp-plants-wild
+  description: tg-exp-plants-wild-desc
+  node: selection
+  required: true
+  requirement: !type:TgConditionRequirement
+    condition: PlantMutated
+
+- type: imperialTgExperiment
+  id: TgExpHaloperidol
+  name: tg-exp-haloperidol
+  description: tg-exp-haloperidol-desc
+  node: medbay_equip_adv
+  required: true
+  requirement: !type:TgReagentRequirement
+    reagent: Haloperidol
+    minAmount: 5
+
+- type: imperialTgExperiment
+  id: TgExpLowYieldBomb
+  name: tg-exp-low-yield
+  description: tg-exp-low-yield-desc
+  node: explosives
+  required: true
+  requirement: !type:TgExplosionRequirement
+    minRadius: 5
+
+- type: imperialTgExperiment
+  id: TgExpFish
+  name: tg-exp-fish
+  description: tg-exp-fish-desc
+  node: fishing_equip_adv
+  required: true
+  requirement: !type:TgScanRequirement
+    count: 4
+    targets:
+    - whitelist:
+        tags:
+        - ImperialFish
+
+# ── Скидочные (discount_experiments) ──
+
+- type: imperialTgExperiment
+  id: TgExpGasPlasma
+  name: tg-exp-gas-plasma
+  description: tg-exp-gas-plasma-desc
+  node: plasma_control
+  discount: 80
+  requirement: !type:TgGasRequirement
+    gas: Plasma
+    moles: 10
+
+- type: imperialTgExperiment
+  id: TgExpGasN2O
+  name: tg-exp-gas-n2o
+  description: tg-exp-gas-n2o-desc
+  node: fusion
+  discount: 120
+  requirement: !type:TgGasRequirement
+    gas: NitrousOxide
+    moles: 10
+
+- type: imperialTgExperiment
+  id: TgExpGasBZ
+  name: tg-exp-gas-bz
+  description: tg-exp-gas-bz-desc
+  node: exp_tools
+  discount: 160
+  requirement: !type:TgGasRequirement
+    gas: BZ
+    moles: 10
+
+- type: imperialTgExperiment
+  id: TgExpCytologySlime
+  name: tg-exp-cytology-slime
+  description: tg-exp-cytology-slime-desc
+  node: xenobiology
+  discount: 120
+  requirement: !type:TgScanRequirement
+    targets:
+    - whitelist:
+        components:
+        - Slime
+
+- type: imperialTgExperiment
+  id: TgExpMutant
+  name: tg-exp-mutant
+  description: tg-exp-mutant-desc
+  node: gene_engineering
+  discount: 160
+  requirement: !type:TgConditionRequirement
+    condition: Mutant
+
+- type: imperialTgExperiment
+  id: TgExpPlantsTraits
+  name: tg-exp-plants-traits
+  description: tg-exp-plants-traits-desc
+  node: selection
+  discount: 120
+  requirement: !type:TgConditionRequirement
+    condition: PlantTrait
+    count: 3
+
+- type: imperialTgExperiment
+  id: TgExpMachineryTier2
+  name: tg-exp-machinery-tier2
+  description: tg-exp-machinery-tier2-desc
+  node: parts_adv
+  discount: 120
+  requirement: !type:TgConditionRequirement
+    condition: Machine
+    count: 6
+
+- type: imperialTgExperiment
+  id: TgExpMachineryTier3
+  name: tg-exp-machinery-tier3
+  description: tg-exp-machinery-tier3-desc
+  node: parts_bluespace
+  discount: 160
+  requirement: !type:TgConditionRequirement
+    condition: Machine
+    count: 6
+
+- type: imperialTgExperiment
+  id: TgExpCryostylane
+  name: tg-exp-cryostylane
+  description: tg-exp-cryostylane-desc
+  node: cryostasis
+  discount: 160
+  requirement: !type:TgReagentRequirement
+    reagent: Cryostylane
+    minAmount: 5
+
+- type: imperialTgExperiment
+  id: TgExpBluespaceCrystal
+  name: tg-exp-bluespace-crystal
+  description: tg-exp-bluespace-crystal-desc
+  node: applied_bluespace
+  discount: 80
+  requirement: !type:TgScanRequirement
+    targets:
+    - prototypes: [ XenoBluespaceCrystal ]
+
+- type: imperialTgExperiment
+  id: TgExpAnomalies
+  name: tg-exp-anomalies
+  description: tg-exp-anomalies-desc
+  node: anomaly_shells
+  discount: 200
+  requirement: !type:TgScanRequirement
+    count: 4
+    targets:
+    - prototypes: [ AnomalyCoreBluespace, AnomalyCoreElectricity, AnomalyCoreFlesh, AnomalyCoreFlora, AnomalyCoreGravity, AnomalyCoreIce, AnomalyCoreLiquid, AnomalyCorePyroclastic ]
+
+- type: imperialTgExperiment
+  id: TgExpHighYieldBomb
+  name: tg-exp-high-yield
+  description: tg-exp-high-yield-desc
+  node: exotic_ammo
+  discount: 160
+  requirement: !type:TgExplosionRequirement
+    minRadius: 12
+
+- type: imperialTgExperiment
+  id: TgExpJanitorTrash
+  name: tg-exp-janitor-trash
+  description: tg-exp-janitor-trash-desc
+  node: sanitation
+  discount: 80
+  requirement: !type:TgPuddleRequirement
+    count: 3
+    reagents: [ Vomit, Blood ]
+
+- type: imperialTgExperiment
+  id: TgExpArcade
+  name: tg-exp-arcade
+  description: tg-exp-arcade-desc
+  node: gaming
+  discount: 80
+  requirement: !type:TgArcadeRequirement
+
+- type: imperialTgExperiment
+  id: TgExpFishSecond
+  name: tg-exp-fish-second
+  description: tg-exp-fish-second-desc
+  node: marine_util
+  discount: 120
+  requirement: !type:TgScanRequirement
+    count: 8
+    targets:
+    - whitelist:
+        tags:
+        - ImperialFish
+
+- type: imperialTgExperiment
+  id: TgExpAutopsyXeno
+  name: tg-exp-autopsy-xeno
+  description: tg-exp-autopsy-xeno-desc
+  node: surgery_tools
+  discount: 160
+  requirement: !type:TgConditionRequirement
+    condition: AutopsyXeno
+
+- type: Tag
+  id: ImperialFish
+
+- type: Tag
+  id: ImperialCyberOrgan
+
+- type: Tag
+  id: ImperialSkillchip
+
+# Эксперименты по сканированию рыб, открывающие измерения рыбопортера (/datum/experiment/scanning/fish/*).
+- type: imperialTgExperiment
+  id: TgExpFishThird
+  name: tg-exp-fish-third
+  description: tg-exp-fish-third-desc
+  node: fishing_equip_adv
+  requirement: !type:TgScanRequirement
+    count: 11
+    targets:
+    - whitelist:
+        tags:
+        - ImperialFish
+
+- type: imperialTgExperiment
+  id: TgExpFishHolo
+  name: tg-exp-fish-holo
+  description: tg-exp-fish-holo-desc
+  node: fishing_equip_adv
+  requirement: !type:TgScanRequirement
+    count: 3
+    targets:
+    - prototypes: [ ImperialFishHolo, ImperialFishHoloCrab, ImperialFishHoloPuffer, ImperialFishHoloAngel, ImperialFishHoloClown, ImperialFishHoloCheckered, ImperialFishHoloHalffish ]
+
+- type: imperialTgExperiment
+  id: TgExpFishFourth
+  name: tg-exp-fish-fourth
+  description: tg-exp-fish-fourth-desc
+  node: fishing_equip_adv
+  requirement: !type:TgScanRequirement
+    count: 17
+    targets:
+    - whitelist:
+        tags:
+        - ImperialFish

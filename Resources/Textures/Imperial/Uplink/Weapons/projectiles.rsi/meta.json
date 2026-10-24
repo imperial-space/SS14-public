@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (meteor.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "gauss"
+    },
+    {
+      "name": "gaussphase"
+    },
+    {
+      "name": "smartgun",
+      "delays": [
+        [
+          0.05,
+          0.05
+        ]
+      ]
+    },
+    {
+      "name": "flechette"
+    },
+    {
+      "name": "flechette_plastic"
+    },
+    {
+      "name": "84mm-heap",
+      "delays": [
+        [
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "meteorslug"
+    }
+  ]
+}

@@ -293,10 +293,14 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
 
         EnsureComp<PullableComponent>(riderUid);
 
-        _transform.AttachToGridOrMap(riderUid);
+        // При удалении карты переставлять водителя уже некуда.
+        if (!TerminatingOrDeleted(Transform(vehicleUid).MapUid))
+        {
+            _transform.AttachToGridOrMap(riderUid);
 
-        _transform.SetWorldPosition(riderUid, _transform.GetWorldPosition(vehicleUid));
-        _transform.SetWorldRotation(riderUid, _transform.GetWorldRotation(vehicleUid));
+            _transform.SetWorldPosition(riderUid, _transform.GetWorldPosition(vehicleUid));
+            _transform.SetWorldRotation(riderUid, _transform.GetWorldRotation(vehicleUid));
+        }
 
         if (TryComp<InputMoverComponent>(riderUid, out var inputMover))
         {

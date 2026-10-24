@@ -1,0 +1,25 @@
+{
+    "version":  1,
+    "license":  "CC-BY-SA-3.0",
+    "copyright":  "Taken from ParadiseSS13",
+    "size":  {
+                 "x":  32,
+                 "y":  32
+             },
+    "states":  [
+                   {
+                       "name":  "sheath"
+                   },
+                   {
+                       "name":  "sheath-sabre"
+                   },
+                   {
+                       "name":  "equipped-BELT",
+                       "directions":  4
+                   },
+                   {
+                       "name":  "sheath-sabre-equipped-BELT",
+                       "directions":  4
+                   }
+               ]
+}

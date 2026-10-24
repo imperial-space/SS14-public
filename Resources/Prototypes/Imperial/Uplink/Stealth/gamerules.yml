@@ -1,0 +1,28 @@
+# stealthy_tools/telecomm_blackout: «Ионосферные аномалии» — временный отказ телекоммуникаций.
+- type: entity
+  parent: BaseGameRule
+  id: ImperialUplinkCommsBlackout
+  components:
+  - type: StationEvent
+    weight: 0
+    startAnnouncement: uplink-comms-blackout-start
+    endAnnouncement: uplink-comms-blackout-end
+    startAudio:
+      path: /Audio/Corvax/Announcements/comms_blackout.ogg
+    duration: 120
+    maxDuration: 240
+  - type: SolarFlareRule
+    onlyJamHeadsets: true
+    affectedChannels:
+    - Common
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+    extraChannels: []
+    extraCount: 0
+    lightBreakChancePerSecond: 0
+    doorToggleChancePerSecond: 0

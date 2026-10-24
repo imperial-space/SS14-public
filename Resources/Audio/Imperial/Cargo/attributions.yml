@@ -1,0 +1,4 @@
+- files: ["cashregister.ogg", "mortar_long_whistle.ogg", "mortar_whistle.ogg", "triple_beep.ogg", "twobeep.ogg", "warning-buzzer.ogg", "synth_no.ogg", "podwoosh.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation"
+  source: "https://github.com/ss220club/BandaStation"

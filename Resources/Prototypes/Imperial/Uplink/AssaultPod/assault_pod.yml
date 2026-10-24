@@ -1,0 +1,245 @@
+# Штурмовые поды (Paradise, modules/shuttle/assault_pod.dm) в виде десантных капсул.
+# Спрайты капсул — стили supply pod из TG (pod_style: syndicate, centcom, deathsquad).
+
+- type: entity
+  abstract: true
+  parent: CrateGeneric
+  id: ImperialAssaultPodBase
+  name: штурмовая капсула
+  description: Одноразовая десантная капсула. Заберитесь внутрь, закройтесь и запустите — она приземлится прямо внутри станции у выбранного маяка.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Icon
+    sprite: Imperial/Uplink/AssaultPod/pod.rsi
+    state: darkpod
+  - type: Sprite
+    sprite: Imperial/Uplink/AssaultPod/pod.rsi
+    noRot: true
+    layers:
+    - state: darkpod
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: syndicate
+      map: ["decal"]
+    - state: darkpod_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: glow_red
+      map: ["glow"]
+      shader: unshaded
+  - type: EntityStorageVisuals
+    stateBaseClosed: darkpod
+    stateDoorOpen: darkpod
+    stateDoorClosed: darkpod_door
+  - type: EntityStorage
+    capacity: 12
+    enteringRange: 0.5
+    maxSize: 2
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: AssaultPod
+
+- type: entity
+  parent: [ ImperialAssaultPodBase, BaseSyndicateContraband ]
+  id: ImperialAssaultPodSyndicate
+  name: штурмовая капсула Синдиката
+  description: Зловещая капсула в кроваво-красных знаках Синдиката. Лучше отойти подальше. Заберитесь внутрь, закройтесь и запустите — она приземлится прямо внутри станции у выбранного маяка.
+
+- type: entity
+  parent: ImperialAssaultPodBase
+  id: ImperialAssaultPodErt
+  name: десантная капсула ОБР
+  description: Капсула NanoTrasen для отряда быстрого реагирования. Заберитесь внутрь, закройтесь и запустите — она приземлится прямо внутри станции у выбранного маяка.
+  components:
+  - type: Icon
+    state: pod
+  - type: Sprite
+    layers:
+    - state: pod
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: centcom
+      map: ["decal"]
+    - state: pod_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: glow_blue
+      map: ["glow"]
+      shader: unshaded
+  - type: EntityStorageVisuals
+    stateBaseClosed: pod
+    stateDoorOpen: pod
+    stateDoorClosed: pod_door
+
+- type: entity
+  parent: ImperialAssaultPodBase
+  id: ImperialAssaultPodDeathSquad
+  name: десантная капсула эскадрона смерти
+  description: Капсула NanoTrasen в знаках элитного ударного отряда. Заберитесь внутрь, закройтесь и запустите — она приземлится прямо внутри станции у выбранного маяка.
+  components:
+  - type: Sprite
+    layers:
+    - state: darkpod
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: deathsquad
+      map: ["decal"]
+    - state: darkpod_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: glow_blue
+      map: ["glow"]
+      shader: unshaded
+
+# ── Устройства наведения (/obj/item/assault_pod) ──
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: ImperialAssaultPodTargeterBase
+  name: устройство наведения штурмового пода
+  description: Выбирает зону высадки штурмовой капсулы. ПКМ — выбор маяка, использование в руке — развернуть капсулу под ногами.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/AssaultPod/targeter.rsi
+    state: red
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: [ ImperialAssaultPodTargeterBase, BaseSyndicateContraband ]
+  id: ImperialAssaultPodTargeterSyndicate
+  components:
+  - type: AssaultPodTargeter
+    pod: ImperialAssaultPodSyndicate
+
+- type: entity
+  parent: ImperialAssaultPodTargeterBase
+  id: ImperialAssaultPodTargeterErt
+  suffix: ОБР
+  components:
+  - type: Sprite
+    state: blue
+  - type: AssaultPodTargeter
+    pod: ImperialAssaultPodErt
+
+- type: entity
+  parent: ImperialAssaultPodTargeterBase
+  id: ImperialAssaultPodTargeterDeathSquad
+  suffix: Эскадрон смерти
+  components:
+  - type: Sprite
+    state: blue
+  - type: AssaultPodTargeter
+    pod: ImperialAssaultPodDeathSquad
+
+# ── Большой штурмовой под «Steel Rain» (отдельный грид, админ-спавн: assaultpod ship) ──
+
+- type: entity
+  abstract: true
+  parent: BaseComputer
+  id: ImperialAssaultPodConsoleBase
+  name: консоль штурмового пода
+  description: Наводит штурмовой под на маяк станции (ПКМ — «Зона высадки») и запускает его. Поды одноразовые — летят только в одну сторону.
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: AssaultPodConsole
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#c94242"
+
+- type: entity
+  parent: [ ImperialAssaultPodConsoleBase, BaseSyndicateContraband ]
+  id: ImperialAssaultPodConsoleSyndicate
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: syndishuttle
+    - map: ["computerLayerKeys"]
+      state: syndie_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+
+- type: entity
+  parent: ImperialAssaultPodConsoleBase
+  id: ImperialAssaultPodConsoleErt
+  suffix: ОБР
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shuttle
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    color: "#4a8cff"
+
+- type: entity
+  parent: ImperialAssaultPodConsoleErt
+  id: ImperialAssaultPodConsoleDeathSquad
+  suffix: Эскадрон смерти
+
+# porta_turret/syndicate/pod: 90 прочности, слабые пули.
+- type: entity
+  parent: ImperialPopupTurret
+  id: ImperialAssaultPodTurret
+  name: турель штурмового пода
+  description: Турель Синдиката в корпусе штурмового пода. Стреляет во всех, кто не из Синдиката.
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 90
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+
+# Метка зоны посадки пода: та же голограмма, что у капсул снабжения TG (pod_landingzone).
+- type: entity
+  id: ImperialAssaultPodLandingMarker
+  name: индикатор зоны посадки
+  description: Голографическая проекция, обозначающая место посадки штурмового пода. Лучше отойти подальше.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Cargo/landing.rsi
+    drawdepth: FloorObjects
+    noRot: true
+    layers:
+    - state: LZ
+      map: [ "lz" ]
+      shader: unshaded
+    - state: LZ_Slider
+      map: [ "slider" ]
+      shader: unshaded
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#ff2020"
+  - type: AssaultPodLandingMarker
+  - type: TimedDespawn
+    lifetime: 30

@@ -1,0 +1,292 @@
+# Битраннинг TG (code/modules/bitrunning): машины отдела.
+
+# /obj/machinery/quantum_server
+- type: entity
+  id: BitrunningQuantumServer
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: квантовый сервер
+  description: Громоздкая вычислительная машина, предназначенная для создания виртуальных доменов. Может требовать много ресурсов при работе.
+  components:
+  - type: QuantumServer
+  - type: Sprite
+    sprite: Imperial/Bitrunning/machines.rsi
+    snapCardinals: true
+    layers:
+    - state: qserver
+      map: [ "enum.BitrunningVisualLayers.Base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.BitrunningVisuals.State:
+        enum.BitrunningVisualLayers.Base:
+          qserver: { state: qserver }
+          qserver_on: { state: qserver_on }
+          qserver_off: { state: qserver_off }
+  - type: PointLight
+    enabled: false
+    radius: 2
+    energy: 1.5
+    color: "#6496FA"
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Machine
+    board: BitrunningQuantumServerCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+
+- type: entity
+  id: BitrunningQuantumServerCircuitboard
+  parent: BaseMachineCircuitboard
+  name: плата квантового сервера
+  description: Плата машины квантового сервера.
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: BitrunningQuantumServer
+    stackRequirements:
+      Glass: 2
+      Steel: 5
+      Cable: 5
+    tagRequirements:
+      ImperialStockPartServo:
+        amount: 2
+        defaultPrototype: ImperialStockPartServo1
+        examineName: imperial-stock-part-type-servo
+      ImperialStockPartScanningModule:
+        amount: 1
+        defaultPrototype: ImperialStockPartScanningModule1
+        examineName: imperial-stock-part-type-scanningmodule
+      ImperialStockPartCapacitor:
+        amount: 1
+        defaultPrototype: ImperialStockPartCapacitor1
+        examineName: imperial-stock-part-type-capacitor
+
+# /obj/machinery/netpod
+- type: entity
+  id: BitrunningNetpod
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: нетпод
+  description: Связующее звено с сетевым миром. Здесь есть множество кабелей для подключения себя к виртуальному домену. Перетащите себя на нетпод, чтобы подключиться.
+  components:
+  - type: Netpod
+  - type: Sprite
+    sprite: Imperial/Bitrunning/machines.rsi
+    snapCardinals: true
+    drawdepth: Mobs
+    layers:
+    - state: netpod_open_active
+      map: [ "enum.BitrunningVisualLayers.Base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.BitrunningVisuals.State:
+        enum.BitrunningVisualLayers.Base:
+          netpod: { state: netpod }
+          netpod_open_active: { state: netpod_open_active }
+          netpod_closed: { state: netpod_closed }
+          netpod_closed_active: { state: netpod_closed_active }
+  - type: ApcPowerReceiver
+    powerLoad: 400
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: InteractionOutline
+  - type: ActivatableUI
+    key: enum.NetpodUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.NetpodUiKey.Key:
+        type: NetpodOutfitsBoundUserInterface
+  - type: Machine
+    board: BitrunningNetpodCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      netpod-occupant: !type:ContainerSlot
+
+- type: entity
+  id: BitrunningNetpodCircuitboard
+  parent: BaseMachineCircuitboard
+  name: плата нетпода
+  description: Плата нетпода для подключения к виртуальным доменам.
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: BitrunningNetpod
+    stackRequirements:
+      Glass: 2
+      Steel: 5
+      Cable: 5
+    tagRequirements:
+      ImperialStockPartServo:
+        amount: 1
+        defaultPrototype: ImperialStockPartServo1
+        examineName: imperial-stock-part-type-servo
+      ImperialStockPartMatterBin:
+        amount: 2
+        defaultPrototype: ImperialStockPartMatterBin1
+        examineName: imperial-stock-part-type-matterbin
+
+# /obj/machinery/byteforge
+- type: entity
+  id: BitrunningByteforge
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: байтфорж
+  description: Машина, используемая квантовым сервером. Квантовый код сходится здесь, материализуя расшифрованные активы из виртуальной бездны. Должна стоять не дальше 4 клеток от сервера.
+  components:
+  - type: Byteforge
+  - type: Sprite
+    sprite: Imperial/Bitrunning/machines.rsi
+    snapCardinals: true
+    layers:
+    - state: byteforge
+    - state: on_particles
+      map: [ "enum.BitrunningVisualLayers.Particles" ]
+    - state: on_overlay
+      map: [ "enum.BitrunningVisualLayers.Overlay" ]
+      shader: unshaded
+      visible: false
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.BitrunningVisuals.Flicker:
+        enum.BitrunningVisualLayers.Overlay:
+          True: { visible: true }
+          False: { visible: false }
+      enum.BitrunningVisuals.Angry:
+        enum.BitrunningVisualLayers.Particles:
+          True: { state: on_particles_angry }
+          False: { state: on_particles }
+  - type: PointLight
+    enabled: false
+    radius: 2
+    energy: 1.5
+    color: "#6496FA"
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 200
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Machine
+    board: BitrunningByteforgeCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+
+- type: entity
+  id: BitrunningByteforgeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: плата байтфоржа
+  description: Плата байтфоржа квантового сервера.
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: BitrunningByteforge
+    stackRequirements:
+      Glass: 1
+      Steel: 5
+    tagRequirements:
+      ImperialStockPartMicroLaser:
+        amount: 1
+        defaultPrototype: ImperialStockPartMicroLaser1
+        examineName: imperial-stock-part-type-microlaser
+
+# /obj/machinery/computer/quantum_console
+- type: entity
+  id: BitrunningQuantumConsole
+  parent: BaseComputer
+  name: квантовая консоль
+  description: Даже в далёком будущем Нанотрейзен всё ещё использует REST API. Какой мрак. Ставится вплотную к квантовому серверу.
+  components:
+  - type: QuantumConsole
+  - type: Computer
+    board: BitrunningQuantumConsoleCircuitboard
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: Imperial/Bitrunning/computer.rsi
+      state: bitrunning
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#6496FA"
+  - type: ActivatableUI
+    key: enum.QuantumConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.QuantumConsoleUiKey.Key:
+        type: QuantumConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: AccessReader
+    access: [["Cargo"]]
+
+- type: entity
+  id: BitrunningQuantumConsoleCircuitboard
+  parent: BaseComputerCircuitboard
+  name: плата квантовой консоли
+  description: Плата компьютера квантовой консоли.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: BitrunningQuantumConsole

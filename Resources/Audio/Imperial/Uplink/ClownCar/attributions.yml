@@ -1,0 +1,19 @@
+- files: ["door_open.ogg", "door_close.ogg", "button_press.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Made by sadboysuss, taken from tgstation/BandaStation (sound/vehicles/clown_car)"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["clowncar_cannonmode1.ogg", "clowncar_cannonmode2.ogg", "clowncar_crash1.ogg", "clowncar_crash2.ogg", "clowncar_crashpins.ogg", "clowncar_fart.ogg", "clowncar_load1.ogg", "clowncar_load2.ogg", "clowncar_ram1.ogg", "clowncar_ram2.ogg", "clowncar_ram3.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/vehicles/clown_car)"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["car_crash.ogg", "carcannon1.ogg", "carcannon2.ogg", "carcannon3.ogg", "carrev.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/vehicles)"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["cartoon_splat.ogg", "flash_ring.ogg", "magin.ogg", "magout.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/effects/cartoon_sfx/cartoon_splat.ogg, sound/items/weapons/flash_ring.ogg, magin.ogg, magout.ogg)"
+  source: "https://github.com/tgstation/tgstation"

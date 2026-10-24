@@ -1,0 +1,512 @@
+# Взрывчатка и импланты аплинка TG.
+
+# /obj/item/pizzabox/bomb
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialPizzaBomb
+  name: коробка пиццы
+  description: Коробка пиццы.
+  suffix: Бомба
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Explosives/pizzabomb.rsi
+    layers:
+    - state: closed
+      map: ["base"]
+  - type: Item
+    size: Normal
+  - type: UplinkPizzaBomb
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.UplinkPizzaBombVisuals.State:
+        base:
+          closed: { state: closed }
+          open: { state: open }
+          active: { state: active }
+
+# /obj/item/sbeacondrop/emp → /obj/machinery/syndicatebomb/emp
+- type: entity
+  parent: SyndicateBomb
+  id: ImperialEmpBomb
+  name: ЭМИ-бомба
+  description: Модифицированная бомба, которая вместо взрыва выпускает разрушительный электромагнитный импульс.
+  components:
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 0
+    intensitySlope: 1
+    maxIntensity: 1
+    canCreateVacuum: false
+  - type: EmpOnTrigger
+    keysIn:
+    - timer
+    range: 15
+    energyConsumption: 500000
+    disableDuration: 120
+
+# /obj/item/syndicatedetonator
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialSyndicateDetonator
+  name: большая красная кнопка
+  description: Стандартная кнопка синхронизации бомб. Пятисекундная задержка, чтобы избежать «случайностей».
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Explosives/devices.rsi
+    state: detonator
+  - type: Item
+    size: Tiny
+  - type: UplinkSyndicateDetonator
+
+# /obj/item/earthcracker
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialEarthcracker
+  name: землеразлом E-2
+  description: Мерзкий автоматический сваебой. Создаёт в полу огромное слабое место, которое потом раскалывается от достаточно сильного взрыва. Используйте в руке, чтобы установить, затем нажмите на него.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Explosives/devices.rsi
+    state: earthcracker
+  - type: Item
+    size: Normal
+  - type: UplinkEarthcracker
+
+- type: entity
+  id: ImperialUplinkWeakpoint
+  name: трещина-слабина
+  description: Подозрительная трещина тянется по полу. Сильный взрыв рядом расколет пол.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Explosives/devices.rsi
+    state: weakpoint
+    drawdepth: FloorObjects
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: UplinkWeakpoint
+
+# /obj/item/grenade/spawnergrenade
+- type: entity
+  abstract: true
+  parent: [ TimerGrenadeBase, BaseSyndicateContraband ]
+  id: ImperialSpawnerGrenadeBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Explosives/devices.rsi
+    layers:
+    - state: delivery
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
+
+- type: entity
+  parent: ImperialSpawnerGrenadeBase
+  id: ImperialBuzzkillGrenade
+  name: граната «Buzzkill»
+  description: Граната, выпускающая рой злых пчёл. Пчёлы жалят и своих, и чужих, впрыскивая токсины.
+  components:
+  - type: SpawnEntityTableOnTrigger
+    keysIn:
+    - timer
+    table: !type:AllSelector
+      children:
+      - id: ImperialBuzzkillBee
+        amount: 10
+
+- type: entity
+  parent: ImperialSpawnerGrenadeBase
+  id: ImperialVisceratorGrenade
+  name: граната доставки висцераторов
+  description: Выпускает рой висцераторов, которые выслеживают и шинкуют всех, кроме оперативников.
+  components:
+  - type: SpawnEntityTableOnTrigger
+    keysIn:
+    - timer
+    table: !type:AllSelector
+      children:
+      - id: ImperialViscerator
+        amount: 10
+
+- type: entity
+  parent: ImperialSpawnerGrenadeBase
+  id: ImperialCatGrenade
+  name: котограната
+  description: Пять диких кошек в стазисе. ВНИМАНИЕ — кошки не различают своих и чужих!
+  components:
+  - type: SpawnEntityTableOnTrigger
+    keysIn:
+    - timer
+    table: !type:AllSelector
+      children:
+      - id: ImperialFeralCat
+        amount: 5
+
+- type: entity
+  parent: MobAngryBee
+  id: ImperialBuzzkillBee
+  name: злая пчела
+  description: Пчела, напичканная токсинами.
+  components:
+  - type: MeleeChemicalInjector
+    transferAmount: 3
+    solution: melee
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 30
+        reagents:
+        - ReagentId: Toxin
+          Quantity: 30
+  - type: TimedDespawn
+    lifetime: 300
+
+# /mob/living/basic/viscerator
+- type: entity
+  parent: MobAngryBee
+  id: ImperialViscerator
+  name: висцератор
+  description: Маленький летающий робот с вращающимися лезвиями.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Uplink/Explosives/viscerator.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: alive
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Dead:
+        Base: alive
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcSlash
+    damage:
+      types:
+        Slash: 15
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      25: Dead
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: TimedDespawn
+    lifetime: 300
+
+# /mob/living/basic/pet/cat/feral
+- type: entity
+  parent: [ MobCat, MobCombat ]
+  id: ImperialFeralCat
+  name: дикая кошка
+  description: Злобная дикая кошка Синдиката.
+  components:
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 15
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Dead
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+
+# /obj/item/grenade/chem_grenade/tuberculosis
+- type: entity
+  parent: SmokeGrenade
+  id: ImperialTuberculosisGrenade
+  name: биограната
+  description: Взведённая биограната с грибковым туберкулёзом.
+  components:
+  - type: UplinkDiseaseGrenade
+    disease: DiseaseTuberculosis
+
+- type: entity
+  parent: EmergencyMedipen
+  id: ImperialTuberculosisCureMedipen
+  name: автоинъектор BVAK
+  description: Комплект противоядия от биовируса.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 10
+        reagents:
+        - ReagentId: Spaceacillin
+          Quantity: 10
+
+# Коробки взрывчатки
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkBuzzkillBox
+  name: коробка гранат «Buzzkill»
+  description: Три гранаты, выпускающие рой злых пчёл. Любезность BLF и Тигриного Кооператива.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: ImperialBuzzkillGrenade
+        amount: 3
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+    - state: flashbang
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkVisceratorBox
+  name: коробка гранат-висцераторов
+  description: Три гранаты, выпускающие рой висцераторов.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: ImperialVisceratorGrenade
+        amount: 3
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+    - state: flashbang
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkCatGrenadeBox
+  name: коробка котогранат
+  description: Пять гранат, в каждой по пять диких кошек в стазисе.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,5,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: ImperialCatGrenade
+        amount: 5
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+    - state: flashbang
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkTuberculosisBox
+  name: коробка гранаты грибкового туберкулёза
+  description: Взведённая биограната и пять автоинъекторов BVAK, шприц и бутылка раствора BVAK.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,5,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialTuberculosisGrenade
+        - id: ImperialTuberculosisCureMedipen
+          amount: 5
+        - id: Syringe
+        - id: ImperialUplinkBottleSpaceacillin
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+    - state: flashbang
+
+# ─── Импланты ───
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ImperialStealthImplant
+  name: имплант S3
+  description: Позволяет прятаться на виду. По нажатию создаёт вокруг вас коробку-хамелеон с оптическим камуфляжем.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    implantAction: ActionImperialDeployBox
+  - type: UplinkStealthImplant
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialDeployBox
+  name: Развернуть коробку
+  description: Обретите внутренний покой — здесь, в коробке.
+  components:
+  - type: Action
+    useDelay: 10
+    itemIconStyle: BigAction
+    icon:
+      sprite: Structures/Storage/closet.rsi
+      state: cardboard
+  - type: InstantAction
+    event: !type:UplinkDeployBoxActionEvent
+
+- type: entity
+  parent: BaseImplantOnlyImplanterSyndi
+  id: ImperialStealthImplanter
+  name: имплантер (S3)
+  components:
+  - type: Implanter
+    implant: ImperialStealthImplant
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ImperialDeniabilityImplant
+  name: имплант тактического отрицания
+  description: Микробомба, подключённая прямо к мозгу. Не даёт впасть в крит, но через 10 секунд после «крита» взрывается.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    permanent: true
+  - type: UplinkDeniabilityImplant
+
+- type: entity
+  parent: BaseImplantOnlyImplanterSyndi
+  id: ImperialDeniabilityImplanter
+  name: имплантер (тактическое отрицание)
+  components:
+  - type: Implanter
+    implant: ImperialDeniabilityImplant
+
+# Кибер-импланты TG ставятся автохирургом Синдиката.
+- type: entity
+  abstract: true
+  parent: BaseImplantOnlyImplanterSyndi
+  id: ImperialAutosurgeonBase
+  name: подозрительный автохирург
+  description: Устройство, которое автоматически вживляет импланты в пользователя. Используйте на себе.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Explosives/devices.rsi
+    state: autosurgeon
+    layers:
+    - state: autosurgeon
+      map: [ "implantOnly" ]
+    - state: autosurgeon
+      map: [ "implantFull" ]
+      visible: false
+  - type: Item
+    size: Small
+  - type: GenericVisualizer
+    visuals:
+      enum.ImplanterVisuals.Full:
+        implantFull:
+          True: {visible: false}
+          False: {visible: false}
+      enum.ImplanterImplantOnlyVisuals.ImplantOnly:
+        implantOnly:
+          True: {state: autosurgeon}
+          False: {state: autosurgeon}
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ImperialReviverImplant
+  name: имплант-ревивер
+  description: Пытается оживить и вылечить вас, если вы теряете сознание.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: UplinkReviverImplant
+
+- type: entity
+  parent: ImperialAutosurgeonBase
+  id: ImperialAutosurgeonReviver
+  suffix: Ревивер
+  components:
+  - type: Implanter
+    implant: ImperialReviverImplant
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ImperialThermalEyesImplant
+  name: термальные глаза
+  description: Кибернетические глаза с термальным зрением.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    implantComponents:
+    - type: ThermalEntityVision # термальное зрение TG: живые сквозь стены, а не температура воздуха
+
+- type: entity
+  parent: ImperialAutosurgeonBase
+  id: ImperialAutosurgeonThermalEyes
+  suffix: Термальные глаза
+  components:
+  - type: Implanter
+    implant: ImperialThermalEyesImplant
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ImperialXrayEyesImplant
+  name: рентгеновские глаза
+  description: Кибернетические глаза с рентгеновским зрением.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    implantComponents:
+    - type: UplinkXrayEyes
+
+- type: entity
+  parent: ImperialAutosurgeonBase
+  id: ImperialAutosurgeonXrayEyes
+  suffix: Рентгеновские глаза
+  components:
+  - type: Implanter
+    implant: ImperialXrayEyesImplant
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ImperialCnsRebooterImplant
+  name: имплант-перезагрузчик ЦНС
+  description: Автоматически возвращает контроль над нервной системой, сокращая время оглушения.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: UplinkCnsRebooter
+
+- type: entity
+  parent: ImperialAutosurgeonBase
+  id: ImperialAutosurgeonCnsRebooter
+  suffix: Перезагрузчик ЦНС
+  components:
+  - type: Implanter
+    implant: ImperialCnsRebooterImplant
+
+# /obj/item/disk/computer/virus/detomatix
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialDetomatixDisk
+  name: диск Детоматикс
+  description: Четыре заряда подрыва КПК членов экипажа. Используйте в руке и введите имя владельца КПК.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/cd.rsi
+    state: icon
+    color: "#FF6060"
+  - type: Item
+    size: Tiny
+  - type: UplinkDetomatix
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ImperialUplinkBottleSpaceacillin
+  suffix: Spaceacillin
+  components:
+  - type: Label
+    currentLabel: reagent-name-spaceacillin
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Spaceacillin
+          Quantity: 30

@@ -1,0 +1,354 @@
+# Гамма-оружейка из ParadiseSS13 (gamma_armory_base.dmm): снаряжение и шкафы.
+# Сам шаттл собирается кодом (GammaArmorySystem), вызывается командой gammaarmory.
+
+# ─── Продвинутая энергопушка (gun/energy/gun/nuclear) ───
+
+- type: entity
+  parent: [ BaseWeaponBattery, BaseSecurityContraband ]
+  id: WeaponEnergyGunNuclear
+  name: продвинутая энергетическая пушка
+  description: Энергопушка с экспериментальным миниатюрным ядерным реактором, который сам заряжает её батарею. Переключатель огня — «обезвредить» и «убить».
+  components:
+  - type: Sprite
+    sprite: Imperial/Security/Gamma/nuclear_gun.rsi
+    layers:
+    - state: icon
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    size: Large
+    sprite: Imperial/Security/Gamma/nuclear_gun.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  # Ячейка 1000: лазер 250 (4 выстрела), дизейблер 50 (20 выстрелов).
+  - type: BatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 250
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: RedLaser
+      fireCost: 250
+    - proto: BulletDisabler
+      fireCost: 50
+  # selfcharge: 100 единиц каждые ~10 секунд.
+  - type: BatterySelfRecharger
+    autoRechargeRate: 10
+  - type: StaticPrice
+    price: 1500
+
+# ─── Мультилинзовый иммолатор (gun/energy/immolator/multi) ───
+
+- type: entity
+  parent: BulletLaser
+  id: BulletImmolatorStrong
+  name: тяжёлый испепеляющий луч
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: heavylaser
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Heat: 45
+  - type: PointLight
+    enabled: true
+    color: "#ff6a00"
+    radius: 2.0
+    energy: 6.0
+  - type: IgniteOnCollide
+    fireStacks: 1
+
+- type: entity
+  parent: BulletImmolatorStrong
+  id: BulletImmolatorWeak
+  name: лёгкий испепеляющий луч
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser_greyscale
+      color: "#ff8a1c"
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Heat: 8
+  - type: IgniteOnCollide
+    fireStacks: 1
+
+# scatter: 6 лучей с разбросом 25°.
+- type: entity
+  parent: BulletImmolatorWeak
+  id: BulletImmolatorScatter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: BulletImmolatorWeak
+    count: 6
+    spread: 50
+
+- type: entity
+  parent: [ BaseWeaponBattery, BaseSecurityContraband ]
+  id: WeaponImmolatorMultilens
+  name: мультилинзовая иммолаторная пушка
+  description: Старший брат иммолатора с переключаемыми режимами огня — «точный» и «рассеянный». Поражённые цели загораются.
+  components:
+  - type: Sprite
+    sprite: Imperial/Security/Gamma/multilens_immolator.rsi
+    layers:
+    - state: icon
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    size: Large
+    sprite: Imperial/Security/Gamma/multilens_immolator.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: BatteryAmmoProvider
+    proto: BulletImmolatorStrong
+    fireCost: 125
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BulletImmolatorStrong
+      fireCost: 125
+    - proto: BulletImmolatorScatter
+      fireCost: 125
+  - type: StaticPrice
+    price: 1500
+
+# ─── SMG «Сабля» (automatic/proto) ───
+
+- type: entity
+  parent: MagazinePistolSubMachineGun
+  id: MagazineSaber
+  name: магазин «Сабли» (.35)
+  description: Магазин на 21 патрон для SMG «Сабля».
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol
+    capacity: 21
+  - type: Sprite
+    sprite: Imperial/Security/Gamma/smg9mm_mag.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-5
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: true
+  - type: Item
+    inhandVisuals: {}
+
+- type: entity
+  parent: [ BaseWeaponSubMachineGun, BaseSecurityContraband ]
+  id: WeaponSubMachineGunSaber
+  name: SMG NF10 «Сабля»
+  description: Отклонённый прототип пистолета-пулемёта с очередью из трёх патронов, обозначение «SABR». Излишки этой модели кочуют по оружейкам станций НТ.
+  components:
+  - type: Sprite
+    sprite: Imperial/Security/Gamma/saber.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Security/Gamma/saber.rsi
+  - type: Gun
+    fireRate: 6
+    burstFireRate: 12
+    selectedMode: Burst
+    availableModes:
+    - Burst
+    - SemiAuto
+    shotsPerBurst: 3
+    burstCooldown: 0.4
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineSaber
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazinePistolSubMachineGun
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgePistol
+  - type: StaticPrice
+    price: 800
+
+# ─── Боевой дробовик M600 (shotgun/automatic/combat) ───
+
+- type: entity
+  parent: WeaponShotgunEnforcer
+  id: WeaponShotgunCombatM600
+  name: боевой дробовик M600
+  description: Полуавтоматический дробовик Starstrike Arms с тактической фурнитурой и трубчатым магазином на шесть патронов.
+  components:
+  - type: Sprite
+    sprite: Imperial/Security/Gamma/combat_shotgun.rsi
+  - type: BallisticAmmoProvider
+    capacity: 6
+    proto: ShellShotgun
+
+# ─── Медлуч (gun/medbeam) ───
+
+- type: entity
+  parent: BaseItem
+  id: WeaponMedbeam
+  name: медицинский лучемёт
+  description: Направляет летучих медицинских нанитов сфокусированным лучом. Не скрещивайте лучи!
+  components:
+  - type: Medbeam
+  - type: Sprite
+    sprite: Imperial/Security/Gamma/medbeam.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/Security/Gamma/medbeam.rsi
+  - type: StaticPrice
+    price: 2000
+
+# ─── Оружейные шкафы оружейки ───
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeGammaNuclear
+  name: шкаф продвинутых энергопушек
+  suffix: Гамма
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponEnergyGunNuclear
+          amount: 3
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeGammaImmolator
+  name: шкаф мультилинзовых иммолаторов
+  suffix: Гамма
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponImmolatorMultilens
+          amount: 3
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeGammaSaber
+  name: шкаф SMG «Сабля»
+  suffix: Гамма
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunSaber
+          amount: 3
+        - id: MagazineSaber
+          amount: 3
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeGammaShotgun
+  name: шкаф боевых дробовиков
+  suffix: Гамма
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponShotgunCombatM600
+          amount: 3
+        - id: BoxLethalshot
+          amount: 3
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeGammaSupport
+  name: шкаф медлучей и ножей
+  suffix: Гамма
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponMedbeam
+          amount: 2
+        - id: CombatKnife
+          amount: 3
+
+# ─── Гамма-РИГ (mod/control/pre_equipped/safeguard/gamma) ───
+
+- type: entity
+  parent: ClothingControlModsuitHOSSealed
+  id: ClothingControlModsuitSafeguardGamma
+  name: гвардейский РИГ «Гамма»
+  description: Гвардейский РИГ гамма-оружейки с модулем энергощита — три заряда, гасящих любую атаку. Заряды восстанавливаются через 20 секунд после последнего удара.
+  components:
+  - type: GammaEnergyShield
+
+- type: entity
+  parent: ModSuitStorageBase
+  id: ModSuitStorageGamma
+  name: защищённое хранилище гамма-РИГа
+  suffix: Гамма
+  components:
+  - type: AccessReader
+    access: [ [ "Security" ] ]
+  - type: StorageFill
+    contents:
+    - id: ClothingControlModsuitSafeguardGamma
+    - id: ClothingMaskGasSwat
+    - id: OxygenTankFilled
+
+# ─── Гамма-автолат и зарядник (без внешнего питания на шаттле) ───
+
+- type: entity
+  parent: Autolathe
+  id: GammaAutolathe
+  name: гамма-автолат
+  description: Взломанный улучшенный автолат гамма-оружейки, заранее загруженный сталью и стеклом.
+  components:
+  - type: GammaAutolathe
+  - type: Emagged
+    emagType: Interaction
+  - type: ApcPowerReceiver
+    needsPower: false
+
+- type: entity
+  parent: WeaponCapacitorRecharger
+  id: GammaWeaponRecharger
+  suffix: Гамма
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+
+# mech_bay_recharge_port/upgraded: зарядник силовых ячеек мехов.
+- type: entity
+  parent: PowerCageRecharger
+  id: GammaPowerCageRecharger
+  suffix: Гамма
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false

@@ -1,0 +1,880 @@
+# Аквариумы (/obj/structure/aquarium, /obj/item/fish_tank), декор, корм и улучшения.
+
+- type: entity
+  parent: BaseStructureDynamic
+  id: ImperialAquarium
+  name: аквариум
+  description: Виварий, в котором держат и показывают водную фауну и флору.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/tanks.rsi
+    noRot: true
+    layers:
+    - state: aquarium_base
+      map: [ "base" ]
+    - state: aquarium_panel
+      map: [ "panel" ]
+      visible: false
+    - state: aquarium_glass_water
+      map: [ "glass" ]
+    - state: aquarium_glass_cracks
+      map: [ "cracks" ]
+      visible: false
+    - state: aquarium_borders
+      map: [ "borders" ]
+  - type: Appearance
+  - type: ImperialAquarium
+  - type: ContainerContainer
+    containers:
+      imperial-aquarium: !type:Container
+  - type: SolutionContainerManager
+    solutions:
+      feed:
+        maxVol: 6
+  - type: ExaminableSolution
+    solution: feed
+  - type: UserInterface
+    interfaces:
+      enum.ImperialAquariumUiKey.Key:
+        type: ImperialAquariumBoundUserInterface
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Glass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 5
+            max: 10
+          ShardGlass:
+            min: 2
+            max: 4
+      - !type:EmptyAllContainersBehaviour
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: StaticPrice
+    price: 150
+
+- type: entity
+  parent: ImperialAquarium
+  id: ImperialAquariumPrefilled
+  suffix: Заполненный
+  components:
+  - type: Transform
+    anchored: true
+  - type: ImperialAquarium
+    mode: Safe
+  - type: ImperialAquariumStartFill
+    variants:
+    - contents: [ ImperialAquariumPropSand, ImperialAquariumPropSeaweed, ImperialFishGoldfish, ImperialFishAngelfish, ImperialFishGuppy ]
+      reagent: Nutriment
+      amount: 3
+
+# /obj/structure/aquarium/bioelec_gen
+- type: entity
+  parent: ImperialAquarium
+  id: ImperialAquariumBioelectric
+  name: биоэлектрический генератор
+  description: Необычный генератор, который усиливает и собирает энергию биоэлектрических рыб.
+  components:
+  - type: Sprite
+    layers:
+    - state: bioelec_base
+      map: [ "base" ]
+    - state: bioelec_panel
+      map: [ "panel" ]
+      visible: false
+    - state: bioelec_glass_water
+      map: [ "glass" ]
+    - state: bioelec_glass_cracks
+      map: [ "cracks" ]
+      visible: false
+    - state: bioelec_borders
+      map: [ "borders" ]
+  - type: ImperialAquarium
+    baseState: bioelec
+    bioelectricGenerator: true
+
+# /obj/item/fish_tank
+- type: entity
+  parent: BaseItem
+  id: ImperialFishTank
+  name: переносной аквариум
+  description: Более портативный аквариум для хранения рыб, если они не слишком большие и их не слишком много.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/tanks.rsi
+    layers:
+    - state: fish_tank
+      map: [ "base" ]
+    - state: fish_tank_panel
+      map: [ "panel" ]
+    - state: fish_tank_water
+      map: [ "glass" ]
+    - state: fish_tank_borders
+      map: [ "borders" ]
+  - type: Item
+    size: Large
+  - type: Appearance
+  - type: ImperialAquarium
+    baseState: fish_tank
+    portable: true
+    zoneMin: 6, 7
+    zoneMax: 26, 24
+    minTemperature: 285.15
+    maxTemperature: 341.15
+    maxFishSize: 100
+    maxTotalSize: 220
+    slowdownCoeff: 1
+  - type: ContainerContainer
+    containers:
+      imperial-aquarium: !type:Container
+  - type: SolutionContainerManager
+    solutions:
+      feed:
+        maxVol: 4
+  - type: ExaminableSolution
+    solution: feed
+  - type: UserInterface
+    interfaces:
+      enum.ImperialAquariumUiKey.Key:
+        type: ImperialAquariumBoundUserInterface
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+  - type: StaticPrice
+    price: 90
+
+# /obj/item/fish_tank/lawyer
+- type: entity
+  parent: ImperialFishTank
+  id: ImperialFishTankLawyer
+  suffix: Юрист
+  components:
+  - type: ImperialAquarium
+    mode: Safe
+  - type: ImperialAquariumStartFill
+    variants:
+    - weight: 85
+      contents: [ ImperialAquariumPropSand, ImperialAquariumPropSeaweed, ImperialFishGoldfishGill ]
+      reagent: Nutriment
+      amount: 3
+    - weight: 15
+      contents: [ ImperialAquariumPropSand, ImperialAquariumPropSeaweed, ImperialFishGoldfishThreeEyesGill ]
+      reagent: UnstableMutagen
+      amount: 3
+
+# /obj/item/fish_tank/bluespace
+- type: entity
+  parent: ImperialFishTank
+  id: ImperialFishTankBluespace
+  name: блюспейс-аквариум
+  description: Вся вместимость большого аквариума, сжатая в кубоид размером с сумку.
+  components:
+  - type: Sprite
+    layers:
+    - state: fish_tank_bluespace
+      map: [ "base" ]
+    - state: fish_tank_bluespace_panel
+      map: [ "panel" ]
+    - state: fish_tank_bluespace_water
+      map: [ "glass" ]
+    - state: fish_tank_bluespace_borders
+      map: [ "borders" ]
+  - type: Item
+    size: Normal
+  - type: ImperialAquarium
+    baseState: fish_tank_bluespace
+    minTemperature: 273.15
+    maxTemperature: 373.15
+    maxFishSize: null
+    maxTotalSize: 2000
+    slowdownCoeff: 0.15
+  - type: SolutionContainerManager
+    solutions:
+      feed:
+        maxVol: 6
+
+# Декор (/obj/item/aquarium_prop)
+- type: entity
+  parent: BaseItem
+  id: ImperialAquariumPropBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/tanks.rsi
+  - type: Item
+    size: Tiny
+  - type: ImperialAquariumProp
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 25
+
+- type: entity
+  parent: ImperialAquariumPropBase
+  id: ImperialAquariumPropRocks
+  name: декоративные камни
+  description: Горсть пластиковых камешков для украшения аквариума. Неужели нельзя было взять настоящую гальку?
+  components:
+  - type: Sprite
+    state: rocks
+  - type: ImperialAquariumProp
+    state: rocks
+
+- type: entity
+  parent: ImperialAquariumPropBase
+  id: ImperialAquariumPropSeaweed
+  name: искусственные водоросли
+  description: Пластиковые листы с утяжелённым основанием, похожие на подводную растительность. Оживят любой аквариум.
+  components:
+  - type: Sprite
+    state: seaweeds_back
+  - type: ImperialAquariumProp
+    state: seaweeds_back
+
+- type: entity
+  parent: ImperialAquariumPropBase
+  id: ImperialAquariumPropSeaweedTop
+  name: искусственные водоросли
+  description: Пучок искусственных растений для аквариума.
+  components:
+  - type: Sprite
+    state: seaweeds_front
+  - type: ImperialAquariumProp
+    state: seaweeds_front
+    layer: Top
+
+- type: entity
+  parent: ImperialAquariumPropBase
+  id: ImperialAquariumPropSand
+  name: аквариумный песок
+  description: Пластиковая доска для дна аквариума с бугристой поверхностью, отдалённо напоминающей жёлтый песок.
+  components:
+  - type: Sprite
+    state: sand
+  - type: ImperialAquariumProp
+    state: sand
+    layer: BehindGlass
+
+- type: entity
+  parent: ImperialAquariumPropBase
+  id: ImperialAquariumPropTreasure
+  name: крошечный сундук с сокровищами
+  description: Маленький пустой пластиковый сундучок. В аквариуме будет выглядеть так, будто крошечные пираты спрятали клад.
+  components:
+  - type: Sprite
+    state: treasure
+  - type: ImperialAquariumProp
+    state: treasure
+
+# /obj/item/reagent_containers/cup/fish_feed
+- type: entity
+  parent: BaseItem
+  id: ImperialFishFeedCan
+  name: банка корма для рыб
+  description: Многоразовая банка с питательным кормом для рыб.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/supplies.rsi
+    state: fish_feed
+  - type: Item
+    size: Tiny
+  - type: ImperialFishFeed
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2.5
+  - type: DrainableSolution
+    solution: drink
+  - type: RefillableSolution
+    solution: drink
+  - type: ExaminableSolution
+    solution: drink
+  - type: SolutionTransfer
+    transferAmount: 2.5
+    maxTransferAmount: 2.5
+  - type: StaticPrice
+    price: 15
+
+# /obj/item/aquarium_kit
+- type: entity
+  parent: BaseItem
+  id: ImperialAquariumKit
+  name: набор «Собери аквариум сам»
+  description: Всё, чтобы собрать свой аквариум или переносной аквариум. Материалы продаются отдельно.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/supplies.rsi
+    state: construction_kit
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - ImperialAquariumKit
+
+# /obj/item/aquarium_upgrade/bioelec_gen
+- type: entity
+  parent: BaseItem
+  id: ImperialAquariumUpgradeBioelectric
+  name: набор аквариумного биоэлектричества
+  description: Всё необходимое, чтобы аквариум собирал энергию биоэлектрических рыб.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/supplies.rsi
+    state: bioelec_kit
+  - type: Item
+    size: Small
+  - type: ImperialAquariumUpgrade
+    from: ImperialAquarium
+    to: ImperialAquariumBioelectric
+
+# /obj/item/aquarium_upgrade/bluespace_tank
+- type: entity
+  parent: BaseItem
+  id: ImperialAquariumUpgradeBluespace
+  name: набор блюспейс-аквариума
+  description: Компоненты для превращения переносного аквариума в бездонный ручной аквариум.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/supplies.rsi
+    state: bluespace_kit
+  - type: Item
+    size: Small
+  - type: ImperialAquariumUpgrade
+    from: ImperialFishTank
+    to: ImperialFishTankBluespace
+
+- type: Tag
+  id: ImperialAquariumKit
+
+- type: constructionGraph
+  id: ImperialAquarium
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: aquarium
+      steps:
+      - tag: ImperialAquariumKit
+        name: imperial-aquarium-construction-kit
+        icon:
+          sprite: Imperial/Fishing/supplies.rsi
+          state: construction_kit
+      - material: Steel
+        amount: 10
+      - material: Glass
+        amount: 10
+        doAfter: 10
+    - to: fishTank
+      steps:
+      - tag: ImperialAquariumKit
+        name: imperial-aquarium-construction-kit
+        icon:
+          sprite: Imperial/Fishing/supplies.rsi
+          state: construction_kit
+      - material: Plastic
+        amount: 5
+        doAfter: 10
+  - node: aquarium
+    entity: ImperialAquarium
+  - node: fishTank
+    entity: ImperialFishTank
+
+- type: construction
+  id: ImperialAquarium
+  graph: ImperialAquarium
+  startNode: start
+  targetNode: aquarium
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: ImperialFishTank
+  graph: ImperialAquarium
+  startNode: start
+  targetNode: fishTank
+  category: construction-category-furniture
+  objectType: Item
+
+# /obj/item/fish_analyzer
+- type: entity
+  parent: BaseItem
+  id: ImperialFishAnalyzer
+  name: анализатор рыб
+  description: Сканер в форме рыбы для наблюдения за состоянием рыб и их эволюционными чертами.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/analyzer.rsi
+    layers:
+    - state: fish_analyzer
+    - state: fish_analyzer_case
+      map: [ "case" ]
+    - state: fish_analyzer_emissive
+      shader: unshaded
+  - type: Item
+    size: Tiny
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - belt
+  - type: Appearance
+  - type: ImperialFishAnalyzer
+  - type: ImperialFishingDifficultyModifier
+    modifier: -3
+    hands: true
+  - type: UserInterface
+    interfaces:
+      enum.ImperialFishAnalyzerUiKey.Key:
+        type: ImperialFishAnalyzerBoundUserInterface
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
+  - type: StaticPrice
+    price: 60
+
+# /obj/item/book/manual/fish_catalog
+- type: entity
+  parent: BaseItem
+  id: ImperialFishCatalog
+  name: энциклопедия рыб
+  description: Перечень всех рыб, известных человечеству (и родственным видам).
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/catalog.rsi
+    state: fishbook
+  - type: Item
+    size: Small
+  - type: ImperialFishCatalog
+  - type: ImperialFishingDifficultyModifier
+    modifier: -7
+    hands: true
+  - type: UserInterface
+    interfaces:
+      enum.ImperialFishCatalogUiKey.Key:
+        type: ImperialFishCatalogBoundUserInterface
+  - type: Tag
+    tags:
+    - Book
+  - type: StaticPrice
+    price: 40
+
+# /obj/structure/fish_mount
+- type: entity
+  id: ImperialFishMount
+  name: подставка для трофейной рыбы
+  description: Подставка для трофейной рыбы, чтобы похвастаться самым гордым уловом.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: WallMount
+    arc: 360
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: Imperial/Fishing/mount.rsi
+    snapCardinals: true
+    layers:
+    - state: fish_mount
+    - map: [ "fish" ]
+      visible: false
+  - type: Appearance
+  - type: ImperialFishMount
+  - type: ContainerContainer
+    containers:
+      imperial-fish-mount: !type:Container
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 1
+            max: 1
+      - !type:EmptyAllContainersBehaviour
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: ImperialFishMount
+    node: mount
+  - type: StaticPrice
+    price: 20
+
+# /obj/structure/fish_mount/bar: трофей бара сохраняется между раундами.
+- type: entity
+  parent: ImperialFishMount
+  id: ImperialFishMountBar
+  suffix: Бар, сохраняется
+  components:
+  - type: ImperialFishMount
+    persistenceId: Bar
+
+- type: constructionGraph
+  id: ImperialFishMount
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DestroyEntity {}
+    edges:
+    - to: mount
+      completed:
+      - !type:SnapToGrid { }
+      steps:
+      - material: WoodPlank
+        amount: 2
+        doAfter: 2
+  - node: mount
+    entity: ImperialFishMount
+    edges:
+    - to: start
+      completed:
+      - !type:EmptyAllContainers {}
+      - !type:GivePrototype
+        prototype: MaterialWoodPlank
+        amount: 2
+      steps:
+      - tool: Screwing
+        doAfter: 3
+
+- type: construction
+  id: ImperialFishMount
+  graph: ImperialFishMount
+  startNode: start
+  targetNode: mount
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition
+
+# /obj/machinery/fishing_portal_generator
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialFishingPortalGenerator
+  name: рыбопортер 3000
+  description: Рыбалка где угодно, когда угодно... так о чём это я?
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Anchorable
+  - type: Pullable
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Fishing/fishing.rsi
+    noRot: true
+    layers:
+    - state: portal
+    - state: portal_on
+      map: [ "on" ]
+      visible: false
+    - state: portal_aquarium
+      map: [ "dimension" ]
+      visible: false
+    - state: portal_emissive
+      map: [ "emissive" ]
+      shader: unshaded
+      visible: false
+  - type: Appearance
+  - type: ApcPowerReceiver
+    powerLoad: 400
+  - type: ImperialFishingPortal
+  - type: Machine
+    board: ImperialFishingPortalGeneratorBoard
+  - type: UserInterface
+    interfaces:
+      enum.ImperialFishingPortalUiKey.Key:
+        type: ImperialFishingPortalBoundUserInterface
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  parent: ImperialFishingPortalGenerator
+  id: ImperialFishingPortalGeneratorEmagged
+  suffix: Взломан
+  components:
+  - type: ImperialFishingPortal
+    emagged: true
+
+- type: entity
+  parent: ImperialFishingPortalGenerator
+  id: ImperialFishingPortalGeneratorFull
+  name: рыбопортер 4000 делюкс
+  description: Совершенное устройство для рыбалки.
+  components:
+  - type: ImperialFishingPortal
+    allDestinations: true
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialFishingPortalGeneratorBoard
+  name: плата генератора рыболовных порталов
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: ImperialFishingPortalGenerator
+    stackRequirements:
+      Glass: 1
+      Cable: 2
+    tagRequirements:
+      ImperialStockPartMatterBin:
+        amount: 2
+        defaultPrototype: ImperialStockPartMatterBin1
+        examineName: imperial-stock-part-type-matterbin
+      ImperialStockPartCapacitor:
+        amount: 1
+        defaultPrototype: ImperialStockPartCapacitor1
+        examineName: imperial-stock-part-type-capacitor
+
+# /obj/structure/mystery_box/fishing
+- type: entity
+  parent: BaseStructureDynamic
+  id: ImperialFishingMysteryBox
+  name: сундук с сокровищами
+  description: Пиратский сундук, одинаково волшебный и загадочный, который дарит разное снаряжение тому, кто его откроет.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/treasure.rsi
+    noRot: true
+    layers:
+    - state: treasure
+      map: [ "base" ]
+    - map: [ "prize" ]
+      visible: false
+      offset: 0, 0.35
+      scale: 0.75, 0.75
+  - type: Appearance
+  - type: InteractionOutline
+  - type: ImperialMysteryBox
+    prizes:
+    - ImperialFishingToolboxMaster
+    - ImperialFishingRodMaster
+    - ImperialBaitCanSuper
+    - ImperialFishCaseTiziran
+    - ImperialFishCaseSyndicate
+    - Cutlass
+    - WeaponLaserGun
+    - WeaponDisabler
+    - WeaponSniperMosin
+    - DrinkRumBottleFull
+    - SpaceCash500
+    - ClothingHeadHatPirate
+    - ClothingOuterCoatPirate
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 2
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# /obj/item/fish_genegun
+- type: entity
+  parent: BaseItem
+  id: ImperialFishGenegun
+  name: генная пушка для рыб
+  description: Устройство для ввода и извлечения черт рыб. Принимает пустой шприц, который после извлечения черты превращается в инъектор гена. Повторная обработка может убить рыбу.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fishing.rsi
+    layers:
+    - state: fish_gun
+      map: [ "enum.ImperialFishGenegunVisuals.State" ]
+  - type: Item
+    size: Small
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ImperialFishGenegunVisuals.State:
+        enum.ImperialFishGenegunVisuals.State:
+          Empty: { state: fish_gun }
+          Extract: { state: fish_gun_extract }
+          Inject: { state: fish_gun_inject }
+  - type: ImperialFishGenegun
+  - type: UserInterface
+    interfaces:
+      enum.ImperialFishGenegunUiKey.Key:
+        type: ImperialFishGenegunBoundUserInterface
+  - type: ItemSlots
+    slots:
+      genegun_injector:
+        name: imperial-fish-genegun-slot
+        whitelist:
+          tags:
+          - Syringe
+          components:
+          - ImperialFishGene
+  - type: ContainerContainer
+    containers:
+      genegun_injector: !type:ContainerSlot
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 7
+  - type: StaticPrice
+    price: 150
+
+# /obj/item/fish_gene
+- type: entity
+  parent: BaseItem
+  id: ImperialFishGene
+  name: инъектор черты рыбы
+  description: Одноразовый инъектор с определённой чертой, которую можно ввести любой (живой) совместимой рыбе.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fishing.rsi
+    state: fish_trait_injector
+  - type: Item
+    size: Tiny
+  - type: ImperialFishGene
+  - type: StaticPrice
+    price: 50
+
+# /obj/item/clothing/gloves/fishing: перчатки сами служат удочкой (крючок есть, лески и наживки нет).
+- type: entity
+  parent: ClothingHandsBase
+  id: ImperialClothingHandsFishing
+  name: атлетические рыболовные перчатки
+  description: Перчатки, чтобы рыбачить без удочки, одной лишь атлетической силой. Заодно отличный тренажёр. ВНИМАНИЕ — крупная рыба может травмировать.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fishing_gloves.rsi
+  - type: Clothing
+    sprite: Imperial/Fishing/fishing_gloves.rsi
+  - type: ImperialProfoundFisher
+    athletic: true
+  - type: ImperialFishingRod
+    uiDescription: imperial-fishing-rod-desc-athletic
+  - type: ImperialFishingDifficultyModifier
+    modifier: -4
+    slots: GLOVES
+  - type: ItemSlots
+    slots:
+      rod_line:
+        name: imperial-fishing-slot-line
+        whitelist:
+          components:
+          - ImperialFishingLine
+      rod_hook:
+        name: imperial-fishing-slot-hook
+        startingItem: ImperialFishingHook
+        whitelist:
+          components:
+          - ImperialFishingHook
+      rod_bait:
+        name: imperial-fishing-slot-bait
+        whitelist:
+          components:
+          - ImperialFishingBait
+          - Edible
+          - ImperialFish
+          - Cash
+          - PowerCell
+  - type: ContainerContainer
+    containers:
+      rod_line: !type:ContainerSlot
+      rod_hook: !type:ContainerSlot
+      rod_bait: !type:ContainerSlot
+  - type: UserInterface
+    interfaces:
+      enum.ImperialFishingUiKey.Key:
+        type: ImperialFishingBoundUserInterface
+      enum.ImperialFishingRodUiKey.Key:
+        type: ImperialFishingRodBoundUserInterface
+  - type: StaticPrice
+    price: 60
+
+# /obj/item/mod/module/fishing_glove
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleFishingGlove
+  name: модуль МОДа «рыболовная перчатка»
+  description: Модуль МОДа, который принимает внешнюю удочку, чтобы можно было рыбачить, не держа её в руках, да ещё и немного легче.
+  components:
+  - type: Sprite
+    state: fishing_glove
+  - type: ImperialModModule
+    complexity: 1
+    groups: [ fishing_glove ]
+  - type: ImperialModFishingGlove
+  - type: ItemSlots
+    slots:
+      mod_fishing_rod:
+        name: imperial-mod-fishing-glove-slot
+        whitelist:
+          components:
+          - ImperialFishingRod
+  - type: ContainerContainer
+    containers:
+      mod_fishing_rod: !type:ContainerSlot

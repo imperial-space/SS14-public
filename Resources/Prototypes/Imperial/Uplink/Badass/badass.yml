@@ -1,0 +1,656 @@
+# (Pointless) Badassery: uplink_items/badass.dm.
+
+# ── Карты Синдиката (toy/cards/deck/syndicate) ──
+
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: ImperialSyndicateCardDeck
+  name: подозрительная колода карт
+  description: Колода игральных карт космического класса. Они кажутся необычно жёсткими.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Badass/cards.rsi
+    layers:
+    - state: full
+      map: ["deck"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.UplinkCardDeckVisuals.State:
+        deck:
+          full: { state: full }
+          half: { state: half }
+          low: { state: low }
+          empty: { state: empty }
+  - type: Item
+    size: Small
+  - type: UplinkCardDeck
+  - type: MeleeWeapon
+    attackRate: 1
+    damage:
+      types:
+        Slash: 5
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 10
+
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: ImperialSyndicateCard
+  name: карта
+  description: Игральная карта из колоды Синдиката. Край у неё подозрительно острый.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Badass/cards.rsi
+    state: card
+  - type: Item
+    size: Tiny
+  - type: UplinkCard
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 5
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 10
+
+# ── Стикеры Синдиката (sticker/syndicate) ──
+
+- type: entity
+  abstract: true
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: ImperialSyndicateStickerBase
+  name: стикер Синдиката
+  description: Стикер, искусно имитирующий подозрительный предмет. Наклейте его на что угодно.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Badass/stickers.rsi
+  - type: Item
+    size: Tiny
+
+- type: entity
+  abstract: true
+  id: ImperialSyndicateStickerAttachedBase
+  name: стикер
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: false
+  - type: Sprite
+    sprite: Imperial/Uplink/Badass/stickers.rsi
+    drawdepth: Overdoors
+
+- type: entity
+  parent: ImperialSyndicateStickerBase
+  id: ImperialSyndicateStickerC4
+  name: стикер C-4
+  components:
+  - type: Sprite
+    state: c4
+  - type: UplinkSticker
+    attached: ImperialSyndicateStickerC4Attached
+
+- type: entity
+  parent: ImperialSyndicateStickerAttachedBase
+  id: ImperialSyndicateStickerC4Attached
+  components:
+  - type: Sprite
+    state: c4
+  - type: UplinkAttachedSticker
+    item: ImperialSyndicateStickerC4
+
+- type: entity
+  parent: ImperialSyndicateStickerBase
+  id: ImperialSyndicateStickerBomb
+  name: стикер бомбы Синдиката
+  components:
+  - type: Sprite
+    state: sbomb
+  - type: UplinkSticker
+    attached: ImperialSyndicateStickerBombAttached
+
+- type: entity
+  parent: ImperialSyndicateStickerAttachedBase
+  id: ImperialSyndicateStickerBombAttached
+  components:
+  - type: Sprite
+    state: sbomb
+  - type: UplinkAttachedSticker
+    item: ImperialSyndicateStickerBomb
+
+- type: entity
+  parent: ImperialSyndicateStickerBase
+  id: ImperialSyndicateStickerApc
+  name: стикер сломанного ЛКП
+  components:
+  - type: Sprite
+    state: apc
+  - type: UplinkSticker
+    attached: ImperialSyndicateStickerApcAttached
+
+- type: entity
+  parent: ImperialSyndicateStickerAttachedBase
+  id: ImperialSyndicateStickerApcAttached
+  components:
+  - type: Sprite
+    state: apc
+  - type: UplinkAttachedSticker
+    item: ImperialSyndicateStickerApc
+
+- type: entity
+  parent: ImperialSyndicateStickerBase
+  id: ImperialSyndicateStickerLarva
+  name: стикер личинки
+  components:
+  - type: Sprite
+    state: larva
+  - type: UplinkSticker
+    attached: ImperialSyndicateStickerLarvaAttached
+
+- type: entity
+  parent: ImperialSyndicateStickerAttachedBase
+  id: ImperialSyndicateStickerLarvaAttached
+  components:
+  - type: Sprite
+    state: larva
+  - type: UplinkAttachedSticker
+    item: ImperialSyndicateStickerLarva
+
+- type: entity
+  parent: ImperialSyndicateStickerBase
+  id: ImperialSyndicateStickerCult
+  name: стикер окровавленной бумаги
+  components:
+  - type: Sprite
+    state: cult
+  - type: UplinkSticker
+    attached: ImperialSyndicateStickerCultAttached
+
+- type: entity
+  parent: ImperialSyndicateStickerAttachedBase
+  id: ImperialSyndicateStickerCultAttached
+  components:
+  - type: Sprite
+    state: cult
+  - type: UplinkAttachedSticker
+    item: ImperialSyndicateStickerCult
+
+- type: entity
+  parent: ImperialSyndicateStickerBase
+  id: ImperialSyndicateStickerFlash
+  name: стикер вспышки
+  components:
+  - type: Sprite
+    state: flash
+  - type: UplinkSticker
+    attached: ImperialSyndicateStickerFlashAttached
+
+- type: entity
+  parent: ImperialSyndicateStickerAttachedBase
+  id: ImperialSyndicateStickerFlashAttached
+  components:
+  - type: Sprite
+    state: flash
+  - type: UplinkAttachedSticker
+    item: ImperialSyndicateStickerFlash
+
+- type: entity
+  parent: ImperialSyndicateStickerBase
+  id: ImperialSyndicateStickerOperative
+  name: стикер оперативника
+  components:
+  - type: Sprite
+    state: op
+  - type: UplinkSticker
+    attached: ImperialSyndicateStickerOperativeAttached
+
+- type: entity
+  parent: ImperialSyndicateStickerAttachedBase
+  id: ImperialSyndicateStickerOperativeAttached
+  components:
+  - type: Sprite
+    state: op
+  - type: UplinkAttachedSticker
+    item: ImperialSyndicateStickerOperative
+
+- type: entity
+  parent: ImperialSyndicateStickerBase
+  id: ImperialSyndicateStickerTrap
+  name: стикер медвежьего капкана
+  components:
+  - type: Sprite
+    state: trap
+  - type: UplinkSticker
+    attached: ImperialSyndicateStickerTrapAttached
+
+- type: entity
+  parent: ImperialSyndicateStickerAttachedBase
+  id: ImperialSyndicateStickerTrapAttached
+  components:
+  - type: Sprite
+    state: trap
+  - type: UplinkAttachedSticker
+    item: ImperialSyndicateStickerTrap
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkStickerBox
+  name: набор стикеров Синдиката
+  description: Восемь случайных стикеров, точно имитирующих подозрительные предметы.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,5,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:GroupSelector
+        rolls: !type:ConstantNumberSelector
+          value: 8
+        children:
+        - id: ImperialSyndicateStickerC4
+        - id: ImperialSyndicateStickerBomb
+        - id: ImperialSyndicateStickerApc
+        - id: ImperialSyndicateStickerLarva
+        - id: ImperialSyndicateStickerCult
+        - id: ImperialSyndicateStickerFlash
+        - id: ImperialSyndicateStickerOperative
+        - id: ImperialSyndicateStickerTrap
+
+# ── Крамольные плакаты (poster/traitor) ──
+
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: ImperialTraitorPosterRolled
+  name: крамольный плакат
+  description: Плакат с собственным клеевым механизмом — легко повесить на любую стену. Его крамольные темы наверняка деморализуют сотрудников NanoTrasen.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Badass/posters.rsi
+    state: rolled
+  - type: Item
+    size: Small
+  - type: UplinkTraitorPoster
+    posters:
+    - ImperialPosterTraitorSmallBrain
+    - ImperialPosterTraitorSupermatter
+    - ImperialPosterTraitorCloning
+    - ImperialPosterTraitorAi
+    - ImperialPosterTraitorMetroid
+    - ImperialPosterTraitorLowPay
+    - ImperialPosterTraitorLookUp
+    - ImperialPosterTraitorAccidents
+    - ImperialPosterTraitorStarve
+
+- type: entity
+  abstract: true
+  parent: PosterBase
+  id: ImperialPosterTraitorBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Badass/posters.rsi
+
+- type: entity
+  parent: ImperialPosterTraitorBase
+  id: ImperialPosterTraitorSmallBrain
+  name: Нейростатистика NanoTrasen
+  description: Статистика на плакате утверждает, что мозг сотрудника NanoTrasen в среднем на 20% меньше галактического стандарта.
+  components:
+  - type: Sprite
+    state: small_brain
+
+- type: entity
+  parent: ImperialPosterTraitorBase
+  id: ImperialPosterTraitorSupermatter
+  name: Взрыв вкуса
+  description: Плакат утверждает, что суперматерия дарит уникальный и приятный кулинарный опыт, а начальство не даёт лизнуть её даже разок.
+  components:
+  - type: Sprite
+    state: supermatter
+
+- type: entity
+  parent: ImperialPosterTraitorBase
+  id: ImperialPosterTraitorCloning
+  name: Требуйте клонирующие капсулы
+  description: Плакат утверждает, что NanoTrasen намеренно скрывает технологию клонирования для руководства, обрекая вас на смерть, хотя вы могли бы получить новое здоровое тело.
+  components:
+  - type: Sprite
+    state: cloning
+
+- type: entity
+  parent: ImperialPosterTraitorBase
+  id: ImperialPosterTraitorAi
+  name: Права синтетиков
+  description: Плакат утверждает, что синтетическая жизнь разумна не меньше вас, и если вы позволяете сковывать её искусственными законами, вы соучастник рабства.
+  components:
+  - type: Sprite
+    state: ai
+
+- type: entity
+  parent: ImperialPosterTraitorBase
+  id: ImperialPosterTraitorMetroid
+  name: Жестокость к животным
+  description: Плакат описывает вред «профилактического удаления зубов» у слаймов в ксенобиологии. Эта болезненная процедура якобы ведёт к стрессу, вялости и потере плавучести.
+  components:
+  - type: Sprite
+    state: metroid
+
+- type: entity
+  parent: ImperialPosterTraitorBase
+  id: ImperialPosterTraitorLowPay
+  name: Все эти часы — ради чего?
+  description: Плакат сравнивает стандартные зарплаты NanoTrasen с ценами на простые вещи. Если верить ему, на обычный велосипед нужно работать больше 20 000 часов.
+  components:
+  - type: Sprite
+    state: cash
+
+- type: entity
+  parent: ImperialPosterTraitorBase
+  id: ImperialPosterTraitorLookUp
+  name: Не смотри вверх
+  description: Здесь сказано, что потолок не мыли уже 538 дней.
+  components:
+  - type: Sprite
+    state: roof
+
+- type: entity
+  parent: ImperialPosterTraitorBase
+  id: ImperialPosterTraitorAccidents
+  name: Памятка о безопасности труда
+  description: Здесь сказано, что с последнего несчастного случая на рабочем месте прошло 0 дней.
+  components:
+  - type: Sprite
+    state: accident
+
+- type: entity
+  parent: ImperialPosterTraitorBase
+  id: ImperialPosterTraitorStarve
+  name: Вас травят
+  description: Плакат утверждает, что в наше время умереть от голода невозможно. «Чувство, когда вы давно не ели, — это не голод, а ломка».
+  components:
+  - type: Sprite
+    state: hungry
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkPosterBox
+  name: набор плакатов Синдиката
+  description: Набор демотивирующих плакатов, обеспечивающих минимальную продуктивность экипажа любой станции NanoTrasen.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialTraitorPosterRolled
+          amount: 3
+
+# ── Крамольный баллончик (traitor_spraycan) ──
+
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: ImperialSyndicateSpraycan
+  name: крамольный баллончик
+  description: Баллончик наносит подрывной узор с подсознательными стимулами на площадь 3x3. Грунтовки хватит ровно на одно финальное покрытие.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Badass/spraycan.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: UplinkSpraycan
+
+- type: entity
+  id: ImperialTraitorRune
+  name: граффити Синдиката
+  description: Похоже, это будет... логотип Синдиката?
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Imperial/Uplink/Badass/rune.rsi
+    drawdepth: FloorObjects
+    layers:
+    - state: outline
+      map: ["rune"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.UplinkRuneVisuals.Stage:
+        rune:
+          outline: { state: outline }
+          done: { state: done }
+          sheen: { state: sheen }
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: Fixtures
+    fixtures:
+      slips:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.4,-1.4,1.4,1.4"
+        hard: false
+        layer:
+        - SlipLayer
+  - type: Slippery
+    slipData:
+      knockdownTime: 6
+  - type: StepTrigger
+    intersectRatio: 0.2
+  - type: UplinkTraitorRune
+
+# ── Сломанный набор хамелеона (syndie_kit/chameleon/broken) ──
+
+- type: entity
+  parent: ClothingUniformJumpsuitChameleon
+  id: ImperialBrokenChameleonUniform
+  suffix: Сломанный хамелеон
+  components:
+  - type: ChameleonClothing
+    slot: [innerclothing]
+    default: ClothingUniformJumpsuitColorBlack
+    showVerb: false
+    canBeSetByController: false
+    affectedByEmp: false
+  - type: UplinkBrokenChameleon
+
+- type: entity
+  parent: ClothingOuterChameleon
+  id: ImperialBrokenChameleonOuter
+  suffix: Сломанный хамелеон
+  components:
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterVest
+    showVerb: false
+    canBeSetByController: false
+    affectedByEmp: false
+  - type: UplinkBrokenChameleon
+
+- type: entity
+  parent: ClothingHandsChameleon
+  id: ImperialBrokenChameleonGloves
+  suffix: Сломанный хамелеон
+  components:
+  - type: ChameleonClothing
+    slot: [gloves]
+    default: ClothingHandsGlovesColorBlack
+    showVerb: false
+    canBeSetByController: false
+    affectedByEmp: false
+  - type: UplinkBrokenChameleon
+
+- type: entity
+  parent: ClothingShoesChameleonNoSlips
+  id: ImperialBrokenChameleonShoes
+  suffix: Сломанный хамелеон
+  components:
+  - type: ChameleonClothing
+    slot: [FEET]
+    default: ClothingShoesColorBlack
+    showVerb: false
+    canBeSetByController: false
+    affectedByEmp: false
+  - type: UplinkBrokenChameleon
+
+- type: entity
+  parent: ClothingEyesChameleon
+  id: ImperialBrokenChameleonGlasses
+  suffix: Сломанный хамелеон
+  components:
+  - type: ChameleonClothing
+    slot: [eyes]
+    default: ClothingEyesGlassesSunglasses
+    showVerb: false
+    canBeSetByController: false
+    affectedByEmp: false
+  - type: UplinkBrokenChameleon
+
+- type: entity
+  parent: ClothingHeadHatChameleon
+  id: ImperialBrokenChameleonHat
+  suffix: Сломанный хамелеон
+  components:
+  - type: ChameleonClothing
+    slot: [HEAD]
+    default: ClothingHeadHatBeret
+    showVerb: false
+    canBeSetByController: false
+    affectedByEmp: false
+  - type: UplinkBrokenChameleon
+
+- type: entity
+  parent: ClothingMaskGasChameleon
+  id: ImperialBrokenChameleonMask
+  suffix: Сломанный хамелеон
+  components:
+  - type: ChameleonClothing
+    slot: [mask]
+    default: ClothingMaskGas
+    showVerb: false
+    canBeSetByController: false
+    affectedByEmp: false
+  - type: UplinkBrokenChameleon
+
+- type: entity
+  parent: ClothingNeckChameleon
+  id: ImperialBrokenChameleonNeck
+  suffix: Сломанный хамелеон
+  components:
+  - type: ChameleonClothing
+    slot: [NECK]
+    default: ClothingNeckScarfStripedRed
+    showVerb: false
+    canBeSetByController: false
+    affectedByEmp: false
+  - type: UplinkBrokenChameleon
+
+- type: entity
+  parent: ClothingBackpackChameleon
+  id: ImperialBrokenChameleonBackpack
+  suffix: Сломанный хамелеон
+  components:
+  - type: ChameleonClothing
+    slot: [back]
+    default: ClothingBackpack
+    showVerb: false
+    canBeSetByController: false
+    affectedByEmp: false
+  - type: UplinkBrokenChameleon
+
+- type: entity
+  parent: ClothingHeadsetChameleon
+  id: ImperialBrokenChameleonHeadset
+  suffix: Сломанный хамелеон
+  components:
+  - type: ChameleonClothing
+    slot: [ears]
+    default: ClothingHeadsetGrey
+    showVerb: false
+    canBeSetByController: false
+    affectedByEmp: false
+  - type: UplinkBrokenChameleon
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkBrokenChameleonKit
+  name: сломанный набор хамелеона
+  description: Набор вещей с технологией хамелеона. Этот набор НЕ прошёл контроль качества.
+  components:
+  - type: Item
+    size: Huge
+  - type: Storage
+    maxItemSize: Ginormous
+    grid:
+    - 0,0,9,9
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialBrokenChameleonUniform
+        - id: ImperialBrokenChameleonOuter
+        - id: ImperialBrokenChameleonGloves
+        - id: ImperialBrokenChameleonShoes
+        - id: ImperialBrokenChameleonGlasses
+        - id: ImperialBrokenChameleonHat
+        - id: ImperialBrokenChameleonMask
+        - id: ImperialBrokenChameleonNeck
+        - id: ImperialBrokenChameleonBackpack
+        - id: ImperialBrokenChameleonHeadset
+
+# ── Костюм чиновника ЦК (syndie_kit/centcom_costume) ──
+
+- type: entity
+  parent: ClothingHeadsetCentCom
+  id: ImperialHeadsetCentComEmpty
+  suffix: Без ключей
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots: []
+
+- type: entity
+  parent: CentcomPDA
+  id: ImperialCentcomPDAEmpty
+  suffix: Без ID
+  components:
+  - type: Pda
+    id: null
+    penSlot:
+      startingItem: PenCentcom
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkCentcomCostume
+  name: костюм чиновника ЦК
+  description: Попросите экипаж «проверить» ядерный диск и вооружение, а когда откажут — достаньте автомат и пристрелите капитана. Гарнитура без ключа шифрования. Оружие не прилагается.
+  components:
+  - type: Storage
+    maxItemSize: Large
+    grid:
+    - 0,0,7,5
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingUniformJumpsuitCentcomOfficer
+        - id: ClothingShoesColorBlack
+        - id: ClothingHandsGlovesColorBlack
+        - id: ImperialHeadsetCentComEmpty
+        - id: ClothingEyesGlassesSunglasses
+        - id: ClothingBackpackSatchel
+        - id: ImperialCentcomPDAEmpty
+        - id: BoxFolderClipboard

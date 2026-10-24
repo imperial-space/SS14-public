@@ -1,0 +1,20 @@
+uplink-pizza-armed = Внутри коробки — [color=red]взведённая бомба[/color].
+uplink-pizza-unarmed = Внутри коробки — невзведённая бомба.
+uplink-pizza-title = Пицца-бомба
+uplink-pizza-prompt = Таймер бомбы (1–20 секунд)
+uplink-pizza-set = Таймер установлен на { $timer } с. Закройте коробку — бомба сработает при следующем открытии.
+uplink-detonator-result = Найдено бомб: { $found }, активировано: { $triggered }.
+uplink-detomatix-charges = Осталось зарядов: { $charges }.
+uplink-detomatix-empty = На диске не осталось зарядов.
+uplink-detomatix-title = Детоматикс
+uplink-detomatix-prompt = Имя владельца КПК
+uplink-detomatix-success = Сообщение отправлено. КПК цели детонирует.
+uplink-detomatix-notfound = КПК с таким владельцем не найден.
+uplink-earthcracker-no-floor = Здесь нет пола для установки.
+uplink-earthcracker-armed = Землеразлом установлен. Нажмите на него, чтобы активировать.
+uplink-earthcracker-activate = Землеразлом с грохотом вбивает сваю в пол!
+uplink-deniability-armed = Имплант тактического отрицания пищит — до взрыва 10 секунд!
+uplink-cns-reboot = Перезагрузчик ЦНС возвращает контроль над телом!
+uplink-reviver-start = Вы чувствуете слабое жужжание: имплант-ревивер начинает латать ваши раны...
+uplink-reviver-shutdown = Имплант-ревивер отключается и начинает перезарядку. Он будет готов через { $time } с.
+uplink-reviver-revive = Тело { $target } немного содрогается.
