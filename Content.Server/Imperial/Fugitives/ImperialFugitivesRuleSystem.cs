@@ -549,10 +549,14 @@ public sealed class ImperialFugitivesRuleSystem : GameRuleSystem<ImperialFugitiv
         args.AddLine(Loc.GetString($"imperial-fugitive-result-{result}", ("pack", pack)));
     }
 
+    /// <summary>greet(): приветствие с разметкой (DispatchServerMessage экранирует теги).</summary>
     private void Greet(MindComponent mind, string message)
     {
-        if (mind.UserId is { } userId && _players.TryGetSessionById(userId, out var session))
-            _chatManager.DispatchServerMessage(session, message, true);
+        if (mind.UserId is not { } userId || !_players.TryGetSessionById(userId, out var session))
+            return;
+
+        var plain = Robust.Shared.Utility.FormattedMessage.RemoveMarkupOrThrow(message);
+        _chatManager.ChatMessageToOne(Content.Shared.Chat.ChatChannel.Server, plain, message, default, false, session.Channel);
     }
 
     #endregion
