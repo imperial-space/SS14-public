@@ -226,6 +226,10 @@ public sealed partial class MartialArtsSystem
         if (_standing.IsDown(victim))
             effective++;
 
+        // TRAIT_GRABWEAKNESS (причуда «Слабак на захват» из Imperial/Quirks): захват считается на стадию сильнее.
+        if (EntityManager.ComponentFactory.TryGetRegistration("ImperialQuirkPushover", out var pushover) && HasComp(victim, pushover.Type))
+            effective++;
+
         if (GetActive(grabber) is { } art && CanUse(grabbed.Grabber, art))
         {
             effective += art.GrabStateModifier;
