@@ -49,31 +49,25 @@ public sealed class AvatarHelpWindow : DefaultWindow
     public AvatarHelpWindow(string help)
     {
         Title = Loc.GetString("bitrunning-help-title");
-        MinSize = SetSize = new Vector2(600, 600);
+        MinSize = new Vector2(400, 300);
+        SetSize = new Vector2(600, 600);
 
         var root = Tgui.VBox(6);
         root.Margin = new Thickness(6);
         root.VerticalExpand = true;
 
-        var text = Tgui.Paragraph(help, Tgui.Good);
-        var scroll = new ScrollContainer { HScrollEnabled = false, VerticalExpand = true };
-        scroll.AddChild(text);
-        var welcome = Tgui.MakeSection(Loc.GetString("bitrunning-help-welcome"), null, scroll);
-        welcome.VerticalExpand = true;
-        welcome.SizeFlagsStretchRatio = 1;
-        root.AddChild(welcome);
-
-        var grid = Tgui.VBox(6);
-        grid.VerticalExpand = true;
-        grid.SizeFlagsStretchRatio = 4;
-        for (var row = 0; row < 3; row++)
+        // Карточки одной колонкой с общей прокруткой: в два столбца длинный текст выталкивал правую карточку за край окна.
+        var content = Tgui.VBox(6);
+        content.HorizontalExpand = true;
+        content.AddChild(Tgui.MakeSection(Loc.GetString("bitrunning-help-welcome"), null, Tgui.Paragraph(help, Tgui.Good)));
+        for (var i = 0; i < Boxes.Length; i++)
         {
-            var line = Tgui.HBox(6, BoxHelp(row * 2), BoxHelp(row * 2 + 1));
-            line.VerticalExpand = true;
-            grid.AddChild(line);
+            content.AddChild(BoxHelp(i));
         }
 
-        root.AddChild(grid);
+        var scroll = new ScrollContainer { HScrollEnabled = false, VerticalExpand = true, HorizontalExpand = true };
+        scroll.AddChild(content);
+        root.AddChild(scroll);
         Contents.AddChild(Tgui.Window(root, scrollable: false));
     }
 
@@ -100,8 +94,6 @@ public sealed class AvatarHelpWindow : DefaultWindow
         return new PanelContainer
         {
             HorizontalExpand = true,
-            VerticalExpand = true,
-            MinHeight = 120,
             PanelOverride = new Robust.Client.Graphics.StyleBoxFlat { BackgroundColor = Tgui.Section },
             Children = { header },
         };
