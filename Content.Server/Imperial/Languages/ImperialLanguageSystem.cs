@@ -23,24 +23,6 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Languages;
 
-/// <summary>Набор языков по виду или типу существа (language_holder TG).</summary>
-[Prototype]
-public sealed partial class ImperialLanguageSetPrototype : IPrototype
-{
-    /// <summary>Id вида (Human, Reptilian…) либо Borg / StationAi / Default.</summary>
-    [IdDataField]
-    public string ID { get; private set; } = default!;
-
-    [DataField]
-    public List<ProtoId<ImperialLanguagePrototype>> Spoken = new();
-
-    [DataField]
-    public List<ProtoId<ImperialLanguagePrototype>> Understood = new();
-
-    [DataField]
-    public Dictionary<ProtoId<ImperialLanguagePrototype>, int> Partial = new();
-}
-
 /// <summary>
 /// Языки TG: речь на чужом языке перемешивается для тех, кто его не понимает (scramble_paragraph).
 /// Ванильный чат не трогается: при разговоре на языке получатели забираются из рассылки и получают свою версию.
