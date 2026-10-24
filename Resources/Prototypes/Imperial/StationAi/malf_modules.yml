@@ -329,11 +329,9 @@
     icon:
       sprite: Imperial/StationAi/malf.rsi
       state: override_machine
-  - type: EntityTargetAction
+  # ИИ выбирает точку, сервер берёт подходящую сущность у места клика.
+  - type: WorldTargetAction
     event: !type:ImperialMalfOverrideMachineActionEvent
-    whitelist:
-      components:
-      - ApcPowerReceiver
 
 - type: entity
   parent: BaseActionImperialMalfEntity
@@ -345,11 +343,9 @@
     icon:
       sprite: Imperial/StationAi/malf.rsi
       state: overload_machine
-  - type: EntityTargetAction
+  # ИИ выбирает точку, сервер берёт подходящую сущность у места клика.
+  - type: WorldTargetAction
     event: !type:ImperialMalfOverloadMachineActionEvent
-    whitelist:
-      components:
-      - ApcPowerReceiver
 
 - type: entity
   parent: BaseActionImperialMalf
@@ -413,11 +409,9 @@
     icon:
       sprite: Structures/Wallmounts/air_monitors.rsi
       state: alarm2
-  - type: EntityTargetAction
+  # ИИ выбирает точку, сервер берёт подходящую сущность у места клика.
+  - type: WorldTargetAction
     event: !type:ImperialMalfFloodActionEvent
-    whitelist:
-      components:
-      - AirAlarm
 
 - type: entity
   parent: BaseActionImperialMalf
@@ -468,7 +462,8 @@
     icon:
       sprite: Objects/Tools/emag.rsi
       state: icon
-  - type: EntityTargetAction
+  # ИИ выбирает точку, сервер берёт подходящую сущность у места клика.
+  - type: WorldTargetAction
     event: !type:ImperialMalfEmagActionEvent
 
 - type: entity
@@ -481,11 +476,9 @@
     icon:
       sprite: Objects/Specific/Mech/mecha.rsi
       state: ripley
-  - type: EntityTargetAction
+  # ИИ выбирает точку, сервер берёт подходящую сущность у места клика.
+  - type: WorldTargetAction
     event: !type:ImperialMalfDominateMechActionEvent
-    whitelist:
-      components:
-      - Mech
 
 - type: entity
   parent: BaseActionImperialMalf
@@ -569,11 +562,9 @@
     icon:
       sprite: Imperial/StationAi/malf.rsi
       state: ai_shell
-  - type: EntityTargetAction
+  # ИИ выбирает точку, сервер берёт подходящую сущность у места клика.
+  - type: WorldTargetAction
     event: !type:ImperialMalfShuntActionEvent
-    whitelist:
-      components:
-      - Apc
 
 - type: entity
   parent: BaseActionImperialMalf

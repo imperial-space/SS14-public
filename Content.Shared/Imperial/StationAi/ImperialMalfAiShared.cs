@@ -68,7 +68,7 @@ public enum ImperialMalfModuleCategory : byte
 public sealed partial class ImperialMalfModulesActionEvent : InstantActionEvent;
 
 /// <summary>Взломать ЛКП (malfhack): цель — ЛКП.</summary>
-public sealed partial class ImperialMalfHackApcActionEvent : EntityTargetActionEvent;
+public sealed partial class ImperialMalfHackApcActionEvent : WorldTargetActionEvent;
 
 /// <summary>Сервер → клиент: меню модулей (процессорное время, взломанные ЛКП, купленные разовые модули).</summary>
 [Serializable, NetSerializable]
@@ -98,10 +98,10 @@ public sealed class ImperialMalfBuyEvent(string module) : EntityEventArgs
 public sealed partial class ImperialMalfLockdownActionEvent : InstantActionEvent;
 
 /// <summary>override_machine.</summary>
-public sealed partial class ImperialMalfOverrideMachineActionEvent : EntityTargetActionEvent;
+public sealed partial class ImperialMalfOverrideMachineActionEvent : WorldTargetActionEvent;
 
 /// <summary>overload_machine.</summary>
-public sealed partial class ImperialMalfOverloadMachineActionEvent : EntityTargetActionEvent;
+public sealed partial class ImperialMalfOverloadMachineActionEvent : WorldTargetActionEvent;
 
 /// <summary>destroy_rcds.</summary>
 public sealed partial class ImperialMalfDestroyRcdsActionEvent : InstantActionEvent;
@@ -116,7 +116,7 @@ public sealed partial class ImperialMalfHonkActionEvent : InstantActionEvent;
 public sealed partial class ImperialMalfFactoryActionEvent : InstantActionEvent;
 
 /// <summary>break_air_alarms (режим затопления одной тревоги).</summary>
-public sealed partial class ImperialMalfFloodActionEvent : EntityTargetActionEvent;
+public sealed partial class ImperialMalfFloodActionEvent : WorldTargetActionEvent;
 
 /// <summary>break_fire_alarms.</summary>
 public sealed partial class ImperialMalfFireAlarmsActionEvent : InstantActionEvent;
@@ -128,7 +128,7 @@ public sealed partial class ImperialMalfEmergencyLightsActionEvent : InstantActi
 public sealed partial class ImperialMalfReactivateCamerasActionEvent : InstantActionEvent;
 
 /// <summary>remote_emag.</summary>
-public sealed partial class ImperialMalfEmagActionEvent : EntityTargetActionEvent;
+public sealed partial class ImperialMalfEmagActionEvent : WorldTargetActionEvent;
 
 /// <summary>core_tilt.</summary>
 public sealed partial class ImperialMalfRollActionEvent : WorldTargetActionEvent;
@@ -137,7 +137,7 @@ public sealed partial class ImperialMalfRollActionEvent : WorldTargetActionEvent
 public sealed partial class ImperialMalfVendorTiltActionEvent : WorldTargetActionEvent;
 
 /// <summary>mecha_domination.</summary>
-public sealed partial class ImperialMalfDominateMechActionEvent : EntityTargetActionEvent;
+public sealed partial class ImperialMalfDominateMechActionEvent : WorldTargetActionEvent;
 
 /// <summary>Вернуться из меха в ядро.</summary>
 public sealed partial class ImperialMalfMechReturnActionEvent : InstantActionEvent;
@@ -149,7 +149,7 @@ public sealed partial class ImperialMalfVoiceChangerActionEvent : InstantActionE
 public sealed partial class ImperialMalfDoomsdayActionEvent : InstantActionEvent;
 
 /// <summary>Перенос ядра в взломанный ЛКП (shunt).</summary>
-public sealed partial class ImperialMalfShuntActionEvent : EntityTargetActionEvent;
+public sealed partial class ImperialMalfShuntActionEvent : WorldTargetActionEvent;
 
 /// <summary>Вернуться из ЛКП в ядро (return_to_core).</summary>
 public sealed partial class ImperialMalfReturnToCoreActionEvent : InstantActionEvent;

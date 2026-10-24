@@ -83,6 +83,7 @@ imperial-malf-module-eavesdrop-unlock = Вы слышите всё, что го�
 ## Эффекты модулей
 
 imperial-malf-only-machines = Это можно сделать только с машиной.
+imperial-malf-no-target = Здесь нет подходящей цели — нажмите точно на устройство.
 imperial-malf-machine-buzz = { $machine } угрожающе жужжит!
 imperial-malf-lockdown-announce = Обнаружен вирус в сети шлюзов. Протокол блокировки активирован. Все шлюзы станции закрыты на 90 секунд.
 imperial-malf-lockdown-sender = Сеть контроля доступа

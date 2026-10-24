@@ -204,6 +204,13 @@ public sealed partial class ImperialMalfAiSystem
     /// <summary>shunt: разум переносится в ядро-укрытие внутри взломанного ЛКП.</summary>
     private void OnShunt(Entity<ImperialMalfAiComponent> ent, ref ImperialMalfShuntActionEvent args)
     {
+        if (PickTarget(args.Target, HasComp<ApcComponent>) is not { } target)
+        {
+            if (!args.Handled)
+                _popup.PopupEntity(Loc.GetString("imperial-malf-no-target"), ent, ent);
+            return;
+        }
+
         if (args.Handled)
             return;
 
@@ -213,7 +220,7 @@ public sealed partial class ImperialMalfAiSystem
             return;
         }
 
-        if (!TryComp<ImperialMalfHackedApcComponent>(args.Target, out var hacked) || hacked.Ai != ent.Owner)
+        if (!TryComp<ImperialMalfHackedApcComponent>(target, out var hacked) || hacked.Ai != ent.Owner)
         {
             _popup.PopupEntity(Loc.GetString("imperial-malf-shunt-not-hacked"), ent, ent);
             return;
@@ -223,7 +230,7 @@ public sealed partial class ImperialMalfAiSystem
             return;
 
         args.Handled = true;
-        var shunt = Spawn(ShuntCoreProto, Transform(args.Target).Coordinates);
+        var shunt = Spawn(ShuntCoreProto, Transform(target).Coordinates);
         if (!MoveBrain(ent, home.Owner, shunt))
         {
             QueueDel(shunt);
@@ -232,11 +239,11 @@ public sealed partial class ImperialMalfAiSystem
 
         _power.SetNeedsPower(shunt, false);
         var comp = EnsureComp<ImperialMalfShuntCoreComponent>(shunt);
-        comp.Apc = args.Target;
+        comp.Apc = target;
         comp.Home = home.Owner;
         ent.Comp.Shunt = shunt;
         _actions.AddAction(ent, ref ent.Comp.ReturnAction, ReturnAction);
-        Notify(ent, Loc.GetString("imperial-malf-shunt-done", ("apc", Name(args.Target))));
+        Notify(ent, Loc.GetString("imperial-malf-shunt-done", ("apc", Name(target))));
     }
 
     /// <summary>return_to_core: назад в покинутое ядро, если оно цело.</summary>

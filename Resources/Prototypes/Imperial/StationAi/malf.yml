@@ -114,8 +114,6 @@
   - type: TargetAction
     checkCanAccess: false
     range: 0
-  - type: EntityTargetAction
+  # ИИ выбирает точку, сервер берёт подходящую сущность у места клика.
+  - type: WorldTargetAction
     event: !type:ImperialMalfHackApcActionEvent
-    whitelist:
-      components:
-      - Apc

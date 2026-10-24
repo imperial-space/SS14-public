@@ -19,6 +19,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Map;
 
 namespace Content.Server.Imperial.StationAi.Malf;
 
@@ -353,14 +354,46 @@ public sealed partial class ImperialMalfAiSystem : EntitySystem
 
     #region Взлом ЛКП
 
+    /// <summary>
+    /// Цель действия по точке: ближайшая подходящая сущность в клетке от клика.
+    /// Клиент ИИ не выбирает сущность под курсором, поэтому действия ИИ нацеливаются на точку.
+    /// </summary>
+    private EntityUid? PickTarget(EntityCoordinates coords, Func<EntityUid, bool> filter)
+    {
+        var map = _transform.ToMapCoordinates(coords);
+        EntityUid? best = null;
+        var bestDist = float.MaxValue;
+        foreach (var uid in _lookup.GetEntitiesInRange(map, 1f))
+        {
+            if (!filter(uid))
+                continue;
+
+            var dist = (_transform.GetMapCoordinates(uid).Position - map.Position).LengthSquared();
+            if (dist >= bestDist)
+                continue;
+
+            bestDist = dist;
+            best = uid;
+        }
+
+        return best;
+    }
+
     /// <summary>malfhack(): 30 секунд + 10 за каждый уже взломанный ЛКП.</summary>
     private void OnHackApc(Entity<ImperialMalfAiComponent> ent, ref ImperialMalfHackApcActionEvent args)
     {
+        if (PickTarget(args.Target, HasComp<ApcComponent>) is not { } target)
+        {
+            if (!args.Handled)
+                _popup.PopupEntity(Loc.GetString("imperial-malf-no-target"), ent, ent);
+            return;
+        }
+
         if (args.Handled)
             return;
 
         args.Handled = true;
-        var apc = args.Target;
+        var apc = target;
         if (!HasComp<ApcComponent>(apc))
             return;
 

@@ -214,10 +214,17 @@ public sealed partial class ImperialMalfAiSystem
     /// <summary>override_machine: машина оживает и нападает через 5 секунд.</summary>
     private void OnOverrideMachine(Entity<ImperialMalfAiComponent> ent, ref ImperialMalfOverrideMachineActionEvent args)
     {
+        if (PickTarget(args.Target, e => IsMachine(EntityManager, e)) is not { } target)
+        {
+            if (!args.Handled)
+                _popup.PopupEntity(Loc.GetString("imperial-malf-no-target"), ent, ent);
+            return;
+        }
+
         if (args.Handled)
             return;
 
-        if (!IsMachine(EntityManager, args.Target))
+        if (!IsMachine(EntityManager, target))
         {
             _popup.PopupEntity(Loc.GetString("imperial-malf-only-machines"), ent, ent);
             return;
@@ -228,17 +235,24 @@ public sealed partial class ImperialMalfAiSystem
 
         args.Handled = true;
         PlayToAi(ent, InterferenceSound);
-        _popup.PopupEntity(Loc.GetString("imperial-malf-machine-buzz", ("machine", Name(args.Target))), args.Target, PopupType.LargeCaution);
-        _pendingMachines.Add((_timing.CurTime + MachineDelay, ent, args.Target, false));
+        _popup.PopupEntity(Loc.GetString("imperial-malf-machine-buzz", ("machine", Name(target))), target, PopupType.LargeCaution);
+        _pendingMachines.Add((_timing.CurTime + MachineDelay, ent, target, false));
     }
 
     /// <summary>overload_machine: взрыв (2/3) через 5 секунд.</summary>
     private void OnOverloadMachine(Entity<ImperialMalfAiComponent> ent, ref ImperialMalfOverloadMachineActionEvent args)
     {
+        if (PickTarget(args.Target, e => IsMachine(EntityManager, e)) is not { } target)
+        {
+            if (!args.Handled)
+                _popup.PopupEntity(Loc.GetString("imperial-malf-no-target"), ent, ent);
+            return;
+        }
+
         if (args.Handled)
             return;
 
-        if (!IsMachine(EntityManager, args.Target))
+        if (!IsMachine(EntityManager, target))
         {
             _popup.PopupEntity(Loc.GetString("imperial-malf-only-machines"), ent, ent);
             return;
@@ -249,8 +263,8 @@ public sealed partial class ImperialMalfAiSystem
 
         args.Handled = true;
         PlayToAi(ent, InterferenceSound);
-        _popup.PopupEntity(Loc.GetString("imperial-malf-machine-buzz", ("machine", Name(args.Target))), args.Target, PopupType.LargeCaution);
-        _pendingMachines.Add((_timing.CurTime + MachineDelay, ent, args.Target, true));
+        _popup.PopupEntity(Loc.GetString("imperial-malf-machine-buzz", ("machine", Name(target))), target, PopupType.LargeCaution);
+        _pendingMachines.Add((_timing.CurTime + MachineDelay, ent, target, true));
     }
 
     private void FinishMachine(EntityUid ai, EntityUid target, bool explode)
@@ -426,7 +440,14 @@ public sealed partial class ImperialMalfAiSystem
     /// <summary>break_air_alarms → режим затопления: вентиляция без проверок давления, скрубберы выключены.</summary>
     private void OnFlood(Entity<ImperialMalfAiComponent> ent, ref ImperialMalfFloodActionEvent args)
     {
-        if (args.Handled || !TryComp<AirAlarmComponent>(args.Target, out var alarm))
+        if (PickTarget(args.Target, HasComp<AirAlarmComponent>) is not { } target)
+        {
+            if (!args.Handled)
+                _popup.PopupEntity(Loc.GetString("imperial-malf-no-target"), ent, ent);
+            return;
+        }
+
+        if (args.Handled || !TryComp<AirAlarmComponent>(target, out var alarm))
             return;
 
         args.Handled = true;
@@ -443,16 +464,16 @@ public sealed partial class ImperialMalfAiSystem
 
         foreach (var address in alarm.VentData.Keys.ToList())
         {
-            _airAlarms.SetData(args.Target, address, flood);
+            _airAlarms.SetData(target, address, flood);
         }
 
         foreach (var address in alarm.ScrubberData.Keys.ToList())
         {
-            _airAlarms.SetData(args.Target, address, GasVentScrubberData.FillModePreset);
+            _airAlarms.SetData(target, address, GasVentScrubberData.FillModePreset);
         }
 
-        EnsureComp<EmaggedComponent>(args.Target);
-        Notify(ent, Loc.GetString("imperial-malf-flood-done", ("alarm", Name(args.Target))));
+        EnsureComp<EmaggedComponent>(target);
+        Notify(ent, Loc.GetString("imperial-malf-flood-done", ("alarm", Name(target))));
     }
 
     /// <summary>break_fire_alarms: пожарные тревоги больше не замечают огня, пожарные шлюзы не закрываются сами.</summary>
@@ -540,10 +561,16 @@ public sealed partial class ImperialMalfAiSystem
     /// <summary>emag: удалённо снять предохранители (до 7 раз).</summary>
     private void OnEmag(Entity<ImperialMalfAiComponent> ent, ref ImperialMalfEmagActionEvent args)
     {
+        if (PickTarget(args.Target, e => IsMachine(EntityManager, e)) is not { } target)
+        {
+            if (!args.Handled)
+                _popup.PopupEntity(Loc.GetString("imperial-malf-no-target"), ent, ent);
+            return;
+        }
+
         if (args.Handled)
             return;
 
-        var target = args.Target;
         var ev = new GotEmaggedEvent(ent, EmagType.Interaction | EmagType.Access);
         RaiseLocalEvent(target, ref ev);
         if (!ev.Handled)
@@ -671,16 +698,23 @@ public sealed partial class ImperialMalfAiSystem
     /// <summary>mecha_domination: пилот выброшен, ИИ управляет мехом через «пилота-призрака».</summary>
     private void OnDominateMech(Entity<ImperialMalfAiComponent> ent, ref ImperialMalfDominateMechActionEvent args)
     {
-        if (args.Handled || !TryComp<MechComponent>(args.Target, out var mech))
+        if (PickTarget(args.Target, HasComp<MechComponent>) is not { } target)
+        {
+            if (!args.Handled)
+                _popup.PopupEntity(Loc.GetString("imperial-malf-no-target"), ent, ent);
+            return;
+        }
+
+        if (args.Handled || !TryComp<MechComponent>(target, out var mech))
             return;
 
         if (!_mind.TryGetMind(ent, out var mindId, out var mind) || mind.VisitingEntity != null)
             return;
 
         args.Handled = true;
-        _mech.TryEject(args.Target, mech);
-        var proxy = Spawn(MechProxyProto, _transform.GetMapCoordinates(args.Target));
-        if (!_mech.TryInsert(args.Target, proxy, mech))
+        _mech.TryEject(target, mech);
+        var proxy = Spawn(MechProxyProto, _transform.GetMapCoordinates(target));
+        if (!_mech.TryInsert(target, proxy, mech))
         {
             QueueDel(proxy);
             _popup.PopupEntity(Loc.GetString("imperial-malf-mech-failed"), ent, ent);
@@ -691,12 +725,12 @@ public sealed partial class ImperialMalfAiSystem
 
         var comp = EnsureComp<ImperialMalfMechProxyComponent>(proxy);
         comp.Ai = ent;
-        comp.Mech = args.Target;
+        comp.Mech = target;
         comp.Mind = mindId;
         _meta.SetEntityName(proxy, Name(ent));
         comp.ReturnAction = _actions.AddAction(proxy, MechReturnAction);
         _mind.Visit(mindId, proxy, mind);
-        Notify(ent, Loc.GetString("imperial-malf-mech-dominated", ("mech", Name(args.Target))));
+        Notify(ent, Loc.GetString("imperial-malf-mech-dominated", ("mech", Name(target))));
     }
 
     private void OnMechReturn(Entity<ImperialMalfMechProxyComponent> ent, ref ImperialMalfMechReturnActionEvent args)
