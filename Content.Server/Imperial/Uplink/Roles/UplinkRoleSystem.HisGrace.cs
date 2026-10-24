@@ -1,7 +1,6 @@
 using System.Linq;
 using Content.Shared.Damage;
 using Content.Shared.Examine;
-using Content.Shared.Imperial.ImperialVehicle.Components;
 using Content.Shared.Imperial.Uplink.Roles;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
@@ -15,7 +14,6 @@ using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Events;
 using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.Uplink.Roles;
@@ -274,53 +272,4 @@ public sealed partial class UplinkRoleSystem
         ent.Comp.ForceBonus = 0;
         RemComp<UnremoveableComponent>(ent);
     }
-
-    #region Машина клоуна
-
-    private void InitializeClownCar()
-    {
-        SubscribeLocalEvent<UplinkClownCarComponent, StartCollideEvent>(OnClownCarCollide);
-        SubscribeLocalEvent<UplinkClownCarComponent, GetVerbsEvent<AlternativeVerb>>(OnClownCarVerbs);
-        SubscribeLocalEvent<UplinkClownCarComponent, ExaminedEvent>(OnClownCarExamined);
-    }
-
-    private void OnClownCarExamined(Entity<UplinkClownCarComponent> ent, ref ExaminedEvent args)
-    {
-        if (_container.TryGetContainer(ent, ent.Comp.Container, out var container) && container.ContainedEntities.Count > 0)
-            args.PushMarkup(Loc.GetString("uplink-clowncar-victims", ("count", container.ContainedEntities.Count)));
-    }
-
-    /// <summary>clowncar: таран запихивает встречных внутрь машины.</summary>
-    private void OnClownCarCollide(Entity<UplinkClownCarComponent> ent, ref StartCollideEvent args)
-    {
-        if (!TryComp<ImperialVehicleComponent>(ent, out var vehicle) || vehicle.Rider is not { } rider)
-            return;
-
-        var victim = args.OtherEntity;
-        if (victim == rider || !HasComp<MobStateComponent>(victim) || args.OurBody.LinearVelocity.Length() < 1f)
-            return;
-
-        var container = _container.EnsureContainer<Container>(ent, ent.Comp.Container);
-        if (container.ContainedEntities.Count >= ent.Comp.Capacity)
-            return;
-
-        _container.Insert(victim, container);
-        _audio.PlayPvs(HonkSound, ent);
-        _popup.PopupEntity(Loc.GetString("uplink-clowncar-ram", ("target", victim)), ent, PopupType.MediumCaution);
-    }
-
-    private void OnClownCarVerbs(Entity<UplinkClownCarComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
-    {
-        if (!args.CanAccess || !args.CanInteract
-            || !_container.TryGetContainer(ent, ent.Comp.Container, out var container) || container.ContainedEntities.Count == 0)
-            return;
-
-        args.Verbs.Add(new AlternativeVerb
-        {
-            Text = Loc.GetString("uplink-clowncar-eject"),
-            Act = () => _container.EmptyContainer(container),
-        });
-    }
-
-    #endregion
 }

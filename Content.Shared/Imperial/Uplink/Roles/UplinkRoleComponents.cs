@@ -208,17 +208,6 @@ public sealed partial class UplinkDnaDartComponent : Component
     public EntityUid? Shooter;
 }
 
-/// <summary>Машина клоуна: таранит людей и запихивает их внутрь.</summary>
-[RegisterComponent]
-public sealed partial class UplinkClownCarComponent : Component
-{
-    [DataField]
-    public string Container = "clowncar_victims";
-
-    [DataField]
-    public int Capacity = 10;
-}
-
 /// <summary>Диск гиперконтузионного диода для эмиттера.</summary>
 [RegisterComponent]
 public sealed partial class UplinkEmitterDiskComponent : Component

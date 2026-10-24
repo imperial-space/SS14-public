@@ -651,47 +651,6 @@
     sound:
       path: /Audio/Items/bikehorn.ogg
 
-# /obj/vehicle/sealed/car/clowncar
-- type: entity
-  parent: BaseImperialVehicleRideable
-  id: ImperialClownCar
-  name: машина клоуна
-  description: Совершенный транспорт для любого достойного клоуна! Тараньте всех встречных и запихивайте их внутрь. Альт-клик — выпустить пленников.
-  components:
-  - type: Sprite
-    sprite: Imperial/Uplink/Roles/clowncar.rsi
-    layers:
-    - state: icon
-  - type: ImperialVehicle
-    autoAnimate: false
-    hideRider: true
-    baseWalkSpeed: 3.5
-    baseSprintSpeed: 5
-    acceleration: 2.0
-    useHand: false
-    hornSound:
-      path: /Audio/Items/bikehorn.ogg
-  - type: Strap
-    buckleOffset: "0,0"
-    maxBuckleDistance: 1
-    position: Stand
-  - type: UplinkClownCar
-  - type: ContainerContainer
-    containers:
-      clowncar_victims: !type:Container
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 150
-      behaviors:
-      - !type:EmptyAllContainersBehaviour
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-
 # /obj/item/his_grace
 - type: entity
   parent: BaseItem

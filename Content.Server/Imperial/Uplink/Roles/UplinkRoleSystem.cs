@@ -139,7 +139,6 @@ public sealed partial class UplinkRoleSystem : EntitySystem
         SubscribeLocalEvent<StoreBuyFinishedEvent>(OnBuyFinished);
 
         InitializeHisGrace();
-        InitializeClownCar();
     }
 
     public override void Update(float frameTime)

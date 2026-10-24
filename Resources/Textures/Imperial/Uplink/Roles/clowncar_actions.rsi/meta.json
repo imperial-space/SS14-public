@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (actions_vehicle.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "horn"
+    },
+    {
+      "name": "eject"
+    },
+    {
+      "name": "dump"
+    },
+    {
+      "name": "removekey"
+    },
+    {
+      "name": "headlights"
+    },
+    {
+      "name": "rtd"
+    },
+    {
+      "name": "cannon"
+    },
+    {
+      "name": "thank"
+    }
+  ]
+}
