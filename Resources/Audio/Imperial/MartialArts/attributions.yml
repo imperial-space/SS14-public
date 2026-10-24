@@ -1,0 +1,4 @@
+- files: [ "cqchit1.ogg", "cqchit2.ogg", "slam.ogg", "crack1.ogg", "slap.ogg", "whip.ogg", "slashmiss.ogg", "woodhit.ogg", "meteorimpact.ogg", "tail_swing.ogg", "coin2.ogg", "goldenblast.ogg" ]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation"
+  source: "https://github.com/ss220club/BandaStation"

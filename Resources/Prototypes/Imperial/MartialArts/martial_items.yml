@@ -1,0 +1,576 @@
+# Предметы боевых искусств 1 в 1 с tgstation/BandaStation.
+
+# ─── Учебники и свитки (book/granter/martial) ───
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMartialManual
+  components:
+  - type: Item
+    size: Small
+  - type: Tag
+    tags:
+    - Book
+
+- type: entity
+  parent: [ BaseMartialManual, BaseSyndicateContraband ]
+  id: MartialManualCqc
+  name: старое руководство
+  description: Небольшое чёрное руководство. В нём представлены наглядные инструкции по тактическому рукопашному бою.
+  components:
+  - type: Sprite
+    sprite: Imperial/MartialArts/manual.rsi
+    state: icon
+  - type: MartialArtManual
+    art: MartialArtCqc
+    martialName: martial-manual-name-cqc
+    greet: martial-manual-greet-cqc
+    recoil: Explode
+    remarks:
+    - martial-remark-cqc-1
+    - martial-remark-cqc-2
+    - martial-remark-cqc-3
+    - martial-remark-cqc-4
+    - martial-remark-cqc-5
+    - martial-remark-cqc-6
+    - martial-remark-cqc-7
+
+- type: entity
+  parent: BaseMartialManual
+  id: MartialScrollBlank
+  name: пустой свиток
+  description: Свиток абсолютно пуст.
+  components:
+  - type: Sprite
+    sprite: Imperial/MartialArts/scrolls.rsi
+    state: blankscroll
+
+- type: entity
+  parent: [ BaseMartialManual, BaseSyndicateContraband ]
+  id: MartialScrollSleepingCarp
+  name: загадочный свиток
+  description: Свиток, испещрённый странными знаками. Похоже, это зарисовки какого-то боевого искусства.
+  components:
+  - type: Sprite
+    sprite: Imperial/MartialArts/scrolls.rsi
+    state: sleepingcarp
+  - type: MartialArtManual
+    art: MartialArtSleepingCarp
+    martialName: martial-manual-name-carp
+    greet: martial-manual-greet-carp
+    spentProto: MartialScrollBlank
+    remarks:
+    - martial-remark-carp-1
+    - martial-remark-carp-2
+    - martial-remark-carp-3
+    - martial-remark-carp-4
+    - martial-remark-carp-5
+    - martial-remark-carp-6
+    - martial-remark-carp-7
+
+- type: entity
+  parent: [ BaseMartialManual, BaseMagicalContraband ]
+  id: MartialScrollPlasmaFist
+  name: потрёпанный свиток
+  description: Старый и потрёпанный клочок бумаги, исписанный переменчивыми рунами. На нём нарисованы иллюстрации кулачного боя.
+  components:
+  - type: Sprite
+    sprite: Imperial/MartialArts/scrolls.rsi
+    state: plasmafist
+  - type: MartialArtManual
+    art: MartialArtPlasmaFist
+    martialName: martial-manual-name-plasma
+    greet: martial-manual-greet-plasma
+    spentProto: MartialScrollBlank
+    remarks:
+    - martial-remark-plasma-1
+    - martial-remark-plasma-2
+    - martial-remark-plasma-3
+    - martial-remark-plasma-4
+    - martial-remark-plasma-5
+    - martial-remark-plasma-6
+
+- type: entity
+  parent: MartialScrollPlasmaFist
+  id: MartialScrollPlasmaFistNovice
+  suffix: Новичок
+  components:
+  - type: MartialArtManual
+    art: MartialArtPlasmaFistNovice
+    martialName: martial-manual-name-plasma
+    greet: martial-manual-greet-plasma
+    spentProto: MartialScrollBlank
+    remarks:
+    - martial-remark-plasma-1
+    - martial-remark-plasma-2
+    - martial-remark-plasma-3
+
+- type: entity
+  parent: [ BaseMartialManual, BaseSyndicateContraband ]
+  id: MartialScrollSpidersBite
+  name: загадочный свиток
+  suffix: Укус паука
+  description: Свиток, испещрённый странными знаками. Похоже, это зарисовки какого-то боевого искусства.
+  components:
+  - type: Sprite
+    sprite: Imperial/MartialArts/scrolls.rsi
+    state: sleepingcarp
+  - type: MartialArtManual
+    art: MartialArtSpidersBite
+    martialName: martial-manual-name-spider
+    greet: martial-manual-greet-spider
+    spentProto: MartialScrollBlank
+    remarks:
+    - martial-remark-spider-1
+    - martial-remark-spider-2
+    - martial-remark-spider-3
+    - martial-remark-spider-4
+    - martial-remark-spider-5
+    - martial-remark-spider-6
+    - martial-remark-spider-7
+
+# ─── Перчатки ───
+
+# gloves/the_sleeping_carp
+- type: entity
+  parent: ClothingHandsGlovesColorBlack
+  id: ClothingHandsGlovesSleepingCarp
+  name: перчатки карпа
+  description: Эти перчатки способны наделить человека способностями для использования Спящего Карпа.
+  components:
+  - type: MartialArtGiver
+    art: MartialArtSleepingCarp
+
+# gloves/kaza_ruk/sec: перчатки смотрителя
+- type: entity
+  parent: [ ClothingHandsGlovesColorBlack, BaseSecurityContraband ]
+  id: ClothingHandsGlovesKazaRukSec
+  name: перчатки Каза Рук
+  description: Эти перчатки обучают упрощённому варианту тизирского боевого искусства Каза Рук, доступному не только ящерам. Неясно, как именно они это делают. Скорее всего, наниты.
+  components:
+  - type: Sprite
+    sprite: Imperial/MartialArts/fight_gloves.rsi
+    color: "#c41e0d"
+  - type: Clothing
+    sprite: Imperial/MartialArts/fight_gloves.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#c41e0d"
+  - type: MartialArtGiver
+    art: MartialArtKazaRuk
+
+# reskin: blue
+- type: entity
+  parent: ClothingHandsGlovesKazaRukSec
+  id: ClothingHandsGlovesKazaRukSecBlue
+  suffix: синие
+  components:
+  - type: Sprite
+    sprite: Imperial/MartialArts/fight_gloves.rsi
+    color: "#3a4fd4"
+  - type: Clothing
+    sprite: Imperial/MartialArts/fight_gloves.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#3a4fd4"
+
+# gloves/kaza_ruk/combatglovesplus
+- type: entity
+  parent: [ ClothingHandsGlovesCombat, BaseSyndicateContraband ]
+  id: ClothingHandsGlovesCombatPlus
+  name: боевые перчатки плюс
+  description: Эти тактические перчатки огнестойки и защищают от тока. Кажется, они обучают упрощённому варианту тизирского боевого искусства Каза Рук.
+  components:
+  - type: MartialArtGiver
+    art: MartialArtKazaRuk
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.5
+        Heat: 0.8
+
+# gloves/boxing/evil
+- type: entity
+  parent: ClothingHandsGlovesBoxingBase
+  id: ClothingHandsGlovesBoxingEvil
+  name: злые боксёрские перчатки
+  description: Эти странные перчатки излучают необычайно злую ауру.
+  components:
+  - type: Sprite
+    sprite: Imperial/MartialArts/boxing_gloves.rsi
+    state: icon
+    color: "#21211f"
+  - type: Clothing
+    sprite: Imperial/MartialArts/boxing_gloves.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#21211f"
+  - type: MartialArtGiver
+    art: MartialArtEvilBoxing
+
+# gloves/boxing/golden
+- type: entity
+  parent: ClothingHandsGlovesBoxingBase
+  id: ClothingHandsGlovesBoxingGolden
+  name: золотые перчатки
+  description: Действующий чемпион станции!
+  components:
+  - type: Sprite
+    sprite: Imperial/MartialArts/golden_gloves.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/MartialArts/golden_gloves.rsi
+  - type: MartialArtGiver
+    art: MartialArtBoxing
+
+# gloves/fingerless/punch_mitts
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsPunchMitts
+  name: ударные рукавицы
+  description: Перчатки без пальцев с мерзкими шипами. Позволяют пользоваться сомнительной техникой охотничьего бокса — молотить диких зверей в клочья. Отличная тренировка. Крайне неразумно для собственного выживания.
+  components:
+  - type: Sprite
+    sprite: Imperial/MartialArts/punch_mitts.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/MartialArts/punch_mitts.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.95
+        Heat: 0.95
+  - type: MartialArtGiver
+    art: MartialArtHunterBoxing
+
+# gloves/gauntlets (лут Лаваленда)
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsConcussiveGauntlets
+  name: концессионные перчатки
+  description: Пара тяжёлых латных перчаток с Лаваленда. Позволяют выбивать дух из местной фауны охотничьим боксом.
+  components:
+  - type: Sprite
+    sprite: Imperial/MartialArts/gauntlets.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/MartialArts/gauntlets.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.75
+        Heat: 0.85
+  - type: MartialArtGiver
+    art: MartialArtHunterBoxing
+
+# ─── Пояса ───
+
+# storage/belt/champion/wrestling
+- type: entity
+  parent: ClothingBeltChampion
+  id: ClothingBeltChampionWrestling
+  name: пояс рестлера
+  description: Доказывает миру, что ты самый сильный! От него так и веет борьбой.
+  components:
+  - type: MartialArtGiver
+    art: MartialArtWrestling
+
+# storage/belt/judobelt
+- type: entity
+  parent: ClothingBeltSecurity
+  id: ClothingBeltJudo
+  name: пояс корпоративного дзюдо
+  description: Обучает носителя корпоративному дзюдо НТ.
+  components:
+  - type: Sprite
+    sprite: Imperial/MartialArts/judo_belt.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/MartialArts/judo_belt.rsi
+  - type: Storage
+    grid:
+    - 0,0,2,1
+  - type: MartialArtGiver
+    art: MartialArtCorporateJudo
+
+# ─── Оружие ───
+
+# staff/bostaff
+- type: entity
+  parent: BaseItem
+  id: BoStaff
+  name: посох бо
+  description: Длинный, высокий посох из полированного дерева. Традиционно используется в древних боевых искусствах старой Земли. Может использоваться как для убийства, так и для выведения из строя.
+  components:
+  - type: Sprite
+    sprite: Imperial/MartialArts/bostaff.rsi
+    layers:
+    - state: icon
+      map: [ "enum.WieldableVisuals.Wielded" ]
+  - type: Item
+    size: Huge
+    sprite: Imperial/MartialArts/bostaff.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    sprite: Imperial/MartialArts/bostaff.rsi
+  - type: MeleeWeapon
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 10
+    soundHit:
+      path: /Audio/Imperial/MartialArts/woodhit.ogg
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 14
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.WieldableVisuals.Wielded:
+        enum.WieldableVisuals.Wielded:
+          True: { state: icon-wielded }
+          False: { state: icon }
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 20
+  - type: BoStaff
+
+# ─── Гриб ───
+
+# obj/item/mushpunch
+- type: entity
+  parent: BaseItem
+  id: MartialOddMushroom
+  name: странный гриб
+  description: Sapienza Ophioglossoides — странный гриб из плоти грибного человека. Похоже, он сохранил часть врождённой силы своего хозяина и дрожит от едва сдерживаемой МОЩИ!
+  components:
+  - type: Sprite
+    sprite: Imperial/MartialArts/odd_mushroom.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: MartialArtFood
+    art: MartialArtMushroomPunch
+
+# ─── Импланты ───
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: KazaRukImplant
+  name: имплант Каза Рук
+  description: Обучает тизирскому боевому искусству Каза Рук пятью короткими обучающими видео, проецируемыми прямо в глаза.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    implantAction: ActionMartialImplantToggle
+  - type: MartialArtImplant
+    art: MartialArtKazaRuk
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: CqcImplant
+  name: имплант CQC
+  description: Обучает навыкам Close Quarters Combat пятью короткими видео-инструкциями, проецируемыми прямо в глаза.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    implantAction: ActionMartialImplantToggle
+  - type: MartialArtImplant
+    art: MartialArtCqc
+
+- type: entity
+  parent: BaseImplantOnlyImplanter
+  id: KazaRukImplanter
+  name: имплантер (Каза Рук)
+  components:
+  - type: Implanter
+    implant: KazaRukImplant
+
+- type: entity
+  parent: BaseImplantOnlyImplanterSyndi
+  id: CqcImplanter
+  name: имплантер (CQC)
+  components:
+  - type: Implanter
+    implant: CqcImplant
+
+# ─── Одежда в стиле карпа (CARP_STYLE_FACTOR) ───
+
+# under/costume/gi
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformMartialGi
+  name: боевое ги
+  description: Ассистент, ядерщик — неважно. Ты можешь победить кого угодно; это называется тяжёлый труд!
+  components:
+  - type: Sprite
+    sprite: Imperial/MartialArts/gi.rsi
+    layers:
+    - state: icon
+      color: "#f1eeee"
+    - state: icon-belt
+      color: "#000000"
+  - type: Clothing
+    sprite: Imperial/MartialArts/gi.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#f1eeee"
+      - state: belt-equipped-INNERCLOTHING
+        color: "#000000"
+  - type: CarpStyleFactor
+
+# shoes/sandal
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesMartialSandals
+  name: сандалии
+  description: Пара довольно простых деревянных сандалий.
+  components:
+  - type: Sprite
+    sprite: Imperial/MartialArts/sandals.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/MartialArts/sandals.rsi
+  - type: CarpStyleFactor
+
+# head/costume/snakeeater
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadBandSnakeEater
+  name: странная бандана
+  description: Бандана. Кажется, на её изнанке вышит маленький карп и иероглиф «魚».
+  components:
+  - type: Sprite
+    sprite: Imperial/MartialArts/snake_eater.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/MartialArts/snake_eater.rsi
+  - type: CarpStyleFactor
+
+# ─── Наборы ───
+
+# storage/box/syndicate/sleeping_carp
+- type: entity
+  parent: [ BoxCardboard, BaseSyndicateContraband ]
+  id: BoxSleepingCarpKit
+  name: набор боевых искусств
+  description: Свиток с секретами древнего боевого искусства и подходящая к нему одежда.
+  components:
+  # Ги размера Normal, поэтому коробке нужен больший лимит.
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,4,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MartialScrollSleepingCarp
+        - id: ClothingHeadBandSnakeEater
+        - id: ClothingUniformMartialGi
+        - id: ClothingShoesMartialSandals
+
+# storage/toolbox/guncase/cqc
+- type: entity
+  parent: [ ToolboxSyndicate, BaseSyndicateContraband ]
+  id: CaseCqcEquipment
+  name: кейс снаряжения CQC
+  description: Руководство по CQC, имплант CQC, пачка сигарет и стильная бандана.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MartialManualCqc
+        - id: CqcImplanter
+        - id: ClothingHeadBandSnakeEater
+        - id: CigPackSyndicate
+
+# ─── Аплинк ───
+
+# uplink_item/stealthy_weapons/martialarts: cost = 17, не для ядерщиков.
+- type: listing
+  id: UplinkSleepingCarpKit
+  name: Свиток и одежда боевых искусств
+  description: Свиток с секретами древнего боевого искусства. Вы овладеете рукопашным боем и научитесь отбивать пули, а в подходящей одежде — уклоняться от ударов. Но вы откажетесь от бесчестного стрелкового оружия, а броня будет мешать уклоняться. В комплекте — одежда для боевых искусств!
+  productEntity: BoxSleepingCarpKit
+  cost:
+    Telecrystal: 17
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+
+# uplink_item/weapon_kits/medium_cost/cqc: только ядерщикам.
+- type: listing
+  id: UplinkCqcCase
+  name: Кейс снаряжения CQC (очень сложно)
+  description: Руководство по CQC, или ближнему тактическому бою. В комплекте имплант CQC, пачка сигарет и бандана.
+  productEntity: CaseCqcEquipment
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+# uplink_item/spy_unique/kaza_ruk
+- type: listing
+  id: UplinkCombatGlovesPlus
+  name: Боевые перчатки плюс
+  description: Пара боевых перчаток плюс. Изолированные И позволяют владеть боевым искусством!
+  productEntity: ClothingHandsGlovesCombatPlus
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkWearables
+
+# uplink_item/spy_unique/spider_bite
+- type: listing
+  id: UplinkScrollSpidersBite
+  name: Свиток Укуса паука
+  description: Свиток, обучающий основам боевого искусства Укус паука.
+  productEntity: MartialScrollSpidersBite
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+
+# Книга волшебника: Плазменный кулак.
+- type: listing
+  id: SpellbookPlasmaFist
+  name: Свиток плазменного кулака
+  description: Древнее боевое искусство. Комбо очень сложные, зато среди них — самые смертоносные приёмы, включая плазменный кулак, от которого противник разлетается на куски.
+  productEntity: MartialScrollPlasmaFist
+  cost:
+    WizCoin: 2
+  categories:
+  - SpellbookEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
