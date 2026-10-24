@@ -1,0 +1,43 @@
+# Языковые причуды TG (bilingual, foreigner, csl). Категория и правила — в Imperial/Quirks.
+
+- type: trait
+  id: ImperialQuirkBilingual
+  name: imperial-quirk-bilingual-name
+  description: imperial-quirk-bilingual-desc
+  category: ImperialQuirks
+  cost: 4
+
+- type: imperialQuirk
+  id: ImperialQuirkBilingual
+  incompatible: [ ImperialQuirkForeigner, ImperialQuirkSecondLanguage ]
+  components:
+  - type: ImperialQuirkLanguage
+    grantRandom: [ Uncommon, Draconic, Moffic, Calcic, Sylvan, Slime, Canilunzt ]
+
+- type: trait
+  id: ImperialQuirkForeigner
+  name: imperial-quirk-foreigner-name
+  description: imperial-quirk-foreigner-desc
+  category: ImperialQuirks
+
+- type: imperialQuirk
+  id: ImperialQuirkForeigner
+  incompatible: [ ImperialQuirkSecondLanguage ]
+  components:
+  - type: ImperialQuirkLanguage
+    grant: [ Uncommon ]
+    block: [ Common ]
+
+- type: trait
+  id: ImperialQuirkSecondLanguage
+  name: imperial-quirk-second-language-name
+  description: imperial-quirk-second-language-desc
+  category: ImperialQuirks
+  cost: -2
+
+- type: imperialQuirk
+  id: ImperialQuirkSecondLanguage
+  components:
+  - type: ImperialQuirkLanguage
+    partial:
+      Common: 90
