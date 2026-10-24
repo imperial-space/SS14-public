@@ -673,6 +673,11 @@ public sealed partial class ImperialWizardSpellsSystem
         }
     }
 
+
+    private bool IsLichAlive(MindComponent mind)
+    {
+        return mind.OwnedEntity is { } body && HasComp<MobStateComponent>(body) && !_mobs.IsDead(body);
+    }
     private void UpdatePhylacteries()
     {
         var now = _timing.CurTime;
@@ -680,6 +685,15 @@ public sealed partial class ImperialWizardSpellsSystem
         var revive = new List<Entity<ImperialPhylacteryComponent>>();
         while (query.MoveNext(out var uid, out var phylactery, out _))
         {
+            // Тело уничтожили без смерти (гиб, удаление) — таймер тоже запускается.
+            if (phylactery.ReviveAt == null && phylactery.Mind.Valid && TryComp<MindComponent>(phylactery.Mind, out var lichMind) && !IsLichAlive(lichMind)
+                && (lichMind.OwnedEntity is not { } owned || !HasComp<MobStateComponent>(owned)))
+            {
+                phylactery.ReviveAt = now + phylactery.RespawnTime;
+                if (lichMind.OwnedEntity is { } ghost)
+                    _popup.PopupEntity(Loc.GetString("imperial-spell-lich-dragged", ("minutes", phylactery.RespawnTime.TotalMinutes)), ghost, ghost, PopupType.Large);
+            }
+
             if (phylactery.ReviveAt is { } at && now >= at)
                 revive.Add((uid, phylactery));
         }
@@ -697,7 +711,8 @@ public sealed partial class ImperialWizardSpellsSystem
         if (!TryComp<MindComponent>(phylactery.Comp.Mind, out var mind))
             return;
 
-        if (mind.OwnedEntity is { } current && !_mobs.IsDead(current))
+        // После смерти разум уходит призраку — «живым» считается только тело-моб.
+        if (IsLichAlive(mind))
             return;
 
         var coords = _transform.GetMapCoordinates(phylactery);
@@ -905,6 +920,8 @@ public sealed partial class ImperialWizardSpellsSystem
     {
         var victim = args.Tripper;
         Spawn("EffectSparks", Transform(ent).Coordinates);
+        // flare(): spark_system — искры с треском.
+        _audio.PlayPvs(new SoundCollectionSpecifier("sparks"), ent);
         _popup.PopupEntity(Loc.GetString("imperial-trap-flare", ("trap", ent.Owner)), ent, PopupType.MediumCaution);
         ent.Comp.Charges--;
         if (ent.Comp.Charges <= 0)

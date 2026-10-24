@@ -217,7 +217,7 @@ public sealed partial class ImperialLightningProjectileComponent : Component
     public float Range = 15f;
 
     [DataField]
-    public int Bolts = 3;
+    public int Bolts = 4;
 }
 
 /// <summary>conjure_item: призвать предмет в руку.</summary>
@@ -882,7 +882,35 @@ public sealed partial class ImperialWizardSpellsSystem
     /// <summary>lightning: попадание — цепная молния tesla_zap.</summary>
     private void OnLightningHit(Entity<ImperialLightningProjectileComponent> ent, ref ProjectileHitEvent args)
     {
-        _lightning.ShootRandomLightnings(args.Target, ent.Comp.Range, ent.Comp.Bolts, "Lightning", 1, false);
+        // TRAIT_TESLA_SHOCKIMMUNE: заклинателя цепь не трогает.
+        var caster = TryComp<Content.Shared.Projectiles.ProjectileComponent>(ent, out var projectile) ? projectile.Shooter : null;
+        ZapChain(args.Target, caster, ent.Comp.Range, ent.Comp.Bolts);
+    }
+
+    /// <summary>tesla_zap(): молния прыгает к ближайшей ещё не поражённой цели, пока хватает силы.</summary>
+    private void ZapChain(EntityUid from, EntityUid? caster, float range, int jumps)
+    {
+        var hit = new HashSet<EntityUid> { from };
+        if (caster is { } c)
+            hit.Add(c);
+
+        var current = from;
+        for (var i = 0; i < jumps; i++)
+        {
+            var origin = _transform.GetMapCoordinates(current);
+            var next = _lookup.GetEntitiesInRange<Content.Server.Lightning.Components.LightningTargetComponent>(origin, range)
+                .Where(t => !hit.Contains(t.Owner))
+                .OrderByDescending(t => t.Comp.Priority)
+                .ThenBy(t => (_transform.GetMapCoordinates(t.Owner).Position - origin.Position).LengthSquared())
+                .Select(t => t.Owner)
+                .FirstOrDefault();
+            if (!next.Valid)
+                break;
+
+            _lightning.ShootLightning(current, next, "Lightning", triggerLightningEvents: false);
+            hit.Add(next);
+            current = next;
+        }
     }
 
     #endregion

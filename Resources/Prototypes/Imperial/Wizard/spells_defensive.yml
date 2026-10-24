@@ -301,8 +301,9 @@
   components:
   - type: TriggerOnSpawn
   - type: SmokeOnTrigger
-    duration: 10
+    duration: 16
     spreadAmount: 20
+    smokePrototype: ImperialBadSmoke
   - type: TimedDespawn
     lifetime: 1
 
@@ -529,3 +530,11 @@
   description: Скрывает истинную силу... наверное.
   components:
   - type: WizardClothes
+
+# /obj/effect/particle_effect/fluid/smoke/bad: кашель и вещи из рук.
+- type: entity
+  parent: Smoke
+  id: ImperialBadSmoke
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ImperialBadSmoke

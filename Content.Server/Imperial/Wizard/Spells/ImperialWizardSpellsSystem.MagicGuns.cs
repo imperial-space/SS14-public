@@ -500,6 +500,10 @@ public sealed partial class ImperialWizardSpellsSystem
     /// <summary>animate_atom_living(): предмет оживает и служит стрелку.</summary>
     private void AnimateObject(EntityUid target, EntityUid? owner)
     {
+        // В TG стены — тайлы, оживить их нельзя.
+        if (EntityManager.System<TagSystem>().HasTag(target, WallTagId))
+            return;
+
         if (Transform(target).Anchored && HasComp<Content.Server.Power.Components.ApcPowerReceiverComponent>(target))
             return;
 

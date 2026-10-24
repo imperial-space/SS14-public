@@ -52,6 +52,15 @@ public sealed class ImperialWizardObjectVisualsSystem : EntitySystem
         _drawn[ent] = id;
         RemComp<SpriteComponent>(ent);
         var dest = AddComp<SpriteComponent>(ent);
+
+        // Сглаживаемые спрайты (окна, столы) рисуются по соседям — у одинокого мимика их не будет, берём иконку.
+        if (proto.HasComponent<Content.Client.IconSmoothing.IconSmoothComponent>(EntityManager.ComponentFactory)
+            && proto.TryGetComponent(out IconComponent? icon, EntityManager.ComponentFactory))
+        {
+            _sprite.AddLayer((ent, dest), icon.Icon);
+            return;
+        }
+
         _serMan.CopyTo(source, ref dest, notNullableOverride: true);
     }
 }
